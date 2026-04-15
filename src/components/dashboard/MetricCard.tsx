@@ -3,7 +3,8 @@ import { LucideIcon, TrendingUp, TrendingDown, Minus } from "lucide-react"
 
 interface MetricCardProps {
   label: string
-  value: string | number
+  /** Pass `null` to render an empty placeholder ("—") with no trend indicator. */
+  value: string | number | null
   unit?: string
   icon: LucideIcon
   trend?: "up" | "down" | "stable"
@@ -30,6 +31,8 @@ export default function MetricCard({
       ? "#FF4444"
       : "#888888"
 
+  const isEmpty = value === null
+
   return (
     <div
       className={cn(
@@ -44,7 +47,7 @@ export default function MetricCard({
         >
           <Icon className="w-4 h-4" style={{ color: "#C9A84C" }} />
         </div>
-        {trend && trendValue && (
+        {!isEmpty && trend && trendValue && (
           <div
             className="flex items-center gap-1 text-xs font-medium"
             style={{ color: trendColor }}
@@ -55,8 +58,14 @@ export default function MetricCard({
         )}
       </div>
       <div className="flex items-baseline gap-1">
-        <span className="text-2xl font-bold text-[#F0F0F0]">{value}</span>
-        {unit && <span className="text-sm text-[#888888]">{unit}</span>}
+        {isEmpty ? (
+          <span className="text-2xl font-bold text-[#555555]">—</span>
+        ) : (
+          <>
+            <span className="text-2xl font-bold text-[#F0F0F0]">{value}</span>
+            {unit && <span className="text-sm text-[#888888]">{unit}</span>}
+          </>
+        )}
       </div>
       <p className="text-xs text-[#555555] mt-1">{label}</p>
     </div>

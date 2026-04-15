@@ -9,17 +9,13 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts"
+import { LineChart } from "lucide-react"
+import EmptyState from "@/components/shared/EmptyState"
 
-const scoreData = [
-  { week: "Wk 1", score: 590 },
-  { week: "Wk 2", score: 605 },
-  { week: "Wk 3", score: 620 },
-  { week: "Wk 4", score: 635 },
-  { week: "Wk 5", score: 648 },
-  { week: "Wk 6", score: 660 },
-  { week: "Wk 7", score: 672 },
-  { week: "Wk 8", score: 680 },
-]
+export interface ScoreDataPoint {
+  week: string
+  score: number
+}
 
 interface CustomTooltipProps {
   active?: boolean
@@ -43,12 +39,28 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
 
 interface ScoreChartProps {
   height?: number
+  /** Defaults to an empty array, which renders an inline empty-state card. */
+  data?: ScoreDataPoint[]
 }
 
-export default function ScoreChart({ height = 160 }: ScoreChartProps) {
+export default function ScoreChart({ height = 160, data = [] }: ScoreChartProps) {
+  if (data.length === 0) {
+    return (
+      <div style={{ height }}>
+        <EmptyState
+          icon={LineChart}
+          title="No score data yet"
+          description="Your score trend will appear once you log a few practice sessions."
+          size="sm"
+          className="h-full"
+        />
+      </div>
+    )
+  }
+
   return (
     <ResponsiveContainer width="100%" height={height}>
-      <AreaChart data={scoreData} margin={{ top: 5, right: 5, bottom: 0, left: -20 }}>
+      <AreaChart data={data} margin={{ top: 5, right: 5, bottom: 0, left: -20 }}>
         <defs>
           <linearGradient id="scoreGradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="5%" stopColor="#C9A84C" stopOpacity={0.2} />

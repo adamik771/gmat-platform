@@ -5,8 +5,10 @@ import {
   Trophy,
   ClipboardList,
   CheckCircle,
+  Activity,
 } from "lucide-react"
 import { ActivityItem } from "@/types"
+import EmptyState from "@/components/shared/EmptyState"
 
 const typeConfig = {
   lesson_completed: {
@@ -53,6 +55,21 @@ function formatRelativeTime(timestamp: string): string {
 }
 
 export default function ActivityFeed({ items, className }: ActivityFeedProps) {
+  if (items.length === 0) {
+    return (
+      <div className={cn("p-2", className)}>
+        <EmptyState
+          icon={Activity}
+          title="No activity yet"
+          description="Finish a practice set or lesson to see your recent sessions here."
+          ctaHref="/practice"
+          ctaLabel="Start practicing"
+          size="sm"
+        />
+      </div>
+    )
+  }
+
   return (
     <div className={cn("space-y-3", className)}>
       {items.map((item) => {
