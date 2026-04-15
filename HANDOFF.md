@@ -58,8 +58,16 @@ Route: `/lessons/[slug]`. Click any unlocked card on `/lessons` to enter.
 - **`LessonsClient.tsx` wire-up**: the card body is now wrapped in `<Link href={/lessons/${slug}}>` when `status !== "locked"`, else a plain `<div>` (no href, 50% opacity). The "Start" / "Review" call-to-action is now a `<span>` inside the outer link — no nested `<button>` to compete with the card-level click target.
 - **Verified** in the preview server: `/lessons/01-mindset-reset` renders the full markdown tree correctly (h1/h2/h3, paragraphs, `**bold**`, `*italic*`, `-` bullets, `1.` numbered lists, `---` hr), styling confirmed via `preview_inspect` (h2 = 20px/700/`#F0F0F0`, p = 15px/`#D8D8D8`, article bg = `#111111`). Card wiring confirmed via `preview_eval`: modules 01–03 render as `<a>` with `/lessons/<slug>` hrefs at opacity 1, modules 04–08 render as `<div>` with no href at opacity 0.5. Navigated to `/lessons/03-quant-mastery` and confirmed prev = Diagnostic Deep Dive, next = Verbal Precision.
 
+### Mock data cleanup (this session — Option D)
+All the hardcoded user-progress numbers on the dashboard and practice pages are gone. Widgets now render honest "no data yet" states until real progress tracking lands. Surrounding layouts are untouched so real numbers can slot in later without a redesign.
+- **New `src/components/shared/EmptyState.tsx`** — reusable dashed-border card with icon / title / description / optional CTA link. Used across dashboard widgets, activity feed, and practice charts. Two sizes (`sm` for inside-chart, `md` for full-card).
+- **Widget updates (dashboard components)**: `MetricCard.value` now accepts `null` → renders `—` + hides the trend indicator. `SectionProgress` has a new `empty` prop → renders `— / 90` + empty progress bar + "No data yet". `ActivityFeed` renders an inline `EmptyState` with a "Start practicing" CTA when `items.length === 0`. `ScoreChart.data` is now a prop (was a hardcoded module constant) and falls back to an inline empty-state card when `data.length === 0`.
+- **Dashboard page** (`src/app/(app)/dashboard/page.tsx`): removed the `recentActivity` and `recentMistakes` mock arrays. Score Goal card shows `—` for both estimated and target scores with a "Take diagnostic" CTA and helper copy. All 4 weekly `MetricCard`s, all 3 `SectionProgress` cards, and the `ScoreChart` are empty. Activity feed receives `items={[]}`. Recent Mistakes is now an `EmptyState` linking to `/error-log`. Recommended Next is unchanged (it was never mock — comes from `getAllLessons()`) and is now a `<Link>` to `/lessons/<slug>`.
+- **Practice page** (`src/app/(app)/practice/PracticeClient.tsx`): removed the `accuracyTrend` and `byType` mock arrays plus the Recharts imports they pulled in. Subheader is now a real derived count (`154 questions across 12 sets` from the `sets` prop) instead of "142 questions this week". The 3 stat cards show `—`. Both chart panels are replaced with `EmptyState` components inside the same card shells. The 12 practice-set links are unchanged.
+- **Verified**: local `next build` clean in 2.3s (27 routes, no TS/lint errors); preview server console clean for both `/dashboard` and `/practice`; production verified via WebFetch on both pages — dashboard shows em-dashes + three empty-state panels + "Take diagnostic" CTA, practice shows "154 questions across 12 sets" + three em-dashes + two "Not enough data yet" chart panels + 12 practice sets (Quant 5, Verbal 2, DI 5).
+
 ### Build status
-Last `npx next build` compiled clean in 2.4s (Vercel: ~14s on cold cache). 27 routes: 18 static + 8 SSG lesson pages (`/lessons/[slug]`) + 1 dynamic (`/practice/session/[slug]`). Zero TS errors, zero lint errors. **Live at https://gmat-platform-61zf.vercel.app/** — Vercel project `gmat-platform-lcwy` (Hobby, `adamik771's projects`). Verified end-to-end: `/`, `/practice`, `/practice/session/algebra`, `/practice/session/reading-comprehension`, `/pricing`. Lesson pages verified locally; waiting on the next Vercel redeploy for prod confirmation. GitHub integration means every push to `main` auto-redeploys.
+Last `npx next build` compiled clean in 2.3s (Vercel: ~14s on cold cache). 27 routes: 18 static + 8 SSG lesson pages (`/lessons/[slug]`) + 1 dynamic (`/practice/session/[slug]`). Zero TS errors, zero lint errors. **Live at https://gmat-platform-61zf.vercel.app/** — Vercel project `gmat-platform-lcwy` (Hobby, `adamik771's projects`). Verified end-to-end: `/`, `/dashboard`, `/practice`, `/practice/session/algebra`, `/practice/session/reading-comprehension`, `/lessons`, `/lessons/01-mindset-reset`, `/lessons/03-quant-mastery`, `/pricing`. GitHub integration means every push to `main` auto-redeploys.
 
 ## What's next
 
@@ -75,10 +83,19 @@ User directive (most recent): "do in order, but lets also prepare to change the 
 
 3. **Option B — Individual lesson pages** at `/lessons/[slug]` with a markdown renderer. ✅ Done (see above).
 
-4. **Option D — Clean up remaining hardcoded mock data**. NEXT.
-   - Dashboard: `recentActivity`, `recentMistakes`, weekly stats (18.5 hrs / 142 / 73% / 14 days), score goals (565 → 735 / 65% / +55), section progress cards.
-   - Practice: stats row (1,247 / 73% / 1m 52s), "142 questions this week" subheader, `accuracyTrend` + `byType` charts in `PracticeClient.tsx`.
-   - None of this can be real until there's actual user-progress state, so the deliverable here is probably "replace with neutral placeholders or empty states" rather than "wire real data." Confirm the copy-direction with Adam before editing — "empty state" vs "sample data with an explicit disclaimer" are both defensible and he may have a preference.
+4. **Option D — Clean up remaining hardcoded mock data**. ✅ Done (see above). Direction chosen: "empty states everywhere" (Adam's call).
+
+## What's next (ideas, not commitments)
+
+With the original A/C/B/D directive fully executed, here are the natural next moves — confirm direction with Adam before starting any of these.
+
+- **Real user-progress state** — every empty state on the dashboard/practice page is a promise we'll eventually keep. Options: Supabase (already scaffolded in `src/lib/supabase.ts` — apply the same lazy-getter fix the moment anything imports it), or Postgres via Neon/Vercel, or just localStorage for a v1 "works without a backend" demo. The practice session player already tracks `elapsedMs`/`correctCount` per session in component state — persisting those is the first wedge.
+- **Auth** — `src/app/(auth)/login` and `signup` pages exist but are unwired. Likely Supabase Auth given the existing scaffolding. Gates everything under the `(app)` group.
+- **Stripe checkout** — `src/lib/stripe.ts` has `getStripe()` + `STRIPE_PRICES` ready, and the pricing page already lists the tiers. Needs a `/api/checkout` route handler + a webhook listener for `checkout.session.completed`. Real price IDs need to replace the `price_self_study`-style placeholders in env.
+- **Individual lesson completion tracking** — the `LessonsClient.tsx` currently synthesizes status ("first 2 done, 3rd current, rest locked"). Once progress is persisted, this should come from the DB and the locked gating should be real (vs currently cosmetic).
+- **Practice session player v2** — markdown tables still render as monospace `<pre>` in `PromptBlock`. Swapping that for `react-markdown` + `remark-gfm` (already in deps) would make Table Analysis and MSR tables render as real HTML tables.
+- **Two-Part Analysis custom UI** — currently falls back to "not supported in practice session yet" screen. Needs a 2-column answer grid (the question format has two independent answer columns, not A-E choices).
+- **Deployment hardening** — Vercel is on the default `-lcwy` subdomain. Wiring a custom domain (e.g. `zakarian-gmat.com`) goes through Vercel → Project → Settings → Domains → Add, then DNS.
 
 ## Context links
 
