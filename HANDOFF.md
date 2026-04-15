@@ -50,8 +50,16 @@ Route: `/practice/session/[slug]`. Click any "Start" button on `/practice` to en
 - **Verified** end-to-end in the preview server for: algebra (simple ## Qn), reading-comprehension (passages 1 → 2 context swap works), multi-source-reasoning (sets 1 → 2 context swap works), table-analysis (monospace tables), graphics-interpretation, critical-reasoning, number-properties (results screen), two-part-analysis (0-options fallback).
 - **Wire-up**: the "Start" button in `PracticeClient.tsx` is now a `<Link href={/practice/session/${set.slug}}>`.
 
+### Lesson detail pages (this session — Option B)
+Route: `/lessons/[slug]`. Click any unlocked card on `/lessons` to enter.
+- **`src/app/(app)/lessons/[slug]/page.tsx`** — server component; loads the lesson via `getLessonBySlug`, 404s if missing, and pre-generates all 8 lesson pages at build time via `generateStaticParams`. Renders the markdown body inside a styled `<article>` using `react-markdown` + `remark-gfm`, with a custom `components` map that maps every element (`h1..h4`, `p`, `ul`, `ol`, `li`, `strong`, `em`, `hr`, `blockquote`, inline+block `code`, `pre`, `a`, GFM `table`/`thead`/`th`/`td`) to Tailwind classes using the existing dark+gold tokens.
+- **Page chrome**: back link → `/lessons`, module/section/duration meta row, h1 + description, then the article card, then a bottom prev/next nav strip that links to the adjacent lessons (module 01 has no prev, module 08 has no next).
+- **Dependencies added**: `react-markdown@10.1.0` and `remark-gfm@4.0.1` (served server-side so there's no client bundle cost).
+- **`LessonsClient.tsx` wire-up**: the card body is now wrapped in `<Link href={/lessons/${slug}}>` when `status !== "locked"`, else a plain `<div>` (no href, 50% opacity). The "Start" / "Review" call-to-action is now a `<span>` inside the outer link — no nested `<button>` to compete with the card-level click target.
+- **Verified** in the preview server: `/lessons/01-mindset-reset` renders the full markdown tree correctly (h1/h2/h3, paragraphs, `**bold**`, `*italic*`, `-` bullets, `1.` numbered lists, `---` hr), styling confirmed via `preview_inspect` (h2 = 20px/700/`#F0F0F0`, p = 15px/`#D8D8D8`, article bg = `#111111`). Card wiring confirmed via `preview_eval`: modules 01–03 render as `<a>` with `/lessons/<slug>` hrefs at opacity 1, modules 04–08 render as `<div>` with no href at opacity 0.5. Navigated to `/lessons/03-quant-mastery` and confirmed prev = Diagnostic Deep Dive, next = Verbal Precision.
+
 ### Build status
-Last `npx next build` compiled clean in 3.0s. 19 static routes + 1 dynamic (`/practice/session/[slug]`). Zero TS errors, zero lint errors in the files we touched.
+Last `npx next build` compiled clean in 2.4s (Vercel: ~14s on cold cache). 27 routes: 18 static + 8 SSG lesson pages (`/lessons/[slug]`) + 1 dynamic (`/practice/session/[slug]`). Zero TS errors, zero lint errors. **Live at https://gmat-platform-61zf.vercel.app/** — Vercel project `gmat-platform-lcwy` (Hobby, `adamik771's projects`). Verified end-to-end: `/`, `/practice`, `/practice/session/algebra`, `/practice/session/reading-comprehension`, `/pricing`. Lesson pages verified locally; waiting on the next Vercel redeploy for prod confirmation. GitHub integration means every push to `main` auto-redeploys.
 
 ## What's next
 
@@ -59,17 +67,18 @@ User directive (most recent): "do in order, but lets also prepare to change the 
 
 1. **Option A — Practice session player.** ✅ Done (see above).
 
-2. **Option C — Deploy to GitHub + Vercel.** NEXT. Blocker: `gh` CLI may still not be installed. Plan:
-   - Check `which gh`. If missing, ask Adam whether to install via Homebrew, or fall back to the web UI path where he creates the GitHub repo in the browser and we push via `git remote add origin && git push`.
-   - Initial commit is likely needed — confirm with Adam before committing (per standing rules). Something like `chore: initial commit` or `feat: bootstrap gmat-platform`.
-   - Deploy to Vercel via either `vercel` CLI or GitHub integration (whichever Adam prefers). Environment variables: Supabase + Stripe keys aren't wired yet, so deploy should succeed without them.
+2. **Option C — Deploy to GitHub + Vercel.** ✅ Done.
+   - Git: `main` branch pushed to `https://github.com/adamik771/gmat-platform` via HTTPS + a classic PAT (`repo` scope). Credential cached in macOS keychain for subsequent pushes. `gh` CLI is NOT installed on this machine — Adam created the empty repo via the github.com/new browser flow, then we added the remote and pushed.
+   - Vercel: project imported via the web UI flow at vercel.com/new. Hobby tier, team `adamik771's projects`, project name `gmat-platform-lcwy` (Vercel auto-added the `-lcwy` suffix to avoid collision with other `gmat-platform.vercel.app` subdomains). Framework preset: Next.js, root `./`, no env vars set. GitHub integration is wired, so every push to `main` auto-redeploys.
+   - **First deploy failed** on `Collecting page data` with `Error: Failed to collect configuration for /pricing` → `[cause]: Error: Neither apiKey nor config.authenticator provided`. Root cause: `src/lib/stripe.ts` instantiated `new Stripe(process.env.STRIPE_SECRET_KEY!)` at module load, so importing `STRIPE_PRICES` (which `pricing/page.tsx` does) dragged the constructor into the static build path and crashed because STRIPE_SECRET_KEY is unset on Vercel. Fix (commit `cc76535`): replaced the eagerly-instantiated singleton with a `getStripe()` lazy getter that only throws when actually called. Verified with `env -u STRIPE_SECRET_KEY -u NEXT_PUBLIC_SUPABASE_URL -u NEXT_PUBLIC_SUPABASE_ANON_KEY npx next build` — all 19 routes generate cleanly.
+   - **`supabase.ts` has the same bug pattern** (module-level `createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, ...)`) but nothing currently imports it, so it's not a build blocker. Apply the same lazy-getter fix the moment any page imports it.
 
-3. **Option B — Individual lesson pages** at `/lessons/[slug]` with a markdown renderer. Likely needs `marked` or `react-markdown` dependency. `src/app/(app)/lessons/LessonsClient.tsx` currently renders cards with no click target — wire them to `<Link href={/lessons/${slug}}>` once the detail page exists.
+3. **Option B — Individual lesson pages** at `/lessons/[slug]` with a markdown renderer. ✅ Done (see above).
 
-4. **Option D — Clean up remaining hardcoded mock data**:
+4. **Option D — Clean up remaining hardcoded mock data**. NEXT.
    - Dashboard: `recentActivity`, `recentMistakes`, weekly stats (18.5 hrs / 142 / 73% / 14 days), score goals (565 → 735 / 65% / +55), section progress cards.
    - Practice: stats row (1,247 / 73% / 1m 52s), "142 questions this week" subheader, `accuracyTrend` + `byType` charts in `PracticeClient.tsx`.
-   - None of this can be real until there's actual user-progress state, so the deliverable here is probably "replace with neutral placeholders or empty states" rather than "wire real data."
+   - None of this can be real until there's actual user-progress state, so the deliverable here is probably "replace with neutral placeholders or empty states" rather than "wire real data." Confirm the copy-direction with Adam before editing — "empty state" vs "sample data with an explicit disclaimer" are both defensible and he may have a preference.
 
 ## Context links
 

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { CheckCircle, Lock, PlayCircle, Clock } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -63,18 +64,18 @@ export default function LessonsClient({ lessons }: { lessons: LessonCardData[] }
         <div className="grid gap-3">
           {filtered.map((lesson) => {
             const moduleLabel = `Module ${String(lesson.module).padStart(2, "0")}`
-            return (
-              <div
-                key={lesson.slug}
-                className={cn(
-                  "flex items-start gap-4 p-5 rounded-xl border transition-colors",
-                  lesson.status === "current"
-                    ? "border-[#C9A84C]/30 bg-[#C9A84C]/[0.03]"
-                    : lesson.status === "locked"
-                    ? "border-white/[0.05] opacity-50"
-                    : "border-white/[0.08] bg-[#111111] hover:border-white/[0.14]"
-                )}
-              >
+            const isLocked = lesson.status === "locked"
+            const cardClassName = cn(
+              "flex items-start gap-4 p-5 rounded-xl border transition-colors",
+              lesson.status === "current"
+                ? "border-[#C9A84C]/30 bg-[#C9A84C]/[0.03]"
+                : isLocked
+                ? "border-white/[0.05] opacity-50"
+                : "border-white/[0.08] bg-[#111111] hover:border-white/[0.14]"
+            )
+
+            const cardInner = (
+              <>
                 <div
                   className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
                   style={{
@@ -131,10 +132,10 @@ export default function LessonsClient({ lessons }: { lessons: LessonCardData[] }
                   </div>
                 </div>
 
-                {lesson.status !== "locked" && (
-                  <button
+                {!isLocked && (
+                  <span
                     className={cn(
-                      "flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium transition-all hover:opacity-90",
+                      "flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium",
                       lesson.status === "current"
                         ? "text-[#0A0A0A]"
                         : "border border-white/[0.1] text-[#888888]"
@@ -146,9 +147,27 @@ export default function LessonsClient({ lessons }: { lessons: LessonCardData[] }
                     }
                   >
                     {lesson.status === "done" ? "Review" : "Start"}
-                  </button>
+                  </span>
                 )}
-              </div>
+              </>
+            )
+
+            if (isLocked) {
+              return (
+                <div key={lesson.slug} className={cardClassName}>
+                  {cardInner}
+                </div>
+              )
+            }
+
+            return (
+              <Link
+                key={lesson.slug}
+                href={`/lessons/${lesson.slug}`}
+                className={cardClassName}
+              >
+                {cardInner}
+              </Link>
             )
           })}
         </div>
