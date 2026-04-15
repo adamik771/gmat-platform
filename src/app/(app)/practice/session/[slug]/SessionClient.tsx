@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
 import Link from "next/link"
 import { ArrowLeft, Check, Clock, X } from "lucide-react"
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 
 export interface SessionQuestion {
   id: string
@@ -45,26 +47,106 @@ function letterFor(index: number): string {
 }
 
 /**
- * Some prompts embed markdown tables (e.g. Table Analysis). When that happens
- * we switch to a monospaced preformatted block so the pipes line up. Passages
- * and regular prompts render as prose with preserved line breaks.
+ * Renders any prompt / option / passage / explanation text as markdown using
+ * react-markdown + remark-gfm. Styled compact enough to sit inside an option
+ * button, a question card, an explanation panel, or a scrollable context
+ * panel. Key win over the old `<pre>` fallback: pipe tables render as real
+ * HTML <table>s for Table Analysis and Multi-Source Reasoning.
  */
 function PromptBlock({ text, className = "" }: { text: string; className?: string }) {
-  const hasTable = /^\s*\|/m.test(text)
-  if (hasTable) {
-    return (
-      <pre
-        className={`whitespace-pre-wrap font-mono text-xs leading-relaxed text-[#F0F0F0] ${className}`}
+  return (
+    <div className={`text-sm leading-relaxed text-[#F0F0F0] ${className}`}>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={{
+          p: (props) => (
+            <p {...props} className="my-2 first:mt-0 last:mb-0" />
+          ),
+          h1: (props) => (
+            <h1 {...props} className="text-base font-bold text-[#F0F0F0] mt-4 mb-2 first:mt-0" />
+          ),
+          h2: (props) => (
+            <h2 {...props} className="text-base font-semibold text-[#F0F0F0] mt-4 mb-2 first:mt-0" />
+          ),
+          h3: (props) => (
+            <h3 {...props} className="text-sm font-semibold text-[#F0F0F0] mt-3 mb-1.5 first:mt-0" />
+          ),
+          h4: (props) => (
+            <h4 {...props} className="text-sm font-semibold text-[#F0F0F0] mt-3 mb-1 first:mt-0" />
+          ),
+          strong: (props) => (
+            <strong {...props} className="font-semibold text-[#F0F0F0]" />
+          ),
+          em: (props) => <em {...props} className="italic text-[#E8C97A]" />,
+          ul: (props) => (
+            <ul {...props} className="list-disc pl-5 my-2 space-y-1 first:mt-0 last:mb-0" />
+          ),
+          ol: (props) => (
+            <ol {...props} className="list-decimal pl-5 my-2 space-y-1 first:mt-0 last:mb-0" />
+          ),
+          li: (props) => (
+            <li {...props} className="leading-relaxed marker:text-[#555555]" />
+          ),
+          a: (props) => (
+            <a
+              {...props}
+              className="underline underline-offset-2"
+              style={{ color: "#C9A84C" }}
+            />
+          ),
+          hr: () => <hr className="my-4 border-0 border-t border-white/[0.08]" />,
+          blockquote: (props) => (
+            <blockquote
+              {...props}
+              className="my-3 pl-3 border-l-2 italic text-[#A8A8A8]"
+              style={{ borderColor: "#C9A84C" }}
+            />
+          ),
+          code: ({ className: codeClassName, ...props }) => {
+            // Block-level code has a language-* className; inline code does not.
+            const isBlock = codeClassName?.startsWith("language-")
+            if (isBlock) {
+              return (
+                <code {...props} className="font-mono text-xs text-[#F0F0F0]" />
+              )
+            }
+            return (
+              <code
+                {...props}
+                className="font-mono text-[12px] bg-white/[0.06] px-1 py-0.5 rounded"
+                style={{ color: "#E8C97A" }}
+              />
+            )
+          },
+          pre: (props) => (
+            <pre
+              {...props}
+              className="my-3 p-3 rounded-lg bg-[#0A0A0A] border border-white/[0.06] overflow-x-auto text-xs"
+            />
+          ),
+          // Real HTML tables — the whole point of this upgrade.
+          table: (props) => (
+            <div className="my-3 overflow-x-auto rounded-lg border border-white/[0.08]">
+              <table {...props} className="w-full border-collapse text-xs" />
+            </div>
+          ),
+          thead: (props) => <thead {...props} className="bg-[#0D0D0D]" />,
+          th: (props) => (
+            <th
+              {...props}
+              className="text-left py-2 px-3 text-[11px] font-semibold uppercase tracking-wide text-[#888888] border-b border-white/[0.08]"
+            />
+          ),
+          td: (props) => (
+            <td
+              {...props}
+              className="py-2 px-3 text-[13px] text-[#E0E0E0] border-b border-white/[0.04]"
+            />
+          ),
+        }}
       >
         {text}
-      </pre>
-    )
-  }
-  return (
-    <div
-      className={`whitespace-pre-wrap text-sm leading-relaxed text-[#F0F0F0] ${className}`}
-    >
-      {text}
+      </ReactMarkdown>
     </div>
   )
 }
