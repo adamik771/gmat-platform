@@ -19,12 +19,22 @@ import { createSupabaseServer } from "@/lib/supabase/server"
 import type { ActivityItem, Section } from "@/types"
 
 export default async function DashboardPage() {
-  const supabase = await createSupabaseServer()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let user: any = null
 
-  const firstName =
+  try {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    if (supabaseUrl && supabaseKey && supabaseUrl !== "your_supabase_url") {
+      const supabase = await createSupabaseServer()
+      const { data } = await supabase.auth.getUser()
+      user = data.user
+    }
+  } catch {
+    // Supabase unavailable — render with empty state
+  }
+
+  const firstName: string =
     (user?.user_metadata?.full_name as string)?.split(" ")[0] ??
     user?.email?.split("@")[0] ??
     "there"
@@ -40,101 +50,114 @@ export default async function DashboardPage() {
   const recommendedLesson = lessons[2] ?? lessons[0]
 
   // ---------- Query progress data from Supabase ----------
-  const userId = user?.id
-
-  // Weekly sessions (last 7 days)
-  const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString()
-  const { data: weekSessions } = await supabase
-    .from("practice_sessions")
-    .select("total_questions, correct_count, total_time_ms, accuracy")
-    .eq("user_id", userId ?? "")
-    .gte("created_at", weekAgo)
-
-  const questionsThisWeek =
-    weekSessions?.reduce((s, r) => s + r.total_questions, 0) ?? 0
-  const studyMsThisWeek =
-    weekSessions?.reduce((s, r) => s + r.total_time_ms, 0) ?? 0
-  const studyHours =
-    studyMsThisWeek > 0
-      ? Number((studyMsThisWeek / 3600000).toFixed(1))
-      : null
-  const weekAccuracy =
-    weekSessions && weekSessions.length > 0
-      ? Math.round(
-          weekSessions.reduce((s, r) => s + Number(r.accuracy), 0) /
-            weekSessions.length
-        )
-      : null
-
-  // Total sessions ever (for study streak approximation)
-  const { count: totalSessionCount } = await supabase
-    .from("practice_sessions")
-    .select("id", { count: "exact", head: true })
-    .eq("user_id", userId ?? "")
-
-  // Per-section accuracy from all attempts
-  const { data: sectionAttempts } = await supabase
-    .from("practice_attempts")
-    .select("section, is_correct")
-    .eq("user_id", userId ?? "")
-
+  let questionsThisWeek = 0
+  let studyHours: number | null = null
+  let weekAccuracy: number | null = null
+  let totalSessionCount: number | null = null
   const sectionStats: Record<Section, { total: number; correct: number }> = {
     Quant: { total: 0, correct: 0 },
     Verbal: { total: 0, correct: 0 },
     DI: { total: 0, correct: 0 },
   }
-  for (const a of sectionAttempts ?? []) {
-    const sec = a.section as Section
-    if (sectionStats[sec]) {
-      sectionStats[sec].total++
-      if (a.is_correct) sectionStats[sec].correct++
+  let activityItems: ActivityItem[] = []
+  let scoreChartData: ScoreDataPoint[] = []
+
+  try {
+    if (user) {
+      const supabase = await createSupabaseServer()
+      const userId = user.id
+
+      // Weekly sessions (last 7 days)
+      const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString()
+      const { data: weekSessions } = await supabase
+        .from("practice_sessions")
+        .select("total_questions, correct_count, total_time_ms, accuracy")
+        .eq("user_id", userId)
+        .gte("created_at", weekAgo)
+
+      questionsThisWeek =
+        weekSessions?.reduce((s, r) => s + r.total_questions, 0) ?? 0
+      const studyMsThisWeek =
+        weekSessions?.reduce((s, r) => s + r.total_time_ms, 0) ?? 0
+      studyHours =
+        studyMsThisWeek > 0
+          ? Number((studyMsThisWeek / 3600000).toFixed(1))
+          : null
+      weekAccuracy =
+        weekSessions && weekSessions.length > 0
+          ? Math.round(
+              weekSessions.reduce((s, r) => s + Number(r.accuracy), 0) /
+                weekSessions.length
+            )
+          : null
+
+      // Total sessions ever
+      const { count } = await supabase
+        .from("practice_sessions")
+        .select("id", { count: "exact", head: true })
+        .eq("user_id", userId)
+      totalSessionCount = count
+
+      // Per-section accuracy from all attempts
+      const { data: sectionAttempts } = await supabase
+        .from("practice_attempts")
+        .select("section, is_correct")
+        .eq("user_id", userId)
+
+      for (const a of sectionAttempts ?? []) {
+        const sec = a.section as Section
+        if (sectionStats[sec]) {
+          sectionStats[sec].total++
+          if (a.is_correct) sectionStats[sec].correct++
+        }
+      }
+
+      // Recent sessions for activity feed
+      const { data: recentSessions } = await supabase
+        .from("practice_sessions")
+        .select("id, slug, topic, section, accuracy, total_questions, correct_count, created_at")
+        .eq("user_id", userId)
+        .order("created_at", { ascending: false })
+        .limit(10)
+
+      activityItems = (recentSessions ?? []).map((s) => ({
+        id: s.id,
+        type: "practice_set" as const,
+        title: `${s.topic} Practice`,
+        description: `${s.correct_count}/${s.total_questions} correct · ${Math.round(Number(s.accuracy))}%`,
+        timestamp: s.created_at,
+        score: Math.round(Number(s.accuracy)),
+      }))
+
+      // Weekly accuracy trend for score chart (last 8 weeks)
+      const eightWeeksAgo = new Date(Date.now() - 56 * 86400000).toISOString()
+      const { data: trendSessions } = await supabase
+        .from("practice_sessions")
+        .select("accuracy, created_at")
+        .eq("user_id", userId)
+        .gte("created_at", eightWeeksAgo)
+        .order("created_at", { ascending: true })
+
+      if (trendSessions && trendSessions.length > 0) {
+        const weeks = new Map<string, number[]>()
+        for (const s of trendSessions) {
+          const d = new Date(s.created_at)
+          const weekStart = new Date(d)
+          weekStart.setDate(d.getDate() - d.getDay())
+          const key = weekStart.toISOString().slice(0, 10)
+          const arr = weeks.get(key) ?? []
+          arr.push(Number(s.accuracy))
+          weeks.set(key, arr)
+        }
+        scoreChartData = [...weeks.entries()].map(([, accs], i) => ({
+          week: `Wk ${i + 1}`,
+          score: Math.round(accs.reduce((a, b) => a + b, 0) / accs.length),
+        }))
+      }
     }
+  } catch {
+    // Supabase query failed — render with empty state
   }
-
-  // Recent sessions for activity feed
-  const { data: recentSessions } = await supabase
-    .from("practice_sessions")
-    .select("id, slug, topic, section, accuracy, total_questions, correct_count, created_at")
-    .eq("user_id", userId ?? "")
-    .order("created_at", { ascending: false })
-    .limit(10)
-
-  const activityItems: ActivityItem[] = (recentSessions ?? []).map((s) => ({
-    id: s.id,
-    type: "practice_set" as const,
-    title: `${s.topic} Practice`,
-    description: `${s.correct_count}/${s.total_questions} correct · ${Math.round(Number(s.accuracy))}%`,
-    timestamp: s.created_at,
-    score: Math.round(Number(s.accuracy)),
-  }))
-
-  // Weekly accuracy trend for score chart (last 8 weeks)
-  const eightWeeksAgo = new Date(Date.now() - 56 * 86400000).toISOString()
-  const { data: trendSessions } = await supabase
-    .from("practice_sessions")
-    .select("accuracy, created_at")
-    .eq("user_id", userId ?? "")
-    .gte("created_at", eightWeeksAgo)
-    .order("created_at", { ascending: true })
-
-  const scoreChartData: ScoreDataPoint[] = (() => {
-    if (!trendSessions || trendSessions.length === 0) return []
-    // Group by ISO week
-    const weeks = new Map<string, number[]>()
-    for (const s of trendSessions) {
-      const d = new Date(s.created_at)
-      const weekStart = new Date(d)
-      weekStart.setDate(d.getDate() - d.getDay())
-      const key = weekStart.toISOString().slice(0, 10)
-      const arr = weeks.get(key) ?? []
-      arr.push(Number(s.accuracy))
-      weeks.set(key, arr)
-    }
-    return [...weeks.entries()].map(([week, accs], i) => ({
-      week: `Wk ${i + 1}`,
-      score: Math.round(accs.reduce((a, b) => a + b, 0) / accs.length),
-    }))
-  })()
 
   const hasData = (totalSessionCount ?? 0) > 0
 
