@@ -23,7 +23,11 @@ export async function proxy(request: NextRequest) {
     !process.env.NEXT_PUBLIC_SUPABASE_URL ||
     !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   ) {
-    return NextResponse.next()
+    const res = NextResponse.next()
+    // Don't let the CDN cache this — the env vars may be set on the
+    // next deploy, and we want fresh behavior immediately.
+    res.headers.set("Cache-Control", "private, no-store")
+    return res
   }
 
   try {
@@ -58,11 +62,18 @@ export async function proxy(request: NextRequest) {
       return NextResponse.redirect(url)
     }
 
-    return response()
+    const finalResponse = response()
+    // Prevent CDN caching of auth-aware responses — otherwise a stale
+    // "unauthenticated" response could leak to a logged-in user, or a
+    // cached redirect could keep firing after they log in.
+    finalResponse.headers.set("Cache-Control", "private, no-store")
+    return finalResponse
   } catch {
     // If Supabase is unreachable or misconfigured, fall through rather
     // than crashing every route with a 500.
-    return NextResponse.next()
+    const res = NextResponse.next()
+    res.headers.set("Cache-Control", "private, no-store")
+    return res
   }
 }
 
