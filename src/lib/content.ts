@@ -29,6 +29,10 @@ export interface ParsedQuestion {
   correctAnswerLetter: string
   explanation: string
   rawBody: string
+  /** Two-Part Analysis: column headers (the two "roles"). Present only for TPA questions. */
+  twoPartColumns?: string[]
+  /** Two-Part Analysis: the correct row index for each column. Same length as twoPartColumns. */
+  twoPartCorrectAnswers?: number[]
 }
 
 export interface ParsedLesson {
@@ -172,8 +176,69 @@ function parseQuestionBlock(
   const bodyAfterHeader = block.slice(headerMatch.index! + headerMatch[0].length, promptEndIdx)
   const promptLines = bodyAfterHeader
     .split("\n")
-    .filter((line) => !/^\*\*(difficulty|type|topic)/i.test(line.trim()))
-  const prompt = promptLines.join("\n").replace(/^\n+/, "").replace(/\n+$/, "").trim()
+    .filter((line) => !/^\*\*(difficulty|type|topic|answer|explanation)/i.test(line.trim()))
+  let prompt = promptLines.join("\n").replace(/^\n+/, "").replace(/\n+$/, "").trim()
+
+  // ---------- Two-Part Analysis table detection ----------
+  // TPA questions have a pipe table in the prompt instead of - A) through - E)
+  // options. When detected, we parse the table into structured data, strip it
+  // from the prompt, and set `options` to the row labels so the question passes
+  // the "playable" filter in the session page.
+  let twoPartColumns: string[] | undefined
+  let twoPartCorrectAnswers: number[] | undefined
+
+  if (options.length === 0) {
+    const tableLines = prompt.match(/^\s*\|.+\|$/gm)
+    if (tableLines && tableLines.length >= 3) {
+      const splitRow = (line: string) =>
+        line.split("|").map((s) => s.trim()).slice(1, -1)
+
+      const headerCells = splitRow(tableLines[0])
+      // tableLines[1] is the separator row (---|---|---)
+      const dataRows = tableLines.slice(2).map(splitRow)
+
+      const cols = headerCells.slice(1).filter((c) => c.length > 0)
+      const rows = dataRows.map((cells) => cells[0]).filter((r) => r.length > 0)
+
+      if (cols.length >= 2 && rows.length >= 2) {
+        twoPartColumns = cols
+
+        // Strip the pipe table from the prompt so the UI renders it as a
+        // custom interactive grid instead of inline markdown.
+        let strippedPrompt = prompt
+        for (const line of tableLines) {
+          strippedPrompt = strippedPrompt.replace(line, "")
+        }
+        prompt = strippedPrompt.replace(/\n{3,}/g, "\n\n").trim()
+
+        // Set options to the row labels so the question is "playable".
+        options.push(...rows)
+
+        // Parse the answer string to find the correct row index for each column.
+        // Answer format: "Key1 = Value1, Key2 = Value2" or "Key1 = Value1; Key2 = Value2"
+        const answerRaw = meta.answer ?? ""
+        const answerParts = answerRaw.split(/;\s*|,\s*(?=[A-Za-z].*=)/)
+        const correctIndices: number[] = []
+        for (const part of answerParts) {
+          const eqIdx = part.indexOf("=")
+          if (eqIdx === -1) continue
+          const value = part.slice(eqIdx + 1).trim().replace(/^["']|["']$/g, "")
+          const normalizedValue = value.toLowerCase()
+          const rowIdx = rows.findIndex((row) => {
+            const normalizedRow = row.toLowerCase()
+            return (
+              normalizedRow === normalizedValue ||
+              normalizedRow.startsWith(normalizedValue) ||
+              normalizedValue.startsWith(normalizedRow)
+            )
+          })
+          if (rowIdx !== -1) correctIndices.push(rowIdx)
+        }
+        twoPartCorrectAnswers =
+          correctIndices.length === cols.length ? correctIndices : undefined
+      }
+    }
+  }
 
   const answerLetter = (meta.answer ?? "A").trim().toUpperCase().charAt(0)
 
@@ -189,10 +254,12 @@ function parseQuestionBlock(
     context,
     setSlug: fileSlug,
     options,
-    correctAnswer: letterToIndex(answerLetter),
-    correctAnswerLetter: answerLetter,
+    correctAnswer: twoPartCorrectAnswers ? -1 : letterToIndex(answerLetter),
+    correctAnswerLetter: twoPartCorrectAnswers ? "" : answerLetter,
     explanation: meta.explanation ?? "",
     rawBody: block.trim(),
+    twoPartColumns,
+    twoPartCorrectAnswers,
   }
 }
 

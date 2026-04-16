@@ -12,8 +12,9 @@ export default async function PracticeSessionPage({
   const questions = getQuestionsBySetSlug(slug)
   if (questions.length === 0) notFound()
 
-  // Two-part-analysis and a couple other formats have 0 parseable options.
-  // Filter those out of the session for v1 — they need a custom UI.
+  // Filter out questions that still have 0 parseable options after parsing
+  // (shouldn't happen now that TPA tables produce row-label options, but
+  // kept as a safety net for any future format).
   const playable: SessionQuestion[] = questions
     .filter((q) => q.options.length > 0)
     .map((q) => ({
@@ -30,6 +31,8 @@ export default async function PracticeSessionPage({
       correctAnswer: q.correctAnswer,
       correctAnswerLetter: q.correctAnswerLetter,
       explanation: q.explanation,
+      twoPartColumns: q.twoPartColumns,
+      twoPartCorrectAnswers: q.twoPartCorrectAnswers,
     }))
 
   if (playable.length === 0) {

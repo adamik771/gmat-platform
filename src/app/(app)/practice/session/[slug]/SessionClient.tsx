@@ -20,10 +20,16 @@ export interface SessionQuestion {
   correctAnswer: number
   correctAnswerLetter: string
   explanation: string
+  /** Two-Part Analysis: column headers (the two "roles"). */
+  twoPartColumns?: string[]
+  /** Two-Part Analysis: the correct row index for each column. */
+  twoPartCorrectAnswers?: number[]
 }
 
 interface QuestionState {
   selected: number | null
+  /** Two-Part Analysis: one selection per column (parallel to twoPartColumns). */
+  twoPartSelections?: (number | null)[]
   submitted: boolean
   elapsedMs: number
 }
@@ -165,10 +171,141 @@ function ContextPanel({ text }: { text: string }) {
   )
 }
 
+/** Returns true when a submitted question is answered correctly. */
+function isQuestionCorrect(q: SessionQuestion, state: QuestionState): boolean {
+  if (!state.submitted) return false
+  if (q.twoPartCorrectAnswers && state.twoPartSelections) {
+    return q.twoPartCorrectAnswers.every((ans, i) => state.twoPartSelections![i] === ans)
+  }
+  return state.selected === q.correctAnswer
+}
+
+/** Returns true when the user has made enough selections to submit. */
+function canSubmit(q: SessionQuestion, state: QuestionState): boolean {
+  if (state.submitted) return false
+  if (q.twoPartColumns && state.twoPartSelections) {
+    return state.twoPartSelections.every((s) => s !== null)
+  }
+  return state.selected !== null
+}
+
+/** Two-Part Analysis answer grid — one selection per column. */
+function TwoPartGrid({
+  question,
+  state,
+  onSelect,
+}: {
+  question: SessionQuestion
+  state: QuestionState
+  onSelect: (colIdx: number, rowIdx: number) => void
+}) {
+  const cols = question.twoPartColumns!
+  const rows = question.options
+  const selections = state.twoPartSelections ?? []
+  const correctAnswers = question.twoPartCorrectAnswers
+
+  return (
+    <div className="overflow-x-auto rounded-lg border border-white/[0.08]">
+      <table className="w-full border-collapse text-sm">
+        <thead className="bg-[#0D0D0D]">
+          <tr>
+            <th className="text-left py-3 px-4 text-[11px] font-semibold uppercase tracking-wide text-[#888888] border-b border-white/[0.08] w-1/2" />
+            {cols.map((col) => (
+              <th
+                key={col}
+                className="py-3 px-4 text-center text-[11px] font-semibold uppercase tracking-wide border-b border-white/[0.08]"
+                style={{ color: "#C9A84C" }}
+              >
+                {col}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, ri) => (
+            <tr
+              key={ri}
+              className="border-b border-white/[0.04] hover:bg-white/[0.02] transition-colors"
+            >
+              <td className="py-3 px-4 text-[13px] text-[#E0E0E0]">
+                <PromptBlock text={row} />
+              </td>
+              {cols.map((_, ci) => {
+                const isSelected = selections[ci] === ri
+                const showResult = state.submitted
+                const isCorrectCell = correctAnswers?.[ci] === ri
+
+                let circleStyle: React.CSSProperties = {
+                  borderColor: "rgba(255,255,255,0.15)",
+                  backgroundColor: "transparent",
+                }
+                if (showResult && isSelected && isCorrectCell) {
+                  circleStyle = {
+                    borderColor: "#3ECF8E",
+                    backgroundColor: "rgba(62,207,142,0.15)",
+                  }
+                } else if (showResult && isSelected && !isCorrectCell) {
+                  circleStyle = {
+                    borderColor: "#FF4444",
+                    backgroundColor: "rgba(255,68,68,0.15)",
+                  }
+                } else if (showResult && isCorrectCell) {
+                  circleStyle = {
+                    borderColor: "#3ECF8E",
+                    backgroundColor: "rgba(62,207,142,0.08)",
+                  }
+                } else if (isSelected) {
+                  circleStyle = {
+                    borderColor: "#C9A84C",
+                    backgroundColor: "rgba(201,168,76,0.15)",
+                  }
+                }
+
+                return (
+                  <td key={ci} className="py-3 px-4 text-center">
+                    <button
+                      onClick={() => onSelect(ci, ri)}
+                      disabled={state.submitted}
+                      className="w-6 h-6 rounded-full border-2 mx-auto flex items-center justify-center transition-colors disabled:cursor-default"
+                      style={circleStyle}
+                    >
+                      {isSelected && (
+                        <div
+                          className="w-2.5 h-2.5 rounded-full"
+                          style={{
+                            backgroundColor:
+                              showResult && isCorrectCell
+                                ? "#3ECF8E"
+                                : showResult && !isCorrectCell
+                                ? "#FF4444"
+                                : "#C9A84C",
+                          }}
+                        />
+                      )}
+                      {showResult && isCorrectCell && !isSelected && (
+                        <Check className="w-3 h-3" style={{ color: "#3ECF8E" }} />
+                      )}
+                    </button>
+                  </td>
+                )
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
 export default function SessionClient({ slug, topic, section, questions }: SessionClientProps) {
   const [currentIdx, setCurrentIdx] = useState(0)
   const [states, setStates] = useState<QuestionState[]>(() =>
-    questions.map(() => ({ selected: null, submitted: false, elapsedMs: 0 }))
+    questions.map((q) => ({
+      selected: null,
+      twoPartSelections: q.twoPartColumns ? q.twoPartColumns.map(() => null) : undefined,
+      submitted: false,
+      elapsedMs: 0,
+    }))
   )
   const [sessionStart] = useState(() => Date.now())
   const [questionStart, setQuestionStart] = useState(() => Date.now())
@@ -193,11 +330,12 @@ export default function SessionClient({ slug, topic, section, questions }: Sessi
   const correctCount = useMemo(
     () =>
       states.reduce((acc, state, i) => {
-        if (!state.submitted) return acc
-        return state.selected === questions[i].correctAnswer ? acc + 1 : acc
+        return isQuestionCorrect(questions[i], state) ? acc + 1 : acc
       }, 0),
     [states, questions]
   )
+
+  const isTwoPart = !!current.twoPartColumns
 
   function handleSelect(index: number) {
     if (currentState.submitted) return
@@ -208,8 +346,19 @@ export default function SessionClient({ slug, topic, section, questions }: Sessi
     })
   }
 
+  function handleTwoPartSelect(colIdx: number, rowIdx: number) {
+    if (currentState.submitted) return
+    setStates((prev) => {
+      const next = prev.slice()
+      const selections = [...(next[currentIdx].twoPartSelections ?? [])]
+      selections[colIdx] = rowIdx
+      next[currentIdx] = { ...next[currentIdx], twoPartSelections: selections }
+      return next
+    })
+  }
+
   function handleSubmit() {
-    if (currentState.selected === null || currentState.submitted) return
+    if (!canSubmit(current, currentState)) return
     const elapsed = Date.now() - questionStart
     setStates((prev) => {
       const next = prev.slice()
@@ -284,7 +433,7 @@ export default function SessionClient({ slug, topic, section, questions }: Sessi
           <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
             {questions.map((q, i) => {
               const state = states[i]
-              const isCorrect = state.submitted && state.selected === q.correctAnswer
+              const isCorrect = isQuestionCorrect(q, state)
               return (
                 <button
                   key={q.id}
@@ -403,61 +552,69 @@ export default function SessionClient({ slug, topic, section, questions }: Sessi
           <div className="p-6 rounded-xl border border-white/[0.08] bg-[#111111]">
             <PromptBlock text={current.prompt} className="mb-5" />
 
-            <div className="space-y-2">
-              {current.options.map((option, i) => {
-                const isSelected = currentState.selected === i
-                const isCorrect = i === current.correctAnswer
-                const showResult = currentState.submitted
-                const showCorrect = showResult && isCorrect
-                const showIncorrect = showResult && isSelected && !isCorrect
+            {isTwoPart ? (
+              <TwoPartGrid
+                question={current}
+                state={currentState}
+                onSelect={handleTwoPartSelect}
+              />
+            ) : (
+              <div className="space-y-2">
+                {current.options.map((option, i) => {
+                  const isSelected = currentState.selected === i
+                  const isCorrect = i === current.correctAnswer
+                  const showResult = currentState.submitted
+                  const showCorrect = showResult && isCorrect
+                  const showIncorrect = showResult && isSelected && !isCorrect
 
-                let borderColor = "rgba(255,255,255,0.08)"
-                let bgColor = "transparent"
-                if (showCorrect) {
-                  borderColor = "rgba(62,207,142,0.4)"
-                  bgColor = "rgba(62,207,142,0.06)"
-                } else if (showIncorrect) {
-                  borderColor = "rgba(255,68,68,0.4)"
-                  bgColor = "rgba(255,68,68,0.06)"
-                } else if (isSelected) {
-                  borderColor = "rgba(201,168,76,0.4)"
-                  bgColor = "rgba(201,168,76,0.06)"
-                }
+                  let borderColor = "rgba(255,255,255,0.08)"
+                  let bgColor = "transparent"
+                  if (showCorrect) {
+                    borderColor = "rgba(62,207,142,0.4)"
+                    bgColor = "rgba(62,207,142,0.06)"
+                  } else if (showIncorrect) {
+                    borderColor = "rgba(255,68,68,0.4)"
+                    bgColor = "rgba(255,68,68,0.06)"
+                  } else if (isSelected) {
+                    borderColor = "rgba(201,168,76,0.4)"
+                    bgColor = "rgba(201,168,76,0.06)"
+                  }
 
-                return (
-                  <button
-                    key={i}
-                    onClick={() => handleSelect(i)}
-                    disabled={currentState.submitted}
-                    className="w-full flex items-start gap-3 p-3 rounded-lg border text-left transition-colors hover:bg-white/[0.02] disabled:cursor-default"
-                    style={{ borderColor, backgroundColor: bgColor }}
-                  >
-                    <div
-                      className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 text-xs font-semibold"
-                      style={{
-                        backgroundColor: showCorrect
-                          ? "#3ECF8E"
-                          : showIncorrect
-                          ? "#FF4444"
-                          : isSelected
-                          ? "#C9A84C"
-                          : "rgba(255,255,255,0.06)",
-                        color: showCorrect || showIncorrect || isSelected ? "#0A0A0A" : "#888888",
-                      }}
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => handleSelect(i)}
+                      disabled={currentState.submitted}
+                      className="w-full flex items-start gap-3 p-3 rounded-lg border text-left transition-colors hover:bg-white/[0.02] disabled:cursor-default"
+                      style={{ borderColor, backgroundColor: bgColor }}
                     >
-                      {letterFor(i)}
-                    </div>
-                    <PromptBlock text={option} className="flex-1" />
-                    {showCorrect && (
-                      <Check className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#3ECF8E" }} />
-                    )}
-                    {showIncorrect && (
-                      <X className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#FF4444" }} />
-                    )}
-                  </button>
-                )
-              })}
-            </div>
+                      <div
+                        className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 text-xs font-semibold"
+                        style={{
+                          backgroundColor: showCorrect
+                            ? "#3ECF8E"
+                            : showIncorrect
+                            ? "#FF4444"
+                            : isSelected
+                            ? "#C9A84C"
+                            : "rgba(255,255,255,0.06)",
+                          color: showCorrect || showIncorrect || isSelected ? "#0A0A0A" : "#888888",
+                        }}
+                      >
+                        {letterFor(i)}
+                      </div>
+                      <PromptBlock text={option} className="flex-1" />
+                      {showCorrect && (
+                        <Check className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#3ECF8E" }} />
+                      )}
+                      {showIncorrect && (
+                        <X className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#FF4444" }} />
+                      )}
+                    </button>
+                  )
+                })}
+              </div>
+            )}
 
             {currentState.submitted && current.explanation && (
               <div
@@ -496,7 +653,7 @@ export default function SessionClient({ slug, topic, section, questions }: Sessi
             ) : (
               <button
                 onClick={handleSubmit}
-                disabled={currentState.selected === null}
+                disabled={!canSubmit(current, currentState)}
                 className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed"
                 style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
               >
