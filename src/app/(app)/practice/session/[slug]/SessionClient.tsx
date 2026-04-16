@@ -311,12 +311,58 @@ export default function SessionClient({ slug, topic, section, questions }: Sessi
   const [questionStart, setQuestionStart] = useState(() => Date.now())
   const [now, setNow] = useState(() => Date.now())
   const [showResults, setShowResults] = useState(false)
+  const [saved, setSaved] = useState(false)
 
   // Tick the timer once a second for the header readouts.
   useEffect(() => {
     const id = window.setInterval(() => setNow(Date.now()), 1000)
     return () => window.clearInterval(id)
   }, [])
+
+  // Persist the session results to the database when the results screen shows.
+  useEffect(() => {
+    if (!showResults || saved) return
+
+    const attempts = questions.map((q, i) => ({
+      questionId: q.id,
+      section: q.section,
+      topic: q.topic,
+      subtopic: q.subtopic,
+      difficulty: q.difficulty,
+      questionType: q.type,
+      selectedAnswer: states[i].selected,
+      isCorrect: isQuestionCorrect(q, states[i]),
+      timeSpentMs: states[i].elapsedMs,
+    }))
+
+    const answeredTotal = states.filter((s) => s.submitted).length
+    const correctTotal = states.reduce(
+      (acc, s, i) => (isQuestionCorrect(questions[i], s) ? acc + 1 : acc),
+      0
+    )
+
+    fetch("/api/practice-sessions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        slug,
+        topic,
+        section,
+        totalQuestions: questions.length,
+        correctCount: correctTotal,
+        accuracy: answeredTotal === 0 ? 0 : Math.round((correctTotal / answeredTotal) * 100),
+        totalTimeMs: Date.now() - sessionStart,
+        attempts,
+      }),
+    })
+      .then((r) => {
+        if (r.ok) setSaved(true)
+      })
+      .catch(() => {
+        // Silent failure for v1 — the session still displays locally.
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showResults])
 
   const goTo = useCallback((idx: number) => {
     setCurrentIdx(idx)

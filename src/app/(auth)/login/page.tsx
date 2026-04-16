@@ -2,7 +2,9 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Eye, EyeOff, ArrowRight } from "lucide-react"
+import { createSupabaseBrowser } from "@/lib/supabase/browser"
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
@@ -11,21 +13,27 @@ export default function LoginPage() {
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
 
+  const router = useRouter()
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
     setError("")
 
-    // Supabase auth placeholder
-    try {
-      // await supabase.auth.signInWithPassword({ email, password })
-      await new Promise((r) => setTimeout(r, 800))
-      // TODO: redirect to dashboard
-    } catch {
-      setError("Invalid email or password.")
-    } finally {
+    const supabase = createSupabaseBrowser()
+    const { error: authError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+
+    if (authError) {
+      setError(authError.message)
       setLoading(false)
+      return
     }
+
+    router.push("/dashboard")
+    router.refresh()
   }
 
   return (

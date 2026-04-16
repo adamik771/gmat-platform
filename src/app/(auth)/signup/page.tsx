@@ -2,8 +2,10 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Eye, EyeOff, ArrowRight, Check } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { createSupabaseBrowser } from "@/lib/supabase/browser"
 
 const plans = [
   { id: "self_study", name: "Self-Study", price: "$297", note: "one-time" },
@@ -20,12 +22,32 @@ export default function SignupPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
+  const router = useRouter()
+  const [error, setError] = useState("")
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
-    // Supabase auth placeholder
-    await new Promise((r) => setTimeout(r, 800))
-    setLoading(false)
+    setError("")
+
+    const supabase = createSupabaseBrowser()
+    const { error: authError } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { full_name: name, plan: selectedPlan },
+        emailRedirectTo: `${window.location.origin}/auth/callback`,
+      },
+    })
+
+    if (authError) {
+      setError(authError.message)
+      setLoading(false)
+      return
+    }
+
+    router.push("/dashboard")
+    router.refresh()
   }
 
   return (
@@ -40,6 +62,19 @@ export default function SignupPage() {
         style={{ backgroundColor: "#111111" }}
       >
         <form onSubmit={handleSubmit} className="space-y-5">
+          {error && (
+            <div
+              className="px-4 py-3 rounded-lg text-sm"
+              style={{
+                backgroundColor: "rgba(255,68,68,0.08)",
+                color: "#FF4444",
+                border: "1px solid rgba(255,68,68,0.2)",
+              }}
+            >
+              {error}
+            </div>
+          )}
+
           <div>
             <label className="block text-xs font-medium text-[#888888] mb-1.5">
               Full Name

@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import {
   LayoutDashboard,
   Calendar,
@@ -19,6 +19,7 @@ import {
   User,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { createSupabaseBrowser } from "@/lib/supabase/browser"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import {
   DropdownMenu,
@@ -130,7 +131,33 @@ function Sidebar({
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
+  const router = useRouter()
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [userName, setUserName] = useState("")
+  const [userInitials, setUserInitials] = useState("")
+
+  useEffect(() => {
+    const supabase = createSupabaseBrowser()
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        const fullName = (user.user_metadata?.full_name as string) ?? user.email ?? ""
+        setUserName(fullName.split(" ")[0] || user.email?.split("@")[0] || "User")
+        const parts = fullName.split(" ").filter(Boolean)
+        setUserInitials(
+          parts.length >= 2
+            ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+            : fullName.slice(0, 2).toUpperCase()
+        )
+      }
+    })
+  }, [])
+
+  async function handleSignOut() {
+    const supabase = createSupabaseBrowser()
+    await supabase.auth.signOut()
+    router.push("/login")
+    router.refresh()
+  }
 
   const currentLabel =
     navItems.find((i) => pathname.startsWith(i.href))?.label ?? "Dashboard"
@@ -199,10 +226,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     color: "#C9A84C",
                   }}
                 >
-                  AZ
+                  {userInitials || ".."}
                 </AvatarFallback>
               </Avatar>
-              <span className="hidden sm:block text-sm text-[#888888]">Adam</span>
+              <span className="hidden sm:block text-sm text-[#888888]">{userName || "..."}</span>
               <ChevronDown className="w-3.5 h-3.5 text-[#555555]" />
             </DropdownMenuTrigger>
             <DropdownMenuContent
@@ -220,7 +247,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator className="bg-white/[0.06]" />
-              <DropdownMenuItem className="flex items-center gap-2 text-[#888888] cursor-pointer">
+              <DropdownMenuItem
+                onClick={handleSignOut}
+                className="flex items-center gap-2 text-[#888888] cursor-pointer"
+              >
                 <LogOut className="w-4 h-4" />
                 Sign out
               </DropdownMenuItem>
