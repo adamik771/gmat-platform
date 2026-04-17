@@ -402,3 +402,243 @@ The passage's characterization of the Silk Road as a "catalyst for creative reco
 **explanation:** The passage describes a process in which technologies are not copied exactly but are adapted by each culture through which they pass, with each contributor adding modifications based on local needs and knowledge. Answer B mirrors this: open-source developers modify code for local needs, producing distinct versions. Answer A involves identical replication, the opposite of adaptation. Answer C shows cultures side by side without interaction. Answer D preserves original meaning rather than transforming it. Answer E is a conveyor belt model, which the passage explicitly contrasts with its "creative recombination" thesis.
 
 ---
+
+## Passage 6: The Paradox of Choice in Consumer Markets
+
+For much of the twentieth century, economists operated under the assumption that greater consumer choice was unambiguously beneficial: more options meant more opportunities for individuals to satisfy their particular preferences, leading to higher overall welfare. This view underpinned decades of policy favoring deregulation, product proliferation, and market expansion. Recent research in behavioral economics, however, has complicated this orthodoxy, revealing that the relationship between choice and well-being is far from linear.
+
+In a series of now-classic field experiments, researchers found that consumers presented with a large assortment of jams at a supermarket display were more likely to stop and browse but significantly less likely to make a purchase than those shown a smaller selection. Subsequent studies extended this finding to domains ranging from retirement savings plans, where participation rates decline as the number of available funds increases, to medical decision-making, where patients offered many treatment options report lower satisfaction with their eventual choice. The phenomenon, sometimes called "choice overload," appears to stem from the cognitive burden of comparing numerous alternatives and the anticipatory regret associated with foregoing unselected options.
+
+Critics of this research caution against overgeneralizing its conclusions. Choice overload effects are not universal; they depend on factors such as the decision-maker's prior knowledge, the difficulty of comparing options, and the perceived stakes of the decision. When consumers have well-defined preferences or when options are easily differentiated, larger assortments can enhance rather than diminish satisfaction. Moreover, some scholars argue that the costs of choice overload have been exaggerated by selective publication of striking results. Nevertheless, the emerging consensus holds that designing markets and institutions with attention to the structure of choice, rather than merely its quantity, can meaningfully improve consumer outcomes.
+
+### Q21
+**difficulty:** Medium
+**type:** Main Idea
+**topic:** Reading Comprehension
+
+The primary purpose of the passage is to:
+
+- A) argue that consumer choice should be restricted by government regulation to protect welfare
+- B) describe how recent behavioral research has complicated the traditional economic view that more choice is always better, while noting the limits of this critique
+- C) demonstrate that the jam experiment is the definitive study on consumer decision-making
+- D) criticize twentieth-century economists for ignoring the psychology of consumer behavior
+- E) advocate for reducing the number of retirement savings plans available to workers
+
+**answer:** B
+**explanation:** The passage moves from the traditional economic assumption, through the behavioral research that challenges it, to the qualifications offered by critics, ending with a nuanced consensus. Answer B captures this full arc. Answer A overstates a policy implication the passage does not make. Answer C elevates one example beyond its role. Answer D misrepresents the tone, which is not accusatory. Answer E picks up only a specific example.
+
+---
+
+### Q22
+**difficulty:** Easy
+**type:** Specific Detail
+**topic:** Reading Comprehension
+
+According to the passage, consumers in the supermarket jam experiment who saw a large assortment of jams:
+
+- A) purchased more jam overall than those shown a smaller selection
+- B) were more likely to browse the display but less likely to make a purchase than those shown fewer options
+- C) reported higher satisfaction with their eventual choice
+- D) spent less time examining each individual jam than those shown fewer options
+- E) were more likely to purchase premium-priced jams
+
+**answer:** B
+**explanation:** The passage states that consumers shown a large assortment "were more likely to stop and browse but significantly less likely to make a purchase than those shown a smaller selection." Answer B is a direct paraphrase. The other options describe outcomes not mentioned in the passage.
+
+---
+
+### Q23
+**difficulty:** Medium
+**type:** Inference
+**topic:** Reading Comprehension
+
+The passage suggests that the effect of increased choice on consumer welfare:
+
+- A) is uniformly negative across all types of decisions and consumers
+- B) depends on contextual factors such as the decision-maker's expertise and the comparability of options, so that larger assortments sometimes help and sometimes hurt
+- C) has been conclusively established by field experiments conducted over the past several decades
+- D) is primarily a problem for consumers with low incomes who cannot afford to make mistakes
+- E) will diminish over time as consumers become more accustomed to navigating large assortments
+
+**answer:** B
+**explanation:** The passage states that "choice overload effects are not universal; they depend on factors such as the decision-maker's prior knowledge, the difficulty of comparing options, and the perceived stakes of the decision," and that larger assortments can sometimes enhance satisfaction. Answer B captures this contingent relationship. Answer A overstates the case. Answer C contradicts the passage, which notes critics question the strength of the findings. Answers D and E introduce ideas not discussed.
+
+---
+
+### Q24
+**difficulty:** Hard
+**type:** Application
+**topic:** Reading Comprehension
+
+Based on the passage's argument, a policymaker designing a new prescription drug benefit program would most likely be advised to:
+
+- A) offer enrollees the maximum possible number of plan options to ensure each individual can find an ideal match
+- B) eliminate consumer choice entirely by assigning every enrollee to a single standard plan
+- C) structure the presentation of plan options so that meaningful differences between plans are easy to identify and compare, rather than simply maximizing the number of plans offered
+- D) restrict the program to consumers who can demonstrate expertise in evaluating insurance products
+- E) allow private insurers to offer as many plans as they wish, on the assumption that market competition will eliminate inferior options
+
+**answer:** C
+**explanation:** The passage concludes that "designing markets and institutions with attention to the structure of choice, rather than merely its quantity, can meaningfully improve consumer outcomes." Answer C directly applies this principle by emphasizing structured, comparable options rather than sheer quantity. Answer A assumes more is better, which the passage challenges. Answer B goes to the opposite extreme. Answer D is not supported. Answer E relies on a market-clearing assumption the passage does not endorse.
+
+---
+
+## Passage 7: Reconsidering the Naturalist Novel
+
+Literary historians have long treated the naturalist novel of the late nineteenth century, as practiced by writers such as Emile Zola in France and Frank Norris in the United States, as a literary movement defined by its commitment to scientific objectivity. According to this view, naturalist writers applied the methods of contemporary biology and sociology to human subjects, documenting how heredity and environment determined individual fate. The naturalist novel, in this account, represents literature's closest approach to empirical science, stripping away the sentimentalism of earlier realism in favor of detached, clinical observation.
+
+Recent scholarship has begun to challenge this characterization. Close examination of the naturalists' actual literary practice reveals that their novels are saturated with symbolism, mythic structures, and passages of near-operatic emotional intensity that sit uneasily alongside any claim of scientific detachment. Zola's Germinal, often cited as exemplary naturalism, repeatedly compares its striking coal miners to creatures of classical myth, and its climactic flood scene owes more to apocalyptic religious imagery than to sober reportage. Norris's The Octopus similarly frames a California railroad dispute as a titanic struggle between primal forces rather than as a case study in economic conflict.
+
+What, then, should we make of the naturalists' repeated claims to scientific authority? One productive interpretation holds that these claims functioned less as accurate descriptions of method than as rhetorical positioning, a means by which novelists asserted cultural legitimacy in an era when science enjoyed unprecedented prestige. By aligning themselves with science, naturalist writers could justify their attention to subjects, such as poverty, alcoholism, and sexuality, that Victorian literary conventions had deemed inappropriate. The naturalist novel thus emerges not as a failed experiment in literary science but as a sophisticated negotiation between artistic ambition and the cultural authority of empirical inquiry.
+
+### Q25
+**difficulty:** Medium
+**type:** Main Idea
+**topic:** Reading Comprehension
+
+The primary purpose of the passage is to:
+
+- A) demonstrate that naturalist novelists were less talented than their realist predecessors
+- B) reinterpret the naturalist novel by arguing that its claims to scientific objectivity functioned as cultural strategy rather than as a description of actual literary method
+- C) compare the work of Emile Zola with that of Frank Norris
+- D) argue that the naturalist novel should be reclassified as a form of romantic literature
+- E) trace the influence of nineteenth-century biology on literary practice
+
+**answer:** B
+**explanation:** The passage contrasts the traditional view of naturalism as scientific with a closer reading that finds symbolism and mythic structures, then offers a revisionist account in which scientific rhetoric served to legitimize transgressive subject matter. Answer B captures this reinterpretive move. Answer A is not the passage's concern; no quality judgment is made. Answer C describes a component but not the purpose. Answer D overstates the reclassification. Answer E describes an adjacent topic, not the passage's argument.
+
+---
+
+### Q26
+**difficulty:** Easy
+**type:** Specific Detail
+**topic:** Reading Comprehension
+
+The passage cites the climactic flood scene in Zola's Germinal as evidence that:
+
+- A) Zola had limited knowledge of the actual working conditions in coal mines
+- B) naturalist novels often contain passages whose imagery draws more from myth or religion than from detached observation
+- C) French naturalism differed substantially from American naturalism
+- D) Zola's later work abandoned the naturalist project
+- E) flood imagery was common in late nineteenth-century French fiction
+
+**answer:** B
+**explanation:** The passage notes that "its climactic flood scene owes more to apocalyptic religious imagery than to sober reportage," using this as an example of the tension between naturalism's scientific claims and its actual literary texture. Answer B accurately paraphrases this point. The other options introduce claims the passage does not make.
+
+---
+
+### Q27
+**difficulty:** Medium
+**type:** Author's Attitude
+**topic:** Reading Comprehension
+
+The author's attitude toward the naturalist novelists' claims to scientific authority is best characterized as:
+
+- A) dismissive, treating the claims as evidence of intellectual dishonesty
+- B) reverent, accepting the claims as accurate descriptions of literary practice
+- C) analytical, interpreting the claims as a culturally strategic move that served purposes other than scientific accuracy
+- D) indifferent, neither endorsing nor challenging the traditional account
+- E) nostalgic, lamenting that modern criticism has overlooked the naturalists' achievements
+
+**answer:** C
+**explanation:** The author describes the naturalists' scientific claims as "rhetorical positioning" and explains their cultural function, without accusing the writers of dishonesty or endorsing their self-description. This is analytical and interpretive. Answer A is too harsh; the passage calls the move "sophisticated." Answer B accepts the traditional view the passage challenges. Answer D ignores that the passage takes a clear position. Answer E introduces nostalgia not present in the text.
+
+---
+
+### Q28
+**difficulty:** Hard
+**type:** Function
+**topic:** Reading Comprehension
+
+In the context of the passage, the author's discussion of subjects such as "poverty, alcoholism, and sexuality" serves primarily to:
+
+- A) catalog the themes that distinguish naturalist novels from earlier literary genres
+- B) illustrate the scientific rigor that naturalist novelists applied to social problems
+- C) explain why naturalist writers may have benefited from aligning themselves with scientific authority, since such alignment offered a defense for treating subject matter that literary conventions had discouraged
+- D) suggest that the naturalist novel was primarily concerned with social reform rather than aesthetic innovation
+- E) argue that these subjects had been entirely absent from literature before the naturalist movement
+
+**answer:** C
+**explanation:** The passage introduces these subjects immediately after discussing how "aligning themselves with science" allowed naturalists to "justify their attention" to content that "Victorian literary conventions had deemed inappropriate." The list functions as evidence for the strategic value of scientific rhetoric. Answer A is descriptive but misses the functional role. Answer B contradicts the passage's skepticism about scientific rigor. Answer D overstates social reform as the primary concern. Answer E is too absolute; the passage does not claim these subjects were entirely absent previously.
+
+---
+
+## Passage 8: The Quiet Revolution in Mycorrhizal Networks
+
+Beneath the floor of nearly every temperate forest lies a vast and largely invisible web of fungal tissue that has only recently begun to receive the scientific attention it deserves. These networks, formed by mycorrhizal fungi in symbiotic association with tree roots, extend for hundreds of meters underground, linking individual trees into interconnected systems. The fungi receive carbohydrates produced by the trees through photosynthesis; in return, they supply the trees with water and mineral nutrients, particularly phosphorus and nitrogen, drawn from soil volumes that the roots alone could not access. This basic exchange has been understood for more than a century.
+
+What has emerged only in the past two decades is the extent to which mycorrhizal networks mediate interactions among the trees themselves. Using isotope-labeled carbon, ecologists have demonstrated that photosynthates flow between trees along fungal pathways, with larger, sun-exposed trees transferring significant quantities of carbon to smaller, shaded individuals nearby. Remarkably, this transfer appears to favor genetically related trees over unrelated ones of the same species, suggesting that the network enables a form of kin recognition previously documented only in animals. In some forests, mature "hub" trees are connected to dozens of younger trees, effectively subsidizing their growth until they can secure adequate light independently.
+
+These findings have prompted a reconsideration of long-standing assumptions about forest dynamics. The traditional view, dominant through much of the twentieth century, portrayed forests as sites of intense competition, with individual trees struggling against their neighbors for sunlight, water, and soil nutrients. The mycorrhizal evidence suggests that cooperation, mediated by fungal partners, may be equally important. It is worth emphasizing, however, that the fungi themselves are not passive conduits; they appear to regulate nutrient flows in ways that serve their own reproductive interests, sometimes at the expense of particular host trees. The forest that is emerging from this research is neither a simple competitive arena nor a harmonious cooperative, but rather a complex, partly-regulated economy in which fungal intermediaries play a surprisingly active role.
+
+### Q29
+**difficulty:** Easy
+**type:** Main Idea
+**topic:** Reading Comprehension
+
+Which of the following best summarizes the main point of the passage?
+
+- A) Mycorrhizal fungi are more important to forest ecosystems than the trees themselves.
+- B) Recent research on mycorrhizal networks reveals that forests function as complex systems in which fungi mediate both cooperation and regulation among trees, complicating earlier competition-based views.
+- C) Genetic relatedness is the primary factor determining the survival of young trees in temperate forests.
+- D) Twentieth-century ecologists were mistaken in nearly all of their conclusions about forest dynamics.
+- E) Mycorrhizal networks should be protected by stronger environmental regulations.
+
+**answer:** B
+**explanation:** The passage establishes the basic symbiosis, then describes new findings on carbon transfer and kin recognition, and finally argues that these findings reshape the traditional competition-focused view into a more complex, fungi-mediated picture. Answer B captures this. Answer A overstates the fungi's importance. Answer C picks up only one specific finding. Answer D is too sweeping; the passage refines rather than rejects prior views. Answer E is a policy implication not made in the passage.
+
+---
+
+### Q30
+**difficulty:** Medium
+**type:** Specific Detail
+**topic:** Reading Comprehension
+
+According to the passage, isotope-labeling studies have demonstrated that:
+
+- A) mycorrhizal fungi can survive without forming symbiotic relationships with trees
+- B) photosynthates flow between trees along fungal pathways, with larger trees transferring carbon to smaller, shaded trees, and with transfer favoring genetically related recipients
+- C) trees compete for nitrogen more intensely than for phosphorus in most temperate forests
+- D) mycorrhizal networks extend only a few meters beyond the tree root system
+- E) younger trees produce more carbohydrates per unit of leaf area than mature trees
+
+**answer:** B
+**explanation:** The passage states that "photosynthates flow between trees along fungal pathways, with larger, sun-exposed trees transferring significant quantities of carbon to smaller, shaded individuals nearby" and that "this transfer appears to favor genetically related trees over unrelated ones." Answer B combines both findings. The other options describe claims the passage does not make.
+
+---
+
+### Q31
+**difficulty:** Medium
+**type:** Function
+**topic:** Reading Comprehension
+
+The author's observation that fungi "appear to regulate nutrient flows in ways that serve their own reproductive interests, sometimes at the expense of particular host trees" functions primarily to:
+
+- A) prove that mycorrhizal relationships are fundamentally parasitic rather than symbiotic
+- B) qualify the emerging picture of forest cooperation by showing that fungi have their own agendas, reinforcing the passage's claim that forests are neither purely competitive nor purely cooperative
+- C) argue that forest management should aim to eliminate mycorrhizal fungi from cultivated forests
+- D) dismiss the findings on carbon transfer between trees as misinterpretations of fungal behavior
+- E) demonstrate that trees would be better off without fungal partners
+
+**answer:** B
+**explanation:** The passage uses this observation to complicate the cooperation narrative just after introducing it, preparing the final sentence's synthesis of forests as a "partly-regulated economy." Answer B captures this qualifying role. Answer A overstates parasitism; the passage still calls the relationship symbiotic. Answer C is a policy claim not made. Answer D misreads; the carbon-transfer findings are not dismissed. Answer E contradicts the described mutual benefits.
+
+---
+
+### Q32
+**difficulty:** Hard
+**type:** Inference
+**topic:** Reading Comprehension
+
+The passage implies that the twentieth-century view of forests as primarily sites of competition:
+
+- A) was entirely wrong and has been decisively replaced by a cooperative model
+- B) captured a real aspect of forest dynamics but missed the substantial role of fungal-mediated interactions, including cooperative transfers among trees
+- C) was based on deliberate misinterpretation of evidence by influential ecologists
+- D) applies only to tropical forests and not to temperate ones
+- E) will regain prominence once current research on mycorrhizal networks is replicated
+
+**answer:** B
+**explanation:** The passage does not reject the competitive view outright; it describes cooperation as "may be equally important" and presents the final synthesis as a system that is "neither a simple competitive arena nor a harmonious cooperative." This implies competition captures something real but incomplete. Answer A overstates the replacement. Answer C imputes bad faith the passage does not suggest. Answer D reverses the passage, which focuses on temperate forests. Answer E is not supported.
+
+---

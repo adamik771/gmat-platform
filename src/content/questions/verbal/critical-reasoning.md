@@ -602,3 +602,403 @@ Which of the following, if true, most helps to explain the apparent discrepancy 
 **explanation:** The paradox is that domestic emissions fell while consumption-based emissions rose. Answer C explains both trends: manufacturers moved abroad to avoid the tax, reducing domestic emissions (the 20% decline) while increasing foreign emissions attributable to the country's consumption (the 8% rise in per capita footprint). This is the phenomenon known as "carbon leakage." Answer B could explain a per capita increase if domestic emissions stayed flat, but it does not explain the domestic decline simultaneously. Answer A would be expected to reduce both measures. Answer D explains the domestic decline but not the consumption-based increase. Answer E is irrelevant to the paradox.
 
 ---
+
+## Q31
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Weaken
+
+A regional airline recently replaced its fleet of older turboprop aircraft with newer jet aircraft on all of its short-haul routes. In the six months since the change, the airline's fuel costs per passenger have increased by 15%. The airline's CFO concludes that the decision to switch to jets was a financial mistake.
+
+Which of the following, if true, most weakens the CFO's conclusion?
+
+- A) The new jet aircraft require less frequent maintenance than the turboprops they replaced.
+- B) Fuel prices industry-wide increased by approximately 20% during the same six-month period.
+- C) Passenger loads on the airline's short-haul routes have remained roughly constant since the fleet change.
+- D) Competing regional airlines continue to operate turboprop aircraft on similar routes.
+- E) The airline's marketing campaign emphasized the comfort of the new jets over the turboprops.
+
+**answer:** B
+**explanation:** The CFO assumes the 15% cost increase is due to the jets themselves. Answer B attacks that by showing fuel prices rose 20% industry-wide — meaning the airline's per-passenger fuel cost actually rose less than the market, so switching to jets may have softened a cost shock. This is the classic "alternative cause" weakener in a cost-comparison argument. Answer A weakens the conclusion on a different dimension (maintenance) but doesn't address the fuel-cost claim directly and is less damaging. Answer C is neutral — constant loads mean the per-passenger metric is clean. Answer D is irrelevant to the airline's own economics. Answer E is out of scope.
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Assumption
+
+A mid-sized city is considering installing LED streetlights to replace its existing sodium-vapor lamps. Proponents argue that because LED lights consume 60% less electricity than sodium-vapor lamps of equivalent brightness, the switch will significantly reduce the city's annual street-lighting costs.
+
+The argument above depends on which of the following assumptions?
+
+- A) LED streetlights last longer than sodium-vapor lamps.
+- B) Residents of the city support the switch to LED streetlights.
+- C) The cost of electricity will not decrease by more than 60% in the near future.
+- D) Expenses other than electricity, such as the purchase and installation of the new lamps, will not offset the savings from reduced electricity use.
+- E) Other cities that have switched to LED streetlights have reported lower lighting costs.
+
+**answer:** D
+**explanation:** The conclusion is about total annual cost, but the premise only covers electricity consumption. The argument assumes that other cost categories — purchase, installation, disposal of old lamps — won't eat up the electricity savings. Negate D: if those costs DO offset the savings, the conclusion collapses. That's the negation test working. Answer A would support longevity, but the argument isn't about bulb life. Answer C is tempting but reversed — if electricity got cheaper, savings would shrink, but the argument doesn't depend on future prices. Answer E is outside evidence, not a required assumption. Answer B is irrelevant to cost.
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Inference
+
+A study of employees at a large technology firm found that workers who took at least two weeks of consecutive vacation per year reported 30% higher job satisfaction than workers who took only scattered days off throughout the year, even when total vacation days used were equal. The firm's HR department verified that both groups had comparable workloads and tenure.
+
+Which of the following can be properly inferred from the information above?
+
+- A) Taking consecutive vacation days causes higher job satisfaction than taking scattered days off.
+- B) Among employees at this firm, the pattern of vacation use is associated with reported job satisfaction.
+- C) Most employees at the firm prefer consecutive vacation weeks to scattered days off.
+- D) Employees who report higher job satisfaction perform better at their jobs.
+- E) The firm should require all employees to take at least two weeks of consecutive vacation each year.
+
+**answer:** B
+**explanation:** Inference questions require us to stick strictly to what the stimulus supports — no causal leaps, no policy leaps. Answer B says only that there's an association, which is exactly what the study shows. Answer A overreaches by claiming causation; observational data can't establish that. Answer C is unsupported — the study measured satisfaction, not preference. Answer D introduces performance, which was never mentioned. Answer E is a policy recommendation, which also goes beyond the data. The trap here is jumping from correlation to causation (A) — always the #1 inference trap.
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Paradox / Resolve the Discrepancy
+
+A popular online retailer reduced the price of its most popular wireless headphones by 25% during a weeklong sale. Despite the price reduction, total revenue from sales of those headphones during the sale week was lower than revenue from the same headphones during a typical non-sale week.
+
+Which of the following, if true, best explains the discrepancy described above?
+
+- A) The retailer heavily advertised the sale on social media platforms.
+- B) Many customers who intended to buy the headphones had purchased them during a similar sale two weeks earlier, having anticipated the price drop.
+- C) The retailer's competitors also offered discounts on wireless headphones during the same week.
+- D) The headphones have been the retailer's best-selling electronic product for the past year.
+- E) The retailer's shipping times were slightly longer during the sale week due to high overall order volume.
+
+**answer:** B
+**explanation:** The puzzle: price cut should raise units sold, yet revenue fell. Answer B resolves it by showing demand was pulled forward — customers who would have bought this week already bought two weeks ago, leaving a thin pool of buyers despite the discount. This is "demand cannibalization," a common real-world pattern. Answer C is tempting (competitor pressure) but doesn't explain why revenue fell BELOW a typical non-sale week — in a normal competitive environment, discounts usually still lift volume. Answer A would predict the opposite (higher revenue). Answer D is background info. Answer E suggests high volume, which contradicts the premise.
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Strengthen
+
+A biotech company's new drug candidate reduced tumor size in 70% of mice in a preclinical trial, compared to 20% of mice given a placebo. The company's research director concluded that the drug will likely be effective in treating similar tumors in human patients.
+
+Which of the following, if true, most strengthens the research director's conclusion?
+
+- A) The drug candidate was developed using a computational model validated on human cell lines.
+- B) In three previous cases, drugs that produced this specific biological mechanism in mice later showed comparable efficacy in human trials for the same tumor type.
+- C) The mice used in the trial were bred specifically to develop tumors that mimic human disease.
+- D) The placebo used in the trial was chemically inert and had no known biological effect.
+- E) The biotech company has successfully brought two other drugs to market in the past decade.
+
+**answer:** B
+**explanation:** The conclusion makes a species-jumping leap: mice worked, therefore humans will work. To strengthen, we need evidence that this specific jump is reliable. Answer B provides the bridge: drugs using this mechanism have previously translated from mice to humans successfully. That directly supports the inference the director is making. Answer C is tempting because it makes the mouse model more relevant, but "mimics human disease" in the tumor sense is weaker than the direct precedent in B — C supports realism of the model, B supports the translation itself. Answer A speaks to how the drug was designed, not whether it works in humans. Answer D shows the placebo was valid but doesn't bridge species. Answer E is about the company's track record, not this drug.
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Weaken
+
+The editor of a weekly news magazine argues that the magazine should shift its distribution model from print to digital-only. She points out that 80% of the magazine's subscribers now read most articles on the magazine's mobile app rather than in the printed issue, and that eliminating print would cut production costs by 40%.
+
+Which of the following, if true, most seriously weakens the editor's argument?
+
+- A) The magazine's mobile app was launched three years ago and has received generally positive reviews.
+- B) Advertisers pay the magazine significantly higher rates for full-page print advertisements than for digital banner ads, and those print-ad revenues currently exceed the magazine's total production costs.
+- C) Other news magazines that went digital-only reported subscriber growth within two years of the transition.
+- D) The magazine's print readership skews older than its digital readership.
+- E) Producing the print edition requires a specialized printing partner with whom the magazine has a five-year contract.
+
+**answer:** B
+**explanation:** The editor's argument rests on cost savings from ending print. But the decision is really about profit, not cost alone. Answer B shows that print advertising revenue EXCEEDS total production costs — so killing print kills a revenue stream larger than the 40% cost cut. That flips the economics. This is the classic "ignored benefit of the thing being eliminated" weakener. Answer E is tempting because it suggests a contractual obstacle, but contracts can be renegotiated and this doesn't challenge the underlying logic. Answer A slightly strengthens. Answer C strengthens by showing digital transitions can work. Answer D is demographic color, not a decisive weakener.
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Assumption
+
+The city council of Riverton is considering a proposal to build a new light-rail line connecting the downtown business district to the western suburbs. Supporters of the proposal argue that the light-rail line will reduce rush-hour traffic congestion on the main highway linking these two areas, because many commuters who currently drive will switch to using the light rail.
+
+The supporters' argument depends on which of the following assumptions?
+
+- A) The light-rail line will be completed within the originally projected budget.
+- B) The reduction in highway traffic caused by commuters switching to light rail will not be offset by other drivers who begin using the highway because it has become less congested.
+- C) Most commuters who drive on the highway during rush hour travel between downtown and the western suburbs.
+- D) Light-rail systems in other cities have reduced highway congestion in those cities.
+- E) The light-rail line will be cheaper to maintain than the highway.
+
+**answer:** B
+**explanation:** This is a classic "induced demand" assumption. The argument says: commuters switch → highway less congested. But if switchers free up road space, OTHER drivers may fill it (people who previously avoided the highway, chose off-peak times, etc.), leaving congestion unchanged. Negate B: new drivers DO fill the freed space — and the conclusion collapses. Answer C is tempting — it seems to bridge the gap — but the argument already says "many commuters" will switch; it doesn't require that MOST highway drivers go this route, only that enough do. Answer A is budget, not necessary. Answer D is analogy, not assumption. Answer E is cost, not congestion.
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Flaw in Reasoning
+
+A consulting firm examined the 50 fastest-growing technology startups of the past decade and found that 42 of them had founders who had previously worked at one of the five largest technology companies. The firm concluded that aspiring entrepreneurs should seek employment at one of these five large companies in order to maximize their chances of later founding a fast-growing startup.
+
+Which of the following best describes a flaw in the firm's reasoning?
+
+- A) The firm assumes that the five large technology companies will continue to exist in their current form.
+- B) The firm fails to consider that the vast majority of employees at these five large companies never found startups, let alone fast-growing ones.
+- C) The firm does not specify what counts as a "fast-growing" startup.
+- D) The firm ignores that some founders of fast-growing startups did not work at the five largest technology companies.
+- E) The firm relies on data that may have been reported inaccurately by the startups themselves.
+
+**answer:** B
+**explanation:** This is the classic "selection bias / base rate neglect" flaw. The firm looked only at successful founders and found many came from Big Tech, but never asked: what fraction of Big Tech employees become successful founders? If the answer is tiny, working there provides no real edge. You're reasoning from the wrong denominator. Answer D is tempting because it notes exceptions, but exceptions don't destroy a probabilistic argument — base-rate neglect does. Answer A is a speculative future concern. Answer C is a definitional quibble. Answer E attacks data quality generally without engaging the logical structure.
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Evaluate the Argument
+
+A university is considering whether to require all first-year students to live in on-campus dormitories. Supporters argue that requiring on-campus residence will improve first-year academic performance, citing a recent internal study that found first-year students living in dorms had an average GPA 0.3 points higher than first-year students living off-campus.
+
+The answer to which of the following questions would be most useful in evaluating the supporters' argument?
+
+- A) What is the average rent for off-campus housing near the university?
+- B) How do the demographic and academic profiles of first-year students who chose to live in dorms compare with those who chose to live off-campus?
+- C) Do upper-class students who live in dorms also have higher GPAs than upper-class students who live off-campus?
+- D) Has the university's overall GPA increased over the past decade?
+- E) What percentage of first-year students currently live in dorms?
+
+**answer:** B
+**explanation:** The study compares two self-selected groups. If dorm-dwellers are systematically different from off-campus students at baseline — say, younger, from higher-income families, or with stronger high-school records — the GPA gap may reflect those differences, not dorm life. Knowing the demographic/academic profiles tells us whether the comparison is apples-to-apples. This is the "confounding variable" evaluate question. Answer A is about affordability, not the causal claim. Answer C might be interesting but concerns a different population. Answer D is about trends, not the causal mechanism. Answer E is descriptive, not evaluative.
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Inference
+
+A horticulturalist observed that in her greenhouse, tomato plants grown under red-spectrum LED lights produced 25% more fruit by weight than tomato plants grown under standard white LED lights. She also noted that the tomato plants under red light grew taller but had fewer leaves than those under white light. All other growing conditions, including water, soil, and temperature, were held constant.
+
+Which of the following must be true on the basis of the information above?
+
+- A) Red-spectrum light is the optimal light source for all tomato cultivation.
+- B) Taller tomato plants always produce more fruit than shorter ones.
+- C) Under the conditions tested, the additional leaves produced by plants under white light did not translate into greater fruit yield.
+- D) Tomato plants grown under blue-spectrum light would produce even more fruit than those grown under red light.
+- E) The red-spectrum light caused the tomato plants to grow taller.
+
+**answer:** C
+**explanation:** "Must be true" demands airtight logic. Answer C restates what the data show: plants under white light had more leaves but less fruit, so in this experiment those extra leaves didn't yield more fruit. That's literally what happened. Answer A overgeneralizes ("all" tomato cultivation) from one greenhouse. Answer B is a universal claim about height, not supported. Answer D speculates about an untested spectrum. Answer E is tempting but is a CAUSAL claim — the stimulus shows correlation under controlled conditions but "caused" is stronger than the setup proves without more. The trap in inference questions is always the causal-sounding answer (E) or the universal-sounding answer (A/B/D).
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Strengthen
+
+A pharmaceutical company claims that its new cholesterol-lowering drug, StatinX, is more effective than the leading competitor's drug. To support this claim, the company cites a clinical trial in which patients taking StatinX showed an average LDL cholesterol reduction of 35%, compared with 28% for patients taking the competitor's drug.
+
+Which of the following, if true, most strengthens the company's claim?
+
+- A) StatinX costs approximately 15% more per monthly prescription than the competitor's drug.
+- B) Patients in both arms of the trial were randomly assigned, had similar baseline cholesterol levels, and were matched on age, sex, and cardiovascular risk factors.
+- C) StatinX was developed using a novel chemical pathway that the company has patented.
+- D) The competitor's drug has been on the market for over fifteen years and is widely prescribed.
+- E) Side effects reported in the StatinX arm of the trial were comparable in frequency to those reported in the competitor arm.
+
+**answer:** B
+**explanation:** Whenever a comparison-based study is used to support a superiority claim, the biggest threat is that the groups differ at baseline. Answer B eliminates that threat: random assignment plus matching on key variables means the 35% vs. 28% gap isn't explained by patient differences. That directly strengthens the causal attribution to the drug. This is the "internal validity strengthener." Answer E is tempting because equal safety profiles support using StatinX, but the CLAIM is about efficacy, not safety. Answer A hurts the claim (cost). Answer C is about novelty, not efficacy. Answer D is background.
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Weaken
+
+A large manufacturing firm is considering adopting a four-day workweek, in which employees would work four 10-hour days rather than five 8-hour days. Human resources managers argue that the change will increase productivity, citing pilot programs at three smaller firms in unrelated industries where output per employee rose by an average of 12% after the switch.
+
+Which of the following, if true, most seriously weakens the HR managers' argument?
+
+- A) The three pilot firms had offered other incentives, such as signing bonuses, during the pilot period.
+- B) Employees at the manufacturing firm already report high satisfaction with the current schedule.
+- C) The manufacturing firm's production process requires continuous machine operation that cannot be efficiently compressed into four days.
+- D) The manufacturing firm has approximately ten times as many employees as the largest of the three pilot firms.
+- E) A four-day workweek is becoming increasingly common in the manufacturing industry globally.
+
+**answer:** C
+**explanation:** To weaken a plan argument, find a reason the plan won't work in THIS context. Answer C attacks the applicability directly: the manufacturing firm's process can't be compressed, so whatever worked at other firms won't translate. That's the "mechanism doesn't apply here" weakener. Answer A is tempting — it suggests the 12% gain was driven by bonuses, not the schedule — but even if true, it only weakens the evidence, not the plan's feasibility in this specific context. Answer C is the stronger kill because it shows the plan is infeasible regardless. Answer B is a weak objection. Answer D is scale alone, not decisive. Answer E slightly strengthens.
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Complete the Argument
+
+Some economists have argued that a moderate increase in the minimum wage reduces employee turnover, thereby lowering the hiring and training costs that employers incur. If this is correct, then employers in industries with high turnover rates should generally experience __________
+
+Which of the following most logically completes the argument?
+
+- A) increased profits even if the higher wages are not fully offset by productivity gains, because reduced turnover costs will compensate for a significant portion of the wage increase.
+- B) a decrease in profits following a minimum-wage increase, because wages are the largest single operating expense in most businesses.
+- C) little change in their hiring practices, since turnover is determined primarily by factors other than wages.
+- D) difficulty recruiting new employees after a minimum-wage increase, because the labor pool will shrink.
+- E) higher employee turnover, because employees will seek even higher-paying jobs after receiving a raise.
+
+**answer:** A
+**explanation:** The argument sets up a chain: higher minimum wage → lower turnover → lower hiring/training costs. The blank should follow from that chain specifically for HIGH-TURNOVER industries, where the savings would be largest. Answer A captures this: savings from reduced turnover partially offset the wage increase, so profits can hold up. Answer B contradicts the premise by ignoring the offset mechanism. Answer C dismisses the stated link. Answer D introduces a labor-supply side issue not in the argument. Answer E reverses the stated effect. The trick with Complete-the-Argument questions: the answer must be the DIRECT consequence of the premises, not a tangent.
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Paradox / Resolve the Discrepancy
+
+Over the past ten years, the average fuel efficiency of new passenger vehicles sold in the country of Velora has improved by 30%. Despite this, the total amount of gasoline consumed by passenger vehicles in Velora has increased by 12% over the same period.
+
+Which of the following, if true, best helps explain the apparent discrepancy?
+
+- A) Gasoline prices in Velora have remained roughly constant over the past ten years when adjusted for inflation.
+- B) The total number of passenger vehicles on Velora's roads has grown by 45% over the past ten years, and the average miles driven per vehicle has also increased.
+- C) Velora has invested heavily in public transportation infrastructure over the past decade.
+- D) Fuel efficiency standards in Velora are stricter than those in neighboring countries.
+- E) Electric vehicles now account for approximately 5% of new passenger vehicle sales in Velora.
+
+**answer:** B
+**explanation:** Better MPG × more vehicles × more miles = could easily yield MORE gasoline total. Answer B makes the math work: a 30% efficiency gain is swamped by a 45% increase in vehicles plus more miles per vehicle. Classic "per-unit improvement overwhelmed by volume growth." Answer A is tempting because it could explain more driving (cheap gas), but it doesn't quantify the effect; B is direct. Answer C would cut gasoline use, deepening the paradox. Answer D is irrelevant to domestic consumption. Answer E slightly cuts gasoline demand, deepening the paradox.
+
+---
+
+## Q45
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Boldface
+
+**Traditional economic theory holds that when a firm faces increased competition, it should lower its prices in order to retain market share.** However, a recent analysis of luxury handbag manufacturers contradicts this view. As competition among luxury brands has intensified over the past decade, several leading manufacturers have actually raised their prices and, counterintuitively, gained market share. **The explanation appears to be that in the luxury segment, higher prices signal exclusivity and status, which attracts affluent buyers rather than deterring them.**
+
+In the argument above, the two statements in boldface play which of the following roles?
+
+- A) The first states a general principle; the second identifies an exception to that principle and offers an explanation for the exception.
+- B) The first is the conclusion of the argument; the second is evidence supporting that conclusion.
+- C) The first is a position the author ultimately endorses; the second is a position the author rejects.
+- D) The first describes an observation; the second describes a prediction based on that observation.
+- E) The first states a claim that the argument disputes; the second states an assumption that the argument relies on.
+
+**answer:** A
+**explanation:** Boldface questions require identifying the structural role of each statement. Bold 1 lays out the traditional/general principle. The argument then presents a counterexample (luxury handbags) and Bold 2 EXPLAINS why the exception exists. So A: principle + explained exception. Answer B inverts roles — the first is not the author's conclusion, it's a setup. Answer C wrongly says the author endorses Bold 1; actually the argument shows Bold 1 has exceptions. Answer E is close but misleading: the argument doesn't dispute the principle wholesale, it documents an exception — and Bold 2 isn't an assumption, it's an explanation. Answer D mislabels Bold 2 as a prediction.
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Assumption
+
+A state transportation agency plans to reduce highway fatalities by installing automated speed cameras at 200 locations where accident rates have historically been highest. The agency projects that the cameras will reduce fatalities at these locations by at least 15% within two years, based on results from a similar program in a neighboring state.
+
+The agency's projection depends on which of the following assumptions?
+
+- A) Drivers in the state will be informed in advance about the locations of the new speed cameras.
+- B) The 200 locations chosen are representative of the locations where cameras were installed in the neighboring state, at least with respect to the factors that make speed cameras effective at reducing fatalities.
+- C) Automated speed cameras are the most cost-effective method of reducing highway fatalities.
+- D) The state legislature will approve the funding necessary to install the cameras.
+- E) Drivers who receive speeding tickets from automated cameras will subsequently drive more cautiously for the rest of their lives.
+
+**answer:** B
+**explanation:** The agency's projection relies on transferring a result from one state to another. For that transfer to hold, the relevant conditions must match — not identically on every dimension, but on the factors that DRIVE the effect (traffic patterns, speed profiles, enforcement culture, etc.). Answer B captures this precisely and survives the negation test: if the locations are unrepresentative, the 15% estimate fails. Answer E is tempting but far too strong ("rest of their lives") — the projection only needs a two-year effect. Answer C is cost comparison, not required. Answer A is about policy design, not the projection's logic. Answer D is operational, not inferential.
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Flaw in Reasoning
+
+A columnist argues that reading fiction improves empathy. As evidence, she cites a recent study in which participants who were randomly assigned to read a literary short story scored higher on an empathy assessment administered immediately afterward than participants assigned to read a nonfiction article of similar length. She concludes that schools should therefore require daily fiction reading to produce more empathetic graduates.
+
+The columnist's argument is most vulnerable to which of the following criticisms?
+
+- A) It fails to define "empathy" in a way that all readers would accept.
+- B) It draws a conclusion about long-term behavioral change from evidence of a short-term effect measured immediately after a single reading session.
+- C) It assumes that schools currently do not assign any fiction reading.
+- D) It relies on a study that used random assignment rather than observational data.
+- E) It does not consider the possibility that some nonfiction articles could also increase empathy.
+
+**answer:** B
+**explanation:** This is the "scope/timeframe mismatch" flaw. The evidence measures empathy immediately after one story. The conclusion is about graduates — people shaped by DAILY reading over years. There's a huge gap between a momentary post-reading bump and durable character change. The columnist simply hasn't shown the effect persists or compounds. Answer A is a definitional quibble, not a logical flaw. Answer C is a factual assumption but doesn't undermine the causal chain. Answer D actually praises the study (random assignment is a strength). Answer E is tempting, but even if true, it wouldn't undermine fiction's effect — at worst it shows nonfiction works too.
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Evaluate the Argument
+
+A hospital administrator is evaluating a proposal to switch all surgical teams from a traditional paper-based checklist to a new tablet-based digital checklist. Proponents of the switch argue that the digital checklist will reduce surgical errors, citing data from one surgical department in the hospital that piloted the digital checklist for six months and saw a 40% reduction in recorded errors compared with the previous six months using the paper checklist.
+
+The answer to which of the following questions would be most useful for the administrator in evaluating the proposal?
+
+- A) How much does the tablet-based system cost compared with the paper-based system?
+- B) Did the method used to record and classify surgical errors change between the two six-month periods being compared?
+- C) Are surgeons in the pilot department generally younger than those in other departments?
+- D) How long does it take a surgical team to complete the digital checklist compared with the paper checklist?
+- E) Does the hospital currently have sufficient Wi-Fi coverage in all operating rooms?
+
+**answer:** B
+**explanation:** The 40% reduction is a before/after comparison at the same site. The biggest threat to that kind of comparison is that the MEASUREMENT itself changed. If switching to tablets also changed how errors are logged (perhaps the new system has different categories or thresholds), the apparent drop could be a reporting artifact, not a real safety gain. Answer B directly tests that. This is the "data comparability" evaluate move. Answer A is about cost, not error-reduction efficacy. Answer D is efficiency, not safety. Answer E is implementation feasibility. Answer C hints at confounders but is less decisive than measurement consistency.
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Boldface
+
+**Many economists have argued that raising interest rates is the most reliable tool for bringing down inflation, because higher rates reduce borrowing and cool overall demand.** However, the recent experience of the country of Marisol suggests otherwise. Between 2022 and 2024, Marisol's central bank raised interest rates aggressively, yet inflation remained stubbornly high. **This is because the inflation in Marisol was driven primarily by supply shocks in global commodity markets, which domestic monetary policy cannot directly address.**
+
+In the argument above, the two statements in boldface play which of the following roles?
+
+- A) The first is the main conclusion of the argument; the second provides evidence for it.
+- B) The first is a widely held view that the argument challenges; the second provides the reasoning that explains why that view fails in the specific case described.
+- C) The first is a prediction; the second is an observation that confirms the prediction.
+- D) The first is an assumption; the second is a conclusion drawn from that assumption.
+- E) The first and second both serve as evidence for the same conclusion.
+
+**answer:** B
+**explanation:** Bold 1 states the mainstream economist view — "rates are the reliable tool." The argument then challenges it using Marisol's data, and Bold 2 supplies the mechanism-level reason the mainstream view didn't work HERE (supply shocks, not demand, drove inflation). That's exactly "challenged view + explanation of failure." Answer A inverts structure — Bold 1 is the target of critique, not the main conclusion. Answer C wrongly labels Bold 1 as a prediction; it's a general principle. Answer D mislabels; Bold 1 is a claim, not an assumption, and Bold 2 is an explanation, not a derived conclusion. Answer E is wrong because the two bolded statements serve opposing roles, not the same one.
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Weaken
+
+The CEO of a large software company announced a new policy requiring all employees to return to the office five days per week, arguing that the change will increase innovation. As evidence, she cites internal data showing that in the three years before the pandemic, when all employees worked in the office, the company filed 40% more patents per year on average than it has in the three years since remote work began.
+
+Which of the following, if true, most seriously weakens the CEO's argument?
+
+- A) Patent filings at the company's largest competitor also declined during the remote-work period.
+- B) Employees at the company have generally expressed a preference for continuing to work remotely at least part of the time.
+- C) Three years before the pandemic, the company had approximately twice as many R&D employees as it does now, following major layoffs in the research division during the pandemic.
+- D) Some of the most innovative products the company has released were developed partly during the remote-work period.
+- E) Patent applications are only one measure of innovation, and not necessarily the best one.
+
+**answer:** C
+**explanation:** The CEO blames remote work for the 40% drop in patents, but Answer C exposes a devastating confounder: the company lost half its R&D workforce. Of course patent output fell — there are half as many inventors. That has nothing to do with where people sit. This is the classic "alternative cause" weakener, hitting exactly where the argument is thinnest. Answer A is tempting — industry-wide decline suggests macro factors — but it's weaker because competitor trends don't explain the company's own staffing change. Answer D gives counterexamples but doesn't undermine the aggregate trend. Answer E questions the metric philosophically but doesn't challenge the causal inference. Answer B is about preference, not innovation.
+
+---
