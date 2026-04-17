@@ -144,3 +144,225 @@ If n is a positive integer and n^2 is divisible by 72, what is the smallest poss
 
 **answer:** B
 **explanation:** First, 72 = 2^3 x 3^2. For n^2 to be divisible by 72, n^2 must contain at least 2^3 and 3^2 in its prime factorization. Since n^2 is a perfect square, all prime factor exponents in n^2 must be even. So n^2 must be divisible by at least 2^4 x 3^2 (rounding 2^3 up to the next even power). This means n must be divisible by at least 2^2 x 3 = 12. Check: 12^2 = 144, and 144/72 = 2, confirming that 144 is divisible by 72. The smallest possible value of n is 12.
+
+---
+
+## Q9
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Divisibility Rules
+
+Which of the following numbers is divisible by 11?
+
+- A) 2431
+- B) 3456
+- C) 5791
+- D) 6820
+- E) 7238
+
+**answer:** A
+**explanation:** The divisibility rule for 11 is that the alternating sum of digits must be divisible by 11. For 2431: 2 - 4 + 3 - 1 = 0, and 0 is divisible by 11. Confirm with division: 2431 / 11 = 221. The other choices fail this test.
+
+---
+
+## Q10
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Consecutive Integers
+
+The sum of five consecutive integers is 85. What is the largest of the five integers?
+
+- A) 15
+- B) 17
+- C) 19
+- D) 21
+- E) 23
+
+**answer:** C
+**explanation:** For any odd number of consecutive integers, the sum equals the middle integer times the count. So the middle integer is 85 / 5 = 17. The five integers are 15, 16, 17, 18, 19, and the largest is 19.
+
+---
+
+## Q11
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Units Digit Patterns
+
+What is the units digit of 3^24?
+
+- A) 1
+- B) 3
+- C) 7
+- D) 9
+- E) 0
+
+**answer:** A
+**explanation:** The units digit of powers of 3 cycles in a pattern of length 4: 3, 9, 7, 1 (for exponents 1, 2, 3, 4). To find the units digit of 3^24, compute 24 mod 4 = 0, which corresponds to the 4th position in the cycle. The units digit is 1.
+
+---
+
+## Q12
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Remainders
+
+When the positive integer n is divided by 5, the remainder is 2. What is the remainder when n^2 is divided by 5?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) 4
+
+**answer:** E
+**explanation:** If n leaves remainder 2 when divided by 5, then n = 5k + 2. Squaring: n^2 = 25k^2 + 20k + 4 = 5(5k^2 + 4k) + 4. The remainder is 4. Alternatively, pick n = 7: 7^2 = 49, and 49 / 5 leaves remainder 4.
+
+---
+
+## Q13
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** GCD and LCM
+
+What is the least common multiple of 18, 24, and 30?
+
+- A) 120
+- B) 180
+- C) 360
+- D) 540
+- E) 720
+
+**answer:** C
+**explanation:** Prime factorize each: 18 = 2 x 3^2, 24 = 2^3 x 3, 30 = 2 x 3 x 5. The LCM takes the maximum power of each prime: 2^3 x 3^2 x 5 = 8 x 9 x 5 = 360.
+
+---
+
+## Q14
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Prime Factorization and Counting Factors
+
+How many positive factors does 720 have?
+
+- A) 24
+- B) 28
+- C) 30
+- D) 32
+- E) 36
+
+**answer:** C
+**explanation:** Prime factorize: 720 = 2^4 x 3^2 x 5. The number of positive factors is found by adding 1 to each exponent and multiplying: (4+1)(2+1)(1+1) = 5 x 3 x 2 = 30.
+
+---
+
+## Q15
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Units Digit Patterns
+
+What is the units digit of 2^50 + 7^30?
+
+- A) 0
+- B) 1
+- C) 3
+- D) 5
+- E) 7
+
+**answer:** A
+**explanation:** Powers of 2 cycle in units digits: 2, 4, 8, 6 (period 4). 50 mod 4 = 2, so 2^50 has units digit 4. Powers of 7 cycle: 7, 9, 3, 1 (period 4). 30 mod 4 = 2, so 7^30 has units digit 9. Sum of units digits: 4 + 9 = 13, giving units digit 0.
+
+---
+
+## Q16
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Consecutive Integers
+
+If n is a positive integer, which of the following must be divisible by 6?
+
+- A) n(n+1)
+- B) n(n+2)
+- C) n(n+1)(n+2)
+- D) n^2 + n + 1
+- E) n^3 + 1
+
+**answer:** C
+**explanation:** The product of any 3 consecutive integers is always divisible by 3! = 6, because among any 3 consecutive integers, at least one is divisible by 2 and exactly one is divisible by 3. So n(n+1)(n+2) is always divisible by 6. Choice A is only divisible by 2, not always by 3.
+
+---
+
+## Q17
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Odd/Even Arithmetic
+
+Is the integer k odd?
+
+(1) k^2 + k is even.
+(2) 3k + 1 is even.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** Statement (1): k^2 + k = k(k+1) is always even (product of consecutive integers), so this tells us nothing about k — not sufficient. Statement (2): 3k + 1 is even means 3k is odd, which forces k to be odd (since 3 x odd = odd). Sufficient. Answer is B.
+
+---
+
+## Q18
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Integer Properties
+
+If x, y, and z are integers with xyz < 0 and x + y + z > 0, which of the following must be true?
+
+- A) Exactly one of x, y, z is negative.
+- B) Exactly two of x, y, z are negative.
+- C) All three are positive.
+- D) At least one is zero.
+- E) x + y + z is negative.
+
+**answer:** A
+**explanation:** For xyz < 0, an odd number of the three integers must be negative (one or three). If all three were negative, x + y + z would also be negative, contradicting x + y + z > 0. So exactly one must be negative, with the other two positive and large enough to make the sum positive.
+
+---
+
+## Q19
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** GCD and LCM
+
+If m and n are positive integers, what is the value of m?
+
+(1) The greatest common divisor of m and n is 6.
+(2) The least common multiple of m and n is 36, and n = 12.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Statement (1) alone gives many possibilities for m (6, 12, 18, 24, ...) — not sufficient. Statement (2) alone: LCM(m, 12) = 36 allows m = 9, 18, or 36 — not sufficient. Combined: n = 12 and GCD(m, 12) = 6 and LCM(m, 12) = 36. Using mn = GCD x LCM: 12m = 6 x 36 = 216, so m = 18. Sufficient together.
+
+---
+
+## Q20
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Prime Factorization and Counting Factors
+
+If n = 2^5 x 3^4 x 5^3, how many positive factors of n are perfect squares?
+
+- A) 6
+- B) 9
+- C) 12
+- D) 18
+- E) 24
+
+**answer:** D
+**explanation:** A factor of n has the form 2^a x 3^b x 5^c where 0 <= a <= 5, 0 <= b <= 4, 0 <= c <= 3. For the factor to be a perfect square, each exponent must be even. Valid values of a: {0, 2, 4} (3 choices), of b: {0, 2, 4} (3 choices), of c: {0, 2} (2 choices). Total: 3 x 3 x 2 = 18.
