@@ -216,3 +216,153 @@ A solution contains water and alcohol in the ratio 4:1. If 5 liters of alcohol a
 
 **answer:** B
 **explanation:** In 25 liters of solution with a 4:1 ratio, water = (4/5) x 25 = 20 liters and alcohol = (1/5) x 25 = 5 liters. After adding 5 liters of alcohol: water = 20 liters, alcohol = 5 + 5 = 10 liters. The new ratio of water to alcohol = 20:10 = 2:1.
+
+---
+
+## Q13
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Fractions
+
+Which of the following is the simplified form of 42/98?
+
+- A) 2/7
+- B) 3/7
+- C) 4/7
+- D) 6/14
+- E) 21/49
+
+**answer:** B
+**explanation:** Find the greatest common factor of 42 and 98. Both are divisible by 14: 42/14 = 3 and 98/14 = 7, so 42/98 = 3/7. Trap answer D and E are equivalent to the original but not simplified — on the GMAT, "simplified" means fully reduced.
+
+---
+
+## Q14
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Decimals
+
+When 0.0837 is rounded to the nearest hundredth, what is the result?
+
+- A) 0.08
+- B) 0.083
+- C) 0.084
+- D) 0.09
+- E) 0.1
+
+**answer:** A
+**explanation:** The hundredths digit is the second digit after the decimal point, which is 8. Look at the next digit (3) to decide rounding — since 3 is less than 5, round down, keeping 0.08. Trap answer D comes from incorrectly rounding up because of the non-zero digits further right; only the digit immediately after the rounding place matters.
+
+---
+
+## Q15
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractions
+
+What is the value of (1 + 1/2) / (1 - 1/3)?
+
+- A) 3/4
+- B) 9/8
+- C) 5/4
+- D) 9/4
+- E) 5/2
+
+**answer:** D
+**explanation:** Simplify the numerator: 1 + 1/2 = 3/2. Simplify the denominator: 1 - 1/3 = 2/3. Dividing fractions means multiplying by the reciprocal: (3/2) / (2/3) = (3/2) x (3/2) = 9/4. Complex fractions become easy once you resolve the top and bottom independently before dividing.
+
+---
+
+## Q16
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Order of Operations
+
+What is the value of 8 - 2 x (3 - 5)^2 + 12 / 4?
+
+- A) -5
+- B) 1
+- C) 3
+- D) 7
+- E) 19
+
+**answer:** C
+**explanation:** Apply PEMDAS strictly. Parentheses first: (3 - 5) = -2. Exponent: (-2)^2 = 4. Now: 8 - 2 x 4 + 12/4 = 8 - 8 + 3 = 3. The most common trap is to compute 8 - 2 = 6 first, which violates order of operations — multiplication and division bind tighter than subtraction.
+
+---
+
+## Q17
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Absolute Value
+
+If x = -3 and y = 2, what is the value of |x - y| - |y - x| + |x| - |y|?
+
+- A) -5
+- B) -1
+- C) 0
+- D) 1
+- E) 5
+
+**answer:** D
+**explanation:** Note that |x - y| always equals |y - x| because absolute value ignores sign, so those two terms cancel. The expression reduces to |x| - |y| = |-3| - |2| = 3 - 2 = 1. Recognizing the cancellation saves time; plugging in directly also works but is slower.
+
+---
+
+## Q18
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Fractions
+
+Is the fraction p/q greater than 1/2?
+
+(1) p + q = 20
+(2) q = 2p - 5
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** p/q > 1/2 is equivalent to 2p > q (assuming q > 0). Statement (1) gives p + q = 20 but p and q could be (5, 15) giving p/q = 1/3, or (15, 5) giving p/q = 3 — insufficient. Statement (2) gives q = 2p - 5, so 2p - q = 5 > 0, meaning 2p > q, so p/q > 1/2 — sufficient. Watch the sign of q assumption: DS problems on the GMAT typically supply positive values, and statement (2) forces p > 2.5 for q to stay positive.
+
+---
+
+## Q19
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Fractions
+
+Which of the following fractions is closest to 1/3?
+
+- A) 7/22
+- B) 11/32
+- C) 5/16
+- D) 9/28
+- E) 13/40
+
+**answer:** B
+**explanation:** Compare each fraction to 1/3 by cross-multiplying against 1/3. For 11/32 vs 1/3: 3 x 11 = 33 vs 1 x 32 = 32, so 11/32 exceeds 1/3 by 1/(3 x 32) = 1/96. For 7/22 vs 1/3: 21 vs 22, so 7/22 is below 1/3 by 1/(3 x 22) = 1/66. Compute all five gaps this way and the smallest is 1/96, belonging to 11/32. The shortcut: the fraction whose "cross-multiplication gap" produces the smallest reciprocal-style difference wins — you never need to convert to decimals.
+
+---
+
+## Q20
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Arithmetic Sequences
+
+The sum of the first n terms of a certain sequence equals 3n^2 + 2n. What is the value of the 10th term?
+
+(1) The first term of the sequence is 5.
+(2) The common difference between consecutive terms is 6.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** The stem already fully determines the sequence: the nth term equals S_n - S_(n-1) = (3n^2 + 2n) - (3(n-1)^2 + 2(n-1)) = 6n - 1. So the 10th term is 59 regardless of the statements. Whenever the stem alone answers the question, both statements are individually sufficient (they're consistent with the stem: first term = 5, common difference = 6). This is a classic GMAT trap — always test whether the question is answerable from the stem before evaluating statements.

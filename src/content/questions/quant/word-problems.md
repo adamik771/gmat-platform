@@ -216,3 +216,153 @@ Five years ago, James was 4 times as old as his nephew. In 3 years, James will b
 
 **answer:** A
 **explanation:** Let J = James's current age and N = nephew's current age. Five years ago: J - 5 = 4(N - 5), giving J = 4N - 15 ... (1). In 3 years: J + 3 = 2(N + 3), giving J = 2N + 3 ... (2). Setting (1) = (2): 4N - 15 = 2N + 3, so 2N = 18, and N = 9. Then J = 2(9) + 3 = 21. Verification: Five years ago, James was 16 and his nephew was 4; 16 = 4 x 4. In 3 years, James will be 24 and his nephew will be 12; 24 = 2 x 12. Both conditions are satisfied.
+
+---
+
+## Q13
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Consecutive Integers
+
+The sum of three consecutive integers is 72. What is the largest of the three integers?
+
+- A) 22
+- B) 23
+- C) 24
+- D) 25
+- E) 26
+
+**answer:** D
+**explanation:** Let x = the smallest integer. Then the three consecutive integers are x, x + 1, and x + 2. Their sum: x + (x + 1) + (x + 2) = 3x + 3 = 72, so 3x = 69 and x = 23. The largest integer is x + 2 = 25. Trap answer C (24) is the middle integer, which also equals the average — a useful shortcut: for any consecutive set, the mean is the middle term.
+
+---
+
+## Q14
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Averages
+
+The average (arithmetic mean) of 5 numbers is 18. If a sixth number is added and the new average is 20, what is the sixth number?
+
+- A) 22
+- B) 24
+- C) 28
+- D) 30
+- E) 32
+
+**answer:** D
+**explanation:** Sum of the original 5 numbers = 5 x 18 = 90. Sum of all 6 numbers = 6 x 20 = 120. The sixth number = 120 - 90 = 30. Key technique: convert averages to sums (sum = average x count), then work with sums directly.
+
+---
+
+## Q15
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Age Problems
+
+Ten years ago, Sara was twice as old as her brother Tom. Today, the sum of their ages is 62. How old is Sara now?
+
+- A) 32
+- B) 36
+- C) 38
+- D) 40
+- E) 42
+
+**answer:** C
+**explanation:** Let S = Sara's age now and T = Tom's age now. Then S + T = 62, so T = 62 - S. Ten years ago: S - 10 = 2(T - 10), which gives S - 10 = 2T - 20, so S = 2T - 10. Substituting T = 62 - S: S = 2(62 - S) - 10 = 124 - 2S - 10, so 3S = 114 and S = 38. Check: Tom is 24 now; ten years ago Sara was 28 and Tom was 14, and 28 = 2 x 14.
+
+---
+
+## Q16
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Coin Problems
+
+A piggy bank contains only nickels and dimes. If the bank contains 48 coins worth $3.60 in total, how many dimes are in the bank?
+
+- A) 18
+- B) 20
+- C) 22
+- D) 24
+- E) 28
+
+**answer:** D
+**explanation:** Let n = number of nickels and d = number of dimes. Then n + d = 48 and 5n + 10d = 360 cents. From the first equation, n = 48 - d. Substituting: 5(48 - d) + 10d = 360, so 240 - 5d + 10d = 360, giving 5d = 120 and d = 24. Tip: when mixing denominations, always work in the smallest unit (cents here) to avoid decimal errors.
+
+---
+
+## Q17
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Venn Diagrams
+
+In a class of 80 students, 45 study Spanish, 38 study French, and 12 study neither language. How many students study both Spanish and French?
+
+- A) 9
+- B) 12
+- C) 15
+- D) 18
+- E) 23
+
+**answer:** C
+**explanation:** Students studying at least one language = 80 - 12 = 68. By inclusion-exclusion: |S or F| = |S| + |F| - |S and F|, so 68 = 45 + 38 - |S and F|, giving |S and F| = 83 - 68 = 15. The formula to memorize: Total = (Group 1) + (Group 2) - (Both) + (Neither).
+
+---
+
+## Q18
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Digit Problems
+
+A two-digit positive integer N has tens digit t and units digit u. What is the value of N?
+
+(1) t + u = 11
+(2) The integer formed by reversing the digits of N is 27 greater than N.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Write N = 10t + u. Statement (1): t + u = 11 allows many pairs (29, 38, 47, 56, 65, 74, 83, 92). Not sufficient. Statement (2): reversed value is 10u + t, and (10u + t) - (10t + u) = 27, which simplifies to 9(u - t) = 27, so u - t = 3. Many N satisfy this (14, 25, 36, 47, 58, 69). Not sufficient. Together: u + t = 11 and u - t = 3 give u = 7 and t = 4, so N = 47. Sufficient.
+
+---
+
+## Q19
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Venn Diagrams
+
+Of 150 guests at a dinner party, 90 ordered appetizers, 95 ordered dessert, and 70 ordered coffee. If 30 guests ordered all three items and every guest ordered at least one item, how many guests ordered exactly two of the three items?
+
+- A) 15
+- B) 25
+- C) 35
+- D) 45
+- E) 55
+
+**answer:** D
+**explanation:** Let x = guests who ordered exactly two items and y = guests who ordered exactly one item. Two governing equations for three-set problems: (i) y + x + (all three) = Total, so y + x + 30 = 150, giving y + x = 120. (ii) Summing the individual set totals counts singles once, doubles twice, and the triple three times: |A| + |D| + |C| = y + 2x + 3(all three), so 90 + 95 + 70 = y + 2x + 90, giving y + 2x = 165. Subtracting: x = 45.
+
+---
+
+## Q20
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Cost/Revenue
+
+A company sells widgets for $p each. The company's fixed monthly costs are $F, and the variable cost per widget is $v. In a given month, did the company earn a profit?
+
+(1) The company sold 500 widgets and p - v = $8.
+(2) F = $3,000.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Profit = Revenue - Total Cost = 500p - (F + 500v) = 500(p - v) - F. Statement (1): 500(p - v) = 500 x 8 = $4,000, but F is unknown — if F = $2,000 profit is positive, if F = $10,000 it is negative. Not sufficient. Statement (2): F = $3,000 alone says nothing about per-unit margin or units sold. Not sufficient. Together: Profit = $4,000 - $3,000 = $1,000 > 0, a definite yes. Sufficient.
