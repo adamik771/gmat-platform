@@ -275,3 +275,184 @@ Over the five-year historical period shown in Tab 3, what is the total cumulativ
 
 **answer:** A
 **explanation:** Sum the deferred projects from Tab 3: $0.15M + $0.60M + $0.60M + $0.46M + $0.00M = $1.81M. The proposed Infrastructure increase from Tab 2 is $7.68M - $6.34M = $1.34M. Since $1.81M > $1.34M, the cumulative deferred projects exceed the proposed increase. The answer is A.
+
+---
+
+## Set 4: Lumen Beverages — North Star Product Launch
+
+### Tab 1: Market Research Summary
+
+**Prepared by:** Consumer Insights Team
+**Product:** North Star — a sparkling adaptogen-infused beverage
+**Target Segments:** Urban professionals (25-44), wellness-focused consumers
+
+Our concept test surveyed 1,200 target consumers across four metro markets (Austin, Denver, Seattle, Boston). Purchase intent (top-two-box) averaged 42%, well above our internal benchmark of 30% for new functional beverages.
+
+Price sensitivity analysis suggests a $3.49 per can optimum retail price. Above $3.99, purchase intent falls below 25%. Below $2.99, consumers reported suspicion about ingredient quality.
+
+The strongest appeal drivers were (in order): "clean ingredients," "afternoon energy without jitters," and "taste." The weakest driver was "status/image."
+
+Finally, we flag that category growth for functional beverages is decelerating from 14% YoY (two years ago) to a forecast 7% YoY next year, though adaptogen-specific SKUs are still growing at 22% YoY.
+
+### Tab 2: Budget and Financial Projections
+
+| Line Item                          | Year 1 ($M) | Year 2 ($M) | Year 3 ($M) |
+|------------------------------------|-------------|-------------|-------------|
+| Projected Revenue                  | 8.0         | 18.5        | 32.0        |
+| Cost of Goods Sold                 | 4.8         | 10.2        | 16.0        |
+| Marketing Spend                    | 3.6         | 4.5         | 5.0         |
+| Distribution & Logistics           | 1.2         | 2.6         | 4.2         |
+| G&A Allocation                     | 0.8         | 1.0         | 1.2         |
+| **Operating Profit / (Loss)**      | **(2.4)**   | **0.2**     | **5.6**     |
+
+Breakeven is projected for mid-Year 2. Marketing spend in Year 1 includes $1.2M of one-time launch costs (influencer seeding, trade promotions, and in-store demos).
+
+### Tab 3: Competitive Landscape
+
+| Competitor    | Retail Price | Distribution (% ACV) | Category Share | Positioning                    |
+|---------------|--------------|----------------------|----------------|--------------------------------|
+| BrightKick    | $2.79        | 68%                  | 14%            | Mass-market energy             |
+| Ember & Root  | $3.99        | 34%                  | 6%             | Premium adaptogen              |
+| Still/Fizz    | $3.29        | 52%                  | 9%             | Sparkling wellness             |
+| Calm Co.      | $3.59        | 41%                  | 7%             | Stress-reduction functional    |
+| North Star (proposed) | $3.49 | TBD                  | 0%             | Sparkling adaptogen wellness   |
+
+Notes: "ACV" is All-Commodity Volume, a standard measure of retail distribution breadth. Ember & Root is considered the closest direct competitor.
+
+### Q10
+**difficulty:** Easy
+**type:** Multi-Source Reasoning
+**topic:** Business Analysis
+
+According to the market research, which of the following was identified as the WEAKEST driver of appeal for North Star?
+
+- A) Clean ingredients
+- B) Afternoon energy without jitters
+- C) Taste
+- D) Status/image
+
+**answer:** D
+**explanation:** Tab 1 explicitly states, "The weakest driver was 'status/image.'" The other three options are listed as the strongest drivers, in order. This is a direct fact-lookup from Tab 1.
+
+---
+
+### Q11
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Business Analysis
+
+Based on the financial projections, what is North Star's projected gross margin (revenue minus COGS, divided by revenue) in Year 3?
+
+- A) 32.5%
+- B) 45.0%
+- C) 50.0%
+- D) 55.0%
+
+**answer:** C
+**explanation:** From Tab 2, Year 3 revenue = $32.0M and COGS = $16.0M. Gross margin = (32.0 - 16.0) / 32.0 = 16.0 / 32.0 = 0.50 = 50.0%. The answer is C. Note: a common trap is to subtract all expenses (operating margin = 5.6/32.0 ≈ 17.5%), but the question specifies gross margin.
+
+---
+
+### Q12
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Business Analysis
+
+A board member argues that North Star is mispriced given its positioning. Considering all three tabs, which of the following most directly supports her claim that the proposed $3.49 price is too LOW?
+
+- A) Price sensitivity analysis showed purchase intent falls below 25% above $3.99.
+- B) The closest direct competitor (Ember & Root) is priced at $3.99 and occupies the "premium adaptogen" segment that North Star also targets.
+- C) BrightKick is priced at $2.79 and holds the largest category share among competitors listed.
+- D) Category growth for functional beverages is decelerating to 7% YoY.
+
+**answer:** B
+**explanation:** The board member claims the $3.49 price is too LOW. We need evidence that would support a HIGHER price. (A) actually argues against raising price — it says intent drops sharply above $3.99. (B) is the strongest support: the closest direct competitor occupies the same adaptogen-wellness positioning and charges $3.99, so a $3.49 price may undercut North Star's premium claim and leave money on the table. (C) compares to a mass-market competitor, which is a different positioning. (D) speaks to category growth, not pricing. Synthesizing Tab 1 (positioning) and Tab 3 (competitive pricing) gives B.
+
+---
+
+## Set 5: Northfield Logistics — Warehouse Consolidation Study
+
+### Tab 1: Executive Briefing
+
+**Subject:** Proposed consolidation of Midwest warehouse footprint
+**Prepared by:** Operations Strategy, Northfield Logistics
+
+Northfield currently operates four regional warehouses in the Midwest: Columbus, Indianapolis, St. Louis, and Milwaukee. Total annual operating cost across these four sites is $28.4 million. Average utilization (measured as used pallet positions divided by total pallet capacity) is 61%, below our internal target of 75%.
+
+Leadership is evaluating a plan to close two of the four warehouses and consolidate volume into the remaining two. The key constraints:
+
+1. No customer should experience an increase in average delivery time greater than 0.5 days.
+2. The combined utilization of the two remaining warehouses must not exceed 90% (to preserve surge capacity).
+3. Net annual savings must exceed $4.0 million to justify the transition cost (estimated one-time at $6.8 million).
+
+### Tab 2: Warehouse Operating Data
+
+| Warehouse     | Annual Op Cost ($M) | Pallet Capacity | Current Utilization | Avg Delivery Time to Served Customers (days) |
+|---------------|---------------------|-----------------|---------------------|----------------------------------------------|
+| Columbus      | 7.8                 | 42,000          | 68%                 | 1.4                                          |
+| Indianapolis  | 6.9                 | 38,000          | 64%                 | 1.5                                          |
+| St. Louis     | 7.4                 | 40,000          | 55%                 | 1.7                                          |
+| Milwaukee     | 6.3                 | 34,000          | 57%                 | 1.9                                          |
+| **Total**     | **28.4**            | **154,000**     | **61% (avg)**       | —                                            |
+
+### Tab 3: Delivery Impact Simulation
+
+The operations team simulated four two-warehouse scenarios. Each row shows the retained pair and the projected results after all volume is rerouted.
+
+| Scenario | Retained Pair                | Combined Utilization | Max Customer Delivery Increase (days) | Projected Annual Op Cost ($M) |
+|----------|------------------------------|----------------------|---------------------------------------|-------------------------------|
+| 1        | Columbus + Indianapolis      | 88%                  | 0.3                                   | 16.1                          |
+| 2        | Columbus + St. Louis         | 85%                  | 0.4                                   | 16.5                          |
+| 3        | Columbus + Milwaukee         | 92%                  | 0.6                                   | 15.4                          |
+| 4        | Indianapolis + St. Louis     | 84%                  | 0.7                                   | 15.7                          |
+
+All projected costs include incremental freight and staffing needed to serve reassigned customers. Transition cost ($6.8M) is not included in these figures.
+
+### Q13
+**difficulty:** Easy
+**type:** Multi-Source Reasoning
+**topic:** Operations Analysis
+
+According to Tab 2, which warehouse has the LOWEST current utilization?
+
+- A) Columbus
+- B) Indianapolis
+- C) St. Louis
+- D) Milwaukee
+
+**answer:** C
+**explanation:** Reading directly from Tab 2: Columbus 68%, Indianapolis 64%, St. Louis 55%, Milwaukee 57%. St. Louis at 55% is the lowest. The answer is C. A common trap is to pick Milwaukee because it has the smallest capacity, but utilization is a ratio, not raw volume.
+
+---
+
+### Q14
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Operations Analysis
+
+Based on the simulation in Tab 3, what would be the net annual operating cost savings (before the one-time transition cost) if Scenario 2 were adopted?
+
+- A) $11.9 million
+- B) $12.4 million
+- C) $13.0 million
+- D) $15.2 million
+
+**answer:** A
+**explanation:** From Tab 2, current total annual op cost = $28.4M. From Tab 3, Scenario 2 projected annual op cost = $16.5M. Savings = $28.4M - $16.5M = $11.9M. The answer is A. Note the question asks about annual savings before the one-time $6.8M transition cost, so we do not subtract that here.
+
+---
+
+### Q15
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Operations Analysis
+
+Applying the three constraints from the Executive Briefing (Tab 1) to the scenarios in Tab 3, how many of the four scenarios satisfy ALL three constraints?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+
+**answer:** C
+**explanation:** Check each scenario against all three constraints. Constraint 1: max delivery increase <= 0.5 days. Constraint 2: combined utilization <= 90%. Constraint 3: annual savings > $4.0M (i.e., projected op cost < $28.4M - $4.0M = $24.4M). Scenario 1: 0.3 days (OK), 88% (OK), $16.1M < $24.4M (OK) — PASSES. Scenario 2: 0.4 days (OK), 85% (OK), $16.5M (OK) — PASSES. Scenario 3: 0.6 days FAILS constraint 1. Scenario 4: 0.7 days FAILS constraint 1. Two scenarios (1 and 2) satisfy all three constraints. The answer is C.

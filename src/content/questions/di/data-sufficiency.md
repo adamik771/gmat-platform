@@ -315,3 +315,318 @@ A data set contains eight positive numbers. Is the standard deviation of the dat
 
 **answer:** A
 **explanation:** Statement (1): The range is 4, meaning the maximum minus the minimum equals 4. The standard deviation can never exceed the range for any data set (in fact, for any data set the standard deviation is at most half the range). Since all deviations from the mean are at most the range, and the standard deviation is a type of average deviation, the SD must be less than or equal to half the range. More precisely, SD <= range/2 = 4/2 = 2. Since 2 < 5, the standard deviation is definitely not greater than 5. Sufficient (answer is "no"). Statement (2): The mean is 50. The values could all be 50 (SD = 0 < 5), or they could be spread out widely (e.g., values from 1 to 99, giving SD > 5). Not sufficient. The answer is A.
+
+---
+
+## Q16
+**difficulty:** Easy
+**type:** Data Sufficiency
+**topic:** Number Properties
+
+If n is a positive integer, is n odd?
+
+(1) 3n is odd.
+(2) n + 4 is odd.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** This is a classic "C trap" where students combine statements without testing each alone. Statement (1): 3n is odd. Odd x odd = odd, and odd x even = even, so if 3n is odd, then n must be odd. Sufficient (answer is "yes"). Statement (2): n + 4 is odd. Since 4 is even, and even + odd = odd, n must be odd. Sufficient (answer is "yes"). Each statement alone pins down that n is odd, so the answer is D, not C.
+
+---
+
+## Q17
+**difficulty:** Easy
+**type:** Data Sufficiency
+**topic:** Linear Equations
+
+What is the value of x?
+
+(1) 2x + 3y = 17
+(2) y = 3
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Statement (1): One equation with two unknowns has infinitely many solutions; x could be 4 (with y = 3), or 7 (with y = 1), etc. Not sufficient. Statement (2): y = 3 says nothing about x on its own. Not sufficient. Together: Substituting y = 3 into 2x + 3(3) = 17 gives 2x = 8, so x = 4. Sufficient. The answer is C.
+
+---
+
+## Q18
+**difficulty:** Easy
+**type:** Data Sufficiency
+**topic:** Geometry
+
+What is the area of rectangle ABCD?
+
+(1) The length of diagonal AC is 10.
+(2) The perimeter of ABCD is 28.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Let the sides be L and W. Statement (1): L^2 + W^2 = 100 (diagonal), but many (L, W) pairs satisfy this with different areas (e.g., 6 and 8 give area 48; 7.07 and 7.07 give area 50). Not sufficient. Statement (2): 2L + 2W = 28, so L + W = 14. Areas differ (e.g., 7 x 7 = 49 vs 6 x 8 = 48). Not sufficient. Together: (L + W)^2 = L^2 + 2LW + W^2 = 100 + 2LW, so 196 = 100 + 2LW, giving LW = 48. The area is uniquely 48. Sufficient. The answer is C.
+
+---
+
+## Q19
+**difficulty:** Easy
+**type:** Data Sufficiency
+**topic:** Number Properties
+
+If p is an integer, is p even?
+
+(1) p^2 is even.
+(2) p + 1 is odd.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** Another "C trap" — students instinctively combine. Statement (1): p^2 is even means p^2 has a factor of 2; since 2 is prime, p itself must contain a factor of 2, so p is even. Sufficient ("yes"). Statement (2): p + 1 is odd, and odd - 1 = even, so p is even. Sufficient ("yes"). Each alone settles the question. The answer is D.
+
+---
+
+## Q20
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Inequalities
+
+Is x > y?
+
+(1) x^2 > y^2
+(2) x - y > 0
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** Classic sign trap on squaring. Statement (1): x^2 > y^2 just means |x| > |y|. Try x = 3, y = 1: x > y (yes). Try x = -3, y = 1: |-3| > |1| but x = -3 < 1 = y (no). Not sufficient. Statement (2): x - y > 0 rearranges directly to x > y. Sufficient (always "yes"). The trap is treating inequalities like equations when squaring; only Statement (2) is a direct rewording. The answer is B.
+
+---
+
+## Q21
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Linear Equations
+
+If 4x + 3y = 24, what is the value of y?
+
+(1) x and y are positive integers.
+(2) x > 4
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** Integer-constraint trap — students see "one equation, two unknowns" and default to C. Statement (1): Positive integer solutions to 4x + 3y = 24. We need 24 - 3y to be a positive multiple of 4. y = 4: 4x = 12, x = 3 (works). y = 8: 4x = 0, x = 0 (not positive, fails). y = 1, 2, 3, 5, 6, 7: 24 - 3y is not divisible by 4. Only (x, y) = (3, 4) works, so y = 4 uniquely. Sufficient. Statement (2): x > 4 with no integer constraint gives infinitely many y values (e.g., x = 5 gives y = 4/3; x = 6 gives y = 0). Not sufficient. The answer is A.
+
+---
+
+## Q22
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Inequalities
+
+Is x > 0?
+
+(1) x^3 > x
+(2) x^2 < 1
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Sign-question trap using cubes and squares. Statement (1): x^3 > x means x^3 - x > 0, i.e., x(x-1)(x+1) > 0. This holds when -1 < x < 0 or x > 1. Try x = 2: yes x > 0. Try x = -0.5: x < 0. Not sufficient. Statement (2): x^2 < 1 means -1 < x < 1. x could be 0.5 (>0) or -0.5 (<0). Not sufficient. Together: From (1), x in (-1, 0) U (1, infinity); from (2), x in (-1, 1). Intersection: x in (-1, 0). So x < 0 — answer is always "no." Sufficient. The answer is C.
+
+---
+
+## Q23
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Number Properties
+
+If n is a positive integer, what is the remainder when n is divided by 5?
+
+(1) The remainder when n is divided by 10 is 3.
+(2) n is odd.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** Remainder-ladder trap. Statement (1): n = 10k + 3 for some non-negative integer k. Dividing by 5: n = 5(2k) + 3, so the remainder is 3 regardless of k. Sufficient. Statement (2): n is odd. n = 1 gives remainder 1; n = 3 gives remainder 3; n = 5 gives remainder 0. Not sufficient. The answer is A.
+
+---
+
+## Q24
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Linear Equations
+
+If a, b, and c are real numbers, what is the value of a + b + c?
+
+(1) a + b = 10
+(2) b + c = 12 and a + c = 8
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** System-of-equations trap. Statement (1): a + b = 10, but c is free, so a + b + c = 10 + c is not unique (c = 0 gives 10; c = 5 gives 15). Not sufficient. Statement (2): Two equations in three unknowns. Adding them: a + b + 2c = 20, but a + b + c is not pinned down (a = 0, c = 8, b = 4: sum = 12; a = 2, c = 6, b = 6: sum = 14). Not sufficient. Together: From (1), a + b = 10; substituting into a + b + 2c = 20 gives 2c = 10, so c = 5 and a + b + c = 15. Sufficient. The answer is C.
+
+---
+
+## Q25
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Geometry
+
+In triangle ABC, what is the measure of angle A?
+
+(1) Angle B = 70 degrees.
+(2) Triangle ABC is isosceles.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** E
+**explanation:** Classic geometry "C-to-E" trap — seems solvable together but isn't. Statement (1): Only angle B is fixed; A + C = 110 with many possibilities. Not sufficient. Statement (2): Isosceles means two sides equal, hence two angles equal, but we don't know which two. Not sufficient. Together: B = 70 and the triangle is isosceles. Which pair of angles are equal? Case 1: A = B = 70, then C = 40, so A = 70. Case 2: B = C = 70, then A = 40. Case 3: A = C, then A = C = (180 - 70)/2 = 55. Three possible values for A (70, 40, or 55). Not sufficient even together. The answer is E.
+
+---
+
+## Q26
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Inequalities
+
+If x and y are nonzero real numbers, is x/y < 1?
+
+(1) x < y
+(2) xy > 0
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** E
+**explanation:** Classic "C-to-E" trap — combining looks like it works but negative pairs break it. Statement (1): x < y. Try x = 1, y = 2: x/y = 0.5 < 1 (yes). Try x = -2, y = -1: x/y = 2, not < 1 (no). Not sufficient. Statement (2): xy > 0 means same sign. Try x = 1, y = 2: x/y = 0.5 (yes). Try x = 2, y = 1: x/y = 2 (no). Not sufficient. Together: x < y AND same sign. If both positive, e.g., x = 1, y = 2: x/y = 0.5 < 1 (yes). If both negative, e.g., x = -3, y = -1: x < y holds and xy = 3 > 0, but x/y = 3, not < 1 (no). Both cases remain, so together still insufficient. The answer is E.
+
+---
+
+## Q27
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Statistics
+
+Set S consists of five distinct positive integers. Is the median of S greater than the mean of S?
+
+(1) The largest number in S is more than twice the sum of the other four numbers.
+(2) The smallest number in S is 1.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** Skewness trap. Let the sorted values be a < b < c < d < e; median = c, mean = (a+b+c+d+e)/5. Statement (1): e > 2(a+b+c+d). Then mean = (a+b+c+d+e)/5 > (a+b+c+d + 2(a+b+c+d))/5 = 3(a+b+c+d)/5. For median > mean, need c > 3(a+b+c+d)/5, i.e., 5c > 3(a+b+c+d), i.e., 2c > 3(a+b+d). But b and d are both at least... actually, simpler: Statement (1) forces the mean to be pulled far above c by the huge e. Formally, mean > (a+b+c+d + 2(a+b+c+d))/5 = 3(a+b+c+d)/5 >= 3(4c)/5 is wrong since a,b < c; try concrete: {1,2,3,4,21}: sum=31, mean=6.2, median=3; 21 > 2(1+2+3+4)=20, yes. Median (3) < mean (6.2) — so answer is "no." Any set meeting (1) has e so dominant that mean > median. Sufficient (always "no"). Statement (2): smallest = 1, e.g., {1,2,3,4,5}: median = 3 = mean (no). {1,2,3,4,100}: median = 3, mean = 22 (no). {1,2,10,11,12}: median = 10, mean = 7.2 (yes). Not sufficient. The answer is A.
+
+---
+
+## Q28
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Number Properties
+
+If x is a positive integer, is x prime?
+
+(1) x has exactly two positive divisors.
+(2) x + 1 is the square of a prime.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** Definition-of-prime trap. Statement (1): "Exactly two positive divisors" is the definition of a prime number (1 and itself). Sufficient (always "yes"). Statement (2): x + 1 = p^2 for some prime p. If p = 2, x + 1 = 4, so x = 3 (prime, yes). If p = 3, x + 1 = 9, so x = 8 (not prime, no). If p = 5, x + 1 = 25, so x = 24 (not prime, no). Not sufficient. The answer is A.
+
+---
+
+## Q29
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Geometry
+
+A circle is inscribed in square ABCD. What is the area of the circle?
+
+(1) The diagonal of square ABCD is 10 sqrt(2).
+(2) The area of the region inside the square but outside the circle is 100 - 25 pi.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** "Looks like C, actually D" geometry trap. For an inscribed circle, the circle's diameter equals the square's side. Statement (1): Diagonal = 10 sqrt(2) means side = 10 (since diagonal of a square = side x sqrt(2)). Circle radius = 5, area = 25 pi. Sufficient. Statement (2): Let side = s, radius = s/2. Region outside circle = s^2 - pi(s/2)^2 = s^2 - pi s^2/4. Given this equals 100 - 25 pi, we match: s^2 = 100 (so s = 10) and pi s^2/4 = 25 pi (confirms s = 10). Radius = 5, circle area = 25 pi. Sufficient. Each alone works, so the answer is D.
+
+---
+
+## Q30
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Inequalities
+
+If a, b, and c are nonzero integers, is abc > 0?
+
+(1) ab > 0 and bc > 0
+(2) a + b + c > 0
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Sign-counting trap. For abc > 0, we need an even number of negatives (0 or 2). Statement (1): ab > 0 means a, b same sign; bc > 0 means b, c same sign. So a, b, c all share b's sign — all positive or all negative. If all positive: abc > 0 (yes). If all negative: abc = (neg)(neg)(neg) < 0 (no). Not sufficient. Statement (2): a + b + c > 0. Try a = b = c = 1: abc = 1 > 0 (yes). Try a = 5, b = -1, c = -1: sum = 3 > 0, abc = 5 > 0 (yes). Try a = 5, b = -2, c = -1: sum = 2 > 0, abc = 10 > 0 (yes). Try a = 10, b = -1, c = -2: abc = 20 (yes). Try a = 3, b = -1, c = 1: sum = 3, abc = -3 (no). Not sufficient. Together: From (1), all three have the same sign. From (2), their sum is positive, which forces them all positive (if all negative, sum would be negative). So all positive means abc > 0. Sufficient (always "yes"). The answer is C.

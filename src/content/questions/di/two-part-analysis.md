@@ -171,3 +171,152 @@ From the options below, identify a statement that, if true, would provide an alt
 
 **answer:** Alternative Explanation = "Students from higher-income families are more likely to eat breakfast"; Support = "A school that introduced free breakfast saw test scores rise by 12 points the next year"
 **explanation:** The alternative explanation is that income (not breakfast itself) drives the correlation — wealthier students eat breakfast AND have advantages that lead to higher test scores. The direct support is a causal study showing that providing free breakfast actually led to higher scores, which parallels the recommended action in the conclusion.
+
+---
+
+## Q9
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Rate Problems
+
+A copy editor can proofread 12 pages per hour. A junior editor can proofread 8 pages per hour. They are assigned a 120-page manuscript. If they work together from the start, the time to finish is T hours. If only the copy editor works, the time is S hours.
+
+Select the value of T (row 1) and the value of S (row 2).
+
+|        | T (both) | S (copy editor only) |
+|--------|----------|----------------------|
+| 4 hrs  |          |                      |
+| 6 hrs  |          |                      |
+| 8 hrs  |          |                      |
+| 10 hrs |          |                      |
+| 15 hrs |          |                      |
+
+**answer:** T = 6 hrs, S = 10 hrs
+**explanation:** Combined rate = 12 + 8 = 20 pages per hour. T = 120 / 20 = 6 hours. Copy editor alone: S = 120 / 12 = 10 hours. Sanity check: the "both" time must be shorter than either individual time, so T = 6 and S = 10 fits. If a student picks T = 4, they are likely averaging or double-counting; the rates add, the times do not.
+
+---
+
+## Q10
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Mixture
+
+A coffee roaster blends Bean A (which costs $8 per pound) with Bean B (which costs $14 per pound) to produce 30 pounds of a blend that costs $10 per pound. Determine the pounds of Bean A (row 1) and pounds of Bean B (row 2) required.
+
+|        | Bean A | Bean B |
+|--------|--------|--------|
+| 5 lb   |        |        |
+| 10 lb  |        |        |
+| 15 lb  |        |        |
+| 20 lb  |        |        |
+| 25 lb  |        |        |
+
+**answer:** Bean A = 20 lb, Bean B = 10 lb
+**explanation:** Let a be pounds of Bean A and b of Bean B. Two equations: a + b = 30 and 8a + 14b = 10(30) = 300. From the first, a = 30 - b. Substituting: 8(30 - b) + 14b = 300 → 240 + 6b = 300 → b = 10. So a = 20. Quick gut-check: $10 is closer to $8 than to $14, so the blend should weight more heavily toward Bean A, which matches 20 lb vs 10 lb.
+
+---
+
+## Q11
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** System of Equations
+
+At a concert, adult tickets cost $45 and student tickets cost $20. The venue sold 400 tickets and collected $13,750 in total revenue. Determine the number of adult tickets sold (row 1) and the number of student tickets sold (row 2).
+
+|     | Adult Tickets | Student Tickets |
+|-----|---------------|-----------------|
+| 150 |               |                 |
+| 170 |               |                 |
+| 200 |               |                 |
+| 230 |               |                 |
+| 250 |               |                 |
+| 280 |               |                 |
+
+**answer:** Adult Tickets = 230, Student Tickets = 170
+**explanation:** Let a = adult tickets and s = student tickets. Set up two equations: a + s = 400 and 45a + 20s = 13,750. Substitute s = 400 - a into the revenue equation: 45a + 20(400 - a) = 13,750 → 25a + 8,000 = 13,750 → 25a = 5,750 → a = 230. Then s = 400 - 230 = 170. Both values appear in the row labels, so select Adult = 230 in row 1 and Student = 170 in row 2.
+
+---
+
+## Q12
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Numerical Relationships
+
+A set of five distinct positive integers has a mean of 14 and a median of 12. Let L be the largest possible value of the greatest integer in the set, and let S be the smallest possible value of the greatest integer in the set. Determine L (row 1) and S (row 2).
+
+|     | L (largest possible max) | S (smallest possible max) |
+|-----|--------------------------|---------------------------|
+| 14  |                          |                           |
+| 19  |                          |                           |
+| 20  |                          |                           |
+| 36  |                          |                           |
+| 42  |                          |                           |
+
+**answer:** L = 42, S = 19
+**explanation:** Let the ordered integers be a < b < 12 < d < e. Their sum is 5 × 14 = 70, so a + b + d + e = 58. For L (maximize e): minimize a, b, and d. The smallest distinct positive integers below 12 are a = 1 and b = 2. The smallest d greater than 12 is 13. Then e = 58 - 1 - 2 - 13 = 42. So L = 42. For S (minimize e): push a, b, and d as high as possible subject to a < b < 12 and 12 < d < e. Maximize a + b with a < b < 12: take a = 10, b = 11 (sum 21). Then d + e = 58 - 21 = 37 with 12 < d < e. To minimize e, make d as close to e as possible: d = 18, e = 19 works (distinct, both > 12, sum 37). Any larger d (e.g., d = 19) would force e = 18 < d, violating order. So S = 19.
+
+---
+
+## Q13
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Logic — Argument Structure
+
+Consider the following argument: "City X's new bike-share program launched in March. Six months later, traffic congestion on Main Avenue had decreased by 15%. Therefore, the bike-share program reduced congestion on Main Avenue."
+
+From the statements below, identify the conclusion of the argument (row 1) and the central unstated assumption required for the argument to hold (row 2).
+
+| Statement                                                                                    | Conclusion | Assumption |
+|----------------------------------------------------------------------------------------------|------------|------------|
+| The bike-share program reduced congestion on Main Avenue                                     |            |            |
+| No other factor materially contributed to the observed congestion decrease                   |            |            |
+| Traffic congestion on Main Avenue decreased by 15%                                           |            |            |
+| The bike-share program launched in March                                                     |            |            |
+| Bike-share programs always reduce congestion wherever they are implemented                   |            |            |
+
+**answer:** Conclusion = "The bike-share program reduced congestion on Main Avenue"; Assumption = "No other factor materially contributed to the observed congestion decrease"
+**explanation:** The conclusion is signaled by "Therefore" and is the causal claim being drawn. The central assumption is that the timing correlation reflects causation — i.e., that nothing else (road construction, gas prices, remote work shifts) drove the drop. The other options are either premises (2nd and 4th) or too strong (5th overstates the assumption; the argument only needs it in this case, not universally).
+
+---
+
+## Q14
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Cause and Effect / Strengthening and Weakening
+
+A technology analyst argues: "Companies that adopted the new CRM platform saw their customer retention rates rise by an average of 8 percentage points in the following year. Therefore, the CRM platform is an effective tool for improving retention."
+
+From the statements below, identify one that would most strengthen the argument (row 1) and one that would most weaken it by offering an alternative explanation (row 2).
+
+| Statement                                                                                         | Strengthens | Weakens (alt cause) |
+|---------------------------------------------------------------------------------------------------|-------------|---------------------|
+| A controlled experiment randomly assigned the CRM to half of a company's regions and saw retention rise 7 points only in those regions |             |                     |
+| Companies that adopted the CRM also simultaneously raised their customer service headcount by 20% |             |                     |
+| The CRM platform is the highest-rated software in its category                                    |             |                     |
+| Retention rates across the industry rose 1 percentage point on average last year                  |             |                     |
+| The CRM costs $50 per seat per month                                                              |             |                     |
+
+**answer:** Strengthens = "A controlled experiment randomly assigned the CRM to half of a company's regions and saw retention rise 7 points only in those regions"; Weakens = "Companies that adopted the CRM also simultaneously raised their customer service headcount by 20%"
+**explanation:** The strengthen option isolates the CRM's causal effect by using random assignment within companies — ruling out self-selection and most confounders. The weaken option provides an alternative cause for the retention rise: if adopters also boosted service staff, the headcount (not the CRM) could explain the lift. The category rating and price are irrelevant to effectiveness; the industry-wide 1-point rise is too small to explain an 8-point average gap and doesn't offer an alternative mechanism for adopters specifically.
+
+---
+
+## Q15
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Rate Problems
+
+A tank is being filled by two pipes and drained by one. Pipe A alone fills the tank in 4 hours. Pipe B alone fills the tank in 6 hours. The drain, when open, empties a full tank in 8 hours. If all three are opened simultaneously on an empty tank, the time to fill is T hours. If only Pipe A and the drain are open on an empty tank, the time to fill is U hours.
+
+Select the value of T (row 1) and the value of U (row 2).
+
+|              | T (all three) | U (A + drain) |
+|--------------|---------------|---------------|
+| 2.4 hrs      |               |               |
+| 2.75 hrs     |               |               |
+| 3.43 hrs     |               |               |
+| 4.0 hrs      |               |               |
+| 8.0 hrs      |               |               |
+
+**answer:** T = 3.43 hrs, U = 8.0 hrs
+**explanation:** Work in tank-fractions per hour. Pipe A fills at +1/4, Pipe B at +1/6, and the drain removes at -1/8. For T (all three open): net rate = 1/4 + 1/6 - 1/8. Using a common denominator of 24: 6/24 + 4/24 - 3/24 = 7/24 tank per hour. So T = 1 / (7/24) = 24/7 ≈ 3.43 hours. For U (Pipe A and drain only): net rate = 1/4 - 1/8 = 2/8 - 1/8 = 1/8 tank per hour, so U = 8 hours. The key trick is to add/subtract rates, never times.
