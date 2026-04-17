@@ -51,6 +51,35 @@ Route: `/practice/session/[slug]`. Click any "Start" button on `/practice` to en
 - **Wire-up**: the "Start" button in `PracticeClient.tsx` is now a `<Link href={/practice/session/${set.slug}}>`.
 - **Update (commit `590be0c`)**: `PromptBlock` now renders all session text (prompts, options, passages, MSR reference tabs, explanations) through `react-markdown` + `remark-gfm` instead of the monospaced `<pre>` fallback. Table Analysis and Multi-Source Reasoning tables now render as real `<table>/<thead>/<th>/<td>` HTML with dark+gold styling (uppercase muted headers, tight dividers, bordered container with horizontal overflow). The custom components map is tuned compact for the session UX (`first:mt-0` / `last:mb-0` on paragraphs and lists so option buttons don't get surprise vertical padding, inline code in gold, block code in a dark rounded `<pre>`, prose headings smaller than the `/lessons/[slug]` ones). Verified in the preview server for table-analysis (1 real `<table>`, 5 `<th>`, 25 `<td>`, 0 `<pre>` fallbacks), multi-source-reasoning (1 table in context panel + 12 prose paragraphs), and algebra (no regression — prompt + 5 options + Submit all intact). Production confirmed via WebFetch on `/practice/session/table-analysis`.
 
+### Two-Part Analysis custom UI (commit `89d4b61`)
+The 8 Two-Part Analysis questions previously fell back to a "not supported" screen because they had no A-E options. Now fully playable with a custom 2-column answer grid.
+- **Parser (`src/lib/content.ts`)**: detects pipe tables in TPA blocks, extracts `twoPartColumns` and row labels, strips the table from the prompt, sets `options = rows` (so they pass the "playable" filter), and parses the answer string (handles comma-embedded values like `$60,000` via a lookahead split) into `twoPartCorrectAnswers` indices. Verified all 8 questions parse correctly via a tsx script.
+- **SessionClient**: new `TwoPartGrid` component renders a bordered table with gold column headers and one radio circle per cell. States: gold (selected), green (correct+submitted), red (incorrect+submitted), green checkmark (missed correct). `QuestionState` extended with `twoPartSelections: (number | null)[]`. `isQuestionCorrect()` and `canSubmit()` helpers centralize TPA vs regular logic. Conditional rendering: `current.twoPartColumns` → grid, else → A-E buttons.
+
+### Supabase Auth + practice progress persistence (commits `b16fbe6` → `934d914`)
+Replaces the placeholder auth scaffolding with real Supabase Auth and adds a full practice-session persistence pipeline. Every empty state on the dashboard now becomes real data after a user completes a session.
+- **Supabase project**: `https://jzriuauhmsqpfpzaclvm.supabase.co`, Adam's personal project on the Hobby tier. Tables `practice_sessions` and `practice_attempts` created via SQL migration (see docs below) with RLS policies restricting users to their own rows.
+- **Three Supabase client factories** using `@supabase/ssr` (`src/lib/supabase/{server,browser,proxy}.ts`): lazy, per-request server client; singleton browser client; proxy-layer client that reads/writes cookies on `NextRequest`/`NextResponse` and forwards cache-busting headers.
+- **`src/proxy.ts`** — Next.js 16 convention (`middleware.ts` → `proxy.ts`, exported fn named `proxy`, not `middleware`). Confirmed in `node_modules/next/dist/docs/.../proxy.md`. Redirects unauthenticated users from `(app)` routes to `/login` and authenticated users from `(auth)` routes to `/dashboard`. Has a guard that falls through to `NextResponse.next()` if env vars are missing or Supabase is unreachable, so the site doesn't 500 on every route. Sets `Cache-Control: private, no-store` on all proxy responses to prevent CDN cache leaks between users.
+- **Login/signup pages**: wired to `signInWithPassword` / `signUp` (with `full_name` + `plan` in `user_metadata`). `window.location.origin + "/auth/callback"` as `emailRedirectTo`.
+- **App layout**: `handleSignOut()` calls `supabase.auth.signOut()`. User name + initials pulled from `user_metadata.full_name` on mount (replaces hardcoded "AZ"/"Adam").
+- **Auth callback route** `src/app/auth/callback/route.ts`: exchanges email-confirmation code for a session.
+- **API route** `src/app/api/practice-sessions/route.ts`: POST endpoint that inserts a session + per-question attempts. Auth verified via `getUser()`.
+- **SessionClient**: `useEffect` on `showResults` fires a `fetch("/api/practice-sessions", ...)` call with a `saved` flag to prevent double-posting.
+- **Dashboard (`src/app/(app)/dashboard/page.tsx`)**: now a resilient server component. Queries Supabase for weekly metrics (questions, hours, accuracy), per-section accuracy from attempts, recent sessions for the activity feed, and an 8-week accuracy trend for the score chart. All wrapped in try/catch so the dashboard degrades to empty states if Supabase is unavailable. Personalized greeting from `user.user_metadata.full_name`.
+- **`src/lib/supabase/browser.ts`** hoists env var lookups to module-level constants (not inside the function body) to ensure Next.js reliably inlines them into the client bundle at build time.
+- **Env var setup**: `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` set in Vercel for all three environments. Also in `.env.local` for local dev.
+- **Verified**: local dev — full signup → SQL-confirm email → login → complete practice session → dashboard shows 1 session, 12 questions, 100% accuracy, activity feed has the session. Production — `/dashboard` redirects to `/login` (auth enforced), login page's client bundle has the Supabase URL baked in.
+
+### Production deployment hiccup — IMPORTANT
+
+**Vercel's GitHub auto-deploy silently stopped** partway through this session. Pushes to `main` were landing on GitHub but Vercel's Deployments tab wasn't picking them up, so the production alias (`gmat-platform-61zf.vercel.app`) stayed frozen on commit `89d4b61` for ~23 hours. The fix:
+1. `npx vercel build --prod --yes` (builds locally with env vars pulled from Vercel)
+2. `npx vercel deploy --prebuilt --prod --yes` (uploads the prebuilt output)
+3. `npx vercel alias set <new-deployment-url> gmat-platform-61zf.vercel.app` (updates the main alias)
+
+**Root cause not diagnosed** — might be a GitHub webhook issue on Vercel's side, or a Hobby-tier deploy cap, or the GitHub integration needing reconnection. **If this recurs**: check Vercel Deployments tab vs `npx vercel ls gmat-platform --prod` (the CLI shows the truth). If pushes aren't deploying, use the CLI sequence above. Also: `NEXT_PUBLIC_*` vars are inlined at build time, so env var changes require a fresh build (not just a redeploy from cache).
+
 ### Lesson detail pages (this session — Option B)
 Route: `/lessons/[slug]`. Click any unlocked card on `/lessons` to enter.
 - **`src/app/(app)/lessons/[slug]/page.tsx`** — server component; loads the lesson via `getLessonBySlug`, 404s if missing, and pre-generates all 8 lesson pages at build time via `generateStaticParams`. Renders the markdown body inside a styled `<article>` using `react-markdown` + `remark-gfm`, with a custom `components` map that maps every element (`h1..h4`, `p`, `ul`, `ol`, `li`, `strong`, `em`, `hr`, `blockquote`, inline+block `code`, `pre`, `a`, GFM `table`/`thead`/`th`/`td`) to Tailwind classes using the existing dark+gold tokens.
@@ -90,8 +119,8 @@ User directive (most recent): "do in order, but lets also prepare to change the 
 
 With the original A/C/B/D directive fully executed, here are the natural next moves — confirm direction with Adam before starting any of these.
 
-- **Real user-progress state** — every empty state on the dashboard/practice page is a promise we'll eventually keep. Options: Supabase (already scaffolded in `src/lib/supabase.ts` — apply the same lazy-getter fix the moment anything imports it), or Postgres via Neon/Vercel, or just localStorage for a v1 "works without a backend" demo. The practice session player already tracks `elapsedMs`/`correctCount` per session in component state — persisting those is the first wedge.
-- **Auth** — `src/app/(auth)/login` and `signup` pages exist but are unwired. Likely Supabase Auth given the existing scaffolding. Gates everything under the `(app)` group.
+- ~~**Real user-progress state**~~ ✅ Done. Supabase + `practice_sessions` + `practice_attempts`.
+- ~~**Auth**~~ ✅ Done. Supabase Auth + `src/proxy.ts` protects all `(app)` routes.
 - **Stripe checkout** — `src/lib/stripe.ts` has `getStripe()` + `STRIPE_PRICES` ready, and the pricing page already lists the tiers. Needs a `/api/checkout` route handler + a webhook listener for `checkout.session.completed`. Real price IDs need to replace the `price_self_study`-style placeholders in env.
 - **Individual lesson completion tracking** — the `LessonsClient.tsx` currently synthesizes status ("first 2 done, 3rd current, rest locked"). Once progress is persisted, this should come from the DB and the locked gating should be real (vs currently cosmetic).
 - ~~**Practice session player v2** — markdown tables still render as monospace `<pre>` in `PromptBlock`. Swapping that for `react-markdown` + `remark-gfm` (already in deps) would make Table Analysis and MSR tables render as real HTML tables.~~ ✅ Done in commit `590be0c`. See "Practice session player" done-section above.
