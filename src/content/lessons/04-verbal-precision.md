@@ -1,171 +1,261 @@
 ---
 module: 4
 title: Verbal Precision
-description: CR and RC strategies built for clarity over cramming. Especially effective for non-native speakers.
+description: Master Critical Reasoning and Reading Comprehension through argument architecture, not tricks.
 section: Verbal
-duration: 90
+duration: 100
 ---
 
 # Module 4: Verbal Precision
 
-## Learning Objectives
-- Master the logical structure of Critical Reasoning arguments
-- Build a systematic framework for every RC passage
-- Manage the language disadvantage and turn discipline into an advantage
-- Identify and avoid the most common verbal traps
+## Why Verbal Is Harder Than It Looks
 
----
+Most students — especially non-native English speakers — walk into GMAT Verbal prep with a comforting assumption. "I read English every day. I work in English. Verbal should be the easy section." Then they do a full Verbal set, score a 68, and are ready to quit.
 
-## The GMAT Focus Verbal Section
+Here is what they missed. GMAT Verbal is not testing English. It is testing logic, dressed as English. The sentences are in English because the test has to be in some language, but the skill being measured is tracing the structure of an argument, identifying unstated assumptions, distinguishing what is actually supported from what sounds reasonable, and holding a precise meaning in your head while the answer choices try to blur it. Native speakers often do worse than disciplined non-natives, because they skim — and skimming is exactly how you miss a Verbal question.
 
-23 questions in 45 minutes (~1:57 per question). Two question types:
-- **Critical Reasoning (CR):** ~12 questions — short arguments with logical analysis
-- **Reading Comprehension (RC):** ~11 questions — longer passages with comprehension questions
+I scored 735 as a non-native speaker. What I trained, and what every high-scoring Verbal student trains, is a habit of reading structurally rather than linguistically. When I read a CR prompt, I am not asking "what does this say." I am asking "what is the claim, what is the support, and what is the unstated leap between them." When I read an RC passage, I am not trying to remember every sentence. I am building a skeleton of the passage so I can navigate back to specifics when the questions demand it.
 
-No Sentence Correction in GMAT Focus. This is actually good news for non-native speakers — SC was often the hardest question type for ESL test-takers.
+This reframe is the entire game. If you treat Verbal as a reading test, you will plateau. If you treat it as a logic test where the inputs happen to be English sentences, you have a path to 85+ on the Verbal subscore. Logic is learnable. Much more learnable than vocabulary. The rest of this module teaches you the specific structures, patterns, and tactical moves that move a Verbal score.
 
----
+## The GMAT Focus Verbal Landscape
 
-## Critical Reasoning
+GMAT Focus Verbal gives you **23 questions in 45 minutes** — roughly **1:57 per question**, slightly tighter than Quant's 2:08. Two question types, and only two:
 
-### The Argument Structure
+- **Critical Reasoning (CR):** approximately 11 questions. Short arguments (3-5 sentences) followed by a question that asks you to strengthen, weaken, evaluate, identify an assumption, draw an inference, diagnose a flaw, explain a paradox, complete an argument, or analyze boldface roles.
+- **Reading Comprehension (RC):** approximately 12 questions across 3-4 passages (200-350 words, 3-4 questions each).
 
-Every CR argument has the same anatomy:
-1. **Premises:** Facts or evidence presented as true
-2. **Conclusion:** The claim the author makes based on the premises
-3. **Assumption:** The unstated logical bridge between premises and conclusion
+**There is no Sentence Correction on GMAT Focus.** Older GMAT materials devote enormous real estate to SC: idioms, parallelism, modifier rules. On Focus Edition, all of that is gone. Skip SC chapters in old prep books. For non-native speakers, this removal is a gift — SC rewarded instinctive feel for idioms, something that takes a decade of immersion. Without SC, Verbal is a purer test of argument analysis and reading structure, both teachable in weeks rather than years.
 
-**Example:**
-> "Sales of electric vehicles increased 40% last year. Therefore, consumer attitudes toward environmental sustainability have shifted significantly."
+Timing is the real enemy. 1:57 per question sounds gentle until you realize that RC questions carry an embedded reading cost. If a passage takes three minutes to read, the four questions that follow must each be answered in around 90 seconds to stay on pace. CR questions, without that fixed reading overhead, often need 90 seconds just to digest the prompt before you touch the answer choices. Verbal rewards students who have internalized the patterns so deeply that the first read of the prompt already tells them where the trap lives.
 
-- Premise: EV sales increased 40%
-- Conclusion: Consumer attitudes toward sustainability have shifted
-- Assumption: The increase in EV sales is driven by environmental attitudes (not tax incentives, gas prices, or other factors)
+The adaptive algorithm matters here as it did in Quant. Focus is question-level adaptive within the section, and the early questions calibrate the difficulty band you end up in. Do not rush the first five. Spending 2:30 each on the first three to bank calibration into a higher band is better than saving 45 seconds by guessing and dropping into a lower-ceiling track for the rest of the section. You will see exactly three or four RC passages, and each passage's questions appear consecutively — plan for a 3-4 minute reading investment followed by fast-paced questioning.
 
-**Step 1 of every CR question:** Identify the conclusion. Find the claim. It often follows words like "therefore," "thus," "consequently," "it follows that," or "clearly."
+## Part 1: Critical Reasoning — Argument Architecture
 
-### CR Question Types
+Every Critical Reasoning argument, no matter how complex it sounds, has the same anatomy:
 
-**Strengthen:** Find the answer that makes the conclusion more likely to be true.
-- Look for answers that support the assumption or provide additional evidence
-- Eliminate answers that are irrelevant to the conclusion (even if true)
+1. **Premises** — the facts, evidence, or claims the author presents as true.
+2. **Conclusion** — the claim the author draws from those premises.
 
-**Weaken:** Find the answer that makes the conclusion less likely to be true.
-- Look for answers that attack the assumption or provide a counter-explanation
-- The best weakener doesn't need to destroy the argument — just make it less certain
+That is the skeleton. The argument may also imply an **assumption** — an unstated bridge between premises and conclusion — but assumptions are not printed. You infer them. Almost every CR question type asks you to do something with that three-part structure: shore up the assumption (Strengthen), attack it (Weaken), name it (Assumption), expose it (Flaw), and so on.
 
-**Assumption:** Find the answer that MUST be true for the argument to hold.
-- Use the **Negation Test:** Negate the answer choice. If the argument falls apart, it's a necessary assumption.
-- Example: If the assumption is "EV buyers are motivated by environmental concerns," negate it: "EV buyers are NOT motivated by environmental concerns." Does the argument collapse? Yes — so it's the assumption.
+**Find the conclusion first.** This is the single most important CR habit. Students who read the premises in order and look for the conclusion at the end are reading backwards. The conclusion is the point. Find it before anything else — once you have it, the premises organize themselves around it. Look for:
 
-**Evaluate:** Find the answer where knowing the answer would help assess the argument.
-- Both possible answers to the evaluation question should affect the conclusion (one strengthens, one weakens)
+- Explicit markers: "therefore," "thus," "hence," "consequently," "it follows that," "clearly."
+- Implicit markers: a recommendation ("the company should"), a prediction ("the market will"), a causal claim ("X causes Y"), an evaluative judgment ("this policy is effective").
+- Position: the conclusion is often the first or last sentence. In GMAT prompts, it is frequently the last sentence of a paragraph that builds to it, or the first sentence followed by supporting evidence.
 
-**Inference:** Find the answer that MUST be true based on the passage.
-- Stay close to the text — don't make logical leaps
-- The correct answer is often less dramatic than you expect
+Once you have the conclusion, every other sentence is a premise. Your job is to see how each premise connects, or fails to connect, to the conclusion.
 
-**Flaw/Paradox:** Identify the logical error or explain the apparent contradiction.
-- Common flaws: confusing correlation with causation, assuming a sample represents the whole, ignoring alternative explanations
+**Worked example.**
 
----
+> A recent study found that employees who use standing desks report 30 percent fewer instances of back pain than those who use traditional seated desks. The manufacturer of the standing desks cites this study as evidence that their product improves workplace health. The company plans to launch a marketing campaign promoting standing desks as a solution to chronic back pain in office environments.
 
-## Reading Comprehension
+Step 1: find the conclusion. Ignore the numbers and the study setup — what is the author claiming? The real conclusion is in the second sentence: **the standing desks improve workplace health, specifically by reducing back pain.** The third sentence is a downstream plan that depends on this conclusion being true.
 
-### The Active Reading Framework
+Step 2: map the premises.
 
-Don't read RC passages the way you read a novel. Use this framework:
+- Premise 1: Employees using standing desks reported 30% fewer instances of back pain than those using seated desks.
+- Premise 2 (implicit): The reported correlation reflects a real causal effect.
 
-**First read (2-3 minutes):**
-1. Read the first sentence of each paragraph carefully — these usually contain the main idea of that paragraph
-2. Skim the supporting details — don't memorize them, just know where they are
-3. After reading, spend 10 seconds summarizing: "This passage is about _____ and the author thinks _____."
+Step 3: name the assumption. The conclusion claims causation, but the premise provides only correlation. The assumption is that the desks themselves caused the reduced pain — not that healthier-backed people chose standing desks, or that standing desks went to people in less physically demanding roles, or that people who spent the money on desks were biased against admitting failure.
 
-**For each question:**
-1. Read the question stem carefully
-2. Try to answer in your own words before looking at choices
-3. Find evidence in the passage to support your answer
-4. Eliminate choices that are unsupported, too extreme, or off-topic
+If the question asks me to weaken, I need an alternative explanation for the correlation. If it asks me to strengthen, I need an answer that rules out alternatives. If it asks for the assumption, I need an answer that, when negated, makes the argument collapse. The architecture tells me what to look for before I read a single answer choice.
 
-### RC Question Types
+**The nine CR question types.** Every GMAT CR question falls into one of these nine categories. Each has a distinct "what you are really looking for":
 
-**Main Idea:** What is the passage primarily about?
-- The answer should cover the whole passage, not just one paragraph
-- Trap: An answer that describes only the first paragraph
+- **Strengthen:** Find the answer that makes the conclusion more likely to be true. You are supporting the unstated assumption or supplying additional evidence.
+- **Weaken:** Find the answer that makes the conclusion less likely to be true. You are attacking the assumption, offering an alternative explanation, or showing the premises do not actually support the conclusion.
+- **Assumption:** Find the unstated premise that must be true for the argument to hold. Use the Negation Test — negate the answer and see if the argument collapses.
+- **Inference:** Find the answer that must be true given the premises. You are deducing, not predicting. Stay close to the text.
+- **Flaw:** Identify the logical error the argument is making. You are naming the type of reasoning failure (confusing correlation with causation, unrepresentative sample, equivocation, ad hominem, etc.).
+- **Evaluate:** Find the question whose answer would most help you assess the argument. The correct choice is one where one answer to it strengthens the argument and the other weakens it.
+- **Paradox / Resolve the Discrepancy:** Two facts seem to contradict each other. Find the answer that explains how both can be true.
+- **Boldface:** Two portions of the argument are in bold; identify the role each plays (evidence for the conclusion, a position the author opposes, an intermediate conclusion, etc.).
+- **Complete the Argument:** The prompt ends with a blank. Find the answer that logically completes the reasoning — usually the unstated conclusion or the missing premise.
 
-**Specific Detail:** According to the passage, which of the following is true?
-- Go back to the passage and find the exact line
-- The answer is usually a paraphrase, not a direct quote
-- Trap: An answer that uses words from the passage but changes the meaning
+Memorize these nine. Read the question stem first — it tells you which strategy to deploy. The strategies do not overlap: Strengthen looks for support; Weaken for attack; Assumption for necessity; Inference for deduction. Confusing these is a leading cause of missed CR questions students had the logical chops to solve.
 
-**Inference:** It can be inferred from the passage that...
-- Must be supported by the text — not a guess
-- The correct answer is usually a modest, careful conclusion
-- Trap: An answer that goes one step too far beyond what the passage states
+## CR Deep-Dive: The 5 Trap Patterns
 
-**Application:** The author would most likely agree with which of the following?
-- Think about the author's tone and perspective
-- Look for consistency with the author's stated or implied views
-- Trap: An answer the author might agree with in general but that isn't supported by this passage
+GMAT CR answer choices are engineered to tempt. The test writers know which wrong answers feel right, and they put those wrong answers on the page every single time. If you have been missing CR in the 60-70% range, it is almost never because you cannot do the logic. It is because you are falling for a specific pattern of trap answer. Here are the five most common, with examples and detection rules.
 
----
+**Trap 1: Out-of-scope.** The answer talks about something the argument does not discuss. It might be true or interesting, but it has no logical relationship to the specific claim and premises on the page.
 
-## Strategies for Non-Native Speakers
+- *Example:* An argument concludes that a city's new bike lane reduced traffic accidents. Trap answer: "Bike lanes in general have been shown to improve public health outcomes." Sounds related, but it is not about this lane or about traffic accidents specifically.
+- *Spot it:* Before looking at answers, write down the specific subject and specific claim. An out-of-scope answer will swap one of those for something broader or tangential.
 
-### 1. Don't Try to Understand Every Word
-You don't need to know every vocabulary word to answer the question correctly. Focus on:
-- The overall structure of the argument/passage
-- Key logical relationships (cause/effect, contrast, comparison)
-- The conclusion or main idea
+**Trap 2: Wrong direction.** You were asked to weaken and the trap answer strengthens, or vice versa. This catches people who skim the question stem.
 
-### 2. Watch for Signal Words
-These words tell you the logical structure without needing to understand every detail:
-- **Contrast:** however, although, nevertheless, despite, on the other hand
-- **Cause/Effect:** because, since, therefore, as a result, consequently
-- **Addition:** furthermore, moreover, in addition, also
-- **Example:** for instance, specifically, such as
+- *Example:* A weaken question about a training program reducing employee turnover. Trap: "Employees who complete the training report higher job satisfaction." That strengthens, not weakens.
+- *Spot it:* Before scanning answers, state what direction you need. If an answer makes the conclusion more likely and you need less likely, throw it out.
 
-### 3. Read the Question First (for RC)
-Before reading the passage, glance at the questions. This tells you what to look for while reading, which compensates for slower reading speed.
+**Trap 3: Too strong / absolute language.** The answer uses "always," "never," "all," "none," "only," "impossible." Correct CR answers are almost always hedged.
 
-### 4. Manage Timing Ruthlessly
-- CR questions: aim for 1:30-2:00 per question
-- RC passages: aim for 2:30-3:00 for reading + 1:00-1:30 per question
-- If you're stuck on a question for over 2:30, make your best guess and move on
+- *Example:* An inference question on a study showing 70% of users preferred product A. Trap: "All users who tried product A preferred it to product B." The passage said 70%, not all.
+- *Spot it:* Scan for absolute words. If the prompt said "some" or "many" and the answer says "all," it is a trap unless the passage explicitly used absolute language.
 
-### 5. Trust Logic Over Language
-Non-native speakers sometimes doubt their reading of a passage because the language feels unfamiliar. Trust the logical structure. If the argument says "A happened, therefore B must be true," you can evaluate whether that logic holds regardless of how comfortable you feel with the English.
+**Trap 4: Reverses the causality.** The argument says A caused B. The trap says B caused A, or that some third factor C caused both.
 
----
+- *Example:* A strengthen question about a fitness program causing higher productivity. Trap: "Productive employees are more likely to enroll in fitness programs." That reverses the arrow — it would weaken, by suggesting the program did not cause anything, it just attracted already-productive people.
+- *Spot it:* Write down the causal direction (A → B). Strengthen answers should preserve and reinforce it. Weaken answers can attack by reversing it.
 
-## Common Verbal Traps
+**Trap 5: Attacks the wrong premise or wrong conclusion.** Long CR arguments contain multiple claims. The trap attacks a secondary claim rather than the actual conclusion.
 
-### 1. The Scope Shift
-The argument talks about "some employees" but the answer choice talks about "all employees." Watch for shifts in scope: some → all, one country → worldwide, short term → long term.
+- *Example:* An argument: (a) the drug reduces symptoms in 60% of patients, therefore (b) the FDA should approve it. Trap weaken: "The 60% figure is based on a small sample." That damages (a) but not the bridge from (a) to (b). A sharper weaken: "FDA approval requires efficacy in 80% of patients, not 60%."
+- *Spot it:* Isolate the single sentence that is the author's main conclusion. The best answer engages with the logical bridge between the premises and that specific conclusion.
 
-### 2. The Irrelevant Expert
-"Studies have shown that..." — the answer seems authoritative but doesn't actually address the specific conclusion in the argument. An expert opinion is only relevant if it's about the right topic.
+Drilling these five traps is the highest-leverage thing you can do for CR. When you review missed questions, do not just read the explanation and nod. Name which trap you fell for. Tag every miss in your mistake log with the trap type. Within two weeks, a pattern will emerge — you will see that you are systematically vulnerable to one or two specific trap types, and you can train against them directly.
 
-### 3. The Emotional Appeal
-An answer that feels morally right but doesn't logically strengthen or weaken the argument. The GMAT tests logic, not values.
+## Part 2: Reading Comprehension — The Structure Map
 
-### 4. The Partial Truth
-An answer that is partially correct but includes one wrong element. Read every word of every answer choice — one wrong clause invalidates the whole option.
+The most common RC mistake is reading for detail. Students treat passages like they are studying for a final exam — trying to absorb every fact, name, and number. Then they hit the questions, realize they have forgotten most of it, and hunt backward for specifics. Slow, exhausting, error-prone.
 
-### 5. The Extreme Answer
-Words like "always," "never," "completely," "impossible" are usually wrong on inference questions. Correct inferences tend to be moderate: "is likely to," "may have contributed to," "is consistent with."
+The fix: read for structure, not detail. Your first read should construct a four-element **Structure Map**. Details can be retrieved from the passage when questions demand them — you know where to look because you know the shape. What cannot be retrieved after the fact is the overall architecture, which must be built during the first read.
 
----
+**The four elements of the Structure Map:**
 
-## Key Takeaways
+1. **Main point.** What is the passage ultimately about? Summarize in one sentence. If you cannot summarize in one sentence, you did not understand the passage.
+2. **Structure type.** Is this a problem-solution passage (a problem is described, then a solution or evaluation of solutions)? A compare-contrast (two theories, two interpretations, two time periods)? A chronological account (history, development of an idea)? An argumentative passage (the author defends a position)? Or an expository descriptive piece (the author explains a phenomenon without taking a side)? Naming the structure upfront tells you what kind of questions to expect.
+3. **Author's attitude.** Is the author neutral (reporting findings), critical (pushing back against a view), supportive (endorsing a view), uncertain (noting open questions), or comparative (weighing two views)? Attitude questions are a frequent GMAT RC type, and if you have already registered the tone on first read, these questions take 15 seconds.
+4. **Paragraph purposes.** What does each paragraph do? Not what does each paragraph say — what does it do for the passage as a whole. Does it introduce the topic, present evidence, raise an objection, offer a counterargument, summarize, propose a solution, give an example? "Function" questions ask exactly this.
 
-- Every CR argument has premises, conclusion, and assumptions — identify them first
-- For RC, summarize each passage in one sentence before answering questions
-- Use signal words to understand structure even when vocabulary is challenging
-- Trust logic over language — the argument's structure matters more than the words
-- Eliminate answers that shift scope, go too far, or are emotionally appealing but logically irrelevant
+Build the Structure Map as you read, not after. Annotate mentally (or on scratch paper, if allowed) after each paragraph: "this one is introducing the problem," "this one is presenting the counterargument," "this one is the author's position." Four short notes total — one per paragraph. This takes almost no extra time and transforms your ability to navigate the passage.
 
----
+**Worked example: reading a short passage with Structure Mapping.**
 
-## What's Next
-Module 5 covers Data Insights — the section most people underprepare for.
+Consider the following passage:
+
+> For decades, evolutionary biologists have debated the role of genetic drift in the extinction of small island populations. Early theorists argued that drift, the random fluctuation of gene frequencies, was the primary driver of extinction in isolated populations with limited genetic diversity. More recent studies, however, have challenged this view.
+>
+> A 2019 analysis of 47 island bird species suggested that while drift does accelerate the loss of certain alleles, it rarely produces extinction on its own. Instead, drift typically interacts with environmental pressures — habitat degradation, introduced predators, climate variation — such that the combined effect is far greater than either factor alone.
+>
+> Critics of the 2019 analysis have noted that its dataset was skewed toward species that had already survived significant environmental stress, potentially masking the independent role of drift. They argue that in genuinely isolated populations without environmental pressures, drift alone can still drive extinction, and that the 2019 study therefore understates drift's significance.
+>
+> The weight of current evidence, however, favors the interactive model. Subsequent work on island reptiles and small mammal populations has consistently found that drift alone rarely produces extinction-level outcomes in the absence of environmental stressors. The early view of drift as the primary extinction driver now appears to have been an oversimplification.
+
+Here is how I build the Structure Map in real time, paragraph by paragraph:
+
+- *Paragraph 1:* Frames the debate — old view (drift is primary) vs. the challenge from new studies.
+- *Paragraph 2:* Presents the 2019 analysis — drift rarely causes extinction alone; it interacts with environmental pressures.
+- *Paragraph 3:* Presents critics of the 2019 study. Counterargument.
+- *Paragraph 4:* Author's verdict, siding with the interactive model.
+
+The four elements:
+
+- **Main point:** Current evidence suggests drift rarely causes island extinction alone; it interacts with environmental pressures, and the older view is now an oversimplification.
+- **Structure type:** Argumentative, with embedded compare-contrast (old view vs. new; new vs. its critics).
+- **Author's attitude:** Not neutral. Phrases like "the weight of current evidence, however, favors" and "now appears to have been an oversimplification" show endorsement of the interactive model.
+- **Paragraph purposes:** (1) frame debate, (2) present new evidence, (3) present counterargument, (4) author's verdict.
+
+That map took 90 seconds to build during reading. Now I can answer any question type this passage throws at me. Main idea? I have it. Attitude? Endorses the interactive model. Function of paragraph 3? Counterargument the author will rebut. Specific detail? I know which paragraph holds it.
+
+The Structure Map is not a trick. It is how strong readers naturally read. We are making it explicit and deliberate so that under test pressure you execute it consistently rather than reverting to detail-memorization mode.
+
+## RC Question Types & Tactics
+
+Every GMAT RC question falls into one of six types. Each has a distinct tactical recipe.
+
+**Main Idea / Primary Purpose.** "Which of the following best expresses the main idea of the passage?" or "The primary purpose of the passage is to..."
+
+- The answer must cover the whole passage, not just one paragraph. If the passage has four paragraphs and the answer only addresses paragraphs 1-2, it is wrong.
+- The answer should match the author's attitude. If the author endorsed a view, the correct answer will frame the passage as arguing for that view. If the author was neutral, the correct answer will say "describe" or "explain," not "argue."
+- Trap: an answer that accurately describes one paragraph. This is the single most common main idea trap.
+
+**Specific Detail.** "According to the passage, X is..."
+
+- Always verify with the passage. Do not rely on memory. Scan back to the exact sentence and paraphrase.
+- The correct answer will be a paraphrase of what the passage says, not a verbatim quote. The exact-quote answers are often traps — word-for-word, but changed in meaning by one subtle word.
+- Trap: an answer that uses words from the passage but describes something that was never claimed. For instance, the passage mentions X and Y in the same sentence, but does not claim one caused the other; the trap answer claims a causal link.
+
+**Inference.** "It can be inferred from the passage that..."
+
+- The correct answer must be a logical consequence of what the passage actually says. Not "could plausibly be true," but "must be true given the passage."
+- Stay modest. GMAT inferences are small logical steps, not dramatic extrapolations. "The author would agree that X is sometimes the case" is a typical correct answer. "X is always the case" is typically a trap.
+- Trap: an answer that goes one logical step too far beyond what the passage states. Or that extrapolates from a single example to a general claim.
+
+**Author's Attitude / Tone.** "The author's attitude toward X can best be described as..."
+
+- If you built the Structure Map, you already have this. Spend 10 seconds confirming.
+- Watch for calibration words in the answer. "Enthusiastic support" vs. "guarded approval" vs. "cautious endorsement" are different. Match the author's actual intensity.
+- Trap: an answer that overstates or understates the author's attitude. If the author was cautiously critical, "hostile dismissal" is too strong; "mild interest" is too weak.
+
+**Function / Purpose.** "The author mentions X in order to..." or "The second paragraph primarily serves to..."
+
+- This asks why a sentence or paragraph is there, not what it says. Your answer should describe a role (to illustrate, to refute, to introduce, to contrast, to support, to qualify).
+- Use your paragraph-purpose notes from the Structure Map.
+- Trap: an answer that describes the content of the sentence or paragraph rather than its role. "To discuss island birds" is content. "To provide an example that supports the interactive model" is role.
+
+**Application / Analogy.** "Which of the following hypothetical scenarios is most analogous to the situation described in the passage?"
+
+- You are matching the logical structure of the passage to a parallel scenario. The surface topics will be different. The underlying relationship should match.
+- Strip the passage to its logical skeleton ("a dominant view was challenged by new evidence, which was itself critiqued but ultimately upheld") and find the answer with the same skeleton.
+- Trap: an answer that shares surface features (same industry, same type of subject) but has a different logical structure.
+
+For each type, the question stem is a reliable tell. Learn the stems. "Main idea" and "primary purpose" = main idea. "According to the passage" = detail. "Can be inferred" = inference. "Attitude" or "regard" = tone. "In order to" or "serves to" = function. "Most analogous" or "hypothetical" = application.
+
+## The Non-Native Speaker's Verbal Playbook
+
+I will speak directly to the non-native readers here, because I was one, and because Verbal has a set of traps that specifically punish ESL test-takers who have not been warned about them.
+
+**Trap 1: Over-translating.** You read a sentence in English and immediately translate it into your native language to verify you understood. This adds a second per sentence, and across a 350-word passage that is an extra 30-40 seconds you cannot afford. Worse, the translated version in your head is often slightly off, so you end up reasoning about your translation, not the actual text. **Fix:** train yourself to read English without internal translation. The only way through is volume — read high-quality English prose (The Economist, Aeon, long-form science writing) 20 minutes a day in the run-up to the test.
+
+**Trap 2: Treating idioms as rules.** Without Sentence Correction on Focus Edition, idiom knowledge matters less than it used to. Non-natives often learn an idiom in one context and rigidly apply it everywhere. **Fix:** do not over-index on idioms. Parse the sentence around them. The logic almost never hinges on idiom precision.
+
+**Trap 3: Getting lost in long sentences.** Non-natives read multi-clause sentences linearly, lose the main subject and verb, and arrive at the end without knowing what was claimed. **Fix:** find the main clause first. Locate the subject and the main verb — everything else is modification. Once you have the skeleton, the modifiers fill in.
+
+**Trap 4: Vocabulary anxiety.** You hit a word you do not know and freeze. **Fix:** the word's meaning can usually be inferred from context, or the sentence works without it. GMAT RC does not test rare vocabulary; it tests structure. Mark the unknown word, keep reading, and check whether the sentence's claim is clear from its structure. Ninety percent of the time, it is.
+
+**What actually moves the score.** The single highest-leverage activity for a non-native Verbal student is daily reading of structurally complex English prose combined with stopping at the end of every paragraph to summarize it in one English sentence (not in your native language). Do this for 30 days before your test and your reading speed on RC will noticeably improve, your patience with CR will grow, and the claim of "I just do not read English fast enough" will start to feel false. Speed is trainable. Train it.
+
+## Your 90-Day Verbal Practice System
+
+The biggest cause of stagnant Verbal scores is unstructured practice. Volume without structure produces no learning. Here is a 12-week system.
+
+**Weeks 1-2: One argument type at a time, untimed, 100% accuracy goal.**
+
+- Pick one CR type (start with Strengthen). Do 20 untimed questions. Review every one, whether right or wrong — identify the conclusion, the premises, the assumption, and the trap the wrong answers tried to pull.
+- Move to Weaken in week 1. Assumption and Inference in week 2. Keep everything untimed. Accuracy is the only metric.
+- Add RC: one passage per day, untimed, building the Structure Map explicitly on paper.
+
+**Weeks 3-6: Mixed CR sets with timing; continue RC daily.**
+
+- 5-question mixed CR sets with a soft 2:00 time limit. Track overages.
+- One RC passage per day. Target 3:00 reading + 1:15 per question.
+- Start a **mistake log**. Every missed question: prompt, question type, trap pattern, what you should have noticed. Review weekly.
+
+**Weeks 7-10: RC passages daily; CR integrated.**
+
+- Two RC passages per day, strict 3:00 + 1:15 pacing. Structure Map mentally now, not on paper.
+- Mixed CR sets of 8-10 questions, strict 2:00 pacing.
+- Mistake log should reach 60+ entries. Patterns will be obvious by now — you will see you miss 60% of Assumption questions, or fall for "too strong" on Inference.
+
+**Weeks 11-12: Full Verbal sections under pressure.**
+
+- Two full 23-question sections per week, strict 45-minute timing, on the official GMAT interface or the closest simulator.
+- Spend 2x the section duration reviewing each sim. Review is where the highest-yield learning happens.
+- Three days before test day, stop new problems. Review the mistake log. Do 5-question warmups to stay sharp.
+
+Accuracy before speed. Topic mastery before integration. Review is the learning event. If you skip review, you are wasting your time.
+
+## Common Verbal Failure Modes
+
+Specific traps I see repeatedly. Each has a direct fix.
+
+- **Rereading instead of moving on.** You finish the passage, glance at the question, and instead of committing to an answer, you go back and reread paragraph 2. Then paragraph 3. Now you have spent 40 extra seconds and you still do not know. **Fix:** trust your first read. If the Structure Map is solid, you have enough to eliminate three answers. Pick the best remaining and move.
+- **Falling for the answer that "sounds smart."** An answer choice uses elevated vocabulary, cites a sophisticated-sounding concept, and you pick it because it feels intellectual. GMAT answers are not rewarded for sounding smart. They are rewarded for matching the logical structure of the passage. **Fix:** evaluate answers on logic, not prose style.
+- **Not reading the question stem carefully enough.** You see the word "weaken" and assume it is a standard weaken question, when actually it is "which of the following, if true, most weakens the argument EXCEPT." The EXCEPT flips everything. **Fix:** underline or mentally mark every qualifier in the stem — EXCEPT, NOT, LEAST, etc.
+- **Assuming because a fact is true, it is relevant.** An answer choice states a factual claim that is true in the real world. Many students pick it because it "feels right." But real-world truth is irrelevant on the GMAT. The only question is whether the answer, if assumed true, affects the argument. **Fix:** always ask: "If this were true, would it make the conclusion more or less likely?"
+- **Confusing inference with assumption.** These are inverse operations. Inference: what follows from the premises. Assumption: what the premises require to support the conclusion. Students mix them up and end up picking assumption-type answers on inference questions. **Fix:** when the stem says "can be inferred," look for what the passage implies. When the stem says "the argument assumes," look for what the argument needs to be true.
+- **Giving up on a hard passage.** You read the first paragraph of a dense RC passage, do not fully understand it, panic, and start rushing. **Fix:** slow down for one more pass on the opening. GMAT RC is designed so that the first paragraph sets up everything. Spend an extra 30 seconds if you need to. It will save you on every question that follows.
+- **Spending 4 minutes on one CR question.** The algebra of the section does not allow this. Four minutes on one question leaves 41 minutes for 22 questions, pushing your pace to under 1:52 per remaining question with no buffer. **Fix:** hard stop at 2:45 on any CR. Best guess and move.
+- **Falling into the extreme-language trap repeatedly.** If your mistake log shows you are consistently picking answers with "always," "never," "all," "only," you have a specific trainable habit. **Fix:** pre-commit. Before you look at answer choices on any Inference or Assumption question, tell yourself out loud: "I am going to reject any answer with absolute language unless the passage explicitly used absolute language first."
+
+## Practice Recommendation
+
+Head to `/practice/session/critical-reasoning` for CR drilling and `/practice/session/reading-comprehension` for RC practice. Sets are organized by question type and difficulty tier.
+
+Suggested order for weeks 1-4: start with CR Strengthen, then Weaken, Assumption, Inference, Flaw, and finally the remaining four (Evaluate, Paradox, Boldface, Complete the Argument). For each, do 20 untimed questions, review thoroughly, then move on. Only after working through all nine CR types should you begin mixed CR practice. For RC, do not batch-study by type — do whole passages. The skill is passage navigation, and you can only train it by reading passages start-to-finish with their full question sets. One passage per day in weeks 1-4, ramp to two per day in weeks 5+.
+
+Keep the mistake log open while you practice. Tag every miss with the question type, trap pattern, and competency that broke. Within three weeks, the log becomes your most valuable study resource — it shows exactly which patterns are costing you points and points you directly to the fix. Module 5 covers Data Insights, the section most test-takers underprepare for.
