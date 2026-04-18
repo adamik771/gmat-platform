@@ -17,12 +17,18 @@ A Next.js 16.2.3 (App Router, Turbopack, React 19) premium SaaS platform for a G
 ## What's done (DO NOT redo)
 
 ### Original content in `src/content/`
-- **154 practice questions** across 12 markdown files (all 100% original, no copyright from any source):
-  - Quant: `arithmetic.md` (12), `algebra.md` (12), `word-problems.md` (12), `number-properties.md` (8), `statistics-probability.md` (8) — **52 total**
-  - Verbal: `critical-reasoning.md` (30), `reading-comprehension.md` (20 across 5 original passages) — **50 total**
-  - DI: `data-sufficiency.md` (15), `multi-source-reasoning.md` (9), `table-analysis.md` (10), `graphics-interpretation.md` (10), `two-part-analysis.md` (8) — **52 total**
-- **8 lesson modules** in `src/content/lessons/` (01–08, each 45–120 min).
-- **6 study guides** in `src/content/guides/`: quant formula sheet, verbal strategy guide, DI strategy guide, error log template, pacing guide, test day checklist.
+
+**Questions: 443 total** (up from 154 at session start — all 100% original, no copyright):
+- Quant (171): `arithmetic.md` (20), `algebra.md` (20), `word-problems.md` (20), `number-properties.md` (20), `statistics-probability.md` (20), `geometry.md` (20), `rates-work.md` (18), `ratios-percents.md` (18), `exponents-roots.md` (15)
+- Verbal (127): `critical-reasoning.md` (75 across 9 CR types), `reading-comprehension.md` (52 across 13 original passages)
+- DI (145): `data-sufficiency.md` (45), `multi-source-reasoning.md` (15 across 5 sets), `table-analysis.md` (35), `graphics-interpretation.md` (35), `two-part-analysis.md` (15)
+
+**Lessons: 8 modules, 35,404 words** (up from ~11,400):
+- M01 Mindset Reset (4,509w), M02 Diagnostic Deep Dive (3,991w), M03 Quant Mastery (4,769w), M04 Verbal Precision (5,053w), M05 Data Insights (4,975w), M06 Mock Exam Strategy (5,658w), M07 The Final Week (4,050w), M08 Bonus — For Non-Native Speakers (2,399w)
+
+**Guides: 6 reference docs, 18,279 words** (up from ~10,100):
+- Topic guides at ~4,000w each: `quant-formula-sheet.md` (4,040), `verbal-strategy-guide.md` (4,060), `di-strategy-guide.md` (4,114)
+- Tactical guides at ~2,000w each: `pacing-guide.md` (1,986), `test-day-checklist.md` (2,031), `error-log-template.md` (2,048)
 
 ### Content loader `src/lib/content.ts`
 Zero-dependency frontmatter parser. Public API:
@@ -108,7 +114,15 @@ All the hardcoded user-progress numbers on the dashboard and practice pages are 
 - **Verified**: local `next build` clean in 2.3s (27 routes, no TS/lint errors); preview server console clean for both `/dashboard` and `/practice`; production verified via WebFetch on both pages — dashboard shows em-dashes + three empty-state panels + "Take diagnostic" CTA, practice shows "154 questions across 12 sets" + three em-dashes + two "Not enough data yet" chart panels + 12 practice sets (Quant 5, Verbal 2, DI 5).
 
 ### Build status
-Last `npx next build` compiled clean in 2.3s (Vercel: ~14s on cold cache). 27 routes: 18 static + 8 SSG lesson pages (`/lessons/[slug]`) + 1 dynamic (`/practice/session/[slug]`). Zero TS errors, zero lint errors. **Live at https://gmat-platform-61zf.vercel.app/** — Vercel project `gmat-platform-lcwy` (Hobby, `adamik771's projects`). Verified end-to-end: `/`, `/dashboard`, `/practice`, `/practice/session/algebra`, `/practice/session/reading-comprehension`, `/lessons`, `/lessons/01-mindset-reset`, `/lessons/03-quant-mastery`, `/pricing`. GitHub integration means every push to `main` auto-redeploys.
+Last `npx next build` compiled clean. Routes: 18 static + 8 SSG lesson pages (`/lessons/[slug]`) + 1 dynamic (`/practice/session/[slug]`). Zero TS errors, zero lint errors. **Live at https://gmat-platform-61zf.vercel.app/** — served by the `gmat-platform-61zf` Vercel project (Hobby, `adamik771's projects`). Supabase Auth live; all env vars on the correct project. Verified end-to-end: route protection, signup + login, practice session persistence (writes to `practice_sessions` + `practice_attempts` Supabase tables), dashboard displays real aggregated stats from user sessions. GitHub integration means every push to `main` auto-redeploys to `gmat-platform-61zf`.
+
+### Massive content expansion (late session — content-focused sprints)
+Final commit series (`2787908` → `c693ad2`, 12 commits) tripled the content footprint:
+- **Questions: 154 → 443** (+289 questions across 3 sections, all original). 16 practice sets on `/practice`.
+- **Lessons: 11,400 → 35,404 words** (+24k words). All 8 modules are substantive; M03/M04/M05 flagship topic lessons at ~5k words each with worked examples and tactical recipes.
+- **Guides: 10,100 → 18,279 words** (+8k words). Topic guides (Quant Formulas, Verbal Strategy, DI Strategy) at ~4k each; tactical guides (Pacing, Test Day, Error Log) at ~2k each.
+- New Quant topic files added: `geometry.md`, `rates-work.md`, `ratios-percents.md`, `exponents-roots.md`.
+- All content parses cleanly through the loader. Build stays clean. Everything pushed to `main` and live (or will be live on next Vercel pickup from `gmat-platform-61zf`).
 
 ## What's next
 
@@ -134,9 +148,15 @@ With the original A/C/B/D directive fully executed, here are the natural next mo
 - ~~**Auth**~~ ✅ Done. Supabase Auth + `src/proxy.ts` protects all `(app)` routes.
 - **Stripe checkout** — `src/lib/stripe.ts` has `getStripe()` + `STRIPE_PRICES` ready, and the pricing page already lists the tiers. Needs a `/api/checkout` route handler + a webhook listener for `checkout.session.completed`. Real price IDs need to replace the `price_self_study`-style placeholders in env.
 - **Individual lesson completion tracking** — the `LessonsClient.tsx` currently synthesizes status ("first 2 done, 3rd current, rest locked"). Once progress is persisted, this should come from the DB and the locked gating should be real (vs currently cosmetic).
-- ~~**Practice session player v2** — markdown tables still render as monospace `<pre>` in `PromptBlock`. Swapping that for `react-markdown` + `remark-gfm` (already in deps) would make Table Analysis and MSR tables render as real HTML tables.~~ ✅ Done in commit `590be0c`. See "Practice session player" done-section above.
-- **Two-Part Analysis custom UI** — currently falls back to "not supported in practice session yet" screen. Needs a 2-column answer grid (the question format has two independent answer columns, not A-E choices).
-- **Deployment hardening** — Vercel is on the default `-lcwy` subdomain. Wiring a custom domain (e.g. `zakarian-gmat.com`) goes through Vercel → Project → Settings → Domains → Add, then DNS.
+- ~~**Practice session player v2** — markdown tables still render as monospace `<pre>` in `PromptBlock`. Swapping that for `react-markdown` + `remark-gfm` (already in deps) would make Table Analysis and MSR tables render as real HTML tables.~~ ✅ Done in commit `590be0c`.
+- ~~**Two-Part Analysis custom UI**~~ ✅ Done in commit `89d4b61`. `TwoPartGrid` component in `SessionClient.tsx` renders a 2-column selectable grid; parser detects the pipe table and extracts `twoPartColumns` + `twoPartCorrectAnswers`.
+- ~~**Massive content expansion**~~ ✅ Done in commits `2787908` through `c693ad2`. Questions 154→443, lessons 11k→35k words, guides 10k→18k words.
+- **Custom domain** — Vercel is on `gmat-platform-61zf.vercel.app` (default). Wiring a real domain (e.g. `zakarian-gmat.com`) goes through Vercel → `gmat-platform-61zf` project → Settings → Domains → Add, then DNS (A record or CNAME).
+- **Stripe checkout** — `src/lib/stripe.ts` has `getStripe()` + `STRIPE_PRICES` ready, and the pricing page already lists the tiers. Needs a `/api/checkout` route handler + a webhook listener for `checkout.session.completed`. Real price IDs need to replace the `price_self_study`-style placeholders in env.
+- **Individual lesson completion tracking** — `LessonsClient.tsx` currently synthesizes status ("first 2 done, 3rd current, rest locked"). Since auth + DB are now live, this should come from a `lesson_completions` table keyed on (user_id, lesson_slug) and the locked gating should become real.
+- **Error log UI** — the Error Log guide explains the concept. The `/error-log` route exists but is empty. Once incorrect answers are logged (simple extension of the `/api/practice-sessions` handler that already writes to `practice_attempts`), the `/error-log` page can query wrong answers per user and render them with re-review dates.
+- **Dashboard polish** — the score chart + section progress still use placeholder thresholds. Once there's enough session data, the "estimated GMAT score" can be derived from accuracy patterns, and section progress can show real percentile relative to mock-level performance.
+- **Delete duplicate Vercel projects** — Adam still has `gmat-platform`, `gmat-platform-gz1e`, `gmat-platform-lcwy` alongside the live `gmat-platform-61zf`. Dashboard → Settings → Advanced → Delete Project on the three unused ones. Low priority, pure hygiene.
 
 ## Context links
 
