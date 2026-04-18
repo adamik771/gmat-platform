@@ -1002,3 +1002,504 @@ Which of the following, if true, most seriously weakens the CEO's argument?
 **explanation:** The CEO blames remote work for the 40% drop in patents, but Answer C exposes a devastating confounder: the company lost half its R&D workforce. Of course patent output fell — there are half as many inventors. That has nothing to do with where people sit. This is the classic "alternative cause" weakener, hitting exactly where the argument is thinnest. Answer A is tempting — industry-wide decline suggests macro factors — but it's weaker because competitor trends don't explain the company's own staffing change. Answer D gives counterexamples but doesn't undermine the aggregate trend. Answer E questions the metric philosophically but doesn't challenge the causal inference. Answer B is about preference, not innovation.
 
 ---
+
+## Q51
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Strengthen
+
+A regional grocery chain recently introduced a loyalty app that offers personalized discounts to customers who scan the app at checkout. In the six months since launch, customers who use the app have spent on average 22% more per visit than non-app customers. The chain's marketing director concludes that the app itself is causing customers to spend more and plans to expand the program nationally.
+
+Which of the following, if true, most strengthens the marketing director's argument?
+
+- A) The app was promoted heavily on social media during its first month.
+- B) App users' spending per visit rose by 15% after they began using the app, compared with their own spending in the six months before they signed up.
+- C) Most app users are between the ages of 25 and 44.
+- D) The chain's competitors have not yet launched similar loyalty apps.
+- E) Customers who shop more frequently tend to try new features earlier.
+
+**answer:** B
+**explanation:** The director's argument suffers from a classic selection problem — maybe heavy spenders simply self-select into the app. Answer B neutralizes that by comparing app users to THEMSELVES before and after, and still finds a 15% lift. That is a within-person design, which rules out the "high spenders were already high spenders" objection. Answer E is the opposite — it reinforces the selection concern. Answer A gives a promotional detail but not a causal link. Answer C is demographic trivia. Answer D is about competitive context, not about whether the app caused the lift.
+
+---
+
+## Q52
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Weaken
+
+The city council of Brenton has proposed installing speed cameras on Maple Avenue, a busy commuter road, arguing that doing so will reduce traffic accidents. As support, the council cites data from neighboring Oakdale, which installed speed cameras on a similar road last year and saw a 30% drop in reported accidents over the following twelve months.
+
+Which of the following, if true, most seriously weakens the council's argument?
+
+- A) Oakdale's police chief publicly endorsed the camera program before the installation.
+- B) The cost of installing speed cameras on Maple Avenue would exceed the council's annual traffic safety budget.
+- C) In the same twelve-month period, Oakdale also reduced the speed limit on the road in question by 10 miles per hour and added new crosswalks.
+- D) Some Oakdale drivers have complained that the cameras are unfair.
+- E) Speed cameras in other cities have sometimes been vandalized.
+
+**answer:** C
+**explanation:** This is an alternative-cause weakener. The council attributes Oakdale's 30% drop to cameras, but Answer C reveals that two OTHER safety changes happened at the same time. Any of those — or all three together — could have caused the drop. That wrecks the inference that cameras alone will help Maple Avenue. Answer B is a budget issue, not an efficacy issue. Answer D is about driver attitudes, not accidents. Answer E is about property damage, not the causal claim. Answer A is irrelevant endorsement.
+
+---
+
+## Q53
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Assumption
+
+A pharmaceutical company claims that its new once-daily pill for hypertension is superior to the standard twice-daily pill because, in a 12-week trial, patients taking the new pill achieved target blood pressure at a 68% rate compared with 52% for the standard pill. The company concludes that doctors should prescribe the new pill as the first-line treatment.
+
+The conclusion above depends on which of the following assumptions?
+
+- A) The new pill is cheaper to manufacture than the standard pill.
+- B) Patients in the trial who took the new pill did not differ from patients taking the standard pill in ways that independently affect blood pressure control.
+- C) No patient in the trial experienced any side effects from either medication.
+- D) Most patients prefer once-daily dosing to twice-daily dosing.
+- E) The company has conducted multiple prior trials of other hypertension medications.
+
+**answer:** B
+**explanation:** For the 68% vs 52% comparison to support a causal superiority claim, the two groups must be comparable — otherwise the difference could be driven by some confounding factor (age, baseline BP, comorbidities). That is the bedrock assumption of any treatment comparison. Answer A is about economics. Answer C is too strong; "no side effects whatsoever" is not required for the efficacy claim. Answer D is about preference, not efficacy. Answer E is a red herring about company history.
+
+---
+
+## Q54
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Inference
+
+Between 2015 and 2023, the percentage of households in the country of Verida that owned at least one electric vehicle rose from 2% to 18%. Over the same period, the total electricity consumed by Verida's residential sector rose by only 4%. During this time, no major changes occurred in household size, weather patterns, or electricity pricing.
+
+Which of the following can be most reliably concluded from the information above?
+
+- A) Households that own electric vehicles consume less electricity overall than households that do not.
+- B) Households in Verida have on average become more efficient in their non-vehicle electricity use.
+- C) Electric vehicles in Verida consume less electricity per mile than electric vehicles in other countries.
+- D) Most Verida households are planning to purchase an electric vehicle in the next five years.
+- E) The price of gasoline in Verida fell between 2015 and 2023.
+
+**answer:** B
+**explanation:** EV adoption jumped from 2% to 18%, which necessarily added meaningful residential electricity demand. Yet total residential electricity only rose 4%, with no offsetting change in weather, pricing, or household size. The only way that math reconciles is if non-vehicle electricity use per household declined — i.e., efficiency improved. Answer A is too strong (it implies EV owners consume less in total, which isn't established). Answer C compares Verida to other countries — no data given. Answer D is a prediction the passage doesn't support. Answer E is outside the electricity scope entirely.
+
+---
+
+## Q55
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Paradox
+
+A public health agency reports that the national rate of hospitalizations for seasonal flu has declined by 25% over the past decade. During that same decade, however, the total annual number of flu-related hospitalizations has increased by nearly 15%.
+
+Which of the following, if true, best resolves the apparent paradox?
+
+- A) Flu vaccines have become more widely available and more effective over the past decade.
+- B) The national population has grown substantially over the decade, and the share of elderly residents — who are hospitalized for flu at much higher rates — has grown faster than the population as a whole.
+- C) Hospitals have become more cautious about admitting patients with mild flu symptoms.
+- D) Public awareness of flu prevention has increased significantly.
+- E) Some patients who were previously hospitalized for flu are now treated at home.
+
+**answer:** B
+**explanation:** This is a classic rate-vs-count paradox. The RATE (per-person) fell 25%, but the COUNT rose 15%. That is entirely possible if the underlying population grew AND its composition shifted toward higher-risk groups. Answer B names both mechanisms. Answer A would push both numbers DOWN, not explain an increase in the count. Answer C and E would also reduce the count. Answer D is vague and would likely reduce both metrics.
+
+---
+
+## Q56
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Complete the Argument
+
+A recent analysis of consumer behavior found that shoppers exposed to in-store product samples spent 18% more per visit than shoppers who were not. A retail consultant therefore argued that stores should offer more samples in order to boost revenue. However, this recommendation overlooks an important consideration: _______
+
+Which of the following most logically completes the argument?
+
+- A) stores that offer samples often hire additional staff to distribute them.
+- B) in-store samples are more common in grocery stores than in clothing stores.
+- C) shoppers who seek out samples may already be shoppers inclined to spend more, meaning samples may not be what causes the higher spending.
+- D) some customers dislike being approached by sample distributors.
+- E) sample distribution requires coordination with product suppliers.
+
+**answer:** C
+**explanation:** The missing consideration has to undermine the causal inference from correlation (samples ↔ higher spending) to intervention (add samples → increase spending). Answer C states the classic reverse-causation / selection-bias concern: big spenders may gravitate to samples, rather than samples turning people into big spenders. Answer A is a cost concern, not a causal one. Answer B is a segment distribution fact. Answer D is a minor preference issue. Answer E is logistical.
+
+---
+
+## Q57
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Strengthen
+
+A venture capital firm noticed that, of the 60 startups in its portfolio, the 20 startups whose CEOs had prior founding experience reached profitability at a rate of 55%, while the 40 first-time-CEO startups reached profitability at a rate of only 25%. The firm's partners concluded that founding experience causes higher success rates and decided to allocate 70% of future investment to repeat founders.
+
+Which of the following, if true, most strengthens the partners' conclusion?
+
+- A) The firm's first-time-CEO startups received, on average, larger funding rounds than the repeat-founder startups.
+- B) Repeat and first-time founders in the portfolio operated in similar industries, raised comparable amounts, and faced similar market conditions.
+- C) Repeat founders tend to have stronger personal networks in the venture capital community.
+- D) Some of the most celebrated tech companies were founded by first-time CEOs.
+- E) The firm's portfolio includes companies at various stages of maturity.
+
+**answer:** B
+**explanation:** To credit founding experience itself, you must rule out confounders — funding size, sector, timing. Answer B does exactly that by showing the two groups were matched on the obvious alternative explanations, leaving experience as the plausible driver. Answer A actually weakens the argument (first-timers had MORE money and still did worse? maybe, but it introduces a confound the other way that needs explaining). Answer C offers an alternative cause (networks), which weakens. Answer D is anecdotal counterevidence. Answer E is neutral.
+
+---
+
+## Q58
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Weaken
+
+A consumer technology columnist argues that standalone digital cameras will soon disappear from the market entirely. As evidence, she points out that global unit sales of standalone digital cameras have declined every year for the past decade, falling from 120 million units in 2014 to just 8 million in 2024, while smartphone cameras have improved dramatically over the same period.
+
+Which of the following, if true, most seriously weakens the columnist's argument?
+
+- A) Smartphone cameras still cannot match the image quality of high-end standalone cameras in low-light conditions.
+- B) Revenue from standalone cameras has actually grown over the past three years, driven by a shift toward premium models purchased by professionals and serious enthusiasts — a segment that smartphones do not serve.
+- C) Some consumers use both a smartphone and a standalone camera depending on the occasion.
+- D) Digital camera manufacturers have reduced their marketing budgets significantly.
+- E) New smartphone models are released every year with improved camera features.
+
+**answer:** B
+**explanation:** The argument predicts disappearance based on unit decline. Answer B shows the market is not dying — it's restructuring around a premium professional segment that smartphones cannot serve, and revenue (the more relevant commercial metric) is actually growing. A durable premium niche means "disappear entirely" is wrong. Answer A is tempting but only establishes a technical gap; it doesn't show the category is commercially viable. Answer C is mild and doesn't address the long-term trajectory. Answers D and E actually support the columnist.
+
+---
+
+## Q59
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Assumption
+
+The planning committee of Lakeview College is considering requiring all incoming freshmen to take a one-credit "study skills" seminar. Committee members argue that the seminar will improve freshman retention, pointing to a pilot program last year in which 92% of students who voluntarily enrolled in the seminar returned for their sophomore year, compared with just 78% of students who did not enroll.
+
+The committee's argument depends on which of the following assumptions?
+
+- A) The seminar is inexpensive to offer.
+- B) Students who voluntarily enrolled in the seminar did not differ from non-enrollees in levels of motivation or academic preparation in ways that would independently affect retention.
+- C) All freshmen who enroll in the seminar will complete it successfully.
+- D) Sophomore retention is the most important measure of freshman success.
+- E) The seminar is taught by faculty members rather than graduate students.
+
+**answer:** B
+**explanation:** The pilot was voluntary, so the 92% vs 78% comparison is fatally vulnerable to self-selection: motivated, well-prepared students may have signed up AND been more likely to persist anyway. For the committee to generalize from volunteers to a mandatory program, it must assume those confounders didn't drive the gap. Answer A is cost-related. Answer C is too strong (the argument needs an effect on average, not universal completion). Answer D is a values judgment. Answer E is about delivery, not causation.
+
+---
+
+## Q60
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Inference
+
+A survey of 2,000 remote workers at mid-size firms found that 64% reported higher productivity working from home than in the office, while only 11% reported lower productivity; the remaining 25% reported no change. However, at the same firms, managers reported that team-level output had not increased overall since the shift to remote work, and in some teams had slightly declined.
+
+Which of the following can be most reliably concluded from the information above?
+
+- A) Remote workers are less honest about their productivity than office workers.
+- B) Self-reported individual productivity gains at these firms have not translated into measurable team-level output gains.
+- C) Managers at mid-size firms oppose remote work.
+- D) Team-level output would have declined more without remote work.
+- E) Most workers exaggerate their own productivity when surveyed.
+
+**answer:** B
+**explanation:** The passage pairs two facts: workers SAY they are more productive; managers measure that team output has NOT gone up. The valid inference is exactly that disconnect — no translation from self-reported individual gains to measured team gains. Answer A makes a character judgment not supported. Answer C imputes attitudes. Answer D is a counterfactual the data don't reach. Answer E is too strong — the passage tells us what workers reported, not that they exaggerate. The "must-be-true" answer sticks tightly to the data.
+
+---
+
+## Q61
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Flaw
+
+Editorial: Our state's universities have seen a 30% increase in the number of students majoring in computer science over the past five years. Meanwhile, over the same period, the number of unfilled software engineering positions at state employers has risen by 40%. Clearly, the universities are failing to prepare students adequately for the software engineering jobs available in our state.
+
+The editorial's reasoning is most vulnerable to which of the following criticisms?
+
+- A) It fails to consider that computer science majors may accept jobs outside the state or outside software engineering.
+- B) It assumes that all unfilled software engineering positions could be filled by recent graduates.
+- C) It ignores the possibility that universities in other states are producing fewer graduates.
+- D) It treats the growth in unfilled positions as more important than the growth in majors.
+- E) It does not specify which universities are responsible for the shortfall.
+
+**answer:** A
+**explanation:** The editorial jumps from "more CS majors AND more unfilled jobs" to "universities are failing to PREPARE students." That assumes graduates are actually staying in-state and actually going into software engineering. If a large share leave the state or go into data science, quant finance, or product management, then the gap doesn't prove poor preparation at all. Answer A names that leakage problem directly. Answer B is a secondary assumption about experience level. Answer C is about other states' supply. Answer D is about emphasis, not logic. Answer E demands specificity but doesn't hit the causal flaw.
+
+---
+
+## Q62
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Evaluate
+
+A mid-size accounting firm is considering replacing its annual performance review process with a quarterly feedback system. The HR director supports the change, citing a 2023 study in which firms that used quarterly feedback had 18% lower voluntary turnover than firms using annual reviews. The HR director concludes that adopting quarterly feedback will reduce the firm's turnover.
+
+The answer to which of the following questions would be most useful in evaluating the HR director's conclusion?
+
+- A) What is the average cost of running a quarterly feedback system?
+- B) Did the study control for firm size, industry, and compensation levels, which independently affect turnover?
+- C) Do employees prefer receiving more frequent feedback?
+- D) How long has the accounting firm been using annual reviews?
+- E) Have any other accounting firms adopted quarterly feedback recently?
+
+**answer:** B
+**explanation:** The 18% turnover gap in the study only supports a causal recommendation if the quarterly-feedback firms didn't differ from the annual-review firms on the major drivers of turnover. If the study compared, say, small well-paid tech firms to large low-paying retailers, the gap has nothing to do with feedback cadence. Answer B tests exactly that. Answer A is cost. Answer C is employee attitudes. Answer D is historical context. Answer E is what peers are doing — social proof, not evidence.
+
+---
+
+## Q63
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Paradox
+
+A transportation analyst notes that over the past five years, the average commute time in the city of Harpen has INCREASED by seven minutes, even though the total number of cars registered in Harpen has DECREASED by 12% and the city has added two new subway lines.
+
+Which of the following, if true, most helps to resolve the paradox?
+
+- A) Gasoline prices in Harpen have fluctuated significantly over the past five years.
+- B) Over the past five years, Harpen's employment has grown 20%, and many new jobs are concentrated in a downtown core whose road and rail capacity was already near its limit.
+- C) The two new subway lines opened only in the past year.
+- D) Some former Harpen drivers have switched to biking.
+- E) Harpen's city government has increased spending on road maintenance.
+
+**answer:** B
+**explanation:** The puzzle: fewer cars and more rail, yet longer commutes. Answer B resolves it cleanly — if employment grew 20% and jobs concentrated downtown, total commuters surged and funneled into an infrastructure bottleneck. Rail helps, but capacity can still max out, and fewer cars per capita can coexist with more crowded commutes overall. Answer A is too vague. Answer C is partial (only explains lack of full benefit, not the increase). Answer D would REDUCE commute times. Answer E would too.
+
+---
+
+## Q64
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Boldface
+
+**A growing number of municipal leaders claim that offering tax incentives to tech companies is the most effective way for mid-size cities to grow local employment.** The city of Ridgemont offers a counterexample. Over the past decade, Ridgemont has granted more than $200 million in tax breaks to relocate three major tech firms, yet local employment has grown no faster than the regional average. **The tax breaks primarily subsidized jobs that the firms would have created in the region regardless of which specific city they chose.**
+
+In the argument above, the two portions in boldface play which of the following roles?
+
+- A) The first is a hypothesis that the author endorses; the second is evidence in its favor.
+- B) The first is a popular position that the argument seeks to rebut; the second identifies the mechanism by which that position fails in the case described.
+- C) The first is evidence for the main conclusion; the second is the main conclusion.
+- D) The first is a policy proposal; the second is the author's preferred alternative.
+- E) The first and second both support the same general principle.
+
+**answer:** B
+**explanation:** The argument pushes back on a popular policy claim using Ridgemont as a case study. Bold 1 states the common municipal-leader view. Bold 2 explains WHY it failed here: the jobs were coming to the region anyway, so incentives shifted location without creating net jobs. This is "opposed view + diagnostic mechanism." Answer A is backwards — the author rejects the first bold. Answer C mislabels structure; Bold 2 explains but isn't the sole main conclusion. Answer D invents a second proposal. Answer E ignores the opposition between the two bolds.
+
+---
+
+## Q65
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Complete the Argument
+
+A consumer advocacy group recently tested 12 brands of bottled "spring water" and found that 9 of them contained trace microplastics at levels comparable to ordinary tap water. The group concluded that consumers who buy bottled water for its purported purity are wasting money. This conclusion, however, goes beyond what the evidence supports, because _______
+
+Which of the following most logically completes the argument?
+
+- A) the group tested only 12 of the dozens of bottled water brands on the market.
+- B) consumers may buy bottled water for reasons other than purity, such as convenience or taste, which the microplastic data does not address.
+- C) the group's testing methods were not described in detail.
+- D) microplastics are present in many foods besides water.
+- E) some consumers drink bottled water only occasionally.
+
+**answer:** B
+**explanation:** The conclusion says consumers are "wasting money" — a value judgment about purchase rationality. That claim is only valid if PURITY is the only reason people buy bottled water. Answer B targets exactly that overreach: if people are buying for convenience or taste, the purity-microplastic finding doesn't prove they're wasting money. Answer A is a sample-size complaint but the result held for 9 of 12. Answer C is methodological but vague. Answer D widens the scope without helping. Answer E is about frequency, not rationale.
+
+---
+
+## Q66
+<!-- question with quantitative / survey context -->
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Strengthen
+
+A nonprofit that runs a summer coding bootcamp reports that its 2024 cohort achieved an 81% job placement rate within six months of graduation, compared with a 58% placement rate for graduates of traditional two-year computing programs in the same region. The nonprofit's director concludes that the bootcamp's accelerated, project-based curriculum is more effective than traditional instruction in preparing students for entry-level tech jobs.
+
+Which of the following, if true, most strengthens the director's conclusion?
+
+- A) The bootcamp charges students significantly less than a two-year program does.
+- B) Bootcamp and two-year-program students in the region did not differ in prior programming experience, educational background, or employer-screening criteria.
+- C) The bootcamp's graduates are generally older than two-year-program graduates.
+- D) Several graduates of the bootcamp have been featured in local news stories.
+- E) Employers in the region have increased their overall hiring of entry-level tech workers.
+
+**answer:** B
+**explanation:** The 81% vs 58% gap is only attributable to the curriculum if the two student groups are otherwise comparable. Answer B explicitly rules out the obvious confounders — prior experience, background, who employers will even consider. Without that matching, the gap could simply reflect student selection. Answer A is about cost. Answer C introduces a potential alternative explanation (age/maturity) — it weakens, if anything. Answer D is anecdotal. Answer E affects both groups equally and doesn't isolate curriculum.
+
+---
+
+## Q67
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Flaw
+
+A wellness columnist writes: People who drink two or more cups of green tea per day have been shown in multiple studies to have a 20% lower risk of cardiovascular disease than people who drink less. Therefore, anyone who wants to reduce their cardiovascular risk should start drinking at least two cups of green tea per day.
+
+The columnist's reasoning is most vulnerable to which of the following criticisms?
+
+- A) It fails to consider that green tea may taste unpleasant to some people.
+- B) It treats a correlation observed in observational studies as if it established that green tea itself causes the lower risk.
+- C) It assumes that cardiovascular disease is the most important health risk to reduce.
+- D) It does not consider whether drinking more than two cups per day provides additional benefit.
+- E) It overlooks that green tea contains caffeine.
+
+**answer:** B
+**explanation:** This is the textbook correlation-to-causation leap. Observational studies show green tea drinkers ARE healthier, but those people also tend to exercise more, smoke less, and have higher incomes. Jumping from that correlation to "drinking tea will reduce YOUR risk" ignores the confounders. Answer B names the flaw precisely. Answer A is a taste preference. Answer C is values. Answer D is a dose-response question, not a flaw in the core inference. Answer E is irrelevant without more.
+
+---
+
+## Q68
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Evaluate
+
+A regional airline is deciding whether to invest in lighter composite seats that would reduce the weight of each aircraft and, according to the seat manufacturer, cut fuel costs by roughly 2% per flight. The airline's CFO supports the switch, citing the manufacturer's figures as grounds for projected multi-million-dollar annual savings.
+
+The answer to which of the following questions would be most useful in evaluating the CFO's plan?
+
+- A) How many airlines have already purchased the composite seats?
+- B) Were the manufacturer's 2% fuel-savings figures derived from real-world operation by airlines with flight profiles similar to the regional airline's?
+- C) What color are the new seats?
+- D) Do passengers find the new seats more comfortable?
+- E) How long has the seat manufacturer been in business?
+
+**answer:** B
+**explanation:** Fuel savings are extremely sensitive to flight profile — short-haul regional operations burn fuel very differently than long-haul. If the 2% figure came from long-haul tests, it won't translate. Answer B asks precisely whether the benchmark conditions resemble the airline's own operations, which is the decisive evaluation question. Answer A is social proof. Answer C is trivial. Answer D is passenger experience. Answer E is vendor credibility but doesn't test the figure itself.
+
+---
+
+## Q69
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Weaken
+
+An agricultural economist argues that government subsidies for small family farms should be eliminated. He observes that over the past 20 years, despite subsidies totaling more than $50 billion, the number of small family farms has declined by more than 40%, while the average size of remaining farms has risen. He concludes that the subsidies have failed at their stated purpose of preserving the small farm sector.
+
+Which of the following, if true, most seriously weakens the economist's argument?
+
+- A) Large farms receive some subsidies as well.
+- B) Without the subsidies, projections indicate that the decline in small family farms would have been approximately 70% rather than 40%.
+- C) Some small family farms are located in regions where land is expensive.
+- D) The government has also provided grants for organic farming.
+- E) Consumer demand for locally grown food has increased.
+
+**answer:** B
+**explanation:** The economist measures policy success against "farms declined anyway." Answer B reframes using the correct counterfactual — without subsidies, the decline would have been much steeper (70% vs 40%). That means subsidies DID preserve farms relative to the no-subsidy world. That directly undercuts the "failed" conclusion. Answer A is a scope concern. Answer C is a background fact. Answers D and E are tangential programs / market forces.
+
+---
+
+## Q70
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Assumption
+
+A clean-energy startup claims its new solar panel design will be commercially viable within three years because laboratory prototypes have achieved an energy conversion efficiency of 34%, well above the 22% of the best commercial panels currently on the market. The startup has raised $80 million in venture capital on the strength of this claim.
+
+The startup's claim depends on which of the following assumptions?
+
+- A) No commercial solar panel has ever achieved an efficiency above 30%.
+- B) The higher efficiency observed in the laboratory prototypes can be preserved, or substantially preserved, in large-scale manufacturing at a cost structure that allows the panels to be sold competitively.
+- C) Venture capital investment guarantees commercial success.
+- D) The panels will be purchased primarily by residential rather than commercial customers.
+- E) Government subsidies for solar panels will continue at their current level.
+
+**answer:** B
+**explanation:** Laboratory efficiency is famously a poor predictor of market viability: yields drop at scale, defects increase, and manufacturing cost can explode. For the startup's "commercially viable in three years" claim, the lab-to-factory transition has to preserve enough of the efficiency advantage AND do so at a sellable cost. Answer B packages both requirements. Answer A is a distracting historical absolute. Answer C is a non sequitur. Answer D narrows the market for no reason. Answer E adds a policy dependency not stated in the argument.
+
+---
+
+## Q71
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Inference
+
+A survey of 5,000 full-time knowledge workers found the following: 72% reported that they use generative AI tools at work at least weekly; of those, 61% said the tools had made their work more efficient, while 14% said the tools had made their work less efficient, and 25% said there was no change. Separately, managers at the surveyed firms reported that team-level output per worker had not measurably increased since generative AI adoption began.
+
+Which of the following can be most reliably concluded from the information above?
+
+- A) Generative AI tools do not produce any real productivity benefit for any individual worker.
+- B) Reported individual efficiency gains from generative AI at these firms have not translated into measured team-level output-per-worker gains.
+- C) Managers at the surveyed firms are biased against generative AI.
+- D) Knowledge workers systematically overstate the benefits of new technology.
+- E) Most workers use generative AI tools daily.
+
+**answer:** B
+**explanation:** Two facts are given: a majority of AI users report personal efficiency gains, and managers measured no team-level output-per-worker increase. The valid conclusion tracks that gap exactly. Answer B does. Answer A is far too strong (reported gains can be real for some individuals even if team metrics are flat — think reallocation to lower-value work). Answer C attributes motive. Answer D makes a character claim. Answer E confuses "weekly" with "daily" and misreads the 72% figure.
+
+---
+
+## Q72
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Paradox
+
+A state's department of motor vehicles reports that over the past decade the number of licensed teenage drivers in the state has fallen by 35%. Yet over the same period, the annual number of accidents involving teenage drivers in the state has INCREASED by 12%.
+
+Which of the following, if true, best resolves the apparent discrepancy?
+
+- A) The state has raised the minimum age for unrestricted driving licenses.
+- B) The number of miles driven per licensed teenage driver has more than doubled, as the smaller population of teen drivers skews toward those who live in rural areas with long commutes and fewer public transportation options.
+- C) Teenagers today are less likely to own a car than teenagers a decade ago.
+- D) The state has added new road safety campaigns targeted at teenagers.
+- E) Some teenage drivers are involved in more than one accident per year.
+
+**answer:** B
+**explanation:** Accident counts scale with exposure (miles driven), not headcount. Answer B explains the paradox: the remaining teen-driver population skews rural and drives far more per person. Fewer drivers but way more miles each easily pushes total accidents up. That's a composition-shift + exposure explanation. Answer A would cut both the count and the headcount. Answer C is directionally aligned with the count going down, not up. Answer D would reduce accidents. Answer E adds a small amplifier but doesn't explain the direction.
+
+---
+
+## Q73
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Boldface
+
+**Many executives at large retailers have argued that raising cashier wages will inevitably cause prices to rise, because labor costs will be passed on to consumers.** The experience of the retail chain Brantco, however, complicates this claim. When Brantco raised its starting cashier wage by 18% in 2023, its prices did not increase; instead, operating margins held steady. **Brantco achieved this by reducing turnover-related training costs and by redirecting savings from lower theft and error rates — both known consequences of a more stable and engaged workforce — to offset the wage increase.**
+
+In the argument above, the two statements in boldface play which of the following roles?
+
+- A) The first is a prediction that the argument endorses; the second is a counterexample to that prediction.
+- B) The first is a common view that the argument calls into question; the second explains the mechanism by which, in the cited case, the prediction of the first did not hold.
+- C) The first is the argument's main conclusion; the second is evidence for the main conclusion.
+- D) The first is a conditional claim; the second is a restatement of the first.
+- E) The first and second describe the same phenomenon from different perspectives.
+
+**answer:** B
+**explanation:** Bold 1 is the standard retail-exec view. The argument then uses Brantco as a complicating case. Bold 2 doesn't merely say "Brantco is different" — it identifies the MECHANISM (turnover/training savings + theft/error reductions) that let wages rise without price hikes. That is "common view challenged + mechanism of failure." Answer A misreads — the argument doesn't endorse the first. Answer C reverses roles. Answer D invents a conditional. Answer E flattens the opposition between the two bolded statements.
+
+---
+
+## Q74
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Flaw
+
+A technology analyst writes: Over the past three years, the share price of companies that have publicly announced adoption of artificial intelligence initiatives has risen, on average, 22% more than the share price of companies in the same industries that have not made such announcements. It is therefore clear that adopting AI creates substantial shareholder value, and CEOs who wish to serve their shareholders should prioritize AI initiatives.
+
+The analyst's reasoning is most vulnerable to which of the following criticisms?
+
+- A) The reasoning assumes that share-price movement following an announcement reflects lasting economic value rather than short-term investor sentiment about a fashionable trend.
+- B) The reasoning ignores the possibility that CEOs dislike making public announcements.
+- C) The reasoning fails to specify which AI technologies are most effective.
+- D) The reasoning assumes that all companies have equal access to AI technology.
+- E) The reasoning does not consider that some companies operate internationally.
+
+**answer:** A
+**explanation:** This is a hype-vs-value flaw. A 22% announcement-driven share-price premium can reflect investor excitement (a narrative premium) without any underlying operational improvement. Calling that "substantial shareholder value" conflates market reaction with economic fundamentals — the classic "stock price ≠ intrinsic value" problem, especially around buzzwords. Answer A names that precisely. Answer B is a motivational guess. Answer C asks for specificity but doesn't hit the causal flaw. Answer D assumes an egalitarian premise not needed. Answer E is geographic noise.
+
+---
+
+## Q75
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Complete the Argument
+
+A government auditor is reviewing a proposed regulation that would require financial advisers to act as "fiduciaries" — that is, to always act in the client's best interest — when recommending retirement investments. Supporters argue that the rule will reduce the fees retirees pay, citing an estimate that retirees currently lose $17 billion per year to conflicted advice. Critics counter that the rule will backfire, because _______
+
+Which of the following most logically completes the critics' argument?
+
+- A) many financial advisers already consider themselves to act in clients' best interests.
+- B) some retirees prefer to manage their own investments without professional help.
+- C) if the rule's compliance burden is high enough, many advisers will stop serving smaller retirement accounts altogether, leaving those retirees with no advice rather than imperfect advice.
+- D) the $17 billion estimate was produced by an advocacy organization.
+- E) financial markets have generally performed well over the past decade.
+
+**answer:** C
+**explanation:** The critics need to show the rule could make things WORSE — not merely that it's imperfect. Answer C supplies the "backfire" mechanism: high compliance costs push advisers out of the low-balance segment entirely, so the most vulnerable retirees lose access to any advice, not just conflicted advice. That is the counterintuitive result that justifies "backfire." Answer A is mild pushback on necessity. Answer B is about a different subgroup. Answer D attacks the estimate's source, which is "attack the premise," not the logic. Answer E is macroeconomic noise.
+
+---

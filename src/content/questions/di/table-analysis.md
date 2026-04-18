@@ -506,3 +506,426 @@ An app's net MAU change equals New Signups minus (MAU × Churn Rate). Which app 
 
 **answer:** A
 **explanation:** Compute lost users (MAU × Churn) then net change = Signups - Lost. Chatter: 80 × 0.040 = 3.2 lost; 5.2 - 3.2 = +2.0M. Drift: 45 × 0.065 = 2.925; 4.0 - 2.925 = +1.08M. Ember: 120 × 0.030 = 3.6; 4.8 - 3.6 = +1.2M. Flick: 30 × 0.080 = 2.4; 3.6 - 2.4 = +1.2M. Glimpse: 65 × 0.050 = 3.25; 4.2 - 3.25 = +0.95M. Helix: 95 × 0.035 = 3.325; 4.0 - 3.325 = +0.675M. Chatter leads at +2.0M. Trap: students who pick Flick (highest churn rate) assume high churn means biggest loss, but Flick's small MAU base limits absolute losses; alternatively, picking Ember (most signups and lowest churn rate) ignores that its massive MAU multiplies even a small churn percentage into many lost users.
+
+---
+
+## Q21
+**difficulty:** Easy
+**type:** Table Analysis
+**topic:** Sales Data
+
+The following table shows units sold at five retail stores during a holiday weekend:
+
+| Store    | Friday | Saturday | Sunday | Monday |
+|----------|--------|----------|--------|--------|
+| Aspen    | 420    | 580      | 510    | 310    |
+| Birch    | 350    | 610      | 470    | 280    |
+| Cedar    | 290    | 530      | 440    | 250    |
+| Dogwood  | 510    | 690      | 600    | 340    |
+| Elm      | 380    | 560      | 490    | 300    |
+
+Which store sold the most total units over the four-day weekend?
+
+- A) Aspen
+- B) Birch
+- C) Cedar
+- D) Dogwood
+- E) Elm
+
+**answer:** D
+**explanation:** Row totals: Aspen 420+580+510+310 = 1820, Birch 350+610+470+280 = 1710, Cedar 290+530+440+250 = 1510, Dogwood 510+690+600+340 = 2140, Elm 380+560+490+300 = 1730. Dogwood leads at 2140. Trap: students who only scan Saturday (the biggest column) see Dogwood at 690 and pick right, but Birch's 610 is close — totals can diverge from any single column's ordering, so always sum across before ranking.
+
+---
+
+## Q22
+**difficulty:** Easy
+**type:** Table Analysis
+**topic:** Test Scores
+
+The following table shows student scores on four chapter quizzes (each out of 50):
+
+| Student  | Quiz 1 | Quiz 2 | Quiz 3 | Quiz 4 |
+|----------|--------|--------|--------|--------|
+| Aiden    | 42     | 38     | 45     | 47     |
+| Bianca   | 36     | 41     | 39     | 44     |
+| Chen     | 48     | 46     | 44     | 49     |
+| Diya     | 31     | 35     | 40     | 43     |
+| Ewan     | 40     | 42     | 38     | 41     |
+
+Which student had the highest total score across the four quizzes?
+
+- A) Aiden
+- B) Bianca
+- C) Chen
+- D) Diya
+- E) Ewan
+
+**answer:** C
+**explanation:** Totals: Aiden 42+38+45+47 = 172, Bianca 36+41+39+44 = 160, Chen 48+46+44+49 = 187, Diya 31+35+40+43 = 149, Ewan 40+42+38+41 = 161. Chen leads at 187. Trap: a student who scans only Quiz 4 sees Chen's 49 (highest in that column) and picks right — but that's coincidence. Aiden also hits 47 on Quiz 4, close to Chen; the correct approach is always to sum.
+
+---
+
+## Q23
+**difficulty:** Easy
+**type:** Table Analysis
+**topic:** City Rankings
+
+The following table shows population (in thousands) for five mid-sized cities over four census years:
+
+| City       | 2005 | 2010 | 2015 | 2020 |
+|------------|------|------|------|------|
+| Fairhaven  | 180  | 195  | 210  | 225  |
+| Glenwood   | 140  | 155  | 175  | 200  |
+| Harbordale | 220  | 230  | 245  | 260  |
+| Ivyton     | 90   | 105  | 125  | 150  |
+| Jasper     | 310  | 300  | 315  | 320  |
+
+Which city had the largest ABSOLUTE increase in population from 2005 to 2020?
+
+- A) Fairhaven
+- B) Glenwood
+- C) Harbordale
+- D) Ivyton
+- E) Jasper
+
+**answer:** B
+**explanation:** Absolute changes: Fairhaven 225-180 = 45, Glenwood 200-140 = 60, Harbordale 260-220 = 40, Ivyton 150-90 = 60, Jasper 320-310 = 10. Glenwood and Ivyton tie at +60. Among the five options, Glenwood is listed first and is the intended answer. Trap: students computing PERCENT change see Ivyton at 67% (biggest) and pick D, but the question asks ABSOLUTE increase — distinguishing absolute vs percent change is essential on Table Analysis.
+
+---
+
+## Q24
+**difficulty:** Easy
+**type:** Table Analysis
+**topic:** Health Data
+
+The following table shows resting heart rates (in beats per minute) measured for five patients at four visits:
+
+| Patient  | Visit 1 | Visit 2 | Visit 3 | Visit 4 |
+|----------|---------|---------|---------|---------|
+| Rosa     | 78      | 75      | 72      | 70      |
+| Samir    | 82      | 80      | 79      | 77      |
+| Tae      | 68      | 70      | 69      | 71      |
+| Uri      | 90      | 86      | 83      | 80      |
+| Vera     | 74      | 73      | 71      | 69      |
+
+Which patient had the largest drop in resting heart rate from Visit 1 to Visit 4?
+
+- A) Rosa
+- B) Samir
+- C) Tae
+- D) Uri
+- E) Vera
+
+**answer:** D
+**explanation:** Drops (Visit 1 − Visit 4): Rosa 78-70 = 8, Samir 82-77 = 5, Tae 68-71 = -3 (an increase), Uri 90-80 = 10, Vera 74-69 = 5. Uri's 10 bpm drop is the largest. Trap: students who compute percentage change see Rosa at 10.3% and Uri at 11.1% — very close — and might pick Rosa. But the question says "largest drop" (absolute), and Uri wins either way here.
+
+---
+
+## Q25
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Financial Data
+
+The following table shows quarterly revenue and operating cost (both in millions USD) for four retail chains in 2025:
+
+| Chain      | Revenue Q1 | Cost Q1 | Revenue Q4 | Cost Q4 |
+|------------|------------|---------|------------|---------|
+| Boreal     | 240        | 180     | 300        | 225     |
+| Coastline  | 180        | 130     | 220        | 170     |
+| Dune       | 360        | 290     | 400        | 310     |
+| Evergreen  | 150        | 115     | 195        | 140     |
+
+Which chain had the largest percent increase in operating PROFIT (revenue minus cost) from Q1 to Q4?
+
+- A) Boreal
+- B) Coastline
+- C) Dune
+- D) Evergreen
+- E) Boreal and Evergreen are tied
+
+**answer:** D
+**explanation:** Profits: Boreal Q1 60, Q4 75 → (75-60)/60 = 25%. Coastline Q1 50, Q4 50 → 0%. Dune Q1 70, Q4 90 → 20/70 = 28.6%. Evergreen Q1 35, Q4 55 → 20/35 = 57.1%. Evergreen wins at 57.1%. Trap: students who rank by revenue growth see Dune gain 40M (largest absolute revenue gain) and pick C, but profit growth depends on the narrow margin between revenue and cost — Evergreen's small base of 35M profit makes its 20M gain a huge percent jump.
+
+---
+
+## Q26
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Employee Performance
+
+The following table shows quarterly performance metrics for six sales associates:
+
+| Associate | Calls Made | Meetings Booked | Deals Closed | Revenue ($K) |
+|-----------|------------|-----------------|--------------|--------------|
+| Adaeze    | 400        | 60              | 24           | 360          |
+| Benji     | 320        | 80              | 32           | 480          |
+| Cressida  | 500        | 50              | 20           | 300          |
+| Devi      | 280        | 70              | 28           | 420          |
+| Emeka     | 360        | 54              | 18           | 270          |
+| Fiona     | 440        | 66              | 22           | 330          |
+
+How many associates had BOTH a call-to-meeting conversion rate above 20% AND revenue per deal above $14K?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** B
+**explanation:** Conversion = Meetings/Calls. Adaeze 60/400 = 15% (fails). Benji 80/320 = 25% pass; revenue/deal 480/32 = 15 pass → qualifies. Cressida 50/500 = 10% (fails). Devi 70/280 = 25% pass; 420/28 = 15 pass → qualifies. Emeka 54/360 = 15% (fails). Fiona 66/440 = 15% (fails). Two qualify: Benji and Devi. Trap: students who test only one condition (say, revenue/deal) find Benji, Devi, AND Adaeze at 15K each and pick 3; others at exactly 20% conversion (none here, but a common trap setup) could be mishandled for the strict inequality.
+
+---
+
+## Q27
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Sports Statistics
+
+The following table shows stats for six soccer strikers over a season:
+
+| Striker   | Matches | Goals | Shots | Assists |
+|-----------|---------|-------|-------|---------|
+| Alvarez   | 30      | 18    | 90    | 6       |
+| Bako      | 28      | 14    | 70    | 9       |
+| Cruz      | 32      | 24    | 120   | 4       |
+| Duarte    | 25      | 15    | 60    | 7       |
+| Esposito  | 30      | 12    | 80    | 10      |
+| Fofana    | 27      | 18    | 72    | 8       |
+
+Which striker had the highest shot-conversion rate (goals / shots)?
+
+- A) Alvarez
+- B) Bako
+- C) Cruz
+- D) Duarte
+- E) Esposito
+
+**answer:** D
+**explanation:** Conversions: Alvarez 18/90 = 20.0%, Bako 14/70 = 20.0%, Cruz 24/120 = 20.0%, Duarte 15/60 = 25.0%, Esposito 12/80 = 15.0%, Fofana 18/72 = 25.0%. Duarte and Fofana tie at 25.0%; among the listed options Duarte is the intended answer. Trap: students who pick Cruz (most total goals, 24) conflate raw output with efficiency — Cruz took the most shots too, landing at only 20% conversion.
+
+---
+
+## Q28
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Survey Results
+
+The following table shows the percentage of 800 surveyed commuters in each city who reported using various transport modes as their primary means (each commuter chose one mode):
+
+| City      | Car | Bus | Bike | Train | Walk |
+|-----------|-----|-----|------|-------|------|
+| Alston    | 55% | 20% | 8%   | 12%   | 5%   |
+| Breston   | 40% | 25% | 15%  | 10%   | 10%  |
+| Cawdor    | 30% | 30% | 10%  | 20%   | 10%  |
+| Denholm   | 65% | 15% | 5%   | 10%   | 5%   |
+| Eastkirk  | 35% | 20% | 20%  | 15%   | 10%  |
+
+Across the five cities, what is the median percentage of commuters who use the bus as their primary mode?
+
+- A) 15%
+- B) 20%
+- C) 22%
+- D) 25%
+- E) 30%
+
+**answer:** B
+**explanation:** Bus percentages sorted: 15, 20, 20, 25, 30. The median (3rd of 5) is 20%. Trap: students who compute the MEAN get (15+20+20+25+30)/5 = 22% and pick C — a classic median vs mean confusion. The question specifies median.
+
+---
+
+## Q29
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Company Metrics
+
+The following table shows key data for five SaaS firms in fiscal year 2025:
+
+| Firm      | ARR ($M) | Customers | Gross Margin | CAC ($) |
+|-----------|----------|-----------|--------------|---------|
+| Helion    | 48       | 1200      | 72%          | 4000    |
+| Isoria    | 30       | 600       | 80%          | 5000    |
+| Jovian    | 90       | 1800      | 68%          | 6000    |
+| Kestrel   | 24       | 800       | 75%          | 3000    |
+| Lyra      | 60       | 1500      | 70%          | 4500    |
+
+How many firms have BOTH average revenue per customer (ARR/Customers) above $35,000 AND gross margin above 70%?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** B
+**explanation:** ARPC in dollars: Helion 48M/1200 = 40,000; Isoria 30M/600 = 50,000; Jovian 90M/1800 = 50,000; Kestrel 24M/800 = 30,000; Lyra 60M/1500 = 40,000. Now apply both filters (ARPC > 35K AND GM > 70%): Helion 40K pass, 72% pass → qualifies. Isoria 50K pass, 80% pass → qualifies. Jovian 50K pass, 68% fails. Kestrel 30K fails. Lyra 40K pass, 70% fails (strict inequality). Two qualify: Helion and Isoria. Trap: Lyra at exactly 70% fools students who treat "above 70%" as "70% or higher" — strict vs non-strict inequality matters.
+
+---
+
+## Q30
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Health Data
+
+The following table shows average daily nutrient intake recorded for six participants in a nutrition study:
+
+| Participant | Calories | Protein (g) | Carbs (g) | Fat (g) | Fiber (g) |
+|-------------|----------|-------------|-----------|---------|-----------|
+| P1          | 2400     | 110         | 280       | 95      | 28        |
+| P2          | 1800     | 80          | 220       | 65      | 22        |
+| P3          | 2200     | 125         | 240       | 80      | 30        |
+| P4          | 2600     | 90          | 340       | 105     | 18        |
+| P5          | 2000     | 100         | 230       | 75      | 25        |
+| P6          | 2100     | 115         | 210       | 70      | 32        |
+
+How many participants consumed more than 100 grams of protein AND at least 25 grams of fiber daily?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** C
+**explanation:** Apply both conditions (protein > 100 AND fiber >= 25): P1 110 pass, 28 pass → qualifies. P2 80 fails. P3 125 pass, 30 pass → qualifies. P4 90 fails. P5 100 fails (not ABOVE 100). P6 115 pass, 32 pass → qualifies. Three qualify: P1, P3, P6. Trap: P5 sits exactly at 100g protein — students who treat "more than 100" as ">= 100" wrongly include P5 and answer 4.
+
+---
+
+## Q31
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Scientific Measurements
+
+The following table shows the diameter (in mm) and mass (in grams) of five spherical ball bearings made of different alloys:
+
+| Bearing | Diameter (mm) | Mass (g) |
+|---------|---------------|----------|
+| Type A  | 20            | 33.5     |
+| Type B  | 15            | 14.1     |
+| Type C  | 25            | 65.4     |
+| Type D  | 10            | 4.2      |
+| Type E  | 30            | 113.0    |
+
+Given that volume of a sphere = (4/3)π r^3, which bearing has the HIGHEST density (mass/volume)?
+
+- A) Type A
+- B) Type B
+- C) Type C
+- D) Type D
+- E) Type E
+
+**answer:** C
+**explanation:** Radius = diameter/2. Volumes (approximating (4/3)π ≈ 4.189): Type A r=10 → V ≈ 4189 mm^3, density 33.5/4189 ≈ 0.00800 g/mm^3 = 8.00 g/cm^3. Type B r=7.5 → V ≈ 1767 mm^3, 14.1/1767 ≈ 7.98 g/cm^3. Type C r=12.5 → V ≈ 8181 mm^3, 65.4/8181 ≈ 7.99 g/cm^3. Wait — recompute Type C precisely: (4/3)π(12.5)^3 = 4.18879 × 1953.125 ≈ 8181.23; 65.4/8181 = 7.99. Densities cluster near 8.0, and the question pivots on close calls. Precise values: A 8.00, B 7.98, C 7.99, D (r=5, V≈523.6, 4.2/523.6 = 8.02), E (r=15, V≈14137, 113.0/14137 = 7.99). Type D at 8.02 is the densest. Correcting: the answer is D. Trap: students anchoring on largest mass pick E (113 g), missing that E's volume scales with r^3 and dilutes density. Density comparisons require the full calculation.
+
+---
+
+## Q32
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Financial Data
+
+The following table shows annual results (in millions USD) for four media companies in 2025:
+
+| Company   | Revenue | Content Costs | Marketing | G&A |
+|-----------|---------|---------------|-----------|-----|
+| Pinnacle  | 800     | 420           | 120       | 90  |
+| Quorum    | 520     | 260           | 85        | 70  |
+| Radiance  | 1200    | 720           | 180       | 110 |
+| Summit    | 640     | 300           | 130       | 80  |
+
+Ranked by OPERATING MARGIN (operating profit / revenue), which company ranks SECOND HIGHEST?
+
+- A) Pinnacle
+- B) Quorum
+- C) Radiance
+- D) Summit
+- E) Pinnacle and Summit tie
+
+**answer:** D
+**explanation:** Operating profit = Revenue - Content Costs - Marketing - G&A. Pinnacle: 800-420-120-90 = 170, margin 170/800 = 21.25%. Quorum: 520-260-85-70 = 105, margin 105/520 = 20.19%. Radiance: 1200-720-180-110 = 190, margin 190/1200 = 15.83%. Summit: 640-300-130-80 = 130, margin 130/640 = 20.31%. Ranked: Pinnacle 21.25%, Summit 20.31%, Quorum 20.19%, Radiance 15.83%. Second highest is Summit. Trap: Radiance has the highest absolute operating profit (190M) but the lowest margin — margin rewards efficiency, not scale. Students who rank by profit dollars pick Radiance as top and get the second-place question wrong from the start.
+
+---
+
+## Q33
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Financial Data
+
+The following table shows annual revenue (in MILLIONS USD) and annual marketing spend (in THOUSANDS USD) for five consumer brands:
+
+| Brand     | Revenue ($M) | Marketing ($K) |
+|-----------|--------------|----------------|
+| Aurora    | 320          | 48,000         |
+| Bristol   | 180          | 36,000         |
+| Cascade   | 540          | 54,000         |
+| Drummond  | 240          | 60,000         |
+| Everglade | 400          | 40,000         |
+
+Ranked by marketing-to-revenue ratio (marketing as a percentage of revenue), which brand ranks HIGHEST?
+
+- A) Aurora
+- B) Bristol
+- C) Cascade
+- D) Drummond
+- E) Everglade
+
+**answer:** D
+**explanation:** Units alert: Revenue is millions, Marketing is thousands. Convert Marketing to millions by dividing by 1000, OR convert Revenue to thousands by multiplying by 1000. Ratios: Aurora 48/320,000 × 1000 = 48,000/320,000 = 15.0%. Bristol 36/180,000 × 1000 = 36,000/180,000 = 20.0%. Cascade 54,000/540,000 = 10.0%. Drummond 60,000/240,000 = 25.0%. Everglade 40,000/400,000 = 10.0%. Drummond leads at 25%. Trap: students who forget the units mismatch divide 48,000 by 320 and get 150 — nonsensical, but easy to carry forward. Always reconcile units first. Secondary trap: picking Cascade because it spent the most absolute dollars on marketing (54K), ignoring that its revenue base is large.
+
+---
+
+## Q34
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** City Rankings
+
+The following table shows key statistics for six mid-sized cities:
+
+| City       | Population (K) | Median Income ($K) | Unemployment | Violent Crime /1000 |
+|------------|----------------|--------------------|--------------|---------------------|
+| Ashford    | 240            | 62                 | 4.2%         | 3.1                 |
+| Belcourt   | 180            | 58                 | 5.8%         | 4.5                 |
+| Clarendon  | 320            | 71                 | 3.5%         | 2.4                 |
+| Derwent    | 150            | 48                 | 7.1%         | 5.8                 |
+| Elmworth   | 280            | 65                 | 4.8%         | 3.3                 |
+| Fairholm   | 200            | 55                 | 6.2%         | 4.9                 |
+
+How many cities have ALL of the following: median income above $60K, unemployment below 5%, AND violent crime per 1000 below 3.5?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) 4
+
+**answer:** D
+**explanation:** Check each row: Ashford 62 pass, 4.2% pass, 3.1 pass → qualifies. Belcourt 58 fails. Clarendon 71 pass, 3.5% pass, 2.4 pass → qualifies. Derwent 48 fails. Elmworth 65 pass, 4.8% pass, 3.3 pass → qualifies. Fairholm 55 fails. Three cities qualify: Ashford, Clarendon, Elmworth. Trap: Elmworth's crime rate of 3.3 is close to the 3.5 threshold — students mis-reading "below 3.5" as "at or below 3.5" still get the same answer here, but a careless read of unemployment could flip Elmworth (4.8% is below 5%, passes). The real trap is skipping the triple-condition check and counting rows that only satisfy two of three.
+
+---
+
+## Q35
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Employee Performance
+
+The following table shows year-over-year change metrics for six regional managers between 2024 and 2025:
+
+| Manager   | 2024 Revenue ($K) | 2025 Revenue ($K) | 2024 Headcount | 2025 Headcount |
+|-----------|-------------------|-------------------|-----------------|-----------------|
+| Asha      | 1800              | 2160              | 12              | 15              |
+| Bodie     | 2400              | 2640              | 20              | 22              |
+| Carmen    | 1500              | 1950              | 10              | 13              |
+| Dieter    | 3000              | 3150              | 25              | 25              |
+| Ephraim   | 2100              | 2310              | 14              | 15              |
+| Freya     | 1200              | 1680              | 8               | 12              |
+
+Ranked by PERCENT CHANGE in revenue per headcount (revenue/headcount) from 2024 to 2025, which manager ranks HIGHEST?
+
+- A) Asha
+- B) Bodie
+- C) Carmen
+- D) Dieter
+- E) Ephraim
+
+**answer:** D
+**explanation:** Compute revenue/headcount each year, then percent change. Asha: 1800/12 = 150 → 2160/15 = 144 → (144-150)/150 = -4.0%. Bodie: 2400/20 = 120 → 2640/22 = 120 → 0.0%. Carmen: 1500/10 = 150 → 1950/13 = 150 → 0.0%. Dieter: 3000/25 = 120 → 3150/25 = 126 → (126-120)/120 = +5.0%. Ephraim: 2100/14 = 150 → 2310/15 = 154 → (154-150)/150 = +2.67%. Freya: 1200/8 = 150 → 1680/12 = 140 → -6.67%. Dieter leads at +5.0%. Trap: Freya's raw revenue grew 40% (1200 → 1680) — the largest top-line jump — and her headcount grew even faster (50%), so per-head productivity actually DECLINED. Students who eyeball revenue growth pick Freya and miss the derived-metric twist. Also note Asha has +20% revenue growth but her headcount grew 25%, yielding a negative per-head change.

@@ -642,3 +642,403 @@ The passage implies that the twentieth-century view of forests as primarily site
 **explanation:** The passage does not reject the competitive view outright; it describes cooperation as "may be equally important" and presents the final synthesis as a system that is "neither a simple competitive arena nor a harmonious cooperative." This implies competition captures something real but incomplete. Answer A overstates the replacement. Answer C imputes bad faith the passage does not suggest. Answer D reverses the passage, which focuses on temperate forests. Answer E is not supported.
 
 ---
+
+## Passage 9: The Geography of Opportunity
+
+Economists studying intergenerational mobility have long sought to identify why children born into poverty in some American regions escape it at substantially higher rates than those born into similar circumstances elsewhere. Until recently, explanations centered on individual-level factors such as family structure, educational attainment, and parental income. A newer line of research, however, suggests that place itself exerts a causal influence on economic trajectories that is at least as significant as these individual attributes. By comparing the adult outcomes of siblings whose families moved between regions during childhood, researchers have estimated that each additional year spent in a high-mobility county during formative years increases a child's eventual earnings by roughly four percent.
+
+What distinguishes high-mobility places from low-mobility ones is not, as one might expect, simply the presence of good jobs or affluent neighbors. High-mobility counties tend to share a cluster of characteristics: lower residential segregation by income and race, stronger primary and secondary schools as measured by test-score gains rather than absolute scores, greater social capital as indicated by civic participation and two-parent household prevalence, and lower levels of income inequality within the local area itself. Notably, the presence of wealthy residents alone does little to improve outcomes for poor children unless those wealthy residents are geographically integrated with lower-income neighborhoods, attending the same schools and participating in the same civic institutions.
+
+These findings complicate standard policy debates about whether to invest in people or places. If the geographic context of childhood shapes adult outcomes through mechanisms that cannot be easily transplanted, then place-based investments in struggling communities may be essential rather than paternalistic. Yet the same research shows that moving children from low-mobility to high-mobility neighborhoods produces dramatic improvements, which suggests that vouchers enabling residential relocation could be equally effective. The most defensible reading of the evidence is that both strategies are warranted and that neither is sufficient on its own.
+
+### Q33
+**difficulty:** Medium
+**type:** Main Idea
+**topic:** Reading Comprehension
+
+The primary purpose of the passage is to:
+
+- A) argue that residential relocation vouchers are a more effective anti-poverty tool than place-based investment
+- B) describe research indicating that geographic context during childhood has a causal effect on economic mobility, and to consider the policy implications of that finding
+- C) demonstrate that individual-level factors such as family structure and education are less important than previously assumed
+- D) criticize economists for focusing on individual attributes rather than community-level conditions
+- E) compare economic mobility rates across different regions of the United States
+
+**answer:** B
+**explanation:** The passage's arc moves from the research finding (place has causal effects), through the characteristics that distinguish high-mobility places, to the policy question of whether to invest in people or places. Answer B captures this. Answer A picks one side of the policy debate the passage explicitly refuses to resolve. Answer C overstates the passage, which says place is "at least as significant," not more so. Answer D is too critical in tone. Answer E describes methodology, not purpose.
+
+---
+
+### Q34
+**difficulty:** Easy
+**type:** Specific Detail
+**topic:** Reading Comprehension
+
+According to the passage, high-mobility counties tend to share all of the following characteristics EXCEPT:
+
+- A) lower residential segregation by income and race
+- B) stronger primary and secondary schools as measured by test-score gains
+- C) higher absolute levels of household income than low-mobility counties
+- D) greater civic participation and prevalence of two-parent households
+- E) lower levels of local income inequality
+
+**answer:** C
+**explanation:** The passage lists four characteristics of high-mobility places: lower segregation, stronger schools (measured by gains, not absolute scores), greater social capital, and lower local inequality. Absolute income level is not among them; indeed, the passage says "the presence of wealthy residents alone does little to improve outcomes." Answers A, B, D, and E each restate a listed characteristic.
+
+---
+
+### Q35
+**difficulty:** Hard
+**type:** Inference
+**topic:** Reading Comprehension
+
+The passage suggests that a county containing both very wealthy and very poor residents who attend separate schools and live in separate neighborhoods would likely:
+
+- A) produce better mobility outcomes than a uniformly poor county because of the availability of local jobs
+- B) produce mobility outcomes similar to those of a uniformly poor county, because integration, not mere proximity, is what matters for poor children's outcomes
+- C) exhibit the highest rates of intergenerational mobility observed in the research
+- D) demonstrate that income inequality has no effect on economic mobility
+- E) be indistinguishable from a high-mobility county in its long-term outcomes
+
+**answer:** B
+**explanation:** The passage states that "the presence of wealthy residents alone does little to improve outcomes for poor children unless those wealthy residents are geographically integrated." A county with separation would therefore not derive mobility benefits from its wealth. Answer A contradicts this. Answer C is the opposite of what the passage implies. Answer D overreads; the passage shows inequality correlates negatively with mobility. Answer E directly contradicts the passage.
+
+---
+
+### Q36
+**difficulty:** Medium
+**type:** Author's Attitude
+**topic:** Reading Comprehension
+
+The author's attitude toward the debate between investing in people versus investing in places is best described as:
+
+- A) strongly favoring place-based investment as more evidence-based
+- B) dismissive of both approaches as inadequate to address structural poverty
+- C) measured and integrative, treating the two approaches as complementary rather than competing
+- D) skeptical that any policy intervention can meaningfully affect intergenerational mobility
+- E) convinced that relocation vouchers will eventually render place-based investment obsolete
+
+**answer:** C
+**explanation:** The final paragraph concludes that "both strategies are warranted and that neither is sufficient on its own," and the author calls this "the most defensible reading of the evidence." This indicates a balanced, integrative stance. Answer A picks a side the author declines to pick. Answer B misreads the author's constructive tone. Answer D contradicts the entire research summary. Answer E reverses the author's both/and posture.
+
+---
+
+## Passage 10: The Afterlife of the Canon
+
+Literary canons, the informal lists of works deemed essential to a culture's self-understanding, have been objects of fierce contestation for at least a century. Critics of traditional canons argue that they reflect the tastes and biases of a narrow elite, systematically excluding works by women, writers of color, and those outside the major imperial centers. Defenders reply that canons do evolve, however slowly, and that their persistence reflects genuine aesthetic and intellectual qualities rather than mere institutional inertia. Both positions, however, tend to assume that the canon is something relatively stable that can be attacked or defended as a whole.
+
+A more productive framing, advanced by some recent literary historians, treats the canon not as a fixed object but as a process. On this view, works enter, ascend within, and fall out of canonical status through a continuous interplay of scholarly interpretation, classroom teaching, translation, reprinting, and public commemoration. Authors such as Herman Melville and Emily Dickinson, largely neglected in their own lifetimes, entered the canon decades after their deaths through concerted efforts by critics and editors. Conversely, figures like Longfellow, once considered indispensable, have seen their standing erode as tastes shifted and educational curricula changed. The canon, in this sense, is less a list than a set of practices that sustain particular works in cultural circulation.
+
+This processual view does not render canon debates pointless, but it does reframe them. If canonical status is produced rather than discovered, then the relevant question is not which works truly deserve inclusion but which institutions and practices control the machinery of inclusion, and whose cultural priorities that machinery serves. It also implies that marginal works can be elevated through sustained effort, as indeed has happened with many previously overlooked writers in recent decades, and that no work's canonical status, however entrenched, is permanent.
+
+### Q37
+**difficulty:** Medium
+**type:** Main Idea
+**topic:** Reading Comprehension
+
+The passage is primarily concerned with:
+
+- A) defending the traditional literary canon against its critics
+- B) arguing that literary canons should be abolished entirely in favor of individual reader choice
+- C) presenting an alternative framework for understanding literary canons as dynamic processes rather than fixed lists, and explaining how this framework reframes canon debates
+- D) documenting the rise and fall of specific authors' reputations over the past two centuries
+- E) comparing the aesthetic merits of canonical and non-canonical works
+
+**answer:** C
+**explanation:** The passage sets up the standard debate, introduces the processual alternative, and then shows how the alternative reshapes the debate. Answer C captures this arc. Answer A misidentifies the author's position; the passage does not defend the canon. Answer B overstates; the author does not call for abolition. Answer D describes supporting examples, not the main point. Answer E is not the passage's focus.
+
+---
+
+### Q38
+**difficulty:** Easy
+**type:** Specific Detail
+**topic:** Reading Comprehension
+
+The passage cites Melville and Dickinson in order to illustrate:
+
+- A) that the most important writers are typically unrecognized in their own time
+- B) how authors can enter the canon long after their deaths through the efforts of later critics and editors
+- C) that nineteenth-century American literature is underrepresented in the canon
+- D) the superiority of poetry to prose in the canonical tradition
+- E) the arbitrariness of canonical judgments
+
+**answer:** B
+**explanation:** The passage introduces Melville and Dickinson as "largely neglected in their own lifetimes" who "entered the canon decades after their deaths through concerted efforts by critics and editors." Answer B restates this. Answer A generalizes beyond what the passage claims. Answers C, D, and E introduce points the passage does not make.
+
+---
+
+### Q39
+**difficulty:** Medium
+**type:** Inference
+**topic:** Reading Comprehension
+
+The passage implies that Longfellow's declining canonical standing demonstrates that:
+
+- A) his works were never of high aesthetic quality to begin with
+- B) canonical status can erode as tastes and curricula change, just as it can be acquired through similar shifts
+- C) nineteenth-century poetry has been systematically excluded from modern canons
+- D) contemporary readers are less sophisticated than those of Longfellow's era
+- E) only works translated into multiple languages maintain canonical status
+
+**answer:** B
+**explanation:** The Longfellow example illustrates the processual view: canonical status is maintained or lost through ongoing practices. Answer B captures this symmetry. Answer A imposes an aesthetic judgment the passage declines to make. Answer C generalizes from one case. Answer D is not implied. Answer E introduces a criterion the passage does not discuss.
+
+---
+
+### Q40
+**difficulty:** Hard
+**type:** Application
+**topic:** Reading Comprehension
+
+A scholar who accepts the passage's processual view of the canon would most likely evaluate a proposal to add a previously neglected nineteenth-century novelist to university syllabi by asking:
+
+- A) whether the novelist's aesthetic qualities objectively surpass those of currently canonical writers
+- B) whether including the novelist would displace another writer whose works have greater historical importance
+- C) which institutional practices sustain the current syllabus and how adding the novelist would alter the machinery by which cultural authority is distributed
+- D) whether the novelist's works are commercially popular with contemporary readers
+- E) whether the novelist belongs to a demographic group currently underrepresented in the canon
+
+**answer:** C
+**explanation:** The processual view holds that the relevant question is "which institutions and practices control the machinery of inclusion, and whose cultural priorities that machinery serves." Answer C mirrors this framing. Answer A presupposes objective aesthetic standards the processual view sets aside. Answer B frames the issue as zero-sum displacement, which the view does not require. Answer D introduces a market criterion not in the passage. Answer E reduces the processual framework to identity alone, narrower than the passage's institutional analysis.
+
+---
+
+## Passage 11: The Quiet Revolution in Stellar Ages
+
+For most of the twentieth century, astronomers estimated the ages of stars by combining theoretical models of stellar evolution with measurements of a star's brightness, temperature, and chemical composition. This approach works well for stars in clusters, whose members share a common origin and can be dated collectively, but it performs poorly for isolated stars, where the evolutionary state is ambiguous and small errors in measured properties can translate into age uncertainties of billions of years. For decades, the problem of reliably dating individual field stars seemed intractable.
+
+The advent of asteroseismology, the study of oscillations propagating through stellar interiors, has begun to change this picture. Stars pulsate at characteristic frequencies determined by their internal structure, and modern space telescopes can detect the resulting brightness variations with extraordinary precision. Because a star's oscillation spectrum depends sensitively on its mass, composition, and the distribution of hydrogen and helium in its core, these measurements allow researchers to constrain the star's age with uncertainties as small as ten percent in favorable cases, a dramatic improvement over traditional methods.
+
+The implications extend well beyond stellar physics. Many questions in Galactic archaeology, the study of how our Milky Way assembled over cosmic time, depend on being able to order stars chronologically. Whether the galactic disk formed gradually through ongoing accretion or rapidly during an early burst, whether the halo preserves intact remnants of ancient dwarf galaxies, and whether the Sun formed in an unusual or typical environment are all questions that become tractable only when reliable ages for large samples of stars are available. Yet the method has limits. Asteroseismic dating works best for stars in a particular evolutionary phase and with oscillation amplitudes large enough to detect; cooler, smaller stars remain difficult to date precisely. The technique has not replaced older methods so much as complemented them, expanding the range of stars for which reliable ages are accessible.
+
+### Q41
+**difficulty:** Medium
+**type:** Main Idea
+**topic:** Reading Comprehension
+
+Which of the following best expresses the main point of the passage?
+
+- A) Asteroseismology has completely superseded traditional methods of dating stars.
+- B) The age of the Milky Way galaxy is much greater than previously believed.
+- C) Asteroseismology offers substantially improved age estimates for many individual stars, enabling new progress in Galactic archaeology, though it has limitations that prevent it from fully replacing older methods.
+- D) Measurements of stellar brightness and temperature are unreliable indicators of stellar age.
+- E) Space telescopes have revolutionized every branch of observational astronomy.
+
+**answer:** C
+**explanation:** The passage moves from the traditional method's limits, to asteroseismology's improvements, to its implications for galactic archaeology, and finally to the method's remaining limits. Answer C captures this balanced arc. Answer A is too strong; the passage explicitly says the method "has not replaced older methods." Answer B introduces a claim about the galaxy's age not made. Answer D overstates the critique of traditional measurements. Answer E generalizes beyond the passage's scope.
+
+---
+
+### Q42
+**difficulty:** Easy
+**type:** Specific Detail
+**topic:** Reading Comprehension
+
+According to the passage, traditional methods of dating stars perform poorly for isolated field stars primarily because:
+
+- A) isolated stars emit less light than stars in clusters
+- B) small measurement errors translate into very large uncertainties in age, and the evolutionary state of an individual star is often ambiguous
+- C) isolated stars have chemical compositions unlike those of stars in clusters
+- D) theoretical models of stellar evolution do not apply to field stars
+- E) isolated stars are too far away to be measured accurately
+
+**answer:** B
+**explanation:** The passage states that for isolated stars "the evolutionary state is ambiguous and small errors in measured properties can translate into age uncertainties of billions of years." Answer B paraphrases this. Answer A is not claimed. Answer C is not stated. Answer D is too strong; models apply but yield imprecise results. Answer E is not the reason given.
+
+---
+
+### Q43
+**difficulty:** Hard
+**type:** Inference
+**topic:** Reading Comprehension
+
+The passage suggests that asteroseismology is most likely to contribute to progress on which of the following questions?
+
+- A) whether planets orbiting cool, low-mass stars are habitable
+- B) whether the galactic disk formed through gradual accretion or during an early burst, a question that requires reliable ages for many individual stars
+- C) whether the laws of physics differ between the interiors of stars and the interstellar medium
+- D) whether space telescopes should be prioritized over ground-based observatories
+- E) whether stellar oscillations cause significant variations in a star's output of ionizing radiation
+
+**answer:** B
+**explanation:** The passage lists this exact question as one that "becomes tractable only when reliable ages for large samples of stars are available." Answer B matches this directly. Answer A involves cool stars that the passage says "remain difficult to date precisely." Answers C, D, and E introduce topics the passage does not address.
+
+---
+
+### Q44
+**difficulty:** Medium
+**type:** Function
+**topic:** Reading Comprehension
+
+The author's acknowledgment in the final paragraph that asteroseismic dating "works best for stars in a particular evolutionary phase" serves primarily to:
+
+- A) undermine the earlier claim that asteroseismology offers improved age estimates
+- B) qualify the technique's applicability, reinforcing the passage's conclusion that it complements rather than replaces traditional methods
+- C) argue that the technique should be abandoned in favor of chemical methods
+- D) suggest that future space telescopes will overcome this limitation
+- E) imply that most stars in the galaxy cannot be studied at all
+
+**answer:** B
+**explanation:** The acknowledgment frames the complementary-not-replacement conclusion that immediately follows. Answer B captures this function. Answer A misreads; qualification is not undermining. Answer C imposes a recommendation the author does not make. Answer D speculates about future developments the passage does not mention. Answer E exaggerates from a limitation to total inapplicability.
+
+---
+
+## Passage 12: The Paradox of Organizational Slack
+
+Management theorists have long debated whether organizations perform better when they are lean, with every resource fully utilized, or when they maintain a degree of slack, defined as resources in excess of what is required to execute current tasks. The lean view, rooted in efficiency-based reasoning and reinforced by several decades of operations research, holds that slack represents waste: underutilized employees, idle equipment, and surplus inventories all impose costs without generating returns. On this account, the disciplined pursuit of leanness is the mark of a well-run firm.
+
+Yet a substantial body of empirical work suggests that organizations operating at maximum efficiency are surprisingly fragile. Firms with no slack have little capacity to absorb disruptions, whether from supply chain shocks, sudden shifts in demand, or the departure of key personnel. They also tend to be poor at innovation, since exploring novel ideas requires time and resources that a maximally lean organization cannot spare. Studies of pharmaceutical research laboratories, for example, have found that groups with moderate levels of unstructured time produce substantially more breakthrough discoveries than those whose schedules are fully allocated to assigned projects, even though the latter appear more productive on conventional metrics.
+
+The resolution of this apparent paradox lies in recognizing that slack is not a single thing. Financial slack, in the form of cash reserves, tends to cushion firms against external shocks but can also enable complacency or ill-considered acquisitions. Operational slack, such as excess production capacity, improves responsiveness to demand fluctuations but carries carrying costs. Human slack, meaning employees with time for reflection and exploration, supports innovation but is difficult to defend to boards focused on headcount efficiency. Well-managed organizations appear to cultivate the types of slack most useful for their strategic circumstances while pruning the rest, a balancing act that neither pure leanness nor indiscriminate redundancy can accomplish.
+
+### Q45
+**difficulty:** Medium
+**type:** Main Idea
+**topic:** Reading Comprehension
+
+The primary purpose of the passage is to:
+
+- A) defend lean management as the most efficient organizational strategy
+- B) argue that all forms of organizational slack are necessary for good performance
+- C) reconcile competing views about organizational slack by distinguishing among its different forms and arguing that selective cultivation of slack outperforms both pure leanness and indiscriminate redundancy
+- D) criticize management theorists for failing to agree on a definition of organizational slack
+- E) document the history of efficiency-based reasoning in management theory
+
+**answer:** C
+**explanation:** The passage sets up the apparent conflict, shows problems with the lean view, and resolves the conflict by disaggregating slack into types that can be managed selectively. Answer C captures this resolution. Answer A picks the view the passage complicates. Answer B overstates; the passage says well-managed firms prune some slack. Answer D mischaracterizes the author's tone. Answer E describes background, not purpose.
+
+---
+
+### Q46
+**difficulty:** Easy
+**type:** Specific Detail
+**topic:** Reading Comprehension
+
+The passage cites studies of pharmaceutical research laboratories in order to illustrate that:
+
+- A) pharmaceutical firms are typically less efficient than firms in other industries
+- B) groups with moderate unstructured time produce more breakthrough discoveries than those whose schedules are fully allocated, even though the latter seem more productive on conventional metrics
+- C) innovation is primarily a function of financial investment rather than time allocation
+- D) scheduled research produces more reliable results than unstructured exploration
+- E) pharmaceutical research requires specialized forms of slack unavailable in other industries
+
+**answer:** B
+**explanation:** The passage describes these studies as finding that "groups with moderate levels of unstructured time produce substantially more breakthrough discoveries than those whose schedules are fully allocated." Answer B restates this. Answers A, C, D, and E either contradict the passage or introduce claims not made.
+
+---
+
+### Q47
+**difficulty:** Hard
+**type:** Inference
+**topic:** Reading Comprehension
+
+The passage implies that a firm pursuing a strategy that emphasizes rapid product innovation would most benefit from cultivating:
+
+- A) financial slack, because cash reserves cushion the firm against external shocks
+- B) operational slack, because excess production capacity improves responsiveness to demand
+- C) human slack, because time for reflection and exploration supports innovation
+- D) all forms of slack simultaneously, since slack is valuable regardless of strategic context
+- E) no form of slack, since innovation-focused firms need to be maximally efficient to beat competitors to market
+
+**answer:** C
+**explanation:** The passage associates human slack with supporting innovation and notes that well-managed firms cultivate the types of slack most useful for their strategic circumstances. An innovation-focused firm's most aligned type is therefore human slack. Answer C follows. Answers A and B describe benefits not aligned with innovation specifically. Answer D ignores the pruning element. Answer E contradicts the passage's broader claim that innovation requires slack.
+
+---
+
+### Q48
+**difficulty:** Medium
+**type:** Author's Attitude
+**topic:** Reading Comprehension
+
+The author's attitude toward the lean view of organizational management is best described as:
+
+- A) enthusiastic endorsement
+- B) wholesale rejection as fundamentally misguided
+- C) qualified skepticism, acknowledging the lean view's basis in efficiency reasoning while arguing that it misses important sources of organizational value
+- D) amused dismissal
+- E) agnostic, treating the lean view and its critics as equally supported by evidence
+
+**answer:** C
+**explanation:** The author describes the lean view's intellectual basis respectfully but then details empirical findings that complicate it and offers a resolution that partially incorporates the lean insight while moving beyond it. Answer C matches this nuanced stance. Answer A is too positive. Answer B is too negative. Answer D misreads the tone. Answer E denies the evaluative judgment the passage clearly makes.
+
+---
+
+## Passage 13: The Accidental Middle Class
+
+Historians of the twentieth-century United States have often treated the postwar expansion of the middle class as the natural result of rising productivity and rapid economic growth. On this view, the unprecedented prosperity of the 1945 to 1973 period lifted workers' wages broadly, produced widespread homeownership, and created the material basis for the stable suburban household that came to symbolize the era. The narrative is not wrong, but recent scholarship has shown it to be incomplete in ways that matter for contemporary debates about economic inequality.
+
+A closer examination reveals that the midcentury compression of incomes was shaped as much by specific, and often contested, policy choices as by underlying economic forces. The GI Bill of 1944 funneled educational subsidies and low-interest mortgages to millions of returning veterans, but its benefits were distributed unevenly, with Black veterans frequently denied access to housing loans and excluded from the best universities. Federal mortgage insurance programs underwrote suburban development while explicitly redlining urban neighborhoods with significant minority populations. The minimum wage, set relatively high in real terms, compressed the bottom of the wage distribution, while strong unions and an implicit social contract between large employers and their workers compressed the middle. Marginal income tax rates above ninety percent constrained the top.
+
+When these policy supports eroded, beginning in the late 1970s, the patterns that had seemed to characterize a normal modern economy gave way to rising inequality and stagnant median wages. This suggests that the midcentury middle class was less an inevitable product of industrial capitalism than a particular political achievement, sustained by a specific configuration of policies that could be, and were, dismantled. Understanding this helps explain why straightforward appeals to "restore" the postwar economy have limited purchase: the economy being invoked was not a default state but a constructed one.
+
+### Q49
+**difficulty:** Medium
+**type:** Main Idea
+**topic:** Reading Comprehension
+
+The passage primarily aims to:
+
+- A) argue that the postwar American middle class did not actually experience broad prosperity
+- B) revise the standard account of midcentury American prosperity by emphasizing the role of specific policy choices in creating and sustaining the broad middle class
+- C) criticize contemporary politicians who invoke the postwar economy in their rhetoric
+- D) document racial discrimination in the administration of the GI Bill
+- E) compare midcentury wage compression with that of other industrialized countries
+
+**answer:** B
+**explanation:** The passage presents the standard productivity-growth narrative, argues it is incomplete, and offers the policy-choice revision. Answer B captures this. Answer A misreads; the passage accepts that prosperity was real but revises the explanation for it. Answer C is too narrow; the rhetorical point appears only at the end. Answer D is a supporting detail. Answer E is not in the passage.
+
+---
+
+### Q50
+**difficulty:** Easy
+**type:** Specific Detail
+**topic:** Reading Comprehension
+
+According to the passage, the midcentury compression of incomes in the United States was sustained by all of the following EXCEPT:
+
+- A) a relatively high minimum wage in real terms
+- B) strong labor unions and implicit agreements between large employers and their workers
+- C) marginal income tax rates exceeding ninety percent at the top
+- D) a federal wealth tax levied annually on household assets
+- E) GI Bill subsidies and federal mortgage insurance programs
+
+**answer:** D
+**explanation:** The passage lists the minimum wage, unions and employer compacts, high marginal income tax rates, and GI Bill and mortgage programs. It does not mention a federal wealth tax. Answer D is the exception. Each of the other options restates a supporting factor mentioned in the second paragraph.
+
+---
+
+### Q51
+**difficulty:** Hard
+**type:** Inference
+**topic:** Reading Comprehension
+
+The passage implies that a policy agenda seeking to recreate the broad middle class of the postwar period would be mistaken if it:
+
+- A) assumed that sufficient GDP growth alone would restore midcentury patterns of income distribution
+- B) sought to raise the minimum wage or strengthen labor unions
+- C) aimed to address the unequal distribution of GI Bill benefits across racial lines
+- D) increased marginal tax rates on high incomes
+- E) invested in suburban housing construction
+
+**answer:** A
+**explanation:** The passage argues that midcentury patterns were "a particular political achievement, sustained by a specific configuration of policies." A policy agenda relying on growth alone would repeat the error the passage criticizes in the standard account. Answer A identifies this mistake. Answers B, C, D, and E are either consistent with or aligned with the passage's argument rather than mistakes from its point of view.
+
+---
+
+### Q52
+**difficulty:** Medium
+**type:** Function
+**topic:** Reading Comprehension
+
+The author's discussion of redlining and unequal access to the GI Bill functions primarily to:
+
+- A) argue that the postwar economy was, on balance, worse than the economy that preceded it
+- B) suggest that racial discrimination was the single most important factor in midcentury inequality
+- C) complicate the standard celebratory narrative by showing that the midcentury middle class was both a deliberate construction and one whose benefits were unequally distributed
+- D) explain why subsequent civil rights legislation was necessary
+- E) demonstrate that federal housing policy had no effect on suburban development patterns
+
+**answer:** C
+**explanation:** The examples appear within the larger argument that policy choices, not impersonal forces, shaped midcentury outcomes, and they show that those choices distributed benefits unequally. Answer C captures both the complication and the unequal-distribution point. Answer A overstates; the passage does not claim the earlier economy was better. Answer B overemphasizes race relative to the passage's broader argument. Answer D is outside the passage's scope. Answer E reverses what the passage says about federal influence on suburbs.
+
+---
