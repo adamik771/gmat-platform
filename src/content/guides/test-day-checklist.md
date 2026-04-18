@@ -7,242 +7,272 @@ type: reference
 
 # Test Day Checklist
 
-Preparation eliminates 80% of test-day stress. Use this checklist as your go-to reference. Customize it based on whether you're taking the test at a test center or online.
+Preparation eliminates 80% of test-day stress. The other 20% is adrenaline, and you can't fully control that — but you can prevent the preventable. Use this checklist as your go-to reference. It's organized chronologically from one week before the test through the hour after. Every item here exists because a real student lost points by skipping it.
 
----
+Customize based on whether you're taking the test at a **test center** or **online at home**. Both versions are the same score and same test — the logistics differ.
 
-## One Week Before the Test
+## 7 Days Out
 
-### Logistics
-- [ ] Confirm test date, time, and location (or online platform details)
-- [ ] Verify your ID is valid (passport or government-issued ID — check expiration)
-- [ ] If online: test your laptop, webcam, microphone, and internet connection using the platform's requirements
-- [ ] If online: clear the room where you'll take the test (no papers, no extra monitors, no books)
-- [ ] If test center: know the exact address, parking situation, and commute time
-- [ ] Plan your route with a 30-45 minute buffer for delays
+**Mock exam:** take your final full-length mock today. Full simulation — same start time as the real test, test-day breakfast, no phone, 10-minute break between sections. This is your dress rehearsal for the full experience, not just a score check.
 
-### Study
-- [ ] Light review only — no new topics
-- [ ] Re-read your error log
-- [ ] Do 20-30 practice questions per day, not more
-- [ ] Take ONE mock 4-5 days out (maximum); no mocks the last 3 days
+**Analyze the mock tomorrow, not today.** Your brain needs ~16 hours to integrate the data. Don't start reviewing immediately.
 
-### Health
-- [ ] Sleep 7-8 hours per night
-- [ ] Exercise lightly (walks, stretching) — no intense workouts
-- [ ] Eat normal meals, avoid new foods
-- [ ] Limit caffeine to your usual amount (don't suddenly increase)
+**Confirm your test registration.** Log into mba.com. Verify:
+- Test date and start time
+- Test center address (or online test setup)
+- Your name matches your ID exactly
+- Order of sections you've selected (if you've pre-selected — otherwise you pick on test day)
 
----
+**Logistics check (test center):**
+- Address and parking
+- Travel time at test-day time-of-day (traffic patterns vary)
+- Backup transport (if Uber/public transit)
+- What to wear (layered — test centers vary in temperature)
 
-## Three Days Before
+**Logistics check (online):**
+- Run the system check on mba.com today
+- Verify webcam, microphone, internet speed
+- Clear your testing space (nothing on walls, no notes, no papers)
+- Know where you'll sit; test lighting and camera angle
+- Have a phone nearby (for emergency proctor contact) but NOT in the room
 
-- [ ] NO full mocks — your brain needs rest
-- [ ] Light study: review formula sheet, strategy guides, and top error log entries
-- [ ] Pack your bag (see below)
-- [ ] Confirm your test-day meal plan
-- [ ] Mental rehearsal: visualize walking into the test and starting calmly
+**ID prep:**
+- Two forms of government-issued ID with matching names
+- Passport is easiest (one doc)
+- Driver's license + secondary (credit card with photo, utility bill) works in most jurisdictions
+- Both must have signatures matching
 
----
+## 6 Days Out
 
-## Two Days Before
+**Mock analysis (Day 1 of 3).** Full question-by-question review. For every wrong question: categorize (conceptual gap / careless error / time pressure / misread). For every correct: flag any where your reasoning was shaky or you guessed.
 
-- [ ] Very light study: 30-60 minutes maximum
-- [ ] Re-read the strategy guides one more time
-- [ ] Review 10-20 error log entries for reinforcement
-- [ ] Early bedtime practice (go to bed at your planned test-eve time)
-- [ ] No alcohol
+**No new content today.** You won't internalize anything new in 6 days. Anything new now just shakes confidence.
 
----
+**Reduce caffeine creep** if you've been inching up. Your test-day caffeine should match your mock-day caffeine. If you've been drinking 3 cups by test morning, don't drop to 1 today — taper to match.
 
-## The Day Before (Day 1)
+**Confirm your breakfast plan.** You should have tested this in mocks. If you haven't, do it tomorrow.
 
-### Morning / Afternoon
-- [ ] NO practice test
-- [ ] Light review only (max 30 minutes)
-- [ ] Confirm tomorrow's timing: wake time, breakfast, departure time
-- [ ] Prep everything for tomorrow (clothes, bag, documents)
-- [ ] Go for a 20-30 minute walk outside
+## 5 Days Out
 
-### Evening
-- [ ] Normal dinner (nothing new or spicy)
-- [ ] No alcohol
-- [ ] No screens 1 hour before bed (or use night mode + blue light glasses)
-- [ ] Relax — read a book, watch a comforting show
-- [ ] Lay out clothes for tomorrow
-- [ ] Set TWO alarms (primary + backup)
-- [ ] Bed by 10pm
+**Targeted drill based on mock patterns.** 1-2 hours max, focused on the 2-3 patterns you identified yesterday. Don't exceed this — diminishing returns.
 
-### What to Pack (Physical Test Center)
-- [ ] Valid ID
-- [ ] Test confirmation email (printed or on phone)
-- [ ] Water bottle
-- [ ] Snack (banana, granola bar, nuts — something familiar)
-- [ ] Light jacket (test centers are often cold)
-- [ ] Tissues
-- [ ] NOT: phone (locked away), calculator, books, notes
+**Idiom/formula review** (non-natives: idiom flashcards; everyone: Quant formula sheet). 20-30 minutes.
 
-### What to Prepare (Online Test)
-- [ ] Clean the test room (remove papers, books, extra monitors)
-- [ ] Charge your laptop (also have it plugged in during the test)
-- [ ] Test your webcam, microphone, internet
-- [ ] Close all unnecessary applications
-- [ ] Place ID, water, snack within reach of your seat
-- [ ] Put your phone on silent, in another room
-- [ ] Have your online test check-in time and login info ready
+**No full mocks past this point.** Diminishing returns + fatigue cost.
 
----
+**If taking at a test center:** drive or walk to the center today if you haven't. Find the parking, the entrance, the bathroom. This is free anxiety reduction.
 
-## Test Day (Day 0)
+## 4 Days Out
 
-### Wake-Up (3 hours before test time)
-- [ ] Wake up when the alarm goes off — don't hit snooze
-- [ ] Drink a glass of water
-- [ ] Shower — the temperature change wakes your brain
-- [ ] Get dressed in comfortable layers
+**Light drill day.** 30-60 minutes max. Review your error log's recurring themes.
 
-### Breakfast (2.5 hours before)
-- [ ] Eat a normal breakfast — one you've eaten many times
-- [ ] Examples: oatmeal, eggs, toast with peanut butter, yogurt with fruit
-- [ ] Avoid: anything new, anything greasy, too much sugar
-- [ ] Drink water, but not so much you're running to the bathroom
+**Final Quant formula sweep.** Run through the formula sheet, self-quiz on: quadratic formula, Pythagorean triples, 30-60-90 ratios, percent-change formula, probability basics, exponent rules. If any feel unfamiliar, spend 15 minutes drilling that specific area.
 
-### Warmup (1.5-2 hours before)
-- [ ] Do 10-15 EASY practice questions (one from each section)
-- [ ] This activates your brain without exhausting it
-- [ ] Do NOT do hard questions — they'll shake your confidence
-- [ ] Review your formula sheet for 5 minutes
+**Hydration.** Start intentional hydration today. 64+ oz water daily through test day.
 
-### Departure (1 hour before)
-- [ ] Final bathroom break
-- [ ] Grab your bag
-- [ ] Leave with 45+ minutes of buffer time
-- [ ] If online: start checking in to the platform 30 minutes before
+## 3 Days Out
 
-### Arrival (30 minutes before)
-- [ ] Check in at the test center (or log in online)
-- [ ] Store your belongings
-- [ ] Bathroom break one more time
-- [ ] Sit and breathe — don't study
+**Strategy review only, no new problems.** Read Module 6 (Mock Strategy) and Module 7 (Final Week) if you haven't recently.
 
-### Final 5 Minutes
-- [ ] Box breathing: inhale 4s, hold 4s, exhale 4s, hold 4s — repeat 4-5 times
-- [ ] Positive self-talk: "I've prepared. I'm ready. Let's do the work."
-- [ ] Stretch briefly (if at a test center, subtly)
-- [ ] Remind yourself: one bad question doesn't matter
+**Confirm test logistics one more time** — address, start time, ID. The test start time cannot be changed day-of.
 
----
+**Sleep protocol starts tonight:**
+- Same bedtime every night for the rest of the week (not just the night before)
+- 8 hours minimum
+- No screens 60 minutes before bed
+- No alcohol — even 1 drink disrupts REM sleep measurably
+
+## 2 Days Out
+
+**Dress rehearsal day.** Run through your test-day morning:
+- Wake at your test-day wake time (typically 3 hours before test start)
+- Eat your test-day breakfast
+- Do 15 minutes of light exercise OR a 20-minute walk
+- Review one formula sheet + 5 warm-up questions (easy ones, not your weakness)
+- Pack your test bag
+
+**Pack your test bag:**
+- Two IDs (both)
+- Printed test confirmation
+- Water bottle (clear, unlabeled for test centers)
+- Small snack for break (protein bar, banana, almonds — nothing messy)
+- Layered clothing (jacket in bag if you might get cold)
+- Tissues
+- Any medication you take regularly
+- (Test center provides: yellow laminated noteboard + pen. Don't bring your own scratch paper.)
+
+**Tech check (online test):** run the full system check AGAIN. Verify internet stability — switch off any bandwidth-hungry apps on your network.
+
+## 1 Day Out (The Night Before)
+
+**NO HARD STUDYING.** Your brain is fully loaded. More cramming now costs sleep and causes anxiety. Students who "study hard" the night before score ~20 points lower on average.
+
+**Light review, 30 minutes max:**
+- Scan the formula sheet (Quant)
+- Scan your CR trap-pattern list (Verbal)
+- Scan the top 10 DI traps (Data Insights)
+- That's it. No practice problems.
+
+**Dinner:**
+- Familiar food. Your regular meal. No experiments.
+- Light on spice, dairy if sensitive, and anything that normally gives you stomach issues
+- No alcohol (period)
+
+**Prep for tomorrow:**
+- Lay out your clothes
+- Pack/repack your test bag
+- Charge your phone + alarm
+- Set two alarms (primary + backup)
+- Confirm travel time and departure time
+
+**Sleep routine:**
+- Same bedtime as the last week
+- No screens after 9pm
+- If you're anxious: 10 minutes of box breathing (inhale 4, hold 4, exhale 4, hold 4) × 5 rounds
+- Get in bed even if you can't sleep — rest counts
+
+**If you can't sleep:** don't panic. One night of bad sleep doesn't sink a test. The anxiety about not sleeping is worse than the bad sleep itself. You'll be fine.
+
+## Test Day Morning
+
+**Wake 3 hours before test start time.** Your brain needs this long to fully come online.
+
+**Morning sequence:**
+
+1. **Hydrate** (16 oz water) — your body is dehydrated from sleep
+2. **Light movement** (10 min stretching, 20 min walk) — boosts cognition without fatigue
+3. **Breakfast** (your tested one) — protein + complex carbs. Eggs + oats + fruit works well. Avoid sugar crashes.
+4. **Coffee/caffeine** if that's your normal — time it so peak effect (30-45 min after) hits test start
+5. **Shower + dressed** — comfortable, layered
+6. **Warm-up** (15 minutes) — 2-3 easy practice questions. NOT your weakness. Just priming the brain.
+7. **Review** — 5 minutes on your pacing checkpoints and top trap patterns. That's it.
+8. **Final check** — ID × 2, confirmation, water, snack, jacket, tissues
+9. **Leave with 30-45 minute buffer** — assume traffic, bathroom needs, security line
+
+**For online test** — replace the commute with:
+- Secure your testing space (nothing on walls, no notes, door closed, do-not-disturb signs for housemates)
+- Close all other apps
+- Have your phone nearby for proctor emergency contact, but NOT in view
+- Do the system check one last time 20 min before start
+
+## Arrival / Check-in (Test Center)
+
+**Arrive 30 min before test time.** Centers start check-in early.
+
+**Check-in process (can take 15-20 min):**
+- ID verification (two IDs)
+- Biometric (palm vein scan at most centers)
+- Photo taken
+- Sign the agreement
+- Lock personal items in the provided locker
+- Enter the testing room, get directed to your workstation
+
+**What's on your workstation:**
+- Computer with the test
+- Yellow laminated noteboard (6-8 pages)
+- Dry-erase pen
+- Tissues (usually)
+- An earplug option (ask if you want)
+
+**Before you click Start:**
+- Take 30 seconds. Breathe. You've prepared. You're ready.
+- Adjust seat, monitor height, lighting if possible
+- Verify the dry-erase pen works
+- If the pen is weak, raise your hand — they'll replace it
 
 ## During the Test
 
-### Section 1 (First 45 Minutes)
-- [ ] Read each question carefully
-- [ ] Apply your pacing strategy (target ~2:00 per question on average)
-- [ ] Use the clock at your pacing checkpoints
-- [ ] If stuck on a question for >2:30, guess and move on
-- [ ] Don't panic if one question is hard — move forward
+**Section 1 strategy:**
+- Don't rush the first 3 questions — you're settling in
+- Read the stem carefully (twice if needed)
+- Commit to your first reasoning process
 
-### Break (10 Minutes)
-- [ ] Bathroom break
-- [ ] Drink water
-- [ ] Eat a small snack (banana, granola bar)
-- [ ] DO NOT think about the previous section — it's done
-- [ ] 2-3 deep breaths
-- [ ] Mental reset: "New section, fresh start."
+**Pacing checkpoints** (use the Pacing Guide):
+- Quant Q7/Q14, Verbal Q8/Q15, DI Q7/Q14
+- Quick glance at clock, adjust if needed, don't obsess
 
-### Section 2 (45 Minutes)
-- [ ] Same pacing discipline
-- [ ] Same 3-minute maximum per question
-- [ ] Trust your preparation
-- [ ] If anxiety spikes, 20-30 seconds of box breathing
+**The 90-second rule:**
+- Stuck with no progress at 90 seconds? Commit to your best guess, move on.
+- Don't let one hard question steal time from 3 easier ones
 
-### Section 3 (45 Minutes)
-- [ ] Same discipline
-- [ ] If you're tired, take a 5-second pause between questions to reset
-- [ ] Don't rush the end — finish strong
-- [ ] Use any remaining time to double-check flagged questions
+**Between sections — the 10-minute break:**
+- USE IT. Every time. Don't skip.
+- Bathroom (empty bladder even if you don't feel the need)
+- Water + small snack (something quick-digesting: banana, protein bar)
+- Stretch shoulders and neck
+- Close your eyes 2 minutes with deep breathing
+- DO NOT review mental notes of previous section. Let it go.
+- Do not discuss questions with other test-takers (proctors will penalize you, and it messes with your head for next section)
 
----
+**If you blank on a question:**
+- Deep breath (4-count inhale, 6-count exhale)
+- Re-read the question stem (not the answer choices)
+- Identify what type of question it is
+- If still blank after 30 more seconds: guess and move on
 
-## After the Test
+**If you feel panic building:**
+- Close your eyes for 10 seconds
+- Box breathing: 4-4-4-4 pattern × 3 rounds (30 seconds total)
+- Remind yourself: "I've answered harder questions. This one doesn't define the test."
+- Come back to the question
 
-### Immediate After
-- [ ] Breathe. It's over.
-- [ ] You may feel drained, emotional, or numb — that's normal
-- [ ] Don't overanalyze specific questions — you'll drive yourself crazy
-- [ ] Go eat a real meal
+**Final 5 minutes of any section:**
+- Don't start a new hard question with <2:30 left — guess any unanswered and move on
+- Use remaining time to return to flagged questions (if the interface allows)
+- Never leave an answer blank. Always guess.
 
-### Same Day
-- [ ] Do something you enjoy — you earned it
-- [ ] Don't read Reddit/forums about GMAT scores
-- [ ] Don't start planning a retake
-- [ ] Get a full night's sleep
+## After the Test (Test Center)
 
-### Next Day
-- [ ] Reflect on your performance honestly
-- [ ] If you got your target score: celebrate, start applications
-- [ ] If you didn't: take 24-48 hours before deciding on a retake
-- [ ] If retaking: note what went wrong (pacing, specific section, anxiety, etc.)
+**On the screen:**
+- Your unofficial score appears immediately
+- You can choose to CANCEL or ACCEPT
+- **Generally: ACCEPT unless the score is more than 50 points below your best mock**
+- Official score ships to schools within 3-5 business days
 
----
+**Leaving the center:**
+- Return the noteboard and pen
+- Collect your belongings from the locker
+- Sign out
 
-## Anti-Panic Protocols
+**First 4 hours:**
+- You may feel wiped. This is normal.
+- Eat. Drink water. Don't over-analyze.
+- Don't discuss specific questions (even with yourself mentally)
+- Do not immediately start planning a retake — give yourself 48 hours
 
-### If You Can't Sleep the Night Before
-- Don't take unfamiliar sleep aids (melatonin is fine if you've used it before)
-- Read a boring book
-- Do box breathing in bed
-- Remember: one night of poor sleep won't dramatically affect your score. Your preparation matters more.
+**First 48 hours:**
+- Rest. You earned it.
+- Do NOT make any major prep decisions about a retake yet
+- Don't compare notes with other test-takers on forums
+- If you hit your target: celebrate, move to business school applications
+- If you missed it: the retake analysis starts at hour 48, not hour 0
 
-### If You're Anxious Walking In
-- Box breathing: inhale 4s, hold 4s, exhale 4s, hold 4s
-- Reframe: "My body is preparing me for performance, not panic"
-- Remind yourself: you've done hundreds of practice questions; this is familiar
+## If Something Goes Wrong
 
-### If a Question Shakes Your Confidence Early
-- This is normal — one hard question does NOT predict your whole test
-- Guess, move on, forget it
-- The next 20 questions are a fresh opportunity
-- Do NOT let one question poison the rest
+**Medical emergency during test:**
+- Raise your hand. Proctor can escort you out; test is paused.
+- If severe: you can usually reschedule with medical documentation.
 
-### If You Feel Like You're Going to Fail Mid-Test
-- Pause for 5 seconds
-- Box breathe: 4-4-4-4 once
-- Remind yourself: you can't judge your performance mid-test (the algorithm is adaptive)
-- Focus only on the current question
-- Keep going
+**Technical glitch (test center):**
+- Raise your hand IMMEDIATELY. Don't troubleshoot yourself.
+- Proctor will note the time and handle the issue
+- If the glitch can't be resolved, you can reschedule at no cost
 
----
+**Technical glitch (online):**
+- Follow the on-screen instructions for reconnection
+- Do NOT close any windows or panic
+- Call the proctor via the chat feature
+- If connection drops, the test auto-pauses (usually) — you'll be walked through re-entry
 
-## Emergency Scenarios
+**Severe anxiety attack:**
+- Raise your hand. Tell the proctor you need a moment.
+- You can request to take your 10-min break early (usually accommodated)
+- Box breathing + water + 2 minutes of stillness resets most
 
-### Test Center Issues
-- **Running late:** Call the test center immediately (not email). Some centers have grace periods.
-- **Internet goes down (online test):** Follow the platform's reconnection protocol. Your test may be paused, not failed.
-- **Feeling sick:** If you're genuinely unable to continue, you can withdraw. Contact support — don't just walk out.
+## The One Thing to Remember
 
-### Technical Issues (Online)
-- **Camera disconnects:** Reconnect. If prolonged, contact support through the platform.
-- **Laptop crashes:** Reboot calmly. The platform usually saves your progress.
-- **Distraction in the room:** Deal with it quickly (close a door, close a window), return to the test.
+You've done the prep. You've practiced the pacing. You've simulated this morning's routine multiple times. The test is not going to surprise you — you've already taken something almost exactly like it 5-6 times.
 
----
+Trust the work. Show up. Execute the habits. The score will take care of itself.
 
-## Things to Avoid on Test Day
-
-- **New foods or drinks** — stick to your usual
-- **Intense exercise** — it'll drain energy
-- **Last-minute cramming** — it'll raise anxiety
-- **Caffeine overload** — jitters will hurt you
-- **Skipping breakfast** — you need fuel for 2 hours of focus
-- **Arriving late** — allow major buffer time
-- **Talking to other test-takers about the test** — it'll psyche you out
-- **Checking your phone for messages right before** — it's distracting
-
----
-
-## One Final Reminder
-
-You've prepared. You've done the work. Today is execution day. Trust your system, stick to your pacing, and remember: the GMAT Focus is a skill test. You've trained the skill. Now go demonstrate it.
-
-Good luck. You've got this.
+Good luck.

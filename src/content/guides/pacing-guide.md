@@ -7,244 +7,212 @@ type: reference
 
 # Pacing Guide
 
-Pacing is the difference between a 640 and a 710. You can know the content perfectly and still score badly if you can't manage time. This guide gives you exact pacing targets and strategies for every section.
+Pacing is the difference between a 640 and a 710. You can know the content perfectly and still score badly if you can't manage time. This guide gives you exact pacing targets and strategies for every section, plus the mental game that makes pacing work under pressure.
 
----
+## How to Use This Guide
 
-## The GMAT Focus Time Structure
+Reference during mock exams and real practice. Internalize the per-question budgets until you can sense "I'm behind" without looking at the clock. Pair with Module 6 (Mock Exam Strategy) for the full test-day pacing system.
 
-| Section      | Questions | Time   | Per Question |
-|--------------|-----------|--------|--------------|
-| Quant        | 21        | 45 min | ~2:08        |
-| Verbal       | 23        | 45 min | ~1:57        |
-| Data Insights| 20        | 45 min | ~2:15        |
+Three rules to internalize before reading the rest:
 
-**Total:** 64 questions in 135 minutes (2 hours 15 minutes), with one 10-minute break.
+1. **Average pacing is a lie**. You'll spend more time on hard questions and less on easy ones. The goal isn't to nail exactly 2:00 on every question — it's to be on pace TOTAL.
+2. **The clock is your enemy only if you make it one**. Checking the clock every question wastes cognitive bandwidth. Check at specific intervals only.
+3. **Better to guess fast than answer slow**. A 30-second wrong guess hurts less than a 4-minute wrong answer that also steals time from two easier questions.
 
----
+## GMAT Focus Section Overview
 
-## The Pacing Philosophy
+| Section | Questions | Time | Avg/Q |
+|---------|-----------|------|-------|
+| Quant | 21 | 45 min | 2:08 |
+| Verbal | 23 | 45 min | 1:57 |
+| Data Insights | 20 | 45 min | 2:15 |
 
-### Budget per Question, Not Hard Limit
-Your target is an **average** pace, not a hard cap on every question. Some questions will take 1:30, others 3:00. As long as your average matches the target, you're fine.
+Total test time: 2h15m plus optional 10-minute break between sections. You can take sections in any order — pick your strongest section first to bank confidence, OR your weakest first while you're mentally freshest. Both strategies work; pick one and stick to it across mocks and the real test.
 
-### The 3-Minute Maximum
-Never spend more than **3 minutes** on a single question. If you're still stuck at 3 minutes, guess and move on. One question is not worth sacrificing your performance on the next five.
+No calculator in Quant. Calculator allowed in Data Insights. None needed in Verbal.
 
-### Timing Checkpoints
-Don't check the clock every question — it breaks concentration. Instead, check at these milestones:
+## Quant Pacing (21 Qs / 45 min / 2:08 avg)
 
-**Quant (21 questions, 45 min):**
-- After Q7: 15 min used (30:00 left) — on pace
-- After Q14: 30 min used (15:00 left) — on pace
-- After Q21: 45 min used — done
+**Per-question targets:**
+- Easy (first 5-7): 1:20-1:45 each
+- Medium (middle): 2:00-2:20 each
+- Hard (last 5-7): 2:30-3:00 each
 
-**Verbal (23 questions, 45 min):**
-- After Q8: 15 min used (30:00 left) — on pace
-- After Q16: 30 min used (15:00 left) — on pace
-- After Q23: 45 min used — done
+**Clock checkpoints:**
+- At question 7: should have used ~15 minutes (1/3 done)
+- At question 14: should have used ~30 minutes (2/3 done)
+- At question 18: should have 7-8 minutes left
+- At question 20: should have 3+ minutes left
 
-**Data Insights (20 questions, 45 min):**
-- After Q7: 15 min used (30:00 left) — on pace
-- After Q14: 30 min used (15:00 left) — on pace
-- After Q20: 45 min used — done
+If you hit checkpoint 1 (Q7) and you've used >18 minutes, you're behind. Accelerate.
 
----
+If you hit checkpoint 2 (Q14) and you've used >34 minutes, you're in a pacing crisis. The fix is uncomfortable: pick one question you're stuck on, commit to a best guess in 20 seconds, and move on. You will guess on 1-2 more before the end. Accept it and keep moving.
 
-## Quant Pacing
+**When to skip in Quant:**
+- 90-second rule: if you haven't made progress in 90 seconds, flag and move on
+- If the question setup alone takes longer than 45 seconds to parse, you're probably missing something obvious. Reread once. If still unclear, flag and move on.
 
-### Target: ~2:08 per question
+**Quant time-wasters to avoid:**
+- Doing long arithmetic when estimation works (do you need exactly 23.67% or is "about a quarter" enough?)
+- Setting up equations when plugging in answer choices is faster
+- Setting up equations when "smart numbers" (plug in 100 for totals, or 2 for variables) would work
+- Double-checking answers on the first pass — if you have time at the end, review then
 
-### Question Difficulty Varies
-Some Quant questions take 1:00 (easy arithmetic). Others take 3:00 (complex word problems). That's okay — balance them out.
+**The 700+ pacer's Quant mindset:**
+- Read each stem twice (slowly) — you save far more time on setup than you "lose" on reading
+- Identify the question type in the first 10 seconds (algebra translation? rate? geometry?)
+- Choose the method before starting (direct algebra? plug in? backsolve?)
+- Execute without second-guessing mid-calculation
 
-### When to Guess on Quant
-- If you're staring at the question after 30 seconds and still don't know where to start → likely a content gap, guess and move on
-- If you've been solving for 2:30 and still don't have an answer → guess and move on
-- If it's a complex multi-step problem and you're already behind pace → consider guessing even if you think you could solve it
+## Verbal Pacing (23 Qs / 45 min / 1:57 avg)
 
-### Quant Shortcut Tactics
-- **Plug in answer choices** for problems with specific numerical answers (work from C — the middle value)
-- **Estimate** when answer choices are far apart
-- **Plug in numbers** when problems use variables (pick small numbers like 2, 3, 5)
+Verbal is trickier because CR and RC have very different time profiles.
 
----
+**Critical Reasoning** (~11 Qs):
+- 1:30-2:00 per question
+- Aim for ~1:45 average
+- Easy/medium CR: 1:20-1:40
+- Hard CR (Boldface, complex Paradox): up to 2:30
 
-## Verbal Pacing
+**Reading Comprehension** (~12 Qs, 3-4 passages):
+- Read passage in 2:30-3:00 (for 300-400 word passages)
+- Then ~1:00 per question on that passage
+- Total per passage: 5:30-7:00
 
-### Target: ~1:57 per question
+**Clock checkpoints:**
+- At question 8: should have used ~16 minutes
+- At question 15: should have used ~30 minutes
+- At question 20: should have 5+ minutes left
 
-### Critical Reasoning
-- **Target:** 1:45-2:00 per question
-- Reading + identifying the argument: 45 seconds
-- Analyzing answer choices: 45-60 seconds
-- Selecting: 15 seconds
+**RC-specific pacing:**
+- Budget: 2:30 to read passage + 1:00 × 4 questions = 6:30 per passage
+- If you finish a passage in 5:00 and it has 3 questions, you've earned time for a slower passage later
+- Never skip the passage and try to answer questions cold — waste of time
 
-### Reading Comprehension
-- **Passage reading:** 2:30-3:00 for the first read
-- **Per question:** 1:00-1:30 (since you already read the passage)
-- **Total for a 4-question passage:** ~8 minutes
-- **Total for a 3-question passage:** ~7 minutes
+**When to skip in Verbal:**
+- CR: if you've eliminated 2 answers and are stuck between 3, guess based on trap-pattern recognition (avoid absolute language, scope-mismatched answers) and move on
+- RC: if a specific-detail question has you hunting for evidence for >90 seconds, flag it and come back
 
-### RC Time Management
-- Don't re-read the entire passage for every question — only the relevant section
-- If you can't find the evidence in 30 seconds, move on
-- RC passages are easier to manage as a batch: finish all questions for one passage before moving on
+**Verbal time-wasters:**
+- Re-reading entire CR arguments when only the conclusion matters for the question
+- Reading RC passages slowly "for comprehension" — you WILL return to specific sentences for detail questions
+- Second-guessing correct answers on reread
 
----
+**The 700+ pacer's Verbal mindset:**
+- Identify question type in 5 seconds (Strengthen? Inference? Main Idea?)
+- Predict the answer before reading options when possible
+- Commit to your first-pass answer unless you find a specific reason to change
 
-## Data Insights Pacing
+## Data Insights Pacing (20 Qs / 45 min / 2:15 avg)
 
-### Target: ~2:15 per question
+DI has the most pacing variance because of format differences.
 
-### By Subtype
-| Type | Target  | Notes |
-|------|---------|-------|
-| DS   | 2:00    | Should be fastest — you're evaluating, not calculating |
-| MSR  | 2:30    | Tab-reading takes time; amortize across the set |
-| Table| 2:00    | Systematic scanning |
-| GI   | 2:00    | Estimation saves time |
-| TPA  | 2:30    | Most time-consuming |
+**Per-format targets:**
+- Data Sufficiency: 1:45-2:00 each
+- Table Analysis: 2:00-2:15 each
+- Graphics Interpretation: 2:00-2:15 each
+- Two-Part Analysis: 2:30-3:00 each (denser setup)
+- Multi-Source Reasoning: ~7:00 per 3-question set (~2:20/Q)
 
-### MSR Pacing Tip
-MSR comes in sets of 3 questions sharing 2-3 tabs. Budget 60-90 seconds upfront to read all tabs, then 1:30-2:00 per question. Total for a 3-question set: ~7 minutes.
+**Clock checkpoints:**
+- At question 7: should have used ~16 minutes
+- At question 14: should have used ~32 minutes
+- At question 18: should have 5+ minutes left
 
-### TPA Pacing Tip
-Don't rush TPA. Both answers must be correct for credit. A 2:30 TPA answered correctly is better than a 1:30 TPA half wrong.
+**DI-specific considerations:**
+- The calculator: use it sparingly. Mental math is often faster than typing.
+- MSR sets eat time in chunks. If a set drags past 8:00, flag the hardest question and guess on it.
+- TPA: set up equations FIRST, then scan the answer grid. Don't try to guess pairs intuitively.
 
----
+**DI time-wasters:**
+- Over-using the calculator on single-step problems
+- Re-reading MSR tabs for each question (build a mental index on first pass)
+- Computing exact values when the answer choices are spaced apart enough for estimation
 
-## When to Guess
+**The 700+ pacer's DI mindset:**
+- Identify format before reading (DS, MSR, TA, GI, TPA) — each has a different strategy
+- For DS, write A+D or B+C+E on scratch pad after evaluating statement (1) to narrow options
+- For MSR, skim all tabs once before ANY question to build the index
 
-Learn to guess **strategically**. Smart guessing protects your score.
+## The 90-Second Rule
 
-### Scenario 1: You Don't Understand the Question
-- Make your best guess within 30-45 seconds
-- Pick an answer that feels closest to what you'd expect
-- Move on without looking back
+The single most important pacing habit: if you haven't made real progress on a question after 90 seconds, you're in a trap. Options:
 
-### Scenario 2: You're Running Out of Time on a Single Question
-- At 2:30, if you're not close to an answer, guess
-- Don't sink 4 minutes into one question just because you feel committed
+1. **Commit to your best guess** based on elimination, and move on. 20 seconds of guessing beats 3 more minutes of staring.
+2. **If flagging is available** (not on real GMAT Focus — no flagging mid-section), flag and come back.
+3. **Reset and reread the stem once** — maybe you misread something critical. If still stuck, guess.
 
-### Scenario 3: You're Behind on the Section
-- If you're 5+ minutes behind pace, guess more aggressively
-- Pick 3-4 questions to guess on quickly so you can apply your remaining time to the questions you can solve
+The 90-second rule prevents "rabbit holes" where you spend 5 minutes on one hard question and then rush through 3 easier ones at the end. The math: 5 minutes on one wrong question = 5 minutes you could have spent correctly answering 3 easier questions. Always a bad trade.
 
-### Scenario 4: A Super Hard Question
-- If the question is clearly at the top of the difficulty range and you have no idea how to approach it
-- Guess, note it as "hard for me," and move on
-- You can't master every topic — focus on where you have leverage
+## When to Guess (and How)
 
----
+You WILL guess on 2-4 questions per section. Accept this. Good guessing beats bad guessing:
 
-## Strategic Guessing Tactics
+**First-level guessing** (better than random):
+- Eliminate obviously wrong answers first (out-of-scope, absolute language, reverses the question)
+- Between 2-3 plausible answers, pick the one that matches the likely answer type
+- In DS, if you've eliminated one statement as insufficient, you're already at 1-in-3
 
-### For Quant
-- If two answers are mathematically close (e.g., 24 and 25), one is usually a trap
-- If the question mentions "approximately" or "closest to," estimate roughly
-- If you eliminated 2 choices but are stuck on the remaining 3, pick the "middle" one (often the answer for C-traps)
+**Guessing patterns to lean on:**
+- In CR: avoid extreme language ("always," "never," "only") unless justified by the passage
+- In RC: main idea answers should be broad enough to cover the whole passage (not too narrow)
+- In DS: if you're truly blind, "C" is NOT statistically better (don't fall for the myth)
+- In Quant: eliminate choices with the wrong sign or wrong order of magnitude
 
-### For Verbal
-- For CR: eliminate answers that are out of scope or too extreme
-- For RC: answers that are directly supported are usually right; answers that extrapolate are usually wrong
-- If stuck, pick the answer that sounds most moderate (not the extreme ones)
+**When to guess fast** (under 15 seconds):
+- You don't understand the question at all (save time for ones you can crack)
+- You've already spent 2+ minutes and are nowhere
+- Clock is at a critical checkpoint and you're behind
 
-### For DI
-- For DS: if you're stuck, lean toward A/B/D (a single statement being sufficient) vs C/E
-- For Table: if a statement uses "always" or "every," it's often false
-- For MSR: avoid "Cannot be determined" unless you've exhausted the tabs
+## The Backsolving Budget
 
----
+A separate tactical note: in Quant, you often save time by testing answer choices rather than solving algebraically. Budget this deliberately:
 
-## Pre-Section Pacing Checklist
+- If the question has discrete numeric answers (A) 12 (B) 24 (C) 36 (D) 48 (E) 60: backsolving is often 30-60 seconds faster than algebra
+- Start with C (middle value) — the answer tells you to try higher or lower
+- Stop as soon as you find the match
 
-Before starting each section, remind yourself:
-- [ ] My target: ~2:00 per question on average (adjust for section)
-- [ ] I will NOT spend more than 3:00 on any question
-- [ ] If I'm stuck after 30 seconds, I'll guess and move on
-- [ ] I'll check the clock at my pacing checkpoints (Q7, Q14)
-- [ ] One bad question won't ruin my section — I'll move on and focus
+## The Taper Within a Section
 
----
+Most students burn cognitive energy linearly. The last 5 questions of every section feel 30% harder than the first 5 — not because they ARE harder, but because your brain is tired.
 
-## What to Do If You Fall Behind
+**Countermeasure:** bank time on the first 10 questions (faster but accurate) so you have more buffer for the last 11-13. NOT the opposite.
 
-### Mild Delay (1-2 minutes behind)
-- Don't panic
-- Focus on solving the next 3 questions efficiently
-- Skip any question that looks complex — guess and move on
+In practice: the first 5-7 Quant questions should feel easy and fast (they often are). Aim to be 2-3 minutes ahead of average pace at question 10. That buffer carries you through the harder back half.
 
-### Moderate Delay (3-4 minutes behind)
-- You need to make up time
-- Guess aggressively on 2-3 questions
-- Prioritize quality on the remaining ones
+## Pacing During Mocks vs Real Test
 
-### Major Delay (5+ minutes behind)
-- Triage mode
-- Skim each remaining question in 10 seconds
-- Answer the ones that look solvable quickly
-- Guess on the rest
-- Better to answer 80% of questions well than 50% perfectly
+Mocks are where you PRACTICE pacing. Don't just take them to measure scores.
 
-### The "Remaining 5" Rule
-If you have 5 questions left and less than 5 minutes, pick a single answer letter (e.g., C) and fill it in for all remaining questions. This guarantees you at least get some right by guessing, rather than leaving them blank (which is worse).
+**After every mock, review pacing data:**
+- Which questions took you >3 minutes? Were they worth it?
+- Which sections ran out of time? Why?
+- Did you skip/guess or did you just run the clock down?
 
----
+**Build pacing habits by drilling SECTION-level simulations under time pressure:**
+- 2 sections/week of full 45-minute practice
+- Forbid yourself from pausing or checking the clock outside checkpoints
+- Note your finishing time and pacing against the checkpoints above
 
-## Pacing Patterns to Build
+## The Final Week Pacing Review
 
-### Pattern 1: Front-Load Efficiency
-The first few questions of a section should feel faster than 2:00 each. They're usually easier — solve them quickly to bank time.
-
-### Pattern 2: Don't Over-Invest in Any One Question
-If you've been on a question for 2:30, your marginal time is better spent on the next question. Move on.
-
-### Pattern 3: Trust Your Instinct
-If you've narrowed down to 2 answer choices and can't decide, trust your first instinct. Overthinking rarely helps.
-
-### Pattern 4: Use the Clock for Checkpoints, Not Constant Monitoring
-Looking at the clock every question wastes 5-10 seconds per check. Look only at your planned checkpoints.
-
----
+In your last week before the test (see Module 7):
+- Don't take new mocks (fatigue cost > pacing info gain)
+- Instead, take ONE section per day as a pacing drill — 45 min, same time of day as your real test
+- Review pacing data after each, tweak one thing, move on
 
 ## Common Pacing Mistakes
 
-### 1. Spending Too Long on the First Question
-Nerves make you over-analyze the first question. Don't. Target 2:00 even for Q1.
+1. **Rushing the easy questions** — you'll get them wrong AND you'll have no extra time for hard ones
+2. **Spending 5 minutes on a single hard question** — you're trading 3 easier correct answers for it
+3. **Not using clock checkpoints** — you'll find out too late that you're 10 minutes behind
+4. **Guessing too late** — by the time you realize you should have guessed 2 minutes ago, you've lost those 2 minutes
+5. **Obsessing over the clock** — checking after every question slows you down and raises anxiety
+6. **Assuming your mock pace matches real-test pace** — test-day adrenaline usually makes you ~10% faster but also ~5% less accurate. Calibrate against multiple mocks.
+7. **Skipping the 10-minute break** — never. Always take it. Mental reset is worth 20-30 score points in Verbal alone.
 
-### 2. "I Know I Can Solve This" Syndrome
-You're 3:00 into a question and you think, "Just 30 more seconds." No. Guess and move on.
+## Final Pacing Principle
 
-### 3. Not Checking the Clock at All
-You need timing awareness. Don't obsess, but don't ignore it.
+The best pacers aren't the fastest — they're the ones who NEVER panic. When you're behind, you calmly recalibrate without rushing. When you're ahead, you don't slow down "to be safe" (you bank time). The clock is a tool, not an adversary.
 
-### 4. Panicking When Behind
-Panic makes you slower, not faster. If you're behind, take a 5-second breath and focus. Guessing a couple of questions gets you back on pace.
-
-### 5. Not Adapting Your Strategy
-Your pacing strategy should evolve as you practice. If 2:00 per question is too tight, adjust your guessing strategy or work on speed-boosting tactics.
-
----
-
-## Building Pacing Through Practice
-
-### Timed Practice from Day 1
-Don't practice untimed. Every practice set should have a timer, even if you're just starting out. Build the habit of working under pressure.
-
-### Section Drills
-Once a week, do a full 45-minute section drill to simulate section-level pressure. This is different from individual timed questions.
-
-### Track Your Pace
-In your error log, note which questions took too long. Look for patterns — is it a specific topic that slows you down?
-
----
-
-## Key Takeaways
-
-- Target ~2:00 per question on average, but let individual questions vary
-- Never spend more than 3:00 on any single question
-- Check the clock at strategic checkpoints (Q7, Q14)
-- Guess strategically — smart guessing protects your score
-- If you fall behind, don't panic; triage and move forward
-- Build pacing habits from Day 1 by always practicing with a timer
+Practice pacing until it's automatic. On test day, you shouldn't be thinking about time — you should be thinking about questions. Time management should be pre-committed, not improvised.

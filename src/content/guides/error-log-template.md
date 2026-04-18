@@ -7,210 +7,195 @@ type: reference
 
 # Error Log Template
 
-If you take one habit from this entire course, take this one. An error log is a structured record of every question you get wrong (and every question you got right by luck). It's the single most effective tool for targeted improvement.
+If you take one habit from this entire course, take this one. An error log is a structured record of every question you get wrong (and every question you got right by luck). It's the single most effective tool for targeted improvement — more effective than any specific drill, any strategy, any number of practice questions without analysis. Students who keep error logs and actually review them improve 50-100 points faster than students who don't. This guide gives you the exact template, the categorization scheme, the weekly review protocol, and the common mistakes that undermine the whole system.
 
----
+## Why Error Logs Work (the Short Version)
 
-## Why the Error Log Works
+Mistakes are data, not failures. Every wrong answer contains information about a specific gap — conceptual, tactical, or attentional. Aggregated over weeks, those gaps form patterns. Patterns are the real content of your prep: they tell you exactly what to drill next.
+
+Without a log, every mistake is ephemeral. You forget the specifics within 48 hours. The pattern never emerges. You end up drilling randomly or repeating the same mistakes.
 
-Most test-takers do this: get a question wrong → read the explanation → move on. This feels productive. It isn't. Within a week, you forget the mistake and make it again on a different question.
+With a log, every mistake compounds into an insight. By week 8, you know — with specificity — that your three highest-yield weaknesses are (for example) "yes/no DS with negative-number cases," "CR weaken questions that require spotting an alternative cause," and "percent-change problems where base year shifts." You drill those. Your score moves.
+
+## The Core Template
+
+Every log entry, whether paper or digital, should capture these fields. Don't overcomplicate — simpler = more likely to keep up with.
+
+**Basic fields:**
+- **Date** (when you attempted the question)
+- **Source** (which practice set, mock, or official question)
+- **Question number** or identifier
+- **Section** (Quant / Verbal / DI)
+- **Question type** (Problem Solving / Data Sufficiency / Critical Reasoning / Reading Comprehension / Table Analysis / Graphics Interpretation / Two-Part Analysis / Multi-Source Reasoning)
+- **Subtopic** (e.g., "quadratic equations," "strengthen," "mixture problem")
+- **Difficulty** (Easy / Medium / Hard — your estimate or the source's label)
+- **Time spent** (seconds)
+- **My answer** (what you picked)
+- **Correct answer** (the right one)
+- **Error category** (see taxonomy below)
+- **Root cause** (one sentence, plain language, why I got it wrong)
+- **The fix** (one sentence — what I will do differently)
+- **Review dates** (when you re-attempted — see Review Cadence)
+
+## The 5-Category Error Taxonomy
+
+Every mistake falls into one of five categories. Categorizing is the most important step — it tells you what kind of fix to apply.
+
+**1. Conceptual gap.** You didn't know the concept or formula. The mistake was about missing knowledge.
+- Example: couldn't recall the Pythagorean theorem for a 3D diagonal problem
+- Fix: study the topic. Not more drilling — actual study.
+
+**2. Careless error.** You knew the concept and the method, but made a slip in execution — arithmetic, sign error, misreading, wrong variable.
+- Example: calculated 6 × 8 as 42 under time pressure
+- Fix: slow down the execution phase, double-check critical arithmetic
+
+**3. Time pressure.** You rushed because of the clock and cut corners — skimmed the question, didn't check your work, jumped to an answer.
+- Example: missed the word "NOT" in a CR prompt and picked the weakening answer when asked to strengthen
+- Fix: pacing strategy improvement (see Pacing Guide) — the real fix is upstream
+
+**4. Misread question.** You solved the wrong problem because you misunderstood what was being asked.
+- Example: found the value of x when the question asked for x²
+- Fix: slow first read of the stem, underline key words, re-read the question BEFORE picking an answer
+
+**5. Wrong strategy.** You approached the problem with the wrong method — setting up algebra when plugging in would have been faster, or computing when estimation was enough.
+- Example: solved a percent problem with algebra when smart numbers would have been 60 seconds faster
+- Fix: drill strategy selection (see Module 3 Quant Mastery) — always ask "what's the fastest way?" before starting
 
-The error log forces you to **analyze** instead of just review. It creates patterns that are invisible when you just skim explanations. After 2-3 weeks, your log will reveal things like:
-- "I keep making sign errors on inequality questions"
-- "I run out of time on RC because I re-read passages"
-- "I miss DS questions where Statement 2 looks irrelevant but actually has a trap"
+**A sixth informal category: Lucky right.** If you got the answer right but you know your reasoning was shaky or you guessed, log it. These are ticking bombs — they'll surface as wrong answers on the real test.
 
-These patterns are gold. They tell you exactly where to focus — without them, you're guessing.
+## Why the Taxonomy Matters
 
----
+Different error categories demand different interventions. If 80% of your mistakes are conceptual, the fix is more studying. If 80% are careless, more studying won't help — you need to drill execution discipline. Students who skip categorization over-study topics they know and under-fix the real weaknesses.
 
-## What to Log
+Typical distributions for different starting-point students:
+- **600 starter:** ~50% conceptual, 25% careless, 15% time pressure, 10% other
+- **650 starter:** ~30% conceptual, 35% careless, 25% time pressure, 10% other
+- **700+ starter:** ~10% conceptual, 40% careless, 35% time pressure, 15% other
 
-### Every question you got WRONG
-Obviously.
+Notice how the mix shifts as you get better. At higher levels, you know the content — you're losing points on execution and pacing. That requires different training than content review.
 
-### Every question you got RIGHT BUT WEREN'T SURE ABOUT
-These are "lucky" correct answers. You could easily get them wrong next time. Log them so you can review the underlying concept.
+## Template Format (Paper or Digital)
 
-### Every question that took too long
-Even if you got it right, if it took you 3+ minutes, that's a pacing issue. Log it and figure out how to solve it faster.
+**Paper version** (works for most students): a dedicated notebook. One line per entry for scan-ability, with space for a sentence or two.
 
----
+**Digital version** (spreadsheet): columns for every field. Google Sheets works well. Enables sorting and filtering, which is powerful by week 6+.
 
-## The Error Log Format
+**Recommended column layout for a spreadsheet:**
 
-For each entry, record these fields:
+| Col | Field | Example |
+|-----|-------|---------|
+| A | Date | 2025-01-15 |
+| B | Source | Official Guide Q47 |
+| C | Section | Quant |
+| D | Type | PS |
+| E | Subtopic | Rate problem (work) |
+| F | Difficulty | Medium |
+| G | Time | 2:45 |
+| H | My answer | C |
+| I | Correct answer | B |
+| J | Category | Time pressure |
+| K | Root cause | Set up 1/a + 1/b instead of computing combined rate = 1/T |
+| L | Fix | Memorize "combined work = 1/T = 1/a + 1/b → T = ab/(a+b)" |
+| M | Re-review dates | 2025-01-17, 2025-01-24 |
 
-### 1. Date
-When you encountered the question.
+## Two Sample Entries (Full)
 
-### 2. Source
-Where the question came from (practice set, mock #2, specific topic drill, etc.).
+**Entry 1 (Conceptual gap):**
+- Date: 2025-03-12
+- Source: Mock 2, Quant Q14
+- Section: Quant / PS
+- Subtopic: Number Properties — counting factors
+- Difficulty: Medium
+- Time: 3:05
+- My answer: D (48)
+- Correct: C (30)
+- Category: Conceptual gap
+- Root cause: Didn't know the formula for counting factors from prime factorization. Tried to list all factors of 720 manually and missed several.
+- Fix: For n = p₁^a · p₂^b · p₃^c, total factors = (a+1)(b+1)(c+1). 720 = 2^4 · 3^2 · 5 → (5)(3)(2) = 30.
+- Re-review: 2025-03-14 (correct, 45s), 2025-03-21 (correct, 35s)
 
-### 3. Question Topic
-Be specific. "Quant" is too broad. "Algebra" is better. "Quadratic inequalities" is best.
+**Entry 2 (Time pressure + careless):**
+- Date: 2025-03-14
+- Source: Practice set (algebra, Q8)
+- Section: Quant / PS
+- Subtopic: Quadratic equations
+- Difficulty: Medium
+- Time: 1:20
+- My answer: A (x = 3)
+- Correct: C (x = 3 or x = -2)
+- Category: Misread question (found one root, question asked for "sum of all roots")
+- Root cause: Rushed to find x in the factored form (x-3)(x+2)=0, picked 3, didn't re-check the question stem.
+- Fix: Re-read question stem BEFORE picking an answer. Write "Sum?" on scratch pad if the question asks for sum of roots.
+- Re-review: 2025-03-16 (correct)
 
-### 4. Question Summary
-Write 1-2 sentences summarizing the question in your own words. This forces you to understand it at a deep level.
+## The Weekly Review Protocol
 
-### 5. Your Answer
-What you chose.
+Logging is 40% of the value. Reviewing is 60%. Most students skip the review. Don't.
 
-### 6. Correct Answer
-What it was.
+**Weekly review (60-90 minutes, same day every week):**
 
-### 7. Error Type
-This is the most important field. Use these categories:
+1. **Scan all entries from the past week.** Look at the Category and Root Cause columns. What patterns emerge? Two entries on sign errors? Three on the same CR type?
+2. **Identify your top 3 patterns.** Not 10 — three. The ones that cost the most points.
+3. **Draft a drill plan for the next week** targeting those 3. Specific: "Tuesday: 10 yes/no DS with negative cases. Wednesday: 15 strengthen CR with quantitative arguments."
+4. **Re-attempt your 5 most-recent wrong answers** — cold, no notes. See if you get them right now. If yes: note the date in the "Re-review" column. If no: that's a repeat pattern. Flag it urgently.
 
-**Conceptual Gap**
-You didn't know the underlying concept, formula, or rule.
-*Fix:* Go back to the relevant lesson. Study the concept from scratch. Do 10-15 practice problems on it.
+**Monthly review** (once a month, 2-3 hours):
 
-**Careless Mistake**
-You knew how to solve it but made a computation, copying, or arithmetic error.
-*Fix:* Slow down on the specific step where errors occur. Build a personal checklist.
+1. Categorical breakdown: what % of my mistakes are conceptual? Careless? Time pressure? Compare to last month.
+2. Are the categories shifting in the right direction? (Conceptual should shrink as you study; time pressure should shrink as you drill.)
+3. Are any specific patterns persisting despite 4+ weeks of intervention? Those need a different approach — get a coach, search for a different explanation, take 3 days off from that topic.
+4. Quarterly-level: look at patterns from week 4 vs week 8. Is your mistake profile evolving?
 
-**Time Pressure**
-You knew the concept but ran out of time. Rushed and made a mistake.
-*Fix:* Practice the question type under strict timing. Identify where you're spending too long.
+## The Re-Review Cadence
 
-**Misread**
-You misunderstood what the question was asking.
-*Fix:* Underline the actual question before solving. Re-read the question after solving to confirm.
+Spaced repetition works. Re-attempt every wrong question on these intervals:
 
-**Strategy**
-You used an inefficient approach. You got the right answer slowly, or the wrong answer from a bad method.
-*Fix:* Learn alternative methods. Sometimes plugging in numbers is faster than algebra; sometimes it's slower.
+- **2-3 days later** (short-term retention check)
+- **1 week later**
+- **1 month later**
+- **In your last week of prep** — sweep through every entry marked "still hard" one final time
 
-**Other**
-Anything that doesn't fit the above categories. (Try to avoid this — specificity matters.)
+A question you got wrong and then got right 3 days later is not learned yet. A question you got wrong, right, right, right across 2-3-week intervals IS learned. The log tracks which is which.
 
-### 8. What You Should Have Done
-In 2-3 sentences, describe the correct approach. Write it in your own words — don't copy the explanation.
+## The "False Positives" Entry
 
-### 9. Lesson Learned
-One sentence summarizing what you'll do differently next time.
+Log questions you got RIGHT when your reasoning was shaky. Example: guessed between two options and happened to pick the right one, or got the answer via faulty reasoning that coincidentally worked.
 
----
+These are invisible mistakes. They'll bite you on test day when the same pattern shows up and your lucky guess doesn't repeat. Log them. Re-attempt them cold later.
 
-## Error Log Template (Copy This)
+## Common Error Log Mistakes
 
-```
-Date: [YYYY-MM-DD]
-Source: [e.g., Practice Set 5, Mock 2, Difficulty drill]
-Topic: [Specific topic — e.g., "Quadratic inequalities"]
-Question Summary: [1-2 sentences in your own words]
-Your Answer: [Letter or value]
-Correct Answer: [Letter or value]
-Error Type: [Conceptual | Careless | Time Pressure | Misread | Strategy | Other]
-What You Should Have Done: [2-3 sentences]
-Lesson Learned: [1 sentence]
-```
+Students screw up error logs in predictable ways. Avoid these:
 
----
+1. **Only logging "bad" mistakes.** You skip the "small" ones ("I just made a sign error, no big deal"). Sign errors compound — that one ends up on test day.
 
-## Review Cadence
+2. **Over-categorizing.** You have 15 categories and spend 20 minutes per entry. Too fine-grained. Use the 5-category taxonomy; don't subdivide.
 
-Writing the log is only half the job. You need to review it regularly.
+3. **Under-categorizing.** You say "I just didn't get it" without actually identifying the gap. That's not a log entry — that's a complaint. Push yourself to name the specific thing you didn't know or didn't do.
 
-### Daily Review (5-10 minutes)
-Read the entries from the past 2-3 days. Re-do 3-5 of the hardest mistakes without looking at the answer. If you still get them wrong, you haven't fixed the pattern.
+4. **Logging but never reviewing.** This is the most common failure. Logging without weekly review is a journal, not a tool.
 
-### Weekly Review (30 minutes)
-- Go through all entries from the week
-- Look for patterns: which error types are most common? Which topics?
-- Identify your top 3 recurring mistakes
-- Plan next week's study around fixing them
+5. **Re-reviewing immediately after getting a question wrong.** You still remember the answer — of course you'll get it right. Wait 2-3 days for a real retention check.
 
-### Monthly Review (60 minutes)
-- Go through the entire log
-- Note which issues have been resolved (you're no longer making them) — check them off
-- Note which issues persist — these need a different approach
-- Update your study plan based on the data
+6. **Never upgrading to a spreadsheet.** By week 4, paper gets unwieldy. Move to a spreadsheet so you can filter/sort by category, subtopic, or date.
 
-### Pre-Mock Review
-Before every mock, re-read the last 2 weeks of entries. You're reminding your brain of the patterns you're working on.
+7. **Logging too much detail.** Your log entries should be scannable. If each entry takes 5+ minutes to write, you'll skip some and the log becomes unreliable.
 
----
+8. **Treating the log as punishment.** It's not a record of failure. It's a record of progress. Every entry is a mistake you won't make again.
 
-## Pattern Recognition Examples
+## The "Finished" State
 
-After 2-3 weeks of logging, patterns emerge. Here are examples of patterns and their fixes:
+You're done reviewing an entry when:
+- You've re-attempted it correctly at least 3 times across spaced intervals
+- The root cause no longer appears in new mistakes
+- You can explain the fix to someone else in 2 sentences
 
-### Pattern: "Most of my Quant errors are careless."
-**Fix:** Build a personal checklist. Re-read the question. Double-check units. Verify your answer by substituting back.
+Mark it as "mastered" in your log. Archive but don't delete — occasional review prevents regression.
 
-### Pattern: "I keep missing DS questions when Statement 2 introduces a constraint."
-**Fix:** For every DS question, ask: "What does Statement 2 add?" Don't rush to combine with Statement 1.
+## One Final Principle
 
-### Pattern: "I run out of time on RC passages longer than 400 words."
-**Fix:** Practice RC with stricter timing. Build a habit of spending no more than 3 minutes on any passage before starting questions.
+The error log is the ONE habit that separates students who improve steadily from students who plateau. Every high-scorer I've worked with kept one. Every student who plateaued around 650 and couldn't understand why did not. It's not complicated. It's not sophisticated. It's just consistent.
 
-### Pattern: "I miss CR assumption questions when the answer is a 'negative' assumption (something that must NOT be true)."
-**Fix:** Apply the negation test deliberately. Negate every answer choice for assumption questions.
+Start tonight. One entry for every wrong question, no exceptions. By week 4, you'll have hundreds of entries. By week 8, you'll know your score ceiling and the 3 specific things keeping you from it. By week 12, you'll have fixed most of them.
 
-### Pattern: "I misread mixture problems when the percentages are close (e.g., 35% and 40%)."
-**Fix:** Write out the two concentrations before setting up the equation. Double-check before solving.
-
----
-
-## Sample Error Log Entry
-
-```
-Date: 2024-03-15
-Source: Quant drill — Algebra
-Topic: Quadratic equations
-Question Summary: If x² - 6x + 5 = 0, what is the sum of all possible values of x?
-Your Answer: 5 (I thought x = 5 was the only solution)
-Correct Answer: 6 (the sum of both roots: x = 1 and x = 5)
-Error Type: Misread
-What You Should Have Done: Factor the quadratic: (x-1)(x-5) = 0, so x = 1 or x = 5. The question asks for the SUM of all possible values, which is 1 + 5 = 6. I read the question as "the value of x" instead of "the sum of all values."
-Lesson Learned: Always re-read the question after solving. Underline the specific quantity being asked for.
-```
-
----
-
-## Error Log Tools
-
-You don't need fancy software. Any of these works:
-
-### Option 1: Spreadsheet (Recommended)
-Create a Google Sheet or Excel file with columns for each field. Spreadsheets make it easy to filter, sort, and find patterns.
-
-### Option 2: Notebook
-A physical notebook works if you prefer handwriting. The downside is that you can't filter or sort entries.
-
-### Option 3: Note-Taking App (Notion, Evernote, Obsidian)
-These allow more flexibility (tags, links, embedded images) but can become cluttered. Use templates to stay consistent.
-
-### Option 4: A Custom Error Log in This Platform
-If you're using this GMAT platform, use the built-in Error Log feature (see the main dashboard). It has all the fields above pre-structured.
-
----
-
-## Mistakes to Avoid When Using an Error Log
-
-### 1. Logging Without Reviewing
-Writing down mistakes without going back to them is useless. Commit to regular reviews.
-
-### 2. Vague Entries
-"Got confused on algebra" tells you nothing. Be specific: "Forgot to distribute the negative sign when expanding -(x-3)."
-
-### 3. Not Categorizing Errors
-If you don't tag each mistake by type, you can't see patterns. Always assign an error category.
-
-### 4. Logging Only Wrong Answers
-Remember to log "lucky" right answers too — the ones where you weren't sure.
-
-### 5. Giving Up After 2 Weeks
-The log's value compounds over time. Stick with it for at least 4-6 weeks before deciding if it's working.
-
----
-
-## Key Takeaways
-
-- An error log is a structured record of every mistake (and every lucky correct answer)
-- Each entry needs: topic, summary, error type, what you should have done, lesson learned
-- Review daily, weekly, and monthly for maximum impact
-- Look for patterns after 2-3 weeks — that's where the real insight is
-- The log is the single most important habit for targeted improvement
+Open a spreadsheet. Title it "GMAT Error Log." Add the column headers above. Log your first entry from today's practice. That's the whole system.
