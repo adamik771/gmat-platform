@@ -54,10 +54,28 @@ export default async function DashboardPage() {
   let studyHours: number | null = null
   let weekAccuracy: number | null = null
   let totalSessionCount: number | null = null
-  const sectionStats: Record<Section, { total: number; correct: number }> = {
-    Quant: { total: 0, correct: 0 },
-    Verbal: { total: 0, correct: 0 },
-    DI: { total: 0, correct: 0 },
+  // Per-section stats split into overall / thisWeek / priorWeek so we can
+  // derive a section score (60-90) and a week-over-week trend label.
+  type SectionBucket = { total: number; correct: number }
+  const sectionStats: Record<
+    Section,
+    { overall: SectionBucket; thisWeek: SectionBucket; priorWeek: SectionBucket }
+  > = {
+    Quant: {
+      overall: { total: 0, correct: 0 },
+      thisWeek: { total: 0, correct: 0 },
+      priorWeek: { total: 0, correct: 0 },
+    },
+    Verbal: {
+      overall: { total: 0, correct: 0 },
+      thisWeek: { total: 0, correct: 0 },
+      priorWeek: { total: 0, correct: 0 },
+    },
+    DI: {
+      overall: { total: 0, correct: 0 },
+      thisWeek: { total: 0, correct: 0 },
+      priorWeek: { total: 0, correct: 0 },
+    },
   }
   let activityItems: ActivityItem[] = []
   let scoreChartData: ScoreDataPoint[] = []
@@ -67,6 +85,7 @@ export default async function DashboardPage() {
     topic: string
     preview: string
   }[] = []
+  let lessonsCompletedCount = 0
 
   try {
     if (user) {
@@ -104,19 +123,46 @@ export default async function DashboardPage() {
         .eq("user_id", userId)
       totalSessionCount = count
 
-      // Per-section accuracy from all attempts
+      // Per-section accuracy from all attempts — join the parent session's
+      // created_at so we can split into overall / this-week / prior-week
+      // buckets for trend calculations.
       const { data: sectionAttempts } = await supabase
         .from("practice_attempts")
-        .select("section, is_correct")
+        .select("section, is_correct, practice_sessions(created_at)")
         .eq("user_id", userId)
 
-      for (const a of sectionAttempts ?? []) {
+      const weekAgoMs = Date.now() - 7 * 86400000
+      const twoWeeksAgoMs = Date.now() - 14 * 86400000
+      type AttemptWithSession = {
+        section: string
+        is_correct: boolean
+        practice_sessions: { created_at: string } | null
+      }
+      for (const a of (sectionAttempts as AttemptWithSession[] | null) ?? []) {
         const sec = a.section as Section
-        if (sectionStats[sec]) {
-          sectionStats[sec].total++
-          if (a.is_correct) sectionStats[sec].correct++
+        if (!sectionStats[sec]) continue
+        sectionStats[sec].overall.total++
+        if (a.is_correct) sectionStats[sec].overall.correct++
+
+        const createdAt = a.practice_sessions?.created_at
+        if (createdAt) {
+          const t = new Date(createdAt).getTime()
+          if (t >= weekAgoMs) {
+            sectionStats[sec].thisWeek.total++
+            if (a.is_correct) sectionStats[sec].thisWeek.correct++
+          } else if (t >= twoWeeksAgoMs) {
+            sectionStats[sec].priorWeek.total++
+            if (a.is_correct) sectionStats[sec].priorWeek.correct++
+          }
         }
       }
+
+      // Lessons completed count
+      const { count: completedCount } = await supabase
+        .from("lesson_completions")
+        .select("user_id", { count: "exact", head: true })
+        .eq("user_id", userId)
+      lessonsCompletedCount = completedCount ?? 0
 
       // Recent sessions for activity feed
       const { data: recentSessions } = await supabase
@@ -195,6 +241,93 @@ export default async function DashboardPage() {
 
   const hasData = (totalSessionCount ?? 0) > 0
 
+  // ---------- Derive section / total scores ----------
+  // A section score (60-90) is only shown once the user has a minimum sample
+  // to avoid wild swings from 1-2 lucky answers.
+  const SECTION_MIN_SAMPLE = 10
+
+  /** Accuracy (0-1) → official GMAT section scaled score (60-90). */
+  function scaledSectionScore(correct: number, total: number): number {
+    return Math.round(60 + (correct / total) * 30)
+  }
+
+  /** Sum of section scores → GMAT total (205-805, in 10-point increments). */
+  function scaledTotalScore(
+    quant: number,
+    verbal: number,
+    di: number
+  ): number {
+    // Three sections each contribute 30 points above the 60 floor. 205..805
+    // is a 600-point range, so each section-point maps to ~6.67 total-points.
+    const above60 = quant - 60 + (verbal - 60) + (di - 60)
+    const raw = 205 + above60 * 6.6667
+    return Math.round(raw / 10) * 10
+  }
+
+  const sectionDerived: Record<
+    Section,
+    {
+      score: number | null
+      accuracy: number | null
+      trend: "up" | "down" | "stable" | undefined
+      trendLabel: string | undefined
+    }
+  > = {
+    Quant: deriveSection("Quant"),
+    Verbal: deriveSection("Verbal"),
+    DI: deriveSection("DI"),
+  }
+
+  function deriveSection(section: Section) {
+    const s = sectionStats[section]
+    const hasEnough = s.overall.total >= SECTION_MIN_SAMPLE
+    const accuracy = hasEnough
+      ? Math.round((s.overall.correct / s.overall.total) * 100)
+      : null
+    const score = hasEnough
+      ? scaledSectionScore(s.overall.correct, s.overall.total)
+      : null
+
+    let trend: "up" | "down" | "stable" | undefined
+    let trendLabel: string | undefined
+    if (s.thisWeek.total >= 3 && s.priorWeek.total >= 3) {
+      const thisWeekAcc = (s.thisWeek.correct / s.thisWeek.total) * 100
+      const priorWeekAcc = (s.priorWeek.correct / s.priorWeek.total) * 100
+      const delta = Math.round(thisWeekAcc - priorWeekAcc)
+      if (Math.abs(delta) < 2) {
+        trend = "stable"
+        trendLabel = "flat"
+      } else if (delta > 0) {
+        trend = "up"
+        trendLabel = `+${delta}%`
+      } else {
+        trend = "down"
+        trendLabel = `${delta}%`
+      }
+    }
+
+    return { score, accuracy, trend, trendLabel }
+  }
+
+  const allSectionsHaveSample =
+    sectionDerived.Quant.score !== null &&
+    sectionDerived.Verbal.score !== null &&
+    sectionDerived.DI.score !== null
+
+  const estimatedTotal = allSectionsHaveSample
+    ? scaledTotalScore(
+        sectionDerived.Quant.score!,
+        sectionDerived.Verbal.score!,
+        sectionDerived.DI.score!
+      )
+    : null
+
+  const totalLessons = lessons.length
+  const lessonPct =
+    totalLessons > 0
+      ? Math.round((lessonsCompletedCount / totalLessons) * 100)
+      : 0
+
   return (
     <div className="max-w-7xl mx-auto space-y-6">
       {/* Greeting */}
@@ -205,7 +338,7 @@ export default async function DashboardPage() {
         <p className="text-sm text-[#555555] mt-1">{today}</p>
       </div>
 
-      {/* Score Goal Card — blank until diagnostic is taken */}
+      {/* Score Goal Card — populated from derived section scores */}
       <div
         className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]"
         style={{ borderColor: "rgba(201,168,76,0.2)" }}
@@ -221,8 +354,14 @@ export default async function DashboardPage() {
             <div>
               <p className="text-xs text-[#555555]">Score Goal</p>
               <div className="flex items-baseline gap-3">
-                <span className="text-xl font-bold text-[#555555]">
-                  —
+                <span
+                  className={
+                    estimatedTotal !== null
+                      ? "text-xl font-bold text-[#F0F0F0]"
+                      : "text-xl font-bold text-[#555555]"
+                  }
+                >
+                  {estimatedTotal !== null ? estimatedTotal : "—"}
                   <span className="text-sm font-normal text-[#555555] ml-1">
                     estimated
                   </span>
@@ -238,19 +377,41 @@ export default async function DashboardPage() {
             </div>
           </div>
           <Link
-            href="/test-builder"
+            href={estimatedTotal !== null ? "/test-builder" : "/test-builder"}
             className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all hover:opacity-90"
             style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
           >
-            Take diagnostic
+            {estimatedTotal !== null ? "Set target" : "Take diagnostic"}
           </Link>
         </div>
 
-        {/* Progress bar — empty state */}
-        <div className="h-2 rounded-full bg-white/[0.06] overflow-hidden" />
-        <p className="text-xs text-[#555555] mt-2">
-          Take a diagnostic test to set your starting score and goal.
-        </p>
+        {/* Lessons-completed progress bar */}
+        <div className="h-2 rounded-full bg-white/[0.06] overflow-hidden">
+          <div
+            className="h-full rounded-full transition-all duration-700"
+            style={{
+              width: `${lessonPct}%`,
+              backgroundColor: "#C9A84C",
+            }}
+          />
+        </div>
+        <div className="mt-2 flex items-center justify-between text-xs">
+          <p className="text-[#555555]">
+            {estimatedTotal !== null
+              ? `Estimate based on ${Math.round(
+                  (sectionDerived.Quant.accuracy! +
+                    sectionDerived.Verbal.accuracy! +
+                    sectionDerived.DI.accuracy!) /
+                    3
+                )}% average practice accuracy. Keep going — accuracy improves with deliberate practice.`
+              : lessonsCompletedCount === 0
+              ? "Complete lessons and build up practice data — an estimate appears after ~10 questions in each section."
+              : `${lessonsCompletedCount} of ${totalLessons} lessons complete. Practice all three sections to unlock a score estimate.`}
+          </p>
+          <p className="text-[#888888] font-medium flex-shrink-0 ml-4">
+            {lessonsCompletedCount}/{totalLessons} lessons
+          </p>
+        </div>
       </div>
 
       {/* Weekly Stats */}
@@ -287,15 +448,16 @@ export default async function DashboardPage() {
           </h2>
           <div className="grid sm:grid-cols-3 gap-4">
             {(["Quant", "Verbal", "DI"] as const).map((sec) => {
-              const s = sectionStats[sec]
-              const hasSecData = s.total > 0
+              const d = sectionDerived[sec]
               return (
                 <SectionProgress
                   key={sec}
                   section={sec}
-                  score={hasSecData ? Math.round((s.correct / s.total) * 90) : null}
-                  accuracy={hasSecData ? Math.round((s.correct / s.total) * 100) : null}
-                  empty={!hasSecData}
+                  score={d.score}
+                  accuracy={d.accuracy}
+                  trend={d.trend}
+                  trendLabel={d.trendLabel}
+                  empty={d.score === null}
                 />
               )
             })}
