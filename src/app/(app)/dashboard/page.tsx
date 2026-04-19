@@ -14,7 +14,7 @@ import ActivityFeed from "@/components/dashboard/ActivityFeed"
 import ScoreChart, { type ScoreDataPoint } from "@/components/dashboard/ScoreChart"
 import QuickActions from "@/components/dashboard/QuickActions"
 import EmptyState from "@/components/shared/EmptyState"
-import { getAllLessons } from "@/lib/content"
+import { getAllLessons, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import type { ActivityItem, Section } from "@/types"
 
@@ -61,6 +61,12 @@ export default async function DashboardPage() {
   }
   let activityItems: ActivityItem[] = []
   let scoreChartData: ScoreDataPoint[] = []
+  let recentMistakes: {
+    id: string
+    section: Section
+    topic: string
+    preview: string
+  }[] = []
 
   try {
     if (user) {
@@ -137,6 +143,34 @@ export default async function DashboardPage() {
         .eq("user_id", userId)
         .gte("created_at", eightWeeksAgo)
         .order("created_at", { ascending: true })
+
+      // Recent mistakes — 3 most recent wrong attempts, enriched with prompt.
+      const { data: recentWrong } = await supabase
+        .from("practice_attempts")
+        .select("id, question_id, section, topic")
+        .eq("user_id", userId)
+        .eq("is_correct", false)
+        .order("session_id", { ascending: false })
+        .limit(3)
+
+      if (recentWrong && recentWrong.length > 0) {
+        const byId = new Map(getAllQuestions().map((q) => [q.id, q]))
+        recentMistakes = recentWrong.map((r) => {
+          const q = byId.get(r.question_id as string)
+          const previewSource = q?.prompt ?? ""
+          // Strip markdown-ish chars for a clean one-liner preview.
+          const clean = previewSource
+            .replace(/\n+/g, " ")
+            .replace(/[#*`_>]/g, "")
+            .trim()
+          return {
+            id: r.id as string,
+            section: r.section as Section,
+            topic: r.topic as string,
+            preview: clean.length > 120 ? `${clean.slice(0, 120)}…` : clean,
+          }
+        })
+      }
 
       if (trendSessions && trendSessions.length > 0) {
         const weeks = new Map<string, number[]>()
@@ -339,19 +373,51 @@ export default async function DashboardPage() {
             </Link>
           </div>
 
-          {/* Recent Mistakes — empty until error log tracking lands */}
+          {/* Recent Mistakes */}
           <div>
             <h2 className="text-sm font-semibold text-[#888888] uppercase tracking-widest mb-4">
               Recent Mistakes
             </h2>
-            <EmptyState
-              icon={AlertCircle}
-              title="No mistakes logged yet"
-              description="Your error log will collect questions you got wrong so you can review patterns over time."
-              ctaHref="/error-log"
-              ctaLabel="Open error log"
-              size="sm"
-            />
+            {recentMistakes.length === 0 ? (
+              <EmptyState
+                icon={AlertCircle}
+                title="No mistakes logged yet"
+                description="Your error log will collect questions you got wrong so you can review patterns over time."
+                ctaHref="/error-log"
+                ctaLabel="Open error log"
+                size="sm"
+              />
+            ) : (
+              <Link
+                href="/error-log"
+                className="block rounded-xl border border-white/[0.08] bg-[#111111] divide-y divide-white/[0.04] hover:border-white/[0.14] transition-colors"
+              >
+                {recentMistakes.map((m) => (
+                  <div key={m.id} className="p-4">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span
+                        className="px-2 py-0.5 rounded text-[10px] uppercase tracking-wide"
+                        style={{
+                          backgroundColor: "rgba(255,68,68,0.1)",
+                          color: "#FF4444",
+                        }}
+                      >
+                        {m.section}
+                      </span>
+                      <span className="text-[10px] uppercase tracking-widest text-[#555555]">
+                        {m.topic}
+                      </span>
+                    </div>
+                    <p className="text-xs text-[#888888] line-clamp-2">
+                      {m.preview || "Question source not found"}
+                    </p>
+                  </div>
+                ))}
+                <div className="p-3 text-xs text-[#888888] text-center">
+                  View full error log →
+                </div>
+              </Link>
+            )}
           </div>
         </div>
       </div>
