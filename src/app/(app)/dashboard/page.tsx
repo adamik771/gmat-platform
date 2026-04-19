@@ -17,6 +17,7 @@ import EmptyState from "@/components/shared/EmptyState"
 import { getAllLessons, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import type { ActivityItem, Section } from "@/types"
+import TargetScoreControl from "./TargetScoreControl"
 
 export default async function DashboardPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -251,17 +252,21 @@ export default async function DashboardPage() {
     return Math.round(60 + (correct / total) * 30)
   }
 
-  /** Sum of section scores → GMAT total (205-805, in 10-point increments). */
+  /**
+   * Sum of section scores → GMAT Focus total (205, 215, 225, …, 805).
+   * Three sections each contribute 30 points above the 60 floor, so
+   * 600 raw points map to the 600-point 205..805 range (1:1 at max).
+   * Round to the nearest valid Focus score (increments of 10 offset by 5).
+   */
   function scaledTotalScore(
     quant: number,
     verbal: number,
     di: number
   ): number {
-    // Three sections each contribute 30 points above the 60 floor. 205..805
-    // is a 600-point range, so each section-point maps to ~6.67 total-points.
     const above60 = quant - 60 + (verbal - 60) + (di - 60)
     const raw = 205 + above60 * 6.6667
-    return Math.round(raw / 10) * 10
+    const rounded = 205 + Math.round((raw - 205) / 10) * 10
+    return Math.min(805, Math.max(205, rounded))
   }
 
   const sectionDerived: Record<
@@ -328,6 +333,28 @@ export default async function DashboardPage() {
       ? Math.round((lessonsCompletedCount / totalLessons) * 100)
       : 0
 
+  // User's persisted target score lives in user_metadata.target_score.
+  // Round to a GMAT-valid value defensively in case a future client writes
+  // something else.
+  const rawTarget = (user?.user_metadata?.target_score as number | null | undefined) ?? null
+  const targetScore =
+    typeof rawTarget === "number" &&
+    Number.isInteger(rawTarget) &&
+    rawTarget >= 205 &&
+    rawTarget <= 805
+      ? rawTarget
+      : null
+
+  // Gap copy when both estimate + target are known — "+50 to hit target"
+  // or "— already at target" if the user has exceeded it.
+  let goalGapLabel: string | null = null
+  if (estimatedTotal !== null && targetScore !== null) {
+    const gap = targetScore - estimatedTotal
+    if (gap > 0) goalGapLabel = `+${gap} to hit target`
+    else if (gap === 0) goalGapLabel = "On target — keep practicing"
+    else goalGapLabel = `+${-gap} above target`
+  }
+
   return (
     <div className="max-w-7xl mx-auto space-y-6">
       {/* Greeting */}
@@ -353,7 +380,7 @@ export default async function DashboardPage() {
             </div>
             <div>
               <p className="text-xs text-[#555555]">Score Goal</p>
-              <div className="flex items-baseline gap-3">
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mt-1">
                 <span
                   className={
                     estimatedTotal !== null
@@ -367,22 +394,33 @@ export default async function DashboardPage() {
                   </span>
                 </span>
                 <span className="text-sm text-[#555555]">→</span>
-                <span className="text-xl font-bold text-[#555555]">
-                  —
-                  <span className="text-sm font-normal text-[#555555] ml-1">
-                    target
+                <TargetScoreControl
+                  initialTarget={targetScore}
+                  estimate={estimatedTotal}
+                />
+                {goalGapLabel && (
+                  <span
+                    className="ml-1 px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-widest"
+                    style={{
+                      backgroundColor: "rgba(201,168,76,0.12)",
+                      color: "#C9A84C",
+                    }}
+                  >
+                    {goalGapLabel}
                   </span>
-                </span>
+                )}
               </div>
             </div>
           </div>
-          <Link
-            href={estimatedTotal !== null ? "/test-builder" : "/test-builder"}
-            className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all hover:opacity-90"
-            style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-          >
-            {estimatedTotal !== null ? "Set target" : "Take diagnostic"}
-          </Link>
+          {estimatedTotal === null && (
+            <Link
+              href="/test-builder"
+              className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all hover:opacity-90"
+              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            >
+              Take diagnostic
+            </Link>
+          )}
         </div>
 
         {/* Lessons-completed progress bar */}
