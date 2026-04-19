@@ -124,6 +124,16 @@ Final commit series (`2787908` → `c693ad2`, 12 commits) tripled the content fo
 - New Quant topic files added: `geometry.md`, `rates-work.md`, `ratios-percents.md`, `exponents-roots.md`.
 - All content parses cleanly through the loader. Build stays clean. Everything pushed to `main` and live (or will be live on next Vercel pickup from `gmat-platform-61zf`).
 
+### Lesson completion tracking (this session)
+Replaces the synthesized "first 2 done, 3rd current, rest locked" stub on `/lessons` with a real per-user Supabase-backed completion system. Users can now mark any lesson complete from its detail page; status flows back into the lessons list and counts toward the progress header.
+- **New Supabase table `lesson_completions`** — `(user_id uuid fk auth.users, lesson_slug text, completed_at timestamptz)` with primary key on `(user_id, lesson_slug)` for idempotent upsert. RLS enabled with four policies (select/insert/update/delete) scoping every row to `auth.uid()`. SQL committed to `HANDOFF.md`'s migration section below for replay — **Adam ran this in the Supabase SQL editor** manually (same flow used for `practice_sessions` earlier in the project — this repo doesn't have a `supabase/` migrations dir).
+- **API route `src/app/api/lesson-completions/route.ts`** — `POST` upserts `(user_id, lesson_slug)` on conflict (idempotent re-hit), `DELETE` removes the row. Both auth-gated via `getUser()` against the server Supabase client; both validate `slug` is a non-empty string. Returns `{ok: true}` on success or `{error: string}` with a 4xx/5xx.
+- **`src/app/(app)/lessons/page.tsx`** — now an async server component. Queries the user's `lesson_completions` rows, builds a `Set<string>` of completed slugs, then maps lessons → status. Gating model chosen (with Adam's sign-off): **no gating** — all lessons always clickable. Status is purely visual: `done` (in set) / `current` (first-non-done in module order) / `upcoming` (everything else). Wrapped in try/catch so the page still renders with everything as upcoming if Supabase is unreachable or the table is missing (mirrors the dashboard's resilient pattern).
+- **`src/app/(app)/lessons/LessonsClient.tsx`** — status union changed from `"done" | "current" | "locked"` to `"done" | "current" | "upcoming"`. Dropped the `if (isLocked) { render non-clickable div }` branch — every card is now a plain `<Link>`. Locked lock icon replaced with a muted outline `Circle` from lucide. CTA labels flow "Review" → "Start" → "Preview".
+- **`src/app/(app)/lessons/[slug]/page.tsx`** — now dynamic per-user. Fetches `initialCompleted` for this lesson via the same Supabase-query-with-try/catch pattern. Dropped `generateStaticParams` (page now always SSRs per request due to the cookies() call via Supabase). Added a green "Completed" chip with checkmark in the meta row (next to the duration pill) when `initialCompleted`. Renders the new `CompleteToggle` above the prev/next nav strip.
+- **New `src/app/(app)/lessons/[slug]/CompleteToggle.tsx`** — client component. Pill card with icon + copy + button. Toggle flips state optimistically then `router.refresh()`'s so server-rendered surfaces (the header chip, the lessons list) re-read the new status. Shows API errors inline in red (`#FF4444`) without rolling back the visual state, so the user sees what went wrong. On first-time completion (only while `justCompleted && !initialCompleted`), offers a secondary "Next lesson" link next to the button, but not on subsequent toggles — avoids nagging.
+- **Verified**: `npx next build` clean — 27 routes total. `/lessons` and `/lessons/[slug]` moved from static to dynamic (ƒ). `/api/lesson-completions` is the new dynamic route. Preview browser test: anonymous POST → 401, authed POST with no table → 500 with Supabase's `Could not find the table 'public.lesson_completions'` message surfaced in the red error `<p>` under the toggle button, toggle stays in "Mark complete" state. Authed GET of `/lessons` with no table → page renders cleanly, "0 of 8 completed · 0% done", all 8 cards clickable, mod 01 = "Start", mods 02–08 = "Preview". After running the SQL migration in Supabase, the POST succeeds, the button flips to "Mark incomplete", the header chip appears, and the "Next lesson" pill appears until a refresh.
+
 ## What's next
 
 User directive (most recent): "do in order, but lets also prepare to change the context window" — meaning execute these in sequence, keeping this HANDOFF.md updated between stages so a fresh session can pick up.
@@ -151,12 +161,49 @@ With the original A/C/B/D directive fully executed, here are the natural next mo
 - ~~**Practice session player v2** — markdown tables still render as monospace `<pre>` in `PromptBlock`. Swapping that for `react-markdown` + `remark-gfm` (already in deps) would make Table Analysis and MSR tables render as real HTML tables.~~ ✅ Done in commit `590be0c`.
 - ~~**Two-Part Analysis custom UI**~~ ✅ Done in commit `89d4b61`. `TwoPartGrid` component in `SessionClient.tsx` renders a 2-column selectable grid; parser detects the pipe table and extracts `twoPartColumns` + `twoPartCorrectAnswers`.
 - ~~**Massive content expansion**~~ ✅ Done in commits `2787908` through `c693ad2`. Questions 154→443, lessons 11k→35k words, guides 10k→18k words.
+- ~~**Individual lesson completion tracking**~~ ✅ Done this session. `lesson_completions` table + `/api/lesson-completions` + `CompleteToggle` component. No gating (Adam's call) — every lesson always clickable, status is purely visual.
 - **Custom domain** — Vercel is on `gmat-platform-61zf.vercel.app` (default). Wiring a real domain (e.g. `zakarian-gmat.com`) goes through Vercel → `gmat-platform-61zf` project → Settings → Domains → Add, then DNS (A record or CNAME).
 - **Stripe checkout** — `src/lib/stripe.ts` has `getStripe()` + `STRIPE_PRICES` ready, and the pricing page already lists the tiers. Needs a `/api/checkout` route handler + a webhook listener for `checkout.session.completed`. Real price IDs need to replace the `price_self_study`-style placeholders in env.
-- **Individual lesson completion tracking** — `LessonsClient.tsx` currently synthesizes status ("first 2 done, 3rd current, rest locked"). Since auth + DB are now live, this should come from a `lesson_completions` table keyed on (user_id, lesson_slug) and the locked gating should become real.
 - **Error log UI** — the Error Log guide explains the concept. The `/error-log` route exists but is empty. Once incorrect answers are logged (simple extension of the `/api/practice-sessions` handler that already writes to `practice_attempts`), the `/error-log` page can query wrong answers per user and render them with re-review dates.
-- **Dashboard polish** — the score chart + section progress still use placeholder thresholds. Once there's enough session data, the "estimated GMAT score" can be derived from accuracy patterns, and section progress can show real percentile relative to mock-level performance.
+- **Dashboard polish** — the score chart + section progress still use placeholder thresholds. Once there's enough session data, the "estimated GMAT score" can be derived from accuracy patterns, and section progress can show real percentile relative to mock-level performance. Also: expose a "lessons completed" metric on the dashboard now that the data exists.
 - **Delete duplicate Vercel projects** — Adam still has `gmat-platform`, `gmat-platform-gz1e`, `gmat-platform-lcwy` alongside the live `gmat-platform-61zf`. Dashboard → Settings → Advanced → Delete Project on the three unused ones. Low priority, pure hygiene.
+
+## Supabase migrations (for replay)
+
+This repo doesn't have a `supabase/` migrations directory — all schema has been applied by running SQL directly in the Supabase SQL editor. Keep these DDL snapshots here so a fresh environment can be recreated.
+
+### `lesson_completions` (added this session)
+
+```sql
+create table if not exists public.lesson_completions (
+  user_id     uuid not null references auth.users(id) on delete cascade,
+  lesson_slug text not null,
+  completed_at timestamptz not null default now(),
+  primary key (user_id, lesson_slug)
+);
+
+create index if not exists lesson_completions_user_id_idx
+  on public.lesson_completions (user_id);
+
+alter table public.lesson_completions enable row level security;
+
+create policy "users read their own completions"
+  on public.lesson_completions for select
+  using (auth.uid() = user_id);
+
+create policy "users insert their own completions"
+  on public.lesson_completions for insert
+  with check (auth.uid() = user_id);
+
+create policy "users update their own completions"
+  on public.lesson_completions for update
+  using (auth.uid() = user_id)
+  with check (auth.uid() = user_id);
+
+create policy "users delete their own completions"
+  on public.lesson_completions for delete
+  using (auth.uid() = user_id);
+```
 
 ## Context links
 

@@ -1,13 +1,11 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft, ArrowRight, Clock } from "lucide-react"
+import { ArrowLeft, ArrowRight, CheckCircle2, Clock } from "lucide-react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { getAllLessons, getLessonBySlug } from "@/lib/content"
-
-export function generateStaticParams() {
-  return getAllLessons().map((lesson) => ({ slug: lesson.slug }))
-}
+import { createSupabaseServer } from "@/lib/supabase/server"
+import CompleteToggle from "./CompleteToggle"
 
 export default async function LessonDetailPage({
   params,
@@ -22,6 +20,27 @@ export default async function LessonDetailPage({
   const currentIdx = lessons.findIndex((l) => l.slug === lesson.slug)
   const prev = currentIdx > 0 ? lessons[currentIdx - 1] : null
   const next = currentIdx < lessons.length - 1 ? lessons[currentIdx + 1] : null
+
+  // Fetch this user's completion status for this lesson. Degrades to "not
+  // completed" if Supabase is unreachable — mirrors the lessons list page.
+  let initialCompleted = false
+  try {
+    const supabase = await createSupabaseServer()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+    if (user) {
+      const { data } = await supabase
+        .from("lesson_completions")
+        .select("lesson_slug")
+        .eq("user_id", user.id)
+        .eq("lesson_slug", slug)
+        .maybeSingle()
+      initialCompleted = !!data
+    }
+  } catch {
+    // Swallow — treat as not completed.
+  }
 
   const moduleLabel = `Module ${String(lesson.module).padStart(2, "0")}`
 
@@ -51,6 +70,15 @@ export default async function LessonDetailPage({
             <Clock className="w-3 h-3" />
             {lesson.duration} min
           </span>
+          {initialCompleted && (
+            <span
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] uppercase tracking-wide"
+              style={{ backgroundColor: "rgba(62,207,142,0.1)", color: "#3ECF8E" }}
+            >
+              <CheckCircle2 className="w-3 h-3" />
+              Completed
+            </span>
+          )}
         </div>
 
         <h1 className="text-3xl sm:text-4xl font-bold text-[#F0F0F0] mt-3">{lesson.title}</h1>
@@ -167,6 +195,13 @@ export default async function LessonDetailPage({
           {lesson.content}
         </ReactMarkdown>
       </article>
+
+      {/* Mark-complete toggle */}
+      <CompleteToggle
+        slug={lesson.slug}
+        initialCompleted={initialCompleted}
+        nextSlug={next ? next.slug : null}
+      />
 
       {/* Prev / Next nav */}
       <div className="grid sm:grid-cols-2 gap-3">
