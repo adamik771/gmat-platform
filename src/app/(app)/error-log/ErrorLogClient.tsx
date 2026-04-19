@@ -1,11 +1,15 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useMemo, useState, useTransition } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import {
   ChevronDown,
   ChevronRight,
+  CheckCircle2,
+  Circle,
   Filter,
+  Loader2,
   Repeat,
   X,
 } from "lucide-react"
@@ -13,6 +17,25 @@ import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { cn } from "@/lib/utils"
 import type { Section } from "@/types"
+
+export const ERROR_TAGS = [
+  "Conceptual",
+  "Careless",
+  "Time Pressure",
+  "Misread",
+  "Strategy",
+  "Other",
+] as const
+export type ErrorTag = (typeof ERROR_TAGS)[number]
+
+const TAG_PALETTE: Record<ErrorTag, { color: string; bg: string }> = {
+  Conceptual: { color: "#FF4444", bg: "rgba(255,68,68,0.12)" },
+  Careless: { color: "#C9A84C", bg: "rgba(201,168,76,0.12)" },
+  "Time Pressure": { color: "#A8A8A8", bg: "rgba(168,168,168,0.12)" },
+  Misread: { color: "#3ECF8E", bg: "rgba(62,207,142,0.12)" },
+  Strategy: { color: "#E8C97A", bg: "rgba(232,201,122,0.12)" },
+  Other: { color: "#888888", bg: "rgba(136,136,136,0.12)" },
+}
 
 // Shared markdown styling for the expanded mistake detail. Tuned compact —
 // smaller than the /lessons/[slug] prose, denser than a blog post.
@@ -106,6 +129,9 @@ export interface MistakeEntry {
   explanation: string | null
   context: string | null
   twoPartColumns: string[] | null
+  tag: ErrorTag | null
+  notes: string | null
+  reviewed: boolean
 }
 
 /**
@@ -127,23 +153,37 @@ function relativeDate(iso: string | null): string {
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" })
 }
 
-const FILTERS: ("All" | Section)[] = ["All", "Quant", "Verbal", "DI"]
+const SECTION_FILTERS: ("All" | Section)[] = ["All", "Quant", "Verbal", "DI"]
+const STATUS_FILTERS = ["All", "Pending", "Reviewed"] as const
+type StatusFilter = (typeof STATUS_FILTERS)[number]
 
 export default function ErrorLogClient({
-  mistakes,
+  mistakes: initialMistakes,
 }: {
   mistakes: MistakeEntry[]
 }) {
-  const [sectionFilter, setSectionFilter] = useState<(typeof FILTERS)[number]>("All")
+  const [sectionFilter, setSectionFilter] = useState<(typeof SECTION_FILTERS)[number]>("All")
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>("All")
   const [expandedId, setExpandedId] = useState<string | null>(null)
+  // Local mistake list — starts from server data, then mutates optimistically
+  // as the user tags / toggles. Server also gets the update so a refresh
+  // won't lose it.
+  const [mistakes, setMistakes] = useState(initialMistakes)
 
-  const filtered = useMemo(
-    () =>
-      sectionFilter === "All"
-        ? mistakes
-        : mistakes.filter((m) => m.section === sectionFilter),
-    [mistakes, sectionFilter]
-  )
+  const filtered = useMemo(() => {
+    let list = mistakes
+    if (sectionFilter !== "All")
+      list = list.filter((m) => m.section === sectionFilter)
+    if (statusFilter === "Pending") list = list.filter((m) => !m.reviewed)
+    else if (statusFilter === "Reviewed") list = list.filter((m) => m.reviewed)
+    return list
+  }, [mistakes, sectionFilter, statusFilter])
+
+  function updateMistake(id: string, patch: Partial<MistakeEntry>) {
+    setMistakes((prev) =>
+      prev.map((m) => (m.id === id ? { ...m, ...patch } : m))
+    )
+  }
 
   return (
     <div className="space-y-4">
@@ -151,10 +191,10 @@ export default function ErrorLogClient({
       <div className="flex flex-wrap items-center gap-3">
         <div className="flex items-center gap-1.5 text-xs text-[#555555]">
           <Filter className="w-3.5 h-3.5" />
-          Filter by:
+          Filter:
         </div>
         <div className="flex gap-2">
-          {FILTERS.map((f) => (
+          {SECTION_FILTERS.map((f) => (
             <button
               key={f}
               onClick={() => setSectionFilter(f)}
@@ -165,6 +205,22 @@ export default function ErrorLogClient({
                   : "border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0]"
               )}
               style={sectionFilter === f ? { backgroundColor: "#C9A84C" } : {}}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
+        <div className="flex gap-2">
+          {STATUS_FILTERS.map((f) => (
+            <button
+              key={f}
+              onClick={() => setStatusFilter(f)}
+              className={cn(
+                "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors",
+                statusFilter === f
+                  ? "border border-[#C9A84C]/40 text-[#C9A84C]"
+                  : "border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0]"
+              )}
             >
               {f}
             </button>
@@ -214,7 +270,7 @@ export default function ErrorLogClient({
                       {entry.topic}
                     </p>
                   </div>
-                  <div className="col-span-6">
+                  <div className="col-span-5">
                     <p className="text-xs text-[#888888] line-clamp-2">
                       {entry.prompt ?? (
                         <span className="italic text-[#555555]">
@@ -232,7 +288,6 @@ export default function ErrorLogClient({
                       {userLetter}
                     </span>
                     <span className="text-[#555555]">·</span>
-                    <span className="text-[#555555]">Correct:</span>
                     <span
                       className="font-semibold"
                       style={{ color: "#3ECF8E" }}
@@ -240,15 +295,42 @@ export default function ErrorLogClient({
                       {entry.correctAnswerLetter ?? "—"}
                     </span>
                   </div>
-                  <div className="col-span-1 flex justify-end">
+                  <div className="col-span-1 flex items-center justify-center">
+                    {entry.tag ? (
+                      <span
+                        className="px-2 py-0.5 rounded text-[10px] font-medium truncate max-w-full"
+                        style={{
+                          backgroundColor: TAG_PALETTE[entry.tag].bg,
+                          color: TAG_PALETTE[entry.tag].color,
+                        }}
+                      >
+                        {entry.tag}
+                      </span>
+                    ) : (
+                      <span className="text-[10px] text-[#444444]">—</span>
+                    )}
+                  </div>
+                  <div className="col-span-1 flex items-center justify-end gap-2">
+                    {entry.reviewed ? (
+                      <CheckCircle2
+                        className="w-4 h-4 flex-shrink-0"
+                        style={{ color: "#3ECF8E" }}
+                        aria-label="Reviewed"
+                      />
+                    ) : (
+                      <Circle
+                        className="w-4 h-4 flex-shrink-0 text-[#444444]"
+                        aria-label="Not reviewed"
+                      />
+                    )}
                     {entry.sessionSlug && (
                       <Link
                         href={`/practice/session/${entry.sessionSlug}`}
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.2] transition-colors"
+                        className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.2] transition-colors"
+                        aria-label="Retake this practice set"
                       >
                         <Repeat className="w-3 h-3" />
-                        Retake
                       </Link>
                     )}
                   </div>
@@ -259,6 +341,7 @@ export default function ErrorLogClient({
                   <ExpandedMistake
                     entry={entry}
                     onClose={() => setExpandedId(null)}
+                    onUpdate={(patch) => updateMistake(entry.id, patch)}
                   />
                 )}
               </div>
@@ -278,9 +361,11 @@ export default function ErrorLogClient({
 function ExpandedMistake({
   entry,
   onClose,
+  onUpdate,
 }: {
   entry: MistakeEntry
   onClose: () => void
+  onUpdate: (patch: Partial<MistakeEntry>) => void
 }) {
   if (!entry.prompt) {
     return (
@@ -400,6 +485,170 @@ function ExpandedMistake({
           </ReactMarkdown>
         </div>
       )}
+
+      <TagEditor entry={entry} onUpdate={onUpdate} />
+    </div>
+  )
+}
+
+/**
+ * Tag / notes / reviewed editor rendered at the bottom of the expanded panel.
+ * Writes through to /api/error-tags. Applies optimistic updates via
+ * `onUpdate` so the row pill and header chip update immediately, then
+ * rolls back on API error.
+ */
+function TagEditor({
+  entry,
+  onUpdate,
+}: {
+  entry: MistakeEntry
+  onUpdate: (patch: Partial<MistakeEntry>) => void
+}) {
+  const [notesDraft, setNotesDraft] = useState(entry.notes ?? "")
+  const [notesDirty, setNotesDirty] = useState(false)
+  const [savingNotes, setSavingNotes] = useState(false)
+  const [saving, startTransition] = useTransition()
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
+
+  async function save(patch: {
+    tag?: ErrorTag | null
+    notes?: string
+    reviewed?: boolean
+  }) {
+    setError(null)
+    // Optimistic update in the parent's local list.
+    onUpdate(patch as Partial<MistakeEntry>)
+
+    try {
+      const res = await fetch("/api/error-tags", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ attemptId: entry.id, ...patch }),
+      })
+      if (!res.ok) {
+        const body = (await res.json().catch(() => ({}))) as { error?: string }
+        throw new Error(body.error || `Request failed (${res.status})`)
+      }
+      startTransition(() => router.refresh())
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong")
+      // Revert — reset to the snapshot we started from.
+      onUpdate({
+        tag: entry.tag,
+        notes: entry.notes,
+        reviewed: entry.reviewed,
+      })
+    }
+  }
+
+  async function setTag(tag: ErrorTag | null) {
+    await save({ tag })
+  }
+
+  async function commitNotes() {
+    if (!notesDirty) return
+    setSavingNotes(true)
+    const nextNotes = notesDraft.trim() === "" ? null : notesDraft
+    await save({ notes: nextNotes ?? "" })
+    setNotesDirty(false)
+    setSavingNotes(false)
+  }
+
+  async function toggleReviewed() {
+    await save({ reviewed: !entry.reviewed })
+  }
+
+  return (
+    <div className="mt-2 pt-5 border-t border-white/[0.06] space-y-4">
+      <div>
+        <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+          Tag this mistake
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {ERROR_TAGS.map((t) => {
+            const active = entry.tag === t
+            const p = TAG_PALETTE[t]
+            return (
+              <button
+                key={t}
+                type="button"
+                onClick={() => setTag(active ? null : t)}
+                disabled={saving}
+                className={cn(
+                  "px-2.5 py-1 rounded text-[11px] font-medium border transition-colors disabled:opacity-60",
+                  active ? "" : "border-white/[0.08] text-[#888888] hover:text-[#F0F0F0]"
+                )}
+                style={
+                  active
+                    ? {
+                        backgroundColor: p.bg,
+                        color: p.color,
+                        borderColor: p.color + "66",
+                      }
+                    : {}
+                }
+              >
+                {t}
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
+      <div>
+        <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+          Notes{" "}
+          <span className="text-[#444444] normal-case tracking-normal italic">
+            — why did this go wrong? What will you remember next time?
+          </span>
+        </p>
+        <textarea
+          value={notesDraft}
+          onChange={(e) => {
+            setNotesDraft(e.target.value)
+            setNotesDirty(e.target.value !== (entry.notes ?? ""))
+          }}
+          onBlur={commitNotes}
+          rows={3}
+          placeholder="e.g. I misread ≥ as >; always double-check inequality direction"
+          className="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-lg p-3 text-[14px] text-[#D8D8D8] placeholder:text-[#444444] focus:outline-none focus:border-[#C9A84C]/40 resize-none"
+        />
+        {(notesDirty || savingNotes) && (
+          <p className="text-[10px] text-[#555555] mt-1">
+            {savingNotes ? "Saving…" : "Blur or tab out to save"}
+          </p>
+        )}
+      </div>
+
+      <div className="flex items-center justify-between gap-3">
+        <button
+          type="button"
+          onClick={toggleReviewed}
+          disabled={saving}
+          className={cn(
+            "inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors disabled:opacity-60",
+            entry.reviewed
+              ? "text-[#0A0A0A]"
+              : "border border-white/[0.1] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.2]"
+          )}
+          style={entry.reviewed ? { backgroundColor: "#3ECF8E" } : {}}
+        >
+          {saving ? (
+            <Loader2 className="w-3 h-3 animate-spin" />
+          ) : entry.reviewed ? (
+            <CheckCircle2 className="w-3 h-3" />
+          ) : (
+            <Circle className="w-3 h-3" />
+          )}
+          {entry.reviewed ? "Reviewed" : "Mark reviewed"}
+        </button>
+        {error && (
+          <p className="text-xs" style={{ color: "#FF4444" }}>
+            {error}
+          </p>
+        )}
+      </div>
     </div>
   )
 }

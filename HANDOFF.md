@@ -124,6 +124,21 @@ Final commit series (`2787908` → `c693ad2`, 12 commits) tripled the content fo
 - New Quant topic files added: `geometry.md`, `rates-work.md`, `ratios-percents.md`, `exponents-roots.md`.
 - All content parses cleanly through the loader. Build stays clean. Everything pushed to `main` and live (or will be live on next Vercel pickup from `gmat-platform-61zf`).
 
+### Error tagging UI (this session)
+Extends `/error-log` with persistent tagging, per-mistake notes, and a reviewed flag. Replaces the "coming soon" footer with a real workflow. New `error_tags` table (see migration section below) with RLS; table has `attempt_id` as primary key so one tag row per attempt, upsert on that.
+- **`src/app/api/error-tags/route.ts`** (new) — POST and DELETE. POST accepts `{ attemptId, tag?, notes?, reviewed? }` as a partial patch (omitted fields don't overwrite). Verifies the attempt belongs to the user before writing, returning 404 if not (belt-and-braces with RLS). `tag` is validated against the 6-element `VALID_TAGS` union: `Conceptual | Careless | Time Pressure | Misread | Strategy | Other`. DELETE removes all tag metadata for an attempt.
+- **Server query enrichment** (`src/app/(app)/error-log/page.tsx`) — second Supabase query fetches `error_tags` for the user; builds `Map<attempt_id, row>`; merges into each `MistakeEntry` as `{ tag, notes, reviewed }`. Doing this as a separate query (vs an FK join) sidesteps Supabase relationship-cache edge cases. Still wrapped in the outer try/catch so the page degrades gracefully if the table is missing — Adam saw this firsthand during verification (11 rows rendered with all-null tags / reviewed=false, POST returned 500 with a clear schema-cache message).
+- **Row layout** (`src/app/(app)/error-log/ErrorLogClient.tsx`) — re-gridded from 5 columns to 6 to fit the new indicators without shrinking the preview too much: `date(1) / section(2) / preview(5) / answer(2) / tag(1) / status+retake(1)`. Tag pill uses the `TAG_PALETTE` color map. Reviewed state shown as `CheckCircle2` (green) / `Circle` (dark) icon. "Retake" link lost its text for space but kept its icon + aria-label.
+- **Status filter** — new `STATUS_FILTERS = ["All","Pending","Reviewed"]` row next to the section filter, bordered gold when active. Combines with the section filter (AND).
+- **`TagEditor` component** — rendered at the bottom of every expanded mistake panel. Three sections:
+  - Tag picker: 6 buttons colored per `TAG_PALETTE`; clicking an active tag toggles it off.
+  - Notes: 3-row textarea with placeholder prompting *why did this go wrong*; commits on `onBlur` (not every keystroke). Status line reads "Saving…" → "Blur or tab out to save" depending on `notesDirty`.
+  - Reviewed toggle: green pill when marked, outlined when not.
+  - Optimistic writes — `onUpdate` patches the parent's local list so the row pill / filter re-renders immediately; on API error, snapshot is restored and the error surfaces inline in red. Verified via the missing-table preview run.
+- **Local mistake list state** — `ErrorLogClient` now keeps its own `useState` copy of `mistakes` (seeded from the server prop). The `TagEditor` writes via `updateMistake(id, patch)` so status filter + tag badge update live.
+- **Footer copy** — the old "coming soon" line replaced with: "Open a row below to tag each mistake (conceptual, careless, misread, etc.), add a note, and mark it reviewed." Unused `next/link` import dropped from `page.tsx`.
+- **Verified**: `npx next build` clean — `/api/error-tags` added as dynamic (5th API route). Preview: 11 rows rendered with `—` tag placeholders; row expand revealed the 3-section editor (tags / notes / reviewed); clicking "Careless" before the table existed fired a POST → 500 → red error message in the editor + state rolled back so the row still shows `—`; no console errors.
+
 ### Score-goal-setting UI (this session)
 Closes the loop on the Score Goal card by making the "target" side user-editable. No new table — persists to `auth.users.raw_user_meta_data.target_score` via Supabase Auth's `updateUser`, so `user.user_metadata.target_score` is available to the server component on next request.
 - **GMAT Focus scale correction** — the Focus Edition total is 205, 215, 225, ..., 805 (increment of 10 with a 5-point offset from round hundreds). An earlier version of `scaledTotalScore` and the API validator assumed plain multiples of 10 and would reject real scores like 735 with "must be a multiple of 10". Both fixed to use `(value - 205) % 10 === 0` so values ending in 5 validate correctly. `scaledTotalScore` now rounds via `205 + Math.round((raw - 205) / 10) * 10` and clamps to [205, 805].
@@ -192,7 +207,8 @@ With the original A/C/B/D directive fully executed, here are the natural next mo
 - ~~**Error log UI**~~ ✅ Done this session. `/error-log` queries `practice_attempts` + enriches with content loader, section filter, expandable row with prompt + options + explanation. Dashboard `Recent Mistakes` tile also wired to real data.
 - ~~**Dashboard polish**~~ ✅ Done this session. Section scoring on proper 60-90 scale with ≥10 attempt gate, week-over-week trend per section, estimated GMAT total (205-805) once all 3 sections cross the sample threshold, lessons completed progress bar in Score Goal.
 - ~~**Score-goal-setting UI**~~ ✅ Done this session. `TargetScoreControl` inline picker + `/api/target-score` endpoint persisting to `user_metadata.target_score`. Shows `+N to hit target` delta badge when both estimate + target are known.
-- **Error tagging UI (v2 of error log)** — the Conceptual / Careless / Misread / Time Pressure / Strategy categories from the original mockup need a persistence path. Likely a new `error_log_tags` table keyed on `(user_id, attempt_id)` with a tag enum and a notes column, plus an inline tagging widget on each expanded row. The "coming soon" footer on `/error-log` sets the expectation.
+- ~~**Error tagging UI**~~ ✅ Done this session. `error_tags` table + `/api/error-tags` POST/DELETE + `TagEditor` in expanded row with tag picker, notes textarea, reviewed toggle. Status filter (All/Pending/Reviewed) in the filter bar.
+- **Error tag breakdown card** — now that tags exist, the "Mistakes by Section" breakdown at the top of `/error-log` could alternatively show distribution by tag (Conceptual / Careless / Misread / ...), giving the user a direct view on *why* they're missing questions. Low effort; mostly a new aggregation in `page.tsx` + a toggle between the two views.
 - **Custom domain** — Vercel is on `gmat-platform-61zf.vercel.app` (default). Wiring a real domain (e.g. `zakarian-gmat.com`) goes through Vercel → `gmat-platform-61zf` project → Settings → Domains → Add, then DNS (A record or CNAME).
 - **Stripe checkout** — `src/lib/stripe.ts` has `getStripe()` + `STRIPE_PRICES` ready, and the pricing page already lists the tiers. Needs a `/api/checkout` route handler + a webhook listener for `checkout.session.completed`. Real price IDs need to replace the `price_self_study`-style placeholders in env.
 - **Delete duplicate Vercel projects** — Adam still has `gmat-platform`, `gmat-platform-gz1e`, `gmat-platform-lcwy` alongside the live `gmat-platform-61zf`. Dashboard → Settings → Advanced → Delete Project on the three unused ones. Low priority, pure hygiene.
@@ -231,6 +247,44 @@ create policy "users update their own completions"
 
 create policy "users delete their own completions"
   on public.lesson_completions for delete
+  using (auth.uid() = user_id);
+```
+
+### `error_tags` (added this session)
+
+```sql
+create table if not exists public.error_tags (
+  attempt_id uuid primary key
+    references public.practice_attempts(id) on delete cascade,
+  user_id    uuid not null
+    references auth.users(id) on delete cascade,
+  tag        text
+    check (tag in ('Conceptual','Careless','Time Pressure','Misread','Strategy','Other') or tag is null),
+  notes      text,
+  reviewed   boolean not null default false,
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists error_tags_user_id_idx
+  on public.error_tags (user_id);
+
+alter table public.error_tags enable row level security;
+
+create policy "users read their own tags"
+  on public.error_tags for select
+  using (auth.uid() = user_id);
+
+create policy "users insert their own tags"
+  on public.error_tags for insert
+  with check (auth.uid() = user_id);
+
+create policy "users update their own tags"
+  on public.error_tags for update
+  using (auth.uid() = user_id)
+  with check (auth.uid() = user_id);
+
+create policy "users delete their own tags"
+  on public.error_tags for delete
   using (auth.uid() = user_id);
 ```
 

@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { AlertCircle } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getAllQuestions, type ParsedQuestion } from "@/lib/content"
@@ -32,6 +31,24 @@ export default async function ErrorLogPage() {
         .order("session_id", { ascending: false })
         .limit(200)
 
+      // Pull tags for the same user in a second query and merge by id. Doing
+      // this separately (vs an FK join) avoids Supabase relationship-cache
+      // edge cases and keeps both queries simple.
+      const { data: tags } = await supabase
+        .from("error_tags")
+        .select("attempt_id, tag, notes, reviewed")
+        .eq("user_id", user.id)
+      type TagRow = {
+        attempt_id: string
+        tag: string | null
+        notes: string | null
+        reviewed: boolean | null
+      }
+      const tagMap = new Map<string, TagRow>()
+      for (const t of (tags as TagRow[] | null) ?? []) {
+        tagMap.set(t.attempt_id, t)
+      }
+
       // Build a question-id → ParsedQuestion map once so each row lookup is O(1).
       const byId = new Map<string, ParsedQuestion>()
       for (const q of getAllQuestions()) byId.set(q.id, q)
@@ -51,6 +68,7 @@ export default async function ErrorLogPage() {
 
       mistakes = ((attempts as AttemptRow[] | null) ?? []).map((a) => {
         const q = byId.get(a.question_id)
+        const t = tagMap.get(a.id)
         return {
           id: a.id,
           questionId: a.question_id,
@@ -71,6 +89,9 @@ export default async function ErrorLogPage() {
           explanation: q?.explanation ?? null,
           context: q?.context ?? null,
           twoPartColumns: q?.twoPartColumns ?? null,
+          tag: (t?.tag ?? null) as MistakeEntry["tag"],
+          notes: t?.notes ?? null,
+          reviewed: t?.reviewed ?? false,
         }
       })
     }
@@ -158,11 +179,8 @@ export default async function ErrorLogPage() {
               })}
             </div>
             <p className="text-xs text-[#555555] mt-4 italic">
-              Tag mistakes as conceptual / careless / misread{" "}
-              <Link href="/error-log" className="underline opacity-60 hover:opacity-100">
-                — coming soon
-              </Link>
-              .
+              Open a row below to tag each mistake (conceptual, careless,
+              misread, etc.), add a note, and mark it reviewed.
             </p>
           </div>
 
