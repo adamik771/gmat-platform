@@ -17,16 +17,10 @@ import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { cn } from "@/lib/utils"
 import type { Section } from "@/types"
+import { ERROR_TAGS, type ErrorTag } from "./constants"
 
-export const ERROR_TAGS = [
-  "Conceptual",
-  "Careless",
-  "Time Pressure",
-  "Misread",
-  "Strategy",
-  "Other",
-] as const
-export type ErrorTag = (typeof ERROR_TAGS)[number]
+// Re-export so existing consumers that imported from ErrorLogClient keep working.
+export { ERROR_TAGS, type ErrorTag }
 
 const TAG_PALETTE: Record<ErrorTag, { color: string; bg: string }> = {
   Conceptual: { color: "#FF4444", bg: "rgba(255,68,68,0.12)" },
