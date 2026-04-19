@@ -339,6 +339,24 @@ export function getQuestionsBySetSlug(slug: string): ParsedQuestion[] {
   return getAllQuestions().filter((question) => question.setSlug === slug)
 }
 
+/**
+ * Resolve a list of question ids to full ParsedQuestion records, preserving
+ * the input order. Ids that don't resolve are silently skipped — caller is
+ * expected to handle the possibly-shorter output (e.g. the /practice/session/custom
+ * route falls back to an empty state).
+ */
+export function getQuestionsByIds(ids: readonly string[]): ParsedQuestion[] {
+  if (ids.length === 0) return []
+  const byId = new Map<string, ParsedQuestion>()
+  for (const q of getAllQuestions()) byId.set(q.id, q)
+  const out: ParsedQuestion[] = []
+  for (const id of ids) {
+    const q = byId.get(id)
+    if (q) out.push(q)
+  }
+  return out
+}
+
 export function getAllLessons(): ParsedLesson[] {
   const lessonsDir = path.join(CONTENT_ROOT, "lessons")
   if (!fs.existsSync(lessonsDir)) return []
