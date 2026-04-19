@@ -124,6 +124,18 @@ Final commit series (`2787908` → `c693ad2`, 12 commits) tripled the content fo
 - New Quant topic files added: `geometry.md`, `rates-work.md`, `ratios-percents.md`, `exponents-roots.md`.
 - All content parses cleanly through the loader. Build stays clean. Everything pushed to `main` and live (or will be live on next Vercel pickup from `gmat-platform-61zf`).
 
+### Stripe checkout (this session)
+Wires the pricing-page CTAs to real Stripe Checkout. Needs Adam to provide real price IDs + `STRIPE_SECRET_KEY` + `STRIPE_WEBHOOK_SECRET` before actual charges can happen — the scaffolding returns a clear 503 with an actionable message until those env vars are set.
+- **`src/app/api/checkout/route.ts`** (new) — POST, auth-gated. Body: `{ planId: "self_study" | "self_study_plus" | "coaching" | "intensive" }`. Maps `planId` → priceId via `STRIPE_PRICES`; rejects placeholder prices with a clean 503. Creates a Stripe Checkout Session in `payment` mode (one-time charges, not subscriptions — matches the existing pricing page copy of "$297 one-time" / "$2,500 package"). Sets `client_reference_id = user.id`, metadata `{user_id, plan_id}`, and success/cancel URLs derived from `new URL(request.url).origin` so the same handler works across dev / preview / prod. Returns `{ url }` for the client to navigate to.
+- **`src/app/api/stripe/webhook/route.ts`** (new) — POST with `runtime = "nodejs"` (Stripe's `constructEvent` needs the Node crypto module, not Edge) and `dynamic = "force-dynamic"`. Reads the raw body via `request.text()` before any JSON parse so the signature check has exact bytes. On `checkout.session.completed`, upserts into `purchases` with `onConflict: "stripe_session_id"` so Stripe's retry behavior is safe. Bad signature → 400. Missing metadata → accepted (`{ok, skipped: "missing_metadata"}`) so Stripe doesn't retry forever.
+- **`src/lib/supabase/service.ts`** (new) — service-role client factory reading `SUPABASE_SERVICE_ROLE_KEY` (never prefixed `NEXT_PUBLIC_`). Used only by the webhook where there's no user session; bypasses RLS. File header includes a sharp "do NOT import from pages, client components, or anywhere a request body can influence which user_id is written to" warning so future work doesn't misuse it.
+- **`src/components/marketing/CheckoutButton.tsx`** (new) — replaces the static `<Link href="/signup">` inside `PricingCard`. On click: POST → if 401, navigate to `/signup?redirect=/pricing` (so the user lands back on the same page after signup); if 200, hard-navigate to `body.url` (Stripe-hosted checkout is on a different origin). Inline error message on 503/500. Loading spinner + `disabled` while in flight.
+- **`src/components/marketing/PricingCard.tsx`** — swaps the `<Link>` CTA for `<CheckoutButton planId={tier.id} />`. The `SubscriptionTier` union already matched the planId set so no type gymnastics.
+- **`src/app/(auth)/signup/page.tsx`** — honors `?redirect=` via `useSearchParams`, gated through an `ALLOWED_REDIRECTS = { "/pricing", "/dashboard" }` allow-list (prevents open-redirect). Wrapped in `<Suspense>` since `useSearchParams` triggers a client-side bailout on static prerender (build caught this: `useSearchParams() should be wrapped in a suspense boundary`).
+- **Dashboard current-plan chip** — extra Supabase query on the dashboard for the user's most-recent `purchases` row (one-time payments mean users may upgrade later; we show the latest). Renders as a small gold chip in the greeting row, e.g. "Coaching Plan", only when a purchase exists.
+- **Stripe scale note** — the existing `STRIPE_PRICES` helper in `src/lib/stripe.ts` uses `??` to fall back to string literals like `"price_self_study"`. The checkout route detects that pattern and returns a 503 before hitting the Stripe API, so Adam gets an actionable error in the UI instead of Stripe's generic "No such price". Once real price IDs land in env, the 503 goes away automatically.
+- **Verified**: `npx next build` clean after adding the Suspense boundary — `/api/checkout` and `/api/stripe/webhook` registered as dynamic routes. Preview browser test (signed-in user on `/pricing`): clicked "Get Self-Study" → POST → 503 → inline error "Stripe prices are not configured…" rendered under the button. `curl -X POST /api/checkout` unauth → 401. `curl /signup?redirect=/pricing` → 200. No console errors.
+
 ### Error tag breakdown card (this session)
 Top-of-page breakdown on `/error-log` now toggles between a Section cut and a Tag cut, giving the user a direct view on *why* they're missing questions once they start tagging.
 - **`BreakdownCard` client component** (`src/app/(app)/error-log/BreakdownCard.tsx`) — 7-cell grid in Tag mode (6 defined tags + "Untagged" bucket) or 3-cell in Section mode. Two-button toggle at the top-right of the card; `view` state is client-only. Cell cards re-use the same compact layout as before (colored chip → count → thin progress bar → "X% of mistakes").
@@ -216,6 +228,7 @@ With the original A/C/B/D directive fully executed, here are the natural next mo
 - ~~**Score-goal-setting UI**~~ ✅ Done this session. `TargetScoreControl` inline picker + `/api/target-score` endpoint persisting to `user_metadata.target_score`. Shows `+N to hit target` delta badge when both estimate + target are known.
 - ~~**Error tagging UI**~~ ✅ Done this session. `error_tags` table + `/api/error-tags` POST/DELETE + `TagEditor` in expanded row with tag picker, notes textarea, reviewed toggle. Status filter (All/Pending/Reviewed) in the filter bar.
 - ~~**Error tag breakdown card**~~ ✅ Done this session. `BreakdownCard` toggles between section and tag views, with an "Untagged" bucket so users see their review backlog.
+- ~~**Stripe checkout**~~ ✅ Done this session (scaffolded). `/api/checkout` + `/api/stripe/webhook` + `CheckoutButton` + `purchases` table + service-role Supabase client. Requires real Stripe price IDs + secret key + webhook secret in env to go live — see below.
 - **Custom domain** — Vercel is on `gmat-platform-61zf.vercel.app` (default). Wiring a real domain (e.g. `zakarian-gmat.com`) goes through Vercel → `gmat-platform-61zf` project → Settings → Domains → Add, then DNS (A record or CNAME).
 - **Stripe checkout** — `src/lib/stripe.ts` has `getStripe()` + `STRIPE_PRICES` ready, and the pricing page already lists the tiers. Needs a `/api/checkout` route handler + a webhook listener for `checkout.session.completed`. Real price IDs need to replace the `price_self_study`-style placeholders in env.
 - **Delete duplicate Vercel projects** — Adam still has `gmat-platform`, `gmat-platform-gz1e`, `gmat-platform-lcwy` alongside the live `gmat-platform-61zf`. Dashboard → Settings → Advanced → Delete Project on the three unused ones. Low priority, pure hygiene.
@@ -294,6 +307,49 @@ create policy "users delete their own tags"
   on public.error_tags for delete
   using (auth.uid() = user_id);
 ```
+
+### `purchases` (added this session, for Stripe checkout)
+
+```sql
+create table if not exists public.purchases (
+  id                   uuid primary key default gen_random_uuid(),
+  user_id              uuid not null references auth.users(id) on delete cascade,
+  plan_id              text not null
+    check (plan_id in ('self_study','self_study_plus','coaching','intensive')),
+  stripe_session_id    text not null unique,
+  amount_cents         integer not null default 0,
+  currency             text not null default 'usd',
+  paid_at              timestamptz not null default now()
+);
+
+create index if not exists purchases_user_id_idx
+  on public.purchases (user_id);
+
+alter table public.purchases enable row level security;
+
+-- Users can read their own purchases. All writes happen from the Stripe
+-- webhook via the service-role key (bypasses RLS), so no insert/update/delete
+-- policies are needed here for regular users.
+create policy "users read their own purchases"
+  on public.purchases for select
+  using (auth.uid() = user_id);
+```
+
+## Stripe / env var setup (for production)
+
+The Stripe plumbing returns a clear 503 until these env vars are set in Vercel for the `gmat-platform-61zf` project:
+
+| Key | Where | How to get it |
+|---|---|---|
+| `STRIPE_SECRET_KEY` | Vercel env (production + preview) | Stripe Dashboard → Developers → API keys → **Secret key** (test mode for testing, live mode for real charges) |
+| `STRIPE_WEBHOOK_SECRET` | Vercel env (production + preview) | Stripe Dashboard → Developers → Webhooks → (create endpoint `https://gmat-platform-61zf.vercel.app/api/stripe/webhook` listening for `checkout.session.completed`) → reveal the signing secret |
+| `STRIPE_PRICE_SELF_STUDY` | Vercel env | Create a $297 one-time product in Stripe → copy its price id (`price_...`) |
+| `STRIPE_PRICE_SELF_STUDY_PLUS` | Vercel env | Same, $497 |
+| `STRIPE_PRICE_COACHING` | Vercel env | Same, $2,500 |
+| `STRIPE_PRICE_INTENSIVE` | Vercel env | Same, $4,200 |
+| `SUPABASE_SERVICE_ROLE_KEY` | Vercel env (production only) | Supabase Dashboard → Project Settings → API → **service_role** key (not anon). **Never** prefix `NEXT_PUBLIC_` — this key bypasses RLS and must stay server-side. |
+
+Test the wiring with Stripe's test-mode keys + test cards before switching to live keys. Trigger an end-to-end by clicking a pricing CTA → Stripe test card `4242 4242 4242 4242`, any future expiry, any CVC → redirects to `/dashboard?purchase=success` → webhook fires → `purchases` row lands → dashboard shows the plan chip.
 
 ## Context links
 

@@ -1,7 +1,7 @@
-import Link from "next/link"
 import { Check, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { PricingTier } from "@/types"
+import CheckoutButton from "./CheckoutButton"
 
 interface PricingCardProps {
   tier: PricingTier
@@ -41,19 +41,13 @@ export default function PricingCard({ tier, className }: PricingCardProps) {
         </div>
       </div>
 
-      {/* CTA */}
-      <Link
-        href="/signup"
-        className={cn(
-          "w-full text-center py-2.5 rounded-lg text-sm font-medium transition-all duration-200 hover:opacity-90 mb-6",
-          tier.highlighted
-            ? "text-[#0A0A0A]"
-            : "border border-white/[0.12] text-[#F0F0F0] hover:bg-white/5"
-        )}
-        style={tier.highlighted ? { backgroundColor: "#C9A84C" } : {}}
-      >
-        {tier.cta}
-      </Link>
+      {/* CTA — routes unauthenticated users to /signup, otherwise POSTs
+          to /api/checkout and redirects to Stripe. */}
+      <CheckoutButton
+        planId={tier.id}
+        label={tier.cta}
+        highlighted={tier.highlighted}
+      />
 
       {/* Features */}
       <ul className="space-y-3 flex-1">

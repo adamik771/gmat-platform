@@ -1,11 +1,19 @@
 "use client"
 
-import { useState } from "react"
+import { Suspense, useState } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { Eye, EyeOff, ArrowRight, Check } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
+
+/**
+ * Valid redirect paths after signup. A bare allow-list is safer than
+ * trying to validate arbitrary URLs — we never want a malicious
+ * `?redirect=https://evil.example.com` turning signup into an open
+ * redirect.
+ */
+const ALLOWED_REDIRECTS = new Set(["/pricing", "/dashboard"])
 
 const plans = [
   { id: "self_study", name: "Self-Study", price: "$297", note: "one-time" },
@@ -14,6 +22,27 @@ const plans = [
 ]
 
 export default function SignupPage() {
+  // useSearchParams triggers a client-side bailout, so static prerender
+  // needs a Suspense boundary around the form.
+  return (
+    <Suspense fallback={<SignupFallback />}>
+      <SignupForm />
+    </Suspense>
+  )
+}
+
+function SignupFallback() {
+  return (
+    <div className="w-full max-w-lg">
+      <div className="text-center mb-8">
+        <h1 className="text-2xl font-bold text-[#F0F0F0] mb-2">Create your account</h1>
+        <p className="text-sm text-[#888888]">Start your free trial today</p>
+      </div>
+    </div>
+  )
+}
+
+function SignupForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [selectedPlan, setSelectedPlan] = useState("coaching")
   const [agreed, setAgreed] = useState(false)
@@ -23,6 +52,10 @@ export default function SignupPage() {
   const [password, setPassword] = useState("")
 
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const rawRedirect = searchParams.get("redirect")
+  const redirectTarget =
+    rawRedirect && ALLOWED_REDIRECTS.has(rawRedirect) ? rawRedirect : "/dashboard"
   const [error, setError] = useState("")
 
   async function handleSubmit(e: React.FormEvent) {
@@ -46,7 +79,7 @@ export default function SignupPage() {
       return
     }
 
-    router.push("/dashboard")
+    router.push(redirectTarget)
     router.refresh()
   }
 

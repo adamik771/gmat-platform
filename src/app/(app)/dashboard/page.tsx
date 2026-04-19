@@ -19,6 +19,17 @@ import { createSupabaseServer } from "@/lib/supabase/server"
 import type { ActivityItem, Section } from "@/types"
 import TargetScoreControl from "./TargetScoreControl"
 
+const PLAN_LABELS: Record<string, string> = {
+  self_study: "Self-Study",
+  self_study_plus: "Self-Study Plus",
+  coaching: "Coaching",
+  intensive: "Intensive",
+}
+
+function planLabel(id: string): string {
+  return PLAN_LABELS[id] ?? id
+}
+
 export default async function DashboardPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let user: any = null
@@ -87,6 +98,7 @@ export default async function DashboardPage() {
     preview: string
   }[] = []
   let lessonsCompletedCount = 0
+  let currentPlan: string | null = null
 
   try {
     if (user) {
@@ -218,6 +230,17 @@ export default async function DashboardPage() {
           }
         })
       }
+
+      // Most-recent purchase → current plan chip. Users may upgrade later
+      // so we take the latest row.
+      const { data: latestPurchase } = await supabase
+        .from("purchases")
+        .select("plan_id")
+        .eq("user_id", userId)
+        .order("paid_at", { ascending: false })
+        .limit(1)
+        .maybeSingle()
+      currentPlan = (latestPurchase?.plan_id as string | null) ?? null
 
       if (trendSessions && trendSessions.length > 0) {
         const weeks = new Map<string, number[]>()
@@ -358,11 +381,24 @@ export default async function DashboardPage() {
   return (
     <div className="max-w-7xl mx-auto space-y-6">
       {/* Greeting */}
-      <div>
-        <h1 className="text-2xl font-bold text-[#F0F0F0]">
-          Good morning, {firstName}
-        </h1>
-        <p className="text-sm text-[#555555] mt-1">{today}</p>
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h1 className="text-2xl font-bold text-[#F0F0F0]">
+            Good morning, {firstName}
+          </h1>
+          <p className="text-sm text-[#555555] mt-1">{today}</p>
+        </div>
+        {currentPlan && (
+          <span
+            className="px-2.5 py-1 rounded text-[10px] font-semibold uppercase tracking-widest flex-shrink-0 mt-2"
+            style={{
+              backgroundColor: "rgba(201,168,76,0.12)",
+              color: "#C9A84C",
+            }}
+          >
+            {planLabel(currentPlan)} Plan
+          </span>
+        )}
       </div>
 
       {/* Score Goal Card — populated from derived section scores */}
