@@ -1,17 +1,29 @@
 import Link from "next/link"
 import {
+  ArrowRight,
   BookOpen,
   CalendarDays,
   CheckCircle,
   Clock,
-  Pencil,
+  FlaskConical,
+  RotateCcw,
+  Sparkles,
   Target,
+  TrendingDown,
   Flame,
   Wrench,
 } from "lucide-react"
 import { getAllLessons } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import EmptyState from "@/components/shared/EmptyState"
+import {
+  buildWeeklyCadence,
+  computeStudyPlan,
+  type DailySuggestion,
+  type FocusAction,
+  type StudyPlanOutput,
+  type WeakArea,
+} from "@/lib/study-plan-engine"
 import type { Section } from "@/types"
 
 const WEEKDAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
@@ -46,6 +58,7 @@ export default async function StudyPlanPage() {
   let studyDays30Count = 0
   let estimatedTotal: number | null = null
   let pendingMistakeCount = 0
+  let plan: StudyPlanOutput | null = null
 
   try {
     const supabase = await createSupabaseServer()
@@ -158,6 +171,12 @@ export default async function StudyPlanPage() {
         // documents the relationship) — suppress the unused warning.
         void sectionScore
       }
+
+      // Adaptive plan: Today's focus + weak areas + queue counts.
+      plan = await computeStudyPlan(supabase, user.id, {
+        targetScore,
+        examDate,
+      })
     }
   } catch {
     // Supabase unavailable — render with empty defaults.
@@ -168,23 +187,28 @@ export default async function StudyPlanPage() {
   const upcomingLessons = incompleteLessons.slice(0, 3)
   const nextLesson = incompleteLessons[0] ?? null
 
-  // ---------- Derived: suggested content for each future day in the week ----------
-  // A rotating pattern that assumes a reasonable study cadence:
-  //   lesson → practice → practice → review (if backlog) → repeat
-  // Lessons pop from the incomplete list; skipped once exhausted. Review
-  // only shows when there are ≥ 3 unreviewed mistakes, so the cadence
-  // collapses to lesson → practice → practice → practice otherwise.
-  type DaySuggestion =
-    | { type: "lesson"; slug: string; title: string; module: number }
-    | { type: "practice" }
-    | { type: "review"; count: number }
-  const lessonQueue = [...incompleteLessons]
-  const showReview = pendingMistakeCount >= 3
-  const pattern: ("lesson" | "practice" | "review")[] = showReview
-    ? ["lesson", "practice", "practice", "review"]
-    : ["lesson", "practice", "practice", "practice"]
-  let patternIdx = 0
-  const suggestionByKey = new Map<string, DaySuggestion>()
+  // ---------- Adaptive weekly cadence ----------
+  // Replaces the prior fixed lesson→practice rotation with a pattern that
+  // adapts to the student's state: injects review days when the queue is
+  // hot, and weak-topic chapter days when weak areas exist. Falls back
+  // to lesson/practice if nothing else signals.
+  const adaptivePlan =
+    plan ??
+    ({
+      todaysFocus: [],
+      weakAreas: [],
+      diagnosticSectionsDone: 0,
+      reviewDueCount: pendingMistakeCount,
+    } as StudyPlanOutput)
+  const weeklyCadence = buildWeeklyCadence(
+    adaptivePlan,
+    incompleteLessons.map((l) => ({
+      slug: l.slug,
+      title: l.title,
+      module: l.module,
+    }))
+  )
+  const suggestionByKey = new Map<string, DailySuggestion>()
 
   // ---------- Derived: calendar for the current week (Sun → Sat) ----------
   const today = new Date()
@@ -210,37 +234,15 @@ export default async function StudyPlanPage() {
     }
   })
 
-  // Walk future days in order and assign a suggestion per the pattern.
-  // Today isn't given a suggestion — it shows the "Next: <lesson>" card
-  // we already render, which is the user's most concrete next action.
+  // Walk future days and assign a pre-computed suggestion from the
+  // adaptive cadence. Today isn't given a calendar suggestion — the
+  // "Today's focus" card above owns that.
+  let cadenceIdx = 0
   for (const day of weekDays) {
     if (day.isPast || day.isToday) continue
-    // Advance through the pattern until we find a slot we can fill.
-    for (let tries = 0; tries < pattern.length; tries++) {
-      const slot = pattern[patternIdx % pattern.length]
-      patternIdx++
-      if (slot === "lesson") {
-        if (lessonQueue.length === 0) continue
-        const l = lessonQueue.shift()!
-        suggestionByKey.set(day.key, {
-          type: "lesson",
-          slug: l.slug,
-          title: l.title,
-          module: l.module,
-        })
-        break
-      }
-      if (slot === "review") {
-        suggestionByKey.set(day.key, {
-          type: "review",
-          count: pendingMistakeCount,
-        })
-        break
-      }
-      // "practice" — always fillable
-      suggestionByKey.set(day.key, { type: "practice" })
-      break
-    }
+    const suggestion = weeklyCadence[cadenceIdx % weeklyCadence.length]
+    cadenceIdx++
+    if (suggestion) suggestionByKey.set(day.key, suggestion)
   }
 
   // ---------- Derived: exam readiness ----------
@@ -287,6 +289,21 @@ export default async function StudyPlanPage() {
             : "Set an exam date in Settings to count down to your test."}
         </p>
       </div>
+
+      {/* Today's focus — adaptive action queue ranked by impact.
+          Highest-priority item first; up to 3 shown. */}
+      {plan && plan.todaysFocus.length > 0 && (
+        <div>
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
+            Today&apos;s Focus
+          </h2>
+          <div className="space-y-3">
+            {plan.todaysFocus.map((action, i) => (
+              <FocusCard key={`${action.type}-${i}`} action={action} primary={i === 0} />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Weekly Calendar — real activity dots for the current week */}
       <div>
@@ -383,6 +400,22 @@ export default async function StudyPlanPage() {
           value={studyDays30Count > 0 ? `${studyDays30Count}` : "—"}
         />
       </div>
+
+      {/* Weak areas — topic-level accuracy deficit driven from real attempts.
+          Each row links to the relevant chapter so the student can read
+          before re-drilling the topic. */}
+      {plan && plan.weakAreas.length > 0 && (
+        <div>
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
+            Your Weakest Topics
+          </h2>
+          <div className="space-y-3">
+            {plan.weakAreas.map((w) => (
+              <WeakAreaCard key={w.topic} weak={w} />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Upcoming lessons — real curriculum */}
       <div>
@@ -544,64 +577,177 @@ export default async function StudyPlanPage() {
 }
 
 /**
- * Inline suggestion card for a future day in the weekly calendar. Clickable
- * where possible — lessons link to the lesson detail page, practice to the
- * test builder, review to the error log. Keeps the look tight so it fits
- * inside the 96px-min calendar cell.
+ * Inline suggestion card for a future day in the weekly calendar. Each
+ * DailySuggestion from the adaptive engine maps to a one-icon + one-label
+ * cell that links directly to the suggested surface.
  */
 function SuggestionCell({
   suggestion,
 }: {
-  suggestion:
-    | { type: "lesson"; slug: string; title: string; module: number }
-    | { type: "practice" }
-    | { type: "review"; count: number }
-    | null
+  suggestion: DailySuggestion | null
 }) {
   if (!suggestion) {
     return <p className="text-xs text-[#444444]">Open</p>
   }
 
-  if (suggestion.type === "lesson") {
-    return (
-      <Link
-        href={`/lessons/${suggestion.slug}`}
-        className="flex flex-col gap-1 text-left hover:opacity-90 transition-opacity"
-      >
-        <BookOpen className="w-3 h-3 text-[#888888]" />
-        <p className="text-[10px] uppercase tracking-widest text-[#555555]">
-          Mod {String(suggestion.module).padStart(2, "0")}
-        </p>
-        <p className="text-xs text-[#C0C0C0] leading-snug line-clamp-2">
-          {suggestion.title}
-        </p>
-      </Link>
-    )
+  const iconMap: Record<DailySuggestion["type"], typeof BookOpen> = {
+    lesson: BookOpen,
+    practice: Wrench,
+    review: RotateCcw,
+    chapter: Sparkles,
+    mock: Target,
   }
-
-  if (suggestion.type === "review") {
-    return (
-      <Link
-        href="/error-log"
-        className="flex flex-col gap-1 text-left hover:opacity-90 transition-opacity"
-      >
-        <Pencil className="w-3 h-3" style={{ color: "#FF4444" }} />
-        <p className="text-xs text-[#C0C0C0] leading-snug">
-          Review {suggestion.count} mistakes
-        </p>
-      </Link>
-    )
+  const colorMap: Record<DailySuggestion["type"], string> = {
+    lesson: "#888888",
+    practice: "#888888",
+    review: "#C9A84C",
+    chapter: "#C9A84C",
+    mock: "#C9A84C",
   }
+  const typeLabel: Record<DailySuggestion["type"], string> = {
+    lesson: "Lesson",
+    practice: "Practice",
+    review: "Review",
+    chapter: "Chapter",
+    mock: "Mock",
+  }
+  const Icon = iconMap[suggestion.type]
+  const color = colorMap[suggestion.type]
 
-  // practice
   return (
     <Link
-      href="/test-builder"
+      href={suggestion.href}
       className="flex flex-col gap-1 text-left hover:opacity-90 transition-opacity"
     >
-      <Wrench className="w-3 h-3 text-[#888888]" />
-      <p className="text-xs text-[#C0C0C0] leading-snug">Practice set</p>
+      <Icon className="w-3 h-3" style={{ color }} />
+      <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+        {typeLabel[suggestion.type]}
+      </p>
+      <p className="text-xs text-[#C0C0C0] leading-snug line-clamp-2">
+        {suggestion.label}
+      </p>
     </Link>
+  )
+}
+
+/**
+ * Large card for a Today's Focus action. The first (primary) card is
+ * highlighted with the gold accent so the student can see at a glance
+ * what the single most-important next action is.
+ */
+function FocusCard({
+  action,
+  primary,
+}: {
+  action: FocusAction
+  primary: boolean
+}) {
+  const Icon = (() => {
+    switch (action.type) {
+      case "diagnostic":
+        return FlaskConical
+      case "review":
+        return RotateCcw
+      case "weak-topic-chapter":
+        return Sparkles
+      case "mock":
+        return Target
+      case "practice":
+      default:
+        return Wrench
+    }
+  })()
+
+  return (
+    <Link
+      href={action.href}
+      className="p-5 rounded-xl border flex items-start gap-4 transition-colors hover:opacity-95"
+      style={{
+        borderColor: primary
+          ? "rgba(201,168,76,0.25)"
+          : "rgba(255,255,255,0.08)",
+        backgroundColor: primary ? "rgba(201,168,76,0.04)" : "#111111",
+      }}
+    >
+      <div
+        className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+        style={{
+          backgroundColor: primary
+            ? "rgba(201,168,76,0.12)"
+            : "rgba(255,255,255,0.04)",
+        }}
+      >
+        <Icon
+          className="w-5 h-5"
+          style={{ color: primary ? "#C9A84C" : "#888888" }}
+        />
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-semibold text-[#F0F0F0] mb-1">
+          {action.title}
+        </p>
+        <p className="text-xs text-[#888888] leading-relaxed">
+          {action.subtitle}
+        </p>
+      </div>
+      <span
+        className="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold"
+        style={{
+          backgroundColor: primary ? "#C9A84C" : "rgba(201,168,76,0.12)",
+          color: primary ? "#0A0A0A" : "#C9A84C",
+        }}
+      >
+        {action.cta}
+      </span>
+    </Link>
+  )
+}
+
+/**
+ * Row for a topic the student is measurably weak on. Links the student
+ * to the chapter so they can re-read before drilling more questions in
+ * the same area.
+ */
+function WeakAreaCard({ weak }: { weak: WeakArea }) {
+  return (
+    <div className="p-4 rounded-xl border border-white/[0.08] bg-[#111111] flex items-center justify-between gap-4">
+      <div className="flex items-start gap-3">
+        <TrendingDown className="w-4 h-4 mt-0.5 text-[#FF4444] flex-shrink-0" />
+        <div>
+          <div className="flex items-center gap-2 mb-0.5">
+            <span
+              className="px-2 py-0.5 rounded text-[10px] uppercase tracking-wide"
+              style={{
+                backgroundColor: "rgba(201,168,76,0.08)",
+                color: "#C9A84C",
+              }}
+            >
+              {weak.section}
+            </span>
+            <span className="text-xs text-[#555555]">
+              {Math.round(weak.accuracy * 100)}% on {weak.attempts} question
+              {weak.attempts === 1 ? "" : "s"}
+            </span>
+          </div>
+          <p className="text-sm font-semibold text-[#F0F0F0]">{weak.topic}</p>
+        </div>
+      </div>
+      {weak.chapterSlug ? (
+        <Link
+          href={`/chapters/${weak.chapterSlug}`}
+          className="flex-shrink-0 text-xs px-3 py-1.5 rounded-lg font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-1"
+          style={{
+            backgroundColor: "rgba(201,168,76,0.12)",
+            color: "#C9A84C",
+          }}
+        >
+          Open chapter
+          <ArrowRight className="w-3 h-3" />
+        </Link>
+      ) : (
+        <span className="text-xs text-[#555555]">Keep practicing</span>
+      )}
+    </div>
   )
 }
 
