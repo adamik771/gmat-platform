@@ -59,6 +59,8 @@ export default async function StudyPlanPage() {
   let estimatedTotal: number | null = null
   let pendingMistakeCount = 0
   let plan: StudyPlanOutput | null = null
+  let diagnosticTakenAt: string | null = null
+  let diagnosticSectionsCount = 0
 
   try {
     const supabase = await createSupabaseServer()
@@ -177,6 +179,22 @@ export default async function StudyPlanPage() {
         targetScore,
         examDate,
       })
+
+      // Diagnostic baseline — if the user has taken the diagnostic,
+      // the Study Plan's weak areas are rooted in that data; surface
+      // when it was taken so the attribution is visible.
+      const { data: diagRows } = await supabase
+        .from("practice_sessions")
+        .select("slug, created_at")
+        .eq("user_id", user.id)
+        .in("slug", ["diagnostic-quant", "diagnostic-verbal", "diagnostic-di"])
+        .order("created_at", { ascending: false })
+      diagnosticSectionsCount = new Set(
+        (diagRows ?? []).map((r) => r.slug as string)
+      ).size
+      if (diagRows && diagRows.length > 0) {
+        diagnosticTakenAt = diagRows[0].created_at as string
+      }
     }
   } catch {
     // Supabase unavailable — render with empty defaults.
@@ -289,6 +307,31 @@ export default async function StudyPlanPage() {
             : "Set an exam date in Settings to count down to your test."}
         </p>
       </div>
+
+      {/* Diagnostic attribution — only when the student has finished at
+          least one diagnostic section, so the plan is rooted in real data.
+          Tiny line; clicks through to the full report. */}
+      {diagnosticSectionsCount > 0 && diagnosticTakenAt && (
+        <Link
+          href="/diagnostic/report"
+          className="flex items-center justify-between gap-3 p-3 rounded-lg border border-white/[0.06] bg-[#0D0D0D] hover:bg-[#111111] transition-colors"
+        >
+          <p className="text-xs text-[#888888]">
+            <span className="text-[#555555]">Plan rooted in your diagnostic</span>
+            <span className="mx-2 text-[#333333]">·</span>
+            {diagnosticSectionsCount < 3
+              ? `${diagnosticSectionsCount} of 3 sections taken`
+              : new Date(diagnosticTakenAt).toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+          </p>
+          <span className="text-xs" style={{ color: "#C9A84C" }}>
+            View report →
+          </span>
+        </Link>
+      )}
 
       {/* Today's focus — adaptive action queue ranked by impact.
           Highest-priority item first; up to 3 shown. */}

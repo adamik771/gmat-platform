@@ -1,5 +1,14 @@
 import Link from "next/link"
-import { ArrowLeft, ArrowRight, TrendingDown } from "lucide-react"
+import {
+  ArrowLeft,
+  ArrowRight,
+  BookOpen,
+  Calendar,
+  RotateCcw,
+  Sparkles,
+  Target,
+  TrendingDown,
+} from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import {
   buildReport,
@@ -7,6 +16,7 @@ import {
   type DiagnosticAttempt,
   type SectionResult,
 } from "@/lib/diagnostic"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import type { Section } from "@/types"
 
 export const metadata = {
@@ -184,30 +194,173 @@ export default async function DiagnosticReportPage() {
         </div>
       </div>
 
+      {/* Personalized first-week plan — synthesized from the diagnostic's
+          weak-topic data. Each day points at a specific chapter or a
+          specific surface the student can open right now, so the report
+          doesn't leave them with "well what do I do next?" after seeing
+          their score. */}
+      <PersonalizedWeekPlan report={report} />
+
+      <Link
+        href="/study-plan"
+        className="flex items-center justify-between gap-4 p-5 rounded-xl border transition-opacity hover:opacity-95"
+        style={{
+          borderColor: "rgba(201,168,76,0.25)",
+          backgroundColor: "rgba(201,168,76,0.04)",
+        }}
+      >
+        <div className="flex items-start gap-4">
+          <div
+            className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+            style={{ backgroundColor: "rgba(201,168,76,0.12)" }}
+          >
+            <Calendar className="w-5 h-5" style={{ color: "#C9A84C" }} />
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-[#F0F0F0] mb-1">
+              Open your personalized Study Plan
+            </p>
+            <p className="text-xs text-[#888888]">
+              Today&apos;s Focus + weekly cadence + weakest topics — already wired to your diagnostic results.
+            </p>
+          </div>
+        </div>
+        <ArrowRight className="w-5 h-5 text-[#C9A84C] flex-shrink-0" />
+      </Link>
+
       <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
-        <h2 className="text-sm font-semibold text-[#F0F0F0] mb-2">Next steps</h2>
+        <h2 className="text-sm font-semibold text-[#F0F0F0] mb-2">Quick links</h2>
         <ul className="space-y-2 text-sm text-[#888888]">
           <li className="flex items-start gap-2">
             <ArrowRight className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#C9A84C" }} />
             <span>
-              Open <Link href="/chapters" className="underline underline-offset-2" style={{ color: "#C9A84C" }}>Chapters</Link> for any topic above — each chapter ends with graded problem sets calibrated to your target score.
+              Every question you missed is already in{" "}
+              <Link href="/review" className="underline underline-offset-2" style={{ color: "#C9A84C" }}>
+                Daily Review
+              </Link>{" "}
+              — retrieval practice on today&apos;s misses is the highest-ROI follow-up.
             </span>
           </li>
           <li className="flex items-start gap-2">
             <ArrowRight className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#C9A84C" }} />
             <span>
-              Check <Link href="/review" className="underline underline-offset-2" style={{ color: "#C9A84C" }}>Daily Review</Link> — your diagnostic attempts have already been added to the spaced-retrieval queue.
-            </span>
-          </li>
-          <li className="flex items-start gap-2">
-            <ArrowRight className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#C9A84C" }} />
-            <span>
-              Re-take a section any time to track progress — your score will update each attempt.
+              Re-take a section any time — your score, weak topics, and the rest of the plan update each attempt.
             </span>
           </li>
         </ul>
       </div>
     </div>
+  )
+}
+
+/**
+ * Renders a 5-day starter plan keyed off the diagnostic's weak topics.
+ * The shape is intentionally concrete: specific chapter per weak topic,
+ * alternating with review + mock days. Gives the student something to
+ * actually DO after the diagnostic instead of staring at a score.
+ */
+function PersonalizedWeekPlan({
+  report,
+}: {
+  report: { sections: SectionResult[] }
+}) {
+  const allWeakTopics = report.sections
+    .flatMap((s) => s.weakTopics.map((t) => ({ ...t, section: s.section })))
+    .sort((a, b) => a.accuracy - b.accuracy)
+    .slice(0, 3)
+
+  if (allWeakTopics.length === 0) return null
+
+  type Day =
+    | { kind: "chapter"; topic: string; section: Section; chapterSlug: string | null; accuracy: number }
+    | { kind: "review" }
+    | { kind: "mock" }
+
+  const days: Day[] = []
+  // Alternate chapter + review/mock so the week has rhythm instead of
+  // five consecutive chapter-reading days.
+  const chapterDays = allWeakTopics.map<Day>((t) => ({
+    kind: "chapter",
+    topic: t.topic,
+    section: t.section,
+    chapterSlug: TOPIC_TO_CHAPTER[t.topic] ?? null,
+    accuracy: t.accuracy,
+  }))
+  days.push(chapterDays[0])
+  days.push({ kind: "review" })
+  if (chapterDays[1]) days.push(chapterDays[1])
+  days.push({ kind: "mock" })
+  if (chapterDays[2]) days.push(chapterDays[2])
+
+  return (
+    <div>
+      <h2 className="text-sm font-semibold text-[#888888] uppercase tracking-widest mb-4">
+        Your first 5 days
+      </h2>
+      <div className="space-y-2">
+        {days.map((day, i) => (
+          <DayRow key={i} dayNumber={i + 1} day={day} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function DayRow({
+  dayNumber,
+  day,
+}: {
+  dayNumber: number
+  day:
+    | { kind: "chapter"; topic: string; section: Section; chapterSlug: string | null; accuracy: number }
+    | { kind: "review" }
+    | { kind: "mock" }
+}) {
+  let icon: typeof Sparkles
+  let title: string
+  let subtitle: string
+  let href: string
+  let borderColor = "rgba(255,255,255,0.08)"
+
+  if (day.kind === "chapter") {
+    icon = BookOpen
+    title = `Read the ${day.topic} chapter`
+    subtitle = `${day.section} · you hit ${Math.round(day.accuracy * 100)}% on the diagnostic here`
+    href = day.chapterSlug ? `/chapters/${day.chapterSlug}` : "/chapters"
+    borderColor = "rgba(201,168,76,0.18)"
+  } else if (day.kind === "review") {
+    icon = RotateCcw
+    title = "Daily Review"
+    subtitle = "Retrieval practice on your diagnostic misses — seeded for you."
+    href = "/review"
+  } else {
+    icon = Target
+    title = "Full-length mock"
+    subtitle = "Measure against your diagnostic baseline after a few days of focused study."
+    href = "/mock"
+  }
+
+  const Icon = icon
+
+  return (
+    <Link
+      href={href}
+      className="flex items-center gap-4 p-4 rounded-xl border transition-colors hover:opacity-95"
+      style={{ borderColor, backgroundColor: "#111111" }}
+    >
+      <span
+        className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
+        style={{ backgroundColor: "rgba(201,168,76,0.12)", color: "#C9A84C" }}
+      >
+        {dayNumber}
+      </span>
+      <Icon className="w-4 h-4 flex-shrink-0" style={{ color: "#888888" }} />
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-semibold text-[#F0F0F0]">{title}</p>
+        <p className="text-xs text-[#888888] truncate">{subtitle}</p>
+      </div>
+      <ArrowRight className="w-4 h-4 text-[#555555] flex-shrink-0" />
+    </Link>
   )
 }
 

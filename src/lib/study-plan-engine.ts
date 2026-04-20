@@ -23,30 +23,7 @@ const MIN_ATTEMPTS_FOR_WEAKNESS = 3
 const WEAK_TOPIC_THRESHOLD = 0.7 // accuracy below this = flag as weak
 const REVIEW_QUEUE_URGENT = 10 // if ≥ this many due, review-first
 
-/**
- * Maps the topic strings used in question frontmatter to chapter slugs.
- * When a weak topic is surfaced, we link the student to the corresponding
- * chapter so they can read before drilling more questions in that area.
- */
-const TOPIC_TO_CHAPTER: Record<string, string> = {
-  Arithmetic: "arithmetic",
-  "Number Properties": "number-properties",
-  Algebra: "algebra",
-  "Exponents and Roots": "exponents-roots",
-  "Ratios and Percents": "ratios-percents",
-  Combinatorics: "combinatorics",
-  "Rates and Work": "rates-work",
-  "Statistics & Probability": "statistics-probability",
-  Geometry: "geometry",
-  "Word Problems": "word-problems",
-  "Critical Reasoning": "critical-reasoning",
-  "Reading Comprehension": "reading-comprehension",
-  "Data Sufficiency": "data-sufficiency",
-  "Graphics Interpretation": "graphics-interpretation",
-  "Table Analysis": "table-analysis",
-  "Multi-Source Reasoning": "multi-source-reasoning",
-  "Two-Part Analysis": "two-part-analysis",
-}
+import { TOPIC_TO_CHAPTER } from "./topic-chapter-map"
 
 export type FocusActionType =
   | "diagnostic"
