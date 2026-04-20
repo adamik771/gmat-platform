@@ -150,42 +150,56 @@ export default async function DiagnosticReportPage() {
           )
             .sort((a, b) => a.accuracy - b.accuracy)
             .slice(0, 5)
-            .map((row) => (
-              <div
-                key={`${row.section}-${row.topic}`}
-                className="p-4 rounded-xl border border-white/[0.08] bg-[#111111] flex items-center justify-between gap-4"
-              >
-                <div className="flex items-start gap-3">
-                  <TrendingDown className="w-4 h-4 mt-0.5 text-[#FF4444] flex-shrink-0" />
-                  <div>
-                    <div className="flex items-center gap-2 mb-0.5">
-                      <span
-                        className="px-2 py-0.5 rounded text-[10px] uppercase tracking-wide"
-                        style={{
-                          backgroundColor: "rgba(201,168,76,0.08)",
-                          color: "#C9A84C",
-                        }}
-                      >
-                        {row.section}
-                      </span>
-                      <span className="text-xs text-[#555555]">
-                        {Math.round(row.accuracy * 100)}% on {row.attempts} question{row.attempts === 1 ? "" : "s"}
-                      </span>
+            .map((row) => {
+              const slug = TOPIC_TO_CHAPTER[row.topic] ?? null
+              return (
+                <div
+                  key={`${row.section}-${row.topic}`}
+                  className="p-4 rounded-xl border border-white/[0.08] bg-[#111111] flex items-start sm:items-center justify-between gap-4 flex-col sm:flex-row"
+                >
+                  <div className="flex items-start gap-3">
+                    <TrendingDown className="w-4 h-4 mt-0.5 text-[#FF4444] flex-shrink-0" />
+                    <div>
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <span
+                          className="px-2 py-0.5 rounded text-[10px] uppercase tracking-wide"
+                          style={{
+                            backgroundColor: "rgba(201,168,76,0.08)",
+                            color: "#C9A84C",
+                          }}
+                        >
+                          {row.section}
+                        </span>
+                        <span className="text-xs text-[#555555]">
+                          {Math.round(row.accuracy * 100)}% on {row.attempts} question{row.attempts === 1 ? "" : "s"}
+                        </span>
+                      </div>
+                      <p className="text-sm font-semibold text-[#F0F0F0]">
+                        {row.topic}
+                      </p>
                     </div>
-                    <p className="text-sm font-semibold text-[#F0F0F0]">
-                      {row.topic}
-                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 self-end sm:self-auto flex-shrink-0">
+                    {slug && (
+                      <Link
+                        href={`/practice/session/${slug}`}
+                        className="text-xs px-3 py-1.5 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                        style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                      >
+                        Drill
+                      </Link>
+                    )}
+                    <Link
+                      href={slug ? `/chapters/${slug}` : "/chapters"}
+                      className="text-xs px-3 py-1.5 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                      style={{ backgroundColor: "rgba(201,168,76,0.12)", color: "#C9A84C" }}
+                    >
+                      Read
+                    </Link>
                   </div>
                 </div>
-                <Link
-                  href={`/chapters`}
-                  className="flex-shrink-0 text-xs px-3 py-1.5 rounded-lg font-semibold hover:opacity-90 transition-opacity"
-                  style={{ backgroundColor: "rgba(201,168,76,0.12)", color: "#C9A84C" }}
-                >
-                  Study
-                </Link>
-              </div>
-            ))}
+              )
+            })}
           {report.sections.every((s) => s.weakTopics.length === 0) && (
             <p className="text-sm text-[#888888]">
               No clearly weaker topics — your diagnostic came in evenly across the board.

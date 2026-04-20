@@ -752,8 +752,12 @@ function FocusCard({
  * the same area.
  */
 function WeakAreaCard({ weak }: { weak: WeakArea }) {
+  // The chapter slug doubles as the practice-set slug because question
+  // files live at the same slug (algebra.md both ways). If we ever
+  // diverge those, this is the one line that'd need to change.
+  const practiceSlug = weak.chapterSlug
   return (
-    <div className="p-4 rounded-xl border border-white/[0.08] bg-[#111111] flex items-center justify-between gap-4">
+    <div className="p-4 rounded-xl border border-white/[0.08] bg-[#111111] flex items-start sm:items-center justify-between gap-4 flex-col sm:flex-row">
       <div className="flex items-start gap-3">
         <TrendingDown className="w-4 h-4 mt-0.5 text-[#FF4444] flex-shrink-0" />
         <div>
@@ -775,21 +779,35 @@ function WeakAreaCard({ weak }: { weak: WeakArea }) {
           <p className="text-sm font-semibold text-[#F0F0F0]">{weak.topic}</p>
         </div>
       </div>
-      {weak.chapterSlug ? (
-        <Link
-          href={`/chapters/${weak.chapterSlug}`}
-          className="flex-shrink-0 text-xs px-3 py-1.5 rounded-lg font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-1"
-          style={{
-            backgroundColor: "rgba(201,168,76,0.12)",
-            color: "#C9A84C",
-          }}
-        >
-          Open chapter
-          <ArrowRight className="w-3 h-3" />
-        </Link>
-      ) : (
-        <span className="text-xs text-[#555555]">Keep practicing</span>
-      )}
+      <div className="flex-shrink-0 flex items-center gap-2 self-end sm:self-auto">
+        {practiceSlug && (
+          <Link
+            href={`/practice/session/${practiceSlug}`}
+            className="text-xs px-3 py-1.5 rounded-lg font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-1"
+            style={{
+              backgroundColor: "#C9A84C",
+              color: "#0A0A0A",
+            }}
+          >
+            Drill
+          </Link>
+        )}
+        {weak.chapterSlug ? (
+          <Link
+            href={`/chapters/${weak.chapterSlug}`}
+            className="text-xs px-3 py-1.5 rounded-lg font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-1"
+            style={{
+              backgroundColor: "rgba(201,168,76,0.12)",
+              color: "#C9A84C",
+            }}
+          >
+            Read
+            <ArrowRight className="w-3 h-3" />
+          </Link>
+        ) : (
+          <span className="text-xs text-[#555555]">Keep practicing</span>
+        )}
+      </div>
     </div>
   )
 }
