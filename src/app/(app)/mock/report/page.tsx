@@ -77,6 +77,41 @@ export default async function MockReportPage() {
     ? sessionRows.filter((r) => (r.slug as string).startsWith(`mock-${targetDate}-`))
     : sessionRows.slice(0, 3)
 
+  // Find the most recent FULLY-COMPLETED previous mock so we can show
+  // a comparison delta. "Fully completed" = has a row for each of the
+  // three sections on the same date. We iterate backward through the
+  // remaining sessionRows grouping by date.
+  const byDate = new Map<string, typeof sessionRows>()
+  for (const row of sessionRows) {
+    const m = (row.slug as string).match(/^mock-(\d{4}-\d{2}-\d{2})-/)
+    if (!m) continue
+    const d = m[1]
+    if (d === targetDate) continue
+    const arr = byDate.get(d) ?? []
+    arr.push(row)
+    byDate.set(d, arr)
+  }
+  let previousTotal: number | null = null
+  let previousDate: string | null = null
+  for (const [date, rows] of byDate) {
+    if (rows.length < MOCK_SECTIONS.length) continue
+    const accBySection: Partial<Record<Section, number>> = {}
+    for (const r of rows) {
+      const sec = r.section as Section
+      if (accBySection[sec] === undefined) {
+        accBySection[sec] = (r.accuracy as number) / 100
+      }
+    }
+    const scores = MOCK_SECTIONS.map((s) => accBySection[s])
+      .filter((v): v is number => typeof v === "number")
+      .map((a) => accuracyToScore(a))
+    if (scores.length === MOCK_SECTIONS.length) {
+      previousTotal = Math.round(scores.reduce((a, b) => a + b, 0) / 3 / 10) * 10
+      previousDate = date
+      break
+    }
+  }
+
   // Build per-section report from the mostRecent sessions. For each
   // section, pull attempts and group misses by topic for weak-area analysis.
   const reports: SectionReport[] = []
@@ -141,12 +176,40 @@ export default async function MockReportPage() {
         <p className="text-xs uppercase tracking-widest text-[#555555] mb-2">
           Mock report · {targetDate ?? "most recent"}
         </p>
-        <h1 className="text-3xl sm:text-4xl font-bold text-[#F0F0F0] mb-2">
-          {complete ? `Estimated ${totalScore}` : `Partial: ${totalScore}`}
-        </h1>
+        <div className="flex items-baseline flex-wrap gap-3 mb-2">
+          <h1 className="text-3xl sm:text-4xl font-bold text-[#F0F0F0]">
+            {complete ? `Estimated ${totalScore}` : `Partial: ${totalScore}`}
+          </h1>
+          {complete && previousTotal !== null && (() => {
+            const delta = totalScore - previousTotal
+            const deltaLabel =
+              delta > 0 ? `+${delta}` : delta < 0 ? `${delta}` : "±0"
+            const colour =
+              delta > 0 ? "#3ECF8E" : delta < 0 ? "#FF4444" : "#888888"
+            return (
+              <span
+                className="text-sm font-semibold px-2 py-1 rounded-lg"
+                style={{
+                  backgroundColor:
+                    delta > 0
+                      ? "rgba(62,207,142,0.12)"
+                      : delta < 0
+                      ? "rgba(255,68,68,0.12)"
+                      : "rgba(255,255,255,0.04)",
+                  color: colour,
+                }}
+                title={`Previous: ${previousTotal} on ${previousDate}`}
+              >
+                {deltaLabel} vs {previousTotal}
+              </span>
+            )
+          })()}
+        </div>
         <p className="text-sm text-[#888888] leading-relaxed">
           {complete
-            ? "Average of your three section scores on this mock. Treat it as a rough calibration, not a certainty — official score reports use a slightly different scale."
+            ? previousTotal !== null
+              ? `Compared to your previous completed mock on ${previousDate}. Treat the absolute score as a rough calibration — official reports use a slightly different scale — but trust the direction of the delta.`
+              : "Average of your three section scores on this mock. Take another mock in 1-2 weeks to see how this number moves."
             : `You completed ${reports.length} of ${MOCK_SECTIONS.length} sections. Finish the rest for a full estimate.`}
         </p>
       </div>

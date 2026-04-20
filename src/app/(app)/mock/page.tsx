@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowRight, Clock, FlaskConical, Target } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
+import ScoreChart from "@/components/dashboard/ScoreChart"
 import {
   MOCK_QUESTION_COUNT,
   MOCK_SECTIONS,
@@ -67,6 +68,9 @@ export default async function MockLandingPage() {
         : 0
       pastMocks.push({ dateIso: date, totalScore: total, sectionScores })
     }
+    // Past mocks come in newest-first from the query; keep that ordering
+    // for the list but flip to oldest-first for the trend chart so the
+    // line reads left-to-right as progress over time.
 
     // In-progress detection: if the user has at least one but not all
     // three sections recorded for today.
@@ -144,6 +148,47 @@ export default async function MockLandingPage() {
           <ArrowRight className="w-5 h-5 text-[#C9A84C] flex-shrink-0 mt-1" />
         </div>
       </Link>
+
+      {(() => {
+        // Trend chart only makes sense with ≥2 fully-scored mocks —
+        // otherwise a single dot tells you nothing about direction.
+        const scored = pastMocks.filter((m) => m.totalScore > 0)
+        const oldestFirst = [...scored].reverse()
+        if (oldestFirst.length < 2) return null
+        const first = oldestFirst[0].totalScore
+        const last = oldestFirst[oldestFirst.length - 1].totalScore
+        const delta = last - first
+        const deltaLabel =
+          delta > 0 ? `+${delta}` : delta < 0 ? `${delta}` : "no change"
+        const deltaColor = delta > 0 ? "#3ECF8E" : delta < 0 ? "#FF4444" : "#888888"
+        return (
+          <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-sm font-semibold text-[#888888] uppercase tracking-widest">
+                Mock trend
+              </h2>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-[#555555]">
+                  {first} → {last}
+                </span>
+                <span
+                  className="text-xs font-semibold"
+                  style={{ color: deltaColor }}
+                >
+                  {deltaLabel}
+                </span>
+              </div>
+            </div>
+            <ScoreChart
+              height={140}
+              data={oldestFirst.map((m, i) => ({
+                week: `Mock ${i + 1}`,
+                score: m.totalScore,
+              }))}
+            />
+          </div>
+        )
+      })()}
 
       {pastMocks.length > 0 && (
         <div>
