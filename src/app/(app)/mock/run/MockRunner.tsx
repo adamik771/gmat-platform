@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import {
   ArrowRight,
   Clock,
+  Flag,
   FlaskConical,
   Pause,
   Play,
@@ -46,6 +47,10 @@ interface QuestionState {
   twoPartSelections?: (number | null)[]
   submitted: boolean
   elapsedMs: number
+  /** Student flagged this question during the mock — GMAT test-day
+   * habit: mark items you want to think about again during post-exam
+   * review. Flag count surfaces on the mock report. */
+  flagged: boolean
 }
 
 type Phase = "intro" | "running" | "break" | "posting" | "done"
@@ -104,6 +109,7 @@ export default function MockRunner({ dateIso, sections }: MockRunnerProps) {
           : undefined,
         submitted: false,
         elapsedMs: 0,
+        flagged: false,
       }))
     }
     return out as Record<Section, QuestionState[]>
@@ -265,6 +271,18 @@ export default function MockRunner({ dateIso, sections }: MockRunnerProps) {
     })
   }
 
+  function handleToggleFlag() {
+    if (!activeSection) return
+    setStatesBySection((prev) => {
+      const states = prev[activeSection].slice()
+      states[questionIdx] = {
+        ...states[questionIdx],
+        flagged: !states[questionIdx].flagged,
+      }
+      return { ...prev, [activeSection]: states }
+    })
+  }
+
   async function handleNextQuestion() {
     if (!activeSection || !activeSectionConfig) return
     const lastIdx = activeSectionConfig.questions.length - 1
@@ -341,6 +359,7 @@ export default function MockRunner({ dateIso, sections }: MockRunnerProps) {
         questionIdx={questionIdx}
         totalQuestions={activeSectionConfig.questions.length}
         remainingMs={remainingMs}
+        flaggedCount={statesBySection[activeSection].filter((s) => s.flagged).length}
       />
 
       <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111] space-y-4">
@@ -411,20 +430,41 @@ export default function MockRunner({ dateIso, sections }: MockRunnerProps) {
           </div>
         )}
 
-        <div className="flex items-center justify-between pt-2">
+        <div className="flex items-center justify-between gap-3 pt-2 flex-wrap">
           <p className="text-xs text-[#555555]">
             Answers are revealed only after the mock is complete.
           </p>
-          {!state.submitted ? (
+          <div className="flex items-center gap-2">
             <button
-              onClick={handleSubmitAnswer}
-              disabled={!canSubmit(question, state)}
-              className="px-4 py-2 rounded-lg text-sm font-semibold transition-colors disabled:opacity-40"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              type="button"
+              onClick={handleToggleFlag}
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold transition-colors"
+              style={{
+                backgroundColor: state.flagged
+                  ? "rgba(201,168,76,0.18)"
+                  : "rgba(255,255,255,0.04)",
+                color: state.flagged ? "#C9A84C" : "#888888",
+              }}
+              aria-pressed={state.flagged}
+              title={
+                state.flagged
+                  ? "Flagged for post-mock review — click to un-flag"
+                  : "Flag this question to revisit after the mock"
+              }
             >
-              Submit
+              <Flag className="w-3.5 h-3.5" />
+              {state.flagged ? "Flagged" : "Flag"}
             </button>
-          ) : (
+            {!state.submitted ? (
+              <button
+                onClick={handleSubmitAnswer}
+                disabled={!canSubmit(question, state)}
+                className="px-4 py-2 rounded-lg text-sm font-semibold transition-colors disabled:opacity-40"
+                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              >
+                Submit
+              </button>
+            ) : (
             <button
               onClick={handleNextQuestion}
               className="px-4 py-2 rounded-lg text-sm font-semibold inline-flex items-center gap-1.5 transition-colors"
@@ -436,6 +476,7 @@ export default function MockRunner({ dateIso, sections }: MockRunnerProps) {
               <ArrowRight className="w-4 h-4" />
             </button>
           )}
+          </div>
         </div>
       </div>
     </div>
@@ -527,6 +568,7 @@ function SectionHeader({
   questionIdx,
   totalQuestions,
   remainingMs,
+  flaggedCount,
 }: {
   section: Section
   sectionIdx: number
@@ -534,6 +576,7 @@ function SectionHeader({
   questionIdx: number
   totalQuestions: number
   remainingMs: number
+  flaggedCount: number
 }) {
   const danger = remainingMs < 5 * 60_000
   return (
@@ -546,7 +589,20 @@ function SectionHeader({
           {section} — Question {questionIdx + 1} of {totalQuestions}
         </p>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
+        {flaggedCount > 0 && (
+          <span
+            className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded"
+            style={{
+              backgroundColor: "rgba(201,168,76,0.12)",
+              color: "#C9A84C",
+            }}
+            aria-label={`${flaggedCount} question${flaggedCount === 1 ? "" : "s"} flagged`}
+          >
+            <Flag className="w-3 h-3" />
+            {flaggedCount}
+          </span>
+        )}
         <Clock
           className="w-4 h-4"
           style={{ color: danger ? "#FF4444" : "#C9A84C" }}
