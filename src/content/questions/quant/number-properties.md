@@ -268,8 +268,8 @@ What is the units digit of 2⁵⁰ + 7³⁰?
 - D) 5
 - E) 7
 
-**answer:** A
-**explanation:** Powers of 2 cycle in units digits: 2, 4, 8, 6 (period 4). 50 mod 4 = 2, so 2⁵⁰ has units digit 4. Powers of 7 cycle: 7, 9, 3, 1 (period 4). 30 mod 4 = 2, so 7³⁰ has units digit 9. Sum of units digits: 4 + 9 = 13, giving units digit 0.
+**answer:** C
+**explanation:** Powers of 2 cycle in units digits: 2, 4, 8, 6 (period 4). 50 mod 4 = 2, so 2⁵⁰ has units digit 4. Powers of 7 cycle: 7, 9, 3, 1 (period 4). 30 mod 4 = 2, so 7³⁰ has units digit 9. Sum of units digits: 4 + 9 = 13, giving units digit 3.
 
 ---
 

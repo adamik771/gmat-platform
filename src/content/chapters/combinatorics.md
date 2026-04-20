@@ -182,6 +182,8 @@ Check: C(6, 3) = 6! / (3! × 3!) = 720 / 36 = 20. ✓
 
 This shows up more than any other combination pattern — probably 30% of GMAT combinatorics questions involve some version of it.
 
+> **Recall check.** Without peeking: state the formulas for P(n, k) and C(n, k). Then state the symmetry identity C(n, k) = C(n, ?). Now compute, in your head, C(10, 7). If you computed 10!/(7!3!) = 120 the long way, you missed the shortcut — C(10, 7) = C(10, 3) = 120 with less arithmetic. Retrieving the formulas *and* the symmetry in the same breath is how you wire them together in long-term memory.
+
 ## @restrictions
 
 "In how many arrangements of the letters in LESSON are the two S's next to each other?" That's a restriction problem. The GMAT loves them.
