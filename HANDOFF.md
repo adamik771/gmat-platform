@@ -124,7 +124,51 @@ Final commit series (`2787908` → `c693ad2`, 12 commits) tripled the content fo
 - New Quant topic files added: `geometry.md`, `rates-work.md`, `ratios-percents.md`, `exponents-roots.md`.
 - All content parses cleanly through the loader. Build stays clean. Everything pushed to `main` and live (or will be live on next Vercel pickup from `gmat-platform-61zf`).
 
-### Chapters (Phase 1) — interactive learning architecture (this session)
+### Quant chapter content wave — IN PROGRESS, NOT COMMITTED (end of session)
+After Adam approved Phase 1 of chapters, he asked for the chapter architecture to be applied to every Quant topic ("try this for every quant chapter for now, and maybe we need more chapters with more readings. Remember we want to make sure that if the student does everything we saying exactly, then they should get a very very good score").
+
+**Work done**: dispatched two parallel agents with a detailed brief pointing at `combinatorics.md` as the voice/depth template. Each agent was told to produce 2,500-3,500 words per chapter, match the exact YAML frontmatter schema, reference existing question IDs from the corresponding `src/content/questions/quant/<slug>.md` file, and cover a specific section list per topic.
+
+**5 chapter files written + sitting on disk unverified + uncommitted**:
+
+| Chapter | Words (body) | Agent | Status |
+|---|---:|---|---|
+| `arithmetic.md` | ~3,176 | A (completed) | On disk, not reviewed |
+| `number-properties.md` | ~3,660 | A (completed) | On disk, not reviewed; agent flagged a possible answer-key bug on `number-properties-q15` (units digit of 2⁵⁰ + 7³⁰) — worth double-checking |
+| `algebra.md` | ~3,915 | A (completed) | On disk, not reviewed |
+| `exponents-roots.md` | ~2,546 | B (partial run before interrupt) | On disk, not reviewed |
+| `ratios-percents.md` | ~3,502 | B (partial run before interrupt) | On disk, not reviewed |
+
+**Not yet written (4 chapters remaining for full Quant coverage)**:
+- `rates-work` (Agent B was supposed to handle this too — didn't land before interrupt)
+- `statistics-probability` (Agent C never dispatched)
+- `geometry` (Agent C never dispatched)
+- `word-problems` (Agent C never dispatched)
+
+**Agent brief reference** — the pattern for dispatching more agents lives in the last turn before the context switch. Copy/adapt. Key requirements:
+- Read `combinatorics.md` + `combinatorics/questions` file first for template
+- Match YAML frontmatter exactly (slug, title, section: Quant, estimated_minutes, prerequisites, summary, sections[], problem_sets.easy/medium/hard)
+- Target accuracy tiers must be identical across all chapters (`easy: 605→80, 645→90, 685→95, 725→100`; `medium: 605→50, 645→65, 685→80, 725→95`; `hard: 605→25, 645→40, 685→60, 725→80`)
+- Reference only existing question IDs from the corresponding question file — all topic files have 15-20 questions each with reasonable easy/med/hard distribution
+- Unicode math (`√`, `²`, `π`, `≥`), GMAT Focus Edition scores only (end in 5)
+- Each chapter = pretest → 5-8 readings → summary
+- ~2,500-3,500 words per chapter
+
+**Required actions in the fresh session, in order**:
+1. **Spot-check the 5 unverified chapters** in preview (`npm run dev`, visit `/chapters/<slug>` for each). Confirm the voice matches the combinatorics bar, the question IDs resolve, the UI renders cleanly. Fix obvious issues inline. If the agent output is too shallow or off-voice, consider rewriting those chapters manually.
+2. **Investigate the flagged `number-properties-q15` answer-key bug**. Agent A said the units-digit math for 2⁵⁰ + 7³⁰ doesn't match the stated answer A. If it's wrong, correct the question.
+3. **Write the remaining 4 Quant chapters** (`rates-work`, `statistics-probability`, `geometry`, `word-problems`) — either by dispatching Agent B-continuation + Agent C, or by writing manually if the agent bar is too low.
+4. **Commit + push + verify Vercel deploy** the full wave.
+5. **Per Adam**: "we want to make sure that if the student does everything we saying exactly, then they should get a very very good score" — quality bar is high. Don't ship shallow chapters just to tick boxes.
+
+**Where to pick up the UI/UX work after content lands** (Phase 2+ items deferred from the prior session):
+- Supabase `chapter_progress` table to replace localStorage-only persistence
+- Spaced-repetition queue (1d / 3d / 7d / 21d) pulling wrong-answer questions back
+- Calibration dashboard aggregating confidence-vs-correctness
+- Interleaved mixed-review mode post-chapter
+- Migration of Verbal + DI topics to the chapter format (Adam deferred this explicitly for now)
+
+### Chapters (Phase 1) — interactive learning architecture (previous session)
 First pass at a TTP-inspired but evidence-based chapter architecture. Goal: replace the standalone `/lessons/[slug]` + `/practice/session/[slug]` split with an integrated "read → micro-quiz → read → problem set" flow that bakes in research-backed learning techniques. One prototype chapter (Combinatorics) ships as proof; full migration of remaining topics is deferred to later phases per Adam's scoping.
 - **Learning-science stack** baked into the UI:
   - **Pretesting effect** (Kornell) — optional "Try before you learn" section at the top of each chapter. Attempting before instruction primes the brain to encode the lesson better, even if you get the pretest wrong.
