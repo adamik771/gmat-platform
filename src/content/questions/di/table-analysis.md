@@ -26,8 +26,8 @@ Statement: More than half of the companies had Q4 revenue greater than their Q1 
 - A) Yes
 - B) No
 
-**answer:** B
-**explanation:** Check each company's Q4 vs Q1 growth: Alpha 155/120 = 29% (yes), Beta 130/95 = 37% (yes), Gamma 200/180 = 11% (no), Delta 95/60 = 58% (yes), Epsilon 240/220 = 9% (no). Three out of five (60%) satisfy the condition — "more than half" is technically true at 60%. Wait — 3 out of 5 IS more than half. The answer should be Yes. Recheck: 3/5 = 60% > 50%. Answer: A (Yes). Correcting: the answer is A.
+**answer:** A
+**explanation:** Check each company's Q4 vs Q1 growth: Alpha 155/120 ≈ 29% (yes), Beta 130/95 ≈ 37% (yes), Gamma 200/180 ≈ 11% (no), Delta 95/60 ≈ 58% (yes), Epsilon 240/220 ≈ 9% (no). Three of the five (60%) satisfy the "at least 25% growth" condition, which is more than half — so the statement is true. Answer: Yes.
 
 ---
 
