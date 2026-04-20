@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -139,6 +139,39 @@ function saveProgress(slug: string, progress: ChapterProgress) {
   }
 }
 
+/**
+ * Shape-defensive merge of a serialized `initialProgress` from the server
+ * with the EMPTY_PROGRESS template, so stale user_metadata from a prior
+ * chapter-progress schema still renders without crashing.
+ */
+function normalizeServerProgress(input: unknown): ChapterProgress {
+  if (!input || typeof input !== "object") return EMPTY_PROGRESS
+  const source = input as Partial<ChapterProgress>
+  return {
+    sectionsRead: source.sectionsRead ?? {},
+    questions: source.questions ?? {},
+    problemSetResults: source.problemSetResults ?? EMPTY_PROGRESS.problemSetResults,
+  }
+}
+
+/**
+ * Fire-and-forget POST to /api/chapter-progress. Debounced by the caller.
+ * Failures are silent — localStorage is still the source of truth for the
+ * current session, so the user never sees a data-loss toast.
+ */
+async function pushProgress(slug: string, progress: ChapterProgress) {
+  if (typeof window === "undefined") return
+  try {
+    await fetch("/api/chapter-progress", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slug, progress }),
+    })
+  } catch {
+    // Offline or auth expired — try again on the next update.
+  }
+}
+
 // ----- Shared markdown styling for reading bodies -----
 const mdComponents: Components = {
   p: (p) => <p {...p} className="text-[15px] leading-relaxed text-[#D8D8D8] my-4 first:mt-0 last:mb-0" />,
@@ -205,6 +238,7 @@ export default function ChapterReader({
   sections,
   problemSets,
   targetScore,
+  initialProgress,
 }: {
   slug: string
   title: string
@@ -214,27 +248,71 @@ export default function ChapterReader({
   sections: ReaderSection[]
   problemSets: ReaderProblemSet[]
   targetScore: number | null
+  initialProgress?: unknown
 }) {
   // Hydrate progress from localStorage after mount. SSR renders an empty
   // state (every question pristine, no sections marked read), then the
-  // client useEffect fills it in. Avoids a hydration mismatch.
+  // client useEffect fills it in with whichever source is more complete.
+  // Avoids a hydration mismatch by never touching browser APIs during SSR.
   const [progress, setProgress] = useState<ChapterProgress>(EMPTY_PROGRESS)
   const [hydrated, setHydrated] = useState(false)
   useEffect(() => {
-    setProgress(loadProgress(slug))
+    const local = loadProgress(slug)
+    const server = normalizeServerProgress(initialProgress)
+    // Prefer whichever has more progress. "More" is measured by sum of
+    // sections marked read + questions attempted — a crude but deterministic
+    // heuristic that prevents a fresh device from overwriting saved state,
+    // and prevents a stale user_metadata from erasing in-session work.
+    const sizeOf = (p: ChapterProgress) =>
+      Object.values(p.sectionsRead).filter(Boolean).length +
+      Object.keys(p.questions).length
+    setProgress(sizeOf(server) >= sizeOf(local) ? server : local)
     setHydrated(true)
-  }, [slug])
+  }, [slug, initialProgress])
+
+  // Debounce server pushes so free-text self-explanation typing doesn't
+  // hammer the API once per keystroke. 800ms covers a typical typing burst
+  // without making the cross-device sync feel laggy.
+  const pushTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const queueServerPush = useCallback(
+    (next: ChapterProgress) => {
+      if (pushTimer.current) clearTimeout(pushTimer.current)
+      pushTimer.current = setTimeout(() => {
+        void pushProgress(slug, next)
+      }, 800)
+    },
+    [slug]
+  )
 
   const update = useCallback(
     (updater: (prev: ChapterProgress) => ChapterProgress) => {
       setProgress((prev) => {
         const next = updater(prev)
         saveProgress(slug, next)
+        queueServerPush(next)
         return next
       })
     },
-    [slug]
+    [slug, queueServerPush]
   )
+
+  // Flush a pending debounced push when the tab is hidden or the user
+  // navigates away — otherwise the last ~800ms of edits could be lost on
+  // navigation.
+  useEffect(() => {
+    function flushIfPending() {
+      if (pushTimer.current) {
+        clearTimeout(pushTimer.current)
+        pushTimer.current = null
+        void pushProgress(slug, progress)
+      }
+    }
+    window.addEventListener("pagehide", flushIfPending)
+    return () => {
+      window.removeEventListener("pagehide", flushIfPending)
+      flushIfPending()
+    }
+  }, [slug, progress])
 
   const totalSections = sections.length
   const completedSections = sections.filter(

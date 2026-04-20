@@ -76,8 +76,11 @@ export default async function ChapterDetailPage({
   )
 
   // Pull the user's target score so the reader can surface the accuracy
-  // target for the difficulty they're about to attempt.
+  // target for the difficulty they're about to attempt, plus any existing
+  // chapter progress persisted to user_metadata so a student who switches
+  // devices picks up where they left off.
   let targetScore: number | null = null
+  let initialProgress: unknown = null
   try {
     const supabase = await createSupabaseServer()
     const {
@@ -87,8 +90,15 @@ export default async function ChapterDetailPage({
     if (typeof raw === "number" && Number.isInteger(raw)) {
       targetScore = raw
     }
+    const chapterProgress = user?.user_metadata?.chapter_progress as
+      | Record<string, unknown>
+      | undefined
+    const entry = chapterProgress?.[slug]
+    if (entry && typeof entry === "object") {
+      initialProgress = entry
+    }
   } catch {
-    // Supabase unavailable — reader falls back to the lenient tier.
+    // Supabase unavailable — reader falls back to the lenient tier + empty progress.
   }
 
   return (
@@ -110,6 +120,7 @@ export default async function ChapterDetailPage({
         sections={sections}
         problemSets={problemSets}
         targetScore={targetScore}
+        initialProgress={initialProgress}
       />
     </div>
   )

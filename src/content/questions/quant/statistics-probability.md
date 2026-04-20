@@ -210,12 +210,12 @@ The mean of five distinct positive integers is 20 and their median is 18. If the
 
 - A) 1
 - B) 5
-- C) 10
+- C) 11
 - D) 12
 - E) 17
 
 **answer:** C
-**explanation:** With five distinct positive integers a < b < 18 < d < 40 and sum 100, we get a + b + d = 42. To maximize a, minimize d (smallest d > 18 integer is 19) and let b be as close to a as possible. With d = 19, a + b = 23, and a must satisfy a < b < 18. Choosing a = 10 and b = 13 gives the configuration {10, 13, 18, 19, 40} — distinct integers, mean 20, median 18, largest 40, smallest 10 — which matches the intended answer of 10 among the listed choices.
+**explanation:** With five distinct positive integers a < b < 18 < d < 40 and sum 100, we get a + b + d = 42. To maximize a, minimize d and keep b as close to a as possible. The smallest integer greater than 18 is 19, and since a < b are distinct integers, the tightest gap is b = a + 1. With d = 19 and b = a + 1: a + (a+1) + 19 = 42, so 2a = 22, giving a = 11 and b = 12. The configuration {11, 12, 18, 19, 40} has distinct positive integers, sum 100 (mean 20), median 18, and largest 40. Any larger d forces a smaller a (e.g., d = 20 gives a ≤ 10), so 11 is the maximum. Trap D (12) comes from ignoring that b must be strictly greater than a.
 
 ---
 
