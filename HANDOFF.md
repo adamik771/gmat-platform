@@ -124,6 +124,20 @@ Final commit series (`2787908` → `c693ad2`, 12 commits) tripled the content fo
 - New Quant topic files added: `geometry.md`, `rates-work.md`, `ratios-percents.md`, `exponents-roots.md`.
 - All content parses cleanly through the loader. Build stays clean. Everything pushed to `main` and live (or will be live on next Vercel pickup from `gmat-platform-61zf`).
 
+### Analytics page — real data across all 4 panels (this session)
+The `/analytics` page was entirely mocked (hardcoded `scoreTrend`, `topicAccuracy`, `pacingData` arrays). Now every panel queries the user's real `practice_sessions` + `practice_attempts` with sensible minimum-sample thresholds.
+- **`src/app/(app)/analytics/page.tsx`** — async server component that does 3 aggregations:
+  - **Score trajectory (8 weeks)**: groups `practice_sessions.accuracy` by ISO week, computes the per-week mean, scales via `accuracyToFocusTotal()` (same 205-805 formula as the dashboard's estimated total, so the two surfaces don't drift). Also keeps per-section accuracy for the dashed Quant / Verbal lines.
+  - **Topic accuracy (all-time)**: groups attempts by `section + topic`, filters topics with `TOPIC_MIN_ATTEMPTS = 5`, sorts by volume desc, surfaces top 10 in the bar list.
+  - **Pacing (all-time)**: groups attempts by section, computes `avg(time_spent_ms) / 60000`, gated behind `PACING_MIN_ATTEMPTS = 5`. Defensive: skips attempts where `time_spent_ms <= 1000` so an accidental insta-submit doesn't pull the mean to zero. Targets: Quant 2.0 min, Verbal 1.75, DI 2.5.
+- **`src/app/(app)/analytics/AnalyticsClient.tsx`** (new) — recharts needs client; the charts take server-computed data and render it. Additions vs the mock:
+  - **Y-axis domain auto-fits** — `[firstTotal - 30, lastTotal + 30]` clamped to [205, 805] so a small score range doesn't look flat against the full GMAT scale.
+  - **Tooltip formatter** — distinguishes Total Score (raw number) from section lines (percent). Typed loosely to satisfy recharts' `Formatter<ValueType, NameType>` (first build failed on strict typings; widened to `value: unknown` stringified to fix).
+  - **Empty states everywhere** — per-panel `EmptyState` with CTAs to `/test-builder` or `/practice`. Thresholds match the server: trajectory needs ≥ 2 weeks, topic list needs ≥ 1 topic at 5+ attempts, pacing needs ≥ 5 attempts in a section, strengths/weaknesses needs ≥ 2 topics.
+  - **Strengths/Weaknesses** — top-3 and bottom-3 of the topic list, sorted by accuracy with attempts as tiebreaker so the more-trustworthy topic wins on ties.
+  - **Pacing widths** — bars render against `2 × target` as the full track so a large over-target value still looks meaningful (not >100%).
+- **Verified**: `npx next build` clean after fixing the recharts tooltip formatter type. Preview (signed in as Adam): Score Trajectory → empty state "One week of data so far" + "Build a test" CTA (Adam has sessions in one ISO week); Accuracy by Topic → one real row "Quant · Algebra 8% (12)"; Pacing → empty state "Pacing needs more attempts"; Strengths & Weaknesses → empty state "Needs more topic data". All CTAs point to real routes. No console errors.
+
 ### Test Builder — real custom test generation (this session)
 The `/test-builder` page was fully mocked (filters that did nothing, hardcoded `recentTests` array). Now it actually samples from the 443-question pool and launches a real practice session tied into the existing persistence pipeline.
 - **`src/lib/content.ts`** — added `getQuestionsByIds(ids)` helper. O(n) Map build + O(k) lookup; preserves input order; silently skips unresolved ids.
@@ -256,7 +270,8 @@ With the original A/C/B/D directive fully executed, here are the natural next mo
 - ~~**Stripe checkout**~~ ✅ Done this session (scaffolded). `/api/checkout` + `/api/stripe/webhook` + `CheckoutButton` + `purchases` table + service-role Supabase client. Requires real Stripe price IDs + secret key + webhook secret in env to go live — see below.
 - ~~**Real settings page**~~ ✅ Done this session. Profile tab persists name + exam date via `/api/profile` to `user_metadata`; Billing tab shows real `purchases` rows with a history table. Email edit + notification prefs kept as placeholders with "coming soon" copy.
 - ~~**Real Test Builder**~~ ✅ Done this session. Samples the 443-question pool by section + difficulty, launches `/practice/session/custom?ids=...`, surfaces the user's 5 most recent custom sessions. Dashboard "Take diagnostic" CTA now leads somewhere functional.
-- **Study plan + Analytics pages** — `/study-plan` and `/analytics` are still placeholder mocks. Real versions would query the existing Supabase tables (accuracy trends over time, topic heatmap from `practice_attempts`, lesson completion schedule, mock-exam projections). Medium-to-large effort.
+- ~~**Real Analytics page**~~ ✅ Done this session. All 4 panels (trajectory, topic accuracy, pacing, strengths/weaknesses) query real Supabase data with sensible min-sample thresholds and per-panel empty states.
+- **Real Study Plan page** — `/study-plan` is still a placeholder mock. Natural next move: build from `lesson_completions` + `user_metadata.exam_date` + the curriculum module list, surface a week-by-week schedule with what to cover when.
 - **Email change flow** — the settings Profile tab shows email read-only because Supabase's `updateUser({ email })` requires a confirmation link. Needs a UI for the "check your inbox" state + a callback path. Small-to-medium effort.
 - **Notification preferences persistence** — the Notifications tab has 4 toggles that don't save. Needs either a `notification_preferences` table or a JSON column on `user_metadata`, plus an actual email scheduler (Resend/Postmark/etc.) for the toggles to matter. Big effort — defer until there's demand.
 - **Custom domain** — Vercel is on `gmat-platform-61zf.vercel.app` (default). Wiring a real domain (e.g. `zakarian-gmat.com`) goes through Vercel → `gmat-platform-61zf` project → Settings → Domains → Add, then DNS (A record or CNAME).
