@@ -4,8 +4,10 @@ import {
   CalendarDays,
   CheckCircle,
   Clock,
+  Pencil,
   Target,
   Flame,
+  Wrench,
 } from "lucide-react"
 import { getAllLessons } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
@@ -43,6 +45,7 @@ export default async function StudyPlanPage() {
   let studyHoursWeek = 0
   let studyDays30Count = 0
   let estimatedTotal: number | null = null
+  let pendingMistakeCount = 0
 
   try {
     const supabase = await createSupabaseServer()
@@ -96,6 +99,30 @@ export default async function StudyPlanPage() {
       }
       studyDays30Count = monthDays.size
 
+      // Pending-mistake count drives the error-review suggestion in the
+      // weekly schedule. Counts wrong attempts whose error_tags row either
+      // doesn't exist OR has reviewed=false — anything the user hasn't
+      // cleared through the error log yet.
+      const { data: wrongAttempts } = await supabase
+        .from("practice_attempts")
+        .select("id")
+        .eq("user_id", user.id)
+        .eq("is_correct", false)
+      const wrongIds = (wrongAttempts ?? []).map((a) => a.id as string)
+
+      if (wrongIds.length > 0) {
+        const { data: reviewedTags } = await supabase
+          .from("error_tags")
+          .select("attempt_id")
+          .eq("user_id", user.id)
+          .eq("reviewed", true)
+          .in("attempt_id", wrongIds)
+        const reviewedSet = new Set(
+          (reviewedTags ?? []).map((t) => t.attempt_id as string)
+        )
+        pendingMistakeCount = wrongIds.filter((id) => !reviewedSet.has(id)).length
+      }
+
       // Estimated GMAT total — only if all 3 sections have ≥10 attempts,
       // matching the dashboard's gating exactly.
       const { data: sectionAttempts } = await supabase
@@ -136,20 +163,43 @@ export default async function StudyPlanPage() {
     // Supabase unavailable — render with empty defaults.
   }
 
+  // ---------- Derived: next 3 incomplete lessons, for "Upcoming" panel ----------
+  const incompleteLessons = lessons.filter((l) => !completedSlugs.has(l.slug))
+  const upcomingLessons = incompleteLessons.slice(0, 3)
+  const nextLesson = incompleteLessons[0] ?? null
+
+  // ---------- Derived: suggested content for each future day in the week ----------
+  // A rotating pattern that assumes a reasonable study cadence:
+  //   lesson → practice → practice → review (if backlog) → repeat
+  // Lessons pop from the incomplete list; skipped once exhausted. Review
+  // only shows when there are ≥ 3 unreviewed mistakes, so the cadence
+  // collapses to lesson → practice → practice → practice otherwise.
+  type DaySuggestion =
+    | { type: "lesson"; slug: string; title: string; module: number }
+    | { type: "practice" }
+    | { type: "review"; count: number }
+  const lessonQueue = [...incompleteLessons]
+  const showReview = pendingMistakeCount >= 3
+  const pattern: ("lesson" | "practice" | "review")[] = showReview
+    ? ["lesson", "practice", "practice", "review"]
+    : ["lesson", "practice", "practice", "practice"]
+  let patternIdx = 0
+  const suggestionByKey = new Map<string, DaySuggestion>()
+
   // ---------- Derived: calendar for the current week (Sun → Sat) ----------
   const today = new Date()
   const sunday = new Date(today)
   sunday.setHours(0, 0, 0, 0)
   sunday.setDate(today.getDate() - today.getDay())
+  const todayStart = new Date(today)
+  todayStart.setHours(0, 0, 0, 0)
+  const todayStartMs = todayStart.getTime()
   const weekDays = Array.from({ length: 7 }, (_, i) => {
     const d = new Date(sunday)
     d.setDate(sunday.getDate() + i)
     const key = d.toISOString().slice(0, 10)
-    const isToday =
-      d.getFullYear() === today.getFullYear() &&
-      d.getMonth() === today.getMonth() &&
-      d.getDate() === today.getDate()
-    const isPast = d.getTime() < today.setHours(0, 0, 0, 0)
+    const isToday = d.getTime() === todayStartMs
+    const isPast = d.getTime() < todayStartMs
     return {
       weekdayLabel: WEEKDAY_LABELS[i],
       date: d,
@@ -160,10 +210,38 @@ export default async function StudyPlanPage() {
     }
   })
 
-  // ---------- Derived: next 3 incomplete lessons, for "Upcoming" panel ----------
-  const incompleteLessons = lessons.filter((l) => !completedSlugs.has(l.slug))
-  const upcomingLessons = incompleteLessons.slice(0, 3)
-  const nextLesson = incompleteLessons[0] ?? null
+  // Walk future days in order and assign a suggestion per the pattern.
+  // Today isn't given a suggestion — it shows the "Next: <lesson>" card
+  // we already render, which is the user's most concrete next action.
+  for (const day of weekDays) {
+    if (day.isPast || day.isToday) continue
+    // Advance through the pattern until we find a slot we can fill.
+    for (let tries = 0; tries < pattern.length; tries++) {
+      const slot = pattern[patternIdx % pattern.length]
+      patternIdx++
+      if (slot === "lesson") {
+        if (lessonQueue.length === 0) continue
+        const l = lessonQueue.shift()!
+        suggestionByKey.set(day.key, {
+          type: "lesson",
+          slug: l.slug,
+          title: l.title,
+          module: l.module,
+        })
+        break
+      }
+      if (slot === "review") {
+        suggestionByKey.set(day.key, {
+          type: "review",
+          count: pendingMistakeCount,
+        })
+        break
+      }
+      // "practice" — always fillable
+      suggestionByKey.set(day.key, { type: "practice" })
+      break
+    }
+  }
 
   // ---------- Derived: exam readiness ----------
   const daysUntilExam = examDate
@@ -269,7 +347,7 @@ export default async function StudyPlanPage() {
                   ) : isPast ? (
                     <p className="text-xs text-[#444444]">No activity</p>
                   ) : (
-                    <p className="text-xs text-[#444444]">Open</p>
+                    <SuggestionCell suggestion={suggestionByKey.get(day.key) ?? null} />
                   )}
                 </div>
               </div>
@@ -462,6 +540,68 @@ export default async function StudyPlanPage() {
         />
       )}
     </div>
+  )
+}
+
+/**
+ * Inline suggestion card for a future day in the weekly calendar. Clickable
+ * where possible — lessons link to the lesson detail page, practice to the
+ * test builder, review to the error log. Keeps the look tight so it fits
+ * inside the 96px-min calendar cell.
+ */
+function SuggestionCell({
+  suggestion,
+}: {
+  suggestion:
+    | { type: "lesson"; slug: string; title: string; module: number }
+    | { type: "practice" }
+    | { type: "review"; count: number }
+    | null
+}) {
+  if (!suggestion) {
+    return <p className="text-xs text-[#444444]">Open</p>
+  }
+
+  if (suggestion.type === "lesson") {
+    return (
+      <Link
+        href={`/lessons/${suggestion.slug}`}
+        className="flex flex-col gap-1 text-left hover:opacity-90 transition-opacity"
+      >
+        <BookOpen className="w-3 h-3 text-[#888888]" />
+        <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+          Mod {String(suggestion.module).padStart(2, "0")}
+        </p>
+        <p className="text-xs text-[#C0C0C0] leading-snug line-clamp-2">
+          {suggestion.title}
+        </p>
+      </Link>
+    )
+  }
+
+  if (suggestion.type === "review") {
+    return (
+      <Link
+        href="/error-log"
+        className="flex flex-col gap-1 text-left hover:opacity-90 transition-opacity"
+      >
+        <Pencil className="w-3 h-3" style={{ color: "#FF4444" }} />
+        <p className="text-xs text-[#C0C0C0] leading-snug">
+          Review {suggestion.count} mistakes
+        </p>
+      </Link>
+    )
+  }
+
+  // practice
+  return (
+    <Link
+      href="/test-builder"
+      className="flex flex-col gap-1 text-left hover:opacity-90 transition-opacity"
+    >
+      <Wrench className="w-3 h-3 text-[#888888]" />
+      <p className="text-xs text-[#C0C0C0] leading-snug">Practice set</p>
+    </Link>
   )
 }
 
