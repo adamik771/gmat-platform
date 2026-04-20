@@ -13,6 +13,7 @@ import {
   BarChart3,
   AlertCircle,
   RotateCcw,
+  FlaskConical,
   Settings,
   ChevronDown,
   Menu,
@@ -33,6 +34,7 @@ import {
 
 const navItems = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { label: "Diagnostic", href: "/diagnostic", icon: FlaskConical },
   { label: "Study Plan", href: "/study-plan", icon: Calendar },
   { label: "Chapters", href: "/chapters", icon: Sparkles },
   { label: "Lessons", href: "/lessons", icon: BookOpen },

@@ -7,6 +7,7 @@ import {
   AlertCircle,
   Lock,
   RotateCcw,
+  FlaskConical,
   TrendingUp,
 } from "lucide-react"
 import Link from "next/link"
@@ -112,6 +113,7 @@ export default async function DashboardPage() {
   let badges: Badge[] = []
   let reviewDueCount = 0
   let reviewTopTopic: string | null = null
+  let diagnosticSectionsDone = 0
 
   try {
     if (user) {
@@ -352,6 +354,21 @@ export default async function DashboardPage() {
         const [topTopic] = [...counts.entries()].sort((a, b) => b[1] - a[1])
         reviewTopTopic = topTopic?.[0] ?? null
       }
+
+      // Diagnostic — count which of the 3 diagnostic sections have been
+      // completed. Used to surface the "Start your diagnostic" CTA only
+      // when the user hasn't finished it yet.
+      const { data: diagRows } = await supabase
+        .from("practice_sessions")
+        .select("slug")
+        .eq("user_id", userId)
+        .in("slug", [
+          "diagnostic-quant",
+          "diagnostic-verbal",
+          "diagnostic-di",
+        ])
+      const diagSlugs = new Set((diagRows ?? []).map((r) => r.slug as string))
+      diagnosticSectionsDone = diagSlugs.size
     }
   } catch {
     // Supabase query failed — render with empty state
@@ -734,6 +751,51 @@ export default async function DashboardPage() {
 
         {/* Recent Mistakes + Next Lesson */}
         <div className="space-y-6">
+          {/* Diagnostic CTA — shown only while the student hasn't yet
+              completed all 3 diagnostic sections. Anchors first-run use
+              of the product: diagnose before teaching. */}
+          {diagnosticSectionsDone < 3 && (
+            <div>
+              <h2 className="text-sm font-semibold text-[#888888] uppercase tracking-widest mb-4">
+                {diagnosticSectionsDone === 0 ? "Start here" : "Finish your diagnostic"}
+              </h2>
+              <Link
+                href="/diagnostic"
+                className="p-5 rounded-xl border flex items-start gap-4 transition-colors hover:opacity-95"
+                style={{
+                  borderColor: "rgba(201,168,76,0.2)",
+                  backgroundColor: "rgba(201,168,76,0.04)",
+                }}
+              >
+                <div
+                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: "rgba(201,168,76,0.12)" }}
+                >
+                  <FlaskConical className="w-5 h-5" style={{ color: "#C9A84C" }} />
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs text-[#555555] mb-1">
+                    Placement test
+                  </p>
+                  <p className="text-sm font-semibold text-[#F0F0F0] mb-1">
+                    {diagnosticSectionsDone === 0
+                      ? "Take your 30-question diagnostic"
+                      : `${diagnosticSectionsDone} of 3 sections done — keep going`}
+                  </p>
+                  <p className="text-xs text-[#888888]">
+                    Sets a baseline score and flags the topics most worth studying first.
+                  </p>
+                </div>
+                <span
+                  className="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold"
+                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                >
+                  {diagnosticSectionsDone === 0 ? "Start" : "Continue"}
+                </span>
+              </Link>
+            </div>
+          )}
+
           {/* Daily Review — spaced-retrieval queue surfaced at the top
               of the action column so retrieval practice is visible every
               time the student opens the dashboard. */}
