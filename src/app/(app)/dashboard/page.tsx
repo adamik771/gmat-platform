@@ -5,6 +5,7 @@ import {
   Flame,
   BookOpen,
   AlertCircle,
+  Lock,
   TrendingUp,
 } from "lucide-react"
 import Link from "next/link"
@@ -16,6 +17,11 @@ import QuickActions from "@/components/dashboard/QuickActions"
 import EmptyState from "@/components/shared/EmptyState"
 import { getAllLessons, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
+import {
+  computeBadges,
+  computeStreaks,
+  type Badge,
+} from "@/lib/gamification"
 import type { ActivityItem, Section } from "@/types"
 import TargetScoreControl from "./TargetScoreControl"
 
@@ -99,6 +105,9 @@ export default async function DashboardPage() {
   }[] = []
   let lessonsCompletedCount = 0
   let currentPlan: string | null = null
+  let currentStreak = 0
+  let longestStreak = 0
+  let badges: Badge[] = []
 
   try {
     if (user) {
@@ -241,6 +250,76 @@ export default async function DashboardPage() {
         .limit(1)
         .maybeSingle()
       currentPlan = (latestPurchase?.plan_id as string | null) ?? null
+
+      // ---------- Streaks + badges ----------
+      // Every date the user had ANY activity — practice sessions or lesson
+      // completions. Two small queries plus a Set dedupe beats one big
+      // union query and keeps the streak logic in plain JS.
+      const { data: allSessions } = await supabase
+        .from("practice_sessions")
+        .select("created_at, total_questions")
+        .eq("user_id", userId)
+      const { data: allCompletions } = await supabase
+        .from("lesson_completions")
+        .select("completed_at")
+        .eq("user_id", userId)
+
+      const activeDays = new Set<string>()
+      let totalQuestions = 0
+      let largestSessionQuestions = 0
+      for (const s of allSessions ?? []) {
+        const iso = (s.created_at as string).slice(0, 10)
+        activeDays.add(iso)
+        const qCount = (s.total_questions as number) ?? 0
+        totalQuestions += qCount
+        if (qCount > largestSessionQuestions) largestSessionQuestions = qCount
+      }
+      for (const c of allCompletions ?? []) {
+        activeDays.add((c.completed_at as string).slice(0, 10))
+      }
+
+      const streak = computeStreaks(activeDays)
+      currentStreak = streak.current
+      longestStreak = streak.longest
+
+      // Did the user ever build a custom test? Single-row probe.
+      const { data: customProbe } = await supabase
+        .from("practice_sessions")
+        .select("id")
+        .eq("user_id", userId)
+        .eq("slug", "custom")
+        .limit(1)
+        .maybeSingle()
+      const hasCustomTest = !!customProbe
+
+      // Reviewed vs tagged mistakes — badge progress.
+      const { data: tagRows } = await supabase
+        .from("error_tags")
+        .select("reviewed")
+        .eq("user_id", userId)
+      let taggedMistakeCount = 0
+      let reviewedMistakeCount = 0
+      for (const t of tagRows ?? []) {
+        taggedMistakeCount++
+        if (t.reviewed) reviewedMistakeCount++
+      }
+
+      const rawTargetBadge = user.user_metadata?.target_score
+      const hasTarget =
+        typeof rawTargetBadge === "number" && rawTargetBadge >= 205
+
+      badges = computeBadges({
+        totalSessions: totalSessionCount ?? 0,
+        totalQuestions,
+        lessonsCompleted: lessonsCompletedCount,
+        longestStreak,
+        currentStreak,
+        taggedMistakeCount,
+        reviewedMistakeCount,
+        hasCustomTest,
+        hasTarget,
+        largestSessionQuestions,
+      })
 
       if (trendSessions && trendSessions.length > 0) {
         const weeks = new Map<string, number[]>()
@@ -508,9 +587,20 @@ export default async function DashboardPage() {
           icon={TrendingUp}
         />
         <MetricCard
-          label="Total sessions"
-          value={totalSessionCount ?? null}
+          label="Current streak"
+          value={currentStreak > 0 ? currentStreak : null}
+          unit={currentStreak > 0 ? (currentStreak === 1 ? "day" : "days") : undefined}
           icon={Flame}
+          trend={
+            longestStreak > 0
+              ? longestStreak === currentStreak
+                ? "stable"
+                : "up"
+              : undefined
+          }
+          trendValue={
+            longestStreak > 0 ? `best ${longestStreak}d` : undefined
+          }
         />
       </div>
 
@@ -554,6 +644,65 @@ export default async function DashboardPage() {
           Quick Actions
         </h2>
         <QuickActions />
+      </div>
+
+      {/* Achievements */}
+      <div>
+        <div className="flex items-baseline justify-between mb-4">
+          <h2 className="text-sm font-semibold text-[#888888] uppercase tracking-widest">
+            Achievements
+          </h2>
+          <span className="text-xs text-[#555555]">
+            {badges.filter((b) => b.unlocked).length} / {badges.length} unlocked
+          </span>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          {badges.map((badge) => {
+            const Icon = badge.unlocked ? badge.icon : Lock
+            return (
+              <div
+                key={badge.id}
+                className="p-4 rounded-xl border flex flex-col items-start gap-2 transition-colors"
+                style={{
+                  borderColor: badge.unlocked
+                    ? "rgba(201,168,76,0.25)"
+                    : "rgba(255,255,255,0.06)",
+                  backgroundColor: badge.unlocked
+                    ? "rgba(201,168,76,0.04)"
+                    : "#0F0F0F",
+                }}
+              >
+                <div
+                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{
+                    backgroundColor: badge.unlocked
+                      ? "rgba(201,168,76,0.12)"
+                      : "rgba(255,255,255,0.04)",
+                  }}
+                >
+                  <Icon
+                    className="w-4 h-4"
+                    style={{ color: badge.unlocked ? "#C9A84C" : "#555555" }}
+                  />
+                </div>
+                <div className="min-w-0">
+                  <p
+                    className={
+                      badge.unlocked
+                        ? "text-xs font-semibold text-[#F0F0F0]"
+                        : "text-xs font-semibold text-[#888888]"
+                    }
+                  >
+                    {badge.label}
+                  </p>
+                  <p className="text-[11px] text-[#555555] leading-snug mt-0.5">
+                    {badge.description}
+                  </p>
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
 
       {/* Activity + Mistakes */}
