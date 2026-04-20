@@ -107,7 +107,7 @@ If 2^x = 32 and 3^y = 81, what is the value of x + y?
 - E) 12
 
 **answer:** C
-**explanation:** 2^x = 32 = 2^5, so x = 5. 3^y = 81 = 3^4, so y = 4. Therefore x + y = 5 + 4 = 9.
+**explanation:** 2^x = 32 = 2⁵, so x = 5. 3^y = 81 = 3⁴, so y = 4. Therefore x + y = 5 + 4 = 9.
 
 ---
 
@@ -179,7 +179,7 @@ What is the value of (27^(2/3) x 16^(3/4)) / (4^(1/2) x 9^(1/2))?
 - E) 18
 
 **answer:** D
-**explanation:** Evaluate each term: 27^(2/3) = (3^3)^(2/3) = 3^2 = 9. 16^(3/4) = (2^4)^(3/4) = 2^3 = 8. 4^(1/2) = 2. 9^(1/2) = 3. Numerator = 9 x 8 = 72. Denominator = 2 x 3 = 6. Result = 72/6 = 12.
+**explanation:** Evaluate each term: 27^(2/3) = (3³)^(2/3) = 3² = 9. 16^(3/4) = (2⁴)^(3/4) = 2³ = 8. 4^(1/2) = 2. 9^(1/2) = 3. Numerator = 9 x 8 = 72. Denominator = 2 x 3 = 6. Result = 72/6 = 12.
 
 ---
 
@@ -278,7 +278,7 @@ What is the value of (1 + 1/2) / (1 - 1/3)?
 **type:** Problem Solving
 **topic:** Order of Operations
 
-What is the value of 8 - 2 x (3 - 5)^2 + 12 / 4?
+What is the value of 8 - 2 x (3 - 5)² + 12 / 4?
 
 - A) -5
 - B) 1
@@ -287,7 +287,7 @@ What is the value of 8 - 2 x (3 - 5)^2 + 12 / 4?
 - E) 19
 
 **answer:** C
-**explanation:** Apply PEMDAS strictly. Parentheses first: (3 - 5) = -2. Exponent: (-2)^2 = 4. Now: 8 - 2 x 4 + 12/4 = 8 - 8 + 3 = 3. The most common trap is to compute 8 - 2 = 6 first, which violates order of operations — multiplication and division bind tighter than subtraction.
+**explanation:** Apply PEMDAS strictly. Parentheses first: (3 - 5) = -2. Exponent: (-2)² = 4. Now: 8 - 2 x 4 + 12/4 = 8 - 8 + 3 = 3. The most common trap is to compute 8 - 2 = 6 first, which violates order of operations — multiplication and division bind tighter than subtraction.
 
 ---
 
@@ -353,7 +353,7 @@ Which of the following fractions is closest to 1/3?
 **type:** Data Sufficiency
 **topic:** Arithmetic Sequences
 
-The sum of the first n terms of a certain sequence equals 3n^2 + 2n. What is the value of the 10th term?
+The sum of the first n terms of a certain sequence equals 3n² + 2n. What is the value of the 10th term?
 
 (1) The first term of the sequence is 5.
 (2) The common difference between consecutive terms is 6.
@@ -365,4 +365,4 @@ The sum of the first n terms of a certain sequence equals 3n^2 + 2n. What is the
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**explanation:** The stem already fully determines the sequence: the nth term equals S_n - S_(n-1) = (3n^2 + 2n) - (3(n-1)^2 + 2(n-1)) = 6n - 1. So the 10th term is 59 regardless of the statements. Whenever the stem alone answers the question, both statements are individually sufficient (they're consistent with the stem: first term = 5, common difference = 6). This is a classic GMAT trap — always test whether the question is answerable from the stem before evaluating statements.
+**explanation:** The stem already fully determines the sequence: the nth term equals S_n - S_(n-1) = (3n² + 2n) - (3(n-1)² + 2(n-1)) = 6n - 1. So the 10th term is 59 regardless of the statements. Whenever the stem alone answers the question, both statements are individually sufficient (they're consistent with the stem: first term = 5, common difference = 6). This is a classic GMAT trap — always test whether the question is answerable from the stem before evaluating statements.

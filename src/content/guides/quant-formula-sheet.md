@@ -130,10 +130,10 @@ Sum of roots = -b/a; product of roots = c/a.
 - (a^m)^n = a^(m·n)
 - (ab)^n = a^n · b^n
 - (a/b)^n = a^n / b^n
-- a^0 = 1 (for a ≠ 0)
+- a⁰ = 1 (for a ≠ 0)
 - a^(-n) = 1/a^n
 - a^(m/n) = (ⁿ√a)^m = ⁿ√(a^m)
-- a^1 = a
+- a¹ = a
 
 ### Radical Rules
 

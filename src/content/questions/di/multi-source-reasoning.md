@@ -72,7 +72,7 @@ How many of the four board-approved targets (from Tab 3) did the company meet or
 - D) 4
 
 **answer:** A
-**explanation:** Check each target: (1) Hardware <= 50% of revenue: $13.37M / $24.30M = 55.0% -- NOT met. (2) Software & Services YoY growth >= 15%: Previous year hardware was 62% of $22.50M = $13.95M, so previous S&S = $8.55M. Current S&S = $10.93M. Growth = (10.93 - 8.55)/8.55 = 27.8% -- MET. (3) No region > 40% of total: Western = 9.98/24.30 = 41.1% -- NOT met. (4) Every region positive growth: Central declined 5.0% -- NOT met. Only 1 of 4 targets was met.
+**explanation:** Check each target: (1) Hardware ≤ 50% of revenue: $13.37M / $24.30M = 55.0% -- NOT met. (2) Software & Services YoY growth ≥ 15%: Previous year hardware was 62% of $22.50M = $13.95M, so previous S&S = $8.55M. Current S&S = $10.93M. Growth = (10.93 - 8.55)/8.55 = 27.8% -- MET. (3) No region > 40% of total: Western = 9.98/24.30 = 41.1% -- NOT met. (4) Every region positive growth: Central declined 5.0% -- NOT met. Only 1 of 4 targets was met.
 
 ---
 
@@ -170,7 +170,7 @@ A regulatory reviewer is assessing VT-400. She will recommend advancing to Phase
 - D) No, neither dose group satisfies all three criteria
 
 **answer:** B
-**explanation:** Check each group against all three criteria. Group A (10 mg): (i) SOL p = 0.03 < 0.05 -- Met. (ii) TST change = +0.9 hours, less than 1.0 -- NOT met. Fails criterion (ii). Group B (25 mg): (i) SOL p < 0.001 -- Met. (ii) TST change = +1.7 hours >= 1.0 -- Met. (iii) Dropout rate = 14.6%; twice placebo dropout = 2 x 7.9% = 15.8%. Since 14.6% < 15.8% -- Met. Group B satisfies all three criteria. The answer is B.
+**explanation:** Check each group against all three criteria. Group A (10 mg): (i) SOL p = 0.03 < 0.05 -- Met. (ii) TST change = +0.9 hours, less than 1.0 -- NOT met. Fails criterion (ii). Group B (25 mg): (i) SOL p < 0.001 -- Met. (ii) TST change = +1.7 hours ≥ 1.0 -- Met. (iii) Dropout rate = 14.6%; twice placebo dropout = 2 x 7.9% = 15.8%. Since 14.6% < 15.8% -- Met. Group B satisfies all three criteria. The answer is B.
 
 ---
 
@@ -455,4 +455,4 @@ Applying the three constraints from the Executive Briefing (Tab 1) to the scenar
 - D) 3
 
 **answer:** C
-**explanation:** Check each scenario against all three constraints. Constraint 1: max delivery increase <= 0.5 days. Constraint 2: combined utilization <= 90%. Constraint 3: annual savings > $4.0M (i.e., projected op cost < $28.4M - $4.0M = $24.4M). Scenario 1: 0.3 days (OK), 88% (OK), $16.1M < $24.4M (OK) — PASSES. Scenario 2: 0.4 days (OK), 85% (OK), $16.5M (OK) — PASSES. Scenario 3: 0.6 days FAILS constraint 1. Scenario 4: 0.7 days FAILS constraint 1. Two scenarios (1 and 2) satisfy all three constraints. The answer is C.
+**explanation:** Check each scenario against all three constraints. Constraint 1: max delivery increase ≤ 0.5 days. Constraint 2: combined utilization ≤ 90%. Constraint 3: annual savings > $4.0M (i.e., projected op cost < $28.4M - $4.0M = $24.4M). Scenario 1: 0.3 days (OK), 88% (OK), $16.1M < $24.4M (OK) — PASSES. Scenario 2: 0.4 days (OK), 85% (OK), $16.5M (OK) — PASSES. Scenario 3: 0.6 days FAILS constraint 1. Scenario 4: 0.7 days FAILS constraint 1. Two scenarios (1 and 2) satisfy all three constraints. The answer is C.

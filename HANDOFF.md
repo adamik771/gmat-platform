@@ -124,6 +124,26 @@ Final commit series (`2787908` → `c693ad2`, 12 commits) tripled the content fo
 - New Quant topic files added: `geometry.md`, `rates-work.md`, `ratios-percents.md`, `exponents-roots.md`.
 - All content parses cleanly through the loader. Build stays clean. Everything pushed to `main` and live (or will be live on next Vercel pickup from `gmat-platform-61zf`).
 
+### Content overhaul — Unicode math + Focus-native scores (this session)
+Two sweeping content passes across every markdown file under `src/content/`, dispatched as an agent task with the official GMAC concordance as the source of truth.
+- **Math notation** — swapped ASCII patterns for Unicode across 17 question files + 2 guides:
+  - `sqrt(N)` → `√N`, `sqrt(expr)` → `√(expr)`
+  - `^0`..`^9` → `⁰¹²³⁴⁵⁶⁷⁸⁹`; multi-digit `^12` → `¹²`, negative `^-7` → `⁻⁷`
+  - `pi`, `theta`, `delta`, `sigma`, `alpha`, `beta` → `π θ Δ σ α β` where clearly math
+  - `>=` → `≥`, `<=` → `≤`, `!=` → `≠`, `+/-` → `±`
+  - Compound exponents like `x^(n+1)` or `4^(a+1)` left as-is (one remaining in `algebra.md` — Unicode can't represent them cleanly, KaTeX would, but it's 1 case and not worth the dep)
+  - `*` deliberately untouched (markdown bold marker)
+- **GMAT Focus score conversion** — rewrote every old-scale score mention using the official GMAC concordance from `score-concordance-tables.pdf` (old → Focus by **percentile**, not +5):
+  - 800→805, 780→765, 750→705, 730→675, 720→665, 700→645, 680→625, 650→605, 620→575, 600→555, 580→545, 560→525, 540→515, 500→485, and the intermediate rows
+  - Thresholds: `700+` → `645+`, `sub-700` → `sub-645`, `sub-600` → `sub-555`
+  - Ranges: `600-680` → `555-625`, `680-720` → `625-665`, `540-580` → `515-545`
+  - Left alone: 735 (Adam's real score, already Focus), 565 (his starting), point deltas, hours/dollars/percentages/years, section sub-scores (60-90 scale), and any number already ending in 5 (already Focus-native)
+- **Two narrative fixes** caught in spot-check after the agent pass on `lessons/06-mock-strategy.md`:
+  - Line 117: "brittle 635 into a durable 705" → "durable 645" (agent left the 705 because it's valid Focus, but that broke a ~10-point jump into a 70-point one)
+  - Line 165: "Within two mocks I was at 705, and within another three I was testing in the mid-660s" → "at 645" (agent's version inverted the upward arc because 705 Focus is higher than mid-660s)
+- **Totals** (from agent summary): ~150 math conversions, ~30 score conversions across 29 content files. Full file-by-file breakdown preserved in the agent's report.
+- **Verified**: `npx next build` clean. Preview session on `/practice/session/geometry` — Q1 renders `√119` correctly; Q2 renders `12π, 24π, 36π, 72π, 144π` and its explanation renders `π * r² … 36π … 2πr … 12π` all as real Unicode. No leftover `sqrt(` or `\^N` anywhere in rendered prose.
+
 ### Notification preferences persistence (this session)
 The settings Notifications tab had 4 toggles that didn't persist — flip one and reload, it'd reset. Now they stick.
 - **`src/app/api/notification-prefs/route.ts`** (new) — POST, auth-gated. Accepts a partial patch over the 4 valid keys (`streak / weekly / tips / coaching`). Merges onto the user's existing prefs rather than overwriting, so a single-toggle patch doesn't clobber the other three. Rejects unknown keys + non-boolean values with a 400. Writes through `supabase.auth.updateUser({ data: { notification_prefs: next } })`.

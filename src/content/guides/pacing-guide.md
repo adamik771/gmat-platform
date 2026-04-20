@@ -7,7 +7,7 @@ type: reference
 
 # Pacing Guide
 
-Pacing is the difference between a 640 and a 710. You can know the content perfectly and still score badly if you can't manage time. This guide gives you exact pacing targets and strategies for every section, plus the mental game that makes pacing work under pressure.
+Pacing is the difference between a 585 and a 655. You can know the content perfectly and still score badly if you can't manage time. This guide gives you exact pacing targets and strategies for every section, plus the mental game that makes pacing work under pressure.
 
 ## How to Use This Guide
 
@@ -58,7 +58,7 @@ If you hit checkpoint 2 (Q14) and you've used >34 minutes, you're in a pacing cr
 - Setting up equations when "smart numbers" (plug in 100 for totals, or 2 for variables) would work
 - Double-checking answers on the first pass — if you have time at the end, review then
 
-**The 700+ pacer's Quant mindset:**
+**The 645+ pacer's Quant mindset:**
 - Read each stem twice (slowly) — you save far more time on setup than you "lose" on reading
 - Identify the question type in the first 10 seconds (algebra translation? rate? geometry?)
 - Choose the method before starting (direct algebra? plug in? backsolve?)
@@ -98,7 +98,7 @@ Verbal is trickier because CR and RC have very different time profiles.
 - Reading RC passages slowly "for comprehension" — you WILL return to specific sentences for detail questions
 - Second-guessing correct answers on reread
 
-**The 700+ pacer's Verbal mindset:**
+**The 645+ pacer's Verbal mindset:**
 - Identify question type in 5 seconds (Strengthen? Inference? Main Idea?)
 - Predict the answer before reading options when possible
 - Commit to your first-pass answer unless you find a specific reason to change
@@ -129,7 +129,7 @@ DI has the most pacing variance because of format differences.
 - Re-reading MSR tabs for each question (build a mental index on first pass)
 - Computing exact values when the answer choices are spaced apart enough for estimation
 
-**The 700+ pacer's DI mindset:**
+**The 645+ pacer's DI mindset:**
 - Identify format before reading (DS, MSR, TA, GI, TPA) — each has a different strategy
 - For DS, write A+D or B+C+E on scratch pad after evaluating statement (1) to narrow options
 - For MSR, skim all tabs once before ANY question to build the index

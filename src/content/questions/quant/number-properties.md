@@ -30,12 +30,12 @@ If m is an even integer and n is an odd integer, which of the following must be 
 
 - A) m + 2n
 - B) mn
-- C) m^2 + n
+- C) m² + n
 - D) 2m + 2n
 - E) m - n + 1
 
 **answer:** C
-**explanation:** m^2 is even (even times even = even). Even + odd = odd. So m^2 + n is odd. Checking the others: A) even + even = even. B) even x odd = even. D) even + even = even. E) even - odd + odd = even. Only C must be odd.
+**explanation:** m² is even (even times even = even). Even + odd = odd. So m² + n is odd. Checking the others: A) even + even = even. B) even x odd = even. D) even + even = even. E) even - odd + odd = even. Only C must be odd.
 
 ---
 
@@ -53,7 +53,7 @@ How many positive factors does the number 36 have?
 - E) 12
 
 **answer:** D
-**explanation:** 36 = 2^2 x 3^2. The number of positive factors = (2+1)(2+1) = 9. The factors are: 1, 2, 3, 4, 6, 9, 12, 18, 36.
+**explanation:** 36 = 2² x 3². The number of positive factors = (2+1)(2+1) = 9. The factors are: 1, 2, 3, 4, 6, 9, 12, 18, 36.
 
 ---
 
@@ -107,7 +107,7 @@ What is the greatest common factor of 168 and 252?
 - E) 84
 
 **answer:** E
-**explanation:** Prime factorize each number: 168 = 2^3 x 3 x 7, and 252 = 2^2 x 3^2 x 7. The GCF uses the minimum power of each common prime factor: 2^2 x 3 x 7 = 4 x 3 x 7 = 84. Trap answer D (42) uses 2^1 instead of 2^2.
+**explanation:** Prime factorize each number: 168 = 2³ x 3 x 7, and 252 = 2² x 3² x 7. The GCF uses the minimum power of each common prime factor: 2² x 3 x 7 = 4 x 3 x 7 = 84. Trap answer D (42) uses 2¹ instead of 2².
 
 ---
 
@@ -134,7 +134,7 @@ If x and y are positive integers such that x = 8q + 5 and y = 8r + 3, where q an
 **type:** Problem Solving
 **topic:** Primes and Factors
 
-If n is a positive integer and n^2 is divisible by 72, what is the smallest possible value of n?
+If n is a positive integer and n² is divisible by 72, what is the smallest possible value of n?
 
 - A) 6
 - B) 12
@@ -143,7 +143,7 @@ If n is a positive integer and n^2 is divisible by 72, what is the smallest poss
 - E) 72
 
 **answer:** B
-**explanation:** First, 72 = 2^3 x 3^2. For n^2 to be divisible by 72, n^2 must contain at least 2^3 and 3^2 in its prime factorization. Since n^2 is a perfect square, all prime factor exponents in n^2 must be even. So n^2 must be divisible by at least 2^4 x 3^2 (rounding 2^3 up to the next even power). This means n must be divisible by at least 2^2 x 3 = 12. Check: 12^2 = 144, and 144/72 = 2, confirming that 144 is divisible by 72. The smallest possible value of n is 12.
+**explanation:** First, 72 = 2³ x 3². For n² to be divisible by 72, n² must contain at least 2³ and 3² in its prime factorization. Since n² is a perfect square, all prime factor exponents in n² must be even. So n² must be divisible by at least 2⁴ x 3² (rounding 2³ up to the next even power). This means n must be divisible by at least 2² x 3 = 12. Check: 12² = 144, and 144/72 = 2, confirming that 144 is divisible by 72. The smallest possible value of n is 12.
 
 ---
 
@@ -188,7 +188,7 @@ The sum of five consecutive integers is 85. What is the largest of the five inte
 **type:** Problem Solving
 **topic:** Units Digit Patterns
 
-What is the units digit of 3^24?
+What is the units digit of 3²⁴?
 
 - A) 1
 - B) 3
@@ -197,7 +197,7 @@ What is the units digit of 3^24?
 - E) 0
 
 **answer:** A
-**explanation:** The units digit of powers of 3 cycles in a pattern of length 4: 3, 9, 7, 1 (for exponents 1, 2, 3, 4). To find the units digit of 3^24, compute 24 mod 4 = 0, which corresponds to the 4th position in the cycle. The units digit is 1.
+**explanation:** The units digit of powers of 3 cycles in a pattern of length 4: 3, 9, 7, 1 (for exponents 1, 2, 3, 4). To find the units digit of 3²⁴, compute 24 mod 4 = 0, which corresponds to the 4th position in the cycle. The units digit is 1.
 
 ---
 
@@ -206,7 +206,7 @@ What is the units digit of 3^24?
 **type:** Problem Solving
 **topic:** Remainders
 
-When the positive integer n is divided by 5, the remainder is 2. What is the remainder when n^2 is divided by 5?
+When the positive integer n is divided by 5, the remainder is 2. What is the remainder when n² is divided by 5?
 
 - A) 0
 - B) 1
@@ -215,7 +215,7 @@ When the positive integer n is divided by 5, the remainder is 2. What is the rem
 - E) 4
 
 **answer:** E
-**explanation:** If n leaves remainder 2 when divided by 5, then n = 5k + 2. Squaring: n^2 = 25k^2 + 20k + 4 = 5(5k^2 + 4k) + 4. The remainder is 4. Alternatively, pick n = 7: 7^2 = 49, and 49 / 5 leaves remainder 4.
+**explanation:** If n leaves remainder 2 when divided by 5, then n = 5k + 2. Squaring: n² = 25k² + 20k + 4 = 5(5k² + 4k) + 4. The remainder is 4. Alternatively, pick n = 7: 7² = 49, and 49 / 5 leaves remainder 4.
 
 ---
 
@@ -233,7 +233,7 @@ What is the least common multiple of 18, 24, and 30?
 - E) 720
 
 **answer:** C
-**explanation:** Prime factorize each: 18 = 2 x 3^2, 24 = 2^3 x 3, 30 = 2 x 3 x 5. The LCM takes the maximum power of each prime: 2^3 x 3^2 x 5 = 8 x 9 x 5 = 360.
+**explanation:** Prime factorize each: 18 = 2 x 3², 24 = 2³ x 3, 30 = 2 x 3 x 5. The LCM takes the maximum power of each prime: 2³ x 3² x 5 = 8 x 9 x 5 = 360.
 
 ---
 
@@ -251,7 +251,7 @@ How many positive factors does 720 have?
 - E) 36
 
 **answer:** C
-**explanation:** Prime factorize: 720 = 2^4 x 3^2 x 5. The number of positive factors is found by adding 1 to each exponent and multiplying: (4+1)(2+1)(1+1) = 5 x 3 x 2 = 30.
+**explanation:** Prime factorize: 720 = 2⁴ x 3² x 5. The number of positive factors is found by adding 1 to each exponent and multiplying: (4+1)(2+1)(1+1) = 5 x 3 x 2 = 30.
 
 ---
 
@@ -260,7 +260,7 @@ How many positive factors does 720 have?
 **type:** Problem Solving
 **topic:** Units Digit Patterns
 
-What is the units digit of 2^50 + 7^30?
+What is the units digit of 2⁵⁰ + 7³⁰?
 
 - A) 0
 - B) 1
@@ -269,7 +269,7 @@ What is the units digit of 2^50 + 7^30?
 - E) 7
 
 **answer:** A
-**explanation:** Powers of 2 cycle in units digits: 2, 4, 8, 6 (period 4). 50 mod 4 = 2, so 2^50 has units digit 4. Powers of 7 cycle: 7, 9, 3, 1 (period 4). 30 mod 4 = 2, so 7^30 has units digit 9. Sum of units digits: 4 + 9 = 13, giving units digit 0.
+**explanation:** Powers of 2 cycle in units digits: 2, 4, 8, 6 (period 4). 50 mod 4 = 2, so 2⁵⁰ has units digit 4. Powers of 7 cycle: 7, 9, 3, 1 (period 4). 30 mod 4 = 2, so 7³⁰ has units digit 9. Sum of units digits: 4 + 9 = 13, giving units digit 0.
 
 ---
 
@@ -283,8 +283,8 @@ If n is a positive integer, which of the following must be divisible by 6?
 - A) n(n+1)
 - B) n(n+2)
 - C) n(n+1)(n+2)
-- D) n^2 + n + 1
-- E) n^3 + 1
+- D) n² + n + 1
+- E) n³ + 1
 
 **answer:** C
 **explanation:** The product of any 3 consecutive integers is always divisible by 3! = 6, because among any 3 consecutive integers, at least one is divisible by 2 and exactly one is divisible by 3. So n(n+1)(n+2) is always divisible by 6. Choice A is only divisible by 2, not always by 3.
@@ -298,7 +298,7 @@ If n is a positive integer, which of the following must be divisible by 6?
 
 Is the integer k odd?
 
-(1) k^2 + k is even.
+(1) k² + k is even.
 (2) 3k + 1 is even.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
@@ -308,7 +308,7 @@ Is the integer k odd?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** B
-**explanation:** Statement (1): k^2 + k = k(k+1) is always even (product of consecutive integers), so this tells us nothing about k — not sufficient. Statement (2): 3k + 1 is even means 3k is odd, which forces k to be odd (since 3 x odd = odd). Sufficient. Answer is B.
+**explanation:** Statement (1): k² + k = k(k+1) is always even (product of consecutive integers), so this tells us nothing about k — not sufficient. Statement (2): 3k + 1 is even means 3k is odd, which forces k to be odd (since 3 x odd = odd). Sufficient. Answer is B.
 
 ---
 
@@ -356,7 +356,7 @@ If m and n are positive integers, what is the value of m?
 **type:** Problem Solving
 **topic:** Prime Factorization and Counting Factors
 
-If n = 2^5 x 3^4 x 5^3, how many positive factors of n are perfect squares?
+If n = 2⁵ x 3⁴ x 5³, how many positive factors of n are perfect squares?
 
 - A) 6
 - B) 9
@@ -365,4 +365,4 @@ If n = 2^5 x 3^4 x 5^3, how many positive factors of n are perfect squares?
 - E) 24
 
 **answer:** D
-**explanation:** A factor of n has the form 2^a x 3^b x 5^c where 0 <= a <= 5, 0 <= b <= 4, 0 <= c <= 3. For the factor to be a perfect square, each exponent must be even. Valid values of a: {0, 2, 4} (3 choices), of b: {0, 2, 4} (3 choices), of c: {0, 2} (2 choices). Total: 3 x 3 x 2 = 18.
+**explanation:** A factor of n has the form 2^a x 3^b x 5^c where 0 ≤ a ≤ 5, 0 ≤ b ≤ 4, 0 ≤ c ≤ 3. For the factor to be a perfect square, each exponent must be even. Valid values of a: {0, 2, 4} (3 choices), of b: {0, 2, 4} (3 choices), of c: {0, 2} (2 choices). Total: 3 x 3 x 2 = 18.

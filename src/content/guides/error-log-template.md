@@ -68,9 +68,9 @@ Every mistake falls into one of five categories. Categorizing is the most import
 Different error categories demand different interventions. If 80% of your mistakes are conceptual, the fix is more studying. If 80% are careless, more studying won't help — you need to drill execution discipline. Students who skip categorization over-study topics they know and under-fix the real weaknesses.
 
 Typical distributions for different starting-point students:
-- **600 starter:** ~50% conceptual, 25% careless, 15% time pressure, 10% other
-- **650 starter:** ~30% conceptual, 35% careless, 25% time pressure, 10% other
-- **700+ starter:** ~10% conceptual, 40% careless, 35% time pressure, 15% other
+- **555 starter:** ~50% conceptual, 25% careless, 15% time pressure, 10% other
+- **605 starter:** ~30% conceptual, 35% careless, 25% time pressure, 10% other
+- **645+ starter:** ~10% conceptual, 40% careless, 35% time pressure, 15% other
 
 Notice how the mix shifts as you get better. At higher levels, you know the content — you're losing points on execution and pacing. That requires different training than content review.
 
@@ -111,7 +111,7 @@ Notice how the mix shifts as you get better. At higher levels, you know the cont
 - Correct: C (30)
 - Category: Conceptual gap
 - Root cause: Didn't know the formula for counting factors from prime factorization. Tried to list all factors of 720 manually and missed several.
-- Fix: For n = p₁^a · p₂^b · p₃^c, total factors = (a+1)(b+1)(c+1). 720 = 2^4 · 3^2 · 5 → (5)(3)(2) = 30.
+- Fix: For n = p₁^a · p₂^b · p₃^c, total factors = (a+1)(b+1)(c+1). 720 = 2⁴ · 3² · 5 → (5)(3)(2) = 30.
 - Re-review: 2025-03-14 (correct, 45s), 2025-03-21 (correct, 35s)
 
 **Entry 2 (Time pressure + careless):**
@@ -194,7 +194,7 @@ Mark it as "mastered" in your log. Archive but don't delete — occasional revie
 
 ## One Final Principle
 
-The error log is the ONE habit that separates students who improve steadily from students who plateau. Every high-scorer I've worked with kept one. Every student who plateaued around 650 and couldn't understand why did not. It's not complicated. It's not sophisticated. It's just consistent.
+The error log is the ONE habit that separates students who improve steadily from students who plateau. Every high-scorer I've worked with kept one. Every student who plateaued around 605 and couldn't understand why did not. It's not complicated. It's not sophisticated. It's just consistent.
 
 Start tonight. One entry for every wrong question, no exceptions. By week 4, you'll have hundreds of entries. By week 8, you'll know your score ceiling and the 3 specific things keeping you from it. By week 12, you'll have fixed most of them.
 

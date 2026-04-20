@@ -269,7 +269,7 @@ A drawer contains 7 black socks and 5 white socks. If two socks are drawn at ran
 - E) 49/144
 
 **answer:** B
-**explanation:** For events without replacement, the second probability depends on the first outcome. P(first black) = 7/12. After removing one black sock, 6 black remain of 11 total, so P(second black | first black) = 6/11. Multiply: (7/12) x (6/11) = 42/132 = 7/22. Trap E (49/144) is (7/12)^2, which incorrectly assumes replacement.
+**explanation:** For events without replacement, the second probability depends on the first outcome. P(first black) = 7/12. After removing one black sock, 6 black remain of 11 total, so P(second black | first black) = 6/11. Multiply: (7/12) x (6/11) = 42/132 = 7/22. Trap E (49/144) is (7/12)², which incorrectly assumes replacement.
 
 ---
 
@@ -326,7 +326,7 @@ A fair coin is flipped 4 times. What is the probability that it lands on heads e
 - E) 3/8
 
 **answer:** C
-**explanation:** Count favorable sequences: choose which 3 of 4 flips are heads — C(4,3) = 4 ways. Each specific sequence has probability (1/2)^4 = 1/16. Total = 4 x 1/16 = 4/16 = 1/4. For "exactly k heads in n flips," the formula is C(n,k) / 2^n when the coin is fair.
+**explanation:** Count favorable sequences: choose which 3 of 4 flips are heads — C(4,3) = 4 ways. Each specific sequence has probability (1/2)⁴ = 1/16. Total = 4 x 1/16 = 4/16 = 1/4. For "exactly k heads in n flips," the formula is C(n,k) / 2^n when the coin is fair.
 
 ---
 

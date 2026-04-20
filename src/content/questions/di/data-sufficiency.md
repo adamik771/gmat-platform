@@ -134,7 +134,7 @@ If a and b are nonzero numbers, is a/b > 0?
 **type:** Data Sufficiency
 **topic:** Number Properties
 
-If k is a positive integer, is k^2 + k divisible by 4?
+If k is a positive integer, is k² + k divisible by 4?
 
 (1) k is odd.
 (2) k is a prime number greater than 2.
@@ -146,7 +146,7 @@ If k is a positive integer, is k^2 + k divisible by 4?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**explanation:** k^2 + k = k(k + 1). Statement (1): If k is odd, test k = 1: 1(2) = 2, not divisible by 4. Test k = 3: 3(4) = 12, divisible by 4. Different results, so not sufficient. Statement (2): If k is prime > 2, then k is odd. Test k = 3: 3(4) = 12, divisible by 4. Test k = 5: 5(6) = 30, not divisible by 4. Different results, so not sufficient. Together: Statement (2) already implies Statement (1), so the combined information is the same as Statement (2) alone. Still not sufficient. The answer is E.
+**explanation:** k² + k = k(k + 1). Statement (1): If k is odd, test k = 1: 1(2) = 2, not divisible by 4. Test k = 3: 3(4) = 12, divisible by 4. Different results, so not sufficient. Statement (2): If k is prime > 2, then k is odd. Test k = 3: 3(4) = 12, divisible by 4. Test k = 5: 5(6) = 30, not divisible by 4. Different results, so not sufficient. Together: Statement (2) already implies Statement (1), so the combined information is the same as Statement (2) alone. Still not sufficient. The answer is E.
 
 ---
 
@@ -230,7 +230,7 @@ If x and y are integers, what is the value of x?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Statement (1): |x - 3| = 2y + 1. Since the left side is non-negative, we need 2y + 1 >= 0, so y >= -1/2, meaning y >= 0 (since y is an integer). If y = 0, |x - 3| = 1, so x = 4 or x = 2. If y = 1, |x - 3| = 3, so x = 6 or x = 0. Multiple values are possible. Not sufficient. Statement (2): x < 3 and y = 0. x could be any integer less than 3 (2, 1, 0, -1, ...). Not sufficient. Together: From (1) with y = 0: |x - 3| = 1, so x = 4 or x = 2. From (2): x < 3. Therefore x = 2. Sufficient. The answer is C.
+**explanation:** Statement (1): |x - 3| = 2y + 1. Since the left side is non-negative, we need 2y + 1 ≥ 0, so y ≥ -1/2, meaning y ≥ 0 (since y is an integer). If y = 0, |x - 3| = 1, so x = 4 or x = 2. If y = 1, |x - 3| = 3, so x = 6 or x = 0. Multiple values are possible. Not sufficient. Statement (2): x < 3 and y = 0. x could be any integer less than 3 (2, 1, 0, -1, ...). Not sufficient. Together: From (1) with y = 0: |x - 3| = 1, so x = 4 or x = 2. From (2): x < 3. Therefore x = 2. Sufficient. The answer is C.
 
 ---
 
@@ -314,7 +314,7 @@ A data set contains eight positive numbers. Is the standard deviation of the dat
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**explanation:** Statement (1): The range is 4, meaning the maximum minus the minimum equals 4. The standard deviation can never exceed the range for any data set (in fact, for any data set the standard deviation is at most half the range). Since all deviations from the mean are at most the range, and the standard deviation is a type of average deviation, the SD must be less than or equal to half the range. More precisely, SD <= range/2 = 4/2 = 2. Since 2 < 5, the standard deviation is definitely not greater than 5. Sufficient (answer is "no"). Statement (2): The mean is 50. The values could all be 50 (SD = 0 < 5), or they could be spread out widely (e.g., values from 1 to 99, giving SD > 5). Not sufficient. The answer is A.
+**explanation:** Statement (1): The range is 4, meaning the maximum minus the minimum equals 4. The standard deviation can never exceed the range for any data set (in fact, for any data set the standard deviation is at most half the range). Since all deviations from the mean are at most the range, and the standard deviation is a type of average deviation, the SD must be less than or equal to half the range. More precisely, SD ≤ range/2 = 4/2 = 2. Since 2 < 5, the standard deviation is definitely not greater than 5. Sufficient (answer is "no"). Statement (2): The mean is 50. The values could all be 50 (SD = 0 < 5), or they could be spread out widely (e.g., values from 1 to 99, giving SD > 5). Not sufficient. The answer is A.
 
 ---
 
@@ -377,7 +377,7 @@ What is the area of rectangle ABCD?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Let the sides be L and W. Statement (1): L^2 + W^2 = 100 (diagonal), but many (L, W) pairs satisfy this with different areas (e.g., 6 and 8 give area 48; 7.07 and 7.07 give area 50). Not sufficient. Statement (2): 2L + 2W = 28, so L + W = 14. Areas differ (e.g., 7 x 7 = 49 vs 6 x 8 = 48). Not sufficient. Together: (L + W)^2 = L^2 + 2LW + W^2 = 100 + 2LW, so 196 = 100 + 2LW, giving LW = 48. The area is uniquely 48. Sufficient. The answer is C.
+**explanation:** Let the sides be L and W. Statement (1): L² + W² = 100 (diagonal), but many (L, W) pairs satisfy this with different areas (e.g., 6 and 8 give area 48; 7.07 and 7.07 give area 50). Not sufficient. Statement (2): 2L + 2W = 28, so L + W = 14. Areas differ (e.g., 7 x 7 = 49 vs 6 x 8 = 48). Not sufficient. Together: (L + W)² = L² + 2LW + W² = 100 + 2LW, so 196 = 100 + 2LW, giving LW = 48. The area is uniquely 48. Sufficient. The answer is C.
 
 ---
 
@@ -388,7 +388,7 @@ What is the area of rectangle ABCD?
 
 If p is an integer, is p even?
 
-(1) p^2 is even.
+(1) p² is even.
 (2) p + 1 is odd.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
@@ -398,7 +398,7 @@ If p is an integer, is p even?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**explanation:** Another "C trap" — students instinctively combine. Statement (1): p^2 is even means p^2 has a factor of 2; since 2 is prime, p itself must contain a factor of 2, so p is even. Sufficient ("yes"). Statement (2): p + 1 is odd, and odd - 1 = even, so p is even. Sufficient ("yes"). Each alone settles the question. The answer is D.
+**explanation:** Another "C trap" — students instinctively combine. Statement (1): p² is even means p² has a factor of 2; since 2 is prime, p itself must contain a factor of 2, so p is even. Sufficient ("yes"). Statement (2): p + 1 is odd, and odd - 1 = even, so p is even. Sufficient ("yes"). Each alone settles the question. The answer is D.
 
 ---
 
@@ -409,7 +409,7 @@ If p is an integer, is p even?
 
 Is x > y?
 
-(1) x^2 > y^2
+(1) x² > y²
 (2) x - y > 0
 
 - A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
@@ -419,7 +419,7 @@ Is x > y?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** B
-**explanation:** Classic sign trap on squaring. Statement (1): x^2 > y^2 just means |x| > |y|. Try x = 3, y = 1: x > y (yes). Try x = -3, y = 1: |-3| > |1| but x = -3 < 1 = y (no). Not sufficient. Statement (2): x - y > 0 rearranges directly to x > y. Sufficient (always "yes"). The trap is treating inequalities like equations when squaring; only Statement (2) is a direct rewording. The answer is B.
+**explanation:** Classic sign trap on squaring. Statement (1): x² > y² just means |x| > |y|. Try x = 3, y = 1: x > y (yes). Try x = -3, y = 1: |-3| > |1| but x = -3 < 1 = y (no). Not sufficient. Statement (2): x - y > 0 rearranges directly to x > y. Sufficient (always "yes"). The trap is treating inequalities like equations when squaring; only Statement (2) is a direct rewording. The answer is B.
 
 ---
 
@@ -451,8 +451,8 @@ If 4x + 3y = 24, what is the value of y?
 
 Is x > 0?
 
-(1) x^3 > x
-(2) x^2 < 1
+(1) x³ > x
+(2) x² < 1
 
 - A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
@@ -461,7 +461,7 @@ Is x > 0?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Sign-question trap using cubes and squares. Statement (1): x^3 > x means x^3 - x > 0, i.e., x(x-1)(x+1) > 0. This holds when -1 < x < 0 or x > 1. Try x = 2: yes x > 0. Try x = -0.5: x < 0. Not sufficient. Statement (2): x^2 < 1 means -1 < x < 1. x could be 0.5 (>0) or -0.5 (<0). Not sufficient. Together: From (1), x in (-1, 0) U (1, infinity); from (2), x in (-1, 1). Intersection: x in (-1, 0). So x < 0 — answer is always "no." Sufficient. The answer is C.
+**explanation:** Sign-question trap using cubes and squares. Statement (1): x³ > x means x³ - x > 0, i.e., x(x-1)(x+1) > 0. This holds when -1 < x < 0 or x > 1. Try x = 2: yes x > 0. Try x = -0.5: x < 0. Not sufficient. Statement (2): x² < 1 means -1 < x < 1. x could be 0.5 (>0) or -0.5 (<0). Not sufficient. Together: From (1), x in (-1, 0) U (1, infinity); from (2), x in (-1, 1). Intersection: x in (-1, 0). So x < 0 — answer is always "no." Sufficient. The answer is C.
 
 ---
 
@@ -566,7 +566,7 @@ Set S consists of five distinct positive integers. Is the median of S greater th
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**explanation:** Skewness trap. Let the sorted values be a < b < c < d < e; median = c, mean = (a+b+c+d+e)/5. Statement (1): e > 2(a+b+c+d). Then mean = (a+b+c+d+e)/5 > (a+b+c+d + 2(a+b+c+d))/5 = 3(a+b+c+d)/5. For median > mean, need c > 3(a+b+c+d)/5, i.e., 5c > 3(a+b+c+d), i.e., 2c > 3(a+b+d). But b and d are both at least... actually, simpler: Statement (1) forces the mean to be pulled far above c by the huge e. Formally, mean > (a+b+c+d + 2(a+b+c+d))/5 = 3(a+b+c+d)/5 >= 3(4c)/5 is wrong since a,b < c; try concrete: {1,2,3,4,21}: sum=31, mean=6.2, median=3; 21 > 2(1+2+3+4)=20, yes. Median (3) < mean (6.2) — so answer is "no." Any set meeting (1) has e so dominant that mean > median. Sufficient (always "no"). Statement (2): smallest = 1, e.g., {1,2,3,4,5}: median = 3 = mean (no). {1,2,3,4,100}: median = 3, mean = 22 (no). {1,2,10,11,12}: median = 10, mean = 7.2 (yes). Not sufficient. The answer is A.
+**explanation:** Skewness trap. Let the sorted values be a < b < c < d < e; median = c, mean = (a+b+c+d+e)/5. Statement (1): e > 2(a+b+c+d). Then mean = (a+b+c+d+e)/5 > (a+b+c+d + 2(a+b+c+d))/5 = 3(a+b+c+d)/5. For median > mean, need c > 3(a+b+c+d)/5, i.e., 5c > 3(a+b+c+d), i.e., 2c > 3(a+b+d). But b and d are both at least... actually, simpler: Statement (1) forces the mean to be pulled far above c by the huge e. Formally, mean > (a+b+c+d + 2(a+b+c+d))/5 = 3(a+b+c+d)/5 ≥ 3(4c)/5 is wrong since a,b < c; try concrete: {1,2,3,4,21}: sum=31, mean=6.2, median=3; 21 > 2(1+2+3+4)=20, yes. Median (3) < mean (6.2) — so answer is "no." Any set meeting (1) has e so dominant that mean > median. Sufficient (always "no"). Statement (2): smallest = 1, e.g., {1,2,3,4,5}: median = 3 = mean (no). {1,2,3,4,100}: median = 3, mean = 22 (no). {1,2,10,11,12}: median = 10, mean = 7.2 (yes). Not sufficient. The answer is A.
 
 ---
 
@@ -587,7 +587,7 @@ If x is a positive integer, is x prime?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**explanation:** Definition-of-prime trap. Statement (1): "Exactly two positive divisors" is the definition of a prime number (1 and itself). Sufficient (always "yes"). Statement (2): x + 1 = p^2 for some prime p. If p = 2, x + 1 = 4, so x = 3 (prime, yes). If p = 3, x + 1 = 9, so x = 8 (not prime, no). If p = 5, x + 1 = 25, so x = 24 (not prime, no). Not sufficient. The answer is A.
+**explanation:** Definition-of-prime trap. Statement (1): "Exactly two positive divisors" is the definition of a prime number (1 and itself). Sufficient (always "yes"). Statement (2): x + 1 = p² for some prime p. If p = 2, x + 1 = 4, so x = 3 (prime, yes). If p = 3, x + 1 = 9, so x = 8 (not prime, no). If p = 5, x + 1 = 25, so x = 24 (not prime, no). Not sufficient. The answer is A.
 
 ---
 
@@ -598,8 +598,8 @@ If x is a positive integer, is x prime?
 
 A circle is inscribed in square ABCD. What is the area of the circle?
 
-(1) The diagonal of square ABCD is 10 sqrt(2).
-(2) The area of the region inside the square but outside the circle is 100 - 25 pi.
+(1) The diagonal of square ABCD is 10 √2.
+(2) The area of the region inside the square but outside the circle is 100 - 25π.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
@@ -608,7 +608,7 @@ A circle is inscribed in square ABCD. What is the area of the circle?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**explanation:** "Looks like C, actually D" geometry trap. For an inscribed circle, the circle's diameter equals the square's side. Statement (1): Diagonal = 10 sqrt(2) means side = 10 (since diagonal of a square = side x sqrt(2)). Circle radius = 5, area = 25 pi. Sufficient. Statement (2): Let side = s, radius = s/2. Region outside circle = s^2 - pi(s/2)^2 = s^2 - pi s^2/4. Given this equals 100 - 25 pi, we match: s^2 = 100 (so s = 10) and pi s^2/4 = 25 pi (confirms s = 10). Radius = 5, circle area = 25 pi. Sufficient. Each alone works, so the answer is D.
+**explanation:** "Looks like C, actually D" geometry trap. For an inscribed circle, the circle's diameter equals the square's side. Statement (1): Diagonal = 10 √2 means side = 10 (since diagonal of a square = side x √2). Circle radius = 5, area = 25π. Sufficient. Statement (2): Let side = s, radius = s/2. Region outside circle = s² - π(s/2)² = s² - π s²/4. Given this equals 100 - 25π, we match: s² = 100 (so s = 10) and π s²/4 = 25π (confirms s = 10). Radius = 5, circle area = 25π. Sufficient. Each alone works, so the answer is D.
 
 ---
 
@@ -704,7 +704,7 @@ A store sold x televisions in March and y televisions in April. What is the valu
 What is the value of |k - 3|?
 
 (1) k = 7.
-(2) (k - 3)^2 = 16.
+(2) (k - 3)² = 16.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
@@ -713,7 +713,7 @@ What is the value of |k - 3|?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**explanation:** "Looks like A, actually D" absolute value trap. Statement (1): k = 7, so |k - 3| = |4| = 4. Sufficient. Statement (2): (k - 3)^2 = 16 means |k - 3| = sqrt(16) = 4 directly (since |x| = sqrt(x^2)). The actual value of k could be 7 or -1, but both give |k - 3| = 4. Sufficient. Each alone works, so the answer is D.
+**explanation:** "Looks like A, actually D" absolute value trap. Statement (1): k = 7, so |k - 3| = |4| = 4. Sufficient. Statement (2): (k - 3)² = 16 means |k - 3| = √16 = 4 directly (since |x| = √(x²)). The actual value of k could be 7 or -1, but both give |k - 3| = 4. Sufficient. Each alone works, so the answer is D.
 
 ---
 
@@ -860,7 +860,7 @@ A rectangle has area 48. What is its perimeter?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**explanation:** "Integer constraint matters" trap. Statement (1): L = 3W and LW = 48, so 3W^2 = 48, W^2 = 16, W = 4, L = 12. Perimeter = 2(4 + 12) = 32. Sufficient. Statement (2): Integer length-width pairs with product 48: (1,48), (2,24), (3,16), (4,12), (6,8). Perimeters are 98, 52, 38, 32, 28 — all different. Not sufficient. The answer is A.
+**explanation:** "Integer constraint matters" trap. Statement (1): L = 3W and LW = 48, so 3W² = 48, W² = 16, W = 4, L = 12. Perimeter = 2(4 + 12) = 32. Sufficient. Statement (2): Integer length-width pairs with product 48: (1,48), (2,24), (3,16), (4,12), (6,8). Perimeters are 98, 52, 38, 32, 28 — all different. Not sufficient. The answer is A.
 
 ---
 
@@ -890,7 +890,7 @@ A car travels from town X to town Y. What was its average speed for the entire t
 **type:** Data Sufficiency
 **topic:** Sequences / series
 
-The sequence s_1, s_2, s_3, ... is defined by s_n = s_(n-1) + s_(n-2) for all n >= 3. Is s_7 > 40?
+The sequence s_1, s_2, s_3, ... is defined by s_n = s_(n-1) + s_(n-2) for all n ≥ 3. Is s_7 > 40?
 
 (1) s_3 = 5.
 (2) s_4 = 8.
@@ -923,7 +923,7 @@ In the xy-plane, the circle C has center (h, k) and radius r. Does the point (3,
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** B
-**explanation:** Point (3,4) is inside iff (3-h)^2 + (4-k)^2 < r^2. Statement (1): Circle passes through origin means h^2 + k^2 = r^2. Try h=0, k=0, r=0: degenerate. Try h=3, k=4, r=5: then (3-3)^2 + (4-4)^2 = 0 < 25, yes. Try h=10, k=0, r=10: distance from (3,4) to (10,0) = sqrt(49+16) = sqrt(65) ≈ 8.06 < 10, yes. Try h=-10, k=0, r=10: distance from (3,4) to (-10,0) = sqrt(169+16) = sqrt(185) ≈ 13.6 > 10, no. Not sufficient. Statement (2): Center at origin. Distance from (0,0) to (3,4) = 5 — but radius r is unknown. Wait, r not given. Try r=10: 5 < 10, yes. Try r=2: 5 > 2, no. Not sufficient. Together: Origin on circle + center at origin means r = distance from (0,0) to (0,0) = 0, impossible (zero-radius circle). Contradiction — cannot occur, so the question is ill-posed under both statements. Actually re-read: (2) says center IS origin, (1) says origin is on circle — these together force r = 0. Hence no valid circle; the DS cannot be answered. The combined info is inconsistent, so E. The answer is E.
+**explanation:** Point (3,4) is inside iff (3-h)² + (4-k)² < r². Statement (1): Circle passes through origin means h² + k² = r². Try h=0, k=0, r=0: degenerate. Try h=3, k=4, r=5: then (3-3)² + (4-4)² = 0 < 25, yes. Try h=10, k=0, r=10: distance from (3,4) to (10,0) = √(49+16) = √65 ≈ 8.06 < 10, yes. Try h=-10, k=0, r=10: distance from (3,4) to (-10,0) = √(169+16) = √185 ≈ 13.6 > 10, no. Not sufficient. Statement (2): Center at origin. Distance from (0,0) to (3,4) = 5 — but radius r is unknown. Wait, r not given. Try r=10: 5 < 10, yes. Try r=2: 5 > 2, no. Not sufficient. Together: Origin on circle + center at origin means r = distance from (0,0) to (0,0) = 0, impossible (zero-radius circle). Contradiction — cannot occur, so the question is ill-posed under both statements. Actually re-read: (2) says center IS origin, (1) says origin is on circle — these together force r = 0. Hence no valid circle; the DS cannot be answered. The combined info is inconsistent, so E. The answer is E.
 
 ---
 

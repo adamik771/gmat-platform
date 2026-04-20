@@ -14,10 +14,10 @@ In a right triangle, the two legs have lengths 5 and 12. What is the length of t
 - B) 15
 - C) 17
 - D) 7
-- E) sqrt(119)
+- E) √119
 
 **answer:** A
-**explanation:** By the Pythagorean theorem, c^2 = 5^2 + 12^2 = 25 + 144 = 169, so c = 13. Memorize the common Pythagorean triples (3-4-5, 5-12-13, 8-15-17, 7-24-25) — they show up constantly on the GMAT and save real time.
+**explanation:** By the Pythagorean theorem, c² = 5² + 12² = 25 + 144 = 169, so c = 13. Memorize the common Pythagorean triples (3-4-5, 5-12-13, 8-15-17, 7-24-25) — they show up constantly on the GMAT and save real time.
 
 ---
 
@@ -28,14 +28,14 @@ In a right triangle, the two legs have lengths 5 and 12. What is the length of t
 
 A circle has a radius of 6. What is its area?
 
-- A) 12pi
-- B) 24pi
-- C) 36pi
-- D) 72pi
-- E) 144pi
+- A) 12π
+- B) 24π
+- C) 36π
+- D) 72π
+- E) 144π
 
 **answer:** C
-**explanation:** Area of a circle is pi * r^2. With r = 6, area = pi * 36 = 36pi. Don't confuse this with circumference (2*pi*r = 12pi here) — the GMAT loves offering both as answer choices.
+**explanation:** Area of a circle is π * r². With r = 6, area = π * 36 = 36π. Don't confuse this with circumference (2*π*r = 12π here) — the GMAT loves offering both as answer choices.
 
 ---
 
@@ -71,7 +71,7 @@ What is the distance between the points (1, 2) and (4, 6) in the coordinate plan
 - E) 7
 
 **answer:** C
-**explanation:** Distance = sqrt((4-1)^2 + (6-2)^2) = sqrt(9 + 16) = sqrt(25) = 5. This is really just the Pythagorean theorem in disguise — the horizontal leg is 3, the vertical leg is 4, and you get the classic 3-4-5 triangle.
+**explanation:** Distance = √((4-1)² + (6-2)²) = √(9 + 16) = √25 = 5. This is really just the Pythagorean theorem in disguise — the horizontal leg is 3, the vertical leg is 4, and you get the classic 3-4-5 triangle.
 
 ---
 
@@ -125,7 +125,7 @@ An equilateral triangle has a side length of 6. What is its perimeter?
 - E) 24
 
 **answer:** C
-**explanation:** All three sides of an equilateral triangle are equal, so perimeter = 3 * 6 = 18. Easy points — but remember the area formula too: (s^2 * sqrt(3)) / 4, which is a much more common test target.
+**explanation:** All three sides of an equilateral triangle are equal, so perimeter = 3 * 6 = 18. Easy points — but remember the area formula too: (s² * √3) / 4, which is a much more common test target.
 
 ---
 
@@ -137,13 +137,13 @@ An equilateral triangle has a side length of 6. What is its perimeter?
 In triangle ABC, angle A = 90 degrees, angle B = 30 degrees, and the hypotenuse BC has length 10. What is the length of side AC (opposite the 30-degree angle)?
 
 - A) 5
-- B) 5 * sqrt(2)
-- C) 5 * sqrt(3)
+- B) 5 * √2
+- C) 5 * √3
 - D) 10
-- E) 10 * sqrt(3)
+- E) 10 * √3
 
 **answer:** A
-**explanation:** In a 30-60-90 triangle, the sides are in ratio 1 : sqrt(3) : 2, where the side opposite 30 is the shortest. Since the hypotenuse (opposite 90) is 10, the side opposite 30 is 10/2 = 5. This ratio is one of the most tested facts in GMAT geometry — drill it.
+**explanation:** In a 30-60-90 triangle, the sides are in ratio 1 : √3 : 2, where the side opposite 30 is the shortest. Since the hypotenuse (opposite 90) is 10, the side opposite 30 is 10/2 = 5. This ratio is one of the most tested facts in GMAT geometry — drill it.
 
 ---
 
@@ -152,16 +152,16 @@ In triangle ABC, angle A = 90 degrees, angle B = 30 degrees, and the hypotenuse 
 **type:** Problem Solving
 **topic:** Circles
 
-A circle has a circumference of 10pi. What is the length of an arc that subtends a central angle of 72 degrees?
+A circle has a circumference of 10π. What is the length of an arc that subtends a central angle of 72 degrees?
 
-- A) pi
-- B) 2pi
-- C) 3pi
-- D) 4pi
-- E) 5pi
+- A) π
+- B) 2π
+- C) 3π
+- D) 4π
+- E) 5π
 
 **answer:** B
-**explanation:** Arc length = (central angle / 360) * circumference. That's (72/360) * 10pi = (1/5) * 10pi = 2pi. The key technique: arcs, sectors, and central angles are all just fractions of the full circle — set up the ratio and plug in.
+**explanation:** Arc length = (central angle / 360) * circumference. That's (72/360) * 10π = (1/5) * 10π = 2π. The key technique: arcs, sectors, and central angles are all just fractions of the full circle — set up the ratio and plug in.
 
 ---
 
@@ -208,14 +208,14 @@ A square and an equilateral triangle have the same perimeter. If the side of the
 
 A right circular cylinder has a radius of 3 and a height of 10. What is its volume?
 
-- A) 30pi
-- B) 60pi
-- C) 90pi
-- D) 100pi
-- E) 300pi
+- A) 30π
+- B) 60π
+- C) 90π
+- D) 100π
+- E) 300π
 
 **answer:** C
-**explanation:** Volume of a cylinder is pi * r^2 * h = pi * 9 * 10 = 90pi. Think of it as "area of the circular base times height" — that mental model works for all prisms and cylinders.
+**explanation:** Volume of a cylinder is π * r² * h = π * 9 * 10 = 90π. Think of it as "area of the circular base times height" — that mental model works for all prisms and cylinders.
 
 ---
 
@@ -227,13 +227,13 @@ A right circular cylinder has a radius of 3 and a height of 10. What is its volu
 A right triangle has legs of length x and x. If its hypotenuse is 8, what is x?
 
 - A) 4
-- B) 4 * sqrt(2)
+- B) 4 * √2
 - C) 8
-- D) 8 * sqrt(2)
+- D) 8 * √2
 - E) 16
 
 **answer:** B
-**explanation:** This is a 45-45-90 triangle (isoceles right triangle), where the sides are in ratio 1 : 1 : sqrt(2). So hypotenuse = x * sqrt(2) = 8, giving x = 8/sqrt(2) = 4 * sqrt(2). Rationalizing denominators (multiply top and bottom by sqrt(2)) is a must-have skill here.
+**explanation:** This is a 45-45-90 triangle (isoceles right triangle), where the sides are in ratio 1 : 1 : √2. So hypotenuse = x * √2 = 8, giving x = 8/√2 = 4 * √2. Rationalizing denominators (multiply top and bottom by √2) is a must-have skill here.
 
 ---
 
@@ -287,10 +287,10 @@ A square is inscribed in a circle of radius 5. What is the area of the square?
 - B) 50
 - C) 75
 - D) 100
-- E) 25 * sqrt(2)
+- E) 25 * √2
 
 **answer:** B
-**explanation:** The diagonal of the inscribed square equals the diameter of the circle = 10. For a square with side s, the diagonal is s * sqrt(2), so s * sqrt(2) = 10, giving s = 10/sqrt(2) = 5 * sqrt(2). Area = s^2 = 50. Shortcut: area of a square = d^2 / 2, so 100/2 = 50.
+**explanation:** The diagonal of the inscribed square equals the diameter of the circle = 10. For a square with side s, the diagonal is s * √2, so s * √2 = 10, giving s = 10/√2 = 5 * √2. Area = s² = 50. Shortcut: area of a square = d² / 2, so 100/2 = 50.
 
 ---
 
@@ -299,16 +299,16 @@ A square is inscribed in a circle of radius 5. What is the area of the square?
 **type:** Problem Solving
 **topic:** 3D / Solids
 
-A sphere has a surface area of 36pi. What is its volume?
+A sphere has a surface area of 36π. What is its volume?
 
-- A) 12pi
-- B) 27pi
-- C) 36pi
-- D) 48pi
-- E) 108pi
+- A) 12π
+- B) 27π
+- C) 36π
+- D) 48π
+- E) 108π
 
 **answer:** C
-**explanation:** Surface area = 4 * pi * r^2 = 36pi, so r^2 = 9 and r = 3. Volume = (4/3) * pi * r^3 = (4/3) * pi * 27 = 36pi. Coincidence that surface area equals volume numerically? No — it happens exactly when r = 3. Memorize both sphere formulas, they get tested.
+**explanation:** Surface area = 4 * π * r² = 36π, so r² = 9 and r = 3. Volume = (4/3) * π * r³ = (4/3) * π * 27 = 36π. Coincidence that surface area equals volume numerically? No — it happens exactly when r = 3. Memorize both sphere formulas, they get tested.
 
 ---
 
@@ -337,7 +337,7 @@ A line passes through (0, 4) and has a slope of -2. At what x-value does this li
 
 In triangle ABC, is angle A a right angle?
 
-(1) The side lengths satisfy AB^2 + AC^2 = BC^2.
+(1) The side lengths satisfy AB² + AC² = BC².
 (2) AB = 3 and AC = 4.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
@@ -347,7 +347,7 @@ In triangle ABC, is angle A a right angle?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**explanation:** Statement (1) is the converse of the Pythagorean theorem: if AB^2 + AC^2 = BC^2, then angle A (opposite the longest side BC) is 90 degrees. Sufficient. Statement (2) gives only two sides with no info about BC or the angle — insufficient. The answer is A. Classic trap: don't assume a 3-4-5 triangle just because you see 3 and 4.
+**explanation:** Statement (1) is the converse of the Pythagorean theorem: if AB² + AC² = BC², then angle A (opposite the longest side BC) is 90 degrees. Sufficient. Statement (2) gives only two sides with no info about BC or the angle — insufficient. The answer is A. Classic trap: don't assume a 3-4-5 triangle just because you see 3 and 4.
 
 ---
 
@@ -368,4 +368,4 @@ What is the area of rectangle ABCD?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Let sides be L and W. Statement (1): L^2 + W^2 = 100 — many (L, W) pairs work, insufficient. Statement (2): 2L + 2W = 28, so L + W = 14 — many pairs work, insufficient. Together: (L + W)^2 = L^2 + 2LW + W^2 = 196, so 100 + 2LW = 196, giving LW = 48. Area determined. Answer: C. Technique to lock in: whenever you see sum-of-squares and sum-of-sides, square the sum to unlock the product.
+**explanation:** Let sides be L and W. Statement (1): L² + W² = 100 — many (L, W) pairs work, insufficient. Statement (2): 2L + 2W = 28, so L + W = 14 — many pairs work, insufficient. Together: (L + W)² = L² + 2LW + W² = 196, so 100 + 2LW = 196, giving LW = 48. Area determined. Answer: C. Technique to lock in: whenever you see sum-of-squares and sum-of-sides, square the sum to unlock the product.

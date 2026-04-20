@@ -429,9 +429,9 @@ Which product had the greatest percent increase in units sold from Q1 to Q4?
 **type:** Table Analysis
 **topic:** Scientific Measurements
 
-The following table shows the masses (in grams) and volumes (in cm^3) of five metal samples:
+The following table shows the masses (in grams) and volumes (in cm³) of five metal samples:
 
-| Sample   | Mass (g) | Volume (cm^3) |
+| Sample   | Mass (g) | Volume (cm³) |
 |----------|----------|---------------|
 | Alpha    | 192      | 24            |
 | Bravo    | 270      | 30            |
@@ -439,7 +439,7 @@ The following table shows the masses (in grams) and volumes (in cm^3) of five me
 | Delta    | 156      | 20            |
 | Echo     | 225      | 25            |
 
-Which sample has a density (mass/volume) closest to 9.0 g/cm^3?
+Which sample has a density (mass/volume) closest to 9.0 g/cm³?
 
 - A) Alpha
 - B) Bravo
@@ -787,7 +787,7 @@ How many participants consumed more than 100 grams of protein AND at least 25 gr
 - E) 5
 
 **answer:** C
-**explanation:** Apply both conditions (protein > 100 AND fiber >= 25): P1 110 pass, 28 pass → qualifies. P2 80 fails. P3 125 pass, 30 pass → qualifies. P4 90 fails. P5 100 fails (not ABOVE 100). P6 115 pass, 32 pass → qualifies. Three qualify: P1, P3, P6. Trap: P5 sits exactly at 100g protein — students who treat "more than 100" as ">= 100" wrongly include P5 and answer 4.
+**explanation:** Apply both conditions (protein > 100 AND fiber ≥ 25): P1 110 pass, 28 pass → qualifies. P2 80 fails. P3 125 pass, 30 pass → qualifies. P4 90 fails. P5 100 fails (not ABOVE 100). P6 115 pass, 32 pass → qualifies. Three qualify: P1, P3, P6. Trap: P5 sits exactly at 100g protein — students who treat "more than 100" as "≥ 100" wrongly include P5 and answer 4.
 
 ---
 
@@ -806,7 +806,7 @@ The following table shows the diameter (in mm) and mass (in grams) of five spher
 | Type D  | 10            | 4.2      |
 | Type E  | 30            | 113.0    |
 
-Given that volume of a sphere = (4/3)π r^3, which bearing has the HIGHEST density (mass/volume)?
+Given that volume of a sphere = (4/3)π r³, which bearing has the HIGHEST density (mass/volume)?
 
 - A) Type A
 - B) Type B
@@ -815,7 +815,7 @@ Given that volume of a sphere = (4/3)π r^3, which bearing has the HIGHEST densi
 - E) Type E
 
 **answer:** C
-**explanation:** Radius = diameter/2. Volumes (approximating (4/3)π ≈ 4.189): Type A r=10 → V ≈ 4189 mm^3, density 33.5/4189 ≈ 0.00800 g/mm^3 = 8.00 g/cm^3. Type B r=7.5 → V ≈ 1767 mm^3, 14.1/1767 ≈ 7.98 g/cm^3. Type C r=12.5 → V ≈ 8181 mm^3, 65.4/8181 ≈ 7.99 g/cm^3. Wait — recompute Type C precisely: (4/3)π(12.5)^3 = 4.18879 × 1953.125 ≈ 8181.23; 65.4/8181 = 7.99. Densities cluster near 8.0, and the question pivots on close calls. Precise values: A 8.00, B 7.98, C 7.99, D (r=5, V≈523.6, 4.2/523.6 = 8.02), E (r=15, V≈14137, 113.0/14137 = 7.99). Type D at 8.02 is the densest. Correcting: the answer is D. Trap: students anchoring on largest mass pick E (113 g), missing that E's volume scales with r^3 and dilutes density. Density comparisons require the full calculation.
+**explanation:** Radius = diameter/2. Volumes (approximating (4/3)π ≈ 4.189): Type A r=10 → V ≈ 4189 mm³, density 33.5/4189 ≈ 0.00800 g/mm³ = 8.00 g/cm³. Type B r=7.5 → V ≈ 1767 mm³, 14.1/1767 ≈ 7.98 g/cm³. Type C r=12.5 → V ≈ 8181 mm³, 65.4/8181 ≈ 7.99 g/cm³. Wait — recompute Type C precisely: (4/3)π(12.5)³ = 4.18879 × 1953.125 ≈ 8181.23; 65.4/8181 = 7.99. Densities cluster near 8.0, and the question pivots on close calls. Precise values: A 8.00, B 7.98, C 7.99, D (r=5, V≈523.6, 4.2/523.6 = 8.02), E (r=15, V≈14137, 113.0/14137 = 7.99). Type D at 8.02 is the densest. Correcting: the answer is D. Trap: students anchoring on largest mass pick E (113 g), missing that E's volume scales with r³ and dilutes density. Density comparisons require the full calculation.
 
 ---
 

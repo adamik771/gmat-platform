@@ -14,7 +14,7 @@ I am going to open with a claim that sounds like marketing copy but is the load-
 
 Think about what the test actually is. You are handed a fixed-format exam where every question type has been publicly documented for decades. The content is drawn from a finite pool of high school arithmetic, basic algebra, logical reasoning, and reading comprehension. The traps are catalogued. The pacing constraints are known. This is a test built to be studied for. It rewards the people who approach it as a solvable engineering problem and punishes the people who approach it as an IQ test they either pass or fail.
 
-I scored 735, which is 100th percentile on the Focus Edition. I am a non-native English speaker. I am not a natural test-taker. My raw processing speed on math is, honestly, average. What I had was a plan, a system, and enough hours of deliberate practice to turn slow recognition into fast recognition. That is the whole secret. Anyone reading this — with average logical reasoning ability, functional English, and roughly 300 focused hours — can score 700+. The students who break through are never the "smartest." They are the ones who commit to the system and stop taking their scores personally.
+I scored 735, which is 100th percentile on the Focus Edition. I am a non-native English speaker. I am not a natural test-taker. My raw processing speed on math is, honestly, average. What I had was a plan, a system, and enough hours of deliberate practice to turn slow recognition into fast recognition. That is the whole secret. Anyone reading this — with average logical reasoning ability, functional English, and roughly 300 focused hours — can score 645+. The students who break through are never the "smartest." They are the ones who commit to the system and stop taking their scores personally.
 
 What actually separates the students who get there from the ones who plateau:
 
@@ -35,7 +35,7 @@ The Volume Trap is the belief that improvement is a function of problems solved.
 
 The problem is that a question you got wrong teaches you nothing unless you extract why. And a question you got right sometimes teaches you nothing either — you might have stumbled into the correct answer through a flawed process that will fail on a slightly different variant. Volume without analysis is physical exercise in the shape of learning, and it reinforces whatever habit — correct or incorrect — you brought to the desk that day.
 
-I coached a student last year who had done 2,000 practice questions before our first session and was stuck at 610. His error log was empty. He could not tell me which topics he missed most, which trap patterns caught him, or which competency broke when he missed. Within six weeks of cutting his volume in half and tripling his review time, he was at 685.
+I coached a student last year who had done 2,000 practice questions before our first session and was stuck at 565. His error log was empty. He could not tell me which topics he missed most, which trap patterns caught him, or which competency broke when he missed. Within six weeks of cutting his volume in half and tripling his review time, he was at 685.
 
 **How to recognize the Volume Trap in yourself:**
 
@@ -49,9 +49,9 @@ I coached a student last year who had done 2,000 practice questions before our f
 
 The Comfort Zone Trap is studying what already feels good. This one is especially insidious because it looks like work. You drill word problems because you are decent at them and it feels rewarding to see checkmarks. You skip Critical Reasoning because it is frustrating and the feedback loop is slow. Your prep diary fills up. Your score does not move.
 
-The uncomfortable truth is that your score improvement lives entirely in the topics you currently hate. The gap between a 620 and a 720 is almost always three or four specific topics the student has been unconsciously avoiding for weeks. When I sit down with a plateaued student and ask "which topic makes you want to close the laptop," that topic is almost always the exact one holding their score hostage.
+The uncomfortable truth is that your score improvement lives entirely in the topics you currently hate. The gap between a 575 and a 665 is almost always three or four specific topics the student has been unconsciously avoiding for weeks. When I sit down with a plateaued student and ask "which topic makes you want to close the laptop," that topic is almost always the exact one holding their score hostage.
 
-One student I worked with was scoring 660 and sure she needed "a little algebra polish." Her error log showed she was missing 70% of Two-Part Analysis questions in Data Insights. She had not done one in three weeks. Not because she decided they were unimportant — because every time she opened her question bank, her hand unconsciously clicked into the sections that felt good. One week of forced Two-Part Analysis drills and her overall score jumped 40 points.
+One student I worked with was scoring 615 and sure she needed "a little algebra polish." Her error log showed she was missing 70% of Two-Part Analysis questions in Data Insights. She had not done one in three weeks. Not because she decided they were unimportant — because every time she opened her question bank, her hand unconsciously clicked into the sections that felt good. One week of forced Two-Part Analysis drills and her overall score jumped 40 points.
 
 **How to recognize the Comfort Zone Trap:**
 
@@ -65,9 +65,9 @@ One student I worked with was scoring 660 and sure she needed "a little algebra 
 
 The Motivation Trap is waiting to feel ready. Waiting for the weekend when you will have more energy. Waiting for the work project to end. Waiting until you have "really committed mentally." Waiting.
 
-The 700+ scorers are not more motivated than you. Often less, in the moment. They simply do not make their study depend on motivation. They have a system that runs on autopilot and drags them through low-energy days. That is the entire trick.
+The 645+ scorers are not more motivated than you. Often less, in the moment. They simply do not make their study depend on motivation. They have a system that runs on autopilot and drags them through low-energy days. That is the entire trick.
 
-A consulting senior associate I coached told me in our first session he could only study when he was "in the zone." Nine months of prep, maybe 40 logged hours. Every weekend was either too busy or too tired. We set a rule: 30 minutes a day minimum, seven days a week. On bad days, just review his error log — no new questions. He went from 620 to 720 in 14 weeks. He was not more motivated. He just stopped making decisions based on motivation.
+A consulting senior associate I coached told me in our first session he could only study when he was "in the zone." Nine months of prep, maybe 40 logged hours. Every weekend was either too busy or too tired. We set a rule: 30 minutes a day minimum, seven days a week. On bad days, just review his error log — no new questions. He went from 575 to 665 in 14 weeks. He was not more motivated. He just stopped making decisions based on motivation.
 
 **How to recognize the Motivation Trap:**
 
@@ -81,9 +81,9 @@ A consulting senior associate I coached told me in our first session he could on
 
 You are going to take a diagnostic in Module 2. You will get a number back. That number will try to do something to your brain you have to catch and override.
 
-When you see a 580, your brain wants to translate the number into a self-concept. "I am a 580 person." "This is who I am right now." That translation is not neutral observation — it is a story your brain generates automatically. The story feels like truth. It is not truth. It is a prediction based on thin evidence, and if you accept it, you will start performing to match it.
+When you see a 545, your brain wants to translate the number into a self-concept. "I am a 545 person." "This is who I am right now." That translation is not neutral observation — it is a story your brain generates automatically. The story feels like truth. It is not truth. It is a prediction based on thin evidence, and if you accept it, you will start performing to match it.
 
-Here is what a score actually is: a measurement of your performance on a specific set of questions on a specific day. Nothing more. A 580 tells you that on this attempt, with these questions, in this mental and physical state, your existing skill set produced 580 points. It does not tell you your ceiling. It does not tell you what you will score in eight weeks. It is a data point. One data point.
+Here is what a score actually is: a measurement of your performance on a specific set of questions on a specific day. Nothing more. A 545 tells you that on this attempt, with these questions, in this mental and physical state, your existing skill set produced 545 points. It does not tell you your ceiling. It does not tell you what you will score in eight weeks. It is a data point. One data point.
 
 The reframe I want you to practice, starting today: **every score is a diagnostic, not a verdict.** A bad score is not a blow to your identity. It is information about which specific sub-skills need work. A good score is not proof of your worth. It is evidence your current system is working. In both cases, the next action is the same — log, analyze, adjust, continue.
 
@@ -148,11 +148,11 @@ Habits have three components: a cue that triggers them, a routine you execute, a
 
 The students who set this up in week 1 rarely have motivation issues by week 4. The habit runs itself. The ones who try to muscle through on willpower alone are the ones who disappear from my calendar after a month.
 
-## The One Habit That Separates 700+ from Sub-700
+## The One Habit That Separates 645+ from Sub-645
 
-If I had to pick a single habit that correlates most strongly with breaking 700, it would not be any content skill. It would be the error log.
+If I had to pick a single habit that correlates most strongly with breaking 645, it would not be any content skill. It would be the error log.
 
-Nearly every 700+ scorer I have worked with keeps a structured log of every missed question. Nearly every sub-700 scorer either does not keep one or keeps one that is just a list of wrong answers with no diagnosis. The log itself is not magic. What it does is force a specific kind of analysis that turns mistakes into future gains. Without that analysis, you repeat the same mistakes for months.
+Nearly every 645+ scorer I have worked with keeps a structured log of every missed question. Nearly every sub-645 scorer either does not keep one or keeps one that is just a list of wrong answers with no diagnosis. The log itself is not magic. What it does is force a specific kind of analysis that turns mistakes into future gains. Without that analysis, you repeat the same mistakes for months.
 
 Here is the core principle: **most of your score gains come from reviewing wrong answers, not from doing new questions.** If you have 10 hours this week, you will gain more spending 3 hours on new questions and 7 on review than the reverse. I know this sounds wrong. I have watched it play out across hundreds of prep trajectories.
 
@@ -254,9 +254,9 @@ This course is structured across eight modules. Each one builds on the last, but
 
 **Suggested reading order by starting score:**
 
-- **Starting sub-600:** Module 1 → Module 2 → Module 3 → Module 4 → Module 5 → Module 6 → Module 7. Content gains are biggest for you.
-- **Starting 600-680:** Module 1 → Module 2 → whichever section scored lowest (usually Data Insights or Verbal for non-native speakers) → Module 6 (pacing is where you leak points) → the rest.
-- **Starting 680-720 aiming higher:** Module 1 → Module 2 → Module 6 → Module 7 → the weakest-section module. Your gains come from pacing precision and mental-game polish.
+- **Starting sub-555:** Module 1 → Module 2 → Module 3 → Module 4 → Module 5 → Module 6 → Module 7. Content gains are biggest for you.
+- **Starting 555-625:** Module 1 → Module 2 → whichever section scored lowest (usually Data Insights or Verbal for non-native speakers) → Module 6 (pacing is where you leak points) → the rest.
+- **Starting 625-665 aiming higher:** Module 1 → Module 2 → Module 6 → Module 7 → the weakest-section module. Your gains come from pacing precision and mental-game polish.
 
 **Platform tooling:**
 
@@ -271,7 +271,7 @@ Do not consume the whole course in week 1. Read Module 1 and 2 now, then open mo
 Before Module 2, complete all five. They take 30-60 minutes total and set up everything that follows.
 
 1. **Write down your starting score estimate.** If you have a recent practice test, use that number. Otherwise wait for Module 2's diagnostic. Do not guess based on "how I felt on a quiz once."
-2. **Write down your target score.** Be specific. "Mid-700s" is not a target. "720" is. Look up the median GMAT score of your target programs and set a number above it.
+2. **Write down your target score.** Be specific. "Mid-600s" is not a target. "665" is. Look up the median GMAT score of your target programs and set a number above it.
 3. **Calculate the gap.** Target minus starting. Write it down. This is the mountain — usually between 60 and 150 points.
 4. **Set your 12-week schedule.** Exact days and time blocks. Put them on your calendar as recurring events titled "GMAT." Share the calendar with someone who will notice if you skip.
 5. **Commit to the Minimum Viable Session rule.** Write this somewhere you will see it every day: "On my worst days, I will do 30 minutes of review, no exceptions."

@@ -26,16 +26,16 @@ If 3x + 7 = 22, what is the value of 6x + 5?
 **type:** Problem Solving
 **topic:** Exponents
 
-Which of the following is equivalent to (x^3)^4 / x^5?
+Which of the following is equivalent to (x³)⁴ / x⁵?
 
-- A) x^2
-- B) x^7
-- C) x^12
-- D) x^15
-- E) x^17
+- A) x²
+- B) x⁷
+- C) x¹²
+- D) x¹⁵
+- E) x¹⁷
 
 **answer:** B
-**explanation:** (x^3)^4 = x^12. Then x^12 / x^5 = x^(12-5) = x^7.
+**explanation:** (x³)⁴ = x¹². Then x¹² / x⁵ = x^(12-5) = x⁷.
 
 ---
 
@@ -80,7 +80,7 @@ If x + y = 12 and x - y = 4, what is the value of x?
 **type:** Problem Solving
 **topic:** Quadratics
 
-If x^2 - 5x - 14 = 0, what is the product of the two solutions?
+If x² - 5x - 14 = 0, what is the product of the two solutions?
 
 - A) -14
 - B) -7
@@ -89,7 +89,7 @@ If x^2 - 5x - 14 = 0, what is the product of the two solutions?
 - E) 14
 
 **answer:** A
-**explanation:** By Vieta's formulas, for x^2 - 5x - 14 = 0, the product of the roots equals c/a = -14/1 = -14. To verify by factoring: x^2 - 5x - 14 = (x - 7)(x + 2) = 0, so x = 7 or x = -2, and 7 x (-2) = -14.
+**explanation:** By Vieta's formulas, for x² - 5x - 14 = 0, the product of the roots equals c/a = -14/1 = -14. To verify by factoring: x² - 5x - 14 = (x - 7)(x + 2) = 0, so x = 7 or x = -2, and 7 x (-2) = -14.
 
 ---
 
@@ -98,7 +98,7 @@ If x^2 - 5x - 14 = 0, what is the product of the two solutions?
 **type:** Problem Solving
 **topic:** Functions
 
-If f(x) = 2x^2 - 3x + 1, what is the value of f(3) - f(1)?
+If f(x) = 2x² - 3x + 1, what is the value of f(3) - f(1)?
 
 - A) 8
 - B) 10
@@ -152,7 +152,7 @@ If 2 < |x - 3| < 7, how many integer values of x satisfy the inequality?
 **type:** Problem Solving
 **topic:** Quadratics
 
-If the roots of the equation x^2 + bx + c = 0 are each increased by 2, the resulting equation is x^2 - 6x + 5 = 0. What is the value of b + c?
+If the roots of the equation x² + bx + c = 0 are each increased by 2, the resulting equation is x² - 6x + 5 = 0. What is the value of b + c?
 
 - A) -5
 - B) -3
@@ -161,7 +161,7 @@ If the roots of the equation x^2 + bx + c = 0 are each increased by 2, the resul
 - E) 5
 
 **answer:** A
-**explanation:** The equation x^2 - 6x + 5 = 0 factors as (x - 1)(x - 5) = 0, giving roots 1 and 5. Since these roots are each 2 more than the original roots, the original roots are 1 - 2 = -1 and 5 - 2 = 3. For x^2 + bx + c = 0 with roots -1 and 3: sum of roots = -b, so -1 + 3 = -b, giving b = -2. Product of roots = c, so (-1)(3) = c, giving c = -3. Therefore b + c = -2 + (-3) = -5.
+**explanation:** The equation x² - 6x + 5 = 0 factors as (x - 1)(x - 5) = 0, giving roots 1 and 5. Since these roots are each 2 more than the original roots, the original roots are 1 - 2 = -1 and 5 - 2 = 3. For x² + bx + c = 0 with roots -1 and 3: sum of roots = -b, so -1 + 3 = -b, giving b = -2. Product of roots = c, so (-1)(3) = c, giving c = -3. Therefore b + c = -2 + (-3) = -5.
 
 ---
 
@@ -188,7 +188,7 @@ If 4^(a+1) = 8^a, what is the value of a?
 **type:** Problem Solving
 **topic:** Functions
 
-For all positive integers n, let f(n) = n^2 - n. What is the value of f(f(3))?
+For all positive integers n, let f(n) = n² - n. What is the value of f(f(3))?
 
 - A) 6
 - B) 12
@@ -197,7 +197,7 @@ For all positive integers n, let f(n) = n^2 - n. What is the value of f(f(3))?
 - E) 56
 
 **answer:** C
-**explanation:** First, f(3) = 3^2 - 3 = 9 - 3 = 6. Then f(f(3)) = f(6) = 6^2 - 6 = 36 - 6 = 30. Trap answer D (42) could come from computing f(7) by mistake.
+**explanation:** First, f(3) = 3² - 3 = 9 - 3 = 6. Then f(f(3)) = f(6) = 6² - 6 = 36 - 6 = 30. Trap answer D (42) could come from computing f(7) by mistake.
 
 ---
 
@@ -206,7 +206,7 @@ For all positive integers n, let f(n) = n^2 - n. What is the value of f(f(3))?
 **type:** Problem Solving
 **topic:** Systems of Equations
 
-If xy = 6 and x^2 + y^2 = 20, what is the value of (x + y)^2?
+If xy = 6 and x² + y² = 20, what is the value of (x + y)²?
 
 - A) 26
 - B) 28
@@ -215,7 +215,7 @@ If xy = 6 and x^2 + y^2 = 20, what is the value of (x + y)^2?
 - E) 36
 
 **answer:** D
-**explanation:** Using the identity (x + y)^2 = x^2 + 2xy + y^2: (x + y)^2 = (x^2 + y^2) + 2xy = 20 + 2(6) = 20 + 12 = 32. Trap answer A (26) comes from adding 20 + 6 without doubling the xy term.
+**explanation:** Using the identity (x + y)² = x² + 2xy + y²: (x + y)² = (x² + y²) + 2xy = 20 + 2(6) = 20 + 12 = 32. Trap answer A (26) comes from adding 20 + 6 without doubling the xy term.
 
 ---
 
@@ -224,7 +224,7 @@ If xy = 6 and x^2 + y^2 = 20, what is the value of (x + y)^2?
 **type:** Problem Solving
 **topic:** Quadratic Equations
 
-What is the sum of the solutions to x^2 + 4x - 21 = 0?
+What is the sum of the solutions to x² + 4x - 21 = 0?
 
 - A) -7
 - B) -4
@@ -233,7 +233,7 @@ What is the sum of the solutions to x^2 + 4x - 21 = 0?
 - E) 7
 
 **answer:** B
-**explanation:** By Vieta's formulas, for ax^2 + bx + c = 0, the sum of roots equals -b/a. Here -b/a = -4/1 = -4. You can verify by factoring: (x + 7)(x - 3) = 0 gives roots -7 and 3, which sum to -4. On the GMAT, Vieta's is faster than factoring when you only need the sum or product of roots.
+**explanation:** By Vieta's formulas, for ax² + bx + c = 0, the sum of roots equals -b/a. Here -b/a = -4/1 = -4. You can verify by factoring: (x + 7)(x - 3) = 0 gives roots -7 and 3, which sum to -4. On the GMAT, Vieta's is faster than factoring when you only need the sum or product of roots.
 
 ---
 
@@ -242,7 +242,7 @@ What is the sum of the solutions to x^2 + 4x - 21 = 0?
 **type:** Problem Solving
 **topic:** Quadratic Equations
 
-If x^2 - 10x + k = 0 has exactly one real solution, what is the value of k?
+If x² - 10x + k = 0 has exactly one real solution, what is the value of k?
 
 - A) 5
 - B) 10
@@ -251,7 +251,7 @@ If x^2 - 10x + k = 0 has exactly one real solution, what is the value of k?
 - E) 50
 
 **answer:** D
-**explanation:** A quadratic ax^2 + bx + c = 0 has exactly one real solution when its discriminant b^2 - 4ac = 0. Here (-10)^2 - 4(1)(k) = 0, so 100 - 4k = 0, giving k = 25. The repeated root is x = 5, since x^2 - 10x + 25 = (x - 5)^2.
+**explanation:** A quadratic ax² + bx + c = 0 has exactly one real solution when its discriminant b² - 4ac = 0. Here (-10)² - 4(1)(k) = 0, so 100 - 4k = 0, giving k = 25. The repeated root is x = 5, since x² - 10x + 25 = (x - 5)².
 
 ---
 

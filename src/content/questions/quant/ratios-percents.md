@@ -125,7 +125,7 @@ The price of a stock increases by 20% in January, then decreases by 20% in Febru
 - E) It increased by 4%
 
 **answer:** A
-**explanation:** Successive percent changes do NOT cancel. Use smart numbers: start at $100. After +20% it's $120; after -20% of $120 it drops by $24 to $96. That's a 4% decrease from $100. The general rule: a +x% then -x% change always ends below the start by (x/10)^2 percent.
+**explanation:** Successive percent changes do NOT cancel. Use smart numbers: start at $100. After +20% it's $120; after -20% of $120 it drops by $24 to $96. That's a 4% decrease from $100. The general rule: a +x% then -x% change always ends below the start by (x/10)² percent.
 
 ---
 

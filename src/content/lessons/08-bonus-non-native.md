@@ -1,7 +1,7 @@
 ---
 module: 8
 title: Bonus — For Non-Native Speakers
-description: The exact strategies I used to go from 565 to 735 as a non-native English speaker. Turn the language disadvantage into an advantage.
+description: The exact strategies I used to go from 535 to 735 as a non-native English speaker. Turn the language disadvantage into an advantage.
 section: General
 duration: 60
 ---
@@ -20,7 +20,7 @@ The actual disadvantages are subtler and more cognitive:
 - **Translation fatigue.** By question 18 of Verbal, you've been running everything through an internal translation layer for an hour. Your brain is tired in a way a native speaker's isn't.
 - **Confidence gap.** You see an unfamiliar word and your internal monologue says "I'm going to get this wrong." Native speakers see the same word and shrug.
 
-I know these disadvantages intimately. I started at 565. My Verbal was in the 20th percentile. I grew up not speaking English. I hit 735 in the end — 100th percentile. The path from 565 to 735 wasn't about becoming a better English speaker. It was about systematically neutralizing each of the five disadvantages above. This module is the exact playbook.
+I know these disadvantages intimately. I started at 535. My Verbal was in the 20th percentile. I grew up not speaking English. I hit 735 in the end — 100th percentile. The path from 535 to 735 wasn't about becoming a better English speaker. It was about systematically neutralizing each of the five disadvantages above. This module is the exact playbook.
 
 ## The Reading Speed Problem (and the Fix)
 
@@ -114,7 +114,7 @@ Do not do the opposite — don't read the passage carefully then skim during que
 
 The Quant section is language-light. Word problems require translation but follow predictable patterns. Most non-native test-takers with decent STEM backgrounds outperform native speakers on Quant.
 
-**The strategic implication.** If your Quant is strong (Q85+ on GMAT Focus), it carries the rest of your score. A Q85 + V75 + DI80 = around 685. A Q85 + V80 + DI85 = around 735. The Q component is stable; upside comes from squeezing more out of Verbal and DI.
+**The strategic implication.** If your Quant is strong (Q85+ on GMAT Focus), it carries the rest of your score. A Q85 + V75 + DI80 = around 625. A Q85 + V80 + DI85 = around 735. The Q component is stable; upside comes from squeezing more out of Verbal and DI.
 
 **Don't neglect Verbal because Quant is easier.** I see this mistake constantly. A student finds Quant comfortable, spends 70% of prep time there, and ends with Q90 + V72. That's a 675 ceiling. Force yourself into a 40/30/30 Q/V/DI time split (or even 30/40/30 if Verbal is your weakest).
 
@@ -153,7 +153,7 @@ Most non-natives walk in feeling "less prepared" than their native peers, even w
 1. **Keep a "wins" journal.** After every practice set, write down one question you nailed. One where your reasoning was clean. Re-read this journal before mocks.
 2. **Reframe unknown words.** See an unfamiliar word? Say internally: "skippable noise." Test if the question depends on it. 90% of the time, it doesn't.
 3. **Commit to your first answer.** On reread, don't change a gut-correct answer unless you have a SPECIFIC logical reason (e.g., "I missed the word 'not' on first pass"). First-instinct answers are right ~70% of the time; changed answers drop to ~55%.
-4. **Separate feeling from performance.** My first three mocks felt terrible. I was sure I'd bombed. Scores came back in the 700-710 range. The feeling was fatigue and overwhelm. The performance was fine. Recognize the gap.
+4. **Separate feeling from performance.** My first three mocks felt terrible. I was sure I'd bombed. Scores came back in the 645-655 range. The feeling was fatigue and overwhelm. The performance was fine. Recognize the gap.
 
 ## Your Custom Non-Native 90-Day System
 

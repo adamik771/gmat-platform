@@ -179,7 +179,7 @@ A commuter drives 60 miles to work. If she increases her usual speed by 10 mph, 
 - E) 50
 
 **answer:** C
-**explanation:** Let r = usual speed. Usual time = 60/r; faster time = 60/(r+10). The difference is 1/4 hour: 60/r - 60/(r+10) = 1/4. Multiply through by 4r(r+10): 240(r+10) - 240r = r(r+10), so 2400 = r^2 + 10r. Solving r^2 + 10r - 2400 = 0 gives r = 40 (reject negative root).
+**explanation:** Let r = usual speed. Usual time = 60/r; faster time = 60/(r+10). The difference is 1/4 hour: 60/r - 60/(r+10) = 1/4. Multiply through by 4r(r+10): 240(r+10) - 240r = r(r+10), so 2400 = r² + 10r. Solving r² + 10r - 2400 = 0 gives r = 40 (reject negative root).
 
 ---
 
