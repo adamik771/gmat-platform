@@ -124,6 +124,23 @@ Final commit series (`2787908` → `c693ad2`, 12 commits) tripled the content fo
 - New Quant topic files added: `geometry.md`, `rates-work.md`, `ratios-percents.md`, `exponents-roots.md`.
 - All content parses cleanly through the loader. Build stays clean. Everything pushed to `main` and live (or will be live on next Vercel pickup from `gmat-platform-61zf`).
 
+### Study Plan page — real schedule + readiness (this session)
+The `/study-plan` page was fully mocked (hardcoded weekly blocks, "Week 8 of 16", 72% readiness, fake upcoming topics). Rewritten to be an honest view of what the user has actually done without inventing a curriculum schedule we haven't defined.
+- **`src/app/(app)/study-plan/page.tsx`** — async server component. Queries:
+  - `user_metadata.exam_date` + `user_metadata.target_score` (saved from settings + dashboard respectively)
+  - `lesson_completions` for the user (full set for completed lessons + the next-3-incomplete derivation)
+  - `practice_sessions` twice: past-7-day for calendar dots + weekly hours; past-30-day for the "Active days" counter. Two small queries are cheaper here than one big-window fetch plus in-memory splitting because the 7-day slice is tight.
+  - `practice_attempts` section counts to gate the readiness estimate behind the same ≥10 attempts per section as the dashboard's Score Goal card.
+- **Weekly calendar** — Sun → Sat of the *current* ISO week (not a rolling 7 days). Each cell shows:
+  - Past day: green check + "Practiced" if any session landed on that date, else grey "No activity"
+  - Today: gold dot + "Next: <first-incomplete-lesson>" or "Run a practice set" if all lessons are done
+  - Future day: grey "Open" — we don't invent a schedule. If Adam wants opinionated day-by-day blocks later, it's a small follow-up, but deliberate non-goal for v1.
+- **Progress cards**: "Lessons completed" (real count / 8), "Practice hours (7d)" (sum of `total_time_ms`, rounded to 0.1 hrs; shows "—" when rounding lands at 0.0 so a 30-second session doesn't mislead), "Active days (30d)" (distinct ISO-date days with any session — cheap streak proxy).
+- **Upcoming Lessons**: next 3 incomplete lessons in module order, clickable cards into `/lessons/<slug>`. The first gets a gold "Up Next" chip + icon tint. "Curriculum complete" card when all 8 are done.
+- **Exam readiness**: when all sections are ≥10 attempts, computes `accuracyToFocusTotal(avgAccuracy) → estimatedTotal` (same formula as analytics/dashboard) and a `readinessPct` that targets the user's saved target (or `/805` if no target). Shows the gold progress bar + `N day(s) until exam` caption. Empty state with CTAs to `/test-builder` when the estimate is gated behind more sample.
+- **Countdown header**: days-until-exam from `user_metadata.exam_date`. Three states — "N days until your exam" / "Exam day has passed" / "Set an exam date in Settings".
+- **Verified**: `npx next build` clean. Preview (signed in as Adam with exam_date 2026-07-15 saved earlier, no lessons completed, 1 Algebra session, no target): `/study-plan` rendered "87 days until your exam"; calendar showed Mon Apr 20 as today with "Next: The Mindset Reset" gold card, other days with "No activity" / "Open" per past-or-future; stats read "0 / 8 lessons", "—" hours (rounded 0.0 hrs triggered the em-dash correctly), "1" active day in 30d; Upcoming list had 3 links with mod 01 carrying the "Up Next" chip; exam readiness showed the empty state since no section has ≥ 10 attempts yet. No console errors.
+
 ### Analytics page — real data across all 4 panels (this session)
 The `/analytics` page was entirely mocked (hardcoded `scoreTrend`, `topicAccuracy`, `pacingData` arrays). Now every panel queries the user's real `practice_sessions` + `practice_attempts` with sensible minimum-sample thresholds.
 - **`src/app/(app)/analytics/page.tsx`** — async server component that does 3 aggregations:
@@ -271,7 +288,8 @@ With the original A/C/B/D directive fully executed, here are the natural next mo
 - ~~**Real settings page**~~ ✅ Done this session. Profile tab persists name + exam date via `/api/profile` to `user_metadata`; Billing tab shows real `purchases` rows with a history table. Email edit + notification prefs kept as placeholders with "coming soon" copy.
 - ~~**Real Test Builder**~~ ✅ Done this session. Samples the 443-question pool by section + difficulty, launches `/practice/session/custom?ids=...`, surfaces the user's 5 most recent custom sessions. Dashboard "Take diagnostic" CTA now leads somewhere functional.
 - ~~**Real Analytics page**~~ ✅ Done this session. All 4 panels (trajectory, topic accuracy, pacing, strengths/weaknesses) query real Supabase data with sensible min-sample thresholds and per-panel empty states.
-- **Real Study Plan page** — `/study-plan` is still a placeholder mock. Natural next move: build from `lesson_completions` + `user_metadata.exam_date` + the curriculum module list, surface a week-by-week schedule with what to cover when.
+- ~~**Real Study Plan page**~~ ✅ Done this session. Weekly calendar with real activity dots, progress cards (lessons / hours / active days), upcoming lessons (next 3 incomplete), exam readiness from estimated score + target + exam date.
+- **Opinionated day-by-day schedule on Study Plan** — the current calendar shows "Open" for future days rather than inventing a schedule. A real scheduler (e.g. given 12 weeks until exam + 8 lessons, slot one lesson every 7-10 days + daily practice blocks) could replace "Open" with suggested blocks. Product-design call before implementing.
 - **Email change flow** — the settings Profile tab shows email read-only because Supabase's `updateUser({ email })` requires a confirmation link. Needs a UI for the "check your inbox" state + a callback path. Small-to-medium effort.
 - **Notification preferences persistence** — the Notifications tab has 4 toggles that don't save. Needs either a `notification_preferences` table or a JSON column on `user_metadata`, plus an actual email scheduler (Resend/Postmark/etc.) for the toggles to matter. Big effort — defer until there's demand.
 - **Custom domain** — Vercel is on `gmat-platform-61zf.vercel.app` (default). Wiring a real domain (e.g. `zakarian-gmat.com`) goes through Vercel → `gmat-platform-61zf` project → Settings → Domains → Add, then DNS (A record or CNAME).
