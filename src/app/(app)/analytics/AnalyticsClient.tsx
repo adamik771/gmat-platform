@@ -9,7 +9,14 @@ import {
   XAxis,
   YAxis,
 } from "recharts"
-import { BarChart3, TrendingDown, TrendingUp } from "lucide-react"
+import {
+  BarChart3,
+  Clock,
+  Gauge,
+  TrendingDown,
+  TrendingUp,
+  Zap,
+} from "lucide-react"
 import EmptyState from "@/components/shared/EmptyState"
 import type { Section } from "@/types"
 
@@ -38,6 +45,36 @@ export interface PacingRow {
   over: boolean
 }
 
+export interface TopicTimingRow {
+  topic: string
+  section: Section
+  attempts: number
+  avgMin: number
+  /** Average time / section baseline. 1.3+ = slow, 0.7- = fast. */
+  ratio: number
+  flag: "fast" | "even" | "slow"
+}
+
+export interface DifficultyTimingRow {
+  section: Section
+  difficulty: string
+  attempts: number
+  avgMin: number
+  accuracy: number
+}
+
+export interface ErrorPatternSummary {
+  /** Correct + fast: efficient, the outcome you want. */
+  efficient: number
+  /** Correct + slow: labored — got it right but burned time. */
+  labored: number
+  /** Wrong + fast: rushed — panic, misread, skipped steps. */
+  rushed: number
+  /** Wrong + slow: stuck — conceptual gap even with extra time. */
+  stuck: number
+  totalLabelled: number
+}
+
 // Top + bottom 3 by accuracy, with a small-sample tiebreaker favoring
 // topics with more attempts (more trustworthy).
 function splitStrengthsWeaknesses(topics: TopicRow[]) {
@@ -54,11 +91,17 @@ export default function AnalyticsClient({
   scoreTrend,
   topicRows,
   pacingRows,
+  topicTimingRows,
+  difficultyTimingRows,
+  errorPatterns,
   hasData,
 }: {
   scoreTrend: ScoreTrendPoint[]
   topicRows: TopicRow[]
   pacingRows: PacingRow[]
+  topicTimingRows: TopicTimingRow[]
+  difficultyTimingRows: DifficultyTimingRow[]
+  errorPatterns: ErrorPatternSummary | null
   hasData: boolean
 }) {
   const trendWithData = scoreTrend.filter((p) => p.total !== null)
@@ -386,12 +429,219 @@ export default function AnalyticsClient({
         </div>
       </div>
 
+      {/* Error pattern breakdown — efficient / labored / rushed / stuck */}
+      {errorPatterns && errorPatterns.totalLabelled > 0 && (
+        <div className="p-6 rounded-xl border border-white/[0.08] bg-[#111111]">
+          <h2 className="text-sm font-semibold text-[#888888] mb-1">
+            Behaviour Patterns
+          </h2>
+          <p className="text-xs text-[#555555] mb-5">
+            Attempts tagged against your own section baseline — fast or
+            slow relative to how long you typically take. Middle-tempo
+            attempts (neither too fast nor too slow) aren&apos;t counted.
+          </p>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            <PatternCard
+              label="Efficient"
+              description="Correct, fast — exactly what you want."
+              count={errorPatterns.efficient}
+              total={errorPatterns.totalLabelled}
+              tone="good"
+            />
+            <PatternCard
+              label="Labored"
+              description="Correct but slow — right answer, wasted time."
+              count={errorPatterns.labored}
+              total={errorPatterns.totalLabelled}
+              tone="warn"
+            />
+            <PatternCard
+              label="Rushed"
+              description="Wrong + fast — panic, misread, skipped steps."
+              count={errorPatterns.rushed}
+              total={errorPatterns.totalLabelled}
+              tone="bad"
+            />
+            <PatternCard
+              label="Stuck"
+              description="Wrong + slow — conceptual gap even with extra time."
+              count={errorPatterns.stuck}
+              total={errorPatterns.totalLabelled}
+              tone="bad"
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Per-topic timing — slowest topics relative to your section baseline */}
+      {topicTimingRows.length > 0 && (
+        <div className="p-6 rounded-xl border border-white/[0.08] bg-[#111111]">
+          <h2 className="text-sm font-semibold text-[#888888] mb-1">
+            Time per Topic
+          </h2>
+          <p className="text-xs text-[#555555] mb-5">
+            Your slowest topics, ranked against your own section average.
+            A 1.3× or higher ratio means you&apos;re burning 30%+ more time
+            on that topic than your baseline — a place where drilling
+            fluency pays real timing dividends.
+          </p>
+          <div className="space-y-2">
+            {topicTimingRows.map((t) => (
+              <div
+                key={`${t.section}|${t.topic}`}
+                className="flex items-center justify-between gap-4 py-1"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <span
+                    className="px-2 py-0.5 rounded text-[10px] uppercase tracking-wide flex-shrink-0"
+                    style={{
+                      backgroundColor: "rgba(201,168,76,0.08)",
+                      color: "#C9A84C",
+                    }}
+                  >
+                    {t.section}
+                  </span>
+                  <span className="text-xs text-[#F0F0F0] truncate">
+                    {t.topic}
+                  </span>
+                  <span className="text-[10px] text-[#555555] flex-shrink-0">
+                    {t.attempts}q
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  <span className="text-xs text-[#888888]">
+                    {t.avgMin.toFixed(1)}m
+                  </span>
+                  <span
+                    className="text-[10px] font-semibold px-2 py-0.5 rounded"
+                    style={{
+                      backgroundColor:
+                        t.flag === "slow"
+                          ? "rgba(255,68,68,0.12)"
+                          : t.flag === "fast"
+                          ? "rgba(62,207,142,0.12)"
+                          : "rgba(255,255,255,0.04)",
+                      color:
+                        t.flag === "slow"
+                          ? "#FF4444"
+                          : t.flag === "fast"
+                          ? "#3ECF8E"
+                          : "#888888",
+                    }}
+                  >
+                    {t.ratio.toFixed(2)}×
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Per-difficulty timing — how long on easy vs hard in each section */}
+      {difficultyTimingRows.length > 0 && (
+        <div className="p-6 rounded-xl border border-white/[0.08] bg-[#111111]">
+          <h2 className="text-sm font-semibold text-[#888888] mb-1">
+            Time by Difficulty
+          </h2>
+          <p className="text-xs text-[#555555] mb-5">
+            Average time and accuracy by difficulty within each section.
+            If your easy-question times are high, you&apos;re leaving
+            bankable minutes on the table; if your hard-question accuracy
+            drops off a cliff, consider spending less time there and
+            guessing.
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="text-left text-[#555555] border-b border-white/[0.04]">
+                  <th className="py-2 pr-4 font-medium">Section</th>
+                  <th className="py-2 pr-4 font-medium">Difficulty</th>
+                  <th className="py-2 pr-4 font-medium text-right">Attempts</th>
+                  <th className="py-2 pr-4 font-medium text-right">Avg Time</th>
+                  <th className="py-2 pr-4 font-medium text-right">Accuracy</th>
+                </tr>
+              </thead>
+              <tbody>
+                {difficultyTimingRows.map((r) => (
+                  <tr
+                    key={`${r.section}|${r.difficulty}`}
+                    className="border-b border-white/[0.04] last:border-0"
+                  >
+                    <td className="py-2 pr-4 text-[#F0F0F0]">{r.section}</td>
+                    <td className="py-2 pr-4 text-[#888888]">{r.difficulty}</td>
+                    <td className="py-2 pr-4 text-right text-[#888888]">
+                      {r.attempts}
+                    </td>
+                    <td className="py-2 pr-4 text-right text-[#F0F0F0]">
+                      {r.avgMin.toFixed(1)}m
+                    </td>
+                    <td
+                      className="py-2 pr-4 text-right font-semibold"
+                      style={{
+                        color:
+                          r.accuracy >= 75
+                            ? "#3ECF8E"
+                            : r.accuracy >= 50
+                            ? "#C9A84C"
+                            : "#FF4444",
+                      }}
+                    >
+                      {r.accuracy}%
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
       {!hasData && (
         <p className="text-xs text-[#555555] text-center italic">
           No practice attempts yet — every panel above updates automatically
           as you work through practice sets.
         </p>
       )}
+    </div>
+  )
+}
+
+function PatternCard({
+  label,
+  description,
+  count,
+  total,
+  tone,
+}: {
+  label: string
+  description: string
+  count: number
+  total: number
+  tone: "good" | "warn" | "bad"
+}) {
+  const pct = total > 0 ? Math.round((count / total) * 100) : 0
+  const colour =
+    tone === "good" ? "#3ECF8E" : tone === "warn" ? "#C9A84C" : "#FF4444"
+  const Icon = tone === "good" ? Zap : tone === "warn" ? Clock : Gauge
+  return (
+    <div className="p-4 rounded-lg border border-white/[0.08] bg-[#0D0D0D]">
+      <div className="flex items-center gap-2 mb-1">
+        <Icon className="w-4 h-4" style={{ color: colour }} />
+        <span
+          className="text-[10px] uppercase tracking-widest font-semibold"
+          style={{ color: colour }}
+        >
+          {label}
+        </span>
+      </div>
+      <p className="text-xl font-bold text-[#F0F0F0]">
+        {count}
+        <span className="text-sm font-normal text-[#555555]"> · {pct}%</span>
+      </p>
+      <p className="text-[11px] text-[#888888] leading-snug mt-1">
+        {description}
+      </p>
     </div>
   )
 }

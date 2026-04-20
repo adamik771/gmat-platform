@@ -1,15 +1,31 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import type { Section } from "@/types"
 import AnalyticsClient, {
+  type DifficultyTimingRow,
+  type ErrorPatternSummary,
   type PacingRow,
   type ScoreTrendPoint,
   type TopicRow,
+  type TopicTimingRow,
 } from "./AnalyticsClient"
 
 // Minimum attempts required to trust a per-topic accuracy — anything below
 // and a couple of lucky / unlucky answers dominate the number.
 const TOPIC_MIN_ATTEMPTS = 5
 const PACING_MIN_ATTEMPTS = 5
+const TOPIC_TIMING_MIN_ATTEMPTS = 5
+const DIFFICULTY_TIMING_MIN_ATTEMPTS = 3
+
+/** A time-spent value below this almost always means the user submitted
+ * without reading the question (e.g. accidental click). Dropped from all
+ * time aggregations so one instant-submit doesn't skew averages. */
+const MIN_ATTEMPT_MS = 1000
+
+/** Deviation thresholds for classifying attempts as "fast" or "slow"
+ * relative to the user's own section baseline. 0.7× and 1.3× keep the
+ * labels meaningful without tagging the middle 60% of attempts. */
+const FAST_RATIO = 0.7
+const SLOW_RATIO = 1.3
 
 // Per-section target pace in minutes (reference for the "over / under"
 // color coding). Quant allots ~2 min/q, Verbal ~1.75 (CR/RC mix), DI ~2.5.
@@ -35,6 +51,9 @@ export default async function AnalyticsPage() {
   let scoreTrend: ScoreTrendPoint[] = []
   let topicRows: TopicRow[] = []
   let pacingRows: PacingRow[] = []
+  let topicTimingRows: TopicTimingRow[] = []
+  let difficultyTimingRows: DifficultyTimingRow[] = []
+  let errorPatterns: ErrorPatternSummary | null = null
   let hasData = false
 
   try {
@@ -108,7 +127,7 @@ export default async function AnalyticsPage() {
       // ---------- Per-topic accuracy ----------
       const { data: attempts } = await supabase
         .from("practice_attempts")
-        .select("topic, subtopic, section, is_correct, time_spent_ms")
+        .select("topic, subtopic, section, difficulty, is_correct, time_spent_ms")
         .eq("user_id", user.id)
 
       if (attempts && attempts.length > 0) {
@@ -188,6 +207,179 @@ export default async function AnalyticsPage() {
               over: avgMin > target,
             }
           })
+
+        // ---------- Per-section baseline average time (ms) ----------
+        // Needed by several downstream aggregations — topic timing
+        // deviation + fast/slow classification — so compute once.
+        const sectionAvgMs: Partial<Record<Section, number>> = {}
+        for (const sec of ["Quant", "Verbal", "DI"] as const) {
+          if (secAgg[sec].count > 0) {
+            sectionAvgMs[sec] = secAgg[sec].total / secAgg[sec].count
+          }
+        }
+
+        // ---------- Per-topic timing ----------
+        // For each (section, topic) with enough attempts, compute the
+        // average time-per-question and compare to the user's overall
+        // section average. Flags topics where the student burns
+        // significantly more (or less) time than their own baseline —
+        // far more actionable than "your Quant average is 2.1 min/q".
+        type TopicTimeAgg = {
+          section: Section
+          totalMs: number
+          count: number
+        }
+        const topicTime = new Map<string, TopicTimeAgg>()
+        for (const a of attempts) {
+          const sec = a.section as Section
+          if (sec !== "Quant" && sec !== "Verbal" && sec !== "DI") continue
+          const ms = (a.time_spent_ms as number) ?? 0
+          if (ms <= MIN_ATTEMPT_MS) continue
+          const topic = (a.topic as string) || "Other"
+          const key = `${sec}|${topic}`
+          const agg = topicTime.get(key) ?? {
+            section: sec,
+            totalMs: 0,
+            count: 0,
+          }
+          agg.totalMs += ms
+          agg.count += 1
+          topicTime.set(key, agg)
+        }
+
+        topicTimingRows = [...topicTime.entries()]
+          .filter(([, v]) => v.count >= TOPIC_TIMING_MIN_ATTEMPTS)
+          .map(([key, v]) => {
+            const topic = key.split("|").slice(1).join("|")
+            const avgMs = v.totalMs / v.count
+            const avgMin = avgMs / 60000
+            const baseMs = sectionAvgMs[v.section]
+            const ratio = baseMs ? avgMs / baseMs : 1
+            const flag: TopicTimingRow["flag"] =
+              ratio >= SLOW_RATIO ? "slow" : ratio <= FAST_RATIO ? "fast" : "even"
+            return {
+              topic,
+              section: v.section,
+              attempts: v.count,
+              avgMin: Math.round(avgMin * 10) / 10,
+              ratio: Math.round(ratio * 100) / 100,
+              flag,
+            }
+          })
+          // Slowest (biggest drags on pace) first — those are the high-leverage
+          // ones to attack.
+          .sort((a, b) => b.ratio - a.ratio)
+          .slice(0, 10)
+
+        // ---------- Per-difficulty timing ----------
+        // Shows how long the student spends on Beginner / Intermediate /
+        // Advanced within each section. Surfaces "I spend 3 min on easy
+        // questions" scenarios that indicate careless slow-down.
+        type DifficultyTimeAgg = {
+          totalMs: number
+          count: number
+          correct: number
+        }
+        const diffTime = new Map<
+          string,
+          DifficultyTimeAgg & { section: Section; difficulty: string }
+        >()
+        for (const a of attempts) {
+          const sec = a.section as Section
+          if (sec !== "Quant" && sec !== "Verbal" && sec !== "DI") continue
+          const ms = (a.time_spent_ms as number) ?? 0
+          if (ms <= MIN_ATTEMPT_MS) continue
+          const difficulty =
+            (a.difficulty as string | null) ?? "Intermediate"
+          const key = `${sec}|${difficulty}`
+          const agg = diffTime.get(key) ?? {
+            section: sec,
+            difficulty,
+            totalMs: 0,
+            count: 0,
+            correct: 0,
+          }
+          agg.totalMs += ms
+          agg.count += 1
+          if (a.is_correct) agg.correct += 1
+          diffTime.set(key, agg)
+        }
+
+        difficultyTimingRows = [...diffTime.values()]
+          .filter((v) => v.count >= DIFFICULTY_TIMING_MIN_ATTEMPTS)
+          .map((v) => {
+            const avgMin = v.totalMs / v.count / 60000
+            return {
+              section: v.section,
+              difficulty: v.difficulty,
+              attempts: v.count,
+              avgMin: Math.round(avgMin * 10) / 10,
+              accuracy: Math.round((v.correct / v.count) * 100),
+            }
+          })
+          .sort((a, b) => {
+            // Sort Quant → Verbal → DI, then Beginner → Intermediate → Advanced
+            const secOrder: Record<Section, number> = { Quant: 0, Verbal: 1, DI: 2 }
+            if (a.section !== b.section) return secOrder[a.section] - secOrder[b.section]
+            const diffOrder: Record<string, number> = {
+              Beginner: 0,
+              Intermediate: 1,
+              Advanced: 2,
+            }
+            return (diffOrder[a.difficulty] ?? 99) - (diffOrder[b.difficulty] ?? 99)
+          })
+
+        // ---------- Error-pattern breakdown ----------
+        // Classifies every attempt (with valid time) against its
+        // section's baseline:
+        //   correct + fast   → efficient  (good)
+        //   correct + slow   → labored   (right but inefficient)
+        //   wrong   + fast   → rushed    (panic / misread)
+        //   wrong   + slow   → stuck     (conceptual gap)
+        //   middle-tempo attempts get no label — the student's behaviour
+        //   was neither too fast nor too slow to flag.
+        let efficient = 0
+        let labored = 0
+        let rushed = 0
+        let stuck = 0
+        let labelledWrong = 0
+        let labelledRight = 0
+        for (const a of attempts) {
+          const sec = a.section as Section
+          if (sec !== "Quant" && sec !== "Verbal" && sec !== "DI") continue
+          const ms = (a.time_spent_ms as number) ?? 0
+          if (ms <= MIN_ATTEMPT_MS) continue
+          const base = sectionAvgMs[sec]
+          if (!base) continue
+          const ratio = ms / base
+          const isCorrect = !!a.is_correct
+          if (ratio <= FAST_RATIO) {
+            if (isCorrect) {
+              efficient += 1
+              labelledRight += 1
+            } else {
+              rushed += 1
+              labelledWrong += 1
+            }
+          } else if (ratio >= SLOW_RATIO) {
+            if (isCorrect) {
+              labored += 1
+              labelledRight += 1
+            } else {
+              stuck += 1
+              labelledWrong += 1
+            }
+          }
+        }
+        if (labelledRight + labelledWrong > 0) {
+          errorPatterns = {
+            efficient,
+            labored,
+            rushed,
+            stuck,
+            totalLabelled: labelledRight + labelledWrong,
+          }
+        }
       }
     }
   } catch {
@@ -199,6 +391,9 @@ export default async function AnalyticsPage() {
       scoreTrend={scoreTrend}
       topicRows={topicRows}
       pacingRows={pacingRows}
+      topicTimingRows={topicTimingRows}
+      difficultyTimingRows={difficultyTimingRows}
+      errorPatterns={errorPatterns}
       hasData={hasData}
     />
   )
