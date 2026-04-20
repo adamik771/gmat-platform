@@ -1,15 +1,18 @@
 "use client"
 
-import { useState, useTransition } from "react"
+import { Suspense, useEffect, useState, useTransition } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import {
   Bell,
   CheckCircle2,
   CreditCard,
   Loader2,
+  Mail,
+  Pencil,
   Save,
   User,
+  X,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -88,7 +91,7 @@ export default function SettingsClient({
       {tab === "profile" && (
         <ProfileTab
           initialName={initialName}
-          email={initialEmail}
+          initialEmail={initialEmail}
           initialExamDate={initialExamDate}
           targetScore={initialTargetScore}
         />
@@ -102,20 +105,19 @@ export default function SettingsClient({
 }
 
 /**
- * Profile tab — editable name + exam date backed by user_metadata.
- * Email is read-only (Supabase email change requires a confirmation flow
- * we haven't built yet — linked out with a note). Target score is
- * surfaced here as reference but editable on /dashboard, to keep one
- * writer for that field.
+ * Profile tab — editable name, email, and exam date. Email changes go
+ * through a two-step confirmation flow (see `EmailField`); the rest
+ * write through immediately. Target score is surfaced here as reference
+ * but editable on /dashboard, to keep one writer for that field.
  */
 function ProfileTab({
   initialName,
-  email,
+  initialEmail,
   initialExamDate,
   targetScore,
 }: {
   initialName: string
-  email: string
+  initialEmail: string
   initialExamDate: string | null
   targetScore: number | null
 }) {
@@ -188,24 +190,9 @@ function ProfileTab({
             }}
           />
         </div>
-        <div>
-          <label className="block text-xs font-medium text-[#888888] mb-1.5">
-            Email
-          </label>
-          <input
-            type="email"
-            value={email}
-            readOnly
-            className="w-full px-3.5 py-2.5 rounded-lg text-sm text-[#888888] outline-none cursor-not-allowed"
-            style={{
-              backgroundColor: "#141414",
-              border: "1px solid rgba(255,255,255,0.06)",
-            }}
-          />
-          <p className="text-[11px] text-[#555555] mt-1">
-            Email changes require confirmation — coming soon.
-          </p>
-        </div>
+        <Suspense fallback={<EmailFieldFallback currentEmail={initialEmail} />}>
+          <EmailField currentEmail={initialEmail} />
+        </Suspense>
         <div>
           <label className="block text-xs font-medium text-[#888888] mb-1.5">
             Target GMAT Score
@@ -495,6 +482,196 @@ function NotificationToggle({
           }}
         />
       </button>
+    </div>
+  )
+}
+
+/**
+ * Static fallback rendered while EmailField's useSearchParams resolves
+ * during the client-side bailout. Matches the "display mode" look so the
+ * UI doesn't jump once hydration catches up.
+ */
+function EmailFieldFallback({ currentEmail }: { currentEmail: string }) {
+  return (
+    <div>
+      <label className="block text-xs font-medium text-[#888888] mb-1.5">
+        Email
+      </label>
+      <div
+        className="w-full px-3.5 py-2.5 rounded-lg text-sm flex items-center justify-between gap-3"
+        style={{
+          backgroundColor: "#141414",
+          border: "1px solid rgba(255,255,255,0.06)",
+        }}
+      >
+        <span className="text-[#D8D8D8] truncate">{currentEmail}</span>
+      </div>
+    </div>
+  )
+}
+
+/**
+ * Inline email editor. Renders three states:
+ *   - Read-only input + "Edit" pencil — the default.
+ *   - Input + Save / Cancel — after the user clicks Edit.
+ *   - A blue info banner "Check your inbox at <new>" — after a successful
+ *     POST to /api/email-change. Supabase sends confirmation links to both
+ *     addresses; the change only takes effect once the new-address link is
+ *     clicked, which routes through /auth/callback back to this page with
+ *     ?email=changed so we can show a success banner then too.
+ */
+function EmailField({ currentEmail }: { currentEmail: string }) {
+  const [editing, setEditing] = useState(false)
+  const [draft, setDraft] = useState(currentEmail)
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [pendingEmail, setPendingEmail] = useState<string | null>(null)
+  const searchParams = useSearchParams()
+  const justChanged = searchParams.get("email") === "changed"
+
+  // Sync the draft back to server state on prop change (e.g. after a
+  // successful confirmation round-trip and router.refresh()).
+  useEffect(() => {
+    setDraft(currentEmail)
+  }, [currentEmail])
+
+  async function submit() {
+    if (saving) return
+    const trimmed = draft.trim().toLowerCase()
+    if (!trimmed) {
+      setError("Enter an email address.")
+      return
+    }
+    setError(null)
+    setSaving(true)
+    try {
+      const res = await fetch("/api/email-change", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: trimmed }),
+      })
+      if (!res.ok) {
+        const body = (await res.json().catch(() => ({}))) as { error?: string }
+        throw new Error(body.error || `Request failed (${res.status})`)
+      }
+      setPendingEmail(trimmed)
+      setEditing(false)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong")
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  function cancel() {
+    setEditing(false)
+    setDraft(currentEmail)
+    setError(null)
+  }
+
+  return (
+    <div>
+      <label className="block text-xs font-medium text-[#888888] mb-1.5">
+        Email
+      </label>
+      {editing ? (
+        <div className="space-y-2">
+          <div className="flex gap-2">
+            <input
+              type="email"
+              value={draft}
+              onChange={(e) => setDraft(e.target.value)}
+              autoFocus
+              placeholder="you@example.com"
+              className="flex-1 px-3.5 py-2.5 rounded-lg text-sm text-[#F0F0F0] outline-none focus:border-[#C9A84C]/40"
+              style={{
+                backgroundColor: "#1A1A1A",
+                border: "1px solid rgba(255,255,255,0.08)",
+              }}
+            />
+            <button
+              type="button"
+              onClick={submit}
+              disabled={saving || !draft.trim()}
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium text-[#0A0A0A] disabled:opacity-60"
+              style={{ backgroundColor: "#C9A84C" }}
+            >
+              {saving ? (
+                <Loader2 className="w-3 h-3 animate-spin" />
+              ) : (
+                <CheckCircle2 className="w-3 h-3" />
+              )}
+              Send confirmation
+            </button>
+            <button
+              type="button"
+              onClick={cancel}
+              disabled={saving}
+              className="p-2 rounded-lg text-[#555555] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
+              aria-label="Cancel"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+          <p className="text-[11px] text-[#555555]">
+            We&apos;ll email both your current and new addresses to confirm.
+          </p>
+          {error && (
+            <p className="text-[11px]" style={{ color: "#FF4444" }}>
+              {error}
+            </p>
+          )}
+        </div>
+      ) : (
+        <div
+          className="w-full px-3.5 py-2.5 rounded-lg text-sm flex items-center justify-between gap-3"
+          style={{
+            backgroundColor: "#141414",
+            border: "1px solid rgba(255,255,255,0.06)",
+          }}
+        >
+          <span className="text-[#D8D8D8] truncate">{currentEmail}</span>
+          <button
+            type="button"
+            onClick={() => setEditing(true)}
+            className="inline-flex items-center gap-1 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors flex-shrink-0"
+          >
+            <Pencil className="w-3 h-3" />
+            Edit
+          </button>
+        </div>
+      )}
+      {pendingEmail && !editing && (
+        <div
+          className="mt-2 flex items-start gap-2 p-2.5 rounded-lg text-[11px]"
+          style={{
+            backgroundColor: "rgba(62,207,142,0.06)",
+            border: "1px solid rgba(62,207,142,0.15)",
+            color: "#3ECF8E",
+          }}
+        >
+          <Mail className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
+          <span>
+            Check <span className="font-semibold">{pendingEmail}</span> for a
+            confirmation link. Your email stays at{" "}
+            <span className="font-semibold">{currentEmail}</span> until you
+            click it.
+          </span>
+        </div>
+      )}
+      {justChanged && !pendingEmail && (
+        <div
+          className="mt-2 flex items-start gap-2 p-2.5 rounded-lg text-[11px]"
+          style={{
+            backgroundColor: "rgba(62,207,142,0.06)",
+            border: "1px solid rgba(62,207,142,0.15)",
+            color: "#3ECF8E",
+          }}
+        >
+          <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
+          <span>Email updated. You&apos;re signed in as {currentEmail}.</span>
+        </div>
+      )}
     </div>
   )
 }

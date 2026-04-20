@@ -124,6 +124,14 @@ Final commit series (`2787908` → `c693ad2`, 12 commits) tripled the content fo
 - New Quant topic files added: `geometry.md`, `rates-work.md`, `ratios-percents.md`, `exponents-roots.md`.
 - All content parses cleanly through the loader. Build stays clean. Everything pushed to `main` and live (or will be live on next Vercel pickup from `gmat-platform-61zf`).
 
+### Email change flow (this session)
+Replaces the "coming soon" note on the settings Email field with a real two-step confirmation flow. Leans on Supabase's built-in `updateUser({ email })` — no new table needed.
+- **`src/app/api/email-change/route.ts`** (new) — POST, auth-gated. Validates basic email shape, length ≤ 254, and rejects a no-op change (same as current email). Calls `supabase.auth.updateUser({ email }, { emailRedirectTo: ${origin}/auth/callback?next=/settings?email=changed })` so Supabase's confirmation-link redirect lands back on settings with a success hint instead of the default dashboard route.
+- **`EmailField` client component** (in `SettingsClient.tsx`) — three visual states: read-only display with Edit pencil (default); inline input + Send confirmation / Cancel / X buttons (editing); green "Check <new> for a confirmation link" banner (after successful POST). After the user clicks Supabase's link, they land on `/settings?email=changed` and a separate green "Email updated" banner shows (distinguished by `useSearchParams`).
+- **Suspense boundary** — `useSearchParams` triggers the same client-side bailout that bit the signup page earlier. Wrapped in `<Suspense fallback={<EmailFieldFallback />}>` with a fallback that mirrors the display-mode layout so there's no visual jump on hydration.
+- **Callback** — existing `/auth/callback` already handles `?code=…&next=…` for both new-user signup and email-change confirmation, so no new route needed.
+- **Verified**: `npx next build` clean (first attempt hit the missing-Suspense error — same fix pattern as signup). Preview: clicked Edit → input appeared prefilled with current email → clicked Send → 400 "That's already your current email" surfaced in red; cancelled → back to read-only display. No console errors.
+
 ### Study Plan page — real schedule + readiness (this session)
 The `/study-plan` page was fully mocked (hardcoded weekly blocks, "Week 8 of 16", 72% readiness, fake upcoming topics). Rewritten to be an honest view of what the user has actually done without inventing a curriculum schedule we haven't defined.
 - **`src/app/(app)/study-plan/page.tsx`** — async server component. Queries:
@@ -290,7 +298,7 @@ With the original A/C/B/D directive fully executed, here are the natural next mo
 - ~~**Real Analytics page**~~ ✅ Done this session. All 4 panels (trajectory, topic accuracy, pacing, strengths/weaknesses) query real Supabase data with sensible min-sample thresholds and per-panel empty states.
 - ~~**Real Study Plan page**~~ ✅ Done this session. Weekly calendar with real activity dots, progress cards (lessons / hours / active days), upcoming lessons (next 3 incomplete), exam readiness from estimated score + target + exam date.
 - **Opinionated day-by-day schedule on Study Plan** — the current calendar shows "Open" for future days rather than inventing a schedule. A real scheduler (e.g. given 12 weeks until exam + 8 lessons, slot one lesson every 7-10 days + daily practice blocks) could replace "Open" with suggested blocks. Product-design call before implementing.
-- **Email change flow** — the settings Profile tab shows email read-only because Supabase's `updateUser({ email })` requires a confirmation link. Needs a UI for the "check your inbox" state + a callback path. Small-to-medium effort.
+- ~~**Email change flow**~~ ✅ Done this session. `/api/email-change` + inline `EmailField` editor with confirmation-pending + confirmation-success banners.
 - **Notification preferences persistence** — the Notifications tab has 4 toggles that don't save. Needs either a `notification_preferences` table or a JSON column on `user_metadata`, plus an actual email scheduler (Resend/Postmark/etc.) for the toggles to matter. Big effort — defer until there's demand.
 - **Custom domain** — Vercel is on `gmat-platform-61zf.vercel.app` (default). Wiring a real domain (e.g. `zakarian-gmat.com`) goes through Vercel → `gmat-platform-61zf` project → Settings → Domains → Add, then DNS (A record or CNAME).
 - **Stripe checkout** — `src/lib/stripe.ts` has `getStripe()` + `STRIPE_PRICES` ready, and the pricing page already lists the tiers. Needs a `/api/checkout` route handler + a webhook listener for `checkout.session.completed`. Real price IDs need to replace the `price_self_study`-style placeholders in env.
