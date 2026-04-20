@@ -40,6 +40,7 @@ const navItems = [
   { label: "Lessons", href: "/lessons", icon: BookOpen },
   { label: "Practice", href: "/practice", icon: Target },
   { label: "Review", href: "/review", icon: RotateCcw },
+  { label: "Mock", href: "/mock", icon: Target },
   { label: "Test Builder", href: "/test-builder", icon: Wrench },
   { label: "Analytics", href: "/analytics", icon: BarChart3 },
   { label: "Error Log", href: "/error-log", icon: AlertCircle },
