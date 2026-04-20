@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, RotateCcw } from "lucide-react"
+import { AlertCircle, ArrowRight, RotateCcw } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { bucketBySection, getReviewQueue, type ReviewCandidate } from "@/lib/review-queue"
 
@@ -40,6 +40,22 @@ export default async function ReviewPage() {
 
   const totalDue = queue.length
 
+  // Count untagged wrong attempts so we can nudge the student to
+  // classify them — classification drives sharper error analysis and
+  // in a future iteration can influence review priority directly.
+  const [{ count: totalWrongCount }, { count: taggedCount }] = await Promise.all([
+    supabase
+      .from("practice_attempts")
+      .select("id", { count: "exact", head: true })
+      .eq("user_id", user.id)
+      .eq("is_correct", false),
+    supabase
+      .from("error_tags")
+      .select("id", { count: "exact", head: true })
+      .eq("user_id", user.id),
+  ])
+  const untaggedCount = Math.max(0, (totalWrongCount ?? 0) - (taggedCount ?? 0))
+
   if (totalDue === 0) {
     return (
       <div className="max-w-2xl mx-auto">
@@ -69,6 +85,45 @@ export default async function ReviewPage() {
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       <Header totalDue={totalDue} />
+
+      {/* Untagged-mistakes nudge — classifying misses sharpens the
+          error-type analysis on the dashboard + analytics. Only shown
+          when the backlog is non-trivial so it doesn't nag users with
+          one stray untagged item. */}
+      {untaggedCount >= 5 && (
+        <Link
+          href="/error-log"
+          className="flex items-center justify-between gap-3 p-4 rounded-xl border transition-colors hover:opacity-95"
+          style={{
+            borderColor: "rgba(255,68,68,0.18)",
+            backgroundColor: "rgba(255,68,68,0.04)",
+          }}
+        >
+          <div className="flex items-start gap-3">
+            <AlertCircle
+              className="w-4 h-4 mt-0.5 flex-shrink-0"
+              style={{ color: "#FF4444" }}
+            />
+            <div>
+              <p className="text-sm font-semibold text-[#F0F0F0]">
+                {untaggedCount} untagged mistakes
+              </p>
+              <p className="text-xs text-[#888888] leading-relaxed">
+                Classifying each miss (conceptual gap? trap-baited? careless?) takes ~5 seconds and makes your behaviour-pattern analytics much sharper. Worth doing before today&apos;s review.
+              </p>
+            </div>
+          </div>
+          <span
+            className="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold"
+            style={{
+              backgroundColor: "rgba(255,68,68,0.12)",
+              color: "#FF4444",
+            }}
+          >
+            Tag them
+          </span>
+        </Link>
+      )}
 
       <div className="space-y-3">
         {orderedSections.map((section) => {

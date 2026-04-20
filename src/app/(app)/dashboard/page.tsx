@@ -115,6 +115,7 @@ export default async function DashboardPage() {
   let diagnosticSectionsDone = 0
   let onboardingTargetSet = false
   let onboardingExamDateSet = false
+  let untaggedMistakeCount = 0
 
   try {
     if (user) {
@@ -310,6 +311,18 @@ export default async function DashboardPage() {
         taggedMistakeCount++
         if (t.reviewed) reviewedMistakeCount++
       }
+
+      // Untagged mistakes = total wrong attempts − tagged attempts.
+      // Head-only count keeps the payload tiny; we never pull the rows.
+      const { count: totalWrongCount } = await supabase
+        .from("practice_attempts")
+        .select("id", { count: "exact", head: true })
+        .eq("user_id", userId)
+        .eq("is_correct", false)
+      untaggedMistakeCount = Math.max(
+        0,
+        (totalWrongCount ?? 0) - taggedMistakeCount
+      )
 
       const rawTargetBadge = user.user_metadata?.target_score
       const hasTarget =
@@ -961,9 +974,24 @@ export default async function DashboardPage() {
 
           {/* Recent Mistakes */}
           <div>
-            <h2 className="text-sm font-semibold text-[#888888] uppercase tracking-widest mb-4">
-              Recent Mistakes
-            </h2>
+            <div className="flex items-center justify-between gap-2 mb-4">
+              <h2 className="text-sm font-semibold text-[#888888] uppercase tracking-widest">
+                Recent Mistakes
+              </h2>
+              {untaggedMistakeCount > 0 && (
+                <Link
+                  href="/error-log"
+                  className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest font-semibold px-2 py-0.5 rounded transition-colors hover:opacity-90"
+                  style={{
+                    backgroundColor: "rgba(255,68,68,0.1)",
+                    color: "#FF4444",
+                  }}
+                  title="Classifying a miss takes 5 seconds and makes your error analysis much sharper."
+                >
+                  {untaggedMistakeCount} untagged
+                </Link>
+              )}
+            </div>
             {recentMistakes.length === 0 ? (
               <EmptyState
                 icon={AlertCircle}
