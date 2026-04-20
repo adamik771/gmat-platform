@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   Calendar,
   BookOpen,
+  Sparkles,
   Target,
   Wrench,
   BarChart3,
@@ -32,6 +33,7 @@ import {
 const navItems = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Study Plan", href: "/study-plan", icon: Calendar },
+  { label: "Chapters", href: "/chapters", icon: Sparkles },
   { label: "Lessons", href: "/lessons", icon: BookOpen },
   { label: "Practice", href: "/practice", icon: Target },
   { label: "Test Builder", href: "/test-builder", icon: Wrench },

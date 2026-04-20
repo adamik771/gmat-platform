@@ -124,6 +124,43 @@ Final commit series (`2787908` → `c693ad2`, 12 commits) tripled the content fo
 - New Quant topic files added: `geometry.md`, `rates-work.md`, `ratios-percents.md`, `exponents-roots.md`.
 - All content parses cleanly through the loader. Build stays clean. Everything pushed to `main` and live (or will be live on next Vercel pickup from `gmat-platform-61zf`).
 
+### Chapters (Phase 1) — interactive learning architecture (this session)
+First pass at a TTP-inspired but evidence-based chapter architecture. Goal: replace the standalone `/lessons/[slug]` + `/practice/session/[slug]` split with an integrated "read → micro-quiz → read → problem set" flow that bakes in research-backed learning techniques. One prototype chapter (Combinatorics) ships as proof; full migration of remaining topics is deferred to later phases per Adam's scoping.
+- **Learning-science stack** baked into the UI:
+  - **Pretesting effect** (Kornell) — optional "Try before you learn" section at the top of each chapter. Attempting before instruction primes the brain to encode the lesson better, even if you get the pretest wrong.
+  - **Testing effect** (Roediger & Karpicke) — "Check your understanding" micro-quizzes embedded after each sub-concept reading, not just at the end.
+  - **Confidence rating** — before submitting every inline question, the student picks Low / Medium / High. Post-submit, the UI shows a calibration hint ("Confidence was High but missed — slow down on this pattern next time") to train metacognition.
+  - **Self-explanation prompt** (generation effect) — optional one-line textarea prompting "In one sentence, why?" before submitting. Shown pre-submit; after submit, their plan is preserved alongside the model explanation for comparison.
+  - **Personalized accuracy targets** — problem sets at the end of each chapter show a target % based on the user's saved GMAT target score. The same chapter asks 100% of a 725-target student on easy but only 80% of a 605-target student. Calibrated via `target_accuracy_by_score` tier map in the chapter's frontmatter.
+- **Content format** (`src/content/chapters/<slug>.md`):
+  - YAML frontmatter with nested `sections` + `problem_sets` definitions
+  - Body uses `## @<section-id>` headers to attach reading prose to its declared section
+  - New dep: `yaml` package (50KB) for nested frontmatter parsing; simple `parseFrontmatter` wouldn't handle nested arrays
+- **Parser** (`src/lib/content.ts`):
+  - `parseChapterFile(path)` → `ParsedChapter`
+  - `getAllChapters()`, `getChapterBySlug(slug)`
+  - `resolveAccuracyTarget(map, targetScore)` helper picks the correct tier for a user's goal (duplicated client-side because `content.ts` touches `node:fs` and can't cross the server-client boundary)
+- **Routes**:
+  - `/chapters` — index, sorted Quant → Verbal → DI, sections ordered alphabetically within each
+  - `/chapters/[slug]` — server component loads chapter + resolves question IDs + reads user's target_score from `user_metadata`, then hands everything to `ChapterReader` client component
+- **`ChapterReader.tsx`** — ~700 lines, owns the whole reader experience:
+  - All sections rendered as sequential cards (no gated unlock — returning users can jump around)
+  - Per-section "Mark section complete" button drives a progress bar at the top
+  - Inline questions with full options grid + confidence + self-explanation + reveal with calibration hint + collapsible explanation
+  - End-of-chapter problem set cards with mastery targets. Clicking a set opens a modal `ProblemSetRunner` that runs through every question, tallies results, and shows a pass/retake screen against the user's target.
+  - **localStorage-only progress** keyed by chapter slug. Shape: `{ sectionsRead, questions: {id: {selected, submitted, confidence, selfExplanation}}, problemSetResults }`. Matches Adam's Phase 1 scoping — validates the UX before committing a Supabase schema.
+- **Combinatorics prototype content**:
+  - Chapter: `src/content/chapters/combinatorics.md` — 8 sections (pretest → enumeration → permutations → combinations → restrictions → circular → repeats → decision-tree summary), ~2,300 words of original narrative
+  - Questions: `src/content/questions/quant/combinatorics.md` — 18 original questions (5 easy / 7 medium / 6 hard). Had to rewrite the file in the parser's expected format (`---` separators between `## Qn` blocks, no `**prompt:**` label, subtopic stored under `**topic:**`) — first build pass missed 17 of 18 because I used the wrong separator format.
+- **Nav wiring** — "Chapters" added to the sidebar with a `Sparkles` icon, slotted between Study Plan and Lessons.
+- **What's deferred to Phase 2+**:
+  - Supabase `chapter_progress` + `confidence_log` + `spaced_reviews` tables (current progress is localStorage only)
+  - Spaced-repetition queue pulling recently-failed questions back after 1d / 3d / 7d / 21d
+  - Calibration dashboard aggregating confidence-vs-correctness across chapters
+  - Interleaved mixed-review mode post-chapter
+  - Migration of remaining 15+ topic areas into chapter format
+- **Verified**: `npx next build` clean after fixing the question-file format. Preview: `/chapters` listed Combinatorics; `/chapters/combinatorics` rendered 8 section cards with correct inline-question counts (Pretest 2Q, Restrictions 2Q, every other reading 1Q or 0); the pretest loop worked end-to-end (pick option → confidence panel appeared → Submit disabled until confidence set → post-submit reveal showed red/green + calibration hint + collapsible explanation); problem set cards showed "5 / 7 / 6 questions" matching the configured IDs.
+
 ### Content overhaul — Unicode math + Focus-native scores (this session)
 Two sweeping content passes across every markdown file under `src/content/`, dispatched as an agent task with the official GMAC concordance as the source of truth.
 - **Math notation** — swapped ASCII patterns for Unicode across 17 question files + 2 guides:
