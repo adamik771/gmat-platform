@@ -1,5 +1,19 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
-import SettingsClient, { type PurchaseRow } from "./SettingsClient"
+import SettingsClient, {
+  type NotificationPrefs,
+  type PurchaseRow,
+} from "./SettingsClient"
+
+// Sensible defaults when the user has never touched the toggles. Streak
+// reminders + weekly progress default on, the others off — matches the
+// previous visual defaults so returning users see the same thing they
+// would have pre-persistence.
+const DEFAULT_PREFS: NotificationPrefs = {
+  streak: true,
+  weekly: true,
+  tips: false,
+  coaching: true,
+}
 
 const PLAN_LABELS: Record<string, string> = {
   self_study: "Self-Study",
@@ -14,6 +28,7 @@ export default async function SettingsPage() {
   let initialExamDate: string | null = null
   let initialTargetScore: number | null = null
   let purchases: PurchaseRow[] = []
+  let initialPrefs: NotificationPrefs = { ...DEFAULT_PREFS }
 
   try {
     const supabase = await createSupabaseServer()
@@ -31,6 +46,15 @@ export default async function SettingsPage() {
         typeof rawTarget === "number" && Number.isInteger(rawTarget)
           ? rawTarget
           : null
+
+      // Merge stored prefs on top of defaults so an older account missing
+      // a key (e.g. we add a new pref later) still gets a sensible default.
+      const storedPrefs = user.user_metadata?.notification_prefs as
+        | Partial<NotificationPrefs>
+        | undefined
+      if (storedPrefs && typeof storedPrefs === "object") {
+        initialPrefs = { ...DEFAULT_PREFS, ...storedPrefs }
+      }
 
       const { data } = await supabase
         .from("purchases")
@@ -58,6 +82,7 @@ export default async function SettingsPage() {
       initialExamDate={initialExamDate}
       initialTargetScore={initialTargetScore}
       purchases={purchases}
+      initialPrefs={initialPrefs}
     />
   )
 }

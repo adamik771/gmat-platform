@@ -25,12 +25,20 @@ export interface PurchaseRow {
   paidAt: string
 }
 
+export interface NotificationPrefs {
+  streak: boolean
+  weekly: boolean
+  tips: boolean
+  coaching: boolean
+}
+
 interface Props {
   initialName: string
   initialEmail: string
   initialExamDate: string | null
   initialTargetScore: number | null
   purchases: PurchaseRow[]
+  initialPrefs: NotificationPrefs
 }
 
 type Tab = "profile" | "billing" | "notifications"
@@ -41,6 +49,7 @@ export default function SettingsClient({
   initialExamDate,
   initialTargetScore,
   purchases,
+  initialPrefs,
 }: Props) {
   const [tab, setTab] = useState<Tab>("profile")
 
@@ -99,7 +108,7 @@ export default function SettingsClient({
 
       {tab === "billing" && <BillingTab purchases={purchases} />}
 
-      {tab === "notifications" && <NotificationsTab />}
+      {tab === "notifications" && <NotificationsTab initialPrefs={initialPrefs} />}
     </div>
   )
 }
@@ -390,12 +399,73 @@ function BillingTab({ purchases }: { purchases: PurchaseRow[] }) {
   )
 }
 
+const NOTIFICATION_DEFS: {
+  id: keyof NotificationPrefs
+  label: string
+  description: string
+}[] = [
+  {
+    id: "streak",
+    label: "Streak reminders",
+    description: "Remind me if I haven't studied in 24 hours",
+  },
+  {
+    id: "weekly",
+    label: "Weekly progress report",
+    description: "Summary of your study week every Monday",
+  },
+  {
+    id: "tips",
+    label: "Study tips & strategies",
+    description: "Occasional emails with GMAT tips from Adam",
+  },
+  {
+    id: "coaching",
+    label: "Coaching session reminders",
+    description: "48-hour and 24-hour reminders before sessions",
+  },
+]
+
 /**
- * Notifications tab — UI-only for now. Preferences aren't persisted;
- * the email scheduler that would consume them hasn't been built. Left
- * as a visual placeholder so the tab isn't empty.
+ * Notifications tab — toggles persist to `user_metadata.notification_prefs`
+ * via /api/notification-prefs. Optimistic updates; rolls back on API
+ * error. The actual email scheduler isn't wired yet, but the preferences
+ * stick so the user's choice survives across sessions.
  */
-function NotificationsTab() {
+function NotificationsTab({ initialPrefs }: { initialPrefs: NotificationPrefs }) {
+  const [prefs, setPrefs] = useState<NotificationPrefs>(initialPrefs)
+  // Track which specific toggle is saving so we can render a loader next to
+  // it without a flicker across the whole panel.
+  const [savingKey, setSavingKey] = useState<keyof NotificationPrefs | null>(
+    null
+  )
+  const [error, setError] = useState<string | null>(null)
+
+  async function togglePref(key: keyof NotificationPrefs) {
+    if (savingKey) return
+    const nextValue = !prefs[key]
+    const snapshot = prefs
+    setPrefs({ ...prefs, [key]: nextValue })
+    setSavingKey(key)
+    setError(null)
+    try {
+      const res = await fetch("/api/notification-prefs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ [key]: nextValue }),
+      })
+      if (!res.ok) {
+        const body = (await res.json().catch(() => ({}))) as { error?: string }
+        throw new Error(body.error || `Request failed (${res.status})`)
+      }
+    } catch (err) {
+      setPrefs(snapshot) // revert on error
+      setError(err instanceof Error ? err.message : "Something went wrong")
+    } finally {
+      setSavingKey(null)
+    }
+  }
+
   return (
     <div className="p-6 rounded-xl border border-white/[0.08] bg-[#111111] space-y-5">
       <div>
@@ -403,42 +473,25 @@ function NotificationsTab() {
           Email Preferences
         </h2>
         <p className="text-xs text-[#555555] mt-1 italic">
-          Preferences aren&apos;t saved yet — the email scheduler is coming
-          in a future release.
+          Preferences are saved, but the email scheduler isn&apos;t wired yet
+          — nothing will actually send until it lands.
         </p>
+        {error && (
+          <p className="text-xs mt-2" style={{ color: "#FF4444" }}>
+            {error}
+          </p>
+        )}
       </div>
 
-      {[
-        {
-          id: "streak",
-          label: "Streak reminders",
-          description: "Remind me if I haven't studied in 24 hours",
-          defaultOn: true,
-        },
-        {
-          id: "weekly",
-          label: "Weekly progress report",
-          description: "Summary of your study week every Monday",
-          defaultOn: true,
-        },
-        {
-          id: "tips",
-          label: "Study tips & strategies",
-          description: "Occasional emails with GMAT tips from Adam",
-          defaultOn: false,
-        },
-        {
-          id: "coaching",
-          label: "Coaching session reminders",
-          description: "48-hour and 24-hour reminders before sessions",
-          defaultOn: true,
-        },
-      ].map((pref) => (
+      {NOTIFICATION_DEFS.map((def) => (
         <NotificationToggle
-          key={pref.id}
-          label={pref.label}
-          description={pref.description}
-          defaultOn={pref.defaultOn}
+          key={def.id}
+          label={def.label}
+          description={def.description}
+          on={prefs[def.id]}
+          saving={savingKey === def.id}
+          disabled={savingKey !== null && savingKey !== def.id}
+          onToggle={() => togglePref(def.id)}
         />
       ))}
     </div>
@@ -448,40 +501,48 @@ function NotificationsTab() {
 function NotificationToggle({
   label,
   description,
-  defaultOn,
+  on,
+  saving,
+  disabled,
+  onToggle,
 }: {
   label: string
   description: string
-  defaultOn: boolean
+  on: boolean
+  saving: boolean
+  disabled: boolean
+  onToggle: () => void
 }) {
-  const [on, setOn] = useState(defaultOn)
-
   return (
     <div className="flex items-start justify-between gap-4">
       <div>
         <p className="text-sm font-medium text-[#F0F0F0]">{label}</p>
         <p className="text-xs text-[#555555] mt-0.5">{description}</p>
       </div>
-      <button
-        onClick={() => setOn(!on)}
-        className="rounded-full transition-colors flex-shrink-0 relative"
-        style={{
-          backgroundColor: on ? "#C9A84C" : "rgba(255,255,255,0.1)",
-          height: "22px",
-          width: "40px",
-        }}
-        aria-pressed={on}
-        aria-label={label}
-      >
-        <span
-          className="absolute top-0.5 rounded-full bg-white transition-transform"
+      <div className="flex items-center gap-2 flex-shrink-0">
+        {saving && <Loader2 className="w-3 h-3 animate-spin text-[#888888]" />}
+        <button
+          onClick={onToggle}
+          disabled={disabled}
+          className="rounded-full transition-colors flex-shrink-0 relative disabled:opacity-60 disabled:cursor-not-allowed"
           style={{
-            width: "18px",
-            height: "18px",
-            left: on ? "20px" : "2px",
+            backgroundColor: on ? "#C9A84C" : "rgba(255,255,255,0.1)",
+            height: "22px",
+            width: "40px",
           }}
-        />
-      </button>
+          aria-pressed={on}
+          aria-label={label}
+        >
+          <span
+            className="absolute top-0.5 rounded-full bg-white transition-transform"
+            style={{
+              width: "18px",
+              height: "18px",
+              left: on ? "20px" : "2px",
+            }}
+          />
+        </button>
+      </div>
     </div>
   )
 }
