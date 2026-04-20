@@ -7,7 +7,6 @@ import {
   AlertCircle,
   Lock,
   RotateCcw,
-  FlaskConical,
   TrendingUp,
 } from "lucide-react"
 import Link from "next/link"
@@ -114,6 +113,8 @@ export default async function DashboardPage() {
   let reviewDueCount = 0
   let reviewTopTopic: string | null = null
   let diagnosticSectionsDone = 0
+  let onboardingTargetSet = false
+  let onboardingExamDateSet = false
 
   try {
     if (user) {
@@ -369,6 +370,15 @@ export default async function DashboardPage() {
         ])
       const diagSlugs = new Set((diagRows ?? []).map((r) => r.slug as string))
       diagnosticSectionsDone = diagSlugs.size
+
+      // Onboarding state — target + exam are in user_metadata. Read
+      // once for the Getting Started checklist up top.
+      const rawMetaTarget = user.user_metadata?.target_score
+      onboardingTargetSet =
+        typeof rawMetaTarget === "number" && rawMetaTarget >= 205
+      const metaExamDate = user.user_metadata?.exam_date
+      onboardingExamDateSet =
+        typeof metaExamDate === "string" && metaExamDate.length >= 10
     }
   } catch {
     // Supabase query failed — render with empty state
@@ -489,6 +499,37 @@ export default async function DashboardPage() {
     else goalGapLabel = `+${-gap} above target`
   }
 
+  // Onboarding checklist — only rendered while any of the three setup
+  // steps are still outstanding. Disappears permanently once complete.
+  const onboardingSteps = [
+    {
+      key: "target",
+      label: "Set your target score",
+      description: "Drives every accuracy target across the app.",
+      href: "/dashboard",
+      done: onboardingTargetSet,
+      cta: "Set target",
+    },
+    {
+      key: "exam",
+      label: "Set your exam date",
+      description: "Unlocks the exam countdown and a time-aware Study Plan.",
+      href: "/settings",
+      done: onboardingExamDateSet,
+      cta: "Set date",
+    },
+    {
+      key: "diagnostic",
+      label: "Take the diagnostic",
+      description: "3 sections, 10 questions each. Baselines everything.",
+      href: "/diagnostic",
+      done: diagnosticSectionsDone === 3,
+      cta: diagnosticSectionsDone === 0 ? "Start" : "Continue",
+    },
+  ] as const
+  const onboardingComplete = onboardingSteps.every((s) => s.done)
+  const onboardingDoneCount = onboardingSteps.filter((s) => s.done).length
+
   return (
     <div className="max-w-7xl mx-auto space-y-6">
       {/* Greeting */}
@@ -511,6 +552,89 @@ export default async function DashboardPage() {
           </span>
         )}
       </div>
+
+      {/* Getting Started — disappears once all three steps are done */}
+      {!onboardingComplete && (
+        <div
+          className="p-5 rounded-xl border"
+          style={{
+            borderColor: "rgba(201,168,76,0.2)",
+            backgroundColor: "rgba(201,168,76,0.04)",
+          }}
+        >
+          <div className="flex items-center justify-between gap-3 mb-4">
+            <div>
+              <p className="text-[10px] uppercase tracking-widest font-semibold" style={{ color: "#C9A84C" }}>
+                Getting started
+              </p>
+              <p className="text-base font-semibold text-[#F0F0F0] mt-0.5">
+                {onboardingDoneCount === 0
+                  ? "Three quick steps before you dive in"
+                  : `${onboardingDoneCount} of 3 done — keep going`}
+              </p>
+            </div>
+            <div
+              className="h-1.5 w-24 rounded-full bg-white/[0.06] overflow-hidden flex-shrink-0"
+              aria-hidden
+            >
+              <div
+                className="h-full rounded-full transition-all"
+                style={{
+                  width: `${(onboardingDoneCount / onboardingSteps.length) * 100}%`,
+                  backgroundColor: "#C9A84C",
+                }}
+              />
+            </div>
+          </div>
+          <div className="space-y-2">
+            {onboardingSteps.map((step, i) => (
+              <Link
+                key={step.key}
+                href={step.href}
+                className="flex items-center gap-4 p-3 rounded-lg border transition-colors hover:bg-white/[0.02]"
+                style={{
+                  borderColor: step.done
+                    ? "rgba(62,207,142,0.18)"
+                    : "rgba(255,255,255,0.08)",
+                  backgroundColor: step.done ? "rgba(62,207,142,0.04)" : "#0D0D0D",
+                }}
+              >
+                <span
+                  className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+                  style={{
+                    backgroundColor: step.done
+                      ? "rgba(62,207,142,0.15)"
+                      : "rgba(255,255,255,0.04)",
+                  }}
+                >
+                  {step.done ? (
+                    <CheckCircle className="w-4 h-4" style={{ color: "#3ECF8E" }} />
+                  ) : (
+                    <span className="text-xs font-bold text-[#888888]">{i + 1}</span>
+                  )}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <p
+                    className="text-sm font-semibold"
+                    style={{ color: step.done ? "#888888" : "#F0F0F0" }}
+                  >
+                    {step.label}
+                  </p>
+                  <p className="text-xs text-[#888888]">{step.description}</p>
+                </div>
+                {!step.done && (
+                  <span
+                    className="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold hidden sm:inline-flex"
+                    style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                  >
+                    {step.cta}
+                  </span>
+                )}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Score Goal Card — populated from derived section scores */}
       <div
@@ -751,51 +875,6 @@ export default async function DashboardPage() {
 
         {/* Recent Mistakes + Next Lesson */}
         <div className="space-y-6">
-          {/* Diagnostic CTA — shown only while the student hasn't yet
-              completed all 3 diagnostic sections. Anchors first-run use
-              of the product: diagnose before teaching. */}
-          {diagnosticSectionsDone < 3 && (
-            <div>
-              <h2 className="text-sm font-semibold text-[#888888] uppercase tracking-widest mb-4">
-                {diagnosticSectionsDone === 0 ? "Start here" : "Finish your diagnostic"}
-              </h2>
-              <Link
-                href="/diagnostic"
-                className="p-5 rounded-xl border flex items-start gap-4 transition-colors hover:opacity-95"
-                style={{
-                  borderColor: "rgba(201,168,76,0.2)",
-                  backgroundColor: "rgba(201,168,76,0.04)",
-                }}
-              >
-                <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: "rgba(201,168,76,0.12)" }}
-                >
-                  <FlaskConical className="w-5 h-5" style={{ color: "#C9A84C" }} />
-                </div>
-                <div className="flex-1">
-                  <p className="text-xs text-[#555555] mb-1">
-                    Placement test
-                  </p>
-                  <p className="text-sm font-semibold text-[#F0F0F0] mb-1">
-                    {diagnosticSectionsDone === 0
-                      ? "Take your 30-question diagnostic"
-                      : `${diagnosticSectionsDone} of 3 sections done — keep going`}
-                  </p>
-                  <p className="text-xs text-[#888888]">
-                    Sets a baseline score and flags the topics most worth studying first.
-                  </p>
-                </div>
-                <span
-                  className="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  {diagnosticSectionsDone === 0 ? "Start" : "Continue"}
-                </span>
-              </Link>
-            </div>
-          )}
-
           {/* Daily Review — spaced-retrieval queue surfaced at the top
               of the action column so retrieval practice is visible every
               time the student opens the dashboard. */}
