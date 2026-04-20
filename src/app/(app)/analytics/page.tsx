@@ -1,4 +1,10 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
+import {
+  computeCalibration,
+  type CalibrationReport,
+  type ChapterProgressMap,
+} from "@/lib/calibration"
+import { getAllQuestions } from "@/lib/content"
 import type { Section } from "@/types"
 import AnalyticsClient, {
   type DifficultyTimingRow,
@@ -54,6 +60,7 @@ export default async function AnalyticsPage() {
   let topicTimingRows: TopicTimingRow[] = []
   let difficultyTimingRows: DifficultyTimingRow[] = []
   let errorPatterns: ErrorPatternSummary | null = null
+  let calibration: CalibrationReport | null = null
   let hasData = false
 
   try {
@@ -63,6 +70,17 @@ export default async function AnalyticsPage() {
     } = await supabase.auth.getUser()
 
     if (user) {
+      // ---------- Calibration (from ChapterReader confidence ratings) ----------
+      // chapter_progress is written cross-device via /api/chapter-progress.
+      // Confidence is rated inline while the student works a chapter check
+      // question; this panel aggregates across all chapters.
+      const chapterProgress = user.user_metadata?.chapter_progress as
+        | ChapterProgressMap
+        | undefined
+      if (chapterProgress) {
+        calibration = computeCalibration(chapterProgress, getAllQuestions())
+      }
+
       // ---------- Score trajectory ----------
       const eightWeeksAgo = new Date(Date.now() - 56 * 86400000).toISOString()
 
@@ -394,6 +412,7 @@ export default async function AnalyticsPage() {
       topicTimingRows={topicTimingRows}
       difficultyTimingRows={difficultyTimingRows}
       errorPatterns={errorPatterns}
+      calibration={calibration}
       hasData={hasData}
     />
   )

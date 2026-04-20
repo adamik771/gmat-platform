@@ -11,6 +11,7 @@ import {
 } from "recharts"
 import {
   BarChart3,
+  Brain,
   Clock,
   Gauge,
   TrendingDown,
@@ -18,6 +19,7 @@ import {
   Zap,
 } from "lucide-react"
 import EmptyState from "@/components/shared/EmptyState"
+import type { CalibrationReport } from "@/lib/calibration"
 import type { Section } from "@/types"
 
 export interface ScoreTrendPoint {
@@ -94,6 +96,7 @@ export default function AnalyticsClient({
   topicTimingRows,
   difficultyTimingRows,
   errorPatterns,
+  calibration,
   hasData,
 }: {
   scoreTrend: ScoreTrendPoint[]
@@ -102,6 +105,7 @@ export default function AnalyticsClient({
   topicTimingRows: TopicTimingRow[]
   difficultyTimingRows: DifficultyTimingRow[]
   errorPatterns: ErrorPatternSummary | null
+  calibration: CalibrationReport | null
   hasData: boolean
 }) {
   const trendWithData = scoreTrend.filter((p) => p.total !== null)
@@ -428,6 +432,108 @@ export default function AnalyticsClient({
           )}
         </div>
       </div>
+
+      {/* Calibration — confidence rating vs actual accuracy, pulled from
+          ChapterReader's per-question confidence capture. */}
+      {calibration && calibration.totalRated > 0 && (
+        <div className="p-6 rounded-xl border border-white/[0.08] bg-[#111111]">
+          <div className="flex items-start gap-3 mb-4">
+            <Brain className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#C9A84C" }} />
+            <div>
+              <h2 className="text-sm font-semibold text-[#888888]">
+                Calibration
+              </h2>
+              <p className="text-xs text-[#555555] mt-0.5">
+                How your self-rated confidence on chapter check-questions compares to your actual accuracy. Metacognition — knowing what you know — is one of the strongest predictors of test performance.
+              </p>
+            </div>
+          </div>
+
+          <div
+            className="p-3 rounded-lg mb-4 text-xs"
+            style={{
+              backgroundColor:
+                calibration.verdict === "well-calibrated"
+                  ? "rgba(62,207,142,0.06)"
+                  : calibration.verdict === "overconfident"
+                  ? "rgba(255,68,68,0.06)"
+                  : calibration.verdict === "underconfident"
+                  ? "rgba(201,168,76,0.06)"
+                  : "rgba(255,255,255,0.03)",
+              color:
+                calibration.verdict === "well-calibrated"
+                  ? "#3ECF8E"
+                  : calibration.verdict === "overconfident"
+                  ? "#FF4444"
+                  : calibration.verdict === "underconfident"
+                  ? "#C9A84C"
+                  : "#888888",
+              border: `1px solid ${
+                calibration.verdict === "well-calibrated"
+                  ? "rgba(62,207,142,0.15)"
+                  : calibration.verdict === "overconfident"
+                  ? "rgba(255,68,68,0.15)"
+                  : calibration.verdict === "underconfident"
+                  ? "rgba(201,168,76,0.18)"
+                  : "rgba(255,255,255,0.06)"
+              }`,
+            }}
+          >
+            {calibration.headline}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {calibration.tiers.map((tier) => {
+              const pct = tier.total === 0 ? null : Math.round(tier.accuracy * 100)
+              const ideal =
+                tier.level === "high" ? 85 : tier.level === "med" ? 65 : 45
+              const delta = pct === null ? null : pct - ideal
+              return (
+                <div
+                  key={tier.level}
+                  className="p-4 rounded-lg border border-white/[0.08] bg-[#0D0D0D]"
+                >
+                  <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1">
+                    {tier.label} confidence
+                  </p>
+                  {tier.total === 0 ? (
+                    <p className="text-2xl font-bold text-[#555555]">—</p>
+                  ) : (
+                    <>
+                      <p className="text-2xl font-bold text-[#F0F0F0]">
+                        {pct}
+                        <span className="text-sm font-normal text-[#555555]">%</span>
+                      </p>
+                      <p className="text-[11px] text-[#888888] mt-0.5">
+                        {tier.correct} / {tier.total} correct
+                        {delta !== null && (
+                          <span
+                            className="ml-2 font-semibold"
+                            style={{
+                              color:
+                                Math.abs(delta) < 8
+                                  ? "#3ECF8E"
+                                  : delta > 0
+                                  ? "#3ECF8E"
+                                  : "#FF4444",
+                            }}
+                          >
+                            {delta > 0 ? "+" : ""}
+                            {delta} vs ideal
+                          </span>
+                        )}
+                      </p>
+                    </>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+          <p className="text-[11px] text-[#555555] mt-3 leading-relaxed">
+            Well-calibrated benchmarks: High ≈ 85%, Medium ≈ 65%, Low ≈ 45%. Close to those numbers = you know what you know. Far below on High = overconfident; far above on Low = second-guessing yourself.
+          </p>
+        </div>
+      )}
 
       {/* Error pattern breakdown — efficient / labored / rushed / stuck */}
       {errorPatterns && errorPatterns.totalLabelled > 0 && (
