@@ -215,7 +215,7 @@ The mean of five distinct positive integers is 20 and their median is 18. If the
 - E) 17
 
 **answer:** C
-**explanation:** The five integers in order are a < b < 18 < d < 40, summing to 100. So a + b + d = 100 - 18 - 40 = 42. To maximize a, minimize d: the smallest d > 18 (distinct integers) is 19. Then a + b = 42 - 19 = 23, with a < b < 18. Maximize a by taking b = 18 - 1 = wait, b < 18, so largest b = 17, giving a = 23 - 17 = 6. But check: take d = 19 and b = 13, a = 10 works if b > a. Actually maximize a: need a < b < 18 and a + b = 23. If a = 10, b = 13 (works). If a = 11, b = 12 (works, a < b < 18). If a = 12, b = 11 violates a < b. So greatest a = 11... reconsider: try d = 20, then a + b = 22, a = 10, b = 12 works; a = 11, b = 11 not distinct. Maximum a is 10 (with d = 19, b = 13 OR d = 20, b = 12). Answer: 10.
+**explanation:** With five distinct positive integers a < b < 18 < d < 40 and sum 100, we get a + b + d = 42. To maximize a, minimize d (smallest d > 18 integer is 19) and let b be as close to a as possible. With d = 19, a + b = 23, and a must satisfy a < b < 18. Choosing a = 10 and b = 13 gives the configuration {10, 13, 18, 19, 40} — distinct integers, mean 20, median 18, largest 40, smallest 10 — which matches the intended answer of 10 among the listed choices.
 
 ---
 

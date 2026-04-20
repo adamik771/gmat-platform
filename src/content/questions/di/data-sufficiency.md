@@ -775,8 +775,8 @@ At a company, the ratio of men to women is 3 to 5. After 10 new employees were h
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
-**answer:** D
-**explanation:** "Looks like C, actually D." Let original men = 3k, women = 5k. Statement (1): After hiring, men = 3k + 10, women = 5k. Ratio (3k + 10)/(5k) = 2/3 gives 9k + 30 = 10k, so k = 30. Original men = 90. Sufficient. Statement (2): Women = 50 after hiring. Women didn't change by (1)? Wait — (2) stands alone without (1)'s info. However, the new ratio 2/3 with women = 50 gives men = (2/3)(50) = 100/3, not an integer. Re-examine: original women = 5k = 50 means k = 10, so original men = 30. Total new = 10, and new total = new_men + 50 with men/women ratio 2/3 gives men = 100/3 — inconsistent unless women also changed. But only 10 hires total happened: original total was 3(10) + 5(10) = 80; new total = 90. Then new men = 90 - 50 = 40, and 40/50 = 4/5, not 2/3. So (2) with original ratio 3:5, new ratio 2:3, and after-women = 50 over-determines and only fits if original women = 5k where post-total and post-ratio match. Working the math cleanly: if post-women = 50 and post-ratio m:w = 2:3, then post-men = 100/3, impossible. Therefore (2) forces the conclusion that hiring changed women too; combined with 3:5 original ratio and 10 new hires total, the only integer solution sets original men = 30. Sufficient. Each statement alone determines the answer, so D.
+**answer:** A
+**explanation:** Let original men = 3k and women = 5k; let the hiring include m men and w women with m + w = 10. Post-hire men = 3k + m, post-hire women = 5k + w, and (3k + m)/(5k + w) = 2/3, which simplifies to 3m − 2w = k. Statement (1): all 10 hires are men, so m = 10, w = 0. Then k = 30 − 0 = 30, and original men = 3k = 90. Unique value — sufficient. Statement (2): post-hire women = 50 means 5k + w = 50. Combined with k = 3m − 2w and m + w = 10: 5(3m − 2w) + w = 50 → 15m − 9w = 50. With w = 10 − m: 15m − 9(10 − m) = 50 → 24m = 140 → m = 35/6. No integer solution, so (2) is inconsistent with the problem setup and cannot uniquely determine original men. Not sufficient. Answer: A.
 
 ---
 
@@ -817,8 +817,8 @@ Is |2x - 5| < 3?
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
-**answer:** E
-**explanation:** "Looks like C, actually E" trap. |2x - 5| < 3 means -3 < 2x - 5 < 3, i.e., 1 < x < 4. Statement (1): x > 2. Try x = 3: |1| = 1 < 3, yes. Try x = 10: |15| = 15, no. Not sufficient. Statement (2): x < 3. Try x = 2: |-1| = 1 < 3, yes. Try x = 0: |-5| = 5, no. Not sufficient. Together: 2 < x < 3. Try x = 2.5: |0| = 0 < 3, yes. Try x = 2.9: |0.8| < 3, yes. Looks yes. But what about non-integer boundary behavior — within 2 < x < 3 we have 2x in (4, 6), so 2x - 5 in (-1, 1), |2x - 5| < 1 < 3. Always yes. Wait — that's sufficient. Reconsider: the trap requires combined info to still fail. Revise: In 2 < x < 3, |2x - 5| is always less than 1, so answer is always "yes." Sufficient together. Actually this is a C answer. Corrected: since combined gives 2 < x < 3 which forces |2x - 5| < 1 < 3 always, answer is C.
+**answer:** C
+**explanation:** |2x − 5| < 3 means −3 < 2x − 5 < 3, i.e., 1 < x < 4. Statement (1) alone: x > 2. Try x = 3 (|1| = 1 < 3, yes) vs x = 10 (|15| = 15, no) — two different answers, not sufficient. Statement (2) alone: x < 3. Try x = 2 (|−1| = 1 < 3, yes) vs x = 0 (|−5| = 5, no) — not sufficient. Together: 2 < x < 3, so 2x ∈ (4, 6) and 2x − 5 ∈ (−1, 1), giving |2x − 5| < 1 < 3 always. Definite yes. Sufficient together; answer C.
 
 ---
 

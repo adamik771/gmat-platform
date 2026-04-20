@@ -88,11 +88,8 @@ If the Eastern region's enterprise client contracts (referenced in the memo) con
 - C) 10.4%
 - D) 14.8%
 
-**answer:** C
-**explanation:** Eastern region current revenue = $6.96M. Without the enterprise contracts: $6.96M - $0.90M = $6.06M. Previous year Eastern revenue = $5.80M. Growth rate without contracts = ($6.06M - $5.80M) / $5.80M = $0.26M / $5.80M = 4.48%. The closest answer is A. Let me recheck: 0.26/5.80 = 0.04483 = approximately 4.5%. The answer is A.
-
 **answer:** A
-**explanation:** Eastern current revenue without contracts = $6.96M - $0.90M = $6.06M. Previous Eastern revenue = $5.80M. Growth = (6.06 - 5.80) / 5.80 = 0.26 / 5.80 = 0.0448 = approximately 4.5%.
+**explanation:** Eastern current revenue without the enterprise contracts = $6.96M − $0.90M = $6.06M. Previous Eastern revenue = $5.80M. Growth = (6.06 − 5.80)/5.80 = 0.26/5.80 ≈ 4.48%, which rounds to approximately 4.5%.
 
 ---
 

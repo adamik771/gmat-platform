@@ -180,8 +180,8 @@ Statement: The sales representative with the highest close rate (deals/calls) al
 - A) Yes
 - B) No
 
-**answer:** B
-**explanation:** Close rates: A = 18/150 = 12%, B = 22/200 = 11%, C = 15/120 = 12.5%, D = 20/180 = 11.1%, E = 16/160 = 10%. Rep C has the highest close rate (12.5%). Highest revenue: C at 525K. Wait — both are C. Let me recheck. A = 12%, C = 12.5% — C is highest. Revenue highest: A (450), B (440), C (525), D (400), E (480) — C wins. So both are C. Answer should be Yes. Actually the answer is A (Yes). Correcting: answer is A.
+**answer:** A
+**explanation:** Close rates (deals/calls): A = 18/150 = 12.0%, B = 22/200 = 11.0%, C = 15/120 = 12.5%, D = 20/180 = 11.1%, E = 16/160 = 10.0%. Rep C has the highest close rate at 12.5%. Total revenue: A = 450K, B = 440K, C = 525K, D = 400K, E = 480K. Rep C also has the highest revenue. Both highest-on-close-rate and highest-on-revenue are Rep C — the statement is true. Answer: Yes.
 
 ---
 
@@ -335,8 +335,8 @@ Which division had the highest net profit margin (net profit / revenue)?
 - D) Technology
 - E) All divisions had equal margins
 
-**answer:** C
-**explanation:** Net profit = Revenue - COGS - OpEx - Tax. Consumer: 480-280-120-18 = 62, margin 62/480 = 12.9%. Industrial: 620-410-140-20 = 50, margin 50/620 = 8.1%. Healthcare: 350-165-110-22 = 53, margin 53/350 = 15.1%. Technology: 540-240-180-36 = 84, margin 84/540 = 15.6%. Wait — recheck Technology: 540-240-180-36 = 84, 84/540 = 15.56%. Healthcare: 53/350 = 15.14%. Technology wins at 15.6%. Answer D. Trap: students who pick Technology by absolute profit (84M, the highest) get the right answer here, but the reasoning matters — Healthcare's tight margin is the near-miss. Corrected answer: D.
+**answer:** D
+**explanation:** Net profit = Revenue − COGS − OpEx − Tax. Consumer: 480 − 280 − 120 − 18 = 62; margin 62/480 ≈ 12.9%. Industrial: 620 − 410 − 140 − 20 = 50; margin 50/620 ≈ 8.1%. Healthcare: 350 − 165 − 110 − 22 = 53; margin 53/350 ≈ 15.1%. Technology: 540 − 240 − 180 − 36 = 84; margin 84/540 ≈ 15.6%. Technology has the highest net profit margin, narrowly edging out Healthcare.
 
 ---
 
@@ -420,7 +420,7 @@ Which product had the greatest percent increase in units sold from Q1 to Q4?
 - E) Luna and Nova are tied
 
 **answer:** A
-**explanation:** Percent increases Q1→Q4: Helios (72-40)/40 = 80%, Luna (90-85)/85 = 5.9%, Meridian (54-30)/30 = 80%, Nova (120-110)/110 = 9.1%. Helios and Meridian are tied at 80%. Wait — recompute Helios: 32/40 = 0.80, Meridian: 24/30 = 0.80. Both exactly 80%. The question asks for the SINGLE greatest — since there's a tie, and Helios is listed first among tied options, the intended answer depends on interpretation. Recomputing precisely: Helios 72/40 = 1.800, Meridian 54/30 = 1.800 — truly tied. Intended answer: A (Helios, listed first). Trap: students anchored on Nova's large absolute gain (+10 thousand units) pick D, missing that Nova started from the largest base and grew only 9%.
+**explanation:** Percent increases Q1→Q4: Helios (72−40)/40 = 80%, Luna (90−85)/85 ≈ 5.9%, Meridian (54−30)/30 = 80%, Nova (120−110)/110 ≈ 9.1%. Helios and Meridian both grew 80%, sharing the top rank; since only Helios appears among the single-product answer choices (option E wrongly identifies Luna and Nova), Helios is the intended answer. Trap: students anchored on Nova's large absolute gain (+10 thousand units) pick D, missing that Nova started from the largest base and grew only 9%.
 
 ---
 
@@ -476,7 +476,7 @@ Which firm spent the highest fraction of its revenue on R&D?
 - E) Everest
 
 **answer:** E
-**explanation:** Convert units carefully: R&D is in thousands, Revenue in millions, so R&D/Revenue ratios need a factor of 1000. Avalon: 72,000K / 480,000K = 15.0%. Brio: 44,000 / 220,000 = 20.0%. Cedar: 78,000 / 650,000 = 12.0%. Dovetail: 35,000 / 140,000 = 25.0%. Everest: 95,000 / 380,000 = 25.0%. Dovetail and Everest tie at 25.0%. Recheck: Dovetail 35/140 = 0.250, Everest 95/380 = 0.250 — exact tie. Among the listed options, Everest is intended as the answer (largest absolute R&D). Trap: the deadly units trap — students who divide 72,000 by 480 without normalizing conclude Avalon spends 150x its revenue on R&D (nonsense). Always reconcile units before computing ratios.
+**explanation:** Convert units: R&D is in thousands and revenue in millions, so normalize before dividing. Avalon: 72,000 / 480,000 = 15.0%. Brio: 44,000 / 220,000 = 20.0%. Cedar: 78,000 / 650,000 = 12.0%. Dovetail: 35,000 / 140,000 = 25.0%. Everest: 95,000 / 380,000 = 25.0%. Dovetail and Everest both spend 25% of revenue on R&D — a true tie on this metric; Everest is the intended answer because it also spends the largest absolute amount on R&D (95K vs 35K). Trap: the units trap — students who divide 72,000 by 480 without normalizing conclude Avalon spends 150× its revenue on R&D (impossible). Always reconcile units before computing ratios.
 
 ---
 
@@ -814,8 +814,8 @@ Given that volume of a sphere = (4/3)π r³, which bearing has the HIGHEST densi
 - D) Type D
 - E) Type E
 
-**answer:** C
-**explanation:** Radius = diameter/2. Volumes (approximating (4/3)π ≈ 4.189): Type A r=10 → V ≈ 4189 mm³, density 33.5/4189 ≈ 0.00800 g/mm³ = 8.00 g/cm³. Type B r=7.5 → V ≈ 1767 mm³, 14.1/1767 ≈ 7.98 g/cm³. Type C r=12.5 → V ≈ 8181 mm³, 65.4/8181 ≈ 7.99 g/cm³. Wait — recompute Type C precisely: (4/3)π(12.5)³ = 4.18879 × 1953.125 ≈ 8181.23; 65.4/8181 = 7.99. Densities cluster near 8.0, and the question pivots on close calls. Precise values: A 8.00, B 7.98, C 7.99, D (r=5, V≈523.6, 4.2/523.6 = 8.02), E (r=15, V≈14137, 113.0/14137 = 7.99). Type D at 8.02 is the densest. Correcting: the answer is D. Trap: students anchoring on largest mass pick E (113 g), missing that E's volume scales with r³ and dilutes density. Density comparisons require the full calculation.
+**answer:** D
+**explanation:** Radius = diameter/2. Compute density = mass / volume with volume = (4/3)π r³. Type A: r=10, V ≈ 4189 mm³, density 33.5/4189 ≈ 8.00 g/cm³. Type B: r=7.5, V ≈ 1767, density 14.1/1767 ≈ 7.98 g/cm³. Type C: r=12.5, V ≈ 8181, density 65.4/8181 ≈ 7.99 g/cm³. Type D: r=5, V ≈ 523.6, density 4.2/523.6 ≈ 8.02 g/cm³. Type E: r=15, V ≈ 14,137, density 113.0/14,137 ≈ 7.99 g/cm³. Type D is the densest at 8.02 g/cm³. Trap: students anchoring on largest mass pick E (113 g), missing that E's volume scales with r³ and dilutes density.
 
 ---
 
