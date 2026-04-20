@@ -6,6 +6,7 @@ import {
   BookOpen,
   AlertCircle,
   Lock,
+  RotateCcw,
   TrendingUp,
 } from "lucide-react"
 import Link from "next/link"
@@ -17,6 +18,7 @@ import QuickActions from "@/components/dashboard/QuickActions"
 import EmptyState from "@/components/shared/EmptyState"
 import { getAllLessons, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { getReviewQueue } from "@/lib/review-queue"
 import {
   computeBadges,
   computeStreaks,
@@ -108,6 +110,8 @@ export default async function DashboardPage() {
   let currentStreak = 0
   let longestStreak = 0
   let badges: Badge[] = []
+  let reviewDueCount = 0
+  let reviewTopTopic: string | null = null
 
   try {
     if (user) {
@@ -336,6 +340,17 @@ export default async function DashboardPage() {
           week: `Wk ${i + 1}`,
           score: Math.round(accs.reduce((a, b) => a + b, 0) / accs.length),
         }))
+      }
+
+      // Daily review queue — surface the count + top weak topic on the
+      // dashboard so retrieval practice becomes a visible daily prompt.
+      const queue = await getReviewQueue(supabase, userId, { limit: 60 })
+      reviewDueCount = queue.length
+      if (queue.length > 0) {
+        const counts = new Map<string, number>()
+        for (const c of queue) counts.set(c.topic, (counts.get(c.topic) ?? 0) + 1)
+        const [topTopic] = [...counts.entries()].sort((a, b) => b[1] - a[1])
+        reviewTopTopic = topTopic?.[0] ?? null
       }
     }
   } catch {
@@ -719,6 +734,51 @@ export default async function DashboardPage() {
 
         {/* Recent Mistakes + Next Lesson */}
         <div className="space-y-6">
+          {/* Daily Review — spaced-retrieval queue surfaced at the top
+              of the action column so retrieval practice is visible every
+              time the student opens the dashboard. */}
+          {reviewDueCount > 0 && (
+            <div>
+              <h2 className="text-sm font-semibold text-[#888888] uppercase tracking-widest mb-4">
+                Daily Review
+              </h2>
+              <Link
+                href="/review"
+                className="p-5 rounded-xl border flex items-start gap-4 transition-colors hover:opacity-95"
+                style={{
+                  borderColor: "rgba(201,168,76,0.2)",
+                  backgroundColor: "rgba(201,168,76,0.04)",
+                }}
+              >
+                <div
+                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: "rgba(201,168,76,0.12)" }}
+                >
+                  <RotateCcw className="w-5 h-5" style={{ color: "#C9A84C" }} />
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs text-[#555555] mb-1">
+                    Spaced retrieval
+                  </p>
+                  <p className="text-sm font-semibold text-[#F0F0F0] mb-1">
+                    {reviewDueCount} question{reviewDueCount === 1 ? "" : "s"} due for review
+                  </p>
+                  <p className="text-xs text-[#888888]">
+                    {reviewTopTopic
+                      ? `Weakest area right now: ${reviewTopTopic}`
+                      : "Ranked by recent misses and time since last seen"}
+                  </p>
+                </div>
+                <span
+                  className="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold"
+                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                >
+                  Start
+                </span>
+              </Link>
+            </div>
+          )}
+
           {/* Next Lesson — real content from the lesson library */}
           <div>
             <h2 className="text-sm font-semibold text-[#888888] uppercase tracking-widest mb-4">
