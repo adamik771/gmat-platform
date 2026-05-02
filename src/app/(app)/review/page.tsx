@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from "next/link"
 import { AlertCircle, ArrowRight, RotateCcw } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"

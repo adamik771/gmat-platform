@@ -1,5 +1,6 @@
 "use client"
 
+import React from 'react'
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -85,7 +86,7 @@ export default function LoginPage() {
                 Password
               </label>
               <Link
-                href="#"
+                href="/reset-password"
                 className="text-xs hover:text-[#F0F0F0] transition-colors"
                 style={{ color: "#C9A84C" }}
               >

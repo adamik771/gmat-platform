@@ -1,5 +1,6 @@
 "use client"
 
+import React from 'react'
 import { useState } from "react"
 import { Mail, Clock, MessageSquare, ArrowRight } from "lucide-react"
 
