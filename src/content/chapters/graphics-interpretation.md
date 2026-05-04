@@ -120,6 +120,8 @@ problem_sets:
 
 Before you compute anything, you have to read the chart correctly. Three out of four errors on Graphics Interpretation come from misreading values — not from bad math.
 
+**Mental model.** Read the chart's *shape* before you compute anything: what's the axis scale, what's the trend, where are the outliers, what's the question actually asking. Most GI errors come from misreading the chart, not from misdoing the arithmetic. Treat the chart like a question prompt — understand it fully before you start crunching numbers.
+
 **The three things to verify on every chart, every time, before touching any calculation:**
 
 1. **What are the axes measuring?** Read the axis labels. Is the y-axis revenue in dollars, millions of dollars, or thousands? Is the x-axis months, years, or calendar quarters?
@@ -157,7 +159,7 @@ Always look at the y-axis number at the bottom of the chart. If it's not 0, the 
 
 > **Recall check.** Cover this section. Now list the three things to verify on every chart before you compute. Now list the three chart types where a non-zero y-axis origin is likely to mislead visually. (Answers: axes-units-scale, then time-period-category; all three of line, bar, stacked-bar can do this.) Forced retrieval of the chart-reading checklist is what makes this skill automatic on test day.
 
-> **Trap to watch.** Bubble charts represent the third variable by bubble **area**, not bubble *diameter*. A bubble that looks "twice as wide" as another is actually **four times as big** in area. This is almost always the trap on bubble-chart questions.
+**Trap to watch.** Bubble charts represent the third variable by bubble **area**, not bubble *diameter*. A bubble that looks "twice as wide" as another is actually **four times as big** in area. This is almost always the trap on bubble-chart questions.
 
 ## @line-graphs-and-trends
 
@@ -282,7 +284,7 @@ A stacked bar shows a total value as a **stack of segments**, where each segment
 
 **100%-stacked bars.** A variant where each bar is scaled to 100% — so all bars are the same height, and segments show percentages directly. Easier to compare proportions visually. But you lose absolute-size information.
 
-> **Trap to watch.** On stacked bars, "the bar for Department X grew 50% from 2020 to 2024" refers to the *total* bar height, not any one segment. A department's total could grow while one segment (e.g., salaries) shrinks. Always clarify: is the question about total or segment?
+**Trap to watch.** On stacked bars, "the bar for Department X grew 50% from 2020 to 2024" refers to the *total* bar height, not any one segment. A department's total could grow while one segment (e.g., salaries) shrinks. Always clarify: is the question about total or segment?
 
 ## @scatter-plots-and-correlation
 

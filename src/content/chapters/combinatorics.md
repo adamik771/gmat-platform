@@ -103,6 +103,8 @@ problem_sets:
 
 Enumeration means **writing out every possibility and counting them**. It sounds too primitive for the GMAT, but it's the foundation every formula is built on — and for small sets (3, 4, maybe 5 objects) it's often the fastest approach.
 
+**Mental model.** Counting problems all reduce to two questions: does order matter, and are repeats allowed? Permutations vs. combinations vs. arrangements vs. multinomial — every formula is a consequence of those two answers. If you find yourself reaching for a formula before classifying the problem, you'll reach for the wrong one.
+
 **Example.** Three marbles — blue, gray, green — line up on a shelf. How many orders are possible?
 
 List them: **BGG** (wait — two gray?). Let me use B, G, R (blue, gray, green):
@@ -147,7 +149,7 @@ Let's sanity-check: P(7, 2) = 7! / 5! = (7 × 6 × 5!) / 5! = 7 × 6 = 42. ✓
 
 **Special case — all n at once.** When k = n, P(n, n) = n! / 0! = n! / 1 = n!. Reassuring: picking all 7 candidates in order is just arranging 7 things, which is 7! = 5040.
 
-> **Trap to watch.** The GMAT loves to write a problem that sounds like a permutation but is actually a combination. "A committee of 3 is chosen from 10" is C(10, 3). "A president, VP, and treasurer are chosen from 10" is P(10, 3) = 720, six times larger. The word that usually tips you off: distinct roles named = permutation.
+**Trap to watch.** The GMAT loves to write a problem that sounds like a permutation but is actually a combination. "A committee of 3 is chosen from 10" is C(10, 3). "A president, VP, and treasurer are chosen from 10" is P(10, 3) = 720, six times larger. The word that usually tips you off: distinct roles named = permutation.
 
 ## @combinations
 

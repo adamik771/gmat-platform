@@ -115,6 +115,8 @@ The arithmetic mean is defined as sum divided by count. That definition rearrang
 
 Every mean problem on the GMAT is a disguised sum problem. The moment you see "average," convert to a sum and work from there.
 
+**Mental model.** Statistics measures the *shape* of a set (mean, median, range, standard deviation); probability measures the *likelihood* of an event. Both are summaries — questions are mostly "given this summary, what's also true?" or "given this scenario, what's the summary?" Once you know which summary the question wants, the formula chooses itself; mis-classifying mean-vs-median or independent-vs-dependent is where most points are lost, not the arithmetic.
+
 **Example.** Five numbers have a mean of 18. One is removed and the remaining four have a mean of 15. What was removed?
 
 Stop thinking about averages. Think about sums.
@@ -183,7 +185,7 @@ The pattern: to maximize one element, minimize all others subject to constraints
 
 **Median under element swaps.** If you replace the largest element with an even larger one, the median doesn't change (still the same middle element). Replace an element *below* the median with something even smaller: median still doesn't change. Only changes to elements near the middle shift the median. Tested frequently on DS.
 
-> **Trap to watch.** "What's the median of {2, 4, 5, 9, 12, 15}?" Even n = 6, so median is (5 + 9)/2 = 7, not 5 and not 9. Don't pick either of the two center values as "the median" — you must average them.
+**Trap to watch.** "What's the median of {2, 4, 5, 9, 12, 15}?" Even n = 6, so median is (5 + 9)/2 = 7, not 5 and not 9. Don't pick either of the two center values as "the median" — you must average them.
 
 ## @standard-deviation
 
@@ -276,7 +278,7 @@ P(exactly k successes in n independent trials, each success probability p):
 
 Alternative framing: there are C(4,3) = 4 favorable sequences out of 2⁴ = 16 total, so 4/16 = 1/4.
 
-> **Trap to watch.** Don't mix independent and dependent events. "Pull two chips *without replacement*" makes the second draw's probability depend on the first. "Flip two coins" (or "with replacement") makes the events independent. The multiplication still works in both cases, but the probabilities are different.
+**Trap to watch.** Don't mix independent and dependent events. "Pull two chips *without replacement*" makes the second draw's probability depend on the first. "Flip two coins" (or "with replacement") makes the events independent. The multiplication still works in both cases, but the probabilities are different.
 
 ## @dependent-events
 
@@ -312,7 +314,7 @@ Or use combinations: C(4,1) × C(6,1) / C(10,2) = 24/45 = **8/15**. ✓
 
 **Sequential independence check.** Before multiplying P(A) × P(B), ask: "does the first event change the pool for the second?" Flipping coins or drawing *with* replacement → independent, multiply raw probabilities. Drawing without replacement → dependent, adjust after each step.
 
-> **Trap to watch.** "Two dice rolled, probability both show 6" is independent (1/6 × 1/6 = 1/36). "Two cards drawn from a deck, both aces" is dependent (4/52 × 3/51). Conflating the two is the #1 error on probability questions.
+**Trap to watch.** "Two dice rolled, probability both show 6" is independent (1/6 × 1/6 = 1/36). "Two cards drawn from a deck, both aces" is dependent (4/52 × 3/51). Conflating the two is the #1 error on probability questions.
 
 ## @counting-and-combinations
 

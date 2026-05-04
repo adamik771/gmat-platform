@@ -3,7 +3,7 @@
 import { Suspense, useState } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
-import { Eye, EyeOff, ArrowRight, Check } from "lucide-react"
+import { Eye, EyeOff, ArrowRight, Check, Loader2, AlertCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
 
@@ -35,8 +35,21 @@ function SignupFallback() {
   return (
     <div className="w-full max-w-lg">
       <div className="text-center mb-8">
-        <h1 className="text-2xl font-bold text-[#F0F0F0] mb-2">Create your account</h1>
-        <p className="text-sm text-[#888888]">Start your free trial today</p>
+        <p
+          className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
+          style={{ color: "#C9A84C" }}
+        >
+          Get Started
+        </p>
+        <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
+          Begin the{" "}
+          <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            climb.
+          </span>
+        </h1>
+        <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
+          Start your free trial today.
+        </p>
       </div>
     </div>
   )
@@ -86,85 +99,93 @@ function SignupForm() {
   return (
     <div className="w-full max-w-lg">
       <div className="text-center mb-8">
-        <h1 className="text-2xl font-bold text-[#F0F0F0] mb-2">Create your account</h1>
-        <p className="text-sm text-[#888888]">Start your free trial today</p>
+        <p
+          className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
+          style={{ color: "#C9A84C" }}
+        >
+          Get Started
+        </p>
+        <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
+          Begin the{" "}
+          <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            climb.
+          </span>
+        </h1>
+        <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
+          Your 735 starts with an account.
+        </p>
       </div>
 
       <div
-        className="p-8 rounded-2xl border border-white/[0.08]"
-        style={{ backgroundColor: "#111111" }}
+        className="p-7 sm:p-8 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
+        style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)" }}
       >
         <form onSubmit={handleSubmit} className="space-y-5">
           {error && (
             <div
-              className="px-4 py-3 rounded-lg text-sm"
+              role="alert"
+              aria-live="polite"
+              className="flex items-start gap-2.5 px-4 py-3 rounded-xl text-[13px]"
               style={{
                 backgroundColor: "rgba(255,68,68,0.08)",
                 color: "#FF4444",
                 border: "1px solid rgba(255,68,68,0.2)",
               }}
             >
-              {error}
+              <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+              <span className="flex-1 leading-relaxed">{error}</span>
             </div>
           )}
 
           <div>
-            <label className="block text-xs font-medium text-[#888888] mb-1.5">
+            <label htmlFor="signup-name" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-2">
               Full Name
             </label>
             <input
+              id="signup-name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
               placeholder="Your full name"
-              className="w-full px-3.5 py-2.5 rounded-lg text-sm text-[#F0F0F0] placeholder-[#444444] outline-none transition-colors"
-              style={{
-                backgroundColor: "#1A1A1A",
-                border: "1px solid rgba(255,255,255,0.08)",
-              }}
+              className="w-full px-4 py-3 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-[#888888] mb-1.5">
+            <label htmlFor="signup-email" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-2">
               Email
             </label>
             <input
+              id="signup-email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="you@example.com"
-              className="w-full px-3.5 py-2.5 rounded-lg text-sm text-[#F0F0F0] placeholder-[#444444] outline-none transition-colors"
-              style={{
-                backgroundColor: "#1A1A1A",
-                border: "1px solid rgba(255,255,255,0.08)",
-              }}
+              className="w-full px-4 py-3 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-[#888888] mb-1.5">
+            <label htmlFor="signup-password" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-2">
               Password
             </label>
             <div className="relative">
               <input
+                id="signup-password"
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="••••••••"
-                className="w-full px-3.5 py-2.5 pr-10 rounded-lg text-sm text-[#F0F0F0] placeholder-[#444444] outline-none transition-colors"
-                style={{
-                  backgroundColor: "#1A1A1A",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                }}
+                className="w-full px-4 py-3 pr-11 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#555555] hover:text-[#888888] transition-colors"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#555555] hover:text-[#C0C0C0] transition-colors"
+                aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
                   <EyeOff className="w-4 h-4" />
@@ -173,70 +194,74 @@ function SignupForm() {
                 )}
               </button>
             </div>
+            <p className="text-[11px] text-[#555555] mt-1">
+              Minimum 8 characters
+            </p>
           </div>
 
           {/* Plan selection */}
           <div>
-            <label className="block text-xs font-medium text-[#888888] mb-2">
+            <label className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-2.5">
               Select a plan
             </label>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-2.5">
               {plans.map((plan) => (
                 <button
                   key={plan.id}
                   type="button"
                   onClick={() => setSelectedPlan(plan.id)}
                   className={cn(
-                    "relative p-3 rounded-lg border text-left transition-all",
+                    "relative px-3 py-3.5 rounded-xl border text-left transition-all",
                     selectedPlan === plan.id
-                      ? "border-[#C9A84C]/50 bg-[#C9A84C]/5"
-                      : "border-white/[0.08] hover:border-white/[0.14]"
+                      ? "border-[#C9A84C]/50 bg-[#C9A84C]/[0.06]"
+                      : "border-white/[0.08] bg-[#0A0A0A] hover:border-white/[0.16]"
                   )}
                 >
                   {plan.popular && (
                     <span
-                      className="absolute -top-2 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full text-[10px] font-bold"
+                      className="absolute -top-2 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-[0.12em]"
                       style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
                     >
                       Popular
                     </span>
                   )}
-                  <p className="text-xs font-semibold text-[#F0F0F0] mb-0.5">
+                  <p className="text-[13px] font-semibold text-[#F0F0F0] mb-0.5">
                     {plan.name}
                   </p>
-                  <p className="text-xs text-[#555555]">{plan.price}</p>
+                  <p className="text-[12px] text-[#888888]">{plan.price}</p>
                 </button>
               ))}
             </div>
           </div>
 
           {/* Terms */}
-          <div className="flex items-start gap-2.5">
+          <div className="flex items-start gap-3">
             <button
               type="button"
               onClick={() => setAgreed(!agreed)}
               className={cn(
-                "w-4 h-4 rounded border flex-shrink-0 mt-0.5 flex items-center justify-center transition-colors",
+                "w-[18px] h-[18px] rounded-[5px] border flex-shrink-0 mt-0.5 flex items-center justify-center transition-colors",
                 agreed
                   ? "border-[#C9A84C] bg-[#C9A84C]"
-                  : "border-white/[0.2]"
+                  : "border-white/[0.2] hover:border-white/[0.32]"
               )}
+              aria-label="Agree to terms"
             >
-              {agreed && <Check className="w-3 h-3 text-[#0A0A0A]" />}
+              {agreed && <Check className="w-3 h-3 text-[#0A0A0A]" strokeWidth={3} />}
             </button>
-            <p className="text-xs text-[#888888] leading-relaxed">
+            <p className="text-[13px] text-[#888888] leading-relaxed">
               I agree to the{" "}
               <Link
-                href="#"
-                className="hover:underline"
+                href="/terms"
+                className="font-medium hover:opacity-80 transition-opacity"
                 style={{ color: "#C9A84C" }}
               >
                 Terms of Service
               </Link>{" "}
               and{" "}
               <Link
-                href="#"
-                className="hover:underline"
+                href="/privacy"
+                className="font-medium hover:opacity-80 transition-opacity"
                 style={{ color: "#C9A84C" }}
               >
                 Privacy Policy
@@ -247,20 +272,30 @@ function SignupForm() {
           <button
             type="submit"
             disabled={loading || !agreed}
-            className="w-full py-3 rounded-xl text-sm font-semibold transition-all hover:opacity-90 disabled:opacity-50 flex items-center justify-center gap-2"
+            aria-busy={loading}
+            className="w-full py-3 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-2"
             style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
           >
-            {loading ? "Creating account..." : "Create account"}
-            {!loading && <ArrowRight className="w-4 h-4" />}
+            {loading ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                Creating account
+              </>
+            ) : (
+              <>
+                Create account
+                <ArrowRight className="w-4 h-4" />
+              </>
+            )}
           </button>
         </form>
       </div>
 
-      <p className="text-center text-sm text-[#888888] mt-6">
+      <p className="text-center text-[13px] text-[#888888] mt-6">
         Already have an account?{" "}
         <Link
           href="/login"
-          className="font-medium hover:underline"
+          className="font-medium hover:opacity-80 transition-opacity"
           style={{ color: "#C9A84C" }}
         >
           Sign in

@@ -104,6 +104,8 @@ Every rate problem on the GMAT — car, train, cyclist, pipe, painter, pump, typ
 
 Distance equals rate times time. Rearranged: R = D/T, T = D/R. These three forms are the whole topic.
 
+**Mental model.** All rate problems run on the same identity: `rate × time = work`. Combined work means adding *rates*, not adding times — `1/a + 1/b = 1/T`. The mental flip students miss: if Alice does it in 4 hours and Bob in 6, together they do it in less than 4, not in 5 (the average). Once you internalize that rates add and times don't, every work problem is one substitution away from solved.
+
 **The unit discipline that separates 705 scorers from 605 scorers.** The single most common mistake on rates questions is a unit mismatch. If the rate is in km/**hour** and the time is given in **minutes**, you must convert one of them before multiplying.
 
 **Example.** A cyclist rides at 18 km/h. How far in 40 minutes?
@@ -158,7 +160,7 @@ Trap answer: students who add times wrongly compute 12 − 8 = 4 and pick that, 
 
 **Unit of work is arbitrary.** Some problems talk about "pump-hours" or "worker-hours" — the total work, regardless of how many workers or what rate. Three pumps × 4 hours = 12 pump-hours. If the same job is done by 5 pumps, they need 12/5 = 2.4 hours. This is just the combined-work formula reorganized: **(workers) × (time) = total work**, constant for a given job.
 
-> **Trap to watch.** "How long does the job take if three pumps work for 2 hours, then two more pumps join?" This isn't pure combined work — it's a *staggered-start* problem, covered in a later section. Combined work assumes everyone starts at time zero.
+**Trap to watch.** "How long does the job take if three pumps work for 2 hours, then two more pumps join?" This isn't pure combined work — it's a *staggered-start* problem, covered in a later section. Combined work assumes everyone starts at time zero.
 
 ## @two-objects-moving
 
@@ -210,7 +212,7 @@ A boat does 24 km downstream in 2 hours and 24 km upstream in 3 hours:
 
 Same idea applies for planes with tailwind/headwind — the wind simply adds or subtracts depending on direction.
 
-> **Trap to watch.** Don't confuse "separation rate" with "speed of one object." When the question says "how fast is the gap growing," that's the *sum* of the two speeds, not either individual speed.
+**Trap to watch.** Don't confuse "separation rate" with "speed of one object." When the question says "how fast is the gap growing," that's the *sum* of the two speeds, not either individual speed.
 
 ## @average-speed
 
@@ -276,7 +278,7 @@ When work starts with one worker and a second joins later, or when one of two sp
 
 **The 60-mile commute problem.** Usual speed r, time 60/r. Faster speed r + 10, time 60/(r+10). Difference = 1/4 hour. Solve 60/r − 60/(r+10) = 1/4, multiply by 4r(r+10), simplify to r² + 10r − 2400 = 0, factor to (r−40)(r+60) = 0. Usual speed = **40 mph**.
 
-> **Trap to watch.** When one of the pipes is *draining* (negative rate), subtract it from the combined fill rate. Three pipes: A and B fill, C drains. Combined rate = 1/a + 1/b − 1/c. Missing the minus sign turns a drain into a fill and gives a badly wrong answer.
+**Trap to watch.** When one of the pipes is *draining* (negative rate), subtract it from the combined fill rate. Three pipes: A and B fill, C drains. Combined rate = 1/a + 1/b − 1/c. Missing the minus sign turns a drain into a fill and gives a badly wrong answer.
 
 ## @summary
 

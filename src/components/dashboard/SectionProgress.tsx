@@ -34,17 +34,20 @@ export default function SectionProgress({
   return (
     <div
       className={cn(
-        "p-5 rounded-xl border border-white/[0.08] bg-[#111111]",
+        "group p-5 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12] hover:shadow-[0_20px_40px_-20px_rgba(201,168,76,0.15)]",
         className
       )}
     >
-      <div className="flex items-center justify-between mb-3">
-        <span className="text-xs font-semibold uppercase tracking-widest text-[#888888]">
+      <div className="flex items-center justify-between mb-4">
+        <span
+          className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+          style={{ color: "#C9A84C" }}
+        >
           {section}
         </span>
         {!isEmpty && trend && trendLabel && (
           <div
-            className="flex items-center gap-1 text-xs font-medium"
+            className="flex items-center gap-1 text-[11px] font-medium tracking-tight"
             style={{ color: trendColor }}
           >
             <TrendIcon className="w-3 h-3" />
@@ -53,16 +56,24 @@ export default function SectionProgress({
         )}
       </div>
 
-      <div className="flex items-baseline gap-1 mb-3">
+      <div className="flex items-baseline gap-1.5 mb-4">
         {isEmpty ? (
           <>
-            <span className="text-2xl font-bold text-[#555555]">—</span>
-            <span className="text-sm text-[#444444]">/ {maxScore}</span>
+            <span className="font-display text-3xl font-semibold text-[#555555] tracking-[-0.02em] leading-none tabular-nums">
+              —
+            </span>
+            <span className="text-[13px] text-[#444444] tabular-nums">
+              / {maxScore}
+            </span>
           </>
         ) : (
           <>
-            <span className="text-2xl font-bold text-[#F0F0F0]">{score}</span>
-            <span className="text-sm text-[#555555]">/ {maxScore}</span>
+            <span className="font-display text-3xl sm:text-[2rem] font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-none tabular-nums">
+              {score}
+            </span>
+            <span className="text-[13px] text-[#555555] tabular-nums">
+              / {maxScore}
+            </span>
           </>
         )}
       </div>
@@ -78,7 +89,7 @@ export default function SectionProgress({
         />
       </div>
 
-      <p className="text-xs text-[#555555]">
+      <p className="text-[12px] text-[#888888] tabular-nums">
         {isEmpty ? "No data yet" : `${accuracy}% accuracy`}
       </p>
     </div>

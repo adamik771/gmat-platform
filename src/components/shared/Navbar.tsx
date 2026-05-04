@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X } from "lucide-react"
+import { Menu } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
 
@@ -28,7 +28,7 @@ export default function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-[#0A0A0A]/90 backdrop-blur-md border-b border-white/[0.06]"
+          ? "bg-[#0A0A0A]/85 backdrop-blur-xl border-b border-white/[0.06]"
           : "bg-transparent"
       )}
     >
@@ -54,24 +54,28 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-[#888888] hover:text-[#F0F0F0] transition-colors duration-200"
+                className="group relative text-[13px] tracking-tight text-[#888888] hover:text-[#F0F0F0] transition-colors duration-200"
               >
                 {link.label}
+                <span
+                  className="absolute left-0 -bottom-1 h-px w-full origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-200"
+                  style={{ backgroundColor: "#C9A84C" }}
+                />
               </Link>
             ))}
           </div>
 
           {/* CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-4">
             <Link
               href="/login"
-              className="text-sm text-[#888888] hover:text-[#F0F0F0] transition-colors"
+              className="text-[13px] tracking-tight text-[#888888] hover:text-[#F0F0F0] transition-colors"
             >
               Sign in
             </Link>
             <Link
               href="/signup"
-              className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
+              className="px-4 py-2 rounded-xl text-[13px] font-semibold tracking-tight transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
               style={{
                 backgroundColor: "#C9A84C",
                 color: "#0A0A0A",
@@ -114,7 +118,7 @@ export default function Navbar() {
                       key={link.href}
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      className="px-3 py-3 rounded-lg text-[#888888] hover:text-[#F0F0F0] hover:bg-white/5 transition-colors"
+                      className="px-3 py-3 rounded-lg text-[13px] tracking-tight text-[#888888] hover:text-[#F0F0F0] hover:bg-white/5 transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -125,14 +129,14 @@ export default function Navbar() {
                   <Link
                     href="/login"
                     onClick={() => setOpen(false)}
-                    className="text-center px-4 py-2.5 rounded-lg text-sm text-[#888888] border border-white/[0.08] hover:text-[#F0F0F0] transition-colors"
+                    className="text-center px-4 py-2.5 rounded-xl text-[13px] tracking-tight text-[#888888] border border-white/[0.08] hover:text-[#F0F0F0] transition-colors"
                   >
                     Sign in
                   </Link>
                   <Link
                     href="/signup"
                     onClick={() => setOpen(false)}
-                    className="text-center px-4 py-2.5 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+                    className="text-center px-4 py-2.5 rounded-xl text-[13px] font-semibold tracking-tight hover:opacity-90 transition-opacity"
                     style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
                   >
                     Start Free Trial

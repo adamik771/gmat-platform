@@ -156,6 +156,8 @@ problem_sets:
 
 Every Critical Reasoning argument has three parts. Your first job on every question — before you even read the question stem — is to identify them:
 
+**Mental model.** Every CR argument has three parts: evidence, conclusion, and the unstated gap that bridges them. The question is *always* about the gap — strengthening it, weakening it, naming it, evaluating it. Find the gap before you read the answer choices, and the right answer announces itself; read the choices first and you're solving by feel.
+
 **1. Conclusion.** What the author wants you to believe. The main claim. Usually introduced with signal words: "therefore," "thus," "hence," "it follows that," "the chain's management concludes," "researchers hypothesize," "critics argue."
 
 **2. Evidence (or premises).** The facts and reasons the author offers in support of the conclusion. Usually descriptive statements: data, studies, observations, historical facts. No "therefore" attached.
@@ -198,7 +200,7 @@ Note the last one: if the author *describes* what management believes, the autho
 
 > **Recall check.** Close your eyes. State the three parts of every CR argument. Now recall: which part is almost always the subject of the question you'll be asked? (Answer: the gap — the assumption bridging evidence to conclusion.) Forced retrieval of the skeleton makes it available on the next 74 CR questions in this chapter; re-reading the paragraph doesn't.
 
-> **Trap to watch.** Don't confuse *premises stated by the author* with *claims the author actually endorses*. The author might describe critics' views only to refute them. Track whose argument you're evaluating — the narrator's, the critic's, or the researcher's. The conclusion you must evaluate is the one the question stem points you at.
+**Trap to watch.** Don't confuse *premises stated by the author* with *claims the author actually endorses*. The author might describe critics' views only to refute them. Track whose argument you're evaluating — the narrator's, the critic's, or the researcher's. The conclusion you must evaluate is the one the question stem points you at.
 
 ## @strengthen-and-weaken
 
@@ -254,7 +256,7 @@ Same argument. A strengthener: "A competing chain in the same region without a l
 
 > **Self-explanation prompt.** Why are strengthen and weaken mirror images? If you can say "because both operate on the same gap between evidence and conclusion — strengtheners narrow it, weakeners widen it," you've internalized the unified structure and will solve both types with the same three-step process.
 
-> **Trap to watch.** "Partial strengtheners" and "partial weakeners." Sometimes an answer weakens one premise but strengthens a different one, or addresses only a minor aspect of the argument. The right answer addresses the *central* gap. Read all five before committing.
+**Trap to watch.** "Partial strengtheners" and "partial weakeners." Sometimes an answer weakens one premise but strengthens a different one, or addresses only a minor aspect of the argument. The right answer addresses the *central* gap. Read all five before committing.
 
 ## @assumption-and-negation-test
 
@@ -308,7 +310,7 @@ The strengthener provides a positive mechanism; the assumption just rules out on
 
 > **Recall check.** Without looking, describe the four steps of the negation test. Now apply it in your head to: Argument "X caused Y because X happened before Y." Which of these is the necessary assumption — (a) "X is a very common cause of Y in general," or (b) "Nothing else besides X plausibly caused Y"? (Answer: b. Negate a → argument survives if X is just a cause occasionally. Negate b → some other cause makes X unnecessary, argument breaks.) This is retrieval practice on a novel stimulus — the most effective form of learning consolidation.
 
-> **Trap to watch.** The negated answer choice often looks weird and overly strong when you first read it ("Something other than X definitely caused Y"). That's fine — the negation is meant to sound aggressive. The point is whether it breaks the argument, not whether it sounds natural.
+**Trap to watch.** The negated answer choice often looks weird and overly strong when you first read it ("Something other than X definitely caused Y"). That's fine — the negation is meant to sound aggressive. The point is whether it breaks the argument, not whether it sounds natural.
 
 ## @inference-must-be-true
 
@@ -367,7 +369,7 @@ A is the valid inference; B and C overreach.
 
 The contrapositive (if not-B then not-A) is ALWAYS a valid inference from "if A then B." The converse (if B then A) is NOT. Knowing this one rule solves 20% of hard inference questions.
 
-> **Trap to watch.** "Most support" in the question stem slightly loosens the standard. Strict "must be true" becomes "most likely true given the passage." In practice, still eliminate overstretch answers — but you may be able to pick an answer that's *probably* true rather than strictly necessary.
+**Trap to watch.** "Most support" in the question stem slightly loosens the standard. Strict "must be true" becomes "most likely true given the passage." In practice, still eliminate overstretch answers — but you may be able to pick an answer that's *probably* true rather than strictly necessary.
 
 ## @evaluate-the-argument
 
@@ -469,7 +471,7 @@ Each explains how the apparent contradiction is not a contradiction at all — t
 
 **The "description, not criticism" filter on flaw questions.** A flaw answer describes the *type* of error, not the specific content. Answer choices that restate the argument or list factual disagreements are usually wrong. The right answer is a meta-level diagnosis: "confuses X with Y," "generalizes from a biased sample," etc.
 
-> **Trap to watch.** Paradox questions often have one answer choice that supports only one side of the paradox. It sounds relevant but doesn't actually resolve anything — because the paradox was about two facts together, not either alone. Always verify your pick explains BOTH.
+**Trap to watch.** Paradox questions often have one answer choice that supports only one side of the paradox. It sounds relevant but doesn't actually resolve anything — because the paradox was about two facts together, not either alone. Always verify your pick explains BOTH.
 
 ## @boldface-and-complete
 

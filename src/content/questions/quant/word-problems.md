@@ -17,7 +17,15 @@ A car travels at 60 miles per hour for 2.5 hours. How many miles does it travel?
 - E) 160
 
 **answer:** D
-**explanation:** Distance = Rate x Time = 60 x 2.5 = 150 miles.
+**fastest_path:** D = R·T = 60 × 2.5 = 150.
+**explanation:** D = R × T = 60 × 2.5 = 150 mi.
+**mistake_a:** Computed 60 × 2 = 120, ignored the 0.5.
+**mistake_b:** Slip → 130.
+**mistake_c:** Slip → 140.
+**mistake_e:** Slip → 160.
+**common_trap:** Multiplication slip on 60 × 2.5 — most common is 60 × 2 = 120.
+**takeaway:** D = R × T. For 0.5 hr, just add R/2 to the round-hour distance: 60·2 + 30 = 150.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -35,7 +43,15 @@ A merchant buys a product for $40 and sells it for $52. What is the merchant's p
 - E) 30%
 
 **answer:** E
-**explanation:** Profit = $52 - $40 = $12. Profit percentage = (12/40) x 100 = 30%. Trap answer A gives the dollar profit rather than the percentage.
+**fastest_path:** Profit/cost = 12/40 = 30%.
+**explanation:** Profit = 52 − 40 = 12. Profit % of cost = (12/40) × 100 = 30%.
+**mistake_a:** Bubbled the dollar profit (12) as a percent.
+**mistake_b:** Estimated 20%.
+**mistake_c:** Computed profit/sell price = 12/52 ≈ 23%.
+**mistake_d:** Slip → 25%.
+**common_trap:** Computing profit as % of *selling price* (12/52 ≈ 23%) instead of % of *cost* (12/40 = 30%).
+**takeaway:** Always identify the *base* of a percent. "Profit % of cost" → base is cost.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -53,7 +69,15 @@ Maria is currently 3 times as old as her daughter. If her daughter is 8 years ol
 - E) 36
 
 **answer:** C
-**explanation:** Maria's current age = 3 x 8 = 24. In 6 years, Maria will be 24 + 6 = 30. Trap answer A is Maria's current age, not her future age.
+**fastest_path:** Maria now = 24. +6 yrs → 30.
+**explanation:** Maria's current age = 3 × 8 = 24. In 6 years: 24 + 6 = 30.
+**mistake_a:** Bubbled current age (24).
+**mistake_b:** Slip → 27.
+**mistake_d:** Slip → 32.
+**mistake_e:** Slip → 36.
+**common_trap:** Bubbling the current age (24) instead of the age in 6 years.
+**takeaway:** Read carefully: "currently" vs "in N years." Answer the future age, not the current age.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -71,7 +95,15 @@ A printer can print 240 pages in 8 minutes. At this rate, how many pages can it 
 - E) 480
 
 **answer:** D
-**explanation:** Rate = 240/8 = 30 pages per minute. In 15 minutes: 30 x 15 = 450 pages.
+**fastest_path:** Rate = 30 ppm. 30 × 15 = 450.
+**explanation:** Rate = 240/8 = 30 pages/min. In 15 min: 30 × 15 = 450.
+**mistake_a:** Slip → 360 (used wrong rate or time).
+**mistake_b:** Slip → 400.
+**mistake_c:** Slip → 420.
+**mistake_e:** Slip → 480.
+**common_trap:** Computing rate then mis-multiplying — typical: 30 × 12 = 360 (wrong time) or 28 × 15 = 420 (wrong rate).
+**takeaway:** Two-step rate problems: rate = total/time, then output = rate × new time. Verify each step.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -89,7 +121,15 @@ Train A leaves Station X heading east at 70 mph. Two hours later, Train B leaves
 - E) 9
 
 **answer:** C
-**explanation:** When Train B departs, Train A has already traveled 70 x 2 = 140 miles. Train B gains on Train A at a rate of 90 - 70 = 20 mph. Time for Train B to close the 140-mile gap = 140/20 = 7 hours.
+**fastest_path:** Head start = 140 mi. Closing rate = 20 mph. T = 140/20 = 7 hr.
+**explanation:** When B departs, A has gone 70 × 2 = 140 mi. Closing rate = 90 − 70 = 20 mph. T = 140/20 = 7 hr.
+**mistake_a:** Slip → 5.
+**mistake_b:** Slip → 6.
+**mistake_d:** Slip → 8.
+**mistake_e:** Used sum (160 mph) → ~9 hr.
+**common_trap:** Using sum of speeds (160) instead of difference (20) for catch-up.
+**takeaway:** Catch-up (same direction) → closing rate = *difference*. Approach (opposite) → *sum*.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -107,7 +147,15 @@ Machine A can complete a job in 6 hours. Machine B can complete the same job in 
 - E) 9
 
 **answer:** B
-**explanation:** Machine A's rate = 1/6 of the job per hour. Machine B's rate = 1/12 of the job per hour. Combined rate = 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4 of the job per hour. Time = 1/(1/4) = 4 hours. Trap answer E (9) is the simple average of 6 and 12.
+**fastest_path:** 1/6 + 1/12 = 1/4 → T = 4 hr.
+**explanation:** Combined rate = 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4 job/hr → T = 4 hr.
+**mistake_a:** Slip → 3.
+**mistake_c:** Slip → 5.
+**mistake_d:** Bubbled A's solo time (6).
+**mistake_e:** Averaged times: (6+12)/2 = 9.
+**common_trap:** Averaging solo times instead of adding rates.
+**takeaway:** For combined work: rates add, not times. T = ab/(a+b).
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -125,7 +173,15 @@ A chemist has 10 liters of a 30% acid solution. How many liters of pure acid mus
 - E) 6
 
 **answer:** C
-**explanation:** The 10-liter solution contains 0.30 x 10 = 3 liters of acid. Let x = liters of pure acid added. The new solution has (3 + x) liters of acid in (10 + x) liters total. Setting up the equation: (3 + x)/(10 + x) = 0.50. So 3 + x = 5 + 0.5x, giving 0.5x = 2, and x = 4 liters.
+**fastest_path:** Acid = 3 L. (3+x)/(10+x) = 0.5 → x = 4.
+**explanation:** Initial acid = 0.30 × 10 = 3 L. After adding x L pure acid: (3+x)/(10+x) = 0.5 → 3 + x = 5 + 0.5x → 0.5x = 2 → x = 4.
+**mistake_a:** Slip → 2.
+**mistake_b:** Slip → 3.
+**mistake_d:** Slip → 5.
+**mistake_e:** Slip → 6.
+**common_trap:** Adding x to numerator only (forgetting denominator also grows).
+**takeaway:** When adding pure substance, both numerator and denominator gain x. Set new fraction = target.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -143,7 +199,15 @@ A retailer marks up the cost of goods by 40% and then offers a seasonal discount
 - E) 36%
 
 **answer:** C
-**explanation:** Let cost = $100. Marked price = $100 x 1.40 = $140. After 10% discount: $140 x 0.90 = $126. Profit = $126 - $100 = $26. Profit percentage = (26/100) x 100 = 26%.
+**fastest_path:** 1.40 × 0.90 = 1.26 → 26% profit on cost.
+**explanation:** Set cost = $100. Marked = 100 × 1.40 = $140. After 10% off: 140 × 0.90 = $126. Profit = $26 → 26%.
+**mistake_a:** Used additive (40 − 10 − ... = 20%).
+**mistake_b:** Slip → 24%.
+**mistake_d:** Used additive (40 − 10 = 30%).
+**mistake_e:** Slip → 36%.
+**common_trap:** Treating successive percent changes additively (40 − 10 = 30%) — but the 10% is taken off the *marked* price, not cost.
+**takeaway:** Multipliers chain: net = (1 + markup)(1 − discount). Subtract 1 for net profit %.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -161,7 +225,15 @@ A cyclist travels from Town A to Town B at 15 mph and returns by the same route 
 - E) 13.5
 
 **answer:** B
-**explanation:** Let the one-way distance be d miles. Time going = d/15. Time returning = d/10. Total distance = 2d. Total time = d/15 + d/10 = 2d/30 + 3d/30 = 5d/30 = d/6. Average speed = Total distance / Total time = 2d / (d/6) = 12 mph. Trap answer C (12.5) comes from simply averaging 15 and 10.
+**fastest_path:** Equal distances → harmonic mean: 2(15)(10)/(15+10) = 300/25 = 12.
+**explanation:** Equal-distance round trip → harmonic mean: 2ab/(a+b) = 2·15·10/25 = 12 mph.
+**mistake_a:** Slip → 11.
+**mistake_c:** Took arithmetic mean: (15+10)/2 = 12.5.
+**mistake_d:** Slip → 13.
+**mistake_e:** Slip → 13.5.
+**common_trap:** Averaging the two speeds (12.5) — equal-distance trips weight slower legs more, pulling avg below the midpoint.
+**takeaway:** Equal distance → harmonic mean. Equal time → arithmetic mean. Always check what's equal.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -179,7 +251,15 @@ Pipe A can fill a tank in 4 hours, and Pipe B can fill the same tank in 6 hours.
 - E) 6
 
 **answer:** B
-**explanation:** Rate of Pipe A = 1/4 (filling). Rate of Pipe B = 1/6 (filling). Rate of Pipe C = -1/12 (draining). Combined rate = 1/4 + 1/6 - 1/12 = 3/12 + 2/12 - 1/12 = 4/12 = 1/3. Time to fill = 1/(1/3) = 3 hours.
+**fastest_path:** Net rate = 1/4 + 1/6 − 1/12 = 4/12 = 1/3 → T = 3.
+**explanation:** Net rate = 1/4 + 1/6 − 1/12 = 3/12 + 2/12 − 1/12 = 4/12 = 1/3 → T = 3 hr.
+**mistake_a:** Slip → 2.
+**mistake_c:** Slip → 4.
+**mistake_d:** Slip → 5.
+**mistake_e:** Forgot to subtract drain → 1/4 + 1/6 = 5/12 → T = 12/5 = 2.4, slipped to 6.
+**common_trap:** Forgetting the *negative* sign on the drain rate (treats C as another fill pipe).
+**takeaway:** Drains have *negative* rates. Net = Σ fill rates − Σ drain rates.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -197,7 +277,15 @@ A grocer mixes Brand A coffee at $12 per pound with Brand B coffee at $8 per pou
 - E) 20
 
 **answer:** C
-**explanation:** Let a = pounds of Brand A and b = pounds of Brand B. Then a + b = 40 and 12a + 8b = 9.50 x 40 = 380. From the first equation, b = 40 - a. Substituting: 12a + 8(40 - a) = 380, so 12a + 320 - 8a = 380, giving 4a = 60, and a = 15 pounds.
+**fastest_path:** Alligation: $9.50 is 1.50 from $8 and 2.50 from $12. So A:B = 1.5:2.5 = 3:5. A = (3/8)·40 = 15.
+**explanation:** Let a + b = 40 and 12a + 8b = 380. Substitute b = 40 − a: 12a + 320 − 8a = 380 → 4a = 60 → a = 15.
+**mistake_a:** Slip → 10.
+**mistake_b:** Slip → 12.
+**mistake_d:** Slip → 18.
+**mistake_e:** Slip → 20 (took the half).
+**common_trap:** Mis-applying alligation by inverting the ratio (using $12-distance for A instead of $8-distance).
+**takeaway:** Alligation: distance ratio inverted = quantity ratio. Closer to A's price → less of A.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -215,7 +303,15 @@ Five years ago, James was 4 times as old as his nephew. In 3 years, James will b
 - E) 37
 
 **answer:** A
-**explanation:** Let J = James's current age and N = nephew's current age. Five years ago: J - 5 = 4(N - 5), giving J = 4N - 15 ... (1). In 3 years: J + 3 = 2(N + 3), giving J = 2N + 3 ... (2). Setting (1) = (2): 4N - 15 = 2N + 3, so 2N = 18, and N = 9. Then J = 2(9) + 3 = 21. Verification: Five years ago, James was 16 and his nephew was 4; 16 = 4 x 4. In 3 years, James will be 24 and his nephew will be 12; 24 = 2 x 12. Both conditions are satisfied.
+**fastest_path:** J = 4N − 15; J = 2N + 3 → 2N = 18 → N = 9 → J = 21.
+**explanation:** J − 5 = 4(N − 5) → J = 4N − 15. J + 3 = 2(N + 3) → J = 2N + 3. Equate: 2N = 18 → N = 9 → J = 21. Verify: 5 yrs ago 16 = 4·4 ✓; in 3 yrs 24 = 2·12 ✓.
+**mistake_b:** Slip → 25.
+**mistake_c:** Slip → 29.
+**mistake_d:** Slip → 33.
+**mistake_e:** Slip → 37.
+**common_trap:** Forgetting to apply the time shift to *both* people (e.g., writing J − 5 = 4N instead of 4(N − 5)).
+**takeaway:** Time shifts apply to *every* person's age. "5 years ago" → both ages are 5 less.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -233,7 +329,15 @@ The sum of three consecutive integers is 72. What is the largest of the three in
 - E) 26
 
 **answer:** D
-**explanation:** Let x = the smallest integer. Then the three consecutive integers are x, x + 1, and x + 2. Their sum: x + (x + 1) + (x + 2) = 3x + 3 = 72, so 3x = 69 and x = 23. The largest integer is x + 2 = 25. Trap answer C (24) is the middle integer, which also equals the average — a useful shortcut: for any consecutive set, the mean is the middle term.
+**fastest_path:** Middle = 72/3 = 24. Largest = 24 + 1 = 25.
+**explanation:** For 3 consecutive integers, middle = sum/count = 24. Integers: 23, 24, 25 → largest = 25.
+**mistake_a:** Slip → 22.
+**mistake_b:** Bubbled smallest (23).
+**mistake_c:** Bubbled middle (24, the average).
+**mistake_e:** Slip → 26.
+**common_trap:** Bubbling the middle (24, which equals the mean) instead of the largest.
+**takeaway:** For consecutives: middle = mean. Largest = middle + (count−1)/2. Always confirm what's asked.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -251,7 +355,15 @@ The average (arithmetic mean) of 5 numbers is 18. If a sixth number is added and
 - E) 32
 
 **answer:** D
-**explanation:** Sum of the original 5 numbers = 5 x 18 = 90. Sum of all 6 numbers = 6 x 20 = 120. The sixth number = 120 - 90 = 30. Key technique: convert averages to sums (sum = average x count), then work with sums directly.
+**fastest_path:** New sum 6·20 = 120. Old sum 5·18 = 90. 6th = 30.
+**explanation:** Old sum = 90; new sum = 120. 6th = 120 − 90 = 30. Shortcut: new value = new mean + n × Δmean = 20 + 5 × 2 = 30.
+**mistake_a:** Slip → 22.
+**mistake_b:** Slip → 24.
+**mistake_c:** Slip → 28.
+**mistake_e:** Slip → 32.
+**common_trap:** Computing mean differences (20 − 18 = 2) instead of sum differences.
+**takeaway:** Mean problems → work in *sums* (mean × count). Always.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -269,7 +381,15 @@ Ten years ago, Sara was twice as old as her brother Tom. Today, the sum of their
 - E) 42
 
 **answer:** C
-**explanation:** Let S = Sara's age now and T = Tom's age now. Then S + T = 62, so T = 62 - S. Ten years ago: S - 10 = 2(T - 10), which gives S - 10 = 2T - 20, so S = 2T - 10. Substituting T = 62 - S: S = 2(62 - S) - 10 = 124 - 2S - 10, so 3S = 114 and S = 38. Check: Tom is 24 now; ten years ago Sara was 28 and Tom was 14, and 28 = 2 x 14.
+**fastest_path:** S − 10 = 2(T − 10) → S = 2T − 10. With S + T = 62 → T = 24, S = 38.
+**explanation:** S − 10 = 2(T − 10) → S = 2T − 10. Substitute into S + T = 62: 3T − 10 = 62 → T = 24 → S = 38.
+**mistake_a:** Slip → 32.
+**mistake_b:** Slip → 36.
+**mistake_d:** Slip → 40.
+**mistake_e:** Slip → 42.
+**common_trap:** Writing S − 10 = 2T (forgetting Tom's "−10" too).
+**takeaway:** "10 years ago" applies to *both* people. Translate: now-age − 10 for everyone.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -287,7 +407,15 @@ A piggy bank contains only nickels and dimes. If the bank contains 48 coins wort
 - E) 28
 
 **answer:** D
-**explanation:** Let n = number of nickels and d = number of dimes. Then n + d = 48 and 5n + 10d = 360 cents. From the first equation, n = 48 - d. Substituting: 5(48 - d) + 10d = 360, so 240 - 5d + 10d = 360, giving 5d = 120 and d = 24. Tip: when mixing denominations, always work in the smallest unit (cents here) to avoid decimal errors.
+**fastest_path:** n + d = 48; 5n + 10d = 360 (cents) → d = 24.
+**explanation:** n + d = 48 and 5n + 10d = 360. Substitute n = 48 − d: 5(48 − d) + 10d = 360 → 240 + 5d = 360 → d = 24.
+**mistake_a:** Slip → 18.
+**mistake_b:** Slip → 20.
+**mistake_c:** Slip → 22.
+**mistake_e:** Slip → 28.
+**common_trap:** Mixing decimal dollars and integer coin counts — error-prone. Convert to cents.
+**takeaway:** Coin problems: always work in cents (smallest unit). Avoids decimal slips.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -305,7 +433,15 @@ In a class of 80 students, 45 study Spanish, 38 study French, and 12 study neith
 - E) 23
 
 **answer:** C
-**explanation:** Students studying at least one language = 80 - 12 = 68. By inclusion-exclusion: |S or F| = |S| + |F| - |S and F|, so 68 = 45 + 38 - |S and F|, giving |S and F| = 83 - 68 = 15. The formula to memorize: Total = (Group 1) + (Group 2) - (Both) + (Neither).
+**fastest_path:** At least one = 80 − 12 = 68. Both = 45 + 38 − 68 = 15.
+**explanation:** Studying ≥1 language: 80 − 12 = 68. Inclusion-exclusion: 68 = 45 + 38 − |both| → |both| = 83 − 68 = 15.
+**mistake_a:** Slip → 9.
+**mistake_b:** Bubbled the "neither" count (12).
+**mistake_d:** Slip → 18.
+**mistake_e:** Used 80 instead of 68 → 45 + 38 − 80 = 3 (slipped to 23).
+**common_trap:** Using the total (80) instead of "at least one" (68) in the inclusion-exclusion formula.
+**takeaway:** Total = (Group 1) + (Group 2) − (Both) + (Neither). Subtract "neither" before applying inclusion-exclusion.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -326,7 +462,15 @@ A two-digit positive integer N has tens digit t and units digit u. What is the v
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Write N = 10t + u. Statement (1): t + u = 11 allows many pairs (29, 38, 47, 56, 65, 74, 83, 92). Not sufficient. Statement (2): reversed value is 10u + t, and (10u + t) - (10t + u) = 27, which simplifies to 9(u - t) = 27, so u - t = 3. Many N satisfy this (14, 25, 36, 47, 58, 69). Not sufficient. Together: u + t = 11 and u - t = 3 give u = 7 and t = 4, so N = 47. Sufficient.
+**fastest_path:** (1) sum only — many pairs. (2) gives u − t = 3 — many pairs. Together: u = 7, t = 4 → N = 47.
+**explanation:** N = 10t + u. Statement (1): t + u = 11 — multiple pairs (29, 38, 47, 56, ...). Insufficient. Statement (2): (10u + t) − (10t + u) = 27 → 9(u − t) = 27 → u − t = 3 — multiple pairs (14, 25, 36, 47, ...). Insufficient. Together: u + t = 11 and u − t = 3 → u = 7, t = 4 → N = 47. Sufficient.
+**mistake_a:** Treated only (1) as sufficient.
+**mistake_b:** Treated only (2) as sufficient.
+**mistake_d:** Each alone — neither is.
+**mistake_e:** Concluded both insufficient.
+**common_trap:** Forgetting that two unknowns (t, u) need two independent equations.
+**takeaway:** Two-digit DS: N = 10t + u. Each digit is one unknown. Need two equations to pin both.
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -344,7 +488,15 @@ Of 150 guests at a dinner party, 90 ordered appetizers, 95 ordered dessert, and 
 - E) 55
 
 **answer:** D
-**explanation:** Let x = guests who ordered exactly two items and y = guests who ordered exactly one item. Two governing equations for three-set problems: (i) y + x + (all three) = Total, so y + x + 30 = 150, giving y + x = 120. (ii) Summing the individual set totals counts singles once, doubles twice, and the triple three times: |A| + |D| + |C| = y + 2x + 3(all three), so 90 + 95 + 70 = y + 2x + 90, giving y + 2x = 165. Subtracting: x = 45.
+**fastest_path:** y + 2x + 3·30 = 90+95+70 = 255 → y + 2x = 165. With y + x = 120 → x = 45.
+**explanation:** Let x = exactly 2, y = exactly 1, z = all three = 30. Eq 1 (total): y + x + z = 150 → y + x = 120. Eq 2 (sum of |sets|): 90 + 95 + 70 = y + 2x + 3z → 255 = y + 2x + 90 → y + 2x = 165. Subtract: x = 45.
+**mistake_a:** Slip → 15.
+**mistake_b:** Slip → 25.
+**mistake_c:** Slip → 35.
+**mistake_e:** Slip → 55.
+**common_trap:** Setting up the wrong system — forgetting that "all three" is counted 3× in the |sets| sum.
+**takeaway:** For 3-set Venn: |A| + |B| + |C| = 1·(exactly 1) + 2·(exactly 2) + 3·(all three).
+**related_reading:** reading-quant-05-word-problems
 
 ---
 
@@ -365,4 +517,220 @@ A company sells widgets for $p each. The company's fixed monthly costs are $F, a
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Profit = Revenue - Total Cost = 500p - (F + 500v) = 500(p - v) - F. Statement (1): 500(p - v) = 500 x 8 = $4,000, but F is unknown — if F = $2,000 profit is positive, if F = $10,000 it is negative. Not sufficient. Statement (2): F = $3,000 alone says nothing about per-unit margin or units sold. Not sufficient. Together: Profit = $4,000 - $3,000 = $1,000 > 0, a definite yes. Sufficient.
+**fastest_path:** Profit = 500(p−v) − F. (1) gives 500·8 = 4000, no F. (2) gives F=3000, no margin. Together: 4000 − 3000 = 1000 > 0.
+**explanation:** Profit = 500p − (F + 500v) = 500(p−v) − F. Statement (1): contribution = 4000, but F unknown — could be 2000 (profit) or 10000 (loss). Insufficient. Statement (2): F = 3000, no per-unit info. Insufficient. Together: 4000 − 3000 = 1000 > 0 → definite YES. Sufficient.
+**mistake_a:** Treated only (1) as sufficient.
+**mistake_b:** Treated only (2) as sufficient.
+**mistake_d:** Each alone — neither is.
+**mistake_e:** Concluded both insufficient.
+**common_trap:** Treating either statement alone as sufficient — both contribution margin × volume *and* fixed cost are needed.
+**takeaway:** Profit = Revenue − TotalCost = (p−v)·n − F. Need all three pieces.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q21
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Age Problem — Two Equations
+
+Five years ago, Alex was three times as old as Sam. Ten years from now, Alex will be twice as old as Sam. How old is Alex now?
+
+- A) 35
+- B) 40
+- C) 45
+- D) 50
+- E) 55
+
+**answer:** D
+**fastest_path:** A = 3S − 10; A = 2S + 10 → S = 20, A = 50.
+**explanation:** A − 5 = 3(S − 5) → A = 3S − 10. A + 10 = 2(S + 10) → A = 2S + 10. Equate: 3S − 10 = 2S + 10 → S = 20 → A = 50. Verify: 5 yrs ago Alex 45 = 3·15 ✓; in 10 yrs Alex 60 = 2·30 ✓.
+**mistake_a:** Slip → 35.
+**mistake_b:** Slip → 40.
+**mistake_c:** Slip → 45.
+**mistake_e:** Slip → 55.
+**common_trap:** Misreading the time shifts ("5 ago" ≠ "10 from now") or swapping ages.
+**takeaway:** Each constraint is one linear equation. Two constraints → unique (A, S).
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q22
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Piecewise Revenue Optimization
+
+A factory produces gadgets. Each gadget costs $10 in materials; fixed operating costs are $300 per day. Each gadget sells for $25, but if daily production exceeds 50 gadgets, every unit beyond 50 must be sold at a clearance price of $8 each. If the factory produces between 40 and 80 gadgets per day, what is the maximum daily profit?
+
+- A) $300
+- B) $390
+- C) $450
+- D) $510
+- E) $750
+
+**answer:** C
+**fastest_path:** Linear profit segments. Below 50: slope +15 (sell − cost). Above 50: slope −2 (8 − 10). Max at the kink: n = 50 → 15·50 − 300 = 450.
+**explanation:** For n ≤ 50: profit = 15n − 300, increasing → max at n = 50: 450. For n > 50: each extra unit earns $8 but costs $10 → marginal profit = −2 → profit decreases. So max overall = 450 at n = 50.
+**mistake_a:** Slip → 300.
+**mistake_b:** Slip → 390.
+**mistake_d:** Slip → 510.
+**mistake_e:** Bubbled max revenue (or always-produce-max) without subtracting cost.
+**common_trap:** Assuming "more production = more profit" without checking marginal revenue vs. marginal cost beyond the breakpoint.
+**takeaway:** Piecewise profit: maximize each segment separately, compare. Always check marginal change at each kink.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q23
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Consecutive Integers
+
+The sum of three consecutive positive odd integers is 87. What is the largest of the three?
+
+- A) 27
+- B) 29
+- C) 31
+- D) 33
+- E) 35
+
+**answer:** C
+**fastest_path:** Middle = 87/3 = 29. Largest = 29 + 2 = 31.
+**explanation:** Three consecutive odd integers: n, n+2, n+4. Sum = 3n + 6 = 87 → n = 27. Integers: 27, 29, 31. Largest = 31.
+**mistake_a:** Bubbled smallest (27).
+**mistake_b:** Bubbled middle (29 = mean).
+**mistake_d:** Slip → 33.
+**mistake_e:** Slip → 35.
+**common_trap:** Bubbling the middle (29) — which equals the mean — instead of the largest.
+**takeaway:** For consecutive odds/evens with count n: middle = mean = sum/n. Step = 2.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q24
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Age Problem — Multi-Constraint
+
+The sum of a mother's current age and her daughter's current age is 45 years. Five years ago, the mother was four times as old as her daughter was at that time. How old is the mother now?
+
+- A) 25
+- B) 30
+- C) 33
+- D) 35
+- E) 40
+
+**answer:** C
+**fastest_path:** M = 4D − 15. With M + D = 45 → 5D − 15 = 45 → D = 12, M = 33.
+**explanation:** M + D = 45. M − 5 = 4(D − 5) → M = 4D − 15. Substitute: (4D − 15) + D = 45 → 5D = 60 → D = 12 → M = 33. Verify: 5 yrs ago Mom 28 = 4·7 ✓.
+**mistake_a:** Slip → 25.
+**mistake_b:** Slip → 30.
+**mistake_d:** Slip → 35.
+**mistake_e:** Slip → 40.
+**common_trap:** Forgetting the time shift on both ages (writing M − 5 = 4D instead of 4(D − 5)).
+**takeaway:** Time shifts apply to *both* people. "5 years ago" → both ages decrease by 5.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q25
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Average Speed with Rest
+
+A driver travels 240 miles from city A to city B. For the first 120 miles the driver averages 60 miles per hour; then takes a 30-minute rest; then completes the remaining 120 miles at an average speed that makes the total trip time (including the rest) exactly 5 hours. What is the average speed for the second half of the drive?
+
+- A) 40 mph
+- B) 48 mph
+- C) 50 mph
+- D) 60 mph
+- E) 72 mph
+
+**answer:** B
+**fastest_path:** First leg = 2 hr. Rest = 0.5 hr. Time left = 5 − 2.5 = 2.5 hr. Second speed = 120/2.5 = 48.
+**explanation:** Time so far: 120/60 = 2 hr driving + 0.5 hr rest = 2.5 hr. Remaining = 5 − 2.5 = 2.5 hr. Second-half speed = 120/2.5 = 48 mph.
+**mistake_a:** Slip → 40.
+**mistake_c:** Slip → 50.
+**mistake_d:** Used 60 (matched first half).
+**mistake_e:** Slip → 72.
+**common_trap:** Forgetting to subtract the rest time from the available driving time.
+**takeaway:** Compute available time directly: total − used. Then v = D/T for the remaining segment.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q26
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Inverse Proportion
+
+A warehouse runs 5 identical autonomous floor-cleaning robots; together they clean the warehouse in 12 days of continuous operation. If the operator deploys 8 of these robots instead, all running at the same per-unit rate, how many days will the 8-robot deployment take to clean the same warehouse?
+
+- A) 6
+- B) 7
+- C) 7.5
+- D) 8
+- E) 9
+
+**answer:** C
+**fastest_path:** Total work = 5 × 12 = 60 robot-days. With 8 robots: 60/8 = 7.5.
+**explanation:** Worker-days are conserved when each unit works at the same rate. Total work = 5 × 12 = 60 robot-days. With 8 robots: 60/8 = 7.5 days.
+**mistake_a:** Subtracted 5 days from 12 (matched 12 − 6 = 6) — confused inverse with linear scaling.
+**mistake_b:** Computed (5 + 12)/something or rounded 7.5 down to 7.
+**mistake_d:** Computed (5 × 12) / something = 8 from a wrong divisor (e.g., 60/7.5 = 8, treating the ratio inversely).
+**mistake_e:** Subtracted 3 from 12 (12 − 3 = 9) using "added 3 robots, subtract 3 days."
+**common_trap:** Treating the relationship as linear (subtracting "more robots = fewer days") instead of inverse (worker-days conserved).
+**takeaway:** Worker-days are conserved when units work at equal rates: new time = (workers₁ × time₁) / workers₂. Inverse — never linear subtraction.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q27
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Rates — Three Workers with Early Departure
+
+Three printers — A, B, and C — work together to print a document. Alone, Printer A can print the document in 2 hours, Printer B in 4 hours, and Printer C in 8 hours. All three start at the same time, but Printer A stops after 1 hour. How long, in minutes, after A stops do the other two printers need to finish the document?
+
+- A) 15
+- B) 20
+- C) 30
+- D) 40
+- E) 60
+
+**answer:** B
+**fastest_path:** After 1 hr at rate 7/8: 7/8 done. Remaining 1/8. B+C rate = 3/8/hr → time = 1/3 hr = 20 min.
+**explanation:** Rates: A = 1/2, B = 1/4, C = 1/8. Combined = 7/8. After 1 hr: 7/8 done; remaining 1/8. B+C rate = 1/4 + 1/8 = 3/8 per hour. Time = (1/8)/(3/8) = 1/3 hr = 20 min.
+**mistake_a:** Slip → 15.
+**mistake_c:** Slip → 30.
+**mistake_d:** Slip → 40.
+**mistake_e:** Slip → 60.
+**common_trap:** Continuing with the *combined-3* rate after A stops, instead of switching to B+C.
+**takeaway:** When a worker stops, recompute the combined rate of the *remaining* workers.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q28
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Age Problem — Three People
+
+The sum of the current ages of Alex, Ben, and Carlos is 90 years. Alex is twice as old as Ben, and Carlos is 10 years older than Ben. How old is Alex?
+
+- A) 20
+- B) 30
+- C) 35
+- D) 40
+- E) 50
+
+**answer:** D
+**fastest_path:** 2B + B + (B+10) = 4B + 10 = 90 → B = 20 → A = 40.
+**explanation:** Let Ben = B. Alex = 2B; Carlos = B + 10. Sum: 4B + 10 = 90 → B = 20 → Alex = 40. Verify: 40 + 20 + 30 = 90 ✓.
+**mistake_a:** Bubbled Ben's age (20).
+**mistake_b:** Bubbled Carlos's age (30).
+**mistake_c:** Slip → 35.
+**mistake_e:** Slip → 50.
+**common_trap:** Bubbling the wrong person's age (Ben's 20 or Carlos's 30) instead of Alex's 40.
+**takeaway:** Express every age in one variable, sum, solve. Then answer for the *requested* person.
+**related_reading:** reading-quant-05-word-problems

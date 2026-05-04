@@ -101,6 +101,8 @@ problem_sets:
 
 Two-Part Analysis is the most unusual question format on the GMAT. Instead of picking one answer from five, you pick **two answers** from a shared list — one for each of two related questions. The catch: the two selections must *jointly* satisfy the constraints.
 
+**Mental model.** TPA gives you two columns of answers but a single shared answer set — pick one row for column 1, one row for column 2. The mental shift: *set up the constraints first, scan the answer set second*. Students who jump to the answers and try them all out blow the time budget; students who derive the constraint equations first usually have the answer in 90 seconds.
+
 **The format, in a table.**
 
 |          | Part 1 | Part 2 |
@@ -228,7 +230,7 @@ Weakener candidate: "Remote workers were self-selected from high performers in t
 
 **The "same option for both parts" possibility.** Unlike quantitative, logical Two-Part almost never has the same statement for both parts — the two roles are distinct.
 
-> **Trap to watch.** Don't confuse "the role the statement plays in the argument" with "the role the question asks about." The question might ask for the conclusion the author supports, or the conclusion the author *rejects*. Read the question stem carefully.
+**Trap to watch.** Don't confuse "the role the statement plays in the argument" with "the role the question asks about." The question might ask for the conclusion the author supports, or the conclusion the author *rejects*. Read the question stem carefully.
 
 ## @rate-and-mixture-templates
 

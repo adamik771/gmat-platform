@@ -20,7 +20,15 @@ What is the value of x?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**explanation:** Statement (1): 3x + 7 = 22, so 3x = 15, and x = 5. This gives a unique value, so Statement (1) is sufficient. Statement (2): x could be 1, 2, 3, ..., or 9, so there is no unique value. Statement (2) is not sufficient. The answer is A.
+**fastest_path:** Value DS — looking for *unique* x. (1) is one equation in one variable → unique. (2) names a range → many. A.
+**explanation:** (1): 3x+7=22 → x=5. Unique value, sufficient. (2): x ∈ {1,2,…,9}. Nine candidates, not sufficient. Answer A.
+**mistake_b:** B requires (2) alone sufficient — but (2) leaves 9 possible values.
+**mistake_c:** C-trap — adding (2) doesn't help; (1) alone already nails x=5.
+**mistake_d:** D requires *each* alone sufficient — but (2) leaves 9 candidates.
+**mistake_e:** E says even together insufficient — but (1) solves it alone.
+**common_trap:** *C-trap*: combining statements "for safety" when one alone is already sufficient. Stop the moment a statement nails a unique value.
+**takeaway:** Value DS — a single equation in a single variable is almost always sufficient. Don't keep going.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -41,7 +49,15 @@ Is the integer n divisible by 6?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Statement (1): n is divisible by 3. For example, n = 9 is divisible by 3 but not by 6, while n = 12 is divisible by both. Not sufficient. Statement (2): n is divisible by 2. For example, n = 8 is divisible by 2 but not by 6, while n = 12 is divisible by both. Not sufficient. Together: If n is divisible by both 2 and 3, then since 2 and 3 are coprime, n must be divisible by 6. Sufficient. The answer is C.
+**fastest_path:** Yes/no DS on divisibility. 6 = 2 × 3 (coprime). Each statement gives one factor → both together nail divisibility by 6.
+**explanation:** (1) div by 3: n=9 no, n=12 yes — split. (2) div by 2: n=8 no, n=12 yes — split. Together: div by 2 *and* 3, with 2,3 coprime → div by 6. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — n=9 vs n=12 gives different yes/no.
+**mistake_b:** B requires (2) alone sufficient — same issue (n=8 vs n=12).
+**mistake_d:** D needs each alone — neither works alone.
+**mistake_e:** E says together insufficient — but coprime factors compose.
+**common_trap:** Confusing "divisible by both factors" with "divisible by their product." This works *only* when the factors are coprime. div by 4 AND 6 ≠ div by 24.
+**takeaway:** Coprime-factor decomposition is a clean DS lever for divisibility. Always check whether the factors share a common divisor before composing.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -62,7 +78,15 @@ A store sells a jacket at a discount off the original price. What is the discoun
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Statement (1): We know the original price is $120, but without the discount percentage, we cannot find the discounted price. Not sufficient. Statement (2): We know the discount is 25%, but without the original price, we cannot compute the dollar amount of the discount. Not sufficient. Together: The discounted price is $120 - 0.25($120) = $120 - $30 = $90. Sufficient. The answer is C.
+**fastest_path:** Need price × (1 − discount). Each statement gives only one factor.
+**explanation:** (1): Original $120, no discount % → can't compute. (2): 25% off, no original → can't compute. Together: $120 × 0.75 = $90. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — but no discount %.
+**mistake_b:** B requires (2) alone sufficient — but no base price.
+**mistake_d:** D needs each alone — neither has both pieces.
+**mistake_e:** E says together insufficient — but two factors give the product.
+**common_trap:** Picking E because the question feels under-specified. But two complementary pieces (price + percent) suffice for any percent calculation.
+**takeaway:** Percentage value-DS: you need *base × rate*. If statements split base and rate, the answer is C.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -83,7 +107,15 @@ In a class, the ratio of boys to girls is r. How many boys are in the class?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Statement (1): The ratio of boys to girls is 3/4, meaning for every 3 boys there are 4 girls. But without the total, we cannot determine the exact number of boys. Not sufficient. Statement (2): There are 28 students, but without the ratio, we cannot determine how many are boys. Not sufficient. Together: Boys to girls = 3:4, so boys = (3/7)(28) = 12. Sufficient. The answer is C.
+**fastest_path:** Need ratio AND total to get a count. Statements split the two; together they suffice.
+**explanation:** (1): 3:4 ratio without total → infinite scalings. (2): 28 students without ratio → can't decompose. Together: boys = (3/7) × 28 = 12. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — ratio alone gives no count.
+**mistake_b:** B requires (2) alone sufficient — total alone doesn't split into boys/girls.
+**mistake_d:** D needs each alone — neither has both pieces.
+**mistake_e:** E says together insufficient — but ratio + total fully determine.
+**common_trap:** Treating ratios as if they gave counts. Ratios scale; you need at least one absolute number to fix the scale.
+**takeaway:** Ratio-and-count DS: ratio alone never gives count, count alone never gives split. Together is the standard pairing.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -104,7 +136,15 @@ What is the median of a set of five different positive integers?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**explanation:** Statement (1): The five integers are 3, 7, 11, 15, 19. The median of five numbers in order is the third value, which is 11. Sufficient. Statement (2): The mean is 11, but many different sets of five distinct positive integers can have a mean of 11 with different medians. For example, {1, 2, 11, 20, 21} has median 11, but {1, 2, 3, 20, 29} has median 3. Not sufficient. The answer is A.
+**fastest_path:** (1) lists the five values → median is the third one. (2) gives mean only — many distinct-positive sets can share a mean.
+**explanation:** (1): Sorted set 3,7,11,15,19 → median = 11 (third). Sufficient. (2): mean = 11 admits many medians, e.g., {1,2,11,20,21} (med 11) vs {1,2,3,20,29} (med 3). Not sufficient. Answer A.
+**mistake_b:** B requires (2) alone sufficient — but mean doesn't pin median.
+**mistake_c:** C-trap — adding (2) doesn't help; (1) gives the median directly.
+**mistake_d:** D requires each alone — (2) fails as shown.
+**mistake_e:** E says together insufficient — but (1) alone solves.
+**common_trap:** *C-trap*: when (1) lists the data outright, you already have everything. Don't combine for the appearance of rigor.
+**takeaway:** Median DS: if a statement gives the *sorted set*, you have the median for free. Mean alone never determines median.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -125,7 +165,15 @@ If a and b are nonzero numbers, is a/b > 0?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**explanation:** We need to determine whether a and b have the same sign. Statement (1): a - b > 0 means a > b. But a = 5, b = 2 gives a/b > 0 (yes), while a = 3, b = -1 gives a/b < 0 (no). Not sufficient. Statement (2): a + b > 0. But a = 5, b = 2 gives a/b > 0 (yes), while a = 5, b = -2 gives a/b < 0 (no). Not sufficient. Together: a > b and a + b > 0. Try a = 3, b = 1: a/b = 3 > 0 (yes). Try a = 5, b = -2: a - b = 7 > 0 and a + b = 3 > 0, but a/b = -5/2 < 0 (no). Still not sufficient. The answer is E.
+**fastest_path:** Yes/no DS: a/b > 0 ⟺ a, b *same sign*. Test for both yes and no under each statement (and combined). Both possible → insufficient.
+**explanation:** (1): a−b>0 doesn't fix signs. a=5,b=2 (yes); a=3,b=−1 (no). Insufficient. (2): a+b>0 same: a=5,b=2 (yes); a=5,b=−2 (no). Insufficient. Together: a=3,b=1 (yes); a=5,b=−2 (a−b=7>0, a+b=3>0, but a/b=−5/2<0, no). Still split. Answer E.
+**mistake_a:** A requires (1) alone sufficient — but sign split shown.
+**mistake_b:** B requires (2) alone sufficient — same split.
+**mistake_c:** C says together sufficient — but yes/no split persists.
+**mistake_d:** D requires each alone — neither works.
+**common_trap:** Forgetting to test *negative* values. The sign question on a/b lives or dies on whether you remember a or b can be negative.
+**takeaway:** Yes/no DS on signs: always test both sign combinations explicitly. If you can produce yes AND no, the statement is insufficient.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -146,7 +194,15 @@ If k is a positive integer, is k² + k divisible by 4?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**explanation:** k² + k = k(k + 1). Statement (1): If k is odd, test k = 1: 1(2) = 2, not divisible by 4. Test k = 3: 3(4) = 12, divisible by 4. Different results, so not sufficient. Statement (2): If k is prime > 2, then k is odd. Test k = 3: 3(4) = 12, divisible by 4. Test k = 5: 5(6) = 30, not divisible by 4. Different results, so not sufficient. Together: Statement (2) already implies Statement (1), so the combined information is the same as Statement (2) alone. Still not sufficient. The answer is E.
+**fastest_path:** Factor: k(k+1). When k is odd, k+1 is even — but is k+1 divisible by *4*? Depends on k. Test small odd k.
+**explanation:** (1) k odd: k=1 → 1·2=2, no; k=3 → 3·4=12, yes. Insufficient. (2) k prime > 2 ⟹ k odd. k=3 yes; k=5 → 30, no. Insufficient. Together: (2) implies (1), so combined info = (2) alone. Still insufficient. Answer E.
+**mistake_a:** A requires (1) alone sufficient — but yes/no split.
+**mistake_b:** B requires (2) alone sufficient — same split.
+**mistake_c:** C requires together to add info — but (2) ⟹ (1), no new info.
+**mistake_d:** D requires each alone — neither works.
+**common_trap:** *Implied-statement trap*: when (2) implies (1), combining gives no new info. Don't fall for "C feels comprehensive."
+**takeaway:** When one statement *contains* the other, the combined information equals the stronger statement alone. C is a trap if neither alone suffices.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -167,7 +223,15 @@ Last year, Company X's revenue was $500,000. What was Company X's profit last ye
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**explanation:** Revenue = $500,000. Profit = Revenue - Expenses. Statement (1): Expenses = 0.80 x $500,000 = $400,000. Profit = $500,000 - $400,000 = $100,000. Sufficient. Statement (2): Profit = 0.20 x $500,000 = $100,000. Sufficient. Both statements independently yield the same answer. The answer is D.
+**fastest_path:** Revenue is given. (1) gives expenses → profit by subtraction. (2) gives profit margin → profit directly. Both alone work.
+**explanation:** Revenue = $500K. (1): expenses = 0.80 × 500 = $400K → profit = $100K. Sufficient. (2): margin 20% → profit = 0.20 × 500 = $100K. Sufficient. Each alone works. Answer D.
+**mistake_a:** A requires only (1) sufficient — but (2) also yields $100K.
+**mistake_b:** B requires only (2) sufficient — but (1) also yields $100K.
+**mistake_c:** C-trap — combining is unnecessary; either alone solves.
+**mistake_e:** E says together insufficient — but each alone solves.
+**common_trap:** Picking C because both statements *agree*. But agreement is irrelevant — each alone is sufficient, so the answer is D.
+**takeaway:** D requires each alone to be sufficient. When statements give equivalent info via different routes, D is the call.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -188,7 +252,15 @@ A solution is made by mixing chemical A and chemical B. What fraction of the sol
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**explanation:** We need the fraction A/(A + B). Statement (1): A:B = 2:3. The fraction of A = 2/(2+3) = 2/5. Note that the fraction depends only on the ratio, not the actual volumes. Sufficient. Statement (2): B = 6 liters. Without knowing the amount of A or the ratio, we cannot determine the fraction. Not sufficient. The answer is A.
+**fastest_path:** Fraction A/(A+B) depends only on the *ratio*, not the volumes. (1) gives the ratio. Done.
+**explanation:** (1): A:B = 2:3 → fraction of A = 2/(2+3) = 2/5. Sufficient (no volumes needed). (2): B = 6L without ratio — can't determine fraction. Not sufficient. Answer A.
+**mistake_b:** B requires (2) alone sufficient — but absolute B doesn't fix the ratio.
+**mistake_c:** C-trap — adding (2) doesn't help; (1) already gives the fraction.
+**mistake_d:** D requires each alone — (2) fails.
+**mistake_e:** E says together insufficient — but (1) alone solves.
+**common_trap:** *C-trap*: thinking you need a volume number to compute a fraction. Fractions depend on ratios, not absolute amounts.
+**takeaway:** Fraction-of-mixture DS: ratio alone is sufficient; absolute amounts add no information.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -209,7 +281,15 @@ What is the range of a set S of seven distinct integers?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** The range of a set is the difference between the largest and smallest values. Statement (1): The smallest value is -4, but without the largest, we cannot determine the range. Not sufficient. Statement (2): The largest value is 18, but without the smallest, we cannot determine the range. Not sufficient. Together: Range = 18 - (-4) = 22. Sufficient. The answer is C.
+**fastest_path:** Range = max − min. Each statement gives one endpoint. Together they suffice.
+**explanation:** (1): min = −4, no max. (2): max = 18, no min. Together: 18 − (−4) = 22. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — but no max given.
+**mistake_b:** B requires (2) alone sufficient — but no min given.
+**mistake_d:** D requires each alone — neither works.
+**mistake_e:** E says together insufficient — but two endpoints fix the range.
+**common_trap:** Treating the seven distinct integers as a constraint that adds info — but the count and distinctness don't determine min or max alone.
+**takeaway:** Range DS: max − min, period. The two endpoints are the only data needed.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -230,7 +310,15 @@ If x and y are integers, what is the value of x?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Statement (1): |x - 3| = 2y + 1. Since the left side is non-negative, we need 2y + 1 ≥ 0, so y ≥ -1/2, meaning y ≥ 0 (since y is an integer). If y = 0, |x - 3| = 1, so x = 4 or x = 2. If y = 1, |x - 3| = 3, so x = 6 or x = 0. Multiple values are possible. Not sufficient. Statement (2): x < 3 and y = 0. x could be any integer less than 3 (2, 1, 0, -1, ...). Not sufficient. Together: From (1) with y = 0: |x - 3| = 1, so x = 4 or x = 2. From (2): x < 3. Therefore x = 2. Sufficient. The answer is C.
+**fastest_path:** Value DS — need unique x. (1) leaves multiple (x,y) pairs. (2) bounds x and fixes y but doesn't pin x. Together: y=0 + x<3 + (1) → x=2.
+**explanation:** (1): |x−3|=2y+1 with y a non-negative integer admits multiple x's. Insufficient. (2): x<3 and y=0 — x could be 2,1,0,…. Insufficient. Together: y=0 in (1) → |x−3|=1 → x=2 or 4; (2) restricts x<3 → x=2. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — multiple (x,y) pairs.
+**mistake_b:** B requires (2) alone sufficient — x not uniquely fixed.
+**mistake_d:** D requires each alone — neither works.
+**mistake_e:** E says together insufficient — but they intersect on x=2.
+**common_trap:** *Forgetting absolute-value gives two cases* — |x−3|=1 gives x=2 *or* x=4, so the inequality from (2) is needed to pick x=2.
+**takeaway:** Absolute-value DS: |expr|=k gives *two* candidates. Look for a second statement to pick between them.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -251,7 +339,15 @@ If p and q are positive integers and pq = 36, is p + q > 13?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**explanation:** The factor pairs of 36 (where both are positive integers) are: (1,36), (2,18), (3,12), (4,9), (6,6), (9,4), (12,3), (18,2), (36,1). Statement (1): p is a perfect square (1, 4, 9, or 36). If p = 1, q = 36, p + q = 37 > 13 (yes). If p = 4, q = 9, p + q = 13, which is NOT > 13 (no). Different results, so not sufficient. Statement (2): q < p. Pairs where q < p: (36,1), (18,2), (12,3), (9,4). p + q values: 37, 20, 15, 13. When p = 9, q = 4, p + q = 13, not > 13 (no). When p = 12, q = 3, p + q = 15 > 13 (yes). Not sufficient. Together: p is a perfect square and q < p. Qualifying pairs: p = 4, q = 9 fails because q > p. p = 9, q = 4: both conditions met, p + q = 13 (no). p = 36, q = 1: both conditions met, p + q = 37 (yes). Still inconsistent. Not sufficient. The answer is E.
+**fastest_path:** Yes/no DS on p+q>13. List factor pairs of 36, then test each statement (and combined) for *both* yes and no answers. Both possible → insufficient.
+**explanation:** Factor pairs of 36: (1,36),(2,18),(3,12),(4,9),(6,6),(9,4),(12,3),(18,2),(36,1). (1) p perfect square: (1,36)→37 yes, (4,9)→13 no, split. (2) q<p: (9,4)→13 no, (12,3)→15 yes, split. Together (perfect square AND q<p): (9,4)→13 no, (36,1)→37 yes. Still split. Answer E.
+**mistake_a:** A requires (1) alone sufficient — yes/no split shown.
+**mistake_b:** B requires (2) alone sufficient — same split.
+**mistake_c:** C says together sufficient — but split persists (p=9,q=4 vs p=36,q=1).
+**mistake_d:** D requires each alone — neither works.
+**common_trap:** *Edge-case omission*: forgetting that p+q=13 is *not* greater than 13. Strict inequality is the trap; (9,4) gives exactly 13, which is "no."
+**takeaway:** Yes/no DS with strict inequalities: always test the *boundary* case. p+q=13 is the most likely answer to fail "p+q>13."
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -272,7 +368,15 @@ In a company, 60% of employees are full-time. Did the total number of employees 
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Let last year's total employees = T. Last year: full-time = 0.6T, part-time = 0.4T. Statement (1): This year's full-time = 1.1(0.6T) = 0.66T. But we don't know what happened to part-time employees. Total could increase or decrease. Not sufficient. Statement (2): This year's part-time = 0.95(0.4T) = 0.38T. But we don't know what happened to full-time employees. Not sufficient. Together: This year's total = 0.66T + 0.38T = 1.04T. Since 1.04T > T, the total increased. Sufficient. The answer is C.
+**fastest_path:** Last year: 0.6T full + 0.4T part. (1) gives only FT change. (2) gives only PT change. Together: this year = 1.1(0.6T) + 0.95(0.4T) = 1.04T > T. Yes.
+**explanation:** Let T = last year's total. (1): FT this year = 1.1·0.6T = 0.66T, but PT unknown → total unknown. (2): PT this year = 0.95·0.4T = 0.38T, but FT unknown. Together: 0.66T + 0.38T = 1.04T > T → total increased. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — FT alone doesn't determine total.
+**mistake_b:** B requires (2) alone sufficient — PT alone doesn't either.
+**mistake_d:** D requires each alone — neither works.
+**mistake_e:** E says together insufficient — but the weighted sum is computable.
+**common_trap:** Reading "60% full-time" as fixed for *both* years. The 60% is *last year's* split; this year's split could differ.
+**takeaway:** Yes/no DS on totals: when each statement gives one component's change, combining always gives the weighted sum. Use the original split as weights.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -293,7 +397,15 @@ Three partners -- F, G, and H -- split a profit in the ratio of their investment
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Let G's investment = g. Then F's investment = 2g, and H's investment = h. Total investment = 3g + h. H's share of profit = h / (3g + h). Statement (1): h = $40,000. But without g, we cannot compute h/(3g + 40,000). Not sufficient. Statement (2): 3g + h = $140,000. H's fraction = h/140,000, but we don't know h. Not sufficient. Together: h = 40,000 and total = 140,000, so H's fraction = 40,000/140,000 = 2/7. Sufficient. The answer is C.
+**fastest_path:** H's fraction = h / total. Each statement gives one piece (h or total). Together: 40,000 / 140,000 = 2/7.
+**explanation:** Let G=g, F=2g, H=h. Total = 3g+h. H's share = h/(3g+h). (1): h=$40K, no g. (2): 3g+h=$140K, no h. Together: 40K/140K = 2/7. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — without g (or total), can't compute fraction.
+**mistake_b:** B requires (2) alone sufficient — without h, can't compute fraction.
+**mistake_d:** D requires each alone — neither has both pieces.
+**mistake_e:** E says together insufficient — but two values determine the fraction.
+**common_trap:** Treating the 2:1 ratio of F:G as enough to compute everything — but H's investment is independent and needs its own data.
+**takeaway:** Fraction-of-total DS: need *the part* and *the total*. Ratios of *other* parts don't substitute.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -314,7 +426,15 @@ A data set contains eight positive numbers. Is the standard deviation of the dat
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**explanation:** Statement (1): The range is 4, meaning the maximum minus the minimum equals 4. The standard deviation can never exceed the range for any data set (in fact, for any data set the standard deviation is at most half the range). Since all deviations from the mean are at most the range, and the standard deviation is a type of average deviation, the SD must be less than or equal to half the range. More precisely, SD ≤ range/2 = 4/2 = 2. Since 2 < 5, the standard deviation is definitely not greater than 5. Sufficient (answer is "no"). Statement (2): The mean is 50. The values could all be 50 (SD = 0 < 5), or they could be spread out widely (e.g., values from 1 to 99, giving SD > 5). Not sufficient. The answer is A.
+**fastest_path:** Yes/no DS on SD>5. Range 4 caps SD at ≤ range/2 = 2 < 5. Definite "no" → (1) sufficient.
+**explanation:** (1): Range = 4 ⟹ SD ≤ range/2 = 2 < 5. Definite no. Sufficient. (2): Mean = 50 says nothing about spread — values could be all 50 (SD 0) or spread widely (SD > 5). Insufficient. Answer A.
+**mistake_b:** B requires (2) alone sufficient — but mean is silent on SD.
+**mistake_c:** C-trap — adding (2) doesn't help; (1) alone gives a definitive no.
+**mistake_d:** D requires each alone — (2) fails.
+**mistake_e:** E says together insufficient — but (1) alone solves.
+**common_trap:** Forgetting that *definite no* counts as sufficient. Sufficiency = a unique answer (yes or no), not just "yes."
+**takeaway:** Yes/no DS: a confident "no" is just as sufficient as a confident "yes." Range-bounds-SD is a powerful inequality lever.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -335,7 +455,15 @@ If n is a positive integer, is n odd?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**explanation:** This is a classic "C trap" where students combine statements without testing each alone. Statement (1): 3n is odd. Odd x odd = odd, and odd x even = even, so if 3n is odd, then n must be odd. Sufficient (answer is "yes"). Statement (2): n + 4 is odd. Since 4 is even, and even + odd = odd, n must be odd. Sufficient (answer is "yes"). Each statement alone pins down that n is odd, so the answer is D, not C.
+**fastest_path:** Yes/no DS — each statement alone forces n odd. (1) 3n odd ⟹ n odd (3 is odd, odd·even=even). (2) n+4 odd ⟹ n odd (even+even=even). D.
+**explanation:** (1): 3n odd. Since 3 is odd, 3n's parity = n's parity. So n is odd. Sufficient (yes). (2): n+4 odd, 4 is even, so n must be odd. Sufficient (yes). Each alone settles it. Answer D.
+**mistake_a:** A requires only (1) sufficient — but (2) also pins n as odd.
+**mistake_b:** B requires only (2) sufficient — but (1) also does.
+**mistake_c:** *C-trap* — combining is unnecessary; each alone solves.
+**mistake_e:** E says together insufficient — both individually solve, so combined certainly does.
+**common_trap:** *C-trap* on parity questions: students reflexively combine. Each parity statement on a multiplied or shifted n usually fixes n's parity alone.
+**takeaway:** Parity DS: parity propagates through addition (mod 2) and odd-multiplication. Always test each statement *alone* before reaching for C.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -356,7 +484,15 @@ What is the value of x?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Statement (1): One equation with two unknowns has infinitely many solutions; x could be 4 (with y = 3), or 7 (with y = 1), etc. Not sufficient. Statement (2): y = 3 says nothing about x on its own. Not sufficient. Together: Substituting y = 3 into 2x + 3(3) = 17 gives 2x = 8, so x = 4. Sufficient. The answer is C.
+**fastest_path:** One equation in two unknowns is rarely sufficient. (2) gives y. Sub: 2x+9=17 → x=4.
+**explanation:** (1): 2x+3y=17 alone — infinite (x,y) pairs. (2): y=3 alone — x unconstrained. Together: 2x+9=17 → x=4. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — but two unknowns, one equation.
+**mistake_b:** B requires (2) alone sufficient — y alone says nothing about x.
+**mistake_d:** D requires each alone — neither has both pieces.
+**mistake_e:** E says together insufficient — but two equations in two unknowns solve.
+**common_trap:** Picking E because the question feels constrained. Two independent equations in two unknowns almost always solve.
+**takeaway:** Linear-system DS: count *independent* equations vs unknowns. n equations and n unknowns (independent) → unique solution.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -377,7 +513,15 @@ What is the area of rectangle ABCD?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Let the sides be L and W. Statement (1): L² + W² = 100 (diagonal), but many (L, W) pairs satisfy this with different areas (e.g., 6 and 8 give area 48; 7.07 and 7.07 give area 50). Not sufficient. Statement (2): 2L + 2W = 28, so L + W = 14. Areas differ (e.g., 7 x 7 = 49 vs 6 x 8 = 48). Not sufficient. Together: (L + W)² = L² + 2LW + W² = 100 + 2LW, so 196 = 100 + 2LW, giving LW = 48. The area is uniquely 48. Sufficient. The answer is C.
+**fastest_path:** Area = LW. (1) gives L²+W²=100; (2) gives L+W=14. Use (L+W)² = L²+W² + 2LW: 196=100+2LW → LW=48.
+**explanation:** (1): L²+W²=100. Many (L,W) pairs (6,8 → 48; 7.07,7.07 → 50). Insufficient. (2): L+W=14. 7×7=49 vs 6×8=48. Insufficient. Together: (L+W)²−(L²+W²) = 2LW → 196−100 = 2LW → LW=48. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — but L²+W²=100 has many area outcomes.
+**mistake_b:** B requires (2) alone sufficient — same issue with L+W=14.
+**mistake_d:** D requires each alone — neither works.
+**mistake_e:** E says together insufficient — but the algebraic identity nails LW.
+**common_trap:** Trying to solve for L and W individually. You don't need them — you need *LW*, which the (L+W)² identity reveals directly.
+**takeaway:** Geometry/algebra DS: when the question is about a *product* (area, LW), look for the identity (L+W)² = L²+2LW+W². You rarely need L,W separately.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -398,7 +542,15 @@ If p is an integer, is p even?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**explanation:** Another "C trap" — students instinctively combine. Statement (1): p² is even means p² has a factor of 2; since 2 is prime, p itself must contain a factor of 2, so p is even. Sufficient ("yes"). Statement (2): p + 1 is odd, and odd - 1 = even, so p is even. Sufficient ("yes"). Each alone settles the question. The answer is D.
+**fastest_path:** Yes/no DS — each alone forces p even. (1) p² even ⟹ p even (2 prime in factorization). (2) p+1 odd ⟹ p even. D.
+**explanation:** (1): p² even. Since 2 is prime, p² having factor 2 means p has factor 2 → p even. Sufficient (yes). (2): p+1 odd ⟹ p even. Sufficient (yes). Each alone solves. Answer D.
+**mistake_a:** A requires only (1) sufficient — (2) also pins p as even.
+**mistake_b:** B requires only (2) sufficient — (1) also does.
+**mistake_c:** *C-trap* — combining is unnecessary; each alone solves.
+**mistake_e:** E says together insufficient — both work alone.
+**common_trap:** *C-trap* — second instance in DS, same lesson. Always check each parity statement alone.
+**takeaway:** Parity propagates through prime-factor inheritance: if p² has a prime factor q, so does p. Use this for parity D-type DS.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -419,7 +571,15 @@ Is x > y?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** B
-**explanation:** Classic sign trap on squaring. Statement (1): x² > y² just means |x| > |y|. Try x = 3, y = 1: x > y (yes). Try x = -3, y = 1: |-3| > |1| but x = -3 < 1 = y (no). Not sufficient. Statement (2): x - y > 0 rearranges directly to x > y. Sufficient (always "yes"). The trap is treating inequalities like equations when squaring; only Statement (2) is a direct rewording. The answer is B.
+**fastest_path:** (1) x²>y² ↔ |x|>|y|, says nothing about *signed* order. (2) x−y>0 ↔ x>y. Sufficient.
+**explanation:** (1): x²>y² gives only |x|>|y|. x=3,y=1 (yes); x=−3,y=1 (no). Insufficient. (2): x−y>0 directly rearranges to x>y. Sufficient. Answer B.
+**mistake_a:** A requires only (1) sufficient — but sign split shown.
+**mistake_c:** C says together sufficient — but (2) alone already does.
+**mistake_d:** D requires each alone — (1) fails.
+**mistake_e:** E says together insufficient — but (2) alone solves.
+**common_trap:** Treating squared inequalities as if they preserved sign. Squaring strips sign — always test negatives explicitly.
+**takeaway:** Inequality DS: x²>y² says nothing about *signed* order. Only the direct subtraction (x−y) preserves order.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -440,7 +600,15 @@ If 4x + 3y = 24, what is the value of y?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**explanation:** Integer-constraint trap — students see "one equation, two unknowns" and default to C. Statement (1): Positive integer solutions to 4x + 3y = 24. We need 24 - 3y to be a positive multiple of 4. y = 4: 4x = 12, x = 3 (works). y = 8: 4x = 0, x = 0 (not positive, fails). y = 1, 2, 3, 5, 6, 7: 24 - 3y is not divisible by 4. Only (x, y) = (3, 4) works, so y = 4 uniquely. Sufficient. Statement (2): x > 4 with no integer constraint gives infinitely many y values (e.g., x = 5 gives y = 4/3; x = 6 gives y = 0). Not sufficient. The answer is A.
+**fastest_path:** Integer constraint dramatically reduces solution space. Test y=1..8 modulo 4 — only y=4 yields integer x. Sufficient.
+**explanation:** (1): 4x+3y=24 with positive integers. Need 24−3y divisible by 4 *and* x positive. Only y=4 works (x=3). y unique → sufficient. (2): x>4 with no integer constraint — infinite y. Insufficient. Answer A.
+**mistake_b:** B requires (2) alone sufficient — but x>4 alone leaves y free.
+**mistake_c:** C-trap — adding (2) doesn't help; (1) already pins y.
+**mistake_d:** D requires each alone — (2) fails.
+**mistake_e:** E says together insufficient — (1) alone solves.
+**common_trap:** Defaulting to "one equation in two unknowns is insufficient." When the constraint includes *integers*, only finitely many points on the line satisfy. Often unique.
+**takeaway:** Integer constraints can collapse a multi-unknown linear equation to a unique solution. Always enumerate integer cases before declaring insufficient.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -461,7 +629,15 @@ Is x > 0?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Sign-question trap using cubes and squares. Statement (1): x³ > x means x³ - x > 0, i.e., x(x-1)(x+1) > 0. This holds when -1 < x < 0 or x > 1. Try x = 2: yes x > 0. Try x = -0.5: x < 0. Not sufficient. Statement (2): x² < 1 means -1 < x < 1. x could be 0.5 (>0) or -0.5 (<0). Not sufficient. Together: From (1), x in (-1, 0) U (1, infinity); from (2), x in (-1, 1). Intersection: x in (-1, 0). So x < 0 — answer is always "no." Sufficient. The answer is C.
+**fastest_path:** Yes/no x>0. Factor (1): x(x−1)(x+1)>0 → x∈(−1,0)∪(1,∞). (2): x∈(−1,1). Intersect: x∈(−1,0) → x<0. Always "no". C.
+**explanation:** (1): x³>x ↔ x(x²−1)>0 ↔ x in (−1,0) ∪ (1,∞). Both signs possible (yes for x>1, no for −1<x<0). Insufficient. (2): x²<1 ↔ −1<x<1. Both signs. Insufficient. Together: intersection (−1,0) → x<0 always (no). Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — both sign cases possible.
+**mistake_b:** B requires (2) alone sufficient — same issue.
+**mistake_d:** D requires each alone — neither works.
+**mistake_e:** E says together insufficient — but intersection nails sign.
+**common_trap:** Forgetting cubic-inequality factoring. x³>x rarely means x>0 — it means x is in two disjoint zones, depending on sign.
+**takeaway:** Cubic-inequality DS: factor first. x(x−a)(x+a) sign analysis is the standard tool.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -482,7 +658,15 @@ If n is a positive integer, what is the remainder when n is divided by 5?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**explanation:** Remainder-ladder trap. Statement (1): n = 10k + 3 for some non-negative integer k. Dividing by 5: n = 5(2k) + 3, so the remainder is 3 regardless of k. Sufficient. Statement (2): n is odd. n = 1 gives remainder 1; n = 3 gives remainder 3; n = 5 gives remainder 0. Not sufficient. The answer is A.
+**fastest_path:** (1) n = 10k+3. Since 10 = 5·2, n mod 5 = 3 mod 5 = 3. Sufficient.
+**explanation:** (1): n = 10k + 3 → n mod 5 = (10k mod 5) + (3 mod 5) = 0 + 3 = 3. Always 3. Sufficient. (2): n odd. n=1 (r=1); n=3 (r=3); n=5 (r=0). Insufficient. Answer A.
+**mistake_b:** B requires (2) alone sufficient — but odd n yields different remainders.
+**mistake_c:** C-trap — adding (2) doesn't help; (1) already gives the remainder.
+**mistake_d:** D requires each alone — (2) fails.
+**mistake_e:** E says together insufficient — but (1) alone solves.
+**common_trap:** Treating "remainder when divided by 10" as separate from "remainder when divided by 5." When the divisor of (1) is a multiple of the divisor we're asked about, the (1)-remainder transfers directly.
+**takeaway:** Remainder DS: if n mod (kd) = r, then n mod d = r mod d. Remainders inherit through divisor-multiples.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -503,7 +687,15 @@ If a, b, and c are real numbers, what is the value of a + b + c?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** System-of-equations trap. Statement (1): a + b = 10, but c is free, so a + b + c = 10 + c is not unique (c = 0 gives 10; c = 5 gives 15). Not sufficient. Statement (2): Two equations in three unknowns. Adding them: a + b + 2c = 20, but a + b + c is not pinned down (a = 0, c = 8, b = 4: sum = 12; a = 2, c = 6, b = 6: sum = 14). Not sufficient. Together: From (1), a + b = 10; substituting into a + b + 2c = 20 gives 2c = 10, so c = 5 and a + b + c = 15. Sufficient. The answer is C.
+**fastest_path:** Three unknowns. (1) gives one equation, (2) gives two. Combined: three independent equations → unique sum.
+**explanation:** (1): a+b=10, c free. Insufficient. (2): b+c=12, a+c=8. Two equations, three unknowns. Adding: a+b+2c=20 — but a+b+c not unique. Insufficient. Together: a+b=10 (from 1), a+b+2c=20 (sum of 2's eqs) → 2c=10, c=5 → a+b+c=15. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — c free.
+**mistake_b:** B requires (2) alone sufficient — only 2 of 3 unknowns determined.
+**mistake_d:** D requires each alone — neither has 3 independent equations.
+**mistake_e:** E says together insufficient — but combined gives 3 independent equations.
+**common_trap:** Assuming (2) alone works because it has two equations. Two equations in three unknowns can never solve for all variables (or their sum) without a third constraint.
+**takeaway:** Counting-rank principle: n unknowns need n independent equations. Sum of variables sometimes solvable with fewer, but only when the equations align.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -524,7 +716,15 @@ In triangle ABC, what is the measure of angle A?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**explanation:** Classic geometry "C-to-E" trap — seems solvable together but isn't. Statement (1): Only angle B is fixed; A + C = 110 with many possibilities. Not sufficient. Statement (2): Isosceles means two sides equal, hence two angles equal, but we don't know which two. Not sufficient. Together: B = 70 and the triangle is isosceles. Which pair of angles are equal? Case 1: A = B = 70, then C = 40, so A = 70. Case 2: B = C = 70, then A = 40. Case 3: A = C, then A = C = (180 - 70)/2 = 55. Three possible values for A (70, 40, or 55). Not sufficient even together. The answer is E.
+**fastest_path:** Yes triangle isosceles + B=70, but *which* pair is equal? A=70 (if A=B), or A=40 (if B=C), or A=55 (if A=C). Three cases. Insufficient.
+**explanation:** (1): B=70, A+C=110 — many splits. Insufficient. (2): Isosceles, but which pair equal? Insufficient. Together: B=70 and isosceles, three cases — A=B=70 → A=70; B=C=70 → A=40; A=C, both =55. Three values for A. Insufficient. Answer E.
+**mistake_a:** A requires (1) alone sufficient — A+C=110 has many splits.
+**mistake_b:** B requires (2) alone sufficient — pair unspecified.
+**mistake_c:** *C-to-E trap* — adding the isosceles constraint *doesn't* pin down which pair is equal.
+**mistake_d:** D requires each alone — neither works.
+**common_trap:** *C-to-E trap*: students see "B=70 + isosceles" and assume it must work. But "isosceles" gives a *family* of three configurations, not a unique angle.
+**takeaway:** Triangle DS with "isosceles": always count *which pair* is equal. The vertex of isosceles is ambiguous unless specified.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -545,7 +745,15 @@ If x and y are nonzero real numbers, is x/y < 1?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**explanation:** Classic "C-to-E" trap — combining looks like it works but negative pairs break it. Statement (1): x < y. Try x = 1, y = 2: x/y = 0.5 < 1 (yes). Try x = -2, y = -1: x/y = 2, not < 1 (no). Not sufficient. Statement (2): xy > 0 means same sign. Try x = 1, y = 2: x/y = 0.5 (yes). Try x = 2, y = 1: x/y = 2 (no). Not sufficient. Together: x < y AND same sign. If both positive, e.g., x = 1, y = 2: x/y = 0.5 < 1 (yes). If both negative, e.g., x = -3, y = -1: x < y holds and xy = 3 > 0, but x/y = 3, not < 1 (no). Both cases remain, so together still insufficient. The answer is E.
+**fastest_path:** Yes/no x/y<1. Test sign combos. (1) x<y silent on signs. (2) same sign silent on order. Together: both pos (x/y<1) vs both neg with x<y (x/y>1). Split.
+**explanation:** (1): x<y. Pos x=1,y=2 (x/y=0.5, yes). Neg x=−2,y=−1 (x/y=2, no). Insufficient. (2): xy>0 (same sign). x=1,y=2 (yes); x=2,y=1 (no). Insufficient. Together: both pos with x<y → x/y<1 (yes); both neg with x<y → x/y>1 (no). Still split. Answer E.
+**mistake_a:** A requires (1) alone sufficient — split shown.
+**mistake_b:** B requires (2) alone sufficient — order matters.
+**mistake_c:** *C-to-E trap*: combining seems to lock it down, but negative-pair behavior flips x/y<1 to x/y>1.
+**mistake_d:** D requires each alone — neither works.
+**common_trap:** *Sign-of-quotient flip* under negation: dividing two negatives flips all the inequalities you'd assume from the positive case. Always test both signs.
+**takeaway:** Quotient-inequality DS: sign matters. x<y AND same-sign doesn't pin x/y vs 1 — negative pairs flip the result.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -566,7 +774,15 @@ Set S consists of five distinct positive integers. Is the median of S greater th
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**explanation:** Skewness trap. Let the sorted values be a < b < c < d < e; median = c, mean = (a+b+c+d+e)/5. Statement (1): e > 2(a+b+c+d). Then mean = (a+b+c+d+e)/5 > (a+b+c+d + 2(a+b+c+d))/5 = 3(a+b+c+d)/5. For median > mean, need c > 3(a+b+c+d)/5, i.e., 5c > 3(a+b+c+d), i.e., 2c > 3(a+b+d). But b and d are both at least... actually, simpler: Statement (1) forces the mean to be pulled far above c by the huge e. Formally, mean > (a+b+c+d + 2(a+b+c+d))/5 = 3(a+b+c+d)/5 ≥ 3(4c)/5 is wrong since a,b < c; try concrete: {1,2,3,4,21}: sum=31, mean=6.2, median=3; 21 > 2(1+2+3+4)=20, yes. Median (3) < mean (6.2) — so answer is "no." Any set meeting (1) has e so dominant that mean > median. Sufficient (always "no"). Statement (2): smallest = 1, e.g., {1,2,3,4,5}: median = 3 = mean (no). {1,2,3,4,100}: median = 3, mean = 22 (no). {1,2,10,11,12}: median = 10, mean = 7.2 (yes). Not sufficient. The answer is A.
+**fastest_path:** Yes/no median>mean. (1) e > 2(a+b+c+d) makes the largest dominant — mean dragged way above median. Always "no". Sufficient.
+**explanation:** Sorted a<b<c<d<e; median=c, mean=(sum)/5. (1): e > 2(a+b+c+d) ⟹ sum > 3(a+b+c+d), so mean > 3(a+b+c+d)/5 = (3/5)·(sum without e). Concrete: {1,2,3,4,21} (e=21 > 2·10=20). Median=3, mean=6.2 → no. The huge e forces mean above median. Sufficient (always "no"). (2): smallest=1. {1,2,3,4,5} (med=3=mean, no). {1,2,10,11,12} (med=10, mean=7.2, yes). Insufficient. Answer A.
+**mistake_b:** B requires (2) alone sufficient — yes/no split shown.
+**mistake_c:** C-trap — adding (2) doesn't help; (1) alone gives definitive no.
+**mistake_d:** D requires each alone — (2) fails.
+**mistake_e:** E says together insufficient — but (1) alone solves.
+**common_trap:** Forgetting that *definite no* is sufficient. Sufficiency = unique yes-or-no, not just yes.
+**takeaway:** Skewness DS: a single value much larger than the rest pulls the mean far above the median. Always "no" for "median>mean" in heavily right-skewed sets.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -587,7 +803,15 @@ If x is a positive integer, is x prime?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**explanation:** Definition-of-prime trap. Statement (1): "Exactly two positive divisors" is the definition of a prime number (1 and itself). Sufficient (always "yes"). Statement (2): x + 1 = p² for some prime p. If p = 2, x + 1 = 4, so x = 3 (prime, yes). If p = 3, x + 1 = 9, so x = 8 (not prime, no). If p = 5, x + 1 = 25, so x = 24 (not prime, no). Not sufficient. The answer is A.
+**fastest_path:** (1) "Exactly two positive divisors" *is* the definition of prime. Always yes. Sufficient.
+**explanation:** (1): Two positive divisors = 1 and x itself = definition of prime. Sufficient (yes). (2): x+1=p². p=2 → x=3 (prime, yes). p=3 → x=8 (not, no). Insufficient. Answer A.
+**mistake_b:** B requires (2) alone sufficient — yes/no split.
+**mistake_c:** C-trap — adding (2) doesn't help; (1) alone is the prime definition.
+**mistake_d:** D requires each alone — (2) fails.
+**mistake_e:** E says together insufficient — but (1) is conclusive alone.
+**common_trap:** Missing that "exactly two positive divisors" = prime, by definition. Statements that restate the definition are sufficient by tautology.
+**takeaway:** When a statement *is* the definition of the property being asked about, it's automatically sufficient. Recognize defining conditions on sight.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -608,7 +832,15 @@ A circle is inscribed in square ABCD. What is the area of the circle?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**explanation:** "Looks like C, actually D" geometry trap. For an inscribed circle, the circle's diameter equals the square's side. Statement (1): Diagonal = 10 √2 means side = 10 (since diagonal of a square = side x √2). Circle radius = 5, area = 25π. Sufficient. Statement (2): Let side = s, radius = s/2. Region outside circle = s² - π(s/2)² = s² - π s²/4. Given this equals 100 - 25π, we match: s² = 100 (so s = 10) and π s²/4 = 25π (confirms s = 10). Radius = 5, circle area = 25π. Sufficient. Each alone works, so the answer is D.
+**fastest_path:** Inscribed circle: diameter = side. (1) diag=10√2 ⟹ side=10 ⟹ r=5, area=25π. (2) outside-region match gives s=10. Each alone works.
+**explanation:** Inscribed circle's diameter = square's side. (1): diag=10√2 ⟹ side=10 ⟹ r=5 ⟹ area=25π. Sufficient. (2): region outside = s²−π(s/2)² = s²(1−π/4) = 100−25π ⟹ s=10 ⟹ r=5 ⟹ area=25π. Sufficient. Each alone works. Answer D.
+**mistake_a:** A requires only (1) sufficient — but (2) also pins down area.
+**mistake_b:** B requires only (2) sufficient — but (1) also does.
+**mistake_c:** *C-trap*: combining is unnecessary — each statement alone gives s=10.
+**mistake_e:** E says together insufficient — but each alone works.
+**common_trap:** *D-as-C-trap* in geometry: when both statements lead to the same calculation, students reach for C "for safety." Each alone solves.
+**takeaway:** Inscribed-circle geometry: side = diameter. Either side info or area-relationship info alone fixes the figure.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -629,7 +861,15 @@ If a, b, and c are nonzero integers, is abc > 0?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Sign-counting trap. For abc > 0, we need an even number of negatives (0 or 2). Statement (1): ab > 0 means a, b same sign; bc > 0 means b, c same sign. So a, b, c all share b's sign — all positive or all negative. If all positive: abc > 0 (yes). If all negative: abc = (neg)(neg)(neg) < 0 (no). Not sufficient. Statement (2): a + b + c > 0. Try a = b = c = 1: abc = 1 > 0 (yes). Try a = 5, b = -1, c = -1: sum = 3 > 0, abc = 5 > 0 (yes). Try a = 5, b = -2, c = -1: sum = 2 > 0, abc = 10 > 0 (yes). Try a = 10, b = -1, c = -2: abc = 20 (yes). Try a = 3, b = -1, c = 1: sum = 3, abc = -3 (no). Not sufficient. Together: From (1), all three have the same sign. From (2), their sum is positive, which forces them all positive (if all negative, sum would be negative). So all positive means abc > 0. Sufficient (always "yes"). The answer is C.
+**fastest_path:** abc>0 ↔ even number of negatives. (1) forces a,b,c same sign (all pos or all neg). (2) excludes all-neg. Together: all pos → abc>0.
+**explanation:** (1): ab>0 and bc>0 ⟹ a,b same sign and b,c same sign ⟹ all three share b's sign. All pos (abc>0) or all neg (abc<0). Insufficient. (2): a+b+c>0 admits mixed signs. Insufficient. Together: same sign + positive sum → all pos → abc>0. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — but all-neg case gives abc<0.
+**mistake_b:** B requires (2) alone sufficient — mixed signs admit yes/no.
+**mistake_d:** D requires each alone — neither works.
+**mistake_e:** E says together insufficient — but (1) + (2) excludes all-neg.
+**common_trap:** Stopping at (1) once you get "same sign." That's only a *yes* if signs are positive. Need (2) to exclude all-negative.
+**takeaway:** Sign-product DS: count negatives. abc>0 = 0 or 2 negatives. Same-sign info alone fails because "all negative" is also same-sign.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -650,7 +890,15 @@ In triangle PQR, what is the measure of angle P?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Triangle angles sum to 180 degrees. Statement (1): Knowing Q = 70 leaves P + R = 110 but P could be any value from just above 0 to just under 110. Not sufficient. Statement (2): Knowing R = 55 leaves P + Q = 125. Not sufficient. Together: P = 180 - 70 - 55 = 55 degrees. Sufficient. The answer is C.
+**fastest_path:** Triangle angles sum to 180. Need two angles to find the third. Each statement gives one. Together: P = 180−70−55 = 55.
+**explanation:** P+Q+R=180. (1) Q=70 alone leaves P+R=110, P unknown. (2) R=55 alone leaves P+Q=125, P unknown. Together: P=180−70−55=55. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — only one angle given.
+**mistake_b:** B requires (2) alone sufficient — same.
+**mistake_d:** D requires each alone — neither has two angles.
+**mistake_e:** E says together insufficient — but two angles uniquely fix the third.
+**common_trap:** Treating one angle as enough. Triangle DS for a specific angle needs *two* of the three.
+**takeaway:** Triangle DS: angle sum = 180 means n−1 angles fix the nth. Always count which angles are pinned.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -671,7 +919,15 @@ A printer prints pages at a constant rate. How many pages does it print in 12 mi
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**explanation:** Statement (1): Rate = 40/5 = 8 pages per minute, so in 12 minutes the printer prints 96 pages. Sufficient. Statement (2): "Twice as many in 10 minutes as in 5 minutes" is just a restatement of constant rate — it gives no numerical rate. The printer could print any number of pages per minute. Not sufficient. The answer is A.
+**fastest_path:** (1) gives rate (40/5 = 8/min) → 12·8 = 96. (2) just restates constant rate — no number. A.
+**explanation:** (1): 40 pages / 5 min = 8 pages/min → 12 × 8 = 96. Sufficient. (2): "Twice as many in 10 min as in 5 min" follows from any constant rate — it adds no numerical info. Insufficient. Answer A.
+**mistake_b:** B requires (2) alone sufficient — but it's tautological.
+**mistake_c:** C-trap — adding (2) gives nothing new; (1) already solves.
+**mistake_d:** D requires each alone — (2) is empty.
+**mistake_e:** E says together insufficient — but (1) alone solves.
+**common_trap:** Falling for tautological statements. "Twice as many in twice the time" is *true for any constant rate* — adds no information.
+**takeaway:** DS hygiene: check whether a statement actually constrains values. Restatements of given conditions add nothing.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -692,7 +948,15 @@ A store sold x televisions in March and y televisions in April. What is the valu
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Statement (1): y = 1.2x, one equation in two unknowns. Not sufficient. Statement (2): y = 72. No link to x. Not sufficient. Together: 72 = 1.2x, so x = 60. Sufficient. The answer is C.
+**fastest_path:** (1) y=1.2x. (2) y=72. Together: 72=1.2x → x=60.
+**explanation:** (1): y=1.2x — one equation, two unknowns. Insufficient. (2): y=72 — no link to x. Insufficient. Together: 72=1.2x → x=60. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — but no anchor on x.
+**mistake_b:** B requires (2) alone sufficient — y alone gives no x.
+**mistake_d:** D requires each alone — neither does.
+**mistake_e:** E says together insufficient — but two equations in two unknowns solve.
+**common_trap:** Picking E because problem feels under-specified. Percent-relation + absolute number = solvable.
+**takeaway:** Percent-comparison DS: ratio + one anchor value = unique solution.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -713,7 +977,15 @@ What is the value of |k - 3|?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**explanation:** "Looks like A, actually D" absolute value trap. Statement (1): k = 7, so |k - 3| = |4| = 4. Sufficient. Statement (2): (k - 3)² = 16 means |k - 3| = √16 = 4 directly (since |x| = √(x²)). The actual value of k could be 7 or -1, but both give |k - 3| = 4. Sufficient. Each alone works, so the answer is D.
+**fastest_path:** (1) k=7 → |4|=4. (2) (k−3)²=16 → |k−3|=√16=4 directly (k could be 7 or −1, both give 4). Each alone solves.
+**explanation:** (1): k=7 → |k−3|=4. Sufficient. (2): (k−3)²=16 → |k−3|=√16=4 (since |x|=√(x²)). k=7 or k=−1, but both give the absolute value 4. Sufficient. Answer D.
+**mistake_a:** A requires only (1) sufficient — but (2) also solves.
+**mistake_b:** B requires only (2) sufficient — but (1) also solves.
+**mistake_c:** C-trap — combining is unnecessary.
+**mistake_e:** E says together insufficient — both alone solve.
+**common_trap:** Thinking (2) only narrows k to two values. But the question asks for |k−3|, which is the same for both — so (2) is actually sufficient.
+**takeaway:** When the question is *|expression|* and a statement gives *(expression)²*, square-root-then-absolute-value gives the answer directly — no need to find the original variable.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -734,7 +1006,15 @@ In the xy-plane, line L passes through the points (2, 5) and (a, b). What is the
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Statement (1): Slope = (b - 5)/(a - 2) = 3, so b - 5 = 3(a - 2). Two unknowns. Not sufficient. Statement (2): a = 6 gives no info about b. Not sufficient. Together: b - 5 = 3(6 - 2) = 12, so b = 17. Sufficient. The answer is C.
+**fastest_path:** Slope formula (b−5)/(a−2)=3. (1) gives slope; (2) gives a. Plug: b−5=3(6−2)=12 → b=17.
+**explanation:** (1): Slope=3 → b−5=3(a−2). Two unknowns. Insufficient. (2): a=6 alone gives no b. Insufficient. Together: b−5=12 → b=17. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — slope alone has infinite (a,b) pairs.
+**mistake_b:** B requires (2) alone sufficient — a alone gives no b.
+**mistake_d:** D requires each alone — neither does.
+**mistake_e:** E says together insufficient — but two pieces nail b.
+**common_trap:** Thinking slope plus *one* point uniquely determines a line — true. But b is the y-coordinate at a specific x; you need *that x* (a) to compute b.
+**takeaway:** Coordinate DS: slope + one point fixes the line. To get a specific b, you also need the matching a.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -755,7 +1035,15 @@ Machines A and B work simultaneously at their respective constant rates to fill 
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Statement (1): Only A's rate given; B's rate unknown. Not sufficient. Statement (2): Only B's rate given. Not sufficient. Together: Combined rate = 1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2 order per hour. Time = 2 hours. Sufficient. The answer is C.
+**fastest_path:** Combined rate = sum of individual rates. (1) gives A's rate; (2) gives B's rate. Together: 1/6 + 1/3 = 1/2 order/hour → 2 hours.
+**explanation:** Combined-rate formula: rate_combined = rate_A + rate_B; time = 1/rate_combined. (1): rate_A = 1/6. Without B's rate, can't combine. (2): rate_B = 1/3. Without A. Together: 1/6 + 1/3 = 1/2 → 2 hours. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — need both rates.
+**mistake_b:** B requires (2) alone sufficient — need both.
+**mistake_d:** D requires each alone — neither has both.
+**mistake_e:** E says together insufficient — but combined-rate formula gives unique time.
+**common_trap:** Adding rates conceptually but forgetting that *one rate alone* never tells you the combined time. Both individual rates needed.
+**takeaway:** Combined-rate DS: T_combined = 1/(1/T_A + 1/T_B). Need both individual times. Standard C answer for joint-work problems.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -776,7 +1064,15 @@ At a company, the ratio of men to women is 3 to 5. After 10 new employees were h
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**explanation:** Let original men = 3k and women = 5k; let the hiring include m men and w women with m + w = 10. Post-hire men = 3k + m, post-hire women = 5k + w, and (3k + m)/(5k + w) = 2/3, which simplifies to 3m − 2w = k. Statement (1): all 10 hires are men, so m = 10, w = 0. Then k = 30 − 0 = 30, and original men = 3k = 90. Unique value — sufficient. Statement (2): post-hire women = 50 means 5k + w = 50. Combined with k = 3m − 2w and m + w = 10: 5(3m − 2w) + w = 50 → 15m − 9w = 50. With w = 10 − m: 15m − 9(10 − m) = 50 → 24m = 140 → m = 35/6. No integer solution, so (2) is inconsistent with the problem setup and cannot uniquely determine original men. Not sufficient. Answer: A.
+**fastest_path:** Original men=3k, women=5k. New ratio 2:3 after 10 hires. (1) m=10, w=0 → solve for k uniquely → 90 men.
+**explanation:** Setup: original 3k men, 5k women. Hires: m men + w women with m+w=10. New ratio (3k+m)/(5k+w)=2/3 → 3m−2w=k. (1): m=10, w=0 → k=30 → original men=3·30=90. Sufficient. (2): post women = 5k+w=50. Combined with the rest gives a non-integer m=35/6, so the constraint isn't internally consistent without specifying the breakdown — can't fix original count. Insufficient. Answer A.
+**mistake_b:** B requires (2) alone sufficient — but the system is under-determined and inconsistent without the breakdown.
+**mistake_c:** C-trap — adding (2) doesn't help; (1) already solves.
+**mistake_d:** D requires each alone — (2) fails.
+**mistake_e:** E says together insufficient — but (1) alone solves.
+**common_trap:** Picking C because the problem feels like it needs both. But when (1) fully constrains the hiring breakdown, the original count drops out cleanly.
+**takeaway:** Ratio-change DS: when the *breakdown of new hires* is specified, solve algebraically; you don't need the post-hire absolute counts.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -797,7 +1093,15 @@ In the sequence a_1, a_2, a_3, ..., each term after the first is a fixed amount 
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Arithmetic sequence: a_n = a_1 + (n-1)d. Statement (1): a_1 + a_2 + a_3 = 3a_1 + 3d = 15, so a_1 + d = 5. One equation, two unknowns. Not sufficient. Statement (2): a_4 + a_5 + a_6 = 3a_1 + 12d = 33, so a_1 + 4d = 11. One equation, two unknowns. Not sufficient. Together: Subtracting, 3d = 6, so d = 2 and a_1 = 3. Then a_10 = 3 + 9(2) = 21. Sufficient. The answer is C.
+**fastest_path:** Arithmetic seq: a_n = a_1 + (n−1)d. (1) gives one equation; (2) gives another. Together: solve for a_1 and d uniquely.
+**explanation:** (1): 3a_1+3d=15 → a_1+d=5. One equation, two unknowns. Insufficient. (2): 3a_1+12d=33 → a_1+4d=11. One equation. Insufficient. Together: subtract → 3d=6 → d=2, a_1=3. a_10=3+9·2=21. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — but two unknowns.
+**mistake_b:** B requires (2) alone sufficient — same.
+**mistake_d:** D requires each alone — neither does.
+**mistake_e:** E says together insufficient — but two independent linear equations solve.
+**common_trap:** Trying to compute a_10 directly from one statement. Arithmetic sequences need *both* a_1 and d — two pieces of independent info.
+**takeaway:** Arithmetic-sequence DS: needs *both* first term and common difference. One sum gives one equation; you need a second independent sum.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -818,7 +1122,15 @@ Is |2x - 5| < 3?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** |2x − 5| < 3 means −3 < 2x − 5 < 3, i.e., 1 < x < 4. Statement (1) alone: x > 2. Try x = 3 (|1| = 1 < 3, yes) vs x = 10 (|15| = 15, no) — two different answers, not sufficient. Statement (2) alone: x < 3. Try x = 2 (|−1| = 1 < 3, yes) vs x = 0 (|−5| = 5, no) — not sufficient. Together: 2 < x < 3, so 2x ∈ (4, 6) and 2x − 5 ∈ (−1, 1), giving |2x − 5| < 1 < 3 always. Definite yes. Sufficient together; answer C.
+**fastest_path:** Yes/no |2x−5|<3 ↔ 1<x<4. (1) x>2 alone: x=3 yes, x=10 no. (2) x<3 alone: x=2 yes, x=0 no. Together: 2<x<3 ⊂ (1,4) → always yes.
+**explanation:** Translate: |2x−5|<3 ↔ 1<x<4. (1): x>2 — could be 3 (yes) or 10 (no). Insufficient. (2): x<3 — could be 2 (yes) or 0 (no). Insufficient. Together: 2<x<3, fully inside (1,4) → always yes. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — but yes/no split.
+**mistake_b:** B requires (2) alone sufficient — same split.
+**mistake_d:** D requires each alone — neither works.
+**mistake_e:** E says together insufficient — but the intersection is contained in the target interval.
+**common_trap:** Forgetting to *translate* |2x−5|<3 into the equivalent interval 1<x<4. Without that, the comparison to x>2 and x<3 isn't visible.
+**takeaway:** Absolute-value DS: translate |expr|<k into a bounded interval first, then check whether each statement's interval lies inside.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -839,7 +1151,15 @@ At a conference of 80 attendees, each person drinks coffee, tea, or both. How ma
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** Only-coffee = total coffee drinkers - both. Statement (1): 50 coffee drinkers, but "both" unknown. Not sufficient. Statement (2): 15 drink both, but total coffee unknown. Not sufficient. Together: Only coffee = 50 - 15 = 35. Sufficient. The answer is C.
+**fastest_path:** Only-coffee = total-coffee − both. (1) gives total-coffee; (2) gives both. Together: 50−15=35.
+**explanation:** Only-coffee subtracts the overlap from total-coffee. (1): coffee=50, no overlap data. Insufficient. (2): both=15, no total. Insufficient. Together: 50−15=35. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — but overlap unknown.
+**mistake_b:** B requires (2) alone sufficient — but total unknown.
+**mistake_d:** D requires each alone — neither works.
+**mistake_e:** E says together insufficient — but overlap-subtraction directly solves.
+**common_trap:** Set-overlap DS often surfaces the "everyone is in at least one" assumption. The 80-attendees-each-drinks-something detail is given upfront and crucial.
+**takeaway:** Set-overlap DS: only-A = (total-A) − (both-A-and-B). Need both pieces.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -860,7 +1180,15 @@ A rectangle has area 48. What is its perimeter?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**explanation:** "Integer constraint matters" trap. Statement (1): L = 3W and LW = 48, so 3W² = 48, W² = 16, W = 4, L = 12. Perimeter = 2(4 + 12) = 32. Sufficient. Statement (2): Integer length-width pairs with product 48: (1,48), (2,24), (3,16), (4,12), (6,8). Perimeters are 98, 52, 38, 32, 28 — all different. Not sufficient. The answer is A.
+**fastest_path:** (1) L=3W and LW=48 → W=4, L=12 → perimeter 32. (2) integer pairs (1,48),(2,24),…(6,8) give different perimeters. A.
+**explanation:** (1): L=3W with LW=48 → 3W²=48 → W=4, L=12 → P=32. Sufficient. (2): integer pairs with product 48 yield perimeters 98, 52, 38, 32, 28 — all different. Insufficient. Answer A.
+**mistake_b:** B requires (2) alone sufficient — but multiple integer pairs.
+**mistake_c:** C-trap — adding (2) doesn't help; (1) already pins it.
+**mistake_d:** D requires each alone — (2) fails.
+**mistake_e:** E says together insufficient — but (1) alone solves.
+**common_trap:** Picking C because integer constraint *seems* to help. But fixed area + integer dimensions still permits many factor pairs; you need the *specific* shape constraint from (1).
+**takeaway:** Rectangle-perimeter DS with fixed area: shape constraint (length-to-width ratio) is the deterministic lever. Integer constraint alone permits many pairs.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -880,8 +1208,16 @@ A car travels from town X to town Y. What was its average speed for the entire t
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
-**answer:** B
-**explanation:** "Looks like C, actually B" trap. Average speed = total distance / total time. Statement (1): 180 miles but no time. Not sufficient. Statement (2): "First half" refers to distance halves. If each half is distance d, then total distance = 2d and total time = 5 hours, giving average speed = 2d/5 — but wait, we don't know d. Re-read: "first half of the trip" — if that means half the distance, then we need the distance. If it means half the time, then total time = 5 hours and still need distance. Actually, re-interpret carefully: if "half" means distance-half, total time = 5 h but avg speed needs total distance. Not sufficient alone. Together: total distance 180, total time 5, avg speed = 36 mph. Sufficient combined. The answer is C.
+**answer:** C
+**fastest_path:** Avg speed = total distance / total time. (1) gives distance only. (2) gives total time only (5h). Together: 180/5 = 36 mph.
+**explanation:** (1): 180 miles, no time. Insufficient. (2): "first half" = first half of distance, so total time = 2+3 = 5h. But distance unknown. Insufficient. Together: 180 miles / 5 hours = 36 mph. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — but no time given.
+**mistake_b:** B requires (2) alone sufficient — but no total distance.
+**mistake_d:** D requires each alone — neither has both.
+**mistake_e:** E says together insufficient — but distance + time = avg speed.
+**common_trap:** Picking E because the question feels under-specified. Two complementary pieces (distance + time) always solve avg speed.
+**takeaway:** Avg-speed DS: total distance + total time fully determines avg speed. Stop the moment you have both.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -901,8 +1237,16 @@ The sequence s_1, s_2, s_3, ... is defined by s_n = s_(n-1) + s_(n-2) for all n 
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
-**answer:** E
-**explanation:** "Looks like C, actually E" trap — recursion under-determined. We have s_3 = s_1 + s_2, s_4 = s_2 + s_3 = s_1 + 2s_2, s_5 = s_3 + s_4 = 2s_1 + 3s_2, s_6 = 3s_1 + 5s_2, s_7 = 5s_1 + 8s_2. Statement (1): s_1 + s_2 = 5. Not sufficient; s_7 depends on both. E.g., s_1=0, s_2=5: s_7 = 40 (not > 40). s_1=5, s_2=0: s_7 = 25 (not > 40). Not sufficient. Statement (2): s_1 + 2s_2 = 8. s_1=0, s_2=4: s_7 = 32 (no). s_1=8, s_2=0: s_7 = 40 (no). s_1=-2, s_2=5: s_7 = 30 (no). Try negatives: s_1=-100, s_2=54: s_7 = -500 + 432 = -68. Not sufficient. Together: s_1 + s_2 = 5 and s_1 + 2s_2 = 8, so s_2 = 3, s_1 = 2. Then s_7 = 5(2) + 8(3) = 10 + 24 = 34. Answer is 34 > 40? No. So sufficient (answer is always "no"). Actually combined IS sufficient — gives specific values. Revising: together gives a unique s_7 = 34, so sufficient with answer "no." The answer is C.
+**answer:** C
+**fastest_path:** Recurrence s_n = s_{n−1} + s_{n−2}. Express s_7 in terms of s_1, s_2: s_7 = 5s_1 + 8s_2. (1) s_1+s_2=5; (2) s_1+2s_2=8. Together: solve uniquely.
+**explanation:** Fibonacci-like: s_3=s_1+s_2, s_4=s_1+2s_2, s_5=2s_1+3s_2, s_6=3s_1+5s_2, s_7=5s_1+8s_2. (1): s_1+s_2=5 — many s_7 values. Insufficient. (2): s_1+2s_2=8 — many. Insufficient. Together: subtract → s_2=3, s_1=2 → s_7=10+24=34 < 40. Definite "no". Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — but s_7 depends on both s_1 and s_2.
+**mistake_b:** B requires (2) alone sufficient — same issue.
+**mistake_d:** D requires each alone — neither has both initial values.
+**mistake_e:** E says together insufficient — but two equations in two unknowns solve.
+**common_trap:** Forgetting that *definite no* is sufficient. s_7 = 34 < 40 settles "Is s_7 > 40?" with a definitive no.
+**takeaway:** Recurrence DS: a 2-term linear recurrence is fully specified by *two* initial values. Two equations on those values = unique sequence.
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -922,8 +1266,16 @@ In the xy-plane, the circle C has center (h, k) and radius r. Does the point (3,
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
-**answer:** B
-**explanation:** Point (3,4) is inside iff (3-h)² + (4-k)² < r². Statement (1): Circle passes through origin means h² + k² = r². Try h=0, k=0, r=0: degenerate. Try h=3, k=4, r=5: then (3-3)² + (4-4)² = 0 < 25, yes. Try h=10, k=0, r=10: distance from (3,4) to (10,0) = √(49+16) = √65 ≈ 8.06 < 10, yes. Try h=-10, k=0, r=10: distance from (3,4) to (-10,0) = √(169+16) = √185 ≈ 13.6 > 10, no. Not sufficient. Statement (2): Center at origin. Distance from (0,0) to (3,4) = 5 — but radius r is unknown. Wait, r not given. Try r=10: 5 < 10, yes. Try r=2: 5 > 2, no. Not sufficient. Together: Origin on circle + center at origin means r = distance from (0,0) to (0,0) = 0, impossible (zero-radius circle). Contradiction — cannot occur, so the question is ill-posed under both statements. Actually re-read: (2) says center IS origin, (1) says origin is on circle — these together force r = 0. Hence no valid circle; the DS cannot be answered. The combined info is inconsistent, so E. The answer is E.
+**answer:** E
+**fastest_path:** Point inside iff distance(center, point) < r. (1) origin on circle → h²+k²=r² (many configurations). (2) center at origin (no radius). Together: r=0, degenerate.
+**explanation:** Point (3,4) inside iff (3−h)²+(4−k)²<r². (1): h²+k²=r². Try (h,k,r)=(3,4,5): yes. (h,k,r)=(−10,0,10): no. Insufficient. (2): center=(0,0), radius unknown. r=10 yes; r=2 no. Insufficient. Together: center origin AND origin on circle → r=0 (degenerate). No valid circle; DS is unanswerable in standard convention. Answer E.
+**mistake_a:** A requires (1) alone sufficient — but configurations split yes/no.
+**mistake_b:** B requires (2) alone sufficient — but radius unknown.
+**mistake_c:** C says together sufficient — but combined info is inconsistent (zero-radius is degenerate).
+**mistake_d:** D requires each alone — neither works.
+**common_trap:** Picking C because "two pieces of info should solve geometry." But contradictory info is *not* sufficient.
+**takeaway:** Geometry DS: when two statements jointly force a degenerate or impossible figure, the combined info is *insufficient* (no valid case exists to evaluate).
+**related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
 
@@ -943,5 +1295,340 @@ A positive integer N is the product of exactly two distinct primes p and q. What
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
-**answer:** A
-**explanation:** "Integer/prime constraint matters" trap. N = pq with p, q distinct primes. Divisors of N are 1, p, q, N, so divisor sum = 1 + p + q + pq = (1+p)(1+q). Statement (1): (1+p)(1+q) = 72. Factor pairs of 72: (2,36), (3,24), (4,18), (6,12), (8,9). That gives (p,q): (1,35), (2,23), (3,17), (5,11), (7,8). Requiring both prime and distinct: (2,23) gives 46, (3,17) gives 51, (5,11) gives 55. Multiple values — not sufficient? Check each: 1+p, 1+q must both correspond to actual primes. (1,35): p=1 not prime. (2,23): 2 and 23 both prime, N = 46. (3,17): both prime, N = 51. (5,11): both prime, N = 55. (7,8): 7 prime, 8 not. So three candidates: 46, 51, 55. Not sufficient. Revised: Statement (1) NOT sufficient. Statement (2): p + q = 20, primes: (3,17), (7,13). Both pairs. N = 51 or 91. Not sufficient. Together: From (1) candidates {46, 51, 55} and from (2) pairs giving N in {51, 91}: intersection is 51. Sufficient. The answer is C.
+**answer:** C
+**fastest_path:** N=pq, distinct primes. Divisor sum = (1+p)(1+q) = 72 (1) gives multiple candidates; (2) gives multiple. Intersection: N=51.
+**explanation:** Divisors of N=pq are {1, p, q, pq}, sum = (1+p)(1+q). (1): (1+p)(1+q)=72. Prime-distinct pairs: (2,23)→N=46; (3,17)→N=51; (5,11)→N=55. Three candidates. Insufficient. (2): p+q=20, primes: (3,17)→N=51; (7,13)→N=91. Two candidates. Insufficient. Together: {46,51,55} ∩ {51,91} = {51}. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — three candidates remain.
+**mistake_b:** B requires (2) alone sufficient — two candidates remain.
+**mistake_d:** D requires each alone — neither narrows to one.
+**mistake_e:** E says together insufficient — but the intersection is a single value.
+**common_trap:** Trying to factor 72 only as 8×9 and missing other pairs. Always enumerate factor pairs systematically.
+**takeaway:** Two-prime DS: divisor sum (1+p)(1+q) and sum p+q each give candidate sets; intersection often unique.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Rates with a Ratio Constraint
+
+At a factory, machine X and machine Y each produce parts at constant but different rates. How many parts per hour does machine X produce?
+
+(1) Working together, the two machines produce 540 parts per hour.
+(2) Machine Y produces 40% more parts per hour than machine X.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) x+y=540 (scalar). (2) y=1.4x (ratio). Together: 2.4x=540 → x=225.
+**explanation:** Let X's rate=x, Y's=y. (1): x+y=540 — one equation, two unknowns. Insufficient. (2): y=1.4x — ratio, no scalar. Insufficient. Together: 2.4x=540 → x=225. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — but two unknowns.
+**mistake_b:** B requires (2) alone sufficient — ratio without scalar fails.
+**mistake_d:** D requires each alone — neither does.
+**mistake_e:** E says together insufficient — but scalar + ratio = unique solution.
+**common_trap:** Picking E because each alone looks "too thin." Scalar + ratio is a textbook C combination.
+**takeaway:** Rate DS: one absolute total + one ratio between rates = unique values for each. Like the classic ratio-and-count pairing.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+
+---
+
+## Q47
+**difficulty:** Easy
+**type:** Data Sufficiency
+**topic:** Geometry — Triangle Area
+
+In a plane, triangle ABC has vertices A, B, and C. What is the area of triangle ABC?
+
+(1) The length of side BC is 10 units.
+(2) The perpendicular distance from vertex A to line BC is 6 units.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** Triangle area = (1/2)·base·height. (1) gives base; (2) gives height. Together: (1/2)(10)(6)=30.
+**explanation:** Area formula needs base AND height. (1): base=10 only. (2): height=6 only. Together: area=30. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — but no height.
+**mistake_b:** B requires (2) alone sufficient — but no base.
+**mistake_d:** D requires each alone — neither has both.
+**mistake_e:** E says together insufficient — but base × height = area.
+**common_trap:** Imagining a specific triangle shape from one piece of info. DS is about *unique determination*, not shape inference.
+**takeaway:** Triangle-area DS: base AND perpendicular height to that base. Two-piece formula = standard C.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Number Properties — Parity and Multiples
+
+If x and y are positive integers with x < y, is y − x a multiple of 4?
+
+(1) x + y is a multiple of 8.
+(2) xy is a multiple of 16.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** Yes/no. Each alone has split. Together: x+y div by 8 (so both even) AND xy div by 16 → both x,y div by 4 → y−x div by 4.
+**explanation:** (1): (1,7) sum=8, y−x=6 (no); (2,6) sum=8, y−x=4 (yes). Insufficient. (2): (1,16) xy=16, y−x=15 (no); (2,8) xy=16, y−x=6 (no). Insufficient. Together: x+y mult of 8 → both even. Write x=2a, y=2b: a+b=4k, ab=4m. Combining forces both a, b even. So x, y both div by 4 → y−x div by 4. Sufficient yes. Answer C.
+**mistake_a:** A requires (1) alone sufficient — split shown.
+**mistake_b:** B requires (2) alone sufficient — same.
+**mistake_d:** D requires each alone — neither works.
+**mistake_e:** E says together insufficient — but parity + factor analysis nails it.
+**common_trap:** Stopping at "both even" once you get x+y mult of 8. You also need the factor-of-16 from (2) to push to "both div by 4."
+**takeaway:** Number-theory DS: combine *parity* with *divisibility-by-square* constraints. They often interact to force divisibility-by-higher-powers.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+
+---
+
+## Q49
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Divisibility — Coprime Factors
+
+Is the positive integer n divisible by 12?
+
+(1) n is divisible by 4.
+(2) n is divisible by 9.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** 12 = 4·3 (coprime). (1) gives factor 4. (2) gives factor 9 (which contains factor 3). Together: factors 4 and 3 → div by 12.
+**explanation:** 12 = 4 × 3 with 4, 3 coprime. (1): n=4 (no) or n=12 (yes). Insufficient. (2): n=9 (no) or n=36 (yes). Insufficient. Together: div by 4 AND div by 9 → div by LCM(4,9)=36, which is div by 12. Sufficient yes. Answer C.
+**mistake_a:** A requires (1) alone sufficient — but div by 4 alone doesn't ensure div by 3.
+**mistake_b:** B requires (2) alone sufficient — div by 9 doesn't ensure factor of 4.
+**mistake_d:** D requires each alone — neither does.
+**mistake_e:** E says together insufficient — but coprime factors compose.
+**common_trap:** Forgetting that 9 contains 3, so (2) supplies the 3-factor needed for 12. The coprime-decomposition of 12 = 4·3 is the key.
+**takeaway:** Divisibility-by-N DS: factor N into coprime pieces. If statements supply each piece (or stronger), together divides N.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+
+---
+
+## Q50
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Right Triangle — Missing Leg
+
+In right triangle ABC, angle C is the right angle and side AB is the hypotenuse. What is the length of side BC?
+
+(1) AB = 13.
+(2) AC = 5.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** Right triangle with hypotenuse: BC² = AB² − AC². (1) gives AB; (2) gives AC. Together: 5-12-13 triple → BC=12.
+**explanation:** Right angle at C → AB hypotenuse. Pythagorean: BC² = AB² − AC² = 169 − 25 = 144 → BC=12. (1) alone: only AB. (2) alone: only AC. Together: BC=12. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — one side doesn't fix the other.
+**mistake_b:** B requires (2) alone sufficient — same.
+**mistake_d:** D requires each alone — neither does.
+**mistake_e:** E says together insufficient — but Pythagoras solves uniquely.
+**common_trap:** Recognizing 5-12-13 from one number alone. But DS is about *unique determination*; you need both to lock it.
+**takeaway:** Right-triangle DS: the Pythagorean triple needs *two* sides to fix the third. Standard C answer for missing-leg questions.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q51
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Parallel Lines and Transversals
+
+In a plane, two distinct lines l and m are cut by a transversal t. Are lines l and m parallel?
+
+(1) Two corresponding angles formed by the transversal are equal in measure.
+(2) The transversal t is perpendicular to both line l and line m.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**fastest_path:** Each statement is a *standard parallel-line theorem*. (1) equal corresponding angles ⟺ parallel. (2) common perpendicular ⟺ parallel. D.
+**explanation:** (1): Converse of corresponding-angles postulate — equal corresponding angles ⟹ l ∥ m. Sufficient. (2): A transversal perpendicular to both lines forces parallel (Euclidean). Sufficient. Each alone solves. Answer D.
+**mistake_a:** A requires only (1) sufficient — but (2) also solves.
+**mistake_b:** B requires only (2) sufficient — but (1) also does.
+**mistake_c:** C-trap — combining is unnecessary; each alone is a parallel theorem.
+**mistake_e:** E says together insufficient — both alone solve.
+**common_trap:** *C-trap on geometry theorems*: each piece of geometric info is often a *standalone* sufficiency criterion. Don't combine reflexively.
+**takeaway:** Parallel-line DS: equal corresponding angles, equal alternate interior angles, common perpendicular — each is *independently* sufficient.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+
+---
+
+## Q52
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Revenue Composition
+
+A company's total 2023 revenue was the sum of revenue from three divisions, A, B, and C. What was Division A's 2023 revenue?
+
+(1) Divisions A, B, and C contributed to 2023 revenue in the ratio 3 : 2 : 1 respectively.
+(2) Division C's 2023 revenue was $20 million.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) ratio 3:2:1 (no scalar). (2) C=$20M (no ratio). Together: 1 part = $20M → A = 3·$20M = $60M.
+**explanation:** Ratio + anchor pattern. (1): ratio 3:2:1 alone — no dollar amount. Insufficient. (2): C=$20M — no relative size. Insufficient. Together: C is 1 part = $20M, so A (3 parts) = $60M. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — ratio without anchor.
+**mistake_b:** B requires (2) alone sufficient — anchor without ratio.
+**mistake_d:** D requires each alone — neither has both.
+**mistake_e:** E says together insufficient — but ratio + anchor = unique.
+**common_trap:** Trying to compute total revenue from (2) alone. C alone doesn't tell you A.
+**takeaway:** Revenue/composition DS with ratios: ratio + at least one absolute value = unique solution for any other component.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q53
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Insufficient Despite Two Statements
+
+In a class of 30 students, the ratio of boys to girls is 3 to 2. How many boys scored above the class mean on a recent test?
+
+(1) The class mean on the test was 75.
+(2) 14 students scored above the class mean.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** E
+**fastest_path:** Question asks how many *boys* scored above mean. Neither statement gives the gender breakdown of the 14 high-scorers. Together still doesn't.
+**explanation:** Class: 18 boys, 12 girls. Question: how many of the boys are in the above-mean group? (1): mean=75 (numeric value) — irrelevant to gender split. Insufficient. (2): 14 above mean — but their gender mix is open. Insufficient. Together: still no link between "14 above mean" and "how many boys." 0–12 girls + 2–14 boys all consistent. Answer E.
+**mistake_a:** A requires (1) alone sufficient — mean value tells nothing.
+**mistake_b:** B requires (2) alone sufficient — gender split of 14 still unknown.
+**mistake_c:** C says together sufficient — but the gender mix is independent of the count.
+**mistake_d:** D requires each alone — neither does.
+**common_trap:** Picking C because "everything seems specified" — but the *gender breakdown of the 14* is the missing piece that no statement supplies.
+**takeaway:** When the question asks for one *subgroup's* count, beware: aggregate counts + ratios don't determine subgroup-by-criterion splits. The criterion (here: above-mean) is independent of the demographic.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+
+---
+
+## Q54
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Triangle Area — Two Sides and the Angle Between Them
+
+What is the area of triangle ABC?
+
+(1) AB = 8 and AC = 6.
+(2) Angle BAC = 90°.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** Triangle area = (1/2)·a·b·sin(angle between them). (1) gives two sides; (2) gives the angle. Together: (1/2)(8)(6)(1)=24.
+**explanation:** Area = (1/2)·AB·AC·sin(∠BAC). (1): AB=8, AC=6 — no angle, area not determined. Insufficient. (2): ∠BAC=90° — no sides. Insufficient. Together: area = (1/2)(8)(6)(sin 90°) = 24. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — but area depends on angle.
+**mistake_b:** B requires (2) alone sufficient — but no sides given.
+**mistake_d:** D requires each alone — neither has both pieces.
+**mistake_e:** E says together insufficient — but two-sides + included-angle is the SAS area formula.
+**common_trap:** Forgetting that triangle area requires *side, side, and the included angle* (or base and height). Two sides without the angle aren't enough.
+**takeaway:** Triangle-area DS via SAS: (1/2)·a·b·sin(C). When C=90°, sin=1, formula reduces to (1/2)·a·b — the right-triangle case.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+
+---
+
+## Q55
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Rectangle Area — Given Perimeter and One Dimension
+
+A rectangle has perimeter P and area A. What is the value of A?
+
+(1) The rectangle's perimeter is 28.
+(2) The rectangle's length is 3 times its width.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** Need l+w (perimeter) AND l/w ratio. (1) gives l+w=14. (2) gives l=3w. Solve: w=3.5, l=10.5, area=36.75.
+**explanation:** (1): 2(l+w)=28 → l+w=14. Area=lw varies with split. Insufficient. (2): l=3w. Ratio without scalar — area=3w² unknown. Insufficient. Together: l+w=14 and l=3w → 4w=14 → w=3.5, l=10.5, area=36.75. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — perimeter doesn't fix area.
+**mistake_b:** B requires (2) alone sufficient — ratio without anchor.
+**mistake_d:** D requires each alone — neither does.
+**mistake_e:** E says together insufficient — but two equations in two unknowns solve.
+**common_trap:** Believing perimeter pins down area. Same perimeter (28) with different splits gives areas from near-zero to 49 (square).
+**takeaway:** Rectangle DS: perimeter alone never fixes area. Need *another* dimension or shape constraint (ratio).
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+
+---
+
+## Q56
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Mean and Sum — Isolating the Median
+
+A data set consists of 7 numbers. What is the median of the data set?
+
+(1) The mean of the data set is 20.
+(2) The sum of the three smallest numbers and the three largest numbers (that is, the sum of all numbers except the median) is 98.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** Sort: a≤b≤c≤d≤e≤f≤g, median=d. (1) total sum=140. (2) sum without median=98. Subtract: d=42.
+**explanation:** Median of 7 sorted values is the 4th (d). (1): total = 140. Doesn't isolate d. Insufficient. (2): sum-without-median = 98. Doesn't give d alone. Insufficient. Together: 140 − 98 = 42 = d. Sufficient. Answer C.
+**mistake_a:** A requires (1) alone sufficient — but mean doesn't pin median.
+**mistake_b:** B requires (2) alone sufficient — but it's a partial sum.
+**mistake_d:** D requires each alone — neither does.
+**mistake_e:** E says together insufficient — but subtraction isolates the median.
+**common_trap:** Picking D thinking mean=20 alone gives median=20. Mean ≠ median in general.
+**takeaway:** Median-isolation DS: total sum + (total minus median) = median. Subtraction trick when one statement gives an "all but one" sum.
+**related_reading:** reading-di-02-data-sufficiency-logic

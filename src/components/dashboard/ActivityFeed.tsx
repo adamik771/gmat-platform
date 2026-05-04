@@ -71,7 +71,7 @@ export default function ActivityFeed({ items, className }: ActivityFeedProps) {
   }
 
   return (
-    <div className={cn("space-y-3", className)}>
+    <div className={cn("space-y-2", className)}>
       {items.map((item) => {
         const config = typeConfig[item.type]
         const Icon = config.icon
@@ -79,27 +79,29 @@ export default function ActivityFeed({ items, className }: ActivityFeedProps) {
         return (
           <div
             key={item.id}
-            className="flex items-start gap-3 p-3 rounded-lg hover:bg-white/[0.02] transition-colors"
+            className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/[0.02] transition-colors"
           >
             <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+              className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
               style={{ backgroundColor: config.bg }}
             >
               <Icon className="w-4 h-4" style={{ color: config.color }} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm text-[#F0F0F0] font-medium truncate">
+              <p className="text-[14px] text-[#F0F0F0] font-medium tracking-tight truncate">
                 {item.title}
               </p>
-              <p className="text-xs text-[#555555]">{item.description}</p>
+              <p className="text-[12px] text-[#888888] leading-relaxed">
+                {item.description}
+              </p>
             </div>
             <div className="flex-shrink-0 flex flex-col items-end gap-1">
-              <span className="text-xs text-[#555555]">
+              <span className="text-[11px] text-[#555555] tabular-nums">
                 {formatRelativeTime(item.timestamp)}
               </span>
               {item.score !== undefined && (
                 <span
-                  className="text-xs font-medium"
+                  className="text-[11px] font-semibold tabular-nums"
                   style={{ color: "#3ECF8E" }}
                 >
                   {item.score}%

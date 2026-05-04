@@ -3,20 +3,34 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import SectionWrapper from "@/components/shared/SectionWrapper"
 import FAQAccordion from "@/components/marketing/FAQAccordion"
+import JsonLd from "@/components/seo/JsonLd"
+import { faqPageLd } from "@/lib/structured-data"
 
 export const metadata: Metadata = {
-  title: "FAQ — Zakarian GMAT",
-  description: "Frequently asked questions about Zakarian GMAT prep.",
+  title: "FAQ",
+  description:
+    "Frequently asked questions about Zakarian GMAT — the curriculum, scoring, the trial, the diagnostic, the score guarantee, billing, and the platform's specific approach for non-native speakers.",
+  alternates: { canonical: "/faq" },
 }
 
-const categories = [
+interface FAQItem {
+  question: string
+  answer: string
+}
+
+interface FAQCategory {
+  title: string
+  items: FAQItem[]
+}
+
+const categories: FAQCategory[] = [
   {
-    title: "About the Course",
+    title: "About the platform",
     items: [
       {
-        question: "Who is this course designed for?",
+        question: "Who is Zakarian GMAT designed for?",
         answer:
-          "This system is built for serious MBA candidates who want a structured, data-driven approach — not random videos. It's especially effective for non-native English speakers and people without a technical background who struggle with Quant.",
+          "This system is built for serious MBA candidates who want a structured, data-driven approach — not a content library to wade through. It's especially effective for working professionals on a 12-16 week timeline, non-native English speakers, and people without a technical background who struggle with Quant.",
       },
       {
         question: "Do I need a math background?",
@@ -24,44 +38,154 @@ const categories = [
           "No. Adam (the founder) has no engineering background and scored Q88. The Quant curriculum starts from first principles. The issue is almost never knowledge — it's strategy and systematic review.",
       },
       {
-        question: "How long does the course take?",
+        question: "How long does the full course take?",
         answer:
-          "The full curriculum is designed for a 16-week timeline at ~90 minutes/day, 5 days/week. You can compress or extend based on your exam date. Most students see meaningful score movement within 4–6 weeks.",
+          "The full curriculum is designed for a 16-week timeline at ~90 minutes/day, 5 days/week. You can compress to 8-10 weeks if needed, or extend if you have more time. Most students see meaningful score movement within 4-6 weeks.",
       },
       {
         question: "Can I use this alongside TTP, Manhattan, or Magoosh?",
         answer:
-          "Yes. Many students use this system as a review layer on top of content-heavy courses. The error log, analytics, and coaching sessions work well as a second pass after finishing a content course.",
+          "Yes. Many students use Zakarian as the review-and-analytics layer on top of content-heavy courses. The error log, mock debrief tools, and adaptive plan work well as a second pass after finishing a content course.",
       },
       {
         question: "What makes this different from other prep courses?",
         answer:
-          "Most courses are content libraries. This is a system. The error log turns mistakes into data. The analytics show patterns over time. The coaching addresses root causes rather than re-teaching content you've already seen.",
+          "Most courses are content libraries. Zakarian is a system. The error log turns mistakes into data; the analytics show patterns over time; the adaptive plan re-prioritises your week from your last seven days of misses; the coaching addresses root causes rather than re-teaching content. The whole product is built around the loop, not the lectures.",
+      },
+      {
+        question: "Is the platform built for the GMAT Focus Edition specifically?",
+        answer:
+          "Yes. Every section, every chapter, the diagnostic, the scoring scale (205-805), and the section ordering all target the GMAT Focus Edition. The legacy GMAT was retired in early 2024; Focus is the only version offered now and the only one we prep for.",
       },
     ],
   },
   {
-    title: "Score & Results",
+    title: "The free trial and the diagnostic",
+    items: [
+      {
+        question: "What does the free trial include?",
+        answer:
+          "Seven days of full access to everything: the 30-question diagnostic, all 17 chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
+      },
+      {
+        question: "Do I need a credit card to start the trial?",
+        answer:
+          "No. The signup form asks for your name, email, and a password. No payment details are collected until you decide to upgrade.",
+      },
+      {
+        question: "What happens after the 7-day trial?",
+        answer:
+          "If you don't upgrade, your account simply becomes inactive — there's nothing to cancel and no charge. Your study data is retained for 30 days in case you want to come back. After 30 days of inactivity, the account is deleted per the privacy policy.",
+      },
+      {
+        question: "Is the public diagnostic the same as the full diagnostic?",
+        answer:
+          "No. The public sampler at /free-diagnostic is 10 questions and gives you a per-section signal (Strong / Mixed / Needs work). The full diagnostic on the trial is 30 questions and produces a real readiness band on the 205-805 scale, plus a per-topic and per-difficulty heatmap that drives the adaptive study plan.",
+      },
+      {
+        question: "Can I take the diagnostic without signing up?",
+        answer:
+          "Yes — the 10-question public sampler is at /free-diagnostic. You can also share the result. The full 30-question diagnostic with the per-topic breakdown requires the free trial signup.",
+      },
+    ],
+  },
+  {
+    title: "Score and results",
     items: [
       {
         question: "What kind of score improvement can I expect?",
         answer:
-          "Results vary based on starting score, consistency, and time invested. The average improvement among students who complete the curriculum is approximately +95 points. Students who also do weekly coaching average +120 points.",
+          "Results vary based on starting score, consistency, and time invested. For non-native speakers starting in the 545-595 range, 12-16 weeks of structured prep typically lands at 645-695. Starting at 595-645 typically lands at 685-735. Starting at 645+ typically lands at 705-755 in 8-12 weeks.",
       },
       {
-        question: "How long until I see results?",
+        question: "How long until I see real score movement?",
         answer:
-          "Most students see measurable improvement in mock scores within 3–4 weeks of consistent daily practice. Hitting 700+ typically requires 10–16 weeks depending on starting score.",
+          "Most students see measurable improvement on mocks within 3-4 weeks of consistent daily practice. The biggest gains usually come between weeks 4 and 10, after the error log has enough data for patterns to surface.",
       },
       {
         question: "What is the score guarantee?",
         answer:
-          "The Intensive package includes a score guarantee. If you complete all 16 scheduled sessions, follow the study plan consistently, and don't hit your target score, we'll either continue coaching free or refund the full program cost.",
+          "The Intensive package includes a score guarantee. If you complete all 16 scheduled coaching sessions, follow the study plan consistently, complete all assigned mocks with debriefs, and don't hit your target score, you choose between a full refund or extended coaching at no cost. Full conditions are on the refund policy page.",
       },
       {
         question: "Do you guarantee a specific score?",
         answer:
-          "We guarantee you'll hit your target score if you complete the Intensive program as designed. We can't guarantee outcomes for students who skip sessions or don't follow the study plan.",
+          "We guarantee you'll hit your target score IF you complete the Intensive program as designed. We can't guarantee outcomes for students who skip sessions, don't follow the study plan, or change their target score mid-program. The guarantee is conditional and the conditions are clearly spelled out.",
+      },
+      {
+        question: "How does the GMAT Focus 205-805 scale compare to my old GMAT score?",
+        answer:
+          "The two scales are not directly comparable — GMAC deliberately offset them. Roughly: Focus 705 ≈ Old 730, Focus 695 ≈ Old 720, Focus 645 ≈ Old 680. Use the score converter at /score-converter for any specific score.",
+      },
+    ],
+  },
+  {
+    title: "The curriculum and study plan",
+    items: [
+      {
+        question: "How is the curriculum structured?",
+        answer:
+          "Seventeen chapters covering every GMAT Focus topic across Quant, Verbal, and Data Insights. Each chapter has a pre-test (~2 questions), 6-9 reading sections with in-chapter recall checks, and a graded problem set across easy / medium / hard tiers.",
+      },
+      {
+        question: "Can I skip chapters I already know?",
+        answer:
+          "Yes — the chapter index is non-linear. The diagnostic identifies your weakest topics; the adaptive plan recommends those chapters first. You can read any chapter in any order.",
+      },
+      {
+        question: "What is the adaptive study plan?",
+        answer:
+          "A weekly plan that re-prioritises based on your last seven days of practice data. If your error log shows your dominant tag has shifted from Conceptual to Time pressure, the next week's plan reflects that. Static schedules drift out of usefulness in two weeks; the adaptive plan adjusts.",
+      },
+      {
+        question: "How is the error log different from a regular notes feature?",
+        answer:
+          "The error log uses a six-tag taxonomy (Conceptual / Careless / Time pressure / Misread / Strategy / Other). Every miss gets exactly one tag. After 60-100 entries, the dominant tags surface — and those tags, not the topics, tell you what to drill. It's the loop the platform is built around.",
+      },
+      {
+        question: "Are mock exams included?",
+        answer:
+          "Yes. Self-Study includes 3 mocks; Self-Study Plus includes 3; Coaching includes 5; Intensive includes unlimited. Each mock is a full-length 3-section simulation with a structured debrief tool.",
+      },
+    ],
+  },
+  {
+    title: "For non-native English speakers",
+    items: [
+      {
+        question: "Is the curriculum specifically built for non-native speakers?",
+        answer:
+          "The platform was built by a non-native English speaker (Adam scored 735 from a 565 baseline). The Verbal chapters teach the structural-skim approach for RC and stem-first reading for CR — both are tactics non-native speakers benefit from disproportionately. The error log includes 'Misread' and 'Time pressure' as first-class tags, which are the two patterns non-native speakers most need to surface.",
+      },
+      {
+        question: "Will my Verbal score realistically improve?",
+        answer:
+          "Yes. The biggest myth is that Verbal is 'easier for native speakers.' The actual disadvantage is comprehension speed, not comprehension itself — and speed is fixable with the structural-skim approach. Non-native students who run the loop typically close 60-80% of the Verbal gap in 12 weeks.",
+      },
+      {
+        question: "Was Sentence Correction removed from the GMAT Focus Edition?",
+        answer:
+          "Yes — Sentence Correction is gone from Focus. This was the section where native speakers had the biggest structural advantage, so its removal is a small but real boost for non-native speakers.",
+      },
+      {
+        question: "Should I take the IELTS or TOEFL before the GMAT?",
+        answer:
+          "Different test, different skill — your IELTS or TOEFL score is not predictive of your GMAT Verbal score in either direction. If you need IELTS / TOEFL for admissions, take it; don't expect it to substitute for GMAT prep.",
+      },
+    ],
+  },
+  {
+    title: "The AI tutor",
+    items: [
+      {
+        question: "How does the AI tutor work?",
+        answer:
+          "On any practice question, you can open the tutor drawer and ask follow-ups about the question, the answer, the trap, or the fastest path. The tutor has access to the question, the choices, the correct answer, the authored explanation, the trap analysis, and the takeaway — so its answers are grounded in the question's actual content rather than generic advice.",
+      },
+      {
+        question: "Is the tutor a substitute for a human coach?",
+        answer:
+          "No. The tutor is for clarifying questions about specific problems, on-demand. A human coach is for reviewing your error log over time, identifying patterns the tutor can't, and adjusting your overall plan. The Coaching and Intensive packages include human coaching with Adam directly.",
       },
     ],
   },
@@ -71,87 +195,179 @@ const categories = [
       {
         question: "What devices does the platform work on?",
         answer:
-          "The platform is fully web-based and works on any modern browser — desktop, tablet, or mobile. The dashboard and lessons are responsive and optimized for all screen sizes.",
+          "The platform is fully web-based and works on any modern browser — desktop, tablet, or mobile. The dashboard, chapter reader, and question runner are responsive and tested across screen sizes.",
       },
       {
-        question: "Can I download lessons for offline use?",
+        question: "Does the platform work offline?",
         answer:
-          "Currently, lessons are streaming-only. We recommend downloading the PDF resources (formula sheets, templates) for offline reference.",
+          "Yes — the spaced review queue and the offline drill runner work without internet. Visit /review online once to cache your queue + question payloads, then drill at /offline/drill on the plane / commute. Your attempts queue locally and sync when you're back online.",
       },
       {
-        question: "What happens to my account if I cancel?",
+        question: "Can I use it as a mobile app?",
         answer:
-          "Self-Study and Self-Study Plus are lifetime access — there's nothing to cancel. Coaching packages end after the program duration, but you retain access to the platform content.",
+          "Yes. The platform is a PWA (Progressive Web App) — on iOS or Android, use 'Add to Home Screen' from your browser to get a standalone-app experience with offline support.",
+      },
+      {
+        question: "What happens to my account if I cancel a paid plan?",
+        answer:
+          "Self-Study and Self-Study Plus are lifetime access — there's nothing to cancel. Coaching packages run for the program duration; you retain platform access during and after the program. If you cancel before completing the program, refund terms apply per the refund policy.",
       },
     ],
   },
   {
-    title: "Billing",
+    title: "Billing and refunds",
     items: [
       {
         question: "What payment methods do you accept?",
         answer:
-          "We accept all major credit and debit cards via Stripe. Bank transfer is available for Coaching and Intensive packages on request.",
+          "All major credit and debit cards via Stripe. Bank transfer is available for Coaching and Intensive packages on request.",
       },
       {
         question: "Can I pay in installments?",
         answer:
-          "Installment plans are available for the Coaching and Intensive packages. Contact us to set up a payment schedule.",
+          "Installment plans are available for the Coaching and Intensive packages. Email us to set up a 2-payment or 4-payment schedule.",
       },
       {
         question: "What is your refund policy?",
         answer:
-          "Self-Study and Self-Study Plus include a 14-day money-back guarantee, no questions asked. Coaching packages are non-refundable after the first session, except under the Intensive score guarantee terms.",
+          "Self-Study and Self-Study Plus include a 14-day money-back guarantee, no questions asked. Coaching is refundable in full before the first session and non-refundable after. Intensive is backed by the score guarantee — see /refund for the full conditions.",
+      },
+      {
+        question: "Are prices in USD?",
+        answer:
+          "Yes. All prices are listed in U.S. dollars. Currency conversion happens at your card issuer's exchange rate at the time of charge.",
       },
     ],
   },
 ]
 
+const allItems: FAQItem[] = categories.flatMap((c) => c.items)
+
 export default function FAQPage() {
   return (
     <div style={{ backgroundColor: "#0A0A0A" }}>
-      <SectionWrapper>
-        <div className="text-center mb-16">
-          <p
-            className="text-xs font-semibold uppercase tracking-widest mb-4"
-            style={{ color: "#C9A84C" }}
-          >
-            FAQ
-          </p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-[#F0F0F0] mb-4">
-            Questions answered.
+      <JsonLd data={faqPageLd({ questions: allItems })} />
+      {/* Hero */}
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 90% 55% at 50% -5%, rgba(201,168,76,0.16) 0%, transparent 60%)",
+          }}
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.035] mix-blend-overlay"
+          aria-hidden
+        />
+        <div className="relative max-w-3xl mx-auto text-center px-4">
+          <div className="inline-flex items-center gap-3 mb-5">
+            <p
+              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+              style={{ color: "#C9A84C" }}
+            >
+              FAQ
+            </p>
+            <div
+              className="h-px w-12"
+              style={{
+                background:
+                  "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+              }}
+              aria-hidden
+            />
+          </div>
+          <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.02] mb-6">
+            Questions,{" "}
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+              answered.
+            </span>
           </h1>
-          <p className="text-[#888888] max-w-md mx-auto">
-            If you don't find what you're looking for, book a free 20-minute call.
+          <p className="text-[16px] sm:text-[17px] text-[#C0C0C0] leading-relaxed max-w-xl mx-auto">
+            {allItems.length} of the questions we hear most often — about the
+            curriculum, the trial, the diagnostic, the score guarantee,
+            non-native speakers, and the AI tutor. If you don&apos;t find it
+            here, book a free 20-minute call.
           </p>
         </div>
+      </section>
 
-        <div className="max-w-2xl mx-auto space-y-10">
-          {categories.map((category) => (
+      {/* FAQ categories */}
+      <SectionWrapper>
+        <div className="max-w-2xl mx-auto space-y-16">
+          {categories.map((category, i) => (
             <div key={category.title}>
-              <h2
-                className="text-xs font-semibold uppercase tracking-widest mb-4"
-                style={{ color: "#C9A84C" }}
-              >
+              <div className="flex items-center gap-3 mb-5">
+                <span
+                  className="font-display text-[11px] font-semibold tabular-nums"
+                  style={{ color: "rgba(201,168,76,0.55)" }}
+                  aria-hidden
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p
+                  className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+                  style={{ color: "#C9A84C" }}
+                >
+                  {category.title}
+                </p>
+                <div
+                  className="h-px flex-1"
+                  style={{
+                    background:
+                      "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+                  }}
+                  aria-hidden
+                />
+              </div>
+              <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-6">
                 {category.title}
               </h2>
               <FAQAccordion items={category.items} />
             </div>
           ))}
         </div>
+      </SectionWrapper>
 
-        <div className="text-center mt-16">
-          <p className="text-[#888888] mb-6">Still have questions?</p>
+      {/* Final CTA */}
+      <section
+        className="relative py-28 overflow-hidden"
+        style={{ backgroundColor: "#050505" }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 70% at 50% 100%, rgba(201,168,76,0.14) 0%, transparent 65%)",
+          }}
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
+          aria-hidden
+        />
+        <div className="relative max-w-3xl mx-auto text-center px-4">
+          <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-5">
+            Still have{" "}
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+              questions?
+            </span>
+          </h2>
+          <p className="text-[15px] sm:text-[17px] text-[#888888] leading-relaxed mb-10">
+            Book a free 20-minute call and we&apos;ll answer anything the FAQ didn&apos;t
+            cover.
+          </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
             style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
           >
             Contact us
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
-      </SectionWrapper>
+      </section>
     </div>
   )
 }

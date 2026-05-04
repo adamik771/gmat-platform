@@ -1,6 +1,14 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { getQuestionsBySetSlug } from "@/lib/content"
+import { createSupabaseServer } from "@/lib/supabase/server"
+import {
+  DEFAULT_LEVEL,
+  getLevelForSlug,
+  getTopicSkillLevels,
+  pickAdaptiveOrder,
+  type TopicSkillLevel,
+} from "@/lib/topic-skill"
 import SessionClient, { type SessionQuestion } from "./SessionClient"
 
 export default async function PracticeSessionPage({
@@ -31,6 +39,7 @@ export default async function PracticeSessionPage({
       correctAnswer: q.correctAnswer,
       correctAnswerLetter: q.correctAnswerLetter,
       explanation: q.explanation,
+      hints: q.hints,
       twoPartColumns: q.twoPartColumns,
       twoPartCorrectAnswers: q.twoPartCorrectAnswers,
     }))
@@ -56,12 +65,38 @@ export default async function PracticeSessionPage({
     )
   }
 
+  // Adaptive ordering. Reads the student's per-topic skill level from
+  // user_metadata and reorders `playable` so level-appropriate questions
+  // lead. Falls back to file order when the student has fewer than
+  // MIN_ATTEMPTS_FOR_ADAPTIVE attempts on this slug — predictable
+  // behaviour for new users. Auth/metadata errors are non-fatal.
+  let skill: TopicSkillLevel = {
+    level: DEFAULT_LEVEL,
+    attempts: 0,
+    updatedAt: 0,
+  }
+  try {
+    const supabase = await createSupabaseServer()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+    if (user) {
+      const levels = getTopicSkillLevels(user.user_metadata)
+      skill = getLevelForSlug(levels, slug)
+    }
+  } catch {
+    // Anonymous or supabase down — keep default level / file order.
+  }
+  const adaptive = pickAdaptiveOrder(playable, skill)
+
   return (
     <SessionClient
       slug={slug}
       topic={questions[0].topic}
       section={questions[0].section}
-      questions={playable}
+      questions={adaptive}
+      skillLevel={skill.level}
+      skillAttempts={skill.attempts}
     />
   )
 }

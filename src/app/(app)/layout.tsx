@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation"
 import {
   LayoutDashboard,
   Calendar,
-  BookOpen,
+  MessageCircle,
   Sparkles,
   Target,
   Wrench,
@@ -14,15 +14,23 @@ import {
   AlertCircle,
   RotateCcw,
   FlaskConical,
+  GraduationCap,
   Settings,
   ChevronDown,
   Menu,
-  X,
   LogOut,
   User,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
+import FeedbackWidget from "@/components/beta/FeedbackWidget"
+import StudyTimer from "@/components/shared/StudyTimer"
+import ServiceWorkerRegistrar from "@/components/offline/ServiceWorkerRegistrar"
+import OfflineBanner from "@/components/offline/OfflineBanner"
+import OfflineSyncTrigger from "@/components/offline/OfflineSyncTrigger"
+import { clearReviewCache } from "@/lib/offline/review-cache"
+import { clearPendingAttempts } from "@/lib/offline/pending-attempts"
+import { drainPendingAttempts } from "@/lib/offline/sync"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import {
   DropdownMenu,
@@ -32,12 +40,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+// Guides + Lessons were dropped from the sidebar on 2026-04-28 — Lessons
+// is the deprecated old format (chapters superseded it), and reading-type
+// guides now appear inline in /chapters with a "Reading" badge. Reference
+// guides are still reachable via the chapter listing or direct links.
 const navItems = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { label: "Course", href: "/learn", icon: GraduationCap },
   { label: "Diagnostic", href: "/diagnostic", icon: FlaskConical },
   { label: "Study Plan", href: "/study-plan", icon: Calendar },
   { label: "Chapters", href: "/chapters", icon: Sparkles },
-  { label: "Lessons", href: "/lessons", icon: BookOpen },
   { label: "Practice", href: "/practice", icon: Target },
   { label: "Review", href: "/review", icon: RotateCcw },
   { label: "Mock", href: "/mock", icon: Target },
@@ -116,8 +128,29 @@ function Sidebar({
         ))}
       </nav>
 
-      {/* Bottom */}
-      <div className="p-3 border-t border-white/[0.06]">
+      {/* Bottom — community + settings. Community link only renders
+          when NEXT_PUBLIC_COMMUNITY_URL is set (e.g. a Discord invite).
+          Keeps the sidebar clean before the cohort exists, then turns
+          on with one env var when Adam launches it. */}
+      <div className="p-3 border-t border-white/[0.06] space-y-1">
+        {process.env.NEXT_PUBLIC_COMMUNITY_URL && (
+          <a
+            href={process.env.NEXT_PUBLIC_COMMUNITY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={onClose}
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors text-[#555555] hover:text-[#888888] hover:bg-white/[0.03]"
+          >
+            <MessageCircle className="w-4 h-4 flex-shrink-0" />
+            <span>Community</span>
+            <span
+              className="ml-auto text-[9px] uppercase tracking-[0.18em] font-semibold"
+              style={{ color: "rgba(201,168,76,0.55)" }}
+            >
+              ↗
+            </span>
+          </a>
+        )}
         <Link
           href="/settings"
           onClick={onClose}
@@ -142,25 +175,71 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [userName, setUserName] = useState("")
   const [userInitials, setUserInitials] = useState("")
+  // Surfaced for the offline sync trigger — drains pending offline
+  // drill attempts back to /api/practice-sessions when this user is
+  // online. Empty until auth resolves; the trigger no-ops on empty.
+  const [userId, setUserId] = useState("")
 
   useEffect(() => {
     const supabase = createSupabaseBrowser()
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (user) {
-        const fullName = (user.user_metadata?.full_name as string) ?? user.email ?? ""
-        setUserName(fullName.split(" ")[0] || user.email?.split("@")[0] || "User")
-        const parts = fullName.split(" ").filter(Boolean)
-        setUserInitials(
-          parts.length >= 2
-            ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
-            : fullName.slice(0, 2).toUpperCase()
-        )
+        setUserId(user.id)
+        // Only display a real authored name. The email-username fallback
+        // ("adamzakaryan15") makes the chrome look like a dev build —
+        // showing nothing is more premium than showing the handle.
+        const fullName = (user.user_metadata?.full_name as string | undefined)?.trim() ?? ""
+        const parts = fullName.split(/\s+/).filter(Boolean)
+        if (parts.length > 0) {
+          setUserName(parts[0])
+          setUserInitials(
+            parts.length >= 2
+              ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+              : parts[0].slice(0, 2).toUpperCase()
+          )
+        } else {
+          setUserName("")
+          // Fall back to email-initial only for the avatar, never the visible name.
+          const emailInitial = user.email?.[0]?.toUpperCase() ?? ""
+          setUserInitials(emailInitial)
+        }
       }
     })
   }, [])
 
   async function handleSignOut() {
     const supabase = createSupabaseBrowser()
+
+    // Capture the current user id BEFORE we sign out — clearing the
+    // user-namespaced offline state needs it. If we can't get it, skip
+    // the per-user clear and fall back to the blanket cache wipe.
+    const { data: { user } } = await supabase.auth.getUser()
+    const uid = user?.id
+
+    // Best-effort: sync any unsynced offline drill attempts to the
+    // server before we wipe local state. If we're offline or the API
+    // is unreachable, the drain is a no-op and the attempts get cleared
+    // below — that's the same trade-off we apply in the existing
+    // OfflineSyncTrigger flow. Sign-out on a shared device beats
+    // leaking another user's data into the next session.
+    if (uid) {
+      try {
+        await drainPendingAttempts(uid)
+      } catch {
+        // Swallow — sign-out should not block on a sync failure.
+      }
+      try {
+        await clearPendingAttempts(uid)
+      } catch {
+        // Swallow — IDB errors should not block sign-out.
+      }
+    }
+    try {
+      await clearReviewCache()
+    } catch {
+      // Swallow — IDB errors should not block sign-out.
+    }
+
     await supabase.auth.signOut()
     router.push("/login")
     router.refresh()
@@ -174,6 +253,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       className="flex h-screen overflow-hidden"
       style={{ backgroundColor: "#0A0A0A" }}
     >
+      <a href="#main-content" className="skip-to-content">
+        Skip to content
+      </a>
       {/* Desktop sidebar */}
       <aside
         className="hidden lg:flex flex-col w-56 flex-shrink-0 border-r border-white/[0.06]"
@@ -212,8 +294,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             <button
               onClick={() => setSidebarOpen(true)}
               className="lg:hidden p-1.5 rounded-lg text-[#555555] hover:text-[#888888]"
+              aria-label="Open navigation menu"
             >
-              <Menu className="w-5 h-5" />
+              <Menu className="w-5 h-5" aria-hidden="true" />
             </button>
             <p className="text-sm text-[#888888]">
               <span className="text-[#555555]">App</span>
@@ -222,9 +305,16 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             </p>
           </div>
 
+          {/* Right cluster: study timer + user menu */}
+          <div className="flex items-center gap-3">
+            <StudyTimer />
+
           {/* User menu */}
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-white/[0.04] transition-colors">
+            <DropdownMenuTrigger
+              className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-white/[0.04] transition-colors"
+              aria-label="Open user menu"
+            >
               <Avatar className="w-7 h-7">
                 <AvatarFallback
                   className="text-xs font-bold"
@@ -236,7 +326,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   {userInitials || ".."}
                 </AvatarFallback>
               </Avatar>
-              <span className="hidden sm:block text-sm text-[#888888]">{userName || "..."}</span>
+              {userName && (
+                <span className="hidden sm:block text-sm text-[#888888]">{userName}</span>
+              )}
               <ChevronDown className="w-3.5 h-3.5 text-[#555555]" />
             </DropdownMenuTrigger>
             <DropdownMenuContent
@@ -263,12 +355,31 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+          </div>
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto">
+        <main id="main-content" className="flex-1 overflow-y-auto">
           <div className="p-4 sm:p-6">{children}</div>
         </main>
+      </div>
+
+      {/* Floating beta-feedback launcher — globally available across
+          every authenticated page. The widget is fixed-position so it
+          doesn't disrupt the layout. */}
+      <FeedbackWidget />
+      {/* Offline plumbing — all three render null in the common path.
+          The registrar attaches /sw.js on mount (production only); the
+          sync trigger drains queued offline drills when online; the
+          banner only shows when navigator.onLine flips false. Mounted
+          last so the banner's stacking context is above other
+          absolutely-positioned UI. */}
+      <ServiceWorkerRegistrar />
+      {userId && <OfflineSyncTrigger userId={userId} />}
+      <div className="fixed top-0 inset-x-0 z-[60] pointer-events-none">
+        <div className="pointer-events-auto">
+          <OfflineBanner />
+        </div>
       </div>
     </div>
   )

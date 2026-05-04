@@ -27,9 +27,15 @@ export async function POST(request: Request) {
   const body = (await request.json()) as {
     full_name?: string | null
     exam_date?: string | null
+    /** Persona flag: native English speaker. `false` layers the Int'l
+     *  Verbal-weighted persona on top of the baseline-derived one. */
+    english_native?: boolean | null
+    /** Persona flag: has taken the real GMAT before. Layers the
+     *  Retaker persona on top of the baseline-derived one. */
+    prior_gmat_attempt?: boolean | null
   }
 
-  const patch: Record<string, string | null> = {}
+  const patch: Record<string, string | boolean | null> = {}
 
   if (body.full_name !== undefined) {
     if (body.full_name === null) {
@@ -55,6 +61,31 @@ export async function POST(request: Request) {
       )
     } else {
       patch.exam_date = body.exam_date
+    }
+  }
+
+  if (body.english_native !== undefined) {
+    if (body.english_native === null || typeof body.english_native === "boolean") {
+      patch.english_native = body.english_native
+    } else {
+      return Response.json(
+        { error: "english_native must be a boolean or null" },
+        { status: 400 }
+      )
+    }
+  }
+
+  if (body.prior_gmat_attempt !== undefined) {
+    if (
+      body.prior_gmat_attempt === null ||
+      typeof body.prior_gmat_attempt === "boolean"
+    ) {
+      patch.prior_gmat_attempt = body.prior_gmat_attempt
+    } else {
+      return Response.json(
+        { error: "prior_gmat_attempt must be a boolean or null" },
+        { status: 400 }
+      )
     }
   }
 

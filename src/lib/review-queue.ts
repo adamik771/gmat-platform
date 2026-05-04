@@ -3,26 +3,38 @@ import type { SupabaseClient } from "@supabase/supabase-js"
 /**
  * Spaced-retrieval review queue.
  *
- * Given a user's past practice attempts, returns the questions they should
- * review next — prioritized by recency of error, total miss count, and time
- * since the question was last seen. Retrieval practice on the exact questions
- * a student has struggled with is the strongest evidence-backed intervention
- * in the learning-science literature (Roediger & Karpicke 2006; Dunlosky 2013).
+ * Implements the research-report spacing ladder:
  *
- * The priority formula intentionally stays simple so it's easy to reason
- * about and tune. A per-question score is:
+ *   same-day summary → 2 days → 7 days → 21 days → 42 days
  *
- *   priority = recentMissBoost + repeatMissBoost + spacingBoost
+ * Each question carries a rung (0..4). Rung 0 is "due right now" — this is
+ * where a question lands after a miss or after any brand-new attempt, so
+ * the student re-sees it the same day. Each subsequent correct attempt
+ * advances the rung; each wrong attempt resets to 0. The threshold gap
+ * at the current rung defines when the question is next due:
  *
- * where:
- *   recentMissBoost = 100 * max(0, 1 - daysSinceLastAttempt / 14)  if last attempt was wrong, else 0
- *   repeatMissBoost = 20 * totalMissCount
- *   spacingBoost    = 5 * min(daysSinceLastAttempt / 7, 3)
+ *   rung 0 → 0d   (see it today — research-report "same day summary")
+ *   rung 1 → 2d
+ *   rung 2 → 7d
+ *   rung 3 → 21d
+ *   rung 4 → 42d  (stable — leaves the queue until this elapses)
  *
- * Questions the user has never attempted are NOT in the queue — they belong
- * in fresh practice, not review. Callers can surface "new" questions through
- * the normal Practice route.
+ * Priority = max(0, daysSinceLast - threshold) + repeat-miss bonus +
+ * flagged bonus. Questions below threshold are filtered out UNLESS the
+ * student flagged them during a mock — flags override the ladder so
+ * student-selected items surface immediately.
+ *
+ * Retrieval practice on the exact questions a student has struggled with
+ * is the strongest evidence-backed intervention in the learning-science
+ * literature (Roediger & Karpicke 2006; Dunlosky 2013). The explicit
+ * ladder replaces the prior continuous heuristic so the spacing matches
+ * the report exactly and students can reason about *when* a question
+ * will come back.
  */
+
+/** Spacing ladder in days. Index = rung, value = days until next review. */
+export const SPACING_LADDER_DAYS = [0, 2, 7, 21, 42] as const
+export const MAX_RUNG = SPACING_LADDER_DAYS.length - 1
 
 export interface ReviewCandidate {
   questionId: string
@@ -37,6 +49,13 @@ export interface ReviewCandidate {
   lastCorrect: boolean
   /** Days since the most recent attempt (float, rounded to the nearest tenth). */
   daysSinceLastSeen: number
+  /** Current rung on the spacing ladder (0..4). */
+  rung: number
+  /** Days until this rung's threshold elapses. Negative = overdue. */
+  daysUntilDue: number
+  /** Was this question flagged during a mock? Flagged questions get a
+   *  priority boost so they surface sooner in the review queue. */
+  flagged: boolean
   /** Computed priority score — higher = review sooner. */
   priority: number
 }
@@ -53,28 +72,57 @@ interface RawAttempt {
 
 const SECTIONS = new Set<ReviewCandidate["section"]>(["Quant", "Verbal", "DI"])
 
+/**
+ * Walk an attempt history (chronological, oldest first) and return the
+ * rung the question lands on. Each correct attempt advances one step
+ * (capped at MAX_RUNG); each wrong attempt resets to rung 0 — the
+ * research-report "difficult or unstable skills pulled back into the
+ * queue sooner" rule.
+ */
+export function computeRung(correctnessInOrder: boolean[]): number {
+  let rung = 0
+  for (const correct of correctnessInOrder) {
+    rung = correct ? Math.min(rung + 1, MAX_RUNG) : 0
+  }
+  return rung
+}
+
 function priorityFor(
-  lastCorrect: boolean,
+  rung: number,
   daysSinceLast: number,
-  missCount: number
-): number {
-  const recentMissBoost = lastCorrect ? 0 : 100 * Math.max(0, 1 - daysSinceLast / 14)
-  const repeatMissBoost = 20 * missCount
-  const spacingBoost = 5 * Math.min(daysSinceLast / 7, 3)
-  return recentMissBoost + repeatMissBoost + spacingBoost
+  missCount: number,
+  flagged: boolean
+): { priority: number; daysUntilDue: number } {
+  const threshold = SPACING_LADDER_DAYS[rung]
+  const daysUntilDue = threshold - daysSinceLast
+  const overdueDays = Math.max(0, -daysUntilDue)
+  // Main ranking: overdue-ness (days past the threshold). Small nudges
+  // for repeat-missed items (3× per miss) and flagged items (+100) so
+  // the queue still respects student signal but the ladder leads.
+  const priority =
+    overdueDays * 10 + missCount * 3 + (flagged ? 100 : 0)
+  return { priority, daysUntilDue }
 }
 
 /**
  * Build the review queue for a user. Fetches up to the last ~12 weeks of
  * attempts (bounded so the payload stays small even for heavy studiers),
  * aggregates per-question, and returns the prioritized list.
+ *
+ * `flaggedQuestionIds` is an optional set of question ids the user has
+ * flagged during a mock — those get an extra boost so they rise to the
+ * top of the queue even if the student got them right.
  */
 export async function getReviewQueue(
   supabase: SupabaseClient,
   userId: string,
-  options: { limit?: number; section?: ReviewCandidate["section"] } = {}
+  options: {
+    limit?: number
+    section?: ReviewCandidate["section"]
+    flaggedQuestionIds?: Set<string>
+  } = {}
 ): Promise<ReviewCandidate[]> {
-  const { limit = 30, section } = options
+  const { limit = 30, section, flaggedQuestionIds } = options
 
   const cutoff = new Date()
   cutoff.setDate(cutoff.getDate() - 84) // 12 weeks
@@ -94,8 +142,10 @@ export async function getReviewQueue(
   const { data, error } = await query
   if (error || !data) return []
 
-  // Aggregate per question_id: attempts come in newest-first, so the first
-  // occurrence of any question_id tells us the most recent attempt.
+  // Aggregate per question_id. Rows come newest-first so the first
+  // occurrence is the latest attempt. We also collect the correctness
+  // timeline (unshifted to keep chronological order) so the rung walker
+  // can process the attempts from oldest → newest.
   const agg = new Map<
     string,
     {
@@ -106,6 +156,8 @@ export async function getReviewQueue(
       attemptCount: number
       lastCorrect: boolean
       lastSeenIso: string | null
+      /** Correctness in chronological order (oldest first). */
+      correctnessChrono: boolean[]
     }
   >()
 
@@ -125,12 +177,15 @@ export async function getReviewQueue(
         attemptCount: 1,
         lastCorrect: row.is_correct,
         lastSeenIso: sessionCreatedAt,
+        correctnessChrono: [row.is_correct],
       })
     } else {
       existing.attemptCount += 1
       if (!row.is_correct) existing.missCount += 1
-      // Rows are newest-first, so the first pass already captured lastCorrect
-      // and lastSeenIso — nothing to update.
+      // Rows are newest-first, so the first pass already captured
+      // lastCorrect and lastSeenIso. Prepend older attempts to keep the
+      // chronological order oldest-first.
+      existing.correctnessChrono.unshift(row.is_correct)
     }
   }
 
@@ -139,8 +194,19 @@ export async function getReviewQueue(
   for (const [questionId, a] of agg) {
     const lastSeenMs = a.lastSeenIso ? Date.parse(a.lastSeenIso) : now
     const daysSinceLastSeen = Math.max(0, (now - lastSeenMs) / (1000 * 60 * 60 * 24))
-    const priority = priorityFor(a.lastCorrect, daysSinceLastSeen, a.missCount)
-    if (priority <= 0) continue // never missed + freshly seen = skip
+    const flagged = flaggedQuestionIds?.has(questionId) ?? false
+    const rung = computeRung(a.correctnessChrono)
+    const { priority, daysUntilDue } = priorityFor(
+      rung,
+      daysSinceLastSeen,
+      a.missCount,
+      flagged
+    )
+    // Below-threshold items are hidden UNLESS flagged. This is the
+    // whole point of the ladder — don't surface a question that's
+    // inside its spacing window, the student has already earned the
+    // time away from it.
+    if (priority <= 0 && !flagged) continue
     candidates.push({
       questionId,
       section: a.section,
@@ -150,6 +216,9 @@ export async function getReviewQueue(
       attemptCount: a.attemptCount,
       lastCorrect: a.lastCorrect,
       daysSinceLastSeen: Math.round(daysSinceLastSeen * 10) / 10,
+      rung,
+      daysUntilDue: Math.round(daysUntilDue * 10) / 10,
+      flagged,
       priority: Math.round(priority * 10) / 10,
     })
   }

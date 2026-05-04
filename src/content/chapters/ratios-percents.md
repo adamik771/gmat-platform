@@ -107,6 +107,8 @@ problem_sets:
 
 A ratio is a **multiplicative comparison** between two quantities. When I say "the ratio of red to green pens is 4:7," I'm saying that for every 4 red pens there are 7 green ones — not that there are exactly 4 and 7, but that the counts come in multiples of those parts.
 
+**Mental model.** Ratios and percents are *multiplicative*, not additive. You can't add ratios, you can't add percent changes. A 30% increase followed by a 30% decrease isn't 0% — it's `1.30 × 0.70 = 0.91`, a 9% net decrease. Every error in this chapter traces back to treating these as additive when they're multiplicative; once that conversion is automatic, the rest is arithmetic.
+
 **The parts model.** Treat the numbers in a ratio as counts of identical "parts." If red:green = 4:7, then the total is 4 + 7 = 11 parts, red is 4/11 of the whole, and green is 7/11.
 
 **Worked example.** A box has 44 pens total, red and green in ratio 4:7. How many are green?
@@ -128,7 +130,7 @@ Don't say 5/3. Don't say 3/5. Total parts = 3 + 5 = 8, so girls = 5/8 of the cla
 
 **Scaling ratios.** Ratios are only defined up to a multiplier. 4:7 = 8:14 = 12:21 = 40:70. Any time you want to compare a ratio against a total, scale until the parts sum matches the total — or keep a variable k for each part (red = 4k, green = 7k) and let algebra do the rest.
 
-> **Trap to watch.** Ratios are not differences. "Red:green = 4:7" does NOT mean "green has 3 more than red." It means "for every 4 reds, there are 7 greens." If the total is 44, green has 28 − 16 = 12 more than red, not 3. Always map the ratio onto real numbers before computing differences.
+**Trap to watch.** Ratios are not differences. "Red:green = 4:7" does NOT mean "green has 3 more than red." It means "for every 4 reds, there are 7 greens." If the total is 44, green has 28 − 16 = 12 more than red, not 3. Always map the ratio onto real numbers before computing differences.
 
 **Ratios with three or more terms.** Work identically. 2:3:5 means total = 10 parts, with each quantity at 20%, 30%, and 50% of the whole. The parts model scales up; the logic is the same.
 
@@ -157,7 +159,7 @@ Now b is 20 in both, and you can combine: a:b:c = 12:20:35. So a:c = 12:35.
 
 Match b. First ratio: b = 3; second ratio: b = 6. LCM is 6. Scale first ratio by 2: a:b = 4:6. Now a:b:c = 4:6:7, total 17 parts. 62/17 = ... doesn't divide evenly. That's a flag to re-check — or to recognize the GMAT would have chosen numbers that divide cleanly. If the total were 68, each part = 4, and c = 28.
 
-> **Trap to watch.** Don't "add" ratios. 3:5 and 4:7 do not combine to 7:12 or any other direct sum. Ratios are multiplicative comparisons; chaining them requires matching the bridge term first.
+**Trap to watch.** Don't "add" ratios. 3:5 and 4:7 do not combine to 7:12 or any other direct sum. Ratios are multiplicative comparisons; chaining them requires matching the bridge term first.
 
 **Recognition tip.** If a problem gives you two ratios that share exactly one variable, you're in ratio-chaining territory. Line up the shared value before you do anything else.
 
@@ -215,7 +217,7 @@ Every answer choice on a percent problem usually has just one "right" computatio
 
 Drill this table until you can answer either direction in under a second. When a problem asks "what percent is 14/40?" you should see 14/40 = 7/20 = 35% without computation.
 
-> **Trap to watch.** Percent and percentage points are different. If a tax rate rises from 10% to 15%, that's 5 **percentage points** — but a 50% **percent increase** (5/10 = 50%). On GMAT DS in particular, distinguishing these is the entire problem.
+**Trap to watch.** Percent and percentage points are different. If a tax rate rises from 10% to 15%, that's 5 **percentage points** — but a 50% **percent increase** (5/10 = 50%). On GMAT DS in particular, distinguishing these is the entire problem.
 
 ## @percent-change-and-successive
 
@@ -254,7 +256,7 @@ Use multipliers: 1.20 × 0.80 = 0.96. Net multiplier 0.96 means a 4% decrease.
 
 **Chaining multipliers.** A +40% markup followed by a −25% discount gives 1.40 × 0.75 = 1.05 — a 5% net markup. Any sequence of percent changes reduces to the product of multipliers.
 
-> **Trap to watch.** Percent changes never add. +30% followed by +40% is NOT +70%. It's 1.30 × 1.40 = 1.82, a 82% increase. The longer the sequence, the bigger the compounding gap between adding and multiplying.
+**Trap to watch.** Percent changes never add. +30% followed by +40% is NOT +70%. It's 1.30 × 1.40 = 1.82, a 82% increase. The longer the sequence, the bigger the compounding gap between adding and multiplying.
 
 **When to use "reverse multiplier."** If you know the final value and the multiplier, divide — don't subtract.
 
@@ -315,7 +317,7 @@ Write new = old × multiplier; solve for old. 900,000 = 1.50 × old → old = 60
 
 **Recognition tip.** When a word problem gives you a percent and a final (post-change) value, you're almost always going to divide by the multiplier. When it gives you a percent and an original, you're going to multiply.
 
-> **Trap to watch.** Read verb tense carefully. "The price, after a 20% increase, is $60" has $60 as the **new** value. "The price is $60 after being increased by 20%" — same thing. "The price is $60; it was then increased 20%" — $60 is the **old** value. One word changes the arithmetic.
+**Trap to watch.** Read verb tense carefully. "The price, after a 20% increase, is $60" has $60 as the **new** value. "The price is $60 after being increased by 20%" — same thing. "The price is $60; it was then increased 20%" — $60 is the **old** value. One word changes the arithmetic.
 
 **Dollar-anchor DS pattern.** Many hard DS questions hinge on whether you have a percent *plus a dollar anchor.* Percent alone is insufficient (could scale to any size); dollar amount alone is usually insufficient (no rate context); together sufficient. Always check for this combination before answering.
 
@@ -364,7 +366,7 @@ Weighted: (10·75 + 15·85) / 25 = (750 + 1275) / 25 = 2025 / 25 = 81. Not 80 (s
 
 **Mixture + weighted average equivalence.** Concentrations are just weighted averages of 0% (pure solvent) and 100% (pure solute). Every mixture problem is a weighted-average problem with percent-concentration as the variable being averaged. Recognize this once and half the "hard mixture" questions collapse into three-line problems.
 
-> **Trap to watch.** "Equal parts" vs "equal concentrations." If you mix equal volumes of 40% and 70% solutions, the result is 55% (midpoint). If you need 60%, you need more of the 70% — not equal parts. Questions often slip between these two phrasings.
+**Trap to watch.** "Equal parts" vs "equal concentrations." If you mix equal volumes of 40% and 70% solutions, the result is 55% (midpoint). If you need 60%, you need more of the 70% — not equal parts. Questions often slip between these two phrasings.
 
 ## @summary
 

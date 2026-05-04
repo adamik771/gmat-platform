@@ -128,3 +128,232 @@
     @apply font-sans;
   }
 }
+
+@utility font-display {
+  font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+  font-optical-sizing: auto;
+}
+
+@utility font-display-italic {
+  font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+  font-style: italic;
+  font-optical-sizing: auto;
+}
+
+@utility bg-grain {
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.16 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.prose-chapter-dropcap > p:first-of-type::first-letter {
+  font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+  font-weight: 600;
+  color: #c9a84c;
+  float: left;
+  font-size: 3.25rem;
+  line-height: 0.9;
+  margin-top: 0.25rem;
+  margin-right: 0.75rem;
+  margin-bottom: 0;
+}
+
+/* ---------------------------------------------------------------
+   WCAG-aligned design tokens (overlay on existing dark/gold palette)
+   Tokens exist so components can reference semantic names instead of
+   hex literals. Values map to the established aesthetic — adding,
+   not replacing, the current palette.
+--------------------------------------------------------------- */
+:root {
+  /* Brand & state */
+  --gmat-primary: #c9a84c;
+  --gmat-primary-soft: rgba(201, 168, 76, 0.12);
+  --gmat-primary-ring: rgba(201, 168, 76, 0.4);
+  --gmat-bg: #0a0a0a;
+  --gmat-bg-elevated: #0d0d0d;
+  --gmat-bg-raised: #111111;
+  --gmat-bg-deepest: #050505;
+  --gmat-text: #f0f0f0;
+  --gmat-text-body: #c0c0c0;
+  --gmat-text-muted: #888888;
+  --gmat-text-faint: #555555;
+  --gmat-text-ghost: #333333;
+  --gmat-border-subtle: rgba(255, 255, 255, 0.06);
+  --gmat-border: rgba(255, 255, 255, 0.08);
+  --gmat-border-strong: rgba(255, 255, 255, 0.12);
+  --gmat-success: #3ecf8e;
+  --gmat-success-soft: rgba(62, 207, 142, 0.12);
+  --gmat-error: #ff4444;
+  --gmat-error-soft: rgba(255, 68, 68, 0.08);
+  --gmat-warning: #f2994a;
+
+  /* Spacing (8 px base) */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Type rhythm */
+  --line-height-body: 1.6;
+  --line-height-heading: 1.15;
+  --paragraph-spacing: 1.5em;
+
+  /* Radii (matches existing rounded-xl/2xl conventions) */
+  --radius-btn: 0.75rem;
+  --radius-card: 1rem;
+  --radius-panel: 1.25rem;
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 320ms;
+  --easing-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------------------------------------------------------------
+   Accessibility baseline
+--------------------------------------------------------------- */
+
+/* Visible focus ring on any keyboard-focused interactive element.
+   Uses the brand gold so it reads as intentional, not default. */
+:focus-visible {
+  outline: 2px solid var(--gmat-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+/* Remove outline on mouse focus to avoid visual noise;
+   :focus-visible handles keyboard focus. */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Screen-reader-only helper */
+.sr-only,
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip-to-content anchor, revealed on focus.
+   Apps can place <a href="#main-content" class="skip-to-content">Skip to content</a>
+   as the first element in the layout. */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 8px;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--gmat-primary);
+  color: var(--gmat-bg);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: top var(--duration-fast) var(--easing-out);
+}
+.skip-to-content:focus {
+  top: 8px;
+}
+
+/* WCAG SC 1.4.8 — minimum touch target on small pointers */
+@media (pointer: coarse) {
+  button,
+  a[role="button"],
+  input[type="submit"],
+  input[type="button"] {
+    min-height: 44px;
+  }
+}
+
+/* WCAG SC 1.4.12 — text-spacing override.
+   Body copy gets 1.6 line-height and at least 1.5em paragraph gap
+   without requiring every component to opt in. Component-level
+   overrides still win. */
+body {
+  letter-spacing: 0.005em;
+  word-spacing: 0.01em;
+}
+p {
+  line-height: var(--line-height-body);
+}
+
+/* ---------------------------------------------------------------
+   Reader theme tokens — scoped to reading surfaces only
+   (ChapterReader, lesson reader). Apply `.reader-themed` to the
+   shell, then set `data-reading-theme="light" | "dark"` to flip.
+   Default (no attribute) resolves to light — the "brighten content"
+   default for long-form reading.
+--------------------------------------------------------------- */
+.reader-themed {
+  /* Light = paper-beige editorial default. Darker / warmer than a
+     pure-white sheet so the transition into the dark authed chrome
+     is gradational, not a harsh jump from #050505 to #ffffff. */
+  --read-bg: #ede5d0;
+  --read-bg-inset: #e3d9bf;
+  --read-bg-elevated: #f5efdb;
+  --read-text: #1c1c1c;
+  --read-text-body: #3c3c3c;
+  --read-text-muted: #6b6b6b;
+  --read-text-faint: #9a9a9a;
+  --read-border: rgba(0, 0, 0, 0.1);
+  --read-border-strong: rgba(0, 0, 0, 0.18);
+  --read-gold: #a88434;
+  --read-gold-soft: rgba(168, 132, 52, 0.2);
+  --read-gold-strong: #a88434;
+  --read-success: #16a34a;
+  --read-success-soft: rgba(22, 163, 74, 0.14);
+  --read-error: #dc2626;
+  --read-error-soft: rgba(220, 38, 38, 0.1);
+  transition: background-color 200ms var(--easing-out),
+    color 200ms var(--easing-out), border-color 200ms var(--easing-out);
+}
+
+/* Gold edge that visually ties the light reader panel to the dark
+   authed chrome. Dark mode doesn't need it — the existing subtle
+   border reads fine against dark-on-dark. */
+.reader-themed[data-reading-theme="light"],
+.reader-themed:not([data-reading-theme="dark"]) {
+  box-shadow: 0 0 0 1px rgba(168, 132, 52, 0.35),
+    0 18px 40px -24px rgba(0, 0, 0, 0.6);
+}
+
+.reader-themed[data-reading-theme="dark"] {
+  --read-bg: #111111;
+  --read-bg-inset: #0a0a0a;
+  --read-bg-elevated: #0d0d0d;
+  --read-text: #f0f0f0;
+  --read-text-body: #c0c0c0;
+  --read-text-muted: #888888;
+  --read-text-faint: #555555;
+  --read-border: rgba(255, 255, 255, 0.06);
+  --read-border-strong: rgba(255, 255, 255, 0.12);
+  --read-gold: #c9a84c;
+  --read-gold-soft: rgba(201, 168, 76, 0.1);
+  --read-gold-strong: rgba(201, 168, 76, 0.25);
+  --read-success: #3ecf8e;
+  --read-success-soft: rgba(62, 207, 142, 0.12);
+  --read-error: #ff4444;
+  --read-error-soft: rgba(255, 68, 68, 0.08);
+}
+
+/* ---------------------------------------------------------------
+   Reduced-motion: honor the user's system preference globally.
+   Individual components that manage their own animations should
+   also check `useReducedMotion()` from framer-motion.
+--------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

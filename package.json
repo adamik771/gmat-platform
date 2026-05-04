@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "validate:content": "node --experimental-strip-types --no-warnings scripts/validate-content.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.92.0",
     "@base-ui/react": "^1.4.0",
     "@stripe/stripe-js": "^9.2.0",
     "@supabase/ssr": "^0.10.2",

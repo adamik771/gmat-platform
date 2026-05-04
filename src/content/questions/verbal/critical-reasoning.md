@@ -19,7 +19,15 @@ Which of the following, if true, most strengthens the argument above?
 - E) The chain also expanded its organic produce section at the same time as launching the loyalty program.
 
 **answer:** B
-**explanation:** The argument claims the loyalty program caused the revenue increase. Answer B strengthens this by showing that a comparable competitor without the program actually lost revenue, making it less likely that external market factors explain the increase. Answer E actually weakens the argument by providing an alternative explanation. Answer A is irrelevant to whether the program caused the revenue change. Answer C slightly weakens the argument by suggesting customers already visited frequently. Answer D is neutral regarding the cause of increased revenue.
+**fastest_path:** Causal claim — program → revenue. Strengthen by *ruling out* the obvious alternative cause (broader market trend). (B) does it: comparable competitor without program *lost* revenue, so the gain isn't just market lift.
+**explanation:** Argument: loyalty program caused 8% revenue gain. The competitor comparison in (B) controls for market conditions — same region, no program, revenue actually fell. That isolates the program as the differentiating factor.
+**mistake_a:** Irrelevant — advertising spend doesn't bear on whether the program *caused* the gain (and could even introduce a confounder).
+**mistake_c:** *Weakens* — if customers were already past 10 visits, the program's design didn't change their behavior much.
+**mistake_d:** Neutral — average transaction unchanged is consistent with revenue rising from more customers, but doesn't strengthen the *causal* claim.
+**mistake_e:** *Alternative cause* — produce expansion could itself drive the revenue gain. Picks at the very claim the question wants strengthened.
+**common_trap:** Mistaking *evidence the conclusion is consistent with* (D, E) for *evidence ruling out alternatives* (B). Strengthen ≠ "doesn't contradict."
+**takeaway:** Strengthen on a causal claim = rule out the strongest alternative cause. Comparable-control evidence is the most reliable lever.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -39,7 +47,15 @@ Which of the following, if true, most strengthens the department's conclusion?
 - E) Childhood asthma rates have been increasing nationwide over the past decade regardless of green space availability.
 
 **answer:** B
-**explanation:** The argument needs a causal mechanism linking green space to reduced asthma. Answer B provides one: vegetation absorbs particulate matter that triggers asthma. This makes the causal claim more plausible. Answer A actually weakens the argument by suggesting reverse causation. Answer C suggests a confounding variable (income). Answer D is ambiguous since outdoor time could increase or decrease asthma exposure. Answer E weakens the conclusion by suggesting green space may not matter.
+**fastest_path:** Conclusion is *causal* (green space → less asthma). Strengthen by supplying the mechanism. (B) names it: vegetation absorbs particulates.
+**explanation:** Argument moves from correlation (more green space, less asthma) to causation (green space *causes* less asthma). (B) supplies a plausible biological mechanism — particulate absorption — making the causal step credible.
+**mistake_a:** *Reverse causation* — families move to green areas *because* of asthma. That weakens the causal claim, not strengthens.
+**mistake_c:** *Confounding variable* — income could be the real driver. Weakens.
+**mistake_d:** Ambiguous — outdoor time could increase OR decrease asthma exposure depending on triggers. Not a clean strengthen.
+**mistake_e:** *Reverse trend* — rising asthma rates across the board *despite* green space weakens the causal claim.
+**common_trap:** Picking choices that "sound related" (D) over choices that supply a mechanism (B). Strengthen-by-mechanism is more powerful than strengthen-by-association.
+**takeaway:** Causal-claim strengthens fall into three buckets: rule out alternative cause, supply mechanism, control comparison. Mechanism (B-style) is often the cleanest.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -59,7 +75,15 @@ Which of the following, if true, most strengthens the claim that the new feedbac
 - E) Employees who participated most actively in the quarterly sessions were the least likely to leave the company.
 
 **answer:** C
-**explanation:** Answer C directly undermines the critics' alternative explanation. If the job market downturn were the main cause, other companies in the same industry should also have seen lower turnover, but they did not. This isolates the feedback system as the differentiating factor. Answer A is suggestive but does not rule out the job market explanation. Answer B introduces another alternative cause. Answer D is irrelevant to the cause of reduced turnover. Answer E shows correlation but does not rule out that the job market was the primary driver.
+**fastest_path:** Critics offer alternative cause (job market). Strengthen the *original* claim by showing the alternative doesn't explain the data. (C) does it: same-industry firms with no change in feedback systems saw no turnover drop.
+**explanation:** If the job market had been the real driver, peer firms with the same labor market should have seen the same effect. (C) shows they didn't — isolating the feedback-system change as the real differentiator.
+**mistake_a:** Suggestive but not decisive — better satisfaction is consistent with the program working, but doesn't rule out the job-market alternative.
+**mistake_b:** *Introduces another alternative cause* — salary bump could be the real lever. Weakens.
+**mistake_d:** Cost is irrelevant to causation.
+**mistake_e:** Within-firm correlation — doesn't distinguish program-effect from selection effect (engaged employees stay anyway). Doesn't address the market-alternative.
+**common_trap:** Picking (E) because it sounds like internal validation — but the question explicitly asks how to *rule out the job-market alternative*, not how to validate internal participation.
+**takeaway:** When critics name the alternative, the strongest strengthen is the one that *directly tests the alternative*. (C) is a peer-comparison test.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -79,7 +103,15 @@ Which of the following, if true, most strengthens the researchers' hypothesis?
 - E) The beetle population has grown rapidly since its introduction to the island.
 
 **answer:** A
-**explanation:** The hypothesis specifically claims the beetle feeds on the plant's roots. Answer A directly supports this by establishing that root feeding is the beetle's known behavior elsewhere. Answer B supports that the beetle is the cause of the decline but does not specifically strengthen the root-feeding mechanism. Answer C provides an alternative explanation for the decline. Answer D could suggest a broader environmental cause unrelated to the beetle. Answer E is consistent with the hypothesis but does not specifically support the root-feeding claim.
+**fastest_path:** Hypothesis names a specific *mechanism* (root feeding). Strengthen by supporting that mechanism, not the broader claim. (A) does it: beetle is *known* to root-feed in its native habitat.
+**explanation:** The hypothesis isn't just "beetle caused decline" — it's "beetle caused decline *via root feeding*." (A) directly supports the mechanism. (B) supports the broader causation but not the specific mechanism the hypothesis names.
+**mistake_b:** Supports beetle-as-cause generally but doesn't bear on root-feeding specifically. Solid for "beetle did it," weak for "beetle ate roots."
+**mistake_c:** *Alternative cause* — drought could explain the plant decline.
+**mistake_d:** *Alternative cause* — broader environmental issue could be at fault.
+**mistake_e:** Consistent with the hypothesis but doesn't distinguish root feeding from any other consumption mechanism.
+**common_trap:** Picking (B) because it sounds strong ("no other predator!") — but the question asks specifically about the *root-feeding* mechanism, and (B) doesn't address that.
+**takeaway:** Read the hypothesis verbatim. Strengthen the *exact* claim, not the spirit of the claim. Mechanism-specific hypotheses need mechanism-specific support.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -99,7 +131,15 @@ Which of the following, if true, most strengthens the company's argument that it
 - E) The trial lasted six months, during which patients experienced an average of four migraine episodes each.
 
 **answer:** B
-**explanation:** The critics suggest the trial population was biased toward harder-to-treat patients. Answer B turns this criticism into a strength: if treatment-resistant patients typically show smaller differences between medications, then the observed 7-percentage-point advantage in this difficult-to-treat population suggests the new medication's true advantage in the general population would be even larger. This is a subtle logical move that addresses the criticism head-on. Answer C explains why the medications might differ but does not address the trial's population concern. Answer D merely confirms proper trial protocol. Answer E is background information about trial design. Answer A is irrelevant to relative effectiveness.
+**fastest_path:** Critics: trial sample skews toward treatment-resistant patients. (B) flips this — treatment-resistant patients usually show *smaller* differences between meds, so the 7-pt advantage is impressive *despite* the bias. The general-population effect would be even larger.
+**explanation:** Critics' point is meant to undermine generalizability. (B) inverts it: if hard-to-treat populations show smaller drug-vs-drug differences, then a 68% vs 61% gap in the harder-to-treat clinic population implies the gap in the general population is even bigger. Strengthens the company's claim.
+**mistake_a:** Safety is irrelevant to relative effectiveness.
+**mistake_c:** Mechanism difference doesn't address the population-bias concern.
+**mistake_d:** Confirms protocol but doesn't bear on the population issue.
+**mistake_e:** Background trial design — doesn't address bias.
+**common_trap:** Picking (C) because mechanism difference *sounds* mechanistic — but the question's pivot is the population bias the critics raised. Strengthens that address the *exact* objection win.
+**takeaway:** When critics name a specific bias, the strongest strengthen *directly counters that bias*. Generic "good drug" support loses to "the bias actually under-states the effect."
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -119,7 +159,15 @@ Which of the following, if true, most weakens the district officials' argument?
 - E) Several neighboring districts that did not implement breakfast programs saw test scores remain flat during the same period.
 
 **answer:** B
-**explanation:** The argument claims the breakfast program caused the test score improvement. Answer B provides a strong alternative explanation: new curriculum and additional reading specialists could easily account for the improvement. This makes it impossible to attribute the gains solely to the breakfast program. Answer A is irrelevant to whether the program improved learning. Answer C provides background but does not weaken the causal claim. Answer D concerns cost, not effectiveness. Answer E actually strengthens the argument slightly.
+**fastest_path:** Causal claim — breakfast → scores. Weaken by *naming an alternative cause*. (B) does it: new curriculum + reading specialists at the same time. Either could explain the gain.
+**explanation:** Argument attributes a 6% score gain to the breakfast program. (B) introduces two simultaneous interventions (new math curriculum + new reading specialists) that could account for the same gain. The causal claim becomes ambiguous.
+**mistake_a:** Irrelevant — student preference doesn't affect whether the program improved learning.
+**mistake_c:** Background — prior performance doesn't bear on whether the program drove the gain.
+**mistake_d:** Cost ≠ effectiveness.
+**mistake_e:** *Strengthens* — peer districts without the program saw no gain, so the program looks like the differentiator.
+**common_trap:** Picking (E) because it sounds like a comparison — but it's a *peer comparison that supports* the program (gain only occurred with the program). Read the polarity.
+**takeaway:** Weaken-by-alternative-cause is the most reliable lever on causal claims. The strongest version names the *most plausible* simultaneous alternative.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -139,7 +187,15 @@ Which of the following, if true, most weakens the company's conclusion?
 - E) The app is free to download and has over two million active users.
 
 **answer:** B
-**explanation:** The company confuses correlation with causation. Answer B identifies the classic confounding variable: pre-existing motivation drives both the frequent logging and the weight loss. The app logging does not cause the weight loss; both are effects of a common cause. Answer A is irrelevant to the specific causal claim. Answer C does not address the correlation-causation issue. Answer D identifies exceptions but does not undermine the overall pattern. Answer E is background information with no bearing on the argument.
+**fastest_path:** Correlation between logging frequency and weight loss → causation claim. Weaken by *naming the confounder*. (B) does it: pre-existing motivation drives both. Logging doesn't cause loss; both are effects of motivation.
+**explanation:** Classic correlation-causation flaw. The company sees a pattern (more logging → more loss) and infers causation. (B) names the common cause: motivated people are more likely to log AND more likely to lose weight. The app didn't cause the loss; motivation caused both.
+**mistake_a:** Calorie-tracking unused — irrelevant to whether logging frequency causes loss.
+**mistake_c:** Redesign — doesn't bear on the logging-loss correlation.
+**mistake_d:** Exceptions don't undermine an average; some non-losers are consistent with the pattern still holding overall.
+**mistake_e:** Background — user count doesn't bear on causation.
+**common_trap:** Picking (D) because counter-examples *feel* like weakening — but averages absorb individual exceptions. The classic confounder (B) is the textbook weaken.
+**takeaway:** Correlation from observational data → "what's the confounder?" Always. Self-selection (motivation, income, etc.) is the most common one to suspect.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -159,7 +215,15 @@ Which of the following, if true, most weakens the proponents' argument?
 - E) The proposed ban would not apply to plastic bags used for packaging raw meat and produce within stores.
 
 **answer:** B
-**explanation:** The argument assumes that banning single-use bags will reduce landfill plastic. Answer B directly challenges this by showing a substitution effect: consumers buy thicker trash bags that actually take up more landfill space, potentially offsetting or exceeding the reduction from banning the thinner single-use bags. Answer A weakens answer B's point but does not directly weaken the original argument. Answer C concerns cost, not landfill impact. Answer D supports the ban for a different reason. Answer E suggests the ban is incomplete but does not undermine the claim about landfill reduction from the bags that are banned.
+**fastest_path:** Argument assumes ban *reduces* total landfill plastic. Weaken by *substitution effect*. (B) does it: people buy thicker trash bags that take up *more* landfill space than the bags banned.
+**explanation:** Conclusion: ban → reduce landfill plastic. (B) shows the ban triggers a substitution that may *increase* landfill plastic (thicker bags). The very mechanism that reduces single-use bag waste creates a larger trash-bag waste stream.
+**mistake_a:** Strengthens — peer cities saw reductions.
+**mistake_c:** Cost-to-consumer is irrelevant to landfill volume.
+**mistake_d:** *Strengthens* the broader case for the ban (water/park litter), but doesn't address landfill specifically.
+**mistake_e:** Carve-out for raw-meat bags weakens completeness but doesn't undermine the landfill-reduction logic on the bags that *are* banned.
+**common_trap:** Picking (D) because litter sounds environment-aligned — but the conclusion is *landfill* reduction. Track the exact metric.
+**takeaway:** Weaken on a "policy → metric" claim = think about *substitution* and *unintended consequences*. Where does the displaced behavior go?
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -179,7 +243,15 @@ Which of the following, if true, most weakens the CEO's reasoning?
 - E) The company currently spends 9% of its revenue on research and development.
 
 **answer:** B
-**explanation:** The CEO uses a correlation between high R&D spending and stock growth to justify her recommendation. Answer B weakens this by identifying a crucial confounding factor: the high-R&D companies may have grown not because of their R&D spending but because they were large, diversified companies that were already in a stronger financial position. The CEO's company may not share these characteristics, making the comparison misleading. Answer A could actually support the CEO's recommendation. Answer C supports investing in AI but does not address the R&D spending argument. Answer D shows volatility but confirms eventual growth. Answer E is neutral context.
+**fastest_path:** CEO's reasoning: high-R&D companies grew more → therefore *spending* more drove the growth. Weaken by showing the high-R&D companies had *other* characteristics (size, diversification) that drove growth. (B) does it.
+**explanation:** Correlation (R&D % ↔ stock growth) → causal recommendation (spend more on R&D). (B) names the confounder: large diversified firms could afford high R&D *and* had financial cushioning that drove growth. The CEO's company may not be in that bucket.
+**mistake_a:** *Supports* the recommendation (current trajectory is bad, so change is needed).
+**mistake_c:** AI being transformative is a separate question; doesn't address the R&D-growth correlation.
+**mistake_d:** Volatility en route to growth is consistent with the original claim, not a weaken.
+**mistake_e:** Neutral context — doesn't bear on whether more R&D would help.
+**common_trap:** Picking (A) because it seems to motivate the recommendation — but the question asks what *weakens* the CEO's reasoning. (A) actually pushes in the same direction as the CEO.
+**takeaway:** When companies/people who did X had outcome Y, ask: *what other characteristics did they share*? Selection-on-size is the most common confounder in business cases.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -199,7 +271,15 @@ Which of the following, if true, most weakens the scientists' conclusion?
 - E) Advanced wastewater treatment facilities remove not only harmful pollutants but also certain nutrients that some coral species depend on.
 
 **answer:** B
-**explanation:** The conclusion makes a specific claim about cost-effectiveness of wastewater treatment upgrades. Answer B undermines the causal link by showing that cities with advanced treatment also implement multiple other reef-protective policies. The observed biodiversity differences may be due to those other regulations rather than the wastewater treatment itself, making it impossible to isolate treatment upgrades as the most cost-effective intervention. Answer E is tempting because it suggests treatment could harm reefs, but it does not address the comparative observation (reefs near advanced facilities still showed higher biodiversity). Answer A is too general. Answer C actually strengthens the cost-effectiveness claim. Answer D is irrelevant to the comparison between cities.
+**fastest_path:** Conclusion: wastewater upgrade is the *most cost-effective* intervention. Weaken by showing the cities with upgrades *also* implemented other reef-protective policies, so the biodiversity gain might be from those. (B).
+**explanation:** Argument observes correlation (advanced treatment ↔ better biodiversity) and infers causation + cost-effectiveness. (B) bundles confounders: cities with advanced treatment also have stricter rules on industrial runoff, pesticides, and coastal development. Any of these could explain the biodiversity gap, undermining the cost-effectiveness claim for treatment alone.
+**mistake_a:** Too general — yes biodiversity has many drivers, but that doesn't isolate treatment.
+**mistake_c:** Cost decreasing *strengthens* cost-effectiveness.
+**mistake_d:** Reefs far from cities is irrelevant to the city-comparison logic.
+**mistake_e:** Tempting because it suggests treatment could harm reefs — but the *observation* still shows higher biodiversity near upgraded plants. Doesn't undermine the comparative claim.
+**common_trap:** Picking (E) because "treatment removes nutrients" sounds like a hidden downside — but it doesn't explain the *observed* correlation, which is the basis of the conclusion.
+**takeaway:** When a policy is bundled with other policies in the data, "most cost-effective" claims are vulnerable to the *bundle* alternative. Always ask what *else* the high-X group did.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -219,7 +299,15 @@ Which of the following is an assumption on which the executives' plan depends?
 - E) The restaurant chain has previously experimented with other menu changes.
 
 **answer:** C
-**explanation:** The plan assumes cost savings will boost profits while sales volume stays the same. This only works if customers do not leave for competitors who still serve beef. If enough customers defect, lost revenue would exceed the 30% cost savings per patty. Answer A is not required; burgers do not need to be the top seller for the plan to work. Answer B is irrelevant to the profit calculation. Answer D is not necessary; the plan works based on current cost differences. Answer E is background information irrelevant to the plan's logic.
+**fastest_path:** Plan: cost-savings → profit boost, *if* sales volume holds. Negate (C): customers *do* defect to beef competitors → revenue drop wipes out the cost savings. Argument breaks. So (C) is required.
+**explanation:** Profit increase = (cost savings × volume) − lost margin from customer defection. The plan only works if (C) holds. Negation test: if customers leave for competitors in large enough numbers, the lost revenue exceeds the cost savings, breaking the plan.
+**mistake_a:** Burgers don't need to be the top-seller for the cost-savings math to work.
+**mistake_b:** Health is irrelevant to the profit calculation.
+**mistake_d:** Future cost trends aren't required — current 30% gap suffices.
+**mistake_e:** History of menu changes is irrelevant to whether *this* change works.
+**common_trap:** Picking (B) because health-conscious consumers might prefer plant-based — but the *plan's* logic is cost-arbitrage, not health-positioning. Stay with the argument's actual mechanism.
+**takeaway:** Assumption = run the *negation test*. The right answer's negation breaks the argument. Wrong answers' negations leave the argument standing.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -239,7 +327,15 @@ Which of the following is an assumption that the traffic engineers' argument req
 - E) Public transportation ridership will not change as a result of the road conversion.
 
 **answer:** B
-**explanation:** The engineers argue that converting to one-way streets will reduce congestion on those roads through better signal coordination. This assumes drivers will still use those roads rather than diverting to other routes, which would merely relocate congestion rather than reduce it overall. Answer D is tempting because budget is practical concern, but the argument is about whether the conversion will work mechanically, not whether it is financially feasible. Answer A is not necessary; the argument does not claim to fix the worst streets, just to reduce congestion. Answer C is about safety, not congestion. Answer E is irrelevant to the traffic flow argument.
+**fastest_path:** Argument: one-way → better signal coordination → less time idling. Required assumption: drivers don't *re-route* and create congestion elsewhere. Negate (B): they do reroute → congestion just moves → claim breaks.
+**explanation:** The mechanism (signal coordination → faster speeds) only delivers congestion reduction *if* the same drivers stay on the road. (B) is required. Negation: drivers divert in large numbers → city-wide congestion stays the same or worsens, even if the converted streets flow faster.
+**mistake_a:** Worst-streets isn't required; the argument is about whether *these* streets improve.
+**mistake_c:** Pedestrian safety is a separate issue.
+**mistake_d:** Budget feasibility is practical, not a logical premise of the mechanism.
+**mistake_e:** Transit ridership is irrelevant to the engineering argument.
+**common_trap:** Picking (D) because budget feels foundational — but the argument is *whether the conversion will work*, not *whether it can be funded*. Logical vs practical assumptions are different.
+**takeaway:** Assumption questions on policy interventions often hinge on *substitution* — does the displaced behavior reappear elsewhere? Negate the substitution-block assumption and the policy fails.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -259,7 +355,15 @@ Which of the following is an assumption underlying the firm's advice?
 - E) Engagement rates on social media are the most important metric for measuring advertising success.
 
 **answer:** B
-**explanation:** The firm recommends maximizing engagement, implicitly assuming that engagement matters for the clients' business goals. If higher engagement did not lead to meaningful outcomes like sales or loyalty, then maximizing engagement would be pointless advice. Answer E is tempting but too strong; the argument does not require engagement to be the single most important metric, only that it is valuable. Answer A is about cost, which is not the basis of the argument. Answer C is about future platform growth, which is not required for the current recommendation. Answer D is background information not required for the logic.
+**fastest_path:** Recommendation: maximize engagement. Underlying assumption: engagement *translates to business outcomes*. Negate (B): engagement doesn't translate to sales/loyalty → "maximize engagement" is bad advice.
+**explanation:** Firm's recommendation only makes sense if engagement is *worth* maximizing. (B) is the bridge from "engagement up" to "client benefits up." Negate it and the entire premise of the recommendation collapses.
+**mistake_a:** Cost is not the basis of the argument; engagement is.
+**mistake_c:** Future platform growth is unnecessary — the recommendation is about *current* allocation.
+**mistake_d:** Background spending pattern is irrelevant to the logic.
+**mistake_e:** *Too strong* — argument doesn't require engagement to be the *single most important* metric, only that it's valuable enough to chase.
+**common_trap:** Picking (E) because it sounds related — but the argument needs *only* that engagement matters, not that it's the most important. Negate (E) (engagement is one of many metrics): argument still stands.
+**takeaway:** Assumption answers should be *necessary*, not sufficient. Choose the minimal claim the argument needs — extreme phrasing usually loses.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -279,7 +383,15 @@ Which of the following is an assumption on which the economists' recommendation 
 - E) Other developing nations that have subsidized genetically modified seeds have seen increases in agricultural output.
 
 **answer:** A
-**explanation:** The recommendation assumes that the yield difference is actually caused by the GM seeds rather than by confounding factors. If GM-adopting farms simply had better resources overall, then subsidizing seeds for resource-poor farms would not replicate the yield gains. This is a necessary assumption because if it is false, the entire basis for the recommendation collapses. Answer B is about safety, not output effectiveness. Answer C is irrelevant to whether the recommendation would work. Answer D is not required; the argument does not claim GM is the only path to improvement. Answer E provides supporting evidence but is not a logical necessity for the argument.
+**fastest_path:** Recommendation rests on causal claim (GM seeds → yield gain). Required assumption: yield gain *isn't* due to confounders (better soil, irrigation, capital). Negate (A): GM-adopting farms had those advantages → yield gain wasn't from seeds → recommendation collapses.
+**explanation:** Economists observe a 25% yield difference and recommend subsidizing seeds. This only works if the yield difference is *causally* due to the seeds, not to the kind of farms that adopted them. (A) blocks the most plausible confounder.
+**mistake_b:** Safety is a separate consideration; the recommendation is about output, not safety.
+**mistake_c:** GDP-share is irrelevant to whether the policy would work mechanically.
+**mistake_d:** Argument doesn't claim GM is the *only* path — just that it works. Negate (D): conventional breeding works too → recommendation still stands.
+**mistake_e:** Other-nations evidence is *supporting*, not necessary. Argument can hold without it.
+**common_trap:** Picking (E) because it sounds like supporting evidence — but evidence ≠ assumption. Necessary assumption is what *must* be true for the argument to work; supporting evidence is just helpful.
+**takeaway:** When farms/people who adopted X had outcome Y, ask: *what other characteristics did they share*? Negate that they were otherwise comparable, and the causal link breaks.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -299,7 +411,15 @@ Which of the following is an assumption that the chief medical officer's proposa
 - E) The mortality rate for patients admitted on weekdays has remained stable over the past five years.
 
 **answer:** B
-**explanation:** The chief medical officer assumes that reduced specialist availability causes the mortality gap. However, if weekend admissions are disproportionately emergencies involving sicker patients, the higher mortality could be due to patient severity rather than staffing. The proposal requires that this alternative explanation does not primarily account for the gap. Answer D is tempting as supporting evidence but is not a necessary assumption; the argument could hold even without data from other networks. Answer C is likely true in context but is not the key assumption being tested. Answer A concerns feasibility, not the logical validity of the argument. Answer E is irrelevant to the weekday-weekend comparison.
+**fastest_path:** Proposal: hire specialists *because* lower availability causes the gap. Negate (B): weekend admissions are sicker patients → severity, not staffing, drives the gap → proposal misses the actual cause → fails.
+**explanation:** CMO attributes the mortality gap to specialist staffing. The proposal only works if patient severity isn't the real driver. Negate (B) — weekend admissions are disproportionately emergencies — and the staffing fix doesn't help, because the gap was severity-driven all along.
+**mistake_a:** Budget is feasibility, not logic. Argument can hold even with funding constraints.
+**mistake_c:** Specialist-vs-GP effectiveness is true in context but not the *required* assumption — even if specialists are equally effective as generalists, the proposal still needs (B) to hold.
+**mistake_d:** Other-network evidence is supporting, not necessary.
+**mistake_e:** Weekday stability is irrelevant — argument is about the *gap*, not absolute level.
+**common_trap:** Picking (D) because it sounds like a comparable-control proof — but it's *evidence*, not an *assumption*. Argument doesn't need it to hold.
+**takeaway:** Healthcare/admissions arguments often have a *case-mix* confounder lurking. The negation question makes the case-mix block explicit.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -319,7 +439,15 @@ Which of the following would be most useful to evaluate in order to assess the m
 - E) Whether government incentives for electric vehicles currently exist.
 
 **answer:** B
-**explanation:** The manufacturer's profitability projection depends on battery costs continuing to drop at the same rate. Answer B directly evaluates this assumption: if cost declines are slowing, the two-year profitability target may be unrealistic. If declines are accelerating, the target may be conservative. This information would significantly affect the assessment. Answer A is tangentially relevant but does not address the specific cost-trend argument. Answers C, D, and E concern demand rather than the production cost argument at the center of the claim.
+**fastest_path:** Evaluate = which question's answer would *flip the conclusion*? Battery cost trend continuing is the load-bearing premise. (B) tests it — if declines slow, profitability claim collapses; if they continue, it holds.
+**explanation:** Manufacturer's claim rests on continued cost declines. (B) directly tests that premise: "yes, declines slow as tech matures" → profitability claim weakens; "no, declines continue" → claim strengthens. Either answer changes the assessment.
+**mistake_a:** Tangential — past profitability doesn't bear on the cost-trend argument.
+**mistake_c:** Demand question, not cost.
+**mistake_d:** Demand question, not cost.
+**mistake_e:** Demand question, not cost.
+**common_trap:** Picking demand-side options (C, D, E) because EV affordability *is* about demand. But the manufacturer's *argument* is supply-side (cost trend). Stay with the argument's logic.
+**takeaway:** Evaluate questions = identify the question whose answer flips the conclusion both ways. Pick the test that probes the argument's load-bearing premise.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -339,7 +467,15 @@ Which of the following would be most useful to evaluate in order to determine wh
 - E) Whether students preferred the take-home format to the in-person exam format.
 
 **answer:** B
-**explanation:** Answer B directly tests between the two competing explanations. If plagiarism detection software had no effect on the grade increase, the "better work" explanation is more likely. If grades rose only in courses without detection software, academic dishonesty is the more likely cause. This cleanly discriminates between the hypotheses. Answer A concerns a different population. Answer C is financially irrelevant. Answer D concerns faculty workload, not student performance quality. Answer E measures preference, not the cause of the grade increase.
+**fastest_path:** Two competing explanations: better work vs cheating. (B) is the *natural experiment* — courses with plagiarism detection vs without. Same grade increase → cheating ruled out; only-no-detection courses rose → cheating confirmed.
+**explanation:** Question asks how to discriminate between hypotheses. (B) splits the data: presence of plagiarism detection should suppress the cheating-driven gain but not the better-work-driven gain. The differential predicts which hypothesis is right.
+**mistake_a:** Different population (graduate) — doesn't bear on the undergraduate question.
+**mistake_c:** Tuition irrelevant.
+**mistake_d:** Faculty workload, not student performance.
+**mistake_e:** Preference, not cause of grade rise.
+**common_trap:** Picking (E) because preference seems related to "students preferring the format." But the question is what *explains the grade increase*, not what students enjoy.
+**takeaway:** Evaluate between two hypotheses = find the *test that splits them*. Differential predictions across a comparison group beat any data point in isolation.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -359,7 +495,15 @@ Which of the following would be most important to know in order to evaluate the 
 - E) Whether the companies in the study primarily hire for technical or non-technical roles.
 
 **answer:** B
-**explanation:** Selection bias is the critical concern. Companies that volunteered to test a new recruiting technology may already have been more efficient or innovative in their hiring practices. If so, the 35% improvement claim may not generalize to typical companies. Answer E has some relevance but does not address the core validity of the comparison. Answer A is irrelevant to the algorithm's performance. Answer C concerns implementation details, not effectiveness. Answer D is a business model question unrelated to the claim.
+**fastest_path:** Volunteer-only sample = selection bias risk. (B) tests it: if volunteers were already faster than average, the 35% gain may be selection effect, not algorithm effect.
+**explanation:** Trial design has a self-selection flaw — companies *volunteered*. (B) tests whether they were already efficient. Yes → algorithm impact is overstated; no → claim holds.
+**mistake_a:** Founders' experience irrelevant to algorithm performance.
+**mistake_c:** Implementation detail (ML vs rules) doesn't bear on whether it works.
+**mistake_d:** Business model unrelated to the claim.
+**mistake_e:** Some relevance (technical roles often hire faster) but doesn't address the core volunteer-bias issue.
+**common_trap:** Picking (E) because it sounds like a control variable — but it's a *secondary* concern; selection bias on volunteers (B) is the dominant risk.
+**takeaway:** Self-selected samples → ask "were volunteers already different?" That's almost always the right Evaluate question.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -379,7 +523,15 @@ Which of the following would be most useful in evaluating whether whole grains t
 - E) Whether individuals who consume exactly two servings of whole grains per day also have reduced cardiovascular risk.
 
 **answer:** B
-**explanation:** The critics' objection is that the correlation between whole grains and cardiovascular health may be confounded by other health behaviors. Answer B directly addresses this: if the studies controlled for exercise, smoking, and other behaviors, the observed association is more likely causal. If they did not control for these factors, the critics' concern remains valid. Answer E is somewhat relevant as it tests for a dose-response relationship, but it does not address the confounding issue. Answers A, C, and D are irrelevant to the causal question.
+**fastest_path:** Critics name a *confounding variable* (other health behaviors). (B) tests whether the studies controlled for it. Yes → causal claim holds; no → critics' objection wins.
+**explanation:** Question is about whether whole grains *themselves* reduce risk. (B) directly probes the critics' confounding objection: did the studies adjust for exercise, smoking, etc.? Answers different ways shift the conclusion.
+**mistake_a:** Historical change in guidelines is irrelevant to current causal claim.
+**mistake_c:** Cost is unrelated to causation.
+**mistake_d:** Cross-validation in other guidelines doesn't address the confounding issue.
+**mistake_e:** Dose-response is interesting but doesn't address whether the *effect* is causal.
+**common_trap:** Picking (E) because dose-response *feels* scientific — but it doesn't address the actual objection (confounding). Always probe the *named objection* first.
+**takeaway:** When critics name the confound, the right Evaluate question is "did the studies control for it?" — direct, decisive, splits the conclusion.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -399,7 +551,15 @@ Which of the following would be most useful in evaluating the company's argument
 - E) Whether teachers who encouraged software use had higher overall class averages regardless of individual student usage.
 
 **answer:** B
-**explanation:** The key concern is selection bias: high-performing students self-selected into heavy software use. Answer B directly tests whether the software works for students who are not already high performers. If initially low-performing students also gained 18%, the software genuinely helps; if they did not, the observed effect may simply reflect pre-existing ability. Answer E is a sophisticated alternative but tests a different confound (teacher quality) rather than directly evaluating whether the software works for the intended population. Answer D is relevant but less critical than the selection bias issue. Answers A and C concern logistics, not effectiveness.
+**fastest_path:** Voluntary use → selection bias. Question: does the software *cause* gains, or do the same students who self-select also do well anyway? (B) tests by isolating initially-low performers.
+**explanation:** Argument: students who use software score 18% higher. Risk: high-performers self-selected into use. (B) tests directly — initially-low performers who use the software for the same duration. If they also gain 18%, software works; if not, gains are selection effect.
+**mistake_a:** Compatibility logistic, not effectiveness.
+**mistake_c:** Pricing logistic, not effectiveness.
+**mistake_d:** Coverage relevant but secondary to the selection-bias core issue.
+**mistake_e:** Tests teacher quality (a different confound), not student-software causation.
+**common_trap:** Picking (E) because it's also a confound test — but the *student-level* confound (initial ability) is the more direct match for the objection. (B) > (E) because it controls for the variable the passage explicitly named.
+**takeaway:** When two confound-tests appear, pick the one that matches the *named* confound. Selection-on-ability is the textbook risk for voluntary-software studies.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -419,7 +579,15 @@ Which of the following can be most reasonably inferred from the information abov
 - E) Small business owners are less skilled at management than they were five years ago.
 
 **answer:** B
-**explanation:** The data shows a tighter labor market (lower unemployment, higher wages) coinciding with a sharp increase in retention concerns among small business owners. It is reasonable to infer that these labor market conditions contribute to the difficulty. Answer D is tempting but makes a claim about wages being insufficient that goes beyond the data, since we do not know if individual businesses raised wages. Answer A is unsupported; retention challenges do not necessarily mean lower profits. Answer C compares to large corporations, about which no information is given. Answer E is unfounded.
+**fastest_path:** Data: tighter labor market (lower unemployment + higher entry wages) + retention concerns up sharply. Inference: the labor market is *the cause* of the retention difficulty.
+**explanation:** Two co-varying facts: market got tighter, retention got harder. The reasonable inference is that the market is making retention harder. (B) is text-forced.
+**mistake_a:** Profit drop isn't supported — retention concern ≠ profit loss.
+**mistake_c:** Large-corporation comparison isn't in the data.
+**mistake_d:** Tempting but goes beyond data — we don't know what individual businesses did with wages.
+**mistake_e:** Unfounded value judgment.
+**common_trap:** Picking (D) because it sounds reasonable — but Inference must be *text-forced*. Saying "wages didn't solve the problem" requires data on what businesses tried.
+**takeaway:** Inference rejects "didn't work" / "primary cause" claims unless the data force them. Stick with what the co-varying facts directly imply.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -439,7 +607,15 @@ Which of the following can be most reasonably inferred from the information abov
 - E) Smartphones and laptops are more innovative products than tablets.
 
 **answer:** B
-**explanation:** The company's profit margin increased by 20% after discontinuing the tablet line, while the remaining divisions set records. This strongly suggests the tablet line was dragging down overall margins. Answer A may be true generally but cannot be inferred from one company's data. Answer C has no support in the passage. Answer D is too absolute; nothing rules out a future return. Answer E is an unsupported value judgment.
+**fastest_path:** Tablet line discontinued → margin up 20% + remaining divisions set records. Inference: tablet line was dragging margins.
+**explanation:** Margin gain after removing the tablet line, plus record performance in the kept divisions, is most simply explained by tablets having been a margin drag. (B) is the simplest text-forced inference.
+**mistake_a:** "Consumers prefer" generalizes from one company to consumer preferences — unsupported.
+**mistake_c:** Competitor data isn't in the passage.
+**mistake_d:** *Extreme* — "never re-enter" is too absolute; nothing rules out future return.
+**mistake_e:** Value judgment about innovation, unsupported.
+**common_trap:** Picking (D) because the company "discontinued" — but discontinuing now ≠ never returning. Inference rejects "always" / "never" without text support.
+**takeaway:** Inference on a "company exit + improved metrics" pattern = the exited line was a drag. Stay with the simplest text-forced explanation.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -459,7 +635,15 @@ Which of the following can be most reasonably inferred from the study's findings
 - E) Patients discharged on other weekdays have readmission rates identical to those of Tuesday-discharged patients.
 
 **answer:** C
-**explanation:** The correlation between reduced counseling time and higher readmission rates, reinforced by the hospital-level data showing the gap tracks together, supports the inference that counseling time may influence readmission. Answer A is too strong; the data suggest counseling is a factor, not the primary one. Answer B is an extreme policy recommendation not supported by the data. Answer D attributes the issue to competence rather than time pressure. Answer E extends the data beyond what is stated, since only Friday and Tuesday were compared.
+**fastest_path:** Three correlated facts: Friday-discharged readmission rate higher + Friday counseling time shorter + hospital-level data tracks (more counseling gap → more readmission gap). Inference: counseling time *may be* a factor. Hedged, not absolute.
+**explanation:** The hospital-level tracking is the key — variation in the gap predicts variation in readmissions. That's stronger than just two co-varying facts. But the inference must stay hedged ("may be a factor"); it doesn't force "primary cause" or "policy."
+**mistake_a:** *Extreme* — "primarily a matter of" overstates. Counseling is *a* factor, not *the* factor.
+**mistake_b:** *Extreme* policy recommendation — data don't force a Friday discharge ban.
+**mistake_d:** Attributes to *competence* — data show time pressure, not skill.
+**mistake_e:** Other weekdays aren't in the data.
+**common_trap:** *Extreme language* — picking (A) because counseling *was* correlated. But "primarily" goes past the data. Always check for hedge words.
+**takeaway:** Inference must match the data's *strength*. Correlation supports "may be a factor"; doesn't support "primary" or "should ban."
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -479,7 +663,15 @@ Which of the following can be most reasonably inferred from the information abov
 - E) All commercial real estate firms prefer to develop properties near transit stations.
 
 **answer:** A
-**explanation:** Despite charging 30% more, transit-adjacent buildings have much lower vacancy rates. This means demand remains high even at higher prices, which logically implies that tenants find the benefits worth the premium. Answer B introduces a factor not mentioned. Answer C overstates; 11% vacancy is not necessarily a downturn. Answer D makes a claim about productivity unsupported by rental data. Answer E is an overgeneralization.
+**fastest_path:** 30% rent premium + lower vacancy = demand stays high *despite* the premium. Inference: tenants find the benefits worth the cost.
+**explanation:** If rent were too high, vacancies would rise. Lower vacancies at higher rents force the inference that demand exceeds the premium — i.e., tenants think the benefits outweigh the cost. (A) is text-forced.
+**mistake_b:** "Newer and more modern" is fabrication — passage gave no info on building age.
+**mistake_c:** *Extreme* — 11% vacancy isn't necessarily a downturn.
+**mistake_d:** Productivity claim isn't supported by rent data.
+**mistake_e:** *Extreme* — "all firms prefer" overgeneralizes.
+**common_trap:** Picking (B) because newer-buildings-near-transit *seems* plausible — but Inference must be text-forced, not "plausible."
+**takeaway:** Inference from market data: high price + low vacancy = demand exceeds the price premium. That's the textbook implication.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -499,7 +691,15 @@ Which of the following can be most reasonably inferred from the information abov
 - E) The agency should return to the 14-month approval timeline.
 
 **answer:** B
-**explanation:** The tripling of the safety revision rate (from 4% to 12%) after shortening the approval timeline suggests a connection between review speed and thoroughness. Answer B appropriately hedges with "may have resulted," making it a reasonable inference rather than a definitive causal claim. Answer A is one possible explanation but is not the only one and is not directly supported. Answer D is too absolute; 88% of newly approved drugs were fine. Answer E is a policy recommendation, not an inference from the data. Answer C has no support in the passage.
+**fastest_path:** Faster reviews + tripled safety-revision rate. Inference: faster review *may have* meant less thorough evaluation. Hedged, text-forced.
+**explanation:** 4% → 12% revision rate after the timeline change is a strong signal. (B) appropriately hedges with "may have" — text supports correlation without forcing definitive causation.
+**mistake_a:** Specific cause (less-experienced reviewers) — possible but not the only explanation, and not text-supported.
+**mistake_c:** Pharma-pressure claim isn't in the passage.
+**mistake_d:** *Extreme* — "all" overstates; 88% of new approvals were fine.
+**mistake_e:** Policy recommendation, not inference.
+**common_trap:** Picking (D) because tripled rates *feel* universal — but 88% of new approvals were fine. Inference rejects "all" without text support.
+**takeaway:** Inference from a tripled rate: hedge ("may have") rather than commit to a definitive cause. Match data strength to the claim's strength.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -519,7 +719,15 @@ Which of the following best describes a flaw in the CEO's reasoning?
 - E) He does not specify how employee satisfaction was measured.
 
 **answer:** B
-**explanation:** The CEO generalizes from one company's experience to all companies, ignoring that different industries, company sizes, and workforce types may respond differently to schedule changes. This is a hasty generalization. Answer A identifies a legitimate concern but is a weakness in the evidence, not the core logical flaw. Answer C is about productivity, not the logical structure of the satisfaction argument. Answer D is irrelevant; a 20% increase implies a prior baseline. Answer E is a methodological concern, not a logical flaw.
+**fastest_path:** CEO generalizes from *one* company to *all* companies. Classic *hasty generalization* flaw.
+**explanation:** Flaw: hasty generalization. The CEO concludes from one company's experience that all companies should adopt the change, ignoring industry, size, and workforce differences that affect whether the schedule change works.
+**mistake_a:** Methodological concern (temporary effect) but not the core logical flaw.
+**mistake_c:** Productivity tangent — not the structural flaw.
+**mistake_d:** Irrelevant — a 20% increase implies a baseline, no contradiction there.
+**mistake_e:** Methodological detail, not a logical flaw.
+**common_trap:** Picking (A) because "satisfaction might be temporary" *sounds* logical — but that's about evidence quality, not the leap from one to all. The flaw is the *structure* of the argument.
+**takeaway:** Flaw questions = name the logical error *type*. "One case → all cases" is hasty generalization, the most common business-CR flaw.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -539,7 +747,15 @@ Which of the following, if true, most helps to resolve the apparent paradox desc
 - E) The region's climate has become less favorable for certain organic crops over the past decade.
 
 **answer:** C
-**explanation:** The paradox is that there are more organic farms but less organic acreage. Answer C resolves this by explaining both trends simultaneously: large farms disappeared (reducing total acreage significantly), while many small farms appeared (increasing the count). A few large farms being converted to residential use could eliminate more acreage than dozens of small new farms add. Answer B would actually increase acreage, worsening the paradox. Answer A does not explain the acreage decline. Answer D is about labor, not acreage. Answer E might explain acreage decline but not the increase in farm count.
+**fastest_path:** Paradox: more farms, less acreage. Resolution must explain *both* trends at once. (C) does it: large farms gone (acreage drops) + small new farms (count rises).
+**explanation:** Paradox = two facts must coexist. (C) supplies the asymmetry: small new farms add to count without restoring acreage; large lost farms drop acreage without affecting count proportionally. Both facts explained.
+**mistake_a:** Demand growth doesn't explain *acreage decline*.
+**mistake_b:** Conventional → organic conversion would *increase* acreage, *worsening* the paradox.
+**mistake_d:** Labor per acre doesn't explain count or acreage trends.
+**mistake_e:** Climate could explain acreage decline but not the count *increase*.
+**common_trap:** Picking (B) because organic conversion sounds organic-related — but it pushes both numbers in the *same* direction (more acres → more farms). Paradox needs explanation that pushes them *opposite*.
+**takeaway:** Paradox resolution = explain *both* facts at once. Test each choice against both contradictions; only (C) handles both here.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -559,7 +775,15 @@ Which of the following best describes a flaw in the analyst's reasoning?
 - E) The analyst assumes that all preventive health programs are equally effective.
 
 **answer:** B
-**explanation:** The analyst assumes that flat admission rates mean the programs failed. But admissions might have risen sharply without the programs, meaning the programs succeeded in preventing an increase even if they did not produce a decrease. This is the classic flaw of using a static baseline rather than a counterfactual. Answer A is relevant but does not address the core logical flaw regarding effectiveness. Answer C is a methodological detail. Answer D is irrelevant to the logical structure. Answer E is not the primary flaw being committed.
+**fastest_path:** Flaw: the *static-baseline* error — comparing observed-with-program to itself, not to *what would have happened without the program*. Without counterfactual, "no change" doesn't equal "ineffective."
+**explanation:** Analyst sees flat admissions and concludes the programs failed. But admissions might have *risen* without prevention — flat could mean the programs successfully held the line. The argument needs a counterfactual baseline, not just a temporal comparison.
+**mistake_a:** Quality-of-life is a *side benefit* concern, not the structural flaw in the effectiveness argument.
+**mistake_c:** Methodological detail.
+**mistake_d:** Cross-country comparison — not the flaw being committed.
+**mistake_e:** Heterogeneity in programs — possible but not the dominant flaw.
+**common_trap:** Picking (A) because "broader benefits" sounds important — but the argument is about *effectiveness on admissions*, not whether benefits exist beyond admissions. Stay focused on the argument's actual claim.
+**takeaway:** Flaw on a "policy didn't reduce X" claim → look for the missing counterfactual. "What would X have been *without* the policy" is the unaddressed baseline.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -579,7 +803,15 @@ Which of the following best describes a flaw in the financial advisor's reasonin
 - E) She assumes that all index funds have identical fee structures.
 
 **answer:** B
-**explanation:** The advisor moves from "85% of active funds underperform" to "no rational investor should choose any active fund." This ignores the possibility that some investors may have reliable methods for identifying the 15% that outperform. If the outperformers are identifiable in advance, choosing them would be rational. Answer C is a generic objection that applies equally to both fund types and does not specifically challenge the argument's logic. Answer A is a semantic quibble. Answer D concerns enjoyment, not financial rationality. Answer E is a minor detail that does not address the core flaw.
+**fastest_path:** Flaw: "85% underperform" doesn't license "no investor should pick active" — that ignores whether the 15% can be *identified ex ante*. The advisor jumps from average to universal.
+**explanation:** From "actively managed funds underperform on average" to "no rational investor should pick active." The leap ignores that some investors may have reliable methods to identify the 15% that outperform. (B) names the missed possibility.
+**mistake_a:** Semantic quibble about "rational."
+**mistake_c:** Generic objection that applies to both fund types — doesn't differentiate.
+**mistake_d:** Enjoyment isn't the financial-rationality argument.
+**mistake_e:** Fee-structure detail, not the core leap.
+**common_trap:** Picking (C) because "past performance ≠ future results" sounds wise — but it applies equally to both fund types and doesn't address the specific leap from average to universal.
+**takeaway:** Flaw on a "X is always better than Y" claim → look for what's missed at the *individual decision* level. Averages don't dictate every choice.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -599,7 +831,15 @@ Which of the following, if true, most helps to explain the apparent discrepancy 
 - E) Other countries that have introduced carbon taxes have experienced similar declines in domestic emissions.
 
 **answer:** C
-**explanation:** The paradox is that domestic emissions fell while consumption-based emissions rose. Answer C explains both trends: manufacturers moved abroad to avoid the tax, reducing domestic emissions (the 20% decline) while increasing foreign emissions attributable to the country's consumption (the 8% rise in per capita footprint). This is the phenomenon known as "carbon leakage." Answer B could explain a per capita increase if domestic emissions stayed flat, but it does not explain the domestic decline simultaneously. Answer A would be expected to reduce both measures. Answer D explains the domestic decline but not the consumption-based increase. Answer E is irrelevant to the paradox.
+**fastest_path:** Paradox: domestic emissions ↓ but consumption-based emissions ↑. Resolution: production *moved abroad* (carbon leakage). Both trends explained at once.
+**explanation:** (C) names carbon leakage: tax pushed manufacturers offshore. Domestic emissions fell because production left the country; consumption-based emissions rose because the same goods (now made abroad) carry foreign emissions counted in the per-capita measure. Single mechanism explains both.
+**mistake_a:** Tax rate increase would push both measures *down*, not in opposite directions.
+**mistake_b:** Population decline could explain a per-capita increase if total stayed flat — but doesn't explain the domestic *decline*.
+**mistake_d:** Renewables explain domestic decline but not consumption-based increase.
+**mistake_e:** Other countries' experiences are irrelevant to the paradox.
+**common_trap:** Picking (D) because renewable energy *is* a real domestic-emission story — but it only explains *one* trend. Paradox resolution needs *both*.
+**takeaway:** Paradox resolution = single mechanism that explains both trends. "Production moved" is the textbook carbon-leakage answer for emissions paradoxes.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -619,7 +859,15 @@ Which of the following, if true, most weakens the CFO's conclusion?
 - E) The airline's marketing campaign emphasized the comfort of the new jets over the turboprops.
 
 **answer:** B
-**explanation:** The CFO assumes the 15% cost increase is due to the jets themselves. Answer B attacks that by showing fuel prices rose 20% industry-wide — meaning the airline's per-passenger fuel cost actually rose less than the market, so switching to jets may have softened a cost shock. This is the classic "alternative cause" weakener in a cost-comparison argument. Answer A weakens the conclusion on a different dimension (maintenance) but doesn't address the fuel-cost claim directly and is less damaging. Answer C is neutral — constant loads mean the per-passenger metric is clean. Answer D is irrelevant to the airline's own economics. Answer E is out of scope.
+**fastest_path:** CFO blames jets for 15% fuel cost rise. Weaken by *alternative cause* — industry-wide fuel rose 20%, so jets actually *softened* the cost shock; staying on turboprops would have been worse.
+**explanation:** Argument: jets caused 15% cost rise → bad financial call. (B) reframes the data: fuel rose 20% across the industry, so the airline's 15% rise underperforms the market in *the right direction* — jets actually outperformed the baseline. The "mistake" framing collapses.
+**mistake_a:** Maintenance is a different cost category — doesn't directly attack the fuel-cost claim.
+**mistake_c:** Constant loads make the per-passenger metric clean; neutral, not weakening.
+**mistake_d:** Competitor choices are irrelevant to this airline's economics.
+**mistake_e:** Marketing positioning, not a cost driver.
+**common_trap:** Picking (A) because it sounds like a benefit of jets — but maintenance savings don't address the *fuel* claim. Match the weaken to the metric the argument uses.
+**takeaway:** Cost-comparison weakens often hinge on the *industry baseline*. A "rise" against an even bigger industry rise is actually a *fall* in relative terms.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -639,7 +887,15 @@ The argument above depends on which of the following assumptions?
 - E) Other cities that have switched to LED streetlights have reported lower lighting costs.
 
 **answer:** D
-**explanation:** The conclusion is about total annual cost, but the premise only covers electricity consumption. The argument assumes that other cost categories — purchase, installation, disposal of old lamps — won't eat up the electricity savings. Negate D: if those costs DO offset the savings, the conclusion collapses. That's the negation test working. Answer A would support longevity, but the argument isn't about bulb life. Answer C is tempting but reversed — if electricity got cheaper, savings would shrink, but the argument doesn't depend on future prices. Answer E is outside evidence, not a required assumption. Answer B is irrelevant to cost.
+**fastest_path:** Premise: LED uses 60% less *electricity*. Conclusion: lower *total annual cost*. Bridge: other costs (purchase/install) don't offset the electricity savings. (D) is the bridge.
+**explanation:** Total cost ≠ electricity cost alone. (D) is the necessary assumption: install + bulb costs don't overwhelm the electricity savings. Negate (D): they do offset → the total-cost claim collapses.
+**mistake_a:** Longevity is a different argument; this one is about electricity-driven cost.
+**mistake_b:** Public support is irrelevant to whether the cost claim works.
+**mistake_c:** *Reverses* — if electricity got cheaper, savings shrink, but the argument doesn't depend on future prices.
+**mistake_e:** Outside evidence (other cities), not a logical assumption.
+**common_trap:** Picking (E) because it's "supportive evidence" — but evidence ≠ assumption. Necessary assumption is what *must* be true for the chain to work.
+**takeaway:** "X uses less electricity → lower total cost" always assumes the *other* cost components don't swallow the savings. Always look for the missing cost-category bridge.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -659,7 +915,15 @@ Which of the following can be properly inferred from the information above?
 - E) The firm should require all employees to take at least two weeks of consecutive vacation each year.
 
 **answer:** B
-**explanation:** Inference questions require us to stick strictly to what the stimulus supports — no causal leaps, no policy leaps. Answer B says only that there's an association, which is exactly what the study shows. Answer A overreaches by claiming causation; observational data can't establish that. Answer C is unsupported — the study measured satisfaction, not preference. Answer D introduces performance, which was never mentioned. Answer E is a policy recommendation, which also goes beyond the data. The trap here is jumping from correlation to causation (A) — always the #1 inference trap.
+**fastest_path:** Observational study → only *association* is supported. (B) hedges to "associated"; (A) claims causation which observation can't establish.
+**explanation:** Study compares satisfaction across two self-selected groups with equal vacation totals. Result: a difference in satisfaction. Inference must stay at the *association* level — (B) is the hedged claim that fits.
+**mistake_a:** *Causal leap* — observational data don't establish causation.
+**mistake_c:** *Outside knowledge* — preferences weren't measured, only satisfaction.
+**mistake_d:** Performance was never measured.
+**mistake_e:** Policy recommendation, not inference.
+**common_trap:** Picking (A) because two-week vacations *seem* to cause higher satisfaction. But the study language is correlational. Inference rejects causal claims observation can't support.
+**takeaway:** Inference on observational data = stop at *association*. The #1 trap is jumping from correlation to causation.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -679,7 +943,15 @@ Which of the following, if true, best explains the discrepancy described above?
 - E) The retailer's shipping times were slightly longer during the sale week due to high overall order volume.
 
 **answer:** B
-**explanation:** The puzzle: price cut should raise units sold, yet revenue fell. Answer B resolves it by showing demand was pulled forward — customers who would have bought this week already bought two weeks ago, leaving a thin pool of buyers despite the discount. This is "demand cannibalization," a common real-world pattern. Answer C is tempting (competitor pressure) but doesn't explain why revenue fell BELOW a typical non-sale week — in a normal competitive environment, discounts usually still lift volume. Answer A would predict the opposite (higher revenue). Answer D is background info. Answer E suggests high volume, which contradicts the premise.
+**fastest_path:** Paradox: price ↓ but revenue ↓. (B) explains: customers bought during a sale *two weeks ago* — the demand pool got drained before this sale started.
+**explanation:** Demand cannibalization. (B) supplies the mechanism: the same buyers who would have purchased this week already bought during the prior sale. The discount has a thin pool to attract from, so volume drops enough to overcome the discounted unit price.
+**mistake_a:** Ads would *boost* revenue, deepening the paradox.
+**mistake_c:** Tempting, but competitor discounts in a normal week wouldn't push revenue *below* a typical non-sale baseline.
+**mistake_d:** Background fact; doesn't explain the trajectory.
+**mistake_e:** Suggests *high* volume — contradicts the premise.
+**common_trap:** Picking (C) because competitor pressure feels like a real risk — but in a normal market, discounts still raise volume. Need the demand-was-pulled-forward mechanism to fully explain *why* revenue fell.
+**takeaway:** Paradox = single mechanism that explains *both* directions. "Demand pulled forward" is the textbook resolution for "discount, but revenue dropped."
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -699,7 +971,15 @@ Which of the following, if true, most strengthens the research director's conclu
 - E) The biotech company has successfully brought two other drugs to market in the past decade.
 
 **answer:** B
-**explanation:** The conclusion makes a species-jumping leap: mice worked, therefore humans will work. To strengthen, we need evidence that this specific jump is reliable. Answer B provides the bridge: drugs using this mechanism have previously translated from mice to humans successfully. That directly supports the inference the director is making. Answer C is tempting because it makes the mouse model more relevant, but "mimics human disease" in the tumor sense is weaker than the direct precedent in B — C supports realism of the model, B supports the translation itself. Answer A speaks to how the drug was designed, not whether it works in humans. Answer D shows the placebo was valid but doesn't bridge species. Answer E is about the company's track record, not this drug.
+**fastest_path:** Cross-species jump (mice → humans) is the soft step. Strengthen by *precedent for this jump*. (B) does it: prior drugs with the same mechanism translated successfully.
+**explanation:** Conclusion isn't "drug works in mice" — it's "drug will work in humans." (B) directly supports that *cross-species translation*: previous drugs using the same mechanism translated reliably. That's the bridge.
+**mistake_a:** Computational design is upstream of the trial — doesn't bear on whether mouse results translate.
+**mistake_c:** Realism of the mouse model is helpful but weaker than direct translation precedent.
+**mistake_d:** Placebo validity is about *internal* validity of the mouse trial, not the species jump.
+**mistake_e:** Company track record is reputation, not biology.
+**common_trap:** Picking (C) because "mouse model mimics human disease" sounds strongest. But (B) is *more direct* — it gives evidence the *same kind of jump* has worked. Match the support to the exact inference being made.
+**takeaway:** Strengthen on a cross-domain inference = direct precedent for that inference beats supporting evidence about either domain alone.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -719,7 +999,15 @@ Which of the following, if true, most seriously weakens the editor's argument?
 - E) Producing the print edition requires a specialized printing partner with whom the magazine has a five-year contract.
 
 **answer:** B
-**explanation:** The editor's argument rests on cost savings from ending print. But the decision is really about profit, not cost alone. Answer B shows that print advertising revenue EXCEEDS total production costs — so killing print kills a revenue stream larger than the 40% cost cut. That flips the economics. This is the classic "ignored benefit of the thing being eliminated" weakener. Answer E is tempting because it suggests a contractual obstacle, but contracts can be renegotiated and this doesn't challenge the underlying logic. Answer A slightly strengthens. Answer C strengthens by showing digital transitions can work. Answer D is demographic color, not a decisive weakener.
+**fastest_path:** Argument: end print → save costs. Weaken by showing print *generates more revenue than it costs*. (B) does it: print ad revenue exceeds total production costs. Killing print kills more in revenue than it saves in costs.
+**explanation:** Editor frames the decision as cost-only. (B) flips it to a profit calculation: print is a *net contributor* — its ad revenue exceeds its production costs. Saving 40% of production costs is irrelevant if you're losing more in revenue. The conclusion (digital-only) is financially worse.
+**mistake_a:** App reviews don't bear on the print-vs-digital cost-benefit calculation.
+**mistake_c:** *Strengthens* — peer-magazine success suggests the transition can work.
+**mistake_d:** Demographics are color, not a decisive financial argument.
+**mistake_e:** Contractual obstacle is real-world friction but doesn't undermine the underlying logic.
+**common_trap:** Picking (E) because contracts feel like real obstacles — but contracts can be renegotiated. (B) attacks the *economic premise itself*.
+**takeaway:** "Cut X to save costs" arguments are vulnerable to "X also generates revenue." Always ask: what's the *net* contribution of the thing being cut?
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -739,7 +1027,15 @@ The supporters' argument depends on which of the following assumptions?
 - E) The light-rail line will be cheaper to maintain than the highway.
 
 **answer:** B
-**explanation:** This is a classic "induced demand" assumption. The argument says: commuters switch → highway less congested. But if switchers free up road space, OTHER drivers may fill it (people who previously avoided the highway, chose off-peak times, etc.), leaving congestion unchanged. Negate B: new drivers DO fill the freed space — and the conclusion collapses. Answer C is tempting — it seems to bridge the gap — but the argument already says "many commuters" will switch; it doesn't require that MOST highway drivers go this route, only that enough do. Answer A is budget, not necessary. Answer D is analogy, not assumption. Answer E is cost, not congestion.
+**fastest_path:** Argument: switchers leave highway → less congestion. Required: *induced demand doesn't undo it* — other drivers don't fill the freed space. (B) is the bridge.
+**explanation:** Mechanism only works if the freed road space stays free. (B) blocks the induced-demand counter: drivers who avoided the highway, drove off-peak, etc., don't move *into* the now-less-congested route. Negate (B): they do → congestion bounces back → conclusion fails.
+**mistake_a:** Budget is feasibility, not logic.
+**mistake_c:** Tempting, but argument needs only "many" switchers, not "most highway drivers."
+**mistake_d:** Analogy from other cities is supporting evidence, not necessary assumption.
+**mistake_e:** Maintenance cost is irrelevant to congestion.
+**common_trap:** Picking (C) because it seems to bridge the gap — but the argument already says "many commuters" will switch. The unstated assumption is about the *response from other drivers*, not the size of the switching pool.
+**takeaway:** "Policy reduces congestion" arguments almost always assume *induced demand doesn't bounce back*. That's the textbook hidden assumption.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -759,7 +1055,15 @@ Which of the following best describes a flaw in the firm's reasoning?
 - E) The firm relies on data that may have been reported inaccurately by the startups themselves.
 
 **answer:** B
-**explanation:** This is the classic "selection bias / base rate neglect" flaw. The firm looked only at successful founders and found many came from Big Tech, but never asked: what fraction of Big Tech employees become successful founders? If the answer is tiny, working there provides no real edge. You're reasoning from the wrong denominator. Answer D is tempting because it notes exceptions, but exceptions don't destroy a probabilistic argument — base-rate neglect does. Answer A is a speculative future concern. Answer C is a definitional quibble. Answer E attacks data quality generally without engaging the logical structure.
+**fastest_path:** Flaw: *base-rate neglect*. The firm asked "what fraction of *successful founders* came from Big Tech?" but should have asked "what fraction of *Big Tech employees* become successful founders?" Without the denominator, the recommendation is unsupported.
+**explanation:** 42/50 successful founders came from Big Tech. But the relevant question for *aspiring entrepreneurs* is the conditional probability the *other way*: P(success | Big Tech employee). If millions worked at those firms, the base rate of success could be vanishingly small. The firm reasoned from the wrong denominator.
+**mistake_a:** Speculative future concern; doesn't engage the structural flaw.
+**mistake_c:** Definitional quibble.
+**mistake_d:** Tempting (notes exceptions) but exceptions don't destroy a probabilistic argument; *base-rate neglect* does.
+**mistake_e:** Generic data-quality challenge.
+**common_trap:** Picking (D) because exceptions sound like counterexamples. But the argument is statistical, not absolute. The right flaw names the *statistical error type*.
+**takeaway:** Flaw on a "successful X share trait Y → do Y" claim → suspect *base-rate neglect*. P(Y | X) ≠ P(X | Y) without the base rate.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -779,7 +1083,15 @@ The answer to which of the following questions would be most useful in evaluatin
 - E) What percentage of first-year students currently live in dorms?
 
 **answer:** B
-**explanation:** The study compares two self-selected groups. If dorm-dwellers are systematically different from off-campus students at baseline — say, younger, from higher-income families, or with stronger high-school records — the GPA gap may reflect those differences, not dorm life. Knowing the demographic/academic profiles tells us whether the comparison is apples-to-apples. This is the "confounding variable" evaluate question. Answer A is about affordability, not the causal claim. Answer C might be interesting but concerns a different population. Answer D is about trends, not the causal mechanism. Answer E is descriptive, not evaluative.
+**fastest_path:** Self-selected comparison. Evaluate by asking *whether the groups were comparable at baseline*. (B) does it: demographic + academic profiles of dorm vs off-campus students.
+**explanation:** Dorm and off-campus students self-selected. If they differ at baseline (income, high-school GPA, age), the 0.3 GPA gap reflects those differences, not dorm life. (B) tests this directly. Different answers shift the conclusion either way.
+**mistake_a:** Affordability is downstream, not the causal question.
+**mistake_c:** Tests a different population (upper-class students) — at best indirect.
+**mistake_d:** Trend data, not the specific causal mechanism.
+**mistake_e:** Descriptive, not evaluative.
+**common_trap:** Picking (C) because it sounds like a control comparison. But the population (upper-class) is different from the one in question (first-year). (B) directly tests the relevant baseline.
+**takeaway:** Evaluate questions on self-selected comparisons = always probe baseline comparability. "Did the two groups differ before the intervention?" is the load-bearing test.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -799,7 +1111,15 @@ Which of the following must be true on the basis of the information above?
 - E) The red-spectrum light caused the tomato plants to grow taller.
 
 **answer:** C
-**explanation:** "Must be true" demands airtight logic. Answer C restates what the data show: plants under white light had more leaves but less fruit, so in this experiment those extra leaves didn't yield more fruit. That's literally what happened. Answer A overgeneralizes ("all" tomato cultivation) from one greenhouse. Answer B is a universal claim about height, not supported. Answer D speculates about an untested spectrum. Answer E is tempting but is a CAUSAL claim — the stimulus shows correlation under controlled conditions but "caused" is stronger than the setup proves without more. The trap in inference questions is always the causal-sounding answer (E) or the universal-sounding answer (A/B/D).
+**fastest_path:** Direct restatement of the data. White-light plants had more leaves but less fruit → those extra leaves *didn't* translate to more fruit yield. Tightest must-be-true.
+**explanation:** Data: under white light, more leaves but less fruit. (C) restates this comparison directly: in this experiment, the additional leaves didn't translate to greater yield. Airtight; nothing causal, nothing universal.
+**mistake_a:** *Extreme* — "all tomato cultivation" overgeneralizes from one greenhouse.
+**mistake_b:** *Extreme* — "always" is a universal claim about height, unsupported.
+**mistake_d:** *Outside knowledge* — blue spectrum wasn't tested.
+**mistake_e:** *Causal leap* — "caused" goes past correlation; controlled experiment supports it but "must be true" is stricter than "well-supported."
+**common_trap:** Picking (E) because the conditions were controlled. But "must be true" is harder than "well-supported." Even with controls, "caused" isn't *forced* — only the descriptive comparison (C) is.
+**takeaway:** Inference on a "must be true" question = the descriptive restatement. Causal language and universal language are both stricter than what observation alone forces.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -819,7 +1139,15 @@ Which of the following, if true, most strengthens the company's claim?
 - E) Side effects reported in the StatinX arm of the trial were comparable in frequency to those reported in the competitor arm.
 
 **answer:** B
-**explanation:** Whenever a comparison-based study is used to support a superiority claim, the biggest threat is that the groups differ at baseline. Answer B eliminates that threat: random assignment plus matching on key variables means the 35% vs. 28% gap isn't explained by patient differences. That directly strengthens the causal attribution to the drug. This is the "internal validity strengthener." Answer E is tempting because equal safety profiles support using StatinX, but the CLAIM is about efficacy, not safety. Answer A hurts the claim (cost). Answer C is about novelty, not efficacy. Answer D is background.
+**fastest_path:** Comparison-based superiority claim. Strengthen by *eliminating baseline confounders*. (B) does it: random assignment + matching on age/sex/cardiovascular risk.
+**explanation:** The 7-pt gap could reflect drug effect *or* group differences. (B) eliminates the latter: randomization plus matching on key variables means the comparison is internally valid. The gap is more credibly attributable to the drug.
+**mistake_a:** Cost is irrelevant to efficacy.
+**mistake_c:** Novelty isn't efficacy.
+**mistake_d:** Background — competitor's market history.
+**mistake_e:** Tempting because comparable safety = StatinX is fine to use, but the *claim* is *efficacy*, not safety.
+**common_trap:** Picking (E) because "comparable side effects" sounds like a strengthen — but the claim is about efficacy, not net benefit. Stay aligned to the exact claim.
+**takeaway:** Strengthen on a between-group comparison = remove baseline confounders. Random assignment + matching is the gold standard.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -839,7 +1167,15 @@ Which of the following, if true, most seriously weakens the HR managers' argumen
 - E) A four-day workweek is becoming increasingly common in the manufacturing industry globally.
 
 **answer:** C
-**explanation:** To weaken a plan argument, find a reason the plan won't work in THIS context. Answer C attacks the applicability directly: the manufacturing firm's process can't be compressed, so whatever worked at other firms won't translate. That's the "mechanism doesn't apply here" weakener. Answer A is tempting — it suggests the 12% gain was driven by bonuses, not the schedule — but even if true, it only weakens the evidence, not the plan's feasibility in this specific context. Answer C is the stronger kill because it shows the plan is infeasible regardless. Answer B is a weak objection. Answer D is scale alone, not decisive. Answer E slightly strengthens.
+**fastest_path:** "Worked elsewhere → will work here" plan argument. Weaken by *showing the mechanism doesn't apply here*. (C) does it: continuous machine ops can't compress into 4 days.
+**explanation:** The 12% gain at pilot firms came from a schedule compression that *doesn't fit* this firm's process. (C) shows the mechanism is infeasible in context — whatever drove the gain elsewhere can't operate here.
+**mistake_a:** Tempting (alternative cause for the 12% gain) but only weakens the *evidence*. (C) attacks the plan's *feasibility in this context* — stronger.
+**mistake_b:** Weak objection to a productivity claim.
+**mistake_d:** Scale alone — not decisive.
+**mistake_e:** *Strengthens* — industry trend supports the move.
+**common_trap:** Picking (A) because it undermines the 12% number. But "the plan won't work *here*" (C) is a stronger weaken than "the evidence is wobbly elsewhere."
+**takeaway:** Weaken on a "transplant the policy" plan = look for *why this context blocks the mechanism*. Mechanism-blockers beat evidence-undermines.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -859,7 +1195,15 @@ Which of the following most logically completes the argument?
 - E) higher employee turnover, because employees will seek even higher-paying jobs after receiving a raise.
 
 **answer:** A
-**explanation:** The argument sets up a chain: higher minimum wage → lower turnover → lower hiring/training costs. The blank should follow from that chain specifically for HIGH-TURNOVER industries, where the savings would be largest. Answer A captures this: savings from reduced turnover partially offset the wage increase, so profits can hold up. Answer B contradicts the premise by ignoring the offset mechanism. Answer C dismisses the stated link. Answer D introduces a labor-supply side issue not in the argument. Answer E reverses the stated effect. The trick with Complete-the-Argument questions: the answer must be the DIRECT consequence of the premises, not a tangent.
+**fastest_path:** Premise chain: higher wage → less turnover → lower hiring/training costs. For *high-turnover* industries, the savings are largest, so they'd see the strongest profit cushion. (A) completes the chain.
+**explanation:** Argument structure: stated link (higher wage → lower turnover → lower hiring/training costs) + amplification (high-turnover industries gain more from this mechanism). (A) is the *direct consequence* — savings offset wage increases enough to preserve profits.
+**mistake_b:** *Reverses* — ignores the offset mechanism the argument just stated.
+**mistake_c:** *Dismisses* the stated link.
+**mistake_d:** *Outside knowledge* — labor pool side effects aren't in the chain.
+**mistake_e:** *Reverses* — argument said turnover *decreases* with higher wages.
+**common_trap:** Picking (B) because "wages are the largest expense" sounds intuitively true — but the argument explicitly proposes a *partial* offset mechanism. (B) ignores it.
+**takeaway:** Complete-the-Argument = the *direct consequence* of the stated chain, applied to the case the argument names. Don't introduce new mechanisms.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -879,7 +1223,15 @@ Which of the following, if true, best helps explain the apparent discrepancy?
 - E) Electric vehicles now account for approximately 5% of new passenger vehicle sales in Velora.
 
 **answer:** B
-**explanation:** Better MPG × more vehicles × more miles = could easily yield MORE gasoline total. Answer B makes the math work: a 30% efficiency gain is swamped by a 45% increase in vehicles plus more miles per vehicle. Classic "per-unit improvement overwhelmed by volume growth." Answer A is tempting because it could explain more driving (cheap gas), but it doesn't quantify the effect; B is direct. Answer C would cut gasoline use, deepening the paradox. Answer D is irrelevant to domestic consumption. Answer E slightly cuts gasoline demand, deepening the paradox.
+**fastest_path:** Total gasoline = MPG × #vehicles × miles/vehicle. Better MPG cuts total, but *more vehicles + more miles* (B) overwhelms the per-unit gain. Math works.
+**explanation:** Per-vehicle improvement is swamped by volume growth. (B) supplies both pieces: 45% more vehicles + more miles each. Even with 30% better MPG, total demand rises ~12%. Single mechanism explains both trends.
+**mistake_a:** Stable prices could explain *more driving* but doesn't quantify; (B) is direct.
+**mistake_c:** Public transit would *cut* gasoline use, deepening the paradox.
+**mistake_d:** Cross-country comparison — irrelevant to domestic consumption.
+**mistake_e:** EVs cut gasoline demand, deepening the paradox.
+**common_trap:** Picking (A) because cheap gas → more driving sounds explanatory. But (A) is one step removed; (B) directly *quantifies* the volume that overwhelms the efficiency gain.
+**takeaway:** Per-unit improvements + volume growth are the textbook efficiency-paradox resolution. Total = per-unit × count × usage.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -899,7 +1251,15 @@ In the argument above, the two statements in boldface play which of the followin
 - E) The first states a claim that the argument disputes; the second states an assumption that the argument relies on.
 
 **answer:** A
-**explanation:** Boldface questions require identifying the structural role of each statement. Bold 1 lays out the traditional/general principle. The argument then presents a counterexample (luxury handbags) and Bold 2 EXPLAINS why the exception exists. So A: principle + explained exception. Answer B inverts roles — the first is not the author's conclusion, it's a setup. Answer C wrongly says the author endorses Bold 1; actually the argument shows Bold 1 has exceptions. Answer E is close but misleading: the argument doesn't dispute the principle wholesale, it documents an exception — and Bold 2 isn't an assumption, it's an explanation. Answer D mislabels Bold 2 as a prediction.
+**fastest_path:** Bold 1 = general principle. Bold 2 = *explanation* of the luxury-segment exception. Match: principle + explained-exception. (A).
+**explanation:** Argument structure: state the rule (Bold 1) → present a counter-example (luxury) → explain why the counter-example happens (Bold 2). (A) names this principle/exception/explanation arc.
+**mistake_b:** *Inverts roles* — Bold 1 is setup, not the conclusion. Bold 2 is the explanation, not evidence for Bold 1.
+**mistake_c:** *Reverses tone* — author doesn't endorse Bold 1; the argument shows it has exceptions.
+**mistake_d:** Bold 2 isn't a prediction; it's a causal explanation.
+**mistake_e:** Argument doesn't dispute the principle wholesale, just flags an exception. And Bold 2 is an *explanation*, not an assumption.
+**common_trap:** Picking (E) because the argument *does* show the principle has exceptions — but "disputes" is too strong, and Bold 2 isn't an assumption. Match the exact role each statement plays.
+**takeaway:** Boldface = identify the *structural role*. Common roles: principle / exception / counter-example / explanation / setup / conclusion / evidence / assumption. Match each bold to the *exact* role.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -919,7 +1279,15 @@ The agency's projection depends on which of the following assumptions?
 - E) Drivers who receive speeding tickets from automated cameras will subsequently drive more cautiously for the rest of their lives.
 
 **answer:** B
-**explanation:** The agency's projection relies on transferring a result from one state to another. For that transfer to hold, the relevant conditions must match — not identically on every dimension, but on the factors that DRIVE the effect (traffic patterns, speed profiles, enforcement culture, etc.). Answer B captures this precisely and survives the negation test: if the locations are unrepresentative, the 15% estimate fails. Answer E is tempting but far too strong ("rest of their lives") — the projection only needs a two-year effect. Answer C is cost comparison, not required. Answer A is about policy design, not the projection's logic. Answer D is operational, not inferential.
+**fastest_path:** Projection transfers a result from another state. Required: the new locations match the *factors that drive* the effect. (B) is the bridge.
+**explanation:** Agency uses neighboring-state results to predict 15% in *its* state. Bridge: the chosen 200 locations resemble the prior locations on the factors that make speed cameras work. Negate (B): they don't → 15% projection has no basis.
+**mistake_a:** Driver awareness — operational design choice, not a logical premise of the projection.
+**mistake_c:** Cost-effectiveness comparison — separate question from whether the cameras work.
+**mistake_d:** Funding feasibility — practical, not logical.
+**mistake_e:** *Extreme* — "rest of their lives" overstates; projection only needs a 2-year effect.
+**common_trap:** Picking (E) because driver-behavior change *seems* central — but the timeframe is too long. Argument needs only short-window persistence.
+**takeaway:** "Worked elsewhere → will work here" projections always assume the *relevant similarity*. Negate that, and the projection collapses.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -939,7 +1307,15 @@ The columnist's argument is most vulnerable to which of the following criticisms
 - E) It does not consider the possibility that some nonfiction articles could also increase empathy.
 
 **answer:** B
-**explanation:** This is the "scope/timeframe mismatch" flaw. The evidence measures empathy immediately after one story. The conclusion is about graduates — people shaped by DAILY reading over years. There's a huge gap between a momentary post-reading bump and durable character change. The columnist simply hasn't shown the effect persists or compounds. Answer A is a definitional quibble, not a logical flaw. Answer C is a factual assumption but doesn't undermine the causal chain. Answer D actually praises the study (random assignment is a strength). Answer E is tempting, but even if true, it wouldn't undermine fiction's effect — at worst it shows nonfiction works too.
+**fastest_path:** Flaw: *scope/timeframe mismatch*. Evidence = immediate post-reading bump from one story. Conclusion = durable change in graduates from daily reading. The two are not comparable.
+**explanation:** Argument leaps from a momentary lab effect to a long-term policy outcome. The study measured one reading, one assessment, one moment. The conclusion is about people shaped over years. There's no evidence the effect persists, compounds, or scales to schoolwide daily practice.
+**mistake_a:** Definitional quibble, not a logical flaw.
+**mistake_c:** Factual assumption (no fiction currently assigned), but doesn't undermine the causal chain.
+**mistake_d:** *Reverses* — random assignment is a strength, not a vulnerability.
+**mistake_e:** Even if nonfiction also helps, fiction's effect still stands.
+**common_trap:** Picking (E) because nonfiction-also-works *seems* like undermining — but it doesn't undermine fiction's effect, just the comparison framing.
+**takeaway:** Flaw on a "study showed X → policy will produce Y" claim → suspect *scope/timeframe mismatch*. Lab effect ≠ durable real-world outcome.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -959,7 +1335,15 @@ The answer to which of the following questions would be most useful for the admi
 - E) Does the hospital currently have sufficient Wi-Fi coverage in all operating rooms?
 
 **answer:** B
-**explanation:** The 40% reduction is a before/after comparison at the same site. The biggest threat to that kind of comparison is that the MEASUREMENT itself changed. If switching to tablets also changed how errors are logged (perhaps the new system has different categories or thresholds), the apparent drop could be a reporting artifact, not a real safety gain. Answer B directly tests that. This is the "data comparability" evaluate move. Answer A is about cost, not error-reduction efficacy. Answer D is efficiency, not safety. Answer E is implementation feasibility. Answer C hints at confounders but is less decisive than measurement consistency.
+**fastest_path:** Before/after at one site → biggest threat is *measurement change*. (B) tests it: did error-recording methodology change between the two periods?
+**explanation:** A 40% drop is dramatic. But same-site before/after is only credible if the *measurement* is constant. (B) tests that. Yes — same recording → real safety gain. No — recording changed → reporting artifact.
+**mistake_a:** Cost is downstream of the efficacy question.
+**mistake_c:** Hints at confounders but less decisive than measurement consistency.
+**mistake_d:** Efficiency, not safety.
+**mistake_e:** Implementation detail.
+**common_trap:** Picking (C) because younger surgeons *could* explain better outcomes. But measurement consistency is the more direct threat to a before/after comparison.
+**takeaway:** Before/after Evaluate questions = always probe *measurement consistency*. A reporting artifact is the dominant risk.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -979,7 +1363,15 @@ In the argument above, the two statements in boldface play which of the followin
 - E) The first and second both serve as evidence for the same conclusion.
 
 **answer:** B
-**explanation:** Bold 1 states the mainstream economist view — "rates are the reliable tool." The argument then challenges it using Marisol's data, and Bold 2 supplies the mechanism-level reason the mainstream view didn't work HERE (supply shocks, not demand, drove inflation). That's exactly "challenged view + explanation of failure." Answer A inverts structure — Bold 1 is the target of critique, not the main conclusion. Answer C wrongly labels Bold 1 as a prediction; it's a general principle. Answer D mislabels; Bold 1 is a claim, not an assumption, and Bold 2 is an explanation, not a derived conclusion. Answer E is wrong because the two bolded statements serve opposing roles, not the same one.
+**fastest_path:** Bold 1 = mainstream economist view. Argument *challenges* it via Marisol. Bold 2 = the *mechanism-level explanation* of why the mainstream view failed in this case.
+**explanation:** Structure: state mainstream view (Bold 1) → present counter-case (Marisol) → explain why mainstream failed there (Bold 2). (B) names this challenged-view + explained-failure arc.
+**mistake_a:** *Inverts roles* — Bold 1 is the *target* of critique, not the conclusion.
+**mistake_c:** Bold 1 isn't a prediction; it's a general principle.
+**mistake_d:** Bold 1 is a claim, not an assumption. Bold 2 is an explanation, not a derived conclusion.
+**mistake_e:** Bolds serve *opposing* roles, not the same one.
+**common_trap:** Picking (A) because Bold 2 *feels* like evidence — but Bold 2 is an *explanation* of the failure, not support for Bold 1.
+**takeaway:** Boldface roles often pair "challenged view + explained-failure-mechanism." Track which bold the argument *pushes against* vs *uses to push*.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -999,7 +1391,15 @@ Which of the following, if true, most seriously weakens the CEO's argument?
 - E) Patent applications are only one measure of innovation, and not necessarily the best one.
 
 **answer:** C
-**explanation:** The CEO blames remote work for the 40% drop in patents, but Answer C exposes a devastating confounder: the company lost half its R&D workforce. Of course patent output fell — there are half as many inventors. That has nothing to do with where people sit. This is the classic "alternative cause" weakener, hitting exactly where the argument is thinnest. Answer A is tempting — industry-wide decline suggests macro factors — but it's weaker because competitor trends don't explain the company's own staffing change. Answer D gives counterexamples but doesn't undermine the aggregate trend. Answer E questions the metric philosophically but doesn't challenge the causal inference. Answer B is about preference, not innovation.
+**fastest_path:** CEO blames remote work for 40% patent decline. Weaken by *naming the headcount confounder*: R&D workforce halved during the same period. Half the inventors → fewer patents, regardless of where they sit.
+**explanation:** Argument claims remote work caused the patent drop. (C) reveals the dominant confounder: R&D headcount fell in half. Patent output drops mechanically when you have half the inventors — that has nothing to do with location.
+**mistake_a:** Industry-wide decline is suggestive of macro factors, but doesn't explain *this* company's specific drop.
+**mistake_b:** Preference, not innovation output.
+**mistake_d:** Counterexamples don't undermine the aggregate trend.
+**mistake_e:** Philosophical metric quibble.
+**common_trap:** Picking (A) because industry context *feels* like a confounder — but (C) attacks the much more decisive within-company explanation: half the inventors.
+**takeaway:** Weaken on a "policy → output drop" claim → ask "did the *workforce size* change?" Headcount is the dominant confounder for output metrics.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1019,7 +1419,15 @@ Which of the following, if true, most strengthens the marketing director's argum
 - E) Customers who shop more frequently tend to try new features earlier.
 
 **answer:** B
-**explanation:** The director's argument suffers from a classic selection problem — maybe heavy spenders simply self-select into the app. Answer B neutralizes that by comparing app users to THEMSELVES before and after, and still finds a 15% lift. That is a within-person design, which rules out the "high spenders were already high spenders" objection. Answer E is the opposite — it reinforces the selection concern. Answer A gives a promotional detail but not a causal link. Answer C is demographic trivia. Answer D is about competitive context, not about whether the app caused the lift.
+**fastest_path:** Risk: heavy spenders self-selected into the app. Strengthen by *within-person comparison*. (B) does it: app users' spending rose 15% *vs their own pre-app spending*.
+**explanation:** Cross-section comparison is vulnerable to selection. (B) supplies the within-person design: same shoppers, before vs after signing up, 15% lift. That rules out "high spenders were already high spenders."
+**mistake_a:** Promotional detail, not a causal link.
+**mistake_c:** Demographic trivia.
+**mistake_d:** Competitive context, not a causal mechanism.
+**mistake_e:** *Reverses* — if heavy shoppers try features earlier, that *strengthens* the selection-bias concern.
+**common_trap:** Picking (A) because promotion sounds like it could be the actual cause — but the question asks what *strengthens* the director's claim, not what challenges it.
+**takeaway:** Strengthen on a "X-users spend more → X causes spending" claim = within-person before/after. Self-selection's antidote is within-subject design.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1039,7 +1447,15 @@ Which of the following, if true, most seriously weakens the council's argument?
 - E) Speed cameras in other cities have sometimes been vandalized.
 
 **answer:** C
-**explanation:** This is an alternative-cause weakener. The council attributes Oakdale's 30% drop to cameras, but Answer C reveals that two OTHER safety changes happened at the same time. Any of those — or all three together — could have caused the drop. That wrecks the inference that cameras alone will help Maple Avenue. Answer B is a budget issue, not an efficacy issue. Answer D is about driver attitudes, not accidents. Answer E is about property damage, not the causal claim. Answer A is irrelevant endorsement.
+**fastest_path:** Council attributes Oakdale's 30% drop to cameras. Weaken by *naming co-occurring interventions*. (C) does it: lower speed limit + new crosswalks installed at the same time.
+**explanation:** Three interventions launched simultaneously: cameras, lower limit, new crosswalks. Any one — or the combination — could have caused the 30% drop. Cameras alone aren't isolated, so the inference for Maple Avenue collapses.
+**mistake_a:** Endorsement isn't a cause.
+**mistake_b:** Budget feasibility, not efficacy.
+**mistake_d:** Driver attitudes, not accidents.
+**mistake_e:** Vandalism is property damage, not the causal claim.
+**common_trap:** Picking (B) because budget feels like a real obstacle — but the argument is about *whether cameras work*, not whether they're affordable.
+**takeaway:** Weaken via *co-occurring intervention* — when several changes happened simultaneously, no single one can be credited.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1059,7 +1475,15 @@ The conclusion above depends on which of the following assumptions?
 - E) The company has conducted multiple prior trials of other hypertension medications.
 
 **answer:** B
-**explanation:** For the 68% vs 52% comparison to support a causal superiority claim, the two groups must be comparable — otherwise the difference could be driven by some confounding factor (age, baseline BP, comorbidities). That is the bedrock assumption of any treatment comparison. Answer A is about economics. Answer C is too strong; "no side effects whatsoever" is not required for the efficacy claim. Answer D is about preference, not efficacy. Answer E is a red herring about company history.
+**fastest_path:** 68% vs 52% comparison → causal superiority claim. Required: groups didn't differ on baseline factors that affect BP. (B) is the bridge.
+**explanation:** Treatment-comparison logic only works if the two groups are comparable. Negate (B): groups differed on age, baseline BP, comorbidities → the gap could reflect those differences, not the drug.
+**mistake_a:** Manufacturing economics — separate from efficacy.
+**mistake_c:** *Extreme* — "no side effects whatsoever" is too strong. Efficacy claim doesn't need that.
+**mistake_d:** Preference, not efficacy.
+**mistake_e:** Company history is reputational, not causal.
+**common_trap:** Picking (D) because once-daily *is* a feature patients prefer — but the argument is about *efficacy* (BP control), not adherence preference.
+**takeaway:** Treatment-superiority arguments always assume *baseline comparability*. Negate that, and the gap could be group differences, not drug effect.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1079,7 +1503,15 @@ Which of the following can be most reliably concluded from the information above
 - E) The price of gasoline in Verida fell between 2015 and 2023.
 
 **answer:** B
-**explanation:** EV adoption jumped from 2% to 18%, which necessarily added meaningful residential electricity demand. Yet total residential electricity only rose 4%, with no offsetting change in weather, pricing, or household size. The only way that math reconciles is if non-vehicle electricity use per household declined — i.e., efficiency improved. Answer A is too strong (it implies EV owners consume less in total, which isn't established). Answer C compares Verida to other countries — no data given. Answer D is a prediction the passage doesn't support. Answer E is outside the electricity scope entirely.
+**fastest_path:** EV adoption 2% → 18% adds significant residential demand. Total residential rose only 4% with no other changes. Math reconciles only if *non-vehicle use per household declined* (efficiency).
+**explanation:** Constraint: significant new EV load + 4% total rise + no offsetting changes (size, weather, price). Logic forces non-EV consumption per household to have *fallen* enough to absorb most of the EV load. (B) names this efficiency improvement.
+**mistake_a:** *Extreme* — "consume less overall" overshoots; we don't know about absolute consumption levels.
+**mistake_c:** *Outside knowledge* — other countries weren't compared.
+**mistake_d:** Prediction, not inference.
+**mistake_e:** Outside the electricity-scope of the passage.
+**common_trap:** Picking (A) because EV households *seem* like efficiency-conscious consumers — but the inference is about *all households* on average, not EV households specifically.
+**takeaway:** Inference from a math constraint = the variable that has to move to make the totals reconcile. Always isolate the implied direction.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1099,7 +1531,15 @@ Which of the following, if true, best resolves the apparent paradox?
 - E) Some patients who were previously hospitalized for flu are now treated at home.
 
 **answer:** B
-**explanation:** This is a classic rate-vs-count paradox. The RATE (per-person) fell 25%, but the COUNT rose 15%. That is entirely possible if the underlying population grew AND its composition shifted toward higher-risk groups. Answer B names both mechanisms. Answer A would push both numbers DOWN, not explain an increase in the count. Answer C and E would also reduce the count. Answer D is vague and would likely reduce both metrics.
+**fastest_path:** Paradox: rate ↓ 25%, count ↑ 15%. Resolution: population grew + composition shifted toward higher-risk groups (elderly). Both metrics make sense.
+**explanation:** Rate (per-person) fell, but count rose. The math reconciles when underlying population grows AND its composition shifts toward higher-risk demographics. (B) names both pieces.
+**mistake_a:** Better vaccines push *both* numbers down.
+**mistake_c:** More cautious admissions push count *down*.
+**mistake_d:** Vague — would push both down.
+**mistake_e:** Treating at home pushes count down.
+**common_trap:** Picking (A) because better vaccines fits the rate decline. But it would also pull the count down, deepening the paradox. Need a mechanism that pushes count *up* while rate falls.
+**takeaway:** Rate-vs-count paradoxes resolve via *population growth + composition shift*. Always check whether the demographic mix changed.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1119,7 +1559,15 @@ Which of the following most logically completes the argument?
 - E) sample distribution requires coordination with product suppliers.
 
 **answer:** C
-**explanation:** The missing consideration has to undermine the causal inference from correlation (samples ↔ higher spending) to intervention (add samples → increase spending). Answer C states the classic reverse-causation / selection-bias concern: big spenders may gravitate to samples, rather than samples turning people into big spenders. Answer A is a cost concern, not a causal one. Answer B is a segment distribution fact. Answer D is a minor preference issue. Answer E is logistical.
+**fastest_path:** Blank must name what the recommendation *overlooks*. The classic missing consideration: *reverse causation* — big spenders may seek out samples, not the reverse.
+**explanation:** Consultant's leap is from correlation (samples ↔ higher spending) to intervention (more samples → more spending). The missing consideration is the selection-causation gap: shoppers inclined to spend may already gravitate to samples. (C) names this directly.
+**mistake_a:** Cost concern, not a causal one.
+**mistake_b:** Segment distribution, not the causal chain.
+**mistake_d:** Minor preference issue.
+**mistake_e:** Logistical, not causal.
+**common_trap:** Picking (A) because staff cost *is* a real consideration — but the question asks what undermines the *causal inference*, not the *cost-benefit*. Match the gap to the argument's structural weakness.
+**takeaway:** Complete-the-Argument when the prompt says "overlooks" → look for the *causal gap* in the recommendation. Reverse causation / selection bias is the most common one.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1139,7 +1587,15 @@ Which of the following, if true, most strengthens the partners' conclusion?
 - E) The firm's portfolio includes companies at various stages of maturity.
 
 **answer:** B
-**explanation:** To credit founding experience itself, you must rule out confounders — funding size, sector, timing. Answer B does exactly that by showing the two groups were matched on the obvious alternative explanations, leaving experience as the plausible driver. Answer A actually weakens the argument (first-timers had MORE money and still did worse? maybe, but it introduces a confound the other way that needs explaining). Answer C offers an alternative cause (networks), which weakens. Answer D is anecdotal counterevidence. Answer E is neutral.
+**fastest_path:** 55% vs 25% → causal claim about founding experience. Strengthen by *eliminating confounders*. (B) does it: matched on industry, funding, conditions.
+**explanation:** Comparison only credibly attributes the gap to experience if other factors are held constant. (B) shows industries, funding amounts, and market conditions were comparable — pulling in the confounders that could otherwise explain the gap.
+**mistake_a:** *Reverses* — first-timers got more money and still did worse, which weakens or complicates.
+**mistake_c:** *Alternative cause* — networks could explain the gap.
+**mistake_d:** Anecdotal counterexample.
+**mistake_e:** Neutral — stage variation isn't a confound block.
+**common_trap:** Picking (C) because networks *seem* like a strength of repeat founders — but it's an *alternative explanation* for the success rate, which weakens the experience-causes-success claim.
+**takeaway:** Strengthen on a between-group comparison = *match the groups on confounders*. Same-condition data isolates the variable you're testing.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1159,7 +1615,15 @@ Which of the following, if true, most seriously weakens the columnist's argument
 - E) New smartphone models are released every year with improved camera features.
 
 **answer:** B
-**explanation:** The argument predicts disappearance based on unit decline. Answer B shows the market is not dying — it's restructuring around a premium professional segment that smartphones cannot serve, and revenue (the more relevant commercial metric) is actually growing. A durable premium niche means "disappear entirely" is wrong. Answer A is tempting but only establishes a technical gap; it doesn't show the category is commercially viable. Answer C is mild and doesn't address the long-term trajectory. Answers D and E actually support the columnist.
+**fastest_path:** Argument: unit decline → category dies. Weaken by showing the market has *restructured* into a viable premium niche. (B) does it: revenue rising, premium segment that smartphones don't serve.
+**explanation:** "Disappear entirely" is too strong if a profitable, defensible niche exists. (B) shows revenue is *rising*, driven by professionals — a segment smartphones can't replace. Category persists in restructured form.
+**mistake_a:** Quality gap exists but doesn't show commercial viability.
+**mistake_c:** Mild dual-use observation.
+**mistake_d:** *Strengthens* — reduced marketing fits a dying market.
+**mistake_e:** *Strengthens* — better smartphones threaten standalone cameras.
+**common_trap:** Picking (A) because image-quality gap *seems* protective — but a mere capability gap doesn't prove commercial viability.
+**takeaway:** Weaken on a "category will die" prediction = surface the *durable niche* the prediction misses. Revenue persistence in a defensible segment is the strongest counter.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1179,7 +1643,15 @@ The committee's argument depends on which of the following assumptions?
 - E) The seminar is taught by faculty members rather than graduate students.
 
 **answer:** B
-**explanation:** The pilot was voluntary, so the 92% vs 78% comparison is fatally vulnerable to self-selection: motivated, well-prepared students may have signed up AND been more likely to persist anyway. For the committee to generalize from volunteers to a mandatory program, it must assume those confounders didn't drive the gap. Answer A is cost-related. Answer C is too strong (the argument needs an effect on average, not universal completion). Answer D is a values judgment. Answer E is about delivery, not causation.
+**fastest_path:** Voluntary pilot → self-selected enrollees. Required: enrollees and non-enrollees didn't differ in motivation or preparation. (B) is the bridge.
+**explanation:** 92% vs 78% comparison from a voluntary pilot is fatally vulnerable to selection. The committee needs to assume volunteers weren't already more motivated/prepared than non-volunteers. Negate (B): they were → the gap is selection, not the seminar.
+**mistake_a:** Cost feasibility.
+**mistake_c:** *Extreme* — universal completion isn't required for an average effect.
+**mistake_d:** Values judgment about which retention metric matters.
+**mistake_e:** Delivery format detail.
+**common_trap:** Picking (D) because it sounds like a foundational assumption — but the *retention-as-success* premise is given by the committee. The unstated assumption is about the *comparison validity*.
+**takeaway:** Generalizing from a voluntary pilot to a mandatory program always assumes *no selection bias*. That's the load-bearing assumption to negate.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1199,7 +1671,15 @@ Which of the following can be most reliably concluded from the information above
 - E) Most workers exaggerate their own productivity when surveyed.
 
 **answer:** B
-**explanation:** The passage pairs two facts: workers SAY they are more productive; managers measure that team output has NOT gone up. The valid inference is exactly that disconnect — no translation from self-reported individual gains to measured team gains. Answer A makes a character judgment not supported. Answer C imputes attitudes. Answer D is a counterfactual the data don't reach. Answer E is too strong — the passage tells us what workers reported, not that they exaggerate. The "must-be-true" answer sticks tightly to the data.
+**fastest_path:** Workers report 64% higher productivity; managers measure flat or declining team output. Inference: *self-reported gains haven't translated to measured team gains*. Tightest restatement.
+**explanation:** Two facts: workers say they're more productive; managers measure that team output didn't rise. The valid inference is exactly that disconnect — no translation from self-reported individual gains to measured team output.
+**mistake_a:** *Outside knowledge* — character judgment about honesty isn't supported.
+**mistake_c:** *Outside knowledge* — manager *attitudes* aren't given.
+**mistake_d:** *Counterfactual* the data don't reach.
+**mistake_e:** *Extreme* — passage tells what workers reported, not that they exaggerated.
+**common_trap:** Picking (E) because exaggeration *would* explain the gap — but inference must be text-forced, not "plausible explanation."
+**takeaway:** Inference on a "self-report vs measurement" mismatch = restate the disconnect itself. Don't import character judgments or causal interpretations.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1219,7 +1699,15 @@ The editorial's reasoning is most vulnerable to which of the following criticism
 - E) It does not specify which universities are responsible for the shortfall.
 
 **answer:** A
-**explanation:** The editorial jumps from "more CS majors AND more unfilled jobs" to "universities are failing to PREPARE students." That assumes graduates are actually staying in-state and actually going into software engineering. If a large share leave the state or go into data science, quant finance, or product management, then the gap doesn't prove poor preparation at all. Answer A names that leakage problem directly. Answer B is a secondary assumption about experience level. Answer C is about other states' supply. Answer D is about emphasis, not logic. Answer E demands specificity but doesn't hit the causal flaw.
+**fastest_path:** Flaw: ignores that grads may *leak out of the funnel* — leave the state or take non-engineering jobs. Without that pipeline assumption, the "failing to prepare" verdict has no basis.
+**explanation:** Argument: more majors + more unfilled jobs → universities aren't preparing students. Hidden assumption: grads stay in-state *and* go into software engineering. If they leave for other states or other roles, the gap reflects geography or career choice — not preparation quality.
+**mistake_b:** Secondary assumption about experience level — not the dominant flaw.
+**mistake_c:** Other states' supply — orthogonal.
+**mistake_d:** Emphasis on which growth rate matters more, not the causal flaw.
+**mistake_e:** Specificity demand, not a logical flaw.
+**common_trap:** Picking (B) because graduates needing experience *seems* relevant — but the more decisive flaw is the leakage assumption (A).
+**takeaway:** Flaw on a "supply ≠ demand → quality is bad" claim → look for the *pipeline assumption*. Are grads staying *in* the funnel?
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1239,7 +1727,15 @@ The answer to which of the following questions would be most useful in evaluatin
 - E) Have any other accounting firms adopted quarterly feedback recently?
 
 **answer:** B
-**explanation:** The 18% turnover gap in the study only supports a causal recommendation if the quarterly-feedback firms didn't differ from the annual-review firms on the major drivers of turnover. If the study compared, say, small well-paid tech firms to large low-paying retailers, the gap has nothing to do with feedback cadence. Answer B tests exactly that. Answer A is cost. Answer C is employee attitudes. Answer D is historical context. Answer E is what peers are doing — social proof, not evidence.
+**fastest_path:** Cross-firm comparison → biggest threat is *baseline differences*. (B) tests it: did the study control for size, industry, comp?
+**explanation:** The 18% gap supports a causal recommendation only if quarterly-feedback firms weren't already different in turnover-relevant ways. (B) probes that. Without controls, the gap could reflect firm composition, not feedback cadence.
+**mistake_a:** Cost is downstream.
+**mistake_c:** Employee attitudes ≠ outcome data.
+**mistake_d:** Historical context, not causal.
+**mistake_e:** Social proof, not evidence.
+**common_trap:** Picking (A) because cost is a real practical question — but the *causal* validity is the load-bearing concern.
+**takeaway:** Evaluate on cross-firm comparisons = always probe *baseline confounder controls*. Same lever as cross-state policy projections.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1259,7 +1755,15 @@ Which of the following, if true, most helps to resolve the paradox?
 - E) Harpen's city government has increased spending on road maintenance.
 
 **answer:** B
-**explanation:** The puzzle: fewer cars and more rail, yet longer commutes. Answer B resolves it cleanly — if employment grew 20% and jobs concentrated downtown, total commuters surged and funneled into an infrastructure bottleneck. Rail helps, but capacity can still max out, and fewer cars per capita can coexist with more crowded commutes overall. Answer A is too vague. Answer C is partial (only explains lack of full benefit, not the increase). Answer D would REDUCE commute times. Answer E would too.
+**fastest_path:** Paradox: fewer cars + more rail, but longer commutes. Resolve: total commuters *surged* (employment +20%) and bottlenecked into a downtown core whose capacity was already maxed.
+**explanation:** Per-capita car use fell, but headcount of commuters rose enough to overwhelm both road and rail capacity at the bottleneck. (B) supplies both pieces — employment growth and concentration — explaining how more transit can coexist with worse aggregate experience.
+**mistake_a:** Too vague — gas prices fluctuating doesn't directly explain time.
+**mistake_c:** Partial — only explains why rail benefits haven't materialized fully, not the *increase*.
+**mistake_d:** Biking would *cut* commute times.
+**mistake_e:** Road maintenance would too.
+**common_trap:** Picking (C) because the rail expansion is recent — but timing alone doesn't explain commute *increase*. Need the demand-side surge.
+**takeaway:** Paradoxes about transit and congestion often resolve via *demand growth + spatial concentration*. Capacity ≠ flow when bottlenecks bind.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1279,7 +1783,15 @@ In the argument above, the two portions in boldface play which of the following 
 - E) The first and second both support the same general principle.
 
 **answer:** B
-**explanation:** The argument pushes back on a popular policy claim using Ridgemont as a case study. Bold 1 states the common municipal-leader view. Bold 2 explains WHY it failed here: the jobs were coming to the region anyway, so incentives shifted location without creating net jobs. This is "opposed view + diagnostic mechanism." Answer A is backwards — the author rejects the first bold. Answer C mislabels structure; Bold 2 explains but isn't the sole main conclusion. Answer D invents a second proposal. Answer E ignores the opposition between the two bolds.
+**fastest_path:** Bold 1 = popular municipal-leader view. Argument *rebuts* it via Ridgemont. Bold 2 = the *diagnostic mechanism* (jobs would have come to the region regardless).
+**explanation:** Structure: state common view (Bold 1) → counterexample (Ridgemont) → mechanism explaining why the view failed (Bold 2). (B) names the rebuttal + mechanism arc.
+**mistake_a:** *Backwards* — author rejects Bold 1, not endorses.
+**mistake_c:** Bold 2 explains, but isn't the sole conclusion.
+**mistake_d:** Invents a second proposal.
+**mistake_e:** Ignores the opposition between the two bolds.
+**common_trap:** Picking (A) because Bold 2 sounds supportive — but it explains *failure*, not endorsement.
+**takeaway:** Boldface "common-view + diagnostic-mechanism" is one of the four standard pairings. Track whether the argument *agrees* with each bold.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1299,7 +1811,15 @@ Which of the following most logically completes the argument?
 - E) some consumers drink bottled water only occasionally.
 
 **answer:** B
-**explanation:** The conclusion says consumers are "wasting money" — a value judgment about purchase rationality. That claim is only valid if PURITY is the only reason people buy bottled water. Answer B targets exactly that overreach: if people are buying for convenience or taste, the purity-microplastic finding doesn't prove they're wasting money. Answer A is a sample-size complaint but the result held for 9 of 12. Answer C is methodological but vague. Answer D widens the scope without helping. Answer E is about frequency, not rationale.
+**fastest_path:** Conclusion overreaches: "wasting money" presumes *purity is the only reason* to buy. Blank must point out the *other reasons* (convenience, taste).
+**explanation:** Microplastic data only undermines purchases *for purity*. If consumers buy for taste, convenience, or perceived quality unrelated to purity, the finding doesn't prove they're wasting money. (B) names this scope mismatch.
+**mistake_a:** Sample-size complaint — but 9 of 12 is decisive.
+**mistake_c:** Methodological vague.
+**mistake_d:** Widens scope without helping.
+**mistake_e:** Frequency, not rationale.
+**common_trap:** Picking (A) because sampling sounds rigorous to challenge — but the data is reasonably strong. The *real* gap is between purity-evidence and rational-purchase verdict.
+**takeaway:** Complete-the-Argument when conclusion involves a *value judgment* — "wasting money," "irrational" — match to the unstated assumption about *purchase motive*.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1320,7 +1840,15 @@ Which of the following, if true, most strengthens the director's conclusion?
 - E) Employers in the region have increased their overall hiring of entry-level tech workers.
 
 **answer:** B
-**explanation:** The 81% vs 58% gap is only attributable to the curriculum if the two student groups are otherwise comparable. Answer B explicitly rules out the obvious confounders — prior experience, background, who employers will even consider. Without that matching, the gap could simply reflect student selection. Answer A is about cost. Answer C introduces a potential alternative explanation (age/maturity) — it weakens, if anything. Answer D is anecdotal. Answer E affects both groups equally and doesn't isolate curriculum.
+**fastest_path:** 81% vs 58% comparison → causal claim about curriculum. Strengthen by *matching the groups* on confounders. (B) does it: prior experience, background, employer-screening criteria.
+**explanation:** Bootcamp vs two-year placement gap could reflect student selection or program effect. (B) eliminates the selection alternative by matching on the major confounders. Curriculum becomes the credible cause.
+**mistake_a:** Cost — separate from outcome.
+**mistake_c:** *Reverses* — older students are an alternative explanation, weakening.
+**mistake_d:** Anecdotal.
+**mistake_e:** Affects both groups equally.
+**common_trap:** Picking (E) because rising regional hiring sounds like it'd help bootcamp grads — but it lifts both groups, so it doesn't *isolate* curriculum.
+**takeaway:** Strengthen on a between-program comparison = match students on confounders. Same lever as treatment-superiority claims in medicine.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1340,7 +1868,15 @@ The columnist's reasoning is most vulnerable to which of the following criticism
 - E) It overlooks that green tea contains caffeine.
 
 **answer:** B
-**explanation:** This is the textbook correlation-to-causation leap. Observational studies show green tea drinkers ARE healthier, but those people also tend to exercise more, smoke less, and have higher incomes. Jumping from that correlation to "drinking tea will reduce YOUR risk" ignores the confounders. Answer B names the flaw precisely. Answer A is a taste preference. Answer C is values. Answer D is a dose-response question, not a flaw in the core inference. Answer E is irrelevant without more.
+**fastest_path:** Flaw: *correlation-to-causation in observational data*. Tea drinkers are healthier, but they also exercise more, smoke less, earn more. Recommendation ignores the confounders.
+**explanation:** Multiple observational studies show association, but observational ≠ causal. Tea drinkers self-select into a healthier lifestyle bundle. Recommending tea-drinking to reduce *your* risk assumes the tea is the active ingredient — which observation alone doesn't establish.
+**mistake_a:** Taste preference, not a logical flaw.
+**mistake_c:** Values judgment about what risks to prioritize.
+**mistake_d:** Dose-response is a separate question, not the core flaw.
+**mistake_e:** Caffeine is irrelevant without more linkage.
+**common_trap:** Picking (D) because "more is better?" sounds like a question worth asking — but the *primary* flaw is the leap from correlation to causation, not whether two cups vs three.
+**takeaway:** Flaw on a "studies show X correlates with Y → do X" recommendation → suspect *correlation-causation in observational data*. The dominant verbal-CR trap.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1360,7 +1896,15 @@ The answer to which of the following questions would be most useful in evaluatin
 - E) How long has the seat manufacturer been in business?
 
 **answer:** B
-**explanation:** Fuel savings are extremely sensitive to flight profile — short-haul regional operations burn fuel very differently than long-haul. If the 2% figure came from long-haul tests, it won't translate. Answer B asks precisely whether the benchmark conditions resemble the airline's own operations, which is the decisive evaluation question. Answer A is social proof. Answer C is trivial. Answer D is passenger experience. Answer E is vendor credibility but doesn't test the figure itself.
+**fastest_path:** Manufacturer's 2% figure is only relevant if its *test conditions* match this airline's flight profile. (B) tests it directly.
+**explanation:** Fuel savings are profile-sensitive. Short-haul vs long-haul, frequent vs sparse stops — all change the math. (B) asks the decisive question: were the test conditions comparable? If yes, the projection holds; if no, savings could be much smaller.
+**mistake_a:** Social proof — doesn't test the figure.
+**mistake_c:** Trivial.
+**mistake_d:** Passenger experience.
+**mistake_e:** Vendor credibility but doesn't test the figure itself.
+**common_trap:** Picking (E) because vendor history *seems* foundational — but it doesn't tell you whether the *number* applies here. Match the evaluation to the *technical claim*.
+**takeaway:** Evaluate on a vendor-supplied figure = always probe *condition comparability*. Specs taken from a different operating profile rarely transfer.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1380,7 +1924,15 @@ Which of the following, if true, most seriously weakens the economist's argument
 - E) Consumer demand for locally grown food has increased.
 
 **answer:** B
-**explanation:** The economist measures policy success against "farms declined anyway." Answer B reframes using the correct counterfactual — without subsidies, the decline would have been much steeper (70% vs 40%). That means subsidies DID preserve farms relative to the no-subsidy world. That directly undercuts the "failed" conclusion. Answer A is a scope concern. Answer C is a background fact. Answers D and E are tangential programs / market forces.
+**fastest_path:** Economist uses the wrong baseline. Weaken via *counterfactual*: without subsidies the decline would have been *worse* (70% vs 40%). Subsidies *did* preserve farms — relative to no-subsidy world.
+**explanation:** "Failed" because farms declined anyway is the static-baseline error. (B) supplies the counterfactual: subsidies softened a 70% decline into a 40% decline. That's a 30-point preservation effect — meaningful success.
+**mistake_a:** Scope of subsidy distribution.
+**mistake_c:** Background fact about land cost.
+**mistake_d:** Tangential program.
+**mistake_e:** Market force, not policy effect.
+**common_trap:** Picking (E) because demand growth *seems* relevant — but it would mean farms thrived for *non-policy* reasons, complicating the picture without delivering the counterfactual rebuttal.
+**takeaway:** Weaken on a "policy didn't reduce X" claim → the *counterfactual* is the textbook lever. Without it, the argument has no baseline.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1400,7 +1952,15 @@ The startup's claim depends on which of the following assumptions?
 - E) Government subsidies for solar panels will continue at their current level.
 
 **answer:** B
-**explanation:** Laboratory efficiency is famously a poor predictor of market viability: yields drop at scale, defects increase, and manufacturing cost can explode. For the startup's "commercially viable in three years" claim, the lab-to-factory transition has to preserve enough of the efficiency advantage AND do so at a sellable cost. Answer B packages both requirements. Answer A is a distracting historical absolute. Answer C is a non sequitur. Answer D narrows the market for no reason. Answer E adds a policy dependency not stated in the argument.
+**fastest_path:** Lab → market commercial viability requires that efficiency *survives the scale-up* AND the *manufacturing cost* allows competitive pricing. (B) packages both.
+**explanation:** "Commercially viable in three years" is a manufacturing-and-market claim, not a science claim. Lab prototypes routinely lose efficiency at scale due to yield, defects, cost. Negate (B): efficiency drops or cost balloons → no commercial viability. Necessary assumption.
+**mistake_a:** Historical absolute, distracting.
+**mistake_c:** Non sequitur — VC investment doesn't guarantee success.
+**mistake_d:** Narrows market without basis.
+**mistake_e:** Policy dependency not in the argument.
+**common_trap:** Picking (E) because solar incentives are real-world relevant — but the argument doesn't depend on subsidies. Stay with the *stated* mechanism.
+**takeaway:** "Lab proves X → market success" claims always assume *transition preservation + viable cost*. The single most-missed assumption in tech-startup CR.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1420,7 +1980,15 @@ Which of the following can be most reliably concluded from the information above
 - E) Most workers use generative AI tools daily.
 
 **answer:** B
-**explanation:** Two facts are given: a majority of AI users report personal efficiency gains, and managers measured no team-level output-per-worker increase. The valid conclusion tracks that gap exactly. Answer B does. Answer A is far too strong (reported gains can be real for some individuals even if team metrics are flat — think reallocation to lower-value work). Answer C attributes motive. Answer D makes a character claim. Answer E confuses "weekly" with "daily" and misreads the 72% figure.
+**fastest_path:** Workers report personal gains; managers measure flat team output. Inference: *self-reported individual gains haven't translated to team-level output gains*. Direct restatement of the disconnect.
+**explanation:** Two facts: (i) majority of AI users report efficiency gains, (ii) managers report no team-level output-per-worker increase. The valid inference tracks the gap exactly. (B) does. Anything stronger imports motive or character claims.
+**mistake_a:** *Extreme* — "no real benefit for any worker" overshoots; reported gains can be real for individuals even if team metrics are flat.
+**mistake_c:** Attributes motive — passage doesn't.
+**mistake_d:** Character claim about exaggeration.
+**mistake_e:** Confuses "weekly" with "daily."
+**common_trap:** Picking (D) because workers' gains seem inflated relative to team metrics — but inference must be text-forced, not "plausible explanation."
+**takeaway:** Inference on "self-report vs measurement" mismatch = restate the disconnect. Same lever as the previous batch's Q60.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1440,7 +2008,15 @@ Which of the following, if true, best resolves the apparent discrepancy?
 - E) Some teenage drivers are involved in more than one accident per year.
 
 **answer:** B
-**explanation:** Accident counts scale with exposure (miles driven), not headcount. Answer B explains the paradox: the remaining teen-driver population skews rural and drives far more per person. Fewer drivers but way more miles each easily pushes total accidents up. That's a composition-shift + exposure explanation. Answer A would cut both the count and the headcount. Answer C is directionally aligned with the count going down, not up. Answer D would reduce accidents. Answer E adds a small amplifier but doesn't explain the direction.
+**fastest_path:** Paradox: 35% fewer teen drivers + 12% more accidents. Resolve: *exposure shifted* — remaining teen drivers skew rural and drive more than twice as far each.
+**explanation:** Accident count scales with miles driven, not headcount. (B) supplies both pieces: composition shift (rural skew) + exposure increase (miles doubled). Smaller population × much more driving each = more total accidents.
+**mistake_a:** Cutting both count and headcount, not explaining the increase.
+**mistake_c:** Aligned with count going down, not up.
+**mistake_d:** Safety campaigns reduce accidents.
+**mistake_e:** Small amplifier, doesn't explain direction.
+**common_trap:** Picking (E) because multiple-accident drivers is a real amplifier — but it's marginal, not the dominant mechanism.
+**takeaway:** Headcount-vs-incidence paradoxes resolve via *exposure changes*. Always check miles, hours, or attempts per actor.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1460,7 +2036,15 @@ In the argument above, the two statements in boldface play which of the followin
 - E) The first and second describe the same phenomenon from different perspectives.
 
 **answer:** B
-**explanation:** Bold 1 is the standard retail-exec view. The argument then uses Brantco as a complicating case. Bold 2 doesn't merely say "Brantco is different" — it identifies the MECHANISM (turnover/training savings + theft/error reductions) that let wages rise without price hikes. That is "common view challenged + mechanism of failure." Answer A misreads — the argument doesn't endorse the first. Answer C reverses roles. Answer D invents a conditional. Answer E flattens the opposition between the two bolded statements.
+**fastest_path:** Bold 1 = standard retail-exec view. Argument *complicates* it via Brantco. Bold 2 = the *mechanism* (turnover/training + theft/error savings) that let wages rise without price hikes.
+**explanation:** Structure: state the common view (Bold 1) → counterexample (Brantco) → mechanism explaining the counterexample (Bold 2). (B) names this challenged-view + explained-mechanism arc.
+**mistake_a:** Misreads — argument doesn't endorse Bold 1.
+**mistake_c:** Reverses roles.
+**mistake_d:** Invents a conditional.
+**mistake_e:** Flattens the opposition between the two bolds.
+**common_trap:** Picking (A) because Bold 2 *feels* like evidence — but Bold 2 is the *mechanism*, not the prediction it's said to support.
+**takeaway:** Boldface "common view + mechanism that explains the counter-case" is one of the textbook pairings. Same structure as the carbon-tax / Marisol / Ridgemont questions.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1480,7 +2064,15 @@ The analyst's reasoning is most vulnerable to which of the following criticisms?
 - E) The reasoning does not consider that some companies operate internationally.
 
 **answer:** A
-**explanation:** This is a hype-vs-value flaw. A 22% announcement-driven share-price premium can reflect investor excitement (a narrative premium) without any underlying operational improvement. Calling that "substantial shareholder value" conflates market reaction with economic fundamentals — the classic "stock price ≠ intrinsic value" problem, especially around buzzwords. Answer A names that precisely. Answer B is a motivational guess. Answer C asks for specificity but doesn't hit the causal flaw. Answer D assumes an egalitarian premise not needed. Answer E is geographic noise.
+**fastest_path:** Flaw: *narrative-premium vs economic-value* conflation. A 22% post-announcement share-price bump can reflect investor excitement about a buzzword rather than operational improvement.
+**explanation:** Argument leaps from share-price reaction to "substantial shareholder value" to "CEOs should prioritize AI." That conflates market sentiment with economic fundamentals. AI announcements ride a narrative premium that may evaporate when results don't match — especially around hyped buzzwords.
+**mistake_b:** Motivational guess.
+**mistake_c:** Specificity demand, not the causal flaw.
+**mistake_d:** Egalitarian premise not needed.
+**mistake_e:** Geographic noise.
+**common_trap:** Picking (C) because asking which AI tech *is* important — but the question is whether the share-price evidence supports the recommendation. Specificity isn't the flaw.
+**takeaway:** Flaw on a "stock went up after announcement → real value" claim → suspect *narrative premium*. Sentiment ≠ fundamentals, especially for hyped technologies.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
@@ -1500,6 +2092,1394 @@ Which of the following most logically completes the critics' argument?
 - E) financial markets have generally performed well over the past decade.
 
 **answer:** C
-**explanation:** The critics need to show the rule could make things WORSE — not merely that it's imperfect. Answer C supplies the "backfire" mechanism: high compliance costs push advisers out of the low-balance segment entirely, so the most vulnerable retirees lose access to any advice, not just conflicted advice. That is the counterintuitive result that justifies "backfire." Answer A is mild pushback on necessity. Answer B is about a different subgroup. Answer D attacks the estimate's source, which is "attack the premise," not the logic. Answer E is macroeconomic noise.
+**fastest_path:** Critics need a *backfire* mechanism — not "imperfect," but "makes it worse." (C) supplies it: high compliance costs push advisers out of the small-account segment → vulnerable retirees lose *all* advice, not just biased advice.
+**explanation:** "Backfire" requires showing the rule produces *worse* outcomes than the status quo. (C) is the supply-side withdrawal mechanism: small-account retirees go from imperfect advice to *no* advice. Net welfare loss for the most vulnerable group.
+**mistake_a:** Mild pushback on necessity, not backfire.
+**mistake_b:** Different subgroup (self-managers).
+**mistake_d:** Attacks premise's source, not logic.
+**mistake_e:** Macroeconomic noise.
+**common_trap:** Picking (A) because adviser fiduciary duty *seems* common-sense — but argument needs *worse outcome*, not "redundant rule."
+**takeaway:** Complete-the-Argument when the prompt promises "backfire" → look for the *supply-side withdrawal* mechanism. Regulation that pushes providers out of a segment is the textbook backfire.
+**related_reading:** reading-verbal-04-cr-question-types
 
 ---
+
+
+---
+
+## Q76
+**difficulty:** Medium
+**type:** Strengthen
+**topic:** Critical Reasoning
+
+A midsize logistics firm installed solar panels on the roofs of its 12 regional warehouses two years ago. Since installation, each warehouse's monthly electricity cost has dropped by 38% on average, and the firm projects that by the end of next year the cumulative savings will fully offset the panels' installation cost. The firm therefore concludes that installing solar panels is a sound financial decision for any logistics company that operates regional warehouses.
+
+Which of the following, if true, most strengthens the argument above?
+
+- A) The firm's warehouses are located in sunlight-rich states where solar output exceeds the national average.
+- B) A recent industry report shows that regional logistics warehouses across North America have comparable roof area, similar typical annual sunlight hours, and similar electricity rates.
+- C) The firm received a one-time tax credit that covered half its installation cost.
+- D) Solar panel prices have declined by roughly 40% over the past five years.
+- E) The firm has also reduced energy usage by upgrading to LED lighting across its warehouses.
+
+**answer:** B
+**fastest_path:** Argument generalizes one firm's 12 sites to "any logistics company." Strengthen by confirming the *driver inputs* (roof area, sunlight, electricity rates) generalize. (B) does it.
+**explanation:** Generalization works only if the inputs that drove the 38% savings — roof area, sunlight, electricity rates — apply across the industry. (B) confirms all three are comparable across regional logistics warehouses. The conditions transfer.
+**mistake_a:** *Weakens* — sunlight-rich states make this firm's conditions atypical.
+**mistake_c:** *Weakens* — a one-time tax credit specific to this firm doesn't generalize.
+**mistake_d:** Peripheral cost context.
+**mistake_e:** *Confound* — LED savings blur how much of the 38% came from panels.
+**common_trap:** Picking (D) because falling solar prices *seem* to support broader adoption — but the question is about *this firm's* claim generalizing, not market trends.
+**takeaway:** Strengthen on a "what worked at site X works elsewhere" claim → confirm the *driver inputs* generalize. Same lever as cross-state policy projections.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q77
+**difficulty:** Medium
+**type:** Weaken
+**topic:** Critical Reasoning
+
+A regional bank observed that customers who enrolled in its new mobile banking app made 40% more deposits per month than customers who did not enroll. Management concludes that expanding the app's features and encouraging enrollment will increase the bank's overall deposit volume.
+
+Which of the following, if true, most weakens management's conclusion?
+
+- A) The mobile banking app is available only to customers with account balances above $5,000.
+- B) Customers who enrolled in the app had been depositing more, on average, than non-enrolled customers in the 12 months before the app launched.
+- C) Several of the bank's competitors have introduced similar apps with comparable features.
+- D) Customer surveys show that in-person branch service is still valued alongside digital tools.
+- E) Developing new app features would cost the bank approximately $2 million.
+
+**answer:** B
+**fastest_path:** Management assumes enrollment *caused* deposits to rise. Weaken via *selection bias*: the two groups already differed before enrollment. (B) does it.
+**explanation:** 40% gap could be app effect or self-selection. (B) shows enrollees were already higher depositors. Expanding features won't lift non-enrollees' behavior; the gap was always going to be there.
+**mistake_a:** Limits the sample but doesn't address causation.
+**mistake_c:** Competitor context, peripheral.
+**mistake_d:** Customer survey color, doesn't address causation.
+**mistake_e:** Cost concern, not causal.
+**common_trap:** Picking (A) because eligibility-rule restriction *sounds* like selection — but it's a sample-definition issue, not a causation challenge.
+**takeaway:** Weaken on a "users of X spend more → X causes spending" claim → look for *prior-to-enrollment* differences. Pre-existing differences kill the causal inference.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q78
+**difficulty:** Hard
+**type:** Assumption
+**topic:** Critical Reasoning
+
+The city council of Larksville has proposed building a new bike path along the riverfront to reduce automobile traffic during rush hour. Council members argue that once the bike path opens, a significant number of commuters who currently drive will switch to cycling.
+
+The argument above depends on which of the following assumptions?
+
+- A) Larksville has more cyclists per capita than most comparable cities.
+- B) The bike path will be completed within two years.
+- C) A significant number of commuters are physically able to cycle and live within cycling distance of their workplaces.
+- D) Riverfront bike paths are safer than on-street bike paths.
+- E) Public transit ridership in Larksville has declined in recent years.
+
+**answer:** C
+**fastest_path:** Argument: bike path → driver-to-cyclist switch. Required: enough drivers are *physically able* AND *close enough* to switch. Negate (C): no one can → no switch.
+**explanation:** Without a significant pool of physically-able, geographically-close drivers, the predicted switch cannot materialize. (C) is the bridge. Negate it and the path opens to no switchers.
+**mistake_a:** Per-capita cyclist counts not required.
+**mistake_b:** Timing detail, not the core claim.
+**mistake_d:** Path-type safety comparison — irrelevant.
+**mistake_e:** Transit ridership unrelated.
+**common_trap:** Picking (D) because safety *seems* foundational — but the argument is about a switch *given* the path exists, not about the path's safety relative to alternatives.
+**takeaway:** "Build X → people will use X" plans always assume a *qualified pool* exists. Geography + ability are the unstated bridge.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q79
+**difficulty:** Medium
+**type:** Inference
+**topic:** Critical Reasoning
+
+A six-month study of adult language learners found that those who studied 45 minutes daily achieved higher proficiency scores than those who studied three hours every Saturday for the same total instructional time. The researchers concluded that daily spaced practice produces more durable language learning than equivalent weekly massed practice. Independent research has also shown that short daily reviews of previously learned material significantly slow the rate of forgetting.
+
+Which of the following is most strongly supported by the statements above?
+
+- A) Adults who study less than 45 minutes per day cannot achieve high language proficiency.
+- B) Every weekend-only language-study program is ineffective.
+- C) Daily brief language study is likely to produce greater retention than equivalent weekly blocks of study, at least among adults.
+- D) The study's researchers did not adequately control for individual differences in learning ability.
+- E) No language-learning strategy is as effective as spaced daily practice.
+
+**answer:** C
+**fastest_path:** Two findings: (i) daily 45min beats weekly 3hr in adults; (ii) brief daily reviews slow forgetting. Combined inference: daily brief study likely produces greater retention *at least among adults*. Hedged, scoped to the data.
+**explanation:** (C) combines the two findings with the right hedges. The stimulus supports a directional claim about retention with adult-scoped, "likely" framing. Anything stronger overshoots.
+**mistake_a:** *Extreme* — under-45-min study isn't ruled out.
+**mistake_b:** *Extreme* — "every weekend program ineffective" overshoots.
+**mistake_d:** Methodological claim not in the stimulus.
+**mistake_e:** *Extreme* — "no strategy as effective" wasn't tested.
+**common_trap:** Picking (E) because spaced practice *did* dominate the comparison shown — but the stimulus tested only one alternative (massed weekly), not all strategies.
+**takeaway:** Inference scope must mirror the stimulus. Hedged, scoped answers beat universals every time.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q80
+**difficulty:** Hard
+**type:** Paradox
+**topic:** Critical Reasoning
+
+A coffee roastery installed a new automated packaging line last quarter to reduce labor costs and increase output. In the following quarter, output rose 28% and labor hours fell 35%, as planned. Nevertheless, the roastery's total quarterly profit was lower than in the previous quarter.
+
+Which of the following, if true, most helps to explain the drop in profit?
+
+- A) The roastery's coffee bean supplier raised prices by 25% during the quarter, affecting the cost of every bag produced.
+- B) A competing roastery installed an even faster packaging line during the same quarter.
+- C) Regional coffee consumption rose 3% over the past year.
+- D) The automated packaging line requires regular maintenance performed by the manufacturer.
+- E) Customers have praised the consistency of the roastery's packaging since the automation began.
+
+**answer:** A
+**fastest_path:** Profit = revenue − cost. Labor ↓ and output ↑ should help. The drop must come from a *different cost spike* (or revenue drop). (A) supplies it: bean prices +25% on every bag.
+**explanation:** Bean prices spiked 25% on every unit produced. Labor savings can't offset that magnitude of input-cost increase across higher output. Single mechanism that quantitatively explains the profit drop.
+**mistake_b:** Competitor's line doesn't touch this firm's P&L.
+**mistake_c:** Macro consumption rise would *help*.
+**mistake_d:** Maintenance is qualitatively plausible but unquantified.
+**mistake_e:** Customer praise doesn't move profit directly.
+**common_trap:** Picking (D) because maintenance *sounds* like a hidden cost — but it's unquantified. Paradox answers must *quantitatively* explain the gap.
+**takeaway:** Paradoxes about profit drops despite operational improvements → look for *input-cost spikes* on the units produced. Cost shocks beat soft factors.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q81
+**difficulty:** Hard
+**type:** Evaluate
+**topic:** Critical Reasoning
+
+A pharmaceutical company is deciding whether to advance HypZ, a new hypertension drug, into Phase 3 trials. In Phase 2, HypZ reduced average systolic blood pressure by 12 mmHg over eight weeks — a larger reduction than the 7-mmHg reduction achieved by the current market leader. The company's chief scientist argues that, based on these results, HypZ is likely to outperform the market leader and should proceed.
+
+The answer to which of the following questions would be most useful in evaluating the scientist's argument?
+
+- A) Does HypZ cost less to manufacture than the current market leader?
+- B) Were HypZ's Phase 2 patients comparable in baseline blood pressure, age, and other health factors to the patients in the market leader's original Phase 2 trial?
+- C) Can regulatory approval for Phase 3 trials be expedited?
+- D) Was HypZ tested against a placebo in Phase 2?
+- E) Did patients on HypZ report any side effects?
+
+**answer:** B
+**fastest_path:** Cross-trial comparison (HypZ Phase 2 vs market leader's earlier Phase 2). Evaluate by *comparing patient populations*. (B) does it.
+**explanation:** 12 vs 7 mmHg gap is only credible if patient populations were similar at baseline. If HypZ enrolled milder cases, the gap reflects sample bias, not efficacy. (B) tests this directly. Either answer flips the conclusion.
+**mistake_a:** Cost — separate from efficacy.
+**mistake_c:** Regulatory logistics.
+**mistake_d:** Placebo comparison — different question.
+**mistake_e:** Safety — separate concern.
+**common_trap:** Picking (D) because "tested against placebo" is standard trial design — but the argument compares HypZ to the market leader, not to placebo.
+**takeaway:** Evaluate cross-trial comparisons = always probe *population comparability*. Different patient pools → different effect sizes; the comparison is meaningless without matching.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q82
+**difficulty:** Hard
+**type:** Strengthen
+**topic:** Critical Reasoning
+
+An online retailer found that product pages featuring short video demonstrations had 18% higher conversion rates than pages with still images only. The marketing team concludes that adding short video demos to every product page will increase overall sales.
+
+Which of the following, if true, most strengthens the marketing team's conclusion?
+
+- A) Producing videos is more expensive than taking still images.
+- B) Customers spend significantly more time on pages with videos than on pages without.
+- C) The products that currently feature video demos were hand-picked by the marketing team as the most easily demonstrated products, typically with broader market appeal.
+- D) A recent pilot that added videos to a randomly selected cross-section of other product categories produced a similar 16% conversion increase.
+- E) Several of the retailer's competitors have begun adding video demos to their product pages.
+
+**answer:** D
+**fastest_path:** Risk: video pages were hand-picked for products that convert anyway. Strengthen by *random-sample replication*. (D) does it: random cross-section showed similar 16% conversion lift.
+**explanation:** Selection-bias risk on the original 18% gap (C articulates the risk and is a *weakener*). (D) neutralizes it: random pilot replicated the effect at 16%. The lift is real, not selection.
+**mistake_a:** Cost ≠ effect.
+**mistake_b:** Time on page is intermediate metric, not conversion.
+**mistake_c:** *Articulates* the selection-bias objection — weakens.
+**mistake_e:** Competitor action doesn't strengthen this retailer's claim.
+**common_trap:** Picking (B) because longer time-on-page sounds like deeper engagement — but the conclusion is about conversion, not engagement. Match to the exact metric.
+**takeaway:** Strengthen on a "feature-page conversion" study = random replication breaks selection-bias. Same lever as randomized treatment trials.
+**related_reading:** reading-verbal-04-cr-question-types
+
+
+---
+
+## Q83
+**difficulty:** Medium
+**type:** Strengthen
+**topic:** Critical Reasoning
+
+A medical research institute claims that regular consumption of a specific plant extract reduces the incidence of seasonal influenza. In a recent study, 500 volunteers who consumed the extract daily for six months had a 35% lower rate of influenza during the flu season compared with 500 control volunteers who did not consume the extract. Critics have argued that lifestyle differences, not the extract itself, account for the lower flu rate.
+
+Which of the following, if true, most strengthens the institute's claim?
+
+- A) The volunteers were randomly assigned to the extract and control groups by a computer-generated list.
+- B) The plant extract is widely available in health food stores.
+- C) The researchers received a grant from a government health agency.
+- D) Other plant-based extracts have shown similar effects in past studies.
+- E) Influenza rates have been declining globally over the past decade.
+
+**answer:** A
+**fastest_path:** Critics' objection: lifestyle differences explain the 35% gap. Strengthen by *random assignment* — makes lifestyle comparable in expectation. (A) does it.
+**explanation:** Random assignment defeats the lifestyle-confounder objection by ensuring the two groups are statistically comparable on lifestyle factors. The 35% gap is more credibly attributable to the extract.
+**mistake_b:** Availability irrelevant to causation.
+**mistake_c:** Funding provenance, not evidence.
+**mistake_d:** Analogy from other extracts, weaker than direct control.
+**mistake_e:** Secular trend that affects both groups equally; doesn't bear on the gap.
+**common_trap:** Picking (D) because it suggests biological plausibility from related compounds — but it's analogical, not the direct lifestyle-confounder defeater the question demands.
+**takeaway:** When critics name a *confounder*, the strongest strengthen *neutralizes that confounder* — random assignment is the textbook tool.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q84
+**difficulty:** Medium
+**type:** Weaken
+**topic:** Critical Reasoning
+
+A city council has proposed banning a popular brand of electric scooter from city streets after data showed that scooter-related injuries in the city doubled over the past year. The council argues that the scooters themselves are causing the rise in injuries.
+
+Which of the following, if true, most weakens the council's argument?
+
+- A) Scooter rentals in the city tripled over the past year.
+- B) Other cities have not experienced similar increases in scooter injuries.
+- C) The brand of scooter in question has received safety certifications from multiple jurisdictions.
+- D) Helmet use among scooter riders in the city has been declining.
+- E) Emergency room admissions from bicycle injuries also rose slightly.
+
+**answer:** A
+**fastest_path:** Rentals 3× while injuries 2× → per-use injury rate *fell*. Council's "scooters are causing more injuries" interpretation is wrong — more riding, not more dangerous scooters, drives the absolute count.
+**explanation:** Rate-vs-count trap. Council saw injury count double and inferred causation. (A) reveals exposure tripled, so the per-ride rate actually *declined*. The scooter isn't more dangerous; it's just being used more.
+**mistake_b:** Other cities tangential to causation here.
+**mistake_c:** Certifications don't address the rate.
+**mistake_d:** Helmet-use weakens but is qualitative; (A) is *quantitatively* decisive.
+**mistake_e:** Parallel bicycle trend, doesn't address scooter claim.
+**common_trap:** Picking (D) because helmets *seem* causal — but it's qualitative. (A) directly inverts the rate calculation.
+**takeaway:** Weaken on a "count went up → cause is dangerous" claim → check exposure. Rate = count/exposure; if exposure outgrew the count, the rate fell.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q85
+**difficulty:** Hard
+**type:** Assumption
+**topic:** Critical Reasoning
+
+A consumer group plans to recommend Smart Cleaner, a new laundry detergent, on the ground that lab tests show a standard dose removes 25% more stains than the leading competitor's standard dose. If consumers switch to Smart Cleaner in response to the recommendation, the consumer group claims, household laundry expenses will decrease.
+
+The argument above depends on which of the following assumptions?
+
+- A) Smart Cleaner is priced lower per bottle than the leading competitor.
+- B) Stain removal is the most important factor for most laundry customers.
+- C) Smart Cleaner is not priced so much higher per load than the leading competitor that the effectiveness advantage fails to reduce overall laundry expenses.
+- D) Customers currently using the leading competitor are dissatisfied with their results.
+- E) Most households use laundry detergent in amounts similar to those tested in the lab.
+
+**answer:** C
+**fastest_path:** Conclusion is about *expenses*, premise is about *effectiveness*. Bridge: the effectiveness advantage isn't *swallowed* by a higher per-load cost. (C) is the bridge.
+**explanation:** 25% better stain removal is good only if per-load cost stays competitive. Negate (C): Smart Cleaner is *much* pricier per load → effectiveness advantage doesn't translate to expense savings → conclusion fails.
+**mistake_a:** *Stronger* than needed ("lower" rather than "not much higher").
+**mistake_b:** Purchase motives, not expenses.
+**mistake_d:** Not required for the cost claim.
+**mistake_e:** Use-amount detail, not the expense bridge.
+**common_trap:** Picking (A) because cheaper-per-bottle *seems* to clinch it — but the argument needs only *not-too-expensive*, not *cheaper*. Necessary assumption is the minimal claim.
+**takeaway:** When conclusion shifts dimension (effectiveness → expense), the assumption is the *bridge between dimensions*. Match the assumption to the dimension shift.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q86
+**difficulty:** Medium
+**type:** Inference
+**topic:** Critical Reasoning
+
+Between 2010 and 2020, the average price of a single-family home in the country rose by 78 percent, while average household income rose by only 22 percent. During the same decade, the homeownership rate among households under age 35 fell from 42 percent to 36 percent.
+
+Which of the following is most strongly supported by the information above?
+
+- A) Households under age 35 became less interested in homeownership during the decade.
+- B) Most households under age 35 currently rent their homes.
+- C) Rising home prices relative to household incomes likely contributed to the decline in homeownership among younger households.
+- D) Government policy discouraged homeownership among younger households.
+- E) Home prices will continue to rise faster than household incomes.
+
+**answer:** C
+**fastest_path:** Home prices +78% vs incomes +22% (3.5×), young-household ownership 42% → 36%. Hedged inference: rising prices relative to incomes *likely contributed* to the ownership decline.
+**explanation:** Two co-varying facts: affordability worsened sharply, ownership fell. (C) ties them with the right hedge ("likely contributed"). Anything stronger imports unsupported claims.
+**mistake_a:** *Outside knowledge* — preference change isn't in the data.
+**mistake_b:** *Extreme* — 36% ownership doesn't force "most rent" without a calculation.
+**mistake_d:** *Outside knowledge* — government policy isn't mentioned.
+**mistake_e:** Forecast, not inference.
+**common_trap:** Picking (B) because 36% < 50% so "most rent" feels intuitive — but the stimulus didn't classify the other 64%. They could be living with parents, in shared housing, etc.
+**takeaway:** Inference must stay inside the stimulus's scope. Hedge words ("likely contributed") match correlational evidence; absolute claims overshoot.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q87
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Boldface — Argument Structure
+
+**Consumer rights advocates argue that the proposed regulation, which would require food manufacturers to disclose artificial sweeteners on product labels, will help consumers avoid ingredients they wish to avoid.** Industry representatives counter that the disclosure requirement will only confuse consumers, since most artificial sweeteners have been extensively tested and certified safe by regulatory agencies. **Nevertheless, several countries with similar disclosure requirements have seen a measurable decline in consumer use of artificial sweeteners, suggesting that labels do influence purchasing decisions even when safety is not in question.**
+
+In the argument above, the two portions in boldface play which of the following roles?
+
+- A) The first is the position being supported; the second is evidence used to support that position.
+- B) The first is the conclusion of the argument; the second is evidence used to weaken that conclusion.
+- C) The first is a claim that industry representatives dispute; the second is evidence supporting a rebuttal to the industry representatives' dispute.
+- D) The first is a claim supported by the argument; the second is a claim the argument opposes.
+- E) The first is a hypothesis; the second is evidence against that hypothesis.
+
+**answer:** C
+**fastest_path:** Three beats: (1) advocates' claim, (2) industry disputes, (3) author rebuts the dispute with cross-country evidence. Bold 1 = disputed claim, Bold 2 = evidence rebutting the *dispute*.
+**explanation:** Argument structure: claim → counter-claim (industry) → rebuttal evidence (other countries). (C) names this precisely: Bold 1 is the *target of dispute*; Bold 2 supports the rebuttal *against* the dispute (i.e., back to the original claim).
+**mistake_a:** Mislabels Bold 2's role — it's not direct support, it's rebuttal of the counter-claim.
+**mistake_b:** Inverts relationship.
+**mistake_d:** Mislabels structure.
+**mistake_e:** Mislabels the role of evidence.
+**common_trap:** Picking (A) because Bold 2 *does* end up supporting the original claim — but the *function* is to rebut the counter-claim, which is more specific.
+**takeaway:** Boldface with three parties (claim → counter-claim → rebuttal) → track which bold targets which party. Evidence-against-counter-claim is a distinct role from raw support.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q88
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Flaw / Logical Error
+
+Since the introduction of a new workplace wellness program at a large firm, employees' self-reported stress scores have fallen an average of 15 percent over six months. The firm's HR director concludes that the program effectively reduces workplace stress.
+
+Which of the following best identifies a flaw in the HR director's reasoning?
+
+- A) The director assumes that self-reported stress scores are reliable measures of actual stress.
+- B) The director does not account for the possibility of seasonal fluctuation in workplace stress.
+- C) The director does not consider whether the employees participating in the program constitute a representative sample of the firm's workforce.
+- D) The director does not account for the possibility that other factors — such as changes in broader economic conditions or firm-wide policy changes — contributed to the decline in self-reported stress.
+- E) The director does not specify the statistical significance of the 15 percent decline.
+
+**answer:** D
+**fastest_path:** Flaw: confounders not ruled out. Director jumps from correlation (program → scores fell) to causation. (D) names the missing alternative-cause check.
+**explanation:** Stress scores fell after the program — but other things happened in those six months too: economic conditions, firm-wide policy changes, season, etc. The director rules out none of them. (D) is the canonical confounder-gap flaw.
+**mistake_a:** Real concern about measurement reliability, but not the *central* causal inference gap.
+**mistake_b:** Narrows the confounder space (only seasonal); (D) is broader and stronger.
+**mistake_c:** Generalization-to-workforce, but conclusion is about the program's effect, not workforce coverage.
+**mistake_e:** Statistical testing detail, doesn't address the causal leap.
+**common_trap:** Picking (B) because seasonal variation *is* a real confounder — but it's narrower than the broader confounder gap (D) names.
+**takeaway:** Flaw on a "policy → metric fell, therefore policy worked" claim → suspect *alternative causes / confounders not ruled out*. The dominant correlation-causation flaw.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q89
+**difficulty:** Hard
+**type:** Evaluate
+**topic:** Critical Reasoning
+
+An energy company that produces natural gas is considering acquiring a specific competing producer. The energy company's CFO argues that the acquisition will increase the firm's revenue and market share, both because the competing company has loyal customers and because its production facilities are more efficient than the energy company's own.
+
+The answer to which of the following questions would be most useful in evaluating the CFO's argument?
+
+- A) What is the current market price of natural gas compared with prices five years ago?
+- B) Whether the competing company's customers are likely to remain with the combined firm after the acquisition rather than switch to other competitors.
+- C) Whether the energy company has sufficient cash reserves to finance the acquisition without borrowing.
+- D) Whether the competing company's production facilities use the same type of drilling technology as the energy company's.
+- E) Whether there are regulatory barriers to mergers in the natural gas sector.
+
+**answer:** B
+**fastest_path:** CFO's argument depends on the target's *loyal customers* sticking with the combined firm. (B) tests whether they will. Either answer flips the conclusion.
+**explanation:** Acquisition value rests on customer retention post-deal. (B) probes that directly. Customers defect → revenue premise collapses. Customers stay → CFO's argument holds. Hallmark Evaluate question.
+**mistake_a:** Market context, not acquisition value.
+**mistake_c:** Financing affordability, separate from whether the deal works.
+**mistake_d:** Operational compatibility, tangential to revenue.
+**mistake_e:** Deal-closing concern, not revenue evaluation.
+**common_trap:** Picking (C) because cash reserves seem foundational — but the question is *whether the deal will deliver claimed benefits*, not *whether the firm can afford it*.
+**takeaway:** Evaluate on acquisition arguments = always probe *customer retention* (the most common revenue-side failure mode).
+**related_reading:** reading-verbal-04-cr-question-types
+
+
+---
+
+## Q90
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Boldface — Evidence and Rebuttal
+
+Some biologists argue that reducing protected habitat for a certain endangered bird species would harm the species, and they recommend expanding the current protected habitat. **However, recent population studies have shown that the species' numbers have grown steadily over the past decade despite no expansion of its habitat during that period, which suggests that habitat expansion may not be necessary for species recovery.** Nevertheless, other biologists respond: **the species' growth during this period was driven by unusually favorable weather conditions that are unlikely to persist, and without habitat expansion the species will begin to decline once weather conditions return to normal.**
+
+In the argument above, the two portions in boldface play which of the following roles?
+
+- A) The first is evidence used to weaken a claim; the second provides a rebuttal to that weakening evidence.
+- B) The first is a position held by biologists; the second is evidence supporting that position.
+- C) The first is evidence presented by the author; the second is evidence against the author's view.
+- D) The first is a hypothesis; the second is evidence that confirms the hypothesis.
+- E) The first is a recommendation; the second is the reasoning behind that recommendation.
+
+**answer:** A
+**fastest_path:** Three beats: (1) biologists recommend habitat expansion; (2) Bold 1 = evidence *weakening* that recommendation; (3) Bold 2 = rebuttal of the weakening evidence. So Bold 1 = weakener, Bold 2 = anti-weakener rebuttal.
+**explanation:** Argument structure: recommendation → weakening evidence → rebuttal. (A) names the weakener-then-rebuttal pairing. The weather-drove-it explanation undoes the "no expansion needed" inference.
+**mistake_b:** Mischaracterizes Bold 1 — it's not biologists' position, it's evidence against their recommendation.
+**mistake_c:** Wrongly attributes evidence to "the author" — both bolds are reported.
+**mistake_d:** Mislabels the roles.
+**mistake_e:** Mislabels the roles.
+**common_trap:** Picking (C) because the second bold *sounds* like a counter to "the author" — but neither bold is the author's voice; both are reported claims/evidence.
+**takeaway:** Boldface "weakening evidence + rebuttal" structure — track which bold attacks the original claim and which restores it.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q91
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Flaw — Hasty Generalization
+
+A researcher surveyed 100 residents of a small town about a proposed recycling center. Of those surveyed, 72 favored the proposal. Based on this result, the researcher concluded that a majority of residents in all towns throughout the surrounding region would also favor similar recycling centers.
+
+Which of the following best identifies a flaw in the researcher's reasoning?
+
+- A) The researcher assumes that the residents of the small town are representative of residents across the wider region.
+- B) The researcher does not specify whether the recycling center would be near residents' homes.
+- C) The researcher does not account for the cost of building a recycling center.
+- D) The researcher assumes that residents' opinions will remain stable over time.
+- E) The researcher did not ask residents about their views on other environmental policies.
+
+**answer:** A
+**fastest_path:** Flaw: *hasty generalization* — extending from 100 residents of *one* small town to *all* towns in the region.
+**explanation:** Conclusion leaps from a tiny single-town sample to a region-wide claim. (A) names the inferential gap directly: representativeness wasn't established.
+**mistake_b:** Tangential design detail.
+**mistake_c:** Cost — different argument.
+**mistake_d:** Time stability — not the conclusion's scope.
+**mistake_e:** Unrelated environmental policies.
+**common_trap:** Picking (B) because *proximity* feels relevant — but the conclusion is about regional generalization, not local design.
+**takeaway:** Flaw on a "small sample → broad conclusion" argument → the answer that names the *inferential leap itself* (representativeness).
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q92
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Flaw — Response Bias
+
+A consumer advocacy group mailed 10,000 surveys asking respondents to rate their satisfaction with various household appliance brands. Based on the 1,200 surveys that were returned, the group reported that Brand X received the highest satisfaction rating and concluded that Brand X is the most satisfying household appliance brand available on the market.
+
+Which of the following best identifies a flaw in the group's reasoning?
+
+- A) The group assumes that all appliances are equally likely to break down during the survey period.
+- B) The group does not take into account the price of the appliances.
+- C) The group may be drawing its conclusion based on a self-selected subset of consumers who do not represent all consumers of household appliances.
+- D) The group did not include certain popular brands in its survey.
+- E) The group did not weight ratings by how long each respondent had owned the appliance.
+
+**answer:** C
+**fastest_path:** Flaw: *response bias* — 12% return rate means responses are *self-selected*, not random. Strong-opinion holders over-represent.
+**explanation:** Only 1,200 of 10,000 surveys returned — that's a self-selected subset, not a random sample. People with strong opinions (positive or negative) skew the response pool. (C) names this response-bias / non-response-bias flaw directly.
+**mistake_a:** Breakdown rates — different concern.
+**mistake_b:** Price isn't the issue.
+**mistake_d:** Brand inclusion is methodological but not the core sampling problem.
+**mistake_e:** Ownership-duration weighting — secondary.
+**common_trap:** Picking (D) because survey design *is* relevant — but the dominant flaw is the 12% response rate, not the brand list.
+**takeaway:** Low-response-rate surveys = response bias. The voluntary subset rarely matches the target population.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q93
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Boldface — Plan and Counterproposal
+
+**A large automobile manufacturer announced plans to close its oldest assembly plant to cut production costs.** The plant has the lowest labor productivity among the company's facilities, largely because of its aging equipment. However, union representatives argue that **replacing the aging equipment with modern machines would raise productivity sufficiently to make the plant competitive with the company's newer facilities, and that closing the plant is therefore premature.**
+
+In the argument above, the two portions in boldface play which of the following roles?
+
+- A) The first is a plan; the second is a counterproposal.
+- B) The first is a conclusion that the argument opposes; the second is the argument's own conclusion.
+- C) The first is a fact; the second is a claim that the argument uses the fact to support.
+- D) The first is an observation; the second is a consequence that follows from that observation.
+- E) The first is evidence; the second is a conclusion drawn from that evidence.
+
+**answer:** A
+**fastest_path:** Bold 1 = manufacturer's *plan* (close plant). Bold 2 = union's *counterproposal* (replace equipment instead). Plan + counterproposal.
+**explanation:** Argument reports two positions: the manufacturer's plan and the union's alternative. (A) names this plan-vs-counterproposal pairing directly. The passage doesn't take a side; both bolds are reported positions.
+**mistake_b:** Close, but the passage doesn't have its own conclusion — it reports two positions.
+**mistake_c:** "Fact + supported claim" doesn't fit a plan/counterproposal shape.
+**mistake_d:** "Observation + consequence" mislabels.
+**mistake_e:** "Evidence + conclusion" mislabels.
+**common_trap:** Picking (B) because Bold 2 *seems* like the author's view — but the passage is neutral; both are reported.
+**takeaway:** Boldface "plan + counterproposal" is a clean pairing — track that both are *positions held by parties*, not the author's voice.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q94
+**difficulty:** Medium
+**type:** Strengthen
+**topic:** Critical Reasoning
+
+A city council is proposing to install streetlights along Pine Road, which currently has no street lighting, in order to reduce the nighttime accident rate on that road. Opponents of the proposal argue that drivers on nearby roads with streetlights have not become more careful since those streetlights were installed.
+
+Which of the following, if true, most strengthens the council's proposal?
+
+- A) Nighttime accidents on Pine Road are frequently caused by drivers losing their way in the dark rather than by driver carelessness.
+- B) Streetlights on nearby roads were installed more than ten years ago.
+- C) Drivers who are most likely to cause accidents are not deterred by improved lighting.
+- D) Pine Road currently has less traffic than any of the nearby roads.
+- E) Studies of other cities show that streetlights have varied effects on nighttime accident rates.
+
+**answer:** A
+**fastest_path:** Opponents attack the "lighting changes driver carefulness" channel. Strengthen by *different causal channel*: lighting helps via *visibility*, not carefulness. (A).
+**explanation:** Council's claim survives the carefulness objection if a different mechanism is at play. (A) supplies it: nighttime accidents on Pine Road come from drivers losing their way in the dark — a visibility/wayfinding problem. Lighting helps on that channel even if driver behavior is unchanged.
+**mistake_b:** Timing of other installs — tangential.
+**mistake_c:** *Weakens* — drivers most likely to crash aren't deterred by light.
+**mistake_d:** Traffic volume, not lighting effect.
+**mistake_e:** Neutral at best.
+**common_trap:** Picking (C) because it sounds related to driver behavior — but it actively *weakens* the council's case.
+**takeaway:** When opponents attack one causal channel, strengthen by *opening a different channel*. Lighting affects visibility AND behavior — both can carry the conclusion.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q95
+**difficulty:** Hard
+**type:** Inference
+**topic:** Critical Reasoning
+
+Researchers studying remote work found that employees who work from home report higher job satisfaction than office workers. They also found that remote workers are, on average, 30 percent less likely to receive promotions than comparable office workers. However, among remote workers, those who maintain regular in-person contact with their managers are promoted at nearly the same rate as office workers.
+
+Which of the following is most strongly supported by the statements above?
+
+- A) All remote workers should seek more in-person time with their managers.
+- B) Regular in-person contact with managers may be an important factor in the promotion rates of remote workers.
+- C) Employees who are promoted report higher job satisfaction than those who are not.
+- D) Remote work is generally bad for career advancement.
+- E) Companies should end their remote work policies.
+
+**answer:** B
+**fastest_path:** Two findings: (i) remote workers less likely promoted, (ii) among remotes, in-person manager contact restores promotion rates. Hedged inference: in-person contact *may be an important factor* in remote promotions.
+**explanation:** Stimulus shows the gap closes when remote workers maintain in-person manager contact. (B) names this correlational link with the right hedge. Anything stronger leaks into prescription or overgeneralization.
+**mistake_a:** *Prescriptive leap* — "should seek" goes past inference.
+**mistake_c:** Promotion-to-satisfaction link not supported.
+**mistake_d:** *Extreme* — "generally bad" overstates.
+**mistake_e:** Policy recommendation, not inference.
+**common_trap:** Picking (A) because in-person contact *seems* to help — but inference must stay *descriptive*, not prescriptive.
+**takeaway:** Inference rejects "should" / "must" / policy verbs. Stay with the data's correlational scope.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q96
+**difficulty:** Hard
+**type:** Evaluate
+**topic:** Critical Reasoning
+
+A city is considering a new public transit strategy: replacing its least-used bus routes with on-demand shuttle services, which dispatch smaller vehicles only when riders request them. City officials argue that the on-demand services will cost less to operate and will attract more riders than the current bus routes because riders will wait less.
+
+The answer to which of the following questions would be most useful in evaluating the officials' argument?
+
+- A) How many bus routes are currently considered among the least-used?
+- B) Whether the on-demand shuttles would serve the same geographic areas as the bus routes they replace.
+- C) Whether the shift to on-demand service would require hiring additional personnel to operate the dispatching infrastructure.
+- D) What is the current average wait time for riders on the least-used bus routes?
+- E) Whether the city has implemented similar on-demand services in the past.
+
+**answer:** D
+**fastest_path:** Officials claim wait times will *fall* with on-demand. Evaluate by *baseline wait times*. (D) tests it: if current wait is already short, on-demand brings no improvement.
+**explanation:** "Riders will wait less" only holds if there's wait time to cut. (D) directly tests that. Already-short waits → no improvement → conclusion fails. Long waits → on-demand can deliver gains.
+**mistake_a:** Counting question, not evaluation.
+**mistake_b:** Operationally important but doesn't test the claim.
+**mistake_c:** Cost-side, less sharply either-way than D.
+**mistake_e:** Historical context.
+**common_trap:** Picking (B) because coverage *seems* foundational — but the officials' specific claims are about cost and wait time. (D) targets the wait-time claim head-on.
+**takeaway:** Evaluate questions on "X reduces wait" claims = always probe the *baseline* of the metric being reduced. No baseline = no possible improvement.
+**related_reading:** reading-verbal-04-cr-question-types
+
+
+---
+
+## Q97
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Boldface — Plan + Supporting Evidence
+
+**A public library is considering whether to adopt a digital lending system that would significantly reduce costs associated with physical books.** Opponents of the adoption argue that digital lending would diminish library foot traffic, which has historically been a primary source of patron engagement and community building. **However, studies of libraries that have already adopted digital lending have generally found that, while physical-visit frequency declines modestly, overall patron engagement — measured as a combination of physical visits, digital borrows, and participation in library programs — has remained stable or slightly increased.**
+
+In the argument above, the two portions in boldface play which of the following roles?
+
+- A) The first is a plan under consideration; the second is evidence that supports the plan against a specific criticism.
+- B) The first is a recommendation; the second is a reason the recommendation should be reconsidered.
+- C) The first is a policy; the second is evidence against the policy.
+- D) The first is a question the argument resolves; the second is the resolution.
+- E) The first is the conclusion; the second is the evidence used to derive it.
+
+**answer:** A
+**fastest_path:** Bold 1 = plan (adopt digital lending). Opponents raise an objection (less foot traffic → less engagement). Bold 2 = evidence that *defeats the specific objection*.
+**explanation:** Argument structure: plan → objection → counter-evidence to the objection. (A) names this "plan + support against criticism" arc. Bold 2 specifically targets the engagement-decline worry the opponents raised.
+**mistake_b:** Inverts Bold 2's role.
+**mistake_c:** Mislabels Bold 1.
+**mistake_d:** Structurally off.
+**mistake_e:** Mislabels.
+**common_trap:** Picking (B) because Bold 2 *might* sound like a reconsideration — but it *defends* the plan against the criticism, not against the plan.
+**takeaway:** Boldface "plan + counter-evidence-to-objection" is a textbook pairing. Track which Bold targets which party's claim.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q98
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Boldface — Hypothesis + Defense
+
+Researchers at a marine biology institute report that the incidence of a specific jellyfish species in coastal waters has increased significantly over the past decade. **They hypothesize that the increase is primarily due to warming ocean temperatures, which have expanded the jellyfish's habitable range.** Critics of this hypothesis point out that pollution and overfishing of natural predators could also account for the observed increase. **In response, the researchers argue that warming temperatures appear to be the dominant cause, because their statistical models — which include pollution levels and predator-population decline as separate variables — still attribute roughly 70 percent of the observed increase to temperature change alone.**
+
+In the argument, the two portions in boldface play which of the following roles?
+
+- A) The first is the researchers' hypothesis; the second is a defense of that hypothesis against a competing explanation.
+- B) The first is a claim the critics endorse; the second is the critics' supporting evidence.
+- C) The first is a research finding; the second is a model prediction that supports the finding.
+- D) The first is a specific observation; the second is a general theory that follows from it.
+- E) The first is a conclusion; the second is a restatement of that conclusion.
+
+**answer:** A
+**fastest_path:** Bold 1 = researchers' hypothesis (warming → jellyfish range). Critics raise alternatives. Bold 2 = *defense* of the hypothesis via multivariable model attribution (70% to temperature).
+**explanation:** Argument structure: hypothesis → critics' alternatives → defense via stat-model evidence isolating temperature. (A) names this hypothesis + defense pairing.
+**mistake_b:** Wrongly attributes Bold 1 to critics.
+**mistake_c:** Confuses hypothesis with finding.
+**mistake_d:** Mislabels levels of generality.
+**mistake_e:** Bold 2 is new reasoning, not restatement.
+**common_trap:** Picking (E) because the closing bold *restates* the temperature primacy — but it does so via *new evidence* (model output), not as a recap.
+**takeaway:** "Hypothesis + defense via modeling" is a textbook scientific-CR pairing. The defense is the modeling step, not a recap.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q99
+**difficulty:** Hard
+**type:** Inference
+**topic:** Critical Reasoning — Quantitative Inference
+
+A regional hospital reports that patients admitted through its emergency department on Monday have an average length of stay of 4.8 days, compared with 3.6 days for patients admitted on Wednesday. Patients admitted on these two weekdays are otherwise demographically similar, and the emergency department is staffed similarly on both days.
+
+Assuming no additional information, which of the following is most strongly supported?
+
+- A) Patients admitted on Monday are, on average, more ill than patients admitted on Wednesday.
+- B) Monday admissions involve a different mix of medical conditions, different in-hospital workflow factors, or both, compared with Wednesday admissions.
+- C) Hospital staffing on Monday is less efficient than on Wednesday.
+- D) Patients admitted on weekends stay longer than patients admitted on weekdays.
+- E) The hospital should reduce the number of Monday admissions.
+
+**answer:** B
+**fastest_path:** 1.2-day stay gap despite demographic + staffing similarity → something systematic differs (case mix or workflow). (B) is the minimal hedged inference.
+**explanation:** Demographics and staffing match, but stays differ by 1.2 days. Logic forces some other systematic difference: condition mix (different acute presentations on different days) or workflow (discharge timing, referral patterns). (B) names this minimal disjunction without committing to either.
+**mistake_a:** *Specific cause* (severity) — stimulus doesn't uniquely support it.
+**mistake_c:** *Specific cause* (staffing efficiency) — stimulus says staffing is similar.
+**mistake_d:** Extrapolates to weekends, not in the data.
+**mistake_e:** Policy recommendation, not inference.
+**common_trap:** Picking (A) because severity is *one* plausible mix-difference — but the stimulus doesn't single it out, and (B) covers the broader true-by-elimination claim.
+**takeaway:** Inference on a constrained system = the *minimal disjunction* of remaining variables. Don't commit to a specific cause when the data only forces "something differs."
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q100
+**difficulty:** Hard
+**type:** Inference
+**topic:** Critical Reasoning — Probabilistic Inference
+
+A company's internal audit found that only 8 percent of expense claims submitted by employees are flagged for review because they contain potential errors. Of those flagged claims that are reviewed, 60 percent are confirmed as containing genuine errors that require correction, while 40 percent are ultimately found to be error-free.
+
+Which of the following is most strongly supported by the statements above?
+
+- A) The internal audit's review process produces a correct determination in at least 60 percent of cases.
+- B) Most expense claims submitted by employees contain at least one error of some kind.
+- C) The majority of claims flagged for review involved amounts greater than the company's normal review threshold.
+- D) Approximately 4.8 percent of all expense claims submitted contain genuine errors requiring correction.
+- E) Employees are responsible for the majority of expense claim errors.
+
+**answer:** D
+**fastest_path:** Probability chain: 8% flagged × 60% confirmed-as-error = 4.8% of *all* claims contain confirmed errors. Direct multiplication.
+**explanation:** Two rates compose: of all claims, 8% get flagged; of flagged, 60% are real errors. Multiply: 0.08 × 0.60 = 0.048 = 4.8% of all claims. (D) expresses this precisely.
+**mistake_a:** Misreads — 60% applies to flagged claims, not audit accuracy overall.
+**mistake_b:** Goes beyond data — we only know about flagged claims.
+**mistake_c:** Imports outside assumption.
+**mistake_d:** *(this is the answer)*
+**mistake_e:** Imports outside assumption.
+**common_trap:** Picking (B) because "60% of flagged claims have errors" *seems* to imply most claims have errors — but only flagged ones were checked. Unflagged claims could be largely error-free.
+**takeaway:** Probabilistic inference = chain the conditional rates literally. P(error) = P(flagged) × P(error | flagged), not the marginal of either alone.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q101
+**difficulty:** Medium
+**type:** Weaken
+**topic:** Critical Reasoning — Confounding Variable
+
+A fitness app that tracks users' workouts reports that users who complete at least 20 workouts per month lose, on average, 2 pounds more over six months than users who complete fewer than 20 workouts per month. Based on this data, the app's developers claim that completing more workouts each month causes greater weight loss.
+
+Which of the following, if true, most weakens the developers' claim?
+
+- A) Users who complete 20 or more workouts per month tend to adopt other healthy habits, such as improved diet, at the same time they increase workout frequency.
+- B) The fitness app is used by several million people across dozens of countries.
+- C) Some users who complete more workouts each month do not weigh themselves regularly.
+- D) The app's workout-tracking feature is available free to all users.
+- E) Weight loss is often difficult to sustain over time without ongoing effort.
+
+**answer:** A
+**fastest_path:** Causal claim: more workouts → more weight loss. Weaken via *confounder*: heavy workout users *also* improved diet. Diet, not workout frequency, may drive the extra loss.
+**explanation:** (A) names the classic lifestyle-bundle confounder. The 2-pound gap could reflect diet change rather than workout frequency. The two are correlated in users, so one effect can't be cleanly attributed to either alone.
+**mistake_b:** Sample size — neutral.
+**mistake_c:** Affects individual measurement, not the group average.
+**mistake_d:** Tangential pricing detail.
+**mistake_e:** Background fact about weight maintenance.
+**common_trap:** Picking (C) because it sounds like a measurement issue — but it doesn't undermine the *aggregate* finding, just individual reliability.
+**takeaway:** Behavioral correlations almost always have a *lifestyle-bundle* confounder. People who do more X tend to do more Y, Z too. Always probe the bundle.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q102
+**difficulty:** Hard
+**type:** Strengthen
+**topic:** Critical Reasoning — Rule Out Confounder
+
+A pharmaceutical company has concluded a six-month trial of a new anti-hypertensive medication. In the trial, 100 patients who received the medication showed an average reduction in systolic blood pressure of 14 mmHg, while 100 patients in a control group receiving a placebo showed an average reduction of 5 mmHg. The company concludes that the medication caused the additional 9 mmHg reduction observed in the treatment group.
+
+Which of the following, if true, most strengthens the company's conclusion?
+
+- A) Patients receiving the medication were, on average, slightly more motivated to improve their blood pressure than patients in the control group.
+- B) Blood-pressure readings for both groups were taken with calibrated equipment by the same medical staff throughout the trial.
+- C) The medication is significantly more expensive to produce than the placebo.
+- D) Patients receiving the medication were selected from volunteers who had previously been unable to control their blood pressure through lifestyle changes.
+- E) Patients in the control group were informed that they were receiving a placebo.
+
+**answer:** B
+**fastest_path:** 9 mmHg gap → causal claim. Strengthen by *ruling out measurement artifact*. (B) does it: same calibrated equipment + same staff for both groups.
+**explanation:** A causal claim survives by eliminating measurement bias and consistency errors. (B) holds the measurement system constant across treatment and control, so the 9 mmHg difference is unlikely to be a measurement artifact.
+**mistake_a:** *Weakens* — motivation is a confounder favoring the treatment group.
+**mistake_c:** Cost ≠ causality.
+**mistake_d:** Narrows population but doesn't strengthen the causal claim.
+**mistake_e:** Unblinds control → biases placebo response, ambiguous at best.
+**common_trap:** Picking (A) because motivated patients *should* do better — but their outperformance would be *because of motivation*, not the drug. That's a weakener.
+**takeaway:** Strengthen on a treatment-vs-placebo comparison = ensure *measurement equivalence* across groups. Same instruments, same staff, same protocols.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q103
+**difficulty:** Hard
+**type:** Assumption
+**topic:** Critical Reasoning — Necessary Assumption
+
+A state legislature has proposed raising the minimum driving age from 16 to 18 in order to reduce traffic accidents involving young drivers. Supporters argue that 18-year-old new drivers are safer than 16-year-old new drivers because of more developed cognitive skills, and that even accounting for the inexperience of new drivers at either age, raising the minimum driving age will reduce the overall number of traffic accidents involving young drivers.
+
+The supporters' argument above relies on which of the following assumptions?
+
+- A) Accident rates among 18-year-old experienced drivers are lower than among 18-year-old new drivers.
+- B) Raising the driving age will not significantly increase the number of unlicensed young people who drive without proper training.
+- C) Most 16-year-olds currently drive more cautiously than most 18-year-olds do.
+- D) Parents generally discourage teenagers from learning to drive at age 16.
+- E) Cognitive skill development is the only factor that influences traffic accident rates.
+
+**answer:** B
+**fastest_path:** Argument: raise age → fewer accidents. Required: raising the age doesn't push young people into *unlicensed, untrained* driving (which would increase accidents).
+**explanation:** Negate (B): unlicensed teens drive without training → accident totals rise → conclusion fails. (B) is the necessary substitution-block.
+**mistake_a:** Irrelevant to new-driver rates.
+**mistake_c:** *Reverses* — goes against supporters.
+**mistake_d:** Parental discouragement isn't load-bearing.
+**mistake_e:** *Extreme* — supporters said cognitive is *a* factor, not *the only* factor.
+**common_trap:** Picking (E) because cognitive-development is the supporters' main mechanism — but the argument doesn't require it to be the *only* factor. Necessary assumption is the minimal claim.
+**takeaway:** Policies on age/access always assume *no substitution into unsafe alternatives*. Teen driving and minimum-age regulations especially.
+**related_reading:** reading-verbal-04-cr-question-types
+
+
+---
+
+## Q104
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Flaw — Scope Shift
+
+A city council announced that crime in the downtown commercial district had decreased by 22 percent over the past year, based on the city's public-safety department data. The council's safety director concluded on the basis of that figure that the city's new neighborhood policing program, implemented one year ago, has been effective at reducing crime citywide.
+
+Which of the following best identifies a flaw in the safety director's reasoning?
+
+- A) The director assumes that a decrease reported by the public-safety department accurately reflects a decrease in actual crime.
+- B) The director shifts from a claim about crime specifically in the downtown commercial district to a claim about crime citywide.
+- C) The director does not account for possible changes in how crime is defined by the department.
+- D) The director does not specify whether the neighborhood policing program has also been implemented in nearby cities.
+- E) The director assumes that the decline in crime will continue in future years.
+
+**answer:** B
+**fastest_path:** Flaw: *scope shift*. Data covers the *downtown commercial district*; conclusion claims *citywide* effect. The two scopes don't match.
+**explanation:** Director's evidence is downtown-only. Conclusion is about citywide crime reduction. (B) names the scope-shift directly. The downtown 22% drop doesn't license the city-level claim.
+**mistake_a:** Measurement-reliability concern, not the inferential leap.
+**mistake_c:** Definitional change — possible but secondary.
+**mistake_d:** Off-scope.
+**mistake_e:** Addresses future claims, not citywide generalization.
+**common_trap:** Picking (A) because measurement is *always* a concern — but the dominant flaw here is the explicit scope mismatch.
+**takeaway:** Flaw on a "data covers X, conclusion covers Y" argument → name the *scope shift*. GMAT favors this flaw form.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q105
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Flaw — Reverse Causation
+
+A study of dog owners found that owners who walk their dogs daily report lower rates of chronic anxiety than owners who do not walk their dogs daily. The researchers concluded that walking dogs daily reduces anxiety in dog owners.
+
+Which of the following best identifies a flaw in the researchers' reasoning?
+
+- A) The researchers did not measure anxiety levels before the owners acquired their dogs.
+- B) The researchers assume that daily dog walking causes lower anxiety, but the direction of causation could be reversed — owners with less anxiety may be more likely to walk their dogs daily.
+- C) The researchers did not include owners of cats or other pets in the study.
+- D) The researchers did not account for differences in dog breed or size.
+- E) The researchers assume that self-reported anxiety rates accurately reflect actual anxiety levels.
+
+**answer:** B
+**fastest_path:** Flaw: *reverse causation*. Walking ↔ lower anxiety is consistent with either direction. Owners with less anxiety may simply be *more able* to walk daily.
+**explanation:** Correlation without temporal or experimental ordering can't decide causal direction. (B) names this directly. Maybe walking lowers anxiety, but maybe pre-existing low anxiety makes people more capable of daily walking.
+**mistake_a:** Pre-study design gap — real, but secondary.
+**mistake_c:** Comparison group, peripheral.
+**mistake_d:** Breed/size — methodological detail.
+**mistake_e:** Self-report reliability — secondary.
+**common_trap:** Picking (A) because pre-acquisition baselines *would* help — but the dominant flaw is reverse-causation, which (B) names directly.
+**takeaway:** Behavioral correlations always face *reverse causation*. The healthier-behavior side may be the *consequence*, not the cause, of the better outcome.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q106
+**difficulty:** Medium
+**type:** Strengthen
+**topic:** Critical Reasoning — Rule Out Alternative
+
+A technology company attributes a 40 percent increase in its customer retention rate over the past year to its expanded customer-service team, which added 30 percent more agents and adopted newly redesigned response protocols. Critics argue that the retention improvement is more likely the result of the company's reduced subscription prices, which were introduced at the same time as the service expansion.
+
+Which of the following, if true, most strengthens the company's attribution?
+
+- A) Customer retention was stable for the three years prior to both the service expansion and the price reduction.
+- B) In post-renewal surveys, the majority of retained customers cited "helpful customer support" as a key reason they continued their subscription, while "lower price" was cited by a much smaller share.
+- C) The price reduction was modest, amounting to only a 3 percent cut in the average subscription cost.
+- D) The company's competitors have recently expanded their own customer-service operations.
+- E) Overall customer satisfaction with the company's products is high.
+
+**answer:** B
+**fastest_path:** Critics name *price cut* as the alternative cause. Strengthen by *direct weighing*: customers cite service over price in retention surveys. (B).
+**explanation:** Customers' own stated reasons rank service over price. That's the strongest direct evidence that the service expansion (not price) drove retention. (B) defeats the named alternative.
+**mistake_a:** Stable baseline is helpful context but weaker.
+**mistake_c:** Price cut being modest is suggestive but doesn't directly attribute.
+**mistake_d:** Competitors irrelevant to this firm's retention.
+**mistake_e:** Generic satisfaction, not retention cause.
+**common_trap:** Picking (C) because a small price cut *seems* to undermine the price alternative — but customer-stated reasons (B) is more direct evidence than inference about magnitude.
+**takeaway:** Strengthen against a named alternative cause = customer-stated reasons rank-ordering the candidate causes is the most direct lever.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q107
+**difficulty:** Medium
+**type:** Weaken
+**topic:** Critical Reasoning — Alternative Cause
+
+A regional bakery observed that sales of its new sourdough loaf were 35 percent higher during its in-store baking demonstration event than during a comparable week without the event. Management concluded that the demonstration event itself drove the sales increase and plans to host similar events every quarter.
+
+Which of the following, if true, most weakens management's conclusion?
+
+- A) The baking demonstrations typically last only three hours and are held in the back of the store.
+- B) The bakery's local newspaper ran a featured article on the sourdough loaf during the same week as the demonstration event.
+- C) The bakery's customer-loyalty program grew by 8 percent during the demonstration week.
+- D) Demonstration attendees represented roughly 5 percent of all store visitors during the event week.
+- E) Several other bakeries in the region also reported strong sourdough sales during that week.
+
+**answer:** B
+**fastest_path:** Sales spiked during demo week. Weaken by *naming a co-occurring alternative cause*: newspaper feature ran the same week. Either could explain the 35% lift.
+**explanation:** Two interventions ran simultaneously — the in-store demo and a newspaper feature. (B) introduces the alternative cause: the feature could have driven sales independently. Demo's claim isn't isolated.
+**mistake_a:** Weakens event plausibility but doesn't introduce a competing cause.
+**mistake_c:** Loyalty growth is consistent with both stories.
+**mistake_d:** Attendee share, ambiguous.
+**mistake_e:** Broader market, not this bakery.
+**common_trap:** Picking (D) because low attendee share *seems* to undermine the demo — but the "alternative cause" weakener (B) directly attacks the causal attribution.
+**takeaway:** Weaken via *co-occurring intervention* — when two things happened in the same window, no single one can be credited.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q108
+**difficulty:** Hard
+**type:** Assumption
+**topic:** Critical Reasoning — Necessary Condition
+
+A manufacturer of industrial sensors argues that switching from quarterly to monthly calibration checks of its sensors will improve long-term accuracy and reduce measurement errors. The company's chief engineer argues that since most significant calibration drift occurs over periods of 2 to 3 months, more frequent checks will catch drift before it affects critical readings.
+
+The chief engineer's argument depends on which of the following assumptions?
+
+- A) The cost of monthly calibration is significantly higher than the cost of quarterly calibration.
+- B) The additional calibration checks will not introduce new sources of error — such as measurement variability caused by the checks themselves — that outweigh the benefit of catching drift earlier.
+- C) Most customers of the manufacturer use the sensors for applications requiring highly accurate measurements.
+- D) The current quarterly calibration schedule was established by industry convention rather than empirical measurement.
+- E) Monthly calibration checks can be automated to reduce operational labor costs.
+
+**answer:** B
+**fastest_path:** Argument: more frequent checks → better accuracy. Required: the checks themselves don't *introduce more error* than they prevent. (B) is the bridge.
+**explanation:** Net accuracy = drift caught − error introduced by checks. Negate (B): checks add measurement variability that exceeds the drift they catch → no net improvement → conclusion fails.
+**mistake_a:** Cost ≠ accuracy.
+**mistake_c:** Customer applications ≠ argument premise.
+**mistake_d:** Rationale for current schedule, not the net effect.
+**mistake_e:** Practical add-on.
+**common_trap:** Picking (D) because rationale-based reasoning *seems* foundational — but the argument is about *whether monthly improves accuracy*, not whether quarterly is well-justified.
+**takeaway:** "More frequent X improves Y" arguments always assume the *measurement / intervention itself doesn't add noise*. The hidden tradeoff.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q109
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Paradox — Detection Effect
+
+A public health department introduced a free flu vaccination program in a city last September, offering vaccines at no cost in multiple locations. By March of the following year, the number of reported flu cases in the city had increased by 18 percent compared with the same period the previous year. This result surprised health officials, who had expected the program to lower the number of flu cases.
+
+Which of the following, if true, most helps to explain the unexpected increase in reported flu cases?
+
+- A) The flu vaccine provided by the program was approximately 60 percent effective at preventing infection.
+- B) The total number of residents in the city increased by approximately 3 percent over the same period.
+- C) As part of the vaccination program, the public health department significantly expanded its flu-testing and case-reporting capacity, leading to identification of many cases that would previously have gone undetected.
+- D) Some residents skipped the vaccine because they believed (incorrectly) that it would cause flu symptoms.
+- E) The previous year had an unusually mild flu season relative to historical norms.
+
+**answer:** C
+**fastest_path:** Paradox: free vaccines + 18% *more* reported cases. Resolve via *detection effect*: the program also expanded testing capacity. More testing = more *reported* cases, even if actual incidence fell.
+**explanation:** Reported ≠ actual. (C) shows the program bundled testing expansion with vaccinations. Many cases that would have been undiagnosed before now get reported. Actual incidence may have fallen; reporting just captures more of it.
+**mistake_a:** 60% effective explains *fewer* infections, not more reports.
+**mistake_b:** Population +3% too small for an 18% rise.
+**mistake_d:** Vaccine refusal is a minor factor.
+**mistake_e:** Mild prior year is partial — weaker than the direct detection effect.
+**common_trap:** Picking (E) because the previous-year baseline is *one* contributor — but (C) directly explains the reporting surge regardless of baseline.
+**takeaway:** Public-health paradoxes ("treatment up, cases up") often resolve via *detection effect*. Surveillance expansion makes incidence look worse even when it improves.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q110
+**difficulty:** Medium
+**type:** Evaluate
+**topic:** Critical Reasoning — Test the Premise
+
+A city proposes to install solar panels on the rooftops of all its municipal buildings, arguing that the project will pay for itself within 10 years through electricity savings. Opponents claim that the roofs of the city's municipal buildings are not ideally oriented to capture sunlight efficiently, and therefore the project will not generate enough electricity to justify the investment.
+
+The answer to which of the following questions would be most useful in evaluating the city's argument?
+
+- A) How many municipal buildings are in the city in total?
+- B) What is the expected useful life of the solar panels that would be installed?
+- C) Whether the roofs of the city's municipal buildings actually receive sunlight exposure comparable to the assumptions used in the 10-year payback projection.
+- D) Whether other cities have successfully installed solar panels on their own municipal buildings.
+- E) What electricity rate the city currently pays for its municipal buildings.
+
+**answer:** C
+**fastest_path:** 10-year payback rests on assumed sunlight exposure. Evaluate by *testing the exposure assumption*. (C) does it directly.
+**explanation:** Payback projection requires the city's roofs to actually receive the sunlight assumed in the calculation. (C) tests this premise. If exposure is below assumed, payback stretches; if at/above, claim holds.
+**mistake_a:** Count question, not evaluation.
+**mistake_b:** Useful for longer-term economics, not the 10-year claim.
+**mistake_d:** External reference, not this city.
+**mistake_e:** Presumably already in the projection.
+**common_trap:** Picking (B) because panel lifespan affects ROI — but the argument's *specific* claim is 10-year payback. Match to the exact metric.
+**takeaway:** Evaluate questions on numerical projections = always probe the *load-bearing premise* of the calculation. Sunlight exposure is the dominant input for solar payback.
+**related_reading:** reading-verbal-04-cr-question-types
+
+
+---
+
+## Q111
+**difficulty:** Hard
+**type:** Inference
+**topic:** Critical Reasoning — Reconciling Two Findings
+
+A city's department of transportation recently replaced several mid-sized traffic intersections with roundabouts. The department reports that overall vehicle throughput at these intersections has increased by 22 percent since conversion, even during peak hours. However, residents of surrounding neighborhoods complain that traffic now backs up on the side streets leading into the roundabouts, and that their average commute times have actually increased across their full routes.
+
+If both the department's measurement and the residents' complaints are accurate, which of the following is most strongly supported?
+
+- A) Roundabouts always worsen overall commute times.
+- B) The department's throughput measurements capture only the intersections themselves and do not reflect the effect on side streets and the broader road network.
+- C) Residents' complaints are exaggerated relative to the data.
+- D) The department should revert all roundabouts to signalized intersections.
+- E) Throughput on side streets is equal to throughput at roundabouts.
+
+**answer:** B
+**fastest_path:** Two facts: throughput +22% at intersections; commute times worse on side streets. Both true via *different scopes*: department measures intersection only; residents measure full route.
+**explanation:** Department's metric (throughput at intersection) and residents' metric (full-route commute time) measure different things. Roundabout can clear faster while side streets back up further. (B) reconciles via scope.
+**mistake_a:** *Extreme* — "always" overgeneralizes.
+**mistake_c:** Dismisses residents' data without justification.
+**mistake_d:** Policy prescription, not inference.
+**mistake_e:** Unsupported equality.
+**common_trap:** Picking (A) because residents' commute *is* worse — but inference must reconcile *both* statements, not pick a side.
+**takeaway:** "Both true but contradictory" inference = different *scopes* or *measurements*. Find the metric mismatch.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q112
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Flaw — Generalization from Laboratory to Field
+
+A biology teacher reported that, based on 30 corn plants grown in her laboratory, the average height of corn plants is 8 feet. Based on the teacher's finding, the city's parks department announced that corn planted in its public gardens could be expected to reach an average height of 8 feet.
+
+Which of the following best identifies a flaw in the parks department's reasoning?
+
+- A) The parks department assumes that outdoor growing conditions in the public gardens will be comparable to the controlled conditions of the teacher's laboratory.
+- B) The parks department does not verify the accuracy of the teacher's measurement instruments.
+- C) The parks department does not specify how many corn plants will be grown in each public garden.
+- D) The parks department does not account for variations in soil quality between different gardens.
+- E) The parks department assumes that all corn plants grow to similar heights.
+
+**answer:** A
+**fastest_path:** Flaw: *lab-to-field generalization* — controlled lab conditions don't transfer to outdoor public-garden conditions.
+**explanation:** Teacher's 8-foot average came from controlled lab plants. Parks department projects the same height for uncontrolled outdoor gardens (variable soil, weather, pests). The transfer is the inferential leap.
+**mistake_b:** Measurement accuracy — less central.
+**mistake_c:** Implementation detail.
+**mistake_d:** Plant-to-plant variation among "average" results — already implicit in averages.
+**mistake_e:** False of any average — averaging implies variation.
+**common_trap:** Picking (D) because soil quality *will* vary — but that's a specific factor, while (A) names the *broader* transfer flaw.
+**takeaway:** Flaw on a "lab result → outdoor projection" claim → suspect *condition-mismatch*. Same flaw as cross-state policy projections, just in biology.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q113
+**difficulty:** Medium-Hard
+**type:** Strengthen
+**topic:** Critical Reasoning — Latent Demand
+
+A regional logistics firm is launching a free office shuttle program from three suburban hubs to its main downtown headquarters. Management argues that the shuttle will reduce parking-lot overcrowding at headquarters by shifting employees who currently drive solo to the shuttle. Critics argue that, based on prior employer-shuttle experiments at peer firms, few employees will switch modes, and the shuttle will simply add a fleet expense without measurably easing parking demand.
+
+Which of the following, if true, most strengthens management's argument?
+
+- A) The firm's employee base is demographically similar to that of peer firms where shuttles have successfully eased parking demand.
+- B) Employer-sponsored commuter programs are growing in popularity among large North American firms.
+- C) An anonymous internal survey of solo-driving employees at the firm found that approximately 35 percent said they would switch to the shuttle if it served their suburban hub on their schedule.
+- D) Operating the shuttle program is significantly less expensive than expanding the headquarters parking structure.
+- E) Launching the shuttle would not require eliminating any existing parking spaces at the suburban hubs.
+
+**answer:** C
+**fastest_path:** Critics doubt employees will switch. Strengthen with *direct local-survey evidence*: 35% of solo drivers said they'd switch. (C).
+**explanation:** Internal survey at *this firm* gives direct evidence of latent demand. The critics' objection (peer firms' shuttles failed) is partially answered by showing this firm's commuters have stated willingness to switch.
+**mistake_a:** Analogical support — weaker than direct local evidence.
+**mistake_b:** National trend, not this firm.
+**mistake_d:** Cost — answers a different objection.
+**mistake_e:** Parking at suburban hubs, irrelevant to headquarters claim.
+**common_trap:** Picking (A) because demographic similarity to peer-firms-where-it-worked sounds compelling — but local stated demand (C) is a more direct strengthen.
+**takeaway:** Strengthen on a "people will use the new service" plan = direct local evidence of stated intent beats analogical evidence from peer cases.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q114
+**difficulty:** Medium
+**type:** Weaken
+**topic:** Critical Reasoning — Self-Selection Confounder
+
+A health insurance company's data show that policyholders who participate in its wellness program have 20 percent lower annual medical claims than policyholders who do not participate. The company argues that expanding the wellness program will significantly reduce total medical claims across its policyholder population.
+
+Which of the following, if true, most weakens the company's argument?
+
+- A) The wellness program is currently optional, and policyholders who voluntarily enroll tend to be healthier and more health-conscious to begin with than those who do not.
+- B) The company's policyholders are primarily between 25 and 55 years of age.
+- C) Other insurance companies have seen similar results from their wellness programs.
+- D) The company's total medical claims have been rising modestly over the past three years.
+- E) Some elements of the wellness program require participation in specific activities like exercise or nutrition counseling.
+
+**answer:** A
+**fastest_path:** Voluntary wellness program → enrollees are *self-selected* healthier policyholders. The 20% claims gap reflects pre-existing health, not program effect. Expanding won't replicate the gap.
+**explanation:** Wellness program is optional. (A) names the self-selection confounder: healthier and more health-conscious people enrolled. The 20% lower claims rate isn't the program's effect; it's the kind of person who chose to enroll. Expansion to the whole population won't reproduce the result.
+**mistake_b:** Age range — background.
+**mistake_c:** Other companies' results — not this argument's logic.
+**mistake_d:** Trend — background.
+**mistake_e:** Program content, not enrollment selection.
+**common_trap:** Picking (D) because rising claims context *seems* like a counter-trend — but it doesn't address the causal logic. Self-selection (A) is the textbook weaken for voluntary-program comparisons.
+**takeaway:** Voluntary-program comparisons always face self-selection. The healthier/more-motivated subset enrolls; rest of population won't behave the same.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q115
+**difficulty:** Hard
+**type:** Assumption
+**topic:** Critical Reasoning — Tradeoff Assumption
+
+A restaurant chain is considering eliminating all of its "luxury" menu items — items priced above $30 — in order to project a more family-friendly image and attract more families with children. Management argues that this menu change will grow the chain's overall sales.
+
+Management's argument relies on which of the following assumptions?
+
+- A) The chain's current "luxury" menu items have been unpopular with all customer segments.
+- B) The incremental revenue from new family customers will more than compensate for the revenue loss from eliminating the "luxury" menu items.
+- C) The chain's competitors do not offer any "luxury" menu items.
+- D) Most families currently avoid the chain specifically because of its "luxury" menu items.
+- E) The chain's existing customers will continue patronizing the restaurant at the same frequency after the menu change.
+
+**answer:** B
+**fastest_path:** Eliminating luxury items → revenue loss + family-customer gain. Argument: net sales grow. Required: family gain *exceeds* luxury-revenue loss. (B) is the bridge.
+**explanation:** Net sales = (new family revenue) − (luxury revenue lost). Negate (B): the loss exceeds the gain → sales fall → conclusion fails. Necessary tradeoff assumption.
+**mistake_a:** *Extreme* — "unpopular with all" overstates.
+**mistake_c:** Competitors, not this chain's sales.
+**mistake_d:** Subset of (B) — close but narrower.
+**mistake_e:** Helpful but not the core tradeoff.
+**common_trap:** Picking (D) because it sounds related to family attraction — but (D) is one specific channel. (B) covers the full tradeoff.
+**takeaway:** "Drop X to gain Y" plans always require *Y gain > X loss*. The textbook tradeoff assumption.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q116
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Paradox — Resource Consumption
+
+Over the past decade, smartphone battery capacity has roughly doubled, yet the average daily "screen-on time" (the time during which a user is actively interacting with the phone) has increased by only about 15 percent. Contrary to industry expectations, consumers are not using their phones for significantly more hours per day than they did a decade ago.
+
+Which of the following, if true, best explains why the increase in battery capacity has not produced a proportional increase in screen-on time?
+
+- A) Most users charge their phones multiple times per day and have done so throughout the decade.
+- B) Smartphone applications and features have become more computationally demanding over the decade, causing phones to drain battery more quickly per hour of use, offsetting much of the added capacity.
+- C) Manufacturers have added battery-saving modes that automatically reduce screen brightness.
+- D) Users spend more time on social media than at any previous point.
+- E) Newer smartphone processors are more energy-efficient than older ones.
+
+**answer:** B
+**fastest_path:** Paradox: 2× battery, only 15% more screen-on time. Resolve: per-hour drain *also rose* (heavier apps), so the capacity gain is mostly absorbed.
+**explanation:** Net screen-on time = capacity / per-hour drain. (B) shows per-hour drain rose to consume the doubled capacity. Capacity ↑, drain ↑, so net usage barely budges. Single mechanism explains both trends.
+**mistake_a:** Charging behavior, not usage.
+**mistake_c:** Battery-saver modes would *increase* screen-on time, deepening the paradox.
+**mistake_d:** Social media → more screen-on, not less.
+**mistake_e:** Energy-efficient processors would *increase* screen-on time, deepening the paradox.
+**common_trap:** Picking (E) because efficiency *seems* relevant — but it pushes screen-on time *up*, not flat. Paradox resolution must explain why time *didn't* rise proportionally.
+**takeaway:** Capacity-vs-usage paradoxes resolve via *demand-side absorption*. When supply doubles but demand also doubles, net stays flat.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q117
+**difficulty:** Medium
+**type:** Evaluate
+**topic:** Critical Reasoning — Test the Premise
+
+A university is considering implementing a four-day school week to reduce operating costs. Administrators argue that the shift will maintain educational quality because the lost class hours will be redistributed across extended days and structured independent-study time.
+
+The answer to which of the following questions would be most useful in evaluating the administrators' argument?
+
+- A) How much would the university save in operating costs by eliminating one day of classes per week?
+- B) Whether students will use the extended class hours and independent-study time effectively to achieve the same learning outcomes as under the current schedule.
+- C) Whether other universities have implemented a four-day school week.
+- D) What percentage of the university's operating costs are fixed versus variable?
+- E) How many total class hours per week would students have under the new schedule?
+
+**answer:** B
+**fastest_path:** Load-bearing premise: redistributed hours + independent study = same quality. Evaluate by *testing that premise*. (B) does it.
+**explanation:** Quality depends on whether students *use* the redistributed time effectively. (B) tests this. Yes — quality preserved; conclusion holds. No — independent-study hours wasted; conclusion fails.
+**mistake_a:** Cost magnitude, not quality.
+**mistake_c:** External reference.
+**mistake_d:** Cost accounting.
+**mistake_e:** Total hours count — quantity, not effective use.
+**common_trap:** Picking (E) because hour-counting *seems* relevant — but the argument's claim is about *quality* preservation, which depends on use, not raw hours.
+**takeaway:** Evaluate on a "redistribute X to preserve outcome" plan = always test whether the redistribution is *effectively used*. Hours alone don't equal results.
+**related_reading:** reading-verbal-04-cr-question-types
+
+
+---
+
+## Q118
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Boldface — Proposal, Rebuttal, and Supporting Argument
+
+**The city council has proposed an ordinance requiring all commercial buildings built before 1970 to install modern fire-suppression systems within five years.** Opponents of the ordinance argue that the installation costs would force many small businesses out of the buildings they currently occupy. **However, a recent analysis of fifty comparable pre-1970 commercial buildings in neighboring cities shows that businesses typically absorbed the installation costs through modest rent adjustments spread over the five-year compliance period, rather than relocating.** Proponents add: **given the city's rising fire-damage rates in pre-1970 buildings, the public-safety benefits of the ordinance are likely to outweigh the temporary economic pressure on occupants.**
+
+In the argument above, the three portions in boldface play which of the following roles?
+
+- A) The first is the proposal; the second is data that rebuts a specific objection to the proposal; the third is an additional argument supporting the proposal.
+- B) The first is the proposal; the second is the main argument against it; the third is a concession.
+- C) The first is a conclusion; the second is a subconclusion; the third is evidence that supports both.
+- D) The first is an observation; the second is a counterexample; the third is a hypothesis.
+- E) The first is a recommendation; the second is the reason it should be rejected; the third is the main opposing argument.
+
+**answer:** A
+**fastest_path:** Three bolds: (1) proposal, (2) data rebutting cost-objection, (3) additional supporting argument (fire-safety). Three-part proposal-defense structure.
+**explanation:** Argument structure: propose ordinance → opponents raise cost objection → cited analysis rebuts the cost objection → proponents add fire-safety argument as further support. (A) names this three-part flow precisely.
+**mistake_b:** Mislabels Bold 2 (rebuts, not argues for).
+**mistake_c:** Confuses argument levels.
+**mistake_d:** Misreads rhetorical direction.
+**mistake_e:** Misreads rhetorical direction.
+**common_trap:** Picking (B) because Bold 3 *sounds* like it might be a concession — but proponents *add* the fire-safety argument; it strengthens the proposal, not concedes ground.
+**takeaway:** Three-bold "proposal + rebuttal + supporting" pairing — track which bold targets which objection vs which provides additional support.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q119
+**difficulty:** Medium-Hard
+**type:** Strengthen
+**topic:** Critical Reasoning — Local Consumer Preference
+
+A manufacturer of plant-based alternative meat products reports that sales in its retail grocery channel grew 25 percent over the past year. The company's CEO argues that the growth reflects a genuine and increasing consumer preference for plant-based diets, and plans to expand retail distribution next year on the basis of this trend.
+
+Which of the following, if true, most strengthens the CEO's argument?
+
+- A) The manufacturer's competitors also reported double-digit growth in alternative-meat sales over the past year.
+- B) A recent survey of grocery shoppers in the manufacturer's markets found that the share of shoppers who actively seek out plant-based alternatives rose from 22 percent to 38 percent over the past year.
+- C) The manufacturer's products are generally priced higher per unit than comparable animal-meat products.
+- D) The manufacturer's advertising spending increased significantly in the retail grocery channel over the past year.
+- E) New shelf-space regulations in the European Union have required some grocery stores to add more plant-based products.
+
+**answer:** B
+**fastest_path:** CEO claims sales growth reflects *genuine consumer preference* shift. Strengthen by *direct preference evidence*: 22% → 38% of shoppers actively seek plant-based. (B).
+**explanation:** Direct survey evidence in the manufacturer's markets shows the preference shift CEO posits. (B) supports the causal link from preference to sales growth. Other choices either offer alternative explanations or are about different markets.
+**mistake_a:** Consistent but less specific — could be industry-wide advertising.
+**mistake_c:** Higher pricing is a headwind, not supporting.
+**mistake_d:** *Alternative cause* — advertising could explain growth, weakening.
+**mistake_e:** Regional regulation, not the manufacturer's markets.
+**common_trap:** Picking (A) because peer growth *seems* to confirm a real trend — but it doesn't isolate preference from advertising or other industry-wide factors.
+**takeaway:** Strengthen on a "growth reflects preference change" claim = direct preference-survey evidence in the relevant market. Trumps industry-wide trend data.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q120
+**difficulty:** Medium
+**type:** Weaken
+**topic:** Critical Reasoning — Selection Bias
+
+A university's career services office reports that students who attend at least three networking events during their senior year receive, on average, 30 percent more job offers upon graduation than students who attend fewer networking events. The office concludes that attending more networking events causes students to receive more job offers.
+
+Which of the following, if true, most weakens the office's conclusion?
+
+- A) Networking events are often held in the late afternoon or evening, when many students have class or work commitments.
+- B) Most students who voluntarily attend three or more networking events are already highly motivated to seek employment and possess strong interview and résumé skills.
+- C) Some students attend networking events for reasons unrelated to job-seeking, such as to meet alumni.
+- D) The university's career services office also offers resume-review and interview-coaching services to all seniors.
+- E) The average starting salary of students who receive multiple job offers is higher than the average starting salary of students who receive only one offer.
+
+**answer:** B
+**fastest_path:** Voluntary attendance → self-selected students. (B) names the confounder: heavy attendees are already more motivated and skilled. The 30% lift reflects who attends, not the events' effect.
+**explanation:** Students who voluntarily attend ≥3 networking events skew toward already-motivated, already-skilled job-seekers. (B) shows their pre-existing characteristics independently raise offers. The events get credit they don't earn.
+**mistake_a:** Scheduling, not causation.
+**mistake_c:** Other reasons for attendance, ambiguous.
+**mistake_d:** Other career services available — doesn't undermine the networking comparison directly.
+**mistake_e:** Salary outcome, not offer count.
+**common_trap:** Picking (D) because "other services" *seems* like a confounder — but it affects both groups, not just attendees. (B) is the cleaner self-selection weaken.
+**takeaway:** Voluntary-participation studies always face self-selection. The motivated/prepared subset participates *and* would have outperformed regardless.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q121
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Flaw — Cherry-Picking
+
+A biotech executive argues that a new therapy for a rare disease has strong evidence of effectiveness. He notes that in the three most recent Phase 2 trials conducted on the therapy, the treatment group showed significantly better outcomes than the placebo group. He has omitted earlier Phase 2 trials of the same therapy, which he characterizes as "preliminary" and "not statistically powerful enough to be meaningful."
+
+Which of the following best identifies a flaw in the executive's reasoning?
+
+- A) The executive selectively cites results from trials that support his claim while dismissing earlier trials that may have shown different results, with no objective justification for the dismissal.
+- B) The executive does not specify the number of patients in each trial's treatment and placebo groups.
+- C) The executive assumes that "effective" means the same thing across all three trials.
+- D) The executive does not consider the cost of administering the therapy.
+- E) The executive assumes that Phase 2 results will generalize directly to Phase 3.
+
+**answer:** A
+**fastest_path:** Flaw: *cherry-picking*. Executive dismisses earlier trials as "preliminary" without an objective methodological basis — likely because they didn't support his case.
+**explanation:** Selecting only the favorable trials and self-justifying the dismissal of others is the textbook cherry-picking flaw. If the earlier trials had been positive, the executive likely wouldn't have called them "underpowered." (A) names the flaw directly.
+**mistake_b:** Sample-size concern, secondary.
+**mistake_c:** Definitional clarity, not the selection flaw.
+**mistake_d:** Cost, irrelevant.
+**mistake_e:** Phase 2 → 3 generalization, different concern.
+**common_trap:** Picking (E) because Phase 2 → 3 generalization *is* a real concern — but the dominant flaw is the trial *selection*, not the phase generalization.
+**takeaway:** Flaw on a "based on these trials, the therapy works" argument → check whether *all* trials were considered. Selective citation is the dominant evidence-quality flaw in industry CR.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q122
+**difficulty:** Medium
+**type:** Assumption
+**topic:** Critical Reasoning — Necessary Causal Mechanism
+
+A city's health department has proposed mandatory annual flu vaccination for all hospital staff. Under the proposal, any hospital employee who refuses to be vaccinated (for reasons other than documented medical contraindication) would face termination of employment. Supporters argue that the policy will significantly reduce flu-related patient infections during flu season.
+
+The supporters' argument relies on which of the following assumptions?
+
+- A) Hospital staff are currently the primary source of flu-related patient infections.
+- B) If hospital staff are vaccinated, they are less likely to transmit the flu virus to patients than unvaccinated staff would be, even when both groups follow standard infection-control protocols.
+- C) Employees will comply with the mandate rather than seek employment elsewhere.
+- D) Flu vaccines are safe for all hospital employees to receive.
+- E) Patient infection rates during flu season are higher than at other times of year.
+
+**answer:** B
+**fastest_path:** Mandate → fewer infections. Required: vaccinated staff are *less likely to transmit* than unvaccinated, *even with standard PPE*. (B) is the bridge.
+**explanation:** Negate (B): vaccinated and unvaccinated staff transmit at the same rate when both follow infection-control protocols → mandate adds no benefit beyond existing precautions → conclusion fails.
+**mistake_a:** *Extreme* — "primary source" overstates.
+**mistake_c:** Workforce attrition, orthogonal.
+**mistake_d:** Safety concern, not mechanism.
+**mistake_e:** Background timing.
+**common_trap:** Picking (A) because staff-to-patient transmission is the *channel* — but the argument doesn't require staff to be the *primary* source, only that vaccination *reduces* their transmission rate.
+**takeaway:** Vaccination-mandate arguments always assume the *incremental transmission reduction* over existing protocols. Negate that and the mandate adds nothing.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q123
+**difficulty:** Hard
+**type:** Inference
+**topic:** Critical Reasoning — Quantitative Inference
+
+An employee at Firm X is eligible for a retention bonus if the employee has worked at the firm for at least five years AND has received positive performance reviews every year of employment. Among employees currently employed at Firm X for five or more years, approximately 80 percent have received positive performance reviews in every year of their employment so far.
+
+Which of the following is most strongly supported by the statements above?
+
+- A) All employees at Firm X who have worked there for five or more years are eligible for the retention bonus.
+- B) Approximately 80 percent of Firm X's employees with five or more years of tenure are eligible for the retention bonus.
+- C) Employees with less than five years at Firm X are not eligible for any bonus.
+- D) Most employees at Firm X receive positive performance reviews each year, regardless of tenure.
+- E) Firm X designed its retention bonus specifically to retain employees who might otherwise leave.
+
+**answer:** B
+**fastest_path:** Eligibility = 5+ years tenure AND positive reviews every year. Among 5+ year employees, 80% meet the reviews condition. Both conditions → ~80% eligible.
+**explanation:** Eligibility is conjunctive (tenure AND reviews). Tenure is given (focused on 5+ year employees). Reviews are met by 80%. Combined: ~80% of the 5+ year population is eligible. (B) restates this directly.
+**mistake_a:** *Extreme* — requires 100% positive reviews, which only 80% have.
+**mistake_c:** Other eligibility categories not discussed.
+**mistake_d:** Generalizes beyond the 5+ year population.
+**mistake_e:** Motivational claim not in the stimulus.
+**common_trap:** Picking (D) because "most positive reviews" *seems* implied — but stimulus only gives data on the 5+ year group, not all employees.
+**takeaway:** Inference on conjunctive eligibility = the *intersection rate* is what's inferable. Don't generalize beyond the population the data covers.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q124
+**difficulty:** Medium
+**type:** Evaluate
+**topic:** Critical Reasoning — Volume Elasticity
+
+A publisher argues that lowering the cover price of its hardcover novels from $25 to $20 will significantly increase total revenue by boosting sales volume. Critics contend that, even with a higher sales volume, the 20 percent price reduction could result in lower total revenue than before if sales volume does not grow enough to offset the per-unit price reduction.
+
+The answer to which of the following questions would be most useful in evaluating the publisher's argument?
+
+- A) Whether the publisher's current hardcover customers include a significant share of book clubs or educational institutions.
+- B) By what percentage sales volume is expected to grow in response to the 20 percent price reduction.
+- C) What proportion of the publisher's total current sales are in the hardcover format.
+- D) Whether the publisher's competitors also plan to lower their cover prices.
+- E) How long the publisher plans to keep the lower price in effect.
+
+**answer:** B
+**fastest_path:** Revenue = price × volume. 20% price cut needs >25% volume gain to grow revenue (since 0.80 × 1.25 = 1.00). Evaluate by *asking the volume-growth rate*. (B).
+**explanation:** Whole disagreement hinges on *price elasticity*: does volume grow enough to compensate? (B) asks the decisive number. >25% growth → revenue rises; ≤25% → revenue falls. Direct verification.
+**mistake_a:** Customer mix, not volume elasticity.
+**mistake_c:** Hardcover share is composition, not elasticity.
+**mistake_d:** Competitor response, separate question.
+**mistake_e:** Duration, not elasticity.
+**common_trap:** Picking (D) because competitor pricing *would* affect outcomes — but the question is whether *this* publisher's volume grows enough, regardless of competitor moves.
+**takeaway:** Evaluate on a "lower price, higher revenue" claim = always probe *price elasticity* (volume response). Revenue grows iff volume gain > 1/(1−price-cut)−1.
+**related_reading:** reading-verbal-04-cr-question-types

@@ -2,7 +2,7 @@
 
 import { useState, useTransition, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { Check, Loader2, Pencil, X } from "lucide-react"
+import { AlertCircle, Check, Loader2, Pencil, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface Props {
@@ -79,6 +79,7 @@ export default function TargetScoreControl({
           value={draft}
           onChange={(e) => setDraft(Number(e.target.value))}
           disabled={isPending}
+          aria-label="Target score"
           className="bg-[#0A0A0A] border border-white/[0.12] rounded px-2 py-1 text-sm font-bold text-[#F0F0F0] focus:outline-none focus:border-[#C9A84C]/60"
         >
           {SCORE_OPTIONS.map((s) => (
@@ -125,7 +126,13 @@ export default function TargetScoreControl({
           </button>
         )}
         {error && (
-          <span className="text-xs ml-2" style={{ color: "#FF4444" }}>
+          <span
+            role="alert"
+            aria-live="polite"
+            className="inline-flex items-center gap-1 text-xs ml-2"
+            style={{ color: "#FF4444" }}
+          >
+            <AlertCircle className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
             {error}
           </span>
         )}

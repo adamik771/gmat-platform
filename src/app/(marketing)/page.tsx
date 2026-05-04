@@ -17,6 +17,7 @@ import FeatureCard from "@/components/marketing/FeatureCard"
 import TestimonialCard from "@/components/marketing/TestimonialCard"
 import FAQAccordion from "@/components/marketing/FAQAccordion"
 import HeroDashboardCard from "@/components/marketing/HeroDashboardCard"
+import ScoreCalloutNumbers from "@/components/marketing/ScoreCalloutNumbers"
 
 const modules = [
   { num: "01", title: "Mindset Reset", desc: "Rewire how you approach standardized tests." },
@@ -61,21 +62,21 @@ const testimonials = [
     quote:
       "I'd been stuck around 630 for months. Adam's error log approach completely changed how I reviewed. Went from 630 to 710 in 6 weeks.",
     author: "Priya M.",
-    detail: "Applying to Wharton — Early Student, Q3 2025",
+    detail: "Applying to Wharton",
     scoreJump: "630 → 710",
   },
   {
     quote:
       "As a non-native speaker, I was terrified of Verbal. This system broke it down in a way no other course did. My CR accuracy went from 55% to 81%.",
     author: "Hamid K.",
-    detail: "Harvard GSB applicant — Early Student, Q3 2025",
+    detail: "Harvard GSB applicant",
     scoreJump: "+78 points",
   },
   {
     quote:
       "The mock exam debriefing framework alone was worth the investment. I stopped guessing and started understanding.",
     author: "Sophie R.",
-    detail: "Booth applicant — Early Student, Q3 2025",
+    detail: "Booth applicant",
     scoreJump: "645 → 720",
   },
 ]
@@ -113,13 +114,34 @@ export default function HomePage() {
     <div style={{ backgroundColor: "#0A0A0A" }}>
       {/* HERO */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Gold radial glow */}
+        {/* Atmospheric depth layers */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,168,76,0.15) 0%, transparent 70%)",
+              "radial-gradient(ellipse 90% 60% at 50% -5%, rgba(201,168,76,0.18) 0%, transparent 55%)",
           }}
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 40% at 80% 20%, rgba(201,168,76,0.06) 0%, transparent 60%)",
+          }}
+          aria-hidden
+        />
+        <div
+          className="absolute inset-x-0 bottom-0 h-40 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, transparent 0%, #0A0A0A 100%)",
+          }}
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.035] mix-blend-overlay"
+          aria-hidden
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 w-full">
@@ -136,26 +158,26 @@ export default function HomePage() {
                 }}
               >
                 <Flame className="w-3 h-3" />
-                565 → 735 · 100th Percentile
+                565 → 735 · 99th Percentile
               </div>
 
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight mb-6">
+              <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-semibold leading-[1.02] tracking-[-0.02em] mb-6">
                 <span className="text-[#F0F0F0]">Master the </span>
-                <span style={{ color: "#C9A84C" }}>GMAT.</span>
+                <span className="font-display-italic" style={{ color: "#C9A84C" }}>GMAT.</span>
                 <br />
                 <span className="text-[#F0F0F0]">On Your Terms.</span>
               </h1>
 
               <p className="text-lg text-[#888888] leading-relaxed mb-8 max-w-lg">
                 The structured prep system that took Adam from 565 to 735 — built for
-                ambitious students who don't have time for guesswork.
+                ambitious students who don&apos;t have time for guesswork.
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-3 mb-10">
+              <div className="flex flex-col sm:flex-row gap-3 mb-3">
                 <Link
                   href="/signup"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
                   style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
                 >
                   Start Free Trial
@@ -169,6 +191,25 @@ export default function HomePage() {
                   <ChevronDown className="w-4 h-4" />
                 </Link>
               </div>
+              {/* Trial scope — 7 days of full access, no card required.
+                  The codebase doesn't enforce a paywall today
+                  (`purchases.plan_id` is a display chip only); this
+                  copy describes intent. Wire actual gating to
+                  `purchases` + a `trial_started_at` field on
+                  user_metadata when the paywall lands. */}
+              <p className="text-xs text-[#888888] mb-2">
+                No credit card. 7 days of full access — diagnostic, every chapter, full question bank, mock and review.
+              </p>
+              <p className="text-xs mb-10">
+                <Link
+                  href="/sample-chapter"
+                  className="hover:underline transition-opacity hover:opacity-80"
+                  style={{ color: "#C9A84C" }}
+                >
+                  Or read a sample chapter first
+                </Link>
+                <span className="text-[#555555]"> — no signup required.</span>
+              </p>
 
               {/* Score proof chips */}
               <div className="flex flex-wrap gap-2">
@@ -177,7 +218,7 @@ export default function HomePage() {
                   { label: "→", color: "#555555", bg: "transparent" },
                   { label: "735 Final Score", color: "#C9A84C", bg: "rgba(201,168,76,0.1)" },
                   { label: "→", color: "#555555", bg: "transparent" },
-                  { label: "100th Percentile", color: "#3ECF8E", bg: "rgba(62,207,142,0.1)" },
+                  { label: "99th Percentile", color: "#3ECF8E", bg: "rgba(62,207,142,0.1)" },
                 ].map((chip, i) => (
                   <span
                     key={i}
@@ -231,7 +272,7 @@ export default function HomePage() {
       {/* PRODUCT OVERVIEW */}
       <SectionWrapper>
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#F0F0F0] mb-4">
+          <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] mb-4 tracking-[-0.02em] leading-[1.05]">
             Everything you need to hit 700+
           </h2>
           <p className="text-[#888888] max-w-xl mx-auto">
@@ -267,7 +308,7 @@ export default function HomePage() {
           >
             Why It Works
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#F0F0F0] mb-4">
+          <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] mb-4 tracking-[-0.02em] leading-[1.05]">
             Four pillars of real score improvement
           </h2>
         </div>
@@ -293,7 +334,7 @@ export default function HomePage() {
             >
               Curriculum
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#F0F0F0] mb-4">
+            <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] mb-4 tracking-[-0.02em] leading-[1.05]">
               8 modules. One coherent system.
             </h2>
             <p className="text-[#888888]">
@@ -343,27 +384,12 @@ export default function HomePage() {
           >
             Results
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#F0F0F0] mb-6">
+          <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] mb-6 tracking-[-0.02em] leading-[1.05]">
             The numbers speak for themselves.
           </h2>
 
           {/* Score display */}
-          <div className="inline-flex items-center gap-4 px-8 py-5 rounded-2xl border border-white/[0.08] bg-[#111111] mb-12">
-            <div className="text-center">
-              <p className="text-5xl font-bold text-[#888888]">565</p>
-              <p className="text-xs text-[#555555] mt-1">Start</p>
-            </div>
-            <div className="flex flex-col items-center gap-1">
-              <ArrowRight className="w-6 h-6" style={{ color: "#C9A84C" }} />
-              <span className="text-xs text-[#555555]">+170</span>
-            </div>
-            <div className="text-center">
-              <p className="text-5xl font-bold" style={{ color: "#C9A84C" }}>
-                735
-              </p>
-              <p className="text-xs text-[#555555] mt-1">Official Score</p>
-            </div>
-          </div>
+          <ScoreCalloutNumbers start={565} delta={170} end={735} />
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -389,24 +415,24 @@ export default function HomePage() {
             >
               The Founder
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#F0F0F0] mb-6">
+            <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] mb-6 tracking-[-0.02em] leading-[1.05]">
               Built by someone who solved the hard version.
             </h2>
             <p className="text-[#888888] leading-relaxed mb-6">
-              I'm Adam Zakarian. I scored 565 on my first attempt. I'm not a native English
-              speaker. I don't have an engineering background. I built this prep system
+              I&apos;m Adam Zakarian. I scored 565 on my first attempt. I&apos;m not a native English
+              speaker. I don&apos;t have an engineering background. I built this prep system
               by obsessively studying what actually moves the needle — and ignoring everything
-              that doesn't.
+              that doesn&apos;t.
             </p>
             <p className="text-[#888888] leading-relaxed mb-8">
-              In 8 months, I went from 565 to 735 — 100th percentile. This platform is the
+              In 8 months, I went from 565 to 735 — 99th percentile. This platform is the
               exact system I built for myself, packaged for every ambitious student facing the
               same obstacles I did.
             </p>
 
             <div className="flex flex-wrap gap-3">
               {[
-                { label: "Scored 100th Percentile", color: "#C9A84C" },
+                { label: "Scored 99th Percentile", color: "#C9A84C" },
                 { label: "Non-Native Speaker", color: "#3ECF8E" },
                 { label: "Non-Technical Background", color: "#888888" },
               ].map((badge) => (
@@ -425,6 +451,8 @@ export default function HomePage() {
           <div className="flex justify-center">
             <div className="relative">
               <div
+                role="img"
+                aria-label="Adam Zakarian"
                 className="w-64 h-64 rounded-full border-2 flex items-center justify-center text-6xl font-bold"
                 style={{
                   borderColor: "#C9A84C",
@@ -459,25 +487,37 @@ export default function HomePage() {
           >
             Pricing
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#F0F0F0] mb-4">
+          <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] mb-4 tracking-[-0.02em] leading-[1.05]">
             Choose your path to 700+
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {[
             {
               name: "Self-Study",
               price: "$297",
               note: "one-time",
               desc: "Full curriculum + analytics",
+              features: [
+                "8-module progressive curriculum",
+                "Full error-log analytics",
+                "Unlimited practice + 6 mocks",
+                "Spacing + review queue",
+              ],
               highlighted: false,
             },
             {
               name: "Coaching",
               price: "$2,500",
               note: "package",
-              desc: "8 weekly sessions + WhatsApp",
+              desc: "8 weekly 1:1 sessions + WhatsApp",
+              features: [
+                "Everything in Self-Study",
+                "8 × 60-min 1:1 calls with Adam",
+                "Direct WhatsApp between sessions",
+                "Custom per-week plan + ESR debrief",
+              ],
               highlighted: true,
               badge: "Most Popular",
             },
@@ -486,43 +526,72 @@ export default function HomePage() {
               price: "$4,200",
               note: "package",
               desc: "16 weeks + score guarantee",
+              features: [
+                "Everything in Coaching",
+                "16 weeks of weekly sessions",
+                "Score guarantee or refund",
+                "Mock-by-mock tuning loop",
+              ],
               highlighted: false,
             },
           ].map((plan) => (
             <div
               key={plan.name}
-              className="relative p-6 rounded-xl border transition-all"
+              className="group relative p-7 rounded-2xl border transition-all duration-300 hover:-translate-y-0.5"
               style={{
                 borderColor: plan.highlighted
-                  ? "rgba(201,168,76,0.4)"
+                  ? "rgba(201,168,76,0.42)"
                   : "rgba(255,255,255,0.07)",
-                backgroundColor: plan.highlighted ? "#111111" : "#0D0D0D",
+                backgroundColor: plan.highlighted ? "#131313" : "#0D0D0D",
                 boxShadow: plan.highlighted
-                  ? "0 0 40px rgba(201,168,76,0.07)"
+                  ? "0 0 60px rgba(201,168,76,0.1), inset 0 1px 0 rgba(255,255,255,0.05)"
                   : undefined,
               }}
             >
               {plan.badge && (
                 <div
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-bold"
+                  className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase"
                   style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
                 >
                   {plan.badge}
                 </div>
               )}
-              <h3 className="font-semibold text-[#F0F0F0] mb-1">{plan.name}</h3>
-              <p className="text-xs text-[#888888] mb-4">{plan.desc}</p>
-              <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-3xl font-bold text-[#F0F0F0]">{plan.price}</span>
+              <h3 className="font-display text-xl font-semibold text-[#F0F0F0] mb-1 tracking-tight">
+                {plan.name}
+              </h3>
+              <p className="text-xs text-[#888888] mb-6">{plan.desc}</p>
+              <div className="flex items-baseline gap-1.5 mb-6 pb-6 border-b border-white/[0.06]">
+                <span className="font-display text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em]">
+                  {plan.price}
+                </span>
                 <span className="text-xs text-[#555555]">{plan.note}</span>
               </div>
+              <ul className="space-y-2.5 mb-6">
+                {plan.features.map((feat) => (
+                  <li
+                    key={feat}
+                    className="flex items-start gap-2.5 text-xs text-[#C0C0C0] leading-relaxed"
+                  >
+                    <CheckCircle
+                      className="w-3.5 h-3.5 flex-shrink-0 mt-0.5"
+                      style={{
+                        color: plan.highlighted ? "#C9A84C" : "#3ECF8E",
+                      }}
+                    />
+                    {feat}
+                  </li>
+                ))}
+              </ul>
               <Link
                 href="/pricing"
-                className="block text-center py-2.5 rounded-lg text-sm font-medium transition-all hover:opacity-90"
+                className="block text-center py-3 rounded-lg text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
                 style={
                   plan.highlighted
                     ? { backgroundColor: "#C9A84C", color: "#0A0A0A" }
-                    : { border: "1px solid rgba(255,255,255,0.1)", color: "#F0F0F0" }
+                    : {
+                        border: "1px solid rgba(255,255,255,0.12)",
+                        color: "#F0F0F0",
+                      }
                 }
               >
                 Get Started
@@ -546,7 +615,7 @@ export default function HomePage() {
       <SectionWrapper>
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-[#F0F0F0]">Common questions</h2>
+            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">Common questions</h2>
           </div>
           <FAQAccordion items={faqItems} />
           <div className="text-center mt-8">
@@ -563,20 +632,25 @@ export default function HomePage() {
 
       {/* FINAL CTA */}
       <section
-        className="relative py-24 overflow-hidden"
+        className="relative py-28 overflow-hidden"
         style={{ backgroundColor: "#0A0A0A" }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 70% 60% at 50% 100%, rgba(201,168,76,0.12) 0%, transparent 70%)",
+              "radial-gradient(ellipse 80% 70% at 50% 100%, rgba(201,168,76,0.16) 0%, transparent 65%)",
           }}
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.035] mix-blend-overlay"
+          aria-hidden
         />
         <div className="relative max-w-3xl mx-auto text-center px-4">
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#F0F0F0] mb-6">
+          <h2 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] mb-6 tracking-[-0.02em] leading-[1.02]">
             Ready to score{" "}
-            <span style={{ color: "#C9A84C" }}>700+?</span>
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>700+?</span>
           </h2>
           <p className="text-[#888888] mb-8 text-lg">
             Join students who stopped guessing and started scoring.
@@ -584,7 +658,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/signup"
-              className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-sm font-semibold transition-all hover:opacity-90 hover:scale-[1.02]"
+              className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-sm font-semibold transition-all hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
               Start Free Trial

@@ -128,6 +128,8 @@ problem_sets:
 
 The single most important habit in algebra is "isolate the variable before you do anything else." Every one-unknown linear equation reduces to `x = something`. The work is mechanical; the errors come from doing it sloppily under time pressure.
 
+**Mental model.** An equation is a balance scale. Whatever you do to one side, you must do to the other — the two sides stay equal. Solving means isolating the unknown by adding, subtracting, multiplying, or dividing **both sides** at once. Lose this discipline and your work breaks down within three steps.
+
 **The four operations that preserve equality:**
 
 1. Add the same thing to both sides.
@@ -151,7 +153,9 @@ That's it. Every algebraic step reduces to one of these four. If you find yourse
 
 **Checking by substitution.** The cheapest insurance on any algebra problem: plug your answer back into the original equation. If it doesn't satisfy, you made an arithmetic mistake. Ten seconds of checking beats two minutes of confused rework.
 
-> **Trap to watch.** When you multiply or divide both sides by an expression containing a variable, you may be multiplying by zero or flipping a sign. If `x − 2` could be negative, multiplying an inequality by `x − 2` flips the inequality sign. Keep track of what's in your multiplier.
+**Pro tip.** Build the substitution check into muscle memory: every time you solve an algebra problem, the last thing you do before bubbling is verify. On the GMAT, an extra 5 seconds per algebra question buys you ~30% fewer arithmetic-slip misses — by far the cheapest accuracy gain available.
+
+**Trap to watch.** When you multiply or divide both sides by an expression containing a variable, you may be multiplying by zero or flipping a sign. If `x − 2` could be negative, multiplying an inequality by `x − 2` flips the inequality sign. Keep track of what's in your multiplier.
 
 > **Self-explanation prompt.** In one sentence, why is "isolate the variable" good discipline? If you can say "because once the variable is alone, every remaining step is arithmetic," you've internalized why this is the only reliable path through multi-step algebra.
 
@@ -177,7 +181,9 @@ Statement (2) is exactly twice statement (1) — same equation, no new informati
 
 **Quick test for independence:** two linear equations `ax + by = c` and `dx + ey = f` are independent if and only if `ae − bd ≠ 0`. Check this at a glance on Data Sufficiency.
 
-> **Trap to watch.** Three unknowns generally need three independent equations. But the GMAT can give you three equations where two are redundant, or give you information in a form that's not obviously an equation (a constraint like `x > 0`). Count *independent* equations, not visible ones.
+**Takeaway.** Two equations in two unknowns *usually* pin down a unique answer — unless one is a linear multiple of the other. Always run the independence check (`ae − bd ≠ 0`) before claiming sufficiency on Data Sufficiency. The C-trap on this pattern catches a huge fraction of mid-band students.
+
+**Trap to watch.** Three unknowns generally need three independent equations. But the GMAT can give you three equations where two are redundant, or give you information in a form that's not obviously an equation (a constraint like `x > 0`). Count *independent* equations, not visible ones.
 
 ## @inequalities
 
@@ -218,7 +224,7 @@ Students who forget to flip write `x > 3` — exactly the wrong answer.
 - Intersect: `−4 < x < 1` OR `5 < x < 10`.
 - Integer values in `−4 < x < 1`: −3, −2, −1, 0 (4 values). In `5 < x < 10`: 6, 7, 8, 9 (4 values). Total: 8.
 
-> **Trap to watch.** Reciprocals flip inequalities only when both sides have the same sign. `2 < 5` gives `1/2 > 1/5` (positive, flips). But `−2 < 5` does NOT give `−1/2 > 1/5`; when the signs differ, you can't take reciprocals cleanly. This trap is frequent on Data Sufficiency.
+**Trap to watch.** Reciprocals flip inequalities only when both sides have the same sign. `2 < 5` gives `1/2 > 1/5` (positive, flips). But `−2 < 5` does NOT give `−1/2 > 1/5`; when the signs differ, you can't take reciprocals cleanly. This trap is frequent on Data Sufficiency.
 
 ## @polynomial-inequalities-wavy-line
 
@@ -284,7 +290,7 @@ The double root at 1 is the key subtlety — it's a bounce, not a flip. Students
 
 > **Recall check.** Close your eyes. State the four steps of the wavy-line method out loud without looking. Now explain when you *bounce* off a root versus *cross* it. If you can say "bounce when the factor has even power, cross when odd," you've internalized the only rule that matters for double roots. Open your eyes and verify against the recipe above.
 
-> **Trap to watch.** When the expression includes `1/(x − a)`, the value `x = a` is **excluded** from the solution (division by zero is undefined). Don't fill in that dot. Numerator roots may be included or excluded depending on whether the inequality is strict.
+**Trap to watch.** When the expression includes `1/(x − a)`, the value `x = a` is **excluded** from the solution (division by zero is undefined). Don't fill in that dot. Numerator roots may be included or excluded depending on whether the inequality is strict.
 
 ## @absolute-value
 
@@ -322,7 +328,7 @@ Sum: `9 + (−2) = 7`. The sum shortcut still works: solutions are symmetric abo
 
 **When the right-hand side can be negative.** `|expr| = −5` has no solution (absolute value is never negative). `|expr| > −5` is always true (absolute value is always ≥ 0 > −5). `|expr| < −5` is never true. Watch these edge cases on Data Sufficiency.
 
-> **Trap to watch.** `|x − y| = |y − x|` always. Don't double-count by treating them as separate. Also, `|x|² = x²` for any real x, so `|x|` equations can sometimes be turned into quadratics by squaring both sides — but squaring can introduce extraneous solutions, so always check.
+**Trap to watch.** `|x − y| = |y − x|` always. Don't double-count by treating them as separate. Also, `|x|² = x²` for any real x, so `|x|` equations can sometimes be turned into quadratics by squaring both sides — but squaring can introduce extraneous solutions, so always check.
 
 > **Self-explanation prompt.** Why does `|expr| < k` produce a single interval but `|expr| > k` produce two? If you can say "because 'close to zero' is one region but 'far from zero' is two regions (positive far and negative far)," you've geometrized absolute value and won't mix up AND vs OR again.
 
@@ -332,7 +338,12 @@ A quadratic is an equation of the form `ax² + bx + c = 0`. Three techniques han
 
 **Factoring a trinomial with leading coefficient 1.** For `x² + bx + c = 0`, find two numbers that *multiply to c* and *add to b*. Those are the roots' negatives.
 
-**Example.** `x² − 5x − 14 = 0`. Find two numbers that multiply to −14 and add to −5. That's −7 and 2. So `(x − 7)(x + 2) = 0`, giving roots `x = 7` and `x = −2`. Product of roots: `7 × (−2) = −14`.
+**Worked example.** Solve `x² − 5x − 14 = 0`.
+
+- Find two numbers that multiply to −14 and add to −5: that's −7 and 2.
+- Factor: `(x − 7)(x + 2) = 0`.
+- Roots: `x = 7` and `x = −2`.
+- Verify: `7 × (−2) = −14` (matches `c`); `7 + (−2) = 5` (matches `−b`). Both Vieta checks pass.
 
 **Vieta's formulas — the fastest way to get sum and product.** For `ax² + bx + c = 0`:
 
@@ -369,7 +380,7 @@ The difference-of-squares identity is the one you'll use most. `99 × 101 = (100
 
 New equation factors as `(x − 1)(x − 5) = 0`, roots 1 and 5. Original roots: 1 − 2 = −1 and 5 − 2 = 3. By Vieta's: sum = −b → `−1 + 3 = 2 = −b` → `b = −2`. Product = c → `−1 × 3 = −3 = c`. So `b + c = −5`.
 
-> **Trap to watch.** Vieta's gives sum `= −b/a`, not `+b/a`. The negative sign is a common slip. Also, when a ≠ 1 (e.g., `2x² + 5x − 3 = 0`), use `−b/a` and `c/a`, not just `−b` and `c`.
+**Trap to watch.** Vieta's gives sum `= −b/a`, not `+b/a`. The negative sign is a common slip. Also, when a ≠ 1 (e.g., `2x² + 5x − 3 = 0`), use `−b/a` and `c/a`, not just `−b` and `c`.
 
 ## @functions-and-sequences
 
@@ -439,7 +450,7 @@ This is arithmetic with `d = 4`, so `a₁₀ = 2 + 9(4) = 38`.
 
 > **Recall check.** Without scrolling up, state the formula for the nth term of an arithmetic sequence and the formula for the nth term of a geometric sequence. Now state the sum formula for an arithmetic sequence. If you can write them from memory, you've encoded the template; if not, re-read the three boxes and try again in two minutes. Retrieval beats re-reading — that's the single most robust finding in the learning-science literature (Karpicke & Blunt, 2011).
 
-> **Trap to watch.** "f(a + b)" is **not** the same as "f(a) + f(b)" unless f is literally linear. For `f(x) = x²`, `f(2 + 3) = 25`, but `f(2) + f(3) = 4 + 9 = 13`. Students who distribute function notation like multiplication get trapped constantly. Always compute the input first, then apply the function.
+**Trap to watch.** "f(a + b)" is **not** the same as "f(a) + f(b)" unless f is literally linear. For `f(x) = x²`, `f(2 + 3) = 25`, but `f(2) + f(3) = 4 + 9 = 13`. Students who distribute function notation like multiplication get trapped constantly. Always compute the input first, then apply the function.
 
 ## @algebraic-manipulation
 
@@ -485,7 +496,7 @@ The most common GMAT question using these: you're given `xy` and `x² + y²`, an
 
 **Example.** `f(n) = n² − n`. Find `f(f(3))`. First `f(3) = 9 − 3 = 6`. Then `f(6) = 36 − 6 = 30`.
 
-> **Trap to watch.** `(x + y)² ≠ x² + y²`. Students drop the `2xy` cross term constantly. Whenever you square a sum, write all three terms: `x² + 2xy + y²`.
+**Trap to watch.** `(x + y)² ≠ x² + y²`. Students drop the `2xy` cross term constantly. Whenever you square a sum, write all three terms: `x² + 2xy + y²`.
 
 ## @word-problem-translation
 
@@ -528,7 +539,7 @@ From equation 2: `s = 17 − 4m`. Substitute: `2m + 3(17 − 4m) = 21` → `2m +
 
 **Rates and percents in words.** A 20% raise: multiply by 1.20. A 20% cut: multiply by 0.80. "30% of x" is `0.30x`. "Twenty percent more than x" is `1.20x`, not `x + 20`. Always convert percents to decimals before multiplying.
 
-> **Trap to watch.** "Three more than half of x" is `x/2 + 3`, not `(x + 3)/2`. Parse the English by the last operation first: "more than" is the outer verb, applied to "half of x" (inner). Always resolve inner phrases before outer ones.
+**Trap to watch.** "Three more than half of x" is `x/2 + 3`, not `(x + 3)/2`. Parse the English by the last operation first: "more than" is the outer verb, applied to "half of x" (inner). Always resolve inner phrases before outer ones.
 
 > **Self-explanation prompt.** Translate in one breath: "the number of boys is 5 fewer than twice the number of girls." If you wrote `b = 2g − 5`, you've got it. If you wrote `b = 5 − 2g`, re-read — "fewer than" means subtract from the bigger thing.
 

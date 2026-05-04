@@ -61,9 +61,25 @@ interface StoredChapterProgress {
 }
 export type ChapterProgressMap = Record<string, StoredChapterProgress>
 
+/** A row from `practice_attempts` with the fields this module reads.
+ *  The confidence column stores "low" | "medium" | "high" | null — practice
+ *  uses "medium" where chapters use "med" (historical divergence). The
+ *  normalizer below handles both. */
+export interface PracticeAttemptCalibrationRow {
+  confidence: string | null
+  is_correct: boolean | null
+}
+
+function normalizeConfidence(raw: string | null | undefined): ConfidenceLevel | null {
+  if (raw === "low" || raw === "med" || raw === "high") return raw
+  if (raw === "medium") return "med"
+  return null
+}
+
 export function computeCalibration(
   chapterProgress: ChapterProgressMap | null | undefined,
-  questions: ParsedQuestion[]
+  questions: ParsedQuestion[],
+  practiceAttempts?: PracticeAttemptCalibrationRow[] | null,
 ): CalibrationReport {
   const byId = new Map(questions.map((q) => [q.id, q]))
   const tiers: Record<ConfidenceLevel, { total: number; correct: number }> = {
@@ -78,8 +94,8 @@ export function computeCalibration(
       if (!qs || typeof qs !== "object") continue
       for (const [questionId, prog] of Object.entries(qs)) {
         if (!prog || !prog.submitted) continue
-        const confidence = prog.confidence
-        if (confidence !== "low" && confidence !== "med" && confidence !== "high") continue
+        const confidence = normalizeConfidence(prog.confidence)
+        if (!confidence) continue
         const q = byId.get(questionId)
         if (!q) continue // question removed/renamed since the attempt
         const selected = prog.selected
@@ -87,6 +103,15 @@ export function computeCalibration(
         tiers[confidence].total += 1
         if (selected === q.correctAnswer) tiers[confidence].correct += 1
       }
+    }
+  }
+
+  if (practiceAttempts) {
+    for (const row of practiceAttempts) {
+      const confidence = normalizeConfidence(row.confidence)
+      if (!confidence) continue
+      tiers[confidence].total += 1
+      if (row.is_correct) tiers[confidence].correct += 1
     }
   }
 

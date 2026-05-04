@@ -12,17 +12,25 @@ export default function PricingCard({ tier, className }: PricingCardProps) {
   return (
     <div
       className={cn(
-        "relative rounded-xl border p-6 flex flex-col transition-all duration-300",
+        "group relative rounded-2xl border p-7 flex flex-col transition-all duration-300 hover:-translate-y-0.5",
         tier.highlighted
-          ? "border-[#C9A84C]/50 bg-[#111111] shadow-[0_0_40px_rgba(201,168,76,0.08)]"
-          : "border-white/[0.08] bg-[#0F0F0F] hover:border-white/[0.14]",
+          ? "border-[#C9A84C]/45 bg-[#131313]"
+          : "border-white/[0.07] bg-[#0F0F0F] hover:border-white/[0.16] hover:bg-[#121212]",
         className
       )}
+      style={
+        tier.highlighted
+          ? {
+              boxShadow:
+                "0 0 60px rgba(201,168,76,0.1), inset 0 1px 0 rgba(255,255,255,0.05)",
+            }
+          : undefined
+      }
     >
       {/* Badge */}
       {tier.badge && (
         <div
-          className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-semibold"
+          className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.18em]"
           style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
         >
           {tier.badge}
@@ -31,13 +39,15 @@ export default function PricingCard({ tier, className }: PricingCardProps) {
 
       {/* Header */}
       <div className="mb-6">
-        <h3 className="text-base font-semibold text-[#F0F0F0] mb-1">{tier.name}</h3>
-        <p className="text-xs text-[#888888] mb-4">{tier.description}</p>
-        <div className="flex items-baseline gap-1">
-          <span className="text-3xl font-bold text-[#F0F0F0]">
+        <h3 className="font-display text-xl font-semibold text-[#F0F0F0] mb-1 tracking-tight">
+          {tier.name}
+        </h3>
+        <p className="text-xs text-[#888888] mb-5 leading-relaxed">{tier.description}</p>
+        <div className="flex items-baseline gap-1.5 pb-6 border-b border-white/[0.06]">
+          <span className="font-display text-4xl sm:text-[2.75rem] font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-none">
             ${tier.price.toLocaleString()}
           </span>
-          <span className="text-sm text-[#555555]">{tier.priceLabel}</span>
+          <span className="text-xs text-[#555555] ml-0.5">{tier.priceLabel}</span>
         </div>
       </div>
 
@@ -50,20 +60,22 @@ export default function PricingCard({ tier, className }: PricingCardProps) {
       />
 
       {/* Features */}
-      <ul className="space-y-3 flex-1">
+      <ul className="space-y-2.5 flex-1 mt-6 pt-6 border-t border-white/[0.05]">
         {tier.features.map((feature, i) => (
           <li key={i} className="flex items-start gap-2.5">
             {feature.included ? (
               <Check
                 className="w-4 h-4 mt-0.5 flex-shrink-0"
-                style={{ color: "#3ECF8E" }}
+                style={{
+                  color: tier.highlighted ? "#C9A84C" : "#3ECF8E",
+                }}
               />
             ) : (
-              <X className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#333333]" />
+              <X className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#2E2E2E]" />
             )}
             <span
               className={cn(
-                "text-sm",
+                "text-[13px] leading-relaxed",
                 feature.included ? "text-[#C0C0C0]" : "text-[#444444]"
               )}
             >

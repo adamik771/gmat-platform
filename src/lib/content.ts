@@ -12,6 +12,13 @@ export interface ParsedFrontmatter {
   [key: string]: string
 }
 
+export type HintLevel = "nudge" | "strategy" | "setup"
+
+export interface ParsedHint {
+  level: HintLevel
+  text: string
+}
+
 export interface ParsedQuestion {
   id: string
   number: number
@@ -29,11 +36,40 @@ export interface ParsedQuestion {
   correctAnswer: number
   correctAnswerLetter: string
   explanation: string
+  /** Optional progressive hints in order: nudge → strategy → setup. When
+   *  present, the session runner exposes a "Hint" button that reveals one
+   *  level at a time. Empty when no hints are authored. */
+  hints: ParsedHint[]
   rawBody: string
   /** Two-Part Analysis: column headers (the two "roles"). Present only for TPA questions. */
   twoPartColumns?: string[]
   /** Two-Part Analysis: the correct row index for each column. Same length as twoPartColumns. */
   twoPartCorrectAnswers?: number[]
+  // ---------- Standardized 6-section explanation fields ----------
+  // Present in bulk-rewritten questions (QUESTION_TAXONOMY format). Optional
+  // because legacy questions and grouped passages may not carry them yet.
+  /** One-line strategic move — the fastest GMAT-strategic approach. */
+  fastestPath?: string
+  /** Per-choice trap analysis. Keys are A-E; correct slot is omitted. */
+  mistakeAnalysis?: Partial<Record<"A" | "B" | "C" | "D" | "E", string>>
+  /** Named primary trap pattern this question deploys. */
+  commonTrap?: string
+  /** Generalizable lesson — what the student should take away. */
+  takeaway?: string
+  /** Slug of the primary reading chapter that teaches this skill. */
+  relatedReading?: string
+  // ---------- Curriculum-aligned taxonomy fields (optional) ----------
+  // Present only in curriculum-aligned files (`questions/curriculum/*.md`).
+  /** Reading subchapter address, e.g. "q1.1.method". */
+  subchapter?: string
+  /** Specific skill the question trains, kebab-case slug. */
+  skill?: string
+  /** Trap-type slug from the curriculum's trap inventory. */
+  trapType?: string
+  /** Target solving time for an elite scorer (seconds). */
+  estTimeSeconds?: number
+  /** Reading-chapter slugs the student should already know. */
+  prerequisite?: string[]
 }
 
 export interface ParsedLesson {
@@ -152,7 +188,7 @@ function parseQuestionBlock(
   if (!headerMatch) return null
   const questionNumber = parseInt(headerMatch[1], 10)
 
-  const metaRegex = /\*\*(difficulty|type|topic|answer|explanation):\*\*\s*([^\n]*)/gi
+  const metaRegex = /\*\*(difficulty|type|topic|answer|explanation|hint_nudge|hint_strategy|hint_setup|fastest_path|common_trap|takeaway|related_reading|mistake_a|mistake_b|mistake_c|mistake_d|mistake_e|subchapter|skill|trap_type|est_time_seconds|prerequisite):\*\*\s*([^\n]*)/gi
   const meta: Record<string, string> = {}
   for (const match of block.matchAll(metaRegex)) {
     const key = match[1].toLowerCase()
@@ -160,6 +196,46 @@ function parseQuestionBlock(
       meta[key] = match[2].trim()
     }
   }
+  // Progressive hints — optional. Authors can add any subset of
+  // `**hint_nudge:**`, `**hint_strategy:**`, `**hint_setup:**` to a
+  // question. Order is fixed (nudge → strategy → setup) so the UI
+  // always reveals the smallest useful push first.
+  const hints: ParsedHint[] = []
+  for (const level of ["nudge", "strategy", "setup"] as const) {
+    const text = meta[`hint_${level}`]
+    if (text && text.length > 0) hints.push({ level, text })
+  }
+
+  // Standardized 6-section explanation fields — optional. Authored on a
+  // per-question basis; surfaced through ParsedQuestion so analytics
+  // (diagnostic report, error-log) can render structured feedback
+  // without re-parsing the markdown.
+  const mistakeAnalysis: Partial<Record<"A" | "B" | "C" | "D" | "E", string>> = {}
+  for (const letter of ["a", "b", "c", "d", "e"] as const) {
+    const text = meta[`mistake_${letter}`]
+    if (text && text.length > 0) {
+      mistakeAnalysis[letter.toUpperCase() as "A" | "B" | "C" | "D" | "E"] = text
+    }
+  }
+  const hasMistakeAnalysis = Object.keys(mistakeAnalysis).length > 0
+
+  // Curriculum taxonomy fields — optional, present only on curriculum-
+  // aligned questions. `prerequisite` is comma-separated; we split it
+  // here so consumers see a string[] consistently. `est_time_seconds`
+  // gets coerced to a positive integer; falsey values stay undefined.
+  const prerequisiteRaw = meta.prerequisite
+  const prerequisite =
+    prerequisiteRaw && prerequisiteRaw.length > 0
+      ? prerequisiteRaw.split(",").map((s) => s.trim()).filter(Boolean)
+      : undefined
+  const estTimeSecondsRaw = meta.est_time_seconds
+  const estTimeSecondsParsed = estTimeSecondsRaw
+    ? parseInt(estTimeSecondsRaw, 10)
+    : NaN
+  const estTimeSeconds =
+    Number.isFinite(estTimeSecondsParsed) && estTimeSecondsParsed > 0
+      ? estTimeSecondsParsed
+      : undefined
 
   // Options (lines starting with "- A)" through "- E)")
   const optionRegex = /^-\s+([A-E])\)\s*(.+)$/gm
@@ -177,7 +253,12 @@ function parseQuestionBlock(
   const bodyAfterHeader = block.slice(headerMatch.index! + headerMatch[0].length, promptEndIdx)
   const promptLines = bodyAfterHeader
     .split("\n")
-    .filter((line) => !/^\*\*(difficulty|type|topic|answer|explanation)/i.test(line.trim()))
+    .filter(
+      (line) =>
+        !/^\*\*(difficulty|type|topic|answer|explanation|hint_nudge|hint_strategy|hint_setup|fastest_path|common_trap|takeaway|related_reading|mistake_[abcde]|subchapter|skill|trap_type|est_time_seconds|prerequisite)/i.test(
+          line.trim()
+        )
+    )
   let prompt = promptLines.join("\n").replace(/^\n+/, "").replace(/\n+$/, "").trim()
 
   // ---------- Two-Part Analysis table detection ----------
@@ -258,9 +339,20 @@ function parseQuestionBlock(
     correctAnswer: twoPartCorrectAnswers ? -1 : letterToIndex(answerLetter),
     correctAnswerLetter: twoPartCorrectAnswers ? "" : answerLetter,
     explanation: meta.explanation ?? "",
+    hints,
     rawBody: block.trim(),
     twoPartColumns,
     twoPartCorrectAnswers,
+    fastestPath: meta.fastest_path || undefined,
+    mistakeAnalysis: hasMistakeAnalysis ? mistakeAnalysis : undefined,
+    commonTrap: meta.common_trap || undefined,
+    takeaway: meta.takeaway || undefined,
+    relatedReading: meta.related_reading || undefined,
+    subchapter: meta.subchapter || undefined,
+    skill: meta.skill || undefined,
+    trapType: meta.trap_type || undefined,
+    estTimeSeconds,
+    prerequisite,
   }
 }
 

@@ -136,6 +136,8 @@ problem_sets:
 
 Data Sufficiency looks different from every other question type on the GMAT. You're given a question and two statements, and asked whether the statements (individually or together) are *sufficient* to answer the question. You never have to compute the final answer — you only decide whether you *could*.
 
+**Mental model.** Data Sufficiency isn't a math problem — it's a classification problem. Each statement either pins down a unique answer or it doesn't, full stop. The AD/BCE grid (statement 1 sufficient? statement 2 sufficient? together?) covers all five answer choices mechanically. Once you stop trying to *compute the answer* and start asking *can the answer be computed*, DS becomes a different game.
+
 **The five answers (always the same, in the same order):**
 
 - **A)** Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
@@ -187,7 +189,7 @@ The most common DS mistake: students think "sufficient" means "I know the value 
 
 > **Recall check.** Close your eyes. Recite the five answer choices (A through E) in order. Now — without peeking — state the four outcomes of the AD/BCE grid. (If (1) sufficient and (2) sufficient, answer is D. If (1) sufficient and (2) not sufficient, answer is A. If (1) not sufficient and (2) sufficient, answer is B. If both not sufficient individually, answer is C or E depending on whether they work together.) Forced retrieval of this grid is what converts DS from "which letter?" guessing into a mechanical evaluation. Redo this until it's automatic.
 
-> **Trap to watch.** "Not sufficient" doesn't mean "gives no information" — it means "doesn't uniquely determine the answer." A statement that rules out 5 of 10 possible values is informative but insufficient. The standard is *uniqueness*, not *usefulness*.
+**Trap to watch.** "Not sufficient" doesn't mean "gives no information" — it means "doesn't uniquely determine the answer." A statement that rules out 5 of 10 possible values is informative but insufficient. The standard is *uniqueness*, not *usefulness*.
 
 ## @rephrasing-the-question
 
@@ -266,7 +268,7 @@ x² > 10 means x > √10 ≈ 3.16 OR x < -√10 ≈ -3.16. So x could be 4 (answ
 
 > **Recall check.** Close your eyes. State the sufficiency standard for value DS in one sentence. Now state the sufficiency standard for yes/no DS. (Answers: value = yields exactly one number; yes/no = yields a definite yes OR a definite no.) Getting these wrong is the cause of roughly 30% of mis-answered DS questions — drilling the distinction now pays off on every question in the problem sets.
 
-> **Trap to watch.** Yes/no with a "no" answer. Statement (1) says "x = 3," question is "Is x > 5?" Some students call this insufficient because "it doesn't prove x > 5." That's wrong — it proves x is NOT > 5, which is a definite answer. Sufficient.
+**Trap to watch.** Yes/no with a "no" answer. Statement (1) says "x = 3," question is "Is x > 5?" Some students call this insufficient because "it doesn't prove x > 5." That's wrong — it proves x is NOT > 5, which is a definite answer. Sufficient.
 
 ## @picking-numbers-to-break
 
@@ -322,7 +324,7 @@ Without picking numbers, this is hard to see. With numbers, it takes 15 seconds.
 
 **The "variable in denominator" trap.** When x appears in a denominator, x ≠ 0 is an implicit constraint — don't pick 0 as a counterexample.
 
-> **Trap to watch.** Students try x = 1 on *every* statement and conclude sufficiency when x = 1 works. That's not proof — just one data point. Always try at least two very different values (positive and negative, integer and fraction) before committing.
+**Trap to watch.** Students try x = 1 on *every* statement and conclude sufficiency when x = 1 works. That's not proof — just one data point. Always try at least two very different values (positive and negative, integer and fraction) before committing.
 
 ## @the-c-trap-and-together-analysis
 

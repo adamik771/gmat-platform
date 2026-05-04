@@ -103,6 +103,8 @@ problem_sets:
 
 Three rules do 80% of the work on every exponent question you'll see. Learn them so well you apply them without thinking.
 
+**Mental model.** Exponents are shorthand for repeated multiplication; roots are the inverse. Every "rule" — `aⁿ × aᵐ = aⁿ⁺ᵐ`, `(aⁿ)ᵐ = aⁿᵐ`, `√(ab) = √a × √b` — falls out of that single fact. Memorize the rules if you must, but if you understand the multiplication picture, you can re-derive any rule in 5 seconds when memory fails under pressure.
+
 **1. Product of same base: xᵃ · xᵇ = xᵃ⁺ᵇ.** Multiply same-base powers by *adding* exponents. The base does not change.
 
 **2. Quotient of same base: xᵃ / xᵇ = xᵃ⁻ᵇ.** Subtract.
@@ -123,7 +125,7 @@ That's the entire workflow. The GMAT will never give you a problem where you sho
 
 Rewrite both sides with base 3: 9 = 3² and 27 = 3³. So (3²)ˣ = 3³, which gives 3²ˣ = 3³. Exponents must match: 2x = 3, so x = 3/2.
 
-> **Trap to watch.** Students who half-learn these rules multiply the bases when they should keep them constant: 2³ · 2⁵ is NOT 4⁸ and it's NOT 2¹⁵. The base stays, the exponents combine. Repeat that sentence to yourself until it feels automatic.
+**Trap to watch.** Students who half-learn these rules multiply the bases when they should keep them constant: 2³ · 2⁵ is NOT 4⁸ and it's NOT 2¹⁵. The base stays, the exponents combine. Repeat that sentence to yourself until it feels automatic.
 
 **Same-exponent shortcut (less common but useful).** xᵃ · yᵃ = (xy)ᵃ and (x/y)ᵃ = xᵃ/yᵃ. Different bases, same exponent? The exponent distributes.
 
@@ -149,7 +151,7 @@ Subtract exponents across the fraction bar: a-exponent is 2 − (−1) = 3, b-ex
 
 The most common mistake here is sign-handling. Slow down for two seconds on the subtraction step. 2 − (−1) is 3, not 1. When you're subtracting a negative, you're adding a positive.
 
-> **Trap to watch.** −3² and (−3)² are different. −3² = −(3²) = −9 because exponentiation binds tighter than the negative sign. (−3)² = 9 because the parentheses force the negative inside. GMAT answer choices often exploit this to separate students who actually read the expression from those who skim it.
+**Trap to watch.** −3² and (−3)² are different. −3² = −(3²) = −9 because exponentiation binds tighter than the negative sign. (−3)² = 9 because the parentheses force the negative inside. GMAT answer choices often exploit this to separate students who actually read the expression from those who skim it.
 
 ## @fractional-exponents-and-radicals
 
@@ -174,7 +176,7 @@ Option B took three seconds. Option A took thirty and required you to know ³√
 
 Power of a power: multiply. (3/4) · (8/3) = 24/12 = 2. Result: x².
 
-> **Trap to watch.** x^(1/2) is **only** defined as the non-negative square root on the GMAT. For x ≥ 0, √x is a single non-negative value, not ±. When the GMAT wants both roots, it writes x² = 9 (giving x = ±3), not x = √9 (giving just 3).
+**Trap to watch.** x^(1/2) is **only** defined as the non-negative square root on the GMAT. For x ≥ 0, √x is a single non-negative value, not ±. When the GMAT wants both roots, it writes x² = 9 (giving x = ±3), not x = √9 (giving just 3).
 
 **Converting between forms.** √x = x^(1/2). ³√x = x^(1/3). √(x³) = x^(3/2). You'll move between radical and fractional-exponent notation constantly — treat them as two languages for the same object.
 
@@ -210,7 +212,7 @@ Simplify each first: √12 = √(4·3) = 2√3, and √27 = √(9·3) = 3√3. N
 
 **Multiplying radicals.** √a · √b = √(ab). And (a√b)(c√d) = ac · √(bd). Treat the integer coefficients and the radicals separately, then combine.
 
-> **Trap to watch.** √a + √b is NOT √(a+b). Concretely: √9 + √16 = 3 + 4 = 7, but √25 = 5. Radicals split across multiplication and division, never across addition or subtraction.
+**Trap to watch.** √a + √b is NOT √(a+b). Concretely: √9 + √16 = 3 + 4 = 7, but √25 = 5. Radicals split across multiplication and division, never across addition or subtraction.
 
 **Memorize these cube roots:** ³√8 = 2, ³√27 = 3, ³√64 = 4, ³√125 = 5, ³√216 = 6, ³√1000 = 10. Cube roots come up less often than square roots, but when they do, recognition speed matters.
 
@@ -234,7 +236,7 @@ Multiply top and bottom by the conjugate (√3 − 1):
 
 **Why the conjugate works.** When you expand (a + b)(a − b), the cross-terms cancel and you're left with a² − b² — which kills the radical if a or b is a square root. This is the single most useful algebraic identity on the GMAT. Learn it with your eyes closed.
 
-> **Trap to watch.** When you rationalize, you must multiply BOTH numerator and denominator by the conjugate. Forgetting to scale the numerator changes the value. You're multiplying by (conjugate/conjugate) = 1 — so the expression stays equal — but only if both top and bottom get hit.
+**Trap to watch.** When you rationalize, you must multiply BOTH numerator and denominator by the conjugate. Forgetting to scale the numerator changes the value. You're multiplying by (conjugate/conjugate) = 1 — so the expression stays equal — but only if both top and bottom get hit.
 
 **Combining radical fractions.** Follow the normal fraction workflow: common denominator, then simplify.
 
@@ -264,7 +266,7 @@ Rewrite the smaller: 2 × 10⁴ = 0.2 × 10⁵. Now add: (3 + 0.2) × 10⁵ = 3.
 
 **Normalizing after arithmetic.** If your coefficient falls outside [1, 10), shift the decimal and adjust. 24 × 10⁵ → 2.4 × 10⁶. The exponent goes up as the coefficient shrinks.
 
-> **Trap to watch.** Be precise about whether exponents move up or down. A concrete check: 4.5 × 10⁻⁴ should be a very small number (0.00045). If you wrote 4.5 × 10⁴, that's 45,000 — opposite direction. Whenever an exponent sign feels ambiguous, plug in a sanity-check number.
+**Trap to watch.** Be precise about whether exponents move up or down. A concrete check: 4.5 × 10⁻⁴ should be a very small number (0.00045). If you wrote 4.5 × 10⁴, that's 45,000 — opposite direction. Whenever an exponent sign feels ambiguous, plug in a sanity-check number.
 
 **The load-bearing benchmark: 2¹⁰ ≈ 10³.** Exactly: 2¹⁰ = 1,024. This approximation lets you estimate powers of 2 against powers of 10 without a calculator. 2²⁰ ≈ 10⁶. 2³⁰ ≈ 10⁹. The approximation is slightly low (2¹⁰ is actually 2.4% higher than 10³), but that's close enough for GMAT comparison questions — and one of the hardest exponent DS questions on the test hinges on recognizing it.
 

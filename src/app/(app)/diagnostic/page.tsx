@@ -8,7 +8,7 @@ import {
 import type { Section } from "@/types"
 
 export const metadata = {
-  title: "Diagnostic — Zakarian GMAT",
+  title: "Diagnostic",
 }
 
 /**
@@ -148,7 +148,7 @@ export default async function DiagnosticPage() {
             </h2>
             <p className="text-xs text-[#888888] leading-relaxed">
               {allDone
-                ? "Per-section score estimate, weak topics, and recommended next chapters."
+                ? "Per-section readiness band, weak topics, and recommended next chapters."
                 : "Finish all three sections to unlock the full report. Partial results show up after each section you complete."}
             </p>
           </div>

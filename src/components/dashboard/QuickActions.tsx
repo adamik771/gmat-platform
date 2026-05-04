@@ -47,14 +47,14 @@ export default function QuickActions({ className }: QuickActionsProps) {
             key={action.href + action.label}
             href={action.href}
             className={cn(
-              "flex items-center gap-3 p-4 rounded-xl border transition-all duration-200 hover:scale-[1.02]",
+              "group flex items-center gap-4 p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-20px_rgba(201,168,76,0.2)]",
               action.primary
                 ? "border-[#C9A84C]/30 bg-[#C9A84C]/5 hover:bg-[#C9A84C]/10"
-                : "border-white/[0.08] bg-[#111111] hover:border-white/[0.14]"
+                : "border-white/[0.06] bg-[#0F0F0F] hover:border-white/[0.12]"
             )}
           >
             <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+              className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
               style={{
                 backgroundColor: action.primary
                   ? "rgba(201, 168, 76, 0.15)"
@@ -69,13 +69,15 @@ export default function QuickActions({ className }: QuickActionsProps) {
             <div>
               <p
                 className={cn(
-                  "text-sm font-medium",
+                  "text-[14px] font-semibold tracking-tight",
                   action.primary ? "text-[#C9A84C]" : "text-[#F0F0F0]"
                 )}
               >
                 {action.label}
               </p>
-              <p className="text-xs text-[#555555]">{action.description}</p>
+              <p className="text-[12px] text-[#888888] mt-0.5 leading-relaxed">
+                {action.description}
+              </p>
             </div>
           </Link>
         )

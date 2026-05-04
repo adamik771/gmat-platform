@@ -1,16 +1,28 @@
 import { NextResponse, type NextRequest } from "next/server"
 import { createSupabaseProxy } from "@/lib/supabase/proxy"
 
-// Routes under the (app) group that require authentication.
+// Routes under the (app) group that require authentication. Keep in
+// sync with `src/app/(app)/` directory entries — any new top-level
+// route added there should be added here so the proxy redirects
+// unauthenticated users to /login before the page renders.
 const APP_ROUTES = [
-  "/dashboard",
-  "/practice",
-  "/lessons",
+  "/admin",
   "/analytics",
+  "/chapters",
+  "/dashboard",
+  "/diagnostic",
   "/error-log",
+  "/guides",
+  "/learn",
+  "/lessons",
+  "/mock",
+  "/onboarding",
+  "/practice",
+  "/qa",
+  "/review",
+  "/settings",
   "/study-plan",
   "/test-builder",
-  "/settings",
 ]
 
 // Routes under the (auth) group — authenticated users get redirected away.
@@ -49,6 +61,8 @@ export async function proxy(request: NextRequest) {
     if (isAppRoute && !user) {
       const url = request.nextUrl.clone()
       url.pathname = "/login"
+      // Preserve the original target so login can bounce back after auth.
+      url.searchParams.set("next", pathname + request.nextUrl.search)
       return NextResponse.redirect(url)
     }
 

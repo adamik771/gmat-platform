@@ -127,6 +127,8 @@ problem_sets:
 
 Every word problem is two tasks welded together: translate English into algebra, then solve. Most errors happen in the first step — students set up the wrong equation and then solve the wrong equation correctly. Four discipline habits eliminate 90% of translation errors.
 
+**Mental model.** Word problems are *translation* problems. The hard part is converting English ("twice as many," "after a 20% increase," "for every 3 X there are 5 Y") into equations. Once the equations are right, the algebra is mechanical. Almost every word-problem error is a translation error — a misread "more than" or a confused before/after — not an arithmetic one. The discipline: write the equation in symbols *before* you start solving.
+
 **Habit 1: Define your variable explicitly, in words, with units.**
 
 Not "x = amount" but "x = the number of dimes in the piggy bank." Writing out what the variable stands for — in full, with units — prevents the single most common mistake: solving for the wrong quantity.
@@ -231,7 +233,7 @@ Or via total/total: assume 30 miles each way. Times: 30/15 = 2 and 30/10 = 3. To
 
 **When the trip has unequal legs.** Use total/total directly — harmonic mean doesn't apply.
 
-> **Trap to watch.** Students often forget to convert minutes to hours before using D = RT with a rate in mph. If the problem says "2 hours and 30 minutes," convert to 2.5 hours before plugging in.
+**Trap to watch.** Students often forget to convert minutes to hours before using D = RT with a rate in mph. If the problem says "2 hours and 30 minutes," convert to 2.5 hours before plugging in.
 
 ## @work-rate-problems
 
@@ -313,7 +315,7 @@ General approach: track the pure-component amount through each step, using "curr
 
 **Mixing unequal-quantity blends to match a target.** Whenever the question specifies the blend's concentration AND the final quantity, you have two equations (total quantity + total pure component) and two unknowns — always solvable.
 
-> **Trap to watch.** When "pure acid" is added, the total volume increases. Forgetting to update the denominator (writing (3+x)/10 instead of (3+x)/(10+x)) is the #1 mixture error.
+**Trap to watch.** When "pure acid" is added, the total volume increases. Forgetting to update the denominator (writing (3+x)/10 instead of (3+x)/(10+x)) is the #1 mixture error.
 
 ## @profit-and-percent
 
@@ -404,7 +406,7 @@ Middle = 72/3 = 24. Largest = 25. Done in 5 seconds without algebra (for evenly-
 
 The pattern generalizes. For *any* consecutive set (consecutive integers, consecutive even, consecutive multiples of 7), mean = middle = (first + last)/2. Sum = mean × count. This shortcut handles many "sum of N consecutive integers" problems without variables at all.
 
-> **Trap to watch.** Age problems with "X years ago" clauses — students often write X − 5 = 4N − 5 instead of X − 5 = 4(N − 5). The parenthesis is non-negotiable: BOTH people were 5 years younger then, so both sides of the equation need to shift by 5.
+**Trap to watch.** Age problems with "X years ago" clauses — students often write X − 5 = 4N − 5 instead of X − 5 = 4(N − 5). The parenthesis is non-negotiable: BOTH people were 5 years younger then, so both sides of the equation need to shift by 5.
 
 ## @sets-and-venn
 
@@ -520,7 +522,7 @@ To minimize xy, push one of them to the smallest feasible value. y can be as sma
 
 > **Recall check.** Without looking up: state the general strategy for solving any max/min problem in one sentence. Now apply it mentally to "5 positive integers sum to 50; what's the max possible smallest element?" (Answer: push the other four down to be equal; if all 5 equal → 10, so max smallest is 10. If distinct integers required → 1+2+3+4+40 type minimization of four → max smallest = 8 via 8+9+10+11+12.) The discipline of recalling the strategy first, solving second, locks the method in.
 
-> **Trap to watch.** "Greatest possible value" questions usually have a strict inequality somewhere — check whether that pushes a boundary up by 1 or leaves it where it is. Also, if the problem requires *distinct* values, you can't repeat — that often forces the "maximize A by minimizing B" answer one notch off what you'd naively expect.
+**Trap to watch.** "Greatest possible value" questions usually have a strict inequality somewhere — check whether that pushes a boundary up by 1 or leaves it where it is. Also, if the problem requires *distinct* values, you can't repeat — that often forces the "maximize A by minimizing B" answer one notch off what you'd naively expect.
 
 ## @summary
 

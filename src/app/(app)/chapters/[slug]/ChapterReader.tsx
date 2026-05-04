@@ -1,8 +1,9 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import Link from "next/link"
+import { Children, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react"
 import {
+  AlertTriangle,
   ArrowRight,
   Award,
   BookOpen,
@@ -13,12 +14,19 @@ import {
   Clock,
   FlaskConical,
   Lightbulb,
+  Maximize2,
+  Minimize2,
   Sparkles,
   X,
 } from "lucide-react"
 import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { cn } from "@/lib/utils"
+import MixedReviewCard from "@/components/shared/MixedReviewCard"
+import ReaderThemeToggle, { useReadingTheme } from "@/components/shared/ReaderThemeToggle"
+import ChapterSidebarNav from "./ChapterSidebarNav"
+import ChapterRightPanel from "./ChapterRightPanel"
+import ChapterMobileTOC from "./ChapterMobileTOC"
 import type { Difficulty, Section } from "@/types"
 
 /**
@@ -95,6 +103,13 @@ interface ChapterProgress {
     "easy" | "medium" | "hard",
     { correct: number; total: number } | undefined
   >
+  /** Free-text per-section notes the student writes while reading. Keyed
+   *  by section id; empty entries are pruned by the UI. */
+  notes?: Record<string, string>
+  /** Last time the student touched this chapter (ms epoch). Powers the
+   *  "Resume" widget on the dashboard — picks the chapter with the
+   *  highest lastSeenAt across all chapter_progress entries. */
+  lastSeenAt?: number
 }
 
 const EMPTY_PROGRESS: ChapterProgress = {
@@ -124,6 +139,8 @@ function loadProgress(slug: string): ChapterProgress {
       sectionsRead: parsed.sectionsRead ?? {},
       questions: parsed.questions ?? {},
       problemSetResults: parsed.problemSetResults ?? EMPTY_PROGRESS.problemSetResults,
+      notes: parsed.notes ?? {},
+      lastSeenAt: parsed.lastSeenAt,
     }
   } catch {
     return EMPTY_PROGRESS
@@ -151,6 +168,8 @@ function normalizeServerProgress(input: unknown): ChapterProgress {
     sectionsRead: source.sectionsRead ?? {},
     questions: source.questions ?? {},
     problemSetResults: source.problemSetResults ?? EMPTY_PROGRESS.problemSetResults,
+    notes: source.notes ?? {},
+    lastSeenAt: source.lastSeenAt,
   }
 }
 
@@ -173,60 +192,407 @@ async function pushProgress(slug: string, progress: ChapterProgress) {
 }
 
 // ----- Shared markdown styling for reading bodies -----
+
+// Detects worked-solution paragraphs and re-renders them vertically.
+//
+// Two patterns trigger a vertical layout:
+//   1. Arrow chains — "X → Y → Z" with 2+ standalone "→" text nodes.
+//   2. Math-heavy multi-sentence paragraphs — "Add: A, so B. Subtract: C,
+//      so D." with 3+ inline elements (code pills, strong, em) and a
+//      sentence boundary inside the prose.
+//
+// The arrow check fires first for pure chain paragraphs. The sentence
+// check catches the broader "worked solution" pattern Adam flagged.
+function splitParagraph(children: ReactNode): ReactNode[][] | null {
+  const arr = Children.toArray(children)
+
+  const arrowGroups = splitArrowChain(arr)
+  if (arrowGroups) return arrowGroups
+
+  const sentenceGroups = splitWorkedSolution(arr)
+  if (sentenceGroups) return sentenceGroups
+
+  return null
+}
+
+function splitArrowChain(arr: ReactNode[]): ReactNode[][] | null {
+  const arrowIdxs: number[] = []
+  for (let i = 0; i < arr.length; i++) {
+    const c = arr[i]
+    if (typeof c === "string" && /^\s*→\s*$/.test(c)) {
+      arrowIdxs.push(i)
+    }
+  }
+  if (arrowIdxs.length < 2) return null
+
+  const groups: ReactNode[][] = []
+  let start = 0
+  for (const idx of arrowIdxs) {
+    groups.push(arr.slice(start, idx))
+    start = idx + 1
+  }
+  groups.push(arr.slice(start))
+  return groups
+}
+
+// Splits a paragraph at ". " sentence boundaries (period + space + capital
+// letter) only if the paragraph carries 3+ inline elements — the signature
+// of a worked solution rather than ordinary prose.
+function splitWorkedSolution(arr: ReactNode[]): ReactNode[][] | null {
+  const inlineElementCount = arr.filter((c) => typeof c !== "string").length
+  if (inlineElementCount < 3) return null
+
+  const groups: ReactNode[][] = [[]]
+  for (const c of arr) {
+    if (typeof c === "string") {
+      // Split AFTER ". " using lookbehind, so the period stays with the
+      // previous chunk. Lookahead requires the next char to be a capital
+      // letter — keeps "Mr. Smith" / "e.g." / "Q.E.D." from triggering.
+      const parts = c.split(/(?<=\. )(?=[A-Z])/g)
+      groups[groups.length - 1].push(parts[0])
+      for (let i = 1; i < parts.length; i++) {
+        groups.push([parts[i]])
+      }
+    } else {
+      groups[groups.length - 1].push(c)
+    }
+  }
+  if (groups.length < 2) return null
+  // Only verticalize if at least one resulting group still carries an
+  // inline element — otherwise the split is between trailing prose and
+  // not a real solution chain.
+  const groupsWithInline = groups.filter((g) =>
+    g.some((c) => typeof c !== "string")
+  )
+  if (groupsWithInline.length < 2) return null
+  return groups
+}
+
+function ArrowChainBlock({ steps }: { steps: ReactNode[][] }) {
+  return (
+    <div
+      className="my-5 pl-4 border-l-2 space-y-2 text-[17px] leading-[1.75]"
+      style={{
+        color: "var(--read-text-body)",
+        borderColor: "var(--read-gold-soft)",
+      }}
+    >
+      {steps.map((step, i) => (
+        <div key={i}>{step}</div>
+      ))}
+    </div>
+  )
+}
+
+// ---------- Authored callout detection ----------
+//
+// When a chapter author writes a paragraph that opens with a known bold
+// label like "**Trap to watch.**" or "**Mental model.**", we elevate
+// the whole paragraph into a styled callout block. Lets authors mark
+// pedagogical patterns with a tiny syntactic convention rather than a
+// custom markdown extension.
+
+type CalloutKind = "trap" | "mental-model" | "tip" | "takeaway" | "example"
+
+interface CalloutMeta {
+  label: string
+  border: string
+  bg: string
+  iconColor: string
+  Icon: typeof Lightbulb
+}
+
+const CALLOUT_META: Record<CalloutKind, CalloutMeta> = {
+  trap: {
+    label: "Trap",
+    border: "rgba(255,153,51,0.45)",
+    bg: "rgba(255,153,51,0.06)",
+    iconColor: "#FF9933",
+    Icon: AlertTriangle,
+  },
+  "mental-model": {
+    label: "Mental model",
+    border: "var(--read-gold-strong)",
+    bg: "var(--read-gold-soft)",
+    iconColor: "var(--read-gold)",
+    Icon: BrainCircuit,
+  },
+  tip: {
+    label: "Pro tip",
+    border: "rgba(95,168,255,0.45)",
+    bg: "rgba(95,168,255,0.06)",
+    iconColor: "#5FA8FF",
+    Icon: Lightbulb,
+  },
+  takeaway: {
+    label: "Takeaway",
+    border: "rgba(62,207,142,0.4)",
+    bg: "rgba(62,207,142,0.06)",
+    iconColor: "#3ECF8E",
+    Icon: CheckCircle2,
+  },
+  example: {
+    label: "Worked example",
+    border: "rgba(176,136,255,0.4)",
+    bg: "rgba(176,136,255,0.06)",
+    iconColor: "#B088FF",
+    Icon: Sparkles,
+  },
+}
+
+// Patterns that flip a bold-led paragraph into a callout. The match is
+// case-insensitive; trailing punctuation in the bold prefix (period,
+// colon) is stripped before testing. Only standalone callout-flavored
+// labels fire — bare "Example." / "Step 1." / "Why this matters." stay
+// inline so the existing chapter prose isn't over-formatted.
+const CALLOUT_PATTERNS: Array<[RegExp, CalloutKind]> = [
+  [/^(trap to watch|common trap|trap pattern|trap)$/i, "trap"],
+  [/^(mental model|the mental model|core idea)$/i, "mental-model"],
+  [/^(pro tip|high.?scorer note|elite tip|speed tip)$/i, "tip"],
+  [/^(key takeaway|takeaway)$/i, "takeaway"],
+  [/^(worked example|illustrated example)$/i, "example"],
+]
+
+/** True iff `node` is a `<strong>` React element wrapping a single text
+ *  child — the markdown-rendered shape of "**Bold prefix.**". */
+function getStrongText(node: ReactNode): string | null {
+  if (
+    typeof node !== "object" ||
+    node === null ||
+    !("type" in node) ||
+    !("props" in node)
+  ) {
+    return null
+  }
+  // Strong override returns a <strong> element; ReactMarkdown also calls
+  // through our component map. Type comparison via element name fails
+  // because the component is our function — match by the rendered
+  // children shape: a function whose first arg has children string.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const props = (node as any).props
+  // Some renderers nest the text inside a wrapping element; only accept
+  // the simple case where children is a single string.
+  if (typeof props?.children !== "string") return null
+  // Heuristic: our `strong` override component sets a known className
+  // that includes "font-semibold". Use that as the type marker.
+  const className = props?.className ?? ""
+  if (!className.includes("font-semibold")) return null
+  return props.children as string
+}
+
+function detectCallout(
+  children: ReactNode
+): { kind: CalloutKind; rest: ReactNode[] } | null {
+  const arr = Children.toArray(children)
+  if (arr.length === 0) return null
+  const text = getStrongText(arr[0])
+  if (!text) return null
+  // Strip trailing period / colon for pattern matching.
+  const stripped = text.trim().replace(/[.:]+$/, "").trim()
+  for (const [pattern, kind] of CALLOUT_PATTERNS) {
+    if (pattern.test(stripped)) {
+      // Drop the bold prefix and the leading separator (" ", ". ", ": ").
+      const remaining = arr.slice(1)
+      if (remaining.length > 0 && typeof remaining[0] === "string") {
+        remaining[0] = (remaining[0] as string).replace(/^[\s.:—–-]+/, "")
+      }
+      return { kind, rest: remaining }
+    }
+  }
+  return null
+}
+
+function CalloutBlock({
+  kind,
+  children,
+}: {
+  kind: CalloutKind
+  children: ReactNode
+}) {
+  const meta = CALLOUT_META[kind]
+  const Icon = meta.Icon
+  return (
+    <aside
+      className="my-6 rounded-xl border p-5"
+      style={{ borderColor: meta.border, backgroundColor: meta.bg }}
+    >
+      <div className="flex items-center gap-2 mb-2.5">
+        <Icon
+          className="w-3.5 h-3.5 flex-shrink-0"
+          style={{ color: meta.iconColor }}
+          aria-hidden
+        />
+        <p
+          className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+          style={{ color: meta.iconColor }}
+        >
+          {meta.label}
+        </p>
+      </div>
+      <div
+        className="text-[15px] leading-[1.75]"
+        style={{ color: "var(--read-text-body)" }}
+      >
+        {children}
+      </div>
+    </aside>
+  )
+}
+
 const mdComponents: Components = {
-  p: (p) => <p {...p} className="text-[15px] leading-relaxed text-[#D8D8D8] my-4 first:mt-0 last:mb-0" />,
-  h2: (p) => <h2 {...p} className="text-xl font-bold text-[#F0F0F0] mt-10 mb-4 first:mt-0" />,
-  h3: (p) => <h3 {...p} className="text-base font-semibold text-[#F0F0F0] mt-6 mb-2" />,
-  ul: (p) => <ul {...p} className="list-disc pl-6 my-4 space-y-1.5 text-[15px] text-[#D8D8D8]" />,
-  ol: (p) => <ol {...p} className="list-decimal pl-6 my-4 space-y-1.5 text-[15px] text-[#D8D8D8]" />,
-  li: (p) => <li {...p} className="leading-relaxed marker:text-[#555555]" />,
-  strong: (p) => <strong {...p} className="font-semibold text-[#F0F0F0]" />,
-  em: (p) => <em {...p} className="italic text-[#E8C97A]" />,
-  blockquote: (p) => (
-    <blockquote
-      {...p}
-      className="my-6 border-l-2 pl-4 italic text-[#A8A8A8]"
-      style={{ borderColor: "#C9A84C" }}
-    />
-  ),
+  p: ({ children, ...rest }) => {
+    const callout = detectCallout(children)
+    if (callout) {
+      return <CalloutBlock kind={callout.kind}>{callout.rest}</CalloutBlock>
+    }
+    const groups = splitParagraph(children)
+    if (groups) return <ArrowChainBlock steps={groups} />
+    return (
+      <p
+        {...rest}
+        className="text-[17px] leading-[1.75] my-5 first:mt-0 last:mb-0"
+        style={{ color: "var(--read-text-body)" }}
+      >
+        {children}
+      </p>
+    )
+  },
+  h2: (p) => <h2 {...p} className="font-display text-2xl font-semibold tracking-[-0.01em] mt-10 mb-4 first:mt-0" style={{ color: "var(--read-text)" }} />,
+  h3: (p) => <h3 {...p} className="font-display text-lg font-semibold tracking-tight mt-8 mb-2" style={{ color: "var(--read-text)" }} />,
+  ul: (p) => <ul {...p} className="list-disc pl-6 my-5 space-y-2 text-[17px] leading-[1.75]" style={{ color: "var(--read-text-body)" }} />,
+  ol: (p) => <ol {...p} className="list-decimal pl-6 my-5 space-y-2 text-[17px] leading-[1.75]" style={{ color: "var(--read-text-body)" }} />,
+  li: (p) => <li {...p} className="leading-[1.75]" style={{ color: "var(--read-text-body)" }} />,
+  strong: (p) => <strong {...p} className="font-semibold" style={{ color: "var(--read-text)" }} />,
+  em: (p) => <em {...p} className="font-display-italic" style={{ color: "var(--read-gold)" }} />,
+  blockquote: ({ children, ...rest }) => {
+    // Auto-upgrade: when a blockquote contains exactly one paragraph and
+    // that paragraph already rendered as a CalloutBlock (because the
+    // child <p> override detected a callout-led bold prefix), unwrap and
+    // return the callout — the blockquote chrome would just double-frame
+    // the callout. Lets authors keep the existing `> **Trap to watch.**`
+    // markdown form and still get the new colored callout treatment.
+    const arr = Children.toArray(children).filter(
+      (c) => !(typeof c === "string" && c.trim().length === 0)
+    )
+    if (arr.length === 1) {
+      const only = arr[0]
+      if (
+        typeof only === "object" &&
+        only !== null &&
+        "type" in only &&
+        only.type === CalloutBlock
+      ) {
+        return only
+      }
+    }
+    return (
+      <blockquote
+        {...rest}
+        className="my-6 border-l-2 pl-5 font-display-italic text-[15px] leading-[1.75]"
+        style={{ borderColor: "var(--read-gold)", color: "var(--read-text-body)" }}
+      >
+        {children}
+      </blockquote>
+    )
+  },
   code: ({ className, ...p }) => {
     const isBlock = className?.startsWith("language-")
     if (isBlock) {
-      return <code {...p} className="font-mono text-xs text-[#F0F0F0] whitespace-pre-wrap" />
+      return <code {...p} className="font-mono text-xs whitespace-pre-wrap" style={{ color: "var(--read-text)" }} />
     }
     return (
       <code
         {...p}
-        className="font-mono text-[13px] bg-white/[0.04] px-1.5 py-0.5 rounded"
-        style={{ color: "#C9A84C" }}
+        className="font-mono text-[13px] px-1.5 py-0.5 rounded"
+        style={{ color: "var(--read-gold)", backgroundColor: "var(--read-gold-soft)" }}
       />
     )
   },
   pre: (p) => (
     <pre
       {...p}
-      className="my-5 p-4 rounded-lg bg-[#0A0A0A] border border-white/[0.06] overflow-x-auto"
+      className="my-5 p-4 rounded-lg border overflow-x-auto"
+      style={{ backgroundColor: "var(--read-bg-inset)", borderColor: "var(--read-border)" }}
     />
   ),
   table: (p) => (
-    <div className="my-5 overflow-x-auto rounded-lg border border-white/[0.08]">
+    <div className="my-5 overflow-x-auto rounded-lg border" style={{ borderColor: "var(--read-border-strong)" }}>
       <table {...p} className="w-full border-collapse text-sm" />
     </div>
   ),
-  thead: (p) => <thead {...p} className="bg-[#0F0F0F]" />,
+  thead: (p) => <thead {...p} style={{ backgroundColor: "var(--read-bg-inset)" }} />,
   th: (p) => (
     <th
       {...p}
-      className="text-left py-2 px-3 text-xs font-semibold uppercase tracking-wide text-[#888888] border-b border-white/[0.08]"
+      className="text-left py-2 px-3 text-xs font-semibold uppercase tracking-wide border-b"
+      style={{ color: "var(--read-text-muted)", borderColor: "var(--read-border-strong)" }}
     />
   ),
   td: (p) => (
     <td
       {...p}
-      className="py-2 px-3 text-[14px] text-[#D8D8D8] border-b border-white/[0.04]"
+      className="py-2 px-3 text-[14px] border-b"
+      style={{ color: "var(--read-text-body)", borderColor: "var(--read-border)" }}
     />
   ),
-  hr: () => <hr className="my-8 border-0 border-t border-white/[0.08]" />,
+  hr: () => <hr className="my-8 border-0 border-t" style={{ borderColor: "var(--read-border-strong)" }} />,
+}
+
+// ===== Focus-mode store =====
+// Persisted in localStorage and read via useSyncExternalStore so the
+// hydration step doesn't trigger setState-in-effect (which would be a
+// cascading-render anti-pattern). The store is process-scoped — every
+// ChapterReader instance reads the same value.
+const FOCUS_KEY = "chapter-focus-mode"
+let focusSnapshot: boolean | null = null
+const focusSubscribers = new Set<() => void>()
+
+function readFocus(): boolean {
+  if (typeof window === "undefined") return false
+  try {
+    return window.localStorage.getItem(FOCUS_KEY) === "true"
+  } catch {
+    return false
+  }
+}
+
+function focusSubscribe(cb: () => void): () => void {
+  focusSubscribers.add(cb)
+  const onStorage = (e: StorageEvent) => {
+    if (e.key !== FOCUS_KEY) return
+    focusSnapshot = readFocus()
+    for (const s of focusSubscribers) s()
+  }
+  if (typeof window !== "undefined") {
+    window.addEventListener("storage", onStorage)
+  }
+  return () => {
+    focusSubscribers.delete(cb)
+    if (typeof window !== "undefined") {
+      window.removeEventListener("storage", onStorage)
+    }
+  }
+}
+
+function focusGetSnapshot(): boolean {
+  if (focusSnapshot === null) focusSnapshot = readFocus()
+  return focusSnapshot
+}
+
+function focusGetServerSnapshot(): boolean {
+  return false
+}
+
+function setFocusModeStore(next: boolean) {
+  focusSnapshot = next
+  if (typeof window !== "undefined") {
+    try {
+      window.localStorage.setItem(FOCUS_KEY, next ? "true" : "false")
+    } catch {
+      // ignore
+    }
+  }
+  for (const s of focusSubscribers) s()
 }
 
 export default function ChapterReader({
@@ -256,6 +622,21 @@ export default function ChapterReader({
   // Avoids a hydration mismatch by never touching browser APIs during SSR.
   const [progress, setProgress] = useState<ChapterProgress>(EMPTY_PROGRESS)
   const [hydrated, setHydrated] = useState(false)
+  const [theme, setTheme] = useReadingTheme()
+  // Focus mode — collapses the 3-col grid (sidebar nav + right panel)
+  // and centers the reading column for distraction-free study sessions.
+  // Persisted in localStorage so the choice survives reloads.
+  // Focus mode lives in the module-level store above so the hydration
+  // step doesn't trigger setState-in-effect. localStorage is the durable
+  // backing; useSyncExternalStore subscribes us to it.
+  const focusMode = useSyncExternalStore(
+    focusSubscribe,
+    focusGetSnapshot,
+    focusGetServerSnapshot
+  )
+  function toggleFocusMode() {
+    setFocusModeStore(!focusMode)
+  }
   useEffect(() => {
     const local = loadProgress(slug)
     const server = normalizeServerProgress(initialProgress)
@@ -266,6 +647,9 @@ export default function ChapterReader({
     const sizeOf = (p: ChapterProgress) =>
       Object.values(p.sectionsRead).filter(Boolean).length +
       Object.keys(p.questions).length
+    // Reads localStorage (browser-only) — required to run in the effect
+    // rather than during render to avoid SSR hydration mismatch.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setProgress(sizeOf(server) >= sizeOf(local) ? server : local)
     setHydrated(true)
   }, [slug, initialProgress])
@@ -287,7 +671,14 @@ export default function ChapterReader({
   const update = useCallback(
     (updater: (prev: ChapterProgress) => ChapterProgress) => {
       setProgress((prev) => {
-        const next = updater(prev)
+        const next: ChapterProgress = {
+          ...updater(prev),
+          // Stamp every progress modification with the current timestamp.
+          // Powers the "Resume" widget on the dashboard, which picks the
+          // chapter with the highest lastSeenAt across all chapter_progress
+          // entries to surface "continue where you left off."
+          lastSeenAt: Date.now(),
+        }
         saveProgress(slug, next)
         queueServerPush(next)
         return next
@@ -324,76 +715,495 @@ export default function ChapterReader({
       : 0
 
   return (
-    <div className="space-y-6">
+    <div
+      className="reader-themed space-y-10 rounded-2xl p-4 sm:p-6 -m-4 sm:-m-6"
+      data-reading-theme={theme}
+      style={{ backgroundColor: "var(--read-bg)", color: "var(--read-text)" }}
+    >
       {/* Header */}
-      <div>
-        <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span
-            className="px-2 py-0.5 rounded text-[10px] uppercase tracking-wide"
+      <div
+        className="relative overflow-hidden rounded-2xl border px-6 py-10 sm:px-10 sm:py-12"
+        style={{ borderColor: "var(--read-border)", backgroundColor: "var(--read-bg-inset)" }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 60% at 50% -10%, var(--read-gold-soft) 0%, transparent 60%)",
+          }}
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.025] mix-blend-overlay"
+          aria-hidden
+        />
+        <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+          <button
+            type="button"
+            onClick={toggleFocusMode}
+            aria-label={focusMode ? "Exit focus mode" : "Enter focus mode"}
+            title={focusMode ? "Exit focus mode" : "Enter focus mode"}
+            className="inline-flex items-center justify-center w-9 h-9 rounded-lg border transition-all duration-150 hover:scale-[1.04] active:scale-[0.96]"
             style={{
-              backgroundColor: "rgba(201,168,76,0.08)",
-              color: "#C9A84C",
+              borderColor: focusMode
+                ? "var(--read-gold-strong)"
+                : "var(--read-border-strong)",
+              backgroundColor: focusMode
+                ? "var(--read-gold-soft)"
+                : "var(--read-bg-elevated)",
+              color: focusMode
+                ? "var(--read-gold)"
+                : "var(--read-text-muted)",
             }}
           >
-            {section}
-          </span>
-          <span className="flex items-center gap-1 text-xs text-[#555555]">
-            <Clock className="w-3 h-3" />
-            {estimatedMinutes} min
-          </span>
+            {focusMode ? (
+              <Minimize2 className="w-4 h-4" />
+            ) : (
+              <Maximize2 className="w-4 h-4" />
+            )}
+          </button>
+          <ReaderThemeToggle theme={theme} onChange={setTheme} />
         </div>
-        <h1 className="text-3xl sm:text-4xl font-bold text-[#F0F0F0]">
-          {title}
-        </h1>
-        {summary && (
-          <p className="text-[15px] text-[#888888] mt-3 leading-relaxed">
-            {summary}
+        <div className="relative">
+          <div className="flex flex-wrap items-center gap-3 mb-5">
+            <span
+              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+              style={{ color: "var(--read-gold)" }}
+            >
+              {section} · Chapter
+            </span>
+            <span
+              className="h-px w-8"
+              style={{
+                background:
+                  "linear-gradient(to right, var(--read-gold-strong), transparent)",
+              }}
+              aria-hidden
+            />
+            <span
+              className="flex items-center gap-1.5 text-[11px] tracking-wide"
+              style={{ color: "var(--read-text-faint)" }}
+            >
+              <Clock className="w-3 h-3" />
+              {estimatedMinutes} min
+              {totalSections > 0 && (
+                <span style={{ color: "var(--read-text-faint)" }}>
+                  {" "}· {totalSections} sections
+                </span>
+              )}
+            </span>
+          </div>
+          <h1
+            className="font-display text-3xl sm:text-5xl font-semibold tracking-[-0.02em] leading-[1.05]"
+            style={{ color: "var(--read-text)" }}
+          >
+            {title}
+          </h1>
+          {summary && (
+            <p
+              className="text-[16px] sm:text-[17px] mt-5 leading-[1.75] max-w-2xl"
+              style={{ color: "var(--read-text-body)" }}
+            >
+              {summary}
+            </p>
+          )}
+          {/* Hero CTA — Start / Continue / Problem sets / Review.
+              The label + scroll target depend on chapter progress. */}
+          {hydrated && sections.length > 0 && (
+            <HeroCta
+              completedSections={completedSections}
+              totalSections={totalSections}
+              firstSectionId={sections[0].id}
+              firstUnreadId={
+                sections.find((s) => !progress.sectionsRead[s.id])?.id ?? null
+              }
+              hasProblemSets={problemSets.length > 0}
+              hasProblemSetAttempts={hasAnyProblemSetResult(progress)}
+            />
+          )}
+        </div>
+      </div>
+
+      {/* Inline progress bar — shown on smaller screens where the
+          sticky sidebar isn't visible. Hidden on lg+ since the rail
+          carries the same data. Also gated to once the student has
+          read at least one section. */}
+      {completedSections > 0 && (
+        <div className="lg:hidden">
+          <div
+            className="flex items-center justify-between text-[11px] uppercase tracking-[0.18em] font-semibold mb-2.5"
+            style={{ color: "var(--read-text-faint)" }}
+          >
+            <span>
+              {completedSections} of {totalSections} sections complete
+            </span>
+            <span
+              className="font-display tabular-nums normal-case tracking-normal text-[13px]"
+              style={{ color: "var(--read-text-body)" }}
+            >
+              {percentComplete}%
+            </span>
+          </div>
+          <div
+            className="h-1.5 rounded-full overflow-hidden"
+            style={{ backgroundColor: "var(--read-bg-inset)" }}
+          >
+            <div
+              className="h-full rounded-full transition-all duration-500"
+              style={{
+                width: `${percentComplete}%`,
+                backgroundColor: "var(--read-gold)",
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Three-column reading layout on lg+:
+            left rail  — sticky chapter contents nav
+            center     — the section cards + end-of-chapter problem sets
+            right rail — sticky learning panel (progress + next action)
+          On <lg this collapses to a single column (the center). */}
+      {(() => {
+        const sidebarItems = sections.map((s) => ({
+          id: s.id,
+          type: s.type,
+          title: s.title,
+          read: !!progress.sectionsRead[s.id],
+        }))
+        const nextUnread = sections.find((s) => !progress.sectionsRead[s.id])
+        return (
+          <div
+            className={
+              focusMode
+                ? "max-w-3xl mx-auto"
+                : "lg:grid lg:grid-cols-[220px_minmax(0,1fr)_240px] lg:gap-x-10 lg:items-start"
+            }
+          >
+            {!focusMode && (
+              <aside className="hidden lg:block sticky top-6 self-start">
+                <ChapterSidebarNav
+                  sections={sidebarItems}
+                  hasProblemSets={problemSets.length > 0}
+                  problemSetsAnchorId="chapter-problem-sets"
+                />
+              </aside>
+            )}
+
+            {!focusMode && (
+              <ChapterMobileTOC
+                sections={sidebarItems}
+                hasProblemSets={problemSets.length > 0}
+                problemSetsAnchorId="chapter-problem-sets"
+              />
+            )}
+
+            <div className="space-y-10 min-w-0">
+              {sections.map((s) => (
+                <SectionCard
+                  key={s.id}
+                  section={s}
+                  hydrated={hydrated}
+                  progress={progress}
+                  update={update}
+                />
+              ))}
+
+              {problemSets.length > 0 && (
+                <div id="chapter-problem-sets" className="scroll-mt-6">
+                  <ProblemSetsBlock
+                    slug={slug}
+                    sets={problemSets}
+                    targetScore={targetScore}
+                    progress={progress}
+                    update={update}
+                  />
+                </div>
+              )}
+
+              {hydrated &&
+                completedSections === totalSections &&
+                totalSections > 0 &&
+                (problemSets.length === 0 || hasAnyProblemSetResult(progress)) && (
+                  <ChapterCompletionCard
+                    section={section}
+                    title={title}
+                    totalSections={totalSections}
+                    problemSetCount={problemSets.length}
+                  />
+                )}
+            </div>
+
+            {!focusMode && (
+              <aside className="hidden lg:block sticky top-6 self-start">
+                <ChapterRightPanel
+                  section={section}
+                  estimatedMinutes={estimatedMinutes}
+                  totalSections={totalSections}
+                  completedSections={completedSections}
+                  hasProblemSets={problemSets.length > 0}
+                  nextUnreadTitle={nextUnread?.title ?? null}
+                  nextUnreadAnchorId={nextUnread?.id ?? null}
+                />
+              </aside>
+            )}
+          </div>
+        )
+      })()}
+    </div>
+  )
+}
+
+// ---------- Hero CTA + completion card ----------
+
+/**
+ * Decisive call-to-action below the chapter summary. Label + scroll
+ * target adapt to chapter progress so the student always sees a single
+ * confident "what to do next" rather than a stack of options.
+ */
+function HeroCta({
+  completedSections,
+  totalSections,
+  firstSectionId,
+  firstUnreadId,
+  hasProblemSets,
+  hasProblemSetAttempts,
+}: {
+  completedSections: number
+  totalSections: number
+  firstSectionId: string
+  firstUnreadId: string | null
+  hasProblemSets: boolean
+  hasProblemSetAttempts: boolean
+}) {
+  const allSectionsRead = completedSections >= totalSections && totalSections > 0
+  let label: string
+  let href: string
+
+  if (completedSections === 0) {
+    label = "Start chapter"
+    href = `#${firstSectionId}`
+  } else if (allSectionsRead && hasProblemSets && !hasProblemSetAttempts) {
+    label = "Try the problem sets"
+    href = "#chapter-problem-sets"
+  } else if (allSectionsRead) {
+    label = "Review chapter"
+    href = `#${firstSectionId}`
+  } else {
+    label = "Continue chapter"
+    href = `#${firstUnreadId ?? firstSectionId}`
+  }
+
+  function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault()
+    const targetId = href.startsWith("#") ? href.slice(1) : href
+    const el = document.getElementById(targetId)
+    if (!el) return
+    el.scrollIntoView({ behavior: "smooth", block: "start" })
+    if (typeof window !== "undefined") {
+      window.history.replaceState(null, "", href)
+    }
+  }
+
+  return (
+    <a
+      href={href}
+      onClick={handleClick}
+      className="inline-flex items-center gap-2 mt-7 px-5 py-2.5 rounded-lg text-[13px] font-semibold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+      style={{
+        backgroundColor: "var(--read-gold)",
+        color: "var(--read-bg-inset)",
+        boxShadow:
+          "0 4px 14px -4px rgba(201,168,76,0.45), 0 0 0 1px rgba(201,168,76,0.3)",
+      }}
+    >
+      {label}
+      <ArrowRight className="w-3.5 h-3.5" aria-hidden />
+    </a>
+  )
+}
+
+/**
+ * Satisfying completion block surfaced at the bottom of the chapter
+ * once the student has read every section AND attempted the end-of-
+ * chapter problem sets (when present). Suggests two next moves —
+ * topic-specific practice and the global review queue — plus a path
+ * back to the chapter index.
+ */
+function ChapterCompletionCard({
+  section,
+  title,
+  totalSections,
+  problemSetCount,
+}: {
+  section: Section
+  title: string
+  totalSections: number
+  problemSetCount: number
+}) {
+  const practiceSlug =
+    section === "Quant" ? "quant" : section === "Verbal" ? "verbal" : "di"
+  return (
+    <div
+      className="relative overflow-hidden rounded-2xl border px-7 sm:px-10 py-9 sm:py-11"
+      style={{
+        backgroundColor: "var(--read-bg-elevated)",
+        borderColor: "var(--read-gold-strong)",
+      }}
+    >
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 60% at 50% -10%, var(--read-gold-soft) 0%, transparent 60%)",
+        }}
+        aria-hidden
+      />
+      <div className="relative">
+        <div className="flex items-center gap-2.5 mb-4">
+          <CheckCircle2
+            className="w-5 h-5"
+            style={{ color: "var(--read-success)" }}
+          />
+          <p
+            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+            style={{ color: "var(--read-gold)" }}
+          >
+            Chapter complete
           </p>
+        </div>
+        <h2
+          className="font-display text-2xl sm:text-3xl font-semibold tracking-[-0.01em] leading-[1.15]"
+          style={{ color: "var(--read-text)" }}
+        >
+          {title}
+        </h2>
+        <p
+          className="text-[14px] mt-3 leading-[1.6] max-w-xl"
+          style={{ color: "var(--read-text-body)" }}
+        >
+          {totalSections} section{totalSections === 1 ? "" : "s"} read
+          {problemSetCount > 0
+            ? ` · ${problemSetCount} graded problem set${
+                problemSetCount === 1 ? "" : "s"
+              } attempted`
+            : ""}
+          . The skill won&apos;t stick without retrieval — try a timed
+          drill or the spaced-review queue next.
+        </p>
+        <div className="flex flex-wrap gap-3 mt-6">
+          <Link
+            href={`/practice/session/${practiceSlug}`}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold transition-all duration-200 hover:-translate-y-0.5"
+            style={{
+              backgroundColor: "var(--read-gold)",
+              color: "var(--read-bg-inset)",
+            }}
+          >
+            Practice {section}
+            <ArrowRight className="w-3.5 h-3.5" aria-hidden />
+          </Link>
+          <Link
+            href="/review/all"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold border transition-colors"
+            style={{
+              borderColor: "var(--read-border-strong)",
+              color: "var(--read-text)",
+              backgroundColor: "transparent",
+            }}
+          >
+            Review queue
+          </Link>
+          <Link
+            href="/chapters"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold transition-colors"
+            style={{ color: "var(--read-text-muted)" }}
+          >
+            All chapters
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ---------- Section notes ----------
+
+/**
+ * Inline note-taking block at the bottom of each section card. Notes
+ * persist to ChapterProgress.notes (keyed by section id) and ride the
+ * existing localStorage + debounced server-push pipeline. Collapsed by
+ * default so the reading flow stays clean; the "Add note" affordance
+ * expands the editor on click and stays expanded if the note is non-empty.
+ */
+function SectionNotes({
+  sectionId,
+  notes,
+  update,
+}: {
+  sectionId: string
+  notes: Record<string, string>
+  update: (u: (prev: ChapterProgress) => ChapterProgress) => void
+}) {
+  const value = notes[sectionId] ?? ""
+  const hasNote = value.trim().length > 0
+  const [open, setOpen] = useState(hasNote)
+
+  function setNote(next: string) {
+    update((prev) => ({
+      ...prev,
+      notes: { ...(prev.notes ?? {}), [sectionId]: next },
+    }))
+  }
+
+  if (!open) {
+    return (
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold transition-colors"
+        style={{ color: "var(--read-text-faint)" }}
+      >
+        <Lightbulb className="w-3 h-3" />
+        Add a note
+      </button>
+    )
+  }
+
+  return (
+    <div
+      className="rounded-xl border p-4"
+      style={{
+        borderColor: "var(--read-border)",
+        backgroundColor: "var(--read-bg-inset)",
+      }}
+    >
+      <div className="flex items-center justify-between mb-2">
+        <p
+          className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+          style={{ color: "var(--read-gold)" }}
+        >
+          Your note
+        </p>
+        {!hasNote && (
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            className="text-[10px] uppercase tracking-[0.18em]"
+            style={{ color: "var(--read-text-faint)" }}
+          >
+            Cancel
+          </button>
         )}
       </div>
-
-      {/* Progress bar */}
-      <div>
-        <div className="flex items-center justify-between text-xs text-[#555555] mb-2">
-          <span>
-            {completedSections} of {totalSections} sections complete
-          </span>
-          <span>{percentComplete}%</span>
-        </div>
-        <div className="h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
-          <div
-            className="h-full rounded-full transition-all duration-500"
-            style={{
-              width: `${percentComplete}%`,
-              backgroundColor: "#C9A84C",
-            }}
-          />
-        </div>
-      </div>
-
-      {/* Sections render sequentially as cards. We always show all of them
-          (no gated unlock) so a returning user can jump around; the progress
-          bar above indicates which have been marked read. */}
-      {sections.map((s) => (
-        <SectionCard
-          key={s.id}
-          section={s}
-          hydrated={hydrated}
-          progress={progress}
-          update={update}
-        />
-      ))}
-
-      {/* End-of-chapter problem sets */}
-      {problemSets.length > 0 && (
-        <ProblemSetsBlock
-          slug={slug}
-          sets={problemSets}
-          targetScore={targetScore}
-          progress={progress}
-          update={update}
-        />
-      )}
+      <textarea
+        value={value}
+        onChange={(e) => setNote(e.target.value)}
+        placeholder="What clicked? Where did you struggle? Notes save automatically."
+        rows={3}
+        className="w-full bg-transparent border-0 outline-none resize-y text-[14px] leading-[1.6]"
+        style={{ color: "var(--read-text-body)" }}
+      />
     </div>
   )
 }
@@ -415,43 +1225,54 @@ function SectionCard({
 
   const icon =
     s.type === "pretest" ? (
-      <FlaskConical className="w-5 h-5" style={{ color: "#C9A84C" }} />
+      <FlaskConical className="w-5 h-5" style={{ color: "var(--read-gold)" }} />
     ) : s.type === "summary" ? (
-      <Award className="w-5 h-5" style={{ color: "#C9A84C" }} />
+      <Award className="w-5 h-5" style={{ color: "var(--read-gold)" }} />
     ) : (
-      <BookOpen className="w-5 h-5" style={{ color: "#C9A84C" }} />
+      <BookOpen className="w-5 h-5" style={{ color: "var(--read-gold)" }} />
     )
 
   return (
     <article
-      className={cn(
-        "rounded-xl border bg-[#111111] transition-colors",
-        read ? "border-white/[0.08]" : "border-white/[0.12]"
-      )}
+      id={s.id}
+      className="rounded-2xl border transition-colors scroll-mt-6"
+      style={{
+        backgroundColor: "var(--read-bg-elevated)",
+        borderColor: read ? "var(--read-border)" : "var(--read-border-strong)",
+      }}
     >
-      <header className="flex items-start gap-3 px-6 py-5 border-b border-white/[0.06]">
+      <header
+        className="flex items-start gap-4 px-6 sm:px-8 py-6 border-b"
+        style={{ borderColor: "var(--read-border)" }}
+      >
         <div
-          className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
-          style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
+          className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
+          style={{ backgroundColor: "var(--read-gold-soft)" }}
         >
           {icon}
         </div>
-        <div className="flex-1">
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-[#555555]">
+        <div className="flex-1 min-w-0">
+          <p
+            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+            style={{ color: "var(--read-gold)" }}
+          >
             {s.type === "pretest"
               ? "Pretest"
               : s.type === "summary"
               ? "Summary"
               : "Reading"}
           </p>
-          <h2 className="text-lg font-semibold text-[#F0F0F0] mt-0.5">
+          <h2
+            className="font-display text-xl sm:text-2xl font-semibold tracking-[-0.01em] mt-1 leading-[1.2]"
+            style={{ color: "var(--read-text)" }}
+          >
             {s.title}
           </h2>
         </div>
         {hydrated && read && (
           <span
-            className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-widest"
-            style={{ color: "#3ECF8E" }}
+            className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.22em] flex-shrink-0 mt-1"
+            style={{ color: "var(--read-success)" }}
           >
             <CheckCircle2 className="w-3 h-3" />
             Read
@@ -459,20 +1280,20 @@ function SectionCard({
         )}
       </header>
 
-      <div className="px-6 py-6 space-y-5">
+      <div className="px-6 sm:px-8 py-7 space-y-6">
         {s.intro && (
           <div
-            className="p-4 rounded-lg border text-[14px] leading-relaxed"
+            className="p-5 rounded-xl border text-[14px] leading-[1.75]"
             style={{
-              borderColor: "rgba(201,168,76,0.2)",
-              backgroundColor: "rgba(201,168,76,0.04)",
-              color: "#D8D8D8",
+              borderColor: "var(--read-gold-strong)",
+              backgroundColor: "var(--read-gold-soft)",
+              color: "var(--read-text-body)",
             }}
           >
-            <div className="flex items-start gap-2">
+            <div className="flex items-start gap-3">
               <Sparkles
-                className="w-4 h-4 flex-shrink-0 mt-0.5"
-                style={{ color: "#C9A84C" }}
+                className="w-4 h-4 flex-shrink-0 mt-1"
+                style={{ color: "var(--read-gold)" }}
               />
               <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
                 {s.intro}
@@ -492,22 +1313,50 @@ function SectionCard({
         ))}
 
         {s.body && (
-          <div className="prose-chapter">
+          <div className="prose-chapter prose-chapter-dropcap">
             <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
               {s.body}
             </ReactMarkdown>
           </div>
         )}
 
-        {s.checkQuestions.map((q) => (
-          <InlineQuestion
-            key={q.id}
-            question={q}
-            label="Check your understanding"
-            progress={progress}
+        {s.checkQuestions.length > 0 && (
+          <div className="pt-2 space-y-5">
+            <div className="flex items-center gap-3">
+              <p
+                className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+                style={{ color: "var(--read-gold)" }}
+              >
+                Recall Check
+              </p>
+              <span
+                className="h-px flex-1"
+                style={{
+                  background:
+                    "linear-gradient(to right, var(--read-gold-strong), transparent)",
+                }}
+                aria-hidden
+              />
+            </div>
+            {s.checkQuestions.map((q) => (
+              <InlineQuestion
+                key={q.id}
+                question={q}
+                label="Check your understanding"
+                progress={progress}
+                update={update}
+              />
+            ))}
+          </div>
+        )}
+
+        {hydrated && (
+          <SectionNotes
+            sectionId={s.id}
+            notes={progress.notes ?? {}}
             update={update}
           />
-        ))}
+        )}
 
         {!read && hydrated && (
           <button
@@ -517,8 +1366,8 @@ function SectionCard({
                 sectionsRead: { ...prev.sectionsRead, [s.id]: true },
               }))
             }
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium text-[#0A0A0A] hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: "#C9A84C" }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
+            style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
           >
             <Check className="w-3.5 h-3.5" />
             Mark section complete
@@ -542,12 +1391,20 @@ function InlineQuestion({
   progress: ChapterProgress
   update: (u: (prev: ChapterProgress) => ChapterProgress) => void
 }) {
-  const state: QuestionProgress = progress.questions[q.id] ?? {
-    selected: null,
-    submitted: false,
-    confidence: null,
-    selfExplanation: "",
-  }
+  // Memoized so `state`'s identity is stable across renders when the
+  // underlying progress entry hasn't changed. Without this, every
+  // render produced a new object literal, defeating the useCallback on
+  // `patch` (lint flagged it as react-hooks/exhaustive-deps).
+  const state: QuestionProgress = useMemo(
+    () =>
+      progress.questions[q.id] ?? {
+        selected: null,
+        submitted: false,
+        confidence: null,
+        selfExplanation: "",
+      },
+    [progress.questions, q.id]
+  )
 
   const patch = useCallback(
     (fields: Partial<QuestionProgress>) => {
@@ -568,22 +1425,31 @@ function InlineQuestion({
 
   return (
     <div
-      className="rounded-lg border overflow-hidden"
+      className="rounded-xl border overflow-hidden"
       style={{
         borderColor: state.submitted
           ? isCorrect
-            ? "rgba(62,207,142,0.25)"
-            : "rgba(255,68,68,0.25)"
-          : "rgba(255,255,255,0.08)",
-        backgroundColor: "#0F0F0F",
+            ? "var(--read-success-soft)"
+            : "var(--read-error-soft)"
+          : "var(--read-border-strong)",
+        backgroundColor: "var(--read-bg-inset)",
       }}
     >
-      <div className="px-5 py-4 border-b border-white/[0.06] flex items-center gap-2">
-        <BrainCircuit className="w-3.5 h-3.5" style={{ color: "#C9A84C" }} />
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-[#888888]">
+      <div
+        className="px-5 py-4 border-b flex items-center gap-2.5"
+        style={{ borderColor: "var(--read-border)" }}
+      >
+        <BrainCircuit className="w-3.5 h-3.5" style={{ color: "var(--read-gold)" }} />
+        <p
+          className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+          style={{ color: "var(--read-gold)" }}
+        >
           {label}
         </p>
-        <span className="text-[10px] text-[#555555] ml-auto">
+        <span
+          className="text-[10px] ml-auto tracking-wide"
+          style={{ color: "var(--read-text-faint)" }}
+        >
           {q.subtopic} · {q.difficulty}
         </span>
       </div>
@@ -603,22 +1469,22 @@ function InlineQuestion({
             const showResult = state.submitted
             const border = showResult
               ? isCorrectOpt
-                ? "rgba(62,207,142,0.5)"
+                ? "var(--read-success)"
                 : isChosen
-                ? "rgba(255,68,68,0.5)"
-                : "rgba(255,255,255,0.06)"
+                ? "var(--read-error)"
+                : "var(--read-border)"
               : isChosen
-              ? "rgba(201,168,76,0.5)"
-              : "rgba(255,255,255,0.08)"
+              ? "var(--read-gold-strong)"
+              : "var(--read-border-strong)"
             const bg = showResult
               ? isCorrectOpt
-                ? "rgba(62,207,142,0.05)"
+                ? "var(--read-success-soft)"
                 : isChosen
-                ? "rgba(255,68,68,0.05)"
-                : "#0A0A0A"
+                ? "var(--read-error-soft)"
+                : "var(--read-bg-elevated)"
               : isChosen
-              ? "rgba(201,168,76,0.06)"
-              : "#0A0A0A"
+              ? "var(--read-gold-soft)"
+              : "var(--read-bg-elevated)"
             return (
               <button
                 key={idx}
@@ -633,24 +1499,24 @@ function InlineQuestion({
                   style={{
                     backgroundColor: showResult
                       ? isCorrectOpt
-                        ? "#3ECF8E"
+                        ? "var(--read-success)"
                         : isChosen
-                        ? "#FF4444"
-                        : "rgba(255,255,255,0.04)"
+                        ? "var(--read-error)"
+                        : "var(--read-border)"
                       : isChosen
-                      ? "#C9A84C"
-                      : "rgba(255,255,255,0.04)",
+                      ? "var(--read-gold)"
+                      : "var(--read-border)",
                     color:
                       showResult && (isCorrectOpt || isChosen)
-                        ? "#0A0A0A"
+                        ? "var(--read-bg-inset)"
                         : isChosen
-                        ? "#0A0A0A"
-                        : "#888888",
+                        ? "var(--read-bg-inset)"
+                        : "var(--read-text-muted)",
                   }}
                 >
                   {String.fromCharCode(65 + idx)}
                 </span>
-                <div className="flex-1 text-[14px] text-[#D8D8D8]">
+                <div className="flex-1 text-[14px]" style={{ color: "var(--read-text-body)" }}>
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={mdComponents}
@@ -665,46 +1531,75 @@ function InlineQuestion({
 
         {/* Confidence + self-explanation (pre-submit only) */}
         {!state.submitted && state.selected !== null && (
-          <div className="pt-2 space-y-3 border-t border-white/[0.06]">
+          <div
+            className="pt-4 space-y-4 border-t"
+            style={{ borderColor: "var(--read-border)" }}
+          >
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-[#888888] mb-2">
+              <p
+                className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-2.5"
+                style={{ color: "var(--read-gold)" }}
+              >
                 How confident are you?
               </p>
               <div className="flex gap-2">
-                {(["low", "med", "high"] as const).map((c) => (
-                  <button
-                    key={c}
-                    type="button"
-                    onClick={() => patch({ confidence: c })}
-                    className={cn(
-                      "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
-                      state.confidence === c
-                        ? "border-[#C9A84C]/40 text-[#C9A84C]"
-                        : "border-white/[0.08] text-[#888888] hover:text-[#F0F0F0]"
-                    )}
-                  >
-                    {c === "low" ? "Low" : c === "med" ? "Medium" : "High"}
-                  </button>
-                ))}
+                {(["low", "med", "high"] as const).map((c) => {
+                  const active = state.confidence === c
+                  return (
+                    <button
+                      key={c}
+                      type="button"
+                      onClick={() => patch({ confidence: c })}
+                      className="px-3.5 py-1.5 rounded-xl text-xs font-medium tracking-tight border transition-colors"
+                      style={{
+                        borderColor: active
+                          ? "var(--read-gold-strong)"
+                          : "var(--read-border-strong)",
+                        color: active
+                          ? "var(--read-gold)"
+                          : "var(--read-text-muted)",
+                        backgroundColor: active
+                          ? "var(--read-gold-soft)"
+                          : "transparent",
+                      }}
+                    >
+                      {c === "low" ? "Low" : c === "med" ? "Medium" : "High"}
+                    </button>
+                  )
+                })}
               </div>
             </div>
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-[#888888] mb-2">
-                In one sentence, why? <span className="text-[#555555] normal-case tracking-normal italic">(optional — but saying it cements it)</span>
+              <p
+                className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-2.5"
+                style={{ color: "var(--read-gold)" }}
+              >
+                In one sentence, why?{" "}
+                <span
+                  className="font-display-italic normal-case tracking-normal"
+                  style={{ color: "var(--read-text-faint)" }}
+                >
+                  (optional — but saying it cements it)
+                </span>
               </p>
               <textarea
                 value={state.selfExplanation}
                 onChange={(e) => patch({ selfExplanation: e.target.value })}
                 rows={2}
                 placeholder="e.g., Order matters here because president ≠ VP, so I used P(n, k)"
-                className="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-lg p-2.5 text-[13px] text-[#D8D8D8] placeholder:text-[#444444] focus:outline-none focus:border-[#C9A84C]/40 resize-none"
+                className="w-full border rounded-xl p-3 text-[13px] leading-[1.6] focus:outline-none focus:ring-2 resize-none transition-all"
+                style={{
+                  backgroundColor: "var(--read-bg-elevated)",
+                  borderColor: "var(--read-border-strong)",
+                  color: "var(--read-text-body)",
+                }}
               />
             </div>
             <button
               onClick={() => patch({ submitted: true })}
               disabled={!canSubmit}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium text-[#0A0A0A] hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
-              style={{ backgroundColor: "#C9A84C" }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+              style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
             >
               Submit
               <ArrowRight className="w-3.5 h-3.5" />
@@ -742,14 +1637,17 @@ function PostSubmitReveal({
       : null
 
   return (
-    <div className="pt-4 border-t border-white/[0.06] space-y-3">
+    <div
+      className="pt-4 border-t space-y-3"
+      style={{ borderColor: "var(--read-border)" }}
+    >
       <div
         className="flex items-start gap-3 p-3 rounded-lg text-[13px]"
         style={{
           backgroundColor: isCorrect
-            ? "rgba(62,207,142,0.08)"
-            : "rgba(255,68,68,0.08)",
-          color: isCorrect ? "#3ECF8E" : "#FF4444",
+            ? "var(--read-success-soft)"
+            : "var(--read-error-soft)",
+          color: isCorrect ? "var(--read-success)" : "var(--read-error)",
         }}
       >
         {isCorrect ? (
@@ -772,7 +1670,8 @@ function PostSubmitReveal({
       <button
         type="button"
         onClick={() => setShowExplanation((s) => !s)}
-        className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors"
+        className="inline-flex items-center gap-1.5 text-xs transition-colors"
+        style={{ color: "var(--read-text-muted)" }}
       >
         <Lightbulb className="w-3.5 h-3.5" />
         {showExplanation ? "Hide" : "Show"} explanation
@@ -786,18 +1685,30 @@ function PostSubmitReveal({
 
       {showExplanation && (
         <div
-          className="p-4 rounded-lg border border-white/[0.06]"
-          style={{ backgroundColor: "#0A0A0A" }}
+          className="p-4 rounded-lg border"
+          style={{
+            backgroundColor: "var(--read-bg-elevated)",
+            borderColor: "var(--read-border)",
+          }}
         >
           <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
             {question.explanation}
           </ReactMarkdown>
           {state.selfExplanation.trim() && (
-            <div className="mt-4 pt-4 border-t border-white/[0.06]">
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-[#555555] mb-1.5">
+            <div
+              className="mt-4 pt-4 border-t"
+              style={{ borderColor: "var(--read-border)" }}
+            >
+              <p
+                className="text-[10px] font-semibold uppercase tracking-widest mb-1.5"
+                style={{ color: "var(--read-text-faint)" }}
+              >
                 Your pre-submit plan
               </p>
-              <p className="text-[13px] text-[#A8A8A8] italic">
+              <p
+                className="text-[13px] italic"
+                style={{ color: "var(--read-text-body)" }}
+              >
                 &ldquo;{state.selfExplanation.trim()}&rdquo;
               </p>
             </div>
@@ -830,21 +1741,42 @@ function ProblemSetsBlock({
   if (readySets.length === 0) return null
 
   return (
-    <section className="rounded-xl border bg-[#111111] border-white/[0.08]">
-      <div className="px-6 py-5 border-b border-white/[0.06]">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-[#555555]">
+    <section
+      className="rounded-2xl border"
+      style={{
+        backgroundColor: "var(--read-bg-elevated)",
+        borderColor: "var(--read-border-strong)",
+      }}
+    >
+      <div
+        className="px-6 sm:px-8 py-6 border-b"
+        style={{ borderColor: "var(--read-border)" }}
+      >
+        <p
+          className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+          style={{ color: "var(--read-gold)" }}
+        >
           End of Chapter
         </p>
-        <h2 className="text-lg font-semibold text-[#F0F0F0] mt-0.5">
-          Graded Problem Sets
+        <h2
+          className="font-display text-2xl sm:text-[1.75rem] font-semibold tracking-[-0.01em] mt-1.5 leading-[1.1]"
+          style={{ color: "var(--read-text)" }}
+        >
+          Graded problem{" "}
+          <span className="font-display-italic" style={{ color: "var(--read-gold)" }}>
+            sets.
+          </span>
         </h2>
-        <p className="text-[13px] text-[#888888] mt-1 leading-relaxed">
-          Your accuracy targets below are calibrated to your goal score
+        <p
+          className="text-[14px] mt-3 leading-[1.75]"
+          style={{ color: "var(--read-text-body)" }}
+        >
+          Your accuracy targets are calibrated to your goal score
           {targetScore !== null ? ` of ${targetScore}` : " (set one on the dashboard to personalize)"}.
         </p>
       </div>
 
-      <div className="px-6 py-5 grid sm:grid-cols-3 gap-4">
+      <div className="px-6 sm:px-8 py-6 grid sm:grid-cols-3 gap-4">
         {readySets.map((set) => (
           <ProblemSetCard
             key={set.difficulty}
@@ -856,8 +1788,31 @@ function ProblemSetsBlock({
           />
         ))}
       </div>
+
+      {/* Interleaved mixed review — the next-step drill once the student
+          has run at least one problem set. Pulls from current chapter +
+          past completed chapters + recent misses + review queue. */}
+      <div
+        className="px-6 sm:px-8 py-6 border-t"
+        style={{ borderColor: "var(--read-border)" }}
+      >
+        <MixedReviewCard
+          chapterSlug={slug}
+          unlocked={hasAnyProblemSetResult(progress)}
+          variant="chapter"
+        />
+      </div>
     </section>
   )
+}
+
+function hasAnyProblemSetResult(progress: ChapterProgress): boolean {
+  const r = progress.problemSetResults
+  if (!r) return false
+  return (["easy", "medium", "hard"] as const).some((d) => {
+    const entry = r[d]
+    return !!entry && entry.total > 0
+  })
 }
 
 function ProblemSetCard({
@@ -882,58 +1837,67 @@ function ProblemSetCard({
       : null
   const passedTarget = achievedPct !== null && achievedPct >= targetPct
 
-  const color =
+  const colorVar =
     passedTarget === true
-      ? "#3ECF8E"
+      ? "var(--read-success)"
       : achievedPct !== null
-      ? "#FF4444"
-      : "#C9A84C"
+      ? "var(--read-error)"
+      : "var(--read-gold)"
 
   return (
     <>
       <button
         type="button"
         onClick={() => setRunning(true)}
-        className="p-4 rounded-xl border text-left transition-colors hover:border-white/[0.14]"
+        className="group p-5 rounded-2xl border text-left transition-all duration-300 hover:-translate-y-0.5"
         style={{
-          borderColor: "rgba(255,255,255,0.08)",
-          backgroundColor: "#0F0F0F",
+          borderColor: "var(--read-border-strong)",
+          backgroundColor: "var(--read-bg-inset)",
         }}
       >
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center justify-between mb-3">
           <p
-            className="text-xs font-semibold uppercase tracking-widest"
-            style={{ color }}
+            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+            style={{ color: colorVar }}
           >
             {set.difficulty}
           </p>
           {achievedPct !== null && (
             <span
-              className="text-[10px] px-2 py-0.5 rounded font-semibold"
+              className="text-[10px] px-2 py-0.5 rounded font-semibold uppercase tracking-[0.18em]"
               style={{
                 backgroundColor: passedTarget
-                  ? "rgba(62,207,142,0.12)"
-                  : "rgba(255,68,68,0.12)",
-                color: passedTarget ? "#3ECF8E" : "#FF4444",
+                  ? "var(--read-success-soft)"
+                  : "var(--read-error-soft)",
+                color: passedTarget ? "var(--read-success)" : "var(--read-error)",
               }}
             >
               {passedTarget ? "Passed" : "Retake"}
             </span>
           )}
         </div>
-        <p className="text-sm font-semibold text-[#F0F0F0]">
+        <p
+          className="font-display text-base font-semibold tracking-tight"
+          style={{ color: "var(--read-text)" }}
+        >
           {set.questions.length} question{set.questions.length === 1 ? "" : "s"}
         </p>
-        <div className="mt-3 h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
+        <div
+          className="mt-4 h-1.5 rounded-full overflow-hidden"
+          style={{ backgroundColor: "var(--read-border)" }}
+        >
           <div
             className="h-full rounded-full transition-all duration-500"
             style={{
               width: `${achievedPct ?? 0}%`,
-              backgroundColor: color,
+              backgroundColor: colorVar,
             }}
           />
         </div>
-        <div className="mt-2 flex items-center justify-between text-[11px] text-[#555555]">
+        <div
+          className="mt-2.5 flex items-center justify-between text-[11px] tabular-nums"
+          style={{ color: "var(--read-text-faint)" }}
+        >
           <span>
             {achievedPct === null
               ? `Goal: ${targetPct}%`
@@ -1010,14 +1974,27 @@ function ProblemSetRunner({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-2xl my-8 mx-4 rounded-xl border border-white/[0.12] bg-[#111111]"
+        className="w-full max-w-2xl my-8 mx-4 rounded-2xl border"
+        style={{
+          backgroundColor: "var(--read-bg-elevated)",
+          borderColor: "var(--read-border-strong)",
+        }}
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.08]">
+        <div
+          className="flex items-center justify-between px-6 py-5 border-b"
+          style={{ borderColor: "var(--read-border)" }}
+        >
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-[#555555]">
+            <p
+              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+              style={{ color: "var(--read-gold)" }}
+            >
               {set.difficulty} set
             </p>
-            <p className="text-sm font-semibold text-[#F0F0F0] mt-0.5">
+            <p
+              className="font-display text-base font-semibold tracking-tight mt-1 tabular-nums"
+              style={{ color: "var(--read-text)" }}
+            >
               {done
                 ? "Set complete"
                 : `Question ${idx + 1} of ${set.questions.length}`}
@@ -1026,7 +2003,8 @@ function ProblemSetRunner({
           <button
             onClick={onClose}
             aria-label="Close"
-            className="p-1.5 rounded text-[#555555] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
+            className="p-1.5 rounded transition-colors"
+            style={{ color: "var(--read-text-faint)" }}
           >
             <X className="w-4 h-4" />
           </button>
@@ -1052,22 +2030,22 @@ function ProblemSetRunner({
                 const isCorrect = current.correctAnswer === i
                 const border = submitted
                   ? isCorrect
-                    ? "rgba(62,207,142,0.5)"
+                    ? "var(--read-success)"
                     : chosen
-                    ? "rgba(255,68,68,0.5)"
-                    : "rgba(255,255,255,0.06)"
+                    ? "var(--read-error)"
+                    : "var(--read-border)"
                   : chosen
-                  ? "rgba(201,168,76,0.5)"
-                  : "rgba(255,255,255,0.08)"
+                  ? "var(--read-gold-strong)"
+                  : "var(--read-border-strong)"
                 const bg = submitted
                   ? isCorrect
-                    ? "rgba(62,207,142,0.05)"
+                    ? "var(--read-success-soft)"
                     : chosen
-                    ? "rgba(255,68,68,0.05)"
-                    : "#0A0A0A"
+                    ? "var(--read-error-soft)"
+                    : "var(--read-bg-inset)"
                   : chosen
-                  ? "rgba(201,168,76,0.06)"
-                  : "#0A0A0A"
+                  ? "var(--read-gold-soft)"
+                  : "var(--read-bg-inset)"
                 return (
                   <button
                     key={i}
@@ -1081,24 +2059,24 @@ function ProblemSetRunner({
                       style={{
                         backgroundColor: submitted
                           ? isCorrect
-                            ? "#3ECF8E"
+                            ? "var(--read-success)"
                             : chosen
-                            ? "#FF4444"
-                            : "rgba(255,255,255,0.04)"
+                            ? "var(--read-error)"
+                            : "var(--read-border)"
                           : chosen
-                          ? "#C9A84C"
-                          : "rgba(255,255,255,0.04)",
+                          ? "var(--read-gold)"
+                          : "var(--read-border)",
                         color:
                           submitted && (isCorrect || chosen)
-                            ? "#0A0A0A"
+                            ? "var(--read-bg-inset)"
                             : chosen
-                            ? "#0A0A0A"
-                            : "#888888",
+                            ? "var(--read-bg-inset)"
+                            : "var(--read-text-muted)",
                       }}
                     >
                       {String.fromCharCode(65 + i)}
                     </span>
-                    <div className="flex-1 text-[14px] text-[#D8D8D8]">
+                    <div className="flex-1 text-[14px]" style={{ color: "var(--read-text-body)" }}>
                       <ReactMarkdown
                         remarkPlugins={[remarkGfm]}
                         components={mdComponents}
@@ -1113,8 +2091,11 @@ function ProblemSetRunner({
 
             {submitted && (
               <div
-                className="p-3 rounded-lg border border-white/[0.06]"
-                style={{ backgroundColor: "#0A0A0A" }}
+                className="p-3 rounded-lg border"
+                style={{
+                  backgroundColor: "var(--read-bg-inset)",
+                  borderColor: "var(--read-border)",
+                }}
               >
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
@@ -1130,16 +2111,16 @@ function ProblemSetRunner({
                 <button
                   onClick={submit}
                   disabled={selected === null}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-medium text-[#0A0A0A] disabled:opacity-60 disabled:cursor-not-allowed"
-                  style={{ backgroundColor: "#C9A84C" }}
+                  className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
                 >
                   Submit
                 </button>
               ) : (
                 <button
                   onClick={next}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-medium text-[#0A0A0A] hover:opacity-90 transition-opacity"
-                  style={{ backgroundColor: "#C9A84C" }}
+                  className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
+                  style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
                 >
                   {idx + 1 >= set.questions.length ? "Finish" : "Next"}
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -1168,28 +2149,36 @@ function RunnerResults({
   const pct = Math.round((correct / total) * 100)
   const passed = pct >= targetPct
   return (
-    <div className="px-6 py-8 text-center space-y-5">
+    <div className="px-6 py-10 text-center space-y-6">
       <div
         className="mx-auto w-16 h-16 rounded-full flex items-center justify-center"
         style={{
-          backgroundColor: passed ? "rgba(62,207,142,0.1)" : "rgba(255,68,68,0.1)",
+          backgroundColor: passed ? "var(--read-success-soft)" : "var(--read-error-soft)",
         }}
       >
         {passed ? (
-          <Award className="w-8 h-8" style={{ color: "#3ECF8E" }} />
+          <Award className="w-8 h-8" style={{ color: "var(--read-success)" }} />
         ) : (
-          <BrainCircuit className="w-8 h-8" style={{ color: "#FF4444" }} />
+          <BrainCircuit className="w-8 h-8" style={{ color: "var(--read-error)" }} />
         )}
       </div>
       <div>
-        <p className="text-3xl font-bold text-[#F0F0F0]">{pct}%</p>
-        <p className="text-sm text-[#888888] mt-1">
+        <p
+          className="font-display text-5xl font-semibold tabular-nums tracking-tight"
+          style={{ color: "var(--read-text)" }}
+        >
+          {pct}%
+        </p>
+        <p
+          className="text-[13px] mt-2 tabular-nums"
+          style={{ color: "var(--read-text-muted)" }}
+        >
           {correct} / {total} correct
         </p>
       </div>
       <p
-        className="text-sm"
-        style={{ color: passed ? "#3ECF8E" : "#FF4444" }}
+        className="text-[14px] leading-relaxed max-w-sm mx-auto"
+        style={{ color: passed ? "var(--read-success)" : "var(--read-error)" }}
       >
         {passed
           ? `Nice — you beat your target of ${targetPct}%.`
@@ -1197,8 +2186,8 @@ function RunnerResults({
       </p>
       <button
         onClick={onClose}
-        className="px-4 py-2 rounded-lg text-xs font-medium text-[#0A0A0A]"
-        style={{ backgroundColor: "#C9A84C" }}
+        className="px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
+        style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
       >
         Close
       </button>

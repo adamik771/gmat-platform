@@ -77,6 +77,7 @@ export async function computeStudyPlan(
   opts: {
     targetScore: number | null
     examDate: string | null
+    flaggedQuestionIds?: Set<string>
   }
 ): Promise<StudyPlanOutput> {
   // Diagnostic completion state
@@ -91,7 +92,10 @@ export async function computeStudyPlan(
 
   // Review queue — the spaced-retrieval queue's length drives one arm of
   // the "what to do today" decision.
-  const queue = await getReviewQueue(supabase, userId, { limit: 60 })
+  const queue = await getReviewQueue(supabase, userId, {
+    limit: 60,
+    flaggedQuestionIds: opts.flaggedQuestionIds,
+  })
   const reviewDueCount = queue.length
 
   // Topic-level accuracy from all attempts. Bounded to 5k rows via the

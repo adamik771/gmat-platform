@@ -26,9 +26,14 @@ interface CustomTooltipProps {
 function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-[#1A1A1A] border border-white/[0.08] rounded-lg px-3 py-2 text-xs">
-        <p className="text-[#888888] mb-1">{label}</p>
-        <p className="font-semibold" style={{ color: "#C9A84C" }}>
+      <div className="bg-[#0D0D0D] border border-white/[0.08] rounded-xl px-3 py-2 text-xs shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)]">
+        <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888] mb-1">
+          {label}
+        </p>
+        <p
+          className="font-display text-base font-semibold tabular-nums"
+          style={{ color: "#C9A84C" }}
+        >
           {payload[0].value}
         </p>
       </div>

@@ -111,6 +111,8 @@ problem_sets:
 
 Even and odd feel like elementary-school ideas. They're not — on the GMAT, they're a source of 725+ difficulty because test writers combine them with absolute value, exponents, and Data Sufficiency conditions. What separates students who get these right is not "more memorization" but a fluent internal table they can run through in two seconds.
 
+**Mental model.** Number properties are labels on integers — even, odd, prime, divisor, factor, multiple, remainder. Most questions reduce to "given these labels on these numbers, what's also true?" The work is keeping the labels straight; the arithmetic is rarely hard. Errors here are almost always definitional confusion (forgetting 0 is even, that 1 isn't prime, that GCF is smaller than its inputs), not computational.
+
 **The sum/difference table:**
 
 - even + even = even
@@ -144,7 +146,7 @@ Only `m² + n` must be odd. Every GMAT even/odd question is built this way — t
 
 Answer: B. The trap is trusting statement (1) because "even + even = even" feels informative — it isn't, because `k² + k` is even for every integer k.
 
-> **Trap to watch.** Zero is even. Students forget this constantly on Data Sufficiency. "Is k even?" with `k = 0` is YES. The integer 0 is also divisible by every integer except 0 itself.
+**Trap to watch.** Zero is even. Students forget this constantly on Data Sufficiency. "Is k even?" with `k = 0` is YES. The integer 0 is also divisible by every integer except 0 itself.
 
 > **Self-explanation prompt.** Why is the product of any two consecutive integers always even? If you can say "because one of them is even, and even times anything is even," you've internalized the pattern well enough to recognize `k(k+1)` in disguise on the test.
 
@@ -180,7 +182,7 @@ Alternating sum from the right: `1 − 3 + 4 − 2 = 0`. Zero is divisible by 11
 
 > **Recall check.** Close your eyes. State — without looking — the divisibility rules for 3, 4, 8, 9, and 11. Now test yourself on a number: is 396 divisible by each of 2, 3, 4, 6, 9? (Answers: yes, yes, yes, yes, yes — 396 = 4 × 99 = 4 × 9 × 11. All five rules agree.) Retrieval practice beats re-reading by 40% on delayed tests (Roediger & Karpicke, 2006) — that's why this box is here instead of a re-summary.
 
-> **Trap to watch.** A number divisible by 6 is divisible by 3 *and* 2. But divisibility by 8 is NOT "divisible by 4 twice" — 12 is divisible by 4 but not by 8. The rule only composes cleanly when the factors are coprime.
+**Trap to watch.** A number divisible by 6 is divisible by 3 *and* 2. But divisibility by 8 is NOT "divisible by 4 twice" — 12 is divisible by 4 but not by 8. The rule only composes cleanly when the factors are coprime.
 
 ## @primes-and-prime-factorization
 
@@ -210,7 +212,7 @@ Fifteen primes. You should know all of them on sight. Students who have to test 
 
 **Counting special kinds of factors.** For `n = 2⁵ × 3⁴ × 5³`, how many factors are perfect squares? A factor looks like `2^a × 3^b × 5^c` with `0 ≤ a ≤ 5`, `0 ≤ b ≤ 4`, `0 ≤ c ≤ 3`. For it to be a perfect square, each of a, b, c must be even. a: 0, 2, 4 → 3 choices. b: 0, 2, 4 → 3 choices. c: 0, 2 → 2 choices. Total: `3 × 3 × 2 = 18`.
 
-> **Trap to watch.** 1 is a factor of every positive integer and should be counted when the question asks for "positive factors." But 1 is NOT a prime. The distinction matters on every single factor-counting question.
+**Trap to watch.** 1 is a factor of every positive integer and should be counted when the question asks for "positive factors." But 1 is NOT a prime. The distinction matters on every single factor-counting question.
 
 > **Self-explanation prompt.** Why does the factor-count formula `(a+1)(b+1)(c+1)` work? If you can say "because each prime's exponent has `(exponent + 1)` choices from 0 up to its maximum, and each combination gives a unique factor," you understand the formula and won't misapply it.
 
@@ -251,7 +253,7 @@ Using `m × n = GCF × LCM`: `12m = 6 × 36 = 216`, so `m = 18`. Check: `GCF(18,
 - `n(n+1)(n+2)`: three consecutive integers, divisible by 3! = 6. ✓
 - The other two: fail for small n.
 
-> **Trap to watch.** GCF and LCM switch in students' heads under time pressure. Quick check: GCF is smaller (or equal) than either number; LCM is larger (or equal). If your "GCF" is bigger than either input, you found the LCM.
+**Trap to watch.** GCF and LCM switch in students' heads under time pressure. Quick check: GCF is smaller (or equal) than either number; LCM is larger (or equal). If your "GCF" is bigger than either input, you found the LCM.
 
 ## @remainders
 
@@ -275,7 +277,7 @@ Write `n = 7k + 4`. Then `3n + 5 = 3(7k + 4) + 5 = 21k + 12 + 5 = 21k + 17`. Now
 
 **The remainder-cycle pattern.** Remainders repeat with period equal to the divisor. If you divide `0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, …` by 4, the remainders are `0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, …`. Every fourth integer has the same remainder. This is why remainders behave like addition modulo d.
 
-> **Trap to watch.** The remainder is always non-negative. If algebra gives you a negative "remainder," add the divisor until you land in `[0, d)`. E.g., `−7 mod 5`: `−7 + 5 = −2`, still negative; `−2 + 5 = 3`. So `−7` has remainder 3 mod 5.
+**Trap to watch.** The remainder is always non-negative. If algebra gives you a negative "remainder," add the divisor until you land in `[0, d)`. E.g., `−7 mod 5`: `−7 + 5 = −2`, still negative; `−2 + 5 = 3`. So `−7` has remainder 3 mod 5.
 
 > **Self-explanation prompt.** In one sentence, why can you just multiply remainders to get the remainder of a product? If you can say "because every other piece of the expanded product is divisible by d, leaving only the product of remainders," you've understood modular arithmetic without needing the formal notation.
 
@@ -316,7 +318,7 @@ The GMAT frequently asks "must be" or "could be" questions about expressions bui
 
 **Example.** Prove `n² − n` is always even. `n² − n = n(n − 1)`, product of two consecutive integers, one of which is even. Therefore always even. (Alternative: if `n = 2k`, `n² − n = 4k² − 2k = 2(2k² − k)`; if `n = 2k+1`, `n² − n = (2k+1)(2k) = 2k(2k+1)`. Either way, divisible by 2.)
 
-> **Trap to watch.** "Must be divisible by X" questions require the property for *every* integer, not just most. If one counter-example exists, the choice fails. Always test small values (n = 1, 2, 3) before picking an answer.
+**Trap to watch.** "Must be divisible by X" questions require the property for *every* integer, not just most. If one counter-example exists, the choice fails. Always test small values (n = 1, 2, 3) before picking an answer.
 
 ## @summary
 

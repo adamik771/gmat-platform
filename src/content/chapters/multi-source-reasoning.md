@@ -98,6 +98,8 @@ problem_sets:
 
 Multi-Source Reasoning is an information architecture problem. You're given 2-3 tabs — usually a mix of narrative text (memos, emails, reports), data tables, and rule lists. The challenge isn't understanding any one tab; it's knowing where each type of information lives and navigating efficiently when questions pull from different places.
 
+**Mental model.** MSR is a two-pass exercise. Pass 1: build a mental table-of-contents — what's in each tab, what kind of data is where. Pass 2: deep-read only the part the current question forces you to. Students who try to absorb everything in one pass run out of time on a 6-question set. The two passes cost less total time than one careful pass.
+
 **The two-pass protocol.**
 
 **Pass 1: Orient.** Before reading deeply, scan all tabs for 30-45 seconds. Build a mental map:
@@ -236,7 +238,7 @@ Recompute with the new target. Hardware was 55% — now meets the 60% target. Pr
 
 **Reading hypothetical stems carefully.** The conditional is often embedded in a phrase: "If [condition], what [outcome]?" Underline both parts. A common error is missing exactly what the hypothetical changed.
 
-> **Trap to watch.** When the question says "approximately," the answer is usually rounded. If you compute 4.48% and the answer choices are 4.5%, 7.2%, 10.4%, 14.8%, pick 4.5% — not the next closest by absolute distance. "Approximately" signals round-to-the-nearest-natural-choice, not round-to-the-closest-numeric.
+**Trap to watch.** When the question says "approximately," the answer is usually rounded. If you compute 4.48% and the answer choices are 4.5%, 7.2%, 10.4%, 14.8%, pick 4.5% — not the next closest by absolute distance. "Approximately" signals round-to-the-nearest-natural-choice, not round-to-the-closest-numeric.
 
 ## @yes-no-statement-checks
 

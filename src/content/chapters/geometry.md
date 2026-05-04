@@ -114,6 +114,8 @@ problem_sets:
 
 Triangles dominate GMAT geometry. Roughly 40% of geometry questions involve a triangle somewhere — often hidden inside a bigger figure. Three families of facts cover 95% of what the test demands.
 
+**Mental model.** Geometry rewards drawing. Always sketch the figure — even a rough one — before you compute. The chapter teaches three layers: the seven foundational facts (Pythagorean theorem, two special-triangle ratios, four area formulas), the composition moves (split a complex shape into simpler ones), and the algebraic encoding (coordinate plane). A student who tries to solve geometry without drawing is the student who runs out of time on the section.
+
 **Family 1: The Pythagorean theorem.**
 
 In any right triangle with legs a, b and hypotenuse c: **a² + b² = c²**.
@@ -211,7 +213,7 @@ Memorize "area of square = d²/2" — it appears on almost every inscribed-squar
 
 **Tangent lines** are perpendicular to the radius at the point of tangency. Rarely tested at 605-level but can appear on 685+ problems.
 
-> **Trap to watch.** "What's the area of a circle with diameter 10?" The diameter is 10, so the radius is 5, and the area is 25π. Students who plug the diameter into πr² directly get 100π — four times too large.
+**Trap to watch.** "What's the area of a circle with diameter 10?" The diameter is 10, so the radius is 5, and the area is 25π. Students who plug the diameter into πr² directly get 100π — four times too large.
 
 ## @quadrilaterals-and-polygons
 
@@ -325,7 +327,7 @@ Point-slope form: y − y₁ = m(x − x₁). Useful when you have a slope and a
 
 **Symmetric distances.** Three points that are equidistant pairwise form an equilateral triangle. Four points equidistant pairwise form a regular tetrahedron (in 3D). These rarely appear, but know the language.
 
-> **Trap to watch.** Perpendicular slopes are negative reciprocals, not just negatives. The perpendicular to slope 2 is −1/2, not −2. And both perpendicular and reciprocal changes — drop the minus sign or skip the reciprocal, and you've got the wrong line.
+**Trap to watch.** Perpendicular slopes are negative reciprocals, not just negatives. The perpendicular to slope 2 is −1/2, not −2. And both perpendicular and reciprocal changes — drop the minus sign or skip the reciprocal, and you've got the wrong line.
 
 ## @three-d-solids
 
@@ -407,7 +409,7 @@ The general trick: **(L + W)² = (L² + W²) + 2LW**, so if you know sum-of-squa
 
 **Rotational and reflective symmetry** — rarely tested but comes up on 725+ problems involving regular polygons.
 
-> **Trap to watch.** "Rectangle with diagonal 10 and perimeter 28 — what's the area?" If you try to solve for L and W individually, you hit a messy quadratic. The sum-of-squares + sum-of-sides identity gives you LW directly without ever finding L or W. Whenever the question asks for a product (area) and gives you sum-of-squares + sum, square the sum.
+**Trap to watch.** "Rectangle with diagonal 10 and perimeter 28 — what's the area?" If you try to solve for L and W individually, you hit a messy quadratic. The sum-of-squares + sum-of-sides identity gives you LW directly without ever finding L or W. Whenever the question asks for a product (area) and gives you sum-of-squares + sum, square the sum.
 
 ## @summary
 

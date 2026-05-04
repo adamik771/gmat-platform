@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState, useTransition } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import {
+  AlertCircle,
   Bell,
   CheckCircle2,
   CreditCard,
@@ -37,6 +38,8 @@ interface Props {
   initialEmail: string
   initialExamDate: string | null
   initialTargetScore: number | null
+  initialEnglishNative: boolean | null
+  initialPriorGmatAttempt: boolean | null
   purchases: PurchaseRow[]
   initialPrefs: NotificationPrefs
 }
@@ -48,6 +51,8 @@ export default function SettingsClient({
   initialEmail,
   initialExamDate,
   initialTargetScore,
+  initialEnglishNative,
+  initialPriorGmatAttempt,
   purchases,
   initialPrefs,
 }: Props) {
@@ -60,78 +65,200 @@ export default function SettingsClient({
   ]
 
   return (
-    <div className="max-w-3xl mx-auto space-y-8">
-      <div>
-        <h1 className="text-2xl font-bold text-[#F0F0F0]">Settings</h1>
-        <p className="text-sm text-[#555555] mt-1">
-          Manage your account and preferences
-        </p>
-      </div>
-
-      {/* Tab nav */}
+    <div className="relative">
       <div
-        className="flex gap-1 p-1 rounded-xl"
+        className="absolute inset-x-0 top-0 h-[480px] pointer-events-none"
         style={{
-          backgroundColor: "#111111",
-          border: "1px solid rgba(255,255,255,0.06)",
+          background:
+            "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 60%)",
         }}
-      >
-        {tabs.map((t) => {
-          const Icon = t.icon
-          return (
-            <button
-              key={t.id}
-              onClick={() => setTab(t.id)}
-              className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all flex-1 justify-center",
-                tab === t.id
-                  ? "text-[#F0F0F0]"
-                  : "text-[#555555] hover:text-[#888888]"
-              )}
-              style={tab === t.id ? { backgroundColor: "#1A1A1A" } : {}}
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
+        aria-hidden
+      />
+
+      <div className="relative max-w-3xl mx-auto space-y-10">
+        <div>
+          <div className="flex items-center gap-3 mb-5">
+            <span
+              className="h-px w-8"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent, rgba(201,168,76,0.6))",
+              }}
+            />
+            <p
+              className="text-[10px] uppercase tracking-[0.22em] font-semibold"
+              style={{ color: "#C9A84C" }}
             >
-              <Icon className="w-4 h-4" />
-              {t.label}
-            </button>
-          )
-        })}
+              Account
+            </p>
+          </div>
+          <h1 className="font-display text-4xl md:text-5xl font-semibold tracking-tight text-[#F0F0F0] leading-[1.05] mb-3">
+            Your{" "}
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+              preferences.
+            </span>
+          </h1>
+          <p className="text-[15px] leading-[1.75] text-[#C0C0C0] max-w-xl">
+            Profile, exam date, persona layers, billing, and notification preferences — all in one place.
+          </p>
+        </div>
+
+        <div
+          className="flex gap-1 p-1 rounded-xl"
+          style={{
+            backgroundColor: "#0A0A0A",
+            border: "1px solid rgba(255,255,255,0.06)",
+          }}
+        >
+          {tabs.map((t) => {
+            const Icon = t.icon
+            const active = tab === t.id
+            return (
+              <button
+                key={t.id}
+                onClick={() => setTab(t.id)}
+                className={cn(
+                  "flex items-center gap-2 px-4 py-2.5 rounded-lg text-[13px] font-semibold tracking-tight transition-all flex-1 justify-center",
+                  active
+                    ? "text-[#F0F0F0]"
+                    : "text-[#888888] hover:text-[#C0C0C0]"
+                )}
+                style={
+                  active
+                    ? {
+                        backgroundColor: "#141414",
+                        boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
+                      }
+                    : {}
+                }
+              >
+                <Icon
+                  className="w-4 h-4"
+                  style={active ? { color: "#C9A84C" } : {}}
+                />
+                {t.label}
+              </button>
+            )
+          })}
+        </div>
+
+        {tab === "profile" && (
+          <ProfileTab
+            initialName={initialName}
+            initialEmail={initialEmail}
+            initialExamDate={initialExamDate}
+            targetScore={initialTargetScore}
+            initialEnglishNative={initialEnglishNative}
+            initialPriorGmatAttempt={initialPriorGmatAttempt}
+          />
+        )}
+
+        {tab === "billing" && <BillingTab purchases={purchases} />}
+
+        {tab === "notifications" && <NotificationsTab initialPrefs={initialPrefs} />}
       </div>
-
-      {tab === "profile" && (
-        <ProfileTab
-          initialName={initialName}
-          initialEmail={initialEmail}
-          initialExamDate={initialExamDate}
-          targetScore={initialTargetScore}
-        />
-      )}
-
-      {tab === "billing" && <BillingTab purchases={purchases} />}
-
-      {tab === "notifications" && <NotificationsTab initialPrefs={initialPrefs} />}
     </div>
   )
 }
 
-/**
- * Profile tab — editable name, email, and exam date. Email changes go
- * through a two-step confirmation flow (see `EmailField`); the rest
- * write through immediately. Target score is surfaced here as reference
- * but editable on /dashboard, to keep one writer for that field.
- */
+function SectionShell({
+  eyebrow,
+  title,
+  italic,
+  description,
+  children,
+}: {
+  eyebrow: string
+  title: string
+  italic: string
+  description?: string
+  children: React.ReactNode
+}) {
+  return (
+    <div>
+      <div className="flex items-center gap-3 mb-5">
+        <span
+          className="h-px w-8"
+          style={{
+            background:
+              "linear-gradient(to right, transparent, rgba(201,168,76,0.6))",
+          }}
+        />
+        <p
+          className="text-[10px] uppercase tracking-[0.22em] font-semibold"
+          style={{ color: "#C9A84C" }}
+        >
+          {eyebrow}
+        </p>
+      </div>
+      <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-tight text-[#F0F0F0] mb-3 leading-[1.1]">
+        {title}{" "}
+        <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+          {italic}
+        </span>
+      </h2>
+      {description && (
+        <p className="text-[14px] leading-[1.75] text-[#C0C0C0] mb-6 max-w-xl">
+          {description}
+        </p>
+      )}
+      {children}
+    </div>
+  )
+}
+
+function FieldLabel({
+  children,
+  htmlFor,
+}: {
+  children: React.ReactNode
+  htmlFor?: string
+}) {
+  return (
+    <label
+      htmlFor={htmlFor}
+      className="block text-[10px] uppercase tracking-[0.18em] font-semibold text-[#C9A84C] mb-2"
+    >
+      {children}
+    </label>
+  )
+}
+
+const INPUT_CLASS =
+  "w-full px-4 py-3 rounded-xl text-[14px] text-[#F0F0F0] outline-none transition-all focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40"
+
+const INPUT_STYLE: React.CSSProperties = {
+  backgroundColor: "#0A0A0A",
+  border: "1px solid rgba(255,255,255,0.08)",
+}
+
 function ProfileTab({
   initialName,
   initialEmail,
   initialExamDate,
   targetScore,
+  initialEnglishNative,
+  initialPriorGmatAttempt,
 }: {
   initialName: string
   initialEmail: string
   initialExamDate: string | null
   targetScore: number | null
+  initialEnglishNative: boolean | null
+  initialPriorGmatAttempt: boolean | null
 }) {
   const [name, setName] = useState(initialName)
   const [examDate, setExamDate] = useState(initialExamDate ?? "")
+  const [englishNative, setEnglishNative] = useState<boolean | null>(
+    initialEnglishNative,
+  )
+  const [priorAttempt, setPriorAttempt] = useState<boolean | null>(
+    initialPriorGmatAttempt,
+  )
   const [saving, setSaving] = useState(false)
   const [status, setStatus] = useState<"idle" | "saved" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -140,7 +267,9 @@ function ProfileTab({
 
   const nameDirty = name !== initialName
   const examDirty = examDate !== (initialExamDate ?? "")
-  const dirty = nameDirty || examDirty
+  const englishDirty = englishNative !== initialEnglishNative
+  const priorDirty = priorAttempt !== initialPriorGmatAttempt
+  const dirty = nameDirty || examDirty || englishDirty || priorDirty
 
   async function save() {
     if (!dirty || saving) return
@@ -148,9 +277,11 @@ function ProfileTab({
     setStatus("idle")
     setErrorMessage(null)
 
-    const patch: Record<string, string | null> = {}
+    const patch: Record<string, string | boolean | null> = {}
     if (nameDirty) patch.full_name = name
     if (examDirty) patch.exam_date = examDate === "" ? null : examDate
+    if (englishDirty) patch.english_native = englishNative
+    if (priorDirty) patch.prior_gmat_attempt = priorAttempt
 
     try {
       const res = await fetch("/api/profile", {
@@ -164,7 +295,6 @@ function ProfileTab({
       }
       setStatus("saved")
       startTransition(() => router.refresh())
-      // Fade the "Saved" label after a moment so it doesn't linger.
       setTimeout(() => setStatus((s) => (s === "saved" ? "idle" : s)), 2500)
     } catch (err) {
       setStatus("error")
@@ -177,103 +307,205 @@ function ProfileTab({
   }
 
   return (
-    <div className="p-6 rounded-xl border border-white/[0.08] bg-[#111111] space-y-5">
-      <h2 className="text-base font-semibold text-[#F0F0F0]">
-        Profile Information
-      </h2>
+    <div className="space-y-10">
+      <SectionShell
+        eyebrow="Profile"
+        title="Who you"
+        italic="are."
+        description="Your name and email shape how Zakarian addresses you across the product. Exam date drives plan pacing."
+      >
+        <div
+          className="p-7 sm:p-8 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
+          style={{
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
+          }}
+        >
+          <div className="grid sm:grid-cols-2 gap-5">
+            <div>
+              <FieldLabel htmlFor="settings-full-name">Full name</FieldLabel>
+              <input
+                id="settings-full-name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                maxLength={120}
+                className={INPUT_CLASS}
+                style={INPUT_STYLE}
+              />
+            </div>
+            <Suspense
+              fallback={<EmailFieldFallback currentEmail={initialEmail} />}
+            >
+              <EmailField currentEmail={initialEmail} />
+            </Suspense>
+            <div>
+              <FieldLabel>Target GMAT score</FieldLabel>
+              <div
+                className="w-full px-4 py-3 rounded-xl text-[14px] flex items-center justify-between"
+                style={{
+                  backgroundColor: "#080808",
+                  border: "1px solid rgba(255,255,255,0.06)",
+                }}
+              >
+                <span
+                  className={
+                    targetScore !== null
+                      ? "text-[#F0F0F0] font-medium"
+                      : "text-[#555555] italic"
+                  }
+                >
+                  {targetScore !== null ? targetScore : "Not set"}
+                </span>
+                <Link
+                  href="/dashboard"
+                  className="text-[11px] underline underline-offset-2 decoration-[rgba(201,168,76,0.4)] text-[#888888] hover:text-[#C9A84C] hover:decoration-[#C9A84C] transition-colors"
+                >
+                  Edit on dashboard
+                </Link>
+              </div>
+            </div>
+            <div>
+              <FieldLabel htmlFor="settings-exam-date">Exam date</FieldLabel>
+              <input
+                id="settings-exam-date"
+                type="date"
+                value={examDate}
+                onChange={(e) => setExamDate(e.target.value)}
+                className={INPUT_CLASS}
+                style={{ ...INPUT_STYLE, colorScheme: "dark" }}
+              />
+            </div>
+          </div>
 
-      <div className="grid sm:grid-cols-2 gap-5">
-        <div>
-          <label className="block text-xs font-medium text-[#888888] mb-1.5">
-            Full Name
-          </label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            maxLength={120}
-            className="w-full px-3.5 py-2.5 rounded-lg text-sm text-[#F0F0F0] outline-none focus:border-[#C9A84C]/40"
-            style={{
-              backgroundColor: "#1A1A1A",
-              border: "1px solid rgba(255,255,255,0.08)",
-            }}
-          />
-        </div>
-        <Suspense fallback={<EmailFieldFallback currentEmail={initialEmail} />}>
-          <EmailField currentEmail={initialEmail} />
-        </Suspense>
-        <div>
-          <label className="block text-xs font-medium text-[#888888] mb-1.5">
-            Target GMAT Score
-          </label>
-          <div
-            className="w-full px-3.5 py-2.5 rounded-lg text-sm flex items-center justify-between"
-            style={{
-              backgroundColor: "#141414",
-              border: "1px solid rgba(255,255,255,0.06)",
-            }}
-          >
-            <span
-              className={
-                targetScore !== null
-                  ? "text-[#F0F0F0]"
-                  : "text-[#555555] italic"
-              }
+          <div className="mt-8 pt-7 border-t border-white/[0.06] space-y-6">
+            <div>
+              <p
+                className="text-[10px] uppercase tracking-[0.22em] font-semibold mb-2"
+                style={{ color: "#C9A84C" }}
+              >
+                Persona layers
+              </p>
+              <p className="text-[13px] text-[#C0C0C0] leading-[1.7]">
+                Optional. Tailors your study plan emphasis on top of the
+                baseline persona derived from your diagnostic.
+              </p>
+            </div>
+            <TriStateRow
+              label="Is English your first language?"
+              subtitle="A non-native signal adds extra verbal (RC + CR) emphasis to your plan."
+              value={englishNative}
+              onChange={setEnglishNative}
+              positiveLabel="Yes"
+              negativeLabel="No, non-native"
+            />
+            <TriStateRow
+              label="Have you taken the real GMAT before?"
+              subtitle="A retaker signal shifts emphasis toward post-mortem + review behaviour."
+              value={priorAttempt}
+              onChange={setPriorAttempt}
+              positiveLabel="Yes, I'm a retaker"
+              negativeLabel="No, first attempt"
+            />
+          </div>
+
+          <div className="mt-8 flex items-center gap-4">
+            <button
+              onClick={save}
+              disabled={saving || !dirty}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-[13px] font-semibold tracking-tight transition-all hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              {targetScore !== null ? targetScore : "Not set"}
-            </span>
-            <Link
-              href="/dashboard"
-              className="text-xs underline underline-offset-2 text-[#888888] hover:text-[#C9A84C] transition-colors"
-            >
-              Edit on dashboard
-            </Link>
+              {saving ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Save className="w-4 h-4" />
+              )}
+              {saving ? "Saving…" : "Save changes"}
+            </button>
+            {status === "saved" && (
+              <span
+                role="status"
+                aria-live="polite"
+                className="inline-flex items-center gap-1.5 text-[12px] font-medium"
+                style={{ color: "#3ECF8E" }}
+              >
+                <CheckCircle2 className="w-3.5 h-3.5" aria-hidden="true" />
+                Saved
+              </span>
+            )}
+            {status === "error" && errorMessage && (
+              <span
+                role="alert"
+                aria-live="polite"
+                className="inline-flex items-center gap-1.5 text-[12px]"
+                style={{ color: "#FF4444" }}
+              >
+                <AlertCircle className="w-3.5 h-3.5" aria-hidden="true" />
+                {errorMessage}
+              </span>
+            )}
           </div>
         </div>
-        <div>
-          <label className="block text-xs font-medium text-[#888888] mb-1.5">
-            Exam Date
-          </label>
-          <input
-            type="date"
-            value={examDate}
-            onChange={(e) => setExamDate(e.target.value)}
-            className="w-full px-3.5 py-2.5 rounded-lg text-sm text-[#F0F0F0] outline-none focus:border-[#C9A84C]/40"
-            style={{
-              backgroundColor: "#1A1A1A",
-              border: "1px solid rgba(255,255,255,0.08)",
-              colorScheme: "dark",
-            }}
-          />
-        </div>
-      </div>
+      </SectionShell>
+    </div>
+  )
+}
 
-      <div className="flex items-center gap-3">
-        <button
-          onClick={save}
-          disabled={saving || !dirty}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
-          style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-        >
-          {saving ? (
-            <Loader2 className="w-4 h-4 animate-spin" />
-          ) : (
-            <Save className="w-4 h-4" />
-          )}
-          {saving ? "Saving…" : "Save changes"}
-        </button>
-        {status === "saved" && (
-          <span
-            className="inline-flex items-center gap-1 text-xs"
-            style={{ color: "#3ECF8E" }}
-          >
-            <CheckCircle2 className="w-3.5 h-3.5" />
-            Saved
-          </span>
-        )}
-        {status === "error" && errorMessage && (
-          <span className="text-xs" style={{ color: "#FF4444" }}>
-            {errorMessage}
+function TriStateRow({
+  label,
+  subtitle,
+  value,
+  onChange,
+  positiveLabel,
+  negativeLabel,
+}: {
+  label: string
+  subtitle: string
+  value: boolean | null
+  onChange: (next: boolean | null) => void
+  positiveLabel: string
+  negativeLabel: string
+}) {
+  return (
+    <div>
+      <p className="text-[14px] font-semibold text-[#F0F0F0] mb-1 tracking-tight">
+        {label}
+      </p>
+      <p className="text-[13px] text-[#C0C0C0] leading-[1.6] mb-3">
+        {subtitle}
+      </p>
+      <div className="flex flex-wrap gap-2">
+        {(
+          [
+            { v: true, text: positiveLabel },
+            { v: false, text: negativeLabel },
+          ] as const
+        ).map((opt) => {
+          const active = value === opt.v
+          return (
+            <button
+              key={String(opt.v)}
+              type="button"
+              onClick={() => onChange(active ? null : opt.v)}
+              className={cn(
+                "px-4 py-2 rounded-lg text-[12px] font-semibold tracking-tight border transition-all",
+                active
+                  ? "text-[#0A0A0A] hover:scale-[1.02]"
+                  : "border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.16]"
+              )}
+              style={
+                active
+                  ? { backgroundColor: "#C9A84C", borderColor: "#C9A84C" }
+                  : {}
+              }
+            >
+              {opt.text}
+            </button>
+          )
+        })}
+        {value === null && (
+          <span className="text-[11px] text-[#555555] self-center italic ml-1">
+            Not answered
           </span>
         )}
       </div>
@@ -281,88 +513,106 @@ function ProfileTab({
   )
 }
 
-/**
- * Billing tab — shows the current plan (latest purchase) + a history
- * table. When there's no purchase yet, points the user back to /pricing.
- */
 function BillingTab({ purchases }: { purchases: PurchaseRow[] }) {
   const latest = purchases[0] ?? null
 
   return (
-    <div className="space-y-5">
-      <div className="p-6 rounded-xl border border-white/[0.08] bg-[#111111]">
-        <h2 className="text-base font-semibold text-[#F0F0F0] mb-4">
-          Current Plan
-        </h2>
-
-        {latest ? (
-          <div
-            className="flex items-center justify-between p-4 rounded-xl border"
-            style={{
-              borderColor: "rgba(201,168,76,0.25)",
-              backgroundColor: "rgba(201,168,76,0.04)",
-            }}
-          >
-            <div>
-              <p className="text-sm font-semibold text-[#F0F0F0]">
-                {latest.planLabel}
-              </p>
-              <p className="text-xs text-[#888888] mt-0.5">
-                Activated {formatDate(latest.paidAt)} ·{" "}
-                {formatMoney(latest.amountCents, latest.currency)} paid
-              </p>
-            </div>
+    <div className="space-y-10">
+      <SectionShell
+        eyebrow="Billing"
+        title="Current"
+        italic="plan."
+        description="Your active plan and complete purchase history. Need an invoice or refund? Reply to your confirmation email."
+      >
+        <div
+          className="p-7 sm:p-8 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
+          style={{
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
+          }}
+        >
+          {latest ? (
             <div
-              className="px-3 py-1 rounded-lg text-xs font-semibold"
+              className="relative flex items-center justify-between p-6 rounded-2xl border overflow-hidden gap-4"
               style={{
-                backgroundColor: "rgba(62,207,142,0.1)",
-                color: "#3ECF8E",
+                borderColor: "rgba(201,168,76,0.25)",
+                backgroundColor: "rgba(201,168,76,0.04)",
               }}
             >
-              Active
+              <div
+                className="absolute top-0 right-0 w-48 h-48 pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(circle at 100% 0%, rgba(201,168,76,0.1) 0%, transparent 60%)",
+                }}
+                aria-hidden
+              />
+              <div className="relative min-w-0">
+                <p className="font-display text-[1.75rem] font-semibold text-[#F0F0F0] tracking-tight leading-none mb-2">
+                  {latest.planLabel}
+                </p>
+                <p className="text-[13px] text-[#C0C0C0]">
+                  Activated {formatDate(latest.paidAt)} ·{" "}
+                  {formatMoney(latest.amountCents, latest.currency)} paid
+                </p>
+              </div>
+              <div
+                className="relative px-3 py-1.5 rounded-lg text-[11px] font-semibold tracking-tight flex-shrink-0"
+                style={{
+                  backgroundColor: "rgba(62,207,142,0.1)",
+                  color: "#3ECF8E",
+                }}
+              >
+                Active
+              </div>
             </div>
-          </div>
-        ) : (
-          <div
-            className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-xl border border-dashed border-white/[0.1]"
-            style={{ backgroundColor: "#0F0F0F" }}
-          >
-            <div>
-              <p className="text-sm font-medium text-[#F0F0F0]">
-                No plan yet
-              </p>
-              <p className="text-xs text-[#888888] mt-0.5">
-                Pick a package on the pricing page to unlock the full
-                curriculum and coaching.
-              </p>
-            </div>
-            <Link
-              href="/pricing"
-              className="px-4 py-2 rounded-lg text-xs font-semibold transition-all hover:opacity-90 flex-shrink-0"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+          ) : (
+            <div
+              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6 rounded-2xl border border-dashed border-white/[0.12]"
+              style={{ backgroundColor: "#0A0A0A" }}
             >
-              View pricing
-            </Link>
-          </div>
-        )}
-      </div>
+              <div>
+                <p className="text-[15px] font-semibold text-[#F0F0F0] tracking-tight mb-1">
+                  No plan yet
+                </p>
+                <p className="text-[13px] text-[#C0C0C0] leading-[1.6] max-w-sm">
+                  Pick a package on the pricing page to unlock the full
+                  curriculum and coaching.
+                </p>
+              </div>
+              <Link
+                href="/pricing"
+                className="px-5 py-2.5 rounded-xl text-[12px] font-semibold tracking-tight transition-all hover:scale-[1.02] flex-shrink-0"
+                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              >
+                View pricing
+              </Link>
+            </div>
+          )}
+        </div>
+      </SectionShell>
 
       {purchases.length > 0 && (
-        <div className="p-6 rounded-xl border border-white/[0.08] bg-[#111111]">
-          <h2 className="text-base font-semibold text-[#F0F0F0] mb-4">
-            Purchase History
-          </h2>
-          <div className="overflow-hidden rounded-xl border border-white/[0.06]">
+        <SectionShell
+          eyebrow="History"
+          title="Purchase"
+          italic="history."
+        >
+          <div
+            className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] overflow-hidden"
+            style={{
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
+            }}
+          >
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-[#0F0F0F] text-[#888888]">
-                  <th className="text-left py-2.5 px-4 text-xs font-semibold uppercase tracking-wide border-b border-white/[0.06]">
+                <tr className="bg-[#0A0A0A]">
+                  <th className="text-left py-3 px-5 text-[10px] uppercase tracking-[0.18em] font-semibold border-b border-white/[0.06]" style={{ color: "#C9A84C" }}>
                     Date
                   </th>
-                  <th className="text-left py-2.5 px-4 text-xs font-semibold uppercase tracking-wide border-b border-white/[0.06]">
+                  <th className="text-left py-3 px-5 text-[10px] uppercase tracking-[0.18em] font-semibold border-b border-white/[0.06]" style={{ color: "#C9A84C" }}>
                     Plan
                   </th>
-                  <th className="text-right py-2.5 px-4 text-xs font-semibold uppercase tracking-wide border-b border-white/[0.06]">
+                  <th className="text-right py-3 px-5 text-[10px] uppercase tracking-[0.18em] font-semibold border-b border-white/[0.06]" style={{ color: "#C9A84C" }}>
                     Amount
                   </th>
                 </tr>
@@ -372,16 +622,17 @@ function BillingTab({ purchases }: { purchases: PurchaseRow[] }) {
                   <tr
                     key={p.id}
                     className={cn(
+                      "transition-colors hover:bg-white/[0.02]",
                       i < purchases.length - 1 && "border-b border-white/[0.04]"
                     )}
                   >
-                    <td className="py-2.5 px-4 text-[#D8D8D8] text-[13px]">
+                    <td className="py-3 px-5 text-[#C0C0C0] text-[13px]">
                       {formatDate(p.paidAt)}
                     </td>
-                    <td className="py-2.5 px-4 text-[#D8D8D8] text-[13px]">
+                    <td className="py-3 px-5 text-[#F0F0F0] text-[13px] font-medium tracking-tight">
                       {p.planLabel}
                     </td>
-                    <td className="py-2.5 px-4 text-right text-[#D8D8D8] text-[13px]">
+                    <td className="py-3 px-5 text-right text-[#C0C0C0] text-[13px] tracking-tight">
                       {formatMoney(p.amountCents, p.currency)}
                     </td>
                   </tr>
@@ -389,11 +640,11 @@ function BillingTab({ purchases }: { purchases: PurchaseRow[] }) {
               </tbody>
             </table>
           </div>
-          <p className="text-[11px] text-[#555555] mt-3 italic">
+          <p className="text-[12px] text-[#555555] mt-4 italic">
             Need an invoice or refund? Reply to your purchase confirmation
             email — we&apos;ll sort it.
           </p>
-        </div>
+        </SectionShell>
       )}
     </div>
   )
@@ -426,16 +677,8 @@ const NOTIFICATION_DEFS: {
   },
 ]
 
-/**
- * Notifications tab — toggles persist to `user_metadata.notification_prefs`
- * via /api/notification-prefs. Optimistic updates; rolls back on API
- * error. The actual email scheduler isn't wired yet, but the preferences
- * stick so the user's choice survives across sessions.
- */
 function NotificationsTab({ initialPrefs }: { initialPrefs: NotificationPrefs }) {
   const [prefs, setPrefs] = useState<NotificationPrefs>(initialPrefs)
-  // Track which specific toggle is saving so we can render a loader next to
-  // it without a flicker across the whole panel.
   const [savingKey, setSavingKey] = useState<keyof NotificationPrefs | null>(
     null
   )
@@ -459,7 +702,7 @@ function NotificationsTab({ initialPrefs }: { initialPrefs: NotificationPrefs })
         throw new Error(body.error || `Request failed (${res.status})`)
       }
     } catch (err) {
-      setPrefs(snapshot) // revert on error
+      setPrefs(snapshot)
       setError(err instanceof Error ? err.message : "Something went wrong")
     } finally {
       setSavingKey(null)
@@ -467,38 +710,56 @@ function NotificationsTab({ initialPrefs }: { initialPrefs: NotificationPrefs })
   }
 
   return (
-    <div className="p-6 rounded-xl border border-white/[0.08] bg-[#111111] space-y-5">
-      <div>
-        <h2 className="text-base font-semibold text-[#F0F0F0]">
-          Email Preferences
-        </h2>
-        <p className="text-xs text-[#555555] mt-1 italic">
-          Preferences are saved, but the email scheduler isn&apos;t wired yet
-          — nothing will actually send until it lands.
-        </p>
+    <SectionShell
+      eyebrow="Notifications"
+      title="Email"
+      italic="preferences."
+      description="Preferences are saved, but the email scheduler isn't wired yet — nothing will actually send until it lands."
+    >
+      <div
+        className="p-7 sm:p-8 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
+        style={{
+          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
+        }}
+      >
         {error && (
-          <p className="text-xs mt-2" style={{ color: "#FF4444" }}>
-            {error}
+          <p
+            role="alert"
+            aria-live="polite"
+            className="flex items-start gap-2 text-[12px] mb-5 pb-5 border-b border-white/[0.06]"
+            style={{ color: "#FF4444" }}
+          >
+            <AlertCircle className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" aria-hidden="true" />
+            <span className="flex-1">{error}</span>
           </p>
         )}
+        <div className="space-y-6">
+          {NOTIFICATION_DEFS.map((def, i) => (
+            <div
+              key={def.id}
+              className={cn(
+                "flex items-start justify-between gap-4",
+                i < NOTIFICATION_DEFS.length - 1 &&
+                  "pb-6 border-b border-white/[0.04]"
+              )}
+            >
+              <NotificationRow
+                label={def.label}
+                description={def.description}
+                on={prefs[def.id]}
+                saving={savingKey === def.id}
+                disabled={savingKey !== null && savingKey !== def.id}
+                onToggle={() => togglePref(def.id)}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-
-      {NOTIFICATION_DEFS.map((def) => (
-        <NotificationToggle
-          key={def.id}
-          label={def.label}
-          description={def.description}
-          on={prefs[def.id]}
-          saving={savingKey === def.id}
-          disabled={savingKey !== null && savingKey !== def.id}
-          onToggle={() => togglePref(def.id)}
-        />
-      ))}
-    </div>
+    </SectionShell>
   )
 }
 
-function NotificationToggle({
+function NotificationRow({
   label,
   description,
   on,
@@ -514,21 +775,25 @@ function NotificationToggle({
   onToggle: () => void
 }) {
   return (
-    <div className="flex items-start justify-between gap-4">
-      <div>
-        <p className="text-sm font-medium text-[#F0F0F0]">{label}</p>
-        <p className="text-xs text-[#555555] mt-0.5">{description}</p>
+    <>
+      <div className="min-w-0">
+        <p className="text-[14px] font-semibold text-[#F0F0F0] tracking-tight mb-1">
+          {label}
+        </p>
+        <p className="text-[13px] text-[#C0C0C0] leading-[1.6]">
+          {description}
+        </p>
       </div>
       <div className="flex items-center gap-2 flex-shrink-0">
-        {saving && <Loader2 className="w-3 h-3 animate-spin text-[#888888]" />}
+        {saving && <Loader2 className="w-3.5 h-3.5 animate-spin text-[#C9A84C]" />}
         <button
           onClick={onToggle}
           disabled={disabled}
           className="rounded-full transition-colors flex-shrink-0 relative disabled:opacity-60 disabled:cursor-not-allowed"
           style={{
             backgroundColor: on ? "#C9A84C" : "rgba(255,255,255,0.1)",
-            height: "22px",
-            width: "40px",
+            height: "24px",
+            width: "44px",
           }}
           aria-pressed={on}
           aria-label={label}
@@ -536,51 +801,34 @@ function NotificationToggle({
           <span
             className="absolute top-0.5 rounded-full bg-white transition-transform"
             style={{
-              width: "18px",
-              height: "18px",
-              left: on ? "20px" : "2px",
+              width: "20px",
+              height: "20px",
+              left: on ? "22px" : "2px",
             }}
           />
         </button>
       </div>
-    </div>
+    </>
   )
 }
 
-/**
- * Static fallback rendered while EmailField's useSearchParams resolves
- * during the client-side bailout. Matches the "display mode" look so the
- * UI doesn't jump once hydration catches up.
- */
 function EmailFieldFallback({ currentEmail }: { currentEmail: string }) {
   return (
     <div>
-      <label className="block text-xs font-medium text-[#888888] mb-1.5">
-        Email
-      </label>
+      <FieldLabel>Email</FieldLabel>
       <div
-        className="w-full px-3.5 py-2.5 rounded-lg text-sm flex items-center justify-between gap-3"
+        className="w-full px-4 py-3 rounded-xl text-[14px] flex items-center justify-between gap-3"
         style={{
-          backgroundColor: "#141414",
+          backgroundColor: "#080808",
           border: "1px solid rgba(255,255,255,0.06)",
         }}
       >
-        <span className="text-[#D8D8D8] truncate">{currentEmail}</span>
+        <span className="text-[#F0F0F0] truncate font-medium">{currentEmail}</span>
       </div>
     </div>
   )
 }
 
-/**
- * Inline email editor. Renders three states:
- *   - Read-only input + "Edit" pencil — the default.
- *   - Input + Save / Cancel — after the user clicks Edit.
- *   - A blue info banner "Check your inbox at <new>" — after a successful
- *     POST to /api/email-change. Supabase sends confirmation links to both
- *     addresses; the change only takes effect once the new-address link is
- *     clicked, which routes through /auth/callback back to this page with
- *     ?email=changed so we can show a success banner then too.
- */
 function EmailField({ currentEmail }: { currentEmail: string }) {
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState(currentEmail)
@@ -590,8 +838,6 @@ function EmailField({ currentEmail }: { currentEmail: string }) {
   const searchParams = useSearchParams()
   const justChanged = searchParams.get("email") === "changed"
 
-  // Sync the draft back to server state on prop change (e.g. after a
-  // successful confirmation round-trip and router.refresh()).
   useEffect(() => {
     setDraft(currentEmail)
   }, [currentEmail])
@@ -632,70 +878,76 @@ function EmailField({ currentEmail }: { currentEmail: string }) {
 
   return (
     <div>
-      <label className="block text-xs font-medium text-[#888888] mb-1.5">
+      <FieldLabel htmlFor={editing ? "settings-email" : undefined}>
         Email
-      </label>
+      </FieldLabel>
       {editing ? (
         <div className="space-y-2">
           <div className="flex gap-2">
             <input
+              id="settings-email"
               type="email"
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
               autoFocus
               placeholder="you@example.com"
-              className="flex-1 px-3.5 py-2.5 rounded-lg text-sm text-[#F0F0F0] outline-none focus:border-[#C9A84C]/40"
-              style={{
-                backgroundColor: "#1A1A1A",
-                border: "1px solid rgba(255,255,255,0.08)",
-              }}
+              className={cn(INPUT_CLASS, "flex-1")}
+              style={INPUT_STYLE}
             />
             <button
               type="button"
               onClick={submit}
               disabled={saving || !draft.trim()}
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium text-[#0A0A0A] disabled:opacity-60"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-[12px] font-semibold tracking-tight text-[#0A0A0A] transition-all hover:scale-[1.02] disabled:opacity-60 disabled:hover:scale-100"
               style={{ backgroundColor: "#C9A84C" }}
             >
               {saving ? (
-                <Loader2 className="w-3 h-3 animate-spin" />
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
               ) : (
-                <CheckCircle2 className="w-3 h-3" />
+                <CheckCircle2 className="w-3.5 h-3.5" />
               )}
-              Send confirmation
+              Send
             </button>
             <button
               type="button"
               onClick={cancel}
               disabled={saving}
-              className="p-2 rounded-lg text-[#555555] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
+              className="p-2 rounded-xl text-[#888888] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
               aria-label="Cancel"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
-          <p className="text-[11px] text-[#555555]">
+          <p className="text-[11px] text-[#888888]">
             We&apos;ll email both your current and new addresses to confirm.
           </p>
           {error && (
-            <p className="text-[11px]" style={{ color: "#FF4444" }}>
-              {error}
+            <p
+              role="alert"
+              aria-live="polite"
+              className="flex items-start gap-1.5 text-[11px]"
+              style={{ color: "#FF4444" }}
+            >
+              <AlertCircle className="w-3 h-3 mt-0.5 flex-shrink-0" aria-hidden="true" />
+              <span className="flex-1">{error}</span>
             </p>
           )}
         </div>
       ) : (
         <div
-          className="w-full px-3.5 py-2.5 rounded-lg text-sm flex items-center justify-between gap-3"
+          className="w-full px-4 py-3 rounded-xl text-[14px] flex items-center justify-between gap-3"
           style={{
-            backgroundColor: "#141414",
+            backgroundColor: "#080808",
             border: "1px solid rgba(255,255,255,0.06)",
           }}
         >
-          <span className="text-[#D8D8D8] truncate">{currentEmail}</span>
+          <span className="text-[#F0F0F0] truncate font-medium">
+            {currentEmail}
+          </span>
           <button
             type="button"
             onClick={() => setEditing(true)}
-            className="inline-flex items-center gap-1 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors flex-shrink-0"
+            className="inline-flex items-center gap-1 text-[11px] text-[#888888] hover:text-[#C9A84C] transition-colors flex-shrink-0"
           >
             <Pencil className="w-3 h-3" />
             Edit
@@ -704,7 +956,7 @@ function EmailField({ currentEmail }: { currentEmail: string }) {
       )}
       {pendingEmail && !editing && (
         <div
-          className="mt-2 flex items-start gap-2 p-2.5 rounded-lg text-[11px]"
+          className="mt-2 flex items-start gap-2 p-3 rounded-xl text-[11px]"
           style={{
             backgroundColor: "rgba(62,207,142,0.06)",
             border: "1px solid rgba(62,207,142,0.15)",
@@ -722,7 +974,7 @@ function EmailField({ currentEmail }: { currentEmail: string }) {
       )}
       {justChanged && !pendingEmail && (
         <div
-          className="mt-2 flex items-start gap-2 p-2.5 rounded-lg text-[11px]"
+          className="mt-2 flex items-start gap-2 p-3 rounded-xl text-[11px]"
           style={{
             backgroundColor: "rgba(62,207,142,0.06)",
             border: "1px solid rgba(62,207,142,0.15)",

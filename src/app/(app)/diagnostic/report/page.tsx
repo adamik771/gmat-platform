@@ -1,9 +1,11 @@
 import Link from "next/link"
 import {
+  AlertTriangle,
   ArrowLeft,
   ArrowRight,
   BookOpen,
   Calendar,
+  Clock,
   RotateCcw,
   Sparkles,
   Target,
@@ -11,27 +13,22 @@ import {
 } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import {
-  buildReport,
+  buildEnhancedReport,
+  computeSectionOrderRecommendation,
   DIAGNOSTIC_SECTIONS,
   type DiagnosticAttempt,
   type SectionResult,
+  type TimingAnalysis,
+  type TrapPattern,
 } from "@/lib/diagnostic"
+import { getQuestionsByIds } from "@/lib/content"
 import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import type { Section } from "@/types"
 
 export const metadata = {
-  title: "Diagnostic Report — Zakarian GMAT",
+  title: "Diagnostic Report",
 }
 
-/**
- * /diagnostic/report — reads the most-recent diagnostic attempts from
- * `practice_attempts` (keyed by the three diagnostic slugs), aggregates
- * per-section, and renders the score estimate + weak-topic breakdown
- * + chapter recommendations.
- *
- * Uses the most-recent session per section so re-taking a section
- * overrides the previous run rather than averaging in stale data.
- */
 export default async function DiagnosticReportPage() {
   const supabase = await createSupabaseServer()
   const {
@@ -47,8 +44,6 @@ export default async function DiagnosticReportPage() {
     )
   }
 
-  // For each section, fetch the most recent diagnostic session and then
-  // its attempts. Three lightweight round-trips beat one heavy join.
   const attempts: DiagnosticAttempt[] = []
   for (const section of DIAGNOSTIC_SECTIONS) {
     const slug = `diagnostic-${section.toLowerCase()}`
@@ -99,180 +94,467 @@ export default async function DiagnosticReportPage() {
     )
   }
 
-  const report = buildReport(attempts)
+  // Resolve the questions referenced by these attempts so the enhanced
+  // report can read each question's commonTrap / relatedReading metadata.
+  // Missing ids are silently skipped — the enhanced builder degrades
+  // gracefully (those signals just don't fire).
+  const attemptQuestionIds = Array.from(new Set(attempts.map((a) => a.questionId)))
+  const attemptQuestions = getQuestionsByIds(attemptQuestionIds)
+  const report = buildEnhancedReport(attempts, attemptQuestions)
   const completedSections = new Set(report.sections.map((s) => s.section))
   const allComplete = completedSections.size === DIAGNOSTIC_SECTIONS.length
+  const sectionRec = computeSectionOrderRecommendation(report.sections)
+  const weakRows = report.sections
+    .flatMap((s) =>
+      s.weakTopics.map((t) => ({
+        section: s.section,
+        topic: t.topic,
+        accuracy: t.accuracy,
+        attempts: t.attempts,
+      }))
+    )
+    .sort((a, b) => a.accuracy - b.accuracy)
+    .slice(0, 5)
 
   return (
-    <div className="max-w-3xl mx-auto space-y-6">
-      <Link
-        href="/diagnostic"
-        className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors"
-      >
-        <ArrowLeft className="w-3 h-3" />
-        Back to diagnostic
-      </Link>
+    <div className="relative">
+      <div
+        className="absolute inset-x-0 top-0 h-[520px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 55% at 50% 0%, rgba(201,168,76,0.09) 0%, transparent 60%)",
+        }}
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
+        aria-hidden
+      />
 
-      <div>
-        <p className="text-xs uppercase tracking-widest text-[#555555] mb-2">
-          Diagnostic report
-        </p>
-        <h1 className="text-3xl sm:text-4xl font-bold text-[#F0F0F0] mb-2">
-          {allComplete ? `Estimated ${report.totalScore}` : `Partial: ${report.totalScore}`}
-        </h1>
-        <p className="text-sm text-[#888888] leading-relaxed">
-          {allComplete
-            ? "Average of your three section scores. GMAT Focus reports total in 10-point increments from 205 to 805."
-            : `You've completed ${completedSections.size} of ${DIAGNOSTIC_SECTIONS.length} sections. Finish the remaining to get your full estimate.`}
-        </p>
-      </div>
+      <div className="relative max-w-4xl mx-auto space-y-14">
+        <Link
+          href="/diagnostic"
+          className="inline-flex items-center gap-1.5 text-[12px] tracking-tight text-[#888888] hover:text-[#F0F0F0] transition-colors"
+        >
+          <ArrowLeft className="w-3 h-3" />
+          Back to diagnostic
+        </Link>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        {DIAGNOSTIC_SECTIONS.map((section) => {
-          const s = report.sections.find((x) => x.section === section)
-          if (!s) return <PendingCard key={section} section={section} />
-          return <SectionCard key={section} result={s} />
-        })}
-      </div>
+        {/* HERO SCORE CALLOUT */}
+        <div className="text-center pt-4">
+          <div className="inline-flex items-center gap-3 mb-6">
+            <span
+              className="h-px w-10"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent, rgba(201,168,76,0.6))",
+              }}
+            />
+            <p
+              className="text-[10px] uppercase tracking-[0.22em] font-semibold"
+              style={{ color: "#C9A84C" }}
+            >
+              {allComplete ? "Diagnostic Result" : "Partial Diagnostic"}
+            </p>
+            <span
+              className="h-px w-10"
+              style={{
+                background:
+                  "linear-gradient(to left, transparent, rgba(201,168,76,0.6))",
+              }}
+            />
+          </div>
 
-      <div>
-        <h2 className="text-sm font-semibold text-[#888888] uppercase tracking-widest mb-4">
-          Where to focus next
-        </h2>
-        <div className="space-y-3">
-          {report.sections.flatMap((s) =>
-            s.weakTopics.map((t) => ({
-              section: s.section,
-              topic: t.topic,
-              accuracy: t.accuracy,
-              attempts: t.attempts,
-            }))
-          )
-            .sort((a, b) => a.accuracy - b.accuracy)
-            .slice(0, 5)
-            .map((row) => {
-              const slug = TOPIC_TO_CHAPTER[row.topic] ?? null
-              return (
-                <div
-                  key={`${row.section}-${row.topic}`}
-                  className="p-4 rounded-xl border border-white/[0.08] bg-[#111111] flex items-start sm:items-center justify-between gap-4 flex-col sm:flex-row"
+          <p className="text-[11px] uppercase tracking-[0.22em] text-[#555555] mb-10 font-medium">
+            {completedSections.size} of {DIAGNOSTIC_SECTIONS.length} sections
+          </p>
+
+          <div
+            className="relative inline-flex items-center gap-8 sm:gap-10 px-8 sm:px-12 py-8 sm:py-10 rounded-2xl border mb-8"
+            style={{
+              borderColor: "rgba(201,168,76,0.18)",
+              backgroundColor: "#111111",
+              boxShadow:
+                "0 0 80px rgba(201,168,76,0.08), inset 0 1px 0 rgba(255,255,255,0.04)",
+            }}
+          >
+            <div className="text-center relative px-4">
+              <div
+                className="absolute inset-0 rounded-full pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(circle at 50% 50%, rgba(201,168,76,0.25) 0%, transparent 65%)",
+                  filter: "blur(22px)",
+                }}
+                aria-hidden
+              />
+              <p
+                className="relative font-display text-6xl sm:text-8xl font-semibold tracking-[-0.03em] leading-none"
+                style={{ color: "#C9A84C" }}
+              >
+                {report.totalScore}
+              </p>
+              <div className="relative flex items-center justify-center gap-2 mt-4">
+                <span
+                  className="h-px w-10"
+                  style={{
+                    background:
+                      "linear-gradient(to right, transparent, rgba(201,168,76,0.5))",
+                  }}
+                />
+                <p
+                  className="text-[10px] tracking-[0.22em] uppercase font-semibold"
+                  style={{ color: "#C9A84C" }}
                 >
-                  <div className="flex items-start gap-3">
-                    <TrendingDown className="w-4 h-4 mt-0.5 text-[#FF4444] flex-shrink-0" />
-                    <div>
-                      <div className="flex items-center gap-2 mb-0.5">
-                        <span
-                          className="px-2 py-0.5 rounded text-[10px] uppercase tracking-wide"
-                          style={{
-                            backgroundColor: "rgba(201,168,76,0.08)",
-                            color: "#C9A84C",
-                          }}
-                        >
-                          {row.section}
-                        </span>
-                        <span className="text-xs text-[#555555]">
-                          {Math.round(row.accuracy * 100)}% on {row.attempts} question{row.attempts === 1 ? "" : "s"}
-                        </span>
-                      </div>
-                      <p className="text-sm font-semibold text-[#F0F0F0]">
-                        {row.topic}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 self-end sm:self-auto flex-shrink-0">
-                    {slug && (
-                      <Link
-                        href={`/practice/session/${slug}`}
-                        className="text-xs px-3 py-1.5 rounded-lg font-semibold hover:opacity-90 transition-opacity"
-                        style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                      >
-                        Drill
-                      </Link>
-                    )}
-                    <Link
-                      href={slug ? `/chapters/${slug}` : "/chapters"}
-                      className="text-xs px-3 py-1.5 rounded-lg font-semibold hover:opacity-90 transition-opacity"
-                      style={{ backgroundColor: "rgba(201,168,76,0.12)", color: "#C9A84C" }}
-                    >
-                      Read
-                    </Link>
-                  </div>
-                </div>
-              )
+                  {allComplete ? "Readiness Band" : "Partial"}
+                </p>
+                <span
+                  className="h-px w-10"
+                  style={{
+                    background:
+                      "linear-gradient(to left, transparent, rgba(201,168,76,0.5))",
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <p className="text-[15px] leading-[1.75] text-[#C0C0C0] max-w-2xl mx-auto">
+            {allComplete
+              ? "Average of your three section scores — a readiness band for where your prep stands today, not a test-day forecast. GMAT Focus reports total in 10-point increments from 205 to 805."
+              : `You've completed ${completedSections.size} of ${DIAGNOSTIC_SECTIONS.length} sections. Finish the remaining to unlock your full readiness band.`}
+          </p>
+        </div>
+
+        {/* SECTION BREAKDOWN */}
+        <div>
+          <div className="flex items-center gap-3 mb-6">
+            <span
+              className="h-px w-8"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent, rgba(201,168,76,0.6))",
+              }}
+            />
+            <p
+              className="text-[10px] uppercase tracking-[0.22em] font-semibold"
+              style={{ color: "#C9A84C" }}
+            >
+              By Section
+            </p>
+          </div>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-tight text-[#F0F0F0] mb-8 leading-[1.1]">
+            Section{" "}
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+              breakdown.
+            </span>
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {DIAGNOSTIC_SECTIONS.map((section) => {
+              const s = report.sections.find((x) => x.section === section)
+              if (!s) return <PendingCard key={section} section={section} />
+              return <SectionCard key={section} result={s} />
             })}
-          {report.sections.every((s) => s.weakTopics.length === 0) && (
-            <p className="text-sm text-[#888888]">
+          </div>
+        </div>
+
+        {/* SECTION-ORDER RECOMMENDATION */}
+        {sectionRec && (
+          <div>
+            <div className="flex items-center gap-3 mb-6">
+              <span
+                className="h-px w-8"
+                style={{
+                  background:
+                    "linear-gradient(to right, transparent, rgba(201,168,76,0.6))",
+                }}
+              />
+              <p
+                className="text-[10px] uppercase tracking-[0.22em] font-semibold"
+                style={{ color: "#C9A84C" }}
+              >
+                Recommended Mock Order
+                {!sectionRec.confident && (
+                  <span className="ml-2 text-[#555555] font-medium normal-case tracking-normal">
+                    · low signal
+                  </span>
+                )}
+              </p>
+            </div>
+            <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-tight text-[#F0F0F0] mb-5 leading-[1.1]">
+              Lead with the{" "}
+              <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+                weakest.
+              </span>
+            </h2>
+
+            <div
+              className="relative p-7 sm:p-9 rounded-2xl border border-white/[0.08] bg-[#0D0D0D] overflow-hidden"
+              style={{
+                boxShadow:
+                  "0 0 60px rgba(201,168,76,0.05), inset 0 1px 0 rgba(255,255,255,0.04)",
+              }}
+            >
+              <div
+                className="absolute top-0 right-0 w-64 h-64 pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(circle at 100% 0%, rgba(201,168,76,0.08) 0%, transparent 60%)",
+                }}
+                aria-hidden
+              />
+              <div className="relative flex items-center gap-3 flex-wrap mb-5">
+                {sectionRec.order.map((sec, i) => (
+                  <span key={sec} className="inline-flex items-center gap-2">
+                    {i > 0 && (
+                      <ArrowRight className="w-3.5 h-3.5 text-[#555555]" />
+                    )}
+                    <span
+                      className="px-3 py-1.5 rounded-lg text-[12px] font-semibold tracking-tight"
+                      style={{
+                        backgroundColor: "rgba(201,168,76,0.12)",
+                        color: "#C9A84C",
+                      }}
+                    >
+                      {i + 1}. {sec}
+                    </span>
+                  </span>
+                ))}
+              </div>
+              <p className="relative text-[15px] leading-[1.75] text-[#C0C0C0]">
+                {sectionRec.rationale}
+              </p>
+              <p className="relative text-[12px] text-[#555555] leading-relaxed mt-3 italic">
+                Set this order on your next mock&apos;s intro screen. If your score drops vs. a prior order, try reversing it on the mock after.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* WEAK TOPICS */}
+        <div>
+          <div className="flex items-center gap-3 mb-6">
+            <span
+              className="h-px w-8"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent, rgba(201,168,76,0.6))",
+              }}
+            />
+            <p
+              className="text-[10px] uppercase tracking-[0.22em] font-semibold"
+              style={{ color: "#C9A84C" }}
+            >
+              Weak Topics
+            </p>
+          </div>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-tight text-[#F0F0F0] mb-8 leading-[1.1]">
+            Where to{" "}
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+              focus.
+            </span>
+          </h2>
+
+          {weakRows.length === 0 ? (
+            <p className="text-[15px] leading-[1.75] text-[#C0C0C0]">
               No clearly weaker topics — your diagnostic came in evenly across the board.
             </p>
+          ) : (
+            <div className="space-y-3">
+              {weakRows.map((row, idx) => {
+                const slug = TOPIC_TO_CHAPTER[row.topic] ?? null
+                return (
+                  <div
+                    key={`${row.section}-${row.topic}`}
+                    className="p-5 rounded-2xl border border-white/[0.08] bg-[#0D0D0D] flex items-start sm:items-center justify-between gap-4 flex-col sm:flex-row transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12]"
+                    style={{
+                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
+                    }}
+                  >
+                    <div className="flex items-start gap-4 min-w-0">
+                      <span
+                        className="font-display font-display-italic text-[1.75rem] leading-none flex-shrink-0 mt-0.5"
+                        style={{ color: "#C9A84C" }}
+                      >
+                        {String(idx + 1).padStart(2, "0")}
+                      </span>
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
+                          <span
+                            className="px-2 py-0.5 rounded text-[10px] uppercase tracking-[0.18em] font-semibold"
+                            style={{
+                              backgroundColor: "rgba(201,168,76,0.08)",
+                              color: "#C9A84C",
+                            }}
+                          >
+                            {row.section}
+                          </span>
+                          <span className="text-[12px] text-[#555555] inline-flex items-center gap-1.5">
+                            <TrendingDown className="w-3.5 h-3.5 text-[#FF4444]" />
+                            {Math.round(row.accuracy * 100)}% on {row.attempts} question{row.attempts === 1 ? "" : "s"}
+                          </span>
+                        </div>
+                        <p className="text-[15px] font-semibold text-[#F0F0F0] tracking-tight">
+                          {row.topic}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 self-end sm:self-auto flex-shrink-0">
+                      {slug && (
+                        <Link
+                          href={`/practice/session/${slug}`}
+                          className="text-[12px] px-3.5 py-1.5 rounded-lg font-semibold tracking-tight transition-all hover:scale-[1.03]"
+                          style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                        >
+                          Drill
+                        </Link>
+                      )}
+                      <Link
+                        href={slug ? `/chapters/${slug}` : "/chapters"}
+                        className="text-[12px] px-3.5 py-1.5 rounded-lg font-semibold tracking-tight transition-all hover:scale-[1.03]"
+                        style={{
+                          backgroundColor: "rgba(201,168,76,0.12)",
+                          color: "#C9A84C",
+                        }}
+                      >
+                        Read
+                      </Link>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
           )}
         </div>
-      </div>
 
-      {/* Personalized first-week plan — synthesized from the diagnostic's
-          weak-topic data. Each day points at a specific chapter or a
-          specific surface the student can open right now, so the report
-          doesn't leave them with "well what do I do next?" after seeing
-          their score. */}
-      <PersonalizedWeekPlan report={report} />
+        {/* TRAP PATTERNS — surfaces trap_type / common_trap from missed questions */}
+        {report.trapPatterns.length > 0 && (
+          <TrapPatternsSection traps={report.trapPatterns} />
+        )}
 
-      <Link
-        href="/study-plan"
-        className="flex items-center justify-between gap-4 p-5 rounded-xl border transition-opacity hover:opacity-95"
-        style={{
-          borderColor: "rgba(201,168,76,0.25)",
-          backgroundColor: "rgba(201,168,76,0.04)",
-        }}
-      >
-        <div className="flex items-start gap-4">
-          <div
-            className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-            style={{ backgroundColor: "rgba(201,168,76,0.12)" }}
-          >
-            <Calendar className="w-5 h-5" style={{ color: "#C9A84C" }} />
+        {/* TIMING ANALYSIS — per-section pacing classification */}
+        {report.timingAnalysis.length > 0 && (
+          <TimingAnalysisSection timing={report.timingAnalysis} />
+        )}
+
+        {/* FIRST 5 DAYS — PERSONALIZED PLAN */}
+        <PersonalizedWeekPlan report={report} />
+
+        {/* RECOMMENDED PATH + QUICK LINKS */}
+        <div>
+          <div className="flex items-center gap-3 mb-6">
+            <span
+              className="h-px w-8"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent, rgba(201,168,76,0.6))",
+              }}
+            />
+            <p
+              className="text-[10px] uppercase tracking-[0.22em] font-semibold"
+              style={{ color: "#C9A84C" }}
+            >
+              Next Moves
+            </p>
           </div>
-          <div>
-            <p className="text-sm font-semibold text-[#F0F0F0] mb-1">
-              Open your personalized Study Plan
+          <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-tight text-[#F0F0F0] mb-8 leading-[1.1]">
+            Where we go{" "}
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+              from here.
+            </span>
+          </h2>
+
+          <Link
+            href="/study-plan"
+            className="group relative flex items-center justify-between gap-4 p-7 rounded-2xl border overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.01]"
+            style={{
+              borderColor: "rgba(201,168,76,0.22)",
+              backgroundColor: "#0D0D0D",
+              boxShadow:
+                "0 0 60px rgba(201,168,76,0.05), inset 0 1px 0 rgba(255,255,255,0.04)",
+            }}
+          >
+            <div
+              className="absolute top-0 right-0 w-64 h-64 pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(circle at 100% 0%, rgba(201,168,76,0.1) 0%, transparent 60%)",
+              }}
+              aria-hidden
+            />
+            <div className="relative flex items-start gap-4">
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+                style={{
+                  backgroundColor: "rgba(201,168,76,0.12)",
+                  border: "1px solid rgba(201,168,76,0.25)",
+                }}
+              >
+                <Calendar className="w-5 h-5" style={{ color: "#C9A84C" }} />
+              </div>
+              <div>
+                <p className="text-[16px] font-semibold text-[#F0F0F0] mb-1 tracking-tight">
+                  Open your personalized Study Plan
+                </p>
+                <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
+                  Today&apos;s Focus, weekly cadence, weakest topics — already wired to your diagnostic results.
+                </p>
+              </div>
+            </div>
+            <ArrowRight
+              className="relative w-5 h-5 flex-shrink-0 transition-transform group-hover:translate-x-1"
+              style={{ color: "#C9A84C" }}
+            />
+          </Link>
+
+          <div
+            className="mt-4 p-7 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
+            style={{
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
+            }}
+          >
+            <p
+              className="text-[10px] uppercase tracking-[0.22em] font-semibold mb-5"
+              style={{ color: "#C9A84C" }}
+            >
+              Quick Links
             </p>
-            <p className="text-xs text-[#888888]">
-              Today&apos;s Focus + weekly cadence + weakest topics — already wired to your diagnostic results.
-            </p>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <ArrowRight
+                  className="w-4 h-4 mt-1.5 flex-shrink-0"
+                  style={{ color: "#C9A84C" }}
+                />
+                <span className="text-[15px] leading-[1.75] text-[#C0C0C0]">
+                  Every question you missed is already in{" "}
+                  <Link
+                    href="/review"
+                    className="underline underline-offset-4 decoration-[rgba(201,168,76,0.4)] hover:decoration-[#C9A84C] transition-colors font-medium"
+                    style={{ color: "#C9A84C" }}
+                  >
+                    Daily Review
+                  </Link>{" "}
+                  — retrieval practice on today&apos;s misses is the highest-ROI follow-up.
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <ArrowRight
+                  className="w-4 h-4 mt-1.5 flex-shrink-0"
+                  style={{ color: "#C9A84C" }}
+                />
+                <span className="text-[15px] leading-[1.75] text-[#C0C0C0]">
+                  Re-take a section any time — your score, weak topics, and the rest of the plan update each attempt.
+                </span>
+              </li>
+            </ul>
           </div>
         </div>
-        <ArrowRight className="w-5 h-5 text-[#C9A84C] flex-shrink-0" />
-      </Link>
-
-      <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
-        <h2 className="text-sm font-semibold text-[#F0F0F0] mb-2">Quick links</h2>
-        <ul className="space-y-2 text-sm text-[#888888]">
-          <li className="flex items-start gap-2">
-            <ArrowRight className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#C9A84C" }} />
-            <span>
-              Every question you missed is already in{" "}
-              <Link href="/review" className="underline underline-offset-2" style={{ color: "#C9A84C" }}>
-                Daily Review
-              </Link>{" "}
-              — retrieval practice on today&apos;s misses is the highest-ROI follow-up.
-            </span>
-          </li>
-          <li className="flex items-start gap-2">
-            <ArrowRight className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "#C9A84C" }} />
-            <span>
-              Re-take a section any time — your score, weak topics, and the rest of the plan update each attempt.
-            </span>
-          </li>
-        </ul>
       </div>
     </div>
   )
 }
 
-/**
- * Renders a 5-day starter plan keyed off the diagnostic's weak topics.
- * The shape is intentionally concrete: specific chapter per weak topic,
- * alternating with review + mock days. Gives the student something to
- * actually DO after the diagnostic instead of staring at a score.
- */
 function PersonalizedWeekPlan({
   report,
 }: {
@@ -291,8 +573,6 @@ function PersonalizedWeekPlan({
     | { kind: "mock" }
 
   const days: Day[] = []
-  // Alternate chapter + review/mock so the week has rhythm instead of
-  // five consecutive chapter-reading days.
   const chapterDays = allWeakTopics.map<Day>((t) => ({
     kind: "chapter",
     topic: t.topic,
@@ -308,10 +588,28 @@ function PersonalizedWeekPlan({
 
   return (
     <div>
-      <h2 className="text-sm font-semibold text-[#888888] uppercase tracking-widest mb-4">
-        Your first 5 days
+      <div className="flex items-center gap-3 mb-6">
+        <span
+          className="h-px w-8"
+          style={{
+            background:
+              "linear-gradient(to right, transparent, rgba(201,168,76,0.6))",
+          }}
+        />
+        <p
+          className="text-[10px] uppercase tracking-[0.22em] font-semibold"
+          style={{ color: "#C9A84C" }}
+        >
+          First 5 Days
+        </p>
+      </div>
+      <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-tight text-[#F0F0F0] mb-8 leading-[1.1]">
+        Your opening{" "}
+        <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+          moves.
+        </span>
       </h2>
-      <div className="space-y-2">
+      <div className="space-y-3">
         {days.map((day, i) => (
           <DayRow key={i} dayNumber={i + 1} day={day} />
         ))}
@@ -334,14 +632,12 @@ function DayRow({
   let title: string
   let subtitle: string
   let href: string
-  let borderColor = "rgba(255,255,255,0.08)"
 
   if (day.kind === "chapter") {
     icon = BookOpen
     title = `Read the ${day.topic} chapter`
     subtitle = `${day.section} · you hit ${Math.round(day.accuracy * 100)}% on the diagnostic here`
     href = day.chapterSlug ? `/chapters/${day.chapterSlug}` : "/chapters"
-    borderColor = "rgba(201,168,76,0.18)"
   } else if (day.kind === "review") {
     icon = RotateCcw
     title = "Daily Review"
@@ -359,34 +655,188 @@ function DayRow({
   return (
     <Link
       href={href}
-      className="flex items-center gap-4 p-4 rounded-xl border transition-colors hover:opacity-95"
-      style={{ borderColor, backgroundColor: "#111111" }}
+      className="group flex items-center gap-5 p-5 rounded-2xl border border-white/[0.08] bg-[#0D0D0D] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12]"
+      style={{
+        boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
+      }}
     >
       <span
-        className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
-        style={{ backgroundColor: "rgba(201,168,76,0.12)", color: "#C9A84C" }}
+        className="font-display font-display-italic text-[1.75rem] leading-none flex-shrink-0"
+        style={{ color: "#C9A84C" }}
       >
-        {dayNumber}
+        {String(dayNumber).padStart(2, "0")}
       </span>
       <Icon className="w-4 h-4 flex-shrink-0" style={{ color: "#888888" }} />
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold text-[#F0F0F0]">{title}</p>
-        <p className="text-xs text-[#888888] truncate">{subtitle}</p>
+        <p className="text-[15px] font-semibold text-[#F0F0F0] tracking-tight">
+          {title}
+        </p>
+        <p className="text-[13px] text-[#C0C0C0] truncate mt-0.5">{subtitle}</p>
       </div>
-      <ArrowRight className="w-4 h-4 text-[#555555] flex-shrink-0" />
+      <ArrowRight
+        className="w-4 h-4 flex-shrink-0 text-[#555555] transition-all group-hover:translate-x-1 group-hover:text-[#C9A84C]"
+      />
     </Link>
+  )
+}
+
+function TrapPatternsSection({ traps }: { traps: TrapPattern[] }) {
+  return (
+    <div>
+      <div className="flex items-center gap-3 mb-6">
+        <span
+          className="h-px w-8"
+          style={{
+            background:
+              "linear-gradient(to right, transparent, rgba(201,168,76,0.6))",
+          }}
+        />
+        <p
+          className="text-[10px] uppercase tracking-[0.22em] font-semibold"
+          style={{ color: "#C9A84C" }}
+        >
+          Trap Patterns
+        </p>
+      </div>
+      <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-tight text-[#F0F0F0] mb-4 leading-[1.1]">
+        Where you{" "}
+        <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+          slipped.
+        </span>
+      </h2>
+      <p className="text-[14px] text-[#888888] mb-6 leading-relaxed">
+        Each trap below is a named wrong-answer pattern from the curriculum. You fell into it on the diagnostic — drill the recognition signal until you spot it cold.
+      </p>
+      <div className="space-y-3">
+        {traps.map((t, idx) => (
+          <div
+            key={t.trap}
+            className="p-5 rounded-2xl border border-white/[0.08] bg-[#0D0D0D] flex items-start gap-4"
+            style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)" }}
+          >
+            <span
+              className="font-display font-display-italic text-[1.75rem] leading-none flex-shrink-0 mt-0.5"
+              style={{ color: "#C9A84C" }}
+            >
+              {String(idx + 1).padStart(2, "0")}
+            </span>
+            <AlertTriangle
+              className="w-4 h-4 flex-shrink-0 mt-1.5"
+              style={{ color: "#FF4444" }}
+            />
+            <div className="min-w-0 flex-1">
+              <p className="text-[15px] font-semibold text-[#F0F0F0] tracking-tight mb-1">
+                {t.trap}
+              </p>
+              <p className="text-[12px] text-[#888888] leading-relaxed">
+                {t.occurrences === 1
+                  ? `Hit once on the diagnostic.`
+                  : `Hit ${t.occurrences} times on the diagnostic.`}
+                {t.trapType ? ` · taxonomy: ${t.trapType}` : null}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function TimingAnalysisSection({ timing }: { timing: TimingAnalysis[] }) {
+  return (
+    <div>
+      <div className="flex items-center gap-3 mb-6">
+        <span
+          className="h-px w-8"
+          style={{
+            background:
+              "linear-gradient(to right, transparent, rgba(201,168,76,0.6))",
+          }}
+        />
+        <p
+          className="text-[10px] uppercase tracking-[0.22em] font-semibold"
+          style={{ color: "#C9A84C" }}
+        >
+          Pacing
+        </p>
+      </div>
+      <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-tight text-[#F0F0F0] mb-4 leading-[1.1]">
+        How you spent the{" "}
+        <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+          clock.
+        </span>
+      </h2>
+      <p className="text-[14px] text-[#888888] mb-6 leading-relaxed">
+        Per-section behavioural pacing label. The label drives study-plan recommendations on the next page.
+      </p>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {timing.map((t) => {
+          const avgSec = t.avgTimeMs ? Math.round(t.avgTimeMs / 1000) : null
+          const patternColor =
+            t.pattern === "efficient"
+              ? "#3ECF8E"
+              : t.pattern === "rushed" || t.pattern === "stuck"
+                ? "#FF4444"
+                : "#C9A84C"
+          return (
+            <div
+              key={t.section}
+              className="p-5 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
+              style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)" }}
+            >
+              <div className="flex items-center justify-between mb-3">
+                <p
+                  className="text-[10px] uppercase tracking-[0.22em] font-semibold"
+                  style={{ color: "#C9A84C" }}
+                >
+                  {t.section}
+                </p>
+                <span className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: patternColor }}>
+                  <Clock className="w-3 h-3" />
+                  {t.pattern}
+                </span>
+              </div>
+              {avgSec !== null && (
+                <p className="text-[13px] text-[#C0C0C0] mb-2 tracking-tight">
+                  <span className="text-[#F0F0F0] font-semibold">{avgSec}s</span> avg per question
+                  <span className="mx-1.5 text-[#333333]">·</span>
+                  <span className="text-[#888888]">
+                    {t.rushedCount} rushed, {t.laboredCount} labored
+                  </span>
+                </p>
+              )}
+              <p className="text-[12px] text-[#888888] leading-relaxed">{t.summary}</p>
+            </div>
+          )
+        })}
+      </div>
+    </div>
   )
 }
 
 function SectionCard({ result }: { result: SectionResult }) {
   return (
-    <div className="p-4 rounded-xl border border-white/[0.08] bg-[#111111]">
-      <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1">
+    <div
+      className="group p-6 rounded-2xl border border-white/[0.08] bg-[#0D0D0D] transition-all duration-300 hover:-translate-y-0.5"
+      style={{
+        boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
+      }}
+    >
+      <p
+        className="text-[10px] uppercase tracking-[0.22em] font-semibold mb-3"
+        style={{ color: "#C9A84C" }}
+      >
         {result.section}
       </p>
-      <p className="text-2xl font-bold text-[#F0F0F0] mb-1">{result.score}</p>
-      <p className="text-xs text-[#888888]">
-        {result.correct} / {result.total} correct ({Math.round(result.accuracy * 100)}%)
+      <p className="font-display text-[2.75rem] font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-none mb-3">
+        {result.score}
+      </p>
+      <p className="text-[13px] text-[#888888] tracking-tight">
+        <span className="text-[#C0C0C0]">
+          {result.correct} / {result.total}
+        </span>
+        <span className="mx-1.5 text-[#333333]">·</span>
+        {Math.round(result.accuracy * 100)}%
       </p>
     </div>
   )
@@ -394,12 +844,18 @@ function SectionCard({ result }: { result: SectionResult }) {
 
 function PendingCard({ section }: { section: Section }) {
   return (
-    <div className="p-4 rounded-xl border border-dashed border-white/[0.08] bg-[#0D0D0D]">
-      <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1">
+    <div
+      className="p-6 rounded-2xl border border-dashed border-white/[0.08] bg-[#0A0A0A]"
+    >
+      <p
+        className="text-[10px] uppercase tracking-[0.22em] font-semibold mb-3 text-[#555555]"
+      >
         {section}
       </p>
-      <p className="text-2xl font-bold text-[#555555] mb-1">—</p>
-      <p className="text-xs text-[#555555]">Not yet taken</p>
+      <p className="font-display text-[2.75rem] font-semibold text-[#333333] tracking-[-0.02em] leading-none mb-3">
+        —
+      </p>
+      <p className="text-[13px] text-[#555555]">Not yet taken</p>
     </div>
   )
 }
@@ -412,17 +868,49 @@ function EmptyFrame({
   body: React.ReactNode
 }) {
   return (
-    <div className="max-w-2xl mx-auto space-y-4">
-      <Link
-        href="/diagnostic"
-        className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors"
-      >
-        <ArrowLeft className="w-3 h-3" />
-        Back to diagnostic
-      </Link>
-      <div className="p-6 rounded-xl border border-white/[0.08] bg-[#111111]">
-        <h1 className="text-lg font-semibold text-[#F0F0F0] mb-2">{title}</h1>
-        <div className="text-sm text-[#888888] leading-relaxed">{body}</div>
+    <div className="relative">
+      <div
+        className="absolute inset-x-0 top-0 h-80 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 65%)",
+        }}
+        aria-hidden
+      />
+      <div className="relative max-w-2xl mx-auto space-y-8">
+        <Link
+          href="/diagnostic"
+          className="inline-flex items-center gap-1.5 text-[12px] tracking-tight text-[#888888] hover:text-[#F0F0F0] transition-colors"
+        >
+          <ArrowLeft className="w-3 h-3" />
+          Back to diagnostic
+        </Link>
+        <div className="flex items-center gap-3">
+          <span
+            className="h-px w-8"
+            style={{
+              background:
+                "linear-gradient(to right, transparent, rgba(201,168,76,0.6))",
+            }}
+          />
+          <p
+            className="text-[10px] uppercase tracking-[0.22em] font-semibold"
+            style={{ color: "#C9A84C" }}
+          >
+            Diagnostic Report
+          </p>
+        </div>
+        <div
+          className="p-8 sm:p-10 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
+          style={{
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
+          }}
+        >
+          <h1 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight text-[#F0F0F0] mb-4 leading-[1.1]">
+            {title}
+          </h1>
+          <div className="text-[15px] leading-[1.75] text-[#C0C0C0]">{body}</div>
+        </div>
       </div>
     </div>
   )

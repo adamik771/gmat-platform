@@ -1,4 +1,9 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
+import {
+  applySessionAttempts,
+  getTopicSkillLevels,
+} from "@/lib/topic-skill"
+import type { Difficulty, Section } from "@/types"
 
 interface AttemptPayload {
   questionId: string
@@ -10,6 +15,18 @@ interface AttemptPayload {
   selectedAnswer: number | null
   isCorrect: boolean
   timeSpentMs: number
+  /** Practice-only. Null for mock attempts (MockRunner doesn't collect it). */
+  confidence?: "low" | "medium" | "high" | null
+  /** Practice-only. 0 when not tracked (mock flow / no hints revealed). */
+  hintsRevealed?: number
+  /** Practice-only. Ms from question display to first interaction (click
+   *  on option, hint reveal, or confidence pick). Null if the student
+   *  submitted without touching anything (rare — timeout-like case). */
+  firstInteractionMs?: number | null
+  /** Practice-only. "desktop" / "tablet" / "mobile" derived from viewport
+   *  at session-end. Same value for every attempt in a session; sent
+   *  per-row so the column can be used without joining. */
+  deviceType?: "desktop" | "tablet" | "mobile" | null
 }
 
 interface SessionPayload {
@@ -74,6 +91,10 @@ export async function POST(request: Request) {
     selected_answer: a.selectedAnswer,
     is_correct: a.isCorrect,
     time_spent_ms: a.timeSpentMs,
+    confidence: a.confidence ?? null,
+    hints_revealed: a.hintsRevealed ?? 0,
+    first_interaction_ms: a.firstInteractionMs ?? null,
+    device_type: a.deviceType ?? null,
   }))
 
   const { error: attemptError } = await supabase
@@ -82,6 +103,46 @@ export async function POST(request: Request) {
 
   if (attemptError) {
     return Response.json({ error: attemptError.message }, { status: 500 })
+  }
+
+  // Update the per-topic skill level so the next session orders
+  // questions adaptively. This is best-effort — a failure here doesn't
+  // fail the session save (the attempts are already persisted, which
+  // is the important durability guarantee). Skips mock and diagnostic
+  // slugs since those have their own selection logic and shouldn't
+  // feed into the practice-set adaptivity loop.
+  if (
+    !body.slug.startsWith("mock-") &&
+    !body.slug.startsWith("diagnostic-")
+  ) {
+    try {
+      const currentLevels = getTopicSkillLevels(user.user_metadata)
+      const updateAttempts = body.attempts
+        .filter(
+          (a) =>
+            (a.section === "Quant" ||
+              a.section === "Verbal" ||
+              a.section === "DI") &&
+            (a.difficulty === "Beginner" ||
+              a.difficulty === "Intermediate" ||
+              a.difficulty === "Advanced")
+        )
+        .map((a) => ({
+          slug: body.slug,
+          section: a.section as Section,
+          difficulty: a.difficulty as Difficulty,
+          isCorrect: a.isCorrect,
+          timeSpentMs: a.timeSpentMs,
+        }))
+      if (updateAttempts.length > 0) {
+        const nextLevels = applySessionAttempts(currentLevels, updateAttempts)
+        await supabase.auth.updateUser({
+          data: { topic_skill_levels: nextLevels },
+        })
+      }
+    } catch {
+      // Non-fatal — adaptivity simply doesn't update for this session.
+    }
   }
 
   return Response.json({ sessionId: session.id })

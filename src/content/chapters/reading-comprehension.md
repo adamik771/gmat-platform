@@ -142,6 +142,8 @@ problem_sets:
 
 Reading Comprehension on the GMAT is not a reading-speed test. Passages are short by academic standards (250-400 words) but dense — every paragraph does multiple jobs, and the authors compress structure that would take pages in a typical article into a few hundred words. The students who struggle aren't slow readers; they're *passive* readers, moving through prose without actively tracking what's happening.
 
+**Mental model.** RC tests structure, not content. Each paragraph plays a *role* — introduces, supports, qualifies, counters, concludes — and the answer to most questions flows from the role, not the words. Strong RC readers track the skeleton (what is each paragraph *doing*?) and let the prose flow over them. Weak RC readers try to memorize content and run out of time and short-term memory by paragraph three.
+
 **The three-pass active-reading protocol.**
 
 Don't read the passage the way you'd read a novel — word by word, trying to absorb every detail. Read it the way a reporter scans a press release: looking for three specific things.
@@ -180,7 +182,7 @@ Common paragraph roles:
 
 > **Recall check.** Close your eyes. State the three passes of the active-reading protocol. Now state at least three paragraph roles (introduce, state thesis, support, counter, respond, qualify, conclude — any three). This retrieval pattern is what makes "reading actively" a deliberate habit rather than a vague intention. Retrieval practice creates structural memory — re-reading creates the illusion of memory (Roediger & Karpicke, 2006).
 
-> **Trap to watch.** Don't get sucked into the prose style. GMAT RC passages are written in elevated, academic diction precisely because they intimidate the weak-voiced student into careful word-by-word reading. The passages are rarely as complex as they sound. Skim if you need to, but track structure with discipline.
+**Trap to watch.** Don't get sucked into the prose style. GMAT RC passages are written in elevated, academic diction precisely because they intimidate the weak-voiced student into careful word-by-word reading. The passages are rarely as complex as they sound. Skim if you need to, but track structure with discipline.
 
 ## @main-idea-questions
 
@@ -256,7 +258,7 @@ Specific detail questions ask about explicitly stated facts: "According to the p
 
 In all cases, the technique is the same: find the specific sentence(s), verify the match.
 
-> **Trap to watch.** Don't bring in outside knowledge. You might *know* that subscription businesses have a 75% retention rate — but if the passage says 70%, the answer matching the passage is right, regardless of reality. RC tests what the passage says, not what's true.
+**Trap to watch.** Don't bring in outside knowledge. You might *know* that subscription businesses have a 75% retention rate — but if the passage says 70%, the answer matching the passage is right, regardless of reality. RC tests what the passage says, not what's true.
 
 ## @inference-questions
 

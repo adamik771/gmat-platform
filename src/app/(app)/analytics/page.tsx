@@ -1,8 +1,21 @@
+import Link from "next/link"
+import {
+  ArrowRight,
+  BarChart3,
+  CheckCircle2,
+  Clock,
+  Compass,
+  Lock,
+  Sparkles,
+  Target,
+  TrendingUp,
+} from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import {
   computeCalibration,
   type CalibrationReport,
   type ChapterProgressMap,
+  type PracticeAttemptCalibrationRow,
 } from "@/lib/calibration"
 import { getAllQuestions } from "@/lib/content"
 import type { Section } from "@/types"
@@ -10,10 +23,18 @@ import AnalyticsClient, {
   type DifficultyTimingRow,
   type ErrorPatternSummary,
   type PacingRow,
+  type PredictionMAE,
+  type PredictionMAETrendPoint,
+  type RepeatMissRow,
+  type ReportMirror,
+  type ReportMirrorRow,
+  type ReviewEditSummary,
   type ScoreTrendPoint,
+  type TimeSinkRow,
   type TopicRow,
   type TopicTimingRow,
 } from "./AnalyticsClient"
+import { accuracyToScore } from "@/lib/diagnostic"
 
 // Minimum attempts required to trust a per-topic accuracy — anything below
 // and a couple of lucky / unlucky answers dominate the number.
@@ -61,7 +82,24 @@ export default async function AnalyticsPage() {
   let difficultyTimingRows: DifficultyTimingRow[] = []
   let errorPatterns: ErrorPatternSummary | null = null
   let calibration: CalibrationReport | null = null
+  let reportMirror: ReportMirror | null = null
+  let repeatMissRows: RepeatMissRow[] = []
+  let timeSinkRows: TimeSinkRow[] = []
+  let predictionMAE: PredictionMAE | null = null
+  let predictionMAETrend: PredictionMAETrendPoint[] = []
   let hasData = false
+
+  // Baseline-mode signals — counted regardless of `hasData` so the
+  // unlock checklist always reflects current state. Cheap derivations
+  // computed alongside the existing analytics aggregations.
+  let diagnosticSectionsDone = 0
+  const sectionAttemptCount: Record<Section, number> = {
+    Quant: 0,
+    Verbal: 0,
+    DI: 0,
+  }
+  let confidenceRatedCount = 0
+  let weeksOfPractice = 0
 
   try {
     const supabase = await createSupabaseServer()
@@ -70,16 +108,23 @@ export default async function AnalyticsPage() {
     } = await supabase.auth.getUser()
 
     if (user) {
-      // ---------- Calibration (from ChapterReader confidence ratings) ----------
-      // chapter_progress is written cross-device via /api/chapter-progress.
-      // Confidence is rated inline while the student works a chapter check
-      // question; this panel aggregates across all chapters.
+      // Diagnostic completion — unlocks several modules. Cheap query
+      // (3 possible slugs).
+      const { data: diagRows } = await supabase
+        .from("practice_sessions")
+        .select("slug")
+        .eq("user_id", user.id)
+        .in("slug", ["diagnostic-quant", "diagnostic-verbal", "diagnostic-di"])
+      diagnosticSectionsDone = new Set(
+        (diagRows ?? []).map((r) => r.slug as string)
+      ).size
+      // ---------- Calibration (chapter_progress + practice_attempts) ----------
+      // chapter_progress is written cross-device via /api/chapter-progress;
+      // practice_attempts.confidence is written by SessionClient on session
+      // submit. The two sources are merged below once attempts are fetched.
       const chapterProgress = user.user_metadata?.chapter_progress as
         | ChapterProgressMap
         | undefined
-      if (chapterProgress) {
-        calibration = computeCalibration(chapterProgress, getAllQuestions())
-      }
 
       // ---------- Score trajectory ----------
       const eightWeeksAgo = new Date(Date.now() - 56 * 86400000).toISOString()
@@ -143,13 +188,55 @@ export default async function AnalyticsPage() {
       }
 
       // ---------- Per-topic accuracy ----------
+      // Also pulls question_id + session timestamp to feed the repeat-miss
+      // aggregation below (chronological order per question_id).
       const { data: attempts } = await supabase
         .from("practice_attempts")
-        .select("topic, subtopic, section, difficulty, is_correct, time_spent_ms")
+        .select(
+          "question_id, topic, subtopic, section, difficulty, is_correct, time_spent_ms, confidence, practice_sessions(created_at)"
+        )
         .eq("user_id", user.id)
+
+      // Compute calibration from both sources. Confidence on
+      // practice_attempts is null unless the student rated; rows without
+      // a rating are skipped inside computeCalibration.
+      const practiceCalibrationRows: PracticeAttemptCalibrationRow[] = (
+        attempts ?? []
+      ).map((a) => ({
+        confidence: (a.confidence as string | null) ?? null,
+        is_correct: (a.is_correct as boolean | null) ?? null,
+      }))
+      if (chapterProgress || practiceCalibrationRows.length > 0) {
+        calibration = computeCalibration(
+          chapterProgress,
+          getAllQuestions(),
+          practiceCalibrationRows,
+        )
+      }
 
       if (attempts && attempts.length > 0) {
         hasData = true
+
+        // Baseline-checklist signals derived from the same `attempts`
+        // pull. Cheap; lets us show progress against unlock thresholds
+        // even when the user is partway to active mode.
+        const weekKeys = new Set<string>()
+        for (const a of attempts) {
+          const sec = a.section as Section
+          if (sec !== "Quant" && sec !== "Verbal" && sec !== "DI") continue
+          sectionAttemptCount[sec] += 1
+          if ((a.confidence as string | null) ?? null) confidenceRatedCount += 1
+          const createdAt =
+            (a as { practice_sessions?: { created_at?: string } | null })
+              .practice_sessions?.created_at
+          if (createdAt) {
+            const d = new Date(createdAt)
+            const ws = new Date(d)
+            ws.setDate(d.getDate() - d.getDay())
+            weekKeys.add(ws.toISOString().slice(0, 10))
+          }
+        }
+        weeksOfPractice = weekKeys.size
 
         // Group by (section + topic) so "Algebra" in Quant and (hypothetical)
         // "Algebra" elsewhere don't collide. Topic label includes subtopic
@@ -398,22 +485,829 @@ export default async function AnalyticsPage() {
             totalLabelled: labelledRight + labelledWrong,
           }
         }
+
+        // ---------- Report Mirror ----------
+        // Groups attempts by (a) content domain = section, (b) question
+        // type = the question's official type label (PS / CR / RC / DS
+        // / TA / GI / TPA / MSR), and (c) review/edit outcomes across
+        // every mock the student has taken. Framed as the shape their
+        // GMAC Enhanced Score Report will take so what they practice
+        // against matches what they read post-exam.
+        const contentDomainAgg: Record<
+          Section,
+          { attempts: number; correct: number }
+        > = {
+          Quant: { attempts: 0, correct: 0 },
+          Verbal: { attempts: 0, correct: 0 },
+          DI: { attempts: 0, correct: 0 },
+        }
+        const typeAgg = new Map<
+          string,
+          { attempts: number; correct: number; section: Section }
+        >()
+        for (const a of attempts) {
+          const sec = a.section as Section
+          if (sec !== "Quant" && sec !== "Verbal" && sec !== "DI") continue
+          contentDomainAgg[sec].attempts += 1
+          if (a.is_correct) contentDomainAgg[sec].correct += 1
+          const qtype =
+            (a as { question_type?: string | null }).question_type || "Unknown"
+          const cur = typeAgg.get(qtype) ?? {
+            attempts: 0,
+            correct: 0,
+            section: sec,
+          }
+          cur.attempts += 1
+          if (a.is_correct) cur.correct += 1
+          typeAgg.set(qtype, cur)
+        }
+
+        const contentDomainRows: ReportMirrorRow[] = (
+          ["Quant", "Verbal", "DI"] as const
+        )
+          .filter((sec) => contentDomainAgg[sec].attempts > 0)
+          .map((sec) => ({
+            label: sec,
+            section: sec,
+            attempts: contentDomainAgg[sec].attempts,
+            accuracy: Math.round(
+              (contentDomainAgg[sec].correct /
+                contentDomainAgg[sec].attempts) *
+                100
+            ),
+          }))
+
+        const questionTypeRows: ReportMirrorRow[] = [...typeAgg.entries()]
+          .filter(([, v]) => v.attempts >= 3)
+          .map(([label, v]) => ({
+            label,
+            section: v.section,
+            attempts: v.attempts,
+            accuracy: Math.round((v.correct / v.attempts) * 100),
+          }))
+          .sort((a, b) => b.attempts - a.attempts)
+
+        // Cumulative review/edit outcomes across every mock the student
+        // has attempted. Per-mock counts live on the mock report page;
+        // this rolls them up so the student sees a long-horizon edit
+        // signal ("you help more than you hurt") on /analytics.
+        let editsHelped = 0
+        let editsHurt = 0
+        let editsNeutral = 0
+        const reviewEditsBlob = (user.user_metadata?.mock_review_edits ??
+          {}) as Record<
+          string,
+          Partial<
+            Record<
+              Section,
+              Array<{
+                questionId: string
+                preEditAnswer: number | null
+                postEditAnswer: number | null
+              }>
+            >
+          >
+        >
+        const qIndex = new Map(
+          getAllQuestions().map((q) => [q.id, q])
+        )
+        for (const forDate of Object.values(reviewEditsBlob)) {
+          for (const section of ["Quant", "Verbal", "DI"] as const) {
+            for (const edit of forDate?.[section] ?? []) {
+              const q = qIndex.get(edit.questionId)
+              if (!q) continue
+              if (q.correctAnswer < 0) {
+                // TPA — can't classify helped/hurt cleanly with the
+                // current correctAnswer shape, so count as neutral.
+                editsNeutral += 1
+                continue
+              }
+              const pre = edit.preEditAnswer === q.correctAnswer
+              const post = edit.postEditAnswer === q.correctAnswer
+              if (!pre && post) editsHelped += 1
+              else if (pre && !post) editsHurt += 1
+              else editsNeutral += 1
+            }
+          }
+        }
+        const editsTotal = editsHelped + editsHurt + editsNeutral
+        const reviewEdits: ReviewEditSummary | null =
+          editsTotal > 0
+            ? {
+                total: editsTotal,
+                helped: editsHelped,
+                hurt: editsHurt,
+                neutral: editsNeutral,
+              }
+            : null
+
+        if (contentDomainRows.length > 0 || questionTypeRows.length > 0 || reviewEdits) {
+          reportMirror = {
+            contentDomainRows,
+            questionTypeRows,
+            reviewEdits,
+          }
+        }
+
+        // ---------- Repeat-miss hotspots (PDF v2 KPI: repeat-error rate) ----------
+        // For each question with ≥2 attempts, did the student still miss
+        // it on the MOST recent attempt? Bucketed by topic. This catches
+        // topics where retrieval practice isn't sticking — spotting a
+        // pattern is the whole point of an error log, but percentages
+        // per topic drive prioritisation better than the raw list.
+        type QuestionHistory = {
+          topic: string
+          section: Section
+          lastIncorrect: boolean
+          attemptCount: number
+          lastCreatedAt: string
+        }
+        const byQuestion = new Map<string, QuestionHistory>()
+        for (const a of attempts) {
+          const sec = a.section as Section
+          if (sec !== "Quant" && sec !== "Verbal" && sec !== "DI") continue
+          const qid = a.question_id as string | null
+          if (!qid) continue
+          const createdAt =
+            (a as { practice_sessions?: { created_at?: string } | null })
+              .practice_sessions?.created_at ?? ""
+          const existing = byQuestion.get(qid)
+          if (!existing) {
+            byQuestion.set(qid, {
+              topic: (a.topic as string) || "Other",
+              section: sec,
+              lastIncorrect: !a.is_correct,
+              attemptCount: 1,
+              lastCreatedAt: createdAt,
+            })
+          } else {
+            existing.attemptCount += 1
+            // If this row is newer, overwrite "last" info.
+            if (createdAt > existing.lastCreatedAt) {
+              existing.lastIncorrect = !a.is_correct
+              existing.lastCreatedAt = createdAt
+            }
+          }
+        }
+        type RepeatAgg = { topic: string; section: Section; repeated: number; stillMissing: number }
+        const repeatByTopic = new Map<string, RepeatAgg>()
+        for (const q of byQuestion.values()) {
+          if (q.attemptCount < 2) continue
+          const key = `${q.section}|${q.topic}`
+          const r = repeatByTopic.get(key) ?? {
+            topic: q.topic,
+            section: q.section,
+            repeated: 0,
+            stillMissing: 0,
+          }
+          r.repeated += 1
+          if (q.lastIncorrect) r.stillMissing += 1
+          repeatByTopic.set(key, r)
+        }
+        // Require ≥3 repeat-attempted questions in a topic for the rate
+        // to mean something. Surface highest miss rate first; tiebreak
+        // by volume.
+        const REPEAT_MIN = 3
+        repeatMissRows = [...repeatByTopic.values()]
+          .filter((r) => r.repeated >= REPEAT_MIN)
+          .map((r) => ({
+            topic: r.topic,
+            section: r.section,
+            repeatedCount: r.repeated,
+            stillMissing: r.stillMissing,
+            rate: Math.round((r.stillMissing / r.repeated) * 100),
+          }))
+          .sort((a, b) => {
+            if (b.rate !== a.rate) return b.rate - a.rate
+            return b.repeatedCount - a.repeatedCount
+          })
+          .slice(0, 8)
+
+        // ---------- Time-sink topics (PDF v2 KPI: time-sink rate) ----------
+        // Topics that burn time AND fail to convert that time to
+        // accuracy. Uses the existing per-topic timing + topic-row
+        // accuracy sources already computed above. A topic is a
+        // time-sink when ratio ≥ SLOW_RATIO (1.3×) AND accuracy < 55%.
+        const accuracyByKey = new Map<string, { accuracy: number; attempts: number }>()
+        for (const row of topicRows) {
+          accuracyByKey.set(
+            `${row.section}|${row.topic}`,
+            { accuracy: row.accuracy, attempts: row.attempts }
+          )
+        }
+        timeSinkRows = topicTimingRows
+          .filter((t) => t.ratio >= SLOW_RATIO)
+          .map((t) => {
+            const acc = accuracyByKey.get(`${t.section}|${t.topic}`)
+            return {
+              topic: t.topic,
+              section: t.section,
+              ratio: t.ratio,
+              avgMin: t.avgMin,
+              accuracy: acc?.accuracy ?? null,
+              attempts: acc?.attempts ?? t.attempts,
+            }
+          })
+          // Only surface topics where low accuracy + slow pace BOTH fire.
+          // A slow-but-accurate topic is "labored" (already covered by the
+          // Behaviour Patterns panel). The distinct time-sink signal is
+          // the "burning time on things you're still missing" case.
+          .filter((t) => t.accuracy !== null && t.accuracy < 55)
+          .sort((a, b) => {
+            // Worst signal (high ratio, low accuracy) first.
+            const scoreA = a.ratio * (100 - (a.accuracy ?? 0))
+            const scoreB = b.ratio * (100 - (b.accuracy ?? 0))
+            return scoreB - scoreA
+          })
+          .slice(0, 8)
+
+        // ---------- Prediction MAE (PDF v2 KPI) ----------
+        // PDF v2 p.7: "A good internal target is a mean absolute
+        // prediction error at or below 35 points against a recent
+        // official mock." Our mocks aren't official, but the analogue
+        // holds: compare our readiness band to the most recent
+        // complete mock's total score.
+        //
+        // Requires: (a) all 3 sections with ≥10 attempts so the
+        // readiness derivation is stable, matching the dashboard/study-
+        // plan gating; (b) a mock where all 3 section sessions exist.
+        type SecStatRow = { total: number; correct: number }
+        const readinessSecStats: Record<Section, SecStatRow> = {
+          Quant: { total: 0, correct: 0 },
+          Verbal: { total: 0, correct: 0 },
+          DI: { total: 0, correct: 0 },
+        }
+        for (const a of attempts) {
+          const sec = a.section as Section
+          if (!readinessSecStats[sec]) continue
+          readinessSecStats[sec].total += 1
+          if (a.is_correct) readinessSecStats[sec].correct += 1
+        }
+        const READINESS_MIN_SAMPLE = 10
+        const readinessReady = (["Quant", "Verbal", "DI"] as const).every(
+          (s) => readinessSecStats[s].total >= READINESS_MIN_SAMPLE
+        )
+
+        // Fetch mock section sessions (most recent first) — bounded to
+        // the last 30 complete sessions to keep the query small. Used by
+        // both the MAE snapshot (most-recent complete mock) and the MAE
+        // trend chart (every complete mock).
+        const { data: mockRows } = await supabase
+          .from("practice_sessions")
+          .select("slug, accuracy, created_at")
+          .eq("user_id", user.id)
+          .like("slug", "mock-%")
+          .order("created_at", { ascending: false })
+          .limit(30)
+
+        // Group by YYYY-MM-DD date embedded in the slug
+        // (mock-YYYY-MM-DD-section). Section sessions from the same
+        // mock have the same date slug prefix.
+        type MockRow = { slug: string; accuracy: number; created_at: string }
+        const byDate = new Map<
+          string,
+          { sections: Partial<Record<Section, MockRow>>; created_at: string }
+        >()
+        for (const r of (mockRows as MockRow[] | null) ?? []) {
+          const match = r.slug.match(
+            /^mock-(\d{4}-\d{2}-\d{2})-(quant|verbal|di)$/i
+          )
+          if (!match) continue
+          const date = match[1]
+          const sec = (match[2].charAt(0).toUpperCase() +
+            match[2].slice(1).toLowerCase()) as Section
+          const normalisedSec: Section =
+            sec === ("Di" as Section) ? "DI" : sec
+          const group = byDate.get(date) ?? {
+            sections: {} as Partial<Record<Section, MockRow>>,
+            created_at: r.created_at,
+          }
+          // Keep the latest created_at across section sessions for
+          // "date completed" ordering.
+          if (r.created_at > group.created_at) group.created_at = r.created_at
+          group.sections[normalisedSec] = r
+          byDate.set(date, group)
+        }
+
+        // Complete mocks, newest first.
+        const completeMocks = [...byDate.entries()]
+          .filter(
+            ([, g]) =>
+              g.sections.Quant && g.sections.Verbal && g.sections.DI
+          )
+          .sort(([, a], [, b]) =>
+            b.created_at.localeCompare(a.created_at)
+          )
+
+        // Helper: mock total from the 3-section aggregate.
+        const mockTotalFor = (
+          group: { sections: Partial<Record<Section, MockRow>> }
+        ) =>
+          Math.round(
+            ((["Quant", "Verbal", "DI"] as const)
+              .map((s) =>
+                accuracyToScore((group.sections[s]!.accuracy ?? 0) / 100)
+              )
+              .reduce((x, y) => x + y, 0) /
+              3 /
+              10) *
+              10
+          )
+
+        if (readinessReady && completeMocks.length > 0) {
+          const avgAccuracy =
+            (["Quant", "Verbal", "DI"] as const)
+              .map(
+                (s) =>
+                  readinessSecStats[s].correct / readinessSecStats[s].total
+              )
+              .reduce((x, y) => x + y, 0) / 3
+          const readinessTotal = accuracyToFocusTotal(avgAccuracy * 100)
+          const [date, group] = completeMocks[0]
+          const mockTotal = mockTotalFor(group)
+          const signedDelta = readinessTotal - mockTotal
+          const error = Math.abs(signedDelta)
+          predictionMAE = {
+            readinessTotal,
+            mockTotal,
+            mockDate: date,
+            errorPoints: error,
+            signedDelta,
+            // PDF v2 target is ≤35 points; we stratify into calibrated
+            // / drifting / miscalibrated so the student sees a clear
+            // signal on whether to trust the readiness band.
+            verdict:
+              error <= 35
+                ? "calibrated"
+                : error <= 70
+                  ? "drifting"
+                  : "miscalibrated",
+          }
+        }
+
+        // ---------- Prediction MAE trend ----------
+        // For each complete mock, reconstruct the best-effort "readiness
+        // estimate at the time of that mock" from a 14-day rolling
+        // accuracy over the attempts preceding the mock date. We don't
+        // store historical readiness per mock, so this proxy lets the
+        // trend show convergence/divergence without a schema change.
+        //
+        // attempts_at_mock = attempts with practice_sessions.created_at
+        // in [mockDate - 14d, mockDate). Require ≥10 attempts across the
+        // 3 sections combined for the proxy to mean anything; otherwise
+        // we skip that mock from the series (rare — complete-mock
+        // cadence implies regular practice).
+        if (completeMocks.length > 0) {
+          type AttemptTime = {
+            section: Section
+            is_correct: boolean
+            ts: number
+          }
+          const attemptsForRolling: AttemptTime[] = []
+          for (const a of attempts) {
+            const sec = a.section as Section
+            if (sec !== "Quant" && sec !== "Verbal" && sec !== "DI") continue
+            const createdAt =
+              (a as { practice_sessions?: { created_at?: string } | null })
+                .practice_sessions?.created_at
+            if (!createdAt) continue
+            attemptsForRolling.push({
+              section: sec,
+              is_correct: !!a.is_correct,
+              ts: Date.parse(createdAt),
+            })
+          }
+          // Sorted so we can early-exit each window walk once out of
+          // range. Newest first matches the mock ordering.
+          attemptsForRolling.sort((x, y) => y.ts - x.ts)
+          const ROLLING_WINDOW_MS = 14 * 86400000
+          const ROLLING_MIN_SAMPLE = 10
+
+          // Build oldest→newest so the chart reads left-to-right.
+          const pointsOldestFirst: PredictionMAETrendPoint[] = []
+          for (let i = completeMocks.length - 1; i >= 0; i--) {
+            const [date, group] = completeMocks[i]
+            const mockEndTs = Date.parse(group.created_at)
+            const windowStartTs = mockEndTs - ROLLING_WINDOW_MS
+            let total = 0
+            let correct = 0
+            for (const at of attemptsForRolling) {
+              if (at.ts >= mockEndTs) continue
+              if (at.ts < windowStartTs) break
+              total += 1
+              if (at.is_correct) correct += 1
+            }
+            if (total < ROLLING_MIN_SAMPLE) continue
+            const rollingAccuracy = correct / total
+            const readinessTotalAtMock = accuracyToFocusTotal(
+              rollingAccuracy * 100
+            )
+            const mockTotal = mockTotalFor(group)
+            pointsOldestFirst.push({
+              date,
+              readinessTotal: readinessTotalAtMock,
+              mockTotal,
+              signedDelta: readinessTotalAtMock - mockTotal,
+            })
+          }
+          predictionMAETrend = pointsOldestFirst
+        }
       }
     }
   } catch {
     // Supabase unavailable — render empty state.
   }
 
+  // === Stage gate ===
+  // Pre-data: render an analytics-specific baseline view (focused
+  // unlock checklist + locked module previews). Avoids stacking six
+  // empty cards that read as "the app isn't built yet." NBA is no
+  // longer surfaced on /analytics — it's the dashboard's job, and on
+  // this page it produced "diagnostic required / continue plan"
+  // contradictions.
+  if (!hasData) {
+    return (
+      <BaselineView
+        diagnosticSectionsDone={diagnosticSectionsDone}
+        sectionAttemptCount={sectionAttemptCount}
+        confidenceRatedCount={confidenceRatedCount}
+        weeksOfPractice={weeksOfPractice}
+      />
+    )
+  }
+
   return (
-    <AnalyticsClient
-      scoreTrend={scoreTrend}
-      topicRows={topicRows}
-      pacingRows={pacingRows}
-      topicTimingRows={topicTimingRows}
-      difficultyTimingRows={difficultyTimingRows}
-      errorPatterns={errorPatterns}
-      calibration={calibration}
-      hasData={hasData}
-    />
+    <>
+      <AnalyticsClient
+        scoreTrend={scoreTrend}
+        topicRows={topicRows}
+        pacingRows={pacingRows}
+        topicTimingRows={topicTimingRows}
+        difficultyTimingRows={difficultyTimingRows}
+        errorPatterns={errorPatterns}
+        calibration={calibration}
+        reportMirror={reportMirror}
+        repeatMissRows={repeatMissRows}
+        timeSinkRows={timeSinkRows}
+        predictionMAE={predictionMAE}
+        predictionMAETrend={predictionMAETrend}
+        hasData={hasData}
+      />
+    </>
+  )
+}
+
+const EYEBROW_BASE =
+  "text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C9A84C]"
+
+/**
+ * Pre-data analytics view. Replaces the wall of "not enough data yet"
+ * panels that the previous design rendered into. Three blocks: an
+ * action-driven unlock hero, an unlock checklist with progress per
+ * threshold, and a 2x3 grid of locked module previews so the
+ * categories of analysis that *will* unlock are still visible.
+ */
+function BaselineView({
+  diagnosticSectionsDone,
+  sectionAttemptCount,
+  confidenceRatedCount,
+  weeksOfPractice,
+}: {
+  diagnosticSectionsDone: number
+  sectionAttemptCount: Record<Section, number>
+  confidenceRatedCount: number
+  weeksOfPractice: number
+}) {
+  const diagnosticDone = diagnosticSectionsDone === 3
+  const totalAttempts =
+    sectionAttemptCount.Quant +
+    sectionAttemptCount.Verbal +
+    sectionAttemptCount.DI
+
+  // Unlock checklist — each row carries a "have / need" pair so the
+  // student can see how close they are to each module rather than just
+  // "not enough data yet". Modules unlock when the threshold is met.
+  const checklist: Array<{
+    label: string
+    have: number
+    need: number
+    sublabel: string
+  }> = [
+    {
+      label: "Diagnostic baseline",
+      have: diagnosticSectionsDone,
+      need: 3,
+      sublabel: "Sections done",
+    },
+    {
+      label: "Quant attempts",
+      have: sectionAttemptCount.Quant,
+      need: 5,
+      sublabel: "Per-topic accuracy",
+    },
+    {
+      label: "Verbal attempts",
+      have: sectionAttemptCount.Verbal,
+      need: 5,
+      sublabel: "Per-topic accuracy",
+    },
+    {
+      label: "DI attempts",
+      have: sectionAttemptCount.DI,
+      need: 5,
+      sublabel: "Per-topic accuracy",
+    },
+    {
+      label: "Confidence ratings",
+      have: confidenceRatedCount,
+      need: 10,
+      sublabel: "Calibration signal",
+    },
+    {
+      label: "Weeks of practice",
+      have: weeksOfPractice,
+      need: 2,
+      sublabel: "Readiness trajectory",
+    },
+  ]
+
+  const lockedModules: Array<{
+    Icon: typeof BarChart3
+    title: string
+    answers: string
+    unlock: string
+  }> = [
+    {
+      Icon: TrendingUp,
+      title: "Readiness trajectory",
+      answers: "Are you moving toward your target score?",
+      unlock: "Unlocks after 2+ weeks of practice.",
+    },
+    {
+      Icon: Compass,
+      title: "Topic accuracy",
+      answers: "Which topics are limiting your score?",
+      unlock: "Unlocks after 5+ attempts in a topic.",
+    },
+    {
+      Icon: Clock,
+      title: "Section pacing",
+      answers: "Is your timing stable per section?",
+      unlock: "Unlocks after 5+ timed attempts per section.",
+    },
+    {
+      Icon: Sparkles,
+      title: "Strengths & weaknesses",
+      answers: "Where do you finish strongest, where do you leak?",
+      unlock: "Unlocks after 5+ attempts in 2+ topics.",
+    },
+    {
+      Icon: Target,
+      title: "Calibration",
+      answers: "Are you over- or under-confident on what you know?",
+      unlock: "Unlocks after 10+ confidence-rated answers.",
+    },
+    {
+      Icon: BarChart3,
+      title: "Score-report mirror",
+      answers: "How will the GMAC ESR break down your performance?",
+      unlock: "Unlocks after enough section + question-type coverage.",
+    },
+  ]
+
+  // Hero CTA dynamically targets the most impactful next action.
+  // Diagnostic first; then add practice volume; once attempts exist
+  // the analytics page itself flips to active mode (not this branch).
+  const primaryHref = diagnosticDone ? "/practice" : "/diagnostic"
+  const primaryLabel = diagnosticDone
+    ? totalAttempts === 0
+      ? "Run your first practice set"
+      : "Continue practice"
+    : diagnosticSectionsDone === 0
+      ? "Take diagnostic"
+      : `Continue diagnostic (${diagnosticSectionsDone}/3)`
+
+  return (
+    <div className="max-w-6xl mx-auto space-y-10">
+      {/* === Unlock hero === */}
+      <section
+        className="relative overflow-hidden rounded-2xl border"
+        style={{
+          borderColor: "rgba(201,168,76,0.22)",
+          backgroundColor: "#0A0A0A",
+        }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 60% at 0% 50%, rgba(201,168,76,0.12) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 100% 100%, rgba(201,168,76,0.05) 0%, transparent 60%)",
+          }}
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
+          aria-hidden
+        />
+        <div className="relative p-7 sm:p-10 max-w-3xl">
+          <div className="flex items-center gap-2 mb-3">
+            <Lock className="w-3.5 h-3.5" style={{ color: "#C9A84C" }} />
+            <p className={EYEBROW_BASE}>Performance map · locked</p>
+          </div>
+          <h1 className="font-display text-4xl sm:text-[44px] font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.04]">
+            Your performance map activates after the{" "}
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+              baseline.
+            </span>
+          </h1>
+          <p className="mt-4 text-[15px] text-[#C0C0C0] leading-[1.7]">
+            Six analytics modules unlock as your data grows: readiness
+            trajectory, topic accuracy, section pacing, strengths &amp;
+            weaknesses, confidence calibration, and the score-report
+            mirror. Diagnostic first; the rest follow.
+          </p>
+          <div className="mt-7 flex flex-wrap items-center gap-3">
+            <Link
+              href={primaryHref}
+              className="group inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
+              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            >
+              {primaryLabel}
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+            <Link
+              href="/test-builder"
+              className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors"
+              style={{
+                borderColor: "rgba(255,255,255,0.10)",
+                color: "#C0C0C0",
+              }}
+            >
+              Build a custom set
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* === Unlock checklist === */}
+      <section>
+        <div className="flex items-center gap-3 mb-5">
+          <p className={EYEBROW_BASE}>Unlock checklist</p>
+          <div
+            className="h-px flex-1"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+            }}
+            aria-hidden
+          />
+          <span className="text-[11px] text-[#555555] tabular-nums">
+            {checklist.filter((r) => r.have >= r.need).length} /{" "}
+            {checklist.length} unlocked
+          </span>
+        </div>
+        <div className="rounded-xl border border-white/[0.06] bg-[#0D0D0D] p-2">
+          {checklist.map((row) => {
+            const done = row.have >= row.need
+            const pct = Math.min(100, Math.round((row.have / row.need) * 100))
+            return (
+              <div
+                key={row.label}
+                className="flex items-center gap-4 px-4 py-3 rounded-lg transition-colors"
+              >
+                <span
+                  className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+                  style={{
+                    backgroundColor: done
+                      ? "rgba(62,207,142,0.15)"
+                      : "rgba(255,255,255,0.04)",
+                    border: `1px solid ${
+                      done
+                        ? "rgba(62,207,142,0.35)"
+                        : "rgba(255,255,255,0.08)"
+                    }`,
+                  }}
+                  aria-hidden
+                >
+                  {done && (
+                    <CheckCircle2
+                      className="w-3.5 h-3.5"
+                      style={{ color: "#3ECF8E" }}
+                    />
+                  )}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-3 mb-1.5">
+                    <p
+                      className="text-[13px] font-semibold tracking-tight"
+                      style={{
+                        color: done ? "rgba(240,240,240,0.7)" : "#F0F0F0",
+                      }}
+                    >
+                      {row.label}
+                    </p>
+                    <p
+                      className="text-[11px] tabular-nums flex-shrink-0"
+                      style={{
+                        color: done
+                          ? "#3ECF8E"
+                          : "rgba(255,255,255,0.45)",
+                      }}
+                    >
+                      {row.have} / {row.need}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="h-1 flex-1 rounded-full bg-white/[0.05] overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-500"
+                        style={{
+                          width: `${pct}%`,
+                          backgroundColor: done ? "#3ECF8E" : "#C9A84C",
+                        }}
+                      />
+                    </div>
+                    <span
+                      className="text-[10px] uppercase tracking-[0.18em] font-semibold flex-shrink-0"
+                      style={{
+                        color: done ? "#3ECF8E" : "rgba(255,255,255,0.4)",
+                      }}
+                    >
+                      {row.sublabel}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </section>
+
+      {/* === Locked module previews ===
+          Replaces the previous wall of "Not enough data yet" cards.
+          Each tile names what it will answer, not just that it's empty. */}
+      <section>
+        <div className="flex items-center gap-3 mb-5">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#888888]">
+            Modules that unlock
+          </p>
+          <div
+            className="h-px flex-1"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(255,255,255,0.10), transparent)",
+            }}
+            aria-hidden
+          />
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {lockedModules.map(({ Icon, title, answers, unlock }) => (
+            <div
+              key={title}
+              className="p-4 rounded-xl border flex flex-col gap-2.5"
+              style={{
+                borderColor: "rgba(255,255,255,0.05)",
+                backgroundColor: "rgba(255,255,255,0.012)",
+              }}
+            >
+              <div className="flex items-center justify-between">
+                <span
+                  className="inline-flex items-center justify-center w-8 h-8 rounded-lg"
+                  style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
+                >
+                  <Icon
+                    className="w-3.5 h-3.5"
+                    style={{ color: "rgba(255,255,255,0.4)" }}
+                  />
+                </span>
+                <Lock
+                  className="w-3 h-3"
+                  style={{ color: "rgba(255,255,255,0.3)" }}
+                  aria-hidden
+                />
+              </div>
+              <p
+                className="text-[14px] font-semibold tracking-tight"
+                style={{ color: "rgba(240,240,240,0.7)" }}
+              >
+                {title}
+              </p>
+              <p
+                className="text-[12px] leading-snug italic"
+                style={{ color: "rgba(192,192,192,0.5)" }}
+              >
+                Answers: {answers}
+              </p>
+              <p
+                className="text-[11px] mt-1"
+                style={{ color: "rgba(255,255,255,0.4)" }}
+              >
+                {unlock}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
   )
 }

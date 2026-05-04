@@ -45,6 +45,7 @@ export default async function CustomSessionPage({
       correctAnswer: q.correctAnswer,
       correctAnswerLetter: q.correctAnswerLetter,
       explanation: q.explanation,
+      hints: q.hints,
       twoPartColumns: q.twoPartColumns,
       twoPartCorrectAnswers: q.twoPartCorrectAnswers,
     }))

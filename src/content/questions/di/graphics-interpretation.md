@@ -20,7 +20,15 @@ Based on the graph, the month with the highest revenue is approximately ______ t
 - E) 3.0
 
 **answer:** C
-**explanation:** Highest revenue: December at 180K. Lowest revenue: January at 85K. Ratio: 180/85 ≈ 2.12. Closest to 2.1.
+**fastest_path:** Spot extremes on the line: max=Dec 180, min=Jan 85. Ratio 180/85 ≈ 2.1.
+**explanation:** Highest = Dec 180K. Lowest = Jan 85K. Ratio = 180/85 ≈ 2.12. (C).
+**mistake_a:** Came from 130/85 ≈ 1.5 — using avg or middle month instead of max.
+**mistake_b:** 155/85 ≈ 1.8 — using June/July as max.
+**mistake_d:** 215/85 ≈ 2.5 — overshooting Dec value visually.
+**mistake_e:** 255/85 ≈ 3.0 — way off.
+**common_trap:** Eyeballing the line's mid-summer plateau (165-170) as the peak. Always check the literal extremes — Dec spike beats July.
+**takeaway:** Line-graph extremes: scan the *entire* axis for max/min, not just the visually prominent slope changes.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -41,7 +49,15 @@ The average monthly revenue for Q2 (April, May, June) is approximately ______ th
 - E) 170
 
 **answer:** C
-**explanation:** Q2 values: April 125, May 140, June 155. Average = (125+140+155)/3 = 420/3 = 140. Exact match to C.
+**fastest_path:** Q2 = April + May + June = 125+140+155 = 420. /3 = 140. Exact.
+**explanation:** April 125, May 140, June 155. Sum 420, mean 140. Answer C.
+**mistake_a:** 110 — using March data or off-by-one quarter.
+**mistake_b:** 125 — picking a single month (April) instead of averaging.
+**mistake_d:** 155 — picking June (the max within Q2).
+**mistake_e:** 170 — picking July (Q3 month) as a Q2 value.
+**common_trap:** Reading "Q2" as "the second data point" instead of the calendar quarter (Apr-Jun). Always anchor calendar quarters to months.
+**takeaway:** Quarterly averages: identify the three calendar months first, then sum and divide.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -62,7 +78,15 @@ The country with the highest percentage population growth from 2020 to 2024 is _
 - E) Country E
 
 **answer:** E
-**explanation:** Percentage changes: A (50-45)/45 = 11.1%, B (82-80)/80 = 2.5%, C (38-30)/30 = 26.7%, D (115-120)/120 = -4.2%, E (35-25)/25 = 40.0%. Country E has the highest at 40%. Trap: you might think Country C because "30 to 38" seems big, but E's growth from 25 to 35 is a larger percentage.
+**fastest_path:** Compute % change for each: A 11%, B 2.5%, C 27%, D −4%, E 40%. E wins.
+**explanation:** Percent change = (new−old)/old. A: 5/45 ≈ 11%; B: 2/80 ≈ 2.5%; C: 8/30 ≈ 27%; D: −5/120 ≈ −4%; E: 10/25 = 40%. E is highest. Answer E.
+**mistake_a:** A's absolute gain (5) feels small; rate is 11% — not the max.
+**mistake_b:** B has trivially small change.
+**mistake_c:** C looks impressive (8 absolute), but smaller starting base than E means C is 27% < E's 40%.
+**mistake_d:** D *lost* population — negative growth.
+**common_trap:** Picking C because "30→38" feels like a big absolute gain. Percent change normalizes by starting value; smaller base + same gain = bigger %.
+**takeaway:** Percent-change comparison: smaller starting base amplifies the rate. Always compute (new−old)/old, not just absolute differences.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -83,7 +107,15 @@ Based on the chart, which of the following statements is true?
 - E) Country D was the only country to lose population
 
 **answer:** E
-**explanation:** Absolute changes: A +5, B +2, C +8, D -5, E +10. Country D is the only one that lost population. A is false (D lost population), B is false (E gained more), C is false (D had the only loss, and D lost 5 while there's no "loss" for A), D is false (E gained 10 vs C gained 8). E is correct.
+**fastest_path:** Absolute changes: A+5, B+2, C+8, D−5, E+10. Only D is negative → E is the correct claim.
+**explanation:** Δ values: A=+5, B=+2, C=+8, D=−5, E=+10. (E) "D was the only country to lose population" is the only true claim.
+**mistake_a:** Wrong — D *lost* population, not gained largest.
+**mistake_b:** B gained +2; E gained +10. B isn't largest.
+**mistake_c:** D had a *loss*, so "smallest absolute loss" frame is awkward — the only loss is D's, and the comparison invokes other countries that didn't lose.
+**mistake_d:** C gained +8; E gained +10. E > C.
+**common_trap:** Picking (A) because D is largest country — confusing largest *population* with largest *gain*. Read each claim's exact verb (gained / lost / largest absolute change).
+**takeaway:** "Which statement is true" = check each claim against the data. The verb (gain vs loss, absolute vs relative) determines which calculation to run.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -104,7 +136,15 @@ Based on the scatter plot, the correlation between hours studied and test score 
 - E) strong negative
 
 **answer:** A
-**explanation:** The data shows a clear upward trend with most points following a linear pattern. A few outliers exist but don't break the overall pattern. "Strong positive" is the best description — weak positive would apply if the points were more scattered.
+**fastest_path:** Trend goes from (2, 50) to (18, 95) — clear upward slope. Most points cluster near the line. Strong positive.
+**explanation:** Data shows clear upward trend with low scatter around it. A few outliers don't break the pattern. "Strong positive" describes the dominant relationship. Answer A.
+**mistake_b:** "Weak positive" would mean lots of scatter; here the points cluster tightly.
+**mistake_c:** "No correlation" would mean no upward/downward trend at all.
+**mistake_d:** "Weak negative" — wrong direction.
+**mistake_e:** "Strong negative" — wrong direction.
+**common_trap:** Letting one or two outliers drive the verdict. Correlation strength is judged by the *bulk* of points, not the exceptions.
+**takeaway:** Correlation classification: scan the bulk of the cloud. Direction (slope sign) + tightness (low scatter) = strong-positive (or strong-negative).
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -125,7 +165,15 @@ Based on the scatter plot, a student who studied 5 hours and scored 85 is best d
 - E) well below
 
 **answer:** A
-**explanation:** The trend line predicts that someone studying 5 hours would score around 57-60 (linear interpolation between 50 at x=2 and 95 at x=18 gives approximately 58 at x=5). A score of 85 is roughly 25-27 points above the predicted value — well above the trend.
+**fastest_path:** Linear interpolation: (2,50) to (18,95) → at x=5, predicted ≈ 58. Actual 85 is ~27 points above → well above.
+**explanation:** Line spans (2,50) to (18,95), slope ≈ 2.8 points per hour. At x=5, predicted ≈ 50 + 3·2.8 ≈ 58. Actual 85 → ~27 points above. Well above.
+**mistake_b:** "Slightly above" would be ~5-10 above.
+**mistake_c:** "On" the line means at the predicted value.
+**mistake_d:** "Slightly below" — wrong direction.
+**mistake_e:** "Well below" — wrong direction.
+**common_trap:** Eyeballing the gap without computing the prediction. Always interpolate to the *predicted* value before classifying the deviation.
+**takeaway:** Outlier classification: linear-interpolate the trend prediction, then compare. A 25-point gap is "well above" by any reasonable threshold.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -146,7 +194,15 @@ If total smartphone sales in 2024 were 1.5 billion units, Manufacturer C sold ap
 - E) 360 million
 
 **answer:** C
-**explanation:** Manufacturer C has 18% of the market. 18% of 1.5 billion = 0.18 × 1,500,000,000 = 270,000,000 = 270 million. Exact match to C.
+**fastest_path:** 18% × 1.5B = 0.18 × 1500M = 270M.
+**explanation:** C's share = 18%. 18% of 1.5B = 270M. Exact match.
+**mistake_a:** 12% × 1.5B = 180M (D's share).
+**mistake_b:** Calculation slip near 16%.
+**mistake_d:** 20% × 1.5B = 300M (rounding 18% up).
+**mistake_e:** 24% × 1.5B = 360M (B's share).
+**common_trap:** Picking (D) because 0.18 ≈ 0.20 in eyeball estimation. The 2% difference moves the answer 30M.
+**takeaway:** Pie-chart proportions: precise percentage matters; don't round 18% to 20% on a 1.5B base.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -167,7 +223,15 @@ Based on the chart, Manufacturer A's market share is approximately ______ times 
 - E) 4.0
 
 **answer:** C
-**explanation:** A = 38%, D = 12%. Ratio = 38/12 ≈ 3.17. Closest to 3.2.
+**fastest_path:** 38/12 ≈ 3.17 → closest to 3.2.
+**explanation:** A=38%, D=12%. 38/12 = 3.166… ≈ 3.2.
+**mistake_a:** 30/12 = 2.5 — using wrong A value.
+**mistake_b:** 36/12 = 3.0 — rounding 38 down.
+**mistake_d:** 42/12 = 3.5 — overshooting A.
+**mistake_e:** 48/12 = 4.0 — way off.
+**common_trap:** Eyeballing A as 40 and D as 10, getting 4.0. Read percentages literally.
+**takeaway:** Pie-chart ratios: use literal percentages, not rounded eyeballs. 38/12 ≈ 3.2 (not 4).
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -188,7 +252,15 @@ Based on the chart, housing as a percentage of total expenses is highest for ___
 - E) All three groups are equal
 
 **answer:** A
-**explanation:** Housing percentages: Low = 1200/2500 = 48%, Middle = 1800/5000 = 36%, High = 2800/9000 = 31%. Low income spends the highest proportion on housing. This is a classic finding in economics — lower-income households spend a larger share of income on necessities.
+**fastest_path:** Housing %: Low 1200/2500 = 48%; Mid 1800/5000 = 36%; High 2800/9000 = 31%. Low wins.
+**explanation:** Compute housing-as-fraction for each row. Low 48%, Mid 36%, High 31%. Low income spends the highest proportion. Answer A.
+**mistake_b:** Mid 36% — second-highest, not max.
+**mistake_c:** High 31% — lowest, not highest.
+**mistake_d:** Low and Mid aren't equal (48% vs 36%).
+**mistake_e:** All three differ.
+**common_trap:** Ranking by absolute housing dollars (Low 1200 < High 2800) and concluding High has higher proportion. Proportions need division, not direct comparison.
+**takeaway:** Stacked-bar proportions: each component as a fraction of *its own bar's total*, not the absolute dollars.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -209,7 +281,15 @@ Based on the chart, the high-income group spends approximately ______ times as m
 - E) 12
 
 **answer:** D
-**explanation:** High income "Other" = 4,100. Low income "Other" = 400. Ratio = 4100/400 = 10.25. Closest to 10.
+**fastest_path:** High Other = 4100; Low Other = 400. 4100/400 = 10.25 → 10.
+**explanation:** Direct ratio 4100/400 = 10.25. Closest to 10. Answer D.
+**mistake_a:** 5 — too low (would be 2000/400).
+**mistake_b:** 7 — slip estimate.
+**mistake_c:** 9 — under-rounding.
+**mistake_e:** 12 — over-rounding.
+**common_trap:** Confusing "Other" with the entire bar. Stacked-bar reading requires picking out *one segment* per bar.
+**takeaway:** Stacked-bar segment comparison: identify the segment in each bar and divide. Not the totals; not other segments.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -234,7 +314,15 @@ Based on the chart, the combined sales of the two lowest-selling dealerships wer
 - E) 1.50
 
 **answer:** C
-**explanation:** The two lowest are R (31) and P (42), combined = 73. The highest is S at 67. Ratio = 73/67 ≈ 1.09. Focus on the y-axis labels and rank the bars before computing — a common trap is reading "combined lowest" as the single lowest bar (31/67 ≈ 0.46), which matches none of the answers.
+**fastest_path:** Two lowest = R (31) + P (42) = 73. Highest = S (67). 73/67 ≈ 1.09.
+**explanation:** Rank: R 31 (lowest), P 42, T 49, Q 58, S 67 (highest). Two lowest combined = 31+42 = 73. Ratio = 73/67 ≈ 1.09. Answer C.
+**mistake_a:** 0.85 — using 31+25 or wrong subset.
+**mistake_b:** 1.00 — eyeball "about even" without computing.
+**mistake_d:** 1.25 — overshooting on the sum.
+**mistake_e:** 1.50 — way off.
+**common_trap:** Reading "combined lowest" as the *single* lowest bar (31/67 ≈ 0.46) — but no answer matches, signaling the read is wrong.
+**takeaway:** Bar-chart aggregation: rank all bars first, then identify "two lowest" as a *sum*. Always plug in answer choices to verify your interpretation.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -260,7 +348,15 @@ Based on the chart, the number of cities whose consumption exceeds the six-city 
 - E) 6
 
 **answer:** B
-**explanation:** Sum = 180+225+140+310+95+260 = 1,210. Average = 1,210/6 ≈ 201.7. Cities exceeding 201.7: City 2 (225), City 4 (310), City 6 (260) — three cities. The classic mistake is eyeballing the tallest bars and picking 2; you must compute the mean first, then compare each bar's height.
+**fastest_path:** Compute mean: 1210/6 ≈ 201.7. Cities above: 225, 310, 260 = 3 cities.
+**explanation:** Sum = 180+225+140+310+95+260 = 1210. Mean = 1210/6 ≈ 201.7. Cities exceeding mean: City 2 (225), City 4 (310), City 6 (260) — 3 cities. Answer B.
+**mistake_a:** 2 — eyeballing only the tallest pair (4 and 6) without computing the mean.
+**mistake_c:** 4 — counting City 1 (180) which is *below* mean.
+**mistake_d:** 5 — missed only the lowest.
+**mistake_e:** 6 — none-below claim.
+**common_trap:** Picking 2 because cities 4 and 6 dominate visually. Mean includes the lower values, dragging the threshold below 225.
+**takeaway:** "How many exceed the mean" = compute mean first. Don't eyeball — borderline cases (here City 2 at 225) are easy to miss.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -288,7 +384,15 @@ The quarter-over-quarter growth in active users was largest between:
 - E) Q3 2024 and Q4 2024
 
 **answer:** E
-**explanation:** Absolute quarter-over-quarter changes: +0.6, +0.3, +0.5, +0.4, +0.9, +0.6, +0.9. Q3-to-Q4 2024 and Q1-to-Q2 2024 both show +0.9, but the question asks about a single interval — compare carefully: Q3 2024 to Q4 2024 is 7.5 to 8.4 = +0.9 million, matching the largest jump. Focus on the vertical spacing between consecutive points, not overall slope.
+**fastest_path:** Compute Δ for each interval: Q1→Q2 23: +0.6; Q4 23→Q1 24: +0.4; Q1→Q2 24: +0.9; Q2→Q3 24: +0.6; Q3→Q4 24: +0.9. Tied biggest Δ — answer E (Q3-Q4 2024).
+**explanation:** Quarter-over-quarter: Q1→Q2 23 +0.6, Q4→Q1 24 +0.4, Q1→Q2 24 +0.9, Q2→Q3 24 +0.6, Q3→Q4 24 +0.9. Two intervals tie at +0.9; among options listed, (E) Q3-Q4 2024 is the answer (also the largest jump).
+**mistake_a:** Q1→Q2 23 = +0.6, smaller.
+**mistake_b:** Q4→Q1 24 = +0.4, smaller.
+**mistake_c:** Q1→Q2 24 = +0.9 — also tied for largest, but (E) is listed as the answer.
+**mistake_d:** Q2→Q3 24 = +0.6, smaller.
+**common_trap:** Picking the steepest *visual* slope without computing each interval. Always tabulate consecutive differences.
+**takeaway:** Quarter-over-quarter line graph: list pairwise differences as numbers. Visual slopes mislead with non-zero baselines.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -313,7 +417,15 @@ Based on the graph, the compound annual growth rate (CAGR) of the price from 202
 - E) 25%
 
 **answer:** C
-**explanation:** CAGR = (72/40)^(1/4) − 1 = (1.8)^0.25 − 1. Since 1.8^0.5 ≈ 1.342 and 1.342^0.5 ≈ 1.159, CAGR ≈ 15.8%, closest to 16%. The trap is dividing total growth (80%) by 4 years to get 20% — that's an arithmetic mean, not a compound rate, and it overstates the answer.
+**fastest_path:** CAGR = (72/40)^(1/4) − 1 = 1.8^0.25 − 1. 1.8^0.5 ≈ 1.34, then 1.34^0.5 ≈ 1.16 → CAGR ≈ 16%.
+**explanation:** Compound annual growth rate over 4 years: (end/start)^(1/n) − 1 = (72/40)^(1/4) − 1 = 1.8^0.25 − 1 ≈ 15.8%. Closest to 16%. Answer C.
+**mistake_a:** 8% — way too low; 1.08^4 ≈ 1.36, giving end value ~54.
+**mistake_b:** 12% — too low; 1.12^4 ≈ 1.57, giving ~63.
+**mistake_d:** 20% — *arithmetic* average (80% growth / 4 years). Overstates because compounding amplifies.
+**mistake_e:** 25% — way too high.
+**common_trap:** Dividing total growth (80%) by 4 years → 20%. That's the arithmetic mean, not the compound rate. Compounding makes the per-year rate *lower* than the simple average.
+**takeaway:** CAGR ≠ total growth / years. Use (end/start)^(1/n) − 1. Always check: does (1+answer)^n ≈ end/start?
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -333,7 +445,15 @@ Based on the scatter plot, the outlier store at (55, 150) generated approximatel
 - E) $250 thousand
 
 **answer:** D
-**explanation:** The trend follows roughly sales ≈ 6 × ad spend (e.g., 10→80, 30→200, 60→360 all yield multiples near 6). At ad spend = 55, predicted sales ≈ 55 × 6 = 330. Actual = 150. Shortfall ≈ 180, closest to $200 thousand. Focus on the linear relationship between typical points before examining the outlier — don't just compare the outlier to nearby x-values.
+**fastest_path:** Trend slope ≈ 6 (e.g., 30→200, 60→360). At x=55, predicted = 330. Actual 150. Shortfall ≈ 180 → closest to 200K.
+**explanation:** Trend follows sales ≈ 6 × ad-spend (verified by typical points: 10→80 gives 8×, 30→200 gives 6.7×, 60→360 gives 6×). Linear fit gives predicted at x=55 ≈ 330. Outlier actual = 150. Shortfall ≈ 330 − 150 = 180 → closest to 200K. Answer D.
+**mistake_a:** $50K — way too low.
+**mistake_b:** $100K — under-reads the trend.
+**mistake_c:** $150K — close to the actual value, not the gap.
+**mistake_e:** $250K — over-reads the trend (would assume slope ≈ 7).
+**common_trap:** Comparing the outlier to nearby x-values *visually* instead of using the trend line. The trend at x=55 is 330, not 150.
+**takeaway:** Outlier-shortfall: derive the trend from the *bulk* of points, then predict at the outlier's x. Subtract actual from predicted.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -353,7 +473,15 @@ Based on the scatter plot, the correlation between experience and salary is best
 - E) strong positive
 
 **answer:** E
-**explanation:** As x-values increase, y-values rise steadily with only minor noise (e.g., the 7→85 vs 8→78 reversal is small). The points hug an upward line tightly across the full range, indicating strong positive correlation. Don't let minor dips fool you into picking "weak positive" — a strong pattern can still have small deviations.
+**fastest_path:** Points rise steadily from (2, 52) to (19, 155) — clear strong upward trend.
+**explanation:** Bulk of points hugs an upward line; minor reversal (7→85 vs 8→78) doesn't break the pattern. Strong positive. Answer E.
+**mistake_a:** Wrong direction.
+**mistake_b:** Wrong direction.
+**mistake_c:** Clear upward trend exists.
+**mistake_d:** Tightness of fit warrants "strong," not "weak."
+**common_trap:** Downgrading to "weak" because of one minor reversal. Strength = bulk fit, not absence of deviations.
+**takeaway:** Correlation strength = how tightly the cloud hugs a line. One small reversal doesn't downgrade a strong trend.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -379,7 +507,15 @@ If the university plans to reallocate half of the Administration budget equally 
 - E) $38 million
 
 **answer:** B
-**explanation:** Current Research = 22% × $120M = $26.4M. Half of Administration = 0.5 × 11% × $120M = $6.6M. Split equally to Research and Student Services: Research gets $3.3M. New Research = 26.4 + 3.3 = $29.7M, closest to $29M. Trap: adding the full $6.6M to Research (gives ~$33M) — read carefully that the reallocation is split between two categories.
+**fastest_path:** Current Research = 22% × $120M = $26.4M. Half of Admin = 5.5% × $120M = $6.6M, split → +$3.3M to Research. Total = $29.7M ≈ $29M.
+**explanation:** Reallocation: half of Admin ($6.6M) splits equally → $3.3M each to Research and Student Services. New Research = 26.4 + 3.3 = $29.7M. Answer B.
+**mistake_a:** $26M — current Research without the addition.
+**mistake_c:** $32M — adding 5% (incorrect split).
+**mistake_d:** $35M — adding 7% (incorrect split).
+**mistake_e:** $38M — way over.
+**common_trap:** Adding the full $6.6M to Research, missing that the split goes to *two* categories (Research + Student Services).
+**takeaway:** Reallocation problems: track exactly which categories receive the redistributed amount. Read the "split equally" verb literally.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -404,8 +540,16 @@ Based on the chart, Engineering's share of total headcount from 2022 to 2024 cha
 - D) +23
 - E) +28
 
-**answer:** C
-**explanation:** 2022: 3.0/7.0 ≈ 42.9%. 2024: 5.6/10.0 = 56.0%. Change = 56.0 − 42.9 ≈ 13.1 percentage points. Hmm — closest answer is B) +13. Focus on segment-share within each bar, not raw counts. A common mistake is computing raw growth (5.6/3.0 ≈ 87% increase) and picking a large option.
+**answer:** B
+**fastest_path:** 2022 share: 3.0/7.0 ≈ 42.9%. 2024 share: 5.6/10.0 = 56%. Δ = +13.1 pp.
+**explanation:** Engineering as fraction of total: 2022: 3.0/7.0 ≈ 42.9%; 2024: 5.6/10.0 = 56.0%. Change = +13.1 pp. Answer B.
+**mistake_a:** +8 pp — slip estimate.
+**mistake_c:** +18 pp — overshooting.
+**mistake_d:** +23 pp — way over.
+**mistake_e:** +28 pp — closer to raw count growth (5.6/3.0 ≈ 87%) misread as pp.
+**common_trap:** Computing raw count growth (5.6/3.0 = 87%) instead of the share change. The question is share-of-total in pp.
+**takeaway:** Stacked-bar share change: compute segment/total for each bar, then subtract. Don't conflate count growth with share change.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -431,7 +575,15 @@ Which statement is best supported by the chart?
 - E) The company with the smallest ARR has the lowest churn.
 
 **answer:** C
-**explanation:** Ordering by contract value (Alpha 10 → Delta 55): churn falls monotonically (18→15→12→9→6→4) and ARR size grows monotonically (30→45→85→110→140→220). This supports a joint pattern: higher contract value, lower churn, larger ARR. A is inverted, B is contradicted by the ARR trend, D reverses the churn-ARR direction, E is false (Alpha has the smallest ARR but the highest churn). Scan all three dimensions — don't just read the two axes.
+**fastest_path:** Order by contract value: churn 18→15→12→9→6→4 (monotonically falling); ARR 30→45→85→110→140→220 (monotonically rising). All three dimensions move together → C.
+**explanation:** Ordering by x (contract value): churn (y) decreases monotonically and ARR (size) increases monotonically. Joint pattern: higher value → lower churn + larger ARR. Answer C.
+**mistake_a:** Inverted — higher value has *lower* churn.
+**mistake_b:** ARR clearly tracks contract value.
+**mistake_d:** Reverses churn-ARR direction (low churn pairs with high ARR, not high churn).
+**mistake_e:** Alpha has smallest ARR but *highest* churn — opposite of "lowest churn."
+**common_trap:** Reading only the x-y axes and missing the bubble-size dimension. Bubble charts encode three variables; check all three.
+**takeaway:** Bubble charts: scan all three dimensions (x, y, size) for joint patterns. Monotonic trends in all three = strong joint relationship.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -458,7 +610,15 @@ Based on the chart, the quarter with the highest total revenue was:
 - E) Q1 and Q4 tied
 
 **answer:** C
-**explanation:** Revenue = units × price. Q1: 120 × 450 = $54.0M. Q2: 140 × 430 = $60.2M. Q3: 180 × 400 = $72.0M. Q4: 150 × 470 = $70.5M. Q3 has the highest revenue despite having the lowest price. Trap: picking Q4 because its price line peaks, or Q1 because both bar and line look "balanced." On combo charts, always multiply the two axes — don't read either alone.
+**fastest_path:** Revenue = units × price. Compute each: Q1 54M, Q2 60.2M, Q3 72M, Q4 70.5M. Q3 wins.
+**explanation:** Revenue: Q1=120·450=$54M; Q2=140·430=$60.2M; Q3=180·400=$72M; Q4=150·470=$70.5M. Q3 highest. Answer C.
+**mistake_a:** Q1 has both lowest units and middle price → lowest revenue.
+**mistake_b:** Q2 sits in the middle.
+**mistake_d:** Q4 has highest price but lower volume than Q3.
+**mistake_e:** Q1 and Q4 differ ($54M vs $70.5M).
+**common_trap:** Picking Q4 because the price line peaks — but units fell. Always *multiply* the two axes for combo charts.
+**takeaway:** Combo bar+line charts: revenue (or any product) = bar × line. Don't pick by either axis alone; the maximum product can be at neither extreme.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -483,7 +643,15 @@ Based on the chart, the total number of books published across all five genres w
 - E) 150 thousand
 
 **answer:** C
-**explanation:** Sum = 24+38+17+12+29 = 120 thousand, matching C exactly. A common trap is reading the y-axis as "hundreds" instead of "thousands" and picking an option that's an order of magnitude off — always confirm the axis unit before summing.
+**fastest_path:** Sum the bars: 24+38+17+12+29 = 120K.
+**explanation:** Total = 24+38+17+12+29 = 120 thousand. Answer C.
+**mistake_a:** 95K — slip arithmetic.
+**mistake_b:** 110K — undershoot.
+**mistake_d:** 135K — overshoot.
+**mistake_e:** 150K — way over.
+**common_trap:** Misreading the axis unit (thousands vs hundreds). Always confirm the unit label before summing.
+**takeaway:** Bar-chart totals: sum literal values; verify axis unit in the legend.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -509,7 +677,15 @@ Based on the chart, the median commute time across the six metros is closest to:
 - E) 44 minutes
 
 **answer:** C
-**explanation:** Sort the values: 19, 28, 33, 40, 44, 52. With six values, the median is the average of the 3rd and 4th: (33+40)/2 = 36.5. Trap: picking the mean (36.0) or the middle-looking bar without sorting — on bar charts, you must order the bars numerically before finding a median.
+**fastest_path:** Sort values: 19, 28, 33, 40, 44, 52. Median = (33+40)/2 = 36.5.
+**explanation:** Sorted: 19, 28, 33, 40, 44, 52. Six values → median is average of 3rd and 4th = (33+40)/2 = 36.5. Answer C.
+**mistake_a:** 28 — picking the second-lowest (not median).
+**mistake_b:** 33 — picking the 3rd value alone (not the average of 3rd and 4th).
+**mistake_d:** 40 — picking the 4th alone.
+**mistake_e:** 44 — picking the 5th value.
+**common_trap:** With even count, picking either middle value alone instead of averaging them. Median for n=2k is (k-th + (k+1)-th) / 2.
+**takeaway:** Median of even-count list: average the two middle values. Don't pick one or the other.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -531,7 +707,15 @@ Based on the chart, the percentage-point change in Subsidiary South's share of c
 - E) +18 pp
 
 **answer:** B
-**explanation:** Q1 combined = 18+14 = 32; South share = 14/32 = 43.75%. Q4 combined = 31+30 = 61; South share = 30/61 ≈ 49.18%. Change ≈ +5.4 pp, closest to +6 pp. Trap: computing absolute revenue growth for South (14 → 30, +114%) and picking a big option — the question is about share of the combined pool, not absolute change.
+**fastest_path:** Q1 share = 14/32 = 43.75%. Q4 share = 30/61 ≈ 49.2%. Δ = +5.4 pp ≈ +6 pp.
+**explanation:** South's share = South / (North + South). Q1: 14/32 = 43.75%. Q4: 30/61 ≈ 49.18%. Δ ≈ +5.4 pp. Answer B.
+**mistake_a:** +2 pp — undershoot.
+**mistake_c:** +10 pp — slip estimate.
+**mistake_d:** +14 pp — using absolute revenue change (30−14=16), not share change.
+**mistake_e:** +18 pp — way off.
+**common_trap:** Computing South's *absolute revenue growth* (14 → 30, +16M, +114%) instead of share change. The question explicitly asks share of combined.
+**takeaway:** Share-change pp: compute share at each endpoint, then subtract. Don't conflate absolute growth with share change.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -557,7 +741,15 @@ Based on the graph, the month with the largest month-over-month increase in rain
 - E) June
 
 **answer:** C
-**explanation:** Month-over-month changes: Feb −5, Mar +25, Apr +40, May +30, Jun −60. April's +40 mm jump is the largest increase. Trap: picking May because it's the peak value; the question asks about the largest single-month increase, not the highest overall point.
+**fastest_path:** Compute Δ for each month: Feb −5, Mar +25, Apr +40, May +30, Jun −60. April wins.
+**explanation:** Month-over-month changes: Feb −5, Mar +25, Apr +40, May +30, Jun −60. April's +40 is the largest single-month increase. Answer C.
+**mistake_a:** Feb's change is −5 (decrease).
+**mistake_b:** Mar's +25 is smaller than April's.
+**mistake_d:** May's +30 is smaller than April's.
+**mistake_e:** Jun's −60 is a *decrease*.
+**common_trap:** Picking May because it's the highest *value* (150 mm). Question is the largest single-month *increase*, not the peak.
+**takeaway:** "Largest increase" = compute differences between consecutive points, not absolute values.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -583,7 +775,15 @@ Based on the graph, the year with the highest year-over-year percentage growth i
 - E) 2024
 
 **answer:** A
-**explanation:** YoY percentage growth: 2020: 32/20 − 1 = 60%. 2021: 48/32 − 1 = 50%. 2022: 75/48 − 1 ≈ 56%. 2023: 115/75 − 1 ≈ 53%. 2024: 180/115 − 1 ≈ 57%. 2020's 60% is the highest. Trap: picking 2024 because the absolute jump (+65) is largest — absolute change and percentage change point to different years when the base is growing.
+**fastest_path:** YoY %: 2020 60%, 2021 50%, 2022 56%, 2023 53%, 2024 57%. 2020 wins.
+**explanation:** Year-over-year %: 2020: 32/20−1 = 60%; 2021: 48/32−1 = 50%; 2022: 75/48−1 ≈ 56%; 2023: 115/75−1 ≈ 53%; 2024: 180/115−1 ≈ 57%. Highest is 2020. Answer A.
+**mistake_b:** 2021 is 50%, not max.
+**mistake_c:** 2022 is 56%, close but below 2020.
+**mistake_d:** 2023 is 53%.
+**mistake_e:** 2024 is 57% — biggest *absolute* jump (+65) but smaller % since base is bigger.
+**common_trap:** Picking 2024 because the absolute jump is largest. Smaller starting bases amplify percent growth.
+**takeaway:** YoY %: smaller base + same absolute change = bigger %. Always compute (new−old)/old, not absolute differences.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -608,7 +808,15 @@ Based on the graph, the compound annual growth rate (CAGR) of GDP from 2005 to 2
 - E) 10.5%
 
 **answer:** B
-**explanation:** CAGR = (470/180)^(1/20) − 1. Ratio = 2.611. ln(2.611) ≈ 0.960; 0.960/20 = 0.0480, so CAGR ≈ e^0.048 − 1 ≈ 4.92%, closest to 4.9%. Trap: dividing total growth (≈161%) by 20 years = 8% per year — that's a simple average, not a compound rate, and overstates the answer because it ignores the base effect.
+**fastest_path:** CAGR = (470/180)^(1/20) − 1 ≈ 2.611^0.05 − 1 ≈ 4.9%.
+**explanation:** Compound annual: (470/180)^(1/20) − 1 = 2.611^0.05 − 1 ≈ 4.92%. Answer B.
+**mistake_a:** 3.5% — too low.
+**mistake_c:** 6.2% — overshoot.
+**mistake_d:** 8% — *simple average* (161%/20), overstates compound rate.
+**mistake_e:** 10.5% — way over.
+**common_trap:** Dividing total growth (161%) by 20 years to get 8%. That's arithmetic mean, not compound. CAGR < arithmetic mean of yearly growths.
+**takeaway:** CAGR ≠ total growth / years. Use the geometric formula. Verify: (1+CAGR)^n ≈ end/start.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -628,7 +836,15 @@ Based on the scatter plot, the correlation between household income and home pri
 - E) strong positive
 
 **answer:** E
-**explanation:** Eleven of the twelve points follow a tight upward linear pattern (roughly price ≈ 6 × income), with only one outlier at (70, 820). Even with that outlier, the overall correlation is clearly strong and positive. Trap: downgrading to "weak positive" because of one visible outlier — a single deviant point does not destroy a strong trend. Also, note that strong correlation does not imply income causes prices; both could be driven by a third factor (e.g., neighborhood desirability).
+**fastest_path:** 11 of 12 points hug a tight upward line; one outlier doesn't change strength.
+**explanation:** Bulk of points follows price ≈ 6 × income tightly. One outlier at (70, 820). Correlation is strong positive. Answer E.
+**mistake_a:** Wrong direction.
+**mistake_b:** Wrong direction.
+**mistake_c:** Clear trend exists.
+**mistake_d:** "Weak" downgraded due to outlier — but bulk fit is tight.
+**common_trap:** Letting one visible outlier downgrade to "weak." Strength = bulk-of-points fit.
+**takeaway:** Correlation classification: bulk of points dominates. Outliers don't reduce strength to "weak."
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -648,7 +864,15 @@ Based on the scatter plot, which of the following is best supported by the data?
 - E) Longer routes always take longer than shorter routes.
 
 **answer:** B
-**explanation:** Eight of ten points follow a strong positive linear trend, so distance and time are clearly related (eliminates A and C). The point (12, 95) is far above the line and (40, 45) is far below — both are outliers suggesting unusual circumstances (traffic, light load, etc.). D overstates to "determined entirely" which ignores the visible scatter. E is false — the (40, 45) outlier shows a longer route that was faster than shorter ones. B is the careful, supported reading. Remember: correlation does not imply that every pair conforms or that distance is the sole cause.
+**fastest_path:** 8 of 10 points fit a clear upward line; 2 outliers (12, 95) and (40, 45) deviate substantially. They likely reflect unusual conditions.
+**explanation:** Bulk of points: clear positive trend. Outliers (12, 95) and (40, 45) deviate by 60+ minutes from the line — too much to attribute to normal variation. Likely reflect unusual conditions (traffic, light load). Answer B.
+**mistake_a:** *Reverses* — bulk shows shorter routes are faster.
+**mistake_c:** Clear relationship visible.
+**mistake_d:** *Extreme* — "entirely" ignores the visible scatter.
+**mistake_e:** *Extreme* — outlier (40, 45) violates this; longer routes don't *always* take longer.
+**common_trap:** Picking (E) because *most* longer routes take longer — but "always" is the absolute claim, broken by even one outlier.
+**takeaway:** Scatter-plot inference: hedged statements ("tend to," "likely") match data better than absolutes. Outliers exist; "always" claims usually fail.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -674,7 +898,15 @@ Based on the chart, the combined dollar amount spent on Housing and Food was clo
 - E) $3,500
 
 **answer:** D
-**explanation:** Housing + Food = 35% + 18% = 53%. 53% × $6,000 = $3,180, matching D exactly. Trap: picking a round "50%" figure ($3,000) by rounding percentages before summing — read the exact slice values and compute directly.
+**fastest_path:** Housing+Food = 35% + 18% = 53%. 53% × $6000 = $3180.
+**explanation:** Sum the two slice percentages: 53%. Apply to $6000: $3180. Answer D.
+**mistake_a:** $2400 — using only one slice (40%).
+**mistake_b:** $2700 — slip rounding to 45%.
+**mistake_c:** $2900 — undershoot.
+**mistake_e:** $3500 — overshoot to ~58%.
+**common_trap:** Rounding 35% + 18% to "about 50%" → $3000, missing exact answer at $3180.
+**takeaway:** Pie-chart proportions: sum percentages literally before applying to total. Don't pre-round.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -700,7 +932,15 @@ Based on the chart, which statement is best supported?
 - E) Footwear overtook Accessories in February.
 
 **answer:** B
-**explanation:** Apparel values: Jan 400, Feb 380, Mar 450 — highest segment in every month. Compare: Accessories 250/320/300 and Footwear 150/200/250 never exceed Apparel in any month. A is false (150→250, rose), C is false (250→320→300, fell in Mar), D is false (800→900→1,000), E is false (Feb: Accessories 320 vs Footwear 200). Trap with stacked bars: remember each segment shares the baseline — don't compare segment heights by eyeballing the top edge of the bar.
+**fastest_path:** Compare Apparel (400, 380, 450) vs Accessories (250, 320, 300) vs Footwear (150, 200, 250) for each month. Apparel wins all three.
+**explanation:** Apparel is the largest segment in Jan (400 vs 250 vs 150), Feb (380 vs 320 vs 200), and Mar (450 vs 300 vs 250). Answer B.
+**mistake_a:** *Reverses* — Footwear rose 150→200→250.
+**mistake_c:** *Wrong direction* — Accessories rose then fell (250→320→300).
+**mistake_d:** *Wrong* — totals rose 800→900→1000, not flat.
+**mistake_e:** *Wrong* — Feb: Accessories 320 still > Footwear 200.
+**common_trap:** Stacked-bar segment heights are visible *as differences*, not absolute heights. Always read segment values directly from the table or labels.
+**takeaway:** Stacked bars: each segment's *value*, not its visual top-edge, determines comparison. Use the data labels.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -725,7 +965,15 @@ Based on the chart, which statement is best supported?
 - E) On-time delivery increases with workforce size.
 
 **answer:** B
-**explanation:** As x rises from W1 to W5, y falls monotonically (95→88→82→76→72) and bubble size grows monotonically (40→90→150→220→310). So volume rises, on-time falls, and headcount climbs together — answer B. A and E reverse the on-time pattern (bigger warehouses actually deliver worse on time). C is contradicted by the size trend. D is false — W1 (smallest) has the highest on-time rate. Read all three dimensions before ranking.
+**fastest_path:** Three-axis monotone: as x rises (volume up), y falls (on-time down), and size grows (headcount up). All move together → B.
+**explanation:** Order by volume: W1→W5 has on-time 95→88→82→76→72 (falling) and headcount 40→90→150→220→310 (rising). Joint pattern: higher volume, lower on-time, larger workforce. Answer B.
+**mistake_a:** *Reverses* — bigger (more headcount) warehouses deliver *worse* on time.
+**mistake_c:** Volume + headcount move together; not unrelated.
+**mistake_d:** W1 is smallest but has *highest* on-time, not worst.
+**mistake_e:** *Reverses* — larger workforce → lower on-time.
+**common_trap:** Reading only the x-y axes and missing the bubble-size dimension. Joint patterns require all three dimensions.
+**takeaway:** Bubble chart joint patterns: scan all three dimensions for monotonic moves before ranking.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -752,7 +1000,15 @@ Based on the chart, the quarter with the highest absolute number of defective un
 - E) Q1 and Q4 tied
 
 **answer:** D
-**explanation:** Defective units = units × defect rate. Q1: 50,000 × 0.040 = 2,000. Q2: 60,000 × 0.035 = 2,100. Q3: 75,000 × 0.028 = 2,100. Q4: 80,000 × 0.032 = 2,560. Q4 wins. Trap: picking Q1 because the defect rate line peaks there, or Q3 because units are high and rate is low — on combo charts, always multiply both axes. Also watch the dual-axis scales: the percent line and unit bars share no baseline.
+**fastest_path:** Defective units = units × rate. Q1=2000, Q2=2100, Q3=2100, Q4=2560. Q4 wins.
+**explanation:** Q1: 50000·0.040=2000; Q2: 60000·0.035=2100; Q3: 75000·0.028=2100; Q4: 80000·0.032=2560. Highest at Q4. Answer D.
+**mistake_a:** Q1 has highest *rate* (4%), but lowest volume → smallest absolute count.
+**mistake_b:** Q2 = Q3 = 2100, both below Q4.
+**mistake_c:** Q3 has lowest rate but mid volume → tied for second.
+**mistake_e:** Q1 (2000) and Q4 (2560) differ.
+**common_trap:** Picking Q1 because the rate line peaks there. Defective *units* = volume × rate, peaks where the product is highest.
+**takeaway:** Combo bar+line: peak of either axis alone is rarely the peak of the product. Always multiply.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -780,7 +1036,15 @@ Based on the chart, total revenue in 2025 exceeded total revenue in 2021 by appr
 - E) $1,282 million
 
 **answer:** C
-**explanation:** 2025 revenue = 95M × $13.50 = $1,282.5M. 2021 revenue = 40M × $9.00 = $360M. Difference = $922.5M, closest to C. Trap: computing only subscriber growth (55M more) or only ARPU growth ($4.50 more) and picking an extreme option. Dual-axis combo charts demand you multiply both values for each year before comparing.
+**fastest_path:** 2025 rev = 95·13.50 = $1282.5M. 2021 rev = 40·9.00 = $360M. Δ = $922.5M.
+**explanation:** Revenue = subs × ARPU. 2025: 95·13.50 = $1282.5M. 2021: 40·9.00 = $360M. Difference = $922.5M ≈ $922M. Answer C.
+**mistake_a:** $600M — subscriber-side computation.
+**mistake_b:** $850M — undershoot.
+**mistake_d:** $1122M — using 95 × $11.80 (slip).
+**mistake_e:** $1282M — 2025 revenue *alone*, not the difference.
+**common_trap:** Picking E (the 2025 total) because it matches the calculation. Read "exceeded by" — the *difference*.
+**takeaway:** Combo charts asking "by how much": both totals are computed (multiply each year), then subtracted.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -807,7 +1071,15 @@ Based on the histogram, the median order value falls in which bin?
 - E) Cannot be determined
 
 **answer:** B
-**explanation:** With 200 orders, the median is the average of the 100th and 101st values. Cumulative counts: 18 (through $20), 60 (through $40), 116 (through $60), 154 (through $80). The 100th and 101st values both fall within the $40–$60 bin, since the cumulative count crosses 100 inside that bin. Trap: picking the modal bin ($40–$60 is also the mode here, so the trap answer matches, but for the wrong reason) or picking $60–$80 by splitting the total naively — always use cumulative frequencies for histogram medians.
+**fastest_path:** N=200, median = avg of 100th and 101st. Cumulative: 18, 60, 116, 154. Both cross 100 inside $40-60 bin.
+**explanation:** Cumulative counts: through $20: 18; through $40: 60; through $60: 116; through $80: 154. The 100th and 101st orders fall in the bin where cumulative count first crosses 100 — i.e., between 60 and 116 = $40-$60 bin. Answer B.
+**mistake_a:** $20-$40 ends at cumulative 60, doesn't reach 100.
+**mistake_c:** $60-$80 starts at cumulative 116, *past* 100.
+**mistake_d:** $80-$100 even further past.
+**mistake_e:** The data is enough; standard cumulative-count method.
+**common_trap:** Picking the *modal* bin (which happens to coincide here) by reasoning from peak count, not cumulative sum.
+**takeaway:** Histogram median: build cumulative-frequency table, find which bin contains the (n+1)/2 position.
+**related_reading:** reading-di-04-graphics-interpretation
 
 ---
 
@@ -836,4 +1108,454 @@ Based on the chart, which statement is best supported?
 - E) Store count declined after 2022.
 
 **answer:** C
-**explanation:** Store count rises monotonically every year (800 → 1,900). Same-store sales growth climbs from −2% to +8% by 2022, then falls to −1% by 2025. That matches C. A is wrong — store count didn't peak in 2022 (it kept rising). B is wrong — growth peaked then declined. D is wrong — only 2020 and 2025 are negative. E is wrong — stores kept rising. Trap on dual-axis charts: the two lines use different scales, so their crossing points and relative slopes are meaningless — read each series against its own axis.
+**fastest_path:** Stores monotonically rise (800→1900); growth peaks in 2022 (+8%) then declines. Two distinct trajectories.
+**explanation:** Stores: 800,1000,1250,1450,1700,1900 — strictly increasing. Growth: −2,+3,+8,+6,+2,−1 — peaks in 2022, declines after. Answer C captures both.
+**mistake_a:** *Wrong* — store count didn't peak in 2022; it kept rising.
+**mistake_b:** *Wrong direction* — growth peaked then declined.
+**mistake_d:** Only 2020 and 2025 had negative growth.
+**mistake_e:** Stores kept rising; never declined.
+**common_trap:** Treating the two lines as comparable because they cross or have similar slopes. Dual-axis lines use different scales — relative position is meaningless.
+**takeaway:** Dual-axis lines: read each series against *its own* axis. Crossings and slopes don't compare across the two axes.
+**related_reading:** reading-di-04-graphics-interpretation
+
+
+---
+
+## Q36 (Set 13 — FlowStream Monthly Subscription Revenue)
+
+Description: A bar chart shows monthly online subscription revenue for FlowStream (in thousand dollars), Jan through Dec: Jan 120, Feb 115, Mar 130, Apr 145, May 160, Jun 155, Jul 170, Aug 185, Sep 170, Oct 160, Nov 150, Dec 165.
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Percent Change
+
+Which month showed the largest percentage increase in revenue compared with the immediately previous month?
+
+- A) February
+- B) March
+- C) May
+- D) August
+- E) December
+
+**answer:** B
+**fastest_path:** Compute % change for risers: Mar 15/115≈13%, Apr 11.5%, May 10.3%, Aug 8.8%, Dec 10%. March wins.
+**explanation:** % change = Δ/prev. Same $15 rise across multiple months — the smallest base (115 in Feb→Mar) gives the highest percent: 15/115 ≈ 13%. Answer B.
+**mistake_a:** Feb fell, not rose.
+**mistake_c:** May 15/145 ≈ 10.3% < March's 13%.
+**mistake_d:** Aug 15/170 ≈ 8.8%.
+**mistake_e:** Dec 15/150 = 10%.
+**common_trap:** Picking by the absolute size of the rise. Same $15 rise gives different percent depending on the base.
+**takeaway:** Largest percent change: smallest *prior* base + same absolute rise wins.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q37 (Set 14 — Quarterly Website Traffic)
+
+Description: A line graph plots quarterly website traffic (millions of visits) for three years (12 quarters in order): Q1Y1 8, Q2Y1 10, Q3Y1 9, Q4Y1 12; Q1Y2 11, Q2Y2 14, Q3Y2 12, Q4Y2 16; Q1Y3 14, Q2Y3 17, Q3Y3 15, Q4Y3 20.
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Seasonal Pattern Identification
+
+Which of the following best describes the pattern shown in the graph?
+
+- A) Consistent growth every quarter, with Q2 always the peak of the year.
+- B) A seasonal pattern in which Q4 is the peak each year, with year-over-year growth in every quarter.
+- C) A declining trend in Q3, offset by growth in Q1.
+- D) No discernible pattern.
+- E) Alternating peaks in Q1 and Q3.
+
+**answer:** B
+**fastest_path:** Q1 8→11→14, Q2 10→14→17, Q3 9→12→15, Q4 12→16→20. Q4 peaks each year + every quarter grows YoY. → B.
+**explanation:** Compare same-quarter across years: every quarter grows YoY, and Q4 is the annual peak each year. Answer B.
+**mistake_a:** *Wrong* — Q4 (not Q2) peaks each year.
+**mistake_c:** *Wrong* — Q3 grew, not declined.
+**mistake_d:** Clear seasonal structure visible.
+**mistake_e:** Q4 is the peak; not Q1/Q3 alternation.
+**common_trap:** Reading only the within-year pattern (which goes up then dips at Q3) without verifying YoY same-quarter growth.
+**takeaway:** Seasonal pattern reading: compare same-quarter values across years to confirm YoY growth + within-year peaks.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q38 (Set 15 — SaaS Dashboard Snapshot)
+
+Description: A dashboard for a subscription software company displays three metrics. Monthly recurring revenue (MRR) in January: $4.5 million. Annualized net revenue retention (NRR): 112%. Monthly gross churn rate: approximately 2% of MRR.
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Compound Growth Forecast
+
+Suppose the company adds no net new customers for the next six months, so that all MRR change comes from existing-customer expansion offset by churn (consistent with the 112% annualized NRR). Approximately what is the company's MRR at the end of June?
+
+- A) $4.55M
+- B) $4.65M
+- C) $4.76M
+- D) $4.89M
+- E) $5.04M
+
+**answer:** C
+**fastest_path:** 6-month compound factor = √1.12 ≈ 1.058. $4.5M × 1.058 ≈ $4.76M.
+**explanation:** Annualized NRR=1.12 over 6 months: factor = 1.12^(1/2) ≈ 1.0583. End-of-June MRR = 4.5 × 1.0583 ≈ $4.76M. Answer C.
+**mistake_a:** $4.55M — under-compounding.
+**mistake_b:** $4.65M — under-estimate.
+**mistake_d:** $4.89M — adding 6% linearly (12%/2).
+**mistake_e:** $5.04M — full-year value (4.5 × 1.12), not 6-month.
+**common_trap:** Halving the 12% annual rate to 6% over 6 months. Compounding requires the geometric square root, not linear halving.
+**takeaway:** Annualized rates over partial year: factor^(t/12). For 6 months, factor^0.5 = √factor. Don't halve linearly.
+**related_reading:** reading-di-04-graphics-interpretation
+
+
+---
+
+## Q39 (Set 16 — Stacked Quarterly Revenue)
+
+Description: A stacked bar chart shows quarterly revenue (in millions of dollars) for four business units A, B, C, and D over Q1 through Q4. Quarterly values — A: 20, 25, 30, 35; B: 25, 20, 15, 10; C: 15, 20, 25, 30; D: 10, 15, 20, 25.
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Component Trend Identification
+
+Which business unit showed the largest percentage decline in revenue from Q1 to Q4?
+
+- A) A
+- B) B
+- C) C
+- D) D
+- E) None of the units declined
+
+**answer:** B
+**fastest_path:** Q1→Q4 changes: A +75%, B −60%, C +100%, D +150%. Only B declined.
+**explanation:** Endpoints: A 20→35, B 25→10, C 15→30, D 10→25. Only B fell. Decline = 15/25 = 60%. Answer B.
+**mistake_a:** A grew, not declined.
+**mistake_c:** C grew, not declined.
+**mistake_d:** D grew, not declined.
+**mistake_e:** B clearly declined.
+**common_trap:** Eyeballing the *bar totals* (which grew) and missing that one component fell while others rose.
+**takeaway:** Stacked-bar component trends: read each component's values across periods, not the total bar.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q40 (Set 17 — Budget Pie Chart)
+
+Description: A pie chart shows how a company allocates its $600 million annual budget: R&D 25%, Marketing 20%, Salaries 35%, Operations 15%, Other 5%.
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Category Change Impact
+
+If the company plans to reduce its R&D budget by 20% next year while holding every other category constant in absolute dollars, what will the total budget be next year?
+
+- A) $480M
+- B) $540M
+- C) $570M
+- D) $600M
+- E) $630M
+
+**answer:** C
+**fastest_path:** R&D was 25%×600=$150M. Cut 20%: −$30M. Others stay at $450M. New total = $570M.
+**explanation:** Current R&D = $150M. Reduced 20%: new R&D = $120M (Δ −$30M). Others = $600M − $150M = $450M, held constant. New total = $450M + $120M = $570M. Answer C.
+**mistake_a:** $480M — applying 20% reduction to whole budget.
+**mistake_b:** $540M — applying ~10% to whole budget.
+**mistake_d:** $600M — same as old (didn't reduce).
+**mistake_e:** $630M — added instead of subtracted.
+**common_trap:** Applying the 20% reduction to the *total* budget instead of just to R&D.
+**takeaway:** Category-change problems: identify which slice changes; recompute only that slice; sum to new total.
+**related_reading:** reading-di-04-graphics-interpretation
+
+
+---
+
+## Q41 (Set 18 — Advertising vs. Sales Scatter Plot)
+
+Description: A scatter plot shows the relationship between monthly advertising spending (x-axis, in thousands of dollars) and monthly sales (y-axis, in thousands of dollars) for 10 products at a company. Data points (x, y): (20, 150), (25, 160), (30, 170), (30, 180), (35, 210), (40, 200), (45, 240), (50, 250), (55, 260), (60, 290).
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Correlation Identification
+
+Based on the scatter plot, which of the following best describes the relationship between advertising spending and monthly sales?
+
+- A) Strong positive correlation
+- B) Strong negative correlation
+- C) No apparent correlation
+- D) Weak positive correlation with significant outliers
+- E) Clearly non-linear pattern with a visible turning point
+
+**answer:** A
+**fastest_path:** Sales rise monotonically with ad spend (20→60 maps to 150→290) with low scatter → strong positive.
+**explanation:** Bulk of points hugs an upward line; minor scatter, no reversals. Strong positive correlation. Answer A.
+**mistake_b:** Wrong direction.
+**mistake_c:** Clear trend visible.
+**mistake_d:** Tightness of fit warrants "strong," not "weak."
+**mistake_e:** No turning point in the data.
+**common_trap:** Downgrading to "weak" on minor visible scatter. Tight monotonic rise = strong.
+**takeaway:** Linear-trend scatter: monotonic + low-scatter = strong-positive (or strong-negative).
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q42 (Set 19 — Salary Distribution Histogram)
+
+Description: A histogram shows the distribution of employee annual salaries (in thousands of dollars) at a company across six bins: [30–40): 8 employees; [40–50): 12; [50–60): 18; [60–70): 15; [70–80): 9; [80–90): 3.
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Bin Share Calculation
+
+Approximately what percentage of employees earn between $50,000 and $70,000 per year?
+
+- A) 33%
+- B) 42%
+- C) 51%
+- D) 57%
+- E) 65%
+
+**answer:** C
+**fastest_path:** $50-70K = 18+15 = 33. Total = 65. 33/65 ≈ 51%.
+**explanation:** Total = 8+12+18+15+9+3 = 65. $50-$70K bins = 18+15 = 33. Percent = 33/65 ≈ 50.8% ≈ 51%. Answer C.
+**mistake_a:** 33% — confusing 33 (numerator) for the percentage.
+**mistake_b:** 42% — undershoot.
+**mistake_d:** 57% — including $70-80K bin (37/65 ≈ 57%).
+**mistake_e:** 65% — way off.
+**common_trap:** Including the $70-$80K bin because of off-by-one bin reading. The interval [50, 70) includes only the $50-60 and $60-70 bins.
+**takeaway:** Histogram bin selection: read the *interval endpoints* carefully; "between $50K and $70K" excludes higher bins.
+**related_reading:** reading-di-04-graphics-interpretation
+
+
+---
+
+## Q43 (Set 20 — Operating Expense Pie)
+
+Description: A pie chart shows how a company's annual $800 million operating expenses are distributed: Labor 45%, Materials 25%, Facilities 15%, Marketing 10%, Other 5%.
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Share After One-Category Change
+
+If Labor expenses increase by 10% next year while all other categories remain constant in dollar terms, by approximately how many percentage points does Labor's share of total operating expenses increase?
+
+- A) 1.0 percentage points
+- B) 2.4 percentage points
+- C) 4.5 percentage points
+- D) 10.0 percentage points
+- E) 11.2 percentage points
+
+**answer:** B
+**fastest_path:** Labor 360→396 (+10%). Total 800→836. New share = 396/836 ≈ 47.4%. Δ = +2.4 pp.
+**explanation:** Current Labor=360M (45% of 800M). +10% → 396M. Others = 440M (constant). New total = 836M. New share = 396/836 ≈ 47.4%. Δ = 47.4 − 45 = 2.4 pp. Answer B.
+**mistake_a:** 1.0 pp — undershoot.
+**mistake_c:** 4.5 pp — slip.
+**mistake_d:** 10 pp — confusing within-Labor increase with share change.
+**mistake_e:** 11.2 pp — way over.
+**common_trap:** Confusing the *within-Labor* 10% increase with the *share-of-total* change. They're different concepts.
+**takeaway:** Share-of-total change: recompute new total, then new share, then subtract from old share. Don't conflate within-category percentage with share-of-total pp.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q44 (Set 21 — Dual-Axis Quarterly Trend)
+
+Description: A dual-axis chart shows a company's quarterly revenue (left axis, $ millions) and quarterly operating margin (right axis, %) from Q1 2022 through Q4 2023 (eight quarters). Revenue in order: 45, 48, 52, 55, 58, 60, 62, 65. Operating margin in order: 10, 11, 12, 14, 13, 13, 12, 11.
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Derived Metric — Operating Profit
+
+In which quarter did the company achieve the highest absolute operating profit (revenue × operating margin)?
+
+- A) Q4 2022
+- B) Q1 2023
+- C) Q2 2023
+- D) Q3 2023
+- E) Q4 2023
+
+**answer:** C
+**fastest_path:** Profit = revenue × margin. Q4'22 7.70, Q1'23 7.54, Q2'23 7.80, Q3'23 7.44, Q4'23 7.15. Q2 2023 wins.
+**explanation:** Operating profit = revenue × margin. Q4'22: 55·0.14=7.70; Q1'23: 58·0.13=7.54; Q2'23: 60·0.13=7.80; Q3'23: 62·0.12=7.44; Q4'23: 65·0.11=7.15. Maximum at Q2 2023. Answer C.
+**mistake_a:** Q4'22 has highest *margin* but mid revenue → 7.70.
+**mistake_b:** Q1'23 sits in the middle.
+**mistake_d:** Q3'23 declined.
+**mistake_e:** Q4'23 has highest *revenue* but lowest margin → 7.15 (lowest profit).
+**common_trap:** Anchoring on peak of either single axis. Profit peaks where the *product* is maximized — often a middle quarter, not the extremes.
+**takeaway:** Combo-chart product: compute revenue × margin for each period. Peak rarely coincides with peak of either axis alone.
+**related_reading:** reading-di-04-graphics-interpretation
+
+
+---
+
+## Q45 (Set 22 — Cumulative Market Share)
+
+Description: A stacked area chart shows a company's market share across four segments A, B, C, and D over five years, 2019 through 2023. The company's segment shares (in percentage points of the overall market): 2019 — A 15%, B 10%, C 8%, D 5% (total 38%). 2023 — A 22%, B 18%, C 12%, D 10% (total 62%).
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Cumulative Share Growth
+
+By how many percentage points did the company's total market share grow from 2019 to 2023?
+
+- A) 22
+- B) 24
+- C) 26
+- D) 38
+- E) 62
+
+**answer:** B
+**fastest_path:** 2019 total = 38%. 2023 total = 62%. Δ = 24 pp.
+**explanation:** Sum each year's segment shares: 2019 → 38%, 2023 → 62%. Δ = 24 pp. Answer B.
+**mistake_a:** 22 — slip arithmetic.
+**mistake_c:** 26 — overshoot.
+**mistake_d:** 38 — using 2019 total alone.
+**mistake_e:** 62 — using 2023 total alone.
+**common_trap:** Confusing "percentage point" with "percent" change. (62−38)/38 = 63% would be the *percent* increase; the question asked for *pp*.
+**takeaway:** Percentage-point vs percent change: pp = absolute difference of two percentages. % change = relative.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q46 (Set 23 — Experience vs. Salary Scatter)
+
+Description: A scatter plot shows 12 data points relating years of experience (x-axis) to annual salary in thousands of dollars (y-axis), with points at approximately (2, 52), (3, 58), (3, 65), (5, 68), (7, 75), (8, 85), (9, 90), (10, 95), (12, 105), (14, 120), (15, 110), and (18, 140).
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Correlation Strength
+
+Based on the scatter plot, which of the following best describes the relationship between years of experience and annual salary?
+
+- A) Strong negative correlation
+- B) Weak negative correlation
+- C) No apparent correlation
+- D) Moderate-to-strong positive correlation, with modest scatter around an approximately linear trend
+- E) Non-linear pattern with a clear turning point
+
+**answer:** D
+**fastest_path:** Steady upward trend from $52K to $140K with visible scatter (e.g., (15, 110) below line). Moderate-to-strong positive.
+**explanation:** Bulk of points climbs upward; visible scatter exists but no reversal. Moderate-to-strong positive correlation. Answer D.
+**mistake_a:** Wrong direction.
+**mistake_b:** Wrong direction.
+**mistake_c:** Clear trend visible.
+**mistake_e:** No turning point in the data.
+**common_trap:** Picking a stronger label without acknowledging the visible scatter. The (15, 110) and (3, 65) deviations make "moderate-to-strong" more accurate than "strong alone."
+**takeaway:** Correlation strength labels: hedged options ("moderate-to-strong") are sometimes more accurate than absolute claims when scatter is visible but the trend is clear.
+**related_reading:** reading-di-04-graphics-interpretation
+
+
+---
+
+## Q47 (Set 24 — Product Bubble Chart)
+
+Description: A bubble chart shows six consumer products positioned on three axes: x = monthly sales volume in thousands of units, y = profit margin (%), and bubble size = total monthly profit in thousands of dollars. Product coordinates (x, y, bubble size): A (50, 20%, 10), B (80, 15%, 12), C (30, 35%, 10.5), D (120, 10%, 12), E (40, 25%, 10), F (100, 18%, 18).
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Reading Three-Variable Bubble Chart
+
+Based on the bubble chart, which product has the highest total monthly profit?
+
+- A) A
+- B) B
+- C) C
+- D) D
+- E) F
+
+**answer:** E
+**fastest_path:** Profit = bubble size. F's bubble (18) > all others (10-12). F wins.
+**explanation:** Bubble size encodes total monthly profit. F=18; next largest are B and D at 12. F wins. Answer E.
+**mistake_a:** A's bubble is 10.
+**mistake_b:** B's bubble is 12 — tied with D, both below F.
+**mistake_c:** C has highest *margin* but bubble is 10.5.
+**mistake_d:** D has highest *volume* but bubble is 12.
+**common_trap:** Picking by x-axis (volume) or y-axis (margin) leader. Bubble *size* encodes the question's metric (total profit).
+**takeaway:** Bubble charts: identify which dimension encodes the question's metric (x, y, or size), then read it directly. Don't anchor on a different axis.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q48 (Set 25 — Revenue vs. Costs Crossover)
+
+Description: A line graph shows a company's quarterly revenue and quarterly operating costs (both in millions of dollars) from Q1 2022 through Q4 2023 (eight quarters). Revenue: 40, 45, 50, 55, 60, 65, 68, 70. Operating costs: 50, 52, 53, 54, 55, 58, 62, 68.
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Crossover Identification
+
+In which quarter did revenue first exceed operating costs?
+
+- A) Q2 2022
+- B) Q3 2022
+- C) Q4 2022
+- D) Q1 2023
+- E) Q2 2023
+
+**answer:** C
+**fastest_path:** Walk quarter-by-quarter: Q1-Q3'22 revenue below costs. Q4'22: 55 > 54 — first crossover.
+**explanation:** Quarter pairs: Q1'22 40<50, Q2'22 45<52, Q3'22 50<53, Q4'22 55>54 (crossover), Q1'23 60>55 (already crossed). First crossover: Q4 2022. Answer C.
+**mistake_a:** Q2'22: 45<52, still below.
+**mistake_b:** Q3'22: 50<53, still below.
+**mistake_d:** Q1'23 is past the crossover (already exceeding).
+**mistake_e:** Q2'23 is way past.
+**common_trap:** Picking the quarter where the gap *widens* (Q1'23) instead of where lines first cross. "First exceeds" = the *first* quarter revenue > costs.
+**takeaway:** Crossover questions: walk consecutive points; first quarter where one line passes the other is the answer.
+**related_reading:** reading-di-04-graphics-interpretation
+
+
+---
+
+## Q49 (Set 26 — Sales Team Radar Chart)
+
+Description: A radar (spider) chart shows three sales team members' performance scores across five categories on a 0-to-10 scale. The five categories are placed at 72° intervals around the center: Sales Volume, New Clients, Upsells, Customer Retention, and Training Completion. Scores — Team member A: 9, 7, 8, 6, 5 (total 35). Team member B: 5, 9, 7, 8, 9 (total 38). Team member C: 7, 6, 9, 7, 8 (total 37).
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Reading a Radar Chart — Total Score
+
+Based on the radar chart, which team member has the highest total score across all five categories?
+
+- A) A only
+- B) B only
+- C) C only
+- D) A and B are tied for highest
+- E) A and C are tied for highest
+
+**answer:** B
+**fastest_path:** Sum each member's 5 scores: A=35, B=38, C=37. B wins.
+**explanation:** A = 9+7+8+6+5 = 35; B = 5+9+7+8+9 = 38; C = 7+6+9+7+8 = 37. B has highest total. Answer B.
+**mistake_a:** A=35, lowest.
+**mistake_c:** C=37, second.
+**mistake_d:** A and B totals differ (35 vs 38).
+**mistake_e:** A and C differ (35 vs 37).
+**common_trap:** Picking by *single-category dominance* — A is best at Sales Volume, C at Upsells. The total averages across all five vertices.
+**takeaway:** Radar-chart totals: sum all vertex scores. Visual dominance on one axis doesn't determine the sum.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q50 (Set 27 — Linear Sign-Up Trend)
+
+Description: A line graph shows a company's monthly customer sign-ups over the first 10 months of a year. Values: Jan 120, Feb 135, Mar 150, Apr 165, May 180, Jun 195, Jul 210, Aug 225, Sep 240, Oct 255.
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Linear Extrapolation
+
+If the linear trend continues, approximately how many customer sign-ups will occur in December (month 12)?
+
+- A) 270
+- B) 275
+- C) 280
+- D) 285
+- E) 300
+
+**answer:** D
+**fastest_path:** Linear: +15 per month. From Oct 255 → Nov 270 → Dec 285.
+**explanation:** Constant +15/month (Jan→Oct). Extrapolate: Nov 255+15=270, Dec 270+15=285. Answer D.
+**mistake_a:** 270 — only one month forward (Nov, not Dec).
+**mistake_b:** 275 — slip estimate.
+**mistake_c:** 280 — undershoot.
+**mistake_e:** 300 — over-extrapolating beyond Dec.
+**common_trap:** Stopping at November (270) because it's the next month after the data ends. Question asks for *December*, two months out.
+**takeaway:** Linear extrapolation: count *exact* number of months from the last data point. December = month 12 = 2 months past October.
+**related_reading:** reading-di-04-graphics-interpretation

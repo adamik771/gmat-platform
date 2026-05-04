@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Mail, Clock, MessageSquare, ArrowRight } from "lucide-react"
+import { Mail, Clock, MessageSquare, ArrowRight, Loader2 } from "lucide-react"
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
@@ -29,211 +29,244 @@ export default function ContactPage() {
 
   return (
     <div style={{ backgroundColor: "#0A0A0A" }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28">
-        <div className="max-w-xl mx-auto text-center mb-14">
-          <p
-            className="text-xs font-semibold uppercase tracking-widest mb-4"
-            style={{ color: "#C9A84C" }}
-          >
-            Contact
-          </p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-[#F0F0F0] mb-4">
-            Book a free 20-min call.
-          </h1>
-          <p className="text-[#888888]">
-            Tell me about your situation. We'll figure out the right plan together.
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-5 gap-12 max-w-4xl mx-auto">
-          {/* Form */}
-          <div className="lg:col-span-3">
-            {submitted ? (
-              <div
-                className="p-8 rounded-xl border text-center"
-                style={{
-                  borderColor: "rgba(62,207,142,0.3)",
-                  backgroundColor: "rgba(62,207,142,0.05)",
-                }}
-              >
-                <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
-                  style={{ backgroundColor: "rgba(62,207,142,0.12)" }}
-                >
-                  <MessageSquare className="w-6 h-6" style={{ color: "#3ECF8E" }} />
-                </div>
-                <h3 className="text-lg font-semibold text-[#F0F0F0] mb-2">
-                  Message received!
-                </h3>
-                <p className="text-sm text-[#888888]">
-                  I'll get back to you within 24 hours to schedule a call.
-                </p>
-              </div>
-            ) : (
-              <form
-                onSubmit={handleSubmit}
-                className="space-y-5 p-6 rounded-xl border border-white/[0.08] bg-[#111111]"
-              >
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-xs font-medium text-[#888888] mb-1.5">
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      placeholder="Your name"
-                      className="w-full px-3.5 py-2.5 rounded-lg text-sm text-[#F0F0F0] placeholder-[#444444] outline-none focus:border-[#C9A84C]/50 transition-colors"
-                      style={{
-                        backgroundColor: "#1A1A1A",
-                        border: "1px solid rgba(255,255,255,0.08)",
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-[#888888] mb-1.5">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      placeholder="you@example.com"
-                      className="w-full px-3.5 py-2.5 rounded-lg text-sm text-[#F0F0F0] placeholder-[#444444] outline-none transition-colors"
-                      style={{
-                        backgroundColor: "#1A1A1A",
-                        border: "1px solid rgba(255,255,255,0.08)",
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-xs font-medium text-[#888888] mb-1.5">
-                      Current Score (or &quot;Not taken yet&quot;)
-                    </label>
-                    <input
-                      type="text"
-                      name="currentScore"
-                      placeholder="e.g. 590"
-                      className="w-full px-3.5 py-2.5 rounded-lg text-sm text-[#F0F0F0] placeholder-[#444444] outline-none transition-colors"
-                      style={{
-                        backgroundColor: "#1A1A1A",
-                        border: "1px solid rgba(255,255,255,0.08)",
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-[#888888] mb-1.5">
-                      Target Score
-                    </label>
-                    <input
-                      type="text"
-                      name="targetScore"
-                      placeholder="e.g. 720"
-                      className="w-full px-3.5 py-2.5 rounded-lg text-sm text-[#F0F0F0] placeholder-[#444444] outline-none transition-colors"
-                      style={{
-                        backgroundColor: "#1A1A1A",
-                        border: "1px solid rgba(255,255,255,0.08)",
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-medium text-[#888888] mb-1.5">
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    rows={4}
-                    placeholder="Tell me about where you're at and what you're looking for..."
-                    className="w-full px-3.5 py-2.5 rounded-lg text-sm text-[#F0F0F0] placeholder-[#444444] outline-none transition-colors resize-none"
-                    style={{
-                      backgroundColor: "#1A1A1A",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                    }}
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full py-3 rounded-xl text-sm font-semibold transition-all hover:opacity-90 disabled:opacity-60 flex items-center justify-center gap-2"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  {loading ? "Sending..." : "Send Message"}
-                  {!loading && <ArrowRight className="w-4 h-4" />}
-                </button>
-              </form>
-            )}
-          </div>
-
-          {/* Side info */}
-          <div className="lg:col-span-2 space-y-6">
-            <div
-              className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]"
+      {/* Hero */}
+      <section className="relative pt-32 pb-16 overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 90% 55% at 50% -5%, rgba(201,168,76,0.16) 0%, transparent 60%)",
+          }}
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 55% 35% at 80% 20%, rgba(201,168,76,0.06) 0%, transparent 60%)",
+          }}
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
+          aria-hidden
+        />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mx-auto text-center mb-16">
+            <p
+              className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-5"
+              style={{ color: "#C9A84C" }}
             >
-              <div className="flex items-start gap-3">
+              Contact
+            </p>
+            <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.02] mb-6">
+              Book a free 20-min{" "}
+              <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+                call.
+              </span>
+            </h1>
+            <p className="text-[15px] sm:text-[17px] text-[#C0C0C0] leading-relaxed">
+              Tell me about your situation. We&apos;ll figure out the right plan together.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-5 gap-10 lg:gap-12 max-w-5xl mx-auto">
+            {/* Form */}
+            <div className="lg:col-span-3">
+              {submitted ? (
                 <div
-                  className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
+                  role="status"
+                  aria-live="polite"
+                  className="p-10 rounded-2xl border text-center"
+                  style={{
+                    borderColor: "rgba(62,207,142,0.3)",
+                    backgroundColor: "rgba(62,207,142,0.05)",
+                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
+                  }}
                 >
-                  <Mail className="w-4 h-4" style={{ color: "#C9A84C" }} />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-[#F0F0F0] mb-1">Email</p>
-                  <a
-                    href="mailto:adamzakaryan17@gmail.com"
-                    className="text-xs text-[#888888] hover:text-[#C9A84C] transition-colors"
+                  <div
+                    className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
+                    style={{ backgroundColor: "rgba(62,207,142,0.12)" }}
                   >
-                    adamzakaryan17@gmail.com
-                  </a>
+                    <MessageSquare className="w-6 h-6" style={{ color: "#3ECF8E" }} />
+                  </div>
+                  <h3 className="font-display text-2xl font-semibold text-[#F0F0F0] tracking-[-0.02em] mb-3">
+                    Message{" "}
+                    <span className="font-display-italic" style={{ color: "#3ECF8E" }}>
+                      received.
+                    </span>
+                  </h3>
+                  <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
+                    I&apos;ll get back to you within 24 hours to schedule a call.
+                  </p>
                 </div>
-              </div>
-            </div>
-
-            <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
-              <div className="flex items-start gap-3">
-                <div
-                  className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
+              ) : (
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-6 p-7 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
+                  style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)" }}
                 >
-                  <Clock className="w-4 h-4" style={{ color: "#C9A84C" }} />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-[#F0F0F0] mb-1">Response time</p>
-                  <p className="text-xs text-[#888888]">Within 24 hours</p>
-                </div>
-              </div>
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div>
+                      <label htmlFor="contact-name" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-2.5">
+                        Full Name
+                      </label>
+                      <input
+                        id="contact-name"
+                        type="text"
+                        name="name"
+                        required
+                        placeholder="Your name"
+                        className="w-full px-4 py-3 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0D0D0D] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="contact-email" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-2.5">
+                        Email
+                      </label>
+                      <input
+                        id="contact-email"
+                        type="email"
+                        name="email"
+                        required
+                        placeholder="you@example.com"
+                        className="w-full px-4 py-3 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0D0D0D] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div>
+                      <label htmlFor="contact-current-score" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-2.5">
+                        Current Score
+                      </label>
+                      <input
+                        id="contact-current-score"
+                        type="text"
+                        name="currentScore"
+                        placeholder="e.g. 590 or Not yet"
+                        className="w-full px-4 py-3 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0D0D0D] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="contact-target-score" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-2.5">
+                        Target Score
+                      </label>
+                      <input
+                        id="contact-target-score"
+                        type="text"
+                        name="targetScore"
+                        placeholder="e.g. 720"
+                        className="w-full px-4 py-3 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0D0D0D] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="contact-message" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-2.5">
+                      Message
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      rows={5}
+                      placeholder="Tell me about where you're at and what you're looking for..."
+                      className="w-full px-4 py-3 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0D0D0D] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all resize-none leading-relaxed"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    aria-busy={loading}
+                    className="w-full py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:hover:scale-100 flex items-center justify-center gap-2"
+                    style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                  >
+                    {loading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        Sending
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
             </div>
 
-            <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
-              <p className="text-xs font-semibold uppercase tracking-widest text-[#555555] mb-3">
-                What to expect on the call
-              </p>
-              <ul className="space-y-2">
-                {[
-                  "Review your current score and study history",
-                  "Identify your highest-leverage weaknesses",
-                  "Recommend the right plan for your timeline",
-                  "Answer any questions you have",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span
-                      className="w-1 h-1 rounded-full mt-2 flex-shrink-0"
-                      style={{ backgroundColor: "#C9A84C" }}
-                    />
-                    <span className="text-xs text-[#888888]">{item}</span>
-                  </li>
-                ))}
-              </ul>
+            {/* Side info */}
+            <div className="lg:col-span-2 space-y-5">
+              <div className="group p-7 rounded-2xl border border-white/[0.08] bg-[#0D0D0D] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.16] hover:bg-[#111111]">
+                <div className="flex items-start gap-4">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
+                  >
+                    <Mail className="w-4 h-4" style={{ color: "#C9A84C" }} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-1.5">
+                      Email
+                    </p>
+                    <a
+                      href="mailto:adamzakaryan17@gmail.com"
+                      className="text-[14px] text-[#F0F0F0] hover:text-[#C9A84C] transition-colors break-all"
+                    >
+                      adamzakaryan17@gmail.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="group p-7 rounded-2xl border border-white/[0.08] bg-[#0D0D0D] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.16] hover:bg-[#111111]">
+                <div className="flex items-start gap-4">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
+                  >
+                    <Clock className="w-4 h-4" style={{ color: "#C9A84C" }} />
+                  </div>
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-1.5">
+                      Response time
+                    </p>
+                    <p className="text-[14px] text-[#F0F0F0]">Within 24 hours</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-7 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]">
+                <p
+                  className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-5"
+                  style={{ color: "#C9A84C" }}
+                >
+                  On the call
+                </p>
+                <ul className="space-y-3">
+                  {[
+                    "Review your current score and study history",
+                    "Identify your highest-leverage weaknesses",
+                    "Recommend the right plan for your timeline",
+                    "Answer any questions you have",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span
+                        className="w-1 h-1 rounded-full mt-2 flex-shrink-0"
+                        style={{ backgroundColor: "#C9A84C" }}
+                      />
+                      <span className="text-[14px] text-[#C0C0C0] leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

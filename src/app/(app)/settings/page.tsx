@@ -27,6 +27,8 @@ export default async function SettingsPage() {
   let initialEmail = ""
   let initialExamDate: string | null = null
   let initialTargetScore: number | null = null
+  let initialEnglishNative: boolean | null = null
+  let initialPriorGmatAttempt: boolean | null = null
   let purchases: PurchaseRow[] = []
   let initialPrefs: NotificationPrefs = { ...DEFAULT_PREFS }
 
@@ -46,6 +48,15 @@ export default async function SettingsPage() {
         typeof rawTarget === "number" && Number.isInteger(rawTarget)
           ? rawTarget
           : null
+      // Persona flag inputs — both default null so the settings page
+      // can render "not answered yet" rather than assuming defaults the
+      // student didn't pick.
+      const rawEnglishNative = user.user_metadata?.english_native
+      initialEnglishNative =
+        typeof rawEnglishNative === "boolean" ? rawEnglishNative : null
+      const rawPriorAttempt = user.user_metadata?.prior_gmat_attempt
+      initialPriorGmatAttempt =
+        typeof rawPriorAttempt === "boolean" ? rawPriorAttempt : null
 
       // Merge stored prefs on top of defaults so an older account missing
       // a key (e.g. we add a new pref later) still gets a sensible default.
@@ -81,6 +92,8 @@ export default async function SettingsPage() {
       initialEmail={initialEmail}
       initialExamDate={initialExamDate}
       initialTargetScore={initialTargetScore}
+      initialEnglishNative={initialEnglishNative}
+      initialPriorGmatAttempt={initialPriorGmatAttempt}
       purchases={purchases}
       initialPrefs={initialPrefs}
     />

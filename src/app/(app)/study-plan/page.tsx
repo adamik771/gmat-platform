@@ -3,6 +3,7 @@ import {
   ArrowRight,
   BookOpen,
   CalendarDays,
+  Check,
   CheckCircle,
   Clock,
   FlaskConical,
@@ -13,7 +14,7 @@ import {
   Flame,
   Wrench,
 } from "lucide-react"
-import { getAllLessons } from "@/lib/content"
+import { getAllLessons, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import EmptyState from "@/components/shared/EmptyState"
 import {
@@ -24,6 +25,24 @@ import {
   type StudyPlanOutput,
   type WeakArea,
 } from "@/lib/study-plan-engine"
+import {
+  computeEngagedTopicMasteries,
+  computeOfficialReady,
+  type ChapterProgressShape,
+  type MasteryAttempt,
+  type MasterySession,
+  type OfficialReadySummary,
+  type TopicMastery,
+} from "@/lib/mastery"
+import {
+  computePersona,
+  personaThresholdOverrides,
+  PERSONA_TAG_DEFS,
+  type PersonaProfile,
+  type PersonaTag,
+} from "@/lib/personas"
+import { accuracyToScore } from "@/lib/diagnostic"
+import { gatherFlaggedQuestionIds } from "@/lib/mock"
 import type { Section } from "@/types"
 
 const WEEKDAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
@@ -53,7 +72,7 @@ export default async function StudyPlanPage() {
   let completedSlugs = new Set<string>()
   let examDate: string | null = null
   let targetScore: number | null = null
-  let activityDays = new Set<string>() // YYYY-MM-DD for past 7 days with activity
+  const activityDays = new Set<string>() // YYYY-MM-DD for past 7 days with activity
   let studyHoursWeek = 0
   let studyDays30Count = 0
   let estimatedTotal: number | null = null
@@ -61,6 +80,11 @@ export default async function StudyPlanPage() {
   let plan: StudyPlanOutput | null = null
   let diagnosticTakenAt: string | null = null
   let diagnosticSectionsCount = 0
+  let masteries: TopicMastery[] = []
+  let diagnosticBaseline: number | null = null
+  let persona: PersonaProfile | null = null
+  let officialReady: OfficialReadySummary | null = null
+  const completedTags = new Set<string>()
 
   try {
     const supabase = await createSupabaseServer()
@@ -178,22 +202,186 @@ export default async function StudyPlanPage() {
       plan = await computeStudyPlan(supabase, user.id, {
         targetScore,
         examDate,
+        flaggedQuestionIds: gatherFlaggedQuestionIds(user.user_metadata),
       })
+
+      // Mastery progress — per-topic gates (Concept / Timed / Mixed) that
+      // replace the "completed the lesson = done" heuristic with the
+      // research-report criteria. Needs session metadata to classify mixed
+      // sessions and attempt timing to compute median pace.
+      const [{ data: masteryAttempts }, { data: masterySessions }] =
+        await Promise.all([
+          supabase
+            .from("practice_attempts")
+            .select("topic, section, is_correct, time_spent_ms, session_id, difficulty")
+            .eq("user_id", user.id)
+            .limit(5000),
+          supabase
+            .from("practice_sessions")
+            .select("id, slug, topic, created_at")
+            .eq("user_id", user.id)
+            .limit(1000),
+        ])
+      const sessionsById = new Map<string, MasterySession>()
+      for (const s of masterySessions ?? []) {
+        sessionsById.set(s.id as string, {
+          id: s.id as string,
+          slug: (s.slug as string | null) ?? null,
+          topic: (s.topic as string | null) ?? null,
+          created_at: s.created_at as string,
+        })
+      }
+      const questionIndex = new Map(
+        getAllQuestions().map((q) => [q.id, q])
+      )
+      masteries = computeEngagedTopicMasteries(
+        (masteryAttempts ?? []) as MasteryAttempt[],
+        sessionsById,
+        user.user_metadata?.chapter_progress as
+          | ChapterProgressShape
+          | undefined,
+        questionIndex,
+      )
 
       // Diagnostic baseline — if the user has taken the diagnostic,
       // the Study Plan's weak areas are rooted in that data; surface
-      // when it was taken so the attribution is visible.
+      // when it was taken so the attribution is visible. Also computes
+      // the diagnostic total score, which drives persona assignment.
       const { data: diagRows } = await supabase
         .from("practice_sessions")
-        .select("slug, created_at")
+        .select("slug, accuracy, created_at")
         .eq("user_id", user.id)
         .in("slug", ["diagnostic-quant", "diagnostic-verbal", "diagnostic-di"])
         .order("created_at", { ascending: false })
-      diagnosticSectionsCount = new Set(
-        (diagRows ?? []).map((r) => r.slug as string)
-      ).size
+      const diagBySlug = new Map<string, { accuracy: number; created_at: string }>()
+      for (const r of diagRows ?? []) {
+        const slug = r.slug as string
+        if (diagBySlug.has(slug)) continue // keep most-recent only
+        diagBySlug.set(slug, {
+          accuracy: Number(r.accuracy),
+          created_at: r.created_at as string,
+        })
+      }
+      diagnosticSectionsCount = diagBySlug.size
       if (diagRows && diagRows.length > 0) {
         diagnosticTakenAt = diagRows[0].created_at as string
+      }
+      if (diagnosticSectionsCount === 3) {
+        const perSectionScores = [...diagBySlug.values()].map((r) =>
+          accuracyToScore(r.accuracy / 100),
+        )
+        const avg =
+          perSectionScores.reduce((a, b) => a + b, 0) / perSectionScores.length
+        diagnosticBaseline = Math.round(avg / 10) * 10
+      }
+
+      persona = computePersona(diagnosticBaseline, targetScore, {
+        englishNative:
+          (user.user_metadata?.english_native as boolean | null | undefined) ??
+          null,
+        priorGmatAttempt:
+          (user.user_metadata?.prior_gmat_attempt as
+            | boolean
+            | null
+            | undefined) ?? null,
+      })
+
+      // Re-compute masteries with persona-adaptive thresholds if we
+      // didn't already (we computed with defaults above). Overriding
+      // in-place avoids an extra DB round-trip — the expensive part
+      // was the fetch, not the compute.
+      if (persona.key !== "unknown") {
+        masteries = computeEngagedTopicMasteries(
+          (masteryAttempts ?? []) as MasteryAttempt[],
+          sessionsById,
+          user.user_metadata?.chapter_progress as
+            | ChapterProgressShape
+            | undefined,
+          questionIndex,
+          personaThresholdOverrides(persona.key),
+        )
+      }
+
+      // Aggregate Official-ready signal — two-week stability across
+      // mixed + mock attempts. Uses the same persona threshold override
+      // the per-topic timed gate uses.
+      officialReady = computeOfficialReady(
+        (masteryAttempts ?? []) as MasteryAttempt[],
+        sessionsById,
+        persona.key !== "unknown"
+          ? personaThresholdOverrides(persona.key)
+          : {},
+      )
+
+      // Persona-path completion signals. Each tag collapses a step in
+      // the path card so students see what's still left rather than
+      // "do these things again" on every /study-plan visit.
+      const nowMs = Date.now()
+      const dayMs = 86_400_000
+      for (const s of sessionsById.values()) {
+        const ts = Date.parse(s.created_at)
+        if (Number.isNaN(ts)) continue
+        const ageDays = (nowMs - ts) / dayMs
+        if (s.slug?.startsWith("mock-") && ageDays <= 14) {
+          completedTags.add("ran-mock-14d")
+        }
+        const topicLower = s.topic?.toLowerCase() ?? ""
+        if (
+          ageDays <= 7 &&
+          (s.slug === "custom" || topicLower.startsWith("mixed review"))
+        ) {
+          completedTags.add("ran-mixed-7d")
+        }
+        // Hard-difficulty detection would require attempt-level difficulty
+        // lookups; simple proxy: any timed practice session in 7d counts
+        // as "drilled recently" for Stretcher/Elite until we add a
+        // difficulty-aware signal.
+        if (
+          ageDays <= 7 &&
+          s.slug !== "custom" &&
+          !s.slug?.startsWith("mock-") &&
+          !s.slug?.startsWith("diagnostic-") &&
+          !s.slug?.startsWith("review-")
+        ) {
+          completedTags.add("drilled-recently")
+        }
+      }
+      const chapterProgress = user.user_metadata?.chapter_progress as
+        | ChapterProgressShape
+        | undefined
+      if (chapterProgress) {
+        for (const [slug, block] of Object.entries(chapterProgress)) {
+          const qs = block?.questions
+          if (!qs) continue
+          const anySubmitted = Object.values(qs).some((q) => q?.submitted)
+          if (anySubmitted) completedTags.add(`chapter-started:${slug}`)
+        }
+      }
+      // Hard-difficulty drill detection — Stretcher/Elite "hard pool"
+      // steps should only tick when the student actually ran Advanced
+      // practice recently, not any practice. Collect attempts from
+      // sessions that started in the last 7 days, check difficulty.
+      const sevenDaysAgoMs = nowMs - 7 * dayMs
+      const recentSessionIds = new Set<string>()
+      for (const s of sessionsById.values()) {
+        if (Date.parse(s.created_at) >= sevenDaysAgoMs) {
+          recentSessionIds.add(s.id)
+        }
+      }
+      for (const a of (masteryAttempts ?? []) as Array<
+        MasteryAttempt & { difficulty?: string | null }
+      >) {
+        if (!a.session_id || !recentSessionIds.has(a.session_id)) continue
+        if (a.difficulty === "Advanced") {
+          completedTags.add("hard-drilled-recently")
+          break
+        }
+      }
+
+      // Error-log is "clear" when the pending-untagged count is small —
+      // uses the same signal /review already surfaces.
+      if (pendingMistakeCount < 5) {
+        completedTags.add("error-log-clear")
       }
     }
   } catch {
@@ -295,18 +483,455 @@ export default async function StudyPlanPage() {
   const lessonsDoneCount = completedSlugs.size
   const totalLessons = lessons.length
 
-  return (
-    <div className="max-w-5xl mx-auto space-y-8">
-      <div>
-        <h1 className="text-2xl font-bold text-[#F0F0F0]">Study Plan</h1>
-        <p className="text-sm text-[#555555] mt-1">
-          {daysUntilExam !== null && daysUntilExam > 0
-            ? `${daysUntilExam} day${daysUntilExam === 1 ? "" : "s"} until your exam`
-            : daysUntilExam !== null && daysUntilExam <= 0
-            ? "Exam day has passed or is here — update your date in settings."
-            : "Set an exam date in Settings to count down to your test."}
-        </p>
+  // === Stage gate ===
+  // The page promises an "adaptive plan" but the engine has no real
+  // signal until the diagnostic is in. Showing locked widgets next to
+  // unlocked ones (the multi-week link, weekly calendar, "up next"
+  // modules) made the adaptive system feel fake. Pre-baseline → render
+  // a focused unlock view; only after all 3 diagnostic sections are
+  // done does the full plan come online.
+  if (diagnosticSectionsCount < 3) {
+    return (
+      <div className="max-w-5xl mx-auto space-y-10">
+        {/* Hero — diagnostic-dominant; the page's only primary CTA */}
+        <section
+          className="relative overflow-hidden rounded-2xl border"
+          style={{
+            borderColor: "rgba(201,168,76,0.28)",
+            backgroundColor: "#0D0D0D",
+          }}
+        >
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 60% at 0% 50%, rgba(201,168,76,0.14) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 100% 100%, rgba(201,168,76,0.06) 0%, transparent 60%)",
+            }}
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
+            aria-hidden
+          />
+          <div className="relative grid lg:grid-cols-[minmax(0,1fr)_320px] gap-8 lg:gap-12 p-6 sm:p-10">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 mb-3">
+                <span
+                  className="inline-flex items-center justify-center w-7 h-7 rounded-lg"
+                  style={{ backgroundColor: "rgba(201,168,76,0.14)" }}
+                >
+                  <Target
+                    className="w-3.5 h-3.5"
+                    style={{ color: "#C9A84C" }}
+                  />
+                </span>
+                <p
+                  className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+                  style={{ color: "#C9A84C" }}
+                >
+                  Adaptive plan · locked
+                </p>
+              </div>
+              <h1 className="font-display text-3xl md:text-[42px] font-semibold tracking-[-0.02em] text-[#F0F0F0] leading-[1.05]">
+                Your adaptive plan unlocks{" "}
+                <span
+                  className="font-display-italic"
+                  style={{ color: "#C9A84C" }}
+                >
+                  after the diagnostic.
+                </span>
+              </h1>
+              <p className="text-[15px] leading-[1.7] text-[#C0C0C0] max-w-2xl mt-4">
+                30 questions across Q / V / DI baselines your readiness,
+                assigns your study persona, and seeds the weekly cadence,
+                section priorities, and mastery gates. Without it, every
+                recommendation is a guess.
+              </p>
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <Link
+                  href="/diagnostic"
+                  className="group inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
+                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                >
+                  {diagnosticSectionsCount === 0
+                    ? "Take the diagnostic"
+                    : `Continue diagnostic (${diagnosticSectionsCount}/3)`}
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+                {!examDate && (
+                  <Link
+                    href="/settings"
+                    className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors"
+                    style={{
+                      borderColor: "rgba(255,255,255,0.10)",
+                      color: "#C0C0C0",
+                    }}
+                  >
+                    Set exam date
+                  </Link>
+                )}
+              </div>
+            </div>
+
+            {/* Right column — plan-status snapshot. Quiet visual; the
+                diagnostic CTA stays dominant. */}
+            <div className="flex flex-col gap-2.5 lg:max-w-[320px]">
+              <p
+                className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-1"
+                style={{ color: "#C9A84C" }}
+              >
+                Plan status
+              </p>
+              {[
+                {
+                  label: "Diagnostic",
+                  done: diagnosticSectionsCount === 3,
+                  partial: diagnosticSectionsCount,
+                  href: "/diagnostic",
+                },
+                {
+                  label: "Target score",
+                  done: targetScore !== null,
+                  href: "/dashboard#score-goal",
+                },
+                {
+                  label: "Exam date",
+                  done: examDate !== null,
+                  href: "/settings",
+                },
+              ].map((row) => (
+                <Link
+                  key={row.label}
+                  href={row.href}
+                  className="group flex items-center gap-3 px-3.5 py-2.5 rounded-lg border transition-colors hover:bg-white/[0.02]"
+                  style={{
+                    borderColor: row.done
+                      ? "rgba(62,207,142,0.22)"
+                      : "rgba(255,255,255,0.06)",
+                    backgroundColor: row.done
+                      ? "rgba(62,207,142,0.04)"
+                      : "rgba(255,255,255,0.012)",
+                  }}
+                >
+                  {row.done ? (
+                    <CheckCircle
+                      className="w-3.5 h-3.5 flex-shrink-0"
+                      style={{ color: "#3ECF8E" }}
+                    />
+                  ) : (
+                    <span
+                      className="w-3.5 h-3.5 rounded-full border flex-shrink-0"
+                      style={{ borderColor: "rgba(255,255,255,0.2)" }}
+                      aria-hidden
+                    />
+                  )}
+                  <span
+                    className="text-[13px] flex-1"
+                    style={{ color: row.done ? "#888888" : "#C0C0C0" }}
+                  >
+                    {row.label}
+                  </span>
+                  <span
+                    className="text-[11px] uppercase tracking-[0.18em] font-semibold"
+                    style={{
+                      color: row.done
+                        ? "#3ECF8E"
+                        : "rgba(255,255,255,0.4)",
+                    }}
+                  >
+                    {row.done
+                      ? "Set"
+                      : "partial" in row && row.partial && row.partial > 0
+                        ? `${row.partial}/3`
+                        : "Missing"}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Launch sequence — replaces the empty 7-day calendar that
+            otherwise read as "you've already missed Sun/Mon/Tue/Wed".
+            Three steps, two of them locked, the first one bright. */}
+        <section>
+          <div className="flex items-center gap-3 mb-5">
+            <p
+              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+              style={{ color: "#C9A84C" }}
+            >
+              Your launch sequence
+            </p>
+            <div
+              className="h-px flex-1"
+              style={{
+                background:
+                  "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+              }}
+              aria-hidden
+            />
+          </div>
+          <ol className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {[
+              {
+                kicker: "Today",
+                title: "Take the diagnostic",
+                body: "30 questions, ~50 minutes. The whole plan keys off this.",
+                state: "current" as const,
+                href: "/diagnostic",
+              },
+              {
+                kicker: "Next",
+                title: "Review your baseline",
+                body: "See your section scores, weakest topics, and the recommended persona path.",
+                state: "next" as const,
+                href: "/diagnostic/report",
+              },
+              {
+                kicker: "Then",
+                title: "Receive your weekly cadence",
+                body: "A real seven-day plan auto-builds from your baseline + exam date.",
+                state: "future" as const,
+                href: "/study-plan",
+              },
+            ].map((step) => {
+              const accent =
+                step.state === "current"
+                  ? "#C9A84C"
+                  : "rgba(255,255,255,0.25)"
+              const bg =
+                step.state === "current"
+                  ? "rgba(201,168,76,0.05)"
+                  : "#0D0D0D"
+              const border =
+                step.state === "current"
+                  ? "rgba(201,168,76,0.28)"
+                  : "rgba(255,255,255,0.06)"
+              return (
+                <li key={step.kicker}>
+                  <Link
+                    href={step.href}
+                    className="group block h-full p-5 rounded-xl border transition-all duration-300 hover:-translate-y-0.5"
+                    style={{
+                      borderColor: border,
+                      backgroundColor: bg,
+                    }}
+                  >
+                    <p
+                      className="text-[10px] uppercase tracking-[0.22em] font-semibold mb-2"
+                      style={{
+                        color:
+                          step.state === "current"
+                            ? "#C9A84C"
+                            : "rgba(255,255,255,0.4)",
+                      }}
+                    >
+                      {step.kicker}
+                    </p>
+                    <p
+                      className="text-[15px] font-semibold tracking-tight leading-snug"
+                      style={{
+                        color:
+                          step.state === "current"
+                            ? "#F0F0F0"
+                            : "rgba(240,240,240,0.7)",
+                      }}
+                    >
+                      {step.title}
+                    </p>
+                    <p
+                      className="text-[12px] mt-1.5 leading-snug"
+                      style={{
+                        color:
+                          step.state === "current"
+                            ? "rgba(192,192,192,0.75)"
+                            : "rgba(255,255,255,0.4)",
+                      }}
+                    >
+                      {step.body}
+                    </p>
+                    {step.state === "current" && (
+                      <span
+                        className="inline-flex items-center gap-1 mt-3 text-[11px] uppercase tracking-[0.18em] font-semibold"
+                        style={{ color: accent }}
+                      >
+                        Start now
+                        <ArrowRight className="w-3 h-3" aria-hidden />
+                      </span>
+                    )}
+                  </Link>
+                </li>
+              )
+            })}
+          </ol>
+        </section>
+
+        {/* Unlocks after baseline — preview tiles. Each tile is a
+            one-line promise of what the diagnostic activates. Replaces
+            the live empty Mastery / Weak-areas / Calendar / Adaptive
+            multi-week panels that otherwise rendered as filler. */}
+        <section>
+          <div className="flex items-center gap-3 mb-5">
+            <p
+              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+              style={{ color: "#888888" }}
+            >
+              Unlocks after baseline
+            </p>
+            <div
+              className="h-px flex-1"
+              style={{
+                background:
+                  "linear-gradient(to right, rgba(255,255,255,0.10), transparent)",
+              }}
+              aria-hidden
+            />
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {[
+              {
+                Icon: Sparkles,
+                title: "Study persona",
+                body: "A baseline-derived label (Rebuilder / Improver / Stretcher / Elite) that tunes thresholds and the path.",
+              },
+              {
+                Icon: CalendarDays,
+                title: "Weekly cadence",
+                body: "Real seven-day schedule built from your exam runway + recommended hours per week.",
+              },
+              {
+                Icon: Target,
+                title: "Mastery gates",
+                body: "Per-topic Concept → Timed → Mixed → Section progression so you know what's stable.",
+              },
+              {
+                Icon: TrendingDown,
+                title: "Stability signal",
+                body: "Two-week mock + mixed accuracy band — the readiness check before test day.",
+              },
+            ].map(({ Icon, title, body }) => (
+              <div
+                key={title}
+                className="p-4 rounded-xl border flex flex-col gap-2.5"
+                style={{
+                  borderColor: "rgba(255,255,255,0.05)",
+                  backgroundColor: "rgba(255,255,255,0.012)",
+                }}
+              >
+                <span
+                  className="inline-flex items-center justify-center w-8 h-8 rounded-lg"
+                  style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
+                >
+                  <Icon
+                    className="w-3.5 h-3.5"
+                    style={{ color: "rgba(255,255,255,0.4)" }}
+                  />
+                </span>
+                <p
+                  className="text-[14px] font-semibold tracking-tight"
+                  style={{ color: "rgba(240,240,240,0.7)" }}
+                >
+                  {title}
+                </p>
+                <p
+                  className="text-[12px] leading-snug"
+                  style={{ color: "rgba(255,255,255,0.4)" }}
+                >
+                  {body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
+    )
+  }
+
+  // === Active-mode section numbering ===
+  // Built dynamically from the sections that will actually render —
+  // hardcoded "01"/"02" labels left a gap at "04" whenever weak-areas
+  // had no data, which read as an unfinished build.
+  const renderedNumberedSections: string[] = []
+  if (plan && plan.todaysFocus.length > 0)
+    renderedNumberedSections.push("todays-focus")
+  renderedNumberedSections.push("this-week")
+  if (masteries.length > 0)
+    renderedNumberedSections.push("mastery-progress")
+  if (plan && plan.weakAreas.length > 0)
+    renderedNumberedSections.push("weak-areas")
+  renderedNumberedSections.push("up-next")
+  const sectionNum = (key: string) =>
+    String(renderedNumberedSections.indexOf(key) + 1).padStart(2, "0")
+
+  return (
+    <div className="max-w-5xl mx-auto space-y-10">
+      <section
+        className="relative overflow-hidden rounded-2xl border border-white/[0.06] px-6 py-10 sm:px-10 sm:py-14"
+        style={{ backgroundColor: "#0D0D0D" }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 60% at 20% -10%, rgba(201,168,76,0.14) 0%, transparent 60%), radial-gradient(ellipse 70% 60% at 110% 110%, rgba(201,168,76,0.08) 0%, transparent 60%)",
+          }}
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.035] mix-blend-overlay"
+          aria-hidden
+        />
+        <div className="relative">
+          <div className="flex items-center gap-3 mb-4">
+            <p
+              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+              style={{ color: "#C9A84C" }}
+            >
+              Adaptive plan
+            </p>
+            <div
+              className="h-px w-12"
+              style={{
+                background:
+                  "linear-gradient(to right, rgba(201,168,76,0.4), transparent)",
+              }}
+              aria-hidden
+            />
+          </div>
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">
+            Your weekly{" "}
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+              cadence.
+            </span>
+          </h1>
+          <p className="text-[15px] leading-[1.75] text-[#C0C0C0] mt-4 max-w-2xl">
+            {daysUntilExam !== null && daysUntilExam > 0
+              ? `${daysUntilExam} day${daysUntilExam === 1 ? "" : "s"} until your exam — the plan below ranks today's focus, weak topics, and a seven-day cadence drawn from your real activity.`
+              : daysUntilExam !== null && daysUntilExam <= 0
+                ? "Exam day has passed or is here — update your date in Settings to re-anchor the countdown."
+                : "Set an exam date in Settings to anchor a countdown — the plan adapts to whatever runway you have left."}
+          </p>
+        </div>
+      </section>
+
+      {/* Persona card — research-report segmentation by (baseline, target).
+          Drives copy, emphasis, and downstream mastery thresholds. Shows
+          "Not yet assigned" with a diagnostic CTA when baseline is null. */}
+      {persona && <PersonaCard persona={persona} />}
+
+      {/* Persona path — each baseline-derived persona gets a short,
+          tailored "do these next" list. Research-report segment table
+          drives the prescription per persona: Rebuilder rebuilds
+          fundamentals, Improver rehearses consistency, Stretcher hits
+          harder pools + review/edit discipline, Elite calibrates
+          against official-style mocks. Hidden when persona is unknown. */}
+      {persona && persona.key !== "unknown" && (
+        <PersonaPathCard
+          personaKey={persona.key}
+          completedTags={completedTags}
+          tags={persona.tags}
+        />
+      )}
 
       {/* Diagnostic attribution — only when the student has finished at
           least one diagnostic section, so the plan is rooted in real data.
@@ -314,10 +939,10 @@ export default async function StudyPlanPage() {
       {diagnosticSectionsCount > 0 && diagnosticTakenAt && (
         <Link
           href="/diagnostic/report"
-          className="flex items-center justify-between gap-3 p-3 rounded-lg border border-white/[0.06] bg-[#0D0D0D] hover:bg-[#111111] transition-colors"
+          className="flex items-center justify-between gap-3 p-4 rounded-2xl border border-white/[0.06] bg-[#0D0D0D] hover:border-white/[0.12] transition-all duration-300 hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
         >
-          <p className="text-xs text-[#888888]">
-            <span className="text-[#555555]">Plan rooted in your diagnostic</span>
+          <p className="text-[13px] text-[#C0C0C0]">
+            <span className="text-[#888888]">Plan rooted in your diagnostic</span>
             <span className="mx-2 text-[#333333]">·</span>
             {diagnosticSectionsCount < 3
               ? `${diagnosticSectionsCount} of 3 sections taken`
@@ -327,59 +952,146 @@ export default async function StudyPlanPage() {
                   year: "numeric",
                 })}
           </p>
-          <span className="text-xs" style={{ color: "#C9A84C" }}>
+          <span
+            className="text-[11px] font-semibold uppercase tracking-[0.18em]"
+            style={{ color: "#C9A84C" }}
+          >
             View report →
           </span>
         </Link>
       )}
 
+      {/* Adaptive multi-week plan link — synthesises every signal source
+          (diagnostic, mock, practice, timing, confidence, mistakes,
+          spaced queue) into a 2-4 week schedule. Sits above today's
+          focus so students can choose between zoomed-in (today) and
+          zoomed-out (week) views. */}
+      <Link
+        href="/study-plan/adaptive"
+        className="group flex items-center justify-between gap-4 p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-0.5"
+        style={{
+          borderColor: "rgba(201,168,76,0.18)",
+          backgroundColor: "#0D0D0D",
+          boxShadow:
+            "0 0 40px rgba(201,168,76,0.05), inset 0 1px 0 rgba(255,255,255,0.04)",
+        }}
+      >
+        <div className="flex items-start gap-3">
+          <CalendarDays
+            className="w-4 h-4 mt-0.5 flex-shrink-0"
+            style={{ color: "#C9A84C" }}
+          />
+          <div>
+            <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0]">
+              Open your adaptive multi-week plan
+            </p>
+            <p className="text-[13px] text-[#C0C0C0] leading-[1.65] mt-1">
+              Synthesised from your diagnostic, latest mock, practice attempts,
+              timing patterns, confidence log, and mistake-log patterns.
+              Re-runs every visit so the schedule stays current.
+            </p>
+          </div>
+        </div>
+        <ArrowRight
+          className="w-4 h-4 flex-shrink-0 text-[#C9A84C] group-hover:translate-x-0.5 transition-transform"
+          aria-hidden
+        />
+      </Link>
+
       {/* Today's focus — adaptive action queue ranked by impact.
           Highest-priority item first; up to 3 shown. */}
       {plan && plan.todaysFocus.length > 0 && (
-        <div>
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
-            Today&apos;s Focus
+        <section>
+          <div className="flex items-center gap-3 mb-5">
+            <span
+              className="font-display text-[11px] font-semibold tabular-nums"
+              style={{ color: "rgba(201,168,76,0.55)" }}
+              aria-hidden
+            >
+              {sectionNum("todays-focus")}
+            </span>
+            <p
+              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+              style={{ color: "#C9A84C" }}
+            >
+              Today&apos;s focus
+            </p>
+            <div
+              className="h-px flex-1"
+              style={{
+                background:
+                  "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+              }}
+              aria-hidden
+            />
+          </div>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-5">
+            Today&apos;s{" "}
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+              focus.
+            </span>
           </h2>
           <div className="space-y-3">
             {plan.todaysFocus.map((action, i) => (
               <FocusCard key={`${action.type}-${i}`} action={action} primary={i === 0} />
             ))}
           </div>
-        </div>
+        </section>
       )}
 
       {/* Weekly Calendar — real activity dots for the current week */}
-      <div>
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
-          This Week
-        </h2>
-        <div className="grid grid-cols-7 gap-2">
+      <section>
+        <div className="flex items-center gap-3 mb-5">
+          <span
+            className="font-display text-[11px] font-semibold tabular-nums"
+            style={{ color: "rgba(201,168,76,0.55)" }}
+            aria-hidden
+          >
+            {sectionNum("this-week")}
+          </span>
+          <p
+            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+            style={{ color: "#C9A84C" }}
+          >
+            This week
+          </p>
+          <div
+            className="h-px flex-1"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+            }}
+            aria-hidden
+          />
+        </div>
+        <div className="overflow-x-auto -mx-1 px-1">
+          <div className="grid grid-cols-7 gap-2 min-w-[560px]">
           {weekDays.map((day) => {
             const { weekdayLabel, date, isToday, isPast, hasActivity } = day
             const borderColor = isToday
               ? "rgba(201,168,76,0.3)"
               : hasActivity
-              ? "rgba(62,207,142,0.15)"
+              ? "rgba(62,207,142,0.2)"
               : "rgba(255,255,255,0.06)"
             const bg = isToday
               ? "rgba(201,168,76,0.05)"
               : hasActivity
-              ? "rgba(62,207,142,0.03)"
+              ? "rgba(62,207,142,0.04)"
               : "#0D0D0D"
             return (
               <div key={day.key} className="flex flex-col gap-2">
                 <p
-                  className={`text-xs text-center font-medium ${
+                  className={`text-[10px] text-center font-semibold uppercase tracking-[0.18em] ${
                     isToday ? "text-[#C9A84C]" : "text-[#555555]"
                   }`}
                 >
                   {weekdayLabel}{" "}
-                  <span className="text-[10px] text-[#444444]">
+                  <span className="font-display text-[11px] normal-case tracking-normal text-[#444444] tabular-nums">
                     {date.getDate()}
                   </span>
                 </p>
                 <div
-                  className="rounded-xl p-3 border min-h-[96px] flex flex-col gap-2"
+                  className="rounded-2xl p-3 border min-h-[96px] flex flex-col gap-2 transition-all duration-300 hover:-translate-y-0.5"
                   style={{ borderColor, backgroundColor: bg }}
                 >
                   {hasActivity ? (
@@ -413,8 +1125,9 @@ export default async function StudyPlanPage() {
               </div>
             )
           })}
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Progress cards — real counts */}
       <div className="grid sm:grid-cols-3 gap-4">
@@ -429,9 +1142,6 @@ export default async function StudyPlanPage() {
           color="#C9A84C"
           label="Practice hours (7d)"
           value={(() => {
-            // Show "—" when the total rounds to 0.0 hrs (nothing meaningful
-            // tracked yet), otherwise the rounded hours. Avoids a misleading
-            // "0.0 hrs" reading when only a few seconds have been logged.
             const rounded = Math.round(studyHoursWeek * 10) / 10
             return rounded >= 0.1 ? `${rounded.toFixed(1)} hrs` : "—"
           })()}
@@ -444,39 +1154,150 @@ export default async function StudyPlanPage() {
         />
       </div>
 
+      {/* Mastery progress — per-topic readiness gates (Concept / Timed
+          / Mixed) derived from the research-report prescription. Replaces
+          "completed the chapter = done" with an explicit progression
+          checklist so students can see exactly what they still need to
+          clear before a topic is stable. */}
+      {officialReady && <OfficialReadyCard summary={officialReady} />}
+
+      {masteries.length > 0 && (
+        <section>
+          <div className="flex items-center gap-3 mb-5">
+            <span
+              className="font-display text-[11px] font-semibold tabular-nums"
+              style={{ color: "rgba(201,168,76,0.55)" }}
+              aria-hidden
+            >
+              {sectionNum("mastery-progress")}
+            </span>
+            <p
+              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+              style={{ color: "#C9A84C" }}
+            >
+              Mastery progress
+            </p>
+            <div
+              className="h-px flex-1"
+              style={{
+                background:
+                  "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+              }}
+              aria-hidden
+            />
+          </div>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-3">
+            Gates before{" "}
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+              stability.
+            </span>
+          </h2>
+          <p className="text-[15px] leading-[1.75] text-[#C0C0C0] mb-6 max-w-2xl">
+            Each topic walks through four gates: Concept-ready (80%+ untimed),
+            Timed-ready (70%+ with median time ≤130% of target), Mixed-ready
+            (75%+ on two mixed sets on different days), and Section-ready
+            (holds up under mock stress). Lowest gates surface first — that&apos;s
+            where work pays best.
+          </p>
+          <div className="space-y-3">
+            {masteries.slice(0, 8).map((m) => (
+              <MasteryCard key={m.topic} mastery={m} />
+            ))}
+          </div>
+          {masteries.length > 8 && (
+            <p className="text-[12px] text-[#555555] mt-3 italic">
+              Showing the 8 topics most in need of work. {masteries.length - 8}{" "}
+              more already further along.
+            </p>
+          )}
+        </section>
+      )}
+
       {/* Weak areas — topic-level accuracy deficit driven from real attempts.
           Each row links to the relevant chapter so the student can read
           before re-drilling the topic. */}
       {plan && plan.weakAreas.length > 0 && (
-        <div>
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
-            Your Weakest Topics
+        <section>
+          <div className="flex items-center gap-3 mb-5">
+            <span
+              className="font-display text-[11px] font-semibold tabular-nums"
+              style={{ color: "rgba(201,168,76,0.55)" }}
+              aria-hidden
+            >
+              {sectionNum("weak-areas")}
+            </span>
+            <p
+              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+              style={{ color: "#C9A84C" }}
+            >
+              Weakest topics
+            </p>
+            <div
+              className="h-px flex-1"
+              style={{
+                background:
+                  "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+              }}
+              aria-hidden
+            />
+          </div>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-5">
+            Where accuracy{" "}
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+              leaks.
+            </span>
           </h2>
           <div className="space-y-3">
             {plan.weakAreas.map((w) => (
               <WeakAreaCard key={w.topic} weak={w} />
             ))}
           </div>
-        </div>
+        </section>
       )}
 
       {/* Upcoming lessons — real curriculum */}
-      <div>
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
-          Upcoming Lessons
+      <section>
+        <div className="flex items-center gap-3 mb-5">
+          <span
+            className="font-display text-[11px] font-semibold tabular-nums"
+            style={{ color: "rgba(201,168,76,0.55)" }}
+            aria-hidden
+          >
+            {sectionNum("up-next")}
+          </span>
+          <p
+            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+            style={{ color: "#C9A84C" }}
+          >
+            Up next
+          </p>
+          <div
+            className="h-px flex-1"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+            }}
+            aria-hidden
+          />
+        </div>
+        <h2 className="font-display text-3xl md:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-5">
+          Upcoming{" "}
+          <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            lessons.
+          </span>
         </h2>
         {upcomingLessons.length === 0 ? (
-          <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
+          <div className="p-6 rounded-2xl border border-white/[0.08] bg-[#0F0F0F]">
             <div className="flex items-start gap-3">
               <CheckCircle
                 className="w-5 h-5 flex-shrink-0 mt-0.5"
                 style={{ color: "#3ECF8E" }}
               />
               <div>
-                <p className="text-sm font-semibold text-[#F0F0F0]">
+                <p className="text-[15px] font-semibold text-[#F0F0F0] tracking-tight">
                   Curriculum complete
                 </p>
-                <p className="text-xs text-[#888888] mt-0.5">
+                <p className="text-[13px] text-[#C0C0C0] mt-1 leading-relaxed">
                   All {totalLessons} lessons done. Keep drilling practice
                   sets and mock exams until test day.
                 </p>
@@ -491,7 +1312,7 @@ export default async function StudyPlanPage() {
                 <Link
                   key={lesson.slug}
                   href={`/lessons/${lesson.slug}`}
-                  className="flex items-start gap-4 p-4 rounded-xl border border-white/[0.08] bg-[#111111] hover:border-white/[0.14] transition-colors"
+                  className="flex items-start gap-4 p-5 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] hover:border-white/[0.14] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
                 >
                   <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
@@ -508,12 +1329,12 @@ export default async function StudyPlanPage() {
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex flex-wrap items-center gap-2 mb-1">
-                      <span className="text-xs font-semibold uppercase tracking-widest text-[#555555]">
+                    <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#555555]">
                         {moduleLabel}
                       </span>
                       <span
-                        className="px-2 py-0.5 rounded text-[10px] uppercase tracking-wide"
+                        className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em]"
                         style={{
                           backgroundColor: "rgba(201,168,76,0.08)",
                           color: "#C9A84C",
@@ -523,25 +1344,26 @@ export default async function StudyPlanPage() {
                       </span>
                       {i === 0 && (
                         <span
-                          className="px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-widest"
+                          className="px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-[0.22em] border"
                           style={{
-                            backgroundColor: "rgba(201,168,76,0.12)",
+                            backgroundColor: "rgba(201,168,76,0.08)",
+                            borderColor: "rgba(201,168,76,0.25)",
                             color: "#C9A84C",
                           }}
                         >
-                          Up Next
+                          Up next
                         </span>
                       )}
                     </div>
-                    <p className="text-sm font-semibold text-[#F0F0F0]">
+                    <p className="text-[15px] font-semibold text-[#F0F0F0] tracking-tight">
                       {lesson.title}
                     </p>
-                    <p className="text-xs text-[#888888] mt-1 line-clamp-1">
+                    <p className="text-[13px] text-[#C0C0C0] mt-1 line-clamp-1 leading-relaxed">
                       {lesson.description}
                     </p>
                     <div className="flex items-center gap-1.5 mt-2">
                       <Clock className="w-3 h-3 text-[#444444]" />
-                      <span className="text-xs text-[#555555]">
+                      <span className="text-[11px] text-[#888888] tabular-nums">
                         {lesson.duration} min
                       </span>
                     </div>
@@ -551,44 +1373,53 @@ export default async function StudyPlanPage() {
             })}
           </div>
         )}
-      </div>
+      </section>
 
       {/* Exam readiness — real derivation */}
       {readinessPct !== null ? (
         <div
-          className="p-5 rounded-xl border"
+          className="p-6 sm:p-7 rounded-2xl border transition-all duration-300 hover:shadow-[0_20px_40px_-20px_rgba(201,168,76,0.2)]"
           style={{
             borderColor: "rgba(201,168,76,0.2)",
             backgroundColor: "rgba(201,168,76,0.04)",
           }}
         >
           <div className="flex items-center justify-between gap-3 flex-wrap">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <div
-                className="w-10 h-10 rounded-lg flex items-center justify-center"
+                className="w-12 h-12 rounded-xl flex items-center justify-center"
                 style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
               >
                 <Target className="w-5 h-5" style={{ color: "#C9A84C" }} />
               </div>
               <div>
-                <p className="text-sm font-semibold text-[#F0F0F0]">
+                <p
+                  className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+                  style={{ color: "#C9A84C" }}
+                >
                   Exam readiness
                 </p>
-                <p className="text-xs text-[#888888] mt-0.5">
+                <p className="text-[13px] text-[#C0C0C0] mt-1 leading-relaxed">
                   {targetScore !== null
                     ? `Toward your target of ${targetScore}`
-                    : "Based on current estimate"}
+                    : "Based on your current readiness band"}
                 </p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-2xl font-bold" style={{ color: "#C9A84C" }}>
-                {readinessPct}%
+              <p
+                className="font-display text-4xl font-semibold tracking-[-0.02em] tabular-nums leading-none"
+                style={{ color: "#C9A84C" }}
+              >
+                {readinessPct}
+                <span className="text-2xl">%</span>
               </p>
-              <p className="text-xs text-[#555555]">ready</p>
+              <p className="text-[10px] uppercase tracking-[0.18em] text-[#555555] mt-2">
+                ready
+              </p>
             </div>
           </div>
-          <div className="mt-4 h-2 rounded-full bg-white/[0.06] overflow-hidden">
+          <div className="mt-5 h-2 rounded-full bg-white/[0.06] overflow-hidden">
             <div
               className="h-full rounded-full transition-all duration-700"
               style={{
@@ -597,8 +1428,8 @@ export default async function StudyPlanPage() {
               }}
             />
           </div>
-          <p className="text-xs text-[#555555] mt-2">
-            Current estimate: {estimatedTotal}
+          <p className="text-[12px] text-[#888888] mt-3 tabular-nums">
+            Readiness band: {estimatedTotal}
             {targetScore !== null && ` · Target: ${targetScore}`}
             {daysUntilExam !== null && daysUntilExam > 0 && (
               <> · {daysUntilExam} day{daysUntilExam === 1 ? "" : "s"} until exam</>
@@ -608,8 +1439,8 @@ export default async function StudyPlanPage() {
       ) : (
         <EmptyState
           icon={CalendarDays}
-          title="Exam readiness needs more data"
-          description="Complete at least 10 attempts in each of Quant, Verbal, and DI to unlock a readiness estimate. Set a target score on the dashboard and an exam date in settings to refine it further."
+          title="Readiness band needs more data"
+          description="Complete at least 10 attempts in each of Quant, Verbal, and DI to unlock a readiness band. The band reflects your current practice accuracy — it's a signal, not a forecast. Set a target score on the dashboard and an exam date in settings to refine it further."
           ctaHref="/test-builder"
           ctaLabel="Build a test"
           size="md"
@@ -663,10 +1494,10 @@ function SuggestionCell({
       className="flex flex-col gap-1 text-left hover:opacity-90 transition-opacity"
     >
       <Icon className="w-3 h-3" style={{ color }} />
-      <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+      <p className="text-[9px] uppercase tracking-[0.22em] text-[#555555] font-semibold">
         {typeLabel[suggestion.type]}
       </p>
-      <p className="text-xs text-[#C0C0C0] leading-snug line-clamp-2">
+      <p className="text-[11px] text-[#C0C0C0] leading-snug line-clamp-2">
         {suggestion.label}
       </p>
     </Link>
@@ -704,16 +1535,16 @@ function FocusCard({
   return (
     <Link
       href={action.href}
-      className="p-5 rounded-xl border flex items-start gap-4 transition-colors hover:opacity-95"
+      className="group p-5 rounded-2xl border flex items-start gap-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_36px_-18px_rgba(201,168,76,0.22)]"
       style={{
         borderColor: primary
-          ? "rgba(201,168,76,0.25)"
+          ? "rgba(201,168,76,0.3)"
           : "rgba(255,255,255,0.08)",
-        backgroundColor: primary ? "rgba(201,168,76,0.04)" : "#111111",
+        backgroundColor: primary ? "rgba(201,168,76,0.04)" : "#0F0F0F",
       }}
     >
       <div
-        className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+        className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
         style={{
           backgroundColor: primary
             ? "rgba(201,168,76,0.12)"
@@ -726,15 +1557,15 @@ function FocusCard({
         />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold text-[#F0F0F0] mb-1">
+        <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0] mb-1">
           {action.title}
         </p>
-        <p className="text-xs text-[#888888] leading-relaxed">
+        <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
           {action.subtitle}
         </p>
       </div>
       <span
-        className="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold"
+        className="flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-semibold tracking-tight transition-all duration-200 group-hover:scale-[1.02]"
         style={{
           backgroundColor: primary ? "#C9A84C" : "rgba(201,168,76,0.12)",
           color: primary ? "#0A0A0A" : "#C9A84C",
@@ -757,13 +1588,13 @@ function WeakAreaCard({ weak }: { weak: WeakArea }) {
   // diverge those, this is the one line that'd need to change.
   const practiceSlug = weak.chapterSlug
   return (
-    <div className="p-4 rounded-xl border border-white/[0.08] bg-[#111111] flex items-start sm:items-center justify-between gap-4 flex-col sm:flex-row">
+    <div className="p-5 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] flex items-start sm:items-center justify-between gap-4 flex-col sm:flex-row transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]">
       <div className="flex items-start gap-3">
         <TrendingDown className="w-4 h-4 mt-0.5 text-[#FF4444] flex-shrink-0" />
         <div>
-          <div className="flex items-center gap-2 mb-0.5">
+          <div className="flex items-center gap-2 mb-1">
             <span
-              className="px-2 py-0.5 rounded text-[10px] uppercase tracking-wide"
+              className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em]"
               style={{
                 backgroundColor: "rgba(201,168,76,0.08)",
                 color: "#C9A84C",
@@ -771,19 +1602,21 @@ function WeakAreaCard({ weak }: { weak: WeakArea }) {
             >
               {weak.section}
             </span>
-            <span className="text-xs text-[#555555]">
+            <span className="text-[11px] text-[#888888] tabular-nums">
               {Math.round(weak.accuracy * 100)}% on {weak.attempts} question
               {weak.attempts === 1 ? "" : "s"}
             </span>
           </div>
-          <p className="text-sm font-semibold text-[#F0F0F0]">{weak.topic}</p>
+          <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0]">
+            {weak.topic}
+          </p>
         </div>
       </div>
       <div className="flex-shrink-0 flex items-center gap-2 self-end sm:self-auto">
         {practiceSlug && (
           <Link
             href={`/practice/session/${practiceSlug}`}
-            className="text-xs px-3 py-1.5 rounded-lg font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-1"
+            className="text-xs px-3.5 py-1.5 rounded-xl font-semibold tracking-tight transition-all duration-200 hover:scale-[1.02] inline-flex items-center gap-1"
             style={{
               backgroundColor: "#C9A84C",
               color: "#0A0A0A",
@@ -795,7 +1628,7 @@ function WeakAreaCard({ weak }: { weak: WeakArea }) {
         {weak.chapterSlug ? (
           <Link
             href={`/chapters/${weak.chapterSlug}`}
-            className="text-xs px-3 py-1.5 rounded-lg font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-1"
+            className="text-xs px-3.5 py-1.5 rounded-xl font-semibold tracking-tight transition-all duration-200 hover:scale-[1.02] inline-flex items-center gap-1"
             style={{
               backgroundColor: "rgba(201,168,76,0.12)",
               color: "#C9A84C",
@@ -805,8 +1638,684 @@ function WeakAreaCard({ weak }: { weak: WeakArea }) {
             <ArrowRight className="w-3 h-3" />
           </Link>
         ) : (
-          <span className="text-xs text-[#555555]">Keep practicing</span>
+          <span className="text-[11px] text-[#555555] italic">Keep practicing</span>
         )}
+      </div>
+    </div>
+  )
+}
+
+/**
+ * Per-persona "do these next" path. Each baseline persona (Rebuilder /
+ * Improver / Stretcher / Elite) gets a short list of 3-4 CTAs tailored
+ * to the research-report segment prescription.
+ *
+ *   Rebuilder — fundamentals rebuild: 4 chapters in order.
+ *   Improver  — consistency + mixed-set rehearsal.
+ *   Stretcher — harder pools + review/edit training.
+ *   Elite     — calibration + stress-test discipline.
+ */
+type PersonaPathKey = Exclude<PersonaProfile["key"], "unknown">
+
+interface PersonaPathStep {
+  href: string
+  section?: "Quant" | "Verbal" | "DI" | "All"
+  label: string
+  why: string
+  /** Optional completion tag. When present and matched against the page-
+   *  level `completedTags` set, the step renders muted + with a check
+   *  so students see what's left instead of "do these again." */
+  completionTag?: string
+}
+
+interface PersonaPathDef {
+  title: string
+  intro: string
+  steps: PersonaPathStep[]
+  accent: { color: string; bg: string; border: string }
+}
+
+const PERSONA_PATHS: Record<PersonaPathKey, PersonaPathDef> = {
+  "foundations-rebuilder": {
+    title: "Foundations path",
+    intro:
+      "Four chapters cover the fundamentals that every other topic leans on. Work them in order — each one unlocks comfort for the next. Don't skip to mixed sets until you've finished these.",
+    steps: [
+      {
+        href: "/chapters/arithmetic",
+        section: "Quant",
+        label: "Arithmetic",
+        why: "Basic Quant fluency — every other Quant topic leans on this.",
+        completionTag: "chapter-started:arithmetic",
+      },
+      {
+        href: "/chapters/critical-reasoning",
+        section: "Verbal",
+        label: "Critical Reasoning",
+        why: "Argument mechanics — the shape that CR + half of RC share.",
+        completionTag: "chapter-started:critical-reasoning",
+      },
+      {
+        href: "/chapters/reading-comprehension",
+        section: "Verbal",
+        label: "Reading Comprehension",
+        why: "Reading discipline — structure over detail, paragraph roles.",
+        completionTag: "chapter-started:reading-comprehension",
+      },
+      {
+        href: "/chapters/data-sufficiency",
+        section: "DI",
+        label: "Data Sufficiency",
+        why: "DI literacy — sufficiency logic, not arithmetic.",
+        completionTag: "chapter-started:data-sufficiency",
+      },
+    ],
+    accent: {
+      color: "#E8C97A",
+      bg: "rgba(232,201,122,0.06)",
+      border: "rgba(232,201,122,0.35)",
+    },
+  },
+  "structured-improver": {
+    title: "Improver path",
+    intro:
+      "The fundamentals are there; the delivery isn't reliable yet. Build a weekly rhythm of mixed sets + section rehearsals + error review so the right answer comes out consistently, not only when conditions are easy.",
+    steps: [
+      {
+        href: "/review",
+        section: "All",
+        label: "Two mixed-review sessions",
+        why: "Interleaving is where consistency is forged — your topic-by-topic accuracy is already decent.",
+        completionTag: "ran-mixed-7d",
+      },
+      {
+        href: "/test-builder",
+        section: "All",
+        label: "One timed section rehearsal",
+        why: "Quarter-section or half-section blocks train pacing and triage without the mock's endurance cost.",
+        completionTag: "drilled-recently",
+      },
+      {
+        href: "/error-log",
+        section: "All",
+        label: "Clear the error-log backlog",
+        why: "Tag every miss this week. Frequency-of-error patterns only show up once each mistake has a label.",
+        completionTag: "error-log-clear",
+      },
+    ],
+    accent: {
+      color: "#C9A84C",
+      bg: "rgba(201,168,76,0.06)",
+      border: "rgba(201,168,76,0.35)",
+    },
+  },
+  "ambitious-stretcher": {
+    title: "Stretcher path",
+    intro:
+      "The last 60 points cost more than the first 150. Stop running up the accuracy of topics you've already cleared — shift to harder pools, DI sophistication, and review/edit decision training.",
+    steps: [
+      {
+        href: "/practice",
+        section: "All",
+        label: "Hard-item drills",
+        why: "Pick Advanced difficulty on topics where you're already ≥75% at Intermediate. Leave medium behind.",
+        completionTag: "hard-drilled-recently",
+      },
+      {
+        href: "/chapters/multi-source-reasoning",
+        section: "DI",
+        label: "DI sophistication — MSR + TPA",
+        why: "DI is where 705+ candidates earn real ground — Multi-Source + Two-Part are the highest-leverage workflows.",
+        completionTag: "chapter-started:multi-source-reasoning",
+      },
+      {
+        href: "/mock/run",
+        section: "All",
+        label: "Mock + review-edit coach",
+        why: "The 3-edit cap under time pressure is its own skill — run a mock and read the review/edit helped/hurt counts.",
+        completionTag: "ran-mock-14d",
+      },
+    ],
+    accent: {
+      color: "#3ECF8E",
+      bg: "rgba(62,207,142,0.06)",
+      border: "rgba(62,207,142,0.35)",
+    },
+  },
+  "elite-finisher": {
+    title: "Elite path",
+    intro:
+      "Polish, not rebuild. Your ceiling work is endurance, trap discipline, and official-style calibration — leave the content drills and lean on realistic full-lengths with strict post-mortems.",
+    steps: [
+      {
+        href: "/mock",
+        section: "All",
+        label: "Official-style full mock",
+        why: "Full-length under exam conditions is the only reliable signal at this band. Treat our mock as the practice; use real official mocks as the calibration ground-truth.",
+        completionTag: "ran-mock-14d",
+      },
+      {
+        href: "/practice",
+        section: "All",
+        label: "Stress-pool drills",
+        why: "Hard-only sets on your weakest 2-3 topics. Skip everything else — you've earned the time.",
+        completionTag: "hard-drilled-recently",
+      },
+      {
+        href: "/error-log",
+        section: "All",
+        label: "Strict review/edit discipline",
+        why: "At this band, review/edit is where points leak. Tag every answer change with its root cause; only keep edits you can name the flaw for.",
+        completionTag: "error-log-clear",
+      },
+    ],
+    accent: {
+      color: "#6FB5F6",
+      bg: "rgba(111,181,246,0.06)",
+      border: "rgba(111,181,246,0.35)",
+    },
+  },
+}
+
+/**
+ * Orthogonal tag-driven step layering. When `intl-verbal` or `retaker`
+ * are active, we append 1 extra step per tag to the base persona path —
+ * never replace. The intent is: the baseline persona is still the spine
+ * of the prescription; tags add emphasis, not substitution.
+ *
+ * Each tag-layered step carries `tagOrigin` so the card can render a
+ * small chip showing *why* the step is in the list (e.g. "Int'l" pill
+ * on a Verbal drill). Completion tags are omitted here on purpose —
+ * these are persistent recommendations, not gated tasks.
+ */
+type PersonaPathStepWithOrigin = PersonaPathStep & { tagOrigin: PersonaTag }
+
+const PERSONA_TAG_STEPS: Record<
+  PersonaTag,
+  Record<PersonaPathKey, PersonaPathStep>
+> = {
+  "intl-verbal": {
+    "foundations-rebuilder": {
+      href: "/practice",
+      section: "Verbal",
+      label: "Untimed RC reading drills",
+      why: "Build reading-load stamina before the clock matters. Non-native readers need more volume here — pace comes after fluency.",
+    },
+    "structured-improver": {
+      href: "/test-builder",
+      section: "Verbal",
+      label: "Verbal-only timed block",
+      why: "Your delivery risk is sharper in Verbal — a section-length Verbal rehearsal trains reading-load pacing specifically.",
+    },
+    "ambitious-stretcher": {
+      href: "/practice",
+      section: "Verbal",
+      label: "Advanced CR + RC pools",
+      why: "Verbal precision is the ceiling piece for non-native readers — drill Advanced only, leave medium Verbal behind.",
+    },
+    "elite-finisher": {
+      href: "/practice",
+      section: "Verbal",
+      label: "Verbal stress-pool",
+      why: "The final points for Int'l candidates usually leak from a 2-3 question Verbal block under time. Drill Advanced RC + CR exclusively.",
+    },
+  },
+  retaker: {
+    "foundations-rebuilder": {
+      href: "/analytics",
+      section: "All",
+      label: "Post-mortem on /analytics",
+      why: "Your last GMAT is a data point. Score Report Mirror approximates the ESR breakdown — find the leak before re-running the same prep.",
+    },
+    "structured-improver": {
+      href: "/analytics",
+      section: "All",
+      label: "Read your Score Report Mirror",
+      why: "Your last GMAT shows the drag you didn't address last time. Mirror the section + type breakdown to make sure this cycle attacks it.",
+    },
+    "ambitious-stretcher": {
+      href: "/analytics",
+      section: "All",
+      label: "Prediction MAE + type breakdown",
+      why: "Calibration matters more for retakers — your last real score is the only one that counted. Read the MAE direction before the next mock.",
+    },
+    "elite-finisher": {
+      href: "/analytics",
+      section: "All",
+      label: "Strict ESR-style review/edit discipline",
+      why: "Retakers at the Elite band leak on review/edit decisions under time. Tag every post-time answer change with its root cause.",
+    },
+  },
+}
+
+function PersonaPathCard({
+  personaKey,
+  completedTags,
+  tags,
+}: {
+  personaKey: PersonaPathKey
+  completedTags: Set<string>
+  tags: PersonaTag[]
+}) {
+  const path = PERSONA_PATHS[personaKey]
+  const extraSteps: PersonaPathStepWithOrigin[] = tags.map((tag) => ({
+    ...PERSONA_TAG_STEPS[tag][personaKey],
+    tagOrigin: tag,
+  }))
+  const allSteps: (PersonaPathStep | PersonaPathStepWithOrigin)[] = [
+    ...path.steps,
+    ...extraSteps,
+  ]
+  const doneCount = path.steps.filter(
+    (s) => s.completionTag && completedTags.has(s.completionTag),
+  ).length
+  return (
+    <div
+      className="p-6 sm:p-7 rounded-2xl border transition-all duration-300"
+      style={{
+        borderColor: path.accent.border,
+        backgroundColor: path.accent.bg,
+      }}
+    >
+      <div className="flex items-center gap-3 mb-2 flex-wrap">
+        <BookOpen className="w-4 h-4" style={{ color: path.accent.color }} />
+        <p
+          className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+          style={{ color: path.accent.color }}
+        >
+          {path.title}
+        </p>
+        {doneCount > 0 && (
+          <span
+            className="text-[10px] uppercase tracking-[0.18em] font-semibold px-2 py-0.5 rounded-full tabular-nums border"
+            style={{
+              backgroundColor: path.accent.color + "1A",
+              borderColor: path.accent.color + "40",
+              color: path.accent.color,
+            }}
+          >
+            {doneCount}/{path.steps.length} done
+          </span>
+        )}
+      </div>
+      <p className="text-[14px] text-[#C0C0C0] leading-[1.65] mb-5">
+        {path.intro}
+      </p>
+      <ol className="space-y-2.5">
+        {allSteps.map((step, i) => {
+          const done = !!(
+            step.completionTag && completedTags.has(step.completionTag)
+          )
+          const tagOrigin = "tagOrigin" in step ? step.tagOrigin : undefined
+          const tagDef = tagOrigin ? PERSONA_TAG_DEFS[tagOrigin] : null
+          return (
+            <li key={`${step.href}-${i}`}>
+              <Link
+                href={step.href}
+                className="group flex items-start gap-3 p-4 rounded-xl bg-[#0D0D0D] border border-white/[0.06] hover:border-white/[0.14] transition-all duration-300 hover:-translate-y-0.5"
+                style={done ? { opacity: 0.55 } : {}}
+              >
+                <span
+                  className="flex items-center justify-center w-8 h-8 rounded-full flex-shrink-0 font-display text-[13px] font-semibold tabular-nums mt-0.5"
+                  style={
+                    done
+                      ? {
+                          backgroundColor: "rgba(62,207,142,0.18)",
+                          color: "#3ECF8E",
+                        }
+                      : tagDef
+                        ? {
+                            backgroundColor: tagDef.bg,
+                            color: tagDef.color,
+                          }
+                        : {
+                            backgroundColor: path.accent.color + "26",
+                            color: path.accent.color,
+                          }
+                  }
+                >
+                  {done ? <Check className="w-3.5 h-3.5" /> : `0${i + 1}`}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                    {step.section && (
+                      <span
+                        className="px-1.5 py-0.5 rounded-full text-[9px] uppercase tracking-[0.18em]"
+                        style={{
+                          backgroundColor: "rgba(201,168,76,0.08)",
+                          color: "#C9A84C",
+                        }}
+                      >
+                        {step.section}
+                      </span>
+                    )}
+                    {tagDef && (
+                      <span
+                        className="px-1.5 py-0.5 rounded-full text-[9px] uppercase tracking-[0.18em]"
+                        style={{
+                          backgroundColor: tagDef.bg,
+                          color: tagDef.color,
+                        }}
+                      >
+                        {tagDef.label}
+                      </span>
+                    )}
+                    <p
+                      className="text-[14px] font-semibold tracking-tight"
+                      style={{
+                        color: done ? "#888888" : "#F0F0F0",
+                        textDecoration: done ? "line-through" : "none",
+                      }}
+                    >
+                      {step.label}
+                    </p>
+                  </div>
+                  <p className="text-[12px] text-[#C0C0C0] leading-relaxed">
+                    {step.why}
+                  </p>
+                </div>
+                <ArrowRight className="w-4 h-4 text-[#555555] flex-shrink-0 mt-1.5 group-hover:text-[#C9A84C] transition-colors" />
+              </Link>
+            </li>
+          )
+        })}
+      </ol>
+    </div>
+  )
+}
+
+/**
+ * Aggregate Official-ready card. Surfaces two-week stability on mixed +
+ * mock work — the research-report signal that a student's performance
+ * is "real" enough to weigh vs rolling practice accuracy. Hides empty
+ * by rendering only after `computeOfficialReady` has run.
+ */
+function OfficialReadyCard({ summary }: { summary: OfficialReadySummary }) {
+  const { status, thisWeekAccuracy, thisWeekAttempts, lastWeekAccuracy, lastWeekAttempts, threshold, headline } = summary
+  const colour =
+    status === "ready"
+      ? "#3ECF8E"
+      : status === "stable-partial"
+        ? "#C9A84C"
+        : status === "unstable"
+          ? "#FF4444"
+          : "#888888"
+  const bg =
+    status === "ready"
+      ? "rgba(62,207,142,0.08)"
+      : status === "stable-partial"
+        ? "rgba(201,168,76,0.08)"
+        : status === "unstable"
+          ? "rgba(255,68,68,0.08)"
+          : "rgba(255,255,255,0.03)"
+  const statusLabel =
+    status === "ready"
+      ? "Official-ready"
+      : status === "stable-partial"
+        ? "Stabilising"
+        : status === "unstable"
+          ? "Unstable"
+          : "Not enough data"
+  const pct = (x: number | null) => (x === null ? "—" : `${Math.round(x * 100)}%`)
+  return (
+    <div
+      className="p-6 rounded-2xl border transition-all duration-300 hover:shadow-[0_14px_36px_-20px_rgba(201,168,76,0.18)]"
+      style={{ borderColor: colour + "40", backgroundColor: bg }}
+    >
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+        <div className="flex items-center gap-2">
+          <Sparkles className="w-4 h-4" style={{ color: colour }} />
+          <p
+            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+            style={{ color: colour }}
+          >
+            {statusLabel}
+          </p>
+        </div>
+        <span className="text-[11px] text-[#888888] tabular-nums">
+          Two-week mixed + mock stability · target ≥{Math.round(threshold * 100)}%
+        </span>
+      </div>
+      <p className="text-[14px] text-[#C0C0C0] leading-[1.65] mb-5">
+        {headline}
+      </p>
+      <div className="grid grid-cols-2 gap-3">
+        <div className="p-4 rounded-xl bg-[#0D0D0D] border border-white/[0.06]">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-[#555555] font-semibold">
+            Last week
+          </p>
+          <p className="font-display text-2xl font-semibold text-[#F0F0F0] mt-1.5 tabular-nums tracking-[-0.02em]">
+            {pct(lastWeekAccuracy)}
+          </p>
+          <p className="text-[11px] text-[#888888] mt-1 tabular-nums">
+            {lastWeekAttempts} attempt{lastWeekAttempts === 1 ? "" : "s"}
+          </p>
+        </div>
+        <div className="p-4 rounded-xl bg-[#0D0D0D] border border-white/[0.06]">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-[#555555] font-semibold">
+            This week
+          </p>
+          <p className="font-display text-2xl font-semibold text-[#F0F0F0] mt-1.5 tabular-nums tracking-[-0.02em]">
+            {pct(thisWeekAccuracy)}
+          </p>
+          <p className="text-[11px] text-[#888888] mt-1 tabular-nums">
+            {thisWeekAttempts} attempt{thisWeekAttempts === 1 ? "" : "s"}
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/**
+ * Persona chip + blurb. When the student has no diagnostic yet, shows
+ * the "Not yet assigned" variant with a CTA to finish the diagnostic —
+ * persona is the driver for downstream threshold tuning so we can't
+ * meaningfully personalise anything until it's set.
+ */
+function PersonaCard({ persona }: { persona: PersonaProfile }) {
+  const unknown = persona.key === "unknown"
+  return (
+    <div
+      className="p-6 sm:p-7 rounded-2xl border transition-all duration-300 hover:shadow-[0_14px_36px_-20px_rgba(201,168,76,0.2)]"
+      style={{
+        borderColor: unknown ? "rgba(255,255,255,0.08)" : persona.color,
+        backgroundColor: unknown ? "#0F0F0F" : persona.bg,
+      }}
+    >
+      <div className="flex items-center gap-2 mb-3 flex-wrap">
+        <span
+          className="px-2.5 py-1 rounded-full text-[10px] uppercase tracking-[0.22em] font-semibold"
+          style={{
+            backgroundColor: persona.bg,
+            color: persona.color,
+            border: `1px solid ${persona.color}`,
+          }}
+        >
+          {persona.label}
+        </span>
+        {persona.tags.map((tag) => {
+          const def = PERSONA_TAG_DEFS[tag]
+          return (
+            <span
+              key={tag}
+              className="px-2.5 py-1 rounded-full text-[10px] uppercase tracking-[0.22em] font-semibold"
+              style={{
+                backgroundColor: def.bg,
+                color: def.color,
+                border: `1px solid ${def.color}`,
+              }}
+            >
+              {def.label}
+            </span>
+          )
+        })}
+        <span className="text-[11px] text-[#888888] tracking-tight">
+          {persona.bandLabel}
+        </span>
+      </div>
+      <p className="text-[15px] leading-[1.65] text-[#F0F0F0] tracking-tight">
+        {persona.coreNeed}
+      </p>
+      {persona.emphasis && (
+        <p className="text-[13px] text-[#C0C0C0] leading-[1.65] mt-2">
+          <span className="text-[#888888]">Product emphasis:</span>{" "}
+          {persona.emphasis}
+        </p>
+      )}
+      {persona.tags.length > 0 && (
+        <div className="mt-3 space-y-1.5">
+          {persona.tags.map((tag) => {
+            const def = PERSONA_TAG_DEFS[tag]
+            return (
+              <p
+                key={`addendum-${tag}`}
+                className="text-[13px] leading-[1.65]"
+                style={{ color: def.color }}
+              >
+                <span className="font-semibold">{def.label}:</span>{" "}
+                <span className="text-[#C0C0C0]">{def.addendum}</span>
+              </p>
+            )
+          })}
+        </div>
+      )}
+      {unknown && (
+        <Link
+          href="/diagnostic"
+          className="inline-flex items-center gap-1.5 text-xs px-4 py-2 rounded-xl font-semibold tracking-tight mt-4 transition-all duration-200 hover:scale-[1.02]"
+          style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+        >
+          Take the diagnostic
+          <ArrowRight className="w-3 h-3" />
+        </Link>
+      )}
+    </div>
+  )
+}
+
+/**
+ * Shows a topic's mastery tier + the three gates (Concept / Timed /
+ * Mixed) with pass/fail indicators and a one-line evidence string per
+ * gate. The next gate — the lowest unsatisfied one — gets the CTA,
+ * because that's what the student should work on next.
+ */
+function MasteryCard({ mastery }: { mastery: TopicMastery }) {
+  const nextGate = mastery.gates.find((g) => !g.satisfied) ?? null
+  // "Not started" used to render alongside evidence like "1/5 untimed
+  // correct," which read as a contradiction. "Insufficient data" is
+  // honest when the topic has *some* attempts but not enough to evaluate
+  // the first gate yet.
+  const tierLabel =
+    mastery.tier === "section-ready"
+      ? "Section-ready"
+      : mastery.tier === "mixed-ready"
+        ? "Mixed-ready"
+        : mastery.tier === "timed-ready"
+          ? "Timed-ready"
+          : mastery.tier === "concept-ready"
+            ? "Concept-ready"
+            : "Insufficient data"
+  const tierColor =
+    mastery.tier === "section-ready"
+      ? "#6FB5F6"
+      : mastery.tier === "mixed-ready"
+        ? "#3ECF8E"
+        : mastery.tier === "timed-ready"
+          ? "#C9A84C"
+          : mastery.tier === "concept-ready"
+            ? "#E8C97A"
+            : "#888888"
+
+  // CTA routing: concept → chapter, timed/mixed → practice drill,
+  // section → mock builder. Falls back to /practice if no chapter mapping.
+  const ctaHref =
+    nextGate?.id === "section"
+      ? "/test-builder"
+      : nextGate?.id === "concept" && mastery.chapterSlug
+        ? `/chapters/${mastery.chapterSlug}`
+        : mastery.chapterSlug
+          ? `/practice/session/${mastery.chapterSlug}`
+          : "/practice"
+  const ctaLabel =
+    nextGate?.id === "concept"
+      ? "Open chapter"
+      : nextGate?.id === "timed"
+        ? "Timed drill"
+        : nextGate?.id === "mixed"
+          ? "Mixed set"
+          : nextGate?.id === "section"
+            ? "Build mock"
+            : "Review"
+
+  return (
+    <div className="p-5 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]">
+      <div className="flex items-start justify-between gap-4 flex-col sm:flex-row">
+        <div className="flex items-start gap-3 min-w-0">
+          <span
+            className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em] flex-shrink-0 mt-1"
+            style={{
+              backgroundColor: "rgba(201,168,76,0.08)",
+              color: "#C9A84C",
+            }}
+          >
+            {mastery.section}
+          </span>
+          <div className="min-w-0">
+            <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0] truncate">
+              {mastery.topic}
+            </p>
+            <p
+              className="text-[10px] font-semibold uppercase tracking-[0.22em] mt-1"
+              style={{ color: tierColor }}
+            >
+              {tierLabel}
+            </p>
+          </div>
+        </div>
+        {nextGate && (
+          <Link
+            href={ctaHref}
+            className="text-xs px-3.5 py-1.5 rounded-xl font-semibold tracking-tight transition-all duration-200 hover:scale-[1.02] inline-flex items-center gap-1 flex-shrink-0 self-end sm:self-auto"
+            style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+          >
+            {ctaLabel}
+            <ArrowRight className="w-3 h-3" />
+          </Link>
+        )}
+      </div>
+      <div className="mt-4 space-y-2">
+        {mastery.gates.map((g) => (
+          <div key={g.id} className="flex items-start gap-2.5 text-[12px]">
+            <span
+              className="inline-flex items-center justify-center w-4 h-4 rounded-full mt-0.5 flex-shrink-0"
+              style={{
+                backgroundColor: g.satisfied
+                  ? "rgba(62,207,142,0.15)"
+                  : "rgba(255,255,255,0.04)",
+                border: `1px solid ${
+                  g.satisfied
+                    ? "rgba(62,207,142,0.35)"
+                    : "rgba(255,255,255,0.08)"
+                }`,
+              }}
+              aria-hidden="true"
+            >
+              {g.satisfied ? (
+                <Check className="w-2.5 h-2.5" style={{ color: "#3ECF8E" }} />
+              ) : null}
+            </span>
+            <div className="flex-1 min-w-0">
+              <span
+                className="font-semibold tracking-tight"
+                style={{ color: g.satisfied ? "#3ECF8E" : "#F0F0F0" }}
+              >
+                {g.label}
+              </span>
+              <span className="text-[#C0C0C0]"> — {g.evidence}</span>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -824,16 +2333,20 @@ function StatCard({
   value: string
 }) {
   return (
-    <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111] flex items-center gap-4">
+    <div className="p-5 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] flex items-center gap-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]">
       <div
-        className="w-9 h-9 rounded-lg flex items-center justify-center"
+        className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
         style={{ backgroundColor: `${color}15` }}
       >
         <Icon className="w-4 h-4" style={{ color }} />
       </div>
-      <div>
-        <p className="text-lg font-bold text-[#F0F0F0]">{value}</p>
-        <p className="text-xs text-[#555555]">{label}</p>
+      <div className="min-w-0">
+        <p className="font-display text-2xl font-semibold text-[#F0F0F0] tracking-[-0.02em] tabular-nums leading-none">
+          {value}
+        </p>
+        <p className="text-[11px] text-[#888888] mt-1.5 uppercase tracking-[0.18em]">
+          {label}
+        </p>
       </div>
     </div>
   )
