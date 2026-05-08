@@ -86,7 +86,7 @@ The ratio of red marbles to blue marbles in a jar is 3:5. If there are 40 marble
 **type:** Problem Solving
 **topic:** Decimals
 
-Which of the following is equal to 0.125 x 0.4?
+Which of the following is equal to 0.125 × 0.4?
 
 - A) 0.005
 - B) 0.05
@@ -462,15 +462,21 @@ Is the fraction p/q greater than 1/2?
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
-**answer:** B
-**fastest_path:** p/q > 1/2 ⟺ 2p > q. Stmt (2): q = 2p − 5 → 2p − q = 5 > 0 → sufficient.
-**explanation:** Reframe: p/q > 1/2 is equivalent to 2p > q (when q > 0). Statement (1) p + q = 20: counterexamples — (p=5, q=15): p/q = 1/3, no. (p=15, q=5): p/q = 3, yes. Different yes/no → insufficient. Statement (2) q = 2p − 5: rearrange to 2p − q = 5, which is > 0 → 2p > q → p/q > 1/2 always (assuming q > 0). Sufficient. → answer is B.
-**mistake_a:** Treated Statement (1) alone as sufficient because it "looks like a complete equation."
-**mistake_c:** Required both statements without testing each alone.
-**mistake_d:** Concluded each alone sufficient.
-**mistake_e:** Concluded together insufficient because of the q-positivity edge case.
-**common_trap:** Yes/no DS — testing only one case (the "easy" one) and missing the contradicting case.
-**takeaway:** For yes/no DS, the answer is sufficient *only when consistent across all valid cases*. Test edge cases (large p, large q, near-equal, etc.) before concluding.
+**answer:** C
+**fastest_path:** (1) alone: p=5, q=15 → p/q=1/3 < 1/2; p=15, q=5 → p/q=3 > 1/2. Insufficient. (2) alone: p=1, q=−3 → p/q=−1/3 < 1/2; p=5, q=5 → p/q=1 > 1/2. Insufficient. Together: unique solution p=25/3, q=35/3 → p/q=5/7 > 1/2. Sufficient → C.
+**explanation:** The question asks whether p/q > 1/2, which is only equivalent to 2p > q when q is positive — a critical constraint the statements do not guarantee.
+
+Statement (1) p + q = 20 alone: try (p=5, q=15) → p/q = 1/3, answer is No; try (p=15, q=5) → p/q = 3, answer is Yes. Two outcomes → insufficient.
+
+Statement (2) q = 2p − 5 alone: q can be positive or negative depending on p. If p=1, q = −3, then p/q = 1/(−3) = −1/3 < 1/2 (answer: No). If p=5, q = 5, then p/q = 1 > 1/2 (answer: Yes). Two outcomes → insufficient. The step 2p − q = 5 > 0 does not imply p/q > 1/2 when q < 0, because dividing by a negative flips the inequality.
+
+Together: substitute (2) into (1): p + (2p − 5) = 20 → 3p = 25 → p = 25/3, q = 35/3. Then p/q = 25/35 = 5/7 > 1/2. Unique answer: Yes → sufficient.
+**mistake_a:** Treated Statement (1) alone as sufficient because it "looks like a complete equation"; didn't test contradicting cases.
+**mistake_b:** Assumed 2p − q = 5 > 0 is always sufficient — missed that the equivalence p/q > 1/2 ⟺ 2p > q only holds when q > 0, which Statement (2) does not ensure.
+**mistake_d:** Concluded each statement alone is sufficient — likely tested only convenient positive values of q in Statement (2) and missed the q < 0 case.
+**mistake_e:** Required both but concluded they are still not sufficient — missed that the combined system uniquely determines p and q.
+**common_trap:** Treating p/q > 1/2 ⟺ 2p > q as unconditional. This equivalence depends on the sign of q; when q < 0, the direction flips.
+**takeaway:** Inequalities involving fractions require a sign check on the denominator before cross-multiplying. In yes/no DS, always test boundary cases (q negative, near-zero, large) to verify consistency.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---

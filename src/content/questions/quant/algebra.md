@@ -49,7 +49,7 @@ Which of the following is equivalent to (x³)⁴ / x⁵?
 **fastest_path:** (x³)⁴ = x^(3×4) = x¹². Divide: x¹² / x⁵ = x^(12−5) = x⁷.
 **explanation:** Two exponent rules: (a) power of a power multiplies exponents — (x³)⁴ = x^(3×4) = x¹². (b) Same-base division subtracts exponents — x¹² / x⁵ = x^(12−5) = x⁷. The whole computation is two mechanical steps.
 **mistake_a:** Subtracted 3 from 5 (treated denominator as numerator) — got x^2.
-**mistake_c:** Multiplied exponents at every step — got 3 × 4 × 5 = 60, then somehow truncated to x¹². The reasoning chain confused multiplication and division.
+**mistake_c:** Computed (x³)⁴ = x¹² correctly but stopped there, skipping the division by x⁵ entirely — bubbled the intermediate result.
 **mistake_d:** Multiplied (x³)⁴ as x^(3+4) = x^7, then multiplied by x^5 instead of dividing — got x^15.
 **mistake_e:** Computed 3 × 4 + 5 = 17 by adding the bottom exponent rather than subtracting.
 **common_trap:** Confusing exponent rules — multiplying when you should subtract, or adding when you should multiply.
@@ -153,7 +153,7 @@ If f(x) = 2x² - 3x + 1, what is the value of f(3) - f(1)?
 **fastest_path:** f(3) = 2(9) − 9 + 1 = 10. f(1) = 2 − 3 + 1 = 0. Difference = 10.
 **explanation:** f(3) = 2(9) − 3(3) + 1 = 18 − 9 + 1 = 10. f(1) = 2(1) − 3(1) + 1 = 2 − 3 + 1 = 0. f(3) − f(1) = 10.
 **mistake_a:** Slip → 8 (likely arithmetic error in f(3) computation).
-**mistake_c:** Computed f(3) + f(1) instead of f(3) − f(1) → 10 + 0… no, but a likely sign-flip path: 2(9) − 3(3) − 1 = 8, then 8 + 4 → 12.
+**mistake_c:** Computed f(1) with a sign error on the constant: 2(1)² − 3(1) − 1 = −2 instead of 0, then f(3) − f(1) = 10 − (−2) = 12.
 **mistake_d:** Slip → 14.
 **mistake_e:** Computed f(3) but treated f(1) as 1 instead of 0 → 10 + 6, or skipped the subtraction entirely.
 **common_trap:** Arithmetic slip on f(3) = 18 − 9 + 1, especially flipping the order of operations on −3(3).
@@ -257,8 +257,8 @@ If 4^(a+1) = 8^a, what is the value of a?
 **fastest_path:** Common base 2: 4^(a+1) = 2^(2a+2); 8^a = 2^(3a). Set exponents equal: 2a + 2 = 3a → a = 2.
 **explanation:** Rewrite both sides with the same base. 4 = 2², so 4^(a+1) = 2^(2(a+1)) = 2^(2a+2). 8 = 2³, so 8^a = 2^(3a). The equation becomes 2^(2a+2) = 2^(3a), which (since the bases are equal) requires the exponents to be equal: 2a + 2 = 3a → a = 2. Verify: 4³ = 64 and 8² = 64 ✓.
 **mistake_a:** Set 4 + 1 = 8 × a (treated bases additively).
-**mistake_c:** Solved 2a = 3a, got a = 0; then bubbled wrong.
-**mistake_d:** Multiplied incorrectly: 2(a+1) = 3a → 2a + 2 = 3a; got a = 2 correctly but slipped on the answer letter.
+**mistake_c:** Dropped the +2 term entirely and set 2a = 3a; concluded a = 0 (not an option), then guessed the nearest available integer.
+**mistake_d:** Reached 2a + 2 = 3a correctly but read it as "a equals all the non-a numbers": 2 + 2 = 4. A pattern-matching error that bypasses the subtraction step.
 **mistake_e:** Misread 4^(a+1) as 4^a + 1, leading to wrong setup.
 **common_trap:** Exponent rules misapplied — power-of-power vs. product-of-powers.
 **takeaway:** When two powers have different bases with a common base relationship (4 = 2², 8 = 2³, 9 = 3², etc.), rewrite with the common base. Equal bases → equal exponents.
@@ -285,7 +285,7 @@ For all positive integers n, let f(n) = n² - n. What is the value of f(f(3))?
 **mistake_a:** Stopped at the inner computation: f(3) = 6 — bubbled the intermediate value.
 **mistake_b:** Computed f(3) × 2 = 12 (multiplied instead of composing).
 **mistake_d:** Computed f(7) = 49 − 7 = 42 — wrong inner argument.
-**mistake_e:** Computed (f(3))² − f(3) = 36 − 6 = 30 ... wait, that gives 30 (correct). Or f(3)² − 1 = 35; 7² + 7 = 56.
+**mistake_e:** Misread the constant in the definition as 2 instead of 0 (e.g., f(n) = n² − n + 2): computed f(3) = 9 − 3 + 2 = 8, then f(8) = 64 − 8 = 56.
 **common_trap:** Stopping at the inner result and bubbling — composition requires both layers.
 **takeaway:** f(f(x)) means apply f twice: compute f(x) first, then apply f to that result.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -505,7 +505,7 @@ If f(x) = ax + b where a and b are constants, what is the value of f(5)?
 ---
 
 ## Q20
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Algebra Translation
 
@@ -638,7 +638,7 @@ If the roots of the quadratic equation x² + bx + 12 = 0 differ by 1, what are t
 ---
 
 ## Q25
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Word Problem — Relative Motion
 

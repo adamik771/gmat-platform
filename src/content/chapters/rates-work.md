@@ -162,6 +162,10 @@ Trap answer: students who add times wrongly compute 12 − 8 = 4 and pick that, 
 
 **Trap to watch.** "How long does the job take if three pumps work for 2 hours, then two more pumps join?" This isn't pure combined work — it's a *staggered-start* problem, covered in a later section. Combined work assumes everyone starts at time zero.
 
+> **Self-explanation prompt.** Before moving on, say this out loud: *why* do you add rates and not times when two workers combine? If you can explain "because each worker independently contributes a fraction of the job per hour — those fractions add; the time to finish is 1 divided by the combined fraction," you've understood the concept, not just memorized the formula. A student who truly understands this will never again add the times, even under pressure.
+
+> **Recall check.** Cover this section. Pipe A fills a tank in 8 hours; Pipe B fills the same tank in 12 hours. Can you write the combined rate and the combined time from memory, before looking? If A's rate is 1/8 and B's is 1/12, the combined rate is 1/8 + 1/12 = 5/24, and the combined time is 24/5 = 4.8 hours. If you got a number larger than 8 or computed 8 + 12 = 20, review the section. Spaced retrieval (Roediger & Karpicke, 2006) converts a rule you've read into a rule you own.
+
 ## @two-objects-moving
 
 Two cars, two trains, two people on bikes. Three setups cover every question in this family.
@@ -213,6 +217,8 @@ A boat does 24 km downstream in 2 hours and 24 km upstream in 3 hours:
 Same idea applies for planes with tailwind/headwind — the wind simply adds or subtracts depending on direction.
 
 **Trap to watch.** Don't confuse "separation rate" with "speed of one object." When the question says "how fast is the gap growing," that's the *sum* of the two speeds, not either individual speed.
+
+> **Recall check.** Cover this section and state from memory: what do you do with the speeds when two objects move toward each other? What do you do when one chases the other in the same direction? (Toward each other or moving apart → add the speeds. Same direction → subtract the slower from the faster.) Now, a freight train leaves at 6 AM at 40 mph; an express leaves the same station at 8 AM at 60 mph, same direction. How far ahead is the freight when the express departs, and what is the express's closing rate? Compute before checking: 2 hrs × 40 mph = 80 miles ahead; closing rate = 60 − 40 = 20 mph; catch-up time = 80/20 = 4 hours. If you added the speeds or used the wrong base, re-read the same-direction example above.
 
 ## @average-speed
 
@@ -279,6 +285,8 @@ When work starts with one worker and a second joins later, or when one of two sp
 **The 60-mile commute problem.** Usual speed r, time 60/r. Faster speed r + 10, time 60/(r+10). Difference = 1/4 hour. Solve 60/r − 60/(r+10) = 1/4, multiply by 4r(r+10), simplify to r² + 10r − 2400 = 0, factor to (r−40)(r+60) = 0. Usual speed = **40 mph**.
 
 **Trap to watch.** When one of the pipes is *draining* (negative rate), subtract it from the combined fill rate. Three pipes: A and B fill, C drains. Combined rate = 1/a + 1/b − 1/c. Missing the minus sign turns a drain into a fill and gives a badly wrong answer.
+
+> **Self-explanation prompt.** Why does the two-phase template require you to compute the *fraction of the job remaining* after phase 1, rather than working directly with times? If you can say "because phase 2 operates at a different rate, so time alone doesn't tell you how much was done — you need the fraction of work left, then divide that by the new rate to get phase 2 time," you've understood the structure. The moment you try to add or average the times across phases without tracking the fraction of work, you're guaranteed a wrong answer.
 
 ## @summary
 
