@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation"
 import {
   AlertTriangle,
   ArrowLeft,
+  ArrowRight,
+  BarChart2,
   BookOpen,
   Check,
   ChevronDown,
@@ -22,6 +24,7 @@ import PacingBadge from "@/components/shared/PacingBadge"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
 import { levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
@@ -1208,6 +1211,8 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+    const wrongCount = questions.filter((q, i) => states[i].submitted && !isQuestionCorrect(q, states[i])).length
+    const chapterSlug = TOPIC_TO_CHAPTER[topic]
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1251,6 +1256,71 @@ export default function SessionClient({
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Total time</p>
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
             </div>
+          </div>
+        </div>
+
+        {/* What to do next */}
+        <div className="rounded-xl border border-white/[0.08] p-5 bg-[#111111]">
+          <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-4">
+            Continue your momentum
+          </p>
+          <div className="space-y-2">
+            {wrongCount > 0 && (
+              <Link
+                href="/error-log"
+                className="flex items-center gap-3 p-3 rounded-lg border border-white/[0.05] bg-[#0D0D0D] hover:bg-white/[0.03] transition-colors group"
+              >
+                <div
+                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: "rgba(255,68,68,0.08)" }}
+                >
+                  <AlertTriangle className="w-4 h-4" style={{ color: "#FF4444" }} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-[#F0F0F0]">Review your mistakes</p>
+                  <p className="text-xs text-[#555555]">
+                    {wrongCount} question{wrongCount !== 1 ? "s" : ""} to analyze in your error log
+                  </p>
+                </div>
+                <ArrowRight className="w-3.5 h-3.5 text-[#555555] group-hover:text-[#888888] transition-colors flex-shrink-0" />
+              </Link>
+            )}
+            {accuracy < 65 && chapterSlug && (
+              <Link
+                href={`/chapters/${chapterSlug}`}
+                className="flex items-center gap-3 p-3 rounded-lg border border-white/[0.05] bg-[#0D0D0D] hover:bg-white/[0.03] transition-colors group"
+              >
+                <div
+                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: "rgba(201,168,76,0.08)" }}
+                >
+                  <BookOpen className="w-4 h-4" style={{ color: "#C9A84C" }} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-[#F0F0F0]">Study the {topic} chapter</p>
+                  <p className="text-xs text-[#555555]">
+                    Reinforce the concepts this session tested
+                  </p>
+                </div>
+                <ArrowRight className="w-3.5 h-3.5 text-[#555555] group-hover:text-[#888888] transition-colors flex-shrink-0" />
+              </Link>
+            )}
+            <Link
+              href="/study-plan"
+              className="flex items-center gap-3 p-3 rounded-lg border border-white/[0.05] bg-[#0D0D0D] hover:bg-white/[0.03] transition-colors group"
+            >
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                style={{ backgroundColor: "rgba(62,207,142,0.08)" }}
+              >
+                <BarChart2 className="w-4 h-4" style={{ color: "#3ECF8E" }} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-[#F0F0F0]">Return to your study plan</p>
+                <p className="text-xs text-[#555555]">See what to focus on next</p>
+              </div>
+              <ArrowRight className="w-3.5 h-3.5 text-[#555555] group-hover:text-[#888888] transition-colors flex-shrink-0" />
+            </Link>
           </div>
         </div>
 
