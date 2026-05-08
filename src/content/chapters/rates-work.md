@@ -162,6 +162,8 @@ Trap answer: students who add times wrongly compute 12 − 8 = 4 and pick that, 
 
 **Trap to watch.** "How long does the job take if three pumps work for 2 hours, then two more pumps join?" This isn't pure combined work — it's a *staggered-start* problem, covered in a later section. Combined work assumes everyone starts at time zero.
 
+> **Recall check.** Without looking up: what is the combined-work formula when Worker A takes `a` hours alone and Worker B takes `b` hours alone? Write it from memory. Now explain in one sentence *why* you add rates and not times. If the sentence starts with "because rates measure work per unit time and they're directly additive while times aren't," you've got it. If you can't produce the sentence, re-read the "Why adding rates works" paragraph — that explanation is the one you need under pressure when memory of the formula itself fades.
+
 ## @two-objects-moving
 
 Two cars, two trains, two people on bikes. Three setups cover every question in this family.
@@ -213,6 +215,8 @@ A boat does 24 km downstream in 2 hours and 24 km upstream in 3 hours:
 Same idea applies for planes with tailwind/headwind — the wind simply adds or subtracts depending on direction.
 
 **Trap to watch.** Don't confuse "separation rate" with "speed of one object." When the question says "how fast is the gap growing," that's the *sum* of the two speeds, not either individual speed.
+
+> **Self-explanation prompt.** Before looking at the check questions: describe in one sentence what determines whether you add or subtract the two speeds. The answer should be "opposite directions (toward or away) → add; same direction → subtract." If you can extend it to boats and current — downstream adds the current, upstream subtracts it — you've covered every two-object variant the GMAT tests.
 
 ## @average-speed
 
@@ -280,6 +284,8 @@ When work starts with one worker and a second joins later, or when one of two sp
 
 **Trap to watch.** When one of the pipes is *draining* (negative rate), subtract it from the combined fill rate. Three pipes: A and B fill, C drains. Combined rate = 1/a + 1/b − 1/c. Missing the minus sign turns a drain into a fill and gives a badly wrong answer.
 
+> **Self-explanation prompt.** Before the check questions: state the two-step template for any staggered-start problem without looking. Step 1: compute the fraction of the job completed in the solo phase (rate × time). Step 2: divide the remaining fraction by the combined rate to get phase 2 time; add both phases for the total. If you can do that in 15 seconds from memory, you're ready. If you had to glance back, re-work the pipe example above on scratch paper before moving on — the template only sticks after you write it yourself once.
+
 ## @summary
 
 Every GMAT rates/work question reduces to one of six patterns. Identify the pattern first; the arithmetic follows.
@@ -319,3 +325,10 @@ Every GMAT rates/work question reduces to one of six patterns. Identify the patt
 | "Joins X hours later" | Staggered | Phase 1 + Phase 2 |
 
 **Time-management note.** None of these questions should take more than 90 seconds once the pattern is recognized. If you're at 60 seconds and still setting up, you've misidentified the pattern — step back and re-read.
+
+**What to do next.**
+
+1. Complete the Easy problem set below until your accuracy holds at or above the target for your score band — focus on pattern recognition, not speed.
+2. Move to the Medium set. For every question you miss, write down which of the six patterns it was and why you misidentified it.
+3. Once you clear Medium at your target accuracy, work the Hard set. Hard questions almost always combine two patterns (e.g., staggered start + average speed, or combined work + drain pipe). Identify both patterns before writing any equations.
+4. Add any question you miss twice to your error log — rates problems that trip you up repeatedly usually share a single underlying misconception (unit mismatch, adding times, arithmetic-mean speed). Naming it in the error log forces the insight that fixes it permanently.
