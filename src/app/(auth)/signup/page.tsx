@@ -3,7 +3,7 @@
 import { Suspense, useState } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
-import { Eye, EyeOff, ArrowRight, Check, Loader2, AlertCircle } from "lucide-react"
+import { Eye, EyeOff, ArrowRight, Check, Loader2, AlertCircle, Lock } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
 
@@ -14,12 +14,6 @@ import { createSupabaseBrowser } from "@/lib/supabase/browser"
  * redirect.
  */
 const ALLOWED_REDIRECTS = new Set(["/pricing", "/dashboard"])
-
-const plans = [
-  { id: "self_study", name: "Self-Study", price: "$297", note: "one-time" },
-  { id: "coaching", name: "Coaching", price: "$2,500", note: "package", popular: true },
-  { id: "intensive", name: "Intensive", price: "$4,200", note: "package" },
-]
 
 export default function SignupPage() {
   // useSearchParams triggers a client-side bailout, so static prerender
@@ -33,13 +27,13 @@ export default function SignupPage() {
 
 function SignupFallback() {
   return (
-    <div className="w-full max-w-lg">
+    <div className="w-full max-w-md">
       <div className="text-center mb-8">
         <p
           className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
           style={{ color: "#C9A84C" }}
         >
-          Get Started
+          Free Trial
         </p>
         <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
           Begin the{" "}
@@ -48,7 +42,7 @@ function SignupFallback() {
           </span>
         </h1>
         <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
-          Start your free trial today.
+          7 days of full access. No credit card required.
         </p>
       </div>
     </div>
@@ -57,7 +51,6 @@ function SignupFallback() {
 
 function SignupForm() {
   const [showPassword, setShowPassword] = useState(false)
-  const [selectedPlan, setSelectedPlan] = useState("coaching")
   const [agreed, setAgreed] = useState(false)
   const [loading, setLoading] = useState(false)
   const [name, setName] = useState("")
@@ -81,7 +74,7 @@ function SignupForm() {
       email,
       password,
       options: {
-        data: { full_name: name, plan: selectedPlan },
+        data: { full_name: name },
         emailRedirectTo: `${window.location.origin}/auth/callback`,
       },
     })
@@ -97,13 +90,13 @@ function SignupForm() {
   }
 
   return (
-    <div className="w-full max-w-lg">
+    <div className="w-full max-w-md">
       <div className="text-center mb-8">
         <p
           className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
           style={{ color: "#C9A84C" }}
         >
-          Get Started
+          Free Trial
         </p>
         <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
           Begin the{" "}
@@ -112,8 +105,25 @@ function SignupForm() {
           </span>
         </h1>
         <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
-          Your 735 starts with an account.
+          7 days of full access. No credit card required.
         </p>
+      </div>
+
+      {/* Trust bar */}
+      <div
+        className="flex items-center justify-center gap-5 mb-6 py-3 px-4 rounded-xl border border-white/[0.06]"
+        style={{ backgroundColor: "rgba(201,168,76,0.04)" }}
+      >
+        {[
+          { icon: Lock, label: "No card needed" },
+          { icon: Check, label: "Full platform access" },
+          { icon: Check, label: "Cancel anytime" },
+        ].map(({ icon: Icon, label }) => (
+          <div key={label} className="flex items-center gap-1.5">
+            <Icon className="w-3 h-3 flex-shrink-0" style={{ color: "#C9A84C" }} />
+            <span className="text-[12px] text-[#888888] whitespace-nowrap">{label}</span>
+          </div>
+        ))}
       </div>
 
       <div
@@ -199,41 +209,6 @@ function SignupForm() {
             </p>
           </div>
 
-          {/* Plan selection */}
-          <div>
-            <label className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-2.5">
-              Select a plan
-            </label>
-            <div className="grid grid-cols-3 gap-2.5">
-              {plans.map((plan) => (
-                <button
-                  key={plan.id}
-                  type="button"
-                  onClick={() => setSelectedPlan(plan.id)}
-                  className={cn(
-                    "relative px-3 py-3.5 rounded-xl border text-left transition-all",
-                    selectedPlan === plan.id
-                      ? "border-[#C9A84C]/50 bg-[#C9A84C]/[0.06]"
-                      : "border-white/[0.08] bg-[#0A0A0A] hover:border-white/[0.16]"
-                  )}
-                >
-                  {plan.popular && (
-                    <span
-                      className="absolute -top-2 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-[0.12em]"
-                      style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                    >
-                      Popular
-                    </span>
-                  )}
-                  <p className="text-[13px] font-semibold text-[#F0F0F0] mb-0.5">
-                    {plan.name}
-                  </p>
-                  <p className="text-[12px] text-[#888888]">{plan.price}</p>
-                </button>
-              ))}
-            </div>
-          </div>
-
           {/* Terms */}
           <div className="flex items-start gap-3">
             <button
@@ -273,17 +248,17 @@ function SignupForm() {
             type="submit"
             disabled={loading || !agreed}
             aria-busy={loading}
-            className="w-full py-3 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-2"
+            className="w-full py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-2"
             style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
           >
             {loading ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                Creating account
+                Creating account...
               </>
             ) : (
               <>
-                Create account
+                Start my free trial
                 <ArrowRight className="w-4 h-4" />
               </>
             )}
@@ -291,7 +266,18 @@ function SignupForm() {
         </form>
       </div>
 
-      <p className="text-center text-[13px] text-[#888888] mt-6">
+      <p className="text-center text-[13px] text-[#888888] mt-5">
+        No card needed now.{" "}
+        <Link
+          href="/pricing"
+          className="font-medium hover:opacity-80 transition-opacity"
+          style={{ color: "#C9A84C" }}
+        >
+          See pricing
+        </Link>
+        {" "}when you&apos;re ready.
+      </p>
+      <p className="text-center text-[13px] text-[#888888] mt-2">
         Already have an account?{" "}
         <Link
           href="/login"
