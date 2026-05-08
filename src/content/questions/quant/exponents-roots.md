@@ -673,3 +673,217 @@ If 3^(x + 2) = 81, what is the value of x?
 **common_trap:** Mis-recognizing the power of 3.
 **takeaway:** Memorize 3¹ through 3⁵: 3, 9, 27, 81, 243. Same base equations: same base ⟺ equal exponents.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q25
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Sign Behavior of Exponents
+
+What is the value of (−3)⁴?
+
+- A) −81
+- B) −12
+- C) 12
+- D) 81
+- E) 729
+
+**answer:** D
+**fastest_path:** Even exponent on any base → positive result. (−3)⁴ = 81.
+**explanation:** An even exponent always produces a non-negative result, regardless of the sign of the base. (−3)⁴ = (−3)(−3)(−3)(−3) = (+9)(+9) = 81. The critical distinction: (−3)⁴ = 81, but −(3⁴) = −81. Parentheses determine whether the negative sign is inside the base.
+**mistake_a:** Confused (−3)⁴ with −(3⁴) = −81. The negative is inside the parentheses and gets raised to the 4th power, not applied afterward.
+**mistake_b:** Treated the exponent as multiplication: (−3) × 4 = −12.
+**mistake_c:** Computed 4 × 3 = 12 (treated exponent as a multiplier on the base magnitude).
+**mistake_e:** Miscounted the power; computed 3⁵ = 243 or 3⁶ = 729.
+**common_trap:** Equating (−3)⁴ with −(3⁴). The parentheses matter — the negative is inside, so it participates in all four multiplications.
+**takeaway:** Even exponents always produce non-negative results: (−a)^even = a^even. Odd exponents preserve the sign: (−a)^odd = −(a^odd). Check whether the negative is inside or outside the parentheses before evaluating.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q26
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+For any nonzero real number x, what is the value of x⁵ / x⁵?
+
+- A) 0
+- B) 1
+- C) 5
+- D) x
+- E) x⁵
+
+**answer:** B
+**fastest_path:** Same-base division: x⁵/x⁵ = x^(5−5) = x⁰ = 1.
+**explanation:** Any nonzero quantity divided by itself equals 1. The exponent division rule confirms this: x^m / x^n = x^(m−n). Here, x⁵ / x⁵ = x^(5−5) = x⁰ = 1. The zero-exponent rule (a⁰ = 1 for a ≠ 0) is a direct consequence of this division rule.
+**mistake_a:** Confused division with subtraction: x − x = 0, so assumed x/x = 0. Division and subtraction are not the same operation.
+**mistake_c:** Bubbled the exponent value 5 rather than computing x^(5−5).
+**mistake_d:** Divided exponents instead of subtracting: x^(5/5) = x¹ = x.
+**mistake_e:** Did not simplify at all and returned the original numerator.
+**common_trap:** Thinking "x minus x is 0" and applying that logic to x/x. Division produces 1; subtraction produces 0.
+**takeaway:** a⁰ = 1 for any nonzero a. This follows from a^n / a^n = a^(n−n) = a⁰ = 1. Note: 0⁰ is undefined — the nonzero condition matters.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q27
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of ∛(−27)?
+
+- A) −9
+- B) −3
+- C) −√3
+- D) 3
+- E) Undefined
+
+**answer:** B
+**fastest_path:** (−3)³ = −27, so ∛(−27) = −3.
+**explanation:** Unlike square roots, cube roots of negative numbers are real and defined. ∛(−27) asks: what number, cubed, gives −27? Since (−3)³ = (−3)(−3)(−3) = 9 × (−3) = −27, the answer is −3. Odd-index roots preserve sign.
+**mistake_a:** Divided by the index rather than taking the root: −27 / 3 = −9.
+**mistake_c:** Confused cube root with square root, obtained a non-integer form.
+**mistake_d:** Dropped the negative sign; computed ∛27 = 3 instead of ∛(−27).
+**mistake_e:** Applied the "square root of a negative is undefined" rule to cube roots — that restriction applies only to even-index roots in the real numbers.
+**common_trap:** Assuming all roots of negatives are undefined. Only even-index roots (√, ⁴√, etc.) are undefined for negative inputs in real numbers; odd-index roots (∛, ⁵√, etc.) are always defined.
+**takeaway:** Odd-index roots are defined for all real numbers: ∛(−a) = −∛a. Even-index roots require non-negative radicands under real-number arithmetic.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q28
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of (4^(3/2) × 2⁴) / 2⁷?
+
+- A) 1/4
+- B) 1/2
+- C) 1
+- D) 2
+- E) 4
+
+**answer:** C
+**fastest_path:** 4^(3/2) = (2²)^(3/2) = 2³. Numerator: 2³ × 2⁴ = 2⁷. Result: 2⁷/2⁷ = 1.
+**explanation:** Chain the rules in sequence. Step 1 — rewrite 4 in terms of base 2: 4^(3/2) = (2²)^(3/2) = 2^(2 × 3/2) = 2³ = 8. Step 2 — consolidate the numerator: 2³ × 2⁴ = 2^(3+4) = 2⁷. Step 3 — divide: 2⁷ / 2⁷ = 2⁰ = 1.
+**mistake_a:** Treated 4^(3/2) as 4 × 3/2 = 6; subsequent arithmetic led to ~1/4.
+**mistake_b:** Misapplied the fractional exponent; arrived at an intermediate value close to 1/2.
+**mistake_d:** Computed 4^(3/2) = 2³ correctly but made an off-by-one error in the exponent subtraction (used 2⁶ instead of 2⁷ in the denominator).
+**mistake_e:** Left 4^(3/2) = 4 (applied only the 1/2 part of the exponent, not the 3).
+**common_trap:** Skipping the base-conversion step — without rewriting 4 as 2², the numerator and denominator cannot be compared using exponent rules.
+**takeaway:** When an expression mixes bases that are powers of a common base (e.g., 4 and 2 are both powers of 2), rewrite everything to that common base first. Then apply product/quotient exponent rules in a single pass.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q29
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+For x > 0, which of the following is equivalent to √(75x⁴)?
+
+- A) 5x²√3
+- B) 5x²√15
+- C) 15x²
+- D) 25x²√3
+- E) 5x⁴√3
+
+**answer:** A
+**fastest_path:** √75 = 5√3; √(x⁴) = x² (for x > 0). Product: 5x²√3.
+**explanation:** Use √(ab) = √a × √b to split the radical. √(75x⁴) = √75 × √(x⁴). Simplify each factor: √75 = √(25 × 3) = 5√3. For x > 0: √(x⁴) = x^(4/2) = x². Multiply: 5√3 × x² = 5x²√3.
+**mistake_b:** Factored 75 as 5 × 15 and left √15 in place of √3 (did not pull out the largest perfect-square factor, 25).
+**mistake_c:** Approximated √3 ≈ 3 and multiplied: 5 × 3 × x² = 15x².
+**mistake_d:** Squared instead of rooting the numeric coefficient: used 25 as the coefficient rather than 5.
+**mistake_e:** Left x⁴ inside the radical as x⁴ rather than simplifying √(x⁴) = x².
+**common_trap:** Leaving the variable term under the radical — for x > 0 and even powers, √(x^2k) = x^k simplifies cleanly without absolute value.
+**takeaway:** √(ax^n) = √a × x^(n/2) when x > 0. For the numeric part, factor out the largest perfect square first. For even-power variable terms, the root halves the exponent.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q30
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Comparison
+
+If 2^a = 3^b > 1, which of the following must be true?
+
+- A) a = b
+- B) a > b
+- C) a < b
+- D) a = 2b
+- E) The relationship between a and b cannot be determined.
+
+**answer:** B
+**fastest_path:** Take logs: a·ln2 = b·ln3 → a/b = ln3/ln2 ≈ 1.585 > 1 → a > b.
+**explanation:** Since 2^a = 3^b, take natural logs of both sides: a·ln2 = b·ln3. Rearrange: a/b = ln3/ln2 ≈ 1.099/0.693 ≈ 1.585. Because 2^a > 1, both a and b are positive, so a/b > 1 means a > b. Intuitively: base 2 grows more slowly than base 3, so it needs a larger exponent to reach the same value.
+**mistake_a:** Assumed equal outputs imply equal exponents — valid only when the bases are the same.
+**mistake_c:** Reasoned "2 < 3, so a < b" — this reverses the direction. A smaller base requires a larger exponent to match the output.
+**mistake_d:** Estimated a ≈ 2b from rough mental arithmetic; the true ratio is ≈ 1.585, not 2.
+**mistake_e:** The relationship is fully determined by the constraint — it is always a > b whenever 2^a = 3^b > 1.
+**common_trap:** Assuming equal exponential values imply equal exponents. That is only true when the bases are identical.
+**takeaway:** When two exponential expressions with different bases are equal, the smaller base requires the larger exponent. Quantify with logs: a/b = log₂(3) ≈ 1.585. Qualitatively: slower-growing base needs more exponent to keep pace.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q31
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If 2^(x+y) = 64 and 2^(x−y) = 4, what is the value of 2^x?
+
+- A) 8
+- B) 16
+- C) 32
+- D) 48
+- E) 64
+
+**answer:** B
+**fastest_path:** Multiply the two equations: 2^(2x) = 64 × 4 = 256 = 2⁸ → 2x = 8 → x = 4 → 2^x = 16.
+**explanation:** Two methods reach the same answer.
+
+Method 1 (algebraic): Same base on both sides, so equate exponents. 2^(x+y) = 2⁶ → x + y = 6. 2^(x−y) = 2² → x − y = 2. Add the two equations: 2x = 8 → x = 4. So 2^x = 2⁴ = 16.
+
+Method 2 (fastest): Multiply the original equations: 2^(x+y) × 2^(x−y) = 64 × 4. Left side: 2^(2x). Right side: 256 = 2⁸. So 2x = 8 → x = 4 → 2^x = 16. Multiplying eliminates y in one step.
+**mistake_a:** Arithmetic slip in the addition step: obtained 2x = 6 → x = 3 → 2^x = 8.
+**mistake_c:** Found x = 4 correctly but misread the question and reported 2^y = 2² = 4 or related value that rounded to 32.
+**mistake_d:** Computed 64 − 4 = 60, then halved; confused arithmetic with exponent algebra.
+**mistake_e:** Bubbled 64, the value of 2^(x+y), rather than 2^x.
+**common_trap:** Finding x = 4 correctly but bubbling x itself (4) or one of the given equation outputs (64 or 4) instead of computing the requested quantity 2^x = 16.
+**takeaway:** For exponential systems, match bases, equate exponents, then solve the resulting linear system. The fastest shortcut is multiplying the two exponential equations to eliminate the unwanted variable immediately. Always re-read the question — it asks for 2^x, not x.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q32
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If x^(x²) = x^(4x) and x > 0, x ≠ 1, what is the value of x?
+
+- A) 0
+- B) 2
+- C) 4
+- D) 8
+- E) 16
+
+**answer:** C
+**fastest_path:** x > 0, x ≠ 1 → equate exponents: x² = 4x → x(x − 4) = 0 → x = 4 (since x > 0).
+**explanation:** For a positive base x ≠ 1, the exponential function x^t is one-to-one, so x^A = x^B implies A = B. Equate exponents: x² = 4x → x² − 4x = 0 → x(x − 4) = 0. Solutions: x = 0 or x = 4. The constraint x > 0 eliminates x = 0. So x = 4.
+
+Verify: 4^(4²) = 4^16 and 4^(4 × 4) = 4^16. Both sides match.
+**mistake_a:** Selected x = 0, which violates x > 0 and makes x^(x²) = 0⁰ indeterminate.
+**mistake_b:** Cancelled x from x² = 4x by dividing both sides by x (invalid when x = 0 is a candidate), yielding x = 4; then made an arithmetic slip and reported 2.
+**mistake_d:** Misread 4x as 2x and solved x² = 2x → x = 2, then doubled to 4... or misidentified a squaring step.
+**mistake_e:** Computed 4² = 16 and confused the exponent value with the solution.
+**common_trap:** Dividing both sides of x² = 4x by x — this discards a valid factor and can hide roots. Always factor the polynomial rather than dividing. Then apply domain constraints to eliminate invalid candidates.
+**takeaway:** For x^A = x^B with x > 0 and x ≠ 1: equate exponents using the one-to-one property. Factor the resulting polynomial — never divide by a variable. Apply domain constraints (x > 0, x ≠ 1) to discard invalid solutions after factoring.
+**related_reading:** reading-quant-04-algebra-and-equations
