@@ -1208,6 +1208,76 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+
+    // --- Performance diagnosis ---
+    const answeredStates = states.filter((s) => s.submitted)
+    const avgTimePerQMs =
+      answeredStates.length > 0
+        ? answeredStates.reduce((sum, s) => sum + s.elapsedMs, 0) / answeredStates.length
+        : 0
+    const targetMsPerQ = section === "Verbal" ? 105_000 : 120_000
+
+    const subtopicMap: Record<string, { w: number; t: number }> = {}
+    for (let i = 0; i < questions.length; i++) {
+      const q = questions[i]
+      const s = states[i]
+      if (!s.submitted) continue
+      if (!subtopicMap[q.subtopic]) subtopicMap[q.subtopic] = { w: 0, t: 0 }
+      subtopicMap[q.subtopic].t++
+      if (!isQuestionCorrect(q, s)) subtopicMap[q.subtopic].w++
+    }
+    const weakestSubtopic =
+      Object.entries(subtopicMap)
+        .filter(([, v]) => v.w > 0)
+        .sort((a, b) => b[1].w / b[1].t - a[1].w / a[1].t)[0] ?? null
+
+    const highConfMisses = questions.filter(
+      (q, i) =>
+        states[i].submitted &&
+        states[i].confidence === "high" &&
+        !isQuestionCorrect(q, states[i])
+    ).length
+
+    const diagTier =
+      accuracy >= 85
+        ? { label: "Proficient", color: "#3ECF8E" }
+        : accuracy >= 70
+        ? { label: "On Track", color: "#C9A84C" }
+        : accuracy >= 50
+        ? { label: "Developing", color: "#C9A84C" }
+        : { label: "Needs Work", color: "#FF4444" }
+
+    const diagInsights: string[] = []
+    if (answeredCount < total) {
+      const skipped = total - answeredCount
+      diagInsights.push(
+        `${skipped} question${skipped > 1 ? "s" : ""} skipped — skips count as wrong on test day`
+      )
+    }
+    if (weakestSubtopic && weakestSubtopic[1].t >= 2) {
+      const [sub, v] = weakestSubtopic
+      diagInsights.push(`${v.w} of ${v.t} ${sub} questions missed — your clearest gap this session`)
+    }
+    if (avgTimePerQMs > targetMsPerQ * 1.3 && answeredCount >= 3) {
+      diagInsights.push(
+        `Averaging ${formatDuration(avgTimePerQMs)} per question — GMAT target is ${formatDuration(targetMsPerQ)}`
+      )
+    }
+    if (highConfMisses >= 2) {
+      diagInsights.push(
+        `${highConfMisses} high-confidence wrong answers — those reveal your most dangerous blind spots`
+      )
+    }
+
+    const diagNextStep =
+      accuracy >= 85
+        ? "Strong result. Push into harder questions or move to the next chapter."
+        : accuracy >= 70
+        ? "Review each missed question below, then retake to confirm the skill."
+        : accuracy >= 50
+        ? "Work through the missed questions carefully, then retake before moving on."
+        : "Too many gaps to build on. Re-read the relevant chapter sections before drilling again."
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1253,6 +1323,35 @@ export default function SessionClient({
             </div>
           </div>
         </div>
+
+        {answeredCount >= 2 && (
+          <div className="space-y-3 py-1">
+            <p className="text-[10px] uppercase tracking-widest text-[#555555]">Diagnosis</p>
+            <div className="flex items-baseline gap-2.5 flex-wrap">
+              <span className="text-base font-semibold" style={{ color: diagTier.color }}>
+                {diagTier.label}
+              </span>
+              <span className="text-sm text-[#888888]">
+                {accuracy}% on {answeredCount} question{answeredCount !== 1 ? "s" : ""}
+              </span>
+            </div>
+            {diagInsights.length > 0 && (
+              <ul className="space-y-1.5">
+                {diagInsights.map((text, i) => (
+                  <li key={i} className="text-sm text-[#888888] leading-snug">
+                    <span className="mr-2" style={{ color: "#444444" }}>·</span>
+                    {text}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <p className="text-sm text-[#888888] pt-0.5">
+              <span style={{ color: "#555555" }}>Next</span>
+              <span className="mx-1.5" style={{ color: "#333333" }}>—</span>
+              {diagNextStep}
+            </p>
+          </div>
+        )}
 
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
