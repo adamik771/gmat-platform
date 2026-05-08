@@ -18,11 +18,11 @@ The average (arithmetic mean) of five numbers is 18. If one of the numbers is re
 
 **answer:** D
 **fastest_path:** Sum dropped from 5·18 = 90 to 4·15 = 60. Removed = 30.
-**explanation:** Sum of 5 = 5 × 18 = 90. Sum of 4 = 4 × 15 = 60. Removed = 90 − 60 = 30.
-**mistake_a:** Slip → 20.
-**mistake_b:** Slip → 24.
-**mistake_c:** Slip → 28.
-**mistake_e:** Slip → 33.
+**explanation:** Averages summarize sums — so convert back to sums first. Sum of 5 numbers = 5 × 18 = 90. Sum of remaining 4 = 4 × 15 = 60. The removed number = 90 − 60 = 30. Any time one element is added or removed from an average, work in sums, not in averages.
+**mistake_a:** Worked in means rather than sums: took the drop in mean (18 − 15 = 3) and multiplied by some count, landing on 20 without a valid path.
+**mistake_b:** Used an intermediate mean of 16.5 for the remaining four: 4 × 16.5 = 66; 90 − 66 = 24.
+**mistake_c:** Used 15.5 as the remaining average instead of 15: 4 × 15.5 = 62; 90 − 62 = 28.
+**mistake_e:** Added the two means: 18 + 15 = 33 — confused the sum of averages with the removed value.
 **common_trap:** Computing the difference of *means* (18 − 15 = 3) instead of difference of *sums*.
 **takeaway:** Sum = mean × count. For mean problems, work in *sums*, not in averages.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -46,9 +46,9 @@ A bag contains 4 red balls, 3 blue balls, and 5 green balls. If one ball is draw
 **fastest_path:** 1 − P(green) = 1 − 5/12 = 7/12.
 **explanation:** Total = 12 balls. Non-green = 4 + 3 = 7 → 7/12. Or: complement: 1 − 5/12 = 7/12.
 **mistake_a:** Bubbled P(green) = 5/12.
-**mistake_c:** Slip → 1/3 (4/12, just red).
-**mistake_d:** Slip → 2/3 (8/12).
-**mistake_e:** Slip → 3/4 (9/12).
+**mistake_c:** Counted only red balls as "not green": 4/12 = 1/3 — ignored the blue balls entirely.
+**mistake_d:** Subtracted red (4) instead of green (5): 12 − 4 = 8 → 8/12 = 2/3 — confused P(not green) with P(not red).
+**mistake_e:** Subtracted blue (3) instead of green (5): 12 − 3 = 9 → 9/12 = 3/4 — excluded the wrong color.
 **common_trap:** Bubbling P(green) = 5/12 instead of P(not green).
 **takeaway:** P(not E) = 1 − P(E). Always read the *direction* of the question.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -97,9 +97,9 @@ A committee of 3 people is to be selected from a group of 7 candidates. How many
 **answer:** B
 **fastest_path:** C(7,3) = (7·6·5)/(3·2·1) = 210/6 = 35.
 **explanation:** "Committee" = unordered selection → combinations. C(7,3) = 7!/(3!·4!) = 35.
-**mistake_a:** Slip → 21.
-**mistake_c:** Slip → 42.
-**mistake_d:** Slip → 120.
+**mistake_a:** Computed C(7,2) = 21 — selected 2 people instead of 3.
+**mistake_c:** Computed 2 × C(7,2) = 42 — introduced a spurious factor of 2, as if the committee has two distinguishable roles.
+**mistake_d:** Computed C(10,3) = 120 — inflated the pool to 10 by adding the committee size (3) to the group size (7).
 **mistake_e:** Computed P(7,3) = 7·6·5 = 210 (used permutations).
 **common_trap:** Forgetting to divide by 3! — counting *ordered* arrangements (210) instead of unordered committees.
 **takeaway:** Committee = unordered → combinations. C(n,k) = P(n,k)/k!. Always divide by k! when order doesn't matter.
@@ -124,9 +124,9 @@ Two fair six-sided dice are rolled. What is the probability that the sum of the 
 **fastest_path:** Ordered pairs summing to 8: (2,6), (3,5), (4,4), (5,3), (6,2) → 5/36.
 **explanation:** Total ordered outcomes = 36. Sum = 8: (2,6), (3,5), (4,4), (5,3), (6,2) → 5 outcomes. P = 5/36.
 **mistake_a:** Counted only unordered pairs → 3/36 = 1/12.
-**mistake_c:** Slip → 6/36 = 1/6.
-**mistake_d:** Slip → 7/36.
-**mistake_e:** Slip → 9/36 = 1/4.
+**mistake_c:** Counted (4,4) as two distinct outcomes, reaching 6 pairs — forgot that (4,4) is a single ordered pair.
+**mistake_d:** Included an invalid pair such as (1,7) — which can't appear on a six-sided die — reaching 7 outcomes.
+**mistake_e:** Counted pairs summing to adjacent values as well, or made a boundary error, reaching 9 outcomes.
 **common_trap:** Counting only unordered pairs — (2,6) and (6,2) are *different* outcomes when rolling two distinguishable dice.
 **takeaway:** Two dice → 36 *ordered* outcomes. List ordered pairs systematically for each sum.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -202,9 +202,9 @@ A box contains 5 red chips and 3 blue chips. Two chips are drawn at random witho
 **fastest_path:** 1 − P(both blue) = 1 − (3/8)(2/7) = 1 − 3/28 = 25/28.
 **explanation:** Complement: P(at least 1 R) = 1 − P(both B) = 1 − (3/8)(2/7) = 1 − 6/56 = 1 − 3/28 = 25/28.
 **mistake_a:** Bubbled P(red on a single draw) = 5/8.
-**mistake_c:** Slip → 13/14.
-**mistake_d:** Slip → 15/28.
-**mistake_e:** Slip → 27/28.
+**mistake_c:** Computed P(both blue) as 2/28 instead of 3/28 — used C(3,2) = 2 rather than the correct product (3/8)(2/7) = 3/28; complement gives 1 − 2/28 = 13/14.
+**mistake_d:** Computed P(exactly 1 red) = C(5,1)·C(3,1)/C(8,2) = 15/28 and stopped — answered "exactly 1 red" instead of "at least 1 red."
+**mistake_e:** Treated drawing both blue chips as a single outcome rather than C(3,2)/C(8,2) = 3/28; used 1/28 in the complement → 27/28.
 **common_trap:** Computing P(R) by case analysis (1 R or 2 R) — slow and error-prone — instead of using the complement.
 **takeaway:** "At least one" → use the complement: P(at least 1) = 1 − P(none).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -358,9 +358,9 @@ A list of 10 numbers has a mean of 24. When an 11th number is added, the new mea
 **fastest_path:** 11 · 25 − 10 · 24 = 275 − 240 = 35.
 **explanation:** Old sum = 240; new sum = 275. 11th value = 275 − 240 = 35. Shortcut: new value = new mean + n × Δmean = 25 + 10 × 1 = 35.
 **mistake_a:** Bubbled the new mean (25).
-**mistake_b:** Slip → 26.
-**mistake_c:** Slip → 30.
-**mistake_e:** Slip → 36.
+**mistake_b:** Added the mean increase to the new mean: 25 + 1 = 26 — used the new mean as the base rather than computing the difference of sums.
+**mistake_c:** Averaged the two means and used that as the per-number base: (24 + 25)/2 = 24.5 → 10 × 24.5 = 245; 275 − 245 = 30.
+**mistake_e:** Arithmetic slip on the old sum: computed 10 × 24 = 239 instead of 240, then 275 − 239 = 36.
 **common_trap:** Bubbling the new mean (25) — but the *added* value is what raises the mean.
 **takeaway:** To raise n numbers' mean by Δ, the new value must equal (new mean) + n·Δ.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -463,11 +463,11 @@ A fair coin is flipped 4 times. What is the probability that it lands on heads e
 
 **answer:** C
 **fastest_path:** C(4,3)/2⁴ = 4/16 = 1/4.
-**explanation:** Choose which 3 of 4 are heads: C(4,3) = 4. Each sequence has probability (1/2)⁴ = 1/16. Total = 4/16 = 1/4.
-**mistake_a:** Slip → 1/8.
-**mistake_b:** Slip → 3/16.
-**mistake_d:** Slip → 5/16.
-**mistake_e:** Slip → 3/8.
+**explanation:** There are C(4,3) = 4 arrangements of exactly 3 heads: THHH, HTHH, HHTH, HHHT. Each has probability (1/2)⁴ = 1/16. Total = 4 × 1/16 = 4/16 = 1/4.
+**mistake_a:** Computed (1/2)³ = 1/8 — found the probability of a single arrangement with 3 specific flips landing heads, but forgot to multiply by C(4,3) = 4.
+**mistake_b:** Counted only 3 arrangements — listed THHH, HTHH, HHTH but missed HHHT (tails in the fourth position): 3 × 1/16 = 3/16.
+**mistake_d:** Added the "exactly 4 heads" case: C(4,3) + C(4,4) = 4 + 1 = 5 → computed P(at least 3 heads) = 5/16 instead of P(exactly 3 heads).
+**mistake_e:** Used C(4,2) = 6 instead of C(4,3) = 4 — chose 2 tails-positions rather than 3 heads-positions: 6/16 = 3/8.
 **common_trap:** Forgetting to count C(n,k) sequences and using only (1/2)^n.
 **takeaway:** Exactly k heads in n fair flips: P = C(n,k)/2^n.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -651,11 +651,11 @@ A company has two factories. Factory P produces 60% of the company's products; F
 
 **answer:** C
 **fastest_path:** P(P∩D) = 0.6·0.03 = 0.018; P(Q∩D) = 0.4·0.05 = 0.020. P(P|D) = 18/(18+20) = 9/19.
-**explanation:** Bayes. P(P ∩ D) = 0.018; P(Q ∩ D) = 0.020; P(D) = 0.038. P(P | D) = 0.018/0.038 = 18/38 = 9/19.
-**mistake_a:** Slip → 3/19.
-**mistake_b:** Slip → 6/19.
-**mistake_d:** Slip → 10/19.
-**mistake_e:** Slip → 12/19.
+**explanation:** Bayes's theorem: P(P|D) = P(P ∩ D) / P(D). Weight each factory's defect rate by its production share. P(P ∩ D) = 0.60 × 0.03 = 0.018. P(Q ∩ D) = 0.40 × 0.05 = 0.020. P(D) = 0.018 + 0.020 = 0.038. P(P|D) = 18/38 = 9/19. Intuition check: P produces more (60%) but defects less (3%), so its share of all defectives is close to Q's — 18 vs. 20 — yielding a nearly even split.
+**mistake_a:** Used only P's raw defect rate without weighting by production share: 3/(3+5) = 3/8, or some path that strips out the 0.60 weight and lands on 3/19.
+**mistake_b:** Applied the production weight to the combined defect rate rather than separately: 0.60 × (0.03 + 0.05) = 0.048, leading to a path that produces 6/19.
+**mistake_d:** Computed P(Q|D) = 20/38 = 10/19 — placed Q's weighted defect count (0.020) in the numerator instead of P's; answered the wrong factory.
+**mistake_e:** Used P's production share with the average defect rate: 0.60 × 0.04 = 0.024; P(P|D) = 24/38 = 12/19.
 **common_trap:** Ignoring the production split (60/40) and using just defect rates: 3/(3+5) = 3/8 ≈ a wrong fraction.
 **takeaway:** Bayes: weight each branch by its prior. P(A|B) = P(A∩B)/P(B), where P(B) = sum over all branches.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
