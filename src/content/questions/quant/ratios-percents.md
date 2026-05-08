@@ -668,3 +668,214 @@ Is the price of product X greater than the price of product Y?
 **common_trap:** Thinking statements about "different products" can't combine — but a shared variable (Z) bridges them.
 **takeaway:** Look for shared variables in DS statements. Statements that mention different things may still chain through a common reference.
 **related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q26
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Inverse Proportions
+
+If 5 workers can build a wall in 12 days, how many days will it take 4 workers to build the same wall, assuming all workers work at the same constant rate?
+
+- A) 9.6
+- B) 12
+- C) 15
+- D) 16
+- E) 20
+
+**answer:** C
+**fastest_path:** Total work = 5 × 12 = 60 worker-days. Four workers: 60 ÷ 4 = 15 days.
+**explanation:** Work is constant: 5 workers × 12 days = 60 worker-days needed to complete the wall. With 4 workers, the time required is 60 ÷ 4 = 15 days. Since fewer workers must work more days to accomplish the same total work, the answer must be greater than 12, immediately ruling out A.
+**mistake_a:** Used direct proportion in the wrong direction: (4/5) × 12 = 9.6 — treated fewer workers as producing fewer days.
+**mistake_b:** Left the time unchanged at 12, not adjusting for the reduced workforce.
+**mistake_d:** Arithmetic slip; 60 ÷ 4 = 15, not 16.
+**mistake_e:** Divided by 3 instead of 4: 60 ÷ 3 = 20, misread the worker count.
+**common_trap:** Applying direct proportion (fewer workers → fewer days) instead of inverse (fewer workers → more days). Workers and days are inversely proportional when total work is fixed.
+**takeaway:** When two quantities multiply to a constant (workers × days = fixed work), they are inversely proportional: w₁ × d₁ = w₂ × d₂.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q27
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Ratio — Part to Whole
+
+In a survey, the ratio of people who prefer coffee to those who prefer tea is 7:3. If 420 people prefer coffee, how many people participated in the survey in total?
+
+- A) 60
+- B) 180
+- C) 600
+- D) 840
+- E) 1,260
+
+**answer:** C
+**fastest_path:** 7k = 420 → k = 60. Total = (7 + 3) × 60 = 600.
+**explanation:** Let coffee = 7k and tea = 3k. Given 7k = 420, so k = 60. Total participants = (7 + 3)k = 10 × 60 = 600.
+**mistake_a:** Stopped at k = 60, the scale factor, rather than computing the total.
+**mistake_b:** Computed only the tea count (3 × 60 = 180) and stopped.
+**mistake_d:** Doubled the coffee count (420 + 420 = 840) instead of finding tea first.
+**mistake_e:** Multiplied the tea count by 7: 180 × 7 = 1,260, a mis-application of the ratio.
+**common_trap:** Stopping after computing one part (180 for tea, or 60 for k) rather than summing all parts for the total.
+**takeaway:** Ratio totals = sum of all ratio parts × scale factor. Sum the ratio parts (7 + 3 = 10) first, then multiply by k.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q28
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Percent Change — Reversing a Discount
+
+After a 30% discount, a laptop sells for $490. What was the original price?
+
+- A) $343
+- B) $637
+- C) $700
+- D) $735
+- E) $780
+
+**answer:** C
+**fastest_path:** 0.70 × P = 490 → P = 490 ÷ 0.70 = 700.
+**explanation:** A 30% discount means the buyer pays 70% of the original price. So 0.70 × P = $490, giving P = $490 ÷ 0.70 = $700. The setup is: sale price = (1 − discount rate) × original price, then solve for the original.
+**mistake_a:** Applied the 30% reduction again: $490 × 0.70 = $343 — the discount was already reflected in $490.
+**mistake_b:** Added 30% to the discounted price: $490 × 1.30 = $637 — but the 30% was taken off the original, not the discounted price, so this is the wrong base.
+**mistake_d:** Used an incorrect multiplier → $735.
+**mistake_e:** Arithmetic slip → $780.
+**common_trap:** Adding 30% back to $490 ($490 × 1.30 = $637) rather than dividing by 0.70. The original is what you divide *into* the sale price, not what you mark up from it.
+**takeaway:** To reverse a percent decrease: original = sale price ÷ (1 − discount rate). Never add the discount percent to the sale price.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q29
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Successive Percent Changes — Compound Discounts
+
+Employees at a retail store receive a 15% discount on all personal purchases. During a storewide sale, all items are marked 20% off the regular price. An employee buys an item with a regular price of $200 during the sale. How much does the employee pay?
+
+- A) $120
+- B) $128
+- C) $130
+- D) $136
+- E) $160
+
+**answer:** D
+**fastest_path:** Sale price: $200 × 0.80 = $160. Employee price: $160 × 0.85 = $136.
+**explanation:** Apply the discounts sequentially. First, the storewide sale: $200 × 0.80 = $160. Then the employee discount applies to the already-reduced price: $160 × 0.85 = $136. The order does not matter (0.80 × 0.85 = 0.85 × 0.80), but each discount must be applied to its own base.
+**mistake_a:** Applied a 25% employee discount instead of 15%: $200 × 0.80 × 0.75 = $120.
+**mistake_b:** Applied the 20% sale discount twice: $200 × 0.80 × 0.80 = $128 — confused the employee rate (15%) with the sale rate (20%).
+**mistake_c:** Added the two discounts (20 + 15 = 35% off original): $200 × 0.65 = $130 — treats both as reductions from the original price.
+**mistake_e:** Applied only the sale discount and ignored the employee discount: $200 × 0.80 = $160.
+**common_trap:** Adding the two discount percentages (35% off → $130) instead of applying them sequentially. The 15% employee discount is taken off the already-reduced sale price, not the original $200.
+**takeaway:** Successive discounts multiply: net factor = (1 − a)(1 − b). Do not add percents. Each discount acts on a different base.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q30
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Ratio — Change After Alteration
+
+In a class, the ratio of boys to girls is 2:3. After 5 boys join the class and 5 girls leave, the new ratio of boys to girls is 3:2. How many students were in the class originally?
+
+- A) 15
+- B) 20
+- C) 25
+- D) 30
+- E) 35
+
+**answer:** C
+**fastest_path:** Boys = 2k, girls = 3k. (2k + 5)/(3k − 5) = 3/2 → 4k + 10 = 9k − 15 → 5k = 25 → k = 5. Original total = 5k = 25.
+**explanation:** Let boys = 2k and girls = 3k. After the change: (2k + 5)/(3k − 5) = 3/2. Cross-multiply: 2(2k + 5) = 3(3k − 5) → 4k + 10 = 9k − 15 → 5k = 25 → k = 5. Original total = (2 + 3) × 5 = 25. Verification: original 10 boys, 15 girls (ratio 2:3 ✓); after change: 15 boys, 10 girls (ratio 3:2 ✓).
+**mistake_a:** Tried k = 3: boys after = 11, girls after = 4 → ratio 11:4 ≠ 3:2.
+**mistake_b:** Tried k = 4: boys after = 13, girls after = 7 → ratio 13:7 ≠ 3:2.
+**mistake_d:** Tried k = 6: boys after = 17, girls after = 13 → ratio 17:13 ≠ 3:2.
+**mistake_e:** Tried k = 7: boys after = 19, girls after = 16 → ratio 19:16 ≠ 3:2.
+**common_trap:** Solving for k but then reporting 2k or 3k (a single part) instead of (2 + 3)k = 5k (the original total).
+**takeaway:** Set up the post-change ratio as a cross-multiplication equation. Solve for k, then compute the specific quantity the question asks for — here, total = 5k.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q31
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Ratio — Three-Entity Chain
+
+In a recipe, flour and sugar are used in a ratio of 5:2 by weight. Sugar and butter are used in a ratio of 3:1 by weight. How many grams of butter are needed for every 90 grams of flour?
+
+- A) 6
+- B) 8
+- C) 10
+- D) 12
+- E) 18
+
+**answer:** D
+**fastest_path:** Butter/Flour = (Butter/Sugar) × (Sugar/Flour) = (1/3) × (2/5) = 2/15. Butter = (2/15) × 90 = 12 g.
+**explanation:** Chain the ratios through the shared ingredient, sugar. Flour:Sugar = 5:2; Sugar:Butter = 3:1. Scale both so sugar matches: Flour:Sugar = 15:6 (×3); Sugar:Butter = 6:2 (×2). Combined: Flour:Sugar:Butter = 15:6:2. For 90 g of flour: scale factor = 90 ÷ 15 = 6. Butter = 6 × 2 = 12 g. Alternatively, Butter/Flour = (1/3) × (2/5) = 2/15, and 90 × (2/15) = 12 g.
+**mistake_a:** Computed only the scale factor: 90 ÷ 15 = 6, then stopped without multiplying by the butter part (2).
+**mistake_b:** Arithmetic slip in the chaining step → 8.
+**mistake_c:** Arithmetic slip → 10.
+**mistake_e:** Applied the flour:sugar ratio directly to butter: 90 ÷ 5 = 18 — skipped chaining through sugar entirely.
+**common_trap:** Using one of the two given ratios in isolation rather than chaining through the shared ingredient. Both Flour:Sugar and Sugar:Butter must be combined to get the Flour:Butter ratio.
+**takeaway:** To chain A:B and B:C ratios, scale so the B-values match (use the LCM), or compute directly: A/C = (A/B) × (B/C). Always chain through the shared quantity.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q32
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Multi-Step Percent — Shared Total
+
+Three colleagues A, B, and C share a total bonus of $15,000. A's share is 20% more than B's share, and B's share is 25% more than C's share. How much does A receive?
+
+- A) $4,000
+- B) $5,000
+- C) $6,000
+- D) $6,250
+- E) $7,500
+
+**answer:** C
+**fastest_path:** B = 1.25C, A = 1.20 × 1.25C = 1.50C. Sum: (1.50 + 1.25 + 1.00)C = 3.75C = 15,000 → C = 4,000. A = 1.50 × 4,000 = 6,000.
+**explanation:** Express all three shares in terms of C. B is 25% more than C, so B = 1.25C. A is 20% more than B, so A = 1.20B = 1.20 × 1.25C = 1.50C. Sum the shares: 1.50C + 1.25C + 1.00C = 3.75C = 15,000, giving C = 4,000. Then A = 1.50 × 4,000 = $6,000. Verification: A = 6,000, B = 5,000, C = 4,000; sum = 15,000 ✓; A/B = 1.20 ✓; B/C = 1.25 ✓.
+**mistake_a:** Chose C's share ($4,000) instead of A's — mixed up which colleague's amount was requested.
+**mistake_b:** Chose B's share ($5,000) instead of A's — another column mix-up.
+**mistake_d:** Applied the wrong percent to B: used 25% more than B (1.25 × 5,000 = $6,250) instead of 20% more.
+**mistake_e:** Assumed A receives half the total without accounting for the stated percent relationships.
+**common_trap:** Computing A = 1.20 × B without first expressing B in terms of C. The chain requires all three quantities in one variable before summing to the total.
+**takeaway:** Multi-step percent chains: anchor on the base quantity, express all others as multiples of it, sum to the total, solve, then back-calculate the requested value.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q33
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Ratio from Percent Relationships
+
+A store sells only two products, P and Q. What fraction of the store's total revenue comes from Product Q?
+
+(1) Revenue from Product P is 20% less than revenue from Product Q.
+(2) Revenue from Product P increased by 10% this year while revenue from Product Q decreased by 10%, and total revenue remained the same as last year.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**fastest_path:** (1) P = 0.80Q → total = 1.80Q → Q fraction = 5/9. Sufficient. (2) 1.10P + 0.90Q = P + Q → 0.10P = 0.10Q → P = Q → Q fraction = 1/2. Sufficient. Each alone → D.
+**explanation:** Statement (1): P = 0.80Q, so total = 0.80Q + Q = 1.80Q. Fraction from Q = Q/1.80Q = 5/9. A unique value is determined. Sufficient. Statement (2): let last year's revenues be P and Q. This year: 1.10P and 0.90Q. "Total unchanged" means 1.10P + 0.90Q = P + Q → 0.10P = 0.10Q → P = Q. Then Q fraction = Q/(Q + Q) = 1/2. A unique value is determined. Sufficient. Each statement alone determines the fraction → D.
+**mistake_a:** Accepted only (1) as sufficient — but (2) is also sufficient through the "total unchanged" binding constraint.
+**mistake_b:** Accepted only (2) as sufficient — but (1) is also sufficient through its direct percent relationship.
+**mistake_c:** Required both statements — each alone is enough.
+**mistake_e:** Concluded neither is sufficient — missed that (1) gives a direct ratio and (2) uses the "total unchanged" constraint to force P = Q.
+**common_trap:** Dismissing statement (2) as "only describing changes, not the actual ratio." The constraint that total revenue is unchanged is a binding equation that uniquely pins P = Q and therefore determines the fraction.
+**takeaway:** A percent-change statement paired with a "total is preserved" constraint can determine a ratio entirely. The binding condition acts as a second equation that resolves both unknowns.
+**related_reading:** reading-quant-02-arithmetic-foundations
