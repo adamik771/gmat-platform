@@ -3,7 +3,7 @@
 import { Suspense, useState } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
-import { Eye, EyeOff, ArrowRight, Check, Loader2, AlertCircle } from "lucide-react"
+import { Eye, EyeOff, ArrowRight, Check, Loader2, AlertCircle, BookOpen, BarChart3, Brain } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
 
@@ -15,10 +15,10 @@ import { createSupabaseBrowser } from "@/lib/supabase/browser"
  */
 const ALLOWED_REDIRECTS = new Set(["/pricing", "/dashboard"])
 
-const plans = [
-  { id: "self_study", name: "Self-Study", price: "$297", note: "one-time" },
-  { id: "coaching", name: "Coaching", price: "$2,500", note: "package", popular: true },
-  { id: "intensive", name: "Intensive", price: "$4,200", note: "package" },
+const trialIncludes = [
+  { icon: BookOpen, text: "All 17 chapters + full question bank" },
+  { icon: BarChart3, text: "Score analytics, error log & mock exams" },
+  { icon: Brain, text: "Diagnostic, review queue & study plan" },
 ]
 
 export default function SignupPage() {
@@ -39,7 +39,7 @@ function SignupFallback() {
           className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
           style={{ color: "#C9A84C" }}
         >
-          Get Started
+          7-Day Free Trial
         </p>
         <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
           Begin the{" "}
@@ -48,7 +48,7 @@ function SignupFallback() {
           </span>
         </h1>
         <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
-          Start your free trial today.
+          Full access for 7 days. No credit card required.
         </p>
       </div>
     </div>
@@ -57,7 +57,6 @@ function SignupFallback() {
 
 function SignupForm() {
   const [showPassword, setShowPassword] = useState(false)
-  const [selectedPlan, setSelectedPlan] = useState("coaching")
   const [agreed, setAgreed] = useState(false)
   const [loading, setLoading] = useState(false)
   const [name, setName] = useState("")
@@ -81,7 +80,7 @@ function SignupForm() {
       email,
       password,
       options: {
-        data: { full_name: name, plan: selectedPlan },
+        data: { full_name: name },
         emailRedirectTo: `${window.location.origin}/auth/callback`,
       },
     })
@@ -103,7 +102,7 @@ function SignupForm() {
           className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
           style={{ color: "#C9A84C" }}
         >
-          Get Started
+          7-Day Free Trial
         </p>
         <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
           Begin the{" "}
@@ -112,8 +111,24 @@ function SignupForm() {
           </span>
         </h1>
         <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
-          Your 735 starts with an account.
+          Full access for 7 days. No credit card required.
         </p>
+      </div>
+
+      {/* Trial value reminder */}
+      <div
+        className="flex flex-col gap-2.5 px-5 py-4 rounded-xl border mb-5"
+        style={{
+          borderColor: "rgba(201,168,76,0.18)",
+          backgroundColor: "rgba(201,168,76,0.04)",
+        }}
+      >
+        {trialIncludes.map(({ icon: Icon, text }) => (
+          <div key={text} className="flex items-center gap-3">
+            <Icon className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#C9A84C" }} />
+            <span className="text-[13px] text-[#C0C0C0]">{text}</span>
+          </div>
+        ))}
       </div>
 
       <div
@@ -199,41 +214,6 @@ function SignupForm() {
             </p>
           </div>
 
-          {/* Plan selection */}
-          <div>
-            <label className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-2.5">
-              Select a plan
-            </label>
-            <div className="grid grid-cols-3 gap-2.5">
-              {plans.map((plan) => (
-                <button
-                  key={plan.id}
-                  type="button"
-                  onClick={() => setSelectedPlan(plan.id)}
-                  className={cn(
-                    "relative px-3 py-3.5 rounded-xl border text-left transition-all",
-                    selectedPlan === plan.id
-                      ? "border-[#C9A84C]/50 bg-[#C9A84C]/[0.06]"
-                      : "border-white/[0.08] bg-[#0A0A0A] hover:border-white/[0.16]"
-                  )}
-                >
-                  {plan.popular && (
-                    <span
-                      className="absolute -top-2 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-[0.12em]"
-                      style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                    >
-                      Popular
-                    </span>
-                  )}
-                  <p className="text-[13px] font-semibold text-[#F0F0F0] mb-0.5">
-                    {plan.name}
-                  </p>
-                  <p className="text-[12px] text-[#888888]">{plan.price}</p>
-                </button>
-              ))}
-            </div>
-          </div>
-
           {/* Terms */}
           <div className="flex items-start gap-3">
             <button
@@ -283,7 +263,7 @@ function SignupForm() {
               </>
             ) : (
               <>
-                Create account
+                Start free trial
                 <ArrowRight className="w-4 h-4" />
               </>
             )}
