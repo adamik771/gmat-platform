@@ -101,6 +101,8 @@ problem_sets:
 
 ## @enumeration
 
+**Learning objective.** By the end of this chapter, you will be able to classify any combinatorics question into one of four patterns (permutation, combination, restriction, circular/repeated), select the correct formula without guessing, and solve every standard GMAT combinatorics question in under 90 seconds. This first section builds the intuition that every formula in the chapter is shorthand for.
+
 Enumeration means **writing out every possibility and counting them**. It sounds too primitive for the GMAT, but it's the foundation every formula is built on — and for small sets (3, 4, maybe 5 objects) it's often the fastest approach.
 
 **Mental model.** Counting problems all reduce to two questions: does order matter, and are repeats allowed? Permutations vs. combinations vs. arrangements vs. multinomial — every formula is a consequence of those two answers. If you find yourself reaching for a formula before classifying the problem, you'll reach for the wrong one.
@@ -150,6 +152,8 @@ Let's sanity-check: P(7, 2) = 7! / 5! = (7 × 6 × 5!) / 5! = 7 × 6 = 42. ✓
 **Special case — all n at once.** When k = n, P(n, n) = n! / 0! = n! / 1 = n!. Reassuring: picking all 7 candidates in order is just arranging 7 things, which is 7! = 5040.
 
 **Trap to watch.** The GMAT loves to write a problem that sounds like a permutation but is actually a combination. "A committee of 3 is chosen from 10" is C(10, 3). "A president, VP, and treasurer are chosen from 10" is P(10, 3) = 720, six times larger. The word that usually tips you off: distinct roles named = permutation.
+
+> **Recall check.** Cover the section. State the permutation formula. Then apply it: a school picks a valedictorian, salutatorian, and class speaker from 12 students. How many outcomes? (Answer: P(12, 3) = 12 × 11 × 10 = 1320.) Now the critical test: if instead those same 3 students were chosen to form an "honors committee" with no designated roles, would the answer be larger or smaller — and why? If you can say "smaller, because the same group of 3 people in any order is one committee but six permutations," you've understood the permutation/combination boundary.
 
 ## @combinations
 
@@ -212,6 +216,25 @@ Example: A committee of 3 is picked from 5 men and 4 women. How many committees 
 
 Trying to count "at least 1 woman" directly means splitting into cases (exactly 1, exactly 2, exactly 3) — slow and error-prone.
 
+**Alternating arrangements.** When two categories must strictly alternate (men/women, vowels/consonants, red/blue), first determine which patterns are structurally possible, then multiply the internal arrangements within each group.
+
+**Example.** 4 men and 3 women are seated in a row such that no two women sit next to each other. How many arrangements?
+
+With one more man than woman, the only valid pattern is M _ M _ M _ M — the 3 women fill the 3 gaps between men.
+
+- Arrange the 4 men in the M slots: 4! = 24
+- Arrange the 3 women in the W slots: 3! = 6
+- Total: 24 × 6 = **144**
+
+**Example with equal counts.** 3 men and 3 women must strictly alternate. Now two patterns work: MWMWMW and WMWMWM.
+
+- Each pattern: 3! × 3! = 6 × 6 = 36
+- Two patterns: 36 × 2 = **72**
+
+The general approach: count valid slot patterns first (1 if the groups are unequal, 2 if equal), then multiply by the internal arrangements within each category.
+
+> **Recall check.** Cover the section. State the glue trick in one sentence. State the complement trick in one sentence. State the alternating rule in one sentence. Then solve: in how many ways can 5 people be arranged in a row such that the two tallest are not adjacent? (Complement: 5! total − [glue the two tallest as a block: 4! × 2! = 48] = 120 − 48 = **72**.) If you reached for the glue trick and then subtracted, you've internalized the complement reflex.
+
 ## @circular
 
 In a **circular arrangement** — people around a round table, beads on a bracelet, etc. — **rotations of the same arrangement count as identical**. There's no "seat #1" because every seat is equivalent.
@@ -227,6 +250,8 @@ To strip out rotational duplicates: fix one object in place, then arrange the re
 **Watch for distinguishable seats.** A head table with a specific "head" chair, a rectangular table where the ends differ, a round table with numbered chairs — those aren't truly circular. Use n! (normal permutations) if the seats are distinguishable.
 
 **Bracelets and necklaces** (rare on GMAT): circular AND flippable. Divide by 2 to account for mirror images. (n − 1)! / 2. If you see this, it's probably a 745+ question — take your best guess and move on if time is tight.
+
+> **Recall check.** Without peeking: why is the circular formula (n − 1)! and not n!? If you can say "because rotating the same arrangement by one seat is still the same arrangement — there's no fixed starting point in a circle — so we fix one person and arrange the remaining n − 1," you'll never confuse circular with linear. Quick check: 6 people around a round table = (6 − 1)! = 120. Correct.
 
 ## @repeats
 
@@ -280,8 +305,17 @@ That's the entire chapter's content in 8 lines. Memorize the decision tree — w
 | "Exactly X of type A and Y of type B" | Product of combinations | C(nA, X) × C(nB, Y) |
 | "At least 1 of type A" | Complement | Total − (none of A) |
 | "Must sit together" | Glue trick | Arrange block + others, then internal |
+| "Must alternate (M/W, vowel/consonant)" | Alternating | Count valid patterns × group arrangements |
 | "Round table of n" | Circular | (n − 1)! |
 | "Letters of [repeated word]" | Multiset | n! / (r₁! × r₂! × …) |
 | "Round-robin: every pair plays once" | Combination | C(n, 2) |
 
 When you finish the end-of-chapter sets below, keep this table open. By the time you've done 15-20 combinatorics questions with it at your elbow, you won't need it anymore.
+
+**What to do next.**
+
+1. **Easy set first.** If you're aiming above 645, you should hit 90%+ accuracy on the easy set in one pass. Anything you miss there is a formula recall gap — revisit the relevant section before moving on.
+2. **Medium set.** The medium questions will test the restriction and circular concepts most. If you miss more than 2, re-read `@restrictions` and `@circular` and retry those specific questions.
+3. **Hard set.** Hard questions almost always combine two patterns (e.g., circular arrangement with a forbidden adjacency). Work through the four-question decision tree above on each one — don't shortcut.
+4. **Error log.** Tag wrong answers: use **Conceptual** if you mis-classified order vs. no-order, **Strategy** if you chose the wrong formula type (permutation vs. combination), or **Careless** for arithmetic errors.
+5. **Next chapter.** Combinatorics feeds directly into the **Statistics and Probability** chapter — probability questions frequently require combination counting to compute the favorable and total outcome spaces. Complete that chapter next.
