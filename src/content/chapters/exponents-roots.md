@@ -216,6 +216,27 @@ Simplify each first: √12 = √(4·3) = 2√3, and √27 = √(9·3) = 3√3. N
 
 **Memorize these cube roots:** ³√8 = 2, ³√27 = 3, ³√64 = 4, ³√125 = 5, ³√216 = 6, ³√1000 = 10. Cube roots come up less often than square roots, but when they do, recognition speed matters.
 
+**The sign-erasing property: √(x²) = |x|**
+
+Squaring destroys sign information: both 5² and (−5)² equal 25. Taking the square root retrieves the magnitude, not the original sign:
+
+**√(x²) = |x| for all real x — not √(x²) = x.**
+
+**Worked example.** If x = −4, what is √(x²)?
+
+x² = 16. √16 = **4**, not −4. The square root always returns a non-negative value, regardless of whether x was negative.
+
+**GMAT trap.** A question tells you x < 0 and asks you to simplify √(x²). Students who write √(x²) = x answer −4. The correct answer is |x| = 4. This single error underlies a significant share of hard DS questions — "Is √(x²) = x?" is true only when x ≥ 0.
+
+**Even vs. odd roots.** The asymmetry is specific to even roots.
+
+- Even roots (√, ⁴√): always return the non-negative result. √(x²) = |x|.
+- Odd roots (³√, ⁵√): preserve the original sign. ³√(x³) = x for any real x. ³√(−27) = −3.
+
+Whenever a question involves a root of an even power, pause and ask: *could the original base have been negative?*
+
+> **Recall check.** Cover this section. (a) If x = −5, what is √(x²)? (b) If x = −2, what is ³√(x³)? Work it out before checking. Answers: (a) √25 = 5 = |−5|, not −5. (b) ³√(−8) = −2. If you wrote −5 for (a), you applied √(x²) = x instead of √(x²) = |x| — the error that costs points on every question pairing a square root with a potentially negative base.
+
 ## @rationalizing-and-combining
 
 A denominator with a radical is considered "unfinished" on the GMAT. Answer choices are almost always rationalized — radicals appear only in numerators. To rationalize, multiply by a form of 1 that clears the radical below.
@@ -308,3 +329,7 @@ Every exponent question on the GMAT yields to one question: **can I rewrite this
 5. **Estimation question?** Fall back on 2¹⁰ ≈ 10³.
 
 The students who freeze on exponent questions are the ones who try to think about them. The students who score 705+ have the rules so automated they run the decision tree in six seconds and spend the rest of their two minutes on careful arithmetic. Drill the rules until they're reflexive. Everything downstream is easy.
+
+**What to do next**
+
+Work through the problem set at the tier matching your current score target. If `@roots-and-simplification` felt uncertain — especially the sign-erasing property — test yourself on three or four values of positive and negative x before starting the medium set. The natural follow-on chapter is Number Properties, which extends even/odd base behavior into divisibility and remainder questions; the same sign-awareness you practiced here appears again there in a more algebraic form.
