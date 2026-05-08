@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import {
   AlertTriangle,
   ArrowLeft,
+  ArrowRight,
   BookOpen,
   Check,
   ChevronDown,
@@ -22,6 +23,7 @@ import PacingBadge from "@/components/shared/PacingBadge"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
 import { levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
@@ -1208,6 +1210,29 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+
+    // Compute subtopics where the student got questions wrong, sorted by frequency.
+    const subtopicMap = new Map<string, { count: number; topic: string; totalTime: number }>()
+    questions.forEach((q, i) => {
+      if (states[i].submitted && !isQuestionCorrect(q, states[i])) {
+        const existing = subtopicMap.get(q.subtopic) ?? { count: 0, topic: q.topic, totalTime: 0 }
+        subtopicMap.set(q.subtopic, {
+          count: existing.count + 1,
+          topic: existing.topic,
+          totalTime: existing.totalTime + states[i].elapsedMs,
+        })
+      }
+    })
+    const focusAreas = Array.from(subtopicMap.entries())
+      .sort(([, a], [, b]) => b.count - a.count)
+      .slice(0, 3)
+      .map(([subtopic, data]) => ({
+        subtopic,
+        count: data.count,
+        avgTime: Math.round(data.totalTime / data.count),
+        chapterSlug: TOPIC_TO_CHAPTER[data.topic] ?? null,
+      }))
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1253,6 +1278,61 @@ export default function SessionClient({
             </div>
           </div>
         </div>
+
+        {focusAreas.length > 0 ? (
+          <div>
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-3">
+              Subtopics to revisit
+            </h2>
+            <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
+              {focusAreas.map((area, i) => (
+                <div
+                  key={area.subtopic}
+                  className={`flex items-center justify-between gap-4 px-4 py-3.5 ${
+                    i < focusAreas.length - 1 ? "border-b border-white/[0.05]" : ""
+                  }`}
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div
+                      className="w-6 h-6 rounded flex-shrink-0 flex items-center justify-center text-[11px] font-bold"
+                      style={{ backgroundColor: "rgba(255,68,68,0.12)", color: "#FF4444" }}
+                    >
+                      {area.count}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm text-[#F0F0F0] truncate">{area.subtopic}</p>
+                      <p className="text-[11px] text-[#555555] mt-0.5">
+                        avg {formatDuration(area.avgTime)} per question
+                      </p>
+                    </div>
+                  </div>
+                  {area.chapterSlug && (
+                    <Link
+                      href={`/chapters/${area.chapterSlug}`}
+                      className="flex-shrink-0 flex items-center gap-1 text-[11px] font-medium transition-opacity hover:opacity-70"
+                      style={{ color: "#C9A84C" }}
+                    >
+                      Review chapter
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : answeredCount > 0 ? (
+          <div
+            className="px-5 py-4 rounded-xl border"
+            style={{ borderColor: "rgba(62,207,142,0.2)", backgroundColor: "rgba(62,207,142,0.04)" }}
+          >
+            <p className="text-sm font-semibold" style={{ color: "#3ECF8E" }}>
+              Clean session — no mistakes.
+            </p>
+            <p className="text-xs text-[#888888] mt-1">
+              If this felt comfortable, consider increasing difficulty or moving to the next chapter.
+            </p>
+          </div>
+        ) : null}
 
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
