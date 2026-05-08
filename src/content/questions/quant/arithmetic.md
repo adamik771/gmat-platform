@@ -149,7 +149,7 @@ If 2^x = 32 and 3^y = 81, what is the value of x + y?
 **answer:** C
 **fastest_path:** 32 = 2⁵ → x = 5. 81 = 3⁴ → y = 4. Sum = 9.
 **explanation:** Recognize the powers: 32 = 2⁵, so 2^x = 2⁵ gives x = 5. 81 = 3⁴, so 3^y = 3⁴ gives y = 4. Therefore x + y = 9. Total time: 10 seconds for someone who knows 2-power and 3-power table.
-**mistake_a:** Computed 2 + 5 = 7 (added 2 and 32 incorrectly).
+**mistake_a:** Confused both powers by one step each: thought 32 = 2⁴ (so x = 4) AND 81 = 3³ (so y = 3); sum = 7. In fact 2⁴ = 16 and 3³ = 27 — both are the power one step below the correct one.
 **mistake_b:** x = 4, y = 4 (mis-recognized 32 = 2⁴).
 **mistake_d:** y = 5 (mis-recognized 81 = 3⁵).
 **mistake_e:** Computed x × y = 20 then halved or otherwise miscombined.
@@ -462,15 +462,15 @@ Is the fraction p/q greater than 1/2?
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
-**answer:** B
-**fastest_path:** p/q > 1/2 ⟺ 2p > q. Stmt (2): q = 2p − 5 → 2p − q = 5 > 0 → sufficient.
-**explanation:** Reframe: p/q > 1/2 is equivalent to 2p > q (when q > 0). Statement (1) p + q = 20: counterexamples — (p=5, q=15): p/q = 1/3, no. (p=15, q=5): p/q = 3, yes. Different yes/no → insufficient. Statement (2) q = 2p − 5: rearrange to 2p − q = 5, which is > 0 → 2p > q → p/q > 1/2 always (assuming q > 0). Sufficient. → answer is B.
-**mistake_a:** Treated Statement (1) alone as sufficient because it "looks like a complete equation."
-**mistake_c:** Required both statements without testing each alone.
-**mistake_d:** Concluded each alone sufficient.
-**mistake_e:** Concluded together insufficient because of the q-positivity edge case.
-**common_trap:** Yes/no DS — testing only one case (the "easy" one) and missing the contradicting case.
-**takeaway:** For yes/no DS, the answer is sufficient *only when consistent across all valid cases*. Test edge cases (large p, large q, near-equal, etc.) before concluding.
+**answer:** C
+**fastest_path:** Together: p + q = 20 and q = 2p − 5 → 3p = 25 → unique p, q → sufficient. Each alone: test counterexamples → insufficient.
+**explanation:** Reframe: p/q > 1/2 ⟺ 2p > q when q > 0, but the direction reverses when q < 0. Statement (1) p + q = 20 alone: (p = 5, q = 15) → 5/15 = 1/3 < 1/2, No; (p = 15, q = 5) → 3 > 1/2, Yes. Contradictory → insufficient. Statement (2) q = 2p − 5 alone: when p = 1, q = −3 → p/q = −1/3 < 1/2, No; when p = 4, q = 3 → p/q = 4/3 > 1/2, Yes. Contradictory → insufficient. Combined: substitute q = 2p − 5 into p + q = 20: p + (2p − 5) = 20 → 3p = 25 → p = 25/3, q = 35/3. Both are positive and unique: p/q = 5/7 > 1/2 → always Yes → sufficient.
+**mistake_a:** Concluded Statement (1) alone sufficient because it "looks like a complete equation" — missed the counterexamples above.
+**mistake_b:** Reframed p/q > 1/2 as 2p > q, then cited 2p − q = 5 > 0 from Statement (2) as sufficient — overlooked that the shortcut 2p > q ⟹ p/q > 1/2 holds only when q > 0; Statement (2) allows q < 0 (e.g., p = 1, q = −3), which invalidates the conclusion.
+**mistake_d:** Concluded each alone sufficient (combination of mistakes A and B above).
+**mistake_e:** Over-cautious; concluded both together insufficient because "there are two unknowns" — forgot that two independent equations uniquely determine p and q when taken together.
+**common_trap:** The "2p > q means p/q > 1/2" shortcut silently assumes q > 0. Whenever a fraction-inequality DS question lacks a sign constraint on the denominator, test negative values.
+**takeaway:** For yes/no DS involving a fraction p/q, always verify the sign of q before cross-multiplying. A statement that looks sufficient algebraically may fail under negative denominators.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -489,15 +489,15 @@ Which of the following fractions is closest to 1/3?
 - E) 13/40
 
 **answer:** E
-**fastest_path:** For p/q vs. 1/3: gap = |3p − q| / (3q). Smallest gap wins.
-**explanation:** Compare each fraction to 1/3 by computing |3p − q| / (3q):
-- 7/22: |21 − 22| / 66 = 1/66 ≈ 0.0152
-- 11/32: |33 − 32| / 96 = 1/96 ≈ 0.0104
-- 5/16: |15 − 16| / 48 = 1/48 ≈ 0.0208
-- 9/28: |27 − 28| / 84 = 1/84 ≈ 0.0119
-- 13/40: |39 − 40| / 120 = 1/120 ≈ 0.0083
+**fastest_path:** Convert all to decimals and compare gaps to 1/3 ≈ 0.333: 13/40 = 0.325 (gap 0.008), 11/32 = 0.344 (gap 0.010), 9/28 ≈ 0.321 (gap 0.012), 7/22 ≈ 0.318 (gap 0.015), 5/16 = 0.313 (gap 0.021). Smallest gap: 13/40.
+**explanation:** Convert each fraction to a decimal and measure its distance from 1/3 ≈ 0.3333:
+- 7/22 ≈ 0.3182 (gap ≈ 0.015)
+- 11/32 = 0.34375 (gap ≈ 0.010)
+- 5/16 = 0.3125 (gap ≈ 0.021)
+- 9/28 ≈ 0.3214 (gap ≈ 0.012)
+- 13/40 = 0.325 (gap ≈ 0.008)
 
-Smallest gap belongs to 13/40. Verify with decimals: 13/40 = 0.325; 1/3 ≈ 0.3333; gap = 0.0083 ✓.
+Smallest gap belongs to 13/40. Note that 11/32 (gap ≈ 0.010) is the second-closest — compute both before concluding. Verify: 13/40 = 0.325; 1/3 ≈ 0.3333; gap ≈ 0.008 ✓.
 **mistake_a:** Picked 7/22 (gap 1/66) — second-largest gap.
 **mistake_b:** Picked 11/32 (gap 1/96) — second-smallest gap.
 **mistake_c:** Picked 5/16 (gap 1/48) — largest gap.
