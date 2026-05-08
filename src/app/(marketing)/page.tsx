@@ -249,20 +249,20 @@ export default function HomePage() {
         style={{ backgroundColor: "#0D0D0D" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-[#555555]">
-            <span>Trusted by MBA candidates at</span>
+          <div className="flex flex-wrap items-center justify-center gap-3 text-xs">
             {[
-              "Harvard GSB applicant",
-              "Wharton applicant",
-              "Booth applicant",
-              "Columbia applicant",
-              "Kellogg applicant",
-            ].map((name) => (
+              "17 structured chapters",
+              "500+ practice questions",
+              "Error log analytics",
+              "Spaced review queue",
+              "Full-length mock exams",
+              "Score guarantee on Intensive",
+            ].map((item) => (
               <span
-                key={name}
-                className="px-3 py-1 rounded-full border border-white/[0.06] text-[#444444]"
+                key={item}
+                className="px-3 py-1 rounded-full border border-white/[0.06] text-[#555555]"
               >
-                {name}
+                {item}
               </span>
             ))}
           </div>
