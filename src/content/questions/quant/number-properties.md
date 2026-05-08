@@ -134,9 +134,9 @@ If the three-digit number 4A6 is divisible by 9, where A represents a single dig
 ---
 
 ## Q6
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
-**topic:** Multiples
+**topic:** GCD and LCM
 
 What is the greatest common factor of 168 and 252?
 
@@ -227,10 +227,10 @@ Which of the following numbers is divisible by 11?
 **answer:** A
 **fastest_path:** Alternating digit sum test for 11. 2431: 2 − 4 + 3 − 1 = 0 → divisible.
 **explanation:** Divisibility by 11: alternating digit sum from the rightmost must be divisible by 11. For 2431: 1 − 3 + 4 − 2 = 0 ✓. Verify directly: 2431 / 11 = 221. The other options give nonzero alternating sums (3456 → 2; 5791 → −6; 6810 → 1; 7239 → 1).
-**mistake_b:** Computed alternating sum wrong on 3456 — got 0 by sign-flipping a digit.
-**mistake_c:** Computed alternating sum wrong on 5791.
-**mistake_d:** Computed alternating sum wrong on 6810 (mis-ordered the signs).
-**mistake_e:** Computed alternating sum wrong on 7239.
+**mistake_b:** Applied the simple digit sum instead of the alternating sum: 3+4+5+6=18. 18 is divisible by 9 (not 11), so 3456 is rejected — but for the wrong reason. Reinforces the confusion between divisibility-by-9 and divisibility-by-11 rules.
+**mistake_c:** Applied the digit-sum (divisibility-by-9) test to 5791: 5+7+9+1=22, which IS divisible by 11 — creating a seductive false positive. 5791 is not divisible by 11 (5791/11 ≈ 526.5), but the non-alternating sum coincidentally passes.
+**mistake_d:** Applied the alternating sum starting from the wrong end (left): 6−8+1−0=−1 for 6810 rather than 0−1+8−6=1. Both give a nonzero result, so 6810 is correctly rejected — but the sign order matters on numbers where the ends produce different nonzero values.
+**mistake_e:** Computed alternating sum 9−3+2−7=1 for 7239, then confused "remainder of 1 when divided by 11" with "1 away from divisible" and nearly picked it. Divisibility requires the alternating sum to be exactly 0 or ±11, not just close.
 **common_trap:** Mis-ordering the signs in the alternating sum (start from the rightmost digit, or be consistent — but stay consistent within a number).
 **takeaway:** Divisibility-by-11 test: alternating digit sum (right-to-left) divisible by 11. Quicker than long division for 4+ digits.
 **related_reading:** reading-quant-03-number-properties
@@ -242,23 +242,23 @@ Which of the following numbers is divisible by 11?
 **type:** Problem Solving
 **topic:** Consecutive Integers
 
-The sum of five consecutive integers is 85. What is the largest of the five integers?
+The sum of four consecutive integers is 46. What is the product of the smallest and largest of the four integers?
 
-- A) 15
-- B) 17
-- C) 19
-- D) 21
-- E) 23
+- A) 110
+- B) 120
+- C) 130
+- D) 132
+- E) 156
 
 **answer:** C
-**fastest_path:** Mean = 85/5 = 17 = middle. Largest = 17 + 2 = 19.
-**explanation:** For an odd count of consecutive integers, mean = median = middle integer = 85/5 = 17. The integers are 15, 16, 17, 18, 19. Largest = 19.
-**mistake_a:** Bubbled 15 — the smallest, not the largest.
-**mistake_b:** Bubbled 17 — the average, not the largest.
-**mistake_d:** Off-by-one: took 17 + 4 = 21 (added the *count* − 1, not the half-spread).
-**mistake_e:** Took 17 + 6 = 23 — over-stretched the range.
-**common_trap:** Bubbling the average (17) instead of the largest. The question asks for max, not median.
-**takeaway:** For odd-count consecutives: middle = sum/count. Largest = middle + (count−1)/2. Sort by position from the median.
+**fastest_path:** Mean = 46/4 = 11.5, so integers are 10, 11, 12, 13. Product = 10 × 13 = 130.
+**explanation:** Let the smallest integer be n. Sum: n + (n+1) + (n+2) + (n+3) = 4n + 6 = 46 → n = 10. The four integers are 10, 11, 12, 13. Product of smallest and largest: 10 × 13 = 130. Shortcut: with an even count of consecutive integers the average is non-integer (46/4 = 11.5), and the integers straddle it symmetrically — two below (10, 11) and two above (12, 13).
+**mistake_a:** Multiplied the two smallest instead of the extremes: 10 × 11 = 110. Treated the second integer as the "largest."
+**mistake_b:** Computed n × (n+2) = 10 × 12 = 120 — treated the third integer as the largest, skipping n+3.
+**mistake_d:** Multiplied the middle pair instead of the extremes: 11 × 12 = 132. Confused "innermost" with "outermost."
+**mistake_e:** Multiplied the two largest instead of the extremes: 12 × 13 = 156. Treated the third integer as the "smallest."
+**common_trap:** With four consecutive integers n, n+1, n+2, n+3, the extremes are n and n+3 — not the adjacent or middle pairs.
+**takeaway:** "Smallest and largest of four consecutive integers" means first and fourth: n and n+3. Their product is n(n+3), not any adjacent pair.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -360,7 +360,7 @@ How many positive factors does 720 have?
 **mistake_a:** Used 2³ instead of 2⁴: (3+1)(2+1)(1+1) = 24.
 **mistake_b:** Off-by-one on one exponent: 28 = 7·4 from (6+1)(3+1) — wrong factorization.
 **mistake_d:** Used 2⁵ instead of 2⁴: (5+1)(2+1)(1+1) = ... 32 from a different mis-factor.
-**mistake_e:** Used 2³·3³·5 → (3+1)(3+1)(1+1) = 32, then bubbled the closest available 36.
+**mistake_e:** Mis-factorized 720 as 2⁵·3²·5 — one extra factor of 2 — then applied the formula: (5+1)(2+1)(1+1) = 6·3·2 = 36. The factorization error likely comes from an off-by-one count when repeatedly halving 720.
 **common_trap:** Mis-factorizing 720 by missing one factor of 2 or one factor of 3 — the count formula then deviates.
 **takeaway:** Factor 720 in clean splits: 8·90 = 8·9·10 = 2⁴·3²·5. Verify via: product of primes^exponents = 16·9·5 = 720 ✓.
 **related_reading:** reading-quant-03-number-properties
@@ -509,7 +509,7 @@ If m and n are positive integers, what is the value of m?
 **type:** Problem Solving
 **topic:** Prime Factorization and Counting Factors
 
-If n = 2⁵ x 3⁴ x 5³, how many positive factors of n are perfect squares?
+If n = 2⁵ · 3⁴ · 5³, how many positive factors of n are perfect squares?
 
 - A) 6
 - B) 9
@@ -531,7 +531,7 @@ If n = 2⁵ x 3⁴ x 5³, how many positive factors of n are perfect squares?
 ---
 
 ## Q21
-**difficulty:** Medium
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Trailing Zeros in Factorials
 
@@ -614,25 +614,28 @@ Is the positive integer n divisible by 18?
 ## Q24
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Units Digit Pattern
+**topic:** Units Digit Patterns
 
-What is the units digit of 7^100?
+What is the units digit of 3^19 × 7^14?
 
 - A) 1
 - B) 3
-- C) 7
-- D) 9
-- E) 0
+- C) 6
+- D) 7
+- E) 9
 
-**answer:** A
-**fastest_path:** 7-cycle [7, 9, 3, 1]. 100 mod 4 = 0 → position 4 → 1.
-**explanation:** Units digit of 7^n cycles [7, 9, 3, 1] with period 4. 100 mod 4 = 0 → position 4 → units digit 1.
-**mistake_b:** Took position 3 in the cycle (= 3).
-**mistake_c:** Bubbled the base 7 — ignored the cycle.
-**mistake_d:** Took position 2 in the cycle (= 9).
-**mistake_e:** Bubbled 0 — but 7^n never ends in 0.
-**common_trap:** When n mod 4 = 0, position is 4 (end of cycle), not 0 (undefined). Mis-indexing here is the most common units-digit error.
-**takeaway:** For units-digit cycles: position 4 corresponds to mod 4 = 0. The 7-cycle: 7^1=7, 7^2=49, 7^3=...3, 7^4=...1, 7^5=...7.
+**answer:** B
+**hint_nudge:** Find the units digit of each factor separately using cycle patterns, then multiply those units digits.
+**hint_strategy:** Both 3 and 7 have period-4 units-digit cycles. Use n mod 4 to find the cycle position for each exponent.
+**hint_setup:** 3-cycle: [3, 9, 7, 1]. 19 mod 4 = 3 → position 3 → 7. Now do the same for 7^14.
+**fastest_path:** 3^19: cycle [3,9,7,1], 19 mod 4 = 3 → 7. 7^14: cycle [7,9,3,1], 14 mod 4 = 2 → 9. Product units: 7 × 9 = 63 → 3.
+**explanation:** Two-step units-digit problem — find each factor's units digit, then multiply. For 3^19: the cycle [3, 9, 7, 1] repeats every 4. 19 mod 4 = 3 → position 3 → units digit 7. For 7^14: the cycle [7, 9, 3, 1] repeats every 4. 14 mod 4 = 2 → position 2 → units digit 9. Product: 7 × 9 = 63 → units digit 3.
+**mistake_a:** Used the quotient instead of the remainder when computing 7^14's position: 14÷4 = 3 remainder 2, but took the quotient 3 as the cycle position → 7-cycle position 3 → 3. Then 7 × 3 = 21 → units 1.
+**mistake_c:** Added the two units digits instead of multiplying: 7 + 9 = 16 → units 6. The addition pattern from single-power problems transferred incorrectly.
+**mistake_d:** Found 3^19 units digit (7) correctly but stopped there without applying the 7^14 factor.
+**mistake_e:** Found 7^14 units digit (9) correctly but stopped there without applying the 3^19 factor.
+**common_trap:** Products require multiplying both units digits, not picking one. Stopping after the first computation is the primary error.
+**takeaway:** For a product of two powers, compute each unit digit independently via its cycle (mod 4), then find the units digit of their product. Three steps total — not two.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -887,7 +890,7 @@ The sum of four consecutive positive multiples of 5 is 230. What is the smallest
 ---
 
 ## Q34
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** LCM Application — Bells Ringing
 
@@ -902,10 +905,10 @@ Three bells ring at intervals of 6, 9, and 15 minutes respectively. They all rin
 **answer:** D
 **fastest_path:** LCM(6, 9, 15) = 90 min = 1h 30m. 12:00 + 1:30 = 1:30 PM.
 **explanation:** Bells coincide at LCM of intervals. 6 = 2·3, 9 = 3², 15 = 3·5. LCM = 2 · 3² · 5 = 90 min = 1h 30m. 12:00 PM + 90 min = 1:30 PM.
-**mistake_a:** Computed LCM = 45 (took GCF·something).
-**mistake_b:** Computed LCM(6, 15) = 30, doubled for "extra safety" → 60 min.
-**mistake_c:** Computational slip → LCM = 75 min.
-**mistake_e:** Used LCM(6, 15) · GCF or wrong combination → 120 min.
+**mistake_a:** Found LCM of only two of the three bells (the 9- and 15-minute ones): LCM(9, 15) = 45 min → 12:45 PM. Forgot to verify the 6-minute bell also rings at 45 min (it doesn't: 45/6 = 7.5).
+**mistake_b:** Misread the 9-minute interval as 12 minutes and computed LCM(6, 12, 15) = 60 min → 1:00 PM. (LCM(6, 12, 15) = 2²·3·5 = 60 is correct for those numbers, but 9 ≠ 12.)
+**mistake_c:** Correct approach, arithmetic slip: computed LCM(9, 15) = 45 then LCM(45, 6) incorrectly as 75 instead of 90.
+**mistake_e:** Over-counted prime powers: used 2²·3²·5 = 180 or confused the 2-exponent from 6 = 2·3 as higher — arrived at 120 instead of 2·3²·5 = 90.
 **common_trap:** Taking LCM of only two of the three intervals (e.g., LCM(6, 9) = 18, then ignoring 15).
 **takeaway:** For "next simultaneous event" with periodic events at intervals a, b, c: time = LCM(a, b, c). All three must factor into the LCM.
 **related_reading:** reading-quant-03-number-properties
