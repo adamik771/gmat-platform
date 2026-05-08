@@ -1208,6 +1208,60 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+
+    // --- Session insight computations ---
+    const wrongItems = questions
+      .map((q, i) => ({ q, state: states[i] }))
+      .filter(({ q, state }) => state.submitted && !isQuestionCorrect(q, state))
+    const wrongCount = wrongItems.length
+
+    // Most repeated subtopic among mistakes (shown when ≥2 mistakes share one)
+    const subtopicCounts: Record<string, number> = {}
+    for (const { q } of wrongItems) {
+      subtopicCounts[q.subtopic] = (subtopicCounts[q.subtopic] ?? 0) + 1
+    }
+    const topSubtopicEntry = Object.entries(subtopicCounts).sort((a, b) => b[1] - a[1])[0]
+    const mistakePattern =
+      topSubtopicEntry && topSubtopicEntry[1] >= 2 && wrongCount >= 2
+        ? { name: topSubtopicEntry[0], count: topSubtopicEntry[1] }
+        : null
+
+    // Pacing: flag if average answered-question time exceeds 3 minutes
+    const answeredStates = states.filter((s) => s.submitted)
+    const avgMsPerQ =
+      answeredStates.length > 0
+        ? answeredStates.reduce((sum, s) => sum + s.elapsedMs, 0) / answeredStates.length
+        : 0
+    const showPacingNote = avgMsPerQ > 180_000
+
+    // Calibrated performance message + recommended destination
+    let insightMessage: string
+    let nextStep: { label: string; href: string }
+    if (answeredCount === 0) {
+      insightMessage = ""
+      nextStep = { label: "Back to practice", href: "/practice" }
+    } else if (wrongCount === 0) {
+      insightMessage =
+        "No mistakes. Strong execution throughout — confirm the understanding and move to the next topic."
+      nextStep = { label: "Continue practicing", href: "/practice" }
+    } else if (accuracy >= 85) {
+      insightMessage = "Strong session. You have solid command of this material."
+      nextStep = { label: "Check your review queue", href: "/review" }
+    } else if (accuracy >= 65) {
+      insightMessage =
+        "Solid work. The explanations for your mistakes carry the most learning — read each one before moving on."
+      nextStep = { label: "Tag your mistakes", href: "/error-log" }
+    } else if (accuracy >= 40) {
+      insightMessage =
+        "A difficult set — that is useful data. Work through each explanation carefully and note what broke down."
+      nextStep = { label: "Tag your mistakes", href: "/error-log" }
+    } else {
+      insightMessage =
+        "This topic needs more preparation. Study the relevant chapter before returning to drill."
+      nextStep = { label: "Study the chapter", href: "/chapters" }
+    }
+    // --- end session insight computations ---
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1253,6 +1307,50 @@ export default function SessionClient({
             </div>
           </div>
         </div>
+
+        {/* Session Insight */}
+        {answeredCount > 0 && (
+          <div
+            className="p-5 rounded-xl border"
+            style={{
+              borderColor: "rgba(255,255,255,0.06)",
+              backgroundColor: "#111111",
+            }}
+          >
+            <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+              Session insight
+            </p>
+            <p className="text-sm text-[#C0C0C0] leading-relaxed">{insightMessage}</p>
+            {mistakePattern && (
+              <p className="text-sm text-[#888888] mt-2 leading-relaxed">
+                {mistakePattern.count} of your {wrongCount} mistake
+                {wrongCount !== 1 ? "s" : ""} were in{" "}
+                <span className="text-[#C0C0C0]">{mistakePattern.name}</span> — your
+                highest-leverage focus area right now.
+              </p>
+            )}
+            {showPacingNote && (
+              <p className="text-sm text-[#888888] mt-2 leading-relaxed">
+                You averaged {formatDuration(Math.round(avgMsPerQ))} per question. GMAT
+                pacing targets roughly 2 minutes per question — this is worth practicing
+                alongside accuracy.
+              </p>
+            )}
+            <div className="mt-4 pt-4 border-t border-white/[0.06] flex items-center justify-between gap-4">
+              <span className="text-xs text-[#555555]">Recommended next step</span>
+              <Link
+                href={nextStep.href}
+                className="text-xs font-semibold px-3 py-1.5 rounded-lg whitespace-nowrap transition-opacity hover:opacity-80"
+                style={{
+                  color: "#C9A84C",
+                  backgroundColor: "rgba(201,168,76,0.10)",
+                }}
+              >
+                {nextStep.label}
+              </Link>
+            </div>
+          </div>
+        )}
 
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
