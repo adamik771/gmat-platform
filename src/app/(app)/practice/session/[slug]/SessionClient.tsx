@@ -1208,6 +1208,46 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+
+    // Group missed questions by subtopic for pattern analysis
+    const missedQuestions = questions.filter(
+      (_, i) => states[i].submitted && !isQuestionCorrect(questions[i], states[i])
+    )
+    const missedBySubtopic: Record<string, number> = {}
+    for (const q of missedQuestions) {
+      missedBySubtopic[q.subtopic] = (missedBySubtopic[q.subtopic] ?? 0) + 1
+    }
+    const subtopicMisses = Object.entries(missedBySubtopic).sort((a, b) => b[1] - a[1])
+
+    // Average time per submitted question
+    const submittedStates = states.filter((s) => s.submitted)
+    const avgTimeMs =
+      submittedStates.length > 0
+        ? submittedStates.reduce((sum, s) => sum + s.elapsedMs, 0) / submittedStates.length
+        : 0
+
+    // GMAT Focus pacing benchmarks (ms per question)
+    const sectionTargetMs: Record<string, number> = { Quant: 128000, Verbal: 117000, DI: 135000 }
+    const targetMs = sectionTargetMs[section] ?? 120000
+    const paceStatus =
+      avgTimeMs === 0 ? null
+      : avgTimeMs < targetMs * 0.7 ? "rushed"
+      : avgTimeMs > targetMs * 1.35 ? "slow"
+      : null
+
+    // Performance tier
+    const tier =
+      accuracy >= 85 ? "strong"
+      : accuracy >= 70 ? "solid"
+      : accuracy >= 50 ? "developing"
+      : "early"
+    const tierConfig = {
+      strong:     { label: "Strong session.",       color: "#3ECF8E" },
+      solid:      { label: "Solid.",                color: "#C9A84C" },
+      developing: { label: "Keep at it.",           color: "#C0C0C0" },
+      early:      { label: "More practice needed.", color: "#888888" },
+    } as const
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1218,22 +1258,25 @@ export default function SessionClient({
             <ArrowLeft className="w-3 h-3" />
             Back to Practice
           </Link>
-          <h1 className="text-2xl font-bold text-[#F0F0F0] mt-3">Session complete</h1>
-          <p className="text-sm text-[#555555] mt-1">
-            {topic} · {section}
-          </p>
+          <div className="mt-3 flex items-end justify-between gap-3 flex-wrap">
+            <div>
+              <h1 className="text-2xl font-bold text-[#F0F0F0]">Session complete</h1>
+              <p className="text-sm text-[#555555] mt-1">{topic} · {section}</p>
+            </div>
+            <p className="text-base font-semibold" style={{ color: tierConfig[tier].color }}>
+              {tierConfig[tier].label}
+            </p>
+          </div>
         </div>
 
         <SaveStatusBanner status={saveStatus} onRetry={saveSession} />
 
+        {/* Stats */}
         <div
           className="p-6 rounded-xl border"
-          style={{
-            borderColor: "rgba(201,168,76,0.2)",
-            backgroundColor: "rgba(201,168,76,0.04)",
-          }}
+          style={{ borderColor: "rgba(201,168,76,0.2)", backgroundColor: "rgba(201,168,76,0.04)" }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className={`grid gap-6 ${avgTimeMs > 0 ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-1 sm:grid-cols-3"}`}>
             <div>
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Accuracy</p>
               <p className="text-3xl font-bold mt-2" style={{ color: "#C9A84C" }}>
@@ -1251,9 +1294,111 @@ export default function SessionClient({
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Total time</p>
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
             </div>
+            {avgTimeMs > 0 && (
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-[#555555]">Avg / question</p>
+                <p
+                  className="text-3xl font-bold mt-2"
+                  style={{
+                    color:
+                      paceStatus === "slow" ? "#FF9966"
+                      : paceStatus === "rushed" ? "#5FA8FF"
+                      : "#F0F0F0",
+                  }}
+                >
+                  {formatDuration(avgTimeMs)}
+                </p>
+                {paceStatus && (
+                  <p
+                    className="text-[10px] mt-1"
+                    style={{ color: paceStatus === "slow" ? "#FF9966" : "#5FA8FF" }}
+                  >
+                    {paceStatus === "slow" ? "over-pace" : "under-pace"}
+                  </p>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
+        {/* Subtopic mistake breakdown */}
+        {subtopicMisses.length > 0 && (
+          <div
+            className="p-4 rounded-xl border"
+            style={{ borderColor: "rgba(255,68,68,0.12)", backgroundColor: "rgba(255,68,68,0.03)" }}
+          >
+            <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+              Where you slipped
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {subtopicMisses.map(([sub, count]) => (
+                <span
+                  key={sub}
+                  className="text-xs px-2.5 py-1 rounded-lg"
+                  style={{
+                    backgroundColor: "rgba(255,68,68,0.08)",
+                    color: "#FF9966",
+                    border: "1px solid rgba(255,68,68,0.12)",
+                  }}
+                >
+                  {count === 1 ? "1 miss" : `${count} misses`} · {sub}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* What's next — one clear action */}
+        <div
+          className="p-5 rounded-xl border border-white/[0.08]"
+          style={{ backgroundColor: "#111111" }}
+        >
+          <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+            What&apos;s next
+          </p>
+          {missedQuestions.length > 0 ? (
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <p className="text-sm text-[#C0C0C0]">
+                {missedQuestions.length === 1
+                  ? "1 mistake to tag and learn from."
+                  : `${missedQuestions.length} mistakes to tag and learn from.`}
+                {tier === "early" && " Consider reading the chapter before retaking."}
+              </p>
+              <Link
+                href="/error-log"
+                className="flex-shrink-0 px-3.5 py-2 rounded-lg text-xs font-semibold transition-colors hover:opacity-90"
+                style={{
+                  backgroundColor: "rgba(201,168,76,0.12)",
+                  color: "#C9A84C",
+                  border: "1px solid rgba(201,168,76,0.25)",
+                }}
+              >
+                Tag in error log →
+              </Link>
+            </div>
+          ) : (
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <p className="text-sm text-[#C0C0C0]">
+                {accuracy === 100
+                  ? "Perfect session. Try a harder set or a new topic."
+                  : "No mistakes this round. Keep the momentum."}
+              </p>
+              <Link
+                href="/practice"
+                className="flex-shrink-0 px-3.5 py-2 rounded-lg text-xs font-semibold transition-colors hover:opacity-90"
+                style={{
+                  backgroundColor: "rgba(201,168,76,0.12)",
+                  color: "#C9A84C",
+                  border: "1px solid rgba(201,168,76,0.25)",
+                }}
+              >
+                More practice →
+              </Link>
+            </div>
+          )}
+        </div>
+
+        {/* Per-question review list */}
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
             Review
