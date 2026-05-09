@@ -1208,6 +1208,32 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+
+    const missedWithIndex = questions
+      .map((q, i) => ({ q, i, state: states[i] }))
+      .filter(({ q, state }) => state.submitted && !isQuestionCorrect(q, state))
+    const correctWithIndex = questions
+      .map((q, i) => ({ q, i, state: states[i] }))
+      .filter(({ q, state }) => state.submitted && isQuestionCorrect(q, state))
+    const skippedWithIndex = questions
+      .map((q, i) => ({ q, i, state: states[i] }))
+      .filter(({ state }) => !state.submitted)
+
+    const tierLabel = (() => {
+      if (answeredCount === 0) return null
+      if (accuracy >= 85) return { text: "Strong command of this material.", color: "#3ECF8E" }
+      if (accuracy >= 70) return { text: "Solid accuracy — the missed questions below are your clearest path forward.", color: "#C9A84C" }
+      if (accuracy >= 50) return { text: "Working baseline — focused review of your mistakes will move the needle.", color: "#C9A84C" }
+      return { text: "Below 50% — revisit the chapter concepts before your next practice set.", color: "#888888" }
+    })()
+
+    const nextStep = (() => {
+      if (missedWithIndex.length === 0) return { text: "Consider advancing to harder questions to keep the challenge productive.", href: "/practice", label: "Practice" }
+      if (accuracy >= 70) return { text: "Add your missed questions to spaced review so you see them again at the right interval.", href: "/review", label: "Go to Review" }
+      if (accuracy >= 50) return { text: "Tag your mistakes in the error log to track patterns across sessions.", href: "/error-log", label: "Error Log" }
+      return { text: "Review the chapter concepts before your next practice set to close the gaps.", href: "/chapters", label: "Chapters" }
+    })()
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1226,6 +1252,7 @@ export default function SessionClient({
 
         <SaveStatusBanner status={saveStatus} onRetry={saveSession} />
 
+        {/* Stats + performance tier */}
         <div
           className="p-6 rounded-xl border"
           style={{
@@ -1252,47 +1279,41 @@ export default function SessionClient({
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
             </div>
           </div>
+          {tierLabel && (
+            <p
+              className="text-sm mt-5 pt-4 border-t border-white/[0.06]"
+              style={{ color: tierLabel.color }}
+            >
+              {tierLabel.text}
+            </p>
+          )}
         </div>
 
-        <div>
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
-            Review
-          </h2>
-          <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
-            {questions.map((q, i) => {
-              const state = states[i]
-              const isCorrect = isQuestionCorrect(q, state)
-              return (
+        {/* Missed questions — shown first so students immediately know what to work on */}
+        {missedWithIndex.length > 0 && (
+          <div>
+            <h2 className="text-[11px] font-semibold uppercase tracking-widest text-[#888888] mb-3">
+              Needs review · {missedWithIndex.length}
+            </h2>
+            <div
+              className="rounded-xl border overflow-hidden"
+              style={{
+                borderColor: "rgba(255,68,68,0.12)",
+                backgroundColor: "rgba(255,68,68,0.015)",
+              }}
+            >
+              {missedWithIndex.map(({ q, i, state }, rowIdx) => (
                 <button
                   key={q.id}
-                  onClick={() => {
-                    goTo(i)
-                    setShowResults(false)
-                  }}
-                  className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
-                    i < questions.length - 1 ? "border-b border-white/[0.05]" : ""
-                  }`}
+                  onClick={() => { goTo(i); setShowResults(false) }}
+                  className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left${rowIdx < missedWithIndex.length - 1 ? " border-b border-white/[0.05]" : ""}`}
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     <div
                       className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{
-                        backgroundColor: state.submitted
-                          ? isCorrect
-                            ? "rgba(62,207,142,0.1)"
-                            : "rgba(255,68,68,0.1)"
-                          : "rgba(255,255,255,0.04)",
-                      }}
+                      style={{ backgroundColor: "rgba(255,68,68,0.1)" }}
                     >
-                      {state.submitted ? (
-                        isCorrect ? (
-                          <Check className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
-                        ) : (
-                          <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
-                        )
-                      ) : (
-                        <span className="text-[10px] text-[#555555]">—</span>
-                      )}
+                      <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
                     </div>
                     <div className="min-w-0">
                       <p className="text-xs text-[#555555]">
@@ -1304,12 +1325,104 @@ export default function SessionClient({
                     </div>
                   </div>
                   <span className="text-xs text-[#888888] flex-shrink-0 ml-3">
-                    {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
+                    {formatDuration(state.elapsedMs)}
                   </span>
                 </button>
-              )
-            })}
+              ))}
+            </div>
           </div>
+        )}
+
+        {/* Correct answers — muted, below missed */}
+        {correctWithIndex.length > 0 && (
+          <div>
+            <h2 className="text-[11px] font-semibold uppercase tracking-widest text-[#444444] mb-3">
+              Correct · {correctWithIndex.length}
+            </h2>
+            <div className="rounded-xl border border-white/[0.05] bg-[#0D0D0D] overflow-hidden">
+              {correctWithIndex.map(({ q, i, state }, rowIdx) => (
+                <button
+                  key={q.id}
+                  onClick={() => { goTo(i); setShowResults(false) }}
+                  className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left${rowIdx < correctWithIndex.length - 1 ? " border-b border-white/[0.04]" : ""}`}
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div
+                      className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: "rgba(62,207,142,0.07)" }}
+                    >
+                      <Check className="w-3.5 h-3.5" style={{ color: "#3ECF8E", opacity: 0.6 }} />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-xs text-[#444444]">
+                        Question {i + 1} · {q.subtopic}
+                      </p>
+                      <p className="text-sm text-[#888888] truncate">
+                        {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
+                      </p>
+                    </div>
+                  </div>
+                  <span className="text-xs text-[#444444] flex-shrink-0 ml-3">
+                    {formatDuration(state.elapsedMs)}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Skipped questions */}
+        {skippedWithIndex.length > 0 && (
+          <div>
+            <h2 className="text-[11px] font-semibold uppercase tracking-widest text-[#444444] mb-3">
+              Skipped · {skippedWithIndex.length}
+            </h2>
+            <div className="rounded-xl border border-white/[0.05] bg-[#0D0D0D] overflow-hidden">
+              {skippedWithIndex.map(({ q, i }, rowIdx) => (
+                <button
+                  key={q.id}
+                  onClick={() => { goTo(i); setShowResults(false) }}
+                  className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left${rowIdx < skippedWithIndex.length - 1 ? " border-b border-white/[0.04]" : ""}`}
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div
+                      className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
+                    >
+                      <span className="text-[10px] text-[#555555]">—</span>
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-xs text-[#444444]">
+                        Question {i + 1} · {q.subtopic}
+                      </p>
+                      <p className="text-sm text-[#888888] truncate">
+                        {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
+                      </p>
+                    </div>
+                  </div>
+                  <span className="text-xs text-[#444444] flex-shrink-0 ml-3">skipped</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* What to do next — context-sensitive based on accuracy */}
+        <div
+          className="p-4 rounded-xl border"
+          style={{ borderColor: "rgba(255,255,255,0.06)", backgroundColor: "#0D0D0D" }}
+        >
+          <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1.5">What to do next</p>
+          <p className="text-sm text-[#888888]">
+            {nextStep.text}{" "}
+            <Link
+              href={nextStep.href}
+              className="underline underline-offset-2 transition-colors hover:text-[#F0F0F0]"
+              style={{ color: "#C9A84C" }}
+            >
+              {nextStep.label} →
+            </Link>
+          </p>
         </div>
 
         <div className="flex gap-3 flex-wrap">
