@@ -1208,6 +1208,30 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+
+    const avgTimePerQ = answeredCount === 0 ? 0 : Math.round(totalTime / answeredCount)
+    // GMAT Focus Edition pacing targets: Quant 21q/45min, Verbal 23q/45min, DI 20q/45min
+    const sectionTargetMs = section === "Verbal" ? 117_000 : section === "DI" ? 135_000 : 129_000
+    const paceRatio = avgTimePerQ > 0 && answeredCount >= 3 ? avgTimePerQ / sectionTargetMs : 0
+
+    const missedBySubtopic: Record<string, number> = {}
+    questions.forEach((q, i) => {
+      const s = states[i]
+      if (s.submitted && !isQuestionCorrect(q, s)) {
+        missedBySubtopic[q.subtopic] = (missedBySubtopic[q.subtopic] ?? 0) + 1
+      }
+    })
+    const weakSubtopics = Object.entries(missedBySubtopic)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+
+    const highConfMisses = questions.filter((q, i) => {
+      const s = states[i]
+      return s.submitted && !isQuestionCorrect(q, s) && s.confidence === "high"
+    }).length
+
+    const skippedCount = total - answeredCount
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1233,7 +1257,7 @@ export default function SessionClient({
             backgroundColor: "rgba(201,168,76,0.04)",
           }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             <div>
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Accuracy</p>
               <p className="text-3xl font-bold mt-2" style={{ color: "#C9A84C" }}>
@@ -1251,8 +1275,89 @@ export default function SessionClient({
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Total time</p>
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
             </div>
+            {answeredCount >= 3 && (
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-[#555555]">Avg / question</p>
+                <p
+                  className="text-3xl font-bold mt-2"
+                  style={{ color: paceRatio > 1.3 ? "#FF9933" : "#F0F0F0" }}
+                >
+                  {formatDuration(avgTimePerQ)}
+                </p>
+                <p className="text-[10px] text-[#555555] mt-1">target {formatDuration(sectionTargetMs)}</p>
+              </div>
+            )}
           </div>
         </div>
+
+        {answeredCount >= 3 && (weakSubtopics.length > 0 || highConfMisses > 0 || skippedCount > 0 || paceRatio > 1.3) && (
+          <div className="space-y-2">
+            {weakSubtopics.length > 0 && (
+              <div className="px-4 py-3.5 rounded-xl border border-white/[0.06] bg-[#111111]">
+                <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2.5">
+                  Where you struggled
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {weakSubtopics.map(([subtopic, count]) => (
+                    <span
+                      key={subtopic}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[12px]"
+                      style={{
+                        backgroundColor: "rgba(255,68,68,0.07)",
+                        color: "#FF8888",
+                        border: "1px solid rgba(255,68,68,0.12)",
+                      }}
+                    >
+                      {subtopic}
+                      {count > 1 && (
+                        <span className="text-[10px]" style={{ color: "rgba(255,136,136,0.5)" }}>
+                          {count}×
+                        </span>
+                      )}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {highConfMisses > 0 && (
+              <div
+                className="px-4 py-3.5 rounded-xl border"
+                style={{
+                  borderColor: "rgba(255,153,51,0.15)",
+                  backgroundColor: "rgba(255,153,51,0.04)",
+                }}
+              >
+                <p className="text-xs leading-relaxed" style={{ color: "#C0C0C0" }}>
+                  <span style={{ color: "#FF9933" }}>
+                    {highConfMisses} confident {highConfMisses === 1 ? "miss" : "misses"}
+                  </span>
+                  {" — "}you rated {highConfMisses === 1 ? "this" : "these"} high-confidence but got {highConfMisses === 1 ? "it" : "them"} wrong. Study those explanations first — they reveal a conceptual gap, not a careless error.
+                </p>
+              </div>
+            )}
+
+            {skippedCount > 0 && (
+              <div className="px-4 py-3 rounded-xl border border-white/[0.06] bg-[#111111]">
+                <p className="text-xs" style={{ color: "#888888" }}>
+                  <span className="text-[#F0F0F0]">
+                    {skippedCount} {skippedCount === 1 ? "question" : "questions"} skipped
+                  </span>
+                  {" — "}click any item in the review list below to attempt it.
+                </p>
+              </div>
+            )}
+
+            {paceRatio > 1.3 && (
+              <div className="px-4 py-3 rounded-xl border border-white/[0.06] bg-[#111111]">
+                <p className="text-xs" style={{ color: "#888888" }}>
+                  <span style={{ color: "#FF9933" }}>Pacing: slow</span>
+                  {" — "}averaging {formatDuration(avgTimePerQ)}/q against a {formatDuration(sectionTargetMs)} target. On the real exam, this pace leaves questions unanswered.
+                </p>
+              </div>
+            )}
+          </div>
+        )}
 
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
@@ -1311,6 +1416,25 @@ export default function SessionClient({
             })}
           </div>
         </div>
+
+        {weakSubtopics.length > 0 && (
+          <div className="px-4 py-4 rounded-xl border border-white/[0.06] bg-[#111111]">
+            <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1.5">
+              Recommended next
+            </p>
+            <p className="text-sm text-[#C0C0C0] leading-relaxed">
+              Read the explanation for each miss above, then revisit the{" "}
+              <Link
+                href="/chapters"
+                className="underline underline-offset-2 transition-colors hover:text-[#F0F0F0]"
+                style={{ color: "#C9A84C" }}
+              >
+                {topic} chapter
+              </Link>{" "}
+              to close the gap on {weakSubtopics[0][0]}.
+            </p>
+          </div>
+        )}
 
         <div className="flex gap-3 flex-wrap">
           <Link
