@@ -8,23 +8,23 @@ topic: Word Problems
 **type:** Problem Solving
 **topic:** Rate/Time/Distance
 
-A car travels at 60 miles per hour for 2.5 hours. How many miles does it travel?
+A car travels at 60 miles per hour for 2 hours and 30 minutes. How many miles does it travel?
 
 - A) 120
-- B) 130
-- C) 140
+- B) 138
+- C) 144
 - D) 150
-- E) 160
+- E) 180
 
 **answer:** D
-**fastest_path:** D = R·T = 60 × 2.5 = 150.
-**explanation:** D = R × T = 60 × 2.5 = 150 mi.
-**mistake_a:** Computed 60 × 2 = 120, ignored the 0.5.
-**mistake_b:** Slip → 130.
-**mistake_c:** Slip → 140.
-**mistake_e:** Slip → 160.
-**common_trap:** Multiplication slip on 60 × 2.5 — most common is 60 × 2 = 120.
-**takeaway:** D = R × T. For 0.5 hr, just add R/2 to the round-hour distance: 60·2 + 30 = 150.
+**fastest_path:** Convert: 30 min = 0.5 hr. D = 60 × 2.5 = 150.
+**explanation:** D = R × T. Convert 2 hr 30 min → 2.5 hr. D = 60 × 2.5 = 150 mi.
+**mistake_a:** Dropped the 30-minute fragment: 60 × 2 = 120.
+**mistake_b:** Treated 30 min as 0.3 hr instead of 0.5 hr: 60 × 2.3 = 138.
+**mistake_c:** Treated 30 min as 0.4 hr instead of 0.5 hr: 60 × 2.4 = 144.
+**mistake_e:** Rounded 2h 30m up to 3 hr: 60 × 3 = 180.
+**common_trap:** Treating minutes as tenths of an hour (30 min → 0.3 hr) instead of dividing by 60 (30/60 = 0.5 hr).
+**takeaway:** D = R × T. Always convert minutes to hours by dividing by 60, not by reading them as decimals.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -426,21 +426,21 @@ A piggy bank contains only nickels and dimes. If the bank contains 48 coins wort
 
 In a class of 80 students, 45 study Spanish, 38 study French, and 12 study neither language. How many students study both Spanish and French?
 
-- A) 9
-- B) 12
-- C) 15
-- D) 18
-- E) 23
+- A) 3
+- B) 9
+- C) 12
+- D) 15
+- E) 18
 
-**answer:** C
+**answer:** D
 **fastest_path:** At least one = 80 − 12 = 68. Both = 45 + 38 − 68 = 15.
 **explanation:** Studying ≥1 language: 80 − 12 = 68. Inclusion-exclusion: 68 = 45 + 38 − |both| → |both| = 83 − 68 = 15.
-**mistake_a:** Slip → 9.
-**mistake_b:** Bubbled the "neither" count (12).
-**mistake_d:** Slip → 18.
-**mistake_e:** Used 80 instead of 68 → 45 + 38 − 80 = 3 (slipped to 23).
-**common_trap:** Using the total (80) instead of "at least one" (68) in the inclusion-exclusion formula.
-**takeaway:** Total = (Group 1) + (Group 2) − (Both) + (Neither). Subtract "neither" before applying inclusion-exclusion.
+**mistake_a:** Used the total (80) instead of "at least one" (68): 45 + 38 − 80 = 3.
+**mistake_b:** Slip → 9.
+**mistake_c:** Confused "neither" with "both" — bubbled 12 (the neither count) as the answer.
+**mistake_e:** Slip → 18.
+**common_trap:** Two traps: (1) using the class total (80) instead of "at least one" (68) gives |both| = 3; (2) confusing "neither" with "both" and bubbling 12.
+**takeaway:** Identify "at least one" first: total − neither = 80 − 12 = 68. Then |both| = |A| + |B| − |at least one|.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -530,7 +530,7 @@ A company sells widgets for $p each. The company's fixed monthly costs are $F, a
 ---
 
 ## Q21
-**difficulty:** Medium
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Age Problem — Two Equations
 
@@ -712,7 +712,7 @@ Three printers — A, B, and C — work together to print a document. Alone, Pri
 ---
 
 ## Q28
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Age Problem — Three People
 
