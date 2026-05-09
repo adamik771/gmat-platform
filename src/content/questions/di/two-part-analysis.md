@@ -765,3 +765,496 @@ A box contains 8 marbles: 3 red, 3 blue, and 2 green. Two marbles are drawn at r
 **common_trap:** Forgetting the green-green pair or treating "different colors" as 2/3 based on category count.
 **takeaway:** "Same color" with multiple groups: sum C(group_i, 2) over all groups. Different = complement.
 **related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q28
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Sequential Discounts
+
+A jacket is originally priced at $200. The store first applies a 20% discount. Then, at checkout, a 25% coupon is applied to the already-discounted price. Select the price after only the first discount (column 1) and the final price after both discounts (column 2).
+
+|       | After first discount | After both discounts |
+|-------|----------------------|----------------------|
+| $110  |                      |                      |
+| $120  |                      |                      |
+| $140  |                      |                      |
+| $150  |                      |                      |
+| $160  |                      |                      |
+| $180  |                      |                      |
+
+**answer:** After first discount = $160, After both discounts = $120
+**fastest_path:** First: $200 × 0.80 = $160. Second: $160 × 0.75 = $120.
+**explanation:** Step 1: Apply the 20% discount to the original price. $200 × (1 − 0.20) = $200 × 0.80 = $160. Step 2: Apply the 25% coupon to the discounted price — not to the original. $160 × (1 − 0.25) = $160 × 0.75 = $120. Final price = $120. The most common error is netting the two discounts as if they were additive (20% + 25% = 45%), which would give $200 × 0.55 = $110 — wrong because each percentage applies to a different base.
+**mistake_a:** $110 — the additive-discount error: (1 − 0.20 − 0.25) = 0.55, applied to the original $200. Percentages must be applied sequentially to the running price, not summed.
+**mistake_c:** $140 — likely applying 30% total off the original (perhaps confusing the two discount rates), yielding $200 × 0.70 = $140.
+**mistake_d:** $150 — applying only the 25% coupon to the original price ($200 × 0.75), skipping the first 20% discount.
+**mistake_f:** $180 — misreading the first discount as 10% rather than 20%: $200 × 0.90 = $180.
+**common_trap:** Treating sequential percentage discounts as additive. The 25% coupon applies to $160, not to $200.
+**takeaway:** Sequential discounts are multiplicative: apply each rate to the current price, not to the original. (1 − d₁)(1 − d₂) ≠ 1 − (d₁ + d₂).
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Round-Trip Distance and Time
+
+A cyclist rides from Town A to Town B at 15 miles per hour, then immediately returns from Town B to Town A at 10 miles per hour. The one-way distance is 30 miles. Select the time to travel from A to B in hours (column 1) and the total round-trip time in hours (column 2).
+
+|        | A to B | Total round trip |
+|--------|--------|------------------|
+| 2 hrs  |        |                  |
+| 3 hrs  |        |                  |
+| 4 hrs  |        |                  |
+| 5 hrs  |        |                  |
+| 6 hrs  |        |                  |
+| 7 hrs  |        |                  |
+
+**answer:** A to B = 2 hrs, Total round trip = 5 hrs
+**fastest_path:** A→B: 30/15 = 2. B→A: 30/10 = 3. Total = 5.
+**explanation:** Time from A to B = distance / speed = 30 / 15 = 2 hours. Time from B to A = 30 / 10 = 3 hours. Total round-trip time = 2 + 3 = 5 hours. A quick sanity check: the combined time (5 hours) must be greater than the faster leg alone (2 hours) and less than twice the slower leg alone (6 hours). 5 sits in that range. The average-speed trap: averaging 15 and 10 to get 12.5 mph and then computing 60 / 12.5 = 4.8 hours is the wrong method — for equal distances, use the harmonic mean of the speeds, which happens to give the correct total time of 5 hours only because rates must be combined via their reciprocals.
+**mistake_b:** 3 hrs for column 1 — that is the return leg time (B→A at 10 mph), not the outbound leg.
+**mistake_c:** 4 hrs for column 2 — assumes the same travel time both ways using only the faster speed: 2 × 2 = 4, ignoring that the return is slower.
+**mistake_e:** 6 hrs for column 2 — uses only the slower speed for both legs: (30 + 30) / 10 = 6, ignoring the faster outbound leg.
+**mistake_f:** 7 hrs — arithmetic error, possibly 3 + 4 or a different miscount between the two legs.
+**common_trap:** Picking 3 hours for column 1 (the return time) rather than the outbound time, or doubling the outbound time for column 2 (forgetting the legs have different speeds).
+**takeaway:** Round-trip problems: compute each leg separately using time = distance / speed, then sum. Do not average the speeds or double one leg's time.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Multiples
+
+Select the largest multiple of 8 that is less than 50 (column 1) and the smallest multiple of 7 that is greater than 30 (column 2).
+
+|    | Largest multiple of 8 below 50 | Smallest multiple of 7 above 30 |
+|----|-------------------------------|----------------------------------|
+| 32 |                               |                                  |
+| 35 |                               |                                  |
+| 40 |                               |                                  |
+| 42 |                               |                                  |
+| 48 |                               |                                  |
+| 56 |                               |                                  |
+
+**answer:** Largest multiple of 8 below 50 = 48, Smallest multiple of 7 above 30 = 35
+**fastest_path:** 8 × 6 = 48 (next is 56 > 50). 7 × 5 = 35 (previous is 28 ≤ 30).
+**explanation:** Multiples of 8: 8, 16, 24, 32, 40, 48, 56, … The largest that is strictly less than 50 is 48 (since 56 > 50). Multiples of 7: 7, 14, 21, 28, 35, 42, … The smallest that is strictly greater than 30 is 35 (since 28 ≤ 30). Both conditions are strict inequalities ("less than" and "greater than"), so 50 and 30 themselves are excluded.
+**mistake_a:** 32 for column 1 — a valid multiple of 8 but not the largest one below 50; 40 and 48 are both larger and still below 50.
+**mistake_c:** 40 for column 1 — also a multiple of 8 below 50, but 48 is larger and still qualifies.
+**mistake_d:** 42 for column 2 — a multiple of 7 greater than 30, but not the smallest; 35 < 42 and 35 also satisfies the condition.
+**mistake_f:** 56 for column 1 — a multiple of 8 but exceeds 50, so it fails the "less than 50" condition.
+**common_trap:** Stopping at the first qualifying multiple seen rather than confirming it is the LARGEST (col 1) or SMALLEST (col 2) one meeting the condition.
+**takeaway:** "Largest X below N": list multiples ascending until you overshoot N, then step back one. "Smallest X above N": list multiples ascending until you clear N.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q31
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Mean and Missing Value
+
+A student scored 78 and 82 on her first two exams. She wants an average of exactly 85 across all three exams. Select the score she needs on the third exam (column 1) and the total number of points she must earn across all three exams (column 2).
+
+|     | Required third-exam score | Total points across three exams |
+|-----|---------------------------|---------------------------------|
+| 85  |                           |                                 |
+| 90  |                           |                                 |
+| 95  |                           |                                 |
+| 100 |                           |                                 |
+| 245 |                           |                                 |
+| 255 |                           |                                 |
+
+**answer:** Required third-exam score = 95, Total points across three exams = 255
+**fastest_path:** Total needed = 85 × 3 = 255. Already have 78 + 82 = 160. Third = 255 − 160 = 95.
+**explanation:** To average 85 across three exams, the total points must equal 85 × 3 = 255. She has already earned 78 + 82 = 160 points. The required third score = 255 − 160 = 95. Verify: (78 + 82 + 95) / 3 = 255 / 3 = 85. ✓ The key insight is to convert the average target to a sum target first, then subtract what is already earned.
+**mistake_a:** 85 for column 1 — picking the target average as the required score. A third score of 85 would give total 78+82+85=245 and average 81.7, not 85.
+**mistake_b:** 90 for column 1 — underestimate. Score of 90 gives total 250, average 83.3, not 85.
+**mistake_d:** 100 for column 1 — overestimate. Score of 100 gives total 260, average 86.7, not 85.
+**mistake_e:** 245 for column 2 — computing 78 + 82 + 85 = 245, inserting the target average as if it were the third score. The correct total is 85 × 3 = 255.
+**common_trap:** Confusing the target average (85) with the required third score, or computing the total as 78 + 82 + 85 = 245 rather than 85 × 3 = 255.
+**takeaway:** Missing-value average problems: convert the desired average to a total (mean × count), subtract the known sum, and the remainder is the missing value.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Counting Multiples and LCM
+
+Among all integers from 1 to 100 inclusive, select the count of multiples of 4 (column 1) and the count of integers that are multiples of both 4 and 6 (column 2).
+
+|    | Multiples of 4 in [1, 100] | Multiples of both 4 and 6 in [1, 100] |
+|----|---------------------------|---------------------------------------|
+| 8  |                           |                                       |
+| 12 |                           |                                       |
+| 16 |                           |                                       |
+| 20 |                           |                                       |
+| 25 |                           |                                       |
+| 33 |                           |                                       |
+
+**answer:** Multiples of 4 in [1, 100] = 25, Multiples of both 4 and 6 in [1, 100] = 8
+**fastest_path:** Multiples of 4: floor(100/4) = 25. Both 4 and 6: LCM(4,6) = 12 → floor(100/12) = 8.
+**explanation:** Multiples of 4 from 1 to 100: 4, 8, 12, …, 100. Count = 100 / 4 = 25. An integer is a multiple of both 4 and 6 if and only if it is a multiple of their least common multiple. LCM(4, 6) = 12 (since 4 = 2² and 6 = 2 × 3; LCM = 2² × 3 = 12). Multiples of 12 from 1 to 100: 12, 24, 36, …, 96. Count = floor(100 / 12) = 8 (since 12 × 8 = 96 ≤ 100 but 12 × 9 = 108 > 100).
+**mistake_b:** 12 for column 2 — confusing the LCM value (12) with the count of its multiples in [1, 100].
+**mistake_c:** 16 for column 1 — possibly computing floor(100/6) = 16, using the wrong divisor.
+**mistake_d:** 20 for column 1 — possibly computing 100/5 = 20, using 5 instead of 4 as the divisor.
+**mistake_f:** 33 for column 2 — computing floor(100/3) = 33, confusing LCM(4,6) with 3.
+**common_trap:** For column 2, multiplying 4 × 6 = 24 and computing floor(100/24) = 4 — using the product rather than the LCM. LCM(4, 6) = 12, not 24.
+**takeaway:** "Multiple of both A and B" means multiple of LCM(A, B). Count of multiples of N in [1, k] = floor(k / N).
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Sequential Percentage (Markup then Discount)
+
+A retailer buys an item for $240 and marks it up 50% to set the retail price. After one week, the retailer applies a 20% discount to the retail price. Select the retail price before the discount (column 1) and the final selling price after the discount (column 2).
+
+|       | Retail price (before discount) | Final selling price (after discount) |
+|-------|-------------------------------|--------------------------------------|
+| $240  |                               |                                      |
+| $288  |                               |                                      |
+| $312  |                               |                                      |
+| $360  |                               |                                      |
+| $408  |                               |                                      |
+| $432  |                               |                                      |
+
+**answer:** Retail price (before discount) = $360, Final selling price (after discount) = $288
+**fastest_path:** Markup: $240 × 1.50 = $360. Discount: $360 × 0.80 = $288.
+**explanation:** Retail price = cost × (1 + markup rate) = $240 × 1.50 = $360. This is column 1. Final selling price = retail price × (1 − discount rate) = $360 × 0.80 = $288. Column 2 = $288. The retailer still profits: $288 − $240 = $48 per unit. Net multiplier: $240 × 1.50 × 0.80 = $240 × 1.20 = $288 — a 20% net return over cost, not the 30% implied by simply subtracting the rates (50% − 20%).
+**mistake_a:** $240 for column 1 — using the cost as the retail price; the markup was never applied.
+**mistake_c:** $312 for column 2 — the "net rate" error: treating a 50% markup and 20% discount as a net 30% markup → $240 × 1.30 = $312. The 20% discount applies to $360, not $240.
+**mistake_e:** $408 for column 2 — applying the discount as a further markup: $360 × 1.20 × something, or conflating markup and discount direction.
+**mistake_f:** $432 for column 2 — compounding both rates upward: $240 × 1.50 × 1.20 = $432. Applying the 20% as an additional markup rather than a discount.
+**common_trap:** Netting a 50% markup and 20% discount as a 30% net markup ($312). The discount applies to the marked-up price, so the math is multiplicative: × 1.50 × 0.80 = × 1.20, not × 1.30.
+**takeaway:** Sequential markup/discount: net multiplier = (1 + markup)(1 − discount). Do not subtract percentage rates.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Logic — Strengthen and Weaken
+
+A pharmaceutical company claims: "Our new sleep supplement reduced insomnia symptoms in 70% of participants in a 6-week clinical trial with 200 volunteers. Therefore, the supplement is an effective treatment for insomnia."
+
+From the options below, select the statement that most weakens the company's conclusion (column 1) and the statement that most strengthens the company's conclusion (column 2).
+
+| Statement | Most weakens | Most strengthens |
+|-----------|--------------|-----------------|
+| The trial did not include a placebo control group. | | |
+| Participants who completed the trial rated their sleep quality highly at week 6. | | |
+| A 12-month independent follow-up confirmed sustained symptom reduction in the treated group. | | |
+| Natural insomnia resolution occurs in approximately 30% of untreated individuals within 6 weeks. | | |
+| The supplement contains melatonin and magnesium, both linked to sleep promotion in prior research. | | |
+
+**answer:** Most weakens = "The trial did not include a placebo control group."; Most strengthens = "A 12-month independent follow-up confirmed sustained symptom reduction in the treated group."
+**fastest_path:** Weakens: no placebo = no baseline comparison → 70% could be pure natural remission. Strengthens: independent long-term replication = strongest causal evidence.
+**explanation:** Without a placebo arm, there is no way to separate the supplement's effect from natural remission, the placebo effect, or any other concurrent factor. This fatally undermines the causal conclusion. The strongest support for a causal claim is independent replication with a long follow-up (option c), which validates both the effect and its durability — both essential for calling something an "effective treatment." Option d (30% natural resolution) is a secondary weakener: it implies the supplement's added benefit may be only ~40 percentage points above the natural rate, but the study design is still uncontrolled. Option d weakens, but less fundamentally than the absence of a placebo.
+**mistake_b:** "Participants who completed the trial rated their sleep quality highly" — this is a satisfaction measure with survivor bias (only completers counted) and does not isolate the supplement's causal effect.
+**mistake_d:** "Natural resolution ~30% in 6 weeks" — this weakens the conclusion by narrowing the supplement's apparent benefit, but it is not as devastating as the absence of a placebo, since the 70% rate still substantially exceeds 30%.
+**mistake_e:** "Contains melatonin and magnesium" — mechanism plausibility does not establish causal efficacy. Knowing an ingredient is associated with sleep does not confirm this formulation produces the claimed clinical outcome.
+**common_trap:** Choosing option d as the primary weakener because it mentions a competing rate. The deeper flaw is the absence of a control group, which makes the 70% statistic uninterpretable — you cannot know what rate would have occurred without the supplement.
+**takeaway:** Causation arguments: a missing control group (no placebo) is a fatal structural flaw — it makes the treatment rate uninterpretable. Independent replication over time is the gold standard for "most strengthens."
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Divisibility Constraint
+
+Positive integers a and b satisfy: a − b = 12 and a ÷ b is also a positive integer. Select the largest possible value of b (column 1) and the corresponding value of a (column 2).
+
+|    | Largest possible b | Corresponding a |
+|----|--------------------|-----------------|
+| 4  |                    |                 |
+| 6  |                    |                 |
+| 12 |                    |                 |
+| 18 |                    |                 |
+| 24 |                    |                 |
+| 36 |                    |                 |
+
+**answer:** Largest possible b = 12, Corresponding a = 24
+**fastest_path:** a = b + 12. a/b = (b + 12)/b = 1 + 12/b. For this to be an integer, b must divide 12. Largest divisor of 12 is 12 → a = 24.
+**explanation:** Since a − b = 12, we have a = b + 12. The condition that a/b is a positive integer means (b + 12)/b = 1 + 12/b must be an integer, which requires b to be a positive divisor of 12. The positive divisors of 12 are 1, 2, 3, 4, 6, and 12. The largest is b = 12, giving a = 12 + 12 = 24. Verify: a − b = 24 − 12 = 12 ✓; a/b = 24/12 = 2, a positive integer ✓.
+**mistake_a:** b = 4 — a valid solution (a = 16, 16/4 = 4 ✓) but not the largest qualifying b.
+**mistake_b:** b = 6 — also valid (a = 18, 18/6 = 3 ✓) but not the largest.
+**mistake_d:** b = 18 — gives a = 30; a/b = 30/18 = 5/3, not an integer. 18 does not divide 12.
+**mistake_e:** b = 24 — gives a = 36; a/b = 36/24 = 3/2, not an integer.
+**mistake_f:** b = 36 — gives a = 48; a/b = 48/36 = 4/3, not an integer.
+**common_trap:** Trying b = 18 or b = 24 because they are larger numbers in the row set without checking that b must divide 12. The constraint is not "b ≤ 12" but "b divides 12."
+**takeaway:** If a − b = k and a/b is a positive integer, then b must divide k. List the divisors of k, identify the largest, and read off a = b + k.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Simple vs. Compound Interest
+
+An account earns 12% simple annual interest on a principal of $500. A second account earns 10% interest compounded annually on the same $500 principal. Select the total interest earned in the simple-interest account after 2 years (column 1) and the balance in the compound-interest account after 2 years (column 2).
+
+|       | Simple account: total interest after 2 yrs | Compound account: balance after 2 yrs |
+|-------|--------------------------------------------|---------------------------------------|
+| $60   |                                            |                                       |
+| $100  |                                            |                                       |
+| $120  |                                            |                                       |
+| $550  |                                            |                                       |
+| $600  |                                            |                                       |
+| $605  |                                            |                                       |
+
+**answer:** Simple account: total interest after 2 yrs = $120, Compound account: balance after 2 yrs = $605
+**fastest_path:** Simple interest: $500 × 0.12 × 2 = $120. Compound balance: $500 × 1.10² = $500 × 1.21 = $605.
+**explanation:** Simple interest: I = P × r × t = $500 × 0.12 × 2 = $120. Column 1 = $120 (interest only, not the full balance of $620). Compound interest: balance after 2 years = P × (1 + r)² = $500 × (1.10)² = $500 × 1.21 = $605. Column 2 = $605 (the full balance). The compounding effect: year 1 earns $50 interest; year 2 earns 10% on $550 = $55, not $50. Total compound interest = $105, total balance = $605.
+**mistake_a:** $60 — one year of simple interest only ($500 × 0.12 × 1 = $60); forgot to multiply by 2 years.
+**mistake_b:** $100 — two years of 10% simple interest on $500 ($500 × 0.10 × 2 = $100); applied the compound account's rate using simple-interest logic, and directed the result to the wrong column.
+**mistake_d:** $550 — compound balance after 1 year ($500 × 1.10 = $550); stopped one year early.
+**mistake_e:** $600 — applied simple-interest logic to the compound account: $500 + $500 × 0.10 × 2 = $600, missing the second-year compounding effect on the accumulated interest.
+**common_trap:** Computing $600 for the compound balance by applying simple-interest arithmetic. Compounding earns interest on interest: year 2 earns 10% on $550 (= $55), not 10% on $500 (= $50), giving $605 not $600.
+**takeaway:** Simple interest: I = Prt (linear growth). Compound interest: Balance = P(1 + r)ⁿ (exponential growth). The difference appears from year 2 onward because compounding earns interest on prior accumulated interest.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Integer Constraint with Exact Total
+
+A group orders pizza slices at $6 each and soft drinks at $9 each, spending exactly $60. They order at least 3 pizza slices and at least 3 soft drinks. Select the number of pizza slices ordered (column 1) and the number of soft drinks ordered (column 2).
+
+|   | Pizza slices | Soft drinks |
+|---|--------------|-------------|
+| 2 |              |             |
+| 3 |              |             |
+| 4 |              |             |
+| 5 |              |             |
+| 6 |              |             |
+| 7 |              |             |
+
+**answer:** Pizza slices = 4, Soft drinks = 4
+**fastest_path:** 6p + 9s = 60 → 2p + 3s = 20. Try s = 4: 2p = 8, p = 4 ✓. Both ≥ 3. No other integer solution satisfies all constraints.
+**explanation:** From 6p + 9s = 60, divide by 3: 2p + 3s = 20. Systematically try integer values of s ≥ 3: s = 3 → 2p = 11, not an integer. s = 4 → 2p = 8 → p = 4 ✓ (p ≥ 3 ✓). s = 5 → 2p = 5, not an integer. s = 6 → 2p = 2 → p = 1, which violates p ≥ 3. The only solution is p = 4, s = 4. Verify: 6(4) + 9(4) = 24 + 36 = 60 ✓.
+**mistake_b:** 3 pizza slices — 6(3) + 9s = 60 → 9s = 42, so s = 4.67, not an integer.
+**mistake_d:** 5 pizza slices — 6(5) + 9s = 60 → 9s = 30, so s = 3.33, not an integer.
+**mistake_e:** 6 pizza slices — 6(6) + 9s = 60 → 9s = 24, so s = 2.67, not an integer.
+**mistake_f:** 7 pizza slices — 6(7) = 42; remaining budget = 18; 18/9 = 2 soft drinks, but 2 < 3 violates the minimum.
+**common_trap:** Trying p = 3 or p = 5 because they satisfy the minimum, without verifying that the resulting s is also a positive integer satisfying s ≥ 3. Integer-constraint problems require all conditions to hold simultaneously.
+**takeaway:** For exact-total integer problems: reduce the equation (divide by GCD of coefficients), systematically test integer values from the binding constraint, and verify integrality and all minimums before accepting an answer.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Logic — Evaluate an Argument
+
+A city's traffic report states: "After installing cameras at 30 intersections, the average number of accidents per intersection dropped from 8 per year to 5 per year. Therefore, traffic cameras reduce accidents."
+
+From the options below, select the statement that most weakens the conclusion (column 1) and the statement that most strengthens the conclusion (column 2).
+
+| Statement | Most weakens | Most strengthens |
+|-----------|--------------|-----------------|
+| The cameras were installed specifically at the 30 intersections with the city's highest historical accident rates. | | |
+| A comparable city using the same camera model saw a 28% reduction in accidents at camera-equipped intersections over three years. | | |
+| Traffic volume at those 30 intersections declined by 25% in the same year cameras were installed. | | |
+| Drivers physically slow down near visible cameras, which mechanically reduces collision frequency. | | |
+| The city simultaneously deployed additional traffic officers at those same 30 intersections during the study year. | | |
+
+**answer:** Most weakens = "The cameras were installed specifically at the 30 intersections with the city's highest historical accident rates."; Most strengthens = "A comparable city using the same camera model saw a 28% reduction in accidents at camera-equipped intersections over three years."
+**fastest_path:** Weakens: regression to the mean — rates at outlier-high sites naturally drift down even without intervention. Strengthens: cross-city replication with matched equipment is direct causal evidence.
+**explanation:** The argument concludes cameras caused the reduction. Option a (selection bias / regression to the mean) is the most fundamental weakness: locations with historically extreme accident rates naturally drift toward average over time even without any intervention. Because cameras were placed at these outlier spots, the before/after drop cannot be attributed to cameras — it may be entirely due to statistical regression. Options c (traffic volume) and e (extra officers) are also legitimate alternative causes, but they are specific confounders that explain part of the reduction; option a invalidates the before/after comparison at its root. The strongest support is option b: independent replication across a different city removes the regression-to-the-mean objection and provides a natural comparison.
+**mistake_c:** "Traffic volume declined 25%" — a real weakener (alternative cause: fewer cars = fewer accidents), but less fundamental than the selection-bias issue. It explains some reduction; regression to the mean calls the entire comparison into question.
+**mistake_d:** "Drivers slow down near cameras" — mechanism plausibility, not causal evidence. It explains how cameras could work but does not confirm they actually caused the observed reduction in this city.
+**mistake_e:** "Additional traffic officers" — a confounding factor (alternative cause), but again, less fundamental than regression to the mean.
+**common_trap:** Selecting the traffic-volume or extra-officers statement as the primary weakener because they are explicit alternative causes. Regression to the mean is more foundational: it undermines the baseline before/after comparison before any other factor is even considered.
+**takeaway:** Before/after studies at sites selected for extreme values: regression to the mean is always the first structural threat. Cross-city replication with matched conditions is the cleanest counter-evidence.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Mean, Median, and Sum
+
+Five positive integers are listed in increasing order. Their mean is 14 and their median is 12. The smallest value is 5 and the largest value is 28. Select the sum of all five values (column 1) and the sum of the two values that are neither the minimum, maximum, nor median (column 2).
+
+|    | Sum of all five values | Sum of the two remaining values |
+|----|------------------------|---------------------------------|
+| 14 |                        |                                 |
+| 25 |                        |                                 |
+| 35 |                        |                                 |
+| 60 |                        |                                 |
+| 70 |                        |                                 |
+| 80 |                        |                                 |
+
+**answer:** Sum of all five values = 70, Sum of the two remaining values = 25
+**fastest_path:** Total = mean × count = 14 × 5 = 70. Remaining two = 70 − 5 − 12 − 28 = 25.
+**explanation:** Sum of all five = mean × count = 14 × 5 = 70. Column 1 = 70. The two values that are neither the minimum, median, nor maximum are the second and fourth values in the sorted list (call them a and b). Their combined sum = 70 − 5 − 12 − 28 = 25. Column 2 = 25. This is uniquely determined even though a and b individually are not: for example, (a, b) = (10, 15) or (6, 19) or (8, 17) all satisfy the constraints with a + b = 25.
+**mistake_a:** 14 for column 1 — confusing the mean with the sum.
+**mistake_c:** 35 for column 2 — possibly computing 5 + 12 + 28 = 45 then subtracting from an incorrect total.
+**mistake_d:** 60 for column 1 — computing 5 × median instead of 5 × mean: 5 × 12 = 60.
+**mistake_f:** 80 for column 1 — using an incorrect mean estimate of 16.
+**common_trap:** Using the median (12) instead of the mean (14) to compute the total sum, yielding 60 instead of 70.
+**takeaway:** Sum = mean × count. When you know the sum and three of five values, the remaining pair's sum is determined uniquely even when individual values are not. Median × count is not the sum.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q40
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Simultaneous Congruences
+
+N is a two-digit positive integer. When N is divided by 7, the remainder is 3. When N is divided by 4, the remainder is 1. Select the largest two-digit value of N satisfying both conditions (column 1) and the smallest two-digit value of N satisfying both conditions (column 2).
+
+|    | Largest qualifying N | Smallest qualifying N |
+|----|---------------------|-----------------------|
+| 17 |                     |                       |
+| 21 |                     |                       |
+| 45 |                     |                       |
+| 64 |                     |                       |
+| 73 |                     |                       |
+| 89 |                     |                       |
+
+**answer:** Largest qualifying N = 73, Smallest qualifying N = 17
+**fastest_path:** N = 7k + 3; need 3k ≡ 2 (mod 4) → k ≡ 2 (mod 4). So k = 2, 6, 10 → N = 17, 45, 73. Largest = 73, Smallest = 17.
+**explanation:** The two conditions are N ≡ 3 (mod 7) and N ≡ 1 (mod 4). Write N = 7k + 3. Substituting: 7k + 3 ≡ 1 (mod 4) → 7k ≡ −2 ≡ 2 (mod 4). Since 7 ≡ 3 (mod 4), this becomes 3k ≡ 2 (mod 4). The inverse of 3 mod 4 is 3 (since 3 × 3 = 9 ≡ 1), so k ≡ 3 × 2 = 6 ≡ 2 (mod 4). Thus k = 2, 6, 10, … and N = 17, 45, 73, 101, … The two-digit solutions are 17, 45, and 73. Verify all three: 17 ÷ 7 = 2 R 3 ✓, 17 ÷ 4 = 4 R 1 ✓; 45 ÷ 7 = 6 R 3 ✓, 45 ÷ 4 = 11 R 1 ✓; 73 ÷ 7 = 10 R 3 ✓, 73 ÷ 4 = 18 R 1 ✓. Largest = 73, Smallest = 17.
+**mistake_b:** 21 — 21 ÷ 7 = 3 R 0; remainder is 0, not 3. Fails the first condition.
+**mistake_d:** 64 — 64 ÷ 7 = 9 R 1; remainder is 1, not 3. Fails the first condition.
+**mistake_f:** 89 — 89 ÷ 7 = 12 R 5; remainder is 5, not 3. Fails the first condition (even though 89 ÷ 4 = 22 R 1 satisfies the second).
+**common_trap:** Checking only one modular condition instead of both. Options 21, 64, and 89 each fail the mod-7 condition. Both conditions must hold simultaneously.
+**takeaway:** Simultaneous remainder problems: parameterize via one condition, substitute into the other, and solve modularly. Solutions recur every LCM(7, 4) = 28 units: 17, 45, 73 differ by 28.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Recursive Function
+
+A function f is defined for positive integers as follows: if n is odd, f(n) = n + 1; if n is even, f(n) = n / 2. Starting from a positive integer k, f is applied repeatedly until the result equals 1. Let T(k) denote the total number of times f is applied. For example, T(4) = 2 because f(4) = 2 and then f(2) = 1. Select the value of T(12) (column 1) and the value of T(7) (column 2).
+
+|   | T(12) | T(7) |
+|---|-------|------|
+| 3 |       |      |
+| 4 |       |      |
+| 5 |       |      |
+| 6 |       |      |
+| 7 |       |      |
+| 8 |       |      |
+
+**answer:** T(12) = 5, T(7) = 4
+**fastest_path:** Trace T(12): 12 → 6 → 3 → 4 → 2 → 1 (5 steps). Trace T(7): 7 → 8 → 4 → 2 → 1 (4 steps).
+**explanation:** Trace for k = 12: f(12) = 12/2 = 6 (step 1, 12 is even); f(6) = 6/2 = 3 (step 2); f(3) = 3 + 1 = 4 (step 3, 3 is odd); f(4) = 4/2 = 2 (step 4); f(2) = 2/2 = 1 (step 5). T(12) = 5. Trace for k = 7: f(7) = 7 + 1 = 8 (step 1, 7 is odd); f(8) = 8/2 = 4 (step 2); f(4) = 4/2 = 2 (step 3); f(2) = 2/2 = 1 (step 4). T(7) = 4. The function always reaches 1: odd numbers map to even numbers, and even numbers halve, eventually reaching 1.
+**mistake_a:** 3 for T(12) — possibly counting only the halvings (steps where n is even) and skipping the odd step at n = 3.
+**mistake_b:** 4 for T(12) — stopping at 2 without applying the final step f(2) = 1, or confusing T(12) with T(7).
+**mistake_d:** 6 for T(12) — counting the starting value itself as a step, or including the endpoint 1 in the count.
+**mistake_c:** 5 for T(7) — swapping the two answers, placing T(12)'s value in the T(7) column.
+**common_trap:** Miscounting by including the starting value or the endpoint (1) in the step count. Each application of f is one step; the starting value and final result are not steps.
+**takeaway:** When tracing a recursive function, write out every application explicitly. Count arrows (applications of f), not nodes (values). The example T(4) = 2 given in the stem is a useful calibration check.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Weighted Average Constraint
+
+In a company, 85% of employees in Department A are satisfied with their work, while only 40% of employees in Department B are satisfied. The overall company satisfaction rate is 52%. The company has exactly 30 employees. Select the number of employees in Department A (column 1) and the number of employees in Department B (column 2).
+
+|    | Department A | Department B |
+|----|--------------|--------------|
+| 6  |              |              |
+| 8  |              |              |
+| 12 |              |              |
+| 18 |              |              |
+| 22 |              |              |
+| 24 |              |              |
+
+**answer:** Department A = 8, Department B = 22
+**fastest_path:** 0.85a + 0.40(30 − a) = 0.52 × 30 = 15.6 → 0.45a = 3.6 → a = 8. b = 22.
+**explanation:** Let a = employees in Dept A and b = employees in Dept B, with a + b = 30. Weighted satisfaction: 0.85a + 0.40b = 0.52 × 30 = 15.6. Substitute b = 30 − a: 0.85a + 0.40(30 − a) = 15.6 → 0.85a + 12 − 0.40a = 15.6 → 0.45a = 3.6 → a = 8. Then b = 22. Verify: 0.85(8) + 0.40(22) = 6.8 + 8.8 = 15.6; 15.6/30 = 0.52 ✓. The lever-arm shortcut: overall 52% sits (85−52) = 33 units from A and (52−40) = 12 units from B, so a:b = 12:33 = 4:11. With 30 total: a = 30 × 4/15 = 8, b = 22.
+**mistake_a:** Dept A = 6, Dept B = 24 — verify: 0.85(6) + 0.40(24) = 5.1 + 9.6 = 14.7; 14.7/30 = 0.49 ≠ 0.52.
+**mistake_c:** Dept A = 12, Dept B = 18 — verify: 0.85(12) + 0.40(18) = 10.2 + 7.2 = 17.4; 17.4/30 = 0.58 ≠ 0.52.
+**mistake_d:** Dept A = 18, Dept B = 12 — verify: 0.85(18) + 0.40(12) = 15.3 + 4.8 = 20.1; 20.1/30 = 0.67 ≠ 0.52.
+**mistake_f:** Dept A = 24, Dept B = 6 — verify: 0.85(24) + 0.40(6) = 20.4 + 2.4 = 22.8; 22.8/30 = 0.76 ≠ 0.52.
+**common_trap:** Splitting employees roughly evenly (12/18) because the overall rate seems like a middle ground. The overall rate of 52% is much closer to Dept B's 40% than to Dept A's 85%, forcing Dept B to be far larger.
+**takeaway:** Weighted average lever-arm: target rate sits 33 units from A and 12 units from B → a:b = 12:33 = 4:11. Larger department is the one whose rate is closer to the overall rate.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q43
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Factor Enumeration and Sum Optimization
+
+Three distinct positive integers have a product of 60. Select the minimum possible value of their sum (column 1) and the maximum possible value of their sum (column 2).
+
+|    | Minimum possible sum | Maximum possible sum |
+|----|---------------------|---------------------|
+| 10 |                     |                     |
+| 12 |                     |                     |
+| 13 |                     |                     |
+| 24 |                     |                     |
+| 30 |                     |                     |
+| 33 |                     |                     |
+
+**answer:** Minimum possible sum = 12, Maximum possible sum = 33
+**fastest_path:** Most balanced triple: 3 × 4 × 5 = 60, sum = 12. Most skewed: 1 × 2 × 30 = 60, sum = 33.
+**explanation:** Enumerate all triples (a, b, c) of distinct positive integers with a < b < c and a × b × c = 60: (1,2,30) sum 33; (1,3,20) sum 24; (1,4,15) sum 20; (1,5,12) sum 18; (1,6,10) sum 17; (2,3,10) sum 15; (2,5,6) sum 13; (3,4,5) sum 12. Minimum = 12 from the most balanced triple (3,4,5) — values closest to the cube root of 60 (≈ 3.9). Maximum = 33 from the most skewed triple (1,2,30) — concentrating the product in one large factor while the others are as small as possible.
+**mistake_a:** 10 — no valid triple. Test: (1,4,5) gives product 20 ≠ 60; (2,3,5) gives product 30 ≠ 60. No distinct-positive-integer triple sums to 10 with product 60.
+**mistake_c:** 13 — that is the sum of (2,5,6), the second-lowest valid sum, not the minimum.
+**mistake_d:** 24 — that is the sum of (1,3,20), not the maximum.
+**mistake_e:** 30 — that is the value of the largest factor in the maximum-sum triple (1,2,30), not the sum itself; the sum is 1+2+30 = 33.
+**common_trap:** Confusing 30 (the largest factor) with 33 (the sum of the triple 1,2,30). Also: stopping the enumeration early and settling on (2,5,6) with sum 13 as the minimum, missing the balanced (3,4,5) triple with sum 12.
+**takeaway:** Sum of factor triples is minimized by the most balanced factorization (factors near the cube root of the target) and maximized by concentrating the product in one large factor with the others at 1 and 2. Systematic enumeration prevents missing cases.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q44
+**difficulty:** Challenge
+**type:** Two-Part Analysis
+**topic:** Quantitative — Multi-Constraint Number Theory
+
+Positive integers f and g satisfy all three conditions: (1) f > g, (2) f × g = 252, and (3) f − g is a perfect square greater than 50. Select the value of f (column 1) and the value of g (column 2).
+
+|    | f  | g  |
+|----|----|----|
+| 3  |    |    |
+| 4  |    |    |
+| 6  |    |    |
+| 42 |    |    |
+| 63 |    |    |
+| 84 |    |    |
+
+**answer:** f = 84, g = 3
+**fastest_path:** List factor pairs of 252 (f > g): (252,1), (126,2), (84,3), (63,4), (42,6), (36,7), (28,9), (21,12), (18,14). Differences: 251, 124, 81, 59, 36, 29, 19, 9, 4. Perfect squares among differences: 81, 36, 9, 4. Only 81 > 50. Answer: f = 84, g = 3.
+**explanation:** 252 = 2² × 3² × 7. The factor pairs (f, g) with f > g and f × g = 252 are: (252,1), (126,2), (84,3), (63,4), (42,6), (36,7), (28,9), (21,12), (18,14). Their differences f − g: 251, 124, 81, 59, 36, 29, 19, 9, 4. Of these, the perfect squares are 81 = 9² (from the pair 84, 3), 36 = 6² (from 42, 6), 9 = 3² (from 21, 12), and 4 = 2² (from 18, 14). Applying the final filter "greater than 50": only 81 qualifies. The unique solution is f = 84, g = 3. Verify: 84 > 3 ✓, 84 × 3 = 252 ✓, 84 − 3 = 81 = 9² > 50 ✓.
+**mistake_c:** g = 6 with f = 42 — satisfies f × g = 252 ✓ and f − g = 36 = 6² ✓, but 36 is not greater than 50. This is the most tempting trap: both conditions (1) and (2) and the perfect-square part of (3) hold, but the "> 50" threshold fails.
+**mistake_e:** f = 63, g = 4 — satisfies f × g = 252 ✓, but f − g = 59 is not a perfect square (7² = 49, 8² = 64). Fails condition (3).
+**mistake_b:** f = 63, g = 4 or similar — 59 is not a perfect square regardless of how close it sits between 49 and 64.
+**mistake_d:** f = 42 for column 1 — from the (42, 6) pair which fails the "> 50" threshold on the difference.
+**common_trap:** Finding the pair (42, 6) first — because 36 is an easily recognized perfect square and 252 = 42 × 6 is readily spotted — and stopping without applying the "> 50" filter. The challenge requires complete enumeration followed by a two-step filter: perfect square, then greater than 50.
+**takeaway:** Multi-constraint problems: enumerate all candidates satisfying the simpler conditions, then apply the most restrictive filter last. Never stop at the first candidate that satisfies most conditions.
+**related_reading:** reading-di-06-two-part-analysis
