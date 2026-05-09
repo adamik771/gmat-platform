@@ -765,3 +765,473 @@ A box contains 8 marbles: 3 red, 3 blue, and 2 green. Two marbles are drawn at r
 **common_trap:** Forgetting the green-green pair or treating "different colors" as 2/3 based on category count.
 **takeaway:** "Same color" with multiple groups: sum C(group_i, 2) over all groups. Different = complement.
 **related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q28
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Percent Markup and Discount
+
+A jacket costs $200. A store marks it up by 40% above cost, then applies a 15% discount to the marked-up price. Select the marked-up price before the discount is applied (column 1) and the final selling price after the discount (column 2).
+
+|       | Marked-up price | Final selling price |
+|-------|-----------------|---------------------|
+| $170  |                 |                     |
+| $200  |                 |                     |
+| $238  |                 |                     |
+| $280  |                 |                     |
+| $315  |                 |                     |
+
+**answer:** Marked-up price = $280, Final selling price = $238
+**fastest_path:** Marked-up: 200 × 1.40 = $280. Final: 280 × 0.85 = $238.
+**explanation:** The 40% markup is applied to the $200 cost: 200 × 1.40 = $280. The 15% discount is then applied to $280 (not to the original $200): 280 × 0.85 = $238. The key insight is that "15% off the marked-up price" means 85% of $280, not 85% of $200.
+**mistake_a:** $170 — computed 200 × 0.85 (applying the discount to the original price), skipping the markup step entirely.
+**mistake_b:** $200 — the original cost; no calculation was applied.
+**mistake_e:** $315 — computed 200 × 1.40 × 1.15 (added the discount instead of subtracting it, treating the 15% as a second markup).
+**common_trap:** Applying the 15% discount to the original $200 cost rather than the marked-up $280 price. Both operations must be applied sequentially to the correct base.
+**takeaway:** Successive percent changes: each percentage applies to the result of the previous step, not to the original base.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Combined Work Rate
+
+Three workers — Anna, Ben, and Cal — can each paint a fence alone in 6 hours, 4 hours, and 12 hours respectively. Select the time to paint the fence if only Anna and Ben work together (column 1) and the time if all three work together (column 2).
+
+|          | Anna and Ben | All three |
+|----------|--------------|-----------|
+| 1.5 hrs  |              |           |
+| 2.0 hrs  |              |           |
+| 2.4 hrs  |              |           |
+| 3.0 hrs  |              |           |
+| 3.3 hrs  |              |           |
+
+**answer:** Anna and Ben = 2.4 hrs, All three = 2.0 hrs
+**fastest_path:** Anna+Ben rate: 1/6+1/4 = 5/12 → T = 12/5 = 2.4. All-three rate: 5/12+1/12 = 1/2 → T = 2.
+**explanation:** Rates add. Anna: 1/6 fence per hour; Ben: 1/4; Cal: 1/12. Anna+Ben: 1/6+1/4 = 2/12+3/12 = 5/12 → time = 12/5 = 2.4 hours. All three: 5/12+1/12 = 6/12 = 1/2 → time = 2 hours. Sanity check: all-three time (2.0) must be less than Anna+Ben time (2.4) — adding Cal must speed things up.
+**mistake_a:** 1.5 hrs — averaging two of the times or double-counting Cal's contribution.
+**mistake_d:** 3.0 hrs — averaging the three individual times (6+4+12)/3; times do not average.
+**mistake_e:** 3.3 hrs — harmonic-mean attempt gone wrong, or a mis-divided combined rate.
+**common_trap:** Averaging times instead of adding rates. For parallel workers, add their rates (1/time), then invert the total for combined time.
+**takeaway:** Work rates add; times do not. Combined time = 1 / (sum of individual rates).
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — System of Equations (Ages)
+
+The sum of two siblings' ages is 35. The older sibling is 7 years older than the younger. Select the age of the younger sibling (column 1) and the age of the older sibling (column 2).
+
+|     | Younger | Older |
+|-----|---------|-------|
+| 12  |         |       |
+| 14  |         |       |
+| 16  |         |       |
+| 19  |         |       |
+| 21  |         |       |
+
+**answer:** Younger = 14, Older = 21
+**fastest_path:** Sum 35, difference 7: younger = (35−7)/2 = 14, older = 14+7 = 21.
+**explanation:** Let y and o be the ages. Two equations: y + o = 35 and o = y + 7. Substitute: y + (y + 7) = 35 → 2y = 28 → y = 14. Then o = 21. Verify: 14 + 21 = 35 and 21 − 14 = 7. Shortcut: for sum S and difference D, smaller = (S−D)/2 = (35−7)/2 = 14, larger = (S+D)/2 = 21.
+**mistake_a:** 12 — arithmetic slip on the substitution, or halving 35 without accounting for the 7-year gap.
+**mistake_c:** 16 — incorrectly halving the sum and rounding; a square split of 35 produces 17.5, not a clean integer.
+**mistake_d:** 19 — a guess that 35 splits near 19/16, without anchoring to the difference.
+**common_trap:** Solving for the older sibling first and writing that value in column 1 (the younger sibling's column). Always re-read which column asks for which sibling.
+**takeaway:** Sum-and-difference system: smaller = (S−D)/2, larger = (S+D)/2. Fast and avoids substitution errors.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q31
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Logic — Conclusion and Premise Identification
+
+Consider the following argument: "Employees who participate in the company wellness program take fewer sick days than employees who do not. A wellness program, therefore, makes employees healthier."
+
+From the statements below, identify the conclusion of the argument (column 1) and one explicit premise stated in the argument (column 2).
+
+| Statement                                                                    | Conclusion | Premise |
+|------------------------------------------------------------------------------|------------|---------|
+| A wellness program makes employees healthier                                 |            |         |
+| Wellness-program participants take fewer sick days than non-participants     |            |         |
+| Employees prefer wellness programs over enhanced insurance benefits          |            |         |
+| Fewer sick days reduces the company's absenteeism costs                      |            |         |
+| Non-participants never have good health outcomes                             |            |         |
+
+**answer:** Conclusion = "A wellness program makes employees healthier"; Premise = "Wellness-program participants take fewer sick days than non-participants"
+**fastest_path:** "Therefore" signals the conclusion. The sick-day statement is the explicitly given data (premise) that precedes it.
+**explanation:** The word "therefore" marks the conclusion: the claim that wellness programs make employees healthier. The sick-day comparison is the explicit evidence stated in the argument — a premise. Options 3, 4, and 5 are not stated in the argument; they are outside the text entirely.
+**mistake_c:** Not stated in the argument — employee preferences are never mentioned.
+**mistake_d:** Not stated — cost implications of sick days are inferred downstream, not explicit in the passage.
+**mistake_e:** Too extreme — the argument says "fewer sick days," not "non-participants never have good outcomes."
+**common_trap:** Confusing the conclusion with its supporting evidence. The premise is what is offered as evidence; the conclusion is the claim derived from it.
+**takeaway:** Conclusions are typically signaled by "therefore," "thus," "so," or "consequently." Premises are the stated reasons that precede the signal word.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Probability — Independent Events
+
+A spinner has 5 equally-sized sections labeled 1 through 5. It is spun twice, with each spin independent. Select the probability of landing on 3 both times (column 1) and the probability of landing on a number greater than 3 at least once in the two spins (column 2).
+
+|       | P(3 both times) | P(>3 at least once) |
+|-------|-----------------|---------------------|
+| 1/25  |                 |                     |
+| 4/25  |                 |                     |
+| 9/25  |                 |                     |
+| 16/25 |                 |                     |
+| 1/5   |                 |                     |
+
+**answer:** P(3 both) = 1/25, P(>3 at least once) = 16/25
+**fastest_path:** P(3 both) = (1/5)² = 1/25. P(>3 at least once) = 1 − (3/5)² = 16/25.
+**explanation:** P(landing on 3) = 1/5. For independent spins, P(3 both) = (1/5)(1/5) = 1/25. Numbers greater than 3 are {4, 5}, so P(>3 per spin) = 2/5 and P(not >3 per spin) = 3/5. By complement: P(at least one >3) = 1 − (3/5)² = 1 − 9/25 = 16/25. The direct-addition trap: 2/5 + 2/5 = 4/5 overcounts the event where both spins land >3.
+**mistake_b:** 4/25 — P(>3 on both spins): (2/5)² — a different event ("both >3," not "at least one >3").
+**mistake_c:** 9/25 — P(not >3 on both spins), the complement of the target; subtract from 1 first.
+**mistake_e:** 1/5 — the probability of landing on exactly 3 on one spin; wrong event, wrong column.
+**common_trap:** Adding P(>3) twice (2/5 + 2/5 = 4/5) for "at least once" — this overcounts the both->3 case. Use the complement method instead.
+**takeaway:** "At least once" in independent trials: use the complement. P(≥1) = 1 − (1−p)ⁿ.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Successive Percent Changes
+
+A retailer purchases an item for $200, applies a 50% markup to set the retail price, and then offers a 20% discount off the retail price during a sale. Select the retail price after the markup but before the discount (column 1) and the net profit per item when it sells at the discounted price (column 2).
+
+|       | Retail price (post-markup) | Net profit at sale price |
+|-------|---------------------------|--------------------------|
+| $40   |                           |                          |
+| $120  |                           |                          |
+| $200  |                           |                          |
+| $240  |                           |                          |
+| $300  |                           |                          |
+
+**answer:** Retail price = $300, Net profit = $40
+**fastest_path:** Retail: 200 × 1.50 = $300. Sale price: 300 × 0.80 = $240. Profit: 240 − 200 = $40.
+**explanation:** Markup: 200 × 1.50 = $300 retail price. Discount applied to the retail price: 300 × 0.80 = $240 final sale price. Net profit = sale price − cost = $240 − $200 = $40. The combined multiplier is 1.50 × 0.80 = 1.20, so the item sells for 20% above cost — a $40 profit on a $200 base.
+**mistake_b:** $120 — the dollar amount of the markup alone ($100) or some confused revenue–cost subtraction.
+**mistake_c:** $200 — the original cost; no markup was applied.
+**mistake_d:** $240 — the sale price after the discount, not the retail price before it. Column 1 asks for the pre-discount value.
+**common_trap:** Computing the net markup as 50% − 20% = 30% of the original cost ($60). The 20% discount applies to $300, not $200, so the true net is 1.50 × 0.80 = 1.20, or 20% above cost ($40 profit), not $60.
+**takeaway:** Successive percent changes multiply: apply each factor to the result of the prior step. A 50% markup then 20% off = net 1.20× (20% above cost).
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — LCM and Scheduling
+
+Two alarm clocks ring simultaneously at 6:00 AM. Clock A rings every 45 minutes; Clock B rings every 60 minutes. Select the number of hours after 6:00 AM at which both clocks next ring simultaneously (column 1) and the total number of times Clock A rings strictly after 6:00 AM up to and including that simultaneous alarm (column 2).
+
+|     | Hours to next simultaneous ring | Times Clock A rings |
+|-----|---------------------------------|---------------------|
+| 1   |                                 |                     |
+| 2   |                                 |                     |
+| 3   |                                 |                     |
+| 4   |                                 |                     |
+| 5   |                                 |                     |
+
+**answer:** Hours to next simultaneous ring = 3, Times Clock A rings = 4
+**fastest_path:** LCM(45, 60) = 180 min = 3 hrs. Clock A rings at 45, 90, 135, 180 min → 4 times.
+**explanation:** The clocks ring together again at LCM(45, 60). Prime factorizations: 45 = 3² × 5; 60 = 2² × 3 × 5. LCM = 2² × 3² × 5 = 180 minutes = 3 hours. Clock A rings every 45 minutes after 6:00 AM: at 45, 90, 135, and 180 minutes — 4 rings total, with the 4th coinciding with the simultaneous alarm.
+**mistake_a:** 1 hour — confusing LCM with GCF; GCF(45, 60) = 15 minutes = 0.25 hours (not an integer number of hours listed here).
+**mistake_b:** 2 hours — 120 minutes is divisible by 60 but not by 45 (120/45 = 2.67); not a valid simultaneous ring.
+**mistake_d:** 4 hours — 240 minutes is divisible by 60 but 240/45 = 5.33, so clocks don't ring together at 4 hours.
+**common_trap:** Using GCF instead of LCM. GCF gives the largest common factor; LCM gives the smallest common multiple — the first time both events recur together.
+**takeaway:** "First time both recur together" = LCM of their periods. Count one clock's firings from 0 up to the LCM (exclusive of start, inclusive of end).
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Rectangle Dimensions
+
+A rectangle has an area of 84 square centimeters and a perimeter of 38 centimeters. Select the length of the longer side (column 1) and the length of the shorter side (column 2).
+
+|      | Longer side (cm) | Shorter side (cm) |
+|------|------------------|-------------------|
+| 4    |                  |                   |
+| 7    |                  |                   |
+| 9.5  |                  |                   |
+| 12   |                  |                   |
+| 14   |                  |                   |
+
+**answer:** Longer side = 12 cm, Shorter side = 7 cm
+**fastest_path:** l + w = 19 (half perimeter). Scan factor pairs of 84: 12 × 7 = 84 and 12 + 7 = 19. Done.
+**explanation:** Perimeter 38 → l + w = 19. Area → l × w = 84. Scan factor pairs of 84 for the pair summing to 19: (1,84) sum 85; (2,42) sum 44; (3,28) sum 31; (4,21) sum 25; (6,14) sum 20; (7,12) sum 19. The pair is 7 and 12. Longer side = 12 cm, shorter = 7 cm. Algebraically: l² − 19l + 84 = 0 → (l − 7)(l − 12) = 0.
+**mistake_a:** 4 — testing factor pair (4, 21): sum = 25 ≠ 19.
+**mistake_c:** 9.5 — assuming a square with side = 19/2 = 9.5; but 9.5² = 90.25 ≠ 84.
+**mistake_e:** 14 — testing factor pair (6, 14): sum = 20 ≠ 19.
+**common_trap:** Assuming the shape is a square and computing √84 ≈ 9.17 or 19/2 = 9.5. A rectangle with equal sides would need area = 9.5² = 90.25, not 84.
+**takeaway:** Rectangle dimension system: sum of sides = half perimeter; product = area. Scan factor pairs of the area for the one matching the sum — faster than the quadratic.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Arithmetic Sequence
+
+In an arithmetic sequence, the third term is 11 and the eighth term is 31. Select the first term of the sequence (column 1) and the common difference (column 2).
+
+|     | First term | Common difference |
+|-----|------------|-------------------|
+| 2   |            |                   |
+| 3   |            |                   |
+| 4   |            |                   |
+| 5   |            |                   |
+| 7   |            |                   |
+
+**answer:** First term = 3, Common difference = 4
+**fastest_path:** From term 3 to term 8 spans 5 gaps: d = (31−11)/5 = 4. a₁ = a₃ − 2d = 11 − 8 = 3.
+**explanation:** In an arithmetic sequence, aₙ = a₁ + (n−1)d. From term 3 to term 8 is 5 gaps: d = (31 − 11) / 5 = 4. Back-calculate: a₁ = a₃ − 2d = 11 − 8 = 3. Verify: a₃ = 3 + 2(4) = 11 ✓; a₈ = 3 + 7(4) = 31 ✓.
+**mistake_a:** 2 — using a₁ = a₃ − d (subtracting only one step instead of two back from term 3 to term 1).
+**mistake_c:** 4 — the common difference, placed in the first-term column (column reversal).
+**mistake_d:** 5 — off-by-one on step count: counting 8 − 3 + 1 = 6 steps instead of 5, giving d = 20/6 ≈ 3.3, then rounding to the nearest table value.
+**common_trap:** Writing d in column 1 and a₁ in column 2 — they are both plausible numbers and easy to swap under time pressure.
+**takeaway:** Steps between terms n and m = m − n. Then a₁ = aₙ − (n−1)d. Always verify with both given terms.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Logic — Strengthen and Identify Flaw
+
+An editorial argues: "Country A requires all restaurant inspections to be unannounced. Country B recently adopted the same unannounced inspection policy. Therefore, Country B's food safety standards will improve to match Country A's."
+
+From the statements below, identify the statement that most strengthens the argument (column 1) and the statement that most directly identifies a flaw in the reasoning (column 2).
+
+| Statement                                                                                           | Strengthens | Flaw |
+|-----------------------------------------------------------------------------------------------------|-------------|------|
+| Studies across multiple countries show unannounced inspections significantly reduce safety violations |             |      |
+| Country A has a longer history of food safety regulation than Country B                             |             |      |
+| Country B's food safety problems stem primarily from causes unrelated to inspection timing          |             |      |
+| Country A and Country B have different cuisine traditions                                           |             |      |
+| Country B will implement inspections at the same frequency as Country A                             |             |      |
+
+**answer:** Strengthens = "Studies across multiple countries show unannounced inspections significantly reduce safety violations"; Flaw = "Country B's food safety problems stem primarily from causes unrelated to inspection timing"
+**fastest_path:** Strengthen = direct mechanism evidence (unannounced → fewer violations). Flaw = the argument's key assumption (inspection timing drives the safety gap) may be false.
+**explanation:** The argument assumes Country B's food safety gap is caused by the announcement policy. Direct multi-country studies validating that mechanism provide the strongest support. The flaw: if Country B's problems originate elsewhere (staff training, supply chains, enforcement culture), changing inspection timing alone won't close the gap. Country A's longer regulatory history is background context, not mechanism evidence; cuisine differences are irrelevant; same inspection frequency addresses a different variable than timing.
+**mistake_b:** Country A's longer regulatory history — provides context but does not validate the causal mechanism linking announcement policy to safety outcomes.
+**mistake_d:** Different cuisine traditions — irrelevant to whether inspection timing affects compliance behavior.
+**mistake_e:** Same inspection frequency — addresses frequency (a different variable); neither strengthens the announcement-timing mechanism nor identifies a flaw.
+**common_trap:** Picking "Country A's longer history" as a flaw. It hints at alternative factors but is less direct than explicitly stating that Country B's problems have different causes.
+**takeaway:** Strengthen by testing the proposed mechanism directly. Identify a flaw by showing the core assumption does not hold in this case.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — System of Equations
+
+A florist sells roses for $3 each and lilies for $5 each. On a given day the florist sold 120 flowers in total and collected exactly $460 in revenue. Select the number of roses sold (column 1) and the number of lilies sold (column 2).
+
+|     | Roses | Lilies |
+|-----|-------|--------|
+| 40  |       |        |
+| 50  |       |        |
+| 60  |       |        |
+| 70  |       |        |
+| 80  |       |        |
+
+**answer:** Roses = 70, Lilies = 50
+**fastest_path:** All-roses baseline: 120 × $3 = $360. Surplus: $100. Each rose-to-lily swap adds $2. Swaps = 50 → lilies = 50, roses = 70.
+**explanation:** Let r = roses, l = lilies. r + l = 120 and 3r + 5l = 460. Substitute r = 120 − l: 3(120 − l) + 5l = 460 → 360 + 2l = 460 → l = 50. Then r = 70. Verify: 70 × 3 + 50 × 5 = 210 + 250 = 460 ✓. Shortcut: baseline all-roses revenue = $360; $100 surplus ÷ $2 uplift per lily-swap = 50 lilies.
+**mistake_a:** 40 lilies — under-swapping; 80 roses + 40 lilies = $240 + $200 = $440 ≠ $460.
+**mistake_c:** 60 lilies — over-swapping; 60 roses + 60 lilies = $180 + $300 = $480 ≠ $460.
+**mistake_e:** 80 lilies — extreme over-swap; 40 roses + 80 lilies = $120 + $400 = $520 ≠ $460.
+**common_trap:** Equal split (60/60) because both quantities are round numbers — but equal split gives $480, $20 above target.
+**takeaway:** Two-commodity problems: set up a count equation and a revenue equation, substitute, and solve. The baseline-swap shortcut (all of the cheaper, then swap to hit revenue) is often faster.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Overlapping Sets
+
+A survey of 200 employees found that 120 own a smartphone, 90 own a tablet, and 40 own neither device. Select the number of employees who own both a smartphone and a tablet (column 1) and the number who own a smartphone but not a tablet (column 2).
+
+|     | Own both | Smartphone only |
+|-----|----------|-----------------|
+| 30  |          |                 |
+| 40  |          |                 |
+| 50  |          |                 |
+| 60  |          |                 |
+| 70  |          |                 |
+
+**answer:** Own both = 50, Smartphone only = 70
+**fastest_path:** At-least-one = 200 − 40 = 160. Both = 120 + 90 − 160 = 50. Smartphone-only = 120 − 50 = 70.
+**explanation:** Employees owning at least one device = 200 − 40 = 160. Inclusion-exclusion: |S ∪ T| = |S| + |T| − |S ∩ T| → 160 = 120 + 90 − |S ∩ T| → |S ∩ T| = 50. Smartphone-only = 120 − 50 = 70. Verify the full partition: 70 (phone only) + 40 (tablet only) + 50 (both) + 40 (neither) = 200 ✓.
+**mistake_a:** 30 — arithmetic slip in the inclusion-exclusion, e.g., treating 120 + 90 − 200 = 10 as the overlap then halving or adjusting incorrectly.
+**mistake_b:** 40 — confusing the "neither" count with the "both" count; they are different things.
+**mistake_d:** 60 — off-by-10 slip, perhaps computing 200 − 160 = 40 as the overlap instead of 210 − 160 = 50.
+**common_trap:** Using total (200) instead of the "at-least-one" count (160) in the inclusion-exclusion formula.
+**takeaway:** Inclusion-exclusion: |A ∩ B| = |A| + |B| − |A ∪ B|. First compute |A ∪ B| = total − neither, then substitute.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q40
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Simple vs Compound Interest
+
+An investor deposits $5,000 in each of two accounts. Account P pays 6% simple annual interest; Account Q pays 5% interest compounded annually. Select the total interest earned by Account P after 2 years (column 1) and the total interest earned by Account Q after 2 years (column 2).
+
+|         | Account P interest | Account Q interest |
+|---------|--------------------|--------------------|
+| $487.50 |                    |                    |
+| $500.00 |                    |                    |
+| $512.50 |                    |                    |
+| $550.00 |                    |                    |
+| $600.00 |                    |                    |
+
+**answer:** Account P = $600, Account Q = $512.50
+**fastest_path:** P simple: 5,000 × 0.06 × 2 = $600. Q compound: 5,000 × 1.05² − 5,000 = 5,512.50 − 5,000 = $512.50.
+**explanation:** Account P (simple interest): I = P × r × t = 5,000 × 0.06 × 2 = $600. Account Q (compound interest): Balance = 5,000 × (1.05)² = 5,000 × 1.1025 = $5,512.50. Interest = $512.50. Counter-intuitive result: the simple-interest account earns more because its rate advantage (6% vs 5%) dominates the compounding benefit over just 2 years.
+**mistake_a:** $487.50 — an erroneous Q computation, perhaps 5,000 × 0.0975 (adding year-2 interest at the wrong base).
+**mistake_b:** $500.00 — Q computed as simple interest: 5,000 × 0.05 × 2; forgets the compounding effect in year 2.
+**mistake_d:** $550.00 — possibly P computed at an incorrect rate, or Q confused with 5,000 × (1.055)².
+**common_trap:** Assuming compound interest always exceeds simple interest. Compounding only wins when the compound rate is high enough and the horizon is long enough to overcome a lower rate.
+**takeaway:** Simple: P × r × t. Compound: P × (1+r)ᵗ − P. Check both; the higher rate can outperform higher compounding over short time horizons.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Logic — Role of Evidence and Reasoning Flaw
+
+A manager argues: "Our advertising spend increased by 30% last quarter. Sales rose 25% over the same period. Therefore, our increased advertising is driving our sales growth." A financial analyst responds: "Our main competitor went out of business in the same quarter."
+
+From the statements below, identify the role of the analyst's statement in the discussion (column 1) and the statement that best describes the flaw in the manager's reasoning (column 2).
+
+| Statement                                                                           | Role of analyst's statement | Flaw in reasoning |
+|-------------------------------------------------------------------------------------|-----------------------------|-------------------|
+| It provides an alternative explanation for the observed sales increase              |                             |                   |
+| It challenges the reported data on advertising expenditure                          |                             |                   |
+| The manager confuses correlation with causation                                     |                             |                   |
+| The manager incorrectly measures advertising effectiveness                          |                             |                   |
+| It confirms that increased advertising always produces sales growth                 |                             |                   |
+
+**answer:** Role = "It provides an alternative explanation for the observed sales increase"; Flaw = "The manager confuses correlation with causation"
+**fastest_path:** Analyst note = rival cause (competitor exit could explain the sales rise). Core flaw = inferring causation from temporal co-occurrence.
+**explanation:** The analyst's statement introduces an alternative cause: the competitor's exit may have redirected customers to this company, producing the sales rise independent of advertising. The manager's core flaw is inferring a causal relationship from a mere temporal correlation — both advertising and sales rose together, but that does not establish that one caused the other. Options 2 and 4 are unsupported by the text; option 5 directly contradicts the analyst's point.
+**mistake_b:** Challenges advertising data — the analyst says nothing about whether the 30% ad-spend figure is accurate.
+**mistake_d:** Incorrect measurement — not mentioned; the argument does not address how advertising effectiveness is quantified.
+**mistake_e:** Confirms advertising always produces growth — the analyst introduces doubt about causation, not confirmation.
+**common_trap:** Selecting "challenges the data" as the analyst's role. The analyst accepts the figures; the challenge is to the causal interpretation, not to the numbers.
+**takeaway:** "Provides an alternative explanation" is categorically different from "challenges data" or "weakens the conclusion." Map each option to its precise logical function before selecting.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Rate with Partial-Completion Percentage
+
+A high-speed printer completes 40% of a large print job in the first 2 hours, running at 60 pages per hour. For the remaining portion of the job, the printer runs at 45 pages per hour. Select the total number of pages in the job (column 1) and the total time required to complete the entire job (column 2).
+
+|       | Total pages | Total time (hours) |
+|-------|-------------|--------------------|
+| 4     |             |                    |
+| 5     |             |                    |
+| 6     |             |                    |
+| 200   |             |                    |
+| 270   |             |                    |
+| 300   |             |                    |
+
+**answer:** Total pages = 300, Total time = 6 hours
+**fastest_path:** Pages in first 2 hrs: 60 × 2 = 120 = 40% of total → total = 300. Remaining: 180 pages ÷ 45/hr = 4 hrs → total time = 6 hrs.
+**explanation:** Pages completed in the first 2 hours: 60 × 2 = 120. Since 120 pages is 40% of the whole job: total = 120 / 0.40 = 300 pages. Remaining: 300 − 120 = 180 pages. Time at 45 pages/hr: 180 / 45 = 4 hours. Total time = 2 + 4 = 6 hours.
+**mistake_a:** 4 hours — the time for the second phase only, forgetting to add the initial 2 hours.
+**mistake_b:** 5 hours — probably 300 / 60 = 5, using the first-phase rate for the full job; ignores the rate change.
+**mistake_d:** 200 pages — arithmetic slip on 120 / 0.40, perhaps computing 120 × (1 + 0.40) = 168 or 120 / 0.60 = 200.
+**mistake_e:** 270 pages — computing 120 / 0.40 as 120 × (1 + something) ≈ 270, a division-as-multiplication error.
+**common_trap:** Using the first-phase rate to estimate the full job: 300 / 60 = 5 hours. This ignores the slower second-phase rate and underestimates total time.
+**takeaway:** Partial-completion problems: use the known fraction to back-calculate the total, then handle each phase separately at its own rate.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q43
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Ratio Allocation with Percent Changes
+
+A portfolio allocates funds among three sectors in the ratio 2:3:5 (Technology:Healthcare:Energy), with a total value of $400,000. Market changes cause the Technology allocation to increase by 50% and the Healthcare allocation to decrease by 20%, while the Energy allocation remains unchanged. Select the new value of the Technology allocation (column 1) and the new total portfolio value (column 2).
+
+|          | Technology (new) | New total portfolio |
+|----------|------------------|---------------------|
+| $80,000  |                  |                     |
+| $96,000  |                  |                     |
+| $120,000 |                  |                     |
+| $400,000 |                  |                     |
+| $416,000 |                  |                     |
+
+**answer:** Technology (new) = $120,000, New total portfolio = $416,000
+**fastest_path:** Tech: 2/10 × 400k = $80k → +50% → $120k. Health: 3/10 × 400k = $120k → −20% → $96k. Energy: $200k unchanged. New total: 120 + 96 + 200 = $416k.
+**explanation:** The ratio parts sum to 2+3+5 = 10. Original allocations: Technology = 2/10 × $400,000 = $80,000; Healthcare = 3/10 × $400,000 = $120,000; Energy = 5/10 × $400,000 = $200,000. After market changes: Technology = $80,000 × 1.50 = $120,000; Healthcare = $120,000 × 0.80 = $96,000; Energy = $200,000. New total = $120,000 + $96,000 + $200,000 = $416,000. The total rises because Technology's gain (+$40,000) exceeds Healthcare's loss (−$24,000).
+**mistake_a:** $80,000 — the original Technology value before the 50% increase is applied.
+**mistake_b:** $96,000 — the new Healthcare allocation, placed in the Technology column.
+**mistake_d:** $400,000 — the original total; incorrectly assumes the sector changes net to zero (as if this were a rebalancing, not a value change).
+**common_trap:** Treating percent changes to individual sectors as internal rebalancing that leaves the total unchanged. The percent changes are real gains and losses — the total must be recomputed.
+**takeaway:** When percent changes are applied to components of a total, recompute each component then sum. Don't assume the total is preserved.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q44
+**difficulty:** Challenge
+**type:** Two-Part Analysis
+**topic:** Quantitative — Linear Programming (Profit Maximization)
+
+A manufacturer produces two products, X and Y. Each unit of X requires 3 minutes on Machine 1 and 4 minutes on Machine 2. Each unit of Y requires 4 minutes on Machine 1 and 2 minutes on Machine 2. Machine 1 is available for 240 minutes per shift; Machine 2 is available for 240 minutes per shift. Product X earns $6 profit per unit; Product Y earns $4 profit per unit. The manufacturer produces only whole-number quantities and wants to maximize total daily profit.
+
+Select the number of units of X that achieves maximum daily profit (column 1) and the corresponding maximum daily profit in dollars (column 2).
+
+|     | Units of X | Maximum daily profit ($) |
+|-----|------------|--------------------------|
+| 0   |            |                          |
+| 24  |            |                          |
+| 48  |            |                          |
+| 60  |            |                          |
+| 360 |            |                          |
+| 384 |            |                          |
+
+**answer:** Units of X = 48, Maximum daily profit = 384
+**fastest_path:** Corner points: (0,60) → $240; (60,0) → $360; constraint intersection (48,24) → $384. Max at (48,24).
+**explanation:** Constraints: 3x + 4y ≤ 240 (M1) and 4x + 2y ≤ 240 (M2), x,y ≥ 0. Objective: maximize 6x + 4y. Evaluate all corner points of the feasible region. (0,0): $0. (0,60): M1 binds (4×60=240), M2: 2×60=120 ≤ 240; profit = $240. (60,0): M2 binds (4×60=240), M1: 3×60=180 ≤ 240; profit = $360. Intersection of both binding constraints: 3x+4y=240 and 4x+2y=240. Multiply the second by 2: 8x+4y=480. Subtract the first: 5x=240 → x=48, y=(240−144)/4=24. Profit = 6(48)+4(24) = 288+96 = $384. Verify: M1: 3(48)+4(24)=144+96=240 ✓; M2: 4(48)+2(24)=192+48=240 ✓. Maximum is $384 at x=48, y=24.
+**mistake_d:** 60 units of X — profit $360, feasible but suboptimal; the interior vertex (48,24) does better by also using Y.
+**mistake_b:** 24 units of X — that is the optimal Y quantity, placed in the wrong column.
+**mistake_e:** $360 — the profit at axis vertex (60,0); not the global maximum.
+**common_trap:** Stopping at the axis vertices without testing the constraint-intersection interior point. When two resource limits are both binding simultaneously, the interior point often exceeds the axis-only solutions.
+**takeaway:** LP with two constraints: test every corner point including the intersection of both binding constraints. Both resources fully utilized at the optimal often signals the interior point is best.
+**related_reading:** reading-di-06-two-part-analysis
