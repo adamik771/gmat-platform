@@ -35,6 +35,11 @@ sections:
     check_question_ids:
       - exponents-roots-q8
 
+  - id: exponential-equations
+    type: reading
+    title: "Solving exponential equations — the variable in the exponent"
+    check_question_ids: []
+
   - id: roots-and-simplification
     type: reading
     title: "Roots — factor, split, simplify"
@@ -129,6 +134,18 @@ Rewrite both sides with base 3: 9 = 3² and 27 = 3³. So (3²)ˣ = 3³, which gi
 
 **Same-exponent shortcut (less common but useful).** xᵃ · yᵃ = (xy)ᵃ and (x/y)ᵃ = xᵃ/yᵃ. Different bases, same exponent? The exponent distributes.
 
+**Micro-drill: classify, then compute.** For each expression below, name the rule that applies and state the answer — in your head, in under 5 seconds each. The first three build reflexes; the last two bridge to test-day application.
+
+1. 3⁴ · 3⁶ → (product rule) → 3¹⁰ = 59,049
+2. 5⁷ / 5⁴ → (quotient rule) → 5³ = 125
+3. (2⁴)³ → (power of a power) → 2¹² = 4,096
+4. 4ˣ = 64 → 4 = 2², 64 = 2⁶ → 2²ˣ = 2⁶ → x = 3
+5. 2ˣ · 4 = 32 → 4 = 2², 32 = 2⁵ → 2^(x+2) = 2⁵ → x = 3
+
+The first three should feel instant. If either of the last two took more than 10 seconds, you haven't yet internalized same-base rewriting at test speed — read the worked examples again and re-drill tomorrow.
+
+**What "instant" looks like.** An experienced test-taker reads "4ˣ = 64" and immediately thinks "both are powers of 2, so 4 is 2², 64 is 2⁶, equate to get x = 3." Total time: five seconds. That's the speed you're building toward. The goal isn't to know that this approach works — it's to run it automatically.
+
 > **Self-explanation prompt.** Before the check question, write down each of the three rules without peeking. If you can't reproduce them from memory, re-read this section before moving on. Forty seconds now saves you three minutes of fumbling on test day.
 
 ## @negative-and-zero-exponents
@@ -179,6 +196,50 @@ Power of a power: multiply. (3/4) · (8/3) = 24/12 = 2. Result: x².
 **Trap to watch.** x^(1/2) is **only** defined as the non-negative square root on the GMAT. For x ≥ 0, √x is a single non-negative value, not ±. When the GMAT wants both roots, it writes x² = 9 (giving x = ±3), not x = √9 (giving just 3).
 
 **Converting between forms.** √x = x^(1/2). ³√x = x^(1/3). √(x³) = x^(3/2). You'll move between radical and fractional-exponent notation constantly — treat them as two languages for the same object.
+
+## @exponential-equations
+
+When the variable lives *in* the exponent — like 4^x = 8, or 27^(x+1) = 9^(2x−1) — ordinary algebra won't extract it. You can't divide x out or move it to the other side the normal way. The technique is still same-base rewriting, but applied in a new direction: express both sides as a power of a common base, then equate the exponents.
+
+**The four-step template.**
+
+1. Identify a base that both sides can be expressed as a power of.
+2. Rewrite each side using that base.
+3. Apply power-of-a-power to clear any nested exponents.
+4. Set the exponents equal and solve the resulting arithmetic equation.
+
+**Worked example.** Solve for x: 4^x = 32.
+
+4 and 32 are both powers of 2. Rewrite: 4 = 2², 32 = 2⁵.
+
+(2²)^x = 2⁵. Apply power-of-a-power: 2^(2x) = 2⁵. Equate exponents: 2x = 5. **x = 5/2.**
+
+**Worked example.** Solve for x: 27^(x+1) = 9^(2x−1).
+
+27 = 3³ and 9 = 3². Rewrite both sides.
+
+(3³)^(x+1) = (3²)^(2x−1). Apply power-of-a-power to each side: 3^(3x+3) = 3^(4x−2). Equate exponents: 3x + 3 = 4x − 2. **x = 5.**
+
+Verify: 27^6 = (3³)^6 = 3^18 and 9^9 = (3²)^9 = 3^18. Equal. ✓
+
+**Worked example (Data Sufficiency application).** Is 2^a > 4^b?
+
+Rephrase the question before testing statements. 4^b = (2²)^b = 2^(2b). The question becomes: is 2^a > 2^(2b)? Since base 2 is greater than 1, the exponential is strictly increasing, so this is equivalent to: **is a > 2b?**
+
+You've converted a hard exponential comparison into a simple linear inequality. This is the entire DS move — the statements now test something you can evaluate in five seconds.
+
+**The GMAT signal: both sides can always be expressed with the same integer base.** The test never requires logarithms. Every exponential equation the GMAT sets up is solvable by same-base rewriting. This is a deliberate design choice — learn to spot it.
+
+Two tip-offs that same-base rewriting applies:
+
+- **Both sides use the same base directly.** 3^(2x) = 3^(x+4) → equate exponents immediately.
+- **The bases are powers of each other.** 8^x = 16^(x−1). Recognize 8 = 2³ and 16 = 2⁴. Rewrite as 2^(3x) = 2^(4x−4). Equate: 3x = 4x − 4. **x = 4.**
+
+**Comparison shortcut for "which is greater" questions.** A frequent GMAT format: "Which is greater, 5^30 or 25^15?" Rewrite 25^15 = (5²)^15 = 5^30. They're equal — no computation needed. Spotting that both sides reduce to the same power is worth 20 seconds on test day.
+
+**Trap to watch.** When the exponents contain expressions with parentheses, expand carefully. (3²)^(x+1) is 3^(2x+2), not 3^(2x+1). Distribute the outer exponent across every term inside: multiply 2 by (x+1), not just by x.
+
+> **Self-explanation prompt.** Why does equating the exponents work when the bases are equal? If you can say "because an exponential function with base greater than 1 is strictly increasing — equal outputs from the same base force equal inputs," you understand the mathematical reason rather than the trick. That understanding is what prevents misapplying the technique to expressions like 2^a = 3^b (different bases, can't equate exponents).
 
 ## @roots-and-simplification
 
@@ -238,9 +299,21 @@ Multiply top and bottom by the conjugate (√3 − 1):
 
 **Trap to watch.** When you rationalize, you must multiply BOTH numerator and denominator by the conjugate. Forgetting to scale the numerator changes the value. You're multiplying by (conjugate/conjugate) = 1 — so the expression stays equal — but only if both top and bottom get hit.
 
-**Combining radical fractions.** Follow the normal fraction workflow: common denominator, then simplify.
+**Worked example (conjugate with sums of radicals).** Simplify (√5 + √3) / (√5 − √3).
 
-**Quick recognition.** If an answer choice has the form a√b + c, the setup usually involved rationalizing a denominator of the form √b + something. Scan answer choices before diving into calculation — they often hint at the cleanest path.
+Multiply by the conjugate of the denominator, (√5 + √3) / (√5 + √3):
+
+- Denominator: (√5 − √3)(√5 + √3) = (√5)² − (√3)² = 5 − 3 = **2**.
+- Numerator: (√5 + √3)(√5 + √3) = (√5)² + 2·√5·√3 + (√3)² = 5 + 2√15 + 3 = **8 + 2√15**.
+- Result: (8 + 2√15) / 2 = **4 + √15**.
+
+This is the full form of the technique. The denominator became a rational number; the radical migrated to the numerator. That's always the outcome of conjugate multiplication.
+
+**A common GMAT form.** Some questions present x = 1 / (2 + √3) and ask for the value of x or an expression involving x. Multiply by (2 − √3) / (2 − √3): denominator becomes 4 − 3 = 1, so x = 2 − √3. The rationalized form is what the answer choices expect.
+
+**The answer-choice signal.** If answer choices are in the form a + b√c (no radical in the denominator), the setup almost certainly involved rationalizing. Scan the choices before computing — they reveal the algebraic target.
+
+**Combining radical fractions.** Follow the normal fraction workflow: common denominator, then simplify.
 
 ## @scientific-notation
 
@@ -302,9 +375,11 @@ Every exponent question on the GMAT yields to one question: **can I rewrite this
 **Decision tree on test day:**
 
 1. **Same-base rewrite possible?** Do it. Then equate exponents.
-2. **Radicals?** Split via √(ab) = √a · √b, factor out the largest perfect square, or convert to fractional exponents.
-3. **Radical in a denominator?** Rationalize with the conjugate.
-4. **Scientific notation?** Treat coefficients and powers of 10 as two independent arithmetic problems.
-5. **Estimation question?** Fall back on 2¹⁰ ≈ 10³.
+   - **Solving for a variable in the exponent?** Same-base rewrite, expand using power-of-a-power, set exponents equal, solve. The GMAT always designs these so a common base exists.
+2. **Comparing two exponential expressions?** Rewrite both with the same base before comparing — never compute large values directly.
+3. **Radicals?** Split via √(ab) = √a · √b, factor out the largest perfect square, or convert to fractional exponents.
+4. **Radical in a denominator?** Rationalize with the conjugate. The signal: answer choices with radicals only in numerators.
+5. **Scientific notation?** Treat coefficients and powers of 10 as two independent arithmetic problems.
+6. **Estimation question?** Fall back on 2¹⁰ ≈ 10³.
 
 The students who freeze on exponent questions are the ones who try to think about them. The students who score 705+ have the rules so automated they run the decision tree in six seconds and spend the rest of their two minutes on careful arithmetic. Drill the rules until they're reflexive. Everything downstream is easy.
