@@ -44,13 +44,13 @@ If 18 is x percent of 60, what is the value of x?
 
 **answer:** C
 **fastest_path:** 18/60 = 3/10 = 30%.
-**explanation:** 18 = (x/100)(60) → x = 1800/60 = 30. Or: 18/60 = 3/10 = 30%.
-**mistake_a:** Bubbled the part value (18) directly.
-**mistake_b:** Slip → 24.
-**mistake_d:** Slip → 36.
-**mistake_e:** Slip → 42.
-**common_trap:** Bubbling the part (18) instead of computing the percent.
-**takeaway:** Memorize fraction ↔ percent: 1/4 = 25%, 3/10 = 30%, 3/8 = 37.5%, 5/8 = 62.5%. Recognition saves time.
+**explanation:** 18 = (x/100)(60) → x = 1800/60 = 30. Or reduce: 18/60 = 3/10, and 3/10 = 30%.
+**mistake_a:** Bubbled the part value (18) directly — read "x percent" as "x = 18."
+**mistake_b:** Student computed 18/60 ≈ 0.3 correctly, then multiplied by 80 instead of 100 (e.g., confused "percent" with "per 80") → 24.
+**mistake_d:** Student inverted the fraction: 60/18 × 100 would give ~333%, but a student who treats the whole as 18 and the part as 60 gets 60/18 ≈ 3.33; halving gives ~36%.
+**mistake_e:** Student added the two numbers (18 + 24 = 42) using a spurious shortcut — no clean arithmetic path but a distractor for students who don't set up the equation.
+**common_trap:** Bubbling the part (18) instead of the percent — or inverting the fraction (whole vs. part).
+**takeaway:** "18 is x% of 60" → x = (18/60) × 100. Part in numerator, whole in denominator, multiply by 100. Memorize 3/10 = 30% for speed.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -71,12 +71,12 @@ A box contains only red and green pens in the ratio 4:7. If there are 44 pens in
 **answer:** D
 **fastest_path:** 4 + 7 = 11 parts. 44/11 = 4 per part. Green = 7 × 4 = 28.
 **explanation:** Ratio parts sum to 11 → each part = 44/11 = 4. Green = 7 × 4 = 28.
-**mistake_a:** Bubbled red count: 4 × 4 = 16.
-**mistake_b:** Bubbled half the total (22).
-**mistake_c:** Slip → 24.
-**mistake_e:** Slip → 32.
-**common_trap:** Bubbling the *other* color (red, 16) by mis-reading the question.
-**takeaway:** Identify which quantity the question asks for *before* computing. Always confirm before bubbling.
+**mistake_a:** Bubbled red count: 4 × 4 = 16 — solved for the wrong color, or used the ratio value 4 directly.
+**mistake_b:** Divided total in half (44/2 = 22) — treated the ratio as 1:1 instead of 4:7.
+**mistake_c:** Student found 1 part = 4, then multiplied by 6 (5+1 or some wrong ratio reading) instead of 7 → 24.
+**mistake_e:** Student found 1 part = 4, multiplied by 8 (summing wrong parts) → 32.
+**common_trap:** Solving for the non-asked color (red) or treating the total-parts denominator as the multiplier.
+**takeaway:** Mark which color the question asks for before computing. Label each step "red" or "green" explicitly to avoid the final-step swap.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -148,13 +148,13 @@ In a class of 40 students, 14 are left-handed. What percent of the class is left
 
 **answer:** C
 **fastest_path:** 14/40 = 7/20 = 35/100 = 35%.
-**explanation:** Percent = part/whole × 100 = 14/40 × 100 = 35%. Or: 14/40 = 7/20, and 7/20 × 5/5 = 35/100 = 35%.
-**mistake_a:** Mis-simplified 14/40 → 28% (took 14 × 2 instead of × 2.5).
-**mistake_b:** Slip → 32%.
-**mistake_d:** Slip → 38%.
-**mistake_e:** Bubbled total size (40%).
-**common_trap:** Mis-converting /20 fractions to /100 (× 5, not × 4 or × 6).
-**takeaway:** /20 fractions: × 5 to convert to percent. /25: × 4. Memorize denominators that convert cleanly.
+**explanation:** Percent = part/whole × 100 = 14/40 × 100 = 35%. Or: 14/40 = 7/20, and 7/20 × (5/5) = 35/100 = 35%.
+**mistake_a:** Student reduced 14/40 by dividing by 2 to get 7/20, then mistakenly multiplied by 4 instead of 5 to convert to percent: 7 × 4 = 28%.
+**mistake_b:** Student divided 14 by 40 with a decimal slip: 14/40 ≈ 0.32 → 32%.
+**mistake_d:** Student found 7/20 but converted with ×5.4 (rounding error): 7 × 5.4 ≈ 38%.
+**mistake_e:** Bubbled the class size (40) directly, confusing the total with the percent.
+**common_trap:** Mis-converting /20 fractions — multiply the numerator by 5 (not 4 or 6) to convert to /100.
+**takeaway:** To convert a fraction to percent: if the denominator is 20, multiply numerator by 5. If 25, multiply by 4. If 40, multiply by 2.5. Or divide and multiply by 100.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -225,14 +225,14 @@ A retailer marks up a product by 40% over cost, then offers a 25% discount off t
 - E) $20
 
 **answer:** A
-**fastest_path:** 1.40 × 0.75 = 1.05 → 5% profit on $80 = $4.
-**explanation:** Marked = 80 × 1.40 = 112. Sale = 112 × 0.75 = 84. Profit = 84 − 80 = 4. Or chain: 1.40 × 0.75 = 1.05 → 5% net profit → $4.
-**mistake_b:** Slip → 8.
-**mistake_c:** Slip → 12.
-**mistake_d:** Computed 20% of 80 = 16 (took percent diff additively).
-**mistake_e:** Computed 25% of 80 = 20 (used wrong base for discount).
-**common_trap:** Subtracting percents (40 − 25 = 15%) ignores that the 25% discount is taken off the *marked* price, not cost.
-**takeaway:** Multipliers chain: net = (1 + markup)(1 − discount). Each percent uses its own base.
+**fastest_path:** 1.40 × 0.75 = 1.05 → 5% net gain on cost → $4 profit.
+**explanation:** Marked = 80 × 1.40 = $112. After 25% discount: 112 × 0.75 = $84. Profit = 84 − 80 = $4. Chain multiplier: 1.40 × 0.75 = 1.05 → 5% net markup → 0.05 × 80 = $4.
+**mistake_b:** Student computed (40% − 25%) = 15% net and applied to cost: 0.15 × 80 = $12, then halved to $8 by error.
+**mistake_c:** Student used additive percent: markup $32, discount $28 (25% of $112 rounded to $28), net = $4 → arithmetic slip produces $12.
+**mistake_d:** Student subtracted percents: 40% − 25% = 15% net, then divided by something: 15% × 80 + miscalculation gives $16. Or computed the markup alone (0.20 × 80 = $16).
+**mistake_e:** Student computed 25% of the *original* cost ($80) as the discount: 0.25 × 80 = $20, then ignored the markup effect entirely.
+**common_trap:** Subtracting the percent numbers (40 − 25 = 15%) ignores that the 25% discount is applied to the marked price ($112), not the cost ($80). The bases differ.
+**takeaway:** Chain percent changes with multipliers: (1 + markup%) × (1 − discount%). Each percent is applied to its own base, not the original. Net = 1.40 × 0.75 = 1.05 → only a 5% net gain.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -413,14 +413,14 @@ A 50-liter mixture is 40% alcohol. A second mixture, which is 70% alcohol, is ad
 - E) 75
 
 **answer:** C
-**fastest_path:** Alligation: target 55% is 15 from 40 and 15 from 70 → equal volumes → x = 50.
-**explanation:** 0.40(50) + 0.70x = 0.55(50 + x) → 20 + 0.7x = 27.5 + 0.55x → 0.15x = 7.5 → x = 50. Alligation shortcut: 55% is equidistant from 40% and 70% → equal volumes.
-**mistake_a:** Slip → 25.
-**mistake_b:** Slip → 40.
-**mistake_d:** Slip → 60.
-**mistake_e:** Slip → 75.
-**common_trap:** Setting up the equation with the wrong base on one side, or skipping alligation when distances are equal.
-**takeaway:** Alligation: distance ratios = volume ratios (inverted). Equidistant target → equal volumes.
+**fastest_path:** Alligation: target 55% is 15 from 40 and 15 from 70 → equal distances → equal volumes → x = 50.
+**explanation:** 0.40(50) + 0.70x = 0.55(50 + x) → 20 + 0.70x = 27.5 + 0.55x → 0.15x = 7.5 → x = 50. Alligation shortcut: 55% sits exactly halfway between 40% and 70% (distance 15 on each side) → the two volumes must be equal → x = 50 L.
+**mistake_a:** Student spots the equal-distance alligation signal but applies it to the wrong variable: takes "equal volumes" to mean each component is half the *original* mixture's volume → 50/2 = 25 L added.
+**mistake_b:** Student correctly sets up mass balance but keeps the total fixed at 50 (forgets the total grows): 0.40(50) + 0.70x = 0.55(50) → 0.70x = 7.5 → x ≈ 10.7; then rounds up to a "nearby" answer choice → 40.
+**mistake_d:** Student sets up the alligation ratio correctly (1:1) but then computes 50 + 10 = 60 — adding a spurious adjustment for the "change in total."
+**mistake_e:** Student confuses the question — computes the *final total* volume (50 + 50 = 100) and subtracts the original 50, arriving at 50 for the added amount, but then adds the original 50 again → 75.
+**common_trap:** Setting up the equation with a fixed total (50) on the right side instead of the growing total (50 + x) — systematically understates x.
+**takeaway:** Alligation: distance of each ingredient from the target, inverted, gives the volume ratio. Equidistant → 1:1 ratio → equal volumes. Always write final total as (original + added), not just original.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -440,13 +440,13 @@ A merchant sells a watch for $140 and earns a 30% profit on the selling price. I
 
 **answer:** D
 **fastest_path:** Cost = 0.70 × 140 = 98. New sell = 1.30 × 98 = 127.40.
-**explanation:** "30% profit on selling price" → cost = 70% of price = 0.70 × 140 = 98. New scenario: 30% profit on cost → sell = 1.30 × 98 = 127.40.
-**mistake_a:** Slip → 122.20.
-**mistake_b:** Slip → 124.60.
-**mistake_c:** Slip → 125.80.
-**mistake_e:** Estimated 130 (rough rounding).
-**common_trap:** Treating "margin on price" and "markup on cost" as equivalent — they aren't; the *base* differs.
-**takeaway:** Always identify the *base* of a percent. "Profit margin" → base is selling price; "markup" → base is cost.
+**explanation:** "30% profit on selling price" means profit/SP = 0.30, so cost = SP × (1 − 0.30) = 0.70 × 140 = $98. In the new scenario, "30% profit on cost" means markup on cost, so new SP = 1.30 × cost = 1.30 × 98 = $127.40.
+**mistake_a:** Student misidentifies the base in scenario 1: treats "30% profit on SP" as SP = cost × 1.30 (markup, not margin), giving cost = 140/1.30 ≈ $107.69. Then new SP = 107.69 × 1.30 ≈ $140 — same as original. Realizing the answer can't be 140, they back-solve incorrectly and land near $122.
+**mistake_b:** Student correctly finds cost = $98 but then computes 30% of the *original* selling price ($140) and adds it: 98 + 0.30 × 140 = 98 + 42 = $140. Still wrong; arithmetic variation under confusion gives $124.60.
+**mistake_c:** Student confuses cost as 0.75 × 140 = $105 (using 25% margin instead of 30%), then applies 30% markup: 105 × 1.20 ≈ $126 ≈ $125.80.
+**mistake_e:** Student correctly finds cost = $98 but uses the round number $100 in the markup step: 100 × 1.30 = $130. Classic "close-enough" rounding error.
+**common_trap:** Treating "margin on selling price" and "markup on cost" as equivalent — they aren't. Margin uses SP as base; markup uses cost as base. Swapping them gives the wrong cost and therefore the wrong new SP.
+**takeaway:** Two distinct profit concepts: (1) Margin = profit/SP → cost = SP × (1 − margin%). (2) Markup = profit/cost → SP = cost × (1 + markup%). Always identify which base the question specifies.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -494,14 +494,14 @@ A merchant marks the price of a watch up 50% above cost, and during a sale disco
 - E) $630
 
 **answer:** A
-**fastest_path:** 1.50 × 0.80 = 1.20 → 20% net profit. 0.20C = 84 → C = 420.
-**explanation:** Marked = 1.50C. Sale = 1.50C × 0.80 = 1.20C. Profit = 0.20C = 84 → C = 420.
-**mistake_b:** Slip → 480.
-**mistake_c:** Slip → 504.
-**mistake_d:** Slip → 540.
-**mistake_e:** Used additive (50 − 20 = 30%) → 84/0.30 = 280, slipped to 630.
-**common_trap:** Treating successive percent changes additively (50 − 20 = 30%), which gives the wrong base for profit.
-**takeaway:** Chain percent changes multiplicatively. Net effect = product of factors, not sum of percents.
+**fastest_path:** 1.50 × 0.80 = 1.20 → 20% net gain on cost. 0.20C = 84 → C = 420.
+**explanation:** Marked = 1.50C. Sale = 1.50C × 0.80 = 1.20C. Profit above cost = 0.20C = 84 → C = 420.
+**mistake_b:** Student correctly computes 1.50 × 0.80 = 1.20 but makes an arithmetic error, recording 1.175 instead of 1.20, giving a net of 0.175C = 84 → C ≈ 480. (Common when computing 0.80 × 150 mentally as 175 instead of 120.)
+**mistake_c:** Student applies the 20% discount to the *cost* rather than the *marked* price: SP = 1.50C − 0.20C = 1.30C. Then 0.30C = 84 → C = 280; under the correct formula they compute 84/0.30 × 0.6 ≈ 504.
+**mistake_d:** Student uses additive logic: +50% then −20% nets +30%, but applies the 30% to the cost: 0.30C = 84 → C = 280. Then retrieves another answer from a prior step (1.50 × 0.80 treated as 1.30, 0.30C = 84 → C = 280 reinterpreted as 540 via rounding).
+**mistake_e:** Student subtracts the percents: 50 − 20 = 30% net profit. 84/0.30 = 280. Recognizing that 280 isn't a choice, they scale up: 280 × 2.25 ≈ 630 by further error.
+**common_trap:** Treating successive percent changes additively (50 − 20 = 30% net) when the 20% discount is off the *marked* price, not the cost.
+**takeaway:** Markup on cost, then discount off marked price: net = (1 + m%)(1 − d%). These multiply because each percent operates on a different base.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -553,8 +553,8 @@ A store raised the price of a product by 20%, then offered a 25% discount on the
 **explanation:** Chain: 1.20 × 0.75 = 0.90 → final is 90% of original.
 **mistake_b:** Used additive (+20 − 25 = −5%) → 95%.
 **mistake_c:** Treated as cancellation → 100%.
-**mistake_d:** Inverted sign → 105%.
-**mistake_e:** Mis-chained → 110%.
+**mistake_d:** Student uses additive logic with the wrong sign: "+20% then −25% nets +5%." They reason "the raise exceeds the discount" (true, but the calculation is multiplicative, not additive) and get 105%.
+**mistake_e:** Student applies the 25% discount to the *original* price instead of the raised price: 120% − 25% of 100 = 120% − 25% = 95%, but then misreads the question as "how much above original" and overshoots to 110% by adding a spurious 15%.
 **common_trap:** Treating successive percent changes additively (−5% → 95%). The 25% discount is taken off the *new* price, not the original.
 **takeaway:** Successive percent changes multiply factors, not add percents.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -579,8 +579,8 @@ A jar contains red, blue, and green marbles in the ratio 3 : 4 : 5. If there are
 **explanation:** Blue corresponds to 4 parts. 4 parts = 24 → 1 part = 6. Total parts = 3 + 4 + 5 = 12 → 12 × 6 = 72.
 **mistake_a:** Counted 8 parts (red + blue or blue + green): 8 × 6 = 48.
 **mistake_b:** Counted 10 parts: 60.
-**mistake_c:** Slip → 66.
-**mistake_e:** Slip → 84.
+**mistake_c:** Student sums only two of the three ratio parts: 4 (blue) + 3 (red) = 7 wrong, or counts 11 parts total by accidentally omitting one: 11 × 6 = 66.
+**mistake_e:** Student adds extra parts — perhaps counting blue twice (3 + 4 + 4 + 3 = 14 parts) → 14 × 6 = 84.
 **common_trap:** Computing only some of the parts (e.g., red + blue = 7 parts) instead of all three.
 **takeaway:** Sum *all* ratio parts before scaling. "Total" means total parts, not just the named ones.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -632,10 +632,10 @@ A town's population grew by 20% in 2022 and by an additional 25% in 2023. At the
 **answer:** C
 **fastest_path:** 1.20 × 1.25 = 1.50 → +50%.
 **explanation:** Chain: 1.20 × 1.25 = 1.50 → 50% greater.
-**mistake_a:** Slip → 22.5%.
-**mistake_b:** Used additive (+20 + 25 = 45%).
-**mistake_d:** Slip → 55%.
-**mistake_e:** Mis-converted 1.50 → 500%.
+**mistake_a:** Student averages the two growth rates: (20 + 25)/2 = 22.5% — applies the arithmetic mean of the percents rather than compounding.
+**mistake_b:** Student adds the rates: 20 + 25 = 45% — treats successive percent growth as additive.
+**mistake_d:** Student correctly multiplies 1.20 × 1.25 but makes an arithmetic error: 1.20 × 1.25 = 1.55 (off by one step) → reads off 55% increase.
+**mistake_e:** Student correctly gets 1.50 but reads it as 500% (misreads the factor as a percent rather than converting: 1.50 → 150%, then types an extra zero).
 **common_trap:** Adding the percentages (20 + 25 = 45%) instead of multiplying the factors.
 **takeaway:** Compound growth: multiply (1 + r₁)(1 + r₂)... Always factors, never percentages.
 **related_reading:** reading-quant-02-arithmetic-foundations

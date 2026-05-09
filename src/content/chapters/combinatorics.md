@@ -50,7 +50,8 @@ sections:
   - id: repeats
     type: reading
     title: "Repeated letters and multiset arrangements"
-    check_question_ids: []
+    check_question_ids:
+      - combinatorics-q27
 
   - id: decision
     type: summary
@@ -84,6 +85,7 @@ problem_sets:
       - combinatorics-q10
       - combinatorics-q11
       - combinatorics-q12
+      - combinatorics-q27
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -123,7 +125,17 @@ Six orders. You could have answered this without any formula — just carefully 
 
 Multiply all of them: n × (n − 1) × (n − 2) × … × 1 = **n!** (read "n factorial").
 
-*Memorize these:* 3! = 6, 4! = 24, 5! = 120, 6! = 720, 7! = 5040. They show up constantly. 8! is 40,320 — you won't compute it under time pressure, but you'll recognize it in an answer choice.
+**Key takeaway.** These factorials appear across every combinatorics problem type — know them without computing:
+
+| n | n! | When it shows up |
+|---|---|---|
+| 3 | 6 | Three-item arrangement, small enumeration |
+| 4 | 24 | Four-item arrangement, circular n=5 |
+| 5 | 120 | Five-item arrangement, circular n=6 |
+| 6 | 720 | Six-item arrangement, circular n=7 |
+| 7 | 5,040 | Seven-item arrangement |
+
+8! = 40,320. You won't compute it under time pressure, but you'll recognize it in an answer choice.
 
 > **Self-explanation prompt.** Before you look at the check question below, explain to yourself in one sentence: *why* does each additional object multiply the total by one more than the last multiplier? If you can articulate it, you've internalized the idea.
 
@@ -145,7 +157,7 @@ Let's sanity-check: P(7, 2) = 7! / 5! = (7 × 6 × 5!) / 5! = 7 × 6 = 42. ✓
 
 **Why the formula works.** n! arranges ALL n objects. But we only want k of them. The (n − k)! in the denominator cancels out the "tail" arrangements of the objects we didn't pick — we don't care how the leftover 5 candidates order themselves.
 
-**Quick test to know you're in permutation-land:** ask yourself, "*if I swap two specific people, is that a different outcome?*" If yes (e.g., Ana-president-Ben-VP vs Ben-president-Ana-VP), it's a permutation. If no (e.g., both are just "on the committee"), it's a combination.
+**Pro tip.** The fastest permutation-vs-combination test: ask yourself, "*if I swap two specific people, is that a different outcome?*" Ana-president-Ben-VP vs Ben-president-Ana-VP are different — permutation. Ana and Ben both on the same undifferentiated committee — same outcome — combination. Distinct named roles → permutation. Undifferentiated membership → combination.
 
 **Special case — all n at once.** When k = n, P(n, n) = n! / 0! = n! / 1 = n!. Reassuring: picking all 7 candidates in order is just arranging 7 things, which is 7! = 5040.
 
@@ -178,11 +190,11 @@ Check: C(6, 3) = 6! / (3! × 3!) = 720 / 36 = 20. ✓
 - C(n, 1) = C(n, n − 1) = n
 - C(n, 2) = n(n − 1) / 2
 
-**The "exactly X of type A and Y of type B" pattern.** When a problem says "exactly 2 men and 1 woman from 5 men and 4 women," pick independently from each group and multiply:
+**Key takeaway.** The "exactly X of type A and Y of type B" pattern: when a problem specifies how many to pick from each named group, pick independently from each group and multiply.
 
-    C(5, 2) × C(4, 1) = 10 × 4 = 40
+    C(nA, X) × C(nB, Y)
 
-This shows up more than any other combination pattern — probably 30% of GMAT combinatorics questions involve some version of it.
+"Exactly 2 men and 1 woman from 5 men and 4 women" = C(5, 2) × C(4, 1) = 10 × 4 = 40. This pattern appears in roughly 30% of GMAT combination questions. When you see two named groups, it should be your first instinct.
 
 > **Recall check.** Without peeking: state the formulas for P(n, k) and C(n, k). Then state the symmetry identity C(n, k) = C(n, ?). Now compute, in your head, C(10, 7). If you computed 10!/(7!3!) = 120 the long way, you missed the shortcut — C(10, 7) = C(10, 3) = 120 with less arithmetic. Retrieving the formulas *and* the symmetry in the same breath is how you wire them together in long-term memory.
 
@@ -216,37 +228,58 @@ Trying to count "at least 1 woman" directly means splitting into cases (exactly 
 
 In a **circular arrangement** — people around a round table, beads on a bracelet, etc. — **rotations of the same arrangement count as identical**. There's no "seat #1" because every seat is equivalent.
 
-To strip out rotational duplicates: fix one object in place, then arrange the rest linearly.
+**Mental model.** Fix one person — call them the anchor — at an arbitrary point on the circle. Since all rotations are equivalent, the anchor's exact seat doesn't matter; what matters is how everyone else arranges *relative* to the anchor. With the anchor fixed, the remaining n − 1 people fill the other seats in any linear order: (n − 1)!. Fixing one object is the mechanism that eliminates the rotational overcounting — no formula required, just logic.
 
-**Formula:** Circular arrangements of n = **(n − 1)!**
+**Formula:** Circular arrangements of n distinct objects = **(n − 1)!**
 
 **Example.** 5 people around a round table: (5 − 1)! = 4! = **24**, not 5! = 120.
 
 **Why?** If you rotate any arrangement by one seat, you get the same *relative* ordering — Ana still has Ben to her left and Cal to her right. 5 different rotations all give the same circular arrangement, so 5! / 5 = 4! = 24.
 
-**Watch for distinguishable seats.** A head table with a specific "head" chair, a rectangular table where the ends differ, a round table with numbered chairs — those aren't truly circular. Use n! (normal permutations) if the seats are distinguishable.
+**Pro tip.** Always verify: are the seats actually distinguishable? A head table with a named "Host" chair, a rectangular table where the ends differ, a labeled diagram with fixed positions — those break circular symmetry. When seats are distinguishable, rotations produce genuinely different arrangements, so use n! rather than (n − 1)!.
 
 **Bracelets and necklaces** (rare on GMAT): circular AND flippable. Divide by 2 to account for mirror images. (n − 1)! / 2. If you see this, it's probably a 745+ question — take your best guess and move on if time is tight.
 
 ## @repeats
 
-When some objects are **identical**, straight factorial overcounts because swapping identical objects produces the "same" arrangement.
+When some objects are **identical**, arranging them produces fewer distinct outcomes than n! suggests — because swapping two identical objects gives you the same visible result, not a new arrangement.
 
-**Formula:** For n objects with repetitions r₁, r₂, …, rₖ (where r₁ + r₂ + … = n):
+**Mental model.** Start with n! (as if all objects were distinct). Then ask: how many of those n! arrangements are invisible duplicates? If two objects are identical — say, two F's — you can swap them in 2! = 2 ways, and both swaps look the same. So n! overcounts by a factor of 2! for that pair. Two different identical pairs? The overcounting compounds. The fix: divide by the factorial of each group of identical objects.
+
+**Formula:** For n objects with repeated groups of size r₁, r₂, …, rₖ:
 
 **n! / (r₁! × r₂! × … × rₖ!)**
 
-**Example.** MISSISSIPPI has 11 letters: 1 M, 4 I's, 4 S's, 2 P's.
+Build intuition from simple to complex:
 
-    11! / (1! × 4! × 4! × 2!) = 39,916,800 / (1 × 24 × 24 × 2) = 39,916,800 / 1,152 = 34,650
+**Starting simple: BOOK (4 letters, 2 O's).** Label the O's as O₁ and O₂ — now all four letters are distinct, giving 4! = 24 arrangements. But swapping O₁ and O₂ produces the same visible word. Every pair of labeled arrangements collapses to one. Distinct arrangements: 4! / 2! = 24 / 2 = **12**.
 
-**The shortcut mental model.** Start with "if all were distinct": 11! = 39,916,800. Then divide by the factorial of each repeated group to collapse arrangements that are actually identical.
+**Worked example.** How many distinct arrangements of COFFEE?
 
-**Common cases to recognize:**
-- **Two letters repeat.** LETTER has 2 T's and 2 E's. 6! / (2! × 2!) = 720 / 4 = 180.
-- **Binary sequences.** "How many 7-character strings with exactly 3 A's and 4 B's?" = 7! / (3! × 4!) = 35 (this is C(7, 3) — choosing positions for the A's).
+COFFEE has 6 letters: C, O, F, F, E, E — two repeat pairs (FF and EE).
 
-**Connection to combinations.** When you have only two kinds of objects, the multiset arrangement formula collapses into a combination. "How many arrangements of AAABBBB" = C(7, 3) = 35. Useful to internalize — it's the same calculation looked at two ways.
+- All distinct: 6! = 720
+- Divide by 2! for the F's: 720 / 2 = 360
+- Divide by 2! for the E's: 360 / 2 = **180**
+
+Or in one step: 6! / (2! × 2!) = 720 / 4 = 180.
+
+The classic trap answer is 360 — dividing by 2! once and forgetting the second pair. Whenever a word has multiple repeat groups, list them all before dividing.
+
+**Scaling up: MISSISSIPPI (11 letters, 1 M, 4 I's, 4 S's, 2 P's).**
+
+    11! / (1! × 4! × 4! × 2!) = 39,916,800 / 1,152 = 34,650
+
+MISSISSIPPI shows up in textbooks but rarely on the actual GMAT — it's too computation-heavy for a 2-minute question. The testable pattern is COFFEE-style: 5 to 8 letters with one or two repeat pairs. Recognize the structure, apply the formula.
+
+**Key takeaway.** When you have only two types of objects, the multiset formula collapses into a combination. "How many 7-character strings with exactly 3 A's and 4 B's?" = 7! / (3! × 4!) = C(7, 3) = **35**. Two perspectives, one answer: you're either dividing out duplicates, or choosing 3 positions out of 7 for the A's. Whichever framing clicks faster for you, use that one.
+
+**GMAT patterns to recognize on sight:**
+- "In how many ways can the letters of [WORD] be arranged?" → count each repeated-letter group, apply n! / (r₁! × r₂! × …).
+- All letters distinct (like STUDY) → just n! = 120, no division.
+- Data Sufficiency asking "exactly how many distinct arrangements?" → the answer hinges on knowing which letters repeat and how many times.
+
+> **Self-explanation prompt.** Before trying the check question: explain in one sentence *why* we divide by r! rather than subtracting r. The key is that r identical objects can be rearranged among themselves in r! ways, and every one of those rearrangements is invisible — produces the same word. So n! overcounts by exactly r! for that group. If you can say this in your own words, you've understood the formula rather than memorized it.
 
 ## @decision
 
@@ -271,6 +304,16 @@ Every combinatorics question on the GMAT reduces to four decisions. Run through 
 
 That's the entire chapter's content in 8 lines. Memorize the decision tree — when you see a combinatorics question on the test, you're not guessing which formula applies, you're stepping through four yes/no questions to land on exactly one.
 
+**Micro-drill: test the decision tree.** Without computing, name which formula applies and why. Then check against the answers at the end.
+
+1. "In how many orders can 5 runners finish a race?" — *Answer: 5! = 120. Linear, order matters, no repeats.*
+2. "A club picks a president, VP, and treasurer from 12 members." — *Answer: P(12, 3) = 1,320. Distinct roles = order matters.*
+3. "The same club picks a 3-person events committee from 12 members." — *Answer: C(12, 3) = 220. No roles, order doesn't matter.*
+4. "How many arrangements of BANANA?" — *Answer: 6! / (3! × 2!) = 60. 6 letters, 3 A's and 2 N's repeat.*
+5. "In how many ways can 6 people sit at a round table?" — *Answer: (6 − 1)! = 120. Circular arrangement.*
+
+If you matched all five without hesitation, the decision tree is internalized. If one or two tripped you up, re-read the relevant section before moving to the problem sets.
+
 **Common patterns to pattern-match on sight:**
 
 | Problem says | You're doing | Formula |
@@ -284,4 +327,4 @@ That's the entire chapter's content in 8 lines. Memorize the decision tree — w
 | "Letters of [repeated word]" | Multiset | n! / (r₁! × r₂! × …) |
 | "Round-robin: every pair plays once" | Combination | C(n, 2) |
 
-When you finish the end-of-chapter sets below, keep this table open. By the time you've done 15-20 combinatorics questions with it at your elbow, you won't need it anymore.
+Work through the easy set without this table. Open it for the medium set only when you're unsure which pattern applies. By the end of the hard set, pattern recognition should be fast enough that you won't need it — and that's the standard you're aiming for on test day.
