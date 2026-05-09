@@ -127,6 +127,12 @@ Multiply all of them: n × (n − 1) × (n − 2) × … × 1 = **n!** (read "n 
 
 > **Self-explanation prompt.** Before you look at the check question below, explain to yourself in one sentence: *why* does each additional object multiply the total by one more than the last multiplier? If you can articulate it, you've internalized the idea.
 
+**The slot method — the scaffold under every formula.** Every counting formula has the same skeleton: (choices for slot 1) × (choices for slot 2) × … × (choices for slot k). The slot method makes this explicit without requiring you to know which formula applies.
+
+To arrange 3 people in 3 chairs: slot 1 has 3 choices, slot 2 has 2, slot 3 has 1 — total: 3 × 2 × 1 = 6 = 3!. To pick a president and VP from 10: slot 1 has 10 choices, slot 2 has 9 — total: 90 = P(10, 2). To pick a committee of 3 from 10: use the slot method (10 × 9 × 8 = 720), then divide by 3! = 6 because the same three people in any order is the same committee — total: 120 = C(10, 3).
+
+The slot method won't fail you even when you can't remember the formula name. Build any formula from it in 10 seconds rather than fishing for which one applies.
+
 ## @permutations
 
 A **permutation** is an arrangement where **order matters**. "Who got first, second, and third place" is a permutation. "Who's on the team" is not.
@@ -212,6 +218,26 @@ Example: A committee of 3 is picked from 5 men and 4 women. How many committees 
 
 Trying to count "at least 1 woman" directly means splitting into cases (exactly 1, exactly 2, exactly 3) — slow and error-prone.
 
+**The alternating pattern.** When a problem requires objects to alternate between two types (boy-girl-boy-girl, red-blue-red-blue), first count the number of valid color patterns, then multiply by the internal arrangements within each group.
+
+**Example.** Three boys and three girls sit in a row, alternating genders. How many seating arrangements?
+
+Two color patterns are possible: B-G-B-G-B-G or G-B-G-B-G-B.
+
+For each pattern:
+- 3! = 6 ways to seat the boys in the boy slots
+- 3! = 6 ways to seat the girls in the girl slots
+- Subtotal: 6 × 6 = 36
+
+Total: 36 + 36 = **72**
+
+**When to multiply vs. when to add.** This is the highest-leverage distinction in combinatorics.
+
+- **Multiply** when selections are independent and *both* must happen: choosing a president *and* a VP means the total is (choices for president) × (choices for VP). Everything in the outcome is present simultaneously.
+- **Add** when outcomes are mutually exclusive *alternatives*: alternating starting with a boy *or* starting with a girl means you add the two case totals — only one of those patterns can describe any specific arrangement.
+
+A quick test: if the two scenarios could both be true of the same arrangement, they're not mutually exclusive — you multiply. If exactly one of the two scenarios is true in any given arrangement, they're mutually exclusive — you add.
+
 ## @circular
 
 In a **circular arrangement** — people around a round table, beads on a bracelet, etc. — **rotations of the same arrangement count as identical**. There's no "seat #1" because every seat is equivalent.
@@ -236,17 +262,28 @@ When some objects are **identical**, straight factorial overcounts because swapp
 
 **n! / (r₁! × r₂! × … × rₖ!)**
 
-**Example.** MISSISSIPPI has 11 letters: 1 M, 4 I's, 4 S's, 2 P's.
+**Why the denominator works.** Start with "if all were distinct": n! arrangements. Swapping any two copies of the same letter leaves the word visually unchanged — but the formula counted that as a different arrangement. The denominator cancels every set of arrangements that look identical. Dividing by r₁! collapses the r₁! permutations of group 1 into 1, then dividing by r₂! does the same for group 2, and so on.
+
+**Example 1.** MISSISSIPPI has 11 letters: 1 M, 4 I's, 4 S's, 2 P's.
 
     11! / (1! × 4! × 4! × 2!) = 39,916,800 / (1 × 24 × 24 × 2) = 39,916,800 / 1,152 = 34,650
 
-**The shortcut mental model.** Start with "if all were distinct": 11! = 39,916,800. Then divide by the factorial of each repeated group to collapse arrangements that are actually identical.
+**Example 2.** DIVIDE has 6 letters: D, I, V, I, D, E — two D's and two I's.
 
-**Common cases to recognize:**
-- **Two letters repeat.** LETTER has 2 T's and 2 E's. 6! / (2! × 2!) = 720 / 4 = 180.
-- **Binary sequences.** "How many 7-character strings with exactly 3 A's and 4 B's?" = 7! / (3! × 4!) = 35 (this is C(7, 3) — choosing positions for the A's).
+    6! / (2! × 2!) = 720 / 4 = 180
 
-**Connection to combinations.** When you have only two kinds of objects, the multiset arrangement formula collapses into a combination. "How many arrangements of AAABBBB" = C(7, 3) = 35. Useful to internalize — it's the same calculation looked at two ways.
+Without the correction, you'd count 720 — treating the two D's as distinguishable. But swapping the two D's in any arrangement gives the same word. Dividing by 2! for D's and 2! for I's removes both overcounts.
+
+> **Self-explanation prompt.** Why does ABBA give 4! / 2! = 12 arrangements, not 4! = 24? Specifically: which two arrangements in the 24-count are actually the same word? (The ABBA where B₁ is in position 2 and B₂ in position 3 is identical to the ABBA where B₂ is in position 2 and B₁ is in position 3. Dividing by 2! merges each such pair into one.) If you can name the specific redundant pair, you understand the formula, not just the pattern.
+
+**Trap: forgetting a repeated group.** EXCESS has 6 letters: E, X, C, E, S, S — two E's and two S's. Many students notice the two S's and compute 6! / 2! = 360, forgetting the E's. Correct: 6! / (2! × 2!) = 180. Before writing the denominator, make an explicit letter tally. Under pressure, memory fails.
+
+**Common cases to recognize cold:**
+- **Two groups repeat.** LETTER has 2 T's and 2 E's: 6! / (2! × 2!) = 180.
+- **Binary sequences.** "How many 7-character strings with exactly 3 A's and 4 B's?" = 7! / (3! × 4!) = 35 = C(7, 3). Choosing *positions* for the A's is the same calculation as arranging 3 A's and 4 B's — two framings, one answer.
+- **One group dominates.** AABBB: 5! / (2! × 3!) = 10 = C(5, 2). Choosing which 2 of the 5 positions get A's.
+
+**Connection to combinations.** When you have exactly two types of objects, the multiset formula collapses into C(n, k). Choosing 3 positions for A's out of 7 total slots is the same as arranging AAABBBB. Once you see this, "binary string" questions and "committee" questions feel like the same calculation — because they are.
 
 ## @decision
 
