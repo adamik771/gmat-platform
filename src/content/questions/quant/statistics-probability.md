@@ -19,10 +19,10 @@ The average (arithmetic mean) of five numbers is 18. If one of the numbers is re
 **answer:** D
 **fastest_path:** Sum dropped from 5·18 = 90 to 4·15 = 60. Removed = 30.
 **explanation:** Sum of 5 = 5 × 18 = 90. Sum of 4 = 4 × 15 = 60. Removed = 90 − 60 = 30.
-**mistake_a:** Slip → 20.
-**mistake_b:** Slip → 24.
-**mistake_c:** Slip → 28.
-**mistake_e:** Slip → 33.
+**mistake_a:** Computed 4 × 15 as 70 via mental arithmetic error (40 + 30 from misadding 4×10 and 4×5), then subtracted from 90: 90 − 70 = 20. Or applied the mean-drop directly: (18 − 15) × 4 = 12 and added an erroneous quantity. Root error: not using the sum formula correctly.
+**mistake_b:** Got the correct sum-difference 90 − 60 = 30, then "adjusted" for the count reduction by multiplying 30 × 4/5 = 24 — reasoning that reducing the group from 5 to 4 requires scaling. The count reduction is already captured by using 4 × 15 for the new sum; no further scaling applies.
+**mistake_c:** Used the old count with the old mean to reconstruct the old total: 4 × 18 = 72 (should be 5 × 18 = 90), then computed removed = 72 − 60 = 12 and added the mean difference (12 + 16 = 28) through further confusion. Root error: mixing which count belongs to which mean.
+**mistake_e:** Added the two means instead of computing sums: 18 + 15 = 33. This lands in the answer choices by coincidence but is meaningless — the removed value requires sum = count × mean for each group.
 **common_trap:** Computing the difference of *means* (18 − 15 = 3) instead of difference of *sums*.
 **takeaway:** Sum = mean × count. For mean problems, work in *sums*, not in averages.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -71,10 +71,10 @@ What is the median of the set {14, 7, 21, 3, 10, 7, 18}?
 **answer:** B
 **fastest_path:** Sort → {3, 7, 7, 10, 14, 18, 21}. Middle (4th) = 10.
 **explanation:** Sort the set: 3, 7, 7, 10, 14, 18, 21. With 7 elements, median is the 4th value = 10.
-**mistake_a:** Bubbled the *mode* (7) — appears twice.
-**mistake_c:** Slip → 11.
-**mistake_d:** Bubbled an arbitrary value (14).
-**mistake_e:** Bubbled an arbitrary value (18).
+**mistake_a:** Bubbled the *mode* (7) — appears twice. Mode is the most frequent, not the middle.
+**mistake_c:** Computed the arithmetic mean instead of the median: 3+7+7+10+14+18+21 = 80, 80/7 ≈ 11.4 → rounded to 11. Mean and median are different statistics; this set is not symmetric, so they differ.
+**mistake_d:** Sorted correctly but used the 5th element instead of the 4th — off by one in the position formula. With 7 values, the median is at position (7+1)/2 = 4, not 5.
+**mistake_e:** Counted from the right end of the sorted list rather than the left, arriving at the 6th element (18) instead of the 4th (10).
 **common_trap:** Bubbling the mode (7, the most frequent value) instead of the median.
 **takeaway:** Sort first. Median for n elements: position (n+1)/2 if odd, average of middle two if even. Mode is most frequent — different concept.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -134,7 +134,7 @@ Two fair six-sided dice are rolled. What is the probability that the sum of the 
 ---
 
 ## Q6
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Standard Deviation
 
@@ -149,10 +149,10 @@ Set A = {10, 20, 30, 40, 50} and Set B = {20, 25, 30, 35, 40}. Which of the foll
 **answer:** B
 **fastest_path:** Both means = 30. A spreads ±20; B spreads ±10. A is more spread → A's SD is greater.
 **explanation:** Mean(A) = Mean(B) = 30. Deviations: A {−20, −10, 0, 10, 20}; B {−10, −5, 0, 5, 10}. A is more spread → A has greater SD.
-**mistake_a:** Treated equal-mean sets as having equal SD.
-**mistake_c:** Inverted SD direction.
-**mistake_d:** Mis-computed means.
-**mistake_e:** Mis-computed means.
+**mistake_a:** Treated equal-mean sets as having equal SD — but equal means say nothing about spread.
+**mistake_c:** Inverted the SD comparison: assumed Set B (the tighter cluster) has greater SD because its values are closer to 30. Closer values → *smaller* deviations → *smaller* SD.
+**mistake_d:** Arithmetic slip when summing Set A: e.g., computed 10+20+30+40+50 = 160 instead of 150 → mean(A) ≈ 32 > mean(B) = 30, leading to the false conclusion that A has a strictly greater mean.
+**mistake_e:** Arithmetic slip when summing Set B: e.g., computed 20+25+30+35+40 = 155 instead of 150 → mean(B) ≈ 31 > mean(A) = 30, leading to the false conclusion that B has a greater mean.
 **common_trap:** Computing exact SD numerically (slow). Compare spreads visually instead.
 **takeaway:** Equal means but different spreads → bigger spread = bigger SD. No need to compute exact SDs.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -201,10 +201,10 @@ A box contains 5 red chips and 3 blue chips. Two chips are drawn at random witho
 **answer:** B
 **fastest_path:** 1 − P(both blue) = 1 − (3/8)(2/7) = 1 − 3/28 = 25/28.
 **explanation:** Complement: P(at least 1 R) = 1 − P(both B) = 1 − (3/8)(2/7) = 1 − 6/56 = 1 − 3/28 = 25/28.
-**mistake_a:** Bubbled P(red on a single draw) = 5/8.
-**mistake_c:** Slip → 13/14.
-**mistake_d:** Slip → 15/28.
-**mistake_e:** Slip → 27/28.
+**mistake_a:** Bubbled P(a single draw is red) = 5/8 — answered a simpler question (one draw, not two draws with at-least-one condition).
+**mistake_c:** Computed P(first blue) as 1/4 ("roughly a quarter of the box") instead of the correct 3/8, giving P(both blue) = (1/4)(2/7) = 1/14, then P(at least 1R) = 1 − 1/14 = 13/14. The correct fraction is 3 blue of 8 total chips.
+**mistake_d:** Computed only P(exactly 1 red) = C(5,1)·C(3,1)/C(8,2) = 15/28 and stopped — missed P(both red) = C(5,2)/C(8,2) = 10/28. "At least one" requires exactly-1 plus exactly-2: 15/28 + 10/28 = 25/28.
+**mistake_e:** Correctly identified C(8,2) = 28 as the total number of ways to choose 2 chips, but counted only 1 favorable outcome (treating "both blue" as a single event) instead of C(3,2) = 3 (the actual number of ways to choose 2 of 3 blue chips). This gives P(both blue) = 1/28, then P(at least 1 red) = 1 − 1/28 = 27/28. Always count the favorable combinations explicitly: C(3,2) = 3, not 1.
 **common_trap:** Computing P(R) by case analysis (1 R or 2 R) — slow and error-prone — instead of using the complement.
 **takeaway:** "At least one" → use the complement: P(at least 1) = 1 − P(none).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -449,7 +449,7 @@ In a set of 5 positive integers, is the median equal to the mean?
 ---
 
 ## Q18
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Basic Probability
 
@@ -464,10 +464,10 @@ A fair coin is flipped 4 times. What is the probability that it lands on heads e
 **answer:** C
 **fastest_path:** C(4,3)/2⁴ = 4/16 = 1/4.
 **explanation:** Choose which 3 of 4 are heads: C(4,3) = 4. Each sequence has probability (1/2)⁴ = 1/16. Total = 4/16 = 1/4.
-**mistake_a:** Slip → 1/8.
-**mistake_b:** Slip → 3/16.
-**mistake_d:** Slip → 5/16.
-**mistake_e:** Slip → 3/8.
+**mistake_a:** Used (1/2)^3 = 1/8, reasoning "3 heads means multiply 1/2 three times" — ignored the 4th flip (the tail) and the C(4,3) = 4 different orderings entirely. All 4 flips are part of the experiment; denominator must be 2^4 = 16.
+**mistake_b:** Listed arrangements manually but missed one: found HHHT, HHTH, HTHH, then stopped — forgot THHH (the arrangement starting with a tail). Counted 3 sequences instead of C(4,3) = 4, giving 3/16.
+**mistake_d:** Included HHHH in the count of "arrangements showing 3 heads" (reasoning: "it contains 3 heads in the first 3 flips"), arriving at 5 favorable outcomes → 5/16. But HHHH shows 4 heads, not exactly 3.
+**mistake_e:** Used denominator 2^3 = 8 instead of 2^4 = 16, reasoning "the tail flip is fixed, so only 3 flips are free." All 4 flips contribute to the sample space; fixing the tail's position doesn't reduce the denominator. C(4,3)/2^3 = 4/8 = 1/2, or a further arithmetic slip gives 3/8.
 **common_trap:** Forgetting to count C(n,k) sequences and using only (1/2)^n.
 **takeaway:** Exactly k heads in n fair flips: P = C(n,k)/2^n.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -545,10 +545,10 @@ Five distinct positive integers have an average of 20, a median of 22, and a lar
 **answer:** B
 **fastest_path:** Sum = 100. Median 22 + max 35 → a + b + d = 43. Distinct → d ≥ 23. Try d = 23: a + b = 20 (e.g., 1, 19) ✓.
 **explanation:** Order a < b < c < d < e with c = 22, e = 35. Sum 100 → a + b + d = 43. Distinctness: d > c = 22 → d ≥ 23. With d = 23: a + b = 20, e.g., (1, 19) — distinct, both < 22 ✓. So smallest d = 23.
-**mistake_a:** Set d = 22 = c (violates distinctness).
-**mistake_c:** Slip → 24.
-**mistake_d:** Slip → 25.
-**mistake_e:** Slip → 26.
+**mistake_a:** Set d = c = 22, forgetting that all five integers must be *distinct* — d must be strictly greater than the median (22).
+**mistake_c:** Found the constraint a + b + d = 43 and set d ≥ 23, but then required b ≥ d − 1 = 22 (conflating b's upper bound with d's lower bound), pushing the minimum d up by 1 to 24. The correct constraint is only b < c = 22, i.e., b ≤ 21.
+**mistake_d:** Set the constraint a + b ≥ 2 (minimum for two distinct positives: 1+2 = 3, or more loosely 2) and solved d ≤ 43 − 2 = 41, then without tightening further found d = 25 through a miscount.
+**mistake_e:** Required a, b, and d to each differ by at least 2 (over-strict distinctness), pushing the minimum sum a + b above 20 and the minimum d above 23.
 **common_trap:** Setting d = c = 22 — forgets that d is *strictly* greater than c.
 **takeaway:** Distinct integers → strict inequalities. d > c by at least 1.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -571,10 +571,10 @@ A data set of 5 numbers has mean 10 and standard deviation 2. If each number in 
 **answer:** C
 **fastest_path:** SD scales by |3|, ignored by +4. New SD = 6.
 **explanation:** y = ax + b → SD(y) = |a|·SD(x). Here |3|·2 = 6.
-**mistake_a:** Treated SD as invariant under all transforms.
-**mistake_b:** Slip → 3.
-**mistake_d:** Applied 3·2 + 4 = 10 (treated +4 as scaling SD).
-**mistake_e:** Mis-applied → 22.
+**mistake_a:** Treated SD as invariant under all transforms — answered 2 (the original SD). SD does not change under a constant shift (+4), but it *does* scale with a multiplicative factor (×3).
+**mistake_b:** Incorrectly halved the scaled result: computed |3| × 2 = 6 correctly, then divided by 2 (perhaps thinking "+4 counteracts half the scaling") → 6/2 = 3. Adding a constant never reduces spread.
+**mistake_d:** Applied the constant +4 directly to the SD: new SD = 3·2 + 4 = 10. The +4 shift moves every element equally — it changes the *mean* by 4, not the spread.
+**mistake_e:** Confused the SD-transform rule with the variance-transform rule, then compounded the error by adding the constant: new SD = a^2 × old_SD + b = 3^2 × 2 + 4 = 9 × 2 + 4 = 22. Squaring applies to *variance* (SD²), not SD. And b never affects spread at all.
 **common_trap:** Adding the constant b to the SD. Only |a| (multiplier) affects SD.
 **takeaway:** Linear transform y = ax + b: mean shifts by b, SD scales by |a|. Constant b doesn't affect spread.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -652,18 +652,18 @@ A company has two factories. Factory P produces 60% of the company's products; F
 **answer:** C
 **fastest_path:** P(P∩D) = 0.6·0.03 = 0.018; P(Q∩D) = 0.4·0.05 = 0.020. P(P|D) = 18/(18+20) = 9/19.
 **explanation:** Bayes. P(P ∩ D) = 0.018; P(Q ∩ D) = 0.020; P(D) = 0.038. P(P | D) = 0.018/0.038 = 18/38 = 9/19.
-**mistake_a:** Slip → 3/19.
-**mistake_b:** Slip → 6/19.
-**mistake_d:** Slip → 10/19.
-**mistake_e:** Slip → 12/19.
-**common_trap:** Ignoring the production split (60/40) and using just defect rates: 3/(3+5) = 3/8 ≈ a wrong fraction.
+**mistake_a:** Dropped the production share from the numerator entirely, arriving at a reduced fraction. Or: computed P(D|P)/P(D) = 0.03/0.038 rather than P(P∩D)/P(D); 0.03/0.038 ≠ 3/19 either, but further rounding/arithmetic errors land near 3/19.
+**mistake_b:** Swapped the two factories' production weights in the numerator — used P(Q) × P(D|P) = 0.4 × 0.03 = 0.012 instead of P(P) × P(D|P) = 0.6 × 0.03 = 0.018; divided by the correct P(D) = 0.038 → 0.012/0.038 = 12/38 = 6/19.
+**mistake_d:** Solved for the wrong factory: computed P(Q|D) = P(Q∩D)/P(D) = (0.4 × 0.05)/0.038 = 0.020/0.038 = 20/38 = 10/19. This is the probability the defective item came from Factory *Q*, not Factory P.
+**mistake_e:** Used the average defect rate across both factories instead of Factory P's rate: (3% + 5%)/2 = 4%; then P(P∩D) = 0.6 × 0.04 = 0.024 → 0.024/0.038 = 24/38 = 12/19. Each factory has its own defect rate; averaging them ignores the asymmetry between the two plants.
+**common_trap:** Ignoring the production split (60/40) and using just defect rates: 3/(3+5) = 3/8 — fails to weight by how much each factory contributes to total output.
 **takeaway:** Bayes: weight each branch by its prior. P(A|B) = P(A∩B)/P(B), where P(B) = sum over all branches.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
 
 ## Q26
-**difficulty:** Medium
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Range of a Data Set
 

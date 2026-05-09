@@ -72,7 +72,7 @@ The ratio of red marbles to blue marbles in a jar is 3:5. If there are 40 marble
 **fastest_path:** Parts: 3 + 5 = 8. Each part = 40/8 = 5. Red = 3 × 5 = 15.
 **explanation:** Sum of ratio parts: 3 + 5 = 8 total parts. Each part represents 40/8 = 5 marbles. Red marbles = 3 parts × 5 = 15. Blue marbles = 5 parts × 5 = 25. Total: 15 + 25 = 40 ✓.
 **mistake_a:** Computed 40/5 = 8 (used red ratio as denominator), then... bubbled 8.
-**mistake_b:** Computed 40 × (3/8) = 15 correctly but slipped on arithmetic to 12.
+**mistake_b:** Found the part size correctly as 40 ÷ 8 = 5 but then used 4 as the multiplier instead of 5 — a carry-over from an incorrect denominator of 10 (40 ÷ 10 = 4): 3 × 4 = 12.
 **mistake_d:** Computed 40 × (1/2) = 20 (treated ratio as half-half).
 **mistake_e:** Bubbled the blue count (25) — the trap for students who answer "the other color."
 **common_trap:** Bubbling the wrong color's count — the question asks for red, but blue's count is also computable and tempting.
@@ -86,7 +86,7 @@ The ratio of red marbles to blue marbles in a jar is 3:5. If there are 40 marble
 **type:** Problem Solving
 **topic:** Decimals
 
-Which of the following is equal to 0.125 x 0.4?
+Which of the following is equal to 0.125 × 0.4?
 
 - A) 0.005
 - B) 0.05
@@ -242,7 +242,7 @@ In a certain town, 60% of the adults are women. Of the women, 30% are employed f
 **type:** Problem Solving
 **topic:** Powers and Roots
 
-What is the value of (27^(2/3) x 16^(3/4)) / (4^(1/2) x 9^(1/2))?
+What is the value of (27^(2/3) × 16^(3/4)) / (4^(1/2) × 9^(1/2))?
 
 - A) 6
 - B) 8
@@ -382,7 +382,7 @@ What is the value of (1 + 1/2) / (1 - 1/3)?
 - E) 5/2
 
 **answer:** D
-**fastest_path:** Numerator: 3/2. Denominator: 2/3. Divide: (3/2) × (3/2) = 9/4.
+**fastest_path:** Numerator = 3/2. Denominator = 2/3. Dividing by 2/3 = multiplying by its reciprocal, 3/2: (3/2) × (3/2) = 9/4.
 **explanation:** Simplify each layer first. Numerator: 1 + 1/2 = 3/2. Denominator: 1 − 1/3 = 2/3. Then divide: (3/2) ÷ (2/3) = (3/2) × (3/2) = 9/4 (multiply by reciprocal).
 **mistake_a:** Divided incorrectly: 3/2 ÷ 2 = 3/4.
 **mistake_b:** Multiplied (3/2) × (2/3) = 1, then misadjusted to 9/8.
@@ -451,7 +451,7 @@ If x = -3 and y = 2, what is the value of |x - y| - |y - x| + |x| - |y|?
 **type:** Data Sufficiency
 **topic:** Fractions
 
-Is the fraction p/q greater than 1/2?
+If p and q are positive integers, is the fraction p/q greater than 1/2?
 
 (1) p + q = 20
 (2) q = 2p - 5
@@ -463,14 +463,14 @@ Is the fraction p/q greater than 1/2?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** B
-**fastest_path:** p/q > 1/2 ⟺ 2p > q. Stmt (2): q = 2p − 5 → 2p − q = 5 > 0 → sufficient.
-**explanation:** Reframe: p/q > 1/2 is equivalent to 2p > q (when q > 0). Statement (1) p + q = 20: counterexamples — (p=5, q=15): p/q = 1/3, no. (p=15, q=5): p/q = 3, yes. Different yes/no → insufficient. Statement (2) q = 2p − 5: rearrange to 2p − q = 5, which is > 0 → 2p > q → p/q > 1/2 always (assuming q > 0). Sufficient. → answer is B.
-**mistake_a:** Treated Statement (1) alone as sufficient because it "looks like a complete equation."
-**mistake_c:** Required both statements without testing each alone.
-**mistake_d:** Concluded each alone sufficient.
-**mistake_e:** Concluded together insufficient because of the q-positivity edge case.
-**common_trap:** Yes/no DS — testing only one case (the "easy" one) and missing the contradicting case.
-**takeaway:** For yes/no DS, the answer is sufficient *only when consistent across all valid cases*. Test edge cases (large p, large q, near-equal, etc.) before concluding.
+**fastest_path:** p/q > 1/2 ⟺ 2p > q (q is positive). Stmt (2): q = 2p − 5 → 2p − q = 5 > 0 → always YES. Sufficient.
+**explanation:** Reframe: since q > 0, p/q > 1/2 ⟺ 2p > q. Statement (1) p + q = 20: test (p=5, q=15) → 10 > 15? No. Test (p=15, q=5) → 30 > 5? Yes. Two different answers → insufficient. Statement (2) q = 2p − 5: rearrange → 2p − q = 5 > 0 → 2p > q → p/q > 1/2, always. Sufficient. Answer: B.
+**mistake_a:** Treated Statement (1) alone as sufficient because it "looks like a complete equation" — but it allows many (p, q) pairs with opposite answers.
+**mistake_c:** Required both statements without testing each alone first.
+**mistake_d:** Concluded each alone sufficient — but (1) admits counterexamples on both sides.
+**mistake_e:** Concluded together insufficient — but (2) alone nails a definite YES.
+**common_trap:** Yes/no DS — testing only one case (the "easy" one) and missing the contradicting case. Always try to find a YES and a NO under the same statement before concluding.
+**takeaway:** For yes/no DS, sufficient means *every valid case gives the same answer*. Test at least two extreme cases for each statement before concluding.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -489,21 +489,14 @@ Which of the following fractions is closest to 1/3?
 - E) 13/40
 
 **answer:** E
-**fastest_path:** For p/q vs. 1/3: gap = |3p − q| / (3q). Smallest gap wins.
-**explanation:** Compare each fraction to 1/3 by computing |3p − q| / (3q):
-- 7/22: |21 − 22| / 66 = 1/66 ≈ 0.0152
-- 11/32: |33 − 32| / 96 = 1/96 ≈ 0.0104
-- 5/16: |15 − 16| / 48 = 1/48 ≈ 0.0208
-- 9/28: |27 − 28| / 84 = 1/84 ≈ 0.0119
-- 13/40: |39 − 40| / 120 = 1/120 ≈ 0.0083
-
-Smallest gap belongs to 13/40. Verify with decimals: 13/40 = 0.325; 1/3 ≈ 0.3333; gap = 0.0083 ✓.
-**mistake_a:** Picked 7/22 (gap 1/66) — second-largest gap.
-**mistake_b:** Picked 11/32 (gap 1/96) — second-smallest gap.
-**mistake_c:** Picked 5/16 (gap 1/48) — largest gap.
-**mistake_d:** Picked 9/28 (gap 1/84) — third-smallest gap.
-**common_trap:** Stopping the comparison too early — students who compute gaps for the first 2-3 choices and pick the smallest of those miss that later choices may have smaller gaps.
-**takeaway:** To find the fraction closest to a target, compute the cross-multiplication gap |target_num × p_denom − target_denom × p_num| / (target_denom × p_denom). Smallest result wins. Compare *all* options before bubbling.
+**fastest_path:** Check: |3p − q| for each choice. All equal 1. Gap to 1/3 = 1/(3q) → largest denominator wins → 13/40 (denom 40).
+**explanation:** For any fraction p/q, its distance from 1/3 is |p/q − 1/3| = |3p − q| / (3q). Compute |3p − q| for each choice: 7/22 → |21−22|=1; 11/32 → |33−32|=1; 5/16 → |15−16|=1; 9/28 → |27−28|=1; 13/40 → |39−40|=1. Every choice satisfies |3p−q|=1, so all gaps reduce to 1/(3q). Smaller 1/(3q) means smaller gap, which means larger denominator. Denominators: 22, 32, 16, 28, 40. Largest is 40 → answer E (13/40). Total time once you spot the pattern: ~15 seconds.
+**mistake_a:** Picked 7/22 — denominator 22 is second-smallest of the five.
+**mistake_b:** Picked 11/32 — denominator 32 is second-largest, so gap 1/96 is second-smallest, but still not the winner.
+**mistake_c:** Picked 5/16 — denominator 16 is the smallest; this choice is actually *farthest* from 1/3.
+**mistake_d:** Picked 9/28 — denominator 28 is third; plausible if the pattern isn't spotted and calculation stops early.
+**common_trap:** Computing numerical gaps for 2–3 choices and picking the smallest so far — misses the choice with the largest denominator if evaluated last.
+**takeaway:** When all answer choices are "off by 1 in cross-multiplication" from the target, the fraction with the largest denominator is closest. Check whether |3p−q| is uniform before brute-forcing decimals.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
