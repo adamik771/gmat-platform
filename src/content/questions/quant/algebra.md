@@ -285,7 +285,7 @@ For all positive integers n, let f(n) = n² - n. What is the value of f(f(3))?
 **mistake_a:** Stopped at the inner computation: f(3) = 6 — bubbled the intermediate value.
 **mistake_b:** Computed f(3) × 2 = 12 (multiplied instead of composing).
 **mistake_d:** Computed f(7) = 49 − 7 = 42 — wrong inner argument.
-**mistake_e:** Computed (f(3))² − f(3) = 36 − 6 = 30 ... wait, that gives 30 (correct). Or f(3)² − 1 = 35; 7² + 7 = 56.
+**mistake_e:** Correctly computed f(3) = 6, then misapplied the function for the outer step — used f(n) = (n+1)(n+2) instead of n(n−1): f(6) = (7)(8) = 56. The factored form of f(n) = n² − n is n(n−1); confusing it with (n+1)(n+2) (the next pair of consecutive integers above n) is a natural factoring error. Always re-substitute into f(n) = n² − n directly rather than reasoning from a remembered product form.
 **common_trap:** Stopping at the inner result and bubbling — composition requires both layers.
 **takeaway:** f(f(x)) means apply f twice: compute f(x) first, then apply f to that result.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -309,9 +309,9 @@ If xy = 6 and x² + y² = 20, what is the value of (x + y)²?
 **fastest_path:** (x + y)² = x² + y² + 2xy = 20 + 12 = 32.
 **explanation:** Use the algebraic identity (x + y)² = x² + 2xy + y². Substitute the given values: x² + y² = 20 and xy = 6, so (x + y)² = 20 + 2(6) = 32. The identity collapses the answer in one step. Solving for x and y individually (using both given equations) is harder and unnecessary.
 **mistake_a:** Added 20 + 6 = 26 — forgot to double the xy term in the identity.
-**mistake_b:** Subtracted: 20 − 12 = 8, then computed differently. Actually 20 + 6 + 2 = 28 (mis-applied identity).
-**mistake_c:** Computed (x + y)² but using 20 − 2(6) = 8 — wrong sign on the cross term. Actually 20 + 6 + 4 = 30.
-**mistake_e:** Computed x² + y² + xy + xy = 20 + 12 + ... or some other miscombination producing 36.
+**mistake_b:** Correctly set up 2xy = 2 × 6 but made an arithmetic slip and computed 2 × 6 = 8 (common under-doubling error in mental arithmetic); then 20 + 8 = 28.
+**mistake_c:** Correctly applied the identity but made an arithmetic slip on 2 × xy: computed 2 × 6 = 10 (treating "double 6" as "6 + 4 = 10" through a mental shortcut error), then 20 + 10 = 30.
+**mistake_e:** Confused (x + y)² with (xy)²: used the product xy = 6 and computed 6² = 36 instead of applying the binomial expansion.
 **common_trap:** missing-algebraic-shortcut — solving for x, y individually when the identity gives the answer in one step.
 **takeaway:** Memorize (x + y)² = x² + 2xy + y² and (x − y)² = x² − 2xy + y². When asked for (x ± y)² given x² + y² and xy, the identity is one step.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -505,7 +505,7 @@ If f(x) = ax + b where a and b are constants, what is the value of f(5)?
 ---
 
 ## Q20
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Algebra Translation
 
@@ -547,10 +547,10 @@ Let x, y, and z be positive real numbers with x + y + z = 12 and xy + yz + zx = 
 **answer:** A
 **fastest_path:** (x+y+z)² = x²+y²+z² + 2(xy+yz+zx) → 144 = sum_of_squares + 78 → sum_of_squares = 66.
 **explanation:** Use the symmetric-sum identity (x + y + z)² = x² + y² + z² + 2(xy + yz + zx). Substitute: (12)² = (x² + y² + z²) + 2(39) → 144 = (x² + y² + z²) + 78 → x² + y² + z² = 66.
-**mistake_b:** Computed (sum)² + (cross-product sum) = 144 + 39 = ... no, mis-applied somewhere.
-**mistake_c:** Forgot the factor of 2: 144 − 39 = 105? No, picked 78 = 2 × 39 directly without subtracting from 144.
-**mistake_d:** Subtracted 39 directly (without the factor of 2): 144 − 39 = 105.
-**mistake_e:** Used 12² + 2(39) = 222 / something else.
+**mistake_b:** Halved the square instead of subtracting the cross-product term: (x+y+z)² / 2 = 144 / 2 = 72. Confusing "dividing by 2" with "subtracting 2 × (cross terms)."
+**mistake_c:** Computed 2(xy+yz+zx) = 78 and stopped — reported the cross-product term itself as the answer instead of subtracting it from (x+y+z)² to find the sum of squares.
+**mistake_d:** Arithmetic slip computing 2 × 39: arrived at 57 instead of 78 (a common error — confusing 2 × 39 with 3 × 19 = 57), then 144 − 57 = 87. Double-check by computing 2 × 40 − 2 = 78.
+**mistake_e:** Applied the identity without the factor of 2: wrote (x+y+z)² = x²+y²+z² + (xy+yz+zx) [coefficient 1, not 2], so x²+y²+z² = 144 − 39 = 105. The identity requires *doubling* the pairwise product sum.
 **common_trap:** missing-algebraic-shortcut + factor-of-2 error — solving for x, y, z individually (impossible without more info) or forgetting the factor of 2 on the cross-product sum.
 **takeaway:** (x + y + z)² = (sum of squares) + 2(sum of pairwise products). Memorize for symmetric-sum problems.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -638,7 +638,7 @@ If the roots of the quadratic equation x² + bx + 12 = 0 differ by 1, what are t
 ---
 
 ## Q25
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Word Problem — Relative Motion
 

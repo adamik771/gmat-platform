@@ -204,7 +204,7 @@ A box contains 5 red chips and 3 blue chips. Two chips are drawn at random witho
 **mistake_a:** Bubbled P(a single draw is red) = 5/8 — answered a simpler question (one draw, not two draws with at-least-one condition).
 **mistake_c:** Computed P(first blue) as 1/4 ("roughly a quarter of the box") instead of the correct 3/8, giving P(both blue) = (1/4)(2/7) = 1/14, then P(at least 1R) = 1 − 1/14 = 13/14. The correct fraction is 3 blue of 8 total chips.
 **mistake_d:** Computed only P(exactly 1 red) = C(5,1)·C(3,1)/C(8,2) = 15/28 and stopped — missed P(both red) = C(5,2)/C(8,2) = 10/28. "At least one" requires exactly-1 plus exactly-2: 15/28 + 10/28 = 25/28.
-**mistake_e:** Used the complement correctly but made an arithmetic slip computing P(both blue): got 1/28 instead of 3/28 (e.g., computed 3/8 × 2/7 = 6/56 = 1/28 by misreducing), giving 1 − 1/28 = 27/28. Check: 6/56 = 3/28, not 1/28.
+**mistake_e:** Correctly identified C(8,2) = 28 as the total number of ways to choose 2 chips, but counted only 1 favorable outcome (treating "both blue" as a single event) instead of C(3,2) = 3 (the actual number of ways to choose 2 of 3 blue chips). This gives P(both blue) = 1/28, then P(at least 1 red) = 1 − 1/28 = 27/28. Always count the favorable combinations explicitly: C(3,2) = 3, not 1.
 **common_trap:** Computing P(R) by case analysis (1 R or 2 R) — slow and error-prone — instead of using the complement.
 **takeaway:** "At least one" → use the complement: P(at least 1) = 1 − P(none).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics

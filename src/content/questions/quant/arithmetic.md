@@ -72,7 +72,7 @@ The ratio of red marbles to blue marbles in a jar is 3:5. If there are 40 marble
 **fastest_path:** Parts: 3 + 5 = 8. Each part = 40/8 = 5. Red = 3 × 5 = 15.
 **explanation:** Sum of ratio parts: 3 + 5 = 8 total parts. Each part represents 40/8 = 5 marbles. Red marbles = 3 parts × 5 = 15. Blue marbles = 5 parts × 5 = 25. Total: 15 + 25 = 40 ✓.
 **mistake_a:** Computed 40/5 = 8 (used red ratio as denominator), then... bubbled 8.
-**mistake_b:** Computed 40 × (3/8) = 15 correctly but slipped on arithmetic to 12.
+**mistake_b:** Found the part size correctly as 40 ÷ 8 = 5 but then used 4 as the multiplier instead of 5 — a carry-over from an incorrect denominator of 10 (40 ÷ 10 = 4): 3 × 4 = 12.
 **mistake_d:** Computed 40 × (1/2) = 20 (treated ratio as half-half).
 **mistake_e:** Bubbled the blue count (25) — the trap for students who answer "the other color."
 **common_trap:** Bubbling the wrong color's count — the question asks for red, but blue's count is also computable and tempting.
@@ -86,7 +86,7 @@ The ratio of red marbles to blue marbles in a jar is 3:5. If there are 40 marble
 **type:** Problem Solving
 **topic:** Decimals
 
-Which of the following is equal to 0.125 x 0.4?
+Which of the following is equal to 0.125 × 0.4?
 
 - A) 0.005
 - B) 0.05
@@ -242,7 +242,7 @@ In a certain town, 60% of the adults are women. Of the women, 30% are employed f
 **type:** Problem Solving
 **topic:** Powers and Roots
 
-What is the value of (27^(2/3) x 16^(3/4)) / (4^(1/2) x 9^(1/2))?
+What is the value of (27^(2/3) × 16^(3/4)) / (4^(1/2) × 9^(1/2))?
 
 - A) 6
 - B) 8
