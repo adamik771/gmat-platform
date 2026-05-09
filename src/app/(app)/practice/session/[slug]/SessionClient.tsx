@@ -26,6 +26,7 @@ import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
 } from "@/lib/keyboard"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 
 export interface SessionQuestion {
   id: string
@@ -83,6 +84,10 @@ interface SessionClientProps {
    *  questions array is already adaptively ordered by the server. */
   skillLevel?: number
   skillAttempts?: number
+  /** Student's target total score (205–805). When present, the results
+   *  screen shows how this session's accuracy compares to the accuracy
+   *  required to reach that score. */
+  targetScore?: number
 }
 
 function formatDuration(ms: number): string {
@@ -893,6 +898,7 @@ export default function SessionClient({
   questions,
   skillLevel,
   skillAttempts,
+  targetScore,
 }: SessionClientProps) {
   const router = useRouter()
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -1252,6 +1258,33 @@ export default function SessionClient({
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
             </div>
           </div>
+
+          {targetScore != null && answeredCount > 0 && (() => {
+            const requiredAccuracy = Math.round(((targetScore - 205) / 600) * 100)
+            const gap = accuracy - requiredAccuracy
+            const isOnTrack = gap >= -5
+            const accentColor = isOnTrack ? "#3ECF8E" : "#C9A84C"
+            const label =
+              gap > 5
+                ? `Ahead of your ${targetScore} target pace`
+                : gap >= -5
+                  ? `At your ${targetScore} target pace`
+                  : `${Math.abs(gap)}% below your ${targetScore} target pace`
+            return (
+              <div className="mt-5 pt-5 border-t border-white/[0.06] flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-[#555555]">vs. your goal</p>
+                  <p className="text-sm font-medium mt-1" style={{ color: accentColor }}>
+                    {label}
+                  </p>
+                </div>
+                <div className="text-right flex-shrink-0">
+                  <p className="text-[10px] uppercase tracking-widest text-[#555555]">Goal pace</p>
+                  <p className="text-2xl font-bold mt-0.5 text-[#555555]">{requiredAccuracy}%</p>
+                </div>
+              </div>
+            )
+          })()}
         </div>
 
         <div>
@@ -1311,6 +1344,38 @@ export default function SessionClient({
             })}
           </div>
         </div>
+
+        {(() => {
+          const chapterSlug = TOPIC_TO_CHAPTER[topic]
+          if (!chapterSlug) return null
+          return (
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
+                What to study next
+              </h2>
+              <Link
+                href={`/chapters/${chapterSlug}`}
+                className="flex items-center justify-between w-full p-4 rounded-xl border border-white/[0.06] bg-[#0D0D0D] hover:bg-white/[0.02] transition-colors group"
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
+                  >
+                    <BookOpen className="w-4 h-4" style={{ color: "#C9A84C" }} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-[#F0F0F0]">{topic} chapter</p>
+                    <p className="text-xs text-[#555555]">Review the concepts behind these questions</p>
+                  </div>
+                </div>
+                <ArrowLeft
+                  className="w-3.5 h-3.5 rotate-180 text-[#333333] group-hover:text-[#888888] transition-colors flex-shrink-0"
+                />
+              </Link>
+            </div>
+          )
+        })()}
 
         <div className="flex gap-3 flex-wrap">
           <Link

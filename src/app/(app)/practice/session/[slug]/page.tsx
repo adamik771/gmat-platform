@@ -75,6 +75,7 @@ export default async function PracticeSessionPage({
     attempts: 0,
     updatedAt: 0,
   }
+  let targetScore: number | undefined
   try {
     const supabase = await createSupabaseServer()
     const {
@@ -83,6 +84,8 @@ export default async function PracticeSessionPage({
     if (user) {
       const levels = getTopicSkillLevels(user.user_metadata)
       skill = getLevelForSlug(levels, slug)
+      const ts = user.user_metadata?.target_score
+      if (typeof ts === "number") targetScore = ts
     }
   } catch {
     // Anonymous or supabase down — keep default level / file order.
@@ -97,6 +100,7 @@ export default async function PracticeSessionPage({
       questions={adaptive}
       skillLevel={skill.level}
       skillAttempts={skill.attempts}
+      targetScore={targetScore}
     />
   )
 }
