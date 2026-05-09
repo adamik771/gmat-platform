@@ -5,7 +5,7 @@ topic: Combinatorics
 
 ## Q1
 
-**difficulty:** Beginner
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Enumeration
 
@@ -33,7 +33,7 @@ Three friends — Ana, Ben, and Cal — line up for a photo. In how many differe
 
 ## Q2
 
-**difficulty:** Beginner
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Enumeration
 
@@ -61,7 +61,7 @@ Four books are placed on a shelf. How many arrangements are possible if one spec
 
 ## Q3
 
-**difficulty:** Beginner
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Permutations
 
@@ -89,7 +89,7 @@ From a group of 7 candidates, how many ways can a president and a vice-president
 
 ## Q4
 
-**difficulty:** Beginner
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -117,7 +117,7 @@ A team of 3 is picked from a group of 6 students. How many different teams are p
 
 ## Q5
 
-**difficulty:** Beginner
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -145,7 +145,7 @@ A pizza shop offers 8 toppings. How many different 2-topping pizzas are possible
 
 ## Q6
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Permutations
 
@@ -173,7 +173,7 @@ The letters of the word GAMES are rearranged. How many distinct arrangements are
 
 ## Q7
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -184,24 +184,24 @@ A committee of 4 is chosen from 10 people. How many possible committees are ther
 - B) 210
 - C) 240
 - D) 5040
-- E) 5040
+- E) 2520
 
 **answer:** B
 **fastest_path:** C(10, 4) = (10·9·8·7)/(4·3·2·1) = 5040/24 = 210.
 **explanation:** "Committee" → unordered selection → combinations. C(10, 4) = 10!/(4! × 6!) = (10 × 9 × 8 × 7)/(4 × 3 × 2 × 1) = 5040/24 = 210.
-**mistake_a:** Computed 10 × 4 = 40 (wrong formula).
-**mistake_c:** Computed 10 × 4! = 240 (added unnecessary factor).
-**mistake_d:** Computed 10 × 9 × 8 × 7 = 5040 (used permutations).
-**mistake_e:** Same as D (5040, listed twice in original).
-**common_trap:** Treating committee selection as ordered (using P instead of C).
-**takeaway:** Committee, panel, group of k from n → C(n, k). Always divide P(n, k) by k! when order doesn't matter.
+**mistake_a:** Computed 10 × 4 = 40 — treated selection as one slot times slot size.
+**mistake_c:** Computed 10 × 4! = 10 × 24 = 240 — multiplied n by k! instead of dividing the permutation by k!.
+**mistake_d:** Computed P(10, 4) = 10 × 9 × 8 × 7 = 5040 (used permutations, treated committee seats as distinct roles).
+**mistake_e:** Divided by 2! instead of 4! — applied the "choose 2" shortcut of halving to a "choose 4" problem: 5040/2 = 2520.
+**common_trap:** Treating committee selection as ordered (using P instead of C), or applying the wrong divisor factorial (2! instead of k! = 4!).
+**takeaway:** Committee, panel, group of k from n → C(n, k) = P(n, k) / k!. The divisor is k!, not 2! — it removes all k! orderings of the chosen group.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
 
 ## Q8
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -229,7 +229,7 @@ In how many arrangements of the letters in LESSON do the two S's appear next to 
 
 ## Q9
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -257,7 +257,7 @@ Six people sit in a row of 6 chairs. If Ana and Ben refuse to sit next to each o
 
 ## Q10
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -285,7 +285,7 @@ From 5 men and 4 women, a committee of 3 must be formed with exactly 2 men and 1
 
 ## Q11
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Circular
 
@@ -313,7 +313,7 @@ In how many ways can 5 people sit around a circular table?
 
 ## Q12
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -341,7 +341,7 @@ A code consists of 4 digits chosen from {0–9}. How many codes are possible if 
 
 ## Q13
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -369,7 +369,7 @@ How many arrangements of the letters in MISSISSIPPI are possible?
 
 ## Q14
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -401,7 +401,7 @@ Both paths give 168, confirming the logic.
 
 ## Q15
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -429,7 +429,7 @@ In how many ways can 4 men and 4 women be seated in a row if men and women must 
 
 ## Q16
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -457,7 +457,7 @@ A bag has 6 red marbles and 5 blue marbles. How many ways can 4 marbles be drawn
 
 ## Q17
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -485,7 +485,7 @@ Eight distinct books are arranged on a shelf. In how many arrangements are two s
 
 ## Q18
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Combinations
 
