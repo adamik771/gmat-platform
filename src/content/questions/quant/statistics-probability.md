@@ -19,12 +19,12 @@ The average (arithmetic mean) of five numbers is 18. If one of the numbers is re
 **answer:** D
 **fastest_path:** Sum dropped from 5·18 = 90 to 4·15 = 60. Removed = 30.
 **explanation:** Sum of 5 = 5 × 18 = 90. Sum of 4 = 4 × 15 = 60. Removed = 90 − 60 = 30.
-**mistake_a:** Slip → 20.
-**mistake_b:** Slip → 24.
-**mistake_c:** Slip → 28.
-**mistake_e:** Slip → 33.
-**common_trap:** Computing the difference of *means* (18 − 15 = 3) instead of difference of *sums*.
-**takeaway:** Sum = mean × count. For mean problems, work in *sums*, not in averages.
+**mistake_a:** Computed the difference in means and multiplied by the wrong count: (18 − 15) × 5 + 5 = 20 — confused mean-change with the actual removed value.
+**mistake_b:** Averaged the two means and used that as the "new mean": (18 + 15)/2 = 16.5 → 4 × 16.5 = 66 → 90 − 66 = 24.
+**mistake_c:** Arithmetic slip on 4 × 15: computed 62 instead of 60, giving 90 − 62 = 28.
+**mistake_e:** Simply added the two means: 18 + 15 = 33, bypassing any computation.
+**common_trap:** Computing the difference of *means* (18 − 15 = 3) instead of difference of *sums*. The removed value equals the drop in total, not the drop in average.
+**takeaway:** Sum = mean × count. Convert both averages to sums first: removed value = old sum − new sum = (5 × 18) − (4 × 15).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -449,7 +449,7 @@ In a set of 5 positive integers, is the median equal to the mean?
 ---
 
 ## Q18
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Basic Probability
 

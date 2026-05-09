@@ -541,18 +541,18 @@ Let x, y, and z be positive real numbers with x + y + z = 12 and xy + yz + zx = 
 - A) 66
 - B) 72
 - C) 78
-- D) 87
-- E) 105
+- D) 105
+- E) 144
 
 **answer:** A
 **fastest_path:** (x+y+z)² = x²+y²+z² + 2(xy+yz+zx) → 144 = sum_of_squares + 78 → sum_of_squares = 66.
 **explanation:** Use the symmetric-sum identity (x + y + z)² = x² + y² + z² + 2(xy + yz + zx). Substitute: (12)² = (x² + y² + z²) + 2(39) → 144 = (x² + y² + z²) + 78 → x² + y² + z² = 66.
-**mistake_b:** Computed (sum)² + (cross-product sum) = 144 + 39 = ... no, mis-applied somewhere.
-**mistake_c:** Forgot the factor of 2: 144 − 39 = 105? No, picked 78 = 2 × 39 directly without subtracting from 144.
-**mistake_d:** Subtracted 39 directly (without the factor of 2): 144 − 39 = 105.
-**mistake_e:** Used 12² + 2(39) = 222 / something else.
-**common_trap:** missing-algebraic-shortcut + factor-of-2 error — solving for x, y, z individually (impossible without more info) or forgetting the factor of 2 on the cross-product sum.
-**takeaway:** (x + y + z)² = (sum of squares) + 2(sum of pairwise products). Memorize for symmetric-sum problems.
+**mistake_b:** Arithmetic error computing 2 × 39: wrote 2 × 36 = 72 instead of 78, giving 144 − 72 = 72.
+**mistake_c:** Stopped at the cross-term and bubbled it: outputted 2(xy + yz + zx) = 78 directly without subtracting it from (x + y + z)².
+**mistake_d:** Forgot the factor of 2 on the cross-product sum: used (x+y+z)² − (xy+yz+zx) = 144 − 39 = 105 instead of 144 − 2(39).
+**mistake_e:** Confused (x + y + z)² with x² + y² + z²: wrote x² + y² + z² = (x + y + z)² = 144, forgetting the cross-term subtraction entirely.
+**common_trap:** Factor-of-2 error — writing x²+y²+z² = (x+y+z)² − (xy+yz+zx) instead of (x+y+z)² − 2(xy+yz+zx). The 2 comes from the expansion of the square: each cross-pair (xy, yz, zx) appears exactly twice.
+**takeaway:** (x + y + z)² = (sum of squares) + 2(sum of pairwise products). The factor of 2 on the cross term is the single most-failed step on this problem type.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -638,7 +638,7 @@ If the roots of the quadratic equation x² + bx + 12 = 0 differ by 1, what are t
 ---
 
 ## Q25
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Word Problem — Relative Motion
 
