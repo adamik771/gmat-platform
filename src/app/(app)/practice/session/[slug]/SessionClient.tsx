@@ -26,6 +26,7 @@ import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
 } from "@/lib/keyboard"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 
 export interface SessionQuestion {
   id: string
@@ -1208,6 +1209,16 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+
+    const wrongItems = questions.filter((q, i) => states[i].submitted && !isQuestionCorrect(q, states[i]))
+    const subtopicMisses: Record<string, number> = {}
+    for (const q of wrongItems) {
+      subtopicMisses[q.subtopic] = (subtopicMisses[q.subtopic] ?? 0) + 1
+    }
+    const topMissedSubtopic =
+      Object.entries(subtopicMisses).sort(([, a], [, b]) => b - a)[0]?.[0] ?? null
+    const chapterSlug = TOPIC_TO_CHAPTER[topic] ?? null
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1253,6 +1264,54 @@ export default function SessionClient({
             </div>
           </div>
         </div>
+
+        {wrongItems.length > 0 && (
+          <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
+            <div className="px-5 py-3 border-b border-white/[0.06]">
+              <p className="text-[11px] uppercase tracking-widest font-semibold text-[#888888]">
+                Focus for next session
+              </p>
+            </div>
+            <div className="p-5 space-y-3">
+              {topMissedSubtopic && (
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1">Top miss</p>
+                  <p className="text-sm font-medium text-[#F0F0F0]">{topMissedSubtopic}</p>
+                  {accuracy < 65 && chapterSlug && (
+                    <p className="text-xs text-[#888888] mt-1.5">
+                      Accuracy suggests a conceptual gap.{" "}
+                      <Link
+                        href={`/chapters/${chapterSlug}`}
+                        className="underline underline-offset-2"
+                        style={{ color: "#C9A84C" }}
+                      >
+                        Review the {topic} chapter
+                      </Link>{" "}
+                      before drilling again.
+                    </p>
+                  )}
+                </div>
+              )}
+              <div className="flex items-center justify-between pt-1">
+                <p className="text-sm text-[#888888]">
+                  {wrongItems.length === 1
+                    ? "1 missed question"
+                    : `${wrongItems.length} missed questions`}
+                </p>
+                <Link
+                  href="/error-log"
+                  className="text-xs px-3 py-1.5 rounded-lg border transition-colors hover:bg-white/[0.04]"
+                  style={{
+                    borderColor: "rgba(201,168,76,0.3)",
+                    color: "#C9A84C",
+                  }}
+                >
+                  Tag in error log
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
