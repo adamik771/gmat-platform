@@ -134,7 +134,7 @@ If the three-digit number 4A6 is divisible by 9, where A represents a single dig
 ---
 
 ## Q6
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Multiples
 
@@ -359,8 +359,8 @@ How many positive factors does 720 have?
 **explanation:** Prime-factorize: 720 = 8 · 9 · 10 = 2³ · 3² · 2 · 5 = 2⁴ · 3² · 5. Factor count = (4+1)(2+1)(1+1) = 30.
 **mistake_a:** Used 2³ instead of 2⁴: (3+1)(2+1)(1+1) = 24.
 **mistake_b:** Off-by-one on one exponent: 28 = 7·4 from (6+1)(3+1) — wrong factorization.
-**mistake_d:** Used 2⁵ instead of 2⁴: (5+1)(2+1)(1+1) = ... 32 from a different mis-factor.
-**mistake_e:** Used 2³·3³·5 → (3+1)(3+1)(1+1) = 32, then bubbled the closest available 36.
+**mistake_d:** Used 2³·3³·5 instead of 2⁴·3²·5 (wrong prime breakdown — extra factor of 3, missing a factor of 2): (3+1)(3+1)(1+1) = 4·4·2 = 32.
+**mistake_e:** Used 2⁵·3²·5 instead of 2⁴·3²·5 (over-counted the 2-exponent by 1): (5+1)(2+1)(1+1) = 6·3·2 = 36.
 **common_trap:** Mis-factorizing 720 by missing one factor of 2 or one factor of 3 — the count formula then deviates.
 **takeaway:** Factor 720 in clean splits: 8·90 = 8·9·10 = 2⁴·3²·5. Verify via: product of primes^exponents = 16·9·5 = 720 ✓.
 **related_reading:** reading-quant-03-number-properties
@@ -509,7 +509,7 @@ If m and n are positive integers, what is the value of m?
 **type:** Problem Solving
 **topic:** Prime Factorization and Counting Factors
 
-If n = 2⁵ x 3⁴ x 5³, how many positive factors of n are perfect squares?
+If n = 2⁵ · 3⁴ · 5³, how many positive factors of n are perfect squares?
 
 - A) 6
 - B) 9
@@ -614,25 +614,25 @@ Is the positive integer n divisible by 18?
 ## Q24
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Units Digit Pattern
+**topic:** Units Digit of Perfect Squares
 
-What is the units digit of 7^100?
+Which of the following CANNOT be the units digit of a perfect square?
 
-- A) 1
-- B) 3
-- C) 7
-- D) 9
-- E) 0
+- A) 4
+- B) 5
+- C) 6
+- D) 7
+- E) 9
 
-**answer:** A
-**fastest_path:** 7-cycle [7, 9, 3, 1]. 100 mod 4 = 0 → position 4 → 1.
-**explanation:** Units digit of 7^n cycles [7, 9, 3, 1] with period 4. 100 mod 4 = 0 → position 4 → units digit 1.
-**mistake_b:** Took position 3 in the cycle (= 3).
-**mistake_c:** Bubbled the base 7 — ignored the cycle.
-**mistake_d:** Took position 2 in the cycle (= 9).
-**mistake_e:** Bubbled 0 — but 7^n never ends in 0.
-**common_trap:** When n mod 4 = 0, position is 4 (end of cycle), not 0 (undefined). Mis-indexing here is the most common units-digit error.
-**takeaway:** For units-digit cycles: position 4 corresponds to mod 4 = 0. The 7-cycle: 7^1=7, 7^2=49, 7^3=...3, 7^4=...1, 7^5=...7.
+**answer:** D
+**fastest_path:** Check 0²→0, 1²→1, 2²→4, 3²→9, 4²→6, 5²→5, 6²→6, 7²→9, 8²→4, 9²→1. Possible units digits: {0,1,4,5,6,9}. The digit 7 never appears.
+**explanation:** The units digit of n² depends only on the units digit of n. Checking 0–9: 0²→0, 1²→1, 2²→4, 3²→9, 4²→16→6, 5²→25→5, 6²→36→6, 7²→49→9, 8²→64→4, 9²→81→1. The complete set of possible units digits for perfect squares is {0, 1, 4, 5, 6, 9}. The digits 2, 3, 7, and 8 never occur. Among the answer choices, only 7 is impossible.
+**mistake_a:** Thought 4 cannot occur — but 2² = 4 and 12² = 144.
+**mistake_b:** Thought 5 cannot occur — but 5² = 25 and 15² = 225.
+**mistake_c:** Thought 6 cannot occur — but 4² = 16 and 6² = 36. The digit 6 is a classic surprise.
+**mistake_e:** Thought 9 cannot occur — but 3² = 9 and 7² = 49.
+**common_trap:** Choices C (6) and E (9) feel unusual for a units digit, making them attractive wrong answers. The rule of thumb "if it looks odd, eliminate it" backfires here — the real impossibles are 2, 3, 7, 8.
+**takeaway:** Perfect squares can only end in {0, 1, 4, 5, 6, 9}. Digits 2, 3, 7, 8 are impossible units digits for any perfect square. This fact quickly eliminates answer choices in DS problems asking about divisibility and square roots.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -808,25 +808,25 @@ What is the smallest positive integer n such that n, n + 2, and n + 4 are all pr
 ## Q31
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Consecutive Integers — Sum to Largest
+**topic:** Consecutive Integers — Product to Sum
 
-The sum of 5 consecutive positive integers is 215. What is the largest of the 5 integers?
+The product of two consecutive positive integers is 210. What is their sum?
 
-- A) 41
-- B) 42
-- C) 43
-- D) 44
-- E) 45
+- A) 27
+- B) 29
+- C) 31
+- D) 33
+- E) 35
 
-**answer:** E
-**fastest_path:** Mean = 215/5 = 43 = middle. Largest = 43 + 2 = 45.
-**explanation:** For 5 consecutive integers, mean = median = middle = 215/5 = 43. The integers are 41, 42, 43, 44, 45. Largest = 45.
-**mistake_a:** Bubbled 41 — the smallest, not the largest.
-**mistake_b:** Bubbled 42 — off-by-one from the middle.
-**mistake_c:** Bubbled 43 — the median, not the largest.
-**mistake_d:** Bubbled 44 — off-by-one from the largest.
-**common_trap:** Bubbling the median (43) instead of the largest. "Sum/count" gives the *middle*, not the max.
-**takeaway:** For odd-count consecutives: middle = sum/count. Largest = middle + (count − 1)/2.
+**answer:** B
+**fastest_path:** Estimate √210 ≈ 14.5 → try 14 × 15 = 210 ✓. Sum = 14 + 15 = 29.
+**explanation:** Two consecutive positive integers n and n+1 with n(n+1) = 210. Since √210 ≈ 14.5, try n = 14: 14 × 15 = 210 ✓. Their sum = 14 + 15 = 29. Algebraic path: n² + n − 210 = 0; discriminant = 1 + 840 = 841 = 29², so n = (−1 + 29)/2 = 14 — same result in more steps.
+**mistake_a:** Tried n = 13: 13 × 14 = 182 ≠ 210; bubbled 13 + 14 = 27 without verifying the product.
+**mistake_c:** Tried n = 15: 15 × 16 = 240 ≠ 210; bubbled 15 + 16 = 31 without verifying.
+**mistake_d:** Tried n = 16: 16 × 17 = 272 ≠ 210; bubbled 16 + 17 = 33.
+**mistake_e:** Bubbled n itself (14) added to n+2 = 16 for some reason, or tried n = 17: 17 × 18 = 306 ≠ 210.
+**common_trap:** Stopping at n = 14 and bubbling n alone instead of computing the sum n + (n+1). The question asks for the *sum*, not for n.
+**takeaway:** For "product of two consecutive integers = k": estimate n ≈ √k, verify by computing n(n+1), then compute what the question actually asks (sum, not just n).
 **related_reading:** reading-quant-03-number-properties
 
 ---
