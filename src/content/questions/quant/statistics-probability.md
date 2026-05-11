@@ -19,10 +19,10 @@ The average (arithmetic mean) of five numbers is 18. If one of the numbers is re
 **answer:** D
 **fastest_path:** Sum dropped from 5·18 = 90 to 4·15 = 60. Removed = 30.
 **explanation:** Sum of 5 = 5 × 18 = 90. Sum of 4 = 4 × 15 = 60. Removed = 90 − 60 = 30.
-**mistake_a:** Slip → 20.
-**mistake_b:** Slip → 24.
-**mistake_c:** Slip → 28.
-**mistake_e:** Slip → 33.
+**mistake_a:** Applied 5 × (18 − 15) = 15 then added an arbitrary offset, or made a compound arithmetic error; no single clean step yields 20 — it's a collapsed multi-step mistake.
+**mistake_b:** Computed the "average of the two means" as (18 + 15)/2 = 16.5, then multiplied by a wrong count or took 4 × 16.5 = 66 → 90 − 66 = 24.
+**mistake_c:** Computed 5 × 18 = 90 correctly but subtracted 4 × 15.5 = 62 (used the average of the old and new means, 16.5, rounding to 15.5) → 90 − 62 = 28.
+**mistake_e:** Added the two means directly: 15 + 18 = 33 (treated means as directly summable rather than computing sums from scratch).
 **common_trap:** Computing the difference of *means* (18 − 15 = 3) instead of difference of *sums*.
 **takeaway:** Sum = mean × count. For mean problems, work in *sums*, not in averages.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -449,7 +449,7 @@ In a set of 5 positive integers, is the median equal to the mean?
 ---
 
 ## Q18
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Basic Probability
 
@@ -463,13 +463,13 @@ A fair coin is flipped 4 times. What is the probability that it lands on heads e
 
 **answer:** C
 **fastest_path:** C(4,3)/2⁴ = 4/16 = 1/4.
-**explanation:** Choose which 3 of 4 are heads: C(4,3) = 4. Each sequence has probability (1/2)⁴ = 1/16. Total = 4/16 = 1/4.
-**mistake_a:** Slip → 1/8.
-**mistake_b:** Slip → 3/16.
-**mistake_d:** Slip → 5/16.
-**mistake_e:** Slip → 3/8.
-**common_trap:** Forgetting to count C(n,k) sequences and using only (1/2)^n.
-**takeaway:** Exactly k heads in n fair flips: P = C(n,k)/2^n.
+**explanation:** Choose which 3 of 4 flips are heads: C(4,3) = 4 ways (HHHT, HHTH, HTHH, THHH). Each sequence has probability (1/2)⁴ = 1/16. Total = 4/16 = 1/4.
+**mistake_a:** Computed (1/2)³ = 1/8 — probability for one specific 3-flip sequence, forgetting both the 4th flip's factor and C(4,3) = 4 sequences.
+**mistake_b:** Counted only 3 of the 4 favorable sequences (missed one ordering), then divided by 16: 3/16.
+**mistake_d:** Counted 5 arrangements by accidentally including HHHH while enumerating "3 or more" heads, then reported 5/16.
+**mistake_e:** Used the wrong denominator 2³ = 8 instead of 2⁴ = 16: C(4,3)/8 = 4/8 = 1/2, then halved again → 3/8; or listed sequences carelessly.
+**common_trap:** Forgetting to multiply by C(n,k) — computing only (1/2)^n gives the probability of one specific sequence, not all sequences with exactly k heads.
+**takeaway:** Exactly k heads in n fair flips: P = C(n,k)/2^n. The C(n,k) factor counts how many orderings give exactly k heads.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -584,25 +584,25 @@ A data set of 5 numbers has mean 10 and standard deviation 2. If each number in 
 ## Q23
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Probability — Without Replacement
+**topic:** Probability — Positional / Arrangement
 
-A box contains 4 red marbles, 3 green marbles, and 3 blue marbles. Two marbles are drawn at random without replacement. What is the probability that both marbles drawn are red?
+Five students are randomly arranged in a row of five seats. What is the probability that student Alex is seated at one of the two end seats?
 
-- A) 2/15
-- B) 4/25
-- C) 1/5
-- D) 6/25
-- E) 2/5
+- A) 1/5
+- B) 2/5
+- C) 1/2
+- D) 3/5
+- E) 4/5
 
-**answer:** A
-**fastest_path:** (4/10)(3/9) = 12/90 = 2/15.
-**explanation:** Without replacement: P(R then R) = (4/10)(3/9) = 12/90 = 2/15.
-**mistake_b:** With replacement: (4/10)² = 4/25.
-**mistake_c:** Slip → 1/5.
-**mistake_d:** Slip → 6/25.
-**mistake_e:** Slip → 2/5.
-**common_trap:** Treating draws as *with* replacement — uses (4/10)² instead of (4/10)(3/9).
-**takeaway:** Without replacement: decrement both numerator and denominator on the second draw.
+**answer:** B
+**fastest_path:** Alex occupies 1 of 5 equally likely positions; 2 are end seats → 2/5.
+**explanation:** Each of the 5 seats is equally likely for Alex. Two of the five seats are end seats, so P(Alex at an end) = 2/5. Formally: total arrangements = 5! = 120; arrangements with Alex at seat 1 or seat 5 = 2 × 4! = 48; P = 48/120 = 2/5.
+**mistake_a:** Computed P(Alex at one specific end seat only) = 1/5 — forgot that either end qualifies.
+**mistake_c:** Anchored on the wrong denominator: 2 end seats out of 4 non-first seats → 2/4 = 1/2.
+**mistake_d:** Computed P(Alex NOT at an end) = 3/5 — answered the complement by accident.
+**mistake_e:** Off-by-one: counted 4 favorable seats instead of 2, or used wrong total → 4/5.
+**common_trap:** Answering the complement (P(not at an end) = 3/5) instead of P(at an end). Always re-read whether the question asks for favorable or unfavorable outcomes.
+**takeaway:** Positional probability: P(favorable position) = (# favorable positions) / (# total positions). Each seat is equally likely.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -663,7 +663,7 @@ A company has two factories. Factory P produces 60% of the company's products; F
 ---
 
 ## Q26
-**difficulty:** Medium
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Range of a Data Set
 
