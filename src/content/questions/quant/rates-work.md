@@ -535,25 +535,25 @@ Working alone, Alex can complete a project in h hours; working alone, Ben can co
 ## Q21
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Average Speed — Round Trip
+**topic:** Fill and Drain — Net Rate
 
-A driver travels from town A to town B at an average speed of 60 miles per hour, and returns along the same route at an average speed of 40 miles per hour. What is the driver's average speed for the entire round trip?
+Pipe A fills a tank in 8 hours. Pipe B drains the same tank in 12 hours. If the tank is currently one-quarter full and both pipes are open simultaneously, how many hours will it take to completely fill the tank?
 
-- A) 44 mph
-- B) 46 mph
-- C) 48 mph
-- D) 50 mph
-- E) 52 mph
+- A) 6
+- B) 8
+- C) 12
+- D) 18
+- E) 24
 
-**answer:** C
-**fastest_path:** Equal distances → harmonic mean: 2(60)(40)/(60 + 40) = 4800/100 = 48.
-**explanation:** Equal-distance round trip → harmonic mean: 2ab/(a+b) = 4800/100 = 48 mph. Verify with d = 120: out 2 hr, back 3 hr → avg = 240/5 = 48.
-**mistake_a:** Estimated 44 from rough calc.
-**mistake_b:** Off by 2 → 46.
-**mistake_d:** Took arithmetic mean: (60 + 40)/2 = 50.
-**mistake_e:** Slip → 52.
-**common_trap:** Averaging speeds directly (50). Equal-distance means slow leg takes more time, pulling the average down.
-**takeaway:** Equal distance → harmonic mean. Slower leg dominates because it consumes more time. Always favor the slower side.
+**answer:** D
+**fastest_path:** Net rate = 1/8 − 1/12 = 1/24 per hr. Remaining = 3/4. Time = (3/4)/(1/24) = 18.
+**explanation:** Net fill rate = 1/8 − 1/12 = 3/24 − 2/24 = 1/24 per hour. Tank is 1/4 full, so 3/4 remains. Time = (3/4) ÷ (1/24) = 18 hr.
+**mistake_a:** Ignored pipe B's drain entirely and applied only A's fill rate to the remaining 3/4: (3/4) ÷ (1/8) = 6 hr.
+**mistake_b:** Ignored both the drain pipe and the pre-filled quarter, giving A's solo full-tank time: 8 hr.
+**mistake_c:** Misread "1/4 full" as "1/2 remaining" and applied the net rate: (1/2) ÷ (1/24) = 12 hr.
+**mistake_e:** Applied the net rate to the full tank (ignored the 1/4 already filled): 1 ÷ (1/24) = 24 hr.
+**common_trap:** Forgetting to subtract B's drain rate from A's fill rate — using only A's rate gives 6 hr, which understates the time.
+**takeaway:** Fill and drain simultaneously: net rate = fill rate − drain rate. Then time = remaining fraction ÷ net rate.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -614,7 +614,7 @@ Machines X and Y operate at constant rates. Working together, they complete a jo
 ---
 
 ## Q24
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Work Rates — Back-Solving One Solo Time
 
