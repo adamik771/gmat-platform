@@ -306,9 +306,7 @@ The GMAT frequently asks "must be" or "could be" questions about expressions bui
 
 - `2⁵⁰`: cycle (2, 4, 8, 6), period 4. `50 mod 4 = 2`. Second entry: 4.
 - `7³⁰`: cycle (7, 9, 3, 1), period 4. `30 mod 4 = 2`. Second entry: 9.
-- Sum of units digits: `4 + 9 = 13`. Units digit of the sum: 3. Wait — recompute. `4 + 9 = 13`, so the units digit is 3.
-
-(If the answer expects 0, I must have miscounted. Recomputing: the cycle for 2 is (2, 4, 8, 6), indexed by position mod 4 where position 1 ↔ 2¹ = 2. `50 mod 4`: `48 = 12 × 4`, so `50 mod 4 = 2`. Position 2 → units digit 4. For 7: cycle (7, 9, 3, 1), `30 mod 4 = 2`, position 2 → 9. So `4 + 9 = 13`, units digit 3. If your source answer says 0, re-check the exponents in the problem.)
+- Units digits add: `4 + 9 = 13`. Units digit of the sum: **3**.
 
 **Consecutive-integer identities.** The sum of five consecutive integers is 5 times the middle integer. More generally, the sum of any odd count of consecutive integers is `count × middle`. Sum of 5 consecutive integers = 85 → middle = 17 → largest = 19.
 
