@@ -2,10 +2,10 @@
 slug: combinatorics
 title: Combinatorics
 section: Quant
-estimated_minutes: 45
+estimated_minutes: 55
 prerequisites: []
 summary: |
-  Combinatorics on the GMAT is a small number of patterns repeated constantly. Learn the four decisions (order or no? repeats allowed? independent selections? forbidden arrangements?), memorize three formulas, and you'll solve every combinatorics question on test day in under two minutes.
+  Combinatorics on the GMAT is a small number of patterns repeated constantly. Learn to classify each problem by its structure — ordered or unordered, restricted or unrestricted, linear or circular, identical or distinct items — and the formula follows immediately. Master the decision tree and you'll solve every combinatorics question in under two minutes.
 sections:
   - id: pretest
     type: pretest
@@ -36,25 +36,27 @@ sections:
 
   - id: restrictions
     type: reading
-    title: "Restrictions — adjacent, forbidden, alternating"
+    title: "Restrictions — adjacent, forbidden, alternating, at-least-one"
     check_question_ids:
       - combinatorics-q8
       - combinatorics-q9
+      - combinatorics-q15
 
   - id: circular
     type: reading
-    title: "Circular arrangements"
+    title: "Circular arrangements — and circular with constraints"
     check_question_ids:
       - combinatorics-q11
 
   - id: repeats
     type: reading
-    title: "Repeated letters and multiset arrangements"
-    check_question_ids: []
+    title: "Repeated letters, multisets, and distributions"
+    check_question_ids:
+      - combinatorics-q27
 
   - id: decision
     type: summary
-    title: "The four-question decision tree"
+    title: "The classification-first decision tree"
     check_question_ids: []
 
 problem_sets:
@@ -84,6 +86,9 @@ problem_sets:
       - combinatorics-q10
       - combinatorics-q11
       - combinatorics-q12
+      - combinatorics-q24
+      - combinatorics-q27
+      - combinatorics-q29
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -97,6 +102,12 @@ problem_sets:
       - combinatorics-q16
       - combinatorics-q17
       - combinatorics-q18
+      - combinatorics-q19
+      - combinatorics-q21
+      - combinatorics-q22
+      - combinatorics-q25
+      - combinatorics-q26
+      - combinatorics-q28
 ---
 
 ## @enumeration
@@ -202,7 +213,7 @@ This pattern — pick separately from each group, multiply — appears in roughl
 
 ## @restrictions
 
-Restriction problems appear in roughly half of medium-to-hard combinatorics questions. Three techniques cover them all. Learn to identify which technique fires from a single phrase.
+Restriction problems appear in roughly half of medium-to-hard combinatorics questions. Four techniques cover them all. Learn to identify which technique fires from a single phrase.
 
 ---
 
@@ -246,7 +257,35 @@ Counting "at least one" directly means splitting into separate cases (exactly 1,
 
 **Speed tip.** When you see "at least one" or "not all" in a combinatorics problem, write "Total − none" in your margin immediately. You'll reach the answer in two steps instead of four.
 
-> **Self-explanation prompt.** Why is "not adjacent" almost always faster via complement than by direct counting? If you can say "because adjacency is one clean glue-trick calculation, while non-adjacency requires tracking every valid gap pattern," you've understood why the complement is the default tool — not just a fallback.
+---
+
+**Technique 4: Alternating arrangements — define slots by type, fill each type independently.**
+
+**Mental model.** When two types of objects must alternate, the pattern structure (which positions get type A, which get type B) is determined first. Once the slot pattern is fixed, the objects of each type fill their own slots as an independent sub-problem. This decoupling is what makes the count clean.
+
+**Worked example.** 4 men and 4 women must sit in a row of 8 chairs, alternating by gender. How many arrangements?
+
+Two valid alternating patterns:
+- MWMWMWMW (men in seats 1, 3, 5, 7)
+- WMWMWMWM (women in seats 1, 3, 5, 7)
+
+For each pattern:
+- 4 men fill the 4 M-slots in 4! = 24 ways
+- 4 women fill the 4 W-slots in 4! = 24 ways
+- Per pattern: 24 × 24 = 576
+
+Two valid patterns: 2 × 576 = **1,152**.
+
+**Unequal group sizes.** If the groups differ in size, only one starting pattern may be geometrically valid. 3 men and 2 women in a row of 5, alternating:
+
+- MWMWM (men start): 3! × 2! = 6 × 2 = **12** arrangements
+- WMWMW (women start): impossible — needs 3 women for the W-slots, but only 2 exist
+
+Answer: 12.
+
+**Why trying to place one person at a time fails.** Tracking "who can go in which position" forces the constraint to bleed across every slot decision. Sorting by type — define all M-slots at once, define all W-slots at once, then fill each independently — eliminates that coupling entirely.
+
+> **Self-explanation prompt.** Before you move on, explain in one sentence: why is the "not adjacent" calculation (Technique 2) faster via complement than direct count, while alternating (Technique 4) is faster via slot assignment than complement? The answer reveals when each tool is appropriate: complement wins when the forbidden condition is compact; slot assignment wins when the allowed structure is regular.
 
 ## @circular
 
@@ -265,6 +304,17 @@ In a **circular arrangement**, there is no fixed starting position. Rotating eve
 Or equivalently: fix one person. Arrange the other 4 in the remaining seats: 4! = 24.
 
 **When circular doesn't apply.** If seats are distinguishable — a rectangular table with a "head" seat, a carnival ride where each car has a different view, a round table with numbered plaques — the positions are not equivalent. Use n! (standard permutations), not (n − 1)!.
+
+**Combining circular with the glue trick.** When a circular problem also requires two people to sit adjacent, apply the glue trick first to reduce the count, then apply the circular formula.
+
+**Worked example.** 7 people sit around a circular table. Two specific people — Alice and Bob — must sit next to each other. How many distinct arrangements?
+
+- Glue Alice and Bob into one block → 6 units (the block + 5 others) arranged in a circle.
+- Circular arrangements of 6 distinct units: (6 − 1)! = 5! = 120.
+- Internal ordering of the block (Alice-Bob vs Bob-Alice): × 2.
+- Total: 120 × 2 = **240**.
+
+**The order of operations.** Glue first (to reduce the problem size), then apply the circular formula (to the already-reduced count). Students who apply (n − 1)! to all 7 people first, then try to account for adjacency, end up double-counting.
 
 **Bracelets and necklaces (rare on GMAT).** Circular *and* flippable — the mirror image counts as the same arrangement. Formula: (n − 1)! / 2. This is a 745+ question. If you see it under time pressure, estimate and move on.
 
@@ -301,30 +351,65 @@ Start with 11! = 39,916,800 (if all were distinct). Divide by 4! twice (for I's 
 - Two pairs: n! / (2! × 2!)
 - Binary strings (k items of type A, rest of type B): C(n, k)
 
-> **Recall check.** Without looking: state the multiset formula. Then apply it: how many distinct arrangements does BANANA have? (6 letters: 3 A's, 2 N's, 1 B. Answer: 6! / (3! × 2! × 1!) = 720 / 12 = 60.) Write the setup before doing any arithmetic — the formula, not the number, is what you need to have cold.
+---
+
+**Distributing identical items — stars and bars.**
+
+A different type of "identical items" problem: instead of arranging in a row, you're distributing n **identical** items among k **distinct** recipients.
+
+**Mental model.** Imagine n stars in a row with k − 1 dividers placed among them. Each gap (before the first divider, between consecutive dividers, after the last divider) represents one recipient's share. Every way to place the dividers gives one valid distribution. The number of arrangements of n stars and (k − 1) dividers among (n + k − 1) total positions is C(n + k − 1, k − 1).
+
+**The formula.** Distribute n identical items among k distinct recipients (each recipient may get 0):
+
+**C(n + k − 1, k − 1)**
+
+**Worked example.** Distribute 8 identical candies among 3 distinct children (a child can get 0).
+
+    C(8 + 3 − 1, 3 − 1) = C(10, 2) = 45
+
+**"At least one each" variant.** Give each recipient 1 first (uses k items), then distribute the remaining n − k freely:
+
+**C((n − k) + k − 1, k − 1) = C(n − 1, k − 1)**
+
+**Worked example.** Distribute 10 identical candies among 4 distinct children, each child must receive at least 1.
+
+Give each child 1 candy (uses 4). Freely distribute remaining 6 among 4 children: C(6 + 3, 3) = C(9, 3) = **84**.
+
+**When stars and bars appears on the GMAT.** The problem will say something like "distribute n identical items among k groups" or "how many ways can you put n indistinguishable balls into k labeled boxes." It almost never uses the phrase "stars and bars." Recognize it by the structure: identical items, distinct recipients, non-negative amounts.
+
+> **Recall check.** Without looking: state the multiset formula for arrangements. Then apply it: how many distinct arrangements does BANANA have? (6 letters: 3 A's, 2 N's, 1 B. Answer: 6! / (3! × 2! × 1!) = 720 / 12 = 60.) Write the setup before doing any arithmetic — the formula, not the number, is what you need to have cold.
+
+> **Self-explanation prompt.** Why does placing k − 1 dividers among n stars give C(n + k − 1, k − 1) arrangements? If you can say "because we're choosing which k − 1 of the n + k − 1 positions become dividers, and the rest become stars," the formula is a choice problem in disguise — not a separate rule to memorize.
 
 ## @decision
 
-Every combinatorics question on the GMAT reduces to four decisions. The formula is never your first step — classification is.
+Every combinatorics question on the GMAT reduces to a classification problem. The formula is never your first step — identifying the structure is.
 
-**Key takeaway.** Students who reach for a formula first misapply it at least 30% of the time on unfamiliar problems. Students who classify first almost never do. Run the four questions below before you write a single number.
+**Key takeaway.** Students who reach for a formula first misapply it at least 30% of the time on unfamiliar problems. Students who classify first almost never do. Run the five questions below before you write a single number.
 
 **1. Does order matter?**
 - **Yes** → permutation (P formula, or slot-by-slot multiplication)
 - **No** → combination (C formula)
 
-**2. Are there repeated or identical objects?**
-- **Yes** → divide by the factorial of each repeated group
+**2. Are there repeated or identical objects in the arrangement?**
+- **Yes (arrangement)** → divide by the factorial of each repeated group
+- **Yes (distribution of identical items)** → stars and bars: C(n + k − 1, k − 1)
 - **No** → use P or C directly
 
-**3. Is there a constraint?**
+**3. Is there a constraint on placement?**
 - **Must be adjacent** → glue trick
 - **Not adjacent / forbidden** → complement (total − adjacent)
 - **At least one** → complement (total − none)
+- **Must alternate** → define slot patterns first, fill each type independently; count valid starting patterns
 
 **4. Is the arrangement circular or linear?**
 - **Circular, indistinguishable seats** → (n − 1)!
+- **Circular with adjacency constraint** → glue first, then (n − 1)! for reduced count, × internal block orderings
 - **Linear, or seats are distinguishable** → n! or P formula
+
+**5. Are there multiple independent groups to select from?**
+- **Select X from group A AND Y from group B** → C(nA, X) × C(nB, Y), multiply
+- **At least one from each of k groups** → enumerate all valid split sizes, compute each as a product of combinations, then add
 
 **Pattern table — know these on sight:**
 
@@ -335,10 +420,14 @@ Every combinatorics question on the GMAT reduces to four decisions. The formula 
 | "Exactly X of type A and Y of type B" | Product of combinations | C(nA, X) × C(nB, Y) |
 | "At least 1 of type A" | Complement | Total − (none of A) |
 | "Must sit / stand together" | Glue trick | Arrange block + others, × internal orderings |
+| "Must alternate (two groups)" | Alternating | Count valid patterns × (groupA)! × (groupB)! |
 | "Round table of n" | Circular | (n − 1)! |
+| "Circular table, must be adjacent" | Glue then circular | (n − 2)! × k! (for k-person block) |
 | "Letters of [repeated word]" | Multiset | n! / (r₁! × r₂! × …) |
+| "Distribute n identical among k groups" | Stars and bars | C(n + k − 1, k − 1) |
 | "Every pair plays once" / round-robin | Combination of 2 | C(n, 2) |
+| "At least 1 from each of k distinct groups" | Enumerate valid splits | Sum of C(n₁, k₁) × C(n₂, k₂) × … |
 
-**What to do next.** Work the problem sets below in order — easy, then medium, then hard. For every question you miss, write one sentence identifying *which* of the four classification questions you answered wrong. That diagnostic is more valuable than re-reading the chapter. Any pattern that still trips you up after two problem-set attempts belongs in your error log under "Strategy" or "Conceptual" — those tags will route it back into your spaced-review queue.
+**What to do next.** Work the problem sets below in order — easy, then medium, then hard. For every question you miss, write one sentence identifying *which* of the five classification questions you answered wrong. That diagnostic is more valuable than re-reading the chapter. Any pattern that still trips you up after two problem-set attempts belongs in your error log under "Strategy" or "Conceptual" — those tags will route it back into your spaced-review queue.
 
-Once you've worked through 15–20 questions with this table visible, close it. The goal is automatic classification, not table lookup. The students who score 700+ on combinatorics aren't faster at arithmetic — they've drilled the four questions until they run in six seconds without conscious effort.
+Once you've worked through 15–20 questions with this table visible, close it. The goal is automatic classification, not table lookup. The students who score 700+ on combinatorics aren't faster at arithmetic — they've drilled the five questions until they run in six seconds without conscious effort.
