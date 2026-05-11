@@ -5,7 +5,7 @@ section: Quant
 estimated_minutes: 45
 prerequisites: []
 summary: |
-  Combinatorics on the GMAT is a small number of patterns repeated constantly. Learn the four decisions (order or no? repeats allowed? independent selections? forbidden arrangements?), memorize three formulas, and you'll solve every combinatorics question on test day in under two minutes.
+  Combinatorics on the GMAT is a small number of patterns repeated constantly. Learn four decisions — does order matter? are there identical objects? is there a constraint? is it circular or linear? — and the question solves itself. Memorize n!, P(n,k), and C(n,k), internalize the glue trick and complement, and every combinatorics question on test day takes under two minutes.
 sections:
   - id: pretest
     type: pretest
@@ -50,7 +50,9 @@ sections:
   - id: repeats
     type: reading
     title: "Repeated letters and multiset arrangements"
-    check_question_ids: []
+    check_question_ids:
+      - combinatorics-q27
+      - combinatorics-q13
 
   - id: decision
     type: summary
@@ -84,6 +86,7 @@ problem_sets:
       - combinatorics-q10
       - combinatorics-q11
       - combinatorics-q12
+      - combinatorics-q27
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -266,6 +269,14 @@ Or equivalently: fix one person. Arrange the other 4 in the remaining seats: 4! 
 
 **When circular doesn't apply.** If seats are distinguishable — a rectangular table with a "head" seat, a carnival ride where each car has a different view, a round table with numbered plaques — the positions are not equivalent. Use n! (standard permutations), not (n − 1)!.
 
+**Worked example (distinguishable seats).** A rectangular dinner table has one chair marked "host." Five people (including the host) are seated around it. How many distinct arrangements?
+
+The host's chair is uniquely labeled — it anchors the arrangement the same way seat #1 does in a row. This is a linear seating problem with 5 distinct positions. Answer: 5! = **120**.
+
+Contrast: an unlabeled round table, same 5 people, no special seat → (5 − 1)! = 24. The single labeled seat restores one degree of freedom and multiplies the count by 5.
+
+**Trap to watch.** The test says "round table" and students reflexively apply (n − 1)!. Read for anything that uniquely identifies one position: "host chair," "seat facing the door," "seat with the window view," or a role like "speaker's seat." One labeled seat converts the problem to linear. If you see "round" alongside any uniquely-identified seat, use n!, not (n − 1)!.
+
 **Bracelets and necklaces (rare on GMAT).** Circular *and* flippable — the mirror image counts as the same arrangement. Formula: (n − 1)! / 2. This is a 745+ question. If you see it under time pressure, estimate and move on.
 
 > **Self-explanation prompt.** Why is the formula (n − 1)! rather than n!? If you can say "because n rotations of any arrangement all describe the same circular seating, so we divide n! by n — which gives (n − 1)!," you own the derivation and won't misapply it to problems with distinguishable seats.
@@ -301,7 +312,11 @@ Start with 11! = 39,916,800 (if all were distinct). Divide by 4! twice (for I's 
 - Two pairs: n! / (2! × 2!)
 - Binary strings (k items of type A, rest of type B): C(n, k)
 
-> **Recall check.** Without looking: state the multiset formula. Then apply it: how many distinct arrangements does BANANA have? (6 letters: 3 A's, 2 N's, 1 B. Answer: 6! / (3! × 2! × 1!) = 720 / 12 = 60.) Write the setup before doing any arithmetic — the formula, not the number, is what you need to have cold.
+**Trap to watch.** The most common error is forgetting to account for *all* repeated groups. In MISSISSIPPI, students often catch the 4 S's and 4 I's but miss the 2 P's — overcounting by a factor of 2 and landing on 69,300 instead of 34,650. Before writing any factorials, list every distinct letter (or object type) and its count. A group of size 1 contributes 1! = 1 to the denominator and doesn't change the answer — but writing it forces you to check every group is accounted for.
+
+> **Self-explanation prompt.** Before the check questions: why does the denominator include *only the repeated group sizes*, not all n letters? If you can say "because a lone item can't be rearranged with itself — 1! = 1 — so it contributes nothing to the overcounting we need to remove," you've understood the formula and won't add unnecessary factorial terms to the denominator.
+
+> **Recall check.** Without looking: state the multiset formula. Then apply it: how many distinct arrangements does BANANA have? (6 letters: 3 A's, 2 N's, 1 B → 6! / (3! × 2!) = 720 / 12 = 60.) Write the full denominator before doing any arithmetic — the setup is the skill, not the number.
 
 ## @decision
 
@@ -339,6 +354,8 @@ Every combinatorics question on the GMAT reduces to four decisions. The formula 
 | "Letters of [repeated word]" | Multiset | n! / (r₁! × r₂! × …) |
 | "Every pair plays once" / round-robin | Combination of 2 | C(n, 2) |
 
-**What to do next.** Work the problem sets below in order — easy, then medium, then hard. For every question you miss, write one sentence identifying *which* of the four classification questions you answered wrong. That diagnostic is more valuable than re-reading the chapter. Any pattern that still trips you up after two problem-set attempts belongs in your error log under "Strategy" or "Conceptual" — those tags will route it back into your spaced-review queue.
+**What to do next.** Work the problem sets in order — easy, then medium, then hard. For every question you miss, write one sentence identifying which of the four classification questions you answered wrong. "I used the wrong formula" is not a diagnosis. "I failed to ask whether the seats were distinguishable" is.
 
-Once you've worked through 15–20 questions with this table visible, close it. The goal is automatic classification, not table lookup. The students who score 700+ on combinatorics aren't faster at arithmetic — they've drilled the four questions until they run in six seconds without conscious effort.
+Any pattern that trips you up across two attempts belongs in your error log under "Strategy" (wrong technique for the scenario) or "Conceptual" (misunderstood the underlying rule). Both tags route the question back into your spaced-review queue, so each tagged mistake actively reduces future errors on the same pattern.
+
+Once you've worked through 15–20 questions with this table visible, close it. The goal is automatic classification — four decisions in six seconds, no table needed. Students who score 700+ on combinatorics questions aren't doing faster arithmetic; they've eliminated the classification step from their cognitive load entirely. That's what turns a 90-second problem into a 45-second one.
