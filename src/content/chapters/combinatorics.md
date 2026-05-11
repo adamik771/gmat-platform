@@ -5,7 +5,7 @@ section: Quant
 estimated_minutes: 45
 prerequisites: []
 summary: |
-  Combinatorics on the GMAT is a small number of patterns repeated constantly. Learn the four decisions (order or no? repeats allowed? independent selections? forbidden arrangements?), memorize three formulas, and you'll solve every combinatorics question on test day in under two minutes.
+  Combinatorics on the GMAT is a small number of patterns repeated constantly. Learn four decisions — does order matter? are there identical objects? is there a constraint? is it circular or linear? — and the question solves itself. Memorize n!, P(n,k), and C(n,k), internalize the glue trick and complement, and every combinatorics question on test day takes under two minutes.
 sections:
   - id: pretest
     type: pretest
@@ -50,7 +50,9 @@ sections:
   - id: repeats
     type: reading
     title: "Repeated letters and multiset arrangements"
-    check_question_ids: []
+    check_question_ids:
+      - combinatorics-q27
+      - combinatorics-q13
 
   - id: decision
     type: summary
@@ -84,6 +86,7 @@ problem_sets:
       - combinatorics-q10
       - combinatorics-q11
       - combinatorics-q12
+      - combinatorics-q27
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -101,177 +104,244 @@ problem_sets:
 
 ## @enumeration
 
-Enumeration means **writing out every possibility and counting them**. It sounds too primitive for the GMAT, but it's the foundation every formula is built on — and for small sets (3, 4, maybe 5 objects) it's often the fastest approach.
+Enumeration means **writing out every possibility and counting them**. It sounds primitive, but it's the foundation every combinatorics formula is built on — and for small sets of 3 or 4 objects, it's often the fastest approach on the GMAT.
 
-**Mental model.** Counting problems all reduce to two questions: does order matter, and are repeats allowed? Permutations vs. combinations vs. arrangements vs. multinomial — every formula is a consequence of those two answers. If you find yourself reaching for a formula before classifying the problem, you'll reach for the wrong one.
+**Mental model.** Before reaching for any formula, answer two questions: *does order matter?* and *are repeats allowed?* Every formula in this chapter — permutations, combinations, multisets — is a shortcut for enumeration under specific answers to those two questions. Skipping the classification step and jumping to a formula is the single most common combinatorics mistake on the GMAT.
 
-**Example.** Three marbles — blue, gray, green — line up on a shelf. How many orders are possible?
+**Worked example.** Three awards — gold, silver, bronze — are given to three students (Ana, Ben, Cal). Each student gets exactly one award. How many assignments are possible?
 
-List them: **BGG** (wait — two gray?). Let me use B, G, R (blue, gray, green):
+List them systematically (who gets gold / silver / bronze):
 
-    BGR, BRG, GBR, GRB, RBG, RGB
+    Ana-Ben-Cal, Ana-Cal-Ben, Ben-Ana-Cal, Ben-Cal-Ana, Cal-Ana-Ben, Cal-Ben-Ana
 
-Six orders. You could have answered this without any formula — just carefully enumerate, count, done.
+Six assignments. No formula needed.
 
-**Why enumeration matters.** Every formula in this chapter is a *shortcut* for enumeration. If you understand why enumeration gives 6 for three distinct objects, you'll instantly see why the formula says **3!** — and you won't have to rely on memorizing which formula applies when.
+**Why this is 3! — derived, not memorized.** Count the choices position by position:
+- 3 choices for gold
+- 2 remaining for silver (one person is already assigned)
+- 1 remaining for bronze
 
-**The rule enumeration teaches.** For n distinct objects in a row:
-- n choices for the first position
-- n − 1 remaining for the second
-- n − 2 for the third
-- …down to 1 for the last
+Multiply: 3 × 2 × 1 = 6 = 3!
 
-Multiply all of them: n × (n − 1) × (n − 2) × … × 1 = **n!** (read "n factorial").
+Every additional position multiplies by one fewer because each choice removes one option from the pool. That's the logic behind every factorial, and it's the logic that lets you re-derive any permutation formula in 10 seconds when memory fails under pressure.
 
-*Memorize these:* 3! = 6, 4! = 24, 5! = 120, 6! = 720, 7! = 5040. They show up constantly. 8! is 40,320 — you won't compute it under time pressure, but you'll recognize it in an answer choice.
+*Memorize these — they appear constantly in answer choices:*
 
-> **Self-explanation prompt.** Before you look at the check question below, explain to yourself in one sentence: *why* does each additional object multiply the total by one more than the last multiplier? If you can articulate it, you've internalized the idea.
+| n | n! |
+|---|---|
+| 3 | 6 |
+| 4 | 24 |
+| 5 | 120 |
+| 6 | 720 |
+| 7 | 5040 |
+
+> **Self-explanation prompt.** Without looking above: why does the count for n objects equal n × (n − 1) × … × 1 rather than something else? If you can say "because each position has one fewer available choice than the last," you've understood the mechanism — and you own it rather than just memorizing it.
 
 ## @permutations
 
-A **permutation** is an arrangement where **order matters**. "Who got first, second, and third place" is a permutation. "Who's on the team" is not.
+A **permutation** is an arrangement where **order matters**. President and VP are different roles — swapping the two people creates a different outcome.
 
-**Example.** From 7 candidates, a president and a vice-president are chosen. How many outcomes?
+**Mental model.** Ask one question: *if I swap two of the selected people, does that create a different outcome?* If yes, it's a permutation. If no (e.g., all three are just "committee members"), it's a combination. That single question resolves every P-vs-C ambiguity on the GMAT.
 
-- 7 choices for president
-- 6 remaining choices for VP
+**Worked example.** From 7 job candidates, a CFO and a COO are hired. How many outcomes?
+
+The roles are distinct — CFO is not COO — so swapping two candidates gives a different result. Count slot by slot:
+- 7 choices for CFO
+- 6 remaining for COO
 - 7 × 6 = **42**
 
-That's a permutation of 2 from 7, written **P(7, 2)** or **⁷P₂**. The general formula:
+This is **P(7, 2)**, a permutation of 2 chosen from 7.
 
-**P(n, k) = n! / (n − k)!**
+**The formula.** P(n, k) = n! / (n − k)!
 
-Let's sanity-check: P(7, 2) = 7! / 5! = (7 × 6 × 5!) / 5! = 7 × 6 = 42. ✓
+Verify: P(7, 2) = 7! / 5! = (7 × 6 × 5!) / 5! = 7 × 6 = 42. The (n − k)! cancels the factorial tail of the unchosen objects — we don't care how the leftover 5 candidates would order themselves.
 
-**Why the formula works.** n! arranges ALL n objects. But we only want k of them. The (n − k)! in the denominator cancels out the "tail" arrangements of the objects we didn't pick — we don't care how the leftover 5 candidates order themselves.
+**Worked example.** How many 3-digit PIN codes can be formed from the digits 1–5 with no digit repeated?
 
-**Quick test to know you're in permutation-land:** ask yourself, "*if I swap two specific people, is that a different outcome?*" If yes (e.g., Ana-president-Ben-VP vs Ben-president-Ana-VP), it's a permutation. If no (e.g., both are just "on the committee"), it's a combination.
+132 and 312 are different PINs, so order matters. Slot by slot: 5 × 4 × 3 = **60**.
 
-**Special case — all n at once.** When k = n, P(n, n) = n! / 0! = n! / 1 = n!. Reassuring: picking all 7 candidates in order is just arranging 7 things, which is 7! = 5040.
+Check: P(5, 3) = 5! / 2! = 120 / 2 = 60. ✓
 
-**Trap to watch.** The GMAT loves to write a problem that sounds like a permutation but is actually a combination. "A committee of 3 is chosen from 10" is C(10, 3). "A president, VP, and treasurer are chosen from 10" is P(10, 3) = 720, six times larger. The word that usually tips you off: distinct roles named = permutation.
+**Trap to watch.** Named distinct roles signal permutations. Unnamed equal roles signal combinations. "A president, VP, and treasurer from 10 people" is P(10, 3) = 720. "A committee of 3 from 10 people" is C(10, 3) = 120. That's a factor of 6 difference — the test puts both in the answer choices. The word *committee* is almost always a combination flag.
+
+> **Self-explanation prompt.** State the P(n, k) formula from memory, then explain in one sentence why the denominator is (n − k)! rather than k!. If you can articulate the "cancel the tail" reasoning, you won't confuse P and C formulas under pressure.
+
+> **Recall check.** Without looking: how many ways can gold, silver, and bronze medals be awarded to 8 athletes? Set up and compute: 8 × 7 × 6 = 336 = P(8, 3). If you had to look up the slot-multiplication approach, re-read the example above and try once more in 5 minutes.
 
 ## @combinations
 
-A **combination** is a selection where **order doesn't matter**. "Which 3 people make the team" is a combination. The same three people in any order is the same team.
+A **combination** is a selection where **order doesn't matter**. The same three people in any order form the same team.
 
-**Formula:**
+**Mental model.** Every combination is a permutation with the overcounting divided out. The same k objects can be arranged k! different ways — but for combinations, all those arrangements are the same selection. So C(n, k) = P(n, k) ÷ k!.
 
-**C(n, k) = n! / (k! × (n − k)!)**
+**The formula.** C(n, k) = n! / (k! × (n − k)!)
 
-Also written **ⁿCₖ** or **(n choose k)**.
+Also written ⁿCₖ or (n choose k).
 
-**Example.** A team of 3 is picked from 6 students. How many possible teams?
+**Worked example.** A team of 3 is picked from 6 students. How many possible teams?
 
-- If order mattered: 6 × 5 × 4 = 120
-- But order doesn't matter, so we've overcounted — each team of 3 was counted 3! = 6 times (once for each ordering of the same three people)
-- Divide: 120 / 6 = **20**
+- If order mattered: P(6, 3) = 6 × 5 × 4 = 120
+- Each team of 3 was counted 3! = 6 times (Ana-Ben-Cal, Ana-Cal-Ben, Ben-Ana-Cal…)
+- Divide out the overcount: 120 / 6 = **20**
 
 Check: C(6, 3) = 6! / (3! × 3!) = 720 / 36 = 20. ✓
 
-**Why C(n, k) = P(n, k) / k!.** Every combination corresponds to k! permutations of the same k objects. Dividing the permutation count by k! strips off the ordering.
+**Symmetry shortcut.** C(n, k) = C(n, n − k). Choosing 3 from 6 is the same as choosing which 3 to *exclude*. This saves real work: C(10, 7) = C(10, 3) = 120. Whenever k is closer to n than to 0, flip it.
 
-**Symmetry trick.** C(n, k) = C(n, n − k). Choosing 3 of 6 is equivalent to *not* choosing the other 3. Useful for skipping arithmetic: C(10, 7) = C(10, 3) = 120. Mentally flip to the smaller k.
-
-**Quick-reference values you should know cold:**
+**Quick-reference values — memorize these:**
 - C(n, 0) = C(n, n) = 1
 - C(n, 1) = C(n, n − 1) = n
-- C(n, 2) = n(n − 1) / 2
+- C(n, 2) = n(n − 1) / 2 (the number of distinct pairs from n objects)
 
-**The "exactly X of type A and Y of type B" pattern.** When a problem says "exactly 2 men and 1 woman from 5 men and 4 women," pick independently from each group and multiply:
+**Worked example — the "type A and type B" pattern.** "Exactly 2 men and 1 woman from a group of 5 men and 4 women."
+
+Select from each group independently, then multiply:
 
     C(5, 2) × C(4, 1) = 10 × 4 = 40
 
-This shows up more than any other combination pattern — probably 30% of GMAT combinatorics questions involve some version of it.
+This pattern — pick separately from each group, multiply — appears in roughly a third of all GMAT combinatorics questions. Recognize it on sight.
 
-> **Recall check.** Without peeking: state the formulas for P(n, k) and C(n, k). Then state the symmetry identity C(n, k) = C(n, ?). Now compute, in your head, C(10, 7). If you computed 10!/(7!3!) = 120 the long way, you missed the shortcut — C(10, 7) = C(10, 3) = 120 with less arithmetic. Retrieving the formulas *and* the symmetry in the same breath is how you wire them together in long-term memory.
+> **Recall check.** Without looking: (1) state the formula for C(n, k); (2) write C(n, 2) as a simple expression without factorials; (3) compute C(10, 7) using the symmetry shortcut. Then try: "5 friends need to pick 2 people to present at a meeting — how many ways?" Answer: C(5, 2) = 10. If any step required looking back, re-read and retry in 5 minutes. Retrieving formula + symmetry + application in sequence is how they wire together in long-term memory.
 
 ## @restrictions
 
-"In how many arrangements of the letters in LESSON are the two S's next to each other?" That's a restriction problem. The GMAT loves them.
+Restriction problems appear in roughly half of medium-to-hard combinatorics questions. Three techniques cover them all. Learn to identify which technique fires from a single phrase.
 
-**The glue trick — for adjacency restrictions.** When specific objects MUST be adjacent, **treat them as a single glued block**, arrange the block plus the remaining objects, then multiply by internal orderings of the block.
+---
 
-LESSON has 6 letters (L, E, S, S, O, N). Glue the two S's into an "SS" block. Now arrange 5 items (SS, L, E, O, N) in a row: 5! = 120. The two S's inside the block are identical, so no extra multiplier. Answer: **120**.
+**Technique 1: The glue trick — "must be adjacent."**
 
-If the glued items are *distinct* (e.g., two named people), multiply by 2! for the internal ordering. Six people in a row with Ana and Ben adjacent: treat Ana-Ben as a block, arrange 5 items (5! = 120), then × 2 for AB vs BA inside the block = 240.
+**Mental model.** Gluing two objects into one block reduces the arrangement size by 1. The block's internal order is a separate sub-problem — count it, then multiply.
 
-**The complement trick — for "not adjacent," "at least one," "no two together."** Don't count the hard condition directly. Count the total, count the forbidden version, subtract.
+**Worked example.** In how many arrangements of LESSON do the two S's appear next to each other?
 
-Six people in a row, Ana and Ben NOT adjacent:
-- Total arrangements: 6! = 720
-- Adjacent arrangements: (block of 5) × 5! × 2 = 240
+LESSON has 6 letters: L, E, S, S, O, N.
+
+- Glue the two S's into one "SS" block. Now arrange 5 items: {SS, L, E, O, N}. Count: 5! = 120.
+- The two S's are identical, so no internal multiplier.
+- Answer: **120**.
+
+If the two glued items are *distinct* (e.g., two named people who must sit together), multiply by 2! for the internal AB vs BA ordering. Six people in a row with Ana and Ben adjacent: 5! × 2 = **240**.
+
+---
+
+**Technique 2: The complement — "not adjacent" or any forbidden arrangement.**
+
+**Mental model.** The complement is your shortcut when the forbidden condition is one clean calculation but the allowed condition has multiple sub-cases. Total − forbidden = allowed.
+
+**Worked example.** Six people in a row — Ana and Ben must *not* be adjacent.
+
+- Total: 6! = 720
+- Adjacent (glue trick): 5! × 2 = 240
 - Not adjacent: 720 − 240 = **480**
 
-**"At least one" problems.** "At least one" is almost always faster via complement: count "none" and subtract from total.
+---
 
-Example: A committee of 3 is picked from 5 men and 4 women. How many committees have at least 1 woman?
+**Technique 3: "At least one" — almost always use complement.**
+
+Counting "at least one" directly means splitting into separate cases (exactly 1, exactly 2, exactly 3…) and summing them. The complement collapses it to two steps.
+
+**Worked example.** A committee of 3 is chosen from 5 men and 4 women. How many committees contain at least 1 woman?
+
 - Total committees: C(9, 3) = 84
-- Committees with no women: C(5, 3) = 10
-- At least 1 woman: 84 − 10 = 74
+- Committees with *no* women: C(5, 3) = 10
+- At least 1 woman: 84 − 10 = **74**
 
-Trying to count "at least 1 woman" directly means splitting into cases (exactly 1, exactly 2, exactly 3) — slow and error-prone.
+**Speed tip.** When you see "at least one" or "not all" in a combinatorics problem, write "Total − none" in your margin immediately. You'll reach the answer in two steps instead of four.
+
+> **Self-explanation prompt.** Why is "not adjacent" almost always faster via complement than by direct counting? If you can say "because adjacency is one clean glue-trick calculation, while non-adjacency requires tracking every valid gap pattern," you've understood why the complement is the default tool — not just a fallback.
 
 ## @circular
 
-In a **circular arrangement** — people around a round table, beads on a bracelet, etc. — **rotations of the same arrangement count as identical**. There's no "seat #1" because every seat is equivalent.
+In a **circular arrangement**, there is no fixed starting position. Rotating every person one seat clockwise produces the same relative ordering — Ana still has Ben to her left, Cal to her right. There's no seat #1 to anchor the count.
 
-To strip out rotational duplicates: fix one object in place, then arrange the rest linearly.
+**Mental model.** Fix one person in place. This eliminates all rotational duplicates because every arrangement of the remaining (n − 1) people around the fixed anchor is genuinely distinct. You've converted a circular problem into a linear one of size n − 1.
 
-**Formula:** Circular arrangements of n = **(n − 1)!**
+**The formula.** Circular arrangements of n distinct objects = **(n − 1)!**
 
-**Example.** 5 people around a round table: (5 − 1)! = 4! = **24**, not 5! = 120.
+**Worked example.** 5 people are seated around a round table.
 
-**Why?** If you rotate any arrangement by one seat, you get the same *relative* ordering — Ana still has Ben to her left and Cal to her right. 5 different rotations all give the same circular arrangement, so 5! / 5 = 4! = 24.
+- If the seats were labeled (linear logic): 5! = 120
+- Each distinct circular arrangement appears 5 times — once per rotation
+- Circular count: 5! / 5 = 4! = **24**
 
-**Watch for distinguishable seats.** A head table with a specific "head" chair, a rectangular table where the ends differ, a round table with numbered chairs — those aren't truly circular. Use n! (normal permutations) if the seats are distinguishable.
+Or equivalently: fix one person. Arrange the other 4 in the remaining seats: 4! = 24.
 
-**Bracelets and necklaces** (rare on GMAT): circular AND flippable. Divide by 2 to account for mirror images. (n − 1)! / 2. If you see this, it's probably a 745+ question — take your best guess and move on if time is tight.
+**When circular doesn't apply.** If seats are distinguishable — a rectangular table with a "head" seat, a carnival ride where each car has a different view, a round table with numbered plaques — the positions are not equivalent. Use n! (standard permutations), not (n − 1)!.
+
+**Worked example (distinguishable seats).** A rectangular dinner table has one chair marked "host." Five people (including the host) are seated around it. How many distinct arrangements?
+
+The host's chair is uniquely labeled — it anchors the arrangement the same way seat #1 does in a row. This is a linear seating problem with 5 distinct positions. Answer: 5! = **120**.
+
+Contrast: an unlabeled round table, same 5 people, no special seat → (5 − 1)! = 24. The single labeled seat restores one degree of freedom and multiplies the count by 5.
+
+**Trap to watch.** The test says "round table" and students reflexively apply (n − 1)!. Read for anything that uniquely identifies one position: "host chair," "seat facing the door," "seat with the window view," or a role like "speaker's seat." One labeled seat converts the problem to linear. If you see "round" alongside any uniquely-identified seat, use n!, not (n − 1)!.
+
+**Bracelets and necklaces (rare on GMAT).** Circular *and* flippable — the mirror image counts as the same arrangement. Formula: (n − 1)! / 2. This is a 745+ question. If you see it under time pressure, estimate and move on.
+
+> **Self-explanation prompt.** Why is the formula (n − 1)! rather than n!? If you can say "because n rotations of any arrangement all describe the same circular seating, so we divide n! by n — which gives (n − 1)!," you own the derivation and won't misapply it to problems with distinguishable seats.
 
 ## @repeats
 
-When some objects are **identical**, straight factorial overcounts because swapping identical objects produces the "same" arrangement.
+When some objects are **identical**, swapping them produces the same arrangement — but straight factorial treats them as different. The fix: divide by the factorial of each repeated group.
 
-**Formula:** For n objects with repetitions r₁, r₂, …, rₖ (where r₁ + r₂ + … = n):
+**Mental model.** Start with n! as if every object were distinct. Then collapse: for each group of r identical objects, those r items can be rearranged r! ways among themselves, every one producing the same outcome. Divide by r! to remove those false "different" arrangements.
+
+**The formula.** For n objects with repeated groups of sizes r₁, r₂, …, rₖ:
 
 **n! / (r₁! × r₂! × … × rₖ!)**
 
-**Example.** MISSISSIPPI has 11 letters: 1 M, 4 I's, 4 S's, 2 P's.
+**Worked example.** How many distinct arrangements of LESSON exist?
 
-    11! / (1! × 4! × 4! × 2!) = 39,916,800 / (1 × 24 × 24 × 2) = 39,916,800 / 1,152 = 34,650
+LESSON has 6 letters: L, E, S, S, O, N. One repeated group: 2 S's.
 
-**The shortcut mental model.** Start with "if all were distinct": 11! = 39,916,800. Then divide by the factorial of each repeated group to collapse arrangements that are actually identical.
+    6! / 2! = 720 / 2 = 360
 
-**Common cases to recognize:**
-- **Two letters repeat.** LETTER has 2 T's and 2 E's. 6! / (2! × 2!) = 720 / 4 = 180.
-- **Binary sequences.** "How many 7-character strings with exactly 3 A's and 4 B's?" = 7! / (3! × 4!) = 35 (this is C(7, 3) — choosing positions for the A's).
+**Worked example.** How many distinct arrangements of MISSISSIPPI exist?
 
-**Connection to combinations.** When you have only two kinds of objects, the multiset arrangement formula collapses into a combination. "How many arrangements of AAABBBB" = C(7, 3) = 35. Useful to internalize — it's the same calculation looked at two ways.
+11 letters: 1 M, 4 I's, 4 S's, 2 P's.
+
+    11! / (4! × 4! × 2!) = 39,916,800 / (24 × 24 × 2) = 34,650
+
+Start with 11! = 39,916,800 (if all were distinct). Divide by 4! twice (for I's and S's) and 2! once (for P's) to collapse the overcounting.
+
+**The connection to combinations.** When there are exactly two types of objects, the multiset formula collapses into a combination. "How many 7-character strings have exactly 3 A's and 4 B's?" = 7! / (3! × 4!) = C(7, 3) = 35. You're choosing which 3 positions receive the A. Internalize this connection — it's the same calculation viewed from two directions, and recognizing it saves arithmetic.
+
+**Common cases:**
+- One pair of identical items: n! / 2!
+- Two pairs: n! / (2! × 2!)
+- Binary strings (k items of type A, rest of type B): C(n, k)
+
+**Trap to watch.** The most common error is forgetting to account for *all* repeated groups. In MISSISSIPPI, students often catch the 4 S's and 4 I's but miss the 2 P's — overcounting by a factor of 2 and landing on 69,300 instead of 34,650. Before writing any factorials, list every distinct letter (or object type) and its count. A group of size 1 contributes 1! = 1 to the denominator and doesn't change the answer — but writing it forces you to check every group is accounted for.
+
+> **Self-explanation prompt.** Before the check questions: why does the denominator include *only the repeated group sizes*, not all n letters? If you can say "because a lone item can't be rearranged with itself — 1! = 1 — so it contributes nothing to the overcounting we need to remove," you've understood the formula and won't add unnecessary factorial terms to the denominator.
+
+> **Recall check.** Without looking: state the multiset formula. Then apply it: how many distinct arrangements does BANANA have? (6 letters: 3 A's, 2 N's, 1 B → 6! / (3! × 2!) = 720 / 12 = 60.) Write the full denominator before doing any arithmetic — the setup is the skill, not the number.
 
 ## @decision
 
-Every combinatorics question on the GMAT reduces to four decisions. Run through them in order:
+Every combinatorics question on the GMAT reduces to four decisions. The formula is never your first step — classification is.
+
+**Key takeaway.** Students who reach for a formula first misapply it at least 30% of the time on unfamiliar problems. Students who classify first almost never do. Run the four questions below before you write a single number.
 
 **1. Does order matter?**
 - **Yes** → permutation (P formula, or slot-by-slot multiplication)
 - **No** → combination (C formula)
 
-**2. Are there repeated/identical objects?**
+**2. Are there repeated or identical objects?**
 - **Yes** → divide by the factorial of each repeated group
-- **No** → straight factorial or permutation/combination formula
+- **No** → use P or C directly
 
-**3. Is there a constraint (adjacent, forbidden pair, alternating)?**
-- **Adjacent required** → glue trick
-- **Not adjacent / forbidden** → complement trick (total − forbidden)
-- **Alternating** → count per pattern, multiply by number of patterns
+**3. Is there a constraint?**
+- **Must be adjacent** → glue trick
+- **Not adjacent / forbidden** → complement (total − adjacent)
+- **At least one** → complement (total − none)
 
-**4. Is it circular or linear?**
-- **Circular with indistinguishable seats** → (n − 1)!
-- **Linear or distinguishable seats** → n!
+**4. Is the arrangement circular or linear?**
+- **Circular, indistinguishable seats** → (n − 1)!
+- **Linear, or seats are distinguishable** → n! or P formula
 
-That's the entire chapter's content in 8 lines. Memorize the decision tree — when you see a combinatorics question on the test, you're not guessing which formula applies, you're stepping through four yes/no questions to land on exactly one.
-
-**Common patterns to pattern-match on sight:**
+**Pattern table — know these on sight:**
 
 | Problem says | You're doing | Formula |
 |---|---|---|
@@ -279,9 +349,13 @@ That's the entire chapter's content in 8 lines. Memorize the decision tree — w
 | "Committee of k from n" | Combination | C(n, k) |
 | "Exactly X of type A and Y of type B" | Product of combinations | C(nA, X) × C(nB, Y) |
 | "At least 1 of type A" | Complement | Total − (none of A) |
-| "Must sit together" | Glue trick | Arrange block + others, then internal |
+| "Must sit / stand together" | Glue trick | Arrange block + others, × internal orderings |
 | "Round table of n" | Circular | (n − 1)! |
 | "Letters of [repeated word]" | Multiset | n! / (r₁! × r₂! × …) |
-| "Round-robin: every pair plays once" | Combination | C(n, 2) |
+| "Every pair plays once" / round-robin | Combination of 2 | C(n, 2) |
 
-When you finish the end-of-chapter sets below, keep this table open. By the time you've done 15-20 combinatorics questions with it at your elbow, you won't need it anymore.
+**What to do next.** Work the problem sets in order — easy, then medium, then hard. For every question you miss, write one sentence identifying which of the four classification questions you answered wrong. "I used the wrong formula" is not a diagnosis. "I failed to ask whether the seats were distinguishable" is.
+
+Any pattern that trips you up across two attempts belongs in your error log under "Strategy" (wrong technique for the scenario) or "Conceptual" (misunderstood the underlying rule). Both tags route the question back into your spaced-review queue, so each tagged mistake actively reduces future errors on the same pattern.
+
+Once you've worked through 15–20 questions with this table visible, close it. The goal is automatic classification — four decisions in six seconds, no table needed. Students who score 700+ on combinatorics questions aren't doing faster arithmetic; they've eliminated the classification step from their cognitive load entirely. That's what turns a 90-second problem into a 45-second one.
