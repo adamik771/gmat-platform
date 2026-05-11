@@ -26,6 +26,7 @@ import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
 } from "@/lib/keyboard"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 
 export interface SessionQuestion {
   id: string
@@ -1208,6 +1209,106 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+    // Standard GMAT score estimate: accuracy × 600 + 205, clamped [205, 805], snapped to nearest 10.
+    const estimatedScore = Math.round(Math.min(Math.max((accuracy / 100) * 600 + 205, 205), 805) / 10) * 10
+
+    // Separate wrong from correct so mistakes surface first.
+    const wrongItems = questions
+      .map((q, i) => ({ q, i }))
+      .filter(({ q, i }) => states[i].submitted && !isQuestionCorrect(q, states[i]))
+    const otherItems = questions
+      .map((q, i) => ({ q, i }))
+      .filter(({ q, i }) => !states[i].submitted || isQuestionCorrect(q, states[i]))
+
+    // Contextual next-step recommendation based on performance.
+    const chapterSlug = TOPIC_TO_CHAPTER[topic]
+    type NextStep = {
+      message: string
+      primaryLabel: string
+      primaryHref: string
+      secondaryLabel: string
+      secondaryHref: string
+    }
+    let nextStep: NextStep
+    if (accuracy < 60) {
+      nextStep = {
+        message: chapterSlug
+          ? `This accuracy points to a gap in the underlying concept. Study the chapter before retaking — repetition without understanding doesn't close the gap.`
+          : `This accuracy suggests gaps in the fundamentals. Review each mistake below, focusing on why the correct answer works — not just what it is.`,
+        primaryLabel: chapterSlug ? "Review the chapter" : "Tag mistakes",
+        primaryHref: chapterSlug ? `/chapters/${chapterSlug}` : "/error-log",
+        secondaryLabel: "Open error log",
+        secondaryHref: "/error-log",
+      }
+    } else if (accuracy < 80) {
+      nextStep = {
+        message: `Solid session. The ${wrongItems.length} mistake${wrongItems.length === 1 ? "" : "s"} below are your leverage — tagging the error type in your log is what turns a one-off miss into a closed pattern.`,
+        primaryLabel: "Open error log",
+        primaryHref: "/error-log",
+        secondaryLabel: "Spaced review",
+        secondaryHref: "/review",
+      }
+    } else {
+      nextStep = {
+        message: `Strong session. To ensure retention, test this skill under real time pressure — the GMAT penalizes accuracy that degrades on a full exam.`,
+        primaryLabel: "Take a mock exam",
+        primaryHref: "/mock",
+        secondaryLabel: "Spaced review",
+        secondaryHref: "/review",
+      }
+    }
+
+    function renderReviewRow(q: SessionQuestion, i: number, isLast: boolean) {
+      const state = states[i]
+      const isCorrect = isQuestionCorrect(q, state)
+      return (
+        <button
+          key={q.id}
+          onClick={() => {
+            goTo(i)
+            setShowResults(false)
+          }}
+          className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
+            !isLast ? "border-b border-white/[0.05]" : ""
+          }`}
+        >
+          <div className="flex items-center gap-3 min-w-0">
+            <div
+              className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+              style={{
+                backgroundColor: state.submitted
+                  ? isCorrect
+                    ? "rgba(62,207,142,0.1)"
+                    : "rgba(255,68,68,0.1)"
+                  : "rgba(255,255,255,0.04)",
+              }}
+            >
+              {state.submitted ? (
+                isCorrect ? (
+                  <Check className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
+                ) : (
+                  <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
+                )
+              ) : (
+                <span className="text-[10px] text-[#555555]">—</span>
+              )}
+            </div>
+            <div className="min-w-0">
+              <p className="text-xs text-[#555555]">
+                Q{i + 1} · {q.subtopic} · {q.difficulty}
+              </p>
+              <p className="text-sm text-[#F0F0F0] truncate">
+                {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
+              </p>
+            </div>
+          </div>
+          <span className="text-xs text-[#888888] flex-shrink-0 ml-3">
+            {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
+          </span>
+        </button>
+      )
+    }
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1226,6 +1327,7 @@ export default function SessionClient({
 
         <SaveStatusBanner status={saveStatus} onRetry={saveSession} />
 
+        {/* Stats */}
         <div
           className="p-6 rounded-xl border"
           style={{
@@ -1233,7 +1335,7 @@ export default function SessionClient({
             backgroundColor: "rgba(201,168,76,0.04)",
           }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             <div>
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Accuracy</p>
               <p className="text-3xl font-bold mt-2" style={{ color: "#C9A84C" }}>
@@ -1248,75 +1350,82 @@ export default function SessionClient({
               </p>
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-[#555555]">Total time</p>
+              <p className="text-[10px] uppercase tracking-widest text-[#555555]">Time</p>
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
+            </div>
+            <div>
+              <p className="text-[10px] uppercase tracking-widest text-[#555555]">Est. score</p>
+              <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">
+                ~{estimatedScore}
+              </p>
             </div>
           </div>
         </div>
 
-        <div>
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
-            Review
-          </h2>
-          <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
-            {questions.map((q, i) => {
-              const state = states[i]
-              const isCorrect = isQuestionCorrect(q, state)
-              return (
-                <button
-                  key={q.id}
-                  onClick={() => {
-                    goTo(i)
-                    setShowResults(false)
-                  }}
-                  className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
-                    i < questions.length - 1 ? "border-b border-white/[0.05]" : ""
-                  }`}
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div
-                      className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{
-                        backgroundColor: state.submitted
-                          ? isCorrect
-                            ? "rgba(62,207,142,0.1)"
-                            : "rgba(255,68,68,0.1)"
-                          : "rgba(255,255,255,0.04)",
-                      }}
-                    >
-                      {state.submitted ? (
-                        isCorrect ? (
-                          <Check className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
-                        ) : (
-                          <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
-                        )
-                      ) : (
-                        <span className="text-[10px] text-[#555555]">—</span>
-                      )}
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-xs text-[#555555]">
-                        Question {i + 1} · {q.subtopic}
-                      </p>
-                      <p className="text-sm text-[#F0F0F0] truncate">
-                        {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
-                      </p>
-                    </div>
-                  </div>
-                  <span className="text-xs text-[#888888] flex-shrink-0 ml-3">
-                    {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
-                  </span>
-                </button>
-              )
-            })}
+        {/* Contextual next step */}
+        <div
+          className="p-5 rounded-xl border"
+          style={{
+            borderColor: "rgba(255,255,255,0.07)",
+            backgroundColor: "#111111",
+          }}
+        >
+          <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">What to do next</p>
+          <p className="text-sm text-[#C0C0C0] leading-relaxed mb-4">{nextStep.message}</p>
+          <div className="flex gap-3 flex-wrap">
+            <Link
+              href={nextStep.primaryHref}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-all hover:opacity-90"
+              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            >
+              {nextStep.primaryLabel}
+            </Link>
+            <Link
+              href={nextStep.secondaryHref}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border transition-colors hover:bg-white/[0.04]"
+              style={{ borderColor: "rgba(255,255,255,0.08)", color: "#888888" }}
+            >
+              {nextStep.secondaryLabel}
+            </Link>
           </div>
         </div>
+
+        {/* Review — mistakes first, then correct */}
+        {wrongItems.length > 0 && (
+          <div>
+            <h2 className="text-[10px] font-semibold uppercase tracking-widest mb-3" style={{ color: "#FF4444" }}>
+              Review these · {wrongItems.length}
+            </h2>
+            <div
+              className="rounded-xl border overflow-hidden"
+              style={{ borderColor: "rgba(255,68,68,0.15)", backgroundColor: "#111111" }}
+            >
+              {wrongItems.map(({ q, i }, idx) =>
+                renderReviewRow(q, i, idx === wrongItems.length - 1)
+              )}
+            </div>
+          </div>
+        )}
+
+        {otherItems.length > 0 && (
+          <div>
+            {wrongItems.length > 0 && (
+              <h2 className="text-[10px] font-semibold uppercase tracking-widest mb-3 text-[#555555]">
+                Correct · {otherItems.length}
+              </h2>
+            )}
+            <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
+              {otherItems.map(({ q, i }, idx) =>
+                renderReviewRow(q, i, idx === otherItems.length - 1)
+              )}
+            </div>
+          </div>
+        )}
 
         <div className="flex gap-3 flex-wrap">
           <Link
             href="/practice"
-            className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
-            style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
           >
             Back to Practice
           </Link>
@@ -1325,14 +1434,16 @@ export default function SessionClient({
               type="button"
               onClick={handleRebuildMix}
               disabled={rebuilding}
-              className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04] disabled:opacity-60"
+              className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 disabled:opacity-60"
+              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
               {rebuilding ? "Building new mix…" : "Build new mix"}
             </button>
           ) : (
             <Link
               href={`/practice/session/${slug}`}
-              className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
+              className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
+              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
               Retake
             </Link>
