@@ -26,6 +26,7 @@ import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
 } from "@/lib/keyboard"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 
 export interface SessionQuestion {
   id: string
@@ -1208,6 +1209,66 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+    const avgTimeMs = answeredCount > 0 ? Math.round(totalTime / answeredCount) : 0
+
+    const tier =
+      accuracy >= 85 ? "excellent"
+      : accuracy >= 70 ? "solid"
+      : accuracy >= 50 ? "building"
+      : "early"
+
+    const tierMessages: Record<string, string> = {
+      excellent: "Excellent accuracy. You are ready for harder questions or a mock section.",
+      solid: "Solid session. Review the missed questions, then keep going.",
+      building: "Good start. The chapter for this topic will close these gaps faster than repetition.",
+      early: "This topic needs more time. Work through the chapter before your next session.",
+    }
+
+    const GMAT_TARGET_MS = 120_000
+    const pacingNote =
+      avgTimeMs < 60_000
+        ? "Pacing was fast — verify each step before submitting."
+        : avgTimeMs <= GMAT_TARGET_MS
+        ? "Pacing was on target for GMAT."
+        : "Questions took longer than GMAT pace — timed practice will help."
+
+    const subtopicErrors: Record<string, { wrong: number; total: number }> = {}
+    questions.forEach((q, i) => {
+      const st = states[i]
+      if (!st.submitted) return
+      if (!subtopicErrors[q.subtopic]) subtopicErrors[q.subtopic] = { wrong: 0, total: 0 }
+      subtopicErrors[q.subtopic].total++
+      if (!isQuestionCorrect(q, st)) subtopicErrors[q.subtopic].wrong++
+    })
+    const weakestSubtopic = Object.entries(subtopicErrors)
+      .filter(([, v]) => v.wrong > 0)
+      .sort((a, b) => b[1].wrong / b[1].total - a[1].wrong / a[1].total)[0]
+
+    const chapterSlug = TOPIC_TO_CHAPTER[topic]
+
+    let nextStepText: string
+    let nextStepHref: string
+    let nextStepCta: string
+    if (accuracy >= 85) {
+      nextStepText =
+        "Your accuracy here is strong. Push further with a mock section or the hardest practice set."
+      nextStepHref = "/mock"
+      nextStepCta = "Take a mock section"
+    } else if (chapterSlug && accuracy < 70) {
+      nextStepText = `Work through the ${topic} chapter before your next session — structured reading closes gaps faster than repeated drilling.`
+      nextStepHref = `/chapters/${chapterSlug}`
+      nextStepCta = `Open ${topic} chapter`
+    } else if (chapterSlug) {
+      nextStepText = `Review the explanations below, then continue with the ${topic} chapter for a deeper look at the concepts.`
+      nextStepHref = `/chapters/${chapterSlug}`
+      nextStepCta = `Open ${topic} chapter`
+    } else {
+      nextStepText =
+        "Review each explanation carefully. Add the missed questions to your review queue so you see them again later."
+      nextStepHref = "/review"
+      nextStepCta = "Open review queue"
+    }
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1233,7 +1294,7 @@ export default function SessionClient({
             backgroundColor: "rgba(201,168,76,0.04)",
           }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-6">
             <div>
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Accuracy</p>
               <p className="text-3xl font-bold mt-2" style={{ color: "#C9A84C" }}>
@@ -1248,11 +1309,37 @@ export default function SessionClient({
               </p>
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-[#555555]">Total time</p>
-              <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
+              <p className="text-[10px] uppercase tracking-widest text-[#555555]">Avg per question</p>
+              <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(avgTimeMs)}</p>
+              <p className="text-[10px] text-[#555555] mt-1">{formatDuration(totalTime)} total</p>
             </div>
           </div>
+          <p className="text-sm text-[#C0C0C0] mt-5 pt-5 border-t border-white/[0.06]">
+            {tierMessages[tier]}
+          </p>
         </div>
+
+        {answeredCount > 0 && (
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex-1 px-4 py-3 rounded-xl border border-white/[0.06] bg-[#111111]">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1">Pacing</p>
+              <p className="text-sm text-[#C0C0C0]">{pacingNote}</p>
+            </div>
+            {weakestSubtopic && (
+              <div className="flex-1 px-4 py-3 rounded-xl border border-white/[0.06] bg-[#111111]">
+                <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1">
+                  Focus area
+                </p>
+                <p className="text-sm text-[#C0C0C0]">
+                  {weakestSubtopic[0]}{" "}
+                  <span className="text-[#888888]">
+                    — {weakestSubtopic[1].wrong}/{weakestSubtopic[1].total} wrong
+                  </span>
+                </p>
+              </div>
+            )}
+          </div>
+        )}
 
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
@@ -1295,7 +1382,13 @@ export default function SessionClient({
                       )}
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xs text-[#555555]">
+                      <p
+                        className="text-xs"
+                        style={{
+                          color:
+                            state.submitted && !isCorrect ? "#888888" : "#555555",
+                        }}
+                      >
                         Question {i + 1} · {q.subtopic}
                       </p>
                       <p className="text-sm text-[#F0F0F0] truncate">
@@ -1312,31 +1405,41 @@ export default function SessionClient({
           </div>
         </div>
 
-        <div className="flex gap-3 flex-wrap">
-          <Link
-            href="/practice"
-            className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
-            style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-          >
-            Back to Practice
-          </Link>
-          {isMixedReview ? (
-            <button
-              type="button"
-              onClick={handleRebuildMix}
-              disabled={rebuilding}
-              className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04] disabled:opacity-60"
-            >
-              {rebuilding ? "Building new mix…" : "Build new mix"}
-            </button>
-          ) : (
+        <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
+          <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">Next step</p>
+          <p className="text-sm text-[#C0C0C0] mb-4">{nextStepText}</p>
+          <div className="flex gap-3 flex-wrap">
             <Link
-              href={`/practice/session/${slug}`}
-              className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
+              href={nextStepHref}
+              className="px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
+              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Retake
+              {nextStepCta}
             </Link>
-          )}
+            <Link
+              href="/practice"
+              className="px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
+            >
+              Back to Practice
+            </Link>
+            {isMixedReview ? (
+              <button
+                type="button"
+                onClick={handleRebuildMix}
+                disabled={rebuilding}
+                className="px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04] disabled:opacity-60"
+              >
+                {rebuilding ? "Building new mix…" : "Build new mix"}
+              </button>
+            ) : (
+              <Link
+                href={`/practice/session/${slug}`}
+                className="px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
+              >
+                Retake
+              </Link>
+            )}
+          </div>
         </div>
         {rebuildError && (
           <p className="text-xs text-center" style={{ color: "#FF4444" }}>
