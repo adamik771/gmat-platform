@@ -141,23 +141,23 @@ If x² - 5x - 14 = 0, what is the product of the two solutions?
 **type:** Problem Solving
 **topic:** Functions
 
-If f(x) = 2x² - 3x + 1, what is the value of f(3) - f(1)?
+If f(x) = 2x² − 8x + 11, what is the minimum value of f(x)?
 
-- A) 8
-- B) 10
-- C) 12
-- D) 14
-- E) 16
+- A) −8
+- B) 2
+- C) 3
+- D) 5
+- E) 11
 
-**answer:** B
-**fastest_path:** f(3) = 2(9) − 9 + 1 = 10. f(1) = 2 − 3 + 1 = 0. Difference = 10.
-**explanation:** f(3) = 2(9) − 3(3) + 1 = 18 − 9 + 1 = 10. f(1) = 2(1) − 3(1) + 1 = 2 − 3 + 1 = 0. f(3) − f(1) = 10.
-**mistake_a:** Slip → 8 (likely arithmetic error in f(3) computation).
-**mistake_c:** Computed f(3) + f(1) instead of f(3) − f(1) → 10 + 0… no, but a likely sign-flip path: 2(9) − 3(3) − 1 = 8, then 8 + 4 → 12.
-**mistake_d:** Slip → 14.
-**mistake_e:** Computed f(3) but treated f(1) as 1 instead of 0 → 10 + 6, or skipped the subtraction entirely.
-**common_trap:** Arithmetic slip on f(3) = 18 − 9 + 1, especially flipping the order of operations on −3(3).
-**takeaway:** Functions: substitute, then simplify. Watch the *sign* on each term, especially the −3x.
+**answer:** C
+**fastest_path:** Complete the square: f(x) = 2(x − 2)² + 3. Minimum value is 3 at x = 2.
+**explanation:** Factor out the leading coefficient: f(x) = 2(x² − 4x) + 11. Complete the square inside the parentheses: x² − 4x = (x − 2)² − 4. So f(x) = 2[(x − 2)² − 4] + 11 = 2(x − 2)² − 8 + 11 = 2(x − 2)² + 3. Since 2(x − 2)² ≥ 0 for all x, the minimum is 3, achieved when x = 2. Verify: f(2) = 2(4) − 8(2) + 11 = 8 − 16 + 11 = 3. ✓ The vertex formula x = −b/(2a) = 8/4 = 2, then f(2) = 3, reaches the same answer in slightly fewer steps.
+**mistake_a:** Reported the b-coefficient (−8) as the answer — confused the coefficient of x with the minimum value.
+**mistake_b:** Reported the x-coordinate of the vertex (x = 2) instead of the y-value at the vertex. Common error: completed the square correctly but bubbled the input value, not the output.
+**mistake_d:** Evaluated f at a convenient integer near the vertex without completing the square: f(1) = 2 − 8 + 11 = 5 (or f(3) = 18 − 24 + 11 = 5). Got a local sample, not the true minimum.
+**mistake_e:** Reported the constant term c = 11, which is f(0) — the y-intercept — not the minimum.
+**common_trap:** Confusing the vertex x-coordinate with the minimum value, or treating the constant term as the minimum.
+**takeaway:** For f(x) = ax² + bx + c with a > 0, minimum value = f(−b/(2a)) = c − b²/(4a). Completing the square gives the vertex form f(x) = a(x − h)² + k where k is the minimum.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -267,7 +267,7 @@ If 4^(a+1) = 8^a, what is the value of a?
 ---
 
 ## Q11
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Functions
 
@@ -285,7 +285,7 @@ For all positive integers n, let f(n) = n² - n. What is the value of f(f(3))?
 **mistake_a:** Stopped at the inner computation: f(3) = 6 — bubbled the intermediate value.
 **mistake_b:** Computed f(3) × 2 = 12 (multiplied instead of composing).
 **mistake_d:** Computed f(7) = 49 − 7 = 42 — wrong inner argument.
-**mistake_e:** Computed (f(3))² − f(3) = 36 − 6 = 30 ... wait, that gives 30 (correct). Or f(3)² − 1 = 35; 7² + 7 = 56.
+**mistake_e:** Misread f(n) as n² − 1 instead of n² − n for the inner call: f(3) = 9 − 1 = 8, then applied f correctly to 8: f(8) = 64 − 8 = 56.
 **common_trap:** Stopping at the inner result and bubbling — composition requires both layers.
 **takeaway:** f(f(x)) means apply f twice: compute f(x) first, then apply f to that result.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -505,7 +505,7 @@ If f(x) = ax + b where a and b are constants, what is the value of f(5)?
 ---
 
 ## Q20
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Algebra Translation
 
@@ -547,10 +547,10 @@ Let x, y, and z be positive real numbers with x + y + z = 12 and xy + yz + zx = 
 **answer:** A
 **fastest_path:** (x+y+z)² = x²+y²+z² + 2(xy+yz+zx) → 144 = sum_of_squares + 78 → sum_of_squares = 66.
 **explanation:** Use the symmetric-sum identity (x + y + z)² = x² + y² + z² + 2(xy + yz + zx). Substitute: (12)² = (x² + y² + z²) + 2(39) → 144 = (x² + y² + z²) + 78 → x² + y² + z² = 66.
-**mistake_b:** Computed (sum)² + (cross-product sum) = 144 + 39 = ... no, mis-applied somewhere.
-**mistake_c:** Forgot the factor of 2: 144 − 39 = 105? No, picked 78 = 2 × 39 directly without subtracting from 144.
-**mistake_d:** Subtracted 39 directly (without the factor of 2): 144 − 39 = 105.
-**mistake_e:** Used 12² + 2(39) = 222 / something else.
+**mistake_b:** Arithmetic slip on the final step: correctly set up 144 − 2(39) = 144 − 78 but computed 144 − 78 = 72 instead of 66.
+**mistake_c:** Reported 2(xy + yz + zx) = 78 as the answer — found the cross-term correctly but forgot to subtract it from (x+y+z)² = 144. The identity gives sum_of_squares = 144 − 78, not 78 itself.
+**mistake_d:** Used the incorrect formula (x+y+z)²/3 + (xy+yz+zx): 144/3 + 39 = 48 + 39 = 87. This confuses the symmetric-sum identity with a mean-based approximation.
+**mistake_e:** Dropped the factor of 2 on the pairwise-product term: treated the identity as (x+y+z)² = x²+y²+z² + (xy+yz+zx) instead of + 2(xy+yz+zx). Got 144 − 39 = 105.
 **common_trap:** missing-algebraic-shortcut + factor-of-2 error — solving for x, y, z individually (impossible without more info) or forgetting the factor of 2 on the cross-product sum.
 **takeaway:** (x + y + z)² = (sum of squares) + 2(sum of pairwise products). Memorize for symmetric-sum problems.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -638,27 +638,27 @@ If the roots of the quadratic equation x² + bx + 12 = 0 differ by 1, what are t
 ---
 
 ## Q25
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Word Problem — Relative Motion
 
-Two hikers start at the same time from opposite ends of a trail that is 24 miles long, walking toward each other along the trail. Hiker X walks at 3 miles per hour; Hiker Y walks at 5 miles per hour. At what time do they meet, given that they start at 8:00 AM?
+Two hikers start at the same time from opposite ends of a 12-mile trail, walking toward each other. Hiker X walks at 2 miles per hour; Hiker Y walks at 4 miles per hour. They both set out at 9:00 AM. At what time do they meet?
 
-- A) 10:00 AM
-- B) 10:30 AM
-- C) 11:00 AM
-- D) 11:30 AM
-- E) 12:00 noon
+- A) 10:30 AM
+- B) 11:00 AM
+- C) 12:00 noon
+- D) 1:00 PM
+- E) 3:00 PM
 
-**answer:** C
-**fastest_path:** Closing speed = 3 + 5 = 8 mph. Time = 24 / 8 = 3 hours. Meet at 11:00 AM.
-**explanation:** Two objects moving toward each other have a combined "closing speed" equal to the sum of their individual speeds: 3 + 5 = 8 mph. Distance to close = 24 miles. Time = 24/8 = 3 hours. Starting at 8:00 AM, they meet at 11:00 AM.
-**mistake_a:** Computed time using just Hiker X (3 mph) for half the distance (12 miles): 12/3 = 4 hours? No, 12/3 = 4, then 8:00 + 2 = 10:00. Some half-distance approach.
-**mistake_b:** Average speed (3+5)/2 = 4 mph; 24/4 = 6 hours; 8:00 + 2.5 = 10:30. Some confusion.
-**mistake_d:** Used Hiker Y's speed alone: 24/5 = 4.8 hours, ≈ 12:48 — bubbled approximate 11:30.
-**mistake_e:** Used Hiker X's speed alone: 24/3 = 8 hours; 8:00 + 4 = 12:00 noon.
-**common_trap:** Using a single hiker's speed instead of the combined closing speed.
-**takeaway:** When two objects move toward each other, add their speeds to get the closing speed; divide total distance by closing speed for meeting time.
+**answer:** B
+**fastest_path:** Closing speed = 2 + 4 = 6 mph. Time = 12 / 6 = 2 hours. 9:00 AM + 2 hours = 11:00 AM.
+**explanation:** When two objects move toward each other, their closing speed is the sum of their individual speeds: 2 + 4 = 6 mph. The total gap to close is 12 miles. Time = 12 / 6 = 2 hours. Start + 2 hours = 11:00 AM. The key insight: both hikers are eating into the gap simultaneously, so their speeds add. Using either speed alone ignores the other hiker's contribution.
+**mistake_a:** Thought they would meet at the midpoint (6 miles) and used the faster hiker's speed to find when Y reaches it: 6 / 4 = 1.5 hours → 10:30 AM. Error: both hikers are moving; they don't wait for one to reach the midpoint before meeting.
+**mistake_c:** Used only Hiker Y's speed for the full distance: 12 / 4 = 3 hours → noon. Or equivalently, used only X's speed for half the distance: 6 / 2 = 3 hours. Both ignore the other hiker's motion.
+**mistake_d:** Used the average speed instead of the combined speed: (2 + 4) / 2 = 3 mph, 12 / 3 = 4 hours → 1:00 PM. Averaging is correct for a single traveler covering the same route at different speeds, not for two travelers approaching each other.
+**mistake_e:** Used only Hiker X's speed for the full distance: 12 / 2 = 6 hours → 3:00 PM. Treated the problem as if only the slower hiker were walking.
+**common_trap:** Using a single hiker's speed — or averaging the two speeds — instead of summing them to get the closing speed.
+**takeaway:** Two objects moving toward each other close the gap at the sum of their speeds. Time to meet = distance / (speed₁ + speed₂). This is one of the most tested rate patterns on the GMAT.
 **related_reading:** reading-quant-05-word-problems
 
 
@@ -682,8 +682,8 @@ If 1/(x − 3) + 1/(x + 3) = 12/(x² − 9), what is the value of x?
 **explanation:** Notice x² − 9 = (x − 3)(x + 3). Combine the left side over the common denominator: 1/(x−3) + 1/(x+3) = [(x+3) + (x−3)] / (x²−9) = 2x / (x²−9). The equation becomes 2x/(x²−9) = 12/(x²−9). Same denominator → numerators equal: 2x = 12 → x = 6. Verify: x = 6 doesn't zero any denominator, so it's valid.
 **mistake_a:** Picked x = 3 without checking the domain — x = 3 makes 1/(x−3) undefined.
 **mistake_b:** Computed 12/3 = 4 from a shortcut that ignored structure.
-**mistake_c:** Solved 2x + 12 = ... or some other miscombined equation; got 5.
-**mistake_e:** Multiplied 12 directly: 12/2 = 6, then doubled wrongly to 12 (or some other setup).
+**mistake_c:** Combined the fractions incorrectly — added numerators and denominators separately: (1+1)/[(x−3)+(x+3)] = 2/(2x) = 1/x. Set 1/x = 12/(x²−9), cross-multiplied to get x²−9 = 12x → x = (12 ± √(144+36))/2. Taking the positive root approximates to 5, but this path misapplies fraction addition.
+**mistake_e:** Treated the equation as 1/(x−3) × 1/(x+3) = 12/(x²−9), i.e., multiplied the left side instead of adding. Got 1/(x²−9) = 12/(x²−9) → 1 = 12, a contradiction, then backtracked and guessed x = 12 from the RHS numerator.
 **common_trap:** Domain violations on rational equations — accepting an extraneous solution that makes a denominator zero.
 **takeaway:** When solving rational equations, find the common denominator, simplify, then verify the answer doesn't violate the domain (no denominator = 0).
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -709,7 +709,7 @@ If f(x) = 2x + 3 and g(x) = x² − 1, what is f(g(2))?
 **mistake_a:** Computed g(2) = 3 and bubbled (stopped at the inner result).
 **mistake_b:** Computed f(2) = 7, then somehow got 7.
 **mistake_d:** Computed f(2) + g(2) = 7 + 3 = 10; then off-by-one to 11.
-**mistake_e:** Mixed order: g(f(2)) = g(7) = 49 − 1 = 48 ≠ 13. Or f(2) × g(2) = 21 ≠ 13. Some hybrid producing 13.
+**mistake_e:** Sign error in g: read g(x) = x² + 1 instead of x² − 1, giving g(2) = 4 + 1 = 5. Then f(5) = 2(5) + 3 = 13. The subtraction in the definition of g flipped to addition.
 **common_trap:** Wrong composition order — computing g(f(x)) instead of f(g(x)), or stopping at the inner function's output.
 **takeaway:** f(g(x)) means "first apply g, then f." Always compute the *innermost* function first.
 **related_reading:** reading-quant-04-algebra-and-equations
