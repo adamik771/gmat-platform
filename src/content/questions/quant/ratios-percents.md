@@ -668,3 +668,451 @@ Is the price of product X greater than the price of product Y?
 **common_trap:** Thinking statements about "different products" can't combine — but a shared variable (Z) bridges them.
 **takeaway:** Look for shared variables in DS statements. Statements that mention different things may still chain through a common reference.
 **related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q26
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Simple Interest
+
+Marcus deposits $600 into a savings account that earns simple interest at an annual rate of 5%. Assuming no additional deposits or withdrawals, what is the account balance after 3 years?
+
+- A) $615
+- B) $630
+- C) $690
+- D) $695
+- E) $750
+
+**answer:** C
+**fastest_path:** I = 600 × 0.05 × 3 = 90. Balance = 690.
+**explanation:** Simple interest accrues on the original principal only: I = P × r × t = 600 × 0.05 × 3 = $90. Total balance = 600 + 90 = $690.
+**mistake_a:** Used t = 0.5 years: 600 × 0.05 × 0.5 = 15 → balance $615.
+**mistake_b:** Used only 1 year: 600 × 0.05 × 1 = 30 → balance $630. The most common off-by-time slip.
+**mistake_d:** Applied compound interest: 600 × (1.05)³ ≈ $694.58 ≈ $695. Correct formula type, wrong type of interest.
+**mistake_e:** Arithmetic overshoot.
+**common_trap:** Confusing simple interest (interest on original principal only) with compound interest (interest on the growing balance). Simple = P × r × t; compound = P × (1+r)ᵗ.
+**takeaway:** Simple interest: I = Prt. The balance grows linearly — interest does not compound. Each year adds the same fixed dollar amount.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q27
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Ratios
+
+At a school, the ratio of 7th-grade to 8th-grade to 9th-grade students is 4:5:6. If there are 60 students in 8th grade, how many students are in 9th grade?
+
+- A) 48
+- B) 60
+- C) 72
+- D) 75
+- E) 80
+
+**answer:** C
+**fastest_path:** 5 parts = 60 → 1 part = 12. 9th grade = 6 × 12 = 72.
+**explanation:** The 8th-grade portion corresponds to 5 parts of the 4:5:6 ratio. 5 parts = 60 students → 1 part = 12 students. 9th grade = 6 parts = 6 × 12 = 72.
+**mistake_a:** 48 = 7th-grade count (4 × 12) — answered for the wrong grade.
+**mistake_b:** 60 = 8th grade's own count — misread which grade the question asks for.
+**mistake_d:** Divided by 4 instead of 5 to find the per-part value: 60/4 = 15 per part → 9th = 90, or arithmetic slip to 75.
+**mistake_e:** Used the sum of all parts (4+5+6 = 15) as the divisor: 60/15 = 4 per part → 9th = 24, then slipped to 80.
+**common_trap:** Computing the correct per-part value but reporting the wrong grade's count.
+**takeaway:** Three-part ratio: identify which group's count you know, find the per-part value (given count ÷ that group's ratio number), then multiply by the desired group's ratio number.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q28
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Basic Percents
+
+What is 20% of 50% of 400?
+
+- A) 8
+- B) 20
+- C) 40
+- D) 80
+- E) 160
+
+**answer:** C
+**fastest_path:** 0.20 × 0.50 × 400 = 0.10 × 400 = 40.
+**explanation:** Treat "of" as multiplication. 50% of 400 = 200. Then 20% of 200 = 40. Shortcut: combine the percents first: 20% × 50% = 10%, then 10% of 400 = 40.
+**mistake_a:** Over-reduced: computed 20% × 50% = 10% and then divided by 100 again → 8.
+**mistake_b:** Computed 50% of 400 = 200 and took 10% (not 20%): 0.10 × 200 = 20.
+**mistake_d:** Applied only 20% of 400 (skipped the 50% step): 0.20 × 400 = 80.
+**mistake_e:** Applied only 50% of 400 (skipped the 20% step): 0.50 × 400 = 160.
+**common_trap:** Applying only one of the two percent operations and skipping the other.
+**takeaway:** "X% of Y% of Z" = (X/100) × (Y/100) × Z. Chained percents multiply. You can also multiply the percent fractions together first: 20% × 50% = 10%.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Proportions
+
+A car travels 360 miles on 12 gallons of fuel. At the same fuel efficiency, how many gallons are needed to travel 510 miles?
+
+- A) 15
+- B) 16
+- C) 17
+- D) 18
+- E) 20
+
+**answer:** C
+**fastest_path:** Rate = 360/12 = 30 mi/gal. Gallons = 510/30 = 17.
+**explanation:** Fuel efficiency = 360 ÷ 12 = 30 miles per gallon. Gallons needed = 510 ÷ 30 = 17.
+**mistake_a:** Miscomputed the unit rate or used a different divisor → 15.
+**mistake_b:** Arithmetic slip → 16.
+**mistake_d:** Set up the ratio inverted (12/360 × 510 = 17, but rounded or slipped) → 18.
+**mistake_e:** Divided 360 by an incorrect rate factor → 20.
+**common_trap:** Setting up the proportion in the wrong direction (inverted rate). Always establish miles-per-gallon explicitly before dividing.
+**takeaway:** Unit-rate proportion: find rate (miles per gallon), then divide target distance by rate. Label units explicitly to catch inversions.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Percent Change
+
+After a 25% price increase, a jacket costs $75. What was the original price?
+
+- A) $55.00
+- B) $56.25
+- C) $60.00
+- D) $62.50
+- E) $65.00
+
+**answer:** C
+**fastest_path:** P × 1.25 = 75 → P = 75/1.25 = 60.
+**explanation:** "After a 25% increase" means new price = original × 1.25. So original = 75 ÷ 1.25 = $60. A quick check: $60 × 1.25 = $75. ✓
+**mistake_a:** Rough estimate too low.
+**mistake_b:** Subtracted 25% from the final price: 75 − 75 × 0.25 = 75 − 18.75 = $56.25. This is the cardinal trap — 25% of the new price is not the same as 25% of the original.
+**mistake_d:** Divided by 1.20 instead of 1.25: 75/1.20 = $62.50.
+**mistake_e:** Rough estimate too low.
+**common_trap:** Subtracting 25% from the final price ($75 × 0.75 = $56.25). The 25% increase was applied to the *original* price, not the current price.
+**takeaway:** To reverse a +x% increase: divide the new value by (1 + x/100). Never subtract x% from the new value.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q31
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Compound Interest
+
+$2,000 is invested at an annual compound interest rate of 5%. What is the value of the investment after 3 years?
+
+- A) $2,200
+- B) $2,300
+- C) $2,310
+- D) $2,315.25
+- E) $2,350
+
+**answer:** D
+**fastest_path:** 2000 → ×1.05 → 2100 → ×1.05 → 2205 → ×1.05 → 2315.25.
+**explanation:** Compound interest formula: A = P(1 + r)ⁿ = 2000 × (1.05)³. Compute year by year: 2000 × 1.05 = 2,100; 2,100 × 1.05 = 2,205; 2,205 × 1.05 = 2,315.25.
+**mistake_a:** Used only 2 years' simple interest: 2,000 + 2 × 100 = $2,200.
+**mistake_b:** Used simple interest for 3 years: 2,000 × 0.05 × 3 = 300 → $2,300. The classic simple-vs-compound trap.
+**mistake_c:** Applied compound formula but used $2,200 (simple Year 2 balance) as the starting point for Year 3: 2,200 × 1.05 = $2,310.
+**mistake_e:** Overestimate from rough arithmetic.
+**common_trap:** Using simple interest (I = Prt) when the problem specifies compound interest. Simple interest does not reinvest earned interest.
+**takeaway:** Compound interest: each year's interest is added to the principal and the next year earns on the new, higher balance. Build year by year: P → P(1+r) → P(1+r)² → P(1+r)³.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q32
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Ratios
+
+If x : y = 7 : 4 and y : z = 3 : 8, what is x : z?
+
+- A) 7 : 32
+- B) 21 : 32
+- C) 7 : 8
+- D) 3 : 4
+- E) 7 : 24
+
+**answer:** B
+**fastest_path:** Scale to match y. x:y ×3 → 21:12. y:z ×4 → 12:32. So x:z = 21:32.
+**explanation:** The shared variable y must be equal in both ratios. y appears as 4 in the first ratio and 3 in the second. LCM(4, 3) = 12. Scale x:y = 7:4 by ×3 → 21:12; scale y:z = 3:8 by ×4 → 12:32. Now x:y:z = 21:12:32, so x:z = 21:32.
+**mistake_a:** 7:32 — paired the first ratio's numerator (7) directly with the last ratio's denominator (32) without scaling y to a common value.
+**mistake_c:** 7:8 — scaled incorrectly, e.g., divided instead of multiplied one ratio.
+**mistake_d:** 3:4 — mixed up the ratio positions or confused which terms to chain.
+**mistake_e:** 7:24 — scaled y to 24 (a multiple of both 4 and 3, but not the LCM-based correct pairing).
+**common_trap:** Pairing the first ratio's left term directly with the last ratio's right term without ensuring y is equal in both. This shortcut fails whenever the y-values don't already match.
+**takeaway:** Chain ratios by matching the shared term. Find LCM of the shared term's two values, scale both ratios up, then read the outer terms.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Weighted Averages
+
+On a math exam, the average score for boys was 72 and for girls was 84. The overall class average was 76. What fraction of the class is boys?
+
+- A) 1/3
+- B) 1/2
+- C) 2/3
+- D) 3/4
+- E) 5/6
+
+**answer:** C
+**fastest_path:** Boys 4 below avg; girls 8 above → lever: boys = 8/(4+8) = 2/3.
+**explanation:** Lever (alligation) rule: the fraction of each group equals the other group's distance from the overall average divided by the total distance between groups. Boys are 76 − 72 = 4 below the class average; girls are 84 − 76 = 8 above. Boys' fraction = 8/(4+8) = 8/12 = 2/3. Verify: (2/3)(72) + (1/3)(84) = 48 + 28 = 76. ✓
+**mistake_a:** 1/3 — this is the girls' fraction, not boys'.
+**mistake_b:** 1/2 — equal split; correct only if the class average were the midpoint (78) of 72 and 84.
+**mistake_d:** 3/4 — over-weighted boys; the weighted average would be below 76.
+**mistake_e:** 5/6 — extreme over-weighting; average would be nearly 72.
+**common_trap:** Inverting the lever — choosing the distance from the group's own score instead of the other group's distance. The group farther from the overall average has the *smaller* fraction.
+**takeaway:** Lever rule: fraction of Group A = (distance of Group B from mean) / (total distance A to B). The group closer to the overall mean has the larger fraction.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Percent Change
+
+A store reduced the price of a television by 20%. By what percent must the sale price be increased to restore the original price?
+
+- A) 20%
+- B) 22%
+- C) 25%
+- D) 28%
+- E) 30%
+
+**answer:** C
+**fastest_path:** After 20% off: 0.80P. Recovery = 0.20P/0.80P = 1/4 = 25%.
+**explanation:** After a 20% decrease, the price is 0.80P. To return to P, the required increase is (P − 0.80P) / 0.80P = 0.20P / 0.80P = 1/4 = 25%. The base for the recovery is the smaller sale price (0.80P), so the percent needed is larger than the original 20%.
+**mistake_a:** 20% — the mirror-image trap: using the same percent as the original discount. A 20% increase on 0.80P returns only to 0.96P, not P.
+**mistake_b:** 22% — arithmetic slip in the recovery calculation.
+**mistake_d:** 28% — slip, possibly from 0.20/0.72 or a wrong base.
+**mistake_e:** 30% — overestimate; intuitive overcorrection.
+**common_trap:** Reversing a −x% decrease with a +x% increase. The recovery base is smaller than the original, so the required percent is always greater than x.
+**takeaway:** To undo a −x% decrease: needed increase = x / (100 − x) × 100%. For a 20% decrease: 20/80 × 100% = 25%. A decrease and its exact reversal are never symmetric.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Mixtures
+
+A 60-liter tank is filled with a solution that is 40% alcohol. 15 liters are drained from the tank and replaced with pure water. What is the alcohol concentration in the resulting mixture?
+
+- A) 25%
+- B) 30%
+- C) 33.3%
+- D) 35%
+- E) 40%
+
+**answer:** B
+**fastest_path:** Retain 45/60 = 75% of tank. New conc = 40% × 0.75 = 30%.
+**explanation:** After draining 15 liters (25% of the 60-liter tank), 45 liters of 40% solution remain: alcohol = 0.40 × 45 = 18 liters. Adding 15 liters of pure water returns the total to 60 liters. New concentration = 18/60 = 30%. Shortcut: retained fraction = 45/60 = 3/4; new conc = 40% × 3/4 = 30%.
+**mistake_a:** 25% — over-diluted; computed as if all 25 percentage points of drained concentration came from alcohol.
+**mistake_c:** 33.3% — rough estimate or misapplied formula.
+**mistake_d:** 35% — partial error in the retained fraction (e.g., used 52.5/60 rather than 45/60).
+**mistake_e:** 40% — thought the concentration is unchanged; ignored the dilution effect of adding water.
+**common_trap:** Assuming concentration stays at 40% after drain-and-refill. Adding pure water always reduces alcohol concentration.
+**takeaway:** Drain-and-refill: new concentration = old concentration × (remaining volume / original volume). The retained fraction drives the change.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Percent Change
+
+By what percent did the price of a product increase from 2021 to 2023?
+
+(1) The price increased by 20% from 2021 to 2022.
+(2) The price increased by 25% from 2022 to 2023.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) covers 2021→2022 only; (2) covers 2022→2023 only. Together: 1.20 × 1.25 = 1.50 → +50%.
+**explanation:** Statement (1) alone: gives the first year's change (2021→2022) but nothing about 2022→2023. Insufficient. Statement (2) alone: gives the second year's change (2022→2023) but nothing about 2021→2022. Insufficient. Together: net factor = 1.20 × 1.25 = 1.50 → 50% total increase from 2021 to 2023. Sufficient.
+**mistake_a:** Treated (1) as sufficient — but without the second leg, the 2021→2023 change is unknown.
+**mistake_b:** Treated (2) as sufficient — the first leg is still missing.
+**mistake_d:** Concluded each alone is sufficient — neither provides both legs of the two-year chain.
+**mistake_e:** Concluded together insufficient — they chain cleanly through the shared 2022 midpoint.
+**common_trap:** Failing to recognize that a two-period chain requires both segments. Each statement covers exactly one leg; both legs are necessary.
+**takeaway:** Multi-period percent chains require all legs. Compound factors multiply: overall = factor₁ × factor₂ × ... Chain is complete only when every segment is known.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Ratios
+
+Team A has 3 times as many members as Team B. Team B has 40% as many members as Team C. If Team C has 25 members, how many members does Team A have?
+
+- A) 10
+- B) 24
+- C) 30
+- D) 75
+- E) 100
+
+**answer:** C
+**fastest_path:** B = 0.40 × 25 = 10. A = 3 × 10 = 30.
+**explanation:** Start from the known anchor (Team C = 25) and build step by step. Team B = 40% of Team C = 0.40 × 25 = 10. Team A = 3 × Team B = 3 × 10 = 30.
+**mistake_a:** 10 — that is Team B's count; stopped one step short.
+**mistake_b:** 24 — arithmetic slip (e.g., 0.40 × 25 = 8 rounding error → 3 × 8 = 24).
+**mistake_d:** 75 — applied Team A's "3 times" multiplier directly to Team C (3 × 25 = 75), skipping the intermediate Team B step entirely.
+**mistake_e:** 100 — used 4 × 25 = 100, confusing Team A's multiplier.
+**common_trap:** Applying Team A's "3 times" directly to Team C's count, skipping the required intermediate calculation of Team B's size.
+**takeaway:** Multi-step ratio chains: process each link in sequence. Start from the known anchor → find the intermediate group → use it to find the target group.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q38
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Compound Interest
+
+An investment grew from $3,600 to $4,356 in exactly 2 years with annual compound interest. What was the annual interest rate?
+
+- A) 8%
+- B) 9%
+- C) 10%
+- D) 11%
+- E) 12%
+
+**answer:** C
+**fastest_path:** (1+r)² = 4356/3600 = 121/100 → 1+r = 11/10 → r = 10%.
+**explanation:** Compound interest: 3600 × (1+r)² = 4356. So (1+r)² = 4356/3600. Simplify by dividing both by 36: 121/100. Since 121 = 11² and 100 = 10², the positive square root gives 1+r = 11/10, so r = 10%. Verify: 3600 × 1.10 = 3960; 3960 × 1.10 = 4356. ✓
+**mistake_a:** 8% — under-estimate from a trial-and-error guess or mis-simplified fraction.
+**mistake_b:** 9% — close approximation without recognizing the perfect-square structure of 121/100.
+**mistake_d:** 11% — classic simple-interest trap: (4356 − 3600) / (3600 × 2) = 756 / 7200 = 10.5%, rounded up to 11%. Correct formula type, wrong interest type.
+**mistake_e:** 12% — overestimate, likely from using one year: 756 / 3600 = 21%, halved incorrectly to 12%.
+**common_trap:** Using the simple-interest formula to back out the rate: (total gain) / (principal × years). This gives 10.5% — close but wrong, because it ignores compounding.
+**takeaway:** To find a compound rate from growth: (1+r)ⁿ = Final/Principal. Factor the ratio as a perfect square (or cube) and take the root cleanly. 4356/3600 = 121/100 is the key recognition.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q39
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Ratios
+
+Is the price of item A more than 150% of the price of item B?
+
+(1) Item A costs exactly $40 more than item B.
+(2) The price of item B is less than $80.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) A = B+40; A>1.5B iff 40>0.5B iff B<80. (2) B<80 alone tells nothing about A. Together: A=B+40 and B<80 → YES definitively.
+**explanation:** Rewrite "A > 1.5B" as A > B + 0.5B, i.e., A − B > 0.5B. Statement (1): A − B = 40, so the condition becomes 40 > 0.5B, i.e., B < 80. Statement (1) alone does not tell us whether B < 80, so it is insufficient. Statement (2) alone: B < 80 is given but there is no relationship between A and B. Insufficient. Together: A = B + 40 (from 1) and B < 80 (from 2). The condition 40 > 0.5B is satisfied for all B < 80, so A > 1.5B is always YES. Sufficient.
+**mistake_a:** Statement (1) alone is sufficient — but it only establishes A = B + 40; without knowing B < 80, the ratio comparison cannot be resolved (B = 100 would give NO).
+**mistake_b:** Statement (2) alone is sufficient — it bounds B but provides no information about A's value relative to B.
+**mistake_d:** Each alone is sufficient — neither can answer without the other.
+**mistake_e:** Together still insufficient — they cleanly close the gap: (1) derives that B < 80 is the necessary condition; (2) supplies it.
+**common_trap:** Thinking that Statement (1) — which gives A in terms of B — fully resolves the ratio question. The ratio depends on B's scale, which is not fixed by (1) alone.
+**takeaway:** Ratio comparisons in DS often reduce to a threshold condition on one variable. Identify that threshold (here B < 80), then check whether any statement supplies it.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q40
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Mixtures
+
+A 60-liter tank contains a solution that is 80% alcohol. Each day, 25% of the tank's contents are drained and replaced with an equal volume of pure water. What is the alcohol concentration after 2 days?
+
+- A) 30%
+- B) 40%
+- C) 45%
+- D) 60%
+- E) 80%
+
+**answer:** C
+**fastest_path:** Each day retains 75% of alcohol. 80% × (0.75)² = 80% × 0.5625 = 45%.
+**explanation:** After each cycle, the fraction of alcohol remaining = 1 − 0.25 = 0.75 (since 25% of the tank — including 25% of its alcohol — is drained and replaced with water). Day 1: 80% × 0.75 = 60%. Day 2: 60% × 0.75 = 45%. General formula: concentration after n days = initial × (1 − drain fraction)ⁿ.
+**mistake_a:** 30% — additive error: subtracted 25 percentage points per day (80 − 25 − 25 = 30), treating alcohol percentage as a linearly decreasing quantity.
+**mistake_b:** 40% — combined-drain error: treated two 25% drains as a single 50% drain (80% × 0.50 = 40%), ignoring that the second drain removes 25% of an already reduced tank.
+**mistake_d:** 60% — computed only Day 1 result and stopped.
+**mistake_e:** 80% — did not account for dilution at all.
+**common_trap:** Treating successive percent reductions as additive (25% + 25% = 50% total drained). Each drain removes 25% of the *current* contents, not of the original.
+**takeaway:** Repeated dilution: concentration after n cycles = initial × (1 − p)ⁿ where p is the drain fraction per cycle. The multiplier compounds; never add drain fractions.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Profit/Markup/Discount
+
+A company's profit margin (profit ÷ revenue) was 15% in Year 1. In Year 2, revenue increased by 20% while profit increased by 50%. What was the profit margin in Year 2?
+
+- A) 17.5%
+- B) 18%
+- C) 18.75%
+- D) 20%
+- E) 22.5%
+
+**answer:** C
+**fastest_path:** New margin = (1.50 × 0.15) / 1.20 = 0.225/1.20 = 18.75%.
+**explanation:** Let Year 1 revenue = R. Year 1 profit = 0.15R. Year 2 revenue = 1.20R; Year 2 profit = 1.50 × 0.15R = 0.225R. Year 2 margin = 0.225R / 1.20R = 0.225/1.20 = 0.1875 = 18.75%.
+**mistake_a:** 17.5% — arithmetic slip on the division 0.225/1.20 (e.g., used 1.25 as the denominator).
+**mistake_b:** 18% — close arithmetic slip; rounded 18.75% down.
+**mistake_d:** 20% — applied an additive adjustment to the margin (15% + 5% = 20%) without accounting for the ratio relationship.
+**mistake_e:** 22.5% — computed profit growth applied to the old margin (1.50 × 15% = 22.5%), completely ignoring the revenue denominator's 20% increase.
+**common_trap:** Applying only the profit growth rate to the margin. Profit margin is a ratio; when *both* numerator (profit) and denominator (revenue) change, the new margin must be recomputed from scratch.
+**takeaway:** When both components of a ratio change, always compute new numerator / new denominator. Never apply one component's growth rate directly to the ratio.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Basic Percents
+
+Three partners X, Y, and Z divide a business's annual profit. Partner X receives 40% of the total profit. Partner Y then receives 30% of the profit remaining after X is paid. Partner Z receives all remaining profit. If Z's share is $2,100, what is the total annual profit?
+
+- A) $4,000
+- B) $5,000
+- C) $5,250
+- D) $6,000
+- E) $7,000
+
+**answer:** B
+**fastest_path:** Z gets 0.60 × 0.70 = 0.42 of total. 0.42P = 2100 → P = 5000.
+**explanation:** Work out each share as a fraction of total profit P. X takes 40% → 60% remains. Y takes 30% of that 60%: 0.30 × 0.60 = 18% of P. Remaining for Z: 60% − 18% = 42% of P. So 0.42P = 2,100 → P = 5,000. Quick check: X = 0.40 × 5000 = 2000; Y = 0.30 × 3000 = 900; Z = 2100. Sum: 2000 + 900 + 2100 = 5000. ✓
+**mistake_a:** $4,000 — used Z's fraction as 0.525 from a wrong intermediate step: 2100/0.525 ≈ 4000.
+**mistake_c:** $5,250 — treated X + Y as 40% + 30% = 70% of total → Z = 30%; 2100/0.40 ≈ 5250.
+**mistake_d:** $6,000 — treated Y's 30% as 30% of the *total* (not the remainder): Z = 100 − 40 − 30 = 30% → P = 2100/0.35 = 6000.
+**mistake_e:** $7,000 — used only Y's percent: 2100/0.30 = 7000.
+**common_trap:** Treating "Y receives 30% of the remainder" as "Y receives 30% of total profit." The sequential allocation creates a chain of percents applied to shrinking bases.
+**takeaway:** Sequential percent allocations: each step's base is what remains after prior allocations. Express each share as a percent of the original total by multiplying the chain fractions: Y = 0.30 × 0.60 = 18% of total; Z = 0.70 × 0.60 = 42% of total.
+**related_reading:** reading-quant-05-word-problems
