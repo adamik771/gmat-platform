@@ -16,6 +16,7 @@ import {
   X,
 } from "lucide-react"
 import { DI_METHOD_CARDS, hasMethodCard } from "@/lib/di-method-cards"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import PacingBadge from "@/components/shared/PacingBadge"
@@ -886,6 +887,50 @@ function SaveStatusBanner({
   )
 }
 
+// --- Results-screen helpers ---
+
+type FocusArea = { subtopic: string; count: number; topic: string }
+
+function computeFocusAreas(
+  questions: SessionQuestion[],
+  states: QuestionState[],
+): FocusArea[] {
+  const misses: Record<string, FocusArea> = {}
+  questions.forEach((q, i) => {
+    const s = states[i]
+    if (!s.submitted || isQuestionCorrect(q, s)) return
+    const key = q.subtopic || q.topic
+    if (!misses[key]) misses[key] = { subtopic: key, count: 0, topic: q.topic }
+    misses[key].count++
+  })
+  return Object.values(misses)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 3)
+}
+
+function computeCalibrationInsight(
+  questions: SessionQuestion[],
+  states: QuestionState[],
+) {
+  let highConfWrong = 0
+  let lowConfRight = 0
+  states.forEach((s, i) => {
+    if (!s.submitted) return
+    const correct = isQuestionCorrect(questions[i], s)
+    if (s.confidence === "high" && !correct) highConfWrong++
+    if (s.confidence === "low" && correct) lowConfRight++
+  })
+  return { highConfWrong, lowConfRight }
+}
+
+function sessionPerformanceMessage(accuracy: number): string {
+  if (accuracy === 100) return "Perfect session."
+  if (accuracy >= 80) return "Strong work. These concepts are consolidating."
+  if (accuracy >= 60) return "Good attempt. Targeted review will sharpen this."
+  if (accuracy >= 40) return "There's signal here. Study your misses before retaking."
+  return "This topic needs dedicated study time. Start with the chapter."
+}
+
 export default function SessionClient({
   slug,
   topic,
@@ -1208,6 +1253,25 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+    const avgTimeMs = answeredCount === 0 ? 0 : Math.round(totalTime / answeredCount)
+    const focusAreas = computeFocusAreas(questions, states)
+    const calibration = computeCalibrationInsight(questions, states)
+    const chapterSlug = TOPIC_TO_CHAPTER[topic]
+
+    // Smart primary CTA based on performance
+    let primaryLabel: string
+    let primaryHref: string
+    if (accuracy >= 80) {
+      primaryLabel = "Back to Practice"
+      primaryHref = "/practice"
+    } else if (accuracy >= 50) {
+      primaryLabel = "Open Error Log"
+      primaryHref = "/error-log"
+    } else {
+      primaryLabel = chapterSlug ? "Review the Chapter" : "Browse Chapters"
+      primaryHref = chapterSlug ? `/chapters/${chapterSlug}` : "/chapters"
+    }
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1226,6 +1290,7 @@ export default function SessionClient({
 
         <SaveStatusBanner status={saveStatus} onRetry={saveSession} />
 
+        {/* Stats */}
         <div
           className="p-6 rounded-xl border"
           style={{
@@ -1233,7 +1298,7 @@ export default function SessionClient({
             backgroundColor: "rgba(201,168,76,0.04)",
           }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             <div>
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Accuracy</p>
               <p className="text-3xl font-bold mt-2" style={{ color: "#C9A84C" }}>
@@ -1251,9 +1316,67 @@ export default function SessionClient({
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Total time</p>
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
             </div>
+            <div>
+              <p className="text-[10px] uppercase tracking-widest text-[#555555]">Avg / question</p>
+              <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">
+                {answeredCount > 0 ? formatDuration(avgTimeMs) : "—"}
+              </p>
+            </div>
           </div>
         </div>
 
+        {/* Focus areas — derived from misses in this session */}
+        {focusAreas.length > 0 && (
+          <div
+            className="p-5 rounded-xl border"
+            style={{
+              borderColor: "rgba(255,68,68,0.12)",
+              backgroundColor: "rgba(255,68,68,0.03)",
+            }}
+          >
+            <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+              Focus on these next
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {focusAreas.map(({ subtopic, count, topic: t }) => {
+                const slug = TOPIC_TO_CHAPTER[t]
+                const href = slug ? `/chapters/${slug}` : "/chapters"
+                return (
+                  <Link
+                    key={subtopic}
+                    href={href}
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-white/[0.08] bg-[#111111] hover:bg-white/[0.04] transition-colors"
+                  >
+                    <span className="text-sm text-[#F0F0F0]">{subtopic}</span>
+                    <span
+                      className="text-[11px] font-semibold px-1.5 py-0.5 rounded"
+                      style={{
+                        backgroundColor: "rgba(255,68,68,0.10)",
+                        color: "#FF4444",
+                      }}
+                    >
+                      {count} {count === 1 ? "miss" : "misses"}
+                    </span>
+                  </Link>
+                )
+              })}
+            </div>
+            {calibration.highConfWrong >= 2 && (
+              <p className="text-xs text-[#888888] mt-3 leading-relaxed">
+                <span style={{ color: "#FF9966" }}>{calibration.highConfWrong} questions</span> where your confidence was high but the answer was wrong — these are the most instructive to review.
+              </p>
+            )}
+          </div>
+        )}
+
+        {/* Calibration insight when no misses to show as focus areas */}
+        {focusAreas.length === 0 && calibration.lowConfRight >= 2 && (
+          <p className="text-xs text-[#888888] leading-relaxed px-1">
+            You got <span style={{ color: "#3ECF8E" }}>{calibration.lowConfRight} questions</span> right despite low confidence — keep drilling to solidify that knowledge.
+          </p>
+        )}
+
+        {/* Question review grid */}
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
             Review
@@ -1296,7 +1419,8 @@ export default function SessionClient({
                     </div>
                     <div className="min-w-0">
                       <p className="text-xs text-[#555555]">
-                        Question {i + 1} · {q.subtopic}
+                        Q{i + 1} · {q.subtopic} ·{" "}
+                        <span style={{ color: "#C9A84C" }}>{q.difficulty}</span>
                       </p>
                       <p className="text-sm text-[#F0F0F0] truncate">
                         {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
@@ -1312,37 +1436,43 @@ export default function SessionClient({
           </div>
         </div>
 
-        <div className="flex gap-3 flex-wrap">
-          <Link
-            href="/practice"
-            className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
-            style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-          >
-            Back to Practice
-          </Link>
-          {isMixedReview ? (
-            <button
-              type="button"
-              onClick={handleRebuildMix}
-              disabled={rebuilding}
-              className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04] disabled:opacity-60"
-            >
-              {rebuilding ? "Building new mix…" : "Build new mix"}
-            </button>
-          ) : (
+        {/* Smart next action */}
+        <div className="space-y-3">
+          <p className="text-xs text-center text-[#555555]">
+            {sessionPerformanceMessage(accuracy)}
+          </p>
+          <div className="flex gap-3 flex-wrap">
             <Link
-              href={`/practice/session/${slug}`}
-              className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
+              href={primaryHref}
+              className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
+              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Retake
+              {primaryLabel}
             </Link>
+            {isMixedReview ? (
+              <button
+                type="button"
+                onClick={handleRebuildMix}
+                disabled={rebuilding}
+                className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04] disabled:opacity-60"
+              >
+                {rebuilding ? "Building new mix…" : "Build new mix"}
+              </button>
+            ) : (
+              <Link
+                href={`/practice/session/${slug}`}
+                className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
+              >
+                Retake
+              </Link>
+            )}
+          </div>
+          {rebuildError && (
+            <p className="text-xs text-center" style={{ color: "#FF4444" }}>
+              {rebuildError}
+            </p>
           )}
         </div>
-        {rebuildError && (
-          <p className="text-xs text-center" style={{ color: "#FF4444" }}>
-            {rebuildError}
-          </p>
-        )}
       </div>
     )
   }
