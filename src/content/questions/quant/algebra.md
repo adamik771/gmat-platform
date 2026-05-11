@@ -141,7 +141,7 @@ If x² - 5x - 14 = 0, what is the product of the two solutions?
 **type:** Problem Solving
 **topic:** Functions
 
-If f(x) = 2x² - 3x + 1, what is the value of f(3) - f(1)?
+If f(x) = 2x² - 3x + 4, what is the value of f(3) - f(1)?
 
 - A) 8
 - B) 10
@@ -150,14 +150,14 @@ If f(x) = 2x² - 3x + 1, what is the value of f(3) - f(1)?
 - E) 16
 
 **answer:** B
-**fastest_path:** f(3) = 2(9) − 9 + 1 = 10. f(1) = 2 − 3 + 1 = 0. Difference = 10.
-**explanation:** f(3) = 2(9) − 3(3) + 1 = 18 − 9 + 1 = 10. f(1) = 2(1) − 3(1) + 1 = 2 − 3 + 1 = 0. f(3) − f(1) = 10.
-**mistake_a:** Slip → 8 (likely arithmetic error in f(3) computation).
-**mistake_c:** Computed f(3) + f(1) instead of f(3) − f(1) → 10 + 0… no, but a likely sign-flip path: 2(9) − 3(3) − 1 = 8, then 8 + 4 → 12.
-**mistake_d:** Slip → 14.
-**mistake_e:** Computed f(3) but treated f(1) as 1 instead of 0 → 10 + 6, or skipped the subtraction entirely.
-**common_trap:** Arithmetic slip on f(3) = 18 − 9 + 1, especially flipping the order of operations on −3(3).
-**takeaway:** Functions: substitute, then simplify. Watch the *sign* on each term, especially the −3x.
+**fastest_path:** f(3) = 2(9) − 9 + 4 = 13. f(1) = 2 − 3 + 4 = 3. Difference = 10.
+**explanation:** f(3) = 2(9) − 3(3) + 4 = 18 − 9 + 4 = 13. f(1) = 2(1) − 3(1) + 4 = 2 − 3 + 4 = 3. f(3) − f(1) = 13 − 3 = 10.
+**mistake_a:** Arithmetic slip on the final step: computed f(3) = 13 and f(1) = 3 correctly but then wrote 13 − 3 = 8 (dropped a digit or rushed the subtraction).
+**mistake_c:** Arithmetic slip in f(3): computed 18 − 9 + 6 = 15, then 15 − 3 = 12.
+**mistake_d:** Sign error in f(1): computed 2 − 3 − 4 = −5 (treated +4 as −4), then 13 − (−5) = 18... or arithmetic slip giving f(3) = 17, then 17 − 3 = 14.
+**mistake_e:** Computed f(3) + f(1) instead of f(3) − f(1): 13 + 3 = 16.
+**common_trap:** Arithmetic slip on f(3) = 18 − 9 + 4, especially on the sign of the constant term, or adding instead of subtracting f(1).
+**takeaway:** Evaluate each function call fully before computing the difference. Watch signs on every term, especially when the constant is positive — it's easy to treat it as a subtraction.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -547,10 +547,10 @@ Let x, y, and z be positive real numbers with x + y + z = 12 and xy + yz + zx = 
 **answer:** A
 **fastest_path:** (x+y+z)² = x²+y²+z² + 2(xy+yz+zx) → 144 = sum_of_squares + 78 → sum_of_squares = 66.
 **explanation:** Use the symmetric-sum identity (x + y + z)² = x² + y² + z² + 2(xy + yz + zx). Substitute: (12)² = (x² + y² + z²) + 2(39) → 144 = (x² + y² + z²) + 78 → x² + y² + z² = 66.
-**mistake_b:** Computed (sum)² + (cross-product sum) = 144 + 39 = ... no, mis-applied somewhere.
-**mistake_c:** Forgot the factor of 2: 144 − 39 = 105? No, picked 78 = 2 × 39 directly without subtracting from 144.
-**mistake_d:** Subtracted 39 directly (without the factor of 2): 144 − 39 = 105.
-**mistake_e:** Used 12² + 2(39) = 222 / something else.
+**mistake_b:** Applied a wrong form of the identity — divided (x+y+z)² by 2 instead of subtracting 2(cross-products): 144 / 2 = 72.
+**mistake_c:** Computed 2(xy+yz+zx) = 78 and reported that as the answer, forgetting to subtract from (x+y+z)²: stopped at 2 × 39 = 78.
+**mistake_d:** Arithmetic error computing 2 × 39: wrote 57 instead of 78, then 144 − 57 = 87.
+**mistake_e:** Forgot the factor of 2 on the cross-product term entirely; subtracted 39 instead of 78: 144 − 39 = 105.
 **common_trap:** missing-algebraic-shortcut + factor-of-2 error — solving for x, y, z individually (impossible without more info) or forgetting the factor of 2 on the cross-product sum.
 **takeaway:** (x + y + z)² = (sum of squares) + 2(sum of pairwise products). Memorize for symmetric-sum problems.
 **related_reading:** reading-quant-04-algebra-and-equations
