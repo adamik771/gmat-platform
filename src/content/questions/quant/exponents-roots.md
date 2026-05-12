@@ -673,3 +673,481 @@ If 3^(x + 2) = 81, what is the value of x?
 **common_trap:** Mis-recognizing the power of 3.
 **takeaway:** Memorize 3¹ through 3⁵: 3, 9, 27, 81, 243. Same base equations: same base ⟺ equal exponents.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q25
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Cube Roots
+
+What is the value of ∛125?
+
+- A) 3
+- B) 5
+- C) 25
+- D) 15
+- E) 625
+
+**answer:** B
+**fastest_path:** 5³ = 125, so ∛125 = 5.
+**explanation:** The cube root of 125 is the number that, when raised to the 3rd power, gives 125. Test 5: 5 × 5 × 5 = 125. So ∛125 = 5.
+**mistake_a:** Divided 125 by something and guessed 3.
+**mistake_c:** Stopped at 125/5 = 25 — that is dividing, not cube-rooting.
+**mistake_d:** Guessed 15 from an off-by-one approach.
+**mistake_e:** Squared 25 to get 625 — applied the wrong operation.
+**common_trap:** Confusing ∛n with n/5 or √n.
+**takeaway:** Memorize perfect cubes: 1³=1, 2³=8, 3³=27, 4³=64, 5³=125, 6³=216, 7³=343, 8³=512, 9³=729, 10³=1000. Cube-rooting reverses cubing.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q26
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of (3⁵ × 3²) / 3⁷?
+
+- A) 0
+- B) 1
+- C) 3
+- D) 9
+- E) 3⁷
+
+**answer:** B
+**fastest_path:** 3⁵ × 3² = 3⁷; 3⁷ / 3⁷ = 3⁰ = 1.
+**explanation:** Numerator: 3⁵ × 3² = 3^(5+2) = 3⁷. Then 3⁷ / 3⁷ = 3^(7−7) = 3⁰ = 1. Any nonzero number to the power 0 equals 1.
+**mistake_a:** Guessed that subtracting equal exponents yields 0 — confused a⁰ with a × 0.
+**mistake_c:** Computed 7 − 7 = 0 and interpreted 3⁰ as 3 × 0 = 0, then guessed 3.
+**mistake_d:** Computed 7 − 7 = 0 and interpreted 3⁰ as 3² = 9 (off by one rule).
+**mistake_e:** Stopped at the numerator simplification (3⁷) without completing the division.
+**common_trap:** Interpreting a⁰ = 0 instead of 1. Subtracting equal exponents yields 0 in the exponent, but a⁰ = 1 for all a ≠ 0.
+**takeaway:** a⁰ = 1 for any nonzero a. This follows from aⁿ / aⁿ = a^(n−n) = a⁰, and any nonzero number divided by itself is 1.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q27
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+Which of the following is equivalent to (2x)⁴?
+
+- A) 2x⁴
+- B) 8x⁴
+- C) 16x⁴
+- D) 4x⁴
+- E) 16x
+
+**answer:** C
+**fastest_path:** (2x)⁴ = 2⁴ × x⁴ = 16x⁴.
+**explanation:** Power of a product: (ab)^n = a^n × b^n. Apply: (2x)⁴ = 2⁴ × x⁴ = 16x⁴.
+**mistake_a:** Applied the exponent to x only, treating 2 as a coefficient that stays put: 2 × x⁴ = 2x⁴.
+**mistake_b:** Computed 2³ = 8 (used exponent 3 instead of 4): 8x⁴.
+**mistake_d:** Computed 2² = 4 (used exponent 2 instead of 4): 4x⁴.
+**mistake_e:** Applied the exponent to 2 but left x without an exponent: 16x.
+**common_trap:** Distributing the exponent to x but forgetting to also raise the coefficient 2 to the 4th power.
+**takeaway:** (ab)^n raises every factor — both the coefficient and the variable. (2x)⁴ = 2⁴ × x⁴, not 2 × x⁴.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q28
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Converting Between Exponent Bases
+
+Which of the following equals 2³ × 4²?
+
+- A) 2⁵
+- B) 2⁶
+- C) 2⁷
+- D) 4⁵
+- E) 8⁵
+
+**answer:** C
+**fastest_path:** 4² = (2²)² = 2⁴. Then 2³ × 2⁴ = 2⁷.
+**explanation:** Convert 4 to a power of 2: 4 = 2², so 4² = (2²)² = 2⁴. Now both factors share base 2: 2³ × 2⁴ = 2^(3+4) = 2⁷.
+**mistake_a:** Added the original visible exponents directly: 3 + 2 = 5 → 2⁵ (didn't convert 4 to base 2 first).
+**mistake_b:** Got 2⁶ from a computational slip in the conversion.
+**mistake_d:** Used 4 as a base without converting and combined exponents to get 4⁵.
+**mistake_e:** Tried to combine into base 8 without a correct conversion.
+**common_trap:** Adding the visible exponents (3 + 2 = 5) without first converting 4² to base 2.
+**takeaway:** Before adding exponents, ensure both factors share the same base. 4 = 2², so 4^k = 2^(2k). Convert first, then add.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+Simplify √75.
+
+- A) 5√3
+- B) 3√5
+- C) 15√3
+- D) 25√3
+- E) 5√15
+
+**answer:** A
+**fastest_path:** 75 = 25 × 3 → √75 = 5√3.
+**explanation:** Factor out the largest perfect square: 75 = 25 × 3. So √75 = √25 × √3 = 5√3.
+**mistake_b:** Factored as √(9 × something) → got 3√5, but 9 × 5 = 45 ≠ 75; incorrect factoring.
+**mistake_c:** Used 225 = 15² and wrote 15√3, but 225 ≠ 75 — confused the number.
+**mistake_d:** Incorrectly computed 25 as a coefficient without the radical: 25√3 (placed the coefficient wrong).
+**mistake_e:** Factored as √(5 × 15) and left the result unsimplified: 5√15.
+**common_trap:** Factoring out a small perfect square (9 instead of 25) and leaving a messier radical.
+**takeaway:** Always factor out the *largest* perfect square. For 75: check 25 before 9. √(25 × 3) = 5√3 is fully simplified.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q30
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Equations with Different Bases
+
+If 4^x = 8, what is the value of x?
+
+- A) 1/2
+- B) 2/3
+- C) 3/2
+- D) 2
+- E) 3
+
+**answer:** C
+**fastest_path:** 4 = 2², 8 = 2³. So 2^(2x) = 2³ → 2x = 3 → x = 3/2.
+**explanation:** Convert both sides to base 2. 4 = 2², so 4^x = (2²)^x = 2^(2x). Also 8 = 2³. Equation: 2^(2x) = 2³. Same base → 2x = 3 → x = 3/2. Verify: 4^(3/2) = (4^(1/2))³ = 2³ = 8 ✓.
+**mistake_a:** Guessed x = 1/2 from loose estimation.
+**mistake_b:** Inverted the correct answer.
+**mistake_d:** Guessed x = 2 without checking (4² = 16 ≠ 8).
+**mistake_e:** Guessed x = 3 without computing (4³ = 64 ≠ 8).
+**common_trap:** Trying to solve 4^x = 8 without converting to a common base, leading to guessing.
+**takeaway:** When bases differ but share a prime factor, convert both to that prime. 4 = 2² and 8 = 2³ — the exponent equation follows cleanly.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q31
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Order of Operations
+
+What is the value of 2^(3²) − (2³)²?
+
+- A) 64
+- B) 128
+- C) 256
+- D) 448
+- E) 512
+
+**answer:** D
+**fastest_path:** 2^(3²) = 2^9 = 512; (2³)² = 2^6 = 64. Difference = 448.
+**explanation:** Evaluate each term separately, respecting order of operations. For 2^(3²): compute the inner exponent first — 3² = 9 — then 2^9 = 512. For (2³)²: compute inside the parentheses first — 2³ = 8 — then 8² = 64. Equivalently, (2³)² = 2^(3×2) = 2^6 = 64. Difference: 512 − 64 = 448.
+**mistake_a:** Computed (2³)² = 64 and stopped — selected only the second term.
+**mistake_b:** Misapplied exponent rules and got 2^7 = 128.
+**mistake_c:** Misapplied exponent rules and got 2^8 = 256.
+**mistake_e:** Computed 2^9 = 512 and stopped — selected only the first term.
+**common_trap:** Treating 2^(3²) and (2³)² as equal. They are not: the first evaluates the exponent's exponent (2^9 = 512); the second multiplies outer by inner (2^6 = 64).
+**takeaway:** 2^(3²) ≠ (2³)². Inner parentheses evaluate first: 2^(3²) = 2^9; (2³)² = 2^6. These differ by nearly 8×. Pay attention to where the parentheses are placed.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q32
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Equations with Different Bases
+
+If 16^x = 32, what is the value of x?
+
+- A) 2
+- B) 5/2
+- C) 5/4
+- D) 4/5
+- E) 3/2
+
+**answer:** C
+**fastest_path:** 16 = 2⁴, 32 = 2⁵. So 2^(4x) = 2⁵ → 4x = 5 → x = 5/4.
+**explanation:** Convert to base 2: 16 = 2⁴, 32 = 2⁵. Equation: (2⁴)^x = 2^(4x) = 2⁵ → 4x = 5 → x = 5/4. Verify: 16^(5/4) = (16^(1/4))⁵ = 2⁵ = 32 ✓.
+**mistake_a:** Guessed x = 2 (16² = 256 ≠ 32).
+**mistake_b:** Applied a partial conversion and got 5/2.
+**mistake_d:** Inverted the correct answer: 4/5 instead of 5/4.
+**mistake_e:** Confused this with the related problem 4^x = 8 and used x = 3/2.
+**common_trap:** Inverting the fraction (4/5 instead of 5/4) or conflating with 4^x = 8. The numerator comes from the target exponent (5), the denominator from the base's exponent (4).
+**takeaway:** 16 = 2⁴ and 32 = 2⁵. Setting 4x = 5 gives x = 5/4. The pattern: when 2^(n·x) = 2^m, then x = m/n.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of √(3/4) × √(4/3)?
+
+- A) 1
+- B) 3/4
+- C) 4/3
+- D) √(7/12)
+- E) 2
+
+**answer:** A
+**fastest_path:** √(3/4) × √(4/3) = √((3/4) × (4/3)) = √1 = 1.
+**explanation:** Product rule for square roots: √a × √b = √(a × b). Multiply the arguments: (3/4) × (4/3) = 12/12 = 1. So the result is √1 = 1.
+**mistake_b:** Multiplied only the denominators and guessed 3/4.
+**mistake_c:** Saw 4/3 in the expression and selected it without computing.
+**mistake_d:** Added the arguments instead of multiplying: (3/4) + (4/3) = 25/12; took its square root.
+**mistake_e:** Correctly found (3/4) × (4/3) = 1 but then misread √1 = 2.
+**common_trap:** Trying to simplify each radical separately and then multiply numerically, which introduces errors. The product rule handles it in one step.
+**takeaway:** √a × √b = √(a × b). Watch for reciprocal pairs like (3/4) × (4/3) = 1 — the product collapses to √1 = 1 immediately.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponential Growth
+
+A colony of bacteria doubles in population every 3 hours. At noon the colony has 500 bacteria. How many bacteria will the colony have at 9 PM on the same day?
+
+- A) 1,000
+- B) 2,000
+- C) 4,000
+- D) 8,000
+- E) 16,000
+
+**answer:** C
+**fastest_path:** Noon to 9 PM = 9 hr = 3 doubling periods. 500 × 2³ = 4,000.
+**explanation:** Time elapsed: noon to 9 PM = 9 hours. Each doubling period is 3 hours. Number of doublings = 9 ÷ 3 = 3. Final count = 500 × 2³ = 500 × 8 = 4,000.
+**mistake_a:** Applied only 1 doubling: 500 × 2 = 1,000.
+**mistake_b:** Applied 2 doublings: 500 × 4 = 2,000.
+**mistake_d:** Miscounted 4 periods (would need 12 hr): 500 × 16 = 8,000.
+**mistake_e:** Miscounted 5 periods: 500 × 32 = 16,000.
+**common_trap:** Miscounting the doubling periods. Noon to 9 PM is exactly 9 hours, which is exactly 3 periods of 3 hours each.
+**takeaway:** Exponential growth: count periods = (total time) ÷ (period length), then multiply the starting amount by (growth factor)^(periods).
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Comparing Exponent Values
+
+For nonzero real number n, is n⁴ > n³?
+
+(1) n > 0
+(2) n > 1
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**fastest_path:** (1) n = 1/2 → n⁴ = 1/16 < n³ = 1/8 (NO); n = 2 → 16 > 8 (YES) — two answers, insufficient. (2) n > 1: n⁴/n³ = n > 1, so n⁴ > n³ always — sufficient.
+**explanation:** Statement (1): n > 0 does not resolve the question. Counter­example: n = 1/2 gives n⁴ = 1/16 and n³ = 1/8; since 1/16 < 1/8, the answer is NO. But n = 2 gives 16 > 8, YES. Two different answers → insufficient.
+
+Statement (2): n > 1. Factor the inequality: n⁴ > n³ iff n⁴ − n³ > 0 iff n³(n − 1) > 0. Since n > 1, we have n³ > 0 and (n − 1) > 0, so the product is positive. YES, always. Sufficient.
+**mistake_a:** Concluded only (1) sufficient without testing the counterexample 0 < n < 1.
+**mistake_c:** Required both statements when (2) alone resolves.
+**mistake_d:** Concluded each alone sufficient without finding the counterexample for (1).
+**mistake_e:** Concluded both together insufficient.
+**common_trap:** Assuming n > 0 is enough to guarantee n⁴ > n³. It isn't — fractions between 0 and 1 reverse the inequality because raising a proper fraction to a higher power makes it smaller.
+**takeaway:** When testing exponent inequalities with n > 0, always check the region (0, 1). There, higher powers produce smaller values, reversing the typical comparison.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combined Exponent Rules
+
+Which of the following is equivalent to (x³ · y²)² / (x² · y³)?
+
+- A) x⁴ · y
+- B) x⁴ · y⁻¹
+- C) x⁴ · y³
+- D) x³ · y
+- E) x² · y
+
+**answer:** A
+**fastest_path:** Numerator: x⁶y⁴. Divide: x^(6−2) · y^(4−3) = x⁴y.
+**explanation:** Apply the power-of-product rule to the numerator: (x³ · y²)² = x^(3×2) · y^(2×2) = x⁶ · y⁴. Then divide: x^(6−2) · y^(4−3) = x⁴ · y.
+**mistake_b:** Computed the y exponent as 4 − 3 = 1 but then inverted it: y⁻¹.
+**mistake_c:** Computed y as y^(4−(−3)) = y⁷, then made a further slip to y³.
+**mistake_d:** Used x^(6−3) = x³ instead of x^(6−2) — subtracted the pre-squared exponent.
+**mistake_e:** Compounded multiple errors on both x and y.
+**common_trap:** Forgetting to square all exponents inside the parentheses. (y²)² = y⁴, not y². Squaring a power multiplies the exponent; squaring a product squares each factor.
+**takeaway:** (x^m · y^n)^p = x^(mp) · y^(np). Every exponent inside gets multiplied by the outer power. Then for division, subtract same-base exponents.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Comparing Exponential Magnitudes
+
+Which of the following has the greatest value?
+
+- A) 2³⁰
+- B) 3²⁰
+- C) 4¹⁵
+- D) 8¹⁰
+- E) 16⁸
+
+**answer:** E
+**fastest_path:** C = D = A = 2³⁰. E = 2³². B = 3²⁰ ≈ 2^31.7. Since 2³² > 2^31.7 > 2³⁰, E wins.
+**explanation:** Convert each option to a power of 2 where possible. C: 4¹⁵ = (2²)¹⁵ = 2³⁰. D: 8¹⁰ = (2³)¹⁰ = 2³⁰. So A = C = D = 2³⁰.
+
+E: 16⁸ = (2⁴)⁸ = 2³² > 2³⁰, so E beats A, C, and D.
+
+Compare E vs B: Is 2³² > 3²⁰? In log terms: 32 × ln 2 ≈ 32 × 0.693 = 22.18, and 20 × ln 3 ≈ 20 × 1.099 = 21.97. Since 22.18 > 21.97, we have 2³² > 3²⁰. E is the greatest.
+**mistake_a:** Selected 2³⁰ without checking whether E or B exceed it.
+**mistake_b:** Reasoned that 3 > 2 so 3²⁰ dominates — but 2³² edges ahead via exponent size.
+**mistake_c:** Selected 4¹⁵ without converting to base 2.
+**mistake_d:** Selected 8¹⁰ without noting it equals 2³⁰.
+**common_trap:** Assuming "larger base wins." When bases differ, only comparing the log values (exponent × ln base) gives the correct answer.
+**takeaway:** Convert to a common prime base first (A=C=D=2³⁰, E=2³²). For remaining cross-base comparisons, use: a^m > b^n iff m·ln a > n·ln b. Key values: ln 2 ≈ 0.693, ln 3 ≈ 1.099.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Equations with Exponents
+
+What is the value of x⁴ − x²?
+
+(1) x² = 9
+(2) x³ = −27
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**fastest_path:** (1) x² = 9 → x⁴ = 81 → 81 − 9 = 72. Sufficient. (2) x³ = −27 → x = −3 → same result 72. Sufficient.
+**explanation:** Statement (1): x² = 9 means x⁴ = (x²)² = 81. So x⁴ − x² = 81 − 9 = 72. Note that x = +3 or x = −3, but the expression uses only even powers — its value is identical for both. Sufficient.
+
+Statement (2): x³ = −27. Since x is real and 27 = 3³, we get x = −3 (unique real cube root). Then x² = 9, x⁴ = 81, so x⁴ − x² = 72. Sufficient.
+
+Each alone → D.
+**mistake_a:** Worried that x² = 9 allows x = ±3 and concluded the expression is ambiguous.
+**mistake_b:** Concluded only (2) is sufficient because it pins x = −3 exactly.
+**mistake_c:** Required both statements.
+**mistake_e:** Concluded neither alone is sufficient.
+**common_trap:** Assuming x² = 9 is ambiguous because x = ±3. But x⁴ − x² = (x²)² − x² = 81 − 9 = 72 regardless of sign — even powers neutralize the ambiguity.
+**takeaway:** When an expression involves only even powers of x, the sign of x does not affect its value. x² = 9 is sufficient even though x = ±3.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q39
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Equations with Different Bases
+
+If 4^(x + 1) = 8^x, what is the value of x?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 6
+
+**answer:** B
+**fastest_path:** 2^(2x+2) = 2^(3x) → 2x + 2 = 3x → x = 2.
+**explanation:** Convert both sides to base 2. 4 = 2², so 4^(x+1) = 2^(2(x+1)) = 2^(2x+2). Also 8 = 2³, so 8^x = 2^(3x). Same base → 2x + 2 = 3x → x = 2. Verify: 4^3 = 64 and 8² = 64 ✓.
+**mistake_a:** Equated exponents without converting: (x+1) = x — no solution; defaulted to 1.
+**mistake_c:** Made a computation slip after the conversion and got x = 3.
+**mistake_d:** Applied rules carelessly and got x = 4.
+**mistake_e:** Doubled a wrong intermediate result to get 6.
+**common_trap:** Trying to equate exponents directly without first converting 4 and 8 to a common base. The equation is only solvable after both sides become powers of 2.
+**takeaway:** When two exponential sides have different bases with a common prime, convert first. Here 4 = 2² and 8 = 2³. After conversion, equate exponents and solve the linear equation.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Sign Analysis with Exponents
+
+For integer n, is (−2)^n > 0?
+
+(1) n is even.
+(2) n² is even.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**fastest_path:** (1) n even → (−2)^n > 0 always. (2) For any integer, n² is even iff n is even — so (2) is logically equivalent to (1). Both sufficient → D.
+**explanation:** Statement (1): n is even. Any negative number raised to an even integer power is positive (negative × negative cancels repeatedly). So (−2)^n > 0. Sufficient.
+
+Statement (2): n² is even. For any integer n: n is odd if and only if n² is odd (odd × odd = odd; even × even = even). Contrapositive: n² is even if and only if n is even. So Statement (2) carries exactly the same information as Statement (1). It also implies (−2)^n > 0. Sufficient.
+
+Each alone → D.
+**mistake_a:** Concluded only (1) sufficient, not recognizing that n² even forces n even.
+**mistake_b:** Concluded only (2) sufficient.
+**mistake_c:** Required both statements.
+**mistake_e:** Concluded neither sufficient.
+**common_trap:** Assuming Statement (2) contains different or weaker information than Statement (1). The key insight is that integer parity of n² mirrors integer parity of n.
+**takeaway:** For integers: n is even iff n² is even. These conditions are equivalent. A negative base raised to an even integer power is always positive.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponent Systems
+
+If 2^a × 4^b = 8^c, where a, b, and c are positive integers and a + b + c = 10, what is the value of c?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** C
+**fastest_path:** Convert: a + 2b = 3c. Combined with a + b + c = 10: b = 4c − 10, a = 20 − 5c. For a,b > 0: c < 4 and c > 2.5 → c = 3 only.
+**explanation:** Convert everything to base 2: 2^a × (2²)^b = (2³)^c → 2^a × 2^(2b) = 2^(3c) → a + 2b = 3c.
+
+Now solve the system:
+- a + 2b = 3c … (i)
+- a + b + c = 10 … (ii)
+
+Subtract (ii) from (i): b − c = 3c − 10 → b = 4c − 10.
+Substitute into (ii): a = 10 − b − c = 10 − (4c − 10) − c = 20 − 5c.
+
+Apply positivity constraints (a, b, c must be positive integers):
+- b > 0: 4c − 10 > 0 → c > 2.5 → c ≥ 3.
+- a > 0: 20 − 5c > 0 → c < 4.
+- c > 0: already satisfied.
+
+The only integer satisfying c ≥ 3 and c < 4 is c = 3. Check: a = 5, b = 2, c = 3. Verify: 2⁵ × 4² = 32 × 16 = 512 = 8³ ✓, and 5 + 2 + 3 = 10 ✓.
+**mistake_a:** Did not set up the exponent equation; guessed c = 1.
+**mistake_b:** Set up the equation but made an arithmetic error → c = 2.
+**mistake_d:** Chose c = 4, which gives a = 0 — not a positive integer.
+**mistake_e:** Chose c = 5, which gives a = −5 — impossible.
+**common_trap:** Finding c = 4 looks plausible because b = 4(4) − 10 = 6 > 0, but then a = 20 − 5(4) = 0 violates the positive integer requirement. Always check all three variables.
+**takeaway:** After finding the parametric solution, apply every constraint (positive, integer) systematically. Often the constraints narrow to exactly one valid value.
