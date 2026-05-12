@@ -8,23 +8,23 @@ topic: Word Problems
 **type:** Problem Solving
 **topic:** Rate/Time/Distance
 
-A car travels at 60 miles per hour for 2.5 hours. How many miles does it travel?
+A car travels at a constant speed of 50 miles per hour. How far does the car travel in 36 minutes?
 
-- A) 120
-- B) 130
-- C) 140
-- D) 150
-- E) 160
+- A) 18
+- B) 25
+- C) 30
+- D) 36
+- E) 40
 
-**answer:** D
-**fastest_path:** D = R·T = 60 × 2.5 = 150.
-**explanation:** D = R × T = 60 × 2.5 = 150 mi.
-**mistake_a:** Computed 60 × 2 = 120, ignored the 0.5.
-**mistake_b:** Slip → 130.
-**mistake_c:** Slip → 140.
-**mistake_e:** Slip → 160.
-**common_trap:** Multiplication slip on 60 × 2.5 — most common is 60 × 2 = 120.
-**takeaway:** D = R × T. For 0.5 hr, just add R/2 to the round-hour distance: 60·2 + 30 = 150.
+**answer:** C
+**fastest_path:** Convert 36 min to hours: 36/60 = 3/5. Distance = 50 × 3/5 = 30 mi.
+**explanation:** Time in hours = 36/60 = 3/5. Distance = rate × time = 50 × 3/5 = 30 miles.
+**mistake_a:** Treated minutes as a percent of 100 instead of 60: 50 × (36/100) = 18.
+**mistake_b:** Approximated 36/60 as 1/2 instead of 3/5: 50 × 1/2 = 25.
+**mistake_d:** Bubbled the given time in minutes (36) as the distance in miles — the classic unit-confusion trap.
+**mistake_e:** Misread 36 as 48 or made an arithmetic slip on the multiplication.
+**common_trap:** Bubbling the given time (36 min) as the answer — D = 36 looks plausible and is a textbook unit-confusion trap on GMAT.
+**takeaway:** D = R × T, but T must be in hours. Divide minutes by 60 first: 36 ÷ 60 = 3/5, then 50 × 3/5 = 30.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -126,8 +126,8 @@ Train A leaves Station X heading east at 70 mph. Two hours later, Train B leaves
 **mistake_a:** Slip → 5.
 **mistake_b:** Slip → 6.
 **mistake_d:** Slip → 8.
-**mistake_e:** Used sum (160 mph) → ~9 hr.
-**common_trap:** Using sum of speeds (160) instead of difference (20) for catch-up.
+**mistake_e:** Set up 70t = 90(t − 2) correctly and found t = 9 (hours since A's departure), but reported that value instead of subtracting the 2-hour head-start delay — answered in A-clock rather than B-clock.
+**common_trap:** Two traps: (1) using the *sum* of speeds (160 mph) instead of the *difference* (20 mph) for a catch-up scenario; (2) solving correctly with a shared time variable but reporting total time since A's departure (9 hr) instead of time since B's departure (9 − 2 = 7 hr).
 **takeaway:** Catch-up (same direction) → closing rate = *difference*. Approach (opposite) → *sum*.
 **related_reading:** reading-quant-05-word-problems
 
@@ -264,7 +264,7 @@ Pipe A can fill a tank in 4 hours, and Pipe B can fill the same tank in 6 hours.
 ---
 
 ## Q11
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Mixture
 
@@ -273,18 +273,18 @@ A grocer mixes Brand A coffee at $12 per pound with Brand B coffee at $8 per pou
 - A) 10
 - B) 12
 - C) 15
-- D) 18
+- D) 25
 - E) 20
 
 **answer:** C
 **fastest_path:** Alligation: $9.50 is 1.50 from $8 and 2.50 from $12. So A:B = 1.5:2.5 = 3:5. A = (3/8)·40 = 15.
 **explanation:** Let a + b = 40 and 12a + 8b = 380. Substitute b = 40 − a: 12a + 320 − 8a = 380 → 4a = 60 → a = 15.
-**mistake_a:** Slip → 10.
-**mistake_b:** Slip → 12.
-**mistake_d:** Slip → 18.
-**mistake_e:** Slip → 20 (took the half).
-**common_trap:** Mis-applying alligation by inverting the ratio (using $12-distance for A instead of $8-distance).
-**takeaway:** Alligation: distance ratio inverted = quantity ratio. Closer to A's price → less of A.
+**mistake_a:** Arithmetic slip in the system → a = 10.
+**mistake_b:** Arithmetic slip (e.g., mis-added constant): 4a = 48 → a = 12.
+**mistake_d:** Inverted the alligation ratio — assigned the $12-distance (2.50) to Brand A's share instead of the $8-distance (1.50): A = (5/8) × 40 = 25 lbs. This is the most common alligation error.
+**mistake_e:** Assumed an equal split: 40/2 = 20 lbs each, ignoring the price-weighted ratio.
+**common_trap:** Inverting the alligation distances — the closer a price is to the target blend price, the *larger* its share. Brand B ($8) is closer to $9.50 than Brand A ($12) is, so Brand B gets the larger portion.
+**takeaway:** Alligation: (quantity of A) / (quantity of B) = (blend price − price of B) / (price of A − blend price). Closer price → bigger share, not smaller.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -532,25 +532,25 @@ A company sells widgets for $p each. The company's fixed monthly costs are $F, a
 ## Q21
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Age Problem — Two Equations
+**topic:** Break-Even Analysis
 
-Five years ago, Alex was three times as old as Sam. Ten years from now, Alex will be twice as old as Sam. How old is Alex now?
+A food truck operator incurs $200 in fixed daily costs and pays $3 in ingredients per meal. Each meal sells for $8. How many meals must be sold in a day for the operator to exactly break even?
 
-- A) 35
+- A) 25
 - B) 40
-- C) 45
-- D) 50
-- E) 55
+- C) 50
+- D) 67
+- E) 80
 
-**answer:** D
-**fastest_path:** A = 3S − 10; A = 2S + 10 → S = 20, A = 50.
-**explanation:** A − 5 = 3(S − 5) → A = 3S − 10. A + 10 = 2(S + 10) → A = 2S + 10. Equate: 3S − 10 = 2S + 10 → S = 20 → A = 50. Verify: 5 yrs ago Alex 45 = 3·15 ✓; in 10 yrs Alex 60 = 2·30 ✓.
-**mistake_a:** Slip → 35.
-**mistake_b:** Slip → 40.
-**mistake_c:** Slip → 45.
-**mistake_e:** Slip → 55.
-**common_trap:** Misreading the time shifts ("5 ago" ≠ "10 from now") or swapping ages.
-**takeaway:** Each constraint is one linear equation. Two constraints → unique (A, S).
+**answer:** B
+**fastest_path:** Contribution margin = 8 − 3 = 5. Break-even = Fixed costs ÷ margin = 200 ÷ 5 = 40.
+**explanation:** At break-even, revenue equals total cost: 8n = 3n + 200 → 5n = 200 → n = 40.
+**mistake_a:** Divided fixed cost by selling price, ignoring variable cost: 200/8 = 25.
+**mistake_c:** Used wrong contribution margin (e.g., $8 − $4 = $4 from an arithmetic slip): 200/4 = 50.
+**mistake_d:** Divided fixed cost by variable cost instead of contribution margin: 200/3 ≈ 67.
+**mistake_e:** Underestimated contribution margin (e.g., confused variable cost with margin, using $8 − $5.50 = $2.50): 200/2.5 = 80.
+**common_trap:** Dividing fixed cost by the selling price (A=25) or the variable cost (D=67) rather than the contribution margin — the profit earned per unit sold above variable cost.
+**takeaway:** Break-even units = Fixed costs / (Price − Variable cost per unit). The denominator is the *contribution margin*, not the price or the variable cost alone.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -584,25 +584,25 @@ A factory produces gadgets. Each gadget costs $10 in materials; fixed operating 
 ## Q23
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Consecutive Integers
+**topic:** Weighted Average
 
-The sum of three consecutive positive odd integers is 87. What is the largest of the three?
+A student scores 72 on the midterm and 84 on the final exam. If the final exam counts twice as much as the midterm toward the course grade, what is the student's weighted average for the course?
 
-- A) 27
-- B) 29
-- C) 31
-- D) 33
-- E) 35
+- A) 76
+- B) 78
+- C) 80
+- D) 81
+- E) 84
 
 **answer:** C
-**fastest_path:** Middle = 87/3 = 29. Largest = 29 + 2 = 31.
-**explanation:** Three consecutive odd integers: n, n+2, n+4. Sum = 3n + 6 = 87 → n = 27. Integers: 27, 29, 31. Largest = 31.
-**mistake_a:** Bubbled smallest (27).
-**mistake_b:** Bubbled middle (29 = mean).
-**mistake_d:** Slip → 33.
-**mistake_e:** Slip → 35.
-**common_trap:** Bubbling the middle (29) — which equals the mean — instead of the largest.
-**takeaway:** For consecutive odds/evens with count n: middle = mean = sum/n. Step = 2.
+**fastest_path:** Weights: midterm = 1, final = 2. Weighted avg = (72·1 + 84·2) / (1+2) = 240/3 = 80.
+**explanation:** Assign weights proportional to count: midterm weight = 1, final weight = 2. Weighted average = (72 × 1 + 84 × 2) / (1 + 2) = (72 + 168) / 3 = 240 / 3 = 80.
+**mistake_a:** Inverted the weights — gave the midterm double weight instead of the final: (72·2 + 84·1) / 3 = 228/3 = 76.
+**mistake_b:** Used a simple arithmetic mean, ignoring the weighting: (72 + 84) / 2 = 78.
+**mistake_d:** Treated "twice as much" as a weight of 3 for the final: (72·1 + 84·3) / (1+3) = 324/4 = 81.
+**mistake_e:** Assumed the higher-weighted exam dominates entirely and bubbled the final exam score.
+**common_trap:** Using a simple average (B=78) instead of a weighted average — when one component carries more weight, it must appear proportionally more in the numerator.
+**takeaway:** Weighted average = Σ(value × weight) / Σ(weights). A higher-weight item pulls the result toward its score. Think of it as: "as if the student took the final twice."
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -712,7 +712,7 @@ Three printers — A, B, and C — work together to print a document. Alone, Pri
 ---
 
 ## Q28
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Age Problem — Three People
 
