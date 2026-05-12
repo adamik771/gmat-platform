@@ -37,6 +37,8 @@ sections:
   - id: restrictions
     type: reading
     title: "Restrictions — adjacent, forbidden, alternating"
+    intro: |
+      Three patterns cover every restriction problem on the GMAT: the glue trick (must be adjacent), the complement (must NOT be adjacent, or "at least one"), and pattern-counting for alternating arrangements. Recognise which pattern the question triggers, apply its template, and you won't need to think creatively under time pressure.
     check_question_ids:
       - combinatorics-q8
       - combinatorics-q9
@@ -50,12 +52,16 @@ sections:
   - id: repeats
     type: reading
     title: "Repeated letters and multiset arrangements"
-    check_question_ids: []
+    intro: |
+      When some objects are identical, a naive factorial overcounts — swapping two indistinguishable copies produces the "same" arrangement, not a new one. This section builds the correction factor from first principles so the formula is never just a memorised string.
+    check_question_ids:
+      - combinatorics-q27
 
   - id: decision
     type: summary
     title: "The four-question decision tree"
-    check_question_ids: []
+    check_question_ids:
+      - combinatorics-q22
 
 problem_sets:
   easy:
@@ -84,6 +90,7 @@ problem_sets:
       - combinatorics-q10
       - combinatorics-q11
       - combinatorics-q12
+      - combinatorics-q27
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -97,6 +104,9 @@ problem_sets:
       - combinatorics-q16
       - combinatorics-q17
       - combinatorics-q18
+      - combinatorics-q22
+      - combinatorics-q25
+      - combinatorics-q28
 ---
 
 ## @enumeration
@@ -105,13 +115,15 @@ Enumeration means **writing out every possibility and counting them**. It sounds
 
 **Mental model.** Counting problems all reduce to two questions: does order matter, and are repeats allowed? Permutations vs. combinations vs. arrangements vs. multinomial — every formula is a consequence of those two answers. If you find yourself reaching for a formula before classifying the problem, you'll reach for the wrong one.
 
-**Example.** Three marbles — blue, gray, green — line up on a shelf. How many orders are possible?
+**Worked example.** Three runners — Ana (A), Ben (B), Cal (C) — finish a race. In how many different orders can they place?
 
-List them: **BGG** (wait — two gray?). Let me use B, G, R (blue, gray, green):
+Systematically list every outcome (Ana first, then Ben first, then Cal first):
 
-    BGR, BRG, GBR, GRB, RBG, RGB
+    ABC   ACB
+    BAC   BCA
+    CAB   CBA
 
-Six orders. You could have answered this without any formula — just carefully enumerate, count, done.
+Six arrangements. No formula required — careful enumeration gets there in under 30 seconds for small sets of 3 or 4 objects.
 
 **Why enumeration matters.** Every formula in this chapter is a *shortcut* for enumeration. If you understand why enumeration gives 6 for three distinct objects, you'll instantly see why the formula says **3!** — and you won't have to rely on memorizing which formula applies when.
 
@@ -212,6 +224,26 @@ Example: A committee of 3 is picked from 5 men and 4 women. How many committees 
 
 Trying to count "at least 1 woman" directly means splitting into cases (exactly 1, exactly 2, exactly 3) — slow and error-prone.
 
+**Alternating arrangements — count valid patterns first.** When the problem says "men and women must alternate" or "no two of the same colour adjacent," you need a third technique: enumerate how many starting patterns satisfy the rule, then independently count the arrangements within each pattern.
+
+**Worked example.** 4 men and 4 women are arranged in a row of 8 chairs. Men and women must alternate. How many seating arrangements are possible?
+
+Two patterns satisfy the alternation:
+
+    M W M W M W M W    (men start)
+    W M W M W M W M    (women start)
+
+For each pattern, the 4 men fill the 4 male-designated slots in 4! = 24 ways, and the 4 women fill their 4 slots in 4! = 24 ways. These choices are independent.
+
+    arrangements per pattern = 4! × 4! = 576
+    two patterns → 576 × 2 = 1,152
+
+**Trap to watch.** The single most common alternating-arrangement mistake is counting only one starting pattern and getting exactly half the right answer. Whenever either group can go first, the answer doubles. Only in circular arrangements — where seats have no absolute "first" position — does the starting-gender question become irrelevant.
+
+**The general template.** For k objects of type A and k objects of type B alternating in a linear row: 2 valid starting patterns × k! × k!. In a circular arrangement of k and k: fix one person (eliminating rotational equivalence), which forces the starting pattern — answer is (k − 1)! × k!.
+
+> **Recall check.** Before the check questions below, close your eyes and reconstruct all three restriction techniques from memory: glue trick (when?), complement trick (when?), alternating template (when?). If you can't name the technique and the first step for each pattern without looking, re-read this section once more before proceeding — being slow on the setup is where test time bleeds.
+
 ## @circular
 
 In a **circular arrangement** — people around a round table, beads on a bracelet, etc. — **rotations of the same arrangement count as identical**. There's no "seat #1" because every seat is equivalent.
@@ -283,5 +315,7 @@ That's the entire chapter's content in 8 lines. Memorize the decision tree — w
 | "Round table of n" | Circular | (n − 1)! |
 | "Letters of [repeated word]" | Multiset | n! / (r₁! × r₂! × …) |
 | "Round-robin: every pair plays once" | Combination | C(n, 2) |
+| "Must alternate (M and W, two colours…)" | Alternating | 2 patterns × k! × k! (linear); (k−1)! × k! (circular) |
+| "Code / password, no repeats" | Permutation | P(n, k) = n × (n−1) × … × (n−k+1) |
 
 When you finish the end-of-chapter sets below, keep this table open. By the time you've done 15-20 combinatorics questions with it at your elbow, you won't need it anymore.
