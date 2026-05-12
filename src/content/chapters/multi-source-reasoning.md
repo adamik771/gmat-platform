@@ -5,7 +5,7 @@ section: DI
 estimated_minutes: 50
 prerequisites: []
 summary: |
-  Multi-Source Reasoning gives you 2-3 tabs of information — memos, tables, rules, emails, research abstracts — and asks questions that require synthesizing across them. The test isn't reading comprehension; it's navigation. You need to know which tab to consult for each question, extract the specific data points, combine them correctly, and verify against constraints. Master the two-pass navigation protocol (orient first, then dive in for each question), internalize the four question types, and every MSR set becomes a 5-6 minute sequence rather than a frantic re-read of three screens.
+  MSR looks overwhelming: three tabs of dense data, multiple questions, and a tight clock. Most students fail it by reading too much. The test is not comprehension — it is navigation. You need to know which tab holds what data, go there directly for each question, and combine sources cleanly. Master the two-pass protocol (orient first, then dive per question) and the four question-type templates, and every MSR set becomes a predictable 5-6 minute sequence instead of a frantic re-read.
 sections:
   - id: pretest
     type: pretest
@@ -96,9 +96,13 @@ problem_sets:
 
 ## @the-two-pass-navigation
 
-Multi-Source Reasoning is an information architecture problem. You're given 2-3 tabs — usually a mix of narrative text (memos, emails, reports), data tables, and rule lists. The challenge isn't understanding any one tab; it's knowing where each type of information lives and navigating efficiently when questions pull from different places.
+Multi-Source Reasoning is an information architecture problem. You're given 2-3 tabs — usually a mix of narrative text (memos, emails, reports), data tables, and rule lists. The challenge isn't understanding any one tab; it's knowing where each type of information lives and navigating efficiently when questions pull from different places. Think of yourself as an analyst, not a reader. Analysts don't read reports cover-to-cover; they scan the index and pull exactly what the question needs.
+
+**What you will be able to do after this chapter.** Orient any MSR tab set in 30-45 seconds. Identify which tab a question requires before reading it carefully. Extract and combine data from multiple tabs without losing accuracy. Recognize the four MSR question types and apply the correct technique for each.
 
 **Mental model.** MSR is a two-pass exercise. Pass 1: build a mental table-of-contents — what's in each tab, what kind of data is where. Pass 2: deep-read only the part the current question forces you to. Students who try to absorb everything in one pass run out of time on a 6-question set. The two passes cost less total time than one careful pass.
+
+**The dataset used in this chapter.** Worked examples throughout draw from a single fictional three-tab set: a VP sales memo, a regional revenue table, and a board strategy document for an unnamed company. You will see Eastern, Central, and Western region figures, specific revenue numbers, and board targets. Treat each example as a stand-in for real MSR passage content — the reasoning pattern is the lesson, not the specific numbers.
 
 **The two-pass protocol.**
 
@@ -170,7 +174,9 @@ Every MSR question is anchored in one or more tabs. Your first move after readin
 
 **The "memo claims vs. actual data" trap.** Memos often make claims like "our Central region revenue declined." If a question asks about the Central region's decline, check the TABLE for the actual number — the memo's characterization might be qualitative, but the question might require a specific percentage.
 
-> **Self-explanation prompt.** Why is navigating to the right tab first better than reading the question and diving into the passages linearly? If you can say "because questions are written to test whether you can locate specific information, not whether you can re-read all tabs under time pressure — navigating to the right tab IS the skill being tested," you've internalized the point of the question format.
+> **Self-explanation prompt.** After reading a question stem, why navigate immediately to a specific tab rather than re-reading all tabs in order? If you can say "because you already built the table-of-contents in pass 1 — the question stem tells you what type of information you need, and your orientation tells you exactly where that type lives; going there directly is the skill being tested, not passage comprehension," you've understood why the two-pass protocol produces faster, more accurate answers.
+
+> **Recall check.** Without looking back: name the three diagnostic moves for tab-matching. (Answer: look for tab-naming language in the stem; match the question topic to tab contents; when uncertain, check multiple tabs.) Retrieval locks in the protocol so it runs automatically under time pressure.
 
 ## @cross-tab-synthesis
 
@@ -215,12 +221,22 @@ Some MSR questions ask what would happen IF certain conditions were different: "
 
 1. Identify the change specified in the question (some revenue removed, an additional cost added, a region excluded).
 2. Start with the actual data from the tabs.
-3. Apply the change (subtract $0.90M, add 10% to a number, exclude a region from the total).
+3. Apply the change to the actual data.
 4. Recompute the metric the question asks about.
 
-**Example (revenue carve-out).** "If the Eastern region's enterprise contracts contributed $0.90M, what would Eastern's growth rate have been without them?"
+**Example (revenue carve-out — different dataset).** Veracom Technologies' payroll data shows total compensation this year of $46.2M, up from $42.0M last year (9.5% growth). The board's target is to keep payroll growth below 12%. Question: "If Veracom had hired 10 additional engineers at an average annual salary of $160K each, would total payroll growth have remained within the board's target?"
 
-Actual Eastern revenue: $6.96M. Hypothetical: $6.96 - $0.90 = $6.06M. Previous revenue (unchanged): $5.80M. Growth = (6.06 - 5.80)/5.80 ≈ 4.5%.
+Step 1: Identify the change. 10 engineers × $160K = $1.6M additional annual payroll.
+
+Step 2: Start with actual data. Current payroll: $46.2M. Previous year: $42.0M.
+
+Step 3: Apply the change. Hypothetical current payroll = $46.2M + $1.6M = $47.8M.
+
+Step 4: Recompute. Growth = ($47.8M − $42.0M) / $42.0M = $5.8M / $42.0M ≈ 13.8%.
+
+13.8% exceeds the 12% target. Answer: No, the company would not have met the target.
+
+Note that everything not mentioned in the question — headcount mix, revenue figures, non-payroll costs — stays constant. Only the specified change propagates.
 
 **Example (entity exclusion).** "If the Central region were excluded, would the company still have met its growth target?"
 
@@ -316,3 +332,11 @@ If you're over 7 minutes on a single set, something went wrong — usually re-re
 - Forgetting which figures are "current year" vs "previous year."
 
 Drill the 15 questions in this chapter across the three problem sets. Each set has 2-3 questions that share a single set of tabs — so reading the tabs efficiently on the first question pays off on the rest. By the end of the hard set, the two-pass protocol should feel like second nature.
+
+**What to practice next.** After finishing these problem sets:
+
+1. **Review every missed question with one specific question in mind:** "Which tab should I have gone to first, and why didn't I?" If you consistently misjudge the right tab, re-read `@matching-question-to-tab`. If you're slow on cross-tab synthesis, re-read `@cross-tab-synthesis` and practice writing data points on scratch paper before computing — the bottleneck is almost always trying to hold multiple numbers in working memory.
+
+2. **Attempt one full DI section under timed conditions.** MSR questions sit alongside Table Analysis and Graphics Interpretation on the real exam. Pacing across three question formats together is a separate skill from pacing within any one format. Time yourself and compare your per-set clock against the targets in this chapter.
+
+3. **If your DI score is already above 80th percentile,** shift time to whichever DI format is costing you the most points. MSR typically trips up students at the medium level (cross-tab synthesis); Table Analysis typically trips at hard (weighted averages). Know which is your ceiling and target it directly.
