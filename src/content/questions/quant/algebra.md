@@ -49,7 +49,7 @@ Which of the following is equivalent to (x³)⁴ / x⁵?
 **fastest_path:** (x³)⁴ = x^(3×4) = x¹². Divide: x¹² / x⁵ = x^(12−5) = x⁷.
 **explanation:** Two exponent rules: (a) power of a power multiplies exponents — (x³)⁴ = x^(3×4) = x¹². (b) Same-base division subtracts exponents — x¹² / x⁵ = x^(12−5) = x⁷. The whole computation is two mechanical steps.
 **mistake_a:** Subtracted 3 from 5 (treated denominator as numerator) — got x^2.
-**mistake_c:** Multiplied exponents at every step — got 3 × 4 × 5 = 60, then somehow truncated to x¹². The reasoning chain confused multiplication and division.
+**mistake_c:** Stopped after the first rule — computed (x³)⁴ = x¹² correctly but then forgot to apply the division step, leaving x¹² as the final answer. The reasoning chain confused multiplication and division.
 **mistake_d:** Multiplied (x³)⁴ as x^(3+4) = x^7, then multiplied by x^5 instead of dividing — got x^15.
 **mistake_e:** Computed 3 × 4 + 5 = 17 by adding the bottom exponent rather than subtracting.
 **common_trap:** Confusing exponent rules — multiplying when you should subtract, or adding when you should multiply.
@@ -152,10 +152,10 @@ If f(x) = 2x² - 3x + 1, what is the value of f(3) - f(1)?
 **answer:** B
 **fastest_path:** f(3) = 2(9) − 9 + 1 = 10. f(1) = 2 − 3 + 1 = 0. Difference = 10.
 **explanation:** f(3) = 2(9) − 3(3) + 1 = 18 − 9 + 1 = 10. f(1) = 2(1) − 3(1) + 1 = 2 − 3 + 1 = 0. f(3) − f(1) = 10.
-**mistake_a:** Slip → 8 (likely arithmetic error in f(3) computation).
-**mistake_c:** Computed f(3) + f(1) instead of f(3) − f(1) → 10 + 0… no, but a likely sign-flip path: 2(9) − 3(3) − 1 = 8, then 8 + 4 → 12.
-**mistake_d:** Slip → 14.
-**mistake_e:** Computed f(3) but treated f(1) as 1 instead of 0 → 10 + 6, or skipped the subtraction entirely.
+**mistake_a:** Sign error on the constant in f(3): computed 2(9) − 3(3) − 1 = 8 (treated +1 as −1). With f(1) = 0, difference = 8 − 0 = 8.
+**mistake_c:** Sign error on the constant in f(1): computed 2 − 3 − 1 = −2 instead of 0. Then f(3) − f(1) = 10 − (−2) = 12.
+**mistake_d:** Arithmetic slip in the simplification of f(3): correctly reaching 18 − 9 = 9, then writing 9 + 5 = 14 instead of 9 + 1 = 10 (transposing a digit or mixing in a scratch-work number). D is a guard-rail for compound arithmetic errors during substitution.
+**mistake_e:** Substituted x = 1 in the middle term of f(3) instead of x = 3: 2(9) − 3(1) + 1 = 16; f(1) = 0; 16 − 0 = 16.
 **common_trap:** Arithmetic slip on f(3) = 18 − 9 + 1, especially flipping the order of operations on −3(3).
 **takeaway:** Functions: substitute, then simplify. Watch the *sign* on each term, especially the −3x.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -205,7 +205,7 @@ If 2 < |x - 3| < 7, how many integer values of x satisfy the inequality?
 **fastest_path:** |x − 3| > 2 → x ∈ (−∞, 1) ∪ (5, ∞). |x − 3| < 7 → x ∈ (−4, 10). Intersection: (−4, 1) ∪ (5, 10). Count integers: {−3, −2, −1, 0, 6, 7, 8, 9} = 8.
 **explanation:** Two absolute-value inequalities create an intersection of two unions. From |x − 3| > 2: x − 3 > 2 (x > 5) or x − 3 < −2 (x < 1). From |x − 3| < 7: −7 < x − 3 < 7, i.e., −4 < x < 10. The intersection is (−4 < x < 1) OR (5 < x < 10) — exclusive on all bounds since the inequalities are strict. Integers in the first range: −3, −2, −1, 0 (4 integers). Integers in the second: 6, 7, 8, 9 (4 integers). Total = 8.
 **mistake_a:** Counted only one of the two ranges or excluded an endpoint that should be included.
-**mistake_b:** Included the endpoint values (treated < as ≤) in one range — counted 7 in the upper range to give 9 total but somehow miscounted.
+**mistake_b:** Included x = 5 as valid (misread |x−3| > 2 as |x−3| ≥ 2): upper range becomes {5,6,7,8,9} = 5 integers; lower range stays {−3,−2,−1,0} = 4; total = 9.
 **mistake_d:** Forgot the strict inequalities and included endpoints (1, 5, −4, 10).
 **mistake_e:** Used >, < but counted inclusive on one side.
 **common_trap:** ignoring-constraints — strict vs. non-strict inequalities; the boundary integers are excluded.
@@ -257,7 +257,7 @@ If 4^(a+1) = 8^a, what is the value of a?
 **fastest_path:** Common base 2: 4^(a+1) = 2^(2a+2); 8^a = 2^(3a). Set exponents equal: 2a + 2 = 3a → a = 2.
 **explanation:** Rewrite both sides with the same base. 4 = 2², so 4^(a+1) = 2^(2(a+1)) = 2^(2a+2). 8 = 2³, so 8^a = 2^(3a). The equation becomes 2^(2a+2) = 2^(3a), which (since the bases are equal) requires the exponents to be equal: 2a + 2 = 3a → a = 2. Verify: 4³ = 64 and 8² = 64 ✓.
 **mistake_a:** Set 4 + 1 = 8 × a (treated bases additively).
-**mistake_c:** Solved 2a = 3a, got a = 0; then bubbled wrong.
+**mistake_c:** Dropped the constant +2: set 2a = 3a instead of 2a + 2 = 3a, concluded a = 0. Checking 4^1 = 4 vs 8^0 = 1 reveals the contradiction, but a test-taker may skip verification and pick a nearby answer.
 **mistake_d:** Multiplied incorrectly: 2(a+1) = 3a → 2a + 2 = 3a; got a = 2 correctly but slipped on the answer letter.
 **mistake_e:** Misread 4^(a+1) as 4^a + 1, leading to wrong setup.
 **common_trap:** Exponent rules misapplied — power-of-power vs. product-of-powers.
@@ -267,7 +267,7 @@ If 4^(a+1) = 8^a, what is the value of a?
 ---
 
 ## Q11
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Functions
 
@@ -285,7 +285,7 @@ For all positive integers n, let f(n) = n² - n. What is the value of f(f(3))?
 **mistake_a:** Stopped at the inner computation: f(3) = 6 — bubbled the intermediate value.
 **mistake_b:** Computed f(3) × 2 = 12 (multiplied instead of composing).
 **mistake_d:** Computed f(7) = 49 − 7 = 42 — wrong inner argument.
-**mistake_e:** Computed (f(3))² − f(3) = 36 − 6 = 30 ... wait, that gives 30 (correct). Or f(3)² − 1 = 35; 7² + 7 = 56.
+**mistake_e:** Applied the wrong sign in the outer computation — used f(n) = n² + n instead of n² − n: f(6) = 36 + 6 = 42 (answer D). Arriving at E=56 requires a further arithmetic slip in that wrong-formula path (e.g., using 7 instead of 6 as the argument: 7² + 7 = 56).
 **common_trap:** Stopping at the inner result and bubbling — composition requires both layers.
 **takeaway:** f(f(x)) means apply f twice: compute f(x) first, then apply f to that result.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -505,7 +505,7 @@ If f(x) = ax + b where a and b are constants, what is the value of f(5)?
 ---
 
 ## Q20
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Algebra Translation
 
@@ -547,10 +547,10 @@ Let x, y, and z be positive real numbers with x + y + z = 12 and xy + yz + zx = 
 **answer:** A
 **fastest_path:** (x+y+z)² = x²+y²+z² + 2(xy+yz+zx) → 144 = sum_of_squares + 78 → sum_of_squares = 66.
 **explanation:** Use the symmetric-sum identity (x + y + z)² = x² + y² + z² + 2(xy + yz + zx). Substitute: (12)² = (x² + y² + z²) + 2(39) → 144 = (x² + y² + z²) + 78 → x² + y² + z² = 66.
-**mistake_b:** Computed (sum)² + (cross-product sum) = 144 + 39 = ... no, mis-applied somewhere.
-**mistake_c:** Forgot the factor of 2: 144 − 39 = 105? No, picked 78 = 2 × 39 directly without subtracting from 144.
-**mistake_d:** Subtracted 39 directly (without the factor of 2): 144 − 39 = 105.
-**mistake_e:** Used 12² + 2(39) = 222 / something else.
+**mistake_b:** Treated the identity as x²+y²+z² = (x+y+z)²/2 = 144/2 = 72 (divided by 2 instead of subtracting 2×(cross-product sum)).
+**mistake_c:** Computed 2(xy+yz+zx) = 78 correctly but reported 78 as the answer — stopped at the intermediate value, confusing which term the identity gives.
+**mistake_d:** Guard-rail distractor (D=87). Typically a double arithmetic slip: computing 2×39 = 57 (miscarrying one step) and then 144−57 = 87. No clean single-step error produces 87.
+**mistake_e:** Forgot the factor of 2: applied x²+y²+z² = (x+y+z)² − (xy+yz+zx) instead of − 2(xy+yz+zx), getting 144 − 39 = 105.
 **common_trap:** missing-algebraic-shortcut + factor-of-2 error — solving for x, y, z individually (impossible without more info) or forgetting the factor of 2 on the cross-product sum.
 **takeaway:** (x + y + z)² = (sum of squares) + 2(sum of pairwise products). Memorize for symmetric-sum problems.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -573,7 +573,7 @@ For how many integer values of x is |2x − 5| < |x − 8|?
 **answer:** C
 **fastest_path:** Square both sides → (2x−5)² < (x−8)² → factor: (x+3)(3x−13) < 0 → x ∈ (−3, 13/3). Integers: {−2,−1,0,1,2,3,4} = 7.
 **explanation:** Both sides are non-negative, so squaring preserves the inequality. (2x − 5)² < (x − 8)² rearranges to (2x − 5)² − (x − 8)² < 0. Factor the difference of squares: [(2x−5) − (x−8)][(2x−5) + (x−8)] < 0 → (x + 3)(3x − 13) < 0. Product is negative between the roots: x ∈ (−3, 13/3). Since 13/3 ≈ 4.33, integers are −2, −1, 0, 1, 2, 3, 4 → 7 values.
-**mistake_a:** Excluded x = 4 (treated 13/3 < 4); counted 5 integers.
+**mistake_a:** Incorrectly excluded both near-boundary integers: treated the solution set as −2 < x < 4 (strict on left too) and missed that 13/3 ≈ 4.33 means x = 4 is in range — ending up with {−1,0,1,2,3} = 5 integers instead of the correct 7.
 **mistake_b:** Included x = −3 or excluded one valid integer.
 **mistake_d:** Casework approach with arithmetic slip; counted 8.
 **mistake_e:** Included both endpoints and miscounted the upper bound.
@@ -638,7 +638,7 @@ If the roots of the quadratic equation x² + bx + 12 = 0 differ by 1, what are t
 ---
 
 ## Q25
-**difficulty:** Hard
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Word Problem — Relative Motion
 
@@ -709,7 +709,7 @@ If f(x) = 2x + 3 and g(x) = x² − 1, what is f(g(2))?
 **mistake_a:** Computed g(2) = 3 and bubbled (stopped at the inner result).
 **mistake_b:** Computed f(2) = 7, then somehow got 7.
 **mistake_d:** Computed f(2) + g(2) = 7 + 3 = 10; then off-by-one to 11.
-**mistake_e:** Mixed order: g(f(2)) = g(7) = 49 − 1 = 48 ≠ 13. Or f(2) × g(2) = 21 ≠ 13. Some hybrid producing 13.
+**mistake_e:** Sign error in g: computed g(2) = 2² + 1 = 5 (added the constant instead of subtracting). Then f(5) = 2(5) + 3 = 13.
 **common_trap:** Wrong composition order — computing g(f(x)) instead of f(g(x)), or stopping at the inner function's output.
 **takeaway:** f(g(x)) means "first apply g, then f." Always compute the *innermost* function first.
 **related_reading:** reading-quant-04-algebra-and-equations
