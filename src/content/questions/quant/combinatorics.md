@@ -829,3 +829,502 @@ A fair coin is flipped 5 times. What is the probability of getting exactly 3 hea
 **common_trap:** Confusing "exactly k" with "at least k" — different probabilities; "at least" requires summing across multiple cases.
 **takeaway:** Binomial: P(exactly k of n trials, each prob p) = C(n, k) × p^k × (1−p)^(n−k). For fair coin: × (1/2)^n.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Fundamental Counting Principle
+
+A clothing store offers 4 shirt styles and 3 pants styles. How many distinct shirt-and-pants outfit combinations are possible?
+
+- A) 7
+- B) 8
+- C) 10
+- D) 12
+- E) 24
+
+**answer:** D
+**fastest_path:** Multiply independent choices: 4 × 3 = 12.
+**explanation:** The Fundamental Counting Principle: when two independent choices are made in sequence, the total number of outcomes is their product. Choose a shirt: 4 ways. For each shirt, choose pants: 3 ways. Total = 4 × 3 = 12.
+**mistake_a:** Added instead of multiplied: 4 + 3 = 7.
+**mistake_b:** Computed 4 + 4 = 8, mixing up the numbers.
+**mistake_c:** Arrived at 10 via an incorrect operation on the two counts.
+**mistake_e:** Applied 4! = 24, confusing factorial with the counting principle.
+**common_trap:** Adding choices instead of multiplying — addition applies to mutually exclusive options; multiplication applies to independent sequential choices.
+**takeaway:** Independent sequential choices multiply. One shirt AND one pants → 4 × 3 = 12, not 4 + 3 = 7. AND = multiply; OR = add.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 60
+
+---
+
+## Q31
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Arrangements with Repetition
+
+How many distinct arrangements of the letters in the word BOOK are possible?
+
+- A) 6
+- B) 8
+- C) 12
+- D) 16
+- E) 24
+
+**answer:** C
+**fastest_path:** 4 letters with 2 identical O's → 4! / 2! = 24/2 = 12.
+**explanation:** BOOK contains 4 letters: B, O, O, K. The two O's are identical, so swapping them produces no new arrangement. Divide the total by the factorial of the repeated count: 4! / 2! = 24 / 2 = 12.
+**mistake_a:** Computed 3! = 6, treating the three distinct letter types (B, O, K) as the count instead of the total letters.
+**mistake_b:** Computed 4! / 3 = 8, using an incorrect divisor.
+**mistake_d:** Used an incorrect divisor, arriving at 16.
+**mistake_e:** Computed 4! = 24, treating all four letters as distinct and ignoring the repeated O's.
+**common_trap:** Forgetting to divide by the repeated-letter factorial — treating all letters as distinct when some are identical inflates the count.
+**takeaway:** Arrangements with repeated letters: n! / (k₁! × k₂! × ...) where each kᵢ is the count of a repeated letter. For BOOK: 4!/2! = 12. Always identify repeated letters before computing.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 75
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Permutations
+
+How many 2-digit integers can be formed using the digits {1, 2, 3, 4, 5} if no digit may be repeated?
+
+- A) 10
+- B) 16
+- C) 20
+- D) 25
+- E) 30
+
+**answer:** C
+**fastest_path:** 5 choices for tens digit × 4 remaining for units digit = 20.
+**explanation:** Order matters (12 ≠ 21), so use permutations. Tens digit: 5 choices. Units digit: 4 choices (any remaining digit). Total = P(5, 2) = 5 × 4 = 20.
+**mistake_a:** Computed 5 × 2 = 10, using an incorrect multiplier for the second digit.
+**mistake_b:** Computed 4 × 4 = 16, applying the wrong pool size to the first slot.
+**mistake_d:** Computed 5² = 25, allowing repetition by treating each digit draw as independent.
+**mistake_e:** Computed 5 × 6 = 30, introducing an extra incorrect factor.
+**common_trap:** Treating digits as drawn with replacement (5 × 5 = 25) when the problem says "no repetition" — the second slot has one fewer option after the first digit is chosen.
+**takeaway:** No-repetition sequences: multiply slot by slot, decreasing by 1 each time. P(5, 2) = 5 × 4 = 20. With repetition it would be 5 × 5 = 25.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 60
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Permutations with Position Constraints
+
+Four people — A, B, C, and D — are to stand in a row of four positions. In how many arrangements do A and B each occupy one of the two end positions (one at each end)?
+
+- A) 2
+- B) 4
+- C) 6
+- D) 8
+- E) 12
+
+**answer:** B
+**fastest_path:** 2 ways to place A/B at the ends × 2! for C and D in the middle = 2 × 2 = 4.
+**explanation:** The two end positions are distinguishable (left vs. right). A and B must fill them: either (A at left, B at right) or (B at left, A at right) — 2 ways. For each, C and D fill the two middle positions in 2! = 2 ways. Total = 2 × 2 = 4.
+**mistake_a:** Counted only one end assignment (e.g., only "A at left") → 1 × 2! = 2, forgetting that AB and BA are distinct.
+**mistake_c:** Computed 3! = 6, misreading the remaining spots as three positions.
+**mistake_d:** Computed 2³ = 8, applying a formula suited to a different problem type.
+**mistake_e:** Computed 4!/2 = 12, dividing the full factorial by 2 rather than applying the positional constraint directly.
+**common_trap:** Forgetting that the two end positions are distinguishable — (A at left, B at right) and (B at left, A at right) are two different arrangements, so the end assignment contributes a factor of 2, not 1.
+**takeaway:** When two specific people must each occupy one of two fixed positions, the assignment contributes 2! = 2 ways (they can swap). Multiply by the remaining (n−2)! for everyone else.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 75
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Probability — Single Draw
+
+A jar contains 3 red marbles, 5 blue marbles, and 2 green marbles. One marble is drawn at random. What is the probability that it is blue?
+
+- A) 1/5
+- B) 1/4
+- C) 1/2
+- D) 3/5
+- E) 5/6
+
+**answer:** C
+**fastest_path:** 5 blue out of 10 total → 5/10 = 1/2.
+**explanation:** Total marbles = 3 + 5 + 2 = 10. Favorable outcomes (blue) = 5. Probability = 5/10 = 1/2.
+**mistake_a:** Used the green marble count in the numerator: 2/10 = 1/5.
+**mistake_b:** Used a denominator of 4 rather than 10.
+**mistake_d:** Used the red count in the numerator or miscounted blue as 6: 6/10 = 3/5.
+**mistake_e:** Used a denominator of 6, ignoring part of the marble population.
+**common_trap:** Using a wrong denominator — it must be the total count of all marbles, not a sub-group count.
+**takeaway:** P(event) = (favorable outcomes) / (total outcomes). Always compute the total first. Here: 5 / (3+5+2) = 5/10 = 1/2.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 45
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Permutations with Digit Restrictions
+
+How many 3-digit integers can be formed using the digits {1, 2, 3, 4, 5} (no repetition) such that the number is odd?
+
+- A) 24
+- B) 36
+- C) 48
+- D) 60
+- E) 120
+
+**answer:** B
+**fastest_path:** Fix the units digit first (odd: 3 choices), then fill the other two slots: 4 × 3 = 12. Total = 3 × 12 = 36.
+**explanation:** An odd number must end in an odd digit. Odd digits in {1,2,3,4,5}: {1, 3, 5} → 3 choices for the units digit. After fixing it, choose the hundreds digit from the 4 remaining digits, then the tens digit from the 3 remaining: 4 × 3 = 12. Total = 3 × 4 × 3 = 36.
+
+Cross-check: total 3-digit arrangements = P(5,3) = 60. Since exactly 3/5 of the digits are odd, 3/5 of all arrangements end in an odd digit → 60 × 3/5 = 36. ✓
+**mistake_a:** Computed 4! = 24, applying an incorrect factorial.
+**mistake_c:** Gave 4 choices for the units digit instead of 3: 4 × 4 × 3 = 48.
+**mistake_d:** Computed P(5,3) = 60 without applying the odd-ending constraint.
+**mistake_e:** Computed 5! = 120, counting all 5-letter arrangements and ignoring both the 3-slot limit and the odd constraint.
+**common_trap:** Setting up the unconstrained slots before the constrained one — since the units digit is restricted (must be odd), fix it first, then fill the remaining positions from what is left.
+**takeaway:** When one digit position is constrained, set that slot first and count its options, then fill the remaining slots. Constrained slot first prevents over-counting.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 90
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Grid Paths
+
+A bug starts at the bottom-left corner of a rectangular grid that is 3 blocks wide and 2 blocks tall. Moving only right or up one block at a time, how many different shortest paths lead to the top-right corner?
+
+- A) 5
+- B) 6
+- C) 8
+- D) 10
+- E) 15
+
+**answer:** D
+**fastest_path:** Every shortest path = 3 rights + 2 ups = 5 moves. Choose which 2 are "up": C(5, 2) = 10.
+**explanation:** Any shortest path consists of exactly 3 steps right (R) and 2 steps up (U), for 5 total moves. The paths differ only in the ordering of R's and U's. Count distinct orderings: 5! / (3! × 2!) = 120/12 = 10. Equivalently, C(5, 2) = 10 (choose which 2 of the 5 positions are "up").
+**mistake_a:** Added the move counts instead of applying combinations: 3 + 2 = 5.
+**mistake_b:** Computed 3! = 6, only arranging one type of move.
+**mistake_c:** Computed 2³ = 8, applying a formula suited to a binary-branch tree.
+**mistake_e:** Computed C(6, 2) = 15, using an off-by-one in the formula.
+**common_trap:** Adding instead of applying combinations — the number of paths is not (rights + ups) but the number of ways to interleave them.
+**takeaway:** Shortest grid path from corner to corner crossing a rows and b columns: moves = a + b; paths = C(a + b, b). For a 3-wide, 2-tall grid: C(3+2, 2) = C(5, 2) = 10.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 105
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Probability — Counting Sample Space
+
+Two fair 6-sided dice are rolled simultaneously. What is the probability that the sum of the two numbers equals 7?
+
+- A) 1/12
+- B) 5/36
+- C) 1/6
+- D) 7/36
+- E) 1/4
+
+**answer:** C
+**fastest_path:** List all pairs summing to 7: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) = 6. Probability = 6/36 = 1/6.
+**explanation:** Sample space: 6 × 6 = 36 equally likely ordered pairs. Pairs (a, b) with a + b = 7: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) — exactly 6 outcomes. Probability = 6/36 = 1/6. Note: 7 has more representations than any other sum, making it the most likely single total.
+**mistake_a:** Listed only the non-symmetric pairs (1,6),(2,5),(3,4) = 3, forgetting their reverses: 3/36 = 1/12.
+**mistake_b:** Enumerated only 5 pairs, missing one reverse: 5/36.
+**mistake_d:** Included an invalid pair (e.g., (7,0)), overcounting to 7 pairs: 7/36.
+**mistake_e:** Estimated roughly 1 in 4 without enumerating.
+**common_trap:** Forgetting that (1,6) and (6,1) are distinct outcomes — each die is separate, so the sample space has 36, not 21, outcomes. All reverses must be counted.
+**takeaway:** Always treat each die separately. For two dice, sample space = 36. P(sum = 7) = 6/36 = 1/6. Listing all ordered pairs prevents the reverse-omission trap.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 90
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combinations with Mandatory Member
+
+A club has 9 members, and a committee of 4 must be formed. The club president must serve on every committee. How many different committees are possible?
+
+- A) 28
+- B) 35
+- C) 56
+- D) 70
+- E) 126
+
+**answer:** C
+**fastest_path:** President is fixed; choose the other 3 from the remaining 8: C(8, 3) = 56.
+**explanation:** With the president locked in, 3 open slots remain. Fill them from the 8 non-president members: C(8, 3) = 8!/(3! × 5!) = (8 × 7 × 6)/(3 × 2 × 1) = 336/6 = 56.
+**mistake_a:** Selected only 2 additional members: C(8, 2) = 28.
+**mistake_b:** Used a pool of 7 instead of 8: C(7, 3) = 35 (possibly removed the president from both the fixed seat and the available pool).
+**mistake_d:** Did not reduce the committee size for the mandatory president: C(8, 4) = 70.
+**mistake_e:** Ignored the mandatory-president constraint entirely: C(9, 4) = 126.
+**common_trap:** Using C(9, 4) instead of C(8, 3) — the mandatory member reduces both the pool by 1 and the open slots by 1.
+**takeaway:** "Person X must be included" → fix X, then choose the remaining (k−1) from the other (n−1) members. Here: C(8, 3) = 56, not C(9, 4) = 126.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 90
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Adjacency — Block Method
+
+Eight distinct books are arranged on a shelf. In how many arrangements are three specific books — P, Q, and R — all kept together as a contiguous group (in any internal order)?
+
+- A) 720
+- B) 4,320
+- C) 6,720
+- D) 14,400
+- E) 40,320
+
+**answer:** B
+**fastest_path:** Glue PQR as one block → 6 objects: 6! = 720. Internal orders of PQR: 3! = 6. Total = 720 × 6 = 4,320.
+**explanation:** Treat P, Q, R as a single block. The shelf now holds 6 objects: the [PQR-block] plus the 5 other books. Arrangements of 6 objects: 6! = 720. Within the block, P, Q, R can be ordered in 3! = 6 ways. Total = 6! × 3! = 720 × 6 = 4,320.
+**mistake_a:** Computed 6! = 720, forgetting to multiply by the internal orderings of the block.
+**mistake_c:** Partial computation (e.g., 8 × 7 × 6 × something) without correctly applying the block constraint.
+**mistake_d:** Applied an incorrect internal factor, reaching 14,400.
+**mistake_e:** Computed 8! = 40,320, ignoring the "must stay together" constraint entirely.
+**common_trap:** Forgetting that the three specific books can themselves appear in 3! = 6 different orders within the group — the block's internal arrangements must be counted separately.
+**takeaway:** "k specific items must stay together" → glue as one block. Arrangements = (n−k+1)! × k!. Here: 6! × 3! = 4,320. The block's internal factor is k!, not 1.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 105
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Probability — Conditional
+
+A bag contains 4 red chips and 6 blue chips. Two chips are drawn one at a time without replacement. What is the probability that the second chip drawn is blue, given that the first chip drawn was red?
+
+- A) 1/3
+- B) 1/2
+- C) 3/5
+- D) 2/3
+- E) 7/9
+
+**answer:** D
+**fastest_path:** After drawing 1 red: 9 chips remain (3 red, 6 blue). P = 6/9 = 2/3.
+**explanation:** The condition "first chip was red" updates the sample space. After one red chip is removed, 9 chips remain: 3 red and 6 blue. The probability that the next draw is blue = 6/9 = 2/3.
+**mistake_a:** Computed the probability the second chip is red (not blue): 3/9 = 1/3.
+**mistake_b:** Estimated 1/2, perhaps by averaging the chip types without careful conditioning.
+**mistake_c:** Used the original unconditional probability of blue: 6/10 = 3/5, ignoring the "given first was red" condition.
+**mistake_e:** Computed 7/9, possibly thinking 7 blue chips remain.
+**common_trap:** Using the original probability 6/10 instead of the updated conditional 6/9 — the "given" condition changes the sample space from 10 to 9 chips.
+**takeaway:** Conditional probability: "given X happened" → update the sample space to reflect X. After 1 red drawn: 9 chips remain, 6 blue → P = 6/9 = 2/3, not 6/10.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 90
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Inclusion-Exclusion
+
+In a class of 30 students, 18 play soccer, 14 play basketball, and 6 play both sports. How many students play neither sport?
+
+- A) 2
+- B) 4
+- C) 6
+- D) 8
+- E) 10
+
+**answer:** B
+**fastest_path:** |at least one sport| = 18 + 14 − 6 = 26. Neither = 30 − 26 = 4.
+**explanation:** By inclusion-exclusion: |soccer ∪ basketball| = |soccer| + |basketball| − |both| = 18 + 14 − 6 = 26. These 26 students play at least one sport. Students playing neither = 30 − 26 = 4.
+**mistake_a:** Computed 30 − 18 − 14 = −2, then took the absolute value, giving 2. (Forgot to add back the overlap.)
+**mistake_c:** Subtracted soccer and "both" only, ignoring the basketball-only group: 30 − 18 − 6 = 6.
+**mistake_d:** Computed only |basketball only| = 14 − 6 = 8 and treated it as the neither count.
+**mistake_e:** Subtracted basketball and "both" only: 30 − 14 − 6 = 10.
+**common_trap:** Forgetting the inclusion-exclusion correction — simply adding both groups without subtracting the overlap double-counts students who play both sports, making the union appear larger than it is.
+**takeaway:** |A ∪ B| = |A| + |B| − |A ∩ B|. Neither = Total − |A ∪ B|. Always subtract the overlap exactly once to avoid double-counting.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 90
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Permutations with Leading-Zero Restriction
+
+Using the digits {0, 1, 2, 3, 4, 5} with no digit repeated, how many 4-digit positive integers are divisible by 5?
+
+- A) 48
+- B) 60
+- C) 96
+- D) 108
+- E) 120
+
+**answer:** D
+**fastest_path:** Last digit = 0 (60 numbers) or last digit = 5 (48 numbers, no leading zero). Total = 108.
+**explanation:** Divisible by 5 → units digit is 0 or 5.
+
+Case 1 (last digit = 0): Remaining digits {1,2,3,4,5} fill positions 1–3 freely. First digit: 5, second: 4, third: 3 → 5 × 4 × 3 = 60.
+
+Case 2 (last digit = 5): Remaining digits {0,1,2,3,4} fill positions 1–3. First digit cannot be 0 → 4 choices from {1,2,3,4}. Second digit: 4 remaining choices (including 0). Third digit: 3 choices → 4 × 4 × 3 = 48.
+
+Total = 60 + 48 = 108.
+**mistake_a:** Counted only Case 2 (last = 5): 48.
+**mistake_b:** Counted only Case 1 (last = 0): 60.
+**mistake_c:** Miscounted Case 2 as 4 × 3 × 3 = 36 (incorrectly excluded 0 from the second slot too): 60 + 36 = 96.
+**mistake_e:** Applied 5 × 4 × 3 = 60 for both cases without accounting for the leading-zero restriction: 60 + 60 = 120.
+**common_trap:** Missing the leading-zero restriction in Case 2 — when 0 is in the remaining digit pool and the last digit is not 0, the first slot has 4, not 5, options. 0 can still appear in positions 2 or 3; only position 1 is barred.
+**takeaway:** Digit problems with 0: split into cases by what occupies the units digit. When 0 is available but not in the units slot, the leading digit has one fewer option. Handle each case separately.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 150
+
+---
+
+## Q43
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Combinations — Indistinguishable Groups
+
+A teacher divides 8 distinct students into 2 groups of 4 for a project. If the two groups are unlabeled (neither is designated "Group A" or "Group B"), how many ways can the division be made?
+
+- A) 35
+- B) 70
+- C) 140
+- D) 280
+- E) 1,680
+
+**answer:** A
+**fastest_path:** C(8, 4) for labeled groups = 70. Groups are unlabeled → divide by 2! → 70/2 = 35.
+**explanation:** If the groups were labeled, C(8, 4) = 70 (choosing 4 for Group A determines Group B). But since groups are unlabeled, the partition {1,2,3,4} | {5,6,7,8} is identical to {5,6,7,8} | {1,2,3,4}. Each unordered partition is counted exactly twice in C(8, 4). Divide by 2: 70/2 = 35.
+**mistake_b:** Computed C(8, 4) = 70, treating the groups as labeled and double-counting every partition.
+**mistake_c:** Multiplied instead of dividing: C(8, 4) × 2 = 140.
+**mistake_d:** Introduced an extra incorrect factor: C(8, 4) × 4 = 280.
+**mistake_e:** Used permutations P(8, 4) = 1,680, applying an ordered formula to an unordered selection.
+**common_trap:** Forgetting to divide by 2! when groups are interchangeable — each unordered partition is counted twice by C(8,4), so the division is essential.
+**takeaway:** Dividing n distinct items into 2 equal unlabeled groups: C(n, n/2) / 2. For k equal unlabeled groups: divide by k!. The divisor corrects for the over-counting from treating identical groups as distinct.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 135
+
+---
+
+## Q44
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Inclusion-Exclusion — Non-Adjacency Constraints
+
+Five people — A, B, C, D, and E — are arranged in a row of 5 seats. In how many arrangements is A NOT seated next to B, AND C NOT seated next to D?
+
+- A) 24
+- B) 36
+- C) 48
+- D) 72
+- E) 96
+
+**answer:** C
+**fastest_path:** Total − (at least one forbidden pair adjacent) = 120 − (48 + 48 − 24) = 48.
+**explanation:** Use the complement with inclusion-exclusion.
+
+Total arrangements: 5! = 120.
+
+|A,B adjacent|: Glue AB as one block → arrange 4 items ([AB], C, D, E) in 4! = 24 ways; AB block has 2 internal orders → 4! × 2 = 48.
+
+|C,D adjacent|: Same structure → 4! × 2 = 48.
+
+|A,B adjacent AND C,D adjacent|: Glue both pairs → arrange 3 items ([AB], [CD], E) in 3! = 6 ways; each block has 2 internal orders → 3! × 2 × 2 = 24.
+
+By inclusion-exclusion: |at least one pair adjacent| = 48 + 48 − 24 = 72.
+
+|neither pair adjacent| = 120 − 72 = 48.
+**mistake_a:** Computed only the "both pairs adjacent" term: 3! × 4 = 24.
+**mistake_b:** Arrived at 36 via an incorrect partial computation.
+**mistake_d:** Stopped at the inclusion-exclusion union 72, giving the "at least one pair adjacent" count instead of subtracting from the total.
+**mistake_e:** Subtracted only the "both pairs adjacent" term from the total: 120 − 24 = 96, omitting the single-pair cases.
+**common_trap:** Forgetting to apply inclusion-exclusion correctly — the union of two "bad" events requires adding each event and subtracting the intersection. Then subtract the entire union from the total.
+**takeaway:** "Neither A-B nor C-D adjacent" = Total − [|A-B adj| + |C-D adj| − |both adj|]. Always include the intersection term to avoid over-subtraction.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 150
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Conditional Probability — Given At Least One
+
+A box contains 3 red, 5 blue, and 4 green marbles. Three marbles are drawn at random without replacement. Given that at least one marble is red, what is the probability that exactly two of the drawn marbles are red?
+
+- A) 27/220
+- B) 27/136
+- C) 9/28
+- D) 3/10
+- E) 34/55
+
+**answer:** B
+**fastest_path:** P(exactly 2 red | ≥1 red) = C(3,2)×C(9,1) / [C(12,3) − C(9,3)] = 27/136.
+**explanation:** Apply the conditional probability formula P(A | B) = P(A ∩ B) / P(B).
+
+"Exactly 2 red" automatically satisfies "at least 1 red," so P(A ∩ B) = P(exactly 2 red).
+
+Numerator — P(exactly 2 red): Choose 2 red from 3, 1 non-red from 9: C(3,2) × C(9,1) = 3 × 9 = 27. Over C(12,3) = 220 → 27/220.
+
+Denominator — P(at least 1 red): 1 − P(no red) = 1 − C(9,3)/C(12,3) = 1 − 84/220 = 136/220.
+
+P(exactly 2 red | at least 1 red) = (27/220) ÷ (136/220) = 27/136.
+**mistake_a:** Computed only the unconditional P(exactly 2 red) = 27/220, forgetting to condition on "at least 1 red."
+**mistake_c:** Used the wrong denominator — C(9,3) = 84 instead of 136 — giving 27/84 = 9/28.
+**mistake_d:** Used an approximate shortcut, arriving at 3/10.
+**mistake_e:** Bubbled P(at least 1 red) = 136/220 = 34/55 instead of the conditional result.
+**common_trap:** Omitting the division by P(at least 1 red) — the conditional probability requires restricting the sample space to the "given" event. The denominator is 136 (favorable for "at least 1 red"), not 220 (the full sample space).
+**takeaway:** P(A | B) = P(A ∩ B) / P(B). When B = "at least one," compute P(B) via complement: 1 − P(none). Then divide. The key step is using 136, not 220, as the effective sample size.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 180
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Stars and Bars — Upper and Lower Bounds
+
+In how many ways can 15 identical books be distributed among 3 distinct shelves so that each shelf holds at least 2 books and no shelf holds more than 7 books?
+
+- A) 12
+- B) 18
+- C) 25
+- D) 36
+- E) 55
+
+**answer:** C
+**fastest_path:** Sub yᵢ = xᵢ − 2 → distribute 9 with yᵢ ≤ 5. C(11,2) − 3·C(5,2) = 55 − 30 = 25.
+**explanation:** Let xᵢ = books on shelf i, so x₁ + x₂ + x₃ = 15 with 2 ≤ xᵢ ≤ 7.
+
+Step 1 — eliminate lower bounds: Let yᵢ = xᵢ − 2 (so yᵢ ≥ 0). New equation: y₁ + y₂ + y₃ = 9, with yᵢ ≤ 5.
+
+Step 2 — unrestricted count: Stars-and-bars → C(9 + 2, 2) = C(11, 2) = 55.
+
+Step 3 — subtract upper-bound violations: If any yᵢ ≥ 6, let zᵢ = yᵢ − 6. Then zᵢ + remaining sum = 3, giving C(3 + 2, 2) = C(5, 2) = 10 solutions. By symmetry over three shelves: 3 × 10 = 30.
+
+Step 4 — check double-violations: Two yᵢ ≥ 6 each would require at least 12, but the total is only 9 — impossible. No further correction needed.
+
+Answer: 55 − 30 = 25.
+
+Verification by direct enumeration (y₁ from 0 to 5, each ≤ 5): row counts are 2+3+4+5+6+5 = 25. ✓
+**mistake_a:** Counted only the first two rows of the enumeration, reaching 12.
+**mistake_b:** Divided the unrestricted count by 3 as a rough estimate: 55/3 ≈ 18.
+**mistake_d:** Applied the wrong stars-and-bars formula C(n, k−1) = C(9, 2) = 36 instead of C(n+k−1, k−1) = C(11, 2) = 55.
+**mistake_e:** Applied stars-and-bars for the lower-bound substitution only — got C(11, 2) = 55 — without enforcing the upper bound.
+**common_trap:** Two separate traps: (1) forgetting the upper-bound correction via inclusion-exclusion, and (2) confusing the stars-and-bars formula C(n+k−1, k−1) with the incorrect C(n, k−1).
+**takeaway:** Stars-and-bars with both bounds: substitute to clear lower bounds, apply C(n+k−1, k−1) for the unconstrained count, then subtract upper-bound violations via inclusion-exclusion. Each violation term shifts one variable by its excess and re-applies stars-and-bars on the reduced sum.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 240
