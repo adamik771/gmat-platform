@@ -668,3 +668,454 @@ Is the price of product X greater than the price of product Y?
 **common_trap:** Thinking statements about "different products" can't combine — but a shared variable (Z) bridges them.
 **takeaway:** Look for shared variables in DS statements. Statements that mention different things may still chain through a common reference.
 **related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q26
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Weighted Average
+
+A class has 20 students with an average score of 80 and another group of 30 students with an average score of 70. What is the overall average score of all 50 students?
+
+- A) 72
+- B) 73
+- C) 74
+- D) 75
+- E) 76
+
+**answer:** C
+**fastest_path:** (20×80 + 30×70)/50 = (1600+2100)/50 = 74.
+**explanation:** Weighted average = sum of all values / total count. Sum = 20×80 + 30×70 = 1,600 + 2,100 = 3,700. Divide by 50: 3,700/50 = 74. The answer must fall between 70 and 80; since the 30-student group is larger, the overall average is pulled below the midpoint of 75 toward 70.
+**mistake_a:** Arithmetic slip.
+**mistake_b:** Off by 1.
+**mistake_d:** Computed simple (unweighted) average of 80 and 70: (80+70)/2 = 75. Valid only when both groups are the same size.
+**mistake_e:** Pulled toward the smaller group instead of the larger.
+**common_trap:** Averaging the two group averages equally — this only works when groups are the same size.
+**takeaway:** Weighted average: multiply each group's average by its count, sum, then divide by total count. When groups differ in size, the result pulls toward the larger group.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q27
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Percent of a Percent
+
+What is 40% of 25% of 80?
+
+- A) 4
+- B) 6
+- C) 8
+- D) 10
+- E) 20
+
+**answer:** C
+**fastest_path:** 25% of 80 = 20. 40% of 20 = 8.
+**explanation:** Work inside-out: 25% of 80 = 0.25 × 80 = 20. Then 40% of 20 = 0.40 × 20 = 8. Alternatively, chain the percents first: 40% × 25% = 10%, then 10% of 80 = 8.
+**mistake_a:** Computed 25% of 80 = 20, then used 20% of 20 = 4 (wrong percent in the second step).
+**mistake_b:** Partial slip in the chain.
+**mistake_d:** Found 25% of 80 = 20, then halved it (used 50% instead of 40%).
+**mistake_e:** Stopped after the first step — found 25% of 80 = 20 and bubbled it without applying 40%.
+**common_trap:** Stopping after one percent operation. The question requires two successive reductions.
+**takeaway:** "p% of q% of N" = (p/100) × (q/100) × N. Work right to left or multiply all three together. Never add the percents.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q28
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Three-Part Ratio
+
+The lengths of three pieces of ribbon are in the ratio 2:5:3. Their combined length is 160 cm. What is the length of the longest piece?
+
+- A) 32 cm
+- B) 48 cm
+- C) 64 cm
+- D) 72 cm
+- E) 80 cm
+
+**answer:** E
+**fastest_path:** Total parts = 2+5+3 = 10. Each part = 16. Longest = 5×16 = 80.
+**explanation:** Sum all ratio parts: 2+5+3 = 10. One part = 160/10 = 16 cm. The longest piece has ratio value 5, so its length = 5×16 = 80 cm.
+**mistake_a:** Computed the shortest piece: 2×16 = 32.
+**mistake_b:** Computed the middle piece: 3×16 = 48.
+**mistake_c:** Used 4 parts instead of 5: 4×16 = 64.
+**mistake_d:** Arithmetic slip.
+**common_trap:** Computing the wrong piece — confirm which ratio value corresponds to the piece the question asks about before scaling.
+**takeaway:** Three-part ratios: sum all parts, find unit value, then scale the target ratio. Always reread which piece the question requests.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Percent Change
+
+The price of a textbook increased from $80 to $100. By what percent did the price increase?
+
+- A) 15%
+- B) 20%
+- C) 22.5%
+- D) 25%
+- E) 30%
+
+**answer:** D
+**fastest_path:** Change = 20. Base = old price = 80. 20/80 = 25%.
+**explanation:** Percent change = (new − old) / old × 100 = (100 − 80) / 80 × 100 = 20/80 × 100 = 25%.
+**mistake_b:** Computed 20/100 = 20% — divided by the new price instead of the original. The base for percent change is always the starting value.
+**mistake_a:** Rough underestimate.
+**mistake_c:** Averaged 20% and 25%.
+**mistake_e:** Rough overestimate.
+**common_trap:** Using the new value as the denominator (20/100 = 20%). Percent change always divides by the original.
+**takeaway:** Percent change = (change) / (original) × 100. The denominator is always the starting point, not the ending point.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Ratio with Difference Constraint
+
+Two quantities are in the ratio 5:3. The larger exceeds the smaller by 14. What is the value of the larger quantity?
+
+- A) 21
+- B) 28
+- C) 35
+- D) 42
+- E) 49
+
+**answer:** C
+**fastest_path:** 5k − 3k = 2k = 14 → k = 7. Larger = 5×7 = 35.
+**explanation:** Let the two quantities be 5k and 3k. Difference: 5k − 3k = 2k = 14 → k = 7. Larger quantity = 5×7 = 35.
+**mistake_a:** Computed the smaller quantity: 3×7 = 21.
+**mistake_b:** Used k = 4 from a mis-setup.
+**mistake_d:** Arithmetic slip on k.
+**mistake_e:** Mis-multiplied.
+**common_trap:** Solving correctly for k but bubbling the smaller quantity (21) instead of the larger — read the question's last word carefully.
+**takeaway:** Ratio + difference problems: set up k-multiples, equate the difference to the given value, solve for k, then scale the correct ratio term.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q31
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Weighted Average
+
+A company has two divisions. Division A has 60 employees with an average salary of $50,000. The company-wide average salary is $46,000 across all 100 employees. What is the average salary in Division B?
+
+- A) $38,000
+- B) $40,000
+- C) $42,000
+- D) $44,000
+- E) $46,000
+
+**answer:** B
+**fastest_path:** Company total = 100×46K = 4.6M. Division A total = 60×50K = 3M. Division B total = 1.6M ÷ 40 = 40K.
+**explanation:** Division B has 100 − 60 = 40 employees. Total salary bill = 100 × 46,000 = 4,600,000. Division A total = 60 × 50,000 = 3,000,000. Division B total = 4,600,000 − 3,000,000 = 1,600,000. Average = 1,600,000 / 40 = 40,000.
+**mistake_a:** Arithmetic slip.
+**mistake_c:** Subtracted the gap symmetrically: Division A is $4K above average, so Division B must be $4K below = $42K. Ignores the unequal headcounts (60 vs. 40).
+**mistake_d:** Similar mis-application: 46K − 2K = 44K.
+**mistake_e:** Bubbled the company-wide average.
+**common_trap:** Applying a symmetric gap — "Division A is 4K above, so Division B is 4K below" (42K). This ignores group sizes; Division B has only 40 employees vs. A's 60.
+**takeaway:** Reverse a weighted average by computing the full salary total, subtracting the known group's total, then dividing by the remaining headcount.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q32
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Ratio with Change
+
+In a group, the ratio of men to women is 3:2. After 8 men leave and 4 women join, the ratio of men to women becomes 1:1. How many people were in the group originally?
+
+- A) 40
+- B) 50
+- C) 60
+- D) 70
+- E) 80
+
+**answer:** C
+**fastest_path:** Men = 3k, women = 2k. Set 3k−8 = 2k+4 → k = 12. Total = 5×12 = 60.
+**explanation:** Let men = 3k and women = 2k. After changes: (3k − 8) = (2k + 4) (since new ratio is 1:1). Solving: k = 12. Original total = 5k = 60. Verify: 36 men, 24 women → after: 28 men, 28 women ✓.
+**mistake_a:** k = 8 → total = 40; gives 24 men, 16 women; after: 16 men, 20 women ≠ 1:1.
+**mistake_b:** k = 10 → total = 50; gives 30 men, 20 women; after: 22 men, 24 women ≠ 1:1.
+**mistake_d:** k = 14 → total = 70; gives 42 men, 28 women; after: 34 men, 32 women ≠ 1:1.
+**mistake_e:** Guessed without solving.
+**common_trap:** Applying only one change to the ratio equation (subtracting men but forgetting to add women). Both adjustments must appear in the same equation.
+**takeaway:** Ratio-change problems: assign k-multiples, apply all changes simultaneously, set equal to the new ratio, solve for k. Always verify by plugging k back in.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Successive Percent Changes
+
+After a 20% increase followed by a 25% decrease, the price of an item is $90. What was the original price?
+
+- A) $68
+- B) $75
+- C) $85
+- D) $100
+- E) $108
+
+**answer:** D
+**fastest_path:** Net multiplier: 1.20 × 0.75 = 0.90. Original = 90 / 0.90 = 100.
+**explanation:** Chain the multipliers: 20% increase → ×1.20; 25% decrease → ×0.75. Net: 1.20 × 0.75 = 0.90 → final price is 90% of original. Reverse: original = 90 / 0.90 = 100.
+**mistake_b:** 90 / 1.20 = 75 — only reversed the first step, ignored the 25% decrease entirely.
+**mistake_e:** 90 × 1.20 = 108 — multiplied instead of divided (applied the change forward instead of backward).
+**mistake_a:** Gross calculation error.
+**mistake_c:** Some other mis-combination.
+**common_trap:** Reversing only one of the two changes (giving 75 or 120) instead of the combined multiplier, or applying the multiplier in the wrong direction.
+**takeaway:** To reverse a chain of percent changes, divide by the product of all multipliers. Never add or subtract the individual percents.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Replacement Mixture
+
+A 16-liter mixture contains wine and water in the ratio 3:1. Some of the mixture is removed and replaced with the same volume of pure water so that the new ratio of wine to water is 3:5. How many liters were removed and replaced?
+
+- A) 4
+- B) 6
+- C) 8
+- D) 10
+- E) 12
+
+**answer:** C
+**fastest_path:** Target wine = 16×(3/8) = 6 L. Originally 12 L wine. Each liter removed takes 3/4 L wine. Removed = (12−6)/(3/4) = 8.
+**explanation:** Initially: wine = 12 L, water = 4 L. Target ratio 3:5 means wine = 3/8 of 16 L = 6 L. Removing x liters removes (3/4)x wine (preserving the 3:1 ratio of the removed portion). Setting new wine = 12 − (3/4)x = 6: (3/4)x = 6 → x = 8. Verify: wine = 6, water = 4 − 2 + 8 = 10. Ratio 6:10 = 3:5 ✓.
+**mistake_a:** Found half the correct value — set up equation with wrong coefficient.
+**mistake_b:** Arithmetic slip.
+**mistake_d:** Went one step too far.
+**mistake_e:** Removed 3/4 of total (12 L), overshooting significantly.
+**common_trap:** Forgetting that the removed volume carries the same wine fraction as the current mixture. Treating it as if pure wine is removed inflates the necessary volume.
+**takeaway:** Replacement mixtures: each removed liter carries the current mixture's concentration. Wine removed = (wine fraction) × (liters removed). Set new wine equal to target and solve.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Ratio to Fraction
+
+In a company, what fraction of employees are female?
+
+(1) The ratio of male to female employees is 5:3.
+(2) There are 160 employees in total.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER alone is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** (1) ratio male:female = 5:3 → female fraction = 3/(5+3) = 3/8. Sufficient. (2) total = 160, no ratio → Insufficient.
+**explanation:** Statement (1): Male:female = 5:3 → total parts = 8 → female fraction = 3/8 of all employees. The question asks for a *fraction*, not a count. The ratio alone gives the fraction directly. Sufficient. Statement (2): Knowing the total (160) reveals nothing about the male-female split. Insufficient.
+**mistake_b:** Concluded only (2) sufficient.
+**mistake_c:** Thought both were needed.
+**mistake_d:** Concluded each alone sufficient — (2) alone provides no gender information.
+**mistake_e:** Concluded both insufficient.
+**common_trap:** Thinking Statement (1) is insufficient because "you can't find the exact number of females without a total." The question asks for a *fraction*, not a count — the ratio alone is enough.
+**takeaway:** A ratio directly gives a fraction (part/whole). When the question asks for a proportion rather than an absolute number, a ratio alone is sufficient.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Alligation
+
+A coffee shop blends Premium beans at $18 per pound with Standard beans at $12 per pound to produce a 10-pound blend costing $15.60 per pound. How many pounds of Premium beans should be used?
+
+- A) 3
+- B) 4
+- C) 5
+- D) 6
+- E) 7
+
+**answer:** D
+**fastest_path:** Alligation gaps: Standard is 3.60 below target; Premium is 2.40 above. Ratio Standard:Premium = 2.40:3.60 = 2:3. Premium = 3/5 × 10 = 6.
+**explanation:** Alligation: each ingredient's share is inversely proportional to its distance from the target. Standard is 3.60 below target (15.60−12); Premium is 2.40 above (18−15.60). Ratio Standard:Premium = 2.40:3.60 = 2:3. So in 5 parts, 3 are Premium → 3/5 × 10 = 6 pounds Premium. Verify: 6×18 + 4×12 = 108 + 48 = 156. 156/10 = $15.60 ✓.
+**mistake_a:** Inverted ratio and used Standard parts for Premium count.
+**mistake_b:** Computed Standard quantity (4 lbs) and bubbled it.
+**mistake_c:** Assumed equal parts (5 each).
+**mistake_e:** Arithmetic error.
+**common_trap:** Inverting the ratio — the ingredient *farther* from the target gets the smaller share. Also bubbling Standard's count (4) instead of Premium's (6).
+**takeaway:** Alligation ratio: Standard:Premium = (Premium's gap) : (Standard's gap) = 2.40:3.60. The ingredient closer to the target gets the larger share.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Inverse Percent
+
+A number x is 20% less than a number y. By what percent is y greater than x?
+
+- A) 16.7%
+- B) 20%
+- C) 22.5%
+- D) 25%
+- E) 30%
+
+**answer:** D
+**fastest_path:** x = 0.80y → y = x/0.80 = 1.25x → y is 25% greater than x.
+**explanation:** From x = 0.80y, rearrange: y = x/0.80 = 1.25x. So y − x = 0.25x, which is 25% of x.
+**mistake_b:** Answered 20% — matching the percent from the problem statement, but with the wrong base. "x is 20% less than y" uses y as the base; "y is ??% more than x" uses x as the base. Different bases give different percents.
+**mistake_a:** Computed (y−x)/y = 0.20y/y = 20% but then applied a further mis-step to reach 16.7%.
+**mistake_c:** Averaged 20% and 25%.
+**mistake_e:** Overestimate.
+**common_trap:** Reusing the 20% from the problem. "A is 20% less than B" and "B is q% more than A" are not symmetric — the base changes.
+**takeaway:** If A = (1−p%)×B, then B = A/(1−p%), meaning B exceeds A by p%/(1−p%), not by p%. The percent depends on which quantity is the base.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q38
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Chained Ratio with Constraint
+
+Three friends — Amy, Bob, and Carol — split the total cost of a trip. Amy's share to Bob's share is in the ratio 5:6, and Bob's share to Carol's share is in the ratio 3:2. The total cost was $75. What was Carol's share?
+
+- A) $12
+- B) $15
+- C) $20
+- D) $25
+- E) $30
+
+**answer:** C
+**fastest_path:** Match Bob: LCM(6,3)=6. A:B = 5:6; B:C = 6:4. A:B:C = 5:6:4. Total 15 parts. Each = $5. Carol = 4×5 = $20.
+**explanation:** The shared quantity is Bob. Scale both ratios so Bob is equal in each: A:B = 5:6 (Bob = 6 already). B:C = 3:2 → multiply by 2 → B:C = 6:4. Now A:B:C = 5:6:4. Total parts = 15. Each part = 75/15 = $5. Carol = 4×5 = $20.
+**mistake_d:** Computed Amy's share (5×5 = $25) — bubbled the wrong person.
+**mistake_e:** Computed Bob's share (6×5 = $30).
+**mistake_a:** Used Carol's raw ratio value without scaling; mis-estimated.
+**mistake_b:** Scaled B:C but used wrong LCM.
+**common_trap:** Failing to scale the ratios so the shared term (Bob) is equal before combining. Using B:C = 3:2 directly alongside A:B = 5:6 gives an inconsistent chain.
+**takeaway:** To chain two ratios with a shared middle term, scale both so that middle term equals the LCM of its two appearances. Then read all three quantities from the combined ratio.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q39
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Weighted Average — Yes/No
+
+In a class, is the class average test score greater than 70?
+
+(1) The top 40% of students had an average score of 88.
+(2) The bottom 60% of students had an average score of 58.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER alone is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** Together: 0.40×88 + 0.60×58 = 35.2 + 34.8 = 70.0. Is 70.0 > 70? NO — definitive answer. Sufficient.
+**explanation:** Statement (1) alone: top 40% avg 88, but bottom 60% is unconstrained — class avg could be anywhere from 35.2 to 75.2. Insufficient. Statement (2) alone: bottom 60% avg 58, top 40% unconstrained — class avg could range from 34.8 to 74.8. Insufficient. Together: class avg = 0.40×88 + 0.60×58 = 35.2 + 34.8 = 70.0. The question asks if avg is *strictly greater than* 70 — it is exactly 70, so the answer is definitively NO. A definitive "No" makes the statements sufficient. Answer: C.
+**mistake_d:** Each statement alone seemed to constrain the answer — neither does.
+**mistake_e:** Concluded the statements together are still insufficient — but together they fix the class average exactly.
+**mistake_a:** Concluded only (1) sufficient.
+**mistake_b:** Concluded only (2) sufficient.
+**common_trap:** Two traps: (1) computing 70.0 and assuming "that's basically above 70" — strictly greater than is exact; (2) expecting a "Yes" answer and concluding E when the answer is a definitive "No."
+**takeaway:** In yes/no DS, a definitive "No" is as valid as a definitive "Yes." Also, "greater than 70" is strict — computing exactly 70 answers the question with certainty.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q40
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Simultaneous Percent Equations
+
+A salesperson earns a fixed base salary plus a commission equal to p% of total sales. Last month, total sales were $80,000 and total earnings were $6,000. This month, total sales increased by 25% and total earnings increased by 20%. What is the value of p?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 8
+- E) 10
+
+**answer:** C
+**fastest_path:** This month: sales = $100K, earnings = $7,200. Subtract equations: (p/100)×20,000 = 1,200 → p = 6.
+**explanation:** Let B = base salary. Last month: B + (p/100)×80,000 = 6,000 ... (1). This month: sales = 80,000×1.25 = 100,000; earnings = 6,000×1.20 = 7,200. So B + (p/100)×100,000 = 7,200 ... (2). Subtract (1) from (2): (p/100)×20,000 = 1,200 → p = 6. Base = 6,000 − 4,800 = 1,200.
+**mistake_a:** Arithmetic slip in subtraction step.
+**mistake_b:** Used wrong sales difference.
+**mistake_d:** Divided 1,200 by 150 instead of 200.
+**mistake_e:** Divided 1,200 by 120.
+**common_trap:** Trying to solve for both B and p simultaneously without eliminating B first. The subtraction step cleanly removes the base salary from the equation.
+**takeaway:** When two scenarios share a fixed component, subtract the equations to eliminate it. The difference equation has only one unknown.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Mixture Percent — Two Unknowns
+
+A tank contains a mixture of acid and water. What percent of the mixture is acid?
+
+(1) If 20 liters of pure water are added to the tank, the acid concentration becomes exactly 25%.
+(2) The tank currently holds 60 liters of solution.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER alone is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** Two unknowns: acid (a) and total (t). (1) gives a/(t+20) = 0.25. (2) gives t = 60. Together: a = 0.25×80 = 20. Percent = 20/60 = 33.3%.
+**explanation:** Let a = liters of acid, t = total liters. Statement (1): a/(t+20) = 0.25 — one equation, two unknowns. Insufficient. Statement (2): t = 60 — gives total volume but no acid information. Insufficient. Together: substitute t = 60 → a/(80) = 0.25 → a = 20. Acid percent = 20/60 ≈ 33.3%. Sufficient.
+**mistake_a:** Treated only (1) as sufficient — it has two unknowns (a and t).
+**mistake_b:** Treated only (2) as sufficient — knowing the total says nothing about concentration.
+**mistake_d:** Each alone — neither provides enough information.
+**mistake_e:** Concluded together insufficient.
+**common_trap:** Misreading Statement (1) as two separate pieces of information. It is one equation relating two unknowns — insufficient alone regardless of how complex it looks.
+**takeaway:** Two unknowns require two independent equations. One equation with two unknowns is always insufficient by itself.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Investment Return — System of Equations
+
+Two investments, P and Q, produce a combined annual return of $4,800. Investment P earns 6% per year and investment Q earns 8% per year. The following year, the amount invested in P is increased by 50% and the amount invested in Q is decreased by 25%, and the combined return becomes $5,400. What is the current amount invested in P?
+
+- A) $20,000
+- B) $30,000
+- C) $40,000
+- D) $50,000
+- E) $60,000
+
+**answer:** C
+**fastest_path:** Year 1: 0.06p + 0.08q = 4,800. Year 2: 0.09p + 0.06q = 5,400. Subtract 0.75×(Year 1): 0.045p = 1,800 → p = 40,000.
+**explanation:** Year 1: 0.06p + 0.08q = 4,800 ... (1). Year 2: new P = 1.5p at 6% = 0.09p; new Q = 0.75q at 8% = 0.06q. So 0.09p + 0.06q = 5,400 ... (2). Eliminate q: multiply (1) by 0.75 → 0.045p + 0.06q = 3,600 ... (3). Subtract (3) from (2): 0.045p = 1,800 → p = 40,000. Verify: q = (4,800 − 2,400)/0.08 = 30,000. Year 2 check: 0.09×40,000 + 0.06×30,000 = 3,600 + 1,800 = 5,400 ✓.
+**mistake_b:** Computed q = $30,000 and bubbled the wrong variable.
+**mistake_e:** Bubbled 1.5p = $60,000 — the year-2 P investment amount, not the current amount.
+**mistake_a:** Arithmetic slip in the elimination step.
+**mistake_d:** Slip in final division.
+**common_trap:** Two traps: (1) solving for q ($30,000) instead of p — read the question carefully; (2) computing the year-2 P amount ($60,000) rather than the current P.
+**takeaway:** Build one equation per scenario. Choose a multiplier for elimination that cancels one variable cleanly. Always confirm which variable the question asks for before writing the answer.
+**related_reading:** reading-quant-05-word-problems

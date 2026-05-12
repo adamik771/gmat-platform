@@ -162,25 +162,25 @@ Tom leaves home jogging at 6 km/h. Thirty minutes later, his sister leaves the s
 ## Q7
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Average Rate / Harmonic Mean
+**topic:** Combined Work — Fill and Drain
 
-A driver travels from town X to town Y at 40 km/h and returns along the same road at 60 km/h. What is the average speed for the entire round trip?
+Pipe X can fill a tank in 4 hours, Pipe Y can fill the same tank in 6 hours, and Drain Z can empty the full tank in 12 hours. If all three are open simultaneously and the tank starts empty, how long will it take to fill the tank?
 
-- A) 46 km/h
-- B) 48 km/h
-- C) 50 km/h
-- D) 52 km/h
-- E) 55 km/h
+- A) 2 hours
+- B) 3 hours
+- C) 4 hours
+- D) 5 hours
+- E) 6 hours
 
 **answer:** B
-**fastest_path:** Equal distances → harmonic mean: 2(40)(60)/(40 + 60) = 4800/100 = 48.
-**explanation:** Equal-distance round trip → harmonic mean: 2ab/(a + b) = 2·40·60/100 = 48 km/h. Verify by picking d = 120 km each way: out 3 hr, back 2 hr; avg = 240/5 = 48.
-**mistake_a:** Estimated 46 from rough averaging.
-**mistake_c:** Took arithmetic mean: (40 + 60)/2 = 50.
-**mistake_d:** Slight slip → 52.
-**mistake_e:** Estimated up → 55.
-**common_trap:** Averaging the speeds directly (50). Equal *distances* at different speeds means more time at the slower leg, which pulls the average down.
-**takeaway:** Equal distance → harmonic mean (2ab/(a+b)). Equal time → arithmetic mean. Always check what's equal first.
+**fastest_path:** Net rate = 1/4 + 1/6 − 1/12 = 3/12 + 2/12 − 1/12 = 4/12 = 1/3. T = 3 hours.
+**explanation:** Fill rates add; drain rate subtracts. Net rate = 1/4 + 1/6 − 1/12. Common denominator 12: 3/12 + 2/12 − 1/12 = 4/12 = 1/3 tank/hr. Time = 1 ÷ (1/3) = 3 hours. Verify: in 3 hours, X fills 3/4, Y fills 1/2, Z drains 1/4; net = 3/4 + 2/4 − 1/4 = 4/4 = 1 full tank ✓.
+**mistake_a:** Added all three as fill rates: 3/12 + 2/12 + 1/12 = 6/12 = 1/2 → T = 2 hours. Treated the drain as a fill pipe, ignoring that it *removes* water.
+**mistake_c:** Ignored Pipes Y and Z and used only Pipe X's solo rate: T = 4 hours.
+**mistake_d:** Used the arithmetic mean of X and Y's solo times: (4 + 6)/2 = 5 hours. Times don't average; only rates combine linearly.
+**mistake_e:** Used only Pipe Y's solo time: T = 6 hours. Ignored both X and the drain.
+**common_trap:** Treating the drain rate as additive rather than subtractive — every unit of time the drain is open, it *reduces* the progress made by the fill pipes.
+**takeaway:** When a drain operates simultaneously with fill pipes, net rate = Σ(fill rates) − Σ(drain rates). Always subtract drain rates; never add them.
 **related_reading:** reading-quant-05-word-problems
 
 ---
