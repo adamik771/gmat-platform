@@ -462,15 +462,21 @@ Is the fraction p/q greater than 1/2?
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
-**answer:** B
-**fastest_path:** p/q > 1/2 ⟺ 2p > q. Stmt (2): q = 2p − 5 → 2p − q = 5 > 0 → sufficient.
-**explanation:** Reframe: p/q > 1/2 is equivalent to 2p > q (when q > 0). Statement (1) p + q = 20: counterexamples — (p=5, q=15): p/q = 1/3, no. (p=15, q=5): p/q = 3, yes. Different yes/no → insufficient. Statement (2) q = 2p − 5: rearrange to 2p − q = 5, which is > 0 → 2p > q → p/q > 1/2 always (assuming q > 0). Sufficient. → answer is B.
-**mistake_a:** Treated Statement (1) alone as sufficient because it "looks like a complete equation."
-**mistake_c:** Required both statements without testing each alone.
-**mistake_d:** Concluded each alone sufficient.
-**mistake_e:** Concluded together insufficient because of the q-positivity edge case.
-**common_trap:** Yes/no DS — testing only one case (the "easy" one) and missing the contradicting case.
-**takeaway:** For yes/no DS, the answer is sufficient *only when consistent across all valid cases*. Test edge cases (large p, large q, near-equal, etc.) before concluding.
+**answer:** C
+**fastest_path:** (1) alone: p=12,q=8 → YES; p=4,q=16 → NO. Insufficient. (2) alone: q=2p−5 allows q<0 (e.g. p=1,q=−3 → NO vs. p=5,q=5 → YES). Insufficient. Together: unique solution p=25/3, q=35/3; p/q = 5/7 > 1/2. Sufficient.
+**explanation:** Reframe: p/q > 1/2 ⟺ 2p > q only when q > 0; the direction flips for q < 0. Statement (2) does not constrain the sign of q.
+
+Statement (1) alone: p + q = 20. With (p=12, q=8): p/q = 3/2 > 1/2 → YES. With (p=4, q=16): p/q = 1/4 < 1/2 → NO. Insufficient.
+
+Statement (2) alone: q = 2p − 5. With (p=5, q=5): p/q = 1 > 1/2 → YES. With (p=1, q=−3): p/q = −1/3 < 1/2 → NO. Two different answers possible → insufficient.
+
+Together: p + q = 20 and q = 2p − 5. Substituting: p + (2p − 5) = 20 → 3p = 25 → p = 25/3, q = 35/3 (both positive). p/q = 25/35 = 5/7 > 1/2. Definitive YES → sufficient. Answer: C.
+**mistake_a:** Concluded Statement (1) sufficient because "it sets a total" — multiple (p,q) pairs sum to 20, giving different ratios.
+**mistake_b:** Concluded Statement (2) sufficient by noting 2p − q = 5 > 0 and concluding 2p > q → p/q > 1/2. This logic only holds when q > 0. Statement (2) permits q < 0 (e.g., p=1, q=−3), which flips the inequality direction.
+**mistake_d:** Concluded each alone is sufficient; both fail on counterexamples.
+**mistake_e:** Concluded the statements together are still insufficient despite yielding a unique (p,q) solution.
+**common_trap:** Assuming q > 0 without verification. When a DS question involves a fraction p/q, the sign of q is not guaranteed unless the problem states it — always test a negative-denominator case.
+**takeaway:** For fraction DS problems, never assume the denominator is positive. "2p − q > 0" means p/q > 1/2 only when q > 0; the inequality flips when q < 0. Test sign cases explicitly.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
