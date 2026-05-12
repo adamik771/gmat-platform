@@ -825,6 +825,144 @@ function TwoPartGrid({
   )
 }
 
+function NextStepPanel({
+  accuracy,
+  wrongCount,
+  answeredCount,
+  wrongSubtopics,
+}: {
+  accuracy: number
+  wrongCount: number
+  answeredCount: number
+  wrongSubtopics: string[]
+}) {
+  if (answeredCount === 0) return null
+
+  const isStrong = accuracy >= 80
+  const isNeedsWork = accuracy < 55
+
+  let accentColor: string
+  let tierLabel: string
+  let borderColor: string
+  let bgColor: string
+
+  if (isStrong) {
+    accentColor = "#3ECF8E"
+    tierLabel = "Strong session"
+    borderColor = "rgba(62,207,142,0.2)"
+    bgColor = "rgba(62,207,142,0.03)"
+  } else if (isNeedsWork) {
+    accentColor = "#FF9966"
+    tierLabel = "Needs more work"
+    borderColor = "rgba(255,153,102,0.2)"
+    bgColor = "rgba(255,153,102,0.03)"
+  } else {
+    accentColor = "#C9A84C"
+    tierLabel = "Solid effort"
+    borderColor = "rgba(201,168,76,0.2)"
+    bgColor = "rgba(201,168,76,0.03)"
+  }
+
+  const uniqueGaps = Array.from(new Set(wrongSubtopics)).slice(0, 4)
+
+  return (
+    <div
+      className="p-5 rounded-xl border space-y-4"
+      style={{ borderColor, backgroundColor: bgColor }}
+    >
+      <div>
+        <p
+          className="text-[10px] uppercase tracking-widest font-semibold mb-1.5"
+          style={{ color: accentColor }}
+        >
+          {tierLabel}
+        </p>
+        {isStrong && wrongCount === 0 && (
+          <p className="text-sm text-[#C0C0C0] leading-relaxed">
+            Perfect accuracy. When an entire set goes clean, the next move is a harder difficulty level — not a retake of the same one.
+          </p>
+        )}
+        {isStrong && wrongCount > 0 && (
+          <p className="text-sm text-[#C0C0C0] leading-relaxed">
+            {wrongCount === 1 ? "One question" : `${wrongCount} questions`} to review. Read the explanations, confirm you understand the reasoning gap, then move to the next topic.
+          </p>
+        )}
+        {!isStrong && !isNeedsWork && (
+          <p className="text-sm text-[#C0C0C0] leading-relaxed">
+            {wrongCount} mistake{wrongCount !== 1 ? "s" : ""} this session. Reviewing each explanation now — before the question fades — is significantly more effective than returning to it later.
+          </p>
+        )}
+        {isNeedsWork && (
+          <p className="text-sm text-[#C0C0C0] leading-relaxed">
+            {wrongCount} mistake{wrongCount !== 1 ? "s" : ""} this session. Review each explanation, identify the exact step where your reasoning diverged from the correct path, then retake this set before moving on.
+          </p>
+        )}
+      </div>
+
+      {uniqueGaps.length > 0 && (
+        <div>
+          <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+            Gap areas this session
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {uniqueGaps.map((subtopic) => (
+              <span
+                key={subtopic}
+                className="text-[11px] px-2.5 py-0.5 rounded"
+                style={{
+                  backgroundColor: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  color: "#C0C0C0",
+                }}
+              >
+                {subtopic}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="flex flex-wrap gap-2">
+        {wrongCount > 0 && (
+          <Link
+            href="/error-log"
+            className="inline-flex items-center px-3 py-1.5 rounded-lg text-[12px] font-medium transition-colors hover:bg-white/[0.06]"
+            style={{
+              backgroundColor: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              color: "#F0F0F0",
+            }}
+          >
+            Review mistakes
+          </Link>
+        )}
+        <Link
+          href="/chapters"
+          className="inline-flex items-center px-3 py-1.5 rounded-lg text-[12px] font-medium transition-colors hover:bg-white/[0.06]"
+          style={{
+            backgroundColor: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            color: "#F0F0F0",
+          }}
+        >
+          Chapter reference
+        </Link>
+        <Link
+          href="/review"
+          className="inline-flex items-center px-3 py-1.5 rounded-lg text-[12px] font-medium transition-colors hover:bg-white/[0.06]"
+          style={{
+            backgroundColor: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            color: "#F0F0F0",
+          }}
+        >
+          Spaced review queue
+        </Link>
+      </div>
+    </div>
+  )
+}
+
 function SaveStatusBanner({
   status,
   onRetry,
@@ -1253,6 +1391,17 @@ export default function SessionClient({
             </div>
           </div>
         </div>
+
+        {answeredCount > 0 && (
+          <NextStepPanel
+            accuracy={accuracy}
+            wrongCount={answeredCount - correctCount}
+            answeredCount={answeredCount}
+            wrongSubtopics={questions
+              .filter((q, i) => states[i].submitted && !isQuestionCorrect(q, states[i]))
+              .map((q) => q.subtopic)}
+          />
+        )}
 
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
