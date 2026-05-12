@@ -26,6 +26,8 @@ import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
 } from "@/lib/keyboard"
+import { pacingStatus } from "@/lib/pacing"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 
 export interface SessionQuestion {
   id: string
@@ -1208,6 +1210,21 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+    const wrongCount = answeredCount - correctCount
+    const chapterSlug = TOPIC_TO_CHAPTER[topic] ?? null
+    const submittedStates = states.filter((s) => s.submitted)
+    const overPaceCount = submittedStates.filter((s) => {
+      const p = pacingStatus(s.elapsedMs, section)
+      return p.state === "slow" || p.state === "long"
+    }).length
+    const nextAdvice =
+      accuracy >= 85
+        ? "When you're consistently above 85%, shift to a harder drill or the next topic."
+        : accuracy >= 70
+          ? "Tag your mistakes to find the one pattern that's costing you points."
+          : accuracy >= 50
+            ? `Review the ${topic} chapter before repeating this drill.`
+            : `This topic needs foundation work. Study the ${topic} chapter, then return.`
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1253,6 +1270,21 @@ export default function SessionClient({
             </div>
           </div>
         </div>
+
+        {submittedStates.length > 0 && (
+          <div className="flex items-center gap-2.5">
+            <span className="text-[10px] uppercase tracking-widest text-[#555555]">Pacing</span>
+            {overPaceCount === 0 ? (
+              <span className="text-xs" style={{ color: "#3ECF8E" }}>
+                All {submittedStates.length} questions within target time
+              </span>
+            ) : (
+              <span className="text-xs" style={{ color: "#E8C97A" }}>
+                {overPaceCount} of {submittedStates.length} question{submittedStates.length !== 1 ? "s" : ""} exceeded target time
+              </span>
+            )}
+          </div>
+        )}
 
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
@@ -1303,12 +1335,44 @@ export default function SessionClient({
                       </p>
                     </div>
                   </div>
-                  <span className="text-xs text-[#888888] flex-shrink-0 ml-3">
-                    {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
+                  <span className="flex-shrink-0 ml-3">
+                    {state.submitted ? (
+                      <PacingBadge elapsedMs={state.elapsedMs} section={section} compact />
+                    ) : (
+                      <span className="text-xs text-[#555555]">skipped</span>
+                    )}
                   </span>
                 </button>
               )
             })}
+          </div>
+        </div>
+
+        <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111] space-y-3">
+          <div>
+            <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1.5">What to do next</p>
+            <p className="text-sm text-[#C0C0C0]">{nextAdvice}</p>
+          </div>
+          <div className="flex gap-2 flex-wrap">
+            {wrongCount > 0 && (
+              <Link
+                href="/error-log"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
+              >
+                <BookOpen className="w-3 h-3" />
+                Log {wrongCount} mistake{wrongCount !== 1 ? "s" : ""}
+              </Link>
+            )}
+            {chapterSlug && (
+              <Link
+                href={`/chapters/${chapterSlug}`}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors hover:bg-white/[0.04]"
+                style={{ borderColor: "rgba(201,168,76,0.25)", color: "#C9A84C" }}
+              >
+                <BookOpen className="w-3 h-3" />
+                {topic} chapter
+              </Link>
+            )}
           </div>
         </div>
 
