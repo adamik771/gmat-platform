@@ -740,3 +740,450 @@ In a group of 80 people, 45 own a car and 35 own a bicycle. If 20 people own bot
 **common_trap:** Failing to subtract the overlap (|both|) → 80 (double-counts the people who own both).
 **takeaway:** |A ∪ B| = |A| + |B| − |A ∩ B|. Always subtract the intersection once.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Weighted Average
+
+A class of 20 students took a test. The 12 boys averaged 75 points and the 8 girls averaged 90 points. What was the average score for the entire class?
+
+- A) 79
+- B) 80
+- C) 81
+- D) 82.5
+- E) 83
+
+**answer:** C
+**fastest_path:** (12·75 + 8·90)/20 = (900+720)/20 = 1620/20 = 81.
+**explanation:** Weighted average = sum of all scores / total count. Boys' total: 12 × 75 = 900. Girls' total: 8 × 90 = 720. Grand total: 1620. Average: 1620/20 = 81.
+**mistake_a:** Slightly off arithmetic → 79.
+**mistake_b:** Rounded to nearest 5 → 80.
+**mistake_d:** Took arithmetic mean of the two group averages: (75+90)/2 = 82.5 — ignores the 12:8 weighting.
+**mistake_e:** Off-by-arithmetic → 83.
+**common_trap:** Averaging the two group means (82.5) instead of weighting by group size. The boys' group is 50% larger, so it pulls the average closer to 75.
+**takeaway:** Weighted average = (n₁·μ₁ + n₂·μ₂)/(n₁+n₂). The simple mean of the two group means is correct only when group sizes are equal.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Permutations
+
+In how many distinct ways can 4 different students be arranged in a row of 4 seats?
+
+- A) 4
+- B) 12
+- C) 16
+- D) 24
+- E) 256
+
+**answer:** D
+**fastest_path:** 4! = 4·3·2·1 = 24.
+**explanation:** Order matters (seat 1 vs seat 2 is different), and no student may repeat. First seat: 4 choices, second: 3, third: 2, fourth: 1. Total = 4! = 24.
+**mistake_a:** Counted the number of students (4).
+**mistake_b:** Slip: 4·3 = 12 (stopped at 2 seats).
+**mistake_c:** Computed 4² = 16 (treated each seat as independent with replacement).
+**mistake_e:** Computed 4⁴ = 256 (ignored the "distinct" constraint — allowed repeats).
+**common_trap:** Computing 4⁴ = 256 by treating each seat as an independent choice with all 4 students always available — this counts arrangements with repeated students.
+**takeaway:** n distinct objects in n ordered positions = n! (permutation). Each position removes one object from future choices.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q31
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Interquartile Range
+
+The data set {3, 7, 11, 15, 19, 23, 27} is already arranged in ascending order. What is the interquartile range (IQR)?
+
+- A) 8
+- B) 12
+- C) 16
+- D) 20
+- E) 24
+
+**answer:** C
+**fastest_path:** Q1 = 7 (median of lower half {3,7,11}); Q3 = 23 (median of upper half {19,23,27}). IQR = 23−7 = 16.
+**explanation:** For 7 values, the median is the 4th value (15). Lower half: {3,7,11} → Q1 = 7. Upper half: {19,23,27} → Q3 = 23. IQR = Q3 − Q1 = 23 − 7 = 16.
+**mistake_a:** Computed Q3 − median = 23 − 15 = 8.
+**mistake_b:** Computed median − Q1 = 15 − 7 = 8... or Q3 − Q1 using wrong quartiles → 12.
+**mistake_d:** Computed range of lower half: 11 − 3 + 12 = 20 (confused range with IQR).
+**mistake_e:** Computed full range: 27 − 3 = 24.
+**common_trap:** Confusing the full range (max − min = 24) with the interquartile range (Q3 − Q1 = 16).
+**takeaway:** IQR = Q3 − Q1. For an odd-count sorted set, exclude the median when forming the quartile halves.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Expected Value
+
+A game awards prizes as follows: $10 with probability 1/4, $5 with probability 1/4, and $0 with probability 1/2. What is the expected prize?
+
+- A) $2.50
+- B) $3.00
+- C) $3.75
+- D) $5.00
+- E) $7.50
+
+**answer:** C
+**fastest_path:** E = 10·(1/4) + 5·(1/4) + 0·(1/2) = 2.50 + 1.25 = $3.75.
+**explanation:** Expected value = Σ(value × probability). E = 10(1/4) + 5(1/4) + 0(1/2) = 2.50 + 1.25 + 0 = $3.75.
+**mistake_a:** Computed only the $10 branch: 10·(1/4) = $2.50.
+**mistake_b:** Averaged $10 and $5 without weights: (10+5)/2·(1/4) = $3.00.
+**mistake_d:** Averaged the non-zero prizes: (10+5)/3 = $5 (ignored $0 and weights).
+**mistake_e:** Averaged only the two positive prizes: (10+5)/2 = $7.50.
+**common_trap:** Averaging the prize values without weighting by probability — each prize must be multiplied by its probability before summing.
+**takeaway:** E[X] = Σ xᵢ·P(xᵢ). Multiply each outcome by its probability, then sum. Never just average outcome values.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Independent Events
+
+The probability that event A occurs is 1/3, and the probability that event B occurs is 1/4. If A and B are independent, what is the probability that both occur?
+
+- A) 1/12
+- B) 1/7
+- C) 1/6
+- D) 7/12
+- E) 5/12
+
+**answer:** A
+**fastest_path:** Independent: P(A and B) = P(A)·P(B) = (1/3)(1/4) = 1/12.
+**explanation:** For independent events, P(A ∩ B) = P(A) × P(B) = (1/3)(1/4) = 1/12.
+**mistake_b:** Computed 1/(3+4) = 1/7 (harmonic-style confusion).
+**mistake_c:** Averaged: (1/3+1/4)/2 = (7/12)/2 = 7/24 → slipped to 1/6.
+**mistake_d:** Added probabilities: 1/3 + 1/4 = 7/12 — this gives P(A or B) for mutually exclusive events, not P(A and B).
+**mistake_e:** Added and subtracted: 1/3 + 1/4 − something = 5/12.
+**common_trap:** Adding the probabilities (7/12) instead of multiplying. Addition gives P(A or B) for mutually exclusive events; multiplication gives P(A and B) for independent events.
+**takeaway:** Independence → multiply: P(A ∩ B) = P(A)·P(B). "And" for independent events = multiply. "Or" for mutually exclusive events = add.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Weighted Average
+
+A student scored an average of 84 on her first 5 tests and an average of 76 on her next 3 tests. What is her average score across all 8 tests?
+
+- A) 78
+- B) 79
+- C) 80
+- D) 81
+- E) 82
+
+**answer:** D
+**fastest_path:** (5·84 + 3·76)/8 = (420+228)/8 = 648/8 = 81.
+**explanation:** Total of first 5: 5 × 84 = 420. Total of next 3: 3 × 76 = 228. Combined: 648 / 8 = 81.
+**mistake_a:** Slip → 78.
+**mistake_b:** Slip → 79.
+**mistake_c:** Took arithmetic mean: (84+76)/2 = 80. This is wrong because the groups are unequal (5 tests vs 3 tests); the first group has more weight.
+**mistake_e:** Slip → 82.
+**common_trap:** Averaging 84 and 76 directly (= 80) — the two groups are unequal in size, so the larger group (5 tests) pulls the average above the midpoint.
+**takeaway:** When merging groups of different sizes, compute weighted sum first, then divide by total count. Never average the group means directly unless groups are equal-sized.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Permutations with Restrictions
+
+How many 4-digit numbers can be formed using the digits {1, 2, 3, 4, 5} if no digit may be repeated and the number must be greater than 3000?
+
+- A) 24
+- B) 48
+- C) 60
+- D) 72
+- E) 120
+
+**answer:** D
+**fastest_path:** Leading digit ∈ {3,4,5} → 3 choices. Remaining 3 positions from 4 remaining digits: P(4,3) = 24. Total = 3·24 = 72.
+**explanation:** For the number to exceed 3000, the thousands digit must be 3, 4, or 5 — giving 3 choices. The remaining three positions are filled from the 4 unused digits in order: 4 × 3 × 2 = 24 ways. Total = 3 × 24 = 72.
+**mistake_a:** Computed P(4,3) = 24 — forgot to multiply by the 3 leading-digit choices.
+**mistake_b:** Computed 2 × 24 = 48 (used only {4,5} as valid leading digits, excluding 3).
+**mistake_c:** Slip → 60.
+**mistake_e:** Computed 5! = 120 (no restriction at all).
+**common_trap:** Forgetting to include 3 as a valid leading digit (only counting {4,5}), or computing P(5,4) with no restriction.
+**takeaway:** Apply position-by-position restrictions first (leading digit here), then multiply by the ordered choices for remaining positions.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Three-Set Inclusion-Exclusion
+
+Of 100 students surveyed, 55 study Math, 40 study Science, and 35 study English. Among these, 20 study both Math and Science, 15 study both Math and English, and 10 study both Science and English. If 5 students study all three subjects, how many students study none of the three?
+
+- A) 5
+- B) 10
+- C) 15
+- D) 20
+- E) 25
+
+**answer:** B
+**fastest_path:** |M∪S∪E| = 55+40+35−20−15−10+5 = 90. None = 100−90 = 10.
+**explanation:** Three-set inclusion-exclusion: |M∪S∪E| = |M|+|S|+|E| − |M∩S| − |M∩E| − |S∩E| + |M∩S∩E| = 55+40+35−20−15−10+5 = 90. Students studying none = 100−90 = 10.
+**mistake_a:** Forgot to add back the all-three term (+5) → 85; none = 15 → slipped to 5.
+**mistake_c:** Forgot to add back the all-three term → 85; none = 15.
+**mistake_d:** Subtracted the all-three term instead of adding: 55+40+35−20−15−10−5 = 80; none = 20.
+**mistake_e:** Slip → 25.
+**common_trap:** Forgetting to add back the all-three intersection (|M∩S∩E|) — after subtracting all pairwise intersections, the triple-overlap has been subtracted three times and added back zero, so it must be restored once.
+**takeaway:** Three-set IE: |A∪B∪C| = |A|+|B|+|C| − |A∩B| − |A∩C| − |B∩C| + |A∩B∩C|. The triple term gets *added* back.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Expected Value — Net Gain
+
+A lottery ticket costs $2. The ticket wins $8 with probability 1/5 and wins nothing otherwise. What is the expected net gain (or loss) per ticket?
+
+- A) -$1.60
+- B) -$0.40
+- C) $0.00
+- D) $0.40
+- E) $1.60
+
+**answer:** B
+**fastest_path:** E(net) = (1/5)(8−2) + (4/5)(0−2) = 6/5 − 8/5 = −2/5 = −$0.40.
+**explanation:** Net gain if win: $8 − $2 = $6. Net gain if lose: $0 − $2 = −$2. E = (1/5)(6) + (4/5)(−2) = 1.20 − 1.60 = −$0.40. On average, each ticket loses $0.40.
+**mistake_a:** Used gross prize instead of net: (1/5)(8) + (4/5)(0) = $1.60 and subtracted cost wrongly → −$1.60.
+**mistake_c:** Computed expected gross prize: (1/5)(8) = $1.60 and rounded to "break even" → $0.
+**mistake_d:** Reversed sign → +$0.40.
+**mistake_e:** Computed gross expected value: (1/5)(8) = $1.60 without subtracting the ticket cost.
+**common_trap:** Computing expected *gross* prize ($1.60) and forgetting to subtract the $2 ticket cost — the question asks for net gain.
+**takeaway:** Expected *net* gain = E(prize) − cost per ticket, or equivalently Σ(net outcome × probability). Always subtract sunk costs when computing net.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Interquartile Range — Even-Sized Set
+
+What is the interquartile range (IQR) of the data set {4, 8, 12, 16, 20, 24, 28, 32}?
+
+- A) 12
+- B) 14
+- C) 16
+- D) 20
+- E) 28
+
+**answer:** C
+**fastest_path:** Lower half {4,8,12,16} → Q1 = (8+12)/2 = 10. Upper half {20,24,28,32} → Q3 = (24+28)/2 = 26. IQR = 16.
+**explanation:** With 8 values (even count), split evenly: lower half {4,8,12,16}, upper half {20,24,28,32}. Q1 = median of lower half = (8+12)/2 = 10. Q3 = median of upper half = (24+28)/2 = 26. IQR = 26 − 10 = 16.
+**mistake_a:** Computed Q1 and Q3 as the 2nd and 6th values (positional slip): 8 and 20 → IQR = 12.
+**mistake_b:** Slip → 14.
+**mistake_d:** Used 3rd and 7th values (wrong quartile positions): 12 and 28 → IQR = 16... slip to 20 from wrong positions.
+**mistake_e:** Computed full range: 32 − 4 = 28.
+**common_trap:** Using the full range (32−4 = 28) or picking individual data points as Q1/Q3 rather than averaging adjacent middle values.
+**takeaway:** For even-count sets, split into two equal halves; Q1 = median of lower half, Q3 = median of upper half. Each half's median requires averaging its two middle values.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Conditional Probability
+
+In a class, 60% of students passed the midterm and 45% of students passed both the midterm and the final. Given that a student passed the midterm, what is the probability that the student also passed the final?
+
+- A) 1/4
+- B) 1/3
+- C) 3/5
+- D) 3/4
+- E) 4/5
+
+**answer:** D
+**fastest_path:** P(Final | Midterm) = P(both) / P(Midterm) = 0.45/0.60 = 3/4.
+**explanation:** Conditional probability formula: P(F | M) = P(F ∩ M) / P(M) = 0.45/0.60 = 3/4.
+**mistake_a:** Computed P(M) − P(both) = 0.15 → interpreted as 1/4 in some form.
+**mistake_b:** Slip → 1/3.
+**mistake_c:** Computed P(both)/P(F) = 0.45/0.75 — assumed P(F) = 75% without being told.
+**mistake_e:** Inverted: P(Midterm | Final) instead of P(Final | Midterm).
+**common_trap:** Using P(both)/P(final) instead of P(both)/P(midterm) — the *given* event always goes in the denominator.
+**takeaway:** P(B | A) = P(A ∩ B) / P(A). The conditioning event (given) goes in the denominator. Identify what is *given* and what is *asked*.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Permutations vs Combinations
+
+A student council must fill three distinct positions — president, vice president, and secretary — from 8 candidates. How many different ways can these positions be filled?
+
+- A) 24
+- B) 56
+- C) 168
+- D) 336
+- E) 512
+
+**answer:** D
+**fastest_path:** Distinct roles → permutation: P(8,3) = 8·7·6 = 336.
+**explanation:** The three positions are distinct (president ≠ vice president ≠ secretary), so order matters. P(8,3) = 8 × 7 × 6 = 336.
+**mistake_a:** Slip → 24.
+**mistake_b:** Computed C(8,3) = 56 — treated as an unordered committee, ignoring that the three roles are different.
+**mistake_c:** Slip → 168.
+**mistake_e:** Computed 8³ = 512 — allowed the same person to hold multiple positions.
+**common_trap:** Computing C(8,3) = 56 (combinations) instead of P(8,3) = 336 (permutations). Combinations are used when there are no distinct roles — here, president and vice president are different positions, so order matters.
+**takeaway:** When positions are labeled/distinct, use permutations. When the group is unordered (like a committee with no titles), use combinations. Ask: "Does it matter *which* slot each person fills?"
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Weighted Average — Two Groups
+
+A company has two divisions, A and B. What is the overall average annual salary (in dollars) of all employees in the company?
+
+(1) Division A employs three times as many people as Division B, and Division A's average salary is $60,000.
+(2) Division B's average salary is $75,000 and Division B employs 15 people.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) Missing B's avg salary. (2) Missing A's avg salary and size. Together: B=15, A=45, combine → $63,750. Sufficient.
+**explanation:** Statement (1): Division A is 3× as large as B, and A averages $60k. Without B's average, can't compute overall. Insufficient. Statement (2): B's average is $75k and B has 15 people. Without A's average or headcount, can't compute overall. Insufficient. Together: B has 15 employees → A has 45. Overall = (45·60,000 + 15·75,000)/60 = (2,700,000 + 1,125,000)/60 = 3,825,000/60 = $63,750. Sufficient. Answer: C.
+**mistake_a:** Treated only (1) as sufficient — missing B's salary.
+**mistake_b:** Treated only (2) as sufficient — missing A's salary and size.
+**mistake_d:** Treated each alone as sufficient.
+**mistake_e:** Concluded both together insufficient.
+**common_trap:** Statement (1) gives a ratio and one group's mean, which feels like "enough" — but the overall average also requires the *other* group's mean, not just the size ratio.
+**takeaway:** Overall weighted average requires *both* group sizes and *both* group means. A size ratio alone is insufficient without both group averages.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Circular Permutations
+
+In how many distinct ways can 5 people be seated around a circular table if rotations of the same arrangement are considered identical?
+
+- A) 10
+- B) 12
+- C) 20
+- D) 24
+- E) 120
+
+**answer:** D
+**fastest_path:** Circular: (5−1)! = 4! = 24.
+**explanation:** In a circular arrangement, one person is held fixed (to eliminate identical rotations), and the remaining 4 are arranged in the other seats: 4! = 4 × 3 × 2 × 1 = 24.
+**mistake_a:** Computed C(5,2) = 10 (used combination formula — unrelated).
+**mistake_b:** Computed 4!/2 = 12 (incorrectly divided by 2 for reflections — only applicable when reflections are also indistinct, which is not stated here).
+**mistake_c:** Slip → 20.
+**mistake_e:** Computed 5! = 120 (linear permutations — forgot circular correction).
+**common_trap:** Using 5! = 120 (linear) instead of (5−1)! = 24 (circular). In a circle, seating A-B-C-D-E and B-C-D-E-A are the same arrangement — there are 5 identical rotations per distinct arrangement.
+**takeaway:** Circular permutations of n distinct objects = (n−1)!. Fix one person, arrange the remaining (n−1) linearly.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q43
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Probability — Selecting from Mixed Groups
+
+A batch contains 12 products, of which 3 are defective and 9 are non-defective. If 4 products are selected at random without replacement, what is the probability that exactly 2 of the selected products are defective?
+
+- A) 1/11
+- B) 3/22
+- C) 12/55
+- D) 4/15
+- E) 18/55
+
+**answer:** C
+**fastest_path:** C(3,2)·C(9,2)/C(12,4) = 3·36/495 = 108/495 = 12/55.
+**explanation:** Choose 2 defective from 3: C(3,2) = 3. Choose 2 non-defective from 9: C(9,2) = 36. Choose any 4 from 12: C(12,4) = 495. P = (3·36)/495 = 108/495 = 12/55.
+**mistake_a:** Computed C(3,2)/C(12,4) = 3/495 = 1/165, confused with 1/11 — forgot to multiply by C(9,2).
+**mistake_b:** Slip in simplification → 3/22.
+**mistake_d:** Used with-replacement: (3/12)²·(9/12)² × C(4,2) = (1/4)(9/16)·6 = slightly off → 4/15.
+**mistake_e:** Slip in C(9,2) calculation → 18/55.
+**common_trap:** Forgetting to multiply by the non-defective term C(9,2) — selecting exactly 2 defective requires simultaneously choosing the 2 non-defective items that fill the remaining spots.
+**takeaway:** "Exactly k from group X" in a without-replacement draw = C(X,k)·C(rest, n−k)/C(total, n). Both the "wanted" and "unwanted" selections contribute to the count.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q44
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Standard Deviation — Sufficient Conditions
+
+The mean of a set of 5 numbers is 12. Is the standard deviation of the set greater than 4?
+
+(1) The smallest number in the set is 6 and the largest is 18.
+(2) All 5 numbers are distinct integers.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** E
+**fastest_path:** (1) alone: {6,12,12,12,18} has SD≈3.8 (No); {6,6,18,18,12} has SD≈5.4 (Yes). Insufficient. (2) alone: {10,11,12,13,14} SD≈1.4 (No); {1,5,12,19,23} SD≈8 (Yes). Insufficient. Together: {6,9,12,15,18} all distinct, SD=√18≈4.24 (Yes); {6,10,12,14,18} all distinct, SD=4 (No, not strictly >4). Still insufficient → E.
+**explanation:** Statement (1): {6,12,12,12,18} → deviations −6,0,0,0,+6 → SD=√(72/5)≈3.8 (No). {6,6,18,18,12} → deviations −6,−6,+6,+6,0 → SD=√(144/5)≈5.4 (Yes). Insufficient. Statement (2): {10,11,12,13,14} → SD=√2≈1.4 (No). {1,5,12,19,23} → SD≈8.2 (Yes). Insufficient. Together: {6,9,12,15,18} — all distinct integers, min=6, max=18, mean=12 → SD=√18≈4.24 (Yes). {6,10,12,14,18} — all distinct integers, min=6, max=18, mean=12 → SD=√16=4 (No, not strictly greater). Both are valid; answer varies → Insufficient. E.
+**mistake_a:** Assumed range pins down SD — it doesn't (interior distribution can vary).
+**mistake_b:** Assumed distinct integers constrains SD enough — multiple SD values remain possible.
+**mistake_c:** Assumed both together fix SD — the key counterexample is {6,10,12,14,18} with SD exactly 4 (not greater).
+**mistake_d:** Assumed each alone is sufficient.
+**common_trap:** Assuming that range + distinctness nails down standard deviation. Both {6,9,12,15,18} and {6,10,12,14,18} satisfy all stated constraints yet straddle the SD=4 boundary.
+**takeaway:** Range controls the extreme spread but not the interior distribution. SD depends on *how* all values are distributed around the mean, not just the endpoints.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Binomial Probability — At Least
+
+A fair die is rolled 3 times. What is the probability that at least 2 of the rolls show a number greater than 4?
+
+- A) 1/27
+- B) 7/27
+- C) 2/9
+- D) 10/27
+- E) 1/3
+
+**answer:** B
+**fastest_path:** P(>4 on one roll) = 2/6 = 1/3. P(exactly 2) = C(3,2)(1/3)²(2/3) = 6/27. P(all 3) = (1/3)³ = 1/27. Total = 7/27.
+**explanation:** Numbers greater than 4 on a standard die: {5, 6} → P = 2/6 = 1/3. P(≤ 4) = 2/3. P(exactly 2 rolls > 4) = C(3,2)·(1/3)²·(2/3) = 3·(1/9)·(2/3) = 6/27. P(all 3 rolls > 4) = (1/3)³ = 1/27. P(at least 2) = 6/27 + 1/27 = 7/27.
+**mistake_a:** Computed only P(all 3): (1/3)³ = 1/27 — forgot the "exactly 2" case.
+**mistake_c:** Computed P(exactly 2) only = 6/27 = 2/9 — forgot to add P(all 3).
+**mistake_d:** Used complement incorrectly: 1 − P(0 or 1 success) with arithmetic slip → 10/27.
+**mistake_e:** Estimated P ≈ 1/3 from P(> 4 on one roll).
+**common_trap:** Computing P(exactly 2) without adding P(exactly 3). "At least 2" means 2 OR 3 — don't stop at the boundary case.
+**takeaway:** "At least k" = P(exactly k) + P(exactly k+1) + … Alternatively, use the complement: P(at least 2) = 1 − P(0) − P(1). Always check whether you've covered all qualifying cases.
