@@ -673,3 +673,458 @@ If 3^(x + 2) = 81, what is the value of x?
 **common_trap:** Mis-recognizing the power of 3.
 **takeaway:** Memorize 3¹ through 3⁵: 3, 9, 27, 81, 243. Same base equations: same base ⟺ equal exponents.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q25
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Zero and Negative Exponents
+
+What is the value of 4⁰ + 4⁻¹?
+
+- A) 0
+- B) 1/4
+- C) 5/4
+- D) 2
+- E) 5
+
+**answer:** C
+**fastest_path:** 4⁰ = 1 always; 4⁻¹ = 1/4. Sum = 1 + 1/4 = 5/4.
+**explanation:** Two separate rules apply. Zero exponent: any non-zero base raised to 0 equals 1, so 4⁰ = 1. Negative exponent: 4⁻¹ = 1/4¹ = 1/4. Add: 1 + 1/4 = 5/4.
+**mistake_a:** Believed 4⁰ = 0 (zero exponent gives zero) AND 4⁻¹ gives nothing → 0 + 0 = 0. Zero exponent never equals 0; it always equals 1.
+**mistake_b:** Correctly computed 4⁻¹ = 1/4 but also believed 4⁰ = 0 → 0 + 1/4 = 1/4.
+**mistake_d:** Correctly computed 4⁰ = 1 but treated 4⁻¹ = 1 (the negative exponent as a no-op) → 1 + 1 = 2.
+**mistake_e:** Ignored the exponent on the first term: read 4⁰ as 4¹ = 4, then added 1 (treating 4⁻¹ = 1) → 4 + 1 = 5.
+**common_trap:** Treating a⁰ = 0. The zero exponent produces 1, not 0. Separately, a⁻¹ = 1/a, not −a.
+**takeaway:** Two rules to memorize cold: a⁰ = 1 for any a ≠ 0; a⁻ⁿ = 1/aⁿ. Neither rule produces a zero or a negative result from a positive base.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q26
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is 6⁸ ÷ 6⁵?
+
+- A) 1
+- B) 6²
+- C) 6³
+- D) 6¹³
+- E) 6⁴⁰
+
+**answer:** C
+**fastest_path:** Same base, divide → subtract exponents: 6^(8−5) = 6³.
+**explanation:** Division of same-base powers: aᵐ ÷ aⁿ = a^(m−n). So 6⁸ ÷ 6⁵ = 6^(8−5) = 6³. The base stays 6; only the exponents interact.
+**mistake_a:** Concluded that dividing same base equals 1 regardless of exponents — confusing a^n/a^n = 1 (equal exponents) with the general rule.
+**mistake_b:** Arithmetic slip: computed 8 − 5 = 2 instead of 3 → 6².
+**mistake_d:** Added exponents instead of subtracting: 8 + 5 = 13 → 6¹³.
+**mistake_e:** Multiplied exponents: 8 × 5 = 40 → 6⁴⁰. Multiplication of exponents applies to power-of-a-power, not division.
+**common_trap:** Using the wrong operation on exponents: multiplication (40) and addition (13) are the two most common errors. Division → subtract.
+**takeaway:** The three exponent operation rules: multiply → add (aᵐ × aⁿ = a^(m+n)); divide → subtract (aᵐ ÷ aⁿ = a^(m−n)); power of power → multiply ((aᵐ)ⁿ = a^(mn)).
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q27
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+Which of the following is equivalent to (2ab)³?
+
+- A) 2a³b³
+- B) 6a³b³
+- C) 6a³b
+- D) 8a³b³
+- E) 6ab³
+
+**answer:** D
+**fastest_path:** Cube every factor: 2³ = 8, a³, b³ → 8a³b³.
+**explanation:** Power of a product: (xyz)ⁿ = xⁿ yⁿ zⁿ. Apply to every factor inside the parentheses. (2ab)³ = 2³ × a³ × b³ = 8 × a³ × b³ = 8a³b³.
+**mistake_a:** Cubed a and b correctly but left the 2 as 2¹ (forgot to cube the coefficient) → 2a³b³.
+**mistake_b:** Computed 2 × 3 = 6 (multiplied the base by the exponent) instead of 2³ = 8 → 6a³b³.
+**mistake_c:** Computed 2 × 3 = 6 for the coefficient and applied the cube only to a, not b → 6a³b.
+**mistake_e:** Computed 2 × 3 = 6 for the coefficient and applied the cube only to b, not a → 6ab³.
+**common_trap:** Multiplying the coefficient by the exponent (2 × 3 = 6) rather than raising it to the exponent (2³ = 8). The rule is (ka)ⁿ = kⁿaⁿ, not (k × n)aⁿ.
+**takeaway:** Every factor inside the parentheses gets raised to the exponent — including numeric coefficients. (2ab)³ = 2³a³b³ = 8a³b³.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q28
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+If x = −5, what is the value of √(x²)?
+
+- A) −5
+- B) −√5
+- C) √5
+- D) 5
+- E) 25
+
+**answer:** D
+**fastest_path:** x² = 25; √25 = 5. The principal square root is always non-negative.
+**explanation:** Substitute: x² = (−5)² = 25. Then √25 = 5. The square root symbol denotes the principal (non-negative) root, so the answer is 5, not −5. In general, √(x²) = |x|.
+**mistake_a:** Used √(x²) = x without applying the absolute value: √((−5)²) = −5. The principal root is never negative.
+**mistake_b:** Confused the order of operations: computed √(−5) = something involving √5, then introduced a negative sign.
+**mistake_c:** Computed √|x| = √5 instead of |x| = √(x²) = 5 (took the root of the absolute value rather than the absolute value of the root).
+**mistake_e:** Computed x² = 25 but forgot to take the square root — returned the intermediate result.
+**common_trap:** √(x²) = x. This is only true when x ≥ 0. For all real x, √(x²) = |x|. When x is negative, the answer is positive.
+**takeaway:** √(x²) = |x|, not x. The square root always returns a non-negative result. This identity is tested frequently in Data Sufficiency (e.g., "Is √(x²) = x?").
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If 2^(3x) = 64, what is x?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 6
+
+**answer:** B
+**fastest_path:** 64 = 2⁶ → 3x = 6 → x = 2.
+**explanation:** Rewrite 64 as a power of 2: 64 = 2⁶. Now the equation is 2^(3x) = 2⁶. Same base → equal exponents: 3x = 6 → x = 2.
+**mistake_a:** Identified 64 = 2³ (confused with 8 = 2³) → 3x = 3 → x = 1. Recall: 2³ = 8, 2⁶ = 64.
+**mistake_c:** Correctly equated 3x = 6 but divided by 2 instead of 3 → x = 3.
+**mistake_d:** Correctly identified 3x = 6 but made an arithmetic slip computing 6 ÷ 3 = 4 (rather than 2) under time pressure.
+**mistake_e:** Dropped the coefficient; solved 2^x = 64 directly → x = 6 (the exponent of 64 in base 2, not the value of x).
+**common_trap:** When the exponent contains a coefficient (3x), the step 3x = 6 requires dividing by 3 — students either skip this step or divide by the wrong number.
+**takeaway:** When the exponent has a coefficient, set the exponents equal and then solve the resulting linear equation. Here: 3x = 6 → x = 2, not x = 6.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q30
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+If 4^x = 8, what is the value of x?
+
+- A) 1/2
+- B) 2/3
+- C) 3/2
+- D) 2
+- E) 3
+
+**answer:** C
+**fastest_path:** Convert to base 2: 4^x = (2²)^x = 2^(2x) = 2³ → 2x = 3 → x = 3/2.
+**explanation:** Neither 4 nor 8 is a power of the other, but both are powers of 2: 4 = 2² and 8 = 2³. Rewrite: (2²)^x = 2³ → 2^(2x) = 2³ → 2x = 3 → x = 3/2. Verify: 4^(3/2) = (4^(1/2))³ = 2³ = 8 ✓.
+**mistake_a:** Tried 4^(1/2) = 2 (correct), then stopped; answered x = 1/2 (found √4 = 2, not 2³ = 8).
+**mistake_b:** Inverted the equation: set 2x = 3 → x = 3/2 correctly but wrote 2/3 (flipped numerator and denominator).
+**mistake_d:** Treated the equation as linear: 4x = 8 → x = 2.
+**mistake_e:** Computed 8 − 4 = 4... no, or guessed x = 3 by recognizing 4^3 = 64 ≠ 8 without checking.
+**common_trap:** Not recognizing that two different bases can both be expressed as powers of a common base. When bases differ, look for a shared prime base (here, both 4 and 8 are powers of 2).
+**takeaway:** If a^x = b and the bases differ, find a common base c such that a = c^p and b = c^q. Then a^x = c^(px) = c^q → px = q → x = q/p.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q31
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+If 9^x = 27^(x−1), what is x?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 6
+
+**answer:** C
+**fastest_path:** Convert: 9 = 3², 27 = 3³ → 3^(2x) = 3^(3x−3) → 2x = 3x − 3 → x = 3.
+**explanation:** Express both sides in base 3. 9 = 3² → 9^x = 3^(2x). 27 = 3³ → 27^(x−1) = 3^(3(x−1)) = 3^(3x−3). Same base: 2x = 3x − 3 → x = 3. Verify: 9³ = 729 = 27² ✓.
+**mistake_a:** Solved without converting bases: set 9x = 27(x−1) as a linear equation → 9x = 27x − 27 → 18x = 27 → x = 1.5; rounded down to 1.
+**mistake_b:** Correctly converted but made an arithmetic error in the final step: −x = −3 became x = −3... then reconsidered and guessed x = 2.
+**mistake_d:** Confused 27 = 3⁴ (mis-memorized); set 2x = 4(x−1) = 4x − 4 → 2x = 4 → ... arrived at x = 4 or another wrong answer.
+**mistake_e:** Added the base exponents: 2 + 3 = 5... constructed x = 6 from another error.
+**common_trap:** Treating 9^x = 27^(x−1) as a linear equation by "cancelling" the exponents directly. The correct step is to express both sides in the same base first.
+**takeaway:** When both sides have different bases but share a prime root, convert everything to that prime base and equate exponents. Check: are both sides powers of 2? Of 3? Of 5? That question unlocks dozens of GMAT exponent problems.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q32
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of (√5 + √3)(√5 − √3)?
+
+- A) √2
+- B) 2
+- C) 2√15
+- D) 8
+- E) √(5² − 3²)
+
+**answer:** B
+**fastest_path:** Difference of squares: (√5)² − (√3)² = 5 − 3 = 2.
+**explanation:** Recognize the conjugate pair (a + b)(a − b) = a² − b² with a = √5, b = √3. So (√5 + √3)(√5 − √3) = (√5)² − (√3)² = 5 − 3 = 2. No radicals remain.
+**mistake_a:** Computed √(5 − 3) = √2 (applied the subtraction inside a radical instead of squaring each term first).
+**mistake_c:** FOILed incorrectly: took the outer terms √5 × (−√3) and inner terms √3 × √5, got 2√15 without recognizing the cancellation.
+**mistake_d:** Used (a + b)(a − b) = a² + b² (sign error in the formula) → 5 + 3 = 8.
+**mistake_e:** Wrote √(5² − 3²) = √(25 − 9) = √16 = 4 (applied a completely different formula). Note: √(5² − 3²) = 4 ≠ 2; this is not what the problem computes.
+**common_trap:** FOILing fully instead of recognizing the conjugate structure. If you see (√a + √b)(√a − √b), go straight to a − b.
+**takeaway:** (a + b)(a − b) = a² − b². When a = √p and b = √q, the result is p − q — an integer with no radicals. Spotting conjugate pairs saves 30–45 seconds on GMAT.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of (−3)⁴ − (−3)³?
+
+- A) −108
+- B) −54
+- C) 54
+- D) 108
+- E) 162
+
+**answer:** D
+**fastest_path:** Even power: (−3)⁴ = +81. Odd power: (−3)³ = −27. 81 − (−27) = 81 + 27 = 108.
+**explanation:** Sign rule for negative bases: even exponent → positive result; odd exponent → negative result. (−3)⁴ = 81. (−3)³ = −27. Subtraction: 81 − (−27) = 81 + 27 = 108.
+**mistake_a:** Treated both powers as negative: −81 − 27 = −108. Even exponents with a negative base always give a positive result.
+**mistake_b:** Got (−3)⁴ = −81 (wrong sign) and (−3)³ = +27 (wrong sign), then −81 + 27 = −54.
+**mistake_c:** Correctly got 81 for (−3)⁴ but dropped the negative sign for (−3)³, treating it as +27 → 81 − 27 = 54. The double-negative in the subtraction was not applied.
+**mistake_e:** Computed 81 + 81 = 162, treating (−3)³ as if it equals −(−3)³ = +81 (double-negated when it shouldn't be).
+**common_trap:** The hidden double-negative: (−3)³ = −27, so the full expression is 81 − (−27) = 81 + 27 = 108. Students who compute (−3)³ = −27 correctly but then forget to subtract a negative number get 81 − 27 = 54 (choice C).
+**takeaway:** Even exponent on a negative base → positive (neg × neg × … = +). Odd exponent → negative. After computing signs, watch for the double-negative when subtracting a negative term.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+If a > 0, which of the following is equal to (a^(1/2))^(1/2)?
+
+- A) a^(1/4)
+- B) a^(1/2)
+- C) a^1
+- D) a^(1/8)
+- E) a²
+
+**answer:** A
+**fastest_path:** Power of a power → multiply: (1/2) × (1/2) = 1/4 → a^(1/4).
+**explanation:** (a^m)^n = a^(m×n). Here m = 1/2, n = 1/2. So (a^(1/2))^(1/2) = a^(1/2 × 1/2) = a^(1/4). Equivalently: (√a)^(1/2) = ⁴√a.
+**mistake_b:** Averaged the exponents: (1/2 + 1/2) ÷ 2 = 1/2 → a^(1/2). Power of a power multiplies; it does not average.
+**mistake_c:** Thought two applications of "square root" cancel or return the base → a¹. In fact, each halves the exponent.
+**mistake_d:** Computed (1/2)^(1/2) ≈ 0.707 ≈ 1/√2, which appears to be near 1/8 (a rough estimate) → a^(1/8). The exponent is exactly 1/4, not a decimal approximation.
+**mistake_e:** Applied the outer exponent as a multiplier to the inner (1/2) reversed — saw 1/(1/2) = 2 and wrote a².
+**common_trap:** Adding instead of multiplying: (a^(1/2))^(1/2) ≠ a^(1/2 + 1/2) = a. That rule (add) applies only to same-base multiplication, not power-of-power.
+**takeaway:** Power of a power: always multiply exponents. (a^p)^q = a^(pq). With fractions: (1/2)(1/2) = 1/4, not 1/2. Taking the square root of a square root gives the fourth root.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Scientific Notation
+
+What is (6.5 × 10⁴) + (5.0 × 10³)?
+
+- A) 1.15 × 10⁵
+- B) 1.15 × 10⁷
+- C) 7.0 × 10⁴
+- D) 7.0 × 10⁷
+- E) 11.5 × 10³
+
+**answer:** C
+**fastest_path:** Equalize exponents: 5.0 × 10³ = 0.5 × 10⁴. Then 6.5 + 0.5 = 7.0 → 7.0 × 10⁴.
+**explanation:** Addition in scientific notation requires matching exponents. Convert 5.0 × 10³ to the same power of 10 as the first term: 5.0 × 10³ = 0.5 × 10⁴. Now add: (6.5 + 0.5) × 10⁴ = 7.0 × 10⁴. Check: 65,000 + 5,000 = 70,000 = 7.0 × 10⁴ ✓.
+**mistake_a:** Added the coefficients without equalizing exponents (6.5 + 5.0 = 11.5) and kept the higher exponent 10⁴ → 11.5 × 10⁴ = 1.15 × 10⁵.
+**mistake_b:** Added coefficients (11.5) and added the exponents (4 + 3 = 7) → 11.5 × 10⁷ (applied the multiplication rule to an addition problem).
+**mistake_d:** Correctly summed to 7.0 but added the exponents: 4 + 3 = 7 → 7.0 × 10⁷.
+**mistake_e:** Converted both terms to 10³ base (65 × 10³ + 5 × 10³) but wrote the coefficients as 6.5 + 5.0 = 11.5 without rebaselineig → 11.5 × 10³.
+**common_trap:** Treating addition like multiplication — adding the exponents (10⁴ × 10³ = 10⁷) instead of equalizing them. For addition, match the exponents first; for multiplication, add them.
+**takeaway:** Adding scientific notation: equalize the exponent (convert to the larger power), then add coefficients. The exponent itself does not change. Contrast: for multiplication, add exponents; for addition, keep the shared exponent.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Equations with Exponents
+
+What is the value of 2^x?
+
+(1) x² = 9
+(2) x < 0
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER alone is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) x = ±3 → 2^x = 8 or 1/8 (two values). (2) x < 0 → x could be anything negative (many values). Together: x = −3 uniquely → 2^(−3) = 1/8. → C.
+**explanation:** Statement (1): x² = 9 → x = 3 or x = −3. Then 2³ = 8 and 2^(−3) = 1/8 — two different values. Insufficient.
+
+Statement (2): x < 0 alone gives infinitely many possible x values (−1, −2, −3, …), each giving a different 2^x. Insufficient.
+
+Combined: x² = 9 AND x < 0 → x = −3 only. 2^(−3) = 1/8. A unique value. Sufficient. → C.
+**mistake_a:** Concluded Statement (1) alone is sufficient — overlooked that x² = 9 has two solutions (x = 3 and x = −3), which yield different values of 2^x.
+**mistake_b:** Thought "x < 0" pins down a unique value, but infinitely many negative x exist.
+**mistake_d:** Concluded each statement alone is sufficient — requires testing both solution sets carefully.
+**mistake_e:** Doubted the combination; but together they uniquely determine x = −3.
+**common_trap:** Seeing x² = 9 and jumping to x = 3. Always check whether a squared equation has two roots; if so, the statement is insufficient unless the question's domain rules one out — which here requires the second statement.
+**takeaway:** Quadratic constraints typically produce two values. In DS, if a statement yields two candidates that give different target values, it is insufficient. The second statement here acts as a sign filter.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q37
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If 2^(x+1) + 2^x = 96, what is x?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 7
+- E) 8
+
+**answer:** B
+**fastest_path:** Factor out 2^x: 2^x(2 + 1) = 3 × 2^x = 96 → 2^x = 32 = 2⁵ → x = 5.
+**explanation:** Rewrite using exponent rules: 2^(x+1) = 2¹ × 2^x = 2 × 2^x. So the equation becomes 2 × 2^x + 2^x = 3 × 2^x = 96. Divide: 2^x = 32 = 2⁵. So x = 5. Verify: 2^6 + 2^5 = 64 + 32 = 96 ✓.
+**mistake_a:** Correctly factored to 3 × 2^x = 96 → 2^x = 32, but mis-identified 32 = 2⁴ (off by one in memorized powers of 2) → x = 4. Recall: 2⁴ = 16, 2⁵ = 32.
+**mistake_c:** Did not factor; divided by only 2 instead of 3: 2^x = 96/2 = 48 → approximated as 2^6 = 64 (too large), guessed x = 6.
+**mistake_d:** Tried to solve 2^(x+1) = 96 ignoring the second term → 2^x = 48 → approximated x ≈ 5.6, rounded to 6 or 7.
+**mistake_e:** Approximated without structure: 96 ≈ 2^6 + 2^6 = 128 (overshoot), 96 ≈ 2^7 + 2^8 = 384 (far overshoot), landed on x = 8.
+**common_trap:** Not recognizing the common factor. The terms 2^(x+1) and 2^x share the factor 2^x. Factoring transforms the equation from unsolvable (two unknown exponential terms) to one-step (one unknown term).
+**takeaway:** When a sum of exponential terms with the same base appears, factor out the smaller power. Here: 2^(x+1) + 2^x = 2^x(2 + 1) = 3 × 2^x. This technique converts a two-term sum into a solvable single-term equation.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+If 12^x = 6, what is the value of 144^x?
+
+- A) √6
+- B) 6
+- C) 12
+- D) 36
+- E) 72
+
+**answer:** D
+**fastest_path:** 144 = 12² → 144^x = (12²)^x = (12^x)² = 6² = 36.
+**explanation:** The key insight: 144 = 12². So 144^x = (12²)^x = 12^(2x) = (12^x)² = 6² = 36. There is no need to find the value of x itself.
+**mistake_a:** Thought 144^x = √(12^x) = √6 (took a square root instead of squaring — reversed the relationship between 144 and 12).
+**mistake_b:** Did not use the 144 = 12² relationship; simply re-used the given value → 144^x = 12^x = 6.
+**mistake_c:** Computed 144/12 = 12 and inferred 144^x = 12^x × 12 = 6 × 12 = 72... or just answered 12 from a structural confusion.
+**mistake_e:** Computed 12^x × 12^x = 6 × 12 = 72 (multiplied by the base rather than by 12^x again) → 72. Correct approach: 12^x × 12^x = (12^x)² = 36.
+**common_trap:** Trying to solve for x first (x = log₁₂(6), which doesn't simplify to a rational number). The GMAT almost always provides a path that avoids computing x; here, the path is recognizing 144 = 12² and substituting.
+**takeaway:** When a problem gives a^x = k and asks for (a²)^x or (aⁿ)^x, use (aⁿ)^x = (a^x)^n = kⁿ. Never compute x explicitly if an indirect relationship does the job.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of (4⁹ − 4⁸) / (4⁸ − 4⁷)?
+
+- A) 1/4
+- B) 1
+- C) 3
+- D) 4
+- E) 16
+
+**answer:** D
+**fastest_path:** Factor: numerator = 4⁸(4−1) = 3×4⁸; denominator = 4⁷(4−1) = 3×4⁷. Ratio = 4⁸/4⁷ = 4.
+**explanation:** Factor out the greatest common power from each expression. Numerator: 4⁹ − 4⁸ = 4⁸(4 − 1) = 3 × 4⁸. Denominator: 4⁸ − 4⁷ = 4⁷(4 − 1) = 3 × 4⁷. The ratio becomes (3 × 4⁸) / (3 × 4⁷) = 4⁸ / 4⁷ = 4.
+**mistake_a:** Inverted the ratio: computed (3 × 4⁷) / (3 × 4⁸) = 4⁷/4⁸ = 1/4.
+**mistake_b:** Subtracted exponents instead of factoring: 4⁹ − 4⁸ = 4^(9−8) = 4¹, and 4⁸ − 4⁷ = 4¹, so ratio = 4/4 = 1. Exponent subtraction applies only to division (aᵐ / aⁿ), not subtraction (aᵐ − aⁿ).
+**mistake_c:** Factored correctly to 3 × 4⁸ and 3 × 4⁷, then cancelled both the 4s and the 3s completely → 3/3 = 1... or cancelled the 4 factors but left the 3 → 3. A partial cancellation error.
+**mistake_e:** Computed (4 − 1)² = 9... or computed 4² = 16 from a structural confusion about the two levels of exponents.
+**common_trap:** Applying the exponent difference rule (aᵐ/aⁿ = a^(m−n)) to subtraction instead of division. The correct approach for a sum or difference of same-base powers is to factor out the smaller power.
+**takeaway:** aᵐ − aⁿ ≠ a^(m−n). For expressions like aⁿ⁺¹ − aⁿ, factor out aⁿ: aⁿ(a − 1). This technique appears constantly in GMAT exponent questions involving differences or sums of powers.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Equations with Exponents
+
+If a and b are positive integers, what is the value of a^b?
+
+(1) a² = 9
+(2) b² = b + 2
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER alone is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) a > 0, a² = 9 → a = 3, but b unknown → 3¹, 3², 3³… insufficient. (2) b² − b − 2 = 0 → (b−2)(b+1) = 0 → b = 2 (positive), but a unknown → insufficient. Together: a = 3, b = 2 → 3² = 9. → C.
+**explanation:** Statement (1): a² = 9 with a a positive integer → a = 3 (unique, since a > 0). But b is unconstrained — a^b could be 3, 9, 27, etc. Insufficient.
+
+Statement (2): b² = b + 2 → b² − b − 2 = 0 → (b − 2)(b + 1) = 0 → b = 2 or b = −1. Since b is a positive integer, b = 2 (unique). But a is unconstrained — a^b could be 1, 4, 9, 25, etc. Insufficient.
+
+Together: a = 3 and b = 2 → a^b = 3² = 9. One unique value. Sufficient. → C.
+**mistake_a:** Concluded Statement (1) alone is sufficient — correctly pinned a = 3 but forgot that a^b still needs b to have a value.
+**mistake_b:** Concluded Statement (2) alone is sufficient — correctly pinned b = 2 but forgot that a^b still needs a to have a value.
+**mistake_d:** Concluded each alone is sufficient — required testing whether each statement independently pins down both unknowns.
+**mistake_e:** Doubted whether the combination works — but a = 3 and b = 2 together uniquely determine a^b = 9.
+**common_trap:** Each statement uniquely solves for one variable but leaves the other free. In DS, a question with two unknowns typically needs both pinned — neither statement alone is enough even when it uniquely constrains its own variable.
+**takeaway:** For "what is the value of f(a, b)?" DS questions, verify that both a and b are pinned before concluding sufficient. A statement that uniquely determines a but not b is insufficient if b matters to the answer.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If x^y = y^x, x ≠ y, and both x and y are positive integers, and x = 2, what is y?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 8
+- E) Cannot be determined
+
+**answer:** C
+**fastest_path:** Substitute x = 2: 2^y = y^2. Test y = 4: 2⁴ = 16 and 4² = 16. Equal. x ≠ y is satisfied (2 ≠ 4). y = 4.
+**explanation:** With x = 2, the equation becomes 2^y = y². Test small positive integers ≠ 2. y = 1: 2¹ = 2, 1² = 1 (no). y = 3: 2³ = 8, 3² = 9 (close, but no). y = 4: 2⁴ = 16, 4² = 16 (yes). y = 5: 2⁵ = 32, 5² = 25 (no, and growing gap). The equation 2^y = y² has exactly one positive integer solution with y ≠ 2, namely y = 4.
+**mistake_a:** Chose y = 2 to make both sides equal: 2² = 2² = 4. But the problem requires x ≠ y, ruling out y = 2.
+**mistake_b:** Tested y = 3 and found 2³ = 8 and 3² = 9 — off by 1. Settled on the closest answer rather than searching for an exact match.
+**mistake_d:** Tested y = 8: 2⁸ = 256, 8² = 64 (not equal). Guessed a larger number because the base was 2.
+**mistake_e:** Did not recognize that a unique integer solution exists; gave up rather than testing systematically.
+**common_trap:** Stopping at y = 3 because it produces 8 vs. 9 (a near-miss that feels like an error). The test at y = 4 must be tried. On hard GMAT questions, "off by one" near-misses are placed in the answer choices to reward persistence.
+**takeaway:** The identity 2⁴ = 4² = 16 is the only solution to x^y = y^x in positive integers with x ≠ y. On GMAT, when a^b = b^a with a ≠ b appears, (a, b) = (2, 4) or (4, 2) is the answer. Prove it by testing integers 1 through 5 systematically — 60 seconds max.
