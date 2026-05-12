@@ -26,6 +26,7 @@ import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
 } from "@/lib/keyboard"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 
 export interface SessionQuestion {
   id: string
@@ -825,6 +826,167 @@ function TwoPartGrid({
   )
 }
 
+function SessionInsights({
+  questions,
+  states,
+  accuracy,
+  totalTimeMs,
+  section,
+  topic,
+}: {
+  questions: SessionQuestion[]
+  states: QuestionState[]
+  accuracy: number
+  totalTimeMs: number
+  section: "Quant" | "Verbal" | "DI"
+  topic: string
+}) {
+  const submittedCount = states.filter((s) => s.submitted).length
+  if (submittedCount === 0) return null
+
+  const wrongIndices = questions
+    .map((_, i) => i)
+    .filter((i) => states[i].submitted && !isQuestionCorrect(questions[i], states[i]))
+
+  const wrongCount = wrongIndices.length
+
+  if (wrongCount === 0) {
+    return (
+      <div
+        className="p-5 rounded-xl border"
+        style={{
+          borderColor: "rgba(62,207,142,0.2)",
+          backgroundColor: "rgba(62,207,142,0.03)",
+        }}
+      >
+        <p className="text-[10px] uppercase tracking-widest mb-2" style={{ color: "#3ECF8E" }}>
+          Clean session
+        </p>
+        <p className="text-sm leading-relaxed" style={{ color: "#C0C0C0" }}>
+          No mistakes. When you&apos;re ready, push the difficulty — consistent
+          accuracy at the same level is a plateau, not progress.
+        </p>
+      </div>
+    )
+  }
+
+  const subtopicCounts: Record<string, number> = {}
+  for (const i of wrongIndices) {
+    const st = questions[i].subtopic || questions[i].topic
+    subtopicCounts[st] = (subtopicCounts[st] || 0) + 1
+  }
+  const subtopicEntries = Object.entries(subtopicCounts).sort((a, b) => b[1] - a[1])
+  const topSubtopic = subtopicEntries[0]
+
+  const highConfWrong = wrongIndices.filter((i) => states[i].confidence === "high").length
+
+  const PAR_PER_Q: Record<string, number> = {
+    Quant: 120_000,
+    Verbal: 105_000,
+    DI: 150_000,
+  }
+  const par = PAR_PER_Q[section] ?? 120_000
+  const avgMs = totalTimeMs / submittedCount
+  const overPar = avgMs > par * 1.25
+
+  const chapterSlug = TOPIC_TO_CHAPTER[topic] ?? null
+
+  type Callout = {
+    label: string
+    text: string
+    cta?: { href: string; label: string }
+  }
+  const callouts: Callout[] = []
+
+  if (topSubtopic && topSubtopic[1] >= 2) {
+    callouts.push({
+      label: "Repeated gap",
+      text: `${topSubtopic[1]} mistakes on ${topSubtopic[0]} — the same concept surfaced more than once.`,
+      cta: chapterSlug
+        ? { href: `/chapters/${chapterSlug}`, label: "Open chapter" }
+        : undefined,
+    })
+  } else if (chapterSlug && accuracy < 60) {
+    callouts.push({
+      label: "Concept review",
+      text: `${wrongCount} mistake${wrongCount > 1 ? "s" : ""} this session. Revisiting the chapter before retaking is usually more efficient than drilling the same questions again.`,
+      cta: { href: `/chapters/${chapterSlug}`, label: "Open chapter" },
+    })
+  }
+
+  if (highConfWrong >= 2) {
+    callouts.push({
+      label: "Calibration gap",
+      text: `${highConfWrong} questions you rated "High confidence" turned out wrong. That's the test's specialty — the question is usually built around the assumption you felt surest about.`,
+    })
+  }
+
+  if (overPar && callouts.length < 3) {
+    const fmt = (ms: number) => {
+      const s = Math.round(ms / 1000)
+      return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`
+    }
+    callouts.push({
+      label: "Pacing",
+      text: `Averaging ${fmt(avgMs)} per question vs the ${fmt(par)} target. When you feel stuck, committing to your best guess and moving on protects the rest of your session.`,
+    })
+  }
+
+  if (callouts.length === 0) {
+    callouts.push({
+      label: "Next step",
+      text: `Tag the ${wrongCount} missed question${wrongCount > 1 ? "s" : ""} in the error log to track your pattern over time.`,
+      cta: { href: "/error-log", label: "Error log" },
+    })
+  }
+
+  return (
+    <div
+      className="p-5 rounded-xl border space-y-4"
+      style={{
+        borderColor: "rgba(201,168,76,0.15)",
+        backgroundColor: "rgba(201,168,76,0.02)",
+      }}
+    >
+      <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+        From this session
+      </p>
+      <div className="space-y-3">
+        {callouts.map((c, idx) => (
+          <div
+            key={idx}
+            className={
+              idx < callouts.length - 1 ? "pb-3 border-b border-white/[0.05]" : ""
+            }
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-1">
+                  {c.label}
+                </p>
+                <p className="text-sm text-[#C0C0C0] leading-relaxed">{c.text}</p>
+              </div>
+              {c.cta && (
+                <Link
+                  href={c.cta.href}
+                  className="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all hover:opacity-90"
+                  style={{
+                    backgroundColor: "rgba(201,168,76,0.14)",
+                    color: "#C9A84C",
+                    border: "1px solid rgba(201,168,76,0.25)",
+                  }}
+                >
+                  {c.cta.label}
+                </Link>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function SaveStatusBanner({
   status,
   onRetry,
@@ -1253,6 +1415,15 @@ export default function SessionClient({
             </div>
           </div>
         </div>
+
+        <SessionInsights
+          questions={questions}
+          states={states}
+          accuracy={accuracy}
+          totalTimeMs={totalTime}
+          section={section}
+          topic={topic}
+        />
 
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
