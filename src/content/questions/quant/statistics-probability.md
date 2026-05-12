@@ -19,10 +19,10 @@ The average (arithmetic mean) of five numbers is 18. If one of the numbers is re
 **answer:** D
 **fastest_path:** Sum dropped from 5·18 = 90 to 4·15 = 60. Removed = 30.
 **explanation:** Sum of 5 = 5 × 18 = 90. Sum of 4 = 4 × 15 = 60. Removed = 90 − 60 = 30.
-**mistake_a:** Slip → 20.
-**mistake_b:** Slip → 24.
-**mistake_c:** Slip → 28.
-**mistake_e:** Slip → 33.
+**mistake_a:** Kept the old count in the new-sum formula: 5 × 14 = 70 as the "new sum" (using 5 elements at some confused average) → removed = 90 − 70 = 20.
+**mistake_b:** Used the midpoint of the two means as the new average: (18 + 15)/2 = 16.5 → new sum = 4 × 16.5 = 66 → removed = 90 − 66 = 24.
+**mistake_c:** Slight slip on the new average — used 15.5 instead of 15: 4 × 15.5 = 62 → removed = 90 − 62 = 28.
+**mistake_e:** Applied a confused formula: n × Δmean + old mean = 5 × (18 − 15) + 18 = 15 + 18 = 33, rather than working from the difference of sums.
 **common_trap:** Computing the difference of *means* (18 − 15 = 3) instead of difference of *sums*.
 **takeaway:** Sum = mean × count. For mean problems, work in *sums*, not in averages.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -73,8 +73,8 @@ What is the median of the set {14, 7, 21, 3, 10, 7, 18}?
 **explanation:** Sort the set: 3, 7, 7, 10, 14, 18, 21. With 7 elements, median is the 4th value = 10.
 **mistake_a:** Bubbled the *mode* (7) — appears twice.
 **mistake_c:** Slip → 11.
-**mistake_d:** Bubbled an arbitrary value (14).
-**mistake_e:** Bubbled an arbitrary value (18).
+**mistake_d:** Counted one position too many from the bottom — selected the 5th sorted value (14) instead of the 4th, perhaps using the formula (n+1)/2 + 1 = 5 instead of (n+1)/2 = 4.
+**mistake_e:** Counted two positions too many — selected the 6th sorted value (18), possibly miscounting the set size as 8 and looking for position (8+1)/2 ≈ 4.5 then rounding up to 5 or 6.
 **common_trap:** Bubbling the mode (7, the most frequent value) instead of the median.
 **takeaway:** Sort first. Median for n elements: position (n+1)/2 if odd, average of middle two if even. Mode is most frequent — different concept.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -97,8 +97,8 @@ A committee of 3 people is to be selected from a group of 7 candidates. How many
 **answer:** B
 **fastest_path:** C(7,3) = (7·6·5)/(3·2·1) = 210/6 = 35.
 **explanation:** "Committee" = unordered selection → combinations. C(7,3) = 7!/(3!·4!) = 35.
-**mistake_a:** Slip → 21.
-**mistake_c:** Slip → 42.
+**mistake_a:** Computed C(7,2) = 21 — chose k = 2 (selecting 2 people) instead of k = 3. A common slip when the problem asks "how many ways to choose 3" but the student under-reads the committee size.
+**mistake_c:** Computed 7 × 6 = 42 — started the C(7,3) numerator but stopped after two factors without dividing by 3! = 6.
 **mistake_d:** Slip → 120.
 **mistake_e:** Computed P(7,3) = 7·6·5 = 210 (used permutations).
 **common_trap:** Forgetting to divide by 3! — counting *ordered* arrangements (210) instead of unordered committees.
@@ -124,8 +124,8 @@ Two fair six-sided dice are rolled. What is the probability that the sum of the 
 **fastest_path:** Ordered pairs summing to 8: (2,6), (3,5), (4,4), (5,3), (6,2) → 5/36.
 **explanation:** Total ordered outcomes = 36. Sum = 8: (2,6), (3,5), (4,4), (5,3), (6,2) → 5 outcomes. P = 5/36.
 **mistake_a:** Counted only unordered pairs → 3/36 = 1/12.
-**mistake_c:** Slip → 6/36 = 1/6.
-**mistake_d:** Slip → 7/36.
+**mistake_c:** Counted 6 pairs — likely double-counted (4,4) as two outcomes, or included one impossible pair such as (1,7), alongside the 5 valid ordered pairs.
+**mistake_d:** Counted 7 pairs — included both impossible pairs (7,1) and (1,7) alongside the 5 valid ones, forgetting that a standard die has faces 1–6 only.
 **mistake_e:** Slip → 9/36 = 1/4.
 **common_trap:** Counting only unordered pairs — (2,6) and (6,2) are *different* outcomes when rolling two distinguishable dice.
 **takeaway:** Two dice → 36 *ordered* outcomes. List ordered pairs systematically for each sum.
@@ -150,9 +150,9 @@ Set A = {10, 20, 30, 40, 50} and Set B = {20, 25, 30, 35, 40}. Which of the foll
 **fastest_path:** Both means = 30. A spreads ±20; B spreads ±10. A is more spread → A's SD is greater.
 **explanation:** Mean(A) = Mean(B) = 30. Deviations: A {−20, −10, 0, 10, 20}; B {−10, −5, 0, 5, 10}. A is more spread → A has greater SD.
 **mistake_a:** Treated equal-mean sets as having equal SD.
-**mistake_c:** Inverted SD direction.
-**mistake_d:** Mis-computed means.
-**mistake_e:** Mis-computed means.
+**mistake_c:** Inverted the SD comparison — perhaps reasoning "Set B's values are more tightly grouped around 30 relative to the total range, so B must be more variable," which is backwards. The tighter cluster means less spread.
+**mistake_d:** Noticed that Set A contains the larger numbers (up to 50 vs. 40) and incorrectly assumed A has a greater mean. Both sets sum to 150 (mean = 30); the larger maximum in A is offset by the smaller minimum (10 vs. 20).
+**mistake_e:** Noticed that Set B's values are all above Set A's minimum and incorrectly inferred B's mean is higher. Again, both means equal 30; checking the sum takes 5 seconds and rules this out.
 **common_trap:** Computing exact SD numerically (slow). Compare spreads visually instead.
 **takeaway:** Equal means but different spreads → bigger spread = bigger SD. No need to compute exact SDs.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -175,8 +175,8 @@ How many 3-digit positive integers have all distinct digits and are divisible by
 **answer:** C
 **fastest_path:** Cases by units digit. Ends in 0: 9·8 = 72. Ends in 5: 8·8 = 64. Total 136.
 **explanation:** Last digit must be 0 or 5. Case 1 (ends 0): hundreds 1–9 (9), tens any except hundreds and 0 (8). = 72. Case 2 (ends 5): hundreds 1–9 except 5 (8), tens any 0–9 except hundreds and 5 (8). = 64. Total 72 + 64 = 136.
-**mistake_a:** Slip → 112.
-**mistake_b:** Slip → 128.
+**mistake_a:** Restricted tens digit in both cases to exclude 0, 5, and the hundreds digit (7 choices instead of 8), giving 8 × 7 + 8 × 7 = 112. The tens digit in Case 1 (ends in 0) may only exclude the hundreds digit and the already-used 0, not also 5.
+**mistake_b:** Applied the "hundreds ≠ 5" restriction to Case 1 (ending in 0) as well as Case 2, reducing Case 1 to 8 × 8 = 64 instead of the correct 9 × 8 = 72: 64 + 64 = 128.
 **mistake_d:** Mis-counted Case 2 (allowed leading 0 or used 9·8 again) → 144.
 **mistake_e:** Slip → 152.
 **common_trap:** Treating both cases identically — Case 2 forbids hundreds digit = 5 (already used).
@@ -186,7 +186,7 @@ How many 3-digit positive integers have all distinct digits and are divisible by
 ---
 
 ## Q8
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Probability
 
@@ -202,9 +202,9 @@ A box contains 5 red chips and 3 blue chips. Two chips are drawn at random witho
 **fastest_path:** 1 − P(both blue) = 1 − (3/8)(2/7) = 1 − 3/28 = 25/28.
 **explanation:** Complement: P(at least 1 R) = 1 − P(both B) = 1 − (3/8)(2/7) = 1 − 6/56 = 1 − 3/28 = 25/28.
 **mistake_a:** Bubbled P(red on a single draw) = 5/8.
-**mistake_c:** Slip → 13/14.
-**mistake_d:** Slip → 15/28.
-**mistake_e:** Slip → 27/28.
+**mistake_c:** Computed C(3,2) as 2 instead of 3 — treated the 3 blue chips as only yielding 2 ordered pairs rather than C(3,2) = 3: 1 − 2/28 = 26/28 = 13/14.
+**mistake_d:** Counted only "exactly one red" outcomes: C(5,1) × C(3,1) = 15, giving 15/28. Forgot to also add "both red" = C(5,2) = 10. "At least one" means one OR two red chips.
+**mistake_e:** Treated the 3 blue chips as a single indistinguishable entity with probability 1/28 of both being drawn: 1 − 1/28 = 27/28. The correct unordered count for both-blue is C(3,2) = 3.
 **common_trap:** Computing P(R) by case analysis (1 R or 2 R) — slow and error-prone — instead of using the complement.
 **takeaway:** "At least one" → use the complement: P(at least 1) = 1 − P(none).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -449,7 +449,7 @@ In a set of 5 positive integers, is the median equal to the mean?
 ---
 
 ## Q18
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Basic Probability
 
@@ -464,10 +464,10 @@ A fair coin is flipped 4 times. What is the probability that it lands on heads e
 **answer:** C
 **fastest_path:** C(4,3)/2⁴ = 4/16 = 1/4.
 **explanation:** Choose which 3 of 4 are heads: C(4,3) = 4. Each sequence has probability (1/2)⁴ = 1/16. Total = 4/16 = 1/4.
-**mistake_a:** Slip → 1/8.
-**mistake_b:** Slip → 3/16.
-**mistake_d:** Slip → 5/16.
-**mistake_e:** Slip → 3/8.
+**mistake_a:** Computed (1/2)^3 = 1/8 — applied the probability for 3 heads without multiplying by C(4,3) = 4, the number of distinct sequences (HHHT, HHTH, HTHH, THHH).
+**mistake_b:** Listed only 3 of the 4 valid sequences (HHHT, HHTH, HTHH), missing THHH — incomplete enumeration gives 3/16 instead of 4/16.
+**mistake_d:** Added P(exactly 3 heads) + P(exactly 4 heads) = 4/16 + 1/16 = 5/16 — misread "exactly 3" as "at least 3."
+**mistake_e:** Used C(4,2) = 6 instead of C(4,3) = 4 — confused which k value to use in C(n,k), choosing k = 2 (two heads) instead of k = 3.
 **common_trap:** Forgetting to count C(n,k) sequences and using only (1/2)^n.
 **takeaway:** Exactly k heads in n fair flips: P = C(n,k)/2^n.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -556,7 +556,7 @@ Five distinct positive integers have an average of 20, a median of 22, and a lar
 ---
 
 ## Q22
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Standard Deviation under Linear Transformation
 
@@ -663,7 +663,7 @@ A company has two factories. Factory P produces 60% of the company's products; F
 ---
 
 ## Q26
-**difficulty:** Medium
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Range of a Data Set
 
@@ -739,4 +739,30 @@ In a group of 80 people, 45 own a car and 35 own a bicycle. If 20 people own bot
 **mistake_e:** Added without subtracting overlap: 45 + 35 = 80.
 **common_trap:** Failing to subtract the overlap (|both|) → 80 (double-counts the people who own both).
 **takeaway:** |A ∪ B| = |A| + |B| − |A ∩ B|. Always subtract the intersection once.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q29
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Expected Value
+
+A carnival game has three outcomes: you win $10 with probability 1/8, win $2 with probability 3/8, and win nothing with probability 4/8. What is the expected value of one play?
+
+- A) $1.50
+- B) $2.00
+- C) $3.00
+- D) $4.00
+- E) $5.00
+
+**answer:** B
+**fastest_path:** (1/8)(10) + (3/8)(2) + (4/8)(0) = 10/8 + 6/8 + 0 = 16/8 = $2.
+**explanation:** Expected value = Σ [probability × outcome]. Each term: (1/8)($10) = $1.25; (3/8)($2) = $0.75; (4/8)($0) = $0. Sum = $2.00. Note that the zero-prize term contributes nothing but must be accounted for when verifying probabilities sum to 1.
+**mistake_a:** Used probability 1/8 for *both* nonzero prizes instead of the given 3/8 for the $2 prize: (1/8)(10) + (1/8)(2) = 12/8 = $1.50. A common slip when two prize tiers share the same visual row and the student skims the probabilities.
+**mistake_c:** Computed P(winning anything) = (1+3)/8 = 1/2, then averaged the two nonzero prizes: ($10+$2)/2 = $6, and multiplied: $6 × 1/2 = $3. This incorrectly treats the two winning tiers as equally likely within the "win" event.
+**mistake_d:** Treated all three outcomes as equally likely (1/3 each): ($10+$2+$0)/3 = $4. Ignored the given probability distribution entirely.
+**mistake_e:** Applied the best prize ($10) to *all* winning outcomes: (1/8 + 3/8)($10) = (4/8)($10) = $5. Used the correct probability of winning but the wrong prize value.
+**common_trap:** Averaging outcomes without weighting by their individual probabilities, or treating all outcomes as equally likely. Expected value always requires multiplying each outcome by *its own* probability.
+**takeaway:** E[X] = Σ p_i × x_i. Compute each term separately, then sum. Verify: probabilities must sum to 1. Shortcuts like "average the prizes then multiply by P(win)" only work if all nonzero prizes are equal.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
