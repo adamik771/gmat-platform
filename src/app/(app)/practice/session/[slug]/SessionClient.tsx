@@ -825,6 +825,205 @@ function TwoPartGrid({
   )
 }
 
+/**
+ * SessionInsightPanel — results-screen pattern analysis.
+ *
+ * Interprets what the raw accuracy numbers mean: which difficulty tier
+ * the student is struggling with, whether mistakes were fast (careless)
+ * or slow (concept gap), and exactly what to do next. Shown only when
+ * at least one question was submitted.
+ */
+function SessionInsightPanel({
+  questions,
+  states,
+  slug,
+}: {
+  questions: SessionQuestion[]
+  states: QuestionState[]
+  slug: string
+}) {
+  const submitted = questions
+    .map((q, i) => ({ q, s: states[i] }))
+    .filter(({ s }) => s.submitted)
+
+  if (submitted.length === 0) return null
+
+  const wrong = submitted.filter(({ q, s }) => !isQuestionCorrect(q, s))
+  const correct = submitted.filter(({ q, s }) => isQuestionCorrect(q, s))
+
+  if (wrong.length === 0) {
+    return (
+      <div
+        className="p-5 rounded-xl border"
+        style={{
+          borderColor: "rgba(62,207,142,0.18)",
+          backgroundColor: "rgba(62,207,142,0.03)",
+        }}
+      >
+        <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+          Pattern
+        </p>
+        <p className="text-sm font-semibold text-[#F0F0F0]">
+          Perfect session — every question correct.
+        </p>
+        <p className="text-xs text-[#888888] mt-2 leading-relaxed">
+          Push harder: try Advanced-difficulty questions, or move to a new topic to broaden your coverage.
+        </p>
+      </div>
+    )
+  }
+
+  // Difficulty breakdown of wrong answers
+  const diffWrong = { Beginner: 0, Intermediate: 0, Advanced: 0 }
+  wrong.forEach(({ q }) => {
+    diffWrong[q.difficulty]++
+  })
+
+  // Average time (ms) on wrong vs correct questions
+  const avgWrongMs =
+    wrong.reduce((sum, { s }) => sum + s.elapsedMs, 0) / wrong.length
+  const avgCorrectMs =
+    correct.length > 0
+      ? correct.reduce((sum, { s }) => sum + s.elapsedMs, 0) / correct.length
+      : null
+
+  // Speed pattern: fast wrong = careless, slow wrong = concept gap.
+  // Thresholds: < 40 s per question = rushed; > 3 min = labored.
+  let speedNote: string | null = null
+  if (avgWrongMs < 40_000) {
+    speedNote =
+      "Mistakes were fast — likely careless errors. Slow down on the first read of each question."
+  } else if (avgWrongMs > 180_000) {
+    speedNote =
+      "Mistakes were slow — you worked hard but couldn't find the method. This points to a concept gap, not a careless error."
+  } else if (
+    avgCorrectMs !== null &&
+    avgWrongMs > avgCorrectMs * 2.5
+  ) {
+    speedNote =
+      "You spent significantly longer on the questions you missed — a signal to cut losses earlier and move on."
+  }
+
+  // Diagnosis + next-action logic
+  const accuracy = Math.round((correct.length / submitted.length) * 100)
+  const hasBeginnerMistakes = diffWrong.Beginner > 0
+
+  let diagnosis: string
+  let nextAction: string
+  let nextHref: string
+  let nextLabel: string
+
+  if (accuracy < 50) {
+    diagnosis = "Significant gaps across this topic."
+    nextAction = hasBeginnerMistakes
+      ? "Missing Beginner questions signals a concept gap, not a difficulty ceiling. Revisit the chapter before drilling more."
+      : "More structured exposure is needed. Work through the relevant chapter sections before returning to timed questions."
+    nextHref = "/chapters"
+    nextLabel = "Open chapters"
+  } else if (accuracy < 75) {
+    if (hasBeginnerMistakes) {
+      diagnosis = `${diffWrong.Beginner} Beginner mistake${
+        diffWrong.Beginner > 1 ? "s" : ""
+      } — the foundation isn't fully solid yet.`
+      nextAction =
+        "Revisit the foundational section of this chapter, then retry. A shaky base makes Advanced questions impossible."
+      nextHref = "/chapters"
+      nextLabel = "Open chapters"
+    } else {
+      diagnosis = "Solid on the basics — dropping marks on harder questions."
+      nextAction =
+        "Your foundation is sound. More repetition on Intermediate and Advanced questions will close the remaining gap."
+      nextHref = `/practice/session/${slug}`
+      nextLabel = "Practice again"
+    }
+  } else {
+    if (diffWrong.Advanced > 0 && diffWrong.Beginner === 0) {
+      diagnosis = "Strong session — gaps are at the ceiling, not the foundation."
+      nextAction =
+        "Focus on Advanced-difficulty questions. You have the fundamentals; this is ceiling work now."
+    } else {
+      diagnosis = "Mostly correct — a few targeted misses."
+      nextAction =
+        "Review the explanations for the questions you missed, then move on. No need to retake the full set."
+    }
+    nextHref = `/practice/session/${slug}`
+    nextLabel = "Practice again"
+  }
+
+  const diffColors: Record<string, { color: string; bg: string }> = {
+    Beginner: { color: "#FF4444", bg: "rgba(255,68,68,0.1)" },
+    Intermediate: { color: "#E8C97A", bg: "rgba(232,201,122,0.1)" },
+    Advanced: { color: "#FF9966", bg: "rgba(255,153,102,0.1)" },
+  }
+
+  return (
+    <div
+      className="p-5 rounded-xl border"
+      style={{
+        borderColor: "rgba(201,168,76,0.15)",
+        backgroundColor: "rgba(201,168,76,0.02)",
+      }}
+    >
+      <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-4">
+        Pattern analysis
+      </p>
+
+      {/* Difficulty breakdown chips */}
+      <div className="flex flex-wrap gap-2 mb-4">
+        {(["Beginner", "Intermediate", "Advanced"] as const).map((d) => {
+          const count = diffWrong[d]
+          if (count === 0) return null
+          const { color, bg } = diffColors[d]
+          return (
+            <div
+              key={d}
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg"
+              style={{ backgroundColor: bg }}
+            >
+              <span className="text-sm font-bold tabular-nums" style={{ color }}>
+                {count}
+              </span>
+              <span className="text-[11px] text-[#888888]">
+                {d} wrong
+              </span>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Diagnosis */}
+      <p className="text-sm font-semibold text-[#F0F0F0] leading-snug">
+        {diagnosis}
+      </p>
+
+      {/* Speed note */}
+      {speedNote && (
+        <p className="text-xs text-[#888888] mt-2 leading-relaxed">
+          {speedNote}
+        </p>
+      )}
+
+      {/* Next action */}
+      <div className="mt-4 pt-4 border-t border-white/[0.06] flex items-start justify-between gap-4">
+        <p className="text-xs text-[#C0C0C0] leading-relaxed flex-1">
+          {nextAction}
+        </p>
+        <Link
+          href={nextHref}
+          className="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all hover:opacity-90"
+          style={{
+            backgroundColor: "rgba(201,168,76,0.14)",
+            color: "#C9A84C",
+            border: "1px solid rgba(201,168,76,0.25)",
+          }}
+        >
+          {nextLabel}
+        </Link>
+      </div>
+    </div>
+  )
+}
+
 function SaveStatusBanner({
   status,
   onRetry,
@@ -1253,6 +1452,8 @@ export default function SessionClient({
             </div>
           </div>
         </div>
+
+        <SessionInsightPanel questions={questions} states={states} slug={slug} />
 
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
