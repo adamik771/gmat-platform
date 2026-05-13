@@ -48,6 +48,13 @@ sections:
     check_question_ids:
       - exponents-roots-q12
 
+  - id: sign-and-comparison
+    type: reading
+    title: "Sign, ordering, and radical equations"
+    check_question_ids:
+      - exponents-roots-q18
+      - exponents-roots-q22
+
   - id: scientific-notation
     type: reading
     title: "Scientific notation — treat the pieces separately"
@@ -86,6 +93,9 @@ problem_sets:
       - exponents-roots-q9
       - exponents-roots-q10
       - exponents-roots-q11
+      - exponents-roots-q17
+      - exponents-roots-q19
+      - exponents-roots-q21
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -97,6 +107,9 @@ problem_sets:
       - exponents-roots-q13
       - exponents-roots-q14
       - exponents-roots-q15
+      - exponents-roots-q18
+      - exponents-roots-q20
+      - exponents-roots-q22
 ---
 
 ## @integer-exponents-rules
@@ -128,6 +141,8 @@ Rewrite both sides with base 3: 9 = 3² and 27 = 3³. So (3²)ˣ = 3³, which gi
 **Trap to watch.** Students who half-learn these rules multiply the bases when they should keep them constant: 2³ · 2⁵ is NOT 4⁸ and it's NOT 2¹⁵. The base stays, the exponents combine. Repeat that sentence to yourself until it feels automatic.
 
 **Same-exponent shortcut (less common but useful).** xᵃ · yᵃ = (xy)ᵃ and (x/y)ᵃ = xᵃ/yᵃ. Different bases, same exponent? The exponent distributes.
+
+**The base-between-0-and-1 trap.** Everything above assumes the base is greater than 1. When 0 < b < 1, larger exponent means *smaller* value. (1/2)² = 1/4 is smaller than 1/2. (0.9)³ = 0.729 is smaller than (0.9)² = 0.81. Multiplying by a fraction smaller than 1 always shrinks the result, so every additional power makes it smaller. On comparison questions — "which is greater, x³ or x⁴, given 0 < x < 1?" — the lower exponent wins. Students who apply "higher power = bigger" without checking the base's location miss every question of this type.
 
 > **Self-explanation prompt.** Before the check question, write down each of the three rules without peeking. If you can't reproduce them from memory, re-read this section before moving on. Forty seconds now saves you three minutes of fumbling on test day.
 
@@ -242,6 +257,69 @@ Multiply top and bottom by the conjugate (√3 − 1):
 
 **Quick recognition.** If an answer choice has the form a√b + c, the setup usually involved rationalizing a denominator of the form √b + something. Scan answer choices before diving into calculation — they often hint at the cleanest path.
 
+## @sign-and-comparison
+
+Four behaviors determine sign and relative size whenever an exponent is involved. Master these and you'll answer sign-and-comparison questions in under 60 seconds.
+
+**1. Odd exponents preserve sign.**
+
+For any odd integer n: xⁿ > 0 if and only if x > 0. An odd power magnifies magnitude without ever changing sign.
+
+Consequence: x⁵ > 0 means x > 0. x⁷ < 0 means x < 0. No ambiguity, no case analysis needed.
+
+**Example (Data Sufficiency).** Is x > 0?
+
+- Statement (1): x⁵ > 0. Odd power preserves sign, so x > 0. Sufficient.
+- Statement (2): x² < x. Rearrange: x² − x < 0 → x(x − 1) < 0. This holds when x and (x − 1) have opposite signs. Since x < 0 and x − 1 < 0 can't simultaneously produce opposite signs, the only valid case is 0 < x < 1. So x > 0. Sufficient.
+
+Both statements alone are sufficient → D.
+
+**2. Even exponents erase sign.**
+
+For any even integer n: xⁿ ≥ 0 for all real x — positive, negative, or zero. An even power obliterates sign information.
+
+*DS trap.* "Is x > 0? Given: x⁴ = 81." x could be 3 or −3. Insufficient. Any statement that gives you only an even power cannot determine sign on its own. The moment you see x², x⁴, or x⁶ in a DS statement asking about sign, your reflex should be: "could be positive or negative — need more."
+
+**3. Base between 0 and 1 reverses the ordering.**
+
+For 0 < b < 1, a larger exponent produces a smaller value. You covered this in the first section, but it reappears in comparison questions in a way that requires its own habit.
+
+*Pattern.* "If 0 < x < 1, which is greater: x² or x³?" Each multiplication by x (a number less than 1) shrinks the product. So x³ = x² · x < x². The lower exponent wins.
+
+*DS angle.* "Is xᵃ > xᵇ, given a > b?" Without knowing whether x > 1 or 0 < x < 1, you cannot answer — the direction of the comparison flips depending on the base. The base's position relative to 1 is required information on any ordering question involving the same base raised to two different powers.
+
+**4. Comparing radical expressions — square both sides.**
+
+To compare a√b and c√d (both positive), square them: (a√b)² = a²b and (c√d)² = c²d. Since both original expressions are positive, the larger squared value corresponds to the larger original.
+
+**Example.** Which is greater: 3√5 or 2√7?
+
+- (3√5)² = 9 × 5 = 45
+- (2√7)² = 4 × 7 = 28
+
+45 > 28, so 3√5 > 2√7. No calculator, no decimal estimates, no rounding error.
+
+The squaring technique also works for three-way comparisons. Compute all squared values and rank them; the ranking of the originals is identical.
+
+**Radical equations and extraneous roots.**
+
+Squaring both sides to isolate a radical is the standard technique for radical equations. The problem: squaring can create solutions that satisfy the squared version of the equation but violate the original. These are called extraneous roots. Every radical equation requires a final verification step against the original.
+
+**Example.** Solve √(3x + 1) = x − 1.
+
+Square both sides: 3x + 1 = (x − 1)² = x² − 2x + 1 → x² − 5x = 0 → x(x − 5) = 0. Candidates: x = 0 or x = 5.
+
+Verify against the original:
+
+- x = 0: Left side = √(0 + 1) = 1 (positive). Right side = 0 − 1 = −1 (negative). A square root cannot equal a negative number. Reject x = 0.
+- x = 5: Left side = √(15 + 1) = √16 = 4. Right side = 5 − 1 = 4. Accept x = 5.
+
+Only x = 5 is valid. Sum of valid solutions = 5.
+
+**The verification shortcut.** Before substituting, note that √(expression) = (right side) forces right side ≥ 0 (a principal square root is never negative). Check each candidate: if the right side is negative, reject immediately without computing the left. This saves the substitution step on obvious rejects.
+
+> **Self-explanation prompt.** Without looking, explain in one sentence why a base between 0 and 1 reverses the exponent ordering. Then explain in one sentence why squaring both sides of a radical equation can produce a spurious solution. If you can articulate both in plain language without formulas, both habits will hold up under time pressure.
+
 ## @scientific-notation
 
 Scientific notation writes any number as **a × 10ᵏ**, where 1 ≤ a < 10 and k is an integer. It's the GMAT's way of testing exponents in disguise: arithmetic with scientific notation is just two sub-problems glued together.
@@ -306,5 +384,24 @@ Every exponent question on the GMAT yields to one question: **can I rewrite this
 3. **Radical in a denominator?** Rationalize with the conjugate.
 4. **Scientific notation?** Treat coefficients and powers of 10 as two independent arithmetic problems.
 5. **Estimation question?** Fall back on 2¹⁰ ≈ 10³.
+6. **Sign or comparison question?** Ask: odd exponent? (sign preserved). Even exponent? (sign erased — can't determine). Base between 0 and 1? (larger exponent = smaller value). Comparing radicals? (square both sides).
+7. **Radical equation?** Square to solve, then verify every candidate against the original — reject any that make the right side negative.
+
+**Pattern-match table — extended:**
+
+| Problem says | Tool | Key move |
+|---|---|---|
+| "Same base on both sides" | Same-base reflex | Set exponents equal |
+| "Simplify radical" | Factor out largest perfect square | √72 = 6√2 |
+| "Radical in denominator" | Conjugate rationalization | (a + √b)(a − √b) = a² − b |
+| "0 < x < 1, compare powers" | Base-between-0-and-1 rule | Lower exponent is larger |
+| "x⁵ > 0, is x > 0?" | Odd-power sign preservation | Yes, sufficient |
+| "x² > 0, is x > 0?" | Even-power sign erasure | Insufficient (±) |
+| "Compare 3√5 vs 2√7" | Square both sides | 45 vs 28 → 3√5 wins |
+| "√(expr) = x − k" | Square, solve, verify | Reject negative right sides |
+
+**What to do next.** Work the problem sets in order — easy, medium, hard. After each wrong answer, return to the decision tree above and identify exactly which step you skipped or misapplied. Most errors in this chapter trace back to one of three habits: failing to check the base's position relative to 1, forgetting to verify radical-equation candidates, or not rationalizing before comparing. Target those specifically.
+
+Once the problem sets feel mechanical, move the chapter to your spaced-review queue. Exponent questions appear throughout the GMAT Quant section — in word problems, Data Sufficiency, and number properties — so the patterns you've built here pay dividends across other chapters.
 
 The students who freeze on exponent questions are the ones who try to think about them. The students who score 705+ have the rules so automated they run the decision tree in six seconds and spend the rest of their two minutes on careful arithmetic. Drill the rules until they're reflexive. Everything downstream is easy.
