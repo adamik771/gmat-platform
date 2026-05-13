@@ -22,6 +22,7 @@ import PacingBadge from "@/components/shared/PacingBadge"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
 import { levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
@@ -1208,6 +1209,9 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+    const missCount = answeredCount - correctCount
+    const perfTier = accuracy >= 80 ? "strong" : accuracy >= 60 ? "decent" : "low"
+    const chapterSlug = TOPIC_TO_CHAPTER[topic] ?? null
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1251,6 +1255,102 @@ export default function SessionClient({
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Total time</p>
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
             </div>
+          </div>
+        </div>
+
+        {/* Contextual next-step guidance — tells the student what the
+            system did with their results and what to do now. */}
+        <div
+          className="p-4 rounded-xl border"
+          style={{
+            borderColor:
+              perfTier === "strong"
+                ? "rgba(62,207,142,0.2)"
+                : perfTier === "decent"
+                ? "rgba(201,168,76,0.2)"
+                : "rgba(255,255,255,0.06)",
+            backgroundColor:
+              perfTier === "strong"
+                ? "rgba(62,207,142,0.03)"
+                : perfTier === "decent"
+                ? "rgba(201,168,76,0.03)"
+                : "rgba(255,255,255,0.02)",
+          }}
+        >
+          <p
+            className="text-[10px] uppercase tracking-widest mb-2"
+            style={{
+              color:
+                perfTier === "strong"
+                  ? "#3ECF8E"
+                  : perfTier === "decent"
+                  ? "#C9A84C"
+                  : "#888888",
+            }}
+          >
+            What to do next
+          </p>
+          <p className="text-sm text-[#C0C0C0] leading-relaxed mb-3">
+            {perfTier === "strong"
+              ? missCount > 0
+                ? `${missCount} miss${missCount === 1 ? "" : "es"} queued for spaced review — they'll resurface before your memory fades. Strong result; consider moving to the next chapter section.`
+                : "Clean session. All questions are now in your spaced-review log for long-term retention."
+              : perfTier === "decent"
+              ? `${missCount} miss${missCount === 1 ? "" : "es"} queued for spaced review. Study the explanations below, then tag these in your error log to track where your reasoning is breaking down.`
+              : `${missCount > 0 ? `${missCount} miss${missCount === 1 ? "" : "es"} queued for spaced review. ` : ""}These results suggest the underlying concepts need reinforcing — revisit the chapter before more timed practice.`}
+          </p>
+          <div className="flex gap-2 flex-wrap">
+            {perfTier === "strong" ? (
+              <>
+                <Link
+                  href="/review"
+                  className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-opacity hover:opacity-80"
+                  style={{ backgroundColor: "#3ECF8E", color: "#0A0A0A" }}
+                >
+                  Review queue
+                </Link>
+                <Link
+                  href="/chapters"
+                  className="px-3 py-1.5 rounded-lg text-xs font-semibold border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] transition-colors"
+                >
+                  Continue chapter
+                </Link>
+              </>
+            ) : perfTier === "decent" ? (
+              <>
+                <Link
+                  href="/error-log"
+                  className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-opacity hover:opacity-80"
+                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                >
+                  Tag in error log
+                </Link>
+                <Link
+                  href="/review"
+                  className="px-3 py-1.5 rounded-lg text-xs font-semibold border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] transition-colors"
+                >
+                  Review queue
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  href={chapterSlug ? `/chapters/${chapterSlug}` : "/chapters"}
+                  className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-opacity hover:opacity-80"
+                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                >
+                  {chapterSlug ? "Review chapter" : "Browse chapters"}
+                </Link>
+                {missCount > 0 && (
+                  <Link
+                    href="/error-log"
+                    className="px-3 py-1.5 rounded-lg text-xs font-semibold border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] transition-colors"
+                  >
+                    Tag mistakes
+                  </Link>
+                )}
+              </>
+            )}
           </div>
         </div>
 
