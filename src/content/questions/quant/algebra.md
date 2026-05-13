@@ -49,7 +49,7 @@ Which of the following is equivalent to (x³)⁴ / x⁵?
 **fastest_path:** (x³)⁴ = x^(3×4) = x¹². Divide: x¹² / x⁵ = x^(12−5) = x⁷.
 **explanation:** Two exponent rules: (a) power of a power multiplies exponents — (x³)⁴ = x^(3×4) = x¹². (b) Same-base division subtracts exponents — x¹² / x⁵ = x^(12−5) = x⁷. The whole computation is two mechanical steps.
 **mistake_a:** Subtracted 3 from 5 (treated denominator as numerator) — got x^2.
-**mistake_c:** Multiplied exponents at every step — got 3 × 4 × 5 = 60, then somehow truncated to x¹². The reasoning chain confused multiplication and division.
+**mistake_c:** Correctly computed (x³)⁴ = x¹² but stopped there — forgot to apply the division by x⁵ and bubbled the numerator as the final answer.
 **mistake_d:** Multiplied (x³)⁴ as x^(3+4) = x^7, then multiplied by x^5 instead of dividing — got x^15.
 **mistake_e:** Computed 3 × 4 + 5 = 17 by adding the bottom exponent rather than subtracting.
 **common_trap:** Confusing exponent rules — multiplying when you should subtract, or adding when you should multiply.
@@ -153,7 +153,7 @@ If f(x) = 2x² - 3x + 1, what is the value of f(3) - f(1)?
 **fastest_path:** f(3) = 2(9) − 9 + 1 = 10. f(1) = 2 − 3 + 1 = 0. Difference = 10.
 **explanation:** f(3) = 2(9) − 3(3) + 1 = 18 − 9 + 1 = 10. f(1) = 2(1) − 3(1) + 1 = 2 − 3 + 1 = 0. f(3) − f(1) = 10.
 **mistake_a:** Slip → 8 (likely arithmetic error in f(3) computation).
-**mistake_c:** Computed f(3) + f(1) instead of f(3) − f(1) → 10 + 0… no, but a likely sign-flip path: 2(9) − 3(3) − 1 = 8, then 8 + 4 → 12.
+**mistake_c:** Correctly computed f(3) = 10 but sign-flipped the constant in f(1): treated +1 as −1, giving 2(1) − 3(1) − 1 = −2 instead of 0; then f(3) − f(1) = 10 − (−2) = 12.
 **mistake_d:** Slip → 14.
 **mistake_e:** Computed f(3) but treated f(1) as 1 instead of 0 → 10 + 6, or skipped the subtraction entirely.
 **common_trap:** Arithmetic slip on f(3) = 18 − 9 + 1, especially flipping the order of operations on −3(3).
@@ -309,8 +309,8 @@ If xy = 6 and x² + y² = 20, what is the value of (x + y)²?
 **fastest_path:** (x + y)² = x² + y² + 2xy = 20 + 12 = 32.
 **explanation:** Use the algebraic identity (x + y)² = x² + 2xy + y². Substitute the given values: x² + y² = 20 and xy = 6, so (x + y)² = 20 + 2(6) = 32. The identity collapses the answer in one step. Solving for x and y individually (using both given equations) is harder and unnecessary.
 **mistake_a:** Added 20 + 6 = 26 — forgot to double the xy term in the identity.
-**mistake_b:** Subtracted: 20 − 12 = 8, then computed differently. Actually 20 + 6 + 2 = 28 (mis-applied identity).
-**mistake_c:** Computed (x + y)² but using 20 − 2(6) = 8 — wrong sign on the cross term. Actually 20 + 6 + 4 = 30.
+**mistake_b:** Applied the identity but computed 2xy as "2 added to xy" rather than "2 times xy": 2 + 6 = 8; 20 + 8 = 28.
+**mistake_c:** Misread xy = 5 from the problem (swapped 5 and 6); applied identity correctly but with wrong value: 20 + 2(5) = 30.
 **mistake_e:** Computed x² + y² + xy + xy = 20 + 12 + ... or some other miscombination producing 36.
 **common_trap:** missing-algebraic-shortcut — solving for x, y individually when the identity gives the answer in one step.
 **takeaway:** Memorize (x + y)² = x² + 2xy + y² and (x − y)² = x² − 2xy + y². When asked for (x ± y)² given x² + y² and xy, the identity is one step.
@@ -505,7 +505,7 @@ If f(x) = ax + b where a and b are constants, what is the value of f(5)?
 ---
 
 ## Q20
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Algebra Translation
 
@@ -532,7 +532,7 @@ The sum of three consecutive even integers is 18 more than twice the smallest of
 ---
 
 ## Q21
-**difficulty:** Medium
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Symmetric Sums
 
@@ -654,7 +654,7 @@ Two hikers start at the same time from opposite ends of a trail that is 24 miles
 **fastest_path:** Closing speed = 3 + 5 = 8 mph. Time = 24 / 8 = 3 hours. Meet at 11:00 AM.
 **explanation:** Two objects moving toward each other have a combined "closing speed" equal to the sum of their individual speeds: 3 + 5 = 8 mph. Distance to close = 24 miles. Time = 24/8 = 3 hours. Starting at 8:00 AM, they meet at 11:00 AM.
 **mistake_a:** Computed time using just Hiker X (3 mph) for half the distance (12 miles): 12/3 = 4 hours? No, 12/3 = 4, then 8:00 + 2 = 10:00. Some half-distance approach.
-**mistake_b:** Average speed (3+5)/2 = 4 mph; 24/4 = 6 hours; 8:00 + 2.5 = 10:30. Some confusion.
+**mistake_b:** Used Hiker Y's speed for half the distance: 12/5 = 2.4 hours ≈ 2.5 hours → 10:30 AM. The "split the distance" assumption ignores the combined closing speed.
 **mistake_d:** Used Hiker Y's speed alone: 24/5 = 4.8 hours, ≈ 12:48 — bubbled approximate 11:30.
 **mistake_e:** Used Hiker X's speed alone: 24/3 = 8 hours; 8:00 + 4 = 12:00 noon.
 **common_trap:** Using a single hiker's speed instead of the combined closing speed.
@@ -834,7 +834,7 @@ If 2a + 3b = 16 and 5a − 3b = 19, what is the value of a + b?
 **explanation:** Coefficients on b are equal-and-opposite (+3 and −3), making addition the obvious one-step path. Adding 2a + 3b + 5a − 3b = 16 + 19 → 7a = 35 → a = 5. Substitute into the first equation: 2(5) + 3b = 16 → 3b = 6 → b = 2. Therefore a + b = 7.
 **mistake_a:** Subtracted equations instead of adding; got 3a − 6b = −3, then incorrectly solved.
 **mistake_c:** Stopped at a = 5 and bubbled — missed that the question asks for a + b.
-**mistake_d:** Computed a × b = 10 + 1 (or some other combination producing 11).
+**mistake_d:** Correct setup, but when back-substituting found 3b = 6 and read off b = 6 (forgot to divide by 3) instead of b = 2; a + b = 5 + 6 = 11.
 **mistake_e:** Added the right-hand sides only: 16 + 19 = 35; bubbled 13 from arithmetic confusion.
 **common_trap:** Solving past sufficiency or stopping early — bubbling a (or b) when the question asked for a + b.
 **takeaway:** When two equations have equal-and-opposite coefficients on one variable, add to cancel and solve in one step.
