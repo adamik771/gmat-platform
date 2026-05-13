@@ -26,6 +26,7 @@ import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
 } from "@/lib/keyboard"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 
 export interface SessionQuestion {
   id: string
@@ -1208,6 +1209,69 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+
+    // Performance headline based on accuracy band
+    const { headline, subtext } = (() => {
+      if (accuracy >= 90)
+        return {
+          headline: "Excellent precision.",
+          subtext: "Push into harder territory — you're ready.",
+        }
+      if (accuracy >= 75)
+        return {
+          headline: "Solid session.",
+          subtext: "Review the misses below, then take on tougher questions.",
+        }
+      if (accuracy >= 60)
+        return {
+          headline: "Good progress.",
+          subtext: "Study each explanation carefully before retaking.",
+        }
+      return {
+        headline: "Room to grow here.",
+        subtext: "Work through every explanation below. The chapter will help.",
+      }
+    })()
+
+    // Accuracy by difficulty tier
+    const byDifficulty = questions.reduce(
+      (acc, q, i) => {
+        const s = states[i]
+        if (!s.submitted) return acc
+        if (!acc[q.difficulty]) acc[q.difficulty] = { correct: 0, total: 0 }
+        acc[q.difficulty].total++
+        if (isQuestionCorrect(q, s)) acc[q.difficulty].correct++
+        return acc
+      },
+      {} as Record<string, { correct: number; total: number }>
+    )
+    const difficultyTiers: Array<"Beginner" | "Intermediate" | "Advanced"> = [
+      "Beginner",
+      "Intermediate",
+      "Advanced",
+    ]
+    const hasDifficultyBreakdown = difficultyTiers.some((d) => byDifficulty[d]?.total > 1)
+
+    // Avg pace per answered question vs. GMAT Focus ~2 min target
+    const answeredStates = states.filter((s) => s.submitted)
+    const avgPaceMs =
+      answeredStates.length === 0
+        ? 0
+        : answeredStates.reduce((acc, s) => acc + s.elapsedMs, 0) / answeredStates.length
+    const avgPaceSec = Math.round(avgPaceMs / 1000)
+    const paceStatus =
+      avgPaceMs === 0
+        ? null
+        : avgPaceSec <= 120
+        ? { label: "On pace", color: "#3ECF8E" }
+        : avgPaceSec <= 150
+        ? { label: "Slightly slow", color: "#C9A84C" }
+        : { label: "Over pace", color: "#FF4444" }
+
+    // Suggest the chapter when accuracy signals the topic needs more study
+    const chapterSlug = TOPIC_TO_CHAPTER[topic]
+    const showChapterLink = accuracy < 75 && !!chapterSlug
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1218,14 +1282,15 @@ export default function SessionClient({
             <ArrowLeft className="w-3 h-3" />
             Back to Practice
           </Link>
-          <h1 className="text-2xl font-bold text-[#F0F0F0] mt-3">Session complete</h1>
-          <p className="text-sm text-[#555555] mt-1">
-            {topic} · {section}
+          <h1 className="text-2xl font-bold text-[#F0F0F0] mt-3">{headline}</h1>
+          <p className="text-sm mt-1" style={{ color: "#888888" }}>
+            {subtext}
           </p>
         </div>
 
         <SaveStatusBanner status={saveStatus} onRetry={saveSession} />
 
+        {/* Core metrics + difficulty breakdown */}
         <div
           className="p-6 rounded-xl border"
           style={{
@@ -1233,7 +1298,7 @@ export default function SessionClient({
             backgroundColor: "rgba(201,168,76,0.04)",
           }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             <div>
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Accuracy</p>
               <p className="text-3xl font-bold mt-2" style={{ color: "#C9A84C" }}>
@@ -1251,9 +1316,78 @@ export default function SessionClient({
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Total time</p>
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
             </div>
+            {paceStatus && (
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-[#555555]">Avg pace</p>
+                <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">
+                  {Math.floor(avgPaceSec / 60)}:{String(avgPaceSec % 60).padStart(2, "0")}
+                </p>
+                <p className="text-[10px] mt-1" style={{ color: paceStatus.color }}>
+                  {paceStatus.label}
+                </p>
+              </div>
+            )}
           </div>
+
+          {hasDifficultyBreakdown && (
+            <div className="mt-5 pt-5 border-t border-white/[0.06]">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+                By difficulty
+              </p>
+              <div className="flex gap-5">
+                {difficultyTiers.map((tier) => {
+                  const d = byDifficulty[tier]
+                  if (!d || d.total === 0) return null
+                  const pct = Math.round((d.correct / d.total) * 100)
+                  const barColor =
+                    pct >= 80 ? "#3ECF8E" : pct >= 60 ? "#C9A84C" : "#FF4444"
+                  return (
+                    <div key={tier} className="flex items-center gap-2">
+                      <div
+                        className="w-1 h-8 rounded-full flex-shrink-0"
+                        style={{ backgroundColor: barColor }}
+                      />
+                      <div>
+                        <p className="text-[10px] text-[#555555]">{tier}</p>
+                        <p className="text-sm font-semibold text-[#F0F0F0]">
+                          {pct}%
+                          <span className="text-[10px] font-normal text-[#555555] ml-1">
+                            {d.correct}/{d.total}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )}
         </div>
 
+        {/* Chapter recommendation when accuracy signals a gap */}
+        {showChapterLink && (
+          <Link
+            href={`/chapters/${chapterSlug}`}
+            className="flex items-center justify-between p-4 rounded-xl border border-white/[0.08] bg-[#111111] hover:bg-white/[0.02] transition-colors group"
+          >
+            <div className="flex items-center gap-3">
+              <BookOpen className="w-4 h-4 flex-shrink-0" style={{ color: "#C9A84C" }} />
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                  Suggested next step
+                </p>
+                <p className="text-sm font-medium text-[#F0F0F0] mt-0.5">
+                  Review the {topic} chapter
+                </p>
+              </div>
+            </div>
+            <ArrowLeft
+              className="w-4 h-4 text-[#555555] group-hover:text-[#888888] transition-colors rotate-180"
+            />
+          </Link>
+        )}
+
+        {/* Question-by-question review */}
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
             Review
