@@ -45,7 +45,7 @@ Pipe A can fill a tank in 6 hours and pipe B can fill the same tank in 4 hours. 
 **answer:** C
 **fastest_path:** 1/6 + 1/4 = 5/12 → T = 12/5 = 2.4 hr.
 **explanation:** Combined rate = 1/6 + 1/4 = 2/12 + 3/12 = 5/12 tank/hr → T = 12/5 = 2.4 hr.
-**mistake_a:** Computed 4·6/(4+6+something) wrongly → 1.6.
+**mistake_a:** Used wrong LCD when adding fractions (8 instead of 12): wrote 1/4 = 2/8 and 1/6 = 3/8 → rate = 5/8 → T = 8/5 = 1.6 hr. LCM of 4 and 6 is 12, not 8.
 **mistake_b:** Estimated to round 2.4 → 2.
 **mistake_d:** Took (6−4) + 1 = 3 from confused setup.
 **mistake_e:** Averaged the times: (6 + 4)/2 = 5.
@@ -134,7 +134,7 @@ Two cars start from the same point and drive in opposite directions. One drives 
 ---
 
 ## Q6
-**difficulty:** Easy
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Two Objects Moving
 
@@ -368,7 +368,7 @@ Alex starts painting a fence alone at a rate that would finish the job in 10 hou
 ---
 
 ## Q15
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Two Objects Moving
 
@@ -453,10 +453,10 @@ A car traveled from city M to city N. What was its average speed for the trip?
 **type:** Data Sufficiency
 **topic:** Combined Work
 
-Two workers, P and Q, together complete a job. How many hours did they work together?
+Two painters, Jordan and Lee, start working together on a house at the same time. How many hours will it take them working together to finish the house?
 
-(1) Working alone, P takes 10 hours and Q takes 15 hours to complete the job.
-(2) The job required 6 worker-hours of total effort from P and Q combined.
+(1) Jordan alone would finish the house in 4 hours; Lee alone would finish it in 8 hours.
+(2) Jordan paints exactly twice as fast as Lee.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
@@ -465,14 +465,14 @@ Two workers, P and Q, together complete a job. How many hours did they work toge
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** (1): 1/10 + 1/15 = 1/6 → joint time = 6 hr. Sufficient. (2): worker-hours sum doesn't fix elapsed clock time.
-**explanation:** Statement (1): joint rate = 1/10 + 1/15 = 3/30 + 2/30 = 5/30 = 1/6 → together 6 hr. Sufficient. Statement (2): "6 worker-hours" sums effort from P and Q but doesn't fix elapsed clock time without the rate split. Insufficient. Answer: A.
-**mistake_b:** Treated (2) as sufficient.
-**mistake_c:** Required both — (1) alone resolves.
+**fastest_path:** (1) joint rate = 1/4 + 1/8 = 3/8 → T = 8/3 hr ≈ 2 hr 40 min. Sufficient. (2) rate ratio (J = 2L) leaves both rates free — infinitely many solutions → Insufficient.
+**explanation:** Statement (1): joint rate = 1/4 + 1/8 = 2/8 + 1/8 = 3/8 task/hr → T = 8/3 hr. One unique answer. Sufficient. Statement (2): Jordan twice as fast as Lee means rate_J = 2·rate_L. Let rate_L = r; then rate_J = 2r and joint rate = 3r → T = 1/(3r). Without knowing r, T can be anything. For example r = 1/8 gives T = 8/3; r = 1/6 gives T = 2 hr; r = 1/4 gives T = 4/3 hr. No unique answer. Insufficient. Answer: A.
+**mistake_b:** Treated (2) as sufficient — "twice as fast" sounds like complete rate information, but it is only a ratio between two unknowns.
+**mistake_c:** Required both — (1) alone resolves completely.
 **mistake_d:** Treated each as sufficient.
 **mistake_e:** Concluded both insufficient — (1) is.
-**common_trap:** Confusing "worker-hours" (total effort) with "clock-hours" (elapsed time). Worker-hours sums contributions; clock-time is determined by combined rate.
-**takeaway:** Worker-hours = effort = (#workers × time). Elapsed time needs the combined rate equation.
+**common_trap:** Confusing a rate *ratio* with an absolute rate. Knowing Jordan is twice as fast as Lee fixes the *relationship* between their rates, not the rates themselves.
+**takeaway:** A ratio between two unknowns is one equation in two unknowns — always insufficient alone. Absolute solo times pin down each rate directly.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -535,25 +535,25 @@ Working alone, Alex can complete a project in h hours; working alone, Ben can co
 ## Q21
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Average Speed — Round Trip
+**topic:** Combined Work — Fill and Drain Simultaneously
 
-A driver travels from town A to town B at an average speed of 60 miles per hour, and returns along the same route at an average speed of 40 miles per hour. What is the driver's average speed for the entire round trip?
+An inlet pipe can fill a tank completely in 4 hours. An outlet (drain) pipe can empty the full tank in 12 hours. Both pipes are open simultaneously and the tank starts empty. How long will it take to fill the tank?
 
-- A) 44 mph
-- B) 46 mph
-- C) 48 mph
-- D) 50 mph
-- E) 52 mph
+- A) 3 hours
+- B) 4 hours
+- C) 6 hours
+- D) 8 hours
+- E) 12 hours
 
 **answer:** C
-**fastest_path:** Equal distances → harmonic mean: 2(60)(40)/(60 + 40) = 4800/100 = 48.
-**explanation:** Equal-distance round trip → harmonic mean: 2ab/(a+b) = 4800/100 = 48 mph. Verify with d = 120: out 2 hr, back 3 hr → avg = 240/5 = 48.
-**mistake_a:** Estimated 44 from rough calc.
-**mistake_b:** Off by 2 → 46.
-**mistake_d:** Took arithmetic mean: (60 + 40)/2 = 50.
-**mistake_e:** Slip → 52.
-**common_trap:** Averaging speeds directly (50). Equal-distance means slow leg takes more time, pulling the average down.
-**takeaway:** Equal distance → harmonic mean. Slower leg dominates because it consumes more time. Always favor the slower side.
+**fastest_path:** Net rate = 1/4 − 1/12 = 3/12 − 1/12 = 2/12 = 1/6. T = 6 hr.
+**explanation:** The inlet adds 1/4 tank per hour; the outlet removes 1/12 tank per hour. Net fill rate = 1/4 − 1/12 = 3/12 − 1/12 = 2/12 = 1/6 tank/hr. Time to fill = 1 ÷ (1/6) = 6 hr.
+**mistake_a:** Added both rates (treating the drain as a second inlet): 1/4 + 1/12 = 4/12 = 1/3 → T = 3 hr. Correct for two inlets; wrong when one pipe removes water.
+**mistake_b:** Bubbled the inlet-alone time (4 hr).
+**mistake_d:** Arithmetic slip on net rate → 8 hr.
+**mistake_e:** Bubbled the outlet-alone time (12 hr).
+**common_trap:** Adding rates instead of subtracting. When one pipe fills and the other drains, the drain *opposes* the inlet — its rate must be subtracted.
+**takeaway:** Fill and drain simultaneously: net rate = (fill rate) − (drain rate). Only add rates when all pipes work in the same direction.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -614,7 +614,7 @@ Machines X and Y operate at constant rates. Working together, they complete a jo
 ---
 
 ## Q24
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Work Rates — Back-Solving One Solo Time
 
@@ -694,23 +694,23 @@ A boat travels 24 miles downstream along a river, then returns the same 24 miles
 ## Q27
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Rates — Unit Conversion
+**topic:** Combined Work — Three Workers
 
-A machine produces 100 widgets every 2.5 hours. At this rate, how many widgets will the machine produce in 7.5 hours?
+Workers A, B, and C together can complete a project in 4 hours. Workers A and B together can complete the same project in 6 hours. How long would it take worker C to complete the project alone?
 
-- A) 200
-- B) 250
-- C) 275
-- D) 300
-- E) 350
+- A) 6 hours
+- B) 8 hours
+- C) 10 hours
+- D) 12 hours
+- E) 24 hours
 
 **answer:** D
-**fastest_path:** 7.5/2.5 = 3 → 3 × 100 = 300.
-**explanation:** Time ratio: 7.5/2.5 = 3. Output scales linearly: 3 × 100 = 300 widgets. Or: rate = 100/2.5 = 40/hr → 40 × 7.5 = 300.
-**mistake_a:** Took 2 × 100 = 200 (mis-counted ratio).
-**mistake_b:** Slip → 250.
-**mistake_c:** Off-by-arithmetic → 275.
-**mistake_e:** Computed 100 × 3.5 = 350 (mis-read ratio).
-**common_trap:** Multiplying 100 × 7.5 directly (ignores the 2.5-hr base) or dividing.
-**takeaway:** For constant-rate scaling: ratio of times = ratio of outputs. Always check the base unit.
+**fastest_path:** Rate_C = 1/4 − 1/6 = 3/12 − 2/12 = 1/12. T_C = 12 hr.
+**explanation:** Rate of all three combined = 1/4. Rate of A and B combined = 1/6. Rate of C alone = (A+B+C rate) − (A+B rate) = 1/4 − 1/6 = 3/12 − 2/12 = 1/12 task/hr. T_C = 12 hr.
+**mistake_a:** Bubbled the A+B solo time (6 hr) instead of computing C's rate.
+**mistake_b:** Incorrectly added the time difference: 6 + (6 − 4) = 8 hr.
+**mistake_c:** Arithmetic slip → 10 hr.
+**mistake_e:** Multiplied the two given times: 4 × 6 = 24 (formula confusion).
+**common_trap:** Subtracting times (6 − 4 = 2) or averaging them. Only rates subtract — C's rate = combined rate minus the A+B rate.
+**takeaway:** Three-worker problems: isolate one worker's rate by subtracting the others from the joint rate. Times never subtract; rates do.
 **related_reading:** reading-quant-05-word-problems
