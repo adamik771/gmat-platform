@@ -112,11 +112,31 @@ problem_sets:
 
 ## @triangles
 
-Triangles dominate GMAT geometry. Roughly 40% of geometry questions involve a triangle somewhere — often hidden inside a bigger figure. Three families of facts cover 95% of what the test demands.
+Triangles dominate GMAT geometry — roughly 40% of geometry questions involve a triangle, often hidden inside a bigger figure. Before formulas, anchor the angle vocabulary that appears in every diagram on the test.
 
-**Mental model.** Geometry rewards drawing. Always sketch the figure — even a rough one — before you compute. The chapter teaches three layers: the seven foundational facts (Pythagorean theorem, two special-triangle ratios, four area formulas), the composition moves (split a complex shape into simpler ones), and the algebraic encoding (coordinate plane). A student who tries to solve geometry without drawing is the student who runs out of time on the section.
+**Mental model.** Geometry rewards drawing. Always sketch — even rough — before you compute. The key skill is recognizing which simpler shape hides inside a complex figure. Drawing forces that recognition.
 
-**Family 1: The Pythagorean theorem.**
+### Angle relationships — the grammar of every GMAT diagram
+
+These five rules are not optional background. They underlie every multi-step geometry question on the test. Miss one and a "formula problem" becomes a wrong-answer trap.
+
+**Supplementary and complementary.** Two angles summing to 90° are complementary. Two summing to 180° are supplementary. A straight line is 180° — if two angles together form a straight line, they are supplementary.
+
+**Vertical angles.** When two lines cross, the angles opposite each other are equal. Four angles form: opposite pairs are equal. This is free information — whenever two lines intersect, you know two pairs of equal angles without any extra work.
+
+**Parallel lines cut by a transversal.** When a line crosses two parallel lines, eight angles form. Only two distinct values are possible — call them x and (180° − x). The rules:
+
+- **Corresponding angles** (same position at each intersection): equal.
+- **Alternate interior angles** (between the parallels, on opposite sides): equal.
+- **Co-interior (same-side interior) angles**: supplementary.
+
+Whenever a problem labels two lines as parallel, immediately assign a variable x to any one angle and label every other angle as either x or (180° − x). Do this before reading the question.
+
+**Exterior angle of a triangle.** The exterior angle equals the sum of the two non-adjacent interior angles. Extend any side of a triangle and the angle formed outside equals the sum of the other two interior angles. This shortcut eliminates the "compute 180 minus the third angle" step.
+
+**Example.** Triangle with interior angles 40° and 65°. The exterior angle at the third vertex? 40 + 65 = **105°**. Done without finding the third interior angle first.
+
+### Family 1: The Pythagorean theorem
 
 In any right triangle with legs a, b and hypotenuse c: **a² + b² = c²**.
 
@@ -125,7 +145,7 @@ In any right triangle with legs a, b and hypotenuse c: **a² + b² = c²**.
     5² + 12² = 25 + 144 = 169
     c = √169 = 13
 
-**Memorize the Pythagorean triples.** These exact integer right triangles appear constantly on the GMAT, and recognizing one saves you the square-root computation:
+**Memorize the Pythagorean triples.** These exact integer right triangles appear constantly on the GMAT, and recognizing one saves the square-root computation:
 
 - **3-4-5** (and multiples: 6-8-10, 9-12-15, 15-20-25)
 - **5-12-13**
@@ -134,7 +154,7 @@ In any right triangle with legs a, b and hypotenuse c: **a² + b² = c²**.
 
 When you see two numbers that complete a Pythagorean triple, the third side is free information — no computation needed.
 
-**Family 2: Special right triangles.** Two specific right triangles have fixed side ratios. Memorize them cold.
+### Family 2: Special right triangles
 
 **45-45-90 (isosceles right triangle):** sides in ratio **1 : 1 : √2**. The two legs are equal; the hypotenuse is a leg times √2.
 
@@ -145,75 +165,102 @@ When you see two numbers that complete a Pythagorean triple, the third side is f
 
 Rationalizing 8/√2: multiply top and bottom by √2 → 8√2/2 = 4√2.
 
-**30-60-90:** sides in ratio **1 : √3 : 2**. The side opposite the 30° angle is the shortest; opposite 60° is the middle; opposite 90° (hypotenuse) is twice the shortest.
+**30-60-90:** sides in ratio **1 : √3 : 2**. The side opposite 30° is the shortest; opposite 60° is the middle; opposite 90° (hypotenuse) is twice the shortest.
 
 **Example.** 30-60-90 with hypotenuse 10. Side opposite 30°?
 
-    shortest side = hypotenuse / 2 = 10/2 = 5
+    shortest = hypotenuse / 2 = 10/2 = 5
 
 Side opposite 60° = 5√3. Straight ratio application.
 
-**Family 3: Interior angles and triangle inequality.**
+> **Self-explanation prompt.** Before the check questions: state the 30-60-90 ratio from memory and explain why the side opposite 60° is the middle value, not the hypotenuse. (Hint: longer side is always opposite the larger angle.) If you can say this cleanly, you will never mix up the two special-triangle ratios under time pressure.
 
-Every triangle: three interior angles sum to 180°.
+### Family 3: Similar triangles
 
-**Triangle inequality:** for any triangle with sides a, b, c: **each side must be less than the sum of the other two and greater than their positive difference**.
+Two triangles are **similar** when their corresponding angles are equal — same shape, different size. Similar triangles are the mechanism behind roughly 20% of hard GMAT geometry questions. They appear any time a diagram has two triangles sharing an angle or a pair of parallel sides.
 
-If two sides are 5 and 8, the third side satisfies |8 − 5| < x < 8 + 5, i.e., **3 < x < 13**. The third side can be any value in that range.
+**The key rule.** Corresponding sides are proportional. If triangle ABC ~ triangle DEF with scale factor k, then AB/DE = BC/EF = AC/DF = k. Areas scale by k².
 
-**Converse of the Pythagorean theorem.** If a² + b² = c², the triangle is a right triangle with the right angle opposite c. This shows up on DS — statement "AB² + AC² = BC²" is sufficient to conclude angle A is a right angle.
+**The two recognition patterns:**
 
-**Equilateral triangle formulas.** Side s:
+1. **AA (angle-angle).** Two equal angles prove similarity. Because the three angles must sum to 180°, matching two automatically matches the third.
 
-- Perimeter: 3s
-- Area: s² √3 / 4
+2. **Parallel line creates embedded similar triangle.** A line parallel to one side of a triangle, cutting the other two sides, creates a smaller triangle similar to the original.
 
-Memorize the area formula. The GMAT can embed equilaterals inside circles and hexagons.
+**Example (parallel line).** In triangle PQR, line XY is drawn parallel to QR, with X on PQ and Y on PR. If PX/PQ = 2/3, find XY if QR = 15.
 
-> **Self-explanation prompt.** Why does recognizing a Pythagorean triple save time? If you can say "because the integer solutions to a² + b² = c² are rare, so spotting one means you already know the third side without computation," you've internalized why the memorization matters.
+XY ∥ QR creates corresponding angles at X and Q, so triangles PXY and PQR are similar with ratio 2/3. XY = (2/3) × 15 = **10**.
 
-> **Recall check.** Without looking up: list the four Pythagorean triples, the ratio for a 45-45-90 triangle, and the ratio for a 30-60-90 triangle. State them aloud (or write them), then verify. These seven facts (4 triples + 2 ratios + Pythagorean theorem) carry roughly 30% of GMAT geometry points — forced retrieval now, rather than passive re-reading, is the single highest-return 60 seconds you'll spend in this chapter.
+**Example (altitude to hypotenuse).** Right triangle ABC has legs 6 and 8 and hypotenuse 10. An altitude from C meets AB at point D. Find CD.
+
+Area of triangle = ½ × 6 × 8 = 24. Also, area = ½ × AB × CD = ½ × 10 × CD. So CD = 48/10 = **4.8**.
+
+(The altitude creates two smaller triangles, each similar to the original. The area route is usually faster on the GMAT than chasing the ratios.)
+
+**Trap to watch.** Similarity is not congruence. Similar triangles have the same angles but not the same side lengths. Confusing the two is the most common error: "the triangles are similar" does NOT mean corresponding sides are equal — only that they are proportional.
+
+### Family 4: Other triangle facts
+
+**Every triangle:** three interior angles sum to 180°.
+
+**Isosceles triangle:** two equal sides means the angles opposite those equal sides are also equal. If AB = AC, then angle B = angle C. Give the GMAT two sides of an isosceles triangle and it will ask for an angle; give it one angle and it will ask for a side. Either way, this symmetry is the entry point.
+
+**Area of any triangle:** Area = ½ × base × height, where height is the perpendicular distance from the opposite vertex to the base line — not the slant side.
+
+Why ½? Picture a parallelogram. A triangle is exactly half of a parallelogram with the same base and height — cut it diagonally. So area = ½ × (parallelogram area) = ½ × base × height.
+
+**Equilateral triangle.** Side s: Area = s²√3 / 4. Memorize this formula — equilaterals appear embedded inside circles and regular hexagons on hard problems.
+
+**Triangle inequality.** Each side must be less than the sum of the other two. If two sides are 5 and 8, the third satisfies **3 < x < 13**.
+
+**Converse of the Pythagorean theorem.** If a² + b² = c², the triangle is right, with the right angle opposite c. On Data Sufficiency, "AB² + AC² = BC²" is sufficient to conclude angle A = 90°.
+
+> **Recall check.** Without looking: list the four Pythagorean triples, the 45-45-90 ratio, the 30-60-90 ratio, the exterior angle rule, and the condition for two triangles to be similar. Write them out, then check. These facts account for roughly 35% of GMAT geometry points — forced retrieval beats passive re-reading by a wide margin on retention.
 
 ## @circles
 
-Circles on the GMAT use four formulas, plus one conversion idea that solves arcs and sectors.
+Circles on the GMAT use four formulas plus one unifying idea: every arc, sector, and partial-circle measurement is simply a fraction of the full circle.
 
-**The four formulas (all with radius r):**
+**The four formulas (all use radius r):**
 
-- **Circumference:** C = 2πr (or πd, where d = diameter = 2r)
+- **Circumference:** C = 2πr (equivalently πd, where d = 2r)
 - **Area:** A = πr²
-- **Diameter:** d = 2r
-- **Arc length:** L = (θ/360) × C, where θ is the central angle in degrees
+- **Arc length:** L = (θ/360) × 2πr
+- **Sector area:** A = (θ/360) × πr²
 
-**Example (basic area).** Radius 6 → area = π × 36 = **36π**.
+where θ is the central angle in degrees.
 
-Don't confuse with circumference (2π × 6 = 12π). The GMAT always includes both as answer choices to catch students who grab the wrong formula.
+**The unifying idea.** Both arc length and sector area are just the full-circle formula multiplied by (central angle / 360). A 90° sector is ¼ of the circle. A 120° sector is ⅓. Memorize only the full-circle formulas; divide by the appropriate fraction on demand.
 
-**Arc length — the central-angle fraction.** Every arc is a fraction of the full circle. The fraction is (central angle / 360°). Multiply that fraction by the circumference.
+**Example (basic).** Radius 6 → area = 36π; circumference = 12π. The GMAT always includes both in the answer choices to catch the student who grabbed the wrong formula. Write the formula before substituting.
 
-**Example.** Circumference 10π, central angle 72°. Arc length?
+**Example (arc length).** Circle with circumference 10π, central angle 72°. Arc length?
 
     fraction = 72/360 = 1/5
     arc = (1/5) × 10π = 2π
 
-Same idea works for sectors (pie slices): sector area = (θ/360) × πr².
+**Example (sector area).** Circle with radius 6, central angle 120°. Sector area?
 
-**Inscribed angle theorem.** An inscribed angle is half the central angle that subtends the same arc. If the central angle is 80°, the inscribed angle is 40°. Rarely tested directly but appears on hard problems.
+    fraction = 120/360 = 1/3
+    sector area = (1/3) × π × 36 = 12π
 
-**Inscribed squares and triangles.**
+Both problems run through the same two steps: find the fraction, multiply. No additional formula needed.
 
-A **square inscribed in a circle** has its diagonal equal to the diameter. If the radius is r, the diameter is 2r, and the square's diagonal is 2r. Side of the square = (2r)/√2 = r√2. Area of the square = (r√2)² = 2r².
+**Inscribed angle theorem.** An angle inscribed in a circle (vertex on the circle, sides as chords) equals half the central angle subtending the same arc. Central angle 80° → inscribed angle 40°. This theorem appears on 685+ problems, often disguised. A special case worth memorizing: an inscribed angle that subtends a diameter is always 90°.
 
-For the standard problem ("circle radius 5, inscribed square area?"):
+**Inscribed squares.**
 
-- Diagonal = diameter = 10
-- Area of square = d²/2 = 100/2 = **50**
+A square inscribed in a circle has its diagonal equal to the diameter. Side = diameter/√2 = (2r)/√2 = r√2. Area = (r√2)² = 2r². Shortcut: area of inscribed square = d²/2, where d is the diameter.
 
-Memorize "area of square = d²/2" — it appears on almost every inscribed-square question, saves a multiplication step.
+For the standard question ("circle radius 5, inscribed square area?"):
 
-**Tangent lines** are perpendicular to the radius at the point of tangency. Rarely tested at 605-level but can appear on 685+ problems.
+    area = d²/2 = 10²/2 = 50
 
-**Trap to watch.** "What's the area of a circle with diameter 10?" The diameter is 10, so the radius is 5, and the area is 25π. Students who plug the diameter into πr² directly get 100π — four times too large.
+**Tangent lines** are perpendicular to the radius at the point of tangency. If a tangent touches a circle at point P, the radius to P is perpendicular to the tangent line. This right angle is the entry point for any tangent geometry question.
+
+**Trap to watch.** "Area of a circle with diameter 10?" Diameter 10 means radius 5, area = 25π. Students who substitute the diameter directly into πr² get π(10²) = 100π — four times too large. Always halve the diameter before plugging into any radius formula.
+
+> **Self-explanation prompt.** Before the check questions: explain in one sentence why the arc length and sector area formulas both use (θ/360). If you can say "because both are simply the fraction of the full circle that the angle represents," you understand the underlying structure — and you will never need to memorize four separate circle-slice formulas.
 
 ## @quadrilaterals-and-polygons
 
@@ -260,9 +307,13 @@ For regular polygons (all angles equal), each interior angle is [(n − 2) × 18
 
 **Example (DS shortcut).** "Each interior angle is 150°. How many sides?" Exterior angle = 180 − 150 = 30°. Number of sides = 360/30 = **12**. Three lines of arithmetic. Alternative via interior-angle-sum formula also works: [(n−2)×180]/n = 150 → 180n − 360 = 150n → 30n = 360 → n = 12.
 
-**Area of a regular hexagon with side s:** 6 × (s² √3 / 4) = (3√3 × s²) / 2. Treat the hexagon as six equilateral triangles. Rarely tested but appears in 705+ problems.
+**Area of a regular hexagon with side s:** 6 × (s²√3 / 4) = (3√3 × s²) / 2. Treat the hexagon as six equilateral triangles sharing a center. Rarely the primary question, but appears embedded in circle problems at 705+.
 
-> **Self-explanation prompt.** Why does the interior-angle sum formula have n − 2 instead of n? If you can say "because any n-gon can be split into n − 2 triangles from a single vertex," you've internalized where the formula comes from — and you won't forget the subtraction.
+**Shortcut: exterior angles for "how many sides."** Each interior angle of a regular n-gon is [(n−2)×180]/n. If you're given the interior angle and asked for n, the exterior angle route is faster: exterior angle = 180° − interior angle, n = 360 / exterior angle.
+
+**Example.** Each interior angle is 150°. Exterior angle = 30°. n = 360/30 = **12 sides**.
+
+> **Self-explanation prompt.** Before the check questions: explain in one sentence why the interior-angle sum formula uses (n − 2) instead of n. If you can say "because any n-gon can be triangulated into n − 2 triangles from a single vertex, each contributing 180°," you've internalized the formula and won't forget the subtraction under pressure.
 
 ## @coordinate-geometry
 
@@ -325,9 +376,23 @@ Point-slope form: y − y₁ = m(x − x₁). Useful when you have a slope and a
 - Crosses the x-axis at (a, 0) → a is the x-intercept → plug y = 0 to find.
 - Crosses the y-axis at (0, b) → b is the y-intercept → plug x = 0 to find.
 
-**Symmetric distances.** Three points that are equidistant pairwise form an equilateral triangle. Four points equidistant pairwise form a regular tetrahedron (in 3D). These rarely appear, but know the language.
+**Circles in the coordinate plane.** A circle with center (h, k) and radius r has equation:
 
-**Trap to watch.** Perpendicular slopes are negative reciprocals, not just negatives. The perpendicular to slope 2 is −1/2, not −2. And both perpendicular and reciprocal changes — drop the minus sign or skip the reciprocal, and you've got the wrong line.
+    (x − h)² + (y − k)² = r²
+
+This is just the distance formula: every point (x, y) on the circle is exactly r away from (h, k).
+
+**Example.** Circle centered at (2, −3) with radius 5. Does point (5, 1) lie on it?
+
+    (5 − 2)² + (1 − (−3))² = 9 + 16 = 25 = 5²   ✓
+
+**Example (finding center and radius from a given equation).** Equation: (x + 3)² + (y − 4)² = 49. Center is (−3, 4), radius is 7. Watch the sign: (x + 3) means h = −3, not +3.
+
+**When the equation is not in standard form.** The GMAT sometimes gives x² + y² + 4x − 6y = 12. Complete the square to identify center and radius. This is rare at 605-685 but appears at 725+.
+
+**Points above and below a line.** The line y = mx + b divides the plane into two regions. A point (a, b) is above the line if b > ma + b_intercept (plug into the line equation and compare y-values). This appears in inequality problems asking "which region satisfies the constraint."
+
+**Trap to watch.** Perpendicular slopes are negative reciprocals — not just negatives. The perpendicular to slope 2 is −1/2, not −2. Miss either the sign or the reciprocal and you have the wrong line.
 
 ## @three-d-solids
 
@@ -377,43 +442,64 @@ Fun coincidence: when r = 3, sphere's volume and surface area are numerically bo
 
 ## @inscribed-and-combined-figures
 
-The hardest GMAT geometry questions combine two shapes — square inside circle, triangle inside square, two circles sharing a region — and ask you to find an area, perimeter, or missing length. The approach is always the same.
+The hardest GMAT geometry questions nest two shapes together — square inside circle, triangle inside square, two circles sharing a region — and ask for an area, perimeter, or missing length. The approach is always the same: **find the shared element that links the two shapes**, convert between dimensions, then solve one shape at a time.
 
-**The framework: identify the shared element.**
+**The shared-element catalogue. Memorize all five.**
 
-- Square in circle: shared element is the square's diagonal = circle's diameter.
-- Triangle in circle: for a right triangle, the hypotenuse is the diameter.
-- Circle in square: the circle's diameter equals the square's side.
+| Configuration | Shared element | Conversion |
+|---|---|---|
+| Square inscribed in circle | Diagonal = diameter | d = s√2, so s = d/√2 |
+| Circle inscribed in square | Diameter = side | r = s/2 |
+| Right triangle inscribed in circle | Hypotenuse = diameter | — |
+| Equilateral triangle inscribed in circle | Side s, radius r | r = s/√3 |
+| Circle inscribed in equilateral triangle | Side s, radius r | r = s/(2√3) |
 
-Once you identify the shared element, you can convert between the two shapes' dimensions and solve.
+Once you identify the shared element, you have a bridge between both shapes and the rest is formula-plug.
 
-**Example (square inscribed in circle).** Circle radius 5, find the inscribed square's area.
+**Example 1 (square in circle).** Circle radius 5, find the inscribed square's area.
 
-- Diameter = 10 = square's diagonal.
-- Square's area via diagonal formula: d²/2 = 100/2 = **50**.
+    Diameter = 10 = diagonal of the square
+    Area of square = d²/2 = 100/2 = 50
 
-Alternative: diagonal = s√2, so s = 10/√2 = 5√2, area = (5√2)² = 50. Either route, same answer.
+**Example 2 (circle in square).** Square with side 8, find the area of the inscribed circle.
 
-**Example (rectangle with diagonal and perimeter given).** Rectangle diagonal 10, perimeter 28. Find area.
+    Diameter = side = 8, so radius = 4
+    Area = π × 16 = 16π
 
-- Sides L and W. Diagonal: L² + W² = 100. Perimeter: 2L + 2W = 28, so L + W = 14.
-- Square the sum: (L + W)² = L² + 2LW + W² = 196. Substitute: 100 + 2LW = 196, so LW = **48**.
+**Example 3 (right triangle in circle — inscribed angle theorem).** Triangle ABC is inscribed in a circle with AB as the diameter. Since AB is the diameter, any inscribed angle that subtends AB is 90°. So angle C = 90°, meaning ABC is a right triangle. This is the inscribed angle theorem in action: if the hypotenuse is a diameter, the angle opposite it is 90°.
 
-The general trick: **(L + W)² = (L² + W²) + 2LW**, so if you know sum-of-squares and sum, you can unlock the product LW, which is the area of the rectangle. This identity comes up constantly on DS.
+**The rectangle identity (DS trap).** For rectangle with sides L and W:
 
-**Combined circles and rectangles.** Shaded regions inside complex figures are usually (big shape area) − (small shape area). Sketch a clean diagram, label every known and unknown, and subtract.
+**(L + W)² = L² + 2LW + W²**
 
-**When a DS problem gives "diagonal" in one statement and "perimeter" in the other.** Neither alone is sufficient (many L, W pairs satisfy each). Together, by the square-the-sum trick above, they lock down the product LW, so the answer is **C (together sufficient, neither alone)**.
+Rearranged: LW = [(L + W)² − (L² + W²)] / 2.
 
-**Area ratios in similar figures.** If two similar shapes have linear dimensions in ratio k, their areas are in ratio k² and volumes in ratio k³. Shows up when the problem doubles or halves a dimension and asks about the area change.
+If you know the sum of sides (from perimeter: L + W = P/2) and the sum of squares (from diagonal: L² + W² = d²), you can find LW — the area — without ever solving for L and W individually.
 
-**Rotational and reflective symmetry** — rarely tested but comes up on 725+ problems involving regular polygons.
+**Example.** Rectangle diagonal 10, perimeter 28. Find area.
 
-**Trap to watch.** "Rectangle with diagonal 10 and perimeter 28 — what's the area?" If you try to solve for L and W individually, you hit a messy quadratic. The sum-of-squares + sum-of-sides identity gives you LW directly without ever finding L or W. Whenever the question asks for a product (area) and gives you sum-of-squares + sum, square the sum.
+    L + W = 14, L² + W² = 100
+    (L + W)² = 196 = L² + 2LW + W² = 100 + 2LW
+    LW = 48
+
+On Data Sufficiency: "diagonal alone" is not sufficient (many rectangles have diagonal 10). "Perimeter alone" is not sufficient either. Together, by this identity, they lock down LW = area. Answer is **C**.
+
+**Shaded regions.** Complex shaded areas are almost always (big shape) − (small shape). Sketch carefully, compute each area separately, subtract. The most common version: area of a semicircle minus an inscribed triangle, or area of a square minus an inscribed circle.
+
+**Area ratio in similar figures.** If two similar figures have a linear scale factor of k (lengths in ratio k), their areas are in ratio k². Their volumes are in ratio k³. When a problem doubles a side, the area quadruples — not doubles. This is tested frequently at 685+ in both Problem Solving and Data Sufficiency.
+
+**Trap to watch.** When two regions share a boundary (circle inscribed in a square), the tangent points are the only contact — the circle and square do not overlap, they touch. "Shaded region" questions that show a circle inside a square ask for the area between them: square area − circle area. Students who subtract the wrong one from the wrong one get an impossible (negative) result; always check that your answer is positive and smaller than the larger shape.
 
 ## @summary
 
-GMAT geometry is a formula-sheet topic. The student who has memorized the formulas — and recognizes which shape is in front of them — finishes every question in under 90 seconds. Here's the cold-memorization list.
+GMAT geometry is a formula-sheet topic. The student who has memorized the formulas — and recognizes which shape is in front of them — finishes every question in under 90 seconds. Here is the cold-memorization list.
+
+**Angle relationships.**
+
+- Supplementary: two angles sum to 180°. Complementary: sum to 90°.
+- Vertical angles: equal. (Two crossing lines form two pairs of equal opposite angles.)
+- Parallel lines + transversal: corresponding angles equal; alternate interior angles equal; co-interior angles supplementary.
+- Exterior angle of a triangle: equals the sum of the two non-adjacent interior angles.
 
 **Triangles.**
 
@@ -422,24 +508,29 @@ GMAT geometry is a formula-sheet topic. The student who has memorized the formul
 - 45-45-90: sides 1 : 1 : √2
 - 30-60-90: sides 1 : √3 : 2
 - Equilateral area: s²√3 / 4
-- Any triangle area: (1/2) × base × height
+- Any triangle area: ½ × base × height
 - Angle sum: 180°
 - Triangle inequality: |a − b| < c < a + b
+- Similar triangles (AA): corresponding sides proportional; areas in ratio k².
+- Isosceles: equal sides → equal opposite angles.
 
 **Circles.**
 
 - Circumference: C = 2πr
 - Area: A = πr²
-- Arc length: (θ/360) × C
+- Arc length: (θ/360) × 2πr
 - Sector area: (θ/360) × πr²
+- Inscribed angle = ½ central angle subtending the same arc.
+- Inscribed angle subtending a diameter = 90°.
 
 **Quadrilaterals and polygons.**
 
 - Rectangle area: LW; perimeter: 2(L + W); diagonal: √(L² + W²)
 - Square area: s²; diagonal: s√2; area-from-diagonal: d²/2
 - Parallelogram: base × height
-- Trapezoid: (1/2)(b₁ + b₂) × h
+- Trapezoid: ½(b₁ + b₂) × h
 - Interior-angle sum: (n − 2) × 180°
+- Each angle of regular n-gon: (n − 2) × 180° / n
 - Exterior-angle sum (any convex): 360°
 
 **Coordinate geometry.**
@@ -449,17 +540,39 @@ GMAT geometry is a formula-sheet topic. The student who has memorized the formul
 - Slope: (y₂−y₁)/(x₂−x₁)
 - Perpendicular slopes: negative reciprocals (product = −1)
 - Line: y = mx + b
+- Circle: (x − h)² + (y − k)² = r²
 
 **3D solids.**
 
-- Box volume: LWH; surface area: 2(LW + LH + WH)
-- Cube volume: s³; surface area: 6s²
-- Cylinder volume: πr²h; total surface area: 2πr² + 2πrh
-- Sphere volume: (4/3)πr³; surface area: 4πr²
+- Box: volume LWH; surface area 2(LW + LH + WH)
+- Cube: volume s³; surface area 6s²
+- Cylinder: volume πr²h; total surface area 2πr² + 2πrh
+- Sphere: volume (4/3)πr³; surface area 4πr²
 - Space diagonal of a box: √(L² + W² + H²)
 
-**The one identity that breaks hard combined-shape DS problems.** (L + W)² = L² + 2LW + W². If you're given sum-of-squares and sum, squaring the sum gives you the product LW.
+**Inscribed figures — shared elements.**
 
-**Time-management note.** Simple formula-plug questions (triangle with given sides, rectangle with given dimensions) should take under 45 seconds. Inscribed-figure and combined-shape questions take up to 2 minutes. Coordinate-geometry questions requiring multiple steps (find intersection, distance from intercept, etc.) take 90 seconds.
+- Square in circle: diagonal = diameter.
+- Circle in square: diameter = side.
+- Right triangle in circle: hypotenuse = diameter (angle opposite it = 90°).
+- Area of inscribed square: d²/2 (where d = diameter).
 
-If you catch yourself drawing and redrawing a figure, it usually means you skipped a formula. Stop, check your formula sheet mentally, and retry.
+**The one algebraic identity that breaks hard DS geometry problems.**
+
+(L + W)² = L² + 2LW + W². Given diagonal (L² + W²) and perimeter (L + W), you can solve for area (LW) without finding L and W separately.
+
+**Common GMAT geometry patterns:**
+
+| Problem type | First move |
+|---|---|
+| Parallel lines in diagram | Assign x to one angle, label all others as x or 180° − x |
+| Two triangles with shared angle | Check for similarity (AA) |
+| Circle arc or sector | Fraction = θ/360; multiply by C or A |
+| Inscribed figure | Identify the shared element (diagonal, diameter, side) |
+| Combined shape area | Big area − small area |
+| DS: diagonal + perimeter | Sufficient together (square-the-sum identity) |
+| Scale factor k for similar figures | Areas in ratio k², volumes in ratio k³ |
+
+**Time management.** Formula-plug questions (basic triangle, circle area): under 45 seconds. Inscribed-figure and combined-shape: up to 2 minutes. Coordinate-geometry multi-step: 90 seconds.
+
+If you find yourself redrawing the same figure, you have not yet identified the key relationship. Stop. Ask: what is the shared element between the two shapes? That answer unlocks the rest.
