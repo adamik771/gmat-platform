@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import {
   AlertTriangle,
   ArrowLeft,
+  ArrowRight,
   BookOpen,
   Check,
   ChevronDown,
@@ -26,6 +27,7 @@ import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
 } from "@/lib/keyboard"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 
 export interface SessionQuestion {
   id: string
@@ -1208,6 +1210,100 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+    const avgTimeMs = answeredCount > 0 ? Math.round(totalTime / answeredCount) : 0
+    const missedCount = states.filter((s, i) => s.submitted && !isQuestionCorrect(questions[i], s)).length
+    const chapterSlug = TOPIC_TO_CHAPTER[topic]
+
+    // Performance signal
+    const perfLabel = accuracy >= 80 ? "Strong session" : accuracy >= 60 ? "Making progress" : "Room to grow"
+    const perfColor = accuracy >= 80 ? "#3ECF8E" : accuracy >= 60 ? "#C9A84C" : "#C0C0C0"
+
+    // Actionable next step derived from accuracy + missed count
+    let nextTitle: string
+    let nextBody: string
+    let nextHref: string
+    let nextLabel: string
+    if (accuracy >= 80) {
+      nextTitle = "Solid accuracy"
+      nextBody =
+        missedCount > 0
+          ? `${missedCount} missed question${missedCount === 1 ? "" : "s"} added to your spaced-review queue.`
+          : "All correct — these questions are cleared from your review queue."
+      nextHref = missedCount > 0 ? "/review" : "/practice"
+      nextLabel = missedCount > 0 ? "View review queue" : "Continue practicing"
+    } else if (accuracy >= 50) {
+      nextTitle = "Making progress"
+      nextBody = `${missedCount} missed question${missedCount === 1 ? "" : "s"} added to your spaced-review queue. Consistent review moves them to mastery.`
+      nextHref = "/review"
+      nextLabel = "Review missed questions"
+    } else {
+      nextTitle = "Revisit the fundamentals"
+      nextBody = `${missedCount} of ${answeredCount} questions missed. Reading the chapter first makes practice significantly more efficient.`
+      nextHref = chapterSlug ? `/chapters/${chapterSlug}` : "/review"
+      nextLabel = chapterSlug ? "Go to chapter" : "Review missed questions"
+    }
+
+    // Partition questions: wrong / skipped first, then correct
+    const wrongIndices = questions.map((_, i) => i).filter((i) => {
+      const s = states[i]
+      return !s.submitted || !isQuestionCorrect(questions[i], s)
+    })
+    const correctIndices = questions.map((_, i) => i).filter((i) => {
+      const s = states[i]
+      return s.submitted && isQuestionCorrect(questions[i], s)
+    })
+    const hasSeparation = wrongIndices.length > 0 && correctIndices.length > 0
+
+    function renderQuestionRow(i: number) {
+      const q = questions[i]
+      const state = states[i]
+      const isCorrect = isQuestionCorrect(q, state)
+      return (
+        <button
+          key={q.id}
+          onClick={() => {
+            goTo(i)
+            setShowResults(false)
+          }}
+          className="w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left border-b border-white/[0.05] last:border-b-0"
+        >
+          <div className="flex items-center gap-3 min-w-0">
+            <div
+              className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+              style={{
+                backgroundColor: state.submitted
+                  ? isCorrect
+                    ? "rgba(62,207,142,0.1)"
+                    : "rgba(255,68,68,0.1)"
+                  : "rgba(255,255,255,0.04)",
+              }}
+            >
+              {state.submitted ? (
+                isCorrect ? (
+                  <Check className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
+                ) : (
+                  <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
+                )
+              ) : (
+                <span className="text-[10px] text-[#555555]">—</span>
+              )}
+            </div>
+            <div className="min-w-0">
+              <p className="text-xs text-[#555555]">
+                Question {i + 1} · {q.subtopic}
+              </p>
+              <p className="text-sm text-[#F0F0F0] truncate">
+                {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
+              </p>
+            </div>
+          </div>
+          <span className="text-xs text-[#888888] flex-shrink-0 ml-3">
+            {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
+          </span>
+        </button>
+      )
+    }
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1226,6 +1322,7 @@ export default function SessionClient({
 
         <SaveStatusBanner status={saveStatus} onRetry={saveSession} />
 
+        {/* Stats panel with performance signal */}
         <div
           className="p-6 rounded-xl border"
           style={{
@@ -1233,7 +1330,10 @@ export default function SessionClient({
             backgroundColor: "rgba(201,168,76,0.04)",
           }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <p className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: perfColor }}>
+            {perfLabel}
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             <div>
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Accuracy</p>
               <p className="text-3xl font-bold mt-2" style={{ color: "#C9A84C" }}>
@@ -1251,65 +1351,80 @@ export default function SessionClient({
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Total time</p>
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
             </div>
+            <div>
+              <p className="text-[10px] uppercase tracking-widest text-[#555555]">Avg / question</p>
+              <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(avgTimeMs)}</p>
+            </div>
           </div>
         </div>
 
+        {/* What to do next */}
+        {answeredCount > 0 && (
+          <div
+            className="p-5 rounded-xl border"
+            style={{ borderColor: "rgba(255,255,255,0.06)", backgroundColor: "#111111" }}
+          >
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-[#555555] mb-3">
+              What to do next
+            </p>
+            <p className="text-sm font-semibold text-[#F0F0F0] mb-1">{nextTitle}</p>
+            <p className="text-sm text-[#888888] mb-4">{nextBody}</p>
+            <Link
+              href={nextHref}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-75"
+              style={{ color: "#C9A84C" }}
+            >
+              {nextLabel}
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        )}
+
+        {/* Question review — wrong/skipped first, then correct */}
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
             Review
           </h2>
-          <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
-            {questions.map((q, i) => {
-              const state = states[i]
-              const isCorrect = isQuestionCorrect(q, state)
-              return (
-                <button
-                  key={q.id}
-                  onClick={() => {
-                    goTo(i)
-                    setShowResults(false)
-                  }}
-                  className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
-                    i < questions.length - 1 ? "border-b border-white/[0.05]" : ""
-                  }`}
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div
-                      className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{
-                        backgroundColor: state.submitted
-                          ? isCorrect
-                            ? "rgba(62,207,142,0.1)"
-                            : "rgba(255,68,68,0.1)"
-                          : "rgba(255,255,255,0.04)",
-                      }}
+          {hasSeparation ? (
+            <div className="space-y-3">
+              {wrongIndices.length > 0 && (
+                <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
+                  <div
+                    className="px-4 py-2.5 border-b border-white/[0.05]"
+                    style={{ backgroundColor: "rgba(255,68,68,0.04)" }}
+                  >
+                    <p
+                      className="text-[10px] uppercase tracking-widest font-semibold"
+                      style={{ color: "rgba(255,100,100,0.8)" }}
                     >
-                      {state.submitted ? (
-                        isCorrect ? (
-                          <Check className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
-                        ) : (
-                          <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
-                        )
-                      ) : (
-                        <span className="text-[10px] text-[#555555]">—</span>
-                      )}
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-xs text-[#555555]">
-                        Question {i + 1} · {q.subtopic}
-                      </p>
-                      <p className="text-sm text-[#F0F0F0] truncate">
-                        {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
-                      </p>
-                    </div>
+                      Missed · {wrongIndices.length}
+                    </p>
                   </div>
-                  <span className="text-xs text-[#888888] flex-shrink-0 ml-3">
-                    {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
-                  </span>
-                </button>
-              )
-            })}
-          </div>
+                  {wrongIndices.map((i) => renderQuestionRow(i))}
+                </div>
+              )}
+              {correctIndices.length > 0 && (
+                <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
+                  <div
+                    className="px-4 py-2.5 border-b border-white/[0.05]"
+                    style={{ backgroundColor: "rgba(62,207,142,0.03)" }}
+                  >
+                    <p
+                      className="text-[10px] uppercase tracking-widest font-semibold"
+                      style={{ color: "rgba(62,207,142,0.7)" }}
+                    >
+                      Correct · {correctIndices.length}
+                    </p>
+                  </div>
+                  {correctIndices.map((i) => renderQuestionRow(i))}
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
+              {questions.map((_, i) => renderQuestionRow(i))}
+            </div>
+          )}
         </div>
 
         <div className="flex gap-3 flex-wrap">
