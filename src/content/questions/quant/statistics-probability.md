@@ -449,7 +449,7 @@ In a set of 5 positive integers, is the median equal to the mean?
 ---
 
 ## Q18
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Basic Probability
 
@@ -584,25 +584,25 @@ A data set of 5 numbers has mean 10 and standard deviation 2. If each number in 
 ## Q23
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Probability — Without Replacement
+**topic:** Permutations — Restricted Arrangements
 
-A box contains 4 red marbles, 3 green marbles, and 3 blue marbles. Two marbles are drawn at random without replacement. What is the probability that both marbles drawn are red?
+Five students are to be arranged in a row for a photograph. Two of the students, Ariel and Ben, must not stand next to each other. How many distinct arrangements are possible?
 
-- A) 2/15
-- B) 4/25
-- C) 1/5
-- D) 6/25
-- E) 2/5
+- A) 24
+- B) 48
+- C) 60
+- D) 72
+- E) 120
 
-**answer:** A
-**fastest_path:** (4/10)(3/9) = 12/90 = 2/15.
-**explanation:** Without replacement: P(R then R) = (4/10)(3/9) = 12/90 = 2/15.
-**mistake_b:** With replacement: (4/10)² = 4/25.
-**mistake_c:** Slip → 1/5.
-**mistake_d:** Slip → 6/25.
-**mistake_e:** Slip → 2/5.
-**common_trap:** Treating draws as *with* replacement — uses (4/10)² instead of (4/10)(3/9).
-**takeaway:** Without replacement: decrement both numerator and denominator on the second draw.
+**answer:** D
+**fastest_path:** Total − adjacent = 5! − (4! × 2) = 120 − 48 = 72.
+**explanation:** Total arrangements of 5 students = 5! = 120. Arrangements where Ariel and Ben ARE adjacent: treat them as a single unit → 4 units arranged in 4! = 24 ways; Ariel and Ben can swap within the unit → × 2; so 24 × 2 = 48 adjacent arrangements. Arrangements where they are NOT adjacent = 120 − 48 = 72.
+**mistake_a:** Computed 4! = 24 — counted only the internal arrangements of the paired unit, ignoring the other 3 students.
+**mistake_b:** Computed the adjacent arrangements (48) and reported that instead of subtracting from the total.
+**mistake_c:** Arithmetic slip → 60.
+**mistake_e:** Ignored the "not adjacent" constraint entirely → 5! = 120.
+**common_trap:** Reporting the count of *restricted* arrangements (48) rather than subtracting from the total. Always re-read whether the question asks for arrangements that satisfy or violate the constraint.
+**takeaway:** "Not adjacent" → use complement: total − (adjacent). Adjacent pair: treat as one unit to get (n−1)! arrangements, then multiply by 2 for the pair's internal swap.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -663,7 +663,7 @@ A company has two factories. Factory P produces 60% of the company's products; F
 ---
 
 ## Q26
-**difficulty:** Medium
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Range of a Data Set
 
