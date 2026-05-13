@@ -5,7 +5,7 @@ section: Quant
 estimated_minutes: 50
 prerequisites: []
 summary: |
-  Combinatorics rewards pattern recognition over formula memorization. Every question reduces to four yes/no decisions — does order matter? are objects identical? is there a constraint? is it circular? — and each decision points to exactly one formula or technique. Students who understand the why behind each formula solve unfamiliar variants confidently; students who memorize reach for the wrong formula under pressure.
+  Combinatorics rewards pattern recognition over formula memorization. Every question reduces to four yes/no decisions — does order matter? are objects identical? is there a constraint? is it circular? — and each decision points to exactly one formula or technique. The restrictions module deserves particular attention: the glue trick (adjacent objects), complement (forbidden pairs), slot-by-slot alternating, and position-specific constraints each require a distinct setup that must be diagnosed before writing a single number. Students who understand the why behind each formula solve unfamiliar variants confidently; students who memorize reach for the wrong formula under pressure.
 sections:
   - id: pretest
     type: pretest
@@ -203,11 +203,11 @@ The multiplication encodes: pick the men AND pick the women. If you add instead 
 
 ## @restrictions
 
-Restriction problems require one of two moves: the **glue trick** or the **complement trick**. Identifying which to reach for is most of the work.
+Restriction problems require one of four moves: the **glue trick**, the **complement trick**, the **slot-by-slot method for alternating constraints**, or the **position-fix for seat-specific constraints**. Diagnosing which to use is the actual skill — the arithmetic that follows is almost mechanical.
 
-**Worked example — glue trick.** *In how many arrangements of the letters in LESSON do the two S's appear next to each other?*
+**Move 1 — glue trick (objects must be adjacent).** *In how many arrangements of the letters in LESSON do the two S's appear next to each other?*
 
-When specific objects must be adjacent, glue them into a single block and treat the block as one item.
+Glue the required-adjacent objects into a single block and treat the block as one item.
 
 LESSON has 6 letters (L, E, S, S, O, N). Glue the two S's into one "SS" block. Now arrange 5 items (SS, L, E, O, N):
 
@@ -215,29 +215,70 @@ LESSON has 6 letters (L, E, S, S, O, N). Glue the two S's into one "SS" block. N
 
 The two S's are identical, so internal ordering of the block adds no variation. Answer: **120**.
 
-If the adjacent items are distinct (e.g., named people Ana and Ben), multiply by 2! for the internal ordering of the block:
+If the adjacent items are distinct (e.g., named people Ana and Ben must sit together), multiply by 2! for the internal ordering of the block:
 
-    6 people, Ana and Ben must be adjacent: 5! × 2 = 120 × 2 = 240
+    6 people, Ana and Ben must be adjacent: 5! × 2! = 120 × 2 = 240
 
-**Worked example — complement trick.** *Six people in a row — Ana and Ben NOT adjacent:*
+**Move 2 — complement trick (objects must NOT be adjacent).** *Six people in a row — Ana and Ben must not sit next to each other:*
 
 - Total arrangements: 6! = 720
-- Ana and Ben adjacent (treat as a block of 5): 5! × 2 = 240
+- Arrangements where Ana and Ben ARE adjacent (glue trick): 5! × 2! = 240
 - NOT adjacent: 720 − 240 = **480**
 
-Counting "not adjacent" directly requires partitioning by gap patterns — much harder. The complement is almost always one calculation.
+Counting "not adjacent" directly means partitioning by how many seats separate them — much harder. Complement collapses it to one subtraction.
 
 **Pro tip.** "At least one" of some type is always faster via complement:
 
-*A committee of 3 from 5 men and 4 women — how many have at least 1 woman?*
+*A committee of 3 from 5 men and 4 women — how many committees have at least 1 woman?*
 
 - Total: C(9, 3) = 84
 - No women (all men): C(5, 3) = 10
 - At least 1 woman: 84 − 10 = **74**
 
-Counting directly means splitting into exactly 1, exactly 2, exactly 3 — three calculations instead of one.
+Counting directly means splitting into "exactly 1," "exactly 2," "exactly 3" — three calculations instead of one.
 
-**Trap to watch.** The most common restriction error is computing the forbidden count correctly but forgetting to subtract it from the total. Write *total − forbidden =* on your scratch work before you compute either value, not after.
+**Move 3 — slot-by-slot method (alternating types).** When objects must alternate by type (men and women, red and blue, A and B), the structure is determined by the pattern — not the formula. Work by:
+
+1. Identifying all valid alternating patterns.
+2. Counting arrangements within one pattern.
+3. Multiplying by the number of valid patterns.
+
+**Worked example.** *3 boys (B₁, B₂, B₃) and 3 girls (G₁, G₂, G₃) sit in a row, alternating genders. How many arrangements?*
+
+The two valid patterns are B-G-B-G-B-G and G-B-G-B-G-B.
+
+For the pattern B-G-B-G-B-G:
+- Fill the 3 boy-slots: 3! = 6 ways
+- Fill the 3 girl-slots: 3! = 6 ways
+- Subtotal: 6 × 6 = 36
+
+By symmetry, G-B-G-B-G-B also gives 36.
+
+Total: 36 + 36 = **72**.
+
+**What controls the number of valid patterns.** When the two groups have equal size (n boys, n girls), there are exactly 2 valid row patterns — either type can go first. When the groups are unequal — say 4 boys and 3 girls — only one pattern is feasible: B-G-B-G-B-G-B. The larger group must occupy all odd-numbered positions, forcing it to appear first and last. A girl-first row B-G-B-G-B-G-B would run out of girls before filling all even-numbered slots.
+
+**Alternating in a circular arrangement.** *3 boys and 3 girls seated around a round table, alternating genders:*
+
+- In a circular alternating setup there is only 1 rotational pattern (both genders are already interleaved; no distinct "start")
+- Fix one boy's position to remove rotational equivalence: 1 way
+- Arrange the remaining 2 boys in the 2 remaining boy-seats: 2! = 2 ways
+- Arrange the 3 girls in the 3 girl-seats: 3! = 6 ways
+- Total: 1 × 2 × 6 = **12**
+
+**Move 4 — position-fix (person must occupy specific seats).** *8 people in a row — Alex must sit at one of the two ends:*
+
+- Place Alex: 2 choices (left end or right end)
+- Arrange the remaining 7 people in the 7 open seats: 7! ways
+- Total: 2 × 7! = **10,080**
+
+To count arrangements where Alex is at **neither** end, use complement: 8! − 2 × 7! = 7!(8 − 2) = 6 × 7! = **30,240**.
+
+Position-fix composes with the glue trick: if "Alex must be at an end AND Ben must be next to Alex," treat Alex+Ben as a 2-person block (2! internal orderings), place the block at one of the two ends (2 choices for which end), and arrange the remaining 6 people in 6! ways. Total: 2! × 2 × 6! = 2 × 2 × 720 = **2,880**.
+
+**Trap to watch.** The most common restriction error is computing the forbidden count correctly but forgetting to subtract it from the total. Write *total − forbidden =* on your scratch work before computing either value. For alternating problems, the second most common error is assuming there are always 2 valid patterns without checking whether the group sizes are equal.
+
+> **Self-explanation prompt.** Before the check questions: why does alternating boys and girls in a row of equal-size groups produce exactly 2 valid patterns rather than more? If you can say "because once you choose which gender goes in seat 1, every other seat is forced — the pattern has zero remaining freedom," you understand the constraint structurally and will diagnose it correctly under pressure.
 
 ## @circular
 
@@ -298,10 +339,11 @@ Every combinatorics question on the GMAT reduces to four decisions. Run through 
 - Yes → divide by the factorial of each repeated group
 - No → straight factorial or permutation/combination formula
 
-**3. Is there a constraint (adjacent, forbidden pair, alternating)?**
-- Adjacent required → glue trick
-- Not adjacent / forbidden → complement (total − forbidden)
-- Alternating → count per pattern, multiply by number of valid patterns
+**3. Is there a constraint (adjacent, forbidden pair, alternating, position-specific)?**
+- Adjacent required → glue trick: treat the block as one item, multiply by internal orderings
+- Not adjacent / forbidden → complement: total − (arrangements with the forbidden configuration)
+- Alternating → slot method: identify valid patterns, count per pattern, multiply by pattern count
+- Specific seat or end required → position-fix: count valid placements for the constrained person, arrange the rest
 
 **4. Is it circular or linear?**
 - Circular with indistinguishable seats → (n − 1)!
@@ -318,10 +360,12 @@ That is the entire chapter in 12 lines. When you see a combinatorics question, y
 | "Exactly X of type A and Y of type B" | Product of combinations | C(nA, X) × C(nB, Y) |
 | "At least 1 of type A" | Complement | Total − (none of A) |
 | "Must sit together / adjacent" | Glue trick | (block + others)! × internal orderings |
+| "Alternating / no two same type adjacent" | Slot method | (# valid patterns) × n_A! × n_B! |
+| "[Person] must be at one end / specific position" | Position-fix | (choices for that person) × (remaining)! |
 | "Round table of n" | Circular | (n − 1)! |
 | "Letters of [repeated word]" | Multiset | n! / (r₁! × r₂! × …) |
 | "Round-robin: every pair plays once" | Combination | C(n, 2) |
 
-**What to do next.** Work the graded problem sets in order: easy → medium → hard. After every wrong answer, identify which of the four decisions you got wrong — that is the diagnostic signal. If you keep misclassifying order vs. no-order, only the permutations and combinations sections need revisiting. If you keep missing the block internal-ordering factor, re-read the restrictions section specifically.
+**What to do next.** Work the graded problem sets in order: easy → medium → hard. After every wrong answer, identify which of the four decisions you got wrong — that is the diagnostic signal. If you keep misclassifying order vs. no-order, revisit the permutations and combinations sections. If alternating or position-constrained problems stump you, re-read the restrictions section specifically — those four moves (glue, complement, slot, position-fix) cover every constraint variant you will see.
 
 Once you have cleared the problem sets, add combinatorics to your spaced-review queue. These patterns fade without retrieval practice — one session now and two more spaced over the next week will lock them into long-term memory more reliably than re-reading this chapter.
