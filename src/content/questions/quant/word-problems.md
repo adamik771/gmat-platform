@@ -18,13 +18,13 @@ A car travels at 60 miles per hour for 2.5 hours. How many miles does it travel?
 
 **answer:** D
 **fastest_path:** D = R·T = 60 × 2.5 = 150.
-**explanation:** D = R × T = 60 × 2.5 = 150 mi.
-**mistake_a:** Computed 60 × 2 = 120, ignored the 0.5.
-**mistake_b:** Slip → 130.
-**mistake_c:** Slip → 140.
-**mistake_e:** Slip → 160.
-**common_trap:** Multiplication slip on 60 × 2.5 — most common is 60 × 2 = 120.
-**takeaway:** D = R × T. For 0.5 hr, just add R/2 to the round-hour distance: 60·2 + 30 = 150.
+**explanation:** D = R × T = 60 × 2.5 = 150 mi. Split the 2.5 hours: 60 × 2 = 120 mi for the first 2 hours, plus 60 × 0.5 = 30 mi for the last half-hour. Total 150 mi.
+**mistake_a:** Computed 60 × 2 = 120 and stopped — treated the 0.5 hr as zero instead of adding the half-hour leg (30 mi).
+**mistake_b:** Converted the half-hour to minutes (30 min) then added 30 min ÷ 6 = 5 mi instead of 30 mi, yielding 120 + 10 = 130.
+**mistake_c:** Treated 0.5 hr as 20 min (one-third of an hour), adding 60/3 = 20 mi: 120 + 20 = 140.
+**mistake_e:** Rounded 2.5 hours up to 3 hours and computed 60 × 3 = 180, then subtracted 20 for some adjustment to get 160.
+**common_trap:** Forgetting the half-hour contribution (A) or unit-converting 0.5 hr to minutes and dividing by the wrong factor.
+**takeaway:** D = R × T. For decimal hours, split: whole hours × R + fractional part × R. Or multiply directly: 60 × 2.5 = 60 × 5/2 = 150.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -71,12 +71,12 @@ Maria is currently 3 times as old as her daughter. If her daughter is 8 years ol
 **answer:** C
 **fastest_path:** Maria now = 24. +6 yrs → 30.
 **explanation:** Maria's current age = 3 × 8 = 24. In 6 years: 24 + 6 = 30.
-**mistake_a:** Bubbled current age (24).
-**mistake_b:** Slip → 27.
-**mistake_d:** Slip → 32.
-**mistake_e:** Slip → 36.
-**common_trap:** Bubbling the current age (24) instead of the age in 6 years.
-**takeaway:** Read carefully: "currently" vs "in N years." Answer the future age, not the current age.
+**mistake_a:** Bubbled Maria's current age (24) — forgot to add the 6 years the question asks about.
+**mistake_b:** Added the multiplier instead of the years: 24 + 3 = 27, confusing the "3 times" ratio with the number of years to add.
+**mistake_d:** Added the daughter's current age instead of the stated 6 years: 24 + 8 = 32.
+**mistake_e:** Calculated the daughter's future age (8 + 6 = 14) and then applied the 3× multiplier to that: 3 × 12 = 36, confusing when to apply the ratio.
+**common_trap:** Answering the *current* age (A) or adding the wrong number: the "3" ratio (B), the daughter's age (D), or misapplying the ratio to a future age (E).
+**takeaway:** "How old will X be in N years" always means: find current age first, then add N. The ratio applies only to *current* ages, not future ones.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -97,12 +97,12 @@ A printer can print 240 pages in 8 minutes. At this rate, how many pages can it 
 **answer:** D
 **fastest_path:** Rate = 30 ppm. 30 × 15 = 450.
 **explanation:** Rate = 240/8 = 30 pages/min. In 15 min: 30 × 15 = 450.
-**mistake_a:** Slip → 360 (used wrong rate or time).
-**mistake_b:** Slip → 400.
-**mistake_c:** Slip → 420.
-**mistake_e:** Slip → 480.
-**common_trap:** Computing rate then mis-multiplying — typical: 30 × 12 = 360 (wrong time) or 28 × 15 = 420 (wrong rate).
-**takeaway:** Two-step rate problems: rate = total/time, then output = rate × new time. Verify each step.
+**mistake_a:** Computed the rate correctly (30 ppm) but multiplied by 12 instead of 15 — perhaps misread "15 minutes" as "12 minutes": 30 × 12 = 360.
+**mistake_b:** Divided 240 by 6 instead of 8 to get rate 40, then multiplied: 40 × 10 = 400.
+**mistake_c:** Used the correct rate (30) but multiplied by 14: 30 × 14 = 420, an off-by-one on the time.
+**mistake_e:** Multiplied 240 by 2 (treating 15 min as 2× of 8 min, approximately): 240 × 2 = 480.
+**common_trap:** Computing rate correctly but then multiplying by the wrong time value — especially 12 (clock-thinking) instead of 15.
+**takeaway:** Two-step rate problems: rate = total/given-time, output = rate × new-time. Keep time units consistent and write out both steps explicitly.
 **related_reading:** reading-quant-05-word-problems
 
 ---

@@ -134,7 +134,7 @@ If the three-digit number 4A6 is divisible by 9, where A represents a single dig
 ---
 
 ## Q6
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Multiples
 
@@ -808,25 +808,25 @@ What is the smallest positive integer n such that n, n + 2, and n + 4 are all pr
 ## Q31
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Consecutive Integers — Sum to Largest
+**topic:** Consecutive Integers — Sum of Squares
 
-The sum of 5 consecutive positive integers is 215. What is the largest of the 5 integers?
+The sum of the squares of three consecutive integers is 110. What is the largest of the three integers?
 
-- A) 41
-- B) 42
-- C) 43
-- D) 44
-- E) 45
+- A) 5
+- B) 6
+- C) 7
+- D) 8
+- E) 9
 
-**answer:** E
-**fastest_path:** Mean = 215/5 = 43 = middle. Largest = 43 + 2 = 45.
-**explanation:** For 5 consecutive integers, mean = median = middle = 215/5 = 43. The integers are 41, 42, 43, 44, 45. Largest = 45.
-**mistake_a:** Bubbled 41 — the smallest, not the largest.
-**mistake_b:** Bubbled 42 — off-by-one from the middle.
-**mistake_c:** Bubbled 43 — the median, not the largest.
-**mistake_d:** Bubbled 44 — off-by-one from the largest.
-**common_trap:** Bubbling the median (43) instead of the largest. "Sum/count" gives the *middle*, not the max.
-**takeaway:** For odd-count consecutives: middle = sum/count. Largest = middle + (count − 1)/2.
+**answer:** C
+**fastest_path:** Backsolve from C: 5² + 6² + 7² = 25 + 36 + 49 = 110 ✓. Largest = 7.
+**explanation:** Let the integers be n − 1, n, n + 1. Sum of squares = (n−1)² + n² + (n+1)² = 3n² + 2 = 110 → n² = 36 → n = 6. Largest = n + 1 = 7. Backsolve check: 5² + 6² + 7² = 25 + 36 + 49 = 110 ✓.
+**mistake_a:** Bubbled the smallest (5) — found the set correctly but named the wrong integer.
+**mistake_b:** Bubbled the middle value (6) — that's n, not the largest.
+**mistake_d:** Tried middle = 7 (integers 6, 7, 8): 36 + 49 + 64 = 149 ≠ 110.
+**mistake_e:** Tried middle = 8 (integers 7, 8, 9): 49 + 64 + 81 = 194 ≠ 110.
+**common_trap:** Solving for n (the middle integer) and bubbling n instead of n + 1 — or confusing "middle" with "largest."
+**takeaway:** For three consecutive integers n−1, n, n+1: sum of squares = 3n² + 2. Solve for n, then the largest = n + 1. Always backsolve from answer choices if the algebra feels slow.
 **related_reading:** reading-quant-03-number-properties
 
 ---

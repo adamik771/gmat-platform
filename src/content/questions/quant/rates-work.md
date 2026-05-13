@@ -535,9 +535,9 @@ Working alone, Alex can complete a project in h hours; working alone, Ben can co
 ## Q21
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Average Speed — Round Trip
+**topic:** Average Speed — Equal Time vs Equal Distance
 
-A driver travels from town A to town B at an average speed of 60 miles per hour, and returns along the same route at an average speed of 40 miles per hour. What is the driver's average speed for the entire round trip?
+A car travels from City A to City B. During the first half of the total travel time the car drives at 60 miles per hour, and during the second half of the travel time it drives at 40 miles per hour. What is the car's average speed for the entire trip?
 
 - A) 44 mph
 - B) 46 mph
@@ -545,15 +545,15 @@ A driver travels from town A to town B at an average speed of 60 miles per hour,
 - D) 50 mph
 - E) 52 mph
 
-**answer:** C
-**fastest_path:** Equal distances → harmonic mean: 2(60)(40)/(60 + 40) = 4800/100 = 48.
-**explanation:** Equal-distance round trip → harmonic mean: 2ab/(a+b) = 4800/100 = 48 mph. Verify with d = 120: out 2 hr, back 3 hr → avg = 240/5 = 48.
-**mistake_a:** Estimated 44 from rough calc.
-**mistake_b:** Off by 2 → 46.
-**mistake_d:** Took arithmetic mean: (60 + 40)/2 = 50.
+**answer:** D
+**fastest_path:** Equal *time* at each speed → arithmetic mean: (60 + 40)/2 = 50 mph.
+**explanation:** Let T = total time. First half (T/2 hours at 60 mph): 30T miles. Second half (T/2 hours at 40 mph): 20T miles. Total distance = 50T miles. Average speed = 50T / T = 50 mph — the arithmetic mean of 60 and 40.
+**mistake_a:** Slip → 44.
+**mistake_b:** Slip → 46.
+**mistake_c:** Applied the harmonic-mean formula 2(60)(40)/(60+40) = 48 — that formula is for equal *distances*, not equal *times*. The distances here are unequal (30T vs 20T).
 **mistake_e:** Slip → 52.
-**common_trap:** Averaging speeds directly (50). Equal-distance means slow leg takes more time, pulling the average down.
-**takeaway:** Equal distance → harmonic mean. Slower leg dominates because it consumes more time. Always favor the slower side.
+**common_trap:** Using the harmonic mean (48) because this looks like a "two-speed trip." The harmonic mean applies only when the two *distances* are equal. When the two *times* are equal, use the arithmetic mean.
+**takeaway:** Equal *distance* at two speeds → harmonic mean 2ab/(a+b). Equal *time* at two speeds → arithmetic mean (a+b)/2. Always identify what is equal — time or distance — before choosing the formula.
 **related_reading:** reading-quant-05-word-problems
 
 ---
