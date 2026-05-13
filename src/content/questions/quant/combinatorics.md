@@ -5,7 +5,7 @@ topic: Combinatorics
 
 ## Q1
 
-**difficulty:** Beginner
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Enumeration
 
@@ -33,7 +33,7 @@ Three friends — Ana, Ben, and Cal — line up for a photo. In how many differe
 
 ## Q2
 
-**difficulty:** Beginner
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Enumeration
 
@@ -61,7 +61,7 @@ Four books are placed on a shelf. How many arrangements are possible if one spec
 
 ## Q3
 
-**difficulty:** Beginner
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Permutations
 
@@ -89,7 +89,7 @@ From a group of 7 candidates, how many ways can a president and a vice-president
 
 ## Q4
 
-**difficulty:** Beginner
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -117,7 +117,7 @@ A team of 3 is picked from a group of 6 students. How many different teams are p
 
 ## Q5
 
-**difficulty:** Beginner
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -145,7 +145,7 @@ A pizza shop offers 8 toppings. How many different 2-topping pizzas are possible
 
 ## Q6
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Permutations
 
@@ -173,7 +173,7 @@ The letters of the word GAMES are rearranged. How many distinct arrangements are
 
 ## Q7
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -184,15 +184,15 @@ A committee of 4 is chosen from 10 people. How many possible committees are ther
 - B) 210
 - C) 240
 - D) 5040
-- E) 5040
+- E) 10080
 
 **answer:** B
 **fastest_path:** C(10, 4) = (10·9·8·7)/(4·3·2·1) = 5040/24 = 210.
 **explanation:** "Committee" → unordered selection → combinations. C(10, 4) = 10!/(4! × 6!) = (10 × 9 × 8 × 7)/(4 × 3 × 2 × 1) = 5040/24 = 210.
 **mistake_a:** Computed 10 × 4 = 40 (wrong formula).
 **mistake_c:** Computed 10 × 4! = 240 (added unnecessary factor).
-**mistake_d:** Computed 10 × 9 × 8 × 7 = 5040 (used permutations).
-**mistake_e:** Same as D (5040, listed twice in original).
+**mistake_d:** Computed 10 × 9 × 8 × 7 = 5040 (used permutations — forgot to divide by 4!).
+**mistake_e:** Computed P(10, 4) × 2 = 10,080 (over-counted by an extra factor of 2).
 **common_trap:** Treating committee selection as ordered (using P instead of C).
 **takeaway:** Committee, panel, group of k from n → C(n, k). Always divide P(n, k) by k! when order doesn't matter.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -201,7 +201,7 @@ A committee of 4 is chosen from 10 people. How many possible committees are ther
 
 ## Q8
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -229,7 +229,7 @@ In how many arrangements of the letters in LESSON do the two S's appear next to 
 
 ## Q9
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -257,7 +257,7 @@ Six people sit in a row of 6 chairs. If Ana and Ben refuse to sit next to each o
 
 ## Q10
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -285,7 +285,7 @@ From 5 men and 4 women, a committee of 3 must be formed with exactly 2 men and 1
 
 ## Q11
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Circular
 
@@ -313,7 +313,7 @@ In how many ways can 5 people sit around a circular table?
 
 ## Q12
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -341,7 +341,7 @@ A code consists of 4 digits chosen from {0–9}. How many codes are possible if 
 
 ## Q13
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -369,7 +369,7 @@ How many arrangements of the letters in MISSISSIPPI are possible?
 
 ## Q14
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -401,7 +401,7 @@ Both paths give 168, confirming the logic.
 
 ## Q15
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -429,7 +429,7 @@ In how many ways can 4 men and 4 women be seated in a row if men and women must 
 
 ## Q16
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -457,7 +457,7 @@ A bag has 6 red marbles and 5 blue marbles. How many ways can 4 marbles be drawn
 
 ## Q17
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -485,7 +485,7 @@ Eight distinct books are arranged on a shelf. In how many arrangements are two s
 
 ## Q18
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -829,3 +829,570 @@ A fair coin is flipped 5 times. What is the probability of getting exactly 3 hea
 **common_trap:** Confusing "exactly k" with "at least k" — different probabilities; "at least" requires summing across multiple cases.
 **takeaway:** Binomial: P(exactly k of n trials, each prob p) = C(n, k) × p^k × (1−p)^(n−k). For fair coin: × (1/2)^n.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q30
+
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Multiplication Principle
+
+A restaurant offers 4 appetizers, 5 main courses, and 3 desserts. A dinner consists of exactly one appetizer, one main course, and one dessert. How many different dinners are possible?
+
+- A) 12
+- B) 20
+- C) 47
+- D) 60
+- E) 80
+
+**answer:** D
+**fastest_path:** Independent choices multiply: 4 × 5 × 3 = 60.
+**explanation:** Each course is chosen independently — the appetizer choice does not limit the main-course options. Appetizer: 4 choices. Main: 5 choices. Dessert: 3 choices. Any combination of one from each category produces a valid dinner. Total = 4 × 5 × 3 = 60.
+**mistake_a:** Computed 4 + 5 + 3 = 12 (added the counts instead of multiplying).
+**mistake_b:** Computed 4 × 5 = 20 (only two of the three stages).
+**mistake_c:** Computed partial sums in some way, landing on 47.
+**mistake_e:** Computed (4 + 5 + 3)² / something, or mis-multiplied, landing on 80.
+**common_trap:** Adding the choice counts across categories instead of multiplying — a sign of confusing OR (add) with AND (multiply).
+**takeaway:** When choices across multiple independent stages are combined ("one from A AND one from B AND one from C"), multiply: n_A × n_B × n_C. This is the Fundamental Counting Principle.
+**hint_nudge:** After you pick an appetizer, does that reduce the number of available main courses?
+**hint_strategy:** Each slot is independent. Fill slot by slot and multiply.
+**hint_setup:** 4 × 5 × 3.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 45
+
+---
+
+## Q31
+
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combinations
+
+Eight people attend a party. Each person shakes hands with every other person exactly once. How many handshakes occur in total?
+
+- A) 8
+- B) 16
+- C) 28
+- D) 32
+- E) 56
+
+**answer:** C
+**fastest_path:** Each handshake = one unordered pair: C(8, 2) = (8 × 7) / 2 = 28.
+**explanation:** A handshake involves 2 of the 8 people, and A shaking hands with B is the same handshake as B shaking hands with A — order does not matter. Count unordered pairs: C(8, 2) = 8!/(2! × 6!) = (8 × 7)/2 = 56/2 = 28.
+**mistake_a:** Computed 8 — one handshake per person (wrong; each handshake involves two people).
+**mistake_b:** Computed 8 × 2 = 16 (wrong formula).
+**mistake_d:** Computed 8 × 4 = 32 (divided by the wrong number).
+**mistake_e:** Computed 8 × 7 = 56 (permutations — double-counted each handshake, treating A→B and B→A as separate).
+**common_trap:** Using P(8, 2) = 56 rather than C(8, 2) = 28 — double-counting each handshake by treating it as ordered.
+**takeaway:** "Every pair meets / interacts once" = C(n, 2) = n(n − 1)/2. Apply this formula for handshakes, games in a round-robin, and any symmetric pairwise event.
+**hint_nudge:** Is there a difference between "A shakes hands with B" and "B shakes hands with A"?
+**hint_strategy:** A handshake is an unordered pair. How many unordered pairs can 8 people form?
+**hint_setup:** C(8, 2) = (8 × 7) / 2.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 60
+
+---
+
+## Q32
+
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Permutations
+
+A club of 9 members must elect a president, a secretary, and a treasurer. No member may hold more than one office. In how many ways can the three offices be filled?
+
+- A) 27
+- B) 84
+- C) 504
+- D) 720
+- E) 729
+
+**answer:** C
+**fastest_path:** Three distinct roles, order matters: P(9, 3) = 9 × 8 × 7 = 504.
+**explanation:** The three offices are distinct — president is not the same role as secretary. If Ana is president and Ben is secretary, swapping them produces a different outcome. This is a permutation. Fill each role in turn: 9 choices for president, 8 remaining for secretary, 7 remaining for treasurer. Total = 9 × 8 × 7 = 504.
+**mistake_a:** Computed 9 × 3 = 27 (wrong formula — multiplied by number of roles).
+**mistake_b:** Computed C(9, 3) = 84 (treated distinct offices as interchangeable, used combination).
+**mistake_d:** Computed 6! = 720 or some other mismatch.
+**mistake_e:** Computed 9³ = 729 (allowed repetition — let the same person hold multiple offices).
+**common_trap:** Using C(9, 3) = 84 — treating three different offices as an unordered group. The offices are distinct (president ≠ secretary), so the swap test returns "yes, order matters."
+**takeaway:** Distinct roles, titles, or ranks → permutations. Apply the swap test: if swapping two people between their roles changes the outcome, use P(n, k) = n × (n−1) × … × (n−k+1).
+**hint_nudge:** If Ana is president and Ben is secretary, is that the same outcome as Ben being president and Ana being secretary?
+**hint_strategy:** Three distinct offices are being filled sequentially. How many people can fill the first? The second? The third?
+**hint_setup:** 9 × 8 × 7 = P(9, 3).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 60
+
+---
+
+## Q33
+
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combinations
+
+A student must choose 2 books to take on a trip from a shelf of 7 different books. How many different pairs of books can the student choose?
+
+- A) 14
+- B) 21
+- C) 35
+- D) 42
+- E) 49
+
+**answer:** B
+**fastest_path:** Order doesn't matter (pairs): C(7, 2) = (7 × 6) / 2 = 21.
+**explanation:** "Choose 2 books" — the selection order is irrelevant; choosing Book A then Book B produces the same pair as Book B then Book A. Use combinations: C(7, 2) = 7!/(2! × 5!) = (7 × 6)/2 = 42/2 = 21.
+**mistake_a:** Computed 7 × 2 = 14 (wrong formula — multiplied by 2 instead of computing a combination).
+**mistake_c:** Computed C(7, 3) = 35 (selected 3 books instead of 2).
+**mistake_d:** Computed 7 × 6 = 42 (used permutations — counted each pair twice, once for each order).
+**mistake_e:** Computed 7² = 49 (with-replacement — allowed the same book to be chosen twice).
+**common_trap:** Using 7 × 6 = 42 rather than 42/2 = 21 — each unordered pair appears twice in the permutation count.
+**takeaway:** "Choose k from n where order doesn't matter" → C(n, k). For pairs: C(n, 2) = n(n−1)/2 always. Memorize the formula; it appears constantly.
+**hint_nudge:** Does the order in which you pick the two books affect which books you end up with?
+**hint_strategy:** {Book1, Book3} and {Book3, Book1} are the same pair. Use combinations, not permutations.
+**hint_setup:** C(7, 2) = (7 × 6) / 2.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 60
+
+---
+
+## Q34
+
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Multiplication Principle
+
+A password is formed by choosing one letter from {A, B, C, D, E}, one digit from {1, 2, 3, 4, 5}, and one symbol from {!, @, #}. How many different passwords are possible?
+
+- A) 13
+- B) 15
+- C) 40
+- D) 75
+- E) 125
+
+**answer:** D
+**fastest_path:** 5 letters × 5 digits × 3 symbols = 75.
+**explanation:** Three independent slots. The letter choice does not constrain the digit or symbol choices. Count options per slot: 5 letters, 5 digits, 3 symbols. Total = 5 × 5 × 3 = 75.
+**mistake_a:** Computed 5 + 5 + 3 = 13 (added the set sizes instead of multiplying).
+**mistake_b:** Computed 5 × 3 = 15 (used only two of the three categories).
+**mistake_c:** Computed 5 + 8 × something = 40 (partial or wrong multiplication).
+**mistake_e:** Computed 5³ = 125 (assumed all three slots each have 5 options, ignoring that symbols only have 3).
+**common_trap:** Using 5³ = 125 — assuming every category has 5 options rather than reading each set size carefully.
+**takeaway:** Always count options in each slot independently before multiplying. Here, the third slot has 3 options, not 5 — reading the problem carefully is half the work.
+**hint_nudge:** How many options does each part of the password have? Are they all the same?
+**hint_strategy:** Each slot is filled independently. Multiply: (# letters) × (# digits) × (# symbols).
+**hint_setup:** 5 × 5 × 3.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 45
+
+---
+
+## Q35
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Permutations
+
+How many 3-digit integers (from 100 to 999) have all three digits distinct?
+
+- A) 504
+- B) 576
+- C) 648
+- D) 720
+- E) 900
+
+**answer:** C
+**fastest_path:** First digit: 9 options (1–9); second: 9 options (0–9 minus first digit); third: 8 options. Total = 9 × 9 × 8 = 648.
+**explanation:** A 3-digit integer has digits in positions (hundreds, tens, ones). The hundreds digit must be 1–9 (not 0), giving 9 choices. The tens digit can be 0–9 except the hundreds digit, giving 9 choices. The ones digit can be 0–9 except the two used digits, giving 8 choices. Total = 9 × 9 × 8 = 648.
+
+The common shortcut mistake is computing P(10, 3) = 720, which overcounts — it includes numbers like 012 (not a 3-digit integer).
+**mistake_a:** Computed P(9, 3) = 9 × 8 × 7 = 504 (excluded 0 from all positions, not just the first).
+**mistake_b:** Computed 9 × 8 × 8 = 576 (wrong count for the second digit).
+**mistake_d:** Computed P(10, 3) = 10 × 9 × 8 = 720 (allowed 0 in the hundreds place, counting "012" etc.).
+**mistake_e:** Computed 9 × 10 × 10 = 900 (allowed repetition in the last two digits).
+**common_trap:** Using P(10, 3) = 720 — forgetting that 0 cannot be the leading digit. The second slot has 9 choices (not 8) because 0 is now eligible.
+**takeaway:** For digit-counting problems with a leading-digit restriction: hundreds slot gets (n − 1) choices, then subsequent slots lose one option each (for no-repeat). Here: 9 × 9 × 8. Write the slot analysis before computing.
+**hint_nudge:** Can the first digit be 0? What does that do to the count?
+**hint_strategy:** Fill digit slots one at a time. First digit has a restriction others don't.
+**hint_setup:** Hundreds: 1–9 (9 options). Tens: 0–9 except hundreds digit (9 options). Ones: 8 options.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 90
+
+---
+
+## Q36
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Restrictions
+
+A committee of 3 is chosen from 6 men and 4 women. How many different committees include at least one woman?
+
+- A) 60
+- B) 84
+- C) 100
+- D) 116
+- E) 120
+
+**answer:** C
+**fastest_path:** Complement: total − all-men = C(10, 3) − C(6, 3) = 120 − 20 = 100.
+**explanation:** "At least one woman" is fastest via complement: total committees minus committees with no women (all men). Total: C(10, 3) = (10 × 9 × 8)/6 = 120. All-men committees: C(6, 3) = (6 × 5 × 4)/6 = 20. At least one woman: 120 − 20 = 100.
+
+Direct count: exactly 1 woman = C(4,1)×C(6,2) = 4×15 = 60; exactly 2 = C(4,2)×C(6,1) = 6×6 = 36; exactly 3 = C(4,3) = 4. Sum = 60 + 36 + 4 = 100. Same answer, three times the work.
+**mistake_a:** Computed exactly-1-woman case only: C(4,1)×C(6,2) = 60.
+**mistake_b:** Computed C(9, 3) = 84 (off by one somewhere — wrong pool size).
+**mistake_d:** Subtracted the all-women case instead of the all-men case: 120 − C(4,3) = 120 − 4 = 116.
+**mistake_e:** Computed total without applying the constraint: C(10, 3) = 120.
+**common_trap:** Subtracting the wrong "forbidden" group — subtracting all-women (C(4,3)=4) rather than all-men (C(6,3)=20). "At least one woman" excludes committees with zero women.
+**takeaway:** "At least one of type X" → complement = total − (none of type X). Identify the excluded case precisely before computing.
+**hint_nudge:** What is the only kind of committee that contains NO women?
+**hint_strategy:** Use complement: total − (committees with zero women).
+**hint_setup:** C(10, 3) − C(6, 3) = 120 − 20.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 90
+
+---
+
+## Q37
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Permutations with Repetition
+
+How many distinct arrangements of the letters in the word BANANA are possible?
+
+- A) 60
+- B) 120
+- C) 180
+- D) 360
+- E) 720
+
+**answer:** A
+**fastest_path:** 6 letters, B×1, A×3, N×2: 6! / (3! × 2!) = 720 / 12 = 60.
+**explanation:** BANANA has 6 letters: B (×1), A (×3), N (×2). If all letters were distinct, there would be 6! = 720 arrangements. But swapping any two A's gives the same word, so divide by 3! = 6 (the A repetitions). Similarly, swapping the two N's gives the same word, so divide by 2! = 2. Total distinct arrangements: 6! / (3! × 2!) = 720 / (6 × 2) = 720 / 12 = 60.
+**mistake_b:** Divided by 3! only (forgot the N repetition): 720/6 = 120.
+**mistake_c:** Divided by 4 (two times 2!, ignored 3!): 720/4 = 180.
+**mistake_d:** Divided by 2! only (forgot the A repetition): 720/2 = 360.
+**mistake_e:** Computed 6! = 720 (treated all letters as distinct, ignored all repetitions).
+**common_trap:** Forgetting to account for every repeated group. BANANA has two repeated letter groups (A appears 3 times AND N appears 2 times) — both must appear in the denominator.
+**takeaway:** Distinct arrangements with repeated letters: n! / (r₁! × r₂! × …). Count every repeated group before writing the denominator. BANANA: 6!/(3!×2!). Missing even one group gives a wrong multiple.
+**hint_nudge:** How many of each letter does BANANA contain?
+**hint_strategy:** Write out letter counts first. Each repeated group needs its own factorial in the denominator.
+**hint_setup:** 6! / (3! for A's × 2! for N's).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 90
+
+---
+
+## Q38
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combinations
+
+A street grid has 4 blocks running east and 3 blocks running north. A person walks from the southwest corner to the northeast corner, moving only east or north one block at a time. How many distinct routes are possible?
+
+- A) 12
+- B) 20
+- C) 35
+- D) 56
+- E) 70
+
+**answer:** C
+**fastest_path:** 4 east + 3 north = 7 moves total; choose which 3 are "north": C(7, 3) = 35.
+**explanation:** Any route from southwest to northeast requires exactly 4 moves east (E) and 3 moves north (N) — 7 moves total. The only choice is which 3 of the 7 moves are "north" (the other 4 are automatically "east"). This is a combination: C(7, 3) = 7!/(3!×4!) = (7×6×5)/6 = 35. Order of moves matters (the route matters), but we count distinct sequences of E's and N's, which equals the number of ways to place the 3 N's among 7 positions.
+**mistake_a:** Computed 4 × 3 = 12 (product of block counts, not a route formula).
+**mistake_b:** Computed C(6, 3) = 20 (miscounted total moves as 6 instead of 7).
+**mistake_d:** Computed C(8, 3) = 56 (miscounted total moves as 8).
+**mistake_e:** Computed C(8, 4) = 70 (wrong setup — probably counted 4 north and 4 east).
+**common_trap:** Getting the total-moves count wrong. A 4-block-wide × 3-block-tall grid requires exactly 4 E's and 3 N's = 7 moves. Count the blocks, not the intersections.
+**takeaway:** Grid-path counting: m east + n north moves → C(m+n, n) distinct routes. Reframe as "choose which n of the (m+n) moves are 'north.'"
+**hint_nudge:** How many total moves does any route require? How many of those must be east?
+**hint_strategy:** Every route is a sequence of exactly 4 E's and 3 N's. Choosing which positions are N determines the route.
+**hint_setup:** C(4+3, 3) = C(7, 3).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 105
+
+---
+
+## Q39
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combinations
+
+A basketball squad of exactly 3 forwards and 2 guards must be selected from a group of 7 forwards and 5 guards. How many different squads are possible?
+
+- A) 45
+- B) 210
+- C) 300
+- D) 350
+- E) 792
+
+**answer:** D
+**fastest_path:** C(7, 3) × C(5, 2) = 35 × 10 = 350.
+**explanation:** Two independent selections: choose 3 forwards from 7, then choose 2 guards from 5. Order within each group doesn't matter (a team is a team), so use combinations. C(7, 3) = (7×6×5)/(3×2×1) = 35. C(5, 2) = (5×4)/2 = 10. Multiply (the "AND" rule): 35 × 10 = 350.
+**mistake_a:** Computed C(7, 3) + C(5, 2) = 35 + 10 = 45 (added instead of multiplied — computes "OR," not "AND").
+**mistake_b:** Computed C(7, 2) × C(5, 2) = 21 × 10 = 210 (selected 2 forwards instead of 3).
+**mistake_c:** Some partial miscalculation.
+**mistake_e:** Computed C(12, 5) = 792 (selected any 5 from the full pool, ignored positional constraint).
+**common_trap:** Adding the two combination counts instead of multiplying — adding gives "or," but we need both conditions simultaneously ("AND" = multiply).
+**takeaway:** "Exactly X of type A AND exactly Y of type B" = C(n_A, X) × C(n_B, Y). Check that X + Y equals the required total.
+**hint_nudge:** Are the forward and guard selections independent of each other?
+**hint_strategy:** Select forwards independently from guards, then combine. What operation joins two independent selections?
+**hint_setup:** C(7, 3) × C(5, 2).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 90
+
+---
+
+## Q40
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Restrictions
+
+Five people are arranged in a row of 5 chairs. Person A cannot sit in the first chair. How many valid arrangements are possible?
+
+- A) 24
+- B) 48
+- C) 72
+- D) 96
+- E) 120
+
+**answer:** D
+**fastest_path:** Total − A-in-chair-1 = 5! − 4! = 120 − 24 = 96.
+**explanation:** Use the complement. Total arrangements: 5! = 120. Forbidden arrangements (A in chair 1): fix A in chair 1, arrange the other 4 in any order — 4! = 24. Valid arrangements: 120 − 24 = 96.
+
+Alternatively, count directly: chair 1 has 4 choices (anyone except A), then fill chairs 2–5 with the remaining 4 people in 4! = 24 ways. Total = 4 × 24 = 96. Both paths give 96.
+**mistake_a:** Computed 4! = 24 (counted only the forbidden arrangements, not the valid ones).
+**mistake_b:** Computed 2 × 4! = 48 (wrong factor).
+**mistake_c:** Computed 3 × 4! = 72 (wrong factor).
+**mistake_e:** Computed 5! = 120 (no constraint applied).
+**common_trap:** Stopping after computing the forbidden count (24) rather than subtracting from the total (120).
+**takeaway:** "Cannot be in position X" → forbidden count = (n−1)! (place everyone else freely after fixing the forbidden person there). Valid = n! − (n−1)!.
+**hint_nudge:** How many arrangements violate the rule? Once you know that, what's the subtraction?
+**hint_strategy:** Complement: total arrangements minus the arrangements where A IS in chair 1.
+**hint_setup:** 5! − 4! = 120 − 24.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 90
+
+---
+
+## Q41
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combinations
+
+Nine athletes are divided into three labeled relay teams (Team 1, Team 2, Team 3) of 3 athletes each. In how many ways can the teams be formed?
+
+- A) 280
+- B) 840
+- C) 1680
+- D) 5040
+- E) 10080
+
+**answer:** C
+**fastest_path:** C(9, 3) × C(6, 3) × C(3, 3) = 84 × 20 × 1 = 1,680.
+**explanation:** Assign athletes stage by stage. Choose 3 of 9 for Team 1: C(9, 3) = 84. Choose 3 of the remaining 6 for Team 2: C(6, 3) = 20. The last 3 go to Team 3: C(3, 3) = 1. Total = 84 × 20 × 1 = 1,680.
+
+Because the teams are labeled (Team 1, 2, 3 are distinct), no further adjustment is needed — we are not double-counting.
+**mistake_a:** Computed 1,680/6 = 280 (divided by 3! as if teams were unlabeled — but they are labeled here).
+**mistake_b:** Computed 1,680/2 = 840 (wrong divisor).
+**mistake_d:** Computed 5,040 via some permutation path (e.g., P(9,3) = 504 then multiplied wrong).
+**mistake_e:** Computed 1,680 × 6 = 10,080 (over-multiplied).
+**common_trap:** Dividing by 3! = 6 — treating the three labeled teams as interchangeable when they are not. Division by k! is correct only when groups are unlabeled and identical.
+**takeaway:** Labeled groups → no final division. Unlabeled groups → divide by (number of groups)!. The label "Team 1, 2, 3" makes the groups distinct; the same three people in different teams produce different outcomes.
+**hint_nudge:** Does it matter which specific team an athlete is on, given the teams are labeled?
+**hint_strategy:** Fill each labeled team sequentially. The order of filling does matter because the teams have distinct identities.
+**hint_setup:** C(9, 3) × C(6, 3) × C(3, 3). No additional division needed.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 105
+
+---
+
+## Q42
+
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Restrictions
+
+Ten people are available for a committee of 4. Two specific people, X and Y, refuse to serve on the same committee. How many valid committees are possible?
+
+- A) 140
+- B) 168
+- C) 182
+- D) 196
+- E) 210
+
+**answer:** C
+**fastest_path:** Total − both-X-and-Y-on-committee = C(10, 4) − C(8, 2) = 210 − 28 = 182.
+**explanation:** Complement: total committees minus the forbidden ones (where both X and Y serve). Total: C(10, 4) = (10×9×8×7)/24 = 210. Forbidden (both X and Y on committee): X and Y occupy 2 of the 4 slots; choose the remaining 2 members from the 8 others: C(8, 2) = 28. Valid: 210 − 28 = 182.
+**mistake_a:** Computed C(8, 4) = 70 (committees with neither X nor Y) and then added or adjusted incorrectly to 140.
+**mistake_b:** Computed C(10, 4) − C(8, 3) = 210 − 56 = 154, or some similar miscalculation, landing on 168.
+**mistake_d:** Computed C(10, 4) − C(8, 1) = 210 − 8 = 202, then adjusted to 196.
+**mistake_e:** Computed C(10, 4) = 210 (no constraint applied).
+**common_trap:** Computing C(8, 2) = 28 is only valid after recognizing that X and Y fill 2 slots, so the remaining 2 are chosen from the 8 others. Students who try to count "valid" directly often over-complicate it.
+**takeaway:** "A and B cannot both appear" → complement = total − C(n−2, k−2). Generalize: fix the forbidden pair in the committee, fill the rest from the remaining pool.
+**hint_nudge:** What is the simplest way to count committees where both X and Y are included?
+**hint_strategy:** Complement: total committees − committees where both X and Y appear.
+**hint_setup:** C(10, 4) − C(8, 2) = 210 − 28.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 120
+
+---
+
+## Q43
+
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Stars and Bars
+
+Eight identical pens are to be distributed among 3 students such that each student receives at least 1 pen and no student receives more than 4 pens. How many ways can the distribution be made?
+
+- A) 6
+- B) 12
+- C) 15
+- D) 18
+- E) 21
+
+**answer:** B
+**fastest_path:** Stars-and-bars after giving each 1 (6 remain, 0–3 each) minus over-limit cases: C(7, 2) − 3×C(3, 2) = 21 − 9 = 12.
+**explanation:** Let a, b, c be the pen counts (a + b + c = 8, 1 ≤ a, b, c ≤ 4). Substitute x = a−1, y = b−1, z = c−1 to convert the lower bound: x + y + z = 5, with 0 ≤ x, y, z ≤ 3.
+
+Without the upper bound: C(5+2, 2) = C(7, 2) = 21 solutions.
+
+Subtract cases where any variable ≥ 4 (violating the upper bound): if x ≥ 4, let x′ = x−4, then x′+y+z = 1, giving C(3, 2) = 3 solutions. By symmetry, y ≥ 4 and z ≥ 4 each give 3 more. Two variables ≥ 4 simultaneously is impossible (≥8 > 5). By inclusion-exclusion, subtract 3×3 = 9.
+
+Valid distributions: 21 − 9 = 12.
+
+Enumeration confirms: {1,3,4} in 3!/1 = 6 ordered ways; {2,2,4} in 3 ways; {2,3,3} in 3 ways. Total = 6+3+3 = 12. ✓
+**mistake_a:** Enumerated only the unordered partition count (3 distinct unordered splits) without accounting for orderings.
+**mistake_c:** Computed C(7, 2) − 2×C(3, 2) = 21 − 6 = 15 (subtracted only two of the three over-limit cases).
+**mistake_d:** Computed C(7, 2) − C(3, 2) = 21 − 3 = 18 (subtracted only one over-limit case).
+**mistake_e:** Computed C(7, 2) = 21 (stars-and-bars with lower bound only, ignored upper bound).
+**common_trap:** Forgetting to subtract the upper-bound violations — treating "each gets at most 4" as automatically satisfied after the lower-bound substitution.
+**takeaway:** Stars-and-bars with both a lower and upper bound: (1) substitute to eliminate the lower bound, (2) apply inclusion-exclusion to remove upper-bound violations. Each "at least k over the cap" case subtracts C(remaining+groups−1, groups−1).
+**hint_nudge:** After giving each student 1 pen, how many remain to distribute, and what upper bound remains on each student's total?
+**hint_strategy:** Lower bound → substitute to remove it. Upper bound → use inclusion-exclusion to subtract over-limit cases.
+**hint_setup:** x+y+z=5, 0≤x,y,z≤3. C(7,2) − 3×C(3,2) = 21 − 9.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 150
+
+---
+
+## Q44
+
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Restrictions
+
+Five people — A, B, C, D, E — are arranged in a row of 5 seats. How many arrangements satisfy both of these conditions: (1) A appears somewhere before B (not necessarily adjacent), and (2) C does not occupy the first or last seat?
+
+- A) 18
+- B) 24
+- C) 30
+- D) 36
+- E) 60
+
+**answer:** D
+**fastest_path:** P(A before B) = 5!/2 = 60. Of those, subtract P(A before B AND C first or last) = 2 × 4!/2 = 24. Result: 60 − 24 = 36.
+**explanation:** Two independent-looking conditions require a compound count.
+
+Step 1 — A before B: by symmetry, exactly half of all 5! = 120 arrangements have A before B. That gives 60.
+
+Step 2 — Among those 60, exclude arrangements where C is in seat 1 or seat 5.
+
+C in seat 1: fix C there; arrange A, B, D, E in seats 2–5 with A before B. By symmetry, half of 4! = 12 satisfy A before B.
+C in seat 5: same calculation → 12.
+C cannot be simultaneously in seat 1 and seat 5 → no overlap.
+
+Forbidden: 12 + 12 = 24.
+
+Valid: 60 − 24 = 36.
+
+Verification: 3 valid positions for C (seats 2, 3, 4). For each, arrange A, B, D, E in the remaining 4 seats with A before B: 4!/2 = 12 per position. Total = 3 × 12 = 36. ✓
+**mistake_a:** Computed 60/2/something = 18 (over-divided or applied both constraints as divisors rather than subtracting).
+**mistake_b:** Computed 12 + 12 = 24 (reported the forbidden count rather than the valid count).
+**mistake_c:** Computed 60 − 30 = 30 (subtracted wrong forbidden count).
+**mistake_e:** Computed only condition (1): 5!/2 = 60, ignoring condition (2).
+**common_trap:** Applying both constraints as divisors (dividing by 2 then by some factor for C's position) rather than using complement for condition (2).
+**takeaway:** When two constraints combine, compute one first, then apply the second via complement within the first. Verify with the "direct seat-by-seat" approach: for each valid C position, count the remaining arrangements — both paths should agree.
+**hint_nudge:** For condition (1), what fraction of all arrangements have A before B?
+**hint_strategy:** First count arrangements where A is before B. Then, from those, subtract the ones where C is in seat 1 or 5.
+**hint_setup:** 60 − (cases where A before B AND C in seat 1) − (cases where A before B AND C in seat 5).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 165
+
+---
+
+## Q45
+
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Circular
+
+Four men and four women are seated at a circular table with 8 identical chairs. No two women may sit adjacent to each other. How many distinct seating arrangements are possible? (Rotations that produce the same relative arrangement are considered identical.)
+
+- A) 24
+- B) 48
+- C) 72
+- D) 144
+- E) 576
+
+**answer:** D
+**fastest_path:** Fix one man (removes rotational equivalence). Arrange 3 remaining men in 3! = 6 ways. Place 4 women in the 4 gaps between men in 4! = 24 ways. Total = 6 × 24 = 144.
+**explanation:** If no two women are adjacent, men and women must alternate seats: M-W-M-W-M-W-M-W around the table.
+
+Fix one man (call him M1) to eliminate rotational equivalence — this is the standard circular-arrangement technique. The remaining 3 men fill the other 3 "man seats" in 3! = 6 ways. The 4 men create exactly 4 gaps between them (one gap between each consecutive pair, including the gap next to M1). The 4 women fill these 4 gaps in 4! = 24 ways.
+
+Total: 3! × 4! = 6 × 24 = 144.
+**mistake_a:** Computed only one factor: 4! = 24 (arranged women but forgot men).
+**mistake_b:** Computed 2 × 4! = 48 (introduced a wrong factor of 2).
+**mistake_c:** Computed 3 × 4! = 72 (wrong factor for men).
+**mistake_e:** Computed 4! × 4! = 576 (forgot to fix one man for rotational equivalence — treated as linear arrangement).
+**common_trap:** Forgetting to fix one person for the circular arrangement, yielding 4! × 4! = 576 instead of 3! × 4! = 144.
+**takeaway:** Circular alternating arrangement of n men and n women: fix one man, arrange (n−1) men in (n−1)! ways, place n women in n! ways. Total = (n−1)! × n!.
+**hint_nudge:** In a circular arrangement, what do you fix to remove rotational equivalence?
+**hint_strategy:** Fix one man to anchor the circle. How many ways can the remaining men and then the women be seated?
+**hint_setup:** Fix M1. Arrange 3 men: 3!. Fill 4 gaps with 4 women: 4!. Multiply.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 150
+
+---
+
+## Q46
+
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Circular
+
+Eight people — including two couples (Alice & Bob, Carol & Dave) — are to be seated around a circular table. Both couples must sit together (each couple in adjacent seats). How many distinct seating arrangements are possible? (Rotations are considered identical.)
+
+- A) 120
+- B) 240
+- C) 360
+- D) 480
+- E) 960
+
+**answer:** D
+**fastest_path:** Glue each couple → 6 units circular: (6−1)! × 2 × 2 = 120 × 4 = 480.
+**explanation:** Treat each couple as a single block. Alice & Bob become block [AB]; Carol & Dave become block [CD]. The 8 people reduce to 6 units: [AB], [CD], and the 4 other individuals.
+
+Circular arrangements of 6 distinct units: (6−1)! = 5! = 120.
+Block [AB] can be internally arranged as AB or BA: 2 ways.
+Block [CD] can be internally arranged as CD or DC: 2 ways.
+
+Total: 120 × 2 × 2 = 480.
+**mistake_a:** Computed (6−1)! = 120 (forgot both internal pair orderings).
+**mistake_b:** Computed 5! × 2 = 240 (included only one couple's internal ordering).
+**mistake_c:** Computed 6!/2 = 360 (wrong setup — treated as linear then halved).
+**mistake_e:** Computed 6! × 2 × 2 = 2,880... or (7−1)! × 4 = 720 × something. More likely: forgot to subtract one for circular, used 6! = 720 × 4/3 = 960.
+**common_trap:** Forgetting the × 2 internal ordering for each couple's block, or forgetting to use (n−1)! for the circular arrangement after forming blocks.
+**takeaway:** Circular arrangement with multiple forced-adjacent groups: (1) glue each group into a block, (2) use (units−1)! for circular count, (3) multiply by each block's internal arrangements (k! per block). Here: (6−1)! × 2! × 2! = 120 × 2 × 2 = 480.
+**hint_nudge:** If each couple must sit together, how many "units" are there to seat around the table?
+**hint_strategy:** Glue each couple into one block. Count circular arrangements of the resulting units. Multiply by internal orderings of each block.
+**hint_setup:** 6 units circular: 5! arrangements. Each couple's block has 2 internal orders. Total = 5! × 2 × 2.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**est_time_seconds:** 165

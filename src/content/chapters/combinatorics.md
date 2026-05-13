@@ -71,6 +71,11 @@ problem_sets:
       - combinatorics-q3
       - combinatorics-q4
       - combinatorics-q5
+      - combinatorics-q30
+      - combinatorics-q31
+      - combinatorics-q32
+      - combinatorics-q33
+      - combinatorics-q34
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -85,6 +90,17 @@ problem_sets:
       - combinatorics-q10
       - combinatorics-q11
       - combinatorics-q12
+      - combinatorics-q20
+      - combinatorics-q24
+      - combinatorics-q27
+      - combinatorics-q29
+      - combinatorics-q35
+      - combinatorics-q36
+      - combinatorics-q37
+      - combinatorics-q38
+      - combinatorics-q39
+      - combinatorics-q40
+      - combinatorics-q41
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -98,6 +114,18 @@ problem_sets:
       - combinatorics-q16
       - combinatorics-q17
       - combinatorics-q18
+      - combinatorics-q19
+      - combinatorics-q21
+      - combinatorics-q22
+      - combinatorics-q23
+      - combinatorics-q25
+      - combinatorics-q26
+      - combinatorics-q28
+      - combinatorics-q42
+      - combinatorics-q43
+      - combinatorics-q44
+      - combinatorics-q45
+      - combinatorics-q46
 ---
 
 ## @enumeration
