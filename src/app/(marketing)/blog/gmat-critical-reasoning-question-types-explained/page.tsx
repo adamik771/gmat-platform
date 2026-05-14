@@ -5,6 +5,7 @@ import JsonLd from "@/components/seo/JsonLd"
 import { articleLd } from "@/lib/structured-data"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
 import RelatedPosts from "@/components/marketing/RelatedPosts"
+import BlogInlineCTA from "@/components/marketing/BlogInlineCTA"
 
 const TITLE = "GMAT Critical Reasoning Question Types Explained"
 const DESCRIPTION =
@@ -352,6 +353,8 @@ export default function PostPage() {
             then wonder why they keep falling for the persuasive wrong
             answer.
           </Pull>
+
+          <BlogInlineCTA />
 
           <H2>The five mistakes that cost most CR points</H2>
 

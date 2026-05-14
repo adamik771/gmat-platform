@@ -5,6 +5,7 @@ import JsonLd from "@/components/seo/JsonLd"
 import { articleLd } from "@/lib/structured-data"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
 import RelatedPosts from "@/components/marketing/RelatedPosts"
+import BlogInlineCTA from "@/components/marketing/BlogInlineCTA"
 
 const TITLE = "GMAT Data Insights: The Complete Section Guide for 2026"
 const DESCRIPTION =
@@ -375,6 +376,8 @@ export default function PostPage() {
             better — both because the headroom is larger and because DI is
             scored on the same scale as the other two sections.
           </p>
+
+          <BlogInlineCTA />
 
           <H2>How to practice Data Insights</H2>
           <p>
