@@ -923,13 +923,13 @@ export default function ChapterReader({
 
               {hydrated &&
                 completedSections === totalSections &&
-                totalSections > 0 &&
-                (problemSets.length === 0 || hasAnyProblemSetResult(progress)) && (
+                totalSections > 0 && (
                   <ChapterCompletionCard
                     section={section}
                     title={title}
                     totalSections={totalSections}
                     problemSetCount={problemSets.length}
+                    attemptedProblemSetCount={countAttemptedProblemSets(progress)}
                   />
                 )}
             </div>
@@ -1035,14 +1035,19 @@ function ChapterCompletionCard({
   title,
   totalSections,
   problemSetCount,
+  attemptedProblemSetCount,
 }: {
   section: Section
   title: string
   totalSections: number
   problemSetCount: number
+  attemptedProblemSetCount: number
 }) {
   const practiceSlug =
     section === "Quant" ? "quant" : section === "Verbal" ? "verbal" : "di"
+  const hasProblemSets = problemSetCount > 0
+  const allSetsDone = hasProblemSets && attemptedProblemSetCount >= problemSetCount
+  const noneAttempted = hasProblemSets && attemptedProblemSetCount === 0
   return (
     <div
       className="relative overflow-hidden rounded-2xl border px-7 sm:px-10 py-9 sm:py-11"
@@ -1083,26 +1088,62 @@ function ChapterCompletionCard({
           style={{ color: "var(--read-text-body)" }}
         >
           {totalSections} section{totalSections === 1 ? "" : "s"} read
-          {problemSetCount > 0
-            ? ` · ${problemSetCount} graded problem set${
-                problemSetCount === 1 ? "" : "s"
-              } attempted`
+          {hasProblemSets
+            ? noneAttempted
+              ? ` · ${problemSetCount} graded problem set${
+                  problemSetCount === 1 ? "" : "s"
+                } waiting`
+              : allSetsDone
+              ? ` · all ${problemSetCount} graded problem set${
+                  problemSetCount === 1 ? "" : "s"
+                } attempted`
+              : ` · ${attemptedProblemSetCount} of ${problemSetCount} graded problem sets attempted`
             : ""}
-          . The skill won&apos;t stick without retrieval — try a timed
-          drill or the spaced-review queue next.
+          .{" "}
+          {noneAttempted ? (
+            <>
+              The reading is the easy part — retrieval is what locks it in.
+              Try a graded problem set next.
+            </>
+          ) : (
+            <>
+              The skill won&apos;t stick without retrieval — try a timed
+              drill or the spaced-review queue next.
+            </>
+          )}
         </p>
         <div className="flex flex-wrap gap-3 mt-6">
-          <Link
-            href={`/practice/session/${practiceSlug}`}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold transition-all duration-200 hover:-translate-y-0.5"
-            style={{
-              backgroundColor: "var(--read-gold)",
-              color: "var(--read-bg-inset)",
-            }}
-          >
-            Practice {section}
-            <ArrowRight className="w-3.5 h-3.5" aria-hidden />
-          </Link>
+          {noneAttempted ? (
+            <a
+              href="#chapter-problem-sets"
+              onClick={(e) => {
+                e.preventDefault()
+                const el = document.getElementById("chapter-problem-sets")
+                if (!el) return
+                el.scrollIntoView({ behavior: "smooth", block: "start" })
+              }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold transition-all duration-200 hover:-translate-y-0.5"
+              style={{
+                backgroundColor: "var(--read-gold)",
+                color: "var(--read-bg-inset)",
+              }}
+            >
+              Try the problem sets
+              <ArrowRight className="w-3.5 h-3.5" aria-hidden />
+            </a>
+          ) : (
+            <Link
+              href={`/practice/session/${practiceSlug}`}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold transition-all duration-200 hover:-translate-y-0.5"
+              style={{
+                backgroundColor: "var(--read-gold)",
+                color: "var(--read-bg-inset)",
+              }}
+            >
+              Practice {section}
+              <ArrowRight className="w-3.5 h-3.5" aria-hidden />
+            </Link>
+          )}
           <Link
             href="/review/all"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold border transition-colors"
@@ -1813,6 +1854,15 @@ function hasAnyProblemSetResult(progress: ChapterProgress): boolean {
     const entry = r[d]
     return !!entry && entry.total > 0
   })
+}
+
+function countAttemptedProblemSets(progress: ChapterProgress): number {
+  const r = progress.problemSetResults
+  if (!r) return 0
+  return (["easy", "medium", "hard"] as const).reduce((acc, d) => {
+    const entry = r[d]
+    return acc + (entry && entry.total > 0 ? 1 : 0)
+  }, 0)
 }
 
 function ProblemSetCard({
