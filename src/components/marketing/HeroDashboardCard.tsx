@@ -6,8 +6,8 @@ import { Flame } from "lucide-react"
 import { motion, useReducedMotion } from "framer-motion"
 
 const miniData = [
-  { v: 590 }, { v: 610 }, { v: 625 }, { v: 638 },
-  { v: 650 }, { v: 663 }, { v: 672 }, { v: 680 },
+  { v: 545 }, { v: 565 }, { v: 575 }, { v: 585 },
+  { v: 595 }, { v: 605 }, { v: 615 }, { v: 625 },
 ]
 
 // Returns true on the client after hydration, false during SSR. Replaces
@@ -48,9 +48,9 @@ export default function HeroDashboardCard() {
           <div>
             <p className="text-xs text-[#555555]">Readiness Band</p>
             <p className="text-2xl font-bold text-[#F0F0F0]">
-              680{" "}
+              625{" "}
               <span className="text-sm font-normal" style={{ color: "#3ECF8E" }}>
-                ↑ +12
+                ↑ +10
               </span>
             </p>
           </div>
