@@ -1,4 +1,5 @@
-import { AlertCircle } from "lucide-react"
+import Link from "next/link"
+import { AlertCircle, X } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getAllQuestions, type ParsedQuestion } from "@/lib/content"
 import {
@@ -27,7 +28,12 @@ import BreakdownCard, {
 } from "./BreakdownCard"
 import InsightsPanel from "./InsightsPanel"
 
-export default async function ErrorLogPage() {
+export default async function ErrorLogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ session_id?: string }>
+}) {
+  const { session_id: sessionIdFilter } = await searchParams
   let mistakes: MistakeEntry[] = []
   let hasUser = false
 
@@ -42,8 +48,10 @@ export default async function ErrorLogPage() {
 
       // Grab every wrong attempt + join the parent session's created_at so we
       // can timestamp and link rows. Supabase nested select syntax returns
-      // the related row under the relationship name.
-      const { data: attempts } = await supabase
+      // the related row under the relationship name. When `session_id` is
+      // present in the query string, scope to that session — used by the
+      // "Tag mistakes from this session" CTA on the practice completion screen.
+      let attemptsQuery = supabase
         .from("practice_attempts")
         .select(
           "id, question_id, section, topic, subtopic, difficulty, question_type, selected_answer, time_spent_ms, session_id, practice_sessions(slug, created_at)"
@@ -52,6 +60,10 @@ export default async function ErrorLogPage() {
         .eq("is_correct", false)
         .order("session_id", { ascending: false })
         .limit(200)
+      if (sessionIdFilter) {
+        attemptsQuery = attemptsQuery.eq("session_id", sessionIdFilter)
+      }
+      const { data: attempts } = await attemptsQuery
 
       // Pull tags for the same user in a second query and merge by id. Doing
       // this separately (vs an FK join) avoids Supabase relationship-cache
@@ -390,6 +402,22 @@ export default async function ErrorLogPage() {
               "Sign in to see questions you've missed in practice sets, with explanations and quick links back to the sets."
             )}
           </p>
+          {sessionIdFilter && (
+            <div className="mt-5 inline-flex items-center gap-2 text-[12px] text-[#C0C0C0] px-3 py-1.5 rounded-full border border-white/[0.08] bg-[#0A0A0A]">
+              <span className="tabular-nums">
+                Viewing one session
+              </span>
+              <span className="text-[#444444]">·</span>
+              <Link
+                href="/error-log"
+                className="inline-flex items-center gap-1 font-semibold hover:text-[#F0F0F0] transition-colors"
+                style={{ color: "#C9A84C" }}
+              >
+                Show all
+                <X className="w-3 h-3" />
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 
