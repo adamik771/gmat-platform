@@ -111,6 +111,18 @@ problem_sets:
       - reading-comprehension-q23
       - reading-comprehension-q36
       - reading-comprehension-q48
+      - reading-comprehension-q53
+      - reading-comprehension-q54
+      - reading-comprehension-q56
+      - reading-comprehension-q57
+      - reading-comprehension-q59
+      - reading-comprehension-q62
+      - reading-comprehension-q65
+      - reading-comprehension-q66
+      - reading-comprehension-q67
+      - reading-comprehension-q68
+      - reading-comprehension-q71
+      - reading-comprehension-q72
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -136,6 +148,15 @@ problem_sets:
       - reading-comprehension-q47
       - reading-comprehension-q51
       - reading-comprehension-q52
+      - reading-comprehension-q55
+      - reading-comprehension-q58
+      - reading-comprehension-q60
+      - reading-comprehension-q61
+      - reading-comprehension-q63
+      - reading-comprehension-q64
+      - reading-comprehension-q69
+      - reading-comprehension-q70
+      - reading-comprehension-q73
 ---
 
 ## @how-to-read-an-rc-passage

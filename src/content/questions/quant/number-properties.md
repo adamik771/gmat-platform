@@ -270,19 +270,19 @@ The sum of five consecutive integers is 85. What is the largest of the five inte
 
 What is the units digit of 3²⁴?
 
-- A) 1
-- B) 3
-- C) 7
-- D) 9
-- E) 0
+- A) 0
+- B) 1
+- C) 3
+- D) 7
+- E) 9
 
-**answer:** A
+**answer:** B
 **fastest_path:** Powers of 3 cycle [3, 9, 7, 1] (period 4). 24 mod 4 = 0 → position 4 → units digit 1.
 **explanation:** Units digits of 3^n cycle with period 4: 3¹=3, 3²=9, 3³=27→7, 3⁴=81→1, then repeats. Position in cycle = n mod 4 (use 4 if 0). 24 mod 4 = 0 → position 4 → units digit 1.
-**mistake_b:** Bubbled the base 3 — ignored the cycle.
-**mistake_c:** Bubbled position 3 in the cycle (= 7), not position 4.
-**mistake_d:** Bubbled position 2 in the cycle (= 9).
-**mistake_e:** Confused with units digit 0 — only multiples of 10 end in 0.
+**mistake_a:** Confused with units digit 0 — only multiples of 10 end in 0, and 3^n never picks up a factor of 10.
+**mistake_c:** Bubbled the base 3 — ignored the cycle entirely.
+**mistake_d:** Bubbled position 3 in the cycle (= 7), not position 4.
+**mistake_e:** Bubbled position 2 in the cycle (= 9).
 **common_trap:** When n mod 4 = 0, position is 4 (end of the cycle), not 0 (undefined). Easy to mis-index.
 **takeaway:** Units-digit cycles of length 4 for primes 2, 3, 7, 8: 2→[2,4,8,6], 3→[3,9,7,1], 7→[7,9,3,1], 8→[8,4,2,6].
 **related_reading:** reading-quant-03-number-properties
@@ -618,19 +618,19 @@ Is the positive integer n divisible by 18?
 
 What is the units digit of 7^100?
 
-- A) 1
-- B) 3
-- C) 7
-- D) 9
-- E) 0
+- A) 0
+- B) 1
+- C) 3
+- D) 7
+- E) 9
 
-**answer:** A
+**answer:** B
 **fastest_path:** 7-cycle [7, 9, 3, 1]. 100 mod 4 = 0 → position 4 → 1.
 **explanation:** Units digit of 7^n cycles [7, 9, 3, 1] with period 4. 100 mod 4 = 0 → position 4 → units digit 1.
-**mistake_b:** Took position 3 in the cycle (= 3).
-**mistake_c:** Bubbled the base 7 — ignored the cycle.
-**mistake_d:** Took position 2 in the cycle (= 9).
-**mistake_e:** Bubbled 0 — but 7^n never ends in 0.
+**mistake_a:** Bubbled 0 — but 7^n never ends in 0 (no factor of 10 ever appears).
+**mistake_c:** Took position 3 in the cycle (= 3).
+**mistake_d:** Bubbled the base 7 — ignored the cycle.
+**mistake_e:** Took position 2 in the cycle (= 9).
 **common_trap:** When n mod 4 = 0, position is 4 (end of cycle), not 0 (undefined). Mis-indexing here is the most common units-digit error.
 **takeaway:** For units-digit cycles: position 4 corresponds to mod 4 = 0. The 7-cycle: 7^1=7, 7^2=49, 7^3=...3, 7^4=...1, 7^5=...7.
 **related_reading:** reading-quant-03-number-properties
