@@ -49,7 +49,7 @@ Which of the following is equivalent to (x³)⁴ / x⁵?
 **fastest_path:** (x³)⁴ = x^(3×4) = x¹². Divide: x¹² / x⁵ = x^(12−5) = x⁷.
 **explanation:** Two exponent rules: (a) power of a power multiplies exponents — (x³)⁴ = x^(3×4) = x¹². (b) Same-base division subtracts exponents — x¹² / x⁵ = x^(12−5) = x⁷. The whole computation is two mechanical steps.
 **mistake_a:** Subtracted 3 from 5 (treated denominator as numerator) — got x^2.
-**mistake_c:** Multiplied exponents at every step — got 3 × 4 × 5 = 60, then somehow truncated to x¹². The reasoning chain confused multiplication and division.
+**mistake_c:** Correctly computed (x³)⁴ = x¹² but stopped there, forgetting to divide by x⁵. The intermediate result x¹² is the numerator only.
 **mistake_d:** Multiplied (x³)⁴ as x^(3+4) = x^7, then multiplied by x^5 instead of dividing — got x^15.
 **mistake_e:** Computed 3 × 4 + 5 = 17 by adding the bottom exponent rather than subtracting.
 **common_trap:** Confusing exponent rules — multiplying when you should subtract, or adding when you should multiply.
@@ -126,7 +126,7 @@ If x² - 5x - 14 = 0, what is the product of the two solutions?
 **answer:** A
 **fastest_path:** Vieta's: for x² + bx + c = 0, product of roots = c. Here c = −14.
 **explanation:** Vieta's formulas: for ax² + bx + c = 0, sum of roots = −b/a, product of roots = c/a. With a = 1, the product is just c = −14. Total time: 5 seconds. Factoring (x − 7)(x + 2) = 0, giving roots 7 and −2 with product −14, also works but takes 30+ seconds.
-**mistake_b:** Computed −b = 5, then halved (some confusion of sum vs product formulas).
+**mistake_b:** Attempted to factor and set up (x + 7)(x − 2) = x² + 5x − 14 (wrong sign on the middle term); deduced roots −7 and 2, then reported the negative root −7 as the answer rather than the product of the correct roots.
 **mistake_c:** Sum of roots: −b/a = 5 — confused sum with product.
 **mistake_d:** Forgot the negative sign on the constant term.
 **mistake_e:** Used |c| = 14, missing the sign.
@@ -153,7 +153,7 @@ If f(x) = 2x² - 3x + 1, what is the value of f(3) - f(1)?
 **fastest_path:** f(3) = 2(9) − 9 + 1 = 10. f(1) = 2 − 3 + 1 = 0. Difference = 10.
 **explanation:** f(3) = 2(9) − 3(3) + 1 = 18 − 9 + 1 = 10. f(1) = 2(1) − 3(1) + 1 = 2 − 3 + 1 = 0. f(3) − f(1) = 10.
 **mistake_a:** Slip → 8 (likely arithmetic error in f(3) computation).
-**mistake_c:** Computed f(3) + f(1) instead of f(3) − f(1) → 10 + 0… no, but a likely sign-flip path: 2(9) − 3(3) − 1 = 8, then 8 + 4 → 12.
+**mistake_c:** Computed f(1) = 2(1) − 3(1) − 1 = −2 (sign flip on the constant term: subtracted 1 instead of adding it), then f(3) − f(1) = 10 − (−2) = 12.
 **mistake_d:** Slip → 14.
 **mistake_e:** Computed f(3) but treated f(1) as 1 instead of 0 → 10 + 6, or skipped the subtraction entirely.
 **common_trap:** Arithmetic slip on f(3) = 18 − 9 + 1, especially flipping the order of operations on −3(3).
@@ -181,7 +181,7 @@ At a bakery, 2 muffins and 3 scones cost $21, while 4 muffins and 1 scone cost $
 **mistake_a:** Picked the smallest answer without testing.
 **mistake_b:** Computed 4m + s = 17 with s = 2: m = $3.75 (non-integer; should reject as a "clean" trial signal).
 **mistake_c:** Tested s = 3 and didn't iterate to higher values when arithmetic didn't match.
-**mistake_d:** Algebra slip: −10m = 30 (sign error), got m = −3, then s = 29.
+**mistake_d:** Solved for m correctly (m = 3) but made an arithmetic slip computing s: wrote 4 × 3 = 13 instead of 12, giving s = 17 − 13 = 4.
 **common_trap:** algebra-by-default — full elimination on a problem with backsolvable integer answer choices.
 **takeaway:** Two-equation, two-unknown problems with integer answer choices reward backsolving the asked variable; algebra is the fallback.
 **related_reading:** reading-quant-08-method-selection
@@ -230,7 +230,7 @@ If the roots of the equation x² + bx + c = 0 are each increased by 2, the resul
 **answer:** A
 **fastest_path:** Find roots of x² − 6x + 5 = 0 → 1 and 5. Original roots = 1 − 2 = −1 and 5 − 2 = 3. Sum = −b, so b = −2. Product = c, so c = −3. b + c = −5.
 **explanation:** Factor x² − 6x + 5 = (x − 1)(x − 5), so roots are 1 and 5. The new roots are each 2 more than the original, so original roots = −1 and 3. Apply Vieta's to x² + bx + c = 0: sum of roots = −b → (−1 + 3) = −b → b = −2. Product of roots = c → (−1)(3) = c → c = −3. Therefore b + c = −5.
-**mistake_b:** Computed b = +2 (forgot the sign on Vieta's: sum = −b/a, not +b/a).
+**mistake_b:** Stopped after computing c = −3 (the product of the original roots −1 and 3) and bubbled that value without computing b or the sum b + c.
 **mistake_c:** Mistakenly added 2 to the new roots instead of subtracting (got original roots = 3 and 7, then computed differently).
 **mistake_d:** Switched the direction of "increased by 2" — added 2 instead of subtracting from the new roots.
 **mistake_e:** Computed sum and product of the *new* roots and reported that.
@@ -257,7 +257,7 @@ If 4^(a+1) = 8^a, what is the value of a?
 **fastest_path:** Common base 2: 4^(a+1) = 2^(2a+2); 8^a = 2^(3a). Set exponents equal: 2a + 2 = 3a → a = 2.
 **explanation:** Rewrite both sides with the same base. 4 = 2², so 4^(a+1) = 2^(2(a+1)) = 2^(2a+2). 8 = 2³, so 8^a = 2^(3a). The equation becomes 2^(2a+2) = 2^(3a), which (since the bases are equal) requires the exponents to be equal: 2a + 2 = 3a → a = 2. Verify: 4³ = 64 and 8² = 64 ✓.
 **mistake_a:** Set 4 + 1 = 8 × a (treated bases additively).
-**mistake_c:** Solved 2a = 3a, got a = 0; then bubbled wrong.
+**mistake_c:** Set up the common-base equation 2a + 2 = 3a correctly but solved it by writing a = 2 + 1 = 3 — incorrectly adding the constant to both sides instead of subtracting 2a to isolate a = 2.
 **mistake_d:** Multiplied incorrectly: 2(a+1) = 3a → 2a + 2 = 3a; got a = 2 correctly but slipped on the answer letter.
 **mistake_e:** Misread 4^(a+1) as 4^a + 1, leading to wrong setup.
 **common_trap:** Exponent rules misapplied — power-of-power vs. product-of-powers.
@@ -285,7 +285,7 @@ For all positive integers n, let f(n) = n² - n. What is the value of f(f(3))?
 **mistake_a:** Stopped at the inner computation: f(3) = 6 — bubbled the intermediate value.
 **mistake_b:** Computed f(3) × 2 = 12 (multiplied instead of composing).
 **mistake_d:** Computed f(7) = 49 − 7 = 42 — wrong inner argument.
-**mistake_e:** Computed (f(3))² − f(3) = 36 − 6 = 30 ... wait, that gives 30 (correct). Or f(3)² − 1 = 35; 7² + 7 = 56.
+**mistake_e:** Applied n² + n (adding instead of subtracting) for the outer computation: f(6) = 36 + 6 = 42 (→ D). A separate slip: computed f(3) = 9 − 1 = 8 (subtracted the wrong index term), then f(8) = 64 − 8 = 56.
 **common_trap:** Stopping at the inner result and bubbling — composition requires both layers.
 **takeaway:** f(f(x)) means apply f twice: compute f(x) first, then apply f to that result.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -309,8 +309,8 @@ If xy = 6 and x² + y² = 20, what is the value of (x + y)²?
 **fastest_path:** (x + y)² = x² + y² + 2xy = 20 + 12 = 32.
 **explanation:** Use the algebraic identity (x + y)² = x² + 2xy + y². Substitute the given values: x² + y² = 20 and xy = 6, so (x + y)² = 20 + 2(6) = 32. The identity collapses the answer in one step. Solving for x and y individually (using both given equations) is harder and unnecessary.
 **mistake_a:** Added 20 + 6 = 26 — forgot to double the xy term in the identity.
-**mistake_b:** Subtracted: 20 − 12 = 8, then computed differently. Actually 20 + 6 + 2 = 28 (mis-applied identity).
-**mistake_c:** Computed (x + y)² but using 20 − 2(6) = 8 — wrong sign on the cross term. Actually 20 + 6 + 4 = 30.
+**mistake_b:** Added the coefficient instead of multiplying: 2 + xy = 2 + 6 = 8 (should be 2 × xy = 12), then 20 + 8 = 28.
+**mistake_c:** Applied the identity correctly but misread xy = 5 (off by one from the given xy = 6): 20 + 2(5) = 30.
 **mistake_e:** Computed x² + y² + xy + xy = 20 + 12 + ... or some other miscombination producing 36.
 **common_trap:** missing-algebraic-shortcut — solving for x, y individually when the identity gives the answer in one step.
 **takeaway:** Memorize (x + y)² = x² + 2xy + y² and (x − y)² = x² − 2xy + y². When asked for (x ± y)² given x² + y² and xy, the identity is one step.
@@ -505,7 +505,7 @@ If f(x) = ax + b where a and b are constants, what is the value of f(5)?
 ---
 
 ## Q20
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Algebra Translation
 
@@ -547,10 +547,10 @@ Let x, y, and z be positive real numbers with x + y + z = 12 and xy + yz + zx = 
 **answer:** A
 **fastest_path:** (x+y+z)² = x²+y²+z² + 2(xy+yz+zx) → 144 = sum_of_squares + 78 → sum_of_squares = 66.
 **explanation:** Use the symmetric-sum identity (x + y + z)² = x² + y² + z² + 2(xy + yz + zx). Substitute: (12)² = (x² + y² + z²) + 2(39) → 144 = (x² + y² + z²) + 78 → x² + y² + z² = 66.
-**mistake_b:** Computed (sum)² + (cross-product sum) = 144 + 39 = ... no, mis-applied somewhere.
-**mistake_c:** Forgot the factor of 2: 144 − 39 = 105? No, picked 78 = 2 × 39 directly without subtracting from 144.
-**mistake_d:** Subtracted 39 directly (without the factor of 2): 144 − 39 = 105.
-**mistake_e:** Used 12² + 2(39) = 222 / something else.
+**mistake_b:** Arithmetic slip: computed 2(xy + yz + zx) = 2(39) = 72 (should be 78), then 144 − 72 = 72.
+**mistake_c:** Correctly computed 2(xy + yz + zx) = 78 but bubbled that intermediate value instead of subtracting from 144: x² + y² + z² = 78 (forgot the final step).
+**mistake_d:** Plausible distractor — no single clean arithmetic path leads here; it exists to discourage guessing adjacent values near the correct answer.
+**mistake_e:** Dropped the factor of 2 from the identity: treated (x + y + z)² = x² + y² + z² + (xy + yz + zx), giving 144 − 39 = 105.
 **common_trap:** missing-algebraic-shortcut + factor-of-2 error — solving for x, y, z individually (impossible without more info) or forgetting the factor of 2 on the cross-product sum.
 **takeaway:** (x + y + z)² = (sum of squares) + 2(sum of pairwise products). Memorize for symmetric-sum problems.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -638,7 +638,7 @@ If the roots of the quadratic equation x² + bx + 12 = 0 differ by 1, what are t
 ---
 
 ## Q25
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Word Problem — Relative Motion
 
@@ -653,10 +653,10 @@ Two hikers start at the same time from opposite ends of a trail that is 24 miles
 **answer:** C
 **fastest_path:** Closing speed = 3 + 5 = 8 mph. Time = 24 / 8 = 3 hours. Meet at 11:00 AM.
 **explanation:** Two objects moving toward each other have a combined "closing speed" equal to the sum of their individual speeds: 3 + 5 = 8 mph. Distance to close = 24 miles. Time = 24/8 = 3 hours. Starting at 8:00 AM, they meet at 11:00 AM.
-**mistake_a:** Computed time using just Hiker X (3 mph) for half the distance (12 miles): 12/3 = 4 hours? No, 12/3 = 4, then 8:00 + 2 = 10:00. Some half-distance approach.
-**mistake_b:** Average speed (3+5)/2 = 4 mph; 24/4 = 6 hours; 8:00 + 2.5 = 10:30. Some confusion.
-**mistake_d:** Used Hiker Y's speed alone: 24/5 = 4.8 hours, ≈ 12:48 — bubbled approximate 11:30.
-**mistake_e:** Used Hiker X's speed alone: 24/3 = 8 hours; 8:00 + 4 = 12:00 noon.
+**mistake_a:** Arithmetic error in the final division: computed 24 ÷ 8 = 2 (instead of 3), then 8:00 AM + 2 hours = 10:00 AM.
+**mistake_b:** Misread the trail length as 20 miles and correctly applied closing speed: 20/(3 + 5) = 20/8 = 2.5 hours → 8:00 AM + 2:30 = 10:30 AM.
+**mistake_d:** Correctly found t = 3 hours but made a temporal arithmetic slip: computed 8:00 AM + 3 hours 30 minutes = 11:30 AM (misread 3 hours as 3.5 hours on the clock).
+**mistake_e:** Assumed only the slower hiker (X at 3 mph) needs to reach the midpoint: 12/3 = 4 hours → 8:00 AM + 4 hours = 12:00 noon.
 **common_trap:** Using a single hiker's speed instead of the combined closing speed.
 **takeaway:** When two objects move toward each other, add their speeds to get the closing speed; divide total distance by closing speed for meeting time.
 **related_reading:** reading-quant-05-word-problems
@@ -707,9 +707,9 @@ If f(x) = 2x + 3 and g(x) = x² − 1, what is f(g(2))?
 **fastest_path:** g(2) = 4 − 1 = 3. f(3) = 6 + 3 = 9.
 **explanation:** Composition is applied inside out. Compute the inner first: g(2) = 2² − 1 = 4 − 1 = 3. Then apply f: f(3) = 2(3) + 3 = 9. Total time: 15 seconds.
 **mistake_a:** Computed g(2) = 3 and bubbled (stopped at the inner result).
-**mistake_b:** Computed f(2) = 7, then somehow got 7.
-**mistake_d:** Computed f(2) + g(2) = 7 + 3 = 10; then off-by-one to 11.
-**mistake_e:** Mixed order: g(f(2)) = g(7) = 49 − 1 = 48 ≠ 13. Or f(2) × g(2) = 21 ≠ 13. Some hybrid producing 13.
+**mistake_b:** Computed f(2) = 2(2) + 3 = 7 and bubbled — evaluated f at the outer argument directly, ignoring g.
+**mistake_d:** Computed g(2) = 2² = 4 (forgot the −1 in g(x) = x² − 1), then f(4) = 2(4) + 3 = 11.
+**mistake_e:** Evaluated g with a sign error: g(2) = 2² + 1 = 5 (added instead of subtracting 1), then f(5) = 2(5) + 3 = 13.
 **common_trap:** Wrong composition order — computing g(f(x)) instead of f(g(x)), or stopping at the inner function's output.
 **takeaway:** f(g(x)) means "first apply g, then f." Always compute the *innermost* function first.
 **related_reading:** reading-quant-04-algebra-and-equations
