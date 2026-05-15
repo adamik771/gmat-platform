@@ -149,6 +149,8 @@ Let's sanity-check: P(7, 2) = 7! / 5! = (7 × 6 × 5!) / 5! = 7 × 6 = 42. ✓
 
 **Special case — all n at once.** When k = n, P(n, n) = n! / 0! = n! / 1 = n!. Reassuring: picking all 7 candidates in order is just arranging 7 things, which is 7! = 5040.
 
+> **Recall prompt.** Cover this section and state the P(n, k) formula from memory. Then explain *why* the denominator is (n − k)!. If you can say "it cancels the arrangements of the objects we never picked — we don't care how the leftover (n − k) candidates order themselves," you own the formula rather than just the label. If you couldn't explain the denominator, re-read the "Why the formula works" paragraph before moving to the check question.
+
 **Trap to watch.** The GMAT loves to write a problem that sounds like a permutation but is actually a combination. "A committee of 3 is chosen from 10" is C(10, 3). "A president, VP, and treasurer are chosen from 10" is P(10, 3) = 720, six times larger. The word that usually tips you off: distinct roles named = permutation.
 
 ## @combinations
@@ -212,6 +214,18 @@ Example: A committee of 3 is picked from 5 men and 4 women. How many committees 
 
 Trying to count "at least 1 woman" directly means splitting into cases (exactly 1, exactly 2, exactly 3) — slow and error-prone.
 
+**Alternating arrangements.** "How many ways can 3 boys and 3 girls sit in a row, alternating by gender?" The key move is to identify valid seat templates before counting arrangements.
+
+With 6 seats in a row, exactly two templates produce a strict alternation:
+- Template A: B – G – B – G – B – G (boys in odd seats)
+- Template B: G – B – G – B – G – B (girls in odd seats)
+
+For Template A: 3! ways to arrange the boys across the three boy-seats × 3! for the girls = 6 × 6 = 36. Template B gives another 36. Total: **72**.
+
+The approach: **(number of valid templates) × (arrangements per template)**. Count the valid templates first — this is usually 1 or 2 — then multiply. A direct count is faster here than any complement approach.
+
+**Trap to watch for alternating.** When the two groups differ in size — say 4 boys and 3 girls in 7 seats — there may be only ONE valid template (the larger group must occupy the four "odd" positions). Don't reflexively multiply by 2. Sketch the seat map in five seconds and count templates explicitly.
+
 ## @circular
 
 In a **circular arrangement** — people around a round table, beads on a bracelet, etc. — **rotations of the same arrangement count as identical**. There's no "seat #1" because every seat is equivalent.
@@ -225,6 +239,12 @@ To strip out rotational duplicates: fix one object in place, then arrange the re
 **Why?** If you rotate any arrangement by one seat, you get the same *relative* ordering — Ana still has Ben to her left and Cal to her right. 5 different rotations all give the same circular arrangement, so 5! / 5 = 4! = 24.
 
 **Watch for distinguishable seats.** A head table with a specific "head" chair, a rectangular table where the ends differ, a round table with numbered chairs — those aren't truly circular. Use n! (normal permutations) if the seats are distinguishable.
+
+**Worked example: labeled chairs.** Six executives sit at a round table where the chairs are numbered 1 through 6. How many arrangements are there?
+
+Because chair 1 is distinguishable from chair 2, rotating everyone one seat forward *changes* the arrangement — Ana moves from chair 1 to chair 2, which is a different outcome. The rotational-equivalence argument breaks down: total arrangements = **6! = 720**, not (6 − 1)! = 120.
+
+The quick test: *Does moving everyone one seat clockwise produce a new arrangement?* If the seats have labels, fixed landmarks, or special positions — yes. Use n!. If the seats are interchangeable — no. Use (n − 1)!. The labeled-chairs answer is exactly 6 times larger than the unlabeled answer, which is the number of rotations.
 
 **Bracelets and necklaces** (rare on GMAT): circular AND flippable. Divide by 2 to account for mirror images. (n − 1)! / 2. If you see this, it's probably a 745+ question — take your best guess and move on if time is tight.
 
@@ -247,6 +267,10 @@ When some objects are **identical**, straight factorial overcounts because swapp
 - **Binary sequences.** "How many 7-character strings with exactly 3 A's and 4 B's?" = 7! / (3! × 4!) = 35 (this is C(7, 3) — choosing positions for the A's).
 
 **Connection to combinations.** When you have only two kinds of objects, the multiset arrangement formula collapses into a combination. "How many arrangements of AAABBBB" = C(7, 3) = 35. Useful to internalize — it's the same calculation looked at two ways.
+
+> **Self-explanation prompt.** Why does the MISSISSIPPI formula divide by each repeated group's *factorial* rather than just the count of repeats? Think through a simpler case: four identical letters SSSS. Without any correction, you'd count 4! = 24 arrangements, but they're all the same string. Dividing by 4! collapses all 24 phantom rearrangements down to the 1 real one. That logic applies independently to every repeated group — hence the product of factorials in the denominator. If you can reproduce this reasoning without peeking, the formula is permanent knowledge.
+
+**Trap to watch.** Don't forget *every* repeated group. BANANA has 1 B, 3 A's, and 2 N's — six letters total. The denominator requires both 3! for the A's *and* 2! for the N's: 6! / (3! × 2!) = 720 / 12 = 60. Missing the N factor inflates the answer by 2, which is always a wrong answer choice the test provides.
 
 ## @decision
 
@@ -284,4 +308,17 @@ That's the entire chapter's content in 8 lines. Memorize the decision tree — w
 | "Letters of [repeated word]" | Multiset | n! / (r₁! × r₂! × …) |
 | "Round-robin: every pair plays once" | Combination | C(n, 2) |
 
-When you finish the end-of-chapter sets below, keep this table open. By the time you've done 15-20 combinatorics questions with it at your elbow, you won't need it anymore.
+**Final recall challenge.** Before you open the problem sets, close this section and do the following from memory:
+
+1. State the four decision-tree questions in order.
+2. Write the formulas for P(n, k) and C(n, k).
+3. State the circular-arrangements formula and the one condition that disqualifies it.
+4. Describe the multiset formula in one sentence.
+
+If you can complete all four in under two minutes, you're ready to drill. If you stumble on any one, return to that section first — the problem sets test all four simultaneously, and gaps now become costly time sinks on test day.
+
+**What to do next.** Work through the three problem sets in order — easy, then medium, then hard. After each question you miss, identify *which* of the four decisions in the tree you got wrong. Was it order vs. no-order? A missed restriction (adjacent, alternating, forbidden)? A circular arrangement treated as linear? A forgotten repeated group? Naming the specific error is more valuable than re-reading the chapter cold.
+
+Combinatorics typically appears on 1–2 Quant questions per GMAT. That's a small number, but the leverage is high: students with the decision tree automated solve them in under 90 seconds and bank that time for harder algebra. Students without it guess and lose 2–3 minutes. The payoff from mastering this chapter is unusually clear.
+
+When you finish the end-of-chapter sets, keep this table open the first few times. By 15–20 questions done, you won't need it.
