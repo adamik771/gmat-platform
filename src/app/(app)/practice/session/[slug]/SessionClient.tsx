@@ -26,6 +26,7 @@ import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
 } from "@/lib/keyboard"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 
 export interface SessionQuestion {
   id: string
@@ -1208,6 +1209,36 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+    const missed = answeredCount - correctCount
+
+    // Determine the contextual next-step recommendation
+    const sessionChapterSlug = TOPIC_TO_CHAPTER[topic]
+    let nextStepTitle: string
+    let nextStepDesc: string
+    let nextStepHref: string
+    let nextStepLink: string
+    let nextStepIcon: React.ReactNode
+
+    if (accuracy < 65 && sessionChapterSlug) {
+      nextStepTitle = `Revisit the ${topic} chapter`
+      nextStepDesc = `An accuracy of ${accuracy}% points to gaps in the underlying concepts. Returning to the chapter before drilling again compounds faster than retaking the same questions.`
+      nextStepHref = `/chapters/${sessionChapterSlug}`
+      nextStepLink = `Open ${topic} chapter`
+      nextStepIcon = <BookOpen className="w-3.5 h-3.5" />
+    } else if (accuracy < 80) {
+      nextStepTitle = "Tag your mistakes"
+      nextStepDesc = `You missed ${missed} question${missed === 1 ? "" : "s"}. Tagging each one — Conceptual, Careless, or Time Pressure — turns a raw miss into a pattern you can actually fix.`
+      nextStepHref = "/error-log"
+      nextStepLink = "Open error log"
+      nextStepIcon = <Lightbulb className="w-3.5 h-3.5" />
+    } else {
+      nextStepTitle = "Lock in these gains"
+      nextStepDesc = `${accuracy}% is a strong session. Adding these questions to your spaced-review queue moves them from working memory to durable retention.`
+      nextStepHref = "/review"
+      nextStepLink = "Go to review queue"
+      nextStepIcon = <Star className="w-3.5 h-3.5" />
+    }
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1252,6 +1283,20 @@ export default function SessionClient({
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
             </div>
           </div>
+        </div>
+
+        <div className="p-5 rounded-xl border border-white/[0.08] bg-[#0D0D0D]">
+          <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">Next step</p>
+          <p className="text-sm font-semibold text-[#F0F0F0] mb-1.5">{nextStepTitle}</p>
+          <p className="text-sm text-[#888888] leading-relaxed mb-4">{nextStepDesc}</p>
+          <Link
+            href={nextStepHref}
+            className="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-lg transition-opacity hover:opacity-80"
+            style={{ backgroundColor: "rgba(201,168,76,0.12)", color: "#C9A84C" }}
+          >
+            {nextStepIcon}
+            {nextStepLink}
+          </Link>
         </div>
 
         <div>
