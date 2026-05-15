@@ -50,7 +50,7 @@ Which of the following is equivalent to (x³)⁴ / x⁵?
 **explanation:** Two exponent rules: (a) power of a power multiplies exponents — (x³)⁴ = x^(3×4) = x¹². (b) Same-base division subtracts exponents — x¹² / x⁵ = x^(12−5) = x⁷. The whole computation is two mechanical steps.
 **mistake_a:** Subtracted 3 from 5 (treated denominator as numerator) — got x^2.
 **mistake_c:** Multiplied exponents at every step — got 3 × 4 × 5 = 60, then somehow truncated to x¹². The reasoning chain confused multiplication and division.
-**mistake_d:** Multiplied (x³)⁴ as x^(3+4) = x^7, then multiplied by x^5 instead of dividing — got x^15.
+**mistake_d:** Conflated the denominator exponent with the outer power — computed (x³)^5 = x^15 by using the 5 from x^5 as the outer exponent instead of 4.
 **mistake_e:** Computed 3 × 4 + 5 = 17 by adding the bottom exponent rather than subtracting.
 **common_trap:** Confusing exponent rules — multiplying when you should subtract, or adding when you should multiply.
 **takeaway:** Memorize the four exponent rules cold: power-of-power multiplies, product-of-same-base adds, quotient subtracts, negative exponent inverts.
@@ -155,7 +155,7 @@ If f(x) = 2x² - 3x + 1, what is the value of f(3) - f(1)?
 **mistake_a:** Slip → 8 (likely arithmetic error in f(3) computation).
 **mistake_c:** Computed f(3) + f(1) instead of f(3) − f(1) → 10 + 0… no, but a likely sign-flip path: 2(9) − 3(3) − 1 = 8, then 8 + 4 → 12.
 **mistake_d:** Slip → 14.
-**mistake_e:** Computed f(3) but treated f(1) as 1 instead of 0 → 10 + 6, or skipped the subtraction entirely.
+**mistake_e:** Dropped the −3x term entirely: used f(x) = 2x² + 1 instead, giving f(3) = 2(9) + 1 = 19 and f(1) = 2(1) + 1 = 3; difference = 16.
 **common_trap:** Arithmetic slip on f(3) = 18 − 9 + 1, especially flipping the order of operations on −3(3).
 **takeaway:** Functions: substitute, then simplify. Watch the *sign* on each term, especially the −3x.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -285,7 +285,7 @@ For all positive integers n, let f(n) = n² - n. What is the value of f(f(3))?
 **mistake_a:** Stopped at the inner computation: f(3) = 6 — bubbled the intermediate value.
 **mistake_b:** Computed f(3) × 2 = 12 (multiplied instead of composing).
 **mistake_d:** Computed f(7) = 49 − 7 = 42 — wrong inner argument.
-**mistake_e:** Computed (f(3))² − f(3) = 36 − 6 = 30 ... wait, that gives 30 (correct). Or f(3)² − 1 = 35; 7² + 7 = 56.
+**mistake_e:** Computed f(3) = 6 correctly but applied f at argument 8 instead of 6 on the second step — adding 2 to the inner result before re-applying: f(8) = 64 − 8 = 56.
 **common_trap:** Stopping at the inner result and bubbling — composition requires both layers.
 **takeaway:** f(f(x)) means apply f twice: compute f(x) first, then apply f to that result.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -505,7 +505,7 @@ If f(x) = ax + b where a and b are constants, what is the value of f(5)?
 ---
 
 ## Q20
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Algebra Translation
 
@@ -638,7 +638,7 @@ If the roots of the quadratic equation x² + bx + 12 = 0 differ by 1, what are t
 ---
 
 ## Q25
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Word Problem — Relative Motion
 
@@ -818,26 +818,29 @@ Geometric interpretation: |x−1| + |x−4| + |x−7| is the total distance from
 
 ## Q31
 **difficulty:** Medium
-**type:** Problem Solving
-**topic:** Linear Systems — Sum Extraction
+**type:** Data Sufficiency
+**topic:** Inequalities — Sign Analysis
 
-If 2a + 3b = 16 and 5a − 3b = 19, what is the value of a + b?
+Is a > b?
 
-- A) 5
-- B) 7
-- C) 9
-- D) 11
-- E) 13
+(1) a² > b²
+(2) a + b > 0
 
-**answer:** B
-**fastest_path:** Add to cancel b: 7a = 35 → a = 5. Then 10 + 3b = 16 → b = 2. a + b = 7.
-**explanation:** Coefficients on b are equal-and-opposite (+3 and −3), making addition the obvious one-step path. Adding 2a + 3b + 5a − 3b = 16 + 19 → 7a = 35 → a = 5. Substitute into the first equation: 2(5) + 3b = 16 → 3b = 6 → b = 2. Therefore a + b = 7.
-**mistake_a:** Subtracted equations instead of adding; got 3a − 6b = −3, then incorrectly solved.
-**mistake_c:** Stopped at a = 5 and bubbled — missed that the question asks for a + b.
-**mistake_d:** Computed a × b = 10 + 1 (or some other combination producing 11).
-**mistake_e:** Added the right-hand sides only: 16 + 19 = 35; bubbled 13 from arithmetic confusion.
-**common_trap:** Solving past sufficiency or stopping early — bubbling a (or b) when the question asked for a + b.
-**takeaway:** When two equations have equal-and-opposite coefficients on one variable, add to cancel and solve in one step.
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) alone: a = −4, b = 3 → a² = 16 > 9 = b², but a < b. Counter: −4 is not > 3. (2) alone: a = 1, b = 3 → a + b = 4 > 0, but a < b. Together: a² > b² → (a−b)(a+b) > 0. Combined with a + b > 0: must have a − b > 0 → a > b. ✓
+**explanation:** The algebraic key is the factored identity: a² − b² = (a − b)(a + b). Statement (1) says a² > b², i.e. (a − b)(a + b) > 0, meaning both factors are positive or both negative. Counter for Statement (1) alone: a = −4, b = 3 → a² = 16 > 9 = b² but a < b (product is negative × negative = positive). Insufficient. Statement (2) alone: a + b > 0 but says nothing about relative magnitude — a = 1, b = 2 satisfies a + b > 0 with a < b. Insufficient. Together: (a − b)(a + b) > 0 from Statement (1) and a + b > 0 from Statement (2) → a − b must also be positive → a > b. Sufficient.
+**mistake_a:** Concluded Statement (1) alone is sufficient — missed the sign-flip counterexample where a < 0 and b > 0.
+**mistake_b:** Concluded Statement (2) alone is sufficient — missed that a + b > 0 is consistent with a < b (e.g., a = 1, b = 3).
+**mistake_d:** Concluded each alone is sufficient — neither eliminates the counterexample for the other.
+**mistake_e:** Concluded together is insufficient — the factored identity (a−b)(a+b) > 0 combined with a+b > 0 definitively forces a − b > 0.
+**common_trap:** Treating a² > b² as equivalent to a > b — it only means |a| > |b|, which says nothing about sign.
+**takeaway:** a² > b² ↔ |a| > |b|, which is NOT the same as a > b. When a < 0 and b > 0 with |a| > |b|, a² > b² but a < b. The factored form (a−b)(a+b) > 0 lets you combine sign information from a second statement.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 
