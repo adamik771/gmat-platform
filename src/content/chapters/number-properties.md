@@ -53,7 +53,7 @@ sections:
 
   - id: integer-properties-of-expressions
     type: reading
-    title: "Integer properties of expressions and units digits"
+    title: "Must be / could be — three techniques for expression questions"
     check_question_ids:
       - number-properties-q11
       - number-properties-q16
@@ -283,11 +283,71 @@ Write `n = 7k + 4`. Then `3n + 5 = 3(7k + 4) + 5 = 21k + 12 + 5 = 21k + 17`. Now
 
 ## @integer-properties-of-expressions
 
-The GMAT frequently asks "must be" or "could be" questions about expressions built from integers. The units-digit cycles are also their own mini-topic with huge payoff.
+The GMAT's hardest number-properties questions are DS problems that ask whether an expression "must be," "could be," or "cannot be" some value or type. Three techniques solve every one of them.
 
-**Units digit cycles for powers.** The units digit of `nᵏ` depends only on the units digit of n and on k.
+**The quantifier framework — first, internalize this:**
 
-| Base's units digit | Cycle of units digits for powers | Period |
+| Quantifier | What it requires | How to prove it | How to disprove it |
+|---|---|---|---|
+| "Must be X" | True for *every* valid input | Prove algebraically | Find one counterexample |
+| "Could be X" | True for *at least one* valid input | Find one example that works | Prove algebraically impossible |
+| "Cannot be X" | True for *no* valid input | Prove algebraically | Find one example that works |
+
+"Must be" is the hardest to prove (requires airtight algebra) and the easiest to disprove (one counterexample kills it). This asymmetry is the source of half the difficulty on hard DS questions.
+
+**Technique 1: Express integers algebraically to force structure.**
+
+Write every integer in the form that exposes the property you need.
+
+- Even: `n = 2k` (for any integer k)
+- Odd: `n = 2k + 1`
+- Multiple of 3: `n = 3k`
+- Remainder 1 mod 3: `n = 3k + 1`
+- Remainder 2 mod 3: `n = 3k + 2`
+
+Substitute into the expression and simplify. The structure of the result either proves the claim or not.
+
+**Worked example.** Is `3n² − n` always divisible by 2?
+
+Factor: `3n² − n = n(3n − 1)`. Now check both parities of n.
+
+- n even (`n = 2k`): `n(3n−1) = 2k(6k−1)`. Divisible by 2. ✓
+- n odd (`n = 2k+1`): `3n−1 = 3(2k+1)−1 = 6k+2 = 2(3k+1)`. So `n(3n−1)` = odd × even. Divisible by 2. ✓
+
+Always divisible by 2. The algebraic proof works for both cases simultaneously.
+
+Shortcut path: `n(3n−1)`. If n is even, the first factor contributes the factor of 2. If n is odd, then `3n` is odd, so `3n−1` is even — the second factor contributes the 2. One of the two factors is always even. Done in one sentence.
+
+**Worked example.** Must `(m+1)(n+1)` be even if `m` and `n` are positive integers with `mn = 12`?
+
+Test factor pairs of 12: (1,12), (2,6), (3,4), (4,3), (6,2), (12,1).
+
+- (1,12): (2)(13) = 26 — even.
+- (3,4): (4)(5) = 20 — even.
+- (2,6): (3)(7) = 21 — **odd.**
+
+One counterexample kills "must be." The expression could be even or odd. Any DS statement that provides only `mn = 12` is insufficient for a question asking whether `(m+1)(n+1)` is even.
+
+**Technique 2: Test smart values to defeat "must be" claims.**
+
+Always test: 0, 1, −1, fractions between 0 and 1, and the edge of whatever constraint the problem gives. These are the values that break false "must be" claims.
+
+**Example.** DS question: "Is `k² > k`?"
+
+Students test k = 2 (yes) and k = 3 (yes) and declare "must be yes." But:
+- k = ½: k² = ¼ < ½ = k. **No.**
+- k = 0: k² = 0 = k. **No.**
+- k = −1: k² = 1 > −1 = k. **Yes.**
+
+The answer depends on k. `k² > k` is true when k > 1 or k < 0, and false when 0 ≤ k ≤ 1. A statement like "k is positive" is insufficient — it allows k = ½. A statement like "k is a positive integer" IS sufficient — positive integers are all > 1.
+
+The lesson: integer-only testing fails whenever the problem doesn't explicitly constrain k to integers.
+
+**Technique 3: Units digit cycles for large powers.**
+
+The units digit of `nᵏ` depends only on the units digit of n and on k mod (period). Memorize the cycles:
+
+| Units digit of n | Units digit cycle (n¹, n², n³, n⁴, …) | Period |
 |---|---|---|
 | 0 | 0 | 1 |
 | 1 | 1 | 1 |
@@ -300,57 +360,59 @@ The GMAT frequently asks "must be" or "could be" questions about expressions bui
 | 8 | 8, 4, 2, 6 | 4 |
 | 9 | 9, 1 | 2 |
 
-**Example.** Units digit of `3²⁴`? Period 4 cycle is (3, 9, 7, 1). `24 mod 4 = 0`, which maps to the 4th entry (or equivalently, position 4). Units digit is 1.
+**How to apply.** Divide the exponent by the period. The remainder gives your position in the cycle. Remainder 0 = last position.
 
-**Example.** Units digit of `2⁵⁰ + 7³⁰`?
+**Example.** Units digit of `7²⁴`: cycle is (7, 9, 3, 1), period 4. `24 ÷ 4 = 6` remainder **0** → last position → units digit **1**.
 
-- `2⁵⁰`: cycle (2, 4, 8, 6), period 4. `50 mod 4 = 2`. Second entry: 4.
-- `7³⁰`: cycle (7, 9, 3, 1), period 4. `30 mod 4 = 2`. Second entry: 9.
-- Sum of units digits: `4 + 9 = 13`. Units digit of the sum: 3. Wait — recompute. `4 + 9 = 13`, so the units digit is 3.
+**Example.** Units digit of `2⁵⁰ + 7³⁰`:
+- `2⁵⁰`: cycle (2, 4, 8, 6), period 4. `50 ÷ 4` = 12 remainder **2** → position 2 → units digit **4**.
+- `7³⁰`: cycle (7, 9, 3, 1), period 4. `30 ÷ 4` = 7 remainder **2** → position 2 → units digit **9**.
+- Sum of units digits: `4 + 9 = 13` → units digit of the sum is **3**.
 
-(If the answer expects 0, I must have miscounted. Recomputing: the cycle for 2 is (2, 4, 8, 6), indexed by position mod 4 where position 1 ↔ 2¹ = 2. `50 mod 4`: `48 = 12 × 4`, so `50 mod 4 = 2`. Position 2 → units digit 4. For 7: cycle (7, 9, 3, 1), `30 mod 4 = 2`, position 2 → 9. So `4 + 9 = 13`, units digit 3. If your source answer says 0, re-check the exponents in the problem.)
+**Why cycles exist.** When you compute `7^n`, the units digit of the result depends only on the units digit of `7^(n-1)` — nothing else. Since units digits are finite (0–9), the sequence must eventually repeat. For 7 the pattern is (7, 49, 343, 2401, …) with units digits (7, 9, 3, 1, 7, 9, 3, 1, …). Period 4, perpetually.
 
-**Consecutive-integer identities.** The sum of five consecutive integers is 5 times the middle integer. More generally, the sum of any odd count of consecutive integers is `count × middle`. Sum of 5 consecutive integers = 85 → middle = 17 → largest = 19.
+**Consecutive-integer sum shortcut.** The sum of any odd count of consecutive integers = (count) × (middle integer). If the sum of 7 consecutive integers is 105, the middle is `105/7 = 15` and the sequence runs 12 through 18.
 
-**Sign and parity of sums.** If `xyz < 0`, then an odd number of the three integers are negative (1 or 3). If *additionally* `x + y + z > 0`, all three negative is impossible (sum would be negative), so exactly one is negative.
+**Sign reasoning under two constraints.** If `xyz < 0`, then exactly 1 or 3 of the three factors are negative. If *additionally* `x + y + z > 0`, all three negative is impossible (their sum would be negative), so exactly one is negative. Combining two conditions to narrow down cases is exactly what hard DS questions require.
 
-**Expressing integers to force structure.** Every integer is `2k` (even) or `2k + 1` (odd). Every integer is `3k`, `3k + 1`, or `3k + 2`. Use these forms to prove divisibility claims.
-
-**Example.** Prove `n² − n` is always even. `n² − n = n(n − 1)`, product of two consecutive integers, one of which is even. Therefore always even. (Alternative: if `n = 2k`, `n² − n = 4k² − 2k = 2(2k² − k)`; if `n = 2k+1`, `n² − n = (2k+1)(2k) = 2k(2k+1)`. Either way, divisible by 2.)
-
-**Trap to watch.** "Must be divisible by X" questions require the property for *every* integer, not just most. If one counter-example exists, the choice fails. Always test small values (n = 1, 2, 3) before picking an answer.
+> **Self-explanation prompt.** Why does one counterexample disprove "must be" but one example prove "could be"? If you can explain the asymmetry — that "must be" claims hold for all inputs while "could be" claims need only one — you understand the core logic of this question type. Now: for the expression `n(3n−1)`, can you construct an argument in two sentences (without testing cases) that it is always even? If yes, you own Technique 1.
 
 ## @summary
 
-I'm going to say something I believe without qualification: if you have 40 hours to spend on Quant, put 15 of them on number properties. No other topic has this much leverage. The ideas are small and finite (even/odd, primes, divisibility, GCF, LCM, remainders, units digit cycles), the question patterns repeat, and the difficulty ceiling lets one topic carry you from 605 to 685.
+If you have 40 hours to spend on Quant, put 15 of them on number properties. No other topic returns as much score per hour of study. The ideas are finite (even/odd, primes, divisibility, GCF, LCM, remainders, units digit cycles), the question patterns repeat, and the difficulty ceiling is high enough to separate 685 from 745.
 
 **Why this topic pays the most per hour:**
 
-- **Recurrence.** Number properties shows up on 15-20% of Quant questions, more than any other single topic.
-- **Cleanness.** Unlike word problems, the questions are stated algebraically — no translation work.
-- **Ceiling.** The hardest number-properties questions (perfect-square factor counts, GCF-LCM identities, remainder cycles) are the kind of questions that distinguish a 745 from a 685.
-- **Transfer.** Prime factorization bleeds into fraction simplification, LCM shows up in rate problems, remainders show up in sequence questions. You're building muscle for multiple topics.
+- **Recurrence.** Number properties appears on 15–20% of Quant questions — more than any other single topic.
+- **Cleanness.** Unlike word problems, the questions are stated algebraically. No translation work.
+- **Ceiling.** The hardest questions (perfect-square factor counts, GCF-LCM identities, "must be" DS with expression analysis) are exactly where 685–745 separation happens.
+- **Transfer.** Prime factorization feeds fraction simplification. LCM appears in rate problems. Remainders appear in sequence questions. You're building muscle for multiple topics at once.
 
 **The core toolkit, in order of reach:**
 
 1. **Prime factorization** unlocks GCF, LCM, factor counts, perfect-square tests, and divisibility.
-2. **Divisibility rules** (2, 3, 4, 5, 6, 8, 9, 10, 11) let you factor mentally.
-3. **Even/odd parity** resolves most "must be" Data Sufficiency.
-4. **Remainder equation** (`n = dk + r`) handles every remainder question.
-5. **Units digit cycles** (memorize all nine) crush large-power questions.
-6. **Consecutive-integer facts** (product of n consecutive ints is divisible by n!; sum of odd count = count × middle) show up constantly.
+2. **Divisibility rules** (2, 3, 4, 5, 6, 8, 9, 10, 11) let you factor mentally at test speed.
+3. **Even/odd parity table** resolves most "must be" DS questions in seconds.
+4. **Remainder equation** (`n = dk + r`) is the master tool for every remainder question.
+5. **Three-technique framework** (algebraic substitution, smart-value testing, units-digit cycles) solves every "must be / could be / cannot be" expression question.
+6. **Consecutive-integer facts** (product of n consecutive ints divisible by n!; sum of odd count = count × middle) appear constantly.
 
-**Pattern-match table:**
+**Decision tree on test day:**
 
-| Problem says | Tool | Shortcut |
+| Problem says | First move | Key shortcut |
 |---|---|---|
-| "How many factors of n" | Prime-factor, apply formula | `(a+1)(b+1)…` |
-| "Is n divisible by k" | Use divisibility rule | For 3, 9: digit sum |
-| "GCF / LCM" | Prime-factor both | Min powers / Max powers |
-| "Remainder when n/d" | Write `n = dk + r` | Or plug smallest n |
-| "Units digit of nᵏ" | Check cycle | Period is 1, 2, or 4 |
-| "Must be even/odd" | Parity table | Consecutive ints → even |
-| "n² divisible by k" | Perfect-square test | Every prime exponent even |
-| "Sum of odd # consecutive ints" | count × middle | Bypass summation |
+| "How many positive factors of n" | Prime-factor n | Apply `(a+1)(b+1)…` |
+| "Is n divisible by k" | Use divisibility rule | For 3 and 9: digit sum |
+| "GCF / LCM of m and n" | Prime-factor both | GCF: min powers; LCM: max powers |
+| "Remainder when n is divided by d" | Write `n = dk + r` | Or plug the smallest valid n |
+| "Units digit of nᵏ" | Find cycle period | Periods are 1, 2, or 4 |
+| "Must be even / odd" | Parity table + test k = 0, ½ | One counterexample ends it |
+| "n² divisible by k" | Perfect-square test | Every prime exponent in n² must be even |
+| "Sum of odd count of consecutive ints" | count × middle | Bypass summation entirely |
+| "Expression must / could / cannot be X" | Algebraic substitution + smart values | One counterexample kills "must be" |
 
-The next two weeks, drill this chapter's problem sets until the check questions feel trivial. Do them on paper the first time, then on scratch, then in your head. When you can sight-factor 720 as `2⁴ × 3² × 5` without writing anything, you're ready for the 725+ versions.
+**The one error pattern that costs 685+ students the most.** They test a few integers, see a consistent result, and pick "must be" — never realizing that k = ½ or k = 0 breaks the pattern. Before picking "must be," ask: what happens at k = 0? At k = ½? At k = −1? If those values aren't ruled out by the problem's constraints, test them.
+
+**What to do next.** Work the three problem sets in order — easy, medium, hard. After every problem you miss, identify which concept failed: parity? prime factorization? a remainder setup? a "must be" that needed one counterexample? Label each mistake by concept. When you review, prioritize concepts with two or more errors — those are the gaps that will cost you points under time pressure.
+
+When you can sight-factor 720 as `2⁴ × 3² × 5` without scratch paper, and resolve a units-digit question in under 20 seconds, you're ready for the hard set. The hard set is where remaining "must be" reasoning gaps get exposed — work those problems deliberately.
