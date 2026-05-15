@@ -75,7 +75,7 @@ If -3x + 9 > 0, which of the following must be true?
 **fastest_path:** −3x + 9 > 0 → −3x > −9 → x < 3 (dividing by negative flips the inequality).
 **explanation:** Subtract 9 from both sides: −3x > −9. Divide both sides by −3 — and *flip the inequality direction* because we're dividing by a negative: x < 3. The flip is the entire question. Without it, the answer is x > 3 (choice A), which is the engineered trap. Backsolving also works: test x = 0 (in choice D's range): −3(0) + 9 = 9 > 0 ✓; test x = 4 (in choice A's range): −3(4) + 9 = −3 > 0? No, −3 is not > 0, so A is wrong.
 **mistake_a:** Forgot to flip the inequality when dividing by negative — solved correctly otherwise but bubbled the opposite direction.
-**mistake_b:** Got the sign right but reversed which side x is on (x > −3 instead of x < 3).
+**mistake_b:** Misread −3x as +3x (dropped the negative sign on the coefficient); solved 3x + 9 > 0 → x > −3.
 **mistake_c:** Got the sign right but wrong magnitude (x < −3 instead of x < 3).
 **mistake_e:** Solved for x = 3 (treated as equation, not inequality).
 **common_trap:** inequality-sign-flip-miss — dividing or multiplying both sides by a negative without flipping the inequality direction.
@@ -126,7 +126,7 @@ If x² - 5x - 14 = 0, what is the product of the two solutions?
 **answer:** A
 **fastest_path:** Vieta's: for x² + bx + c = 0, product of roots = c. Here c = −14.
 **explanation:** Vieta's formulas: for ax² + bx + c = 0, sum of roots = −b/a, product of roots = c/a. With a = 1, the product is just c = −14. Total time: 5 seconds. Factoring (x − 7)(x + 2) = 0, giving roots 7 and −2 with product −14, also works but takes 30+ seconds.
-**mistake_b:** Attempted to factor and set up (x + 7)(x − 2) = x² + 5x − 14 (wrong sign on the middle term); deduced roots −7 and 2, then reported the negative root −7 as the answer rather than the product of the correct roots.
+**mistake_b:** Factored correctly to get roots 7 and −2, then confused "product of roots" with "the negative root" and reported −7 (negating one root) rather than multiplying them: 7 × (−2) = −14.
 **mistake_c:** Sum of roots: −b/a = 5 — confused sum with product.
 **mistake_d:** Forgot the negative sign on the constant term.
 **mistake_e:** Used |c| = 14, missing the sign.
@@ -267,7 +267,7 @@ If 4^(a+1) = 8^a, what is the value of a?
 ---
 
 ## Q11
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Functions
 
@@ -388,7 +388,7 @@ If 3x + 2y = 16 and 5x - 2y = 16, what is the value of x + y?
 **explanation:** y coefficients are equal-and-opposite (+2 and −2) — adding the equations eliminates y in one step: 8x = 32 → x = 4. Substitute back: 3(4) + 2y = 16 → 2y = 4 → y = 2. Therefore x + y = 6. Total time: ~30 seconds. Full substitution path takes ~60-75 seconds.
 **mistake_a:** Stopped at x = 4 and bubbled the wrong variable.
 **mistake_b:** Computed y = 2 and bubbled.
-**mistake_d:** Subtracted the equations instead of adding; got 2x = 0 → x = 0, then y = 8, sum = 7.
+**mistake_d:** Computed x = 4 correctly but made an arithmetic slip in back-substitution: from 12 + 2y = 16 → 2y = 4, incorrectly computed y = 4/2 = 3 instead of 2, reporting x + y = 4 + 3 = 7.
 **mistake_e:** Misread question; computed xy or x²+y².
 **common_trap:** Solving past sufficiency or stopping too early — picking up x or y alone after correct setup.
 **takeaway:** When y coefficients are equal-and-opposite, add to cancel y in one step. After computing both, re-read the question to confirm what's asked.
@@ -441,7 +441,7 @@ If |x - 4| = 7, what is the sum of all possible values of x?
 **fastest_path:** For |x − a| = b, solutions are symmetric about a, so sum = 2a = 2(4) = 8.
 **explanation:** Two ways to solve. (1) Symmetry shortcut: |x − 4| = 7 means x is 7 units from 4, so x = 11 or x = −3. The sum of any two values symmetric about a is 2a, here 2(4) = 8. (2) Casework: x − 4 = 7 → x = 11; x − 4 = −7 → x = −3; sum = 8. The shortcut is faster (5 sec vs. 20 sec) once you've internalized that |x − a| = b gives symmetric solutions.
 **mistake_a:** Wrong sign on one or both solutions; got 4 − 7 = −3, then doubled the negative.
-**mistake_b:** Forgot the negative case; computed only x = 11 then halved.
+**mistake_b:** Solved only the negative case: x − 4 = −7 → x = −3, and reported that single value rather than computing the sum of both solutions.
 **mistake_c:** Computed |x| = 11, didn't process the −4 offset.
 **mistake_e:** Computed only the positive case (x = 11) and bubbled.
 **common_trap:** absolute-value-single-case — solving only x − 4 = +7 and missing the negative case.
@@ -532,7 +532,7 @@ The sum of three consecutive even integers is 18 more than twice the smallest of
 ---
 
 ## Q21
-**difficulty:** Medium
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Symmetric Sums
 
@@ -893,7 +893,7 @@ If x² − 10x + 21 = 0, what is the value of x² − 10x + 25?
 **explanation:** Don't solve for x. The given equation rearranges to x² − 10x = −21. The target expression x² − 10x + 25 differs from the given (x² − 10x + 21) by exactly 4. So target = −21 + 25 = 4. Total time: 10 seconds.
 
 Verification by solving: factor x² − 10x + 21 = (x − 3)(x − 7) = 0, so x = 3 or 7. Plug x = 3: 9 − 30 + 25 = 4 ✓. Plug x = 7: 49 − 70 + 25 = 4 ✓. Same answer, but takes 60+ seconds.
-**mistake_b:** Solved for x (3 or 7), then computed 5² = 25 thinking that was the answer.
+**mistake_b:** Misread the question as "solve x² − 10x + 25 = 0 for x"; recognized the perfect square (x − 5)² = 0 and reported x = 5 as the answer rather than evaluating the expression.
 **mistake_c:** Computed 25 − 21 = 4, then somehow got 6 from another arithmetic operation.
 **mistake_d:** Bubbled 10 (a coefficient appearing in the question).
 **mistake_e:** Bubbled 25 (the constant in the target expression, missed the manipulation).
