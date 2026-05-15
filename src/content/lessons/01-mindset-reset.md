@@ -27,7 +27,7 @@ Every module after this one assumes you have done this mental work. Skip it and 
 
 ## The Three Failure Modes
 
-Most GMAT prep does not fail because the student is incapable. It fails because the student walks into one of three traps and never walks out. I have watched this happen enough times that I can usually spot which trap a student is in within the first week of coaching. Name them now and you are already halfway out.
+Most GMAT prep does not fail because the student is incapable. It fails because the student walks into one of three traps and never walks out. I walked into all three myself in my first months of prep. The traps are predictable — name them now and you are already halfway out.
 
 ### 1. The Volume Trap
 
@@ -35,7 +35,7 @@ The Volume Trap is the belief that improvement is a function of problems solved.
 
 The problem is that a question you got wrong teaches you nothing unless you extract why. And a question you got right sometimes teaches you nothing either — you might have stumbled into the correct answer through a flawed process that will fail on a slightly different variant. Volume without analysis is physical exercise in the shape of learning, and it reinforces whatever habit — correct or incorrect — you brought to the desk that day.
 
-I coached a student last year who had done 2,000 practice questions before our first session and was stuck at 565. His error log was empty. He could not tell me which topics he missed most, which trap patterns caught him, or which competency broke when he missed. Within six weeks of cutting his volume in half and tripling his review time, he was at 685.
+I fell into this trap myself in my early months of prep. By the time I scored 565 cold, I'd already worked through significant volume — and my error tracking was nonexistent. I could not have told you which topics I missed most, which trap patterns caught me, or which competency broke when I missed. Cutting raw volume in half and tripling the time spent on honest review was the unlock that turned the 565 into a 675 by the first official.
 
 **How to recognize the Volume Trap in yourself:**
 
@@ -49,9 +49,9 @@ I coached a student last year who had done 2,000 practice questions before our f
 
 The Comfort Zone Trap is studying what already feels good. This one is especially insidious because it looks like work. You drill word problems because you are decent at them and it feels rewarding to see checkmarks. You skip Critical Reasoning because it is frustrating and the feedback loop is slow. Your prep diary fills up. Your score does not move.
 
-The uncomfortable truth is that your score improvement lives entirely in the topics you currently hate. The gap between a 575 and a 665 is almost always three or four specific topics the student has been unconsciously avoiding for weeks. When I sit down with a plateaued student and ask "which topic makes you want to close the laptop," that topic is almost always the exact one holding their score hostage.
+The uncomfortable truth is that your score improvement lives entirely in the topics you currently hate. The gap between a 575 and a 665 is almost always three or four specific topics that have been unconsciously avoided for weeks. Ask yourself which topic makes you want to close the laptop. That topic is almost always the exact one holding your score hostage.
 
-One student I worked with was scoring 615 and sure she needed "a little algebra polish." Her error log showed she was missing 70% of Two-Part Analysis questions in Data Insights. She had not done one in three weeks. Not because she decided they were unimportant — because every time she opened her question bank, her hand unconsciously clicked into the sections that felt good. One week of forced Two-Part Analysis drills and her overall score jumped 40 points.
+The pattern hit me in my own prep. I was convinced I needed "a little algebra polish." My actual error log said I was missing 70% of Two-Part Analysis questions in Data Insights — and hadn't drilled one in three weeks. Not because I decided they were unimportant. Because every time I opened my question bank, my hand unconsciously clicked into the sections that felt good. One forced week on Two-Part Analysis closed most of that gap.
 
 **How to recognize the Comfort Zone Trap:**
 
