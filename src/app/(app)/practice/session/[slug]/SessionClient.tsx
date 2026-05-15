@@ -16,6 +16,7 @@ import {
   X,
 } from "lucide-react"
 import { DI_METHOD_CARDS, hasMethodCard } from "@/lib/di-method-cards"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import PacingBadge from "@/components/shared/PacingBadge"
@@ -1208,6 +1209,10 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+    const incorrectCount = questions.filter(
+      (q, i) => states[i].submitted && !isQuestionCorrect(q, states[i])
+    ).length
+    const chapterSlug = TOPIC_TO_CHAPTER[topic]
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1311,6 +1316,51 @@ export default function SessionClient({
             })}
           </div>
         </div>
+
+        {(incorrectCount > 0 || (accuracy < 65 && !!chapterSlug)) && (
+          <div className="rounded-xl border border-white/[0.06] bg-[#0D0D0D] overflow-hidden">
+            <p className="px-5 pt-4 pb-3 text-[10px] uppercase tracking-widest text-[#555555] border-b border-white/[0.04]">
+              What to do next
+            </p>
+            <div className="divide-y divide-white/[0.04]">
+              {accuracy < 65 && chapterSlug && (
+                <div className="flex items-center justify-between gap-4 px-5 py-4">
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-[#F0F0F0]">Read the {topic} chapter</p>
+                    <p className="text-xs text-[#888888] mt-0.5 leading-relaxed">
+                      At {accuracy}% accuracy, more drilling risks reinforcing confusion. The chapter may close the gap faster.
+                    </p>
+                  </div>
+                  <Link
+                    href={`/chapters/${chapterSlug}`}
+                    className="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all hover:opacity-80"
+                    style={{ backgroundColor: "rgba(201,168,76,0.12)", color: "#C9A84C" }}
+                  >
+                    Open chapter
+                  </Link>
+                </div>
+              )}
+              {incorrectCount > 0 && (
+                <div className="flex items-center justify-between gap-4 px-5 py-4">
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-[#F0F0F0]">
+                      {incorrectCount} {incorrectCount === 1 ? "mistake" : "mistakes"} to classify
+                    </p>
+                    <p className="text-xs text-[#888888] mt-0.5 leading-relaxed">
+                      Tag the error type while the reasoning is fresh — it sharpens your weak-area plan.
+                    </p>
+                  </div>
+                  <Link
+                    href="/error-log"
+                    className="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-white/[0.08] text-[#F0F0F0] transition-all hover:bg-white/[0.04]"
+                  >
+                    Error log
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         <div className="flex gap-3 flex-wrap">
           <Link
