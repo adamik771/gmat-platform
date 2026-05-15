@@ -2,10 +2,10 @@
 slug: arithmetic
 title: Arithmetic & Operations
 section: Quant
-estimated_minutes: 50
+estimated_minutes: 55
 prerequisites: []
 summary: |
-  Arithmetic is roughly 30% of the Quant section and 100% of the substructure beneath every other topic. The GMAT doesn't reward you for knowing fractions — it punishes you for not knowing them cold. This chapter drills the seven operational habits that separate students who finish Quant with 10 minutes to spare from students who guess on the last four questions because they burned 90 seconds converting 3/8 to a decimal.
+  Arithmetic is the substrate beneath every Quant topic. A word problem about ratios, a DS question about remainders, a geometry problem about a circle — all reduce to arithmetic operations. Students who score above 685 are not better at algebra than 605 scorers; they are faster and more accurate at arithmetic. This chapter drills the seven operational habits that build that speed.
 sections:
   - id: pretest
     type: pretest
@@ -18,7 +18,7 @@ sections:
 
   - id: order-of-operations
     type: reading
-    title: "Order of operations — PEMDAS and the traps inside it"
+    title: "Order of operations — PEMDAS and the three traps inside it"
     check_question_ids:
       - arithmetic-q16
 
@@ -50,7 +50,7 @@ sections:
 
   - id: estimation-tricks
     type: reading
-    title: "Estimation — when to compute and when to approximate"
+    title: "Estimation and units digits — when to compute and when to approximate"
     check_question_ids:
       - arithmetic-q19
 
@@ -105,7 +105,7 @@ problem_sets:
 
 ## @order-of-operations
 
-Every student has heard of PEMDAS — Parentheses, Exponents, Multiplication/Division, Addition/Subtraction. That's not what I'm going to teach you. What I'm going to teach you is the two traps inside PEMDAS that the GMAT mines for wrong answers.
+Every student has heard of PEMDAS — Parentheses, Exponents, Multiplication/Division, Addition/Subtraction. That's not what I'm going to teach you. What I'm going to teach you is the three traps inside PEMDAS that the GMAT mines for wrong answers.
 
 **Mental model.** Arithmetic is grammar. Order of operations, sign rules, fraction-handling — these are the syntax that has to be mechanical before any quant skill can run on top. A 700+ student doesn't think faster than a 600 student here; they make fewer sloppy moves per minute. Every arithmetic mistake on a hard problem is a rule you let yourself break under pressure.
 
@@ -116,29 +116,53 @@ Every student has heard of PEMDAS — Parentheses, Exponents, Multiplication/Div
 - Parentheses: `(3 − 5) = −2`
 - Exponent: `(−2)² = 4`
 - Multiplication and division (left to right): `2 × 4 = 8`, `12 / 4 = 3`
-- Now addition and subtraction (left to right): `8 − 8 + 3 = 3`
+- Addition and subtraction (left to right): `8 − 8 + 3 = 3`
 
-**Trap two: subtraction is not associative.** `10 − 3 − 2` equals `5`, not `9`. You must go left to right: `10 − 3 = 7`, then `7 − 2 = 5`. If you instead compute `3 − 2 = 1` first and then `10 − 1 = 9`, you've invented a new problem. The same applies to division: `24 / 4 / 2 = 3`, not `12`. Chained subtractions and divisions always go left to right unless parentheses tell you otherwise.
+**Trap two: subtraction and division are not associative.** `10 − 3 − 2` equals `5`, not `9`. You must go left to right: `10 − 3 = 7`, then `7 − 2 = 5`. If you instead compute `3 − 2 = 1` first and then `10 − 1 = 9`, you've invented a new problem. Division has the same trap: `24 / 4 / 2 = 3`, not `12`. Chained subtractions and divisions always go left to right unless parentheses tell you otherwise.
 
-**The clean-up habit.** Before I evaluate any expression, I scan it for three things: parentheses to resolve, exponents to expand, and negatives I might mishandle. Ten seconds of scanning beats 60 seconds of backtracking after I got the sign wrong.
+**Trap three: a leading negative distributes to every term inside parentheses.** `−(3 − 5)` is NOT `−3 − 5 = −8`. It is `−3 + 5 = 2`. Think of the negative sign as `−1 ×`, and distribute it: `(−1)(3) + (−1)(−5) = −3 + 5 = 2`. Under time pressure, students apply the negative to the first term only and forget the rest. The habit: mentally write `−1 ×` before any parenthesis with a leading negative, and distribute to every term.
 
-**Trap to watch.** A negative sign in front of a parenthesis distributes to *every* term inside. `−(3 − 5)` is `−3 + 5 = 2`, not `−3 − 5 = −8`. When I rush, I forget the distribution on the second term. The habit: write the negative as `−1 ×` mentally and distribute slowly.
+**The scan habit.** Before evaluating any expression, take five seconds to scan for: parentheses to resolve, exponents to expand, and leading negatives that distribute. That scan prevents the 60-second backtrack when a sign error shows up at the end.
 
-> **Self-explanation prompt.** Before the check question, say out loud in one sentence: *why* does multiplication happen before subtraction? If you can articulate that multiplication is a compact way of writing repeated addition (so `2 × 4` is really `4 + 4`, already an addition), you'll stop making the left-to-right mistake.
+> **Self-explanation prompt.** Before you look at the check question, explain in one sentence: *why* does multiplication happen before subtraction? If you can articulate that multiplication is a compact representation of repeated addition — so `2 × 4` is already `4 + 4`, already an addition — you'll stop making the left-to-right mistake.
 
 ## @fractions-fluency
 
 If I could pick one skill that separates 685+ scorers from 605 scorers on Quant, it would be fraction fluency. Not "can you add fractions" — every student can eventually add fractions. Fluency means you see `3/8 + 5/12` and the answer `19/24` appears in your head within five seconds without scratch paper.
 
-**The three operations, ranked by how often they trap people:**
+**Step zero: finding the LCD in ten seconds.** Before you add or subtract fractions, you need the Least Common Denominator (LCD) — the smallest number both denominators divide into cleanly. Most students skip this step and multiply denominators blindly, producing larger numbers than necessary.
 
-1. **Adding and subtracting** requires a common denominator. `3/4 + 5/8 − 1/2` becomes `6/8 + 5/8 − 4/8 = 7/8`. Find the LCD first, convert every fraction, then combine numerators.
-2. **Multiplying** is the easy one: `(a/b) × (c/d) = ac/bd`. No common denominator needed. Before you multiply, cancel common factors diagonally — `(3/4) × (8/9) = (1/1) × (2/3) = 2/3`, done without ever multiplying 3 × 8 or 4 × 9.
-3. **Dividing** means multiplying by the reciprocal. `(a/b) / (c/d) = (a/b) × (d/c) = ad/bc`. The classic trap: `(1 + 1/2) / (1 − 1/3)`. Resolve the top and bottom independently first — `(3/2) / (2/3) = (3/2) × (3/2) = 9/4`.
+*If one denominator divides the other, use the larger one.* `1/6 + 5/12`: since 6 divides 12, the LCD is 12 immediately. No calculation needed.
 
-**The simplification habit.** The GMAT considers `42/98` and `3/7` to be different answer choices. `42/98` is not "wrong" arithmetically, but it is wrong on the GMAT because "simplified" means fully reduced. Always pull out common factors at the end. `42/98 = (42/14) / (98/14) = 3/7`.
+*When they share a common factor, use the LCM formula.* `LCM(a, b) = (a × b) / GCF(a, b)`.
 
-**Cancel early, cancel hard.** This is the single habit that saves the most time. Before you compute `(15 × 28) / (21 × 25)`, cancel: `15/25 = 3/5`, `28/21 = 4/3`, so the whole thing becomes `(3 × 4) / (5 × 3) = 12/15 = 4/5`. No multi-digit multiplication required.
+Example: `3/8 + 5/12`. `GCF(8, 12) = 4`, so `LCM = (8 × 12) / 4 = 96/4 = 24`. The LCD is 24.
+
+*Prime-factor shortcut.* `8 = 2³`, `12 = 2² × 3`. The LCM takes the highest power of every prime that appears: `2³ × 3 = 24`. Useful when the numbers are unfamiliar.
+
+Once you have the LCD, find each numerator's multiplier by dividing the LCD by each original denominator. `3/8 + 5/12` with LCD 24: divide `24 / 8 = 3`, multiply: `9/24`. Divide `24 / 12 = 2`, multiply: `10/24`. Sum: `19/24`.
+
+**The three fraction operations, ranked by how often they trap students:**
+
+**1. Adding and subtracting** requires a common denominator. Find the LCD first, convert every fraction, then combine numerators only. `3/4 + 5/8 − 1/2`: LCD is 8. Convert: `6/8 + 5/8 − 4/8 = 7/8`.
+
+**2. Multiplying** is the easy operation: `(a/b) × (c/d) = ac/bd`. No common denominator needed. But the speed gain comes from canceling before you multiply.
+
+**3. Dividing** means multiplying by the reciprocal: `(a/b) ÷ (c/d) = (a/b) × (d/c)`. Resolve the numerator and denominator independently before dividing. `(1 + 1/2) / (1 − 1/3)` → top: `3/2`, bottom: `2/3` → `(3/2) × (3/2) = 9/4`.
+
+**Cancel early, cancel hard.** This is the single habit that saves the most arithmetic time on the GMAT.
+
+Slow approach for `(15 × 28) / (21 × 25)`: multiply numerator `15 × 28 = 420`, multiply denominator `21 × 25 = 525`, then reduce `420/525`. Messy.
+
+Fast approach: cancel before multiplying. `15/25 = 3/5`. `28/21 = 4/3`. Now the expression is `(3 × 4) / (5 × 3) = 12/15 = 4/5`. The largest number you touch is 15.
+
+The rule: before computing, look for common factors between any numerator and any denominator — diagonal, vertical, horizontal — and cancel wherever you see a match.
+
+**Mixed numbers.** A mixed number like `2⅓` means `2 + 1/3`. As an improper fraction: multiply the whole number by the denominator and add the numerator: `(2 × 3 + 1) / 3 = 7/3`. Reverse: `7 ÷ 3 = 2` with remainder `1`, so `7/3 = 2⅓`.
+
+The GMAT rarely writes mixed numbers, but when it does, students who stall at this conversion lose 20–30 seconds. Practice: `3¾ → 15/4`. `5⅖ → 27/5`. Make it automatic.
+
+**The simplification habit.** Always fully reduce your final answer. `42/98 = 3/7` (divide both by GCF = 14). `18/24 = 3/4` (divide both by GCF = 6). The GMAT lists `6/14` or `21/49` as trap choices — equivalent to `3/7` but not in simplest form. "Simplified" means the GCF of numerator and denominator is 1.
 
 **Fractions you should know by sight:**
 
@@ -154,76 +178,100 @@ If I could pick one skill that separates 685+ scorers from 605 scorers on Quant,
 | 1/9 | 0.111… | 11.1% |
 | 1/10 | 0.1 | 10% |
 
-Multiples follow: `3/8 = 0.375`, `5/8 = 0.625`, `7/8 = 0.875`. When you see `.375` in an answer choice, you should *see* `3/8` without thinking.
+Multiples follow from these: `3/8 = 3 × 0.125 = 0.375`, `5/8 = 0.625`, `7/8 = 0.875`. When you see `0.375` in an answer choice, *see* `3/8` without computing it.
 
-**Trap to watch.** A complex fraction like `(a + b/c) / d` is `(ac + b) / (cd)`, not `(a + b) / (cd)`. Resolve the numerator fully — `a + b/c = (ac + b)/c` — before you divide.
+**Trap to watch.** A complex fraction like `(a + b/c) / d` is NOT `(a + b) / (cd)`. Resolve the numerator fully first: `a + b/c = (ac + b)/c`, then divide by `d`: result is `(ac + b)/(cd)`. Skipping this step produces an answer that has the wrong numerator.
+
+> **Recall check.** Cover this section. Write down: (1) the LCM formula, (2) the three steps to add `3/8 + 5/12`, and (3) the decimal equivalents of `1/8`, `3/8`, `5/8`, `7/8`. The LCM formula and conversion table must be instant recall, not re-derivation.
 
 ## @decimals-and-percents-conversion
 
-Decimals, fractions, and percents are three notations for the same number. A student who fluently switches between them saves 20-30 seconds on every percent problem. A student who can't switch gets bogged down in `0.875 × 80` when they could have written `7/8 × 80 = 70`.
+Decimals, fractions, and percents are three notations for the same number. A student who fluently switches between them saves 20–30 seconds on every percent problem. A student who can't switch gets bogged down in `0.875 × 80` when they could have written `7/8 × 80 = 70`.
 
 **The conversion triangle:**
 
-- **Fraction → decimal:** divide the numerator by the denominator. `3/4 = 3 ÷ 4 = 0.75`.
-- **Decimal → percent:** multiply by 100 (shift the decimal point two places right). `0.75 = 75%`.
+- **Fraction → decimal:** divide numerator by denominator. `3/4 = 3 ÷ 4 = 0.75`.
+- **Decimal → percent:** multiply by 100 (shift decimal point two places right). `0.75 = 75%`.
 - **Percent → decimal:** divide by 100 (shift two places left). `40% = 0.40`.
-- **Percent → fraction:** write over 100 and simplify. `40% = 40/100 = 2/5`.
+- **Percent → fraction:** write over 100, then simplify. `40% = 40/100 = 2/5`.
+
+**Benchmark percents to know cold:**
+
+| Percent | Fraction | Fast path |
+|---|---|---|
+| 5% | 1/20 | Half of 10% |
+| 10% | 1/10 | Move decimal left one |
+| 12.5% | 1/8 | Eighth of 100 |
+| 20% | 1/5 | Divide by 5 |
+| 25% | 1/4 | Quarter |
+| 33.3% | 1/3 | Third |
+| 50% | 1/2 | Half |
+| 66.7% | 2/3 | Two-thirds |
+| 75% | 3/4 | Three-quarters |
+
+These replace decimal multiplication with fraction multiplication, which is faster. `33.3% of 90` → `(1/3) × 90 = 30`. `12.5% of 56` → `(1/8) × 56 = 7`.
 
 **Example (percent discount).** A shirt priced at $80 is discounted by 15%. What's the sale price?
 
-- Discount amount: `15% × 80 = 0.15 × 80 = 12`.
-- Sale price: `80 − 12 = 68`.
+The *complement* move: 15% off means you pay 85% of the original. `0.85 × 80 = 68`. One multiplication instead of two steps. Whenever you see "X% off," convert to "pay (100 − X)%" and multiply directly.
 
-Faster using the "complement" mental move: 15% off means you pay 85% of the original. `0.85 × 80 = 68`. One multiplication, no subtraction. Whenever you see "X% off," convert mentally to "you pay (100 − X)%" — it collapses two steps into one.
+**Example (decimal multiplication).** `0.125 × 0.4`. Recognize `0.125 = 1/8` and `0.4 = 2/5`. Then `(1/8) × (2/5) = 2/40 = 1/20 = 0.05`. This is four times faster than multiplying decimals directly.
 
-**Example (decimal multiplication).** `0.125 × 0.4`. Recognize `0.125 = 1/8` and `0.4 = 2/5`. Then `(1/8) × (2/5) = 2/40 = 1/20 = 0.05`. Trying to multiply `0.125 × 0.4` directly works but takes longer.
+**Successive percent changes.** A $100 item goes up 20% to $120, then takes a 20% discount to `0.80 × 120 = 96`. Final price is 96% of original, not 100%. The 20% discount applies to the *new* base ($120), not the original ($100) — so the 20% cut removes more dollars than the 20% raise added.
 
-**Percent change and successive percent changes.** A $100 item goes up 20% to $120. Then a 20% discount brings it to `0.80 × 120 = 96`. The final price is 96% of the original — *not* 100%. Successive percentages don't cancel because the 20% discount applies to the *new* base ($120), not the original.
+**The compound-percent formula.** To combine a +X% change and then a +Y% change: multiply `(1 + X/100) × (1 + Y/100)`. A 20% raise followed by a 20% cut is `1.20 × 0.80 = 0.96`, a 4% net decrease. The shortcut: chained percent changes multiply, they never cancel symmetrically.
 
-**The percent-of-a-percent rule.** To combine a +X% change and a +Y% change: multiply `(1 + X/100) × (1 + Y/100)`. A 20% raise followed by a 20% cut is `1.20 × 0.80 = 0.96`, a 4% net decrease.
+**Percent change vs. percentage-point change.** "Unemployment rose from 6% to 9%." That is a 3 *percentage-point* increase, but a `(9 − 6)/6 = 50%` percent increase. When the GMAT asks "by how many percentage points did X change," compute the arithmetic difference. When it asks "by what percent did X change," compute the relative change: `(new − old) / old × 100`.
 
-**Trap to watch.** "What percent of 80 is 20?" and "20 is what percent of 80?" are the same question: `20/80 = 25%`. But "80 is what percent of 20?" is different: `80/20 = 400%`. Always ask: *what am I dividing by?* The "of" quantity goes in the denominator.
+**Trap to watch.** "What percent of 80 is 20?" and "20 is what percent of 80?" are the same question: `20/80 = 25%`. But "80 is what percent of 20?" is `80/20 = 400%`. Always ask: *what am I dividing by?* The "of" quantity goes in the denominator.
 
-> **Self-explanation prompt.** In one sentence, why does a 20% raise followed by a 20% cut not return to the original price? If you can explain that the cut operates on a larger base than the raise did, you'll never fall for the "they cancel" trap again.
+> **Self-explanation prompt.** In one sentence, why does a 20% raise followed by a 20% cut not return to the original price? If you can explain "the cut operates on a larger base than the raise did," you'll never fall for the "they cancel" trap again.
 
-> **Recall check.** Close the book (or cover this section). Now write down — from memory — the decimal equivalents of: 1/8, 3/8, 5/8, 7/8, 1/9, 2/9, 1/6, 5/6. You want these appearing in your head on sight, not computed. Score yourself; re-study the ones you missed; retest in 10 minutes. Spaced retrieval (Cepeda et al., 2006) beats mass practice on long-term retention — the short gap is what builds the durable memory.
+> **Recall check.** Close the book. Write down from memory the decimal equivalents of: `1/8`, `3/8`, `5/8`, `7/8`, `1/9`, `2/9`, `1/6`, `5/6`. Score yourself. Re-study the ones you missed, then retest in 10 minutes. Short-gap retrieval practice builds more durable memory than re-reading.
 
 ## @signs-and-negatives
 
-Signed-number arithmetic is where careful students lose points not because they don't know the rules, but because they skip the rules under time pressure. The rules are short, so memorize them once and never doubt them.
+Signed-number arithmetic is where careful students lose points not because they don't know the rules, but because they skip them under time pressure. The rules are short — memorize them once and never doubt them.
 
 **Multiplication and division of signs:**
 
-- `(+) × (+) = (+)`
-- `(−) × (−) = (+)`
-- `(+) × (−) = (−)` and `(−) × (+) = (−)`
+- Same sign → positive: `(−)(−) = +` and `(+)(+) = +`
+- Different signs → negative: `(+)(−) = −` and `(−)(+) = −`
 
-**Same sign → positive, different signs → negative.** That's the entire table. Extension: a product is negative if and only if there's an odd number of negative factors. `(−2)(−3)(−4) = −24` (three negatives, odd). `(−2)(−3)(−4)(−5) = 120` (four negatives, even).
+**Parity shortcut for products.** A product is negative if and only if there is an *odd* number of negative factors. Count the negatives; if odd, the product is negative.
 
-**Addition and subtraction of signs:**
+- `(−2)(−3)(−4) = −24` — three negatives (odd) → negative
+- `(−2)(−3)(−4)(−5) = 120` — four negatives (even) → positive
+
+Count before computing; skip carrying the sign through each step.
+
+**Addition and subtraction of signed numbers:**
 
 - Same sign → add magnitudes, keep the sign. `−7 + (−3) = −10`.
 - Different signs → subtract magnitudes, keep the sign of the larger. `−7 + 3 = −4`; `7 + (−3) = 4`.
-- Subtracting a negative is adding: `5 − (−3) = 5 + 3 = 8`.
+- Subtracting a negative equals adding: `5 − (−3) = 5 + 3 = 8`.
 
-**Absolute value.** `|x|` means the distance of x from zero, always non-negative. `|−3| = 3`, `|3| = 3`, `|0| = 0`. A key identity: `|x − y| = |y − x|`. Distance is symmetric. This cancellation shows up all the time — if you see `|x − y| − |y − x|` in an expression, it's zero, full stop.
+**Absolute value.** `|x|` is the distance of x from zero — always non-negative. `|−3| = 3`, `|3| = 3`, `|0| = 0`.
 
-**Example.** If `x = −3` and `y = 2`, find `|x − y| − |y − x| + |x| − |y|`.
+Key identity: `|x − y| = |y − x|`. Distance is symmetric. When an expression contains both `|x − y|` and `|y − x|`, they are equal and their difference is zero.
 
-- `|x − y| = |−3 − 2| = |−5| = 5`
-- `|y − x| = |2 − (−3)| = |5| = 5`
-- `|x − y| − |y − x| = 0` (always)
-- `|x| − |y| = 3 − 2 = 1`
-- Total: `0 + 1 = 1`
-
-**The two-case approach for absolute value equations.** If `|2x − 7| = 11`, split into cases:
+**Absolute value equations: the two-case rule.** `|2x − 7| = 11` means the expression inside has distance 11 from zero — it equals either +11 or −11:
 
 - Case 1: `2x − 7 = 11` → `x = 9`
 - Case 2: `2x − 7 = −11` → `x = −2`
 
-Sum: `9 + (−2) = 7`. Any `|expression| = k` equation has (up to) two solutions; forgetting the negative case is the #1 absolute-value trap.
+Sum: `9 + (−2) = 7`. The two solutions are always symmetric about the zero point of the expression inside (`x = 7/2 = 3.5`), so their sum is `2 × 3.5 = 7`. Use this symmetry when the GMAT asks for the sum of solutions — it takes 5 seconds instead of 25.
 
-**Trap to watch.** `(−3)² = 9`, but `−3² = −9`. The exponent binds tighter than the negation unless the negative is inside parentheses. Write out `−3²` as `−(3²)` in your head.
+**Absolute value inequalities.** Two rules cover every case:
+
+- `|expression| < k` means the expression is *between* −k and k: `−k < expression < k`.
+- `|expression| > k` means the expression is *outside* −k and k: expression > k *or* expression < −k.
+
+Example: `|x − 3| < 5` → `−5 < x − 3 < 5` → `−2 < x < 8`.
+
+**Trap to watch.** `(−3)² = 9`, but `−3² = −9`. The exponent binds tighter than the negation unless the negative is inside parentheses. Mentally parse `−3²` as `−(3²) = −9`. When squaring a negative number, put it in parentheses first.
+
+> **Self-explanation prompt.** Without looking: state the two-case rule for `|expression| = k`, and explain why the sum of the two solutions always equals `2 × (the value that makes the expression zero)`. If you can produce the symmetry argument, you've owned the pattern — not just the formula.
 
 ## @integers-vs-non-integers
 
@@ -231,79 +279,126 @@ The GMAT cares intensely about whether a number is an integer or not. Many Data 
 
 **Integer facts to internalize:**
 
-- Integers include negatives, zero, and positives. `…, −3, −2, −1, 0, 1, 2, 3, …`
-- Zero is an integer. Zero is even. Zero is a multiple of every integer.
-- The set of non-integers on the GMAT usually means rationals like `3/2`, `0.7`, or decimals that don't terminate cleanly.
-- Ratios and rates often produce non-integers; the problem usually tells you indirectly whether you need an integer answer ("how many people," "how many books").
+- Integers include negatives, zero, and positives: `…, −3, −2, −1, 0, 1, 2, 3, …`
+- Zero is an integer. Zero is even. Zero is neither positive nor negative.
+- Zero is a multiple of every integer, since `0 = 0 × n` for any integer n.
+- "Positive integer" means `1, 2, 3, …` — zero is excluded. Read that constraint carefully every time.
 
-**When the GMAT tests integer-ness:**
+**The DS integer-assumption trap.** "x is a positive number" does NOT mean "x is a positive integer." The GMAT relies on students defaulting to integers when the problem doesn't require it. On Data Sufficiency, whenever a constraint says only "positive" or "real," test a fractional value as your counterexample.
 
-1. "Is x an integer?" Data Sufficiency. Requires you to track whether a division produces a clean result.
-2. "How many integer values of x satisfy…?" Count carefully; endpoints matter.
-3. Word problems where the unknown must be an integer by context (people, books, trips).
+Example: Is `x² > x`? If `x = 2`, then `4 > 2` — yes. If `x = 0.5`, then `0.25 > 0.5` — no. The statement "x is positive" is insufficient because x could be `0.5`. Only when the constraint explicitly says "x is a positive integer greater than 1" is the answer always yes.
 
-**The fraction-comparison trick.** `p/q > 1/2` is equivalent to `2p > q` (assuming `q > 0`). You can cross-multiply to compare fractions, but only if you know the sign of the denominator. If `q` could be negative, the inequality can flip. On the GMAT, Data Sufficiency problems will exploit this ambiguity.
+**LCM and GCF — the two integer-operation tools.** These appear in fractions, number properties, and word problems:
 
-**Example.** Is `p/q > 1/2`? You're told `q = 2p − 5`.
+*Greatest Common Factor (GCF):* the largest integer that divides both numbers cleanly. `GCF(12, 18) = 6`. Use it to reduce fractions and to find the LCM.
 
-Manipulate: `p/q > 1/2` becomes `2p > q` when `q > 0`. Substituting `q = 2p − 5`: we want `2p > 2p − 5`, i.e., `0 > −5`. Always true (given `q > 0`). So statement (2) is sufficient.
+*Least Common Multiple (LCM):* the smallest integer divisible by both numbers. `LCM(4, 6) = 12`. Use it as the LCD when adding fractions.
 
-**Terminating vs non-terminating decimals.** A fraction `a/b` (in lowest terms) has a terminating decimal if and only if `b` has no prime factors other than 2 and 5. `3/8 = 0.375` (b = 2³, terminates). `1/3 = 0.333…` (b = 3, doesn't terminate). `1/6 = 0.1666…` (b = 2 × 3, the 3 forces non-termination).
+Fast formula: `LCM(a, b) = (a × b) / GCF(a, b)`. So `LCM(4, 6) = 24/2 = 12`. For any two numbers, find the GCF first, then this formula computes the LCM in one step.
 
-**Trap to watch.** "x is a positive number" does NOT mean "x is a positive integer." Always read the problem twice to check whether the integer constraint was given. Students who assume integers when the problem allowed rationals lose points on Data Sufficiency constantly.
+**Terminating vs. non-terminating decimals.** A fraction `a/b` in lowest terms has a terminating decimal if and only if `b` has no prime factors other than 2 and 5.
 
-> **Self-explanation prompt.** Why does `1/7` not terminate? If you can say "because 7 has no factors of 2 or 5, so no power of 10 is divisible by 7," you've internalized the rule — and you'll never have to memorize terminating-decimal lists.
+- `3/8 = 0.375` → `b = 2³`, only 2s → terminates
+- `1/3 = 0.333…` → `b = 3`, a factor of 3 → doesn't terminate
+- `1/6 = 0.1666…` → `b = 2 × 3`, the 3 forces non-termination
+- `7/40 = 0.175` → `b = 2³ × 5`, only 2s and 5s → terminates
+
+**The fraction-comparison shortcut.** `p/q > 1/2` is equivalent to `2p > q` (when `q > 0`). You can cross-multiply to compare fractions directly, but only when you know the denominators are positive. If q could be negative, the inequality flips — and DS problems exploit this ambiguity.
+
+**Trap to watch.** "x is a positive number" does NOT mean "x is a positive integer." Always read the problem twice to check whether the integer constraint was explicitly given. Fractions and decimals are valid values unless excluded, and they regularly produce different yes/no answers on DS.
+
+> **Self-explanation prompt.** Why does `1/7` not terminate? If you can say "because 7 has no factors of 2 or 5, so no power of 10 is divisible by 7, so the decimal never closes," you've internalized the rule — and you'll never have to memorize a list of terminating decimals.
 
 ## @estimation-tricks
 
-The GMAT rewards students who know when to estimate and when to compute exactly. On every Problem Solving question, scan the answer choices before you start. If the choices are spread (5, 15, 50, 150, 500), estimate. If they're close (11, 12, 13, 14, 15), compute.
+Two skills in this section save time on Quant: knowing *when* to estimate rather than compute exactly, and knowing the *units-digit cycle* — which lets you find the last digit of any large power in five seconds flat.
 
-**Example (estimation wins).** Which is closest to 1/3: 7/22, 11/32, 5/16, 9/28, or 13/40?
+**The answer-choice scan.** Before computing anything, look at the answer choices. If they are spread (5, 15, 50, 150, 500), estimate. If they are close (11, 12, 13, 14, 15), compute exactly. This 3-second scan determines your entire strategy for the question.
 
-- `7/22 ≈ 0.318` (below 1/3 ≈ 0.333)
-- `11/32 ≈ 0.344` (slightly above)
-- `5/16 = 0.3125` (farther below)
-- `9/28 ≈ 0.321` (below)
-- `13/40 = 0.325` (below)
+**Estimation heuristics:**
 
-The one that's closest: `11/32`. A more rigorous approach uses cross-multiplication to measure the gap exactly: for `11/32` vs `1/3`, the cross-product difference is `33 − 32 = 1`, and the gap is `1/(3 × 32) = 1/96`. For `7/22`, the gap is `1/(3 × 22) = 1/66`. Smaller gap → closer fraction. `1/96 < 1/66`, so `11/32` wins.
+- `π ≈ 3.14 ≈ 22/7`. Close enough for every GMAT geometry question.
+- `√2 ≈ 1.414`, `√3 ≈ 1.732`, `√5 ≈ 2.236`. Recognize these on sight; don't compute them under time pressure.
+- 10% of any number moves the decimal left one. 5% is half of 10%. For 17% of 350: `10% = 35`, `7% = 7 × 3.5 = 24.5`, total `≈ 59.5`.
+- Doubling and halving preserves a product: `25 × 16 = 50 × 8 = 100 × 4 = 400`. Use it to create rounder numbers that are easier to multiply mentally.
 
-**Estimation heuristics worth memorizing:**
+**The units-digit cycle.** The GMAT frequently asks for the units digit of a large power such as `7^{24}` or `3^{41}`. You never need to compute the full power. Every integer's units digit follows a predictable cycle of length 1, 2, or 4.
 
-- `π ≈ 3.14 ≈ 22/7`. Close enough for any GMAT geometry question.
-- `√2 ≈ 1.414`, `√3 ≈ 1.732`, `√5 ≈ 2.236`. Decimals of these three roots show up constantly.
-- 10% of a number is easy; 1% is easier. For 17% of 350, compute 10% = 35, plus 7% = 7 × 3.5 = 24.5. Total ≈ 59.5.
-- Doubling and halving preserves a product: `25 × 16 = 50 × 8 = 100 × 4 = 400`. Cleaner numbers, same answer.
+| Base units digit | Cycle | Period |
+|---|---|---|
+| 0, 1, 5, 6 | Always 0, 1, 5, 6 (fixed) | 1 |
+| 4 | 4, 6, 4, 6, … | 2 |
+| 9 | 9, 1, 9, 1, … | 2 |
+| 2 | 2, 4, 8, 6, 2, 4, 8, 6, … | 4 |
+| 3 | 3, 9, 7, 1, 3, 9, 7, 1, … | 4 |
+| 7 | 7, 9, 3, 1, 7, 9, 3, 1, … | 4 |
+| 8 | 8, 4, 2, 6, 8, 4, 2, 6, … | 4 |
 
-**The answer-choice-as-input strategy.** On many Problem Solving questions, plugging the answer choices back into the problem is faster than solving algebraically. If the answers are small integers, plug in the middle value first: if the answer is too big, try a smaller one; if too small, try a bigger one. On average you eliminate two choices with one calculation.
+**How to use it:**
+
+1. Look at only the units digit of the base.
+2. Find its cycle length from the table.
+3. Divide the exponent by the cycle length and find the remainder.
+4. The remainder maps to the position in the cycle (treating remainder 0 as the last position).
+
+**Example.** Units digit of `7^{24}`:
+
+- Base ends in 7. Cycle: 7, 9, 3, 1 (length 4).
+- 24 ÷ 4 = 6 exactly, remainder **0** → last position in cycle → **1**.
+
+Units digit of `7^{24}` is **1**.
+
+**Example.** Units digit of `3^{41}`:
+
+- Base ends in 3. Cycle: 3, 9, 7, 1 (length 4).
+- 41 ÷ 4 = 10 remainder **1** → first position in cycle → **3**.
+
+Units digit of `3^{41}` is **3**.
+
+**Example.** Units digit of `4^{17}`:
+
+- Base ends in 4. Cycle: 4, 6 (length 2).
+- 17 ÷ 2 = 8 remainder **1** → first position → **4**.
+
+Units digit of `4^{17}` is **4**.
+
+**The answer-choice-as-input strategy.** On Problem Solving questions with small integer answer choices, plug the middle answer in first. If the result is too large, try a smaller choice; if too small, try larger. Two tests usually isolate the answer — often faster than solving algebraically.
 
 **Compute-exactly signals:**
 
-- Answer choices are close (within 10% of each other).
-- The question asks for a remainder or a specific digit.
-- The problem says "exactly" or "precisely."
+- Answer choices are close (within 10% of each other)
+- The question asks for a specific digit or remainder
+- The problem says "exactly" or "precisely"
 
 **Estimate signals:**
 
-- Answer choices are spread (each differs from the next by 50%+).
-- The problem says "approximately" or "closest to."
-- You're multiplying messy decimals and one choice is obviously nearest.
+- Answer choices are spread (each ≥ 50% larger than the prior)
+- The problem says "approximately" or "closest to"
+- You're multiplying multi-digit decimals
 
-**Trap to watch.** Estimation doesn't mean "guess." It means "round each number to a cleaner value, compute, and check the direction of your rounding error." If you rounded up twice, your estimate is too high; mentally adjust down.
+**Trap to watch.** Estimation doesn't mean guessing. It means rounding each number to a cleaner value, computing with the rounder numbers, and tracking the direction of rounding error. If you rounded two quantities up, your estimate is too high; nudge down when picking the closest answer choice.
+
+> **Self-explanation prompt.** Without looking at the table: what is the units digit of `2^{100}`? Walk through it: cycle for 2 is 2, 4, 8, 6 (length 4). `100 ÷ 4 = 25` remainder 0 → last position in cycle → **6**. If you produced the answer cleanly, the cycle is in your memory.
 
 ## @summary
 
-Arithmetic is not a separate Quant topic — it's the substrate that every other Quant topic sits on. A word problem about ratios, a Data Sufficiency about remainders, a geometry problem about a circle — all of them reduce at some point to an arithmetic operation. The students who score above 685 are not better at algebra than 605 scorers; they're dramatically faster and more accurate at arithmetic.
+Arithmetic is not a separate Quant topic — it's the substrate every other Quant topic sits on. A word problem about ratios, a Data Sufficiency about remainders, a geometry problem about a circle — all reduce to arithmetic at some point. Students who score above 685 are not better at algebra than 605 scorers; they are faster and more accurate at arithmetic.
 
 **The seven habits that produce that speed:**
 
-1. **Respect PEMDAS, especially the subtraction-associativity trap.** Multiplication and division always bind tighter than addition and subtraction, and subtraction only runs left to right.
-2. **Know your fraction-decimal-percent conversions cold.** Sevenths, eighths, and ninths come up constantly; memorize their decimal forms once and never compute them again.
-3. **Simplify fractions before you compute.** Cancel common factors diagonally before multiplying. Reduce at the end so your answer matches the test's "simplified" form.
-4. **Track signs deliberately.** Odd count of negatives → negative product. Always wrap negations inside parentheses when squaring.
-5. **Check the integer assumption.** The problem must tell you x is an integer — never assume. Terminating-decimal fractions have denominators whose only prime factors are 2 and 5.
-6. **Scan answer choices before computing.** Spread choices → estimate. Tight choices → compute. Plugging answers back in is often faster than algebra.
-7. **Use the complement.** 15% off = pay 85%. "At least one" = total minus none. Framing a percent or count the easier way saves 20+ seconds per question.
+1. **Respect PEMDAS, all three traps.** Multiplication and division bind tighter than addition and subtraction. Subtraction runs left to right only. A leading `−(expression)` distributes the negative to every term inside the parentheses.
+
+2. **Find the LCD before adding fractions. Cancel before multiplying.** Use `LCM(a, b) = (a × b) / GCF(a, b)` to compute the LCD fast. Cancel common factors diagonally before multiplying. Reduce fully at the end — the GMAT lists "partially simplified" fractions as trap answers.
+
+3. **Know your fraction-decimal-percent conversions cold.** Sevenths, eighths, and ninths come up constantly. Know the benchmark percents (5%, 12.5%, 25%, 33⅓%, 66⅔%, 75%) as fractions for one-step multiplication.
+
+4. **Track signs deliberately.** Count the negatives in a product — odd count means negative result. Wrap negations inside parentheses when squaring. Subtracting a negative equals adding.
+
+5. **Check the integer assumption.** The problem must explicitly say x is an integer — never assume. When a constraint says only "positive," test a fractional counterexample before concluding sufficiency.
+
+6. **Use the units-digit cycle for large powers.** Digits 0, 1, 5, 6 are fixed. Digits 4 and 9 cycle with period 2. Digits 2, 3, 7, 8 cycle with period 4. Divide the exponent by the period; the remainder gives the position in the cycle.
+
+7. **Scan answer choices before computing.** Spread choices → estimate. Tight choices → compute. Plug the middle answer choice when backsolving is faster than algebra.
 
 **Common patterns to pattern-match on sight:**
 
@@ -311,9 +406,11 @@ Arithmetic is not a separate Quant topic — it's the substrate that every other
 |---|---|---|
 | "X% discount" | Multiply by `(1 − X/100)` | One step instead of two |
 | "Sum of consecutive integers" | Middle term × count | Skip summation |
-| "Simplified fraction" | Reduce fully | `42/98 = 3/7` |
-| "Closest to" | Estimate then cross-check | Cross-multiply for exact gaps |
-| "Units digit of large power" | Check cycle | Powers of 2, 3, 7, 8 cycle mod 4 |
+| "Simplified fraction" | Reduce fully with GCF | `42/98 = 3/7` |
+| "Closest to" | Estimate, then cross-check | Cross-multiply for exact gaps |
+| "Units digit of large power" | Units-digit cycle | Divide exponent by period (4 or 2) |
 | Compound percent change | Multiply factors | `1.20 × 0.80 = 0.96` |
+| "By how many percentage points" | Arithmetic difference | New minus old |
+| "By what percent did it change" | Relative change | `(new − old) / old` |
 
-You're going to do 20 arithmetic problems at the end of this chapter. Keep this table open the first time through. By the third time, you won't need it — the habits will be reflexes, and that's when your Quant pace jumps.
+Work through the three problem sets in order — easy, then medium, then hard. Keep this table open the first time through. By the third session, you won't need it — the habits will be reflexes.
