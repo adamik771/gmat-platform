@@ -26,6 +26,7 @@ import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
 } from "@/lib/keyboard"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 
 export interface SessionQuestion {
   id: string
@@ -1208,8 +1209,64 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+    const avgTimeMs = answeredCount === 0 ? 0 : Math.round(totalTime / answeredCount)
+
+    // Performance-calibrated headline
+    const perfHeadline =
+      accuracy >= 85
+        ? "Strong session."
+        : accuracy >= 70
+        ? "Solid work."
+        : accuracy >= 50
+        ? "Useful data."
+        : "This is where growth happens."
+
+    const perfSubline =
+      accuracy >= 85
+        ? `${correctCount} of ${total} correct — clean execution.`
+        : accuracy >= 70
+        ? `${correctCount} of ${total} correct — keep building on this.`
+        : accuracy >= 50
+        ? `${total - correctCount} misses are your clearest study signal right now.`
+        : `Hard sessions build the most. ${total - correctCount} questions to learn from.`
+
+    // Partition into wrong / correct / skipped
+    const wrongRows = questions
+      .map((q, i) => ({ q, s: states[i], i }))
+      .filter(({ q, s }) => s.submitted && !isQuestionCorrect(q, s))
+    const correctRows = questions
+      .map((q, i) => ({ q, s: states[i], i }))
+      .filter(({ q, s }) => s.submitted && isQuestionCorrect(q, s))
+    const skippedRows = questions
+      .map((q, i) => ({ q, s: states[i], i }))
+      .filter(({ s }) => !s.submitted)
+
+    // Surface the most-repeated wrong subtopic (only if 2+ hits)
+    const subtopicCounts: Record<string, number> = {}
+    wrongRows.forEach(({ q }) => {
+      subtopicCounts[q.subtopic] = (subtopicCounts[q.subtopic] ?? 0) + 1
+    })
+    const topGap = Object.entries(subtopicCounts).sort((a, b) => b[1] - a[1])[0]
+    const prominentGap = topGap && topGap[1] >= 2 ? topGap : null
+
+    // Chapter link if the topic maps to one
+    const chapterSlug = TOPIC_TO_CHAPTER[topic] ?? null
+
+    // Primary next-action
+    const nextHref =
+      accuracy < 70 && chapterSlug
+        ? `/chapters/${chapterSlug}`
+        : "/practice"
+    const nextLabel =
+      accuracy < 70 && chapterSlug
+        ? `Review ${topic} chapter`
+        : accuracy >= 85
+        ? "Keep practicing"
+        : "Back to Practice"
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
+        {/* Header */}
         <div>
           <Link
             href="/practice"
@@ -1218,22 +1275,26 @@ export default function SessionClient({
             <ArrowLeft className="w-3 h-3" />
             Back to Practice
           </Link>
-          <h1 className="text-2xl font-bold text-[#F0F0F0] mt-3">Session complete</h1>
-          <p className="text-sm text-[#555555] mt-1">
-            {topic} · {section}
-          </p>
+          <div className="mt-4 flex items-start justify-between gap-4">
+            <div>
+              <h1 className="text-2xl font-bold text-[#F0F0F0]">{perfHeadline}</h1>
+              <p className="text-sm text-[#888888] mt-1">{perfSubline}</p>
+            </div>
+            <div className="flex-shrink-0 text-right">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555]">{section}</p>
+              <p className="text-sm font-medium mt-0.5" style={{ color: "#C9A84C" }}>{topic}</p>
+            </div>
+          </div>
         </div>
 
         <SaveStatusBanner status={saveStatus} onRetry={saveSession} />
 
+        {/* Metrics */}
         <div
           className="p-6 rounded-xl border"
-          style={{
-            borderColor: "rgba(201,168,76,0.2)",
-            backgroundColor: "rgba(201,168,76,0.04)",
-          }}
+          style={{ borderColor: "rgba(201,168,76,0.2)", backgroundColor: "rgba(201,168,76,0.04)" }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-6">
             <div>
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Accuracy</p>
               <p className="text-3xl font-bold mt-2" style={{ color: "#C9A84C" }}>
@@ -1250,66 +1311,158 @@ export default function SessionClient({
             <div>
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Total time</p>
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
+              {answeredCount > 0 && (
+                <p className="text-[11px] text-[#555555] mt-1">avg {formatDuration(avgTimeMs)} / q</p>
+              )}
             </div>
           </div>
         </div>
 
+        {/* Where to go next */}
+        <div
+          className="p-5 rounded-xl border flex items-center justify-between gap-4"
+          style={{ borderColor: "rgba(255,255,255,0.06)", backgroundColor: "#111111" }}
+        >
+          <div className="min-w-0">
+            <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1.5">Where to go next</p>
+            {prominentGap ? (
+              <p className="text-sm text-[#F0F0F0]">
+                {prominentGap[1]} misses on{" "}
+                <span style={{ color: "#C9A84C" }}>{prominentGap[0]}</span> — your clearest gap this session.
+              </p>
+            ) : wrongRows.length > 0 ? (
+              <p className="text-sm text-[#F0F0F0]">
+                Review {wrongRows.length} missed question{wrongRows.length !== 1 ? "s" : ""} and tag the error type.
+              </p>
+            ) : (
+              <p className="text-sm text-[#F0F0F0]">Clean session. Push to the next difficulty level.</p>
+            )}
+          </div>
+          <div className="flex flex-col gap-2 flex-shrink-0">
+            <Link
+              href={nextHref}
+              className="px-4 py-2 rounded-lg text-sm font-semibold text-center transition-all hover:opacity-90 whitespace-nowrap"
+              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            >
+              {nextLabel}
+            </Link>
+            {wrongRows.length > 0 && (
+              <Link
+                href="/error-log"
+                className="px-4 py-2 rounded-lg text-sm font-medium text-center border transition-all hover:bg-white/[0.04] whitespace-nowrap"
+                style={{ borderColor: "rgba(255,68,68,0.2)", color: "#FF8888" }}
+              >
+                Tag {wrongRows.length} mistake{wrongRows.length !== 1 ? "s" : ""}
+              </Link>
+            )}
+          </div>
+        </div>
+
+        {/* Question review — misses first */}
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
             Review
           </h2>
-          <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
-            {questions.map((q, i) => {
-              const state = states[i]
-              const isCorrect = isQuestionCorrect(q, state)
-              return (
-                <button
-                  key={q.id}
-                  onClick={() => {
-                    goTo(i)
-                    setShowResults(false)
-                  }}
-                  className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
-                    i < questions.length - 1 ? "border-b border-white/[0.05]" : ""
-                  }`}
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div
-                      className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{
-                        backgroundColor: state.submitted
-                          ? isCorrect
+
+          {wrongRows.length > 0 && (
+            <div className="mb-4">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+                Missed ({wrongRows.length})
+              </p>
+              <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
+                {wrongRows.map(({ q, s, i }, rowIdx) => (
+                  <button
+                    key={q.id}
+                    onClick={() => {
+                      goTo(i)
+                      setShowResults(false)
+                    }}
+                    className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
+                      rowIdx < wrongRows.length - 1 ? "border-b border-white/[0.05]" : ""
+                    }`}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div
+                        className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                        style={{ backgroundColor: "rgba(255,68,68,0.1)" }}
+                      >
+                        <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs text-[#555555]">Q{i + 1} · {q.subtopic}</p>
+                        <p className="text-sm text-[#F0F0F0] truncate">
+                          {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 flex-shrink-0 ml-3">
+                      {s.submitted && s.elapsedMs > 120_000 && (
+                        <span
+                          className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded"
+                          style={{ backgroundColor: "rgba(255,68,68,0.1)", color: "#FF8888" }}
+                        >
+                          slow
+                        </span>
+                      )}
+                      <span className="text-xs text-[#888888]">
+                        {s.submitted ? formatDuration(s.elapsedMs) : "skipped"}
+                      </span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {(correctRows.length > 0 || skippedRows.length > 0) && (
+            <div>
+              {wrongRows.length > 0 && (
+                <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+                  Correct ({correctRows.length}){skippedRows.length > 0 ? ` · Skipped (${skippedRows.length})` : ""}
+                </p>
+              )}
+              <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
+                {[...correctRows, ...skippedRows].map(({ q, s, i }, rowIdx, arr) => (
+                  <button
+                    key={q.id}
+                    onClick={() => {
+                      goTo(i)
+                      setShowResults(false)
+                    }}
+                    className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
+                      rowIdx < arr.length - 1 ? "border-b border-white/[0.05]" : ""
+                    }`}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div
+                        className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                        style={{
+                          backgroundColor: s.submitted
                             ? "rgba(62,207,142,0.1)"
-                            : "rgba(255,68,68,0.1)"
-                          : "rgba(255,255,255,0.04)",
-                      }}
-                    >
-                      {state.submitted ? (
-                        isCorrect ? (
+                            : "rgba(255,255,255,0.04)",
+                        }}
+                      >
+                        {s.submitted ? (
                           <Check className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
                         ) : (
-                          <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
-                        )
-                      ) : (
-                        <span className="text-[10px] text-[#555555]">—</span>
-                      )}
+                          <span className="text-[10px] text-[#555555]">—</span>
+                        )}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs text-[#555555]">Q{i + 1} · {q.subtopic}</p>
+                        <p className="text-sm text-[#F0F0F0] truncate">
+                          {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
+                        </p>
+                      </div>
                     </div>
-                    <div className="min-w-0">
-                      <p className="text-xs text-[#555555]">
-                        Question {i + 1} · {q.subtopic}
-                      </p>
-                      <p className="text-sm text-[#F0F0F0] truncate">
-                        {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
-                      </p>
-                    </div>
-                  </div>
-                  <span className="text-xs text-[#888888] flex-shrink-0 ml-3">
-                    {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
-                  </span>
-                </button>
-              )
-            })}
-          </div>
+                    <span className="text-xs text-[#888888] flex-shrink-0 ml-3">
+                      {s.submitted ? formatDuration(s.elapsedMs) : "skipped"}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="flex gap-3 flex-wrap">
