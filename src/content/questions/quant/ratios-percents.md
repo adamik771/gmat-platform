@@ -668,3 +668,450 @@ Is the price of product X greater than the price of product Y?
 **common_trap:** Thinking statements about "different products" can't combine — but a shared variable (Z) bridges them.
 **takeaway:** Look for shared variables in DS statements. Statements that mention different things may still chain through a common reference.
 **related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q26
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Ratios
+
+A bag contains only red and white marbles in the ratio 4:3. If there are 35 marbles in total, how many white marbles are there?
+
+- A) 3
+- B) 5
+- C) 15
+- D) 20
+- E) 25
+
+**answer:** C
+**fastest_path:** 4+3=7 parts. 35/7=5 per part. White = 3×5 = 15.
+**explanation:** The ratio 4:3 has 7 total parts. Each part = 35/7 = 5 marbles. White marbles = 3 × 5 = 15.
+**mistake_a:** Bubbled the "3" directly from the ratio without computing.
+**mistake_b:** Bubbled 1 part (5) instead of 3 parts.
+**mistake_d:** Computed red marbles: 4 × 5 = 20 (mis-read "white" as "red").
+**mistake_e:** Bubbled 5 × 5 = 25 (used 5 parts instead of 3).
+**common_trap:** Computing the wrong color — always confirm which part the question asks for before multiplying.
+**takeaway:** Find the unit value first (total ÷ sum of parts), then multiply by the correct part. Re-read the question before bubbling.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q27
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Percent Change
+
+A shirt's price increased from $40 to $50. By what percent did the price increase?
+
+- A) 10%
+- B) 20%
+- C) 25%
+- D) 50%
+- E) 80%
+
+**answer:** C
+**fastest_path:** Change = 10. Percent = 10/40 × 100 = 25%.
+**explanation:** Percent change = (change / original) × 100 = (10/40) × 100 = 25%. The base is always the original value.
+**mistake_a:** Bubbled the raw dollar change ($10) as "10%."
+**mistake_b:** Divided by the new price instead of the original: 10/50 = 20%.
+**mistake_d:** Rough estimate or computation error.
+**mistake_e:** Inverted the fraction: 40/50 = 80%.
+**common_trap:** Dividing by the new price (50) rather than the original (40) — always use the starting value as the denominator.
+**takeaway:** Percent change = (new − old) / old × 100. The denominator is always the original (before) value.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q28
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Proportions
+
+A car travels 150 miles on 5 gallons of gas. At the same rate, how many gallons are needed to travel 390 miles?
+
+- A) 11
+- B) 12
+- C) 13
+- D) 15
+- E) 17
+
+**answer:** C
+**fastest_path:** Rate = 150/5 = 30 mpg. 390/30 = 13 gallons.
+**explanation:** Unit rate = 150/5 = 30 miles per gallon. Gallons for 390 miles = 390/30 = 13. Alternatively: set up a proportion 5/150 = x/390 → x = 5 × 390/150 = 13.
+**mistake_a:** Rough estimate or erroneous subtraction-based shortcut.
+**mistake_b:** Division slip: used a slightly wrong rate and got 12.
+**mistake_d:** Used scale factor of 3 (since 3 × 150 = 450 ≠ 390) → 5 × 3 = 15.
+**mistake_e:** Over-estimated the gallons needed.
+**common_trap:** Misidentifying the rate direction — compute miles/gallon (not gallons/mile) so the final division comes out correct.
+**takeaway:** Find the unit rate first and label units at every step. Gallons = miles ÷ (miles per gallon).
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Basic Percents
+
+What is 40% of 25% of 200?
+
+- A) 10
+- B) 16
+- C) 18
+- D) 20
+- E) 50
+
+**answer:** D
+**fastest_path:** 25% of 200 = 50. 40% of 50 = 20.
+**explanation:** Work inside-out. 25% of 200 = 0.25 × 200 = 50. Then 40% of 50 = 0.40 × 50 = 20. Equivalently: 0.40 × 0.25 × 200 = 0.10 × 200 = 20.
+**mistake_a:** Computed 40% of 25 = 10 (skipped anchoring to 200).
+**mistake_b:** Treated one percent as a smaller decimal: 0.08 × 200 = 16.
+**mistake_c:** Arithmetic slip.
+**mistake_e:** Stopped after the first step: 25% of 200 = 50.
+**common_trap:** Stopping after one percent operation instead of chaining both; or computing 40% of 25 without using 200 as the base.
+**takeaway:** Chained percents: convert each to a decimal and multiply sequentially. 40% of 25% of 200 = 0.40 × 0.25 × 200 = 0.10 × 200 = 20.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Ratios
+
+Two partners invest a combined $56,000 in the ratio 5:3. How much does the partner with the larger share invest?
+
+- A) $14,000
+- B) $21,000
+- C) $28,000
+- D) $35,000
+- E) $42,000
+
+**answer:** D
+**fastest_path:** 5+3=8 parts. 56,000/8=7,000 per part. Larger = 5×7,000 = $35,000.
+**explanation:** Total ratio parts = 5 + 3 = 8. Unit value = 56,000 / 8 = 7,000. Larger share = 5 × 7,000 = 35,000.
+**mistake_a:** Bubbled 2 × 7,000 = 14,000 (misidentified which multiple to use).
+**mistake_b:** Bubbled the smaller share: 3 × 7,000 = 21,000.
+**mistake_c:** Halved the total (equal split): 56,000 / 2 = 28,000.
+**mistake_e:** Used 6 parts instead of 5: 6 × 7,000 = 42,000.
+**common_trap:** Bubbling the smaller share (3 parts) instead of the larger (5 parts) — always re-read which partner the question asks about.
+**takeaway:** Ratio + total → unit value = total ÷ (sum of parts). Multiply unit value by the correct part.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q31
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Chained Percents
+
+A salesman earns a 15% commission on his total sales. He gives his assistant 20% of his commission. What percent of the salesman's total sales does the assistant receive?
+
+- A) 3%
+- B) 5%
+- C) 12%
+- D) 20%
+- E) 35%
+
+**answer:** A
+**fastest_path:** 15% × 20% = 0.15 × 0.20 = 0.03 = 3%.
+**explanation:** The assistant gets 20% of the commission, which is 20% of 15% of sales = 0.20 × 0.15 = 0.03 = 3% of total sales. Smart number check: $100 sales → $15 commission → assistant gets $3 → 3%.
+**mistake_b:** Divided 15 by 3 → 5 (applied wrong operation).
+**mistake_c:** Subtracted: 15 − (20% of 15) = 15 − 3 = 12 (found the salesman's remaining share, not the assistant's).
+**mistake_d:** Bubbled the assistant's percentage of commission (20%) without anchoring to total sales.
+**mistake_e:** Added the two percentages: 15 + 20 = 35%.
+**common_trap:** Bubbling 20% (percent of commission) rather than computing 20% × 15% (percent of total sales). The assistant's share is a percent of a percent.
+**takeaway:** When a percent is taken from another percent, multiply the two decimals. Always trace back to the original base.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q32
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Percent Change
+
+After a 40% discount, a television sells for $360. What was the original price?
+
+- A) $216
+- B) $504
+- C) $540
+- D) $576
+- E) $600
+
+**answer:** E
+**fastest_path:** P × 0.60 = 360 → P = 360/0.60 = 600.
+**explanation:** A 40% discount means the customer pays 60% of the original price. So 0.60 × P = 360 → P = 360 ÷ 0.60 = 600.
+**mistake_a:** Applied another 40% reduction to the sale price: 360 × 0.60 = 216.
+**mistake_b:** Added 40% to the sale price: 360 × 1.40 = 504 — the classic reverse-percent trap.
+**mistake_c:** Added 50% instead of reversing 40%: 360 × 1.50 = 540.
+**mistake_d:** Used the wrong multiplier: 360 × 1.60 = 576.
+**common_trap:** Adding 40% back to the sale price (504). The 40% was taken off the *original*, not the sale price, so you cannot undo it by adding 40% of the sale price.
+**takeaway:** To reverse a −x% discount: divide by (1 − x/100). P = sale price ÷ 0.60 here. Never add the discount percent back to the sale price.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Comparing Percents of Unknowns
+
+Is 30% of x greater than 40% of y?
+
+(1) x = 2y
+(2) y > 0
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** Reframe: is 3x > 4y? (1) x=2y → 6y vs 4y; sign of y unknown → not sufficient. (2) y>0, no info on x → not sufficient. Together: y>0 makes 6y > 4y → YES.
+**explanation:** Rewrite the question: 0.30x > 0.40y ↔ 3x > 4y. Statement (1): x = 2y → 3(2y) = 6y vs 4y. If y > 0: yes. If y ≤ 0: no (or both zero). Insufficient alone. Statement (2): y > 0, but x is unknown — could be 0 → 0 < 4y, or very large. Insufficient alone. Together: x = 2y and y > 0 → 6y > 4y → YES. Sufficient.
+**mistake_a:** Concluded (1) alone sufficient, mentally assuming y > 0 without being told so.
+**mistake_b:** Concluded (2) alone sufficient, forgetting x is unconstrained.
+**mistake_d:** Concluded each alone sufficient.
+**mistake_e:** Concluded both together insufficient.
+**common_trap:** Plugging in y > 0 mentally while reading Statement (1). A ratio relationship alone does not constrain the sign of the variables.
+**takeaway:** In DS with variables, always test positive, negative, and zero values. A proportional relationship between variables does not determine their signs.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Weighted Average
+
+Department A has 40 employees with an average salary of $50,000. Department B has 10 employees with an average salary of $90,000. What is the average salary of all 50 employees?
+
+- A) $58,000
+- B) $62,000
+- C) $70,000
+- D) $72,000
+- E) $80,000
+
+**answer:** A
+**fastest_path:** (40×50,000 + 10×90,000)/50 = 2,900,000/50 = 58,000.
+**explanation:** Weighted average = (40 × 50,000 + 10 × 90,000) / (40 + 10) = (2,000,000 + 900,000) / 50 = 2,900,000 / 50 = $58,000. The larger group (40 employees) pulls the average far toward $50,000.
+**mistake_b:** Arithmetic slip in the weighting step.
+**mistake_c:** Unweighted average: (50,000 + 90,000) / 2 = $70,000 — the classic equal-weighting trap.
+**mistake_d:** Slip toward the midpoint.
+**mistake_e:** Weighted toward the smaller (higher-paid) department instead of the larger.
+**common_trap:** Taking the simple average of the two group averages (70,000) — when group sizes differ, each average must be weighted by its group size.
+**takeaway:** Weighted average = (Σ weight × value) / Σ weights. With 4× as many employees in Dept A, the result skews heavily toward $50,000.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Ratio Chains
+
+In a survey, the ratio of coffee drinkers to tea drinkers is 7:4, and the ratio of tea drinkers to juice drinkers is 3:2. What is the ratio of coffee drinkers to juice drinkers?
+
+- A) 7:2
+- B) 7:6
+- C) 7:3
+- D) 21:8
+- E) 3:2
+
+**answer:** D
+**fastest_path:** Match tea. LCM(4,3)=12. Coffee:Tea = 21:12 (×3); Tea:Juice = 12:8 (×4). Coffee:Juice = 21:8.
+**explanation:** Chain by equalizing the shared term (tea). Tea appears as 4 in the first ratio and 3 in the second. LCM(4,3) = 12. Scale: 7:4 → 21:12 (×3); 3:2 → 12:8 (×4). Now coffee:tea:juice = 21:12:8 → coffee:juice = 21:8.
+**mistake_a:** Paired coffee (7) with juice (2) without scaling the shared middle term: 7:2.
+**mistake_b:** Mis-scaled one side, arriving at 7:6.
+**mistake_c:** Dropped the middle term and used 7:3 directly.
+**mistake_e:** Bubbled the second ratio (3:2) unchanged.
+**common_trap:** Taking the first ratio's numerator and the second ratio's denominator (7:2) without ensuring the shared middle term is equal in both.
+**takeaway:** Chain ratios by equalizing the shared middle variable — scale both ratios so the shared value equals the LCM, then read the outer terms.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Successive Percent Changes
+
+A jacket's price is first increased by 25%, then decreased by 20% from the new price. The final price is what percent of the original price?
+
+- A) 80%
+- B) 95%
+- C) 100%
+- D) 105%
+- E) 125%
+
+**answer:** C
+**fastest_path:** 1.25 × 0.80 = 1.00. Final price equals original.
+**explanation:** Chain the multipliers: 1.25 × 0.80 = 1.00. The final price is exactly 100% of the original — the two changes cancel. Smart number: $100 → $125 → $100. Note: a +20%/−20% pair nets −4%; here +25%/−20% cancels exactly because 1/1.25 = 0.80.
+**mistake_a:** Applied only the −20% decrease: $100 × 0.80 = 80%.
+**mistake_b:** Additive subtraction: 100 − 25 + 20 = 95%.
+**mistake_d:** Additive addition: 100 + 25 − 20 = 105%.
+**mistake_e:** Applied only the +25% increase: $100 × 1.25 = 125%.
+**common_trap:** Adding percent changes instead of multiplying factors. The 20% decrease is taken off the already-inflated price, not the original.
+**takeaway:** Successive percent changes multiply factors, not add percents. 1.25 × 0.80 = 1.00 is one of the few pairs that cancel exactly; recognize it as a pattern.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Ratios
+
+Three friends split a restaurant bill in the ratio 2:3:5. The largest share is $45. What is the total bill?
+
+- A) $45
+- B) $63
+- C) $72
+- D) $90
+- E) $108
+
+**answer:** D
+**fastest_path:** 5k = 45 → k = 9. Total = (2+3+5) × 9 = $90.
+**explanation:** The largest share corresponds to 5 parts. 5k = 45 → k = 9. Total parts = 2 + 3 + 5 = 10. Total bill = 10 × 9 = $90.
+**mistake_a:** Bubbled the given largest share ($45) as the total.
+**mistake_b:** Summed only 7 parts: 7 × 9 = 63 (mis-added the ratio or omitted one portion).
+**mistake_c:** Summed 8 parts: 8 × 9 = 72 (incorrect ratio addition).
+**mistake_e:** Used 12 parts: 12 × 9 = 108 (doubled a term or mis-added the ratio sum).
+**common_trap:** Forgetting to include *all* parts in the total — the given share (5 parts = $45) must itself be part of the total.
+**takeaway:** Find the unit value from the given part, then sum all ratio parts (including the given one) to find the total.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q38
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Mixtures
+
+How many liters of a 70% alcohol solution must be mixed with 60 liters of a 40% alcohol solution to produce a mixture that is exactly 50% alcohol?
+
+- A) 20
+- B) 25
+- C) 30
+- D) 40
+- E) 45
+
+**answer:** C
+**fastest_path:** Alligation: distances from 50% are 20 (from 70%) and 10 (from 40%). Volume ratio = 10:20 = 1:2. 60 liters of 40% → 30 liters of 70%.
+**explanation:** Let x = liters of 70% solution. Alcohol equation: 0.70x + 0.40(60) = 0.50(x + 60) → 0.70x + 24 = 0.50x + 30 → 0.20x = 6 → x = 30. Alligation check: distances from 50% are 70−50=20 and 50−40=10. Volume ratio (inverted) = 10:20 = 1:2, confirming 30:60.
+**mistake_a:** Applied alligation distances without inverting: used 20:10 ratio → got 20.
+**mistake_b:** Arithmetic slip in the equation.
+**mistake_d:** Assumed equal distances (used 40:40 split) → 40.
+**mistake_e:** Set up the equation with volumes on the wrong side.
+**common_trap:** In alligation, volumes are *inversely* proportional to distances from the target — the solution farther from the target needs *less* volume, not more.
+**takeaway:** Alligation: volume ratio = (distance of the other solution from target) : (distance of this solution from target). Verify by plugging back in.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q39
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Ratio Comparison
+
+If a, b, c, and d are all positive numbers, is a/b > c/d?
+
+(1) ad > bc
+(2) a/c > b/d
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**fastest_path:** a/b > c/d ↔ ad > bc (cross-multiply; all positive). Statement (1) states this directly. Statement (2): a/c > b/d ↔ ad > bc (same cross-multiplication). Each alone is equivalent to the question.
+**explanation:** Since all values are positive, cross-multiplication preserves inequality direction. a/b > c/d ↔ ad > bc. Statement (1) states ad > bc — directly equivalent to YES. Sufficient. Statement (2): a/c > b/d — multiply both sides by cd > 0 → ad > bc. Same condition. Also sufficient. Each alone → D.
+**mistake_a:** Recognized (1) as sufficient but missed that (2) rearranges to the same inequality.
+**mistake_b:** Recognized (2) but missed that (1) is the direct restatement.
+**mistake_c:** Required both statements, not seeing each resolves the question alone.
+**mistake_e:** Concluded neither statement sufficient.
+**common_trap:** Statement (2) looks structurally different (a/c vs b/d rather than a/b vs c/d), but cross-multiplying reveals it encodes the exact same condition: ad > bc.
+**takeaway:** In DS with fraction inequalities, cross-multiply (valid when all values are positive) to expose the underlying algebraic condition. Different-looking expressions can encode the same constraint.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q40
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Markup and Discount
+
+A store marks all items up 60% above cost, then offers a 25% loyalty discount to members. If a non-member pays $48 more than a member for the same item, what is the cost of the item?
+
+- A) $80
+- B) $100
+- C) $120
+- D) $160
+- E) $192
+
+**answer:** C
+**fastest_path:** Non-member pays 1.60C; member pays 1.60C × 0.75 = 1.20C. Difference = 0.40C = 48 → C = 120.
+**explanation:** Non-member price = cost × 1.60. Member price = 1.60C × 0.75 = 1.20C. Difference = 1.60C − 1.20C = 0.40C = 48 → C = 120. Verify: cost $120; non-member pays $192; member pays $144; difference = $48. ✓
+**mistake_a:** Treated the markup alone as the source of the difference: 48/0.60 = 80.
+**mistake_b:** Arithmetic slip.
+**mistake_d:** Used an incorrect difference multiplier.
+**mistake_e:** Treated the discount as 25% of cost: 48/0.25 = 192 — set 48 equal to the wrong base.
+**common_trap:** The 25% loyalty discount applies to the marked-up price, not the original cost. Students who treat it as 25% of cost get 48/0.25 = 192, which is actually the non-member price.
+**takeaway:** Identify the base of each percent: markup is on cost; discount is on the marked price. The price difference between non-member and member is (markup factor − member net factor) × cost.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Multi-Step Percent
+
+In a town, 40% of registered voters are Democrats and the remaining 60% are Republicans. In an election, 75% of Democrats and 50% of Republicans cast a vote. Of those who voted, what percent were Democrats?
+
+- A) 30%
+- B) 40%
+- C) 50%
+- D) 60%
+- E) 75%
+
+**answer:** C
+**fastest_path:** Smart 100 voters: 40 Dems × 75% = 30 voted; 60 Reps × 50% = 30 voted. Total voted = 60. Dems = 30/60 = 50%.
+**explanation:** Use 100 registered voters. Democrats who voted: 40 × 0.75 = 30. Republicans who voted: 60 × 0.50 = 30. Total voters = 60. Democrats as a share of voters = 30/60 = 50%. The higher Democrat turnout exactly offsets their smaller registration share.
+**mistake_a:** Divided Democrats who voted (30) by total registered (100) instead of total who voted (60): 30%.
+**mistake_b:** Bubbled Democrat registration rate (40%).
+**mistake_d:** Bubbled Republican registration rate (60%).
+**mistake_e:** Bubbled Democrat turnout rate (75%).
+**common_trap:** Using total registered (100) as the denominator instead of total who voted (60). The question asks "of those who voted," so only actual voters form the population.
+**takeaway:** "Of those who voted" defines a sub-population as the denominator. Always identify which population each percent is anchored to, then compute the new denominator explicitly.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Mixture with Replacement
+
+A 40-liter tank is filled with a solution that is 80% alcohol. First, 10 liters are drained and replaced with pure water. Then another 10 liters of the resulting mixture are drained and replaced with pure water. What percent of the final mixture is alcohol?
+
+- A) 40%
+- B) 45%
+- C) 48%
+- D) 50%
+- E) 60%
+
+**answer:** B
+**fastest_path:** Each replacement retains 3/4 of alcohol. After 2 steps: (3/4)² × 80% = 9/16 × 80% = 45%.
+**explanation:** Each drain removes 10/40 = 1/4 of whatever alcohol remains. Fraction retained per step = 3/4. After 2 steps: alcohol fraction = (3/4)² × 80% = 9/16 × 80% = 45%. Step-by-step check — start: 32L alcohol. Step 1: drain 10L of 80% mix, remove 8L alcohol → 24L alcohol; add water → 40L total (60% alcohol). Step 2: drain 10L of 60% mix, remove 6L alcohol → 18L alcohol; add water → 40L total. Final: 18/40 = 45%. ✓
+**mistake_a:** Arithmetic error in one of the two steps → 40%.
+**mistake_c:** Linear interpolation between 80% and 20% (pure water) → 48%.
+**mistake_d:** Simple average of start and end concentrations: (80 + 20)/2 = 50%.
+**mistake_e:** Stopped after one replacement step: 24/40 = 60%.
+**common_trap:** Stopping after one replacement (60%) or averaging start and end concentrations (50%). Successive drains compound geometrically — each step removes a fraction of an ever-smaller alcohol pool.
+**takeaway:** Repeated equal-drain dilution: final alcohol = initial × (1 − drain/total)^n. Here (3/4)² × 80% = 45%. Recognize the geometric structure to avoid step-by-step arithmetic under time pressure.
