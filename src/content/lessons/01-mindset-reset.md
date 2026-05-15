@@ -14,7 +14,7 @@ I am going to open with a claim that sounds like marketing copy but is the load-
 
 Think about what the test actually is. You are handed a fixed-format exam where every question type has been publicly documented for decades. The content is drawn from a finite pool of high school arithmetic, basic algebra, logical reasoning, and reading comprehension. The traps are catalogued. The pacing constraints are known. This is a test built to be studied for. It rewards the people who approach it as a solvable engineering problem and punishes the people who approach it as an IQ test they either pass or fail.
 
-I scored 735, which is 100th percentile on the Focus Edition. I am a non-native English speaker. I am not a natural test-taker. My raw processing speed on math is, honestly, average. What I had was a plan, a system, and enough hours of deliberate practice to turn slow recognition into fast recognition. That is the whole secret. Anyone reading this — with average logical reasoning ability, functional English, and roughly 300 focused hours — can score 645+. The students who break through are never the "smartest." They are the ones who commit to the system and stop taking their scores personally.
+I scored 735, which is 99th percentile on the Focus Edition. I am a non-native English speaker. I am not a natural test-taker. My raw processing speed on math is, honestly, average. What I had was a plan, a system, and enough hours of deliberate practice to turn slow recognition into fast recognition. That is the whole secret. Anyone reading this — with average logical reasoning ability, functional English, and roughly 300 focused hours — can score 645+. The students who break through are never the "smartest." They are the ones who commit to the system and stop taking their scores personally.
 
 What actually separates the students who get there from the ones who plateau:
 
@@ -67,7 +67,7 @@ The Motivation Trap is waiting to feel ready. Waiting for the weekend when you w
 
 The 645+ scorers are not more motivated than you. Often less, in the moment. They simply do not make their study depend on motivation. They have a system that runs on autopilot and drags them through low-energy days. That is the entire trick.
 
-A consulting senior associate I coached told me in our first session he could only study when he was "in the zone." Nine months of prep, maybe 40 logged hours. Every weekend was either too busy or too tired. We set a rule: 30 minutes a day minimum, seven days a week. On bad days, just review his error log — no new questions. He went from 575 to 665 in 14 weeks. He was not more motivated. He just stopped making decisions based on motivation.
+I lived this trap. After my first stretch of study in April and May, life pulled me away for the summer — work, exams, a clean three-month break. When I came back at the end of August, the "study when motivated" rule had to go. The replacement was a flat schedule: four to five hours a day, every single day, no matter how I felt. Even on the low-energy days, the plan ran on its own. That discipline — not enthusiasm — was what closed the gap from a 565 cold diagnostic to a 675 first official by early November. The students who break this trap never solve it with willpower. They solve it by making the daily session not depend on willpower in the first place.
 
 **How to recognize the Motivation Trap:**
 
