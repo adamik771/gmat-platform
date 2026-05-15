@@ -509,7 +509,7 @@ If m and n are positive integers, what is the value of m?
 **type:** Problem Solving
 **topic:** Prime Factorization and Counting Factors
 
-If n = 2⁵ x 3⁴ x 5³, how many positive factors of n are perfect squares?
+If n = 2⁵ × 3⁴ × 5³, how many positive factors of n are perfect squares?
 
 - A) 6
 - B) 9
@@ -887,7 +887,7 @@ The sum of four consecutive positive multiples of 5 is 230. What is the smallest
 ---
 
 ## Q34
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** LCM Application — Bells Ringing
 
