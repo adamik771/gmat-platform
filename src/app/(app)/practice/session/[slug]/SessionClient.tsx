@@ -825,6 +825,140 @@ function TwoPartGrid({
   )
 }
 
+/** Per-session diagnostic shown on the results screen.
+ *  Surfaces accuracy signal, per-difficulty breakdown, and the
+ *  weakest subtopic — turning raw results into a concrete next step. */
+function SessionInsights({
+  questions,
+  states,
+}: {
+  questions: SessionQuestion[]
+  states: QuestionState[]
+}) {
+  const answeredCount = states.filter((s) => s.submitted).length
+  if (answeredCount === 0) return null
+
+  const correctCount = questions.reduce(
+    (acc, q, i) => (isQuestionCorrect(q, states[i]) ? acc + 1 : acc),
+    0
+  )
+  const missedCount = answeredCount - correctCount
+  const accuracy = Math.round((correctCount / answeredCount) * 100)
+
+  const diffOrder = ["Beginner", "Intermediate", "Advanced"] as const
+  type Diff = (typeof diffOrder)[number]
+  const diffStats = diffOrder
+    .map((d) => {
+      const qs = questions
+        .map((q, i) => ({ q, s: states[i] }))
+        .filter(({ q, s }) => q.difficulty === d && s.submitted)
+      if (qs.length === 0) return null
+      const correct = qs.filter(({ q, s }) => isQuestionCorrect(q, s)).length
+      return { difficulty: d as Diff, correct, total: qs.length }
+    })
+    .filter(Boolean) as { difficulty: Diff; correct: number; total: number }[]
+
+  const subtopicMap: Record<string, { correct: number; total: number }> = {}
+  questions.forEach((q, i) => {
+    const s = states[i]
+    if (!s.submitted) return
+    if (!subtopicMap[q.subtopic]) subtopicMap[q.subtopic] = { correct: 0, total: 0 }
+    subtopicMap[q.subtopic].total++
+    if (isQuestionCorrect(q, s)) subtopicMap[q.subtopic].correct++
+  })
+
+  const weakestEntry = Object.entries(subtopicMap)
+    .filter(([, v]) => v.correct < v.total)
+    .sort(([, a], [, b]) => a.correct / a.total - b.correct / b.total)[0]
+
+  let signalText: string
+  let signalColor: string
+  if (accuracy >= 80) {
+    signalText = "Strong session — accuracy is well above the target threshold."
+    signalColor = "#3ECF8E"
+  } else if (accuracy >= 60) {
+    signalText = "Solid work — use the breakdown below to identify where to drill next."
+    signalColor = "#C9A84C"
+  } else {
+    signalText = "Plenty of signal here — focus on the subtopics below to close the accuracy gap."
+    signalColor = "#C0C0C0"
+  }
+
+  const hasBreakdown = diffStats.length >= 2
+  const hasGap = missedCount > 0
+  if (!hasBreakdown && !hasGap) return null
+
+  const diffColors: Record<string, string> = {
+    Beginner: "#3ECF8E",
+    Intermediate: "#C9A84C",
+    Advanced: "#FF7777",
+  }
+
+  return (
+    <div
+      className="p-5 rounded-xl border space-y-4"
+      style={{
+        borderColor: "rgba(255,255,255,0.06)",
+        backgroundColor: "#111111",
+      }}
+    >
+      <p className="text-sm leading-relaxed" style={{ color: signalColor }}>
+        {signalText}
+      </p>
+
+      {hasBreakdown && (
+        <div className="space-y-2.5">
+          <p className="text-[10px] uppercase tracking-widest text-[#555555]">By difficulty</p>
+          {diffStats.map(({ difficulty, correct, total }) => {
+            const pct = Math.round((correct / total) * 100)
+            const color = diffColors[difficulty] ?? "#888888"
+            return (
+              <div key={difficulty} className="flex items-center gap-3">
+                <span className="text-[11px] text-[#888888] w-24 flex-shrink-0">{difficulty}</span>
+                <div className="flex-1 h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
+                  <div
+                    className="h-full rounded-full transition-all duration-700"
+                    style={{ width: `${pct}%`, backgroundColor: color }}
+                  />
+                </div>
+                <span className="text-[11px] tabular-nums text-[#888888] w-10 text-right flex-shrink-0">
+                  {correct}/{total}
+                </span>
+              </div>
+            )
+          })}
+        </div>
+      )}
+
+      {weakestEntry && (
+        <div
+          className="flex items-center justify-between gap-3 pt-3 border-t"
+          style={{ borderColor: "rgba(255,255,255,0.06)" }}
+        >
+          <div>
+            <p className="text-[10px] uppercase tracking-widest text-[#555555]">Focus next on</p>
+            <p className="text-sm font-medium text-[#F0F0F0] mt-0.5">{weakestEntry[0]}</p>
+            <p className="text-[11px] text-[#888888] mt-0.5">
+              {weakestEntry[1].correct}/{weakestEntry[1].total} correct in this session
+            </p>
+          </div>
+          <Link
+            href="/error-log"
+            className="flex-shrink-0 px-3 py-1.5 rounded-lg text-[11px] font-semibold transition-opacity hover:opacity-90"
+            style={{
+              backgroundColor: "rgba(201,168,76,0.12)",
+              color: "#C9A84C",
+              border: "1px solid rgba(201,168,76,0.25)",
+            }}
+          >
+            Review errors
+          </Link>
+        </div>
+      )}
+    </div>
+  )
+}
+
 function SaveStatusBanner({
   status,
   onRetry,
@@ -1253,6 +1387,8 @@ export default function SessionClient({
             </div>
           </div>
         </div>
+
+        <SessionInsights questions={questions} states={states} />
 
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
