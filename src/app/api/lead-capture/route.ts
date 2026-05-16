@@ -26,8 +26,13 @@ import { getSupabaseService } from "@/lib/supabase/service"
 
 const VALID_SOURCES = new Set([
   "footer",
+  "homepage",
   "free-diagnostic",
   "blog-post",
+  "resources",
+  "score-converter",
+  "study-schedule",
+  "score-by-school",
   "other",
 ])
 const VALID_MAGNETS = new Set([

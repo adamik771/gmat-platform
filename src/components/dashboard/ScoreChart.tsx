@@ -80,7 +80,7 @@ export default function ScoreChart({ height = 160, data = [] }: ScoreChartProps)
           tickLine={false}
         />
         <YAxis
-          domain={[560, 720]}
+          domain={[555, 745]}
           tick={{ fill: "#555555", fontSize: 11 }}
           axisLine={false}
           tickLine={false}

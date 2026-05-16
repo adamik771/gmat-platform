@@ -5,6 +5,7 @@ import JsonLd from "@/components/seo/JsonLd"
 import { articleLd } from "@/lib/structured-data"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
 import RelatedPosts from "@/components/marketing/RelatedPosts"
+import BlogInlineCTA from "@/components/marketing/BlogInlineCTA"
 
 export const metadata: Metadata = {
   title: "Why Your GMAT Score Is Stuck",
@@ -107,7 +108,7 @@ export default function PostPage() {
           <p>
             The ratio is brutal. A question you missed and analyzed properly
             is worth ten questions you missed and shrugged at. The reason
-            most prep stalls — and this is true at 540, 620, 690, anywhere
+            most prep stalls — and this is true at 515, 585, 645, anywhere
             below where you want to be — isn&apos;t a content problem. It&apos;s
             a review problem. People do hundreds of questions a week and
             review zero of them with any rigor.
@@ -244,13 +245,15 @@ export default function PostPage() {
             signal to act on.
           </p>
 
+          <BlogInlineCTA />
+
           <H2>Why most prep advice misses this</H2>
           <p>
             Two reasons. One commercial, one cognitive.
           </p>
           <p>
             <Strong>The commercial reason</Strong> is that it&apos;s easier to
-            sell content than to sell rigor. A platform that says &quot;700+
+            sell content than to sell rigor. A platform that says &quot;655+
             questions, full-length mocks, expert video explanations&quot; is
             an easier purchase than a platform that says &quot;a system that
             forces you to be honest with yourself about your mistakes.&quot;

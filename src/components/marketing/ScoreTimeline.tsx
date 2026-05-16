@@ -12,34 +12,34 @@ const events: TimelineEvent[] = [
   {
     date: "April 2025",
     title: "First Diagnostic",
-    description: "Took the official GMAT diagnostic cold. No prep, no strategy.",
+    description:
+      "Sat for an official practice exam cold — no prep, no strategy. Q78, V79, DI77. 56th percentile.",
     score: 565,
   },
   {
-    date: "May 2025",
-    title: "Started TTP",
-    description: "Enrolled in Target Test Prep. Built a baseline in Quant.",
-  },
-  {
-    date: "June–July 2025",
-    title: "Deep Verbal Work",
-    description: "Focused on CR and RC. Started tracking every mistake.",
+    date: "April–May 2025",
+    title: "Initial Push",
+    description:
+      "Picked a structured curriculum and went to work. Foundational Quant. Daily problem sets.",
   },
   {
     date: "August–October 2025",
     title: "The Grind",
-    description: "3–4 hours daily. Mock after mock. Error log discipline.",
+    description:
+      "Resumed end of August after a summer pause. 4–5 hours daily, every day. Error-log discipline through every set.",
   },
   {
     date: "November 2025",
-    title: "Mock Peak",
-    description: "Consistently hitting 680–700 on official mocks.",
+    title: "First Official Exam",
+    description:
+      "Q86, V85, DI80. 95th percentile. Practice tests had been ranging 675–725; the official landed at the floor.",
     score: 675,
   },
   {
     date: "December 2025",
-    title: "Official GMAT",
-    description: "Exam day. Everything clicked. The system worked.",
+    title: "Second Official Exam",
+    description:
+      "Booked with five days' notice. Three days of pure mistake review, no new content. Q88, V86, DI85. 100th percentile.",
     score: 735,
     highlight: true,
   },
