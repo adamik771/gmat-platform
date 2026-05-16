@@ -255,6 +255,8 @@ Using `m × n = GCF × LCM`: `12m = 6 × 36 = 216`, so `m = 18`. Check: `GCF(18,
 
 **Trap to watch.** GCF and LCM switch in students' heads under time pressure. Quick check: GCF is smaller (or equal) than either number; LCM is larger (or equal). If your "GCF" is bigger than either input, you found the LCM.
 
+> **Recall check.** Without looking back, state in one sentence each: how to compute GCF from two prime factorizations, how to compute LCM from two prime factorizations, and the GCF-LCM identity. Then test yourself: GCF and LCM of 30 and 45? (Prime-factor: `30 = 2 × 3 × 5`, `45 = 3² × 5`. GCF takes min powers: `3 × 5 = 15`. LCM takes max powers: `2 × 3² × 5 = 90`. Identity check: `30 × 45 = 1350 = 15 × 90`. ✓) If you had to peek for any of those three rules, re-read this section before moving on.
+
 ## @remainders
 
 Remainder questions show up on 685+ difficulty constantly because they have so many angles: algebra, units digits, modular arithmetic, Data Sufficiency. The good news: they all reduce to one equation.
@@ -320,6 +322,8 @@ The GMAT frequently asks "must be" or "could be" questions about expressions bui
 
 **Trap to watch.** "Must be divisible by X" questions require the property for *every* integer, not just most. If one counter-example exists, the choice fails. Always test small values (n = 1, 2, 3) before picking an answer.
 
+> **Self-explanation prompt.** Cover the units-digit cycle table. From memory, write out the cycles for bases ending in 2, 3, 7, and 8 — each is period 4. (Answers: 2 → 2,4,8,6 / 3 → 3,9,7,1 / 7 → 7,9,3,1 / 8 → 8,4,2,6.) Now use them: units digit of `8¹⁰⁰⁰ + 3⁵⁰⁰`? (Both exponents are `≡ 0 mod 4`, so both land on the 4th cycle position. 8 → 6, 3 → 1. Sum's units digit: 7.) If you couldn't reproduce the cycles, re-read the table before the problem sets — these turn 30-second questions into one-second questions on the 685+ tier.
+
 ## @summary
 
 I'm going to say something I believe without qualification: if you have 40 hours to spend on Quant, put 15 of them on number properties. No other topic has this much leverage. The ideas are small and finite (even/odd, primes, divisibility, GCF, LCM, remainders, units digit cycles), the question patterns repeat, and the difficulty ceiling lets one topic carry you from 605 to 685.
@@ -354,3 +358,10 @@ I'm going to say something I believe without qualification: if you have 40 hours
 | "Sum of odd # consecutive ints" | count × middle | Bypass summation |
 
 The next two weeks, drill this chapter's problem sets until the check questions feel trivial. Do them on paper the first time, then on scratch, then in your head. When you can sight-factor 720 as `2⁴ × 3² × 5` without writing anything, you're ready for the 725+ versions.
+
+**What to do next.**
+
+1. **Easy set first.** Run the six easy questions back-to-back, untimed. Goal: 100% accuracy with the right method (not lucky guesses). If you miss one, the issue is a definition you forgot — go back to the relevant reading section and re-do the recall prompt before moving on.
+2. **Medium set, timed.** Eight questions, 2:00 average. Log every miss with the tool you used (factor count, divisibility rule, parity table, remainder equation, units cycle, GCF/LCM) — that tag is what tells you which sub-skill is still soft.
+3. **Hard set, untimed first, then timed.** Six questions. On the first pass, take as long as you need; the goal is to *find* the trick, not race. On the second pass, time yourself — the gap between your two times is a measure of how much speed you'll gain by repetition alone.
+4. **Error log review.** End the week by sorting your number-properties misses by sub-skill. The tag that has the most rows is your next focused drill. One sub-skill at a time, not all at once — even on the topic with the highest score-per-hour leverage, focus beats breadth.

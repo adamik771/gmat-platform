@@ -1470,7 +1470,7 @@ Since the late 1990s, this model has receded in several industries. Shareholder 
 
 Most independent empirical studies, however, have struggled to quantify the effect, in part because the definition of "fundamental" innovation is itself contested, and in part because the full productive impact of research from any given period typically becomes clear only decades later.
 
-### Q1
+### Q53
 **difficulty:** Medium
 **type:** Main Idea
 **topic:** Reading Comprehension
@@ -1496,7 +1496,7 @@ The primary purpose of the passage is to:
 
 ---
 
-### Q2
+### Q54
 **difficulty:** Medium
 **type:** Inference
 **topic:** Reading Comprehension
@@ -1522,7 +1522,7 @@ The passage most strongly suggests that the author would agree with which of the
 
 ---
 
-### Q3
+### Q55
 **difficulty:** Hard
 **type:** Function
 **topic:** Reading Comprehension
@@ -1557,7 +1557,7 @@ The effect of this shift has been striking. Studies from several large employers
 
 Automatic enrollment alone, however, does not resolve all savings shortfalls. Default contribution rates are typically set at 3 percent of wages — a figure chosen to minimize worker backlash at enrollment — but most financial advisors consider 10 to 15 percent a more appropriate target for retirement security. Workers who rely solely on the default often accumulate balances that fall well short of what they will need. More recent innovations — such as automatic escalation, which gradually raises the default contribution rate over time — address this gap but have been adopted more slowly.
 
-### Q1
+### Q56
 **difficulty:** Medium
 **type:** Main Idea
 **topic:** Reading Comprehension
@@ -1583,7 +1583,7 @@ The primary purpose of the passage is to:
 
 ---
 
-### Q2
+### Q57
 **difficulty:** Medium
 **type:** Inference
 **topic:** Reading Comprehension
@@ -1609,7 +1609,7 @@ Which of the following is most strongly supported by the passage?
 
 ---
 
-### Q3
+### Q58
 **difficulty:** Hard
 **type:** Function
 **topic:** Reading Comprehension
@@ -1644,7 +1644,7 @@ Some cognitive scientists argue that this shift represents a meaningful loss. Ex
 
 Other scholars are more skeptical. They note that each new medium in history has provoked concerns about cognitive decline — concerns that have generally not been borne out by subsequent evidence. They also observe that short-form digital content is not uniformly shallow: skilled readers learn to navigate online information in ways that require real analytical skill. Whether the net cognitive effect of the shift in reading habits is negative, neutral, or — for some dimensions of thinking — positive remains empirically unresolved.
 
-### Q1
+### Q59
 **difficulty:** Medium
 **type:** Main Idea
 **topic:** Reading Comprehension
@@ -1670,7 +1670,7 @@ The primary purpose of the passage is to:
 
 ---
 
-### Q2
+### Q60
 **difficulty:** Hard
 **type:** Inference
 **topic:** Reading Comprehension
@@ -1696,7 +1696,7 @@ Which of the following is most strongly supported by the passage?
 
 ---
 
-### Q3
+### Q61
 **difficulty:** Hard
 **type:** Function
 **topic:** Reading Comprehension
@@ -1731,7 +1731,7 @@ Yet the same decade has also revealed a more complex picture. Researchers have d
 
 Germline editing raises distinct ethical and technical concerns. Because germline edits propagate to offspring, any off-target effects or chromosomal rearrangements could be transmitted indefinitely through the gene pool. Many scientific bodies and regulators have therefore called for a moratorium on clinical germline editing until the technical risks are better understood. A small number of researchers argue that at least some forms of germline editing — particularly those aimed at removing well-characterized disease-causing mutations — may be justifiable even today, though this position remains a minority view within the field.
 
-### Q1
+### Q62
 **difficulty:** Medium
 **type:** Main Idea
 **topic:** Reading Comprehension
@@ -1757,7 +1757,7 @@ The primary purpose of the passage is to:
 
 ---
 
-### Q2
+### Q63
 **difficulty:** Hard
 **type:** Inference
 **topic:** Reading Comprehension
@@ -1783,7 +1783,7 @@ The passage most strongly suggests that the author would agree with which of the
 
 ---
 
-### Q3
+### Q64
 **difficulty:** Hard
 **type:** Function
 **topic:** Reading Comprehension
@@ -1818,7 +1818,7 @@ Regulatory bodies in several jurisdictions have begun responding. The European U
 
 Critics of the current enforcement regime argue that the penalties remain too small to deter the largest platform companies, for which even multi-million-dollar fines represent a small fraction of annual profits. Defenders of the current approach point out that enforcement is still early in its evolution, that many companies have voluntarily redesigned interfaces in response to public scrutiny rather than under direct regulatory pressure, and that broader regulation would risk constraining legitimate user-interface experimentation.
 
-### Q1
+### Q65
 **difficulty:** Medium
 **type:** Main Idea
 **topic:** Reading Comprehension
@@ -1844,7 +1844,7 @@ The primary purpose of the passage is to:
 
 ---
 
-### Q2
+### Q66
 **difficulty:** Medium
 **type:** Specific Detail
 **topic:** Reading Comprehension
@@ -1870,7 +1870,7 @@ According to the passage, the Digital Services Act in the European Union authori
 
 ---
 
-### Q3
+### Q67
 **difficulty:** Medium
 **type:** Specific Detail
 **topic:** Reading Comprehension
@@ -1905,7 +1905,7 @@ However, dysregulation of the complement system has been implicated in a wide ra
 
 These findings have spurred interest in complement-targeted therapies: drugs designed to modulate specific complement proteins. One such therapy, eculizumab, was approved in 2007 for treating paroxysmal nocturnal hemoglobinuria, a rare blood disorder driven by uncontrolled complement activation. While eculizumab has been highly effective for that specific condition, complement-targeted therapies for broader autoimmune diseases have faced greater difficulty. The complement system's multiple activation pathways and feedback loops make it challenging to inhibit the pathologic branch of activation without also undermining the system's protective functions against infection. The next generation of therapies seeks to target components that are selectively active in disease while preserving those needed for ordinary defense against pathogens.
 
-### Q1
+### Q68
 **difficulty:** Medium
 **type:** Main Idea
 **topic:** Reading Comprehension
@@ -1931,7 +1931,7 @@ The primary purpose of the passage is to:
 
 ---
 
-### Q2
+### Q69
 **difficulty:** Hard
 **type:** Inference
 **topic:** Reading Comprehension
@@ -1957,7 +1957,7 @@ The passage most strongly suggests that the author would agree with which of the
 
 ---
 
-### Q3
+### Q70
 **difficulty:** Hard
 **type:** Function
 **topic:** Reading Comprehension
@@ -1992,7 +1992,7 @@ Beginning in the early seventeenth century, a small number of natural philosophe
 
 The new approach did not displace the older methodology immediately or uniformly. Philosophers and educated observers continued to debate whether deductive logic or systematic observation deserved primacy, and certain universities remained strongholds of the older tradition for generations. Yet by the late seventeenth century, with the publication of Isaac Newton's Principia Mathematica in 1687, the integration of mathematics, experiment, and theory had produced a framework so successful that it became the dominant model for scientific work throughout Europe. This did not mean that the older, deductive approach had been "refuted" in any formal sense; rather, the new methodology simply proved more productive at generating testable predictions that reliably matched observations.
 
-### Q1
+### Q71
 **difficulty:** Medium
 **type:** Main Idea
 **topic:** Reading Comprehension
@@ -2018,7 +2018,7 @@ The primary purpose of the passage is to:
 
 ---
 
-### Q2
+### Q72
 **difficulty:** Medium
 **type:** Specific Detail
 **topic:** Reading Comprehension
@@ -2044,7 +2044,7 @@ According to the passage, Francis Bacon's "inductive method" involved which of t
 
 ---
 
-### Q3
+### Q73
 **difficulty:** Hard
 **type:** Inference
 **topic:** Reading Comprehension

@@ -772,7 +772,7 @@ Which patient had the largest drop in resting heart rate from Visit 1 to Visit 4
 
 **answer:** D
 **fastest_path:** Δ V1−V4: Rosa 8, Samir 5, Tae −3 (rose), Uri 10, Vera 5. Uri wins.
-**explanation:** V1−V4 drops: Uri 10 highest. Answer D.
+**explanation:** Compute V1 − V4 for each patient: Rosa 78−70=8, Samir 82−77=5, Tae 68−71=−3 (rose, didn't drop), Uri 90−80=10, Vera 74−69=5. Uri's 10 bpm decrease is the largest absolute drop.
 **mistake_a:** Rosa 8.
 **mistake_b:** Samir 5.
 **mistake_c:** Tae actually *rose* (68→71).
