@@ -10,7 +10,7 @@ duration: 120
 
 ## The Mindset Shift: Quant Is a Thinking Test, Not a Math Test
 
-The first thing I tell every student I coach: the GMAT Quant section is not testing what you learned in school. It is testing whether you can read carefully, recognize setups quickly, and avoid traps that were built specifically to catch test-takers who are working on autopilot.
+The first thing I had to relearn for myself, and the first thing worth internalizing here: the GMAT Quant section is not testing what you learned in school. It is testing whether you can read carefully, recognize setups quickly, and avoid traps that were built specifically to catch test-takers who are working on autopilot.
 
 This is the single biggest reframe you need. Most people walk into Quant prep thinking, "I need to relearn algebra, geometry, and statistics." They buy a stack of textbooks, grind through hundreds of drills on quadratic formulas, and then get blindsided on test day by problems that barely use the formulas they memorized. The math on the GMAT is not hard math. A strong 10th grader in any competitive school system has been exposed to every concept tested on GMAT Focus Quant. What a strong 10th grader usually cannot do is what the GMAT actually measures: translating dense English prompts into clean mathematical setups, choosing the efficient path among several valid ones, and staying calm while a clock ticks down.
 
@@ -51,7 +51,7 @@ The three competencies:
 2. **Strategic Setup** — choosing the most efficient path among several valid approaches. Do you solve with algebra? Plug in numbers? Work backward from the answers? Estimate? The correct answer to "which technique" is almost never the one your teacher drilled into you in high school.
 3. **Clean Execution** — doing the arithmetic or manipulation without introducing errors. This is the boring part that most people underrate. Even 725+ scorers lose points here.
 
-Here is the pattern I see repeatedly when I review student work. A student gets a problem wrong, looks at the solution, and says, "Oh, I understand it, I just made a silly mistake." Then they move on. But when we dig in, the "silly mistake" is not random. It clusters. One student always drops negative signs when expanding. Another consistently misreads "at least" as "exactly." A third always sets up mixture problems with the wrong weighting. These are not silly mistakes. These are systematic failures in one of the three competencies, and until you diagnose which one, you cannot improve.
+Here is the pattern that shows up over and over in honest error logs. Someone gets a problem wrong, looks at the solution, and says, "Oh, I understand it, I just made a silly mistake." Then they move on. But when you dig in, the "silly mistake" is not random. It clusters. One person always drops negative signs when expanding. Another consistently misreads "at least" as "exactly." A third always sets up mixture problems with the wrong weighting. These are not silly mistakes. These are systematic failures in one of the three competencies, and until you diagnose which one, you cannot improve.
 
 So when you review practice problems — and you should be reviewing them carefully, which I cover in Module 5 — ask this specific question every time you miss one: **Which competency broke?**
 
