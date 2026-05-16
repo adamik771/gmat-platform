@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import {
   AlertTriangle,
   ArrowLeft,
+  ArrowRight,
   BookOpen,
   Check,
   ChevronDown,
@@ -13,6 +14,7 @@ import {
   Lightbulb,
   Sparkles,
   Star,
+  Tags,
   X,
 } from "lucide-react"
 import { DI_METHOD_CARDS, hasMethodCard } from "@/lib/di-method-cards"
@@ -960,6 +962,7 @@ export default function SessionClient({
   const [saveStatus, setSaveStatus] = useState<
     "idle" | "saving" | "saved" | "error" | "unauthorized"
   >("idle")
+  const [savedSessionId, setSavedSessionId] = useState<string | null>(null)
 
   // Tick the timer once a second for the header readouts.
   useEffect(() => {
@@ -1006,8 +1009,16 @@ export default function SessionClient({
           attempts,
         }),
       })
-      if (res.ok) setSaveStatus("saved")
-      else if (res.status === 401) setSaveStatus("unauthorized")
+      if (res.ok) {
+        setSaveStatus("saved")
+        try {
+          const json = (await res.json()) as { sessionId?: string }
+          if (json.sessionId) setSavedSessionId(json.sessionId)
+        } catch {
+          // Body parse failed — save still succeeded; the session-id-
+          // dependent CTA will simply not render.
+        }
+      } else if (res.status === 401) setSaveStatus("unauthorized")
       else setSaveStatus("error")
     } catch {
       setSaveStatus("error")
@@ -1253,6 +1264,40 @@ export default function SessionClient({
             </div>
           </div>
         </div>
+
+        {savedSessionId && answeredCount - correctCount > 0 && (
+          <Link
+            href={`/error-log?session_id=${savedSessionId}`}
+            className="group flex items-center justify-between gap-4 p-5 rounded-xl border transition-colors hover:border-[rgba(201,168,76,0.35)]"
+            style={{
+              borderColor: "rgba(201,168,76,0.18)",
+              backgroundColor: "#0D0D0D",
+            }}
+          >
+            <div className="flex items-start gap-3 min-w-0">
+              <div
+                className="flex items-center justify-center w-9 h-9 rounded-lg flex-shrink-0"
+                style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
+              >
+                <Tags className="w-4 h-4" style={{ color: "#C9A84C" }} />
+              </div>
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-[#F0F0F0]">
+                  Tag {answeredCount - correctCount} mistake
+                  {answeredCount - correctCount === 1 ? "" : "s"} from this session
+                </p>
+                <p className="text-xs text-[#888888] mt-0.5">
+                  Classify the failure mode now while the question is fresh — that&apos;s
+                  the input the adaptive plan needs.
+                </p>
+              </div>
+            </div>
+            <ArrowRight
+              className="w-4 h-4 flex-shrink-0 transition-transform group-hover:translate-x-0.5"
+              style={{ color: "#C9A84C" }}
+            />
+          </Link>
+        )}
 
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
