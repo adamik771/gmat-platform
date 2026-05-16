@@ -78,9 +78,18 @@ export default async function ChapterDetailPage({
   // Pull the user's target score so the reader can surface the accuracy
   // target for the difficulty they're about to attempt, plus any existing
   // chapter progress persisted to user_metadata so a student who switches
-  // devices picks up where they left off.
+  // devices picks up where they left off. Also aggregate per-section
+  // accuracy from practice_attempts so the reader can surface a "your
+  // weakest section is X" hint for returning students who don't know
+  // where to re-enter.
   let targetScore: number | null = null
   let initialProgress: unknown = null
+  let weakestSection: {
+    id: string
+    title: string
+    accuracyPct: number
+    attempts: number
+  } | null = null
   try {
     const supabase = await createSupabaseServer()
     const {
@@ -96,6 +105,68 @@ export default async function ChapterDetailPage({
     const entry = chapterProgress?.[slug]
     if (entry && typeof entry === "object") {
       initialProgress = entry
+    }
+
+    if (user) {
+      // Build a map: question_id → sectionId (the FIRST section that
+      // lists it as a check question). Drives the section-attribution
+      // for practice attempts on this chapter's questions. Sections
+      // without check_question_ids contribute nothing here — they're
+      // silent in the weakness signal.
+      const questionToSection = new Map<string, string>()
+      for (const s of chapter.sections) {
+        for (const id of s.checkQuestionIds) {
+          if (!questionToSection.has(id)) questionToSection.set(id, s.id)
+        }
+      }
+      const chapterQuestionIds = Array.from(questionToSection.keys())
+      if (chapterQuestionIds.length > 0) {
+        const { data: attempts } = await supabase
+          .from("practice_attempts")
+          .select("question_id, is_correct")
+          .eq("user_id", user.id)
+          .in("question_id", chapterQuestionIds)
+        const sectionStats = new Map<string, { correct: number; total: number }>()
+        for (const a of (attempts as { question_id: string; is_correct: boolean }[] | null) ?? []) {
+          const sectionId = questionToSection.get(a.question_id)
+          if (!sectionId) continue
+          const cur = sectionStats.get(sectionId) ?? { correct: 0, total: 0 }
+          cur.total += 1
+          if (a.is_correct) cur.correct += 1
+          sectionStats.set(sectionId, cur)
+        }
+
+        // Thresholds — only surface a hint when the signal is meaningful.
+        // ≥10 total attempts on the chapter (need enough data to trust),
+        // ≥2 sections with attempts (comparison requires distinct buckets),
+        // weakest section ≥5% below the chapter's section-average accuracy
+        // (otherwise the chapter is balanced — let the student start from top).
+        const allStats = Array.from(sectionStats.values())
+        const totalAttempts = allStats.reduce((s, x) => s + x.total, 0)
+        const sectionsWithData = allStats.filter((s) => s.total >= 2).length
+        if (totalAttempts >= 10 && sectionsWithData >= 2) {
+          const sectionAccs = Array.from(sectionStats.entries())
+            .filter(([, s]) => s.total >= 2)
+            .map(([id, s]) => ({ id, acc: s.correct / s.total, attempts: s.total }))
+          const avgAcc =
+            sectionAccs.reduce((sum, x) => sum + x.acc, 0) / sectionAccs.length
+          const lowest = sectionAccs.reduce((min, x) => (x.acc < min.acc ? x : min))
+          if (avgAcc - lowest.acc >= 0.05) {
+            const section = chapter.sections.find((s) => s.id === lowest.id)
+            if (section) {
+              // Section titles are often "Topic — qualifier"; trim to
+              // the headline part for the chip readability.
+              const shortTitle = section.title.split(" — ")[0]
+              weakestSection = {
+                id: lowest.id,
+                title: shortTitle,
+                accuracyPct: Math.round(lowest.acc * 100),
+                attempts: lowest.attempts,
+              }
+            }
+          }
+        }
+      }
     }
   } catch {
     // Supabase unavailable — reader falls back to the lenient tier + empty progress.
@@ -121,6 +192,7 @@ export default async function ChapterDetailPage({
         problemSets={problemSets}
         targetScore={targetScore}
         initialProgress={initialProgress}
+        weakestSection={weakestSection}
       />
     </div>
   )
