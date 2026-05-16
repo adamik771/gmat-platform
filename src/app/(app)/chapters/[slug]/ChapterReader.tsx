@@ -605,6 +605,7 @@ export default function ChapterReader({
   problemSets,
   targetScore,
   initialProgress,
+  weakestSection,
 }: {
   slug: string
   title: string
@@ -615,6 +616,16 @@ export default function ChapterReader({
   problemSets: ReaderProblemSet[]
   targetScore: number | null
   initialProgress?: unknown
+  /** Server-derived hint for returning students with practice history:
+   *  the section in this chapter where their accuracy is meaningfully
+   *  below the chapter's section-average. Null when the data is too
+   *  sparse / balanced to surface a useful recommendation. */
+  weakestSection?: {
+    id: string
+    title: string
+    accuracyPct: number
+    attempts: number
+  } | null
 }) {
   // Hydrate progress from localStorage after mount. SSR renders an empty
   // state (every question pristine, no sections marked read), then the
@@ -820,6 +831,51 @@ export default function ChapterReader({
               hasProblemSets={problemSets.length > 0}
               hasProblemSetAttempts={hasAnyProblemSetResult(progress)}
             />
+          )}
+          {/* Weakest-section hint — server-derived from practice_attempts.
+              Renders only when the student has enough data and one section
+              is meaningfully below the chapter's average. Secondary to the
+              primary CTA above; preserves the decisive "what to do next"
+              while giving returning students a smart re-entry point. */}
+          {weakestSection && (
+            <a
+              href={`#${weakestSection.id}`}
+              onClick={(e) => {
+                e.preventDefault()
+                const el = document.getElementById(weakestSection.id)
+                if (!el) return
+                el.scrollIntoView({ behavior: "smooth", block: "start" })
+                if (typeof window !== "undefined") {
+                  window.history.replaceState(null, "", `#${weakestSection.id}`)
+                }
+              }}
+              className="group inline-flex items-start gap-2 mt-4 max-w-xl text-[13px] leading-snug px-3.5 py-2.5 rounded-lg border transition-colors"
+              style={{
+                borderColor: "var(--read-border-strong)",
+                color: "var(--read-text-body)",
+                backgroundColor: "var(--read-bg-elevated)",
+              }}
+            >
+              <BrainCircuit
+                className="w-4 h-4 mt-0.5 flex-shrink-0"
+                style={{ color: "var(--read-gold)" }}
+                aria-hidden
+              />
+              <span>
+                Practice data suggests your weakest section here:{" "}
+                <span
+                  className="font-semibold underline underline-offset-2"
+                  style={{ color: "var(--read-text)" }}
+                >
+                  {weakestSection.title}
+                </span>{" "}
+                <span style={{ color: "var(--read-text-muted)" }}>
+                  ({weakestSection.accuracyPct}% on {weakestSection.attempts}{" "}
+                  attempt{weakestSection.attempts === 1 ? "" : "s"})
+                </span>{" "}
+                — jump there.
+              </span>
+            </a>
           )}
         </div>
       </div>
