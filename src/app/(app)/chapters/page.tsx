@@ -88,6 +88,14 @@ type ListItem = {
   totalSections: number
   readSections: number
   problemSetCount: number
+  /** How many of the chapter's problem sets have at least one logged attempt
+   *  (i.e. {correct, total} where total > 0). Used for the per-card status
+   *  line on /chapters. Zero for guides. */
+  attemptedSetCount: number
+  /** Aggregate accuracy across attempted problem sets (correct / total),
+   *  rounded to a percent. Null if nothing has been attempted yet. Used
+   *  on the "complete" status line to surface outcome quality. */
+  accuracyPct: number | null
   /** Per-chapter sub-skill labels. Extracted from reading-section titles
    *  before the em dash; capped at 3. */
   skillChips: string[]
@@ -434,6 +442,59 @@ function HeroSectionMiniBar({
   )
 }
 
+/**
+ * Coarse difficulty bucket derived from estimated reading time.
+ * Light: < 40 min, Medium: 40–60 min, Dense: > 60 min. The chapter
+ * frontmatter doesn't carry an explicit difficulty field, so we map
+ * off the editorial estimatedMinutes which the author has already
+ * tuned per chapter.
+ */
+function difficultyBucket(minutes: number): "Light" | "Medium" | "Dense" {
+  if (minutes < 40) return "Light"
+  if (minutes <= 60) return "Medium"
+  return "Dense"
+}
+
+/**
+ * One-line status annotation for a chapter card. Returns null for
+ * untouched chapters (the card metadata is the signal there). For
+ * in-progress chapters it names *what's blocking* completion; for
+ * complete chapters it surfaces aggregate accuracy across attempted
+ * problem sets.
+ */
+function chapterStatusLine(item: ListItem): string | null {
+  if (!item.isStarted) return null
+
+  const hasProblemSets = item.problemSetCount > 0
+  const allSectionsRead =
+    item.readSections === item.totalSections && item.totalSections > 0
+
+  if (item.isComplete) {
+    // "Complete" here means all reading sections done. Surface set-
+    // outcome quality when we have it; otherwise note that the
+    // graded loop hasn't been closed yet.
+    if (!hasProblemSets) return "All sections read"
+    if (item.accuracyPct === null) {
+      return `All sections read · ${item.problemSetCount} graded set${
+        item.problemSetCount === 1 ? "" : "s"
+      } waiting`
+    }
+    if (item.attemptedSetCount < item.problemSetCount) {
+      return `${item.attemptedSetCount} of ${item.problemSetCount} sets attempted · ${item.accuracyPct}% accuracy`
+    }
+    return `Complete · ${item.accuracyPct}% accuracy`
+  }
+
+  // In-progress — sections still unread.
+  if (hasProblemSets && item.attemptedSetCount === 0) {
+    return `${item.readSections} of ${item.totalSections} sections read · problem sets not started`
+  }
+  if (hasProblemSets) {
+    return `${item.readSections} of ${item.totalSections} sections read · ${item.attemptedSetCount} of ${item.problemSetCount} sets attempted`
+  }
+  return `${item.readSections} of ${item.totalSections} sections read`
+}
+
 interface JourneyNodeProps {
   item: ListItem
   index: number
@@ -613,7 +674,9 @@ function JourneyNode({
             >
               <span className="inline-flex items-center gap-1.5">
                 <Clock className="w-3 h-3" />
-                {item.estimatedMinutes} min
+                {item.estimatedMinutes} min · {difficultyBucket(
+                  item.estimatedMinutes,
+                )}
               </span>
               <span className="tabular-nums">
                 {item.totalSections} reading
@@ -623,12 +686,22 @@ function JourneyNode({
                     item.problemSetCount === 1 ? "" : "s"
                   }`}
               </span>
-              {item.isStarted && !item.isComplete && (
-                <span className="tabular-nums" style={{ color: accent }}>
-                  {item.readSections}/{item.totalSections} read
-                </span>
-              )}
             </div>
+            {(() => {
+              const statusText = chapterStatusLine(item)
+              if (!statusText) return null
+              const tone = item.isComplete
+                ? "rgba(62,207,142,0.85)"
+                : accent
+              return (
+                <p
+                  className="mt-2 text-[11px] tabular-nums leading-tight"
+                  style={{ color: tone }}
+                >
+                  {statusText}
+                </p>
+              )
+            })()}
             {/* Progress bar lives on the current card only — once you've
                 moved on it just becomes visual noise. Completed cards
                 speak for themselves; available cards have nothing to
@@ -1131,6 +1204,20 @@ export default async function ChaptersPage() {
     const isComplete = readCount === totalSections && totalSections > 0
     const isStarted = readCount > 0
     const firstUnread = readingSections.find((s) => !readIds[s.id])
+    // Aggregate problem-set attempts: count sets touched + overall accuracy.
+    // Iterating Object.values is safe because the stored map only has
+    // difficulty-keyed entries; the optional chain handles cold-start users.
+    let attemptedSetCount = 0
+    let setCorrect = 0
+    let setTotal = 0
+    for (const r of Object.values(progress?.problemSetResults ?? {})) {
+      if (!r || r.total <= 0) continue
+      attemptedSetCount += 1
+      setCorrect += r.correct
+      setTotal += r.total
+    }
+    const accuracyPct =
+      setTotal > 0 ? Math.round((setCorrect / setTotal) * 100) : null
     items.push({
       kind: "interactive",
       slug: c.slug,
@@ -1143,6 +1230,8 @@ export default async function ChaptersPage() {
       totalSections,
       readSections: readCount,
       problemSetCount: c.problemSets.length,
+      attemptedSetCount,
+      accuracyPct,
       skillChips: extractSkillChips(c.sections),
       progressPct: readPct,
       isComplete,
@@ -1164,6 +1253,8 @@ export default async function ChaptersPage() {
       totalSections: 0,
       readSections: 0,
       problemSetCount: 0,
+      attemptedSetCount: 0,
+      accuracyPct: null,
       skillChips: [],
       progressPct: null,
       isComplete: false,
