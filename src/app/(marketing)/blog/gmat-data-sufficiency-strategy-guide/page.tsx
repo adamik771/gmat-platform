@@ -5,6 +5,7 @@ import JsonLd from "@/components/seo/JsonLd"
 import { articleLd } from "@/lib/structured-data"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
 import RelatedPosts from "@/components/marketing/RelatedPosts"
+import BlogInlineCTA from "@/components/marketing/BlogInlineCTA"
 
 const TITLE = "GMAT Data Sufficiency: The Strategy Guide for 2026"
 const DESCRIPTION =
@@ -260,6 +261,8 @@ export default function PostPage() {
             for instance). The classic trap is the system that looks
             sufficient but actually has infinite solutions.
           </p>
+
+          <BlogInlineCTA />
 
           <H2>The trap families</H2>
 

@@ -5,6 +5,7 @@ import JsonLd from "@/components/seo/JsonLd"
 import { articleLd } from "@/lib/structured-data"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
 import RelatedPosts from "@/components/marketing/RelatedPosts"
+import BlogInlineCTA from "@/components/marketing/BlogInlineCTA"
 
 const TITLE = "GMAT Quant Timing Strategy: How to Finish All 21 Questions"
 const DESCRIPTION =
@@ -222,6 +223,8 @@ export default function PostPage() {
             two of those questions from misses to right answers
             &mdash; that&apos;s 4-6 score points in the section.
           </Pull>
+
+          <BlogInlineCTA />
 
           <H2>Where time actually goes</H2>
           <p>

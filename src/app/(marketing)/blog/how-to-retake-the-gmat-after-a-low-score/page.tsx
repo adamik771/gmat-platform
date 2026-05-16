@@ -5,6 +5,7 @@ import JsonLd from "@/components/seo/JsonLd"
 import { articleLd } from "@/lib/structured-data"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
 import RelatedPosts from "@/components/marketing/RelatedPosts"
+import BlogInlineCTA from "@/components/marketing/BlogInlineCTA"
 
 const TITLE = "How to Retake the GMAT After a Low Score"
 const DESCRIPTION =
@@ -337,6 +338,8 @@ export default function PostPage() {
               to plan the final week + the day-of routine.
             </li>
           </ul>
+
+          <BlogInlineCTA />
 
           <H2>What admissions actually sees</H2>
           <p>

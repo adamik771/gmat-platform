@@ -5,6 +5,7 @@ import JsonLd from "@/components/seo/JsonLd"
 import { articleLd } from "@/lib/structured-data"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
 import RelatedPosts from "@/components/marketing/RelatedPosts"
+import BlogInlineCTA from "@/components/marketing/BlogInlineCTA"
 
 const TITLE = "GMAT Prep for Non-Native English Speakers: A Targeted Plan"
 const DESCRIPTION =
@@ -317,6 +318,8 @@ export default function PostPage() {
             The diagnostic + the error log together tell you which
             you&apos;re facing within the first three weeks.
           </p>
+
+          <BlogInlineCTA />
 
           <H2>Targets you can realistically expect</H2>
           <p>
