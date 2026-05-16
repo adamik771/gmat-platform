@@ -81,6 +81,7 @@ Goes well beyond "scaffolding" — the loop actually works end-to-end now: cache
 ### Marketing / SEO
 
 - **Testimonial date suffix removed**. `Early Student, Q3 2025` stripped from all three testimonials in `(marketing)/page.tsx`. **Concern flagged but not acted on:** the three remaining testimonials (Priya M. / Hamid K. / Sophie R. with specific score deltas) look fabricated. Adam left them as-is.
+- **Percentile claim corrected**. 735 sits at 99th, not 100th, on the GMAT Focus Edition table. Fixed in 4 spots inside `(marketing)/page.tsx`: hero badge, score-proof chip array, about-section paragraph, about-section chip array. **Two lesson `.md` files still carry the old claim** — `src/content/lessons/01-mindset-reset.md:17` and `src/content/lessons/08-bonus-non-native.md:23`. Same factual issue but they're authored teaching prose; left untouched pending Adam's review.
 - **`app/sitemap.ts`** — typed `MetadataRoute.Sitemap`, lists 9 public marketing routes (homepage 1.0, pricing/about 0.9, students/course/free-diagnostic 0.8, blog post 0.7, faq/contact 0.5/0.6). Uses `NEXT_PUBLIC_SITE_URL` env, falls back to `https://zakariangmat.com`.
 - **`app/robots.ts`** — disallows every `(app)` group route + `/api/`, `/offline`, `/reset-password`. Allow `/` for everything else. Points crawlers at `/sitemap.xml`.
 - **OpenGraph metadata**. Root `app/layout.tsx` now sets `metadataBase`, title template (`%s · Zakarian GMAT`), full `openGraph` block (type/locale/url/siteName/title/description/images), Twitter card metadata, explicit `robots` indexing hints.
@@ -92,13 +93,14 @@ Goes well beyond "scaffolding" — the loop actually works end-to-end now: cache
 ### Other small things
 
 - Discord/community link surface in sidebar (gated on `NEXT_PUBLIC_COMMUNITY_URL` env — if unset, link doesn't render).
-- Founder photo: Adam sent a mirror selfie, asked me to generate a photo from his face. I declined (a) capability, no image-gen tool, and (b) strategy — generating a synthetic founder photo for a product that sells "I am the actual person who walked the path" undermines the trust signal. Wrote him a 5-bullet shot list for a 10-min redo. Photo still unfixed at session close; the "AZ" placeholder is still live.
+- Founder photo: Adam sent a mirror selfie earlier, asked me to generate a photo. I declined on capability + strategy grounds (synthetic founder photo undermines the trust signal). Later in the session Adam sent a different photo (with a co-attendee in front of a SMU Global Summer Programme banner). I wired up `<Image src="/founder.jpg">` in `(marketing)/page.tsx` with a **layered fallback**: the "AZ" initials sit behind the `next/image` as an `<span aria-hidden absolute inset-0>`. When the file exists the photo covers them; when it doesn't (current state — `/founder.jpg` returns 404) the initials show through the gold ring + glow. So the page never looks broken even before Adam saves the file. Adam needs to crop himself out of the SMU photo (head + shoulders, ~512×512) and drop it at `public/founder.jpg`.
 - Three small no-op tasks Adam asked for that turned out unnecessary: proxy auth gap (those routes were already in `APP_ROUTES`); two others.
 
 ### Open issues (carry into the next session)
 
 **Things only Adam can resolve:**
-- Real founder photo. Highest-ROI open item — credibility gap on a $2,500 product.
+- Real founder photo cropped + saved at `public/founder.jpg`. Code path is wired with a graceful fallback; just needs the file. Highest-ROI open item — credibility gap on a $2,500 product.
+- Two lesson `.md` files still claim "100th percentile" on 735 (lessons 01 + 08). Confirm whether to edit those teaching paragraphs, then run a `sed` replace.
 - Three remaining testimonials still look fabricated. Real students or replace with placeholder slots?
 - Beta-student score lifts on `/students` (5 placeholder slots awaiting real data).
 - Env vars in Vercel: `ANTHROPIC_API_KEY` (turns on tutor), `NEXT_PUBLIC_SITE_URL` (sitemap/OG absolute URLs), `NEXT_PUBLIC_COMMUNITY_URL` (Discord sidebar link).
