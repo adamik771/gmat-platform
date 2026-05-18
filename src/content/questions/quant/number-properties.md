@@ -97,8 +97,8 @@ When the positive integer n is divided by 7, the remainder is 4. What is the rem
 **answer:** C
 **fastest_path:** Pick n = 4: 3(4) + 5 = 17 → 17 mod 7 = 3.
 **explanation:** Pick the smallest valid n = 4: 3(4) + 5 = 17, and 17 = 2·7 + 3, so remainder is 3. Algebraically: n = 7k + 4 → 3n + 5 = 21k + 17 = 21k + 14 + 3, remainder 3.
-**mistake_a:** Computed 17 mod 7 wrong — claimed it divides evenly.
-**mistake_b:** Off-by-one when subtracting multiples of 7 from 17.
+**mistake_a:** Computed 17 mod 7 wrong — divided 17 by 7 and claimed no remainder (perhaps misread 7 × 2 = 17).
+**mistake_b:** Computed 7 × 2 = 16 (arithmetic slip), so 17 − 16 = 1 instead of 17 − 14 = 3.
 **mistake_d:** Bubbled the "+5" alone, ignoring the 3n contribution.
 **mistake_e:** Inverted: 7 − 3 = 4, then bubbled 6 from another residue confusion.
 **common_trap:** Trying to track n directly instead of working modulo 7 from the start.
@@ -305,10 +305,10 @@ When the positive integer n is divided by 5, the remainder is 2. What is the rem
 **answer:** E
 **fastest_path:** Pick n = 2: n² = 4, 4 mod 5 = 4.
 **explanation:** Pick smallest valid n = 2: 2² = 4, 4 mod 5 = 4. Algebraically: n = 5k + 2 → n² = 25k² + 20k + 4 → remainder 4.
-**mistake_a:** Forgot to square — took remainder 2 then divided again, got 0.
-**mistake_b:** Picked n = 7 (49/5 = 9 R 4), then mis-read remainder as 1.
-**mistake_c:** Bubbled the original remainder 2 — forgot to square.
-**mistake_d:** Computed 4 − 1 = 3 from a sign error.
+**mistake_a:** Forgot to square — took n mod 5 = 2, then reduced 2 mod 5 = 2... but tried to divide again and concluded 0.
+**mistake_b:** Squared the remainder to get 4, then subtracted from the modulus: 5 − 4 = 1 (confused remainder with complement).
+**mistake_c:** Bubbled the original remainder 2 — forgot to square it.
+**mistake_d:** Computed 2² = 4, then applied "4 − 1 = 3" from a spurious off-by-one adjustment.
 **common_trap:** Bubbling the original remainder (2) instead of squaring it first.
 **takeaway:** If n ≡ r (mod m), then n² ≡ r² (mod m). Square the remainder, then reduce.
 **related_reading:** reading-quant-03-number-properties
@@ -509,7 +509,7 @@ If m and n are positive integers, what is the value of m?
 **type:** Problem Solving
 **topic:** Prime Factorization and Counting Factors
 
-If n = 2⁵ x 3⁴ x 5³, how many positive factors of n are perfect squares?
+If n = 2⁵ × 3⁴ × 5³, how many positive factors of n are perfect squares?
 
 - A) 6
 - B) 9

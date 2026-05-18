@@ -151,13 +151,13 @@ If f(x) = 2x² - 3x + 1, what is the value of f(3) - f(1)?
 
 **answer:** B
 **fastest_path:** f(3) = 2(9) − 9 + 1 = 10. f(1) = 2 − 3 + 1 = 0. Difference = 10.
-**explanation:** f(3) = 2(9) − 3(3) + 1 = 18 − 9 + 1 = 10. f(1) = 2(1) − 3(1) + 1 = 2 − 3 + 1 = 0. f(3) − f(1) = 10.
-**mistake_a:** Slip → 8 (likely arithmetic error in f(3) computation).
-**mistake_c:** Computed f(3) + f(1) instead of f(3) − f(1) → 10 + 0… no, but a likely sign-flip path: 2(9) − 3(3) − 1 = 8, then 8 + 4 → 12.
-**mistake_d:** Slip → 14.
-**mistake_e:** Computed f(3) but treated f(1) as 1 instead of 0 → 10 + 6, or skipped the subtraction entirely.
-**common_trap:** Arithmetic slip on f(3) = 18 − 9 + 1, especially flipping the order of operations on −3(3).
-**takeaway:** Functions: substitute, then simplify. Watch the *sign* on each term, especially the −3x.
+**explanation:** f(3) = 2(9) − 3(3) + 1 = 18 − 9 + 1 = 10. f(1) = 2(1) − 3(1) + 1 = 2 − 3 + 1 = 0. f(3) − f(1) = 10 − 0 = 10.
+**mistake_a:** Sign flip on the constant in f(3): computed 2(9) − 3(3) − 1 = 18 − 9 − 1 = 8, then f(1) = 0, giving 8 − 0 = 8.
+**mistake_c:** Sign flip on the constant when computing f(1): wrote f(1) = 2(1)² − 3(1) − 1 = −2. Then f(3) − f(1) = 10 − (−2) = 12.
+**mistake_d:** Misread −3x as −x (dropped the coefficient): f(x) = 2x² − x + 1 gives f(3) = 18 − 3 + 1 = 16 and f(1) = 2 − 1 + 1 = 2, so 16 − 2 = 14.
+**mistake_e:** Computed −3x at x = 3 as −3 (forgot to multiply by x): f(3) = 2(9) − 3 + 1 = 16. Then f(3) − f(1) = 16 − 0 = 16.
+**common_trap:** Arithmetic slip on f(3) = 18 − 9 + 1, especially forgetting to multiply the coefficient −3 by x when substituting.
+**takeaway:** Functions: substitute x, then simplify each term fully. The −3x term requires multiplying −3 by the input, not just writing −3.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -285,7 +285,7 @@ For all positive integers n, let f(n) = n² - n. What is the value of f(f(3))?
 **mistake_a:** Stopped at the inner computation: f(3) = 6 — bubbled the intermediate value.
 **mistake_b:** Computed f(3) × 2 = 12 (multiplied instead of composing).
 **mistake_d:** Computed f(7) = 49 − 7 = 42 — wrong inner argument.
-**mistake_e:** Computed (f(3))² − f(3) = 36 − 6 = 30 ... wait, that gives 30 (correct). Or f(3)² − 1 = 35; 7² + 7 = 56.
+**mistake_e:** Used n² − 1 instead of n² − n for f: f(3) = 3² − 1 = 8, then f(8) = 8² − 8 = 56.
 **common_trap:** Stopping at the inner result and bubbling — composition requires both layers.
 **takeaway:** f(f(x)) means apply f twice: compute f(x) first, then apply f to that result.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -638,7 +638,7 @@ If the roots of the quadratic equation x² + bx + 12 = 0 differ by 1, what are t
 ---
 
 ## Q25
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Word Problem — Relative Motion
 

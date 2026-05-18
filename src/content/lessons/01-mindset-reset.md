@@ -116,7 +116,7 @@ Here is the rule that, more than any other habit I teach, predicts whether a stu
 Why this works:
 
 - **It protects the habit.** Zero days break streaks, and broken streaks are how weeks turn into months of "I'll restart Monday." Never zero, never restart.
-- **Starting is the hardest part.** Once you are 10 minutes in, you are often willing to keep going. The 30-minute rule just gets you past the activation energy. Many of my students' "30-minute days" accidentally turn into 90 minutes.
+- **Starting is the hardest part.** Once you are 10 minutes in, you are often willing to keep going. The 30-minute rule just gets you past the activation energy. In practice, "30-minute days" routinely turn into 90-minute days — but only because the 30-minute commitment got you in the chair in the first place.
 - **Review on low-energy days is high-value.** Your error log rewards frequent short visits more than occasional long visits. A 30-minute log review on a tired Tuesday beats a 3-hour cramming session on Saturday.
 
 ### Daily Structure: High-Energy and Low-Energy Templates
