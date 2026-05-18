@@ -97,8 +97,8 @@ When the positive integer n is divided by 7, the remainder is 4. What is the rem
 **answer:** C
 **fastest_path:** Pick n = 4: 3(4) + 5 = 17 → 17 mod 7 = 3.
 **explanation:** Pick the smallest valid n = 4: 3(4) + 5 = 17, and 17 = 2·7 + 3, so remainder is 3. Algebraically: n = 7k + 4 → 3n + 5 = 21k + 17 = 21k + 14 + 3, remainder 3.
-**mistake_a:** Computed 17 mod 7 wrong — claimed it divides evenly.
-**mistake_b:** Off-by-one when subtracting multiples of 7 from 17.
+**mistake_a:** Computed 17 mod 7 wrong — divided 17 by 7 and claimed no remainder (perhaps misread 7 × 2 = 17).
+**mistake_b:** Computed 7 × 2 = 16 (arithmetic slip), so 17 − 16 = 1 instead of 17 − 14 = 3.
 **mistake_d:** Bubbled the "+5" alone, ignoring the 3n contribution.
 **mistake_e:** Inverted: 7 − 3 = 4, then bubbled 6 from another residue confusion.
 **common_trap:** Trying to track n directly instead of working modulo 7 from the start.
@@ -134,7 +134,7 @@ If the three-digit number 4A6 is divisible by 9, where A represents a single dig
 ---
 
 ## Q6
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Multiples
 
@@ -305,10 +305,10 @@ When the positive integer n is divided by 5, the remainder is 2. What is the rem
 **answer:** E
 **fastest_path:** Pick n = 2: n² = 4, 4 mod 5 = 4.
 **explanation:** Pick smallest valid n = 2: 2² = 4, 4 mod 5 = 4. Algebraically: n = 5k + 2 → n² = 25k² + 20k + 4 → remainder 4.
-**mistake_a:** Forgot to square — took remainder 2 then divided again, got 0.
-**mistake_b:** Picked n = 7 (49/5 = 9 R 4), then mis-read remainder as 1.
-**mistake_c:** Bubbled the original remainder 2 — forgot to square.
-**mistake_d:** Computed 4 − 1 = 3 from a sign error.
+**mistake_a:** Forgot to square — took n mod 5 = 2, then reduced 2 mod 5 = 2... but tried to divide again and concluded 0.
+**mistake_b:** Squared the remainder to get 4, then subtracted from the modulus: 5 − 4 = 1 (confused remainder with complement).
+**mistake_c:** Bubbled the original remainder 2 — forgot to square it.
+**mistake_d:** Computed 2² = 4, then applied "4 − 1 = 3" from a spurious off-by-one adjustment.
 **common_trap:** Bubbling the original remainder (2) instead of squaring it first.
 **takeaway:** If n ≡ r (mod m), then n² ≡ r² (mod m). Square the remainder, then reduce.
 **related_reading:** reading-quant-03-number-properties
@@ -509,7 +509,7 @@ If m and n are positive integers, what is the value of m?
 **type:** Problem Solving
 **topic:** Prime Factorization and Counting Factors
 
-If n = 2⁵ x 3⁴ x 5³, how many positive factors of n are perfect squares?
+If n = 2⁵ × 3⁴ × 5³, how many positive factors of n are perfect squares?
 
 - A) 6
 - B) 9
@@ -616,23 +616,23 @@ Is the positive integer n divisible by 18?
 **type:** Problem Solving
 **topic:** Units Digit Pattern
 
-What is the units digit of 7^100?
+What is the units digit of 8^47?
 
 - A) 0
-- B) 1
-- C) 3
-- D) 7
-- E) 9
+- B) 2
+- C) 4
+- D) 6
+- E) 8
 
 **answer:** B
-**fastest_path:** 7-cycle [7, 9, 3, 1]. 100 mod 4 = 0 → position 4 → 1.
-**explanation:** Units digit of 7^n cycles [7, 9, 3, 1] with period 4. 100 mod 4 = 0 → position 4 → units digit 1.
-**mistake_a:** Bubbled 0 — but 7^n never ends in 0 (no factor of 10 ever appears).
-**mistake_c:** Took position 3 in the cycle (= 3).
-**mistake_d:** Bubbled the base 7 — ignored the cycle.
-**mistake_e:** Took position 2 in the cycle (= 9).
-**common_trap:** When n mod 4 = 0, position is 4 (end of cycle), not 0 (undefined). Mis-indexing here is the most common units-digit error.
-**takeaway:** For units-digit cycles: position 4 corresponds to mod 4 = 0. The 7-cycle: 7^1=7, 7^2=49, 7^3=...3, 7^4=...1, 7^5=...7.
+**fastest_path:** 8-cycle [8, 4, 2, 6]. 47 mod 4 = 3 → position 3 → units digit 2.
+**explanation:** Units digit of 8^n cycles [8, 4, 2, 6] with period 4: 8^1=8, 8^2=64→4, 8^3=512→2, 8^4=4096→6, 8^5=...8. Position = 47 mod 4 = 3 → third slot in the cycle → units digit 2.
+**mistake_a:** Concluded 8^n can end in 0 — impossible, since 8 and 5 share no factors and a units digit of 0 requires both.
+**mistake_c:** Used position 2 instead of position 3 — an off-by-one down: 47 mod 4 = 3 maps to slot 3 (=2), not slot 2 (=4).
+**mistake_d:** Used position 4 — treated 47 mod 4 = 3 as if it were 0 (the "end of cycle" confusion from Q11-type problems).
+**mistake_e:** Bubbled the base 8 — copied the base without computing the cycle position.
+**common_trap:** Off-by-one in cycle indexing — 47 mod 4 = 3 means slot 3, not slot 4. Unlike the common "mod 4 = 0" case, the answer here is in the middle of the cycle.
+**takeaway:** 8-cycle is [8, 4, 2, 6]. Compute n mod 4; if the result is 3, read slot 3 → units digit 2. Verify: 8^3 = 512 ✓.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -808,25 +808,25 @@ What is the smallest positive integer n such that n, n + 2, and n + 4 are all pr
 ## Q31
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Consecutive Integers — Sum to Largest
+**topic:** Consecutive Integers — Odd Sequence
 
-The sum of 5 consecutive positive integers is 215. What is the largest of the 5 integers?
+The sum of four consecutive odd integers is 104. What is the largest of the four?
 
-- A) 41
-- B) 42
-- C) 43
-- D) 44
-- E) 45
+- A) 23
+- B) 25
+- C) 27
+- D) 29
+- E) 31
 
-**answer:** E
-**fastest_path:** Mean = 215/5 = 43 = middle. Largest = 43 + 2 = 45.
-**explanation:** For 5 consecutive integers, mean = median = middle = 215/5 = 43. The integers are 41, 42, 43, 44, 45. Largest = 45.
-**mistake_a:** Bubbled 41 — the smallest, not the largest.
-**mistake_b:** Bubbled 42 — off-by-one from the middle.
-**mistake_c:** Bubbled 43 — the median, not the largest.
-**mistake_d:** Bubbled 44 — off-by-one from the largest.
-**common_trap:** Bubbling the median (43) instead of the largest. "Sum/count" gives the *middle*, not the max.
-**takeaway:** For odd-count consecutives: middle = sum/count. Largest = middle + (count − 1)/2.
+**answer:** D
+**fastest_path:** Mean = 104/4 = 26 = midpoint of the middle pair. Consecutive odds centered around 26: 23, 25, 27, 29. Largest = 29.
+**explanation:** Let the smallest odd integer be n. Four consecutive odds: n, n+2, n+4, n+6. Sum: 4n + 12 = 104 → 4n = 92 → n = 23. Integers: 23, 25, 27, 29. Largest = 29. Shortcut: mean = 26 falls between the two middle values (25 and 27); extend one step out to get 23 and 29.
+**mistake_a:** Bubbled 23 — the smallest, not the largest.
+**mistake_b:** Bubbled 25 — the second integer, stopped too soon.
+**mistake_c:** Bubbled 27 — the third integer, off by one step.
+**mistake_e:** Treated consecutive odds as consecutive integers (spacing 1 instead of 2): set up n + (n+1) + (n+2) + (n+3) = 104 → n = 24.5 (non-integer), then rounded up to 31.
+**common_trap:** Using a spacing of 1 for consecutive odds — consecutive odd (or even) integers differ by 2, not 1.
+**takeaway:** Consecutive odd integers: n, n+2, n+4, n+6 (spacing = 2). Mean = sum/count gives the midpoint between the two middle values.
 **related_reading:** reading-quant-03-number-properties
 
 ---
