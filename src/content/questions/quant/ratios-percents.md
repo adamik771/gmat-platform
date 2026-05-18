@@ -668,3 +668,451 @@ Is the price of product X greater than the price of product Y?
 **common_trap:** Thinking statements about "different products" can't combine — but a shared variable (Z) bridges them.
 **takeaway:** Look for shared variables in DS statements. Statements that mention different things may still chain through a common reference.
 **related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q26
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Percent of a Percent
+
+What is 30% of 60% of 200?
+
+- A) 18
+- B) 36
+- C) 60
+- D) 90
+- E) 120
+
+**answer:** B
+**fastest_path:** 0.60 × 200 = 120; 0.30 × 120 = 36.
+**explanation:** Work from right to left. 60% of 200 = 0.60 × 200 = 120. Then 30% of 120 = 0.30 × 120 = 36. Chained percents always multiply: 0.30 × 0.60 × 200 = 0.18 × 200 = 36.
+**mistake_a:** Computed 30% × 60% = 0.18, then applied it to 100 instead of 200: 0.18 × 100 = 18.
+**mistake_c:** Computed only 30% of 200 = 60, skipping the inner 60% step.
+**mistake_d:** Computed only 60% of 200 = 120, then took 75% of that instead of 30%, arriving at 90.
+**mistake_e:** Computed only 60% of 200 = 120, skipping the outer 30% step entirely.
+**common_trap:** Forgetting to apply both percents — applying only one and stopping.
+**takeaway:** "x% of y% of z" = multiply all three: (x/100) × (y/100) × z. Work from inner to outer, or just chain the decimals: 0.30 × 0.60 × 200 = 36.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q27
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Markup on Cost
+
+A merchant buys a jacket for $80 and sells it for $100. What is the percent markup over the cost price?
+
+- A) 20%
+- B) 25%
+- C) 30%
+- D) 50%
+- E) 125%
+
+**answer:** B
+**fastest_path:** Markup/cost = (100 − 80)/80 = 20/80 = 25%.
+**explanation:** Percent markup is calculated on the cost (the base you paid). Profit = 100 − 80 = $20. Percent = 20/80 = 0.25 = 25%.
+**mistake_a:** Used selling price as denominator: 20/100 = 20%. This is the profit margin (markup on selling price), not markup on cost.
+**mistake_c:** Off-track estimate; no clean path to 30% from these numbers.
+**mistake_d:** Used wrong numerator: 40/80 = 50%.
+**mistake_e:** Computed the ratio of selling price to cost: 100/80 = 1.25 and wrote 125%, confusing the multiplier with the percent increase.
+**common_trap:** Dividing profit by the selling price instead of the cost. "Markup on cost" always divides profit by cost.
+**takeaway:** Markup on cost = (selling price − cost) / cost. Margin = (selling price − cost) / selling price. These are different; the GMAT usually specifies which base to use.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q28
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Basic Percents — Finding the Percent
+
+What percent of 80 is 20?
+
+- A) 4%
+- B) 20%
+- C) 25%
+- D) 40%
+- E) 50%
+
+**answer:** C
+**fastest_path:** 20/80 = 1/4 = 25%.
+**explanation:** "What percent of 80 is 20?" → 20/80. Simplify: 20/80 = 1/4 = 0.25 = 25%.
+**mistake_a:** Inverted the fraction: 80/20 = 4, then wrote 4% (correct division but forgot the × 100 step and inverted).
+**mistake_b:** Stated the numerator (20) directly as the answer without dividing by 80.
+**mistake_d:** Inverted the fraction (80/20 = 4), then multiplied by 10: 4 × 10 = 40%.
+**mistake_e:** Approximated as "roughly half" without computing.
+**common_trap:** Inverting the fraction — dividing 80 by 20 instead of 20 by 80.
+**takeaway:** "What percent of A is B?" → B/A × 100. Always put the "is" quantity on top and the "of" quantity on the bottom.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Ratios — Find One Part Given Another
+
+The ratio of cats to dogs at a shelter is 5:3. If there are 24 dogs, how many cats are there?
+
+- A) 8
+- B) 15
+- C) 40
+- D) 45
+- E) 72
+
+**answer:** C
+**fastest_path:** 3 parts = 24 → 1 part = 8. Cats = 5 × 8 = 40.
+**explanation:** Dogs correspond to 3 parts in the ratio: 3 parts = 24 dogs → 1 part = 8. Cats correspond to 5 parts: 5 × 8 = 40.
+**mistake_a:** Found the unit value (1 part = 8) and stopped — reported that instead of 5 units.
+**mistake_b:** Multiplied the two ratio values: 5 × 3 = 15.
+**mistake_d:** Made an arithmetic slip computing 5 × 8: arrived at 45 instead of 40.
+**mistake_e:** Multiplied dogs by the ratio value instead of dividing: 24 × 3 = 72.
+**common_trap:** Multiplying instead of dividing to find the unit value — computing 24 × 3 instead of 24 ÷ 3.
+**takeaway:** Ratio problems: divide the known quantity by its ratio value to find 1 unit; then multiply by the target ratio value. Dogs = 3 parts = 24 → unit = 8. Cats = 5 units = 40.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Successive Discounts
+
+A store first reduces an item's price by 10%, then applies an additional 10% discount to the already-reduced price. What is the total discount as a percent of the original price?
+
+- A) 10%
+- B) 19%
+- C) 20%
+- D) 21%
+- E) 25%
+
+**answer:** B
+**fastest_path:** 1.00 × 0.90 × 0.90 = 0.81 → customer pays 81% → total discount = 19%.
+**explanation:** After the first 10% discount, price = 90% of original. The second 10% applies to the reduced price: 0.90 × 0.90 = 0.81. Customer pays 81% of original, so total discount = 100% − 81% = 19%.
+**mistake_a:** Counted only one of the two discounts: 10%.
+**mistake_c:** Added the two discounts directly: 10% + 10% = 20%. The second 10% acts on a smaller base, so the combined saving is always less than the arithmetic sum.
+**mistake_d:** Overcounted by 1 percentage point through a computation slip.
+**mistake_e:** Over-estimated the combined effect significantly.
+**common_trap:** Adding successive percent discounts directly (10 + 10 = 20). The second discount applies to a price already reduced, so the total saving is less than the sum.
+**takeaway:** Successive discounts multiply: (1 − a)(1 − b) ≠ 1 − (a + b). Two 10% discounts yield a combined saving of 1 − 0.9² = 19%, not 20%. The product always gives slightly less than the sum for positive rates.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q31
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Weighted Average
+
+A class of 30 students consists of two groups: 18 students averaged 80 on a test, and 12 students averaged 95. What is the class average?
+
+- A) 84
+- B) 85
+- C) 86
+- D) 87
+- E) 87.5
+
+**answer:** C
+**fastest_path:** (18 × 80 + 12 × 95) / 30 = (1440 + 1140) / 30 = 2580 / 30 = 86.
+**explanation:** Weight each group's average by its size. Total score points = 18 × 80 + 12 × 95 = 1440 + 1140 = 2580. Class average = 2580 / 30 = 86. Alternatively: weights are 18/30 = 0.6 and 12/30 = 0.4; average = 0.6(80) + 0.4(95) = 48 + 38 = 86.
+**mistake_a:** Arithmetic error: computed 12 × 95 = 1110 (off by 30) → sum = 2550 → 2550/30 = 85, close but wrong.
+**mistake_b:** Similar small arithmetic slip in the partial products.
+**mistake_d:** Rounded up from a computation that should have given 86.
+**mistake_e:** Used the simple (unweighted) average: (80 + 95)/2 = 87.5. This ignores the fact that 18 students scored 80 and only 12 scored 95.
+**common_trap:** Averaging the two group averages without weighting by group size: (80 + 95)/2 = 87.5. The larger group pulls the answer toward 80, not toward the midpoint.
+**takeaway:** Weighted average = Σ(weight × value) / Σ(weights). When group sizes differ, the larger group dominates. Notice: 86 is closer to 80 than to 95, reflecting the larger group of 18.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q32
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Dilution
+
+A 20-liter container holds a solution that is 30% salt. If 10 liters of pure water are added, what is the resulting salt concentration?
+
+- A) 15%
+- B) 20%
+- C) 25%
+- D) 30%
+- E) 45%
+
+**answer:** B
+**fastest_path:** Salt = 0.30 × 20 = 6 L. New total = 30 L. Concentration = 6/30 = 20%.
+**explanation:** When water is added, the absolute amount of salt is unchanged. Salt = 0.30 × 20 = 6 liters. New total volume = 20 + 10 = 30 liters. New concentration = 6/30 = 1/5 = 20%.
+**mistake_a:** Took the unweighted average of the two concentrations: (30% + 0%)/2 = 15%. This ignores that the original 20 liters outnumbers the added 10 liters.
+**mistake_c:** Divided salt by an incorrect total: 6/24 = 25% (arithmetic slip on the new total, using 24 instead of 30).
+**mistake_d:** Assumed concentration is unchanged because "the salt didn't leave." Correct that salt is conserved, but concentration falls because total volume grew.
+**mistake_e:** Invented an additive formula: 30% + 0% + 15% = 45% (no such rule exists).
+**common_trap:** Thinking the concentration stays at 30% because no salt was removed (choice D). Adding water dilutes the solution by increasing the denominator.
+**takeaway:** Dilution: track the absolute solute. Concentration = (original solute) / (new total volume). The numerator stays constant; only the denominator grows.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Multi-step Ratio Chain
+
+A bag contains red, blue, and green marbles. The ratio of red to blue is 3:2, and the ratio of blue to green is 4:5. If there are 120 marbles in total, how many red marbles are there?
+
+- A) 30
+- B) 36
+- C) 40
+- D) 48
+- E) 72
+
+**answer:** D
+**fastest_path:** Align Blue: LCM(2, 4) = 4. Scale R:B → 6:4. Chain: R:B:G = 6:4:5. Total = 15 parts. Red = (6/15) × 120 = 48.
+**explanation:** Blue appears in both ratios. In R:B = 3:2, Blue = 2. In B:G = 4:5, Blue = 4. Multiply the first ratio by 2 to make Blue = 4: R:B = 6:4. Now combine: R:B:G = 6:4:5. Total parts = 6 + 4 + 5 = 15. Red = (6/15) × 120 = 48.
+**mistake_a:** Adjusted Blue from 2 to 4 (correct) but forgot to also scale Red from 3 to 6. Used R:B:G = 3:4:5, total = 12 parts → Red = (3/12) × 120 = 30.
+**mistake_b:** Concatenated the two ratios without aligning Blue: treated R:B:G = 3:2:5 (Blue = 2 from the first ratio, Green = 5 from the second). Total = 10 → Red = (3/10) × 120 = 36.
+**mistake_c:** Ignored both ratios and split equally: 120/3 = 40.
+**mistake_e:** Used only the R:B ratio and ignored Green: Red = (3/5) × 120 = 72.
+**common_trap:** Chaining ratios without aligning the shared term. Both ratios must reference the same Blue value before you can build a three-part ratio.
+**takeaway:** To chain A:B and B:C, scale both ratios so B is the same in each (multiply by the LCM of the two B-values). Only then can you read off A:B:C and find any part.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Percent of Remaining
+
+After 40% of the students in a class pass an exam on the first attempt, 30% of the remaining students pass on a second attempt. What percent of the original class has now passed?
+
+- A) 52%
+- B) 54%
+- C) 58%
+- D) 60%
+- E) 70%
+
+**answer:** C
+**fastest_path:** Remaining after round 1 = 60%. Round 2 passes = 30% of 60% = 18%. Total = 40 + 18 = 58%.
+**explanation:** Use 100 students as the base. After round 1: 40 pass, 60 remain. In round 2, 30% of those 60 pass: 0.30 × 60 = 18 more students pass. Total passed = 40 + 18 = 58 out of 100, i.e., 58%.
+**mistake_a:** Applied 30% to the 40 who already passed instead of the 60 who remained: 40 + 0.30(40) = 52%.
+**mistake_b:** Minor arithmetic slip in the second-round calculation.
+**mistake_d:** Computed 40% + 20% = 60% (mistakenly said 30% of 60% = 20% of the class, off by a factor of 3/2).
+**mistake_e:** Added the two rates directly: 40% + 30% = 70%, treating "30% of remaining" as "30% of the whole class."
+**common_trap:** Treating "30% of the remaining" as "30% of the original class." The second percent applies to a smaller base (60, not 100).
+**takeaway:** When a percent applies to a sub-group, always compute the sub-group size first, then apply the percent to that sub-group. Never add unrelated percent rates.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Ratio Split Profit
+
+Three partners invest in a business in the ratio 2:3:5. If the total profit at year-end is $18,000, how much more does the largest investor receive than the smallest?
+
+- A) $2,700
+- B) $3,600
+- C) $5,400
+- D) $6,300
+- E) $9,000
+
+**answer:** C
+**fastest_path:** Difference = (5 − 2) parts out of 10 total = 3/10 × $18,000 = $5,400.
+**explanation:** Total parts = 2 + 3 + 5 = 10. Smallest (2 parts) = (2/10) × 18,000 = $3,600. Largest (5 parts) = (5/10) × 18,000 = $9,000. Difference = $9,000 − $3,600 = $5,400. Shortcut: take the part-difference (5 − 2 = 3) directly: (3/10) × 18,000 = $5,400.
+**mistake_a:** Halved the correct answer: $5,400/2 = $2,700.
+**mistake_b:** Reported the smallest investor's share ($3,600) rather than the difference between largest and smallest.
+**mistake_d:** Averaged the two extreme parts: (5 + 2)/2 = 3.5 → (3.5/10) × 18,000 = $6,300.
+**mistake_e:** Reported the largest investor's share ($9,000) rather than the difference.
+**common_trap:** Reporting one investor's individual share when the question asks for the difference between two shares.
+**takeaway:** For "how much more" ratio questions, subtract the two ratio values first (5 − 2 = 3), then scale: (3/10) × total. This shortcut avoids computing each share separately.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Markup then Discount
+
+A store marks up a product by 50% over its cost, then applies a 20% discount off the marked price. By what percent is the final selling price above the original cost?
+
+- A) 10%
+- B) 20%
+- C) 25%
+- D) 30%
+- E) 50%
+
+**answer:** B
+**fastest_path:** 1.50 × 0.80 = 1.20 → selling price is 20% above cost.
+**explanation:** Let cost = $100. Marked price = $100 × 1.50 = $150. After 20% discount: $150 × 0.80 = $120. Final price ($120) is 20% above cost ($100).
+**mistake_a:** Multiplied the two percent values directly: 50% × 20% = 10%. This has no logical basis; the two percents apply to different bases.
+**mistake_c:** Estimated midway between adjacent choices.
+**mistake_d:** Subtracted the percentages: 50% − 20% = 30%. This would only be valid if both percents applied to the same base, but they do not.
+**mistake_e:** Ignored the discount entirely and reported the original 50% markup.
+**common_trap:** Subtracting the discount rate from the markup rate (50 − 20 = 30). The discount applies to the marked price, not the cost, so you must multiply factors, not combine percentages.
+**takeaway:** When a markup and a discount have different bases, always use multiplication of factors: 1.50 × 0.80 = 1.20. Never add or subtract percent figures with different bases.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Alligation — Two Concentrations
+
+How many liters of an 80% acid solution must be mixed with 40 liters of a 20% acid solution to produce a mixture that is 60% acid?
+
+- A) 20
+- B) 40
+- C) 60
+- D) 80
+- E) 100
+
+**answer:** D
+**fastest_path:** Alligation: (60 − 20)/(80 − 60) = 40/20 = 2:1. For every 1 liter of 20%, need 2 liters of 80%. 2 × 40 = 80 liters.
+**explanation:** Let x = liters of 80% solution. Equation: 0.80x + 0.20(40) = 0.60(x + 40) → 0.80x + 8 = 0.60x + 24 → 0.20x = 16 → x = 80. Alligation shortcut: target (60%) is 40 units above 20% and 20 units below 80%. Ratio of 80% to 20% solution = 40:20 = 2:1. Since there are 40 liters of the 20% solution, need 2 × 40 = 80 liters of the 80% solution.
+**mistake_a:** Inverted the alligation ratio (used 1:2 instead of 2:1): (1/2) × 40 = 20.
+**mistake_b:** Guessed equal volumes. Equal parts of 80% and 20% would average to 50%, not 60%.
+**mistake_c:** Applied the ratio fraction to the wrong quantity, or used an inverted ratio and then scaled incorrectly.
+**mistake_e:** Over-estimated the required volume.
+**common_trap:** Inverting the alligation ratio. The solution further from the target requires the larger share, not the smaller. The 80% solution is only 20 units from 60%, so you need more of it — 2 parts, not 1.
+**takeaway:** Alligation: (parts of high-conc) / (parts of low-conc) = (target − low) / (high − target). The ingredient closer to the target is needed in smaller quantity.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q38
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Ratios — Adding to Change a Ratio
+
+A mixture of coffee and milk is in the ratio 3:1 by volume. After 8 liters of milk are added, the ratio becomes 3:2. What was the original total volume of the mixture in liters?
+
+- A) 16
+- B) 24
+- C) 28
+- D) 32
+- E) 40
+
+**answer:** D
+**fastest_path:** Let milk = k. Equation: 3k/(k + 8) = 3/2 → 6k = 3k + 24 → k = 8. Original total = 4k = 32.
+**explanation:** Original ratio 3:1 means coffee = 3k, milk = k. After adding 8 liters of milk: coffee = 3k, milk = k + 8. New ratio: (3k)/(k + 8) = 3/2. Cross-multiply: 6k = 3(k + 8) = 3k + 24 → 3k = 24 → k = 8. Original total = 3k + k = 4k = 4 × 8 = 32 liters.
+**mistake_a:** Arithmetic error dividing 24 by 6 instead of 3: k = 24/6 = 4 → total = 4 × 4 = 16.
+**mistake_b:** Arithmetic error dividing 24 by 4: k = 24/4 = 6 → total = 4 × 6 = 24.
+**mistake_c:** Computational slip: computed 3 × (k + 8) as 3k + 21 (multiplied 3 × 8 = 21 instead of 24), yielding 3k = 21 → k = 7 → total = 28.
+**mistake_e:** Correctly solved k = 8 but reported the new total (4k + 8 = 40) rather than the original total (4k = 32).
+**common_trap:** Reporting the post-addition total (40) rather than the pre-addition total. Always re-read the question — it asks for the original volume.
+**takeaway:** For "add to change a ratio" problems: let one original quantity = k, express the other via the starting ratio, add the given amount, set equal to the new ratio, solve for k, then compute the original sum. Never include the added quantity in the original total.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q39
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** DS — Revenue Growth Comparison
+
+A company's revenue this year is R dollars. Is R at least 20% greater than the company's revenue last year?
+
+(1) Last year's revenue was $500,000.
+(2) This year's revenue is 25% greater than revenue two years ago, and revenue two years ago was $400,000.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (2) gives R = $400,000 × 1.25 = $500,000 but not last year. (1) gives last year = $500,000 but not R. Together: R = last year = $500,000 → 0% growth → definite No.
+**explanation:** Statement (1) alone: last year = $500,000, but R (this year) is unknown — cannot compute growth. Not sufficient. Statement (2) alone: R = $400,000 × 1.25 = $500,000, but last year's revenue is unknown — cannot compare. Not sufficient. Together: this year R = $500,000 and last year = $500,000 → growth = 0%, which is not ≥ 20%. A definite "No" answers the yes/no question. Sufficient.
+**mistake_a:** Concluded (1) alone is sufficient — but knowing only last year's figure tells nothing about this year's revenue.
+**mistake_b:** Concluded (2) alone is sufficient — the 25% growth is relative to two years ago, not to last year. Knowing this year's value ($500K) without last year's value is still insufficient.
+**mistake_d:** Thought each statement alone pins down the growth — neither does independently.
+**mistake_e:** Thought the two statements together are still insufficient — they uniquely determine both this year and last year.
+**common_trap:** Reading "25% greater than two years ago" as "25% greater than last year." Two years ago and last year are different reference points.
+**takeaway:** In DS percent-change questions, both the current and the reference value must be known. Also, a definite "No" is just as sufficient as a definite "Yes." Watch for "last year" vs "two years ago" — these are distinct anchors.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q40
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Multi-step Markup Chain
+
+A manufacturer sells a product to a wholesaler at 40% above production cost. The wholesaler sells it to a retailer at 25% above the wholesaler's price. The retailer sells it to a consumer at 20% above the retailer's cost. If the consumer pays $168, what is the production cost?
+
+- A) $70
+- B) $80
+- C) $84
+- D) $96
+- E) $120
+
+**answer:** B
+**fastest_path:** 1.40 × 1.25 × 1.20 = 2.10; cost = 168 / 2.10 = $80.
+**explanation:** Starting from production cost C, each transaction multiplies the price by a factor. After all three: C × 1.40 × 1.25 × 1.20 = 168. Compute: 1.40 × 1.25 = 1.75; 1.75 × 1.20 = 2.10. Then C = 168 / 2.10 = $80.
+**mistake_a:** Used a combined factor of 2.40 (from incorrectly summing markup rates: 0.40 + 0.25 + 0.20 = 0.85 → 1 + some error → 2.40): 168 / 2.40 = $70.
+**mistake_c:** Rounded the true factor (2.10) to a round 2.00: 168 / 2 = $84.
+**mistake_d:** Omitted the retailer's 20% markup; applied only two factors: 168 / (1.40 × 1.25) = 168 / 1.75 = $96.
+**mistake_e:** Applied only the first markup; used only 1.40: 168 / 1.40 = $120.
+**common_trap:** Stopping one markup step too early — the most common variant is applying two of three factors, giving $96.
+**takeaway:** In a chain of markups, multiply all factors first, then back-solve. Never add markup percentages. Double-check by multiplying your answer back through the chain: $80 × 1.40 × 1.25 × 1.20 = $80 × 2.10 = $168.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** DS — Ratio and Count Give Exact Value
+
+A jar contains only nickels ($0.05) and dimes ($0.10). What is the total dollar value of all coins in the jar?
+
+(1) The ratio of nickels to dimes is 3:2.
+(2) The total number of coins in the jar is 40.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) alone: ratio is set but total count is unknown — infinite valid totals. (2) alone: 40 coins but any split is possible. Together: 40 coins in 3:2 → 24 nickels + 16 dimes → $1.20 + $1.60 = $2.80.
+**explanation:** Statement (1) alone: ratio 3:2 means for every 5 coins, 3 are nickels and 2 are dimes. But total coins could be 5, 10, 50, etc. — infinite possible total values. Not sufficient. Statement (2) alone: 40 total coins in any split, e.g., 40 nickels ($2.00) or 20 of each ($3.00). Not sufficient. Together: 40 coins in ratio 3:2. Parts total = 5. Each part = 40/5 = 8 coins. Nickels = 3 × 8 = 24, dimes = 2 × 8 = 16. Value = 24(0.05) + 16(0.10) = $1.20 + $1.60 = $2.80. Sufficient.
+**mistake_a:** Thought ratio alone pins down the value — a ratio fixes proportions only, not absolute quantities.
+**mistake_b:** Thought 40 coins alone is enough — without the ratio, any split into nickels and dimes is possible.
+**mistake_d:** Thought each statement alone is sufficient — neither is.
+**mistake_e:** Thought together they are still insufficient — together they uniquely determine the coin count for each denomination.
+**common_trap:** Confusing a known ratio with a known count. Ratio + total count together uniquely determine the absolute quantities; either alone does not.
+**takeaway:** Ratio alone → proportions known, absolute amounts unknown. Total count alone → sum known, breakdown unknown. Ratio + total count → both individually determined. This is a classic DS two-statement interplay pattern.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Revenue Split and Component Growth
+
+Last year, Product X generated 60% of a company's total revenue and Product Y generated the remaining 40%. This year, revenue from Product X grew by 15% while total company revenue grew by 8%. By what percent did revenue from Product Y change?
+
+- A) decreased by 2.5%
+- B) decreased by 5%
+- C) no change
+- D) increased by 2.5%
+- E) increased by 5%
+
+**answer:** A
+**fastest_path:** Let total = 100. X: 60 → 69. Total: 100 → 108. Y: 40 → 39. Change = −1/40 = −2.5%.
+**explanation:** Set last year's total = 100. Then X = 60 and Y = 40. This year: X = 60 × 1.15 = 69. Total = 100 × 1.08 = 108. Since Total = X + Y, we get Y = 108 − 69 = 39. Percent change in Y = (39 − 40)/40 = −1/40 = −2.5%.
+**mistake_b:** Rounded 60 × 1.15 = 69 to 70 in mental arithmetic: Y = 108 − 70 = 38 → change = −2/40 = −5%.
+**mistake_c:** Assumed Y is unaffected because only X and total were mentioned. Y is implicitly determined by Y = Total − X; it cannot stay constant if X and the total change independently.
+**mistake_d:** Computed the correct magnitude (2.5%) but reversed the direction. Since X grew faster (9 units) than total (8 units), Y must have shrunk by exactly 1 unit, not grown.
+**mistake_e:** Assumed Y grows at the company's overall rate of 8%: 40 × 1.08 = 43.2 → about +8%, then approximated as +5%.
+**common_trap:** Forgetting that Y is a residual (Y = Total − X). When one component grows faster than the whole, the residual must shrink to compensate.
+**takeaway:** Two-component residual setup: ΔY (in units) = ΔTotal − ΔX = 8 − 9 = −1 (when total = 100). Percent change in Y = ΔY / Y_original = −1/40 = −2.5%. The direction is critical: if the named component outpaces the total, the unnamed component declines.
+**related_reading:** reading-quant-05-word-problems
