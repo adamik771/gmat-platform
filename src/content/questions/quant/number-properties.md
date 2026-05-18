@@ -359,8 +359,8 @@ How many positive factors does 720 have?
 **explanation:** Prime-factorize: 720 = 8 · 9 · 10 = 2³ · 3² · 2 · 5 = 2⁴ · 3² · 5. Factor count = (4+1)(2+1)(1+1) = 30.
 **mistake_a:** Used 2³ instead of 2⁴: (3+1)(2+1)(1+1) = 24.
 **mistake_b:** Off-by-one on one exponent: 28 = 7·4 from (6+1)(3+1) — wrong factorization.
-**mistake_d:** Used 2⁵ instead of 2⁴: (5+1)(2+1)(1+1) = ... 32 from a different mis-factor.
-**mistake_e:** Used 2³·3³·5 → (3+1)(3+1)(1+1) = 32, then bubbled the closest available 36.
+**mistake_d:** Mis-factored 720 as 2³·3³·5 (over-counted the exponent of 3): (3+1)(3+1)(1+1) = 4·4·2 = 32.
+**mistake_e:** Mis-factored 720 as 2⁵·3²·5 (over-counted the exponent of 2): (5+1)(2+1)(1+1) = 6·3·2 = 36.
 **common_trap:** Mis-factorizing 720 by missing one factor of 2 or one factor of 3 — the count formula then deviates.
 **takeaway:** Factor 720 in clean splits: 8·90 = 8·9·10 = 2⁴·3²·5. Verify via: product of primes^exponents = 16·9·5 = 720 ✓.
 **related_reading:** reading-quant-03-number-properties
@@ -531,7 +531,7 @@ If n = 2⁵ × 3⁴ × 5³, how many positive factors of n are perfect squares?
 ---
 
 ## Q21
-**difficulty:** Medium
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Trailing Zeros in Factorials
 
@@ -614,25 +614,25 @@ Is the positive integer n divisible by 18?
 ## Q24
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Units Digit Pattern
+**topic:** Counting Multiples in a Range
 
-What is the units digit of 8^47?
+How many multiples of 7 are there from 100 to 300, inclusive?
 
-- A) 0
-- B) 2
-- C) 4
-- D) 6
-- E) 8
+- A) 26
+- B) 27
+- C) 28
+- D) 29
+- E) 30
 
-**answer:** B
-**fastest_path:** 8-cycle [8, 4, 2, 6]. 47 mod 4 = 3 → position 3 → units digit 2.
-**explanation:** Units digit of 8^n cycles [8, 4, 2, 6] with period 4: 8^1=8, 8^2=64→4, 8^3=512→2, 8^4=4096→6, 8^5=...8. Position = 47 mod 4 = 3 → third slot in the cycle → units digit 2.
-**mistake_a:** Concluded 8^n can end in 0 — impossible, since 8 and 5 share no factors and a units digit of 0 requires both.
-**mistake_c:** Used position 2 instead of position 3 — an off-by-one down: 47 mod 4 = 3 maps to slot 3 (=2), not slot 2 (=4).
-**mistake_d:** Used position 4 — treated 47 mod 4 = 3 as if it were 0 (the "end of cycle" confusion from Q11-type problems).
-**mistake_e:** Bubbled the base 8 — copied the base without computing the cycle position.
-**common_trap:** Off-by-one in cycle indexing — 47 mod 4 = 3 means slot 3, not slot 4. Unlike the common "mod 4 = 0" case, the answer here is in the middle of the cycle.
-**takeaway:** 8-cycle is [8, 4, 2, 6]. Compute n mod 4; if the result is 3, read slot 3 → units digit 2. Verify: 8^3 = 512 ✓.
+**answer:** C
+**fastest_path:** ⌊300/7⌋ − ⌊99/7⌋ = 42 − 14 = 28.
+**explanation:** Smallest multiple of 7 that is ≥ 100: 7 × 15 = 105. Largest multiple of 7 that is ≤ 300: 7 × 42 = 294. Count = 42 − 15 + 1 = 28. Equivalently: ⌊300/7⌋ − ⌊99/7⌋ = 42 − 14 = 28.
+**mistake_a:** Excluded both endpoints (treated "from 100 to 300" as exclusive): started from 7 × 16 = 112 and ended at 7 × 41 = 287, giving 41 − 16 + 1 = 26.
+**mistake_b:** Applied "last index minus first index" without the +1: 42 − 15 = 27 — the inclusive count formula requires +1.
+**mistake_d:** Applied ⌊b/k⌋ − ⌊a/k⌋ + 1 = 42 − 14 + 1 = 29 — the correct floor formula is ⌊b/k⌋ − ⌊(a−1)/k⌋ = 42 − 14 = 28; adding +1 double-counts.
+**mistake_e:** Included 7 × 14 = 98 (which is less than 100) as a valid starting multiple, giving one extra count.
+**common_trap:** Off-by-one at both ends. The inclusive count formula is last_index − first_index + 1; the floor formula is ⌊b/k⌋ − ⌊(a−1)/k⌋. Mixing these two forms or adding +1 to the floor form gives 29.
+**takeaway:** Multiples of k from a to b inclusive: count = ⌊b/k⌋ − ⌊(a−1)/k⌋. Or: find first_index and last_index, count = last_index − first_index + 1. Verify: ⌊300/7⌋ = 42, ⌊99/7⌋ = 14, count = 28.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -780,7 +780,7 @@ If x and y are integers, is the product xy even?
 ---
 
 ## Q30
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Triplets of Prime Numbers
 
@@ -808,25 +808,25 @@ What is the smallest positive integer n such that n, n + 2, and n + 4 are all pr
 ## Q31
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Consecutive Integers — Odd Sequence
+**topic:** Consecutive Even Integers
 
-The sum of four consecutive odd integers is 104. What is the largest of the four?
+The sum of 6 consecutive even integers is 126. What is the smallest of these integers?
 
-- A) 23
-- B) 25
-- C) 27
-- D) 29
-- E) 31
+- A) 14
+- B) 16
+- C) 18
+- D) 20
+- E) 22
 
-**answer:** D
-**fastest_path:** Mean = 104/4 = 26 = midpoint of the middle pair. Consecutive odds centered around 26: 23, 25, 27, 29. Largest = 29.
-**explanation:** Let the smallest odd integer be n. Four consecutive odds: n, n+2, n+4, n+6. Sum: 4n + 12 = 104 → 4n = 92 → n = 23. Integers: 23, 25, 27, 29. Largest = 29. Shortcut: mean = 26 falls between the two middle values (25 and 27); extend one step out to get 23 and 29.
-**mistake_a:** Bubbled 23 — the smallest, not the largest.
-**mistake_b:** Bubbled 25 — the second integer, stopped too soon.
-**mistake_c:** Bubbled 27 — the third integer, off by one step.
-**mistake_e:** Treated consecutive odds as consecutive integers (spacing 1 instead of 2): set up n + (n+1) + (n+2) + (n+3) = 104 → n = 24.5 (non-integer), then rounded up to 31.
-**common_trap:** Using a spacing of 1 for consecutive odds — consecutive odd (or even) integers differ by 2, not 1.
-**takeaway:** Consecutive odd integers: n, n+2, n+4, n+6 (spacing = 2). Mean = sum/count gives the midpoint between the two middle values.
+**answer:** B
+**fastest_path:** Let smallest = k. Sum = 6k + 30 = 126 → k = 16.
+**explanation:** Six consecutive even integers: k, k+2, k+4, k+6, k+8, k+10. Sum = 6k + 30 = 126 → 6k = 96 → k = 16. Verify: 16 + 18 + 20 + 22 + 24 + 26 = 126 ✓.
+**mistake_a:** Set up the sequence one step too early (used k−2 as smallest): k − 2 = 14.
+**mistake_c:** Bubbled the third term k+2 = 18 — misidentified the term just above the mean as the "smallest."
+**mistake_d:** Bubbled the lower-middle term k+4 = 20 — noted that mean = 126/6 = 21 and picked the nearest even integer below it, treating it as the answer.
+**mistake_e:** Bubbled the upper-middle term k+6 = 22 — rounded the mean (21) up to the next even integer.
+**common_trap:** With an even count of terms, the mean (21) is NOT one of the integers — it falls between the two middle terms (20 and 22). Using 20 or 22 as the answer gives a middle term, not the smallest.
+**takeaway:** For consecutive even integers, set up k, k+2, k+4, ... and solve the sum equation directly. With an even count, the mean is not a term — do not rely on "mean = middle" as a shortcut.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -887,7 +887,7 @@ The sum of four consecutive positive multiples of 5 is 230. What is the smallest
 ---
 
 ## Q34
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** LCM Application — Bells Ringing
 
@@ -902,10 +902,10 @@ Three bells ring at intervals of 6, 9, and 15 minutes respectively. They all rin
 **answer:** D
 **fastest_path:** LCM(6, 9, 15) = 90 min = 1h 30m. 12:00 + 1:30 = 1:30 PM.
 **explanation:** Bells coincide at LCM of intervals. 6 = 2·3, 9 = 3², 15 = 3·5. LCM = 2 · 3² · 5 = 90 min = 1h 30m. 12:00 PM + 90 min = 1:30 PM.
-**mistake_a:** Computed LCM = 45 (took GCF·something).
-**mistake_b:** Computed LCM(6, 15) = 30, doubled for "extra safety" → 60 min.
-**mistake_c:** Computational slip → LCM = 75 min.
-**mistake_e:** Used LCM(6, 15) · GCF or wrong combination → 120 min.
-**common_trap:** Taking LCM of only two of the three intervals (e.g., LCM(6, 9) = 18, then ignoring 15).
-**takeaway:** For "next simultaneous event" with periodic events at intervals a, b, c: time = LCM(a, b, c). All three must factor into the LCM.
+**mistake_a:** Computed LCM of only two intervals — LCM(9, 15) = 45 min, stopping there and ignoring the 6-minute bell.
+**mistake_b:** Misread the 9-minute interval as 12 minutes: LCM(6, 12, 15) = 2²·3·5 = 60 min → 1:00 PM.
+**mistake_c:** Added two pairwise LCMs instead of computing the overall LCM: LCM(6, 15) + LCM(9, 15) = 30 + 45 = 75 min → 1:15 PM.
+**mistake_e:** Computed LCM = 90 correctly but made a time-conversion error: treated 90 minutes as 2 hours and added 2 hours to 12:00 noon → 2:00 PM. Correct conversion: 12:00 PM + 1 h 30 min = 1:30 PM.
+**common_trap:** Using LCM of only two of the three intervals and forgetting the third, or adding LCMs instead of nesting them.
+**takeaway:** For "next simultaneous event" with periodic events at intervals a, b, c: time = LCM(a, b, c). Compute step-by-step: LCM(a, b) first, then LCM(result, c). All three must factor into the final LCM.
 **related_reading:** reading-quant-03-number-properties
