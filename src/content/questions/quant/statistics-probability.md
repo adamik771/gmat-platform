@@ -8,23 +8,23 @@ topic: Statistics & Probability
 **type:** Problem Solving
 **topic:** Mean
 
-The average (arithmetic mean) of five numbers is 18. If one of the numbers is removed, the average of the remaining four numbers is 15. What is the number that was removed?
+The average (arithmetic mean) of 6 numbers is 15. After one of the numbers is removed, the average of the remaining 5 is 13. What is the value of the number that was removed?
 
-- A) 20
-- B) 24
-- C) 28
-- D) 30
-- E) 33
+- A) 2
+- B) 10
+- C) 13
+- D) 15
+- E) 25
 
-**answer:** D
-**fastest_path:** Sum dropped from 5·18 = 90 to 4·15 = 60. Removed = 30.
-**explanation:** Sum of 5 = 5 × 18 = 90. Sum of 4 = 4 × 15 = 60. Removed = 90 − 60 = 30.
-**mistake_a:** Slip → 20.
-**mistake_b:** Slip → 24.
-**mistake_c:** Slip → 28.
-**mistake_e:** Slip → 33.
-**common_trap:** Computing the difference of *means* (18 − 15 = 3) instead of difference of *sums*.
-**takeaway:** Sum = mean × count. For mean problems, work in *sums*, not in averages.
+**answer:** E
+**fastest_path:** Sum drops from 6·15 = 90 to 5·13 = 65. Removed = 90 − 65 = 25.
+**explanation:** Sum of 6 = 6 × 15 = 90. Sum of 5 = 5 × 13 = 65. Removed = 90 − 65 = 25.
+**mistake_a:** Subtracted the two means: 15 − 13 = 2. This ignores the counts — the removed number must account for the full sum difference, not just the average drop.
+**mistake_b:** Multiplied the mean difference by the smaller (remaining) count: 5 × (15 − 13) = 10. Used the wrong count. The old sum is 6 × 15, new sum is 5 × 13; each count belongs to its own mean.
+**mistake_c:** Bubbled the new mean (13) — answered the given information instead of solving for the removed value.
+**mistake_d:** Bubbled the original mean (15) — same error in the other direction.
+**common_trap:** Computing the mean difference (15 − 13 = 2) and treating that as the removed value. Always work in sums, not in averages.
+**takeaway:** Sum = mean × count. For mean problems, compute and subtract sums: removed = old_sum − new_sum = 6 × 15 − 5 × 13 = 25.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -84,25 +84,25 @@ What is the median of the set {14, 7, 21, 3, 10, 7, 18}?
 ## Q4
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Counting
+**topic:** Weighted Average
 
-A committee of 3 people is to be selected from a group of 7 candidates. How many different committees are possible?
+A class of 25 students has a mean test score of 72. The mean score of the 10 boys in the class is 60. What is the mean score of the 15 girls in the class?
 
-- A) 21
-- B) 35
-- C) 42
-- D) 120
-- E) 210
+- A) 60
+- B) 72
+- C) 76
+- D) 80
+- E) 84
 
-**answer:** B
-**fastest_path:** C(7,3) = (7·6·5)/(3·2·1) = 210/6 = 35.
-**explanation:** "Committee" = unordered selection → combinations. C(7,3) = 7!/(3!·4!) = 35.
-**mistake_a:** Slip → 21.
-**mistake_c:** Slip → 42.
-**mistake_d:** Slip → 120.
-**mistake_e:** Computed P(7,3) = 7·6·5 = 210 (used permutations).
-**common_trap:** Forgetting to divide by 3! — counting *ordered* arrangements (210) instead of unordered committees.
-**takeaway:** Committee = unordered → combinations. C(n,k) = P(n,k)/k!. Always divide by k! when order doesn't matter.
+**answer:** D
+**fastest_path:** Total sum = 25 × 72 = 1800. Boys sum = 10 × 60 = 600. Girls sum = 1200. Girls mean = 1200/15 = 80.
+**explanation:** Girls sum = total sum − boys sum = 1800 − 600 = 1200. Girls mean = 1200/15 = 80.
+**mistake_a:** Bubbled the boys' mean (60) — answered the given information rather than the unknown.
+**mistake_b:** Bubbled the class mean (72) — assumed the girls' mean equals the overall average without computing the boys' pull-down effect.
+**mistake_c:** Used 11 boys instead of the stated 10: 25 × 72 − 11 × 60 = 1800 − 660 = 1140, then 1140/15 = 76. Misread or miscounted the group size; always re-read which group's count was given.
+**mistake_e:** Applied the symmetric-deviation fallacy: boys are 12 below the class mean (72 − 60 = 12), so assumed girls must be 12 above: 72 + 12 = 84. This treats the problem as a balance beam with equal arms, but the groups are different sizes (15 girls vs 10 boys), so the girls' deviation from the mean is proportionally smaller.
+**common_trap:** Assuming "boys are X below mean → girls are X above mean." This ignores group sizes and is only true when both groups are equal in size.
+**takeaway:** Weighted average: total_sum = group₁_sum + group₂_sum. Always work with sums (mean × count), not with shortcuts that assume equal group sizes.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -124,9 +124,9 @@ Two fair six-sided dice are rolled. What is the probability that the sum of the 
 **fastest_path:** Ordered pairs summing to 8: (2,6), (3,5), (4,4), (5,3), (6,2) → 5/36.
 **explanation:** Total ordered outcomes = 36. Sum = 8: (2,6), (3,5), (4,4), (5,3), (6,2) → 5 outcomes. P = 5/36.
 **mistake_a:** Counted only unordered pairs → 3/36 = 1/12.
-**mistake_c:** Slip → 6/36 = 1/6.
-**mistake_d:** Slip → 7/36.
-**mistake_e:** Slip → 9/36 = 1/4.
+**mistake_c:** Listed the 6 ordered pairs for sum = 7 instead of sum = 8. Sum = 7 has (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) = 6 pairs; sum = 8 has one fewer because (4,4) replaces two asymmetric pairs. Off by one on the target sum.
+**mistake_d:** Counted 7 pairs — typically by including impossible pairs such as (1,7) and (7,1), forgetting that standard dice show only 1 through 6. Always check that both die values are in range before including a pair.
+**mistake_e:** Counted 9 pairs — a systematic listing error often caused by including pairs that belong to adjacent sums or by tallying the same pair multiple times. Re-list from scratch: (2,6),(3,5),(4,4),(5,3),(6,2) — exactly 5.
 **common_trap:** Counting only unordered pairs — (2,6) and (6,2) are *different* outcomes when rolling two distinguishable dice.
 **takeaway:** Two dice → 36 *ordered* outcomes. List ordered pairs systematically for each sum.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -175,12 +175,12 @@ How many 3-digit positive integers have all distinct digits and are divisible by
 **answer:** C
 **fastest_path:** Cases by units digit. Ends in 0: 9·8 = 72. Ends in 5: 8·8 = 64. Total 136.
 **explanation:** Last digit must be 0 or 5. Case 1 (ends 0): hundreds 1–9 (9), tens any except hundreds and 0 (8). = 72. Case 2 (ends 5): hundreds 1–9 except 5 (8), tens any 0–9 except hundreds and 5 (8). = 64. Total 72 + 64 = 136.
-**mistake_a:** Slip → 112.
-**mistake_b:** Slip → 128.
-**mistake_d:** Mis-counted Case 2 (allowed leading 0 or used 9·8 again) → 144.
-**mistake_e:** Slip → 152.
-**common_trap:** Treating both cases identically — Case 2 forbids hundreds digit = 5 (already used).
-**takeaway:** Split by *cases* when a position has limited choices. Adjust subsequent positions for already-used digits.
+**mistake_a:** Applied Case 2's restriction to Case 1 as well — used 8×7 = 56 for Case 1 (incorrectly excluded both 0 and 5 from the tens digit) and 8×7 = 56 for Case 2, giving 112. In Case 1, the tens digit can be 0; the only excluded digit is the hundreds digit, leaving 8 choices. Case 1 = 9×8 = 72.
+**mistake_b:** Treated both cases symmetrically, using 8×8 = 64 for each: 64+64 = 128. Forgot that Case 1 (ends in 0) has 9 hundreds choices (1–9), not 8, since 0 is already used as the units digit, not a competing hundreds digit.
+**mistake_d:** Used 9×8 = 72 for both cases without adjusting Case 2 for the fact that the hundreds digit cannot be 5: 72+72 = 144. In Case 2, the hundreds digit excludes both leading-zero (can't start with 0) and the 5 already placed in the units digit — leaving 8 choices, not 9.
+**mistake_e:** Included a third case or overcounted within a case, pushing the total above the correct 136. There are only two valid unit-digit choices for divisibility by 5: 0 and 5.
+**common_trap:** Treating both cases identically — Case 2 forbids the hundreds digit = 5 (already used), giving only 8 hundreds choices, not 9.
+**takeaway:** Split by *cases* when a position has limited choices. Adjust subsequent positions for already-used digits. Re-check each case independently.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -201,11 +201,11 @@ A box contains 5 red chips and 3 blue chips. Two chips are drawn at random witho
 **answer:** B
 **fastest_path:** 1 − P(both blue) = 1 − (3/8)(2/7) = 1 − 3/28 = 25/28.
 **explanation:** Complement: P(at least 1 R) = 1 − P(both B) = 1 − (3/8)(2/7) = 1 − 6/56 = 1 − 3/28 = 25/28.
-**mistake_a:** Bubbled P(red on a single draw) = 5/8.
-**mistake_c:** Slip → 13/14.
-**mistake_d:** Slip → 15/28.
-**mistake_e:** Slip → 27/28.
-**common_trap:** Computing P(R) by case analysis (1 R or 2 R) — slow and error-prone — instead of using the complement.
+**mistake_a:** Bubbled P(red on a single draw) = 5/8 — used the single-draw probability and forgot there are two draws.
+**mistake_c:** Attempted direct counting of P(exactly 1 R) + P(exactly 2 R) but made a combining-fractions error along the way, landing near 26/28 = 13/14. The complement avoids this multi-case arithmetic entirely.
+**mistake_d:** Computed P(exactly 1 red) = C(5,1)·C(3,1)/C(8,2) = 15/28. This counts only the "exactly one" case. The question asks for *at least one*, which also includes P(exactly 2 red). Use the complement: 1 − P(both blue) = 25/28.
+**mistake_e:** Found P(both blue) = 3/28 correctly but made an arithmetic slip on the complement: wrote 1 − 3/28 = 27/28 instead of 25/28. Double-check: 28/28 − 3/28 = 25/28, not 27/28.
+**common_trap:** Computing P(exactly 1) and treating it as P(at least 1). These differ by the P(exactly 2) term.
 **takeaway:** "At least one" → use the complement: P(at least 1) = 1 − P(none).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
@@ -318,7 +318,7 @@ The mean of five distinct positive integers is 20 and their median is 18. If the
 ## Q13
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Combinations
+**topic:** Committee Selection
 
 From a group of 5 men and 4 women, a committee of 4 people is to be formed consisting of exactly 2 men and 2 women. How many different committees are possible?
 
@@ -357,10 +357,10 @@ A list of 10 numbers has a mean of 24. When an 11th number is added, the new mea
 **answer:** D
 **fastest_path:** 11 · 25 − 10 · 24 = 275 − 240 = 35.
 **explanation:** Old sum = 240; new sum = 275. 11th value = 275 − 240 = 35. Shortcut: new value = new mean + n × Δmean = 25 + 10 × 1 = 35.
-**mistake_a:** Bubbled the new mean (25).
-**mistake_b:** Slip → 26.
-**mistake_c:** Slip → 30.
-**mistake_e:** Slip → 36.
+**mistake_a:** Bubbled the new mean (25) — the new mean is the *result* of adding the 11th number, not the 11th number itself.
+**mistake_b:** Added 1 (the mean increase) directly to the new mean: 25 + 1 = 26. The mean rose because the 11th value contributed 10 extra in total (one per existing element), not because it equaled 26.
+**mistake_c:** Computed 11 × 25 = 275 correctly but used 10 × 24.5 = 245 as the old sum (averaging the old and new means): 275 − 245 = 30. The old sum is 10 × 24 = 240 exactly — use the actual old mean, not a midpoint.
+**mistake_e:** Used the new count (11) instead of the original count (10) in the shortcut formula: new_value = new_mean + new_count × Δ = 25 + 11 × 1 = 36. The correct formula uses the *original* count: 25 + 10 × 1 = 35. The new value must compensate for the 10 original elements' shortfall, not 11.
 **common_trap:** Bubbling the new mean (25) — but the *added* value is what raises the mean.
 **takeaway:** To raise n numbers' mean by Δ, the new value must equal (new mean) + n·Δ.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -383,10 +383,10 @@ A drawer contains 7 black socks and 5 white socks. If two socks are drawn at ran
 **answer:** B
 **fastest_path:** (7/12)(6/11) = 42/132 = 7/22.
 **explanation:** Without replacement: P(B then B) = (7/12)(6/11) = 42/132 = 7/22.
-**mistake_a:** Slip → 7/24.
-**mistake_c:** Slip → 1/2.
-**mistake_d:** Slip → 35/132.
-**mistake_e:** With replacement: (7/12)² = 49/144.
+**mistake_a:** Updated the numerator but not the denominator on the second draw: (7/12) × (6/12) = 42/144 = 7/24. Without replacement, both the number of black socks *and* the total count decrease. Second draw denominator is 11, not 12.
+**mistake_c:** Estimated P ≈ 7/12 ≈ 1/2, using only the single-draw probability without multiplying by the second conditional probability. Joint probability requires both factors.
+**mistake_d:** Treated the second draw as if a white (rather than black) sock had already been removed: (7/12) × (5/11) = 35/132. After drawing one black, the second draw has 6 black remaining out of 11 total — not 5 black.
+**mistake_e:** Treated both draws as independent (with replacement): (7/12)² = 49/144. Without replacement, the second draw must account for the first outcome.
 **common_trap:** Treating draws as *with* replacement — uses (7/12)² instead of decrementing.
 **takeaway:** Without replacement: decrement *both* numerator and denominator on the second draw.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -449,7 +449,7 @@ In a set of 5 positive integers, is the median equal to the mean?
 ---
 
 ## Q18
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Basic Probability
 
@@ -463,12 +463,12 @@ A fair coin is flipped 4 times. What is the probability that it lands on heads e
 
 **answer:** C
 **fastest_path:** C(4,3)/2⁴ = 4/16 = 1/4.
-**explanation:** Choose which 3 of 4 are heads: C(4,3) = 4. Each sequence has probability (1/2)⁴ = 1/16. Total = 4/16 = 1/4.
-**mistake_a:** Slip → 1/8.
-**mistake_b:** Slip → 3/16.
-**mistake_d:** Slip → 5/16.
-**mistake_e:** Slip → 3/8.
-**common_trap:** Forgetting to count C(n,k) sequences and using only (1/2)^n.
+**explanation:** Choose which 3 of 4 flips are heads: C(4,3) = 4. Each sequence has probability (1/2)⁴ = 1/16. Total = 4/16 = 1/4.
+**mistake_a:** Computed (1/2)³ = 1/8 — used only the probability of 3 heads *in a row*, ignoring the number of distinct 3-head sequences. There are C(4,3) = 4 different orderings of 3H and 1T; each occurs with probability (1/2)⁴, giving 4/16 = 1/4.
+**mistake_b:** Used 3 as the combinatorial factor instead of C(4,3) = 4: 3 × (1/2)⁴ = 3/16. The number of ways to choose 3 heads from 4 flips is C(4,3) = 4 (HHHT, HHTH, HTHH, THHH), not 3.
+**mistake_d:** Counted 5 sequences instead of 4 — often by listing HHHT, HHTH, HTHH, THHH correctly and then mistakenly appending HHHH (which has 4 heads, not 3). Count carefully: C(4,3) = 4.
+**mistake_e:** Applied a rough estimate (3/4 × 1/2 = 3/8) by conflating probabilities. Use the binomial formula: P(exactly k heads in n flips) = C(n,k) / 2ⁿ for a fair coin.
+**common_trap:** Forgetting to count C(n,k) sequences and using only (1/2)^k.
 **takeaway:** Exactly k heads in n fair flips: P = C(n,k)/2^n.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
@@ -477,7 +477,7 @@ A fair coin is flipped 4 times. What is the probability that it lands on heads e
 ## Q19
 **difficulty:** Hard
 **type:** Data Sufficiency
-**topic:** Combinations
+**topic:** Conditional Counting
 
 A committee of 3 is to be chosen from a group of n people. How many different committees are possible?
 
@@ -506,7 +506,7 @@ A committee of 3 is to be chosen from a group of n people. How many different co
 ## Q20
 **difficulty:** Hard
 **type:** Problem Solving
-**topic:** Combinations
+**topic:** Conditional Counting
 
 A student must answer 5 out of 7 questions on an exam, but must answer at least 2 of the first 3 questions. How many different sets of 5 questions can the student choose?
 
@@ -519,10 +519,10 @@ A student must answer 5 out of 7 questions on an exam, but must answer at least 
 **answer:** A
 **fastest_path:** Cases: 2 of first 3 plus 3 of last 4 = 3·4 = 12. 3 of first 3 plus 2 of last 4 = 1·6 = 6. Total 18.
 **explanation:** Case (a): exactly 2 of first 3, 3 of last 4: C(3,2)·C(4,3) = 3·4 = 12. Case (b): all 3 of first 3, 2 of last 4: C(3,3)·C(4,2) = 1·6 = 6. Total = 18. Or: complement: C(7,5) − [only 1 of first 3] = 21 − 3 = 18.
-**mistake_b:** Slip → 20.
-**mistake_c:** Used C(7,5) = 21 (no constraint applied).
-**mistake_d:** Slip → 24.
-**mistake_e:** Slip → 28.
+**mistake_b:** Computed Case (a) = 12 correctly, but inflated Case (b): used C(4,2) = 6 correctly but then mistakenly added an extra set, getting 8 instead of 6 for Case (b) → 12 + 8 = 20. Recheck: Case (b) = C(3,3) × C(4,2) = 1 × 6 = 6 exactly.
+**mistake_c:** Computed C(7,5) = 21 directly without enforcing the "at least 2 of first 3" constraint. C(7,5) counts all possible 5-question sets regardless of which questions are chosen.
+**mistake_d:** Tried the complement approach but mis-identified the disallowed sets: used C(3,2) × C(4,3) = 12 as "disallowed" instead of the actual "only 1 of first 3" = 3 sets. Complement: C(7,5) − C(3,1)·C(4,4) = 21 − 3·1 = 18.
+**mistake_e:** Inflated C(7,5): computed (7·6·5)/(3·2·1) = 35 (that is C(7,3), not C(7,5)), then subtracted 7: 35 − 7 = 28. C(7,5) = C(7,2) = 7·6/2 = 21, not 35.
 **common_trap:** Computing C(7,5) = 21 directly without enforcing the "at least 2 of first 3" constraint.
 **takeaway:** "At least k of subset" → split by exact count and add. Or use total minus disallowed (complement).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -571,9 +571,9 @@ A data set of 5 numbers has mean 10 and standard deviation 2. If each number in 
 **answer:** C
 **fastest_path:** SD scales by |3|, ignored by +4. New SD = 6.
 **explanation:** y = ax + b → SD(y) = |a|·SD(x). Here |3|·2 = 6.
-**mistake_a:** Treated SD as invariant under all transforms.
-**mistake_b:** Slip → 3.
-**mistake_d:** Applied 3·2 + 4 = 10 (treated +4 as scaling SD).
+**mistake_a:** Treated SD as invariant under all transforms — concluded the SD stays at 2. Multiplying by 3 stretches the spread: SD(3x + 4) = 3·SD(x) = 6.
+**mistake_b:** Divided the correct answer by 2 — perhaps misremembered the rule as SD(ax+b) = a·SD(x)/b, or confused the multiplier with something else. Nothing divides the SD here; the rule is SD(3x+4) = 3·2 = 6.
+**mistake_d:** Applied the +4 additive shift as a scaling factor: 3·2 + 4 = 10. Additive constants shift the mean but leave spread unchanged. Only the multiplicative factor |a| scales the SD.
 **mistake_e:** Mis-applied → 22.
 **common_trap:** Adding the constant b to the SD. Only |a| (multiplier) affects SD.
 **takeaway:** Linear transform y = ax + b: mean shifts by b, SD scales by |a|. Constant b doesn't affect spread.
@@ -597,10 +597,10 @@ A box contains 4 red marbles, 3 green marbles, and 3 blue marbles. Two marbles a
 **answer:** A
 **fastest_path:** (4/10)(3/9) = 12/90 = 2/15.
 **explanation:** Without replacement: P(R then R) = (4/10)(3/9) = 12/90 = 2/15.
-**mistake_b:** With replacement: (4/10)² = 4/25.
-**mistake_c:** Slip → 1/5.
-**mistake_d:** Slip → 6/25.
-**mistake_e:** Slip → 2/5.
+**mistake_b:** Treated as with replacement: (4/10)² = 16/100 = 4/25. After drawing one red marble, the composition of the box changes; the second draw is conditional on the first.
+**mistake_c:** Computed P(first red) = 4/10 = 2/5, then halved it somehow to get 1/5 — or divided by a wrong factor. The second factor is (3/9), not (1/2): P(both red) = (4/10)(3/9) = 2/15.
+**mistake_d:** Computed (4/10) × (3/10) = 12/100 = 3/25 or (4/10) × (6/10) = 24/100 = 6/25 — a partial fix where the numerator decreased but the denominator stayed at 10. Without replacement: the denominator on the second draw must also decrease (from 10 to 9).
+**mistake_e:** Computed only the first draw's probability: P(first red) = 4/10 = 2/5, then stopped. The joint probability of *both* draws being red requires multiplying by the second conditional probability (3/9).
 **common_trap:** Treating draws as *with* replacement — uses (4/10)² instead of (4/10)(3/9).
 **takeaway:** Without replacement: decrement both numerator and denominator on the second draw.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -652,10 +652,10 @@ A company has two factories. Factory P produces 60% of the company's products; F
 **answer:** C
 **fastest_path:** P(P∩D) = 0.6·0.03 = 0.018; P(Q∩D) = 0.4·0.05 = 0.020. P(P|D) = 18/(18+20) = 9/19.
 **explanation:** Bayes. P(P ∩ D) = 0.018; P(Q ∩ D) = 0.020; P(D) = 0.038. P(P | D) = 0.018/0.038 = 18/38 = 9/19.
-**mistake_a:** Slip → 3/19.
-**mistake_b:** Slip → 6/19.
-**mistake_d:** Slip → 10/19.
-**mistake_e:** Slip → 12/19.
+**mistake_a:** Used only the raw defect rates, ignoring production shares: P(D|P)/(P(D|P) + P(D|Q)) = 3/(3+5) = 3/8. Bayes requires weighting each branch by its prior probability (60% and 40%). Without the priors, the formula is incomplete.
+**mistake_b:** Doubled the numerator by accident: 2·P(P∩D)/P(D) = 0.036/0.038 ≈ 6/... Alternatively, computed P(D|P)/P(D) = 0.03/0.038 = 15/19 and then halved. The numerator in Bayes is P(P)·P(D|P) = 0.6 × 0.03 = 0.018, not 0.036.
+**mistake_d:** Computed P(Q|D) instead of P(P|D): 0.020/0.038 = 20/38 = 10/19. This is the probability the defective item came from Factory Q. Re-read: the question asks for Factory P.
+**mistake_e:** Divided P(P) by [1 − P(D|Q)] instead of P(D): 0.60/0.95 = 12/19. Used the non-defective rate of Factory Q as the denominator rather than the total defect probability P(D) = 0.038.
 **common_trap:** Ignoring the production split (60/40) and using just defect rates: 3/(3+5) = 3/8 ≈ a wrong fraction.
 **takeaway:** Bayes: weight each branch by its prior. P(A|B) = P(A∩B)/P(B), where P(B) = sum over all branches.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
