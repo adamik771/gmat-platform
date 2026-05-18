@@ -710,6 +710,102 @@ function isQuestionCorrect(q: SessionQuestion, state: QuestionState): boolean {
   return state.selected === q.correctAnswer
 }
 
+interface SessionInsight {
+  label: string
+  observation: string
+  nextStep: string
+}
+
+function computeInsight(
+  questions: SessionQuestion[],
+  states: QuestionState[],
+  section: SessionQuestion["section"]
+): SessionInsight | null {
+  const answered = states
+    .map((s, i) => ({ s, q: questions[i] }))
+    .filter(({ s }) => s.submitted)
+
+  if (answered.length < 3) return null
+
+  const targetMs = section === "Verbal" ? 90_000 : 120_000
+  const avgMs = answered.reduce((sum, { s }) => sum + s.elapsedMs, 0) / answered.length
+  const accuracy = answered.filter(({ s, q }) => isQuestionCorrect(q, s)).length / answered.length
+
+  const advanced = answered.filter(({ q }) => q.difficulty === "Advanced")
+  const advAcc =
+    advanced.length >= 2
+      ? advanced.filter(({ s, q }) => isQuestionCorrect(q, s)).length / advanced.length
+      : null
+
+  const beginner = answered.filter(({ q }) => q.difficulty === "Beginner")
+  const begAcc =
+    beginner.length >= 2
+      ? beginner.filter(({ s, q }) => isQuestionCorrect(q, s)).length / beginner.length
+      : null
+
+  const slowCount = answered.filter(({ s }) => s.elapsedMs > targetMs * 1.5).length
+  const skipped = states.filter((s) => !s.submitted).length
+  const accPct = Math.round(accuracy * 100)
+
+  if (avgMs > targetMs * 1.25 && accuracy >= 0.7) {
+    return {
+      label: "Pacing",
+      observation: `Accuracy is strong at ${accPct}%, but your average of ${formatDuration(avgMs)} per question is above the GMAT pace. You're trading time for correctness — a pattern that compounds under full-test conditions.`,
+      nextStep: "Practice the same topic with a strict 2-minute cap to build faster pattern recognition.",
+    }
+  }
+
+  if (avgMs < targetMs * 0.65 && accuracy < 0.6) {
+    return {
+      label: "Pacing",
+      observation: `You moved through questions at ${formatDuration(avgMs)} average — faster than GMAT pace — but accuracy at ${accPct}% reflects the cost. Speed without a process produces noise.`,
+      nextStep: "Slow to 2 minutes per question and narrate your approach before selecting.",
+    }
+  }
+
+  if (accuracy >= 0.8 && avgMs <= targetMs * 1.1) {
+    if (advAcc !== null && advAcc < 0.5) {
+      return {
+        label: "Skill ceiling",
+        observation: `Efficient on medium difficulty, but Advanced questions dropped to ${Math.round(advAcc * 100)}%. That gap is your ceiling — the GMAT rewards students who hold accuracy when the premises get harder.`,
+        nextStep: "Filter to Advanced-only questions on this topic for your next session.",
+      }
+    }
+    return {
+      label: "Solid session",
+      observation: `${accPct}% accuracy at ${formatDuration(avgMs)} average — within GMAT range. The question is whether this holds under timed test conditions with compounding fatigue.`,
+      nextStep: "Take a mixed-difficulty session or a timed mock section to pressure-test the skill.",
+    }
+  }
+
+  if (slowCount >= 2 && accuracy < 0.65) {
+    const thresholdLabel = section === "Verbal" ? "2:15" : "3:00"
+    return {
+      label: "Recognition gaps",
+      observation: `${slowCount} questions took over ${thresholdLabel} — a sign of unfamiliar problem structures, not just pacing. Recognition comes from volume; you haven't seen enough of this setup yet.`,
+      nextStep: "Study the worked explanations on the questions you labored over, then retry similar ones.",
+    }
+  }
+
+  if (begAcc !== null && begAcc >= 0.8 && advAcc !== null && advAcc < 0.45) {
+    return {
+      label: "Foundation solid, ceiling low",
+      observation: `Beginner questions at ${Math.round(begAcc * 100)}% — foundation is there. Advanced questions at ${Math.round(advAcc * 100)}% — the harder premises aren't landing yet.`,
+      nextStep: "Review the chapter's harder worked examples before attempting Advanced questions again.",
+    }
+  }
+
+  if (skipped >= Math.ceil(questions.length * 0.3)) {
+    return {
+      label: "Coverage",
+      observation: `${skipped} of ${questions.length} questions left unanswered. Skipping is fine as a test tactic, but every skipped question is a missed data point for your weak-area map.`,
+      nextStep: "Go through the skipped questions in review mode — read the explanation without timing pressure.",
+    }
+  }
+
+  return null
+}
+
 /** Returns true when the user has made enough selections to submit. */
 function canSubmit(q: SessionQuestion, state: QuestionState): boolean {
   if (state.submitted) return false
@@ -1264,6 +1360,23 @@ export default function SessionClient({
             </div>
           </div>
         </div>
+
+        {(() => {
+          const insight = computeInsight(questions, states, section)
+          if (!insight) return null
+          return (
+            <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+                {insight.label}
+              </p>
+              <p className="text-sm text-[#C0C0C0] leading-relaxed">{insight.observation}</p>
+              <div className="mt-3 pt-3 border-t border-white/[0.05] flex items-start gap-2">
+                <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-[#555555]" />
+                <p className="text-xs text-[#888888] leading-relaxed">{insight.nextStep}</p>
+              </div>
+            </div>
+          )
+        })()}
 
         {savedSessionId && answeredCount - correctCount > 0 && (
           <Link
