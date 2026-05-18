@@ -99,7 +99,7 @@ Notice what the translation required: you had to see that the total volume is 12
 - **"The ratio of A to B is 3 to 5"** — means A/B = 3/5. Not A = 3 and B = 5.
 - **"Consecutive integers"** — n, n+1, n+2. "Consecutive even integers" is n, n+2, n+4 (not n, n+1, n+2).
 
-Train your eye to pause at these phrases. I tell my students: when you see a percent, a ratio, or a comparison word, **literally stop reading for half a second and verify your translation before continuing.** That half-second costs you nothing and saves you from the most common class of Quant errors.
+Train your eye to pause at these phrases. The discipline that closed most of my Translation errors: when you see a percent, a ratio, or a comparison word, **literally stop reading for half a second and verify your translation before continuing.** That half-second costs you nothing and saves you from the most common class of Quant errors.
 
 ## Competency 2: Strategic Setup
 
