@@ -1219,6 +1219,41 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+
+    const diffLevels = ["Beginner", "Intermediate", "Advanced"] as const
+    const diffBreakdown = diffLevels
+      .map((diff) => {
+        const pairs = questions
+          .map((q, i) => ({ q, state: states[i] }))
+          .filter(({ q }) => q.difficulty === diff)
+        const attempted = pairs.filter(({ state }) => state.submitted)
+        const correct = attempted.filter(({ q, state }) => isQuestionCorrect(q, state))
+        return {
+          diff,
+          total: pairs.length,
+          attempted: attempted.length,
+          correct: correct.length,
+          accuracy: attempted.length > 0 ? Math.round((correct.length / attempted.length) * 100) : null,
+        }
+      })
+      .filter((d) => d.total > 0)
+
+    const avgTimeSec =
+      answeredCount > 0 ? Math.round(totalTime / answeredCount / 1000) : 0
+    const pacingDelta = avgTimeSec - 120
+    const pacingLabel =
+      pacingDelta < -30 ? "Fast" : pacingDelta > 30 ? "Slow" : "On pace"
+    const pacingColor =
+      pacingDelta < -30 ? "#3ECF8E" : pacingDelta > 30 ? "#FF4444" : "#C9A84C"
+    const tiersWithData = diffBreakdown.filter((d) => d.accuracy !== null)
+    const weakestTier =
+      tiersWithData.length > 1
+        ? tiersWithData.reduce(
+            (min, d) => (d.accuracy! < min.accuracy! ? d : min),
+            tiersWithData[0]
+          )
+        : null
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1264,6 +1299,66 @@ export default function SessionClient({
             </div>
           </div>
         </div>
+
+        {answeredCount > 0 && (
+          <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
+            {diffBreakdown.length > 1 && (
+              <div className="p-4 grid grid-cols-3 divide-x divide-white/[0.06]">
+                {diffBreakdown.map((d) => {
+                  const color =
+                    d.accuracy === null
+                      ? "#555555"
+                      : d.accuracy >= 70
+                      ? "#3ECF8E"
+                      : d.accuracy >= 50
+                      ? "#C9A84C"
+                      : "#FF4444"
+                  return (
+                    <div key={d.diff} className="px-4 first:pl-0 last:pr-0 space-y-1">
+                      <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                        {d.diff}
+                      </p>
+                      <p className="text-xl font-bold" style={{ color }}>
+                        {d.accuracy !== null ? `${d.accuracy}%` : "—"}
+                      </p>
+                      <p className="text-[11px] text-[#555555]">
+                        {d.correct}/{d.attempted}
+                      </p>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+            <div
+              className={`flex items-center justify-between gap-4 px-4 py-3${
+                diffBreakdown.length > 1 ? " border-t border-white/[0.06]" : ""
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <Clock className="w-3.5 h-3.5 text-[#555555]" />
+                <span className="text-xs text-[#888888]">
+                  avg {Math.floor(avgTimeSec / 60)}:
+                  {(avgTimeSec % 60).toString().padStart(2, "0")} per question
+                </span>
+                <span
+                  className="text-[10px] px-1.5 py-0.5 rounded font-medium"
+                  style={{
+                    color: pacingColor,
+                    backgroundColor: `${pacingColor}1a`,
+                  }}
+                >
+                  {pacingLabel}
+                </span>
+              </div>
+              {weakestTier && (
+                <p className="text-[11px] text-[#555555] text-right">
+                  Focus:{" "}
+                  <span style={{ color: "#C9A84C" }}>{weakestTier.diff}</span>
+                </p>
+              )}
+            </div>
+          </div>
+        )}
 
         {savedSessionId && answeredCount - correctCount > 0 && (
           <Link
