@@ -103,53 +103,64 @@ problem_sets:
 
 Enumeration means **writing out every possibility and counting them**. It sounds too primitive for the GMAT, but it's the foundation every formula is built on — and for small sets (3, 4, maybe 5 objects) it's often the fastest approach.
 
-**Mental model.** Counting problems all reduce to two questions: does order matter, and are repeats allowed? Permutations vs. combinations vs. arrangements vs. multinomial — every formula is a consequence of those two answers. If you find yourself reaching for a formula before classifying the problem, you'll reach for the wrong one.
+**Mental model — the Fundamental Counting Principle.** Counting problems reduce to filling slots, one at a time. How many choices for slot 1? How many for slot 2 given what's in slot 1? Multiply. Every formula in this chapter — P(n, k), C(n, k), (n − 1)!, n!/(r₁! × r₂!) — is just this slot-filling logic run faster. If you understand the slots, you can re-derive any formula in 10 seconds when memory fails.
 
-**Example.** Three marbles — blue, gray, green — line up on a shelf. How many orders are possible?
+**Example.** Three distinct books — Algebra (A), Biology (B), Chemistry (C) — line up on a shelf. How many orders are possible?
 
-List them: **BGG** (wait — two gray?). Let me use B, G, R (blue, gray, green):
+List every arrangement:
 
-    BGR, BRG, GBR, GRB, RBG, RGB
+    ABC, ACB, BAC, BCA, CAB, CBA
 
-Six orders. You could have answered this without any formula — just carefully enumerate, count, done.
+Six orders. Now see *why* it's six via slots:
+- Slot 1: 3 choices (any of A, B, C)
+- Slot 2: 2 choices (whichever two are left)
+- Slot 3: 1 choice (the remaining one)
 
-**Why enumeration matters.** Every formula in this chapter is a *shortcut* for enumeration. If you understand why enumeration gives 6 for three distinct objects, you'll instantly see why the formula says **3!** — and you won't have to rely on memorizing which formula applies when.
+Multiply: 3 × 2 × 1 = **6**. This is 3! (read "three factorial").
 
-**The rule enumeration teaches.** For n distinct objects in a row:
-- n choices for the first position
-- n − 1 remaining for the second
-- n − 2 for the third
-- …down to 1 for the last
+**The rule enumeration teaches.** For n distinct objects placed in a row:
 
-Multiply all of them: n × (n − 1) × (n − 2) × … × 1 = **n!** (read "n factorial").
+    n × (n − 1) × (n − 2) × … × 1 = n!
 
-*Memorize these:* 3! = 6, 4! = 24, 5! = 120, 6! = 720, 7! = 5040. They show up constantly. 8! is 40,320 — you won't compute it under time pressure, but you'll recognize it in an answer choice.
+*Memorize these:* 3! = 6, 4! = 24, 5! = 120, 6! = 720, 7! = 5040. They appear in answer choices constantly. 8! = 40,320 — you won't compute it on the clock, but you'll recognize it.
 
-> **Self-explanation prompt.** Before you look at the check question below, explain to yourself in one sentence: *why* does each additional object multiply the total by one more than the last multiplier? If you can articulate it, you've internalized the idea.
+> **Self-explanation prompt.** Before you look at the check question, explain in one sentence: *why* does each additional slot have one fewer choice than the slot before it? If you can say "because each previous slot already used up one object," you've internalized the rule. Don't move on until you can say it.
 
 ## @permutations
 
 A **permutation** is an arrangement where **order matters**. "Who got first, second, and third place" is a permutation. "Who's on the team" is not.
 
-**Example.** From 7 candidates, a president and a vice-president are chosen. How many outcomes?
+**Build it with slots first, then use the formula.** From 7 candidates, a president and a vice-president are chosen. How many outcomes?
 
-- 7 choices for president
-- 6 remaining choices for VP
-- 7 × 6 = **42**
+- Slot 1 (president): 7 choices
+- Slot 2 (VP): 6 remaining choices
+- Total: 7 × 6 = **42**
 
-That's a permutation of 2 from 7, written **P(7, 2)** or **⁷P₂**. The general formula:
+That's a permutation of 2 from 7, written **P(7, 2)**. The general formula:
 
 **P(n, k) = n! / (n − k)!**
 
-Let's sanity-check: P(7, 2) = 7! / 5! = (7 × 6 × 5!) / 5! = 7 × 6 = 42. ✓
+Sanity-check: P(7, 2) = 7! / 5! = (7 × 6 × 5!) / 5! = 7 × 6 = 42. ✓
 
-**Why the formula works.** n! arranges ALL n objects. But we only want k of them. The (n − k)! in the denominator cancels out the "tail" arrangements of the objects we didn't pick — we don't care how the leftover 5 candidates order themselves.
+**Why the formula works.** n! arranges ALL n objects. The (n − k)! in the denominator cancels the tail — the arrangements of the objects you didn't pick. You only care about which k objects fill the k named slots.
 
-**Quick test to know you're in permutation-land:** ask yourself, "*if I swap two specific people, is that a different outcome?*" If yes (e.g., Ana-president-Ben-VP vs Ben-president-Ana-VP), it's a permutation. If no (e.g., both are just "on the committee"), it's a combination.
+**Quick test:** ask yourself, "*if I swap two specific people, do I get a different outcome?*" Ana-president, Ben-VP is different from Ben-president, Ana-VP. Different outcome = permutation. Same people on a committee in any order = combination.
 
-**Special case — all n at once.** When k = n, P(n, n) = n! / 0! = n! / 1 = n!. Reassuring: picking all 7 candidates in order is just arranging 7 things, which is 7! = 5040.
+**Special case — all n at once.** P(n, n) = n! / 0! = n!. Picking all 7 candidates in order = 7! = 5040.
 
-**Trap to watch.** The GMAT loves to write a problem that sounds like a permutation but is actually a combination. "A committee of 3 is chosen from 10" is C(10, 3). "A president, VP, and treasurer are chosen from 10" is P(10, 3) = 720, six times larger. The word that usually tips you off: distinct roles named = permutation.
+**Micro-drill — three variations, one base problem.** Seven runners finish a race. In each case, what's the count?
+
+| Scenario | Count | Why |
+|---|---|---|
+| How many orders for all 7 runners? | 7! = 5,040 | All n objects, all slots |
+| How many ways to award gold/silver/bronze? | P(7, 3) = 210 | 3 named slots, order matters |
+| How many ways to pick 3 runners for a team photo (no roles)? | C(7, 3) = 35 | 3 unnamed slots, order doesn't matter |
+
+Notice that the permutation count (210) is exactly 3! = 6 times the combination count (35). Those 6 extra arrangements are the internal orderings of the same 3 people that a combination collapses into one.
+
+**Trap to watch.** "A committee of 3 is chosen from 10" is C(10, 3) = 120. "A president, VP, and treasurer are chosen from 10" is P(10, 3) = 720. Six times larger — because roles make order matter. The signal: are the positions named and distinct?
+
+> **Self-explanation prompt.** State, without looking up, why P(n, k) / k! = C(n, k). If you can say "because each group of k people appears k! times in the permutation count — once per ordering — and we divide to collapse all those orderings into one," you understand the relationship cold.
 
 ## @combinations
 
@@ -184,7 +195,19 @@ Check: C(6, 3) = 6! / (3! × 3!) = 720 / 36 = 20. ✓
 
 This shows up more than any other combination pattern — probably 30% of GMAT combinatorics questions involve some version of it.
 
-> **Recall check.** Without peeking: state the formulas for P(n, k) and C(n, k). Then state the symmetry identity C(n, k) = C(n, ?). Now compute, in your head, C(10, 7). If you computed 10!/(7!3!) = 120 the long way, you missed the shortcut — C(10, 7) = C(10, 3) = 120 with less arithmetic. Retrieving the formulas *and* the symmetry in the same breath is how you wire them together in long-term memory.
+**Probability bridge.** GMAT probability questions regularly hide a combinations calculation inside them. Once you spot it, the problem halves. The template:
+
+    P(event) = favorable outcomes / total outcomes = C(favorable) / C(total)
+
+Example: a bag holds 5 red and 4 blue marbles. Two are drawn at random. What's the probability both are red?
+
+- Favorable: C(5, 2) = 10 ways to pick 2 red from 5 red
+- Total: C(9, 2) = 36 ways to pick any 2 from 9
+- Probability = 10/36 = **5/18**
+
+The structure is always the same: count favorable arrangements in the numerator, count all arrangements in the denominator. Whenever a probability problem says "chosen at random" with no ordering mentioned, that's a combination in disguise.
+
+> **Recall check.** Without peeking: state the formulas for P(n, k) and C(n, k). State the symmetry identity. Compute C(10, 7) in your head. If you computed 10!/(7!3!) the long way, you missed the shortcut — C(10, 7) = C(10, 3) = 120 with less arithmetic. Retrieving the formulas *and* the symmetry in the same breath is how you wire them together in long-term memory.
 
 ## @restrictions
 
@@ -211,6 +234,29 @@ Example: A committee of 3 is picked from 5 men and 4 women. How many committees 
 - At least 1 woman: 84 − 10 = 74
 
 Trying to count "at least 1 woman" directly means splitting into cases (exactly 1, exactly 2, exactly 3) — slow and error-prone.
+
+**Alternating arrangements.** When two types must strictly alternate in a line — MFMFMF or ABABAB — the approach is:
+
+1. Count the number of valid patterns.
+2. For each pattern, count the arrangements of each type in its allotted slots.
+3. Multiply.
+
+**Example.** 3 men (M) and 3 women (W) sit in a row of 6 chairs, alternating genders. How many arrangements?
+
+Valid patterns are MWMWMW and WMWMWM — exactly 2.
+
+For each pattern:
+- 3 men fill the "M" slots: 3! = 6 ways
+- 3 women fill the "W" slots: 3! = 6 ways
+- Per pattern: 6 × 6 = 36
+
+Total: 2 × 36 = **72**
+
+Quick formula for equal groups: **2 × (n!)²** where n is the size of each group.
+
+**What if the groups are unequal?** If you have 4 men and 3 women alternating, only the MWMWMWM pattern works (the larger group must start and end). One pattern, so: 1 × 4! × 3! = 24 × 6 = **144**.
+
+**Alternating at a round table.** Circular + alternating: fix one person to eliminate rotational duplicates, then arrange the remaining n − 1 in the alternating pattern. For 3 men and 3 women at a round table: fix one man, place 2 remaining men in 2! = 2 ways, then fill the 3 women's gaps in 3! = 6 ways. Total: 2 × 6 = **12**. (No factor of 2 — rotational equivalence collapses the two patterns into each other.)
 
 ## @circular
 
@@ -248,6 +294,10 @@ When some objects are **identical**, straight factorial overcounts because swapp
 
 **Connection to combinations.** When you have only two kinds of objects, the multiset arrangement formula collapses into a combination. "How many arrangements of AAABBBB" = C(7, 3) = 35. Useful to internalize — it's the same calculation looked at two ways.
 
+> **Self-explanation prompt.** Why does swapping two identical letters not produce a new arrangement? If you can say "because the result looks the same — the string is unchanged — so it's not a distinct outcome," you understand why we divide. The denominator doesn't subtract anything; it cancels out the overcounting that straight factorial committed.
+
+> **Recall check.** Write the multiset formula from memory. Then apply it to BANANA (6 letters: 1 B, 3 A's, 2 N's). The answer is 6! / (1! × 3! × 2!) = 720 / 12 = 60. If you got it right, you're ready for the problem set. If not, re-read the formula once more, then close it and recompute without looking.
+
 ## @decision
 
 Every combinatorics question on the GMAT reduces to four decisions. Run through them in order:
@@ -280,8 +330,18 @@ That's the entire chapter's content in 8 lines. Memorize the decision tree — w
 | "Exactly X of type A and Y of type B" | Product of combinations | C(nA, X) × C(nB, Y) |
 | "At least 1 of type A" | Complement | Total − (none of A) |
 | "Must sit together" | Glue trick | Arrange block + others, then internal |
+| "Cannot sit together" | Complement | Total − (all together) |
+| "Alternating in a row, equal groups" | Alternating | 2 × (n!)² |
+| "Alternating in a row, unequal groups" | Alternating | 1 × larger! × smaller! |
 | "Round table of n" | Circular | (n − 1)! |
 | "Letters of [repeated word]" | Multiset | n! / (r₁! × r₂! × …) |
 | "Round-robin: every pair plays once" | Combination | C(n, 2) |
+| "Probability, drawn at random" | Combinations as ratio | C(favorable) / C(total) |
 
-When you finish the end-of-chapter sets below, keep this table open. By the time you've done 15-20 combinatorics questions with it at your elbow, you won't need it anymore.
+**What to do next.**
+
+1. Work through the problem sets below — start at Easy regardless of your target score. Combinatorics is a topic where 5 slow problems done with deliberate pattern-matching beats 20 rushed ones.
+2. For every question you miss, note *which decision* you got wrong: did you misclassify permutation vs. combination, or forget the complement, or miscount the valid patterns? Tag it in the error log — one tag gives you more information than re-reading the entire chapter.
+3. Once you've completed the chapter problem sets, combinatorics questions will appear in the spaced retrieval queue. That's where the pattern recognition locks in.
+
+When you finish the end-of-chapter sets below, keep this table open. By the time you've done 15–20 combinatorics questions with it at your elbow, you won't need it anymore.
