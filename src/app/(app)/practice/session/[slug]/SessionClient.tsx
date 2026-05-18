@@ -1219,6 +1219,74 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+
+    // Per-question pairs for insight panels (submitted only)
+    const answeredPairs = questions
+      .map((q, i) => ({ q, state: states[i], correct: isQuestionCorrect(q, states[i]) }))
+      .filter((p) => p.state.submitted)
+
+    // Accuracy broken down by difficulty level
+    const diffLevels = ["Beginner", "Intermediate", "Advanced"] as const
+    const difficultyBreakdown = diffLevels
+      .map((diff) => {
+        const qs = answeredPairs.filter((p) => p.q.difficulty === diff)
+        return { diff, total: qs.length, correct: qs.filter((p) => p.correct).length }
+      })
+      .filter((d) => d.total > 0)
+
+    // Average time on correct vs incorrect — reveals overthinking / rushing patterns
+    const correctPairs = answeredPairs.filter((p) => p.correct)
+    const incorrectPairs = answeredPairs.filter((p) => !p.correct)
+    const avgCorrectMs =
+      correctPairs.length >= 2
+        ? Math.round(correctPairs.reduce((s, p) => s + p.state.elapsedMs, 0) / correctPairs.length)
+        : null
+    const avgIncorrectMs =
+      incorrectPairs.length >= 2
+        ? Math.round(incorrectPairs.reduce((s, p) => s + p.state.elapsedMs, 0) / incorrectPairs.length)
+        : null
+
+    // One-sentence performance read — specific when the data supports it
+    let headline = "Session complete"
+    if (answeredCount > 0) {
+      if (accuracy >= 85) {
+        headline = correctCount === total ? "Clean sweep." : "Strong session."
+      } else if (accuracy >= 70) {
+        const weakDiff = difficultyBreakdown.find((d) => d.total >= 2 && d.correct / d.total < 0.6)
+        headline = weakDiff
+          ? `Solid overall — ${weakDiff.diff.toLowerCase()} questions are the gap.`
+          : "Solid session."
+      } else if (accuracy >= 50) {
+        const strongDiff = difficultyBreakdown.find(
+          (d) => d.total >= 2 && d.correct / d.total >= 0.85
+        )
+        headline = strongDiff
+          ? `${strongDiff.diff} questions are solid — push into the harder ones.`
+          : "Work in progress."
+      } else {
+        headline = "The foundation needs more work."
+      }
+    }
+
+    // Pacing note — only surfaces when the ratio is meaningfully off
+    let pacingNote: string | null = null
+    if (avgCorrectMs && avgIncorrectMs) {
+      const ratio = avgIncorrectMs / avgCorrectMs
+      if (ratio > 1.4) {
+        pacingNote = `You spent ${formatDuration(avgIncorrectMs)} on average on wrong answers vs ${formatDuration(avgCorrectMs)} on correct ones. Staying too long on an uncertain question is a pattern worth breaking — consider cutting earlier.`
+      } else if (ratio < 0.72) {
+        pacingNote = `Wrong answers averaged ${formatDuration(avgIncorrectMs)} — faster than correct ones at ${formatDuration(avgCorrectMs)}. Slowing down on uncertain questions may improve accuracy.`
+      }
+    }
+
+    // Next-step recommendation keyed to accuracy band
+    const nextStepNote =
+      accuracy < 60
+        ? "Accuracy below 60% signals a concept gap. Revisiting the chapter before more practice compounds better."
+        : accuracy < 78
+        ? "Accuracy is building. One more focused session on this topic before moving on."
+        : "This topic is solid. Investing time in a weaker area is the highest-leverage move now."
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1229,7 +1297,7 @@ export default function SessionClient({
             <ArrowLeft className="w-3 h-3" />
             Back to Practice
           </Link>
-          <h1 className="text-2xl font-bold text-[#F0F0F0] mt-3">Session complete</h1>
+          <h1 className="text-2xl font-bold text-[#F0F0F0] mt-3">{headline}</h1>
           <p className="text-sm text-[#555555] mt-1">
             {topic} · {section}
           </p>
@@ -1237,6 +1305,7 @@ export default function SessionClient({
 
         <SaveStatusBanner status={saveStatus} onRetry={saveSession} />
 
+        {/* Core metrics + insight breakdown */}
         <div
           className="p-6 rounded-xl border"
           style={{
@@ -1263,6 +1332,55 @@ export default function SessionClient({
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
             </div>
           </div>
+
+          {/* Difficulty breakdown — only when questions span 2+ levels */}
+          {difficultyBreakdown.length >= 2 && (
+            <div className="mt-6 pt-5 border-t border-white/[0.06]">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+                By difficulty
+              </p>
+              <div className="space-y-2.5">
+                {difficultyBreakdown.map(({ diff, total: t, correct: c }) => {
+                  const pct = t === 0 ? 0 : Math.round((c / t) * 100)
+                  const isWeak = t >= 2 && pct < 60
+                  const barColor = isWeak ? "#FF6B6B" : pct >= 80 ? "#3ECF8E" : "#C9A84C"
+                  return (
+                    <div key={diff} className="flex items-center gap-3">
+                      <span
+                        className="text-xs w-24 flex-shrink-0"
+                        style={{ color: isWeak ? "#FF6B6B" : "#888888" }}
+                      >
+                        {diff}
+                      </span>
+                      <div className="flex-1 h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
+                        <div
+                          className="h-full rounded-full transition-all duration-500"
+                          style={{ width: `${pct}%`, backgroundColor: barColor }}
+                        />
+                      </div>
+                      <span
+                        className="text-[11px] tabular-nums w-16 text-right flex-shrink-0"
+                        style={{ color: "#888888" }}
+                      >
+                        {c}/{t} · {pct}%
+                      </span>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Pacing note — only surfaces when ratio is meaningfully off */}
+          {pacingNote && (
+            <div className="mt-5 pt-4 border-t border-white/[0.06] flex items-start gap-2.5">
+              <Clock
+                className="w-3.5 h-3.5 flex-shrink-0 mt-0.5"
+                style={{ color: "#888888" }}
+              />
+              <p className="text-[12px] text-[#888888] leading-relaxed">{pacingNote}</p>
+            </div>
+          )}
         </div>
 
         {savedSessionId && answeredCount - correctCount > 0 && (
@@ -1299,6 +1417,7 @@ export default function SessionClient({
           </Link>
         )}
 
+        {/* Review list — wrong answers carry a faint red tint + difficulty label */}
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
             Review
@@ -1307,6 +1426,7 @@ export default function SessionClient({
             {questions.map((q, i) => {
               const state = states[i]
               const isCorrect = isQuestionCorrect(q, state)
+              const isWrong = state.submitted && !isCorrect
               return (
                 <button
                   key={q.id}
@@ -1317,6 +1437,7 @@ export default function SessionClient({
                   className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
                     i < questions.length - 1 ? "border-b border-white/[0.05]" : ""
                   }`}
+                  style={isWrong ? { backgroundColor: "rgba(255,68,68,0.025)" } : undefined}
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     <div
@@ -1340,15 +1461,21 @@ export default function SessionClient({
                       )}
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xs text-[#555555]">
-                        Question {i + 1} · {q.subtopic}
+                      <p
+                        className="text-xs"
+                        style={{ color: isWrong ? "rgba(255,107,107,0.75)" : "#555555" }}
+                      >
+                        Q{i + 1} · {q.subtopic} · {q.difficulty}
                       </p>
                       <p className="text-sm text-[#F0F0F0] truncate">
                         {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
                       </p>
                     </div>
                   </div>
-                  <span className="text-xs text-[#888888] flex-shrink-0 ml-3">
+                  <span
+                    className="text-xs flex-shrink-0 ml-3"
+                    style={{ color: isWrong ? "rgba(255,107,107,0.6)" : "#888888" }}
+                  >
                     {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
                   </span>
                 </button>
@@ -1357,32 +1484,99 @@ export default function SessionClient({
           </div>
         </div>
 
-        <div className="flex gap-3 flex-wrap">
-          <Link
-            href="/practice"
-            className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
-            style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-          >
-            Back to Practice
-          </Link>
-          {isMixedReview ? (
-            <button
-              type="button"
-              onClick={handleRebuildMix}
-              disabled={rebuilding}
-              className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04] disabled:opacity-60"
-            >
-              {rebuilding ? "Building new mix…" : "Build new mix"}
-            </button>
-          ) : (
-            <Link
-              href={`/practice/session/${slug}`}
-              className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
-            >
-              Retake
-            </Link>
+        {/* Recommended next step — contextual to accuracy band */}
+        <div
+          className="p-5 rounded-xl border"
+          style={{ borderColor: "rgba(255,255,255,0.08)", backgroundColor: "#0D0D0D" }}
+        >
+          <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1">
+            Recommended next step
+          </p>
+          <p className="text-xs text-[#888888] leading-relaxed mb-4">{nextStepNote}</p>
+          <div className="flex gap-3 flex-wrap">
+            {/* PRIMARY — drives the recommended path */}
+            {accuracy < 60 && (
+              <Link
+                href="/chapters"
+                className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
+                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              >
+                Review the chapter
+              </Link>
+            )}
+            {accuracy >= 60 && accuracy < 78 && (
+              isMixedReview ? (
+                <button
+                  type="button"
+                  onClick={handleRebuildMix}
+                  disabled={rebuilding}
+                  className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 disabled:opacity-60"
+                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                >
+                  {rebuilding ? "Building new mix…" : "Build new mix"}
+                </button>
+              ) : (
+                <Link
+                  href={`/practice/session/${slug}`}
+                  className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
+                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                >
+                  Another session
+                </Link>
+              )
+            )}
+            {accuracy >= 78 && (
+              <Link
+                href="/practice"
+                className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
+                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              >
+                Practice a new topic
+              </Link>
+            )}
+            {/* SECONDARY — retake / rebuild / back depending on context */}
+            {(accuracy < 60 || accuracy >= 78) && (
+              isMixedReview ? (
+                <button
+                  type="button"
+                  onClick={handleRebuildMix}
+                  disabled={rebuilding}
+                  className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04] disabled:opacity-60"
+                >
+                  {rebuilding ? "Building…" : "Build new mix"}
+                </button>
+              ) : (
+                <Link
+                  href={`/practice/session/${slug}`}
+                  className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
+                >
+                  Retake
+                </Link>
+              )
+            )}
+            {accuracy >= 60 && accuracy < 78 && (
+              <Link
+                href="/practice"
+                className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
+              >
+                Back to Practice
+              </Link>
+            )}
+          </div>
+          {/* Tertiary plain link — only when primary doesn't go to /practice */}
+          {accuracy < 60 && (
+            <p className="text-center mt-3">
+              <Link
+                href="/practice"
+                className="text-xs transition-colors"
+                style={{ color: "#555555" }}
+              >
+                Back to Practice
+              </Link>
+            </p>
           )}
         </div>
+
         {rebuildError && (
           <p className="text-xs text-center" style={{ color: "#FF4444" }}>
             {rebuildError}
