@@ -18,6 +18,7 @@ import {
   X,
 } from "lucide-react"
 import { DI_METHOD_CARDS, hasMethodCard } from "@/lib/di-method-cards"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import PacingBadge from "@/components/shared/PacingBadge"
@@ -1219,6 +1220,22 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+    const avgTimeMs = answeredCount === 0 ? 0 : Math.round(totalTime / answeredCount)
+    const wrongAnswers = questions.filter((q, i) => states[i].submitted && !isQuestionCorrect(q, states[i]))
+    const chapterSlug = TOPIC_TO_CHAPTER[topic] ?? null
+    const subtopicCounts = wrongAnswers.reduce<Record<string, number>>((acc, q) => {
+      acc[q.subtopic] = (acc[q.subtopic] ?? 0) + 1
+      return acc
+    }, {})
+    const topSubtopics = Object.entries(subtopicCounts).sort((a, b) => b[1] - a[1]).slice(0, 3)
+    const diffOrder = ["Beginner", "Intermediate", "Advanced"]
+    const diffCounts = wrongAnswers.reduce<Record<string, number>>((acc, q) => {
+      acc[q.difficulty] = (acc[q.difficulty] ?? 0) + 1
+      return acc
+    }, {})
+    const mistakeDiffs = diffOrder.filter((d) => diffCounts[d] > 0)
+    const performanceLabel = accuracy >= 80 ? "Strong" : accuracy >= 60 ? "Solid" : accuracy >= 40 ? "Developing" : "Needs work"
+    const performanceColor = accuracy >= 80 ? "#3ECF8E" : accuracy >= 60 ? "#C9A84C" : "#888888"
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1250,6 +1267,9 @@ export default function SessionClient({
               <p className="text-3xl font-bold mt-2" style={{ color: "#C9A84C" }}>
                 {accuracy}%
               </p>
+              <p className="text-xs mt-1 font-medium" style={{ color: performanceColor }}>
+                {performanceLabel}
+              </p>
             </div>
             <div>
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Correct</p>
@@ -1261,6 +1281,9 @@ export default function SessionClient({
             <div>
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Total time</p>
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
+              {answeredCount > 0 && (
+                <p className="text-xs mt-1 text-[#555555]">{formatDuration(avgTimeMs)} avg / question</p>
+              )}
             </div>
           </div>
         </div>
@@ -1287,8 +1310,7 @@ export default function SessionClient({
                   {answeredCount - correctCount === 1 ? "" : "s"} from this session
                 </p>
                 <p className="text-xs text-[#888888] mt-0.5">
-                  Classify the failure mode now while the question is fresh — that&apos;s
-                  the input the adaptive plan needs.
+                  Two minutes of honest labeling turns these mistakes into your study plan.
                 </p>
               </div>
             </div>
@@ -1297,6 +1319,36 @@ export default function SessionClient({
               style={{ color: "#C9A84C" }}
             />
           </Link>
+        )}
+
+        {wrongAnswers.length > 0 && topSubtopics.length > 0 && (
+          <div className="p-5 rounded-xl border border-white/[0.06] bg-[#0D0D0D]">
+            <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">Where the mistakes fell</p>
+            <div className="space-y-2.5">
+              {topSubtopics.map(([subtopic, count]) => (
+                <div key={subtopic} className="flex items-center justify-between gap-3">
+                  <p className="text-sm text-[#C0C0C0] truncate">{subtopic}</p>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <div className="flex gap-1">
+                      {Array.from({ length: count }).map((_, i) => (
+                        <div
+                          key={i}
+                          className="w-2 h-2 rounded-full"
+                          style={{ backgroundColor: "rgba(255,68,68,0.5)" }}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-xs text-[#555555] w-4 text-right tabular-nums">{count}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {mistakeDiffs.length > 0 && (
+              <p className="text-xs text-[#555555] mt-3 pt-3 border-t border-white/[0.05]">
+                {mistakeDiffs.map((d) => `${diffCounts[d]} ${d.toLowerCase()}`).join(" · ")}
+              </p>
+            )}
+          </div>
         )}
 
         <div>
@@ -1358,29 +1410,62 @@ export default function SessionClient({
         </div>
 
         <div className="flex gap-3 flex-wrap">
-          <Link
-            href="/practice"
-            className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
-            style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-          >
-            Back to Practice
-          </Link>
-          {isMixedReview ? (
-            <button
-              type="button"
-              onClick={handleRebuildMix}
-              disabled={rebuilding}
-              className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04] disabled:opacity-60"
-            >
-              {rebuilding ? "Building new mix…" : "Build new mix"}
-            </button>
+          {accuracy < 60 && chapterSlug ? (
+            <>
+              <Link
+                href={`/chapters/${chapterSlug}`}
+                className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 flex items-center justify-center gap-2"
+                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              >
+                <BookOpen className="w-4 h-4" />
+                Review chapter
+              </Link>
+              {isMixedReview ? (
+                <button
+                  type="button"
+                  onClick={handleRebuildMix}
+                  disabled={rebuilding}
+                  className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04] disabled:opacity-60"
+                >
+                  {rebuilding ? "Building new mix…" : "Build new mix"}
+                </button>
+              ) : (
+                <Link
+                  href={`/practice/session/${slug}`}
+                  className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
+                >
+                  Retake
+                </Link>
+              )}
+            </>
           ) : (
-            <Link
-              href={`/practice/session/${slug}`}
-              className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
-            >
-              Retake
-            </Link>
+            <>
+              {isMixedReview ? (
+                <button
+                  type="button"
+                  onClick={handleRebuildMix}
+                  disabled={rebuilding}
+                  className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 disabled:opacity-60"
+                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                >
+                  {rebuilding ? "Building new mix…" : "Build new mix"}
+                </button>
+              ) : (
+                <Link
+                  href={`/practice/session/${slug}`}
+                  className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
+                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                >
+                  {accuracy >= 80 ? "Retake" : "Keep drilling"}
+                </Link>
+              )}
+              <Link
+                href="/practice"
+                className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
+              >
+                Back to Practice
+              </Link>
+            </>
           )}
         </div>
         {rebuildError && (
