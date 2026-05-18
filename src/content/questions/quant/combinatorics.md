@@ -644,25 +644,25 @@ Net (A and B together, C and D NOT together) = 240 − 96 = 144.
 ## Q23
 **difficulty:** Hard
 **type:** Problem Solving
-**topic:** Circular Permutations
+**topic:** Circular Permutations with Adjacency Restriction
 
-Five distinct people are to be seated around a circular table with 5 chairs. How many distinct seating arrangements are possible if arrangements that differ only by a rotation are considered the same?
+Five friends are to be seated around a circular table. Two of the friends — Alex and Beth — refuse to sit next to each other. How many distinct seating arrangements are possible? (Arrangements that differ only by a rotation are considered the same.)
 
-- A) 24
-- B) 60
-- C) 120
-- D) 144
-- E) 720
+- A) 4
+- B) 6
+- C) 8
+- D) 12
+- E) 18
 
-**answer:** A
-**fastest_path:** Circular: (5 − 1)! = 4! = 24.
-**explanation:** Circular arrangements with rotational equivalence: (n − 1)!. For 5 people: (5 − 1)! = 4! = 24. Equivalently, fix one person and arrange the remaining 4 in 4! ways.
-**mistake_b:** Computed 5! / 2 = 60 (wrong divisor).
-**mistake_c:** Computed 5! = 120 (treated as linear, missed rotational equivalence).
-**mistake_d:** Computed 5! / 5 × 6 = 144 (wrong multiplication).
-**mistake_e:** Computed 6! = 720 (wrong count).
-**common_trap:** Treating circular arrangements as linear; forgetting that rotations of the same configuration are equivalent.
-**takeaway:** Circular arrangements of n distinct items with rotational equivalence: (n − 1)!. Linear arrangement: n!.
+**answer:** D
+**fastest_path:** Total circular − adjacent = (5−1)! − (4−1)!·2 = 24 − 12 = 12.
+**explanation:** Use the complement. Total distinct circular arrangements of 5 people: (5−1)! = 4! = 24. Arrangements where Alex and Beth ARE adjacent: treat them as one block → 4 units around a circle → (4−1)! = 3! = 6 circular arrangements, × 2 for Alex-Beth vs Beth-Alex internal orderings = 12. Non-adjacent = 24 − 12 = 12.
+**mistake_a:** Arrived at 4 from a double-divisor error — perhaps computed (5-1)! / 3! = 24/6 = 4, dividing by the wrong factorial. Only the complement method gives the reliable path: total (24) − adjacent (12) = 12.
+**mistake_b:** Computed circular arrangements of the 4 units (block + 3 others) = (4-1)! = 3! = 6, then stopped and bubbled 6 as the final answer. This is only half the adjacent count (before multiplying by 2 for internal ordering), and it's the adjacent count — not the non-adjacent count. Always subtract from the total: non-adjacent = 24 − 12 = 12.
+**mistake_c:** Divided total arrangements by 3: 24/3 = 8, reasoning that "1 of every 3 arrangements has the pair adjacent." The actual adjacent probability is 2/4 = 1/2 (Alex is fixed; Beth has 2 adjacent seats out of 4 remaining), so adjacent = 24 × (1/2) = 12 and non-adjacent = 12. Proportion shortcuts require a verified probability, not a guess.
+**mistake_e:** Computed 24 − 6 = 18 — forgot to multiply the circular block count by 2 for the internal ordering. Adjacent arrangements = (4-1)! circular × 2 internal = 6 × 2 = 12, not 6.
+**common_trap:** Forgetting the ×2 internal ordering of the pair's block, or solving the complement but bubbling the adjacent count instead of the non-adjacent count.
+**takeaway:** "Not adjacent" in circular arrangements = total − adjacent. Adjacent count = (n−2)! × 2! (fix the pair as a block, arrange remaining circularly, multiply by pair's internal orderings).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 

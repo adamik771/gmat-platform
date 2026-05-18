@@ -2,10 +2,10 @@
 slug: combinatorics
 title: Combinatorics
 section: Quant
-estimated_minutes: 45
+estimated_minutes: 60
 prerequisites: []
 summary: |
-  Combinatorics on the GMAT is a small number of patterns repeated constantly. Learn the four decisions (order or no? repeats allowed? independent selections? forbidden arrangements?), memorize three formulas, and you'll solve every combinatorics question on test day in under two minutes.
+  Combinatorics on the GMAT is a small number of patterns repeated constantly. Master the four decisions (order or no? repeats allowed? restrictions? circular or linear?), internalize the key formulas, and you will solve every counting and probability question on test day in under two minutes.
 sections:
   - id: pretest
     type: pretest
@@ -36,25 +36,41 @@ sections:
 
   - id: restrictions
     type: reading
-    title: "Restrictions — adjacent, forbidden, alternating"
+    title: "Restrictions — adjacent, forbidden, alternating, compound"
     check_question_ids:
       - combinatorics-q8
       - combinatorics-q9
+      - combinatorics-q15
 
   - id: circular
     type: reading
     title: "Circular arrangements"
     check_question_ids:
       - combinatorics-q11
+      - combinatorics-q28
 
   - id: repeats
     type: reading
     title: "Repeated letters and multiset arrangements"
-    check_question_ids: []
+    check_question_ids:
+      - combinatorics-q27
+
+  - id: distributions
+    type: reading
+    title: "Distributions — identical items among distinct recipients"
+    check_question_ids:
+      - combinatorics-q26
+
+  - id: probability-basics
+    type: reading
+    title: "Probability basics — counting favorable vs total"
+    check_question_ids:
+      - combinatorics-q24
+      - combinatorics-q21
 
   - id: decision
     type: summary
-    title: "The four-question decision tree"
+    title: "The decision tree — all patterns in one place"
     check_question_ids: []
 
 problem_sets:
@@ -84,6 +100,10 @@ problem_sets:
       - combinatorics-q10
       - combinatorics-q11
       - combinatorics-q12
+      - combinatorics-q23
+      - combinatorics-q24
+      - combinatorics-q27
+      - combinatorics-q29
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -97,11 +117,17 @@ problem_sets:
       - combinatorics-q16
       - combinatorics-q17
       - combinatorics-q18
+      - combinatorics-q19
+      - combinatorics-q21
+      - combinatorics-q22
+      - combinatorics-q25
+      - combinatorics-q26
+      - combinatorics-q28
 ---
 
 ## @enumeration
 
-Enumeration means **writing out every possibility and counting them**. It sounds too primitive for the GMAT, but it's the foundation every formula is built on — and for small sets (3, 4, maybe 5 objects) it's often the fastest approach.
+Enumeration means **writing out every possibility and counting them**. It sounds too primitive for the GMAT, but it is the foundation every formula is built on — and for small sets (3 or 4 objects) it is often the fastest approach on test day.
 
 **Mental model — the Fundamental Counting Principle.** Counting problems reduce to filling slots, one at a time. How many choices for slot 1? How many for slot 2 given what's in slot 1? Multiply. Every formula in this chapter — P(n, k), C(n, k), (n − 1)!, n!/(r₁! × r₂!) — is just this slot-filling logic run faster. If you understand the slots, you can re-derive any formula in 10 seconds when memory fails.
 
@@ -128,7 +154,7 @@ Multiply: 3 × 2 × 1 = **6**. This is 3! (read "three factorial").
 
 ## @permutations
 
-A **permutation** is an arrangement where **order matters**. "Who got first, second, and third place" is a permutation. "Who's on the team" is not.
+A **permutation** is an arrangement where **order matters**. "Who got first, second, and third place" is a permutation. "Who is on the team" is not.
 
 **Build it with slots first, then use the formula.** From 7 candidates, a president and a vice-president are chosen. How many outcomes?
 
@@ -164,27 +190,28 @@ Notice that the permutation count (210) is exactly 3! = 6 times the combination 
 
 ## @combinations
 
-A **combination** is a selection where **order doesn't matter**. "Which 3 people make the team" is a combination. The same three people in any order is the same team.
+A **combination** is a selection where **order doesn't matter**. The same three people in any order is the same team.
 
 **Formula:**
 
 **C(n, k) = n! / (k! × (n − k)!)**
 
-Also written **ⁿCₖ** or **(n choose k)**.
+Also written **(n choose k)**.
 
-**Example.** A team of 3 is picked from 6 students. How many possible teams?
+**Worked example.** A team of 3 is picked from 6 students. How many possible teams?
 
 - If order mattered: 6 × 5 × 4 = 120
-- But order doesn't matter, so we've overcounted — each team of 3 was counted 3! = 6 times (once for each ordering of the same three people)
+- Each team of 3 was counted 3! = 6 times (once for each ordering)
 - Divide: 120 / 6 = **20**
 
 Check: C(6, 3) = 6! / (3! × 3!) = 720 / 36 = 20. ✓
 
-**Why C(n, k) = P(n, k) / k!.** Every combination corresponds to k! permutations of the same k objects. Dividing the permutation count by k! strips off the ordering.
+**Why C(n, k) = P(n, k) / k!.** Every combination corresponds to k! permutations of the same k objects. Dividing by k! strips the ordering.
 
-**Symmetry trick.** C(n, k) = C(n, n − k). Choosing 3 of 6 is equivalent to *not* choosing the other 3. Useful for skipping arithmetic: C(10, 7) = C(10, 3) = 120. Mentally flip to the smaller k.
+**Symmetry trick.** C(n, k) = C(n, n − k). Choosing 3 of 6 is equivalent to *not choosing* the other 3. Useful shortcut: C(10, 7) = C(10, 3) = 120 — flip to the smaller side and skip the heavy arithmetic.
 
-**Quick-reference values you should know cold:**
+**Quick-reference values to know cold:**
+
 - C(n, 0) = C(n, n) = 1
 - C(n, 1) = C(n, n − 1) = n
 - C(n, 2) = n(n − 1) / 2
@@ -193,7 +220,7 @@ Check: C(6, 3) = 6! / (3! × 3!) = 720 / 36 = 20. ✓
 
     C(5, 2) × C(4, 1) = 10 × 4 = 40
 
-This shows up more than any other combination pattern — probably 30% of GMAT combinatorics questions involve some version of it.
+This pattern — independent selections multiplied together — appears in roughly 30% of GMAT combinatorics questions. Recognize it on sight.
 
 **Probability bridge.** GMAT probability questions regularly hide a combinations calculation inside them. Once you spot it, the problem halves. The template:
 
@@ -211,29 +238,58 @@ The structure is always the same: count favorable arrangements in the numerator,
 
 ## @restrictions
 
-"In how many arrangements of the letters in LESSON are the two S's next to each other?" That's a restriction problem. The GMAT loves them.
+Restriction problems add a constraint to a basic arrangement or selection. There are four patterns; recognize which one applies before picking a method.
 
-**The glue trick — for adjacency restrictions.** When specific objects MUST be adjacent, **treat them as a single glued block**, arrange the block plus the remaining objects, then multiply by internal orderings of the block.
+### The glue trick — required adjacency
 
-LESSON has 6 letters (L, E, S, S, O, N). Glue the two S's into an "SS" block. Now arrange 5 items (SS, L, E, O, N) in a row: 5! = 120. The two S's inside the block are identical, so no extra multiplier. Answer: **120**.
+When specific objects *must* be adjacent, **treat them as a single glued block**. Arrange the block plus the remaining objects, then multiply by the block's internal orderings.
 
-If the glued items are *distinct* (e.g., two named people), multiply by 2! for the internal ordering. Six people in a row with Ana and Ben adjacent: treat Ana-Ben as a block, arrange 5 items (5! = 120), then × 2 for AB vs BA inside the block = 240.
+**Worked example.** How many arrangements of LESSON have the two S's next to each other?
 
-**The complement trick — for "not adjacent," "at least one," "no two together."** Don't count the hard condition directly. Count the total, count the forbidden version, subtract.
+Glue "SS" into one block. Now arrange 5 items (SS, L, E, O, N): 5! = 120. The two S's are identical, so no extra multiplier. Answer: **120**.
 
-Six people in a row, Ana and Ben NOT adjacent:
-- Total arrangements: 6! = 720
-- Adjacent arrangements: (block of 5) × 5! × 2 = 240
+If the glued items are *distinct* (e.g., two named people), multiply by 2! for the internal ordering — AB vs BA. Six people in a row with Ana and Ben adjacent: 5! × 2 = **240**.
+
+### The complement trick — forbidden adjacency and "at least one"
+
+Never count the hard condition directly. Count the total, count the forbidden version, subtract.
+
+**Worked example.** Six people in a row, Ana and Ben must NOT sit together.
+
+- Total: 6! = 720
+- Adjacent: (glue as block) 5! × 2 = 240
 - Not adjacent: 720 − 240 = **480**
 
-**"At least one" problems.** "At least one" is almost always faster via complement: count "none" and subtract from total.
+**"At least one" problems.** Always faster via complement:
 
-Example: A committee of 3 is picked from 5 men and 4 women. How many committees have at least 1 woman?
-- Total committees: C(9, 3) = 84
-- Committees with no women: C(5, 3) = 10
-- At least 1 woman: 84 − 10 = 74
+    P(at least 1 woman) = Total − (committees with no women)
 
-Trying to count "at least 1 woman" directly means splitting into cases (exactly 1, exactly 2, exactly 3) — slow and error-prone.
+Example: C(9, 3) − C(5, 3) = 84 − 10 = **74**. Counting "exactly 1, 2, 3 women" directly takes three calculations; counting "zero women" takes one.
+
+### Alternating patterns
+
+When objects of two types must strictly alternate (men/women, red/blue, vowel/consonant), the key insight is that there are **two possible starting patterns** and each is counted independently.
+
+**Worked example.** 4 men and 4 women seated in a row, men and women must alternate.
+
+Two patterns exist: MWMWMWMW and WMWMWMWM.
+
+- For each pattern: 4! ways to assign the men to M-slots × 4! ways to assign women to W-slots = 24 × 24 = 576
+- Two patterns: 2 × 576 = **1,152**
+
+**Trap to watch.** Students who count only one pattern (e.g., only "men go first") get exactly half the right answer. Always ask: can the other group start instead?
+
+### Compound restrictions
+
+When a problem requires one pair to be adjacent AND another pair to not be adjacent, break it into two stages: count the required-adjacent case, then subtract the sub-case where both constraints are violated simultaneously.
+
+**Worked example.** Six people in a row: A and B must be adjacent, C and D must not be adjacent.
+
+- (A and B together): 5! × 2 = 240
+- (A and B together AND C and D together): 4! × 2 × 2 = 96
+- Net (A and B together, C and D not together): 240 − 96 = **144**
+
+**Trap to watch.** The most common error is computing the "required" constraint correctly (240) and then forgetting to remove the sub-case that also satisfies the "forbidden" constraint. One subtraction step is all it takes — but students skip it under time pressure.
 
 **Alternating arrangements.** When two types must strictly alternate in a line — MFMFMF or ABABAB — the approach is:
 
@@ -260,39 +316,169 @@ Quick formula for equal groups: **2 × (n!)²** where n is the size of each grou
 
 ## @circular
 
-In a **circular arrangement** — people around a round table, beads on a bracelet, etc. — **rotations of the same arrangement count as identical**. There's no "seat #1" because every seat is equivalent.
+In a **circular arrangement** — people around a round table, beads on a bracelet — **rotations of the same arrangement count as identical**. There is no "seat #1" because every seat is equivalent.
 
-To strip out rotational duplicates: fix one object in place, then arrange the rest linearly.
+Fix one object in place, then arrange the rest linearly.
 
-**Formula:** Circular arrangements of n = **(n − 1)!**
+**Formula:** Circular arrangements of n distinct objects = **(n − 1)!**
 
-**Example.** 5 people around a round table: (5 − 1)! = 4! = **24**, not 5! = 120.
+**Worked example.** 5 people around a round table: (5 − 1)! = 4! = **24**, not 5! = 120.
 
-**Why?** If you rotate any arrangement by one seat, you get the same *relative* ordering — Ana still has Ben to her left and Cal to her right. 5 different rotations all give the same circular arrangement, so 5! / 5 = 4! = 24.
+**Why?** Rotating any arrangement by one seat produces the same *relative* ordering — Ana still has Ben to her left and Cal to her right. Five rotations of the same configuration all look the same, so 5! / 5 = 4! = 24.
 
-**Watch for distinguishable seats.** A head table with a specific "head" chair, a rectangular table where the ends differ, a round table with numbered chairs — those aren't truly circular. Use n! (normal permutations) if the seats are distinguishable.
+**Watch for distinguishable seats.** A head table with a specific "head" chair, a rectangular table where the ends differ, a round table with numbered chairs — these are not truly circular. Use n! (normal permutations) when seats are distinguishable.
 
-**Bracelets and necklaces** (rare on GMAT): circular AND flippable. Divide by 2 to account for mirror images. (n − 1)! / 2. If you see this, it's probably a 745+ question — take your best guess and move on if time is tight.
+### Combining circular with adjacency
+
+The glue trick applies in circular arrangements too. Treat the required-adjacent pair as one block, apply the circular formula to the resulting (n − 1) units, then multiply by internal orderings of the block.
+
+**Worked example.** 7 people at a circular table; one specific pair must sit next to each other.
+
+- Glue the pair as a block → 6 units around a circular table
+- Circular arrangements of 6 units: (6 − 1)! = 5! = 120
+- Internal ordering of the pair: × 2
+- Total: 120 × 2 = **240**
+
+**Trap to watch.** Forgetting the × 2 internal ordering of the block is the most common error. The two people in the block can swap seats — that is a distinct arrangement.
+
+**Bracelets and necklaces** (rare on GMAT): circular AND flippable, meaning mirror images are identical. Divide by 2: (n − 1)! / 2. If you see this, it is a 745+ question — note the extra division and move on.
 
 ## @repeats
 
 When some objects are **identical**, straight factorial overcounts because swapping identical objects produces the "same" arrangement.
 
-**Formula:** For n objects with repetitions r₁, r₂, …, rₖ (where r₁ + r₂ + … = n):
+**Formula:** For n objects with repetitions r₁, r₂, ..., rₖ:
 
-**n! / (r₁! × r₂! × … × rₖ!)**
+**n! / (r₁! × r₂! × ... × rₖ!)**
 
-**Example.** MISSISSIPPI has 11 letters: 1 M, 4 I's, 4 S's, 2 P's.
+**Mental model.** Start with "if all were distinct": n! arrangements. Then divide by the factorial of each repeated group to collapse arrangements that are actually the same.
 
-    11! / (1! × 4! × 4! × 2!) = 39,916,800 / (1 × 24 × 24 × 2) = 39,916,800 / 1,152 = 34,650
+**Worked example — single pair of repeats.** LETTER has 6 letters with 2 T's (and 2 E's). Wait — both T and E repeat. Distinct arrangements:
 
-**The shortcut mental model.** Start with "if all were distinct": 11! = 39,916,800. Then divide by the factorial of each repeated group to collapse arrangements that are actually identical.
+    6! / (2! × 2!) = 720 / 4 = 180
 
-**Common cases to recognize:**
-- **Two letters repeat.** LETTER has 2 T's and 2 E's. 6! / (2! × 2!) = 720 / 4 = 180.
-- **Binary sequences.** "How many 7-character strings with exactly 3 A's and 4 B's?" = 7! / (3! × 4!) = 35 (this is C(7, 3) — choosing positions for the A's).
+Key step: identify *every* repeated group before computing. LETTER has two repeat groups (TT and EE), so divide by 2! twice.
 
-**Connection to combinations.** When you have only two kinds of objects, the multiset arrangement formula collapses into a combination. "How many arrangements of AAABBBB" = C(7, 3) = 35. Useful to internalize — it's the same calculation looked at two ways.
+**Worked example — multiple repeat groups.** COFFEE has 6 letters: C, O, F, F, E, E — two F's and two E's.
+
+    6! / (2! × 2!) = 720 / 4 = 180
+
+Same arithmetic as LETTER, for the same reason. One repeated group = divide by one factorial. Two repeated groups = divide by two factorials.
+
+**Worked example — many repeats.** MISSISSIPPI has 11 letters: 1 M, 4 I's, 4 S's, 2 P's.
+
+    11! / (1! × 4! × 4! × 2!) = 39,916,800 / (1 × 24 × 24 × 2) = 34,650
+
+Do not panic at the number of groups. List the letters, count each group, write the denominator. The arithmetic is just one division.
+
+**Connection to combinations.** When there are only two kinds of objects — such as a binary string of A's and B's — the multiset formula collapses to a combination:
+
+"How many 7-character strings with exactly 3 A's and 4 B's?" = 7! / (3! × 4!) = **35** = C(7, 3).
+
+These are the same calculation seen from two angles. Choosing positions for the A's is identical to arranging a multiset.
+
+**Trap to watch.** The error is forgetting to list every repeated group. If COFFEE only had one repeated letter, you would divide by 2! once. Two repeated letters means divide by 2! twice. Slow down and count all groups before setting up the formula.
+
+> **Self-explanation prompt.** Before the check question: why does swapping two identical letters NOT produce a new arrangement? If you can say "because the result looks exactly the same — there is no visible difference between the two F positions in COFFEE," you have the intuition that makes the formula stick.
+
+## @distributions
+
+Distribution problems ask: in how many ways can you allocate **identical** items among **distinct** recipients?
+
+This is different from arrangement problems. Arrangement problems use distinct objects (people, books, letters). Distribution problems use identical objects (candies, coins, votes) given to labeled recipients (children, boxes, candidates).
+
+### Stars and bars — no minimum constraint
+
+To distribute n identical candies among k distinct children (each child may get zero):
+
+**C(n + k − 1, k − 1)**
+
+**The mental model.** Imagine n identical stars ( ★ ★ ★ ... ) in a row, separated by k − 1 dividers ( | ). The dividers split the row into k groups — one per child. Choosing where to place the k − 1 dividers among n + k − 1 total positions is equivalent to choosing a distribution.
+
+**Worked example.** Distribute 6 identical candies among 4 distinct children. No minimum.
+
+    C(6 + 4 − 1, 4 − 1) = C(9, 3) = 84
+
+### Stars and bars — at-least-one constraint
+
+When each recipient must get at least one item: give each child one candy first (uses k candies), then distribute the remaining n − k freely.
+
+**Worked example.** Distribute 10 identical candies among 4 distinct children; each child must get at least one.
+
+- Give each child 1 candy first: uses 4. Remaining: 10 − 4 = 6.
+- Distribute 6 among 4 freely: C(6 + 4 − 1, 4 − 1) = C(9, 3) = **84**.
+
+**Worked example.** Same problem, distribute 4 among 4 with each getting at least one. Give each 1 first: 0 remaining. Only one way: each child gets exactly 1. C(0 + 4 − 1, 4 − 1) = C(3, 3) = **1**. ✓
+
+### When to use distributions vs combinations
+
+| You are choosing... | Method |
+|---|---|
+| k *distinct* people from n | Combination C(n, k) |
+| How to allocate *identical* items to *distinct* recipients | Stars and bars C(n+k−1, k−1) |
+
+The key giveaway for stars and bars: the items are interchangeable (identical candies, identical votes) and the recipients are distinguishable (named children, named boxes).
+
+**Trap to watch.** Students apply C(n, k) to distribution problems and get nonsense. Before using any formula, ask: are the items distinct or identical? If identical, stars and bars. If distinct, combinations or permutations.
+
+> **Self-explanation prompt.** Before the check question: why is distributing 6 identical items not the same as choosing 6 items? The items have no identity — there is no "first candy" or "second candy." The only thing that varies is *how many* each recipient gets, not *which* they get.
+
+## @probability-basics
+
+Probability on the GMAT reduces to counting: **P(event) = favorable outcomes / total outcomes**. Both the numerator and denominator are counting problems you already know how to solve.
+
+### The foundational setup
+
+**Favorable outcomes**: arrangements or selections that satisfy the event condition.
+
+**Total outcomes**: all possible arrangements or selections, with no constraint.
+
+**Worked example.** A bag has 4 black and 6 non-black socks. Two socks are drawn. What is the probability both are black?
+
+- Total: C(10, 2) = 45 ways to draw any 2 socks
+- Favorable: C(4, 2) = 6 ways to draw 2 black socks
+- P(both black) = 6/45 = **2/15**
+
+### The complement rule — for "at least one"
+
+**P(at least 1 of type A) = 1 − P(none of type A)**
+
+This is almost always faster than computing "exactly 1, exactly 2, exactly 3 ..." and adding.
+
+**Worked example.** 3 socks drawn from 10 (4 black, 6 others). P(at least 1 black)?
+
+- P(no black) = C(6, 3) / C(10, 3) = 20 / 120 = 1/6
+- P(at least 1 black) = 1 − 1/6 = **5/6**
+
+Counting "exactly 1 black + exactly 2 black + exactly 3 black" directly gives the same answer but takes three separate calculations. The complement is one.
+
+### With replacement vs without replacement
+
+**With replacement**: after each draw, put the item back. The draws are *independent* — the probability resets each time.
+
+    P(both red) = P(red on draw 1) × P(red on draw 2) = (6/10) × (6/10)
+
+**Without replacement**: the item stays out. Each draw changes the denominator (and possibly the numerator).
+
+    P(both red) = P(red on draw 1) × P(red on draw 2 | red on draw 1) = (6/10) × (5/9)
+
+**Trap to watch.** The problem will say "with replacement" or "without replacement" — read it carefully. With replacement gives a larger probability for "same color twice" because the favorable items reset. Without replacement depletes the pool.
+
+### Binomial probability — exactly k successes in n trials
+
+When an event has probability p on each independent trial and you want exactly k successes out of n trials:
+
+**P(exactly k) = C(n, k) × p^k × (1 − p)^(n − k)**
+
+C(n, k) counts the arrangements of k successes in n positions; p^k gives the probability of k successes; (1 − p)^(n − k) gives the probability of the remaining failures.
+
+**Worked example.** A fair coin is flipped 5 times. P(exactly 3 heads)?
+
+    C(5, 3) × (1/2)³ × (1/2)² = 10 × (1/32) = 10/32 = **5/16**
+
+**Trap to watch.** "At least 3 heads" and "exactly 3 heads" are different problems. "At least 3" = P(3) + P(4) + P(5), or use the complement: 1 − P(0) − P(1) − P(2). "Exactly 3" uses the binomial formula once.
+
+> **Self-explanation prompt.** Why does C(n, k) appear in the binomial formula? Because the k successes can occur in any of C(n, k) orderings across the n trials — and the probability is the same for each ordering. If you can explain that, the formula stops being something to memorize and starts being something to re-derive in 5 seconds.
 
 > **Self-explanation prompt.** Why does swapping two identical letters not produce a new arrangement? If you can say "because the result looks the same — the string is unchanged — so it's not a distinct outcome," you understand why we divide. The denominator doesn't subtract anything; it cancels out the overcounting that straight factorial committed.
 
@@ -300,28 +486,29 @@ When some objects are **identical**, straight factorial overcounts because swapp
 
 ## @decision
 
-Every combinatorics question on the GMAT reduces to four decisions. Run through them in order:
+Every combinatorics question on the GMAT reduces to four decisions. Run through them in order before reaching for a formula.
 
 **1. Does order matter?**
-- **Yes** → permutation (P formula, or slot-by-slot multiplication)
-- **No** → combination (C formula)
+- **Yes** → permutation (slot-by-slot multiplication or P(n, k))
+- **No** → combination C(n, k)
 
-**2. Are there repeated/identical objects?**
-- **Yes** → divide by the factorial of each repeated group
-- **No** → straight factorial or permutation/combination formula
+**2. Are there repeated or identical objects?**
+- **Identical items being distributed** → stars-and-bars C(n + k − 1, k − 1)
+- **Repeated objects being arranged** → divide by factorial of each repeated group: n! / (r₁! × r₂! × ...)
+- **All distinct** → straight factorial, P, or C
 
-**3. Is there a constraint (adjacent, forbidden pair, alternating)?**
+**3. Is there a constraint?**
 - **Adjacent required** → glue trick
-- **Not adjacent / forbidden** → complement trick (total − forbidden)
-- **Alternating** → count per pattern, multiply by number of patterns
+- **Not adjacent / forbidden** → complement (total − adjacent)
+- **Alternating** → count per starting pattern × (arrangements per pattern); remember two starting patterns
+- **Compound** → count the required constraint, subtract the sub-case where both are violated
+- **At least one of type A** → complement: total − none of type A
 
 **4. Is it circular or linear?**
-- **Circular with indistinguishable seats** → (n − 1)!
+- **Circular, indistinguishable seats** → (n − 1)!
 - **Linear or distinguishable seats** → n!
 
-That's the entire chapter's content in 8 lines. Memorize the decision tree — when you see a combinatorics question on the test, you're not guessing which formula applies, you're stepping through four yes/no questions to land on exactly one.
-
-**Common patterns to pattern-match on sight:**
+**Quick-reference pattern table:**
 
 | Problem says | You're doing | Formula |
 |---|---|---|

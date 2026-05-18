@@ -50,6 +50,11 @@ sections:
       - data-sufficiency-q11
       - data-sufficiency-q28
 
+  - id: ds-traps-beyond-the-c-trap
+    type: reading
+    title: "Three traps beyond the C-trap — and how to neutralize them"
+    check_question_ids: []
+
   - id: topic-specific-patterns
     type: reading
     title: "Topic-specific patterns — equations, inequalities, geometry, stats"
@@ -371,6 +376,50 @@ Don't forget to apply stem constraints when evaluating each statement.
 
 > **Self-explanation prompt.** Why is the C-trap so common on hard problems? If you can say "because hard DS is designed to make one statement *look* incomplete when it's actually complete — so defaulting to C feels safe but is exactly the wrong heuristic," you've internalized why DS discipline (commit to AD or BCE after Statement 1) is essential.
 
+## @ds-traps-beyond-the-c-trap
+
+The C-trap is the most famous DS failure, but three others quietly account for almost as much lost score. Each is a single-line discipline that costs nothing if you build the habit early.
+
+**Trap 1: Statement cross-contamination.**
+
+When evaluating Statement (1) alone, the only information you have is the question stem plus Statement (1). Statement (2) does not exist. Students who've already glanced at Statement (2) often unconsciously import facts from it when testing Statement (1) — which is the very behavior that leads to the C-trap going the other direction (calling something sufficient that isn't).
+
+*Example.* "What is the value of x? (1) x is a positive integer. (2) x² = 25."
+
+A student who's already read (2) sees Statement (1) and thinks "x is a positive integer, and from (2) we know x² = 25, so x = 5." That uses both statements. Statement (1) **alone** says only "x is a positive integer" — x could be 1, 2, 3, 17, anything. **Insufficient.**
+
+The cure: **mentally reset to "stem only" before each statement test.** Some students literally cover Statement (2) with a finger when working on Statement (1). The discipline matters more than the technique.
+
+**Trap 2: Figure-not-to-scale on geometry DS.**
+
+GMAT DS geometry figures are *illustrative*, not metric. The figure may show what looks like a right triangle, equal sides, parallel lines, or a square — but unless the problem text says so, none of it is given. Inferring properties from how the figure looks is a guaranteed wrong answer on hard geometry DS.
+
+*Example.* "In triangle ABC, what is the length of BC?" with a figure that looks like a right triangle at vertex A. (1) AB = 6, AC = 8.
+
+A student who trusts the figure invokes Pythagoras: 6² + 8² = 36 + 64 = 100, so BC = 10. **Sufficient — but wrong.** Without the problem stating that angle A is 90°, BC could be anything between |8 − 6| = 2 and 6 + 8 = 14 (the triangle inequality). The figure looked right-angled, but no statement actually said so. **Insufficient.**
+
+The cure: **never use a property unless the problem text gives it to you in writing.** A figure is a visual aid, not a source of constraints. Build the habit of asking "is that given in the stem or only suggested by the picture?" before using any property.
+
+**Trap 3: The "I solved it, so it's sufficient" reflex on value DS.**
+
+When a statement lets you compute a value, students often check "did I get a number?" rather than "is the number unique?" Value DS requires uniqueness — one and only one valid value of the target. A statement that yields *a* value isn't enough; it has to yield *the* value.
+
+*Example.* "What is n? Statement: n² − 5n + 6 = 0."
+
+A student factors: (n − 2)(n − 3) = 0, so n = 2 or n = 3. They've found values — and many will call this sufficient because "I solved it." But there are two values; this fails the uniqueness test. **Insufficient.**
+
+The cure: **after every value-DS statement test, ask explicitly "is this the *only* value?"** If you used a quadratic, did you check both roots? If you used absolute value or a square root, did you consider the negative branch? Two reasonable values = insufficient.
+
+**The unified discipline behind all three.**
+
+Each of these traps comes from a different cognitive shortcut: importing information you shouldn't, trusting visual cues over text, or stopping at "an answer" instead of checking for uniqueness. The fix in each case is the same shape: **explicitly re-state the standard before committing to an answer.**
+
+- "Statement (1) alone" → reset to stem-only context.
+- Geometry figure → only properties given in writing are usable.
+- Value DS sufficient → exactly one value, not just *a* value.
+
+> **Self-explanation prompt.** Why is each of these three traps fundamentally a *discipline* failure rather than a *knowledge* failure? If you can say "because the algebra and geometry are usually right; what's missing is the meta-check that the rules of DS (stem-only context, text-not-figure, uniqueness for value) are being honored at each step," you've understood the actual error mode on hard DS. The knowledge isn't the bottleneck — the rule-following is.
+
 ## @topic-specific-patterns
 
 Each math topic has DS-specific patterns that come up repeatedly. Learning these collapses many hard DS questions to 30-second recognition problems.
@@ -453,6 +502,9 @@ Data Sufficiency is the most mechanical question type on the GMAT once you inter
 | "Two equations" where one is a multiple of the other | Same info, not sufficient together |
 | Answer choice C when A was actually sufficient alone | C-trap — commit before reading (2) |
 | Yes/no "sufficient" requires a yes answer | No — a definite "no" is also sufficient |
+| Using Statement (2) info when testing (1) alone | Statement cross-contamination — reset to stem-only before each test |
+| Inferring "this looks like a right triangle" from a figure | Figure-not-to-scale — only text-given properties are usable |
+| Solving a quadratic and calling it sufficient | "I solved it" reflex — two roots fail the uniqueness test on value DS |
 
 **Time-management targets.**
 
