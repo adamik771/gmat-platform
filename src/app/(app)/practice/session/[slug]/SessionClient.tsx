@@ -28,6 +28,7 @@ import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
 } from "@/lib/keyboard"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 
 export interface SessionQuestion {
   id: string
@@ -1342,6 +1343,14 @@ export default function SessionClient({
         ? Math.round(incorrectPairs.reduce((s, p) => s + p.state.elapsedMs, 0) / incorrectPairs.length)
         : null
 
+    // Subtopic weakness signal — groups wrong answers by subtopic to surface the dominant gap
+    const wrongBySubtopic = new Map<string, number>()
+    incorrectPairs.forEach(({ q }) => {
+      wrongBySubtopic.set(q.subtopic, (wrongBySubtopic.get(q.subtopic) ?? 0) + 1)
+    })
+    const topWeakSubtopics = Array.from(wrongBySubtopic.entries()).sort((a, b) => b[1] - a[1])
+    const chapterSlug = TOPIC_TO_CHAPTER[topic] ?? null
+
     // One-sentence performance read — specific when the data supports it
     let headline = "Session complete"
     if (answeredCount > 0) {
@@ -1496,6 +1505,51 @@ export default function SessionClient({
           )
         })()}
 
+        {incorrectPairs.length >= 2 && topWeakSubtopics.length > 0 && (
+          <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
+            <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-4">
+              Focus area
+            </p>
+            <div className="space-y-3">
+              {topWeakSubtopics.slice(0, 3).map(([subtopic, wrongCount]) => {
+                const pct = Math.round((wrongCount / incorrectPairs.length) * 100)
+                return (
+                  <div key={subtopic} className="space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-[#F0F0F0]">{subtopic}</span>
+                      <span className="text-xs tabular-nums" style={{ color: "#888888" }}>
+                        {wrongCount} wrong
+                      </span>
+                    </div>
+                    <div className="h-1 rounded-full bg-white/[0.06] overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-500"
+                        style={{ width: `${pct}%`, backgroundColor: "rgba(255,107,107,0.65)" }}
+                      />
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+            {chapterSlug && (
+              <div className="mt-4 pt-4 border-t border-white/[0.05] flex items-center justify-between gap-4">
+                <p className="text-xs text-[#888888] leading-relaxed">
+                  Address these gaps in the chapter before retaking.
+                </p>
+                <Link
+                  href={`/chapters/${chapterSlug}`}
+                  className="flex-shrink-0 inline-flex items-center gap-1.5 text-xs font-semibold transition-opacity hover:opacity-80"
+                  style={{ color: "#C9A84C" }}
+                >
+                  <BookOpen className="w-3.5 h-3.5" />
+                  {topic}
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            )}
+          </div>
+        )}
+
         {savedSessionId && answeredCount - correctCount > 0 && (
           <Link
             href={`/error-log?session_id=${savedSessionId}`}
@@ -1532,9 +1586,16 @@ export default function SessionClient({
 
         {/* Review list — wrong answers carry a faint red tint + difficulty label */}
         <div>
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
-            Review
-          </h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888]">
+              Review
+            </h2>
+            {incorrectPairs.length > 0 && (
+              <span className="text-xs tabular-nums" style={{ color: "rgba(255,107,107,0.7)" }}>
+                {incorrectPairs.length} wrong
+              </span>
+            )}
+          </div>
           <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
             {questions.map((q, i) => {
               const state = states[i]
@@ -1610,7 +1671,7 @@ export default function SessionClient({
             {/* PRIMARY — drives the recommended path */}
             {accuracy < 60 && (
               <Link
-                href="/chapters"
+                href={chapterSlug ? `/chapters/${chapterSlug}` : "/chapters"}
                 className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
                 style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
               >
