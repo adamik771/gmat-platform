@@ -28,6 +28,7 @@ import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
 } from "@/lib/keyboard"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 
 export interface SessionQuestion {
   id: string
@@ -1383,6 +1384,31 @@ export default function SessionClient({
         ? "Accuracy is building. One more focused session on this topic before moving on."
         : "This topic is solid. Investing time in a weaker area is the highest-leverage move now."
 
+    // Subtopic breakdown — groups wrong answers by subtopic to surface *where*
+    // accuracy broke down, not just *that* it did. Only meaningful when
+    // mistakes span 2+ subtopics and there are at least 2 wrong answers.
+    const subtopicMap: Record<string, { total: number; wrong: number }> = {}
+    for (const { q, correct } of answeredPairs) {
+      if (!subtopicMap[q.subtopic]) subtopicMap[q.subtopic] = { total: 0, wrong: 0 }
+      subtopicMap[q.subtopic].total++
+      if (!correct) subtopicMap[q.subtopic].wrong++
+    }
+    const subtopicRows = Object.entries(subtopicMap)
+      .map(([subtopic, v]) => ({
+        subtopic,
+        total: v.total,
+        wrong: v.wrong,
+        correct: v.total - v.wrong,
+        pct: Math.round(((v.total - v.wrong) / v.total) * 100),
+      }))
+      .filter((r) => r.wrong > 0)
+      .sort((a, b) => b.wrong - a.wrong || a.pct - b.pct)
+    const distinctSubtopics = Object.keys(subtopicMap).length
+    const showSubtopicBreakdown = incorrectPairs.length >= 2 && distinctSubtopics >= 2
+    // Chapter link for the session topic (when a chapter exists and accuracy is low)
+    const chapterSlug = TOPIC_TO_CHAPTER[topic] ?? null
+    const showChapterLink = chapterSlug !== null && accuracy < 78
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1478,6 +1504,77 @@ export default function SessionClient({
             </div>
           )}
         </div>
+
+        {showSubtopicBreakdown && (
+          <div
+            className="p-5 rounded-xl border border-white/[0.08]"
+            style={{ backgroundColor: "#111111" }}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                Accuracy by subtopic
+              </p>
+              {showChapterLink && (
+                <Link
+                  href={`/chapters/${chapterSlug}`}
+                  className="text-[11px] transition-colors hover:opacity-80"
+                  style={{ color: "#C9A84C" }}
+                >
+                  Review chapter
+                </Link>
+              )}
+            </div>
+            <div className="space-y-3">
+              {subtopicRows.map((row, i) => {
+                const barColor =
+                  row.pct < 50 ? "#FF6B6B" : row.pct < 75 ? "#C9A84C" : "#3ECF8E"
+                const isWorst = i === 0
+                return (
+                  <div key={row.subtopic}>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span
+                        className="text-xs truncate pr-4"
+                        style={{ color: isWorst ? "#F0F0F0" : "#888888" }}
+                      >
+                        {row.subtopic}
+                        {isWorst && subtopicRows.length > 1 && (
+                          <span
+                            className="ml-2 text-[10px] uppercase tracking-widest"
+                            style={{ color: "#FF6B6B" }}
+                          >
+                            weakest
+                          </span>
+                        )}
+                      </span>
+                      <span
+                        className="text-[11px] tabular-nums flex-shrink-0"
+                        style={{ color: "#555555" }}
+                      >
+                        {row.correct}/{row.total} · {row.pct}%
+                      </span>
+                    </div>
+                    <div className="h-1 rounded-full bg-white/[0.06] overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-500"
+                        style={{ width: `${row.pct}%`, backgroundColor: barColor }}
+                      />
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+            {subtopicRows[0] && subtopicRows[0].wrong >= 2 && (
+              <p
+                className="mt-4 pt-3 border-t border-white/[0.05] text-xs leading-relaxed"
+                style={{ color: "#888888" }}
+              >
+                {subtopicRows[0].wrong} of your {incorrectPairs.length} mistakes are in{" "}
+                <span style={{ color: "#C0C0C0" }}>{subtopicRows[0].subtopic}</span> — that&apos;s
+                the concept to isolate next.
+              </p>
+            )}
+          </div>
+        )}
 
         {(() => {
           const insight = computeInsight(questions, states, section)
