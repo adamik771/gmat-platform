@@ -580,7 +580,7 @@ export default async function StudyPlanPage() {
                 className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-1"
                 style={{ color: "#C9A84C" }}
               >
-                Plan status
+                Setup
               </p>
               {[
                 {

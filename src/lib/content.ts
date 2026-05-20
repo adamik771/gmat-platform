@@ -397,7 +397,11 @@ function parseQuestionFile(filePath: string): ParsedQuestion[] {
 
 // ---------- Public loaders ----------
 
+let _questionCache: ParsedQuestion[] | null = null
+
 export function getAllQuestions(): ParsedQuestion[] {
+  if (_questionCache) return _questionCache
+
   const questionsDir = path.join(CONTENT_ROOT, "questions")
   if (!fs.existsSync(questionsDir)) return []
 
@@ -410,6 +414,7 @@ export function getAllQuestions(): ParsedQuestion[] {
       results.push(...parseQuestionFile(path.join(sectionPath, file)))
     }
   }
+  _questionCache = results
   return results
 }
 
