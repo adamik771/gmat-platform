@@ -24,6 +24,7 @@ import PacingBadge from "@/components/shared/PacingBadge"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
 import { levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
@@ -1383,6 +1384,10 @@ export default function SessionClient({
         ? "Accuracy is building. One more focused session on this topic before moving on."
         : "This topic is solid. Investing time in a weaker area is the highest-leverage move now."
 
+    // Direct link to the chapter for this topic, if one exists.
+    const chapterSlug = TOPIC_TO_CHAPTER[topic]
+    const chapterUrl = chapterSlug ? `/chapters/${chapterSlug}` : "/chapters"
+
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1610,11 +1615,11 @@ export default function SessionClient({
             {/* PRIMARY — drives the recommended path */}
             {accuracy < 60 && (
               <Link
-                href="/chapters"
+                href={chapterUrl}
                 className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
                 style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
               >
-                Review the chapter
+                {chapterSlug ? "Go to this chapter" : "Review a chapter"}
               </Link>
             )}
             {accuracy >= 60 && accuracy < 78 && (
