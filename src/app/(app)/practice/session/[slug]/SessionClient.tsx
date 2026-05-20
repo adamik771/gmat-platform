@@ -28,6 +28,7 @@ import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
 } from "@/lib/keyboard"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 
 export interface SessionQuestion {
   id: string
@@ -1342,6 +1343,20 @@ export default function SessionClient({
         ? Math.round(incorrectPairs.reduce((s, p) => s + p.state.elapsedMs, 0) / incorrectPairs.length)
         : null
 
+    // Find the most-repeated subtopic among wrong answers — surfaces a focused gap
+    const subtopicWrongCounts = incorrectPairs.reduce<Record<string, number>>((acc, p) => {
+      const key = p.q.subtopic
+      acc[key] = (acc[key] || 0) + 1
+      return acc
+    }, {})
+    const dominantSubtopic: [string, number] | null =
+      Object.entries(subtopicWrongCounts)
+        .filter(([, n]) => n >= 2)
+        .sort(([, a], [, b]) => b - a)[0] ?? null
+
+    // Specific chapter slug for this topic — used in the "Review the chapter" CTA
+    const chapterSlug = TOPIC_TO_CHAPTER[topic] ?? null
+
     // One-sentence performance read — specific when the data supports it
     let headline = "Session complete"
     if (answeredCount > 0) {
@@ -1496,6 +1511,20 @@ export default function SessionClient({
           )
         })()}
 
+        {dominantSubtopic && (
+          <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
+            <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">Pattern</p>
+            <p className="text-sm text-[#C0C0C0] leading-relaxed">
+              {dominantSubtopic[1]} of your wrong answers were on{" "}
+              <span className="text-[#F0F0F0] font-medium">{dominantSubtopic[0]}</span>.
+              {" "}That&apos;s a focused gap — not a general topic weakness.
+            </p>
+            <p className="text-xs text-[#888888] mt-2 leading-relaxed">
+              Isolate this sub-skill. One targeted session on it is worth more than a broad retake.
+            </p>
+          </div>
+        )}
+
         {savedSessionId && answeredCount - correctCount > 0 && (
           <Link
             href={`/error-log?session_id=${savedSessionId}`}
@@ -1530,70 +1559,83 @@ export default function SessionClient({
           </Link>
         )}
 
-        {/* Review list — wrong answers carry a faint red tint + difficulty label */}
+        {/* Review list — wrong answers sorted first, then unanswered, then correct */}
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
             Review
           </h2>
           <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
-            {questions.map((q, i) => {
-              const state = states[i]
-              const isCorrect = isQuestionCorrect(q, state)
-              const isWrong = state.submitted && !isCorrect
-              return (
-                <button
-                  key={q.id}
-                  onClick={() => {
-                    goTo(i)
-                    setShowResults(false)
-                  }}
-                  className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
-                    i < questions.length - 1 ? "border-b border-white/[0.05]" : ""
-                  }`}
-                  style={isWrong ? { backgroundColor: "rgba(255,68,68,0.025)" } : undefined}
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div
-                      className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{
-                        backgroundColor: state.submitted
-                          ? isCorrect
-                            ? "rgba(62,207,142,0.1)"
-                            : "rgba(255,68,68,0.1)"
-                          : "rgba(255,255,255,0.04)",
-                      }}
-                    >
-                      {state.submitted ? (
-                        isCorrect ? (
-                          <Check className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
-                        ) : (
-                          <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
-                        )
-                      ) : (
-                        <span className="text-[10px] text-[#555555]">—</span>
-                      )}
-                    </div>
-                    <div className="min-w-0">
-                      <p
-                        className="text-xs"
-                        style={{ color: isWrong ? "rgba(255,107,107,0.75)" : "#555555" }}
-                      >
-                        Q{i + 1} · {q.subtopic} · {q.difficulty}
-                      </p>
-                      <p className="text-sm text-[#F0F0F0] truncate">
-                        {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
-                      </p>
-                    </div>
-                  </div>
-                  <span
-                    className="text-xs flex-shrink-0 ml-3"
-                    style={{ color: isWrong ? "rgba(255,107,107,0.6)" : "#888888" }}
+            {(() => {
+              const reviewItems = questions
+                .map((q, i) => ({ q, state: states[i], originalIdx: i, correct: isQuestionCorrect(q, states[i]) }))
+                .sort((a, b) => {
+                  const aWrong = a.state.submitted && !a.correct
+                  const bWrong = b.state.submitted && !b.correct
+                  if (aWrong && !bWrong) return -1
+                  if (bWrong && !aWrong) return 1
+                  const aSkipped = !a.state.submitted
+                  const bSkipped = !b.state.submitted
+                  if (aSkipped && !bSkipped) return -1
+                  if (bSkipped && !aSkipped) return 1
+                  return a.originalIdx - b.originalIdx
+                })
+              return reviewItems.map(({ q, state, originalIdx, correct }, listIdx) => {
+                const isWrong = state.submitted && !correct
+                return (
+                  <button
+                    key={q.id}
+                    onClick={() => {
+                      goTo(originalIdx)
+                      setShowResults(false)
+                    }}
+                    className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
+                      listIdx < reviewItems.length - 1 ? "border-b border-white/[0.05]" : ""
+                    }`}
+                    style={isWrong ? { backgroundColor: "rgba(255,68,68,0.025)" } : undefined}
                   >
-                    {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
-                  </span>
-                </button>
-              )
-            })}
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div
+                        className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                        style={{
+                          backgroundColor: state.submitted
+                            ? correct
+                              ? "rgba(62,207,142,0.1)"
+                              : "rgba(255,68,68,0.1)"
+                            : "rgba(255,255,255,0.04)",
+                        }}
+                      >
+                        {state.submitted ? (
+                          correct ? (
+                            <Check className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
+                          ) : (
+                            <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
+                          )
+                        ) : (
+                          <span className="text-[10px] text-[#555555]">—</span>
+                        )}
+                      </div>
+                      <div className="min-w-0">
+                        <p
+                          className="text-xs"
+                          style={{ color: isWrong ? "rgba(255,107,107,0.75)" : "#555555" }}
+                        >
+                          Q{originalIdx + 1} · {q.subtopic} · {q.difficulty}
+                        </p>
+                        <p className="text-sm text-[#F0F0F0] truncate">
+                          {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
+                        </p>
+                      </div>
+                    </div>
+                    <span
+                      className="text-xs flex-shrink-0 ml-3"
+                      style={{ color: isWrong ? "rgba(255,107,107,0.6)" : "#888888" }}
+                    >
+                      {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
+                    </span>
+                  </button>
+                )
+              })
+            })()}
           </div>
         </div>
 
@@ -1610,7 +1652,7 @@ export default function SessionClient({
             {/* PRIMARY — drives the recommended path */}
             {accuracy < 60 && (
               <Link
-                href="/chapters"
+                href={chapterSlug ? `/chapters/${chapterSlug}` : "/chapters"}
                 className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
                 style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
               >
