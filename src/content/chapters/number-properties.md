@@ -302,27 +302,51 @@ The GMAT frequently asks "must be" or "could be" questions about expressions bui
 | 8 | 8, 4, 2, 6 | 4 |
 | 9 | 9, 1 | 2 |
 
-**Example.** Units digit of `3²⁴`? Period 4 cycle is (3, 9, 7, 1). `24 mod 4 = 0`, which maps to the 4th entry (or equivalently, position 4). Units digit is 1.
+**How to find the cycle position.** Compute `exponent mod period`. The result gives the position in the cycle — except when the result is 0, which maps to the **last** position (not position zero; there is no zeroth entry).
+
+**Example.** Units digit of `3²⁴`? Period 4 cycle is (3, 9, 7, 1). `24 mod 4 = 0` → last position (4) → units digit **1**. Verify: 3⁴ = 81, 3⁸ = 6561, 3¹² = 531441 — every multiple of 4 brings you back to 1. ✓
+
+**Example.** Units digit of `7⁴³`? Cycle (7, 9, 3, 1), period 4. `43 mod 4 = 3` → third entry → units digit **3**.
 
 **Example.** Units digit of `2⁵⁰ + 7³⁰`?
 
-- `2⁵⁰`: cycle (2, 4, 8, 6), period 4. `50 mod 4 = 2`. Second entry: 4.
-- `7³⁰`: cycle (7, 9, 3, 1), period 4. `30 mod 4 = 2`. Second entry: 9.
-- Sum of units digits: `4 + 9 = 13`. Units digit of the sum: 3. Wait — recompute. `4 + 9 = 13`, so the units digit is 3.
+- `2⁵⁰`: cycle (2, 4, 8, 6), period 4. `50 mod 4 = 2` → second entry → **4**.
+- `7³⁰`: cycle (7, 9, 3, 1), period 4. `30 mod 4 = 2` → second entry → **9**.
+- Sum's units digit: `4 + 9 = 13` → **3**.
 
-(If the answer expects 0, I must have miscounted. Recomputing: the cycle for 2 is (2, 4, 8, 6), indexed by position mod 4 where position 1 ↔ 2¹ = 2. `50 mod 4`: `48 = 12 × 4`, so `50 mod 4 = 2`. Position 2 → units digit 4. For 7: cycle (7, 9, 3, 1), `30 mod 4 = 2`, position 2 → 9. So `4 + 9 = 13`, units digit 3. If your source answer says 0, re-check the exponents in the problem.)
+**Consecutive-integer identities.** The sum of n consecutive integers equals n times the middle term (when n is odd) — equivalently, `n × (first + last) / 2`.
 
-**Consecutive-integer identities.** The sum of five consecutive integers is 5 times the middle integer. More generally, the sum of any odd count of consecutive integers is `count × middle`. Sum of 5 consecutive integers = 85 → middle = 17 → largest = 19.
+**Example.** Sum of 5 consecutive integers is 85. Find the largest.
 
-**Sign and parity of sums.** If `xyz < 0`, then an odd number of the three integers are negative (1 or 3). If *additionally* `x + y + z > 0`, all three negative is impossible (sum would be negative), so exactly one is negative.
+Middle × 5 = 85 → middle = 17 → largest = 17 + 2 = **19**. No variable needed.
 
-**Expressing integers to force structure.** Every integer is `2k` (even) or `2k + 1` (odd). Every integer is `3k`, `3k + 1`, or `3k + 2`. Use these forms to prove divisibility claims.
+**The product rule for consecutive integers.** The product of n consecutive integers is always divisible by n!. This appears in almost every "must be divisible by" question at the 685+ tier.
 
-**Example.** Prove `n² − n` is always even. `n² − n = n(n − 1)`, product of two consecutive integers, one of which is even. Therefore always even. (Alternative: if `n = 2k`, `n² − n = 4k² − 2k = 2(2k² − k)`; if `n = 2k+1`, `n² − n = (2k+1)(2k) = 2k(2k+1)`. Either way, divisible by 2.)
+**Example.** For all positive integers n, must n(n+1)(n+2)(n+3) be divisible by 8?
 
-**Trap to watch.** "Must be divisible by X" questions require the property for *every* integer, not just most. If one counter-example exists, the choice fails. Always test small values (n = 1, 2, 3) before picking an answer.
+Four consecutive integers → divisible by 4! = 24. Since 24 = 3 × 8, the product is always divisible by 8. ✓
 
-> **Self-explanation prompt.** Cover the units-digit cycle table. From memory, write out the cycles for bases ending in 2, 3, 7, and 8 — each is period 4. (Answers: 2 → 2,4,8,6 / 3 → 3,9,7,1 / 7 → 7,9,3,1 / 8 → 8,4,2,6.) Now use them: units digit of `8¹⁰⁰⁰ + 3⁵⁰⁰`? (Both exponents are `≡ 0 mod 4`, so both land on the 4th cycle position. 8 → 6, 3 → 1. Sum's units digit: 7.) If you couldn't reproduce the cycles, re-read the table before the problem sets — these turn 30-second questions into one-second questions on the 685+ tier.
+**Sign and parity of products.** A product is negative if and only if it has an odd number of negative factors. If `xyz < 0`, then exactly 1 or 3 of {x, y, z} are negative.
+
+**Example (Data Sufficiency).** If `xyz < 0`, is `xy` positive?
+
+Statement (1): `z < 0`. With z contributing one negative factor, x and y together must contribute an even count of negatives (so the total stays odd). Even count means both positive or both negative — either way, `xy > 0`. Statement (1) is sufficient.
+
+Statement (2): `x > 0`. Then y and z produce the odd-negative count. y and z could each be negative (making xy negative) or just one of them negative (making xy positive). Not sufficient.
+
+Answer: **A**. The key move was using the odd-negative-count rule to constrain x and y.
+
+**The "must be / could be" discipline.** For "must be" questions, the property must hold for every valid integer — one counter-example kills the choice. For "could be" questions, you only need one case where it holds. Reflex: test n = 0, 1, 2, −1 before trusting intuition.
+
+**Example.** Must `n² − n` be even for all integers n?
+
+Factor: `n² − n = n(n − 1)`, the product of two consecutive integers. Exactly one of them is even, so the product is always even. ✓
+
+Alternative: if n = 2k, then `n² − n = 2k(2k−1)`, which contains 2k. If n = 2k+1, then `n² − n = (2k+1)(2k)`, which contains 2k. Either case gives a factor of 2.
+
+**Trap to watch.** "Must be divisible by X" fails if any single integer breaks it. Test n = 1 or n = 2 before claiming "must be" — the GMAT will have placed a counter-example among the easy cases.
+
+> **Self-explanation prompt.** Cover the units-digit cycle table. From memory, write out the cycles for bases ending in 2, 3, 7, and 8 — each is period 4. (Answers: 2 → 2,4,8,6 / 3 → 3,9,7,1 / 7 → 7,9,3,1 / 8 → 8,4,2,6.) Now apply them: units digit of `8¹⁰⁰⁰ + 3⁵⁰⁰`? (8¹⁰⁰⁰: 1000 mod 4 = 0 → last position → 6. 3⁵⁰⁰: 500 mod 4 = 0 → last position → 1. Sum's units digit: 6 + 1 = **7**.) If you couldn't reproduce the cycles, re-read the table before the problem sets — these turn 30-second questions into one-second questions on the 685+ tier.
 
 ## @summary
 
