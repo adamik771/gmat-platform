@@ -75,6 +75,14 @@ export default async function PracticeSessionPage({
     attempts: 0,
     updatedAt: 0,
   }
+  // Previous session on this same topic — used for the results-screen
+  // delta comparison ("↑ +14% vs. last session"). Fetched before this
+  // session starts so we always capture the genuinely prior attempt,
+  // not the one being saved client-side when results appear.
+  // undefined = data unavailable (unauthenticated / DB error)
+  // null      = authenticated user, confirmed no prior sessions on this slug
+  // object    = prior session exists
+  let previousSession: { accuracy: number; sessionCount: number } | null | undefined = undefined
   try {
     const supabase = await createSupabaseServer()
     const {
@@ -83,9 +91,29 @@ export default async function PracticeSessionPage({
     if (user) {
       const levels = getTopicSkillLevels(user.user_metadata)
       skill = getLevelForSlug(levels, slug)
+
+      // Most recent completed session + total count for this slug.
+      const { data: sessions } = await supabase
+        .from("practice_sessions")
+        .select("accuracy")
+        .eq("user_id", user.id)
+        .eq("slug", slug)
+        .order("created_at", { ascending: false })
+        .limit(20)
+
+      if (sessions && sessions.length > 0) {
+        previousSession = {
+          accuracy: sessions[0].accuracy,
+          sessionCount: sessions.length,
+        }
+      } else {
+        // Confirmed first session on this topic for this user.
+        previousSession = null
+      }
     }
   } catch {
     // Anonymous or supabase down — keep default level / file order.
+    // previousSession stays undefined — no comparison UI shown.
   }
   const adaptive = pickAdaptiveOrder(playable, skill)
 
@@ -97,6 +125,7 @@ export default async function PracticeSessionPage({
       questions={adaptive}
       skillLevel={skill.level}
       skillAttempts={skill.attempts}
+      previousSession={previousSession}
     />
   )
 }

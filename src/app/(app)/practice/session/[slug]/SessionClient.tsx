@@ -85,6 +85,10 @@ interface SessionClientProps {
    *  questions array is already adaptively ordered by the server. */
   skillLevel?: number
   skillAttempts?: number
+  /** Most recent completed session on this same slug, fetched server-side
+   *  before this attempt begins. Used to render a progress delta on the
+   *  results screen. Null when no prior session exists. */
+  previousSession?: { accuracy: number; sessionCount: number } | null
 }
 
 function formatDuration(ms: number): string {
@@ -991,6 +995,7 @@ export default function SessionClient({
   questions,
   skillLevel,
   skillAttempts,
+  previousSession,
 }: SessionClientProps) {
   const router = useRouter()
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -1409,12 +1414,56 @@ export default function SessionClient({
             backgroundColor: "rgba(201,168,76,0.04)",
           }}
         >
+          {/* Session trajectory — shown when prior data exists */}
+          {previousSession && answeredCount > 0 && (() => {
+            const delta = accuracy - previousSession.accuracy
+            const absDelta = Math.abs(delta)
+            if (absDelta < 2) return null
+            const up = delta > 0
+            return (
+              <div className="mb-5 pb-5 border-b border-white/[0.06]">
+                <div className="flex items-center justify-between flex-wrap gap-3">
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full"
+                      style={{
+                        backgroundColor: up ? "rgba(62,207,142,0.1)" : "rgba(255,107,107,0.08)",
+                        color: up ? "#3ECF8E" : "rgba(255,107,107,0.85)",
+                        border: `1px solid ${up ? "rgba(62,207,142,0.2)" : "rgba(255,68,68,0.18)"}`,
+                      }}
+                    >
+                      {up ? "↑" : "↓"} {up ? "+" : ""}{delta}% vs. last session
+                    </span>
+                    {previousSession.sessionCount > 1 && (
+                      <span className="text-[11px] text-[#555555]">
+                        ({previousSession.sessionCount} sessions on this topic)
+                      </span>
+                    )}
+                  </div>
+                  {absDelta >= 15 && up && (
+                    <p className="text-xs text-[#3ECF8E] opacity-80">
+                      Significant improvement — the work is compounding.
+                    </p>
+                  )}
+                  {absDelta >= 15 && !up && (
+                    <p className="text-xs text-[#888888]">
+                      Harder session — review the explanations before retrying.
+                    </p>
+                  )}
+                </div>
+              </div>
+            )
+          })()}
+
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div>
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Accuracy</p>
               <p className="text-3xl font-bold mt-2" style={{ color: "#C9A84C" }}>
                 {accuracy}%
               </p>
+              {previousSession === null && answeredCount > 0 && (
+                <p className="text-[10px] text-[#555555] mt-1.5">First session — baseline set.</p>
+              )}
             </div>
             <div>
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Correct</p>
