@@ -587,7 +587,7 @@ Last week we processed 12,000 total orders.
 | Medium | $18      | $26     |
 | Large  | $28      | $36     |
 
-### Q1
+### Q16
 **difficulty:** Medium
 **type:** Multi-Source Reasoning
 **topic:** Cross-Tab Inference
@@ -613,7 +613,7 @@ Based on the information provided across all three tabs, which of the following 
 
 ---
 
-### Q2
+### Q17
 **difficulty:** Medium
 **type:** Multi-Source Reasoning
 **topic:** Volume Calculation
@@ -639,7 +639,7 @@ How many orders did the warehouse process from the North region last week?
 
 ---
 
-### Q3
+### Q18
 **difficulty:** Hard
 **type:** Multi-Source Reasoning
 **topic:** Weighted Average Pricing
@@ -697,7 +697,7 @@ Trailing four-quarter operating margin for each company:
 - MorningShade: 18.0%
 - NorthCrest: 10.0%
 
-### Q1
+### Q19
 **difficulty:** Medium
 **type:** Multi-Source Reasoning
 **topic:** Cross-Tab Inference
@@ -723,7 +723,7 @@ Based on the information provided across all three tabs, which of the following 
 
 ---
 
-### Q2
+### Q20
 **difficulty:** Medium
 **type:** Multi-Source Reasoning
 **topic:** Revenue Increase Comparison
@@ -749,7 +749,7 @@ Which company is projected to have the largest year-over-year increase in Q1 rev
 
 ---
 
-### Q3
+### Q21
 **difficulty:** Hard
 **type:** Multi-Source Reasoning
 **topic:** Scenario Forecasting
@@ -803,7 +803,7 @@ Key result: 182 of 300 patients (61%) in the PalliMed-X group met the primary en
 | Nausea                             | 48 (16%)   | 27 (9%)   |
 | Headache                           | 39 (13%)   | 33 (11%)  |
 
-### Q1
+### Q22
 **difficulty:** Medium
 **type:** Multi-Source Reasoning
 **topic:** Cross-Tab Inference
@@ -829,7 +829,7 @@ Based on the data presented in the three tabs, which of the following must be tr
 
 ---
 
-### Q2
+### Q23
 **difficulty:** Medium
 **type:** Multi-Source Reasoning
 **topic:** Rate Comparison
@@ -855,7 +855,7 @@ Approximately what was the percentage-point difference between the two groups in
 
 ---
 
-### Q3
+### Q24
 **difficulty:** Hard
 **type:** Multi-Source Reasoning
 **topic:** Net Benefit Projection
@@ -905,7 +905,7 @@ The Federal Aviation Administration (FAA) has proposed new fuel-efficiency rules
 - The SA-500 is not yet available for commercial sale.
 - Retrofitting an existing SA-200 to meet the proposed standard is estimated to cost approximately $1.2 million per aircraft.
 
-### Q1
+### Q25
 **difficulty:** Medium
 **type:** Multi-Source Reasoning
 **topic:** Cross-Tab — Regulatory Fit
@@ -931,7 +931,7 @@ Based on the three tabs, which of Stellar's aircraft models, if newly sold in th
 
 ---
 
-### Q2
+### Q26
 **difficulty:** Medium
 **type:** Multi-Source Reasoning
 **topic:** Volume Share
@@ -957,7 +957,7 @@ Based on current US fleet-sales mix in Tab 3, approximately what percentage of S
 
 ---
 
-### Q3
+### Q27
 **difficulty:** Hard
 **type:** Multi-Source Reasoning
 **topic:** Cost Projection
@@ -1006,7 +1006,7 @@ Orion uses the following simple performance-attribution framework:
 - Excess return equals Orion's total return minus the benchmark's total return.
 - Each asset class's *contribution* to excess return equals (weight) × (Orion's return in that class − Benchmark's return in that class).
 
-### Q1
+### Q28
 **difficulty:** Medium
 **type:** Multi-Source Reasoning
 **topic:** Cross-Tab Must Be True
@@ -1032,7 +1032,7 @@ Based on the three tabs, which of the following must be true?
 
 ---
 
-### Q2
+### Q29
 **difficulty:** Hard
 **type:** Multi-Source Reasoning
 **topic:** Single-Asset Contribution
@@ -1058,7 +1058,7 @@ What was Alternatives' approximate contribution to Orion's excess return in 2024
 
 ---
 
-### Q3
+### Q30
 **difficulty:** Hard
 **type:** Multi-Source Reasoning
 **topic:** Verifying Total Excess Return
@@ -1109,7 +1109,7 @@ For each variant:
 
 The team will rank variants by efficiency for the formal recommendation.
 
-### Q1
+### Q31
 **difficulty:** Medium
 **type:** Multi-Source Reasoning
 **topic:** Reading the Table — Highest Avg Revenue
@@ -1124,7 +1124,7 @@ Which variant has the highest Average Revenue per converted Customer?
 
 **answer:** C
 **fastest_path:** Tab 2 direct: A $400, B $250, C $500. C wins.
-**explanation:** Direct table read. C at $500. Answer C.
+**explanation:** Tab 2 gives per-customer revenue by variant: A = $400, B = $250, C = $500. C wins outright — no arithmetic needed, just read the right row off the right tab.
 **mistake_a:** $400 — second-highest.
 **mistake_b:** $250 — lowest.
 **mistake_d:** A and C aren't tied (400 vs 500).
@@ -1135,7 +1135,7 @@ Which variant has the highest Average Revenue per converted Customer?
 
 ---
 
-### Q2
+### Q32
 **difficulty:** Medium
 **type:** Multi-Source Reasoning
 **topic:** Conversion-Rate Comparison
@@ -1161,7 +1161,7 @@ Which variant has the highest conversion rate?
 
 ---
 
-### Q3
+### Q33
 **difficulty:** Hard
 **type:** Multi-Source Reasoning
 **topic:** Efficiency — Revenue per Ad Dollar
@@ -1224,7 +1224,7 @@ Industry estimates for each product line's addressable market growth rate:
 - Lines that fail either condition are classified as "Review."
 - 2025 investment increases will be allocated only to "High priority" lines.
 
-### Q1
+### Q34
 **difficulty:** Medium
 **type:** Multi-Source Reasoning
 **topic:** Cross-Tab Classification
@@ -1250,7 +1250,7 @@ Based on the Strategic Priorities Framework in Tab 5 and the data in Tabs 2 and 
 
 ---
 
-### Q2
+### Q35
 **difficulty:** Medium
 **type:** Multi-Source Reasoning
 **topic:** Regional Share Calculation
@@ -1276,7 +1276,7 @@ Approximately what percentage of Lumen Tech's 2024 total revenue came from North
 
 ---
 
-### Q3
+### Q36
 **difficulty:** Hard
 **type:** Multi-Source Reasoning
 **topic:** Forecast — Applied Growth Rate

@@ -5,6 +5,7 @@ import JsonLd from "@/components/seo/JsonLd"
 import { articleLd } from "@/lib/structured-data"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
 import RelatedPosts from "@/components/marketing/RelatedPosts"
+import BlogInlineCTA from "@/components/marketing/BlogInlineCTA"
 
 const TITLE = "GMAT vs GRE for MBA Admissions: An Honest Decision Framework"
 const DESCRIPTION =
@@ -222,6 +223,8 @@ export default function PostPage() {
             new GMAT Focus 205-805 scale, see the{" "}
             <Link href="/score-converter">score converter</Link>.
           </p>
+
+          <BlogInlineCTA />
 
           <H2>The five honest decision scenarios</H2>
 

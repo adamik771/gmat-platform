@@ -5,6 +5,7 @@ import JsonLd from "@/components/seo/JsonLd"
 import { articleLd } from "@/lib/structured-data"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
 import RelatedPosts from "@/components/marketing/RelatedPosts"
+import BlogInlineCTA from "@/components/marketing/BlogInlineCTA"
 
 const TITLE = "GMAT Focus Edition vs the Old GMAT: What Actually Changed"
 const DESCRIPTION =
@@ -325,6 +326,8 @@ export default function PostPage() {
             studying, but a 705 Focus is a 705 Focus regardless of how
             it splits across the three sections.
           </Pull>
+
+          <BlogInlineCTA />
 
           <H2>How to translate old GMAT prep into Focus prep</H2>
           <p>

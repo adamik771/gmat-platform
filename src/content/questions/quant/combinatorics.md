@@ -5,7 +5,7 @@ topic: Combinatorics
 
 ## Q1
 
-**difficulty:** Beginner
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Enumeration
 
@@ -33,7 +33,7 @@ Three friends — Ana, Ben, and Cal — line up for a photo. In how many differe
 
 ## Q2
 
-**difficulty:** Beginner
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Enumeration
 
@@ -61,7 +61,7 @@ Four books are placed on a shelf. How many arrangements are possible if one spec
 
 ## Q3
 
-**difficulty:** Beginner
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Permutations
 
@@ -89,7 +89,7 @@ From a group of 7 candidates, how many ways can a president and a vice-president
 
 ## Q4
 
-**difficulty:** Beginner
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -117,7 +117,7 @@ A team of 3 is picked from a group of 6 students. How many different teams are p
 
 ## Q5
 
-**difficulty:** Beginner
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -145,7 +145,7 @@ A pizza shop offers 8 toppings. How many different 2-topping pizzas are possible
 
 ## Q6
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Permutations
 
@@ -173,7 +173,7 @@ The letters of the word GAMES are rearranged. How many distinct arrangements are
 
 ## Q7
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -183,16 +183,16 @@ A committee of 4 is chosen from 10 people. How many possible committees are ther
 - A) 40
 - B) 210
 - C) 240
-- D) 5040
+- D) 2520
 - E) 5040
 
 **answer:** B
 **fastest_path:** C(10, 4) = (10·9·8·7)/(4·3·2·1) = 5040/24 = 210.
 **explanation:** "Committee" → unordered selection → combinations. C(10, 4) = 10!/(4! × 6!) = (10 × 9 × 8 × 7)/(4 × 3 × 2 × 1) = 5040/24 = 210.
-**mistake_a:** Computed 10 × 4 = 40 (wrong formula).
-**mistake_c:** Computed 10 × 4! = 240 (added unnecessary factor).
-**mistake_d:** Computed 10 × 9 × 8 × 7 = 5040 (used permutations).
-**mistake_e:** Same as D (5040, listed twice in original).
+**mistake_a:** Computed 10 × 4 = 40 — applied no counting formula, just multiplied. Combinations aren't a simple product.
+**mistake_c:** Computed 10 × 4! = 240 — multiplied n by k! instead of dividing P(n, k) by k!. The factorial cancels ordering; it belongs in the denominator.
+**mistake_d:** Divided the permutation 5040 by 2! instead of 4!: 5040/2 = 2520. A subtle slip: students remember to divide "to remove ordering" but choose the wrong factorial. The cancellation uses k! where k = 4 (the size of the chosen group).
+**mistake_e:** Computed P(10, 4) = 10 × 9 × 8 × 7 = 5040 — used permutations and stopped, forgetting to divide by 4! to remove the ordering. The canonical committee-vs-arrangement confusion.
 **common_trap:** Treating committee selection as ordered (using P instead of C).
 **takeaway:** Committee, panel, group of k from n → C(n, k). Always divide P(n, k) by k! when order doesn't matter.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -201,7 +201,7 @@ A committee of 4 is chosen from 10 people. How many possible committees are ther
 
 ## Q8
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -229,7 +229,7 @@ In how many arrangements of the letters in LESSON do the two S's appear next to 
 
 ## Q9
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -257,7 +257,7 @@ Six people sit in a row of 6 chairs. If Ana and Ben refuse to sit next to each o
 
 ## Q10
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -285,7 +285,7 @@ From 5 men and 4 women, a committee of 3 must be formed with exactly 2 men and 1
 
 ## Q11
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Circular
 
@@ -313,7 +313,7 @@ In how many ways can 5 people sit around a circular table?
 
 ## Q12
 
-**difficulty:** Intermediate
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -341,7 +341,7 @@ A code consists of 4 digits chosen from {0–9}. How many codes are possible if 
 
 ## Q13
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -369,7 +369,7 @@ How many arrangements of the letters in MISSISSIPPI are possible?
 
 ## Q14
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -391,7 +391,7 @@ From 8 candidates, a committee of 3 is chosen AND one of the three is designated
 Both paths give 168, confirming the logic.
 **mistake_a:** Computed C(8, 3) = 56 (forgot to assign the chair role).
 **mistake_b:** Computed 56 × 2 = 112 (off by one in role assignment).
-**mistake_d:** Computed 8 × C(7, 3) = 8 × 35 = 280; nudged to 336.
+**mistake_d:** Computed 8 × P(7, 2) = 8 × 42 = 336: chose the chair correctly (8 options) but then ordered the two remaining seats, using P(7, 2) = 7 × 6 = 42 instead of C(7, 2) = 21. The non-chair committee members hold no rank — they form an unordered pair. Ordering slots that carry no distinct role inflates the count by 2! = 2.
 **mistake_e:** Computed 8 × 7 × 6 / 2 = 168 wrong, got 504 from another miscombination.
 **common_trap:** Forgetting the role-assignment step — picking the committee but not the chair.
 **takeaway:** When the problem mixes "select group" + "designate a role," compute both stages: combinations for the group + role assignment within. Verify by the alternate path (role first, then rest).
@@ -401,7 +401,7 @@ Both paths give 168, confirming the logic.
 
 ## Q15
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -429,7 +429,7 @@ In how many ways can 4 men and 4 women be seated in a row if men and women must 
 
 ## Q16
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -457,7 +457,7 @@ A bag has 6 red marbles and 5 blue marbles. How many ways can 4 marbles be drawn
 
 ## Q17
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -485,7 +485,7 @@ Eight distinct books are arranged on a shelf. In how many arrangements are two s
 
 ## Q18
 
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -533,7 +533,7 @@ A 5-person committee must be selected from a pool of 7 men and 5 women. If the c
 - (4W, 1M): C(5, 4) × C(7, 1) = 5 × 7 = 35
 
 (5W, 0M) excluded by "at least 1 man." Total: 350 + 210 + 35 = 595.
-**mistake_a:** Missed (4W, 1M) case; got 350 + 210 = 560... close but wrong direction.
+**mistake_a:** Set up the (2W, 3M) case correctly as C(5,2)·C(7,3) = 350, but in the (3W, 2M) case mis-indexed the men's combination as C(7, 1) = 7 instead of C(7, 2) = 21, getting C(5,3)·C(7,1) = 10·7 = 70. Summing those two (and missing the third case entirely) gives 350 + 70 = 420. The committee has 5 seats; with 3 women, exactly 2 men remain — use C(7, 2), not C(7, 1).
 **mistake_b:** Missed (4W, 1M); got 560.
 **mistake_d:** Computed C(12, 5) − some adjustment; got 630.
 **mistake_e:** Computed C(12, 5) − (5W, 0M case) = 792 − 1 = 791... no, more like 756.
@@ -630,7 +630,7 @@ Six people — A, B, C, D, E, and F — are to be seated in a row of 6 seats. In
 (A and B together AND C and D together): glue both → 4 items × 2 × 2 = 4! × 4 = 96.
 
 Net (A and B together, C and D NOT together) = 240 − 96 = 144.
-**mistake_a:** Computed (CD not together) = 6! − 5! × 2 = 720 − 240 = 480; missed AB constraint, then halved.
+**mistake_a:** Stopped at the (AB together) AND (CD together) count — glue both pairs into blocks, giving 4 units × 2 AB-orderings × 2 CD-orderings = 4! × 4 = 96 — and treated that as the final answer. This is the value to *subtract*, not the result. The answer requires (AB together) − (AB together AND CD together) = 240 − 96 = 144.
 **mistake_c:** Forgot one of the × 2 internal orderings; got 192.
 **mistake_d:** Computed 5! × 2 = 240 (only the first piece, didn't subtract).
 **mistake_e:** Computed 6! / 2 = 360, adjusted to 288.
@@ -644,25 +644,25 @@ Net (A and B together, C and D NOT together) = 240 − 96 = 144.
 ## Q23
 **difficulty:** Hard
 **type:** Problem Solving
-**topic:** Circular Permutations
+**topic:** Circular Permutations with Adjacency Restriction
 
-Five distinct people are to be seated around a circular table with 5 chairs. How many distinct seating arrangements are possible if arrangements that differ only by a rotation are considered the same?
+Five friends are to be seated around a circular table. Two of the friends — Alex and Beth — refuse to sit next to each other. How many distinct seating arrangements are possible? (Arrangements that differ only by a rotation are considered the same.)
 
-- A) 24
-- B) 60
-- C) 120
-- D) 144
-- E) 720
+- A) 4
+- B) 6
+- C) 8
+- D) 12
+- E) 18
 
-**answer:** A
-**fastest_path:** Circular: (5 − 1)! = 4! = 24.
-**explanation:** Circular arrangements with rotational equivalence: (n − 1)!. For 5 people: (5 − 1)! = 4! = 24. Equivalently, fix one person and arrange the remaining 4 in 4! ways.
-**mistake_b:** Computed 5! / 2 = 60 (wrong divisor).
-**mistake_c:** Computed 5! = 120 (treated as linear, missed rotational equivalence).
-**mistake_d:** Computed 5! / 5 × 6 = 144 (wrong multiplication).
-**mistake_e:** Computed 6! = 720 (wrong count).
-**common_trap:** Treating circular arrangements as linear; forgetting that rotations of the same configuration are equivalent.
-**takeaway:** Circular arrangements of n distinct items with rotational equivalence: (n − 1)!. Linear arrangement: n!.
+**answer:** D
+**fastest_path:** Total circular − adjacent = (5−1)! − (4−1)!·2 = 24 − 12 = 12.
+**explanation:** Use the complement. Total distinct circular arrangements of 5 people: (5−1)! = 4! = 24. Arrangements where Alex and Beth ARE adjacent: treat them as one block → 4 units around a circle → (4−1)! = 3! = 6 circular arrangements, × 2 for Alex-Beth vs Beth-Alex internal orderings = 12. Non-adjacent = 24 − 12 = 12.
+**mistake_a:** Arrived at 4 from a double-divisor error — perhaps computed (5-1)! / 3! = 24/6 = 4, dividing by the wrong factorial. Only the complement method gives the reliable path: total (24) − adjacent (12) = 12.
+**mistake_b:** Computed circular arrangements of the 4 units (block + 3 others) = (4-1)! = 3! = 6, then stopped and bubbled 6 as the final answer. This is only half the adjacent count (before multiplying by 2 for internal ordering), and it's the adjacent count — not the non-adjacent count. Always subtract from the total: non-adjacent = 24 − 12 = 12.
+**mistake_c:** Divided total arrangements by 3: 24/3 = 8, reasoning that "1 of every 3 arrangements has the pair adjacent." The actual adjacent probability is 2/4 = 1/2 (Alex is fixed; Beth has 2 adjacent seats out of 4 remaining), so adjacent = 24 × (1/2) = 12 and non-adjacent = 12. Proportion shortcuts require a verified probability, not a guess.
+**mistake_e:** Computed 24 − 6 = 18 — forgot to multiply the circular block count by 2 for the internal ordering. Adjacent arrangements = (4-1)! circular × 2 internal = 6 × 2 = 12, not 6.
+**common_trap:** Forgetting the ×2 internal ordering of the pair's block, or solving the complement but bubbling the adjacent count instead of the non-adjacent count.
+**takeaway:** "Not adjacent" in circular arrangements = total − adjacent. Adjacent count = (n−2)! × 2! (fix the pair as a block, arrange remaining circularly, multiply by pair's internal orderings).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 

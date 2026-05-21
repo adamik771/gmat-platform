@@ -424,7 +424,7 @@ export default function ScoreConverterClient() {
           </div>
 
           <LeadCapture
-            source="other"
+            source="score-converter"
             leadMagnet="error-log-template"
             eyebrow="Free template"
             headline="Get the error-log template I used to go from 565 to 735."

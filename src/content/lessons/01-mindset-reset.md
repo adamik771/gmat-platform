@@ -14,7 +14,7 @@ I am going to open with a claim that sounds like marketing copy but is the load-
 
 Think about what the test actually is. You are handed a fixed-format exam where every question type has been publicly documented for decades. The content is drawn from a finite pool of high school arithmetic, basic algebra, logical reasoning, and reading comprehension. The traps are catalogued. The pacing constraints are known. This is a test built to be studied for. It rewards the people who approach it as a solvable engineering problem and punishes the people who approach it as an IQ test they either pass or fail.
 
-I scored 735, which is 100th percentile on the Focus Edition. I am a non-native English speaker. I am not a natural test-taker. My raw processing speed on math is, honestly, average. What I had was a plan, a system, and enough hours of deliberate practice to turn slow recognition into fast recognition. That is the whole secret. Anyone reading this — with average logical reasoning ability, functional English, and roughly 300 focused hours — can score 645+. The students who break through are never the "smartest." They are the ones who commit to the system and stop taking their scores personally.
+I scored 735, which is 99th percentile on the Focus Edition. I am a non-native English speaker. I am not a natural test-taker. My raw processing speed on math is, honestly, average. What I had was a plan, a system, and enough hours of deliberate practice to turn slow recognition into fast recognition. That is the whole secret. Anyone reading this — with average logical reasoning ability, functional English, and roughly 300 focused hours — can score 645+. The students who break through are never the "smartest." They are the ones who commit to the system and stop taking their scores personally.
 
 What actually separates the students who get there from the ones who plateau:
 
@@ -27,7 +27,7 @@ Every module after this one assumes you have done this mental work. Skip it and 
 
 ## The Three Failure Modes
 
-Most GMAT prep does not fail because the student is incapable. It fails because the student walks into one of three traps and never walks out. I have watched this happen enough times that I can usually spot which trap a student is in within the first week of coaching. Name them now and you are already halfway out.
+Most GMAT prep does not fail because the student is incapable. It fails because the student walks into one of three traps and never walks out. I walked into all three myself in my first months of prep. The traps are predictable — name them now and you are already halfway out.
 
 ### 1. The Volume Trap
 
@@ -35,7 +35,7 @@ The Volume Trap is the belief that improvement is a function of problems solved.
 
 The problem is that a question you got wrong teaches you nothing unless you extract why. And a question you got right sometimes teaches you nothing either — you might have stumbled into the correct answer through a flawed process that will fail on a slightly different variant. Volume without analysis is physical exercise in the shape of learning, and it reinforces whatever habit — correct or incorrect — you brought to the desk that day.
 
-I coached a student last year who had done 2,000 practice questions before our first session and was stuck at 565. His error log was empty. He could not tell me which topics he missed most, which trap patterns caught him, or which competency broke when he missed. Within six weeks of cutting his volume in half and tripling his review time, he was at 685.
+I fell into this trap myself in my early months of prep. By the time I scored 565 cold, I'd already worked through significant volume — and my error tracking was nonexistent. I could not have told you which topics I missed most, which trap patterns caught me, or which competency broke when I missed. Cutting raw volume in half and tripling the time spent on honest review was the unlock that turned the 565 into a 675 by the first official.
 
 **How to recognize the Volume Trap in yourself:**
 
@@ -49,9 +49,9 @@ I coached a student last year who had done 2,000 practice questions before our f
 
 The Comfort Zone Trap is studying what already feels good. This one is especially insidious because it looks like work. You drill word problems because you are decent at them and it feels rewarding to see checkmarks. You skip Critical Reasoning because it is frustrating and the feedback loop is slow. Your prep diary fills up. Your score does not move.
 
-The uncomfortable truth is that your score improvement lives entirely in the topics you currently hate. The gap between a 575 and a 665 is almost always three or four specific topics the student has been unconsciously avoiding for weeks. When I sit down with a plateaued student and ask "which topic makes you want to close the laptop," that topic is almost always the exact one holding their score hostage.
+The uncomfortable truth is that your score improvement lives entirely in the topics you currently hate. The gap between a 575 and a 665 is almost always three or four specific topics that have been unconsciously avoided for weeks. Ask yourself which topic makes you want to close the laptop. That topic is almost always the exact one holding your score hostage.
 
-One student I worked with was scoring 615 and sure she needed "a little algebra polish." Her error log showed she was missing 70% of Two-Part Analysis questions in Data Insights. She had not done one in three weeks. Not because she decided they were unimportant — because every time she opened her question bank, her hand unconsciously clicked into the sections that felt good. One week of forced Two-Part Analysis drills and her overall score jumped 40 points.
+The pattern hit me in my own prep. I was convinced I needed "a little algebra polish." My actual error log said I was missing 70% of Two-Part Analysis questions in Data Insights — and hadn't drilled one in three weeks. Not because I decided they were unimportant. Because every time I opened my question bank, my hand unconsciously clicked into the sections that felt good. One forced week on Two-Part Analysis closed most of that gap.
 
 **How to recognize the Comfort Zone Trap:**
 
@@ -67,7 +67,7 @@ The Motivation Trap is waiting to feel ready. Waiting for the weekend when you w
 
 The 645+ scorers are not more motivated than you. Often less, in the moment. They simply do not make their study depend on motivation. They have a system that runs on autopilot and drags them through low-energy days. That is the entire trick.
 
-A consulting senior associate I coached told me in our first session he could only study when he was "in the zone." Nine months of prep, maybe 40 logged hours. Every weekend was either too busy or too tired. We set a rule: 30 minutes a day minimum, seven days a week. On bad days, just review his error log — no new questions. He went from 575 to 665 in 14 weeks. He was not more motivated. He just stopped making decisions based on motivation.
+I lived this trap. After my first stretch of study in April and May, life pulled me away for the summer — work, exams, a clean three-month break. When I came back at the end of August, the "study when motivated" rule had to go. The replacement was a flat schedule: four to five hours a day, every single day, no matter how I felt. Even on the low-energy days, the plan ran on its own. That discipline — not enthusiasm — was what closed the gap from a 565 cold diagnostic to a 675 first official by early November. The students who break this trap never solve it with willpower. They solve it by making the daily session not depend on willpower in the first place.
 
 **How to recognize the Motivation Trap:**
 
@@ -116,7 +116,7 @@ Here is the rule that, more than any other habit I teach, predicts whether a stu
 Why this works:
 
 - **It protects the habit.** Zero days break streaks, and broken streaks are how weeks turn into months of "I'll restart Monday." Never zero, never restart.
-- **Starting is the hardest part.** Once you are 10 minutes in, you are often willing to keep going. The 30-minute rule just gets you past the activation energy. Many of my students' "30-minute days" accidentally turn into 90 minutes.
+- **Starting is the hardest part.** Once you are 10 minutes in, you are often willing to keep going. The 30-minute rule just gets you past the activation energy. In practice, "30-minute days" routinely turn into 90-minute days — but only because the 30-minute commitment got you in the chair in the first place.
 - **Review on low-energy days is high-value.** Your error log rewards frequent short visits more than occasional long visits. A 30-minute log review on a tired Tuesday beats a 3-hour cramming session on Saturday.
 
 ### Daily Structure: High-Energy and Low-Energy Templates

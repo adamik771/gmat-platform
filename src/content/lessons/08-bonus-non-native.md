@@ -1,7 +1,7 @@
 ---
 module: 8
 title: Bonus — For Non-Native Speakers
-description: The exact strategies I used to go from 535 to 735 as a non-native English speaker. Turn the language disadvantage into an advantage.
+description: The exact strategies I used to go from 565 to 735 as a non-native English speaker. Turn the language disadvantage into an advantage.
 section: General
 duration: 60
 ---
@@ -20,7 +20,7 @@ The actual disadvantages are subtler and more cognitive:
 - **Translation fatigue.** By question 18 of Verbal, you've been running everything through an internal translation layer for an hour. Your brain is tired in a way a native speaker's isn't.
 - **Confidence gap.** You see an unfamiliar word and your internal monologue says "I'm going to get this wrong." Native speakers see the same word and shrug.
 
-I know these disadvantages intimately. I started at 535. My Verbal was in the 20th percentile. I grew up not speaking English. I hit 735 in the end — 100th percentile. The path from 535 to 735 wasn't about becoming a better English speaker. It was about systematically neutralizing each of the five disadvantages above. This module is the exact playbook.
+I know these disadvantages intimately. My first cold diagnostic was 565 (V79), which sat in roughly the 56th percentile overall — and Verbal was the section that worried me most. I grew up not speaking English. By my second official I scored 735 (V86) — 99th percentile. The path from 565 to 735 wasn't about becoming a better English speaker. It was about systematically neutralizing each of the five disadvantages above. This module is the exact playbook.
 
 ## The Reading Speed Problem (and the Fix)
 

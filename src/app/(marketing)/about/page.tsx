@@ -8,7 +8,7 @@ import Breadcrumbs from "@/components/seo/Breadcrumbs"
 export const metadata: Metadata = {
   title: "About",
   description:
-    "The full founder narrative behind Zakarian GMAT. How Adam went from 565 to 735 in 8 months as a non-native English speaker with no engineering background — and the system that came out of it.",
+    "The founder narrative behind Zakarian GMAT. How Adam went from 565 to 735 (100th percentile) on the GMAT Focus Edition as a non-native English speaker — and the system that came out of it.",
   alternates: { canonical: "/about" },
 }
 
@@ -78,9 +78,10 @@ export default function AboutPage() {
             </span>
           </h1>
           <p className="text-[17px] sm:text-[18px] text-[#C0C0C0] leading-relaxed max-w-2xl mx-auto">
-            I&apos;m Adam Zakarian. I scored 565 on my first GMAT. I&apos;m not a native
-            English speaker. I have no engineering background. And I hit 735 — 100th
-            percentile — eight months later. This is how.
+            I&apos;m Adam Zakarian. My first GMAT diagnostic came back 565 —
+            56th percentile. I&apos;m not a native English speaker. Eight
+            months later I scored 735 — 100th percentile — on the GMAT
+            Focus Edition. This is how.
           </p>
         </div>
       </section>
@@ -98,95 +99,84 @@ export default function AboutPage() {
             <div className="space-y-5 text-[15px] text-[#C0C0C0] leading-[1.75]">
               <p>
                 <span className="font-display text-5xl font-semibold float-left leading-none mt-1 mr-3" style={{ color: "#C9A84C" }}>I</span>
-                  was 26, working full time at a consulting firm in Yerevan, and the
-                first time I sat for the GMAT I scored 565. I&apos;d been studying
-                for three months, doing what every guide tells you to do &mdash;
-                work through chapters, do practice sets, take mocks, repeat. I
-                was averaging two hours a day. I felt like I was getting better.
-                I wasn&apos;t.
+                  started studying in April 2025. My very first practice
+                exam, taken cold before any structured prep, was a major
+                reality check: 565. Q78, V79, DI77. 56th percentile.
+                I had some foundational knowledge, but no real structure
+                and no depth.
               </p>
               <p>
-                The 565 was a body blow. I&apos;d been targeting M7 schools.
-                Median GMAT at HBS / Stanford / Wharton was 730+ at the time.
-                The gap between where I was and where I needed to be was
-                roughly 170 points &mdash; and the prep cycle I&apos;d just
-                completed had moved me 15 points off my untested baseline.
-                At that pace, I was on track to hit 730 around 2032.
+                I spent a few days on review forums reading honest
+                accounts of how other people had moved their scores.
+                The pattern was consistent &mdash; pick a structured
+                curriculum, follow its plan, build the error-review
+                habit early. I picked one and went to work.
               </p>
               <p>
-                I did what everyone does. I panicked and bought a more
-                expensive course. Watched more videos. Did more questions.
-                After eight more weeks of this, my mock scores had moved
-                another 10 points. The course was thorough. The instructors
-                were competent. None of it was the problem.
+                April through end of May was the initial push.
+                Foundational Quant. Daily problem sets. Even in that
+                short window I noticed a real shift in how I approached
+                problems &mdash; conceptual clarity over shortcuts,
+                structure over guesswork. Then life intervened and I had
+                to step away for the summer.
               </p>
               <p>
-                The problem &mdash; and this took me three months to actually
-                understand &mdash; was that I was practising without
-                reviewing. I&apos;d get a question wrong, read the
-                explanation, nod, and move on. Three weeks later, I&apos;d
-                miss the same question type again. I&apos;d read the same
-                explanation again. I&apos;d nod again. The content went in
-                and out without ever leaving a mark on what I&apos;d do
-                differently next time.
+                I resumed at the end of August. From that point until
+                early November I studied every single day, 4&ndash;5
+                hours a day. The structure removed the daily decision of
+                what to do next &mdash; I always knew the topic, the
+                set, the review. Even on days when productivity felt
+                low, I still showed up and followed the plan. That
+                discipline was the entire thing.
               </p>
               <p>
-                The shift came in month four. I built a spreadsheet.{" "}
+                In early November I sat for my first official GMAT Focus
+                exam.{" "}
                 <span className="font-display-italic text-[#F0F0F0]">
-                  Six columns: question source, section, what I got
-                  wrong, why, fix, retest.
+                  675. Q86, V85, DI80. 95th percentile.
                 </span>{" "}
-                Six tags for the &ldquo;why&rdquo; column: Conceptual,
-                Careless, Time pressure, Misread, Strategy, Other. One
-                row per missed question. No exceptions.
+                A strong improvement, but it felt underwhelming. My
+                practice tests had been ranging 675&ndash;725 and I&apos;d
+                expected to land closer to the top. The official came
+                in at the floor of that range.
               </p>
               <p>
-                For the first two weeks I just logged. No drilling, no
-                re-attempts, no plan. Just every miss into the
-                spreadsheet, with five fields filled in honestly.
+                After the first attempt I had to pull away from GMAT
+                prep for about a month for school exams. When I came
+                back to the test, I signed up for another exam in
+                December &mdash; with only five days&apos; notice.
+                Three to four of those days I spent on review only.
+                Past mistakes. No new material. Reactivating what I
+                already knew, sharpening execution.
               </p>
               <p>
-                At week three I sorted the log. The pattern was almost
-                embarrassing. Out of 140 missed questions, more than half
-                were three things: inequality sign-flips on Algebra, CR
-                Assumption questions where I&apos;d eliminate the right
-                answer because it &ldquo;felt too broad,&rdquo; and DI
-                Table-Analysis questions where I tried to compute exact
-                values instead of comparisons. Three patterns. Across
-                hundreds of questions. The content was never the problem.
-              </p>
-              <p>
-                I built a study loop around the log. Drill 20 questions on
-                a target topic, log every miss with the five fields, end
-                the week reviewing the log and doing a 30-question
-                targeted set on whatever pattern dominated. Re-test
-                flagged questions a week later. From 565 in October to
-                645 in late January. 695 in March. 735 in May.{" "}
+                Test day at the test center was smooth and calm. The
+                official felt very similar to my practice sets, which
+                kept me composed and helped me manage time. I was
+                genuinely shocked when the score came up:{" "}
                 <span className="font-display font-semibold" style={{ color: "#C9A84C" }}>
                   735.
                 </span>{" "}
-                100th percentile. Eight months from the worst day of my
-                prep cycle.
+                Q88, V86, DI85. 100th percentile.
               </p>
               <p>
-                The slope wasn&apos;t linear &mdash; most of the climb
-                happened once the log had eight to ten weeks of data and
-                the patterns were visible. Below that threshold,
-                you don&apos;t have enough signal to act on. The
-                discipline was in logging through the noise until the
-                signal showed up.
+                The arc wasn&apos;t linear. The biggest gain &mdash;
+                from 675 to 735 &mdash; came from five days of focused
+                mistake review, not from new content. Once the
+                fundamentals were in, the lever was honest analysis of
+                where I was still losing points and disciplined
+                reactivation of what I already knew.
               </p>
               <p>
-                Zakarian GMAT is the spreadsheet, rebuilt as a real
-                product. The error log is built in with the same six tags.
-                The analytics surface the patterns automatically &mdash;
-                you don&apos;t have to remember to sort. The adaptive
-                study plan re-prioritises every week based on the log&apos;s
-                latest data. The spaced review queue resurfaces past
-                misses on the schedule that actually makes them stick.
-                Coaching is available for a second set of eyes on your
-                patterns; the platform alone is the loop you can run by
-                yourself.
+                Zakarian GMAT is that loop, rebuilt as a single
+                platform. A structured chapter sequence so you always
+                know what&apos;s next. A built-in error log that tracks
+                root causes alongside topic and difficulty. An adaptive
+                study plan that re-prioritises against the log every
+                week. A spaced review queue that resurfaces past
+                misses on the schedule that makes them stick. Coaching
+                for a second set of eyes; the platform alone is the
+                loop you can run by yourself.
               </p>
             </div>
           </div>
@@ -214,37 +204,40 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-5 text-[15px] text-[#C0C0C0] leading-[1.75]">
             <p>
-              <Strong>The error log was the unlock.</Strong> Everything
-              else I did was downstream of it. If I&apos;d started logging
-              in week one instead of month four, the prep cycle would have
-              been three months shorter.
+              <Strong>Consistency beats everything.</Strong> Show up
+              every day. On the days when productivity feels low, follow
+              the plan anyway. The compound effect of daily reps is the
+              actual lever, not any single heroic study session.
             </p>
             <p>
-              <Strong>Don&apos;t over-buy content.</Strong> By the time I
-              hit 565 I&apos;d already covered every Quant topic in the
-              standard curriculum twice. The gap was patterns, not
-              content. More course material would not have helped.
+              <Strong>Progress isn&apos;t linear.</Strong> The biggest
+              jump on my arc &mdash; 675 to 735 &mdash; came from five
+              days of focused mistake review, not from new content.
+              Don&apos;t extrapolate from a flat month and don&apos;t
+              celebrate a peak month either. The slope changes when
+              the right inputs land.
             </p>
             <p>
-              <Strong>Stop practising untimed past week two.</Strong>
-              Untimed practice teaches the wrong instincts. You finish
-              questions in 3:30 and feel competent, then crater on the
-              timed mock. Train against the clock from day one.
+              <Strong>Mocks calibrate, they don&apos;t promise.</Strong>
+              My practice tests ranged 675&ndash;725. My first official
+              came in at 675 &mdash; the floor of that range. Use
+              mocks to find weaknesses, not to predict your number.
+              A great mock is a hypothesis, not a guarantee.
             </p>
             <p>
-              <Strong>The non-native disadvantage is narrower than it
-              looks.</Strong> The standard advice (&ldquo;Verbal is
-              easier for native speakers&rdquo;) is wrong in the
-              important way. The real disadvantage is comprehension
-              <em> speed</em>, not comprehension. The structural-skim
-              approach on RC and stem-first reading on CR closed most
-              of my Verbal gap in three months.
+              <Strong>After fundamentals, review beats more
+              material.</Strong> By the second official, the content
+              was already in. The five-day window I had between the
+              two attempts was spent entirely on past mistakes &mdash;
+              no new chapters, no new question banks. That is what
+              moved the score 60 points.
             </p>
             <p>
-              <Strong>One full rest day per week is non-negotiable.</Strong>
-              I tried seven-day-a-week prep for four weeks. Burned out
-              on week five. Lost two weeks of recovery. Net negative.
-              Sunday off, every week.
+              <Strong>A real break can sharpen you.</Strong> I lost
+              the summer mid-prep and a month before the second
+              official. Each time I came back clearer, not duller.
+              Forced rest beat forced practice when I was over the
+              edge.
             </p>
           </div>
         </div>
@@ -266,15 +259,16 @@ export default function AboutPage() {
             </span>
           </h2>
           <p className="text-[16px] text-[#C0C0C0] leading-relaxed mb-5">
-            Most GMAT prep companies are built by MBAs who scored 760 on their first try and
-            never had to struggle. They teach to their strengths. That&apos;s not useful for most
-            people.
+            Most GMAT prep is sold by people who scored well on their first
+            try. They teach to their own strengths. That&apos;s not useful
+            for the student starting cold at 50th percentile, with a lot of
+            ground to cover and limited time.
           </p>
           <p className="text-[16px] text-[#C0C0C0] leading-relaxed">
-            I built this for the student who has been grinding for months and isn&apos;t moving.
-            For the non-native speaker who feels like Verbal is a wall they can&apos;t climb.
-            For the non-engineer who thinks Quant is impossible. I was all three of those
-            people. This is the system I wish I had.
+            I built this for the student who knows they need a structured
+            plan, an honest error log, and a way to compound daily effort
+            into real score gains. That&apos;s the path I took. This is
+            the system I wish I&apos;d had access to from day one.
           </p>
         </div>
       </SectionWrapper>

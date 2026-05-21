@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -18,6 +19,7 @@ import TestimonialCard from "@/components/marketing/TestimonialCard"
 import FAQAccordion from "@/components/marketing/FAQAccordion"
 import HeroDashboardCard from "@/components/marketing/HeroDashboardCard"
 import ScoreCalloutNumbers from "@/components/marketing/ScoreCalloutNumbers"
+import LeadCapture from "@/components/marketing/LeadCapture"
 
 const modules = [
   { num: "01", title: "Mindset Reset", desc: "Rewire how you approach standardized tests." },
@@ -60,10 +62,10 @@ const pillars = [
 const testimonials = [
   {
     quote:
-      "I'd been stuck around 630 for months. Adam's error log approach completely changed how I reviewed. Went from 630 to 710 in 6 weeks.",
+      "I'd been stuck around 585 for months. Adam's error log approach completely changed how I reviewed. Went from 585 to 665 in 6 weeks.",
     author: "Priya M.",
     detail: "Applying to Wharton",
-    scoreJump: "630 → 710",
+    scoreJump: "585 → 665",
   },
   {
     quote:
@@ -77,7 +79,7 @@ const testimonials = [
       "The mock exam debriefing framework alone was worth the investment. I stopped guessing and started understanding.",
     author: "Sophie R.",
     detail: "Booth applicant",
-    scoreJump: "645 → 720",
+    scoreJump: "645 → 675",
   },
 ]
 
@@ -95,7 +97,7 @@ const faqItems = [
   {
     question: "How long does it take to see results?",
     answer:
-      "Most students see measurable improvement within 3–4 weeks of consistent daily study. Hitting 700+ typically takes 10–16 weeks depending on your starting score.",
+      "Most students see measurable improvement within 3–4 weeks of consistent daily study. Hitting 655+ typically takes 10–16 weeks depending on your starting score.",
   },
   {
     question: "What if I've already tried other courses?",
@@ -273,7 +275,7 @@ export default function HomePage() {
       <SectionWrapper>
         <div className="text-center mb-12">
           <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] mb-4 tracking-[-0.02em] leading-[1.05]">
-            Everything you need to hit 700+
+            Everything you need to hit 655+
           </h2>
           <p className="text-[#888888] max-w-xl mx-auto">
             Not a pile of videos. A complete system — structured curriculum, smart
@@ -447,21 +449,39 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Avatar placeholder */}
+          {/* Founder photo. Save a square crop (head + shoulders,
+              ~512×512 or larger) at `public/founder.jpg`. Layered
+              fallback: the "AZ" initials sit underneath; the
+              next/image overlays them. When the file exists, the
+              image covers the initials. When it doesn't (404), the
+              <img> renders transparent and the initials show through
+              — so the page never looks broken even before Adam drops
+              the photo in. */}
           <div className="flex justify-center">
             <div className="relative">
               <div
-                role="img"
-                aria-label="Adam Zakarian"
-                className="w-64 h-64 rounded-full border-2 flex items-center justify-center text-6xl font-bold"
+                className="relative w-64 h-64 rounded-full border-2 overflow-hidden flex items-center justify-center"
                 style={{
                   borderColor: "#C9A84C",
                   backgroundColor: "rgba(201,168,76,0.05)",
                   boxShadow: "0 0 60px rgba(201,168,76,0.15)",
-                  color: "#C9A84C",
                 }}
               >
-                AZ
+                <span
+                  aria-hidden
+                  className="absolute inset-0 flex items-center justify-center text-6xl font-bold"
+                  style={{ color: "#C9A84C" }}
+                >
+                  AZ
+                </span>
+                <Image
+                  src="/founder.jpg"
+                  alt="Adam Zakarian"
+                  width={512}
+                  height={512}
+                  priority
+                  className="relative w-full h-full object-cover"
+                />
               </div>
               <div
                 className="absolute -bottom-2 -right-2 px-3 py-1.5 rounded-xl text-xs font-bold border"
@@ -488,7 +508,7 @@ export default function HomePage() {
             Pricing
           </p>
           <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] mb-4 tracking-[-0.02em] leading-[1.05]">
-            Choose your path to 700+
+            Choose your path to 655+
           </h2>
         </div>
 
@@ -630,6 +650,20 @@ export default function HomePage() {
         </div>
       </SectionWrapper>
 
+      {/* LEAD MAGNET — error-log template */}
+      <SectionWrapper>
+        <div className="max-w-xl mx-auto">
+          <LeadCapture
+            source="homepage"
+            leadMagnet="error-log-template"
+            eyebrow="Free template"
+            headline="The error-log template I used to go from 565 to 735."
+            description="The exact six-tag taxonomy and the spreadsheet structure. Two months of honest logging surfaces the patterns. No signup required."
+            ctaLabel="Send me the template"
+          />
+        </div>
+      </SectionWrapper>
+
       {/* FINAL CTA */}
       <section
         className="relative py-28 overflow-hidden"
@@ -650,7 +684,7 @@ export default function HomePage() {
         <div className="relative max-w-3xl mx-auto text-center px-4">
           <h2 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] mb-6 tracking-[-0.02em] leading-[1.02]">
             Ready to score{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>700+?</span>
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>655+?</span>
           </h2>
           <p className="text-[#888888] mb-8 text-lg">
             Join students who stopped guessing and started scoring.
