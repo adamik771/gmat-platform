@@ -765,3 +765,237 @@ A box contains 8 marbles: 3 red, 3 blue, and 2 green. Two marbles are drawn at r
 **common_trap:** Forgetting the green-green pair or treating "different colors" as 2/3 based on category count.
 **takeaway:** "Same color" with multiple groups: sum C(group_i, 2) over all groups. Different = complement.
 **related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q28
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Percentage Change
+
+A retailer purchases a laptop at a wholesale cost of $800. The retailer applies a 25% markup to set the "list price," then offers a 10% loyalty discount off the list price to returning customers. Determine the list price (column 1) and the loyalty price paid by a returning customer (column 2).
+
+|        | List Price | Loyalty Price |
+|--------|------------|---------------|
+| $720   |            |               |
+| $880   |            |               |
+| $900   |            |               |
+| $1,000 |            |               |
+| $1,080 |            |               |
+
+**answer:** List Price = $1,000, Loyalty Price = $900
+**fastest_path:** List = 800 × 1.25 = 1,000. Loyalty = 1,000 × 0.90 = 900.
+**explanation:** List price = $800 × 1.25 = $1,000. The 25% markup applies to the wholesale cost. Loyalty price = $1,000 × (1 − 0.10) = $900. The 10% discount applies to the list price, not the original $800. Applying the discount to the wrong base produces every wrong row.
+**mistake_a:** $720 — discounting the original cost directly ($800 × 0.90 = 720) and skipping the markup entirely.
+**mistake_b:** $880 — applying a 10% markup instead of a 25% markup: $800 × 1.10 = 880.
+**mistake_c:** $900 — correct for the loyalty price; selecting this for column 1 swaps the two answers.
+**mistake_e:** $1,080 — adding 10% back to $1,000 instead of subtracting it (misreading "discount" as an additional charge).
+**common_trap:** Applying the 10% discount to the original $800 rather than to the $1,000 list price. Each percentage change applies to the base at that step, not to the starting value.
+**takeaway:** Sequential percent changes always use the updated base. Identify the base for each step before computing.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Arithmetic Sequence
+
+The first three terms of an arithmetic sequence are 7, 13, and 19. Let F be the 10th term of the sequence and let S be the sum of the first five terms.
+
+Select the value of F (column 1) and the value of S (column 2).
+
+|     | 10th term (F) | Sum of first 5 (S) |
+|-----|---------------|--------------------|
+| 55  |               |                    |
+| 61  |               |                    |
+| 65  |               |                    |
+| 85  |               |                    |
+| 95  |               |                    |
+
+**answer:** F = 61, S = 95
+**fastest_path:** d = 6. F = 7 + 9 × 6 = 61. 5th term = 31. S = (5/2)(7 + 31) = 95.
+**explanation:** Common difference d = 13 − 7 = 6. nth term = a₁ + (n − 1)d = 7 + (n − 1) × 6. For n = 10: F = 7 + 9 × 6 = 61. The 5th term = 7 + 4 × 6 = 31. Sum of first 5 = (5/2)(first + last) = (5/2)(7 + 31) = (5/2)(38) = 95.
+**mistake_a:** 55 — using n = 8 instead of n − 1 = 9 gaps (off-by-one in the step count).
+**mistake_c:** 65 — using n = 10 directly in the formula instead of (n − 1): 7 + 10 × 6 = 67, or a nearby arithmetic slip.
+**mistake_d:** 85 — computing S as 5 × 17 (using 17 instead of the true middle term 19 = 3rd term; 5 × 19 = 95 is correct).
+**common_trap:** Off-by-one in the nth-term formula: the 10th term has 9 gaps from the 1st term, not 10.
+**takeaway:** nth term = a₁ + (n − 1) × d. Sum of n consecutive arithmetic terms = (n/2)(first + last).
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Geometry
+
+A rectangle has a perimeter of 40 cm. The length is 6 cm more than the width. Determine the length in centimeters (column 1) and the area in square centimeters (column 2).
+
+|      | Length (cm) | Area (cm²) |
+|------|-------------|------------|
+| 7    |             |            |
+| 13   |             |            |
+| 17   |             |            |
+| 49   |             |            |
+| 91   |             |            |
+| 130  |             |            |
+
+**answer:** Length = 13, Area = 91
+**fastest_path:** l + w = 20 and l = w + 6 → w = 7, l = 13. Area = 13 × 7 = 91.
+**explanation:** Perimeter = 2(l + w) = 40, so l + w = 20. Since l = w + 6: (w + 6) + w = 20 → 2w = 14 → w = 7 cm. Length = 7 + 6 = 13 cm. Area = 13 × 7 = 91 cm².
+**mistake_a:** 7 — the width, not the length; selecting this for column 1 reverses the two dimensions.
+**mistake_c:** 17 — computing (20 + 6)/2 = 13 correctly but then confusing the equation and obtaining 17 = 40/2 − 3.
+**mistake_d:** 49 — computing area as 7 × 7, squaring the width instead of multiplying by the length.
+**mistake_f:** 130 — computing area as 13 × 10, using 10 for the width instead of 7.
+**common_trap:** Forgetting to halve the perimeter: using l + w = 40 instead of l + w = 20.
+**takeaway:** Perimeter = 2(l + w), so l + w = P/2. Apply the second constraint to get both dimensions, then multiply for area.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q31
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Overlapping Sets
+
+A survey of 80 employees found that 45 drink coffee, 30 drink tea, and 10 drink both beverages. Let N be the number who drink neither beverage and let T be the number who drink exactly one of the two beverages.
+
+Select the value of N (column 1) and the value of T (column 2).
+
+|     | N (drink neither) | T (exactly one) |
+|-----|-------------------|-----------------|
+| 5   |                   |                 |
+| 15  |                   |                 |
+| 25  |                   |                 |
+| 55  |                   |                 |
+| 65  |                   |                 |
+
+**answer:** N = 15, T = 55
+**fastest_path:** At-least-one = 45 + 30 − 10 = 65. N = 80 − 65 = 15. Exactly-one = 65 − 10 = 55.
+**explanation:** By inclusion-exclusion, the number who drink at least one beverage = 45 + 30 − 10 = 65 (the overlap is subtracted to avoid double-counting). N = 80 − 65 = 15. Exactly-one = at-least-one minus both = 65 − 10 = 55. Equivalently: coffee-only = 35, tea-only = 20, T = 35 + 20 = 55.
+**mistake_a:** 5 — omitting the add-back of the overlap: 80 − 45 − 30 = 5 (the "both" group is subtracted twice).
+**mistake_c:** 25 — adding the overlap twice in the correction: 80 − 45 − 30 + 10 + 10 = 25.
+**mistake_e:** 65 — the total "at-least-one" count used for T, which still includes the "both" group.
+**common_trap:** Reporting "at-least-one" as "exactly-one." The "both" group must be subtracted from the at-least-one total to get exactly-one.
+**takeaway:** Exactly-one = (A only) + (B only) = A + B − 2 × (both). Neither = Total − (A + B − both).
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q32
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Statistics
+
+A data set has five values: 2, 6, 10, 14, 18. The mean is M = 10 and the median is D = 10. A sixth value of 16 is added to the data set. Let M′ be the new mean and D′ be the new median.
+
+Select the value of M′ (column 1) and the value of D′ (column 2).
+
+|     | New Mean (M′) | New Median (D′) |
+|-----|---------------|-----------------|
+| 10  |               |                 |
+| 11  |               |                 |
+| 12  |               |                 |
+| 13  |               |                 |
+| 14  |               |                 |
+
+**answer:** M′ = 11, D′ = 12
+**fastest_path:** New mean = (50 + 16)/6 = 66/6 = 11. New sorted set {2,6,10,14,16,18}: median = (10 + 14)/2 = 12.
+**explanation:** Original sum = 2 + 6 + 10 + 14 + 18 = 50. Adding 16: new sum = 66, new count = 6. M′ = 66/6 = 11. Re-sorted set: {2, 6, 10, 14, 16, 18}. With 6 values (even count), the median is the average of the 3rd and 4th values: (10 + 14)/2 = 12. The new value 16 inserts above 14 without shifting the middle pair.
+**mistake_a:** 10 — assuming neither measure changes when a new value is added.
+**mistake_c:** 12 — correct for D′; selecting this for M′ swaps the two answers.
+**mistake_d:** 13 — arithmetic slip in computing the new mean (e.g., treating the new sum as 78 instead of 66).
+**mistake_e:** 14 — picking the added value itself as the new median instead of finding the middle of the re-sorted set.
+**common_trap:** Forgetting to re-sort the set before locating the median, or using the added value (16) as the new median anchor.
+**takeaway:** After adding a value: recompute mean = new sum / new count; re-sort and find the middle (average the two middle values if n is even).
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Logic — Inference vs. Causal Claim
+
+A company study reports: "Employees who work from home (WFH) at least 3 days per week have an average productivity rating of 82 out of 100, compared with 74 out of 100 for employees who work in the office full time."
+
+From the statements below, select the one that can be properly inferred from the study data alone (column 1) and the one that best explains why the data do not establish that WFH causes higher productivity (column 2).
+
+| Statement                                                                                         | Can be Inferred | Why Not Causal |
+|---------------------------------------------------------------------------------------------------|-----------------|----------------|
+| WFH employees have higher average productivity ratings than full-time in-office employees         |                 |                |
+| Requiring all employees to WFH at least 3 days per week would raise the company's average rating |                 |                |
+| The highest-performing employees self-select into WFH arrangements                               |                 |                |
+| The productivity rating scale penalizes visible in-office behaviors such as collaboration time   |                 |                |
+| WFH employees benefit from fewer interruptions, which explains their performance advantage       |                 |                |
+
+**answer:** Can be Inferred = "WFH employees have higher average productivity ratings than full-time in-office employees"; Why Not Causal = "The highest-performing employees self-select into WFH arrangements"
+**fastest_path:** Inference = direct reading of the numbers (82 > 74). Causal flaw = self-selection confound: high performers choose WFH, so WFH may mark high performance rather than create it.
+**explanation:** The study reports averages of 82 vs. 74 — so "WFH employees have higher ratings" is a direct inference from the data. All other row-1 candidates go beyond the data: prescribing policy (row 2) requires causation, while individual preferences (row 3) and measurement bias (row 4) are not stated. The causal claim fails primarily because of self-selection: high-performing employees may systematically choose WFH, making WFH a characteristic of high performers rather than its cause. Rows 4 and 5 offer alternative critiques but are speculative (not established by the data) or support causation (mechanisms).
+**mistake_b:** "Requiring all to WFH would raise ratings" — prescribes a policy that assumes causation; not inferrable from descriptive data.
+**mistake_d:** Measurement bias is speculative; the study does not confirm any rating-scale flaw.
+**mistake_e:** Fewer interruptions is a plausible mechanism but is not stated in the data and does not itself block causation — it would support it.
+**common_trap:** Confusing correlation with causation. Descriptive statistics license descriptive conclusions; policy conclusions require causal evidence.
+**takeaway:** Inferences must stay within the data. Causal claims fail when self-selection can explain the correlation: the high-performer → WFH link could run in the opposite direction.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q34
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Exponential Growth and Decay
+
+Town A's population is modeled by P(t) = 500 × 2^t and Town B's population by Q(t) = 32,000 / 2^t, where t is the number of decades elapsed. Let t* be the decade at which the two populations are equal and let V be the shared population value at that point.
+
+Select the value of t* (column 1) and the value of V (column 2).
+
+|       | t* (decades) | V (shared population) |
+|-------|--------------|----------------------|
+| 2     |              |                      |
+| 3     |              |                      |
+| 4     |              |                      |
+| 2,000 |              |                      |
+| 4,000 |              |                      |
+| 8,000 |              |                      |
+
+**answer:** t* = 3, V = 4,000
+**fastest_path:** Set equal: 500 × (2^t)² = 32,000 → (2^t)² = 64 = 2^6 → 2^t = 8 → t = 3. P(3) = 500 × 8 = 4,000.
+**explanation:** Set P(t) = Q(t): 500 × 2^t = 32,000 / 2^t. Multiply both sides by 2^t: 500 × (2^t)² = 32,000. So (2^t)² = 64 = 2^6, meaning 2^t = 8 = 2^3, giving t* = 3. Then P(3) = 500 × 2^3 = 500 × 8 = 4,000. Verify: Q(3) = 32,000 / 8 = 4,000. Both agree.
+**mistake_a:** 2 — solving 2^t = 64 directly (forgetting to square 2^t when multiplying both sides) yields t = 6; or solving a simpler version gives t = 2.
+**mistake_c:** 4 — over-counting by one extra decade from an arithmetic slip in the exponent equation.
+**mistake_d:** 2,000 — evaluating P at t = 2 instead of t = 3: P(2) = 500 × 4 = 2,000.
+**mistake_f:** 8,000 — evaluating P at t = 4: P(4) = 500 × 16 = 8,000, one decade too late.
+**common_trap:** Treating 500 × 2^t = 32,000 / 2^t as if only one factor of 2^t appears, rather than moving 2^t from the denominator to multiply both sides (yielding (2^t)²).
+**takeaway:** When the same base appears growing on one side and decaying on the other, multiply both sides by the decaying term to collect the squared exponent, then solve.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q35
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Logic — Causal Chain Evaluation
+
+An economist argues: "When the central bank raises interest rates, consumer borrowing decreases. When consumer borrowing decreases, spending on durable goods — cars, appliances, and furniture — declines. Therefore, raising interest rates will reduce overall consumer spending."
+
+From the statements below, identify the one that most strengthens the economist's conclusion (column 1) and the one that reveals the most significant gap in the stated causal chain (column 2).
+
+| Statement                                                                                                          | Strengthens | Gap in Chain |
+|--------------------------------------------------------------------------------------------------------------------|-------------|--------------|
+| Durable goods account for approximately 60% of total consumer spending                                            |             |              |
+| When mortgage borrowing becomes costlier, many consumers shift to credit card spending instead                     |             |              |
+| A cross-country study found that central bank rate hikes correlate with reduced durable goods purchases            |             |              |
+| The central bank has raised interest rates four times in the past two years                                        |             |              |
+| Some consumers increase their saving when interest rates rise, which further reduces their discretionary spending  |             |              |
+
+**answer:** Strengthens = "Durable goods account for approximately 60% of total consumer spending"; Gap in Chain = "When mortgage borrowing becomes costlier, many consumers shift to credit card spending instead"
+**fastest_path:** Strengthen = closes the unstated final link (durable goods fall → overall spending falls). Gap = disrupts a stated link (borrowing falls → spending falls) via consumer substitution.
+**explanation:** The explicit chain ends at "durable goods spending declines," but the conclusion is about "overall consumer spending." The 60% statistic bridges this implicit final step: if durable goods are the majority of all spending, a decline there materially lowers the total. The most significant gap is the link from "consumer borrowing decreases" to "durable goods spending declines": if consumers simply shift to credit cards instead, total borrowing may not fall and spending continues. Row 3 (cross-country study) supports an already-stated link and does not bridge the conclusion's final gap. Row 4 (rate-hike history) is context, not logic. Row 5 (increased saving) adds a parallel mechanism not in the stated chain.
+**mistake_c:** The cross-country study confirms a premise of the chain (rate hike → reduced durable purchases) but does not bridge the final implicit gap from durable goods to overall spending.
+**mistake_d:** The frequency of past rate hikes is historical context and does not evaluate the logic of the causal chain.
+**mistake_e:** Increased saving introduces a different causal path; it supports the conclusion but is not part of the stated chain and does not address its gap.
+**common_trap:** Picking the cross-country study as the strongest strengthener because it provides empirical evidence — but it confirms a stated step. The 60% statistic closes the critical unstated gap.
+**takeaway:** In multi-step causal chains, the strongest strengthener closes an implicit gap; the most critical flaw disrupts a stated link (often via substitution or confounding).
+**related_reading:** reading-di-06-two-part-analysis
