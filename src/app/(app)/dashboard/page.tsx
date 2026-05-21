@@ -25,6 +25,10 @@ import { getReviewQueue } from "@/lib/review-queue"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
 import { collectAdaptiveSignals } from "@/lib/adaptive-plan-engine"
 import { computeNextBestAction } from "@/lib/next-best-action"
+import {
+  computeStudyPlan,
+  type FocusAction,
+} from "@/lib/study-plan-engine"
 import NextBestActionPanel from "../analytics/NextBestActionPanel"
 import {
   computeBadges,
@@ -122,6 +126,14 @@ export default async function DashboardPage() {
     isComplete: boolean
   } | null = null
 
+  // "Today's Mission" — the single highest-priority next step surfaced
+  // from the adaptive study-plan engine. Sits above everything else on
+  // the dashboard so a returning student sees one decisive action
+  // without scanning a metrics grid first. Null when the engine has
+  // no recommendation yet (cold-start users hit this).
+  let topFocus: FocusAction | null = null
+  let topFocusMinutes: number | null = null
+
   try {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
     const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
@@ -158,6 +170,54 @@ export default async function DashboardPage() {
             daysUntilExam,
             targetScore,
           })
+
+          // Today's Mission — pull the top item from the study-plan
+          // engine and compute an estimated time so the hero card can
+          // render "~15 min" without the engine knowing about chapter
+          // lengths. Runs inside the same try as NBA so it shares
+          // scope with the already-derived `targetScore`, `examDate`,
+          // and `flaggedQuestionIds` inputs. Failures are non-fatal:
+          // the hero card just doesn't render.
+          try {
+            const plan = await computeStudyPlan(supabase, user.id, {
+              targetScore,
+              examDate,
+              flaggedQuestionIds,
+            })
+            if (plan.todaysFocus.length > 0) {
+              topFocus = plan.todaysFocus[0]
+              if (
+                topFocus.type === "weak-topic-chapter" &&
+                topFocus.href.startsWith("/chapters/")
+              ) {
+                const slug =
+                  topFocus.href.split("/chapters/")[1]?.split(/[#?]/)[0] ??
+                  ""
+                const chapter = getAllChapters().find(
+                  (c) => c.slug === slug
+                )
+                if (chapter?.estimatedMinutes) {
+                  topFocusMinutes = chapter.estimatedMinutes
+                }
+              } else if (topFocus.type === "practice") {
+                topFocusMinutes = 15
+              } else if (topFocus.type === "review") {
+                // ~2 min per due item, clamped to a sensible range so
+                // the card doesn't promise a 90-min review session.
+                topFocusMinutes = Math.max(
+                  5,
+                  Math.min(plan.reviewDueCount * 2, 30)
+                )
+              } else if (topFocus.type === "mock") {
+                topFocusMinutes = 135
+              } else if (topFocus.type === "diagnostic") {
+                topFocusMinutes = 30
+              }
+            }
+          } catch {
+            // Study-plan computation failed — leave nulls so the
+            // hero card stays hidden.
+          }
         } catch {
           // Signals or NBA computation failed — leave the panel hidden.
         }
@@ -1172,6 +1232,78 @@ export default async function DashboardPage() {
 
   return (
     <div className="max-w-7xl mx-auto space-y-10">
+      {/* Today's Mission — one decisive next step at the top of the
+          dashboard. Sourced from the study-plan engine's top focus
+          item. Renders only when the engine has a recommendation;
+          cold-start users see the greeting first instead. */}
+      {topFocus && (
+        <section
+          className="relative overflow-hidden rounded-2xl border"
+          style={{
+            backgroundColor: "#111111",
+            borderColor: "rgba(255,255,255,0.06)",
+          }}
+        >
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse 70% 55% at 100% 0%, rgba(201,168,76,0.12) 0%, transparent 60%)",
+            }}
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
+            aria-hidden
+          />
+          <div className="relative flex flex-wrap items-center justify-between gap-6 p-6 sm:p-8">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-3">
+                <Target
+                  className="w-3.5 h-3.5"
+                  style={{ color: "#C9A84C" }}
+                  aria-hidden
+                />
+                <p
+                  className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+                  style={{ color: "#C9A84C" }}
+                >
+                  Today&apos;s mission
+                </p>
+                <div
+                  className="h-px w-12"
+                  style={{
+                    background:
+                      "linear-gradient(to right, rgba(201,168,76,0.4), transparent)",
+                  }}
+                  aria-hidden
+                />
+              </div>
+              <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-tight leading-[1.15]">
+                {topFocus.title}
+              </h2>
+              <p className="text-[13px] sm:text-[14px] text-[#C0C0C0] mt-2 leading-relaxed max-w-2xl">
+                {topFocus.subtitle}
+              </p>
+              {topFocusMinutes !== null && (
+                <div className="mt-4 inline-flex items-center gap-1.5 text-[11px] text-[#888888]">
+                  <Clock className="w-3 h-3" aria-hidden />
+                  ~{topFocusMinutes} min
+                </div>
+              )}
+            </div>
+            <Link
+              href={topFocus.href}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98] flex-shrink-0"
+              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            >
+              {topFocus.cta}
+              <ArrowRight className="w-4 h-4" aria-hidden />
+            </Link>
+          </div>
+        </section>
+      )}
+
       {/* Greeting — atmospheric editorial hero */}
       <section className="relative overflow-hidden rounded-2xl border border-white/[0.06] px-6 py-10 sm:px-10 sm:py-14" style={{ backgroundColor: "#0D0D0D" }}>
         <div
