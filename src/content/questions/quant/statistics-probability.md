@@ -740,3 +740,451 @@ In a group of 80 people, 45 own a car and 35 own a bicycle. If 20 people own bot
 **common_trap:** Failing to subtract the overlap (|both|) → 80 (double-counts the people who own both).
 **takeaway:** |A ∪ B| = |A| + |B| − |A ∩ B|. Always subtract the intersection once.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Expected Value — Basic Definition
+
+A raffle sells 100 tickets at $5 each. One winning ticket is drawn at random and receives a prize of $200. What is the expected net gain for a person who buys one ticket?
+
+- A) -$5.00
+- B) -$3.00
+- C) $0.00
+- D) $1.95
+- E) $2.00
+
+**answer:** B
+**fastest_path:** P(win) = 1/100. Net if win = $195; net if lose = −$5. EV = (1/100)(195) + (99/100)(−5) = 1.95 − 4.95 = −$3.00.
+**explanation:** The net gain has two outcomes. If the ticket wins (probability 1/100): net gain = prize − cost = $200 − $5 = $195. If the ticket loses (probability 99/100): net gain = −$5. Expected value = (1/100)(195) + (99/100)(−5) = 1.95 − 4.95 = −$3.00. The negative EV confirms this raffle favors the organizer, not the buyer.
+**mistake_a:** Bubbled −$5, the net outcome of a losing ticket — this is not the expected value, which must weight both outcomes by their probabilities.
+**mistake_c:** Assumed the game is "fair" with zero expected value — only true when total payouts equal total ticket revenue, which is not the case here ($200 prize vs. $500 total ticket sales).
+**mistake_d:** Computed only the winning term: (1/100)($195) = $1.95, and stopped — forgot to subtract the weighted loss from the losing outcome.
+**mistake_e:** Divided the prize by the number of tickets: $200/100 = $2.00, ignoring both the ticket cost and the probability weighting of the loss.
+**common_trap:** Computing only the winning term — (1/100)($195) = $1.95 — and ignoring the loss that occurs on the other 99/100 outcomes.
+**takeaway:** Expected value = Σ (probability × net outcome) across ALL outcomes, not just the winning one. Always subtract the ticket cost from the prize to find the net gain if you win.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Geometric Probability
+
+A point is chosen uniformly at random on a line segment from 0 to 30. What is the probability that the point falls between 6 and 18?
+
+- A) 1/5
+- B) 2/5
+- C) 1/2
+- D) 3/5
+- E) 7/10
+
+**answer:** B
+**fastest_path:** Favorable length = 18 − 6 = 12. Total length = 30. P = 12/30 = 2/5.
+**explanation:** For a uniform distribution on a line segment, probability equals the ratio of favorable length to total length. The interval from 6 to 18 has length 18 − 6 = 12. The total segment has length 30. P = 12/30 = 2/5.
+**mistake_a:** Used the left endpoint as the favorable length: 6/30 = 1/5. The probability is the length of the favorable interval, not its starting position.
+**mistake_c:** Estimated that the interval is "roughly half" of the segment — a visual approximation that ignores exact boundaries. The interval 6 to 18 covers 12 out of 30 units, not 15.
+**mistake_d:** Used the right endpoint as the numerator: 18/30 = 3/5. The numerator must be the interval length (18 − 6 = 12), not the endpoint value.
+**mistake_e:** Some over-count or approximation error landing at 21/30 = 7/10 — likely by adding instead of subtracting endpoints.
+**common_trap:** Using an endpoint (6 or 18) as the numerator rather than computing the interval length (18 − 6 = 12).
+**takeaway:** Geometric probability on a line segment: P = (length of favorable interval) / (total length). Always subtract to find interval length; do not use the raw endpoint values.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q31
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Interquartile Range
+
+The scores of 8 students on a quiz, arranged in ascending order, are: 52, 61, 67, 72, 78, 85, 89, 94. What is the interquartile range of these scores?
+
+- A) 17
+- B) 22
+- C) 23
+- D) 27
+- E) 42
+
+**answer:** C
+**fastest_path:** Lower half {52, 61, 67, 72}: Q1 = (61+67)/2 = 64. Upper half {78, 85, 89, 94}: Q3 = (85+89)/2 = 87. IQR = 87 − 64 = 23.
+**explanation:** For 8 ordered values, split into two halves of 4. Lower half: {52, 61, 67, 72}; Q1 = (61 + 67)/2 = 64. Upper half: {78, 85, 89, 94}; Q3 = (85 + 89)/2 = 87. IQR = Q3 − Q1 = 87 − 64 = 23.
+**mistake_a:** Subtracted the two inner values of the original set: 89 − 72 = 17, confusing the IQR with the range of the "middle" section.
+**mistake_b:** Arithmetic slip on either Q1 or Q3, landing one unit off: 87 − 65 = 22.
+**mistake_d:** Correct Q3 but mis-computed Q1 as 60: 87 − 60 = 27.
+**mistake_e:** Computed the range (max − min) instead of the IQR: 94 − 52 = 42. Range and IQR are different spread measures.
+**common_trap:** Confusing the IQR with the range. Range = max − min (94 − 52 = 42). IQR = Q3 − Q1, which measures spread of the middle 50%, not the full spread.
+**takeaway:** IQR: split ordered data at the midpoint, find Q1 (median of lower half) and Q3 (median of upper half), then subtract. For even-count data, each quarter's median is the average of its two middle values.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Mutually Exclusive Events
+
+Events X and Y are mutually exclusive. P(X) = 0.3 and P(Y) = 0.4. What is the probability that at least one of the two events occurs?
+
+- A) 0.12
+- B) 0.58
+- C) 0.60
+- D) 0.70
+- E) 1.00
+
+**answer:** D
+**fastest_path:** Mutually exclusive → P(X or Y) = P(X) + P(Y) = 0.3 + 0.4 = 0.70.
+**explanation:** Mutually exclusive events cannot both occur, so P(X ∩ Y) = 0. The addition rule simplifies to P(X or Y) = P(X) + P(Y) = 0.3 + 0.4 = 0.70.
+**mistake_a:** Applied the multiplication rule: P(X) × P(Y) = 0.3 × 0.4 = 0.12. This gives P(X and Y), which is 0 for mutually exclusive events — not the "at least one" probability.
+**mistake_b:** Applied the general inclusion-exclusion formula as if the events were independent: P(X) + P(Y) − P(X)·P(Y) = 0.7 − 0.12 = 0.58. This is wrong because P(X ∩ Y) = 0 for mutually exclusive events, not 0.12.
+**mistake_c:** Arithmetic slip: may have computed 0.3 + 0.3 = 0.60 or rounded down.
+**mistake_e:** Assumed "at least one must occur," treating the events as exhaustive — but mutually exclusive does not mean the events cover the entire sample space.
+**common_trap:** Applying the general inclusion-exclusion formula with P(X∩Y) = P(X)·P(Y) — but for mutually exclusive events, P(X∩Y) = 0. Do not confuse "mutually exclusive" with "independent."
+**takeaway:** Mutually exclusive → cannot both occur → P(X∩Y) = 0 → P(X or Y) = P(X) + P(Y). Independent → P(X∩Y) = P(X)·P(Y) → full inclusion-exclusion needed.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Independent Events — Multiplication Rule
+
+Events A and B are independent. P(A) = 0.6 and P(B) = 0.3. What is the probability that both A and B occur?
+
+- A) 0.18
+- B) 0.30
+- C) 0.60
+- D) 0.72
+- E) 0.90
+
+**answer:** A
+**fastest_path:** Independent → P(A and B) = P(A) × P(B) = 0.6 × 0.3 = 0.18.
+**explanation:** For independent events, the joint probability is the product of the individual probabilities: P(A and B) = P(A) × P(B) = 0.6 × 0.3 = 0.18.
+**mistake_b:** Bubbled P(B) = 0.30 — used only one event's probability without multiplying by the other.
+**mistake_c:** Bubbled P(A) = 0.60 — same error in the other direction.
+**mistake_d:** Computed P(A or B) for independent events using inclusion-exclusion: 0.6 + 0.3 − 0.18 = 0.72. This is the "at least one" probability, not the "both" probability.
+**mistake_e:** Added the probabilities: 0.6 + 0.3 = 0.90 — used the addition rule (for "at least one") instead of the multiplication rule (for "both").
+**common_trap:** Using addition (0.6 + 0.3 = 0.90) instead of multiplication (0.6 × 0.3 = 0.18). "And" → multiply; "or" → add (and subtract overlap).
+**takeaway:** P(A and B) = P(A) × P(B) when events are independent. P(A or B) = P(A) + P(B) − P(A∩B). Match the operator to the question word: "both"/"and" → multiply.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Expected Value — Weighted Outcomes
+
+One card is drawn at random from a standard deck of 52 cards. You win $5 if the card is a heart, win $2 if the card is black (a spade or club), and lose $3 if the card is a diamond. What is the expected value of one draw?
+
+- A) $0.50
+- B) $1.00
+- C) $1.33
+- D) $1.50
+- E) $2.25
+
+**answer:** D
+**fastest_path:** P(heart) = 1/4, P(black) = 1/2, P(diamond) = 1/4. EV = (1/4)(5) + (1/2)(2) + (1/4)(−3) = 1.25 + 1.00 − 0.75 = $1.50.
+**explanation:** The three outcomes partition the deck: hearts (13/52 = 1/4), black cards — spades and clubs — (26/52 = 1/2), and diamonds (13/52 = 1/4). The probabilities sum to 1, confirming the partition is complete. EV = (1/4)(5) + (1/2)(2) + (1/4)(−3) = 5/4 + 1 − 3/4 = 2/4 + 1 = 0.50 + 1.00 = $1.50.
+**mistake_a:** Computed hearts minus diamonds only, ignoring black cards: (1/4)(5) + (1/4)(−3) = 1.25 − 0.75 = $0.50.
+**mistake_b:** Computed only the black card term: (1/2)(2) = $1.00, ignoring the heart and diamond outcomes.
+**mistake_c:** Treated all three outcomes as equally likely (probability 1/3 each): (5 + 2 − 3)/3 = 4/3 ≈ $1.33. But the three outcomes are not equally likely — black cards are twice as likely as hearts or diamonds.
+**mistake_e:** Weighted only the two positive outcomes without the loss: (1/4)(5) + (1/2)(2) = 1.25 + 1.00 = $2.25.
+**common_trap:** Treating the three card types as equally probable. Verify that probabilities sum to 1 before computing EV, and confirm each probability matches the actual proportion of the deck.
+**takeaway:** Before computing EV, verify probabilities sum to 1. Then EV = Σ (probability × payoff) for each outcome. Missing any term — positive or negative — corrupts the result.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Conditional Probability — Frequency Table
+
+A company has 200 employees: 120 in the analytics division and 80 in the operations division. Among analytics employees, 25% hold an MBA. Among operations employees, 15% hold an MBA. If one employee with an MBA is selected at random, what is the probability the employee works in the analytics division?
+
+- A) 2/7
+- B) 3/5
+- C) 5/7
+- D) 5/8
+- E) 5/6
+
+**answer:** C
+**fastest_path:** Analytics with MBA: 120×0.25 = 30. Operations with MBA: 80×0.15 = 12. P(analytics | MBA) = 30/42 = 5/7.
+**explanation:** Compute the MBA count in each division: analytics = 120 × 0.25 = 30; operations = 80 × 0.15 = 12. Total with MBA = 30 + 12 = 42. The conditional probability is P(analytics | MBA) = 30/42 = 5/7. The conditioning event (has MBA) restricts the sample space to just the 42 MBA holders; within that group, 30 are from analytics.
+**mistake_a:** Computed P(operations | MBA) = 12/42 = 2/7 — answered for the wrong division.
+**mistake_b:** Used the prior (unconditional) probability: P(analytics) = 120/200 = 3/5. This ignores the conditioning on "has MBA," which shifts the proportion toward analytics because their MBA rate (25%) exceeds operations' rate (15%).
+**mistake_d:** Used an incorrect denominator of 48 instead of 42: 30/48 = 5/8. Likely computed 80 × 0.15 = 18 (wrong) instead of 12, giving 30 + 18 = 48.
+**mistake_e:** Rough over-estimate or arithmetic error leading to 5/6.
+**common_trap:** Using the unconditional probability 120/200 = 3/5. Conditioning on "has MBA" changes the denominator from 200 (all employees) to 42 (only MBA holders).
+**takeaway:** Conditional probability via frequency table: compute the count satisfying both conditions in numerator, the count satisfying the given condition in denominator. P(A|B) = count(A∩B) / count(B).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Binomial Probability — Non-Equal Probabilities
+
+A medical treatment has an independent 70% success rate for each patient. If 3 patients receive the treatment, what is the probability that exactly 2 of the 3 respond successfully?
+
+- A) 0.147
+- B) 0.189
+- C) 0.343
+- D) 0.441
+- E) 0.490
+
+**answer:** D
+**fastest_path:** C(3,2) × (0.7)² × (0.3)¹ = 3 × 0.49 × 0.30 = 0.441.
+**explanation:** Use the binomial formula: P(exactly k successes in n trials) = C(n,k) × p^k × (1−p)^(n−k). Here n = 3, k = 2, p = 0.7. C(3,2) = 3. So P = 3 × (0.7)² × (0.3)¹ = 3 × 0.49 × 0.30 = 3 × 0.147 = 0.441. The three orderings (SSF, SFS, FSS) each occur with probability 0.49 × 0.30 = 0.147, and there are C(3,2) = 3 of them.
+**mistake_a:** Computed the probability of one specific ordering (e.g., S then S then F) without multiplying by C(3,2): (0.7)²(0.3) = 0.147. This misses the 3 equally likely orderings of 2 successes and 1 failure.
+**mistake_b:** Reversed the success and failure counts: computed C(3,2)×(0.7)¹×(0.3)² = 3 × 0.7 × 0.09 = 0.189 — the probability of exactly 1 success and 2 failures, not 2 successes.
+**mistake_c:** Computed P(all 3 succeed): (0.7)³ = 0.343 — a different event.
+**mistake_e:** Computed (0.7)² = 0.49, ignoring the probability of the one failure and the combinatorial factor C(3,2) = 3.
+**common_trap:** Forgetting the combinatorial factor C(n,k). The probability of "exactly k successes" includes all possible orderings of those successes, not just one specific sequence.
+**takeaway:** Binomial probability: C(n,k) × p^k × (1−p)^(n−k). The binomial formula works for any p, not just p = 0.5. Always include C(n,k) to count distinct orderings.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Inclusion-Exclusion — Finding Neither
+
+In a survey of 120 customers, 72 bought Product A, 54 bought Product B, and 30 bought both. How many customers bought neither product?
+
+- A) 0
+- B) 6
+- C) 18
+- D) 24
+- E) 30
+
+**answer:** D
+**fastest_path:** |A∪B| = 72 + 54 − 30 = 96. Neither = 120 − 96 = 24.
+**explanation:** The number who bought at least one product is |A ∪ B| = |A| + |B| − |A ∩ B| = 72 + 54 − 30 = 96. Those who bought neither = total − |A ∪ B| = 120 − 96 = 24.
+**mistake_a:** Noted that 72 + 54 = 126 > 120 and concluded "everyone bought at least one product." The surplus over 120 means some customers were double-counted (the 30 who bought both), not that all customers bought something. Using inclusion-exclusion correctly gives |A ∪ B| = 96 < 120.
+**mistake_b:** Computed 120 − 72 − 54 = −6, then took the absolute value: 6. The negative result signals that the inclusion-exclusion term must be added back; the correct formula subtracts the intersection, it does not produce a negative "neither" count.
+**mistake_c:** Arithmetic slip: perhaps computed |A∪B| = 72 + 54 − 30 = 102 and 120 − 102 = 18.
+**mistake_e:** Bubbled the "both" count (30) — this is the overlap, not the "neither" group.
+**common_trap:** Observing that 72 + 54 = 126 > 120 and concluding that everyone bought something. The 30 who bought both were counted twice in 126. After correcting: 126 − 30 = 96 bought at least one, and 24 bought neither.
+**takeaway:** |Neither| = Total − |A ∪ B| = Total − (|A| + |B| − |A ∩ B|). Always apply inclusion-exclusion before computing "neither."
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Mean — Missing Data
+
+The average (arithmetic mean) of 5 numbers is 84. Four of the five numbers are 78, 91, 80, and 76. What is the fifth number?
+
+- A) 84
+- B) 87
+- C) 91
+- D) 95
+- E) 99
+
+**answer:** D
+**fastest_path:** Sum = 5 × 84 = 420. Known sum = 78 + 91 + 80 + 76 = 325. Fifth = 420 − 325 = 95.
+**explanation:** Total sum required: mean × count = 84 × 5 = 420. Sum of the four known numbers: 78 + 91 + 80 + 76 = 325. Fifth number = 420 − 325 = 95. Check: 325 + 95 = 420, and 420/5 = 84 ✓.
+**mistake_a:** Bubbled the mean (84) — assumed all five numbers equal the mean, which is only true when all values are identical.
+**mistake_b:** Arithmetic slip in the known sum: e.g., computed 78 + 91 + 80 + 76 = 333 → fifth = 420 − 333 = 87.
+**mistake_c:** Bubbled the largest known value (91) — guessed rather than computed.
+**mistake_e:** Off-by-four arithmetic slip: 420 − 321 = 99.
+**common_trap:** Bubbling the mean itself (84). The missing value equals the mean only if all five numbers are equal, which is not given here.
+**takeaway:** Missing-value mean problems: set up Total = mean × count, compute the known sum, then subtract. Never assume the missing value equals the given mean.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Percentile — Count Interpretation
+
+On a standardized exam, a score of 680 falls at the 72nd percentile. If 350 students took the exam, approximately how many students scored strictly below 680?
+
+- A) 98
+- B) 126
+- C) 175
+- D) 252
+- E) 280
+
+**answer:** D
+**fastest_path:** 72nd percentile → 72% scored below. 0.72 × 350 = 252.
+**explanation:** The 72nd percentile means that 72% of test takers scored strictly below 680. Students below 680 = 0.72 × 350 = 252.
+**mistake_a:** Computed the number who scored at or above 680: 350 − 252 = 98. Answered the complement of the question.
+**mistake_b:** Halved the percentile by mistake, using 36%: 0.36 × 350 = 126. The percentile given (72nd) is used directly; do not divide it.
+**mistake_c:** Used 50% (the median): 350 × 0.50 = 175. The median is the 50th percentile; the question specifies the 72nd.
+**mistake_e:** Used 80% instead of 72%: 0.80 × 350 = 280 — a reading slip on the percentile value.
+**common_trap:** Computing 350 − 252 = 98 (the above-680 count) when the question asks for below 680. Re-read which direction the percentile points.
+**takeaway:** The nth percentile means n% of the data falls strictly below that value. To convert to a count: multiply the percentile (as a decimal) by the total number of observations.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Standard Deviation — Conceptual Comparison
+
+Two data sets each have 7 values and the same mean of 6:
+
+Set P: {1, 4, 4, 6, 8, 8, 11}
+Set Q: {4, 4, 5, 6, 7, 8, 8}
+
+Which of the following correctly compares the standard deviations of P and Q?
+
+- A) SD(P) < SD(Q), because P contains more distinct values than Q
+- B) SD(P) = SD(Q), because both sets have the same mean and the same number of elements
+- C) SD(P) > SD(Q), because P has values that lie further from the mean than Q's values do
+- D) SD(P) < SD(Q), because Q's values are more tightly clustered at the endpoints
+- E) The comparison cannot be determined without computing exact standard deviations
+
+**answer:** C
+**fastest_path:** P's extremes (1 and 11) are 5 units from mean 6; Q's extremes (4 and 8) are only 2 units away. Larger deviations → larger SD for P.
+**explanation:** Standard deviation measures how spread out values are around the mean. Set P has extremes at 1 and 11, each 5 units from the mean of 6. Set Q's extremes are 4 and 8, each only 2 units from the mean. The inner values of P (4, 4, 8, 8) also spread further than Q's inner values (4, 4, 7, 8). Computing confirms: sum of squared deviations for P = 25+4+4+0+4+4+25 = 66; for Q = 4+4+1+0+1+4+4 = 18. SD(P) > SD(Q).
+**mistake_a:** Counted P's distinct values (5) vs. Q's (4) and concluded larger count means larger SD. Standard deviation depends on how far values deviate from the mean, not on how many distinct values exist.
+**mistake_b:** Assumed same mean + same count → same SD. Two datasets can share both properties and have entirely different spreads. Mean measures center; count determines the denominator; neither alone (or together) determines spread.
+**mistake_d:** "More tightly clustered at the endpoints" is the opposite of what Q shows. Q's values cluster near 6 with less extreme endpoints; P's values spread further. Greater spread from the mean → larger SD.
+**mistake_e:** You do not need exact values to compare SDs when the deviation pattern is visually clear. P's values clearly deviate more from the mean than Q's, making SD(P) > SD(Q) without any arithmetic.
+**common_trap:** Assuming same mean implies same SD — the two most common summary statistics (mean and median) describe the center, not the spread. Spread requires comparing deviations from the center.
+**takeaway:** To compare SDs without computing: look at how far each value lies from the group mean. The dataset with larger or more extreme deviations from the mean has the larger SD.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Conditional Probability — Bayes via Frequency Table
+
+In a clinical study, 300 patients received one of two drugs. Two hundred patients received Drug A and 100 received Drug B. Among Drug A patients, 15% experienced symptom relief. Among Drug B patients, 45% experienced relief. One patient who experienced relief is selected at random. What is the probability the patient received Drug A?
+
+- A) 1/4
+- B) 2/5
+- C) 1/2
+- D) 2/3
+- E) 3/5
+
+**answer:** B
+**fastest_path:** Drug A relief: 200×0.15 = 30. Drug B relief: 100×0.45 = 45. P(Drug A | relief) = 30/75 = 2/5.
+**explanation:** Compute the relief counts: Drug A = 200 × 0.15 = 30 patients; Drug B = 100 × 0.45 = 45 patients. Total relieved = 75. The conditional probability of being a Drug A patient given relief = 30/75 = 2/5. Although Drug A has twice as many total patients, its lower relief rate (15% vs. 45%) makes Drug B overrepresented among the relieved group.
+**mistake_a:** Used only the relief rates, treating them as equally weighted: 15%/(15% + 45%) = 15/60 = 1/4. This ignores the fact that twice as many patients received Drug A — the group sizes must be factored in.
+**mistake_c:** Estimated 1/2 by assuming Drug A and Drug B produce equal relief counts — possible only if their weighted rates happened to be equal, which they are not (30 vs. 45).
+**mistake_d:** Used the prior (unconditional) proportion of Drug A patients: 200/300 = 2/3. This ignores the conditioning on "experienced relief" and does not account for the different relief rates.
+**mistake_e:** Computed P(Drug B | relief) = 45/75 = 3/5 — answered for the wrong drug.
+**common_trap:** Using the prior group-size ratio (200:100 = 2:1) directly without accounting for the different relief rates. Conditioning on "relief" shifts the weight toward the higher-rate group (Drug B).
+**takeaway:** Conditional probability via frequencies: compute the count meeting both conditions (drug + relief) for each group, sum them for the denominator, then divide. Group size alone does not determine the conditional probability — the rate within each group matters.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Expected Value — Comparing Two Strategies
+
+A project manager must choose between two investment strategies. Strategy P has a 40% chance of generating a $800,000 profit and a 60% chance of a $200,000 loss. Strategy Q has a 70% chance of generating a $400,000 profit and a 30% chance of breaking even ($0 gain or loss). Which strategy has the higher expected value, and by how much?
+
+- A) Strategy P by $80,000
+- B) Strategy P by $40,000
+- C) Strategy P by $20,000
+- D) Strategy Q by $40,000
+- E) Strategy Q by $80,000
+
+**answer:** E
+**fastest_path:** EV(P) = 0.4(800k) + 0.6(−200k) = 320k − 120k = $200k. EV(Q) = 0.7(400k) + 0.3(0) = $280k. Q leads by $80k.
+**explanation:** EV(P) = 0.40 × $800,000 + 0.60 × (−$200,000) = $320,000 − $120,000 = $200,000. EV(Q) = 0.70 × $400,000 + 0.30 × $0 = $280,000. Strategy Q has the higher expected value by $280,000 − $200,000 = $80,000.
+**mistake_a:** Correctly computed both EVs but concluded P is higher — a sign error or reversal in the comparison step.
+**mistake_b:** Treated the 60% loss scenario as break-even ($0) in Strategy P: EV(P) = 0.40 × $800,000 = $320,000. Then EV(Q) = $280,000, giving P leading by $40,000. Forgetting to account for losses is a critical error when computing expected value.
+**mistake_c:** A smaller gap from a different computational error, e.g., misidentifying the loss probability or rounding mid-calculation.
+**mistake_d:** Correct that Q leads, but underestimated the gap — e.g., from computing EV(P) = $240,000 instead of $200,000.
+**mistake_e:** Correct. The negative outcome in Strategy P (60% × $200,000 loss = $120,000 drag) offsets much of the upside, leaving Strategy Q's more reliable $280,000 EV ahead.
+**common_trap:** Ignoring the loss in Strategy P by treating the 60% outcome as $0 (break-even) instead of −$200,000. Always include negative payoffs in expected value calculations.
+**takeaway:** Expected value includes all outcomes — wins and losses. A strategy with a large upside can still have a lower EV than one with a modest, reliable payoff if the downside probability is large enough.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q43
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Inclusion-Exclusion — Three Sets
+
+At a tech company, 180 employees were surveyed about three skills. The results showed: 90 have Python skills, 75 have SQL skills, and 60 have machine learning knowledge. Additionally, 30 have both Python and SQL, 25 have both Python and machine learning, 20 have both SQL and machine learning, and 10 have all three. How many of the 180 employees have none of the three skills?
+
+- A) 10
+- B) 20
+- C) 30
+- D) 40
+- E) 55
+
+**answer:** B
+**fastest_path:** |P∪S∪M| = 90+75+60 − 30−25−20 + 10 = 225 − 75 + 10 = 160. None = 180 − 160 = 20.
+**explanation:** Three-set inclusion-exclusion: |P ∪ S ∪ M| = |P| + |S| + |M| − |P∩S| − |P∩M| − |S∩M| + |P∩S∩M| = 90 + 75 + 60 − 30 − 25 − 20 + 10 = 225 − 75 + 10 = 160. Employees with none = 180 − 160 = 20.
+**mistake_a:** Bubbled the "all three" count (10) — this is the three-way intersection, not the "none" group.
+**mistake_c:** Forgot to add back the three-way intersection: |P∪S∪M| = 225 − 75 = 150 (stopping too early), giving none = 180 − 150 = 30. The three-way intersection was subtracted three times in the pairwise terms and must be added back once.
+**mistake_d:** Subtracted the pairwise intersections with the wrong signs: e.g., computed 225 + 30 + 25 + 20 − 10 = 290 (added instead of subtracted), then took |180 − something| to get 40.
+**mistake_e:** Used an entirely different formula, arriving at none = 55.
+**common_trap:** Omitting the "+|P∩S∩M|" step. In the three-set formula, the three-way intersection is subtracted three times (once per pairwise term) and must be added back exactly once.
+**takeaway:** Three-set inclusion-exclusion: add singles, subtract pairs, add back triple. Forgetting the "+triple" step understates the union and overstates the "none" count. Always write out all seven terms before computing.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q44
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Standard Deviation — Abstract Transformation Rules
+
+Set M = {4, 8, 14, 18, 22} has mean μ and standard deviation σ. Set N is formed by multiplying every element of M by 3 and then subtracting 6. Which of the following correctly compares the statistics of the two sets?
+
+- A) Mean of N = 2μ and SD of N = 3σ
+- B) Mean of N = 3μ − 6 and SD of N = σ
+- C) Mean of N = 3μ − 6 and SD of N = 3σ
+- D) Mean of N = 3μ − 6 and SD of N = 3σ − 6
+- E) Mean of N = 3μ and SD of N = 3σ
+
+**answer:** C
+**fastest_path:** n_i = 3m_i − 6 → mean N = 3μ − 6; SD: shifts do not affect spread, scaling by 3 multiplies SD by 3 → SD N = 3σ.
+**explanation:** For any linear transformation n_i = a·m_i + b: (1) Mean of N = a·μ + b. With a = 3, b = −6: mean N = 3μ − 6. (2) SD of N = |a|·σ. The additive constant b shifts every value by the same amount, leaving all deviations from the mean unchanged — SD is invariant under shifts. The multiplicative factor 3 stretches each deviation by 3, so SD scales by 3: SD(N) = 3σ. Verify: mean M = 13.2; mean N = 3(13.2) − 6 = 33.6 ✓. Deviations in M from 13.2: {−9.2, −5.2, 0.8, 4.8, 8.8}; in N they become {−27.6, −15.6, 2.4, 14.4, 26.4}, each exactly 3 times larger ✓.
+**mistake_a:** Applied only the multiplicative factor to the mean with wrong coefficient (2μ instead of 3μ) and SD = 3σ. Two errors: wrong coefficient on the mean, and missed the additive shift entirely.
+**mistake_b:** Correct mean (3μ − 6) but unchanged SD (σ). Knew that shifts do not affect SD but failed to apply the scaling rule — multiplying every element by 3 triples every deviation from the mean.
+**mistake_d:** Correct mean (3μ − 6) but applied the −6 to the SD as well: 3σ − 6. Additive constants never affect SD; they shift the distribution without changing its shape or spread.
+**mistake_e:** Correct SD (3σ) but incomplete mean: 3μ (missed the −6). The full linear transformation y = 3x − 6 shifts the mean down by 6 after scaling.
+**common_trap:** Applying the additive constant (−6) to the SD. SD measures the spread of values around their mean; when every value shifts by the same amount, the gaps between values — and hence the spread — are unchanged.
+**takeaway:** Two rules for y = ax + b: (1) mean_y = a·mean_x + b; (2) SD_y = |a|·SD_x. The additive constant is invisible to SD and variance. Commit these two rules to memory; they cover every linear-transformation SD question on the GMAT.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Expected Value — Recursive Game (Challenge)
+
+A bag contains 2 red balls and 1 white ball. A player draws one ball at random. If the ball is red, the player wins $6 and the game ends. If the ball is white, the player must return the white ball to the bag and pay $2 to draw again (restoring the bag to 2 red and 1 white). The player always continues when drawing white. What is the player's expected net gain per game?
+
+- A) $3.00
+- B) $4.00
+- C) $4.50
+- D) $5.00
+- E) $6.00
+
+**answer:** D
+**fastest_path:** Let V = expected gain. V = (2/3)(6) + (1/3)(−2 + V) → V = 4 − 2/3 + V/3 → 2V/3 = 10/3 → V = $5.
+**explanation:** Let V be the expected net gain from any draw. There are two outcomes: (1) Red (probability 2/3): collect $6 and stop — net contribution = (2/3)(6) = 4. (2) White (probability 1/3): pay $2 to redraw, and the game resets to the same state — net contribution = (1/3)(−2 + V). So: V = 4 + (1/3)(−2 + V) = 4 − 2/3 + V/3. Solving: V − V/3 = 4 − 2/3 → (2/3)V = 10/3 → V = 5. Verify via geometric series: the expected number of white draws before the first red is E[N] = (1/3)/(2/3) = 1/2 (geometric distribution with p = 2/3). Expected cost = $2 × 1/2 = $1. Expected winnings = $6 × 1 = $6 (a red ball is eventually drawn with certainty). Net expected gain = $6 − $1 = $5 ✓.
+**mistake_a:** Computed the one-round expected value without accounting for the recursive redraw: (2/3)(6) + (1/3)(−2) = 4 − 2/3 ≈ $3.33, rounded to $3. This treats the game as ending after one draw even when white is drawn — but the game continues.
+**mistake_b:** Computed only the expected winning from the red ball: (2/3)(6) = $4, ignoring the expected redraw cost entirely.
+**mistake_c:** Arithmetic slip in the recursion step, landing at $4.50 instead of $5.
+**mistake_e:** Bubbled the prize amount ($6) without subtracting the expected cost of redraws, arriving at $6 as if no cost were incurred.
+**common_trap:** Treating the game as ending after one draw — computing (2/3)(6) + (1/3)(−2) = 10/3 ≈ $3.33 and stopping. The key insight is that drawing white resets to the same game, so V appears on both sides of the equation.
+**takeaway:** For recursive games with a "try again" option, let V = expected value and write V = Σ(prob × outcome), where the "try again" branch contributes −cost + V. Solve for V algebraically. Alternatively: V = E[prize] − (cost per retry) × E[retries], using the geometric distribution for E[retries].
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
