@@ -3,7 +3,16 @@
 import { useState } from "react"
 import { ArrowRight, Check, Download, Loader2 } from "lucide-react"
 
-type Source = "footer" | "free-diagnostic" | "blog-post" | "other"
+type Source =
+  | "footer"
+  | "homepage"
+  | "free-diagnostic"
+  | "blog-post"
+  | "resources"
+  | "score-converter"
+  | "study-schedule"
+  | "score-by-school"
+  | "other"
 type LeadMagnet =
   | "error-log-template"
   | "newsletter"

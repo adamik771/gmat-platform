@@ -141,23 +141,26 @@ If x² - 5x - 14 = 0, what is the product of the two solutions?
 **type:** Problem Solving
 **topic:** Functions
 
-If f(x) = 2x² - 3x + 1, what is the value of f(3) - f(1)?
+If f(x) = x² + 2, what is f(a + 1) − f(a − 1)?
 
-- A) 8
-- B) 10
-- C) 12
-- D) 14
-- E) 16
+- A) 2
+- B) 4
+- C) 4a
+- D) 4a + 4
+- E) 2a²
 
-**answer:** B
-**fastest_path:** f(3) = 2(9) − 9 + 1 = 10. f(1) = 2 − 3 + 1 = 0. Difference = 10.
-**explanation:** f(3) = 2(9) − 3(3) + 1 = 18 − 9 + 1 = 10. f(1) = 2(1) − 3(1) + 1 = 2 − 3 + 1 = 0. f(3) − f(1) = 10.
-**mistake_a:** Slip → 8 (likely arithmetic error in f(3) computation).
-**mistake_c:** Computed f(3) + f(1) instead of f(3) − f(1) → 10 + 0… no, but a likely sign-flip path: 2(9) − 3(3) − 1 = 8, then 8 + 4 → 12.
-**mistake_d:** Slip → 14.
-**mistake_e:** Computed f(3) but treated f(1) as 1 instead of 0 → 10 + 6, or skipped the subtraction entirely.
-**common_trap:** Arithmetic slip on f(3) = 18 − 9 + 1, especially flipping the order of operations on −3(3).
-**takeaway:** Functions: substitute, then simplify. Watch the *sign* on each term, especially the −3x.
+**answer:** C
+**hint_nudge:** The argument contains a variable — work symbolically rather than plugging in a specific number.
+**hint_strategy:** Expand f(a + 1) and f(a − 1) separately using the formula, then subtract.
+**hint_setup:** f(a + 1) = (a + 1)² + 2 = a² + 2a + 3; now find f(a − 1) the same way.
+**fastest_path:** f(a+1) = a² + 2a + 3; f(a−1) = a² − 2a + 3. Difference = 4a.
+**explanation:** Use the variable argument — expand algebraically. f(a + 1) = (a + 1)² + 2 = a² + 2a + 1 + 2 = a² + 2a + 3. f(a − 1) = (a − 1)² + 2 = a² − 2a + 1 + 2 = a² − 2a + 3. Subtract: (a² + 2a + 3) − (a² − 2a + 3) = 4a. Both the a² terms and the constant terms cancel; only the linear cross-terms from the (a ± 1)² expansion survive.
+**mistake_a:** Tested a = 0 to get a number: f(1) − f(−1) = 3 − 3 = 0, then picked "2" as the nearest small-looking choice.
+**mistake_b:** Dropped the variable from the cross-term: computed (2a + 1) − (−2a + 1) = 4 — treated the cross-term as the constant 1 rather than 2a.
+**mistake_d:** Failed to cancel the constant terms: computed 4a + (3 − 3) but added the constants instead of subtracting, arriving at 4a + 4.
+**mistake_e:** Multiplied instead of subtracting: treated f(a+1) − f(a−1) as f(a+1) × f(a−1), then collapsed to 2a².
+**common_trap:** Plugging in a specific number (a = 0 or a = 1) instead of working symbolically — numerical substitution may give a consistent answer, but it can't distinguish between choices that differ only in their variable terms.
+**takeaway:** When a function question uses a variable argument like f(a + k), expand algebraically. Constant terms in the formula often cancel when you subtract, leaving a clean expression in the variable.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -267,7 +270,7 @@ If 4^(a+1) = 8^a, what is the value of a?
 ---
 
 ## Q11
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Functions
 
@@ -277,17 +280,17 @@ For all positive integers n, let f(n) = n² - n. What is the value of f(f(3))?
 - B) 12
 - C) 30
 - D) 42
-- E) 56
+- E) 36
 
 **answer:** C
 **fastest_path:** f(3) = 9 − 3 = 6. f(6) = 36 − 6 = 30.
 **explanation:** Composition is applied from inside out. Compute the inner first: f(3) = 3² − 3 = 9 − 3 = 6. Then apply f to that result: f(6) = 6² − 6 = 36 − 6 = 30. Total time: 15 seconds. The whole question is mechanical once you read "f(f(3))" as "apply f twice."
-**mistake_a:** Stopped at the inner computation: f(3) = 6 — bubbled the intermediate value.
-**mistake_b:** Computed f(3) × 2 = 12 (multiplied instead of composing).
-**mistake_d:** Computed f(7) = 49 − 7 = 42 — wrong inner argument.
-**mistake_e:** Computed (f(3))² − f(3) = 36 − 6 = 30 ... wait, that gives 30 (correct). Or f(3)² − 1 = 35; 7² + 7 = 56.
+**mistake_a:** Stopped at the inner computation: f(3) = 6 — bubbled the intermediate value without applying f a second time.
+**mistake_b:** Computed f(3) × 2 = 12 (multiplied the inner result by 2 instead of composing).
+**mistake_d:** Computed f(3) = 6 correctly, then applied the formula with a sign error: 6² + 6 = 42 (used n² + n instead of n² − n).
+**mistake_e:** Computed f(3) = 6 correctly, then took [f(3)]² = 6² = 36 — applied the outer function as "squaring the inner result" rather than evaluating f(6) = 6² − 6.
 **common_trap:** Stopping at the inner result and bubbling — composition requires both layers.
-**takeaway:** f(f(x)) means apply f twice: compute f(x) first, then apply f to that result.
+**takeaway:** f(f(x)) means apply f twice: compute f(x) first, then apply f to that result. The outer call is f evaluated at the inner result, not a squaring or multiplication.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -638,7 +641,7 @@ If the roots of the quadratic equation x² + bx + 12 = 0 differ by 1, what are t
 ---
 
 ## Q25
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Word Problem — Relative Motion
 
@@ -695,23 +698,26 @@ If 1/(x − 3) + 1/(x + 3) = 12/(x² − 9), what is the value of x?
 **type:** Problem Solving
 **topic:** Function Composition
 
-If f(x) = 2x + 3 and g(x) = x² − 1, what is f(g(2))?
+If g(x) = 3x − 2 and f(g(x)) = 6x − 1 for all x, what is f(4)?
 
-- A) 5
-- B) 7
-- C) 9
-- D) 11
-- E) 13
+- A) 7
+- B) 10
+- C) 11
+- D) 13
+- E) 23
 
 **answer:** C
-**fastest_path:** g(2) = 4 − 1 = 3. f(3) = 6 + 3 = 9.
-**explanation:** Composition is applied inside out. Compute the inner first: g(2) = 2² − 1 = 4 − 1 = 3. Then apply f: f(3) = 2(3) + 3 = 9. Total time: 15 seconds.
-**mistake_a:** Computed g(2) = 3 and bubbled (stopped at the inner result).
-**mistake_b:** Computed f(2) = 7, then somehow got 7.
-**mistake_d:** Computed f(2) + g(2) = 7 + 3 = 10; then off-by-one to 11.
-**mistake_e:** Mixed order: g(f(2)) = g(7) = 49 − 1 = 48 ≠ 13. Or f(2) × g(2) = 21 ≠ 13. Some hybrid producing 13.
-**common_trap:** Wrong composition order — computing g(f(x)) instead of f(g(x)), or stopping at the inner function's output.
-**takeaway:** f(g(x)) means "first apply g, then f." Always compute the *innermost* function first.
+**hint_nudge:** You cannot plug 4 directly into f(g(x)) — first figure out which x makes g(x) = 4.
+**hint_strategy:** Set g(x) = 4 and solve for x; then substitute that x into the composite formula f(g(x)) = 6x − 1.
+**hint_setup:** 3x − 2 = 4 → x = 2. Now f(4) = f(g(2)) = ?
+**fastest_path:** g(x) = 4 → 3x − 2 = 4 → x = 2. f(4) = f(g(2)) = 6(2) − 1 = 11.
+**explanation:** We need f(4), but f is only defined implicitly through the composition f(g(x)) = 6x − 1. The key step is inverting g: find x such that g(x) = 4, i.e., 3x − 2 = 4 → x = 2. Then f(4) = f(g(2)) = 6(2) − 1 = 11. The composition formula gives us f at g(x), so to evaluate f at a specific value we must first find the x that maps through g to that value.
+**mistake_a:** Ignored the −2 offset when inverting g — set 3x = 4 instead of 3x − 2 = 4, getting x = 4/3; then f(4) = 6(4/3) − 1 = 8 − 1 = 7.
+**mistake_b:** Computed g(4) = 3(4) − 2 = 10 and bubbled that value — evaluated g at 4 instead of finding f at 4.
+**mistake_d:** Found x = 2 correctly but used the wrong sign on the constant: f(4) = 6(2) + 1 = 13 (flipped −1 to +1).
+**mistake_e:** Plugged x = 4 directly into the composite formula: f(g(4)) = 6(4) − 1 = 23. This computes f at g(4) = 10, not f at 4.
+**common_trap:** Substituting the target value directly into f(g(x)) — that evaluates f at g(target), not f at target.
+**takeaway:** When f is given only as part of a composition f(g(x)), evaluate f at a specific value a by solving g(x) = a for x, then substituting that x into the composite formula. You are inverting g, not evaluating at the target directly.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 

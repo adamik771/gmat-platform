@@ -15,6 +15,7 @@ import {
 } from "lucide-react"
 import LeadCapture from "@/components/marketing/LeadCapture"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
+import { POSTS as ALL_POSTS, type BlogPost } from "@/lib/blog-posts"
 
 export const metadata: Metadata = {
   title: "Free GMAT resources",
@@ -122,78 +123,65 @@ const SAMPLES: ResourceCard[] = [
   },
 ]
 
-interface BlogPostMeta {
-  slug: string
-  title: string
-  description: string
-  readMinutes: number
-}
-
-const POSTS: BlogPostMeta[] = [
+// Curated subset of blog posts featured on the resources page, in
+// display order. Titles / dates / read times come from the canonical
+// list in `@/lib/blog-posts` — only the description is overridden
+// here so the cards render tighter copy than the /blog index.
+const FEATURED: Array<{ slug: string; description: string }> = [
   {
     slug: "first-30-days-of-gmat-prep",
-    title: "The First 30 Days of GMAT Prep: A Beginner's Plan",
     description:
       "What to actually do in your first month of GMAT prep — week by week, with the diagnostic-first sequence that beats jumping straight into content.",
-    readMinutes: 12,
   },
   {
     slug: "gmat-prep-for-non-native-english-speakers",
-    title: "GMAT Prep for Non-Native English Speakers: A Targeted Plan",
     description:
       "Seven specific tactics that took a non-native speaker from 565 to 735, including the Verbal-section approach native-speaker prep guides leave out.",
-    readMinutes: 13,
   },
   {
     slug: "gmat-focus-vs-old-gmat-whats-changed",
-    title: "GMAT Focus Edition vs the Old GMAT: What Actually Changed",
     description:
       "Section-by-section breakdown of what GMAT Focus removed, what it kept, and how to translate any old GMAT prep into a Focus study plan.",
-    readMinutes: 12,
   },
   {
     slug: "gmat-reading-comprehension-passage-strategy",
-    title: "GMAT Reading Comprehension: How to Read Dense Passages Fast",
     description:
       "The four passage types, the structural skim that beats line-by-line reading, and how non-native speakers can match native-speaker accuracy on RC.",
-    readMinutes: 13,
   },
   {
     slug: "gmat-critical-reasoning-question-types-explained",
-    title: "GMAT Critical Reasoning Question Types Explained",
     description:
       "All eight CR question types — what each one is asking, the trap built into each, and how to recognise the stem in five seconds.",
-    readMinutes: 15,
   },
   {
     slug: "gmat-data-sufficiency-strategy-guide",
-    title: "GMAT Data Sufficiency: The Strategy Guide for 2026",
     description:
       "The five answer choices, the AD/BCE process, the trap that costs most students 20 points per section, and how to drill DS without burning out.",
-    readMinutes: 14,
   },
   {
     slug: "gmat-data-insights-complete-guide",
-    title: "GMAT Data Insights: The Complete Section Guide for 2026",
     description:
       "All five question types, timing strategy, the traps that cost most students points, and how to practice the newest section on the GMAT Focus Edition.",
-    readMinutes: 14,
   },
   {
     slug: "how-to-build-a-gmat-study-plan-that-works",
-    title: "How to Build a GMAT Study Plan That Actually Works",
     description:
       "Why most GMAT study plans fail, the diagnostic-first approach, and a 16-week framework you can adapt to a real schedule.",
-    readMinutes: 13,
   },
   {
     slug: "why-your-gmat-score-is-stuck",
-    title: "Why Your GMAT Score Is Stuck",
     description:
       "I went from 565 to 735 in eight months. The single shift that made it possible — and why most prep advice misses it.",
-    readMinutes: 9,
   },
 ]
+
+const POSTS: BlogPost[] = FEATURED.map((f) => {
+  const post = ALL_POSTS.find((p) => p.slug === f.slug)
+  if (!post) {
+    throw new Error(`Featured resources slug not in BLOG_POSTS: ${f.slug}`)
+  }
+  return { ...post, description: f.description }
+})
 
 function ResourceCardItem({ card }: { card: ResourceCard }) {
   const Icon = card.icon
@@ -385,7 +373,7 @@ export default function ResourcesPage() {
             </div>
           </div>
           <LeadCapture
-            source="other"
+            source="resources"
             leadMagnet="error-log-template"
             eyebrow=""
             headline="Send me the template"

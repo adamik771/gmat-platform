@@ -19,6 +19,8 @@ sections:
   - id: integer-exponents-rules
     type: reading
     title: "Integer exponents — the three rules you multiply by"
+    intro: |
+      Three rules — product, quotient, power of a power — cover 80% of every exponent question on the GMAT. Learn them alongside the same-base reflex and you'll recognize the solution path before you finish reading the problem.
     check_question_ids:
       - exponents-roots-q1
       - exponents-roots-q11
@@ -26,18 +28,24 @@ sections:
   - id: negative-and-zero-exponents
     type: reading
     title: "Negative and zero exponents — the sign-flip trap"
+    intro: |
+      Zero and negative exponents follow directly from the quotient rule — not from arbitrary definitions. Once you see the derivation, you'll never again confuse x⁰ with 0 or x⁻² with a negative number.
     check_question_ids:
       - exponents-roots-q5
 
   - id: fractional-exponents-and-radicals
     type: reading
     title: "Fractional exponents — roots in disguise"
+    intro: |
+      A fraction in the exponent means root and power fused into one. One ordering decision — root first or power first — separates a 4-second calculation from a 40-second slog.
     check_question_ids:
       - exponents-roots-q8
 
   - id: roots-and-simplification
     type: reading
     title: "Roots — factor, split, simplify"
+    intro: |
+      GMAT radical simplification is a one-step algorithm: find the largest perfect-square factor, split the root, evaluate. This section gives you the algorithm, the table to memorize, and the traps that end a student's streak.
     check_question_ids:
       - exponents-roots-q2
       - exponents-roots-q7
@@ -45,12 +53,16 @@ sections:
   - id: rationalizing-and-combining
     type: reading
     title: "Rationalizing denominators and combining radicals"
+    intro: |
+      GMAT answer choices never leave radicals in a denominator. Two clearing moves handle every case. The second one — the conjugate — is driven by a single algebraic identity that's worth memorizing on its own terms.
     check_question_ids:
       - exponents-roots-q12
 
   - id: scientific-notation
     type: reading
     title: "Scientific notation — treat the pieces separately"
+    intro: |
+      Scientific notation turns one hard calculation into two easy ones — coefficient arithmetic and power-of-10 arithmetic, done independently and then reassembled. The single recurring error is exponent sign: this section shows you exactly where it happens.
     check_question_ids:
       - exponents-roots-q3
       - exponents-roots-q9
@@ -153,6 +165,8 @@ The most common mistake here is sign-handling. Slow down for two seconds on the 
 
 **Trap to watch.** −3² and (−3)² are different. −3² = −(3²) = −9 because exponentiation binds tighter than the negative sign. (−3)² = 9 because the parentheses force the negative inside. GMAT answer choices often exploit this to separate students who actually read the expression from those who skim it.
 
+> **Self-explanation prompt.** Cover this section and write down: why does x⁻² equal 1/x² instead of −x²? If you can trace it through the quotient rule — x² / x⁴ = x²⁻⁴ = x⁻², and that same ratio is clearly 1/x² — you understand it rather than having memorized it. That distinction matters when a novel-looking problem hits you on test day.
+
 ## @fractional-exponents-and-radicals
 
 A fractional exponent is a root in disguise. The definition:
@@ -179,6 +193,10 @@ Power of a power: multiply. (3/4) · (8/3) = 24/12 = 2. Result: x².
 **Trap to watch.** x^(1/2) is **only** defined as the non-negative square root on the GMAT. For x ≥ 0, √x is a single non-negative value, not ±. When the GMAT wants both roots, it writes x² = 9 (giving x = ±3), not x = √9 (giving just 3).
 
 **Converting between forms.** √x = x^(1/2). ³√x = x^(1/3). √(x³) = x^(3/2). You'll move between radical and fractional-exponent notation constantly — treat them as two languages for the same object.
+
+> **Self-explanation prompt.** Without peeking, state the rule for x^(m/n): which part of the fraction is the root, and which is the power? Then state why taking the root first is almost always faster. If you can answer both in under 15 seconds, you're ready for the check question.
+
+> **Recall check.** Try these cold: (a) 8^(2/3), (b) 81^(3/4), (c) 32^(2/5). Answers: 4, 27, 4. If any took more than 10 seconds, you're computing in the wrong order — root first every time.
 
 ## @roots-and-simplification
 
@@ -216,6 +234,17 @@ Simplify each first: √12 = √(4·3) = 2√3, and √27 = √(9·3) = 3√3. N
 
 **Memorize these cube roots:** ³√8 = 2, ³√27 = 3, ³√64 = 4, ³√125 = 5, ³√216 = 6, ³√1000 = 10. Cube roots come up less often than square roots, but when they do, recognition speed matters.
 
+**Micro-drill.** Simplify each without a calculator — should take under 45 seconds total.
+
+1. √75 → ___
+2. √(√81) → ___
+3. √12 + 2√3 → ___
+4. √50 − √8 → ___
+
+Answers: (1) 5√3, (2) 3, (3) 4√3, (4) 3√2. If (3) or (4) tripped you up, re-read the "adding and subtracting radicals" rule: you must simplify each radical *before* you can combine them.
+
+> **Self-explanation prompt.** Why can't you simplify √a + √b into √(a+b)? Write a concrete numerical counterexample (e.g., √9 + √16 vs. √25). If you can both state the rule and show why it fails, you won't make that error on test day — it's one of the most common wrong moves on medium-hard Quant.
+
 ## @rationalizing-and-combining
 
 A denominator with a radical is considered "unfinished" on the GMAT. Answer choices are almost always rationalized — radicals appear only in numerators. To rationalize, multiply by a form of 1 that clears the radical below.
@@ -241,6 +270,15 @@ Multiply top and bottom by the conjugate (√3 − 1):
 **Combining radical fractions.** Follow the normal fraction workflow: common denominator, then simplify.
 
 **Quick recognition.** If an answer choice has the form a√b + c, the setup usually involved rationalizing a denominator of the form √b + something. Scan answer choices before diving into calculation — they often hint at the cleanest path.
+
+**Micro-drill.** Rationalize each denominator:
+
+1. 10/√5 → ___
+2. 3/(√7 − 2) → ___
+
+Answers: (1) 2√5, (2) 3(√7 + 2)/3 = √7 + 2. For (2): multiply by (√7 + 2)/(√7 + 2); denominator becomes 7 − 4 = 3; numerator becomes 3(√7 + 2); divide through to get √7 + 2. If you forget the conjugate, go back to the (a + b)(a − b) = a² − b² identity — it's the only mechanism that clears a sum-of-radicals denominator.
+
+> **Self-explanation prompt.** What is the conjugate of (3√2 + 5), and what does multiplying by it produce in the denominator? If you can say "(3√2 − 5), and it produces (3√2)² − 5² = 18 − 25 = −7," you own the conjugate move. The identity a² − b² is what makes it work — radicals vanish because squaring a square root kills it.
 
 ## @scientific-notation
 
@@ -270,7 +308,22 @@ Rewrite the smaller: 2 × 10⁴ = 0.2 × 10⁵. Now add: (3 + 0.2) × 10⁵ = 3.
 
 **The load-bearing benchmark: 2¹⁰ ≈ 10³.** Exactly: 2¹⁰ = 1,024. This approximation lets you estimate powers of 2 against powers of 10 without a calculator. 2²⁰ ≈ 10⁶. 2³⁰ ≈ 10⁹. The approximation is slightly low (2¹⁰ is actually 2.4% higher than 10³), but that's close enough for GMAT comparison questions — and one of the hardest exponent DS questions on the test hinges on recognizing it.
 
+**Sanity-check habit.** After any scientific-notation calculation, ask: does my answer have the right order of magnitude? 4.5 × 10⁻⁴ is 0.00045 — a tiny number. 4.5 × 10⁴ is 45,000 — enormous. Wrong sign on the exponent flips your answer by a factor of 10⁸. One second of checking catches this every time.
+
+> **Self-explanation prompt.** Cover this section. Express 7.2 × 10⁸ ÷ (9 × 10⁻²) in scientific notation. Work through it: 7.2/9 = 0.8, and 10⁸ / 10⁻² = 10¹⁰. So 0.8 × 10¹⁰ = 8 × 10⁹. Did you handle the division of the coefficient and the subtraction of the exponents as two separate steps before recombining? If you tangled them together and got a wrong answer, rerun the calculation with that explicit separation.
+
 ## @summary
+
+**What you should be able to do after this chapter:**
+
+- Apply the three integer-exponent rules (product, quotient, power of a power) without hesitation.
+- Convert any expression to the same base and equate exponents to solve for an unknown.
+- Handle negative, zero, and fractional exponents as first-class operations, not special cases.
+- Simplify radicals by factoring out the largest perfect square.
+- Rationalize any denominator using either the single-radical move or the conjugate move.
+- Perform multiplication and division in scientific notation without confusing coefficient and exponent arithmetic.
+
+---
 
 Every exponent question on the GMAT yields to one question: **can I rewrite this with a common base?** If yes, apply the three rules, equate exponents, solve. If no, you're probably in a scientific-notation or radical-simplification problem — separate the coefficient from the power-of-10, or factor out the largest perfect square, and the rest is arithmetic.
 
@@ -306,5 +359,22 @@ Every exponent question on the GMAT yields to one question: **can I rewrite this
 3. **Radical in a denominator?** Rationalize with the conjugate.
 4. **Scientific notation?** Treat coefficients and powers of 10 as two independent arithmetic problems.
 5. **Estimation question?** Fall back on 2¹⁰ ≈ 10³.
+
+**Pattern-recognition table — what you see on the test:**
+
+| Trigger phrase or form | Move | Example |
+|---|---|---|
+| Two different powers of same base, set equal | Same-base rewrite | 9ˣ = 27 → (3²)ˣ = 3³ |
+| Negative exponent | Flip to reciprocal | x⁻³ → 1/x³ |
+| Fraction in exponent | Root (denom) + power (num) | 27^(2/3) → (³√27)² = 9 |
+| Radical in answer choices | Factor largest perfect square | √72 → 6√2 |
+| Radical in denominator | Single radical: multiply by √n/√n | 6/√3 → 2√3 |
+| Radical sum/diff in denominator | Conjugate: multiply by ±-flipped version | 6/(√3+1) → 3√3−3 |
+| Numbers as a × 10ᵏ | Separate coefficient and exponent | (3×10⁴)(2×10⁻⁷) → 6×10⁻³ |
+| Powers of 2 vs. powers of 10, estimation | 2¹⁰ ≈ 10³ | 2³⁰ ≈ 10⁹ |
+
+**Time-management note.** Easy exponent questions (basic product/quotient rules, zero/negative exponents) should resolve in under 60 seconds. Medium same-base rewrites and fractional-exponent calculations, 90 seconds. Hard scientific-notation estimation and radical-equation DS, up to 2 minutes. Past 2:30 on any exponent question, flag it and move on — you're burning time on arithmetic, not insight.
+
+**What to do next.** Open the problem set and target 90%+ on Easy before attempting Medium. When you miss a question, trace the failure to one of three steps: (1) same-base rewrite — did you miss that 4 = 2² and 8 = 2³? (2) exponent arithmetic — did you add where you should subtract, or multiply where you should add? (3) radical simplification — did you miss a perfect-square factor or forget to simplify before combining? These failure modes are distinct: knowing yours lets you re-read exactly the right section before moving on. For DS questions, watch especially for even-exponent traps — x² = 4 has two solutions, not one — and for whether x could be negative or zero when you're equating exponents.
 
 The students who freeze on exponent questions are the ones who try to think about them. The students who score 705+ have the rules so automated they run the decision tree in six seconds and spend the rest of their two minutes on careful arithmetic. Drill the rules until they're reflexive. Everything downstream is easy.

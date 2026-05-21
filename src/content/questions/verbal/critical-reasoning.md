@@ -2803,7 +2803,6 @@ Which of the following is most strongly supported by the statements above?
 **mistake_a:** Misreads — 60% applies to flagged claims, not audit accuracy overall.
 **mistake_b:** Goes beyond data — we only know about flagged claims.
 **mistake_c:** Imports outside assumption.
-**mistake_d:** *(this is the answer)*
 **mistake_e:** Imports outside assumption.
 **common_trap:** Picking (B) because "60% of flagged claims have errors" *seems* to imply most claims have errors — but only flagged ones were checked. Unflagged claims could be largely error-free.
 **takeaway:** Probabilistic inference = chain the conditional rates literally. P(error) = P(flagged) × P(error | flagged), not the marginal of either alone.

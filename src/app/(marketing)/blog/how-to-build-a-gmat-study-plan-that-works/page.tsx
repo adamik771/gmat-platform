@@ -5,6 +5,7 @@ import JsonLd from "@/components/seo/JsonLd"
 import { articleLd } from "@/lib/structured-data"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
 import RelatedPosts from "@/components/marketing/RelatedPosts"
+import BlogInlineCTA from "@/components/marketing/BlogInlineCTA"
 
 const TITLE = "How to Build a GMAT Study Plan That Actually Works"
 const DESCRIPTION =
@@ -337,6 +338,8 @@ export default function PostPage() {
               time. Then stop.
             </li>
           </ul>
+
+          <BlogInlineCTA />
 
           <H2>How to adjust when life happens</H2>
           <p>

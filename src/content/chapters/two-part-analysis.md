@@ -46,6 +46,11 @@ sections:
       - two-part-analysis-q7
       - two-part-analysis-q15
 
+  - id: common-tpa-traps
+    type: reading
+    title: "The four TPA traps — and the compute-first reflex"
+    check_question_ids: []
+
   - id: cause-effect-patterns
     type: reading
     title: "Cause-and-effect argument patterns"
@@ -295,6 +300,57 @@ Etc. This kind of problem requires careful case-checking, which is typical for 7
 
 > **Recall check.** Without looking, state the combined-work formula, the mixture formula, and the investment formula. (Answers: 1/a+1/b=1/T; weighted average with two equations; split-capital with two equations.) All three are structurally the same — two equations in two unknowns. Retrieval of all three cements the template in long-term memory.
 
+## @common-tpa-traps
+
+Two-Part Analysis has the most consistently-mis-handled traps of any DI subtype because the format itself creates a unique failure mode: you have to satisfy *two* constraints at once, but you pick *each* answer independently. The four traps below cost more points on hard TPA than any algebra error.
+
+**Trap 1: The single-column-valid pair.**
+
+This is the signature TPA failure. You pick a value for Part 1 that's valid considered alone, then a value for Part 2 that's valid considered alone — and the pair fails the joint constraint between them.
+
+*Example.* The problem asks for "amount of Solution X" (Part 1) and "amount of Solution Y" (Part 2), with constraint x + y = 10. The shared list: 2, 3, 4, 5, 6, 7. Under time pressure, a student picks x = 4 (passes the column-1 sanity check) and y = 5 (passes the column-2 sanity check) — but 4 + 5 = 9, not 10. Both individual picks look reasonable; the pair isn't.
+
+The fix: **always verify the joint constraint as the last step**. The pair must satisfy *every* equation in the problem, not just each column's constraint considered separately. If there are two equations in the problem, your two values must satisfy both equations simultaneously.
+
+**Trap 2: The intermediate-result distractor.**
+
+TPA answer lists almost always include a value that's the result of an intermediate step in a multi-step solve. Students who finish step 3 of a 4-step problem, recognize "their" number in the list, and bubble lose the question.
+
+*Example.* The problem requires solving the system 3a + 5b = 100 and a + b = 24. A student substitutes b = 24 − a, gets 3a + 5(24 − a) = 100, simplifies to −2a = −20, lands on a = 10. Now they need b. But the list happens to include 20 (from the −2a = −20 step), 14 (from b = 24 − 10), 10, 6, 4. The student, having just stared at "20" for a beat, bubbles 20 for Part 1. Wrong — Part 1 was asking for the value of `a`, not the intermediate `2a`.
+
+The fix: **before bubbling, restate what each part is asking for and confirm your value answers that specific question**. "Part 1 asks for the amount of Alpha. My computed value is 60,000. Yes — that's Alpha, not the intermediate sum." Don't trust the recognition reflex; the test writers know which intermediate values to plant.
+
+**Trap 3: The "must differ" assumption.**
+
+Students sometimes assume Part 1 and Part 2 must be different rows. They aren't required to differ. When the math points at the same value for both parts (especially common on mixture problems with equal halves, or symmetric word problems), pick the same row twice and move on. Don't second-guess the format.
+
+*Example.* "Mix Solution X (30% salt) with Solution Y (60% salt) to make 10 L of 45% salt solution. List: 2, 3, 4, 5, 6, 7." Solving: x = 5, y = 5. The correct answer is to pick 5 for both — even when it feels weird to pick the same row twice. Logical TPA almost never has the same answer for both, but quantitative TPA does, regularly. Trust the math.
+
+**Trap 4: Binary scoring → all-or-nothing pacing.**
+
+TPA is graded all-or-nothing per question. Getting Part 1 right and Part 2 wrong gives you zero credit — the same as missing both. This shapes pacing in a specific way: if you're stuck on Part 1, don't burn time optimizing Part 2 hoping for partial credit. There is no partial credit.
+
+The strategic consequence on hard questions: at the 2:30 mark, if Part 1 is still uncertain, **commit to a best guess for both parts and skip**. Spending another 90 seconds carefully solving Part 2 when Part 1 is doomed is wasted time — that 90 seconds buys exactly zero expected points on this question and forgoes the chance to fully solve an easier question downstream.
+
+The flip side: if you've nailed Part 1 with confidence, *now* it makes sense to invest in Part 2, because each part you solve correctly is worth the full point.
+
+**The compute-first reflex (the meta-discipline).**
+
+Strong TPA solvers compute their answers BEFORE scanning the list, then look for them. Students who scan the list first and "try things" often anchor on a list value (selection bias) and abandon their algebra before it converges. They lock onto a number that fits Part 1, then twist Part 2 to match.
+
+The discipline: **derive both values from the problem on your scratchwork, then look at the list to find them**. If your answer isn't in the list, you know your setup is wrong and can re-check before guessing. The list is a verification layer, not an input.
+
+**The full TPA verification routine — every question, no exceptions.**
+
+1. Derive both values from the problem (don't peek at the list first).
+2. Find each value in the list.
+3. Substitute both selections back into *every* original equation. Both must hold.
+4. Restate what each part was asking for. Confirm your selection answers that specific question, not an intermediate quantity.
+
+This adds 15–20 seconds per question. It saves you 200+ points across the section over a prep cycle.
+
+> **Self-explanation prompt.** Why is verifying the joint constraint specifically the last step in TPA — rather than treating each part as an independent CR or DS question? If you can say "because TPA's shared-list format invites picking each part in isolation; only joint verification catches the cross-constraint failures the format is designed to surface," you've understood why TPA punishes the same algebra mistake more than DS or PS would.
+
 ## @cause-effect-patterns
 
 Two-Part Analysis often tests cause-and-effect reasoning, either within a quantitative setup (e.g., "find the cause" and "find the effect") or in a logical argument.
@@ -356,7 +412,7 @@ Two-Part Analysis is two question types wearing the same dress. Recognizing the 
 1. **Read the stem. Classify the flavor.** Numbers and equations → quantitative. Arguments and roles → logical.
 2. **Quantitative:** define variables, set up equations, solve, match to list.
 3. **Logical:** decompose the argument (conclusion, evidence, assumption), then match each part's required role to the list.
-4. **Verify.** Plug selections back into the problem. Do they satisfy the constraints?
+4. **Verify against the joint constraint.** Plug both selections into *every* original equation. Each must hold. (See @common-tpa-traps for the full verification routine and the four trap patterns that punish skipping this step.)
 
 **The quantitative templates:**
 

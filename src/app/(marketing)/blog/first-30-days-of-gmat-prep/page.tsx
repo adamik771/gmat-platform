@@ -5,6 +5,7 @@ import JsonLd from "@/components/seo/JsonLd"
 import { articleLd } from "@/lib/structured-data"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
 import RelatedPosts from "@/components/marketing/RelatedPosts"
+import BlogInlineCTA from "@/components/marketing/BlogInlineCTA"
 
 const TITLE = "The First 30 Days of GMAT Prep: A Beginner's Plan"
 const DESCRIPTION =
@@ -265,6 +266,8 @@ export default function PostPage() {
               high-scorers usually plateau.
             </li>
           </ul>
+
+          <BlogInlineCTA />
 
           <H2>Week 4 — Mock + recalibration</H2>
           <p>

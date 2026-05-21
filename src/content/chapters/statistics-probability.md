@@ -77,6 +77,11 @@ problem_sets:
       - statistics-probability-q9
       - statistics-probability-q10
       - statistics-probability-q11
+      - statistics-probability-q29
+      - statistics-probability-q30
+      - statistics-probability-q31
+      - statistics-probability-q32
+      - statistics-probability-q33
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -92,6 +97,13 @@ problem_sets:
       - statistics-probability-q15
       - statistics-probability-q16
       - statistics-probability-q17
+      - statistics-probability-q34
+      - statistics-probability-q35
+      - statistics-probability-q36
+      - statistics-probability-q37
+      - statistics-probability-q38
+      - statistics-probability-q39
+      - statistics-probability-q40
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -105,6 +117,11 @@ problem_sets:
       - statistics-probability-q18
       - statistics-probability-q19
       - statistics-probability-q20
+      - statistics-probability-q41
+      - statistics-probability-q42
+      - statistics-probability-q43
+      - statistics-probability-q44
+      - statistics-probability-q45
 ---
 
 ## @mean-and-sum

@@ -8,23 +8,23 @@ topic: Statistics & Probability
 **type:** Problem Solving
 **topic:** Mean
 
-The average (arithmetic mean) of five numbers is 18. If one of the numbers is removed, the average of the remaining four numbers is 15. What is the number that was removed?
+The average (arithmetic mean) of 6 numbers is 15. After one of the numbers is removed, the average of the remaining 5 is 13. What is the value of the number that was removed?
 
-- A) 20
-- B) 24
-- C) 28
-- D) 30
-- E) 33
+- A) 2
+- B) 10
+- C) 13
+- D) 15
+- E) 25
 
-**answer:** D
-**fastest_path:** Sum dropped from 5·18 = 90 to 4·15 = 60. Removed = 30.
-**explanation:** Sum of 5 = 5 × 18 = 90. Sum of 4 = 4 × 15 = 60. Removed = 90 − 60 = 30.
-**mistake_a:** Slip → 20.
-**mistake_b:** Slip → 24.
-**mistake_c:** Slip → 28.
-**mistake_e:** Slip → 33.
-**common_trap:** Computing the difference of *means* (18 − 15 = 3) instead of difference of *sums*.
-**takeaway:** Sum = mean × count. For mean problems, work in *sums*, not in averages.
+**answer:** E
+**fastest_path:** Sum drops from 6·15 = 90 to 5·13 = 65. Removed = 90 − 65 = 25.
+**explanation:** Sum of 6 = 6 × 15 = 90. Sum of 5 = 5 × 13 = 65. Removed = 90 − 65 = 25.
+**mistake_a:** Subtracted the two means: 15 − 13 = 2. This ignores the counts — the removed number must account for the full sum difference, not just the average drop.
+**mistake_b:** Multiplied the mean difference by the smaller (remaining) count: 5 × (15 − 13) = 10. Used the wrong count. The old sum is 6 × 15, new sum is 5 × 13; each count belongs to its own mean.
+**mistake_c:** Bubbled the new mean (13) — answered the given information instead of solving for the removed value.
+**mistake_d:** Bubbled the original mean (15) — same error in the other direction.
+**common_trap:** Computing the mean difference (15 − 13 = 2) and treating that as the removed value. Always work in sums, not in averages.
+**takeaway:** Sum = mean × count. For mean problems, compute and subtract sums: removed = old_sum − new_sum = 6 × 15 − 5 × 13 = 25.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -84,25 +84,25 @@ What is the median of the set {14, 7, 21, 3, 10, 7, 18}?
 ## Q4
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Counting
+**topic:** Weighted Average
 
-A committee of 3 people is to be selected from a group of 7 candidates. How many different committees are possible?
+A class of 25 students has a mean test score of 72. The mean score of the 10 boys in the class is 60. What is the mean score of the 15 girls in the class?
 
-- A) 21
-- B) 35
-- C) 42
-- D) 120
-- E) 210
+- A) 60
+- B) 72
+- C) 76
+- D) 80
+- E) 84
 
-**answer:** B
-**fastest_path:** C(7,3) = (7·6·5)/(3·2·1) = 210/6 = 35.
-**explanation:** "Committee" = unordered selection → combinations. C(7,3) = 7!/(3!·4!) = 35.
-**mistake_a:** Slip → 21.
-**mistake_c:** Slip → 42.
-**mistake_d:** Slip → 120.
-**mistake_e:** Computed P(7,3) = 7·6·5 = 210 (used permutations).
-**common_trap:** Forgetting to divide by 3! — counting *ordered* arrangements (210) instead of unordered committees.
-**takeaway:** Committee = unordered → combinations. C(n,k) = P(n,k)/k!. Always divide by k! when order doesn't matter.
+**answer:** D
+**fastest_path:** Total sum = 25 × 72 = 1800. Boys sum = 10 × 60 = 600. Girls sum = 1200. Girls mean = 1200/15 = 80.
+**explanation:** Girls sum = total sum − boys sum = 1800 − 600 = 1200. Girls mean = 1200/15 = 80.
+**mistake_a:** Bubbled the boys' mean (60) — answered the given information rather than the unknown.
+**mistake_b:** Bubbled the class mean (72) — assumed the girls' mean equals the overall average without computing the boys' pull-down effect.
+**mistake_c:** Used 11 boys instead of the stated 10: 25 × 72 − 11 × 60 = 1800 − 660 = 1140, then 1140/15 = 76. Misread or miscounted the group size; always re-read which group's count was given.
+**mistake_e:** Applied the symmetric-deviation fallacy: boys are 12 below the class mean (72 − 60 = 12), so assumed girls must be 12 above: 72 + 12 = 84. This treats the problem as a balance beam with equal arms, but the groups are different sizes (15 girls vs 10 boys), so the girls' deviation from the mean is proportionally smaller.
+**common_trap:** Assuming "boys are X below mean → girls are X above mean." This ignores group sizes and is only true when both groups are equal in size.
+**takeaway:** Weighted average: total_sum = group₁_sum + group₂_sum. Always work with sums (mean × count), not with shortcuts that assume equal group sizes.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -124,9 +124,9 @@ Two fair six-sided dice are rolled. What is the probability that the sum of the 
 **fastest_path:** Ordered pairs summing to 8: (2,6), (3,5), (4,4), (5,3), (6,2) → 5/36.
 **explanation:** Total ordered outcomes = 36. Sum = 8: (2,6), (3,5), (4,4), (5,3), (6,2) → 5 outcomes. P = 5/36.
 **mistake_a:** Counted only unordered pairs → 3/36 = 1/12.
-**mistake_c:** Slip → 6/36 = 1/6.
-**mistake_d:** Slip → 7/36.
-**mistake_e:** Slip → 9/36 = 1/4.
+**mistake_c:** Listed the 6 ordered pairs for sum = 7 instead of sum = 8. Sum = 7 has (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) = 6 pairs; sum = 8 has one fewer because (4,4) replaces two asymmetric pairs. Off by one on the target sum.
+**mistake_d:** Counted 7 pairs — typically by including impossible pairs such as (1,7) and (7,1), forgetting that standard dice show only 1 through 6. Always check that both die values are in range before including a pair.
+**mistake_e:** Counted 9 pairs — a systematic listing error often caused by including pairs that belong to adjacent sums or by tallying the same pair multiple times. Re-list from scratch: (2,6),(3,5),(4,4),(5,3),(6,2) — exactly 5.
 **common_trap:** Counting only unordered pairs — (2,6) and (6,2) are *different* outcomes when rolling two distinguishable dice.
 **takeaway:** Two dice → 36 *ordered* outcomes. List ordered pairs systematically for each sum.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -150,8 +150,8 @@ Set A = {10, 20, 30, 40, 50} and Set B = {20, 25, 30, 35, 40}. Which of the foll
 **fastest_path:** Both means = 30. A spreads ±20; B spreads ±10. A is more spread → A's SD is greater.
 **explanation:** Mean(A) = Mean(B) = 30. Deviations: A {−20, −10, 0, 10, 20}; B {−10, −5, 0, 5, 10}. A is more spread → A has greater SD.
 **mistake_a:** Treated equal-mean sets as having equal SD.
-**mistake_c:** Inverted SD direction.
-**mistake_d:** Mis-computed means.
+**mistake_c:** Concluded Set B has the greater SD by reasoning that B's values are "packed tighter" — inverting the direction. Tighter packing means *smaller* deviations from the mean, hence *smaller* SD. B's deviations are ±10 and ±5; A's are ±20 and ±10. Larger deviations → larger SD. Denser clustering always means smaller spread.
+**mistake_d:** Mis-computed one or both means and concluded the sets differ. Verify: Mean(A) = (10+20+30+40+50)/5 = 150/5 = 30; Mean(B) = (20+25+30+35+40)/5 = 150/5 = 30. Both equal 30. Visual inspection of "bigger-looking numbers" can mislead — always sum explicitly.
 **mistake_e:** Mis-computed means.
 **common_trap:** Computing exact SD numerically (slow). Compare spreads visually instead.
 **takeaway:** Equal means but different spreads → bigger spread = bigger SD. No need to compute exact SDs.
@@ -175,12 +175,12 @@ How many 3-digit positive integers have all distinct digits and are divisible by
 **answer:** C
 **fastest_path:** Cases by units digit. Ends in 0: 9·8 = 72. Ends in 5: 8·8 = 64. Total 136.
 **explanation:** Last digit must be 0 or 5. Case 1 (ends 0): hundreds 1–9 (9), tens any except hundreds and 0 (8). = 72. Case 2 (ends 5): hundreds 1–9 except 5 (8), tens any 0–9 except hundreds and 5 (8). = 64. Total 72 + 64 = 136.
-**mistake_a:** Slip → 112.
-**mistake_b:** Slip → 128.
-**mistake_d:** Mis-counted Case 2 (allowed leading 0 or used 9·8 again) → 144.
-**mistake_e:** Slip → 152.
-**common_trap:** Treating both cases identically — Case 2 forbids hundreds digit = 5 (already used).
-**takeaway:** Split by *cases* when a position has limited choices. Adjust subsequent positions for already-used digits.
+**mistake_a:** Applied Case 2's restriction to Case 1 as well — used 8×7 = 56 for Case 1 (incorrectly excluded both 0 and 5 from the tens digit) and 8×7 = 56 for Case 2, giving 112. In Case 1, the tens digit can be 0; the only excluded digit is the hundreds digit, leaving 8 choices. Case 1 = 9×8 = 72.
+**mistake_b:** Treated both cases symmetrically, using 8×8 = 64 for each: 64+64 = 128. Forgot that Case 1 (ends in 0) has 9 hundreds choices (1–9), not 8, since 0 is already used as the units digit, not a competing hundreds digit.
+**mistake_d:** Used 9×8 = 72 for both cases without adjusting Case 2 for the fact that the hundreds digit cannot be 5: 72+72 = 144. In Case 2, the hundreds digit excludes both leading-zero (can't start with 0) and the 5 already placed in the units digit — leaving 8 choices, not 9.
+**mistake_e:** Included a third case or overcounted within a case, pushing the total above the correct 136. There are only two valid unit-digit choices for divisibility by 5: 0 and 5.
+**common_trap:** Treating both cases identically — Case 2 forbids the hundreds digit = 5 (already used), giving only 8 hundreds choices, not 9.
+**takeaway:** Split by *cases* when a position has limited choices. Adjust subsequent positions for already-used digits. Re-check each case independently.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -201,11 +201,11 @@ A box contains 5 red chips and 3 blue chips. Two chips are drawn at random witho
 **answer:** B
 **fastest_path:** 1 − P(both blue) = 1 − (3/8)(2/7) = 1 − 3/28 = 25/28.
 **explanation:** Complement: P(at least 1 R) = 1 − P(both B) = 1 − (3/8)(2/7) = 1 − 6/56 = 1 − 3/28 = 25/28.
-**mistake_a:** Bubbled P(red on a single draw) = 5/8.
-**mistake_c:** Slip → 13/14.
-**mistake_d:** Slip → 15/28.
-**mistake_e:** Slip → 27/28.
-**common_trap:** Computing P(R) by case analysis (1 R or 2 R) — slow and error-prone — instead of using the complement.
+**mistake_a:** Bubbled P(red on a single draw) = 5/8 — used the single-draw probability and forgot there are two draws.
+**mistake_c:** Attempted direct counting of P(exactly 1 R) + P(exactly 2 R) but made a combining-fractions error along the way, landing near 26/28 = 13/14. The complement avoids this multi-case arithmetic entirely.
+**mistake_d:** Computed P(exactly 1 red) = C(5,1)·C(3,1)/C(8,2) = 15/28. This counts only the "exactly one" case. The question asks for *at least one*, which also includes P(exactly 2 red). Use the complement: 1 − P(both blue) = 25/28.
+**mistake_e:** Found P(both blue) = 3/28 correctly but made an arithmetic slip on the complement: wrote 1 − 3/28 = 27/28 instead of 25/28. Double-check: 28/28 − 3/28 = 25/28, not 27/28.
+**common_trap:** Computing P(exactly 1) and treating it as P(at least 1). These differ by the P(exactly 2) term.
 **takeaway:** "At least one" → use the complement: P(at least 1) = 1 − P(none).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
@@ -318,25 +318,25 @@ The mean of five distinct positive integers is 20 and their median is 18. If the
 ## Q13
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Combinations
+**topic:** Interquartile Range
 
-From a group of 5 men and 4 women, a committee of 4 people is to be formed consisting of exactly 2 men and 2 women. How many different committees are possible?
+The exam scores of 8 students, listed in increasing order, are: 52, 58, 64, 70, 76, 82, 88, 94. What is the interquartile range (IQR) of this data set?
 
-- A) 20
-- B) 36
-- C) 60
-- D) 126
-- E) 210
+- A) 12
+- B) 21
+- C) 24
+- D) 30
+- E) 42
 
 **answer:** C
-**fastest_path:** C(5,2) · C(4,2) = 10 · 6 = 60.
-**explanation:** Choose 2 of 5 men: C(5,2) = 10. Choose 2 of 4 women: C(4,2) = 6. Multiply: 10 × 6 = 60.
-**mistake_a:** Slip → 20.
-**mistake_b:** Slip → 36.
-**mistake_d:** Computed C(9,4) = 126 (ignored gender constraint).
-**mistake_e:** Permutation-style → 210.
-**common_trap:** Computing C(9,4) = 126 by ignoring the partition constraint.
-**takeaway:** When a constraint partitions selection (men/women), multiply combinations from each partition. Don't merge then constrain.
+**fastest_path:** Split 8 values in half. Q1 = median of lower 4 = (58+64)/2 = 61. Q3 = median of upper 4 = (82+88)/2 = 85. IQR = 85 − 61 = 24.
+**explanation:** For an 8-value ordered data set, split into two halves: lower {52, 58, 64, 70} and upper {76, 82, 88, 94}. Q1 = median of lower half = (58+64)/2 = 61. Q3 = median of upper half = (82+88)/2 = 85. IQR = Q3 − Q1 = 85 − 61 = 24. IQR measures the spread of the middle 50% of the data.
+**mistake_a:** Computed Q3 − median of the full data set instead of Q3 − Q1: full median = (70+76)/2 = 73; then Q3 − 73 = 85 − 73 = 12. IQR is Q3 − Q1, not the distance from the dataset's center to Q3.
+**mistake_b:** Halved the full range: (94−52)/2 = 42/2 = 21. IQR is not half the range — it is Q3 − Q1, the spread of the middle 50%. For this data Q1 = 61 and Q3 = 85, so IQR = 24, which differs from half the range.
+**mistake_d:** Pulled the 2nd and 7th values directly as Q1 and Q3 without computing medians of the halves: 88 − 58 = 30. Q1 is the median of {52, 58, 64, 70}, which is (58+64)/2 = 61 — not just the 2nd value 58.
+**mistake_e:** Computed the full range: 94 − 52 = 42. Range = max − min measures total spread; IQR = Q3 − Q1 measures the middle 50%. IQR is always ≤ range and is more robust to extreme values.
+**common_trap:** Confusing IQR with the full range (E), or pulling raw ranked positions rather than computing medians of the lower and upper halves (D).
+**takeaway:** IQR = Q3 − Q1. For n sorted values, Q1 is the median of the lower half and Q3 is the median of the upper half. IQR captures the spread of the middle 50% of the data.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -357,10 +357,10 @@ A list of 10 numbers has a mean of 24. When an 11th number is added, the new mea
 **answer:** D
 **fastest_path:** 11 · 25 − 10 · 24 = 275 − 240 = 35.
 **explanation:** Old sum = 240; new sum = 275. 11th value = 275 − 240 = 35. Shortcut: new value = new mean + n × Δmean = 25 + 10 × 1 = 35.
-**mistake_a:** Bubbled the new mean (25).
-**mistake_b:** Slip → 26.
-**mistake_c:** Slip → 30.
-**mistake_e:** Slip → 36.
+**mistake_a:** Bubbled the new mean (25) — the new mean is the *result* of adding the 11th number, not the 11th number itself.
+**mistake_b:** Added 1 (the mean increase) directly to the new mean: 25 + 1 = 26. The mean rose because the 11th value contributed 10 extra in total (one per existing element), not because it equaled 26.
+**mistake_c:** Computed 11 × 25 = 275 correctly but used 10 × 24.5 = 245 as the old sum (averaging the old and new means): 275 − 245 = 30. The old sum is 10 × 24 = 240 exactly — use the actual old mean, not a midpoint.
+**mistake_e:** Used the new count (11) instead of the original count (10) in the shortcut formula: new_value = new_mean + new_count × Δ = 25 + 11 × 1 = 36. The correct formula uses the *original* count: 25 + 10 × 1 = 35. The new value must compensate for the 10 original elements' shortfall, not 11.
 **common_trap:** Bubbling the new mean (25) — but the *added* value is what raises the mean.
 **takeaway:** To raise n numbers' mean by Δ, the new value must equal (new mean) + n·Δ.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -383,10 +383,10 @@ A drawer contains 7 black socks and 5 white socks. If two socks are drawn at ran
 **answer:** B
 **fastest_path:** (7/12)(6/11) = 42/132 = 7/22.
 **explanation:** Without replacement: P(B then B) = (7/12)(6/11) = 42/132 = 7/22.
-**mistake_a:** Slip → 7/24.
-**mistake_c:** Slip → 1/2.
-**mistake_d:** Slip → 35/132.
-**mistake_e:** With replacement: (7/12)² = 49/144.
+**mistake_a:** Updated the numerator but not the denominator on the second draw: (7/12) × (6/12) = 42/144 = 7/24. Without replacement, both the number of black socks *and* the total count decrease. Second draw denominator is 11, not 12.
+**mistake_c:** Estimated P ≈ 7/12 ≈ 1/2, using only the single-draw probability without multiplying by the second conditional probability. Joint probability requires both factors.
+**mistake_d:** Treated the second draw as if a white (rather than black) sock had already been removed: (7/12) × (5/11) = 35/132. After drawing one black, the second draw has 6 black remaining out of 11 total — not 5 black.
+**mistake_e:** Treated both draws as independent (with replacement): (7/12)² = 49/144. Without replacement, the second draw must account for the first outcome.
 **common_trap:** Treating draws as *with* replacement — uses (7/12)² instead of decrementing.
 **takeaway:** Without replacement: decrement *both* numerator and denominator on the second draw.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -449,7 +449,7 @@ In a set of 5 positive integers, is the median equal to the mean?
 ---
 
 ## Q18
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Basic Probability
 
@@ -463,12 +463,12 @@ A fair coin is flipped 4 times. What is the probability that it lands on heads e
 
 **answer:** C
 **fastest_path:** C(4,3)/2⁴ = 4/16 = 1/4.
-**explanation:** Choose which 3 of 4 are heads: C(4,3) = 4. Each sequence has probability (1/2)⁴ = 1/16. Total = 4/16 = 1/4.
-**mistake_a:** Slip → 1/8.
-**mistake_b:** Slip → 3/16.
-**mistake_d:** Slip → 5/16.
-**mistake_e:** Slip → 3/8.
-**common_trap:** Forgetting to count C(n,k) sequences and using only (1/2)^n.
+**explanation:** Choose which 3 of 4 flips are heads: C(4,3) = 4. Each sequence has probability (1/2)⁴ = 1/16. Total = 4/16 = 1/4.
+**mistake_a:** Computed (1/2)³ = 1/8 — used only the probability of 3 heads *in a row*, ignoring the number of distinct 3-head sequences. There are C(4,3) = 4 different orderings of 3H and 1T; each occurs with probability (1/2)⁴, giving 4/16 = 1/4.
+**mistake_b:** Used 3 as the combinatorial factor instead of C(4,3) = 4: 3 × (1/2)⁴ = 3/16. The number of ways to choose 3 heads from 4 flips is C(4,3) = 4 (HHHT, HHTH, HTHH, THHH), not 3.
+**mistake_d:** Counted 5 sequences instead of 4 — often by listing HHHT, HHTH, HTHH, THHH correctly and then mistakenly appending HHHH (which has 4 heads, not 3). Count carefully: C(4,3) = 4.
+**mistake_e:** Applied a rough estimate (3/4 × 1/2 = 3/8) by conflating probabilities. Use the binomial formula: P(exactly k heads in n flips) = C(n,k) / 2ⁿ for a fair coin.
+**common_trap:** Forgetting to count C(n,k) sequences and using only (1/2)^k.
 **takeaway:** Exactly k heads in n fair flips: P = C(n,k)/2^n.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
@@ -477,7 +477,7 @@ A fair coin is flipped 4 times. What is the probability that it lands on heads e
 ## Q19
 **difficulty:** Hard
 **type:** Data Sufficiency
-**topic:** Combinations
+**topic:** Conditional Counting
 
 A committee of 3 is to be chosen from a group of n people. How many different committees are possible?
 
@@ -506,7 +506,7 @@ A committee of 3 is to be chosen from a group of n people. How many different co
 ## Q20
 **difficulty:** Hard
 **type:** Problem Solving
-**topic:** Combinations
+**topic:** Conditional Counting
 
 A student must answer 5 out of 7 questions on an exam, but must answer at least 2 of the first 3 questions. How many different sets of 5 questions can the student choose?
 
@@ -519,10 +519,10 @@ A student must answer 5 out of 7 questions on an exam, but must answer at least 
 **answer:** A
 **fastest_path:** Cases: 2 of first 3 plus 3 of last 4 = 3·4 = 12. 3 of first 3 plus 2 of last 4 = 1·6 = 6. Total 18.
 **explanation:** Case (a): exactly 2 of first 3, 3 of last 4: C(3,2)·C(4,3) = 3·4 = 12. Case (b): all 3 of first 3, 2 of last 4: C(3,3)·C(4,2) = 1·6 = 6. Total = 18. Or: complement: C(7,5) − [only 1 of first 3] = 21 − 3 = 18.
-**mistake_b:** Slip → 20.
-**mistake_c:** Used C(7,5) = 21 (no constraint applied).
-**mistake_d:** Slip → 24.
-**mistake_e:** Slip → 28.
+**mistake_b:** Computed Case (a) = 12 correctly, but inflated Case (b): used C(4,2) = 6 correctly but then mistakenly added an extra set, getting 8 instead of 6 for Case (b) → 12 + 8 = 20. Recheck: Case (b) = C(3,3) × C(4,2) = 1 × 6 = 6 exactly.
+**mistake_c:** Computed C(7,5) = 21 directly without enforcing the "at least 2 of first 3" constraint. C(7,5) counts all possible 5-question sets regardless of which questions are chosen.
+**mistake_d:** Tried the complement approach but mis-identified the disallowed sets: used C(3,2) × C(4,3) = 12 as "disallowed" instead of the actual "only 1 of first 3" = 3 sets. Complement: C(7,5) − C(3,1)·C(4,4) = 21 − 3·1 = 18.
+**mistake_e:** Inflated C(7,5): computed (7·6·5)/(3·2·1) = 35 (that is C(7,3), not C(7,5)), then subtracted 7: 35 − 7 = 28. C(7,5) = C(7,2) = 7·6/2 = 21, not 35.
 **common_trap:** Computing C(7,5) = 21 directly without enforcing the "at least 2 of first 3" constraint.
 **takeaway:** "At least k of subset" → split by exact count and add. Or use total minus disallowed (complement).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -571,9 +571,9 @@ A data set of 5 numbers has mean 10 and standard deviation 2. If each number in 
 **answer:** C
 **fastest_path:** SD scales by |3|, ignored by +4. New SD = 6.
 **explanation:** y = ax + b → SD(y) = |a|·SD(x). Here |3|·2 = 6.
-**mistake_a:** Treated SD as invariant under all transforms.
-**mistake_b:** Slip → 3.
-**mistake_d:** Applied 3·2 + 4 = 10 (treated +4 as scaling SD).
+**mistake_a:** Treated SD as invariant under all transforms — concluded the SD stays at 2. Multiplying by 3 stretches the spread: SD(3x + 4) = 3·SD(x) = 6.
+**mistake_b:** Divided the correct answer by 2 — perhaps misremembered the rule as SD(ax+b) = a·SD(x)/b, or confused the multiplier with something else. Nothing divides the SD here; the rule is SD(3x+4) = 3·2 = 6.
+**mistake_d:** Applied the +4 additive shift as a scaling factor: 3·2 + 4 = 10. Additive constants shift the mean but leave spread unchanged. Only the multiplicative factor |a| scales the SD.
 **mistake_e:** Mis-applied → 22.
 **common_trap:** Adding the constant b to the SD. Only |a| (multiplier) affects SD.
 **takeaway:** Linear transform y = ax + b: mean shifts by b, SD scales by |a|. Constant b doesn't affect spread.
@@ -584,25 +584,25 @@ A data set of 5 numbers has mean 10 and standard deviation 2. If each number in 
 ## Q23
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Probability — Without Replacement
+**topic:** Probability — Addition Rule
 
-A box contains 4 red marbles, 3 green marbles, and 3 blue marbles. Two marbles are drawn at random without replacement. What is the probability that both marbles drawn are red?
+A card is drawn at random from a standard 52-card deck. What is the probability that the card is either a heart or a face card (jack, queen, or king)?
 
-- A) 2/15
-- B) 4/25
-- C) 1/5
-- D) 6/25
-- E) 2/5
+- A) 1/4
+- B) 3/13
+- C) 11/26
+- D) 25/52
+- E) 1/2
 
-**answer:** A
-**fastest_path:** (4/10)(3/9) = 12/90 = 2/15.
-**explanation:** Without replacement: P(R then R) = (4/10)(3/9) = 12/90 = 2/15.
-**mistake_b:** With replacement: (4/10)² = 4/25.
-**mistake_c:** Slip → 1/5.
-**mistake_d:** Slip → 6/25.
-**mistake_e:** Slip → 2/5.
-**common_trap:** Treating draws as *with* replacement — uses (4/10)² instead of (4/10)(3/9).
-**takeaway:** Without replacement: decrement both numerator and denominator on the second draw.
+**answer:** C
+**fastest_path:** P(H or F) = P(H) + P(F) − P(H and F) = 13/52 + 12/52 − 3/52 = 22/52 = 11/26.
+**explanation:** Hearts and face cards overlap: J♥, Q♥, K♥ are both. Addition rule: P(H or F) = P(H) + P(F) − P(H and F) = 13/52 + 12/52 − 3/52 = 22/52 = 11/26. The 3 heart face cards are counted once in P(H) and once in P(F), so subtract them once to remove the double-count.
+**mistake_a:** Used only P(heart) = 13/52 = 1/4, ignoring face cards entirely. The question asks for heart OR face card — both categories are favorable.
+**mistake_b:** Used only P(face card) = 12/52 = 3/13, ignoring hearts entirely. Again, both categories count toward the favorable outcomes.
+**mistake_d:** Added without subtracting the overlap: (13+12)/52 = 25/52. This double-counts J♥, Q♥, K♥ — each of those 3 cards was included once as a heart and once as a face card. Subtract P(H and F) = 3/52: 25/52 − 3/52 = 22/52 = 11/26.
+**mistake_e:** Computed 26/52 = 1/2 — rounded up or miscounted. The exact favorable count is 13 + 12 − 3 = 22 cards, giving 22/52 = 11/26. Reaching 26 would require 4 extra favorable cards that do not exist.
+**common_trap:** Forgetting to subtract the overlap (hearts that are also face cards). P(A or B) = P(A) + P(B) only when A and B are mutually exclusive — which they are not here.
+**takeaway:** P(A or B) = P(A) + P(B) − P(A and B). For non-mutually-exclusive events, always subtract the intersection once. This is the probability form of inclusion-exclusion.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -652,10 +652,10 @@ A company has two factories. Factory P produces 60% of the company's products; F
 **answer:** C
 **fastest_path:** P(P∩D) = 0.6·0.03 = 0.018; P(Q∩D) = 0.4·0.05 = 0.020. P(P|D) = 18/(18+20) = 9/19.
 **explanation:** Bayes. P(P ∩ D) = 0.018; P(Q ∩ D) = 0.020; P(D) = 0.038. P(P | D) = 0.018/0.038 = 18/38 = 9/19.
-**mistake_a:** Slip → 3/19.
-**mistake_b:** Slip → 6/19.
-**mistake_d:** Slip → 10/19.
-**mistake_e:** Slip → 12/19.
+**mistake_a:** Used only the raw defect rates, ignoring production shares: P(D|P)/(P(D|P) + P(D|Q)) = 3/(3+5) = 3/8. Bayes requires weighting each branch by its prior probability (60% and 40%). Without the priors, the formula is incomplete.
+**mistake_b:** Doubled the numerator by accident: 2·P(P∩D)/P(D) = 0.036/0.038 ≈ 6/... Alternatively, computed P(D|P)/P(D) = 0.03/0.038 = 15/19 and then halved. The numerator in Bayes is P(P)·P(D|P) = 0.6 × 0.03 = 0.018, not 0.036.
+**mistake_d:** Computed P(Q|D) instead of P(P|D): 0.020/0.038 = 20/38 = 10/19. This is the probability the defective item came from Factory Q. Re-read: the question asks for Factory P.
+**mistake_e:** Divided P(P) by [1 − P(D|Q)] instead of P(D): 0.60/0.95 = 12/19. Used the non-defective rate of Factory Q as the denominator rather than the total defect probability P(D) = 0.038.
 **common_trap:** Ignoring the production split (60/40) and using just defect rates: 3/(3+5) = 3/8 ≈ a wrong fraction.
 **takeaway:** Bayes: weight each branch by its prior. P(A|B) = P(A∩B)/P(B), where P(B) = sum over all branches.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -739,4 +739,452 @@ In a group of 80 people, 45 own a car and 35 own a bicycle. If 20 people own bot
 **mistake_e:** Added without subtracting overlap: 45 + 35 = 80.
 **common_trap:** Failing to subtract the overlap (|both|) → 80 (double-counts the people who own both).
 **takeaway:** |A ∪ B| = |A| + |B| − |A ∩ B|. Always subtract the intersection once.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Expected Value — Basic Definition
+
+A raffle sells 100 tickets at $5 each. One winning ticket is drawn at random and receives a prize of $200. What is the expected net gain for a person who buys one ticket?
+
+- A) -$5.00
+- B) -$3.00
+- C) $0.00
+- D) $1.95
+- E) $2.00
+
+**answer:** B
+**fastest_path:** P(win) = 1/100. Net if win = $195; net if lose = −$5. EV = (1/100)(195) + (99/100)(−5) = 1.95 − 4.95 = −$3.00.
+**explanation:** The net gain has two outcomes. If the ticket wins (probability 1/100): net gain = prize − cost = $200 − $5 = $195. If the ticket loses (probability 99/100): net gain = −$5. Expected value = (1/100)(195) + (99/100)(−5) = 1.95 − 4.95 = −$3.00. The negative EV confirms this raffle favors the organizer, not the buyer.
+**mistake_a:** Bubbled −$5, the net outcome of a losing ticket — this is not the expected value, which must weight both outcomes by their probabilities.
+**mistake_c:** Assumed the game is "fair" with zero expected value — only true when total payouts equal total ticket revenue, which is not the case here ($200 prize vs. $500 total ticket sales).
+**mistake_d:** Computed only the winning term: (1/100)($195) = $1.95, and stopped — forgot to subtract the weighted loss from the losing outcome.
+**mistake_e:** Divided the prize by the number of tickets: $200/100 = $2.00, ignoring both the ticket cost and the probability weighting of the loss.
+**common_trap:** Computing only the winning term — (1/100)($195) = $1.95 — and ignoring the loss that occurs on the other 99/100 outcomes.
+**takeaway:** Expected value = Σ (probability × net outcome) across ALL outcomes, not just the winning one. Always subtract the ticket cost from the prize to find the net gain if you win.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Geometric Probability
+
+A point is chosen uniformly at random on a line segment from 0 to 30. What is the probability that the point falls between 6 and 18?
+
+- A) 1/5
+- B) 2/5
+- C) 1/2
+- D) 3/5
+- E) 7/10
+
+**answer:** B
+**fastest_path:** Favorable length = 18 − 6 = 12. Total length = 30. P = 12/30 = 2/5.
+**explanation:** For a uniform distribution on a line segment, probability equals the ratio of favorable length to total length. The interval from 6 to 18 has length 18 − 6 = 12. The total segment has length 30. P = 12/30 = 2/5.
+**mistake_a:** Used the left endpoint as the favorable length: 6/30 = 1/5. The probability is the length of the favorable interval, not its starting position.
+**mistake_c:** Estimated that the interval is "roughly half" of the segment — a visual approximation that ignores exact boundaries. The interval 6 to 18 covers 12 out of 30 units, not 15.
+**mistake_d:** Used the right endpoint as the numerator: 18/30 = 3/5. The numerator must be the interval length (18 − 6 = 12), not the endpoint value.
+**mistake_e:** Some over-count or approximation error landing at 21/30 = 7/10 — likely by adding instead of subtracting endpoints.
+**common_trap:** Using an endpoint (6 or 18) as the numerator rather than computing the interval length (18 − 6 = 12).
+**takeaway:** Geometric probability on a line segment: P = (length of favorable interval) / (total length). Always subtract to find interval length; do not use the raw endpoint values.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q31
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Interquartile Range
+
+The scores of 8 students on a quiz, arranged in ascending order, are: 52, 61, 67, 72, 78, 85, 89, 94. What is the interquartile range of these scores?
+
+- A) 17
+- B) 22
+- C) 23
+- D) 27
+- E) 42
+
+**answer:** C
+**fastest_path:** Lower half {52, 61, 67, 72}: Q1 = (61+67)/2 = 64. Upper half {78, 85, 89, 94}: Q3 = (85+89)/2 = 87. IQR = 87 − 64 = 23.
+**explanation:** For 8 ordered values, split into two halves of 4. Lower half: {52, 61, 67, 72}; Q1 = (61 + 67)/2 = 64. Upper half: {78, 85, 89, 94}; Q3 = (85 + 89)/2 = 87. IQR = Q3 − Q1 = 87 − 64 = 23.
+**mistake_a:** Subtracted the two inner values of the original set: 89 − 72 = 17, confusing the IQR with the range of the "middle" section.
+**mistake_b:** Arithmetic slip on either Q1 or Q3, landing one unit off: 87 − 65 = 22.
+**mistake_d:** Correct Q3 but mis-computed Q1 as 60: 87 − 60 = 27.
+**mistake_e:** Computed the range (max − min) instead of the IQR: 94 − 52 = 42. Range and IQR are different spread measures.
+**common_trap:** Confusing the IQR with the range. Range = max − min (94 − 52 = 42). IQR = Q3 − Q1, which measures spread of the middle 50%, not the full spread.
+**takeaway:** IQR: split ordered data at the midpoint, find Q1 (median of lower half) and Q3 (median of upper half), then subtract. For even-count data, each quarter's median is the average of its two middle values.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Mutually Exclusive Events
+
+Events X and Y are mutually exclusive. P(X) = 0.3 and P(Y) = 0.4. What is the probability that at least one of the two events occurs?
+
+- A) 0.12
+- B) 0.58
+- C) 0.60
+- D) 0.70
+- E) 1.00
+
+**answer:** D
+**fastest_path:** Mutually exclusive → P(X or Y) = P(X) + P(Y) = 0.3 + 0.4 = 0.70.
+**explanation:** Mutually exclusive events cannot both occur, so P(X ∩ Y) = 0. The addition rule simplifies to P(X or Y) = P(X) + P(Y) = 0.3 + 0.4 = 0.70.
+**mistake_a:** Applied the multiplication rule: P(X) × P(Y) = 0.3 × 0.4 = 0.12. This gives P(X and Y), which is 0 for mutually exclusive events — not the "at least one" probability.
+**mistake_b:** Applied the general inclusion-exclusion formula as if the events were independent: P(X) + P(Y) − P(X)·P(Y) = 0.7 − 0.12 = 0.58. This is wrong because P(X ∩ Y) = 0 for mutually exclusive events, not 0.12.
+**mistake_c:** Arithmetic slip: may have computed 0.3 + 0.3 = 0.60 or rounded down.
+**mistake_e:** Assumed "at least one must occur," treating the events as exhaustive — but mutually exclusive does not mean the events cover the entire sample space.
+**common_trap:** Applying the general inclusion-exclusion formula with P(X∩Y) = P(X)·P(Y) — but for mutually exclusive events, P(X∩Y) = 0. Do not confuse "mutually exclusive" with "independent."
+**takeaway:** Mutually exclusive → cannot both occur → P(X∩Y) = 0 → P(X or Y) = P(X) + P(Y). Independent → P(X∩Y) = P(X)·P(Y) → full inclusion-exclusion needed.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Independent Events — Multiplication Rule
+
+Events A and B are independent. P(A) = 0.6 and P(B) = 0.3. What is the probability that both A and B occur?
+
+- A) 0.18
+- B) 0.30
+- C) 0.60
+- D) 0.72
+- E) 0.90
+
+**answer:** A
+**fastest_path:** Independent → P(A and B) = P(A) × P(B) = 0.6 × 0.3 = 0.18.
+**explanation:** For independent events, the joint probability is the product of the individual probabilities: P(A and B) = P(A) × P(B) = 0.6 × 0.3 = 0.18.
+**mistake_b:** Bubbled P(B) = 0.30 — used only one event's probability without multiplying by the other.
+**mistake_c:** Bubbled P(A) = 0.60 — same error in the other direction.
+**mistake_d:** Computed P(A or B) for independent events using inclusion-exclusion: 0.6 + 0.3 − 0.18 = 0.72. This is the "at least one" probability, not the "both" probability.
+**mistake_e:** Added the probabilities: 0.6 + 0.3 = 0.90 — used the addition rule (for "at least one") instead of the multiplication rule (for "both").
+**common_trap:** Using addition (0.6 + 0.3 = 0.90) instead of multiplication (0.6 × 0.3 = 0.18). "And" → multiply; "or" → add (and subtract overlap).
+**takeaway:** P(A and B) = P(A) × P(B) when events are independent. P(A or B) = P(A) + P(B) − P(A∩B). Match the operator to the question word: "both"/"and" → multiply.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Expected Value — Weighted Outcomes
+
+One card is drawn at random from a standard deck of 52 cards. You win $5 if the card is a heart, win $2 if the card is black (a spade or club), and lose $3 if the card is a diamond. What is the expected value of one draw?
+
+- A) $0.50
+- B) $1.00
+- C) $1.33
+- D) $1.50
+- E) $2.25
+
+**answer:** D
+**fastest_path:** P(heart) = 1/4, P(black) = 1/2, P(diamond) = 1/4. EV = (1/4)(5) + (1/2)(2) + (1/4)(−3) = 1.25 + 1.00 − 0.75 = $1.50.
+**explanation:** The three outcomes partition the deck: hearts (13/52 = 1/4), black cards — spades and clubs — (26/52 = 1/2), and diamonds (13/52 = 1/4). The probabilities sum to 1, confirming the partition is complete. EV = (1/4)(5) + (1/2)(2) + (1/4)(−3) = 5/4 + 1 − 3/4 = 2/4 + 1 = 0.50 + 1.00 = $1.50.
+**mistake_a:** Computed hearts minus diamonds only, ignoring black cards: (1/4)(5) + (1/4)(−3) = 1.25 − 0.75 = $0.50.
+**mistake_b:** Computed only the black card term: (1/2)(2) = $1.00, ignoring the heart and diamond outcomes.
+**mistake_c:** Treated all three outcomes as equally likely (probability 1/3 each): (5 + 2 − 3)/3 = 4/3 ≈ $1.33. But the three outcomes are not equally likely — black cards are twice as likely as hearts or diamonds.
+**mistake_e:** Weighted only the two positive outcomes without the loss: (1/4)(5) + (1/2)(2) = 1.25 + 1.00 = $2.25.
+**common_trap:** Treating the three card types as equally probable. Verify that probabilities sum to 1 before computing EV, and confirm each probability matches the actual proportion of the deck.
+**takeaway:** Before computing EV, verify probabilities sum to 1. Then EV = Σ (probability × payoff) for each outcome. Missing any term — positive or negative — corrupts the result.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Conditional Probability — Frequency Table
+
+A company has 200 employees: 120 in the analytics division and 80 in the operations division. Among analytics employees, 25% hold an MBA. Among operations employees, 15% hold an MBA. If one employee with an MBA is selected at random, what is the probability the employee works in the analytics division?
+
+- A) 2/7
+- B) 3/5
+- C) 5/7
+- D) 5/8
+- E) 5/6
+
+**answer:** C
+**fastest_path:** Analytics with MBA: 120×0.25 = 30. Operations with MBA: 80×0.15 = 12. P(analytics | MBA) = 30/42 = 5/7.
+**explanation:** Compute the MBA count in each division: analytics = 120 × 0.25 = 30; operations = 80 × 0.15 = 12. Total with MBA = 30 + 12 = 42. The conditional probability is P(analytics | MBA) = 30/42 = 5/7. The conditioning event (has MBA) restricts the sample space to just the 42 MBA holders; within that group, 30 are from analytics.
+**mistake_a:** Computed P(operations | MBA) = 12/42 = 2/7 — answered for the wrong division.
+**mistake_b:** Used the prior (unconditional) probability: P(analytics) = 120/200 = 3/5. This ignores the conditioning on "has MBA," which shifts the proportion toward analytics because their MBA rate (25%) exceeds operations' rate (15%).
+**mistake_d:** Used an incorrect denominator of 48 instead of 42: 30/48 = 5/8. Likely computed 80 × 0.15 = 18 (wrong) instead of 12, giving 30 + 18 = 48.
+**mistake_e:** Rough over-estimate or arithmetic error leading to 5/6.
+**common_trap:** Using the unconditional probability 120/200 = 3/5. Conditioning on "has MBA" changes the denominator from 200 (all employees) to 42 (only MBA holders).
+**takeaway:** Conditional probability via frequency table: compute the count satisfying both conditions in numerator, the count satisfying the given condition in denominator. P(A|B) = count(A∩B) / count(B).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Binomial Probability — Non-Equal Probabilities
+
+A medical treatment has an independent 70% success rate for each patient. If 3 patients receive the treatment, what is the probability that exactly 2 of the 3 respond successfully?
+
+- A) 0.147
+- B) 0.189
+- C) 0.343
+- D) 0.441
+- E) 0.490
+
+**answer:** D
+**fastest_path:** C(3,2) × (0.7)² × (0.3)¹ = 3 × 0.49 × 0.30 = 0.441.
+**explanation:** Use the binomial formula: P(exactly k successes in n trials) = C(n,k) × p^k × (1−p)^(n−k). Here n = 3, k = 2, p = 0.7. C(3,2) = 3. So P = 3 × (0.7)² × (0.3)¹ = 3 × 0.49 × 0.30 = 3 × 0.147 = 0.441. The three orderings (SSF, SFS, FSS) each occur with probability 0.49 × 0.30 = 0.147, and there are C(3,2) = 3 of them.
+**mistake_a:** Computed the probability of one specific ordering (e.g., S then S then F) without multiplying by C(3,2): (0.7)²(0.3) = 0.147. This misses the 3 equally likely orderings of 2 successes and 1 failure.
+**mistake_b:** Reversed the success and failure counts: computed C(3,2)×(0.7)¹×(0.3)² = 3 × 0.7 × 0.09 = 0.189 — the probability of exactly 1 success and 2 failures, not 2 successes.
+**mistake_c:** Computed P(all 3 succeed): (0.7)³ = 0.343 — a different event.
+**mistake_e:** Computed (0.7)² = 0.49, ignoring the probability of the one failure and the combinatorial factor C(3,2) = 3.
+**common_trap:** Forgetting the combinatorial factor C(n,k). The probability of "exactly k successes" includes all possible orderings of those successes, not just one specific sequence.
+**takeaway:** Binomial probability: C(n,k) × p^k × (1−p)^(n−k). The binomial formula works for any p, not just p = 0.5. Always include C(n,k) to count distinct orderings.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Inclusion-Exclusion — Finding Neither
+
+In a survey of 120 customers, 72 bought Product A, 54 bought Product B, and 30 bought both. How many customers bought neither product?
+
+- A) 0
+- B) 6
+- C) 18
+- D) 24
+- E) 30
+
+**answer:** D
+**fastest_path:** |A∪B| = 72 + 54 − 30 = 96. Neither = 120 − 96 = 24.
+**explanation:** The number who bought at least one product is |A ∪ B| = |A| + |B| − |A ∩ B| = 72 + 54 − 30 = 96. Those who bought neither = total − |A ∪ B| = 120 − 96 = 24.
+**mistake_a:** Noted that 72 + 54 = 126 > 120 and concluded "everyone bought at least one product." The surplus over 120 means some customers were double-counted (the 30 who bought both), not that all customers bought something. Using inclusion-exclusion correctly gives |A ∪ B| = 96 < 120.
+**mistake_b:** Computed 120 − 72 − 54 = −6, then took the absolute value: 6. The negative result signals that the inclusion-exclusion term must be added back; the correct formula subtracts the intersection, it does not produce a negative "neither" count.
+**mistake_c:** Arithmetic slip: perhaps computed |A∪B| = 72 + 54 − 30 = 102 and 120 − 102 = 18.
+**mistake_e:** Bubbled the "both" count (30) — this is the overlap, not the "neither" group.
+**common_trap:** Observing that 72 + 54 = 126 > 120 and concluding that everyone bought something. The 30 who bought both were counted twice in 126. After correcting: 126 − 30 = 96 bought at least one, and 24 bought neither.
+**takeaway:** |Neither| = Total − |A ∪ B| = Total − (|A| + |B| − |A ∩ B|). Always apply inclusion-exclusion before computing "neither."
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Mean — Missing Data
+
+The average (arithmetic mean) of 5 numbers is 84. Four of the five numbers are 78, 91, 80, and 76. What is the fifth number?
+
+- A) 84
+- B) 87
+- C) 91
+- D) 95
+- E) 99
+
+**answer:** D
+**fastest_path:** Sum = 5 × 84 = 420. Known sum = 78 + 91 + 80 + 76 = 325. Fifth = 420 − 325 = 95.
+**explanation:** Total sum required: mean × count = 84 × 5 = 420. Sum of the four known numbers: 78 + 91 + 80 + 76 = 325. Fifth number = 420 − 325 = 95. Check: 325 + 95 = 420, and 420/5 = 84 ✓.
+**mistake_a:** Bubbled the mean (84) — assumed all five numbers equal the mean, which is only true when all values are identical.
+**mistake_b:** Arithmetic slip in the known sum: e.g., computed 78 + 91 + 80 + 76 = 333 → fifth = 420 − 333 = 87.
+**mistake_c:** Bubbled the largest known value (91) — guessed rather than computed.
+**mistake_e:** Off-by-four arithmetic slip: 420 − 321 = 99.
+**common_trap:** Bubbling the mean itself (84). The missing value equals the mean only if all five numbers are equal, which is not given here.
+**takeaway:** Missing-value mean problems: set up Total = mean × count, compute the known sum, then subtract. Never assume the missing value equals the given mean.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Percentile — Count Interpretation
+
+On a standardized exam, a score of 680 falls at the 72nd percentile. If 350 students took the exam, approximately how many students scored strictly below 680?
+
+- A) 98
+- B) 126
+- C) 175
+- D) 252
+- E) 280
+
+**answer:** D
+**fastest_path:** 72nd percentile → 72% scored below. 0.72 × 350 = 252.
+**explanation:** The 72nd percentile means that 72% of test takers scored strictly below 680. Students below 680 = 0.72 × 350 = 252.
+**mistake_a:** Computed the number who scored at or above 680: 350 − 252 = 98. Answered the complement of the question.
+**mistake_b:** Halved the percentile by mistake, using 36%: 0.36 × 350 = 126. The percentile given (72nd) is used directly; do not divide it.
+**mistake_c:** Used 50% (the median): 350 × 0.50 = 175. The median is the 50th percentile; the question specifies the 72nd.
+**mistake_e:** Used 80% instead of 72%: 0.80 × 350 = 280 — a reading slip on the percentile value.
+**common_trap:** Computing 350 − 252 = 98 (the above-680 count) when the question asks for below 680. Re-read which direction the percentile points.
+**takeaway:** The nth percentile means n% of the data falls strictly below that value. To convert to a count: multiply the percentile (as a decimal) by the total number of observations.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Standard Deviation — Conceptual Comparison
+
+Two data sets each have 7 values and the same mean of 6:
+
+Set P: {1, 4, 4, 6, 8, 8, 11}
+Set Q: {4, 4, 5, 6, 7, 8, 8}
+
+Which of the following correctly compares the standard deviations of P and Q?
+
+- A) SD(P) < SD(Q), because P contains more distinct values than Q
+- B) SD(P) = SD(Q), because both sets have the same mean and the same number of elements
+- C) SD(P) > SD(Q), because P has values that lie further from the mean than Q's values do
+- D) SD(P) < SD(Q), because Q's values are more tightly clustered at the endpoints
+- E) The comparison cannot be determined without computing exact standard deviations
+
+**answer:** C
+**fastest_path:** P's extremes (1 and 11) are 5 units from mean 6; Q's extremes (4 and 8) are only 2 units away. Larger deviations → larger SD for P.
+**explanation:** Standard deviation measures how spread out values are around the mean. Set P has extremes at 1 and 11, each 5 units from the mean of 6. Set Q's extremes are 4 and 8, each only 2 units from the mean. The inner values of P (4, 4, 8, 8) also spread further than Q's inner values (4, 4, 7, 8). Computing confirms: sum of squared deviations for P = 25+4+4+0+4+4+25 = 66; for Q = 4+4+1+0+1+4+4 = 18. SD(P) > SD(Q).
+**mistake_a:** Counted P's distinct values (5) vs. Q's (4) and concluded larger count means larger SD. Standard deviation depends on how far values deviate from the mean, not on how many distinct values exist.
+**mistake_b:** Assumed same mean + same count → same SD. Two datasets can share both properties and have entirely different spreads. Mean measures center; count determines the denominator; neither alone (or together) determines spread.
+**mistake_d:** "More tightly clustered at the endpoints" is the opposite of what Q shows. Q's values cluster near 6 with less extreme endpoints; P's values spread further. Greater spread from the mean → larger SD.
+**mistake_e:** You do not need exact values to compare SDs when the deviation pattern is visually clear. P's values clearly deviate more from the mean than Q's, making SD(P) > SD(Q) without any arithmetic.
+**common_trap:** Assuming same mean implies same SD — the two most common summary statistics (mean and median) describe the center, not the spread. Spread requires comparing deviations from the center.
+**takeaway:** To compare SDs without computing: look at how far each value lies from the group mean. The dataset with larger or more extreme deviations from the mean has the larger SD.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Conditional Probability — Bayes via Frequency Table
+
+In a clinical study, 300 patients received one of two drugs. Two hundred patients received Drug A and 100 received Drug B. Among Drug A patients, 15% experienced symptom relief. Among Drug B patients, 45% experienced relief. One patient who experienced relief is selected at random. What is the probability the patient received Drug A?
+
+- A) 1/4
+- B) 2/5
+- C) 1/2
+- D) 2/3
+- E) 3/5
+
+**answer:** B
+**fastest_path:** Drug A relief: 200×0.15 = 30. Drug B relief: 100×0.45 = 45. P(Drug A | relief) = 30/75 = 2/5.
+**explanation:** Compute the relief counts: Drug A = 200 × 0.15 = 30 patients; Drug B = 100 × 0.45 = 45 patients. Total relieved = 75. The conditional probability of being a Drug A patient given relief = 30/75 = 2/5. Although Drug A has twice as many total patients, its lower relief rate (15% vs. 45%) makes Drug B overrepresented among the relieved group.
+**mistake_a:** Used only the relief rates, treating them as equally weighted: 15%/(15% + 45%) = 15/60 = 1/4. This ignores the fact that twice as many patients received Drug A — the group sizes must be factored in.
+**mistake_c:** Estimated 1/2 by assuming Drug A and Drug B produce equal relief counts — possible only if their weighted rates happened to be equal, which they are not (30 vs. 45).
+**mistake_d:** Used the prior (unconditional) proportion of Drug A patients: 200/300 = 2/3. This ignores the conditioning on "experienced relief" and does not account for the different relief rates.
+**mistake_e:** Computed P(Drug B | relief) = 45/75 = 3/5 — answered for the wrong drug.
+**common_trap:** Using the prior group-size ratio (200:100 = 2:1) directly without accounting for the different relief rates. Conditioning on "relief" shifts the weight toward the higher-rate group (Drug B).
+**takeaway:** Conditional probability via frequencies: compute the count meeting both conditions (drug + relief) for each group, sum them for the denominator, then divide. Group size alone does not determine the conditional probability — the rate within each group matters.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Expected Value — Comparing Two Strategies
+
+A project manager must choose between two investment strategies. Strategy P has a 40% chance of generating a $800,000 profit and a 60% chance of a $200,000 loss. Strategy Q has a 70% chance of generating a $400,000 profit and a 30% chance of breaking even ($0 gain or loss). Which strategy has the higher expected value, and by how much?
+
+- A) Strategy P by $80,000
+- B) Strategy P by $40,000
+- C) Strategy P by $20,000
+- D) Strategy Q by $40,000
+- E) Strategy Q by $80,000
+
+**answer:** E
+**fastest_path:** EV(P) = 0.4(800k) + 0.6(−200k) = 320k − 120k = $200k. EV(Q) = 0.7(400k) + 0.3(0) = $280k. Q leads by $80k.
+**explanation:** EV(P) = 0.40 × $800,000 + 0.60 × (−$200,000) = $320,000 − $120,000 = $200,000. EV(Q) = 0.70 × $400,000 + 0.30 × $0 = $280,000. Strategy Q has the higher expected value by $280,000 − $200,000 = $80,000.
+**mistake_a:** Correctly computed both EVs but concluded P is higher — a sign error or reversal in the comparison step.
+**mistake_b:** Treated the 60% loss scenario as break-even ($0) in Strategy P: EV(P) = 0.40 × $800,000 = $320,000. Then EV(Q) = $280,000, giving P leading by $40,000. Forgetting to account for losses is a critical error when computing expected value.
+**mistake_c:** A smaller gap from a different computational error, e.g., misidentifying the loss probability or rounding mid-calculation.
+**mistake_d:** Correct that Q leads, but underestimated the gap — e.g., from computing EV(P) = $240,000 instead of $200,000.
+**mistake_e:** Correct. The negative outcome in Strategy P (60% × $200,000 loss = $120,000 drag) offsets much of the upside, leaving Strategy Q's more reliable $280,000 EV ahead.
+**common_trap:** Ignoring the loss in Strategy P by treating the 60% outcome as $0 (break-even) instead of −$200,000. Always include negative payoffs in expected value calculations.
+**takeaway:** Expected value includes all outcomes — wins and losses. A strategy with a large upside can still have a lower EV than one with a modest, reliable payoff if the downside probability is large enough.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q43
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Inclusion-Exclusion — Three Sets
+
+At a tech company, 180 employees were surveyed about three skills. The results showed: 90 have Python skills, 75 have SQL skills, and 60 have machine learning knowledge. Additionally, 30 have both Python and SQL, 25 have both Python and machine learning, 20 have both SQL and machine learning, and 10 have all three. How many of the 180 employees have none of the three skills?
+
+- A) 10
+- B) 20
+- C) 30
+- D) 40
+- E) 55
+
+**answer:** B
+**fastest_path:** |P∪S∪M| = 90+75+60 − 30−25−20 + 10 = 225 − 75 + 10 = 160. None = 180 − 160 = 20.
+**explanation:** Three-set inclusion-exclusion: |P ∪ S ∪ M| = |P| + |S| + |M| − |P∩S| − |P∩M| − |S∩M| + |P∩S∩M| = 90 + 75 + 60 − 30 − 25 − 20 + 10 = 225 − 75 + 10 = 160. Employees with none = 180 − 160 = 20.
+**mistake_a:** Bubbled the "all three" count (10) — this is the three-way intersection, not the "none" group.
+**mistake_c:** Forgot to add back the three-way intersection: |P∪S∪M| = 225 − 75 = 150 (stopping too early), giving none = 180 − 150 = 30. The three-way intersection was subtracted three times in the pairwise terms and must be added back once.
+**mistake_d:** Subtracted the pairwise intersections with the wrong signs: e.g., computed 225 + 30 + 25 + 20 − 10 = 290 (added instead of subtracted), then took |180 − something| to get 40.
+**mistake_e:** Used an entirely different formula, arriving at none = 55.
+**common_trap:** Omitting the "+|P∩S∩M|" step. In the three-set formula, the three-way intersection is subtracted three times (once per pairwise term) and must be added back exactly once.
+**takeaway:** Three-set inclusion-exclusion: add singles, subtract pairs, add back triple. Forgetting the "+triple" step understates the union and overstates the "none" count. Always write out all seven terms before computing.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q44
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Standard Deviation — Abstract Transformation Rules
+
+Set M = {4, 8, 14, 18, 22} has mean μ and standard deviation σ. Set N is formed by multiplying every element of M by 3 and then subtracting 6. Which of the following correctly compares the statistics of the two sets?
+
+- A) Mean of N = 2μ and SD of N = 3σ
+- B) Mean of N = 3μ − 6 and SD of N = σ
+- C) Mean of N = 3μ − 6 and SD of N = 3σ
+- D) Mean of N = 3μ − 6 and SD of N = 3σ − 6
+- E) Mean of N = 3μ and SD of N = 3σ
+
+**answer:** C
+**fastest_path:** n_i = 3m_i − 6 → mean N = 3μ − 6; SD: shifts do not affect spread, scaling by 3 multiplies SD by 3 → SD N = 3σ.
+**explanation:** For any linear transformation n_i = a·m_i + b: (1) Mean of N = a·μ + b. With a = 3, b = −6: mean N = 3μ − 6. (2) SD of N = |a|·σ. The additive constant b shifts every value by the same amount, leaving all deviations from the mean unchanged — SD is invariant under shifts. The multiplicative factor 3 stretches each deviation by 3, so SD scales by 3: SD(N) = 3σ. Verify: mean M = 13.2; mean N = 3(13.2) − 6 = 33.6 ✓. Deviations in M from 13.2: {−9.2, −5.2, 0.8, 4.8, 8.8}; in N they become {−27.6, −15.6, 2.4, 14.4, 26.4}, each exactly 3 times larger ✓.
+**mistake_a:** Applied only the multiplicative factor to the mean with wrong coefficient (2μ instead of 3μ) and SD = 3σ. Two errors: wrong coefficient on the mean, and missed the additive shift entirely.
+**mistake_b:** Correct mean (3μ − 6) but unchanged SD (σ). Knew that shifts do not affect SD but failed to apply the scaling rule — multiplying every element by 3 triples every deviation from the mean.
+**mistake_d:** Correct mean (3μ − 6) but applied the −6 to the SD as well: 3σ − 6. Additive constants never affect SD; they shift the distribution without changing its shape or spread.
+**mistake_e:** Correct SD (3σ) but incomplete mean: 3μ (missed the −6). The full linear transformation y = 3x − 6 shifts the mean down by 6 after scaling.
+**common_trap:** Applying the additive constant (−6) to the SD. SD measures the spread of values around their mean; when every value shifts by the same amount, the gaps between values — and hence the spread — are unchanged.
+**takeaway:** Two rules for y = ax + b: (1) mean_y = a·mean_x + b; (2) SD_y = |a|·SD_x. The additive constant is invisible to SD and variance. Commit these two rules to memory; they cover every linear-transformation SD question on the GMAT.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Expected Value — Recursive Game (Challenge)
+
+A bag contains 2 red balls and 1 white ball. A player draws one ball at random. If the ball is red, the player wins $6 and the game ends. If the ball is white, the player must return the white ball to the bag and pay $2 to draw again (restoring the bag to 2 red and 1 white). The player always continues when drawing white. What is the player's expected net gain per game?
+
+- A) $3.00
+- B) $4.00
+- C) $4.50
+- D) $5.00
+- E) $6.00
+
+**answer:** D
+**fastest_path:** Let V = expected gain. V = (2/3)(6) + (1/3)(−2 + V) → V = 4 − 2/3 + V/3 → 2V/3 = 10/3 → V = $5.
+**explanation:** Let V be the expected net gain from any draw. There are two outcomes: (1) Red (probability 2/3): collect $6 and stop — net contribution = (2/3)(6) = 4. (2) White (probability 1/3): pay $2 to redraw, and the game resets to the same state — net contribution = (1/3)(−2 + V). So: V = 4 + (1/3)(−2 + V) = 4 − 2/3 + V/3. Solving: V − V/3 = 4 − 2/3 → (2/3)V = 10/3 → V = 5. Verify via geometric series: the expected number of white draws before the first red is E[N] = (1/3)/(2/3) = 1/2 (geometric distribution with p = 2/3). Expected cost = $2 × 1/2 = $1. Expected winnings = $6 × 1 = $6 (a red ball is eventually drawn with certainty). Net expected gain = $6 − $1 = $5 ✓.
+**mistake_a:** Computed the one-round expected value without accounting for the recursive redraw: (2/3)(6) + (1/3)(−2) = 4 − 2/3 ≈ $3.33, rounded to $3. This treats the game as ending after one draw even when white is drawn — but the game continues.
+**mistake_b:** Computed only the expected winning from the red ball: (2/3)(6) = $4, ignoring the expected redraw cost entirely.
+**mistake_c:** Arithmetic slip in the recursion step, landing at $4.50 instead of $5.
+**mistake_e:** Bubbled the prize amount ($6) without subtracting the expected cost of redraws, arriving at $6 as if no cost were incurred.
+**common_trap:** Treating the game as ending after one draw — computing (2/3)(6) + (1/3)(−2) = 10/3 ≈ $3.33 and stopping. The key insight is that drawing white resets to the same game, so V appears on both sides of the equation.
+**takeaway:** For recursive games with a "try again" option, let V = expected value and write V = Σ(prob × outcome), where the "try again" branch contributes −cost + V. Solve for V algebraically. Alternatively: V = E[prize] − (cost per retry) × E[retries], using the geometric distribution for E[retries].
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
