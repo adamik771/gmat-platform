@@ -150,8 +150,8 @@ Set A = {10, 20, 30, 40, 50} and Set B = {20, 25, 30, 35, 40}. Which of the foll
 **fastest_path:** Both means = 30. A spreads ±20; B spreads ±10. A is more spread → A's SD is greater.
 **explanation:** Mean(A) = Mean(B) = 30. Deviations: A {−20, −10, 0, 10, 20}; B {−10, −5, 0, 5, 10}. A is more spread → A has greater SD.
 **mistake_a:** Treated equal-mean sets as having equal SD.
-**mistake_c:** Inverted SD direction.
-**mistake_d:** Mis-computed means.
+**mistake_c:** Concluded Set B has the greater SD by reasoning that B's values are "packed tighter" — inverting the direction. Tighter packing means *smaller* deviations from the mean, hence *smaller* SD. B's deviations are ±10 and ±5; A's are ±20 and ±10. Larger deviations → larger SD. Denser clustering always means smaller spread.
+**mistake_d:** Mis-computed one or both means and concluded the sets differ. Verify: Mean(A) = (10+20+30+40+50)/5 = 150/5 = 30; Mean(B) = (20+25+30+35+40)/5 = 150/5 = 30. Both equal 30. Visual inspection of "bigger-looking numbers" can mislead — always sum explicitly.
 **mistake_e:** Mis-computed means.
 **common_trap:** Computing exact SD numerically (slow). Compare spreads visually instead.
 **takeaway:** Equal means but different spreads → bigger spread = bigger SD. No need to compute exact SDs.
@@ -318,25 +318,25 @@ The mean of five distinct positive integers is 20 and their median is 18. If the
 ## Q13
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Committee Selection
+**topic:** Interquartile Range
 
-From a group of 5 men and 4 women, a committee of 4 people is to be formed consisting of exactly 2 men and 2 women. How many different committees are possible?
+The exam scores of 8 students, listed in increasing order, are: 52, 58, 64, 70, 76, 82, 88, 94. What is the interquartile range (IQR) of this data set?
 
-- A) 20
-- B) 36
-- C) 60
-- D) 126
-- E) 210
+- A) 12
+- B) 21
+- C) 24
+- D) 30
+- E) 42
 
 **answer:** C
-**fastest_path:** C(5,2) · C(4,2) = 10 · 6 = 60.
-**explanation:** Choose 2 of 5 men: C(5,2) = 10. Choose 2 of 4 women: C(4,2) = 6. Multiply: 10 × 6 = 60.
-**mistake_a:** Slip → 20.
-**mistake_b:** Slip → 36.
-**mistake_d:** Computed C(9,4) = 126 (ignored gender constraint).
-**mistake_e:** Permutation-style → 210.
-**common_trap:** Computing C(9,4) = 126 by ignoring the partition constraint.
-**takeaway:** When a constraint partitions selection (men/women), multiply combinations from each partition. Don't merge then constrain.
+**fastest_path:** Split 8 values in half. Q1 = median of lower 4 = (58+64)/2 = 61. Q3 = median of upper 4 = (82+88)/2 = 85. IQR = 85 − 61 = 24.
+**explanation:** For an 8-value ordered data set, split into two halves: lower {52, 58, 64, 70} and upper {76, 82, 88, 94}. Q1 = median of lower half = (58+64)/2 = 61. Q3 = median of upper half = (82+88)/2 = 85. IQR = Q3 − Q1 = 85 − 61 = 24. IQR measures the spread of the middle 50% of the data.
+**mistake_a:** Computed Q3 − median of the full data set instead of Q3 − Q1: full median = (70+76)/2 = 73; then Q3 − 73 = 85 − 73 = 12. IQR is Q3 − Q1, not the distance from the dataset's center to Q3.
+**mistake_b:** Halved the full range: (94−52)/2 = 42/2 = 21. IQR is not half the range — it is Q3 − Q1, the spread of the middle 50%. For this data Q1 = 61 and Q3 = 85, so IQR = 24, which differs from half the range.
+**mistake_d:** Pulled the 2nd and 7th values directly as Q1 and Q3 without computing medians of the halves: 88 − 58 = 30. Q1 is the median of {52, 58, 64, 70}, which is (58+64)/2 = 61 — not just the 2nd value 58.
+**mistake_e:** Computed the full range: 94 − 52 = 42. Range = max − min measures total spread; IQR = Q3 − Q1 measures the middle 50%. IQR is always ≤ range and is more robust to extreme values.
+**common_trap:** Confusing IQR with the full range (E), or pulling raw ranked positions rather than computing medians of the lower and upper halves (D).
+**takeaway:** IQR = Q3 − Q1. For n sorted values, Q1 is the median of the lower half and Q3 is the median of the upper half. IQR captures the spread of the middle 50% of the data.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -584,25 +584,25 @@ A data set of 5 numbers has mean 10 and standard deviation 2. If each number in 
 ## Q23
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Probability — Without Replacement
+**topic:** Probability — Addition Rule
 
-A box contains 4 red marbles, 3 green marbles, and 3 blue marbles. Two marbles are drawn at random without replacement. What is the probability that both marbles drawn are red?
+A card is drawn at random from a standard 52-card deck. What is the probability that the card is either a heart or a face card (jack, queen, or king)?
 
-- A) 2/15
-- B) 4/25
-- C) 1/5
-- D) 6/25
-- E) 2/5
+- A) 1/4
+- B) 3/13
+- C) 11/26
+- D) 25/52
+- E) 1/2
 
-**answer:** A
-**fastest_path:** (4/10)(3/9) = 12/90 = 2/15.
-**explanation:** Without replacement: P(R then R) = (4/10)(3/9) = 12/90 = 2/15.
-**mistake_b:** Treated as with replacement: (4/10)² = 16/100 = 4/25. After drawing one red marble, the composition of the box changes; the second draw is conditional on the first.
-**mistake_c:** Computed P(first red) = 4/10 = 2/5, then halved it somehow to get 1/5 — or divided by a wrong factor. The second factor is (3/9), not (1/2): P(both red) = (4/10)(3/9) = 2/15.
-**mistake_d:** Computed (4/10) × (3/10) = 12/100 = 3/25 or (4/10) × (6/10) = 24/100 = 6/25 — a partial fix where the numerator decreased but the denominator stayed at 10. Without replacement: the denominator on the second draw must also decrease (from 10 to 9).
-**mistake_e:** Computed only the first draw's probability: P(first red) = 4/10 = 2/5, then stopped. The joint probability of *both* draws being red requires multiplying by the second conditional probability (3/9).
-**common_trap:** Treating draws as *with* replacement — uses (4/10)² instead of (4/10)(3/9).
-**takeaway:** Without replacement: decrement both numerator and denominator on the second draw.
+**answer:** C
+**fastest_path:** P(H or F) = P(H) + P(F) − P(H and F) = 13/52 + 12/52 − 3/52 = 22/52 = 11/26.
+**explanation:** Hearts and face cards overlap: J♥, Q♥, K♥ are both. Addition rule: P(H or F) = P(H) + P(F) − P(H and F) = 13/52 + 12/52 − 3/52 = 22/52 = 11/26. The 3 heart face cards are counted once in P(H) and once in P(F), so subtract them once to remove the double-count.
+**mistake_a:** Used only P(heart) = 13/52 = 1/4, ignoring face cards entirely. The question asks for heart OR face card — both categories are favorable.
+**mistake_b:** Used only P(face card) = 12/52 = 3/13, ignoring hearts entirely. Again, both categories count toward the favorable outcomes.
+**mistake_d:** Added without subtracting the overlap: (13+12)/52 = 25/52. This double-counts J♥, Q♥, K♥ — each of those 3 cards was included once as a heart and once as a face card. Subtract P(H and F) = 3/52: 25/52 − 3/52 = 22/52 = 11/26.
+**mistake_e:** Computed 26/52 = 1/2 — rounded up or miscounted. The exact favorable count is 13 + 12 − 3 = 22 cards, giving 22/52 = 11/26. Reaching 26 would require 4 extra favorable cards that do not exist.
+**common_trap:** Forgetting to subtract the overlap (hearts that are also face cards). P(A or B) = P(A) + P(B) only when A and B are mutually exclusive — which they are not here.
+**takeaway:** P(A or B) = P(A) + P(B) − P(A and B). For non-mutually-exclusive events, always subtract the intersection once. This is the probability form of inclusion-exclusion.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---

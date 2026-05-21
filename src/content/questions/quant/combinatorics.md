@@ -391,7 +391,7 @@ From 8 candidates, a committee of 3 is chosen AND one of the three is designated
 Both paths give 168, confirming the logic.
 **mistake_a:** Computed C(8, 3) = 56 (forgot to assign the chair role).
 **mistake_b:** Computed 56 × 2 = 112 (off by one in role assignment).
-**mistake_d:** Computed 8 × C(7, 3) = 8 × 35 = 280; nudged to 336.
+**mistake_d:** Computed 8 × P(7, 2) = 8 × 42 = 336: chose the chair correctly (8 options) but then ordered the two remaining seats, using P(7, 2) = 7 × 6 = 42 instead of C(7, 2) = 21. The non-chair committee members hold no rank — they form an unordered pair. Ordering slots that carry no distinct role inflates the count by 2! = 2.
 **mistake_e:** Computed 8 × 7 × 6 / 2 = 168 wrong, got 504 from another miscombination.
 **common_trap:** Forgetting the role-assignment step — picking the committee but not the chair.
 **takeaway:** When the problem mixes "select group" + "designate a role," compute both stages: combinations for the group + role assignment within. Verify by the alternate path (role first, then rest).
@@ -533,7 +533,7 @@ A 5-person committee must be selected from a pool of 7 men and 5 women. If the c
 - (4W, 1M): C(5, 4) × C(7, 1) = 5 × 7 = 35
 
 (5W, 0M) excluded by "at least 1 man." Total: 350 + 210 + 35 = 595.
-**mistake_a:** Missed (4W, 1M) case; got 350 + 210 = 560... close but wrong direction.
+**mistake_a:** Set up the (2W, 3M) case correctly as C(5,2)·C(7,3) = 350, but in the (3W, 2M) case mis-indexed the men's combination as C(7, 1) = 7 instead of C(7, 2) = 21, getting C(5,3)·C(7,1) = 10·7 = 70. Summing those two (and missing the third case entirely) gives 350 + 70 = 420. The committee has 5 seats; with 3 women, exactly 2 men remain — use C(7, 2), not C(7, 1).
 **mistake_b:** Missed (4W, 1M); got 560.
 **mistake_d:** Computed C(12, 5) − some adjustment; got 630.
 **mistake_e:** Computed C(12, 5) − (5W, 0M case) = 792 − 1 = 791... no, more like 756.
@@ -630,7 +630,7 @@ Six people — A, B, C, D, E, and F — are to be seated in a row of 6 seats. In
 (A and B together AND C and D together): glue both → 4 items × 2 × 2 = 4! × 4 = 96.
 
 Net (A and B together, C and D NOT together) = 240 − 96 = 144.
-**mistake_a:** Computed (CD not together) = 6! − 5! × 2 = 720 − 240 = 480; missed AB constraint, then halved.
+**mistake_a:** Stopped at the (AB together) AND (CD together) count — glue both pairs into blocks, giving 4 units × 2 AB-orderings × 2 CD-orderings = 4! × 4 = 96 — and treated that as the final answer. This is the value to *subtract*, not the result. The answer requires (AB together) − (AB together AND CD together) = 240 − 96 = 144.
 **mistake_c:** Forgot one of the × 2 internal orderings; got 192.
 **mistake_d:** Computed 5! × 2 = 240 (only the first piece, didn't subtract).
 **mistake_e:** Computed 6! / 2 = 360, adjusted to 288.
