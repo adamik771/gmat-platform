@@ -19,6 +19,8 @@ sections:
   - id: integer-exponents-rules
     type: reading
     title: "Integer exponents — the three rules you multiply by"
+    intro: |
+      Three rules — product, quotient, power of a power — cover 80% of every exponent question on the GMAT. Learn them alongside the same-base reflex and you'll recognize the solution path before you finish reading the problem.
     check_question_ids:
       - exponents-roots-q1
       - exponents-roots-q11
@@ -26,6 +28,8 @@ sections:
   - id: negative-and-zero-exponents
     type: reading
     title: "Negative and zero exponents — the sign-flip trap"
+    intro: |
+      Zero and negative exponents follow directly from the quotient rule — not from arbitrary definitions. Once you see the derivation, you'll never again confuse x⁰ with 0 or x⁻² with a negative number.
     check_question_ids:
       - exponents-roots-q5
 
@@ -37,12 +41,16 @@ sections:
   - id: fractional-exponents-and-radicals
     type: reading
     title: "Fractional exponents — roots in disguise"
+    intro: |
+      A fraction in the exponent means root and power fused into one. One ordering decision — root first or power first — separates a 4-second calculation from a 40-second slog.
     check_question_ids:
       - exponents-roots-q8
 
   - id: roots-and-simplification
     type: reading
     title: "Roots — factor, split, simplify"
+    intro: |
+      GMAT radical simplification is a one-step algorithm: find the largest perfect-square factor, split the root, evaluate. This section gives you the algorithm, the table to memorize, and the traps that end a student's streak.
     check_question_ids:
       - exponents-roots-q2
       - exponents-roots-q7
@@ -50,12 +58,16 @@ sections:
   - id: rationalizing-and-combining
     type: reading
     title: "Rationalizing denominators and combining radicals"
+    intro: |
+      GMAT answer choices never leave radicals in a denominator. Two clearing moves handle every case. The second one — the conjugate — is driven by a single algebraic identity that's worth memorizing on its own terms.
     check_question_ids:
       - exponents-roots-q12
 
   - id: scientific-notation
     type: reading
     title: "Scientific notation — treat the pieces separately"
+    intro: |
+      Scientific notation turns one hard calculation into two easy ones — coefficient arithmetic and power-of-10 arithmetic, done independently and then reassembled. The single recurring error is exponent sign: this section shows you exactly where it happens.
     check_question_ids:
       - exponents-roots-q3
       - exponents-roots-q9
@@ -296,6 +308,17 @@ Both terms are square roots with opposite signs. Product = difference of the rad
 
 > **Self-explanation prompt.** Without looking: simplify (2 + √3)² and (2 + √3)(2 − √3). (First: expand — 4 + 4√3 + 3 = 7 + 4√3. Second: conjugate shortcut — 4 − 3 = 1.) These look similar but produce very different results. If you applied the conjugate shortcut to the first one, re-read the section — (a + b)² is not the same as (a + b)(a − b).
 
+**Micro-drill.** Simplify each without a calculator — should take under 45 seconds total.
+
+1. √75 → ___
+2. √(√81) → ___
+3. √12 + 2√3 → ___
+4. √50 − √8 → ___
+
+Answers: (1) 5√3, (2) 3, (3) 4√3, (4) 3√2. If (3) or (4) tripped you up, re-read the "adding and subtracting radicals" rule: you must simplify each radical *before* you can combine them.
+
+> **Self-explanation prompt.** Why can't you simplify √a + √b into √(a+b)? Write a concrete numerical counterexample (e.g., √9 + √16 vs. √25). If you can both state the rule and show why it fails, you won't make that error on test day — it's one of the most common wrong moves on medium-hard Quant.
+
 ## @rationalizing-and-combining
 
 A denominator with a radical is considered "unfinished" on the GMAT. Answer choices are almost always rationalized — radicals appear only in numerators. To rationalize, multiply by a form of 1 that clears the radical below.
@@ -333,6 +356,15 @@ Conjugate is (√3 − 1). Multiply top and bottom:
 
 > **Self-explanation prompt.** Without looking: rationalize 4/(√5 − 1). (Conjugate: √5 + 1. Denominator becomes 5 − 1 = 4. Numerator: 4(√5 + 1). Simplify: √5 + 1.) If you wrote the conjugate as √5 − 1 (same as the denominator), that's just 1 — it doesn't clear the radical. The conjugate must flip the sign.
 
+**Micro-drill.** Rationalize each denominator:
+
+1. 10/√5 → ___
+2. 3/(√7 − 2) → ___
+
+Answers: (1) 2√5, (2) 3(√7 + 2)/3 = √7 + 2. For (2): multiply by (√7 + 2)/(√7 + 2); denominator becomes 7 − 4 = 3; numerator becomes 3(√7 + 2); divide through to get √7 + 2. If you forget the conjugate, go back to the (a + b)(a − b) = a² − b² identity — it's the only mechanism that clears a sum-of-radicals denominator.
+
+> **Self-explanation prompt.** What is the conjugate of (3√2 + 5), and what does multiplying by it produce in the denominator? If you can say "(3√2 − 5), and it produces (3√2)² − 5² = 18 − 25 = −7," you own the conjugate move. The identity a² − b² is what makes it work — radicals vanish because squaring a square root kills it.
+
 ## @scientific-notation
 
 Scientific notation writes any number as **a × 10ᵏ**, where 1 ≤ a < 10 and k is an integer. It's the GMAT's way of testing exponents in disguise: arithmetic with scientific notation is just two sub-problems glued together.
@@ -364,6 +396,10 @@ Rewrite the smaller: 2 × 10⁴ = 0.2 × 10⁵. Now add: (3 + 0.2) × 10⁵ = 3.
 **Where estimation shows up.** The GMAT sometimes asks whether A > B where both involve large powers. Don't compute — estimate. Convert everything to powers of 10 (using 2¹⁰ ≈ 10³ where needed), compare exponents, and decide. Reaching for a calculation when an estimate suffices wastes 60–90 seconds.
 
 > **Self-explanation prompt.** Convert 0.000000072 to scientific notation, then multiply by 3 × 10⁸. (Conversion: 7.2 × 10⁻⁸. Multiply: coefficient 7.2 × 3 = 21.6; exponent 10⁻⁸ · 10⁸ = 10⁰ = 1; result 21.6. Normalize: 2.16 × 10¹.) If you got the sign of the exponent wrong in the conversion, re-read the direction rule: moving the decimal right makes the number bigger and the exponent more negative.
+
+**Sanity-check habit.** After any scientific-notation calculation, ask: does my answer have the right order of magnitude? 4.5 × 10⁻⁴ is 0.00045 — a tiny number. 4.5 × 10⁴ is 45,000 — enormous. Wrong sign on the exponent flips your answer by a factor of 10⁸. One second of checking catches this every time.
+
+> **Self-explanation prompt.** Cover this section. Express 7.2 × 10⁸ ÷ (9 × 10⁻²) in scientific notation. Work through it: 7.2/9 = 0.8, and 10⁸ / 10⁻² = 10¹⁰. So 0.8 × 10¹⁰ = 8 × 10⁹. Did you handle the division of the coefficient and the subtraction of the exponents as two separate steps before recombining? If you tangled them together and got a wrong answer, rerun the calculation with that explicit separation.
 
 ## @summary
 
