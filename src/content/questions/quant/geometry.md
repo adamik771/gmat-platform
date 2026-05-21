@@ -531,7 +531,7 @@ What is the area of rectangle ABCD?
 
 **answer:** C
 **fastest_path:** (1) L²+W²=100. (2) L+W=14. Square (2): (L+W)²=196=L²+2LW+W²=100+2LW → LW=48. → C.
-**explanation:** Let sides be L and W. Area = LW.
+**explanation:** Let the rectangle's sides be L and W; the area we want is LW. Each statement gives one equation in two unknowns — neither alone pins both sides — but together they yield the *product* via the squared-sum identity.
 
 Statement (1): diagonal L² + W² = 100. Multiple (L, W) pairs satisfy. Insufficient.
 
@@ -817,23 +817,23 @@ Together: n bisects the l-m angle, so the angle between n and l equals the angle
 **type:** Problem Solving
 **topic:** Square Inscribed in a Circle
 
-A square is inscribed in a circle of radius 5. What is the area of the square?
+A square is inscribed in a circle of radius 6. What is the area of the square?
 
-- A) 25
-- B) 50
-- C) 75
-- D) 100
-- E) 125
+- A) 36
+- B) 72
+- C) 84
+- D) 108
+- E) 144
 
 **answer:** B
-**fastest_path:** Diagonal = 2r = 10. Area = d²/2 = 100/2 = 50.
-**explanation:** Square inscribed in circle: diagonal = circle's diameter = 2 × 5 = 10. Square area = (diagonal)²/2 = 100/2 = 50. (Also: side = 10/√2 = 5√2, area = (5√2)² = 50.)
-**mistake_a:** Bubbled r² = 25 instead of d²/2.
-**mistake_c:** Bubbled 75 from a wrong calculation.
-**mistake_d:** Bubbled d² = 100 (forgot to divide by 2).
-**mistake_e:** Used d × r = 50 then doubled to 125.
-**common_trap:** Using diameter as the side instead of the diagonal.
-**takeaway:** Square inscribed in circle: diagonal = diameter. Area = (diagonal)²/2.
+**fastest_path:** Diagonal = 2r = 12. Area = d²/2 = 144/2 = 72.
+**explanation:** Square inscribed in circle: diagonal = circle's diameter = 2 × 6 = 12. Square area = (diagonal)²/2 = 144/2 = 72. (Verify via the side: s = 12/√2 = 6√2, so s² = (6√2)² = 36 × 2 = 72. Same answer.)
+**mistake_a:** Bubbled r² = 36 — used the radius as a side length instead of as half the diagonal. The radius and the side aren't equal; the side is r√2.
+**mistake_c:** Averaged d² and r²: (144 + 36)/2 = 90, then nudged down to 84 from rough arithmetic. The right shortcut is d²/2, not (d² + r²)/2.
+**mistake_d:** Computed (3/2) × 72 = 108 — over-corrected by adding a "rotation" factor that doesn't exist. The clean path: d²/2 = 72.
+**mistake_e:** Bubbled d² = 144 — forgot the /2 step. The diagonal squared equals *twice* the square's area, not the area itself.
+**common_trap:** Using diameter as the side length instead of the diagonal. The diagonal of the inscribed square equals the diameter, which gives s = d/√2, not s = d.
+**takeaway:** Square inscribed in circle: diagonal = diameter. Area = (diagonal)²/2 = (2r)²/2 = 2r².
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 

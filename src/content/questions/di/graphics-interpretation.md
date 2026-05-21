@@ -224,7 +224,7 @@ Based on the chart, Manufacturer A's market share is approximately ______ times 
 
 **answer:** C
 **fastest_path:** 38/12 ≈ 3.17 → closest to 3.2.
-**explanation:** A=38%, D=12%. 38/12 = 3.166… ≈ 3.2.
+**explanation:** A's slice is 38% of the chart; D's is 12%. Ratio = 38/12 ≈ 3.17, closest to 3.2. Read percentages off the pie literally — don't round to "about 40 vs about 10" or you'll land on 4.0.
 **mistake_a:** 30/12 = 2.5 — using wrong A value.
 **mistake_b:** 36/12 = 3.0 — rounding 38 down.
 **mistake_d:** 42/12 = 3.5 — overshooting A.

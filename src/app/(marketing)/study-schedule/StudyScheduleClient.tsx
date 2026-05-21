@@ -377,7 +377,7 @@ export default function StudyScheduleClient() {
             </Link>
           </div>
           <LeadCapture
-            source="other"
+            source="study-schedule"
             leadMagnet="error-log-template"
             eyebrow="Free template"
             headline="Get the error-log template I used to go from 565 to 735."

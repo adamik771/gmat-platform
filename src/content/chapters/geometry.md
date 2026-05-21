@@ -5,7 +5,7 @@ section: Quant
 estimated_minutes: 55
 prerequisites: []
 summary: |
-  GMAT geometry is a small, finite list of facts applied to a small, finite list of shapes. Triangles (Pythagorean theorem, 30-60-90, 45-45-90), circles (area, circumference, arcs, sectors), quadrilaterals (squares, rectangles, parallelograms), regular polygons (the (n−2)×180 angle sum), coordinate geometry (distance, midpoint, slope), and 3D solids (volume and surface area of boxes, cylinders, spheres). Memorize the formulas, recognize the patterns, and every geometry question becomes a 60-second calculation.
+  GMAT geometry is a finite set of facts applied to a finite set of shapes. The four triangle families — Pythagorean triples, special right triangles (30-60-90, 45-45-90), similar triangles, and parallel-line angle rules — generate roughly 40% of geometry questions on their own. Circles (area, circumference, arcs, sectors, inscribed angle theorem) generate another 20%. Quadrilaterals, coordinate geometry, and 3D solids cover the rest. Memorize the formulas and the four triangle families cold. Recognize which pattern you're in, and most geometry questions become two-step calculations.
 sections:
   - id: pretest
     type: pretest
@@ -18,7 +18,7 @@ sections:
 
   - id: triangles
     type: reading
-    title: "Triangles — Pythagorean, 30-60-90, 45-45-90"
+    title: "Triangles — Pythagorean, special, similar, and angle rules"
     check_question_ids:
       - geometry-q8
       - geometry-q13
@@ -170,9 +170,49 @@ If two sides are 5 and 8, the third side satisfies |8 − 5| < x < 8 + 5, i.e., 
 
 Memorize the area formula. The GMAT can embed equilaterals inside circles and hexagons.
 
+**Isosceles triangles.** Two equal sides → two equal base angles (and vice versa). If you see two equal angles, the sides opposite them are equal. This is extremely useful in circle problems: because any two radii are equal, every triangle formed by two radii is automatically isosceles.
+
+**Family 4: Similar triangles — the ratio technique.**
+
+Two triangles are **similar** when they have the same three angles. The **AA rule**: if two angles of one triangle equal two angles of another, the third angle is forced to match (since angles sum to 180°), and the triangles are similar.
+
+**Why this matters.** In similar triangles, every corresponding pair of sides is in the same ratio. If one triangle is a scaled version of the other by factor k, all linear dimensions scale by k and all areas scale by k². The GMAT uses this at the 685+ tier through three disguises: a parallel segment inside a triangle, an altitude dropped to the hypotenuse, and a transversal cutting across two triangles.
+
+**Example (parallel segment creates similar triangles).** In triangle ABC, segment DE is parallel to BC, with D on AB and E on AC. AB = 9, AD = 3, BC = 12. Find DE.
+
+Because DE ∥ BC, triangles ADE and ABC share angle A, and the parallel lines force the remaining corresponding angles to be equal (AA). Ratio of similarity: AD/AB = 3/9 = 1/3. Therefore DE = (1/3) × BC = **4**.
+
+**The area-ratio rule.** If two similar triangles have corresponding sides in ratio k:1, their areas are in ratio k²:1.
+
+**Example.** Two similar triangles have corresponding sides 4 and 10. The smaller has area 12. Find the larger's area.
+
+k = 10/4 = 5/2. Area ratio = (5/2)² = 25/4. Larger area = 12 × 25/4 = **75**.
+
+**Altitude to the hypotenuse.** In a right triangle with legs a and b and hypotenuse c, dropping an altitude h from the right angle to the hypotenuse creates two smaller triangles — both similar to the original. From this, one formula falls out that is worth memorizing:
+
+    h = (a × b) / c
+
+**Example.** Right triangle with legs 6 and 8 (hypotenuse 10). Altitude to the hypotenuse?
+
+    h = (6 × 8) / 10 = 48/10 = **4.8**
+
+**Parallel lines and transversals.** When a transversal cuts two parallel lines, three families of angle pairs form.
+
+| Angle pair | Relationship |
+|---|---|
+| Corresponding angles (same relative position at each crossing) | Equal |
+| Alternate interior angles (between the parallels, on opposite sides) | Equal |
+| Co-interior / same-side interior angles (between the parallels, same side) | Supplementary — sum to 180° |
+
+The intuition: parallel lines create identical geometry at every crossing. The angles are the same because the lines never converge or diverge.
+
+**How this connects to similar triangles on the GMAT.** Any line drawn parallel to one side of a triangle creates a smaller triangle inside it — and because the parallel line forces equal corresponding angles, the small triangle is automatically similar to the large one (AA rule). This is the setup in almost every 685+ geometry question that doesn't involve circles or coordinates: draw the parallel, invoke similarity, set up a proportion.
+
 > **Self-explanation prompt.** Why does recognizing a Pythagorean triple save time? If you can say "because the integer solutions to a² + b² = c² are rare, so spotting one means you already know the third side without computation," you've internalized why the memorization matters.
 
-> **Recall check.** Without looking up: list the four Pythagorean triples, the ratio for a 45-45-90 triangle, and the ratio for a 30-60-90 triangle. State them aloud (or write them), then verify. These seven facts (4 triples + 2 ratios + Pythagorean theorem) carry roughly 30% of GMAT geometry points — forced retrieval now, rather than passive re-reading, is the single highest-return 60 seconds you'll spend in this chapter.
+> **Recall check — similar triangles and angle rules.** Without looking: (1) State the AA similarity rule. (2) Two similar triangles have sides in ratio 3:7 — what is their area ratio? (3) State what alternate interior angles and co-interior angles each equal when a transversal crosses parallel lines. (Answers: (1) Two angle pairs match → similar. (2) 9:49. (3) Alternate interior = equal; co-interior = supplementary.) If you missed any of these, re-read the section before the problem sets — similar triangles appear on roughly 20% of hard geometry questions.
+
+> **Recall check — basic facts.** Without looking up: list the four Pythagorean triples, the ratio for a 45-45-90 triangle, and the ratio for a 30-60-90 triangle. State them aloud (or write them), then verify. These seven facts (4 triples + 2 ratios + Pythagorean theorem) carry roughly 30% of GMAT geometry points — forced retrieval now, rather than passive re-reading, is the single highest-return 60 seconds you'll spend in this chapter.
 
 ## @circles
 
@@ -198,7 +238,15 @@ Don't confuse with circumference (2π × 6 = 12π). The GMAT always includes bot
 
 Same idea works for sectors (pie slices): sector area = (θ/360) × πr².
 
-**Inscribed angle theorem.** An inscribed angle is half the central angle that subtends the same arc. If the central angle is 80°, the inscribed angle is 40°. Rarely tested directly but appears on hard problems.
+**Inscribed angle theorem.** An inscribed angle is half the central angle that subtends the same arc.
+
+**Example.** Points A, B, and C lie on a circle with center O. Arc AB (the arc not containing C) subtends a central angle AOB of 100°. The inscribed angle ACB at C = 100°/2 = **50°** — no matter where on the circle C is placed.
+
+**The semicircle corollary — the single most important circle fact on the GMAT.** If the arc is a semicircle (central angle = 180°), the inscribed angle is 90°. In plain language: any triangle inscribed in a semicircle, with its base on the diameter, has a right angle at the third vertex.
+
+**Example.** AB is a diameter of a circle. C is any point on the circle, not at A or B. Then angle ACB = **90°**, always.
+
+This converts circle problems into right-triangle problems. The moment you see a triangle inscribed with one side equal to the diameter, apply the Pythagorean theorem. This setup alone accounts for 5-10% of all hard circle questions.
 
 **Inscribed squares and triangles.**
 
@@ -214,6 +262,8 @@ Memorize "area of square = d²/2" — it appears on almost every inscribed-squar
 **Tangent lines** are perpendicular to the radius at the point of tangency. Rarely tested at 605-level but can appear on 685+ problems.
 
 **Trap to watch.** "What's the area of a circle with diameter 10?" The diameter is 10, so the radius is 5, and the area is 25π. Students who plug the diameter into πr² directly get 100π — four times too large.
+
+> **Recall check.** Cover the section. From memory, state all four circle formulas (circumference, area, arc length, sector area). Now apply them: a circle has radius 6 and a central angle of 120°. Arc length? Sector area? (Arc = (120/360) × 2π × 6 = 4π. Sector = (120/360) × π × 36 = 12π.) Now: AB is a diameter and C lies on the circle — what is angle ACB? (90°.) If you had to peek for any formula, that formula is costing you a free question on the test.
 
 ## @quadrilaterals-and-polygons
 
@@ -329,6 +379,8 @@ Point-slope form: y − y₁ = m(x − x₁). Useful when you have a slope and a
 
 **Trap to watch.** Perpendicular slopes are negative reciprocals, not just negatives. The perpendicular to slope 2 is −1/2, not −2. And both perpendicular and reciprocal changes — drop the minus sign or skip the reciprocal, and you've got the wrong line.
 
+> **Recall check.** From memory, state the distance formula, midpoint formula, and slope formula. Then apply them: points (−3, 1) and (5, 7). Distance? Midpoint? Slope? (Distance: √((5−(−3))² + (7−1)²) = √(64+36) = √100 = 10. Midpoint: ((−3+5)/2, (1+7)/2) = (1, 4). Slope: (7−1)/(5−(−3)) = 6/8 = 3/4.) If you had to reconstruct any formula from scratch, it needs more repetition — you should be producing all three in under 10 seconds on test day.
+
 ## @three-d-solids
 
 Three solid shapes dominate: rectangular boxes (prisms), right cylinders, and spheres. Memorize six formulas.
@@ -411,6 +463,8 @@ The general trick: **(L + W)² = (L² + W²) + 2LW**, so if you know sum-of-squa
 
 **Trap to watch.** "Rectangle with diagonal 10 and perimeter 28 — what's the area?" If you try to solve for L and W individually, you hit a messy quadratic. The sum-of-squares + sum-of-sides identity gives you LW directly without ever finding L or W. Whenever the question asks for a product (area) and gives you sum-of-squares + sum, square the sum.
 
+> **Self-explanation prompt.** When a circle contains a triangle with one side as the diameter, why is the angle at the third vertex exactly 90°? If you can explain it using the inscribed angle theorem (the diameter subtends a central angle of 180°; an inscribed angle over the same arc is half that = 90°), you've connected two major circle concepts into one inference. On the test, recognizing this setup unlocks the Pythagorean theorem immediately — cutting a two-minute problem into a 45-second one.
+
 ## @summary
 
 GMAT geometry is a formula-sheet topic. The student who has memorized the formulas — and recognizes which shape is in front of them — finishes every question in under 90 seconds. Here's the cold-memorization list.
@@ -425,6 +479,10 @@ GMAT geometry is a formula-sheet topic. The student who has memorized the formul
 - Any triangle area: (1/2) × base × height
 - Angle sum: 180°
 - Triangle inequality: |a − b| < c < a + b
+- Isosceles: two equal sides → two equal base angles (and vice versa)
+- Similar triangles (AA rule): equal angles → sides in ratio k → areas in ratio k²
+- Altitude to hypotenuse: h = (leg₁ × leg₂) / hypotenuse
+- Parallel lines: alternate interior angles equal; co-interior angles supplementary
 
 **Circles.**
 
