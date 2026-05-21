@@ -158,6 +158,10 @@ Multiples follow: `3/8 = 0.375`, `5/8 = 0.625`, `7/8 = 0.875`. When you see `.37
 
 **Trap to watch.** A complex fraction like `(a + b/c) / d` is `(ac + b) / (cd)`, not `(a + b) / (cd)`. Resolve the numerator fully — `a + b/c = (ac + b)/c` — before you divide.
 
+> **Self-explanation prompt.** Why does canceling factors *before* multiplying save more time than simplifying the result afterward? If you can say "because canceling early keeps every intermediate number small — you're dividing once with small numbers instead of multiplying large numbers and then dividing," you've internalized the habit. Students who cancel late do extra work they already paid for; students who cancel early never accumulate that debt.
+
+> **Recall check.** Cover this section and compute `(14 × 27) / (9 × 35)` using diagonal cancellation only — no multi-digit multiplication. Work it out before checking: `14/35 = 2/5` and `27/9 = 3`, so the result is `(2 × 3) / 5 = 6/5`. If you multiplied `14 × 27 = 378` first and then divided, you used the slow path. Repeat until the cancel-first reflex fires before you reach for a pen.
+
 ## @decimals-and-percents-conversion
 
 Decimals, fractions, and percents are three notations for the same number. A student who fluently switches between them saves 20-30 seconds on every percent problem. A student who can't switch gets bogged down in `0.875 × 80` when they could have written `7/8 × 80 = 70`.
@@ -225,6 +229,10 @@ Sum: `9 + (−2) = 7`. Any `|expression| = k` equation has (up to) two solutions
 
 **Trap to watch.** `(−3)² = 9`, but `−3² = −9`. The exponent binds tighter than the negation unless the negative is inside parentheses. Write out `−3²` as `−(3²)` in your head.
 
+> **Self-explanation prompt.** Why does `|expression| = k` always produce two cases rather than one? If you can say "because absolute value strips the sign, so both the positive and negative versions of the expression give the same positive magnitude — you must solve for both," you've understood the structure. Forgetting the negative case drops half your solutions on every absolute-value problem.
+
+> **Recall check.** Cover this section and answer from memory: (1) What is the sign of `(−2)(3)(−4)(−1)`? (2) What is `|−3 − 5|`? (3) Solve `|3x − 6| = 9` and state both solutions. Check: (1) three negatives → negative product, `−24`. (2) `|−8| = 8`. (3) Case 1: `3x − 6 = 9` → `x = 5`; Case 2: `3x − 6 = −9` → `x = −1`. If you found only one answer in (3), the trap worked — and this recall check is why it won't work on test day.
+
 ## @integers-vs-non-integers
 
 The GMAT cares intensely about whether a number is an integer or not. Many Data Sufficiency questions hinge on this single distinction, and many Problem Solving traps plant a non-integer where a student assumed an integer.
@@ -290,6 +298,10 @@ The one that's closest: `11/32`. A more rigorous approach uses cross-multiplicat
 - You're multiplying messy decimals and one choice is obviously nearest.
 
 **Trap to watch.** Estimation doesn't mean "guess." It means "round each number to a cleaner value, compute, and check the direction of your rounding error." If you rounded up twice, your estimate is too high; mentally adjust down.
+
+> **Self-explanation prompt.** Why does scanning answer choices *before* starting a calculation change how you solve the problem? If you can say "because spread choices let you tolerate rounding error — a rough calculation wins — while tight choices demand precision — full arithmetic wins — and picking the wrong mode costs you either accuracy or time," you've internalized why this is a strategic decision before it's a math decision.
+
+> **Recall check.** Answer choices are: 2, 8, 24, 72, 216. Before seeing the question, what does this spread tell you about strategy? (Answer: each choice is about 3× the previous — any rounding error under 50% still lands on the right choice, so estimate freely.) Now: what if the choices were 21, 22, 23, 24, 25? (Answer: choices differ by less than 5%, so estimate and you'll be off — compute exactly.) Practicing the "spread vs tight" decision in isolation, before seeing actual questions, is what makes it a reflex under time pressure.
 
 ## @summary
 

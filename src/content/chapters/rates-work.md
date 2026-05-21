@@ -178,6 +178,10 @@ Trap answer: students who manipulate times compute 12 − 8 = 4 (wrong) or 12 + 
 
 > **Self-explanation prompt.** Before the check question, explain in one sentence: if A takes 4 hours alone and B takes 6 hours alone, why does the combined time land near 2.4 hours rather than near 5 hours? If you can say "because both contribute their full rate every hour, so the job disappears faster than either alone — not at some average speed between them," you've understood why adding times is wrong.
 
+> **Self-explanation prompt.** Before moving on, say this out loud: *why* do you add rates and not times when two workers combine? If you can explain "because each worker independently contributes a fraction of the job per hour — those fractions add; the time to finish is 1 divided by the combined fraction," you've understood the concept, not just memorized the formula. A student who truly understands this will never again add the times, even under pressure.
+
+> **Recall check.** Cover this section. Pipe A fills a tank in 8 hours; Pipe B fills the same tank in 12 hours. Can you write the combined rate and the combined time from memory, before looking? If A's rate is 1/8 and B's is 1/12, the combined rate is 1/8 + 1/12 = 5/24, and the combined time is 24/5 = 4.8 hours. If you got a number larger than 8 or computed 8 + 12 = 20, review the section. Spaced retrieval (Roediger & Karpicke, 2006) converts a rule you've read into a rule you own.
+
 ## @two-objects-moving
 
 Two cars, two trains, two people on bikes. Three setups cover every question in this family.
@@ -240,6 +244,8 @@ A boat does 24 km downstream in 2 hours and 24 km upstream in 3 hours:
 **Trap to watch.** "How fast is the gap growing?" is always the *sum* or *difference* of speeds — never one speed alone. Confusing the gap rate with one vehicle's speed is the classic wrong answer on this question type.
 
 > **Self-explanation prompt.** Before the check questions: a fast train is chasing a slow train — 80 mph vs. 50 mph. The slow train had a 60-mile head start. Which determines the catch-up time — the sum (130 mph), the difference (30 mph), or neither? If you said "the difference," explain in one sentence why. (The fast train only gains on the slow one at 30 mph, because the slow train is also moving forward and eating up track — only the *net* gain per hour matters.)
+
+> **Recall check.** Cover this section and state from memory: what do you do with the speeds when two objects move toward each other? What do you do when one chases the other in the same direction? (Toward each other or moving apart → add the speeds. Same direction → subtract the slower from the faster.) Now, a freight train leaves at 6 AM at 40 mph; an express leaves the same station at 8 AM at 60 mph, same direction. How far ahead is the freight when the express departs, and what is the express's closing rate? Compute before checking: 2 hrs × 40 mph = 80 miles ahead; closing rate = 60 − 40 = 20 mph; catch-up time = 80/20 = 4 hours. If you added the speeds or used the wrong base, re-read the same-direction example above.
 
 ## @average-speed
 
@@ -334,6 +340,8 @@ Multiply both sides by 4r(r+10):
 The negative root (−60) is discarded because speed must be positive.
 
 > **Self-explanation prompt.** Before the check questions: why can't you solve a staggered-start problem with a single combined-work equation from the beginning? If you can say "because the combined rate only applies during the phase when both are working — during the solo phase, only one worker's rate applies — so a single equation would overcount the second worker's contribution," the two-phase template will feel like the natural approach, not a memorized trick.
+
+> **Self-explanation prompt.** Why does the two-phase template require you to compute the *fraction of the job remaining* after phase 1, rather than working directly with times? If you can say "because phase 2 operates at a different rate, so time alone doesn't tell you how much was done — you need the fraction of work left, then divide that by the new rate to get phase 2 time," you've understood the structure. The moment you try to add or average the times across phases without tracking the fraction of work, you're guaranteed a wrong answer.
 
 ## @summary
 
