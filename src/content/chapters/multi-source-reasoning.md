@@ -2,10 +2,10 @@
 slug: multi-source-reasoning
 title: Multi-Source Reasoning
 section: DI
-estimated_minutes: 50
+estimated_minutes: 60
 prerequisites: []
 summary: |
-  Multi-Source Reasoning gives you 2-3 tabs of information — memos, tables, rules, emails, research abstracts — and asks questions that require synthesizing across them. The test isn't reading comprehension; it's navigation. You need to know which tab to consult for each question, extract the specific data points, combine them correctly, and verify against constraints. Master the two-pass navigation protocol (orient first, then dive in for each question), internalize the four question types, and every MSR set becomes a 5-6 minute sequence rather than a frantic re-read of three screens.
+  Multi-Source Reasoning gives you 2-3 tabs of information — memos, tables, rules, emails, research abstracts — and asks questions that require synthesizing across them. The test isn't reading comprehension; it's navigation. You need to know which tab to consult for each question, extract the specific data points, combine them correctly, and verify against constraints. Master the two-pass navigation protocol (orient first, then dive in per question), internalize the five question types, and every MSR set becomes a 5-6 minute sequence rather than a frantic re-read of three screens.
 sections:
   - id: pretest
     type: pretest
@@ -50,9 +50,16 @@ sections:
       - multi-source-reasoning-q8
       - multi-source-reasoning-q14
 
+  - id: scope-and-inference-limits
+    type: reading
+    title: "Scope and inference limits — what the tabs can and cannot prove"
+    check_question_ids:
+      - multi-source-reasoning-q5
+      - multi-source-reasoning-q9
+
   - id: summary
     type: summary
-    title: "The MSR workflow and the four question types"
+    title: "The MSR workflow and the five question types"
     check_question_ids: []
 
 problem_sets:
@@ -96,200 +103,311 @@ problem_sets:
 
 ## @the-two-pass-navigation
 
-Multi-Source Reasoning is an information architecture problem. You're given 2-3 tabs — usually a mix of narrative text (memos, emails, reports), data tables, and rule lists. The challenge isn't understanding any one tab; it's knowing where each type of information lives and navigating efficiently when questions pull from different places.
+Multi-Source Reasoning is an information architecture problem. You're given 2-3 tabs — a mix of memos, emails, data tables, rules lists, and research summaries. The challenge is not to understand any single tab deeply; it's to navigate across tabs efficiently when each question pulls from a different place.
 
-**Mental model.** MSR is a two-pass exercise. Pass 1: build a mental table-of-contents — what's in each tab, what kind of data is where. Pass 2: deep-read only the part the current question forces you to. Students who try to absorb everything in one pass run out of time on a 6-question set. The two passes cost less total time than one careful pass.
+**Why MSR is designed this way.** The test intentionally includes more information than any question uses. The designers want to see whether you can locate and extract specific data under time pressure — not whether you can read everything carefully. Students who try to absorb all three tabs before reading a single question are failing the test's actual challenge before they answer Question 1.
+
+**Mental model.** MSR is a two-pass exercise. Pass 1: build a mental table-of-contents — what type is each tab, what topic does it cover, what's the key claim or data in it. Pass 2: deep-read only what the current question forces you to. Students who try to absorb everything in one pass consistently run out of time on a 6-question set. The two passes cost less total time than one careful pass, because most of what's in the tabs never gets asked about.
 
 **The two-pass protocol.**
 
 **Pass 1: Orient.** Before reading deeply, scan all tabs for 30-45 seconds. Build a mental map:
 
-- What is each tab? A memo? A table? A set of rules?
+- What type is each tab? A memo? A data table? A set of rules?
 - What topic does each tab address? (Sales figures, clinical results, budget allocations, etc.)
-- What are the key data points or claims in each? (E.g., "Tab 2 has regional revenue numbers"; "Tab 3 has the board's strategic targets.")
+- What are the key data points or claims? (E.g., "Tab 2 has regional revenue numbers"; "Tab 3 has the board's strategic targets.")
 
 Don't try to memorize content. You're building a *table of contents* in your head, not the whole book.
 
-**Pass 2: Dive in per question.** For each question, read the stem, decide which tab(s) contain the needed information, and read those parts carefully. Ignore the rest.
+**Pass 2: Dive in per question.** Read the question stem, decide which tab(s) contain the needed information, and read those parts carefully. Ignore everything else.
 
-**Why this beats deep-reading all tabs.** MSR sets typically have 3 questions per set, and each question usually needs 1-2 specific data points out of the dozens present across the tabs. Reading everything thoroughly on pass 1 wastes time on information you'll never use. Orient fast, then dive on demand.
-
-**The time budget per set.**
-
-- Pass 1 (orient): 30-45 seconds.
-- Per question (pass 2 + answer): 90-120 seconds.
-- Total for a 3-question set: ~5-6 minutes.
-
-This is aggressive — but achievable when you orient efficiently. Students who deep-read all three tabs upfront often spend 3+ minutes on reading alone, leaving only 2 minutes per question.
-
-**What to build in pass 1.**
+**What to record in pass 1 by tab type.**
 
 | Tab type | What to note |
 |---|---|
-| Memo / email / letter | Who's speaking? What's the main claim? What are the key numbers mentioned? |
-| Table | What are the rows and columns? What's the unit? What are the totals? |
-| Rules / targets list | How many rules? What's the general scope (budget, strategy, compliance)? |
-| Research abstract | What was studied? What were the results? |
-| Meeting minutes | What decisions were made? What disputes remain? |
+| Memo / email / letter | Who's speaking? What's the main claim? Any key numbers mentioned? |
+| Data table | What are the rows and columns? What's the unit? Is there a totals row? |
+| Rules / targets / policy | How many rules? What's the scope — budget, strategy, compliance? |
+| Research abstract | What was studied? What were the results? Were there noted limitations? |
+| Meeting minutes | What decisions were made? What disputes remain open? |
 
-**The "who's making what claim" question.** When a tab contains narrative text, different people may be quoted or referenced. Track who's claiming what — because questions often ask "based on Person X's memo" or "which of the committee members disagrees with Person Y."
+**The time budget per set.**
 
-**The "which tab has the numbers" heuristic.** Tables have data. Memos usually describe data in prose but often lack precise numbers. If a question asks for a specific percentage or dollar figure, check the table first.
+| Phase | Time |
+|---|---|
+| Pass 1 — orient all tabs | 30-45 seconds |
+| Per question — find data + answer | 90-120 seconds |
+| Total for a 3-question set | 5-6 minutes |
 
-> **Recall check.** Close the book. State the two-pass protocol. Now: in pass 1, what do you NOT do? (Answer: you don't try to memorize content. You build a table of contents, not the whole book.) Retrieval of the distinction between orienting and deep-reading is what separates 6-minute MSR sets from 10-minute ones.
+If a 3-question set takes more than 7 minutes, you over-read in pass 1 or re-read tabs unnecessarily on individual questions. The fix: trust your pass-1 map more.
+
+**The "who's claiming what" question.** When a tab contains narrative text, different people may be quoted or referenced. Track *who* is making each claim — questions often ask "based on Person X's memo" or "which committee member disagrees with Y." Miss the authorship and you can answer the right question about the wrong person.
+
+**The "which tab has the numbers" heuristic.** Narrative tabs describe data in prose but rarely have precise figures. If a question asks for a specific percentage or dollar amount, go to the data table first.
+
+> **Trap to watch.** The most common MSR error isn't arithmetic — it's re-reading all tabs for every question. Each full re-read costs 60-90 seconds you don't have. Train the reflex: question stem → identify tab → read only the relevant section of that tab.
+
+> **Micro-drill.** Three tabs: (1) an internal email from a CFO discussing Q3 budget overruns; (2) a table of quarterly revenue by product line; (3) a board resolution listing three strategic objectives. Which tab would you consult for "Did Q3 revenue for the software product line exceed the board's growth target?" If you said Tab 2 for the revenue and Tab 3 for the target, the reflex is right. That's cross-tab — one lookup each, not a full re-read.
+
+> **Recall check.** Close the section. State the two-pass protocol. Then: what do you NOT do in pass 1? (Answer: you don't try to memorize content — you build a table of contents.) Retrieval of that distinction is what separates 5-minute MSR sets from 9-minute ones.
 
 ## @matching-question-to-tab
 
-Every MSR question is anchored in one or more tabs. Your first move after reading the question stem is to decide which tab(s) to consult.
+Every MSR question is anchored in one or more tabs. Your first move after reading the question stem is to decide which tab(s) to consult. Students who dive in without making this decision first waste time reading irrelevant content and risk anchoring their answer to the wrong source.
 
-**The three diagnostic moves for tab matching:**
+**The five-step tab-matching protocol.**
 
-1. **Look for tab-naming language.** Questions often reference content directly: "Based on the memo from Sarah Nguyen..." points to Tab 1. "According to the revenue table..." points to Tab 2. "To comply with the board's strategic targets..." points to Tab 3.
+1. **Look for explicit tab references.** "Based on Sarah Nguyen's memo..." points to the tab authored by her. "According to the revenue table..." points to the data table. Explicit naming is the easy case.
+2. **Match the question's topic to the tab you mapped in pass 1.** "What was Eastern's revenue growth?" → the tab you noted as "regional revenue numbers."
+3. **Apply the type-to-content filter.** Numbers live in tables. Rationale and intent live in memos. Constraints and requirements live in rules tabs.
+4. **Flag cross-tab questions early.** Any question involving "based on all available information" or requiring a compliance check against a target uses multiple tabs. Budget for 2-3 lookups.
+5. **When uncertain, start with the most specific tab and set a 30-second time box** before expanding to a second tab. Don't drift between tabs without a plan.
 
-2. **Match the question's topic to tab contents.** If the question asks about dollar amounts, check the table. If it asks about a specific person's reasoning, check the relevant memo.
+**The type-to-content filter.**
 
-3. **When in doubt, check multiple tabs.** Some questions require synthesizing across tabs. If the question involves any phrase like "based on all three tabs" or "considering all available information," plan to consult every tab.
+| What the question asks | Which tab type to check first |
+|---|---|
+| A specific number, percentage, or rank | Data table |
+| The *reason* for a trend or decision | Narrative tab (memo, email) |
+| Whether a constraint or target was met | Rules/targets tab, then data table to verify |
+| Someone's opinion or inference | The memo attributed to that person |
+| An aggregated or computed metric | Data table, possibly multiple columns |
 
-**The "specific vs. general" filter.**
+**Example (three-tab set: VP memo, revenue table, board targets).**
 
-- Questions asking for specific numbers or rankings → look at the data table.
-- Questions asking about intent, rationale, or opinion → look at the narrative (memo, email).
-- Questions involving constraints or compliance → look at the rules tab.
+- "What was Eastern's revenue growth?" → Tab 2. One lookup.
+- "Why did Central's revenue decline?" → Tab 1 (the VP's explanation). One lookup.
+- "Did the company meet its hardware-mix target?" → Tab 3 for the target, then Tab 2 for the actual figure. Cross-tab — two lookups.
 
-**Example.** MSR set about a company's regional sales, with three tabs: (1) VP's internal memo, (2) revenue table by region, (3) board-approved strategic targets.
+**The "already-read vs. must-re-read" decision.** For simple lookups you recorded in pass 1, memory may be sufficient. For cross-tab or exact numerical questions, always go back to the tab — don't trust memory for precision.
 
-- "What was the Eastern region's revenue growth?" → Tab 2 (the table).
-- "Why did the Central region decline?" → Tab 1 (the memo explains — "loss of two major retail accounts").
-- "Did the company meet the board's hardware-mix target?" → Tab 3 (for the target) + Tab 2 (for the actual numbers). Cross-tab.
+**The "check all rules" discipline on compliance questions.** "How many of the board's four targets did the company meet?" requires checking each target in the rules tab against the corresponding data in the table. Skip one and you risk answering 3 instead of 2. Always enumerate.
 
-**The "already-read vs. re-read" decision.** For simple data lookups, you usually remember enough from pass 1 to answer without re-reading. For cross-tab synthesis or specific numerical questions, re-read the relevant tab — don't trust memory for precision.
+**The "memo characterization vs. actual data" trap.** Memos say things like "Central declined significantly." The table shows the actual percentage. When a question asks for a number, always use the table — the memo's word "significantly" is unquantified and potentially misleading.
 
-**The "check every relevant tab" rule on compliance questions.** "How many of the board's targets did the company meet?" requires checking Tab 3 for *each* target, then consulting Tab 2 for the corresponding number. Don't skip rules — if the answer is 1 out of 4, you'd better have verified all 4.
+> **Trap to watch.** When a question references a memo's argument ("the CFO argues that..."), students often re-read the full memo. Instead, navigate directly to the paragraph containing that specific claim. A memo is a structured document — navigate within it, don't re-read it.
 
-**Example of bad shortcutting.** Question asks "how many of the 4 board targets were met?" Student glances at tab 3, sees three targets that "sound met," picks 3. But the fourth — which the student skipped — might contradict and lower the count to 2. Always check all rules when the question enumerates compliance.
+> **Micro-drill.** For each stem, write the tab type you'd check first — table, narrative, or rules:
+> 1. "What percentage of Q3 revenue came from new clients?"
+> 2. "What reason did the operations director give for the supply delay?"
+> 3. "How many compliance targets did the company meet?"
+> 4. "What was the combined software revenue for the North and East regions?"
+>
+> Answers: table / narrative / rules then table / table. If you got all four in under 10 seconds, the tab-matching reflex is calibrated.
 
-**The "memo claims vs. actual data" trap.** Memos often make claims like "our Central region revenue declined." If a question asks about the Central region's decline, check the TABLE for the actual number — the memo's characterization might be qualitative, but the question might require a specific percentage.
-
-> **Self-explanation prompt.** Why is navigating to the right tab first better than reading the question and diving into the passages linearly? If you can say "because questions are written to test whether you can locate specific information, not whether you can re-read all tabs under time pressure — navigating to the right tab IS the skill being tested," you've internalized the point of the question format.
+> **Self-explanation prompt.** Why is matching the question to the tab before reading it better than scanning all tabs for every question? If you can say "because MSR questions test whether you can locate specific information — navigating to the right tab IS the skill being measured, not reading speed," you've understood why the match step is the whole game.
 
 ## @cross-tab-synthesis
 
-The hardest MSR questions require combining information from two or three tabs. These are where most students slow down — they need a disciplined workflow.
+Cross-tab synthesis is what makes MSR harder than Table Analysis. In Table Analysis, every answer comes from one table. In MSR, the answer is assembled from two or three different sources — and the information in each source is incomplete without the others.
 
 **The three-step synthesis workflow.**
 
-1. **Identify all data points needed.** Read the question and list every piece of information required. "I need Eastern region revenue, I need the enterprise contract contribution amount, I need the previous year's Eastern revenue."
-2. **Find each data point in the correct tab.** Write them down (on scratch paper) as you find each.
-3. **Combine.** Do the arithmetic or logical combination the question requires.
+1. **List every data point the question requires.** Before opening any tab, identify what facts you need. "I need Eastern's current revenue, its previous revenue, and the enterprise contract contribution."
+2. **Find each data point in the correct tab.** Record each on scratch paper as you locate it.
+3. **Combine.** Perform the arithmetic or logical combination on what you've written down — not in your head.
 
-**Example (synthesis).** Question: "If the Eastern region's enterprise contracts (mentioned in the memo) contributed $0.90M in revenue this year, what would Eastern's growth rate have been without them?"
+**Why step 1 comes before opening any tab.** If you open Tab 2 and start reading without knowing exactly what you're looking for, you'll extract the wrong column, miss a relevant row, or stop reading too early. Listing the required facts first gives you a checklist — you don't stop until every item is checked.
+
+**The "write it down" rule.** Mental synthesis of 3+ numbers under time pressure is where accuracy drops. Write each data point on scratch paper before combining. Two extra seconds of writing prevents a chain of arithmetic errors.
+
+**Example (revenue synthesis).** "If Eastern's enterprise contracts contributed $0.90M in revenue, what would Eastern's growth rate have been without them?"
 
 Data points needed:
-- Eastern current revenue (from Tab 2): $6.96M.
-- Enterprise contract contribution (from question, confirmed in Tab 1 mention): $0.90M.
-- Eastern previous revenue (from Tab 2): $5.80M.
+- Eastern current revenue (Tab 2): $6.96M
+- Enterprise contract contribution (from question stem, confirmed Tab 1): $0.90M
+- Eastern previous revenue (Tab 2): $5.80M
 
-Combine: without contracts, Eastern revenue = 6.96 - 0.90 = 6.06M. Growth = (6.06 - 5.80)/5.80 ≈ 4.5%.
+On scratch paper: 6.96 − 0.90 = 6.06. Growth = (6.06 − 5.80) / 5.80 = 0.26 / 5.80 ≈ **4.5%**. Write the formula, then the numbers, then the result.
 
-**The "write down as you go" discipline.** Don't try to hold 3-4 numbers in your head while doing arithmetic. Write them on scratch paper, then combine. Mental math with 3+ numbers under time pressure is where most errors happen.
+**The transitive reasoning chain.** Some questions require following a chain across three tabs: Tab 1 names an entity, Tab 2 gives that entity's data, Tab 3 sets the constraint for that entity. You must link all three before drawing a conclusion.
 
-**The "which tab agrees with which" cross-check pattern.** Sometimes tabs partially conflict — a memo says "Central declined 6%" but the table shows 5%. The table is usually authoritative for numbers; the memo is authoritative for rationale. Use each tab for what it's specifically good at.
+**Example (compliance chain).** "Does the Southern region's hardware mix meet the board's target?"
 
-**The "transitive reasoning" pattern.** Sometimes a chain: "A is referenced in Tab 1, A's specific values are in Tab 2, A's constraint is in Tab 3." You need to follow the chain. Example: "Does the Southern region's hardware mix meet the board's target?" → Tab 1 tells you the company split is 55% hardware (too high), Tab 2 tells you Southern's hardware is 1.91 of 2.99 = 63.9%, Tab 3 tells you the target is 50% max. Southern is 63.9% hardware — exceeds the 50% target → does NOT meet.
+- Tab 1 (VP memo): Company-wide hardware split is 55%.
+- Tab 2 (revenue table): Southern hardware = $1.91M of $2.99M total = 63.9%.
+- Tab 3 (board targets): Hardware mix must not exceed 50%.
 
-**The "conflicting claims" pattern.** Two narrative tabs can present different views (e.g., a CFO memo optimistic about Q3 vs. a CEO memo cautious). When a question asks "who would support X" or "which view is most consistent with Y," the test is identifying which perspective matches the situation — not deciding who's right.
+Chain: Southern actual (63.9%) > target (50%) → Southern does NOT meet the target. If you stopped at the company-wide 55% in Tab 1, you'd answer a different question. The chain requires all three tabs.
 
-**The "weighted average across tabs" pattern.** For any aggregated metric, you usually need weighted averages, not simple averages.
+**The "conflicting narratives" pattern.** Two narrative tabs may present opposing views. When a question asks "which executive's characterization does the data support?", identify the specific claim each made and check which one the numbers confirm. The test is not asking who's right — it's asking whose stated position is more consistent with Tab 2.
 
-**Example.** "What percent of total revenue came from Software & Services?" You can't average the regional S&S percentages — that weights a small region the same as a large one. Instead: sum S&S across regions, divide by total revenue across regions.
+**Example.** CFO memo: "Enterprise segment is driving all growth." CEO memo: "Growth is broad-based, not concentrated in any segment." Tab 2 shows: enterprise +40%, all other segments +3-4%. The data shows concentrated enterprise growth — more consistent with the CFO's characterization. Answer: the CFO.
 
-> **Recall check.** Close the book. State the three-step synthesis workflow. Now: why can't you use mental math for a 3-data-point question? (Answer: because tracking three numbers plus arithmetic exceeds working memory capacity for most people; errors compound across steps.) Drilling the "write it down" habit is what keeps your accuracy high on hard synthesis questions.
+**The "weighted average" trap.** When a question asks for a company-wide percentage, you cannot average the regional percentages. You must compute: (sum of the metric across regions) / (sum of the base across regions).
+
+**Example.** "What percent of total revenue came from Software & Services?" Eastern S&S: $2.85M of $6.96M. Western S&S: $4.49M of $8.47M. Correct: total S&S = 2.85 + 4.49 = $7.34M; total revenue = 6.96 + 8.47 = $15.43M; S&S share = 7.34 / 15.43 ≈ 47.6%. Incorrect shortcut: (41% + 53%) / 2 = 47% — happens to be close here, but fails badly when regions differ in size.
+
+> **Trap to watch.** After reading Tab 1, students sometimes form a hypothesis and skip checking Tab 2 or Tab 3. If the question requires any cross-tab signal, finish the full chain before concluding. Forming an early answer from partial information is the primary source of synthesis errors.
+
+> **Micro-drill.** A question asks: "What would the company's total Software & Services revenue percentage have been if Eastern's S&S revenue were $3.50M instead of $2.85M?" Before opening any tab, list the three data points you need. Answer: (1) new Eastern S&S = $3.50M (given), (2) total revenue from all regions (Tab 2), (3) S&S from all other regions (Tab 2). If you listed those three in under 15 seconds, the pre-reading step is becoming automatic.
+
+> **Recall check.** Cover the section. State the three-step synthesis workflow from memory. Then: why can't you average regional percentages to get a company-wide percentage? (Answer: different regions have different sizes — simple averaging ignores the weights.) If the answer didn't come immediately, re-read the weighted average section before proceeding.
 
 ## @conditional-and-hypothetical
 
-Some MSR questions ask what would happen IF certain conditions were different: "If the Eastern region's enterprise contracts had not been signed, what would the growth rate have been?" These are conditional or hypothetical questions.
+Conditional questions change one element of the scenario and ask you to recompute an outcome under the new conditions. They're harder than lookup questions because there's no single cell to read — you must build the answer from modified inputs.
 
-**The structure.** The question specifies a change to the situation. You need to compute what the data would look like under the alternative scenario, then answer.
+**The four-step conditional template.**
 
-**The template.**
+1. **Identify what changes.** Underline or note the altered element in the question stem.
+2. **Identify what stays the same.** Everything NOT mentioned in the change is unchanged — including data in other tabs that isn't downstream of the alteration.
+3. **Apply the change to the actual data.** Start from the real numbers, apply the modification.
+4. **Recompute only the affected metric.** Don't recompute everything — just what the question asks for.
 
-1. Identify the change specified in the question (some revenue removed, an additional cost added, a region excluded).
-2. Start with the actual data from the tabs.
-3. Apply the change (subtract $0.90M, add 10% to a number, exclude a region from the total).
-4. Recompute the metric the question asks about.
+**The "held constant" rule.** This is the most commonly violated step. When a question says "if Eastern's enterprise contracts had not been signed," only Eastern's current revenue changes. Previous-year numbers don't change. Other regions don't change. Compute only what the hypothetical directly alters.
 
-**Example (revenue carve-out).** "If the Eastern region's enterprise contracts contributed $0.90M, what would Eastern's growth rate have been without them?"
+**Example (revenue carve-out).** "If Eastern's enterprise contracts contributed $0.90M, what would Eastern's growth rate have been without them?"
 
-Actual Eastern revenue: $6.96M. Hypothetical: $6.96 - $0.90 = $6.06M. Previous revenue (unchanged): $5.80M. Growth = (6.06 - 5.80)/5.80 ≈ 4.5%.
+1. What changes: Eastern current revenue drops by $0.90M.
+2. What stays the same: Eastern previous revenue ($5.80M), all other regions.
+3. Apply change: $6.96 − $0.90 = $6.06M.
+4. Recompute: growth = (6.06 − 5.80) / 5.80 ≈ **4.5%**.
 
-**Example (entity exclusion).** "If the Central region were excluded, would the company still have met its growth target?"
+**Example (entity exclusion).** "If the Central region were excluded, would the company still have met its 8% growth target?"
 
-Actual total: $24.30M (from Tab 2). Without Central: $24.30 - $4.37 = $19.93M. Previous total without Central: $22.50 - $4.60 = $17.90M. Growth without Central: (19.93 - 17.90)/17.90 ≈ 11.3%. Company target (say, 8%): exceeded.
+1. What changes: Central removed from both current and previous totals.
+2. What stays the same: all other regions, the growth target.
+3. Apply change: current without Central = $24.30 − $4.37 = $19.93M; previous without Central = $22.50 − $4.60 = $17.90M.
+4. Recompute: growth = (19.93 − 17.90) / 17.90 = 2.03 / 17.90 ≈ 11.3%. Target met.
+
+**The cascade effect.** Some hypotheticals alter a component that feeds into multiple derived metrics. Changing a region's revenue also changes: total revenue, total growth rate, and every ratio where total revenue is the denominator. Work through the cascade step by step — but only the parts the question asks about.
+
+**Example (cascade).** "If Eastern's revenue had been $8.00M instead of $6.96M, what would the company's total revenue growth have been?"
+
+- Old total: $24.30M. New Eastern: $8.00M. New total: 24.30 − 6.96 + 8.00 = **$25.34M**.
+- Previous total (unchanged): $22.50M.
+- New growth: (25.34 − 22.50) / 22.50 = 2.84 / 22.50 ≈ **12.6%** vs. actual 8.0%.
+
+The cascade is two steps: update the total, then compute the rate. Students who use the old total as the denominator get the wrong rate. Write the updated number before dividing.
 
 **Example (rule change).** "If the board's hardware target were 60% instead of 50%, how many targets would the company have met?"
 
-Recompute with the new target. Hardware was 55% — now meets the 60% target. Previously didn't meet. One additional target met. So if originally 1 target was met, now 2 would be.
+Actual hardware mix: 55%. Under the 50% target, 55% fails. Under the new 60% target, 55% passes. Count originally-met targets and add one.
 
-**The "held constant" assumption.** In a hypothetical, everything NOT mentioned in the change stays the same. If the question says "if Central's revenue had grown by 5% instead of declining by 5%," don't also adjust the totals or the percentages — just change Central's growth and recompute anything downstream.
+**Reading the hypothetical stem precisely.** The conditional is usually structured as: "If [change], what [outcome]?" Mis-reading "what was Western's growth without the hardware premium" as "what was Western's growth?" gives an answer that matches a real table value — a purposeful wrong-answer trap.
 
-**The "cascading effect" awareness.** Sometimes a hypothetical has cascading consequences. Changing a region's revenue changes the total, which changes every region's share of the total. Work through the cascade carefully.
+**The "approximately" signal.** When the question says "approximately," round to the nearest natural choice after computing. If you get 4.48% and the options are 4.5%, 7.2%, 10.4%, 14.8%, pick 4.5%. Don't second-guess by seeking the closest absolute value — pick the cleanly rounded match.
 
-**The "verify the assumption is consistent" check.** Occasionally a hypothetical introduces an inconsistency with other tabs. For example, "If the VP's memo said hardware was 70% instead of 55%..." — in this case, the question is testing whether you update downstream numbers consistent with the memo's new claim.
+> **Trap to watch.** The cascading-denominator error: changing a component but using the original denominator when recomputing ratios. Always update the total before dividing. Write the updated number on scratch paper before doing the division step.
 
-**Reading hypothetical stems carefully.** The conditional is often embedded in a phrase: "If [condition], what [outcome]?" Underline both parts. A common error is missing exactly what the hypothetical changed.
+> **Micro-drill.** "A company's current total revenue is $24.30M. If the Northern region's revenue had been $0.50M higher, what would total revenue have been?" (Answer: $24.80M.) Now: "What was Northern's growth rate in the original data if it grew from $3.80M to $4.10M?" (Answer: 0.30/3.80 ≈ 7.9%.) If you computed both in under 20 seconds without scratch paper, try the same exercise with four regional adjustments simultaneously. That's when not writing it down starts costing points.
 
-**Trap to watch.** When the question says "approximately," the answer is usually rounded. If you compute 4.48% and the answer choices are 4.5%, 7.2%, 10.4%, 14.8%, pick 4.5% — not the next closest by absolute distance. "Approximately" signals round-to-the-nearest-natural-choice, not round-to-the-closest-numeric.
+> **Self-explanation prompt.** Why must you identify what's "held constant" before computing a hypothetical? If you can say "because the hypothetical alters exactly one element — computing downstream effects of anything else changing would be answering a question that wasn't asked," you've internalized why step 2 prevents arithmetic drift.
 
 ## @yes-no-statement-checks
 
-Some MSR questions follow a Table Analysis-style format: a set of Yes/No statements, with "Yes" meaning the statement is supported by the available information.
+Some MSR questions present a set of statements and ask whether each one is supported (Yes) or not supported (No) by the information across the tabs. This looks like Table Analysis, but the mechanics are heavier: each statement may require a cross-tab lookup before you can evaluate it, and the data comes from multiple sources rather than a single table.
 
-**The template.** For each statement, determine whether the multi-tab information supports it or not. The answer is yes if the statement follows from the data across the tabs.
+**What makes MSR Yes/No different from Table Analysis.** In Table Analysis, you read one table and all answers come from that table. In MSR Yes/No questions, a single statement may require combining data from Tab 1, Tab 2, and Tab 3. The judgment call (yes/no) is identical — but the work per statement is 2-3x heavier. Budget accordingly.
 
-**The workflow per statement.**
+**The per-statement workflow.**
 
-1. Identify what the statement claims.
-2. Identify which tab(s) contain the relevant information.
-3. Check if the statement is directly supported (yes) or directly contradicted (no) by those tabs.
-4. If the statement is about something NOT covered in the tabs, answer depends on whether the question asks "supported" or "consistent with."
+1. Identify exactly what the statement claims — a number, a comparison, a direction, a cause.
+2. Identify which tab(s) contain the relevant data.
+3. Extract the data from each tab and record on scratch paper.
+4. Evaluate: does the data directly support the statement? (Yes) Does it directly contradict it? (No) Does it neither confirm nor contradict it? (See the next section.)
 
-**Example.** Set with three tabs about a product launch. Statement: "The Western region's hardware revenue exceeded its software revenue by more than $500K."
+**Example (single-tab).** Statement: "The Western region's hardware revenue exceeded its software revenue by more than $500K."
 
-- From Tab 2: Western hardware = $5.49M, software = $4.49M.
-- Difference: $5.49 - $4.49 = $1.00M = $1,000K.
-- Claim: difference > $500K? $1000K > $500K. **Yes.**
+- Tab 2: Western hardware = $5.49M, Western software = $4.49M.
+- Difference: $5.49 − $4.49 = $1.00M = $1,000K.
+- $1,000K > $500K. **Yes.**
 
-**The "can be determined" filter.** Some questions ask whether each statement "can be determined" (i.e., is yes/no answerable) from the information given. A statement about something the tabs don't address is "cannot be determined" — different from "No."
+**Example (cross-tab).** Statement: "Eastern region's growth rate exceeded the company's board-approved growth target."
 
-**The "exact vs. approximate" caveat.** If a statement says "exactly 10%" and the data shows 9.8%, that's technically No. GMAT sometimes uses "approximately" to signal that rounding is OK; without that word, strict equality may be required.
+- Tab 2: Eastern previous = $5.80M, current = $6.96M. Growth = 1.16/5.80 = **20%**.
+- Tab 3: Board growth target = 8%.
+- 20% > 8%. **Yes.** One statement required two tabs — budget for it.
 
-**The "combining with prior data" pattern.** Statements sometimes require you to combine tabs: "The Eastern region's growth exceeded the company's total growth by more than 10 percentage points." This requires Eastern's growth (20%) and total growth (8%) — difference is 12 pp, which exceeds 10, so Yes.
+**The quantifier deep-dive.** The exact quantifier in a statement determines the verification standard:
 
-**The "strict" quantifier gotcha.** "Every region achieved positive growth" requires checking all regions. If Central is -5%, the answer is No — even though most regions did grow.
+| Quantifier | What makes the statement True |
+|---|---|
+| "Every region" / "All regions" | ALL must satisfy the condition |
+| "At least one" | ONE OR MORE must satisfy it |
+| "No region" / "None" | ZERO must satisfy it |
+| "Exactly two" | Precisely two — three or one both make it False |
+| "More than X%" | Strictly greater — equal fails |
+| "At least X%" | Greater or equal — equal passes |
+| "At most X" | Less than or equal — X+1 fails |
 
-**The "at most / at least" parsing.** "At most three targets were met" means 0, 1, 2, or 3 — four possibilities. "At least two were met" means 2, 3, or 4 — three possibilities. Read quantifiers carefully.
+**Example (universal quantifier).** Statement: "Every region achieved positive growth." Check all regions. If Central is −5%, the answer is No — even if all other four regions grew. Universal quantifiers require exhaustive checking — don't stop at the first passing example.
 
-**Example.** Statement: "Software & Services revenue grew by at least 20% across the company." Compute: Previous S&S = $22.50M × (1 - 0.62) = $22.50 × 0.38 = $8.55M. Current S&S = $10.93M. Growth = ($10.93 - $8.55)/$8.55 ≈ 27.8%. 27.8% ≥ 20%. **Yes.**
+**Example (threshold quantifier).** Statement: "Software & Services revenue grew by at least 20% across the company." Previous S&S total = $8.55M. Current S&S total = $10.93M. Growth = (10.93 − 8.55) / 8.55 ≈ 27.8%. 27.8% ≥ 20%. **Yes.**
 
-> **Self-explanation prompt.** Why is MSR's Yes/No format different from Table Analysis's Yes/No format? If you can say "because MSR requires synthesizing across tabs, not just filtering a single table, the computation usually involves 2-3 data sources rather than 1," you've identified why MSR feels heavier — the work per statement is denser. Plan accordingly.
+**The "exact vs. approximate" precision trap.** If a statement says "exactly 10%" and the data shows 9.8%, the answer is No. The word "approximately" is the only signal that relaxes the precision requirement. Without it, treat equality as strict.
+
+> **Trap to watch.** On universal-quantifier statements, don't stop at the first passing example. "Every region" requires checking every row before marking Yes. Five regions, four checked — you're guessing on the fifth. Budget the extra 15 seconds to complete the scan.
+
+> **Micro-drill.** A question has three Yes/No statements: Statement 1 is a single-tab lookup; Statement 2 involves a universal quantifier across four regions; Statement 3 involves a cross-tab comparison. Roughly how many seconds should you budget per statement? (Reasonable answer: ~20s, ~40s, ~35s — total ~95 seconds, within the 90-120s per-question budget.) If your instinct was "equal time for each," recalibrate — universal-quantifier and cross-tab statements take materially longer.
+
+> **Self-explanation prompt.** Why is MSR Yes/No heavier than Table Analysis Yes/No? If you can say "because each MSR statement may require 2-3 tab lookups instead of one column scan, and the synthesis step adds both time and error risk," you've identified why MSR Yes/No questions tend to appear in the medium-hard bucket.
+
+## @scope-and-inference-limits
+
+MSR questions frequently ask not just what the data shows, but whether a conclusion can be drawn *at all* from the information provided. Scope questions are where students most often lose points to outside knowledge or over-inference — and they're disproportionately represented in the hard question pool.
+
+**The fundamental rule.** Every answer must be grounded in the tabs. What you know about business, chemistry, history, or economics from outside this specific set is irrelevant — using it leads to wrong answers. The question is always: does THIS information, in THESE tabs, support this conclusion?
+
+**The three scope failure modes.**
+
+**1. Outside knowledge trap.** "Steel prices generally fall when demand drops" is true in the real world. If it's not stated in the tabs, it doesn't count. If a question asks whether a drop in steel demand implies lower costs, and the tabs say nothing about costs, the answer is "cannot be determined" — not "yes, because that's how markets work."
+
+**2. Unstated-assumption trap.** The memo says "we expect to hit our revenue target next quarter." That means the executive believes they will — not that they will. The statement "the company will meet its Q4 target" is unsupported. The tabs support only "the executive expects to meet the Q4 target." Attributed belief ≠ confirmed fact.
+
+**3. Over-inference trap.** Two facts that are individually true can produce a false inference if the combination isn't verified. "Revenue grew" and "headcount grew" do not together support "revenue per employee grew" — unless you compute the ratio. Don't chain facts without checking the combined claim numerically.
+
+**The "cannot be determined" question type.** Some questions ask which statements "can be determined" from the tabs. "Can be determined" means: given only the tabs, you can calculate or confirm the statement definitively. "Cannot be determined" means: the tabs don't provide sufficient information, or the necessary computation requires a quantity not given anywhere.
+
+**Example (cannot be determined).** Tabs give regional revenues for current and previous year. Statement: "The company's market share increased."
+
+You have revenue, but not industry-wide revenue. Without the industry total, market share cannot be computed. **Cannot be determined.**
+
+**Example (can be determined — and is false).** Statement: "Eastern region's current revenue is higher than Western's." Tab 2: Eastern $6.96M, Western $8.47M.
+
+Direct lookup. Eastern < Western. The statement is **False** — but it absolutely can be determined. "No/False" is not the same as "cannot be determined." The distinction matters for the answer format.
+
+**The "supported" vs. "consistent with" distinction.** Some questions ask whether the data *supports* a statement; others ask whether the data is *consistent with* it.
+
+- "Supported" means the data provides affirmative evidence for the claim.
+- "Consistent with" means the data doesn't contradict the claim — but doesn't necessarily confirm it.
+
+A statement can be consistent with the data without being supported by it. "The company may expand into a new market next year" — the tabs don't rule this out, so it's consistent; but the tabs provide no evidence for it, so it's not supported. The question wording sets the standard.
+
+**The "author's claim vs. verified fact" distinction.** Narrative tabs contain assertions, not established facts. A VP memo stating "our quality is best-in-class" is the VP's claim. If a question asks what the data shows about quality, and the only source is that assertion, the correct answer is "the VP claims quality is best-in-class" — not "quality IS best-in-class." Treat narrative assertions as attributed beliefs unless a data tab independently confirms them.
+
+**Practical workflow for scope questions.**
+
+1. Read the statement.
+2. Ask: is this directly calculable from the numbers in the tabs?
+3. If yes, compute and judge true/false.
+4. If no, ask: would I need information not present in the tabs? If yes → cannot be determined. If the tabs actively contradict the statement → No/False. If the tabs are silent but the question asks "supported" → not supported.
+
+> **Trap to watch.** The "silence = supported" trap: students mark a statement Yes because they can't find a reason to say no. Silence isn't support. Support requires a positive signal in the data. Absent a direct connection, the answer is "cannot be determined" or "not supported" depending on the question wording.
+
+> **Micro-drill.** Three statements. Classify each as (A) determinable and true, (B) determinable and false, or (C) cannot be determined — assuming the only available data is a regional revenue table (no margin data, no industry totals). (1) "Eastern revenue is higher than Central revenue." (2) "The company's gross margin improved." (3) "Eastern grew faster than the industry average." Answers: A / C / C. If you marked B for Statement 2 (thinking "false because margin data isn't available"), recalibrate — the issue isn't that it's false, it's that it can't be determined from this data.
+
+> **Recall check.** Cover the section. Name the three scope failure modes. Then: what is the difference between "supported" and "consistent with"? (Answer: supported = affirmative evidence exists; consistent with = not contradicted but not confirmed.) If you can't state both cleanly, re-read before attempting Q5 and Q9.
 
 ## @summary
 
-Multi-Source Reasoning is a navigation-and-synthesis skill. The two-pass protocol plus the four question-type templates cover every MSR set.
+Multi-Source Reasoning is a navigation-and-synthesis skill. The two-pass protocol plus the five question-type templates cover every MSR set.
 
 **The two-pass protocol:**
 
-1. **Orient** (30-45 seconds): scan all tabs, build a mental table of contents.
-2. **Dive in per question**: match the stem to tabs, extract the needed data, combine.
+1. **Orient** (30-45 seconds): scan all tabs, build a mental table of contents — what type is each tab, what topic does it cover.
+2. **Dive in per question**: match the stem to the right tab(s), extract the needed data points, combine on scratch paper.
 
-**The four MSR question types:**
+**The five MSR question types.**
 
 | Type | What it tests | Key technique |
 |---|---|---|
-| Simple lookup | Locating one piece of information | Know which tab contains what |
-| Cross-tab synthesis | Combining info from 2-3 tabs | Write down each data point before combining |
-| Conditional / hypothetical | Recomputing under a changed scenario | Apply the change to the actual data, recompute |
-| Yes/No statement check | Verifying multi-tab claims | Treat each statement independently; check quantifiers |
+| Simple lookup | Locating one piece of information | Know which tab type holds which data |
+| Cross-tab synthesis | Combining info from 2-3 tabs | List required data points first; write before combining |
+| Conditional / hypothetical | Recomputing under a changed scenario | Identify what changes and what stays constant; update totals before ratios |
+| Yes/No statement check | Verifying multi-tab claims | Evaluate quantifiers strictly; check all rows on universal claims |
+| Scope / inference limit | Whether a conclusion can be drawn | Use only what's in the tabs; distinguish "supported" from "consistent with" |
 
 **Time-management targets per set.**
 
@@ -297,22 +415,32 @@ Multi-Source Reasoning is a navigation-and-synthesis skill. The two-pass protoco
 - Per question: 90-120 seconds.
 - Total for a 3-question set: 5-6 minutes.
 
-If you're over 7 minutes on a single set, something went wrong — usually re-reading tabs you didn't need. Step back, look at your scratch paper, and ask "what specific data point am I missing?"
+If you're over 7 minutes on a single set, you re-read tabs you didn't need. Step back and ask: "What specific data point am I actually missing?"
 
-**The five highest-leverage MSR habits.**
+**The six highest-leverage MSR habits.**
 
 1. **Orient before diving.** 30 seconds of tab-mapping saves 2 minutes of confused back-and-forth later.
 2. **Match question to tab before reading carefully.** Don't re-read all tabs for every question.
-3. **Write down data points on scratch paper.** Mental synthesis of 3+ numbers is error-prone.
-4. **Check all rules on compliance questions.** When the question enumerates, you must check all items.
-5. **Read quantifiers carefully on Yes/No statements.** "Every," "at least," "more than" each have different verification standards.
+3. **Write down data points before combining.** Mental synthesis of 3+ numbers is where errors accumulate.
+4. **Check all rules on compliance questions.** When the question enumerates items, verify all of them.
+5. **Read quantifiers carefully on Yes/No statements.** "Every," "at least," "exactly," "more than" each set a different verification standard.
+6. **Stay inside the tabs.** Outside knowledge and over-inference are wrong-answer factories on scope questions.
 
-**Common traps across MSR:**
+**Common traps across MSR.**
 
-- Partial tab coverage (looking at Tab 1 and 2 but ignoring Tab 3 when the question needs it).
-- Trusting a memo's characterization when the question asks for a precise number in the table.
-- Missing cascading effects in hypothetical questions.
-- Using a simple average when a weighted average is needed.
-- Forgetting which figures are "current year" vs "previous year."
+- Partial tab coverage — looking at Tab 1 and Tab 2 but ignoring Tab 3 when the question needs all three.
+- Trusting a memo's characterization when the question asks for a precise number from the data table.
+- Missing cascading effects in hypothetical questions, especially forgetting to update the denominator.
+- Using a simple average of percentages instead of a weighted total.
+- Confusing "current year" and "previous year" figures.
+- Marking a statement "supported" because the tabs don't contradict it — silence isn't support.
 
-Drill the 15 questions in this chapter across the three problem sets. Each set has 2-3 questions that share a single set of tabs — so reading the tabs efficiently on the first question pays off on the rest. By the end of the hard set, the two-pass protocol should feel like second nature.
+**What to do next.**
+
+If you scored below 70% on the medium problem set: revisit the tab-matching section. Before each question, state aloud which tab you're opening and why. The error is almost always a navigation error, not an arithmetic one.
+
+If you scored 70-90% on the medium set: check any conditional/hypothetical mistakes first — conditional errors are almost always cascade errors (forgetting to update the total). Then move to the Table Analysis chapter, which builds on the same Yes/No discipline in a single-table format.
+
+If you scored above 90% on the medium set but below 80% on the hard set: your difficulty is likely scope questions (Q5 and Q9). Re-read the scope section before retrying them. Hard MSR questions almost always include a "cannot be determined" or "supported vs. consistent with" element.
+
+After this chapter: the Two-Part Analysis chapter is the other DI format requiring multi-step reasoning. The inference skills from Section 6 apply directly there.

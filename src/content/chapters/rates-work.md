@@ -78,6 +78,11 @@ problem_sets:
       - rates-work-q4
       - rates-work-q5
       - rates-work-q6
+      - rates-work-q28
+      - rates-work-q29
+      - rates-work-q30
+      - rates-work-q31
+      - rates-work-q32
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -93,6 +98,15 @@ problem_sets:
       - rates-work-q12
       - rates-work-q13
       - rates-work-q14
+      - rates-work-q21
+      - rates-work-q27
+      - rates-work-q33
+      - rates-work-q34
+      - rates-work-q35
+      - rates-work-q36
+      - rates-work-q37
+      - rates-work-q38
+      - rates-work-q39
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -104,6 +118,18 @@ problem_sets:
       - rates-work-q16
       - rates-work-q17
       - rates-work-q18
+      - rates-work-q19
+      - rates-work-q20
+      - rates-work-q22
+      - rates-work-q23
+      - rates-work-q24
+      - rates-work-q25
+      - rates-work-q26
+      - rates-work-q40
+      - rates-work-q41
+      - rates-work-q42
+      - rates-work-q43
+      - rates-work-q44
 ---
 
 ## @drt-foundation
