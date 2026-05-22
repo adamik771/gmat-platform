@@ -5,7 +5,7 @@ section: DI
 estimated_minutes: 50
 prerequisites: []
 summary: |
-  Graphics Interpretation tests two skills: reading values off a chart accurately, and computing simple derivatives (percentage change, ratio, average, difference) from those values. The charts come in six types — line graph, bar chart, pie chart, scatter plot, stacked bar, and combination — and each has its own reading discipline and trap patterns. Master the six chart-type templates and the five computation shortcuts, and every question becomes a 60-90 second exercise in careful extraction plus a tiny bit of arithmetic.
+  Graphics Interpretation tests two skills: reading values off a chart accurately, and computing simple derivatives (percentage change, ratio, average, difference) from those values. The charts come in seven types — line graph, bar chart, pie chart, scatter plot, stacked bar, bubble chart, and combination chart — and each has its own reading discipline and trap patterns. Master the seven chart-type templates and the five computation shortcuts, and every question becomes a 60-90 second exercise in careful extraction plus a tiny bit of arithmetic.
 sections:
   - id: pretest
     type: pretest
@@ -19,6 +19,8 @@ sections:
   - id: reading-charts-accurately
     type: reading
     title: "Reading charts accurately — axes, scale, and estimation"
+    intro: |
+      Every error in Graphics Interpretation traces back to one of three misreads: wrong unit, wrong scale, or wrong chart type. Before you compute anything, spend five seconds on the chart's header and axes. This section gives you the diagnostic checklist that prevents all three misreads, plus dedicated coverage of combination charts — the chart type students most often misread because they don't notice the second y-axis.
     check_question_ids:
       - graphics-interpretation-q11
       - graphics-interpretation-q13
@@ -26,6 +28,8 @@ sections:
   - id: line-graphs-and-trends
     type: reading
     title: "Line graphs — trends, peaks, and rates of change"
+    intro: |
+      Line graphs test four specific skills: reading point values, identifying trends, comparing rates of change, and computing averages over intervals. None of these requires more than basic arithmetic — but each has a specific visual shortcut that makes it fast. This section makes each skill explicit and hands you the shortcut.
     check_question_ids:
       - graphics-interpretation-q24
       - graphics-interpretation-q2
@@ -33,6 +37,8 @@ sections:
   - id: bar-charts-and-comparisons
     type: reading
     title: "Bar charts — absolute vs. relative comparisons"
+    intro: |
+      Every bar-chart question is one of two questions: how much bigger (absolute difference) or how many times bigger (ratio or percentage change). These sound similar but require different calculations and produce different answers. Confusing the two is the most common bar-chart error. This section fixes it by making the distinction concrete and giving you a two-second check.
     check_question_ids:
       - graphics-interpretation-q3
       - graphics-interpretation-q4
@@ -40,6 +46,8 @@ sections:
   - id: pie-charts-and-stacked-bars
     type: reading
     title: "Pie charts and stacked bars — proportions in context"
+    intro: |
+      Pie charts and stacked bars both show parts of a whole — but they serve different purposes and have different reading disciplines. Pie charts excel at cross-section comparison (how does the composition look at one point in time?); stacked bars extend that to multiple categories or time periods. The core skill is the same: separate the part from the whole before computing.
     check_question_ids:
       - graphics-interpretation-q7
       - graphics-interpretation-q8
@@ -48,6 +56,8 @@ sections:
   - id: scatter-plots-and-correlation
     type: reading
     title: "Scatter plots — correlation, outliers, and trend lines"
+    intro: |
+      Scatter plots are the only GI chart type that tests conceptual reasoning (correlation is not causation) in addition to arithmetic. The question types are narrow — three patterns cover everything. This section teaches all three and gives you the "imaginary line" reflex that handles correlation direction and strength in under five seconds.
     check_question_ids:
       - graphics-interpretation-q5
       - graphics-interpretation-q15
@@ -55,11 +65,15 @@ sections:
   - id: computation-shortcuts
     type: reading
     title: "The five computation shortcuts that accelerate every question"
-    check_question_ids: []
+    intro: |
+      Graphics Interpretation arithmetic is simple — but students who compute exactly when estimating suffices, or who re-derive from scratch when a pattern shortcut exists, regularly run out of time on easy questions. This section gives you five techniques that make GI arithmetic reflexive. They apply to every chart type in this chapter.
+    check_question_ids:
+      - graphics-interpretation-q6
+      - graphics-interpretation-q12
 
   - id: summary
     type: summary
-    title: "The six chart types and the reading discipline"
+    title: "The seven chart types and the reading discipline"
     check_question_ids: []
 
 problem_sets:
@@ -156,10 +170,36 @@ Always look at the y-axis number at the bottom of the chart. If it's not 0, the 
 | Scatter plot | Correlation between two variables | Outliers; clusters; trend lines vs raw data |
 | Stacked bar | Breakdown of totals over categories | Reading *segment* height vs *total* height |
 | Bubble chart | Three variables simultaneously | Bubble *area* (not diameter) represents the third variable |
+| Combination chart | Two metrics on the same horizontal axis | Two separate y-axes — one per metric; read each from its own axis |
 
-> **Recall check.** Cover this section. Now list the three things to verify on every chart before you compute. Now list the three chart types where a non-zero y-axis origin is likely to mislead visually. (Answers: axes-units-scale, then time-period-category; all three of line, bar, stacked-bar can do this.) Forced retrieval of the chart-reading checklist is what makes this skill automatic on test day.
+**Combination charts: the dual-axis trap.**
+
+A combination chart overlays two data series on the same horizontal axis — typically a bar chart for one metric and a line graph for another. To fit both on one chart without distortion, the chart uses **two y-axes**: one on the left (for the bars) and one on the right (for the line).
+
+This is where students lose points. If you read a line-graph value from the left y-axis (or vice versa), you get a completely wrong number.
+
+**How to handle a combination chart in five seconds:**
+
+1. Identify which data series belongs to which y-axis (the legend or axis labels will say — e.g., "Revenue (left axis) | Growth Rate (right axis)").
+2. When reading a bar, use the **left axis** scale.
+3. When reading a line, use the **right axis** scale.
+4. Never cross-compare raw values from the two series — they're measured in different units (dollars vs. percent, for example).
+
+**Worked example.** A combination chart shows monthly revenue (bars, left axis: $0–$500K) and month-over-month growth rate (line, right axis: −10% to +25%). Question: "In which month did revenue reach its highest while growth rate was below 5%?"
+
+Step 1: read which months have revenue closest to $500K (top of left axis range). Step 2: of those months, which ones show a line value below 5% on the right axis? The answer is the intersection. No arithmetic needed — just a two-pass read.
 
 **Trap to watch.** Bubble charts represent the third variable by bubble **area**, not bubble *diameter*. A bubble that looks "twice as wide" as another is actually **four times as big** in area. This is almost always the trap on bubble-chart questions.
+
+**Micro-drill.** Before moving on, answer these from the chart conventions table without looking:
+
+1. Which chart type uses two y-axes? ___
+2. On a bubble chart, does bubble width or bubble area represent the third variable? ___
+3. If a y-axis starts at 100 and the top bar reaches 200, is the bar "twice as big" as one reaching 150? ___
+
+Answers: (1) combination chart; (2) area; (3) no — the actual values are 200 vs 150, a 33% difference, not 100%. The visual appearance overstates the gap because the y-axis starts at 100, not 0.
+
+> **Recall check.** Cover this section. Now list the three things to verify on every chart before you compute. Now list the one reading rule unique to combination charts. (Answers: axes-units-scale, then time-period-category; for combination charts, always identify which y-axis each data series reads from before extracting any value.) Forced retrieval of the chart-reading checklist is what makes this skill automatic on test day.
 
 ## @line-graphs-and-trends
 
@@ -193,6 +233,15 @@ Line graphs plot a variable (y-axis) over a continuous index (x-axis, usually ti
 
 **Rate vs. absolute change trap.** "Biggest rate of change" is measured by **slope** (change per unit time). "Biggest absolute change" is just the difference between two points, regardless of time. A 10-unit increase over 2 months is a bigger rate than a 10-unit increase over 5 months, even though the absolute change is the same.
 
+**Micro-drill.** Using the revenue data above (Jan 85 through Dec 180):
+
+1. What is the steepest single-month increase? ___
+2. What is the Q3 (Jul–Sep) average? ___
+3. Which half-year had greater absolute growth: H1 (Jan→Jun) or H2 (Jul→Dec)? ___
+4. In which month did the trend reverse from increasing to decreasing? ___
+
+Answers: (1) Nov→Dec, +60 — visually the steepest jump; (2) (170+165+150)/3 = 485/3 ≈ 161.7; (3) H1: 155−85 = +70; H2: 180−170 = +10 — H1 was far larger; (4) August — the first month where revenue decreased from the prior month (170→165).
+
 > **Self-explanation prompt.** Why does "rate of change" equal slope on a line graph? If you can say "because slope is defined as change in y per unit change in x — which is exactly the rate at which the variable is changing per unit time," you've internalized why visual steepness corresponds directly to the quantity the question asks about.
 
 ## @bar-charts-and-comparisons
@@ -217,9 +266,9 @@ Compute each country's increase as a fraction of its starting value. The country
 | D | 120 | 115 | -5 | -4.2% |
 | E | 25 | 35 | +10 | 40.0% |
 
-Absolute winner: Country E (+10). Percentage winner: Country E (+40%). In this case they coincide.
+Absolute winner: Country E (+10). Percentage winner: Country E (+40%). In this case they coincide — but that's intentional to show the setup clearly. See below for a case where they diverge.
 
-But consider a different dataset: A goes from 1000 to 1100 (absolute +100, relative +10%), C goes from 10 to 30 (absolute +20, relative +200%). Absolute winner: A. Percentage winner: C. Opposite answers.
+**When absolute and relative winners diverge.** Country A goes from 1,000 to 1,100 (absolute +100, relative +10%). Country C goes from 10 to 30 (absolute +20, relative +200%). Absolute winner: A. Percentage winner: C — by a wide margin. When a small-base country grows rapidly, it can dominate percent change while barely moving the absolute chart. GMAT uses exactly this contrast to set absolute and relative traps.
 
 **The percentage-change formula:** % change = (new - old) / old × 100.
 
@@ -234,6 +283,17 @@ Always divide by the *starting* value. Dividing by the new value (or by their su
 **The "median category" pattern.** If a bar chart has 5 categories and you're asked for the median category, sort by height and pick the 3rd. Count carefully — don't just guess based on visual appearance if the values are close.
 
 **The "above the average" pattern.** Compute the average of all bars. Then count how many bars are above that average. Often the answer is a count (2 out of 5, 3 out of 7) rather than a percentage.
+
+**Micro-drill.** Bar chart shows five departments' Q4 revenue (in thousands): HR 40, Engineering 180, Marketing 120, Sales 250, Operations 90. Total = 680.
+
+1. Which department had the highest revenue? ___
+2. What is the average revenue across all five departments? ___
+3. How many departments are above average? ___
+4. Engineering grew from 140 in Q3 to 180 in Q4. What was its percentage growth? ___
+
+Answers: (1) Sales, 250; (2) 680/5 = 136; (3) two — Engineering (180) and Sales (250) both exceed 136; (4) (180−140)/140 = 40/140 ≈ 28.6%.
+
+> **Self-explanation prompt.** Why do absolute and percentage growth leaders often differ? If you can say "because percentage change weights the gain against the starting base — a small absolute gain on a tiny base can produce a huge percentage, while a large absolute gain on a massive base produces a modest percentage," you'll never again mistake the highest bar for the fastest-growing category.
 
 > **Recall check.** Without looking, state the percentage-change formula. Now apply it: if value goes from 80 to 120, what's the percentage change? (Answer: (120-80)/80 = 50%.) Now apply it the wrong way: would dividing by 120 give 33.3%? Yes — but that's the answer to "120 is 33% more than 80" framed wrong. Knowing to always divide by the *starting* value prevents 20% of bar-chart errors.
 
@@ -286,6 +346,16 @@ A stacked bar shows a total value as a **stack of segments**, where each segment
 
 **Trap to watch.** On stacked bars, "the bar for Department X grew 50% from 2020 to 2024" refers to the *total* bar height, not any one segment. A department's total could grow while one segment (e.g., salaries) shrinks. Always clarify: is the question about total or segment?
 
+**Micro-drill.** Stacked bar for three products (A, B, C) total Q4 revenue = 500. Product A goes from 0 to 200 (200), Product B from 200 to 350 (150), Product C from 350 to 500 (150).
+
+1. What is Product A's share of total revenue? ___
+2. What is the combined share of Products B and C? ___
+3. If Q3 total was 400 with the same proportions, what was Product A's Q3 revenue? ___
+
+Answers: (1) 200/500 = 40%; (2) (150+150)/500 = 60%; (3) 40% × 400 = 160.
+
+> **Self-explanation prompt.** Why can a pie-chart slice grow in percentage while shrinking in dollar value? If you can say "because percentage is relative — if the whole pie shrinks fast enough, a slice can take up a larger share of a smaller total and still be smaller in absolute dollars," you've internalized the trap that medium/hard two-pie-chart questions exploit. This exact pattern appears whenever a market contracts while one segment gains share.
+
 ## @scatter-plots-and-correlation
 
 Scatter plots show individual data points as dots in a 2D grid. Each dot is a case (a person, a country, a company); the x-coordinate and y-coordinate are two measured attributes.
@@ -316,7 +386,16 @@ Scatter plots show individual data points as dots in a 2D grid. Each dot is a ca
 
 **Trend-line questions.** Some scatter plots include a drawn trend line (or best-fit line). Questions may ask the slope of this line, or which data point lies farthest *above* vs *below* the line. Read carefully.
 
-**The "clusters" reading.** Sometimes a scatter plot has two or more clusters — groups of points that hang together. This usually indicates two subpopulations (maybe male vs female, treatment vs control). Questions may ask about each cluster's behavior.
+**The "clusters" reading.** Sometimes a scatter plot has two or more clusters — groups of points that hang together. This usually indicates two subpopulations (maybe two product categories, two geographic regions). Questions may ask about each cluster's behavior separately.
+
+**Micro-drill.** A scatter plot shows eight companies' advertising spend (x-axis, in $M) vs. revenue (y-axis, in $M): (1,5), (2,9), (3,12), (4,14), (5,13), (6,18), (7,20), (10,8).
+
+1. Is the general trend positive, negative, or mixed? ___
+2. Which point is the outlier? ___
+3. How many companies spent more than $4M on advertising? ___
+4. Can you conclude from this chart that advertising *causes* revenue growth? ___
+
+Answers: (1) generally positive — as spend increases, revenue tends to increase; (2) (10, 8) — high spend, low revenue, well below the trend; (3) three companies: (5,13), (6,18), (7,20), (10,8); (4) no — the scatter plot shows correlation only; a confounding variable (industry type, company size) could explain both.
 
 > **Self-explanation prompt.** Why is correlation not proof of causation? If you can say "because both correlated variables might be driven by a third variable, or the causation might run in the opposite direction, or the correlation might be coincidence," you've internalized why scatter plots show associations but not causal structure. This matters both for scatter-plot questions and for every Critical Reasoning causation question.
 
@@ -336,6 +415,8 @@ For round numbers, this is one division:
 
 For non-round numbers, estimate: "140 to 170 is about +30 on a base of 140, so about 30/140 ≈ 20%."
 
+**The asymmetry that fools people.** From 150 to 210 is +40%; from 210 to 150 is only −28.6%. The same absolute change (60) produces different percentages in each direction because the base differs. GMAT answer choices for "reverse percent change" problems exploit this every time.
+
 **Shortcut 2: Ratio of two values, simplified.**
 
 To compare "ratio of A to B" with answer choices, reduce:
@@ -344,6 +425,8 @@ To compare "ratio of A to B" with answer choices, reduce:
 - 240:96 → divide by 48 → 5:2 = 2.5
 
 Look for common factors; divide by them. GMAT ratios often reduce to clean numbers.
+
+**Speed benchmark:** if the answer choices are 1.5, 2.0, 2.5, and 3.0, you only need to establish which interval your ratio falls in — not its exact value. 180/85 is clearly between 2 and 3, and closer to 2 than 3. Pick 2.1, done.
 
 **Shortcut 3: Average of a few values.**
 
@@ -367,11 +450,23 @@ Pick total = 100. Urban = 45, Suburban = 30, Rural = 25. Non-rural = 75. Urban a
 
 **The "don't compute what you don't need" principle.** If the question asks for a ratio, you don't need the absolute values. If it asks for a rank ("which country has the most growth?"), you don't need exact growth amounts — just relative magnitudes. Always look at the question first and figure out the minimum arithmetic required.
 
+**When to estimate vs. compute exactly.** Estimate when the answer choices are spaced more than 10% apart (most of the time). Compute exactly when two answer choices are very close together (e.g., 24.5% and 25.5%) — that's the test's signal that precision matters.
+
+**Micro-drill.** Apply the shortcuts without a calculator — should take under 90 seconds total.
+
+1. Revenue went from 200 to 280. Percent change? ___
+2. Revenue went from 280 to 200. Percent change? ___
+3. Three months' sales: 110, 130, 150. Average? ___
+4. Pie chart shows category X is 35% of a $6,000 total. Dollar value of X? ___
+5. Ratio of 270 to 90 — reduce to simplest form. ___
+
+Answers: (1) 40%; (2) (200−280)/280 = −80/280 ≈ −28.6%; (3) middle value = 130 (evenly spaced); (4) 6000 × 0.35 = 2100; (5) 270:90 = 3:1.
+
 > **Recall check.** Without peeking, state the percent-change formula. Now, mentally: revenue went from 150 to 210. What's the percent change? (Answer: (210-150)/150 = 60/150 = 40%.) Now: revenue went from 210 to 150. What's the percent change? (Answer: (150-210)/210 = -60/210 ≈ -28.6%.) Note how the two directions give different percent-changes even though the raw change is the same ±60 — because the base differs. This asymmetry is a frequent trap.
 
 ## @summary
 
-Graphics Interpretation is two skills: reading values accurately and doing a tiny bit of arithmetic on those values. The six chart types and the five computation shortcuts cover every question.
+Graphics Interpretation is two skills: reading values accurately and doing a tiny bit of arithmetic on those values. The seven chart types and the five computation shortcuts cover every question.
 
 **The three pre-computation checks (every chart, every time):**
 
@@ -379,7 +474,7 @@ Graphics Interpretation is two skills: reading values accurately and doing a tin
 2. Origin — does the y-axis start at 0?
 3. Time period / categories — what is actually shown?
 
-**The six chart types and their signature operations:**
+**The seven chart types and their signature operations:**
 
 | Chart | Main operation | Signature trap |
 |---|---|---|
@@ -389,14 +484,15 @@ Graphics Interpretation is two skills: reading values accurately and doing a tin
 | Stacked bar | Segment height = top - bottom of segment | Reading segment top as its value |
 | Scatter plot | Correlation direction + strength; outliers | Confusing correlation with causation |
 | Bubble chart | Three variables; bubble *area* represents the third | Reading bubble diameter instead of area |
+| Combination chart | Two metrics on one horizontal axis | Reading bar values from the right axis or line values from the left axis |
 
 **The five computation shortcuts:**
 
-1. Percent change = (new - old) / old × 100.
-2. Ratio reduction — find common factors.
+1. Percent change = (new - old) / old × 100. Different denominators → different results going up vs. going down.
+2. Ratio reduction — find common factors; compare to answer-choice intervals, not exact values.
 3. Evenly-spaced average = middle value or (first+last)/2.
 4. Percent of total = total × percent/100.
-5. Smart numbers (pick 100 or 1000) for proportion problems.
+5. Smart numbers (pick 100 or 1000) for proportion problems with no given absolute values.
 
 **Time-management targets.**
 
@@ -406,4 +502,22 @@ Graphics Interpretation is two skills: reading values accurately and doing a tin
 
 The majority of time on these questions should be spent *reading*, not computing. If you're computing for more than 30 seconds, you've probably misread something — step back, re-read the axes, and restart.
 
+**Decision tree on test day.**
+
+1. **What chart type is this?** Identify before reading the question.
+2. **Are there two y-axes?** Combination chart — assign each data series to its axis before extracting any value.
+3. **What does the question ask for?** Absolute value, relative (%), ratio, rank, count, or correlation?
+4. **What is the minimum arithmetic required?** Read only the data you need; ignore everything else.
+5. **Do the answer choices allow estimation?** If spread > 10%, estimate. If two choices are very close, compute exactly.
+
 **The one big discipline that separates 685 scorers from 605 scorers:** take the extra 10 seconds at the start to verify the axes and scale. Almost every wrong answer in this topic comes from misreading the chart, not from bad arithmetic.
+
+**What to do next.**
+
+Open the Easy problem set first. Target 90%+ before moving to Medium.
+
+- **Struggling on Easy (below 80%):** re-read the three pre-computation checks and the chart conventions table. Most Easy errors are axis misreads — slow down and verify the scale before extracting any value.
+- **Getting Easy but missing Medium:** the issue is almost certainly the absolute-vs-relative distinction (bar charts) or the segment-height trap (stacked bars). Go back to those two sections specifically.
+- **Hitting 80%+ on Medium but missing Hard:** Hard questions typically involve combination charts, bubble charts, or two-pie-chart comparisons. Re-read the combination-chart dual-axis section and the "two pie charts side-by-side" rule.
+
+For further practice on the arithmetic layer, revisit the **Statistics and Probability** chapter (averages, medians) and the **Ratios and Percents** chapter (percentage change, ratio reduction). The computation shortcuts here are applications of rules taught in those chapters.
