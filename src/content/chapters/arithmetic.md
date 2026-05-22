@@ -2,7 +2,7 @@
 slug: arithmetic
 title: Arithmetic & Operations
 section: Quant
-estimated_minutes: 50
+estimated_minutes: 65
 prerequisites: []
 summary: |
   Arithmetic is roughly 30% of the Quant section and 100% of the substructure beneath every other topic. The GMAT doesn't reward you for knowing fractions — it punishes you for not knowing them cold. This chapter drills the seven operational habits that separate students who finish Quant with 10 minutes to spare from students who guess on the last four questions because they burned 90 seconds converting 3/8 to a decimal.
@@ -28,6 +28,13 @@ sections:
     check_question_ids:
       - arithmetic-q13
       - arithmetic-q15
+
+  - id: ratios-and-proportions
+    type: reading
+    title: "Ratios and proportions — the per-part framework"
+    check_question_ids:
+      - arithmetic-q3
+      - arithmetic-q7
 
   - id: decimals-and-percents-conversion
     type: reading
@@ -56,7 +63,7 @@ sections:
 
   - id: summary
     type: summary
-    title: "The seven arithmetic habits"
+    title: "The eight arithmetic habits"
     check_question_ids: []
 
 problem_sets:
@@ -158,6 +165,66 @@ Multiples follow: `3/8 = 0.375`, `5/8 = 0.625`, `7/8 = 0.875`. When you see `.37
 
 **Trap to watch.** A complex fraction like `(a + b/c) / d` is `(ac + b) / (cd)`, not `(a + b) / (cd)`. Resolve the numerator fully — `a + b/c = (ac + b)/c` — before you divide.
 
+## @ratios-and-proportions
+
+A ratio is a comparison of quantities. "Red to blue is 3:5" means there are 3k red and 5k blue for some positive multiplier k — it does not mean exactly 3 and 5. Depending on how many marbles are in the jar, k might be 5, 10, or 50. Unlocking k is the entire skill.
+
+**Mental model.** Think of a ratio as a recipe, not a count. "3 parts red to 5 parts blue" describes proportions, not fixed amounts. The GMAT gives you one anchor — a total, a difference, or a single component — and asks you to find k and use it to answer the real question.
+
+**The per-part framework — two-way ratios.**
+
+1. Write each quantity as (ratio part) × k.
+2. Use the given condition to solve for k.
+3. Compute whatever the question asks.
+
+**Example.** Red:blue = 3:5, total 40 marbles. How many are red?
+
+- Red = 3k, blue = 5k. Total parts: 3 + 5 = 8k.
+- 8k = 40 → k = 5.
+- Red = 3 × 5 = 15. Blue = 5 × 5 = 25.
+
+The GMAT builds the trap into the question phrasing. After computing both values, re-read which one the question actually asks for — it usually asks for the one you computed second.
+
+**Three-way ratios.** Same logic; total parts is the sum of all three.
+
+**Example.** Flour:sugar:butter = 5:3:2. If flour = 750 g, how much butter?
+
+- k = 750 / 5 = 150.
+- Butter = 2 × 150 = 300 g.
+
+You don't need to compute the total unless the question asks for it.
+
+**Scalar-difference problems.** The question gives you the difference between two components, not a total or a single component.
+
+**Example.** Digital:print:radio budget = 5:3:2. Digital exceeds radio by $150,000. Find the total budget.
+
+- Digital − radio = 5k − 2k = 3k = $150,000 → k = $50,000.
+- Total = (5 + 3 + 2)k = 10 × $50,000 = $500,000.
+
+Pattern: identify which two parts differ, set (larger part − smaller part) × k = given difference, solve for k, then compute the asked quantity.
+
+**Mixture ratios — adding or removing a pure substance.**
+
+When you add a pure substance to a mixture, only that one component increases — the other stays constant. Never recompute from scratch; track each component separately.
+
+**Example.** A 25 L solution has water:alcohol = 4:1. Add 5 L of pure alcohol. What is the new ratio?
+
+- Original water: (4/5) × 25 = 20 L. Original alcohol: (1/5) × 25 = 5 L.
+- After adding 5 L of pure alcohol: water = 20 L (unchanged), alcohol = 10 L.
+- New ratio = 20:10 = 2:1.
+
+**Trap to watch.** Adding pure alcohol does not change the water. Students who apply the 4:1 ratio to the new total of 30 L get the wrong answer. Adding a pure substance only moves one component of the ratio — always track each component separately, then re-form the ratio at the end.
+
+**Proportion equations.** Two equal ratios set up a proportion: a/b = c/d. Cross-multiply to solve: ad = bc. Use proportions to scale a recipe, convert units, or find an unknown when three of four values are given.
+
+**Example.** 3 items cost $7.50. How much do 8 items cost?
+
+3/7.50 = 8/x → x = (8 × 7.50) / 3 = $20. Equivalently: unit price = $7.50/3 = $2.50; 8 × $2.50 = $20. Both paths take the same time.
+
+**The ratio vs. fraction distinction.** "The ratio of boys to girls is 3:5" means boys/girls = 3/5. The fraction of the class that is boys = 3/(3+5) = 3/8 — not 3/5 and not 5/8. The ratio compares the two groups to each other; the fraction of total uses the sum of all parts as the denominator. The GMAT uses this distinction to manufacture wrong answer choices.
+
+> **Recall check.** Without looking: A baker uses flour:sugar:butter = 5:3:2 and has 600 g of sugar. How much butter does the recipe require? (Answer: k = 600/3 = 200; butter = 2 × 200 = 400 g.) Now: if the baker wants digital:print:radio = 5:3:2 and print is $90,000 more than radio, what is the total? (3k = 90,000 → k = 30,000; total = 10 × 30,000 = $300,000.) Both answers should arrive in under 20 seconds.
+
 ## @decimals-and-percents-conversion
 
 Decimals, fractions, and percents are three notations for the same number. A student who fluently switches between them saves 20-30 seconds on every percent problem. A student who can't switch gets bogged down in `0.875 × 80` when they could have written `7/8 × 80 = 70`.
@@ -250,9 +317,38 @@ Manipulate: `p/q > 1/2` becomes `2p > q` when `q > 0`. Substituting `q = 2p − 
 
 **Terminating vs non-terminating decimals.** A fraction `a/b` (in lowest terms) has a terminating decimal if and only if `b` has no prime factors other than 2 and 5. `3/8 = 0.375` (b = 2³, terminates). `1/3 = 0.333…` (b = 3, doesn't terminate). `1/6 = 0.1666…` (b = 2 × 3, the 3 forces non-termination).
 
-**Trap to watch.** "x is a positive number" does NOT mean "x is a positive integer." Always read the problem twice to check whether the integer constraint was given. Students who assume integers when the problem allowed rationals lose points on Data Sufficiency constantly.
+**Consecutive integers — a recurring GMAT structure.**
 
-> **Self-explanation prompt.** Why does `1/7` not terminate? If you can say "because 7 has no factors of 2 or 5, so no power of 10 is divisible by 7," you've internalized the rule — and you'll never have to memorize terminating-decimal lists.
+Consecutive integers are whole numbers differing by 1: n, n+1, n+2, … Consecutive even (or odd) integers differ by 2: n, n+2, n+4, …
+
+The GMAT tests three things about consecutive integers:
+
+**Sum of a range.** The sum of a set of evenly spaced integers = (count) × (average). Because the list is symmetric around its middle, the average = (first + last) / 2.
+
+`Sum = count × (first + last) / 2`
+
+Classic application: sum of integers from 1 to 100 = 100 × (1 + 100)/2 = 100 × 50.5 = 5,050.
+
+**Count of integers in a range.**
+
+- Inclusive of both endpoints: last − first + 1. (From 3 to 17 inclusive: 17 − 3 + 1 = 15.)
+- Exclusive of both endpoints: last − first − 1. (From 3 to 17, not including 3 or 17: 13.)
+- When in doubt: list a small example (3, 4, 5 → count = 3 = 5 − 3 + 1) and generalize.
+
+**Algebraic setup for consecutive integers.** Call the smallest integer n.
+
+- Consecutive: n, n+1, n+2 — their sum is 3n + 3.
+- Consecutive even or odd: n, n+2, n+4 — their sum is 3n + 6.
+
+**The middle-term shortcut.** For any odd-count set of consecutive integers, the average equals the middle term. So: sum of 5 consecutive integers = 155 → average = 31 → middle term = 31 → the five are 29, 30, 31, 32, 33. No equation needed; read the average directly from sum/count.
+
+**Example.** The sum of 4 consecutive odd integers is 80. Find the largest.
+
+Four consecutive odds: n, n+2, n+4, n+6. Sum = 4n + 12 = 80 → 4n = 68 → n = 17. Largest = n + 6 = 23. Verify: 17 + 19 + 21 + 23 = 80 ✓.
+
+**Trap to watch.** "x is a positive number" does NOT mean "x is a positive integer." Always read the problem twice to check whether the integer constraint was given. Also: zero is an integer, zero is even, and zero is a multiple of every integer — three facts the GMAT tests individually.
+
+> **Self-explanation prompt.** Why does `1/7` not terminate? If you can say "because 7 has no factors of 2 or 5, so no power of 10 is divisible by 7," you've internalized the rule — and you'll never have to memorize terminating-decimal lists. Now, in one sentence, why is the average of a set of consecutive integers always the midpoint? If you can say "because consecutive integers are symmetric around their middle, so terms above the average exactly cancel terms below it," you've understood both rules at the same level — not memorized them.
 
 ## @estimation-tricks
 
@@ -260,13 +356,23 @@ The GMAT rewards students who know when to estimate and when to compute exactly.
 
 **Example (estimation wins).** Which is closest to 1/3: 7/22, 11/32, 5/16, 9/28, or 13/40?
 
-- `7/22 ≈ 0.318` (below 1/3 ≈ 0.333)
-- `11/32 ≈ 0.344` (slightly above)
-- `5/16 = 0.3125` (farther below)
-- `9/28 ≈ 0.321` (below)
-- `13/40 = 0.325` (below)
+First, convert each to a decimal and note the gap from 1/3 ≈ 0.333:
 
-The one that's closest: `11/32`. A more rigorous approach uses cross-multiplication to measure the gap exactly: for `11/32` vs `1/3`, the cross-product difference is `33 − 32 = 1`, and the gap is `1/(3 × 32) = 1/96`. For `7/22`, the gap is `1/(3 × 22) = 1/66`. Smaller gap → closer fraction. `1/96 < 1/66`, so `11/32` wins.
+- `5/16 = 0.313` — gap ≈ 0.021 (largest gap, eliminate)
+- `7/22 ≈ 0.318` — gap ≈ 0.015
+- `9/28 ≈ 0.321` — gap ≈ 0.012
+- `13/40 = 0.325` — gap ≈ 0.008
+- `11/32 ≈ 0.344` — gap ≈ 0.010 (this is above 1/3, not closer)
+
+The winner is `13/40`. The trap: students who compute gaps for 11/32 (the most intuitive answer since 0.344 is close to 0.333) and stop there miss that 13/40 is closer. Always evaluate all choices before deciding.
+
+For tighter confirmation, use cross-multiplication to measure the exact gap as a fraction. The gap between fraction p/q and target 1/3 is `|3p − q| / (3q)`. Smaller result = closer fraction.
+
+- `13/40`: gap = `|39 − 40| / 120 = 1/120`
+- `11/32`: gap = `|33 − 32| / 96 = 1/96`
+- `9/28`: gap = `|27 − 28| / 84 = 1/84`
+
+Smallest gap: `1/120`, so `13/40` wins.
 
 **Estimation heuristics worth memorizing:**
 
@@ -295,25 +401,35 @@ The one that's closest: `11/32`. A more rigorous approach uses cross-multiplicat
 
 Arithmetic is not a separate Quant topic — it's the substrate that every other Quant topic sits on. A word problem about ratios, a Data Sufficiency about remainders, a geometry problem about a circle — all of them reduce at some point to an arithmetic operation. The students who score above 685 are not better at algebra than 605 scorers; they're dramatically faster and more accurate at arithmetic.
 
-**The seven habits that produce that speed:**
+**The eight habits that produce that speed:**
 
 1. **Respect PEMDAS, especially the subtraction-associativity trap.** Multiplication and division always bind tighter than addition and subtraction, and subtraction only runs left to right.
 2. **Know your fraction-decimal-percent conversions cold.** Sevenths, eighths, and ninths come up constantly; memorize their decimal forms once and never compute them again.
 3. **Simplify fractions before you compute.** Cancel common factors diagonally before multiplying. Reduce at the end so your answer matches the test's "simplified" form.
-4. **Track signs deliberately.** Odd count of negatives → negative product. Always wrap negations inside parentheses when squaring.
-5. **Check the integer assumption.** The problem must tell you x is an integer — never assume. Terminating-decimal fractions have denominators whose only prime factors are 2 and 5.
-6. **Scan answer choices before computing.** Spread choices → estimate. Tight choices → compute. Plugging answers back in is often faster than algebra.
-7. **Use the complement.** 15% off = pay 85%. "At least one" = total minus none. Framing a percent or count the easier way saves 20+ seconds per question.
+4. **Use the per-part framework for ratios.** Write each component as (ratio part) × k. One anchor (total, difference, or a single component) unlocks k and everything else.
+5. **Track signs deliberately.** Odd count of negatives → negative product. Always wrap negations inside parentheses when squaring.
+6. **Check the integer assumption.** The problem must tell you x is an integer — never assume. Use (first + last)/2 × count for consecutive-integer sums; count a range as last − first + 1.
+7. **Scan answer choices before computing.** Spread choices → estimate. Tight choices → compute. Plugging answers back in is often faster than algebra.
+8. **Use the complement.** 15% off = pay 85%. "At least one" = total minus none. Framing a percent or count the easier way saves 20+ seconds per question.
 
 **Common patterns to pattern-match on sight:**
 
 | Problem says | Habit | Shortcut |
 |---|---|---|
 | "X% discount" | Multiply by `(1 − X/100)` | One step instead of two |
-| "Sum of consecutive integers" | Middle term × count | Skip summation |
+| "Ratio A:B, total given" | Per-part framework | k = total / (A+B); each = ratio × k |
+| "Ratio A:B, difference given" | Per-part framework | (A−B)k = difference; solve for k |
+| "Add pure X to mixture" | Track each component | Only one component changes |
+| "Sum of consecutive integers" | (first + last)/2 × count | Middle term × count |
+| "How many integers from a to b" | b − a + 1 (inclusive) | b − a − 1 (exclusive) |
 | "Simplified fraction" | Reduce fully | `42/98 = 3/7` |
 | "Closest to" | Estimate then cross-check | Cross-multiply for exact gaps |
 | "Units digit of large power" | Check cycle | Powers of 2, 3, 7, 8 cycle mod 4 |
 | Compound percent change | Multiply factors | `1.20 × 0.80 = 0.96` |
 
-You're going to do 20 arithmetic problems at the end of this chapter. Keep this table open the first time through. By the third time, you won't need it — the habits will be reflexes, and that's when your Quant pace jumps.
+**What to do next.**
+
+- Work through the 20 problem-set questions in this chapter. Keep this table open the first time through; by the second time, you shouldn't need it.
+- If ratio questions slow you down, the **Ratios and Percents** chapter (coming later in the sequence) digs deeper into weighted averages, mixture equations, and concentration problems.
+- If percent change or successive-percent questions trip you up, those concepts recur in the **Word Problems** chapter with more worked examples.
+- If you miss more than 3 easy questions, that's a signal to re-read fractions fluency and the signs section before moving on — those skills compound into every subsequent chapter.
