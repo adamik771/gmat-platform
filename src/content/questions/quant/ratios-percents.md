@@ -6,25 +6,25 @@ topic: Ratios and Percents
 ## Q1
 **difficulty:** Easy
 **type:** Problem Solving
-**topic:** Basic Percents
+**topic:** Percent Change
 
-What is 35% of 80?
+45 is what percent greater than 36?
 
-- A) 24
-- B) 26
-- C) 28
-- D) 32
-- E) 35
+- A) 9%
+- B) 20%
+- C) 25%
+- D) 80%
+- E) 125%
 
 **answer:** C
-**fastest_path:** 10% of 80 = 8 → 30% = 24, +5% = 4 → 28.
-**explanation:** 35% of 80 = 0.35 × 80 = 28. Faster: 30% (24) + 5% (4) = 28.
-**mistake_a:** Computed 30% only (24) and stopped — forgot to add the 5% chunk (which is 4 more).
-**mistake_b:** Computed 30% (= 24) and added 2 instead of 4 — likely misremembered 5% of 80 as 2 (5% of 40, not 80).
-**mistake_d:** Computed 40% (= 32) instead of 35% — rounded the percent up to a "nice" number, ignoring the trailing 5%.
-**mistake_e:** Bubbled the percent value (35) directly — confused "X% of Y" with the percent number itself.
-**common_trap:** Bubbling the percent number itself, or computing only the round 30% portion.
-**takeaway:** Break percents into 10% and 5% chunks: 10% = ÷10, 5% = ÷20. Faster than decimals.
+**fastest_path:** (45 − 36)/36 = 9/36 = 1/4 = 25%.
+**explanation:** "Percent greater than" uses the original as the base: (45 − 36)/36 × 100 = 9/36 × 100 = 25%. The increase is 9; the reference is 36.
+**mistake_a:** Bubbled the raw difference (9) as the answer — found 45 − 36 = 9 but skipped dividing by the base (36).
+**mistake_b:** Used the larger number as the base: 9/45 = 20% — flipped the denominator to the new value instead of the original.
+**mistake_d:** Computed 36/45 × 100 ≈ 80% — inverted the fraction entirely (smaller over larger).
+**mistake_e:** Computed 45/36 × 100 ≈ 125% — reported "45 is 125% of 36" rather than "25% greater than 36." The factor (1.25) and the percent change (25%) differ by 100 percentage points: factor = 1 + percent_change.
+**common_trap:** Confusing "percent of" (125%) with "percent greater than" (25%) — the second is the first minus 100.
+**takeaway:** "A is what percent greater than B?" → (A − B)/B × 100. The base is always the original (B), not the new value (A).
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -100,7 +100,7 @@ A jacket originally priced at $120 is marked down by 25%. What is the sale price
 **mistake_a:** Mis-translated 25% as 1/3 — computed 120 − 40 = 80. The canonical fraction trap: 25% is 1/4 (giving 30 off), not 1/3.
 **mistake_c:** Computed 120 − 25 = 95 — treated the 25 as a *dollar* amount instead of a percent. The discount is 25% of 120, not $25.
 **mistake_d:** Computed 120 × 0.80 = 96 — used a 20% discount factor (0.80) instead of 25% (0.75). One-digit slip with a big swing.
-**mistake_e:** Computed 20% off ($24) → $96, then mis-rounded to $100, or interpreted the discount as $20 flat off. Read the percent twice.
+**mistake_e:** Computed 120 ÷ 1.20 = 100 — divided by 1.20 (reversing a 20% markup) instead of multiplying by 0.75 (applying a 25% discount). Both the operation (÷ vs ×) and the percent (20% vs 25%) are wrong.
 **common_trap:** Translating 25% as 1/3 (gives 80) instead of 1/4.
 **takeaway:** Use multipliers for percent changes: −x% → multiply by (1 − x/100). One-step.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -136,25 +136,25 @@ On a map, 2 inches represents 15 actual miles. If two cities are 7 inches apart 
 ## Q6
 **difficulty:** Easy
 **type:** Problem Solving
-**topic:** Basic Percents
+**topic:** Ratio to Percent
 
-In a class of 40 students, 14 are left-handed. What percent of the class is left-handed?
+A bag contains only red and blue marbles. The number of red marbles is 3 times the number of blue marbles. What percent of the marbles in the bag are blue?
 
-- A) 28%
-- B) 32%
-- C) 35%
-- D) 38%
-- E) 40%
+- A) 25%
+- B) 30%
+- C) 33⅓%
+- D) 66⅔%
+- E) 75%
 
-**answer:** C
-**fastest_path:** 14/40 = 7/20 = 35/100 = 35%.
-**explanation:** Percent = part/whole × 100 = 14/40 × 100 = 35%. Or: 14/40 = 7/20, and 7/20 × 5/5 = 35/100 = 35%.
-**mistake_a:** Computed 14 × 2 = 28% — mis-converted by doubling instead of multiplying by 2.5. 14/40 = 7/20; converting /20 to /100 requires × 5, not × 4.
-**mistake_b:** Computed 32% from a fraction slip — perhaps 14/40 simplified to 8/25 wrongly, or 12/40 misread as 14/40 mid-step. Recompute: 14/40 = 35/100.
-**mistake_d:** Computed 38% — likely 15/40 = 37.5% rounded up, or 14/37 from a denominator mis-read.
-**mistake_e:** Bubbled the class size (40) as a percent — confused the *whole* with the percent it represents.
-**common_trap:** Mis-converting /20 fractions to /100 (× 5, not × 4 or × 6).
-**takeaway:** /20 fractions: × 5 to convert to percent. /25: × 4. Memorize denominators that convert cleanly.
+**answer:** A
+**fastest_path:** Blue = k, red = 3k → total = 4k. Blue % = k/4k = 1/4 = 25%.
+**explanation:** Let blue = k. Then red = 3k. Total = k + 3k = 4k. Blue fraction = k/4k = 1/4 = 25%.
+**mistake_b:** Computed 3/10 = 30% — perhaps misread "3 times as many" as a 3:7 ratio. Recompute: red = 3 × blue means red:blue = 3:1, giving a 4-part total, not 10.
+**mistake_c:** Concluded blue is 1/3 of the total — reasoned "3 parts red and 1 part blue so blue is 1 out of 3." Missed that the total has 4 parts (3 red + 1 blue), making blue 1/4, not 1/3.
+**mistake_d:** Computed 3/(3+1) = 75% for red, then reported 1 − 75%... but landed on 66⅔% — perhaps confused the ratio 3:1 with 2:1. Red is 3k/4k = 75%, not 66⅔%.
+**mistake_e:** Reported the red percent (3k/4k = 75%) instead of the blue percent — solved the right setup but answered for the wrong color. Always identify which quantity the question asks for before computing.
+**common_trap:** Using the ratio 3:1 to conclude "blue = 1/3 of total" — the total has 3 + 1 = 4 parts, not 3.
+**takeaway:** Part ÷ Total, not Part ÷ Other Part. When red = 3 × blue, the total has 4 parts. Blue is 1/4, not 1/3.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -175,10 +175,10 @@ The price of a stock increases by 20% in January, then decreases by 20% in Febru
 **answer:** A
 **fastest_path:** 1.20 × 0.80 = 0.96 → −4%.
 **explanation:** Successive % changes compound multiplicatively: 1.20 × 0.80 = 0.96 → 4% decrease. Smart number 100: 100 → 120 → 96.
-**mistake_b:** Mis-computed compound → −2%.
-**mistake_c:** Treated as additive (+20 − 20 = 0) → unchanged.
-**mistake_d:** Inverted sign → +2%.
-**mistake_e:** Inverted sign and rounded → +4%.
+**mistake_b:** Used 0.82 instead of 0.80 for the February factor, getting 1.20 × 0.82 ≈ 0.984 → −1.6% ≈ −2%. A 20% decrease means multiply by (1 − 0.20) = 0.80 exactly — not 0.82 or any other value.
+**mistake_c:** Added the percents: +20 − 20 = 0% → price unchanged. The 20% decrease applies to the *inflated* January price ($120 on a $100 base), not the original. Lose 20% of the extra $20 = $4 net loss. Percent changes don't cancel — they compound.
+**mistake_d:** Concluded a net *gain* of 2% — perhaps flipped the mental model (decrease amplifies on the up-trip, not the down). The higher post-January base amplifies the loss, never creating a gain.
+**mistake_e:** Reasoned "+20% then −20% creates a symmetrical gain of 4%" — the exact opposite direction. Asymmetry always favors a loss: losing 20% of the inflated $120 ($24 lost) exceeds gaining 20% of the original $100 ($20 gained).
 **common_trap:** Treating +x% then −x% as canceling. Pattern: net change is always a *loss* of (x/10)²%.
 **takeaway:** Successive percent changes compound multiplicatively. +x% then −x% nets a 1 − x²/10000 change — always a loss.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -360,10 +360,10 @@ In a bag of marbles containing only red and blue marbles, what is the number of 
 **answer:** C
 **fastest_path:** (1) ratio only — infinite scalings. (2) difference only — no ratio. Together: 5k − 3k = 24 → k = 12 → red = 36.
 **explanation:** Statement (1): r:b = 3:5, so r = 3k for any k. Insufficient. Statement (2): b − r = 24, but no ratio. Insufficient. Together: 2k = 24 → k = 12 → red = 36. Sufficient.
-**mistake_a:** Treated only (1) as sufficient.
-**mistake_b:** Treated only (2) as sufficient.
-**mistake_d:** Each alone — neither is.
-**mistake_e:** Concluded both insufficient.
+**mistake_a:** Thought the ratio (3:5) alone determines a count — it doesn't. Red = 3k works for any positive integer k, giving infinite solutions (3, 6, 9, ...). A ratio constrains proportions, not quantities.
+**mistake_b:** Thought b − r = 24 alone pins down red — it doesn't. Infinite pairs satisfy b − r = 24 (e.g., r = 1, b = 25; or r = 100, b = 124). Without the ratio, the difference floats freely.
+**mistake_d:** Thought each statement alone is sufficient — but (1) leaves the scale k free and (2) leaves the ratio free. Only together does the ratio's constraint (b − r = 2k) combine with statement (2)'s equation (2k = 24) to uniquely fix k = 12.
+**mistake_e:** Thought even together the statements are insufficient — but the ratio from the stem gives b − r = 2k, and statement (2) gives 2k = 24 → k = 12 → red = 3k = 36. One equation, one unknown: uniquely solvable.
 **common_trap:** Forgetting that a ratio alone gives infinite valid scalings.
 **takeaway:** Ratio + any *one* scalar anchor (total, part, or difference) determines all parts.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -389,10 +389,10 @@ A store increased the price of a television by some percent. What was the final 
 **answer:** C
 **fastest_path:** (1) percent only, no anchor. (2) ties percent to dollars but no original. Together: 0.15P + 45 = 0.25P → P = 450, final = 517.50.
 **explanation:** Statement (1): percent only, no original. Insufficient. Statement (2): ties dollar increase to a percent benchmark, but neither original nor actual percent fixed alone. Insufficient. Combined: 0.15P + 45 = 0.25P → 0.10P = 45 → P = 450 → final = 450 × 1.15 = 517.50. Sufficient.
-**mistake_a:** Treated only (1) as sufficient.
-**mistake_b:** Treated only (2) as sufficient.
-**mistake_d:** Each alone — neither is.
-**mistake_e:** Concluded both insufficient.
+**mistake_a:** Thought (1) alone is sufficient — but "increased by 15%" only tells us final = 1.15P. Any original price works (P = $200 → $230; P = $400 → $460). A percent without a dollar anchor leaves infinitely many valid prices.
+**mistake_b:** Thought (2) alone is sufficient — but "if $45 more were added, total increase would be 25%" links a dollar gap to a percent gap without fixing either the actual percent or the original price. Without statement (1) to supply the actual percent (15%), the equation has two unknowns.
+**mistake_d:** Thought each statement alone is sufficient — but (1) needs a dollar anchor and (2) needs the actual percent. Together they form a single clean equation: 0.15P + 45 = 0.25P → P = $450.
+**mistake_e:** Thought both together are still insufficient — but the combined equation 0.15P + 45 = 0.25P has exactly one unknown (P), giving P = $450 and final = $517.50 uniquely.
 **common_trap:** Forgetting that a percent is meaningless without a dollar anchor.
 **takeaway:** Classic DS pattern: percent relationship + dollar anchor → together sufficient.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -497,7 +497,7 @@ A merchant marks the price of a watch up 50% above cost, and during a sale disco
 **fastest_path:** 1.50 × 0.80 = 1.20 → 20% net profit. 0.20C = 84 → C = 420.
 **explanation:** Marked = 1.50C. Sale = 1.50C × 0.80 = 1.20C. Profit = 0.20C = 84 → C = 420.
 **mistake_b:** Computed C from a slightly wrong factor: 0.175C = 84 → C ≈ 480 (used 1.50 × 0.78 ≈ 1.175 or similar). Recompute exactly: 1.50 × 0.80 = 1.20, net +20%, so 0.20C = 84 → C = 420.
-**mistake_c:** Computed 1.50 × 0.84 = 1.26, then (1.26 − 1)C = 84 → C ≈ 323; over-corrected to 504. The discount is 20%, giving multiplier 0.80, not 0.84.
+**mistake_c:** Correctly found net factor 1.20 and solved 1.20C = 84 → C = 70, then multiplied by 1.20 again → 504. The profit equation is (net_factor − 1) × C = 0.20C = 84, not the full 1.20C = 84. The 1.20C equals the *sale price*, not the profit.
 **mistake_d:** Mis-chained 1.40 × 0.80 = 1.12 → 0.12C = 84 → C ≈ 700, then rounded to 540. The markup is 50% (1.50), not 40%.
 **mistake_e:** Used additive shortcut: 50 − 20 = 30% net → 84/0.30 = 280, then bumped to 630 from confusion. Chain multiplicatively: 1.50 × 0.80 = 1.20, net +20%.
 **common_trap:** Treating successive percent changes additively (50 − 20 = 30%), which gives the wrong base for profit.
@@ -525,10 +525,10 @@ In a class, the ratio of boys to girls is 3 to 5. How many students are in the c
 **answer:** D
 **fastest_path:** (1) 5k − 3k = 12 → k = 6 → total = 48. (2) 5k = 30 → k = 6 → total = 48. Each alone.
 **explanation:** Let b = 3k, g = 5k. Statement (1): 5k − 3k = 2k = 12 → k = 6 → total = 8k = 48. Sufficient. Statement (2): 5k = 30 → k = 6 → total = 48. Sufficient. Each alone → D.
-**mistake_a:** Treated only (1) as sufficient.
-**mistake_b:** Treated only (2) as sufficient.
-**mistake_c:** Required both — neither needs the other.
-**mistake_e:** Concluded both insufficient.
+**mistake_a:** Thought (1) is not self-sufficient — perhaps reasoning that the *stem's* ratio needs a fresh anchor from a statement. But statement (1) *is* that anchor: g − b = 12 combined with the stem's ratio (b:g = 3:5) gives 2k = 12 → k = 6 → total = 48.
+**mistake_b:** Thought only a direct part-count (2) can anchor a ratio, not a difference (1). Both work: a difference and a ratio jointly fix the scale (statement 1); a single part-count and a ratio also fix the scale (statement 2).
+**mistake_c:** Concluded neither alone is sufficient — but the stem already supplies the ratio. Any single scalar fact (difference or part count) combined with a known ratio fully determines the total. Both statements independently suffice.
+**mistake_e:** Concluded both together are insufficient — but statement (2) alone gives 5k = 30 → k = 6 → total = 48. The combination is overdetermined (both give k = 6), not underdetermined.
 **common_trap:** Concluding "the ratio alone can't give total" (true) but missing that *each* statement supplies a scalar anchor.
 **takeaway:** Ratio + any one scalar (sum, difference, or single part) → all parts determined.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -536,7 +536,7 @@ In a class, the ratio of boys to girls is 3 to 5. How many students are in the c
 ---
 
 ## Q21
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Successive Percent Changes
 
@@ -606,10 +606,10 @@ A store raised and then lowered the price of a product. What was the net percent
 **answer:** D
 **fastest_path:** (1) 1.20 × 0.80 = 0.96 → −4%. (2) (144−150)/150 = −4%. Each alone.
 **explanation:** Statement (1): 1.20 × 0.80 = 0.96 → net −4%. Sufficient. Statement (2): (144 − 150)/150 = −4%. Sufficient. Each alone → D.
-**mistake_a:** Treated only (1) as sufficient.
-**mistake_b:** Treated only (2) as sufficient.
-**mistake_c:** Required both.
-**mistake_e:** Concluded both insufficient — but (1) is the classic "+x% then −x% → loss" pattern.
+**mistake_a:** Thought (1) is not self-sufficient — perhaps worried that computing a net percent requires knowing the original price. It doesn't: 1.20 × 0.80 = 0.96 gives the ratio of final to original (−4%) with no dollar values needed. A percent-change question never needs an anchor.
+**mistake_b:** Thought (2) is not sufficient — but (144 − 150)/150 = −4% is unambiguous. Both the original ($150) and final ($144) are given explicitly; the percent change is their ratio minus one.
+**mistake_c:** Required both statements — but (1) gives the compound formula directly (−4%), and (2) gives the ratio directly (−4%). Each is an independent complete path.
+**mistake_e:** Concluded neither is sufficient — but the question asks for a *percent* change, not a dollar amount. (1) supplies the multiplicative rule; (2) supplies both prices. Either alone answers the question.
 **common_trap:** Thinking +20% then −20% nets to 0 — missing the multiplicative compounding.
 **takeaway:** +x% then −x% always nets a *loss* of (x/10)²% (here 4%). Memorize the pattern.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -627,15 +627,15 @@ A town's population grew by 20% in 2022 and by an additional 25% in 2023. At the
 - B) 45%
 - C) 50%
 - D) 55%
-- E) 500%
+- E) 56%
 
 **answer:** C
 **fastest_path:** 1.20 × 1.25 = 1.50 → +50%.
 **explanation:** Chain: 1.20 × 1.25 = 1.50 → 50% greater.
 **mistake_a:** Computed 22.5% from averaging the two percents: (20 + 25)/2 = 22.5%. Averaging compound rates produces nonsense; multiply factors instead.
 **mistake_b:** Used additive shortcut: 20 + 25 = 45%. Treats each percent as applied to the same base, but the second 25% applies to the *post-2022* population, not the original.
-**mistake_d:** Computed 1.20 × 1.30 = 1.56 → +56%, rounded to 55%. Recheck: the second growth is 25%, giving factor 1.25, not 1.30.
-**mistake_e:** Mis-converted 1.50 → 500% by misreading the decimal place. The factor 1.50 represents +50% growth, not 500% (which would be 6×).
+**mistake_d:** Applied the FOIL expansion (1.20)(1.25) = 1 + 0.20 + 0.25 + 0.05 correctly, but doubled the cross-term: counted 0.05 twice, getting 20 + 25 + 10 = 55%. The cross-term is exactly 0.20 × 0.25 × 100 = 5%, not 10%.
+**mistake_e:** Misread the 2023 growth as 30% and computed 1.20 × 1.30 = 1.56 → 56% greater. Re-read the problem: the second-year growth is 25%, giving factor 1.25 → 1.20 × 1.25 = 1.50 → 50%.
 **common_trap:** Adding the percentages (20 + 25 = 45%) instead of multiplying the factors.
 **takeaway:** Compound growth: multiply (1 + r₁)(1 + r₂)... Always factors, never percentages.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -661,10 +661,10 @@ Is the price of product X greater than the price of product Y?
 **answer:** C
 **fastest_path:** (1) X = 1.20Z, no Y. (2) Z = 0.90Y, no X. Together: X = 1.20 × 0.90 × Y = 1.08Y > Y.
 **explanation:** Statement (1): X = 1.20Z, no Y info → insufficient. Statement (2): Z = 0.90Y, no X info → insufficient. Together: X = 1.20 × 0.90 × Y = 1.08Y > Y (positive prices). Definite YES → sufficient.
-**mistake_a:** Treated only (1) as sufficient.
-**mistake_b:** Treated only (2) as sufficient.
-**mistake_d:** Each alone — neither is.
-**mistake_e:** Concluded both insufficient — but the shared Z chains them.
+**mistake_a:** Thought (1) alone answers the question — but (1) only links X to Z (X = 1.20Z). Without knowing how Z relates to Y, we can't compare X to Y.
+**mistake_b:** Thought (2) alone answers the question — but (2) only links Z to Y (Z = 0.90Y). Without knowing how X relates to Z, we can't compare X to Y.
+**mistake_d:** Thought each statement alone is sufficient — but neither (1) nor (2) mentions both X and Y. Each bridges X↔Z or Z↔Y; only together does the chain X = 1.20Z = 1.20(0.90Y) = 1.08Y form.
+**mistake_e:** Thought both together are insufficient — but chaining gives X = 1.08Y. Since all prices are positive, X > Y is a definite YES. The shared variable Z is the bridge; once both statements are combined, the comparison is unambiguous.
 **common_trap:** Thinking statements about "different products" can't combine — but a shared variable (Z) bridges them.
 **takeaway:** Look for shared variables in DS statements. Statements that mention different things may still chain through a common reference.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -791,10 +791,10 @@ In a class, the ratio of boys to girls is 2:3. After 5 boys join the class and 5
 **answer:** C
 **fastest_path:** Boys = 2k, girls = 3k. (2k + 5)/(3k − 5) = 3/2 → 4k + 10 = 9k − 15 → 5k = 25 → k = 5. Original total = 5k = 25.
 **explanation:** Let boys = 2k and girls = 3k. After the change: (2k + 5)/(3k − 5) = 3/2. Cross-multiply: 2(2k + 5) = 3(3k − 5) → 4k + 10 = 9k − 15 → 5k = 25 → k = 5. Original total = (2 + 3) × 5 = 25. Verification: original 10 boys, 15 girls (ratio 2:3 ✓); after change: 15 boys, 10 girls (ratio 3:2 ✓).
-**mistake_a:** Tried k = 3: boys after = 11, girls after = 4 → ratio 11:4 ≠ 3:2.
-**mistake_b:** Tried k = 4: boys after = 13, girls after = 7 → ratio 13:7 ≠ 3:2.
-**mistake_d:** Tried k = 6: boys after = 17, girls after = 13 → ratio 17:13 ≠ 3:2.
-**mistake_e:** Tried k = 7: boys after = 19, girls after = 16 → ratio 19:16 ≠ 3:2.
+**mistake_a:** Guessed a "neat" small total (15) without setting up an equation. With boys = 2k, girls = 3k, k = 3 gives: after change, boys = 11, girls = 4 → ratio 11:4 ≠ 3:2. Plugging in answer choices without an equation is fragile; solve (2k + 5)/(3k − 5) = 3/2 directly.
+**mistake_b:** Assumed total = 20 (perhaps thinking "5 join and 5 leave so try a round number"). With k = 4: after change, boys = 13, girls = 7 → ratio 13:7 ≠ 3:2. The algebra, not trial-and-error, gives the reliable path.
+**mistake_d:** Correctly solved for k = 5 but then reported 6k = 30 — perhaps added the 5 new boys to k, computing (k + 1) × 5 = 30. The original total uses the ratio sum: (2 + 3) × k = 5 × 5 = 25. Report 5k, not 6k.
+**mistake_e:** Solved for k = 5 but computed "total before + 5 joined = 25 + 5 = 30" — conflated the original total with the post-change headcount. The question asks for the original number of students, which is 5k = 25.
 **common_trap:** Solving for k but then reporting 2k or 3k (a single part) instead of (2 + 3)k = 5k (the original total).
 **takeaway:** Set up the post-change ratio as a cross-multiplication equation. Solve for k, then compute the specific quantity the question asks for — here, total = 5k.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -872,10 +872,10 @@ A store sells only two products, P and Q. What fraction of the store's total rev
 **answer:** D
 **fastest_path:** (1) P = 0.80Q → total = 1.80Q → Q fraction = 5/9. Sufficient. (2) 1.10P + 0.90Q = P + Q → 0.10P = 0.10Q → P = Q → Q fraction = 1/2. Sufficient. Each alone → D.
 **explanation:** Statement (1): P = 0.80Q, so total = 0.80Q + Q = 1.80Q. Fraction from Q = Q/1.80Q = 5/9. A unique value is determined. Sufficient. Statement (2): let last year's revenues be P and Q. This year: 1.10P and 0.90Q. "Total unchanged" means 1.10P + 0.90Q = P + Q → 0.10P = 0.10Q → P = Q. Then Q fraction = Q/(Q + Q) = 1/2. A unique value is determined. Sufficient. Each statement alone determines the fraction → D.
-**mistake_a:** Accepted only (1) as sufficient — but (2) is also sufficient through the "total unchanged" binding constraint.
-**mistake_b:** Accepted only (2) as sufficient — but (1) is also sufficient through its direct percent relationship.
-**mistake_c:** Required both statements — each alone is enough.
-**mistake_e:** Concluded neither is sufficient — missed that (1) gives a direct ratio and (2) uses the "total unchanged" constraint to force P = Q.
+**mistake_a:** Dismissed (2) as "only describing changes, not actual values." But the "total unchanged" condition is a binding equation: 1.10P + 0.90Q = P + Q → 0.10P = 0.10Q → P = Q → Q fraction = 1/2. One equation, one unknown ratio — fully sufficient.
+**mistake_b:** Dismissed (1) as requiring dollar values. It doesn't: P = 0.80Q gives total = 1.80Q, so Q/total = Q/1.80Q = 5/9. The question asks for a *fraction*, which is a pure ratio — no actual revenue needed.
+**mistake_c:** Required both statements together — but (1) independently gives P:Q = 4:5 → fraction = 5/9, and (2) independently forces P = Q → fraction = 1/2. Each yields a unique fraction with no help from the other.
+**mistake_e:** Concluded neither is sufficient — perhaps assumed a revenue question always needs dollar figures. But fraction of revenue is purely P/(P + Q): statement (1) fixes this via the P:Q ratio; statement (2) fixes this via the "total preserved" constraint. Both fully determine the fraction.
 **common_trap:** Dismissing statement (2) as "only describing changes, not the actual ratio." The constraint that total revenue is unchanged is a binding equation that uniquely pins P = Q and therefore determines the fraction.
 **takeaway:** A percent-change statement paired with a "total is preserved" constraint can determine a ratio entirely. The binding condition acts as a second equation that resolves both unknowns.
 **related_reading:** reading-quant-02-arithmetic-foundations
