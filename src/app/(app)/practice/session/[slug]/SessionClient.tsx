@@ -1059,6 +1059,7 @@ export default function SessionClient({
     "idle" | "saving" | "saved" | "error" | "unauthorized"
   >("idle")
   const [savedSessionId, setSavedSessionId] = useState<string | null>(null)
+  const [expandedReviewIds, setExpandedReviewIds] = useState<Set<string>>(new Set())
 
   // Tick the timer once a second for the header readouts.
   useEffect(() => {
@@ -1530,7 +1531,7 @@ export default function SessionClient({
           </Link>
         )}
 
-        {/* Review list — wrong answers carry a faint red tint + difficulty label */}
+        {/* Review list — wrong answers are expandable to show answer comparison + explanation */}
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
             Review
@@ -1540,58 +1541,152 @@ export default function SessionClient({
               const state = states[i]
               const isCorrect = isQuestionCorrect(q, state)
               const isWrong = state.submitted && !isCorrect
-              return (
-                <button
-                  key={q.id}
-                  onClick={() => {
-                    goTo(i)
-                    setShowResults(false)
-                  }}
-                  className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
-                    i < questions.length - 1 ? "border-b border-white/[0.05]" : ""
-                  }`}
-                  style={isWrong ? { backgroundColor: "rgba(255,68,68,0.025)" } : undefined}
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div
-                      className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{
-                        backgroundColor: state.submitted
-                          ? isCorrect
+              const isExpanded = expandedReviewIds.has(q.id)
+              const selectedLetter = state.selected !== null ? letterFor(state.selected) : null
+              const hasBorder = i < questions.length - 1
+
+              if (!isWrong) {
+                return (
+                  <button
+                    key={q.id}
+                    onClick={() => {
+                      goTo(i)
+                      setShowResults(false)
+                    }}
+                    className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
+                      hasBorder ? "border-b border-white/[0.05]" : ""
+                    }`}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div
+                        className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                        style={{
+                          backgroundColor: state.submitted
                             ? "rgba(62,207,142,0.1)"
-                            : "rgba(255,68,68,0.1)"
-                          : "rgba(255,255,255,0.04)",
-                      }}
-                    >
-                      {state.submitted ? (
-                        isCorrect ? (
+                            : "rgba(255,255,255,0.04)",
+                        }}
+                      >
+                        {state.submitted ? (
                           <Check className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
                         ) : (
-                          <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
-                        )
-                      ) : (
-                        <span className="text-[10px] text-[#555555]">—</span>
-                      )}
+                          <span className="text-[10px] text-[#555555]">—</span>
+                        )}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs text-[#555555]">
+                          Q{i + 1} · {q.subtopic} · {q.difficulty}
+                        </p>
+                        <p className="text-sm text-[#F0F0F0] truncate">
+                          {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
+                        </p>
+                      </div>
                     </div>
-                    <div className="min-w-0">
-                      <p
-                        className="text-xs"
-                        style={{ color: isWrong ? "rgba(255,107,107,0.75)" : "#555555" }}
+                    <span className="text-xs flex-shrink-0 ml-3 text-[#888888]">
+                      {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
+                    </span>
+                  </button>
+                )
+              }
+
+              return (
+                <div
+                  key={q.id}
+                  className={hasBorder ? "border-b border-white/[0.05]" : ""}
+                  style={{ backgroundColor: "rgba(255,68,68,0.025)" }}
+                >
+                  <div className="flex items-stretch">
+                    <button
+                      onClick={() => {
+                        goTo(i)
+                        setShowResults(false)
+                      }}
+                      className="flex-1 flex items-center gap-3 p-4 hover:bg-white/[0.02] transition-colors text-left min-w-0"
+                    >
+                      <div
+                        className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                        style={{ backgroundColor: "rgba(255,68,68,0.1)" }}
                       >
-                        Q{i + 1} · {q.subtopic} · {q.difficulty}
-                      </p>
-                      <p className="text-sm text-[#F0F0F0] truncate">
-                        {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
+                        <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs" style={{ color: "rgba(255,107,107,0.75)" }}>
+                          Q{i + 1} · {q.subtopic} · {q.difficulty}
+                        </p>
+                        <p className="text-sm text-[#F0F0F0] truncate">
+                          {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
+                        </p>
+                      </div>
+                    </button>
+                    <button
+                      onClick={() =>
+                        setExpandedReviewIds((prev) => {
+                          const next = new Set(prev)
+                          next.has(q.id) ? next.delete(q.id) : next.add(q.id)
+                          return next
+                        })
+                      }
+                      className="flex-shrink-0 flex items-center gap-2 px-4 hover:bg-white/[0.02] transition-colors border-l border-white/[0.04]"
+                      aria-label={isExpanded ? "Collapse explanation" : "Show explanation"}
+                    >
+                      <span
+                        className="text-[10px] tabular-nums"
+                        style={{ color: "rgba(255,107,107,0.6)" }}
+                      >
+                        {formatDuration(state.elapsedMs)}
+                      </span>
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                          isExpanded ? "rotate-180" : ""
+                        }`}
+                        style={{ color: "rgba(255,107,107,0.5)" }}
+                      />
+                    </button>
+                  </div>
+                  {isExpanded && (
+                    <div className="px-4 pb-5 pt-2 space-y-3 border-t border-white/[0.04]">
+                      <div className="flex items-center gap-5 pt-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] uppercase tracking-wider text-[#555555]">
+                            You chose
+                          </span>
+                          <span
+                            className="inline-flex items-center justify-center w-5 h-5 rounded text-[10px] font-bold"
+                            style={{
+                              backgroundColor: "rgba(255,68,68,0.15)",
+                              color: "#FF4444",
+                            }}
+                          >
+                            {selectedLetter ?? "—"}
+                          </span>
+                        </div>
+                        <div className="w-px h-3 bg-white/[0.08]" />
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] uppercase tracking-wider text-[#555555]">
+                            Correct
+                          </span>
+                          <span
+                            className="inline-flex items-center justify-center w-5 h-5 rounded text-[10px] font-bold"
+                            style={{
+                              backgroundColor: "rgba(62,207,142,0.12)",
+                              color: "#3ECF8E",
+                            }}
+                          >
+                            {q.correctAnswerLetter}
+                          </span>
+                        </div>
+                      </div>
+                      <div
+                        className="rounded-lg p-3"
+                        style={{ backgroundColor: "rgba(255,255,255,0.02)" }}
+                      >
+                        <PromptBlock text={q.explanation} />
+                      </div>
+                      <p className="text-[10px] text-[#444444]">
+                        Click the question row to return to it in full
                       </p>
                     </div>
-                  </div>
-                  <span
-                    className="text-xs flex-shrink-0 ml-3"
-                    style={{ color: isWrong ? "rgba(255,107,107,0.6)" : "#888888" }}
-                  >
-                    {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
-                  </span>
-                </button>
+                  )}
+                </div>
               )
             })}
           </div>
