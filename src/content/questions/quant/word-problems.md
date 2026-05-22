@@ -8,23 +8,23 @@ topic: Word Problems
 **type:** Problem Solving
 **topic:** Rate/Time/Distance
 
-A car travels at 60 miles per hour for 2.5 hours. How many miles does it travel?
+A train travels at 80 miles per hour. How many miles will it travel in 45 minutes?
 
-- A) 120
-- B) 130
-- C) 140
-- D) 150
-- E) 160
+- A) 36
+- B) 45
+- C) 60
+- D) 80
+- E) 120
 
-**answer:** D
-**fastest_path:** D = R·T = 60 × 2.5 = 150.
-**explanation:** D = R × T = 60 × 2.5 = 150 mi.
-**mistake_a:** Computed 60 × 2 = 120, ignored the 0.5.
-**mistake_b:** Slip → 130.
-**mistake_c:** Slip → 140.
-**mistake_e:** Slip → 160.
-**common_trap:** Multiplication slip on 60 × 2.5 — most common is 60 × 2 = 120.
-**takeaway:** D = R × T. For 0.5 hr, just add R/2 to the round-hour distance: 60·2 + 30 = 150.
+**answer:** C
+**fastest_path:** 45 min = 3/4 hr. D = 80 × 3/4 = 60.
+**explanation:** Convert time first: 45 minutes = 45/60 = 3/4 of an hour. Then D = R × T = 80 × (3/4) = 60 miles. The entire challenge is the unit conversion from minutes to hours; the multiplication is one step once the fraction is set up.
+**mistake_a:** Treated 45 minutes as 0.45 hours by moving the decimal point instead of dividing by 60: 80 × 0.45 = 36. The correct conversion is 45 ÷ 60 = 0.75, not 0.45.
+**mistake_b:** Grabbed the time value (45) directly as the answer in miles without applying the rate — confused the given duration in minutes with the distance in miles.
+**mistake_d:** Grabbed the speed (80 mph) as the answer — read "how fast" instead of "how far."
+**mistake_e:** Treated 45 minutes as 1.5 hours (multiplied 45 by 2 instead of dividing by 60): 80 × 1.5 = 120. The conversion is 45/60 = 0.75, not 45 × 2/60 = 1.5.
+**common_trap:** decimal-confusion — writing 45 minutes as 0.45 hours by moving the decimal point rather than dividing by 60. The correct fraction is 45/60 = 3/4 = 0.75.
+**takeaway:** To convert minutes to hours, divide by 60. 45 min = 45/60 = 3/4 hr = 0.75 hr. Never just shift the decimal point.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -490,12 +490,12 @@ Of 150 guests at a dinner party, 90 ordered appetizers, 95 ordered dessert, and 
 **answer:** D
 **fastest_path:** y + 2x + 3·30 = 90+95+70 = 255 → y + 2x = 165. With y + x = 120 → x = 45.
 **explanation:** Let x = exactly 2, y = exactly 1, z = all three = 30. Eq 1 (total): y + x + z = 150 → y + x = 120. Eq 2 (sum of |sets|): 90 + 95 + 70 = y + 2x + 3z → 255 = y + 2x + 90 → y + 2x = 165. Subtract: x = 45.
-**mistake_a:** Slip → 15.
-**mistake_b:** Slip → 25.
-**mistake_c:** Slip → 35.
-**mistake_e:** Slip → 55.
-**common_trap:** Setting up the wrong system — forgetting that "all three" is counted 3× in the |sets| sum.
-**takeaway:** For 3-set Venn: |A| + |B| + |C| = 1·(exactly 1) + 2·(exactly 2) + 3·(all three).
+**mistake_a:** Computed the over-count correctly (sum − total = 255 − 150 = 105) but then subtracted 3 × 30 = 90 instead of 2 × 30 = 60: exactly-two = 105 − 90 = 15. Each "all-three" guest is counted 3× in the set-size sum but appears only once in the 150-person total — the excess per all-three guest is 3 − 1 = 2, not 3.
+**mistake_b:** Set up the system correctly (y + x = 120 and y + 2x = 165) but subtracted in the wrong direction: computed x = 120 − 165 = −45 then took the absolute value or chose the nearby positive answer, landing on 25. Always subtract the simpler equation from the more complex one: (y + 2x) − (y + x) = 165 − 120 → x = 45.
+**mistake_c:** Computed the over-count (255 − 150 = 105) correctly and identified the adjustment as 2 × 30, but made an arithmetic slip: wrote 2 × 30 = 70 instead of 60, giving 105 − 70 = 35.
+**mistake_e:** Computed the over-count (105) correctly but made an arithmetic slip on the all-three adjustment: computed 2 × 30 = 50 instead of 60, giving 105 − 50 = 55.
+**common_trap:** Setting up the wrong system — forgetting that "all three" is counted 3× in the |sets| sum, so each all-three guest contributes only 2 extra (not 1 or 3) to the over-count.
+**takeaway:** For 3-set Venn: |A| + |B| + |C| = 1·(exactly 1) + 2·(exactly 2) + 3·(all three). Over-count = sum − total = exactly-two + 2·(all-three); solve for exactly-two.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -545,12 +545,12 @@ Five years ago, Alex was three times as old as Sam. Ten years from now, Alex wil
 **answer:** D
 **fastest_path:** A = 3S − 10; A = 2S + 10 → S = 20, A = 50.
 **explanation:** A − 5 = 3(S − 5) → A = 3S − 10. A + 10 = 2(S + 10) → A = 2S + 10. Equate: 3S − 10 = 2S + 10 → S = 20 → A = 50. Verify: 5 yrs ago Alex 45 = 3·15 ✓; in 10 yrs Alex 60 = 2·30 ✓.
-**mistake_a:** Slip → 35.
-**mistake_b:** Slip → 40.
-**mistake_c:** Slip → 45.
-**mistake_e:** Slip → 55.
-**common_trap:** Misreading the time shifts ("5 ago" ≠ "10 from now") or swapping ages.
-**takeaway:** Each constraint is one linear equation. Two constraints → unique (A, S).
+**mistake_a:** Used "in 5 years" for the second condition instead of "in 10 years": A + 5 = 2(S + 5) → A = 2S + 5. Combined with A = 3S − 10: S = 15, A = 35. Re-read the problem — the second condition is "ten years from now," not five.
+**mistake_b:** Correctly derived S = 20, then dropped the constant when evaluating Alex's age from the second equation: computed A = 2(20) = 40 instead of A = 2(20) + 10 = 50. The equation is A = 2S + 10 — after solving for S, substitute the full expression, not just the 2S term.
+**mistake_c:** Correctly solved A − 5 = 3(S − 5) to find A − 5 = 3(20 − 5) = 45, then read A = 45 instead of isolating A: A = 45 + 5 = 50. The equation gives the value of A − 5; add back the 5 to get A.
+**mistake_e:** Transposed the two time periods — used "ten years ago" and "five years from now" instead of the given "five years ago" and "ten years from now": A − 10 = 3(S − 10) → A = 3S − 20, and A + 5 = 2(S + 5) → A = 2S + 5. This gives S = 25, A = 55.
+**common_trap:** Misreading or transposing the two time periods ("5 ago" vs "10 from now"). Each constraint maps to exactly one linear equation; write them out before solving.
+**takeaway:** Translate each constraint into a separate equation before combining. "N years ago" → subtract N from both ages; "N years from now" → add N to both ages. Use the exact time periods from the problem.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -571,12 +571,12 @@ A factory produces gadgets. Each gadget costs $10 in materials; fixed operating 
 **answer:** C
 **fastest_path:** Linear profit segments. Below 50: slope +15 (sell − cost). Above 50: slope −2 (8 − 10). Max at the kink: n = 50 → 15·50 − 300 = 450.
 **explanation:** For n ≤ 50: profit = 15n − 300, increasing → max at n = 50: 450. For n > 50: each extra unit earns $8 but costs $10 → marginal profit = −2 → profit decreases. So max overall = 450 at n = 50.
-**mistake_a:** Slip → 300.
-**mistake_b:** Slip → 390.
-**mistake_d:** Slip → 510.
-**mistake_e:** Bubbled max revenue (or always-produce-max) without subtracting cost.
-**common_trap:** Assuming "more production = more profit" without checking marginal revenue vs. marginal cost beyond the breakpoint.
-**takeaway:** Piecewise profit: maximize each segment separately, compare. Always check marginal change at each kink.
+**mistake_a:** Tested minimum production (n = 40) rather than finding the optimal n: profit = 15(40) − 300 = 300. Because profit is strictly increasing for n ≤ 50 (slope = +15 per unit), producing at the floor of the range (40 gadgets) is never the maximum.
+**mistake_b:** Assumed "more production always means more profit" and tested maximum production (n = 80): revenue = 50 × $25 + 30 × $8 = $1,490; cost = 80 × $10 + $300 = $1,100; profit = $390. The marginal profit on each unit beyond 50 is $8 − $10 = −$2 — every additional gadget beyond 50 erodes profit, so producing 80 is worse than producing 50.
+**mistake_d:** Applied the full $15 margin ($25 − $10) to all 54 units rather than switching to the clearance pricing beyond unit 50: profit = $15 × 54 − $300 = $510. Units 51 and beyond sell at $8, not $25 — their margin is $8 − $10 = −$2. Use the correct per-segment revenue for each region.
+**mistake_e:** Computed revenue only without subtracting the variable cost: 25 × 80 = $2,000, minus $300 fixed cost = $1,700 (or some similar calculation). Profit = revenue − total costs (fixed + variable). The $10 per-unit material cost must be subtracted for every gadget produced.
+**common_trap:** Assuming "more production = more profit" without checking marginal revenue vs. marginal cost beyond the price-cut threshold. At the kink (n = 50), marginal revenue drops to $8 while marginal cost stays at $10, inverting the slope.
+**takeaway:** Piecewise profit: compute the marginal profit on each segment. When the marginal profit turns negative at a kink, stop there. Maximize at the kink, not the boundary of the allowed range.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -623,12 +623,12 @@ The sum of a mother's current age and her daughter's current age is 45 years. Fi
 **answer:** C
 **fastest_path:** M = 4D − 15. With M + D = 45 → 5D − 15 = 45 → D = 12, M = 33.
 **explanation:** M + D = 45. M − 5 = 4(D − 5) → M = 4D − 15. Substitute: (4D − 15) + D = 45 → 5D = 60 → D = 12 → M = 33. Verify: 5 yrs ago Mom 28 = 4·7 ✓.
-**mistake_a:** Slip → 25.
-**mistake_b:** Slip → 30.
-**mistake_d:** Slip → 35.
-**mistake_e:** Slip → 40.
-**common_trap:** Forgetting the time shift on both ages (writing M − 5 = 4D instead of 4(D − 5)).
-**takeaway:** Time shifts apply to *both* people. "5 years ago" → both ages decrease by 5.
+**mistake_a:** Arithmetic slip when computing 5D = 45 + 15: wrote 5D = 50 instead of 60, giving D = 10 and M = 4(10) − 15 = 25. Re-check: 5D = 60, so D = 12.
+**mistake_b:** Correctly solved 5D = 60 → D = 12, then mis-substituted back: computed M = (sum of ages) − (equation constant) = 45 − 15 = 30 instead of M = 4D − 15 = 4(12) − 15 = 33. The back-substitution requires M = 4D − 15; substituting the sum (45) in place of 4D introduces an extra factor of 3 into the calculation.
+**mistake_d:** Correctly solved for D = 12, then made an arithmetic slip in the back-substitution: computed M = 4(12) − 13 = 35 instead of M = 4(12) − 15 = 33. The constant is −15, which comes from expanding M − 5 = 4(D − 5) → M − 5 = 4D − 20 → M = 4D − 15.
+**mistake_e:** Misread M + D = 45 as the mother's age alone, then subtracted the time period: M = 45 − 5 = 40. The 45 is the *combined* current age of mother and daughter — the individual ages must be solved for using the system of two equations.
+**common_trap:** Forgetting the time shift on both ages — writing M − 5 = 4D (shifts only the mother, not the daughter) instead of the correct M − 5 = 4(D − 5).
+**takeaway:** "5 years ago" applies to *both* people in the relationship. Translate: (mother's current age − 5) = 4 × (daughter's current age − 5). Always apply the same time shift to every person.
 **related_reading:** reading-quant-05-word-problems
 
 ---
