@@ -663,7 +663,7 @@ A company has two factories. Factory P produces 60% of the company's products; F
 ---
 
 ## Q26
-**difficulty:** Medium
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Range of a Data Set
 
@@ -796,27 +796,27 @@ A point is chosen uniformly at random on a line segment from 0 to 30. What is th
 ---
 
 ## Q31
-**difficulty:** Easy
+**difficulty:** Medium
 **type:** Problem Solving
-**topic:** Interquartile Range
+**topic:** Outlier Effect on Mean and Median
 
-The scores of 8 students on a quiz, arranged in ascending order, are: 52, 61, 67, 72, 78, 85, 89, 94. What is the interquartile range of these scores?
+The data set {2, 7, 7, 8, 76} has its largest value removed. Which of the following best describes the effect on the mean and the median?
 
-- A) 17
-- B) 22
-- C) 23
-- D) 27
-- E) 42
+- A) The mean decreases significantly; the median does not change.
+- B) The mean and the median each decrease by approximately the same amount.
+- C) The mean decreases slightly; the median decreases significantly.
+- D) The mean does not change; the median decreases.
+- E) Both the mean and the median remain the same.
 
-**answer:** C
-**fastest_path:** Lower half {52, 61, 67, 72}: Q1 = (61+67)/2 = 64. Upper half {78, 85, 89, 94}: Q3 = (85+89)/2 = 87. IQR = 87 − 64 = 23.
-**explanation:** For 8 ordered values, split into two halves of 4. Lower half: {52, 61, 67, 72}; Q1 = (61 + 67)/2 = 64. Upper half: {78, 85, 89, 94}; Q3 = (85 + 89)/2 = 87. IQR = Q3 − Q1 = 87 − 64 = 23.
-**mistake_a:** Subtracted the two inner values of the original set: 89 − 72 = 17, confusing the IQR with the range of the "middle" section.
-**mistake_b:** Arithmetic slip on either Q1 or Q3, landing one unit off: 87 − 65 = 22.
-**mistake_d:** Correct Q3 but mis-computed Q1 as 60: 87 − 60 = 27.
-**mistake_e:** Computed the range (max − min) instead of the IQR: 94 − 52 = 42. Range and IQR are different spread measures.
-**common_trap:** Confusing the IQR with the range. Range = max − min (94 − 52 = 42). IQR = Q3 − Q1, which measures spread of the middle 50%, not the full spread.
-**takeaway:** IQR: split ordered data at the midpoint, find Q1 (median of lower half) and Q3 (median of upper half), then subtract. For even-count data, each quarter's median is the average of its two middle values.
+**answer:** A
+**fastest_path:** Original mean = 100/5 = 20, median = 7. After removing 76: mean = 24/4 = 6, median = (7+7)/2 = 7. Mean drops sharply; median is unchanged.
+**explanation:** Original set {2, 7, 7, 8, 76}: mean = (2+7+7+8+76)/5 = 100/5 = 20; median = 3rd value = 7. After removing 76: set {2, 7, 7, 8}; mean = 24/4 = 6; median = (7+7)/2 = 7. The outlier 76 pulled the mean up to 20 — removing it drops the mean from 20 to 6. The median stays at 7 because it is positional (middle value) and the middle of the remaining set is still 7.
+**mistake_b:** Assumes both measures shift together — but median is positional, not sensitive to extreme values. The mean dropped 14 points; the median did not move at all.
+**mistake_c:** Reverses the magnitudes. The mean is the measure sensitive to outliers, not the median. Mean dropped sharply (20 → 6); median was unchanged.
+**mistake_d:** The mean always changes when any value is removed or added (unless the removed value equals the current mean). Here the mean dropped from 20 to 6.
+**mistake_e:** Both measures are recomputed on the smaller set. The mean changes whenever the set changes (unless the removed value equaled the mean); it dropped from 20 to 6.
+**common_trap:** Thinking the median "must" change when a value is removed. Median is the middle position; as long as the middle value(s) don't change, neither does the median.
+**takeaway:** Outliers distort the mean but not the median. The median is resistant (robust) to extreme values because it depends only on rank order, not magnitude.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---

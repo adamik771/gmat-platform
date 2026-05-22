@@ -19,7 +19,7 @@ In a right triangle, the two legs have lengths 5 and 12. What is the length of t
 **answer:** A
 **fastest_path:** Recognize 5-12-13 Pythagorean triple → c = 13.
 **explanation:** Pythagorean theorem: c² = 5² + 12² = 25 + 144 = 169 → c = 13. Even faster: recognize 5-12-13 as a memorized triple.
-**mistake_b:** Computed (5+12)/2 + 6.5 = 15 from a wrong shortcut.
+**mistake_b:** Computed 5² + 12² but got 225 instead of 169 (e.g., misread 144 as 200); √225 = 15.
 **mistake_c:** Bubbled 17 (the 8-15-17 triple) — wrong triple.
 **mistake_d:** Computed √(12² − 5²) = √119 = ~10.9; rounded to 7. Or computed (12 − 5) = 7.
 **mistake_e:** Computed √(12² − 5²) (treated as missing leg, not hypotenuse) = √119.

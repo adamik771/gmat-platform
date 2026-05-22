@@ -4,11 +4,9 @@ topic: Combinatorics
 ---
 
 ## Q1
-
 **difficulty:** Easy
 **type:** Problem Solving
 **topic:** Enumeration
-
 
 Three friends — Ana, Ben, and Cal — line up for a photo. In how many different orders can they stand?
 
@@ -32,11 +30,9 @@ Three friends — Ana, Ben, and Cal — line up for a photo. In how many differe
 ---
 
 ## Q2
-
 **difficulty:** Easy
 **type:** Problem Solving
 **topic:** Enumeration
-
 
 Four books are placed on a shelf. How many arrangements are possible if one specific book must be first?
 
@@ -60,11 +56,9 @@ Four books are placed on a shelf. How many arrangements are possible if one spec
 ---
 
 ## Q3
-
 **difficulty:** Easy
 **type:** Problem Solving
 **topic:** Permutations
-
 
 From a group of 7 candidates, how many ways can a president and a vice-president be chosen (order matters)?
 
@@ -88,11 +82,9 @@ From a group of 7 candidates, how many ways can a president and a vice-president
 ---
 
 ## Q4
-
 **difficulty:** Easy
 **type:** Problem Solving
 **topic:** Combinations
-
 
 A team of 3 is picked from a group of 6 students. How many different teams are possible?
 
@@ -116,11 +108,9 @@ A team of 3 is picked from a group of 6 students. How many different teams are p
 ---
 
 ## Q5
-
 **difficulty:** Easy
 **type:** Problem Solving
 **topic:** Combinations
-
 
 A pizza shop offers 8 toppings. How many different 2-topping pizzas are possible?
 
@@ -144,11 +134,9 @@ A pizza shop offers 8 toppings. How many different 2-topping pizzas are possible
 ---
 
 ## Q6
-
 **difficulty:** Medium
 **type:** Problem Solving
 **topic:** Permutations
-
 
 The letters of the word GAMES are rearranged. How many distinct arrangements are possible?
 
@@ -172,11 +160,9 @@ The letters of the word GAMES are rearranged. How many distinct arrangements are
 ---
 
 ## Q7
-
 **difficulty:** Medium
 **type:** Problem Solving
 **topic:** Combinations
-
 
 A committee of 4 is chosen from 10 people. How many possible committees are there?
 
@@ -200,11 +186,9 @@ A committee of 4 is chosen from 10 people. How many possible committees are ther
 ---
 
 ## Q8
-
 **difficulty:** Medium
 **type:** Problem Solving
 **topic:** Restrictions
-
 
 In how many arrangements of the letters in LESSON do the two S's appear next to each other?
 
@@ -228,11 +212,9 @@ In how many arrangements of the letters in LESSON do the two S's appear next to 
 ---
 
 ## Q9
-
 **difficulty:** Medium
 **type:** Problem Solving
 **topic:** Restrictions
-
 
 Six people sit in a row of 6 chairs. If Ana and Ben refuse to sit next to each other, how many seating arrangements are possible?
 
@@ -256,11 +238,9 @@ Six people sit in a row of 6 chairs. If Ana and Ben refuse to sit next to each o
 ---
 
 ## Q10
-
 **difficulty:** Medium
 **type:** Problem Solving
 **topic:** Combinations
-
 
 From 5 men and 4 women, a committee of 3 must be formed with exactly 2 men and 1 woman. How many such committees are possible?
 
@@ -284,11 +264,9 @@ From 5 men and 4 women, a committee of 3 must be formed with exactly 2 men and 1
 ---
 
 ## Q11
-
 **difficulty:** Medium
 **type:** Problem Solving
 **topic:** Circular
-
 
 In how many ways can 5 people sit around a circular table?
 
@@ -312,11 +290,9 @@ In how many ways can 5 people sit around a circular table?
 ---
 
 ## Q12
-
 **difficulty:** Medium
 **type:** Problem Solving
 **topic:** Restrictions
-
 
 A code consists of 4 digits chosen from {0–9}. How many codes are possible if no digit repeats?
 
@@ -340,11 +316,9 @@ A code consists of 4 digits chosen from {0–9}. How many codes are possible if 
 ---
 
 ## Q13
-
 **difficulty:** Hard
 **type:** Problem Solving
 **topic:** Restrictions
-
 
 How many arrangements of the letters in MISSISSIPPI are possible?
 
@@ -368,11 +342,9 @@ How many arrangements of the letters in MISSISSIPPI are possible?
 ---
 
 ## Q14
-
 **difficulty:** Hard
 **type:** Problem Solving
 **topic:** Combinations
-
 
 From 8 candidates, a committee of 3 is chosen AND one of the three is designated as chair. How many such outcomes are possible?
 
@@ -400,11 +372,9 @@ Both paths give 168, confirming the logic.
 ---
 
 ## Q15
-
 **difficulty:** Hard
 **type:** Problem Solving
 **topic:** Restrictions
-
 
 In how many ways can 4 men and 4 women be seated in a row if men and women must alternate?
 
@@ -428,11 +398,9 @@ In how many ways can 4 men and 4 women be seated in a row if men and women must 
 ---
 
 ## Q16
-
 **difficulty:** Hard
 **type:** Problem Solving
 **topic:** Combinations
-
 
 A bag has 6 red marbles and 5 blue marbles. How many ways can 4 marbles be drawn so that exactly 2 are red?
 
@@ -456,11 +424,9 @@ A bag has 6 red marbles and 5 blue marbles. How many ways can 4 marbles be drawn
 ---
 
 ## Q17
-
 **difficulty:** Hard
 **type:** Problem Solving
 **topic:** Restrictions
-
 
 Eight distinct books are arranged on a shelf. In how many arrangements are two specific books NOT separated by any other book?
 
@@ -484,11 +450,9 @@ Eight distinct books are arranged on a shelf. In how many arrangements are two s
 ---
 
 ## Q18
-
 **difficulty:** Hard
 **type:** Problem Solving
 **topic:** Combinations
-
 
 In a round-robin tournament with 10 teams, each team plays every other team exactly once. How many games are played in total?
 
