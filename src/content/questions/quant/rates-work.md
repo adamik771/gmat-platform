@@ -714,3 +714,451 @@ A machine produces 100 widgets every 2.5 hours. At this rate, how many widgets w
 **common_trap:** Multiplying 100 × 7.5 directly (ignores the 2.5-hr base) or dividing.
 **takeaway:** For constant-rate scaling: ratio of times = ratio of outputs. Always check the base unit.
 **related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q28
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Inlet and Drain Combined
+
+A tank has an inlet pipe that can fill it in 8 hours and a drain pipe that can empty it in 12 hours. If the tank starts empty and both pipes are open simultaneously, how many hours will it take to fill the tank?
+
+- A) 4
+- B) 8
+- C) 16
+- D) 20
+- E) 24
+
+**answer:** E
+**fastest_path:** Net rate = 1/8 − 1/12 = 1/24. Time = 24 hours.
+**explanation:** Inlet fills at 1/8 tank/hr; drain empties at 1/12 tank/hr. Net rate = 1/8 − 1/12 = 3/24 − 2/24 = 1/24 tank/hr. Time = 1/(1/24) = 24 hours.
+**mistake_a:** Subtracted rates then flipped without finding common denominator → 4.
+**mistake_b:** Bubbled the inlet's solo time (8 hr).
+**mistake_c:** Averaged the two times: (8 + 12)/2 ≈ 10, doubled to 16 from a confused setup.
+**mistake_d:** Used 8 + 12 = 20, treating times as additive.
+**common_trap:** Using the two solo times directly (adding or averaging) instead of converting to rates and netting them.
+**takeaway:** Filling and draining are opposing rates. Net rate = fill rate − drain rate. If net is positive the tank fills; time = 1/(net rate).
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Unit Conversion — Pace to Speed
+
+A runner maintains a steady pace of 8 minutes per mile. What is the runner's speed in miles per hour?
+
+- A) 6.5
+- B) 7.0
+- C) 7.5
+- D) 8.0
+- E) 9.0
+
+**answer:** C
+**fastest_path:** 60 min ÷ 8 min/mile = 7.5 mph.
+**explanation:** "Minutes per mile" is the reciprocal of miles per minute. Speed in mph = 60 min/hr ÷ 8 min/mile = 60/8 = 7.5 mph.
+**mistake_a:** Estimated downward from an approximate conversion → 6.5.
+**mistake_b:** Used 60/8 ≈ 7 from rounding.
+**mistake_d:** Bubbled the pace number itself (8) as the speed.
+**mistake_e:** Computed 8 + 1 = 9 from an unclear adjustment.
+**common_trap:** Treating the pace (8 min/mile) directly as the speed (8 mph). Pace and speed are reciprocals; you must divide 60 by the pace to convert.
+**takeaway:** Speed (mph) = 60 / pace (min/mile). Pace and speed are reciprocals — a higher pace number means slower speed.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Work — Scaling Workers
+
+Six workers can complete a task in 10 days. If the task must instead be completed in 6 days, how many workers are needed (assuming all workers work at the same rate)?
+
+- A) 8
+- B) 9
+- C) 10
+- D) 12
+- E) 15
+
+**answer:** C
+**fastest_path:** Total work = 6 × 10 = 60 worker-days. Need 60/6 = 10 workers.
+**explanation:** Total work = 6 workers × 10 days = 60 worker-days. New time = 6 days. Workers needed = 60/6 = 10.
+**mistake_a:** Added 2 to the original 6 → 8 from rough intuition.
+**mistake_b:** Computed 60/7 ≈ 8.6, rounded to 9.
+**mistake_d:** Used 6 × 2 = 12 (doubled the workers when the time halved, ignoring the exact ratio).
+**mistake_e:** Added time to workers: 10 + 5 = 15 from confused setup.
+**common_trap:** Doubling the workers when the time is cut from 10 to 6 (a 40% reduction, not a 50% reduction). Always anchor on total worker-days.
+**takeaway:** Worker × time = total work (constant). New workers = total work / new time. Workers and time are inversely proportional only if total work is fixed.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q31
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Two Objects — Same-Direction Catch-Up
+
+Car A departs a rest stop traveling at 50 mph. One hour later, Car B departs the same rest stop in the same direction at 75 mph. How many hours after Car B's departure will Car B overtake Car A?
+
+- A) 1
+- B) 1.5
+- C) 2
+- D) 2.5
+- E) 3
+
+**answer:** C
+**fastest_path:** At B's start, A leads by 50 mi. Closing rate = 75 − 50 = 25 mph. T = 50/25 = 2 hr.
+**explanation:** When B departs, A has a 1-hr head start: 50 × 1 = 50 mi ahead. Cars travel the same direction, so the closing rate is the difference: 75 − 50 = 25 mph. Time for B to close the gap: 50/25 = 2 hours after B's departure.
+**mistake_a:** Used A's head-start time directly as the catch-up time → 1 hr.
+**mistake_b:** Estimated 1.5 from rough division.
+**mistake_d:** Used 75 − 25 = 50, then 50/25 + something → 2.5.
+**mistake_e:** Used the sum 75 + 50 = 125 in some form → 3.
+**common_trap:** Using the sum of speeds (125) instead of the difference (25) for a same-direction catch-up problem.
+**takeaway:** Same direction → closing rate = speed difference. Opposite directions → closing rate = speed sum. Always identify the direction relationship first.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Rate — Linear Output Scaling
+
+A printer produces 240 pages in 6 minutes. At this constant rate, how many pages will it produce in 25 minutes?
+
+- A) 750
+- B) 800
+- C) 900
+- D) 1,000
+- E) 1,200
+
+**answer:** D
+**fastest_path:** Rate = 240/6 = 40 pages/min. 40 × 25 = 1,000.
+**explanation:** Rate = 240 ÷ 6 = 40 pages per minute. Pages in 25 min = 40 × 25 = 1,000.
+**mistake_a:** Estimated 30 pages/min and rounded → 750.
+**mistake_b:** Used 32 pages/min from a division error → 800.
+**mistake_c:** Used 36 pages/min → 900.
+**mistake_e:** Multiplied 240 × 25/4 with wrong base → 1,200, or used 48 pages/min.
+**common_trap:** Computing 240 × 25 and then dividing by the wrong factor, or forgetting to divide by 6 to find the per-minute rate first.
+**takeaway:** Find the unit rate first (pages/min), then scale. Rate = total output ÷ time; new output = rate × new time.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Work — Intermittent Operation
+
+Pump P can fill a tank in 15 hours when running continuously. Due to power constraints, the pump runs for 5 hours, then shuts off for 3 hours, then runs again for 5 hours, and so on. Starting from an empty tank, how many hours after the pump is first switched on will the tank be completely full?
+
+- A) 15
+- B) 18
+- C) 20
+- D) 21
+- E) 24
+
+**answer:** D
+**fastest_path:** Each 8-hr cycle fills 5/15 = 1/3. After 2 cycles (16 hr): 2/3 done. 3rd run fills remaining 1/3 in 5 more hours of pumping. Total: 16 + 5 = 21 hr.
+**explanation:** Each run-rest cycle lasts 8 hours (5 on + 3 off). In each cycle, the pump runs 5 hr and fills 5/15 = 1/3 of the tank. After 2 complete cycles (16 hours total elapsed), the tank is 2/3 full. The 3rd run starts at hour 16. The remaining 1/3 of the tank needs (1/3) ÷ (1/15) = 5 hours of pumping. The tank fills at hour 16 + 5 = 21.
+**mistake_a:** Counts only pump-on hours: 3 run periods × 5 hr = 15 hr — ignores the rest periods.
+**mistake_b:** Miscounts elapsed time after 2 cycles → 18.
+**mistake_c:** Arithmetic slip on the third run: 16 + 4 = 20.
+**mistake_e:** Counts 3 full 8-hour cycles (3 × 8 = 24) — but the tank fills partway through the 3rd run, not at its end.
+**common_trap:** Confusing pump-on hours (15 hours of actual work) with total elapsed hours (21 hours including 8 hours of rest over 2 rest periods). Also common: completing a full 3rd cycle when the tank fills mid-run.
+**takeaway:** With on-off schedules, track elapsed time separately from active pumping time. Work fills during run periods only; count run phases and sum elapsed hours.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Average Speed — Three Equal Legs
+
+Kenji drives a route divided into three equal legs of 60 miles each. He drives the first leg at 60 mph, the second at 30 mph, and the third at 20 mph. What is his average speed for the entire 180-mile journey?
+
+- A) 30 mph
+- B) 36 mph
+- C) 37 mph
+- D) 40 mph
+- E) 45 mph
+
+**answer:** A
+**fastest_path:** Equal distances → harmonic mean: 3/(1/60 + 1/30 + 1/20) = 3/(1/60 + 2/60 + 3/60) = 3/(6/60) = 30 mph.
+**explanation:** Times: leg 1 = 60/60 = 1 hr; leg 2 = 60/30 = 2 hr; leg 3 = 60/20 = 3 hr. Total: 180 miles in 6 hours → average = 30 mph. Equivalently, equal-distance harmonic mean: 3 ÷ (1/60 + 1/30 + 1/20) = 30 mph.
+**mistake_b:** Arithmetic mean: (60 + 30 + 20)/3 ≈ 36.7, rounded to 36.
+**mistake_c:** Arithmetic mean rounded up → 37.
+**mistake_d:** Used the middle speed (30) × some factor → 40.
+**mistake_e:** Took the fastest speed and averaged down loosely → 45.
+**common_trap:** Averaging the three speeds arithmetically (36.7 mph). Because the slow 20 mph leg consumes the most time, the true average is pulled far below the arithmetic mean.
+**takeaway:** Average speed = total distance / total time. For equal-distance legs, this equals the harmonic mean of the speeds. The slowest leg dominates because it consumes the most time.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Tank — Inlet and Drain, Partially Filled
+
+A tank is currently half full. An inlet pipe can fill the complete empty tank in 6 hours; a drain pipe can empty the full tank in 10 hours. If both pipes are open simultaneously, how many hours will it take to fill the tank completely from its current half-full state?
+
+- A) 5
+- B) 6
+- C) 7
+- D) 7.5
+- E) 8
+
+**answer:** D
+**fastest_path:** Net rate = 1/6 − 1/10 = 1/15. Need to fill 1/2. T = (1/2)/(1/15) = 7.5 hr.
+**explanation:** Net fill rate = 1/6 − 1/10 = 5/30 − 3/30 = 2/30 = 1/15 tank/hr. The tank needs 1/2 more to be full. Time = (1/2) ÷ (1/15) = (1/2) × 15 = 7.5 hours.
+**mistake_a:** Used just the inlet to fill 1/2 tank: (1/2) ÷ (1/6) = 3 hr, then added something → 5.
+**mistake_b:** Used the inlet's full-tank time without adjusting for the drain or the starting level → 6.
+**mistake_c:** Arithmetic slip on net rate calculation → 7.
+**mistake_e:** Rounded up from 7.5 → 8.
+**common_trap:** Forgetting to account for the drain pipe (using only the inlet rate) or forgetting the tank is already half full (computing time to fill from empty).
+**takeaway:** When pipes work simultaneously, use net rate = sum of fill rates minus sum of drain rates. Then adjust for the fraction remaining: time = fraction remaining / net rate.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Rate — Machine Output
+
+Machine A produces widgets at a constant rate. How many minutes will it take Machine A alone to produce 600 widgets?
+
+(1) Machine A produces 50 widgets in 4 minutes.
+(2) Machines A and B together produce 600 widgets in 3 minutes.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** (1): rate = 50/4 = 12.5 widgets/min → time = 600/12.5 = 48 min. Sufficient. (2): joint rate = 200/min but A's share unknown. Insufficient.
+**explanation:** Statement (1): Rate of A = 50/4 = 12.5 widgets/min. Time for 600: 600/12.5 = 48 minutes. Sufficient. Statement (2): Joint rate = 600/3 = 200 widgets/min. Without knowing how the rate splits between A and B, A's individual rate is unknown. Insufficient. Answer: A.
+**mistake_b:** Assumed (2) alone fixes A's rate — but the joint rate could split any way between A and B.
+**mistake_c:** Required both — (1) alone fully resolves.
+**mistake_d:** Treated each as sufficient — (2) is not.
+**mistake_e:** Concluded both insufficient — (1) fully determines the answer.
+**common_trap:** Treating a joint production rate as sufficient to determine one machine's rate. Without the split, a joint rate is one equation with two unknowns.
+**takeaway:** A joint-rate statement only fixes one machine's rate if the other machine's rate is known or constrained. A direct rate for the asked machine (as in (1)) is always sufficient.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Work Rate — Rate Increase
+
+Working at his normal rate, Bob can complete a job in 12 hours. One day, he works at a rate 50% faster than his normal rate. How long does it take him to complete the job?
+
+- A) 4
+- B) 6
+- C) 8
+- D) 10
+- E) 12
+
+**answer:** C
+**fastest_path:** New rate = 1.5 × (1/12) = 1/8. Time = 8 hr.
+**explanation:** Normal rate = 1/12 job/hr. A 50% faster rate means 1.5 times the normal rate: 1.5 × (1/12) = 3/24 = 1/8. Time = 1/(1/8) = 8 hours. Rate and time are inversely proportional: if rate × 1.5, then time × (1/1.5) = 2/3. Confirmation: 12 × (2/3) = 8 hours.
+**mistake_a:** Computed 12 × (1/3) = 4 — interpreted "50% faster" as tripling the rate.
+**mistake_b:** Computed 12 × (1/2) = 6 — confused "50% faster rate" with "halving the time," which would actually be 100% faster.
+**mistake_d:** Arithmetic slip in 12 × (2/3) → 10.
+**mistake_e:** Applied no change — kept the original 12-hour time.
+**common_trap:** Confusing "50% faster rate" with "takes 50% less time." A 50% rate increase reduces time by 1/3 (to 2/3 of original), not by 1/2.
+**takeaway:** If rate increases by factor k, time decreases by factor 1/k. "50% faster" → rate × 1.5 → time × (1/1.5) = time × 2/3.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Average Speed — Unequal Distances
+
+Elena drives 300 miles total. She drives the first 200 miles at 50 mph and the remaining 100 miles at 100 mph. What is her average speed for the entire trip?
+
+- A) 55
+- B) 60
+- C) 65
+- D) 70
+- E) 75
+
+**answer:** B
+**fastest_path:** T₁ = 200/50 = 4 hr; T₂ = 100/100 = 1 hr. Avg = 300/5 = 60 mph.
+**explanation:** Time for first leg: 200/50 = 4 hours. Time for second leg: 100/100 = 1 hour. Total time = 5 hours. Average speed = 300/5 = 60 mph.
+**mistake_a:** Estimated 55 from rough averaging with more weight on the slow leg.
+**mistake_c:** Arithmetic slip → 65.
+**mistake_d:** Used 300/4.3 (wrong total time) → 70.
+**mistake_e:** Took the arithmetic mean of the two speeds: (50 + 100)/2 = 75.
+**common_trap:** Averaging the speeds directly (75). The legs are not equal distance, so the slower first leg dominates time. The 200-mile leg at 50 mph takes 4× longer than the 100-mile leg at 100 mph, dragging the average well below 75.
+**takeaway:** Always compute average speed as total distance / total time. Averaging speeds is only valid when legs take equal time. Never average speeds when leg lengths or durations differ.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combined Work — Isolating One Solo Rate
+
+After Machines P and Q work together for 3 hours, they have completed 40% of a production job. Machine P alone can complete the entire job in 10 hours. How long would Machine Q take to complete the entire job working alone?
+
+- A) 15
+- B) 20
+- C) 25
+- D) 30
+- E) 40
+
+**answer:** D
+**fastest_path:** Joint rate = 0.40/3 = 2/15. Q's rate = 2/15 − 1/10 = 1/30. Q alone = 30 hr.
+**explanation:** Joint rate: 40% in 3 hours → (2/5)/3 = 2/15 job/hr. P's rate: 1/10 job/hr. Q's rate = 2/15 − 1/10 = 4/30 − 3/30 = 1/30 job/hr. Q alone takes 30 hours.
+**mistake_a:** Divided 3 hours by 0.40 and confused → 15.
+**mistake_b:** Took 10 + 10 = 20 from an unclear setup.
+**mistake_c:** Slip in fraction subtraction → 25.
+**mistake_e:** Subtracted P's time from the wrong baseline → 40.
+**common_trap:** Using the 3-hour joint duration or the 40% figure directly without first converting to a per-hour rate. Rates must be the starting point.
+**takeaway:** To find one machine's solo rate: compute joint rate from the scenario (output/time), subtract the known machine's rate, invert for time. Rates subtract; times do not.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q40
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Three-Machine System
+
+Machines A, B, and C together complete a job in 4 hours. A and B together complete the same job in 6 hours. B and C together complete it in 8 hours. How long would Machine A take working alone?
+
+- A) 6
+- B) 8
+- C) 10
+- D) 12
+- E) 16
+
+**answer:** B
+**fastest_path:** C = 1/4 − 1/6 = 1/12. B = 1/8 − 1/12 = 1/24. A = 1/6 − 1/24 = 1/8 → 8 hr.
+**explanation:** Let rA, rB, rC be rates. (1) rA+rB+rC = 1/4; (2) rA+rB = 1/6; (3) rB+rC = 1/8. From (1)−(2): rC = 1/4 − 1/6 = 1/12. Substitute into (3): rB = 1/8 − 1/12 = 3/24 − 2/24 = 1/24. Then rA = 1/6 − 1/24 = 4/24 − 1/24 = 3/24 = 1/8. Machine A alone: 8 hours. Verify: 1/8 + 1/24 + 1/12 = 3/24 + 1/24 + 2/24 = 6/24 = 1/4 ✓
+**mistake_a:** Confused A's rate with the A+B joint rate (1/6) → 6 hr.
+**mistake_c:** Arithmetic slip in the subtraction chain → 10.
+**mistake_d:** Used A+B+C time minus A+B time directly as A's time: 4 + (6−4) = some combination → 12.
+**mistake_e:** Added times rather than subtracting rates at some step → 16.
+**common_trap:** Subtracting times (6 − 4 = 2 hr) instead of subtracting rates. Each equation must be translated to the rate domain before any algebra is done.
+**takeaway:** For three-entity systems: use pair equations to isolate individual rates one at a time. Find C first (using (1)−(2)), then B (from (3) and C), then A (from (2) and B). Always verify with the original equations.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Average Speed — Solving for Second Leg
+
+A cyclist rides the first half of a route at 12 mph. How fast must she ride the second half so that her average speed for the entire route is 18 mph?
+
+- A) 22
+- B) 24
+- C) 27
+- D) 36
+- E) 45
+
+**answer:** D
+**fastest_path:** Equal distances → harmonic mean: 2(12)(x)/(12+x) = 18 → 24x = 216 + 18x → x = 36.
+**explanation:** Equal-distance legs → average speed = harmonic mean: 2ab/(a+b) = 18, where a = 12, b = x. So 2(12)(x)/(12+x) = 18 → 24x = 18(12+x) = 216 + 18x → 6x = 216 → x = 36 mph. Verify: if each half is 36 miles, first leg time = 3 hr, second leg time = 1 hr → avg = 72/4 = 18 mph ✓.
+**mistake_a:** Guessed by symmetry: 18 + (18−12) = 24 → 24, or took 2×18−12 = 24.
+**mistake_b:** Took the arithmetic complement: 18 + 6 = 24, but shifted → 24 from a linear extrapolation.
+**mistake_c:** Estimated midpoint between 12 and 36 → 27 (chosen before solving).
+**mistake_e:** Overshoot from trial-and-error → 45.
+**common_trap:** Using the arithmetic mean shortcut: "the second speed must be 2×18 − 12 = 24." That works only for equal-time legs, not equal-distance legs. Here the slow first leg consumes more time, so the second speed must be much higher than intuition suggests.
+**takeaway:** Equal distance (not equal time) → use the harmonic mean equation. The second leg must be significantly faster than the target to compensate, because the slow first leg has already consumed most of the available time budget.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Minimum Time — Multi-Worker Production
+
+A factory has m identical workers, each working at the same constant rate. What is the minimum number of hours needed for all m workers together to complete 100 tasks?
+
+(1) A team of 5 workers completes 20 tasks in 4 hours.
+(2) m = 8.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1): individual rate = 1 task/hr per worker, but m unknown. (2): m = 8, but rate unknown. Together: 8 workers × 1 task/hr = 8 tasks/hr → 100/8 = 12.5 hr.
+**explanation:** Statement (1): Rate per worker = 20/(5×4) = 1 task/hr per worker. The minimum time with m workers = 100/m. Without knowing m, cannot evaluate. Insufficient. Statement (2): m = 8 workers. Without knowing the per-worker rate, cannot compute time. Insufficient. Together: 8 workers at 1 task/hr each → 8 tasks/hr combined → 100/8 = 12.5 hours. Sufficient. Answer: C.
+**mistake_a:** Assumed (1) alone fixes the answer — it doesn't, because m is unknown.
+**mistake_b:** Assumed (2) alone fixes the answer — it doesn't, because the per-worker rate is unknown.
+**mistake_d:** Treated each statement as independently sufficient — neither is.
+**mistake_e:** Concluded both together are insufficient — they are not; each provides the missing piece for the other.
+**common_trap:** Treating the number of workers m as implicitly known or fixed after reading (1). The stem defines m as unknown; (1) gives rate, (2) gives m, and both are needed.
+**takeaway:** DS problems with two unknowns (rate and count) typically require two pieces of information. Always list the unknowns before evaluating each statement.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q43
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Round Trip — Upstream and Downstream
+
+A motorboat travels from dock P to dock Q, a distance of 48 km, and then returns from Q to P. The boat's speed in still water is 16 km/h and the river current flows from P toward Q at 4 km/h. How many hours does the complete round trip take?
+
+- A) 5.6
+- B) 6.0
+- C) 6.4
+- D) 7.0
+- E) 7.2
+
+**answer:** C
+**fastest_path:** Down = 16+4 = 20 km/h → 48/20 = 2.4 hr. Up = 16−4 = 12 km/h → 48/12 = 4 hr. Total = 6.4 hr.
+**explanation:** Downstream (P→Q, with current): speed = 16 + 4 = 20 km/h. Time = 48/20 = 2.4 hours. Upstream (Q→P, against current): speed = 16 − 4 = 12 km/h. Time = 48/12 = 4 hours. Total round-trip time = 2.4 + 4 = 6.4 hours.
+**mistake_a:** Applied current in the wrong direction for one leg → net effect smaller than actual → 5.6.
+**mistake_b:** Ignored the current and used still-water speed for both legs: 48/16 × 2 = 6 hr.
+**mistake_d:** Used the average speed (16 km/h) across 48×2 km incorrectly → 7.
+**mistake_e:** Used only the upstream speed for both legs: 48/12 × 2 = 8; then adjusted incorrectly → 7.2.
+**common_trap:** Ignoring the current and computing 48/16 × 2 = 6 hours. The current helps downstream and hurts upstream by equal amounts in speed, but the *time* effect is asymmetric — the boat spends more time fighting the current than it saves going with it.
+**takeaway:** Boat + current: downstream = b + c, upstream = b − c. Because time = d/speed, and the upstream speed is smaller, the upstream leg always takes proportionally more extra time than the downstream leg saves.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q44
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Three Pipes — Net Rate with Clock Time
+
+At 9:00 AM, three pipes are all opened simultaneously into an empty tank. Pipe X fills the tank in 8 hours; Pipe Y fills the tank in 12 hours; Pipe Z drains the tank in 6 hours. At what time will the tank be completely full?
+
+- A) 6:00 AM the following day
+- B) 9:00 AM the following day
+- C) 9:00 PM the same day
+- D) 12:00 AM (midnight)
+- E) The tank never fills completely.
+
+**answer:** B
+**fastest_path:** Net rate = 1/8 + 1/12 − 1/6 = 3/24 + 2/24 − 4/24 = 1/24 per hour. Tank fills in 24 hours → 9:00 AM the following day.
+**explanation:** Net fill rate = 1/8 + 1/12 − 1/6. Using denominator 24: = 3/24 + 2/24 − 4/24 = 1/24 tank/hr. The net rate is positive, so the tank does fill. Time = 1 ÷ (1/24) = 24 hours. Starting at 9:00 AM, adding 24 hours gives 9:00 AM the following day.
+**mistake_a:** Slip in adding 24 hours to 9:00 AM → landed on 6:00 AM.
+**mistake_c:** Used only X and Y (ignoring drain Z): 1/8 + 1/12 = 5/24 → 24/5 ≈ 4.8 hr → ~1:48 PM; rounded or misread as 9:00 PM from 12 hours.
+**mistake_d:** Computed the net rate as 1/16 from arithmetic error → 16 hours → 1:00 AM, then approximated to midnight.
+**mistake_e:** Compared only X's fill rate (1/8) to Z's drain rate (1/6) and concluded drain exceeds fill — but Y is also filling at 1/12, making the net rate positive.
+**common_trap:** Comparing only the largest fill pipe to the drain pipe and concluding the drain wins. Always compute the combined rate of ALL pipes before deciding whether the tank fills. Here, Z drains at 1/6 but X+Y together fill at 1/8+1/12 = 5/24 > 4/24 = 1/6.
+**takeaway:** With multiple fills and drains: net rate = (sum of fill rates) − (sum of drain rates). If net > 0, tank fills; if net ≤ 0, it never fills. Then convert elapsed hours to a clock time.
+**related_reading:** reading-quant-05-word-problems
