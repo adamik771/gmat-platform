@@ -356,7 +356,7 @@ If p and q are positive integers and pq = 36, is p + q > 13?
 **type:** Data Sufficiency
 **topic:** Percentages
 
-In a company, 60% of employees are full-time. Did the total number of employees increase from last year to this year?
+Last year, 60% of a company's employees were full-time and the remaining 40% were part-time. Did the total number of employees increase from last year to this year?
 
 (1) The number of full-time employees increased by 10% from last year to this year.
 (2) The number of part-time employees decreased by 5% from last year to this year.
@@ -426,8 +426,8 @@ A data set contains eight positive numbers. Is the standard deviation of the dat
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** Yes/no DS on SD>5. Range 4 caps SD at ≤ range/2 = 2 < 5. Definite "no" → (1) sufficient.
-**explanation:** (1): Range = 4 ⟹ SD ≤ range/2 = 2 < 5. Definite no. Sufficient. (2): Mean = 50 says nothing about spread — values could be all 50 (SD 0) or spread widely (SD > 5). Insufficient. Answer A.
+**fastest_path:** Yes/no DS on SD>5. Range = 4. Even the simple bound SD ≤ range = 4 < 5 gives a definite "no" → (1) sufficient. (Tighter bound: SD ≤ range/2 = 2.)
+**explanation:** (1): Range = 4 ⟹ all values lie within a 4-unit window, so SD ≤ range = 4 < 5. Definite no. (Tighter: SD ≤ range/2 = 2, achieved only when half the values cluster at each extreme.) Sufficient. (2): Mean = 50 says nothing about spread — values could all equal 50 (SD = 0) or be widely scattered (SD > 5). Insufficient. Answer A.
 **mistake_b:** B requires (2) alone sufficient — but mean is silent on SD.
 **mistake_c:** C-trap — adding (2) doesn't help; (1) alone gives a definitive no.
 **mistake_d:** D requires each alone — (2) fails.

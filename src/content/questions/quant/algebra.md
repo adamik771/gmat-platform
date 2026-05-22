@@ -544,16 +544,16 @@ Let x, y, and z be positive real numbers with x + y + z = 12 and xy + yz + zx = 
 - A) 66
 - B) 72
 - C) 78
-- D) 87
+- D) 27
 - E) 105
 
 **answer:** A
 **fastest_path:** (x+y+z)² = x²+y²+z² + 2(xy+yz+zx) → 144 = sum_of_squares + 78 → sum_of_squares = 66.
 **explanation:** Use the symmetric-sum identity (x + y + z)² = x² + y² + z² + 2(xy + yz + zx). Substitute: (12)² = (x² + y² + z²) + 2(39) → 144 = (x² + y² + z²) + 78 → x² + y² + z² = 66.
-**mistake_b:** Computed (sum)² + (cross-product sum) = 144 + 39 = ... no, mis-applied somewhere.
-**mistake_c:** Forgot the factor of 2: 144 − 39 = 105? No, picked 78 = 2 × 39 directly without subtracting from 144.
-**mistake_d:** Subtracted 39 directly (without the factor of 2): 144 − 39 = 105.
-**mistake_e:** Used 12² + 2(39) = 222 / something else.
+**mistake_b:** Applied a non-existent identity, (x+y+z)² = 2(x²+y²+z²), dividing both sides by 2: x²+y²+z² = 144/2 = 72. The correct identity requires a cross-product term on the right side, not a factor of 2 on the square-sum.
+**mistake_c:** Computed the right-hand adjustment correctly — 2(xy+yz+zx) = 78 — but bubbled that number directly as the answer rather than subtracting it from (x+y+z)² = 144.
+**mistake_d:** Used 3 as the coefficient on the cross-product term instead of 2: 144 = x²+y²+z² + 3(39) = x²+y²+z² + 117 → x²+y²+z² = 27. The symmetric-sum identity has coefficient 2, not 3.
+**mistake_e:** Forgot the factor of 2 entirely, writing (x+y+z)² = x²+y²+z² + (xy+yz+zx): 144 = x²+y²+z² + 39 → x²+y²+z² = 105. Every cross-product pair (xy, yz, zx) appears twice in the expansion of (x+y+z)², so the coefficient must be 2.
 **common_trap:** missing-algebraic-shortcut + factor-of-2 error — solving for x, y, z individually (impossible without more info) or forgetting the factor of 2 on the cross-product sum.
 **takeaway:** (x + y + z)² = (sum of squares) + 2(sum of pairwise products). Memorize for symmetric-sum problems.
 **related_reading:** reading-quant-04-algebra-and-equations
