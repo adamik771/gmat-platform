@@ -46,9 +46,9 @@ A bag contains 4 red balls, 3 blue balls, and 5 green balls. If one ball is draw
 **fastest_path:** 1 − P(green) = 1 − 5/12 = 7/12.
 **explanation:** Total = 12 balls. Non-green = 4 + 3 = 7 → 7/12. Or: complement: 1 − 5/12 = 7/12.
 **mistake_a:** Bubbled P(green) = 5/12.
-**mistake_c:** Slip → 1/3 (4/12, just red).
-**mistake_d:** Slip → 2/3 (8/12).
-**mistake_e:** Slip → 3/4 (9/12).
+**mistake_c:** Counted only the red marbles as favorable: 4/12 = 1/3. Misread "not green" as "just red" — blue marbles are also not green. Total favorable = 4 red + 3 blue = 7.
+**mistake_d:** Computed P(not red) = 1 − 4/12 = 8/12 = 2/3, misreading "not green" as "not red." The complement must exclude green (5 balls), not red (4 balls). Correct: 1 − P(green) = 1 − 5/12 = 7/12.
+**mistake_e:** Computed P(not blue) = 1 − 3/12 = 9/12 = 3/4, misreading "not green" as "not blue." The complement must be taken with respect to green (5 balls), not blue (3 balls).
 **common_trap:** Bubbling P(green) = 5/12 instead of P(not green).
 **takeaway:** P(not E) = 1 − P(E). Always read the *direction* of the question.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -72,9 +72,9 @@ What is the median of the set {14, 7, 21, 3, 10, 7, 18}?
 **fastest_path:** Sort → {3, 7, 7, 10, 14, 18, 21}. Middle (4th) = 10.
 **explanation:** Sort the set: 3, 7, 7, 10, 14, 18, 21. With 7 elements, median is the 4th value = 10.
 **mistake_a:** Bubbled the *mode* (7) — appears twice.
-**mistake_c:** Slip → 11.
-**mistake_d:** Bubbled an arbitrary value (14).
-**mistake_e:** Bubbled an arbitrary value (18).
+**mistake_c:** Computed the mean instead of the median: (3+7+7+10+14+18+21)/7 = 80/7 ≈ 11.4, rounded to 11. Mean and median are distinct — always sort first and identify the positional middle value.
+**mistake_d:** Sorted correctly to {3, 7, 7, 10, 14, 18, 21} but used 0-based indexing: computed middle position = (7+1)/2 = 4, then counted from index 0 → index 4 = the 5th element = 14. The (n+1)/2 formula uses 1-based indexing: the 4th element counting from 1 = 10.
+**mistake_e:** Identified the second-largest value (18) instead of the positional middle. "Median" means the middle rank in a sorted list, not "near the top." Sorted 4th-of-7 = 10.
 **common_trap:** Bubbling the mode (7, the most frequent value) instead of the median.
 **takeaway:** Sort first. Median for n elements: position (n+1)/2 if odd, average of middle two if even. Mode is most frequent — different concept.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -253,10 +253,10 @@ A jar contains 6 red marbles, 4 blue marbles, and 2 yellow marbles. If one marbl
 **answer:** D
 **fastest_path:** Favorable = 6 + 2 = 8. Total = 12. 8/12 = 2/3.
 **explanation:** Mutually exclusive → P(R or Y) = (6 + 2)/12 = 8/12 = 2/3.
-**mistake_a:** Slip → 1/3 (just one color).
-**mistake_b:** Forgot Y → 6/12 = 1/2.
-**mistake_c:** Slip → 7/12.
-**mistake_e:** Slip → 9/12 = 3/4.
+**mistake_a:** Averaged the two favorable color probabilities instead of adding: [P(red) + P(yellow)] / 2 = (6/12 + 2/12) / 2 = 4/12 = 1/3. P(A or B) for mutually exclusive events = P(A) + P(B). Add; do not average.
+**mistake_b:** Forgot to include yellow: computed P(red only) = 6/12 = 1/2. The question asks for red OR yellow — both groups are favorable.
+**mistake_c:** Arithmetic slip on 6 + 2: wrote 7 instead of 8. Favorable = 6 red + 2 yellow = 8 marbles; P = 8/12 = 2/3.
+**mistake_e:** Misread "yellow" as "blue": computed P(red or blue) = (6+3)/12 = 9/12 = 3/4. Re-read which colors are requested — yellow (2 marbles), not blue (3 marbles).
 **common_trap:** Forgetting one of the favorable colors (e.g., counting only red).
 **takeaway:** P(A or B) = P(A) + P(B) when events are mutually exclusive. Count favorable / total.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -279,10 +279,10 @@ A restaurant offers 4 appetizers, 6 entrees, and 3 desserts. How many different 
 **answer:** E
 **fastest_path:** 4 × 6 × 3 = 72.
 **explanation:** Counting principle: independent choices multiply. 4 × 6 × 3 = 72.
-**mistake_a:** Added: 4 + 6 + 3 = 13.
-**mistake_b:** Multiplied two of three: 4 × 6 = 24.
-**mistake_c:** Slip → 36 (4 × 9 or 6 × 6).
-**mistake_d:** Slip → 54.
+**mistake_a:** Added all three counts: 4 + 6 + 3 = 13. Addition gives the number of options for one course, not for a combined meal. Independent sequential choices require multiplication.
+**mistake_b:** Multiplied only two of the three categories: 4 × 6 = 24, then stopped. A three-course meal has three independent choices — all three must be multiplied: 4 × 6 × 3 = 72.
+**mistake_c:** Added two categories first, then multiplied: appetizers × (entrees + desserts) = 4 × (6+3) = 4 × 9 = 36. "And" for independent choices means multiply across all three categories separately. Correct: 4 × 6 × 3 = 72.
+**mistake_d:** Multiplied entrees × desserts = 6 × 3 = 18, then reused the desserts count as a third factor: 18 × 3 = 54 instead of 18 × 4 (appetizers). The three categories are appetizers (4), entrees (6), and desserts (3): 4 × 6 × 3 = 72.
 **common_trap:** Adding choices (13) instead of multiplying — confusing "or" with "and."
 **takeaway:** Independent "and" choices → multiply. Mutually exclusive "or" choices → add.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -409,10 +409,10 @@ Set X = {8, 10, 12, 14, 16} and Set Y is formed by adding 5 to each element of S
 **answer:** C
 **fastest_path:** Adding constant shifts mean by 5; SD unchanged.
 **explanation:** Adding 5 to each element: mean increases by 5; deviations from new mean = old deviations from old mean → SD unchanged.
-**mistake_a:** Treated additive shift as scaling SD.
-**mistake_b:** Inverted SD direction.
-**mistake_d:** Treated mean as unchanged.
-**mistake_e:** Treated mean as unchanged.
+**mistake_a:** Chose "greater mean and greater SD" (choice A). Adding 5 to every element shifts the mean by 5 (correct), but also shifts each deviation from the new mean by zero — the deviations are unchanged because the mean moves with the data. Only multiplication by |a| scales SD; adding a constant never changes spread.
+**mistake_b:** Chose "greater mean and smaller SD" (choice B). Adding a constant does not compress the distribution. Every value and the mean shift equally; deviations — and therefore SD — remain identical. SD stays the same, neither larger nor smaller.
+**mistake_d:** Chose "same mean and same SD" (choice D). The SD claim is correct (SD unchanged), but adding 5 to each element raises the mean by 5: mean(Y) = mean(X) + 5 = 12 + 5 = 17 ≠ 12. The mean tracks the center, which shifts with the data.
+**mistake_e:** Chose "same mean but different SDs" (choice E). Two errors at once: (1) adding 5 raises the mean by 5 — means differ; (2) adding a constant leaves SD unchanged — SDs are equal. Use: y = x + 5 → mean(y) = mean(x) + 5; SD(y) = SD(x).
 **common_trap:** Confusing additive shift (+5) with multiplicative scaling (×5). Only multiplicative changes SD.
 **takeaway:** y = ax + b → mean(y) = a·mean(x) + b; SD(y) = |a|·SD(x). Constant b shifts only the mean.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -545,10 +545,10 @@ Five distinct positive integers have an average of 20, a median of 22, and a lar
 **answer:** B
 **fastest_path:** Sum = 100. Median 22 + max 35 → a + b + d = 43. Distinct → d ≥ 23. Try d = 23: a + b = 20 (e.g., 1, 19) ✓.
 **explanation:** Order a < b < c < d < e with c = 22, e = 35. Sum 100 → a + b + d = 43. Distinctness: d > c = 22 → d ≥ 23. With d = 23: a + b = 20, e.g., (1, 19) — distinct, both < 22 ✓. So smallest d = 23.
-**mistake_a:** Set d = 22 = c (violates distinctness).
-**mistake_c:** Slip → 24.
-**mistake_d:** Slip → 25.
-**mistake_e:** Slip → 26.
+**mistake_a:** Set d = 22 = c (violates distinctness). The second-largest must be strictly greater than the median (22), so d ≥ 23.
+**mistake_c:** Applied a stricter gap than required: d ≥ c + 2 = 24 instead of d > c = 22 → d ≥ 23. Strict inequality (d > 22) means d is at least the next integer, 23 — not 24.
+**mistake_d:** Ignored the distinctness constraint between a and b: set a = b = 9 (equal), giving a + b = 18 and d = 43 − 18 = 25. Distinctness requires b ≥ a + 1; with minimum d = 23, a + b = 20 is achievable (e.g., a = 1, b = 19).
+**mistake_e:** Used an overly large value for b (e.g., a = 1, b = 16 → d = 43 − 17 = 26), not recognizing that b should be minimized to push d as low as possible. To find minimum d, set d = 23 first: then a + b = 20, achievable with a = 1, b = 19 (both < 22, distinct ✓).
 **common_trap:** Setting d = c = 22 — forgets that d is *strictly* greater than c.
 **takeaway:** Distinct integers → strict inequalities. d > c by at least 1.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -663,7 +663,7 @@ A company has two factories. Factory P produces 60% of the company's products; F
 ---
 
 ## Q26
-**difficulty:** Medium
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Range of a Data Set
 
@@ -734,8 +734,8 @@ In a group of 80 people, 45 own a car and 35 own a bicycle. If 20 people own bot
 **fastest_path:** |C ∪ B| = |C| + |B| − |C ∩ B| = 45 + 35 − 20 = 60.
 **explanation:** Inclusion-exclusion: |C ∪ B| = 45 + 35 − 20 = 60.
 **mistake_a:** Bubbled |Car| = 45 (just one set).
-**mistake_b:** Slip → 55.
-**mistake_d:** Slip → 65.
+**mistake_b:** Used 25 as the overlap instead of 20: 45 + 35 − 25 = 55. The problem states 20 people own both — do not confuse this with the 25 who own only a car (45 − 20 = 25) or any other derived count.
+**mistake_d:** Used 15 as the overlap instead of 20: 45 + 35 − 15 = 65. Misread or miscomputed the "both" count (20). Always read the overlap directly from the problem; 20 is explicitly given.
 **mistake_e:** Added without subtracting overlap: 45 + 35 = 80.
 **common_trap:** Failing to subtract the overlap (|both|) → 80 (double-counts the people who own both).
 **takeaway:** |A ∪ B| = |A| + |B| − |A ∩ B|. Always subtract the intersection once.
@@ -796,27 +796,27 @@ A point is chosen uniformly at random on a line segment from 0 to 30. What is th
 ---
 
 ## Q31
-**difficulty:** Easy
+**difficulty:** Medium
 **type:** Problem Solving
-**topic:** Interquartile Range
+**topic:** Outlier Effect on Mean and Median
 
-The scores of 8 students on a quiz, arranged in ascending order, are: 52, 61, 67, 72, 78, 85, 89, 94. What is the interquartile range of these scores?
+The data set {2, 7, 7, 8, 76} has its largest value removed. Which of the following best describes the effect on the mean and the median?
 
-- A) 17
-- B) 22
-- C) 23
-- D) 27
-- E) 42
+- A) The mean decreases significantly; the median does not change.
+- B) The mean and the median each decrease by approximately the same amount.
+- C) The mean decreases slightly; the median decreases significantly.
+- D) The mean does not change; the median decreases.
+- E) Both the mean and the median remain the same.
 
-**answer:** C
-**fastest_path:** Lower half {52, 61, 67, 72}: Q1 = (61+67)/2 = 64. Upper half {78, 85, 89, 94}: Q3 = (85+89)/2 = 87. IQR = 87 − 64 = 23.
-**explanation:** For 8 ordered values, split into two halves of 4. Lower half: {52, 61, 67, 72}; Q1 = (61 + 67)/2 = 64. Upper half: {78, 85, 89, 94}; Q3 = (85 + 89)/2 = 87. IQR = Q3 − Q1 = 87 − 64 = 23.
-**mistake_a:** Subtracted the two inner values of the original set: 89 − 72 = 17, confusing the IQR with the range of the "middle" section.
-**mistake_b:** Arithmetic slip on either Q1 or Q3, landing one unit off: 87 − 65 = 22.
-**mistake_d:** Correct Q3 but mis-computed Q1 as 60: 87 − 60 = 27.
-**mistake_e:** Computed the range (max − min) instead of the IQR: 94 − 52 = 42. Range and IQR are different spread measures.
-**common_trap:** Confusing the IQR with the range. Range = max − min (94 − 52 = 42). IQR = Q3 − Q1, which measures spread of the middle 50%, not the full spread.
-**takeaway:** IQR: split ordered data at the midpoint, find Q1 (median of lower half) and Q3 (median of upper half), then subtract. For even-count data, each quarter's median is the average of its two middle values.
+**answer:** A
+**fastest_path:** Original mean = 100/5 = 20, median = 7. After removing 76: mean = 24/4 = 6, median = (7+7)/2 = 7. Mean drops sharply; median is unchanged.
+**explanation:** Original set {2, 7, 7, 8, 76}: mean = (2+7+7+8+76)/5 = 100/5 = 20; median = 3rd value = 7. After removing 76: set {2, 7, 7, 8}; mean = 24/4 = 6; median = (7+7)/2 = 7. The outlier 76 pulled the mean up to 20 — removing it drops the mean from 20 to 6. The median stays at 7 because it is positional (middle value) and the middle of the remaining set is still 7.
+**mistake_b:** Assumes both measures shift together — but median is positional, not sensitive to extreme values. The mean dropped 14 points; the median did not move at all.
+**mistake_c:** Reverses the magnitudes. The mean is the measure sensitive to outliers, not the median. Mean dropped sharply (20 → 6); median was unchanged.
+**mistake_d:** The mean always changes when any value is removed or added (unless the removed value equals the current mean). Here the mean dropped from 20 to 6.
+**mistake_e:** Both measures are recomputed on the smaller set. The mean changes whenever the set changes (unless the removed value equaled the mean); it dropped from 20 to 6.
+**common_trap:** Thinking the median "must" change when a value is removed. Median is the middle position; as long as the middle value(s) don't change, neither does the median.
+**takeaway:** Outliers distort the mean but not the median. The median is resistant (robust) to extreme values because it depends only on rank order, not magnitude.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---

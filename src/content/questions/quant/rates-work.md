@@ -535,25 +535,25 @@ Working alone, Alex can complete a project in h hours; working alone, Ben can co
 ## Q21
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Average Speed — Round Trip
+**topic:** Average Speed — Three Legs
 
-A driver travels from town A to town B at an average speed of 60 miles per hour, and returns along the same route at an average speed of 40 miles per hour. What is the driver's average speed for the entire round trip?
+A delivery driver covers three equal legs of a route, each 60 miles long. He drives the first leg at 60 miles per hour, the second leg at 30 miles per hour, and the third leg at 20 miles per hour. What is his average speed for the entire trip?
 
-- A) 44 mph
-- B) 46 mph
-- C) 48 mph
-- D) 50 mph
-- E) 52 mph
+- A) 25 mph
+- B) 30 mph
+- C) 35 mph
+- D) 37 mph
+- E) 40 mph
 
-**answer:** C
-**fastest_path:** Equal distances → harmonic mean: 2(60)(40)/(60 + 40) = 4800/100 = 48.
-**explanation:** Equal-distance round trip → harmonic mean: 2ab/(a+b) = 4800/100 = 48 mph. Verify with d = 120: out 2 hr, back 3 hr → avg = 240/5 = 48.
-**mistake_a:** Estimated 44 from rough calc.
-**mistake_b:** Off by 2 → 46.
-**mistake_d:** Took arithmetic mean: (60 + 40)/2 = 50.
-**mistake_e:** Slip → 52.
-**common_trap:** Averaging speeds directly (50). Equal-distance means slow leg takes more time, pulling the average down.
-**takeaway:** Equal distance → harmonic mean. Slower leg dominates because it consumes more time. Always favor the slower side.
+**answer:** B
+**fastest_path:** Equal distances → total distance / total time = 180 / (1 + 2 + 3) = 180 / 6 = 30 mph.
+**explanation:** Total distance = 3 × 60 = 180 miles. Time per leg: 60/60 = 1 hr, 60/30 = 2 hr, 60/20 = 3 hr. Total time = 6 hr. Average speed = 180/6 = 30 mph.
+**mistake_a:** Estimated too low, perhaps from a rough weighted average error.
+**mistake_c:** Arithmetic mean of two of the speeds: (30 + 40)/2 or similar rough estimate.
+**mistake_d:** Arithmetic mean of all three speeds: (60 + 30 + 20)/3 = 110/3 ≈ 37. The arithmetic mean ignores the fact that the slow legs consume more time and therefore dominate average speed.
+**mistake_e:** Harmonic mean of just two of the three speeds (60 and 30): 2(60)(30)/(60+30) = 3600/90 = 40. Applying the two-speed harmonic mean formula when there are three legs gives the wrong answer.
+**common_trap:** Averaging the three speeds arithmetically: (60 + 30 + 20)/3 ≈ 37. Equal distance → use total distance ÷ total time, not the arithmetic mean of speeds.
+**takeaway:** Average speed = total distance / total time. When distances are equal, the slowest leg dominates because it takes the most time. Never average speeds directly.
 **related_reading:** reading-quant-05-word-problems
 
 ---
