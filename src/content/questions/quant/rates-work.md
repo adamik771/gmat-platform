@@ -714,3 +714,450 @@ A machine produces 100 widgets every 2.5 hours. At this rate, how many widgets w
 **common_trap:** Multiplying 100 × 7.5 directly (ignores the 2.5-hr base) or dividing.
 **takeaway:** For constant-rate scaling: ratio of times = ratio of outputs. Always check the base unit.
 **related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q28
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Pipes with Fill and Drain
+
+A tank has two connections: Pipe A fills it in 8 hours and Pipe B drains it in 24 hours. If the tank is empty and both connections are open simultaneously, how many hours will it take to fill the tank?
+
+- A) 6
+- B) 8
+- C) 10
+- D) 12
+- E) 16
+
+**answer:** D
+**fastest_path:** Net rate = 1/8 − 1/24 = 2/24 = 1/12 → T = 12.
+**explanation:** Fill rate = 1/8 per hour. Drain rate = 1/24 per hour. Net fill rate = 1/8 − 1/24 = 3/24 − 1/24 = 2/24 = 1/12 per hour. Time = 12 hours.
+**mistake_a:** Treated Pipe B as another fill pipe: 1/8 + 1/24 = 4/24 = 1/6 → T = 6. A drain pipe subtracts from the fill rate, not adds.
+**mistake_b:** Bubbled Pipe A's solo fill time (8 hours).
+**mistake_c:** Arithmetic slip on the net rate.
+**mistake_e:** Averaged the two solo times: (8 + 24)/2 = 16.
+**common_trap:** Adding a drain pipe's rate instead of subtracting it — treating both pipes as fillers.
+**takeaway:** Net fill rate = (sum of fill rates) − (sum of drain rates). Drain pipes always subtract.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Unit Rate and Productivity
+
+A team of 4 workers assembles 60 units in 3 days. At the same per-worker rate, how many units will 6 workers assemble in 5 days?
+
+- A) 90
+- B) 100
+- C) 120
+- D) 150
+- E) 180
+
+**answer:** D
+**fastest_path:** Rate = 60/(4 × 3) = 5 units/worker-day. Output = 5 × 6 × 5 = 150.
+**explanation:** Each worker produces 60 ÷ (4 × 3) = 5 units per worker-day. Total output = 5 × 6 workers × 5 days = 150 units.
+**mistake_a:** Scaled workers only, ignoring the time change: 60 × (6/4) = 90.
+**mistake_b:** Scaled time only, ignoring the worker change: 60 × (5/3) = 100.
+**mistake_c:** Arithmetic slip on the final multiplication → 120.
+**mistake_e:** Multiplied by both scale factors but used the wrong denominator or off-by-one error → 180.
+**common_trap:** Scaling by only one variable (workers OR days) and ignoring the other.
+**takeaway:** Total output = (rate per worker-day) × (number of workers) × (number of days). Both dimensions must be rescaled.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combined Work — Helper Joins Mid-Task
+
+A painter can complete a mural alone in 10 days. After working alone for 4 days, an assistant joins who paints at the same individual rate. How many more days until the mural is finished?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 5
+- E) 6
+
+**answer:** B
+**fastest_path:** Done after 4 solo days: 4/10 = 2/5. Remaining 3/5 at joint rate 1/5 per day → 3 days.
+**explanation:** Solo phase: 4 × (1/10) = 2/5 complete. Remaining = 3/5. Joint rate = 1/10 + 1/10 = 1/5 per day. Additional time = (3/5) ÷ (1/5) = 3 days.
+**mistake_a:** Used remaining = 2/5 (miscomputed solo phase as 3/5 done): 2/5 ÷ 1/5 = 2.
+**mistake_c:** Used remaining = 4/5 (thought only 1/5 was done in 4 solo days): 4/5 ÷ 1/5 = 4.
+**mistake_d:** Rough estimate not grounded in the fraction remaining.
+**mistake_e:** Used the solo rate instead of doubling for the joint phase: 3/5 ÷ 1/10 = 6 (forgot the assistant).
+**common_trap:** Using the solo rate for the joint phase — forgetting to double it when a second equal worker joins.
+**takeaway:** Track fraction completed in phase 1. In phase 2, double the rate. Divide remaining fraction by the new rate.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q31
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Two Objects Moving — Meeting Point
+
+Cities A and B are 180 km apart. Mia starts from City A toward City B at 60 km/h, and Jake starts from City B toward City A at 30 km/h, both at the same time. How many kilometers from City A is the point where they meet?
+
+- A) 60
+- B) 90
+- C) 100
+- D) 120
+- E) 150
+
+**answer:** D
+**fastest_path:** Closing rate = 90 km/h. T = 2 hr. Mia covers 60 × 2 = 120 km from A.
+**explanation:** Closing rate = 60 + 30 = 90 km/h. Meeting time = 180/90 = 2 hr. Mia travels 60 × 2 = 120 km from City A. Check: Jake travels 30 × 2 = 60 km from B; 120 + 60 = 180 ✓.
+**mistake_a:** Reported Jake's distance from B (30 × 2 = 60 km) — wrong reference point.
+**mistake_b:** Halved the total distance (180/2 = 90), assuming equal speeds.
+**mistake_c:** Arithmetic slip.
+**mistake_e:** Implausible estimate.
+**common_trap:** Reporting the meeting point's distance from B rather than from A.
+**takeaway:** Anchor the meeting-point distance to the requested city. Compute: (requested person's speed) × (meeting time).
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Required Speed — Remaining Leg
+
+A delivery driver must cover 240 miles in exactly 5 hours. She drives the first 60 miles at 30 mph. At what constant speed must she drive the remaining 180 miles to arrive exactly on time?
+
+- A) 40
+- B) 45
+- C) 54
+- D) 60
+- E) 90
+
+**answer:** D
+**fastest_path:** Time used = 60/30 = 2 hr. Remaining time = 3 hr. Speed = 180/3 = 60 mph.
+**explanation:** First-leg time = 60 ÷ 30 = 2 hours. Remaining time = 5 − 2 = 3 hours. Required speed = 180 ÷ 3 = 60 mph.
+**mistake_a:** Inverted the first-leg division: 30/60 = 0.5 hr elapsed, leaving 4.5 hr: 180/4.5 = 40.
+**mistake_b:** Used first-leg speed as its time: elapsed = 1 hr (treating "30 mph" as "30 minutes"), leaving 4 hr: 180/4 = 45.
+**mistake_c:** Rough estimate.
+**mistake_e:** Used 20 mph for the first leg: 60/20 = 3 hr elapsed, leaving 2 hr: 180/2 = 90.
+**common_trap:** Computing first-leg time as R/D (= 30/60 = 0.5) instead of D/R (= 60/30 = 2).
+**takeaway:** Time = Distance ÷ Rate, never Rate ÷ Distance. For 60 miles at 30 mph: T = 60/30 = 2 hours.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Relay Work — Find a Solo Rate
+
+Alice works alone on a fence-painting job for 3 hours at a rate that would finish the whole job in 9 hours alone. She then leaves. Bob works alone and finishes the remaining work in exactly 4 more hours. How long would it take Bob to paint the entire fence by himself?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 8
+- E) 12
+
+**answer:** C
+**fastest_path:** Alice: 3/9 = 1/3 done. Remaining 2/3. Bob rate = (2/3)/4 = 1/6/hr → solo = 6.
+**explanation:** Alice completes 3 × (1/9) = 1/3 of the fence. Remaining = 2/3. Bob finishes 2/3 in 4 hours → Bob's rate = (2/3) ÷ 4 = 1/6 per hour. Bob's solo time = 1 ÷ (1/6) = 6 hours.
+**mistake_a:** Bubbled Bob's actual work duration (4 hours).
+**mistake_b:** Estimated midpoint.
+**mistake_d:** Thought Alice completed 1/2 (not 1/3): remaining 1/2, Bob rate = 1/8 → solo = 8.
+**mistake_e:** Thought Alice completed 2/3 (inverted her share): remaining 1/3, Bob rate = 1/12 → solo = 12.
+**common_trap:** Misidentifying how much work Alice completed, then back-computing Bob's rate from the wrong remaining fraction.
+**takeaway:** Phase 1 work = (solo rate) × (time). Remaining = 1 − phase 1 work. Bob's rate = (remaining) ÷ (Bob's duration). Solo time = 1 ÷ Bob's rate.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combined Work — Three Workers
+
+Amanda, Bill, and Carlos can complete a task alone in 4, 6, and 12 hours respectively. How long will it take all three to complete the task working together?
+
+- A) 1.5
+- B) 2
+- C) 2.5
+- D) 3
+- E) 4
+
+**answer:** B
+**fastest_path:** 1/4 + 1/6 + 1/12 = 3/12 + 2/12 + 1/12 = 6/12 = 1/2 → T = 2.
+**explanation:** Combined rate = 1/4 + 1/6 + 1/12. Common denominator 12: 3/12 + 2/12 + 1/12 = 6/12 = 1/2 task/hr. Time = 1 ÷ (1/2) = 2 hours.
+**mistake_a:** Fraction-addition error → landed on 2/3 per hour → T = 1.5.
+**mistake_c:** Miscounted → 2/5 per hour → T = 2.5.
+**mistake_d:** Included only two of the three rates (Amanda + Bill: 5/12 → T ≈ 2.4, rounded to 3).
+**mistake_e:** Bubbled Amanda's solo time (4 hours).
+**common_trap:** Omitting one worker's rate when summing, or finding the common denominator incorrectly.
+**takeaway:** Three workers: sum all three unit-fractions, take the reciprocal. Sanity check: combined time must be less than the fastest individual solo time.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Average Speed — Unequal Distances
+
+A bus travels from City X to City Y in two legs. The first leg is 120 miles at 60 mph and the second leg is 90 miles at 30 mph. What is the bus's average speed for the entire trip, in miles per hour?
+
+- A) 38
+- B) 40
+- C) 42
+- D) 45
+- E) 48
+
+**answer:** C
+**fastest_path:** T₁ = 2 hr, T₂ = 3 hr. Total = 210 mi ÷ 5 hr = 42 mph.
+**explanation:** Leg-1 time = 120/60 = 2 hr. Leg-2 time = 90/30 = 3 hr. Total distance = 210 miles; total time = 5 hours. Average speed = 210/5 = 42 mph.
+**mistake_a:** Arithmetic slip → 38.
+**mistake_b:** Applied the harmonic mean formula (2·60·30)/(60+30) = 40 — but the harmonic mean only applies when the two distances are equal (this trip has 120 mi and 90 mi, not equal).
+**mistake_d:** Took the arithmetic mean: (60 + 30)/2 = 45. The slower leg takes 3 of the 5 hours and drags the true average below 45.
+**mistake_e:** Over-weighted the faster leg or made a weighted estimate → 48.
+**common_trap:** Using arithmetic mean (45) or harmonic mean (40) — neither applies here. Only total distance ÷ total time is universally correct.
+**takeaway:** Default to total distance ÷ total time. Use harmonic mean only when the two distances are confirmed equal.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Boat and Current — Hidden Stem Constraint
+
+A boat can travel 24 miles downstream in the same time it takes to travel 16 miles upstream. What is the boat's speed in still water?
+
+(1) The boat's downstream speed is 12 mph.
+(2) The river current's speed is 2 mph.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**fastest_path:** Stem: 24/(b+c) = 16/(b−c) → b = 5c. (1) b+c = 12, b=5c → c=2, b=10. (2) c=2, b=10. Each alone sufficient → D.
+**explanation:** Equal travel times: 24/(b+c) = 16/(b−c) → 24(b−c) = 16(b+c) → 8b = 40c → b = 5c. Statement (1): b+c = 12, b=5c → 6c=12 → c=2, b=10. Sufficient. Statement (2): c=2, b=5(2)=10. Sufficient. Each alone → D.
+**mistake_a:** Treated only (1) as sufficient.
+**mistake_b:** Treated only (2) as sufficient.
+**mistake_c:** Required both — but the stem's constraint (b=5c) means knowing either b+c or c alone resolves the system.
+**mistake_e:** Concluded both insufficient.
+**common_trap:** Not extracting the stem's ratio constraint before evaluating the statements. "Equal-time" conditions pin the ratio of speeds, reducing two unknowns to one degree of freedom.
+**takeaway:** In DS, the stem itself can supply constraints. Mine the stem for hidden equations before reading the statements.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combined Work — Three Pairwise Rates
+
+Workers A and B together complete a project in 10 days. Workers B and C together complete the same project in 15 days. Workers A and C together complete it in 12 days. How many days would it take all three working simultaneously?
+
+- A) 6
+- B) 7
+- C) 8
+- D) 9
+- E) 10
+
+**answer:** C
+**fastest_path:** Sum pairs: 1/10+1/15+1/12 = 15/60 = 1/4. Combined = (1/4)/2 = 1/8 → T = 8.
+**explanation:** Each worker appears in exactly two of the three pairwise sums, so (A+B)+(B+C)+(A+C) = 2(A+B+C). Therefore 2(A+B+C) = 1/10 + 1/15 + 1/12 = 6/60 + 4/60 + 5/60 = 15/60 = 1/4. Combined rate = 1/8 per day → T = 8 days.
+**mistake_a:** Fraction-sum error → combined rate = 1/6 → T = 6.
+**mistake_b:** Fraction-sum error → T = 7.
+**mistake_d:** Fraction-sum error → T = 9.
+**mistake_e:** Bubbled the A+B pairwise time (10 days).
+**common_trap:** Solving for individual rates A, B, C separately (tedious, error-prone) instead of using the pairwise-sum identity.
+**takeaway:** Key identity: (sum of all pairwise rates) = 2 × (all-three combined rate). Go directly to the combined rate without solving for individuals.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Work with Scheduled Breaks
+
+A worker completes a task that requires 6 hours of continuous work. She takes a 30-minute break after every 2 hours of work. How many total hours elapse from start to finish?
+
+- A) 6.0
+- B) 6.5
+- C) 7.0
+- D) 7.5
+- E) 8.0
+
+**answer:** C
+**fastest_path:** 3 cycles of 2 hr work. Breaks after cycles 1 and 2 only (not after 3). Total = 6 + 2 × 0.5 = 7.
+**explanation:** Cycle 1: 2 hr work, 30-min break. Cycle 2: 2 hr work, 30-min break. Cycle 3: 2 hr work — task complete, no trailing break. Working time = 6 hr; breaks = 2 × 0.5 = 1 hr. Total elapsed = 7 hours.
+**mistake_a:** Ignored breaks: 6 hr.
+**mistake_b:** Counted 1 break: 6 + 0.5 = 6.5 hr.
+**mistake_d:** Counted 3 breaks (including one after the final cycle): 6 + 1.5 = 7.5 hr.
+**mistake_e:** Counted 4 breaks: 6 + 2.0 = 8.0 hr.
+**common_trap:** Counting a break after the last work segment — no break occurs after the task is finished.
+**takeaway:** With k equal work-cycles, there are (k−1) breaks between them. The final cycle ends the task; no trailing break.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Two Objects Moving — Catch-Up with Clock Time
+
+A cargo ship leaves port at 8:00 AM sailing at 15 knots. A faster ship leaves the same port at 10:00 AM sailing at 25 knots in the same direction. At what time does the faster ship overtake the cargo ship?
+
+- A) 12:00 PM
+- B) 12:30 PM
+- C) 1:00 PM
+- D) 1:30 PM
+- E) 2:30 PM
+
+**answer:** C
+**fastest_path:** Head start = 2 × 15 = 30 nm. Closing rate = 10 knots. T = 3 hr after 10:00 AM = 1:00 PM.
+**explanation:** At 10:00 AM, cargo ship has sailed 2 × 15 = 30 nautical miles. Closing rate = 25 − 15 = 10 knots. Catch-up time = 30/10 = 3 hours after 10:00 AM = 1:00 PM.
+**mistake_a:** Used cargo ship's solo speed (15 knots) as the closing rate: 30/15 = 2 hr → 12:00 PM. The cargo ship is still moving; only the net gain per hour (10 knots) closes the gap.
+**mistake_b:** Arithmetic slip → 12:30 PM.
+**mistake_d:** Computed head start as 35 nm (accidentally averaged both ships' speeds for the 2-hr window) → 35/10 = 3.5 hr → 1:30 PM.
+**mistake_e:** Made a cascading error using sum of speeds (40 knots) as closing rate: 30/40 = 0.75 hr → 10:45 AM (not a choice), then added an extra offset → 2:30 PM.
+**common_trap:** Using one ship's absolute speed as the closing rate rather than the difference of the two speeds.
+**takeaway:** Catch-up rate = faster speed − slower speed. Head start = (delay in hours) × slower speed. Both ships are moving; only the net gain per hour matters.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q40
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Variable Productivity — Rate Change Mid-Task
+
+A worker's output drops partway through a project. For the first 4 hours he works at his standard rate, completing 2/5 of the project. Fatigue then reduces his output to exactly 60% of his standard rate. If he works at this reduced rate without stopping until the project is done, what is the total number of hours he works?
+
+- A) 10
+- B) 12
+- C) 13
+- D) 14
+- E) 16
+
+**answer:** D
+**fastest_path:** Standard rate = (2/5)/4 = 1/10/hr. Reduced = 3/50/hr. Time for remaining 3/5: (3/5)/(3/50) = 10 hr. Total = 14.
+**explanation:** Standard rate = (2/5) ÷ 4 = 1/10 per hour. Reduced rate = 0.60 × (1/10) = 3/50 per hour. Remaining work = 1 − 2/5 = 3/5. Time at reduced rate = (3/5) ÷ (3/50) = (3/5) × (50/3) = 10 hours. Total = 4 + 10 = 14 hours.
+**mistake_a:** Reported only the reduced-phase duration (10 hr), omitting the initial 4 hours.
+**mistake_b:** Used 80% efficiency: reduced rate = 8/100. Remaining time = (3/5)/(8/100) = 7.5 hr → total ≈ 11.5, rounded to 12.
+**mistake_c:** Arithmetic slip → 13.
+**mistake_e:** Used 50% efficiency: reduced rate = 1/20. Remaining time = (3/5)/(1/20) = 12 hr → total = 16.
+**common_trap:** Omitting the initial 4 hours from the total, or misreading "60% of standard rate" as "60% reduction" (leaving only 40% of standard rate).
+**takeaway:** "60% of standard rate" → new rate = 0.6 × old rate (not 0.4). Sum all phase durations for total elapsed time.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Two-Phase Work — Find the Switchover Time
+
+Pipe X fills a tank in 6 hours; Pipe Y fills the same tank in 12 hours. Both pipes open simultaneously at time zero. At some point, Pipe X is closed while Pipe Y continues alone until the tank is full. The tank becomes full exactly 6 hours after both pipes first opened. For how many hours was Pipe X open?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** C
+**fastest_path:** Y runs all 6 hr: 6/12 = 1/2 filled. X fills the other 1/2 at rate 1/6 → runs 3 hr.
+**explanation:** Pipe Y operates for the entire 6 hours: contribution = 6 × (1/12) = 1/2. X must supply the remaining 1/2. X's rate = 1/6 per hour, so X runs for (1/2) ÷ (1/6) = 3 hours. Check: Phase 1 (both, 3 hr): 3 × (1/6 + 1/12) = 3 × (1/4) = 3/4. Phase 2 (Y alone, 3 hr): 3/12 = 1/4. Total = 1 ✓.
+**mistake_a:** Arithmetic slip in the equation → t = 1.
+**mistake_b:** Set up Phase 1 as X-only and Phase 2 as Y-only: t/6 + (6−t)/12 = 1 → (t+6)/12 = 1 → t = 6 (impossible); arithmetic errors from this wrong setup land near 2.
+**mistake_d:** Sign error in the algebraic setup → solved 2t = 8 → t = 4.
+**mistake_e:** Intuited X runs "most of the time" and subtracted one → 5.
+**common_trap:** Overcomplicating the algebra. Y's full-6-hour contribution is fixed (1/2); X simply fills the rest. The fast path avoids the need to track two phase durations simultaneously.
+**takeaway:** When one pipe runs the full duration, compute its fixed contribution first. The other pipe's run time = (remaining work) ÷ (its rate).
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Two Objects Moving — Yes/No Sufficiency
+
+Train P and Train Q depart simultaneously from opposite ends of a 350-mile route, traveling toward each other at constant speeds. Will the two trains meet within 2 hours of departure?
+
+(1) Train P travels at 80 mph.
+(2) Train Q travels at 100 mph.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** Need closing rate > 175 mph to meet in under 2 hr. (1) alone: Q unknown — could make it YES or NO. (2) alone: P unknown — same. Together: 180 > 175 → YES. Sufficient → C.
+**explanation:** Meeting time = 350 ÷ (P + Q). For YES, need P + Q > 175. Statement (1): P = 80, Q unknown. If Q = 94 → total = 174 → T > 2 (NO). If Q = 96 → YES. Both outcomes possible — insufficient. Statement (2): Q = 100, P unknown. If P = 74 → total = 174 → NO. If P = 80 → YES. Insufficient. Together: closing rate = 180 > 175 → T = 350/180 ≈ 1.94 hr < 2 → definite YES. Sufficient.
+**mistake_a:** Assumed knowing P's speed alone determines the answer.
+**mistake_b:** Assumed knowing Q's speed alone determines the answer.
+**mistake_d:** Believed each speed alone was sufficient.
+**mistake_e:** Concluded that even combined they cannot answer — but with both speeds known, the meeting time is a single specific value (YES).
+**common_trap:** Assuming one train's speed determines the outcome. Meeting time depends on the *sum* of both speeds; one speed alone leaves the outcome open.
+**takeaway:** In Yes/No DS, each statement must produce a definitive single outcome. Here, each alone allows both YES and NO outcomes depending on the unknown speed. Together, one specific YES is confirmed.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q43
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Alternating Work Schedule
+
+Teams A, B, and C can each complete a project alone in 10, 15, and 30 days respectively. The project manager assigns Team A to work on odd-numbered days (days 1, 3, 5, …) and Teams B and C to work together on even-numbered days (days 2, 4, 6, …). On what day does the project get completed?
+
+- A) 5
+- B) 8
+- C) 9
+- D) 10
+- E) 12
+
+**answer:** D
+**fastest_path:** A's daily output = 1/10. B+C = 1/15+1/30 = 1/10. Every day = 1/10. Done in 10 days.
+**explanation:** Team A (odd days): 1/10 per day. Teams B+C (even days): 1/15 + 1/30 = 2/30 + 1/30 = 3/30 = 1/10 per day. Every day, exactly 1/10 of the project is completed. After 10 days: 10 × (1/10) = 1 — project complete at the end of Day 10.
+**mistake_a:** Added all three rates as if they work simultaneously every day: 1/10+1/15+1/30 = 1/5 → done in 5 days. The teams alternate; they never all work the same day.
+**mistake_b:** Miscounted cycles or used an incorrect per-day rate → 8 days.
+**mistake_c:** After 9 days, 9/10 is done — 1/10 remains. Day 10 (even: B+C) finishes the project at the day's end. Answered 9 by treating 9/10 as complete.
+**mistake_e:** Miscomputed B+C's combined rate (e.g., 1/15 + 1/30 computed as 1/45) → more than 10 days.
+**common_trap:** Treating the alternating schedule as simultaneous work (adding all three rates). Teams A and B+C never work on the same day.
+**takeaway:** Alternating schedules: compute each day's output for each schedule type separately. When both types produce the same daily output, the schedule is irrelevant and total days = 1 ÷ (output per day).
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q44
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Minimum Resources with Ceiling Constraint
+
+A factory must fulfill a contract requiring 3,600 unit-hours of production. Eight machines, each producing 5 units per hour, run for the first 40 hours and are then replaced by faster machines that each produce 12 units per hour. What is the minimum number of faster machines needed so the entire contract is fulfilled within 80 hours from the project's start?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 7
+- E) 8
+
+**answer:** B
+**fastest_path:** Phase 1: 8×5×40 = 1,600. Remaining 2,000 in 40 hr → need ≥ 50 units/hr. 4 machines = 48 (short). 5 machines = 60 (sufficient). Minimum = 5.
+**explanation:** Phase 1 output: 8 × 5 × 40 = 1,600 units. Remaining: 3,600 − 1,600 = 2,000 units. Time remaining: 80 − 40 = 40 hours. Required rate: 2,000/40 = 50 units/hr. At 12 units/hr per machine: 4 machines → 48 units/hr → 4 × 12 × 40 = 1,920 < 2,000 (insufficient by 80 units). 5 machines → 60 units/hr → 5 × 12 × 40 = 2,400 ≥ 2,000. Minimum = 5.
+**mistake_a:** Rounded 50/12 = 4.17 *down* to 4. But 4 machines fall 80 units short. When a resource count must meet a threshold, always round up.
+**mistake_c:** Used an incorrect remaining-work figure or added a safety margin unnecessarily → 6.
+**mistake_d:** Divided required output by machine-hours incorrectly or carried an arithmetic error → 7.
+**mistake_e:** Kept the original 8 machines — a like-for-like replacement assumption with no calculation.
+**common_trap:** Rounding 4.17 down to 4 (floor) when the ceiling is required. A fractional machine count means the integer must be rounded up to guarantee sufficiency.
+**takeaway:** Minimum integer resource count = ceiling of (required rate) ÷ (per-unit rate). Verify: floor value × rate < requirement (insufficient); ceiling value × rate ≥ requirement (sufficient).
