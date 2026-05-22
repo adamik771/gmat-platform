@@ -606,6 +606,7 @@ export default function ChapterReader({
   targetScore,
   initialProgress,
   weakestSection,
+  nextChapter,
 }: {
   slug: string
   title: string
@@ -626,6 +627,10 @@ export default function ChapterReader({
     accuracyPct: number
     attempts: number
   } | null
+  /** Next chapter in the same section, if one exists. Used to surface a
+   *  "Continue to" CTA in the completion card and right panel so students
+   *  don't drop out of the learning flow at chapter boundaries. */
+  nextChapter?: { slug: string; title: string } | null
 }) {
   // Hydrate progress from localStorage after mount. SSR renders an empty
   // state (every question pristine, no sections marked read), then the
@@ -986,6 +991,7 @@ export default function ChapterReader({
                     totalSections={totalSections}
                     problemSetCount={problemSets.length}
                     attemptedProblemSetCount={countAttemptedProblemSets(progress)}
+                    nextChapter={nextChapter ?? null}
                   />
                 )}
             </div>
@@ -1000,6 +1006,7 @@ export default function ChapterReader({
                   hasProblemSets={problemSets.length > 0}
                   nextUnreadTitle={nextUnread?.title ?? null}
                   nextUnreadAnchorId={nextUnread?.id ?? null}
+                  nextChapter={nextChapter ?? null}
                 />
               </aside>
             )}
@@ -1092,18 +1099,24 @@ function ChapterCompletionCard({
   totalSections,
   problemSetCount,
   attemptedProblemSetCount,
+  nextChapter,
 }: {
   section: Section
   title: string
   totalSections: number
   problemSetCount: number
   attemptedProblemSetCount: number
+  nextChapter: { slug: string; title: string } | null
 }) {
   const practiceSlug =
     section === "Quant" ? "quant" : section === "Verbal" ? "verbal" : "di"
   const hasProblemSets = problemSetCount > 0
   const allSetsDone = hasProblemSets && attemptedProblemSetCount >= problemSetCount
   const noneAttempted = hasProblemSets && attemptedProblemSetCount === 0
+  // Show "continue to next chapter" once readings are done and problem sets
+  // have been attempted (or there are none). Keeps students in the flow
+  // rather than dropping them at the chapter index.
+  const showNextChapter = nextChapter !== null && !noneAttempted
   return (
     <div
       className="relative overflow-hidden rounded-2xl border px-7 sm:px-10 py-9 sm:py-11"
@@ -1187,6 +1200,18 @@ function ChapterCompletionCard({
               Try the problem sets
               <ArrowRight className="w-3.5 h-3.5" aria-hidden />
             </a>
+          ) : showNextChapter ? (
+            <Link
+              href={`/chapters/${nextChapter!.slug}`}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold transition-all duration-200 hover:-translate-y-0.5"
+              style={{
+                backgroundColor: "var(--read-gold)",
+                color: "var(--read-bg-inset)",
+              }}
+            >
+              Continue to {nextChapter!.title}
+              <ArrowRight className="w-3.5 h-3.5" aria-hidden />
+            </Link>
           ) : (
             <Link
               href={`/practice/session/${practiceSlug}`}
@@ -1198,6 +1223,19 @@ function ChapterCompletionCard({
             >
               Practice {section}
               <ArrowRight className="w-3.5 h-3.5" aria-hidden />
+            </Link>
+          )}
+          {showNextChapter && (
+            <Link
+              href={`/practice/session/${practiceSlug}`}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold border transition-colors"
+              style={{
+                borderColor: "var(--read-border-strong)",
+                color: "var(--read-text)",
+                backgroundColor: "transparent",
+              }}
+            >
+              Practice {section}
             </Link>
           )}
           <Link

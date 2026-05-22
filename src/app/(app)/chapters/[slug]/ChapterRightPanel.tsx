@@ -10,6 +10,10 @@ interface Props {
   /** When set, the call-to-action surfaces the next-unread section. */
   nextUnreadTitle: string | null
   nextUnreadAnchorId: string | null
+  /** Next chapter in the same section. Surfaces a "Continue to" CTA in
+   *  the right panel once all sections are read and there are no problem
+   *  sets, keeping the student in the learning flow. */
+  nextChapter?: { slug: string; title: string } | null
 }
 
 /**
@@ -33,6 +37,7 @@ export default function ChapterRightPanel({
   hasProblemSets,
   nextUnreadTitle,
   nextUnreadAnchorId,
+  nextChapter,
 }: Props) {
   const pct =
     totalSections > 0
@@ -156,6 +161,35 @@ export default function ChapterRightPanel({
             <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
           </div>
         </a>
+      ) : nextChapter ? (
+        <Link
+          href={`/chapters/${nextChapter.slug}`}
+          className="group block rounded-xl border p-5 transition-colors"
+          style={{
+            backgroundColor: "var(--read-bg-elevated)",
+            borderColor: "var(--read-gold-strong)",
+          }}
+        >
+          <p
+            className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-2"
+            style={{ color: "var(--read-gold)" }}
+          >
+            Up next
+          </p>
+          <p
+            className="font-medium leading-snug"
+            style={{ color: "var(--read-text)" }}
+          >
+            {nextChapter.title}
+          </p>
+          <div
+            className="flex items-center gap-1.5 mt-3 text-[11px] uppercase tracking-[0.2em] font-semibold"
+            style={{ color: "var(--read-gold)" }}
+          >
+            Continue
+            <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+          </div>
+        </Link>
       ) : (
         <div
           className="rounded-xl border p-5"
