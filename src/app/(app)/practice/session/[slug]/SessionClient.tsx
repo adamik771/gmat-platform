@@ -1429,6 +1429,84 @@ export default function SessionClient({
             </div>
           </div>
 
+          {/* Pace vs. GMAT benchmark */}
+          {answeredCount >= 3 && (() => {
+            const totalAnsweredMs = answeredPairs.reduce((s, p) => s + p.state.elapsedMs, 0)
+            const avgMsPerQ = Math.round(totalAnsweredMs / answeredCount)
+            const targetMs = section === "Verbal" ? 90_000 : 120_000
+            const targetLabel = section === "Verbal" ? "1:30" : "2:00"
+            const ratio = avgMsPerQ / targetMs
+
+            let paceStatus: { text: string; color: string }
+            if (ratio < 0.72) {
+              paceStatus = { text: "Ahead of pace — accuracy may suffer", color: "#C9A84C" }
+            } else if (ratio <= 1.2) {
+              paceStatus = { text: "On GMAT pace", color: "#3ECF8E" }
+            } else if (ratio <= 1.6) {
+              paceStatus = {
+                text: `${Math.round((ratio - 1) * 100)}% over GMAT pace`,
+                color: "#C9A84C",
+              }
+            } else {
+              paceStatus = { text: "Cut off uncertain questions earlier", color: "#FF6B6B" }
+            }
+
+            // Scale: 0–2.5× target maps to 0–100% of bar width
+            const maxRatio = 2.5
+            const barPct = Math.min(Math.round((ratio / maxRatio) * 100), 100)
+            // GMAT target sits at 1/2.5 = 40% along the bar
+            const targetPct = Math.round((1 / maxRatio) * 100)
+
+            return (
+              <div className="mt-5 pt-4 border-t border-white/[0.06]">
+                <div className="flex items-baseline justify-between mb-2.5">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-[10px] uppercase tracking-widest text-[#555555]">
+                      Avg / question
+                    </span>
+                    <span className="text-sm font-semibold text-[#F0F0F0]">
+                      {formatDuration(avgMsPerQ)}
+                    </span>
+                  </div>
+                  <span className="text-[11px]" style={{ color: paceStatus.color }}>
+                    {paceStatus.text}
+                  </span>
+                </div>
+                <div className="relative h-1 rounded-full bg-white/[0.06]">
+                  <div
+                    className="absolute inset-y-0 left-0 rounded-full transition-all duration-700"
+                    style={{
+                      width: `${Math.max(barPct, 3)}%`,
+                      backgroundColor: paceStatus.color,
+                      opacity: 0.75,
+                    }}
+                  />
+                  {/* GMAT target tick */}
+                  <div
+                    className="absolute top-1/2 -translate-y-1/2 w-px h-3 rounded-full"
+                    style={{
+                      left: `${targetPct}%`,
+                      backgroundColor: "rgba(62,207,142,0.45)",
+                    }}
+                  />
+                </div>
+                <div className="relative h-4 mt-1">
+                  <span
+                    className="absolute text-[9px]"
+                    style={{
+                      left: `${targetPct}%`,
+                      transform: "translateX(-50%)",
+                      color: "#3a3a3a",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {targetLabel} target
+                  </span>
+                </div>
+              </div>
+            )
+          })()}
+
           {/* Difficulty breakdown — only when questions span 2+ levels */}
           {difficultyBreakdown.length >= 2 && (
             <div className="mt-6 pt-5 border-t border-white/[0.06]">
