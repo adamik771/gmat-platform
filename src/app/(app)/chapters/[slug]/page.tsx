@@ -2,6 +2,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
 import {
+  getAllChapters,
   getAllQuestions,
   getChapterBySlug,
   type ChapterProblemSet,
@@ -43,6 +44,21 @@ export default async function ChapterDetailPage({
   const { slug } = await params
   const chapter = getChapterBySlug(slug)
   if (!chapter) notFound()
+
+  // Determine the next chapter in the same section (alphabetical by title,
+  // matching the order shown in /chapters). Used to surface a "Continue to"
+  // CTA in the completion card so students don't drop out of the flow.
+  const sectionChapters = getAllChapters()
+    .filter((c) => c.section === chapter.section)
+    .sort((a, b) => a.title.localeCompare(b.title))
+  const currentIdx = sectionChapters.findIndex((c) => c.slug === slug)
+  const nextChapterData =
+    currentIdx >= 0 && currentIdx < sectionChapters.length - 1
+      ? {
+          slug: sectionChapters[currentIdx + 1].slug,
+          title: sectionChapters[currentIdx + 1].title,
+        }
+      : null
 
   // Build a single id → ParsedQuestion map once so section lookups are O(1).
   const byId = new Map<string, ParsedQuestion>()
@@ -193,6 +209,7 @@ export default async function ChapterDetailPage({
         targetScore={targetScore}
         initialProgress={initialProgress}
         weakestSection={weakestSection}
+        nextChapter={nextChapterData}
       />
     </div>
   )
