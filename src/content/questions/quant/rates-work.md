@@ -714,3 +714,445 @@ A machine produces 100 widgets every 2.5 hours. At this rate, how many widgets w
 **common_trap:** Multiplying 100 × 7.5 directly (ignores the 2.5-hr base) or dividing.
 **takeaway:** For constant-rate scaling: ratio of times = ratio of outputs. Always check the base unit.
 **related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q28
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Distance-Rate-Time — Unit Conversion
+
+A jogger runs at 12 miles per hour. How many minutes will it take the jogger to run 4 miles?
+
+- A) 15
+- B) 18
+- C) 20
+- D) 24
+- E) 48
+
+**answer:** C
+**fastest_path:** T = 4/12 hr = 1/3 hr. Convert: 1/3 × 60 = 20 min.
+**explanation:** Time = Distance / Rate = 4 / 12 = 1/3 hour. To convert to minutes: 1/3 × 60 = 20 minutes.
+**mistake_a:** Rounded 1/3 hr down to 1/4 hr → 0.25 × 60 = 15.
+**mistake_b:** Arithmetic slip using a wrong denominator in the conversion.
+**mistake_d:** Misread the speed as 10 mph: 4/10 × 60 = 24.
+**mistake_e:** Multiplied rate × distance: 12 × 4 = 48 (confused product for time).
+**common_trap:** Computing rate × distance = 48 and treating it as a time. The formula is Time = Distance / Rate, then convert hours to minutes.
+**takeaway:** Time = D/R. Then multiply by 60 to convert hours to minutes. Never multiply speed by distance — that gives units of (mi²/hr), not time.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combined Work — Two Workers
+
+Worker A can complete a task alone in 8 hours. Worker B can complete the same task alone in 12 hours. Working together, how long will it take them?
+
+- A) 4 hours
+- B) 4.8 hours
+- C) 5 hours
+- D) 10 hours
+- E) 20 hours
+
+**answer:** B
+**fastest_path:** 1/8 + 1/12 = 5/24 → T = 24/5 = 4.8 hr.
+**explanation:** Combined rate = 1/8 + 1/12. LCM of 8 and 12 is 24: 3/24 + 2/24 = 5/24 per hour. Time = 24/5 = 4.8 hours.
+**mistake_a:** Arithmetic slip on denominator after finding rate 5/24: divided 24 by 6 instead of 5 → 4.
+**mistake_c:** Rounded 4.8 up to 5.
+**mistake_d:** Averaged the solo times: (8 + 12)/2 = 10.
+**mistake_e:** Added the solo times: 8 + 12 = 20.
+**common_trap:** Averaging or adding solo times (D and E). Both ignore the fact that two workers running simultaneously finish the job faster than either alone — their *rates* add, not their times.
+**takeaway:** For combined work, add rates (1/a + 1/b), then flip to get elapsed time. Never add or average solo times.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Constant Rate — Output Scaling
+
+A factory produces 480 bolts in 6 hours. At this constant rate, how many bolts does the factory produce in 9 hours?
+
+- A) 540
+- B) 600
+- C) 720
+- D) 760
+- E) 840
+
+**answer:** C
+**fastest_path:** Rate = 480/6 = 80/hr. 80 × 9 = 720.
+**explanation:** Rate = 480 ÷ 6 = 80 bolts per hour. In 9 hours: 80 × 9 = 720 bolts. Equivalently, the time ratio is 9/6 = 3/2, so output = 480 × 3/2 = 720.
+**mistake_a:** Mis-read the base period as 8 hours: 480/8 × 9 = 540.
+**mistake_b:** Applied a factor of 5/4 instead of 3/2: 480 × 5/4 = 600.
+**mistake_d:** Arithmetic slip on 80 × 9 → 760.
+**mistake_e:** Applied a factor of 7/4: 480 × 7/4 = 840.
+**common_trap:** Dividing 480 by the wrong base (8 instead of 6) before scaling, or misidentifying the time ratio.
+**takeaway:** Rate = total output / total time. Scale output linearly: new output = rate × new time. Alternatively, multiply old output by the ratio of new time to old time.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q31
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Two Objects Moving Toward Each Other
+
+Two trains depart from cities 300 miles apart and travel directly toward each other. Train A travels at 60 mph and Train B travels at 90 mph. How many hours will it take for the two trains to meet?
+
+- A) 1.5
+- B) 2
+- C) 2.5
+- D) 3
+- E) 5
+
+**answer:** B
+**fastest_path:** Combined closing rate = 60 + 90 = 150 mph. T = 300/150 = 2 hr.
+**explanation:** When two objects move toward each other, their speeds add to give the closing rate: 60 + 90 = 150 mph. Time = gap / closing rate = 300/150 = 2 hours.
+**mistake_a:** Used closing speed of 200 mph (doubled an average): 300/200 = 1.5.
+**mistake_c:** Used only Train A's speed doubled (60 + 60 = 120): 300/120 = 2.5.
+**mistake_d:** Used only Train B's speed: 300/90 ≈ 3.3, rounded to 3.
+**mistake_e:** Used only Train A's speed: 300/60 = 5.
+**common_trap:** Using only one train's speed (D or E). Both trains are closing the gap simultaneously, so both speeds contribute.
+**takeaway:** Objects moving toward each other: closing rate = v₁ + v₂. Time = gap / (v₁ + v₂). Objects moving away: separation rate = v₁ + v₂.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Simultaneous Fill Rates
+
+A tank holds 600 gallons. Inlet Pipe A fills it in 5 hours. Inlet Pipe B fills it in 10 hours. If both pipes are open simultaneously, how many gallons per hour enter the tank?
+
+- A) 60
+- B) 90
+- C) 120
+- D) 150
+- E) 180
+
+**answer:** E
+**fastest_path:** A: 120 gal/hr. B: 60 gal/hr. Combined: 120 + 60 = 180 gal/hr.
+**explanation:** Rate A = 600/5 = 120 gal/hr. Rate B = 600/10 = 60 gal/hr. Combined fill rate = 120 + 60 = 180 gal/hr.
+**mistake_a:** Used only Pipe B's rate: 60.
+**mistake_b:** Averaged the two rates: (120 + 60)/2 = 90.
+**mistake_c:** Used only Pipe A's rate: 120.
+**mistake_d:** Halved Pipe B's rate before adding: 120 + 30 = 150.
+**common_trap:** Averaging the two rates (B). Simultaneous pipes add their output — neither rate should be discounted.
+**takeaway:** Parallel inlets add rates, not time. Total throughput = R₁ + R₂. Never average rates for simultaneous work.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Pursuit — One Object Catches Another
+
+Car A departs City X heading north at 50 mph. Two hours later, Car B departs from the same city heading north at 75 mph. How many hours after Car B's departure will Car B catch Car A?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 5
+- E) 6
+
+**answer:** C
+**fastest_path:** Head start = 50 × 2 = 100 mi. Closing speed = 75 − 50 = 25 mph. T = 100/25 = 4 hr.
+**explanation:** When B departs, A already has a 100-mile lead (50 mph × 2 hr). B closes the gap at 75 − 50 = 25 mph. Time to close 100 miles at 25 mph = 4 hours after B's departure. Check: A travels 50 × 6 = 300 miles; B travels 75 × 4 = 300 miles. They meet at 300 miles from X.
+**mistake_a:** Equated the head-start time with the catch time: answered 2 (the two-hour head start).
+**mistake_b:** Used wrong closing speed, e.g., 100/33 ≈ 3, from an arithmetic error on the gap or rate difference.
+**mistake_d:** Used closing speed of 20 mph (e.g., subtracted 5 from B's speed by mistake): 100/20 = 5.
+**mistake_e:** Computed total time from A's departure: 4 hr after B + 2 hr head start = 6, then reported that total instead of the time from B's departure.
+**common_trap:** Adding the head-start time (2 hr) to the catch time to report 6 hours — but the question asks how long after B departs, not after A departs.
+**takeaway:** Pursuit setup: (head-start distance) = (closing speed) × (catch time after faster departs). Closing speed = v_fast − v_slow. Catch time is measured from when the faster object starts.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Average Speed — Harmonic Mean
+
+A driver travels from City A to City B at 40 mph and returns from City B to City A at 60 mph. What is the driver's average speed for the entire round trip?
+
+- A) 44 mph
+- B) 46 mph
+- C) 48 mph
+- D) 50 mph
+- E) 52 mph
+
+**answer:** C
+**fastest_path:** Harmonic mean: 2(40)(60)/(40 + 60) = 4800/100 = 48 mph.
+**explanation:** Let d = distance one way. Time A→B = d/40. Time B→A = d/60. Total time = d/40 + d/60 = 3d/120 + 2d/120 = 5d/120 = d/24. Total distance = 2d. Average speed = 2d ÷ (d/24) = 48 mph. The harmonic mean formula 2ab/(a+b) gives the same result: 2(40)(60)/100 = 48.
+**mistake_a:** Guessed below 50, knowing harmonic mean < arithmetic mean, but underestimated.
+**mistake_b:** Another underestimate.
+**mistake_d:** Took arithmetic mean: (40 + 60)/2 = 50. The classic trap.
+**mistake_e:** Applied the formula in the wrong direction, or guessed above 50.
+**common_trap:** Arithmetic mean of the two speeds (D = 50). This is only correct when equal *time* is spent at each speed. Here equal *distance* is covered, so the slower leg takes longer, pulling the average below 50.
+**takeaway:** Average speed = total distance / total time. For equal-distance round trips: use 2ab/(a+b), the harmonic mean. It is always less than the arithmetic mean when the speeds differ.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Sequential Work — Solo Then Combined
+
+Pipe A fills a tank in 6 hours. Pipe B fills the same tank in 12 hours. Pipe A runs alone for 3 hours. Then Pipe B is also opened. How many additional hours (after Pipe B opens) does it take to fill the tank?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 6
+
+**answer:** B
+**fastest_path:** After 3 hr, A filled 3/6 = 1/2. Remaining 1/2 at combined rate 1/6 + 1/12 = 1/4: (1/2)/(1/4) = 2 hr.
+**explanation:** Phase 1 (A alone, 3 hr): fills 3/6 = 1/2. Remaining: 1/2. Phase 2 combined rate = 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4 per hour. Time for remaining 1/2: (1/2)/(1/4) = 2 additional hours.
+**mistake_a:** Used wrong remaining fraction or wrong rate, arriving at 1 hour.
+**mistake_c:** Used only Pipe A's rate for Phase 2 (forgot B is now also running): (1/2)/(1/6) = 3.
+**mistake_d:** Computed full-tank time at combined rate, ignoring the 1/2 already filled: 1/(1/4) = 4.
+**mistake_e:** Used Pipe A's solo time as a reference: answered 6.
+**common_trap:** Using only one pipe's rate after both are open (C), or computing the full-tank time at combined rate without crediting the work already done (D).
+**takeaway:** Phase problems: always find remaining work before dividing by the new combined rate. Never use the full-tank combined time when part of the tank is already full.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Simultaneous Fill and Drain — Net Rate
+
+A tank has two inlets and one drain. Inlet A fills it in 4 hours. Inlet B fills it in 6 hours. The drain empties it in 12 hours. Starting from empty with all three open simultaneously, how long does it take to fill the tank?
+
+- A) 2
+- B) 2.4
+- C) 3
+- D) 4
+- E) 6
+
+**answer:** C
+**fastest_path:** Net rate = 1/4 + 1/6 − 1/12 = 3/12 + 2/12 − 1/12 = 4/12 = 1/3. T = 3 hr.
+**explanation:** Net fill rate = (rate A) + (rate B) − (drain rate) = 1/4 + 1/6 − 1/12. Using LCM = 12: 3/12 + 2/12 − 1/12 = 4/12 = 1/3 per hour. Time = 1/(1/3) = 3 hours.
+**mistake_a:** Rounded 2.4 down to 2 after forgetting the drain.
+**mistake_b:** Forgot to subtract the drain; added only the two inlets: 1/4 + 1/6 = 5/12 → T = 12/5 = 2.4.
+**mistake_d:** Used only Inlet A: 1/4 per hr → T = 4.
+**mistake_e:** Used only Inlet B: 1/6 per hr → T = 6.
+**common_trap:** Forgetting the drain entirely (B = 2.4). The drain subtracts 1/12 from the net rate, slowing fill time from 2.4 to 3 hours.
+**takeaway:** Drain problems: net rate = (sum of all fill rates) − (sum of all drain rates). A drain is never added to the fill side.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Rate Factor — Productivity Multiplier
+
+A road crew paves a 12-mile stretch in 6 days at a constant rate. After 2 days, additional equipment is brought in and the remaining work is finished in 2 days (rather than the expected 4). By what factor did the crew's daily paving rate increase when the equipment arrived?
+
+- A) 1.5
+- B) 2
+- C) 2.5
+- D) 3
+- E) 4
+
+**answer:** B
+**fastest_path:** Original rate = 2 mi/day. New rate = 8 mi / 2 days = 4 mi/day. Factor = 4/2 = 2.
+**explanation:** Original rate = 12/6 = 2 mi/day. After 2 days: 2 × 2 = 4 miles done; 8 miles remain (which would have taken 4 days at 2 mi/day, confirming the 4-day estimate). New rate = 8/2 = 4 mi/day. Factor = new rate / old rate = 4/2 = 2.
+**mistake_a:** Used ratio of original total time to expected remaining time: 6/4 = 1.5.
+**mistake_c:** Applied a wrong ratio of miles to days, arriving at 5/2 = 2.5.
+**mistake_d:** Used ratio of original total time to actual remaining time: 6/2 = 3.
+**mistake_e:** Reported the new rate in miles per day (4) rather than the multiplicative factor (4/2 = 2).
+**common_trap:** Reporting the new rate (4 mi/day) as the answer instead of the factor by which the rate changed (4/2 = 2). Also, computing ratios of time intervals instead of ratios of rates.
+**takeaway:** Rate factor = new rate ÷ old rate. Always identify both rates explicitly. A ratio of times gives the *inverse* of the rate factor.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Staggered Start — Time of Completion
+
+Printer X can print a document in 20 minutes. Printer Y can print the same document in 30 minutes. Printer X starts at 9:00 AM. Printer Y starts at 9:10 AM. At what time is the document fully printed?
+
+- A) 9:12 AM
+- B) 9:14 AM
+- C) 9:16 AM
+- D) 9:18 AM
+- E) 9:20 AM
+
+**answer:** C
+**fastest_path:** X alone 10 min → 1/2 done. Combined 1/20 + 1/30 = 1/12 per min. 6 min more → 9:16 AM.
+**explanation:** Phase 1 (X alone, 9:00–9:10, 10 min): 10/20 = 1/2 of the document printed. Remaining: 1/2. Phase 2 combined rate: 1/20 + 1/30 = 3/60 + 2/60 = 5/60 = 1/12 per minute. Time for remaining 1/2: (1/2)/(1/12) = 6 minutes. Finish: 9:10 + 6 min = 9:16 AM. Verify: X prints 6/20 = 3/10 more; Y prints 6/30 = 1/5 = 2/10 more. Phase 2 total: 5/10 = 1/2. Grand total: 1/2 + 1/2 = 1.
+**mistake_a:** Assumed both start at 9:00 AM; computed full document at combined rate: 1/(1/12) = 12 min → 9:00 + 12 = 9:12.
+**mistake_b:** Arithmetic slip on combined rate or remaining fraction → 4 min after 9:10 = 9:14.
+**mistake_d:** Arithmetic slip → 8 min after 9:10 = 9:18.
+**mistake_e:** Ignored Y entirely; X alone finishes at 9:00 + 20 = 9:20.
+**common_trap:** Treating both printers as if they started together (A = 9:12). This ignores that Y joined 10 minutes late and misattributes Phase 1 output to both printers.
+**takeaway:** When start times differ, segment: Phase 1 = solo work until second machine joins; Phase 2 = combined work for the remainder. Add the phase durations to get the finish time.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Worker-Days — Team Size Change
+
+Twelve workers complete half a project in 4 days. Immediately after, 4 workers leave. How many additional days does the remaining team of 8 workers need to finish the project?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 8
+- E) 9
+
+**answer:** C
+**fastest_path:** Total project = 96 worker-days. Done = 48. Remaining = 48. With 8 workers: 48/8 = 6 days.
+**explanation:** Total project scope = 12 workers × 4 days × 2 (since only half was done) = 96 worker-days. First phase used 12 × 4 = 48 worker-days, completing half. Remaining: 48 worker-days. With 8 workers: 48/8 = 6 additional days.
+**mistake_a:** Did not account for the reduced team; divided remaining worker-days by original team: 48/12 = 4.
+**mistake_b:** Used an intermediate worker count (e.g., 48/10 ≈ 5).
+**mistake_d:** Computed total project at new team size then subtracted first phase: 96/8 = 12 total days at 8 workers, minus 4 elapsed = 8. This incorrectly assumes 8 workers were present in Phase 1.
+**mistake_e:** Divided by wrong number of remaining workers.
+**common_trap:** Computing 96/8 − 4 = 8 (D). This treats the full 96 worker-days as if 8 workers were there from day one, then subtracts Phase 1 time — but Phase 1 used 12 workers, so the subtraction is invalid.
+**takeaway:** Worker-day problems: compute remaining work in worker-days, then divide by the current (not original) team size. Only the remaining work matters after the team changes.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q40
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Three Workers — Staggered Breakdown
+
+Machines A, B, and C can each complete a job alone in 6, 9, and 18 hours respectively. All three start together. Machine B breaks down and stops exactly 1 hour after the start. How many total hours does it take to complete the job from start to finish?
+
+- A) 3
+- B) 3.5
+- C) 4
+- D) 4.5
+- E) 5
+
+**answer:** C
+**fastest_path:** Phase 1 (1 hr, A+B+C): done = 1/3. Phase 2 (A+C = 2/9/hr): remaining 2/3 → 3 hr. Total = 4 hr.
+**explanation:** Use a 18-unit job (LCM of 6, 9, 18). Rates: A = 3, B = 2, C = 1 unit/hr. Phase 1 (1 hr, all three): 6 units done, 12 remaining. Phase 2 (A + C = 4 units/hr): 12/4 = 3 hours. Total = 1 + 3 = 4 hours. Verify with fractions: Phase 1 rate = 1/6 + 1/9 + 1/18 = 3/18 + 2/18 + 1/18 = 6/18 = 1/3 per hr → 1/3 done in 1 hr. Phase 2 rate = 1/6 + 1/18 = 3/18 + 1/18 = 4/18 = 2/9 per hr → remaining 2/3 takes (2/3)/(2/9) = 3 hr.
+**mistake_a:** Computed full job at the three-machine combined rate, ignoring B's breakdown: 1/(1/3) = 3.
+**mistake_b:** Arithmetic slip on Phase 2 time.
+**mistake_d:** Forgot B's contribution in Phase 1 — used only A+C rate for Phase 1: 4/18 × 1 = 2/9 done → remaining 16/18 = 8/9. Phase 2 at A+C rate 2/9: (8/9)/(2/9) = 4 hr. Total = 1 + 3.5 → actually gives 4.44, but rounding leads students to 4.5.
+**mistake_e:** Forgot C continues working in Phase 2; used only A's rate: remaining 2/3 ÷ (1/6) = 4 hr. Total = 1 + 4 = 5.
+**common_trap:** Forgetting which machines are still running in each phase. C continues after B breaks; E arises by dropping C from Phase 2. A arises by ignoring the breakdown entirely.
+**takeaway:** Multi-phase work: explicitly list who is working in each phase and recalculate the combined rate for each phase. Never carry over a rate from a phase where team membership has changed.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Algebraic Rate — Ratio Constraint
+
+Working alone, Machine X takes twice as long as Machine Y to complete a task. Working together, they complete the task in 6 hours. How many hours does Machine X take working alone?
+
+- A) 9
+- B) 12
+- C) 15
+- D) 18
+- E) 24
+
+**answer:** D
+**fastest_path:** Y alone = t, X alone = 2t. 1/(2t) + 1/t = 3/(2t) = 1/6 → 2t = 18 → X = 18.
+**explanation:** Let Y's solo time = t. X's solo time = 2t (X is slower). Combined rate: 1/(2t) + 1/t = 1/(2t) + 2/(2t) = 3/(2t). Set equal to 1/6: 3/(2t) = 1/6 → 2t = 18 → t = 9. Y takes 9 hours alone; X takes 2t = 18 hours alone.
+**mistake_a:** Solved for t = 9 (Y's time) and stopped — did not multiply by 2 to find X's time.
+**mistake_b:** Doubled the joint time: 2 × 6 = 12, without setting up the rate equation.
+**mistake_c:** Guessed between 9 and 18.
+**mistake_e:** Quadrupled the joint time: 4 × 6 = 24.
+**common_trap:** Stopping after finding t = 9, which is Y's solo time. The question asks for X, whose time is 2t = 18. Re-reading the question after solving is essential.
+**takeaway:** Assign your variable to one unknown and express the other in terms of it. After solving, check which machine the question is asking about before writing the answer.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Pursuit — Fractional Head Start
+
+Train A departs Station 1 heading toward Station 2 at 80 km/h. Exactly 45 minutes later, Train B departs the same station on the same route at 110 km/h. How many hours after Train B's departure will Train B overtake Train A?
+
+- A) 1.5
+- B) 2
+- C) 2.5
+- D) 3
+- E) 4
+
+**answer:** B
+**fastest_path:** Head start = 80 × (3/4) = 60 km. Closing = 110 − 80 = 30 km/h. T = 60/30 = 2 hr.
+**explanation:** When B departs, A has traveled 80 × (45/60) = 80 × (3/4) = 60 km. B closes the gap at 110 − 80 = 30 km/h. Time to close 60 km: 60/30 = 2 hours. Verify: A travels 80 × (2 + 0.75) = 220 km from Station 1; B travels 110 × 2 = 220 km. They are at the same position.
+**mistake_a:** Used closing speed of 40 km/h (e.g., misread one train's speed): 60/40 = 1.5.
+**mistake_c:** Converted 45 min to 1 hour instead of 3/4 hr, giving head start = 80 km: 80/30 ≈ 2.67, approximated to 2.5.
+**mistake_d:** Used head start of 80 km and closed at 30 km/h: 80/30 = 8/3 ≈ 2.67, rounded up to 3.
+**mistake_e:** Used wrong head start (80 km) and wrong closing speed (20 km/h): 80/20 = 4.
+**common_trap:** Using 45 minutes as 1 full hour for the head-start calculation. Always convert: 45 min = 3/4 hr. Head start = 80 × 3/4 = 60 km, not 80 km.
+**takeaway:** Fractional time units must be converted before multiplying by speed. 45 min = 3/4 hr. Set up head start first, then divide by closing speed. The closing speed is always v_fast − v_slow when both move in the same direction.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q43
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Variable Rate — Two-Phase Completion
+
+A worker completes the first half of a job at a rate of one full job per 8 hours. For the second half, the worker operates at 1.5 times that rate. What is the total time to complete the entire job?
+
+- A) 5 hours
+- B) 5.5 hours
+- C) 6 hours
+- D) 6 2/3 hours
+- E) 7 hours
+
+**answer:** D
+**fastest_path:** Phase 1: (1/2) ÷ (1/8) = 4 hr. Phase 2: rate = 3/16; (1/2) ÷ (3/16) = 8/3 hr. Total = 4 + 8/3 = 20/3 = 6 2/3 hr.
+**explanation:** Phase 1 rate = 1/8 job/hr. Time for first half: (1/2) ÷ (1/8) = 4 hours. Phase 2 rate = 1.5 × (1/8) = 3/16 job/hr. Time for second half: (1/2) ÷ (3/16) = (1/2) × (16/3) = 8/3 hours. Total = 4 + 8/3 = 12/3 + 8/3 = 20/3 ≈ 6.67 hours = 6 2/3 hours.
+**mistake_a:** Computed the full job at 1.5× rate throughout: 1 ÷ (3/16) = 16/3 ≈ 5.3 ≈ 5.
+**mistake_b:** Guessed a midpoint between 5 and 6.
+**mistake_c:** Rounded Phase 2 time (8/3 ≈ 2.67) down to 2, giving 4 + 2 = 6.
+**mistake_e:** Rounded Phase 2 time (8/3 ≈ 2.67) up to 3, giving 4 + 3 = 7.
+**common_trap:** Rounding 8/3 to 3 for Phase 2, giving total = 7 (E). Also, treating the entire job as running at the increased rate gives 16/3 ≈ 5 (A).
+**takeaway:** Variable-rate problems: always segment. Compute time for each phase separately; then add. Never round intermediate results — carry exact fractions through to the final sum.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q44
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Deduced Drain Rate — Two-Scenario Pipe Problem
+
+Pipe A is an inlet that fills a tank in 3 hours. Pipe B is an inlet that fills the same tank in 2 hours. Pipe C is a drain. When only Pipes A and C are open, the tank fills in 6 hours. When only Pipes B and C are open, how many hours does it take to fill the tank?
+
+- A) 1.5
+- B) 2
+- C) 3
+- D) 4
+- E) 6
+
+**answer:** C
+**fastest_path:** A−C = 1/6 → C = 1/3 − 1/6 = 1/6. B−C = 1/2 − 1/6 = 1/3 → T = 3 hr.
+**explanation:** Step 1 — find drain rate. With A and C open: net rate = 1/3 − c = 1/6 → c = 1/3 − 1/6 = 2/6 − 1/6 = 1/6 per hour (tank drains in 6 hours). Step 2 — apply to B+C. Net rate = 1/2 − 1/6 = 3/6 − 1/6 = 2/6 = 1/3 per hour → time = 3 hours.
+**mistake_a:** Added B's rate and drain rate instead of subtracting: 1/2 + 1/6 = 2/3 per hr → T = 1.5 (treated the drain as an inlet).
+**mistake_b:** Ignored the drain; answered B's solo fill time: 2 hours.
+**mistake_d:** Applied a speed-ratio shortcut: B is 1.5× faster than A, so B+C time = A+C time / 1.5 = 6/1.5 = 4 hours. Plausible but wrong — the drain rate is fixed, not scaled by the inlet's speed.
+**mistake_e:** Confused A+C time with B+C time: answered 6.
+**common_trap:** Scaling A+C fill time by the inlet speed ratio (D = 4). The drain rate does not scale with the inlet — it is a fixed constant that must be derived explicitly from the first scenario before being applied to the second.
+**takeaway:** Multi-scenario pipe problems: Step 1 — use the known scenario to derive the unknown rate (here, the drain). Step 2 — substitute into the target scenario. Never assume rates scale proportionally across different pipe combinations.
+**related_reading:** reading-quant-05-word-problems
