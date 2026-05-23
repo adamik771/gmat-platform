@@ -160,7 +160,7 @@ Set A = {10, 20, 30, 40, 50} and Set B = {20, 25, 30, 35, 40}. Which of the foll
 ---
 
 ## Q7
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Counting
 
@@ -305,11 +305,11 @@ The mean of five distinct positive integers is 20 and their median is 18. If the
 **answer:** C
 **fastest_path:** Sum = 100. Median = 18, max = 40 → a + b + d = 42. Maximize a: minimize d (=19) and b (=a+1). 2a + 1 + 19 = 42 → a = 11.
 **explanation:** Order a < b < 18 < d < 40, sum = 100. So a + b + d = 100 − 18 − 40 = 42. Maximize a → minimize d and b. d > 18 (distinct) → d ≥ 19; b < 18 distinct from a → b ≥ a + 1. Tightest: d = 19, b = a + 1 → a + (a+1) + 19 = 42 → a = 11. Check: {11, 12, 18, 19, 40} ✓.
-**mistake_a:** Tried a = 1 without optimizing.
-**mistake_b:** Slip → 5.
-**mistake_d:** Set b = a (ignored "distinct") → got 12.
-**mistake_e:** Slip → 17.
-**common_trap:** Setting b = a (forgetting "distinct") — pushes a up by 1 to 12 but violates distinctness.
+**mistake_a:** Student misreads "greatest possible" as "least possible" — the smallest valid positive distinct integer in any such configuration is 1.
+**mistake_b:** Student sets b = 18 (the median value itself), colliding with the fixed median element: a + 18 + 19 = 42 → a = 5. The median 18 already occupies position 3; b must be strictly less than 18.
+**mistake_d:** Student ignores strict distinctness by setting b = a (no gap) AND uses d = 18 (treating d ≥ 18 instead of d > 18): a + a + 18 = 42 → a = 12. Two errors compound: b must be strictly greater than a, and d must be strictly greater than the median.
+**mistake_e:** Student anchors a at median − 1 = 17, assuming the smallest value must be directly adjacent to the median. The constraint is only a < b < 18 — no adjacency requirement; a can be any positive integer as long as b and d satisfy the sum.
+**common_trap:** Setting d = 18 (the median) instead of the minimum valid d = 19, or allowing b = 18 instead of requiring b < 18. Both shift a toward a plausible-looking wrong answer rather than the true maximum.
 **takeaway:** "Distinct" → strict inequalities. Always check b > a, d > c by ≥ 1.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
@@ -545,10 +545,10 @@ Five distinct positive integers have an average of 20, a median of 22, and a lar
 **answer:** B
 **fastest_path:** Sum = 100. Median 22 + max 35 → a + b + d = 43. Distinct → d ≥ 23. Try d = 23: a + b = 20 (e.g., 1, 19) ✓.
 **explanation:** Order a < b < c < d < e with c = 22, e = 35. Sum 100 → a + b + d = 43. Distinctness: d > c = 22 → d ≥ 23. With d = 23: a + b = 20, e.g., (1, 19) — distinct, both < 22 ✓. So smallest d = 23.
-**mistake_a:** Set d = 22 = c (violates distinctness).
-**mistake_c:** Slip → 24.
-**mistake_d:** Slip → 25.
-**mistake_e:** Slip → 26.
+**mistake_a:** Student sets d = 22, equal to the median c = 22 — violates the strictly distinct ordering (d must be strictly greater than c, so d ≥ 23).
+**mistake_c:** Student finds one valid configuration with d = 24 (e.g., {1, 18, 22, 24, 35}: sum = 100 ✓, all distinct ✓) and stops without checking whether d = 23 is also achievable. The question asks for the *smallest* possible d, not merely any valid value.
+**mistake_d:** Student finds d = 25 valid (e.g., {1, 17, 22, 25, 35}: sum = 100 ✓) and stops. Since d = 23 also works with a = 1 and b = 19, d = 25 is not the minimum.
+**mistake_e:** Student finds d = 26 valid (e.g., {1, 16, 22, 26, 35}: sum = 100 ✓) and stops. Optimization requires systematically testing smaller d until the bound is reached, not stopping at the first feasible solution.
 **common_trap:** Setting d = c = 22 — forgets that d is *strictly* greater than c.
 **takeaway:** Distinct integers → strict inequalities. d > c by at least 1.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
