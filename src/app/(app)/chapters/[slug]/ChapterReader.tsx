@@ -2034,6 +2034,7 @@ function ProblemSetCard({
 }
 
 function ProblemSetRunner({
+  slug,
   set,
   targetPct,
   onClose,
@@ -2121,6 +2122,9 @@ function ProblemSetRunner({
             answers={answers}
             total={set.questions.length}
             targetPct={targetPct}
+            questions={set.questions}
+            difficulty={set.difficulty}
+            slug={slug}
             onClose={onClose}
           />
         ) : (
@@ -2244,59 +2248,171 @@ function RunnerResults({
   answers,
   total,
   targetPct,
+  questions,
+  difficulty,
   onClose,
 }: {
   answers: boolean[]
   total: number
   targetPct: number
+  questions: ReaderQuestion[]
+  difficulty: "easy" | "medium" | "hard"
+  slug: string
   onClose: () => void
 }) {
   const correct = answers.filter(Boolean).length
   const pct = Math.round((correct / total) * 100)
   const passed = pct >= targetPct
+
+  const missedSubtopics = [
+    ...new Set(
+      answers
+        .map((ok, i) => (!ok && questions[i]?.subtopic ? questions[i].subtopic : null))
+        .filter((s): s is string => !!s && s.trim().length > 0)
+    ),
+  ]
+
+  const NEXT_LABEL: Record<string, string | null> = {
+    easy: "Medium",
+    medium: "Hard",
+    hard: null,
+  }
+  const nextLabel = NEXT_LABEL[difficulty]
+
+  let nextStep: string
+  if (passed && nextLabel) {
+    nextStep = `Solid. Scroll down and open the ${nextLabel} set to push further.`
+  } else if (passed) {
+    nextStep = "All three tiers cleared. Take this topic to a full timed practice session to confirm it under exam conditions."
+  } else if (missedSubtopics.length > 0) {
+    const gap = missedSubtopics.slice(0, 2).join(" and ")
+    nextStep = `The gap is in ${gap}. Review that section, then retake.`
+  } else {
+    nextStep = `Target was ${targetPct}%. Review the chapter and retake when you're ready.`
+  }
+
   return (
-    <div className="px-6 py-10 text-center space-y-6">
-      <div
-        className="mx-auto w-16 h-16 rounded-full flex items-center justify-center"
-        style={{
-          backgroundColor: passed ? "var(--read-success-soft)" : "var(--read-error-soft)",
-        }}
-      >
-        {passed ? (
-          <Award className="w-8 h-8" style={{ color: "var(--read-success)" }} />
-        ) : (
-          <BrainCircuit className="w-8 h-8" style={{ color: "var(--read-error)" }} />
-        )}
-      </div>
-      <div>
+    <div className="px-6 py-8 space-y-6">
+      {/* Score */}
+      <div className="text-center space-y-2">
+        <div
+          className="mx-auto w-14 h-14 rounded-full flex items-center justify-center"
+          style={{
+            backgroundColor: passed ? "var(--read-success-soft)" : "var(--read-error-soft)",
+          }}
+        >
+          {passed ? (
+            <CheckCircle2 className="w-7 h-7" style={{ color: "var(--read-success)" }} />
+          ) : (
+            <BrainCircuit className="w-7 h-7" style={{ color: "var(--read-error)" }} />
+          )}
+        </div>
         <p
-          className="font-display text-5xl font-semibold tabular-nums tracking-tight"
+          className="font-display text-[3.25rem] font-semibold tabular-nums tracking-tight leading-none"
           style={{ color: "var(--read-text)" }}
         >
           {pct}%
         </p>
         <p
-          className="text-[13px] mt-2 tabular-nums"
+          className="text-[13px] tabular-nums"
           style={{ color: "var(--read-text-muted)" }}
         >
-          {correct} / {total} correct
+          {correct} / {total} correct &middot; target {targetPct}%
         </p>
       </div>
-      <p
-        className="text-[14px] leading-relaxed max-w-sm mx-auto"
-        style={{ color: passed ? "var(--read-success)" : "var(--read-error)" }}
+
+      {/* Per-question strip */}
+      <div className="flex flex-wrap gap-2 justify-center">
+        {answers.map((ok, i) => (
+          <div key={i} className="flex flex-col items-center gap-0.5">
+            <span
+              className="inline-flex items-center justify-center w-8 h-8 rounded-lg"
+              style={{
+                backgroundColor: ok ? "var(--read-success-soft)" : "var(--read-error-soft)",
+                color: ok ? "var(--read-success)" : "var(--read-error)",
+              }}
+            >
+              {ok ? <Check className="w-3.5 h-3.5" /> : <X className="w-3.5 h-3.5" />}
+            </span>
+            <span
+              className="text-[9px] tabular-nums font-semibold"
+              style={{ color: "var(--read-text-faint)" }}
+            >
+              Q{i + 1}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      {/* Subtopic gaps */}
+      {missedSubtopics.length > 0 && (
+        <div
+          className="p-3.5 rounded-xl border"
+          style={{
+            backgroundColor: "var(--read-bg-inset)",
+            borderColor: "var(--read-border-strong)",
+          }}
+        >
+          <p
+            className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-1.5"
+            style={{ color: "var(--read-text-faint)" }}
+          >
+            Gaps to review
+          </p>
+          <p
+            className="text-[13px] leading-[1.6]"
+            style={{ color: "var(--read-text-body)" }}
+          >
+            {missedSubtopics.join(" · ")}
+          </p>
+        </div>
+      )}
+
+      {/* Next-step guidance */}
+      <div
+        className="p-3.5 rounded-xl border"
+        style={{
+          backgroundColor: passed ? "var(--read-success-soft)" : "var(--read-error-soft)",
+          borderColor: passed ? "rgba(62,207,142,0.2)" : "rgba(255,68,68,0.2)",
+        }}
       >
-        {passed
-          ? `Nice — you beat your target of ${targetPct}%.`
-          : `Target was ${targetPct}%. Review the chapter and retake when you're ready.`}
-      </p>
-      <button
-        onClick={onClose}
-        className="px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
-        style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
-      >
-        Close
-      </button>
+        <p
+          className="text-[13px] leading-[1.65]"
+          style={{ color: passed ? "var(--read-success)" : "var(--read-error)" }}
+        >
+          {nextStep}
+        </p>
+      </div>
+
+      {/* CTAs */}
+      <div className="space-y-2">
+        {passed && !nextLabel && (
+          <Link
+            href="/practice"
+            className="w-full inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
+            style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
+          >
+            Take it to practice
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        )}
+        <button
+          onClick={onClose}
+          className="w-full inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
+          style={
+            passed && !nextLabel
+              ? {
+                  backgroundColor: "transparent",
+                  color: "var(--read-text-muted)",
+                  border: "1px solid var(--read-border-strong)",
+                }
+              : { backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }
+          }
+        >
+          {passed && nextLabel ? "Back to chapter" : passed ? "Close" : "Return to chapter"}
+          {(passed || !nextLabel) && <ArrowRight className="w-3.5 h-3.5" />}
+        </button>
+      </div>
     </div>
   )
 }
