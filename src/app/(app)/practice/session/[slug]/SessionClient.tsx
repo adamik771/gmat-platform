@@ -73,6 +73,11 @@ interface QuestionState {
   firstInteractionMs: number | null
 }
 
+export interface PriorSession {
+  accuracy: number
+  createdAt: string
+}
+
 interface SessionClientProps {
   slug: string
   topic: string
@@ -85,6 +90,9 @@ interface SessionClientProps {
    *  questions array is already adaptively ordered by the server. */
   skillLevel?: number
   skillAttempts?: number
+  /** Last ≤5 sessions on this topic slug (chronological, oldest first).
+   *  Used to render the topic-history trend on the results screen. */
+  priorSessions?: PriorSession[]
 }
 
 function formatDuration(ms: number): string {
@@ -991,6 +999,7 @@ export default function SessionClient({
   questions,
   skillLevel,
   skillAttempts,
+  priorSessions = [],
 }: SessionClientProps) {
   const router = useRouter()
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -1478,6 +1487,85 @@ export default function SessionClient({
             </div>
           )}
         </div>
+
+        {/* Topic history trend — shows chronological accuracy dots for prior sessions */}
+        {priorSessions.length > 0 && (() => {
+          const accColor = (a: number) =>
+            a >= 78 ? "#3ECF8E" : a >= 60 ? "#C9A84C" : "#FF6B6B"
+          const allPoints = [...priorSessions.slice(-5), { accuracy }]
+          const n = allPoints.length
+          const last = priorSessions[priorSessions.length - 1]
+          const delta = accuracy - last.accuracy
+
+          return (
+            <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-4">
+                Topic history
+              </p>
+              {/* Dot track with baseline connector */}
+              <div className="relative">
+                <div
+                  className="absolute left-0 right-0 h-px bg-white/[0.05]"
+                  style={{ top: 10 }}
+                />
+                <div className="relative flex justify-between">
+                  {allPoints.map((pt, i) => {
+                    const isCurrent = i === n - 1
+                    const color = accColor(pt.accuracy)
+                    const size = isCurrent ? 12 : 8
+                    return (
+                      <div key={i} className="flex flex-col items-center" style={{ minWidth: 20 }}>
+                        <div className="flex items-center justify-center" style={{ height: 20, width: 20 }}>
+                          <div
+                            className="rounded-full"
+                            style={{
+                              width: size,
+                              height: size,
+                              backgroundColor: isCurrent ? "transparent" : color + "22",
+                              border: `${isCurrent ? 2 : 1.5}px solid ${color}`,
+                              boxShadow: isCurrent ? `0 0 8px ${color}66` : "none",
+                            }}
+                          />
+                        </div>
+                        <span
+                          className="text-[10px] tabular-nums mt-1"
+                          style={{ color: isCurrent ? color : "#555555" }}
+                        >
+                          {pt.accuracy}%
+                        </span>
+                        {isCurrent && (
+                          <span
+                            className="text-[9px] uppercase tracking-widest mt-0.5"
+                            style={{ color: "#333333" }}
+                          >
+                            now
+                          </span>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+              {/* Delta vs. last session */}
+              <div className="mt-3 pt-3 border-t border-white/[0.05] text-[11px]">
+                <span
+                  style={{
+                    color: delta > 0 ? "#3ECF8E" : delta < 0 ? "#FF6B6B" : "#888888",
+                  }}
+                >
+                  {delta > 0 ? `+${delta}%` : delta < 0 ? `${delta}%` : "No change"}
+                </span>
+                <span style={{ color: "#555555" }}>
+                  {delta > 0
+                    ? " vs. last session — moving in the right direction."
+                    : delta < 0
+                    ? " vs. last session — review what shifted."
+                    : " vs. last session — holding steady."}
+                </span>
+              </div>
+            </div>
+          )
+        })()}
 
         {(() => {
           const insight = computeInsight(questions, states, section)
