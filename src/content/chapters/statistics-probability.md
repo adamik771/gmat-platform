@@ -19,6 +19,8 @@ sections:
   - id: mean-and-sum
     type: reading
     title: "Mean and sum — the one identity that unlocks half the chapter"
+    intro: |
+      Every question about averages on the GMAT is really a question about totals in disguise. The definition of mean — sum divided by count — rearranges to **sum = mean × count**, and that single identity eliminates the need for algebra, variables, or systems of equations on almost every statistics question. The moment you see the word "average," your first move is to convert it to a sum.
     check_question_ids:
       - statistics-probability-q9
       - statistics-probability-q14
@@ -26,6 +28,8 @@ sections:
   - id: median-mode-ordered-sets
     type: reading
     title: "Median, mode, and the rules of ordered sets"
+    intro: |
+      The most reliable way to lose a median question is to skip sorting. Every median you compute starts with the same step: write the set in order, then count to the middle. Median is resistant to outliers in ways mean isn't — that property drives most of the 685+ questions in this section, including a "maximize one element" template that appears on nearly every GMAT form.
     check_question_ids:
       - statistics-probability-q3
       - statistics-probability-q12
@@ -33,6 +37,8 @@ sections:
   - id: standard-deviation
     type: reading
     title: "Standard deviation — spread, shifts, and scaling"
+    intro: |
+      The GMAT almost never asks you to compute a standard deviation. What it does ask is whether SD increases, decreases, or stays the same after a shift or scaling — and which of two sets has larger SD. Two rules and a "spread" intuition handle 95% of what you'll see. This section builds both and flags the single trap that catches even strong students.
     check_question_ids:
       - statistics-probability-q6
       - statistics-probability-q16
@@ -40,6 +46,8 @@ sections:
   - id: basic-probability
     type: reading
     title: "Basic probability — favorable over total, and the complement"
+    intro: |
+      Probability is one fraction: favorable outcomes divided by total outcomes. Every formula in this section — complement, union, independent product — is a structured way to count numerators and denominators carefully. The complement rule is the most underused and most powerful move here. Learn it first, apply it reflexively, and "at least one" questions will stop feeling hard.
     check_question_ids:
       - statistics-probability-q10
       - statistics-probability-q8
@@ -47,6 +55,8 @@ sections:
   - id: dependent-events
     type: reading
     title: "Dependent events — with and without replacement"
+    intro: |
+      One word changes everything: *replacement*. Draw with replacement and the pool resets after each draw — events are independent, and you multiply the same probability each time. Draw without replacement and the pool shrinks — every draw depends on every previous draw. Confusing the two setups produces wrong answers that look nearly correct, which is exactly why the GMAT tests both setups together.
     check_question_ids:
       - statistics-probability-q15
       - statistics-probability-q5
@@ -54,6 +64,8 @@ sections:
   - id: counting-and-combinations
     type: reading
     title: "Counting and combinations — when to multiply, when to choose"
+    intro: |
+      Before you can write a probability fraction, you usually have to count the outcomes. One question separates 80% of combinatorics problems: does order matter? If rearranging the selected items gives a different outcome, use a permutation. If rearranging gives the same outcome, use a combination. Get that call right and the rest is formula arithmetic.
     check_question_ids:
       - statistics-probability-q11
       - statistics-probability-q13
@@ -158,13 +170,21 @@ Again, just sum arithmetic.
 - Old sum = 24 × 10 = 240
 - Added = 275 − 240 = **35**
 
-**Shortcut for added-element problems.** When adding one value shifts the mean by `d`, the new value equals `(new mean) + (old count) × d`. In the example above: 25 + 10 × 1 = 35. Intuition: the new value has to cover *its own* spot at the new mean PLUS pull every other value up by d. If d is positive, the new value is above the mean by exactly n × d. If d is negative, the new value is below the mean. Useful for skipping the sum arithmetic on the test.
+**Shortcut for added-element problems.** When adding one value shifts the mean by `d`, the new value equals `(new mean) + (old count) × d`. In the example above: 25 + 10 × 1 = 35. Intuition: the new value has to fill its own slot at the new mean AND pull every existing value up by d. If d is positive, the new value exceeds the mean by exactly n × d. If d is negative, it falls below.
 
 **The mean is the balancing point.** If you picture the set on a number line with each point as a weight, the mean is the fulcrum. Elements above pull the fulcrum right; elements below pull it left. Adding an element above the current mean drags the mean up; adding one below drags it down.
 
 **Evenly spaced sets have mean = median = middle term.** For an arithmetic sequence (consecutive integers, consecutive multiples, any constant-step sequence), mean = median = (first + last)/2. This is a huge shortcut — instead of summing 30 consecutive integers, just compute (first + last)/2 and multiply by count.
 
-> **Self-explanation prompt.** Why does "sum = mean × count" handle so many problems? If you can say "because every mean statement is implicitly a statement about total — and total adds cleanly across subsets," you've internalized why conversion to sum is the move.
+**Micro-drill.** Convert each mean statement to a sum and solve:
+
+1. Seven numbers have mean 12. Six of them sum to 70. What is the seventh?
+2. Eight numbers have mean 15. A ninth number is added and the mean drops to 14. What was added?
+3. The mean of {3, 8, x, 14, 20} is 11. Find x.
+
+Answers: (1) Required sum = 12 × 7 = 84. Seventh = 84 − 70 = **14**. (2) Old sum = 15 × 8 = 120. New sum = 14 × 9 = 126. Added = 126 − 120 = **6** (which is below the new mean of 14 — the ninth value pulled the average down). (3) Required sum = 11 × 5 = 55. x = 55 − (3+8+14+20) = 55 − 45 = **10**. If you set up any variables or equations for these, you're working too hard — sum = mean × count converts them all to two-step arithmetic.
+
+> **Self-explanation prompt.** Why does "sum = mean × count" handle so many problems? If you can say "because every mean statement is implicitly a statement about total — and totals add cleanly across subsets," you've internalized why conversion to sum is the move.
 
 ## @median-mode-ordered-sets
 
@@ -202,6 +222,14 @@ The pattern: to maximize one element, minimize all others subject to constraints
 
 **Median under element swaps.** If you replace the largest element with an even larger one, the median doesn't change (still the same middle element). Replace an element *below* the median with something even smaller: median still doesn't change. Only changes to elements near the middle shift the median. Tested frequently on DS.
 
+**Micro-drill.** Compute the median of each, then answer the follow-up:
+
+1. {9, 3, 15, 6, 12, 1, 7} → median?
+2. {5, 10, 15, 20, 25, 30} → median?
+3. The median of set A is 22. Every element of set A is increased by 5. What is the new median?
+
+Answers: (1) Sorted: {1, 3, 6, 7, 9, 12, 15}. n = 7 → position 4 → **7**. (2) n = 6, even → average positions 3 and 4 → (15+20)/2 = **17.5**. (3) **27**. Shifting every element up by 5 shifts the median up by 5 — the middle position is still the same element, just 5 larger. If you said "median stays 22," you confused this with the SD shift rule; the median moves with the elements, unlike SD which measures spread.
+
 **Trap to watch.** "What's the median of {2, 4, 5, 9, 12, 15}?" Even n = 6, so median is (5 + 9)/2 = 7, not 5 and not 9. Don't pick either of the two center values as "the median" — you must average them.
 
 ## @standard-deviation
@@ -235,6 +263,14 @@ A has larger SD.
 **The GMAT hates the formula.** You won't compute Σ(xᵢ − μ)² / n under time pressure. Instead, eyeball the spread.
 
 **When two sets have the same spread pattern but one is shifted — SD is equal.** Answer C is the standard trap on questions that invite the student to think "bigger mean means bigger SD." It doesn't. Shifts don't touch spread.
+
+**Micro-drill.** For each pair, predict (without computing) whether SD of A is greater than, less than, or equal to SD of B:
+
+1. A = {4, 8, 12, 16, 20}. B = {104, 108, 112, 116, 120}.
+2. A = {1, 5, 9, 13, 17}. B = {2, 10, 18, 26, 34}.
+3. A = {10, 10, 10, 10, 10}. B = {8, 9, 10, 11, 12}.
+
+Answers: (1) **Equal** — B is just A shifted up by 100. The spacing between elements is identical. (2) B > A — B is exactly A × 2. Every element was doubled, so deviations from the mean doubled, so SD doubled. (3) A < B — A has no spread at all (SD = 0); every value is exactly the mean. B has nonzero deviations. If (1) surprised you, re-read Rule 1: shifts do not affect SD. If (2) confused you, re-read Rule 2: scaling multiplies SD by the same factor.
 
 **Integer-count / range mixups.** Range is max − min. SD is the average deviation from the mean. A set can have large range and small SD (if one outlier is far but everyone else is packed near the mean), or moderate range and moderate SD. Don't conflate them.
 
@@ -331,6 +367,14 @@ Or use combinations: C(4,1) × C(6,1) / C(10,2) = 24/45 = **8/15**. ✓
 
 **Sequential independence check.** Before multiplying P(A) × P(B), ask: "does the first event change the pool for the second?" Flipping coins or drawing *with* replacement → independent, multiply raw probabilities. Drawing without replacement → dependent, adjust after each step.
 
+**Micro-drill.** For each, decide: independent or dependent? Then compute the probability.
+
+1. Drawing 2 cards from a standard 52-card deck *without* replacement. P(both are aces)?
+2. Rolling two fair 6-sided dice. P(first roll is 4, second roll is 4)?
+3. Bag has 5 blue and 4 red marbles. Draw 2 *without* replacement. P(exactly 1 red)?
+
+Answers: (1) **Dependent.** P = 4/52 × 3/51 = 12/2652 = **1/221**. (2) **Independent.** P = 1/6 × 1/6 = **1/36**. (3) **Dependent.** Two orders: red first (4/9 × 5/8 = 20/72) or blue first (5/9 × 4/8 = 20/72). Total: 40/72 = **5/9**. Or via combinations: C(4,1)×C(5,1)/C(9,2) = 20/36 = 5/9. ✓ If you computed (1) as (4/52)² = 16/2704, you used the "with replacement" setup — the most common error on this question type.
+
 **Trap to watch.** "Two dice rolled, probability both show 6" is independent (1/6 × 1/6 = 1/36). "Two cards drawn from a deck, both aces" is dependent (4/52 × 3/51). Conflating the two is the #1 error on probability questions.
 
 ## @counting-and-combinations
@@ -348,6 +392,17 @@ P(n, k) = n! / (n − k)!. "Arrange k specific objects from n distinct."
 **Combinations — when order doesn't matter.**
 
 C(n, k) = n! / (k! × (n − k)!). "Choose k from n, any order."
+
+**The one question that settles it.** Before choosing permutation or combination, ask: "If I rearranged the selected items, would I get a different outcome?"
+
+| Scenario | Rearranging matters? | Tool |
+|---|---|---|
+| Password, PIN, ranked list, seating in order | Yes | Permutation |
+| Committee, team, group, hand of cards | No | Combination |
+| "First, second, third place" | Yes — different medals | Permutation |
+| "Select 3 books from 7" | No — same books either way | Combination |
+
+When unsure, test with a tiny example (n = 3, k = 2) and count manually. The formula should match your count.
 
 **Example.** Committee of 3 from 7. Order doesn't matter (the committee is the same regardless of seating). C(7, 3) = 35.
 
@@ -391,6 +446,14 @@ A student answers 5 of 7 questions and must answer at least 2 of the first 3. Sp
 
 Complement alternative: C(7, 5) = 21 total. Subtract cases with fewer than 2 of the first 3 — i.e., exactly 1 of the first 3 forces all 4 of the rest: C(3,1) × C(4,4) = 3. So 21 − 3 = 18. ✓
 
+**Micro-drill.** Identify permutation or combination, then compute — each should take under 30 seconds:
+
+1. How many 3-letter codes from {A, B, C, D, E}, no repeats?
+2. How many 3-person teams from a group of 8?
+3. How many ways to award gold, silver, bronze to 6 runners?
+
+Answers: (1) **Permutation** — ABC ≠ BAC. P(5,3) = 5 × 4 × 3 = **60**. (2) **Combination** — {Alice, Bob, Cal} is the same team regardless of listing order. C(8,3) = 56. (3) **Permutation** — gold to Ann, silver to Beth is a different outcome from gold to Beth, silver to Ann. P(6,3) = 6 × 5 × 4 = **120**. If you used C(8,3) = 56 for question 3, revisit the test: awarding different medals is an ordered assignment, so order matters.
+
 > **Self-explanation prompt.** Why does "choose 3 of 7" equal "not choose 4 of 7"? If you can say "because every 3-person team uniquely corresponds to a 4-person non-team — every commitment picks exactly one complement," you've internalized the C(n,k) = C(n, n−k) symmetry and will stop doing the big factorial when the small one gives the same answer.
 
 ## @summary
@@ -403,7 +466,7 @@ Every GMAT statistics/probability question reduces to one of four moves. Identif
 
 **Move 3: Complement the "at least one" question.** "At least one" problems almost always solve faster via 1 − P(none). Reflex conversion: if the question says "at least," start with complement.
 
-**Move 4: Pick combinations or permutations by asking "does order matter?"** Roles named or slots in sequence → permutation. Unordered selection → combination. If the problem mixes both (e.g., "exactly 2 of type A and 1 of type B"), it's C(na, 2) × C(nb, 1).
+**Move 4: Pick combinations or permutations by asking "does order matter?"** Roles named or slots in sequence → permutation. Unordered selection → combination. If the problem mixes both (e.g., "exactly 2 of type A and 1 of type B"), it's C(nA, 2) × C(nB, 1).
 
 **Sanity checks you can run on any probability answer.**
 
@@ -416,7 +479,7 @@ Every GMAT statistics/probability question reduces to one of four moves. Identif
 - Shift by constant: SD unchanged.
 - Scale by constant k: SD multiplied by |k|.
 - Tighter spread around same mean → smaller SD.
-- Same mean doesn't imply same SD.
+- Same mean does not imply same SD.
 
 **Common patterns to pattern-match on sight:**
 
@@ -425,6 +488,7 @@ Every GMAT statistics/probability question reduces to one of four moves. Identif
 | "Average of n numbers is…" | Sum = mean × count | m × n |
 | "What's the median…" | Sort, find middle | (n+1)/2 position |
 | "Set Y = X + constant" | SD unchanged | — |
+| "Set Y = X × constant" | SD scaled | SD × \|k\| |
 | "At least one" | Complement | 1 − P(none) |
 | "Committee of k from n" | Combination | C(n, k) |
 | "Order, rank, arrangement" | Permutation | P(n, k) = n!/(n−k)! |
@@ -432,3 +496,10 @@ Every GMAT statistics/probability question reduces to one of four moves. Identif
 | "Without replacement" | Dependent events | P(A) × P(B \| A) |
 
 **Time-management note.** Easy statistics questions (basic mean, basic probability) should take 45 seconds or less. Medium SD and combination questions, 90 seconds. Hard 3-variable Venn or compound probability can take up to 2 minutes. If you're past 2:30 on any stats question, flag and move on.
+
+**What to do next.**
+
+1. **Easy set, untimed first.** Target 100% accuracy before any speed work. Every miss on an easy question points to a specific definitional gap — a formula you half-know or a step you skipped (like sorting). After each miss, return to the relevant reading section and re-run the micro-drill in that section before moving on.
+2. **Medium set, timed at 2:00 per question.** After each miss, tag which move you failed on: Sum vs mean confusion (Move 1), sorting skipped (Move 2), complement not applied (Move 3), permutation/combination call reversed (Move 4). The tag that accumulates the most rows after the medium set is your focused re-drill target — not the whole chapter again, just that one move.
+3. **Hard set, untimed first, then timed.** On the first pass, prioritize finding the right setup — the correct move — over getting the arithmetic right. The hard set is testing whether you recognize the pattern under pressure, not whether you can compute faster. On the second pass, time yourself: the gap between your two passes is your speed runway.
+4. **After each error, ask one question.** "Which move did I fail to identify?" The answer is always one of four. Knowing which one is the most efficient path back to the relevant section, the recall check, and the targeted drill. Keep a running tally — after 20 problems, you'll know exactly where this topic costs you points.
