@@ -8,23 +8,23 @@ topic: Word Problems
 **type:** Problem Solving
 **topic:** Rate/Time/Distance
 
-A car travels at 60 miles per hour for 2.5 hours. How many miles does it travel?
+A truck travels at 50 miles per hour. How many miles does it travel in 36 minutes?
 
-- A) 120
-- B) 130
-- C) 140
-- D) 150
-- E) 160
+- A) 18
+- B) 25
+- C) 30
+- D) 36
+- E) 50
 
-**answer:** D
-**fastest_path:** D = R·T = 60 × 2.5 = 150.
-**explanation:** D = R × T = 60 × 2.5 = 150 mi.
-**mistake_a:** Computed 60 × 2 = 120, ignored the 0.5.
-**mistake_b:** Slip → 130.
-**mistake_c:** Slip → 140.
-**mistake_e:** Slip → 160.
-**common_trap:** Multiplication slip on 60 × 2.5 — most common is 60 × 2 = 120.
-**takeaway:** D = R × T. For 0.5 hr, just add R/2 to the round-hour distance: 60·2 + 30 = 150.
+**answer:** C
+**fastest_path:** Convert 36 min = 36/60 hr = 0.6 hr. D = 50 × 0.6 = 30 miles.
+**explanation:** D = R × T requires consistent time units. Convert 36 minutes to hours by dividing by 60: 36/60 = 0.6 hr. Distance = 50 × 0.6 = 30 miles. The most common error is treating "36 minutes" as "0.36 hours," which confuses dividing by 60 with appending a decimal point.
+**mistake_a:** Converted 36 minutes to 0.36 hours (decimal notation error) instead of dividing by 60: 50 × 0.36 = 18. Minutes convert to hours by dividing by 60, not by using the raw digits as a decimal.
+**mistake_b:** Used 30 minutes (half an hour) rather than 36: 50 × 0.5 = 25. Re-read the problem — the given time is 36 minutes, not 30.
+**mistake_d:** Bubbled the given time (36 minutes) instead of computing the distance. Always perform D = R × T; the answer is a distance, not a time.
+**mistake_e:** Bubbled the given rate (50 mph). The question asks for distance traveled, not the truck's speed.
+**common_trap:** Treating "36 minutes" as "0.36 hours" — a decimal-notation error. Time in fractional hours = minutes ÷ 60; never use raw minute digits as a decimal fraction.
+**takeaway:** D = R × T, with time in hours. Convert minutes to hours by dividing by 60: 36 min ÷ 60 = 0.6 hr.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -72,9 +72,9 @@ Maria is currently 3 times as old as her daughter. If her daughter is 8 years ol
 **fastest_path:** Maria now = 24. +6 yrs → 30.
 **explanation:** Maria's current age = 3 × 8 = 24. In 6 years: 24 + 6 = 30.
 **mistake_a:** Bubbled current age (24).
-**mistake_b:** Slip → 27.
-**mistake_d:** Slip → 32.
-**mistake_e:** Slip → 36.
+**mistake_b:** Added only 1 year to the daughter's age instead of 6 (a mis-step in tracking the time shift): 3 × (8 + 1) = 3 × 9 = 27. Count the elapsed years from the problem: it is 6, not 1.
+**mistake_d:** Added the daughter's current age (8 years) to Maria's age instead of the elapsed time (6 years): 24 + 8 = 32. The question says "in 6 years," so add 6 to Maria's current age.
+**mistake_e:** Applied the 3× relationship to future ages and then subtracted the offset: 3 × (8 + 6) − 6 = 42 − 6 = 36. The correct approach is to simply add 6 years to Maria's current age (24 + 6 = 30); the 3× ratio applies now, not in the future.
 **common_trap:** Bubbling the current age (24) instead of the age in 6 years.
 **takeaway:** Read carefully: "currently" vs "in N years." Answer the future age, not the current age.
 **related_reading:** reading-quant-05-word-problems
@@ -97,12 +97,12 @@ A printer can print 240 pages in 8 minutes. At this rate, how many pages can it 
 **answer:** D
 **fastest_path:** Rate = 30 ppm. 30 × 15 = 450.
 **explanation:** Rate = 240/8 = 30 pages/min. In 15 min: 30 × 15 = 450.
-**mistake_a:** Slip → 360 (used wrong rate or time).
-**mistake_b:** Slip → 400.
-**mistake_c:** Slip → 420.
-**mistake_e:** Slip → 480.
-**common_trap:** Computing rate then mis-multiplying — typical: 30 × 12 = 360 (wrong time) or 28 × 15 = 420 (wrong rate).
-**takeaway:** Two-step rate problems: rate = total/time, then output = rate × new time. Verify each step.
+**mistake_a:** Misread the target time as 12 minutes instead of 15: rate = 30 ppm, 30 × 12 = 360. Re-read the question's target window before multiplying.
+**mistake_b:** Computed the cross-product 240 × 15 but made an arithmetic error yielding 3,200 instead of 3,600; then 3,200 ÷ 8 = 400. Verify multiplication: 240 × 15 = 240 × 10 + 240 × 5 = 2,400 + 1,200 = 3,600.
+**mistake_c:** Multiplied by 14 minutes instead of 15 (off by one minute): 30 × 14 = 420. A single-minute slip — reread the target time after computing the rate.
+**mistake_e:** Multiplied by 16 minutes instead of 15 (off by one in the other direction): 30 × 16 = 480.
+**common_trap:** Mis-reading the target time or making an arithmetic error in the final multiplication — even after correctly computing the rate.
+**takeaway:** Two-step rate problems: rate = total/base_time, then output = rate × target_time. Label each quantity before computing to avoid substituting the wrong number.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -304,13 +304,13 @@ Five years ago, James was 4 times as old as his nephew. In 3 years, James will b
 
 **answer:** A
 **fastest_path:** J = 4N − 15; J = 2N + 3 → 2N = 18 → N = 9 → J = 21.
-**explanation:** J − 5 = 4(N − 5) → J = 4N − 15. J + 3 = 2(N + 3) → J = 2N + 3. Equate: 2N = 18 → N = 9 → J = 21. Verify: 5 yrs ago 16 = 4·4 ✓; in 3 yrs 24 = 2·12 ✓.
-**mistake_b:** Slip → 25.
-**mistake_c:** Slip → 29.
-**mistake_d:** Slip → 33.
-**mistake_e:** Slip → 37.
-**common_trap:** Forgetting to apply the time shift to *both* people (e.g., writing J − 5 = 4N instead of 4(N − 5)).
-**takeaway:** Time shifts apply to *every* person's age. "5 years ago" → both ages are 5 less.
+**explanation:** J − 5 = 4(N − 5) → J = 4N − 15. J + 3 = 2(N + 3) → J = 2N + 3. Equate: 4N − 15 = 2N + 3 → 2N = 18 → N = 9 → J = 4(9) − 15 = 21. Verify both conditions: 5 years ago James was 16 = 4 × 4 ✓; in 3 years James will be 24 = 2 × 12 ✓.
+**mistake_b:** Arithmetic error in the step 4N − 15 = 2N + 3 → 2N = 18: computed 3 + 15 = 20 instead of 18, yielding N = 10 → J = 4(10) − 15 = 25. Back-check catches this: in 3 years James would be 28, but 2 × (10 + 3) = 26 ✗.
+**mistake_c:** Translation error in the second condition — wrote the "in 3 years" equation as J + 3 = 2N + 7 (mishandled the time shift on the nephew) → J = 2N + 4: 4N − 15 = 2N + 4 → 2N = 19 → N ≈ 10, J ≈ 29. Back-check: in 3 years 32 ≠ 2 × 13 = 26 ✗.
+**mistake_d:** Arithmetic error: solved 4N − 15 = 2N + 3 as 2N = 15 + 3 + 6 = 24 (adding a phantom 6) → N = 12 → J = 4(12) − 15 = 33. Back-check: in 3 years 36 ≠ 2 × (12 + 3) = 30 ✗.
+**mistake_e:** Similarly, N = 13 → J = 4(13) − 15 = 37. Pattern: all four wrong answers arise from arithmetic errors in isolating N. Back-substituting into BOTH original conditions catches any slip immediately.
+**common_trap:** Forgetting to apply the time shift to *both* people (e.g., writing J − 5 = 4N instead of 4(N − 5)), or making arithmetic errors in the elimination step without back-checking.
+**takeaway:** Time shifts apply to *every* person's age. After solving, verify the answer satisfies *both* original conditions — any arithmetic slip in the elimination step will fail at least one check.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -409,12 +409,12 @@ A piggy bank contains only nickels and dimes. If the bank contains 48 coins wort
 **answer:** D
 **fastest_path:** n + d = 48; 5n + 10d = 360 (cents) → d = 24.
 **explanation:** n + d = 48 and 5n + 10d = 360. Substitute n = 48 − d: 5(48 − d) + 10d = 360 → 240 + 5d = 360 → d = 24.
-**mistake_a:** Slip → 18.
-**mistake_b:** Slip → 20.
-**mistake_c:** Slip → 22.
-**mistake_e:** Slip → 28.
-**common_trap:** Mixing decimal dollars and integer coin counts — error-prone. Convert to cents.
-**takeaway:** Coin problems: always work in cents (smallest unit). Avoids decimal slips.
+**mistake_a:** Misread the total value as $3.30 (dropped a digit): 5(48 − d) + 10d = 330 → 240 + 5d = 330 → 5d = 90 → d = 18. Working in integer cents (360) rather than dollars prevents this class of misreading error.
+**mistake_b:** Misread the total value as $3.40: 5(48 − d) + 10d = 340 → 5d = 100 → d = 20.
+**mistake_c:** Misread the total value as $3.50: 5(48 − d) + 10d = 350 → 5d = 110 → d = 22.
+**mistake_e:** Misread the total value as $3.80: 5(48 − d) + 10d = 380 → 5d = 140 → d = 28.
+**common_trap:** Decimal misreading of the total value. Note that every answer choice corresponds to a plausible misread of the dollars figure — reinforcing that you must work in integer cents to avoid introducing decimal confusion mid-problem.
+**takeaway:** Coin problems: convert the total value to cents before writing any equation. "48 coins worth $3.60" → 360 cents. Integer arithmetic throughout eliminates the entire class of decimal misreading traps.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -490,12 +490,12 @@ Of 150 guests at a dinner party, 90 ordered appetizers, 95 ordered dessert, and 
 **answer:** D
 **fastest_path:** y + 2x + 3·30 = 90+95+70 = 255 → y + 2x = 165. With y + x = 120 → x = 45.
 **explanation:** Let x = exactly 2, y = exactly 1, z = all three = 30. Eq 1 (total): y + x + z = 150 → y + x = 120. Eq 2 (sum of |sets|): 90 + 95 + 70 = y + 2x + 3z → 255 = y + 2x + 90 → y + 2x = 165. Subtract: x = 45.
-**mistake_a:** Slip → 15.
-**mistake_b:** Slip → 25.
-**mistake_c:** Slip → 35.
-**mistake_e:** Slip → 55.
-**common_trap:** Setting up the wrong system — forgetting that "all three" is counted 3× in the |sets| sum.
-**takeaway:** For 3-set Venn: |A| + |B| + |C| = 1·(exactly 1) + 2·(exactly 2) + 3·(all three).
+**mistake_a:** Correctly computed "exactly 2" = 45 but then subtracted the "all three" count (30), thinking those 30 people must be removed from the "exactly two" group: 45 − 30 = 15. The "all three" term is already factored into the equation system — do not subtract it a second time.
+**mistake_b:** Arithmetic error in the final subtraction: computed 165 − 120 = 25 instead of 45. Check: 165 − 120 = 45 (not 25). If you get 25, you likely subtracted 20 + 100 instead of 45 + 75.
+**mistake_c:** Addition error in the "sum of sets" step: computed 90 + 95 + 70 = 245 (correct is 255); then 245 − 90 = 155, and y + 2x = 155 → x = 155 − 120 = 35. Verify the sum: 90 + 95 = 185, 185 + 70 = 255.
+**mistake_e:** Added the "all three" count back into the "exactly two" answer, thinking those 30 triple-members create additional two-way pairings: 45 + 10 = 55 (perhaps halved the 30 and added). The 30 "all three" guests are already counted once in "all three"; they are not also "exactly two."
+**common_trap:** Setting up the wrong system — forgetting that "all three" is counted 3× in the sum-of-sets equation, not 1×. And then double-removing that correction after solving.
+**takeaway:** For 3-set Venn: |A| + |B| + |C| = 1·(exactly 1) + 2·(exactly 2) + 3·(all three). Set up both equations, subtract to find "exactly 2," and do not make a second adjustment for the all-three term.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -544,13 +544,13 @@ Five years ago, Alex was three times as old as Sam. Ten years from now, Alex wil
 
 **answer:** D
 **fastest_path:** A = 3S − 10; A = 2S + 10 → S = 20, A = 50.
-**explanation:** A − 5 = 3(S − 5) → A = 3S − 10. A + 10 = 2(S + 10) → A = 2S + 10. Equate: 3S − 10 = 2S + 10 → S = 20 → A = 50. Verify: 5 yrs ago Alex 45 = 3·15 ✓; in 10 yrs Alex 60 = 2·30 ✓.
-**mistake_a:** Slip → 35.
-**mistake_b:** Slip → 40.
-**mistake_c:** Slip → 45.
-**mistake_e:** Slip → 55.
-**common_trap:** Misreading the time shifts ("5 ago" ≠ "10 from now") or swapping ages.
-**takeaway:** Each constraint is one linear equation. Two constraints → unique (A, S).
+**explanation:** A − 5 = 3(S − 5) → A = 3S − 10. A + 10 = 2(S + 10) → A = 2S + 10. Equate: 3S − 10 = 2S + 10 → S = 20 → A = 50. Verify both conditions: 5 years ago Alex was 45 = 3 × 15 ✓; in 10 years Alex will be 60 = 2 × 30 ✓.
+**mistake_a:** Arithmetic error in back-substitution — correctly solved S = 20 but computed A = 3(20) − 10 as 3(15) − 10 = 35 (used S = 15 instead of 20). Or: solved the system correctly but mistakenly evaluated A = 3S − 15 (wrong constant): 3(20) − 15 = 45. Check: does 35 satisfy both conditions? 5 years ago 30 ≠ 3 × (20 − 5) = 45 ✗.
+**mistake_b:** Arithmetic error in computing A from S = 20: treated 3 × 20 − 10 as 3 × 10 + 10 = 40 (broken multiplication). Check: 3 × 20 = 60, then 60 − 10 = 50, not 40.
+**mistake_c:** Found the correct A = 50 but then answered "Alex's age 5 years ago" instead of his current age: 50 − 5 = 45. Re-read the question — it asks "How old is Alex now?"
+**mistake_e:** Applied the time shifts in the wrong direction in the first equation — treated "five years ago" as "five years from now": A + 5 = 3(S + 5) → A = 3S + 10. Combined with A = 2S + 10: S = 0 (impossible). Some students then force a solution using partial equations, arriving at A = 3(15) + 10 = 55 from a corrupted system.
+**common_trap:** Misreading the time shifts ("5 ago" means subtract 5 from both ages; "10 from now" means add 10 to both) or making an arithmetic error in back-substitution without checking both original conditions.
+**takeaway:** Each time-constraint is one linear equation in the current ages. Write both, eliminate, solve, and verify both conditions with the answer.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -571,11 +571,11 @@ A factory produces gadgets. Each gadget costs $10 in materials; fixed operating 
 **answer:** C
 **fastest_path:** Linear profit segments. Below 50: slope +15 (sell − cost). Above 50: slope −2 (8 − 10). Max at the kink: n = 50 → 15·50 − 300 = 450.
 **explanation:** For n ≤ 50: profit = 15n − 300, increasing → max at n = 50: 450. For n > 50: each extra unit earns $8 but costs $10 → marginal profit = −2 → profit decreases. So max overall = 450 at n = 50.
-**mistake_a:** Slip → 300.
-**mistake_b:** Slip → 390.
-**mistake_d:** Slip → 510.
-**mistake_e:** Bubbled max revenue (or always-produce-max) without subtracting cost.
-**common_trap:** Assuming "more production = more profit" without checking marginal revenue vs. marginal cost beyond the breakpoint.
+**mistake_a:** Computed profit at the *minimum* allowed production (n = 40 units): 15 × 40 − 300 = 300. Did not search for the optimal n — always check whether profit is increasing or decreasing across the range before settling on an endpoint.
+**mistake_b:** Assumed that maximum production (n = 80) maximizes profit and evaluated there: at n = 80, profit = 450 − 2(80 − 50) = 450 − 60 = 390. This ignores the fact that each unit beyond n = 50 sells at $8 but costs $10, so marginal profit is −$2 per unit above 50 — production should stop at the kink.
+**mistake_d:** Made a sign error on the clearance margin — computed $8 − $10 = +$2 (positive) instead of −$2 (negative): at n = 80, profit = 450 + 2(30) = 510. Clearance price < variable cost means each extra unit *loses* money; the correct margin is negative.
+**mistake_e:** Forgot to subtract the $300 fixed cost: contribution margin at n = 50 is 15 × 50 = 750, but profit = 750 − 300 = 450. Fixed costs always come off the top.
+**common_trap:** Assuming "more production = more profit" without computing marginal profit at the clearance boundary. When clearance price < variable cost, production above the breakpoint destroys value.
 **takeaway:** Piecewise profit: maximize each segment separately, compare. Always check marginal change at each kink.
 **related_reading:** reading-quant-05-word-problems
 
@@ -599,10 +599,10 @@ The sum of three consecutive positive odd integers is 87. What is the largest of
 **explanation:** Three consecutive odd integers: n, n+2, n+4. Sum = 3n + 6 = 87 → n = 27. Integers: 27, 29, 31. Largest = 31.
 **mistake_a:** Bubbled smallest (27).
 **mistake_b:** Bubbled middle (29 = mean).
-**mistake_d:** Slip → 33.
-**mistake_e:** Slip → 35.
-**common_trap:** Bubbling the middle (29) — which equals the mean — instead of the largest.
-**takeaway:** For consecutive odds/evens with count n: middle = mean = sum/n. Step = 2.
+**mistake_d:** Set up the three consecutive odd integers with a spacing of 4 instead of 2 (confusing consecutive odds with every other odd): n + (n + 4) + (n + 8) = 87 → 3n + 12 = 87 → n = 25. Largest = 25 + 8 = 33. Consecutive odd integers always differ by *2*, not 4.
+**mistake_e:** Set up spacing of 6 between terms: n + (n + 6) + (n + 12) = 87 → 3n + 18 = 87 → n = 23. Largest = 23 + 12 = 35. This treats the sequence as though every third odd integer were chosen. Consecutive odd integers step by 2: {n, n+2, n+4}.
+**common_trap:** Bubbling the middle (29) — which equals the mean — instead of the largest, or using an incorrect spacing (4 or 6) between consecutive odds.
+**takeaway:** Consecutive odd integers: step = 2 (always). Middle = mean = sum/count. Largest = middle + 2.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -623,12 +623,12 @@ The sum of a mother's current age and her daughter's current age is 45 years. Fi
 **answer:** C
 **fastest_path:** M = 4D − 15. With M + D = 45 → 5D − 15 = 45 → D = 12, M = 33.
 **explanation:** M + D = 45. M − 5 = 4(D − 5) → M = 4D − 15. Substitute: (4D − 15) + D = 45 → 5D = 60 → D = 12 → M = 33. Verify: 5 yrs ago Mom 28 = 4·7 ✓.
-**mistake_a:** Slip → 25.
-**mistake_b:** Slip → 30.
-**mistake_d:** Slip → 35.
-**mistake_e:** Slip → 40.
-**common_trap:** Forgetting the time shift on both ages (writing M − 5 = 4D instead of 4(D − 5)).
-**takeaway:** Time shifts apply to *both* people. "5 years ago" → both ages decrease by 5.
+**mistake_a:** Arithmetic slip in the final computation — correctly found D = 12 but wrote M = 45 − 12 − 8 = 25 (subtracted an extra 8 from some confusion). Verify: 25 + 12 = 37 ≠ 45 ✗. The answer must satisfy M + D = 45.
+**mistake_b:** Correctly solved 5D − 15 = 45 → D = 12 but computed M = 45 − 15 = 30 (subtracted the equation's constant instead of D): 45 − 12 = 33. Check: 30 + 12 = 42 ≠ 45 ✗.
+**mistake_d:** Back-substitution error — correctly found D = 12 but computed M = 4(12) − 13 = 35 (subtracted 13 instead of 15 in M = 4D − 15). Check: 35 + 12 = 47 ≠ 45 ✗.
+**mistake_e:** Subtracted the elapsed time (5 years) instead of D from the total when computing M: 45 − 5 = 40. The correct final step is M = 45 − D = 45 − 12 = 33, not 45 − 5. Label which quantity you're subtracting.
+**common_trap:** Forgetting the time shift on *both* ages in the five-years-ago equation (writing M − 5 = 4D instead of 4(D − 5)), or making arithmetic errors in the final step without checking M + D = 45.
+**takeaway:** Time shifts apply to both people. "5 years ago" → subtract 5 from both ages. After solving, always verify the sum M + D = 45 as a quick sanity check.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -649,12 +649,12 @@ A driver travels 240 miles from city A to city B. For the first 120 miles the dr
 **answer:** B
 **fastest_path:** First leg = 2 hr. Rest = 0.5 hr. Time left = 5 − 2.5 = 2.5 hr. Second speed = 120/2.5 = 48.
 **explanation:** Time so far: 120/60 = 2 hr driving + 0.5 hr rest = 2.5 hr. Remaining = 5 − 2.5 = 2.5 hr. Second-half speed = 120/2.5 = 48 mph.
-**mistake_a:** Slip → 40.
-**mistake_c:** Slip → 50.
-**mistake_d:** Used 60 (matched first half).
-**mistake_e:** Slip → 72.
-**common_trap:** Forgetting to subtract the rest time from the available driving time.
-**takeaway:** Compute available time directly: total − used. Then v = D/T for the remaining segment.
+**mistake_a:** Forgot to subtract the 30-minute rest stop when computing remaining drive time: 5 − 2 = 3 hours used instead of 2.5. Then 120/3 = 40 mph. The rest consumes 0.5 hours of the 5-hour total — always subtract both driving time and rest time.
+**mistake_c:** Misread "30 minutes" as 0.6 hours (decimal confusion: 30 min ÷ 60 = 0.5 hr, not 0.6 hr): remaining time = 5 − 2 − 0.6 = 2.4 hr → 120/2.4 = 50 mph. Convert minutes to hours by dividing by 60, not by using the raw digits after a decimal point.
+**mistake_d:** Assumed the second half would match the first-half speed (60 mph) without checking the time constraint. Plugging 60 into the total gives 2 + 0.5 + 2 = 4.5 hours, not 5 — so 60 mph is too fast for the remaining segment.
+**mistake_e:** Computed remaining time as 5/3 hours instead of 5/2 (a fraction-simplification error): 120 ÷ (5/3) = 72 mph. Check: 2 + 0.5 + T₂ = 5 → T₂ = 2.5 hr = 5/2, not 5/3.
+**common_trap:** Forgetting to subtract the rest time from the available driving time — the 30-minute rest reduces the second-leg budget from 3 hours to 2.5 hours.
+**takeaway:** Label each time component explicitly (first-leg time, rest, second-leg time) and write an equation: sum = total. Remaining drive time = total − first-leg time − rest time.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -701,18 +701,18 @@ Three printers — A, B, and C — work together to print a document. Alone, Pri
 **answer:** B
 **fastest_path:** After 1 hr at rate 7/8: 7/8 done. Remaining 1/8. B+C rate = 3/8/hr → time = 1/3 hr = 20 min.
 **explanation:** Rates: A = 1/2, B = 1/4, C = 1/8. Combined = 7/8. After 1 hr: 7/8 done; remaining 1/8. B+C rate = 1/4 + 1/8 = 3/8 per hour. Time = (1/8)/(3/8) = 1/3 hr = 20 min.
-**mistake_a:** Slip → 15.
-**mistake_c:** Slip → 30.
-**mistake_d:** Slip → 40.
-**mistake_e:** Slip → 60.
-**common_trap:** Continuing with the *combined-3* rate after A stops, instead of switching to B+C.
-**takeaway:** When a worker stops, recompute the combined rate of the *remaining* workers.
+**mistake_a:** Used an incorrect rate for C — assigned C the same rate as B (1/4 per hour instead of 1/8): combined B+C = 1/4 + 1/4 = 1/2 per hour. Remaining 1/8 ÷ 1/2 = 1/4 hr = 15 minutes. C's solo time is 8 hours, so C's rate = 1/8, not 1/4.
+**mistake_c:** Dropped C from the second-phase calculation — used only B's rate (1/4 per hour): 1/8 ÷ 1/4 = 1/2 hr = 30 minutes. After A stops, B *and* C continue together; both rates must be included.
+**mistake_d:** In the first phase, forgot C's contribution and used only A+B combined (1/2 + 1/4 = 3/4 per hour): done in 1 hr = 3/4, remaining = 1/4. Then with correct B+C rate 3/8: (1/4)/(3/8) = 2/3 hr = 40 minutes. Always count all active printers in each phase.
+**mistake_e:** Used only C's solo rate for the second phase (1/8 per hour): 1/8 ÷ 1/8 = 1 hr = 60 minutes. Both B and C are still running when A stops — use the combined rate 1/4 + 1/8 = 3/8.
+**common_trap:** Continuing with the three-printer combined rate after A stops, or dropping one of the remaining printers from the second-phase rate calculation.
+**takeaway:** When a worker stops, recompute the rate of the *remaining* active workers. Phase 1: all three at 7/8/hr for 1 hr. Phase 2: B+C at 3/8/hr for the remaining 1/8 of the job.
 **related_reading:** reading-quant-05-word-problems
 
 ---
 
 ## Q28
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Age Problem — Three People
 
@@ -729,8 +729,8 @@ The sum of the current ages of Alex, Ben, and Carlos is 90 years. Alex is twice 
 **explanation:** Let Ben = B. Alex = 2B; Carlos = B + 10. Sum: 4B + 10 = 90 → B = 20 → Alex = 40. Verify: 40 + 20 + 30 = 90 ✓.
 **mistake_a:** Bubbled Ben's age (20).
 **mistake_b:** Bubbled Carlos's age (30).
-**mistake_c:** Slip → 35.
-**mistake_e:** Slip → 50.
-**common_trap:** Bubbling the wrong person's age (Ben's 20 or Carlos's 30) instead of Alex's 40.
-**takeaway:** Express every age in one variable, sum, solve. Then answer for the *requested* person.
+**mistake_c:** Arithmetic error in solving 4B + 10 = 90 → 4B = 80 → B = 20: computed B = 25 (perhaps from 4B = 100), then Alex = 2 × 25 − 15 = 35 from some corrupted formula. Check: 35 + 25 + 35 = 95 ≠ 90 ✗.
+**mistake_e:** Confused Alex's age with the sum of the other two: Alex = 90 − (20 + 30) = 40 (correct reasoning) but mistakenly computed 90 − 20 − 30 + 10 = 50 (added Carlos's extra-10 term back in erroneously). Alternatively, computed Alex = 2 × 25 = 50 from the inflated B = 25. Always substitute the final answer into the sum: 40 + 20 + 30 = 90 ✓.
+**common_trap:** Bubbling the wrong person's age — Ben's (20) or Carlos's (30) — instead of the requested Alex's (40). After solving for Ben, immediately compute the *requested* person's age before stopping.
+**takeaway:** Express every age in one variable, sum, solve. Re-read the question to confirm which person's age is requested before bubbling — two of the three ages appear in the answer choices.
 **related_reading:** reading-quant-05-word-problems
