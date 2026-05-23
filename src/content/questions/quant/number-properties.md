@@ -572,10 +572,10 @@ Positive integers p and q satisfy p² + q² = 193 with p > q. What is the value 
 **answer:** C
 **fastest_path:** 193 odd → one even, one odd. Try q = 7: p² = 144 → p = 12. p − q = 5.
 **explanation:** 193 is odd, so exactly one of p, q is even. Try small q: q = 1 → p² = 192 (not square); q = 3 → p² = 184 (not); q = 5 → p² = 168 (not); q = 7 → p² = 144 → p = 12 ✓. With p > q: p − q = 12 − 7 = 5.
-**mistake_a:** Took (p, q) = (13, 12) without verifying — fails 193.
-**mistake_b:** Stopped at q = 4 (p² = 177 — not square) and bubbled near miss.
-**mistake_d:** Used (13, 6) without checking — fails 193.
-**mistake_e:** Inverted q − p = −5; bubbled |q − p| = ... mis-traced to 9.
+**mistake_a:** Student assumes p and q are consecutive (p = q + 1): setting (q+1)² + q² = 193 gives 2q² + 2q − 192 = 0, whose discriminant (385) is not a perfect square — no integer solution exists, but a student who skips verification settles for p − q = 1.
+**mistake_b:** Student tests (p, q) = (10, 7) prematurely: 10² + 7² = 100 + 49 = 149 ≠ 193. Accepts the pair and computes 10 − 7 = 3. Always verify p² + q² = 193 before recording p − q.
+**mistake_d:** Student tests (p, q) = (13, 6) without verifying: 13² + 6² = 169 + 36 = 205 ≠ 193, then computes 13 − 6 = 7. Or finds the correct q = 7 and reports q rather than p − q.
+**mistake_e:** Student tests (p, q) = (13, 4): 13² + 4² = 169 + 16 = 185 ≠ 193, computes 13 − 4 = 9. Systematic search with explicit verification prevents premature acceptance of a wrong pair.
 **common_trap:** Trying random pairs without using parity (193 odd → mixed parities) to narrow the search.
 **takeaway:** For p² + q² = N: parity of N determines parity-mix. N mod 4 = 1 → one odd, one even. Test small q first.
 **related_reading:** reading-quant-03-number-properties
@@ -795,10 +795,10 @@ What is the smallest positive integer n such that n, n + 2, and n + 4 are all pr
 **answer:** A
 **fastest_path:** Try n = 3: 3, 5, 7 all prime ✓. (Among any 3 odd numbers spaced by 2, one is divisible by 3 — only when that one *is* 3 can all three be prime.)
 **explanation:** Try n = 3: 3, 5, 7 — all prime ✓. For any n > 3: among n, n + 2, n + 4, one is divisible by 3 (they cover three consecutive residues mod 3), and being > 3 makes it composite. So (3, 5, 7) is the *only* such triple.
-**mistake_b:** Tried n = 5: 5, 7, 9 — 9 is not prime.
-**mistake_c:** Tried n = 7: 7, 9, 11 — 9 is not prime.
-**mistake_d:** Tried n = 11: 11, 13, 15 — 15 is not prime.
-**mistake_e:** Tried n = 17: 17, 19, 21 — 21 is not prime.
+**mistake_b:** Tried n = 5 (skipped n = 3): {5, 7, 9} — 9 = 3² is composite. For any n > 3, the triple n, n+2, n+4 covers all three residues mod 3 (since three consecutive even-gap terms cycle through 0, 1, 2 mod 3), so exactly one is divisible by 3. Being greater than 3, it is composite.
+**mistake_c:** Tried n = 7: {7, 9, 11} — 9 ≡ 0 (mod 3) and 9 > 3, so it is composite. Same mod-3 structure eliminates every n > 3.
+**mistake_d:** Tried n = 11: {11, 13, 15} — 15 = 3 × 5 is composite (15 ≡ 0 mod 3, and 15 > 3).
+**mistake_e:** Tried n = 17: {17, 19, 21} — 21 = 3 × 7 is composite. The mod-3 argument guarantees that for all n > 3, the element divisible by 3 in the triple exceeds 3 and is therefore not prime.
 **common_trap:** Skipping n = 3 as "too small" or testing larger values first; missing the unique mod-3 structure.
 **takeaway:** Among any 3 numbers in AP with common difference 2, one is divisible by 3 — so (3, 5, 7) is the *only* prime triplet of this form.
 **related_reading:** reading-quant-03-number-properties

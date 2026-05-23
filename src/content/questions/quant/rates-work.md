@@ -714,3 +714,456 @@ A machine produces 100 widgets every 2.5 hours. At this rate, how many widgets w
 **common_trap:** Multiplying 100 × 7.5 directly (ignores the 2.5-hr base) or dividing.
 **takeaway:** For constant-rate scaling: ratio of times = ratio of outputs. Always check the base unit.
 **related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q28
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combined Work
+
+A painter can finish 1/4 of a fence in 3 hours. Working at the same steady rate, how long will it take her to paint the entire fence?
+
+- A) 9 hours
+- B) 10 hours
+- C) 12 hours
+- D) 15 hours
+- E) 16 hours
+
+**answer:** C
+**fastest_path:** Rate = (1/4) ÷ 3 = 1/12 fence/hr. Full fence = 12 hr.
+**explanation:** If 1/4 of the fence takes 3 hours, the rate is (1/4) ÷ 3 = 1/12 fence per hour. Time for the whole fence = 1 ÷ (1/12) = 12 hours. Equivalently: scale up by the denominator 4 → 4 × 3 = 12.
+**mistake_a:** Multiplied 3 × 3 = 9 — used (4 − 1) = 3 as the scale factor instead of 4.
+**mistake_b:** Rough estimate without completing the fraction arithmetic.
+**mistake_d:** Used 5 as the scale factor: 5 × 3 = 15 — off by one.
+**mistake_e:** Squared the denominator: 4 × 4 = 16.
+**common_trap:** Multiplying by the numerator (1) or by the hours already given (3) instead of by 4 — the reciprocal of the completed fraction.
+**takeaway:** If fraction f of a job takes time t, the full job takes t ÷ f = t × (1/f). Here: 3 ÷ (1/4) = 3 × 4 = 12.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Two Objects Moving
+
+A walker leaves a trailhead at 3 km/h. Ten minutes later a jogger leaves the same trailhead running in the same direction at 8 km/h. How many minutes after the jogger starts will the jogger catch the walker?
+
+- A) 4 minutes
+- B) 6 minutes
+- C) 8 minutes
+- D) 10 minutes
+- E) 12 minutes
+
+**answer:** B
+**fastest_path:** Head-start distance = 3 × (10/60) = 0.5 km. Closing rate = 8 − 3 = 5 km/h. T = 0.5/5 = 0.1 hr = 6 min.
+**explanation:** Walker's head-start distance = 3 km/h × (10/60) hr = 0.5 km. Closing rate (same direction) = 8 − 3 = 5 km/h. Time = 0.5 ÷ 5 = 0.1 hr × 60 = 6 minutes.
+**mistake_a:** Divided 10 ÷ (8 − 3) = 2 and then scaled incorrectly → 4 min.
+**mistake_c:** Estimated without converting the head-start into a distance → 8 min.
+**mistake_d:** Reported the walker's head-start time (10 min) as the answer.
+**mistake_e:** Added speeds instead of subtracting: treated as a meeting problem → ~12 min.
+**common_trap:** Dividing the head-start time directly by the speed difference without first converting minutes to a distance in km.
+**takeaway:** Catch-up: (1) convert head-start time to distance, (2) divide by the closing rate (speed difference), (3) convert back to minutes.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combined Work
+
+Andrea can complete a report in 6 hours. With Brandon's help, the same report is finished in 4 hours. What fraction of the report can Brandon complete in 1 hour working alone?
+
+- A) 1/6
+- B) 1/8
+- C) 1/10
+- D) 1/12
+- E) 1/16
+
+**answer:** D
+**fastest_path:** Rate_B = 1/4 − 1/6 = 3/12 − 2/12 = 1/12.
+**explanation:** Joint rate = 1/4 report/hr; Andrea's rate = 1/6 report/hr. Brandon's rate = 1/4 − 1/6 = 3/12 − 2/12 = 1/12 report/hr.
+**mistake_a:** Took Andrea's own rate (1/6) as Brandon's.
+**mistake_b:** Subtracted the solo times and inverted: 1/(6 − 4) = 1/2, then divided by 4 → something near 1/8.
+**mistake_c:** Averaged the two given rates: (1/6 + 1/4)/2 = 5/24, approximated as 1/5, then slipped to 1/10.
+**mistake_e:** Applied an extra division from a mis-constructed equation → 1/16.
+**common_trap:** Subtracting times rather than rates: "Brandon takes 6 − 4 = 2 hours alone, so his rate is 1/2." Times don't subtract; only rates do.
+**takeaway:** Rate_B = Rate_joint − Rate_A. Always work in rate space, never time space.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q31
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Distance-Rate-Time
+
+A cyclist completes 3/5 of a 50-mile course in 2 hours. Riding at the same speed, how long will it take to complete the entire course?
+
+- A) 2 hours 40 minutes
+- B) 3 hours
+- C) 3 hours 20 minutes
+- D) 3 hours 40 minutes
+- E) 4 hours
+
+**answer:** C
+**fastest_path:** Speed = 30 ÷ 2 = 15 mph. Total = 50 ÷ 15 = 10/3 hr = 3h 20m.
+**explanation:** Distance covered = (3/5)(50) = 30 miles in 2 hr → speed = 15 mph. Total time = 50 ÷ 15 = 10/3 hr. Converting: 10/3 = 3 + 1/3 hr → 3 hr + (1/3)(60) = 3 hr 20 min.
+**mistake_a:** Computed remaining-leg time only (20 ÷ 15 = 4/3 hr = 1h 20m) and added the 2 hr already elapsed, then made an arithmetic error → 2h 40m.
+**mistake_b:** Rounded 10/3 ≈ 3.0 hr.
+**mistake_d:** Converted 1/3 hr as 40 min instead of 20 min → 3h 40m.
+**mistake_e:** Divided 50 by 2 instead of by 15, getting 25, then misapplied the unit → 4 hr.
+**common_trap:** Converting 1/3 hour as 40 minutes. Always multiply the fractional part by 60: 1/3 × 60 = 20 minutes.
+**takeaway:** 1/3 hr = 20 min, 2/3 hr = 40 min. Find total time (distance ÷ speed), then convert the fractional hour by multiplying by 60.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Rates — Unit Conversion
+
+A factory runs 4 identical machines that together produce 200 units per hour. The factory adds 1 more identical machine. How many units per hour will all 5 machines now produce?
+
+- A) 204
+- B) 220
+- C) 240
+- D) 250
+- E) 300
+
+**answer:** D
+**fastest_path:** 200 ÷ 4 = 50 units/machine/hr. 5 × 50 = 250.
+**explanation:** Rate per machine = 200 ÷ 4 = 50 units/hr. With 5 machines: 5 × 50 = 250 units/hr.
+**mistake_a:** Added 1 unit per machine to the total: 200 + 4 = 204 — confused "1 more machine" with "+1 unit per existing machine."
+**mistake_b:** Treated 1 extra machine as a 10% increase: 200 × 1.10 = 220.
+**mistake_c:** Computed 200 × (5/4) = 250 but introduced a rounding slip → 240.
+**mistake_e:** Added a full 100 units (half of 200) for the new machine instead of the correct per-machine increment of 50.
+**common_trap:** Adding the full group output (200) for one additional machine, getting 400 total. One extra machine adds only its individual share (50), not the entire group's output.
+**takeaway:** Total rate = rate per unit × number of units. Adding 1 machine adds exactly 1 machine's individual rate (200/4 = 50), not the group total.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Work Rates — Net Rate
+
+A pipe can fill a tank completely in 8 hours. A drain at the bottom can empty the full tank in 12 hours. If the pipe and the drain are both open when the tank is empty, how many hours will it take to fill the tank?
+
+- A) 4 hours
+- B) 10 hours
+- C) 20 hours
+- D) 24 hours
+- E) 96 hours
+
+**answer:** D
+**fastest_path:** Net fill rate = 1/8 − 1/12 = 1/24/hr → fills in 24 hr.
+**explanation:** Fill rate = +1/8 tank/hr; drain rate = −1/12 tank/hr. Net rate = 1/8 − 1/12 = 3/24 − 2/24 = 1/24 tank/hr. Time = 1 ÷ (1/24) = 24 hr.
+**mistake_a:** Subtracted the times directly: 12 − 8 = 4 hr.
+**mistake_b:** Averaged the two times: (8 + 12)/2 = 10 hr.
+**mistake_c:** Added the two times: 8 + 12 = 20 hr.
+**mistake_e:** Applied the two-filling-pipes product formula: 8 × 12 = 96 hr — misused the product rule without accounting for the opposing direction.
+**common_trap:** Using T = ab/(a + b) as if the drain is a second filling pipe. The drain opposes filling, so net rate = fill rate − drain rate.
+**takeaway:** Net rate: add rates working in the same direction, subtract rates working in opposition. T = 1/(net rate).
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combined Work
+
+Alfonso, Beatrice, and Carlos can each complete a task alone in 6, 8, and 12 hours respectively. How long will it take all three working together?
+
+- A) 2 hours
+- B) 2 hours 30 minutes
+- C) 2 hours 40 minutes
+- D) 3 hours
+- E) 4 hours
+
+**answer:** C
+**fastest_path:** 4/24 + 3/24 + 2/24 = 9/24 = 3/8/hr → T = 8/3 hr = 2h 40m.
+**explanation:** Combined rate = 1/6 + 1/8 + 1/12. LCD = 24: 4/24 + 3/24 + 2/24 = 9/24 = 3/8 per hour. Time = 1 ÷ (3/8) = 8/3 hr = 2 hr + (2/3)(60 min) = 2 hr 40 min.
+**mistake_a:** Took only the integer part of 8/3 = 2.67 → 2 hr.
+**mistake_b:** Estimated loosely from two fastest workers or a rough arithmetic average → 2.5 hr.
+**mistake_d:** Ignored Carlos and used only Alfonso + Beatrice: 1/6 + 1/8 = 7/24 → T ≈ 3.4 hr, rounded to 3.
+**mistake_e:** Averaged the solo times: (6 + 8 + 12)/3 ≈ 8.67 hr, halved for "teamwork" → ~4 hr.
+**common_trap:** Averaging solo times instead of summing rates, or omitting one worker's contribution entirely.
+**takeaway:** Always convert solo times to rates, sum all rates, then invert. More workers always means a shorter time than any individual solo time.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Two Objects Moving
+
+Two runners start at the same point on a 600-meter circular track and run in the same direction. Runner A moves at 5 m/s and Runner B moves at 3 m/s. How many seconds after they start will Runner A first lap Runner B — that is, be exactly one full track length ahead?
+
+- A) 60 seconds
+- B) 100 seconds
+- C) 120 seconds
+- D) 200 seconds
+- E) 300 seconds
+
+**answer:** E
+**fastest_path:** Relative rate (same direction) = 5 − 3 = 2 m/s. Gain 600 m → T = 300 s.
+**explanation:** Lapping means Runner A has gained exactly one full lap (600 m) on Runner B. Same-direction relative speed = 5 − 3 = 2 m/s. Time = 600 ÷ 2 = 300 seconds.
+**mistake_a:** Used sum of speeds: 600 ÷ (5 + 3) = 75 s — treated same-direction as a head-on approach.
+**mistake_b:** Arithmetic slip from an intermediate step → 100 s.
+**mistake_c:** Divided by A's speed: 600 ÷ 5 = 120 s — found when A returns to B's original start position, not when A is a full lap ahead.
+**mistake_d:** Divided by B's speed: 600 ÷ 3 = 200 s — found when B completes one full lap, not when A laps B.
+**common_trap:** Using the sum of speeds (as for runners heading toward each other) rather than the difference for same-direction travel.
+**takeaway:** Same direction → relative speed = |v_A − v_B|. Lapping requires gaining exactly one full track length. T = track length ÷ relative speed.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Work Rates — Ratio of Rates
+
+Two workers complete a job together in 6 hours. The faster worker works at exactly twice the rate of the slower worker. How long would the faster worker take to complete the job alone?
+
+- A) 8 hours
+- B) 9 hours
+- C) 10 hours
+- D) 12 hours
+- E) 18 hours
+
+**answer:** B
+**fastest_path:** Let slow = r, fast = 2r. 3r = 1/6 → r = 1/18. Fast = 1/9 → 9 hr.
+**explanation:** Let the slower worker's rate = r; faster worker's rate = 2r. Combined: r + 2r = 3r = 1/6 → r = 1/18. Faster worker's solo time = 1/(2r) = 1/(2/18) = 9 hours.
+**mistake_a:** Arithmetic slip → 8 hr.
+**mistake_c:** Arithmetic slip → 10 hr.
+**mistake_d:** Doubled the joint time: 2 × 6 = 12 — misread "twice as fast" as "the combined time times two."
+**mistake_e:** Reported the slower worker's solo time: 1/r = 18 hr — solved for the wrong worker.
+**common_trap:** Reporting the slower worker's time (18 hr) instead of the faster worker's (9 hr), or doubling the joint time without using rates.
+**takeaway:** "Twice as fast" means rate × 2, which means time ÷ 2. Verify: 1/9 + 1/18 = 2/18 + 1/18 = 3/18 = 1/6 ✓.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Distance-Rate-Time
+
+A courier travels a 200-mile route in two consecutive segments. The first segment is driven at 45 mph and the second at 60 mph. The total trip takes exactly 4 hours. How many miles long is the first segment?
+
+- A) 60 miles
+- B) 80 miles
+- C) 90 miles
+- D) 100 miles
+- E) 120 miles
+
+**answer:** E
+**fastest_path:** Backsolve E: 120/45 + 80/60 = 8/3 + 4/3 = 12/3 = 4 ✓.
+**explanation:** Let first segment = d miles; second = (200 − d) miles. Set up: d/45 + (200 − d)/60 = 4. Multiply by 180 (LCD): 4d + 3(200 − d) = 720 → 4d + 600 − 3d = 720 → d = 120 miles. Verify: 120/45 + 80/60 = 8/3 + 4/3 = 12/3 = 4 ✓.
+**mistake_a:** Rough under-estimate from incomplete trial-and-error → 60.
+**mistake_b:** Reported the second segment's length: 200 − 120 = 80 miles.
+**mistake_c:** Assumed equal time split (2 hr + 2 hr): first segment = 2 × 45 = 90 miles.
+**mistake_d:** Assumed equal distance split: 200 ÷ 2 = 100 miles each.
+**common_trap:** Assuming the two time legs are equal (2 + 2 hr) — they aren't when speeds differ. Or solving and reporting the second segment's length (80) rather than the first.
+**takeaway:** Set up d/v₁ + (D − d)/v₂ = T and solve for d. Backsolving E first is efficient; verify: 80 mi at 60 mph = 4/3 hr, and 8/3 + 4/3 = 4 ✓.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Distance-Rate-Time
+
+A cyclist completes a 75 km route in a total elapsed time of 3.5 hours, which includes a single 30-minute rest stop. What is the cyclist's actual riding speed in km/h?
+
+- A) 18 km/h
+- B) 20 km/h
+- C) 22 km/h
+- D) 25 km/h
+- E) 30 km/h
+
+**answer:** D
+**fastest_path:** Riding time = 3.5 − 0.5 = 3 hr. Speed = 75 ÷ 3 = 25 km/h.
+**explanation:** Actual riding time = total elapsed time − rest time = 3.5 − 0.5 = 3 hr. Speed = 75 ÷ 3 = 25 km/h.
+**mistake_a:** Divided by total elapsed time and applied a rough downward adjustment → 18.
+**mistake_b:** Subtracted only 15 min instead of 30: 3.75 hr riding → 75/3.75 = 20 km/h.
+**mistake_c:** Divided by total elapsed time: 75/3.5 ≈ 21.4, rounded to 22.
+**mistake_e:** Subtracted 1 full hour (double the rest stop): 2.5 hr riding → 75/2.5 = 30 km/h.
+**common_trap:** Dividing distance by total elapsed time (3.5 hr) instead of actual riding time (3 hr) — treating rest time as if the cyclist were still moving.
+**takeaway:** Speed = distance ÷ moving time. Always subtract any stationary time from elapsed time before dividing.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Combined Work
+
+Machine A and Machine B each operate at a constant rate. Working together, they must produce exactly 120 widgets. How long will it take them working together?
+
+(1) Machine A produces 20 widgets per hour.
+(2) Machine B takes twice as long as Machine A to produce the same number of widgets.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) gives A = 20/hr only; B unknown → insufficient. (2) gives ratio B = A/2 with no anchor → insufficient. Together: B = 10/hr, combined = 30/hr, T = 4 hr.
+**explanation:** Statement (1): Machine A at 20/hr, but B's rate is unknown → combined rate unknown → insufficient. Statement (2): B takes twice as long as A → B's rate = A's rate / 2, but no absolute rate is given → insufficient. Together: from (1), A = 20/hr; from (2), B = 10/hr. Combined = 30/hr. T = 120 ÷ 30 = 4 hr. Sufficient.
+**mistake_a:** Thought (1) alone determined combined time — A's rate alone does not pin down the joint rate.
+**mistake_b:** Thought (2) alone was sufficient because it "defines B's rate" — it only gives a ratio without an anchor value.
+**mistake_d:** Thought each alone was sufficient — neither gives both absolute rates.
+**mistake_e:** Thought both together were still insufficient — they do yield a unique answer.
+**common_trap:** Mistaking a ratio statement for an absolute-rate statement. "B is half as fast as A" is informative but useless without knowing A's actual speed.
+**takeaway:** A ratio without an anchor is insufficient. Pair a ratio statement with an anchor value to unlock both absolute rates.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q40
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Rates — Upstream and Downstream
+
+A boat travels upstream for 3 hours and then travels back downstream for 2 hours, returning exactly to its starting point. What is the boat's speed in still water?
+
+(1) The river current flows at 4 miles per hour.
+(2) The boat's upstream distance equals its downstream distance.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** Stem already forces 3(b−c) = 2(b+c) → b = 5c. (1) c = 4 → b = 20. Sufficient. (2) just restates the stem condition → adds nothing.
+**explanation:** Since the boat returns to its starting point, upstream distance = downstream distance: (b − c) × 3 = (b + c) × 2 → 3b − 3c = 2b + 2c → b = 5c. Statement (1): c = 4 → b = 5 × 4 = 20 mph. Sufficient. Statement (2): "upstream distance = downstream distance" is already guaranteed by the return-to-start condition — it adds no new constraint. Insufficient alone.
+**mistake_b:** Assumed (2) provides a new constraint beyond what the stem already says.
+**mistake_c:** Concluded both together are needed — (1) alone resolves it.
+**mistake_d:** Assumed each alone was sufficient — (2) by itself cannot pin down b.
+**mistake_e:** Concluded neither works — (1) combined with the hidden stem equation is sufficient.
+**common_trap:** Treating statement (2) as meaningful when "returning to start" in the stem already forces equal upstream and downstream distances.
+**takeaway:** Mine the stem for hidden constraints before evaluating statements. "Returns to start" forces equal distances and yields b = 5c, needing only the current speed to solve.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Work Rates — Multi-Phase
+
+Workers A, B, and C can individually complete a project in 10, 15, and 30 days. The project starts with only A and B working together. After 3 days, C joins them. How many more days are needed after C joins to finish the project?
+
+- A) 1.5 days
+- B) 2 days
+- C) 2.5 days
+- D) 3 days
+- E) 4 days
+
+**answer:** C
+**fastest_path:** A+B rate = 1/6/day → 3 days → 1/2 done. A+B+C rate = 1/5/day → (1/2) ÷ (1/5) = 2.5 days.
+**explanation:** Phase 1: A+B rate = 1/10 + 1/15 = 3/30 + 2/30 = 5/30 = 1/6 per day. After 3 days: 3 × (1/6) = 1/2 done, leaving 1/2. Phase 2: A+B+C rate = 1/10 + 1/15 + 1/30 = 3/30 + 2/30 + 1/30 = 6/30 = 1/5 per day. Time = (1/2) ÷ (1/5) = 5/2 = 2.5 days.
+**mistake_a:** Mis-computed phase-2 rate as 1/4 → (1/2)/(1/4) = 2, then introduced an arithmetic slip → 1.5.
+**mistake_b:** Rounded 2.5 down to 2.
+**mistake_d:** Used the phase-1 rate (1/6) for phase 2 instead of the updated A+B+C rate: (1/2)/(1/6) = 3.
+**mistake_e:** Used only C's solo rate (1/30) for phase 2, ignoring that A and B continue: (1/2)/(1/30) = 15, then picked 4 as a "reasonable" smaller answer.
+**common_trap:** Carrying the phase-1 rate (1/6) into phase 2 instead of recalculating with the full three-person team.
+**takeaway:** Multi-phase work: each phase has its own rate. After C joins, recompute the combined rate from scratch before finding remaining time.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Two Objects Moving
+
+Two trains depart simultaneously from stations 500 miles apart, traveling toward each other. Train A's speed is 20 mph greater than Train B's speed. They meet after exactly 2.5 hours. What is Train A's speed?
+
+- A) 90 mph
+- B) 95 mph
+- C) 100 mph
+- D) 110 mph
+- E) 120 mph
+
+**answer:** D
+**fastest_path:** 2.5(2v + 20) = 500 → v = 90. Train A = 90 + 20 = 110.
+**explanation:** Let Train B's speed = v. Train A's speed = v + 20. In 2.5 hr they cover 500 miles combined: 2.5(v + v + 20) = 500 → 5v + 50 = 500 → v = 90 mph. Train A = 90 + 20 = 110 mph. Verify: 2.5(90 + 110) = 2.5 × 200 = 500 ✓.
+**mistake_a:** Solved for Train B's speed (v = 90) and stopped — read off the wrong variable.
+**mistake_b:** Arithmetic slip during algebra → 95.
+**mistake_c:** Assumed equal speeds: 500 ÷ (2 × 2.5) = 100 mph — ignored the 20 mph differential.
+**mistake_e:** Added 20 to the equal-speed result: 100 + 20 = 120 — double-counted the differential by applying it after an already-wrong base value.
+**common_trap:** Solving for v = 90 (Train B's speed) and reporting it as the answer — always re-read which train is asked.
+**takeaway:** Solve for v (the base speed), then compute the requested quantity (v + 20). Verify: 2.5(90 + 110) = 500 ✓.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q43
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Combined Work
+
+Alexis and Brandon work at constant individual rates and together can complete a task in exactly 4 hours. They work together for 2 hours, then Alexis leaves and Brandon finishes the remaining work alone. How many total hours does Brandon work on the task?
+
+(1) Alexis alone would complete the full task in 6 hours.
+(2) Brandon alone would take more than 8 hours to complete the full task.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** Stem: 1/a + 1/b = 1/4; joint 2 hr → 1/2 done; Brandon finishes 1/2 alone → total = 2 + b/2. (1) a=6 → b=12 → total = 8. Sufficient. (2) b>8 → range, not unique.
+**explanation:** From stem: 1/a + 1/b = 1/4. After 2 hr together: 2 × (1/4) = 1/2 done, 1/2 remaining. Brandon alone finishes: time = (1/2) ÷ (1/b) = b/2. Total Brandon time = 2 + b/2. Statement (1): a = 6 → 1/6 + 1/b = 1/4 → 1/b = 1/12 → b = 12. Total = 2 + 6 = 8 hr. Sufficient. Statement (2): b > 8 means total > 6, but b is not uniquely determined → total varies → insufficient.
+**mistake_b:** Thought b > 8 combined with 1/a + 1/b = 1/4 narrows to a unique answer — it doesn't; many pairs (a, b) with b > 8 satisfy the joint equation.
+**mistake_c:** Required both — (1) alone resolves it.
+**mistake_d:** Thought each alone was sufficient — (2) gives only an inequality.
+**mistake_e:** Thought both together were insufficient — together they still can't pin down b, but (1) alone already does.
+**common_trap:** Assuming an inequality in DS combined with another equation yields a unique value — inequalities almost never determine a single numerical answer.
+**takeaway:** An inequality rarely pins down an exact value. When (1) gives an exact value of a, the joint-rate equation from the stem uniquely determines b = 12.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q44
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Combined Work
+
+Workers X, Y, and Z can each complete a project alone in x, y, and z hours respectively. Working together, X and Y take the same amount of time as Z does alone. If all three work together, how long will the project take?
+
+(1) x + y = 18
+(2) x × y = 72
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** Stem: 1/x + 1/y = 1/z → z = xy/(x+y). All three: rate = 2/z → time = z/2. (1)+(2): z = 72/18 = 4 → time = 2 hr.
+**explanation:** Stem condition: X and Y together equal Z alone → 1/x + 1/y = 1/z → z = xy/(x + y). All three combined: 1/x + 1/y + 1/z = 1/z + 1/z = 2/z → time = z/2. Statement (1): x + y = 18 → z = xy/18, but xy unknown → z indeterminate → insufficient. Statement (2): xy = 72 → z = 72/(x + y), but x + y unknown → z indeterminate → insufficient. Together: z = 72/18 = 4 → time = 4/2 = 2 hr. Sufficient.
+**mistake_a:** Thought (1) alone determined z — x + y alone does not pin down xy, so z remains unknown.
+**mistake_b:** Thought (2) alone determined z — xy alone does not pin down x + y, so z remains unknown.
+**mistake_d:** Thought each alone was sufficient — neither is.
+**mistake_e:** Thought both together were still insufficient because x and y individually are not determined. The question asks only for the total time (z/2), which requires only z, which requires only the product and sum of x and y.
+**common_trap:** Assuming you must know x and y individually to find the answer. The stem's algebraic structure reduces the needed information to just xy and x + y — exactly what (1) and (2) provide.
+**takeaway:** Extract the algebraic structure from the stem before evaluating statements. Here, time = z/2 = xy/(2(x+y)), requiring only x+y and x×y — a sum and a product, not individual values.
