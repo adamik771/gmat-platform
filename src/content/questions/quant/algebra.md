@@ -126,7 +126,7 @@ If x² - 5x - 14 = 0, what is the product of the two solutions?
 **answer:** A
 **fastest_path:** Vieta's: for x² + bx + c = 0, product of roots = c. Here c = −14.
 **explanation:** Vieta's formulas: for ax² + bx + c = 0, sum of roots = −b/a, product of roots = c/a. With a = 1, the product is just c = −14. Total time: 5 seconds. Factoring (x − 7)(x + 2) = 0, giving roots 7 and −2 with product −14, also works but takes 30+ seconds.
-**mistake_b:** Computed −b = 5, then halved (some confusion of sum vs product formulas).
+**mistake_b:** Thought the product formula was c/2 rather than c. With c = −14: product = −14/2 = −7.
 **mistake_c:** Sum of roots: −b/a = 5 — confused sum with product.
 **mistake_d:** Forgot the negative sign on the constant term.
 **mistake_e:** Used |c| = 14, missing the sign.
@@ -260,7 +260,7 @@ If 4^(a+1) = 8^a, what is the value of a?
 **fastest_path:** Common base 2: 4^(a+1) = 2^(2a+2); 8^a = 2^(3a). Set exponents equal: 2a + 2 = 3a → a = 2.
 **explanation:** Rewrite both sides with the same base. 4 = 2², so 4^(a+1) = 2^(2(a+1)) = 2^(2a+2). 8 = 2³, so 8^a = 2^(3a). The equation becomes 2^(2a+2) = 2^(3a), which (since the bases are equal) requires the exponents to be equal: 2a + 2 = 3a → a = 2. Verify: 4³ = 64 and 8² = 64 ✓.
 **mistake_a:** Set 4 + 1 = 8 × a (treated bases additively).
-**mistake_c:** Solved 2a = 3a, got a = 0; then bubbled wrong.
+**mistake_c:** Missed the factor of 2 when converting 4 = 2²: wrote 2^(a+1) instead of 2^(2(a+1)) on the left side, giving a+1 = 3a → a = 1/2. Tested nearby integers without re-solving and incorrectly settled on 3.
 **mistake_d:** Multiplied incorrectly: 2(a+1) = 3a → 2a + 2 = 3a; got a = 2 correctly but slipped on the answer letter.
 **mistake_e:** Misread 4^(a+1) as 4^a + 1, leading to wrong setup.
 **common_trap:** Exponent rules misapplied — power-of-power vs. product-of-powers.
@@ -312,9 +312,9 @@ If xy = 6 and x² + y² = 20, what is the value of (x + y)²?
 **fastest_path:** (x + y)² = x² + y² + 2xy = 20 + 12 = 32.
 **explanation:** Use the algebraic identity (x + y)² = x² + 2xy + y². Substitute the given values: x² + y² = 20 and xy = 6, so (x + y)² = 20 + 2(6) = 32. The identity collapses the answer in one step. Solving for x and y individually (using both given equations) is harder and unnecessary.
 **mistake_a:** Added 20 + 6 = 26 — forgot to double the xy term in the identity.
-**mistake_b:** Subtracted: 20 − 12 = 8, then computed differently. Actually 20 + 6 + 2 = 28 (mis-applied identity).
-**mistake_c:** Computed (x + y)² but using 20 − 2(6) = 8 — wrong sign on the cross term. Actually 20 + 6 + 4 = 30.
-**mistake_e:** Computed x² + y² + xy + xy = 20 + 12 + ... or some other miscombination producing 36.
+**mistake_b:** Used xy = 4 (perhaps misread or confused with a neighboring value) instead of the given xy = 6: 20 + 2(4) = 20 + 8 = 28.
+**mistake_c:** Used xy = 5 instead of the given xy = 6: 20 + 2(5) = 20 + 10 = 30.
+**mistake_e:** Confused (x+y)² with (xy)²: computed 6² = 36. The square of a sum and the square of a product are different expressions.
 **common_trap:** missing-algebraic-shortcut — solving for x, y individually when the identity gives the answer in one step.
 **takeaway:** Memorize (x + y)² = x² + 2xy + y² and (x − y)² = x² − 2xy + y². When asked for (x ± y)² given x² + y² and xy, the identity is one step.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -526,7 +526,7 @@ The sum of three consecutive even integers is 18 more than twice the smallest of
 **mistake_a:** Translated "consecutive integers" instead of "consecutive even integers" — n, n+1, n+2; got n+2 = 10.
 **mistake_b:** Solved for n itself (12) and bubbled.
 **mistake_c:** Got middle integer n+2 = 14 and bubbled.
-**mistake_e:** Translated "18 more than twice the smallest" as 2n − 18 (sign error); got n = −24 then took absolute or some other slip producing 18.
+**mistake_e:** Solved for n = 12 correctly but extended the sequence incorrectly: wrote consecutive even integers as n, n+2, n+6 (adding 6 to the first to reach the third) instead of n, n+2, n+4. Largest = 12 + 6 = 18.
 **common_trap:** Translation errors on "more than" — attaching the +18 to the wrong side, or treating consecutive integers as consecutive evens (or vice versa).
 **takeaway:** "X is Y more than Z" means X = Z + Y. "Consecutive even integers" differ by 2; "consecutive integers" differ by 1.
 **related_reading:** reading-quant-05-word-problems
@@ -535,7 +535,7 @@ The sum of three consecutive even integers is 18 more than twice the smallest of
 ---
 
 ## Q21
-**difficulty:** Medium
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Symmetric Sums
 
@@ -549,12 +549,12 @@ Let x, y, and z be positive real numbers with x + y + z = 12 and xy + yz + zx = 
 
 **answer:** A
 **fastest_path:** (x+y+z)² = x²+y²+z² + 2(xy+yz+zx) → 144 = sum_of_squares + 78 → sum_of_squares = 66.
-**explanation:** Use the symmetric-sum identity (x + y + z)² = x² + y² + z² + 2(xy + yz + zx). Substitute: (12)² = (x² + y² + z²) + 2(39) → 144 = (x² + y² + z²) + 78 → x² + y² + z² = 66.
-**mistake_b:** Computed (sum)² + (cross-product sum) = 144 + 39 = ... no, mis-applied somewhere.
-**mistake_c:** Forgot the factor of 2: 144 − 39 = 105? No, picked 78 = 2 × 39 directly without subtracting from 144.
-**mistake_d:** Subtracted 39 directly (without the factor of 2): 144 − 39 = 105.
-**mistake_e:** Used 12² + 2(39) = 222 / something else.
-**common_trap:** missing-algebraic-shortcut + factor-of-2 error — solving for x, y, z individually (impossible without more info) or forgetting the factor of 2 on the cross-product sum.
+**explanation:** Use the symmetric-sum identity (x + y + z)² = x² + y² + z² + 2(xy + yz + zx). Substitute: (12)² = (x² + y² + z²) + 2(39) → 144 = (x² + y² + z²) + 78 → x² + y² + z² = 66. This question is hard because the three-variable identity is less commonly memorized than the two-variable version.
+**mistake_b:** Halved the squared sum: (12)²/2 = 72 — perhaps misremembering the identity as (x+y+z)² = 2(x²+y²+z²) + ... and solving backward, while ignoring the cross-product term entirely.
+**mistake_c:** Computed 2(xy+yz+zx) = 2(39) = 78 and stopped — reported the cross-product portion of the identity as the final answer, never completing the subtraction 144 − 78 = 66.
+**mistake_d:** Applied the correct identity structure but with no factor of 2 (144 − 39 = 105), then subtracted an additional 18 to arrive at 87. The second subtraction has no algebraic basis; it reflects trying to patch an already-wrong result.
+**mistake_e:** Applied the identity without the factor of 2 on the cross-product term: (x+y+z)² − (xy+yz+zx) = 144 − 39 = 105. The correct identity is (x+y+z)² = x²+y²+z² + 2(xy+yz+zx); omitting the factor of 2 understates the subtraction by 39.
+**common_trap:** factor-of-2 error on the three-variable identity — the most common miss is choice E (105), from forgetting the 2 in front of the cross-product sum.
 **takeaway:** (x + y + z)² = (sum of squares) + 2(sum of pairwise products). Memorize for symmetric-sum problems.
 **related_reading:** reading-quant-04-algebra-and-equations
 
@@ -645,23 +645,26 @@ If the roots of the quadratic equation x² + bx + 12 = 0 differ by 1, what are t
 **type:** Problem Solving
 **topic:** Word Problem — Relative Motion
 
-Two hikers start at the same time from opposite ends of a trail that is 24 miles long, walking toward each other along the trail. Hiker X walks at 3 miles per hour; Hiker Y walks at 5 miles per hour. At what time do they meet, given that they start at 8:00 AM?
+Two trains start simultaneously from stations 240 miles apart and travel toward each other. Train A travels at 40 mph and Train B travels at 80 mph. In how many hours will the trains meet?
 
-- A) 10:00 AM
-- B) 10:30 AM
-- C) 11:00 AM
-- D) 11:30 AM
-- E) 12:00 noon
+- A) 1.5
+- B) 2
+- C) 3
+- D) 4
+- E) 6
 
-**answer:** C
-**fastest_path:** Closing speed = 3 + 5 = 8 mph. Time = 24 / 8 = 3 hours. Meet at 11:00 AM.
-**explanation:** Two objects moving toward each other have a combined "closing speed" equal to the sum of their individual speeds: 3 + 5 = 8 mph. Distance to close = 24 miles. Time = 24/8 = 3 hours. Starting at 8:00 AM, they meet at 11:00 AM.
-**mistake_a:** Computed time using just Hiker X (3 mph) for half the distance (12 miles): 12/3 = 4 hours? No, 12/3 = 4, then 8:00 + 2 = 10:00. Some half-distance approach.
-**mistake_b:** Average speed (3+5)/2 = 4 mph; 24/4 = 6 hours; 8:00 + 2.5 = 10:30. Some confusion.
-**mistake_d:** Used Hiker Y's speed alone: 24/5 = 4.8 hours, ≈ 12:48 — bubbled approximate 11:30.
-**mistake_e:** Used Hiker X's speed alone: 24/3 = 8 hours; 8:00 + 4 = 12:00 noon.
-**common_trap:** Using a single hiker's speed instead of the combined closing speed.
-**takeaway:** When two objects move toward each other, add their speeds to get the closing speed; divide total distance by closing speed for meeting time.
+**answer:** B
+**hint_nudge:** The trains are closing the gap together — what is their combined closing rate?
+**hint_strategy:** When two objects move toward each other, add their speeds to find the closing rate, then divide total distance by that rate.
+**hint_setup:** Combined closing speed = 40 + 80 = 120 mph. Distance = 240 miles. Time = ?
+**fastest_path:** Closing speed = 40 + 80 = 120 mph. Time = 240 / 120 = 2 hours.
+**explanation:** Two objects moving toward each other close the gap at the sum of their individual speeds: 40 + 80 = 120 mph. Divide the total distance by the closing speed: 240 / 120 = 2 hours. Verification: in 2 hours Train A covers 80 miles and Train B covers 160 miles; 80 + 160 = 240 ✓.
+**mistake_a:** Used Train B's speed for half the distance: 120 / 80 = 1.5 hours — the "they each travel half" logic is appealing, but applying only one train's speed to half the distance gives the wrong answer (Train A would cover only 60 miles in 1.5 hours, not 120).
+**mistake_c:** Used Train A's speed for half the distance: 120 / 40 = 3 hours — same half-distance error with the slower train.
+**mistake_d:** Divided total distance by the average speed (40 + 80) / 2 = 60 mph: 240 / 60 = 4 hours. Average speed applies to a single traveler; two trains closing on each other use the sum of speeds, not the average.
+**mistake_e:** Divided total distance by Train A's speed alone: 240 / 40 = 6 hours — ignored Train B's contribution entirely.
+**common_trap:** Using average speed or a single train's speed instead of the combined closing speed.
+**takeaway:** Two objects moving toward each other close the gap at the sum of their speeds. Divide total distance by this combined closing rate.
 **related_reading:** reading-quant-05-word-problems
 
 
