@@ -9,7 +9,7 @@ import {
   pickAdaptiveOrder,
   type TopicSkillLevel,
 } from "@/lib/topic-skill"
-import SessionClient, { type SessionQuestion } from "./SessionClient"
+import SessionClient, { type SessionQuestion, type PriorSession } from "./SessionClient"
 
 export default async function PracticeSessionPage({
   params,
@@ -65,16 +65,14 @@ export default async function PracticeSessionPage({
     )
   }
 
-  // Adaptive ordering. Reads the student's per-topic skill level from
-  // user_metadata and reorders `playable` so level-appropriate questions
-  // lead. Falls back to file order when the student has fewer than
-  // MIN_ATTEMPTS_FOR_ADAPTIVE attempts on this slug — predictable
-  // behaviour for new users. Auth/metadata errors are non-fatal.
+  // Adaptive ordering + topic history. Reads per-topic skill level and
+  // the last 5 sessions on this slug for the results-screen trend.
   let skill: TopicSkillLevel = {
     level: DEFAULT_LEVEL,
     attempts: 0,
     updatedAt: 0,
   }
+  let priorSessions: PriorSession[] = []
   try {
     const supabase = await createSupabaseServer()
     const {
@@ -83,6 +81,21 @@ export default async function PracticeSessionPage({
     if (user) {
       const levels = getTopicSkillLevels(user.user_metadata)
       skill = getLevelForSlug(levels, slug)
+
+      // Fetch last 5 sessions on this topic for the history trend.
+      const { data: sessionRows } = await supabase
+        .from("practice_sessions")
+        .select("accuracy, created_at")
+        .eq("user_id", user.id)
+        .eq("slug", slug)
+        .order("created_at", { ascending: false })
+        .limit(5)
+      if (sessionRows) {
+        // Reverse so they're chronological (oldest → most recent).
+        priorSessions = sessionRows
+          .reverse()
+          .map((r) => ({ accuracy: r.accuracy as number, createdAt: r.created_at as string }))
+      }
     }
   } catch {
     // Anonymous or supabase down — keep default level / file order.
@@ -97,6 +110,7 @@ export default async function PracticeSessionPage({
       questions={adaptive}
       skillLevel={skill.level}
       skillAttempts={skill.attempts}
+      priorSessions={priorSessions}
     />
   )
 }
