@@ -98,7 +98,7 @@ When the positive integer n is divided by 7, the remainder is 4. What is the rem
 **fastest_path:** Pick n = 4: 3(4) + 5 = 17 → 17 mod 7 = 3.
 **explanation:** Pick the smallest valid n = 4: 3(4) + 5 = 17, and 17 = 2·7 + 3, so remainder is 3. Algebraically: n = 7k + 4 → 3n + 5 = 21k + 17 = 21k + 14 + 3, remainder 3.
 **mistake_a:** Computed 17 mod 7 wrong — divided 17 by 7 and claimed no remainder (perhaps misread 7 × 2 = 17).
-**mistake_b:** Computed 7 × 2 = 16 (arithmetic slip), so 17 − 16 = 1 instead of 17 − 14 = 3.
+**mistake_b:** Computed 3(4) + 5 = 17 correctly, then misread the modulus as 8 instead of 7: ⌊17/8⌋ = 2, remainder 17 − 8(2) = 1.
 **mistake_d:** Bubbled the "+5" alone, ignoring the 3n contribution.
 **mistake_e:** Inverted: 7 − 3 = 4, then bubbled 6 from another residue confusion.
 **common_trap:** Trying to track n directly instead of working modulo 7 from the start.
@@ -134,9 +134,9 @@ If the three-digit number 4A6 is divisible by 9, where A represents a single dig
 ---
 
 ## Q6
-**difficulty:** Medium
+**difficulty:** Easy
 **type:** Problem Solving
-**topic:** Multiples
+**topic:** GCF and LCM
 
 What is the greatest common factor of 168 and 252?
 
@@ -176,7 +176,7 @@ If x and y are positive integers such that x = 8q + 5 and y = 8r + 3, where q an
 **fastest_path:** Multiply remainders: 5 × 3 = 15. Then 15 mod 8 = 7.
 **explanation:** When taking remainders of products, multiply the remainders then reduce mod 8. 5 × 3 = 15 = 8 + 7 → remainder 7. Algebraic check: (8q + 5)(8r + 3) = 64qr + 24q + 40r + 15 = 8(8qr + 3q + 5r + 1) + 7.
 **mistake_a:** Reduced 15 mod 8 incorrectly — subtracted 8 twice (got 1 instead of 7).
-**mistake_b:** Took (x mod 8) + (y mod 8) = 8 → 0, then bubbled 3 from another path.
+**mistake_b:** Concluded xy mod 8 = y mod 8 = 3 — treated the remainder of the product as equal to one factor's residue, without multiplying both residues and reducing.
 **mistake_c:** Bubbled 5 (just one of the original remainders).
 **mistake_e:** Forgot to reduce — bubbled the raw product 15.
 **common_trap:** Forgetting to reduce the product back mod 8 — leaving 15 as the answer.
@@ -186,7 +186,7 @@ If x and y are positive integers such that x = 8q + 5 and y = 8r + 3, where q an
 ---
 
 ## Q8
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Primes and Factors
 
@@ -225,12 +225,12 @@ Which of the following numbers is divisible by 11?
 - E) 7239
 
 **answer:** A
-**fastest_path:** Alternating digit sum test for 11. 2431: 2 − 4 + 3 − 1 = 0 → divisible.
+**fastest_path:** Alternating digit sum (right-to-left): 1 − 3 + 4 − 2 = 0 for 2431 → divisible by 11.
 **explanation:** Divisibility by 11: alternating digit sum from the rightmost must be divisible by 11. For 2431: 1 − 3 + 4 − 2 = 0 ✓. Verify directly: 2431 / 11 = 221. The other options give nonzero alternating sums (3456 → 2; 5791 → −6; 6810 → 1; 7239 → 1).
-**mistake_b:** Computed alternating sum wrong on 3456 — got 0 by sign-flipping a digit.
-**mistake_c:** Computed alternating sum wrong on 5791.
-**mistake_d:** Computed alternating sum wrong on 6810 (mis-ordered the signs).
-**mistake_e:** Computed alternating sum wrong on 7239.
+**mistake_b:** Alternating sum of 3456 (right-to-left): 6 − 5 + 4 − 3 = 2 — not divisible by 11. A student might pick 3456 by confusing it with divisibility by 9: digit sum 3+4+5+6 = 18 is divisible by 9, but 9 ≠ 11.
+**mistake_c:** Trap — plain digit sum of 5791 = 5 + 7 + 9 + 1 = 22 = 2 × 11, which IS divisible by 11, but the rule requires the *alternating* sum, not the plain sum. Alternating sum (right-to-left): 1 − 9 + 7 − 5 = −6 — not divisible by 11.
+**mistake_d:** Alternating sum of 6810 (right-to-left): 0 − 1 + 8 − 6 = 1 — not divisible by 11. A student might test this number first because it ends in 0, but a trailing zero signals divisibility by 10, not 11.
+**mistake_e:** Alternating sum of 7239 (right-to-left): 9 − 3 + 2 − 7 = 1 — not divisible by 11. Applying the wrong test: plain digit sum 7+2+3+9 = 21 is divisible by 3, not 11.
 **common_trap:** Mis-ordering the signs in the alternating sum (start from the rightmost digit, or be consistent — but stay consistent within a number).
 **takeaway:** Divisibility-by-11 test: alternating digit sum (right-to-left) divisible by 11. Quicker than long division for 4+ digits.
 **related_reading:** reading-quant-03-number-properties
@@ -280,8 +280,8 @@ What is the units digit of 3²⁴?
 **fastest_path:** Powers of 3 cycle [3, 9, 7, 1] (period 4). 24 mod 4 = 0 → position 4 → units digit 1.
 **explanation:** Units digits of 3^n cycle with period 4: 3¹=3, 3²=9, 3³=27→7, 3⁴=81→1, then repeats. Position in cycle = n mod 4 (use 4 if 0). 24 mod 4 = 0 → position 4 → units digit 1.
 **mistake_a:** Confused with units digit 0 — only multiples of 10 end in 0, and 3^n never picks up a factor of 10.
-**mistake_c:** Bubbled the base 3 — ignored the cycle entirely.
-**mistake_d:** Bubbled position 3 in the cycle (= 7), not position 4.
+**mistake_c:** When 24 mod 4 = 0, treated remainder 0 as "restart at position 1 → units digit 3." The cycle is 1-indexed: mod 4 = 0 signals the *end* of the cycle (position 4 → units digit 1), not a restart at the beginning.
+**mistake_d:** Applied an off-by-one before computing mod: (24 − 1) mod 4 = 23 mod 4 = 3 → position 3 in [3, 9, 7, 1] = units digit 7. The cycle index uses n directly, not n − 1.
 **mistake_e:** Bubbled position 2 in the cycle (= 9).
 **common_trap:** When n mod 4 = 0, position is 4 (end of the cycle), not 0 (undefined). Easy to mis-index.
 **takeaway:** Units-digit cycles of length 4 for primes 2, 3, 7, 8: 2→[2,4,8,6], 3→[3,9,7,1], 7→[7,9,3,1], 8→[8,4,2,6].
@@ -305,7 +305,7 @@ When the positive integer n is divided by 5, the remainder is 2. What is the rem
 **answer:** E
 **fastest_path:** Pick n = 2: n² = 4, 4 mod 5 = 4.
 **explanation:** Pick smallest valid n = 2: 2² = 4, 4 mod 5 = 4. Algebraically: n = 5k + 2 → n² = 25k² + 20k + 4 → remainder 4.
-**mistake_a:** Forgot to square — took n mod 5 = 2, then reduced 2 mod 5 = 2... but tried to divide again and concluded 0.
+**mistake_a:** Used n = 5 as the test value (a multiple of 5, leaving remainder 0 not 2): 5² = 25, 25 mod 5 = 0. Any valid n must satisfy n ≡ 2 (mod 5); the smallest is n = 2, giving 2² mod 5 = 4.
 **mistake_b:** Squared the remainder to get 4, then subtracted from the modulus: 5 − 4 = 1 (confused remainder with complement).
 **mistake_c:** Bubbled the original remainder 2 — forgot to square it.
 **mistake_d:** Computed 2² = 4, then applied "4 − 1 = 3" from a spurious off-by-one adjustment.
@@ -358,7 +358,7 @@ How many positive factors does 720 have?
 **fastest_path:** 720 = 2⁴·3²·5 → (4+1)(2+1)(1+1) = 5·3·2 = 30.
 **explanation:** Prime-factorize: 720 = 8 · 9 · 10 = 2³ · 3² · 2 · 5 = 2⁴ · 3² · 5. Factor count = (4+1)(2+1)(1+1) = 30.
 **mistake_a:** Used 2³ instead of 2⁴: (3+1)(2+1)(1+1) = 24.
-**mistake_b:** Off-by-one on one exponent: 28 = 7·4 from (6+1)(3+1) — wrong factorization.
+**mistake_b:** Factored 720 correctly as 2⁴·3²·5 but made an arithmetic slip computing the count: 5 × 3 = 14 (should be 15), then 14 × 2 = 28.
 **mistake_d:** Mis-factored 720 as 2³·3³·5 (over-counted the exponent of 3): (3+1)(3+1)(1+1) = 4·4·2 = 32.
 **mistake_e:** Mis-factored 720 as 2⁵·3²·5 (over-counted the exponent of 2): (5+1)(2+1)(1+1) = 6·3·2 = 36.
 **common_trap:** Mis-factorizing 720 by missing one factor of 2 or one factor of 3 — the count formula then deviates.
@@ -572,10 +572,10 @@ Positive integers p and q satisfy p² + q² = 193 with p > q. What is the value 
 **answer:** C
 **fastest_path:** 193 odd → one even, one odd. Try q = 7: p² = 144 → p = 12. p − q = 5.
 **explanation:** 193 is odd, so exactly one of p, q is even. Try small q: q = 1 → p² = 192 (not square); q = 3 → p² = 184 (not); q = 5 → p² = 168 (not); q = 7 → p² = 144 → p = 12 ✓. With p > q: p − q = 12 − 7 = 5.
-**mistake_a:** Took (p, q) = (13, 12) without verifying — fails 193.
-**mistake_b:** Stopped at q = 4 (p² = 177 — not square) and bubbled near miss.
-**mistake_d:** Used (13, 6) without checking — fails 193.
-**mistake_e:** Inverted q − p = −5; bubbled |q − p| = ... mis-traced to 9.
+**mistake_a:** Student assumes p and q are consecutive (p = q + 1): setting (q+1)² + q² = 193 gives 2q² + 2q − 192 = 0, whose discriminant (385) is not a perfect square — no integer solution exists, but a student who skips verification settles for p − q = 1.
+**mistake_b:** Student tests (p, q) = (10, 7) prematurely: 10² + 7² = 100 + 49 = 149 ≠ 193. Accepts the pair and computes 10 − 7 = 3. Always verify p² + q² = 193 before recording p − q.
+**mistake_d:** Student tests (p, q) = (13, 6) without verifying: 13² + 6² = 169 + 36 = 205 ≠ 193, then computes 13 − 6 = 7. Or finds the correct q = 7 and reports q rather than p − q.
+**mistake_e:** Student tests (p, q) = (13, 4): 13² + 4² = 169 + 16 = 185 ≠ 193, computes 13 − 4 = 9. Systematic search with explicit verification prevents premature acceptance of a wrong pair.
 **common_trap:** Trying random pairs without using parity (193 odd → mixed parities) to narrow the search.
 **takeaway:** For p² + q² = N: parity of N determines parity-mix. N mod 4 = 1 → one odd, one even. Test small q first.
 **related_reading:** reading-quant-03-number-properties
@@ -795,10 +795,10 @@ What is the smallest positive integer n such that n, n + 2, and n + 4 are all pr
 **answer:** A
 **fastest_path:** Try n = 3: 3, 5, 7 all prime ✓. (Among any 3 odd numbers spaced by 2, one is divisible by 3 — only when that one *is* 3 can all three be prime.)
 **explanation:** Try n = 3: 3, 5, 7 — all prime ✓. For any n > 3: among n, n + 2, n + 4, one is divisible by 3 (they cover three consecutive residues mod 3), and being > 3 makes it composite. So (3, 5, 7) is the *only* such triple.
-**mistake_b:** Tried n = 5: 5, 7, 9 — 9 is not prime.
-**mistake_c:** Tried n = 7: 7, 9, 11 — 9 is not prime.
-**mistake_d:** Tried n = 11: 11, 13, 15 — 15 is not prime.
-**mistake_e:** Tried n = 17: 17, 19, 21 — 21 is not prime.
+**mistake_b:** Tried n = 5 (skipped n = 3): {5, 7, 9} — 9 = 3² is composite. For any n > 3, the triple n, n+2, n+4 covers all three residues mod 3 (since three consecutive even-gap terms cycle through 0, 1, 2 mod 3), so exactly one is divisible by 3. Being greater than 3, it is composite.
+**mistake_c:** Tried n = 7: {7, 9, 11} — 9 ≡ 0 (mod 3) and 9 > 3, so it is composite. Same mod-3 structure eliminates every n > 3.
+**mistake_d:** Tried n = 11: {11, 13, 15} — 15 = 3 × 5 is composite (15 ≡ 0 mod 3, and 15 > 3).
+**mistake_e:** Tried n = 17: {17, 19, 21} — 21 = 3 × 7 is composite. The mod-3 argument guarantees that for all n > 3, the element divisible by 3 in the triple exceeds 3 and is therefore not prime.
 **common_trap:** Skipping n = 3 as "too small" or testing larger values first; missing the unique mod-3 structure.
 **takeaway:** Among any 3 numbers in AP with common difference 2, one is divisible by 3 — so (3, 5, 7) is the *only* prime triplet of this form.
 **related_reading:** reading-quant-03-number-properties
