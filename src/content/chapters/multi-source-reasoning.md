@@ -2,10 +2,10 @@
 slug: multi-source-reasoning
 title: Multi-Source Reasoning
 section: DI
-estimated_minutes: 50
+estimated_minutes: 55
 prerequisites: []
 summary: |
-  Multi-Source Reasoning gives you 2-3 tabs of information — memos, tables, rules, emails, research abstracts — and asks questions that require synthesizing across them. The test isn't reading comprehension; it's navigation. You need to know which tab to consult for each question, extract the specific data points, combine them correctly, and verify against constraints. Master the two-pass navigation protocol (orient first, then dive in for each question), internalize the four question types, and every MSR set becomes a 5-6 minute sequence rather than a frantic re-read of three screens.
+  Multi-Source Reasoning gives you 2-3 tabs of information — memos, tables, rules, emails, research abstracts — and asks questions that require synthesizing across them. The test isn't reading comprehension; it's navigation. You need to know which tab to consult for each question, extract the specific data points, combine them correctly, and verify against constraints. Master the two-pass navigation protocol (orient first, then dive in for each question), internalize the five question types, and every MSR set becomes a 5-6 minute sequence rather than a frantic re-read of three screens.
 sections:
   - id: pretest
     type: pretest
@@ -22,9 +22,20 @@ sections:
     check_question_ids:
       - multi-source-reasoning-q1
 
+  - id: msr-question-types
+    type: reading
+    title: "The five MSR question types — know what you're solving for"
+    intro: |
+      Every MSR question fits one of five recognizable patterns. Identifying the pattern before you read determines how many tabs you need, how deeply you read, and which technique you apply. Missing the type sends you back to re-read tabs you didn't need — or worse, trusting memory on a calculation that required scratch paper.
+    check_question_ids:
+      - multi-source-reasoning-q6
+      - multi-source-reasoning-q10
+
   - id: matching-question-to-tab
     type: reading
     title: "Matching the question to the right tab"
+    intro: |
+      Once you know the question type, you need to route yourself to the right tab. This section gives you the diagnostic moves for locating information, handling ambiguity across tabs, and avoiding the two most common navigation mistakes.
     check_question_ids:
       - multi-source-reasoning-q2
       - multi-source-reasoning-q11
@@ -52,7 +63,7 @@ sections:
 
   - id: summary
     type: summary
-    title: "The MSR workflow and the four question types"
+    title: "The MSR workflow, five question types, and common traps"
     check_question_ids: []
 
 problem_sets:
@@ -136,11 +147,109 @@ This is aggressive — but achievable when you orient efficiently. Students who 
 
 **The "which tab has the numbers" heuristic.** Tables have data. Memos usually describe data in prose but often lack precise numbers. If a question asks for a specific percentage or dollar figure, check the table first.
 
+**Micro-drill: pass-1 orientation.** Refer back to Set 1 (Apex Electronics, in the pretest) and do a pass-1 orientation right now — 30 seconds, no more. Before reading on, answer these three questions from memory:
+
+1. What is the main topic of Tab 1? What kind of source is it?
+2. What are the rows and columns of Tab 2?
+3. How many rules does Tab 3 contain, and what do they govern?
+
+Then check: Tab 1 is an internal memo from the VP of Sales about fiscal year regional performance. Tab 2 is a regional revenue table with five columns (previous year revenue, current revenue, year-over-year change, hardware revenue, software and services revenue). Tab 3 lists four board-approved targets covering hardware mix, S&S growth, regional concentration, and growth floor. If you got all three in 30 seconds, your pass-1 orientation is calibrated. If not, you read content instead of structure — re-run the exercise and force yourself to stay structural.
+
 > **Recall check.** Close the book. State the two-pass protocol. Now: in pass 1, what do you NOT do? (Answer: you don't try to memorize content. You build a table of contents, not the whole book.) Retrieval of the distinction between orienting and deep-reading is what separates 6-minute MSR sets from 10-minute ones.
+
+## @msr-question-types
+
+Every MSR question is one of five types. Read the stem, name the type, then apply the right technique. Students who skip this step navigate to the wrong tab — or use a synthesis workflow when a direct lookup would have worked in 45 seconds.
+
+**Type 1: Direct Lookup.**
+
+The question asks for a fact that lives explicitly in one tab.
+
+*Recognition cue:* "According to the memo," "The table shows," "Which did the research identify as," any question naming a specific source.
+
+*Technique:* Identify which tab contains the data, navigate there, read carefully, done. No synthesis required.
+
+*Budget:* 45-75 seconds. If it's taking longer, you went to the wrong tab.
+
+*Example cue:* "According to the market research, what was the weakest driver of purchase intent?" Tab 1 of that set names it explicitly. Navigate there and read.
+
+---
+
+**Type 2: Computational Multi-Tab.**
+
+The question requires calculating a metric from data spread across multiple tabs.
+
+*Recognition cue:* "Approximately what percent," "What was the total," "How many of the [criteria] were met," "What is the gross margin."
+
+*Technique:* (1) List every data point the computation needs. (2) Locate each in the relevant tab. (3) Write each number on scratch paper. (4) Compute last. Never hold two numbers in your head while doing arithmetic.
+
+*Budget:* 90-120 seconds. If it's taking longer, you're doing multi-number arithmetic mentally — stop, write the values down, then combine.
+
+*Example cue:* "How many of the four board-approved targets did the company meet?" This needs Tab 3 (the targets) plus Tab 2 (the actual data). Write each target check explicitly: hardware %, S&S growth, regional share, growth floors — then verify each one against the table.
+
+---
+
+**Type 3: Cross-Tab Inference (Must Be True).**
+
+The question asks which option is *directly supported* by the information across all tabs.
+
+*Recognition cue:* "Must be true," "Can be inferred," "The data support the conclusion that," "Which of the following follows from the information."
+
+*Technique:* Test each option against the tabs. The correct answer is directly verifiable without any additional assumptions. Wrong answers either contradict a tab, require an inference not in evidence, or make a numerical claim you'd have to invent.
+
+*Budget:* 90-120 seconds. Budget 15-25 seconds per option.
+
+*The key trap:* "Seems reasonable" is not the standard. The correct answer must be *directly verifiable*. Eliminate anything that goes even one step beyond what the tabs explicitly state.
+
+*Example cue:* "Based on all three tabs, which of the following must be true?" — work through each option as a hypothesis. Reject any that require an assumption.
+
+---
+
+**Type 4: Discrepancy Explanation.**
+
+Two tabs appear to give conflicting information. The question asks which option best explains or reconciles the gap.
+
+*Recognition cue:* The words "discrepancy," "explain," "reconcile," or you notice two tabs giving different numbers for what seems to be the same quantity.
+
+*Technique:* (1) Quantify the gap precisely. (2) Test each option: does it fully explain the gap without contradicting any other tab? The correct answer bridges the discrepancy exactly. Wrong answers explain a different gap, introduce a new contradiction, or are irrelevant to the numbers.
+
+*Budget:* 90-120 seconds. Spend extra time on step 1 — if you don't know the exact gap, you can't eliminate wrong answers efficiently.
+
+*Example cue:* "The meeting minutes report the total operating budget as $45.28M, but the budget table sums to $44.36M. Which best explains the discrepancy?" Quantify first: gap is $0.92M. Then test each option for whether it accounts for exactly that amount.
+
+---
+
+**Type 5: Conditional / Hypothetical.**
+
+One named variable is changed. You recompute a downstream metric under the new assumption.
+
+*Recognition cue:* "If," "Suppose," "Assuming instead," "Had [condition] not occurred," "If [X] were [Y] rather than [Z]."
+
+*Technique:* (1) Identify exactly what changed. (2) Apply only that change to the actual tab data. (3) Hold everything else constant. (4) Work through any cascades — a revenue change may also shift shares and margins. (5) Recompute the metric the question asks about.
+
+*Budget:* 90-120 seconds. If it's taking longer, you probably changed more than the stated variable, or you're trying to hold the old and new values in your head simultaneously — write both down.
+
+*Example cue:* "If Eastern's enterprise contracts had contributed $0.90M less in revenue, what would Eastern's growth rate have been?" Strip only $0.90M from current Eastern revenue. Leave the prior-year figure unchanged. Recompute growth.
+
+---
+
+**Recognition table — first 10 seconds of every MSR question.**
+
+| Stem language | Type | First move |
+|---|---|---|
+| "According to," "The [tab] states," "[Tab] reports" | Direct Lookup | Navigate to named tab; read exactly |
+| "How many," "What percent," "Approximately what," "How much" | Computational | List all data points; write each before computing |
+| "Must be true," "Can be inferred," "Supports the conclusion" | Must Be True | Test every option against the tabs |
+| "Discrepancy," "Explain," "Reconcile," tabs seem to conflict | Discrepancy | Quantify the gap; find the bridging option |
+| "If," "Suppose," "Assuming instead," "Had not" | Conditional | Apply only the stated change; hold everything else |
+
+**Why type-identification comes before tab navigation.** A Must Be True question requires you to test every option — even the ones that feel obviously wrong, because the obvious-wrong option is often what the trap wants you to select without checking. A Direct Lookup question requires the opposite discipline: go to one tab, read it precisely, stop. Identifying the type first means you use the right discipline, not the wrong one.
+
+> **Recall check.** Cover this section. Name the five types and their recognition cues from memory. Now classify these two stems: (a) "Based on all three tabs, which of the following must be true?" and (b) "If the Eastern region's enterprise contracts had not been signed, what would the year-over-year growth rate have been?" — (a) is Must Be True: test all options, reject anything not directly verifiable. (b) is Conditional: apply one change, recompute. If you mixed those up, re-read the type descriptions. They call for opposite habits.
 
 ## @matching-question-to-tab
 
-Every MSR question is anchored in one or more tabs. Your first move after reading the question stem is to decide which tab(s) to consult.
+Every MSR question is anchored in one or more tabs. Your first move after identifying the question type is deciding which tab(s) to consult.
 
 **The three diagnostic moves for tab matching:**
 
@@ -275,21 +384,22 @@ Some MSR questions follow a Table Analysis-style format: a set of Yes/No stateme
 
 ## @summary
 
-Multi-Source Reasoning is a navigation-and-synthesis skill. The two-pass protocol plus the four question-type templates cover every MSR set.
+Multi-Source Reasoning is a navigation-and-synthesis skill. The two-pass protocol plus the five question-type templates cover every MSR set.
 
 **The two-pass protocol:**
 
 1. **Orient** (30-45 seconds): scan all tabs, build a mental table of contents.
-2. **Dive in per question**: match the stem to tabs, extract the needed data, combine.
+2. **Dive in per question**: identify the question type, match the stem to tabs, extract the needed data, combine.
 
-**The four MSR question types:**
+**The five MSR question types:**
 
-| Type | What it tests | Key technique |
+| Type | Recognition cue | Key technique |
 |---|---|---|
-| Simple lookup | Locating one piece of information | Know which tab contains what |
-| Cross-tab synthesis | Combining info from 2-3 tabs | Write down each data point before combining |
-| Conditional / hypothetical | Recomputing under a changed scenario | Apply the change to the actual data, recompute |
-| Yes/No statement check | Verifying multi-tab claims | Treat each statement independently; check quantifiers |
+| Direct Lookup | "According to," "[Tab] states" | Navigate to one tab; read precisely |
+| Computational | "How many," "What percent," "Approximately" | List all data points; write before computing |
+| Must Be True | "Must be true," "Can be inferred" | Test every option against the tabs; require direct evidence |
+| Discrepancy | "Discrepancy," "Explain," tabs conflict | Quantify the gap; find the option that bridges it exactly |
+| Conditional | "If," "Suppose," "Assuming instead" | Apply only the stated change; hold everything else constant |
 
 **Time-management targets per set.**
 
@@ -299,20 +409,34 @@ Multi-Source Reasoning is a navigation-and-synthesis skill. The two-pass protoco
 
 If you're over 7 minutes on a single set, something went wrong — usually re-reading tabs you didn't need. Step back, look at your scratch paper, and ask "what specific data point am I missing?"
 
+**Time budgets by question type:**
+
+- Direct Lookup: 45-75 seconds. Longer = wrong tab.
+- Computational: 90-120 seconds. Longer = doing arithmetic mentally instead of on paper.
+- Must Be True: 90-120 seconds. Budget 15-25 seconds per option.
+- Discrepancy: 90-120 seconds. If struggling, you haven't quantified the gap yet.
+- Conditional: 90-120 seconds. Longer = changed more variables than stated.
+
 **The five highest-leverage MSR habits.**
 
 1. **Orient before diving.** 30 seconds of tab-mapping saves 2 minutes of confused back-and-forth later.
-2. **Match question to tab before reading carefully.** Don't re-read all tabs for every question.
-3. **Write down data points on scratch paper.** Mental synthesis of 3+ numbers is error-prone.
-4. **Check all rules on compliance questions.** When the question enumerates, you must check all items.
+2. **Name the question type before reading tabs.** The type determines your technique; the wrong technique wastes 60+ seconds.
+3. **Write down data points on scratch paper.** Mental synthesis of 3+ numbers is error-prone under time pressure.
+4. **Check all rules on compliance questions.** When the question enumerates, you must verify every item.
 5. **Read quantifiers carefully on Yes/No statements.** "Every," "at least," "more than" each have different verification standards.
 
 **Common traps across MSR:**
 
-- Partial tab coverage (looking at Tab 1 and 2 but ignoring Tab 3 when the question needs it).
-- Trusting a memo's characterization when the question asks for a precise number in the table.
-- Missing cascading effects in hypothetical questions.
+- Partial tab coverage: checking Tab 1 and 2 but ignoring Tab 3 when the question needs it.
+- Trusting a memo's characterization when the question asks for a precise number that lives in the table.
+- Missing cascading effects in hypothetical questions (changing revenue without adjusting shares).
 - Using a simple average when a weighted average is needed.
-- Forgetting which figures are "current year" vs "previous year."
+- Confusing "at the industry average" with "12% below the industry average" on threshold questions.
+- Picking what "seems reasonable" on Must Be True — requires direct verifiability, not plausibility.
+- On discrepancy questions, finding an option that explains *part* of the gap rather than the full gap.
 
-Drill the 15 questions in this chapter across the three problem sets. Each set has 2-3 questions that share a single set of tabs — so reading the tabs efficiently on the first question pays off on the rest. By the end of the hard set, the two-pass protocol should feel like second nature.
+**What to do next.** Open the problem set for this chapter and work through Easy before Medium. In each set, as you read the first question, name the question type out loud before you touch a tab. If you can't name it, re-read this chapter's question-types section before continuing. After each missed question, identify two things: (1) which type you misidentified, and (2) which technique you applied instead of the correct one. That pair of annotations builds pattern-recognition faster than re-reading passages.
+
+Once you're hitting 80%+ on Medium, move to Hard. Hard questions are typically Computational or Conditional with cascading effects, or Must Be True questions where two of the five options look plausible until you check the exact numbers. If Hard is where you stall, the fix is almost always the same: you stopped writing numbers down and tried to hold the synthesis in your head. Go back to the scratch-paper habit and your accuracy will recover.
+
+Drill the 15 questions in this chapter across the three problem sets. Each set has 2-3 questions that share a single set of tabs — so reading the tabs efficiently on the first question pays off on the rest. By the end of the Hard set, the two-pass protocol plus type-identification should feel like a reflex, not a procedure.
