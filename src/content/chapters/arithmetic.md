@@ -19,12 +19,16 @@ sections:
   - id: order-of-operations
     type: reading
     title: "Order of operations — PEMDAS and the traps inside it"
+    intro: |
+      PEMDAS is not the skill the GMAT tests — the two traps inside it are. This section names both traps and gives you a pre-computation scan habit that prevents arithmetic errors before they compound into wrong answers.
     check_question_ids:
       - arithmetic-q16
 
   - id: fractions-fluency
     type: reading
     title: "Fractions — the single highest-leverage arithmetic skill"
+    intro: |
+      Fluency means the answer appears without scratch paper in five seconds. This section builds that fluency through the three operations, the cancel-first habit, and a micro-drill that tells you exactly where your speed gap is before you leave the section.
     check_question_ids:
       - arithmetic-q13
       - arithmetic-q15
@@ -32,6 +36,8 @@ sections:
   - id: decimals-and-percents-conversion
     type: reading
     title: "Decimals and percents — three notations, one number"
+    intro: |
+      Students who switch fluently between fractions, decimals, and percents save 20-30 seconds on every percent problem. Students who can't switch get trapped in multi-step computations that the problem never required. This section closes that gap.
     check_question_ids:
       - arithmetic-q2
       - arithmetic-q4
@@ -39,18 +45,24 @@ sections:
   - id: signs-and-negatives
     type: reading
     title: "Signs and negatives — keeping the minus signs from eating your time"
+    intro: |
+      Sign errors cost points not because students don't know the rules, but because they suspend the rules under time pressure. This section is deliberately short — the rules are short — but it extends to absolute value inequalities, which are a major Data Sufficiency trap at the 685+ tier.
     check_question_ids:
       - arithmetic-q17
 
   - id: integers-vs-non-integers
     type: reading
     title: "Integers vs. non-integers — knowing which world you're in"
+    intro: |
+      The GMAT doesn't care whether you can compute with integers — it cares whether you notice when a problem allows non-integers where you assumed integers. One wrong assumption on a Data Sufficiency question eliminates otherwise sound reasoning.
     check_question_ids:
       - arithmetic-q18
 
   - id: estimation-tricks
     type: reading
     title: "Estimation — when to compute and when to approximate"
+    intro: |
+      The most underused skill on Quant is recognizing when not to compute. A five-second answer-choice scan determines whether you need precision or whether a well-reasoned estimate lands you in the right answer without touching a calculator.
     check_question_ids:
       - arithmetic-q19
 
@@ -124,6 +136,15 @@ Every student has heard of PEMDAS — Parentheses, Exponents, Multiplication/Div
 
 **Trap to watch.** A negative sign in front of a parenthesis distributes to *every* term inside. `−(3 − 5)` is `−3 + 5 = 2`, not `−3 − 5 = −8`. When I rush, I forget the distribution on the second term. The habit: write the negative as `−1 ×` mentally and distribute slowly.
 
+**Micro-drill.** Without scratch paper, evaluate each expression:
+
+1. `15 − 4 × 2 + 6 / 3`
+2. `−(5 − 8)² + 12 / 4`
+3. `3 + 2 × (−2 − 1)²`
+
+Answers: (1) `15 − 8 + 2 = 9`; (2) `−(−3)² + 3 = −9 + 3 = −6`; (3) `3 + 2 × 9 = 21`.
+If any answer surprised you, trace through the order: resolve parentheses and exponents first, multiplication before addition, left-to-right within the same tier.
+
 > **Self-explanation prompt.** Before the check question, say out loud in one sentence: *why* does multiplication happen before subtraction? If you can articulate that multiplication is a compact way of writing repeated addition (so `2 × 4` is really `4 + 4`, already an addition), you'll stop making the left-to-right mistake.
 
 ## @fractions-fluency
@@ -157,6 +178,18 @@ If I could pick one skill that separates 685+ scorers from 605 scorers on Quant,
 Multiples follow: `3/8 = 0.375`, `5/8 = 0.625`, `7/8 = 0.875`. When you see `.375` in an answer choice, you should *see* `3/8` without thinking.
 
 **Trap to watch.** A complex fraction like `(a + b/c) / d` is `(ac + b) / (cd)`, not `(a + b) / (cd)`. Resolve the numerator fully — `a + b/c = (ac + b)/c` — before you divide.
+
+**Micro-drill.** Simplify each without a calculator — all four should land under 90 seconds total:
+
+1. `3/4 + 5/6` = ___
+2. `(7/8) × (16/21)` = ___
+3. `(3/2) ÷ (5/4)` = ___
+4. Reduce `252/336` = ___
+
+Answers: (1) 19/12; (2) cancel 7 into 21 → 1/3, cancel 8 into 16 → 2/1, result 2/3; (3) multiply by reciprocal → (3/2) × (4/5) = 12/10 = **6/5**; (4) GCF is 84 → **3/4**.
+If (2) took more than 15 seconds, you're multiplying before cancelling — cancel diagonally first, that's the habit.
+
+> **Self-explanation prompt.** Why does "cancel before you multiply" produce the same answer as "multiply then reduce"? If you can say "because multiplication is commutative and associative — cancelling early just changes the order in which common factors are removed, not the final product," you've understood why cross-cancellation is safe, not magic.
 
 ## @decimals-and-percents-conversion
 
@@ -223,7 +256,26 @@ Signed-number arithmetic is where careful students lose points not because they 
 
 Sum: `9 + (−2) = 7`. Any `|expression| = k` equation has (up to) two solutions; forgetting the negative case is the #1 absolute-value trap.
 
+**Absolute value inequalities — the direction determines the structure.** The two-case rule extends to inequalities, but the shape of the solution changes with the inequality sign:
+
+- `|expression| < k` → `−k < expression < k`. The expression falls *within* k of zero. One compound inequality, one connected range.
+- `|expression| > k` → `expression < −k` OR `expression > k`. The expression falls *further* than k from zero. Two separate inequalities, two disconnected regions.
+
+**The distance interpretation.** Read `|x − a|` as "the distance between x and a on the number line." Then `|x − a| < k` means "x is within distance k from a" — a bounded interval. And `|x − a| > k` means "x is more than distance k from a" — the two tails beyond a. This framing makes the direction of the solution feel obvious, not arbitrary.
+
+**Example.** Solve `|2x − 5| < 7`.
+
+Bounded: `−7 < 2x − 5 < 7`. Add 5 across: `−2 < 2x < 12`. Divide by 2: `−1 < x < 6`.
+
+**Example.** Solve `|3x + 1| ≥ 8`.
+
+Two regions: `3x + 1 ≥ 8 → x ≥ 7/3`, or `3x + 1 ≤ −8 → x ≤ −3`. Solution: x ≤ −3 or x ≥ 7/3.
+
+**DS trap: a constraint that looks simple.** A DS statement like "`|x − 3| < 1`" says "x is within 1 unit of 3." Students note this and move on — but what it *actually* says is `2 < x < 4`. From this you can conclude x > 0 (yes, since x > 2). You cannot conclude x is an integer (2.5 satisfies the inequality). The test expects you to solve the inequality fully, not just characterize it loosely.
+
 **Trap to watch.** `(−3)² = 9`, but `−3² = −9`. The exponent binds tighter than the negation unless the negative is inside parentheses. Write out `−3²` as `−(3²)` in your head.
+
+> **Recall check.** Cover this section. Write from memory: the sign rule for multiplication, the two-case split for `|expression| = k`, and both solution shapes for absolute value inequalities (`<` gives ___, `>` gives ___). Now apply them: what values of x satisfy `|4x − 1| > 7`? (Split: `4x − 1 > 7 → x > 2`; or `4x − 1 < −7 → x < −3/2`. Answer: x < −3/2 or x > 2.) If you wrote only x > 2, you dropped the negative case — that is the most-exploited trap in Data Sufficiency absolute-value problems.
 
 ## @integers-vs-non-integers
 
@@ -247,6 +299,16 @@ The GMAT cares intensely about whether a number is an integer or not. Many Data 
 **Example.** Is `p/q > 1/2`? You're told `q = 2p − 5`.
 
 Manipulate: `p/q > 1/2` becomes `2p > q` when `q > 0`. Substituting `q = 2p − 5`: we want `2p > 2p − 5`, i.e., `0 > −5`. Always true (given `q > 0`). So statement (2) is sufficient.
+
+**The Data Sufficiency integer trap.** A statement that says "x is a positive number" does NOT establish that x is a positive integer. The GMAT builds DS problems around this gap: a statement that eliminates negative values might still allow x = 0.5, and x = 0.5 and x = 1 can give different answers to the question being asked.
+
+**Example (DS).** Is x > 1?
+
+- Statement (1): `x² > x`. This simplifies to `x(x − 1) > 0`, which holds for x > 1 AND for x < 0. A non-integer like x = −0.3 satisfies it; so does x = 2. Not sufficient on its own.
+- Statement (2): x is a positive integer. The smallest positive integer is 1, so x ≥ 1. But x = 1 satisfies "positive integer" without satisfying x > 1. Not sufficient on its own.
+- Together: x² > x AND x is a positive integer → x ≥ 2, so x > 1. Sufficient.
+
+The lesson: statement (1) fails because the non-integer x = −0.3 also satisfies x² > x, muddying the conclusion. The integer constraint in statement (2) is what closes the question — but only in combination.
 
 **Terminating vs non-terminating decimals.** A fraction `a/b` (in lowest terms) has a terminating decimal if and only if `b` has no prime factors other than 2 and 5. `3/8 = 0.375` (b = 2³, terminates). `1/3 = 0.333…` (b = 3, doesn't terminate). `1/6 = 0.1666…` (b = 2 × 3, the 3 forces non-termination).
 
@@ -289,6 +351,14 @@ The one that's closest: `11/32`. A more rigorous approach uses cross-multiplicat
 - The problem says "approximately" or "closest to."
 - You're multiplying messy decimals and one choice is obviously nearest.
 
+**Micro-drill.** For each, decide in under 10 seconds whether to estimate or compute exactly, then find the answer:
+
+1. Which is larger: `(3.14 × 18²) / 4` or `250`?
+2. 37% of 1,800 is closest to which: 550, 625, 666, 700, 750?
+3. What is the units digit of `6⁴⁷ × 7²⁰`?
+
+Answers: (1) Estimate — `π × 18² / 4 = π × 81 ≈ 254 > 250`. (2) Estimate — 40% of 1,800 = 720; 37% is a bit less → **666**. (3) Units-digit cycles: `6ⁿ` always ends in 6; `7²⁰` cycle is (7, 9, 3, 1) with period 4, `20 mod 4 = 0` → last entry = 1. Product ends in `6 × 1 = 6`.
+
 **Trap to watch.** Estimation doesn't mean "guess." It means "round each number to a cleaner value, compute, and check the direction of your rounding error." If you rounded up twice, your estimate is too high; mentally adjust down.
 
 ## @summary
@@ -301,9 +371,9 @@ Arithmetic is not a separate Quant topic — it's the substrate that every other
 2. **Know your fraction-decimal-percent conversions cold.** Sevenths, eighths, and ninths come up constantly; memorize their decimal forms once and never compute them again.
 3. **Simplify fractions before you compute.** Cancel common factors diagonally before multiplying. Reduce at the end so your answer matches the test's "simplified" form.
 4. **Track signs deliberately.** Odd count of negatives → negative product. Always wrap negations inside parentheses when squaring.
-5. **Check the integer assumption.** The problem must tell you x is an integer — never assume. Terminating-decimal fractions have denominators whose only prime factors are 2 and 5.
-6. **Scan answer choices before computing.** Spread choices → estimate. Tight choices → compute. Plugging answers back in is often faster than algebra.
-7. **Use the complement.** 15% off = pay 85%. "At least one" = total minus none. Framing a percent or count the easier way saves 20+ seconds per question.
+5. **Solve absolute value inequalities fully.** `|expression| < k` gives a bounded range; `|expression| > k` gives two separate tails. Never drop the negative case on Data Sufficiency.
+6. **Check the integer assumption.** The problem must tell you x is an integer — never assume. Terminating-decimal fractions have denominators whose only prime factors are 2 and 5.
+7. **Scan answer choices before computing.** Spread choices → estimate. Tight choices → compute. Plugging answers back in is often faster than algebra.
 
 **Common patterns to pattern-match on sight:**
 
@@ -315,5 +385,14 @@ Arithmetic is not a separate Quant topic — it's the substrate that every other
 | "Closest to" | Estimate then cross-check | Cross-multiply for exact gaps |
 | "Units digit of large power" | Check cycle | Powers of 2, 3, 7, 8 cycle mod 4 |
 | Compound percent change | Multiply factors | `1.20 × 0.80 = 0.96` |
+| `|expression| < k` | Bounded range | `−k < expression < k` |
+| `|expression| > k` | Two tails | `expression < −k` or `expression > k` |
+
+**What to do next.**
+
+1. **Easy set, untimed first.** Target 100% accuracy — not speed. Every miss on an easy question is a definitional gap: a fraction rule you half-know, a sign error you thought you wouldn't make. Return to the relevant section and re-run the recall check or micro-drill before moving on.
+2. **Medium set, timed.** Target 2:00 per question. When you exceed 2:30, the issue is almost always a computation habit — you're computing where you should be cancelling, or computing where you should be estimating. Name the habit after each miss.
+3. **Hard set, untimed first.** The hard set tests whether you recognize the setup quickly. On the first pass, prioritize the correct method over speed. On the second pass, time yourself — the gap between passes is your speed runway.
+4. **After each error, tag it.** Sub-skill options: Order of operations, Fractions, Percent conversion, Signs/absolute value, Integer distinction, Estimation. The sub-skill with the most errors after this chapter is where the next hour of focused practice goes — not the whole chapter again, just that one sub-skill, drilled specifically.
 
 You're going to do 20 arithmetic problems at the end of this chapter. Keep this table open the first time through. By the third time, you won't need it — the habits will be reflexes, and that's when your Quant pace jumps.
