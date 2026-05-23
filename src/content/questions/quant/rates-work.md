@@ -714,3 +714,468 @@ A machine produces 100 widgets every 2.5 hours. At this rate, how many widgets w
 **common_trap:** Multiplying 100 × 7.5 directly (ignores the 2.5-hr base) or dividing.
 **takeaway:** For constant-rate scaling: ratio of times = ratio of outputs. Always check the base unit.
 **related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q28
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Distance-Rate-Time
+
+A printer produces 120 pages every 20 minutes. At this rate, how many pages will it produce in 1 hour and 15 minutes?
+
+- A) 300
+- B) 360
+- C) 420
+- D) 450
+- E) 480
+
+**answer:** D
+**fastest_path:** Rate = 120/20 = 6 pages/min. 1 hr 15 min = 75 min. 6 × 75 = 450.
+**explanation:** Find the rate: 120 pages / 20 min = 6 pages per minute. Convert the target time: 1 hr 15 min = 75 minutes. Output = 6 × 75 = 450 pages.
+**hint_nudge:** Before multiplying, make sure time is in consistent units.
+**hint_strategy:** Convert 1 hr 15 min to total minutes, then multiply by the per-minute rate.
+**hint_setup:** Rate = 120/20 = 6 pages/min. Time = 75 min. Output = 6 × 75.
+**mistake_a:** Used only 50 minutes → 300.
+**mistake_b:** Used exactly 1 hour = 60 minutes → 360.
+**mistake_c:** Used 70 minutes → 420.
+**mistake_e:** Used 80 minutes → 480.
+**common_trap:** Treating "1 hour and 15 minutes" as 60 minutes — forgetting to add the 15-minute portion.
+**takeaway:** Always convert mixed time expressions to a single unit before computing. 1 hr 15 min = 75 min, not 60.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Distance-Rate-Time
+
+A driver travels 210 miles at a constant speed. She stops for 30 minutes for lunch and arrives at her destination exactly 4 hours after she left. What is her driving speed in miles per hour?
+
+- A) 50
+- B) 55
+- C) 60
+- D) 65
+- E) 70
+
+**answer:** C
+**fastest_path:** Driving time = 4 − 0.5 = 3.5 hr. Speed = 210/3.5 = 60.
+**explanation:** Total elapsed time is 4 hours, of which 0.5 hour is the lunch stop. Actual driving time = 3.5 hours. Speed = 210/3.5 = 60 mph.
+**hint_nudge:** The 30-minute stop is not driving time — subtract it first.
+**hint_strategy:** Find driving time by subtracting the stop from total time, then apply R = D/T.
+**hint_setup:** Driving time = 4 − 0.5 = 3.5 hr. Then R = 210/3.5.
+**mistake_a:** Divided by full 4 hours → 52.5 → rounded to 50.
+**mistake_b:** Used 3.75 hr → ≈ 56 → rounded to 55.
+**mistake_d:** Used 3.25 hr → approximately 65.
+**mistake_e:** Used 3 hr → 210/3 = 70 (subtracted a full hour instead of half).
+**common_trap:** Dividing distance by total elapsed time including the stop, instead of driving time only.
+**takeaway:** Total elapsed time = driving time + stop time. Use only driving time in R = D/T.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combined Work
+
+Six identical machines working together can complete a production run in 8 hours. If only 4 of those machines are available, how many hours will the same production run take?
+
+- A) 10
+- B) 11
+- C) 12
+- D) 13
+- E) 16
+
+**answer:** C
+**fastest_path:** Total = 6 × 8 = 48 machine-hours. Time = 48/4 = 12.
+**explanation:** Total work = machines × time = 6 × 8 = 48 machine-hours. With 4 machines: time = 48/4 = 12 hours.
+**hint_nudge:** Machines and time are inversely proportional when total work is fixed.
+**hint_strategy:** Compute total machine-hours, then divide by the new team size.
+**hint_setup:** Total work = 6 × 8 = 48 machine-hours. New time = 48/4.
+**mistake_a:** Added 2 extra hours for 2 fewer machines → 10.
+**mistake_b:** Estimated between 10 and 12 → 11.
+**mistake_d:** Arithmetic slip → 13.
+**mistake_e:** Doubled the time because 4 is half of 8 → 16.
+**common_trap:** Adding or subtracting time for each removed machine rather than applying inverse proportionality.
+**takeaway:** Workers and time are inversely proportional: (machines₁)(time₁) = (machines₂)(time₂). New time = total machine-hours / new team size.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q31
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combined Work
+
+Printer A can complete a print job in 4 hours. Printer B can complete the same job in 6 hours. If both printers work together, what fraction of the job will be completed in the first 90 minutes?
+
+- A) 1/3
+- B) 5/12
+- C) 1/2
+- D) 5/8
+- E) 3/4
+
+**answer:** D
+**fastest_path:** Combined rate = 1/4 + 1/6 = 5/12 per hr. 90 min = 1.5 hr. Work = 5/12 × 3/2 = 5/8.
+**explanation:** Combined rate: 1/4 + 1/6 = 3/12 + 2/12 = 5/12 per hour. Convert 90 minutes to 1.5 hours. Work = (5/12) × (3/2) = 15/24 = 5/8.
+**hint_nudge:** Convert minutes to hours before multiplying by the hourly rate.
+**hint_strategy:** Find combined rate, convert 90 min to hours, then multiply.
+**hint_setup:** Rate = 5/12 per hr. Time = 1.5 hr. Work = 5/12 × 3/2.
+**mistake_a:** Rough guess → 1/3.
+**mistake_b:** Reported the combined rate (5/12) as the answer — forgot to multiply by time.
+**mistake_c:** Rough estimate → 1/2.
+**mistake_e:** Used 2 hours instead of 1.5 → 5/12 × 2 = 5/6 → rounded to 3/4.
+**common_trap:** Reporting the combined rate (5/12) as if it were the work completed, forgetting to multiply by elapsed time.
+**takeaway:** Work = Rate × Time. Finding the combined rate is only the first step; always multiply by the actual time elapsed.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Distance-Rate-Time
+
+A runner completes a 5-kilometer race in 25 minutes. Maintaining this exact pace, how many kilometers will she run in 1 hour and 40 minutes?
+
+- A) 14
+- B) 16
+- C) 18
+- D) 20
+- E) 24
+
+**answer:** D
+**fastest_path:** 1 h 40 min = 100 min. Ratio = 100/25 = 4. 4 × 5 = 20 km.
+**explanation:** Convert 1 hour 40 minutes to 100 minutes. Time ratio = 100/25 = 4. At the same pace: 4 × 5 = 20 km. Equivalently, rate = 5/25 = 0.2 km/min; distance = 0.2 × 100 = 20 km.
+**hint_nudge:** Express 1 hour 40 minutes in minutes first.
+**hint_strategy:** Find how many race-lengths fit in 100 minutes, then scale the distance.
+**hint_setup:** 100/25 = 4. Distance = 4 × 5 = 20 km.
+**mistake_a:** Used 70 minutes → 14 km.
+**mistake_b:** Used 80 minutes → 16 km.
+**mistake_c:** Used 90 minutes → 18 km.
+**mistake_e:** Used 120 minutes (treated 1h 40m as 2 hours) → 24 km.
+**common_trap:** Converting "1 hour and 40 minutes" to 2 hours or another round number rather than 100 minutes exactly.
+**takeaway:** "1 hour and X minutes" = 60 + X minutes. Never round this unless the problem explicitly says to estimate.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combined Work
+
+Machines A, B, and C can each independently complete a job in 6, 8, and 12 hours respectively. How long will all three machines take working simultaneously?
+
+- A) 2 hours
+- B) 2 hours 20 minutes
+- C) 2 hours 40 minutes
+- D) 3 hours
+- E) 3 hours 20 minutes
+
+**answer:** C
+**fastest_path:** 1/6 + 1/8 + 1/12 = 4/24 + 3/24 + 2/24 = 9/24 = 3/8 per hr. T = 8/3 hr = 2h 40m.
+**explanation:** Use 24 as LCD: 1/6 = 4/24, 1/8 = 3/24, 1/12 = 2/24. Combined rate = 9/24 = 3/8 per hour. Time = 1 ÷ (3/8) = 8/3 hr = 2 and 2/3 hours = 2 hours 40 minutes.
+**mistake_a:** Estimated 3 machines halve the fastest solo time → 3, then rounded → 2.
+**mistake_b:** Arithmetic slip on fraction sum → 2h 20m.
+**mistake_d:** Used only two rates → 3 hr.
+**mistake_e:** Averaged solo times: (6+8+12)/3 ≈ 8.67, then halved → miscalculated.
+**common_trap:** Averaging the solo times instead of summing rates. The combined time must always be less than the fastest solo time.
+**takeaway:** Three workers: 1/a + 1/b + 1/c = combined rate. Use the LCD to add cleanly. Sanity check: combined time must be less than each solo time.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Two Objects Moving
+
+A motorboat travels at 20 km/h in still water. The river current flows at 4 km/h. The boat travels 48 km downstream and then returns 48 km upstream. What is the total time for the round trip?
+
+- A) 4 hours
+- B) 4.5 hours
+- C) 5 hours
+- D) 5.5 hours
+- E) 6 hours
+
+**answer:** C
+**fastest_path:** Down = 24 km/h → 48/24 = 2 hr. Up = 16 km/h → 48/16 = 3 hr. Total = 5 hr.
+**explanation:** Downstream speed = 20 + 4 = 24 km/h; upstream = 20 − 4 = 16 km/h. Time downstream = 48/24 = 2 hr. Time upstream = 48/16 = 3 hr. Total = 5 hr. The two legs take different amounts of time even though the distances are equal.
+**mistake_a:** Used still-water speed for both legs: (48/20) × 2 ≈ 4.8 → rounded to 4.
+**mistake_b:** Averaged downstream and upstream times → 2.5 avg → misapplied → 4.5.
+**mistake_d:** Arithmetic slip → 5.5.
+**mistake_e:** Used the current speed (4) in some formula instead of computing each leg separately.
+**common_trap:** Using still-water speed for both directions, ignoring that current adds to one leg and subtracts from the other.
+**takeaway:** Downstream = boat + current; upstream = boat − current. Compute each leg separately. The upstream leg always takes longer, so the average speed is below the still-water speed.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Two Objects Moving
+
+Elena leaves home at 8:00 AM walking at 4 km/h. Her brother Nico leaves the same point at 9:30 AM walking in the same direction at 7 km/h. At what time does Nico first catch up with Elena?
+
+- A) 11:00 AM
+- B) 11:30 AM
+- C) 12:00 PM
+- D) 12:30 PM
+- E) 1:00 PM
+
+**answer:** B
+**fastest_path:** Elena's head start at 9:30 = 1.5 × 4 = 6 km. Closing rate = 7 − 4 = 3 km/h. Time = 6/3 = 2 hr after 9:30 → 11:30 AM.
+**explanation:** At 9:30 AM (when Nico starts), Elena has walked 1.5 hours: 4 × 1.5 = 6 km ahead. Same-direction catch-up: closing rate = 7 − 4 = 3 km/h. Time to close the gap = 6/3 = 2 hours after 9:30 AM → 11:30 AM.
+**mistake_a:** Used only 1 hour of Elena's head start (4 km) → 4/3 ≈ 1.33 hr later → about 11:00 AM.
+**mistake_c:** Used full walking speed (7 km/h) as closing rate → 6/7 ≈ 1 hr → around 10:30, then misadded → 12:00.
+**mistake_d:** Miscounted Elena's lead time → 12:30.
+**mistake_e:** Used 2.5 hours as lead time → larger head start → 1:00 PM.
+**common_trap:** Miscounting Elena's head-start time. From 8:00 to 9:30 is 1.5 hours, not 1 or 2.
+**takeaway:** Catch-up: (1) head start = early mover's rate × delay time; (2) closing rate = faster − slower; (3) time to catch = head start / closing rate. Add to later start time for clock answer.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Average Rate / Harmonic Mean
+
+A cyclist completes a journey in three segments: 30 km at 15 km/h, then 60 km at 20 km/h, then 30 km at 30 km/h. What is her average speed for the entire journey?
+
+- A) 15 km/h
+- B) 18 km/h
+- C) 20 km/h
+- D) 21.7 km/h
+- E) 25 km/h
+
+**answer:** C
+**fastest_path:** Times = 30/15 + 60/20 + 30/30 = 2 + 3 + 1 = 6 hr. Total dist = 120 km. Avg = 120/6 = 20.
+**explanation:** Segment times: 30/15 = 2 hr, 60/20 = 3 hr, 30/30 = 1 hr. Total time = 6 hr. Total distance = 120 km. Average speed = 120/6 = 20 km/h.
+**mistake_a:** Reported the slowest segment speed as the average.
+**mistake_b:** Rough underestimate → 18.
+**mistake_d:** Arithmetic mean of the three speeds: (15 + 20 + 30)/3 ≈ 21.7 km/h.
+**mistake_e:** Reported the fastest segment speed.
+**common_trap:** Averaging the three given speeds: (15 + 20 + 30)/3 ≈ 21.7. This only works when each segment takes equal time, which is not the case here.
+**takeaway:** Average speed = total distance / total time. Always compute each segment's time individually. Speed arithmetic means are only valid when time is held constant across legs.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Combined Work
+
+Ranjit and Sophia work together to complete a report. Did they finish the report in fewer than 5 hours?
+
+(1) Working alone, Ranjit takes 9 hours and Sophia takes 6 hours to complete the report.
+(2) Working alone, both Ranjit and Sophia would each individually take more than 5 hours.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** (1): 1/9 + 1/6 = 5/18 → T = 3.6 hr < 5. Definite YES. Sufficient. (2): r > 5, s > 5 → combined could be 3 hr (r=s=6) or 50 hr (r=s=100). Insufficient.
+**explanation:** Statement (1): combined rate = 1/9 + 1/6 = 5/18. Time = 18/5 = 3.6 hr < 5. Definite YES. Sufficient. Statement (2): both take more than 5 hr individually, but this does not fix the combined time. If both take 6 hr, combined = 3 hr (YES). If both take 100 hr, combined = 50 hr (NO). Insufficient.
+**mistake_b:** Assuming (2) constrains the combined time enough — it does not.
+**mistake_c:** (1) alone resolves the question; (2) is not needed.
+**mistake_d:** (2) alone is insufficient.
+**mistake_e:** (1) clearly suffices.
+**common_trap:** Assuming that if both solo times exceed 5 hours, the combined time must be in some predictable range. It cannot be determined without knowing the actual solo times.
+**takeaway:** DS yes/no: a statement is sufficient only if it always gives the same answer. (2) yields both YES and NO for different valid inputs — definitively insufficient.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Work with Different Rates
+
+A machine operating at 75% of its full capacity produces 90 parts per hour. How many parts will it produce in 8 hours when operating at full capacity?
+
+- A) 720
+- B) 840
+- C) 900
+- D) 960
+- E) 1,080
+
+**answer:** D
+**fastest_path:** Full rate = 90/0.75 = 120 parts/hr. 8 × 120 = 960.
+**explanation:** 75% capacity = 90 parts/hr, so 100% capacity = 90 / 0.75 = 120 parts/hr. In 8 hours: 8 × 120 = 960 parts.
+**mistake_a:** Used the partial-capacity rate for the full time: 90 × 8 = 720.
+**mistake_b:** Used 87.5% capacity: ≈ 105 × 8 = 840.
+**mistake_c:** Multiplied 90 × 10 = 900 (confused percentage with a time multiplier).
+**mistake_e:** Over-compensated by assuming full capacity is 125% of 90 → 112.5 × 8 ≈ 900, or other arithmetic yielding 1,080.
+**common_trap:** Using the partial-capacity rate (90 parts/hr) for all 8 hours without first scaling to full capacity.
+**takeaway:** If rate at X% = R, full rate = R ÷ (X/100). Scale up first, then multiply by time.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Two Objects Moving
+
+Ahmad and Britta start simultaneously from the same point on a circular running track and jog in the same direction. After how many minutes will they first return to the same point on the track at the same time?
+
+(1) Ahmad completes one lap in 4 minutes and Britta completes one lap in 6 minutes.
+(2) The track is 400 meters long.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** (1): LCM(4, 6) = 12 min. Sufficient. (2): Track length with no speeds or lap times → Insufficient.
+**explanation:** Statement (1): they are at the starting point together whenever elapsed time is a multiple of both 4 and 6. LCM(4, 6) = 12 min. Sufficient. Statement (2): track length provides no timing information without speeds or lap times. Insufficient.
+**mistake_b:** Thinking track length alone gives enough info — it does not.
+**mistake_c:** LCM of lap times is determined entirely by (1). (2) adds nothing.
+**mistake_d:** (2) alone is insufficient.
+**mistake_e:** (1) alone resolves the question.
+**common_trap:** Assuming physical distance is required to answer a timing question. Here the question is purely about when lap cycles align — answered entirely by LCM of the lap times.
+**takeaway:** "When will two people next be at the same point on a circular track (same direction)?" = LCM of their individual lap times. Physical track length is irrelevant if lap times are known.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q40
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Work with Different Rates
+
+Alex and Beth, working together, complete a job in 8 hours. Alex working alone would take 12 hours. They start the job together, but after some time Alex leaves. Beth finishes the remaining work alone. The job takes 11 hours total from start to finish. For how many hours did Alex and Beth work together?
+
+- A) 4 hours
+- B) 5 hours
+- C) 6 hours
+- D) 6.5 hours
+- E) 7 hours
+
+**answer:** D
+**fastest_path:** Beth's solo rate: 1/b = 1/8 − 1/12 = 1/24. Let t = time together. t/8 + (11−t)/24 = 1 → 3t + 11 − t = 24 → t = 6.5.
+**explanation:** Beth's solo rate: 1/12 + 1/b = 1/8 → 1/b = 1/24 → Beth alone takes 24 hours. Let t = hours worked together. Work done in joint phase: t/8. Beth works alone for (11 − t) hours, completing (11 − t)/24 more. Setting total = 1: t/8 + (11−t)/24 = 1. Multiply by 24: 3t + (11−t) = 24 → 2t = 13 → t = 6.5 hours. Verify: 6.5/8 = 0.8125 done; 4.5/24 = 0.1875; sum = 1 ✓.
+**mistake_a:** Mis-derived Beth's rate or set up wrong equation → 4.
+**mistake_b:** Used Beth's rate as equal to Alex's → 5.
+**mistake_c:** Arithmetic slip → 6.
+**mistake_e:** Reversed phases or arithmetic slip → 7.
+**common_trap:** Attempting to set up the time equation before deriving Beth's individual rate. Without Beth's rate, the equation has two unknowns.
+**takeaway:** Two-phase work: (1) derive all individual rates first, (2) assign variable to unknown time, (3) write work₁ + work₂ = 1, (4) solve and verify by substitution.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Two Objects Moving
+
+Ahmad and Britta run in the same direction around a circular track that is 360 meters long. Ahmad runs at 8 m/s and Britta runs at 5 m/s. How many seconds after starting simultaneously from the same point will Ahmad first lap Britta?
+
+- A) 60 seconds
+- B) 90 seconds
+- C) 120 seconds
+- D) 150 seconds
+- E) 180 seconds
+
+**answer:** C
+**fastest_path:** Relative speed = 8 − 5 = 3 m/s. Ahmad must gain 360 m on Britta. T = 360/3 = 120 s.
+**explanation:** Running in the same direction, Ahmad gains on Britta at 8 − 5 = 3 m/s. To lap her, Ahmad must gain exactly one full lap = 360 meters. Time = 360/3 = 120 seconds.
+**mistake_a:** Used sum of speeds (13 m/s) or some other divisor → 60 s.
+**mistake_b:** Miscounted relative gain needed → 90 s.
+**mistake_d:** Used a wrong relative speed → 150 s.
+**mistake_e:** Divided track by Ahmad's speed alone: 360/2 = 180 (confused lapping with Ahmad completing extra laps independently).
+**common_trap:** Using the sum of speeds (13 m/s) — which applies when runners go in opposite directions. Same direction → use the difference.
+**takeaway:** Same direction: relative speed = faster − slower; time to lap = track length / relative speed. Opposite direction: relative speed = sum; time to meet = track / sum.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Average Rate / Harmonic Mean
+
+A driver wants to average exactly 60 mph over a 120-mile round trip (60 miles each way). She drives the first 60 miles at 30 mph. At what constant speed must she drive the return 60 miles to achieve her goal?
+
+- A) 60 mph
+- B) 90 mph
+- C) 120 mph
+- D) Any speed greater than 60 mph will work
+- E) No such speed exists — the goal is impossible
+
+**answer:** E
+**fastest_path:** Time budget = 120/60 = 2 hr total. First leg used 60/30 = 2 hr. Zero time remains. Impossible.
+**explanation:** To average 60 mph over 120 miles, total allowed time = 120/60 = 2 hours. The first 60 miles at 30 mph consumed 60/30 = 2 full hours. There is no time remaining for the return leg. No finite speed covers 60 miles in 0 seconds; the goal is impossible.
+**mistake_a:** Assumed the target speed (60 mph) is the answer for the return leg.
+**mistake_b:** Applied arithmetic mean: if first leg is 30 mph and average target is 60, second must be 90. This logic applies to equal-time averages, not equal-distance averages.
+**mistake_c:** Attempted the harmonic mean equation: 2(30)(v)/(30+v) = 60 → 0 = 1800, yielding no solution, but guessed 120 from the algebra.
+**mistake_d:** Assumed faster speed always salvages a low average — but when the time budget is already spent, no speed can retrieve it.
+**common_trap:** Using the arithmetic mean of speeds: "I'm 30 below target so I need 30 above, therefore 90." This only works for equal-time legs, not equal-distance legs.
+**takeaway:** Equal-distance round trip: the harmonic mean governs. The harmonic mean of 30 and any finite v is always less than 60 when v is finite and the first leg is 30. As v → ∞, the mean approaches 60 but never reaches it.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q43
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Combined Work
+
+Machines J, K, and L work at constant rates. Machine J alone can complete a job in 30 minutes. Can all three machines together complete the job in fewer than 10 minutes?
+
+(1) Machine K alone takes 20 minutes to complete the job.
+(2) Machine L alone takes 15 minutes to complete the job.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**fastest_path:** (2): J + L = 1/30 + 1/15 = 3/30 = 1/10 → exactly 10 min. Add K (any finite positive rate) → combined rate > 1/10 → time < 10 min. Definite YES. Sufficient. (1): K = 20. J+K = 5/60. With L unknown (very slow), combined ≈ 12 min > 10. With L fast, < 10. Both outcomes possible. Insufficient.
+**explanation:** Statement (2): J + L = 1/30 + 1/15 = 1/30 + 2/30 = 3/30 = 1/10. Together, J and L take exactly 10 minutes. Adding Machine K (any positive finite rate) increases the combined rate above 1/10, so all three together always take fewer than 10 minutes. Definite YES. Sufficient. Statement (1): J + K = 1/30 + 1/20 = 2/60 + 3/60 = 5/60 = 1/12. If L is very slow (e.g., 1,000 min), combined ≈ 1/12 → 12 min > 10 (NO). If L = 15 min, combined = 9/60 = 3/20 → 6.7 min < 10 (YES). Insufficient.
+**mistake_a:** Assumed knowing K is enough; L irrelevant.
+**mistake_c:** (2) alone resolves it; (1) does not.
+**mistake_d:** (1) alone is insufficient.
+**mistake_e:** (2) is clearly sufficient.
+**common_trap:** Thinking the boundary case "J + L = exactly 10 min" means the answer is ambiguous. The key insight: adding any positive rate to a rate of exactly 1/10 pushes the combined rate strictly above 1/10, guaranteeing fewer than 10 minutes.
+**takeaway:** In DS, a boundary condition that can only be pushed in one direction by additional information yields a definitive answer. J + L at the threshold plus any K above zero always clears the bar.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q44
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Combined Work
+
+Pipelines P, Q, and R can each fill a reservoir in 12, 18, and 9 hours respectively. The reservoir is empty when P and Q are opened together. After 3 hours, P is closed and R is opened (Q continues). After another 2 hours, Q is closed. R alone finishes the remaining work. How many total hours does pipeline R operate?
+
+- A) 2 hours 15 minutes
+- B) 3 hours
+- C) 3 hours 45 minutes
+- D) 4 hours 15 minutes
+- E) 5 hours
+
+**answer:** D
+**fastest_path:** Phase 1 (P+Q, 3 hr): 5/36 × 3 = 5/12. Phase 2 (Q+R, 2 hr): 1/6 × 2 = 1/3. Total = 3/4. Remaining 1/4 by R alone: (1/4)/(1/9) = 9/4 = 2.25 hr. R total = 2 + 2.25 = 4.25 hr = 4h 15m.
+**explanation:** Phase 1 — P and Q for 3 hours: rate = 1/12 + 1/18 = 3/36 + 2/36 = 5/36 per hour; work done = 3 × 5/36 = 15/36 = 5/12. Phase 2 — Q and R for 2 hours: rate = 1/18 + 1/9 = 1/18 + 2/18 = 3/18 = 1/6 per hour; work done = 2 × 1/6 = 1/3. Cumulative after Phase 2: 5/12 + 4/12 = 9/12 = 3/4. Phase 3 — R alone: remaining = 1/4; R's rate = 1/9 per hr; time = (1/4) ÷ (1/9) = 9/4 = 2.25 hr = 2 hr 15 min. R operated in Phase 2 and Phase 3: 2 + 2.25 = 4.25 hr = 4 hours 15 minutes.
+**mistake_a:** Counted only Phase 3 (R's solo time) and forgot R also ran during Phase 2 → 2 hr 15 min.
+**mistake_b:** Estimated without careful phase tracking → 3 hr.
+**mistake_c:** Miscalculated Phase 3 duration → 3h 45m.
+**mistake_e:** Added all phases or made a slip in the remaining-work calculation → 5 hr.
+**common_trap:** Forgetting that R operated during Phase 2 as well as Phase 3. The question asks for R's total operating time, which spans both phases where R is active.
+**takeaway:** Multi-phase problems: map each pipeline to each phase explicitly. Sum a machine's time across every phase where it runs. Track cumulative completion after each phase before computing the next.
