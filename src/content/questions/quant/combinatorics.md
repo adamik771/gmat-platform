@@ -78,7 +78,7 @@ From a group of 7 candidates, how many ways can a president and a vice-president
 **fastest_path:** 7 choices for president × 6 for VP = 42.
 **explanation:** Distinct roles (president, VP) → order matters → permutation. P(7, 2) = 7 × 6 = 42. Equivalently, 7 ways to fill president, then 6 remaining for VP.
 **mistake_a:** Computed 7 × 2 = 14 (wrong formula).
-**mistake_b:** Computed 7 + 14 (some wrong combination); got 21.
+**mistake_b:** Computed C(7, 2) = 21 — selected 2 people unordered (combinations) when the two roles are distinct. Because president and vice-president are different positions, use ordered selection: 7 × 6 = 42, not C(7, 2) = 21.
 **mistake_d:** Computed 7² = 49 (treated as with-replacement).
 **mistake_e:** Computed 7! = 5040 (counted full arrangement, not just two roles).
 **common_trap:** arrangements-vs-combinations confusion — treating distinct-role assignment as a combination, or computing the full factorial when only k slots are needed.
@@ -107,8 +107,8 @@ A team of 3 is picked from a group of 6 students. How many different teams are p
 **explanation:** "Team of 3" — only the membership matters, not order. Use combinations: C(6, 3) = 6!/(3! × 3!) = 720/36 = 20.
 **mistake_a:** Computed 6 × 5/2 = 15 (wrong slot count).
 **mistake_b:** Computed 6 × 3 = 18 (wrong formula).
-**mistake_d:** Computed 6 × 5 × 4 = 120 (used permutations, didn't divide by 3!).
-**mistake_e:** Computed 5! = 120 (wrong formula).
+**mistake_d:** Computed P(6, 3) / 2! = 120 / 2 = 60 — divided by 2! instead of 3! when converting from permutations to combinations. Removing all ordering from a group of 3 requires dividing by 3! = 6 (all internal orderings), not 2! = 2. Every factor of k! must be cancelled.
+**mistake_e:** Computed P(6, 3) = 6 × 5 × 4 = 120 — used ordered selection (permutations) and stopped, forgetting to divide by k! = 3! = 6 to remove the ordering. Teams have no internal rank; convert P(6, 3) to C(6, 3) by dividing by 3!.
 **common_trap:** arrangements-vs-combinations confusion — treating teams as ordered.
 **takeaway:** "Team," "group," "selection," "committee" → combinations C(n, k); divide by k! to remove ordering.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -126,7 +126,7 @@ A pizza shop offers 8 toppings. How many different 2-topping pizzas are possible
 
 - A) 16
 - B) 28
-- C) 40
+- C) 36
 - D) 56
 - E) 64
 
@@ -134,7 +134,7 @@ A pizza shop offers 8 toppings. How many different 2-topping pizzas are possible
 **fastest_path:** C(8, 2) = (8 × 7)/2 = 28.
 **explanation:** Toppings on a pizza don't have order — pepperoni + mushroom = mushroom + pepperoni. Use combinations: C(8, 2) = (8 × 7)/(2 × 1) = 28.
 **mistake_a:** Computed 8 × 2 = 16 (wrong formula).
-**mistake_c:** Computed 8 + 32 = 40 from a wrong combination.
+**mistake_c:** Computed C(9, 2) = 36 — used 9 instead of 8 as the number of toppings, perhaps counting the "remaining" options after mentally setting aside one topping. All 8 toppings are available for both slots of the pizza.
 **mistake_d:** Computed 8 × 7 = 56 (used permutations, didn't divide by 2!).
 **mistake_e:** Computed 8² = 64 (treated as with-replacement).
 **common_trap:** arrangements-vs-combinations confusion on unordered selections.
@@ -273,7 +273,7 @@ From 5 men and 4 women, a committee of 3 must be formed with exactly 2 men and 1
 **answer:** C
 **fastest_path:** C(5, 2) × C(4, 1) = 10 × 4 = 40.
 **explanation:** "Exactly 2 men AND 1 woman" — independent selections, then multiply. C(5, 2) = 10 (pick 2 from 5 men); C(4, 1) = 4 (pick 1 from 4 women). Total = 10 × 4 = 40.
-**mistake_a:** Computed C(5, 2) + C(4, 1) = 14, then doubled to 20.
+**mistake_a:** Computed C(5, 1) × C(4, 1) = 5 × 4 = 20 — selected only 1 man and 1 woman, misreading the requirement as "1 man and 1 woman" instead of "2 men and 1 woman." The committee has 3 seats: use C(5, 2) for the two men and C(4, 1) for the one woman.
 **mistake_b:** Computed C(9, 3) − some adjustment = 30.
 **mistake_d:** Computed C(5, 2) × C(4, 2) or other miscombination = 60.
 **mistake_e:** Computed C(9, 3) = 84 (didn't apply the constraint).
@@ -392,7 +392,7 @@ Both paths give 168, confirming the logic.
 **mistake_a:** Computed C(8, 3) = 56 (forgot to assign the chair role).
 **mistake_b:** Computed 56 × 2 = 112 (off by one in role assignment).
 **mistake_d:** Computed 8 × P(7, 2) = 8 × 42 = 336: chose the chair correctly (8 options) but then ordered the two remaining seats, using P(7, 2) = 7 × 6 = 42 instead of C(7, 2) = 21. The non-chair committee members hold no rank — they form an unordered pair. Ordering slots that carry no distinct role inflates the count by 2! = 2.
-**mistake_e:** Computed 8 × 7 × 6 / 2 = 168 wrong, got 504 from another miscombination.
+**mistake_e:** Computed C(8, 3) × 9 = 504 — selected the committee correctly (C(8, 3) = 56) but used 9 as the number of ways to designate the chair, perhaps confusing "choose 1 of 3 as chair" (3 ways) with 3² = 9. The chair is a single role: exactly 3 committee members, exactly 1 chair = 3 designations, not 9.
 **common_trap:** Forgetting the role-assignment step — picking the committee but not the chair.
 **takeaway:** When the problem mixes "select group" + "designate a role," compute both stages: combinations for the group + role assignment within. Verify by the alternate path (role first, then rest).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -436,7 +436,7 @@ In how many ways can 4 men and 4 women be seated in a row if men and women must 
 
 A bag has 6 red marbles and 5 blue marbles. How many ways can 4 marbles be drawn so that exactly 2 are red?
 
-- A) 100
+- A) 25
 - B) 150
 - C) 200
 - D) 330
@@ -445,10 +445,10 @@ A bag has 6 red marbles and 5 blue marbles. How many ways can 4 marbles be drawn
 **answer:** B
 **fastest_path:** C(6, 2) × C(5, 2) = 15 × 10 = 150.
 **explanation:** "Exactly 2 red" → also "exactly 2 blue" (since only 4 marbles drawn, and only red/blue available). Choose 2 red from 6: C(6, 2) = 15. Choose 2 blue from 5: C(5, 2) = 10. Multiply (AND): 15 × 10 = 150.
-**mistake_a:** Computed C(6, 2) + C(5, 2) = 25 (added instead of multiplied).
-**mistake_c:** Computed C(6, 4) = 15, then halved or used wrong path; got 200.
-**mistake_d:** Computed C(11, 4) = 330 (no constraint applied).
-**mistake_e:** Computed C(11, 4) and adjusted incorrectly; got 462.
+**mistake_a:** Computed C(6, 2) + C(5, 2) = 15 + 10 = 25 — added the two combinations instead of multiplying. "Exactly 2 red AND exactly 2 blue" requires both conditions simultaneously; simultaneous conditions multiply.
+**mistake_c:** Computed C(6, 4) = 15, then doubled or applied a wrong adjustment; got 200. The correct frame is: pick the 2 red (C(6,2)=15) and independently pick the 2 blue (C(5,2)=10), then multiply.
+**mistake_d:** Computed C(11, 4) = 330 — drew 4 from all 11 marbles with no color constraint applied.
+**mistake_e:** Computed C(11, 5) = 462 — used 5 instead of 4 as the draw size, or mis-applied a complementary counting step.
 **common_trap:** Adding instead of multiplying for compound conditions.
 **takeaway:** "Exactly X red AND exactly Y blue" → C(red, X) × C(blue, Y). Always check that X + Y matches the total drawn.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -485,7 +485,7 @@ Eight distinct books are arranged on a shelf. In how many arrangements are two s
 
 ## Q18
 
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Combinations
 
