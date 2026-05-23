@@ -984,6 +984,161 @@ function SaveStatusBanner({
   )
 }
 
+/**
+ * Shows where the student sits on the topic skill curve and whether
+ * this session moved the needle. Uses the pre-session `skillLevel`
+ * prop (0–1) from user_metadata compared to this session's accuracy
+ * to surface a directional signal. The four-tier bar gives persistent
+ * context that raw accuracy alone can't — a 70% session looks very
+ * different when you're at Foundation vs Proficient.
+ */
+function SkillProgressCard({
+  skillLevel,
+  skillAttempts,
+  sessionAccuracy,
+  section,
+}: {
+  skillLevel: number
+  skillAttempts: number
+  sessionAccuracy: number
+  section: "Quant" | "Verbal" | "DI"
+}) {
+  const TIERS = [
+    { label: "Foundation", lo: 0, hi: 0.35 },
+    { label: "Building", lo: 0.35, hi: 0.65 },
+    { label: "Proficient", lo: 0.65, hi: 0.85 },
+    { label: "Advanced", lo: 0.85, hi: 1.0 },
+  ]
+
+  const accent =
+    section === "Quant" ? "#5FA8FF" : section === "Verbal" ? "#B088FF" : "#3ECF8E"
+
+  let activeTier = TIERS.length - 1
+  for (let i = 0; i < TIERS.length; i++) {
+    if (skillLevel < TIERS[i].hi) {
+      activeTier = i
+      break
+    }
+  }
+  const tier = TIERS[activeTier]
+  const posInTier = Math.min(1, (skillLevel - tier.lo) / (tier.hi - tier.lo))
+
+  // Trajectory: compare this session's normalised accuracy to the
+  // prior calibrated level. Only meaningful after MIN_ATTEMPTS_FOR_ADAPTIVE
+  // questions — before that the level is still settling.
+  const hasHistory = skillAttempts >= MIN_ATTEMPTS_FOR_ADAPTIVE
+  const delta = sessionAccuracy / 100 - skillLevel
+
+  let trajectoryLabel: string
+  let trajectoryColor: string
+  let trajectoryBg: string
+  if (!hasHistory) {
+    trajectoryLabel = "Calibrating"
+    trajectoryColor = "#888888"
+    trajectoryBg = "rgba(255,255,255,0.06)"
+  } else if (delta > 0.12) {
+    trajectoryLabel = "Trending up"
+    trajectoryColor = "#3ECF8E"
+    trajectoryBg = "rgba(62,207,142,0.12)"
+  } else if (delta < -0.12) {
+    trajectoryLabel = "Below baseline"
+    trajectoryColor = "#FF9966"
+    trajectoryBg = "rgba(255,153,102,0.12)"
+  } else {
+    trajectoryLabel = "On track"
+    trajectoryColor = accent
+    trajectoryBg =
+      section === "Quant"
+        ? "rgba(95,168,255,0.12)"
+        : section === "Verbal"
+        ? "rgba(176,136,255,0.12)"
+        : "rgba(62,207,142,0.12)"
+  }
+
+  const attemptsLine =
+    skillAttempts === 0
+      ? "First questions on this topic"
+      : skillAttempts === 1
+      ? "1 question tracked"
+      : `${skillAttempts} questions tracked`
+
+  return (
+    <div
+      className="p-5 rounded-xl border"
+      style={{
+        borderColor: "rgba(255,255,255,0.08)",
+        backgroundColor: "#111111",
+      }}
+    >
+      <div className="flex items-start justify-between gap-3 mb-4">
+        <div>
+          <p
+            className="text-[10px] uppercase tracking-[0.22em] font-semibold mb-1"
+            style={{ color: "#555555" }}
+          >
+            Skill level · {attemptsLine}
+          </p>
+          <p
+            className="text-[17px] font-semibold leading-none"
+            style={{ color: "#F0F0F0" }}
+          >
+            {tier.label}
+          </p>
+        </div>
+        <span
+          className="text-[10px] font-semibold uppercase tracking-[0.18em] px-2.5 py-1 rounded-full flex-shrink-0 mt-0.5"
+          style={{ backgroundColor: trajectoryBg, color: trajectoryColor }}
+        >
+          {trajectoryLabel}
+        </span>
+      </div>
+
+      <div className="flex gap-1.5">
+        {TIERS.map((t, i) => {
+          const isActive = i === activeTier
+          const isPast = i < activeTier
+          return (
+            <div key={t.label} className="flex-1 flex flex-col gap-1.5">
+              <div
+                className="relative h-1.5 rounded-full overflow-hidden"
+                style={{ backgroundColor: "rgba(255,255,255,0.06)" }}
+              >
+                {isPast && (
+                  <div
+                    className="absolute inset-0"
+                    style={{ backgroundColor: accent, opacity: 0.5 }}
+                  />
+                )}
+                {isActive && (
+                  <div
+                    className="absolute inset-y-0 left-0 rounded-full transition-all duration-700"
+                    style={{
+                      width: `${Math.round(posInTier * 100)}%`,
+                      backgroundColor: accent,
+                    }}
+                  />
+                )}
+              </div>
+              <p
+                className="text-[9px] uppercase tracking-[0.14em] font-medium"
+                style={{
+                  color: isActive
+                    ? accent
+                    : isPast
+                    ? "rgba(255,255,255,0.4)"
+                    : "rgba(255,255,255,0.18)",
+                }}
+              >
+                {t.label}
+              </p>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 export default function SessionClient({
   slug,
   topic,
@@ -1400,6 +1555,15 @@ export default function SessionClient({
         </div>
 
         <SaveStatusBanner status={saveStatus} onRetry={saveSession} />
+
+        {skillLevel !== undefined && skillAttempts !== undefined && (
+          <SkillProgressCard
+            skillLevel={skillLevel}
+            skillAttempts={skillAttempts}
+            sessionAccuracy={accuracy}
+            section={section}
+          />
+        )}
 
         {/* Core metrics + insight breakdown */}
         <div
