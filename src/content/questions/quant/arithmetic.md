@@ -19,9 +19,9 @@ What is the value of 3/4 + 5/8 - 1/2?
 **answer:** C
 **fastest_path:** Common denominator 8: 6/8 + 5/8 − 4/8 = 7/8.
 **explanation:** Convert each fraction to eighths: 3/4 = 6/8, 5/8 stays, 1/2 = 4/8. Add and subtract numerators: 6 + 5 − 4 = 7. Final fraction: 7/8. Total time: 10 seconds.
-**mistake_a:** Subtracted 5/8 instead of adding it; got 6/8 − 5/8 + 4/8 = 5/8 (then off by one).
-**mistake_b:** Computed 3/4 + 5/8 = 11/8, then subtracted 1/2 from that without consistent denominator.
-**mistake_d:** Added all numerators with mismatched denominators: 3+5−1 = 7 over 14 = 1/2 mistakenly converted to 1.
+**mistake_a:** Treated all operations as subtractions: 6/8 − 5/8 − 4/8 = −3/8, then dropped the negative sign to get 3/8.
+**mistake_b:** Converted 1/2 as 6/8 (one extra eighth) instead of 4/8, then computed 6/8 + 5/8 − 6/8 = 5/8.
+**mistake_d:** Found the common denominator (8) correctly but made an arithmetic slip: 11 − 4 = 8 instead of 7, giving 8/8 = 1.
 **mistake_e:** Forgot to convert; treated 3/4 + 5/8 as 8/12, etc.
 **common_trap:** Adding fractions without finding a common denominator.
 **takeaway:** When adding/subtracting fractions, find the least common denominator first (here, 8). Then operate only on numerators.
@@ -46,7 +46,7 @@ A shirt originally priced at $80 is discounted by 15%. What is the sale price of
 **fastest_path:** Sale price = 80 × 0.85 = $68 (use multiplier directly, not "subtract the discount").
 **explanation:** A 15% discount means the customer pays 85% of the original price. Sale price = 0.85 × $80 = $68. Equivalent path: discount = 0.15 × 80 = $12; final = 80 − 12 = $68. The multiplicative form (0.85 × 80) is one step; the subtractive form is two.
 **mistake_a:** Bubbled the discount amount ($12), not the sale price.
-**mistake_b:** Computed 80 − 0.15 = 79.85, then misrounded to 65.
+**mistake_b:** Subtracted the discount rate as a dollar amount rather than a percent: 80 − 15 = $65.
 **mistake_d:** Computed 80 × 0.10 = 8 (used 10% instead of 15%).
 **mistake_e:** Computed 80 − 4 = 76 (used 5% instead of 15%).
 **common_trap:** Bubbling the discount amount instead of the sale price.
@@ -72,7 +72,7 @@ The ratio of red marbles to blue marbles in a jar is 3:5. If there are 40 marble
 **fastest_path:** Parts: 3 + 5 = 8. Each part = 40/8 = 5. Red = 3 × 5 = 15.
 **explanation:** Sum of ratio parts: 3 + 5 = 8 total parts. Each part represents 40/8 = 5 marbles. Red marbles = 3 parts × 5 = 15. Blue marbles = 5 parts × 5 = 25. Total: 15 + 25 = 40 ✓.
 **mistake_a:** Computed 40/5 = 8 (used red ratio as denominator), then... bubbled 8.
-**mistake_b:** Computed 40 × (3/8) = 15 correctly but slipped on arithmetic to 12.
+**mistake_b:** Found each part correctly (40/8 = 5) but multiplied by 4 instead of 5 when computing red: 3 × 4 = 12.
 **mistake_d:** Computed 40 × (1/2) = 20 (treated ratio as half-half).
 **mistake_e:** Bubbled the blue count (25) — the trap for students who answer "the other color."
 **common_trap:** Bubbling the wrong color's count — the question asks for red, but blue's count is also computable and tempting.
@@ -123,7 +123,7 @@ A store raises the price of an item by 20% and then offers a 20% discount on the
 **answer:** B
 **fastest_path:** Multiply: 1.20 × 0.80 = 0.96 → 96% of original.
 **explanation:** Chained percent changes multiply. A 20% increase scales by 1.20; a 20% decrease scales by 0.80. Product: 1.20 × 0.80 = 0.96 → final price is 96% of original. Total time: 5 seconds. Verifying with $100: $100 × 1.20 = $120; $120 × 0.80 = $96 ✓.
-**mistake_a:** Computed 1.20 + 0.80 − 1 = 1.00, then doubled the discount; got 92%.
+**mistake_a:** Double-counted the interaction loss: computed the net change as 100 + 20 − 20 = 100%, then subtracted the r² interaction penalty twice: 100 − 4 − 4 = 92%.
 **mistake_c:** Concluded "20% up, 20% down cancels" — additive thinking, not multiplicative.
 **mistake_d:** Computed 100 + 4 = 104 (wrong direction); confusion of which step was up vs. down.
 **mistake_e:** Bubbled 108% from a different miscombination.
@@ -228,7 +228,7 @@ In a certain town, 60% of the adults are women. Of the women, 30% are employed f
 **fastest_path:** Total employed = 0.60(0.30) + 0.40(0.50) = 0.18 + 0.20 = 0.38 → 38%.
 **explanation:** Weighted-average problem. Pick a base of 100 adults: 60 women, 40 men. Women employed: 0.30 × 60 = 18. Men employed: 0.50 × 40 = 20. Total: 38 of 100 = 38%. Equivalent direct computation: weight × percent for each group, sum: 0.60 × 0.30 + 0.40 × 0.50 = 0.18 + 0.20 = 0.38.
 **mistake_a:** Averaged 30% and 50% to 40%, then dropped to 32% via wrong weighting.
-**mistake_b:** Computed 30% + 5% (some compounding error); got 35%.
+**mistake_b:** Confused the gender-composition statistic with an employment rate: averaged 30% (women's employment) and 40% (share of men in the population) to get 35%, using the wrong pair of numbers.
 **mistake_d:** Took simple average (30 + 50)/2 = 40% — ignored that women are 60% of the population.
 **mistake_e:** Weighted incorrectly: 0.30(0.40) + 0.50(0.60) = 12 + 30 = 42% (swapped weights).
 **common_trap:** Averaging percentages without weighting by group size.
@@ -307,7 +307,7 @@ A solution contains water and alcohol in the ratio 4:1. If 5 liters of alcohol a
 **fastest_path:** Initial: 20 water, 5 alcohol. After +5 alcohol: 20 water, 10 alcohol → 2:1.
 **explanation:** Initial composition in 25 L (ratio 4:1, total 5 parts): water = (4/5) × 25 = 20 L; alcohol = (1/5) × 25 = 5 L. Add 5 L pure alcohol: water stays 20 L; alcohol becomes 10 L. New ratio water:alcohol = 20:10 = 2:1.
 **mistake_a:** Treated added alcohol as half of total volume; got 1:1.
-**mistake_c:** Computed alcohol = 5 + 5 = 10 but forgot to simplify, got 20:10 → 3:2 by error.
+**mistake_c:** Added the 5 liters directly to both parts of the original ratio without converting to actual volumes: (4 + 5):(1 + 5) = 9:6 = 3:2.
 **mistake_d:** Bubbled some intermediate ratio (4:3).
 **mistake_e:** Got the ratio inverted or miscalculated the new total.
 **common_trap:** Mixture problems with composition change — forgetting that adding pure substance changes only one component.
@@ -580,7 +580,7 @@ A class of 24 students has an average test score of 76. When two new students jo
 **answer:** D
 **fastest_path:** New total − old total = 178. Other student = 178 − 92 = 86.
 **explanation:** Total before: 24 × 76 = 1,824. Total after: 26 × 77 = 2,002. The two new students added 2,002 − 1,824 = 178 points combined. One scored 92, so the other scored 178 − 92 = 86.
-**mistake_a:** Computed 178 / 2 = 89; then off by some arithmetic.
+**mistake_a:** Applied the new class average to just the two new students: 2 × 77 = 154 combined, so the other student = 154 − 92 = 62.
 **mistake_b:** Computed 92 − 18 (the average gain × 2) = 74.
 **mistake_c:** Split 178 evenly to 89 each, then nudged to 80.
 **mistake_e:** Bubbled 92 (the given score) — confused which is being asked.
@@ -607,7 +607,7 @@ Pipe A alone fills an empty tank in 4 hours. Pipe B alone fills the same tank in
 **answer:** B
 **fastest_path:** Net rate = 1/4 + 1/6 − 1/12 = 4/12 = 1/3 tank/hr. Time = 3 hr.
 **explanation:** Work in tank-fractions per hour. Pipe A: 1/4 tank/hr. Pipe B: 1/6 tank/hr. Drain: −1/12 tank/hr (subtract since it removes water). Net rate = 1/4 + 1/6 − 1/12. Convert to common denominator 12: 3/12 + 2/12 − 1/12 = 4/12 = 1/3 tank/hr. Time to fill 1 tank = 1 ÷ (1/3) = 3 hr.
-**mistake_a:** Added times directly: 4 + 6 − 12 = −2; somehow arrived at 2.5.
+**mistake_a:** Summed the two fill times and divided by the first pipe's time: (4 + 6) / 4 = 2.5 hr — a confused application of the "divide by rate" shortcut.
 **mistake_c:** Combined rates as 1/4 + 1/6 (forgot the drain): rate = 5/12; time = 12/5 = 2.4 hr; rounded to 3.5.
 **mistake_d:** Forgot the drain entirely; computed time as average of 4 and 6 = 5; nudged to 4.
 **mistake_e:** Used time=4 (Pipe A's solo time) and ignored other pipes.
@@ -634,7 +634,7 @@ A container holds 20 liters of saline solution that is 30% salt by weight. How m
 **fastest_path:** Salt fixed at 6 L. New concentration = 6/(20+x) = 0.20 → 20+x = 30 → x = 10.
 **explanation:** Salt mass stays constant at 0.30 × 20 = 6 L (only water is added). After adding x L of pure water, total volume = 20 + x; new concentration = 6/(20 + x) = 0.20. Solve: 20 + x = 30 → x = 10.
 **mistake_a:** Averaged concentrations: (30 + 0)/2 = 15% (incorrect for non-equal volumes); arrived at 5.
-**mistake_b:** Computed 6/0.20 = 30 (correctly), then subtracted only initial salt (6); got 7.5.
+**mistake_b:** Divided the fixed salt by (1 − target concentration) instead of the target: 6 / (1 − 0.20) = 6 / 0.80 = 7.5 L, confusing the water fraction with the salt fraction.
 **mistake_d:** Solved 6/(20+x) = 0.15 (using a wrong target percent); got 12.5.
 **mistake_e:** Doubled the answer.
 **common_trap:** Averaging concentrations or treating water as having "non-zero salt." Pure water has no salt — only volume changes.
@@ -663,7 +663,7 @@ An investor deposits $10,000 into an account that earns 4% annual interest, comp
 **mistake_a:** Computed only year 1 interest: 10,000 × 0.04 = $400.
 **mistake_b:** Computed only year 1 interest plus a small adjustment.
 **mistake_c:** Used simple interest: 10,000 × 0.04 × 2 = $800. Misses second-year interest on first-year interest.
-**mistake_e:** Computed 10,000 × 1.084 = 10,840 (typo on 1.0816).
+**mistake_e:** Misplaced the decimal when squaring 0.04: computed (0.04)² = 0.0084 instead of 0.0016, giving (1.04)² ≈ 1.0884 → interest = $884.
 **common_trap:** Treating compound interest as simple interest — multiplying rate by years instead of compounding.
 **takeaway:** Compound interest: A = P(1 + r)^n. Interest = A − P. The (1 + r)² for 2 years gives 1 + 2r + r² (not just 1 + 2r); the r² term is the second-year interest on first-year interest.
 **related_reading:** reading-quant-05-word-problems
@@ -741,7 +741,7 @@ A chemist has 40 liters of a 25% saline solution. Some of the solution is draine
 **answer:** D
 **fastest_path:** Salt after = 10 − 0.25x. Concentration = (10 − 0.25x)/40 = 0.15 → x = 16.
 **explanation:** Original salt = 0.25 × 40 = 10 L. Drain x L of solution: this removes 0.25x L of salt (proportional to concentration). Replace with x L of pure water: total volume stays 40 L. New salt = 10 − 0.25x. New concentration = (10 − 0.25x) / 40 = 0.15. Solve: 10 − 0.25x = 6 → 0.25x = 4 → x = 16.
-**mistake_a:** Treated drain as removing fixed-volume salt: 10 − x = 6 → x = 4; doubled.
+**mistake_a:** Conflated the original salt volume with the drain volume: computed 0.25 × 40 = 10 L of salt and treated that entire salt mass as the number of liters to drain.
 **mistake_b:** Used (10 − 0.25x) / 40 = 0.15 but arithmetic slip: x = 12.
 **mistake_c:** Computed x to drain 10% absolute concentration: 0.10 × 40 = 4; doubled.
 **mistake_e:** Computed 0.50 × 40 = 20 (used wrong target).
@@ -779,7 +779,7 @@ A company's marketing budget is divided among digital, print, and radio channels
 ---
 
 ## Q30
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Split Investment — Interest Allocation
 
@@ -796,7 +796,7 @@ An investor deposits $24,000 across two accounts. Account A earns 6% simple annu
 **explanation:** Let x = amount in Account A; then 24,000 − x is in B. Combined interest: 0.06x + 0.04(24,000 − x) = 1,200. Expand: 0.06x + 960 − 0.04x = 1,200 → 0.02x = 240 → x = $12,000. Verify: 0.06(12,000) + 0.04(12,000) = 720 + 480 = 1,200 ✓.
 **mistake_a:** Solved with 5% rate (averaged); 0.05 × x = 600 → 12,000 → confused to 10,000.
 **mistake_c:** Algebra slip: 0.02x = 280 → 14,000.
-**mistake_d:** Computed differently; got 15,000.
+**mistake_d:** Set 0.06 × A = $1,200 alone (ignored Account B entirely) → A = $20,000; then trial-adjusted down to $15,000 without solving the two-account equation, stopping when 0.06(15,000) + 0.04(9,000) = $1,260 felt "close enough."
 **mistake_e:** Computed 24,000 × 0.75 = 18,000.
 **common_trap:** Averaging the interest rates and applying to the total — misses the actual allocation.
 **takeaway:** Split-investment problems: write rate × amount for each account, sum to total interest, solve for one variable.
@@ -821,7 +821,7 @@ A store offers two pricing plans for the same item. Plan A charges $15 per unit 
 **answer:** D
 **fastest_path:** Plan A (n>20) = 12n + 60; Plan B = 13n. Equal: n = 60.
 **explanation:** Plan A has tiered pricing. For n > 20: Plan A = 15(20) + 12(n − 20) = 300 + 12n − 240 = 12n + 60. Plan B = 13n. Set equal: 13n = 12n + 60 → n = 60. Verify: Plan A at n=60 = 300 + 12(40) = 780; Plan B = 13(60) = 780 ✓. (For n ≤ 20, Plan A = 15n vs. Plan B = 13n; A is always more expensive, so they never break even in this range.)
-**mistake_a:** Solved with the wrong tier: 15n = 13n → 0 = 0 (always true) or trivial; defaulted to 30.
+**mistake_a:** Swapped which tier gets the higher rate — applied $12 to the first 20 units and $15 beyond: Plan A = 12(20) + 15(n − 20) = 15n − 60. Set equal to Plan B: 15n − 60 = 13n → n = 30.
 **mistake_b:** Used 12n vs. 13n directly: n breakdown indeterminate; bubbled 45.
 **mistake_c:** Computed 60/1.2 = 50.
 **mistake_e:** Solved 15n = 13n + 75 → bubbled 75.
@@ -850,8 +850,8 @@ An investor buys $5,000 of Stock X at time zero. Exactly one year later, after S
 - Year 0: invest $5,000.
 - End of year 1: $5,000 × 1.40 = $7,000. Add $5,000 → portfolio = $12,000. Total invested = $10,000.
 - End of year 2: $12,000 × 1.10 = $13,200. Total return = (13,200 − 10,000) / 10,000 = 0.32 = 32%.
-**mistake_a:** Computed (1.40 − 1.10)/1 = 30%; bubbled 25%.
-**mistake_b:** Averaged the rates: (40 + 10)/2 = 25%; nudged to 28%.
+**mistake_a:** Averaged the two annual rates without accounting for the sequential investment structure: (40% + 10%) / 2 = 25%.
+**mistake_b:** Computed the chained gross return (1.40 × 1.10 − 1 = 54%) then divided by 2 to "annualize" it: 54% / 2 ≈ 27%, rounded to 28%.
 **mistake_c:** Computed only year 1 growth: $7,000 / $10,000 = $7,000 invested; misset 30%.
 **mistake_e:** Applied both growth rates to full $10,000: 1.40 × 1.10 = 1.54 → 54%; misset to 35%.
 **common_trap:** Applying the year-1 growth rate to capital that wasn't invested in year 1.
