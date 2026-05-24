@@ -18,6 +18,7 @@ import {
   X,
 } from "lucide-react"
 import { DI_METHOD_CARDS, hasMethodCard } from "@/lib/di-method-cards"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import PacingBadge from "@/components/shared/PacingBadge"
@@ -1059,6 +1060,7 @@ export default function SessionClient({
     "idle" | "saving" | "saved" | "error" | "unauthorized"
   >("idle")
   const [savedSessionId, setSavedSessionId] = useState<string | null>(null)
+  const [showAllReview, setShowAllReview] = useState(false)
 
   // Tick the timer once a second for the header readouts.
   useEffect(() => {
@@ -1740,165 +1742,110 @@ export default function SessionClient({
           </Link>
         )}
 
-        {/* Review list — wrong answers carry a faint red tint + difficulty label */}
-        <div>
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888] mb-4">
-            Review
-          </h2>
-          <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
-            {questions.map((q, i) => {
-              const state = states[i]
-              const isCorrect = isQuestionCorrect(q, state)
-              const isWrong = state.submitted && !isCorrect
-              return (
-                <button
-                  key={q.id}
-                  onClick={() => {
-                    goTo(i)
-                    setShowResults(false)
-                  }}
-                  className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
-                    i < questions.length - 1 ? "border-b border-white/[0.05]" : ""
-                  }`}
-                  style={isWrong ? { backgroundColor: "rgba(255,68,68,0.025)" } : undefined}
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div
-                      className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{
-                        backgroundColor: state.submitted
-                          ? isCorrect
-                            ? "rgba(62,207,142,0.1)"
-                            : "rgba(255,68,68,0.1)"
-                          : "rgba(255,255,255,0.04)",
-                      }}
-                    >
-                      {state.submitted ? (
-                        isCorrect ? (
-                          <Check className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
-                        ) : (
-                          <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
-                        )
-                      ) : (
-                        <span className="text-[10px] text-[#555555]">—</span>
-                      )}
-                    </div>
-                    <div className="min-w-0">
-                      <p
-                        className="text-xs"
-                        style={{ color: isWrong ? "rgba(255,107,107,0.75)" : "#555555" }}
-                      >
-                        Q{i + 1} · {q.subtopic} · {q.difficulty}
-                      </p>
-                      <p className="text-sm text-[#F0F0F0] truncate">
-                        {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
-                      </p>
-                    </div>
-                  </div>
-                  <span
-                    className="text-xs flex-shrink-0 ml-3"
-                    style={{ color: isWrong ? "rgba(255,107,107,0.6)" : "#888888" }}
-                  >
-                    {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
-                  </span>
-                </button>
-              )
-            })}
-          </div>
-        </div>
+        {/* Review list — wrong answers only by default, toggle to show all */}
+        {(() => {
+          const wrongIndices = questions
+            .map((q, i) => ({ q, i, state: states[i] }))
+            .filter(({ q, state }) => state.submitted && !isQuestionCorrect(q, state))
+          const displayItems = showAllReview
+            ? questions.map((q, i) => ({ q, i, state: states[i] }))
+            : wrongIndices
+          const hasWrong = wrongIndices.length > 0
 
-        {/* Recommended next step — contextual to accuracy band */}
-        <div
-          className="p-5 rounded-xl border"
-          style={{ borderColor: "rgba(255,255,255,0.08)", backgroundColor: "#0D0D0D" }}
-        >
-          <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1">
-            Recommended next step
-          </p>
-          <p className="text-xs text-[#888888] leading-relaxed mb-4">{nextStepNote}</p>
-          <div className="flex gap-3 flex-wrap">
-            {/* PRIMARY — drives the recommended path */}
-            {accuracy < 60 && (
-              <Link
-                href="/chapters"
-                className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
-                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-              >
-                Review the chapter
-              </Link>
-            )}
-            {accuracy >= 60 && accuracy < 78 && (
-              isMixedReview ? (
-                <button
-                  type="button"
-                  onClick={handleRebuildMix}
-                  disabled={rebuilding}
-                  className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 disabled:opacity-60"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+          return (
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-sm font-semibold uppercase tracking-widest text-[#888888]">
+                  {showAllReview
+                    ? `All questions · ${questions.length}`
+                    : hasWrong
+                    ? `Incorrect · ${wrongIndices.length}`
+                    : "All correct"}
+                </h2>
+                {hasWrong && (
+                  <button
+                    onClick={() => setShowAllReview((v) => !v)}
+                    className="text-[11px] transition-colors"
+                    style={{ color: "#555555" }}
+                  >
+                    {showAllReview ? "Wrong only" : `Show all ${questions.length}`}
+                  </button>
+                )}
+              </div>
+
+              {!hasWrong ? (
+                <div
+                  className="p-5 rounded-xl border border-white/[0.06] text-center"
+                  style={{ backgroundColor: "rgba(62,207,142,0.03)" }}
                 >
-                  {rebuilding ? "Building new mix…" : "Build new mix"}
-                </button>
+                  <p className="text-sm text-[#3ECF8E] font-semibold">All correct</p>
+                  <p className="text-xs text-[#555555] mt-1">Nothing to review here.</p>
+                </div>
               ) : (
-                <Link
-                  href={`/practice/session/${slug}`}
-                  className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  Another session
-                </Link>
-              )
-            )}
-            {accuracy >= 78 && (
-              <Link
-                href="/practice"
-                className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
-                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-              >
-                Practice a new topic
-              </Link>
-            )}
-            {/* SECONDARY — retake / rebuild / back depending on context */}
-            {(accuracy < 60 || accuracy >= 78) && (
-              isMixedReview ? (
-                <button
-                  type="button"
-                  onClick={handleRebuildMix}
-                  disabled={rebuilding}
-                  className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04] disabled:opacity-60"
-                >
-                  {rebuilding ? "Building…" : "Build new mix"}
-                </button>
-              ) : (
-                <Link
-                  href={`/practice/session/${slug}`}
-                  className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
-                >
-                  Retake
-                </Link>
-              )
-            )}
-            {accuracy >= 60 && accuracy < 78 && (
-              <Link
-                href="/practice"
-                className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
-              >
-                Back to Practice
-              </Link>
-            )}
-          </div>
-          {/* Tertiary plain link — only when primary doesn't go to /practice */}
-          {accuracy < 60 && (
-            <p className="text-center mt-3">
-              <Link
-                href="/practice"
-                className="text-xs transition-colors"
-                style={{ color: "#555555" }}
-              >
-                Back to Practice
-              </Link>
-            </p>
-          )}
-        </div>
+                <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
+                  {displayItems.map(({ q, i, state }, listIdx) => {
+                    const isCorrect = isQuestionCorrect(q, state)
+                    const isWrong = state.submitted && !isCorrect
+                    const isLast = listIdx === displayItems.length - 1
+                    return (
+                      <button
+                        key={q.id}
+                        onClick={() => {
+                          goTo(i)
+                          setShowResults(false)
+                        }}
+                        className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
+                          !isLast ? "border-b border-white/[0.05]" : ""
+                        }`}
+                        style={isWrong ? { backgroundColor: "rgba(255,68,68,0.025)" } : undefined}
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div
+                            className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                            style={{
+                              backgroundColor: state.submitted
+                                ? isCorrect
+                                  ? "rgba(62,207,142,0.1)"
+                                  : "rgba(255,68,68,0.1)"
+                                : "rgba(255,255,255,0.04)",
+                            }}
+                          >
+                            {state.submitted ? (
+                              isCorrect ? (
+                                <Check className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
+                              ) : (
+                                <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
+                              )
+                            ) : (
+                              <span className="text-[10px] text-[#555555]">—</span>
+                            )}
+                          </div>
+                          <div className="min-w-0">
+                            <p
+                              className="text-xs"
+                              style={{ color: isWrong ? "rgba(255,107,107,0.75)" : "#555555" }}
+                            >
+                              Q{i + 1} · {q.subtopic} · {q.difficulty}
+                            </p>
+                            <p className="text-sm text-[#F0F0F0] truncate">
+                              {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
+                            </p>
+                          </div>
+                        </div>
+                        <span
+                          className="text-xs flex-shrink-0 ml-3"
+                          style={{ color: isWrong ? "rgba(255,107,107,0.6)" : "#888888" }}
+                        >
+                          {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
+                        </span>
+                      </button>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
+          )
+        })()}
 
         {rebuildError && (
           <p className="text-xs text-center" style={{ color: "#FF4444" }}>

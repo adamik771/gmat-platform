@@ -15,6 +15,7 @@ import type {
   RecurringWeakness,
   TrapFrequency,
 } from "@/lib/mistake-insights"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 
 /**
  * InsightsPanel — the auto-classification dashboard for the error log.
@@ -103,9 +104,16 @@ export default function InsightsPanel({
           description="Sub-skills with two or more misses, ranked by miss count and Hard-difficulty density."
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {insights.recurringWeaknesses.map((w) => (
-              <WeaknessCard key={`${w.section}-${w.subskill}`} weakness={w} />
-            ))}
+            {insights.recurringWeaknesses.map((w) => {
+              const chapterSlug = TOPIC_TO_CHAPTER[w.topic]
+              return (
+                <WeaknessCard
+                  key={`${w.section}-${w.subskill}`}
+                  weakness={w}
+                  chapterSlug={chapterSlug}
+                />
+              )
+            })}
           </div>
         </SubSection>
       )}
@@ -291,19 +299,29 @@ function PriorityFixRow({ fix, ordinal }: { fix: PriorityFix; ordinal: number })
   )
 }
 
-function WeaknessCard({ weakness: w }: { weakness: RecurringWeakness }) {
+function WeaknessCard({
+  weakness: w,
+  chapterSlug,
+}: {
+  weakness: RecurringWeakness
+  chapterSlug?: string
+}) {
+  const sectionColors: Record<string, { bg: string; text: string }> = {
+    Quant: { bg: "rgba(201,168,76,0.10)", text: "#C9A84C" },
+    Verbal: { bg: "rgba(95,168,255,0.10)", text: "#5FA8FF" },
+    DI: { bg: "rgba(232,201,122,0.10)", text: "#E8C97A" },
+  }
+  const c = sectionColors[w.section] ?? sectionColors.Quant
+
   return (
     <div
-      className="p-4 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
+      className="p-4 rounded-2xl border border-white/[0.08] bg-[#0D0D0D] flex flex-col"
       style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)" }}
     >
       <div className="flex items-center justify-between mb-2">
         <span
           className="px-2 py-0.5 rounded text-[10px] uppercase tracking-[0.18em] font-semibold"
-          style={{
-            backgroundColor: "rgba(201,168,76,0.10)",
-            color: "#C9A84C",
-          }}
+          style={{ backgroundColor: c.bg, color: c.text }}
         >
           {w.section}
         </span>
@@ -315,14 +333,14 @@ function WeaknessCard({ weakness: w }: { weakness: RecurringWeakness }) {
         {w.subskill}
       </p>
       <p className="text-[11px] text-[#555555] mb-2">{w.topic}</p>
-      <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.16em] font-medium">
+      <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.16em] font-medium mb-3">
         {w.byDifficulty.Beginner > 0 && (
           <span className="text-[#3ECF8E]">
             {w.byDifficulty.Beginner} easy
           </span>
         )}
         {w.byDifficulty.Intermediate > 0 && (
-          <span className="text-[#C9A84C]">
+          <span style={{ color: c.text }}>
             {w.byDifficulty.Intermediate} med
           </span>
         )}
@@ -332,6 +350,32 @@ function WeaknessCard({ weakness: w }: { weakness: RecurringWeakness }) {
           </span>
         )}
       </div>
+      {chapterSlug && (
+        <div className="flex items-center gap-2 mt-auto pt-2 border-t border-white/[0.05]">
+          <Link
+            href={`/chapters/${chapterSlug}`}
+            className="inline-flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-lg font-semibold tracking-tight transition-colors"
+            style={{
+              backgroundColor: "rgba(201,168,76,0.12)",
+              color: "#C9A84C",
+            }}
+          >
+            <BookOpen className="w-3 h-3" />
+            Read
+          </Link>
+          <Link
+            href={`/practice/session/${chapterSlug}`}
+            className="inline-flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-lg font-semibold tracking-tight transition-colors"
+            style={{
+              backgroundColor: "#C9A84C",
+              color: "#0A0A0A",
+            }}
+          >
+            <Target className="w-3 h-3" />
+            Drill
+          </Link>
+        </div>
+      )}
     </div>
   )
 }
