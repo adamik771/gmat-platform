@@ -519,8 +519,16 @@ function JourneyNode({
   isLast,
 }: JourneyNodeProps) {
   const num = String(index + 1).padStart(2, "0")
+  const setsWaiting = item.isComplete && item.problemSetCount > 0 && item.accuracyPct === null
+  const setsInProgress =
+    item.isComplete && item.accuracyPct !== null && item.attemptedSetCount < item.problemSetCount
+
   const cta =
-    status === "complete" ? "Review" : status === "current" ? "Continue" : "Start"
+    setsWaiting ? "Start sets"
+    : setsInProgress ? "Continue sets"
+    : status === "complete" ? "Review"
+    : status === "current" ? "Continue"
+    : "Start"
   const cardBorder =
     status === "current"
       ? accent
@@ -534,7 +542,9 @@ function JourneyNode({
       ? "rgba(255,255,255,0.012)"
       : "#0D0D0D"
   const href =
-    status === "current" && item.resumeAnchor
+    setsWaiting || setsInProgress
+      ? `${item.href}#chapter-problem-sets`
+      : status === "current" && item.resumeAnchor
       ? `${item.href}#${item.resumeAnchor}`
       : item.href
 
@@ -690,7 +700,9 @@ function JourneyNode({
             {(() => {
               const statusText = chapterStatusLine(item)
               if (!statusText) return null
-              const tone = item.isComplete
+              const tone = setsWaiting
+                ? "#C9A84C"
+                : item.isComplete
                 ? "rgba(62,207,142,0.85)"
                 : accent
               return (
