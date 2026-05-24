@@ -164,7 +164,7 @@ What is the greatest common factor of 168 and 252?
 **type:** Problem Solving
 **topic:** Remainders
 
-If x and y are positive integers such that x = 8q + 5 and y = 8r + 3, where q and r are positive integers, what is the remainder when xy is divided by 8?
+If x and y are positive integers such that x = 8q + 5 and y = 8r + 3, where q and r are non-negative integers, what is the remainder when xy is divided by 8?
 
 - A) 1
 - B) 3
@@ -693,7 +693,7 @@ Is the positive integer k divisible by 6?
 ---
 
 ## Q27
-**difficulty:** Medium
+**difficulty:** Easy
 **type:** Data Sufficiency
 **topic:** Prime Identification
 
@@ -780,7 +780,7 @@ If x and y are integers, is the product xy even?
 ---
 
 ## Q30
-**difficulty:** Medium
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Triplets of Prime Numbers
 
@@ -822,7 +822,7 @@ The sum of 6 consecutive even integers is 126. What is the smallest of these int
 **fastest_path:** Let smallest = k. Sum = 6k + 30 = 126 → k = 16.
 **explanation:** Six consecutive even integers: k, k+2, k+4, k+6, k+8, k+10. Sum = 6k + 30 = 126 → 6k = 96 → k = 16. Verify: 16 + 18 + 20 + 22 + 24 + 26 = 126 ✓.
 **mistake_a:** Set up the sequence one step too early (used k−2 as smallest): k − 2 = 14.
-**mistake_c:** Bubbled the third term k+2 = 18 — misidentified the term just above the mean as the "smallest."
+**mistake_c:** Bubbled the second term k+2 = 18 — set up the sequence starting one step too high (k+2, k+4, ..., k+12) so that what they solved for as the "first term" was actually the second.
 **mistake_d:** Bubbled the lower-middle term k+4 = 20 — noted that mean = 126/6 = 21 and picked the nearest even integer below it, treating it as the answer.
 **mistake_e:** Bubbled the upper-middle term k+6 = 22 — rounded the mean (21) up to the next even integer.
 **common_trap:** With an even count of terms, the mean (21) is NOT one of the integers — it falls between the two middle terms (20 and 22). Using 20 or 22 as the answer gives a middle term, not the smallest.
