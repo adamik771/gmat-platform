@@ -1315,6 +1315,7 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+    const insight = computeInsight(questions, states, section)
 
     // Per-question pairs for insight panels (submitted only)
     const answeredPairs = questions
@@ -1401,6 +1402,21 @@ export default function SessionClient({
 
         <SaveStatusBanner status={saveStatus} onRetry={saveSession} />
 
+        {insight && (
+          <div className="pl-4 border-l-2" style={{ borderColor: "rgba(201,168,76,0.5)" }}>
+            <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+              {insight.label}
+            </p>
+            <p className="text-sm text-[#C0C0C0] leading-relaxed">{insight.observation}</p>
+            <div className="mt-2.5 flex items-start gap-2">
+              <ArrowRight className="w-3 h-3 flex-shrink-0 mt-0.5" style={{ color: "#555555" }} />
+              <p className="text-xs leading-relaxed" style={{ color: "#888888" }}>
+                {insight.nextStep}
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Core metrics + insight breakdown */}
         <div
           className="p-6 rounded-xl border"
@@ -1478,23 +1494,6 @@ export default function SessionClient({
             </div>
           )}
         </div>
-
-        {(() => {
-          const insight = computeInsight(questions, states, section)
-          if (!insight) return null
-          return (
-            <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
-                {insight.label}
-              </p>
-              <p className="text-sm text-[#C0C0C0] leading-relaxed">{insight.observation}</p>
-              <div className="mt-3 pt-3 border-t border-white/[0.05] flex items-start gap-2">
-                <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-[#555555]" />
-                <p className="text-xs text-[#888888] leading-relaxed">{insight.nextStep}</p>
-              </div>
-            </div>
-          )
-        })()}
 
         {savedSessionId && answeredCount - correctCount > 0 && (
           <Link
@@ -1583,6 +1582,11 @@ export default function SessionClient({
                       <p className="text-sm text-[#F0F0F0] truncate">
                         {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
                       </p>
+                      {isWrong && state.selected !== null && (
+                        <p className="text-[11px] mt-0.5 tabular-nums" style={{ color: "rgba(255,107,107,0.55)" }}>
+                          You chose {letterFor(state.selected)} · Correct: {q.correctAnswerLetter}
+                        </p>
+                      )}
                     </div>
                   </div>
                   <span
