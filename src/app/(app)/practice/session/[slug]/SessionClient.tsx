@@ -23,7 +23,7 @@ import remarkGfm from "remark-gfm"
 import PacingBadge from "@/components/shared/PacingBadge"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
-import { levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
+import { applySessionAttempts, levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
 import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
@@ -1477,6 +1477,131 @@ export default function SessionClient({
               <p className="text-[12px] text-[#888888] leading-relaxed">{pacingNote}</p>
             </div>
           )}
+
+          {/* Topic skill level track — shows 4-tier progress on this topic
+              and whether this session projected a tier advance. Requires at
+              least one prior session so new students don't see a half-
+              calibrated label before there is enough signal. */}
+          {typeof skillLevel === "number" &&
+            typeof skillAttempts === "number" &&
+            skillAttempts > 0 &&
+            (() => {
+              const TIERS = [
+                { id: "Foundation", lo: 0, hi: 0.35 },
+                { id: "Building",   lo: 0.35, hi: 0.65 },
+                { id: "Proficient", lo: 0.65, hi: 0.85 },
+                { id: "Advanced",   lo: 0.85, hi: 1.001 },
+              ]
+
+              // Project the level this session will produce — uses the same
+              // formula the server applies on save, so the label is accurate.
+              const updatedMap = applySessionAttempts(
+                { [slug]: { level: skillLevel, attempts: skillAttempts, updatedAt: 0 } },
+                answeredPairs.map(({ q, correct, state }) => ({
+                  slug,
+                  section,
+                  difficulty: q.difficulty,
+                  isCorrect: correct,
+                  timeSpentMs: state.elapsedMs,
+                }))
+              )
+              const projectedLevel = updatedMap[slug]?.level ?? skillLevel
+
+              const tierIdx = (lvl: number) =>
+                Math.max(0, TIERS.findIndex((t) => lvl < t.hi))
+              const beforeIdx = tierIdx(skillLevel)
+              const afterIdx  = tierIdx(projectedLevel)
+              const movedUp   = afterIdx > beforeIdx
+
+              const hasEnoughData = skillAttempts >= MIN_ATTEMPTS_FOR_ADAPTIVE
+
+              // Fine-grained position within the current tier (0–100)
+              const bt = TIERS[beforeIdx]
+              const tierPct = Math.round(
+                Math.min(100, Math.max(0, ((skillLevel - bt.lo) / (bt.hi - bt.lo)) * 100))
+              )
+
+              return (
+                <div className="mt-6 pt-5 border-t border-white/[0.06]">
+                  <div className="flex items-center justify-between mb-3">
+                    <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                      {topic} level
+                    </p>
+                    {!hasEnoughData && (
+                      <p className="text-[10px] text-[#555555]">
+                        calibrating &middot; {skillAttempts} attempt{skillAttempts === 1 ? "" : "s"}
+                      </p>
+                    )}
+                    {hasEnoughData && movedUp && (
+                      <p className="text-[10px] font-semibold" style={{ color: "#3ECF8E" }}>
+                        {TIERS[beforeIdx].id} &rarr; {TIERS[afterIdx].id}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="flex items-center">
+                    {TIERS.map((tier, i) => {
+                      const isCurrent    = i === beforeIdx
+                      const isPast       = i < beforeIdx
+                      const isProjected  = movedUp && i === afterIdx
+                      return (
+                        <div key={tier.id} className="flex items-center flex-1 min-w-0">
+                          {i > 0 && (
+                            <div
+                              className="flex-none h-px w-2"
+                              style={{
+                                backgroundColor: isPast
+                                  ? "rgba(201,168,76,0.3)"
+                                  : "rgba(255,255,255,0.06)",
+                              }}
+                            />
+                          )}
+                          <div
+                            className="flex-1 text-center py-1 rounded text-[9px] font-semibold uppercase tracking-wide truncate"
+                            style={{
+                              color: isProjected
+                                ? "#3ECF8E"
+                                : isCurrent
+                                ? "#0A0A0A"
+                                : isPast
+                                ? "rgba(201,168,76,0.45)"
+                                : "#383838",
+                              backgroundColor: isProjected
+                                ? "rgba(62,207,142,0.12)"
+                                : isCurrent
+                                ? "#C9A84C"
+                                : isPast
+                                ? "rgba(201,168,76,0.06)"
+                                : "transparent",
+                              border: isProjected
+                                ? "1px solid rgba(62,207,142,0.25)"
+                                : "1px solid transparent",
+                            }}
+                          >
+                            {tier.id}
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+
+                  {/* Fine-grained bar: position within the current tier.
+                      Hidden when the tier just advanced (the "→ NewTier"
+                      label is the signal; the bar would be misleading). */}
+                  {hasEnoughData && !movedUp && (
+                    <div className="mt-2 h-0.5 rounded-full bg-white/[0.05] overflow-hidden">
+                      <div
+                        className="h-full rounded-full"
+                        style={{
+                          width: `${Math.max(3, tierPct)}%`,
+                          backgroundColor: "rgba(201,168,76,0.35)",
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              )
+            })()}
         </div>
 
         {(() => {
