@@ -6,25 +6,25 @@ topic: Ratios and Percents
 ## Q1
 **difficulty:** Easy
 **type:** Problem Solving
-**topic:** Basic Percents
+**topic:** Percent Change
 
-What is 35% of 80?
+A company had 50 employees at the start of the year and 65 employees at the end of the year. By what percent did the headcount increase?
 
-- A) 24
-- B) 26
-- C) 28
-- D) 32
-- E) 35
+- A) 15%
+- B) 23%
+- C) 25%
+- D) 30%
+- E) 33%
 
-**answer:** C
-**fastest_path:** 10% of 80 = 8 → 30% = 24, +5% = 4 → 28.
-**explanation:** 35% of 80 = 0.35 × 80 = 28. Faster: 30% (24) + 5% (4) = 28.
-**mistake_a:** Computed 30% only (24) and stopped — forgot to add the 5% chunk (which is 4 more).
-**mistake_b:** Computed 30% (= 24) and added 2 instead of 4 — likely misremembered 5% of 80 as 2 (5% of 40, not 80).
-**mistake_d:** Computed 40% (= 32) instead of 35% — rounded the percent up to a "nice" number, ignoring the trailing 5%.
-**mistake_e:** Bubbled the percent value (35) directly — confused "X% of Y" with the percent number itself.
-**common_trap:** Bubbling the percent number itself, or computing only the round 30% portion.
-**takeaway:** Break percents into 10% and 5% chunks: 10% = ÷10, 5% = ÷20. Faster than decimals.
+**answer:** D
+**fastest_path:** (65 − 50) / 50 = 15 / 50 = 3/10 = 30%.
+**explanation:** Percent change = (new − original) / original × 100 = (65 − 50) / 50 × 100 = 15/50 × 100 = 30%. The base is always the *original* (starting) value.
+**mistake_a:** Bubbled 15 (the absolute increase) directly as the percent — confused the raw headcount change with the percent change.
+**mistake_b:** Used the *new* headcount as the base: 15/65 ≈ 23%. Percent increase always uses the original value in the denominator, not the new one.
+**mistake_c:** Misread the original count as 60 instead of 50: 15/60 = 25%. Re-read: 50 employees at the start.
+**mistake_e:** Misread the original count as 45 instead of 50: 15/45 ≈ 33%. Re-read: 50 employees at the start.
+**common_trap:** Dividing by the *new* (ending) value instead of the original starting value — a very common base-confusion error.
+**takeaway:** Percent change = (new − original) / original × 100. The denominator is always the starting value, never the ending value.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -32,25 +32,25 @@ What is 35% of 80?
 ## Q2
 **difficulty:** Easy
 **type:** Problem Solving
-**topic:** Basic Percents
+**topic:** Percent Greater
 
-If 18 is x percent of 60, what is the value of x?
+Product B costs $120 and product A costs $80. Product B's price is what percent greater than product A's price?
 
-- A) 18
-- B) 24
-- C) 30
-- D) 36
-- E) 42
+- A) 33%
+- B) 40%
+- C) 50%
+- D) 67%
+- E) 150%
 
 **answer:** C
-**fastest_path:** 18/60 = 3/10 = 30%.
-**explanation:** 18 = (x/100)(60) → x = 1800/60 = 30. Or: 18/60 = 3/10 = 30%.
-**mistake_a:** Bubbled the part value (18) directly — read "what is x" but answered with the number 18.
-**mistake_b:** Computed 24 from a wrong base — likely 18 × 60/45 or some inverted setup landing near 24%. Recompute: 18/60 reduces to 3/10 = 30%, not 24%.
-**mistake_d:** Computed 60 × 0.60 = 36 from misreading the question as "60% of x = 18" or similar inversion.
-**mistake_e:** Computed the *complement*: 60 − 18 = 42, treating the question as "what percent of 60 is *everything else*." The question asks what 18 is of 60, not the remainder.
-**common_trap:** Bubbling the part (18) instead of computing the percent.
-**takeaway:** Memorize fraction ↔ percent: 1/4 = 25%, 3/10 = 30%, 3/8 = 37.5%, 5/8 = 62.5%. Recognition saves time.
+**fastest_path:** (120 − 80) / 80 = 40 / 80 = 1/2 = 50%.
+**explanation:** "Percent greater than" = (difference) / (reference value) × 100 = (120 − 80) / 80 × 100 = 40/80 × 100 = 50%. The *reference* is always the value you are comparing *against* — here, product A's price ($80).
+**mistake_a:** Used the larger price as the base: 40/120 = 33%. This would answer "by what percent is A *less than* B," not "how much greater is B than A." The base must be A.
+**mistake_b:** Used 100 as the denominator (treating "percent" as "out of 100 dollars"): 40/100 = 40%. The denominator must be the reference price ($80), not a generic 100.
+**mistake_d:** Computed 80/120 = 67% — inverted the fraction, giving the ratio of A to B rather than the percent difference. Always use the difference (40) in the numerator.
+**mistake_e:** Computed 120/80 = 1.50 and reported 150% — gave the *ratio* of B to A rather than how much *greater* B is. "150% of A" ≠ "150% greater than A." The percent-greater is 120/80 − 1 = 0.50 = 50%.
+**common_trap:** Using B's price as the denominator (giving 33%) instead of A's price. The base is always the value you compare *against*, which the question specifies with the phrase "greater than product A."
+**takeaway:** "X is what percent greater than Y?" = (X − Y) / Y × 100. The denominator is always Y — the quantity you're comparing against. "Percent greater than" ≠ "ratio of."
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -100,7 +100,7 @@ A jacket originally priced at $120 is marked down by 25%. What is the sale price
 **mistake_a:** Mis-translated 25% as 1/3 — computed 120 − 40 = 80. The canonical fraction trap: 25% is 1/4 (giving 30 off), not 1/3.
 **mistake_c:** Computed 120 − 25 = 95 — treated the 25 as a *dollar* amount instead of a percent. The discount is 25% of 120, not $25.
 **mistake_d:** Computed 120 × 0.80 = 96 — used a 20% discount factor (0.80) instead of 25% (0.75). One-digit slip with a big swing.
-**mistake_e:** Computed 20% off ($24) → $96, then mis-rounded to $100, or interpreted the discount as $20 flat off. Read the percent twice.
+**mistake_e:** Subtracted $20 from $120 instead of $30 — treated "25% off" as "$20 off," mixing up the percent number with a dollar amount. The discount is 25% of $120 = $30, so the sale price is $120 − $30 = $90, not $100.
 **common_trap:** Translating 25% as 1/3 (gives 80) instead of 1/4.
 **takeaway:** Use multipliers for percent changes: −x% → multiply by (1 − x/100). One-step.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -150,7 +150,7 @@ In a class of 40 students, 14 are left-handed. What percent of the class is left
 **fastest_path:** 14/40 = 7/20 = 35/100 = 35%.
 **explanation:** Percent = part/whole × 100 = 14/40 × 100 = 35%. Or: 14/40 = 7/20, and 7/20 × 5/5 = 35/100 = 35%.
 **mistake_a:** Computed 14 × 2 = 28% — mis-converted by doubling instead of multiplying by 2.5. 14/40 = 7/20; converting /20 to /100 requires × 5, not × 4.
-**mistake_b:** Computed 32% from a fraction slip — perhaps 14/40 simplified to 8/25 wrongly, or 12/40 misread as 14/40 mid-step. Recompute: 14/40 = 35/100.
+**mistake_b:** Arrived at 32% from a faulty simplification: mis-treated 14/40 as if it were 8/25, which equals 32%. The correct reduction is 14/40 ÷ 2 = 7/20, and 7/20 × 5 = 35/100 = 35%. The fraction 8/25 is simply not equivalent to 14/40 — verify: 8 × 40 = 320 ≠ 14 × 25 = 350.
 **mistake_d:** Computed 38% — likely 15/40 = 37.5% rounded up, or 14/37 from a denominator mis-read.
 **mistake_e:** Bubbled the class size (40) as a percent — confused the *whole* with the percent it represents.
 **common_trap:** Mis-converting /20 fractions to /100 (× 5, not × 4 or × 6).
@@ -175,7 +175,7 @@ The price of a stock increases by 20% in January, then decreases by 20% in Febru
 **answer:** A
 **fastest_path:** 1.20 × 0.80 = 0.96 → −4%.
 **explanation:** Successive % changes compound multiplicatively: 1.20 × 0.80 = 0.96 → 4% decrease. Smart number 100: 100 → 120 → 96.
-**mistake_b:** Mis-computed compound → −2%.
+**mistake_b:** Computed 1.20 × 0.82 = 0.984 → −1.6% ≈ −2%, from misreading the February decrease as 18% instead of 20%. The problem states "decreases by 20%," so the February multiplier is 0.80, not 0.82.
 **mistake_c:** Treated as additive (+20 − 20 = 0) → unchanged.
 **mistake_d:** Inverted sign → +2%.
 **mistake_e:** Inverted sign and rounded → +4%.
@@ -281,7 +281,7 @@ A company's revenue grew by 50% from 2023 to 2024. If 2024 revenue was $900,000,
 **explanation:** 2024 = 1.5 × 2023 → 2023 = 900,000 / 1.5 = 600,000.
 **mistake_a:** Halved 900K → 450K — treated "+50% increase" as "doubled," then divided by 2. A +50% increase means *multiply* by 1.5, not 2.
 **mistake_b:** Subtracted 40% of 900K (360K) → 540K. Reverse-percent error: subtracted instead of dividing by the multiplier.
-**mistake_d:** Computed 900K × 0.75 = 675K — divided by 4/3 instead of by 3/2, perhaps confused which multiplier reverses +50%.
+**mistake_d:** Multiplied by 3/4 = 0.75 instead of dividing by 3/2 = 1.5: 900K × 0.75 = $675K. Both involve the number 3, but they are different operations. To reverse a +50% increase, divide by 1.5 (equivalently, multiply by 2/3 ≈ 0.667). Multiplying by 3/4 reverses a +33% increase, not +50%.
 **mistake_e:** Subtracted 150K (one-sixth of 900K) → 750K, defaulting to "subtract the percent of the new value." The correct reverse: 2023 = 2024 / 1.5 = 600K.
 **common_trap:** Treating "+50% increase" as "half" — divides by 2 instead of by 1.5.
 **takeaway:** To reverse a +x% increase, *divide* by (1 + x/100). Never subtract the percent.
@@ -432,21 +432,21 @@ A 50-liter mixture is 40% alcohol. A second mixture, which is 70% alcohol, is ad
 
 A merchant sells a watch for $140 and earns a 30% profit on the selling price. If instead the watch had been sold at a 30% profit on the cost price, what would the selling price have been?
 
-- A) $122.20
-- B) $124.60
-- C) $125.80
-- D) $127.40
-- E) $130.00
+- A) $98.00
+- B) $117.60
+- C) $127.40
+- D) $128.00
+- E) $140.00
 
-**answer:** D
+**answer:** C
 **fastest_path:** Cost = 0.70 × 140 = 98. New sell = 1.30 × 98 = 127.40.
-**explanation:** "30% profit on selling price" → cost = 70% of price = 0.70 × 140 = 98. New scenario: 30% profit on cost → sell = 1.30 × 98 = 127.40.
-**mistake_a:** Used the wrong cost: 140 × 0.873 ≈ 122.20 — perhaps computed cost as 140/1.30 ≈ 107.7, then 1.13 × ... a confused chain. The correct cost is 140 × 0.70 = 98 (since profit is 30% of *selling price*).
-**mistake_b:** Computed cost as 140 × 0.74 ≈ 103.6, then 1.20 × 103.6 ≈ 124.60 — mis-translated "30% profit on selling price" as a different margin rule.
-**mistake_c:** Computed 1.30 × 96.8 ≈ 125.80 — used cost ≈ 96.8 from a near-miss (perhaps 140 × 0.69). Recompute exactly: cost = 0.70 × 140 = 98 (not 96.8).
-**mistake_e:** Estimated $130 by rough-rounding cost to $100 and adding 30% — close to the correct answer but imprecise. Compute exactly: 1.30 × 98 = 127.40, not 130.
-**common_trap:** Treating "margin on price" and "markup on cost" as equivalent — they aren't; the *base* differs.
-**takeaway:** Always identify the *base* of a percent. "Profit margin" → base is selling price; "markup" → base is cost.
+**explanation:** Step 1 — find the cost. "30% profit on selling price" means profit = 30% of SP, so cost = 70% of SP = 0.70 × $140 = $98. Step 2 — apply the new profit definition. "30% profit on cost" means new SP = cost × 1.30 = $98 × 1.30 = $127.40. The two scenarios use the same percent (30%) but with different bases (SP vs cost), which is why the selling prices differ.
+**mistake_a:** Found the cost ($98) and stopped — the question asks for the *new selling price*, not the cost.
+**mistake_b:** Found the cost correctly ($98) but applied a 20% markup instead of 30%: $98 × 1.20 = $117.60. Reread: the new scenario calls for a 30% profit on cost, giving $98 × 1.30 = $127.40.
+**mistake_d:** Found the cost correctly ($98) and knew the markup is 30%, but added $30 as a flat dollar amount instead of 30% of cost: $98 + $30 = $128. The markup is 30% of $98 = $29.40, not $30.
+**mistake_e:** Assumed both scenarios give the same selling price because they use the same cost and the same 30% rate. The two scenarios differ in what the 30% is *applied to*: in the original scenario the base is the $140 selling price; in the new scenario the base is the $98 cost. Different bases → different selling prices.
+**common_trap:** Treating "30% profit on selling price" and "30% profit on cost" as equivalent because the percent is the same — they produce different results because the *base* of the percent differs.
+**takeaway:** Always identify the *base* of a percent. "Profit margin" uses selling price as the base; "markup on cost" uses cost as the base. Same percent, different base = different dollar amounts.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -497,7 +497,7 @@ A merchant marks the price of a watch up 50% above cost, and during a sale disco
 **fastest_path:** 1.50 × 0.80 = 1.20 → 20% net profit. 0.20C = 84 → C = 420.
 **explanation:** Marked = 1.50C. Sale = 1.50C × 0.80 = 1.20C. Profit = 0.20C = 84 → C = 420.
 **mistake_b:** Computed C from a slightly wrong factor: 0.175C = 84 → C ≈ 480 (used 1.50 × 0.78 ≈ 1.175 or similar). Recompute exactly: 1.50 × 0.80 = 1.20, net +20%, so 0.20C = 84 → C = 420.
-**mistake_c:** Computed 1.50 × 0.84 = 1.26, then (1.26 − 1)C = 84 → C ≈ 323; over-corrected to 504. The discount is 20%, giving multiplier 0.80, not 0.84.
+**mistake_c:** Set up the equation correctly (0.20C = $84) but mistook 0.20 as 1/6 rather than 1/5, giving C = $84 × 6 = $504. The reciprocal of 0.20 = 1/5 is 5, not 6 — so C = $84 × 5 = $420. The discount is 20%, giving multiplier 0.80, not 0.84.
 **mistake_d:** Mis-chained 1.40 × 0.80 = 1.12 → 0.12C = 84 → C ≈ 700, then rounded to 540. The markup is 50% (1.50), not 40%.
 **mistake_e:** Used additive shortcut: 50 − 20 = 30% net → 84/0.30 = 280, then bumped to 630 from confusion. Chain multiplicatively: 1.50 × 0.80 = 1.20, net +20%.
 **common_trap:** Treating successive percent changes additively (50 − 20 = 30%), which gives the wrong base for profit.
@@ -554,7 +554,7 @@ A store raised the price of a product by 20%, then offered a 25% discount on the
 **mistake_b:** Used additive (+20 − 25 = −5%) → 95%.
 **mistake_c:** Treated as cancellation → 100%.
 **mistake_d:** Inverted sign → 105%.
-**mistake_e:** Mis-chained → 110%.
+**mistake_e:** Computed the chain correctly (1.20 × 0.75 = 0.90 = 90%) but then added the original 20-point markup back in: 90 + 20 = 110%. This confuses "the final price *is* 90% of the original" with "the final price is some percent *more than* the original." The question asks for the ratio, which is 90%.
 **common_trap:** Treating successive percent changes additively (−5% → 95%). The 25% discount is taken off the *new* price, not the original.
 **takeaway:** Successive percent changes multiply factors, not add percents.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -741,8 +741,8 @@ After a 30% discount, a laptop sells for $490. What was the original price?
 **explanation:** A 30% discount means the buyer pays 70% of the original price. So 0.70 × P = $490, giving P = $490 ÷ 0.70 = $700. The setup is: sale price = (1 − discount rate) × original price, then solve for the original.
 **mistake_a:** Applied the 30% reduction again: $490 × 0.70 = $343 — the discount was already reflected in $490.
 **mistake_b:** Added 30% to the discounted price: $490 × 1.30 = $637 — but the 30% was taken off the original, not the discounted price, so this is the wrong base.
-**mistake_d:** Used an incorrect multiplier → $735.
-**mistake_e:** Arithmetic slip → $780.
+**mistake_d:** Multiplied by 3/2 = 1.50 instead of dividing by 0.70: $490 × 1.50 = $735. This mistake comes from confusing "30% off" with "sold at 2/3 of original." A 30% discount leaves 70% = 7/10 of the original, so the reversal is ÷ (7/10) = × (10/7) ≈ 1.4286, not × (3/2).
+**mistake_e:** An arithmetic error in the division step — perhaps computing 490 ÷ 0.63 ≈ $778 from misidentifying the discount factor as 37% instead of 30%, then rounding to $780. Verify: 0.70 × $780 = $546 ≠ $490. The correct check: 0.70 × $700 = $490 ✓.
 **common_trap:** Adding 30% back to $490 ($490 × 1.30 = $637) rather than dividing by 0.70. The original is what you divide *into* the sale price, not what you mark up from it.
 **takeaway:** To reverse a percent decrease: original = sale price ÷ (1 − discount rate). Never add the discount percent to the sale price.
 **related_reading:** reading-quant-02-arithmetic-foundations
