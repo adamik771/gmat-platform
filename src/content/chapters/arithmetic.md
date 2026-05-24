@@ -19,12 +19,16 @@ sections:
   - id: order-of-operations
     type: reading
     title: "Order of operations — PEMDAS and the traps inside it"
+    intro: |
+      PEMDAS isn't the skill — the two traps *inside* it are. Multiplication always binds tighter than subtraction regardless of left-to-right order, and a negative sign outside parentheses distributes to every term inside. Learn both once, eliminate an entire mistake class permanently.
     check_question_ids:
       - arithmetic-q16
 
   - id: fractions-fluency
     type: reading
     title: "Fractions — the single highest-leverage arithmetic skill"
+    intro: |
+      The gap between a 605 and a 685 Quant scorer is not algebra — it is fraction speed. Both students can add fractions. The difference is whether they need scratch paper and 25 seconds, or their head and 5 seconds. This section closes that gap by building the cancel-first, simplify-early habits that remove the slow steps.
     check_question_ids:
       - arithmetic-q13
       - arithmetic-q15
@@ -32,6 +36,8 @@ sections:
   - id: decimals-and-percents-conversion
     type: reading
     title: "Decimals and percents — three notations, one number"
+    intro: |
+      Fraction, decimal, and percent are three notations for the same number. The student who converts fluently between them saves 20-30 seconds per percent problem — enough to answer one additional question. The complement move (15% off = pay 85%) and the "percent of a percent" rule collapse two-step problems into one.
     check_question_ids:
       - arithmetic-q2
       - arithmetic-q4
@@ -39,18 +45,24 @@ sections:
   - id: signs-and-negatives
     type: reading
     title: "Signs and negatives — keeping the minus signs from eating your time"
+    intro: |
+      Signed-number mistakes are GMAT's quietest point-killers. The rules fit in four lines — this section lists them all. The problem isn't recognition; it's the habit of applying them under time pressure without breaking one. Drill the rules until the correct answer feels *wrong* when you make the mistake, not just after you've already bubbled it.
     check_question_ids:
       - arithmetic-q17
 
   - id: integers-vs-non-integers
     type: reading
     title: "Integers vs. non-integers — knowing which world you're in"
+    intro: |
+      This looks like a vocabulary distinction. On Data Sufficiency, it is often *the* question. Whether a variable can be a fraction changes the answer from "sufficient" to "not sufficient" on a significant share of medium-hard DS problems. The rule: *the problem must explicitly state that x is an integer — never assume it*.
     check_question_ids:
       - arithmetic-q18
 
   - id: estimation-tricks
     type: reading
     title: "Estimation — when to compute and when to approximate"
+    intro: |
+      A question with answer choices spread 10× apart shouldn't take 90 seconds — it should take 20. The "scan before computing" reflex is what separates students who finish Quant from those who guess on the last three questions. This section builds that reflex and gives you the four estimation heuristics worth keeping in your head for the rest of prep.
     check_question_ids:
       - arithmetic-q19
 
@@ -124,6 +136,14 @@ Every student has heard of PEMDAS — Parentheses, Exponents, Multiplication/Div
 
 **Trap to watch.** A negative sign in front of a parenthesis distributes to *every* term inside. `−(3 − 5)` is `−3 + 5 = 2`, not `−3 − 5 = −8`. When I rush, I forget the distribution on the second term. The habit: write the negative as `−1 ×` mentally and distribute slowly.
 
+**Micro-drill.** Evaluate each expression — should take under 25 seconds total:
+
+1. `12 − 3 × 2` → ___
+2. `(6 + 2)² ÷ 4 − 1` → ___
+3. `−(4 − 7)²` → ___
+
+Answers: (1) **6** — multiply first: 3 × 2 = 6, then 12 − 6. (2) **15** — parens: 8, squared: 64, ÷ 4: 16, minus 1. (3) **−9** — parens give −3, squared gives 9, then the leading negative makes it −9. If (3) gave you +9, you resolved the exponent before applying the leading minus — the exponent binds to `(4 − 7)`, not to the whole expression.
+
 > **Self-explanation prompt.** Before the check question, say out loud in one sentence: *why* does multiplication happen before subtraction? If you can articulate that multiplication is a compact way of writing repeated addition (so `2 × 4` is really `4 + 4`, already an addition), you'll stop making the left-to-right mistake.
 
 ## @fractions-fluency
@@ -155,6 +175,15 @@ If I could pick one skill that separates 685+ scorers from 605 scorers on Quant,
 | 1/10 | 0.1 | 10% |
 
 Multiples follow: `3/8 = 0.375`, `5/8 = 0.625`, `7/8 = 0.875`. When you see `.375` in an answer choice, you should *see* `3/8` without thinking.
+
+**Micro-drill.** Compute each without a calculator — 45 seconds total:
+
+1. `5/6 − 3/8` → ___
+2. `(15 × 28) / (21 × 20)` → ___
+3. `(1 + 3/4) / (1 − 1/4)` → ___
+4. Simplify: `48/84` → ___
+
+Answers: (1) **11/24** (LCD 24: 20/24 − 9/24). (2) **1** (cancel before multiplying: 15/21 = 5/7 and 28/20 = 7/5; product is 1). (3) **7/3** (numerator = 7/4, denominator = 3/4; divide by flipping: 7/4 × 4/3 = 7/3). (4) **4/7** (GCF of 48 and 84 is 12). If (2) took more than 10 seconds, you computed instead of canceling — go back to the "cancel early" habit above. If (3) tripped you, the rule is: resolve the compound fractions in numerator and denominator first, then divide.
 
 **Trap to watch.** A complex fraction like `(a + b/c) / d` is `(ac + b) / (cd)`, not `(a + b) / (cd)`. Resolve the numerator fully — `a + b/c = (ac + b)/c` — before you divide.
 
@@ -225,6 +254,15 @@ Sum: `9 + (−2) = 7`. Any `|expression| = k` equation has (up to) two solutions
 
 **Trap to watch.** `(−3)² = 9`, but `−3² = −9`. The exponent binds tighter than the negation unless the negative is inside parentheses. Write out `−3²` as `−(3²)` in your head.
 
+**Micro-drill.** Evaluate each — 10 seconds each:
+
+1. `(−3)² − 3²` → ___
+2. `−(5 − 9)²` → ___
+3. `|3 − 8| × |8 − 3|` → ___
+4. `(−1)(−2)(−3)(−4)` → ___
+
+Answers: (1) **0** — (−3)² = 9 and 3² = 9, difference is 0. (2) **−16** — parens: −4, squared: 16, then the leading minus: −16. (3) **25** — |−5| = 5 and |5| = 5, product 25. (4) **24** — four negative factors = even count = positive; 1×2×3×4 = 24. If (1) gave you −18, you treated `(−3)²` as `−(3²) = −9` — the parentheses include the negative in the base. If (4) gave you −24, the even-negative-count rule isn't automatic yet: re-read the "same/different signs" rules above until it is.
+
 ## @integers-vs-non-integers
 
 The GMAT cares intensely about whether a number is an integer or not. Many Data Sufficiency questions hinge on this single distinction, and many Problem Solving traps plant a non-integer where a student assumed an integer.
@@ -251,6 +289,25 @@ Manipulate: `p/q > 1/2` becomes `2p > q` when `q > 0`. Substituting `q = 2p − 
 **Terminating vs non-terminating decimals.** A fraction `a/b` (in lowest terms) has a terminating decimal if and only if `b` has no prime factors other than 2 and 5. `3/8 = 0.375` (b = 2³, terminates). `1/3 = 0.333…` (b = 3, doesn't terminate). `1/6 = 0.1666…` (b = 2 × 3, the 3 forces non-termination).
 
 **Trap to watch.** "x is a positive number" does NOT mean "x is a positive integer." Always read the problem twice to check whether the integer constraint was given. Students who assume integers when the problem allowed rationals lose points on Data Sufficiency constantly.
+
+**The DS integer-assumption pattern — one of the highest-leverage distinctions in this chapter.**
+
+The GMAT will state integer constraints explicitly when they matter, using language like "n is a positive integer," "k is a whole number," "x is divisible by 3," or "p is prime." If those words aren't there, x can be 1.5, 0.7, or √2.
+
+**Example.** Is x² > x?
+
+- If x is any real number: x = 0.5 gives 0.25 > 0.5, which is false. x = 2 gives 4 > 2, which is true. Whether x² > x depends entirely on whether x > 1, x = 0 or 1, or x is between 0 and 1 or negative — no single statement can answer this without pinning x down precisely.
+- Statement (1): x > 1. Then x² > x always (multiply both sides of x > 1 by x, which is positive). **Sufficient** — and "x > 1" says nothing about integers.
+
+**The "x² = 9" sufficiency split.** What is x, given x² = 9?
+
+- With no constraints: x = 3 or x = −3. **Not sufficient.**
+- With "x is a positive real number": x = 3 only. **Sufficient.**
+- With "x is a positive integer": x = 3 only. **Sufficient.**
+
+Same equation; the sufficiency verdict changes with the domain. On every DS question involving a squared variable, ask immediately: "could x be negative?" If the problem doesn't rule it out, it can't be ruled out.
+
+**DS language that signals integer context (pattern-match on sight):** "n is a positive integer" / "k is a whole number" / "factor of" / "multiple of" / "divisible by" / "prime" / "remainder when divided by" — any of these phrases signal you're in integer territory. Without them, stay in real-number territory and test fractions as candidates.
 
 > **Self-explanation prompt.** Why does `1/7` not terminate? If you can say "because 7 has no factors of 2 or 5, so no power of 10 is divisible by 7," you've internalized the rule — and you'll never have to memorize terminating-decimal lists.
 
@@ -291,6 +348,8 @@ The one that's closest: `11/32`. A more rigorous approach uses cross-multiplicat
 
 **Trap to watch.** Estimation doesn't mean "guess." It means "round each number to a cleaner value, compute, and check the direction of your rounding error." If you rounded up twice, your estimate is too high; mentally adjust down.
 
+> **Recall check.** Without looking back, state the two conditions that tell you to estimate (spread choices, "approximately") and the two that tell you to compute exactly (tight choices, "remainder" or "exactly"). Now apply the filter: if the answer choices are 4.8, 5.0, 5.2, 5.4, 5.6 — do you estimate or compute? (Compute — the choices are within 17% of each other.) What if they're 5, 15, 45, 135, 405? (Estimate — each is 3× the previous.) The filter fires in under two seconds; by the time you've read the choices, your approach should already be chosen.
+
 ## @summary
 
 Arithmetic is not a separate Quant topic — it's the substrate that every other Quant topic sits on. A word problem about ratios, a Data Sufficiency about remainders, a geometry problem about a circle — all of them reduce at some point to an arithmetic operation. The students who score above 685 are not better at algebra than 605 scorers; they're dramatically faster and more accurate at arithmetic.
@@ -316,4 +375,14 @@ Arithmetic is not a separate Quant topic — it's the substrate that every other
 | "Units digit of large power" | Check cycle | Powers of 2, 3, 7, 8 cycle mod 4 |
 | Compound percent change | Multiply factors | `1.20 × 0.80 = 0.96` |
 
-You're going to do 20 arithmetic problems at the end of this chapter. Keep this table open the first time through. By the third time, you won't need it — the habits will be reflexes, and that's when your Quant pace jumps.
+**What to do next.**
+
+1. **Easy set, no time limit.** Six questions covering fractions, percents, and integer operations. Goal: zero errors with the correct method, not lucky guesses. If you miss one, trace the failure to a specific habit (fraction LCD, PEMDAS order, sign rule, integer assumption), go back to that section, and redo its recall check before moving on.
+
+2. **Medium set, target 2:00 per question.** These questions require the habits to run automatically, not just be recognized. After each incorrect answer, write one sentence naming the specific habit that broke down. That annotation habit builds pattern recognition faster than re-reading does.
+
+3. **Hard set, untimed first pass.** The hard questions layer multiple habits: a fraction inside a negative-exponent expression, a percent change on a Data Sufficiency, or an estimation that requires knowing when *not* to estimate. Solve completely on the first pass without rushing; time yourself on the second.
+
+4. **Error log rule.** Any arithmetic error you make on a non-arithmetic chapter (algebra, geometry, word problems) — trace it here, not to the topic chapter. Arithmetic errors happen inside other problems; they belong to the arithmetic habit that broke.
+
+The students scoring 685+ on Quant are not faster thinkers — they make fewer arithmetic errors per minute because these seven habits run in the background without drawing on working memory. Drill until the habits are background noise.

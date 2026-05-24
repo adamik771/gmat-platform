@@ -84,25 +84,25 @@ A train travels 210 miles in 3.5 hours. What is its average speed in miles per h
 ## Q4
 **difficulty:** Easy
 **type:** Problem Solving
-**topic:** Combined Work
+**topic:** Work with Fractions
 
-Maria can paint a room in 5 hours. John can paint the same room in 5 hours. Working together, how long will it take them?
+A worker can complete 2/3 of a job in 4 hours. At this rate, how long will it take the worker to complete the entire job?
 
-- A) 2 hours
-- B) 2.5 hours
-- C) 3 hours
-- D) 5 hours
-- E) 10 hours
+- A) 5 hours
+- B) 6 hours
+- C) 6.5 hours
+- D) 7 hours
+- E) 8 hours
 
 **answer:** B
-**fastest_path:** Equal solo times t → together t/2 = 2.5 hr.
-**explanation:** Equal rates: 1/5 + 1/5 = 2/5 → T = 5/2 = 2.5 hr. Equivalently, doubling identical workers halves the solo time.
-**mistake_a:** Estimated 2 from rough division.
-**mistake_c:** Slip → 3.
-**mistake_d:** Bubbled the solo time itself (5 hr).
-**mistake_e:** Added the times: 5 + 5 = 10 (treats workers as additive in time).
-**common_trap:** Adding or averaging solo times instead of adding rates.
-**takeaway:** Identical workers: doubling halves the time. n identical workers → t/n.
+**fastest_path:** Rate = (2/3)/4 = 1/6 job/hr. Full job: T = 1/(1/6) = 6 hr. Or: 2/3 in 4 hr → 1/3 in 2 hr → 3/3 in 6 hr.
+**explanation:** Rate = (2/3) ÷ 4 = 1/6 job per hour. Full job time = 1 ÷ (1/6) = 6 hours. Proportionality shortcut: 2/3 of the job took 4 hours, so each 1/3 takes 4/2 = 2 hours. One remaining third adds 2 hours, giving 4 + 2 = 6 total.
+**mistake_a:** Took the remaining 1/3 of the job as requiring 4×(1/3) = 4/3 ≈ 1 hr (wrong — proportionality says 2 hr, not 1/3 of 4), giving 4 + 1 = 5 hr.
+**mistake_c:** Correctly found each 1/3 of the job takes 2 hours but mis-added the last phase: 4 + 2.5 = 6.5 from a slip writing 4/2 = 2 as 2.5.
+**mistake_d:** Inverted the fraction correctly to get 4 × (3/2) but then computed 4 × 3 = 12 and divided by 2 after an arithmetic reorder error: 12 / 2 = 6... then wrote 7 from a transcription slip.
+**mistake_e:** Multiplied the given time by the denominator: 4 × 2 = 8 — treated "2/3" as if the 2 were a standalone multiplier rather than inverting the fraction.
+**common_trap:** Multiplying by 2 (denominator of 2/3) rather than multiplying by 3/2 (the reciprocal). Dividing by a proper fraction always yields MORE time than the given time; any answer ≤ 4 is automatically wrong.
+**takeaway:** If fraction f of a job takes time t, the full job takes t ÷ f = t × (1/f). Here 4 ÷ (2/3) = 4 × (3/2) = 6 hr. The answer must be larger than the given time.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -453,10 +453,10 @@ A car traveled from city M to city N. What was its average speed for the trip?
 **type:** Data Sufficiency
 **topic:** Combined Work
 
-Two workers, P and Q, together complete a job. How many hours did they work together?
+Two workers, P and Q, together complete a job from start to finish. How many hours did they work together?
 
 (1) Working alone, P takes 10 hours and Q takes 15 hours to complete the job.
-(2) The job required 6 worker-hours of total effort from P and Q combined.
+(2) Working alone for 4 hours, P completes exactly 2/5 of the job.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
@@ -465,14 +465,14 @@ Two workers, P and Q, together complete a job. How many hours did they work toge
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** (1): 1/10 + 1/15 = 1/6 → joint time = 6 hr. Sufficient. (2): worker-hours sum doesn't fix elapsed clock time.
-**explanation:** Statement (1): joint rate = 1/10 + 1/15 = 3/30 + 2/30 = 5/30 = 1/6 → together 6 hr. Sufficient. Statement (2): "6 worker-hours" sums effort from P and Q but doesn't fix elapsed clock time without the rate split. Insufficient. Answer: A.
-**mistake_b:** Treated (2) as sufficient.
-**mistake_c:** Required both — (1) alone resolves.
-**mistake_d:** Treated each as sufficient.
-**mistake_e:** Concluded both insufficient — (1) is.
-**common_trap:** Confusing "worker-hours" (total effort) with "clock-hours" (elapsed time). Worker-hours sums contributions; clock-time is determined by combined rate.
-**takeaway:** Worker-hours = effort = (#workers × time). Elapsed time needs the combined rate equation.
+**fastest_path:** (1): 1/10 + 1/15 = 1/6 → joint time = 6 hr. Sufficient. (2): gives P's rate (1/10) only, not Q's — can't find joint time.
+**explanation:** Statement (1): joint rate = 1/10 + 1/15 = 3/30 + 2/30 = 5/30 = 1/6 → together 6 hr. Sufficient. Statement (2): P's rate = (2/5)/4 = 1/10 per hour. This tells us only P's solo time (10 hr) — Q's rate is still unknown, so the joint rate can't be computed. Insufficient. Answer: A.
+**mistake_b:** Treated (2) as sufficient — but knowing P's rate alone doesn't determine the combined rate.
+**mistake_c:** Required both — (1) alone fully resolves the question.
+**mistake_d:** Treated each as sufficient — (2) gives only one of the two needed rates.
+**mistake_e:** Concluded both insufficient — (1) pins the joint time to exactly 6 hours.
+**common_trap:** Assuming that knowing one worker's rate (from statement 2) is enough to find joint time — you still need Q's rate, which statement (2) never provides.
+**takeaway:** Joint time requires *both* individual rates. A statement giving only one rate is insufficient by itself; a statement giving both rates immediately yields 1/T = 1/a + 1/b.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -535,25 +535,25 @@ Working alone, Alex can complete a project in h hours; working alone, Ben can co
 ## Q21
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Average Speed — Round Trip
+**topic:** Alternating Workers
 
-A driver travels from town A to town B at an average speed of 60 miles per hour, and returns along the same route at an average speed of 40 miles per hour. What is the driver's average speed for the entire round trip?
+Worker A can complete a job alone in 6 hours. Worker B can complete the same job alone in 4 hours. They alternate: A works for the first hour, then B works for the next hour, and they continue alternating, starting with A. After how many hours from the start will the job be exactly complete?
 
-- A) 44 mph
-- B) 46 mph
-- C) 48 mph
-- D) 50 mph
-- E) 52 mph
+- A) 4 hours
+- B) 4 hours 24 minutes
+- C) 4 hours 40 minutes
+- D) 4 hours 48 minutes
+- E) 5 hours
 
-**answer:** C
-**fastest_path:** Equal distances → harmonic mean: 2(60)(40)/(60 + 40) = 4800/100 = 48.
-**explanation:** Equal-distance round trip → harmonic mean: 2ab/(a+b) = 4800/100 = 48 mph. Verify with d = 120: out 2 hr, back 3 hr → avg = 240/5 = 48.
-**mistake_a:** Estimated 44 from rough calc.
-**mistake_b:** Off by 2 → 46.
-**mistake_d:** Took arithmetic mean: (60 + 40)/2 = 50.
-**mistake_e:** Slip → 52.
-**common_trap:** Averaging speeds directly (50). Equal-distance means slow leg takes more time, pulling the average down.
-**takeaway:** Equal distance → harmonic mean. Slower leg dominates because it consumes more time. Always favor the slower side.
+**answer:** E
+**fastest_path:** Each 2-hr cycle: A does 1/6, B does 1/4 → 5/12 per cycle. After 2 cycles (4 hr): 10/12 = 5/6 done. Remaining 1/6 — A's turn (hour 5): A does 1/6 in exactly 1 hr → done at 5 hr.
+**explanation:** Each 2-hour cycle (1 hr A + 1 hr B) completes 1/6 + 1/4 = 2/12 + 3/12 = 5/12 of the job. After 2 full cycles (4 hours): 2 × 5/12 = 10/12 = 5/6 done; 1/6 remains. Hour 5 is A's turn: A's rate = 1/6 per hour, so A finishes the remaining 1/6 in exactly 1 hour. Total: 5 hours.
+**mistake_a:** Concluded the job finishes at the 4-hour mark — but only 5/6 is done at t = 4, not the full job.
+**mistake_b:** Applied the combined rate to the remaining 1/6 after 4 hours: (1/6) ÷ (5/12) = 2/5 hr = 24 min, giving 4h 24m. Incorrect — after t = 4 only one worker is active.
+**mistake_c:** Applied B's rate to the remaining 1/6 (wrong turn — hour 5 belongs to A, not B): (1/6) ÷ (1/4) = 2/3 hr = 40 min, giving 4h 40m.
+**mistake_d:** Averaged the two rates: (1/6 + 1/4)/2 = 5/24 per hour (as if they both work simultaneously at half-pace); T = 24/5 = 4.8 hr = 4h 48m. Ignores the actual alternating structure.
+**common_trap:** Continuing to use the combined rate (or the wrong worker's rate) after the joint-work phase ends — once solo work resumes, the rate changes.
+**takeaway:** Alternating-worker problems: (1) track progress at the end of each full cycle, (2) check whose turn starts the next period, (3) use only that worker's solo rate for the final partial period.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -692,7 +692,7 @@ A boat travels 24 miles downstream along a river, then returns the same 24 miles
 ---
 
 ## Q27
-**difficulty:** Medium
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Rates — Unit Conversion
 
