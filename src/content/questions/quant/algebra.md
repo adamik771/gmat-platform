@@ -155,7 +155,7 @@ If f(x) = x² + 2, what is f(a + 1) − f(a − 1)?
 **hint_setup:** f(a + 1) = (a + 1)² + 2 = a² + 2a + 3; now find f(a − 1) the same way.
 **fastest_path:** f(a+1) = a² + 2a + 3; f(a−1) = a² − 2a + 3. Difference = 4a.
 **explanation:** Use the variable argument — expand algebraically. f(a + 1) = (a + 1)² + 2 = a² + 2a + 1 + 2 = a² + 2a + 3. f(a − 1) = (a − 1)² + 2 = a² − 2a + 1 + 2 = a² − 2a + 3. Subtract: (a² + 2a + 3) − (a² − 2a + 3) = 4a. Both the a² terms and the constant terms cancel; only the linear cross-terms from the (a ± 1)² expansion survive.
-**mistake_a:** Tested a = 0 to get a number: f(1) − f(−1) = 3 − 3 = 0, then picked "2" as the nearest small-looking choice.
+**mistake_a:** Substituted a = 1 to get a specific number: f(2) − f(0) = 6 − 2 = 4, then bubbled B (4). Numerical substitution cannot distinguish variable expressions — plugging in a = 1 gives 4a = 4, which matches B, but so would the constant 4; you need a second test value to confirm dependence on a.
 **mistake_b:** Dropped the variable from the cross-term: computed (2a + 1) − (−2a + 1) = 4 — treated the cross-term as the constant 1 rather than 2a.
 **mistake_d:** Failed to cancel the constant terms: computed 4a + (3 − 3) but added the constants instead of subtracting, arriving at 4a + 4.
 **mistake_e:** Multiplied instead of subtracting: treated f(a+1) − f(a−1) as f(a+1) × f(a−1), then collapsed to 2a².
@@ -208,7 +208,7 @@ If 2 < |x - 3| < 7, how many integer values of x satisfy the inequality?
 **fastest_path:** |x − 3| > 2 → x ∈ (−∞, 1) ∪ (5, ∞). |x − 3| < 7 → x ∈ (−4, 10). Intersection: (−4, 1) ∪ (5, 10). Count integers: {−3, −2, −1, 0, 6, 7, 8, 9} = 8.
 **explanation:** Two absolute-value inequalities create an intersection of two unions. From |x − 3| > 2: x − 3 > 2 (x > 5) or x − 3 < −2 (x < 1). From |x − 3| < 7: −7 < x − 3 < 7, i.e., −4 < x < 10. The intersection is (−4 < x < 1) OR (5 < x < 10) — exclusive on all bounds since the inequalities are strict. Integers in the first range: −3, −2, −1, 0 (4 integers). Integers in the second: 6, 7, 8, 9 (4 integers). Total = 8.
 **mistake_a:** Counted only one of the two ranges or excluded an endpoint that should be included.
-**mistake_b:** Included the endpoint values (treated < as ≤) in one range — counted 7 in the upper range to give 9 total but somehow miscounted.
+**mistake_b:** Made an off-by-one error in one of the two disjoint ranges — for example, started the lower range at −2 (missing −3), giving {−2,−1,0}=3 integers instead of 4; combined with the upper range of 4 integers: 3+4=7.
 **mistake_d:** Forgot the strict inequalities and included endpoints (1, 5, −4, 10).
 **mistake_e:** Used >, < but counted inclusive on one side.
 **common_trap:** ignoring-constraints — strict vs. non-strict inequalities; the boundary integers are excluded.
@@ -260,8 +260,8 @@ If 4^(a+1) = 8^a, what is the value of a?
 **fastest_path:** Common base 2: 4^(a+1) = 2^(2a+2); 8^a = 2^(3a). Set exponents equal: 2a + 2 = 3a → a = 2.
 **explanation:** Rewrite both sides with the same base. 4 = 2², so 4^(a+1) = 2^(2(a+1)) = 2^(2a+2). 8 = 2³, so 8^a = 2^(3a). The equation becomes 2^(2a+2) = 2^(3a), which (since the bases are equal) requires the exponents to be equal: 2a + 2 = 3a → a = 2. Verify: 4³ = 64 and 8² = 64 ✓.
 **mistake_a:** Set 4 + 1 = 8 × a (treated bases additively).
-**mistake_c:** Solved 2a = 3a, got a = 0; then bubbled wrong.
-**mistake_d:** Multiplied incorrectly: 2(a+1) = 3a → 2a + 2 = 3a; got a = 2 correctly but slipped on the answer letter.
+**mistake_c:** Converted 8 as 8 = 2² (misremembering the cube root) instead of 2³: got 2^(2a+2) = 2^(2a), which yields no solution. After the dead end, fell back to testing answer choices and landed on 3.
+**mistake_d:** Mis-expanded the left side as 4^(a+1) = 2^(a+2) (confused multiplying by 2 with adding 2 to the exponent): 2^(a+2) = 2^(3a) → a+2 = 3a → 2a = 2 → a = 1, then read "4" from the answer choices on a second pass.
 **mistake_e:** Misread 4^(a+1) as 4^a + 1, leading to wrong setup.
 **common_trap:** Exponent rules misapplied — power-of-power vs. product-of-powers.
 **takeaway:** When two powers have different bases with a common base relationship (4 = 2², 8 = 2³, 9 = 3², etc.), rewrite with the common base. Equal bases → equal exponents.
@@ -312,9 +312,9 @@ If xy = 6 and x² + y² = 20, what is the value of (x + y)²?
 **fastest_path:** (x + y)² = x² + y² + 2xy = 20 + 12 = 32.
 **explanation:** Use the algebraic identity (x + y)² = x² + 2xy + y². Substitute the given values: x² + y² = 20 and xy = 6, so (x + y)² = 20 + 2(6) = 32. The identity collapses the answer in one step. Solving for x and y individually (using both given equations) is harder and unnecessary.
 **mistake_a:** Added 20 + 6 = 26 — forgot to double the xy term in the identity.
-**mistake_b:** Subtracted: 20 − 12 = 8, then computed differently. Actually 20 + 6 + 2 = 28 (mis-applied identity).
-**mistake_c:** Computed (x + y)² but using 20 − 2(6) = 8 — wrong sign on the cross term. Actually 20 + 6 + 4 = 30.
-**mistake_e:** Computed x² + y² + xy + xy = 20 + 12 + ... or some other miscombination producing 36.
+**mistake_b:** Applied the identity correctly but misread xy as 4 (perhaps confusing it with an intermediate value): 20 + 2(4) = 28.
+**mistake_c:** Applied the identity correctly but misread xy as 5 (off-by-one from the given value): 20 + 2(5) = 30.
+**mistake_e:** Confused xy = 6 with x + y = 6 and directly wrote (x + y)² = 6² = 36, skipping the identity entirely.
 **common_trap:** missing-algebraic-shortcut — solving for x, y individually when the identity gives the answer in one step.
 **takeaway:** Memorize (x + y)² = x² + 2xy + y² and (x − y)² = x² − 2xy + y². When asked for (x ± y)² given x² + y² and xy, the identity is one step.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -535,26 +535,26 @@ The sum of three consecutive even integers is 18 more than twice the smallest of
 ---
 
 ## Q21
-**difficulty:** Medium
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Symmetric Sums
 
 Let x, y, and z be positive real numbers with x + y + z = 12 and xy + yz + zx = 39. What is the value of x² + y² + z²?
 
-- A) 66
-- B) 72
-- C) 78
-- D) 87
+- A) 48
+- B) 66
+- C) 72
+- D) 78
 - E) 105
 
-**answer:** A
+**answer:** B
 **fastest_path:** (x+y+z)² = x²+y²+z² + 2(xy+yz+zx) → 144 = sum_of_squares + 78 → sum_of_squares = 66.
 **explanation:** Use the symmetric-sum identity (x + y + z)² = x² + y² + z² + 2(xy + yz + zx). Substitute: (12)² = (x² + y² + z²) + 2(39) → 144 = (x² + y² + z²) + 78 → x² + y² + z² = 66.
-**mistake_b:** Computed (sum)² + (cross-product sum) = 144 + 39 = ... no, mis-applied somewhere.
-**mistake_c:** Forgot the factor of 2: 144 − 39 = 105? No, picked 78 = 2 × 39 directly without subtracting from 144.
-**mistake_d:** Subtracted 39 directly (without the factor of 2): 144 − 39 = 105.
-**mistake_e:** Used 12² + 2(39) = 222 / something else.
-**common_trap:** missing-algebraic-shortcut + factor-of-2 error — solving for x, y, z individually (impossible without more info) or forgetting the factor of 2 on the cross-product sum.
+**mistake_a:** Assumed x = y = z = 4 (equal split from x+y+z=12), then computed 3(4²) = 48. The equal-split assumption is wrong — note that x=y=z=4 gives xy+yz+zx=3(16)=48, not 39, so those values are inconsistent with the given constraints.
+**mistake_c:** Correctly set up the identity but made an arithmetic slip computing 2×39=72 instead of 78: 144−72=72.
+**mistake_d:** Conflated x²+y²+z² with 2(xy+yz+zx) directly, reading the identity as an equality rather than using it to isolate the sum of squares: concluded x²+y²+z²=2(39)=78.
+**mistake_e:** Forgot the factor of 2 when applying the identity: wrote x²+y²+z²=(x+y+z)²−(xy+yz+zx)=144−39=105. The correct subtraction is 2(xy+yz+zx)=78, not 39.
+**common_trap:** Factor-of-2 error — subtracting xy+yz+zx once instead of twice, or forgetting the coefficient entirely.
 **takeaway:** (x + y + z)² = (sum of squares) + 2(sum of pairwise products). Memorize for symmetric-sum problems.
 **related_reading:** reading-quant-04-algebra-and-equations
 
@@ -656,10 +656,10 @@ Two hikers start at the same time from opposite ends of a trail that is 24 miles
 **answer:** C
 **fastest_path:** Closing speed = 3 + 5 = 8 mph. Time = 24 / 8 = 3 hours. Meet at 11:00 AM.
 **explanation:** Two objects moving toward each other have a combined "closing speed" equal to the sum of their individual speeds: 3 + 5 = 8 mph. Distance to close = 24 miles. Time = 24/8 = 3 hours. Starting at 8:00 AM, they meet at 11:00 AM.
-**mistake_a:** Computed time using just Hiker X (3 mph) for half the distance (12 miles): 12/3 = 4 hours? No, 12/3 = 4, then 8:00 + 2 = 10:00. Some half-distance approach.
-**mistake_b:** Average speed (3+5)/2 = 4 mph; 24/4 = 6 hours; 8:00 + 2.5 = 10:30. Some confusion.
-**mistake_d:** Used Hiker Y's speed alone: 24/5 = 4.8 hours, ≈ 12:48 — bubbled approximate 11:30.
-**mistake_e:** Used Hiker X's speed alone: 24/3 = 8 hours; 8:00 + 4 = 12:00 noon.
+**mistake_a:** Assumed the hikers meet at the midpoint, then computed time for Hiker X to reach 12 miles: 12/3 = 4 hours; 8:00 + 4 = 12:00 — but then halved it on the theory that "two hikers means half the time": 8:00 + 2 = 10:00. The halving logic is wrong; both hikers are moving for the full meeting time T.
+**mistake_b:** Assumed the hikers meet at the midpoint and used Hiker Y's speed: 12/5 = 2.4 hours ≈ 2 hours 24 minutes → 10:24 AM ≈ 10:30 AM. The midpoint assumption is wrong — the actual meeting point is determined by their speeds (X covers 9 miles, Y covers 15 miles), not the midpoint of the trail.
+**mistake_d:** Set up 3T + 5T = 24 correctly but made an arithmetic error on the division: 24/8 = 3.5 instead of 3; 8:00 + 3:30 = 11:30 AM.
+**mistake_e:** Used only Hiker X's speed for the full trail: 24/3 = 8 hours → 8:00 + 4 = 12:00 noon (or found the midpoint for X alone: 12/3 = 4 hours → 12:00 noon). This ignores that Hiker Y is simultaneously closing the gap.
 **common_trap:** Using a single hiker's speed instead of the combined closing speed.
 **takeaway:** When two objects move toward each other, add their speeds to get the closing speed; divide total distance by closing speed for meeting time.
 **related_reading:** reading-quant-05-word-problems
