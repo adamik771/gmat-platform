@@ -24,7 +24,7 @@ import remarkGfm from "remark-gfm"
 import PacingBadge from "@/components/shared/PacingBadge"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
-import { levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
+import { applySessionAttempts, levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
 import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
@@ -1479,6 +1479,131 @@ export default function SessionClient({
               <p className="text-[12px] text-[#888888] leading-relaxed">{pacingNote}</p>
             </div>
           )}
+
+          {/* Topic skill level track — shows 4-tier progress on this topic
+              and whether this session projected a tier advance. Requires at
+              least one prior session so new students don't see a half-
+              calibrated label before there is enough signal. */}
+          {typeof skillLevel === "number" &&
+            typeof skillAttempts === "number" &&
+            skillAttempts > 0 &&
+            (() => {
+              const TIERS = [
+                { id: "Foundation", lo: 0, hi: 0.35 },
+                { id: "Building",   lo: 0.35, hi: 0.65 },
+                { id: "Proficient", lo: 0.65, hi: 0.85 },
+                { id: "Advanced",   lo: 0.85, hi: 1.001 },
+              ]
+
+              // Project the level this session will produce — uses the same
+              // formula the server applies on save, so the label is accurate.
+              const updatedMap = applySessionAttempts(
+                { [slug]: { level: skillLevel, attempts: skillAttempts, updatedAt: 0 } },
+                answeredPairs.map(({ q, correct, state }) => ({
+                  slug,
+                  section,
+                  difficulty: q.difficulty,
+                  isCorrect: correct,
+                  timeSpentMs: state.elapsedMs,
+                }))
+              )
+              const projectedLevel = updatedMap[slug]?.level ?? skillLevel
+
+              const tierIdx = (lvl: number) =>
+                Math.max(0, TIERS.findIndex((t) => lvl < t.hi))
+              const beforeIdx = tierIdx(skillLevel)
+              const afterIdx  = tierIdx(projectedLevel)
+              const movedUp   = afterIdx > beforeIdx
+
+              const hasEnoughData = skillAttempts >= MIN_ATTEMPTS_FOR_ADAPTIVE
+
+              // Fine-grained position within the current tier (0–100)
+              const bt = TIERS[beforeIdx]
+              const tierPct = Math.round(
+                Math.min(100, Math.max(0, ((skillLevel - bt.lo) / (bt.hi - bt.lo)) * 100))
+              )
+
+              return (
+                <div className="mt-6 pt-5 border-t border-white/[0.06]">
+                  <div className="flex items-center justify-between mb-3">
+                    <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                      {topic} level
+                    </p>
+                    {!hasEnoughData && (
+                      <p className="text-[10px] text-[#555555]">
+                        calibrating &middot; {skillAttempts} attempt{skillAttempts === 1 ? "" : "s"}
+                      </p>
+                    )}
+                    {hasEnoughData && movedUp && (
+                      <p className="text-[10px] font-semibold" style={{ color: "#3ECF8E" }}>
+                        {TIERS[beforeIdx].id} &rarr; {TIERS[afterIdx].id}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="flex items-center">
+                    {TIERS.map((tier, i) => {
+                      const isCurrent    = i === beforeIdx
+                      const isPast       = i < beforeIdx
+                      const isProjected  = movedUp && i === afterIdx
+                      return (
+                        <div key={tier.id} className="flex items-center flex-1 min-w-0">
+                          {i > 0 && (
+                            <div
+                              className="flex-none h-px w-2"
+                              style={{
+                                backgroundColor: isPast
+                                  ? "rgba(201,168,76,0.3)"
+                                  : "rgba(255,255,255,0.06)",
+                              }}
+                            />
+                          )}
+                          <div
+                            className="flex-1 text-center py-1 rounded text-[9px] font-semibold uppercase tracking-wide truncate"
+                            style={{
+                              color: isProjected
+                                ? "#3ECF8E"
+                                : isCurrent
+                                ? "#0A0A0A"
+                                : isPast
+                                ? "rgba(201,168,76,0.45)"
+                                : "#383838",
+                              backgroundColor: isProjected
+                                ? "rgba(62,207,142,0.12)"
+                                : isCurrent
+                                ? "#C9A84C"
+                                : isPast
+                                ? "rgba(201,168,76,0.06)"
+                                : "transparent",
+                              border: isProjected
+                                ? "1px solid rgba(62,207,142,0.25)"
+                                : "1px solid transparent",
+                            }}
+                          >
+                            {tier.id}
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+
+                  {/* Fine-grained bar: position within the current tier.
+                      Hidden when the tier just advanced (the "→ NewTier"
+                      label is the signal; the bar would be misleading). */}
+                  {hasEnoughData && !movedUp && (
+                    <div className="mt-2 h-0.5 rounded-full bg-white/[0.05] overflow-hidden">
+                      <div
+                        className="h-full rounded-full"
+                        style={{
+                          width: `${Math.max(3, tierPct)}%`,
+                          backgroundColor: "rgba(201,168,76,0.35)",
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              )
+            })()}
         </div>
 
         {(() => {
@@ -1498,99 +1623,87 @@ export default function SessionClient({
           )
         })()}
 
-        {/* Recommended next step — moved above the review list so students
-            see their action immediately without scrolling */}
+        {/* High-confidence misses — surfaces only when the student rated a question
+            "high" and got it wrong. These are the most important mistakes in the
+            session: the gap between felt certainty and actual error reveals a
+            misconception, not just a knowledge gap. Reviewing them first is the
+            highest-leverage post-session action. */}
         {(() => {
-          const chapterSlug = TOPIC_TO_CHAPTER[topic]
-          const chapterHref = chapterSlug ? `/chapters/${chapterSlug}` : "/chapters"
+          const hcMisses = questions
+            .map((q, i) => ({ q, state: states[i], idx: i }))
+            .filter(
+              ({ q, state }) =>
+                state.submitted &&
+                state.confidence === "high" &&
+                !isQuestionCorrect(q, state)
+            )
+          if (hcMisses.length === 0) return null
           return (
             <div
               className="p-5 rounded-xl border"
-              style={{ borderColor: "rgba(255,255,255,0.08)", backgroundColor: "#0D0D0D" }}
+              style={{
+                borderColor: "rgba(255,153,102,0.22)",
+                backgroundColor: "rgba(255,100,50,0.03)",
+              }}
             >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1">
-                Recommended next step
+              <p
+                className="text-[10px] uppercase tracking-widest mb-1"
+                style={{ color: "#FF9966" }}
+              >
+                High-confidence misses &middot; {hcMisses.length}
               </p>
-              <p className="text-xs text-[#888888] leading-relaxed mb-4">{nextStepNote}</p>
-              <div className="flex gap-3 flex-wrap">
-                {accuracy < 60 && (
-                  <Link
-                    href={chapterHref}
-                    className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
-                    style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              <p className="text-xs leading-relaxed mb-4" style={{ color: "#888888" }}>
+                {hcMisses.length === 1
+                  ? "You rated this question as high-confidence, then got it wrong."
+                  : `You rated these ${hcMisses.length} questions as high-confidence, then got them wrong.`}{" "}
+                That gap between certainty and error is the highest-signal data in a session — it points to a specific misconception, not a knowledge gap. Review {hcMisses.length === 1 ? "it" : "them"} before anything else.
+              </p>
+              <div className="space-y-2">
+                {hcMisses.map(({ q, state, idx }) => (
+                  <button
+                    key={q.id}
+                    onClick={() => {
+                      goTo(idx)
+                      setShowResults(false)
+                    }}
+                    className="w-full flex items-start gap-3 p-3 rounded-lg border text-left transition-colors hover:bg-white/[0.02] group"
+                    style={{
+                      borderColor: "rgba(255,153,102,0.12)",
+                      backgroundColor: "rgba(255,68,68,0.025)",
+                    }}
                   >
-                    Review the chapter
-                  </Link>
-                )}
-                {accuracy >= 60 && accuracy < 78 && (
-                  isMixedReview ? (
-                    <button
-                      type="button"
-                      onClick={handleRebuildMix}
-                      disabled={rebuilding}
-                      className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 disabled:opacity-60"
-                      style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                    <div
+                      className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: "rgba(255,68,68,0.1)" }}
                     >
-                      {rebuilding ? "Building new mix…" : "Build new mix"}
-                    </button>
-                  ) : (
-                    <Link
-                      href={`/practice/session/${slug}`}
-                      className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
-                      style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                    >
-                      Another session
-                    </Link>
-                  )
-                )}
-                {accuracy >= 78 && (
-                  <Link
-                    href="/practice"
-                    className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
-                    style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                  >
-                    Practice a new topic
-                  </Link>
-                )}
-                {(accuracy < 60 || accuracy >= 78) && (
-                  isMixedReview ? (
-                    <button
-                      type="button"
-                      onClick={handleRebuildMix}
-                      disabled={rebuilding}
-                      className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04] disabled:opacity-60"
-                    >
-                      {rebuilding ? "Building…" : "Build new mix"}
-                    </button>
-                  ) : (
-                    <Link
-                      href={`/practice/session/${slug}`}
-                      className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
-                    >
-                      Retake
-                    </Link>
-                  )
-                )}
-                {accuracy >= 60 && accuracy < 78 && (
-                  <Link
-                    href="/practice"
-                    className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border border-white/[0.08] text-[#F0F0F0] hover:bg-white/[0.04]"
-                  >
-                    Back to Practice
-                  </Link>
-                )}
+                      <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs" style={{ color: "#888888" }}>
+                        Q{idx + 1} &middot; {q.subtopic} &middot; {q.difficulty}
+                      </p>
+                      <p className="text-sm text-[#F0F0F0] truncate mt-0.5">
+                        {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
+                      </p>
+                      {state.selected !== null && (
+                        <p
+                          className="text-xs mt-1 truncate"
+                          style={{ color: "rgba(255,153,102,0.75)" }}
+                        >
+                          You chose {letterFor(state.selected)}
+                          {q.options[state.selected]
+                            ? ` — ${q.options[state.selected].replace(/\s+/g, " ").slice(0, 55)}`
+                            : ""}
+                        </p>
+                      )}
+                    </div>
+                    <ArrowRight
+                      className="w-4 h-4 flex-shrink-0 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                      style={{ color: "#FF9966" }}
+                    />
+                  </button>
+                ))}
               </div>
-              {accuracy < 60 && (
-                <p className="text-center mt-3">
-                  <Link
-                    href="/practice"
-                    className="text-xs transition-colors"
-                    style={{ color: "#555555" }}
-                  >
-                    Back to Practice
-                  </Link>
-                </p>
-              )}
             </div>
           )
         })()}
