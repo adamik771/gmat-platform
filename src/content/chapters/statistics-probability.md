@@ -19,6 +19,8 @@ sections:
   - id: mean-and-sum
     type: reading
     title: "Mean and sum — the one identity that unlocks half the chapter"
+    intro: |
+      Every statistics and probability question on the GMAT reduces to a handful of moves. The most powerful one is the conversion from mean to sum. Once you have it, a problem that looks like it requires algebra collapses into a two-line arithmetic problem.
     check_question_ids:
       - statistics-probability-q9
       - statistics-probability-q14
@@ -26,6 +28,8 @@ sections:
   - id: median-mode-ordered-sets
     type: reading
     title: "Median, mode, and the rules of ordered sets"
+    intro: |
+      Median is the GMAT's go-to Data Sufficiency trap: it resists outliers in ways that mean does not, and questions exploit that contrast directly. The sort-first habit and the "maximize the smallest" template cover the full range of median questions from easy to 700+.
     check_question_ids:
       - statistics-probability-q3
       - statistics-probability-q12
@@ -33,6 +37,8 @@ sections:
   - id: standard-deviation
     type: reading
     title: "Standard deviation — spread, shifts, and scaling"
+    intro: |
+      The GMAT never asks you to compute standard deviation. It asks whether one set has larger or smaller SD than another, or what happens to SD after a shift or scaling. Two rules answer 95% of those questions. The remaining 5% reduce to eyeballing spread. You need no formula.
     check_question_ids:
       - statistics-probability-q6
       - statistics-probability-q16
@@ -40,6 +46,8 @@ sections:
   - id: basic-probability
     type: reading
     title: "Basic probability — favorable over total, and the complement"
+    intro: |
+      Probability questions look diverse but use five formulas. The single most important habit to build here is recognizing when to use the complement: "at least one" questions are almost always faster to solve via 1 − P(none) than by direct counting, and that pattern appears on every hard probability problem.
     check_question_ids:
       - statistics-probability-q10
       - statistics-probability-q8
@@ -47,6 +55,8 @@ sections:
   - id: dependent-events
     type: reading
     title: "Dependent events — with and without replacement"
+    intro: |
+      One question separates every probability scenario: does the first event change what's available for the second? If yes, the events are dependent and you must adjust the pool. If no, they're independent and you multiply raw probabilities. Getting that question right on first contact is the entire skill.
     check_question_ids:
       - statistics-probability-q15
       - statistics-probability-q5
@@ -54,6 +64,8 @@ sections:
   - id: counting-and-combinations
     type: reading
     title: "Counting and combinations — when to multiply, when to choose"
+    intro: |
+      Counting problems sort into three tools. Picking the wrong one produces the trap answer — usually the right objects combined in the wrong way. Ask "does order matter?" first and the formula follows automatically. Everything else is arithmetic.
     check_question_ids:
       - statistics-probability-q11
       - statistics-probability-q13
@@ -126,13 +138,13 @@ problem_sets:
 
 ## @mean-and-sum
 
+**Mental model.** Statistics measures the *shape* of a set — mean, median, range, standard deviation. Probability measures the *likelihood* of an event. Both are summaries of a situation. The GMAT's questions are almost always "given this summary, what else must be true?" or "given this scenario, what is the summary?" The arithmetic is rarely the hard part. Mis-classifying which summary applies — mean vs. median, independent vs. dependent — is where most points are lost.
+
 The arithmetic mean is defined as sum divided by count. That definition rearranges to the single most useful identity in GMAT statistics:
 
 **sum = mean × count**
 
 Every mean problem on the GMAT is a disguised sum problem. The moment you see "average," convert to a sum and work from there.
-
-**Mental model.** Statistics measures the *shape* of a set (mean, median, range, standard deviation); probability measures the *likelihood* of an event. Both are summaries — questions are mostly "given this summary, what's also true?" or "given this scenario, what's the summary?" Once you know which summary the question wants, the formula chooses itself; mis-classifying mean-vs-median or independent-vs-dependent is where most points are lost, not the arithmetic.
 
 **Example.** Five numbers have a mean of 18. One is removed and the remaining four have a mean of 15. What was removed?
 
@@ -163,6 +175,14 @@ Again, just sum arithmetic.
 **The mean is the balancing point.** If you picture the set on a number line with each point as a weight, the mean is the fulcrum. Elements above pull the fulcrum right; elements below pull it left. Adding an element above the current mean drags the mean up; adding one below drags it down.
 
 **Evenly spaced sets have mean = median = middle term.** For an arithmetic sequence (consecutive integers, consecutive multiples, any constant-step sequence), mean = median = (first + last)/2. This is a huge shortcut — instead of summing 30 consecutive integers, just compute (first + last)/2 and multiply by count.
+
+**Micro-drill.** Solve mentally — under 30 seconds each.
+
+1. Nine numbers have a mean of 14. Their sum is ___.
+2. Set {5, 8, 11, x} has mean 9. Find x.
+3. The mean of eight numbers is 30. A ninth is added; the new mean is 32. What is the ninth number?
+
+Answers: (1) 126, (2) 12, (3) 48. For (3): new sum = 32 × 9 = 288; old sum = 30 × 8 = 240; ninth = 288 − 240 = 48. Shortcut check: 32 + 8 × 2 = 48. ✓ If (3) took more than 15 seconds, you're computing instead of identifying — the "added element shortcut" section above gives the one-step path.
 
 > **Self-explanation prompt.** Why does "sum = mean × count" handle so many problems? If you can say "because every mean statement is implicitly a statement about total — and total adds cleanly across subsets," you've internalized why conversion to sum is the move.
 
@@ -238,7 +258,15 @@ A has larger SD.
 
 **Integer-count / range mixups.** Range is max − min. SD is the average deviation from the mean. A set can have large range and small SD (if one outlier is far but everyone else is packed near the mean), or moderate range and moderate SD. Don't conflate them.
 
-> **Self-explanation prompt.** Why does adding a constant leave SD unchanged? If you can say "because SD measures distances between points, not the points' location on the number line," you've internalized the rule and won't get fooled by a shift question.
+**Micro-drill.** Answer without computing SD.
+
+1. Set P = {3, 6, 9, 12, 15}. Set Q = {13, 16, 19, 22, 25}. Which has larger SD — or are they equal?
+2. The SD of {4, 8, 12, 16} is 4.47. What is the SD of {8, 16, 24, 32}?
+3. Set R = {10, 10, 10, 10}. What is its SD?
+
+Answers: (1) Equal — Q is P shifted by +10, same spread. (2) 8.94 — every element doubled, so SD doubles: 4.47 × 2. (3) 0 — every value equals the mean; there is no spread. If (1) surprised you, re-read Rule 1. If (2) surprised you, re-read Rule 2.
+
+> **Self-explanation prompt.** Why does adding a constant leave SD unchanged? If you can say "because SD measures distances between points, not the points' location on the number line — shifting the whole set moves every point the same amount, so the gaps between them don't change," you've internalized the rule and won't be fooled by a shift question.
 
 > **Recall check.** Cover the section above. State the three SD rules from memory. Now predict: if every element of a set is multiplied by 3 and then has 7 added, what happens to the SD? (Answer: SD is multiplied by 3; the +7 shift does nothing.) If you couldn't predict that, re-read the rules and re-test in 10 minutes — spaced retrieval is what builds long-term fluency, not re-reading.
 
@@ -297,6 +325,8 @@ Alternative framing: there are C(4,3) = 4 favorable sequences out of 2⁴ = 16 t
 
 **Trap to watch.** Don't mix independent and dependent events. "Pull two chips *without replacement*" makes the second draw's probability depend on the first. "Flip two coins" (or "with replacement") makes the events independent. The multiplication still works in both cases, but the probabilities are different.
 
+> **Self-explanation prompt.** Why is the complement almost always faster for "at least one" problems? If you can say "because 'at least one X' has many favorable outcomes to enumerate directly, but 'no X at all' is typically a single chain of unfavorable draws — the complement has one case where direct counting has many," you've identified exactly when to flip to complement. Whenever you see the phrase "at least one," your first move should be automatic: 1 − P(none).
+
 ## @dependent-events
 
 When one event affects the probabilities of the next (drawing without replacement, sequential selection), the probability of the full sequence is the **product of conditional probabilities**.
@@ -333,9 +363,13 @@ Or use combinations: C(4,1) × C(6,1) / C(10,2) = 24/45 = **8/15**. ✓
 
 **Trap to watch.** "Two dice rolled, probability both show 6" is independent (1/6 × 1/6 = 1/36). "Two cards drawn from a deck, both aces" is dependent (4/52 × 3/51). Conflating the two is the #1 error on probability questions.
 
+> **Self-explanation prompt.** State the one diagnostic question that separates dependent from independent events: "Does the first event change what's available for the second?" Now apply it to two scenarios: (a) two cards drawn from the same deck without replacement; (b) two dice rolled at the same time. If you can classify both in under five seconds and explain why — (a) dependent because the first card leaves 51 remaining, (b) independent because each die has its own six faces regardless of the other — you're ready for the DS questions that blur this distinction on purpose.
+
 ## @counting-and-combinations
 
-Many probability problems — and most hard ones — require counting how many ways something can happen. Three tools:
+Many probability problems — and most hard ones — require counting how many ways something can happen. There are exactly three counting tools. The trap answer on most counting questions is the right count done with the wrong tool — permutation when the answer needs combination, or multiplication when cases must be split and added. Identify the tool first; the arithmetic follows.
+
+Three tools:
 
 **The multiplication principle.** If choice A has m options and independent choice B has n options, combined choices = m × n.
 
@@ -432,3 +466,7 @@ Every GMAT statistics/probability question reduces to one of four moves. Identif
 | "Without replacement" | Dependent events | P(A) × P(B \| A) |
 
 **Time-management note.** Easy statistics questions (basic mean, basic probability) should take 45 seconds or less. Medium SD and combination questions, 90 seconds. Hard 3-variable Venn or compound probability can take up to 2 minutes. If you're past 2:30 on any stats question, flag and move on.
+
+**What to do next.** Open the Easy problem set and target 90%+ before moving to Medium. When you miss a mean or median question, check whether you skipped the "convert to sum" step — that failure mode accounts for most statistics misses at this level. When you miss a probability question, ask whether you confused independent and dependent events, or missed a complement opportunity on an "at least one" stem. When you miss a counting question, ask whether you chose combination when permutation was needed, or forgot to split into cases.
+
+The four moves — sum conversion, sort-and-find-median, complement, combinations — appear on every GMAT administration. Students who recognize them immediately and execute without friction have a genuine edge. The problem sets are where you build that recognition. Work through all three difficulty tiers before moving to the next chapter.
