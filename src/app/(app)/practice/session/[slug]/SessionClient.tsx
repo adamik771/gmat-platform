@@ -1496,6 +1496,91 @@ export default function SessionClient({
           )
         })()}
 
+        {/* High-confidence misses — surfaces only when the student rated a question
+            "high" and got it wrong. These are the most important mistakes in the
+            session: the gap between felt certainty and actual error reveals a
+            misconception, not just a knowledge gap. Reviewing them first is the
+            highest-leverage post-session action. */}
+        {(() => {
+          const hcMisses = questions
+            .map((q, i) => ({ q, state: states[i], idx: i }))
+            .filter(
+              ({ q, state }) =>
+                state.submitted &&
+                state.confidence === "high" &&
+                !isQuestionCorrect(q, state)
+            )
+          if (hcMisses.length === 0) return null
+          return (
+            <div
+              className="p-5 rounded-xl border"
+              style={{
+                borderColor: "rgba(255,153,102,0.22)",
+                backgroundColor: "rgba(255,100,50,0.03)",
+              }}
+            >
+              <p
+                className="text-[10px] uppercase tracking-widest mb-1"
+                style={{ color: "#FF9966" }}
+              >
+                High-confidence misses &middot; {hcMisses.length}
+              </p>
+              <p className="text-xs leading-relaxed mb-4" style={{ color: "#888888" }}>
+                {hcMisses.length === 1
+                  ? "You rated this question as high-confidence, then got it wrong."
+                  : `You rated these ${hcMisses.length} questions as high-confidence, then got them wrong.`}{" "}
+                That gap between certainty and error is the highest-signal data in a session — it points to a specific misconception, not a knowledge gap. Review {hcMisses.length === 1 ? "it" : "them"} before anything else.
+              </p>
+              <div className="space-y-2">
+                {hcMisses.map(({ q, state, idx }) => (
+                  <button
+                    key={q.id}
+                    onClick={() => {
+                      goTo(idx)
+                      setShowResults(false)
+                    }}
+                    className="w-full flex items-start gap-3 p-3 rounded-lg border text-left transition-colors hover:bg-white/[0.02] group"
+                    style={{
+                      borderColor: "rgba(255,153,102,0.12)",
+                      backgroundColor: "rgba(255,68,68,0.025)",
+                    }}
+                  >
+                    <div
+                      className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: "rgba(255,68,68,0.1)" }}
+                    >
+                      <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs" style={{ color: "#888888" }}>
+                        Q{idx + 1} &middot; {q.subtopic} &middot; {q.difficulty}
+                      </p>
+                      <p className="text-sm text-[#F0F0F0] truncate mt-0.5">
+                        {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
+                      </p>
+                      {state.selected !== null && (
+                        <p
+                          className="text-xs mt-1 truncate"
+                          style={{ color: "rgba(255,153,102,0.75)" }}
+                        >
+                          You chose {letterFor(state.selected)}
+                          {q.options[state.selected]
+                            ? ` — ${q.options[state.selected].replace(/\s+/g, " ").slice(0, 55)}`
+                            : ""}
+                        </p>
+                      )}
+                    </div>
+                    <ArrowRight
+                      className="w-4 h-4 flex-shrink-0 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                      style={{ color: "#FF9966" }}
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )
+        })()}
+
         {savedSessionId && answeredCount - correctCount > 0 && (
           <Link
             href={`/error-log?session_id=${savedSessionId}`}
