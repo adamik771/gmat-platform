@@ -19,6 +19,8 @@ sections:
   - id: even-and-odd
     type: reading
     title: "Even and odd — the smallest ideas with the biggest payoff"
+    intro: |
+      Even and odd feel elementary until the GMAT pairs them with Data Sufficiency: "is n even?" becomes genuinely hard when n could be 0, or when the expression is k² + k rather than k itself. This section gives you a two-second parity table, the consecutive-integer patterns that recur constantly, and the specific DS traps that catch students who learned the rules but not when they fail.
     check_question_ids:
       - number-properties-q2
       - number-properties-q17
@@ -26,6 +28,8 @@ sections:
   - id: divisibility-rules
     type: reading
     title: "Divisibility rules — the shortcuts you can't afford to rederive"
+    intro: |
+      You will never be asked to state a divisibility rule on the GMAT. You need them anyway — because checking that a number's digit sum is divisible by 9 takes one second, while long-dividing a three-digit number takes fifteen. These nine rules are the mental shortcuts that let you factor fast enough to spend your two minutes thinking, not computing.
     check_question_ids:
       - number-properties-q5
       - number-properties-q9
@@ -33,6 +37,8 @@ sections:
   - id: primes-and-prime-factorization
     type: reading
     title: "Primes and prime factorization — the atomic structure of integers"
+    intro: |
+      Prime factorization is not a topic — it is a technique that unlocks GCF, LCM, factor counts, perfect-square tests, and divisibility questions. All of them reduce to the same move: factor, then take minimum or maximum exponents. This section gives you the factorization reflex, the fifteen primes under 50 you should recognize on sight, and the factor-counting formula that solves an entire class of 685+ questions in under 30 seconds.
     check_question_ids:
       - number-properties-q1
       - number-properties-q8
@@ -40,6 +46,8 @@ sections:
   - id: factors-and-multiples
     type: reading
     title: "Factors, multiples, GCF, and LCM"
+    intro: |
+      GCF and LCM are the two most-confused tools in number properties — students swap the algorithms and get a number that's too large or too small. One identity (m × n = GCF × LCM) connects them so tightly that knowing any three of {m, n, GCF, LCM} gives you the fourth. That identity appears on Data Sufficiency more than any other single GCF/LCM fact.
     check_question_ids:
       - number-properties-q3
       - number-properties-q13
@@ -47,6 +55,8 @@ sections:
   - id: remainders
     type: reading
     title: "Remainders — modular arithmetic, GMAT-style"
+    intro: |
+      Remainder questions appear at 685+ difficulty at a disproportionate rate — they look ad hoc until you see the master equation: n = dk + r. Once you have that template, every variant (multiplication of remainders, remainder after squaring, "what values could n take?") is the same move. This section gives you the algebraic approach and a faster pick-a-number shortcut that handles most GMAT remainder questions in under 30 seconds.
     check_question_ids:
       - number-properties-q4
       - number-properties-q12
@@ -54,6 +64,8 @@ sections:
   - id: integer-properties-of-expressions
     type: reading
     title: "Integer properties of expressions and units digits"
+    intro: |
+      Two skills live here that look unrelated: units-digit cycles (which turn a question about 7⁴³ into a one-second lookup) and the "must be / could be" framework for integer expressions. The connection is that both require tracking a single, small property — units digit or parity — through an expression without computing the whole thing. That meta-skill is what separates students who answer 705+ questions cold from those who expand everything and hope the arithmetic works out.
     check_question_ids:
       - number-properties-q11
       - number-properties-q16
@@ -150,6 +162,15 @@ Answer: B. The trap is trusting statement (1) because "even + even = even" feels
 
 > **Self-explanation prompt.** Why is the product of any two consecutive integers always even? If you can say "because one of them is even, and even times anything is even," you've internalized the pattern well enough to recognize `k(k+1)` in disguise on the test.
 
+**Micro-drill.** m is even, n is odd. State whether each expression *must* be even, *must* be odd, or *could be either* — 60 seconds total:
+
+1. m + n + 1 → ___
+2. mn + m → ___
+3. n² + 2n → ___
+4. (m + 1)² → ___
+
+Answers: (1) **even** — even + odd + odd = even. (2) **even** — mn contains m's factor of 2; m is even; even + even = even. (3) **odd** — n² = odd × odd = odd; 2n = even; odd + even = odd. (4) **odd** — m + 1 is odd; odd² = odd. If you missed (3), the chain is: odd² stays odd, and odd + even = odd. If you missed (4), note that squaring preserves parity — only even numbers stay even when squared; odd numbers stay odd.
+
 ## @divisibility-rules
 
 Every 685+ scorer has the full set of divisibility rules memorized. Not because the test asks you to *state* them — because they let you factor mentally at test-speed without scratch paper.
@@ -184,6 +205,15 @@ Alternating sum from the right: `1 − 3 + 4 − 2 = 0`. Zero is divisible by 11
 
 **Trap to watch.** A number divisible by 6 is divisible by 3 *and* 2. But divisibility by 8 is NOT "divisible by 4 twice" — 12 is divisible by 4 but not by 8. The rule only composes cleanly when the factors are coprime.
 
+**Micro-drill.** No long division — apply the rules directly. State yes or no:
+
+1. Is 576 divisible by 9? → ___
+2. Is 1,848 divisible by 8? → ___
+3. Is 4,653 divisible by 3? → ___
+4. Is 3,432 divisible by 11? → ___
+
+Answers: (1) **Yes** — digit sum 5+7+6=18, divisible by 9. (2) **Yes** — last three digits are 848; 848 ÷ 8 = 106. (3) **Yes** — digit sum 4+6+5+3=18, divisible by 3. (4) **Yes** — alternating sum from right: 2−3+4−3=0, and 0 is divisible by 11. If (2) slowed you down, the last-three-digits rule for 8 is the one worth drilling — find the three digits, divide by 8, done.
+
 ## @primes-and-prime-factorization
 
 Prime factorization is the single most useful technique in number properties. Almost every 685+ question involving factors, multiples, or divisibility yields to prime factorization in two lines.
@@ -215,6 +245,14 @@ Fifteen primes. You should know all of them on sight. Students who have to test 
 **Trap to watch.** 1 is a factor of every positive integer and should be counted when the question asks for "positive factors." But 1 is NOT a prime. The distinction matters on every single factor-counting question.
 
 > **Self-explanation prompt.** Why does the factor-count formula `(a+1)(b+1)(c+1)` work? If you can say "because each prime's exponent has `(exponent + 1)` choices from 0 up to its maximum, and each combination gives a unique factor," you understand the formula and won't misapply it.
+
+**Micro-drill.** No calculator — 90 seconds total:
+
+1. How many positive factors does 720 have? → ___
+2. List all primes between 40 and 55. → ___
+3. What is the smallest positive integer n such that n² is divisible by 180? → ___
+
+Answers: (1) **30** — 720 = 2⁴ × 3² × 5; factor count = (4+1)(2+1)(1+1) = 5 × 3 × 2 = 30. (2) **41, 43, 47, 53** — eliminate composites: 45 = 9×5, 49 = 7², 51 = 3×17; the four survivors are prime. (3) **n = 30** — 180 = 2² × 3² × 5. Since n² must have all even exponents, the single factor of 5 in 180 forces 5² into n², so 5 | n. Similarly 2 | n and 3 | n. Smallest such n = 2 × 3 × 5 = 30. Verify: 30² = 900 = 180 × 5. ✓
 
 ## @factors-and-multiples
 
@@ -282,6 +320,13 @@ Write `n = 7k + 4`. Then `3n + 5 = 3(7k + 4) + 5 = 21k + 12 + 5 = 21k + 17`. Now
 **Trap to watch.** The remainder is always non-negative. If algebra gives you a negative "remainder," add the divisor until you land in `[0, d)`. E.g., `−7 mod 5`: `−7 + 5 = −2`, still negative; `−2 + 5 = 3`. So `−7` has remainder 3 mod 5.
 
 > **Self-explanation prompt.** In one sentence, why can you just multiply remainders to get the remainder of a product? If you can say "because every other piece of the expanded product is divisible by d, leaving only the product of remainders," you've understood modular arithmetic without needing the formal notation.
+
+**Micro-drill.** Use the remainder equation or pick-a-number — 90 seconds total:
+
+1. n leaves remainder 4 when divided by 6. What remainder does 3n − 1 leave when divided by 6? → ___
+2. k leaves remainder 7 when divided by 9. What remainder does k² leave when divided by 9? → ___
+
+Answers: (1) Pick n = 4. Then 3(4) − 1 = 11. 11 ÷ 6 = 1 R **5**. Algebraically: n = 6m + 4, so 3n − 1 = 18m + 12 − 1 = 18m + 11; since 18m + 6 is divisible by 6, remainder = 11 − 6 = **5**. (2) Pick k = 7. Then k² = 49. 49 ÷ 9 = 5 R **4**. Algebraically: k = 9m + 7, so k² = 81m² + 126m + 49; every term except 49 is divisible by 9, and 49 = 5(9) + 4, so remainder = **4**. The pick-a-number shortcut handles both in under 20 seconds — use algebra only when the problem is too abstract to plug in.
 
 ## @integer-properties-of-expressions
 
