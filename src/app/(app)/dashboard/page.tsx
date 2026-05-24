@@ -124,6 +124,7 @@ export default async function DashboardPage() {
     pct: number
     nextSectionTitle: string | null
     isComplete: boolean
+    nextChapter: { slug: string; title: string; section: "Quant" | "Verbal" | "DI" } | null
   } | null = null
 
   // "Today's Mission" — the single highest-priority next step surfaced
@@ -260,6 +261,21 @@ export default async function DashboardPage() {
                 )
                 const pct = total > 0 ? Math.round((read / total) * 100) : 0
                 const isComplete = total > 0 && read === total
+                let nextChapter: { slug: string; title: string; section: "Quant" | "Verbal" | "DI" } | null = null
+                if (isComplete) {
+                  const SECTION_ORDER: Record<string, number> = { Quant: 0, Verbal: 1, DI: 2 }
+                  const sortedAll = allChapters
+                    .filter((c) => c.section === "Quant" || c.section === "Verbal" || c.section === "DI")
+                    .sort((a, b) => {
+                      const sd = (SECTION_ORDER[a.section] ?? 9) - (SECTION_ORDER[b.section] ?? 9)
+                      return sd !== 0 ? sd : a.title.localeCompare(b.title)
+                    })
+                  const idx = sortedAll.findIndex((c) => c.slug === chapter.slug)
+                  const nc = idx !== -1 ? (sortedAll[idx + 1] ?? null) : null
+                  if (nc && (nc.section === "Quant" || nc.section === "Verbal" || nc.section === "DI")) {
+                    nextChapter = { slug: nc.slug, title: nc.title, section: nc.section }
+                  }
+                }
                 resumeTarget = {
                   slug: chapter.slug,
                   title: chapter.title,
@@ -270,6 +286,7 @@ export default async function DashboardPage() {
                   pct,
                   nextSectionTitle: firstUnread?.title ?? null,
                   isComplete,
+                  nextChapter,
                 }
               }
             }
@@ -1464,6 +1481,79 @@ export default async function DashboardPage() {
             </div>
           </div>
         </Link>
+      )}
+
+      {/* Chapter complete — shown when the most-recently-touched chapter
+          is fully read. Acknowledges the completion and surfaces the next
+          chapter so there is no dead zone between chapters. */}
+      {resumeTarget && resumeTarget.isComplete && (
+        <div
+          className="relative overflow-hidden rounded-2xl border"
+          style={{
+            borderColor: "rgba(62,207,142,0.18)",
+            backgroundColor: "#0D0D0D",
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
+          }}
+        >
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse 50% 70% at 0% 50%, rgba(62,207,142,0.06) 0%, transparent 60%)",
+            }}
+            aria-hidden
+          />
+          <div className="relative flex flex-wrap items-center gap-6 p-6">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-3 mb-2">
+                <CheckCircle className="w-3.5 h-3.5 text-[#3ECF8E]" />
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#3ECF8E]">
+                  Chapter complete
+                </p>
+                <span
+                  className="px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-[0.18em]"
+                  style={{
+                    backgroundColor: "rgba(62,207,142,0.08)",
+                    color: "#3ECF8E",
+                  }}
+                >
+                  {resumeTarget.section}
+                </span>
+              </div>
+              <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-tight leading-[1.2]">
+                {resumeTarget.title}
+              </h2>
+              <p className="text-[13px] text-[#555555] mt-1.5">
+                All sections read — problem sets available in the chapter.
+              </p>
+            </div>
+            {resumeTarget.nextChapter ? (
+              <Link
+                href={`/chapters/${resumeTarget.nextChapter.slug}`}
+                className="group flex items-center gap-2 px-4 py-2.5 rounded-lg text-[13px] font-semibold transition-all duration-200 hover:brightness-110 hover:translate-x-0.5"
+                style={{
+                  backgroundColor: "#C9A84C",
+                  color: "#0A0A0A",
+                }}
+              >
+                Next: {resumeTarget.nextChapter.title}
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            ) : (
+              <Link
+                href="/chapters"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-[13px] font-semibold"
+                style={{
+                  backgroundColor: "rgba(62,207,142,0.12)",
+                  color: "#3ECF8E",
+                }}
+              >
+                All chapters
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            )}
+          </div>
+        </div>
       )}
 
       {/* Today's focus — single decisive recommendation surfaced from the
