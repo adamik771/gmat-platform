@@ -226,13 +226,13 @@ Which of the following numbers is divisible by 11?
 
 **answer:** A
 **fastest_path:** Alternating digit sum test for 11. 2431: 2 − 4 + 3 − 1 = 0 → divisible.
-**explanation:** Divisibility by 11: alternating digit sum from the rightmost must be divisible by 11. For 2431: 1 − 3 + 4 − 2 = 0 ✓. Verify directly: 2431 / 11 = 221. The other options give nonzero alternating sums (3456 → 2; 5791 → −6; 6810 → 1; 7239 → 1).
-**mistake_b:** Computed alternating sum wrong on 3456 — got 0 by sign-flipping a digit.
-**mistake_c:** Computed alternating sum wrong on 5791.
-**mistake_d:** Computed alternating sum wrong on 6810 (mis-ordered the signs).
-**mistake_e:** Computed alternating sum wrong on 7239.
-**common_trap:** Mis-ordering the signs in the alternating sum (start from the rightmost digit, or be consistent — but stay consistent within a number).
-**takeaway:** Divisibility-by-11 test: alternating digit sum (right-to-left) divisible by 11. Quicker than long division for 4+ digits.
+**explanation:** Divisibility by 11: the alternating digit sum must be divisible by 11 (including 0). Apply right-to-left (units first): for 2431 → 1 − 3 + 4 − 2 = 0 ✓. Direct check: 2431 ÷ 11 = 221. The other options all give nonzero alternating sums: 3456 → 2; 5791 → −6; 6810 → 1; 7239 → 1.
+**mistake_b:** Applied the alternating sum left-to-right: 3 − 4 + 5 − 6 = −2 ≠ 0, correctly rejecting 3456. But then computed 2 − 4 + 3 − 1 = 0 for 2431 (also correct). A common version of this error: added instead of alternated for 3456 (3 + 4 + 5 + 6 = 18, divisible by 9; confused divisibility-by-9 with divisibility-by-11 and picked B). Verify: 3456 ÷ 11 = 314.2… not divisible.
+**mistake_c:** Computed the alternating sum of 5791 as +6 (added all digits: 5+7+9+1 = 22; or did 5−7+9−1 = 6 left-to-right) and concluded it might be divisible by 11 because "6 is close." The correct right-to-left alternating sum is 1 − 9 + 7 − 5 = −6. Neither +6 nor −6 is divisible by 11. Verify: 5791 ÷ 11 = 526.5… not divisible.
+**mistake_d:** Mis-ordered the alternating signs for 6810. Left-to-right: 6 − 8 + 1 − 0 = −1. Right-to-left: 0 − 1 + 8 − 6 = 1. Both are ≠ 0, yet a sign error can produce 0 if the student applies alternating signs to the wrong positions. For example, computing (6 + 1) − (8 + 0) = 7 − 8 = −1 (wrong grouping) still doesn't give 0 — 6810 is definitively not divisible by 11. Verify: 6810 ÷ 11 = 619.09… not divisible.
+**mistake_e:** Applied an inconsistent rule to 7239: tried (7 + 3) − (2 + 9) = 10 − 11 = −1 (wrong grouping; should alternate individual digits). The correct right-to-left alternating sum is 9 − 3 + 2 − 7 = 1 ≠ 0. A grouping-based shortcut only works for alternating *individual* digits, not pairs of digits.
+**common_trap:** Applying the alternating sum to digit *pairs* instead of individual digits, or computing left-to-right vs. right-to-left inconsistently across problems. Both directions give the same result if applied consistently — but mixing directions within a single number produces errors.
+**takeaway:** Divisibility-by-11 test: alternate signs on individual digits (rightmost first): units − tens + hundreds − thousands … If the result is 0 or ±11, the number is divisible by 11. Quicker than long division for 4-digit numbers. Verify any "close call" by direct division.
 **related_reading:** reading-quant-03-number-properties
 
 ---
