@@ -734,3 +734,445 @@ The sum of the current ages of Alex, Ben, and Carlos is 90 years. Alex is twice 
 **common_trap:** Bubbling the wrong person's age (Ben's 20 or Carlos's 30) instead of Alex's 40.
 **takeaway:** Express every age in one variable, sum, solve. Then answer for the *requested* person.
 **related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Overlapping Sets — Basic Two-Group Formula
+
+A class of 30 students were surveyed about sports. 18 play soccer, 14 play basketball, and 6 play both sports. How many students play neither sport?
+
+- A) 2
+- B) 4
+- C) 6
+- D) 8
+- E) 10
+
+**answer:** B
+**fastest_path:** Neither = Total − (Soccer + Basketball − Both) = 30 − (18 + 14 − 6) = 30 − 26 = 4.
+**explanation:** The two-set formula: Total = |Soccer| + |Basketball| − |Both| + |Neither|. Plug in: 30 = 18 + 14 − 6 + Neither → 30 = 26 + Neither → Neither = 4. Sanity check: Only soccer = 12, only basketball = 8, both = 6, neither = 4. Sum: 12 + 8 + 6 + 4 = 30 ✓.
+**mistake_a:** Computed 30 − (18 + 14) + 2 = 2 — subtracted both sets but forgot to add back "both."
+**mistake_c:** Bubbled the "both" count (6), confusing it with "neither."
+**mistake_d:** Computed 14 − 6 = 8 — found "only basketball" and mistook it for "neither."
+**mistake_e:** Computed 30 − 14 − 6 = 10 — subtracted basketball and both from total, ignoring soccer.
+**common_trap:** Confusing the "both" region with the "neither" region. Students who play both are counted once in each group total, so they must be subtracted once — they are not the students who play neither.
+**takeaway:** Two-set formula: Total = A + B − Both + Neither. Always draw a quick Venn or 2×2 table. "Both" reduces double-counting; "neither" is outside both circles.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Overlapping Sets — Solve for the Intersection (No "Neither")
+
+Of 40 employees, each has attended a training session, received a printed manual, or both. 25 attended the training session and 22 received the manual. How many employees received both?
+
+- A) 3
+- B) 5
+- C) 7
+- D) 9
+- E) 11
+
+**answer:** C
+**fastest_path:** Both = Training + Manual − Total = 25 + 22 − 40 = 7.
+**explanation:** Every employee did at least one thing, so Neither = 0. Total = Training + Manual − Both: 40 = 25 + 22 − Both → Both = 47 − 40 = 7. Verify: Only training = 18, only manual = 15, both = 7. Sum: 18 + 15 + 7 = 40 ✓.
+**mistake_a:** Computed 25 − 22 = 3 — took the difference of the two groups instead of solving for overlap.
+**mistake_b:** Arithmetic slip.
+**mistake_d:** Reversed the subtraction: 40 − (22 + 9) = 9 or some circular error.
+**mistake_e:** Added instead of solved: 22 − 11 = 11 or some wrong path.
+**common_trap:** When "neither = 0" is given (or implied by "each … attended … or both"), the formula rearranges to Both = A + B − Total. Students who set up Total = A + B and forget to subtract Both end up with the wrong equation.
+**takeaway:** "Each person does X, Y, or both" signals Neither = 0. Rearrange: Both = A + B − Total. This is the complement shortcut for the overlap.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q31
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Overlapping Sets — "Only" vs "Total" in One Group
+
+In a survey of 50 people, 30 drink coffee, 12 drink both coffee and tea, and 5 drink neither beverage. How many people drink only tea (and not coffee)?
+
+- A) 8
+- B) 15
+- C) 17
+- D) 22
+- E) 27
+
+**answer:** B
+**fastest_path:** At-least-one = 45. Tea total = 45 − (Coffee − Both) = 45 − 18 = 27. Only tea = 27 − 12 = 15.
+**explanation:** Step 1 — at-least-one drinkers: 50 − 5 = 45. Step 2 — use the formula to find total tea: 45 = Coffee + Tea − Both → 45 = 30 + Tea − 12 → Tea = 27. Step 3 — only tea = Tea total − Both = 27 − 12 = 15. Verify partition: only coffee = 18, only tea = 15, both = 12, neither = 5. Sum: 18 + 15 + 12 + 5 = 50 ✓.
+**mistake_a:** Computed 50 − 30 − 12 = 8 — subtracted coffee total and "both" from total, ignoring "neither."
+**mistake_c:** Used 50 − 30 − 3 = 17 or some arithmetic slip.
+**mistake_d:** Computed Tea total (27) minus "neither" (5) = 22 — subtracted neither instead of both.
+**mistake_e:** Stopped at total tea = 27 without subtracting "both" to isolate "only tea."
+**common_trap:** Stopping after finding total tea (27) without the final step of subtracting "both" to get "only tea." The question asks for people who drink tea but NOT coffee.
+**takeaway:** "Only X" = (X total) − (Both). Always ask: does the question want the whole group or just the exclusive portion? Those two numbers differ by the overlap.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Overlapping Sets — "At Least One" from Percentages
+
+In a group, 55% own a car, 40% own a bicycle, and 20% own both. What percentage of the group owns at least one vehicle?
+
+- A) 55%
+- B) 60%
+- C) 70%
+- D) 75%
+- E) 95%
+
+**answer:** D
+**fastest_path:** At least one = 55 + 40 − 20 = 75%.
+**explanation:** "At least one" = P(Car) + P(Bicycle) − P(Both) = 55 + 40 − 20 = 75%. The 20% who own both are counted in the 55% and in the 40%, so they must be subtracted once to avoid double-counting.
+**mistake_a:** Bubbled just the car percentage, ignoring bicycles entirely.
+**mistake_b:** Added bicycle and both: 40 + 20 = 60 — misread the setup.
+**mistake_c:** Arithmetic slip: 55 + 40 − 25 = 70.
+**mistake_e:** Added all three figures: 55 + 40 = 95 — forgot to subtract the overlap.
+**common_trap:** Adding both groups without subtracting the overlap (giving 95%) — the classic double-counting error that the inclusion-exclusion formula corrects.
+**takeaway:** Inclusion-exclusion for two sets: P(A ∪ B) = P(A) + P(B) − P(A ∩ B). Every person in both groups is counted twice in the raw sum; subtracting the overlap once gives the correct union.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Overlapping Sets — Find Overlap When Neither = 0
+
+A gym has 80 members. Every member uses the weight room, the cardio area, or both. 54 members use the weight room and 43 use the cardio area. How many members use both areas?
+
+- A) 11
+- B) 14
+- C) 17
+- D) 19
+- E) 23
+
+**answer:** C
+**fastest_path:** Both = Weight + Cardio − Total = 54 + 43 − 80 = 17.
+**explanation:** Neither = 0 (every member uses at least one area). Total = Weight + Cardio − Both: 80 = 54 + 43 − Both → Both = 97 − 80 = 17. Verify: only weight = 37, only cardio = 26, both = 17. Sum: 37 + 26 + 17 = 80 ✓.
+**mistake_a:** Computed 54 − 43 = 11 — the difference between the two groups, not the overlap.
+**mistake_b:** Arithmetic slip.
+**mistake_d:** Slip in subtraction: 97 − 78 = 19 (misread 80 as 78).
+**mistake_e:** Computed 54 + 43 − 80 = 17, then added 6 from nowhere → 23.
+**common_trap:** Taking the difference of the two groups (54 − 43 = 11) rather than using the formula. The overlap is found by addition of both groups minus the total.
+**takeaway:** When neither = 0: Both = A + B − Total. This is the mirror image of "Total = A + B − Both." Memorize both rearrangements.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Overlapping Sets — "Exactly One" vs "At Least One"
+
+Of 120 employees, 70 have taken a public speaking course and 55 have taken a leadership course. 35 employees have taken both courses. How many employees have taken exactly one of the two courses?
+
+- A) 40
+- B) 50
+- C) 55
+- D) 90
+- E) 120
+
+**answer:** C
+**fastest_path:** Exactly one = (70 − 35) + (55 − 35) = 35 + 20 = 55.
+**explanation:** "Exactly one" means only public speaking OR only leadership — not both. Only PS = 70 − 35 = 35. Only L = 55 − 35 = 20. Exactly one = 35 + 20 = 55. Alternatively: exactly one = (PS + L − Both) − Both = at-least-one − Both = 90 − 35 = 55.
+**mistake_a:** Computed only one of the exclusive groups: 70 − 35 = 35, then added 5 from a slip → 40.
+**mistake_b:** Subtracted the wrong quantity: 70 + 55 − 120 + 45 = 50 (used total instead of "both").
+**mistake_d:** Computed "at least one" = 70 + 55 − 35 = 90, but answered that instead of "exactly one." This is the main trap.
+**mistake_e:** Bubbled the total headcount.
+**common_trap:** Answering with "at least one" (90) instead of "exactly one" (55). The question asks for students in one course only, which excludes the 35 who took both. Exactly one = at-least-one − both.
+**takeaway:** "Exactly one" ≠ "at least one." Exactly one = Only A + Only B = (A − Both) + (B − Both) = A + B − 2·Both. At least one = A + B − Both. The difference between them is exactly the "Both" group.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Overlapping Sets — Percentage-Based, Find "Neither"
+
+In a survey of 200 people, 30% speak French, 45% speak Spanish, and 15% speak both languages. What percentage of the people surveyed speak neither language?
+
+- A) 15%
+- B) 25%
+- C) 30%
+- D) 40%
+- E) 60%
+
+**answer:** D
+**fastest_path:** At least one = 30 + 45 − 15 = 60%. Neither = 100 − 60 = 40%.
+**explanation:** At least one language = French + Spanish − Both = 30 + 45 − 15 = 60%. Neither = 100 − 60 = 40%. The sample size (200) is irrelevant since the answer is a percentage.
+**mistake_a:** Bubbled the "both" percentage (15%) as "neither."
+**mistake_b:** Computed 100 − (30 + 45) = 25% — subtracted both groups from 100% without adjusting for the overlap.
+**mistake_c:** Bubbled the French percentage (30%).
+**mistake_e:** Computed the "at least one" percentage (60%) and stopped — answered the complement of what was asked.
+**common_trap:** Stopping at the "at least one" answer (60%) instead of taking the complement to get "neither" (40%). Always re-read: does the question want the union or its complement?
+**takeaway:** Neither = 100% − (at least one%). With percentages, the sample size is usually irrelevant — work entirely in percents. The two-step process: (1) find at least one, (2) subtract from 100%.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Overlapping Sets — Ratio Constraint Between "Only" Groups
+
+In a school of 200 students, 120 study Math and 90 study Science. The number who study only Math is 4 times the number who study only Science. How many students study both Math and Science?
+
+- A) 30
+- B) 50
+- C) 70
+- D) 80
+- E) 90
+
+**answer:** D
+**fastest_path:** Let only-Science = x. Then only-Math = 4x. (4x + B = 120) and (x + B = 90). Subtract: 3x = 30, x = 10, B = 80.
+**explanation:** Let "only Science" = x. Then "only Math" = 4x. Two equations: (i) only-Math + Both = 120 → 4x + B = 120; (ii) only-Science + Both = 90 → x + B = 90. Subtract (ii) from (i): 3x = 30 → x = 10. Back-substitute: B = 90 − 10 = 80. Verify: only-Math = 40, only-Science = 10, Both = 80, Neither = 200 − 130 = 70. Check totals: Math = 40 + 80 = 120 ✓, Science = 10 + 80 = 90 ✓.
+**mistake_a:** Computed 120 − 90 = 30 — took the difference of the two group sizes.
+**mistake_b:** Set up only-Math = 4 × only-Science but solved for x = 20, giving B = 50 (arithmetic slip: 3x = 60 → x = 20).
+**mistake_c:** Correctly found only-Science = 10 but then computed neither = 70 and bubbled that.
+**mistake_e:** Used Science total (90) as the answer.
+**common_trap:** Jumping to 120 − 90 = 30 as the overlap (subtracting group sizes, not solving the system). The ratio constraint requires building two equations in two unknowns.
+**takeaway:** When a ratio links two "only" quantities, write the group-total equations for each set, then eliminate by subtraction. The system of two equations in (x, Both) is always solvable.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Overlapping Sets — Multi-Step with "Only" Regions
+
+In a poll of 400 city residents, some own cats, some own dogs, and some own neither pet. The number who own only dogs is 50 more than the number who own only cats. 80 residents own both pets. If 180 residents own dogs in total, how many residents own neither a cat nor a dog?
+
+- A) 130
+- B) 140
+- C) 150
+- D) 170
+- E) 200
+
+**answer:** D
+**fastest_path:** Only Dogs = 180 − 80 = 100. Only Cats = 100 − 50 = 50. At least one = 50 + 100 + 80 = 230. Neither = 400 − 230 = 170.
+**explanation:** Step 1 — find exclusive dog owners: only dogs = 180 − 80 = 100. Step 2 — apply the ratio: only cats = 100 − 50 = 50. Step 3 — find cats total: 50 + 80 = 130. Step 4 — at least one pet = only cats + only dogs + both = 50 + 100 + 80 = 230. Step 5 — neither = 400 − 230 = 170.
+**mistake_a:** Stopped at cats total (130) and bubbled that.
+**mistake_b:** Computed 400 − 180 − 80 = 140 — subtracted dog total and "both" from total, ignoring cats.
+**mistake_c:** Arithmetic slip: 400 − 250 = 150.
+**mistake_e:** Guessed 200 (half of 400).
+**common_trap:** Using 180 (total dogs) instead of 100 (only dogs) as the "dog" region in the sum. The "only" regions and the "both" region must be added separately — never add total-group sizes directly to find at-least-one when "both" is already known.
+**takeaway:** Build from what is given step-by-step: (1) find each "only" region, (2) sum all non-neither regions, (3) subtract from total. Never add group totals directly when the overlap is separately listed.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Overlapping Sets — Three Groups, Exactly One
+
+In a class of 50 students, 26 study Math, 22 study Science, and 23 study English. 8 study Math and Science, 7 study Science and English, 9 study Math and English, and 3 study all three. Every student studies at least one subject. How many students study exactly one subject?
+
+- A) 22
+- B) 32
+- C) 35
+- D) 47
+- E) 71
+
+**answer:** B
+**fastest_path:** Exactly one = M + S + E − 2(MS + SE + ME) + 3·MSE = 71 − 48 + 9 = 32.
+**explanation:** For three sets, exactly one = (sum of individuals) − 2(sum of pairwise) + 3(all three) = (26+22+23) − 2(8+7+9) + 3(3) = 71 − 48 + 9 = 32. Verify by partition: MS-only = 5, SE-only = 4, ME-only = 6. Only M = 26−5−6−3 = 12; only S = 22−5−4−3 = 10; only E = 23−4−6−3 = 10. Total: 12+10+10+5+4+6+3 = 50 ✓. Exactly one = 12+10+10 = 32 ✓.
+**mistake_a:** Bubbled the Science group total (22) — a given input value rather than a computed answer.
+**mistake_c:** Computed exactly-one = total − exactly-two = 50 − 15 = 35, forgetting to also subtract the all-three region (3 students). Exactly-one = total − exactly-two − all-three = 50 − 15 − 3 = 32.
+**mistake_d:** Computed total − all-three = 50 − 3 = 47, confusing "not all-three" with "exactly one."
+**mistake_e:** Computed only the raw sum M + S + E = 71 without any corrections.
+**common_trap:** Using the wrong formula. Students often subtract pairwise overlaps once (getting "at least one") or forget to add back the all-three term. The correct formula for exactly one requires subtracting pairwise twice and adding all-three three times.
+**takeaway:** Three-set exactly-one formula: A + B + C − 2(AB + BC + AC) + 3·ABC. Derive it by noting each "only" region appears once in A+B+C, each "exactly-two" region appears twice (subtract once extra), and the "all-three" region appears three times (add back twice more after the −2 pass). Alternatively, partition by drawing the seven Venn regions.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Overlapping Sets — Three Groups, Find "Neither" (Percentages)
+
+In a survey of 200 residents, 40% enjoy action movies, 35% enjoy comedies, and 25% enjoy horror movies. 15% enjoy both action and comedy, 10% enjoy both comedy and horror, 12% enjoy both action and horror, and 5% enjoy all three genres. What percentage of residents enjoy none of the three genres?
+
+- A) 42%
+- B) 27%
+- C) 32%
+- D) 37%
+- E) 68%
+
+**answer:** C
+**fastest_path:** At least one = 40+35+25 − 15−10−12 + 5 = 68%. Neither = 32%.
+**explanation:** Three-set inclusion-exclusion: at least one = A+C+H − AC − CH − AH + ACH = 40+35+25−15−10−12+5 = 68%. Neither = 100 − 68 = 32%. The sample size (200) is irrelevant since everything is in percentages.
+**mistake_a:** Subtracted the all-three term instead of adding it: 40+35+25−15−10−12−5 = 58%, neither = 42%. The all-three region disappears three times through the pairwise subtractions and must be added back once, not removed again.
+**mistake_b:** Used +2·ACH instead of +1·ACH in the formula: at-least-one = 100−37+10 = 73%, neither = 27%. The correct coefficient for the all-three correction is +1.
+**mistake_d:** Forgot to add back the all-three term entirely: at-least-one = 40+35+25−15−10−12 = 63%, neither = 37%. Omitting +ACH under-counts the union.
+**mistake_e:** Answered the "at least one" percentage (68%) instead of its complement "neither" (32%).
+**common_trap:** The all-three term is ADDED in the inclusion-exclusion formula. Subtracting it (choice A) or omitting it (choice D) are both common errors. Subtract pairwise overlaps, then add all-three back once.
+**takeaway:** Three-set inclusion-exclusion: |A∪B∪C| = A+B+C − AB − BC − AC + ABC. The all-three term restores what was over-subtracted. After finding the union, subtract from 100% to get "neither."
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Overlapping Sets — Reverse: Find Total from "Neither" Count
+
+At a company, 40% of employees have a business degree and 30% have a technical degree. 10% have both. If 60 employees have neither degree, how many employees work at the company in total?
+
+- A) 100
+- B) 150
+- C) 180
+- D) 200
+- E) 240
+
+**answer:** B
+**fastest_path:** Neither % = 100 − (40+30−10) = 40%. Total = 60 / 0.40 = 150.
+**explanation:** At least one degree: 40+30−10 = 60% of employees. Neither = 100−60 = 40% of employees. 40% of total = 60 people → total = 60 / 0.40 = 150.
+**mistake_a:** Divided by the "at least one" fraction: 60/0.60 = 100.
+**mistake_c:** Arithmetic slip.
+**mistake_d:** Divided by the technical degree percentage: 60/0.30 = 200.
+**mistake_e:** Divided by the "neither" fraction incorrectly: 60/0.25 = 240.
+**common_trap:** Dividing by the "at least one" fraction (0.60) rather than the "neither" fraction (0.40). The 60 employees are the neither group, so divide by the neither percentage.
+**takeaway:** Reverse overlapping-set problems: (1) find the "neither" percentage, (2) set up (neither %) × Total = (neither count), (3) divide. Always label which percentage corresponds to the count given.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Overlapping Sets — Three Groups, "Exactly Two"
+
+In a group of 100 people, 50 own phones, 45 own tablets, and 35 own laptops. Among these, 20 own phones and tablets, 15 own tablets and laptops, 18 own phones and laptops, and 8 own all three devices. How many people own exactly two of the three devices?
+
+- A) 21
+- B) 25
+- C) 29
+- D) 37
+- E) 53
+
+**answer:** C
+**fastest_path:** Exactly two = (20−8) + (15−8) + (18−8) = 12 + 7 + 10 = 29.
+**explanation:** Each pairwise intersection (e.g., "phones and tablets = 20") includes the all-three region (8). To get people in exactly two, subtract all-three from each pairwise count: phones-and-tablets-only = 20−8 = 12; tablets-and-laptops-only = 15−8 = 7; phones-and-laptops-only = 18−8 = 10. Exactly two = 12+7+10 = 29. Verify full partition: using these values, only-phones = 50−12−10−8 = 20; only-tablets = 45−12−7−8 = 18; only-laptops = 35−10−7−8 = 10; neither = 100−(20+18+10+12+7+10+8) = 15. Sum: 20+18+10+12+7+10+8+15 = 100 ✓.
+**mistake_a:** Subtracted all-three from each pair but made an arithmetic error: 12+7+2 = 21.
+**mistake_b:** Arithmetic slip: 12+7+6 = 25.
+**mistake_d:** Subtracted all-three only twice instead of three times: (20+15+18) − 2×8 = 53−16 = 37.
+**mistake_e:** Summed the three pairwise intersections without subtracting the all-three region: 20+15+18 = 53 — this over-counts the all-three region three times.
+**common_trap:** Using the raw pairwise intersections (20, 15, 18) as the "exactly two" regions. Each pairwise intersection includes the all-three region, which must be removed to isolate "exactly two."
+**takeaway:** Exactly-two region = pairwise-intersection − all-three, applied to each pair. Then sum those three exclusive-pair regions. Contrast: "all-three" must be subtracted once per pair (three times total) from the raw pairwise counts.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Overlapping Sets — Three Groups, "Exactly One" (Percentage)
+
+In a survey of 300 residents, 40% subscribe to newspaper A, 30% to newspaper B, and 25% to newspaper C. 15% subscribe to both A and B, 10% to both B and C, 12% to both A and C, and 4% subscribe to all three newspapers. What percentage of residents subscribe to exactly one newspaper?
+
+- A) 21%
+- B) 33%
+- C) 62%
+- D) 74%
+- E) 95%
+
+**answer:** B
+**fastest_path:** Exactly one = A+B+C − 2(AB+BC+AC) + 3·ABC = 95 − 74 + 12 = 33%.
+**explanation:** Three-set exactly-one formula: (A+B+C) − 2(AB+BC+AC) + 3·ABC = (40+30+25) − 2(15+10+12) + 3(4) = 95 − 74 + 12 = 33%. Verify by sub-regions: AB-only = 11%, BC-only = 6%, AC-only = 8%; only-A = 40−11−8−4 = 17%; only-B = 30−11−6−4 = 9%; only-C = 25−8−6−4 = 7%. Exactly one = 17+9+7 = 33% ✓. At least one = 62%, so neither = 38%.
+**mistake_a:** Applied the formula but omitted the +3·ABC term: 95 − 74 = 21%.
+**mistake_c:** Computed "at least one" = A+B+C − AB − BC − AC + ABC = 40+30+25−15−10−12+4 = 62% and stopped there.
+**mistake_d:** Computed 2(AB+BC+AC) = 74% and bubbled that subtracted term.
+**mistake_e:** Computed the raw sum A+B+C = 95% without any deductions.
+**common_trap:** The most common error is omitting the +3·ABC term (choice A, 21%). This term corrects for the all-three region being subtracted 3 times by the −2(pairwise) step, when it should only net out once.
+**takeaway:** Three-set exactly-one formula: A+B+C − 2(AB+BC+AC) + 3·ABC. Derive it: each "only-one" region appears once; each "exactly-two" region appears 2−2 = 0 times (correct); the "all-three" region appears 3−6+3 = 0 times (correct). Every coefficient is intentional.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q43
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Overlapping Sets — Algebraic Constraint Linking Two Groups
+
+In a class, the number of students who passed English equals 3 times the number who passed only Math (and not English). 20% of the class passed both subjects, 40% passed Math, and 80% passed at least one subject. What percentage of the class passed exactly one subject?
+
+- A) 40%
+- B) 50%
+- C) 60%
+- D) 70%
+- E) 80%
+
+**answer:** C
+**fastest_path:** Only Math = 40−20 = 20%. English = 3×20 = 60%. Only English = 60−20 = 40%. Exactly one = 20+40 = 60%.
+**explanation:** Work in percentages. Both = 20%, Math total = 40% → Only Math = 20%. The constraint: English total = 3 × Only Math = 60%. Only English = 60−20 = 40%. Exactly one = Only Math + Only English = 20+40 = 60%. Cross-check: at least one = Only Math + Only English + Both = 20+40+20 = 80% ✓ (matches the given).
+**mistake_a:** Bubbled "Math total" = 40% without further steps, or "Only English" = 40%.
+**mistake_b:** Arithmetic slip midway: computed Only English = 30% → exactly one = 50%.
+**mistake_d:** Added Both to exactly one: 20+40+10 = 70% (some miscount).
+**mistake_e:** Bubbled the "at least one" figure (80%).
+**common_trap:** Confusing "passed English" (the total English group, 60%) with "passed only English." The problem states English total = 3 × (only Math), not English total = 3 × Math total. Reading "only Math" carefully is the key.
+**takeaway:** Translate verbal constraints precisely: "English = 3 times only-Math" means English-total = 3 × (Math − Both). Extract each "only" region first, then use the constraint. The at-least-one check at the end catches errors.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q44
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Overlapping Sets — Three Groups, Solve for One Group Size
+
+In a school of 200 students, every student is in at least one of three clubs: Debate, Chess, or Science. Debate has 20 more members than Chess, and Science has 10 fewer members than Chess. The number of students in exactly two clubs is 30, and the number in all three clubs is 10. How many students are in Chess?
+
+- A) 60
+- B) 70
+- C) 75
+- D) 80
+- E) 100
+
+**answer:** D
+**fastest_path:** Total = D+C+S − E2 − 2·E3. With D = c+20, S = c−10: 200 = (3c+10)−30−20 → 3c = 240 → c = 80.
+**explanation:** Let Chess = c. Debate = c+20, Science = c−10. Since Total = (exactly one) + (exactly two) + (all three), and exactly one = D+C+S − 2·E2 − 3·E3, we get Total = D+C+S − E2 − 2·E3. Substitute: 200 = (c+20 + c + c−10) − 30 − 2(10) = (3c+10) − 50 = 3c − 40. So 3c = 240, c = 80. Verify: D = 100, C = 80, S = 70. D+C+S = 250. Total = 250−30−20 = 200 ✓.
+**mistake_a:** Arithmetic slip: computed 3c = 180 → c = 60 (added the constants incorrectly).
+**mistake_b:** Got c = 80 correctly but bubbled Science = c−10 = 70 instead of Chess.
+**mistake_c:** Mishandled the constant terms: wrote 200 = 3c − 25 (combining +10 − 30 − 5 = −25 instead of +10 − 30 − 20 = −40) → 3c = 225 → c = 75.
+**mistake_e:** Bubbled Debate = c+20 = 100 instead of Chess.
+**common_trap:** Bubbling the wrong club's count after correctly solving for c. Read the question: "How many in Chess?" means the answer is c = 80, not Debate (100) or Science (70).
+**takeaway:** The three-set total formula rearranges to: (sum of group sizes) = Total + E2 + 2·E3. Express each group in one variable, substitute, and solve. Always re-read which group the question asks about.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q45
+**difficulty:** Challenge
+**type:** Problem Solving
+**topic:** Overlapping Sets — Three Groups, Ratio Constraints and Reverse Setup
+
+Of 180 employees, every employee works in at least one of three departments: Operations, Sales, or Technology. Operations has twice as many employees as Sales, and Technology has 20 more employees than Sales. The number of employees in exactly two departments is 10, and the number in all three departments is 5. How many employees are in Operations?
+
+- A) 75
+- B) 90
+- C) 100
+- D) 108
+- E) 120
+
+**answer:** B
+**fastest_path:** Let Sales = s. O+S+T = 4s+20. Total = (4s+20) − 10 − 10 = 4s → 180 = 4s → s = 45. Operations = 2×45 = 90.
+**explanation:** Let Sales = s. Then Operations = 2s, Technology = s+20. Using Total = (sum of group sizes) − E2 − 2·E3: 180 = (2s + s + s+20) − 10 − 2(5) = (4s+20) − 20 = 4s. So s = 45. Operations = 2 × 45 = 90. Verify: O = 90, S = 45, T = 65. D+C+S = 200. Total = 200 − 10 − 10 = 180 ✓.
+**mistake_a:** Arithmetic slip: computed 4s+20 = 200+20+10 → 4s = 210 → s ≈ 52.5, rounded to 52, giving O ≈ 104; chose nearest answer 75 or 108.
+**mistake_c:** Set up formula as Total = group-sum − E2 − E3 (subtracted all-three once, not twice): 180 = 4s+20−10−5 = 4s+5 → s = 43.75 → O ≈ 87.5, rounded to 100.
+**mistake_d:** Applied the 2:1 ratio to the total incorrectly: assumed O = (2/3)×180 = 120, then adjusted down → 108.
+**mistake_e:** Directly computed O = (2/3) × 180 = 120 using the 2:1 ratio and the total headcount — wrong because not all employees are in Operations or Sales; the groups overlap and include Technology.
+**common_trap:** Two layered traps: (1) misapplying the formula by subtracting E3 once instead of twice; (2) using the 2:1 ratio on the total headcount (180) rather than on the group sizes found through the formula. The ratio constrains group sizes relative to each other, not relative to the company total.
+**takeaway:** Challenge overlapping-set problems stack two skills: translating ratio language into algebra (O = 2S) and applying the correct three-set formula (Total = group-sum − E2 − 2·E3). Solve for S first, then find the requested quantity. The coefficient on E3 is 2, not 1 — this is the most common formula error at the hard/challenge level.
+**related_reading:** reading-quant-05-word-problems
