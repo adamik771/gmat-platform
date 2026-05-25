@@ -1847,6 +1847,92 @@ export default function SessionClient({
           )
         })()}
 
+        {/* What to do next — forward momentum footer. Surfaces the
+            already-computed directional note and 2-3 contextual CTAs so
+            the student never has to ask "what now?" after finishing. */}
+        {answeredCount > 0 && (
+          <div
+            className="p-5 rounded-xl border"
+            style={{
+              borderColor: "rgba(255,255,255,0.07)",
+              backgroundColor: "#0D0D0D",
+            }}
+          >
+            <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+              What to do next
+            </p>
+            <p className="text-[13px] text-[#C0C0C0] leading-relaxed mb-5">
+              {nextStepNote}
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {/* Chapter CTA — only when the topic maps to a chapter and
+                  the session was weak. Most direct intervention when there
+                  is a concept gap, not just a practice gap. */}
+              {!isMixedReview &&
+                accuracy < 70 &&
+                TOPIC_TO_CHAPTER[topic] && (
+                  <Link
+                    href={`/chapters/${TOPIC_TO_CHAPTER[topic]}`}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all hover:opacity-90"
+                    style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                  >
+                    <BookOpen className="w-3.5 h-3.5" />
+                    Revisit chapter
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                )}
+              {/* Practice again — same topic. Excluded for mixed review
+                  (its own rebuild button above handles it), diagnostic,
+                  mock, and review slugs which have their own flows. */}
+              {!isMixedReview &&
+                !slug.startsWith("diagnostic") &&
+                !slug.startsWith("mock") &&
+                !slug.startsWith("review") && (
+                  <Link
+                    href={`/practice/session/${slug}`}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold border transition-colors hover:bg-white/[0.03]"
+                    style={{
+                      borderColor: "rgba(201,168,76,0.3)",
+                      color: "#C9A84C",
+                      backgroundColor: "rgba(201,168,76,0.05)",
+                    }}
+                  >
+                    Practice again
+                  </Link>
+                )}
+              {/* Explore practice — visible when accuracy is strong.
+                  "Pick something harder or different" is the right move
+                  after a 78%+ session. */}
+              {accuracy >= 78 && (
+                <Link
+                  href="/practice"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold border transition-colors hover:bg-white/[0.03]"
+                  style={{
+                    borderColor: "rgba(255,255,255,0.10)",
+                    color: "#C0C0C0",
+                  }}
+                >
+                  Explore practice
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              )}
+              {/* Daily review — always present. Spaced retrieval is the
+                  single highest-leverage habit; it deserves a permanent
+                  exit ramp from every session. */}
+              <Link
+                href="/review"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold border transition-colors hover:bg-white/[0.03]"
+                style={{
+                  borderColor: "rgba(255,255,255,0.07)",
+                  color: "#888888",
+                }}
+              >
+                Daily review
+              </Link>
+            </div>
+          </div>
+        )}
+
         {rebuildError && (
           <p className="text-xs text-center" style={{ color: "#FF4444" }}>
             {rebuildError}
