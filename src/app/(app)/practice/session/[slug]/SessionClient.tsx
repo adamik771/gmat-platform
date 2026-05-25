@@ -1847,6 +1847,53 @@ export default function SessionClient({
           )
         })()}
 
+        {/* What to do next — surfaces the pre-computed recommendation with
+            a single primary action. Computed but previously unrendered. */}
+        {answeredCount > 0 && (() => {
+          const chapterSlug = TOPIC_TO_CHAPTER[topic]
+          const primaryHref =
+            accuracy < 60 && chapterSlug
+              ? `/chapters/${chapterSlug}`
+              : accuracy < 78
+              ? `/practice/session/${slug}`
+              : `/study-plan`
+          const primaryLabel =
+            accuracy < 60 && chapterSlug
+              ? "Review the chapter"
+              : accuracy < 78
+              ? "Practice again"
+              : "Find your next weak area"
+
+          return (
+            <div
+              className="p-5 rounded-xl border"
+              style={{
+                borderColor: "rgba(255,255,255,0.07)",
+                backgroundColor: "#0D0D0D",
+              }}
+            >
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+                What to do next
+              </p>
+              <p className="text-sm text-[#888888] leading-relaxed mb-4">
+                {nextStepNote}
+              </p>
+              <Link
+                href={primaryHref}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-colors"
+                style={{
+                  backgroundColor: "rgba(201,168,76,0.12)",
+                  color: "#C9A84C",
+                  border: "1px solid rgba(201,168,76,0.22)",
+                }}
+              >
+                {primaryLabel}
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          )
+        })()}
+
         {rebuildError && (
           <p className="text-xs text-center" style={{ color: "#FF4444" }}>
             {rebuildError}
