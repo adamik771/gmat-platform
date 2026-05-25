@@ -829,3 +829,496 @@ A fair coin is flipped 5 times. What is the probability of getting exactly 3 hea
 **common_trap:** Confusing "exactly k" with "at least k" — different probabilities; "at least" requires summing across multiple cases.
 **takeaway:** Binomial: P(exactly k of n trials, each prob p) = C(n, k) × p^k × (1−p)^(n−k). For fair coin: × (1/2)^n.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Probability — Independent Events
+
+A bag contains 3 red marbles and 7 blue marbles. A marble is drawn at random, its color recorded, and it is returned to the bag. A second marble is then drawn. What is the probability that both marbles drawn are red?
+
+- A) 3/50
+- B) 6/100
+- C) 9/100
+- D) 3/10
+- E) 9/10
+
+**answer:** C
+**hint_nudge:** Because the first marble is replaced, the two draws don't affect each other. How do independent probabilities combine?
+**hint_strategy:** P(both red) = P(1st red) × P(2nd red). With replacement, each draw has the same probability.
+**hint_setup:** P(red on one draw) = 3/10. Multiply: (3/10) × (3/10).
+**fastest_path:** With replacement → independent: (3/10)² = 9/100.
+**explanation:** With replacement, each draw is an independent event with the same probabilities. P(red on any single draw) = 3/10. For both draws to produce red, multiply: (3/10) × (3/10) = 9/100. The "with replacement" condition is the signal that independence holds, making multiplication straightforward.
+**mistake_a:** Computed 3/(10 × 5) = 3/50 — used an incorrect denominator of 100 but also halved it.
+**mistake_b:** Doubled the numerator only: 6/100 (computed 2 × 3/100 instead of (3/10)²).
+**mistake_d:** Computed only the first-draw probability and stopped: 3/10.
+**mistake_e:** Confused P(at least one red) for P(both red); 9/10 is not correct for either.
+**common_trap:** Forgetting to square when draws are with replacement, or treating a replacement scenario as if marbles are removed.
+**takeaway:** With replacement → events are independent → multiply: P(A and B) = P(A) × P(B). Without replacement → conditional probability: P(A and B) = P(A) × P(B | A).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q31
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Probability — Addition Rule
+
+A single card is drawn from a standard 52-card deck. What is the probability that the card is a heart or a king?
+
+- A) 1/13
+- B) 1/4
+- C) 4/13
+- D) 17/52
+- E) 1/2
+
+**answer:** C
+**hint_nudge:** Hearts and kings overlap — one card (the king of hearts) is both. Have you accounted for that?
+**hint_strategy:** Use the addition rule: P(A or B) = P(A) + P(B) − P(A and B). Identify each piece before adding.
+**hint_setup:** P(heart) = 13/52, P(king) = 4/52, P(king of hearts) = 1/52. Apply the formula.
+**fastest_path:** 13/52 + 4/52 − 1/52 = 16/52 = 4/13.
+**explanation:** The addition rule: P(heart or king) = P(heart) + P(king) − P(heart AND king). A standard deck has 13 hearts and 4 kings; the king of hearts belongs to both groups so it would be double-counted. Subtracting it once: 13 + 4 − 1 = 16 favorable cards. P = 16/52 = 4/13.
+**mistake_a:** Counted only the 4 kings: 4/52 = 1/13. Ignored the hearts.
+**mistake_b:** Counted only the 13 hearts: 13/52 = 1/4. Ignored the kings.
+**mistake_d:** Added 13 + 4 = 17 without subtracting the overlap: 17/52. This is the most common error.
+**mistake_e:** 1/2 is a guess with no grounding.
+**common_trap:** Forgetting to subtract the intersection when two events overlap — the addition rule requires removing double-counted outcomes.
+**takeaway:** P(A or B) = P(A) + P(B) − P(A ∩ B). Always check whether the two events share any outcomes before adding.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Probability — Complement
+
+A fair coin is flipped 4 times. What is the probability of getting at least one head?
+
+- A) 1/2
+- B) 3/4
+- C) 7/8
+- D) 15/16
+- E) 1
+
+**answer:** D
+**hint_nudge:** "At least one head" covers many cases. What's the one scenario where it fails?
+**hint_strategy:** Complement: P(at least one head) = 1 − P(no heads at all). Find P(all tails) first.
+**hint_setup:** P(all tails in 4 flips) = (1/2)^4 = 1/16. Subtract from 1.
+**fastest_path:** 1 − (1/2)^4 = 1 − 1/16 = 15/16.
+**explanation:** "At least one head" includes exactly 1, 2, 3, and 4 heads — four separate cases. Rather than summing them, flip to the complement: the only way to get zero heads is all tails, which has probability (1/2)^4 = 1/16. P(at least one head) = 1 − 1/16 = 15/16.
+**mistake_a:** P(exactly 1 head) = C(4,1)/16 = 4/16 = 1/4 ≠ 1/2. A guess, not the right answer.
+**mistake_b:** P(at least 2 heads) by a rough half-and-half split. Not equivalent to at-least-one.
+**mistake_c:** P(at least one head in 3 flips) = 1 − 1/8 = 7/8 — used wrong n.
+**mistake_e:** P = 1 implies certainty, which is impossible since TTTT is a valid outcome.
+**common_trap:** Trying to sum P(1 head) + P(2 heads) + P(3 heads) + P(4 heads) instead of using the complement, which introduces arithmetic errors.
+**takeaway:** Whenever you see "at least one," immediately apply the complement: P(at least 1) = 1 − P(none). This converts a multi-case sum into a single calculation.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Probability — Conditional
+
+In a class of 30 students, 18 play soccer, 12 play basketball, and 6 play both. If one student is chosen at random from those who play soccer, what is the probability that the chosen student also plays basketball?
+
+- A) 1/5
+- B) 1/4
+- C) 1/3
+- D) 2/5
+- E) 1/2
+
+**answer:** C
+**hint_nudge:** The problem restricts your sample space to only soccer players. How many are there, and how many of them also play basketball?
+**hint_strategy:** P(basketball | soccer) = (students playing both) ÷ (total soccer players).
+**hint_setup:** Soccer players = 18. Students playing both = 6. Divide.
+**fastest_path:** 6 of the 18 soccer players also play basketball → 6/18 = 1/3.
+**explanation:** A conditional probability question. "Given that the student plays soccer" restricts the sample space to only soccer players (18 students). Among them, 6 also play basketball. P(basketball | soccer) = 6/18 = 1/3. The total class size (30) and the basketball count (12) are distractors.
+**mistake_a:** Computed 6/30 = 1/5 — used both as numerator over the full class.
+**mistake_b:** Computed 1/4 through a wrong combination of numbers.
+**mistake_d:** Computed 12/30 = 2/5 — probability of basketball in the full class, ignoring the conditioning.
+**mistake_e:** Computed 15/30 or some incorrect combination.
+**common_trap:** Using the full class size (30) as the denominator instead of the restricted soccer-player population (18).
+**takeaway:** Conditional probability restricts the denominator. P(B | A) = P(A and B) / P(A) = (number in both groups) / (number in group A).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Committee Selection with Gender Constraint
+
+A committee of 3 is to be formed from 5 men and 4 women. How many different committees contain exactly 2 women?
+
+- A) 12
+- B) 18
+- C) 24
+- D) 30
+- E) 36
+
+**answer:** D
+**hint_nudge:** The committee must have exactly 2 women and therefore exactly 1 man. Count each group separately.
+**hint_strategy:** Choose 2 women from 4, then independently choose 1 man from 5. Multiply the counts.
+**hint_setup:** C(4, 2) × C(5, 1) = ? × ?
+**fastest_path:** C(4, 2) × C(5, 1) = 6 × 5 = 30.
+**explanation:** Exactly 2 women and 1 man. Choose women: C(4, 2) = (4 × 3)/(2 × 1) = 6 ways. Choose men: C(5, 1) = 5 ways. These choices are independent, so multiply: 6 × 5 = 30. This is the Multiplication Principle — independent choices along separate dimensions are multiplied together.
+**mistake_a:** C(4, 2) only = 6, then multiplied by 2 instead of 5.
+**mistake_b:** Used C(5, 2) × C(4, 1) = 10 × 3 → not right (would be 2 men + 1 woman).
+**mistake_c:** Arithmetic slip somewhere in the combination calculation.
+**mistake_e:** Added C(4, 2) + C(5, 1) instead of multiplying.
+**common_trap:** Adding the two counts (6 + 5 = 11) instead of multiplying, or computing the wrong group sizes.
+**takeaway:** "Exactly k from group A AND exactly j from group B" → C(|A|, k) × C(|B|, j). Always multiply when the two selections are independent.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Probability — Complement with Combinatorics
+
+A bag contains 3 red, 4 blue, and 3 green marbles (10 total). Three marbles are drawn at random without replacement. What is the probability that at least one red marble is drawn?
+
+- A) 7/24
+- B) 1/2
+- C) 2/3
+- D) 17/24
+- E) 5/6
+
+**answer:** D
+**hint_nudge:** Count "at least one red" directly involves many sub-cases. What simpler event is its complement?
+**hint_strategy:** Complement: P(at least one red) = 1 − P(no red marbles drawn). Count non-red combinations.
+**hint_setup:** Total ways to choose 3 from 10: C(10, 3). Ways to choose 3 from the 7 non-red marbles: C(7, 3).
+**fastest_path:** C(10,3) = 120. C(7,3) = 35. P(no red) = 35/120 = 7/24. Answer = 1 − 7/24 = 17/24.
+**explanation:** Three separate cases exist for "at least one red" (exactly 1, 2, or 3 red marbles) — all can be avoided with the complement. Non-red marbles: 4 blue + 3 green = 7. C(10, 3) = 120 total ways to choose 3. C(7, 3) = 35 ways to choose 3 from only non-reds. P(no red) = 35/120 = 7/24. P(at least one red) = 1 − 7/24 = 17/24.
+**mistake_a:** Stopped at 7/24 — this is P(no red), the complement, not the answer.
+**mistake_b:** Rough intuition guess.
+**mistake_c:** Computed P(exactly 1 red) = C(3,1)×C(7,2)/120 = 3×21/120 = 63/120 = 21/40, then misidentified it as 2/3.
+**mistake_e:** Slightly overestimated or computed incorrectly.
+**common_trap:** Computing P(no red) = 7/24 and choosing it as the answer — the complement trap. The question asks for at-least-one, which equals 1 minus that.
+**takeaway:** "At least one" → complement = "none." Always compute P(none) first, then subtract from 1. The key step is identifying the 7 non-red marbles and using C(7, 3).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Probability — Sequential Draws Without Replacement
+
+A box contains 5 white balls and 3 black balls. Two balls are drawn sequentially without replacement. What is the probability that the second ball drawn is black, given that the first ball drawn was white?
+
+- A) 3/8
+- B) 3/7
+- C) 4/7
+- D) 1/2
+- E) 5/14
+
+**answer:** B
+**hint_nudge:** One white ball has already been removed from the box. What does the box now contain?
+**hint_strategy:** Condition on the first draw. Remove a white ball, then ask: what fraction of the remaining balls are black?
+**hint_setup:** After removing 1 white: 4 white + 3 black = 7 balls remain. P(black | first was white) = 3/7.
+**fastest_path:** Remove 1 white → 7 balls remain (4W, 3B). P(2nd black) = 3/7.
+**explanation:** Given that the first ball was white, one white ball has been removed. The box now contains 4 white and 3 black = 7 balls total. The conditional probability that the next draw is black is simply 3/7 — the fraction of black balls in the updated box. This is "the definition of conditional probability in a physical sampling context."
+**mistake_a:** Used original box composition: 3/8 (as if the first draw hadn't happened).
+**mistake_c:** Computed 4/7 — the fraction of white balls in the updated box (wrong color).
+**mistake_d:** Guessed 1/2 with no calculation.
+**mistake_e:** Computed P(both black) = (3/8) × (2/7) = 6/56 = 3/28, then confused it with the conditional.
+**common_trap:** Using the original 8-ball box composition (3/8) instead of the 7-ball box after removing one white. The phrase "given that the first was white" is the signal to update the box.
+**takeaway:** "Given that X happened" → update the sample space to reflect X. Remove drawn items and recount. The denominator shrinks by 1 (and the correct-color count drops if that color was drawn).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combinations — Non-Consecutive Selections
+
+8 people are seated in a row. In how many ways can 3 of them be selected such that no two selected people are sitting next to each other?
+
+- A) 20
+- B) 28
+- C) 35
+- D) 40
+- E) 56
+
+**answer:** A
+**hint_nudge:** Think of placing the 3 chosen people as objects that must have at least one unchosen person between each pair.
+**hint_strategy:** Use the non-consecutive selection formula: if you choose k non-adjacent items from n in a row, the count is C(n − k + 1, k).
+**hint_setup:** n = 8, k = 3. Formula gives C(8 − 3 + 1, 3) = C(6, 3).
+**fastest_path:** C(n − k + 1, k) = C(6, 3) = 20.
+**explanation:** Let the selected positions be a < b < c where b ≥ a + 2 and c ≥ b + 2 (non-adjacent). Substitution: let a′ = a, b′ = b − 1, c′ = c − 2. Then 1 ≤ a′ < b′ < c′ ≤ 6 (ordinary choice of 3 from 6), giving C(6, 3) = 20. The formula: choosing k non-adjacent items from n in a row = C(n − k + 1, k).
+**mistake_b:** C(8, 2) = 28 — selected 2 instead of 3, or confused the formula.
+**mistake_c:** C(7, 3) = 35 — off by 1 in the formula (used n − k instead of n − k + 1).
+**mistake_d:** Some incorrect enumeration giving 40.
+**mistake_e:** C(8, 3) = 56 — ignored the non-adjacency constraint entirely.
+**common_trap:** Using C(8, 3) = 56 without any adjustment, forgetting the constraint, or using C(7, 3) from a slightly wrong formula.
+**takeaway:** "No two adjacent" from n in a row, choose k: use C(n − k + 1, k). Think of it as placing k items with required gaps, reducing the effective pool.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Probability — Without Replacement, Matching Colors
+
+A drawer contains 5 red socks and 7 blue socks. Two socks are drawn at random without replacement. What is the probability that both socks are the same color?
+
+- A) 5/22
+- B) 7/22
+- C) 31/66
+- D) 35/66
+- E) 1/2
+
+**answer:** C
+**hint_nudge:** "Same color" means either both red or both blue. Find each probability separately and add.
+**hint_strategy:** P(same color) = P(both red) + P(both blue). Compute each using sequential conditional probabilities.
+**hint_setup:** P(both red) = (5/12)(4/11). P(both blue) = (7/12)(6/11). Add.
+**fastest_path:** P(both red) = 20/132. P(both blue) = 42/132. Sum = 62/132 = 31/66.
+**explanation:** P(both red) = P(1st red) × P(2nd red | 1st red) = (5/12) × (4/11) = 20/132. P(both blue) = P(1st blue) × P(2nd blue | 1st blue) = (7/12) × (6/11) = 42/132. P(same color) = (20 + 42)/132 = 62/132 = 31/66. Note: 31 and 66 share no common factors (31 is prime), so 31/66 is fully reduced.
+**mistake_a:** Computed only P(both red) = 20/132 ≈ 5/33, then misread as 5/22.
+**mistake_b:** Computed some combination involving 7 in the numerator.
+**mistake_d:** Computed P(different colors) = 1 − 31/66 = 35/66 — the complement, not the answer.
+**mistake_e:** Rough guess; 1/2 would imply colors are equally balanced, but 5 ≠ 7.
+**common_trap:** Computing P(different colors) instead of P(same color), or computing only one color's probability and forgetting the other.
+**takeaway:** "Same color" in a two-draw problem = P(both A) + P(both B). "Different colors" = 1 − P(same color). Always identify which case you need before computing.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combinations — Grid Paths
+
+How many distinct paths are there from point (0, 0) to point (4, 6) on a coordinate grid, if each step must move exactly one unit to the right or exactly one unit upward?
+
+- A) 84
+- B) 126
+- C) 210
+- D) 252
+- E) 462
+
+**answer:** C
+**hint_nudge:** Every path from (0,0) to (4,6) consists of the same total number of steps. How many, and how many of each type?
+**hint_strategy:** Every path requires exactly 4 right-steps (R) and 6 up-steps (U), for 10 steps total. Choose which 4 of the 10 steps are rightward.
+**hint_setup:** C(10, 4) = 10! / (4! × 6!).
+**fastest_path:** C(10, 4) = (10 × 9 × 8 × 7) / (4 × 3 × 2 × 1) = 5040 / 24 = 210.
+**explanation:** Any path from (0,0) to (4,6) consists of exactly 4 rightward steps and 6 upward steps, in some order. The number of distinct paths equals the number of ways to arrange 4 R's and 6 U's in a sequence of 10: that's C(10, 4) = 210. This is because once you choose which 4 of the 10 positions are R's, the remaining 6 must be U's.
+**mistake_a:** C(9, 3) = 84 — used wrong formula.
+**mistake_b:** C(9, 4) = 126 — off by 1 in the total step count.
+**mistake_d:** C(10, 4) × something = 252? Or C(10, 6) = 210 (same answer via symmetry) miscomputed.
+**mistake_e:** C(11, 4) = 330 or C(12, 6) = 924 from a wrong total count.
+**common_trap:** Getting the step counts wrong (confusing 4 and 6, or computing 10 total steps as 4 × 6 = 24 by multiplication), or using C(n, r) with the wrong n.
+**takeaway:** Grid path from (0,0) to (m, n): every path has exactly m right-steps and n up-steps. Total distinct paths = C(m + n, m). Here: C(4 + 6, 4) = C(10, 4) = 210.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Permutations — Rank of Arrangement
+
+All distinct arrangements of the letters A, D, E, L are listed in alphabetical order. In what position does the arrangement LEAD appear?
+
+- A) 19
+- B) 21
+- C) 23
+- D) 25
+- E) 27
+
+**answer:** C
+**hint_nudge:** Count all arrangements that come before LEAD alphabetically. Work letter by letter from left to right.
+**hint_strategy:** For each leading letter that comes before L in sorted order, all 3! arrangements of the remaining letters precede LEAD. Then, within words starting with L, count sub-groups that precede LE__, then LEA__.
+**hint_setup:** Sorted letters: A, D, E, L. Words starting with A: 3! = 6. With D: 6. With E: 6. With LA: 2! = 2. With LD: 2. With LEA: 1. Rank = 6+6+6+2+2+1 = 23.
+**fastest_path:** 3×(3!) + 2×(2!) + 1×(1!) = 18 + 4 + 1 = 23.
+**explanation:** Sorted order of A, D, E, L: words starting with A (6 words), D (6 words), E (6 words) all come before LEAD — that accounts for 18 words. Within words starting with L, the remaining letters A, D, E sort as A < D < E. Words starting with LA (2 words: LADE, LAED) and LD (2 words: LDAE, LDEA) come before LE__. That's 4 more, totalling 22. Now within words starting with LE, remaining letters are A and D (sorted: A < D). LEAD starts with LEA, and LEAD is the only arrangement of LEA + D: position 23.
+**mistake_a:** 18 + 1 = 19 — counted only one sub-group within L words.
+**mistake_b:** 18 + 3 = 21 — missed one of the two-letter sub-groups (counted LA but forgot LD).
+**mistake_d:** Miscounted a sub-group as 3 instead of 2.
+**mistake_e:** Made an arithmetic error in summing sub-groups.
+**common_trap:** Counting the L-group sub-arrangements. Students often forget that within "L__", both LA and LD come before LE — missing one of these shifts the rank by 2.
+**takeaway:** Rank of a word = sum of arrangements that start with each earlier letter at each position. Work left to right, multiplying by (remaining letters − 1)! at each stage.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Probability — Binomial, At Least Two
+
+A fair coin is flipped 4 times. What is the probability of getting at least 2 heads?
+
+- A) 1/4
+- B) 5/16
+- C) 3/8
+- D) 11/16
+- E) 3/4
+
+**answer:** D
+**hint_nudge:** "At least 2 heads" has multiple sub-cases. Is it faster to compute them directly or to use the complement?
+**hint_strategy:** Complement: P(at least 2 heads) = 1 − P(0 heads) − P(exactly 1 head).
+**hint_setup:** P(0 heads) = C(4,0)(1/2)^4 = 1/16. P(exactly 1 head) = C(4,1)(1/2)^4 = 4/16. Subtract both from 1.
+**fastest_path:** 1 − 1/16 − 4/16 = 1 − 5/16 = 11/16.
+**explanation:** The complement of "at least 2 heads" is "0 heads or exactly 1 head." P(0 heads) = (1/2)^4 = 1/16. P(exactly 1 head) = C(4,1) × (1/2)^4 = 4 × 1/16 = 4/16. P(≥ 2 heads) = 1 − 1/16 − 4/16 = 16/16 − 5/16 = 11/16. You can verify by also computing P(2)+P(3)+P(4) = 6/16+4/16+1/16 = 11/16. ✓
+**mistake_a:** P(exactly 0 or 1 heads) = 5/16 — computed the complement and stopped.
+**mistake_b:** P(exactly 0 heads) = 1/16 — only computed one complement case.
+**mistake_c:** P(exactly 2 heads) = C(4,2)/16 = 6/16 = 3/8 — answered for "exactly 2," not "at least 2."
+**mistake_e:** Rough guess; 3/4 = 12/16, one unit above the correct answer.
+**common_trap:** Confusing "at least 2" with "exactly 2." The word "at least" requires including cases for 2, 3, and 4 heads. Using the complement (subtracting 0 and 1 heads) is faster and less error-prone.
+**takeaway:** "At least k" with a binomial: use complement if k is close to 0. Subtract P(0 through k−1) from 1. Here k=2, so subtract P(0) + P(1) = 5/16.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Permutations — Coupled Units
+
+Eight distinct people consisting of 4 couples are to be seated in a row of 8 chairs. If each couple must sit together (adjacent), how many seating arrangements are possible?
+
+- A) 96
+- B) 192
+- C) 384
+- D) 768
+- E) 1,152
+
+**answer:** C
+**hint_nudge:** Treat each couple as a single unit to simplify the problem. Then account for each couple's internal ordering.
+**hint_strategy:** Glue each couple into a block → 4 blocks → arrange the 4 blocks → multiply by each block's internal orderings.
+**hint_setup:** 4! arrangements of 4 blocks × 2^4 internal orderings (each couple can switch seats).
+**fastest_path:** 4! × 2^4 = 24 × 16 = 384.
+**explanation:** Treat each couple as an inseparable block. Now there are 4 distinct blocks to arrange in a row: 4! = 24 ways. Within each block, the two people can swap (person A on left or right): 2 choices per couple, and there are 4 couples, giving 2^4 = 16 internal orderings. Total: 4! × 2^4 = 24 × 16 = 384.
+**mistake_a:** Computed 4! × 4 = 96 — multiplied by 4 instead of 2^4.
+**mistake_b:** Computed 4! × 8 = 192 — used 2^3 or missed one couple's internal ordering.
+**mistake_d:** Computed 4! × 2^5 = 768 — overcounted the internal orderings.
+**mistake_e:** Computed 8!/something = 1,152 or used a wrong formula.
+**common_trap:** Forgetting the internal ordering within each couple (× 2 per couple, or × 2^4 total), or counting 4! without any internal ordering.
+**takeaway:** "Must sit adjacent": glue into a block → (number of blocks)! × (internal orderings per block)^(number of blocks). Each couple contributes × 2!.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q43
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Probability — Multi-Stage Transfer
+
+Box A contains 3 red and 2 blue marbles. Box B contains 1 red and 4 blue marbles. One marble is drawn at random from Box A and placed into Box B. A marble is then drawn at random from Box B. What is the probability that the marble drawn from Box B is red?
+
+- A) 1/5
+- B) 4/15
+- C) 3/10
+- D) 1/3
+- E) 2/5
+
+**answer:** B
+**hint_nudge:** The composition of Box B changes depending on what was transferred from Box A. Split into two cases.
+**hint_strategy:** Law of total probability: P(red from B) = P(red from B | transferred red) × P(transferred red) + P(red from B | transferred blue) × P(transferred blue).
+**hint_setup:** Case 1 (red transferred, prob 3/5): Box B has 2R, 4B → P(red) = 2/6 = 1/3. Case 2 (blue transferred, prob 2/5): Box B has 1R, 5B → P(red) = 1/6.
+**fastest_path:** (3/5)(1/3) + (2/5)(1/6) = 3/15 + 2/30 = 6/30 + 2/30 = 8/30... wait, let me recompute: (3/5)(2/6) + (2/5)(1/6) = (3/5)(1/3) + (2/5)(1/6) = 1/5 + 1/15 = 3/15 + 1/15 = 4/15.
+**explanation:** Two scenarios based on what is transferred. Case 1 (red marble transferred, probability 3/5): Box B now has 2 red and 4 blue (6 total), so P(draw red from B) = 2/6 = 1/3. Joint probability: (3/5) × (1/3) = 1/5. Case 2 (blue marble transferred, probability 2/5): Box B has 1 red and 5 blue (6 total), so P(draw red from B) = 1/6. Joint probability: (2/5) × (1/6) = 1/15. Total: 1/5 + 1/15 = 3/15 + 1/15 = 4/15.
+**mistake_a:** Stopped at Case 1's joint probability: 1/5.
+**mistake_c:** Used original Box B composition for both cases: P(red from B) = 1/5 and added without adjusting → some error leading to 3/10.
+**mistake_d:** Computed P(red from B in Case 2) = 1/6 incorrectly, or averaged 1/3 and 1/6 without weighting.
+**mistake_e:** Used 3/5 × 2/5 or another unrelated calculation.
+**common_trap:** Forgetting to split into two cases based on what was transferred. Students who use the original Box B composition (1/5) pick choice A.
+**takeaway:** When one event affects a subsequent probability, use the Law of Total Probability: sum over all possible intermediate outcomes, weighting each branch by its own probability.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q44
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Restrictions — No Two Same-Type Adjacent (Gap Method)
+
+Seven distinct books — 3 math, 2 science, and 2 history — are to be arranged on a shelf. How many arrangements are possible if no two math books are adjacent to each other?
+
+- A) 720
+- B) 1,080
+- C) 1,440
+- D) 2,160
+- E) 5,040
+
+**answer:** C
+**hint_nudge:** Instead of computing the complement (total minus "at least two math adjacent"), place the non-math books first and find the open gaps.
+**hint_strategy:** Gap method: arrange the 4 non-math books first, creating gaps. Then choose gaps for the math books and arrange them there.
+**hint_setup:** Non-math books: 4. Arrange them: 4!. Gaps created: 5 (before, between, and after the 4 books). Choose 3 of 5 gaps: C(5, 3). Arrange the 3 math books in those gaps: 3!.
+**fastest_path:** 4! × C(5, 3) × 3! = 24 × 10 × 6 = 1,440.
+**explanation:** Place the 4 non-math books (2 science + 2 history) in a row: 4! = 24 arrangements. This creates 5 slots (before book 1, between books 1-2, between 2-3, between 3-4, after book 4). Place 3 math books one-per-slot so no two math books are adjacent: choose 3 of 5 slots = C(5, 3) = 10, then arrange the 3 distinct math books in those slots = 3! = 6. Total: 24 × 10 × 6 = 1,440.
+**mistake_a:** Computed 4! × 3! = 144, then multiplied by 5 instead of C(5,3)=10, or made an error = 720.
+**mistake_b:** Computed 4! × C(5, 3) = 240 and used 4.5 as a multiplier somehow; or 4! × C(5,3) × 3 = 1,080.
+**mistake_d:** Double-counted by multiplying by an extra factor.
+**mistake_e:** Computed 7! = 5,040 — no restrictions applied.
+**common_trap:** Forgetting to multiply by 3! (the math books themselves are distinct and can be arranged within the chosen gaps in 3! = 6 ways).
+**takeaway:** "No two of type X adjacent": (1) arrange the other objects (n − k)!, (2) count gaps (n − k + 1), (3) choose k gaps C(n−k+1, k), (4) arrange X's in those gaps k!. Multiply all four.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Probability — Ordered Draws, Symmetry
+
+A box contains 6 cards labeled 1, 2, 3, 4, 5, and 6. Three cards are drawn one at a time without replacement. What is the probability that the three cards are drawn in strictly increasing numerical order?
+
+- A) 1/6
+- B) 1/12
+- C) 1/20
+- D) 1/24
+- E) 1/120
+
+**answer:** A
+**hint_nudge:** Focus on any 3 cards you might draw. Given those 3 specific values, how many orderings of them are possible, and how many are strictly increasing?
+**hint_strategy:** By symmetry, every set of 3 cards is equally likely to appear in any of its 3! = 6 possible orderings. Exactly one of those 6 orderings is strictly increasing.
+**hint_setup:** P(strictly increasing | any 3 cards drawn) = 1/3! = 1/6. This probability is the same regardless of which 3 cards are chosen.
+**fastest_path:** Any 3 distinct cards have 3! = 6 equally likely orderings; exactly 1 is increasing → P = 1/6.
+**explanation:** Regardless of which 3 cards are drawn (say, values a < b < c), those 3 cards can be drawn in any of 3! = 6 equally likely orderings (since all arrangements of a given 3-card set are equally likely without replacement). Exactly one ordering — a, b, c — is strictly increasing. By symmetry, P(strictly increasing) = 1/6, independent of the specific 3 cards selected. No combinatorics over the 6 cards is needed.
+**mistake_b:** Computed 1/(2 × 3!) = 1/12 — incorrectly accounted for pair orderings or introduced an extra factor.
+**mistake_c:** Computed 1/C(6,3) = 1/20 — confused the number of 3-card subsets with the number of orderings of one subset.
+**mistake_d:** Computed 1/4! = 1/24 — used the wrong factorial.
+**mistake_e:** Computed 1/5! = 1/120 — confused with "all 6 cards in increasing order" (which is 1/6! = 1/720).
+**common_trap:** Overcomplicating with C(6,3) in the denominator. The symmetry insight is that within any drawn 3-card set, exactly 1 of 6 orderings is increasing — and that fraction does not depend on which subset is drawn.
+**takeaway:** "k items drawn in increasing order" → by symmetry, P = 1/k!. The probability does not depend on the total pool size; it only depends on how many items are drawn.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Probability — Derangements, Exactly k Fixed Points
+
+Four letters are randomly placed into four addressed envelopes — one letter per envelope. What is the probability that exactly 2 letters end up in their correct envelopes?
+
+- A) 1/8
+- B) 1/6
+- C) 1/4
+- D) 1/3
+- E) 3/8
+
+**answer:** C
+**hint_nudge:** Choose which 2 letters are correctly placed. The remaining 2 must both be wrong — how many ways can that happen?
+**hint_strategy:** Count favorable arrangements: (ways to choose which 2 are correct) × (derangements of the remaining 2). Total arrangements = 4!.
+**hint_setup:** C(4, 2) = 6 ways to choose the correctly placed pair. With 2 letters left, both must be in each other's wrong envelope — exactly 1 way. Favorable = 6 × 1 = 6. P = 6/24.
+**fastest_path:** C(4, 2) × D(2) / 4! = 6 × 1 / 24 = 1/4.
+**explanation:** Total arrangements: 4! = 24. To get exactly 2 correct placements: (1) Choose which 2 letters are correctly placed: C(4, 2) = 6. (2) The remaining 2 letters must both land in wrong envelopes — a derangement of 2 items. With 2 items (say letters X and Y for envelopes X and Y), the only "wrong" arrangement is X in Y's envelope and Y in X's envelope: D(2) = 1. Favorable outcomes: 6 × 1 = 6. P = 6/24 = 1/4.
+**mistake_a:** Computed C(4,2)/4! = 6/24 but then divided by 2 again, yielding 1/8.
+**mistake_b:** Computed 1/6 — used 1/4! somehow incorrectly.
+**mistake_d:** Computed 2/6 = 1/3 — forgot that D(2) = 1 and double-counted.
+**mistake_e:** Computed C(4,2)/4 = 3/8 — wrong denominator.
+**common_trap:** Forgetting that when exactly 2 specific letters are correct, the remaining 2 must both be wrong — which has only 1 arrangement (they swap), not 2. Students sometimes use 2! = 2 for D(2), which is wrong.
+**takeaway:** D(2) = 1 (two items must swap). D(3) = 2. D(n) follows the recurrence D(n) = (n−1)[D(n−1) + D(n−2)]. For "exactly k correct," use C(n, k) × D(n−k) / n!.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
