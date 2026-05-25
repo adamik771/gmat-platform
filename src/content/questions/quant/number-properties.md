@@ -201,7 +201,7 @@ If n is a positive integer and n² is divisible by 72, what is the smallest poss
 **answer:** B
 **fastest_path:** 72 = 2³ · 3². Square exponents are even, so n² needs ≥ 2⁴ · 3². Halve: n needs 2² · 3 = 12.
 **explanation:** 72 = 2³ × 3². For n² to be divisible by 72, exponents in n² must each be ≥ those in 72. Since exponents in n² are even, the exponent of 2 must be ≥ 4 (next even ≥ 3); exponent of 3 must be ≥ 2. So n must contain at least 2² × 3 = 12. Verify: 12² = 144 = 72 × 2 ✓.
-**mistake_a:** Took √72 ≈ 8.5 and rounded to 6 — but 6² = 36 isn't divisible by 72.
+**mistake_a:** Applied floor instead of ceiling when halving the odd exponent of 2: took ⌊3/2⌋ = 1 instead of ⌈3/2⌉ = 2, giving n = 2¹ × 3¹ = 6. But 6² = 36 is not divisible by 72.
 **mistake_c:** Overcorrected to 24 (added an extra factor of 2).
 **mistake_d:** Took 36 = 2² · 3² — over-rounded the 3 exponent.
 **mistake_e:** Took n = 72 itself — true, but not smallest.
@@ -559,25 +559,25 @@ If n is a positive integer such that n! ends in exactly seven zeros, what is the
 ## Q22
 **difficulty:** Hard
 **type:** Problem Solving
-**topic:** Sums of Two Squares
+**topic:** Factors and Divisibility
 
-Positive integers p and q satisfy p² + q² = 193 with p > q. What is the value of p − q?
+How many positive integers n satisfy BOTH conditions: n is a factor of 60, and n + 2 is also a factor of 60?
 
-- A) 1
-- B) 3
+- A) 3
+- B) 4
 - C) 5
-- D) 7
-- E) 9
+- D) 6
+- E) 7
 
 **answer:** C
-**fastest_path:** 193 odd → one even, one odd. Try q = 7: p² = 144 → p = 12. p − q = 5.
-**explanation:** 193 is odd, so exactly one of p, q is even. Try small q: q = 1 → p² = 192 (not square); q = 3 → p² = 184 (not); q = 5 → p² = 168 (not); q = 7 → p² = 144 → p = 12 ✓. With p > q: p − q = 12 − 7 = 5.
-**mistake_a:** Took (p, q) = (13, 12) without verifying — fails 193.
-**mistake_b:** Stopped at q = 4 (p² = 177 — not square) and bubbled near miss.
-**mistake_d:** Used (13, 6) without checking — fails 193.
-**mistake_e:** Inverted q − p = −5; bubbled |q − p| = ... mis-traced to 9.
-**common_trap:** Trying random pairs without using parity (193 odd → mixed parities) to narrow the search.
-**takeaway:** For p² + q² = N: parity of N determines parity-mix. N mod 4 = 1 → one odd, one even. Test small q first.
+**fastest_path:** 60 = 2²·3·5 has 12 factors. List them: 1,2,3,4,5,6,10,12,15,20,30,60. For each, check whether (n + 2) also appears in the list. Qualifying values: 1→3✓, 2→4✓, 3→5✓, 4→6✓, 10→12✓. Count = 5.
+**explanation:** Factors of 60 in order: 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60. Check each n: 1→3✓, 2→4✓, 3→5✓, 4→6✓, 5→7✗ (7 does not divide 60), 6→8✗ (8 does not divide 60), 10→12✓, 12→14✗, 15→17✗, 20→22✗, 30→32✗, 60→62✗. Valid set: {1, 2, 3, 4, 10} → 5 values.
+**mistake_a:** Stopped after finding n ∈ {1, 2, 3} — missed that 4→6 and 10→12 also qualify. Early exit on a systematic check.
+**mistake_b:** Found {1, 2, 3, 4} but missed n = 10 → 12 ✓ — stopped scanning once small consecutive pairs ended, without checking larger factors.
+**mistake_d:** Included n = 5 as valid (5→7) — but 7 is not a factor of 60. Confusing "7 is near 60/9" with actual divisibility.
+**mistake_e:** Included both n = 5 (→7) and n = 6 (→8) — neither 7 nor 8 divides 60 (60 = 2²·3·5 has no factor of 7 or 8).
+**common_trap:** Two traps compound: (1) stopping after the small-factor cluster and missing n = 10; (2) not verifying that 7 or 8 divides 60 before counting n = 5 or n = 6 as valid.
+**takeaway:** For "both n and g(n) divide k" problems: factor k, list ALL factors in order, and check each one systematically. Verify each (n + 2) candidate against the factor list — don't rely on intuition about whether a value "looks like" a factor.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -782,7 +782,7 @@ If x and y are integers, is the product xy even?
 ## Q30
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Triplets of Prime Numbers
+**topic:** Prime Numbers and Divisibility
 
 What is the smallest positive integer n such that n, n + 2, and n + 4 are all prime?
 
