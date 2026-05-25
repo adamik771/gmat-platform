@@ -19,12 +19,16 @@ sections:
   - id: the-three-step-workflow
     type: reading
     title: "The three-step workflow — identify, filter, verify"
+    intro: |
+      Every Table Analysis statement is mechanically the same problem: identify the right data, apply the right operation, verify the claim. Students who approach each statement fresh run out of time; students who apply this three-step workflow on autopilot hit 60 seconds per statement reliably. This section installs the workflow.
     check_question_ids:
       - table-analysis-q13
 
   - id: sorting-vs-filtering
     type: reading
     title: "Sorting vs. filtering — when to use each"
+    intro: |
+      The GMAT's sortable table is a speed tool — but only if you reach for the right operation. Sorting answers questions about rank, order, and extremes; filtering answers questions about subsets and conditions. Choosing the wrong one costs 30+ seconds and generates the wrong comparison set. This section makes the decision automatic.
     check_question_ids:
       - table-analysis-q22
       - table-analysis-q23
@@ -32,6 +36,8 @@ sections:
   - id: statement-patterns
     type: reading
     title: "The seven most common Yes/No statement patterns"
+    intro: |
+      Ninety percent of Table Analysis statements belong to seven patterns. Recognizing the pattern within five seconds of reading tells you exactly which operation to run — filter, sort, compare row-by-row, or check for existence. Study this section as a recognition library: see a pattern, know the move.
     check_question_ids:
       - table-analysis-q1
       - table-analysis-q2
@@ -40,6 +46,8 @@ sections:
   - id: averages-and-medians
     type: reading
     title: "Averages, medians, and aggregated metrics"
+    intro: |
+      Average and median statements are the most calculation-heavy in Table Analysis, and the ones where students lose the most time. Three techniques collapse that calculation significantly. The sum comparison shortcut alone — comparing sums instead of dividing when category sizes are equal — eliminates a reflexive division step you do not need to perform.
     check_question_ids:
       - table-analysis-q14
       - table-analysis-q15
@@ -47,6 +55,8 @@ sections:
   - id: cross-category-comparisons
     type: reading
     title: "Cross-category comparisons — subsetting and ranking"
+    intro: |
+      Multi-category comparisons require computing and holding several values simultaneously — exactly the condition where working memory breaks and errors pile up. A two-pass discipline keeps those computations organized. The only students who lose points on these statements are the ones who try to hold three category averages in memory at once instead of writing each one down.
     check_question_ids:
       - table-analysis-q17
       - table-analysis-q26
@@ -54,6 +64,8 @@ sections:
   - id: derived-metrics-and-traps
     type: reading
     title: "Derived metrics and common traps"
+    intro: |
+      Derived metrics don't exist in the table until you create them — a ratio, a percent change, a per-unit figure computed row by row. That extra computation step is where errors compound. The seven traps in this section are not obscure edge cases; they are exactly where medium-difficulty Table Analysis separates 685 scorers from 605 scorers.
     check_question_ids:
       - table-analysis-q7
       - table-analysis-q19
@@ -229,6 +241,16 @@ Some statements require both. "The highest-salaried Finance employee" requires f
 
 **Trap to watch.** Some statements read like sort questions but are actually filter questions. "Is there any employee over 40 who earns less than $120K?" — this is a filter (age > 40 AND salary < 120) plus existence check (is the filtered set nonempty?). Don't waste time sorting the full table.
 
+**Micro-drill.** Use the Employee Demographics table from the previous section. For each statement: first classify the required operation (sort only, filter only, or filter then sort), then answer Yes or No.
+
+1. "The employee with the most years of experience works in Operations." → ___
+2. "The highest-salaried employee in Finance earns more than $130K." → ___
+3. "There is at least one Strategy employee under the age of 30." → ___
+
+Answers: (1) **Sort** by Years descending — D has 12 years and works in Operations. **Yes.** (2) **Filter then sort** — filter to Finance (B, E, H), find max salary: B = $140K. 140 > 130. **Yes.** (3) **Filter only** (existence check) — filter to Strategy (A, C, G), scan ages: C is 28. **Yes.**
+
+If (1) felt like a filter question, re-read the signal: "most years" is a ranking question — sort first. If you filtered Finance for (2) but forgot to check whether there could be higher salaries outside Finance, re-read the statement: "the highest-salaried *in Finance*" explicitly restricts the subset. If (3) was slow, existence checks need only one confirming example — stop scanning the moment you find it.
+
 ## @statement-patterns
 
 Seven statement patterns cover roughly 90% of what you'll see on Table Analysis. Memorize these and you'll recognize the move to make within 5 seconds of reading any statement.
@@ -381,6 +403,8 @@ Filter on two conditions (Finance AND over 30). Then check all of them against t
 
 **Trap to watch.** "Overlap" mistakes — filtering on the wrong combination. "Finance AND over 30" is different from "Finance OR over 30." Read the statement carefully: "and" means both conditions must hold; "or" means either (or both). Universal quantifier ("all," "every") combined with filters usually means you're checking whether the filtered set satisfies a condition uniformly.
 
+> **Self-explanation prompt.** In the Operations example above, why did it matter to write down each department's average before comparing — rather than computing all three and comparing from memory? If you can say "because holding multiple intermediate values in working memory while running new computations is exactly the condition where transposition errors and category-confusion happen — and writing converts a memory problem into a reading problem," you understand why the two-pass discipline is not about the arithmetic. It is about preventing the cognitive load spike at the comparison step.
+
 ## @derived-metrics-and-traps
 
 Some statements require computing a *new* metric from the table columns — a ratio, a percentage, a per-unit value. These are the most arithmetic-heavy Table Analysis questions, and where most errors happen.
@@ -457,4 +481,12 @@ Table Analysis is a mechanical workflow problem. Once you internalize the three-
 
 **The habit that separates 685 scorers from 605 scorers:** writing down intermediate computations. Trying to hold three category-averages in your head while comparing them is how students lose points on medium-difficulty Table Analysis. Write every intermediate number down.
 
-Drill the 35 questions in this chapter across the three problem sets. The first few will feel slow; by the tenth, the workflow should be automatic.
+**What to do next.**
+
+1. **Easy set, no time limit.** Seven questions covering the three-step workflow, sorting, and filtering. Goal: zero workflow errors — apply identify → filter/sort → verify on every question before answering. If you miss, identify whether the failure was the wrong operation (sort vs. filter) or the wrong computation. They require different fixes.
+
+2. **Medium set, 3-minute target per question.** Twenty questions covering all seven statement patterns and derived metrics. After each incorrect answer, name the pattern you were in and the move you should have taken. Write it in one sentence. Reviewing your pattern-identification log after five questions is more valuable than immediately attempting the next one.
+
+3. **Hard set, untimed first pass.** Eight questions with multi-step derivations and complex filter conditions. On the first pass, write every intermediate value on scratch paper — no exceptions. On the second pass, time yourself and target under 3:30. The gap between the two pass times is the speed gain you have not yet earned from deliberate practice.
+
+Any Table Analysis error you make on a practice test or mock: trace it to one of three root causes — wrong operation chosen (sort vs. filter), wrong rows included in the filter, or arithmetic error on the computation. These three failure modes have distinct fixes, and cataloguing them tells you which one needs more drill time.
