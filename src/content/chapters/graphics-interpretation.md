@@ -19,6 +19,8 @@ sections:
   - id: reading-charts-accurately
     type: reading
     title: "Reading charts accurately — axes, scale, and estimation"
+    intro: |
+      Misreading a chart is more expensive than misreading a formula — the error compounds through every calculation that follows, and you cannot catch it until after you have submitted the wrong answer. A five-second axis audit before touching any arithmetic eliminates the single most common source of wrong answers in this question type.
     check_question_ids:
       - graphics-interpretation-q11
       - graphics-interpretation-q13
@@ -26,6 +28,8 @@ sections:
   - id: line-graphs-and-trends
     type: reading
     title: "Line graphs — trends, peaks, and rates of change"
+    intro: |
+      Line graphs test slope reasoning, not just data retrieval. Students who only look up point values miss rate-of-change questions entirely. This section gives you the four question types, the visual shortcut for comparing rates, and the absolute-vs-rate distinction that accounts for a majority of line-graph errors.
     check_question_ids:
       - graphics-interpretation-q24
       - graphics-interpretation-q2
@@ -33,6 +37,8 @@ sections:
   - id: bar-charts-and-comparisons
     type: reading
     title: "Bar charts — absolute vs. relative comparisons"
+    intro: |
+      The "biggest vs. fastest-growing" trap appears in the majority of medium and hard bar-chart questions. Two categories can produce opposite answers depending on whether the question asks for absolute change or percentage change — and the test always plants the wrong answer for whichever comparison you default to. This section makes the distinction automatic before that mistake costs you points.
     check_question_ids:
       - graphics-interpretation-q3
       - graphics-interpretation-q4
@@ -40,6 +46,8 @@ sections:
   - id: pie-charts-and-stacked-bars
     type: reading
     title: "Pie charts and stacked bars — proportions in context"
+    intro: |
+      Pie charts and stacked bars both represent proportions, but they obey different reading rules. Treating them as the same chart type causes two entirely separate mistake classes. This section gives each its own discipline — and the stacked-bar segment-height trap is the single most exploitable error across all DI chart types.
     check_question_ids:
       - graphics-interpretation-q7
       - graphics-interpretation-q8
@@ -48,6 +56,8 @@ sections:
   - id: scatter-plots-and-correlation
     type: reading
     title: "Scatter plots — correlation, outliers, and trend lines"
+    intro: |
+      Scatter plots are the only GI chart type that tests reasoning, not just reading. The correct answer to a causation question is almost always "consistent with but does not prove" — and the test exploits students who treat observed correlation as established cause. Get the reasoning frame right first; the chart reading follows naturally.
     check_question_ids:
       - graphics-interpretation-q5
       - graphics-interpretation-q15
@@ -55,6 +65,8 @@ sections:
   - id: computation-shortcuts
     type: reading
     title: "The five computation shortcuts that accelerate every question"
+    intro: |
+      GI arithmetic is almost always simple — one percent-change, one ratio, one average. The question is whether you reach for the right formula immediately or spend 30 seconds doing multi-step arithmetic you didn't need. These five shortcuts compress the computation phase to 15–20 seconds, leaving your budget for the chart read where it belongs.
     check_question_ids: []
 
   - id: summary
@@ -146,6 +158,14 @@ Always look at the y-axis number at the bottom of the chart. If it's not 0, the 
 
 **The two-step read for every question.** First, identify what data points the question requires (maybe two months' revenue, or two countries' populations). Extract those values. Only then do the computation. Mixing extraction with arithmetic causes mistakes — separate the steps.
 
+**Micro-drill.** Three textual chart scenarios — apply the axis-read discipline, 60 seconds total:
+
+1. A bar chart has a y-axis starting at 50 (not 0) and ending at 150. Bar A reaches the 130 mark; Bar B reaches the 90 mark. What is the ratio of A's actual value to B's actual value? → ___
+2. A line graph is labeled "Revenue (thousands of dollars)." The peak point sits on gridline 8.5. What is the actual peak revenue? → ___
+3. A stacked bar's total height is 200. The bottom segment (Salaries) ends at 120. The middle segment (Operations) ends at 170. What is the size of the Operations segment? → ___
+
+Answers: (1) **130/90 ≈ 1.44** — read the actual y-axis values, not the visual bar heights. (2) **$8,500** — the axis unit "thousands" means multiply the gridline value by 1,000; 8.5 × 1,000 = 8,500. (3) **50** — the segment runs from 120 to 170; its height is 170 − 120 = 50, not 170. If (3) tripped you, you read the top position instead of the height — that is the signature stacked-bar trap covered in detail later.
+
 **Chart conventions to internalize:**
 
 | Chart type | Best for | Watch out for |
@@ -195,6 +215,14 @@ Line graphs plot a variable (y-axis) over a continuous index (x-axis, usually ti
 
 > **Self-explanation prompt.** Why does "rate of change" equal slope on a line graph? If you can say "because slope is defined as change in y per unit change in x — which is exactly the rate at which the variable is changing per unit time," you've internalized why visual steepness corresponds directly to the quantity the question asks about.
 
+**Micro-drill.** Use the monthly revenue data from the example (Jan=85, Feb=92, Mar=110, Apr=125, May=140, Jun=155) — 60 seconds total:
+
+1. Which month had the highest month-over-month absolute increase? → ___
+2. What was the average monthly revenue for Q1 (Jan–Mar)? → ___
+3. From Jan to Jun, what was the overall percent change? → ___
+
+Answers: (1) **March** — Jan→Feb: +7, Feb→Mar: +18, Mar→Apr: +15, Apr→May: +15, May→Jun: +15. March wins. (2) **(85+92+110)/3 = 287/3 ≈ 95.7**. (3) **(155−85)/85 ≈ 82%**. If you said February for (1) without computing, you eyeballed — the correct habit is to calculate each month-to-month gap before declaring a winner. Visual steepness can fool you when the x-axis intervals are unequal.
+
 ## @bar-charts-and-comparisons
 
 Bar charts compare values across discrete categories. The single most important distinction on bar-chart questions: **absolute vs. relative comparisons.**
@@ -236,6 +264,8 @@ Always divide by the *starting* value. Dividing by the new value (or by their su
 **The "above the average" pattern.** Compute the average of all bars. Then count how many bars are above that average. Often the answer is a count (2 out of 5, 3 out of 7) rather than a percentage.
 
 > **Recall check.** Without looking, state the percentage-change formula. Now apply it: if value goes from 80 to 120, what's the percentage change? (Answer: (120-80)/80 = 50%.) Now apply it the wrong way: would dividing by 120 give 33.3%? Yes — but that's the answer to "120 is 33% more than 80" framed wrong. Knowing to always divide by the *starting* value prevents 20% of bar-chart errors.
+
+> **Self-explanation prompt.** Why can the country with the largest absolute increase also have one of the smallest percentage increases? If you can say "because a large country starting from a massive base can add a huge number of people while barely moving its percentage — while a small country starting from a tiny base doubles from a trivially small absolute change," the absolute/relative distinction is locked in. These are measuring different things about the same data: one measures size, the other measures speed.
 
 ## @pie-charts-and-stacked-bars
 
@@ -286,6 +316,8 @@ A stacked bar shows a total value as a **stack of segments**, where each segment
 
 **Trap to watch.** On stacked bars, "the bar for Department X grew 50% from 2020 to 2024" refers to the *total* bar height, not any one segment. A department's total could grow while one segment (e.g., salaries) shrinks. Always clarify: is the question about total or segment?
 
+> **Self-explanation prompt.** Why is reading the segment's *top position* on the y-axis wrong on a stacked bar? If you can say "because the segment does not start at zero — it sits on top of whatever is below it, so its value is only the space it occupies, from its bottom edge to its top edge," the segment-height trap is gone permanently. On every stacked bar: segment value = top y-coordinate minus bottom y-coordinate, never the top y-coordinate alone.
+
 ## @scatter-plots-and-correlation
 
 Scatter plots show individual data points as dots in a 2D grid. Each dot is a case (a person, a country, a company); the x-coordinate and y-coordinate are two measured attributes.
@@ -317,6 +349,15 @@ Scatter plots show individual data points as dots in a 2D grid. Each dot is a ca
 **Trend-line questions.** Some scatter plots include a drawn trend line (or best-fit line). Questions may ask the slope of this line, or which data point lies farthest *above* vs *below* the line. Read carefully.
 
 **The "clusters" reading.** Sometimes a scatter plot has two or more clusters — groups of points that hang together. This usually indicates two subpopulations (maybe male vs female, treatment vs control). Questions may ask about each cluster's behavior.
+
+**Micro-drill.** Classify the correlation direction and strength from each description — 30 seconds total:
+
+1. Points cluster tightly along a steep upward line. → ___
+2. Points are scattered randomly with no visible pattern across the full plot. → ___
+3. Points show a loose downward trend with considerable spread around it. → ___
+4. Points form two separate dense clusters, each internally random. → ___
+
+Answers: (1) **Strong positive** — tight cluster, upward slope. (2) **No correlation** — no trend. (3) **Weak negative** — downward direction but loose. (4) **No overall correlation** — two clusters with no directional relationship between them. "Strong" means the points hug the imaginary trend line; "weak" means wide scatter around it. If you matched all four in under 30 seconds, your pattern-recognition is fast enough for test conditions.
 
 > **Self-explanation prompt.** Why is correlation not proof of causation? If you can say "because both correlated variables might be driven by a third variable, or the causation might run in the opposite direction, or the correlation might be coincidence," you've internalized why scatter plots show associations but not causal structure. This matters both for scatter-plot questions and for every Critical Reasoning causation question.
 
@@ -367,6 +408,16 @@ Pick total = 100. Urban = 45, Suburban = 30, Rural = 25. Non-rural = 75. Urban a
 
 **The "don't compute what you don't need" principle.** If the question asks for a ratio, you don't need the absolute values. If it asks for a rank ("which country has the most growth?"), you don't need exact growth amounts — just relative magnitudes. Always look at the question first and figure out the minimum arithmetic required.
 
+**Micro-drill.** Five mental-math computations — target 10 seconds each:
+
+1. Revenue: 75 → 120. Percent change? → ___
+2. Revenue: 200 → 170. Percent change? → ___
+3. Evenly-spaced values: 40, 80, 120, 160. Average? → ___
+4. Total = 6,000. One category is 35% of the whole. Category amount? → ___
+5. Urban = 40%, Rural = 25%, total = 100 people. Ratio of Urban to Rural? → ___
+
+Answers: (1) **(120−75)/75 = 45/75 = 60%**. (2) **(170−200)/200 = −30/200 = −15%**. (3) **100** — evenly spaced: use (first + last)/2 = (40+160)/2. (4) **2,100** — 6,000 × 0.35 = 2,100; break it: 6,000 × 0.30 = 1,800, plus 6,000 × 0.05 = 300. (5) **8:5** — 40:25, divide both by 5. If (3) took longer than 5 seconds, you summed all four instead of using the evenly-spaced shortcut — that shortcut alone saves 10+ seconds per average question on GI.
+
 > **Recall check.** Without peeking, state the percent-change formula. Now, mentally: revenue went from 150 to 210. What's the percent change? (Answer: (210-150)/150 = 60/150 = 40%.) Now: revenue went from 210 to 150. What's the percent change? (Answer: (150-210)/210 = -60/210 ≈ -28.6%.) Note how the two directions give different percent-changes even though the raw change is the same ±60 — because the base differs. This asymmetry is a frequent trap.
 
 ## @summary
@@ -407,3 +458,13 @@ Graphics Interpretation is two skills: reading values accurately and doing a tin
 The majority of time on these questions should be spent *reading*, not computing. If you're computing for more than 30 seconds, you've probably misread something — step back, re-read the axes, and restart.
 
 **The one big discipline that separates 685 scorers from 605 scorers:** take the extra 10 seconds at the start to verify the axes and scale. Almost every wrong answer in this topic comes from misreading the chart, not from bad arithmetic.
+
+**What to do next.**
+
+1. **Easy set, no time limit.** Nine questions covering the six chart types. Goal: zero misreads — verify axes and origin on every question before computing. If you get a question wrong, identify whether the failure was a chart misread or an arithmetic error. They require different fixes: misreads go back to the three pre-computation checks; arithmetic errors go to the five computation shortcuts.
+
+2. **Medium set, 90-second target per question.** Apply the pre-computation audit under real time pressure. Log how long each question took. If you are consistently over 90 seconds, break down where the time went: usually the extraction phase (you hadn't memorized the chart type's reading rules) or the computation phase (you didn't use the right shortcut). Each error, write one sentence.
+
+3. **Hard set, untimed first pass.** Hard GI combines complexity: reading a segment value from a stacked bar to compute a percentage change, or comparing two pie charts with different totals. On the first pass, write each step explicitly — chart type, data extracted, formula applied, answer computed. On the second pass, time yourself and target under 2 minutes. The gap between your two pass times is the speed gain repetition will give you.
+
+Any GI error you make on a practice test or mock: log the root cause — axis misread, scale misread, wrong formula, or arithmetic slip. These four failure modes have specific fixes, and cataloguing them tells you which one needs more drill time.
