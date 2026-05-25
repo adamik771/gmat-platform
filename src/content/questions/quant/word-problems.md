@@ -8,23 +8,23 @@ topic: Word Problems
 **type:** Problem Solving
 **topic:** Rate/Time/Distance
 
-A car travels at 60 miles per hour for 2.5 hours. How many miles does it travel?
+Two friends start at opposite ends of an 18-mile trail and walk toward each other simultaneously. Maria walks at 4 mph and James walks at 2 mph. How many hours after they begin will they meet?
 
-- A) 120
-- B) 130
-- C) 140
-- D) 150
-- E) 160
+- A) 2
+- B) 3
+- C) 4.5
+- D) 6
+- E) 9
 
-**answer:** D
-**fastest_path:** D = R·T = 60 × 2.5 = 150.
-**explanation:** D = R × T = 60 × 2.5 = 150 mi.
-**mistake_a:** Computed 60 × 2 = 120, ignored the 0.5.
-**mistake_b:** Slip → 130.
-**mistake_c:** Slip → 140.
-**mistake_e:** Slip → 160.
-**common_trap:** Multiplication slip on 60 × 2.5 — most common is 60 × 2 = 120.
-**takeaway:** D = R × T. For 0.5 hr, just add R/2 to the round-hour distance: 60·2 + 30 = 150.
+**answer:** B
+**fastest_path:** Approaching → add speeds: 4 + 2 = 6 mph. Time = 18 ÷ 6 = 3 hr.
+**explanation:** When two people walk toward each other, they close the gap at their combined speed: 4 + 2 = 6 mph. Time = 18 ÷ 6 = 3 hr.
+**mistake_a:** Subtracted speeds instead of adding (4 − 2 = 2) — treated this like a same-direction catch-up problem.
+**mistake_c:** Used only Maria's speed: 18 ÷ 4 = 4.5 — ignored James's contribution.
+**mistake_d:** Averaged the two speeds ((4 + 2) ÷ 2 = 3), then divided: 18 ÷ 3 = 6.
+**mistake_e:** Used only James's speed: 18 ÷ 2 = 9 — ignored Maria's contribution.
+**common_trap:** Confusing approaching (add speeds) with same-direction catch-up (subtract speeds). Both walkers close the gap simultaneously, so speeds add.
+**takeaway:** Approaching each other → closing rate = sum of speeds. Same-direction catch-up → closing rate = difference of speeds.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -60,23 +60,23 @@ A merchant buys a product for $40 and sells it for $52. What is the merchant's p
 **type:** Problem Solving
 **topic:** Age Problems
 
-Maria is currently 3 times as old as her daughter. If her daughter is 8 years old, how old will Maria be in 6 years?
+A father's age is currently three times his daughter's age. The sum of their current ages is 52 years. How old will the father be in 5 years?
 
-- A) 24
-- B) 27
-- C) 30
-- D) 32
-- E) 36
+- A) 39
+- B) 41
+- C) 44
+- D) 47
+- E) 52
 
 **answer:** C
-**fastest_path:** Maria now = 24. +6 yrs → 30.
-**explanation:** Maria's current age = 3 × 8 = 24. In 6 years: 24 + 6 = 30.
-**mistake_a:** Bubbled current age (24).
-**mistake_b:** Slip → 27.
-**mistake_d:** Slip → 32.
-**mistake_e:** Slip → 36.
-**common_trap:** Bubbling the current age (24) instead of the age in 6 years.
-**takeaway:** Read carefully: "currently" vs "in N years." Answer the future age, not the current age.
+**fastest_path:** 3d + d = 52 → d = 13, father = 39. Future: 39 + 5 = 44.
+**explanation:** Let daughter's age = d. Father = 3d. Sum: 4d = 52 → d = 13, father = 39. In 5 years: 39 + 5 = 44.
+**mistake_a:** Stopped at the father's current age (39) — solved the system correctly but forgot to add the 5 years.
+**mistake_b:** Arithmetic slip in the final step (added 2 instead of 5).
+**mistake_d:** Arithmetic slip — over-counted the time shift.
+**mistake_e:** Answered with the sum of current ages (52) — misidentified what the question was asking.
+**common_trap:** Stopping at the father's current age (39). The system gives the current age; the question asks for a future age. Always apply the time shift as the final step.
+**takeaway:** Two-step age problems: (1) set up equations for current ages, (2) re-read whether the question asks for now or later, and add the offset only at the end.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -97,11 +97,11 @@ A printer can print 240 pages in 8 minutes. At this rate, how many pages can it 
 **answer:** D
 **fastest_path:** Rate = 30 ppm. 30 × 15 = 450.
 **explanation:** Rate = 240/8 = 30 pages/min. In 15 min: 30 × 15 = 450.
-**mistake_a:** Slip → 360 (used wrong rate or time).
-**mistake_b:** Slip → 400.
-**mistake_c:** Slip → 420.
-**mistake_e:** Slip → 480.
-**common_trap:** Computing rate then mis-multiplying — typical: 30 × 12 = 360 (wrong time) or 28 × 15 = 420 (wrong rate).
+**mistake_a:** Divided 240 by 10 instead of 8 when computing rate (perhaps picked up the 15-minute time value instead): rate = 24 ppm → 24 × 15 = 360.
+**mistake_b:** Division slip when cross-multiplying (240/8 = x/15 → 3,600 ÷ 9 = 400 instead of ÷ 8).
+**mistake_c:** Arithmetic error computing 240 ÷ 8 = 28 (instead of 30): 28 × 15 = 420.
+**mistake_e:** Doubled the original output (240 × 2 = 480) instead of building a rate — confused "more time" with "double."
+**common_trap:** Rate errors compound: a slip on 240 ÷ 8 (getting 28 or 24 instead of 30) then multiplies the wrong rate by 15.
 **takeaway:** Two-step rate problems: rate = total/time, then output = rate × new time. Verify each step.
 **related_reading:** reading-quant-05-word-problems
 
@@ -227,10 +227,10 @@ A cyclist travels from Town A to Town B at 15 mph and returns by the same route 
 **answer:** B
 **fastest_path:** Equal distances → harmonic mean: 2(15)(10)/(15+10) = 300/25 = 12.
 **explanation:** Equal-distance round trip → harmonic mean: 2ab/(a+b) = 2·15·10/25 = 12 mph.
-**mistake_a:** Slip → 11.
-**mistake_c:** Took arithmetic mean: (15+10)/2 = 12.5.
-**mistake_d:** Slip → 13.
-**mistake_e:** Slip → 13.5.
+**mistake_a:** Arithmetic error in the harmonic mean formula — computed 2 × 15 × 10 = 300 but divided by 27 instead of 25: ≈ 11.
+**mistake_c:** Took the arithmetic mean: (15 + 10) ÷ 2 = 12.5 — this is the most common trap.
+**mistake_d:** Started from the arithmetic mean trap (12.5) and added 0.5, guessing "slower speed pulls the average down."
+**mistake_e:** Started from the arithmetic mean trap (12.5) and added 1, reasoning the average must be "between the two speeds" but above the midpoint.
 **common_trap:** Averaging the two speeds (12.5) — equal-distance trips weight slower legs more, pulling avg below the midpoint.
 **takeaway:** Equal distance → harmonic mean. Equal time → arithmetic mean. Always check what's equal.
 **related_reading:** reading-quant-05-word-problems
@@ -256,7 +256,7 @@ Pipe A can fill a tank in 4 hours, and Pipe B can fill the same tank in 6 hours.
 **mistake_a:** Slip → 2.
 **mistake_c:** Slip → 4.
 **mistake_d:** Slip → 5.
-**mistake_e:** Forgot to subtract drain → 1/4 + 1/6 = 5/12 → T = 12/5 = 2.4, slipped to 6.
+**mistake_e:** Misidentified which pipe drains — subtracted Pipe B's rate instead of Pipe C's: 1/4 − 1/6 + 1/12 = 2/12 = 1/6 → T = 6.
 **common_trap:** Forgetting the *negative* sign on the drain rate (treats C as another fill pipe).
 **takeaway:** Drains have *negative* rates. Net = Σ fill rates − Σ drain rates.
 **related_reading:** reading-quant-05-word-problems
@@ -290,7 +290,7 @@ A grocer mixes Brand A coffee at $12 per pound with Brand B coffee at $8 per pou
 ---
 
 ## Q12
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Age Problems
 
@@ -438,7 +438,7 @@ In a class of 80 students, 45 study Spanish, 38 study French, and 12 study neith
 **mistake_a:** Slip → 9.
 **mistake_b:** Bubbled the "neither" count (12).
 **mistake_d:** Slip → 18.
-**mistake_e:** Used 80 instead of 68 → 45 + 38 − 80 = 3 (slipped to 23).
+**mistake_e:** Computed Total − |Spanish| − |neither| = 80 − 45 − 12 = 23, mistaking this remainder for the "both" count.
 **common_trap:** Using the total (80) instead of "at least one" (68) in the inclusion-exclusion formula.
 **takeaway:** Total = (Group 1) + (Group 2) − (Both) + (Neither). Subtract "neither" before applying inclusion-exclusion.
 **related_reading:** reading-quant-05-word-problems
@@ -573,7 +573,7 @@ A factory produces gadgets. Each gadget costs $10 in materials; fixed operating 
 **explanation:** For n ≤ 50: profit = 15n − 300, increasing → max at n = 50: 450. For n > 50: each extra unit earns $8 but costs $10 → marginal profit = −2 → profit decreases. So max overall = 450 at n = 50.
 **mistake_a:** Slip → 300.
 **mistake_b:** Slip → 390.
-**mistake_d:** Slip → 510.
+**mistake_d:** Sign flip on the clearance margin — treated the $2/unit loss on clearance units as a $2/unit gain: 50 × $15 − $300 + 30 × $2 = $510.
 **mistake_e:** Bubbled max revenue (or always-produce-max) without subtracting cost.
 **common_trap:** Assuming "more production = more profit" without checking marginal revenue vs. marginal cost beyond the breakpoint.
 **takeaway:** Piecewise profit: maximize each segment separately, compare. Always check marginal change at each kink.
@@ -712,7 +712,7 @@ Three printers — A, B, and C — work together to print a document. Alone, Pri
 ---
 
 ## Q28
-**difficulty:** Hard
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Age Problem — Three People
 
