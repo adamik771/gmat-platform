@@ -1847,6 +1847,64 @@ export default function SessionClient({
           )
         })()}
 
+        {/* What to do next — renders the already-computed nextStepNote with
+            contextual action buttons keyed to the accuracy band. This closes
+            the session loop: the student always has a clear next move. */}
+        {answeredCount > 0 && (() => {
+          const chapterSlug = TOPIC_TO_CHAPTER[topic]
+          const chapterHref = chapterSlug ? `/chapters/${chapterSlug}` : null
+          const sessionHref = isMixedReview ? `/practice` : `/practice/session/${slug}`
+
+          let primaryHref: string
+          let primaryLabel: string
+          let secondaryHref: string | null = null
+          let secondaryLabel: string | null = null
+
+          if (accuracy < 60) {
+            primaryHref = chapterHref ?? "/chapters"
+            primaryLabel = "Read the chapter"
+            secondaryHref = sessionHref
+            secondaryLabel = "Try again"
+          } else if (accuracy < 78) {
+            primaryHref = sessionHref
+            primaryLabel = "Another session"
+            secondaryHref = chapterHref
+            secondaryLabel = "Read the chapter"
+          } else {
+            primaryHref = "/study-plan"
+            primaryLabel = "View study plan"
+            secondaryHref = "/practice"
+            secondaryLabel = "More practice"
+          }
+
+          return (
+            <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+                Next step
+              </p>
+              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-4">{nextStepNote}</p>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href={primaryHref}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-opacity hover:opacity-90"
+                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                >
+                  {primaryLabel}
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+                {secondaryHref && (
+                  <Link
+                    href={secondaryHref}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm border border-white/[0.1] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.2] transition-colors"
+                  >
+                    {secondaryLabel}
+                  </Link>
+                )}
+              </div>
+            </div>
+          )
+        })()}
+
         {rebuildError && (
           <p className="text-xs text-center" style={{ color: "#FF4444" }}>
             {rebuildError}
