@@ -1623,6 +1623,69 @@ export default function SessionClient({
           )
         })()}
 
+        {/* What to do next — nextStepNote is accurate but was never rendered;
+            this card turns the text into a direct link so the student has one
+            obvious move rather than navigating back to /practice to figure it
+            out. The action is keyed to the accuracy band that drove the note. */}
+        {(() => {
+          const chapterSlug = TOPIC_TO_CHAPTER[topic]
+          let actionLabel: string
+          let actionHref: string
+          if (accuracy < 60 && chapterSlug) {
+            actionLabel = `Review the ${topic} chapter`
+            actionHref = `/chapters/${chapterSlug}`
+          } else if (accuracy < 60) {
+            actionLabel = "Practice easier questions on this topic"
+            actionHref = `/practice/session/${slug}`
+          } else if (accuracy < 78) {
+            actionLabel = "Do another focused session on this topic"
+            actionHref = `/practice/session/${slug}`
+          } else {
+            actionLabel = "See your study plan — invest time in a weaker area"
+            actionHref = "/study-plan"
+          }
+          return (
+            <Link
+              href={actionHref}
+              className="group flex items-center justify-between gap-4 p-5 rounded-xl border transition-colors"
+              style={{
+                borderColor: "rgba(255,255,255,0.07)",
+                backgroundColor: "#0D0D0D",
+              }}
+              onMouseEnter={(e) => {
+                ;(e.currentTarget as HTMLElement).style.borderColor =
+                  "rgba(201,168,76,0.3)"
+              }}
+              onMouseLeave={(e) => {
+                ;(e.currentTarget as HTMLElement).style.borderColor =
+                  "rgba(255,255,255,0.07)"
+              }}
+            >
+              <div className="flex items-start gap-3 min-w-0">
+                <div
+                  className="flex items-center justify-center w-9 h-9 rounded-lg flex-shrink-0"
+                  style={{ backgroundColor: "rgba(201,168,76,0.08)" }}
+                >
+                  <BookOpen className="w-4 h-4" style={{ color: "#C9A84C" }} />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1">
+                    What to do next
+                  </p>
+                  <p className="text-sm font-semibold text-[#F0F0F0]">{actionLabel}</p>
+                  <p className="text-xs leading-relaxed mt-0.5" style={{ color: "#888888" }}>
+                    {nextStepNote}
+                  </p>
+                </div>
+              </div>
+              <ArrowRight
+                className="w-4 h-4 flex-shrink-0 transition-transform group-hover:translate-x-0.5"
+                style={{ color: "#C9A84C" }}
+              />
+            </Link>
+          )
+        })()}
+
         {/* High-confidence misses — surfaces only when the student rated a question
             "high" and got it wrong. These are the most important mistakes in the
             session: the gap between felt certainty and actual error reveals a
