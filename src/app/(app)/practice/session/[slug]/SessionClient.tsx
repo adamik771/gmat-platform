@@ -1377,14 +1377,6 @@ export default function SessionClient({
       }
     }
 
-    // Next-step recommendation keyed to accuracy band
-    const nextStepNote =
-      accuracy < 60
-        ? "Accuracy below 60% signals a concept gap. Revisiting the chapter before more practice compounds better."
-        : accuracy < 78
-        ? "Accuracy is building. One more focused session on this topic before moving on."
-        : "This topic is solid. Investing time in a weaker area is the highest-leverage move now."
-
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1844,6 +1836,134 @@ export default function SessionClient({
                 </div>
               )}
             </div>
+          )
+        })()}
+
+        {/* What to do next — data-driven action card. Three variants keyed to
+            accuracy band. Skipped for custom/mixed sessions where a single
+            topic destination makes no sense. */}
+        {answeredCount > 0 && slug !== "custom" && (() => {
+          const chapterSlug = TOPIC_TO_CHAPTER[topic]
+
+          if (accuracy < 60) {
+            return (
+              <Link
+                href={chapterSlug ? `/chapters/${chapterSlug}` : "/practice"}
+                className="group flex items-center justify-between gap-4 p-5 rounded-xl border transition-colors"
+                style={{
+                  borderColor: "rgba(255,153,102,0.22)",
+                  backgroundColor: "rgba(255,100,50,0.03)",
+                }}
+              >
+                <div className="flex items-start gap-3 min-w-0">
+                  <div
+                    className="flex items-center justify-center w-9 h-9 rounded-lg flex-shrink-0"
+                    style={{ backgroundColor: "rgba(255,153,102,0.1)" }}
+                  >
+                    <BookOpen className="w-4 h-4" style={{ color: "#FF9966" }} />
+                  </div>
+                  <div className="min-w-0">
+                    <p
+                      className="text-[10px] uppercase tracking-widest mb-1"
+                      style={{ color: "#FF9966" }}
+                    >
+                      Concept gap — next step
+                    </p>
+                    <p className="text-sm font-semibold text-[#F0F0F0]">
+                      {chapterSlug ? `Revisit the ${topic} chapter` : "More foundational work needed"}
+                    </p>
+                    <p className="text-xs text-[#888888] mt-0.5 leading-relaxed">
+                      Below 60% accuracy signals a concept gap. More practice before the concept is
+                      locked in compounds the confusion — read first, then drill.
+                    </p>
+                  </div>
+                </div>
+                <ArrowRight
+                  className="w-4 h-4 flex-shrink-0 transition-transform group-hover:translate-x-0.5"
+                  style={{ color: "#FF9966" }}
+                />
+              </Link>
+            )
+          }
+
+          if (accuracy < 78) {
+            return (
+              <Link
+                href={`/practice/session/${slug}`}
+                className="group flex items-center justify-between gap-4 p-5 rounded-xl border transition-colors"
+                style={{
+                  borderColor: "rgba(201,168,76,0.18)",
+                  backgroundColor: "rgba(201,168,76,0.03)",
+                }}
+              >
+                <div className="flex items-start gap-3 min-w-0">
+                  <div
+                    className="flex items-center justify-center w-9 h-9 rounded-lg flex-shrink-0"
+                    style={{ backgroundColor: "rgba(201,168,76,0.08)" }}
+                  >
+                    <ArrowRight className="w-4 h-4" style={{ color: "#C9A84C" }} />
+                  </div>
+                  <div className="min-w-0">
+                    <p
+                      className="text-[10px] uppercase tracking-widest mb-1"
+                      style={{ color: "#C9A84C" }}
+                    >
+                      Keep building
+                    </p>
+                    <p className="text-sm font-semibold text-[#F0F0F0]">
+                      One more {topic} session
+                    </p>
+                    <p className="text-xs text-[#888888] mt-0.5 leading-relaxed">
+                      Accuracy is building. One more focused session before moving on locks in the
+                      pattern — not just tests it.
+                    </p>
+                  </div>
+                </div>
+                <ArrowRight
+                  className="w-4 h-4 flex-shrink-0 transition-transform group-hover:translate-x-0.5"
+                  style={{ color: "#C9A84C" }}
+                />
+              </Link>
+            )
+          }
+
+          return (
+            <Link
+              href="/study-plan"
+              className="group flex items-center justify-between gap-4 p-5 rounded-xl border transition-colors"
+              style={{
+                borderColor: "rgba(62,207,142,0.18)",
+                backgroundColor: "rgba(62,207,142,0.03)",
+              }}
+            >
+              <div className="flex items-start gap-3 min-w-0">
+                <div
+                  className="flex items-center justify-center w-9 h-9 rounded-lg flex-shrink-0"
+                  style={{ backgroundColor: "rgba(62,207,142,0.08)" }}
+                >
+                  <ArrowRight className="w-4 h-4" style={{ color: "#3ECF8E" }} />
+                </div>
+                <div className="min-w-0">
+                  <p
+                    className="text-[10px] uppercase tracking-widest mb-1"
+                    style={{ color: "#3ECF8E" }}
+                  >
+                    Topic solid
+                  </p>
+                  <p className="text-sm font-semibold text-[#F0F0F0]">
+                    {topic} is locked in — move on
+                  </p>
+                  <p className="text-xs text-[#888888] mt-0.5 leading-relaxed">
+                    More sessions here give diminishing returns. Your study plan shows where the
+                    highest-leverage gaps are now.
+                  </p>
+                </div>
+              </div>
+              <ArrowRight
+                className="w-4 h-4 flex-shrink-0 transition-transform group-hover:translate-x-0.5"
+                style={{ color: "#3ECF8E" }}
+              />
+            </Link>
           )
         })()}
 
