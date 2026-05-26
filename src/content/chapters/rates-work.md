@@ -46,6 +46,8 @@ sections:
   - id: average-speed
     type: reading
     title: "Average speed — harmonic mean and the 50-mph trap"
+    intro: |
+      Your intuition says average speed is the mean of the two speeds. The GMAT exploits that intuition on every round-trip question. The slow leg consumes more time than the fast leg, so it pulls the true average further toward itself. This section gives you the formula that always works, the shortcut for equal distances, and the two-question test that tells you which to reach for in under five seconds.
     check_question_ids:
       - rates-work-q7
       - rates-work-q13
@@ -286,6 +288,15 @@ The harmonic mean 2(50)(75)/(50+75) = 60 would be wrong here. Distances are uneq
 
 If you're not certain the distances match, default to total/total. It is always correct; harmonic mean is only a shortcut for the equal-distance case.
 
+**Micro-drill.** Pick the right formula and compute each — 30 seconds each:
+
+1. Drive to a destination (40 miles) at 40 mph. Drive home (40 miles) at 60 mph. Average speed for the round trip?
+2. Drive 60 miles at 30 mph, then drive another 60 miles at 60 mph. Average speed?
+3. Drive 60 miles at 30 mph, then drive 90 miles at 45 mph. Average speed?
+4. Drive for 2 hours at 30 mph, then for 2 hours at 60 mph. Average speed?
+
+Answers: (1) **48 mph** — equal distances; harmonic mean: 2(40)(60)/(40+60) = 4800/100 = 48. Verify with total/total: time = 1 + 2/3 = 5/3 hr; 80/(5/3) = 48. (2) **40 mph** — equal distances; harmonic: 2(30)(60)/(30+60) = 3600/90 = 40. Verify: time = 2 + 1 = 3 hr; 120/3 = 40. (3) **37.5 mph** — unequal distances; total/total only: 150 mi ÷ (2 + 2) hr = 37.5. Using harmonic here gives 36 — wrong, because harmonic only applies when the two *distances* are equal. (4) **45 mph** — unequal distances but equal *times*; total/total: (60 + 120) mi ÷ 4 hr = 45. Here the arithmetic mean also works: (30 + 60)/2 = 45 — this is the one case where averaging the speeds is correct, because equal time weights them equally. Total/total always works regardless. If (1) or (2) gave you 50, you averaged the speeds — 50 is wrong because you spend more time at the slower speed, which pulls the true average below the midpoint.
+
 **Why total/total always works.** Average speed is literally "how far divided by how long" for the whole trip. Any shortcut formula is just a special case of this identity — and total/total is the case that never breaks.
 
 > **Self-explanation prompt.** Why is the harmonic mean always *less* than the arithmetic mean for two positive speeds? If you can explain "because the slow leg occupies more of the total time and drags the weighted average down," you will never pick the arithmetic-mean trap answer again.
@@ -338,6 +349,14 @@ Multiply both sides by 4r(r+10):
     r² + 10r − 2400 = 0 → (r−40)(r+60) = 0 → r = 40 mph
 
 The negative root (−60) is discarded because speed must be positive.
+
+**Micro-drill.** Apply the two-phase template to each — 90 seconds each:
+
+1. Machine A fills a vat in 8 hours. After 2 hours alone, Machine B (which alone takes 12 hours) joins. How long in total until the vat is full?
+2. Pipe A fills a tank in 6 hours. After 3 hours of filling alone, Pipe C opens and begins draining the tank at 1/9 tank per hour. Both run until the tank is full. Total time?
+3. Painter A finishes a room in 10 hours. After 4 hours alone, Painter B joins. Together they complete the remaining work in 3 more hours. How long would Painter B take alone?
+
+Answers: (1) **5.6 hours** — Phase 1: 2 × (1/8) = 1/4 done; remaining = 3/4. Combined rate: 1/8 + 1/12 = 5/24 per hour. Phase 2: (3/4) ÷ (5/24) = 18/5 = 3.6 hr. Total: 2 + 3.6 = 5.6. Sanity check: A+B together alone take 24/5 = 4.8 hr; adding 2 hours of A solo must push total above 4.8, and 5.6 > 4.8. (2) **12 hours** — Phase 1: 3 × (1/6) = 1/2 done; remaining = 1/2. Net fill rate once C opens: 1/6 − 1/9 = 1/18 per hour. Phase 2: (1/2) ÷ (1/18) = 9 hr. Total: 3 + 9 = 12. If you forgot to subtract C's drain rate, you got 6 hours — re-read "When a pipe drains instead of fills" above. (3) **B alone takes 10 hours** — Phase 2 combined rate: (3/5) ÷ 3 = 1/5 per hour. A's rate = 1/10 per hour. B's rate = 1/5 − 1/10 = 1/10 per hour. B alone = 10 hours. If you got 6 hours for B, you may have computed A's remaining contribution incorrectly — only track rates, not times across phases.
 
 > **Self-explanation prompt.** Before the check questions: why can't you solve a staggered-start problem with a single combined-work equation from the beginning? If you can say "because the combined rate only applies during the phase when both are working — during the solo phase, only one worker's rate applies — so a single equation would overcount the second worker's contribution," the two-phase template will feel like the natural approach, not a memorized trick.
 
