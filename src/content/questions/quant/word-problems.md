@@ -1591,3 +1591,474 @@ Verify: Gardener wages = $1,600; assistant wages = $1,200; difference = $400. �
 **mistake_d:** Arithmetic slip — g = 7, a = 11, total = 18.
 **common_trap:** Reporting the number of one worker type instead of the total. After finding g = 8, the question asks for total workers — a second calculation that is easy to skip.
 **takeaway:** Multi-constraint word problems: translate each constraint into an equation, solve the system for the variable, then complete the final calculation the question actually asks for (total workers = g + (g+4), not just g). Always re-read the final question before writing the answer.
+
+---
+
+## Q63
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Simple Interest
+
+Susan invests $800 at a simple annual interest rate of 5%. How much total interest does she earn after 3 years?
+
+- A) $40
+- B) $80
+- C) $120
+- D) $160
+- E) $200
+
+**answer:** C
+**fastest_path:** I = P·r·t = 800 × 0.05 × 3 = $120.
+**explanation:** Simple interest formula: I = P × r × t = 800 × 0.05 × 3 = $120. (Simple interest does not compound; the same $40 accrues each year.)
+**mistake_a:** Computed only one year's interest: 800 × 0.05 × 1 = $40.
+**mistake_b:** Computed two years' interest: 800 × 0.05 × 2 = $80.
+**mistake_d:** Misread 3 years as 4: 800 × 0.05 × 4 = $160.
+**mistake_e:** Misread 3 years as 5: 800 × 0.05 × 5 = $200.
+**common_trap:** Dropping the time factor — computing only one year's interest ($40) instead of multiplying by 3.
+**takeaway:** Simple interest = P × r × t. Multiply by *t* every time; the answer scales linearly with years.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q64
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Digit Problems
+
+A two-digit positive integer has a tens digit that is 3 more than its units digit. The sum of the two digits is 9. What is the integer?
+
+- A) 36
+- B) 54
+- C) 63
+- D) 72
+- E) 81
+
+**answer:** C
+**fastest_path:** t = u + 3 and t + u = 9 → 2u + 3 = 9 → u = 3, t = 6 → 63.
+**explanation:** Let units = u. Tens = u + 3. Sum: (u + 3) + u = 9 → 2u = 6 → u = 3, t = 6. The integer is 63. Check: 6 − 3 = 3 ✓ and 6 + 3 = 9 ✓.
+**mistake_a:** Reversed the relationship — solved for u = t + 3 instead of t = u + 3 → gets 36.
+**mistake_b:** Arithmetic slip in setting up equations.
+**mistake_d:** Set up t + u = 9 correctly but swapped digits when reading off the answer.
+**mistake_e:** Assigned t = 9, u = 0, ignoring the "3 more" constraint.
+**common_trap:** Reversing which digit is 3 more than the other (getting 36 instead of 63).
+**takeaway:** Label each digit explicitly (t = tens, u = units), translate each sentence, solve, then write the number as 10t + u.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q65
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Percent Change
+
+A store reduces the price of a jacket from $80 to $60. By what percentage was the price reduced?
+
+- A) 20%
+- B) 22%
+- C) 25%
+- D) 27%
+- E) 33%
+
+**answer:** C
+**fastest_path:** Reduction = 20. Base = 80. 20/80 = 25%.
+**explanation:** Percent reduction = (change / original) × 100 = 20/80 × 100 = 25%.
+**mistake_a:** Treated the dollar reduction ($20) as the percent directly.
+**mistake_b:** Arithmetic slip.
+**mistake_d:** Arithmetic slip.
+**mistake_e:** Used the *new* price as the base: 20/60 ≈ 33%.
+**common_trap:** Dividing the change by the *new* price (20/60 ≈ 33%) rather than the *original* price (20/80 = 25%).
+**takeaway:** Percent change = change ÷ *original*. The original is always the starting value, never the new one.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q66
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Cost Problems
+
+A student buys 4 pens at $1.50 each and 3 notebooks at $3.00 each. What is the total cost?
+
+- A) $12.00
+- B) $13.50
+- C) $15.00
+- D) $16.50
+- E) $18.00
+
+**answer:** C
+**fastest_path:** 4 × 1.50 + 3 × 3.00 = 6 + 9 = $15.
+**explanation:** Pens: 4 × 1.50 = $6.00. Notebooks: 3 × 3.00 = $9.00. Total = $15.00.
+**mistake_a:** Used $2.00 per notebook: 4 × 1.50 + 3 × 2.00 = 6 + 6 = $12.
+**mistake_b:** Arithmetic slip.
+**mistake_d:** Arithmetic slip — likely multiplied 4 × 1.50 = 7.50 (off by one) + 9 = $16.50.
+**mistake_e:** Swapped prices: 4 × 3.00 + 3 × 2.00 = 12 + 6 = $18.
+**common_trap:** Swapping the price per item between pens and notebooks.
+**takeaway:** Multi-item cost: label each item's price clearly, multiply separately, then add. Avoid mental merging.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q67
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Weighted Average
+
+Class A has 30 students with an average score of 72. Class B has 20 students with an average score of 82. What is the combined average score for all 50 students?
+
+- A) 74
+- B) 76
+- C) 77
+- D) 78
+- E) 80
+
+**answer:** B
+**fastest_path:** (30 × 72 + 20 × 82) / 50 = (2160 + 1640) / 50 = 3800 / 50 = 76.
+**explanation:** Total score = 30 × 72 + 20 × 82 = 2160 + 1640 = 3800. Combined average = 3800 / 50 = 76. Class A has more students, so the average is pulled toward 72.
+**mistake_a:** Arithmetic slip → 74.
+**mistake_c:** Took the simple arithmetic mean: (72 + 82) / 2 = 77. This ignores unequal class sizes.
+**mistake_d:** Arithmetic slip → 78.
+**mistake_e:** Weighted exclusively toward the smaller class.
+**common_trap:** Averaging 72 and 82 without accounting for class sizes, yielding 77 instead of 76.
+**takeaway:** Weighted average = (sum of all values) / (total count). Larger groups pull the average toward their mean.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q68
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Investment — Two Accounts
+
+Marcus invests a total of $2,400 in two accounts. One account earns simple interest at 4% per year, and the other earns 6% per year. If the total interest after one year is $120, how much did Marcus invest in the 4% account?
+
+- A) $600
+- B) $900
+- C) $1,200
+- D) $1,500
+- E) $1,800
+
+**answer:** C
+**fastest_path:** 0.04x + 0.06(2400 − x) = 120 → −0.02x = −24 → x = 1200.
+**explanation:** Let x = amount in 4% account. Then 2400 − x goes in the 6% account. Interest equation: 0.04x + 0.06(2400 − x) = 120 → 0.04x + 144 − 0.06x = 120 → −0.02x = −24 → x = 1200.
+**mistake_a:** Arithmetic slip → $600.
+**mistake_b:** Arithmetic slip → $900.
+**mistake_d:** Arithmetic slip → $1,500.
+**mistake_e:** Placed the larger amount in the lower-rate account but read off the wrong variable — i.e., answered the 6% account amount instead.
+**common_trap:** Setting up the equation correctly but solving for the wrong variable (answering the 6% amount rather than the 4% amount).
+**takeaway:** Define x clearly and label which account it represents. End by checking: "did I answer for the account the question asked about?"
+**hint_nudge:** Let x = amount in the 4% account. Write expressions for interest earned by each account.
+**hint_strategy:** Interest equation: 0.04x + 0.06(2400 − x) = 120. Expand and collect x terms.
+**hint_setup:** 0.04x + 144 − 0.06x = 120 → −0.02x = −24 → x = ?
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q69
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Venn Diagrams — Three Sets
+
+A survey of 100 employees found that 55 use Email, 48 use Slack, and 42 use Teams. Exactly 20 employees use exactly two of the three tools, and 15 employees use all three. How many employees use none of the three tools?
+
+- A) 0
+- B) 3
+- C) 5
+- D) 7
+- E) 10
+
+**answer:** C
+**fastest_path:** Sum of sets = 145 = |only1| + 2·20 + 3·15 → |only1| = 60. At-least-one = 60 + 20 + 15 = 95. None = 100 − 95 = 5.
+**explanation:** Let n₁, n₂, n₃ denote employees using exactly 1, 2, or 3 tools. (1) n₁ + n₂ + n₃ = total with ≥1. (2) Sum of set sizes = n₁ + 2n₂ + 3n₃: 55 + 48 + 42 = 145 = n₁ + 2(20) + 3(15) = n₁ + 85 → n₁ = 60. So at-least-one = 60 + 20 + 15 = 95. None = 100 − 95 = 5.
+**mistake_a:** Assumed everyone uses at least one tool.
+**mistake_b:** Arithmetic slip.
+**mistake_d:** Arithmetic slip.
+**mistake_e:** Used 145 − 100 − 35 = 10; subtracted incorrectly.
+**common_trap:** Forgetting that the "sum of set sizes" formula counts exact-2 members twice and all-three members three times, leading to an inflated at-least-one count.
+**takeaway:** For 3-set Venn: |A| + |B| + |C| = |only1| + 2|exactly2| + 3|all3|. Solve for |only1|, then add all exclusive groups to get "at least one."
+**hint_nudge:** Use the fact that each person using exactly two tools appears in two set counts, and each using all three appears three times in the sum.
+**hint_strategy:** 55 + 48 + 42 = 145 = |exactly 1| + 2(20) + 3(15). Solve for |exactly 1|, then count total "at least one."
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q70
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Mixture — Replacement
+
+A 50-liter tank contains a solution that is 20% salt. If 10 liters of the solution are drained out and replaced with 10 liters of pure water, what is the salt concentration of the resulting mixture?
+
+- A) 14%
+- B) 15%
+- C) 16%
+- D) 18%
+- E) 20%
+
+**answer:** C
+**fastest_path:** Salt removed = 0.20 × 10 = 2 L. Remaining salt = 10 − 2 = 8 L. New conc = 8/50 = 16%.
+**explanation:** Initial salt = 0.20 × 50 = 10 L. Draining 10 L of the 20% solution removes 0.20 × 10 = 2 L of salt. Salt remaining = 8 L. After adding 10 L of pure water the tank is back to 50 L. New concentration = 8/50 = 16%.
+**mistake_a:** Subtracted the entire 10 L drained from salt: 10 − 10 = 0, then re-added something → 14%.
+**mistake_b:** Approximated or mis-stepped through the drain calculation → 15%.
+**mistake_d:** Forgot to remove proportional salt when draining (treated drain as removing only water) → ended with 10/50 = 20% but subtracted a small amount → 18%.
+**mistake_e:** Assumed draining and replacing water doesn't change the salt concentration — classic conceptual error.
+**common_trap:** Treating the drain as removing only water. Since the drained liquid has the current concentration, it removes salt proportionally.
+**takeaway:** When draining a mixture: salt removed = concentration × volume drained. Then add the new liquid (pure water, here 0% salt) to find the new concentration.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q71
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Rate/Time/Distance
+
+A car traveled from City P to City Q. Did the car average more than 60 miles per hour for the trip?
+
+(1) The car traveled a total of 180 miles.
+(2) The entire trip took exactly 2.5 hours from start to finish.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) distance only, no time. (2) time only, no distance. Together: 180/2.5 = 72 > 60. Sufficient.
+**explanation:** Average speed = distance / time. Statement (1) gives distance (180 mi) but not time; avg speed could be 72 mph or 45 mph depending on time. Insufficient. Statement (2) gives time (2.5 hr) but not distance; avg speed could be fast or slow. Insufficient. Together: 180 / 2.5 = 72 mph > 60. Definite YES. Sufficient.
+**mistake_a:** Concluded (1) alone is sufficient — but distance alone cannot determine speed.
+**mistake_b:** Concluded (2) alone is sufficient — but time alone cannot determine speed.
+**mistake_d:** Both alone sufficient — neither is.
+**mistake_e:** Concluded both together are still insufficient — but dividing gives a definite answer.
+**common_trap:** Thinking one of the two pieces (distance alone or time alone) is enough to answer a speed question.
+**takeaway:** Speed = D / T. You need *both* D and T. If either is missing, the statement is insufficient on its own.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q72
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Relative Work Rate
+
+Two editors, Chen and Diaz, review manuscripts. Chen reviews at twice the rate of Diaz. Working together, they finish a manuscript in 6 hours. How many hours would it take Diaz to finish the same manuscript alone?
+
+- A) 9
+- B) 12
+- C) 15
+- D) 18
+- E) 24
+
+**answer:** D
+**fastest_path:** Diaz rate = r. Chen rate = 2r. Together = 3r = 1/6 → r = 1/18 → Diaz alone = 18 hr.
+**explanation:** Let Diaz's rate = r manuscripts/hr. Chen's rate = 2r. Combined rate = 3r = 1/6 → r = 1/18. Diaz's time alone = 1/r = 18 hr. Chen's time alone = 1/(2r) = 9 hr.
+**mistake_a:** Bubbled Chen's solo time (9 hr): 1/(2r) = 9.
+**mistake_b:** Multiplied together-time by 2: 6 × 2 = 12. (Wrong — rates add, not times.)
+**mistake_c:** Arithmetic slip.
+**mistake_e:** Multiplied together-time by 4: 6 × 4 = 24. (Off by factor.)
+**common_trap:** Bubbling Chen's solo time (9 hr) instead of Diaz's (18 hr) — forgetting which editor is faster.
+**takeaway:** When rates have a known ratio, express both in one variable, add rates, solve. Then convert rate to time. Confirm which person the question asks about.
+**hint_nudge:** Let Diaz's rate = r. Write Chen's rate in terms of r.
+**hint_strategy:** 3r = 1/6 (combined rate). Solve for r, then invert to get Diaz's time.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q73
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Successive Percent Changes
+
+The price of a stock increases by 20% in January, then decreases by 25% in February. Compared to its price at the start of January, by what percent has the price changed?
+
+- A) Decreased by 5%
+- B) Decreased by 10%
+- C) No net change
+- D) Increased by 5%
+- E) Increased by 10%
+
+**answer:** B
+**fastest_path:** Net multiplier = 1.20 × 0.75 = 0.90 → 10% decrease.
+**explanation:** Starting price = $100 (convenient base). After +20%: $120. After −25% of $120: 120 × 0.75 = $90. Net change = (90 − 100)/100 = −10%. The price fell by 10%.
+**mistake_a:** Added the percents: +20 − 25 = −5%. Ignored that the 25% applies to the *new* higher price.
+**mistake_c:** Assumed a 25% decline cancels a 20% gain — it does not, since the base differs.
+**mistake_d:** Arithmetic error resulting in a small positive.
+**mistake_e:** Confused direction of the net change.
+**common_trap:** Adding percent changes arithmetically (20 − 25 = −5%). The second percent applies to a *different* base than the first, so changes must be multiplied, not added.
+**takeaway:** Successive percent changes multiply: net = (1 + r₁)(1 + r₂) − 1. A 25% drop from a 20%-inflated price cuts more than the original 20% gain adds.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q74
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Mixture — Ratio
+
+A barrel contains a mixture of water and vinegar. What is the ratio of water to vinegar in the barrel?
+
+(1) The mixture is 60% water by volume.
+(2) Adding 5 liters of water to the barrel makes the mixture 70% water.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** (1) directly gives water/vinegar = 60/40 = 3:2. (2) one equation, two unknowns — ratio varies with barrel size.
+**explanation:** Statement (1): water is 60% → vinegar is 40% → ratio = 3:2. Sufficient on its own. Statement (2): let W = liters of water, V = liters of vinegar. (W + 5)/(W + V + 5) = 0.70 → one equation, two unknowns. E.g., V = 5 gives W ≈ 6.67; V = 10 gives W ≈ 18.33. Different ratios → insufficient.
+**mistake_b:** Concluded (2) alone is sufficient — but it has two unknowns.
+**mistake_c:** Concluded both are needed — but (1) alone resolves the question.
+**mistake_d:** Concluded each alone sufficient — (2) is not.
+**mistake_e:** Concluded neither sufficient — (1) is.
+**common_trap:** Assuming statement (2) pins the ratio because it yields an equation — but one equation with two unknowns has infinitely many solutions.
+**takeaway:** A percent concentration directly gives the ratio. A conditional statement ("after adding X liters") creates only one equation for two unknowns unless total volume is also known.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q75
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Work Rate — Partial Fill with Drain
+
+Pump A fills a tank in 4 hours; Pump B fills the same tank in 12 hours; Pipe C drains the full tank in 6 hours. At the start, the tank is one-quarter full. If all three are opened simultaneously, how many hours does it take to fill the tank completely?
+
+- A) 3.0
+- B) 3.5
+- C) 4.0
+- D) 4.5
+- E) 5.0
+
+**answer:** D
+**fastest_path:** Net rate = 1/4 + 1/12 − 1/6 = 1/6. Work needed = 3/4. Time = (3/4)/(1/6) = 4.5 hr.
+**explanation:** Net fill rate = 1/4 + 1/12 − 1/6 = 3/12 + 1/12 − 2/12 = 2/12 = 1/6 tank/hr. The tank starts 1/4 full, so 3/4 of the tank remains. Time = (3/4) ÷ (1/6) = (3/4) × 6 = 4.5 hours.
+**mistake_a:** Ignored initial fill and used 1 full tank at the same net rate: 1/(1/6) = 6 hr, then something slipped to 3.
+**mistake_b:** Forgot drain rate → net = 1/4 + 1/12 = 1/3, work = 3/4, time = 2.25 — then miscalculated as 3.5.
+**mistake_c:** Net rate correct but used work = 1 (full tank, ignoring initial quarter): 1/(1/6) = 6, halved by mistake → 3, rounded to 4.
+**mistake_e:** Correct net rate, slight arithmetic slip on remaining fraction.
+**common_trap:** Two compounding errors: (1) treating the drain as a fill pipe (positive rate), and (2) forgetting the tank is already 1/4 full so only 3/4 needs to be added.
+**takeaway:** Drains subtract from net rate. Initial fill reduces the work needed. Set up net rate first, then ask: "how much work remains?"
+**hint_nudge:** The tank is already 1/4 full. How much more needs to be added?
+**hint_strategy:** Compute net fill rate: sum of fill rates minus drain rate. Confirm the sign on the drain.
+**hint_setup:** Net rate = 1/4 + 1/12 − 1/6 = 1/6 tank/hr. Work remaining = 1 − 1/4 = 3/4. Time = ?
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q76
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Break-Even / Profit
+
+A small bakery sells loaves of bread. Is the bakery's daily revenue greater than its daily total cost?
+
+(1) The bakery sells 80 loaves at $3.50 each and has a fixed daily cost of $150.
+(2) The variable cost to produce each loaf is $1.75.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) revenue = 280, fixed = 150, variable unknown → inconclusive. (2) per-unit cost only, no quantity or fixed. Together: total cost = 150 + 80 × 1.75 = 290 > 280 → definite NO. Sufficient.
+**explanation:** Revenue = 80 × 3.50 = $280. Statement (1): knows revenue and fixed cost ($150), but variable cost is unknown. If variable = $0, total cost = $150 < $280 → profit. If variable = $2.00, total = $310 > $280 → loss. Insufficient. Statement (2): variable cost = $1.75, but no quantity, price, or fixed cost. Insufficient. Together: total cost = $150 + 80 × $1.75 = $150 + $140 = $290. Revenue $280 < $290 → definite NO. Sufficient.
+**mistake_a:** Treated (1) alone as sufficient — ignored that variable cost is still unknown.
+**mistake_b:** Treated (2) alone as sufficient — per-unit cost without volume or price tells us nothing.
+**mistake_d:** Concluded each alone sufficient — neither is.
+**mistake_e:** Concluded both insufficient — but together they fully determine profit.
+**common_trap:** Thinking (1) alone is sufficient because it gives revenue and one cost component — the missing variable cost can flip the answer.
+**takeaway:** Profit = Revenue − Fixed Cost − Variable Cost × Quantity. All three components are required. Any one missing creates ambiguity.
+**hint_nudge:** Statement (1) gives revenue and *one* cost element. Is the *other* cost element known?
+**hint_strategy:** Total cost = fixed + variable × quantity. Count how many of these three inputs each statement provides.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q77
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Mixture — Combining Two Solutions
+
+A laboratory has 12 liters of a 40% acid solution. How many liters of a 10% acid solution must be added to the 12 liters to produce a mixture that is exactly 25% acid?
+
+- A) 8
+- B) 9
+- C) 10
+- D) 12
+- E) 16
+
+**answer:** D
+**fastest_path:** 0.40(12) + 0.10x = 0.25(12 + x) → 4.8 + 0.10x = 3 + 0.25x → 1.8 = 0.15x → x = 12.
+**explanation:** Acid contributed: 0.40 × 12 = 4.8 L from the first solution, 0.10x from the second. Total acid = 0.25(12 + x). Equation: 4.8 + 0.10x = 3 + 0.25x → 1.8 = 0.15x → x = 12. Check: total acid = 4.8 + 1.2 = 6 L in 24 L = 25% ✓.
+**mistake_a:** Arithmetic slip — x = 8.
+**mistake_b:** Arithmetic slip — x = 9.
+**mistake_c:** Stopped early or rounded — x = 10.
+**mistake_e:** Used the wrong coefficient (e.g., solved 0.40x + 0.10(12) instead) → x = 16.
+**common_trap:** Distrust of the symmetric answer (x = 12 = same as original volume) causes students to second-guess and select a nearby value. The arithmetic is correct.
+**takeaway:** Always verify by substituting back: 6 L acid in 24 L total = 25%. If it checks out, trust the algebra. Symmetry in the answer is coincidence, not an error signal.
+**hint_nudge:** Set up: (acid in first) + (acid in second) = (acid in final). Express each term using concentrations and volumes.
+**hint_strategy:** 0.40(12) + 0.10x = 0.25(12 + x). Expand both sides and collect x terms.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q78
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Investment — Two Accounts (Find Higher-Rate Amount)
+
+A student invests a total of $5,000 in two accounts. Account A earns 3% simple annual interest and Account B earns 7% simple annual interest. After one year the combined interest from both accounts is $270. How much was invested in Account B?
+
+- A) $1,500
+- B) $2,000
+- C) $2,500
+- D) $3,000
+- E) $3,500
+
+**answer:** D
+**fastest_path:** 0.03(5000 − B) + 0.07B = 270 → 0.04B = 120 → B = 3000.
+**explanation:** Let B = amount in Account B. Then 5000 − B goes in Account A. Interest: 0.03(5000 − B) + 0.07B = 270 → 150 − 0.03B + 0.07B = 270 → 0.04B = 120 → B = $3,000. Check: 0.03(2000) + 0.07(3000) = 60 + 210 = 270 ✓.
+**mistake_a:** Arithmetic slip — B = $1,500.
+**mistake_b:** Arithmetic slip — B = $2,000.
+**mistake_c:** Placed equal amounts in each account (5000/2 = 2500) and stopped.
+**mistake_e:** Solved correctly but answered for Account A ($2,000) instead of Account B ($3,000).
+**common_trap:** Solving the system correctly but reporting the amount invested in the *wrong* account — the question asks for Account B (the 7% account).
+**takeaway:** In two-variable problems, label your variable precisely ("let B = amount in Account B") and re-read the question before writing the answer.
+**hint_nudge:** Express Account A's principal as (5000 − B). Write total interest = 0.03 × A + 0.07 × B = 270.
+**hint_strategy:** Expand: 150 − 0.03B + 0.07B = 270. Collect B terms and solve.
+**hint_setup:** 0.04B = 120. What is B?
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q79
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Rate/Time/Distance — Pursuit with Distractor
+
+Runner A starts at point P and runs east at 8 km/h. Exactly 45 minutes later, Runner B starts from the same point P and runs east at 12 km/h. At the same moment that Runner B starts, a cyclist begins riding west from a point 9 km east of P at a speed of 6 km/h. How many kilometers from point P does the cyclist first meet Runner B?
+
+- A) 3
+- B) 4
+- C) 5
+- D) 6
+- E) 8
+
+**answer:** D
+**fastest_path:** Runner B: 12t. Cyclist: 9 − 6t. Set equal: 12t = 9 − 6t → t = 0.5 hr. Position = 6 km from P.
+**explanation:** Runner A's information is a deliberate distractor — the question asks when the *cyclist* meets *Runner B*, and both start at the same moment. Let t = time in hours after that shared start. Runner B's position = 12t km east of P. Cyclist's position = 9 − 6t km east of P. They meet when 12t = 9 − 6t → 18t = 9 → t = 0.5 hr. Position = 12 × 0.5 = 6 km from P. (Runner A is 8 × 1.25 = 10 km ahead at this moment — irrelevant.)
+**mistake_a:** Mistakenly involved Runner A; combined speeds or distances incorrectly → 3 km.
+**mistake_b:** Arithmetic slip after setting up the equation → 4 km.
+**mistake_c:** Used only one object's speed in the meet equation → 5 km.
+**mistake_e:** Placed cyclist's start at P rather than 9 km from P → 8 km.
+**common_trap:** Using Runner A's information because it appears first in the problem. Runner A is a red herring; the meeting involves only Runner B and the cyclist, who share the same start time.
+**takeaway:** On multi-actor problems, identify *which two objects* the question pairs together. Ignore any actor not involved in the specific meeting or event asked about.
+**hint_nudge:** Which two objects does the question actually ask to meet? Identify their positions as functions of time from a shared reference point and moment.
+**hint_strategy:** Cyclist starts at 9 km east of P, moves west. Runner B starts at P, moves east. Write position(t) for each and set equal.
+**hint_setup:** 12t = 9 − 6t. Solve for t, then compute Runner B's position = 12t.
+**related_reading:** reading-quant-05-word-problems
