@@ -64,19 +64,19 @@ What is the median of the set {14, 7, 21, 3, 10, 7, 18}?
 
 - A) 7
 - B) 10
-- C) 11
+- C) 12
 - D) 14
 - E) 18
 
 **answer:** B
 **fastest_path:** Sort → {3, 7, 7, 10, 14, 18, 21}. Middle (4th) = 10.
-**explanation:** Sort the set: 3, 7, 7, 10, 14, 18, 21. With 7 elements, median is the 4th value = 10.
-**mistake_a:** Bubbled the *mode* (7) — appears twice.
-**mistake_c:** Slip → 11.
-**mistake_d:** Bubbled an arbitrary value (14).
-**mistake_e:** Bubbled an arbitrary value (18).
-**common_trap:** Bubbling the mode (7, the most frequent value) instead of the median.
-**takeaway:** Sort first. Median for n elements: position (n+1)/2 if odd, average of middle two if even. Mode is most frequent — different concept.
+**explanation:** Sort the set: 3, 7, 7, 10, 14, 18, 21. With 7 elements (odd), median is the single middle value — the 4th — = 10. The duplicate 7 is real: it must appear twice in the sorted list.
+**mistake_a:** Bubbled the *mode* (7) — the value that appears most often. Mode and median are different summary statistics. The mode is the most frequent value; the median is the positionally middle value.
+**mistake_c:** Dropped the duplicate 7 when sorting, treating the set as having 6 distinct elements {3, 7, 10, 14, 18, 21}. With 6 (even) elements, computed the median as the average of the 3rd and 4th values: (10 + 14)/2 = 12. The original set has 7 elements (the 7 appears twice), so the median is the single 4th value = 10.
+**mistake_d:** Chose the 5th sorted value (14) rather than the 4th. With 7 elements, position = (7 + 1)/2 = 4. Off-by-one in the position count.
+**mistake_e:** Chose the 6th sorted value (18). Same positional error, but further off.
+**common_trap:** Dropping the duplicate when sorting — the set has two 7s. Always count the original set size (here, 7) before computing the median position.
+**takeaway:** Sort first, preserving duplicates. For n elements: median position = (n+1)/2 if n is odd (gives a single value); for even n, average positions n/2 and n/2 + 1. Never drop duplicates from the sorted list.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -134,7 +134,7 @@ Two fair six-sided dice are rolled. What is the probability that the sum of the 
 ---
 
 ## Q6
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Standard Deviation
 
@@ -252,13 +252,13 @@ A jar contains 6 red marbles, 4 blue marbles, and 2 yellow marbles. If one marbl
 
 **answer:** D
 **fastest_path:** Favorable = 6 + 2 = 8. Total = 12. 8/12 = 2/3.
-**explanation:** Mutually exclusive → P(R or Y) = (6 + 2)/12 = 8/12 = 2/3.
-**mistake_a:** Slip → 1/3 (just one color).
-**mistake_b:** Forgot Y → 6/12 = 1/2.
-**mistake_c:** Slip → 7/12.
-**mistake_e:** Slip → 9/12 = 3/4.
-**common_trap:** Forgetting one of the favorable colors (e.g., counting only red).
-**takeaway:** P(A or B) = P(A) + P(B) when events are mutually exclusive. Count favorable / total.
+**explanation:** Three colors partition the jar: red (6), blue (4), yellow (2). P(red or yellow) = (6 + 2)/12 = 8/12 = 2/3. Since the three colors are mutually exclusive, their probabilities add directly — no inclusion-exclusion needed.
+**mistake_a:** Computed P(blue) = 4/12 = 1/3 — answered for the one color *not* mentioned in the question. Re-read: the question asks for red OR yellow, not blue.
+**mistake_b:** Counted only red marbles as favorable: 6/12 = 1/2. Omitted the 2 yellow marbles. The word "or" means the favorable set is the *union* of red and yellow: 6 + 2 = 8 marbles.
+**mistake_c:** Misread the number of yellow marbles as 1 instead of 2, computing (6 + 1)/12 = 7/12. Re-read the problem — the jar contains 2 yellow marbles. Misreading a digit is the most common source of "almost right" errors on test day.
+**mistake_e:** Misread the number of blue marbles as 3 instead of 4, then computed P(not blue) = (12 − 3)/12 = 9/12 = 3/4. Even though P(not blue) = P(red or yellow) for a three-color jar, the reading error on blue yields 9/12 instead of the correct 8/12.
+**common_trap:** Forgetting one of the favorable colors (computing only P(red) = 1/2) or misreading a given count.
+**takeaway:** P(A or B) = P(A) + P(B) when events are mutually exclusive. Count ALL favorable outcomes; re-read the given quantities before substituting.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -278,13 +278,13 @@ A restaurant offers 4 appetizers, 6 entrees, and 3 desserts. How many different 
 
 **answer:** E
 **fastest_path:** 4 × 6 × 3 = 72.
-**explanation:** Counting principle: independent choices multiply. 4 × 6 × 3 = 72.
-**mistake_a:** Added: 4 + 6 + 3 = 13.
-**mistake_b:** Multiplied two of three: 4 × 6 = 24.
-**mistake_c:** Slip → 36 (4 × 9 or 6 × 6).
-**mistake_d:** Slip → 54.
-**common_trap:** Adding choices (13) instead of multiplying — confusing "or" with "and."
-**takeaway:** Independent "and" choices → multiply. Mutually exclusive "or" choices → add.
+**explanation:** Counting principle: independent choices multiply. A customer chooses 1 appetizer AND 1 entree AND 1 dessert — three independent choices. 4 × 6 × 3 = 72. Each appetizer pairs with each of the 6 entrees (24 pairs), and each of those 24 combinations pairs with each of the 3 desserts.
+**mistake_a:** Added the counts instead of multiplying: 4 + 6 + 3 = 13. Addition applies when exactly one item is chosen from the full combined set ("one item from appetizers or entrees or desserts"). Multiplication applies when one is chosen from *each* category independently.
+**mistake_b:** Multiplied only two of the three categories: 4 × 6 = 24. Stopped at appetizer × entree combinations and forgot to multiply by the 3 dessert options.
+**mistake_c:** Added entrees and desserts first (6 + 3 = 9), then multiplied by appetizers: 4 × 9 = 36. Applied addition where multiplication belongs — mixed "or" logic (addition) with "and" logic (multiplication) for the second pair of choices.
+**mistake_d:** Computed the sum of pairwise products: (4 × 6) + (4 × 3) + (6 × 3) = 24 + 12 + 18 = 54. This counts every two-course combination (appetizer+entree, appetizer+dessert, entree+dessert) — not three-course meals. Three-course meals require one choice from all three categories simultaneously: 4 × 6 × 3 = 72.
+**common_trap:** Adding choices instead of multiplying — misreading "one of each" as "one from the combined pool."
+**takeaway:** Independent "and" choices → multiply. "Or" choices from a single pool → add. For a three-course meal, the three selections are made independently, so multiply all three counts.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -544,13 +544,13 @@ Five distinct positive integers have an average of 20, a median of 22, and a lar
 
 **answer:** B
 **fastest_path:** Sum = 100. Median 22 + max 35 → a + b + d = 43. Distinct → d ≥ 23. Try d = 23: a + b = 20 (e.g., 1, 19) ✓.
-**explanation:** Order a < b < c < d < e with c = 22, e = 35. Sum 100 → a + b + d = 43. Distinctness: d > c = 22 → d ≥ 23. With d = 23: a + b = 20, e.g., (1, 19) — distinct, both < 22 ✓. So smallest d = 23.
-**mistake_a:** Set d = 22 = c (violates distinctness).
-**mistake_c:** Slip → 24.
-**mistake_d:** Slip → 25.
-**mistake_e:** Slip → 26.
-**common_trap:** Setting d = c = 22 — forgets that d is *strictly* greater than c.
-**takeaway:** Distinct integers → strict inequalities. d > c by at least 1.
+**explanation:** Order a < b < c < d < e with c = 22 (median), e = 35 (max). Sum = 5 × 20 = 100. So a + b + d = 100 − 22 − 35 = 43. To minimize d, maximize a + b. Distinctness requires d > c, so d ≥ 23. Check d = 23: a + b = 20, e.g., (1, 19) — both distinct, both < 22 ✓. Verify: {1, 19, 22, 23, 35}, sum = 100 ✓.
+**mistake_a:** Set d = c = 22 (same as the median). Violates distinctness — all five integers must be strictly different. d must be strictly greater than c: d ≥ 23.
+**mistake_c:** Required a minimum gap of 2 between d and the median — assumed d ≥ c + 2 = 22 + 2 = 24 because "distinct integers must differ by at least 2." But 'distinct' means no two values are equal, not that they differ by 2 or more. A gap of 1 satisfies distinctness: d = 23 with c = 22 is valid.
+**mistake_d:** Forgot that a and b must also be distinct from *each other* — set a = b = 9: d = 43 − 9 − 9 = 25. Distinctness applies to all five integers, not only d versus c. With a ≠ b required, the tightest valid pair is (a, b) = (a, a+1); maximizing a + b under a < b < 22 gives (10, 11), so d = 43 − 21 = 22, rounded up to 23.
+**mistake_e:** Used a small (a, b) pair without recognizing that minimizing d requires maximizing a + b. Testing (a, b) = (8, 9) gives d = 43 − 8 − 9 = 26. To find the *minimum* of d, a + b should be as large as possible (subject to a < b < 22), not as small as possible. Maximum valid a + b = 10 + 11 = 21, giving d = 22, which rounds up to 23.
+**common_trap:** Setting d = c (ignoring distinctness) or conflating "distinct" with "differ by ≥ 2."
+**takeaway:** Optimization with distinctness: (1) set up the sum constraint; (2) enforce d > c as d ≥ c + 1; (3) to minimize d, maximize a + b within their constraints. "Distinct" = no ties, not a minimum gap.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -677,13 +677,13 @@ The scores of 9 students on a test, arranged in ascending order, are: 42, 55, 61
 
 **answer:** B
 **fastest_path:** max − min = 94 − 42 = 52.
-**explanation:** Range = max − min = 94 − 42 = 52.
-**mistake_a:** Bubbled the min (42).
-**mistake_c:** Bubbled the midpoint of min and max ((42+94)/2 = 68).
-**mistake_d:** Bubbled the median (73, the 5th value).
-**mistake_e:** Bubbled the max (94).
-**common_trap:** Confusing range (spread) with median (center) or just bubbling min/max.
-**takeaway:** Range = max − min. It's a *spread* measure, not a center.
+**explanation:** Range measures the total spread of a data set: Range = max − min = 94 − 42 = 52. Since the values are already sorted, max and min are at the two ends of the list.
+**mistake_a:** Bubbled the minimum (42) — misread "range" as the lower bound.
+**mistake_c:** Computed the midpoint (average) of min and max: (42 + 94)/2 = 68. The midpoint of the extremes is a center measure. Range is a *spread* measure: the distance between extremes, not their average.
+**mistake_d:** Bubbled the median (73, the 5th of 9 sorted values) — confused range (spread) with median (center). The median answers "where is the middle?" and the range answers "how wide is the data?" — two different questions.
+**mistake_e:** Bubbled the maximum (94) — misread "range" as the upper bound.
+**common_trap:** Confusing range (max − min, a spread measure) with median or mean (center measures). Range always requires subtraction, not identification of a single value.
+**takeaway:** Range = max − min. It is a spread measure: the total width of the data. Median and mean are center measures. These answer different questions about the data.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -744,7 +744,7 @@ In a group of 80 people, 45 own a car and 35 own a bicycle. If 20 people own bot
 ---
 
 ## Q29
-**difficulty:** Easy
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Expected Value — Basic Definition
 
