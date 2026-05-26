@@ -22,6 +22,9 @@ sections:
     check_question_ids:
       - word-problems-q13
       - word-problems-q14
+      - word-problems-q47
+      - word-problems-q52
+      - word-problems-q59
 
   - id: rate-time-distance
     type: reading
@@ -30,6 +33,8 @@ sections:
       - word-problems-q1
       - word-problems-q5
       - word-problems-q9
+      - word-problems-q48
+      - word-problems-q55
 
   - id: work-rate-problems
     type: reading
@@ -38,6 +43,9 @@ sections:
       - word-problems-q4
       - word-problems-q6
       - word-problems-q10
+      - word-problems-q49
+      - word-problems-q56
+      - word-problems-q61
 
   - id: mixtures
     type: reading
@@ -45,6 +53,7 @@ sections:
     check_question_ids:
       - word-problems-q7
       - word-problems-q11
+      - word-problems-q54
 
   - id: profit-and-percent
     type: reading
@@ -52,6 +61,12 @@ sections:
     check_question_ids:
       - word-problems-q2
       - word-problems-q8
+      - word-problems-q46
+      - word-problems-q50
+      - word-problems-q51
+      - word-problems-q53
+      - word-problems-q58
+      - word-problems-q60
 
   - id: ages-coins-digits
     type: reading
@@ -61,6 +76,7 @@ sections:
       - word-problems-q15
       - word-problems-q16
       - word-problems-q18
+      - word-problems-q57
 
   - id: sets-and-venn
     type: reading
@@ -72,7 +88,8 @@ sections:
   - id: max-min-optimization
     type: reading
     title: "Max/min and optimization — extremes under constraint"
-    check_question_ids: []
+    check_question_ids:
+      - word-problems-q62
 
   - id: summary
     type: summary
@@ -93,6 +110,11 @@ problem_sets:
       - word-problems-q4
       - word-problems-q13
       - word-problems-q14
+      - word-problems-q46
+      - word-problems-q47
+      - word-problems-q48
+      - word-problems-q49
+      - word-problems-q50
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -108,6 +130,17 @@ problem_sets:
       - word-problems-q16
       - word-problems-q17
       - word-problems-q18
+      - word-problems-q21
+      - word-problems-q23
+      - word-problems-q24
+      - word-problems-q26
+      - word-problems-q51
+      - word-problems-q52
+      - word-problems-q53
+      - word-problems-q54
+      - word-problems-q55
+      - word-problems-q56
+      - word-problems-q57
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -121,6 +154,15 @@ problem_sets:
       - word-problems-q12
       - word-problems-q19
       - word-problems-q20
+      - word-problems-q22
+      - word-problems-q25
+      - word-problems-q27
+      - word-problems-q28
+      - word-problems-q58
+      - word-problems-q59
+      - word-problems-q60
+      - word-problems-q61
+      - word-problems-q62
 ---
 
 ## @translation-discipline
