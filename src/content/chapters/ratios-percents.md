@@ -19,18 +19,24 @@ sections:
   - id: ratio-fundamentals
     type: reading
     title: "Ratios — the parts model"
+    intro: |
+      Ratios are the GMAT's most flexible comparison tool — they appear in straightforward part-count questions, inside mixture problems, and buried in word problems that don't use the word "ratio" at all. The parts model is the single move that makes all of them routine.
     check_question_ids:
       - ratios-percents-q3
 
   - id: ratio-to-ratio-conversion
     type: reading
     title: "Chaining ratios — making the shared term match"
+    intro: |
+      Chaining two separate ratios is a 10-second move once you know it — and it appears on nearly every GMAT test. The trap is combining ratios before aligning the shared term first, which silently produces a wrong answer the test writer planted. This section fixes that reflex.
     check_question_ids:
       - ratios-percents-q10
 
   - id: percent-basics
     type: reading
     title: "Percent fundamentals — translation over memorization"
+    intro: |
+      Every percent question on the GMAT is a translation problem before it is a math problem. The is/of/what mapping and the 10%-decomposition method together cover every direct percent computation you will see. Once these are reflexes, you spend your two minutes on reasoning — not arithmetic.
     check_question_ids:
       - ratios-percents-q1
       - ratios-percents-q2
@@ -38,6 +44,8 @@ sections:
   - id: percent-change-and-successive
     type: reading
     title: "Percent change — multipliers and why successive changes don't cancel"
+    intro: |
+      The multiplier model is the highest-leverage technique in this chapter. Successive percent changes compound — they do not add. The students who never fall for the cancellation trap are the ones who see every percent change as a multiplier to be multiplied, not a number to be added or subtracted.
     check_question_ids:
       - ratios-percents-q4
       - ratios-percents-q7
@@ -45,6 +53,8 @@ sections:
   - id: percent-word-problems
     type: reading
     title: "Percent word problems — reverse change, ratios from percents"
+    intro: |
+      Hard percent word problems are not harder math — they are harder translation. The two traps that claim the most victims (markup vs. margin, and applying a percent change to the wrong base) both dissolve once you have made the translation habit automatic. This section drills both.
     check_question_ids:
       - ratios-percents-q11
       - ratios-percents-q13
@@ -52,6 +62,8 @@ sections:
   - id: mixture-and-weighted-average
     type: reading
     title: "Mixtures and weighted averages — anchor the invariant"
+    intro: |
+      Mixture and weighted-average problems are consistently the hardest-looking percent questions on the GMAT. Consistently, they are solved by the same move: identify the quantity that does not change, anchor to it, build one equation. Locate the invariant in five seconds and the problem collapses.
     check_question_ids:
       - ratios-percents-q8
       - ratios-percents-q12
@@ -158,6 +170,14 @@ Don't say 5/3. Don't say 3/5. Total parts = 3 + 5 = 8, so girls = 5/8 of the cla
 
 **Ratios with three or more terms.** Work identically. 2:3:5 means total = 10 parts, with each quantity at 20%, 30%, and 50% of the whole. The parts model scales up; the logic is the same.
 
+**Micro-drill.** Apply the parts model — no calculator, 60 seconds total:
+
+1. The ratio of apples to oranges in a basket is 3:8. There are 33 pieces of fruit total. How many oranges?
+2. Boys and girls in a class are in ratio 5:7. If there are 84 students, how many more girls than boys?
+3. A:B = 2:5 and the total is 42. What is A?
+
+Answers: (1) 3 + 8 = 11 parts; each part = 3; oranges = 8 × 3 = **24**. (2) 12 parts, each = 7; boys = 35, girls = 49; difference = **14**. (3) 7 parts, each = 6; A = **12**. If (1) tripped you up, make sure you're dividing the total (33) by the sum of the ratio terms (11), not by one of the terms alone.
+
 > **Self-explanation prompt.** Say out loud, in your own words, the difference between "3/5 of the class is boys" and "the ratio of boys to girls is 3:5." If you can explain why the first gives 60% boys and the second gives 37.5% boys, you've internalized the part-to-part vs part-to-whole distinction.
 
 ## @ratio-to-ratio-conversion
@@ -179,13 +199,22 @@ Now b is 20 in both, and you can combine: a:b:c = 12:20:35. So a:c = 12:35.
 
 **Why this matters on test day.** The GMAT loves three-way ratio chains: a:b, b:c, and then it asks for a:c or the fraction a contributes to the total a + b + c. Lining up the shared terms is the only move; everything after is arithmetic.
 
-**Worked example with totals.** If a:b = 2:3 and b:c = 6:7, and a + b + c = 62, find c.
+**Worked example with totals.** If a:b = 2:3 and b:c = 6:7, and a + b + c = 68, find c.
 
-Match b. First ratio: b = 3; second ratio: b = 6. LCM is 6. Scale first ratio by 2: a:b = 4:6. Now a:b:c = 4:6:7, total 17 parts. 62/17 = ... doesn't divide evenly. That's a flag to re-check — or to recognize the GMAT would have chosen numbers that divide cleanly. If the total were 68, each part = 4, and c = 28.
+Match b. First ratio: b = 3; second ratio: b = 6. LCM is 6. Scale first ratio by 2: a:b = 4:6. Now a:b:c = 4:6:7, total 17 parts. 68/17 = 4 per part. c = 7 × 4 = **28**.
 
 **Trap to watch.** Don't "add" ratios. 3:5 and 4:7 do not combine to 7:12 or any other direct sum. Ratios are multiplicative comparisons; chaining them requires matching the bridge term first.
 
 **Recognition tip.** If a problem gives you two ratios that share exactly one variable, you're in ratio-chaining territory. Line up the shared value before you do anything else.
+
+**Micro-drill.** Chain each ratio pair — 60 seconds total:
+
+1. x:y = 2:3 and y:z = 9:4. Find x:z.
+2. m:n = 5:3 and n:p = 6:7. Find m:p.
+
+Answers: (1) Match y: LCM(3, 9) = 9. Scale first by 3: x:y = 6:9. Chain: x:y:z = 6:9:4, so x:z = **6:4 = 3:2**. (2) Match n: LCM(3, 6) = 6. Scale first by 2: m:n = 10:6. Chain: m:n:p = 10:6:7, so m:p = **10:7**. If either answer surprised you, check that you found the LCM and scaled *both* the target term and its partner — not just the target term alone.
+
+> **Self-explanation prompt.** Why can't you just read off a:c directly from the two given ratios without any alignment step? If you can say "because b represents a different unit size in each ratio — 5 parts in the first and 4 parts in the second — so treating them as the same b would mix two different scales," you will never skip the alignment step under pressure.
 
 ## @percent-basics
 
@@ -243,6 +272,16 @@ Drill this table until you can answer either direction in under a second. When a
 
 **Trap to watch.** Percent and percentage points are different. If a tax rate rises from 10% to 15%, that's 5 **percentage points** — but a 50% **percent increase** (5/10 = 50%). On GMAT DS in particular, distinguishing these is the entire problem.
 
+**Micro-drill.** Translate and solve — no calculator, 45 seconds total:
+
+1. What is 35% of 120?
+2. 54 is what percent of 180?
+3. 12 is 15% of what number?
+
+Answers: (1) **42** — 10% = 12, 30% = 36, 5% = 6, so 35% = 42. (2) **30%** — 54/180 = 3/10 = 30%. (3) **80** — 12 = 0.15 × n; n = 12/0.15 = 80. If (3) slowed you down, the signal phrase is "15% of what number" — the unknown is the whole, so you divide: the 'of' quantity goes in the denominator, and you're solving for it by dividing the other side.
+
+> **Self-explanation prompt.** When you see "18 is what percent of 72," which number goes in the denominator? If you can say "72 — because 'of 72' is the reference quantity you're measuring against, and the 'of' always marks the base," you own the translation. The single most common percent error is putting the numerator and denominator in the wrong positions.
+
 ## @percent-change-and-successive
 
 Percent change measures how much something moved relative to where it started.
@@ -287,6 +326,8 @@ Use multipliers: 1.20 × 0.80 = 0.96. Net multiplier 0.96 means a 4% decrease.
 **Worked example.** Revenue grew 50% to $900,000. What was it before?
 
 New = 1.5 × old, so old = 900,000 / 1.5 = 600,000. Dividing by 2 gives $450,000 (wrong — that treats the 50% like "half added"). Subtracting 50% of 900,000 gives $450,000 too (wrong — subtracts from the new value). Always divide by the multiplier.
+
+> **Self-explanation prompt.** A price increases 20% to $144. What was the original? State the move before computing. If you said "divide by 1.20" — correct, $144 / 1.20 = $120. If you subtracted 20% of $144 and got $115.20, you applied the percentage to the *new* value rather than the original. Percent change always runs forward from the old value; reversing it always means dividing by the multiplier.
 
 **Simple and compound interest — percent change across time.** Interest problems are just percent-change problems repeated over years. Two formulas, and compound dominates modern GMAT.
 
@@ -345,6 +386,16 @@ Write new = old × multiplier; solve for old. 900,000 = 1.50 × old → old = 60
 
 **Dollar-anchor DS pattern.** Many hard DS questions hinge on whether you have a percent *plus a dollar anchor.* Percent alone is insufficient (could scale to any size); dollar amount alone is usually insufficient (no rate context); together sufficient. Always check for this combination before answering.
 
+**Micro-drill.** Apply the translation table — 60 seconds total:
+
+1. A price falls 30% to $91. What was the original price?
+2. If 40% of x = 60% of y, what is x:y?
+3. A coat sells for $200 with 20% profit as a margin on the selling price. What was the cost?
+
+Answers: (1) Old × 0.70 = 91; old = 91/0.70 = **$130**. (2) 0.40x = 0.60y → x/y = 0.60/0.40 = **3:2**. (3) Profit = 20% of 200 = 40; cost = 200 − 40 = **$160**. If (1) gave you $127 (= 91 − 20% of 91), you applied the percent to the *new* value instead of finding the old one — divide by the multiplier, never subtract from the already-changed value.
+
+> **Self-explanation prompt.** Why do "30% profit on cost" and "30% profit on selling price" produce different results for the same stated percentage? If you can say "because the base is different — markup divides profit by cost (a smaller number), margin divides profit by selling price (a larger number) — the same dollar profit is a larger fraction of the smaller base," you'll check for the word 'on' before setting up any profit problem.
+
 ## @mixture-and-weighted-average
 
 Mixture problems and weighted averages are the same problem wearing two different costumes. The mental model: **find the quantity that stays invariant**, then use that as your anchor.
@@ -392,6 +443,17 @@ Weighted: (10·75 + 15·85) / 25 = (750 + 1275) / 25 = 2025 / 25 = 81. Not 80 (s
 
 **Trap to watch.** "Equal parts" vs "equal concentrations." If you mix equal volumes of 40% and 70% solutions, the result is 55% (midpoint). If you need 60%, you need more of the 70% — not equal parts. Questions often slip between these two phrasings.
 
+**Micro-drill.** Apply the anchor model — 90 seconds total:
+
+1. A 40-liter solution is 25% acid. How much water must be added to dilute it to 20% acid?
+2. A blend of $8/lb and $12/lb coffee must average $9/lb. What is the ratio of cheap to expensive coffee by weight?
+
+Answers: (1) Acid (invariant) = 0.25 × 40 = 10 L. Final: 10 / (40 + w) = 0.20. Solve: 40 + w = 50, so w = **10 L**. (2) Alligation: distance from $8 to $9 is 1; distance from $12 to $9 is 3. Ratio cheap:expensive = 3:1. Check: (3 × 8 + 1 × 12) / 4 = 36/4 = 9. ✓ Answer: **3:1**. The source farther from the target ($12 is 3 away vs $8 is 1 away) contributes less — that's the lever principle in a single sentence.
+
+> **Self-explanation prompt.** What is the "invariant" in a problem where you drain some solution and add pure water? If you can say "the amount of solute (the dissolved substance) stays constant, because only water was added — not more solute," you can identify the anchor in every mixture variation. The moment the invariant is clear, the problem reduces to one equation and one unknown.
+
+> **Recall check.** Cover this section. State the alligation rule: to blend two solutions at concentrations A and B to hit target T, what ratio of A to B do you use? (Answer: amount of A : amount of B = (B − T) : (T − A) — the distances swapped.) Apply it: blend 30% and 70% solutions to reach 45%. Distances: 30 is 15 from 45; 70 is 25 from 45. Ratio of 30%:70% = 25:15 = **5:3**. If you mixed up which distance goes with which source, re-read the alligation section: each source's contribution is proportional to how far the *other* source is from the target, not how far it is itself.
+
 ## @summary
 
 Three mental models cover every ratio/percent question the GMAT throws at you:
@@ -430,4 +492,14 @@ Three mental models cover every ratio/percent question the GMAT throws at you:
 4. **Is there a reverse?** Divide by the multiplier.
 5. **Is it a mixture or weighted average?** Anchor the invariant, write one equation. For two-source mixtures, try alligation first.
 
-A student scoring 605 gets the easy set here consistently and the medium set when they slow down. A student scoring 725+ has automated the three models so deeply that a "hard mixture" problem reads to them like the first-grade worksheet it essentially is. Get to that place by drilling the translation table and the multiplier model until they're muscle memory. Every question in this chapter rewards the same two moves — and on test day, those two moves are worth three to five questions.
+**Time-management note.** Basic ratio parts questions should take 45–60 seconds. Single-percent translation, 30–45 seconds. Percent change with one multiplier, 60 seconds. Successive changes and reverse-change problems, 90 seconds. Mixture and weighted-average questions, 90–120 seconds. If you are past 2:00 on a mixture problem, you have not yet identified the invariant — stop, reread the first two sentences of the problem, name the quantity that cannot change, and build the equation from there. Every second spent searching for a second variable is a second you didn't need to spend.
+
+**What to do next.**
+
+1. **Easy set, no time limit.** Eleven questions covering ratio parts, basic percent translation, and percent change. Goal: zero errors with the correct method, not lucky guesses. If you miss a ratio question, trace the failure: did you confuse part-to-part with part-to-whole, or did you add the ratio instead of using parts? If you miss a percent question, identify which translation step failed.
+
+2. **Medium set, target 2:00 per question.** These questions require the three models to run automatically. After each incorrect answer, write one sentence naming which model you should have used and why you reached for the wrong one.
+
+3. **Hard set, untimed first pass.** The hard questions combine two models: a percent change inside a mixture, or a ratio chain with a percent at the end. On the first pass, identify the model before computing. On the second pass, time yourself. The gap between your two times is how much speed you'll gain from repetition alone.
+
+A student scoring 605 gets the easy set consistently and the medium set when they slow down. A student scoring 725+ has automated the three models so deeply that a "hard mixture" problem reads to them like the first-grade worksheet it essentially is. Get there by drilling the translation table and the multiplier model until they are muscle memory.
