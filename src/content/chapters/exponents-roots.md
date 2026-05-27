@@ -2,7 +2,7 @@
 slug: exponents-roots
 title: Exponents and Roots
 section: Quant
-estimated_minutes: 45
+estimated_minutes: 60
 prerequisites: []
 summary: |
   Exponents and roots reward speed, not cleverness. Every "hard" exponent question on the GMAT reduces to rewriting both sides with the same base, applying three or four rules, and reading off the answer. Memorize a small table of powers, internalize five rules, and these questions become free points.
@@ -33,6 +33,14 @@ sections:
     check_question_ids:
       - exponents-roots-q5
 
+  - id: even-odd-exponent-signs
+    type: reading
+    title: "Even and odd exponents — how sign behaves"
+    intro: |
+      Even exponents erase the sign of the base. Odd exponents preserve it. The GMAT exploits both rules constantly — in sign-analysis PS questions and in Data Sufficiency traps where x² = 4 has two solutions, not one.
+    check_question_ids:
+      - exponents-roots-q25
+
   - id: fractional-exponents-and-radicals
     type: reading
     title: "Fractional exponents — roots in disguise"
@@ -49,6 +57,14 @@ sections:
     check_question_ids:
       - exponents-roots-q2
       - exponents-roots-q7
+
+  - id: radical-equations
+    type: reading
+    title: "Radical equations — isolate, square, and verify"
+    intro: |
+      Squaring both sides of a radical equation is valid algebra — but it can manufacture solutions that don't exist in the original equation. The verification step is not optional; it is the move that separates a correct answer from a trap.
+    check_question_ids:
+      - exponents-roots-q22
 
   - id: rationalizing-and-combining
     type: reading
@@ -85,6 +101,10 @@ problem_sets:
       - exponents-roots-q3
       - exponents-roots-q4
       - exponents-roots-q5
+      - exponents-roots-q16
+      - exponents-roots-q25
+      - exponents-roots-q26
+      - exponents-roots-q27
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -98,6 +118,14 @@ problem_sets:
       - exponents-roots-q9
       - exponents-roots-q10
       - exponents-roots-q11
+      - exponents-roots-q17
+      - exponents-roots-q19
+      - exponents-roots-q21
+      - exponents-roots-q23
+      - exponents-roots-q24
+      - exponents-roots-q28
+      - exponents-roots-q29
+      - exponents-roots-q30
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -109,6 +137,11 @@ problem_sets:
       - exponents-roots-q13
       - exponents-roots-q14
       - exponents-roots-q15
+      - exponents-roots-q18
+      - exponents-roots-q20
+      - exponents-roots-q22
+      - exponents-roots-q31
+      - exponents-roots-q32
 ---
 
 ## @integer-exponents-rules
@@ -166,6 +199,41 @@ The most common mistake here is sign-handling. Slow down for two seconds on the 
 **Trap to watch.** −3² and (−3)² are different. −3² = −(3²) = −9 because exponentiation binds tighter than the negative sign. (−3)² = 9 because the parentheses force the negative inside. GMAT answer choices often exploit this to separate students who actually read the expression from those who skim it.
 
 > **Self-explanation prompt.** Cover this section and write down: why does x⁻² equal 1/x² instead of −x²? If you can trace it through the quotient rule — x² / x⁴ = x²⁻⁴ = x⁻², and that same ratio is clearly 1/x² — you understand it rather than having memorized it. That distinction matters when a novel-looking problem hits you on test day.
+
+## @even-odd-exponent-signs
+
+Sign behavior with exponents follows one simple rule — but the GMAT uses it in subtle ways, especially in Data Sufficiency.
+
+**Even exponent → always non-negative.** (−3)² = 9, not −9. Raising any real number to an even power erases the sign. The pairs cancel: (−3)² = (−3)(−3) = 9. Concretely: (−a)^even = a^even.
+
+**Odd exponent → preserves the sign.** (−3)³ = −27. The result stays negative. (−a)^odd = −(a^odd).
+
+**The parenthesis test — where does the negative live?**
+
+- **(−3)² = 9.** The base is −3. The negative is inside the exponent operation and goes through it twice. Positive result.
+- **−(3²) = −9.** You compute 3² = 9, then negate afterward. The negative never went through the exponent.
+
+On the GMAT, these two expressions appear in the same problem to create wrong-answer traps. Read the expression before computing.
+
+**Worked example.** What is (−2)⁵?
+
+The base is −2, the exponent is 5 (odd). Odd exponents preserve the sign: (−2)⁵ = −32.
+
+**Worked example.** What is −2⁵?
+
+No parentheses — the negative sits outside. Compute 2⁵ = 32 first, then negate: −32. Same answer here, but this is coincidental for odd exponents. For even exponents it diverges: (−2)⁴ = 16 but −2⁴ = −16.
+
+**The DS trap: even exponents hide sign.** If a question tells you x² = 9, you cannot conclude x = 3. You know x = 3 or x = −3. Even exponents destroy sign information, so you cannot recover it from the result alone. DS statements of the form "x² = k" are almost never sufficient alone when the sign of x matters.
+
+**The DS shortcut: odd exponents reveal sign.** If a statement says x⁵ > 0, you can conclude x > 0 — because an odd power preserves sign, a positive result demands a positive base. This is a clean "sufficient alone" pattern that appears on hard DS questions.
+
+**Memorize cold:**
+- (−a)^even = positive (always)
+- (−a)^odd = negative (always)
+- x^even = k > 0 → x = ±√k (two solutions; neither signed DS alone)
+- x^odd > 0 → x > 0 (one solution; sign is determined)
+
+> **Self-explanation prompt.** Without looking: (a) What is (−5)⁴? (b) What is −5⁴? (c) Why are they different? Then: in a DS context, if you're told x⁶ = 64, can you determine the sign of x? If your answer is "no, because an even exponent loses sign information," you understand the DS trap. If you said yes, re-read the section above — the even-exponent erasure is the entire point.
 
 ## @fractional-exponents-and-radicals
 
@@ -245,6 +313,55 @@ Answers: (1) 5√3, (2) 3, (3) 4√3, (4) 3√2. If (3) or (4) tripped you up, r
 
 > **Self-explanation prompt.** Why can't you simplify √a + √b into √(a+b)? Write a concrete numerical counterexample (e.g., √9 + √16 vs. √25). If you can both state the rule and show why it fails, you won't make that error on test day — it's one of the most common wrong moves on medium-hard Quant.
 
+## @radical-equations
+
+A radical equation has the unknown inside a square root. The strategy looks simple — isolate the radical, square to clear it — but one trap ends most attempts before the final answer.
+
+**Why squaring creates extraneous roots.** When you square both sides of √A = B, you also implicitly solve −√A = B, which is a different equation. Solutions to that phantom equation survive your algebra but fail the original. Every candidate must be verified against the original equation before it can be called a solution.
+
+**The algorithm — four steps, no shortcuts:**
+
+1. Isolate the radical on one side.
+2. Square both sides.
+3. Solve the resulting equation.
+4. Substitute every candidate into the original. Discard any that fail.
+
+Step 4 is mandatory. Skipping it is the trap.
+
+**Worked example.** Solve √(3x + 1) = x − 1.
+
+Step 1 — radical is already isolated on the left.
+
+Step 2 — square both sides: 3x + 1 = (x − 1)² = x² − 2x + 1.
+
+Step 3 — rearrange: x² − 5x = 0 → x(x − 5) = 0 → candidates: x = 0 or x = 5.
+
+Step 4 — verify:
+- x = 0: left side = √(0 + 1) = 1; right side = 0 − 1 = −1. Not equal. Discard.
+- x = 5: left side = √(15 + 1) = √16 = 4; right side = 5 − 1 = 4. Equal. Valid.
+
+Answer: x = 5 only.
+
+**Faster discard: domain scan.** √(something) is always ≥ 0. So the right-hand side must be ≥ 0 for any solution to be valid. Here, x − 1 ≥ 0 requires x ≥ 1. That eliminates x = 0 by inspection, before any substitution.
+
+Use the domain scan as a first filter. Full substitution catches everything the scan misses.
+
+**Trap to watch.** When the GMAT asks for the "sum of all valid solutions," wrong-answer traps include x = 0 + 5 = 5 (correct) vs. x = 0 + 5 = 5 (the sum with the extraneous root adds nothing here but in other variants it does). Always distinguish "candidates from algebra" from "solutions that pass verification."
+
+**Worked example (sum question type).** If √(2x + 3) = x, what is the sum of all valid solutions?
+
+Square: 2x + 3 = x² → x² − 2x − 3 = 0 → (x − 3)(x + 1) = 0 → x = 3 or x = −1.
+
+Domain scan: right side x ≥ 0 (since √ ≥ 0) → x = −1 fails immediately.
+
+Verify x = 3: √(6 + 3) = √9 = 3 = right side. Valid.
+
+Sum of valid solutions: 3.
+
+If you bubbled "sum = 3 + (−1) = 2," you included the extraneous root — the trap the question is designed to catch.
+
+> **Self-explanation prompt.** Cover this section. For the equation √(2x + 3) = x, identify the extraneous root and state exactly why it fails. Can you name two independent reasons x = −1 is invalid (one from the domain scan, one from substitution)? If you can, you'll catch extraneous roots by both methods — useful when one method is less obvious than the other.
+
 ## @rationalizing-and-combining
 
 A denominator with a radical is considered "unfinished" on the GMAT. Answer choices are almost always rationalized — radicals appear only in numerators. To rationalize, multiply by a form of 1 that clears the radical below.
@@ -319,6 +436,8 @@ Rewrite the smaller: 2 × 10⁴ = 0.2 × 10⁵. Now add: (3 + 0.2) × 10⁵ = 3.
 - Apply the three integer-exponent rules (product, quotient, power of a power) without hesitation.
 - Convert any expression to the same base and equate exponents to solve for an unknown.
 - Handle negative, zero, and fractional exponents as first-class operations, not special cases.
+- Apply sign rules: even exponents erase the sign of the base; odd exponents preserve it; x² = k has two solutions (±).
+- Solve radical equations by isolating, squaring, and verifying — discard every candidate that fails the original equation.
 - Simplify radicals by factoring out the largest perfect square.
 - Rationalize any denominator using either the single-radical move or the conjugate move.
 - Perform multiplication and division in scientific notation without confusing coefficient and exponent arithmetic.
@@ -355,10 +474,12 @@ Every exponent question on the GMAT yields to one question: **can I rewrite this
 **Decision tree on test day:**
 
 1. **Same-base rewrite possible?** Do it. Then equate exponents.
-2. **Radicals?** Split via √(ab) = √a · √b, factor out the largest perfect square, or convert to fractional exponents.
-3. **Radical in a denominator?** Rationalize with the conjugate.
-4. **Scientific notation?** Treat coefficients and powers of 10 as two independent arithmetic problems.
-5. **Estimation question?** Fall back on 2¹⁰ ≈ 10³.
+2. **Sign-analysis question with exponents?** Check odd vs. even. Even exponent → result is non-negative; sign is lost. Odd exponent → sign is preserved; x^odd > 0 means x > 0.
+3. **Radical equation?** Isolate → square → solve → verify every candidate. Discard extraneous roots.
+4. **Radicals?** Split via √(ab) = √a · √b, factor out the largest perfect square, or convert to fractional exponents.
+5. **Radical in a denominator?** Rationalize with the conjugate.
+6. **Scientific notation?** Treat coefficients and powers of 10 as two independent arithmetic problems.
+7. **Estimation question?** Fall back on 2¹⁰ ≈ 10³.
 
 **Pattern-recognition table — what you see on the test:**
 
@@ -368,6 +489,10 @@ Every exponent question on the GMAT yields to one question: **can I rewrite this
 | Negative exponent | Flip to reciprocal | x⁻³ → 1/x³ |
 | Fraction in exponent | Root (denom) + power (num) | 27^(2/3) → (³√27)² = 9 |
 | Radical in answer choices | Factor largest perfect square | √72 → 6√2 |
+| (−a)^even or (−a)^odd | Even → positive; odd → negative | (−3)⁴ = 81; (−3)³ = −27 |
+| x^even = k in DS — is x > 0? | Even exponent lost the sign — two solutions (±) | x² = 9 → x = ±3, not determined |
+| x^odd > 0 in DS | Odd exponent preserved sign → x > 0 | x⁵ > 0 → x > 0, sufficient |
+| √(expression) = f(x) | Isolate → square → solve → verify (discard extraneous) | √(3x+1) = x−1 → x = 5 only |
 | Radical in denominator | Single radical: multiply by √n/√n | 6/√3 → 2√3 |
 | Radical sum/diff in denominator | Conjugate: multiply by ±-flipped version | 6/(√3+1) → 3√3−3 |
 | Numbers as a × 10ᵏ | Separate coefficient and exponent | (3×10⁴)(2×10⁻⁷) → 6×10⁻³ |
