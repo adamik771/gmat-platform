@@ -9,7 +9,8 @@ import {
   pickAdaptiveOrder,
   type TopicSkillLevel,
 } from "@/lib/topic-skill"
-import SessionClient, { type SessionQuestion } from "./SessionClient"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
+import SessionClient, { type SessionQuestion, type WeakTopicHint } from "./SessionClient"
 
 export default async function PracticeSessionPage({
   params,
@@ -70,11 +71,16 @@ export default async function PracticeSessionPage({
   // lead. Falls back to file order when the student has fewer than
   // MIN_ATTEMPTS_FOR_ADAPTIVE attempts on this slug — predictable
   // behaviour for new users. Auth/metadata errors are non-fatal.
+  //
+  // Also computes the student's weakest topic from practice_attempts so
+  // the completion screen can show a specific "Practice X next" CTA
+  // instead of the generic "invest in a weaker area" fallback.
   let skill: TopicSkillLevel = {
     level: DEFAULT_LEVEL,
     attempts: 0,
     updatedAt: 0,
   }
+  let weakestTopic: WeakTopicHint | null = null
   try {
     const supabase = await createSupabaseServer()
     const {
@@ -83,9 +89,45 @@ export default async function PracticeSessionPage({
     if (user) {
       const levels = getTopicSkillLevels(user.user_metadata)
       skill = getLevelForSlug(levels, slug)
+
+      // Fetch enough history to compute per-topic accuracy. 2k rows is
+      // sufficient for most users; the limit avoids over-fetching on
+      // heavy accounts while still giving good signal.
+      const { data: attempts } = await supabase
+        .from("practice_attempts")
+        .select("topic, is_correct")
+        .eq("user_id", user.id)
+        .limit(2000)
+
+      if (attempts && attempts.length > 0) {
+        const stats = new Map<string, { total: number; correct: number }>()
+        for (const row of attempts) {
+          const t = row.topic as string | null
+          if (!t) continue
+          const s = stats.get(t) ?? { total: 0, correct: 0 }
+          s.total += 1
+          if (row.is_correct) s.correct += 1
+          stats.set(t, s)
+        }
+
+        const currentTopic = questions[0].topic
+        const worst = [...stats.entries()]
+          .filter(([t, s]) => t !== currentTopic && s.total >= 3)
+          .map(([t, s]) => ({ topic: t, accuracy: s.correct / s.total }))
+          .sort((a, b) => a.accuracy - b.accuracy)[0]
+
+        // Only surface a specific recommendation when there's a real gap.
+        // Topics at ≥75% don't need a redirect — the student is fine there.
+        if (worst && worst.accuracy < 0.75) {
+          const practiceSlug = TOPIC_TO_CHAPTER[worst.topic] ?? null
+          if (practiceSlug) {
+            weakestTopic = { topic: worst.topic, practiceSlug, accuracy: worst.accuracy }
+          }
+        }
+      }
     }
   } catch {
-    // Anonymous or supabase down — keep default level / file order.
+    // Anonymous or supabase down — keep defaults / skip recommendation.
   }
   const adaptive = pickAdaptiveOrder(playable, skill)
 
@@ -97,6 +139,7 @@ export default async function PracticeSessionPage({
       questions={adaptive}
       skillLevel={skill.level}
       skillAttempts={skill.attempts}
+      weakestTopic={weakestTopic ?? undefined}
     />
   )
 }
