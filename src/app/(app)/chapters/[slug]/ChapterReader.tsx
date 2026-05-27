@@ -955,15 +955,21 @@ export default function ChapterReader({
             )}
 
             <div className="space-y-10 min-w-0">
-              {sections.map((s) => (
-                <SectionCard
-                  key={s.id}
-                  section={s}
-                  hydrated={hydrated}
-                  progress={progress}
-                  update={update}
-                />
-              ))}
+              {sections.map((s, i) => {
+                const next = sections[i + 1] ?? null
+                return (
+                  <SectionCard
+                    key={s.id}
+                    section={s}
+                    hydrated={hydrated}
+                    progress={progress}
+                    update={update}
+                    nextSectionId={next?.id ?? null}
+                    nextSectionTitle={next?.title ?? null}
+                    hasProblemSets={problemSets.length > 0}
+                  />
+                )
+              })}
 
               {problemSets.length > 0 && (
                 <div id="chapter-problem-sets" className="scroll-mt-6">
@@ -1312,13 +1318,40 @@ function SectionCard({
   hydrated,
   progress,
   update,
+  nextSectionId,
+  nextSectionTitle,
+  hasProblemSets,
 }: {
   section: ReaderSection
   hydrated: boolean
   progress: ChapterProgress
   update: (u: (prev: ChapterProgress) => ChapterProgress) => void
+  nextSectionId: string | null
+  nextSectionTitle: string | null
+  hasProblemSets: boolean
 }) {
   const read = !!progress.sectionsRead[s.id]
+
+  // Where the "Continue" CTA sends the student once this section is read:
+  // the next section if there is one, otherwise the problem sets (the
+  // natural next step after the last reading section). Null only on the
+  // final section of a chapter with no problem sets — nothing follows.
+  const continueTarget = nextSectionId
+    ? { id: nextSectionId, label: nextSectionTitle ?? "the next section" }
+    : hasProblemSets
+      ? { id: "chapter-problem-sets", label: "the problem sets" }
+      : null
+
+  function handleContinue(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault()
+    if (!continueTarget) return
+    const el = document.getElementById(continueTarget.id)
+    if (!el) return
+    el.scrollIntoView({ behavior: "smooth", block: "start" })
+    if (typeof window !== "undefined") {
+      window.history.replaceState(null, "", `#${continueTarget.id}`)
+    }
+  }
 
   const icon =
     s.type === "pretest" ? (
@@ -1469,6 +1502,30 @@ function SectionCard({
             <Check className="w-3.5 h-3.5" />
             Mark section complete
           </button>
+        )}
+
+        {/* Once read, replace the dead-end button with a forward CTA so the
+            student keeps moving through the chapter instead of navigating
+            back to the table of contents by hand. */}
+        {read && hydrated && continueTarget && (
+          <div className="flex items-center gap-3 flex-wrap">
+            <span
+              className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em]"
+              style={{ color: "var(--read-success)" }}
+            >
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              Section complete
+            </span>
+            <a
+              href={`#${continueTarget.id}`}
+              onClick={handleContinue}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
+              style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
+            >
+              Continue to {continueTarget.label}
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
         )}
       </div>
     </article>
