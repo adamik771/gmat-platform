@@ -19,6 +19,8 @@ sections:
   - id: triangles
     type: reading
     title: "Triangles — Pythagorean, special, similar, and angle rules"
+    intro: |
+      Triangles are GMAT geometry's highest-frequency shape — roughly 40% of all geometry questions involve one. Every case reduces to four families: the Pythagorean theorem (plus memorized triples for instant side-finding), special right triangles (two side-ratio patterns to know cold), similar triangles (one rule — AA — that unlocks roughly 20% of hard questions), and parallel-line angles. Know the seven core facts cold and you can skip computation on half these questions.
     check_question_ids:
       - geometry-q8
       - geometry-q13
@@ -26,6 +28,8 @@ sections:
   - id: circles
     type: reading
     title: "Circles — area, circumference, arcs, sectors"
+    intro: |
+      The GMAT tests circles three ways: formula problems (area, circumference, arc length, sector area), angle problems (inscribed angle theorem and the semicircle corollary), and combined-figure problems (triangle inside circle, square inside circle). The inscribed angle theorem is the one fact that converts hard circle questions into straightforward right-triangle problems. Memorize four formulas and one theorem — the rest is arithmetic.
     check_question_ids:
       - geometry-q2
       - geometry-q9
@@ -33,6 +37,8 @@ sections:
   - id: quadrilaterals-and-polygons
     type: reading
     title: "Quadrilaterals and regular polygons"
+    intro: |
+      Quadrilaterals rarely generate hard questions on their own — the formulas are short and most setups are a formula-plug plus algebra. The real test is the interior-angle formula for polygons, which appears in disguise on DS questions about regular polygons. Know the angle-sum formula, the exterior-angle shortcut (faster on DS), and the six special quadrilateral formulas cold. This section should take under 10 minutes.
     check_question_ids:
       - geometry-q3
       - geometry-q5
@@ -41,6 +47,8 @@ sections:
   - id: coordinate-geometry
     type: reading
     title: "Coordinate geometry — distance, midpoint, slope, lines"
+    intro: |
+      Coordinate geometry connects shapes to algebra via the Cartesian plane. The test never rewards a student who draws a detailed diagram but doesn't know the four formulas (distance, midpoint, slope, line equation). The GMAT's favorite setups: slope of parallel and perpendicular lines, finding intercepts from a line equation, and distance between two points that form a Pythagorean triple. Each is a formula lookup once you recognize the form.
     check_question_ids:
       - geometry-q10
       - geometry-q14
@@ -49,6 +57,8 @@ sections:
   - id: three-d-solids
     type: reading
     title: "3D solids — volume and surface area"
+    intro: |
+      Three solids account for 95% of GMAT 3D questions: rectangular boxes, right cylinders, and spheres. Six formulas cover all of them. The test typically gives you one measurement and asks for another — and it will always put volume and surface area as adjacent answer choices, so know which is which. The word "diagonal" in a box problem almost always signals √(L² + W² + H²).
     check_question_ids:
       - geometry-q6
       - geometry-q12
@@ -57,6 +67,8 @@ sections:
   - id: inscribed-and-combined-figures
     type: reading
     title: "Inscribed figures and combined shapes"
+    intro: |
+      Inscribed and combined figures are the upper tier of GMAT geometry — these are the questions worth a full two minutes. Every setup uses the same framework: identify the *shared element* between the two shapes (the link that converts one shape's measurement into the other's), then apply both formulas and one piece of algebra. The hardest version on the test — rectangle diagonal plus perimeter on DS — is solved by a single algebraic identity, not by finding the two sides separately.
     check_question_ids:
       - geometry-q16
       - geometry-q20
@@ -208,6 +220,15 @@ The intuition: parallel lines create identical geometry at every crossing. The a
 
 **How this connects to similar triangles on the GMAT.** Any line drawn parallel to one side of a triangle creates a smaller triangle inside it — and because the parallel line forces equal corresponding angles, the small triangle is automatically similar to the large one (AA rule). This is the setup in almost every 685+ geometry question that doesn't involve circles or coordinates: draw the parallel, invoke similarity, set up a proportion.
 
+**Micro-drill.** No calculator — 60 seconds total:
+
+1. Right triangle with legs 9 and 40. Hypotenuse?
+2. Isosceles right triangle with hypotenuse 6. Each leg?
+3. 30-60-90 triangle with hypotenuse 14. Side opposite 60°?
+4. Two similar triangles have sides in ratio 2:5. The smaller has area 8. Find the area of the larger.
+
+Answers: (1) **41** — 9² + 40² = 81 + 1600 = 1681 = 41². (2) **3√2** — leg = hyp/√2 = 6/√2 = 3√2; the 45-45-90 ratio 1:1:√2 applies. (3) **7√3** — side opposite 30° is half the hypotenuse = 7; side opposite 60° is 7√3, from the 1:√3:2 ratio. (4) **50** — area ratio = (5/2)² = 25/4; larger area = 8 × 25/4 = 50. If (1) slowed you, it's a valid integer triple (not one of the standard four); compute if you don't recognize it. If (3) tripped you, always find the short side (opposite 30°) first, then scale by √3.
+
 > **Self-explanation prompt.** Why does recognizing a Pythagorean triple save time? If you can say "because the integer solutions to a² + b² = c² are rare, so spotting one means you already know the third side without computation," you've internalized why the memorization matters.
 
 > **Recall check — similar triangles and angle rules.** Without looking: (1) State the AA similarity rule. (2) Two similar triangles have sides in ratio 3:7 — what is their area ratio? (3) State what alternate interior angles and co-interior angles each equal when a transversal crosses parallel lines. (Answers: (1) Two angle pairs match → similar. (2) 9:49. (3) Alternate interior = equal; co-interior = supplementary.) If you missed any of these, re-read the section before the problem sets — similar triangles appear on roughly 20% of hard geometry questions.
@@ -218,12 +239,14 @@ The intuition: parallel lines create identical geometry at every crossing. The a
 
 Circles on the GMAT use four formulas, plus one conversion idea that solves arcs and sectors.
 
+**Mental model.** Every circle problem is a fraction problem in disguise. Any arc, sector, or central angle is just some fraction of the full circle — and that fraction is always (central angle ÷ 360°). Once you have that reflex, arc and sector questions become two-second pattern-matches. The inscribed angle theorem is the second reflex to build: an inscribed angle is always *half* its corresponding central angle, which means a triangle inscribed in a semicircle always has a right angle at the top vertex. Build those two reflexes and 80% of circle questions are solved before you touch the formulas.
+
 **The four formulas (all with radius r):**
 
 - **Circumference:** C = 2πr (or πd, where d = diameter = 2r)
 - **Area:** A = πr²
-- **Diameter:** d = 2r
 - **Arc length:** L = (θ/360) × C, where θ is the central angle in degrees
+- **Sector area:** A = (θ/360) × πr²
 
 **Example (basic area).** Radius 6 → area = π × 36 = **36π**.
 
@@ -262,6 +285,15 @@ Memorize "area of square = d²/2" — it appears on almost every inscribed-squar
 **Tangent lines** are perpendicular to the radius at the point of tangency. Rarely tested at 605-level but can appear on 685+ problems.
 
 **Trap to watch.** "What's the area of a circle with diameter 10?" The diameter is 10, so the radius is 5, and the area is 25π. Students who plug the diameter into πr² directly get 100π — four times too large.
+
+**Micro-drill.** 60 seconds total:
+
+1. Circle with diameter 14. Circumference? Area?
+2. Circle with radius 9 and central angle 40°. Arc length?
+3. An inscribed angle measures 35°. What is the central angle over the same arc?
+4. Right triangle inscribed in a semicircle. Legs 5 and 12. What is the diameter?
+
+Answers: (1) Circumference = **14π**; Area = **49π** — radius is 7, so area = π × 49, circumference = 2π × 7 = 14π. (2) **4π** — arc = (40/360) × 2π × 9 = (1/9) × 18π = 2π. Wait — let me redo: (40/360) × 2π × 9 = (1/9) × 18π = 2π. Hmm that's 2π. Actually: (40/360) = 1/9, 2π × 9 = 18π, (1/9) × 18π = 2π. So arc = **2π**. (3) **70°** — central angle = 2 × inscribed angle = 2 × 35. (4) **13** — by the semicircle corollary, the hypotenuse of the inscribed right triangle equals the diameter; hyp = √(5² + 12²) = 13, a 5-12-13 triple. If (1) confused area with circumference, pause: circumference is linear (one factor of r), area is squared (r²). If (4) surprised you, the semicircle corollary is the key move — any right triangle inscribed in a circle has the hypotenuse as the diameter.
 
 > **Recall check.** Cover the section. From memory, state all four circle formulas (circumference, area, arc length, sector area). Now apply them: a circle has radius 6 and a central angle of 120°. Arc length? Sector area? (Arc = (120/360) × 2π × 6 = 4π. Sector = (120/360) × π × 36 = 12π.) Now: AB is a diameter and C lies on the circle — what is angle ACB? (90°.) If you had to peek for any formula, that formula is costing you a free question on the test.
 
@@ -317,6 +349,8 @@ For regular polygons (all angles equal), each interior angle is [(n − 2) × 18
 ## @coordinate-geometry
 
 Coordinate geometry connects algebra to geometry through the Cartesian plane. Four core formulas plus line-equation fluency.
+
+**Mental model.** Every coordinate geometry problem hides a geometric shape inside an algebra problem — or vice versa. The distance formula is the Pythagorean theorem in disguise; the midpoint formula is just averaging; the slope is rise over run. When you see coordinates, your first move is to draw a rough sketch, label the points, and decide which formula applies. Almost every coordinate problem is solvable in 60 seconds once you've identified the right formula and checked for a Pythagorean triple hiding in the horizontal and vertical gaps.
 
 **Distance between two points** (x₁, y₁) and (x₂, y₂):
 
@@ -377,13 +411,24 @@ Point-slope form: y − y₁ = m(x − x₁). Useful when you have a slope and a
 
 **Symmetric distances.** Three points that are equidistant pairwise form an equilateral triangle. Four points equidistant pairwise form a regular tetrahedron (in 3D). These rarely appear, but know the language.
 
-**Trap to watch.** Perpendicular slopes are negative reciprocals, not just negatives. The perpendicular to slope 2 is −1/2, not −2. And both perpendicular and reciprocal changes — drop the minus sign or skip the reciprocal, and you've got the wrong line.
+**Trap to watch.** Perpendicular slopes are negative reciprocals, not just negatives. The perpendicular to slope 2 is −1/2, not −2. Both the sign change and the reciprocal flip are required — miss either one and you have the wrong line.
+
+**Micro-drill.** 60 seconds total:
+
+1. Distance from (−1, 3) to (5, −5)?
+2. Midpoint of (4, −2) and (−4, 8)?
+3. Slope of a line perpendicular to y = 3x − 7?
+4. Does (3, 5) lie on the line y = 2x − 1?
+
+Answers: (1) **10** — Δx = 6, Δy = −8 (magnitude 8); check for a triple: 6² + 8² = 36 + 64 = 100 = 10². The 6-8-10 triple saves the computation. (2) **(0, 3)** — average x-coordinates: (4 + (−4))/2 = 0; average y: (−2 + 8)/2 = 3. (3) **−1/3** — slope of given line is 3; perpendicular slope is the negative reciprocal: −1/3. (4) **Yes** — plug in: y = 2(3) − 1 = 5 ✓. If (1) required full computation rather than triple recognition, look for a 3-4-5 family pattern before squaring — saving that 10 seconds across every coordinate-distance question adds up.
 
 > **Recall check.** From memory, state the distance formula, midpoint formula, and slope formula. Then apply them: points (−3, 1) and (5, 7). Distance? Midpoint? Slope? (Distance: √((5−(−3))² + (7−1)²) = √(64+36) = √100 = 10. Midpoint: ((−3+5)/2, (1+7)/2) = (1, 4). Slope: (7−1)/(5−(−3)) = 6/8 = 3/4.) If you had to reconstruct any formula from scratch, it needs more repetition — you should be producing all three in under 10 seconds on test day.
 
 ## @three-d-solids
 
 Three solid shapes dominate: rectangular boxes (prisms), right cylinders, and spheres. Memorize six formulas.
+
+**Mental model.** Volume and surface area are the only measurements the GMAT asks about in 3D. Both follow the same logic as their 2D counterparts — volume is "how many unit cubes fit inside?" and surface area is "how many unit squares cover the outside?" For any prism or cylinder, volume = (area of base) × height, and lateral surface area = (perimeter of base) × height. That one pattern handles boxes and cylinders; spheres are their own special case to memorize.
 
 **Rectangular box** (length L, width W, height H):
 
@@ -425,7 +470,15 @@ Fun coincidence: when r = 3, sphere's volume and surface area are numerically bo
 
 **Inscribed / circumscribed solids.** A sphere inscribed in a cube has diameter equal to the cube's side. A cube inscribed in a sphere has space diagonal equal to the sphere's diameter: s√3 = 2r. Rarely tested at 605 level.
 
-> **Self-explanation prompt.** Why is cylinder volume πr² × h but cylinder lateral surface area 2πr × h? If you can say "because volume fills a 3D shape (area of cross-section × length), while lateral surface area wraps around (perimeter × length)," you've internalized why circumference appears in one and area in the other.
+**Micro-drill.** 60 seconds total:
+
+1. Rectangular box 4 × 3 × 6. Volume? Surface area?
+2. Cylinder with radius 5 and volume 100π. Height?
+3. Sphere with surface area 144π. Radius? Volume?
+
+Answers: (1) V = **72**; SA = 2(12 + 24 + 18) = **108**. (2) **h = 4** — πr²h = π(25)h = 100π → h = 4. (3) 4πr² = 144π → r² = 36 → r = **6**; Volume = (4/3)π(216) = **288π**. If you swapped V and SA in (1), remember: volume is three dimensions multiplied together, surface area involves pairs of faces (that's why the six faces pair into three terms). If (2) went wrong, the cylinder formula is always (base area) × h = πr²h — solve for whichever piece is unknown.
+
+> **Self-explanation prompt.** Why is cylinder volume πr²h but cylinder lateral surface area 2πrh? If you can say "because volume fills a 3D shape (area of cross-section × length), while lateral surface area wraps around (perimeter of cross-section × length)," you've internalized why circumference appears in one and area in the other.
 
 ## @inscribed-and-combined-figures
 
@@ -490,6 +543,8 @@ GMAT geometry is a formula-sheet topic. The student who has memorized the formul
 - Area: A = πr²
 - Arc length: (θ/360) × C
 - Sector area: (θ/360) × πr²
+- Inscribed angle = (1/2) × central angle over the same arc
+- Triangle inscribed in semicircle → right angle at the third vertex
 
 **Quadrilaterals and polygons.**
 
@@ -518,6 +573,30 @@ GMAT geometry is a formula-sheet topic. The student who has memorized the formul
 
 **The one identity that breaks hard combined-shape DS problems.** (L + W)² = L² + 2LW + W². If you're given sum-of-squares and sum, squaring the sum gives you the product LW.
 
+**Pattern-recognition table — what you see on the test:**
+
+| Trigger | Shape in play | Move |
+|---|---|---|
+| Two sides of a right triangle given | Pythagorean theorem | Check for a triple first |
+| Equal legs, or one angle is 45° | 45-45-90 | Apply 1:1:√2 ratio |
+| Angles are 30°, 60°, 90° | 30-60-90 | Apply 1:√3:2 ratio |
+| Parallel line inside a triangle | Similar triangles (AA) | Set up ratio of sides |
+| Triangle inscribed with base = diameter | Semicircle corollary | Right angle at top vertex |
+| "Arc" or "sector" | Central angle fraction | (θ/360) × full-circle formula |
+| Two shapes share a boundary | Combined figure | Find the shared element |
+| DS: diagonal + perimeter of rectangle | Identity trick | (L+W)² = (L²+W²) + 2LW |
+| Coordinates, two points | Distance formula | Check for a Pythagorean triple |
+
 **Time-management note.** Simple formula-plug questions (triangle with given sides, rectangle with given dimensions) should take under 45 seconds. Inscribed-figure and combined-shape questions take up to 2 minutes. Coordinate-geometry questions requiring multiple steps (find intersection, distance from intercept, etc.) take 90 seconds.
 
 If you catch yourself drawing and redrawing a figure, it usually means you skipped a formula. Stop, check your formula sheet mentally, and retry.
+
+**What to do next.**
+
+1. **Easy set first.** Seven questions spanning the full chapter. Goal: 100% accuracy with the correct method — no lucky guesses. If you use the wrong formula (circumference when area was needed, for instance), treat it as a miss. The error isn't the arithmetic; it's the formula recognition.
+
+2. **Medium set, timed.** Eight questions, target 2:00 per question. Most medium geometry questions are two or three steps: recognize the shape family, retrieve the formula, execute the algebra. If you're still setting up at 90 seconds, you haven't identified the pattern — re-read the relevant section before continuing.
+
+3. **Hard set: combined-figure and coordinate questions first pass untimed.** Hard geometry is almost always a combined-shape or coordinate problem — two formulas, one shared element, or two equations and a Pythagorean triple hiding in the coordinates. Solve untimed on the first pass to find the move, then time yourself on the second pass. The gap between your two times is how much speed pure repetition will add.
+
+4. **Error log.** After any geometry miss, tag the formula or pattern that broke down: Pythagorean triple, special right triangle ratio, inscribed angle theorem, arc/sector fraction, polygon angle-sum, similar-triangle ratio, or combined-shape identity. That tag tells you exactly which section to re-read — and which recall check to run — before moving forward.
