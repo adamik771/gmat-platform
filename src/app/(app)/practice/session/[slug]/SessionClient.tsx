@@ -2137,9 +2137,31 @@ export default function SessionClient({
                   backgroundColor: "rgba(201,168,76,0.03)",
                 }}
               >
-                <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
-                  Explanation
-                </p>
+                <div className="flex items-center gap-2.5 mb-3">
+                  <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                    Explanation
+                  </p>
+                  {!isQuestionCorrect(current, currentState) &&
+                    currentState.selected !== null &&
+                    !isTwoPart && (
+                      <>
+                        <span className="text-[10px] text-[#333333]">&middot;</span>
+                        <span
+                          className="text-[10px]"
+                          style={{ color: "rgba(255,107,107,0.75)" }}
+                        >
+                          You chose {letterFor(currentState.selected)}
+                        </span>
+                        <span className="text-[10px] text-[#333333]">&middot;</span>
+                        <span
+                          className="text-[10px]"
+                          style={{ color: "rgba(62,207,142,0.75)" }}
+                        >
+                          Correct: {current.correctAnswerLetter}
+                        </span>
+                      </>
+                    )}
+                </div>
                 <PromptBlock text={current.explanation} />
               </div>
             )}
