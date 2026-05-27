@@ -829,3 +829,453 @@ A fair coin is flipped 5 times. What is the probability of getting exactly 3 hea
 **common_trap:** Confusing "exactly k" with "at least k" — different probabilities; "at least" requires summing across multiple cases.
 **takeaway:** Binomial: P(exactly k of n trials, each prob p) = C(n, k) × p^k × (1−p)^(n−k). For fair coin: × (1/2)^n.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Multiplication Principle
+
+A clothing shop offers shirts in 3 colors, pants in 4 styles, and shoes in 2 types. A shopper picks exactly one shirt, one pair of pants, and one pair of shoes. How many distinct outfit combinations are possible?
+
+- A) 9
+- B) 12
+- C) 24
+- D) 36
+- E) 48
+
+**answer:** C
+**fastest_path:** 3 × 4 × 2 = 24. Independent choices multiply.
+**explanation:** Each category is chosen independently: 3 ways for the shirt, 4 for the pants, 2 for the shoes. By the Fundamental Counting Principle, total outcomes = 3 × 4 × 2 = 24.
+**mistake_a:** Added the category counts: 3 + 4 + 2 = 9. Adding applies to mutually exclusive situations (either a shirt or pants); here you choose one from *each* category, so multiply.
+**mistake_b:** Stopped after two categories: 3 × 4 = 12. Three independent categories require three factors.
+**mistake_d:** Miscounted shoes as 3, getting 3 × 4 × 3 = 36.
+**mistake_e:** Confused pants and shoes counts, getting 3 × 4 × 4 = 48.
+**common_trap:** Adding instead of multiplying when each category is chosen independently. Addition applies to mutually exclusive "or" choices; multiplication applies to sequential "and" choices.
+**takeaway:** Fundamental Counting Principle: if you make k independent choices with n₁, n₂, …, nₖ options each, total outcomes = n₁ × n₂ × … × nₖ.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q31
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Grid Path Counting
+
+A delivery driver travels from point A to point B on a city grid, moving only east or north. The trip requires exactly 3 blocks east and 2 blocks north. How many different routes are possible?
+
+- A) 5
+- B) 6
+- C) 8
+- D) 10
+- E) 15
+
+**answer:** D
+**fastest_path:** Choose which 2 of 5 moves are "north": C(5, 2) = 10.
+**explanation:** Every route consists of exactly 5 moves (3 east + 2 north) in some order — the only choice is which 2 of the 5 positions are "north." That is C(5, 2) = (5 × 4)/(2 × 1) = 10.
+**mistake_a:** Added the block counts: 3 + 2 = 5. This gives the total moves, not the number of routes.
+**mistake_b:** Computed C(4, 2) = 6 — off by one on the total number of moves (should be 5, not 4).
+**mistake_c:** Computed 2³ = 8, confusing this with a binary-branch problem rather than a combinations problem.
+**mistake_e:** Computed C(6, 2) = 15 — used n+1 instead of n for the total-move count.
+**common_trap:** Adding the block counts (5) and reporting that as the answer. The block counts tell you the total steps; the number of routes requires choosing which positions are "north" — a combinations calculation.
+**takeaway:** Grid paths from origin requiring r steps right and u steps up = C(r+u, u). The route is a sequence of (r+u) moves; choose which u positions are "up."
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Independent Events Probability
+
+A fair six-sided die (faces 1–6) is rolled and a fair coin is flipped. What is the probability of rolling a number greater than 4 AND getting tails?
+
+- A) 1/12
+- B) 1/6
+- C) 1/4
+- D) 1/3
+- E) 1/2
+
+**answer:** B
+**fastest_path:** P(>4) = 2/6 = 1/3; P(tails) = 1/2. Independent: (1/3)(1/2) = 1/6.
+**explanation:** Numbers greater than 4 on a six-sided die: {5, 6} — that is 2 out of 6 faces, so P(>4) = 1/3. The die and coin are independent, so P(>4 AND tails) = P(>4) × P(tails) = (1/3)(1/2) = 1/6.
+**mistake_a:** Computed P(rolling exactly 4) × P(tails) = (1/6)(1/2) = 1/12 — misread ">4" as "=4."
+**mistake_c:** Computed 1/4 from a rough estimate without careful fraction arithmetic.
+**mistake_d:** Reported P(>4) = 1/3 without multiplying by the coin probability — forgot the second event.
+**mistake_e:** Reported P(tails) = 1/2 without multiplying by the die probability — forgot the first event.
+**common_trap:** Misreading "greater than 4" as "equal to 4," which changes P(die) from 1/3 to 1/6 and gives 1/12.
+**takeaway:** Independent events: P(A and B) = P(A) × P(B). Identify each component's probability separately first, then multiply.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Dependent Probability Without Replacement
+
+A bag contains 5 red marbles and 3 blue marbles. Two marbles are drawn one at a time without replacement. What is the probability that both marbles are red?
+
+- A) 3/8
+- B) 25/64
+- C) 5/14
+- D) 5/12
+- E) 2/7
+
+**answer:** C
+**fastest_path:** (5/8) × (4/7) = 20/56 = 5/14.
+**explanation:** First draw: 5 red out of 8 total, so P(1st red) = 5/8. After removing one red marble, 4 red remain out of 7 total. P(2nd red | 1st red) = 4/7. Multiply: 5/8 × 4/7 = 20/56 = 5/14.
+**mistake_a:** 3/8 is P(first marble is blue), which is the wrong event.
+**mistake_b:** Treated draws as independent (with replacement): (5/8)² = 25/64. Without replacement the second probability must be adjusted.
+**mistake_d:** Used the wrong denominator after the first draw: 5/8 × 4/8 = 20/64 = 5/16, then somehow arrived at 5/12.
+**mistake_e:** 2/7 is P(exactly 1 red) after a sequence of wrong steps.
+**common_trap:** independence-confusion — squaring P(red on one draw) = (5/8)² = 25/64, treating the two draws as independent. Without replacement, the first draw changes the remaining pool.
+**takeaway:** Without replacement, draws are dependent. Adjust both numerator and denominator for each successive draw based on what was already removed.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Fundamental Counting Principle with Restrictions
+
+A 3-digit code uses only the digits 1 through 9 (no zeros). The first digit must be odd, and the remaining two digits may be any digit from 1 to 9 with repetition allowed. How many distinct codes are possible?
+
+- A) 45
+- B) 243
+- C) 405
+- D) 450
+- E) 729
+
+**answer:** C
+**fastest_path:** Odd digits in {1,3,5,7,9} = 5 choices. Remaining two: 9 × 9. Total = 5 × 81 = 405.
+**explanation:** Position 1 (odd only): 5 options {1, 3, 5, 7, 9}. Positions 2 and 3 (any of 1–9, with repetition): 9 options each. Total = 5 × 9 × 9 = 405.
+**mistake_a:** Only filled two positions: 5 × 9 = 45. Three-digit code has three independent positions.
+**mistake_b:** Miscounted the odd digits as 3 (perhaps {1, 3, 5} only, forgetting 7 and 9): 3 × 9 × 9 = 243.
+**mistake_d:** Allowed digits 0–9 for positions 2 and 3 (10 each) instead of 1–9: 5 × 9 × 10 = 450.
+**mistake_e:** Ignored the leading restriction and used all 9 options for every position: 9 × 9 × 9 = 729.
+**common_trap:** Forgetting that odd digits in {1, …, 9} are exactly {1, 3, 5, 7, 9} — five of them, not three. Count both "small" odd digits and "large" ones.
+**takeaway:** When one position has an additional restriction, count that position's valid options separately, then multiply by the others.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Addition Rule — P(A or B)
+
+One card is drawn at random from a standard 52-card deck. What is the probability that the card is either a heart or a face card (jack, queen, or king of any suit)?
+
+- A) 1/4
+- B) 3/13
+- C) 11/26
+- D) 25/52
+- E) 1/2
+
+**answer:** C
+**fastest_path:** P(heart) + P(face) − P(heart AND face) = 13/52 + 12/52 − 3/52 = 22/52 = 11/26.
+**explanation:** Hearts: 13 cards. Face cards (J, Q, K in all four suits): 3 × 4 = 12 cards. Cards that are both hearts and face cards (J♥, Q♥, K♥): 3 cards. By inclusion-exclusion: (13 + 12 − 3)/52 = 22/52 = 11/26.
+**mistake_a:** Counted hearts only (13/52 = 1/4), ignoring face cards from other suits.
+**mistake_b:** Counted face cards only (12/52 = 3/13), ignoring non-face hearts.
+**mistake_d:** Added P(heart) + P(face card) = 25/52 without subtracting the overlap — double-counted the 3 cards that are both.
+**mistake_e:** Overestimated; 1/2 requires 26 favorable outcomes, but only 22 qualify.
+**common_trap:** 25/52 — adding the two groups without removing their intersection. The three face-card hearts (J♥, Q♥, K♥) fall in both groups, so they must be counted only once.
+**takeaway:** P(A or B) = P(A) + P(B) − P(A and B). Whenever two events can co-occur, subtract the overlap once to avoid double-counting.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Conditional Probability
+
+A standard deck has 26 red and 26 black cards. Two cards are drawn without replacement. Given that the first card drawn is red, what is the probability that the second card is also red?
+
+- A) 1/2
+- B) 25/51
+- C) 25/52
+- D) 13/51
+- E) 26/51
+
+**answer:** B
+**fastest_path:** First red card is gone: 25 red remain out of 51. P = 25/51.
+**explanation:** After one red card is removed, the deck has 51 cards left, of which 25 are red and 26 are black. P(2nd red | 1st red) = 25/51.
+**mistake_a:** Used the original proportion: 26/52 = 1/2. This ignores that the first card has already been removed and the deck has changed.
+**mistake_c:** Correct numerator (25 red remaining) but wrong denominator (52 instead of 51): forgot to reduce the total count after removal.
+**mistake_d:** Halved the remaining red count (25/2 ≈ 13) — no valid reasoning; a confusion artifact.
+**mistake_e:** Counted 26 red in numerator — forgot to remove the drawn red card, leaving the count unchanged.
+**common_trap:** Reporting 26/52 = 1/2 — using the original deck proportions without updating for the removed card. Conditional probability requires updating the sample space to reflect the known outcome.
+**takeaway:** Conditional probability = update the sample space. After each draw without replacement, reduce both the numerator (by the drawn card's type if it matches) and the denominator (by 1 for each card drawn).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Total Probability — Weighted Defect Rate
+
+A factory has two assembly lines. Line 1 produces 80% of the factory's output with a 5% defect rate; Line 2 produces the remaining 20% with a 10% defect rate. If one item is chosen at random from the combined output, what is the probability that it is defective?
+
+- A) 5.0%
+- B) 6.0%
+- C) 7.5%
+- D) 8.0%
+- E) 15.0%
+
+**answer:** B
+**fastest_path:** 0.80(0.05) + 0.20(0.10) = 0.04 + 0.02 = 0.06 = 6%.
+**explanation:** A random item came from Line 1 with probability 0.80 and from Line 2 with probability 0.20. By the Law of Total Probability: P(defective) = P(from L1)×P(defective|L1) + P(from L2)×P(defective|L2) = 0.80×0.05 + 0.20×0.10 = 0.04 + 0.02 = 0.06.
+**mistake_a:** Used only Line 1's defect rate (5%) without weighting or adding Line 2's contribution.
+**mistake_c:** Took the simple (unweighted) average of the two defect rates: (5% + 10%)/2 = 7.5%. This is wrong because Line 1 produces four times as much as Line 2.
+**mistake_d:** Some intermediate wrong arithmetic, arriving at 8%.
+**mistake_e:** Added the two defect rates directly: 5% + 10% = 15%, treating them as if they apply to the same items.
+**common_trap:** Simple average (7.5%) — treating both lines as if they produce equal output. When the two groups have unequal sizes, a weighted average is required.
+**takeaway:** Law of Total Probability: P(event) = Σ P(event | case_i) × P(case_i). Weight each conditional rate by the probability of belonging to that case (here, the production share).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Grid Paths Through a Required Midpoint
+
+A person walks from point A at (0, 0) to point B at (4, 3) on a grid, moving only right or up. Every route must pass through checkpoint M at (2, 2). How many valid routes are there?
+
+- A) 6
+- B) 12
+- C) 18
+- D) 24
+- E) 35
+
+**answer:** C
+**fastest_path:** Routes A→M × routes M→B = C(4,2) × C(3,1) = 6 × 3 = 18.
+**explanation:** Break the journey at M. Segment A→M: 2 right + 2 up = 4 total moves → C(4, 2) = 6 routes. Segment M→B: 2 right + 1 up = 3 total moves → C(3, 1) = 3 routes. Because every valid full route is a pair of one A→M route and one M→B route, multiply: 6 × 3 = 18.
+**mistake_a:** Counted only one segment: C(4, 2) = 6, stopping at M.
+**mistake_b:** Computed only the second segment C(3, 1) = 3 and doubled: 3 × 4 = 12 (wrong factor).
+**mistake_d:** Miscalculated the first segment as C(4, 2) = 8 (treating it as a permutation), then 8 × 3 = 24.
+**mistake_e:** Computed unrestricted total routes C(7, 3) = 35 and ignored the checkpoint constraint.
+**common_trap:** Computing only one of the two segments or computing the total unrestricted count. Checkpoints split a path problem into two independent sub-problems whose counts multiply.
+**takeaway:** "Must pass through M" → split at M. Count routes for each segment independently, then multiply (both must occur, so "AND" → multiply).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Expected Value
+
+A carnival game pays $15 if you roll a 6 on a fair die, $3 if you roll a 1 or 2, and $0 otherwise. What is the expected value of one play?
+
+- A) $2.50
+- B) $3.00
+- C) $3.50
+- D) $4.00
+- E) $6.00
+
+**answer:** C
+**fastest_path:** (1/6)(15) + (2/6)(3) + (3/6)(0) = 15/6 + 6/6 = 21/6 = $3.50.
+**explanation:** E[X] = (probability of outcome) × (prize), summed across all outcomes. P(roll 6) = 1/6, prize = $15. P(roll 1 or 2) = 2/6 = 1/3, prize = $3. P(roll 3, 4, or 5) = 3/6 = 1/2, prize = $0. E[X] = (1/6)(15) + (2/6)(3) + (3/6)(0) = 2.50 + 1.00 + 0 = $3.50.
+**mistake_a:** Computed only the $15 prize contribution: (1/6)(15) = $2.50, ignoring the $3 prize.
+**mistake_b:** Summed prizes without weighting: ($15 + $3)/6 = $3.00 — incorrect; you must weight each by its own probability, not divide the prize sum by 6.
+**mistake_d:** Reached $4.00 through an intermediate arithmetic slip.
+**mistake_e:** Averaged only non-zero prizes: ($15 + $3)/3 ≈ $6.00 — misapplied an equal-weight average.
+**common_trap:** Dividing the total prize amount by 6 (number of die faces) instead of multiplying each prize by its specific probability. The $3 prize applies to 2 out of 6 faces, not 1 out of 6.
+**takeaway:** Expected value = Σ [probability × payoff] for each distinct outcome. Each outcome gets its own probability weight; don't average payoffs uniformly unless all probabilities are equal.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combinations with Repetition
+
+An ice cream shop offers 5 flavors. How many ways can you order a bowl of 3 scoops if you may repeat flavors and the order of scoops does not matter?
+
+- A) 10
+- B) 15
+- C) 21
+- D) 35
+- E) 125
+
+**answer:** D
+**fastest_path:** Stars-and-bars: C(n + k − 1, k) = C(5 + 3 − 1, 3) = C(7, 3) = 35.
+**explanation:** Choosing k items from n types with repetition, where order doesn't matter, is a "multiset" or "stars-and-bars" problem. Formula: C(n + k − 1, k) = C(5 + 3 − 1, 3) = C(7, 3) = (7 × 6 × 5)/(3 × 2 × 1) = 35.
+**mistake_a:** Used C(5, 3) = 10 — standard combinations formula, which counts selections *without* repetition. Repetition is allowed here.
+**mistake_b:** Computed 5 + 3 + ... = 15 from some partial stars-and-bars setup.
+**mistake_c:** Used C(6, 2) = 15 or C(7, 2) = 21 — off-by-one errors on either n or k in the formula.
+**mistake_e:** Computed 5³ = 125 — counted ordered selections with repetition (a permutation-with-repetition formula). This overcounts because order does not matter.
+**common_trap:** Using standard C(n, k) (without repetition) when the problem allows repeats. Repetition with unordered selection requires the stars-and-bars formula C(n + k − 1, k).
+**takeaway:** Combinations with repetition: C(n + k − 1, k). Memorize the "n + k − 1" adjustment. Standard C(n, k) is for selections without repetition only.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** At-Least-One Probability — Biased Coin
+
+A biased coin lands heads with probability 1/3 and tails with probability 2/3. If the coin is flipped 3 times, what is the probability of getting at least one head?
+
+- A) 1/27
+- B) 8/27
+- C) 19/27
+- D) 26/27
+- E) 1/3
+
+**answer:** C
+**fastest_path:** Complement: 1 − P(no heads) = 1 − (2/3)³ = 1 − 8/27 = 19/27.
+**explanation:** "At least one head" is the complement of "zero heads." P(all tails on 3 flips) = (2/3)³ = 8/27. P(at least one head) = 1 − 8/27 = 19/27.
+**mistake_a:** Computed P(all heads) = (1/3)³ = 1/27 — the wrong extreme event (all heads, not no heads).
+**mistake_b:** Computed P(no heads) = (2/3)³ = 8/27 but reported that value instead of taking the complement.
+**mistake_d:** Subtracted P(all heads) from 1: 1 − (1/3)³ = 1 − 1/27 = 26/27. This is P(not all heads), not P(at least one head). A subtle difference: "at least one head" excludes only the all-tails case; "not all heads" excludes only the all-heads case.
+**mistake_e:** Reported the single-flip probability 1/3 without accounting for three flips.
+**common_trap:** Computing 1 − P(all heads) = 26/27 instead of 1 − P(all tails) = 19/27. "At least one head" has complement "no heads" (all tails), not "no tails" (all heads).
+**takeaway:** "At least one" = 1 − P(none). Identify the correct "none" complement: for "at least one head," the none-event is all tails.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Bayes' Theorem — Rare Disease Testing
+
+A disease affects 2% of the population. A diagnostic test has a 90% true-positive rate (correctly identifies 90% of sick people) and a 5% false-positive rate (incorrectly flags 5% of healthy people). If a randomly chosen person tests positive, what is the probability they actually have the disease? (Round to the nearest percent.)
+
+- A) 2%
+- B) 18%
+- C) 27%
+- D) 36%
+- E) 90%
+
+**answer:** C
+**fastest_path:** P(true positive) = 0.02×0.90 = 0.018; P(false positive) = 0.98×0.05 = 0.049; P(disease|positive) = 0.018/(0.018+0.049) ≈ 27%.
+**explanation:** Apply Bayes' theorem. Among 1,000 random people: ~20 have the disease; 20 × 0.90 = 18 test positive (true positives). ~980 are healthy; 980 × 0.05 = 49 test positive (false positives). Of 67 total positives, 18 are truly sick. P(disease | positive) = 18/67 ≈ 0.269 ≈ 27%.
+**mistake_a:** Base-rate fallacy — reported the raw disease prevalence (2%) without using the test result at all.
+**mistake_b:** Computed 0.018 and misinterpreted it as 18% directly, confusing the count 18 (out of 1,000) with a percentage.
+**mistake_d:** Used only the false-positive rate in the denominator — divided true positives by false positives: 0.018/0.05 = 36%. The correct denominator includes both true and false positives.
+**mistake_e:** Read off the test's sensitivity (90% true-positive rate) as the answer — confused P(positive|disease) with P(disease|positive). These are not the same.
+**common_trap:** Reporting the sensitivity (90%) as the posterior probability. P(positive|disease) is the test's performance; P(disease|positive) is what the patient actually wants to know. They diverge sharply when the disease is rare.
+**takeaway:** Bayes' theorem: P(A|B) = P(B|A)×P(A) / [P(B|A)×P(A) + P(B|not A)×P(not A)]. For rare events, the false-positive pool (large healthy group × small false-positive rate) can overwhelm the true-positive pool, making most positives false alarms.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q43
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Grid Path — Forbidden Intersection
+
+A traveler walks from (0, 0) to (4, 3) on a grid, moving only right or up. The intersection at (2, 2) is blocked and cannot be used. How many valid paths exist?
+
+- A) 12
+- B) 17
+- C) 21
+- D) 29
+- E) 35
+
+**answer:** B
+**fastest_path:** Total C(7,3) − through (2,2): C(4,2)×C(3,1) = 35 − 18 = 17.
+**explanation:** Total paths from (0,0) to (4,3): C(4+3, 3) = C(7,3) = 35. Blocked paths (those passing through (2,2)): paths from (0,0) to (2,2) × paths from (2,2) to (4,3). (0,0)→(2,2): 2 right+2 up → C(4,2) = 6. (2,2)→(4,3): 2 right+1 up → C(3,1) = 3. Blocked = 6×3 = 18. Valid = 35−18 = 17.
+**mistake_a:** Miscomputed the blocked paths as C(4,1)×C(3,2) = 4×3 = 12, then 35−12 = 23... or some other arithmetic slip yielding 35−23 = 12.
+**mistake_c:** Computed the (2,2)-blocked count incorrectly as 14, giving 35−14 = 21.
+**mistake_d:** Forgot to multiply both segments — only subtracted the first-segment count: 35−6 = 29.
+**mistake_e:** Reported the total unrestricted count C(7,3) = 35 without applying the blocked intersection.
+**common_trap:** Subtracting only one segment's count (6) instead of the product of both segments (18). Both segments must be counted, and they multiply because every blocked full path is a pair of one A→M route and one M→B route.
+**takeaway:** Forbidden-point detour: valid = total − (routes through forbidden point). Routes through forbidden point = routes to it × routes from it (both segments independently chosen).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q44
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Majority Probability in Committee Selection
+
+A 3-person committee is selected at random from 6 Democrats and 4 Republicans. What is the probability that the committee has a majority of Democrats (at least 2 Democrats)?
+
+- A) 1/6
+- B) 1/2
+- C) 1/3
+- D) 2/3
+- E) 5/6
+
+**answer:** D
+**fastest_path:** [C(6,2)C(4,1) + C(6,3)] / C(10,3) = (60+20)/120 = 80/120 = 2/3.
+**explanation:** Total committees: C(10,3) = 120. Committees with exactly 2 Democrats: C(6,2)×C(4,1) = 15×4 = 60. Committees with exactly 3 Democrats: C(6,3) = 20. P(majority Democrats) = (60+20)/120 = 80/120 = 2/3.
+**mistake_a:** Counted only all-Democrat committees: 20/120 = 1/6. Misread "majority" as "unanimous."
+**mistake_b:** Counted only exactly-2-Democrat committees: 60/120 = 1/2. "At least 2" includes the 3D case as well.
+**mistake_c:** 1/3 is P(Republican majority) — see below. Computed the correct value for the wrong group.
+**mistake_e:** 5/6 is not a natural result of a clean calculation from this setup; likely an overestimate.
+**common_trap:** Forgetting the "exactly 3 Democrats" case when counting "at least 2." "At least 2" means 2 or 3 — both cases must be added. Note also that P(D majority) + P(R majority) = 1 because a 3-person committee cannot tie: 2/3 + 1/3 = 1 ✓.
+**takeaway:** "At least k" in a selection problem = sum all cases where the count meets or exceeds k. Here, count the 2D+1R case and the 3D+0R case, then add.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Dividing Into Unlabeled Groups
+
+Twelve students are to be divided into three equal groups of 4 for a field trip. The groups have no labels — there is no "Group 1," "Group 2," or "Group 3"; any arrangement of the same three groups is counted only once. How many ways can this division be made?
+
+- A) 3,960
+- B) 5,775
+- C) 11,550
+- D) 34,650
+- E) 69,300
+
+**answer:** B
+**fastest_path:** C(12,4)×C(8,4)×C(4,4) / 3! = 34,650 / 6 = 5,775.
+**explanation:** Step 1 — select first group of 4: C(12,4) = 495. Step 2 — select second group of 4 from remaining 8: C(8,4) = 70. Step 3 — last group is determined: C(4,4) = 1. Raw product: 495 × 70 × 1 = 34,650. But since the three groups carry no labels, every actual partition has been counted 3! = 6 times (once for each way to order three identical-status groups). Divide: 34,650 / 6 = 5,775.
+**mistake_a:** Divided by a wrong factorial (e.g., 4! = 24 instead of 3!): 34,650/24 ≈ 1,443 — rounded or slipped to 3,960.
+**mistake_c:** Divided by 3 instead of 3! = 6: 34,650/3 = 11,550.
+**mistake_d:** Forgot to divide by 3! entirely — treated the three groups as labeled (e.g., "Group A," "Group B," "Group C"): 34,650.
+**mistake_e:** Multiplied by an extra factor after computing the product: 34,650 × 2 = 69,300.
+**common_trap:** Omitting the division by 3! — forgetting that unlabeled groups create overcounting. Every set of three equal-sized unlabeled groups is counted 3! = 6 times by the sequential C(n,k) approach.
+**takeaway:** Dividing n items into k equal-sized unlabeled groups: [C(n,k) × C(n−k,k) × … × C(k,k)] / k!. The k! removes the overcounting from assigning an implicit order to the groups.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Two-Constraint Committee — Inclusion-Exclusion
+
+A committee of 4 is to be selected from 10 candidates: 2 rivals (X and Y who refuse to serve together), 3 senior members (A, B, C), and 5 junior members. The committee must also include at least one senior member. How many valid committees can be formed?
+
+- A) 137
+- B) 147
+- C) 152
+- D) 157
+- E) 175
+
+**answer:** D
+**fastest_path:** Total − (both X&Y) − (no senior) + (both X&Y AND no senior) = 210 − 28 − 35 + 10 = 157.
+**explanation:** Total committees: C(10,4) = 210. Apply inclusion-exclusion over two "bad" conditions.
+
+Condition 1 violated (both X and Y on committee): choose 2 more from the remaining 8 people → C(8,2) = 28 committees.
+
+Condition 2 violated (no senior on committee): choose 4 from {X, Y, J1, J2, J3, J4, J5} = 7 non-senior people → C(7,4) = 35 committees.
+
+Both conditions violated (both X&Y AND no senior): X and Y are on the committee, so choose 2 more from {J1,…,J5} = 5 juniors only → C(5,2) = 10 committees.
+
+By inclusion-exclusion: invalid = 28 + 35 − 10 = 53. Valid = 210 − 53 = 157.
+**mistake_a:** Subtracted the overlap instead of adding it: 210 − 28 − 35 − 10 = 137.
+**mistake_b:** Omitted the inclusion-exclusion addback: 210 − 28 − 35 = 147. Without adding back the overlap, those 10 committees are subtracted twice.
+**mistake_c:** Some other arithmetic slip, arriving at 152.
+**mistake_e:** Applied only the no-senior constraint: 210 − 35 = 175, ignoring the rival constraint.
+**common_trap:** Forgetting to add back the overlap (the 10 committees that violate both conditions simultaneously). In inclusion-exclusion, subtracting both violating sets double-removes their intersection; you must add it back once.
+**takeaway:** Two simultaneous constraints → inclusion-exclusion: valid = total − |C1| − |C2| + |C1 ∩ C2|. Always identify the intersection (committees violating *both* constraints) and add it back.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
