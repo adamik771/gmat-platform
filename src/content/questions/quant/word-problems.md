@@ -1179,6 +1179,8 @@ Of 180 employees, every employee works in at least one of three departments: Ope
 
 ## Q46
 
+**difficulty:** Easy
+**type:** Problem Solving
 **topic:** Simple Interest
 
 A savings account earns simple interest at an annual rate of 4%. A depositor places $3,500 in the account and makes no withdrawals. How much interest will the account earn over 2 years?
@@ -1198,9 +1200,12 @@ A savings account earns simple interest at an annual rate of 4%. A depositor pla
 **mistake_e:** Doubled both the rate and the years: 3,500 × 0.08 × 2 = $560. Over-counted.
 **common_trap:** Stopping at one year of interest ($140) — the single most common arithmetic shortcut on simple-interest problems.
 **takeaway:** Simple interest: I = P × r × t. All three factors multiply. "Simple" means interest does not compound — it is the same dollar amount each year.
+**related_reading:** reading-quant-05-word-problems
 
 ## Q47
 
+**difficulty:** Easy
+**type:** Problem Solving
 **topic:** Weighted Average
 
 A company has two departments. Department A has 20 employees with an average salary of $50,000, and Department B has 10 employees with an average salary of $80,000. What is the average salary across all 30 employees?
@@ -1214,15 +1219,18 @@ A company has two departments. Department A has 20 employees with an average sal
 **answer:** B
 **fastest_path:** Weighted avg = (20·50K + 10·80K) / 30 = 1,800,000 / 30 = $60,000.
 **explanation:** Total salary = 20 × 50,000 + 10 × 80,000 = 1,000,000 + 800,000 = 1,800,000. Average = 1,800,000 / 30 = $60,000. Department A, with twice the headcount, pulls the average closer to its own $50,000 than to Department B's $80,000.
-**mistake_a:** Arithmetic slip on the weighted computation.
-**mistake_c:** Arithmetic slip — off by a step.
+**mistake_a:** Computed the weighted average using the wrong denominator — divided by 20 (Dept A headcount) instead of 30: (20×50K + 10×80K)/20 = 1,800,000/20 = $90,000, then roughly halved by some other slip to reach $55,000. Always divide by the *total* headcount.
+**mistake_c:** Averaged the two group means then adjusted slightly without a principled formula: (50K + 80K)/2 = $65K, then subtracted some rough fraction, landing near $63K. Shortcuts based on "splitting the difference" fail when group sizes differ.
 **mistake_d:** Took the simple (unweighted) arithmetic mean: (50,000 + 80,000) / 2 = $65,000. The classic trap: ignoring that the two groups have different sizes.
-**mistake_e:** Over-weighted Department B or anchored on the higher salary.
+**mistake_e:** Swapped the group sizes — applied the 10-person weight to Dept A and the 20-person weight to Dept B: (10×50K + 20×80K)/30 = $70,000. Re-read the problem: 20 employees are in A ($50K) and 10 are in B ($80K). The larger group pulls the average toward its own mean.
 **common_trap:** Simple average of the two group means ($65,000) — this only works when the groups are the same size.
 **takeaway:** Weighted average = (sum of all values) / (total count). When group sizes differ, larger groups pull the average toward their mean. Never average the group means directly unless the groups are equal in size.
+**related_reading:** reading-quant-05-word-problems
 
 ## Q48
 
+**difficulty:** Easy
+**type:** Problem Solving
 **topic:** Rate/Time/Distance — Meeting
 
 Two cyclists start simultaneously from opposite ends of a 90-mile trail and ride toward each other. Cyclist A rides at 18 mph and Cyclist B rides at 12 mph. After how many hours do they meet?
@@ -1237,14 +1245,17 @@ Two cyclists start simultaneously from opposite ends of a 90-mile trail and ride
 **fastest_path:** Closing rate = 18 + 12 = 30 mph. t = 90/30 = 3 hr.
 **explanation:** When two objects move toward each other, the gap closes at the *sum* of their speeds: 18 + 12 = 30 mph. Time to close 90 miles: 90/30 = 3 hours. Verify: A travels 18 × 3 = 54 miles; B travels 12 × 3 = 36 miles; 54 + 36 = 90. ✓
 **mistake_a:** Divided distance by the faster speed only: 90/45 = 2. Ignored the other cyclist.
-**mistake_b:** Used 36 as the combined speed (arithmetic error on 18 + 12): 90/36 = 2.5.
-**mistake_d:** Arithmetic slip on the combined speed or division.
+**mistake_b:** Added 18 + 18 = 36 (accidentally doubled Cyclist A's speed instead of adding both): 90/36 = 2.5. Always re-add the given values: 18 + 12 = 30.
+**mistake_d:** Computed the combined speed correctly as 30 mph, then divided by the wrong distance — perhaps used 105 (90 + 15) instead of 90: 105/30 = 3.5. Double-check which quantity is the gap to close.
 **mistake_e:** Divided by the *average* of the two speeds (15 mph) instead of their sum: 90/15 = 6. The meeting rate is the sum, not the average.
 **common_trap:** Using the average of the speeds (15) instead of the sum (30). When two objects approach each other, each second brings them closer at a combined rate equal to the sum of their individual speeds.
 **takeaway:** Head-on meeting: closing rate = sum of speeds. Time = gap / (v₁ + v₂). Same-direction catch-up: closing rate = difference of speeds.
+**related_reading:** reading-quant-05-word-problems
 
 ## Q49
 
+**difficulty:** Easy
+**type:** Problem Solving
 **topic:** Work Rate
 
 Alicia can complete a report in 6 hours working alone. Ben can complete the same report in 4 hours working alone. If they work together at their individual constant rates, what fraction of the report will they complete in 1 hour?
@@ -1264,9 +1275,12 @@ Alicia can complete a report in 6 hours working alone. Ben can complete the same
 **mistake_e:** Arithmetic slip yielding 1/2.
 **common_trap:** Adding the two times together (6 + 4 = 10) and concluding they finish in 10 hours together — which is actually *slower* than each person alone. Combined workers always finish faster; add rates, not times.
 **takeaway:** Combined work rate = sum of individual rates. 1/a + 1/b gives the fraction completed per unit time. Together = faster, so rates add.
+**related_reading:** reading-quant-05-word-problems
 
 ## Q50
 
+**difficulty:** Easy
+**type:** Problem Solving
 **topic:** Simple Interest — Reverse
 
 A loan carries a simple annual interest rate of 8%. The borrower owes $960 in interest after 3 years. What was the original loan amount?
@@ -1286,9 +1300,12 @@ A loan carries a simple annual interest rate of 8%. The borrower owes $960 in in
 **mistake_d:** Computed 0.08 × 3 as 0.27 instead of 0.24 (mis-multiplied): 960 / 0.27 ≈ $3,556 rounded to $3,600.
 **common_trap:** Computing I / r without multiplying by t first — leaves out a factor of 3 and yields $12,000 or similar.
 **takeaway:** Simple interest: I = Prt. To find P: P = I/(rt). All three — principal, rate, and time — must appear in the denominator together. Rearrange before plugging in numbers.
+**related_reading:** reading-quant-05-word-problems
 
 ## Q51
 
+**difficulty:** Medium
+**type:** Problem Solving
 **topic:** Compound Interest
 
 An initial investment of $5,000 earns compound interest at an annual rate of 20%. What is the value of the investment after exactly 2 years?
@@ -1308,9 +1325,12 @@ An initial investment of $5,000 earns compound interest at an annual rate of 20%
 **mistake_e:** Multiplied the rate by a wrong factor: 5,000 × 1.60 = $8,000 (treated it as a 60% flat gain instead of two successive 20% multiplications).
 **common_trap:** Adding the two years' interest as if they were the same: 20% + 20% = 40%, so $5,000 × 1.40 = $7,000. This is the simple-interest answer. Compounding gives 1.2 × 1.2 = 1.44, not 1.40, because the second year's 20% is applied to the *new* higher balance.
 **takeaway:** Compound interest: FV = P(1 + r)^t. Each period's growth is applied to the running balance. Even one year of compounding difference matters because year-2 interest includes interest on year-1 interest.
+**related_reading:** reading-quant-05-word-problems
 
 ## Q52
 
+**difficulty:** Medium
+**type:** Problem Solving
 **topic:** Weighted Average — Find Missing Group Mean
 
 A class of 25 students scored an average of 80 on an exam. The 10 students who sat in the front row had an average score of 92. What was the average score of the remaining 15 students?
@@ -1324,15 +1344,18 @@ A class of 25 students scored an average of 80 on an exam. The 10 students who s
 **answer:** B
 **fastest_path:** Total = 25×80 = 2000. Front: 10×92 = 920. Remaining: 2000 − 920 = 1080. Avg = 1080/15 = 72.
 **explanation:** Work in totals. Total score for the class: 25 × 80 = 2,000. Front row total: 10 × 92 = 920. The other 15 students' total: 2,000 − 920 = 1,080. Their average: 1,080 / 15 = 72.
-**mistake_a:** Arithmetic slip — used 10 × 90 = 900 for front-row total: 2,000 − 900 = 1,100, 1,100/15 ≈ 73. Or further slip to 68.
-**mistake_c:** Arithmetic slip — off by a small amount.
-**mistake_d:** Arithmetic slip.
+**mistake_a:** Misread the front-row average as 90 instead of 92: 10 × 90 = 900, remaining = 2,000 − 900 = 1,100, average = 1,100/15 ≈ 73. A single digit error cascades; read the given values carefully before computing.
+**mistake_c:** Computed the remaining-student total correctly (1,080) but divided by 16 instead of 15: 1,080/16 = 67.5 ≈ 68, or divided correctly but used a wrong front-row count. The remaining group has 25 − 10 = 15 students, not 16.
+**mistake_d:** Divided the remaining total (1,080) by 9 (perhaps confusing the number of non-front-row rows with the count of students): 1,080/9 = 120, then used an incorrect formula, landing near 76. Always divide remaining-total by the remaining-student *count*, not a row or section count.
 **mistake_e:** Averaged the two known means: (80 + 92) / 2 = 86. This ignores the different group sizes (10 vs. 15) — the classic weighted-average trap.
 **common_trap:** Averaging the class mean (80) and the front-row mean (92) to get 86 for the other group. This only works if both subgroups are the same size. Here, 15 students' low scores pull the class average *down* from the front-row's 92, so the remaining group average must be below 80.
 **takeaway:** When a group is broken into two subgroups and you know the overall mean plus one subgroup's mean, use totals: total = mean × count for each group, then subtract and divide.
+**related_reading:** reading-quant-05-word-problems
 
 ## Q53
 
+**difficulty:** Medium
+**type:** Problem Solving
 **topic:** Investment — Two Simple Interest Rates
 
 Rosa invested a total of $10,000. She placed part of the money in Account A at 3% annual simple interest and the remainder in Account B at 7% annual simple interest. After one year, Rosa earned a total of $540 in interest. How much did Rosa invest in Account B?
@@ -1352,9 +1375,12 @@ Rosa invested a total of $10,000. She placed part of the money in Account A at 3
 **mistake_e:** Set up the equation with accounts switched (x at 3%, 10,000−x at 7%).
 **common_trap:** Computing the correct answer ($6,000) but reporting Account A's balance ($4,000 = 10,000 − 6,000) instead of Account B's. Always re-read which account was asked for before writing the final answer.
 **takeaway:** Two-rate investment problems: define x as the amount at one rate, set up one interest equation, solve. Then check which account the question asked for — it is frequently the *other* one from your variable definition.
+**related_reading:** reading-quant-05-word-problems
 
 ## Q54
 
+**difficulty:** Medium
+**type:** Problem Solving
 **topic:** Mixture — Evaporation
 
 A 60-liter tank contains a solution that is 30% sugar. How many liters of water must be evaporated (assume no sugar evaporates) to produce a solution that is 45% sugar?
@@ -1374,9 +1400,12 @@ A 60-liter tank contains a solution that is 30% sugar. How many liters of water 
 **mistake_d:** Confused the sugar amount (18 liters) with the answer.
 **common_trap:** Setting up the fraction as 18/(60) = 0.45 (forgetting that evaporation changes the total volume). The denominator *decreases* when water is removed; the numerator stays fixed.
 **takeaway:** Evaporation/removal problems: the pure substance (sugar) stays constant; the total volume shrinks. Set up the new concentration as (fixed component) / (original volume − removed volume) = target.
+**related_reading:** reading-quant-05-word-problems
 
 ## Q55
 
+**difficulty:** Medium
+**type:** Problem Solving
 **topic:** Rate/Time/Distance — Multi-Leg Average Speed
 
 A truck driver travels 120 miles at an average speed of 40 mph, then continues another 60 miles at an average speed of 60 mph. What is the driver's average speed for the entire trip, in miles per hour?
@@ -1390,15 +1419,18 @@ A truck driver travels 120 miles at an average speed of 40 mph, then continues a
 **answer:** A
 **fastest_path:** Times: 3 hr + 1 hr = 4 hr total. Avg = 180/4 = 45 mph.
 **explanation:** Total distance = 120 + 60 = 180 miles. Time for leg 1 = 120/40 = 3 hours. Time for leg 2 = 60/60 = 1 hour. Total time = 4 hours. Average speed = 180/4 = 45 mph.
-**mistake_b:** Attempted a distance-weighted calculation that introduced an arithmetic error.
+**mistake_b:** Weighted the two speeds by distance share: (120/180)×40 + (60/180)×60 = (2/3)×40 + (1/3)×60 = 26.67 + 20 = 46.67 ≈ 47. Distance-weighting is wrong here — the correct weighting is by *time* spent at each speed. The total-distance/total-time formula gives 180/4 = 45.
 **mistake_c:** Took the simple arithmetic mean of the two speeds: (40 + 60)/2 = 50. This is the most tempting trap — it only gives the correct average speed when the two legs take *equal time*, which is not the case here.
-**mistake_d:** Some other incorrect weighting produced this result.
-**mistake_e:** Anchored on the longer-distance leg's speed or combined numbers incorrectly.
+**mistake_d:** Weighted the speeds by the *inverse* of the distance ratio — perhaps (60/180)×40 + (120/180)×60 = 13.3 + 40 = 53.3 ≈ 52. This inverts the correct distance proportions and also incorrectly uses distance rather than time as the weight. Use total distance ÷ total time.
+**mistake_e:** Used only the second leg's speed (60 mph) or computed 120/40 = 3 and 60/3 = 20, then combined incorrectly to get 180/(3+something) ≈ 56. Always compute *each* leg's time independently before summing.
 **common_trap:** Simple average of speeds (40 + 60)/2 = 50. The driver spends 3 hours at 40 mph and only 1 hour at 60 mph, so the slow leg has three times the weight of the fast leg. The true average (45) is pulled far below 50.
 **takeaway:** Average speed = total distance / total time. Never average two speeds arithmetically unless the legs are equal in *time*. When legs have equal *distance*, use the harmonic mean. When neither is equal, compute time for each leg and use total/total.
+**related_reading:** reading-quant-05-word-problems
 
 ## Q56
 
+**difficulty:** Medium
+**type:** Problem Solving
 **topic:** Work Rate — Variable Workforce
 
 A team of 6 workers can complete a construction project in 20 days. After 8 days of work, 2 workers leave the project and the remaining 4 must finish. How many additional days will the 4-worker team need to complete the project?
@@ -1418,9 +1450,12 @@ A team of 6 workers can complete a construction project in 20 days. After 8 days
 **mistake_e:** Left the project timeline unchanged at 20 days — ignored the departure.
 **common_trap:** Simply subtracting elapsed days: 20 − 8 = 12. This assumes the 4-person team works at the same pace as the 6-person team. The correct approach conserves total worker-days.
 **takeaway:** Worker-days (or worker-hours) are conserved when each worker has the same individual rate. Total WD = workers₁ × days₁ = workers₂ × days₂ for the remaining segment. Compute remaining WD first, then divide by the new team size.
+**related_reading:** reading-quant-05-word-problems
 
 ## Q57
 
+**difficulty:** Medium
+**type:** Problem Solving
 **topic:** Consecutive Even Integers
 
 The sum of four consecutive even integers is 100. What is the product of the smallest and the largest of these integers?
@@ -1440,9 +1475,11 @@ The sum of four consecutive even integers is 100. What is the product of the sma
 **mistake_e:** Used the second-smallest instead of the smallest: 24 × 28 = 672.
 **common_trap:** Squaring the middle value (24² = 576) instead of multiplying the outer pair. For symmetric sets, it's tempting to treat the middle as representative, but the question specifies smallest × largest.
 **takeaway:** For consecutive even integers n, n+2, n+4, n+6: sum = 4n + 12; smallest = n; largest = n+6. Note: 22 × 28 = (25−3)(25+3) = 625−9 = 616 — difference of squares is faster than long multiplication.
+**related_reading:** reading-quant-05-word-problems
 
 ## Q58
 
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** Compound Interest
 
@@ -1476,6 +1513,8 @@ Together: P = 10,000 and 10,000(1+r) = 11,200 → r = 12%. Year-2 value = 10,000
 
 ## Q59
 
+**difficulty:** Hard
+**type:** Problem Solving
 **topic:** Weighted Average — Find Proportion
 
 In a class, the boys' average score on a test is 78 and the girls' average score is 84. The overall class average is 80. What fraction of the class consists of boys?
@@ -1497,9 +1536,11 @@ Alligation shortcut: distance from boys mean to overall = 80 − 78 = 2. Distanc
 **mistake_d:** Some other weighted error.
 **common_trap:** Alligation inversion. The overall mean (80) is closer to the boys' mean (78) than to the girls' mean (84). Closer proximity means boys are the *larger* group — 2/3, not 1/3. Students who write the ratio unreversed get 1/3 every time.
 **takeaway:** Weighted average fraction: 78b + 84(1−b) = 80. Solve directly, or use alligation with the inversion: boys:girls = (84−80):(80−78) = 4:2 = 2:1 → boys = 2/3. The group *farther* from the overall mean is the smaller group.
+**related_reading:** reading-quant-05-word-problems
 
 ## Q60
 
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** Investment — Two Accounts
 
@@ -1533,6 +1574,8 @@ Together: P = $5,000 at 4% = $200; Q = $10,000 at 6% = $600; total = $800. Suffi
 
 ## Q61
 
+**difficulty:** Hard
+**type:** Problem Solving
 **topic:** Work Rate — Phase Change
 
 A construction team begins work on a pipeline at a constant daily rate. After completing exactly 3/8 of the pipeline, the team acquires new equipment that doubles their daily construction rate. The entire pipeline is completed in 22 days total. How many days did construction take at the original (slower) rate?
@@ -1558,6 +1601,7 @@ Verify: 12 days at 1/32 per day = 12/32 = 3/8 ✓. Phase 2: 22 − 12 = 10 days 
 **mistake_e:** Computed 22 − 6 = 16 using the trap from choice A.
 **common_trap:** Computing 22 × (3/8) ≈ 8 — thinking "3/8 of the work = 3/8 of the time." This would be true only if the rate never changed. Because phase 2 is twice as fast, it takes proportionally less time than phase 1 per unit of work done.
 **takeaway:** Two-phase rate problems: express time in each phase as (work fraction)/(rate). Sum the two times to equal total time. Solve for the rate first, then back-substitute for the phase-1 duration.
+**related_reading:** reading-quant-05-word-problems
 
 ## Q62
 
@@ -1590,4 +1634,6 @@ Verify: Gardener wages = $1,600; assistant wages = $1,200; difference = $400. �
 **mistake_c:** Forgot to add the "+4" offset — computed equal gardeners and assistants: g = 8, a = 8, total = 16.
 **mistake_d:** Arithmetic slip — g = 7, a = 11, total = 18.
 **common_trap:** Reporting the number of one worker type instead of the total. After finding g = 8, the question asks for total workers — a second calculation that is easy to skip.
+**takeaway:** Multi-constraint word problems: define one variable for each unknown, translate every condition into an equation, and solve the system. Always re-read the question to confirm which quantity you are reporting — the most common error is bubbling an intermediate value (g or a) instead of the final answer (g + a).
+**related_reading:** reading-quant-05-word-problems
 **takeaway:** Multi-constraint word problems: translate each constraint into an equation, solve the system for the variable, then complete the final calculation the question actually asks for (total workers = g + (g+4), not just g). Always re-read the final question before writing the answer.
