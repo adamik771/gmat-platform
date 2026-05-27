@@ -48,7 +48,7 @@ If m is an even integer and n is an odd integer, which of the following must be 
 **mistake_a:** Treated 2n as odd — but any integer times 2 is even.
 **mistake_b:** Multiplied parities wrong: even × odd = even, not odd.
 **mistake_d:** Treated 2m or 2n as odd. Anything times 2 is even.
-**mistake_e:** Mis-tracked the parity arithmetic on m − n + 1.
+**mistake_e:** Mis-applied parity: even − odd = odd (not even), so m − n is already odd. Then m − n + 1 = odd + 1 = even, not odd. E is wrong because the student confused even − odd with even − even.
 **common_trap:** Forgetting that any integer multiplied by 2 is even, regardless of the integer's parity.
 **takeaway:** Parity arithmetic: even ± even = even, odd ± odd = even, even ± odd = odd. Even × anything = even. Anything × 2 = even.
 **related_reading:** reading-quant-03-number-properties
@@ -212,7 +212,7 @@ If n is a positive integer and n² is divisible by 72, what is the smallest poss
 ---
 
 ## Q9
-**difficulty:** Easy
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Divisibility Rules
 
@@ -227,10 +227,10 @@ Which of the following numbers is divisible by 11?
 **answer:** A
 **fastest_path:** Alternating digit sum test for 11. 2431: 2 − 4 + 3 − 1 = 0 → divisible.
 **explanation:** Divisibility by 11: the alternating digit sum must be divisible by 11 (including 0). Apply right-to-left (units first): for 2431 → 1 − 3 + 4 − 2 = 0 ✓. Direct check: 2431 ÷ 11 = 221. The other options all give nonzero alternating sums: 3456 → 2; 5791 → −6; 6810 → 1; 7239 → 1.
-**mistake_b:** Applied the alternating sum left-to-right: 3 − 4 + 5 − 6 = −2 ≠ 0, correctly rejecting 3456. But then computed 2 − 4 + 3 − 1 = 0 for 2431 (also correct). A common version of this error: added instead of alternated for 3456 (3 + 4 + 5 + 6 = 18, divisible by 9; confused divisibility-by-9 with divisibility-by-11 and picked B). Verify: 3456 ÷ 11 = 314.2… not divisible.
-**mistake_c:** Computed the alternating sum of 5791 as +6 (added all digits: 5+7+9+1 = 22; or did 5−7+9−1 = 6 left-to-right) and concluded it might be divisible by 11 because "6 is close." The correct right-to-left alternating sum is 1 − 9 + 7 − 5 = −6. Neither +6 nor −6 is divisible by 11. Verify: 5791 ÷ 11 = 526.5… not divisible.
-**mistake_d:** Mis-ordered the alternating signs for 6810. Left-to-right: 6 − 8 + 1 − 0 = −1. Right-to-left: 0 − 1 + 8 − 6 = 1. Both are ≠ 0, yet a sign error can produce 0 if the student applies alternating signs to the wrong positions. For example, computing (6 + 1) − (8 + 0) = 7 − 8 = −1 (wrong grouping) still doesn't give 0 — 6810 is definitively not divisible by 11. Verify: 6810 ÷ 11 = 619.09… not divisible.
-**mistake_e:** Applied an inconsistent rule to 7239: tried (7 + 3) − (2 + 9) = 10 − 11 = −1 (wrong grouping; should alternate individual digits). The correct right-to-left alternating sum is 9 − 3 + 2 − 7 = 1 ≠ 0. A grouping-based shortcut only works for alternating *individual* digits, not pairs of digits.
+**mistake_b:** Confused divisibility-by-9 with divisibility-by-11 — digit sum of 3456 is 18 (divisible by 9) but alternating sum is −2 (not divisible by 11). Verify: 3456 ÷ 11 = 314.2… not divisible.
+**mistake_c:** Added all digits of 5791 (5+7+9+1 = 22) instead of alternating them — confused the digit-sum test with the alternating-sum test. Correct alternating sum (right-to-left): 1 − 9 + 7 − 5 = −6 ≠ 0.
+**mistake_d:** Grouped digit pairs instead of alternating individual digits for 6810: (6+1) − (8+0) = −1 ≠ 0. Correct alternating sum (right-to-left): 0 − 1 + 8 − 6 = 1 ≠ 0.
+**mistake_e:** Applied the same digit-pair grouping to 7239: (7+3) − (2+9) = −1 ≠ 0. Correct alternating sum (right-to-left): 9 − 3 + 2 − 7 = 1 ≠ 0.
 **common_trap:** Applying the alternating sum to digit *pairs* instead of individual digits, or computing left-to-right vs. right-to-left inconsistently across problems. Both directions give the same result if applied consistently — but mixing directions within a single number produces errors.
 **takeaway:** Divisibility-by-11 test: alternate signs on individual digits (rightmost first): units − tens + hundreds − thousands … If the result is 0 or ±11, the number is divisible by 11. Quicker than long division for 4-digit numbers. Verify any "close call" by direct division.
 **related_reading:** reading-quant-03-number-properties
@@ -786,20 +786,20 @@ If x and y are integers, is the product xy even?
 
 What is the smallest positive integer n such that n, n + 2, and n + 4 are all prime?
 
-- A) 3
-- B) 5
-- C) 7
-- D) 11
-- E) 17
+- A) 2
+- B) 3
+- C) 5
+- D) 7
+- E) 11
 
-**answer:** A
-**fastest_path:** Try n = 3: 3, 5, 7 all prime ✓. (Among any 3 odd numbers spaced by 2, one is divisible by 3 — only when that one *is* 3 can all three be prime.)
-**explanation:** Try n = 3: 3, 5, 7 — all prime ✓. For any n > 3: among n, n + 2, n + 4, one is divisible by 3 (they cover three consecutive residues mod 3), and being > 3 makes it composite. So (3, 5, 7) is the *only* such triple.
-**mistake_b:** Tried n = 5: 5, 7, 9 — 9 is not prime.
-**mistake_c:** Tried n = 7: 7, 9, 11 — 9 is not prime.
-**mistake_d:** Tried n = 11: 11, 13, 15 — 15 is not prime.
-**mistake_e:** Tried n = 17: 17, 19, 21 — 21 is not prime.
-**common_trap:** Skipping n = 3 as "too small" or testing larger values first; missing the unique mod-3 structure.
+**answer:** B
+**fastest_path:** Try n = 2: {2, 4, 6} — 4 is not prime ✗. Try n = 3: {3, 5, 7} — all prime ✓.
+**explanation:** n = 2 fails immediately: 4 and 6 are composite. n = 3 gives {3, 5, 7} — all prime ✓. For any n > 3: among n, n + 2, n + 4, one is divisible by 3 (they span all three residues mod 3), and since it exceeds 3 it is composite. So (3, 5, 7) is the only prime triplet of this form.
+**mistake_a:** n = 2 gives {2, 4, 6} — 4 = 2² and 6 = 2·3 are both composite. Even numbers greater than 2 are never prime.
+**mistake_c:** n = 5 gives {5, 7, 9} — 9 = 3² is not prime.
+**mistake_d:** n = 7 gives {7, 9, 11} — 9 = 3² is not prime.
+**mistake_e:** n = 11 gives {11, 13, 15} — 15 = 3 × 5 is not prime.
+**common_trap:** Starting at n = 2 and assuming 4 or 6 might be prime; or skipping n = 3 as "too small" without checking the triple.
 **takeaway:** Among any 3 numbers in AP with common difference 2, one is divisible by 3 — so (3, 5, 7) is the *only* prime triplet of this form.
 **related_reading:** reading-quant-03-number-properties
 
@@ -822,7 +822,7 @@ The sum of 6 consecutive even integers is 126. What is the smallest of these int
 **fastest_path:** Let smallest = k. Sum = 6k + 30 = 126 → k = 16.
 **explanation:** Six consecutive even integers: k, k+2, k+4, k+6, k+8, k+10. Sum = 6k + 30 = 126 → 6k = 96 → k = 16. Verify: 16 + 18 + 20 + 22 + 24 + 26 = 126 ✓.
 **mistake_a:** Set up the sequence one step too early (used k−2 as smallest): k − 2 = 14.
-**mistake_c:** Bubbled the third term k+2 = 18 — misidentified the term just above the mean as the "smallest."
+**mistake_c:** Solved the algebra correctly to get k = 16, then mistakenly reported the second term k+2 = 18 — an indexing error: the answer is k itself, not k+2.
 **mistake_d:** Bubbled the lower-middle term k+4 = 20 — noted that mean = 126/6 = 21 and picked the nearest even integer below it, treating it as the answer.
 **mistake_e:** Bubbled the upper-middle term k+6 = 22 — rounded the mean (21) up to the next even integer.
 **common_trap:** With an even count of terms, the mean (21) is NOT one of the integers — it falls between the two middle terms (20 and 22). Using 20 or 22 as the answer gives a middle term, not the smallest.

@@ -49,7 +49,7 @@ Which of the following is equivalent to (x³)⁴ / x⁵?
 **fastest_path:** (x³)⁴ = x^(3×4) = x¹². Divide: x¹² / x⁵ = x^(12−5) = x⁷.
 **explanation:** Two exponent rules: (a) power of a power multiplies exponents — (x³)⁴ = x^(3×4) = x¹². (b) Same-base division subtracts exponents — x¹² / x⁵ = x^(12−5) = x⁷. The whole computation is two mechanical steps.
 **mistake_a:** Subtracted 3 from 5 (treated denominator as numerator) — got x^2.
-**mistake_c:** Multiplied exponents at every step — got 3 × 4 × 5 = 60, then somehow truncated to x¹². The reasoning chain confused multiplication and division.
+**mistake_c:** Stopped at the numerator step: correctly computed (x³)⁴ = x¹² but then did not complete the division by x⁵, bubbling the intermediate result.
 **mistake_d:** Multiplied (x³)⁴ as x^(3+4) = x^7, then multiplied by x^5 instead of dividing — got x^15.
 **mistake_e:** Computed 3 × 4 + 5 = 17 by adding the bottom exponent rather than subtracting.
 **common_trap:** Confusing exponent rules — multiplying when you should subtract, or adding when you should multiply.
@@ -207,7 +207,7 @@ If 2 < |x - 3| < 7, how many integer values of x satisfy the inequality?
 **answer:** C
 **fastest_path:** |x − 3| > 2 → x ∈ (−∞, 1) ∪ (5, ∞). |x − 3| < 7 → x ∈ (−4, 10). Intersection: (−4, 1) ∪ (5, 10). Count integers: {−3, −2, −1, 0, 6, 7, 8, 9} = 8.
 **explanation:** Two absolute-value inequalities create an intersection of two unions. From |x − 3| > 2: x − 3 > 2 (x > 5) or x − 3 < −2 (x < 1). From |x − 3| < 7: −7 < x − 3 < 7, i.e., −4 < x < 10. The intersection is (−4 < x < 1) OR (5 < x < 10) — exclusive on all bounds since the inequalities are strict. Integers in the first range: −3, −2, −1, 0 (4 integers). Integers in the second: 6, 7, 8, 9 (4 integers). Total = 8.
-**mistake_a:** Counted only one of the two ranges or excluded an endpoint that should be included.
+**mistake_a:** Made a systematic off-by-one error at the integer nearest each strict upper bound: counted {−3, −2, −1} = 3 from the lower range (stopping before 0, which is the integer just below the bound 1) and {6, 7, 8} = 3 from the upper range (stopping before 9, the integer just below the bound 10); total 3 + 3 = 6. This happens when a student is uncertain whether the integer adjacent to a strict bound is included and conservatively excludes it.
 **mistake_b:** Made an off-by-one error in one of the two disjoint ranges — for example, started the lower range at −2 (missing −3), giving {−2,−1,0}=3 integers instead of 4; combined with the upper range of 4 integers: 3+4=7.
 **mistake_d:** Forgot the strict inequalities and included endpoints (1, 5, −4, 10).
 **mistake_e:** Used >, < but counted inclusive on one side.
@@ -392,7 +392,7 @@ If 3x + 2y = 16 and 5x - 2y = 16, what is the value of x + y?
 **mistake_a:** Stopped at x = 4 and bubbled the wrong variable.
 **mistake_b:** Computed y = 2 and bubbled.
 **mistake_d:** Subtracted the equations instead of adding; got 2x = 0 → x = 0, then y = 8, sum = 7.
-**mistake_e:** Misread question; computed xy or x²+y².
+**mistake_e:** Solved the system correctly (x = 4, y = 2) but computed x × y = 4 × 2 = 8 instead of x + y = 6.
 **common_trap:** Solving past sufficiency or stopping too early — picking up x or y alone after correct setup.
 **takeaway:** When y coefficients are equal-and-opposite, add to cancel y in one step. After computing both, re-read the question to confirm what's asked.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -400,7 +400,7 @@ If 3x + 2y = 16 and 5x - 2y = 16, what is the value of x + y?
 ---
 
 ## Q16
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** Systems of Equations
 
@@ -508,7 +508,7 @@ If f(x) = ax + b where a and b are constants, what is the value of f(5)?
 ---
 
 ## Q20
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Algebra Translation
 
@@ -838,10 +838,10 @@ If 2a + 3b = 16 and 5a − 3b = 19, what is the value of a + b?
 **answer:** B
 **fastest_path:** Add to cancel b: 7a = 35 → a = 5. Then 10 + 3b = 16 → b = 2. a + b = 7.
 **explanation:** Coefficients on b are equal-and-opposite (+3 and −3), making addition the obvious one-step path. Adding 2a + 3b + 5a − 3b = 16 + 19 → 7a = 35 → a = 5. Substitute into the first equation: 2(5) + 3b = 16 → 3b = 6 → b = 2. Therefore a + b = 7.
-**mistake_a:** Subtracted equations instead of adding; got 3a − 6b = −3, then incorrectly solved.
-**mistake_c:** Stopped at a = 5 and bubbled — missed that the question asks for a + b.
-**mistake_d:** Computed a × b = 10 + 1 (or some other combination producing 11).
-**mistake_e:** Added the right-hand sides only: 16 + 19 = 35; bubbled 13 from arithmetic confusion.
+**mistake_a:** Stopped after finding a = 5 and bubbled — the question asks for a + b, not a alone.
+**mistake_c:** Found a = 5 and b = 2 correctly, then made an arithmetic slip adding: wrote 5 + 4 = 9 instead of 5 + 2 = 7 (mis-read the value of b in their scratch work).
+**mistake_d:** Confused the question with "what is a × b" and computed 5 × 2 = 10, then added a stray 1 from a coefficient in the equations, arriving at 11.
+**mistake_e:** Summed both right-hand sides (16 + 19 = 35) and confused this with the answer, then searched for the nearest plausible choice (13) rather than recognizing the sum 35 = 7a.
 **common_trap:** Solving past sufficiency or stopping early — bubbling a (or b) when the question asked for a + b.
 **takeaway:** When two equations have equal-and-opposite coefficients on one variable, add to cancel and solve in one step.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -905,4 +905,39 @@ Verification by solving: factor x² − 10x + 21 = (x − 3)(x − 7) = 0, so x 
 **mistake_e:** Bubbled 25 (the constant in the target expression, missed the manipulation).
 **common_trap:** missing-algebraic-shortcut — solving the quadratic to find x when the substitution shortcut answers the question in one step.
 **takeaway:** When the target differs from the given equation by a constant, the answer is the equation's RHS plus the constant difference. Look for x² − ax type expressions that match.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q34
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Quadratic Discriminant
+
+n is an integer. Does the equation x² − (n + 1)x + n = 0 have two distinct real roots?
+
+(1) n > 1
+(2) n is odd
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** Discriminant = (n+1)² − 4n = n²−2n+1 = (n−1)². Two distinct roots ↔ (n−1)² > 0 ↔ n ≠ 1. (1): n > 1 → n ≠ 1 → always YES. Sufficient. (2): n = 1 is odd (answer NO) and n = 3 is odd (answer YES). Insufficient.
+**explanation:** Compute the discriminant: Δ = (n+1)² − 4(1)(n) = n² + 2n + 1 − 4n = n² − 2n + 1 = (n−1)². The equation has two distinct real roots if and only if Δ > 0, i.e., (n−1)² > 0, i.e., n ≠ 1. When n = 1 the equation becomes x² − 2x + 1 = (x−1)² = 0, which has exactly one repeated root.
+
+Statement (1): n > 1 guarantees n ≠ 1, so (n−1)² > 0 and the answer is always YES. Sufficient.
+
+Statement (2): n is odd. Test n = 1 (odd): Δ = 0 — one repeated root, answer is NO. Test n = 3 (odd): Δ = 4 — two distinct roots, answer is YES. The answer depends on which odd integer n is. Insufficient.
+
+The key insight is factoring the discriminant. Students who expand (n+1)² − 4n but do not re-factor it cannot easily determine when it is positive and tend to pick C or E.
+**mistake_b:** Concluded (2) alone is sufficient because "all odd integers share some property" — missed that n = 1 is odd and produces a repeated root.
+**mistake_c:** Tested both statements together: n > 1 and n odd. Combined, this eliminates n = 1, but (1) alone already did so; the error is not recognizing (1) is sufficient on its own.
+**mistake_d:** Concluded each statement alone is sufficient; did not test n = 1 against statement (2) and assumed "odd" must imply some number-theoretic guarantee.
+**mistake_e:** Could not simplify the discriminant expression; concluded that without a specific numerical value of n neither statement can determine the sign of Δ.
+**common_trap:** Failing to factor the discriminant — expanding (n+1)² − 4n but not recognizing it equals (n−1)², leaving an unfactorable-looking quadratic in n that obscures the simple condition n ≠ 1.
+**takeaway:** When a quadratic has a parametric coefficient, fully simplify the discriminant; it often factors cleanly and reveals the exact constraint on the parameter. Two distinct real roots ↔ Δ > 0.
 **related_reading:** reading-quant-04-algebra-and-equations

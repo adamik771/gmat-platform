@@ -1721,7 +1721,7 @@ function PostSubmitReveal({
   state: QuestionProgress
 }) {
   const isCorrect = state.selected === question.correctAnswer
-  const [showExplanation, setShowExplanation] = useState(false)
+  const [showExplanation, setShowExplanation] = useState(!isCorrect)
 
   // Calibration hint — compare confidence vs correctness.
   const calibrationLabel =
@@ -1788,6 +1788,20 @@ function PostSubmitReveal({
             borderColor: "var(--read-border)",
           }}
         >
+          {!isCorrect && state.selected !== null && (
+            <div
+              className="flex items-center gap-2.5 text-[11px] mb-4 pb-3 border-b"
+              style={{ borderColor: "var(--read-border)" }}
+            >
+              <span style={{ color: "var(--read-error)" }}>
+                You chose {String.fromCharCode(65 + state.selected)}
+              </span>
+              <span style={{ color: "var(--read-text-faint)" }}>&middot;</span>
+              <span style={{ color: "var(--read-success)" }}>
+                Correct: {question.correctAnswerLetter}
+              </span>
+            </div>
+          )}
           <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
             {question.explanation}
           </ReactMarkdown>
