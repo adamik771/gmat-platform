@@ -150,7 +150,7 @@ Tom leaves home jogging at 6 km/h. Thirty minutes later, his sister leaves the s
 **fastest_path:** Tom: 1 hr × 6 = 6 km. Sister: 0.5 hr × 4 = 2 km. Total = 8.
 **explanation:** Tom has been moving 1 hour: 6 × 1 = 6 km. Sister has been moving only 0.5 hour: 4 × 0.5 = 2 km. Opposite directions → distances add: 6 + 2 = 8 km.
 **mistake_a:** Computed sister's distance only (4) — ignored Tom.
-**mistake_b:** Took sister's distance 4 + 1 km estimation.
+**mistake_b:** Assumed Tom also traveled only 0.5 hr (matching sister's head start) → 6 × 0.5 = 3 km; plus sister's 4 × 0.5 = 2 km → 5 km total.
 **mistake_c:** Bubbled Tom's distance alone (6 km).
 **mistake_e:** Took both at full hour: 6 + 4 = 10 — forgot sister's late start.
 **common_trap:** Forgetting the time offset — sister has only 0.5 hr of travel, not 1 hr.
@@ -456,7 +456,7 @@ A car traveled from city M to city N. What was its average speed for the trip?
 Two workers, P and Q, together complete a job. How many hours did they work together?
 
 (1) Working alone, P takes 10 hours and Q takes 15 hours to complete the job.
-(2) The job required 6 worker-hours of total effort from P and Q combined.
+(2) P's rate of work is 50% faster than Q's rate of work.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
@@ -465,14 +465,14 @@ Two workers, P and Q, together complete a job. How many hours did they work toge
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** (1): 1/10 + 1/15 = 1/6 → joint time = 6 hr. Sufficient. (2): worker-hours sum doesn't fix elapsed clock time.
-**explanation:** Statement (1): joint rate = 1/10 + 1/15 = 3/30 + 2/30 = 5/30 = 1/6 → together 6 hr. Sufficient. Statement (2): "6 worker-hours" sums effort from P and Q but doesn't fix elapsed clock time without the rate split. Insufficient. Answer: A.
-**mistake_b:** Treated (2) as sufficient.
-**mistake_c:** Required both — (1) alone resolves.
-**mistake_d:** Treated each as sufficient.
-**mistake_e:** Concluded both insufficient — (1) is.
-**common_trap:** Confusing "worker-hours" (total effort) with "clock-hours" (elapsed time). Worker-hours sums contributions; clock-time is determined by combined rate.
-**takeaway:** Worker-hours = effort = (#workers × time). Elapsed time needs the combined rate equation.
+**fastest_path:** (1): 1/10 + 1/15 = 1/6 → joint time = 6 hr. Sufficient. (2): rate ratio alone gives no anchor for absolute time → insufficient.
+**explanation:** Statement (1): combined rate = 1/10 + 1/15 = 3/30 + 2/30 = 5/30 = 1/6 → T = 6 hr. Sufficient. Statement (2): P's rate = 1.5 × Q's rate. Setting Q's rate = r gives combined rate = 2.5r — but r is unknown. Knowing the rate *ratio* provides no scale for the absolute combined rate, so T = 1/(2.5r) is indeterminate. Insufficient.
+**mistake_b:** Treated (2) as sufficient — a rate ratio narrows the relationship but has no scale without at least one absolute value.
+**mistake_c:** Required both — (1) alone fully resolves T.
+**mistake_d:** Treated each as sufficient — (2) is not.
+**mistake_e:** Concluded both insufficient — (1) is sufficient on its own.
+**common_trap:** Assuming "P is 50% faster" is equivalent to knowing P's rate. It gives the shape of the relationship (a 3:2 ratio) but not its scale. You need at least one absolute value to anchor both rates and therefore the combined rate.
+**takeaway:** A ratio of rates = one equation in two unknowns. Without an absolute anchor such as one worker's solo time, you cannot recover the combined rate or elapsed time. Absolute values outperform ratios in DS rate problems.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -510,8 +510,8 @@ Pump A fills a tank in 6 hours. Pump B fills the same tank in 9 hours. Both pump
 
 Working alone, Alex can complete a project in h hours; working alone, Ben can complete the same project in k hours. Alex and Ben work together for exactly 3 hours, then Alex leaves and Ben works alone for 2 more hours to finish the project. What is the value of h?
 
-(1) k = 2h.
-(2) 1/h + 1/k = 1/4.
+(1) k = 5h.
+(2) Working together, Alex and Ben complete the project at a combined rate of 3/10 of the project per hour.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
@@ -520,14 +520,14 @@ Working alone, Alex can complete a project in h hours; working alone, Ben can co
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**fastest_path:** Stem: 3(1/h + 1/k) + 2/k = 1 → 3/h + 5/k = 1. (1) k = 2h → 11/(2h) = 1 → h = 5.5. (2) Combined with stem → linear system → unique h.
-**explanation:** From scenario: 3(1/h + 1/k) + 2/k = 1, simplifying to 3/h + 5/k = 1. Statement (1) k = 2h: 3/h + 5/(2h) = 11/(2h) = 1 → h = 5.5. Sufficient. Statement (2) 1/h + 1/k = 1/4: combined with 3/h + 5/k = 1 gives two linear equations in (1/h, 1/k) → unique solution h = k = 8. Sufficient. Each alone → D.
-**mistake_a:** Treated only (1) as sufficient.
-**mistake_b:** Treated only (2) as sufficient.
-**mistake_c:** Required both.
-**mistake_e:** Concluded both insufficient.
-**common_trap:** Assuming a relative-ratio statement (k = 2h) alone can't pin down a scalar — but combined with the scenario equation, it can.
-**takeaway:** Two linear equations in two unknowns (1/h, 1/k) → unique solution. The scenario itself is one equation; each DS statement adds another.
+**fastest_path:** Stem: 3(1/h + 1/k) + 2/k = 1 → 3/h + 5/k = 1. (1) k = 5h → 3/h + 1/h = 4/h = 1 → h = 4. (2) 1/h + 1/k = 3/10, combined with stem → 2-by-2 system → h = 4.
+**explanation:** From the scenario: 3(1/h + 1/k) + 2/k = 1, which simplifies to 3/h + 5/k = 1. Statement (1) k = 5h: substitute into stem → 3/h + 5/(5h) = 3/h + 1/h = 4/h = 1 → h = 4 (and k = 20). Verify: 3/4 + 5/20 = 3/4 + 1/4 = 1 ✓. Sufficient. Statement (2) 1/h + 1/k = 3/10: combined with stem equation 3/h + 5/k = 1, substitute 1/k = 3/10 − 1/h into stem → 3/h + 5(3/10 − 1/h) = 1 → −2/h = −1/2 → h = 4 (and k = 20). Verify: 1/4 + 1/20 = 5/20 + 1/20 = 6/20 = 3/10 ✓. Sufficient. Each alone → D.
+**mistake_a:** Treated only (1) as sufficient — both statements independently determine h.
+**mistake_b:** Treated only (2) as sufficient — both statements independently determine h.
+**mistake_c:** Required both — each statement alone resolves h.
+**mistake_e:** Concluded both insufficient — each provides an independent anchor.
+**common_trap:** Assuming a ratio statement (k = 5h) alone cannot pin down a scalar value — the trap is that the scenario equation is already "statement zero," providing the second constraint. A ratio statement plus the stem equation forms a 2-by-2 system with a unique solution.
+**takeaway:** In DS, the stem's scenario equation counts as a constraint. A ratio relating the two variables (plus the stem) or an absolute combined rate (plus the stem) each form a solvable 2-by-2 system. Verify consistency: both statements here give h = 4, k = 20.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -535,25 +535,25 @@ Working alone, Alex can complete a project in h hours; working alone, Ben can co
 ## Q21
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Average Speed — Round Trip
+**topic:** Average Speed — Equal Time Segments
 
-A driver travels from town A to town B at an average speed of 60 miles per hour, and returns along the same route at an average speed of 40 miles per hour. What is the driver's average speed for the entire round trip?
+A driver travels at 40 mph for the first hour of a trip and 60 mph for the second hour. What is the driver's average speed for the entire trip, in miles per hour?
 
-- A) 44 mph
-- B) 46 mph
-- C) 48 mph
-- D) 50 mph
-- E) 52 mph
+- A) 46
+- B) 48
+- C) 49
+- D) 50
+- E) 52
 
-**answer:** C
-**fastest_path:** Equal distances → harmonic mean: 2(60)(40)/(60 + 40) = 4800/100 = 48.
-**explanation:** Equal-distance round trip → harmonic mean: 2ab/(a+b) = 4800/100 = 48 mph. Verify with d = 120: out 2 hr, back 3 hr → avg = 240/5 = 48.
-**mistake_a:** Estimated 44 from rough calc.
-**mistake_b:** Off by 2 → 46.
-**mistake_d:** Took arithmetic mean: (60 + 40)/2 = 50.
-**mistake_e:** Slip → 52.
-**common_trap:** Averaging speeds directly (50). Equal-distance means slow leg takes more time, pulling the average down.
-**takeaway:** Equal distance → harmonic mean. Slower leg dominates because it consumes more time. Always favor the slower side.
+**answer:** D
+**fastest_path:** Equal time → arithmetic mean: (40 + 60) / 2 = 50 mph.
+**explanation:** Distance in hour 1 = 40 miles; distance in hour 2 = 60 miles. Total = 100 miles in 2 hours → average = 50 mph. Because elapsed time is equal across both legs, the arithmetic mean gives the correct result: (40 + 60)/2 = 50. Compare Q7: the same two speeds with equal *distances* yield 48 (harmonic mean). Here equal *times* yield 50 (arithmetic mean).
+**mistake_a:** Over-correction — pushed the average further below 50 due to misapplied intuition about harmonic weighting → 46.
+**mistake_b:** Applied the harmonic mean formula 2(40)(60)/(40+60) = 48 — which applies when *distances* are equal (see Q7). The equal-time condition calls for the arithmetic mean instead.
+**mistake_c:** Rough estimate between 48 and 50 → 49.
+**mistake_e:** Slight over-estimate → 52.
+**common_trap:** Using the harmonic mean (B = 48). Because Q7 uses the same speeds and gets 48, students trained on equal-distance round trips reflexively apply the harmonic mean here. The condition is different: equal *time*, not equal *distance*.
+**takeaway:** Average speed: determine what's equal first. Equal distance → harmonic mean (2ab)/(a+b). Equal time → arithmetic mean (a+b)/2. The same pair of speeds (40 and 60) yields 48 for equal distance and 50 for equal time — a deliberate contrast worth remembering.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -574,8 +574,8 @@ Two trains leave stations that are 450 miles apart, traveling toward each other 
 **answer:** B
 **fastest_path:** Closing rate = 60 + 75 = 135. T = 450/135 = 10/3 hr. A's distance = 60 · 10/3 = 200.
 **explanation:** Closing rate = 60 + 75 = 135 mph. Time to meet = 450/135 = 10/3 hr. Distance from A = 60 × 10/3 = 200 mi.
-**mistake_a:** Slip → 180.
-**mistake_c:** Slip → 210.
+**mistake_a:** Rounded meeting time 10/3 hr down to 3 hr → A's distance = 60 × 3 = 180 instead of 60 × 10/3 = 200.
+**mistake_c:** Rounded meeting time 10/3 hr up to 3.5 hr → A's distance = 60 × 3.5 = 210 instead of 60 × 10/3 = 200.
 **mistake_d:** Halved 450 → 225 (ignored asymmetric speeds).
 **mistake_e:** Computed B's distance instead → 250 (75 × 10/3 = 250).
 **common_trap:** Splitting the distance evenly (225) — ignores that the faster train covers more ground. Or computing the *other* train's distance (250).
@@ -692,7 +692,7 @@ A boat travels 24 miles downstream along a river, then returns the same 24 miles
 ---
 
 ## Q27
-**difficulty:** Medium
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Rates — Unit Conversion
 
