@@ -74,6 +74,12 @@ interface QuestionState {
   firstInteractionMs: number | null
 }
 
+export interface WeakTopicHint {
+  topic: string
+  practiceSlug: string
+  accuracy: number
+}
+
 interface SessionClientProps {
   slug: string
   topic: string
@@ -86,6 +92,10 @@ interface SessionClientProps {
    *  questions array is already adaptively ordered by the server. */
   skillLevel?: number
   skillAttempts?: number
+  /** Server-computed weakest topic from practice history. Shown on the
+   *  completion screen when accuracy is strong — directs students to
+   *  their highest-leverage next session instead of a generic CTA. */
+  weakestTopic?: WeakTopicHint
 }
 
 function formatDuration(ms: number): string {
@@ -992,6 +1002,7 @@ export default function SessionClient({
   questions,
   skillLevel,
   skillAttempts,
+  weakestTopic,
 }: SessionClientProps) {
   const router = useRouter()
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -1377,12 +1388,16 @@ export default function SessionClient({
       }
     }
 
-    // Next-step recommendation keyed to accuracy band
+    // Next-step recommendation keyed to accuracy band. When the student
+    // performed well and the server identified a weak topic, name it
+    // directly — eliminates the "which area?" follow-up navigation.
     const nextStepNote =
       accuracy < 60
         ? "Accuracy below 60% signals a concept gap. Revisiting the chapter before more practice compounds better."
         : accuracy < 78
         ? "Accuracy is building. One more focused session on this topic before moving on."
+        : weakestTopic
+        ? `This topic is solid. Based on your practice history, ${weakestTopic.topic} is your weakest area right now — ${Math.round(weakestTopic.accuracy * 100)}% accuracy. That's where the points are.`
         : "This topic is solid. Investing time in a weaker area is the highest-leverage move now."
 
     return (
@@ -1880,6 +1895,19 @@ export default function SessionClient({
             actions.push({
               label: chapterSlug ? "Review the chapter" : "Browse chapters",
               href: chapterSlug ? `/chapters/${chapterSlug}` : "/chapters",
+              variant: "secondary",
+            })
+          } else if (weakestTopic) {
+            // Strong session + known weak topic: point directly to the gap
+            actions.push({
+              label: `Practice ${weakestTopic.topic}`,
+              href: `/practice/session/${weakestTopic.practiceSlug}`,
+              variant: "primary",
+            })
+            const wtChapter = TOPIC_TO_CHAPTER[weakestTopic.topic]
+            actions.push({
+              label: wtChapter ? "Review the chapter" : "Go to chapters",
+              href: wtChapter ? `/chapters/${wtChapter}` : "/chapters",
               variant: "secondary",
             })
           } else {
