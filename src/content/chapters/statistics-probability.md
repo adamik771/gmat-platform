@@ -2,10 +2,10 @@
 slug: statistics-probability
 title: Statistics and Probability
 section: Quant
-estimated_minutes: 55
+estimated_minutes: 65
 prerequisites: []
 summary: |
-  Statistics and probability on the GMAT is two tight skill sets welded together: reading sets (mean, median, mode, standard deviation) and counting outcomes (basic probability, combinations, complement). The topic rewards fluency with one identity — **sum = mean × count** — and two techniques — **complement counting** and **product of independent events**. Master those three moves and you'll solve 90% of what the test throws at you.
+  Statistics and probability on the GMAT is two skill sets welded together: reading sets (mean, median, range, standard deviation) and counting outcomes (basic probability, overlapping groups, combinations, complement). Five moves — **sum conversion, sort-and-find-median, inclusion-exclusion for overlapping groups, complement counting**, and **product of probabilities** — solve 90% of what the test throws at you. The remaining 10% layers expected value and restricted arrangements on top of the same foundation.
 sections:
   - id: pretest
     type: pretest
@@ -224,6 +224,34 @@ The pattern: to maximize one element, minimize all others subject to constraints
 
 **Trap to watch.** "What's the median of {2, 4, 5, 9, 12, 15}?" Even n = 6, so median is (5 + 9)/2 = 7, not 5 and not 9. Don't pick either of the two center values as "the median" — you must average them.
 
+**Range — the spread from extremes.**
+
+Range = maximum − minimum. Unlike standard deviation, range uses only the two outermost values and ignores everything in between.
+
+**Worked example.** {3, 7, 11, 18, 25}: range = 25 − 3 = **22**. No formula needed — scan for max and min.
+
+**How GMAT tests range on Data Sufficiency.**
+
+Range is determined when you know both the exact maximum and the exact minimum — and not before.
+
+**Worked example.** "What is the range of set S?" Statement (1): the smallest element is 4. Statement (2): the largest element is 22. Each alone is insufficient (you need both endpoints). Together: range = 22 − 4 = 18. Answer: **C**.
+
+The lesson generalizes: knowing the mean, the count, or the median gives you nothing about range. You need the extremes directly.
+
+**Outlier sensitivity.** Replace 25 with 250 in the set above: range jumps from 22 to 247. The median stays the same (11). The SD barely changes. Range reacts to outliers more violently than any other summary statistic. GMAT exploits this on medium DS questions where one statement introduces a large outlier — it shifts the range but not the median, making the two statements give different information about spread.
+
+**Range ≠ SD.** Both measure spread, but they ask different questions. {1, 5, 5, 5, 9} and {1, 3, 5, 7, 9} both have range 8 — but the first has much smaller SD because all but the two extremes sit at the mean. Two sets can share a range and have very different SDs; never infer SD from range or vice versa.
+
+**Pro tip.** On "maximize/minimize" range problems: to minimize range, push the extremes as close together as possible while satisfying other constraints (usually a sum or mean). To maximize range, push them as far apart as possible. Always write elements in order first, label them a ≤ b ≤ … ≤ e, and apply the constraints algebraically.
+
+**Micro-drill.** 30 seconds total.
+
+1. {4, 8, 2, 15, 11, 6}: range = ___
+2. A set has range 24. The minimum is −5. The maximum is ___.
+3. True or false: "Two sets with equal range must have equal standard deviation."
+
+Answers: (1) **13** (max 15, min 2). (2) **19** (−5 + 24 = 19). (3) **False** — same range, entirely different spreads are possible: {1, 5, 5, 5, 9} vs. {1, 3, 5, 7, 9}.
+
 ## @standard-deviation
 
 Standard deviation measures **how spread out the values are around the mean**. The GMAT almost never asks you to *compute* a standard deviation — it asks whether set A has a larger or smaller SD than set B, and how shifts/scalings affect SD. Two rules cover 95% of SD questions:
@@ -327,6 +355,67 @@ Alternative framing: there are C(4,3) = 4 favorable sequences out of 2⁴ = 16 t
 
 > **Self-explanation prompt.** Why is the complement almost always faster for "at least one" problems? If you can say "because 'at least one X' has many favorable outcomes to enumerate directly, but 'no X at all' is typically a single chain of unfavorable draws — the complement has one case where direct counting has many," you've identified exactly when to flip to complement. Whenever you see the phrase "at least one," your first move should be automatic: 1 − P(none).
 
+**Overlapping groups — the inclusion-exclusion principle.**
+
+When two events can both occur simultaneously, the union formula corrects for double-counting:
+
+**P(A or B) = P(A) + P(B) − P(A and B)**
+
+Without the final subtraction, you count the overlap twice.
+
+**Worked example.** In a class of 100 students: 60 study French, 50 study Spanish, 30 study both. How many study at least one language? How many study neither?
+
+- At least one: 60 + 50 − 30 = **80 students.**
+- Neither: 100 − 80 = **20 students.**
+
+**The four-region breakdown.**
+
+| Region | Formula | Count |
+|---|---|---|
+| Both French and Spanish | Given | 30 |
+| Only French | 60 − 30 | 30 |
+| Only Spanish | 50 − 30 | 20 |
+| Neither | 100 − 80 | 20 |
+
+Cross-check: 30 + 30 + 20 + 20 = 100. ✓ Always verify the four regions sum to the total — it catches arithmetic errors and misreads.
+
+**DS application.** "How many students study exactly one language?" requires |A|, |B|, AND |A∩B|. The formula is exactly-one = (|A| − |A∩B|) + (|B| − |A∩B|) = |A| + |B| − 2|A∩B|. All three quantities are needed; knowing only two leaves the third — and the answer — indeterminate.
+
+**Trap to watch.** Adding group counts without subtracting overlap (60 + 50 = 110) exceeds the total of 100 — a mathematical impossibility. The moment your sum exceeds the total, you've identified the overlap you forgot to subtract.
+
+**Three-group Venn (685+ difficulty).** When three groups overlap, extend the formula:
+
+    |A ∪ B ∪ C| = |A| + |B| + |C| − |A∩B| − |A∩C| − |B∩C| + |A∩B∩C|
+
+Set up from the inside out: fill in the triple overlap first, then each pairwise overlap, then each solo region. The GMAT uses this template on hard word problems with groups like "speak English, French, and Spanish."
+
+---
+
+**Expected value — the probability-weighted average.**
+
+Expected value (EV) is the long-run average outcome of a random event. Multiply each outcome by its probability and sum.
+
+**EV = Σ [outcome × P(outcome)]**
+
+**Worked example.** A game: roll one fair die. Landing on 6 pays +$5; any other result costs −$1. What is the expected value per roll?
+
+- Win (1/6): contributes (1/6)(+5) = +5/6.
+- Lose (5/6): contributes (5/6)(−1) = −5/6.
+- EV = 5/6 − 5/6 = **$0.** A fair game.
+
+Positive EV → you profit in the long run. Negative EV → you lose. EV = 0 → fair game.
+
+**Shortcut: symmetric payoffs.** If a game pays +k with probability p and −k with probability (1−p), then EV = k(2p − 1). EV = 0 when p = 0.5 exactly.
+
+**DS application.** "Is the expected value positive?" requires both the complete list of possible outcomes and their probabilities. Knowing only the outcomes (not probabilities) or only the probabilities (not outcomes) is insufficient.
+
+**Worked example.** Company A issues a bonus: 25% chance of $8,000, 75% chance of $0. Company B guarantees $1,500. Which has higher EV?
+
+- A: (0.25)(8000) + (0.75)(0) = **$2,000**.
+- B: **$1,500**.
+
+A has higher expected value, though B has zero variance. The GMAT uses this setup to test whether you can compare EV under different risk profiles.
+
 ## @dependent-events
 
 When one event affects the probabilities of the next (drawing without replacement, sequential selection), the probability of the full sequence is the **product of conditional probabilities**.
@@ -427,17 +516,55 @@ Complement alternative: C(7, 5) = 21 total. Subtract cases with fewer than 2 of 
 
 > **Self-explanation prompt.** Why does "choose 3 of 7" equal "not choose 4 of 7"? If you can say "because every 3-person team uniquely corresponds to a 4-person non-team — every commitment picks exactly one complement," you've internalized the C(n,k) = C(n, n−k) symmetry and will stop doing the big factorial when the small one gives the same answer.
 
+**Restricted arrangements — two templates.**
+
+When a counting problem places constraints on position or adjacency, use one of two templates.
+
+**Template 1: Complement.** Count all unrestricted arrangements, then subtract the "bad" ones that violate the constraint.
+
+**Worked example.** Five people (A, B, C, D, E) sit in a row. In how many ways do A and B NOT sit next to each other?
+
+- Total: 5! = 120.
+- A and B adjacent (the "bad" arrangements): treat A+B as one block. Now arrange 4 units: 4! = 24. Within the block, A and B can swap: × 2. Bad total = 24 × 2 = **48.**
+- Valid (not adjacent): 120 − 48 = **72.**
+
+Use complement when the "bad" arrangements form a tidy pattern — adjacency is the classic case because "treat as one block" is always one algebraic step.
+
+**Template 2: Fix the constrained item first, then fill freely.**
+
+When the constraint is "item X must occupy a specific position," place X in that position, then count arrangements of the remaining items.
+
+**Worked example.** 5 books on a shelf. Book A must be on the left end. How many arrangements?
+
+- A is fixed. Arrange the other 4 freely: 4! = **24.**
+
+**Relative order shortcut.** When the constraint is "A must appear before B" (but not in a specific slot), exactly half of all arrangements satisfy this — by symmetry, A precedes B in half and follows B in the other half.
+
+    Arrangements where A comes before B = n! / 2
+
+**Micro-drill.** 60 seconds total.
+
+1. 4 people in a row: how many ways with Person X at the right end? → ___
+2. 4 people in a row: how many ways where X and Y are NOT adjacent? → ___
+3. 5 people in a row: how many ways where P comes before Q (not necessarily adjacent)? → ___
+
+Answers: (1) **6** — X fixed, arrange other 3: 3! = 6. (2) **12** — total 4! = 24; adjacent cases: 3! × 2 = 12; valid = 24 − 12 = 12. (3) **60** — total 5! = 120; half have P before Q: 120/2 = 60.
+
+> **Self-explanation prompt.** Why does the complement template work for "A and B can't be adjacent"? If you can say "because directly counting non-adjacent arrangements has many cases, but adjacent arrangements have one clean structure (A+B as a block), so complement is one step where direct counting is many," you've understood why complement is the reflex for adjacency restrictions. Whenever a constraint specifies what two items cannot do, think complement first.
+
 ## @summary
 
-Every GMAT statistics/probability question reduces to one of four moves. Identify which move first, then the calculation is mechanical.
+Every GMAT statistics/probability question reduces to one of five moves. Identify which move first, then the calculation is mechanical.
 
 **Move 1: Convert mean to sum.** See "average"? Compute sum = mean × count. Any missing-element, added-element, removed-element problem solves in three lines of arithmetic after this conversion.
 
-**Move 2: Sort before computing median / reasoning about order.** Never answer a median question from the set as given — sort first. Position formula for medians: (n+1)/2 for odd n, average of the two middle for even n.
+**Move 2: Sort before computing median / reasoning about order.** Never answer a median question from the set as given — sort first. Position formula for medians: (n+1)/2 for odd n, average of the two middle for even n. Range = max − min; it only requires the two extremes.
 
-**Move 3: Complement the "at least one" question.** "At least one" problems almost always solve faster via 1 − P(none). Reflex conversion: if the question says "at least," start with complement.
+**Move 3: Apply inclusion-exclusion for overlapping groups.** "How many in group A OR group B?" uses |A| + |B| − |A∩B|. If the question gives you three of the four values (|A|, |B|, |A∩B|, total), solve for the fourth. Build the four-region Venn table and verify it sums to the total.
 
-**Move 4: Pick combinations or permutations by asking "does order matter?"** Roles named or slots in sequence → permutation. Unordered selection → combination. If the problem mixes both (e.g., "exactly 2 of type A and 1 of type B"), it's C(na, 2) × C(nb, 1).
+**Move 4: Complement the "at least one" question.** "At least one" problems almost always solve faster via 1 − P(none). Reflex conversion: if the question says "at least," start with complement.
+
+**Move 5: Pick combinations or permutations by asking "does order matter?"** Roles named or slots in sequence → permutation. Unordered selection → combination. If the problem mixes both (e.g., "exactly 2 of type A and 1 of type B"), it's C(na, 2) × C(nb, 1). For adjacency restrictions: complement (treat adjacent pair as block, subtract from total).
 
 **Sanity checks you can run on any probability answer.**
 
@@ -458,15 +585,19 @@ Every GMAT statistics/probability question reduces to one of four moves. Identif
 |---|---|---|
 | "Average of n numbers is…" | Sum = mean × count | m × n |
 | "What's the median…" | Sort, find middle | (n+1)/2 position |
+| "Range of a set" | Find max and min | max − min |
 | "Set Y = X + constant" | SD unchanged | — |
+| "How many in neither group" | Inclusion-exclusion | total − (\|A\| + \|B\| − \|A∩B\|) |
 | "At least one" | Complement | 1 − P(none) |
 | "Committee of k from n" | Combination | C(n, k) |
 | "Order, rank, arrangement" | Permutation | P(n, k) = n!/(n−k)! |
 | "Exactly X of type A, Y of type B" | Product of C's | C(nA, X) × C(nB, Y) |
 | "Without replacement" | Dependent events | P(A) × P(B \| A) |
+| "A and B cannot be adjacent" | Complement arrangement | Total − (adjacent block count) |
+| "Expected value of game" | Prob-weighted sum | Σ (outcome × P) |
 
 **Time-management note.** Easy statistics questions (basic mean, basic probability) should take 45 seconds or less. Medium SD and combination questions, 90 seconds. Hard 3-variable Venn or compound probability can take up to 2 minutes. If you're past 2:30 on any stats question, flag and move on.
 
-**What to do next.** Open the Easy problem set and target 90%+ before moving to Medium. When you miss a mean or median question, check whether you skipped the "convert to sum" step — that failure mode accounts for most statistics misses at this level. When you miss a probability question, ask whether you confused independent and dependent events, or missed a complement opportunity on an "at least one" stem. When you miss a counting question, ask whether you chose combination when permutation was needed, or forgot to split into cases.
+**What to do next.** Open the Easy problem set and target 90%+ before moving to Medium. When you miss a mean or median question, check whether you skipped the "convert to sum" step. When you miss a range question, ask whether you identified both extremes — or tried to infer range from mean or median (impossible). When you miss a probability question, ask whether you confused independent and dependent events, missed a complement for "at least one," or forgot to subtract the overlap on an overlapping-groups problem. When you miss a counting question, ask whether you chose combination when permutation was needed, forgot to split into cases, or needed the complement (adjacent-pair) template.
 
-The four moves — sum conversion, sort-and-find-median, complement, combinations — appear on every GMAT administration. Students who recognize them immediately and execute without friction have a genuine edge. The problem sets are where you build that recognition. Work through all three difficulty tiers before moving to the next chapter.
+The five moves — sum conversion, sort-and-find-median, inclusion-exclusion, complement, and the order-matters decision — appear on every GMAT administration. Students who pattern-match them within five seconds of reading the question and execute without friction have a genuine edge. The problem sets are where you build that recognition. Work through all three difficulty tiers before moving to the next chapter.
