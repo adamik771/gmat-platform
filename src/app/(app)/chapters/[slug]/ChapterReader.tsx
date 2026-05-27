@@ -969,6 +969,7 @@ export default function ChapterReader({
                 <div id="chapter-problem-sets" className="scroll-mt-6">
                   <ProblemSetsBlock
                     slug={slug}
+                    section={section}
                     sets={problemSets}
                     targetScore={targetScore}
                     progress={progress}
@@ -981,6 +982,7 @@ export default function ChapterReader({
                 completedSections === totalSections &&
                 totalSections > 0 && (
                   <ChapterCompletionCard
+                    slug={slug}
                     section={section}
                     title={title}
                     totalSections={totalSections}
@@ -1087,20 +1089,20 @@ function HeroCta({
  * back to the chapter index.
  */
 function ChapterCompletionCard({
+  slug,
   section,
   title,
   totalSections,
   problemSetCount,
   attemptedProblemSetCount,
 }: {
+  slug: string
   section: Section
   title: string
   totalSections: number
   problemSetCount: number
   attemptedProblemSetCount: number
 }) {
-  const practiceSlug =
-    section === "Quant" ? "quant" : section === "Verbal" ? "verbal" : "di"
   const hasProblemSets = problemSetCount > 0
   const allSetsDone = hasProblemSets && attemptedProblemSetCount >= problemSetCount
   const noneAttempted = hasProblemSets && attemptedProblemSetCount === 0
@@ -1189,14 +1191,14 @@ function ChapterCompletionCard({
             </a>
           ) : (
             <Link
-              href={`/practice/session/${practiceSlug}`}
+              href={`/practice/session/${slug}`}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold transition-all duration-200 hover:-translate-y-0.5"
               style={{
                 backgroundColor: "var(--read-gold)",
                 color: "var(--read-bg-inset)",
               }}
             >
-              Practice {section}
+              Practice {title}
               <ArrowRight className="w-3.5 h-3.5" aria-hidden />
             </Link>
           )}
@@ -1820,12 +1822,14 @@ function PostSubmitReveal({
 
 function ProblemSetsBlock({
   slug,
+  section,
   sets,
   targetScore,
   progress,
   update,
 }: {
   slug: string
+  section: Section
   sets: ReaderProblemSet[]
   targetScore: number | null
   progress: ChapterProgress
@@ -1878,6 +1882,7 @@ function ProblemSetsBlock({
           <ProblemSetCard
             key={set.difficulty}
             slug={slug}
+            section={section}
             set={set}
             targetScore={targetScore}
             progress={progress}
@@ -1923,12 +1928,14 @@ function countAttemptedProblemSets(progress: ChapterProgress): number {
 
 function ProblemSetCard({
   slug,
+  section,
   set,
   targetScore,
   progress,
   update,
 }: {
   slug: string
+  section: Section
   set: ReaderProblemSet
   targetScore: number | null
   progress: ChapterProgress
@@ -2015,6 +2022,7 @@ function ProblemSetCard({
       {running && (
         <ProblemSetRunner
           slug={slug}
+          section={section}
           set={set}
           targetPct={targetPct}
           onClose={() => setRunning(false)}
@@ -2034,12 +2042,15 @@ function ProblemSetCard({
 }
 
 function ProblemSetRunner({
+  slug,
+  section,
   set,
   targetPct,
   onClose,
   onFinish,
 }: {
   slug: string
+  section: Section
   set: ReaderProblemSet
   targetPct: number
   onClose: () => void
@@ -2121,6 +2132,8 @@ function ProblemSetRunner({
             answers={answers}
             total={set.questions.length}
             targetPct={targetPct}
+            slug={slug}
+            section={section}
             onClose={onClose}
           />
         ) : (
@@ -2244,11 +2257,15 @@ function RunnerResults({
   answers,
   total,
   targetPct,
+  slug,
+  section,
   onClose,
 }: {
   answers: boolean[]
   total: number
   targetPct: number
+  slug: string
+  section: Section
   onClose: () => void
 }) {
   const correct = answers.filter(Boolean).length
@@ -2287,16 +2304,56 @@ function RunnerResults({
         style={{ color: passed ? "var(--read-success)" : "var(--read-error)" }}
       >
         {passed
-          ? `Nice — you beat your target of ${targetPct}%.`
-          : `Target was ${targetPct}%. Review the chapter and retake when you're ready.`}
+          ? `Target of ${targetPct}% cleared. The skill is landing — push it further with a standalone drill.`
+          : `Target was ${targetPct}%. Review the chapter before retaking — understanding the why matters more than re-running.`}
       </p>
-      <button
-        onClick={onClose}
-        className="px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
-        style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
-      >
-        Close
-      </button>
+      {/* What to do next — closes the modal dead end */}
+      <div className="flex flex-wrap gap-2.5 justify-center">
+        {passed ? (
+          <>
+            <Link
+              href={`/practice/session/${slug}`}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold transition-all duration-200 hover:-translate-y-0.5"
+              style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
+              onClick={onClose}
+            >
+              Practice this topic
+              <ArrowRight className="w-3.5 h-3.5" aria-hidden />
+            </Link>
+            <button
+              onClick={onClose}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-medium border transition-colors"
+              style={{
+                borderColor: "var(--read-border-strong)",
+                color: "var(--read-text-muted)",
+              }}
+            >
+              Back to chapter
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={onClose}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold transition-all duration-200 hover:-translate-y-0.5"
+              style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
+            >
+              Back to chapter
+            </button>
+            <Link
+              href={`/review/all`}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-medium border transition-colors"
+              style={{
+                borderColor: "var(--read-border-strong)",
+                color: "var(--read-text-muted)",
+              }}
+              onClick={onClose}
+            >
+              Review queue
+            </Link>
+          </>
+        )}
+      </div>
     </div>
   )
 }
