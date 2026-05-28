@@ -2,7 +2,7 @@
 slug: rates-work
 title: Rates and Work
 section: Quant
-estimated_minutes: 50
+estimated_minutes: 60
 prerequisites: []
 summary: |
   Every rate-and-work problem on the GMAT is one of six patterns: single-object D=RT, combined work (add the rates), catch-up (subtract the rates), average speed over equal distances (harmonic mean, never arithmetic mean), average speed over unequal distances (total distance ÷ total time), and pipes-or-workers with staggered start times. Learn to recognize which pattern you're in, set up the rate equation in the right units, and every question in this chapter takes under 90 seconds.
@@ -60,6 +60,13 @@ sections:
     check_question_ids:
       - rates-work-q14
       - rates-work-q16
+
+  - id: ds-rate-traps
+    type: reading
+    title: "Rate problems in Data Sufficiency — evaluating instead of computing"
+    intro: |
+      The six patterns in this chapter all appear on Data Sufficiency. The arithmetic is unchanged — D=RT, add the rates, harmonic mean — but the goal shifts from finding a number to deciding whether the given information uniquely determines one. Most rate DS questions carry two or three free variables, so a single statement rarely suffices on its own. This section gives you the counting move, the statement-type test, and three worked examples covering the setups that appear most often.
+    check_question_ids: []
 
   - id: summary
     type: summary
@@ -249,6 +256,14 @@ A boat does 24 km downstream in 2 hours and 24 km upstream in 3 hours:
 
 > **Recall check.** Cover this section and state from memory: what do you do with the speeds when two objects move toward each other? What do you do when one chases the other in the same direction? (Toward each other or moving apart → add the speeds. Same direction → subtract the slower from the faster.) Now, a freight train leaves at 6 AM at 40 mph; an express leaves the same station at 8 AM at 60 mph, same direction. How far ahead is the freight when the express departs, and what is the express's closing rate? Compute before checking: 2 hrs × 40 mph = 80 miles ahead; closing rate = 60 − 40 = 20 mph; catch-up time = 80/20 = 4 hours. If you added the speeds or used the wrong base, re-read the same-direction example above.
 
+**Micro-drill.** Apply the correct setup — 60 seconds total:
+
+1. Two cyclists start from the same point in opposite directions at 18 km/h and 22 km/h. How far apart after 3 hours?
+2. A slow truck departs at 8 AM at 50 mph. A fast car leaves the same spot at 10 AM in the same direction at 80 mph. At what time does the car overtake the truck?
+3. A boat travels 36 km downstream in 2 hours and 36 km upstream in 3 hours. What is the boat's still-water speed?
+
+Answers: (1) **(18 + 22) × 3 = 120 km** — opposite directions, add the speeds. (2) **1:20 PM** — by 10 AM the truck has gone 2 × 50 = 100 miles ahead. Closing rate = 80 − 50 = 30 mph. Catch-up time = 100/30 = 10/3 hours = 3 hours 20 minutes. 10:00 AM + 3:20 = **1:20 PM**. Using the truck's speed (50 mph) as the closing rate instead of the difference (30 mph) is the classic error — the truck is still moving, so only the net gain per hour closes the gap. (3) **Downstream speed = 36/2 = 18 km/h; upstream speed = 36/3 = 12 km/h. Still-water speed = (18 + 12)/2 = 15 km/h; current = (18 − 12)/2 = 3 km/h.**
+
 ## @average-speed
 
 The single highest-leverage mistake to avoid on GMAT rates:
@@ -287,6 +302,8 @@ The harmonic mean 2(50)(75)/(50+75) = 60 would be wrong here. Distances are uneq
 2. Are the distances different? → Use total/total: **Σ distance ÷ Σ time**
 
 If you're not certain the distances match, default to total/total. It is always correct; harmonic mean is only a shortcut for the equal-distance case.
+
+**Key takeaway.** There is a third case worth spotting: if the two legs take *equal time* (not equal distance), the arithmetic mean IS correct. Two hours at 30 mph + two hours at 60 mph → total distance 60 + 120 = 180 miles, total time 4 hours, average = 45 mph = (30 + 60)/2. Equal time weights each speed equally, so the midpoint applies — and total/total confirms it. If you see "drove for the same number of hours each way," reach for the arithmetic mean as a quick check; otherwise use total/total.
 
 **Micro-drill.** Pick the right formula and compute each — 30 seconds each:
 
@@ -362,6 +379,56 @@ Answers: (1) **5.6 hours** — Phase 1: 2 × (1/8) = 1/4 done; remaining = 3/4. 
 
 > **Self-explanation prompt.** Why does the two-phase template require you to compute the *fraction of the job remaining* after phase 1, rather than working directly with times? If you can say "because phase 2 operates at a different rate, so time alone doesn't tell you how much was done — you need the fraction of work left, then divide that by the new rate to get phase 2 time," you've understood the structure. The moment you try to add or average the times across phases without tracking the fraction of work, you're guaranteed a wrong answer.
 
+## @ds-rate-traps
+
+Rate problems in Data Sufficiency use the same six patterns — D=RT, combined work, two objects, average speed, staggered start. What changes is the goal: instead of computing a number, you decide whether the given information *uniquely determines* one. The key discipline is counting free variables before reading the statements.
+
+**The counting move.** Every rate equation has three quantities. D=RT has {D, R, T}; combined work has {rA, rB, T}; average speed has {v₁, v₂, d}. Before looking at the statements, count how many are free (unspecified by the stem). Two free variables require two independent constraints — one from each statement — so the answer is typically C. One free variable can be fixed by a single statement — so A or B becomes possible. Counting first prevents you from wasting time evaluating the wrong answer.
+
+**The statement-type test.** Every DS statement does one of three things: (a) fixes a variable to a specific value, (b) gives a ratio between two variables, or (c) gives an inequality or comparative. Type (a) is most powerful — it removes one unknown outright. Type (b) is conditional — useful only when another statement or the stem already anchors one variable to an absolute value. Type (c) often leaves the question unanswerable unless you're asked to compare, not compute.
+
+**Worked example — combined work, type-(b) statement.**
+
+*Pipes A and B fill the same tank. How long do they take together?*
+
+- Statement (1): Pipe A alone fills it in 12 hours. → rA = 1/12 per hour, one unknown fixed. B's rate still unknown. **Insufficient.**
+- Statement (2): Pipe B fills twice as fast as Pipe A. → rB = 2rA, a ratio. Without knowing rA, neither rate is pinned to an absolute value. **Insufficient alone.**
+- Together: rA = 1/12 (from 1). rB = 2/12 = 1/6 (from 2). Combined rate = 1/12 + 1/6 = 1/4. Time = **4 hours. Sufficient. Answer: C.**
+
+The lesson: a type-(b) statement cannot stand alone, but it is exactly the missing piece when the other statement provides the anchor value.
+
+**Worked example — average speed, "same route" trap.**
+
+*A driver makes a round trip on the same road between City A and City B. What is her average speed?*
+
+- Statement (1): She drove from A to B at 60 mph. → Outbound speed known; return speed unknown. **Insufficient.**
+- Statement (2): She drove from B to A in 2.5 hours. → Return time known; no speed for either leg and no route length. **Insufficient.**
+- Together: You know the outbound speed (60 mph) but not the outbound distance. Statement (2) gives return time but not return speed. Still can't compute total distance ÷ total time without the route length or the return speed. **Insufficient. Answer: E.**
+
+The trap: "same route" guarantees equal distances, which lets the harmonic mean apply — but only when *both speeds* are known. Here the return speed is never given. Equal distances alone are not enough.
+
+**Contrast.** *She drives at 60 mph outbound and 40 mph on the return (same road).* Now both speeds are known and distances are equal → harmonic mean: 2(60)(40)/100 = **48 mph**. Route length cancels; the answer is fully determined by the two speeds alone.
+
+**Trap to watch.** Information in the question stem counts exactly as much as the statements. A stem detail like "same route," "same pipeline," or "identical machines" can reduce the free-variable count by one before you read a single statement. Re-read the stem after each statement to catch whether the stem already locked in a variable.
+
+> **Self-explanation prompt.** Why does "Pipe B fills twice as fast as Pipe A" add no value unless you already know one absolute rate? If you can say "both rates can scale up or down together — without an anchor, infinitely many (rA, rB) pairs satisfy the ratio," you will correctly classify type-(b) statements as insufficient alone on every combined-work DS.
+
+**Micro-drill.** Classify each (A/B/C/D/E) — 90 seconds total. Do not compute; evaluate sufficiency.
+
+1. Pipes A and B fill a tank together. What is the combined fill time?
+   - (1): Pipe A alone fills it in 8 hours.
+   - (2): Pipe B alone fills it in 12 hours.
+
+2. A driver makes a round trip on the same 120-mile road. What is her average speed?
+   - (1): She drove outbound at 60 mph.
+   - (2): She drove the return leg at 40 mph.
+
+3. Workers A and B together complete a job, and A alone takes exactly twice as long as both together. How long does B take alone?
+   - (1): A alone takes 10 hours.
+   - (2): A and B together take 5 hours.
+
+Answers: (1) **C** — statement (1) gives rA = 1/8; statement (2) gives rB = 1/12. Neither alone is sufficient (each leaves the other rate unknown). Together: 1/8 + 1/12 = 5/24 per hour → combined time = 24/5 hours. (2) **C** — statement (1) gives outbound speed; statement (2) gives return speed. Neither alone suffices (one speed is still missing). Together: equal-distance round trip, harmonic mean: 2(60)(40)/100 = 48 mph. (3) **D** — the stem establishes that A's solo time = 2 × combined time. This fixes a ratio between the two. Statement (1) gives A's solo time (10 hours) → combined time = 5 hours → 1/5 = 1/10 + 1/B → 1/B = 1/10 → B = 10 hours. Sufficient alone. Statement (2) gives combined time directly (5 hours) → A's solo time = 10 → same calculation → B = 10 hours. Also sufficient alone. Answer: D. If you chose C for (3), you missed that the stem's "twice as long" constraint acts as a second equation — each statement provides the one missing value that closes the system.
+
 ## @summary
 
 Every GMAT rates/work question reduces to one of six patterns. Identify the pattern first; the arithmetic follows.
@@ -397,10 +464,19 @@ Every GMAT rates/work question reduces to one of six patterns. Identify the patt
 | "Catch up" or "overtake" | Same direction | head start ÷ (faster − slower) |
 | "Toward each other" or "meet" | Opposite/toward | distance ÷ (v₁ + v₂) |
 | "Round trip, equal legs" | Harmonic mean | 2ab/(a+b) |
+| "Round trip, same time each leg" | Arithmetic mean | (v₁ + v₂)/2 |
 | "Round trip, different distances" | Total/total | Σ distance ÷ Σ time |
 | "Downstream/upstream" | Current/wind | boat + current, boat − current |
 | "Joins X hours later" | Staggered | Phase 1 + Phase 2 |
+| "DS: how long together?" | Combined-work DS | Count free vars; usually answer C |
+| "DS: average speed, same route?" | Average-speed DS | Need both speeds; stem locks distances |
 
-**What to do next.** Open the practice set for this chapter — Easy first, then Medium. After each incorrect answer, write one sentence naming the pattern you misidentified and one sentence naming the formula you should have used. That annotation habit builds pattern-recognition faster than re-reading this chapter. Once you're hitting 85%+ on Medium, tackle the Hard set. If average-speed or staggered-start questions are where you stumble, re-read those two sections before starting Hard.
+**What to do next.**
 
-**Time-management note.** None of these questions should take more than 90 seconds once the pattern is recognized. If you're at 60 seconds and still setting up, you've misidentified the pattern — step back, re-read the first sentence of the problem, and pick the pattern before writing anything.
+1. **Easy set first.** Six questions, untimed. Goal: 100% accuracy using the right formula, not lucky guesses. If you miss one, name the pattern before re-reading — the miss is almost always a misidentified setup, not a calculation error.
+2. **Medium set, timed.** Eight questions, 2:00 average. After each miss, write: (a) which of the six patterns you chose, (b) which was correct. That tag is more useful than re-reading the section.
+3. **Hard set.** Eight questions — try untimed first to find the trick, then time yourself. Many Hard questions layer two patterns (staggered start with a closing-rate component, average speed in a DS shell). Naming the pattern before writing anything is more important here than anywhere else.
+4. **If DS questions trip you up**, open the Data Sufficiency chapter and read the "variable-counting" section before returning. Rate DS questions are straightforward once you internalize the free-variable discipline.
+5. **Related chapters.** Word Problems (translating rate-language into equations), Data Sufficiency (the DS framework applied to all Quant topics).
+
+**Time-management note.** Once the pattern is recognized, no rate question should take more than 90 seconds to execute. If you're at 60 seconds and still setting up, you haven't identified the pattern — step back, read only the first sentence of the problem, and commit to a pattern before writing any equations.
