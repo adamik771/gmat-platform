@@ -26,6 +26,7 @@ import { useMemo, useState, useTransition } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import {
+  BookOpen,
   CheckCheck,
   ChevronDown,
   ChevronRight,
@@ -40,6 +41,7 @@ import {
 import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { cn } from "@/lib/utils"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import type { Section } from "@/types"
 import {
   ERROR_TAGS,
@@ -886,6 +888,32 @@ function ExpandedMistake({
           <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
             {entry.explanation}
           </ReactMarkdown>
+        </div>
+      )}
+
+      {entry.topic && TOPIC_TO_CHAPTER[entry.topic] && (
+        <div className="flex flex-wrap gap-3 pt-1">
+          <Link
+            href={`/practice/session/${TOPIC_TO_CHAPTER[entry.topic]}`}
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[13px] font-medium border transition-colors"
+            style={{
+              borderColor: "rgba(201,168,76,0.35)",
+              color: "#C9A84C",
+              backgroundColor: "rgba(201,168,76,0.06)",
+            }}
+          >
+            <Repeat className="w-3.5 h-3.5" />
+            Practice {entry.topic}
+          </Link>
+          <Link
+            href={`/chapters/${TOPIC_TO_CHAPTER[entry.topic]}`}
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[13px] font-medium border border-white/[0.1] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.2] transition-colors"
+          >
+            <BookOpen className="w-3.5 h-3.5" />
+            Review chapter
+          </Link>
         </div>
       )}
 
