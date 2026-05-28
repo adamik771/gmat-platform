@@ -50,7 +50,7 @@ Which of the following is equivalent to (x³)⁴ / x⁵?
 **explanation:** Two exponent rules: (a) power of a power multiplies exponents — (x³)⁴ = x^(3×4) = x¹². (b) Same-base division subtracts exponents — x¹² / x⁵ = x^(12−5) = x⁷. The whole computation is two mechanical steps.
 **mistake_a:** Subtracted 3 from 5 (treated denominator as numerator) — got x^2.
 **mistake_c:** Stopped at the numerator step: correctly computed (x³)⁴ = x¹² but then did not complete the division by x⁵, bubbling the intermediate result.
-**mistake_d:** Multiplied (x³)⁴ as x^(3+4) = x^7, then multiplied by x^5 instead of dividing — got x^15.
+**mistake_d:** Multiplied the inner exponent by the denominator's exponent instead of applying the power-of-power rule and then subtracting: treated (x³)⁴/x⁵ as x^(3×5) = x^15 — multiplying the base's exponent (3) by the denominator's exponent (5) and ignoring the outer exponent (4) entirely.
 **mistake_e:** Computed 3 × 4 + 5 = 17 by adding the bottom exponent rather than subtracting.
 **common_trap:** Confusing exponent rules — multiplying when you should subtract, or adding when you should multiply.
 **takeaway:** Memorize the four exponent rules cold: power-of-power multiplies, product-of-same-base adds, quotient subtracts, negative exponent inverts.
@@ -261,7 +261,7 @@ If 4^(a+1) = 8^a, what is the value of a?
 **explanation:** Rewrite both sides with the same base. 4 = 2², so 4^(a+1) = 2^(2(a+1)) = 2^(2a+2). 8 = 2³, so 8^a = 2^(3a). The equation becomes 2^(2a+2) = 2^(3a), which (since the bases are equal) requires the exponents to be equal: 2a + 2 = 3a → a = 2. Verify: 4³ = 64 and 8² = 64 ✓.
 **mistake_a:** Set 4 + 1 = 8 × a (treated bases additively).
 **mistake_c:** Converted 8 as 8 = 2² (misremembering the cube root) instead of 2³: got 2^(2a+2) = 2^(2a), which yields no solution. After the dead end, fell back to testing answer choices and landed on 3.
-**mistake_d:** Mis-expanded the left side as 4^(a+1) = 2^(a+2) (confused multiplying by 2 with adding 2 to the exponent): 2^(a+2) = 2^(3a) → a+2 = 3a → 2a = 2 → a = 1, then read "4" from the answer choices on a second pass.
+**mistake_d:** Converted 4^(a+1) to base 2 but applied the outer-exponent expansion twice — wrote 2^(2a+4) instead of 2^(2a+2) (added 2 to the exponent a second time in error): 2^(2a+4) = 2^(3a) → 2a+4 = 3a → a = 4.
 **mistake_e:** Misread 4^(a+1) as 4^a + 1, leading to wrong setup.
 **common_trap:** Exponent rules misapplied — power-of-power vs. product-of-powers.
 **takeaway:** When two powers have different bases with a common base relationship (4 = 2², 8 = 2³, 9 = 3², etc.), rewrite with the common base. Equal bases → equal exponents.
@@ -338,7 +338,7 @@ What is the sum of the solutions to x² + 4x - 21 = 0?
 **fastest_path:** Vieta's: sum of roots = −b/a = −4/1 = −4.
 **explanation:** For ax² + bx + c = 0, sum of roots = −b/a. With a = 1 and b = 4: sum = −4. Total time: 5 seconds. Factoring (x + 7)(x − 3) = 0 gives roots −7 and 3, summing to −4 — same answer in 30+ seconds.
 **mistake_a:** Sum of *factor terms* in the factored form (7 + 3 not −7 + 3, getting +7 or −7).
-**mistake_c:** Computed product of roots instead of sum: −21/1 → some confusion to −3.
+**mistake_c:** Factored as (x + 7)(x − 3) = 0 correctly but confused the sign relationship between a factor and its root: read the constant from (x − 3) as the root −3, rather than recognizing that (x − 3) = 0 gives x = +3. Bubbled −3 without summing both roots.
 **mistake_d:** Sign error: +b/a instead of −b/a.
 **mistake_e:** Got the magnitude right but wrong sign.
 **common_trap:** missing-algebraic-shortcut — factoring when Vieta's gives the answer directly.
@@ -391,7 +391,7 @@ If 3x + 2y = 16 and 5x - 2y = 16, what is the value of x + y?
 **explanation:** y coefficients are equal-and-opposite (+2 and −2) — adding the equations eliminates y in one step: 8x = 32 → x = 4. Substitute back: 3(4) + 2y = 16 → 2y = 4 → y = 2. Therefore x + y = 6. Total time: ~30 seconds. Full substitution path takes ~60-75 seconds.
 **mistake_a:** Stopped at x = 4 and bubbled the wrong variable.
 **mistake_b:** Computed y = 2 and bubbled.
-**mistake_d:** Subtracted the equations instead of adding; got 2x = 0 → x = 0, then y = 8, sum = 7.
+**mistake_d:** Correctly added the equations to find x = 4, then made an arithmetic slip while back-substituting: computed 3 × 4 = 10 (instead of 12), yielding 10 + 2y = 16 → y = 3. Then x + y = 4 + 3 = 7.
 **mistake_e:** Solved the system correctly (x = 4, y = 2) but computed x × y = 4 × 2 = 8 instead of x + y = 6.
 **common_trap:** Solving past sufficiency or stopping too early — picking up x or y alone after correct setup.
 **takeaway:** When y coefficients are equal-and-opposite, add to cancel y in one step. After computing both, re-read the question to confirm what's asked.
@@ -685,8 +685,8 @@ If 1/(x − 3) + 1/(x + 3) = 12/(x² − 9), what is the value of x?
 **explanation:** Notice x² − 9 = (x − 3)(x + 3). Combine the left side over the common denominator: 1/(x−3) + 1/(x+3) = [(x+3) + (x−3)] / (x²−9) = 2x / (x²−9). The equation becomes 2x/(x²−9) = 12/(x²−9). Same denominator → numerators equal: 2x = 12 → x = 6. Verify: x = 6 doesn't zero any denominator, so it's valid.
 **mistake_a:** Picked x = 3 without checking the domain — x = 3 makes 1/(x−3) undefined.
 **mistake_b:** Computed 12/3 = 4 from a shortcut that ignored structure.
-**mistake_c:** Solved 2x + 12 = ... or some other miscombined equation; got 5.
-**mistake_e:** Multiplied 12 directly: 12/2 = 6, then doubled wrongly to 12 (or some other setup).
+**mistake_c:** Correctly reduced the equation to 2x = 12 but miscopied the right-hand side when solving: wrote 2x = 10 (transcription error under time pressure), giving x = 5.
+**mistake_e:** Set up 2x = 12 correctly but skipped the division step — misread the simplified equation as x = 12 directly, bubbling the RHS without dividing by 2.
 **common_trap:** Domain violations on rational equations — accepting an extraneous solution that makes a denominator zero.
 **takeaway:** When solving rational equations, find the common denominator, simplify, then verify the answer doesn't violate the domain (no denominator = 0).
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -899,7 +899,7 @@ If x² − 10x + 21 = 0, what is the value of x² − 10x + 25?
 **explanation:** Don't solve for x. The given equation rearranges to x² − 10x = −21. The target expression x² − 10x + 25 differs from the given (x² − 10x + 21) by exactly 4. So target = −21 + 25 = 4. Total time: 10 seconds.
 
 Verification by solving: factor x² − 10x + 21 = (x − 3)(x − 7) = 0, so x = 3 or 7. Plug x = 3: 9 − 30 + 25 = 4 ✓. Plug x = 7: 49 − 70 + 25 = 4 ✓. Same answer, but takes 60+ seconds.
-**mistake_b:** Solved for x (3 or 7), then computed 5² = 25 thinking that was the answer.
+**mistake_b:** Correctly identified x²−10x+25 = (x²−10x+21) + (25−21), but computed the constant difference as 25−21 = 5 (arithmetic slip under time pressure) instead of 4.
 **mistake_c:** Computed 25 − 21 = 4, then somehow got 6 from another arithmetic operation.
 **mistake_d:** Bubbled 10 (a coefficient appearing in the question).
 **mistake_e:** Bubbled 25 (the constant in the target expression, missed the manipulation).
