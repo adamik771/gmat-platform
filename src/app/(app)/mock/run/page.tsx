@@ -102,6 +102,10 @@ export default async function MockRunPage({
       explanation: q.explanation,
       twoPartColumns: q.twoPartColumns,
       twoPartCorrectAnswers: q.twoPartCorrectAnswers,
+      mistakeAnalysis: q.mistakeAnalysis,
+      fastestPath: q.fastestPath,
+      commonTrap: q.commonTrap,
+      takeaway: q.takeaway,
     })),
   }))
 

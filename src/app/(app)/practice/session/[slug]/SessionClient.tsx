@@ -51,6 +51,14 @@ export interface SessionQuestion {
   twoPartColumns?: string[]
   /** Two-Part Analysis: the correct row index for each column. */
   twoPartCorrectAnswers?: number[]
+  /** Why each distractor is wrong, keyed by answer letter (A–E). */
+  mistakeAnalysis?: Partial<Record<"A" | "B" | "C" | "D" | "E", string>>
+  /** The fastest / most efficient solution path for this question. */
+  fastestPath?: string
+  /** The specific trap or misconception this question is designed to catch. */
+  commonTrap?: string
+  /** The durable concept the student should take away from this question. */
+  takeaway?: string
 }
 
 type Confidence = "low" | "medium" | "high"
@@ -2212,42 +2220,112 @@ export default function SessionClient({
               />
             )}
 
-            {currentState.submitted && current.explanation && (
-              <div
-                className="mt-5 p-4 rounded-lg border transition-all duration-150 animate-in fade-in-0 zoom-in-95"
-                style={{
-                  borderColor: "rgba(201,168,76,0.15)",
-                  backgroundColor: "rgba(201,168,76,0.03)",
-                }}
-              >
-                <div className="flex items-center gap-2.5 mb-3">
-                  <p className="text-[10px] uppercase tracking-widest text-[#555555]">
-                    Explanation
-                  </p>
-                  {!isQuestionCorrect(current, currentState) &&
-                    currentState.selected !== null &&
-                    !isTwoPart && (
+            {currentState.submitted && current.explanation && (() => {
+              const wasCorrect = isQuestionCorrect(current, currentState)
+              const chosenLetter = !isTwoPart && currentState.selected !== null
+                ? letterFor(currentState.selected) as "A" | "B" | "C" | "D" | "E"
+                : null
+              const chosenMistake = chosenLetter && current.mistakeAnalysis
+                ? current.mistakeAnalysis[chosenLetter]
+                : undefined
+
+              return (
+                <div
+                  className="mt-5 rounded-lg border overflow-hidden transition-all duration-150 animate-in fade-in-0 zoom-in-95"
+                  style={{
+                    borderColor: wasCorrect
+                      ? "rgba(201,168,76,0.15)"
+                      : "rgba(255,68,68,0.12)",
+                    backgroundColor: wasCorrect
+                      ? "rgba(201,168,76,0.03)"
+                      : "rgba(255,68,68,0.02)",
+                  }}
+                >
+                  {/* Header */}
+                  <div className="px-4 pt-4 pb-3 flex items-center gap-2.5">
+                    <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                      Explanation
+                    </p>
+                    {!wasCorrect && chosenLetter && (
                       <>
                         <span className="text-[10px] text-[#333333]">&middot;</span>
-                        <span
-                          className="text-[10px]"
-                          style={{ color: "rgba(255,107,107,0.75)" }}
-                        >
-                          You chose {letterFor(currentState.selected)}
+                        <span className="text-[10px]" style={{ color: "rgba(255,107,107,0.75)" }}>
+                          You chose {chosenLetter}
                         </span>
                         <span className="text-[10px] text-[#333333]">&middot;</span>
-                        <span
-                          className="text-[10px]"
-                          style={{ color: "rgba(62,207,142,0.75)" }}
-                        >
+                        <span className="text-[10px]" style={{ color: "rgba(62,207,142,0.75)" }}>
                           Correct: {current.correctAnswerLetter}
                         </span>
                       </>
                     )}
+                  </div>
+
+                  {/* Main explanation */}
+                  <div className="px-4 pb-4">
+                    <PromptBlock text={current.explanation} />
+                  </div>
+
+                  {/* Pedagogical analysis — only surfaces when rich fields exist */}
+                  {(chosenMistake || current.commonTrap || current.fastestPath || current.takeaway) && (
+                    <div
+                      className="border-t px-4 py-4 space-y-4"
+                      style={{ borderColor: wasCorrect ? "rgba(201,168,76,0.08)" : "rgba(255,255,255,0.05)" }}
+                    >
+                      {/* Why your specific answer was wrong — highest priority when wrong */}
+                      {!wasCorrect && chosenMistake && (
+                        <div>
+                          <p className="text-[10px] uppercase tracking-widest mb-1.5" style={{ color: "rgba(255,107,107,0.6)" }}>
+                            Why {chosenLetter} is wrong
+                          </p>
+                          <p className="text-[13px] leading-relaxed" style={{ color: "#C0C0C0" }}>
+                            {chosenMistake}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Common trap */}
+                      {current.commonTrap && (
+                        <div>
+                          <p className="text-[10px] uppercase tracking-widest mb-1.5 text-[#555555]">
+                            Common trap
+                          </p>
+                          <p className="text-[13px] leading-relaxed" style={{ color: "#888888" }}>
+                            {current.commonTrap}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Fastest path */}
+                      {current.fastestPath && (
+                        <div>
+                          <p className="text-[10px] uppercase tracking-widest mb-1.5" style={{ color: "rgba(201,168,76,0.6)" }}>
+                            Fastest path
+                          </p>
+                          <p className="text-[13px] leading-relaxed" style={{ color: "#C0C0C0" }}>
+                            {current.fastestPath}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Takeaway */}
+                      {current.takeaway && (
+                        <div
+                          className="pt-3 border-t"
+                          style={{ borderColor: "rgba(255,255,255,0.04)" }}
+                        >
+                          <p className="text-[10px] uppercase tracking-widest mb-1.5 text-[#555555]">
+                            Key takeaway
+                          </p>
+                          <p className="text-[13px] leading-relaxed font-medium" style={{ color: "#C0C0C0" }}>
+                            {current.takeaway}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
-                <PromptBlock text={current.explanation} />
-              </div>
-            )}
+              )
+            })()}
 
             {currentState.submitted && (
               <>

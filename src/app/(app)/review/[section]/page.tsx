@@ -101,6 +101,10 @@ export default async function ReviewSectionPage({
       hints: q.hints,
       twoPartColumns: q.twoPartColumns,
       twoPartCorrectAnswers: q.twoPartCorrectAnswers,
+      mistakeAnalysis: q.mistakeAnalysis,
+      fastestPath: q.fastestPath,
+      commonTrap: q.commonTrap,
+      takeaway: q.takeaway,
     }))
 
   if (playable.length === 0) {
