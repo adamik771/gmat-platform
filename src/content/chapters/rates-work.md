@@ -2,7 +2,7 @@
 slug: rates-work
 title: Rates and Work
 section: Quant
-estimated_minutes: 50
+estimated_minutes: 60
 prerequisites: []
 summary: |
   Every rate-and-work problem on the GMAT is one of six patterns: single-object D=RT, combined work (add the rates), catch-up (subtract the rates), average speed over equal distances (harmonic mean, never arithmetic mean), average speed over unequal distances (total distance ÷ total time), and pipes-or-workers with staggered start times. Learn to recognize which pattern you're in, set up the rate equation in the right units, and every question in this chapter takes under 90 seconds.
@@ -54,9 +54,9 @@ sections:
 
   - id: partial-work-staggered-starts
     type: reading
-    title: "Partial work and staggered starts"
+    title: "Partial work, staggered starts, and drain pipes"
     intro: |
-      One worker finishes what another starts. Or the rate changes mid-problem. This section gives you a two-phase template that converts every staggered-start question into a pair of simpler problems.
+      One worker finishes what another starts. A drain pipe opens while fill pipes run. Or a speed changes mid-trip. All are non-uniform rate problems: the rate isn't constant the whole time. One template handles all of them — break the timeline into phases, apply the correct rate to each phase, and add the phases together.
     check_question_ids:
       - rates-work-q14
       - rates-work-q16
@@ -174,13 +174,25 @@ A finishes in 12 hours alone. A + B finish in 8 hours together. How long does B 
 
 Trap answer: students who manipulate times compute 12 − 8 = 4 (wrong) or 12 + 8 = 20 (also wrong). The right setup is always rate-based.
 
+**Three workers together.** The pattern extends directly: add all three rates.
+
+If A takes a hours, B takes b hours, C takes c hours, their combined time T satisfies:
+
+    1/a + 1/b + 1/c = 1/T
+
+Worked example: A takes 6 hours alone, B takes 12 hours alone, C takes 4 hours alone. Together?
+
+- Rate of A: 1/6. Rate of B: 1/12. Rate of C: 1/4.
+- Combined rate: 1/6 + 1/12 + 1/4 = 2/12 + 1/12 + 3/12 = **6/12 = 1/2 per hour**.
+- Combined time: **2 hours**.
+
+Sanity check: the fastest individual (C) finishes in 4 hours; three workers together must finish in under 4 hours. 2 < 4. The GMAT sometimes gives three-worker questions hoping you'll only combine two of the three — always check that you've included every worker who is actively contributing.
+
 **Unit of work is arbitrary.** Some problems use "pump-hours" — total work expressed as (workers × time). Three pumps × 4 hours = 12 pump-hours. If the same job is done by 5 pumps: 12/5 = 2.4 hours. This is the combined-work formula reorganized: **(workers) × (time) = total work**, constant for a given job.
 
 **Trap to watch.** "How long does the job take if three pumps work for 2 hours, then two more pumps join?" That is *not* pure combined work — it is a staggered-start problem. Combined work assumes everyone starts at time zero. The staggered case is handled in the next section.
 
-> **Self-explanation prompt.** Before the check question, explain in one sentence: if A takes 4 hours alone and B takes 6 hours alone, why does the combined time land near 2.4 hours rather than near 5 hours? If you can say "because both contribute their full rate every hour, so the job disappears faster than either alone — not at some average speed between them," you've understood why adding times is wrong.
-
-> **Self-explanation prompt.** Before moving on, say this out loud: *why* do you add rates and not times when two workers combine? If you can explain "because each worker independently contributes a fraction of the job per hour — those fractions add; the time to finish is 1 divided by the combined fraction," you've understood the concept, not just memorized the formula. A student who truly understands this will never again add the times, even under pressure.
+> **Self-explanation prompt.** Before the check question: A takes 4 hours alone, B takes 6 hours alone — why does the combined time land at 2.4 hours, not near 5? Say it in one sentence. The answer: both workers contribute their full rate *simultaneously*, every hour — those fractional contributions add, and the job disappears faster than either alone. If you can explain the *why* in those terms, you have the concept. If you still feel like you're reciting a rule, re-read the intuition paragraph above: the formula is the inevitable result of the physical picture.
 
 > **Recall check.** Cover this section. Pipe A fills a tank in 8 hours; Pipe B fills the same tank in 12 hours. Can you write the combined rate and the combined time from memory, before looking? If A's rate is 1/8 and B's is 1/12, the combined rate is 1/8 + 1/12 = 5/24, and the combined time is 24/5 = 4.8 hours. If you got a number larger than 8 or computed 8 + 12 = 20, review the section. Spaced retrieval (Roediger & Karpicke, 2006) converts a rule you've read into a rule you own.
 
@@ -334,7 +346,19 @@ Sanity check: X + Y together alone would take 18/5 = 3.6 hours. Having X work so
 
 **The scaling shortcut for identical workers.** (workers) × (hours) = total work, constant for a given job. Three pumps × 4 hours = 12 pump-hours. Five pumps: 12/5 = **2.4 hours**. Works because all pumps are interchangeable — total work doesn't change.
 
-**When a pipe drains instead of fills.** Subtract drain rates from fill rates. Three pipes: A fills at 1/a, B fills at 1/b, C drains at 1/c. Combined: 1/a + 1/b − 1/c. Missing that minus sign — treating C as a filler — produces a badly wrong answer.
+**When a pipe drains instead of fills.** Subtract drain rates from fill rates. Three pipes: A fills at 1/a, B fills at 1/b, C drains at 1/c. Net rate = 1/a + 1/b − 1/c. Missing that minus sign — treating C as a filler — produces a badly wrong answer.
+
+Worked example: Pipe A fills a tank in 4 hours. Pipe B fills it in 12 hours. Pipe C drains it in 6 hours. All three open at the same time. How long to fill the tank?
+
+- Fill rate A: 1/4 per hour.
+- Fill rate B: 1/12 per hour.
+- Drain rate C: 1/6 per hour.
+- Net rate: 1/4 + 1/12 − 1/6 = 3/12 + 1/12 − 2/12 = **2/12 = 1/6 per hour**.
+- Time to fill: 1 ÷ (1/6) = **6 hours**.
+
+Sanity check: A alone fills in 4 hours; the drain pipe and the slow fill pipe combined pull the total above 4 hours. 6 > 4 — the answer passes. If you got 2 hours or less, you added C's rate instead of subtracting it. On the GMAT, "drain" or "leak" or "emptying" always means subtract.
+
+The drain-pipe micro-drill below (problem 2) uses this exact structure — work it before checking the answer.
 
 **When to use algebra instead of phases.** "If her speed were 10 mph higher, she'd arrive 15 minutes earlier" is a speed-comparison problem, not a staggered-phase problem. Write two equations (original, altered), solve the system. This usually produces a quadratic with one valid positive root.
 
@@ -379,7 +403,7 @@ Every GMAT rates/work question reduces to one of six patterns. Identify the patt
 
 **5. Average speed over unequal distances.** Total distance ÷ total time. Period.
 
-**6. Partial work / staggered start.** Break into phases: compute fraction done in phase 1, compute time to finish the rest at the new combined rate.
+**6. Partial work, staggered starts, and drain pipes.** Break into phases. After phase 1, compute the remaining fraction of the job. In phase 2, apply the net rate — subtract any drain rates — and solve for phase 2 time.
 
 **Sanity checks you can run on any rate answer.**
 
@@ -393,7 +417,9 @@ Every GMAT rates/work question reduces to one of six patterns. Identify the patt
 | Problem says | You're doing | Formula |
 |---|---|---|
 | "Rate × time" | D = RT | D = R × T |
-| "Working together, how long" | Combined work | 1/a + 1/b = 1/T |
+| "Working together, how long" | Combined work (2 workers) | 1/a + 1/b = 1/T |
+| "Three workers together" | Combined work (3 workers) | 1/a + 1/b + 1/c = 1/T |
+| "Drain" or "leak" or "empties" | Drain pipe | subtract drain rate from fill rate |
 | "Catch up" or "overtake" | Same direction | head start ÷ (faster − slower) |
 | "Toward each other" or "meet" | Opposite/toward | distance ÷ (v₁ + v₂) |
 | "Round trip, equal legs" | Harmonic mean | 2ab/(a+b) |
