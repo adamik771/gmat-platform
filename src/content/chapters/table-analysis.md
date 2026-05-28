@@ -2,10 +2,14 @@
 slug: table-analysis
 title: Table Analysis
 section: DI
-estimated_minutes: 45
+estimated_minutes: 55
 prerequisites: []
 summary: |
-  Table Analysis gives you a sortable data table plus a series of Yes/No statements, and asks whether each statement is true given the data. The test isn't about reading speed — it's about efficiency. You need a repeatable filter-sort-verify discipline that answers each statement in under 60 seconds without re-reading the whole table. Master the three-step workflow (identify the relevant column, filter or sort, compute the check), internalize the seven most common statement patterns, and you'll solve every Table Analysis question without ever feeling rushed.
+  Table Analysis is the most mechanical format in Data Insights — which makes it the highest-ROI chapter in this section. Unlike Multi-Source Reasoning or Two-Part Analysis, Table Analysis does not reward creative reasoning; it rewards a single repeatable workflow executed quickly. Students who have drilled the three-step discipline (identify columns, filter or sort, verify the claim) answer each statement in under 60 seconds. Students who improvise per question average twice that and still make errors.
+
+  The seven statement patterns in this chapter cover roughly 90% of what you will see on test day. Once they are automatic, Table Analysis stops being a format to "do carefully" and becomes a format to execute fast — which is precisely the kind of gain that separates 685 from 725 scorers on DI.
+
+  By the end of this chapter you will: (1) apply the three-step workflow without consciously thinking about it; (2) classify any Yes/No statement into one of seven patterns within five seconds of reading it; (3) choose sort vs. filter based on the statement structure; (4) compute derived metrics (ratios, percent changes, per-unit values) accurately under time pressure; and (5) write down every intermediate value instead of trusting your working memory.
 sections:
   - id: pretest
     type: pretest
@@ -176,6 +180,13 @@ Statement: "The average salary of Strategy employees is higher than that of Fina
 
 **Strategy sum:** 120+95+150 = 365. **Finance sum:** 140+85+115 = 340. Strategy sum > Finance sum, and both have 3 employees — so Strategy average > Finance average. Skip the division entirely.
 
+**Micro-drill.** Apply the three-step workflow to each statement against the Employee Demographics table above. 60 seconds each:
+
+1. "The median salary across all eight employees exceeds $120K." → ___
+2. "All employees in Finance earn more than the lowest-paid Strategy employee." → ___
+
+Answers: (1) Step 1: Salary column. Step 2: Sort ascending: 85, 95, 115, 120, 125, 140, 150, 155 (n=8, even count). Step 3: Median = avg of positions 4 and 5 = (120+125)/2 = 122.5. Is 122.5 > 120? **Yes.** (2) Step 1: Department and Salary. Step 2: Filter to Finance: B (140), E (85), H (115). Filter to Strategy: A (120), C (95), G (150). Lowest Strategy salary: 95. Step 3: Check each Finance employee against 95: B (140) ✓, E (85) — 85 < 95. **No.** One counterexample is enough to disprove a universal claim — stop as soon as you find it.
+
 > **Recall check.** Close the book. State the three-step Table Analysis workflow. Now state the time budget for each step. (Step 1 identify, Step 2 filter/sort, Step 3 verify. Budget: 5 + 15 + 30 = 60 seconds.) Pattern-drill this three-step until it's reflexive — that's what makes you fast on Table Analysis.
 
 ## @sorting-vs-filtering
@@ -229,6 +240,16 @@ Some statements require both. "The highest-salaried Finance employee" requires f
 
 **Trap to watch.** Some statements read like sort questions but are actually filter questions. "Is there any employee over 40 who earns less than $120K?" — this is a filter (age > 40 AND salary < 120) plus existence check (is the filtered set nonempty?). Don't waste time sorting the full table.
 
+> **Self-explanation prompt.** For a statement asking "which department has the highest average salary," would you sort the Salary column or filter by Department? If you said "filter, then compute averages per group," you're right — sorting by Salary mixes all departments and makes the grouping invisible. Sorting finds extremes across the whole table; filtering isolates subgroups so you can compute within them. The statement's structure tells you which to reach for first.
+
+**Micro-drill.** Classify each statement as a **sort**, **filter**, or **sort + filter** operation, then answer Yes or No using the Employee Demographics table. 45 seconds each:
+
+1. "The youngest employee in the dataset works in Finance." → Operation: ___ Answer: ___
+2. "All Operations employees earn more than $120K." → Operation: ___ Answer: ___
+3. "The highest-paid Finance employee earns less than the lowest-paid Operations employee." → Operation: ___ Answer: ___
+
+Answers: (1) **Sort** (Age ascending) — E at 26, Finance. Department is Finance. **Yes.** (2) **Filter** (Operations: D at 155, F at 125) — both > 120. **Yes.** (3) **Sort + filter** (twice) — max Finance salary: B at 140. Min Operations salary: F at 125. Is 140 < 125? **No.** The statement requires finding the max in one filtered group and the min in another — two separate sort+filter operations. Writing down both numbers before comparing is what prevents the transposition error under pressure.
+
 ## @statement-patterns
 
 Seven statement patterns cover roughly 90% of what you'll see on Table Analysis. Memorize these and you'll recognize the move to make within 5 seconds of reading any statement.
@@ -246,6 +267,8 @@ Seven statement patterns cover roughly 90% of what you'll see on Table Analysis.
 "The highest/lowest value of X is in category Y."
 
 *Move:* sort by X, read off the top/bottom row, check its category.
+
+**Example.** Statement: "The employee with the most years of experience works in Strategy." Sort Years descending: D (12, Operations) is first. Department is Operations, not Strategy. **No.**
 
 **Pattern 3: Category comparison.**
 
@@ -267,11 +290,15 @@ Seven statement patterns cover roughly 90% of what you'll see on Table Analysis.
 
 *Move:* filter on the conjunction. If the filtered set is nonempty, **Yes**; else **No**.
 
+**Example.** Statement: "There is at least one Finance employee who is over 35 and earns more than $130K." Filter: Finance AND Age > 35. Qualifying rows: B (38, 140). Nonempty, and salary 140 > 130. **Yes.** One qualifying row is all you need — stop scanning once you find it.
+
 **Pattern 6: Range check.**
 
 "All values of X fall between a and b."
 
 *Move:* find min and max of X. If min ≥ a and max ≤ b, **Yes**.
+
+**Example.** Statement: "All salaries fall between $80K and $160K." Sort Salary: min = E at 85, max = D at 155. Is 85 ≥ 80 and 155 ≤ 160? **Yes.** You only need to check the extremes — if they're in range, every value between them is too.
 
 **Pattern 7: Correlation/trend check.**
 
@@ -284,6 +311,15 @@ Seven statement patterns cover roughly 90% of what you'll see on Table Analysis.
 **Example.** "Every employee over 30 earns more than $100K." Scan employees over 30. Any earning ≤ 100K? One counterexample disproves.
 
 **Example.** "At least one employee in Finance is older than 40." Scan Finance employees. Any older than 40? One example confirms.
+
+**Micro-drill.** Using the Employee Demographics table, identify the pattern and answer Yes or No. 45 seconds each:
+
+1. "More than half of all employees are under 35 years old." → Pattern ___ Answer ___
+2. "The highest salary in the dataset belongs to an Operations employee." → Pattern ___ Answer ___
+3. "There is at least one Strategy employee who is over 30 and earns under $100K." → Pattern ___ Answer ___
+4. "For every employee, salary (in thousands) is greater than their age." → Pattern ___ Answer ___
+
+Answers: (1) Pattern **1** (threshold count) — employees under 35: A (32), C (28), E (26), H (33) = 4 out of 8. 4/8 = 50%, which is not *more* than half. **No.** Note: "under 35" excludes 35 exactly — F is 35 and doesn't qualify. (2) Pattern **2** (rank check) — sort Salary descending: D (155, Operations) is first. **Yes.** (3) Pattern **5** (existence check) — Strategy employees over 30: A (32, 120), G (40, 150). Neither earns under $100K. **No.** You need one confirming row; none exists. (4) Pattern **4** (within-row derivation) — check each row: A: 120 > 32 ✓, B: 140 > 38 ✓, C: 95 > 28 ✓, D: 155 > 42 ✓, E: 85 > 26 ✓, F: 125 > 35 ✓, G: 150 > 40 ✓, H: 115 > 33 ✓. All eight pass. **Yes.** For a universal claim, you scan every row; one counterexample would end the check immediately.
 
 > **Self-explanation prompt.** Why does "every"/"no" require checking every row but "at least one" needs just one example? If you can say "because universal claims fail if a single counterexample exists, while existential claims succeed if a single confirming case exists," you've internalized the asymmetry — and you'll scan tables much faster.
 
@@ -381,6 +417,16 @@ Filter on two conditions (Finance AND over 30). Then check all of them against t
 
 **Trap to watch.** "Overlap" mistakes — filtering on the wrong combination. "Finance AND over 30" is different from "Finance OR over 30." Read the statement carefully: "and" means both conditions must hold; "or" means either (or both). Universal quantifier ("all," "every") combined with filters usually means you're checking whether the filtered set satisfies a condition uniformly.
 
+> **Self-explanation prompt.** When two categories have the same number of rows, you compare their sums directly. When counts differ, you must divide. Why? If you can say "because average = sum ÷ count, and equal counts cancel in the comparison — but a larger sum in a smaller group can still mean a smaller average," you will not default to comparing sums on unequal groups and get a wrong answer.
+
+**Micro-drill.** Using the Employee Demographics table, answer each in under 90 seconds:
+
+1. "Operations has the highest average salary of the three departments." → ___
+2. "The total age of Strategy employees exceeds the total age of Finance employees." → ___
+3. "Among employees with at least 5 years of experience, the average salary is above $130K." → ___
+
+Answers: (1) Strategy (3 employees) and Finance (3 employees) share a count — use sum comparison: Strategy 120+95+150=365, Finance 140+85+115=340. Strategy avg ≈ 121.7, Finance avg ≈ 113.3. But Operations has only 2 employees — must divide: (155+125)/2 = 140. Operations (140) > Strategy (121.7). **Yes.** The sum shortcut works for Strategy vs Finance but NOT for comparing either against Operations. (2) Strategy total age: 32+28+40=100. Finance total age: 38+26+33=97. 100 > 97. **Yes.** This asks for "total age" directly, so no division needed. (3) Employees with 5+ years: A (5 yrs, 120), B (8 yrs, 140), D (12 yrs, 155), F (7 yrs, 125), G (10 yrs, 150), H (6 yrs, 115). Six employees. Sum: 120+140+155+125+150+115=805. Average: 805/6 ≈ 134.2. **Yes.** Common error: comparing 805 to 130 directly — that is the sum, not the average. Divide first.
+
 ## @derived-metrics-and-traps
 
 Some statements require computing a *new* metric from the table columns — a ratio, a percentage, a per-unit value. These are the most arithmetic-heavy Table Analysis questions, and where most errors happen.
@@ -393,9 +439,29 @@ Conversion rate = Sales / Visitors. Compute per row, compare.
 
 **Derived metric: percent change over time.**
 
-**Example.** Columns Q1 and Q4. Statement: "More than half of companies grew by at least 25% from Q1 to Q4."
+**Example (full walkthrough).** Five-company revenue table:
 
-For each row: % change = (Q4 - Q1)/Q1 × 100. Count rows where this ≥ 25. Compare count to half the total.
+| Company | Q1 Revenue | Q4 Revenue |
+|---|---|---|
+| A | 80 | 104 |
+| B | 60 | 72 |
+| C | 100 | 115 |
+| D | 40 | 58 |
+| E | 90 | 108 |
+
+Statement: "More than half of these companies grew by at least 25% from Q1 to Q4."
+
+For each row: % change = (Q4 − Q1) / Q1 × 100.
+
+- A: (104−80)/80 × 100 = 24/80 × 100 = **30%** ✓
+- B: (72−60)/60 × 100 = 12/60 × 100 = **20%** ✗
+- C: (115−100)/100 × 100 = 15/100 × 100 = **15%** ✗
+- D: (58−40)/40 × 100 = 18/40 × 100 = **45%** ✓
+- E: (108−90)/90 × 100 = 18/90 × 100 = **20%** ✗
+
+2 out of 5 qualify. Half of 5 is 2.5. Since 2 < 2.5, **No.**
+
+**Percent-change denominator trap.** The formula is (new − old) / **old**, not (new − old) / new. Using the wrong denominator shifts every answer. On Company A: wrong denominator gives 24/104 = 23%, which would flip the classification.
 
 **Derived metric: per-unit metric.**
 
@@ -424,6 +490,14 @@ Compute Revenue/Employees per row, sort, check top.
 **The "does this even matter?" sanity check.** Before committing to a computation, ask: "Is there a pattern I'm missing?" Some questions are designed to be obvious once you spot the pattern — e.g., "every value in row X is larger than every value in row Y" (no arithmetic needed, just visual scan). Always look for the easy path before doing arithmetic.
 
 > **Self-explanation prompt.** Why are derived metrics (ratios, percents) the most error-prone? If you can say "because they require two pieces of information per row combined correctly, and one mis-read of either piece corrupts the entire comparison," you've identified why these questions demand extra care — and why writing intermediate values down beats trying to do them in your head.
+
+**Micro-drill.** Using the five-company revenue table above, answer each in under 60 seconds:
+
+1. "The company with the highest Q4 revenue also had the highest growth rate." → ___
+2. "The company with the lowest Q1 revenue had the highest growth rate." → ___
+3. "More than half of companies had a Q4 revenue-to-Q1-revenue ratio above 1.2." → ___
+
+Answers: (1) Highest Q4: E (108), growth rate 20%. Highest growth rate: D at 45%. Different companies. **No.** (2) Lowest Q1: D at 40. D's growth rate: 45% — the highest in the table. **Yes.** (3) Ratio = Q4/Q1 for each row: A: 104/80=1.30 ✓, B: 72/60=1.20 — is 1.20 "above 1.2"? No, it equals 1.2, not exceeds it ✗. C: 1.15 ✗. D: 1.45 ✓. E: 1.20 ✗. 2 out of 5 exceed 1.2. **No.** Critical precision: "above" means strictly greater than — B is an exact tie and does not qualify. Missing this distinction is exactly the trap the GMAT sets.
 
 ## @summary
 
@@ -456,5 +530,15 @@ Table Analysis is a mechanical workflow problem. Once you internalize the three-
 - If you're over 3:30 on a single Table Analysis question, something went wrong — you probably re-read the table. Move on and come back if time permits.
 
 **The habit that separates 685 scorers from 605 scorers:** writing down intermediate computations. Trying to hold three category-averages in your head while comparing them is how students lose points on medium-difficulty Table Analysis. Write every intermediate number down.
+
+**What to do next.**
+
+1. **Pattern recall before you drill.** Before opening the problem sets, take a blank sheet and write out all seven statement patterns — name, move, and the signal word(s) that identify it — from memory. Any pattern you cannot reproduce is the one to re-read. This step takes three minutes and front-loads the pattern recognition the drills are designed to build.
+
+2. **Easy set: workflow out loud.** For each easy question, verbalize the three steps before answering: "Step 1, relevant columns are X and Y. Step 2, I will filter by... Step 3, I verify by computing..." Externalizing the workflow makes errors visible and builds automaticity. Target 100% accuracy — if you miss one, diagnose which step broke down, not just which answer was wrong.
+
+3. **Medium set: write every intermediate.** Medium questions involve multi-category comparisons, derived metrics, and conditional aggregations. Write every intermediate value on scratch paper before comparing. If you miss a question, identify which step you skipped or computed incorrectly — the three-step frame tells you exactly where the error lives.
+
+4. **Hard set: 3-minute cap per question.** If you are not done in 3 minutes, log what you were computing, guess, and move on. After the set, review which statements consumed the most time — those are the patterns to re-drill. Speed on Table Analysis comes entirely from pattern automaticity, not from computing faster.
 
 Drill the 35 questions in this chapter across the three problem sets. The first few will feel slow; by the tenth, the workflow should be automatic.
