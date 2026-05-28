@@ -228,9 +228,9 @@ The set {4, 7, 9, 12, x} has a mean of 9. What is the value of x?
 **fastest_path:** Total = 5 × 9 = 45. Known sum = 32. x = 13.
 **explanation:** Sum = mean × count = 5 × 9 = 45. Known sum = 4 + 7 + 9 + 12 = 32. x = 45 − 32 = 13.
 **mistake_a:** Bubbled the mean (9) directly.
-**mistake_b:** Slip → 11.
-**mistake_c:** Bubbled an existing value (12).
-**mistake_e:** Slip → 15.
+**mistake_b:** Misread "12" as "14" in the set — known sum becomes 4 + 7 + 9 + 14 = 34, giving x = 45 − 34 = 11. A single misread digit shifts the answer by exactly that amount. Double-check every given value before computing.
+**mistake_c:** Misread "12" as "13" in the set — known sum becomes 4 + 7 + 9 + 13 = 33, giving x = 45 − 33 = 12. Off by one in the sum, off by one in the answer. Re-read each digit carefully.
+**mistake_e:** Misread "12" as "10" in the set — known sum becomes 4 + 7 + 9 + 10 = 30, giving x = 45 − 30 = 15. Misreading a "2" as a "0" is the most common single-digit slip. Verify all given values before substituting.
 **common_trap:** Bubbling the mean (9) instead of the missing value.
 **takeaway:** Missing-value mean: total = mean × count. Subtract known to get unknown.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -409,10 +409,10 @@ Set X = {8, 10, 12, 14, 16} and Set Y is formed by adding 5 to each element of S
 **answer:** C
 **fastest_path:** Adding constant shifts mean by 5; SD unchanged.
 **explanation:** Adding 5 to each element: mean increases by 5; deviations from new mean = old deviations from old mean → SD unchanged.
-**mistake_a:** Treated additive shift as scaling SD.
-**mistake_b:** Inverted SD direction.
-**mistake_d:** Treated mean as unchanged.
-**mistake_e:** Treated mean as unchanged.
+**mistake_a:** Concluded Set Y has a greater mean AND a greater SD, reasoning "every number in Y is larger, so the spread must be larger too." Mean(Y) does increase by 5 ✓, but SD measures spread relative to the new mean. Each deviation (y_i − 17) = (x_i + 5 − 17) = (x_i − 12), which equals the original deviation. The gaps between values are unchanged, so SD is unchanged.
+**mistake_b:** Concluded SD(Y) < SD(X), reasoning "the values are shifted up, so relative to a larger scale they're more compressed." This conflates absolute SD (unchanged) with the coefficient of variation (SD ÷ mean), which does decrease. SD is measured in the same units as the data — adding 5 to every value does not compress or expand the gaps between them.
+**mistake_d:** Concluded the two sets have the same mean, ignoring the +5 shift. Mean shifts by exactly the same constant: mean(Y) = (1/5)·Σ(x_i + 5) = mean(X) + 5 = 17 ≠ 12. Additive shifts move the mean; they do not leave it unchanged.
+**mistake_e:** A double error — same wrong mean as D (ignoring the shift) and also concluded SD changes. Both parts are incorrect: mean(Y) = 17 (shifted up by 5) and SD(Y) = SD(X) (deviations from the new mean are identical to the old deviations).
 **common_trap:** Confusing additive shift (+5) with multiplicative scaling (×5). Only multiplicative changes SD.
 **takeaway:** y = ax + b → mean(y) = a·mean(x) + b; SD(y) = |a|·SD(x). Constant b shifts only the mean.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -572,9 +572,9 @@ A data set of 5 numbers has mean 10 and standard deviation 2. If each number in 
 **fastest_path:** SD scales by |3|, ignored by +4. New SD = 6.
 **explanation:** y = ax + b → SD(y) = |a|·SD(x). Here |3|·2 = 6.
 **mistake_a:** Treated SD as invariant under all transforms — concluded the SD stays at 2. Multiplying by 3 stretches the spread: SD(3x + 4) = 3·SD(x) = 6.
-**mistake_b:** Divided the correct answer by 2 — perhaps misremembered the rule as SD(ax+b) = a·SD(x)/b, or confused the multiplier with something else. Nothing divides the SD here; the rule is SD(3x+4) = 3·2 = 6.
+**mistake_b:** Set the new SD equal to the scaling factor alone: SD = 3. The scaling factor is applied TO the original SD — it does not replace it. SD(3x + 4) = 3 × SD(x) = 3 × 2 = 6. The original SD (2) is multiplied by 3, not discarded.
 **mistake_d:** Applied the +4 additive shift as a scaling factor: 3·2 + 4 = 10. Additive constants shift the mean but leave spread unchanged. Only the multiplicative factor |a| scales the SD.
-**mistake_e:** Mis-applied → 22.
+**mistake_e:** Applied the transformation parameters to the mean and SD as a pair: 3 × old_mean − 4 × old_SD = 3 × 10 − 4 × 2 = 30 − 8 = 22. This treats the multiplier and addend as if they operate on the summary statistics rather than on the raw data. The SD formula for a linear transformation is simply SD(3x + 4) = 3 × SD(x) = 6. The mean and the addend are irrelevant to the SD.
 **common_trap:** Adding the constant b to the SD. Only |a| (multiplier) affects SD.
 **takeaway:** Linear transform y = ax + b: mean shifts by b, SD scales by |a|. Constant b doesn't affect spread.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -663,7 +663,7 @@ A company has two factories. Factory P produces 60% of the company's products; F
 ---
 
 ## Q26
-**difficulty:** Medium
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Range of a Data Set
 
@@ -734,8 +734,8 @@ In a group of 80 people, 45 own a car and 35 own a bicycle. If 20 people own bot
 **fastest_path:** |C ∪ B| = |C| + |B| − |C ∩ B| = 45 + 35 − 20 = 60.
 **explanation:** Inclusion-exclusion: |C ∪ B| = 45 + 35 − 20 = 60.
 **mistake_a:** Bubbled |Car| = 45 (just one set).
-**mistake_b:** Slip → 55.
-**mistake_d:** Slip → 65.
+**mistake_b:** Misread the overlap as 25 instead of 20: 45 + 35 − 25 = 55. Re-verify the "both" count directly from the problem — a one-digit misread (20 → 25) shifts the answer by exactly 5.
+**mistake_d:** Misread the overlap as 15 instead of 20: 45 + 35 − 15 = 65. Same misread error in the other direction. The inclusion-exclusion formula is correct; the error is a digit misread in the given intersection. Always re-check the stated overlap before substituting.
 **mistake_e:** Added without subtracting overlap: 45 + 35 = 80.
 **common_trap:** Failing to subtract the overlap (|both|) → 80 (double-counts the people who own both).
 **takeaway:** |A ∪ B| = |A| + |B| − |A ∩ B|. Always subtract the intersection once.
@@ -796,27 +796,27 @@ A point is chosen uniformly at random on a line segment from 0 to 30. What is th
 ---
 
 ## Q31
-**difficulty:** Easy
+**difficulty:** Medium
 **type:** Problem Solving
-**topic:** Interquartile Range
+**topic:** IQR — Robustness to Outliers
 
-The scores of 8 students on a quiz, arranged in ascending order, are: 52, 61, 67, 72, 78, 85, 89, 94. What is the interquartile range of these scores?
+The exam scores of 8 students, listed in increasing order, are: 12, 18, 24, 30, 36, 42, 48, 54. The highest-scoring student retakes the exam and raises her score from 54 to 120. By how much does the interquartile range of the class scores change?
 
-- A) 17
-- B) 22
-- C) 23
-- D) 27
-- E) 42
+- A) 0
+- B) 24
+- C) 33
+- D) 57
+- E) 66
 
-**answer:** C
-**fastest_path:** Lower half {52, 61, 67, 72}: Q1 = (61+67)/2 = 64. Upper half {78, 85, 89, 94}: Q3 = (85+89)/2 = 87. IQR = 87 − 64 = 23.
-**explanation:** For 8 ordered values, split into two halves of 4. Lower half: {52, 61, 67, 72}; Q1 = (61 + 67)/2 = 64. Upper half: {78, 85, 89, 94}; Q3 = (85 + 89)/2 = 87. IQR = Q3 − Q1 = 87 − 64 = 23.
-**mistake_a:** Subtracted the two inner values of the original set: 89 − 72 = 17, confusing the IQR with the range of the "middle" section.
-**mistake_b:** Arithmetic slip on either Q1 or Q3, landing one unit off: 87 − 65 = 22.
-**mistake_d:** Correct Q3 but mis-computed Q1 as 60: 87 − 60 = 27.
-**mistake_e:** Computed the range (max − min) instead of the IQR: 94 − 52 = 42. Range and IQR are different spread measures.
-**common_trap:** Confusing the IQR with the range. Range = max − min (94 − 52 = 42). IQR = Q3 − Q1, which measures spread of the middle 50%, not the full spread.
-**takeaway:** IQR: split ordered data at the midpoint, find Q1 (median of lower half) and Q3 (median of upper half), then subtract. For even-count data, each quarter's median is the average of its two middle values.
+**answer:** A
+**fastest_path:** Q1 = (18+24)/2 = 21, Q3 = (42+48)/2 = 45 in both data sets. The extreme value (54 → 120) stays outside the middle 50%, so Q1 and Q3 are unchanged. Change = 0.
+**explanation:** For 8 ordered values, split into lower {12, 18, 24, 30} and upper {36, 42, 48, 54}. Q1 = (18+24)/2 = 21. Q3 = (42+48)/2 = 45. IQR_before = 24. After the retake: {12, 18, 24, 30, 36, 42, 48, 120}. Lower half {12, 18, 24, 30}: Q1 = (18+24)/2 = 21 (unchanged). Upper half {36, 42, 48, 120}: Q3 = (42+48)/2 = 45. The two middle values of the upper half are still 42 and 48 — replacing the extreme 54 with the even more extreme 120 does not affect them. IQR_after = 24. Change = 24 − 24 = 0.
+**mistake_b:** Reported the value of the IQR (24) rather than the change in the IQR. The question asks "by how much does the IQR change" — both the before and after IQR equal 24, so the change is 0, not 24.
+**mistake_c:** Computed Q3 of the new upper half {36, 42, 48, 120} using the extremes rather than the two middle values: Q3 = (36 + 120)/2 = 78. New IQR = 78 − 21 = 57. Change = 57 − 24 = 33. Q3 of a 4-element set is the average of the 2nd and 3rd values (42 and 48), not the 1st and 4th.
+**mistake_d:** Same wrong Q3 method as C but reported the new IQR (57) without subtracting the original IQR (24). Two errors: wrong Q3 formula and forgetting to compute the delta.
+**mistake_e:** Computed the change in range rather than the change in IQR: original range = 54 − 12 = 42; new range = 120 − 12 = 108; change = 66. Range = max − min and changes whenever an extreme changes. IQR = Q3 − Q1 and is determined entirely by the middle 50% of the data.
+**common_trap:** Assuming that a dramatic change to the largest value must change the IQR. The IQR's Q1 and Q3 depend only on the middle 50% of the sorted data. Values at the extremes — even dramatic outliers — leave the IQR unchanged as long as they remain outside the middle 50%.
+**takeaway:** IQR is robust to outliers. Replacing an extreme value with an even more extreme one leaves Q1 and Q3 (and therefore the IQR) unchanged, because those quartiles are computed from the inner half of the sorted data. Range, by contrast, tracks the extremes directly and changes every time the max or min changes.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
