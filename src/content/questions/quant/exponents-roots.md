@@ -887,3 +887,500 @@ Verify: 4^(4²) = 4^16 and 4^(4 × 4) = 4^16. Both sides match.
 **common_trap:** Dividing both sides of x² = 4x by x — this discards a valid factor and can hide roots. Always factor the polynomial rather than dividing. Then apply domain constraints to eliminate invalid candidates.
 **takeaway:** For x^A = x^B with x > 0 and x ≠ 1: equate exponents using the one-to-one property. Factor the resulting polynomial — never divide by a variable. Apply domain constraints (x > 0, x ≠ 1) to discard invalid solutions after factoring.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Zero Exponent
+
+What is the value of (−4)⁰ − (−4⁰)?
+
+- A) −2
+- B) −1
+- C) 0
+- D) 1
+- E) 2
+
+**answer:** E
+**hint_nudge:** There are two different expressions here — look carefully at what the exponent applies to in each term.
+**hint_strategy:** In (−4)⁰, the exponent applies to the entire −4. In −4⁰, the exponent applies only to 4; the negative is applied afterward.
+**hint_setup:** (−4)⁰ = 1. −4⁰ = −(4⁰) = −1. So the expression equals 1 − (−1).
+**fastest_path:** (−4)⁰ = 1. −4⁰ = −(4⁰) = −1. So 1 − (−1) = 2.
+**explanation:** This question tests whether the exponent applies to the base with or without its sign. (−4)⁰: the parentheses place −4 entirely inside the base, so the whole thing is raised to the 0 power. Any nonzero number to the 0 power equals 1. −4⁰: there are no parentheses around the negative sign, so the exponent belongs only to 4. The expression means −(4⁰) = −(1) = −1. Final computation: 1 − (−1) = 1 + 1 = 2. A common GMAT variant: the question writer uses almost-identical notation to create a subtle sign distinction.
+**mistake_a:** Computed (−4)⁰ = −1 (treated the zero exponent as producing a negative) and −4⁰ = 1, giving −1 − 1 = −2.
+**mistake_b:** Got (−4)⁰ − (−4⁰) = 1 − 2 = −1 by computing −4⁰ = 2 (treated zero exponent as multiplier).
+**mistake_c:** Thought both terms equal 1 and computed 1 − 1 = 0.
+**mistake_d:** Computed the first term correctly (1) but treated −4⁰ = 0, giving 1 − 0 = 1.
+**common_trap:** Assuming both expressions produce the same result because "anything to the 0 power is 1." The key distinction is *what* the exponent applies to. Parentheses make the negative part of the base; without parentheses, the negative is a unary operator applied after the exponentiation.
+**takeaway:** (−a)⁰ = 1 for any a ≠ 0. But −a⁰ = −(a⁰) = −1. Parentheses determine the scope of the exponent. This difference appears on harder GMAT questions disguised in longer expressions.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of √(49/64)?
+
+- A) 7/64
+- B) 7/8
+- C) 49/8
+- D) √7/8
+- E) 7/√8
+
+**answer:** B
+**hint_nudge:** A square root distributes over a fraction just as it distributes over a product.
+**hint_strategy:** √(a/b) = √a / √b. Compute the numerator's root and denominator's root separately.
+**hint_setup:** √49 = 7. √64 = 8.
+**fastest_path:** √(49/64) = √49 / √64 = 7/8.
+**explanation:** The root distributes over both numerator and denominator: √(49/64) = √49 / √64 = 7/8. This is one of the cleanest patterns in GMAT radical arithmetic — memorize perfect squares up to 144 so these compute in under 10 seconds.
+**mistake_a:** Computed √49 = 7 but left the denominator as 64 (forgot to take its root).
+**mistake_c:** Took √64 = 8 and kept the numerator as 49 (forgot to root the numerator).
+**mistake_d:** Partially simplified to √7/√8 without recognizing 49 and 64 are perfect squares.
+**mistake_e:** Left √8 in the denominator from an incorrect factoring step.
+**common_trap:** Applying the radical to only one part (numerator or denominator) of the fraction rather than both.
+**takeaway:** √(a/b) = √a / √b when a, b ≥ 0. For GMAT speed, recognize common perfect squares: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144. Both 49 and 64 qualify — the whole fraction resolves without any simplification.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Pattern Extension
+
+If 3^x = 27, what is the value of 3^(x+2)?
+
+- A) 29
+- B) 81
+- C) 243
+- D) 486
+- E) 729
+
+**answer:** C
+**hint_nudge:** You do not need to find x explicitly. Look at how 3^(x+2) relates to 3^x.
+**hint_strategy:** Use the product rule: 3^(x+2) = 3^x × 3². Substitute the known value.
+**hint_setup:** 3^x = 27. 3² = 9. So 3^(x+2) = 27 × 9.
+**fastest_path:** 3^(x+2) = 3^x × 3² = 27 × 9 = 243.
+**explanation:** The fastest path avoids solving for x altogether. Use the product rule: a^(m+n) = a^m × a^n. So 3^(x+2) = 3^x × 3² = 27 × 9 = 243. If you did solve for x: 27 = 3³, so x = 3 and 3^5 = 243 — same result. The shortcut saves about 15 seconds and is the preferred GMAT approach when the question provides a^x = k and asks for a^(x+n).
+**mistake_a:** Added 2 to 27 arithmetically: 27 + 2 = 29.
+**mistake_b:** Added only 1 to the exponent: 3^(x+1) = 27 × 3 = 81.
+**mistake_d:** Doubled the correct answer: 243 × 2 = 486.
+**mistake_e:** Used 3^(x+3) = 27 × 27 = 729.
+**common_trap:** Solving for x first, which takes more time and introduces an extra step where errors can occur. The structural shortcut 3^(x+2) = 3^x × 3² is both faster and less error-prone.
+**takeaway:** When given a^x = k and asked for a^(x+n), compute k × a^n directly. This "anchor-and-extend" pattern is one of the most common exponent shortcuts on the GMAT.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+Which of the following equals 2⁵ + 2⁵?
+
+- A) 2⁵
+- B) 2⁶
+- C) 2¹⁰
+- D) 4¹⁰
+- E) 4⁵
+
+**answer:** B
+**hint_nudge:** Treat 2⁵ as a unit. How many of those units do you have?
+**hint_strategy:** Factor: 2⁵ + 2⁵ = 2 × 2⁵. Then apply the product rule.
+**hint_setup:** 2 × 2⁵ = 2¹ × 2⁵ = 2^(1+5) = 2⁶.
+**fastest_path:** 2⁵ + 2⁵ = 2 × 2⁵ = 2⁶.
+**explanation:** Two copies of any term equals 2 times that term: 2⁵ + 2⁵ = 2 × 2⁵ = 2¹ × 2⁵ = 2^(1+5) = 2⁶. This is a foundational pattern — adding k copies of a^n factors as k × a^n. When k is a power of a (here k = 2 = 2¹), the sum reduces to a single power of a.
+**mistake_a:** Treated addition as a no-op and kept 2⁵.
+**mistake_c:** Multiplied the exponents: 5 × 2 = 10, giving 2¹⁰.
+**mistake_d:** Multiplied both base and exponent: (2 × 2)^(5 × 2) = 4¹⁰.
+**mistake_e:** Doubled the base and kept the exponent: (2 × 2)^5 = 4⁵.
+**common_trap:** Treating the addition of exponentials like multiplication of bases or like a squaring operation. Addition works through factoring and the product rule — not by manipulating the exponent of the original term.
+**takeaway:** To add equal exponential terms, factor out the common power, then apply the product rule. n copies of a^x = n × a^x. If n is also a power of a, the sum collapses to a single exponential.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+What is the value of 4^(1/2) + 125^(1/3)?
+
+- A) 5
+- B) 6
+- C) 7
+- D) 9
+- E) 10
+
+**answer:** C
+**hint_nudge:** a^(1/n) means the n-th root of a.
+**hint_strategy:** Evaluate each term separately: find the square root of 4 and the cube root of 125.
+**hint_setup:** 4^(1/2) = √4 = 2. 125^(1/3) = ∛125 = 5 (since 5³ = 125).
+**fastest_path:** 4^(1/2) = 2 and 125^(1/3) = 5. Sum = 7.
+**explanation:** Fractional exponents are root notation: a^(1/2) = √a and a^(1/3) = ∛a. So 4^(1/2) = √4 = 2 and 125^(1/3) = ∛125 = 5 (verify: 5 × 5 × 5 = 125). Sum = 2 + 5 = 7. The key is recognizing 125 = 5³ — a perfect cube. GMAT uses 8, 27, 64, 125, 216 as common perfect cubes.
+**mistake_a:** Computed only 125^(1/3) = 5 and ignored the first term.
+**mistake_b:** Computed 4^(1/2) = 2 correctly but evaluated 125^(1/3) as 4, giving 2 + 4 = 6.
+**mistake_d:** Evaluated 4^(1/2) = 2 and 125^(1/3) = 7 (rough approximation), giving 9.
+**mistake_e:** Evaluated 4^(1/2) = 4 (skipped the root) and 125^(1/3) = 6 or similar.
+**common_trap:** Misidentifying the cube root of 125. Students often confuse 125 with 5² = 25 or fail to recall 5³ = 125.
+**takeaway:** Memorize the first five perfect cubes: 1³=1, 2³=8, 3³=27, 4³=64, 5³=125. a^(1/n) = ⁿ√a.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If 9^x = 3^(x+6), what is the value of x?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 6
+- E) 9
+
+**answer:** D
+**hint_nudge:** The two sides currently have different bases. Can you rewrite 9 as a power of 3?
+**hint_strategy:** Rewrite 9 = 3². Then both sides share base 3 and you can equate exponents.
+**hint_setup:** 9^x = (3²)^x = 3^(2x). Equation becomes 3^(2x) = 3^(x+6). Equate exponents: 2x = x + 6.
+**fastest_path:** 9^x = 3^(2x) = 3^(x+6) → 2x = x + 6 → x = 6.
+**explanation:** Base conversion technique: 9 = 3², so 9^x = (3²)^x = 3^(2x). Now both sides are base 3: 3^(2x) = 3^(x+6). Same base → equate exponents: 2x = x + 6 → x = 6. Verify: 9^6 = (3²)^6 = 3^12 and 3^(6+6) = 3^12. ✓
+**mistake_a:** Divided 6 by 3: x = 6/3 = 2.
+**mistake_b:** Set 2x = 6 (forgot +6 on the right): x = 3.
+**mistake_c:** Made a subtraction error: x = 6 − 2 = 4.
+**mistake_e:** Recognized the base (9) and bubbled it.
+**common_trap:** Writing 9^x = 3^(2+x) instead of 3^(2x) when applying (3²)^x. The power-of-a-power rule multiplies the exponents: (a^m)^n = a^(mn), not a^(m+n).
+**takeaway:** Cross-base equations: convert all terms to the smallest common base, then equate exponents and solve. Key conversions: 9=3², 8=2³, 25=5², 27=3³, 16=2⁴, 32=2⁵.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+If 4^x + 4^x + 4^x + 4^x = 4^7, what is the value of x?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 7
+- E) 8
+
+**answer:** C
+**hint_nudge:** Count how many copies of 4^x you are adding. That count is itself a power of 4.
+**hint_strategy:** Factor the left side: 4 copies of 4^x = 4 × 4^x = 4^(x+1).
+**hint_setup:** 4^(x+1) = 4^7. Equate exponents: x + 1 = 7. Solve for x.
+**fastest_path:** 4 · 4^x = 4^(x+1) = 4^7 → x + 1 = 7 → x = 6.
+**explanation:** Adding k identical exponential terms factors as k × (that term). Here 4 × 4^x = 4¹ × 4^x = 4^(x+1). Setting equal to 4^7: x + 1 = 7 → x = 6. Verify: 4^6 + 4^6 + 4^6 + 4^6 = 4 × 4^6 = 4^7. ✓ The key insight: when the number of identical copies is itself a power of the base, the sum collapses cleanly into a single exponential.
+**mistake_a:** Linearized the equation: 4x = 4^7, so x = 4^7/4 ≈ something; bubbled 4.
+**mistake_b:** Off by one: thought the count contributed 4^0 instead of 4^1; got x + 0 = 7, x = 7, then subtracted 2.
+**mistake_d:** Bubbled the exponent from the right side (7) without accounting for the four-copy factor.
+**mistake_e:** Added 1 to the right exponent instead of subtracting it: 7 + 1 = 8.
+**common_trap:** Forgetting to convert the four-copy count into 4^1, leading to an off-by-one error. Always rewrite "4 ×" as "4¹ ×" before applying the product rule.
+**takeaway:** Sum of n identical exponential terms: n × a^x = a^(x + log_a(n)). When n is a perfect power of a, this simplifies in one step. This sum-to-single-power pattern is a signature GMAT move that appears in medium and hard questions.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of (√5 + √3)(√5 − √3)?
+
+- A) 2
+- B) 4
+- C) 8
+- D) √2
+- E) 2√15
+
+**answer:** A
+**hint_nudge:** Does this product look like a special algebraic identity?
+**hint_strategy:** It is a difference-of-squares pattern: (a + b)(a − b) = a² − b².
+**hint_setup:** With a = √5 and b = √3: (√5)² − (√3)² = 5 − 3.
+**fastest_path:** (√5 + √3)(√5 − √3) = 5 − 3 = 2.
+**explanation:** Conjugate product pattern: (a + b)(a − b) = a² − b². With a = √5 and b = √3: (√5)² − (√3)² = 5 − 3 = 2. Conjugate products always eliminate radicals and produce pure integers when both terms are simple surds. This is the same technique used to rationalize denominators.
+**mistake_b:** Added the radicands instead of subtracting: 5 + 3 = 8 ÷ 2 = 4.
+**mistake_c:** Added the radicands directly: 5 + 3 = 8.
+**mistake_d:** Took √(5 − 3) = √2 instead of computing (√5)² − (√3)².
+**mistake_e:** Computed (√5)(−√3) twice and got the cross-term: 2√15.
+**common_trap:** FOIL-ing and failing to cancel the middle terms, or recognizing the pattern but computing (√5 + √3)² instead of the product with the conjugate.
+**takeaway:** (√a + √b)(√a − √b) = a − b. Recognize this pattern on sight — no FOIL needed. The result is always a rational number, which is why it is used to rationalize denominators.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of (3^6 + 3^7) / 3^5?
+
+- A) 3
+- B) 9
+- C) 12
+- D) 36
+- E) 3^(13/5)
+
+**answer:** C
+**hint_nudge:** Division distributes over addition in the numerator.
+**hint_strategy:** Split the fraction into two terms: 3^6/3^5 + 3^7/3^5, then simplify each.
+**hint_setup:** 3^(6−5) + 3^(7−5) = 3^1 + 3^2 = 3 + 9.
+**fastest_path:** 3^1 + 3^2 = 3 + 9 = 12.
+**explanation:** Distribute the division: (3^6 + 3^7)/3^5 = 3^(6−5) + 3^(7−5) = 3^1 + 3^2 = 3 + 9 = 12. Alternatively, factor the numerator by its highest common power: 3^6(1 + 3) = 3^6 × 4. Then (3^6 × 4)/3^5 = 3 × 4 = 12. Both methods give 12.
+**mistake_a:** Computed only 3^6/3^5 = 3 (processed just the first term in the numerator).
+**mistake_b:** Computed only 3^7/3^5 = 3² = 9 (processed just the second term).
+**mistake_d:** Tried to combine exponents: 3^(6+7)/3^5 = 3^(13−5) = 3^8 = 6,561; then made an arithmetic slip landing on 36.
+**mistake_e:** Applied exponent subtraction to the entire sum as a single power: 3^((6+7)/5) = 3^(13/5).
+**common_trap:** Treating the sum in the numerator like a product and applying exponent laws directly across the plus sign. Exponent rules apply to products and quotients, not sums. Distribute the denominator term-by-term.
+**takeaway:** (a^m + a^n) / a^k = a^(m−k) + a^(n−k). Distribute first, then simplify. Alternatively, factor the lowest power from the numerator, cancel, and compute the remaining arithmetic.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponential Growth — Word Problem
+
+A bacteria culture triples in population every 4 hours. If the initial population is 200 at time t = 0, what is the population at t = 20 hours?
+
+- A) 3,000
+- B) 5,400
+- C) 16,200
+- D) 48,600
+- E) 145,800
+
+**answer:** D
+**hint_nudge:** Count how many complete 4-hour intervals fit in 20 hours, then apply the growth factor that many times.
+**hint_strategy:** Population formula: P = P₀ × r^n, where r = 3 and n = number of 4-hour periods.
+**hint_setup:** n = 20/4 = 5. P = 200 × 3^5 = 200 × 243.
+**fastest_path:** 5 tripling periods: P = 200 × 3^5 = 200 × 243 = 48,600.
+**explanation:** Exponential growth: P = P₀ × r^n where r is the growth factor per period and n is the number of periods elapsed. P₀ = 200, r = 3, period = 4 hours, t = 20 → n = 5. P = 200 × 3^5 = 200 × 243 = 48,600. 3^5: 3¹=3, 3²=9, 3³=27, 3⁴=81, 3^5=243.
+**mistake_a:** Treated growth as linear: 200 × 3 × 5 = 3,000 (multiplied by 3 five times instead of applying 3 as a factor raised to the 5th power).
+**mistake_b:** Used n = 3 periods (12 hours): 200 × 3^3 = 200 × 27 = 5,400.
+**mistake_c:** Used n = 4 periods (16 hours): 200 × 3^4 = 200 × 81 = 16,200.
+**mistake_e:** Used n = 6 periods (24 hours): 200 × 3^6 = 200 × 729 = 145,800.
+**common_trap:** Off-by-one on the period count. At t = 0 the population is 200 (n = 0 intervals, no growth has occurred). At t = 4 it has tripled once (n = 1). At t = 20 it has tripled exactly 5 times (n = 5). Counting from 0 to 5 is 5 intervals, not 6.
+**takeaway:** Exponential growth formula: P = P₀ × r^(t/period). The exponent is the number of complete growth periods elapsed. Write the period and total time explicitly, divide to get n, then compute r^n. Never substitute linear multiplication for exponential growth.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Estimation
+
+Which of the following correctly compares 2^30 and 10^9?
+
+- A) 2^30 < 10^9
+- B) 2^30 = 10^9
+- C) 2^30 > 10^9
+- D) The relationship cannot be determined without a calculator
+- E) 2^30 = 10 × 10^9
+
+**answer:** C
+**hint_nudge:** Recall the benchmark relationship between 2^10 and 10^3.
+**hint_strategy:** 2^10 = 1,024 > 1,000 = 10^3. Cube both sides to compare 2^30 and 10^9.
+**hint_setup:** Since 2^10 > 10^3, and both are positive, (2^10)^3 > (10^3)^3, so 2^30 > 10^9.
+**fastest_path:** 2^10 = 1,024 > 10^3. Cubing: 2^30 > 10^9.
+**explanation:** The benchmark 2^10 = 1,024 is strictly greater than 10^3 = 1,000. Since both values are positive, cubing preserves the inequality: (2^10)^3 > (10^3)^3, which gives 2^30 > 10^9. Exact check: 2^30 = 1,073,741,824 > 10^9 = 1,000,000,000. On the GMAT, knowing 2^10 *exceeds* (not merely approximates) 10^3 is what resolves the strict comparison.
+**mistake_a:** Used 2^10 < 10^3 (wrong direction of the benchmark).
+**mistake_b:** Used the approximation 2^10 ≈ 10^3 as an exact equality and concluded 2^30 = 10^9.
+**mistake_d:** Assumed the comparison requires exact computation.
+**mistake_e:** Estimated 2^30 ≈ 10^10, not 10 × 10^9.
+**common_trap:** Using 2^10 ≈ 10^3 as an equality and concluding the comparison is a tie. The approximation is useful for estimation, but the strict inequality (2^10 = 1,024 > 1,000) is essential whenever a strict comparison is required.
+**takeaway:** 2^10 = 1,024 > 10^3. Cubing: 2^30 > 10^9. More generally: 2^(10k) > 10^(3k) for all k ≥ 1. This benchmark is critical for any GMAT comparison involving large powers of 2 and 10.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+If x^(3/4) = 8, what is the value of x?
+
+- A) 6
+- B) 8
+- C) 12
+- D) 16
+- E) 32
+
+**answer:** D
+**hint_nudge:** To isolate x, undo the exponent by raising both sides to its reciprocal.
+**hint_strategy:** The reciprocal of 3/4 is 4/3. Raise both sides to the 4/3 power.
+**hint_setup:** x = 8^(4/3). Compute: 8^(1/3) = 2, then 2^4 = 16.
+**fastest_path:** x = 8^(4/3) = (∛8)^4 = 2^4 = 16.
+**explanation:** To undo x^(3/4) = 8, raise both sides to the reciprocal power 4/3: (x^(3/4))^(4/3) = x^1 = x and 8^(4/3). Evaluate 8^(4/3) by taking the root first (smaller numbers): ∛8 = 2, then 2^4 = 16. Verify: 16^(3/4) = (16^(1/4))^3 = 2^3 = 8. ✓
+**mistake_a:** Computed x × (3/4) = 8 → x = 32/3 ≈ 10.67; bubbled closest integer 6.
+**mistake_b:** Bubbled the given value 8 without solving.
+**mistake_c:** Arithmetic slip in the inverse-exponent computation; landed on 12.
+**mistake_e:** Raised 8 to the 4th power first (8^4 = 4,096) then divided by 3 as if 4/3 meant "to the 4th, divided by 3": 4,096/3 ≈ 1,365. Rounding or a secondary slip led to 32.
+**common_trap:** Computing 8^(4/3) as 8 × (4/3) = 32/3. The exponent is applied as a power, not as a multiplier. Always take the root first (8^(1/3) = 2) and then raise to the integer power (2^4 = 16).
+**takeaway:** To solve x^(p/q) = k: raise both sides to q/p, giving x = k^(q/p) = (k^(1/p))^q. Take the root first. This reciprocal-exponent technique is the only systematic approach to fractional-exponent equations.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If 3^(2x) − 4 · 3^x + 3 = 0, what is the sum of all values of x that satisfy the equation?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) 4
+
+**answer:** B
+**hint_nudge:** Notice that 3^(2x) is the square of 3^x. Try substituting a single variable for 3^x.
+**hint_strategy:** Let u = 3^x. Then 3^(2x) = u². Rewrite as a standard quadratic in u and factor.
+**hint_setup:** u² − 4u + 3 = 0 → (u − 1)(u − 3) = 0. Recover x from each u value.
+**fastest_path:** u = 3^x: u² − 4u + 3 = 0 → u = 1 or u = 3 → x = 0 or x = 1. Sum = 1.
+**explanation:** Substitution: let u = 3^x. Since 3^(2x) = (3^x)² = u², the equation becomes u² − 4u + 3 = 0. Factor: (u − 1)(u − 3) = 0 → u = 1 or u = 3. Now recover x. u = 1 → 3^x = 1 → 3^x = 3^0 → x = 0. u = 3 → 3^x = 3 → 3^x = 3^1 → x = 1. Both x-values are valid (no domain issues — 3^x is always positive). Sum = 0 + 1 = 1.
+**mistake_a:** Found x = 0 only (stopped after the first root and concluded sum = 0).
+**mistake_c:** Arithmetic slip: added the two u-values (1 + 1 = 2 or computed x = 2 through a different factoring error).
+**mistake_d:** Added the two u-values (1 + 3 = 4) then halved, or confused u-values with x-values and reported 1 + 3 = 4 then corrected to 3.
+**mistake_e:** Summed the two u-values directly: 1 + 3 = 4 (confused the u-solutions with the x-solutions).
+**common_trap:** Summing the u-values (1 + 3 = 4) instead of converting to x-values first. The question asks for the sum of x, not u. Always complete the substitution in reverse.
+**takeaway:** Exponential equations that are quadratic in a^x: substitute u = a^x, solve the quadratic, then convert each u-value back to x using the same-base technique. This substitution strategy works whenever the equation has the form a^(2x) + c·a^x + d = 0.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Exponent Comparison with Sign
+
+Is a^n > b^n?
+
+(1) a > b > 0
+(2) n > 0
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) alone: if n = −1 and a = 2, b = 1 → a^n = 1/2 < 1 = b^n (no). If n = 1 → yes. Inconsistent. (2) alone: nothing restricts a vs b. Together: positive base in ascending order, positive exponent → power function is increasing → a^n > b^n. C.
+**explanation:** Statement (1) alone: a > b > 0 without knowing n's sign is insufficient. Example that gives YES: a = 2, b = 1, n = 1: 2 > 1. Example that gives NO: same a and b with n = −1: 1/2 < 1. Negative exponents reverse the ordering of positive bases.
+
+Statement (2) alone: n > 0 without knowing a vs b is insufficient. If a = 1, b = 2, n = 1: 1 < 2 (no). If a = 3, b = 2, n = 1: 3 > 2 (yes). Inconsistent.
+
+Both together: a > b > 0 and n > 0. For positive bases, the function f(x) = x^n (n > 0) is strictly increasing — a larger positive base raised to the same positive exponent gives a larger result. So a^n > b^n. Sufficient. Answer C.
+**mistake_a:** Concluded only Statement 1 sufficient — missed the sign-of-n counterexample.
+**mistake_b:** Concluded only Statement 2 sufficient — missed the need to know relative size of a and b.
+**mistake_d:** Concluded each alone sufficient — tested only favorable examples.
+**mistake_e:** Concluded together still insufficient — overlooked that positive base + positive exponent preserves order.
+**common_trap:** Testing only n = 1 or n = 2 for Statement 1 and concluding it's sufficient. The critical counterexample uses n < 0: for positive bases, negative exponents flip the inequality.
+**takeaway:** For positive bases, the direction of a^n vs b^n depends on both (i) the relative size of a and b *and* (ii) the sign of n. Both pieces of information are required. A negative exponent inverts the ordering; a positive exponent preserves it.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the simplified form of √(5 + 2√6)?
+
+- A) 1 + √6
+- B) √2 + √3
+- C) 2 + √3
+- D) √5 + 1
+- E) √10 + √3
+
+**answer:** B
+**hint_nudge:** Try expressing 5 + 2√6 as a perfect square of the form (√a + √b)².
+**hint_strategy:** Expand (√a + √b)² = a + b + 2√(ab). Match to 5 + 2√6: need a + b = 5 and ab = 6.
+**hint_setup:** Solve a + b = 5, ab = 6. These are a = 2, b = 3 (or a = 3, b = 2). So (√2 + √3)² = 5 + 2√6.
+**fastest_path:** Guess (√a + √b)²: a + b = 5, ab = 6 → a = 2, b = 3. Answer: √2 + √3.
+**explanation:** The nested radical √(5 + 2√6) can be de-nested by guessing the form (√a + √b)². Expanding: (√a + √b)² = a + b + 2√(ab). Match coefficients: a + b = 5 and 2√(ab) = 2√6 → ab = 6. Now solve the system: two numbers that add to 5 and multiply to 6 are 2 and 3. So √(5 + 2√6) = √((√2 + √3)²) = √2 + √3 (taking the positive root). Verify: (√2 + √3)² = 2 + 2√6 + 3 = 5 + 2√6. ✓
+**mistake_a:** (1 + √6)² = 1 + 2√6 + 6 = 7 + 2√6 ≠ 5 + 2√6.
+**mistake_c:** (2 + √3)² = 4 + 4√3 + 3 = 7 + 4√3 ≠ 5 + 2√6.
+**mistake_d:** (√5 + 1)² = 5 + 2√5 + 1 = 6 + 2√5 ≠ 5 + 2√6.
+**mistake_e:** (√10 + √3)² = 10 + 2√30 + 3 = 13 + 2√30 ≠ 5 + 2√6.
+**common_trap:** Trying the wrong form — e.g., guessing (a + √b) instead of (√a + √b) — which leads to a mismatch in the radical structure.
+**takeaway:** De-nesting trick for √(n + 2√m): guess (√a + √b)², match a + b = n and ab = m, then solve. This works whenever n² − 4m is a perfect square. The technique appears on hard GMAT questions testing algebraic pattern recognition.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponent Estimation
+
+How many digits does 2^20 have?
+
+- A) 5
+- B) 6
+- C) 7
+- D) 8
+- E) The number of digits cannot be determined without a calculator
+
+**answer:** C
+**hint_nudge:** What is 2^10? Use that value to compute 2^20 without needing the full product.
+**hint_strategy:** 2^10 = 1,024. So 2^20 = (2^10)² = 1,024². Estimate 1,024² relative to powers of 10.
+**hint_setup:** 1,024 ≈ 10^3, so 1,024² ≈ 10^6. But 1,024 > 1,000, so 1,024² > 10^6. Since 1,024² < 10,000,000 = 10^7, we have 10^6 < 2^20 < 10^7.
+**fastest_path:** 2^10 = 1,024. 2^20 = 1,024² ≈ 1.05 × 10^6. Between 10^6 and 10^7 → 7 digits.
+**explanation:** 2^10 = 1,024 (memorize this). 2^20 = (2^10)² = 1,024² = 1,048,576. This lies strictly between 10^6 (= 1,000,000) and 10^7 (= 10,000,000). Any integer N satisfying 10^(k−1) ≤ N < 10^k has exactly k digits. Here k = 7. You do not need the exact value — knowing 1,024² > 10^6 (because 1,024 > 1,000) and 1,024² < (2,000)² = 4 × 10^6 < 10^7 is sufficient to conclude 7 digits.
+**mistake_a:** Computed 2^10 = 1,024 → 4 digits, then added 1 for "squaring": 4 + 1 = 5.
+**mistake_b:** Approximated 2^20 ≈ 10^6 exactly and reasoned that 10^6 = 1,000,000 has 6 digits (confusing the exponent with the digit count: 10^6 actually has 7 digits — the leading 1 plus six zeros).
+**mistake_d:** Rounded 2^20 ≈ 1.05 × 10^6 up to 10^7 and concluded 8 digits.
+**mistake_e:** Assumed digit counting requires the exact value.
+**common_trap:** Counting the digits of 10^6 as 6 rather than 7. The rule: 10^n has n + 1 digits (the leading 1 followed by n zeros). So 10^6 = 1,000,000 has 7 digits. Any integer in [10^6, 10^7) has exactly 7 digits.
+**takeaway:** Digit-count strategy: find k such that 10^(k−1) ≤ N < 10^k; N has k digits. Use 2^10 = 1,024 as the anchor. Remember: 10^n has n+1 digits — the exponent is not the digit count.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponent Comparison — Cross-Base Ordering
+
+If a, b, and c are positive real numbers all greater than 1, and a⁴ = b³ = c², which of the following must be true?
+
+- A) a < b < c
+- B) a < c < b
+- C) b < a < c
+- D) c < b < a
+- E) c < a < b
+
+**answer:** A
+**hint_nudge:** Set a⁴ = b³ = c² = k. Express a, b, and c individually in terms of k.
+**hint_strategy:** a = k^(1/4), b = k^(1/3), c = k^(1/2). Since k > 1, a larger fractional exponent produces a larger value.
+**hint_setup:** 1/4 < 1/3 < 1/2. For k > 1: k^(1/4) < k^(1/3) < k^(1/2). So a < b < c.
+**fastest_path:** Let common value = k > 1. a = k^(1/4), b = k^(1/3), c = k^(1/2). Since k > 1 and 1/4 < 1/3 < 1/2: a < b < c.
+**explanation:** Let a⁴ = b³ = c² = k, where k > 1 (since each of a, b, c is greater than 1, raising them to positive powers keeps k > 1). Express each variable: a = k^(1/4), b = k^(1/3), c = k^(1/2). Now compare the fractional exponents: 1/4 < 1/3 < 1/2. Since k > 1, the function k^t is strictly increasing in t for fixed k. Therefore k^(1/4) < k^(1/3) < k^(1/2), which means a < b < c. Numerical check: let k = 64. Then a = 64^(1/4) = (2^6)^(1/4) = 2^(3/2) = 2√2 ≈ 2.83; b = 64^(1/3) = 4; c = 64^(1/2) = 8. So 2.83 < 4 < 8. ✓
+**mistake_b:** Placed b before c (a < c < b): confused 1/3 and 1/2 ordering; thought "smaller denominator in the equation exponent means larger resulting value."
+**mistake_c:** Thought b < a because b has a "3" in its equation (b³) and a has a "4" (a⁴), confusing the equation exponent with the variable's actual magnitude.
+**mistake_d:** Reversed the ordering entirely (c < b < a): reasoned "larger equation exponent means smaller variable" without accounting for the k > 1 constraint. This would be true for k < 1, but not for k > 1.
+**mistake_e:** Partially reversed (c < a < b): combined two errors simultaneously.
+**common_trap:** Confusing the exponent in the equation (4, 3, or 2) with the resulting size of the variable. A larger equation exponent means a *smaller* fractional power of k, hence a *smaller* variable when k > 1. The key is always to express everything in terms of a common base k and compare the fractional exponents directly.
+**takeaway:** When a^p = b^q = c^r = k > 1: a = k^(1/p), b = k^(1/q), c = k^(1/r). Larger p → smaller 1/p → smaller value of the variable. The variable with the largest equation exponent is the smallest of the three. Use a numerical example to verify direction when unsure.
+**related_reading:** reading-quant-04-algebra-and-equations
