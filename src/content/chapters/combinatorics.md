@@ -268,51 +268,53 @@ Example: C(9, 3) − C(5, 3) = 84 − 10 = **74**. Counting "exactly 1, 2, 3 wom
 
 ### Alternating patterns
 
-When objects of two types must strictly alternate (men/women, red/blue, vowel/consonant), the key insight is that there are **two possible starting patterns** and each is counted independently.
+When two types must strictly alternate — MWMWMW or WMWMWM — count valid starting patterns first, then multiply by the internal arrangements of each type.
 
-**Worked example.** 4 men and 4 women seated in a row, men and women must alternate.
+**Equal groups (n of each, in a row).** Either type can start, giving two valid patterns. For each pattern: n! ways to seat the first type × n! ways to seat the second type.
 
-Two patterns exist: MWMWMWMW and WMWMWMWM.
+**Worked example.** 3 men and 3 women in a row, strict alternation.
 
-- For each pattern: 4! ways to assign the men to M-slots × 4! ways to assign women to W-slots = 24 × 24 = 576
-- Two patterns: 2 × 576 = **1,152**
+Two patterns: MWMWMW and WMWMWM. Each contributes 3! × 3! = 36. Total: 2 × 36 = **72**.
 
-**Trap to watch.** Students who count only one pattern (e.g., only "men go first") get exactly half the right answer. Always ask: can the other group start instead?
+Quick formula for equal groups: **2 × (n!)²**
+
+**Worked example (4 men, 4 women).** 2 × (4!)² = 2 × 576 = **1,152**.
+
+**Unequal groups.** When one type has more members, only one starting pattern is valid — the larger group must go first and last.
+
+**Worked example.** 4 men and 3 women in a row, alternating.
+
+Only MWMWMWM works. Total: 1 × 4! × 3! = 24 × 6 = **144**.
+
+**Alternating at a round table.** Fix one person to remove rotational duplicates, then alternate the remaining seats.
+
+**Worked example.** 3 men and 3 women around a circular table, alternating.
+
+Fix one man. Arrange the 2 remaining men in 2! = 2 ways. Fill the 3 women's gaps in 3! = 6 ways. Total: 2 × 6 = **12**. (No factor of 2 for two starting patterns — in circular arrangements, fixing one person already collapses both linear variants into each other.)
+
+**Trap to watch.** For equal groups in a line, students who count only one pattern get exactly half the right answer. Always ask: can either type go first? If yes — and groups are equal in size — multiply by 2.
 
 ### Compound restrictions
 
-When a problem requires one pair to be adjacent AND another pair to not be adjacent, break it into two stages: count the required-adjacent case, then subtract the sub-case where both constraints are violated simultaneously.
+When a problem has one required adjacency AND one forbidden adjacency, count in two stages: the required case, minus the overlap where both constraints are simultaneously satisfied.
 
-**Worked example.** Six people in a row: A and B must be adjacent, C and D must not be adjacent.
+**Worked example.** Six people in a row: A and B must be adjacent; C and D must not be adjacent.
 
-- (A and B together): 5! × 2 = 240
-- (A and B together AND C and D together): 4! × 2 × 2 = 96
-- Net (A and B together, C and D not together): 240 − 96 = **144**
+- A and B together: 5! × 2 = 240
+- A and B together AND C and D together: 4! × 2 × 2 = 96
+- Net (A and B adjacent, C and D not): 240 − 96 = **144**
 
-**Trap to watch.** The most common error is computing the "required" constraint correctly (240) and then forgetting to remove the sub-case that also satisfies the "forbidden" constraint. One subtraction step is all it takes — but students skip it under time pressure.
+**Trap to watch.** Computing the required constraint (240) and forgetting to subtract the overlap (96) is the signature error on compound problems. The overlap is real — it counts arrangements where both the required and forbidden conditions hold — and it must be removed.
 
-**Alternating arrangements.** When two types must strictly alternate in a line — MFMFMF or ABABAB — the approach is:
+**Micro-drill.** Name the restriction type and compute — 90 seconds total:
 
-1. Count the number of valid patterns.
-2. For each pattern, count the arrangements of each type in its allotted slots.
-3. Multiply.
+1. 5 distinct books on a shelf; two specific books must be adjacent. Total arrangements? → ___
+2. 8 people seated in a circle; two rivals must not sit next to each other. Total arrangements? → ___
+3. 3 men and 3 women in a row, must alternate, men go first specifically. How many arrangements? → ___
 
-**Example.** 3 men (M) and 3 women (W) sit in a row of 6 chairs, alternating genders. How many arrangements?
+Answers: (1) **Glue trick** → treat the pair as one block: 4! × 2 = **48**. (2) **Circular + complement** → total circular: 7! = 5040. Adjacent pair: 6! × 2 = 1440. Not adjacent: 5040 − 1440 = **3,600**. (3) **Alternating, fixed starting type** → only one pattern (MWMWMW): 3! × 3! = **36**. Had the problem allowed either type to start, the answer would be 72.
 
-Valid patterns are MWMWMW and WMWMWM — exactly 2.
-
-For each pattern:
-- 3 men fill the "M" slots: 3! = 6 ways
-- 3 women fill the "W" slots: 3! = 6 ways
-- Per pattern: 6 × 6 = 36
-
-Total: 2 × 36 = **72**
-
-Quick formula for equal groups: **2 × (n!)²** where n is the size of each group.
-
-**What if the groups are unequal?** If you have 4 men and 3 women alternating, only the MWMWMWM pattern works (the larger group must start and end). One pattern, so: 1 × 4! × 3! = 24 × 6 = **144**.
-
-**Alternating at a round table.** Circular + alternating: fix one person to eliminate rotational duplicates, then arrange the remaining n − 1 in the alternating pattern. For 3 men and 3 women at a round table: fix one man, place 2 remaining men in 2! = 2 ways, then fill the 3 women's gaps in 3! = 6 ways. Total: 2 × 6 = **12**. (No factor of 2 — rotational equivalence collapses the two patterns into each other.)
+> **Self-explanation prompt.** Why does the compound-restriction formula use subtraction rather than direct enumeration? If you can say "because counting 'A-B adjacent AND C-D not adjacent' directly requires case-splitting that is far slower than counting 'A-B adjacent' and removing the overlap where C-D are also adjacent — two straightforward calculations beat many fragmented ones," you've internalized inclusion-exclusion in its simplest GMAT form.
 
 ## @circular
 
@@ -395,6 +397,14 @@ To distribute n identical candies among k distinct children (each child may get 
 
 **The mental model.** Imagine n identical stars ( ★ ★ ★ ... ) in a row, separated by k − 1 dividers ( | ). The dividers split the row into k groups — one per child. Choosing where to place the k − 1 dividers among n + k − 1 total positions is equivalent to choosing a distribution.
 
+**Visual.** Distributing 4 candies among 3 children (2 dividers, 6 total positions):
+
+    ★★|★|★   → child 1 gets 2, child 2 gets 1, child 3 gets 1
+    ★★★||★   → child 1 gets 3, child 2 gets 0, child 3 gets 1
+    |★★★|★   → child 1 gets 0, child 2 gets 3, child 3 gets 1
+
+The number of ways to choose positions for 2 dividers among 6 total slots: C(6, 2) = C(4+3−1, 3−1) = **15**. Every possible distribution corresponds to exactly one placement of dividers — no double-counting, no omissions.
+
 **Worked example.** Distribute 6 identical candies among 4 distinct children. No minimum.
 
     C(6 + 4 − 1, 4 − 1) = C(9, 3) = 84
@@ -421,7 +431,17 @@ The key giveaway for stars and bars: the items are interchangeable (identical ca
 
 **Trap to watch.** Students apply C(n, k) to distribution problems and get nonsense. Before using any formula, ask: are the items distinct or identical? If identical, stars and bars. If distinct, combinations or permutations.
 
+**Micro-drill.** Apply the formula — 60 seconds total:
+
+1. Distribute 5 identical tokens among 3 labeled boxes (no minimum). How many ways? → ___
+2. Distribute 10 identical stickers among 4 distinct students, each getting at least 1. How many ways? → ___
+3. In how many ways can 6 be written as a + b + c where a, b, c are non-negative integers? → ___
+
+Answers: (1) C(5+3−1, 3−1) = C(7, 2) = **21**. (2) Give each student 1 first (uses 4); distribute 6 remaining freely among 4: C(6+4−1, 4−1) = C(9, 3) = **84**. (3) This is the distribution question in disguise: distribute 6 identical units among 3 labeled variables: C(6+3−1, 3−1) = C(8, 2) = **28**. Recognizing that "non-negative integer solutions to a+b+c=n" equals C(n+k−1, k−1) is the pattern that makes hard combinatorics questions routine.
+
 > **Self-explanation prompt.** Before the check question: why is distributing 6 identical items not the same as choosing 6 items? The items have no identity — there is no "first candy" or "second candy." The only thing that varies is *how many* each recipient gets, not *which* they get.
+
+> **Recall check.** Cover this section. State the formula for distributing n identical items among k distinct recipients with no minimum. What changes when each recipient must get at least one? (Answers: C(n+k−1, k−1). For at least one, give each 1 first, then the formula applies to n−k items and k recipients: C(n−k+k−1, k−1) = C(n−1, k−1).) Apply it: 7 identical coins among 4 children, each getting at least 1. C(7−1, 4−1) = C(6, 3) = **20**.
 
 ## @probability-basics
 
@@ -480,9 +500,17 @@ C(n, k) counts the arrangements of k successes in n positions; p^k gives the pro
 
 > **Self-explanation prompt.** Why does C(n, k) appear in the binomial formula? Because the k successes can occur in any of C(n, k) orderings across the n trials — and the probability is the same for each ordering. If you can explain that, the formula stops being something to memorize and starts being something to re-derive in 5 seconds.
 
-> **Self-explanation prompt.** Why does swapping two identical letters not produce a new arrangement? If you can say "because the result looks the same — the string is unchanged — so it's not a distinct outcome," you understand why we divide. The denominator doesn't subtract anything; it cancels out the overcounting that straight factorial committed.
+**Micro-drill.** Compute each probability — 90 seconds total:
 
-> **Recall check.** Write the multiset formula from memory. Then apply it to BANANA (6 letters: 1 B, 3 A's, 2 N's). The answer is 6! / (1! × 3! × 2!) = 720 / 12 = 60. If you got it right, you're ready for the problem set. If not, re-read the formula once more, then close it and recompute without looking.
+1. A bag has 3 red and 5 blue marbles. Two are drawn without replacement. P(both red)? → ___
+2. A fair coin is flipped 4 times. P(exactly 3 heads)? → ___
+3. 3 people chosen from 5 men and 4 women. P(at least 1 woman)? → ___
+
+Answers: (1) C(3,2)/C(8,2) = 3/28. Or multiply sequentially: (3/8) × (2/7) = 6/56 = **3/28**. Both approaches reach the same answer — one counts unordered pairs, the other counts ordered sequences, but both ratios reduce identically. (2) C(4,3)(1/2)⁴ = 4 × (1/16) = **1/4**. (3) Complement: P(all men) = C(5,3)/C(9,3) = 10/84 = 5/42. P(at least 1 woman) = 1 − 5/42 = **37/42**. The complement costs one calculation; directly counting "exactly 1 + exactly 2 + exactly 3 women" costs three. Use the complement whenever the forbidden case ("zero of a type") is simpler to count than the target case.
+
+> **Self-explanation prompt.** For question (1) above: why does C(3,2)/C(8,2) give the same answer as (3/8) × (2/7)? If you can say "because C(3,2)/C(8,2) counts unordered favorable pairs over all unordered pairs, while (3/8)(2/7) counts ordered favorable sequences over all ordered sequences — the orderings cancel in the ratio, leaving the same fraction," you've connected the combination formula to its sequential probability interpretation. On the GMAT, use whichever approach is faster given the numbers.
+
+> **Recall check.** Cover this section. State the complement rule for 'at least one' events. Then apply it: from 6 students (2 seniors, 4 juniors), 3 are chosen. P(at least 1 senior)? (Answer: 1 − P(no seniors) = 1 − C(4,3)/C(6,3) = 1 − 4/20 = **4/5**.) The complement here costs one calculation; enumerating "exactly 1 senior + exactly 2 seniors" would cost two. Whenever the complement means "zero of a kind," check whether that count is simpler before committing to direct enumeration.
 
 ## @decision
 
