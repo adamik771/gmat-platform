@@ -179,7 +179,7 @@ At a bakery, 2 muffins and 3 scones cost $21, while 4 muffins and 1 scone cost $
 - E) $5
 
 **answer:** E
-**fastest_path:** Backsolve from C (s = $3): 4m + 3 = 17 → m = $3.50; then 2(3.50) + 3(3) = 16, ≠ 21. Try larger s. At s = $5: 4m + 5 = 17 → m = $3; then 2(3) + 3(5) = 21 ✓.
+**fastest_path:** Backsolve from C (s = $3): 4m + 3 = 17 → m = $3.50 (non-integer; reject). Check sum: 2(3.50) + 3(3) = 16 < 21, so s is too low — go higher. D (s = $4) also gives non-integer m ($3.25; reject). At E (s = $5): 4m + 5 = 17 → m = $3 ✓; 2(3) + 3(5) = 21 ✓.
 **explanation:** With clean integer answer choices and two checkable constraints (cost equations), backsolving from C and adjusting based on direction is faster than full elimination/substitution. Algebra path: from 4m + s = 17, s = 17 − 4m. Substitute: 2m + 3(17 − 4m) = 21 → −10m = −30 → m = 3, then s = 17 − 12 = 5. Same answer, ~30 sec longer.
 **mistake_a:** Picked the smallest answer without testing.
 **mistake_b:** Computed 4m + s = 17 with s = 2: m = $3.75 (non-integer; should reject as a "clean" trial signal).
@@ -279,16 +279,16 @@ For all positive integers n, let f(n) = n² - n. What is the value of f(f(3))?
 - A) 6
 - B) 12
 - C) 30
-- D) 42
-- E) 36
+- D) 36
+- E) 42
 
 **answer:** C
 **fastest_path:** f(3) = 9 − 3 = 6. f(6) = 36 − 6 = 30.
 **explanation:** Composition is applied from inside out. Compute the inner first: f(3) = 3² − 3 = 9 − 3 = 6. Then apply f to that result: f(6) = 6² − 6 = 36 − 6 = 30. Total time: 15 seconds. The whole question is mechanical once you read "f(f(3))" as "apply f twice."
 **mistake_a:** Stopped at the inner computation: f(3) = 6 — bubbled the intermediate value without applying f a second time.
 **mistake_b:** Computed f(3) × 2 = 12 (multiplied the inner result by 2 instead of composing).
-**mistake_d:** Computed f(3) = 6 correctly, then applied the formula with a sign error: 6² + 6 = 42 (used n² + n instead of n² − n).
-**mistake_e:** Computed f(3) = 6 correctly, then took [f(3)]² = 6² = 36 — applied the outer function as "squaring the inner result" rather than evaluating f(6) = 6² − 6.
+**mistake_d:** Computed f(3) = 6 correctly, then took [f(3)]² = 6² = 36 — applied the outer function as "squaring the inner result" rather than evaluating f(6) = 6² − 6.
+**mistake_e:** Computed f(3) = 6 correctly, then applied the formula with a sign error: 6² + 6 = 42 (used n² + n instead of n² − n).
 **common_trap:** Stopping at the inner result and bubbling — composition requires both layers.
 **takeaway:** f(f(x)) means apply f twice: compute f(x) first, then apply f to that result. The outer call is f evaluated at the inner result, not a squaring or multiplication.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -526,7 +526,7 @@ The sum of three consecutive even integers is 18 more than twice the smallest of
 **mistake_a:** Translated "consecutive integers" instead of "consecutive even integers" — n, n+1, n+2; got n+2 = 10.
 **mistake_b:** Solved for n itself (12) and bubbled.
 **mistake_c:** Got middle integer n+2 = 14 and bubbled.
-**mistake_e:** Translated "18 more than twice the smallest" as 2n − 18 (sign error); got n = −24 then took absolute or some other slip producing 18.
+**mistake_e:** Translated "18 more than twice the smallest" as 2n − 18 (swapped "more than" to "less than"): 3n + 6 = 2n − 18 → n = −24. Largest = −24 + 4 = −20 — a nonsensical negative answer. Some students, noticing this is wrong, re-examine the setup and accidentally re-derive the equation with the sign flipped, then solve for a variable they had already relabelled, landing on 18.
 **common_trap:** Translation errors on "more than" — attaching the +18 to the wrong side, or treating consecutive integers as consecutive evens (or vice versa).
 **takeaway:** "X is Y more than Z" means X = Z + Y. "Consecutive even integers" differ by 2; "consecutive integers" differ by 1.
 **related_reading:** reading-quant-05-word-problems
@@ -656,10 +656,10 @@ Two hikers start at the same time from opposite ends of a trail that is 24 miles
 **answer:** C
 **fastest_path:** Closing speed = 3 + 5 = 8 mph. Time = 24 / 8 = 3 hours. Meet at 11:00 AM.
 **explanation:** Two objects moving toward each other have a combined "closing speed" equal to the sum of their individual speeds: 3 + 5 = 8 mph. Distance to close = 24 miles. Time = 24/8 = 3 hours. Starting at 8:00 AM, they meet at 11:00 AM.
-**mistake_a:** Assumed the hikers meet at the midpoint, then computed time for Hiker X to reach 12 miles: 12/3 = 4 hours; 8:00 + 4 = 12:00 — but then halved it on the theory that "two hikers means half the time": 8:00 + 2 = 10:00. The halving logic is wrong; both hikers are moving for the full meeting time T.
+**mistake_a:** Assumed the meeting point is the midpoint (12 miles each), computed X's time to reach the midpoint: 12/3 = 4 hours → 12:00 PM. Then, reasoning that "two hikers moving simultaneously should cut the time in half," divided by 2: 2 hours → 10:00 AM. Both steps are wrong: the actual meeting point is not the midpoint (X covers 9 miles, Y covers 15), and dividing by 2 does not apply — each hiker's speed is already accounted for individually in the closing-speed formula T = D / (v_X + v_Y).
 **mistake_b:** Assumed the hikers meet at the midpoint and used Hiker Y's speed: 12/5 = 2.4 hours ≈ 2 hours 24 minutes → 10:24 AM ≈ 10:30 AM. The midpoint assumption is wrong — the actual meeting point is determined by their speeds (X covers 9 miles, Y covers 15 miles), not the midpoint of the trail.
 **mistake_d:** Set up 3T + 5T = 24 correctly but made an arithmetic error on the division: 24/8 = 3.5 instead of 3; 8:00 + 3:30 = 11:30 AM.
-**mistake_e:** Used only Hiker X's speed for the full trail: 24/3 = 8 hours → 8:00 + 4 = 12:00 noon (or found the midpoint for X alone: 12/3 = 4 hours → 12:00 noon). This ignores that Hiker Y is simultaneously closing the gap.
+**mistake_e:** Found the time for Hiker X to walk to the midpoint: 12/3 = 4 hours → 12:00 noon. Stopped here, treating the midpoint as the meeting point and ignoring that Hiker Y is simultaneously covering 15 miles by that time.
 **common_trap:** Using a single hiker's speed instead of the combined closing speed.
 **takeaway:** When two objects move toward each other, add their speeds to get the closing speed; divide total distance by closing speed for meeting time.
 **related_reading:** reading-quant-05-word-problems
