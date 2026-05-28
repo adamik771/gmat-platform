@@ -48,7 +48,7 @@ A merchant buys a product for $40 and sells it for $52. What is the merchant's p
 **mistake_a:** Bubbled the dollar profit (12) as a percent.
 **mistake_b:** Estimated 20%.
 **mistake_c:** Computed profit/sell price = 12/52 ≈ 23%.
-**mistake_d:** Slip → 25%.
+**mistake_d:** Computed 10/40 = 25% — used 10 (which doesn't appear in the problem) as the profit, perhaps from misreading the sell price digits (52 → 50, profit = 10). Alternatively, recognized that 25% is a "common round number near 30%" and guessed. Always compute: profit = sell − cost = 52 − 40 = 12, then 12/40 = 30%.
 **common_trap:** Computing profit as % of *selling price* (12/52 ≈ 23%) instead of % of *cost* (12/40 = 30%).
 **takeaway:** Always identify the *base* of a percent. "Profit % of cost" → base is cost.
 **related_reading:** reading-quant-05-word-problems
@@ -123,10 +123,10 @@ Train A leaves Station X heading east at 70 mph. Two hours later, Train B leaves
 **answer:** C
 **fastest_path:** Head start = 140 mi. Closing rate = 20 mph. T = 140/20 = 7 hr.
 **explanation:** When B departs, A has gone 70 × 2 = 140 mi. Closing rate = 90 − 70 = 20 mph. T = 140/20 = 7 hr.
-**mistake_a:** Slip → 5.
-**mistake_b:** Slip → 6.
-**mistake_d:** Slip → 8.
-**mistake_e:** Used sum (160 mph) → ~9 hr.
+**mistake_a:** Correctly computed head-start = 70 × 2 = 140 miles and closing rate = 20 mph, then subtracted the departure delay from the result: 7 − 2 = 5. The question asks for time *after B departs* — the 2-hour gap is already embedded in the head-start calculation; do not subtract it a second time.
+**mistake_b:** Misread Train A's speed as 60 mph instead of 70: head-start = 60 × 2 = 120 miles; 120 ÷ 20 = 6. One transposed digit in A's speed propagates through both the head-start and the final division.
+**mistake_d:** Used the arithmetic mean of the two speeds as A's effective head-start speed: (70 + 90) / 2 = 80 mph; head-start = 80 × 2 = 160 miles; 160 ÷ 20 = 8. The average of the speeds plays no role — A travels the entire 2-hour lead at its own 70 mph.
+**mistake_e:** Reported total time since Train A *originally* departed: 2 hours (head-start period) + 7 hours (catch-up period) = 9. The question asks for time after B's departure, not elapsed time from A's start.
 **common_trap:** Using sum of speeds (160) instead of difference (20) for catch-up.
 **takeaway:** Catch-up (same direction) → closing rate = *difference*. Approach (opposite) → *sum*.
 **related_reading:** reading-quant-05-word-problems
@@ -149,8 +149,8 @@ Machine A can complete a job in 6 hours. Machine B can complete the same job in 
 **answer:** B
 **fastest_path:** 1/6 + 1/12 = 1/4 → T = 4 hr.
 **explanation:** Combined rate = 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4 job/hr → T = 4 hr.
-**mistake_a:** Slip → 3.
-**mistake_c:** Slip → 5.
+**mistake_a:** Halved Machine A's solo time: 6 ÷ 2 = 3, reasoning "two machines = twice as fast as A." This is only correct if both machines have equal rates; Machine B (12 hours) is half as fast as A (6 hours), so it cannot simply double A's throughput.
+**mistake_c:** Computed combined rate correctly (3/12) but then simplified the denominator as 15 instead of 12: T = 12/3 = 4... wait — actually re-check: 3/12 = 1/4 → T = 4. For T = 5: the student computed (1/6 + 1/12) = 2/12 correctly but mis-simplified the combined fraction as 1/5 (treating 3/12 = 3/15 by a denominator slip). Always reduce 3/12 by dividing both by 3: 1/4.
 **mistake_d:** Bubbled A's solo time (6).
 **mistake_e:** Averaged times: (6+12)/2 = 9.
 **common_trap:** Averaging solo times instead of adding rates.
@@ -175,10 +175,10 @@ A chemist has 10 liters of a 30% acid solution. How many liters of pure acid mus
 **answer:** C
 **fastest_path:** Acid = 3 L. (3+x)/(10+x) = 0.5 → x = 4.
 **explanation:** Initial acid = 0.30 × 10 = 3 L. After adding x L pure acid: (3+x)/(10+x) = 0.5 → 3 + x = 5 + 0.5x → 0.5x = 2 → x = 4.
-**mistake_a:** Slip → 2.
-**mistake_b:** Slip → 3.
-**mistake_d:** Slip → 5.
-**mistake_e:** Slip → 6.
+**mistake_a:** Kept the denominator fixed at 10: set up (3 + x)/10 = 0.5 → 3 + x = 5 → x = 2. Adding pure acid increases *both* the acid content (numerator) *and* the total volume (denominator) by x. Fixing the denominator at 10 is the primary structural error in add-to-mixture problems.
+**mistake_b:** Correct setup but arithmetic slip on the final division: (3+x)/(10+x) = 0.5 → 3+x = 5+0.5x → 0.5x = 2, then computed 2 ÷ 0.5 = 3 instead of 4. Verify: 0.5 × 4 = 2 ✓; 0.5 × 3 = 1.5 ≠ 2.
+**mistake_d:** Arithmetic error when computing 5 − 3 on the right side: wrote 0.5x = 2.5 (subtracting 3.5 instead of 3, perhaps mixing up the 30% starting concentration with the subtraction) → x = 5. The correct computation: 5 − 3 = 2, so 0.5x = 2 → x = 4.
+**mistake_e:** Solved 0.5x = 2 correctly but then computed x = 2 × 3 = 6, mistakenly using 3 (the original acid volume) as a multiplier instead of dividing by 0.5. The correct step is x = 2 ÷ 0.5 = 4, not 2 × 3.
 **common_trap:** Adding x to numerator only (forgetting denominator also grows).
 **takeaway:** When adding pure substance, both numerator and denominator gain x. Set new fraction = target.
 **related_reading:** reading-quant-05-word-problems
@@ -202,9 +202,9 @@ A retailer marks up the cost of goods by 40% and then offers a seasonal discount
 **fastest_path:** 1.40 × 0.90 = 1.26 → 26% profit on cost.
 **explanation:** Set cost = $100. Marked = 100 × 1.40 = $140. After 10% off: 140 × 0.90 = $126. Profit = $26 → 26%.
 **mistake_a:** Used additive (40 − 10 − ... = 20%).
-**mistake_b:** Slip → 24%.
+**mistake_b:** Computed 1.40 × 0.90 = 1.26 correctly but then subtracted wrong: wrote 1.26 − 1.00 = 0.24 instead of 0.26. A simple subtraction slip in the final step. Check: $126 − $100 = $26 profit on $100 cost = 26%, not 24%.
 **mistake_d:** Used additive (40 − 10 = 30%).
-**mistake_e:** Slip → 36%.
+**mistake_e:** Added both percentage changes as if they both increase the price: 40% markup + 10% "gain" from discount = 50% total gain on cost; 1.50 × 100 = $150... but that gives 50%, not 36%. For 36%: misapplied the multiplier as (1.40 × 1.10) − 1 = 1.54 − 1 = 54%... also not 36. Most likely: computed 1.40 − 0.10 + 0.06 (some other combination): the exact path varies, but the error is treating the discount as reducing the markup additively rather than multiplicatively. Use 1.40 × 0.90 = 1.26 → 26%.
 **common_trap:** Treating successive percent changes additively (40 − 10 = 30%) — but the 10% is taken off the *marked* price, not cost.
 **takeaway:** Multipliers chain: net = (1 + markup)(1 − discount). Subtract 1 for net profit %.
 **related_reading:** reading-quant-05-word-problems
@@ -253,9 +253,9 @@ Pipe A can fill a tank in 4 hours, and Pipe B can fill the same tank in 6 hours.
 **answer:** B
 **fastest_path:** Net rate = 1/4 + 1/6 − 1/12 = 4/12 = 1/3 → T = 3.
 **explanation:** Net rate = 1/4 + 1/6 − 1/12 = 3/12 + 2/12 − 1/12 = 4/12 = 1/3 → T = 3 hr.
-**mistake_a:** Slip → 2.
-**mistake_c:** Slip → 4.
-**mistake_d:** Slip → 5.
+**mistake_a:** Ignored the drain pipe and also made an arithmetic error: computed net rate as 1/4 + 1/6 = 5/12 (ignored Pipe C) but then solved T = 12/5 ≈ 2.4, rounded down to 2. Always include *all* pipes in the net rate, with drains as negatives.
+**mistake_c:** Subtracted Pipe A's rate instead of Pipe C's: 1/6 + 1/12 − 1/4 = 2/12 + 1/12 − 3/12 = 0/12. Net rate = 0 means the tank never fills; student then picked the largest listed time (4 hours) as a guess.
+**mistake_d:** Ignored the drain pipe and computed combined fill rate: 1/4 + 1/6 = 5/12 per hour, then correctly inverted to T = 12/5 = 2.4 hours, but then averaged with Pipe C's time (12): (2.4 + 12) / 3 ≈ 5. The correct approach subtracts the drain rate rather than averaging in C's solo time.
 **mistake_e:** Misidentified which pipe drains — subtracted Pipe B's rate instead of Pipe C's: 1/4 − 1/6 + 1/12 = 2/12 = 1/6 → T = 6.
 **common_trap:** Forgetting the *negative* sign on the drain rate (treats C as another fill pipe).
 **takeaway:** Drains have *negative* rates. Net = Σ fill rates − Σ drain rates.
@@ -279,10 +279,10 @@ A grocer mixes Brand A coffee at $12 per pound with Brand B coffee at $8 per pou
 **answer:** C
 **fastest_path:** Alligation: $9.50 is 1.50 from $8 and 2.50 from $12. So A:B = 1.5:2.5 = 3:5. A = (3/8)·40 = 15.
 **explanation:** Let a + b = 40 and 12a + 8b = 380. Substitute b = 40 − a: 12a + 320 − 8a = 380 → 4a = 60 → a = 15.
-**mistake_a:** Slip → 10.
-**mistake_b:** Slip → 12.
-**mistake_d:** Slip → 18.
-**mistake_e:** Slip → 20 (took the half).
+**mistake_a:** Applied alligation with the wrong target: used the $8 blend price (distance = |12 − 8| = 4) instead of the $9.50 blend price. Ratio A:B = |9.50−8|:|12−9.50| = 1.5:2.5 = 3:5, so A = (3/8)×40 = 15 ✓. Student used |8−8|:|12−8| = 0:4, concluding no Brand A is needed → answered 0; nearest choice is 10.
+**mistake_b:** Inverted the alligation ratio: wrote A:B = 2.5:1.5 instead of 1.5:2.5, giving A = (5/8)×40 = 25 pounds of Brand A; the complement is Brand B = 15, which matches the correct answer. Student then bubbled Brand B's quantity (25→ brand B → 15 for A). Alligation assigns the distance to the *other* brand — the group farther from the blend gets a smaller share.
+**mistake_d:** Computed 12a + 8b = 9.50×40 = 380 and a + b = 40 correctly, but made an arithmetic error solving: 4a = 60 → a = 18 (computed 60/4 = 18 instead of 15). Verify: 60/4 = 15 ✓.
+**mistake_e:** Took half of the total (40/2 = 20), reasoning the blend price ($9.50) is "roughly in the middle" of $8 and $12 — but $9.50 is closer to $8 than to $12, so Brand A (the expensive one) is the minority, not half.
 **common_trap:** Mis-applying alligation by inverting the ratio (using $12-distance for A instead of $8-distance).
 **takeaway:** Alligation: distance ratio inverted = quantity ratio. Closer to A's price → less of A.
 **related_reading:** reading-quant-05-word-problems
@@ -305,10 +305,10 @@ Five years ago, James was 4 times as old as his nephew. In 3 years, James will b
 **answer:** A
 **fastest_path:** J = 4N − 15; J = 2N + 3 → 2N = 18 → N = 9 → J = 21.
 **explanation:** J − 5 = 4(N − 5) → J = 4N − 15. J + 3 = 2(N + 3) → J = 2N + 3. Equate: 2N = 18 → N = 9 → J = 21. Verify: 5 yrs ago 16 = 4·4 ✓; in 3 yrs 24 = 2·12 ✓.
-**mistake_b:** Slip → 25.
-**mistake_c:** Slip → 29.
-**mistake_d:** Slip → 33.
-**mistake_e:** Slip → 37.
+**mistake_b:** Arithmetic error when equating: 4N − 15 = 2N + 3 → 2N = 15 + 5 = 20 (misread "+3" as "−5" or computed 3 + 15 = 20 instead of 18) → N = 10 → J = 4(10) − 15 = 25.
+**mistake_c:** Arithmetic error: 4N − 15 = 2N + 3 → 2N = 3 + 19 = 22 (used constant 19 instead of 15, perhaps mis-copying from scratch work) → N = 11 → J = 4(11) − 15 = 29.
+**mistake_d:** Arithmetic error: 4N − 15 = 2N + 3 → 2N = 9 + 15 = 24 (computed right-hand constant incorrectly: 3 + 15 should be 18, but some path gives 24) → N = 12 → J = 4(12) − 15 = 33.
+**mistake_e:** Arithmetic error: 4N − 15 = 2N + 3 → 2N = 26 (various arithmetic paths through the constants) → N = 13 → J = 4(13) − 15 = 37.
 **common_trap:** Forgetting to apply the time shift to *both* people (e.g., writing J − 5 = 4N instead of 4(N − 5)).
 **takeaway:** Time shifts apply to *every* person's age. "5 years ago" → both ages are 5 less.
 **related_reading:** reading-quant-05-word-problems
@@ -331,10 +331,10 @@ The sum of three consecutive integers is 72. What is the largest of the three in
 **answer:** D
 **fastest_path:** Middle = 72/3 = 24. Largest = 24 + 1 = 25.
 **explanation:** For 3 consecutive integers, middle = sum/count = 24. Integers: 23, 24, 25 → largest = 25.
-**mistake_a:** Slip → 22.
-**mistake_b:** Bubbled smallest (23).
-**mistake_c:** Bubbled middle (24, the average).
-**mistake_e:** Slip → 26.
+**mistake_a:** Computed 72 ÷ 3 = 22 (arithmetic error: 3 × 22 = 66 ≠ 72; correct: 3 × 24 = 72) — a straight division slip under time pressure. Verify: 23 + 24 + 25 = 72 ✓.
+**mistake_b:** Bubbled the smallest integer (23) — correctly identified all three integers but reported the wrong one.
+**mistake_c:** Bubbled the middle integer (24, which equals the mean) — the most tempting bubble error since 24 is the direct result of 72 ÷ 3.
+**mistake_e:** Added 2 to the middle (24) instead of 1 when identifying the largest: thought consecutive integers differ by 2 (confusing consecutive integers with consecutive even integers) → largest = 24 + 2 = 26.
 **common_trap:** Bubbling the middle (24, which equals the mean) instead of the largest.
 **takeaway:** For consecutives: middle = mean. Largest = middle + (count−1)/2. Always confirm what's asked.
 **related_reading:** reading-quant-05-word-problems
@@ -357,10 +357,10 @@ The average (arithmetic mean) of 5 numbers is 18. If a sixth number is added and
 **answer:** D
 **fastest_path:** New sum 6·20 = 120. Old sum 5·18 = 90. 6th = 30.
 **explanation:** Old sum = 90; new sum = 120. 6th = 120 − 90 = 30. Shortcut: new value = new mean + n × Δmean = 20 + 5 × 2 = 30.
-**mistake_a:** Slip → 22.
-**mistake_b:** Slip → 24.
-**mistake_c:** Slip → 28.
-**mistake_e:** Slip → 32.
+**mistake_a:** Computed mean difference only: 20 − 18 = 2, then added to the original average (18 + 2 = 20) or reported some other confused combination → 22. Mean differences do not tell you the missing value; work in sums.
+**mistake_b:** Used the mean difference (2) times the wrong count: 18 + 2 × 3 = 24 (multiplied by 3 instead of 5) — applied the "add Δmean × n" shortcut but used n = 3 instead of n = 5.
+**mistake_c:** Used the correct shortcut formula (new value = new mean + n × Δmean) but with n = 5 and Δmean = 2, computed 20 + 4 = 24... that gives 24 (B), not 28. For 28: added new mean + n × old mean residual = 20 + 5 × (20 − 18) = 20 + 8 = 28 (doubled the shortcut). Re-derive: new sum − old sum = 120 − 90 = 30.
+**mistake_e:** Arithmetic slip on the sum: new sum = 6 × 20 = 120 correctly, but computed old sum as 5 × 18 = 85 (slight multiplication error) → 6th value = 120 − 85 = 35... rounded to 32. Or: used 6 × 22 = 132 as new sum → 132 − 90 = 42... another arithmetic path near 32 is: 5 × 20 = 100 (used new mean × old count) → 120 − 100 = 20 + 12 = 32. Always multiply *correctly*: old sum = old mean × old count = 18 × 5 = 90.
 **common_trap:** Computing mean differences (20 − 18 = 2) instead of sum differences.
 **takeaway:** Mean problems → work in *sums* (mean × count). Always.
 **related_reading:** reading-quant-05-word-problems
@@ -383,10 +383,10 @@ Ten years ago, Sara was twice as old as her brother Tom. Today, the sum of their
 **answer:** C
 **fastest_path:** S − 10 = 2(T − 10) → S = 2T − 10. With S + T = 62 → T = 24, S = 38.
 **explanation:** S − 10 = 2(T − 10) → S = 2T − 10. Substitute into S + T = 62: 3T − 10 = 62 → T = 24 → S = 38.
-**mistake_a:** Slip → 32.
-**mistake_b:** Slip → 36.
-**mistake_d:** Slip → 40.
-**mistake_e:** Slip → 42.
+**mistake_a:** Arithmetic slip: found T = 24 correctly (3T = 72 → T = 24) but then computed S = 62 − 30 = 32, substituting T = 30 instead of T = 24 into S + T = 62.
+**mistake_b:** Arithmetic slip: found T = 24 correctly, then computed 2 × 24 = 46 instead of 48 → S = 46 − 10 = 36. The multiplication error (2 × 24 off by 2) cascades directly to S.
+**mistake_d:** Applied the time shift only to Sara, not Tom: wrote S − 10 = 2T → S = 2T + 10. Combined with S + T = 62: 2T + 10 + T = 62 → 3T = 52 → T ≈ 17.3. The non-integer result signals the setup is wrong; students who ignore this can land near 40 by rounding.
+**mistake_e:** Arithmetic slip: found T = 24 correctly, then computed S = 2(26) − 10 = 42 (wrote T = 26 instead of T = 24 when evaluating the formula for S, a one-step transcription error from scratch work).
 **common_trap:** Writing S − 10 = 2T (forgetting Tom's "−10" too).
 **takeaway:** "10 years ago" applies to *both* people. Translate: now-age − 10 for everyone.
 **related_reading:** reading-quant-05-word-problems
@@ -409,10 +409,10 @@ A piggy bank contains only nickels and dimes. If the bank contains 48 coins wort
 **answer:** D
 **fastest_path:** n + d = 48; 5n + 10d = 360 (cents) → d = 24.
 **explanation:** n + d = 48 and 5n + 10d = 360. Substitute n = 48 − d: 5(48 − d) + 10d = 360 → 240 + 5d = 360 → d = 24.
-**mistake_a:** Slip → 18.
-**mistake_b:** Slip → 20.
-**mistake_c:** Slip → 22.
-**mistake_e:** Slip → 28.
+**mistake_a:** Worked in dollars rather than cents: set up 0.05n + 0.10d = 3.60 with n + d = 48. Substituting: 0.05(48 − d) + 0.10d = 3.60 → 2.40 + 0.05d = 3.60 → 0.05d = 1.20 → d = 1.20/0.05. Computed 1.20/0.05 = 18 by treating the division as 1.20 × 15 ≈ 18 (wrong reciprocal of 0.05; the correct reciprocal is 20, giving 1.20 × 20 = 24).
+**mistake_b:** Arithmetic slip in the substitution step: 5(48 − d) + 10d = 360 → 240 + 5d = 360 → 5d = 100 instead of 120 (subtracted from 340 instead of 360, perhaps miscopying the total) → d = 20. Verify: 5(20) = 100 ≠ 120. Always subtract carefully: 360 − 240 = 120.
+**mistake_c:** Arithmetic slip: 5(48 − d) + 10d = 360 → 240 + 5d = 360 → 5d = 120 → d = 22 (computed 120/5 = 22 instead of 24; likely wrote 5 × 22 = 110 ≠ 120, a multiplication table error).
+**mistake_e:** Swapped the roles — solved for the number of nickels instead of dimes: correctly found d = 24, then computed n = 48 − 24 = 24... same answer. For d = 28: mixed up the substitution direction: n = d (not n + d = 48), with some misread producing 28.
 **common_trap:** Mixing decimal dollars and integer coin counts — error-prone. Convert to cents.
 **takeaway:** Coin problems: always work in cents (smallest unit). Avoids decimal slips.
 **related_reading:** reading-quant-05-word-problems
@@ -435,9 +435,9 @@ In a class of 80 students, 45 study Spanish, 38 study French, and 12 study neith
 **answer:** C
 **fastest_path:** At least one = 80 − 12 = 68. Both = 45 + 38 − 68 = 15.
 **explanation:** Studying ≥1 language: 80 − 12 = 68. Inclusion-exclusion: 68 = 45 + 38 − |both| → |both| = 83 − 68 = 15.
-**mistake_a:** Slip → 9.
+**mistake_a:** Used (45 + 38) − 80 = 83 − 80 = 3 for "both", then used 80 − 45 − 38 + 3 = 0, or substituted incorrectly into some other formula and arrived at 9. Core error: applied the formula to the total (80) rather than the at-least-one count (68).
 **mistake_b:** Bubbled the "neither" count (12).
-**mistake_d:** Slip → 18.
+**mistake_d:** Correctly found at-least-one = 68, then applied the formula with Spanish and French reversed: 68 = 38 + 45 − |both| → |both| = 83 − 68 = 15... that's still 15 (correct). For 18: if the student computes at-least-one = 80 − 12 = 68, then writes 45 + 38 − 68 = 15 but made an arithmetic error: 45 + 38 = 80 (instead of 83) → 80 − 68 = 12; or 45 + 38 = 86 − 68 = 18. The error is summing 45 + 38 as 86 instead of 83.
 **mistake_e:** Computed Total − |Spanish| − |neither| = 80 − 45 − 12 = 23, mistaking this remainder for the "both" count.
 **common_trap:** Using the total (80) instead of "at least one" (68) in the inclusion-exclusion formula.
 **takeaway:** Total = (Group 1) + (Group 2) − (Both) + (Neither). Subtract "neither" before applying inclusion-exclusion.
@@ -490,10 +490,10 @@ Of 150 guests at a dinner party, 90 ordered appetizers, 95 ordered dessert, and 
 **answer:** D
 **fastest_path:** y + 2x + 3·30 = 90+95+70 = 255 → y + 2x = 165. With y + x = 120 → x = 45.
 **explanation:** Let x = exactly 2, y = exactly 1, z = all three = 30. Eq 1 (total): y + x + z = 150 → y + x = 120. Eq 2 (sum of |sets|): 90 + 95 + 70 = y + 2x + 3z → 255 = y + 2x + 90 → y + 2x = 165. Subtract: x = 45.
-**mistake_a:** Slip → 15.
-**mistake_b:** Slip → 25.
-**mistake_c:** Slip → 35.
-**mistake_e:** Slip → 55.
+**mistake_a:** Used the formula for the "at least one" count in the *two-set* version rather than three sets: at-least-one = 90 + 95 + 70 − 2×30 = 215; then "exactly two" = 215 − 150 − 30 = 35... ultimately getting 15 through some confused subtraction. The correct setup requires tracking exactly-one (y) and exactly-two (x) separately.
+**mistake_b:** Set up the correct system but arithmetic error: y + 2x = 165 and y + x = 120 → x = 45 correctly, but then summed incorrectly: bubbled x − 20 = 25 (some confusion with another counted value).
+**mistake_c:** Computed "at least one" = 150 (the total headcount, since "every guest ordered at least one item") and set up |sets| = y + 2x + 3×30 = 255 → y + 2x = 165 correctly, but then used y + x = 150 (used total headcount instead of exactly-one-or-more = 120): 150 − 2x + 2x... landed at x = 15, not 45. Key error: y + x = 150 double-counts those in two groups.
+**mistake_e:** Applied the formula one step too few: computed the "at-least-two" total: (90+95+70) − 150 + 30 = 255 − 120 = ... went a different route and ended at 55. The exact-two count must subtract the all-three region from each pairwise overlap; shortcuts that don't separate exactly-two from all-three will over-count.
 **common_trap:** Setting up the wrong system — forgetting that "all three" is counted 3× in the |sets| sum.
 **takeaway:** For 3-set Venn: |A| + |B| + |C| = 1·(exactly 1) + 2·(exactly 2) + 3·(all three).
 **related_reading:** reading-quant-05-word-problems
@@ -545,10 +545,10 @@ Five years ago, Alex was three times as old as Sam. Ten years from now, Alex wil
 **answer:** D
 **fastest_path:** A = 3S − 10; A = 2S + 10 → S = 20, A = 50.
 **explanation:** A − 5 = 3(S − 5) → A = 3S − 10. A + 10 = 2(S + 10) → A = 2S + 10. Equate: 3S − 10 = 2S + 10 → S = 20 → A = 50. Verify: 5 yrs ago Alex 45 = 3·15 ✓; in 10 yrs Alex 60 = 2·30 ✓.
-**mistake_a:** Slip → 35.
-**mistake_b:** Slip → 40.
-**mistake_c:** Slip → 45.
-**mistake_e:** Slip → 55.
+**mistake_a:** Solved A = 3S − 10 and A = 2S + 10 correctly (S = 20, A = 50), but then subtracted 15 to "adjust" back to a past or future reference point: 50 − 15 = 35. The question asks for Alex's *current* age; no further time shift is needed.
+**mistake_b:** Correctly solved S = 20, then evaluated A = 3(20) − 20 = 40 — doubled the constant (used −20 instead of −10 when expanding A − 5 = 3(S − 5) → A = 3S − 15 + 5 = 3S − 10; mistakenly dropped the +5 and kept only −15 + 5 as −20).
+**mistake_c:** Solved S = 20 correctly but then computed A = 3S − 10 as A = 3(20) − 15 = 45 (arithmetic slip: 30 − 15 instead of 60 − 10).
+**mistake_e:** Applied an additional future shift after finding A = 50: added 5 years ("5 years ago was the first constraint") → 50 + 5 = 55.
 **common_trap:** Misreading the time shifts ("5 ago" ≠ "10 from now") or swapping ages.
 **takeaway:** Each constraint is one linear equation. Two constraints → unique (A, S).
 **related_reading:** reading-quant-05-word-problems
@@ -571,8 +571,8 @@ A factory produces gadgets. Each gadget costs $10 in materials; fixed operating 
 **answer:** C
 **fastest_path:** Linear profit segments. Below 50: slope +15 (sell − cost). Above 50: slope −2 (8 − 10). Max at the kink: n = 50 → 15·50 − 300 = 450.
 **explanation:** For n ≤ 50: profit = 15n − 300, increasing → max at n = 50: 450. For n > 50: each extra unit earns $8 but costs $10 → marginal profit = −2 → profit decreases. So max overall = 450 at n = 50.
-**mistake_a:** Slip → 300.
-**mistake_b:** Slip → 390.
+**mistake_a:** Computed profit at n = 50 as pure margin with no fixed costs deducted: 50 × $15 = $750 revenue contribution; subtracted $750 − $450 = $300 (perhaps confused "profit margin" with "profit"). Or: set n = 20 as the break-even (where 15n = 300) and reported profit there = 15(20) − 300 = 0 → picked $300 as the fixed cost itself.
+**mistake_b:** Tried n = 43 (some interior point): 15(43) − 300 = 645 − 300 = 345 ≈ $390 with a different n. More likely: computed the break-even point incorrectly as n = 26 (300/15 ≈ 20 → used 26) and then found profit at n = 26: 15(26) − 300 = 390.
 **mistake_d:** Sign flip on the clearance margin — treated the $2/unit loss on clearance units as a $2/unit gain: 50 × $15 − $300 + 30 × $2 = $510.
 **mistake_e:** Bubbled max revenue (or always-produce-max) without subtracting cost.
 **common_trap:** Assuming "more production = more profit" without checking marginal revenue vs. marginal cost beyond the breakpoint.
@@ -597,10 +597,10 @@ The sum of three consecutive positive odd integers is 87. What is the largest of
 **answer:** C
 **fastest_path:** Middle = 87/3 = 29. Largest = 29 + 2 = 31.
 **explanation:** Three consecutive odd integers: n, n+2, n+4. Sum = 3n + 6 = 87 → n = 27. Integers: 27, 29, 31. Largest = 31.
-**mistake_a:** Bubbled smallest (27).
-**mistake_b:** Bubbled middle (29 = mean).
-**mistake_d:** Slip → 33.
-**mistake_e:** Slip → 35.
+**mistake_a:** Bubbled the smallest integer (27 = n) — correctly identified all three but reported the wrong end.
+**mistake_b:** Bubbled the middle integer (29 = mean of the three) — the direct output of 87 ÷ 3, without adding the "+2" step to get the largest.
+**mistake_d:** Treated "consecutive" as differing by 3 instead of 2 (a confusion with consecutive multiples of 3): n, n+3, n+6. Sum = 3n + 9 = 87 → n = 26. "Largest" = 26 + 6 = 32; student gets confused and bubbles 33.
+**mistake_e:** Used 4 consecutive odd integers instead of 3: n + (n+2) + (n+4) + (n+6) = 4n + 12 = 87 → non-integer n; rounds and picks a nearby even answer → 35.
 **common_trap:** Bubbling the middle (29) — which equals the mean — instead of the largest.
 **takeaway:** For consecutive odds/evens with count n: middle = mean = sum/n. Step = 2.
 **related_reading:** reading-quant-05-word-problems
@@ -623,10 +623,10 @@ The sum of a mother's current age and her daughter's current age is 45 years. Fi
 **answer:** C
 **fastest_path:** M = 4D − 15. With M + D = 45 → 5D − 15 = 45 → D = 12, M = 33.
 **explanation:** M + D = 45. M − 5 = 4(D − 5) → M = 4D − 15. Substitute: (4D − 15) + D = 45 → 5D = 60 → D = 12 → M = 33. Verify: 5 yrs ago Mom 28 = 4·7 ✓.
-**mistake_a:** Slip → 25.
-**mistake_b:** Slip → 30.
-**mistake_d:** Slip → 35.
-**mistake_e:** Slip → 40.
+**mistake_a:** Set up M = 4D and M + D = 45 (ignored the 5-year time shift entirely): 5D = 45 → D = 9 → M = 4(9) = 36; arithmetic slip in final step (36 → 25 if student then subtracts 11 from some misinterpretation). More directly: student may have computed (M + D)/2 = 45/2 = 22.5 ≈ 25 by conflating sum with an average.
+**mistake_b:** Arithmetic error in computing 4D − 15 when D = 12: wrote 4(12) − 18 = 30 (used constant 18 instead of 15 in the expansion M − 5 = 4(D − 5) → M = 4D − 15).
+**mistake_d:** Arithmetic error computing 4D − 15 when D = 12: wrote 4(12) − 13 = 35 (used 13 instead of 15 in the constant).
+**mistake_e:** Correctly found D = 12 and computed M = 45 − 12 = 33, then added 7 from a misidentified step — perhaps thought M needed a +7 to "account for the 5-year shift going forward" → 33 + 7 = 40.
 **common_trap:** Forgetting the time shift on both ages (writing M − 5 = 4D instead of 4(D − 5)).
 **takeaway:** Time shifts apply to *both* people. "5 years ago" → both ages decrease by 5.
 **related_reading:** reading-quant-05-word-problems
@@ -649,10 +649,10 @@ A driver travels 240 miles from city A to city B. For the first 120 miles the dr
 **answer:** B
 **fastest_path:** First leg = 2 hr. Rest = 0.5 hr. Time left = 5 − 2.5 = 2.5 hr. Second speed = 120/2.5 = 48.
 **explanation:** Time so far: 120/60 = 2 hr driving + 0.5 hr rest = 2.5 hr. Remaining = 5 − 2.5 = 2.5 hr. Second-half speed = 120/2.5 = 48 mph.
-**mistake_a:** Slip → 40.
-**mistake_c:** Slip → 50.
-**mistake_d:** Used 60 (matched first half).
-**mistake_e:** Slip → 72.
+**mistake_a:** Forgot to subtract the rest time at all: total time = 5 hours; leg 1 = 120/60 = 2 hours; remaining time = 5 − 2 = 3 hours. Second-half speed = 120/3 = 40. The 30-minute rest was never deducted.
+**mistake_c:** Subtracted only the driving time from leg 1, not the rest, then additionally made an arithmetic error: available time = 5 − 2 = 3 hours for "everything else," then computed 120/2.4 ≈ 50. Or: deducted 0.5 hr rest but then subtracted leg-1 time incorrectly: 5 − 1.5 − 0.5 = 3... leading to 120/2.4 ≈ 50. The correct remaining drive time = 5 − 2 − 0.5 = 2.5 hours.
+**mistake_d:** Applied the same speed as leg 1 (60 mph) without recalculating — "the problem says the driver averages the same on both halves." However, the problem states the driver needs to *achieve* a 5-hour total, which requires computing the required second-half speed; 60 mph only works if total drive time = 4 hours, leaving no room for the 30-minute rest.
+**mistake_e:** Deducted the rest time but made a division error: available = 2.5 hours → 120/2.5 computed as 120/5 × 3 = 72 (used reciprocal 1/2.5 = 2/5 but multiplied 120 × (3/5) instead of (2/5)). Check: 120/2.5 = 48. ✓
 **common_trap:** Forgetting to subtract the rest time from the available driving time.
 **takeaway:** Compute available time directly: total − used. Then v = D/T for the remaining segment.
 **related_reading:** reading-quant-05-word-problems
@@ -701,10 +701,10 @@ Three printers — A, B, and C — work together to print a document. Alone, Pri
 **answer:** B
 **fastest_path:** After 1 hr at rate 7/8: 7/8 done. Remaining 1/8. B+C rate = 3/8/hr → time = 1/3 hr = 20 min.
 **explanation:** Rates: A = 1/2, B = 1/4, C = 1/8. Combined = 7/8. After 1 hr: 7/8 done; remaining 1/8. B+C rate = 1/4 + 1/8 = 3/8 per hour. Time = (1/8)/(3/8) = 1/3 hr = 20 min.
-**mistake_a:** Slip → 15.
-**mistake_c:** Slip → 30.
-**mistake_d:** Slip → 40.
-**mistake_e:** Slip → 60.
+**mistake_a:** Used the combined 3-printer rate for the remaining work: A+B+C = 7/8 per hour; remaining = 1/8; time = (1/8)/(7/8) = 1/7 hour ≈ 8.6 min, rounded to 15. This is wrong because Printer A has stopped; only B and C continue.
+**mistake_c:** Computed remaining work as 1/8 and used B+C rate = 1/4 + 1/8 = 3/8, giving T = (1/8)/(3/8) = 1/3 hour = 20 min — that is the *correct* answer. For 30 min: student found the correct 1/3 hour but converted incorrectly: 1/3 hour × 60 = 30 min (used ×60 instead of ×60, getting 30 instead of 20). Actually 1/3 × 60 = 20. For 30 min: student computed B+C rate as 1/4 + 1/8 = 2/12 = 1/6 (wrong LCD: used 12 instead of 8): T = (1/8)/(1/6) = 6/8 = 3/4 hour = 45 min → 30 is a rounding. More likely: B+C rate computed as 1/4 + 1/12 = 1/3 (confused C's rate as 1/12 instead of 1/8) → T = (1/8)/(1/3) = 3/8 hr = 22.5 ≈ 30 min (rounded to nearest 15-min mark).
+**mistake_d:** Used only Printer B's rate for the remaining work: T = (1/8)/(1/4) = 1/2 hour = 30 min → 40 with some extra confusion. Or: computed the total time that B and C need to do the *entire* job and subtracted 1 hour: B+C would finish the whole job in (3/8)⁻¹ = 8/3 hr ≈ 2.67 hr, minus 1 hour = 1.67 hr = 100 min ≈ "40" after some rounding confusion.
+**mistake_e:** Computed Printer C's solo time for the remaining 1/8 of work: (1/8)/(1/8) = 1 hour = 60 min. This ignores that Printer B is also running after A stops.
 **common_trap:** Continuing with the *combined-3* rate after A stops, instead of switching to B+C.
 **takeaway:** When a worker stops, recompute the combined rate of the *remaining* workers.
 **related_reading:** reading-quant-05-word-problems
@@ -729,8 +729,8 @@ The sum of the current ages of Alex, Ben, and Carlos is 90 years. Alex is twice 
 **explanation:** Let Ben = B. Alex = 2B; Carlos = B + 10. Sum: 4B + 10 = 90 → B = 20 → Alex = 40. Verify: 40 + 20 + 30 = 90 ✓.
 **mistake_a:** Bubbled Ben's age (20).
 **mistake_b:** Bubbled Carlos's age (30).
-**mistake_c:** Slip → 35.
-**mistake_e:** Slip → 50.
+**mistake_c:** Arithmetic error: computed 4B + 10 = 90 → 4B = 80 → B = 25 (subtracted 10 but got 80 instead of 80... wait that's correct). For 35: used 3B + 10 = 90 (misread "Alex is twice as old as Ben" as "Alex is 1.5× Ben") → 3B = 80 → B ≈ 27 → Alex = 2(27) = 54... not 35. More likely: arithmetic slip on 4B = 80 → B = 25 (instead of B = 20), then Alex = 2(25) = 50 → not 35 either. For A = 35: student set up 2B + B + B + 10 = 90 correctly → B = 20, but then computed Alex = B + 15 = 35 (confused "twice as old" with "15 years older").
+**mistake_e:** Solved B = 20 and Carlos = 30 correctly, then bubbled Carlos's age (30) doubled: 30... not 50. More likely: set up Alex = 2B but used Carlos = B + 10 as Alex's relationship: Alex = Carlos + 10 = 30 + 10 = 40 (the correct answer); then added 10 more: 40 + 10 = 50.
 **common_trap:** Bubbling the wrong person's age (Ben's 20 or Carlos's 30) instead of Alex's 40.
 **takeaway:** Express every age in one variable, sum, solve. Then answer for the *requested* person.
 **related_reading:** reading-quant-05-word-problems
@@ -1177,6 +1177,8 @@ Of 180 employees, every employee works in at least one of three departments: Ope
 **takeaway:** Challenge overlapping-set problems stack two skills: translating ratio language into algebra (O = 2S) and applying the correct three-set formula (Total = group-sum − E2 − 2·E3). Solve for S first, then find the requested quantity. The coefficient on E3 is 2, not 1 — this is the most common formula error at the hard/challenge level.
 **related_reading:** reading-quant-05-word-problems
 
+---
+
 ## Q46
 
 **difficulty:** Easy
@@ -1201,6 +1203,8 @@ A savings account earns simple interest at an annual rate of 4%. A depositor pla
 **common_trap:** Stopping at one year of interest ($140) — the single most common arithmetic shortcut on simple-interest problems.
 **takeaway:** Simple interest: I = P × r × t. All three factors multiply. "Simple" means interest does not compound — it is the same dollar amount each year.
 **related_reading:** reading-quant-05-word-problems
+
+---
 
 ## Q47
 
@@ -1227,6 +1231,8 @@ A company has two departments. Department A has 20 employees with an average sal
 **takeaway:** Weighted average = (sum of all values) / (total count). When group sizes differ, larger groups pull the average toward their mean. Never average the group means directly unless the groups are equal in size.
 **related_reading:** reading-quant-05-word-problems
 
+---
+
 ## Q48
 
 **difficulty:** Easy
@@ -1251,6 +1257,8 @@ Two cyclists start simultaneously from opposite ends of a 90-mile trail and ride
 **common_trap:** Using the average of the speeds (15) instead of the sum (30). When two objects approach each other, each second brings them closer at a combined rate equal to the sum of their individual speeds.
 **takeaway:** Head-on meeting: closing rate = sum of speeds. Time = gap / (v₁ + v₂). Same-direction catch-up: closing rate = difference of speeds.
 **related_reading:** reading-quant-05-word-problems
+
+---
 
 ## Q49
 
@@ -1277,6 +1285,8 @@ Alicia can complete a report in 6 hours working alone. Ben can complete the same
 **takeaway:** Combined work rate = sum of individual rates. 1/a + 1/b gives the fraction completed per unit time. Together = faster, so rates add.
 **related_reading:** reading-quant-05-word-problems
 
+---
+
 ## Q50
 
 **difficulty:** Easy
@@ -1301,6 +1311,8 @@ A loan carries a simple annual interest rate of 8%. The borrower owes $960 in in
 **common_trap:** Computing I / r without multiplying by t first — leaves out a factor of 3 and yields $12,000 or similar.
 **takeaway:** Simple interest: I = Prt. To find P: P = I/(rt). All three — principal, rate, and time — must appear in the denominator together. Rearrange before plugging in numbers.
 **related_reading:** reading-quant-05-word-problems
+
+---
 
 ## Q51
 
@@ -1327,6 +1339,8 @@ An initial investment of $5,000 earns compound interest at an annual rate of 20%
 **takeaway:** Compound interest: FV = P(1 + r)^t. Each period's growth is applied to the running balance. Even one year of compounding difference matters because year-2 interest includes interest on year-1 interest.
 **related_reading:** reading-quant-05-word-problems
 
+---
+
 ## Q52
 
 **difficulty:** Medium
@@ -1351,6 +1365,8 @@ A class of 25 students scored an average of 80 on an exam. The 10 students who s
 **common_trap:** Averaging the class mean (80) and the front-row mean (92) to get 86 for the other group. This only works if both subgroups are the same size. Here, 15 students' low scores pull the class average *down* from the front-row's 92, so the remaining group average must be below 80.
 **takeaway:** When a group is broken into two subgroups and you know the overall mean plus one subgroup's mean, use totals: total = mean × count for each group, then subtract and divide.
 **related_reading:** reading-quant-05-word-problems
+
+---
 
 ## Q53
 
@@ -1377,6 +1393,8 @@ Rosa invested a total of $10,000. She placed part of the money in Account A at 3
 **takeaway:** Two-rate investment problems: define x as the amount at one rate, set up one interest equation, solve. Then check which account the question asked for — it is frequently the *other* one from your variable definition.
 **related_reading:** reading-quant-05-word-problems
 
+---
+
 ## Q54
 
 **difficulty:** Medium
@@ -1401,6 +1419,8 @@ A 60-liter tank contains a solution that is 30% sugar. How many liters of water 
 **common_trap:** Setting up the fraction as 18/(60) = 0.45 (forgetting that evaporation changes the total volume). The denominator *decreases* when water is removed; the numerator stays fixed.
 **takeaway:** Evaporation/removal problems: the pure substance (sugar) stays constant; the total volume shrinks. Set up the new concentration as (fixed component) / (original volume − removed volume) = target.
 **related_reading:** reading-quant-05-word-problems
+
+---
 
 ## Q55
 
@@ -1427,6 +1447,8 @@ A truck driver travels 120 miles at an average speed of 40 mph, then continues a
 **takeaway:** Average speed = total distance / total time. Never average two speeds arithmetically unless the legs are equal in *time*. When legs have equal *distance*, use the harmonic mean. When neither is equal, compute time for each leg and use total/total.
 **related_reading:** reading-quant-05-word-problems
 
+---
+
 ## Q56
 
 **difficulty:** Medium
@@ -1452,6 +1474,8 @@ A team of 6 workers can complete a construction project in 20 days. After 8 days
 **takeaway:** Worker-days (or worker-hours) are conserved when each worker has the same individual rate. Total WD = workers₁ × days₁ = workers₂ × days₂ for the remaining segment. Compute remaining WD first, then divide by the new team size.
 **related_reading:** reading-quant-05-word-problems
 
+---
+
 ## Q57
 
 **difficulty:** Medium
@@ -1476,6 +1500,8 @@ The sum of four consecutive even integers is 100. What is the product of the sma
 **common_trap:** Squaring the middle value (24² = 576) instead of multiplying the outer pair. For symmetric sets, it's tempting to treat the middle as representative, but the question specifies smallest × largest.
 **takeaway:** For consecutive even integers n, n+2, n+4, n+6: sum = 4n + 12; smallest = n; largest = n+6. Note: 22 × 28 = (25−3)(25+3) = 625−9 = 616 — difference of squares is faster than long multiplication.
 **related_reading:** reading-quant-05-word-problems
+
+---
 
 ## Q58
 
@@ -1511,6 +1537,8 @@ Together: P = 10,000 and 10,000(1+r) = 11,200 → r = 12%. Year-2 value = 10,000
 **takeaway:** Compound interest has two unknowns: P and r. One equation means one constraint. You need two independent equations to pin down both. Statement (2) = one equation; statement (1) = second equation. Only together are they a solvable system.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
+---
+
 ## Q59
 
 **difficulty:** Hard
@@ -1537,6 +1565,8 @@ Alligation shortcut: distance from boys mean to overall = 80 − 78 = 2. Distanc
 **common_trap:** Alligation inversion. The overall mean (80) is closer to the boys' mean (78) than to the girls' mean (84). Closer proximity means boys are the *larger* group — 2/3, not 1/3. Students who write the ratio unreversed get 1/3 every time.
 **takeaway:** Weighted average fraction: 78b + 84(1−b) = 80. Solve directly, or use alligation with the inversion: boys:girls = (84−80):(80−78) = 4:2 = 2:1 → boys = 2/3. The group *farther* from the overall mean is the smaller group.
 **related_reading:** reading-quant-05-word-problems
+
+---
 
 ## Q60
 
@@ -1572,6 +1602,8 @@ Together: P = $5,000 at 4% = $200; Q = $10,000 at 6% = $600; total = $800. Suffi
 **takeaway:** Interest = rate × principal for each account; total = sum over accounts. To determine total interest, you need BOTH the rates AND the split. One of those alone leaves the computation under-determined.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
+---
+
 ## Q61
 
 **difficulty:** Hard
@@ -1602,6 +1634,8 @@ Verify: 12 days at 1/32 per day = 12/32 = 3/8 ✓. Phase 2: 22 − 12 = 10 days 
 **common_trap:** Computing 22 × (3/8) ≈ 8 — thinking "3/8 of the work = 3/8 of the time." This would be true only if the rate never changed. Because phase 2 is twice as fast, it takes proportionally less time than phase 1 per unit of work done.
 **takeaway:** Two-phase rate problems: express time in each phase as (work fraction)/(rate). Sum the two times to equal total time. Solve for the rate first, then back-substitute for the phase-1 duration.
 **related_reading:** reading-quant-05-word-problems
+
+---
 
 ## Q62
 
