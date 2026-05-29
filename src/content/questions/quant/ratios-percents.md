@@ -175,7 +175,7 @@ The price of a stock increases by 20% in January, then decreases by 20% in Febru
 **answer:** A
 **fastest_path:** 1.20 × 0.80 = 0.96 → −4%.
 **explanation:** Successive % changes compound multiplicatively: 1.20 × 0.80 = 0.96 → 4% decrease. Smart number 100: 100 → 120 → 96.
-**mistake_b:** Computed 1.20 × 0.82 = 0.984 → −1.6% ≈ −2%, from misreading the February decrease as 18% instead of 20%. The problem states "decreases by 20%," so the February multiplier is 0.80, not 0.82.
+**mistake_b:** Landed on −2% after correctly identifying that the result must be a net loss (ruling out D and E), but then guessing the loss was 2% rather than computing it exactly. There is no single-step arithmetic path that produces −2%. Students who pause at this choice are usually unsure whether the loss is 2% or 4%. Pin it down: 1.20 × 0.80 = 0.96 → exactly −4%, full stop.
 **mistake_c:** Treated as additive (+20 − 20 = 0) → unchanged.
 **mistake_d:** Inverted sign → +2%.
 **mistake_e:** Inverted sign and rounded → +4%.
@@ -360,10 +360,10 @@ In a bag of marbles containing only red and blue marbles, what is the number of 
 **answer:** C
 **fastest_path:** (1) ratio only — infinite scalings. (2) difference only — no ratio. Together: 5k − 3k = 24 → k = 12 → red = 36.
 **explanation:** Statement (1): r:b = 3:5, so r = 3k for any k. Insufficient. Statement (2): b − r = 24, but no ratio. Insufficient. Together: 2k = 24 → k = 12 → red = 36. Sufficient.
-**mistake_a:** Treated only (1) as sufficient.
-**mistake_b:** Treated only (2) as sufficient.
-**mistake_d:** Each alone — neither is.
-**mistake_e:** Concluded both insufficient.
+**mistake_a:** Saw the 3:5 ratio and thought it immediately tells you the red count. It doesn't — 3:5 is satisfied by 3 and 5, by 15 and 25, by 300 and 500. Without any absolute anchor, the ratio is just a shape, not a count.
+**mistake_b:** Saw "24 more blue than red" and tried to divide: 24 ÷ 2 = 12? But you only know the *gap*, not the *ratio*. A 24-marble gap is consistent with 1 red / 25 blue, or 12 red / 36 blue, or 100 red / 124 blue. The ratio from (1) is the missing anchor.
+**mistake_d:** Assumed each statement pins down the count independently. Statement (1) scales freely (any multiple of 3:5 works); statement (2) allows any pair that differs by 24. Neither alone is sufficient.
+**mistake_e:** Concluded both insufficient — but the ratio from (1) says the gap between blue and red parts is 2k, and (2) says that gap is 24 marbles. Equating them gives k = 12, which is unique.
 **common_trap:** Forgetting that a ratio alone gives infinite valid scalings.
 **takeaway:** Ratio + any *one* scalar anchor (total, part, or difference) determines all parts.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -389,10 +389,10 @@ A store increased the price of a television by some percent. What was the final 
 **answer:** C
 **fastest_path:** (1) percent only, no anchor. (2) ties percent to dollars but no original. Together: 0.15P + 45 = 0.25P → P = 450, final = 517.50.
 **explanation:** Statement (1): percent only, no original. Insufficient. Statement (2): ties dollar increase to a percent benchmark, but neither original nor actual percent fixed alone. Insufficient. Combined: 0.15P + 45 = 0.25P → 0.10P = 45 → P = 450 → final = 450 × 1.15 = 517.50. Sufficient.
-**mistake_a:** Treated only (1) as sufficient.
-**mistake_b:** Treated only (2) as sufficient.
-**mistake_d:** Each alone — neither is.
-**mistake_e:** Concluded both insufficient.
+**mistake_a:** Thought knowing the percent increase (15%) was enough to find the final price. But 15% of $200 is very different from 15% of $2,000 — without the original price, the percent gives only a ratio, not a dollar amount.
+**mistake_b:** Statement (2) mentions both a dollar amount ($45) and a percent (25%), which looks like a lot of information. But the $45 is conditional ("if $45 *more* had been added") and the 25% is the *hypothetical* total increase, not the actual one. You still have two unknowns (original price and actual increase) and only one equation.
+**mistake_d:** Tried to use each statement alone and found both gave "too many unknowns." Both are genuinely insufficient alone — no shortcut applies here.
+**mistake_e:** Concluded both were insufficient together — but combined they form one equation in one unknown: 0.15P + 45 = 0.25P, which solves to P = $450.
 **common_trap:** Forgetting that a percent is meaningless without a dollar anchor.
 **takeaway:** Classic DS pattern: percent relationship + dollar anchor → together sufficient.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -470,10 +470,10 @@ A tank contains a mixture of water and alcohol. What percent of the mixture is a
 **answer:** C
 **fastest_path:** Two unknowns (a, t). (1) and (2) each give one equation; together solve a = 7, t = 25 → 28% alcohol.
 **explanation:** Let a = alcohol L, t = total L. Statement (1): a/(t+10) = 0.20 — one equation, two unknowns. Insufficient. Statement (2): (a+5)/(t+5) = 0.40 — one equation. Insufficient. Together: solve simultaneously → a = 7, t = 25 → alcohol = 28%. Sufficient.
-**mistake_a:** Treated only (1) as sufficient.
-**mistake_b:** Treated only (2) as sufficient.
-**mistake_d:** Each alone — neither is.
-**mistake_e:** Concluded both insufficient.
+**mistake_a:** Thought (1) alone determined the alcohol percentage. But a/(t+10) = 0.20 leaves both a and t free: any pair where a = 0.20t + 2 is a valid solution (e.g., a=2, t=0 or a=7, t=25 or a=22, t=100). One equation, two unknowns — not sufficient.
+**mistake_b:** Thought (2) alone worked because it gives a concrete percent (40%) and mentions an exact volume ($5 L). But (a+5)/(t+5) = 0.40 is similarly under-constrained: a = 0.40t + 1.40 has infinitely many solutions. Plugging in numbers does not automatically give unique values for a and t.
+**mistake_d:** Tried each statement alone and confirmed both are insufficient. That's correct — but the question is about what they determine *together*.
+**mistake_e:** Gave up after recognizing the two-unknowns structure and concluded the system was unsolvable. The two equations from (1) and (2) are independent (they don't simplify to the same line), so together they have a unique solution: a = 7, t = 25.
 **common_trap:** Counting "two facts" without checking that they yield two *independent* equations in the same variables.
 **takeaway:** Two unknowns need two independent equations. A "fact" only counts if it adds a new equation, not a restatement.
 **related_reading:** reading-quant-05-word-problems
@@ -497,8 +497,8 @@ A merchant marks the price of a watch up 50% above cost, and during a sale disco
 **fastest_path:** 1.50 × 0.80 = 1.20 → 20% net profit. 0.20C = 84 → C = 420.
 **explanation:** Marked = 1.50C. Sale = 1.50C × 0.80 = 1.20C. Profit = 0.20C = 84 → C = 420.
 **mistake_b:** Computed C from a slightly wrong factor: 0.175C = 84 → C ≈ 480 (used 1.50 × 0.78 ≈ 1.175 or similar). Recompute exactly: 1.50 × 0.80 = 1.20, net +20%, so 0.20C = 84 → C = 420.
-**mistake_c:** Set up the equation correctly (0.20C = $84) but mistook 0.20 as 1/6 rather than 1/5, giving C = $84 × 6 = $504. The reciprocal of 0.20 = 1/5 is 5, not 6 — so C = $84 × 5 = $420. The discount is 20%, giving multiplier 0.80, not 0.84.
-**mistake_d:** Mis-chained 1.40 × 0.80 = 1.12 → 0.12C = 84 → C ≈ 700, then rounded to 540. The markup is 50% (1.50), not 40%.
+**mistake_c:** Solved correctly for the cost ($420) but then reported the *sale price* — $420 + $84 = $504 — as the answer. The sale price of $504 is real (it is indeed $84 more than the $420 cost), but the question asks for the *cost*, not the final price. Always re-read the last sentence before bubbling.
+**mistake_d:** Added the two percents instead of chaining multipliers: treated the net gain as 50% − 20% = 30% of cost, giving 0.30C = $84 → C = $280. When $280 wasn't listed, scaled up to $540 without a sound basis. The correct method: chain the factors → 1.50 × 0.80 = 1.20 → net gain is 20% of cost → 0.20C = $84 → C = $420.
 **mistake_e:** Used additive shortcut: 50 − 20 = 30% net → 84/0.30 = 280, then bumped to 630 from confusion. Chain multiplicatively: 1.50 × 0.80 = 1.20, net +20%.
 **common_trap:** Treating successive percent changes additively (50 − 20 = 30%), which gives the wrong base for profit.
 **takeaway:** Chain percent changes multiplicatively. Net effect = product of factors, not sum of percents.
@@ -536,7 +536,7 @@ In a class, the ratio of boys to girls is 3 to 5. How many students are in the c
 ---
 
 ## Q21
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Successive Percent Changes
 
@@ -577,7 +577,7 @@ A jar contains red, blue, and green marbles in the ratio 3 : 4 : 5. If there are
 **answer:** D
 **fastest_path:** 4 parts = 24 → 1 part = 6. Total = 12 parts = 72.
 **explanation:** Blue corresponds to 4 parts. 4 parts = 24 → 1 part = 6. Total parts = 3 + 4 + 5 = 12 → 12 × 6 = 72.
-**mistake_a:** Counted only two colors (e.g., red + blue = 7 or blue + green = 9 parts, scaled to 48 via 8 × 6) — missed including all three groups in the total.
+**mistake_a:** Counted only red and green (3 + 5 = 8 parts), skipping blue entirely — got 8 × 6 = 48. The total must include all three colors: 3 + 4 + 5 = 12 parts → 12 × 6 = 72.
 **mistake_b:** Counted 10 parts (perhaps 3 + 4 + 3 from a misread of green = 3 instead of 5) → 10 × 6 = 60. Re-add the parts: 3 + 4 + 5 = 12.
 **mistake_c:** Computed 11 × 6 = 66 — used 11 parts instead of 12 (off-by-one on the part sum). Sum carefully: 3 + 4 + 5 = 12.
 **mistake_e:** Computed 14 × 6 = 84 — used 14 parts, perhaps from 3 + 4 + 5 + 2 (added an extra). The ratio has exactly three groups.
@@ -872,10 +872,10 @@ A store sells only two products, P and Q. What fraction of the store's total rev
 **answer:** D
 **fastest_path:** (1) P = 0.80Q → total = 1.80Q → Q fraction = 5/9. Sufficient. (2) 1.10P + 0.90Q = P + Q → 0.10P = 0.10Q → P = Q → Q fraction = 1/2. Sufficient. Each alone → D.
 **explanation:** Statement (1): P = 0.80Q, so total = 0.80Q + Q = 1.80Q. Fraction from Q = Q/1.80Q = 5/9. A unique value is determined. Sufficient. Statement (2): let last year's revenues be P and Q. This year: 1.10P and 0.90Q. "Total unchanged" means 1.10P + 0.90Q = P + Q → 0.10P = 0.10Q → P = Q. Then Q fraction = Q/(Q + Q) = 1/2. A unique value is determined. Sufficient. Each statement alone determines the fraction → D.
-**mistake_a:** Accepted only (1) as sufficient — but (2) is also sufficient through the "total unchanged" binding constraint.
-**mistake_b:** Accepted only (2) as sufficient — but (1) is also sufficient through its direct percent relationship.
-**mistake_c:** Required both statements — each alone is enough.
-**mistake_e:** Concluded neither is sufficient — missed that (1) gives a direct ratio and (2) uses the "total unchanged" constraint to force P = Q.
+**mistake_a:** Correctly identified that (1) is sufficient (P = 0.80Q determines the ratio directly), but dismissed (2) as "only describing changes." The key in (2) is the constraint that total revenue is *unchanged* — this is a binding equation that forces P = Q. Never ignore a "total preserved" or "equal" constraint; it can be the equation that cracks the problem.
+**mistake_b:** Extracted the insight from (2) that P = Q → Q fraction = 1/2, but dismissed (1) as "only giving a percent difference, not the actual revenues." It doesn't need to give actual revenues — it only needs to pin the fraction, which it does: P = 0.80Q → total = 1.80Q → fraction = 5/9.
+**mistake_c:** Worried that a single ratio relationship wouldn't be enough without a dollar anchor, and similarly that a percent-change statement wouldn't pin the current fraction. Test each: (1) gives a fixed ratio P:Q, which determines the fraction without any dollar value. (2) gives P = Q, which also fixes the fraction. No pairing is needed.
+**mistake_e:** Saw two percent-change statements and concluded neither pinned the actual fraction — a reasonable fear with one statement, but both (1) and (2) independently lock down the ratio of P to Q. When in doubt, set up the algebra: (1) yields total = 1.80Q, fraction = 5/9; (2) yields P = Q, fraction = 1/2.
 **common_trap:** Dismissing statement (2) as "only describing changes, not the actual ratio." The constraint that total revenue is unchanged is a binding equation that uniquely pins P = Q and therefore determines the fraction.
 **takeaway:** A percent-change statement paired with a "total is preserved" constraint can determine a ratio entirely. The binding condition acts as a second equation that resolves both unknowns.
 **related_reading:** reading-quant-02-arithmetic-foundations
