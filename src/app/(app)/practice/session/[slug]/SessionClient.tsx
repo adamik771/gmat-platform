@@ -96,6 +96,10 @@ interface SessionClientProps {
    *  completion screen when accuracy is strong — directs students to
    *  their highest-leverage next session instead of a generic CTA. */
   weakestTopic?: WeakTopicHint
+  /** Up to 3 prior sessions on this topic (most-recent-first). Drives
+   *  the accuracy trend widget on the completion screen. Only present
+   *  for topic-specific slugs — omitted for custom/mock/diagnostic. */
+  topicHistory?: { accuracy: number }[]
 }
 
 function formatDuration(ms: number): string {
@@ -1003,6 +1007,7 @@ export default function SessionClient({
   skillLevel,
   skillAttempts,
   weakestTopic,
+  topicHistory,
 }: SessionClientProps) {
   const router = useRouter()
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -1620,6 +1625,83 @@ export default function SessionClient({
               )
             })()}
         </div>
+
+        {/* Topic accuracy trend — shows the student's accuracy history on this
+            topic across their last 3 sessions. Only renders when the server
+            passes topicHistory (topic-specific sessions only). Makes progress
+            visible and anchors the current score to a personal trajectory. */}
+        {topicHistory && topicHistory.length > 0 && (() => {
+          const prior = [...topicHistory].reverse()  // oldest-first for left-to-right display
+          const priorMax = Math.max(...prior.map((s) => s.accuracy))
+          const isPersonalBest = accuracy > priorMax
+          const lastPriorAcc = topicHistory[0].accuracy
+          const delta = accuracy - lastPriorAcc
+
+          const allSessions = [
+            ...prior.map((s) => ({ acc: s.accuracy, isToday: false as const })),
+            { acc: accuracy, isToday: true as const },
+          ]
+
+          return (
+            <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                  {topic} · accuracy
+                </p>
+                {isPersonalBest && (
+                  <p className="text-[10px] font-semibold" style={{ color: "#3ECF8E" }}>
+                    Personal best
+                  </p>
+                )}
+              </div>
+
+              <div className="flex items-center">
+                {allSessions.map((s, i) => (
+                  <div key={i} className="flex items-center">
+                    {i > 0 && (
+                      <ArrowRight
+                        className="w-3 h-3 flex-shrink-0 mx-2.5"
+                        style={{ color: "#252525" }}
+                      />
+                    )}
+                    <div className="flex flex-col items-center" style={{ minWidth: "44px" }}>
+                      <p
+                        className="text-sm font-semibold tabular-nums"
+                        style={{ color: s.isToday ? "#C9A84C" : "#3A3A3A" }}
+                      >
+                        {s.acc}%
+                      </p>
+                      <div
+                        className="mt-1.5 rounded-full"
+                        style={{
+                          width: s.isToday ? "8px" : "6px",
+                          height: s.isToday ? "8px" : "6px",
+                          backgroundColor: s.isToday ? "#C9A84C" : "transparent",
+                          border: s.isToday ? "none" : "1px solid #2E2E2E",
+                        }}
+                      />
+                      {s.isToday && (
+                        <p className="text-[9px] mt-1" style={{ color: "#555555" }}>
+                          Today
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {delta !== 0 && (
+                <div className="mt-3 pt-3 border-t border-white/[0.05]">
+                  <p className="text-[11px]" style={{ color: delta > 0 ? "#3ECF8E" : "#888888" }}>
+                    {delta > 0
+                      ? `Up ${delta} point${delta === 1 ? "" : "s"} from your last session`
+                      : `Down ${Math.abs(delta)} point${Math.abs(delta) === 1 ? "" : "s"} from your last session`}
+                  </p>
+                </div>
+              )}
+            </div>
+          )
+        })()}
 
         {(() => {
           const insight = computeInsight(questions, states, section)

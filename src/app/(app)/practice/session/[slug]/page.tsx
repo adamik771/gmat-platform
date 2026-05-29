@@ -81,6 +81,7 @@ export default async function PracticeSessionPage({
     updatedAt: 0,
   }
   let weakestTopic: WeakTopicHint | null = null
+  let topicHistory: { accuracy: number }[] = []
   try {
     const supabase = await createSupabaseServer()
     const {
@@ -125,6 +126,27 @@ export default async function PracticeSessionPage({
           }
         }
       }
+
+      // Fetch the last 3 sessions on this exact topic so the completion screen
+      // can show an accuracy trend. Skipped for non-topic slugs (custom, mock,
+      // diagnostic, review) where slug is not topic-specific.
+      const isTopicSlug =
+        slug !== "custom" &&
+        !slug.startsWith("diagnostic-") &&
+        !slug.startsWith("mock-") &&
+        !slug.startsWith("review-")
+      if (isTopicSlug) {
+        const { data: pastSessions } = await supabase
+          .from("practice_sessions")
+          .select("accuracy")
+          .eq("user_id", user.id)
+          .eq("slug", slug)
+          .order("created_at", { ascending: false })
+          .limit(3)
+        if (pastSessions) {
+          topicHistory = pastSessions.map((s) => ({ accuracy: s.accuracy as number }))
+        }
+      }
     }
   } catch {
     // Anonymous or supabase down — keep defaults / skip recommendation.
@@ -140,6 +162,7 @@ export default async function PracticeSessionPage({
       skillLevel={skill.level}
       skillAttempts={skill.attempts}
       weakestTopic={weakestTopic ?? undefined}
+      topicHistory={topicHistory.length > 0 ? topicHistory : undefined}
     />
   )
 }
