@@ -1416,6 +1416,39 @@ export default function SessionClient({
           </p>
         </div>
 
+        {/* Question-sequence strip — ordered squares showing correct / wrong / skipped
+            across the session in order. Lets the student see at a glance whether
+            errors clustered at the end (fatigue), at the start (cold), or are spread
+            throughout — a pattern read that numbers alone can't give. */}
+        {answeredCount > 0 && (
+          <div>
+            <p className="text-[10px] uppercase tracking-widest text-[#444444] mb-2">
+              Session pattern
+            </p>
+            <div className="flex flex-wrap gap-1">
+              {questions.map((q, i) => {
+                const st = states[i]
+                const correct = isQuestionCorrect(q, st)
+                const skipped = !st.submitted
+                return (
+                  <div
+                    key={q.id}
+                    title={`Q${i + 1} · ${q.subtopic} · ${skipped ? "skipped" : correct ? "correct" : "incorrect"}`}
+                    className="w-3.5 h-3.5 rounded-sm flex-shrink-0"
+                    style={{
+                      backgroundColor: skipped
+                        ? "rgba(255,255,255,0.05)"
+                        : correct
+                        ? "rgba(62,207,142,0.32)"
+                        : "rgba(255,68,68,0.28)",
+                    }}
+                  />
+                )
+              })}
+            </div>
+          </div>
+        )}
+
         <SaveStatusBanner status={saveStatus} onRetry={saveSession} />
 
         {/* Core metrics + insight breakdown */}
@@ -1756,61 +1789,6 @@ export default function SessionClient({
             />
           </Link>
         )}
-
-        {/* What to do next — renders the nextStepNote guidance as direct CTA
-            buttons. The text was computed above but never surfaced in the UI;
-            without a button, students read the advice and then navigate away
-            manually with no clear path. Primary action depends on accuracy
-            band: review the chapter (low), practice again (mid), study plan
-            (high). Chapter link is only shown when the topic maps to one. */}
-        {(() => {
-          const chapterSlug = TOPIC_TO_CHAPTER[topic]
-          const low = accuracy < 60
-          const mid = accuracy >= 60 && accuracy < 78
-
-          const primaryAction = low && chapterSlug
-            ? { label: `Review ${topic} chapter`, href: `/chapters/${chapterSlug}` }
-            : mid
-            ? { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-            : { label: "View your study plan", href: "/study-plan" }
-
-          const secondaryAction =
-            low
-              ? { label: "Practice again", href: `/practice/session/${slug}` }
-              : mid && chapterSlug
-              ? { label: "Review the chapter", href: `/chapters/${chapterSlug}` }
-              : { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-
-          return (
-            <div
-              className="p-5 rounded-xl border border-white/[0.08]"
-              style={{ backgroundColor: "#0D0D0D" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
-                What to do next
-              </p>
-              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-4">
-                {nextStepNote}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Link
-                  href={primaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  {primaryAction.label}
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-                <Link
-                  href={secondaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-white/[0.1] text-[#888888] transition-colors hover:text-[#F0F0F0] hover:border-white/[0.2]"
-                >
-                  {secondaryAction.label}
-                </Link>
-              </div>
-            </div>
-          )
-        })()}
 
         {/* Review list — wrong answers only by default, toggle to show all */}
         {(() => {
