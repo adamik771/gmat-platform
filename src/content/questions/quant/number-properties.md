@@ -909,3 +909,501 @@ Three bells ring at intervals of 6, 9, and 15 minutes respectively. They all rin
 **common_trap:** Using LCM of only two of the three intervals and forgetting the third, or adding LCMs instead of nesting them.
 **takeaway:** For "next simultaneous event" with periodic events at intervals a, b, c: time = LCM(a, b, c). Compute step-by-step: LCM(a, b) first, then LCM(result, c). All three must factor into the final LCM.
 **related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Perfect Squares
+
+Which of the following is NOT a perfect square?
+
+- A) 121
+- B) 144
+- C) 169
+- D) 225
+- E) 240
+
+**answer:** E
+**fastest_path:** 11²=121, 12²=144, 13²=169, 15²=225. 240 = 2⁴×3×5 — exponents of 3 and 5 are odd, so 240 is not a perfect square.
+**explanation:** A perfect square has every prime in its factorization raised to an even exponent. 121=11², 144=12², 169=13², 225=15² — each passes. 240 = 2⁴ × 3¹ × 5¹: both 3 and 5 appear to an odd power (the first), so no integer k satisfies k² = 240. Eliminate E.
+**mistake_a:** Recognized 11² = 121 and confirmed it's a perfect square — correct, so A is not the answer.
+**mistake_b:** Less memorized than 12²=144 or 15²=225, but 12×12 = 144 confirms it.
+**mistake_c:** 13² = 169 is sometimes forgotten; verify: 13×13 = 169 ✓.
+**mistake_d:** 15² = 225 is sometimes confused with 16² = 256; 15×15 = 225 ✓.
+**common_trap:** Guessing that a large number is not a perfect square without checking. The reliable test: prime-factorize and confirm all exponents are even. 240 fails because 3¹ and 5¹ are odd exponents.
+**takeaway:** n is a perfect square ↔ every prime in its factorization appears to an even power. Memorize perfect squares through 20²: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Divisibility Rules
+
+Which of the following numbers is divisible by 4?
+
+- A) 21,318
+- B) 37,442
+- C) 45,126
+- D) 58,734
+- E) 72,616
+
+**answer:** E
+**fastest_path:** Divisibility by 4: only the last two digits matter. Last two: 18, 42, 26, 34, 16. Only 16 ÷ 4 = 4 exactly → E.
+**explanation:** A whole number is divisible by 4 if and only if its last two digits form a number divisible by 4 (because 100 = 4 × 25, so all higher place values are already divisible by 4). Check: A) 18 ÷ 4 = 4.5 ✗; B) 42 ÷ 4 = 10.5 ✗; C) 26 ÷ 4 = 6.5 ✗; D) 34 ÷ 4 = 8.5 ✗; E) 16 ÷ 4 = 4 ✓.
+**mistake_a:** Tested whether the number is even (it is — ends in 8), but even ≠ divisible by 4. 18 is even but not divisible by 4.
+**mistake_b:** Last digit of 37,442 is 2 (even), but 42 ÷ 4 = 10.5, so not divisible by 4.
+**mistake_c:** Added all digits: 4+5+1+2+6 = 18 (divisible by 9 and 3) — but divisibility by 3 or 9 says nothing about divisibility by 4.
+**mistake_d:** Last two digits 34: 34 ÷ 4 = 8.5, not divisible by 4.
+**common_trap:** Applying the "even last digit" rule to divisibility by 4. Divisibility by 4 requires the last *two* digits to be divisible by 4, not just the last one.
+**takeaway:** Divisibility rules by powers of 2: by 2 → last 1 digit; by 4 → last 2 digits; by 8 → last 3 digits. For each additional factor of 2, look one digit further back.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Prime Factorization
+
+What is the smallest prime factor of 91?
+
+- A) 1
+- B) 7
+- C) 13
+- D) 17
+- E) 91
+
+**answer:** B
+**fastest_path:** Test primes in order: 2 (91 is odd ✗), 3 (digit sum = 10, not div by 3 ✗), 5 (doesn't end in 0 or 5 ✗), 7: 91 ÷ 7 = 13 ✓ → smallest prime factor is 7.
+**explanation:** To find the smallest prime factor, test primes in increasing order. 2: 91 is odd — skip. 3: digit sum = 9+1 = 10, not divisible by 3 — skip. 5: last digit is 1 — skip. 7: 91 ÷ 7 = 13 exactly. So 91 = 7 × 13 and the smallest prime factor is 7. Stop at the first prime that divides — there is no need to continue.
+**mistake_a:** 1 is not prime. The definition of prime requires exactly two positive divisors: 1 and itself. The number 1 has only one positive divisor.
+**mistake_c:** 13 is indeed a prime factor of 91, but the question asks for the *smallest*. Reaching 13 without first checking 7 means missing the answer.
+**mistake_d:** 17 does not divide 91: 17×5 = 85, 17×6 = 102. Since 91 is between these, 17 is not a factor.
+**mistake_e:** 91 itself divides 91, but 91 = 7×13 is composite, not prime.
+**common_trap:** Assuming 91 is prime because it "looks like it should be." 91 is a classic GMAT trap composite. Always test primes up to √91 ≈ 9.5 — meaning test 2, 3, 5, 7 before concluding primality.
+**takeaway:** GMAT trap composites to memorize: 51 = 3×17, 57 = 3×19, 87 = 3×29, 91 = 7×13, 119 = 7×17, 133 = 7×19. For any n ≤ 200, test primes 2, 3, 5, 7, 11, 13 to find the smallest prime factor.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Factors
+
+How many ODD positive factors does 60 have?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 6
+- E) 12
+
+**answer:** C
+**fastest_path:** Strip all 2s: 60 = 2² × 15, odd part = 15 = 3×5. Odd factor count = (1+1)(1+1) = 4.
+**explanation:** Odd factors of n come entirely from n's odd part — the result of removing all factors of 2. 60 = 2² × 3 × 5. Odd part: 3 × 5 = 15. Factors of 15 are exactly the odd factors of 60: 1, 3, 5, 15. Count: (1+1)(1+1) = 4.
+**mistake_a:** Counted only 3 and 5 — forgot that 1 (always odd) and 15 = 3×5 are also odd factors.
+**mistake_b:** Listed 1, 3, 5 and stopped — missed that 15 = 3×5 also divides 60 and is odd.
+**mistake_d:** Bubbled 6 — perhaps counted even factors (60 has 12 total factors; 12 − 4 odd = 8 even, not 6) or confused with the total factor count of the odd part.
+**mistake_e:** Counted all 12 positive factors of 60 without filtering for odd: (2+1)(1+1)(1+1) = 12.
+**common_trap:** Counting all factors instead of only odd ones. The shortcut: odd factors of n = all factors of (n with every 2 removed). Ignore the 2^a part entirely.
+**takeaway:** If n = 2^a × m where m is odd, the number of odd positive factors of n equals the number of factors of m. Even the exponent of 2 is irrelevant — strip it, then apply the factor-count formula to the odd part.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Factors
+
+If p and q are distinct prime numbers, how many positive factors does the product p × q have?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 5
+- E) 6
+
+**answer:** C
+**fastest_path:** p × q = p¹ × q¹. Factor count = (1+1)(1+1) = 4.
+**explanation:** p × q has prime factorization p¹ × q¹. Factor count formula: (1+1)(1+1) = 4. The four factors are 1, p, q, and p×q. Example: p=2, q=3 → 6 has factors 1, 2, 3, 6 ✓.
+**mistake_a:** Listed only 1 and p×q — missed that p and q each individually divide p×q.
+**mistake_b:** Listed 1, p, p×q — forgot that q alone is also a factor.
+**mistake_d:** Assumed primes might contribute extra factors — but primes have exactly 2 factors (1 and themselves), and the formula already captures this.
+**mistake_e:** Applied wrong formula: (1+1+1)(1+1) = 6 (used exponent 2 for one prime by mistake).
+**common_trap:** Forgetting 1 and p×q as factors. Every positive integer n has at least 1 and n itself as factors; intermediate primes also count individually.
+**takeaway:** n = p×q (distinct primes): exactly 4 factors — 1, p, q, pq. Generalize: n = p^a × q^b × ... → (a+1)(b+1)... factors. Always include 1 and n in the list.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Remainders — Cyclicity
+
+What is the remainder when 7^83 is divided by 5?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 0
+
+**answer:** C
+**fastest_path:** 7 ≡ 2 (mod 5). Powers of 2 mod 5 cycle [2, 4, 3, 1], period 4. 83 mod 4 = 3 → position 3 in the cycle → remainder 3.
+**explanation:** Since 7 ≡ 2 (mod 5), compute 2^n mod 5 for small n to find the cycle: 2¹=2, 2²=4, 2³=8≡3, 2⁴=16≡1, then repeats. Cycle: [2, 4, 3, 1], period 4. Find position of 83 in the cycle: 83 ÷ 4 = 20 remainder 3 → position 3 → cycle element 3. So 7^83 ≡ 3 (mod 5).
+**mistake_a:** Found 83 mod 4 = 3 but used position 4 of the cycle (value 1) instead of position 3 — off by one in indexing.
+**mistake_b:** Assumed the remainder of a large odd power is just 7 mod 5 = 2 — did not compute the cycle.
+**mistake_d:** Found 83 mod 4 = 3 but used position 2 (value 4) — another index error.
+**mistake_e:** Concluded 7^n is divisible by 5 — impossible since gcd(7, 5) = 1, so 5 never divides 7^n.
+**common_trap:** When n mod L = 0 (where L is the cycle length), the position is L (the last element), not 0. Cycles run from position 1 to L, not 0 to L−1. Here 83 mod 4 = 3 (not 0), so there is no ambiguity — but always index from 1.
+**takeaway:** To find a^n mod m: compute powers a^1, a^2, ... mod m until the pattern repeats; find cycle length L; compute n mod L (if result is 0, use L); read off the cycle element at that position.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Sum of Factors
+
+What is the sum of all positive factors of 48?
+
+- A) 60
+- B) 96
+- C) 120
+- D) 124
+- E) 156
+
+**answer:** D
+**fastest_path:** 48 = 2⁴ × 3. Sum = (1+2+4+8+16)(1+3) = 31 × 4 = 124.
+**explanation:** For n = p^a × q^b × ..., the sum of all positive factors = (1 + p + p² + ... + p^a)(1 + q + ... + q^b).... For 48 = 2⁴ × 3¹: Sum = (1+2+4+8+16)(1+3) = 31 × 4 = 124. Verify by listing: 1+2+3+4+6+8+12+16+24+48 = 124 ✓.
+**mistake_a:** Used wrong factorization 48 = 2³ × 3 (missing one factor of 2): (1+2+4+8)(1+3) = 15 × 4 = 60.
+**mistake_b:** Doubled 48: 2 × 48 = 96 — confused "sum of factors" with "twice the number."
+**mistake_c:** Dropped the 1 from the geometric sum: (2+4+8+16)(1+3) = 30 × 4 = 120.
+**mistake_e:** Added a spurious factor: 32 does not divide 48 (48/32 = 1.5), but if mistakenly included: 124 + 32 = 156.
+**common_trap:** Mis-factorizing 48. A common slip: 48 = 4 × 12 = 2² × 12 — stop there without extracting 12 = 2² × 3. Always reduce completely: 48 = 2 × 24 = 4 × 12 = 8 × 6 = 2⁴ × 3.
+**takeaway:** Sum of all factors of n = ∏ (1 + p + p² + ... + p^e) over each prime p^e in the factorization. Each factor is a finite geometric series: (p^(e+1) − 1)/(p − 1). Memorize the structure, not just the result.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** LCM — Pair Counting
+
+How many ordered pairs of positive integers (a, b) satisfy LCM(a, b) = 12?
+
+- A) 6
+- B) 9
+- C) 12
+- D) 15
+- E) 18
+
+**answer:** D
+**fastest_path:** 12 = 2² × 3. For prime 2 (max exp 2): ordered exponent pairs with max = 2 → 2(2)+1 = 5 pairs. For prime 3 (max exp 1): pairs with max = 1 → 2(1)+1 = 3 pairs. Total: 5 × 3 = 15.
+**explanation:** For LCM(a, b) = 12 = 2² × 3¹, each prime must achieve its required maximum in at least one of a or b. Count ordered pairs (x, y) of exponents for each prime where max(x, y) = e:
+
+Prime 2 (e = 2): pairs (x, y) with 0 ≤ x, y ≤ 2 and max(x, y) = 2. Total pairs with x, y ∈ {0,1,2}: 3² = 9. Pairs with max ≤ 1: 2² = 4. Pairs with max = 2: 9 − 4 = 5. Explicitly: (0,2),(1,2),(2,0),(2,1),(2,2).
+
+Prime 3 (e = 1): pairs with max(x, y) = 1, x, y ∈ {0,1}. Total: 2² = 4. Pairs with max = 0: 1. Pairs with max = 1: 3. Explicitly: (0,1),(1,0),(1,1).
+
+Total ordered pairs: 5 × 3 = 15.
+**mistake_a:** Counted unordered factor pairs of 12 — missed that (a,b) and (b,a) are distinct ordered pairs when a ≠ b.
+**mistake_b:** Applied the wrong count formula for each prime: used (e+1) per prime and multiplied: 3 × 3 = 9, ignoring that prime 2 has e=2 (giving 5 pairs, not 3).
+**mistake_c:** Confused the answer with the number of factors of 12 = 6, then doubled to 12.
+**mistake_e:** Computed (e+1)² per prime and multiplied without subtracting the "max < e" cases: 3² × 2² = 36, then halved to 18.
+**common_trap:** Using (e+1)² instead of 2e+1 for the count per prime. The formula 2e+1 counts only pairs where the max equals exactly e; (e+1)² counts all pairs where max ≤ e.
+**takeaway:** Ordered pairs (a, b) with LCM = n: for each prime p^e dividing n, count = 2e + 1 (the pairs where max exponent = e). Multiply across all primes.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Divisibility — Powers of 2
+
+Is the positive integer n divisible by 8?
+
+(1) n is divisible by 4, and n/4 is even.
+(2) n² is divisible by 16.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** (1): n = 4k with k even → n = 8m → definite YES. (2): n² div by 16 → n div by 4 only (e.g., n=4 qualifies but 4÷8 fails; n=8 also qualifies and passes) → inconsistent → insufficient.
+**explanation:** Statement (1): n divisible by 4 means n = 4k. n/4 = k is even → k = 2m → n = 8m. Definite YES. Sufficient.
+
+Statement (2): n² divisible by 16 = 2⁴. Exponent of 2 in n² is ≥ 4, so exponent of 2 in n is ≥ 2 — meaning n is divisible by 4 but not necessarily 8. Test n=4: 4²=16, divisible by 16 ✓; but 4 ÷ 8 is not an integer → NO. Test n=8: 8²=64, divisible by 16 ✓; 8 ÷ 8 = 1 → YES. Two answers → insufficient.
+
+Answer: A.
+**mistake_b:** Concluded only Statement 2 sufficient — didn't check whether n²/16 integer forces n/8 integer (it forces only n/4 integer).
+**mistake_c:** Required both statements — Statement 1 alone gives a definite YES.
+**mistake_d:** Treated each as sufficient — Statement 2 gives both YES and NO.
+**mistake_e:** Concluded both insufficient — Statement 1 is definitive.
+**common_trap:** For n² divisible by p^k, students often conclude n is divisible by p^k. The correct inference: exponents double in squares, so n² div by 2⁴ → n div by 2² (not 2⁴). Always halve the exponent when moving from n² to n.
+**takeaway:** n² div by p^k → n div by p^⌈k/2⌉. Here: n² div by 2⁴ → n div by 2² = 4, not 8. Statement (1) is designed to be unambiguous: 4|n and n/4 even is equivalent to 8|n in one step.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Divisibility — Consecutive Integers
+
+If n is a positive integer, which of the following must be divisible by 4?
+
+- A) n² + n
+- B) n(n + 2)
+- C) n(n + 1)(n + 2)(n + 3)
+- D) (n + 1)(n + 2)
+- E) n³ − n
+
+**answer:** C
+**fastest_path:** Product of 4 consecutive integers always contains 2 even numbers, one divisible by 4 → divisible by 4! = 24. Test others with n=1 to eliminate.
+**explanation:** C) n(n+1)(n+2)(n+3) is the product of 4 consecutive integers. Any 4 consecutive integers contain exactly 2 even numbers of the form 2k and 2(k+1). Their product = 4k(k+1). Since k(k+1) is consecutive integers (always even), 4k(k+1) is divisible by 8. The full product of 4 consecutives is always divisible by 4! = 24, hence by 4.
+
+Eliminate others with n=1:
+A) 1²+1 = 2 — not divisible by 4.
+B) 1×3 = 3 — not even.
+D) 2×3 = 6 — not divisible by 4.
+E) 1³−1 = 0 (degenerate); n=2: 2³−2 = 6 — not divisible by 4.
+**mistake_a:** Selected A because n(n+1) is always even — true, but "always even" is not "always div by 4." Test n=1: 2 fails.
+**mistake_b:** Noted n(n+2) contains two numbers of the same parity — when n is odd, both are odd; product is odd, not divisible by 4.
+**mistake_d:** Product of 2 consecutive integers always divisible by 2, not always by 4 — test n=1: 6 fails.
+**mistake_e:** Recognized n³−n = (n−1)n(n+1) is product of 3 consecutives, always div by 6 — but 6 does not imply 4. Test n=2: 6 fails.
+**common_trap:** Stopping at "always divisible by 6" for choice E and concluding it's also divisible by 4. Divisibility by 6 and divisibility by 4 are independent conditions. Need a factor of 4 to guarantee 4|product — three consecutive integers don't always supply it.
+**takeaway:** Product of k consecutive integers is always divisible by k!. So 3 consecutives → 6, 4 consecutives → 24. For divisibility by 4 specifically, you need at least 4 consecutive integers (4! = 24 is divisible by 4).
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Counting — Inclusion-Exclusion
+
+How many integers from 1 to 100 are divisible by 3 or by 5 (or both)?
+
+- A) 40
+- B) 44
+- C) 47
+- D) 50
+- E) 53
+
+**answer:** C
+**fastest_path:** |div by 3| + |div by 5| − |div by 15| = 33 + 20 − 6 = 47.
+**explanation:** Use inclusion-exclusion: |A ∪ B| = |A| + |B| − |A ∩ B|.
+Divisible by 3 in [1,100]: ⌊100/3⌋ = 33.
+Divisible by 5 in [1,100]: ⌊100/5⌋ = 20.
+Divisible by both 3 and 5 (i.e., by 15): ⌊100/15⌋ = 6.
+Divisible by 3 or 5 = 33 + 20 − 6 = 47. Without the subtraction, multiples of 15 (such as 15, 30, 45, 60, 75, 90) are counted twice.
+**mistake_a:** Subtracted the overlap twice: 33 + 20 − 6 − 6 = 41, then rounded or adjusted to 40.
+**mistake_b:** Used an incorrect overlap count (perhaps ⌊100/18⌋ = 5 instead of 6): 33 + 20 − 5 = 48, or made an arithmetic slip.
+**mistake_d:** Added without subtracting any overlap: 33 + 20 = 53; then reduced by 3 for some spurious reason → 50.
+**mistake_e:** Added without subtracting the overlap at all: 33 + 20 = 53.
+**common_trap:** Forgetting to subtract the intersection. Multiples of 15 (divisible by both 3 and 5) appear in both the "div by 3" and "div by 5" counts — without subtraction, each is counted twice.
+**takeaway:** |A ∪ B| = |A| + |B| − |A ∩ B|. The intersection of "div by a" and "div by b" is "div by LCM(a, b)." Here LCM(3,5)=15. Always draw a Venn diagram mentally: overlap gets subtracted exactly once.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Integer Divisors — Negative Included
+
+For how many integers n is 72/n also an integer?
+
+- A) 12
+- B) 18
+- C) 20
+- D) 24
+- E) 36
+
+**answer:** D
+**fastest_path:** 72 = 2³×3² has (3+1)(2+1) = 12 positive divisors. Each has a negative counterpart. Total: 12 + 12 = 24.
+**explanation:** 72/n is an integer if and only if n is a divisor of 72 (and n ≠ 0). 72 = 2³ × 3² → positive divisors: (3+1)(2+1) = 12 (they are 1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72). The question asks for integers n (not restricted to positive), so negative divisors also qualify: −1, −2, −3, ..., −72 each produce 72/n as a negative integer. Total: 12 positive + 12 negative = 24.
+**mistake_a:** Counted only positive divisors: 12. The word "integers" includes negatives — 72/(−4) = −18 is a valid integer.
+**mistake_b:** Computed an incorrect factor count: 72 = 2³×3² gives exactly 12 positive factors, not 18.
+**mistake_c:** Perhaps counted factors of a slightly different number or used an incorrect formula.
+**mistake_e:** Doubled the factor count incorrectly: perhaps computed 3 × (2+1) × 4 = 36 by misapplying the formula.
+**common_trap:** Restricting to positive divisors when the problem says "integers." Any time the domain is integers (not positive integers), divisors come in ±pairs, doubling the count.
+**takeaway:** When the problem says "integers n," include both positive and negative divisors. The total number of integer divisors of n (nonzero) is 2 × (number of positive divisors). Only restrict to positive when the problem specifies.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Divisibility — Combining Conditions
+
+Is the positive integer n divisible by 36?
+
+(1) n is divisible by 12.
+(2) n is divisible by 18.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** 36 = 2²×3². (1) gives 2²×3¹ — lacks 3². (2) gives 2¹×3² — lacks 2². Together: n div by LCM(12,18) = 2²×3² = 36. Sufficient.
+**explanation:** 36 = 2² × 3². We need n's factorization to include at least 2² and 3².
+
+Statement (1): 12 = 2²×3. Guarantees 2² and 3¹ — the second power of 3 is missing. Counterexample: n=12 is divisible by 12 but 12/36 is not an integer. n=36 is divisible by 12 and by 36. Insufficient (both YES and NO possible).
+
+Statement (2): 18 = 2×3². Guarantees 2¹ and 3² — the second power of 2 is missing. Counterexample: n=18 is divisible by 18 but not by 36. n=36 works. Insufficient.
+
+Together: n divisible by both 12 and 18 → n divisible by LCM(12, 18) = 2²×3² = 36. Definite YES. Sufficient. Answer: C.
+**mistake_a:** Concluded (1) alone sufficient — 12 guarantees only 3¹, not the 3² that 36 requires.
+**mistake_b:** Concluded (2) alone sufficient — 18 guarantees only 2¹, not the 2² that 36 requires.
+**mistake_d:** Concluded each alone sufficient — neither provides the full prime power needed.
+**mistake_e:** Concluded together insufficient — LCM(12,18) = 36 pinpoints the exact divisibility needed.
+**common_trap:** Not tracking which prime power is missing from each statement. Write 36 = 2²×3² and check: does (1) give 2²? Yes. Does (1) give 3²? No — only 3¹. Does (2) give 3²? Yes. Does (2) give 2²? No — only 2¹. Each statement covers exactly what the other lacks, so together they combine cleanly.
+**takeaway:** For "is n div by k?" DS: factor k. For each statement, audit which prime powers it guarantees. If any prime's guaranteed exponent falls below k's requirement, that statement alone is insufficient. Combine by computing LCM of the conditions' divisors.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Factor Count — Structure
+
+How many positive integers less than or equal to 200 have exactly 3 positive factors?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 7
+- E) 8
+
+**answer:** C
+**fastest_path:** Exactly 3 factors ↔ n = p² for some prime p. Count primes with p² ≤ 200 (p ≤ 14.1): 2, 3, 5, 7, 11, 13 → 6 primes.
+**explanation:** A positive integer n has exactly 3 positive factors iff n = p² for some prime p.
+
+Why: list the 3 factors in order: 1 < d < n. The pair (d, n/d) must give all three, so n/d = d, meaning d² = n. Thus n is a perfect square of its middle factor d. If d were composite (d = ab with 1 < a < b < d), then a, b, d, and n would give at least 4 distinct factors. So d must be prime.
+
+Primes p with p² ≤ 200 (p ≤ √200 ≈ 14.14): 2²=4, 3²=9, 5²=25, 7²=49, 11²=121, 13²=169. Next prime: 17²=289 > 200. Count: 6.
+**mistake_a:** Stopped at primes 2, 3, 5, 7 only (missed 11 and 13, whose squares 121 and 169 are still ≤ 200).
+**mistake_b:** Included 2, 3, 5, 7, 11 — stopped just before 13; but 13² = 169 ≤ 200 ✓.
+**mistake_d:** Included 17² = 289, which exceeds 200 — this does not count.
+**mistake_e:** Also included 14² = 196, but 14 = 2×7 is composite. 196 = 2²×7² has (2+1)(2+1) = 9 factors, not 3.
+**common_trap:** Using the wrong bound. The prime p must satisfy p² ≤ 200, so p ≤ 14.14. Primes at most 14: 2, 3, 5, 7, 11, 13 — exactly 6 of them. Also, only *prime* squares qualify; 14² = 196 has 9 factors, not 3.
+**takeaway:** Exactly 3 factors ↔ n = p² (prime squared). Exactly 4 factors ↔ n = p³ or n = p×q (distinct primes). These structural facts appear repeatedly on the GMAT — memorize them.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Product of All Factors
+
+If n is an integer with 1 < n < 20, and the product of all positive factors of n equals n³, how many such values of n exist?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** B
+**fastest_path:** Product of all factors = n^(k/2) where k = factor count. n^(k/2) = n³ → k = 6. Numbers in (1,20) with exactly 6 factors: 12 = 2²×3 and 18 = 2×3². Count: 2.
+**explanation:** When n has k positive factors, they pair as (d, n/d), each pair multiplying to n. With k/2 such pairs, the product of all factors = n^(k/2). Set n^(k/2) = n³ → k/2 = 3 → k = 6. We need integers n with 1 < n < 20 and exactly 6 positive factors.
+
+Numbers with 6 factors have the form p⁵ or p²×q (distinct primes). In (1, 20):
+— p⁵: 2⁵ = 32 > 20. No valid values.
+— p²×q: 2²×3 = 12 ✓; 3²×2 = 18 ✓; 2²×5 = 20 (not strictly < 20) ✗; others exceed 20.
+
+Valid values: 12 and 18. Verify: 12 has factors 1,2,3,4,6,12 (k=6); product = 1×2×3×4×6×12 = 1728 = 12³ ✓. 18 has factors 1,2,3,6,9,18 (k=6); product = 1×2×3×6×9×18 = 5832 = 18³ ✓. Count: 2.
+**mistake_a:** Found only n=12, missed n=18 (didn't check the p²×q form with p=3).
+**mistake_c:** Also included n=32 (which satisfies the factor-product condition but violates n < 20), or some other out-of-range value.
+**mistake_d:** Applied an incorrect formula and found spurious values like 8 (k=4, product = 8² ≠ 8³).
+**mistake_e:** Didn't apply the n < 20 constraint and found all numbers with exactly 6 factors.
+**common_trap:** Not knowing that the product of all factors of n equals n^(k/2). Students who try to list and multiply factors directly often make arithmetic errors or lose track of the structure.
+**takeaway:** Product of all positive factors of n = n^(k/2), where k is the total factor count. If the product equals n^m, then k = 2m. Combine with the structural forms for specific factor counts: k=6 requires n = p⁵ or p²q.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Counting — Divisibility Intersection
+
+How many integers from 1 to 300 are divisible by 4 but NOT divisible by 6?
+
+- A) 50
+- B) 60
+- C) 75
+- D) 100
+- E) 125
+
+**answer:** A
+**fastest_path:** Div by 4: ⌊300/4⌋ = 75. Div by both 4 and 6 = div by LCM(4,6) = 12: ⌊300/12⌋ = 25. Answer: 75 − 25 = 50.
+**explanation:** "Divisible by 4 but not 6" = (divisible by 4) − (divisible by both 4 and 6). Divisible by both 4 and 6 means divisible by LCM(4, 6). Since GCD(4, 6) = 2, LCM = 4×6/2 = 12.
+
+Count div by 4 in [1,300]: ⌊300/4⌋ = 75.
+Count div by 12 in [1,300]: ⌊300/12⌋ = 25.
+Div by 4 but not 6: 75 − 25 = 50.
+
+Sanity check on small range: in [1,12], divisible by 4: {4, 8, 12}; divisible by 12: {12}; by 4 not 6: {4, 8} → 2 values. Formula: 3 − 1 = 2 ✓.
+**mistake_b:** Computed LCM(4,6) = 24 (used product instead of product/GCD): ⌊300/24⌋ = 12; 75 − 12 = 63 → rounded to 60.
+**mistake_c:** Reported the "div by 4" count without subtracting: 75.
+**mistake_d:** Divided 300 by 3 = 100, conflating this with the correct method.
+**mistake_e:** Divided 300 by some wrong divisor or applied an incorrect fraction: 300 × 5/12 ≈ 125.
+**common_trap:** Computing LCM(4, 6) incorrectly as 24 (the product) rather than 12 (the product divided by GCD). Always: LCM(a, b) = a×b / GCD(a, b). Here GCD(4,6) = 2, so LCM = 12.
+**takeaway:** "Divisible by A but not B" = |div by A| − |div by A and B| = |div by A| − |div by LCM(A,B)|. Compute LCM via the GCD formula, not by multiplying A and B directly.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Squarefree Integers — Consecutive Pair
+
+A positive integer is called "rough" if it is divisible by the square of some prime. What is the smallest positive integer n such that both n and n + 1 are rough?
+
+- A) 4
+- B) 6
+- C) 8
+- D) 9
+- E) 12
+
+**answer:** C
+**fastest_path:** List rough numbers: 4, 8, 9, 12, ... Check consecutive pairs: (4,5): 5 is squarefree ✗. (8,9): 8 = 2³ (div by 4 ✓), 9 = 3² (div by 9 ✓). Both rough → n = 8.
+**explanation:** A "rough" number is one divisible by p² for some prime p — equivalently, it is not squarefree (some prime appears at least twice in its factorization). Rough numbers in order: 4, 8, 9, 12, 16, 18, 20, 24, 25, ...
+
+Check consecutive pairs for the smallest n where n and n+1 are both rough:
+— n=4: 4 = 2² (rough ✓), 5 = 5 (squarefree, not rough ✗). Fails.
+— n=8: 8 = 2³ (divisible by 4 = 2² ✓, rough), 9 = 3² (divisible by 9 ✓, rough). Both rough! ✓
+
+No smaller pair exists because the only rough number below 8 is 4, and neither 3 nor 5 is rough.
+
+Answer: n = 8.
+**mistake_a:** n=4: 4 is rough, but 5 = 5¹ is squarefree. One of the pair fails.
+**mistake_b:** n=6: 6 = 2×3 — every prime appears exactly once, so 6 is squarefree (not rough). The pair (6,7) has both members squarefree.
+**mistake_d:** n=9: 9 = 3² is rough, but 10 = 2×5 is squarefree. The pair (9,10) fails. The question asks for n, where n is the smaller of the pair — which is 8, not 9.
+**mistake_e:** n=12: 12 = 2²×3 is rough, but 13 is prime (squarefree). Fails.
+**common_trap:** Checking only multiples of 4 (the most obvious rough numbers) and skipping 8. The key is that 8 = 2³ is rough *and* its neighbor 9 = 3² happens to be rough by a different prime. The alignment of two different primes squaring in adjacent integers is the insight.
+**takeaway:** A number is squarefree if every prime in its factorization appears exactly once. A rough (non-squarefree) number has at least one prime squared. Consecutive rough pairs require adjacent integers each divisible by some prime square — these pairs start at (8, 9) = (2³, 3²).
+**related_reading:** reading-quant-03-number-properties
