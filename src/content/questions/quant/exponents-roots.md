@@ -887,3 +887,475 @@ Verify: 4^(4²) = 4^16 and 4^(4 × 4) = 4^16. Both sides match.
 **common_trap:** Dividing both sides of x² = 4x by x — this discards a valid factor and can hide roots. Always factor the polynomial rather than dividing. Then apply domain constraints to eliminate invalid candidates.
 **takeaway:** For x^A = x^B with x > 0 and x ≠ 1: equate exponents using the one-to-one property. Factor the resulting polynomial — never divide by a variable. Apply domain constraints (x > 0, x ≠ 1) to discard invalid solutions after factoring.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Power of a Fraction
+
+What is the value of (2/3)³?
+
+- A) 2/3
+- B) 4/9
+- C) 8/27
+- D) 8/9
+- E) 2
+
+**answer:** C
+**fastest_path:** Cube numerator and denominator separately: 2³/3³ = 8/27.
+**explanation:** The rule (a/b)^n = a^n / b^n applies to any rational base. Cube the numerator: 2³ = 8. Cube the denominator: 3³ = 27. Result: 8/27. The exponent applies to *both* parts of the fraction independently.
+**mistake_a:** Did not apply the exponent at all; returned the base: 2/3.
+**mistake_b:** Only squared: 2²/3² = 4/9 (applied exponent 2 instead of 3).
+**mistake_d:** Cubed the numerator but only squared the denominator: 8/3² = 8/9.
+**mistake_e:** Treated the exponent as multiplication: (2/3) × 3 = 2.
+**common_trap:** Applying the exponent to only the numerator, or treating the exponent as a multiplier rather than a repeated product.
+**takeaway:** (a/b)^n = a^n / b^n. The exponent distributes over division — apply it to every factor separately. (2/3)³ ≠ 2/3 × 3 and ≠ 2³/3.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Nested Roots / Roots of Roots
+
+What is the value of ⁴√81?
+
+- A) 3
+- B) 4
+- C) 9
+- D) 20.25
+- E) 27
+
+**answer:** A
+**fastest_path:** 81 = 3⁴, so ⁴√81 = (3⁴)^(1/4) = 3.
+**explanation:** The fourth root is identical to raising to the power 1/4. Recognize that 81 = 3⁴. Then ⁴√81 = 81^(1/4) = (3⁴)^(1/4) = 3^(4 × 1/4) = 3¹ = 3. Alternatively: ⁴√81 = √(√81) = √9 = 3 — take the square root twice. Both paths reach 3.
+**mistake_b:** Bubbled the index of the radical (4) instead of evaluating the expression.
+**mistake_c:** Took a square root instead of a fourth root: √81 = 9.
+**mistake_d:** Divided instead of taking the root: 81 / 4 = 20.25.
+**mistake_e:** Confused 81 = 3⁴ with 3³ = 27 (off-by-one in the power table).
+**common_trap:** Dividing by the index instead of taking the root — ⁴√81 ≠ 81/4.
+**takeaway:** The nth root asks: what base raised to n equals the radicand? ⁴√81 asks what number, raised to the 4th power, equals 81. Since 3⁴ = 81, the answer is 3. Equivalently, ⁴√81 = 81^(1/4).
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of (4 × 9)^(1/2)?
+
+- A) 5
+- B) 6
+- C) 12
+- D) 18
+- E) 36
+
+**answer:** B
+**fastest_path:** Two routes: (i) 4 × 9 = 36 → √36 = 6. (ii) √4 × √9 = 2 × 3 = 6.
+**explanation:** Route 1 — simplify inside first: 4 × 9 = 36, then √36 = 6. Route 2 — distribute the root over the product using (ab)^(1/2) = a^(1/2) × b^(1/2): √4 × √9 = 2 × 3 = 6. Both routes give 6.
+**mistake_a:** Added the roots instead of multiplying: √4 + √9 = 2 + 3 = 5.
+**mistake_c:** Applied the root to only one factor: 4 × √9 = 4 × 3 = 12.
+**mistake_d:** Applied the root to only the other factor: √4 × 9 = 2 × 9 = 18.
+**mistake_e:** Did not apply the root at all: 4 × 9 = 36.
+**common_trap:** (ab)^(1/2) ≠ a + b^(1/2). The root must act on the full product; distributing it means multiplying — not adding — the individual roots.
+**takeaway:** (ab)^(1/2) = a^(1/2) × b^(1/2). Always distribute the exponent to every factor, or multiply first and then take the root. √a + √b and √(ab) are entirely different quantities.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+What is the value of 4^(−3/2)?
+
+- A) −8
+- B) −1/8
+- C) 1/8
+- D) 1/6
+- E) 8
+
+**answer:** C
+**fastest_path:** Negative flips to denominator: 1/(4^(3/2)) = 1/((√4)³) = 1/2³ = 1/8.
+**explanation:** Two rules apply here in sequence. Negative exponent: a^(−n) = 1/a^n, so 4^(−3/2) = 1/4^(3/2). Fractional exponent: 4^(3/2) = (4^(1/2))³ = 2³ = 8. Combine: 1/8.
+**mistake_a:** Treated the negative exponent as making the result negative: −(4^(3/2)) = −8.
+**mistake_b:** Got the magnitude right but kept the negative sign: −1/8.
+**mistake_d:** Computed 4^(3/2) as 4 × (3/2) = 6, then took the reciprocal: 1/6.
+**mistake_e:** Computed 4^(3/2) = 8 correctly but forgot that the negative exponent flips to a reciprocal.
+**common_trap:** A negative exponent never makes the value negative — it creates a reciprocal. The negative sign on the exponent and the sign of the final result are completely independent.
+**takeaway:** a^(−n) = 1/a^n. For negative fractional exponents, apply both rules: 4^(−3/2) → flip to 1/4^(3/2) → evaluate 4^(3/2) = 8 → result = 1/8.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Sign Behavior of Exponents
+
+What is the value of (−2)⁵?
+
+- A) −32
+- B) −10
+- C) 10
+- D) 25
+- E) 32
+
+**answer:** A
+**fastest_path:** Odd power preserves sign: 2⁵ = 32, so (−2)⁵ = −32.
+**explanation:** An odd exponent preserves the sign of the base. Group in pairs: (−2)(−2) = 4, (−2)(−2) = 4, with one (−2) remaining. Product: 4 × 4 × (−2) = −32. Contrast: (−2)⁴ = +16 because four negatives pair into two positives.
+**mistake_b:** Treated exponentiation as multiplication: (−2) × 5 = −10.
+**mistake_c:** Computed |−2| × 5 = 10, dropping the sign entirely.
+**mistake_d:** Confused (−2)⁵ with 5² = 25.
+**mistake_e:** Computed 2⁵ = 32 but dropped the negative sign of the base.
+**common_trap:** Dropping the negative sign when raising a negative base to an odd power. The sign survives because an odd count of negatives yields one net negative.
+**takeaway:** Even exponent → always non-negative: (−a)^(even) = a^(even). Odd exponent → preserves sign: (−a)^(odd) = −(a^(odd)). Odd multiplications: one negative always remains unpaired.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+What is the value of (8/27)^(2/3)?
+
+- A) 2/3
+- B) 4/9
+- C) 4/27
+- D) 16/81
+- E) 64/729
+
+**answer:** B
+**fastest_path:** (8/27)^(2/3) = (∛(8/27))² = (2/3)² = 4/9.
+**explanation:** Apply the fractional exponent to numerator and denominator separately: (8/27)^(2/3) = 8^(2/3) / 27^(2/3). Evaluate each factor: 8^(2/3) = (8^(1/3))² = 2² = 4. 27^(2/3) = (27^(1/3))² = 3² = 9. Result: 4/9.
+**mistake_a:** Took only the cube root without squaring: (8/27)^(1/3) = 2/3.
+**mistake_c:** Applied the exponent to the numerator only: 8^(2/3) / 27 = 4/27.
+**mistake_d:** Multiplied instead of exponentiating: (8/27) × (2/3) = 16/81.
+**mistake_e:** Squared without taking the cube root: (8/27)² = 64/729.
+**common_trap:** Treating a^(m/n) as a^m / n (dividing by n instead of taking the nth root). The denominator of the fractional exponent is the root; the numerator is the power.
+**takeaway:** (a/b)^(m/n) = a^(m/n) / b^(m/n). Take the root first (nth root), then raise to the power (m). Applying to a fraction: handle numerator and denominator independently.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Radical Quotient
+
+What is the value of √48 / √3?
+
+- A) 2
+- B) 3√3
+- C) 4
+- D) 4√3
+- E) 16
+
+**answer:** C
+**fastest_path:** √48/√3 = √(48/3) = √16 = 4.
+**explanation:** Use the quotient rule: √a / √b = √(a/b). So √48/√3 = √(48/3) = √16 = 4. Alternative path: simplify the numerator first — √48 = √(16 × 3) = 4√3. Then (4√3)/√3 = 4 (the √3 cancels).
+**mistake_a:** Subtracted radicands: √48 − √3 ≈ 5.2; then misidentified the closest integer as 2.
+**mistake_b:** Kept an unsimplified form: 3√3.
+**mistake_d:** Simplified √48 = 4√3 correctly but forgot to cancel √3 with the denominator.
+**mistake_e:** Divided the radicands without taking the root: 48/3 = 16 (correct intermediate) but returned 16 instead of √16.
+**common_trap:** After simplifying √48 = 4√3, students often stop and report 4√3 — forgetting that the √3 in the numerator must cancel with the √3 denominator.
+**takeaway:** √a / √b = √(a/b). Equivalently, simplify the numerator to isolate a factor matching the denominator's radical, then cancel. Both methods confirm the result is a rational integer when a/b is a perfect square.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponential Equations — Mixed Bases
+
+If 4^(x+1) = 8^x, what is the value of x?
+
+- A) 1/2
+- B) 1
+- C) 2
+- D) 3
+- E) 4
+
+**answer:** C
+**fastest_path:** Convert to base 2: 2^(2x+2) = 2^(3x) → 2x + 2 = 3x → x = 2.
+**explanation:** Both 4 and 8 are powers of 2. Rewrite: 4^(x+1) = (2²)^(x+1) = 2^(2x+2). And 8^x = (2³)^x = 2^(3x). Same base → equate exponents: 2x + 2 = 3x → x = 2. Verify: 4³ = 64 = 8² ✓.
+**mistake_a:** Used an invalid method (took the ratio of bases without converting exponents); arrived at x = 1/2 through faulty algebra.
+**mistake_b:** Misidentified 8 as 2⁴ instead of 2³: 2^(2x+2) = 2^(4x) → 2x+2 = 4x → x = 1.
+**mistake_d:** Correct setup but arithmetic slip: 2x + 2 = 3x → x = 3 (incorrectly added 2 to both sides instead of collecting x terms).
+**mistake_e:** Misidentified 4 as 2¹ (wrote 2^(x+1) = 2^(3x) → x+1 = 3x → x = 1/2), then compounded the error.
+**common_trap:** Confusing 8 = 2³ with 8 = 2⁴. Memorize: 4 = 2², 8 = 2³, 16 = 2⁴, 32 = 2⁵. One wrong base conversion cascades to a wrong answer.
+**takeaway:** When exponential equations involve different bases that share a common base, convert everything to that common base first. The bottleneck is accurate base identification — double-check before setting up the exponent equation.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Rationalization — Simple
+
+What is the simplified form of 15 / √5?
+
+- A) 3
+- B) 3√3
+- C) 3√5
+- D) 5√5
+- E) 15√5
+
+**answer:** C
+**fastest_path:** Multiply by √5/√5: (15√5) / 5 = 3√5.
+**explanation:** To rationalize 15/√5, multiply numerator and denominator by √5: (15 × √5) / (√5 × √5) = 15√5 / 5 = 3√5. Alternative: 15/√5 = √(15²/5) = √(225/5) = √45 = √(9 × 5) = 3√5 — same result.
+**mistake_a:** Computed 15/5 = 3, omitting the √5 that lands in the numerator.
+**mistake_b:** Multiplied by √3/√3 instead of √5/√5 (wrong rationalizing factor): produced 3√3 from a flawed cancellation.
+**mistake_d:** Divided by 3 instead of 5 in the final reduction step: 15√5/3 = 5√5.
+**mistake_e:** Moved √5 into the numerator but forgot to divide the coefficient by the 5 that lands in the denominator.
+**common_trap:** Forgetting that rationalizing puts a factor of n (here 5) in the denominator that must fully reduce the coefficient. The step 15√5/5 = 3√5 is where many students stop prematurely.
+**takeaway:** To rationalize x/√n: multiply by √n/√n to get x√n/n, then simplify the coefficient x/n. Always reduce the resulting fraction fully.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+For a > 0, which of the following is equivalent to a^(3/2) / a^(1/2)?
+
+- A) a²
+- B) a
+- C) a^(3/4)
+- D) 1/a
+- E) √a
+
+**answer:** B
+**fastest_path:** Subtract exponents: 3/2 − 1/2 = 1 → a¹ = a.
+**explanation:** Same-base division: a^m / a^n = a^(m−n). Here m = 3/2, n = 1/2. Fraction subtraction: 3/2 − 1/2 = 2/2 = 1. Result: a¹ = a.
+**mistake_a:** Added exponents instead of subtracting: 3/2 + 1/2 = 2 → a².
+**mistake_c:** Averaged the exponents instead of subtracting: (3/2 + 1/2)/2 = 1 → a¹, then miscomputed as 3/4 → a^(3/4).
+**mistake_d:** Subtracted in the wrong direction: 1/2 − 3/2 = −1 → a^(−1) = 1/a.
+**mistake_e:** Computed 3/2 − 1/2 = 1 correctly but then wrote a^(1/2) = √a (off-by-one confusion with the 1/2 exponent).
+**common_trap:** Adding exponents when dividing — the quotient rule is subtraction, not addition. a^(3/2)/a^(1/2) uses the same rule as a³/a = a², but with fractional exponents.
+**takeaway:** a^m / a^n = a^(m−n) for any real exponents m and n. Fraction subtraction in the exponent: 3/2 − 1/2 = 1. The result is a, not a² or √a.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Towers
+
+What is the value of 2^(3²)?
+
+- A) 64
+- B) 128
+- C) 256
+- D) 512
+- E) 1,024
+
+**answer:** D
+**fastest_path:** Evaluate the inner exponent first: 3² = 9, then 2⁹ = 512.
+**explanation:** In a tower of exponents, evaluate from the top down — the innermost expression first. 2^(3²) means 2 raised to the power of (3 squared). Step 1: 3² = 9. Step 2: 2⁹ = 512. These two interpretations give strikingly different results: 2^(3²) = 2⁹ = 512, while (2³)² = 2⁶ = 64.
+**mistake_a:** Computed (2³)² = 2⁶ = 64 — applied the power-of-a-power rule by multiplying exponents (3 × 2 = 6) instead of evaluating 3² first.
+**mistake_b:** Treated the exponent as 3 + 2² = 7, computing 2⁷ = 128.
+**mistake_c:** Used an incorrect intermediate: 2⁸ = 256.
+**mistake_e:** Over-counted by one step: 2^10 = 1,024.
+**common_trap:** Confusing 2^(3²) with (2³)². Without explicit parentheses forcing a different grouping, a^(b^c) evaluates b^c first (top-down), not as (a^b)^c = a^(bc).
+**takeaway:** Tower rule: 2^(3²) = 2^9 = 512, not 2^6 = 64. Evaluate top-to-bottom. This is distinct from the power-of-a-power rule, which applies when the base is already raised to a power and then raised again: (2³)² = 2⁶.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Radical Equations — One-Step
+
+If √(x + 4) = 5, what is the value of x?
+
+- A) 1
+- B) 9
+- C) 21
+- D) 25
+- E) 29
+
+**answer:** C
+**fastest_path:** Square both sides: x + 4 = 25 → x = 21.
+**explanation:** The radical is already isolated. Square both sides to eliminate it: (√(x+4))² = 5² → x + 4 = 25 → x = 21. Verify: √(21+4) = √25 = 5 ✓. No extraneous roots arise here because the right side (5) is positive.
+**mistake_a:** Misread the equation as √x + 4 = 5 → √x = 1 → x = 1 (incorrectly parsed where the radical ends).
+**mistake_b:** Misread as √x + 2 = 5 (treating √4 = 2 as a separate term) → √x = 3 → x = 9.
+**mistake_d:** Squared 5 correctly but forgot to subtract 4: x = 25.
+**mistake_e:** Solved x + 4 = 25 but added 4 rather than subtracting: x = 29.
+**common_trap:** Parsing error — reading √(x+4) as √x + 4. The radical covers the entire expression x + 4; squaring both sides eliminates it all at once.
+**takeaway:** To solve √f(x) = k: (1) isolate the radical if needed, (2) square both sides — the radical disappears entirely, (3) solve the resulting equation, (4) verify in the original (squaring can introduce extraneous roots when the right side could be negative). See Q22 for the extraneous-root case.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponential Inequality — Integer Counting
+
+How many positive integers x satisfy 2^x < x³?
+
+- A) 6
+- B) 7
+- C) 8
+- D) 9
+- E) Infinitely many
+
+**answer:** C
+**fastest_path:** Test boundaries: x=1 fails (2>1); x=2 through x=9 pass; x=10 fails (1024 > 1000). Count: 8.
+**explanation:** Compare 2^x and x³ at each positive integer.
+
+- x=1: 2¹=2 vs 1³=1. 2>1. Fails.
+- x=2: 4 vs 8. 4<8. Passes.
+- x=3: 8 vs 27. Passes. x=4: 16 vs 64. Passes. x=5: 32 vs 125. Passes.
+- x=6: 64 vs 216. Passes. x=7: 128 vs 343. Passes. x=8: 256 vs 512. Passes.
+- x=9: 512 vs 729. 512<729. Passes.
+- x=10: 2^10=1,024 vs 10³=1,000. 1,024>1,000. Fails. Exponential has overtaken the cubic and will not fall behind again.
+
+Satisfying integers: 2, 3, 4, 5, 6, 7, 8, 9 → 8 integers.
+**mistake_a:** Stopped testing at x=7 (missed x=8 and x=9); counted 6.
+**mistake_b:** Misidentified the upper boundary as x=8 or missed one value; counted 7.
+**mistake_d:** Included x=1 (which fails, since 2>1) or miscounted the upper boundary; got 9.
+**mistake_e:** Assumed cubic always exceeds exponential for large x — precisely backward. For any fixed base > 1, the exponential eventually and permanently dominates any polynomial. The crossover for base 2 vs. x³ occurs between x=9 and x=10.
+**common_trap:** Option E sounds mathematically sophisticated but reverses the asymptotic truth. The set of satisfying integers is finite; careful boundary testing reveals it is exactly {2, 3, …, 9}.
+**takeaway:** For exponential vs. polynomial comparisons over positive integers, identify both bounds by systematic testing: the lower bound where exponential first falls below polynomial, and the upper bound where it overtakes. Benchmark: 2^10 = 1,024 just exceeds 10³ = 1,000 — that x=10 crossing is the key test.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Radical Transformation — Perfect Square Recognition
+
+If x = 5 + 2√6, what is the value of √x − 1/√x?
+
+- A) 1
+- B) 2
+- C) √2
+- D) 2√2
+- E) 2√6
+
+**answer:** D
+**fastest_path:** Recognize x = (√2+√3)². Then 1/√x = √3−√2 via conjugate. √x − 1/√x = 2√2.
+**explanation:** Step 1 — recognize the perfect square: 5 + 2√6 = 2 + 2√2·√3 + 3 = (√2)² + 2·√2·√3 + (√3)² = (√2+√3)². So √x = √2+√3.
+
+Step 2 — rationalize 1/√x: multiply by the conjugate (√3−√2)/(√3−√2): 1/(√2+√3) = (√3−√2)/((√3)²−(√2)²) = (√3−√2)/(3−2) = √3−√2.
+
+Step 3 — subtract: √x − 1/√x = (√2+√3) − (√3−√2) = √2+√3−√3+√2 = 2√2.
+**mistake_a:** Approximated numerically (√x ≈ 3.146, 1/√x ≈ 0.318, difference ≈ 2.83) then misread the closest answer as 1 due to rounding.
+**mistake_b:** Computed (√x)² − 1 = x−1 = 4+2√6 and incorrectly simplified to 2.
+**mistake_c:** Obtained 2√2 through the correct steps but then halved it, arriving at √2.
+**mistake_e:** Did not simplify √x; assumed the answer contains √6 from the original form.
+**common_trap:** Missing the perfect-square recognition in Step 1. Without seeing that 5+2√6 = (√2+√3)², the problem is nearly intractable under time pressure. The pattern a + 2√(bc) = (√b + √c)² when a = b + c is a high-leverage Hard skill.
+**takeaway:** Pattern: (√p + √q)² = p + q + 2√(pq). When you see "integer + 2√(something)", check whether the integer equals the sum of two factors whose product is under the radical. Here: 5 = 2+3 and √6 = √(2·3), so the match is perfect.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Radical Expression — Ratio in DS
+
+Given that x and y are positive and x ≠ y, what is the value of (√x + √y) / (√x − √y)?
+
+(1) x = 9 and y = 4.
+(2) x/y = 9/4.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**fastest_path:** Rewrite as (r+1)/(r−1) where r = √(x/y). Both statements give r = 3/2 → value = 5. D.
+**explanation:** Divide numerator and denominator by √y: let r = √x/√y = √(x/y). Then (√x+√y)/(√x−√y) = (r+1)/(r−1). The expression depends only on r, not on the absolute values of x and y.
+
+Statement (1): x=9, y=4 → r = 3/2. Value = (3/2+1)/(3/2−1) = (5/2)/(1/2) = 5. Unique → sufficient.
+
+Statement (2): x/y = 9/4 → r = √(9/4) = 3/2. Same r → same value = 5. Unique → sufficient (even without knowing x and y individually).
+
+Each alone is sufficient → D.
+**mistake_a:** Concluded only Statement (1) is sufficient and (2) is insufficient, missing that the expression is fully determined by the ratio x/y alone.
+**mistake_b:** Concluded only Statement (2) is sufficient (unlikely error; included for completeness).
+**mistake_c:** Required both statements — unnecessary once the ratio insight is recognized.
+**mistake_e:** Concluded both are insufficient — completely missed the homogeneity structure of the expression.
+**common_trap:** Assuming (√x+√y)/(√x−√y) requires knowing x and y individually. When numerator and denominator are homogeneous expressions of the same degree in x and y, the ratio depends only on x/y — absolute values cancel out.
+**takeaway:** Expressions of the form (f(√x,√y))/(g(√x,√y)) where f and g are homogeneous of the same degree depend only on the ratio √x/√y = √(x/y). Statement (2) provides exactly this ratio, making it sufficient even without individual values.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Algebraic Radical Manipulation
+
+If x − y = 15 and √x + √y = 5, what is the value of √x − √y?
+
+- A) 1
+- B) 3
+- C) 5
+- D) √15
+- E) 15
+
+**answer:** B
+**fastest_path:** Factor x − y using difference of squares: (√x+√y)(√x−√y) = 15. Divide by 5: √x−√y = 3.
+**explanation:** Recognize the difference-of-squares identity applied to square roots: x − y = (√x)² − (√y)² = (√x + √y)(√x − √y). Substitute the known value: 5 × (√x − √y) = 15. Divide: √x − √y = 3.
+**mistake_a:** Attempted to solve the system of equations directly without the factoring shortcut; accumulated arithmetic errors and arrived at 1.
+**mistake_c:** Confused √x − √y with √x + √y = 5 (symmetry error).
+**mistake_d:** Applied the false identity √(x−y) = √x − √y, then computed √15 (one of the most common radical misconceptions).
+**mistake_e:** Bubbled x − y = 15 directly.
+**common_trap:** √(a−b) = √a − √b is FALSE. The correct identity is a − b = (√a + √b)(√a − √b). These two forms look similar but are structurally opposite.
+**takeaway:** x − y = (√x + √y)(√x − √y). This difference-of-squares factoring with square roots is a high-yield Hard pattern: when you are given the sum and the product (or the difference of squares), divide to get the difference. Sum × difference = difference of squares.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponent Equations — Integer Solutions
+
+If a and b are integers greater than 1 with a < b and a^b = b^a, what is the value of b/a?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) No such pair of integers exists.
+
+**answer:** B
+**fastest_path:** Test a=2: need 2^b = b^2. Try b=4: 2⁴=16, 4²=16. ✓ So b/a = 4/2 = 2.
+**explanation:** Systematically test small integer values.
+
+a=2: equation is 2^b = b^2.
+- b=3: 2³=8, 3²=9. Not equal.
+- b=4: 2⁴=16, 4²=16. Equal. ✓
+
+Check no other a works: a=3 requires 3^b = b^3. b=4: 81≠64. b=5: 243≠125. No solution. For a≥4 with b>a, the exponential 2^a grows quickly; no further integer pairs satisfy the equation.
+
+The unique solution with a,b > 1 and a < b is (a,b) = (2,4). Therefore b/a = 4/2 = 2.
+**mistake_a:** b/a = 1 requires a = b, excluded by hypothesis.
+**mistake_c:** Testing a=2, b=6: 2⁶=64 ≠ 6²=36. Or a=3, b=9: 3⁹ ≫ 9³. Neither works.
+**mistake_d:** Testing a=2, b=8: 2⁸=256 ≠ 8²=64. Does not satisfy.
+**mistake_e:** Giving up after the first failed test (b=3) without trying b=4 — the solution exists one step further.
+**common_trap:** Abandoning the search prematurely. Students who test (2,3) and find 8≠9 often conclude no solution exists. The solution (2,4) is exactly one step away.
+**takeaway:** For integer equations like a^b = b^a, test small cases methodically. The classic identity 2⁴ = 4² = 16 is the unique solution for integers greater than 1 with a < b. Recognizing this pair on sight is a useful number-sense benchmark.
+**related_reading:** reading-quant-04-algebra-and-equations
