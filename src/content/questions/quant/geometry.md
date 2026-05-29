@@ -957,3 +957,477 @@ Together: 4 < n < 12 → n ∈ {5, 6, 7, 8, 9, 10, 11}. 7 values. Still not uniq
 **common_trap:** Assuming the triangle inequality plus both bounds pins down a single value — it narrows the range but doesn't unique-ify.
 **takeaway:** Triangle inequality: |a − b| < third side < a + b. To pin down a unique side, need narrower bounds than just an open range.
 **related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Trapezoids
+
+A trapezoid has two parallel sides of lengths 8 and 12, and a height of 5. What is the area of the trapezoid?
+
+- A) 40
+- B) 45
+- C) 50
+- D) 60
+- E) 100
+
+**answer:** C
+**fastest_path:** Area = (1/2)(b₁ + b₂) × h = (1/2)(8 + 12)(5) = (1/2)(20)(5) = 50.
+**explanation:** Trapezoid area = (1/2)(sum of parallel sides) × height = (1/2)(8 + 12)(5) = (1/2)(20)(5) = 50. The "height" is the perpendicular distance between the two parallel sides, not the slant leg.
+**mistake_a:** Computed (8 + 12) × 5 = 100, then halved the wrong factor: (12 − 8) × 5 × 2 = 40 or just dropped the (1/2): 8 × 5 = 40.
+**mistake_b:** Multiplied by the average of the parallel sides without halving properly: (8 + 12)/2 × 5 is correct... wait, (20/2)(5) = 50. If instead computed (8/2 + 12) × 5/2 = (4 + 12)(2.5) = 40 ≠ 45. Students get 45 by using the wrong average (9 instead of 10): 9 × 5 = 45.
+**mistake_d:** Multiplied both bases by height without averaging: 12 × 5 = 60 (used only the longer base).
+**mistake_e:** Multiplied sum of bases by height without the (1/2): (8 + 12) × 5 = 100.
+**common_trap:** Forgetting the (1/2) factor, or using only one of the two parallel sides instead of their average.
+**takeaway:** Trapezoid area = (1/2)(b₁ + b₂) × h. Think of it as the average base times the height. Both parallel sides always appear in the formula.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Triangles
+
+What is the area of an equilateral triangle with side length 4?
+
+- A) 4
+- B) 4√2
+- C) 4√3
+- D) 8
+- E) 8√3
+
+**answer:** C
+**fastest_path:** Area = s²√3/4 = 16√3/4 = 4√3.
+**explanation:** Equilateral triangle area formula: s²√3/4. With s = 4: 16√3/4 = 4√3. Derived from base × height / 2: the height of an equilateral triangle with side s is h = s√3/2 = 2√3. Area = (1/2)(4)(2√3) = 4√3.
+**mistake_a:** Computed (1/2)(4)(2) = 4 — used height = s/2 instead of s√3/2.
+**mistake_b:** Confused equilateral triangle with 45-45-90 triangle and applied √2 instead of √3.
+**mistake_d:** Computed (1/2)(4)(4) = 8 — treated height as equal to the side length.
+**mistake_e:** Computed (4)²√3/2 = 8√3 — used s²√3/2 instead of s²√3/4 (off by a factor of 2 in the denominator).
+**common_trap:** Confusing the formula s²√3/4 with s²√3/2, or using side length as height.
+**takeaway:** Equilateral triangle: height = s√3/2; area = s²√3/4. Memorize both. Alternatively, derive area from base × height / 2 to verify.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Circles
+
+A circle has a radius of 6. What is the area of the sector with a central angle of 60°?
+
+- A) 2π
+- B) 4π
+- C) 6π
+- D) 9π
+- E) 36π
+
+**answer:** C
+**fastest_path:** (60/360) × π(6²) = (1/6)(36π) = 6π.
+**explanation:** Sector area = (central angle / 360°) × πr². With angle = 60° and r = 6: (60/360) × π(36) = (1/6)(36π) = 6π. A 60° sector is exactly 1/6 of the full circle.
+**mistake_a:** Computed (60/360) × 2π(6) = (1/6)(12π) = 2π — used circumference instead of area.
+**mistake_b:** Computed arc length and called it area: arc = (60/360) × 2π(6) = 2π, then doubled to 4π for unclear reasons.
+**mistake_d:** Computed πr²/4 = 9π — used (1/4) instead of (1/6) for the fraction.
+**mistake_e:** Bubbled the full circle area πr² = 36π — ignored the fractional sector.
+**common_trap:** Using arc length (circumference-based) instead of sector area (area-based). Both use the same angular fraction, but one multiplies by 2πr and the other by πr².
+**takeaway:** Sector area / full area = central angle / 360°. So sector area = (θ/360°) × πr². Arc length = (θ/360°) × 2πr. Same fraction, different base.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** 3D / Solids
+
+A right circular cone has a base radius of 3 and a height of 4. What is the volume of the cone?
+
+- A) 4π
+- B) 8π
+- C) 12π
+- D) 36π
+- E) 48π
+
+**answer:** C
+**fastest_path:** V = (1/3)πr²h = (1/3)π(9)(4) = 12π.
+**explanation:** Cone volume = (1/3)πr²h. With r = 3 and h = 4: (1/3)π(3²)(4) = (1/3)π(9)(4) = (1/3)(36π) = 12π. The cone holds exactly one-third the volume of the cylinder with the same base and height.
+**mistake_a:** Computed πrh = π(3)(4) = 12π, then divided by 3 again: 4π — applied (1/3) twice.
+**mistake_b:** Computed (1/3)πr × h = (1/3)(3)(4)π = 4π, then doubled: 8π — used r instead of r².
+**mistake_d:** Computed πr²h = 36π without the (1/3) factor — confused cone with cylinder.
+**mistake_e:** Computed πr²h × (4/3) = 48π — inverted the (1/3) to (4/3) from a fraction error.
+**common_trap:** Forgetting the (1/3) factor — a cone is 1/3 of the cylinder with the same base and height.
+**takeaway:** Cone: V = (1/3)πr²h. Cylinder: V = πr²h. The cone factor of 1/3 is the single most tested difference between these two solid formulas.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Circles
+
+In a circle, points A, B, and C all lie on the circle. If AB is a diameter of the circle, what is the measure of angle ACB?
+
+- A) 45°
+- B) 60°
+- C) 75°
+- D) 90°
+- E) It cannot be determined from the information given.
+
+**answer:** D
+**fastest_path:** Thales' theorem: any inscribed angle that subtends a diameter equals 90°.
+**explanation:** Thales' theorem: whenever one side of an inscribed angle is a diameter of the circle, the angle equals exactly 90°, regardless of where C is on the circle (as long as C is not on AB). This holds for every position of C on the major or minor arc.
+**mistake_a:** Applied the inscribed-angle-is-half-the-central-angle rule with a 90° central angle and halved it: 90°/2 = 45°. But the central angle for a diameter is 180° (a straight line), not 90°, so the inscribed angle = 180°/2 = 90°.
+**mistake_b:** Guessed an "equilateral" result (60°) because the problem involves a circle.
+**mistake_c:** Split the difference between A and B: 75° from unclear averaging.
+**mistake_e:** Thought the position of C on the circle changes the angle and chose "cannot be determined." Thales' theorem guarantees 90° regardless of C's position.
+**common_trap:** Thinking C's position on the circle matters. The inscribed angle over a diameter is always 90° — no exceptions.
+**takeaway:** Thales' theorem: if AB is a diameter of a circle and C lies on the circle (not at A or B), then angle ACB = 90°. Proof: the central angle for AB is 180°; inscribed angle = half the central angle = 90°.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Trapezoids
+
+A trapezoid has one parallel side that is twice the length of the other. If the area of the trapezoid is 54 and the height is 6, what is the length of the longer parallel side?
+
+- A) 9
+- B) 10
+- C) 12
+- D) 15
+- E) 18
+
+**answer:** C
+**fastest_path:** Let shorter = x, longer = 2x. (1/2)(x + 2x)(6) = 9x = 54 → x = 6 → longer = 12.
+**explanation:** Let the shorter parallel side = x and the longer = 2x. Trapezoid area = (1/2)(x + 2x)(6) = (1/2)(3x)(6) = 9x = 54. Solving: x = 6. Longer side = 2x = 12.
+**mistake_a:** Solved for x (the shorter side = 6) but then divided again: 54/6 = 9 and bubbled 9 instead of 2 × 6 = 12.
+**mistake_b:** Used (1/2)(x + 2x)(h) = x + 2x = 3x, then 3x = 54, x = 18, "longer" = 10 from unclear arithmetic.
+**mistake_d:** Set up (1/2)(x)(6) = 54 using only one base: x = 18, then took 18/... = 15.
+**mistake_e:** Set up (x + 2x) × 6 = 54 (forgot the 1/2): 18x = 54 → x = 3 → 2x = 6, then bubbled 18 from some step.
+**common_trap:** Forgetting to multiply by 2 at the end — finding the shorter base (6) and reporting it as the answer instead of the longer base (12).
+**takeaway:** Set up one variable for one base, express the other in terms of it, then substitute into area = (1/2)(b₁ + b₂)h. Read the question carefully: it asks for the longer side, not the variable you solved for.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Circles
+
+A chord of a circle with radius 10 is 16 units long. What is the distance from the center of the circle to the chord?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 7
+- E) 8
+
+**answer:** C
+**fastest_path:** Perpendicular from center bisects chord: half-chord = 8. d = √(10² − 8²) = √36 = 6. Recognize 6-8-10 triple.
+**explanation:** The perpendicular from the center to a chord bisects the chord. Half the chord = 8. This creates a right triangle with hypotenuse = radius = 10 and one leg = 8. Distance = √(10² − 8²) = √(100 − 64) = √36 = 6. Recognize the 6-8-10 Pythagorean triple (scaled from 3-4-5).
+**mistake_a:** Computed √(10² − 16²) — used the full chord length instead of the half-chord. The result is imaginary, so took |10 − 16|/2 = 3 or bubbled 4 from other arithmetic.
+**mistake_b:** Divided the radius instead of the chord: used r/2 = 5 as the answer without applying Pythagoras.
+**mistake_d:** Rounded √(10² − 8²) to 7 or mis-applied the formula.
+**mistake_e:** Bubbled 8 (the half-chord value) — confused the leg of the right triangle for the distance asked.
+**common_trap:** Using the full chord length (16) instead of the half-chord (8) in the Pythagorean theorem.
+**takeaway:** Perpendicular from center to chord bisects it. Use half the chord as one leg, the radius as the hypotenuse, and the perpendicular distance as the other leg: distance = √(r² − (chord/2)²).
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** 3D / Solids
+
+A rectangular box has dimensions 2, 3, and 6. What is the length of the space diagonal (the segment connecting two opposite vertices of the box)?
+
+- A) 5
+- B) 6
+- C) 7
+- D) 8
+- E) 11
+
+**answer:** C
+**fastest_path:** d = √(2² + 3² + 6²) = √(4 + 9 + 36) = √49 = 7.
+**explanation:** The space diagonal of a rectangular box with dimensions l, w, h is d = √(l² + w² + h²). With dimensions 2, 3, and 6: d = √(4 + 9 + 36) = √49 = 7. This is the 3D extension of the Pythagorean theorem: first find the diagonal of the base (√(4+9) = √13), then use it as one leg with height 6: √(13 + 36) = √49 = 7.
+**mistake_a:** Applied the 2D Pythagorean theorem using only two of the three dimensions: √(3² + 4²) = 5 — missed the third dimension.
+**mistake_b:** Bubbled the largest dimension (6) instead of computing the diagonal.
+**mistake_d:** Added the three dimensions: 2 + 3 + 6 = 11 but then reduced by some factor, or computed √(4 + 9 + 36 + 15) = √64 = 8 from extra terms.
+**mistake_e:** Added the squares but forgot to take the square root: 4 + 9 + 36 = 49, then reported 49/... ≈ 11 or just bubbled 11.
+**common_trap:** Forgetting to include all three dimensions, or applying 2D Pythagorean theorem in a 3D problem.
+**takeaway:** Space diagonal of a rectangular box = √(l² + w² + h²). All three dimensions are needed. Check for Pythagorean triples hiding in the three numbers.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+
+The equation of a circle in the coordinate plane is (x − 3)² + (y + 2)² = 25. Which of the following correctly identifies the center and radius of this circle?
+
+- A) Center (3, 2), radius 5
+- B) Center (−3, 2), radius 5
+- C) Center (3, −2), radius 5
+- D) Center (3, −2), radius 25
+- E) Center (−3, −2), radius 25
+
+**answer:** C
+**fastest_path:** Standard form (x−h)² + (y−k)² = r². Center (h, k) = (3, −2); r = √25 = 5.
+**explanation:** Standard form of a circle: (x − h)² + (y − k)² = r², with center (h, k) and radius r. Matching: (x − 3)² + (y − (−2))² = 25 → h = 3, k = −2, r = √25 = 5. The key: the equation has (y + 2), which equals (y − (−2)), so k = −2 (not +2).
+**mistake_a:** Misread (y + 2) as k = +2, giving center (3, 2). The sign in the equation is subtracted: (y − k). Since the equation shows +2, k must be negative.
+**mistake_b:** Applied opposite signs to both coordinates: center (−3, 2). The formula is (x − h), so h = 3 (not −3).
+**mistake_d:** Correctly identified center (3, −2) but forgot to take the square root of 25: reported r = 25 instead of r = 5.
+**mistake_e:** Applied opposite signs to both and forgot the square root: center (−3, −2), radius 25.
+**common_trap:** Misreading the sign of k from (y + 2) — students see "+2" and write k = +2, when in fact (y + 2) = (y − (−2)) means k = −2.
+**takeaway:** Circle: (x − h)² + (y − k)² = r². The center coordinates match the subtracted values (flip the visible signs). The radius equals √(right-hand side), not the right-hand side itself.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Triangle Similarity — Area Ratio
+
+Triangle PQR is similar to triangle XYZ, with PQ corresponding to XY. If PQ = 6, XY = 9, and the area of triangle PQR is 24, what is the area of triangle XYZ?
+
+- A) 16
+- B) 36
+- C) 48
+- D) 54
+- E) 72
+
+**answer:** D
+**fastest_path:** Linear ratio = 9/6 = 3/2. Area ratio = (3/2)² = 9/4. Area XYZ = 24 × 9/4 = 54.
+**explanation:** Similar triangles with linear ratio k have area ratio k². Linear ratio = XY/PQ = 9/6 = 3/2. Area ratio = (3/2)² = 9/4. Area of XYZ = 24 × (9/4) = 54.
+**mistake_a:** Inverted the ratio (used PQR as the larger): 24 × (4/9) = 10.67, then picked the nearest answer 16. Or computed 24 × (6/9) = 16.
+**mistake_b:** Applied linear ratio to area: 24 × (3/2) = 36 — didn't square the ratio.
+**mistake_c:** Applied linear ratio the wrong way: 24 × (9/... ) = 48 — off by 9 somehow.
+**mistake_e:** Used the linear ratio squared but forgot to scale properly: 24 × 3 = 72 — used k = 3 instead of k = 3/2.
+**common_trap:** Using the linear ratio directly for area instead of squaring it. Linear scale factor k → area scale factor k².
+**takeaway:** Similar figures: if linear ratio = k, area ratio = k². Always square the side ratio when scaling areas. Never apply the linear ratio directly to area.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+
+In the coordinate plane, triangle ABC has vertices at A(0, 0), B(8, 0), and C(3, 5). What is the area of triangle ABC?
+
+- A) 15
+- B) 18
+- C) 20
+- D) 24
+- E) 40
+
+**answer:** C
+**fastest_path:** Base AB = 8 (along x-axis). Height = y-coordinate of C = 5. Area = (1/2)(8)(5) = 20.
+**explanation:** Side AB lies along the x-axis, so it is a convenient base: length = 8. The height is the perpendicular distance from C to the x-axis, which equals C's y-coordinate = 5. Area = (1/2)(base)(height) = (1/2)(8)(5) = 20.
+**mistake_a:** Computed (1/2)(6)(5) = 15 — used the distance from A to C as the base: AC = √(9+25) = √34, not 6. Or halved incorrectly: (8)(5)/... = 15.
+**mistake_b:** Added coordinates instead of computing area: 8 + 5 + 3 + 2 = 18 from some combination.
+**mistake_d:** Computed (1/2)(8)(6) = 24 — treated C's x-coordinate (3) as contributing to the height somehow and used 6 instead of 5.
+**mistake_e:** Forgot the (1/2): 8 × 5 = 40.
+**common_trap:** Forgetting the (1/2) factor, or using the wrong measurement as the height (the height must be perpendicular to the chosen base).
+**takeaway:** When a triangle has a side along a coordinate axis, use that side as the base (length = difference of the varying coordinate) and the perpendicular coordinate of the opposite vertex as the height.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Quadrilaterals
+
+Is quadrilateral ABCD a rectangle?
+
+(1) All four interior angles of ABCD are equal in measure.
+(2) The diagonals AC and BD have equal length.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** (1) All angles equal → each = 90° → rectangle. Sufficient. (2) Isosceles trapezoid has equal diagonals but is not a rectangle → insufficient.
+**explanation:** Statement (1): A quadrilateral's interior angles sum to 360°. If all four are equal, each = 360°/4 = 90°. A quadrilateral with four right angles is a rectangle by definition. Sufficient.
+
+Statement (2): Equal diagonals do not force a rectangle. An isosceles trapezoid (e.g., with parallel sides 4 and 8, legs of length 5) has equal-length diagonals but is not a rectangle — it has no right angles. Insufficient.
+
+→ A.
+**mistake_b:** Concluded only Statement 2 sufficient — missed that isosceles trapezoids also have equal diagonals.
+**mistake_c:** Required both statements — Statement 1 alone fully characterizes a rectangle.
+**mistake_d:** Concluded each alone sufficient — Statement 2 has a clear non-rectangle counterexample.
+**mistake_e:** Concluded neither sufficient — Statement 1 directly defines a rectangle via its angle property.
+**common_trap:** Assuming equal diagonals imply a rectangle. This is only true if the quadrilateral is already known to be a parallelogram (parallelogram + equal diagonals = rectangle). Without knowing it is a parallelogram, equal diagonals alone are insufficient.
+**takeaway:** Rectangle test via angles: four equal angles → each must be 90° → rectangle. Equal diagonals alone: valid for rectangles but also for isosceles trapezoids, so insufficient by itself. Know the difference between necessary and sufficient conditions.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Circles
+
+Two tangent lines are drawn from an external point P to a circle with center O and radius 5. If the distance from P to center O is 13, what is the length of each tangent segment from P to its point of tangency?
+
+- A) 8
+- B) 10
+- C) 12
+- D) 13
+- E) √194
+
+**answer:** C
+**fastest_path:** Tangent ⊥ radius. Right triangle: tangent² + 5² = 13². √(169 − 25) = √144 = 12. Recognize 5-12-13 triple.
+**explanation:** A tangent segment is perpendicular to the radius drawn to the point of tangency. This creates a right triangle with: hypotenuse = PO = 13 (distance from external point to center), one leg = radius = 5, and the other leg = tangent length. By the Pythagorean theorem: tangent² = 13² − 5² = 169 − 25 = 144. Tangent = 12. Recognize 5-12-13 Pythagorean triple — instant.
+**mistake_a:** Computed 13 − 5 = 8 — subtracted radius from distance to center algebraically instead of applying Pythagoras.
+**mistake_b:** Computed √(13² − 5²) ≈ √144 and misread as 10 from a computation error.
+**mistake_d:** Bubbled 13 — reported the distance to the center instead of the tangent length.
+**mistake_e:** Applied the wrong formula: √(5² + 13²) = √194 — added squares instead of subtracting (found the hypotenuse of a different triangle).
+**common_trap:** Forgetting that the tangent is perpendicular to the radius, not to PO. The right angle is at the point of tangency, not at O or P.
+**takeaway:** External tangent: tangent² + r² = d², where d = distance from external point to center. The 90° angle is at the tangency point. Both tangent segments from the same external point are equal in length.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+
+In the coordinate plane, a triangle has vertices at (1, 2), (5, 6), and (7, 0). What is the area of the triangle?
+
+- A) 12
+- B) 14
+- C) 16
+- D) 18
+- E) 20
+
+**answer:** C
+**fastest_path:** Shoelace: (1/2)|1(6−0) + 5(0−2) + 7(2−6)| = (1/2)|6 − 10 − 28| = (1/2)(32) = 16.
+**explanation:** Use the Shoelace formula: Area = (1/2)|x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂)|. With (x₁,y₁) = (1,2), (x₂,y₂) = (5,6), (x₃,y₃) = (7,0):
+
+Area = (1/2)|1(6 − 0) + 5(0 − 2) + 7(2 − 6)|
+= (1/2)|1(6) + 5(−2) + 7(−4)|
+= (1/2)|6 − 10 − 28|
+= (1/2)|−32|
+= 16.
+
+Verify via bounding-box subtraction: the triangle fits in a 6 × 6 rectangle. Rectangle area = 36. Subtract three right-triangle corners: (1/2)(4)(4) + (1/2)(2)(6) + (1/2)(6)(2) = 8 + 6 + 6 = 20. Triangle area = 36 − 20 = 16. ✓
+**mistake_a:** Applied the Shoelace formula but dropped the absolute value and subtracted the wrong direction: got −12, then reported 12.
+**mistake_b:** Made an arithmetic error in the Shoelace expansion and got 28, then halved to 14.
+**mistake_d:** Computed the bounding rectangle area (36) and halved it: 18 — a shortcut only valid for right triangles with legs along the axes.
+**mistake_e:** Computed the bounding rectangle (6 × 6 = 36) and subtracted one corner triangle instead of all three: 36 − 16 = 20.
+**common_trap:** Forgetting to subtract ALL three corner triangles in the bounding-box method, or making sign errors in the Shoelace formula.
+**takeaway:** Shoelace formula for a triangle with vertices (x₁,y₁), (x₂,y₂), (x₃,y₃): Area = (1/2)|x₁(y₂−y₃) + x₂(y₃−y₁) + x₃(y₁−y₂)|. Always apply the absolute value. Verify with bounding-box subtraction when time allows.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Triangles
+
+A right triangle has legs of length 6 and 8 and a hypotenuse of length 10. What is the radius of the circle inscribed in (tangent to all three sides of) this triangle?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** B
+**fastest_path:** For a right triangle: r = (a + b − c)/2 = (6 + 8 − 10)/2 = 4/2 = 2.
+**explanation:** The inradius of a triangle = Area / semi-perimeter. Area = (1/2)(6)(8) = 24. Semi-perimeter s = (6 + 8 + 10)/2 = 12. Inradius r = 24/12 = 2.
+
+Shortcut for right triangles: r = (leg₁ + leg₂ − hypotenuse)/2 = (6 + 8 − 10)/2 = 4/2 = 2.
+**mistake_a:** Applied the formula as r = (a + b − c)/4 instead of /2: (6 + 8 − 10)/4 = 1.
+**mistake_c:** Confused inradius with circumradius. Circumradius of a right triangle = hypotenuse/2 = 5. Inradius formula applied incorrectly gives 3 from some other computation.
+**mistake_d:** Computed area/perimeter instead of area/semi-perimeter: 24/24 = 1, then doubled from unclear reasoning to get 4. Or: (6+8−10)/2 mis-computed as (6+8)/2 − 10/... = 7 − 3 = 4.
+**mistake_e:** Bubbled hypotenuse/2 = 5 — computed the circumradius of the right triangle (correct for the circumscribed circle), not the inscribed circle.
+**common_trap:** Confusing circumscribed circle (radius = hypotenuse/2 for right triangles) with the inscribed circle (inradius = area/semi-perimeter). These two circles have different radii.
+**takeaway:** Inradius of any triangle = Area / semi-perimeter. For right triangles, the shortcut r = (a + b − c)/2 saves computation. Circumradius of a right triangle = hypotenuse/2 (they are distinct formulas for distinct circles).
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Circles
+
+In a plane, circle A has center O_A and radius 4, and circle B has center O_B and radius r. Do circles A and B intersect at exactly one point?
+
+(1) The distance between O_A and O_B is 7.
+(2) r = 3.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** Tangency requires d = r₁ + r₂ (external) or d = |r₁ − r₂| (internal). (1) alone: d = 7, but r unknown → could be tangent or not. (2) alone: r = 3, but d unknown → could be tangent or not. Together: d = 7 = 4 + 3 = r₁ + r₂ → externally tangent → exactly one point. → C.
+**explanation:** Circles intersect at exactly one point if and only if they are tangent: either externally (d = r₁ + r₂) or internally (d = |r₁ − r₂|).
+
+Statement (1): d = 7, r₁ = 4, r₂ unknown. If r₂ = 3, then d = r₁ + r₂ = 7 (tangent, YES). If r₂ = 5, then |r₁ − r₂| = 1 < 7 < r₁ + r₂ = 9, so they intersect at two points (NO). Insufficient.
+
+Statement (2): r₂ = 3, r₁ = 4. If d = 7, externally tangent (YES). If d = 5, then |r₁ − r₂| = 1 < 5 < r₁ + r₂ = 7, so they intersect at two points (NO). If d = 1, internally tangent (YES). Ambiguous → insufficient.
+
+Together: d = 7, r₁ = 4, r₂ = 3. Check: r₁ + r₂ = 7 = d → externally tangent → exactly one intersection point. Sufficient. → C.
+**mistake_a:** Concluded only Statement 1 sufficient — missed that r₂ was still unknown and different values give different answers.
+**mistake_b:** Concluded only Statement 2 sufficient — missed that d was still unknown and the distance can produce two or one intersection.
+**mistake_d:** Concluded each alone sufficient — neither alone pins down both conditions for tangency.
+**mistake_e:** Concluded together insufficient — failed to verify that d = r₁ + r₂ = 7, giving a definite YES.
+**common_trap:** Testing only the externally-tangent case (d = r₁ + r₂) and missing the internally-tangent case (d = |r₁ − r₂|) when evaluating insufficiency. Also, assuming individual facts are sufficient before checking all possible values.
+**takeaway:** Two circles intersect at exactly one point ↔ they are tangent: d = r₁ + r₂ (external) or d = |r₁ − r₂| (internal). To confirm sufficiency, verify the specific numerical condition holds and no alternative is possible.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Circles
+
+An equilateral triangle is inscribed in a circle of radius 6 (each vertex of the triangle lies on the circle). What is the area of the region inside the circle but outside the triangle?
+
+- A) 36π − 27√3
+- B) 36π − 54√3
+- C) 36π − 18√3
+- D) 36π − 9√3
+- E) 36π + 27√3
+
+**answer:** A
+**fastest_path:** Circumradius R = s/√3 → s = 6√3. Triangle area = s²√3/4 = 27√3. Circle area = 36π. Region = 36π − 27√3.
+**explanation:** Step 1 — Find the side of the inscribed equilateral triangle. For an equilateral triangle with side s, the circumradius (radius of the circumscribed circle) is R = s√3/3 = s/√3. Given R = 6: s = 6√3.
+
+Step 2 — Compute triangle area. Area = s²√3/4 = (6√3)²√3/4 = (108)(√3)/4 = 27√3.
+
+Step 3 — Compute circle area. Area = πR² = π(6²) = 36π.
+
+Step 4 — Region = circle area − triangle area = 36π − 27√3.
+**mistake_b:** Computed the triangle area using s = 6 (confusing R with side length): s²√3/4 = 36√3/4 = 9√3, then doubled: 18√3. Or computed 4 × 9√3... getting 36π − 54√3 from a miscalculation of the triangle area using wrong side.
+**mistake_c:** Computed triangle area as (1/2)(6)(6√3) = 18√3 — used R as if it were a leg of the triangle, not the circumradius.
+**mistake_d:** Computed triangle area as (1/2)(6)(3√3) = 9√3 — halved the side of the triangle before computing area.
+**mistake_e:** Added instead of subtracted the triangle area, yielding a value larger than the circle's area — geometrically impossible.
+**common_trap:** Confusing circumradius R with the side s. The side of the equilateral triangle inscribed in a circle of radius R is s = R√3, not s = R.
+**takeaway:** Inscribed equilateral triangle in circle of radius R: side s = R√3. Triangle area = s²√3/4 = 3R²√3/4. For R = 6: triangle area = 27√3. Shaded region = πR² − triangle area. Memorize circumradius–side relationship: R = s/√3 → s = R√3.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
