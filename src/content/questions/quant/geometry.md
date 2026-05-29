@@ -21,8 +21,8 @@ In a right triangle, the two legs have lengths 5 and 12. What is the length of t
 **explanation:** Pythagorean theorem: c² = 5² + 12² = 25 + 144 = 169 → c = 13. Even faster: recognize 5-12-13 as a memorized triple.
 **mistake_b:** Computed (5+12)/2 + 6.5 = 15 from a wrong shortcut.
 **mistake_c:** Bubbled 17 (the 8-15-17 triple) — wrong triple.
-**mistake_d:** Computed √(12² − 5²) = √119 = ~10.9; rounded to 7. Or computed (12 − 5) = 7.
-**mistake_e:** Computed √(12² − 5²) (treated as missing leg, not hypotenuse) = √119.
+**mistake_d:** Subtracted the legs: 12 − 5 = 7. The hypotenuse is always longer than either leg; subtracting legs makes no geometric sense.
+**mistake_e:** Computed √(12² − 5²) = √119 — solved for the missing leg of a right triangle rather than the hypotenuse, treating 12 as the hypotenuse.
 **common_trap:** Mis-recognizing a Pythagorean triple — confusing 5-12-13 with 8-15-17.
 **takeaway:** Memorize Pythagorean triples cold: 3-4-5, 5-12-13, 8-15-17, 7-24-25, 20-21-29, 9-40-41. Plus all integer multiples (6-8-10, 9-12-15, etc.).
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
@@ -46,9 +46,9 @@ A circle has a radius of 6. What is its area?
 **fastest_path:** Area = πr² = π × 36 = 36π.
 **explanation:** Circle area formula: πr². With r = 6: π × 6² = 36π.
 **mistake_a:** Computed circumference (2πr = 12π) and bubbled.
-**mistake_b:** Computed 4 × radius = 24π or 2π × 12.
-**mistake_d:** Computed πd² = π × 144 / 2 = 72π wrongly.
-**mistake_e:** Computed πd² = π × 12² = 144π (used diameter instead of radius).
+**mistake_b:** Used the formula 4πr (misremembering the coefficient) = 4 × π × 6 = 24π. Area is πr², not a multiple of r.
+**mistake_d:** Computed π × r² / 2 = 72π / 2... actually got πd²/2 = π(12²)/2 = 72π — used diameter in the formula but then divided by 2 to "compensate."
+**mistake_e:** Computed πd² = π × 12² = 144π (used diameter instead of radius in πr²).
 **common_trap:** Confusing area (πr²) with circumference (2πr) or using diameter instead of radius.
 **takeaway:** Circle: area = πr², circumference = 2πr. Both formulas use radius, not diameter.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
@@ -151,7 +151,7 @@ A rectangular box has dimensions 3 by 4 by 5. What is its volume?
 **explanation:** Volume of rectangular box: V = l × w × h = 3 × 4 × 5 = 60.
 **mistake_a:** Computed 3 × 4 = 12 (only one face).
 **mistake_b:** Computed 4 × 5 = 20 (only one face).
-**mistake_c:** Computed half of surface area: 47.
+**mistake_c:** Added the area of only three distinct faces without doubling: 3×4 + 4×5 + 3×5 = 12 + 20 + 15 = 47. Forgot that a closed box has six faces (three pairs of identical faces).
 **mistake_e:** Computed surface area: 2(3×4 + 4×5 + 3×5) = 2(12 + 20 + 15) = 94.
 **common_trap:** Confusing volume (lwh) with surface area (2(lw + wh + lh)).
 **takeaway:** Volume = lwh; surface area = 2(lw + wh + lh). For cube (s³ vs. 6s²) similarly. Memorize both for each common solid.
@@ -164,23 +164,25 @@ A rectangular box has dimensions 3 by 4 by 5. What is its volume?
 **type:** Problem Solving
 **topic:** Triangles
 
-An equilateral triangle has a side length of 6. What is its perimeter?
+In triangle PQR, the exterior angle at vertex R measures 118°. If the interior angle at P is 47°, what is the measure of the interior angle at Q?
 
-- A) 12
-- B) 15
-- C) 18
-- D) 21
-- E) 24
+- A) 47°
+- B) 62°
+- C) 71°
+- D) 75°
+- E) 133°
 
 **answer:** C
-**fastest_path:** Perimeter = 3s = 18.
-**explanation:** Equilateral triangle: all three sides equal. Perimeter = 3 × 6 = 18.
-**mistake_a:** Computed 6 × 2 = 12.
-**mistake_b:** Off-by-one: 15.
-**mistake_d:** Computed 7 × 3 = 21 (off by one on side).
-**mistake_e:** Computed 8 × 3 = 24 (off by two on side).
-**common_trap:** Side count mistakes (computing 4 × 6 or 2 × 6 + 6).
-**takeaway:** Equilateral triangle: 3 sides equal. Perimeter = 3s. Area = s²√3/4. Memorize both.
+**fastest_path:** Exterior angle = sum of two non-adjacent interior angles. ∠Q = 118° − 47° = 71°.
+**explanation:** Exterior Angle Theorem: an exterior angle of a triangle equals the sum of the two non-adjacent (remote) interior angles. So 118° = ∠P + ∠Q → ∠Q = 118° − 47° = 71°.
+
+Check: ∠R (interior) = 180° − 118° = 62°. Angles sum: 47° + 71° + 62° = 180°. ✓
+**mistake_a:** Bubbled ∠P (47°) — the angle that was already given.
+**mistake_b:** Computed the interior angle at R (180° − 118° = 62°) instead of angle Q.
+**mistake_d:** Computed 118° − 47° + 4 = 75° or made an arithmetic slip in the subtraction (118 − 47 = 71, not 75); off by 4 from a carry error.
+**mistake_e:** Computed 180° − 47° = 133° — subtracted ∠P from 180° as if ∠P and ∠Q were supplementary. They are not; ∠Q is part of a three-angle triangle sum, not a supplementary pair with ∠P.
+**common_trap:** Confusing "interior angle at R" (62°) with "interior angle at Q" (71°), or ignoring the exterior angle theorem and solving via supplementary angles without the full triangle.
+**takeaway:** Exterior Angle Theorem: exterior angle = sum of the two remote interior angles. Equivalently, the interior angle at R = 180° − exterior, and then the triangle sum gives ∠Q — but the direct route is faster.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -253,7 +255,7 @@ Line L passes through the points (2, 3) and (6, 11). What is the slope of any li
 **answer:** B
 **fastest_path:** Slope L = 8/4 = 2. Perpendicular slope = −1/m = −1/2.
 **explanation:** Slope of L = (11 − 3)/(6 − 2) = 8/4 = 2. Perpendicular slope = negative reciprocal = −1/2. Verify: 2 × (−1/2) = −1 ✓.
-**mistake_a:** Computed 1/2 (positive reciprocal) and negated to −2 — sign error.
+**mistake_a:** Negated the slope (−2) without taking the reciprocal. "Perpendicular" triggered "change the sign," but the full rule is negate AND flip: −(1/2).
 **mistake_c:** Bubbled positive reciprocal: 1/2.
 **mistake_d:** Bubbled the original slope: 2.
 **mistake_e:** Computed 8/4 wrong as −4.
@@ -405,25 +407,27 @@ Each alone determines n → D.
 **type:** Problem Solving
 **topic:** Circles
 
-A square is inscribed in a circle of radius 5. What is the area of the square?
+An equilateral triangle is inscribed in a circle (all three vertices on the circle). If the radius of the circle is 6, what is the side length of the triangle?
 
-- A) 25
-- B) 50
-- C) 75
-- D) 100
-- E) 25 * √2
+- A) 6
+- B) 6√2
+- C) 6√3
+- D) 12
+- E) 12√3
 
-**answer:** B
-**fastest_path:** Diagonal = 2r = 10. Area = d²/2 = 100/2 = 50.
-**explanation:** Inscribed square: diagonal = diameter of circle = 2 × 5 = 10. Square area = d²/2 (shortcut from s² where d = s√2). Area = 100/2 = 50.
+**answer:** C
+**fastest_path:** Circumradius of equilateral triangle: R = s/√3 → s = R√3 = 6√3.
+**explanation:** For an equilateral triangle with side length s, the circumscribed circle (circumcircle) has radius R = s/√3 (equivalently R = s√3/3). Solving for s: s = R√3 = 6√3.
 
-Alternative: s = d/√2 = 10/√2 = 5√2. Area = s² = (5√2)² = 50. Same answer.
-**mistake_a:** Bubbled r² = 25 instead of d²/2.
-**mistake_c:** Computed (d²+r²)/something = 75.
-**mistake_d:** Bubbled d² = 100 (forgot to divide by 2).
-**mistake_e:** Bubbled 25√2 from a wrong formula.
-**common_trap:** Treating diameter as the side of the square instead of the diagonal.
-**takeaway:** Square inscribed in circle: diagonal = diameter. Square area = (diagonal)²/2.
+Derivation: the circumcenter coincides with the centroid, located (2/3) of the way along each median. Each median has length (√3/2)s, so R = (2/3)(√3/2)s = s√3/3 = s/√3. With R = 6: s = 6√3.
+
+Verify: s = 6√3 ≈ 10.39. Since s must exceed R = 6 (each side of an inscribed equilateral triangle spans well beyond the radius), this is geometrically plausible.
+**mistake_a:** Bubbled R = 6 directly — assumed the side equals the radius.
+**mistake_b:** Used the 45-45-90 relationship s = R√2 = 6√2 — applied the square-inscribed-in-circle rule instead of the equilateral-triangle rule.
+**mistake_d:** Used the diameter as the side: 2R = 12. The diameter equals the diagonal of an inscribed square, not the side of an inscribed equilateral triangle.
+**mistake_e:** Computed 2R√3 = 12√3 — multiplied by √3 but also doubled.
+**common_trap:** Applying the square/circle relationship (diagonal = diameter) to an equilateral triangle problem. Each polygon has its own circumradius formula.
+**takeaway:** Circumradius formulas: equilateral triangle R = s/√3 (so s = R√3); square R = s√2/2 (so s = R√2). Memorize both for the GMAT.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -446,7 +450,7 @@ A sphere has a surface area of 36π. What is its volume?
 **explanation:** Sphere surface area = 4πr². Set 4πr² = 36π → r² = 9 → r = 3. Volume = (4/3)πr³ = (4/3)π(27) = 36π. (Coincidence: sphere SA = V numerically only when r = 3.)
 **mistake_a:** Computed (4/3)π × 9 = 12π (used r² instead of r³).
 **mistake_b:** Computed πr³ = 27π (forgot 4/3).
-**mistake_d:** Computed differently; got 48π.
+**mistake_d:** Computed (4/3)πr² × r as r² × 4 instead of r³: (4/3)π × (9) × 4 = (4/3)π × 36 = 48π. Substituted 4 for r in the final multiplication instead of the correct r = 3.
 **mistake_e:** Computed 4πr³ = 108π (forgot to divide by 3).
 **common_trap:** Forgetting the (4/3) coefficient on sphere volume; using r² instead of r³.
 **takeaway:** Sphere: SA = 4πr², V = (4/3)πr³. The factor of 4/3 on volume is the most common slip.
@@ -455,7 +459,7 @@ A sphere has a surface area of 36π. What is its volume?
 ---
 
 ## Q18
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Coordinate Geometry
 
@@ -470,10 +474,10 @@ A line passes through (0, 4) and has a slope of -2. At what x-value does this li
 **answer:** D
 **fastest_path:** y = −2x + 4. At y = 0: x = 4/2 = 2.
 **explanation:** Slope-intercept form: y = mx + b. With m = −2, b = 4: y = −2x + 4. At x-axis, y = 0: 0 = −2x + 4 → x = 2.
-**mistake_a:** Sign error: bubbled −2.
-**mistake_b:** Sign error: −1.
-**mistake_c:** Computed 4 − 2 − 1 wrongly.
-**mistake_e:** Bubbled the y-intercept (4) instead of x-intercept.
+**mistake_a:** Sign error: solved −2x + 4 = 0 as x = −4/(−2) correctly, but then carried a wrong sign → bubbled −2.
+**mistake_b:** Computed x = b/m = 4/(−2) × (1/2) = −1; arithmetic slip on solving for x.
+**mistake_c:** Computed x = (b − m)/b = (4 − (−2))/... or some other garbled rearrangement; got 1.
+**mistake_e:** Bubbled the y-intercept (4) instead of finding the x-intercept. Remember: y-intercept is where x = 0; x-intercept is where y = 0.
 **common_trap:** Bubbling the y-intercept when the question asks for x-intercept (or sign error on slope).
 **takeaway:** y = mx + b. x-intercept: set y = 0 and solve for x.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
@@ -898,7 +902,7 @@ Statement (2): equal perimeters don't imply congruence. Counterexample: (3, 4, 5
 ---
 
 ## Q33
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Annulus Area
 
