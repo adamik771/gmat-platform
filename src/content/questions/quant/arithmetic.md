@@ -857,3 +857,451 @@ An investor buys $5,000 of Stock X at time zero. Exactly one year later, after S
 **common_trap:** Applying the year-1 growth rate to capital that wasn't invested in year 1.
 **takeaway:** Sequential-investment return: the second tranche only benefits from growth that occurs *after* it's invested. Track portfolio value step by step.
 **related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** LCM and GCF
+
+What is the least common multiple of 12 and 18?
+
+- A) 6
+- B) 18
+- C) 36
+- D) 54
+- E) 216
+
+**answer:** C
+**fastest_path:** 12 = 2² × 3; 18 = 2 × 3². LCM takes the highest power of each prime: 2² × 3² = 36.
+**explanation:** Factor each number: 12 = 2² × 3 and 18 = 2 × 3². The LCM is built by taking the highest power of every prime that appears: 2² × 3² = 4 × 9 = 36. Verify: 36/12 = 3 ✓ and 36/18 = 2 ✓, so 36 is divisible by both.
+**mistake_a:** Computed the GCF instead of the LCM. GCF(12, 18) = 6 — but the question asks for the LCM.
+**mistake_b:** Bubbled the larger of the two numbers (18), which is a common multiple only if 12 divides 18 — it does not (18/12 = 1.5).
+**mistake_d:** Computed 3 × 18 = 54; used wrong multiplier.
+**mistake_e:** Multiplied the two numbers: 12 × 18 = 216 — this equals LCM × GCF, not LCM alone.
+**common_trap:** Confusing LCM with GCF, or using the product of the numbers as the LCM.
+**takeaway:** LCM: prime-factorize both numbers, take each prime to its *highest* power. GCF: take each prime to its *lowest* power. They are not the same operation.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Fraction-to-Percent Conversion
+
+What is 3/8 expressed as a percent?
+
+- A) 26.5%
+- B) 30%
+- C) 35%
+- D) 37.5%
+- E) 40%
+
+**answer:** D
+**fastest_path:** 3/8 = 3 ÷ 8 = 0.375 = 37.5%.
+**explanation:** Divide numerator by denominator: 3 ÷ 8 = 0.375. Multiply by 100 to convert to percent: 37.5%. Alternatively, use the benchmark: 1/8 = 12.5%, so 3/8 = 3 × 12.5% = 37.5%.
+**mistake_a:** Computed 3/8 ≈ 3/11.3 ≈ 0.265; used wrong denominator estimate.
+**mistake_b:** Remembered that 1/4 = 25% and 1/2 = 50% and guessed midpoint 30% — but 3/8 is not between 1/4 and 1/2 in that way.
+**mistake_c:** Guessed 35% from vague fraction sense.
+**mistake_e:** Confused 3/8 with 2/5 = 40%.
+**common_trap:** Confusing 3/8 with 2/5 or estimating without dividing carefully.
+**takeaway:** Learn the eighth-family: 1/8 = 12.5%, 2/8 = 25%, 3/8 = 37.5%, 4/8 = 50%, 5/8 = 62.5%, 6/8 = 75%, 7/8 = 87.5%. These appear repeatedly.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Signed Number Arithmetic
+
+What is the value of (-3)² - (-2)³?
+
+- A) 1
+- B) 7
+- C) 9
+- D) 17
+- E) 25
+
+**answer:** D
+**fastest_path:** (-3)² = 9; (-2)³ = -8; 9 - (-8) = 9 + 8 = 17.
+**explanation:** Evaluate each power separately. (-3)² = (-3) × (-3) = 9 (negative squared is positive). (-2)³ = (-2) × (-2) × (-2) = 4 × (-2) = -8 (negative cubed is negative). Then subtract: 9 - (-8) = 9 + 8 = 17.
+**mistake_a:** Computed -3² = -9 (ignored parentheses) and (-2)³ = -8; got -9 - (-8) = -9 + 8 = -1; then bubbled 1 by ignoring the sign.
+**mistake_b:** Computed (-3)² = 9 and (-2)³ = 8 (dropped the negative); got 9 - 8 = 1; but some students compound with another error to get 7.
+**mistake_c:** Stopped at (-3)² = 9 without completing the subtraction, or computed (-2)³ = 0.
+**mistake_e:** Computed 9 + 8 + 8 = 25 through some double-count.
+**common_trap:** Dropping the negative sign when evaluating an odd power of a negative number, turning -8 into +8.
+**takeaway:** Parentheses matter: (-x)² = x² (positive); (-x)³ = -x³ (negative). An odd power preserves the negative sign; an even power removes it.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** LCM and GCF
+
+What is the greatest common factor of 36 and 48?
+
+- A) 4
+- B) 6
+- C) 8
+- D) 12
+- E) 18
+
+**answer:** D
+**fastest_path:** 36 = 2² × 3²; 48 = 2⁴ × 3. GCF takes the lowest power of each shared prime: 2² × 3 = 12.
+**explanation:** Prime-factorize each number: 36 = 2² × 3² and 48 = 2⁴ × 3. The GCF takes the *lowest* exponent for each shared prime: min(2, 4) = 2 for the factor 2; min(2, 1) = 1 for the factor 3. GCF = 2² × 3¹ = 4 × 3 = 12. Verify: 36/12 = 3 ✓ and 48/12 = 4 ✓.
+**mistake_a:** Found a common factor (4) but not the *greatest* one.
+**mistake_b:** Found another common factor (6) but not the greatest.
+**mistake_c:** Computed GCF as 8 (correctly noted 2⁴ and 2² share 2³; but mistakenly took too-high power).
+**mistake_e:** Computed 36/2 = 18; confused a factor of one number with the GCF of both.
+**common_trap:** Stopping at the first common factor found rather than the greatest, or confusing GCF with LCM.
+**takeaway:** GCF: prime-factorize both numbers, take each shared prime to its *lowest* power. Always verify by dividing both original numbers by your answer.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Percent Increase
+
+A price increases from $120 to $150. By what percent did the price increase?
+
+- A) 20%
+- B) 22.5%
+- C) 25%
+- D) 30%
+- E) 33.3%
+
+**answer:** C
+**fastest_path:** Increase = 30. % increase = 30/120 = 1/4 = 25%.
+**explanation:** Percent change = (new − old) / old × 100. Here: (150 − 120) / 120 × 100 = 30/120 × 100 = 25%.
+**mistake_a:** Computed 30/150 = 20% — used the *new* price as the denominator instead of the old price.
+**mistake_b:** Computed (150 − 120) / 133 (average of old and new) = 22.5%.
+**mistake_d:** Computed 30/100 = 30% — used 100 as the base.
+**mistake_e:** Computed 120/360 ≈ 33.3% by inverting the fraction or using the wrong pair.
+**common_trap:** Dividing by the new price instead of the original price — always divide percent change by the *original* (starting) value.
+**takeaway:** Percent increase = (increase) / (original) × 100. The original is always the denominator. Dividing by the new value gives a different (and wrong) result.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** LCM Application
+
+Three traffic lights at an intersection cycle on independent timers. Light 1 turns green every 30 seconds, Light 2 every 40 seconds, and Light 3 every 60 seconds. If all three turn green simultaneously at time zero, after how many seconds will they next all turn green at the same time?
+
+- A) 60
+- B) 90
+- C) 120
+- D) 180
+- E) 240
+
+**answer:** C
+**fastest_path:** LCM(30, 40, 60). Prime factors: 30 = 2·3·5; 40 = 2³·5; 60 = 2²·3·5. LCM = 2³·3·5 = 120.
+**explanation:** The three lights next coincide at the LCM of their cycle lengths. LCM(30, 40, 60): prime-factorize each: 30 = 2 × 3 × 5; 40 = 2³ × 5; 60 = 2² × 3 × 5. Take highest powers: 2³ × 3¹ × 5¹ = 8 × 15 = 120 seconds. Verify: 120/30 = 4 ✓; 120/40 = 3 ✓; 120/60 = 2 ✓.
+**mistake_a:** Picked 60 because it is a multiple of 30 and 60, but 60/40 = 1.5 (not an integer) — 60 is not a multiple of 40.
+**mistake_b:** Averaged the cycle times: (30 + 40 + 60)/3 = 130/3 ≈ 43; rounded to 90.
+**mistake_d:** Computed 30 × 40 × 60 / GCF — a wrong formula; got 180.
+**mistake_e:** Multiplied two of the three numbers: 40 × 6 = 240.
+**common_trap:** Checking only whether a candidate is divisible by two of the three timers, not all three — 60 passes the 30 and 60 test but fails for 40.
+**takeaway:** When multiple independent cycles must realign, the answer is their LCM. Verify your answer is divisible by every cycle length, not just the most obvious ones.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Consecutive Integers
+
+The sum of three consecutive even integers is 78. What is the product of the smallest and largest of the three integers?
+
+- A) 600
+- B) 624
+- C) 648
+- D) 672
+- E) 702
+
+**answer:** D
+**fastest_path:** Middle integer = 78/3 = 26. Smallest = 24, largest = 28. Product = 24 × 28 = 672.
+**explanation:** Let the three consecutive even integers be n, n+2, n+4. Their sum: 3n + 6 = 78 → 3n = 72 → n = 24. The integers are 24, 26, 28. Product of smallest and largest: 24 × 28. Fastest: (26−2)(26+2) = 26² − 4 = 676 − 4 = 672.
+**mistake_a:** Computed 24 × 25 = 600, using the middle integer as the larger.
+**mistake_b:** Computed 24 × 26 = 624, multiplying smallest × middle instead of smallest × largest.
+**mistake_c:** Computed 26 × 25 − 2 = 648 through some arithmetic drift.
+**mistake_e:** Computed 26 × 27 = 702, treating integers as consecutive odd rather than consecutive even.
+**common_trap:** Multiplying the wrong pair — the question asks for smallest × largest, not smallest × middle.
+**takeaway:** For three consecutive even integers with a known sum S, the middle equals S/3. Smallest = middle − 2; largest = middle + 2. Use the difference-of-squares shortcut: (m−2)(m+2) = m² − 4.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Scientific Notation
+
+Which of the following equals (3 × 10⁴) × (4 × 10⁻²)?
+
+- A) 120
+- B) 1,200
+- C) 12,000
+- D) 0.12
+- E) 0.012
+
+**answer:** B
+**fastest_path:** Coefficients: 3 × 4 = 12. Powers: 10⁴ × 10⁻² = 10². Result: 12 × 10² = 1,200.
+**explanation:** Multiply coefficients and powers separately. Coefficients: 3 × 4 = 12. Powers of ten: 10⁴ × 10⁻² = 10^(4+(−2)) = 10² = 100. Final: 12 × 100 = 1,200.
+**mistake_a:** Added exponents incorrectly: 10^(4−2) = 10² but then computed 12 × 10 = 120, dropping a factor of 10.
+**mistake_c:** Computed 10^(4+2) = 10⁶ instead of 10^(4−2) = 10²; got 12,000 or higher.
+**mistake_d:** Subtracted exponents as 4 − (−2) = −2: got 12 × 10⁻² = 0.12.
+**mistake_e:** Computed 3 × 4 = 12 and 10^(4 × (−2)) = 10⁻⁸; over-combined to 0.012.
+**common_trap:** Misapplying the rule for adding exponents — when multiplying like bases, you *add* the exponents, so 4 + (−2) = 2, not 4 − 2 treated as subtraction.
+**takeaway:** (a × 10^m) × (b × 10^n) = (a × b) × 10^(m+n). Keep sign of the exponent through the addition: 4 + (−2) = 2.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fraction Comparison
+
+Which of the following fractions is largest?
+
+- A) 5/8
+- B) 11/18
+- C) 7/12
+- D) 3/5
+- E) 13/20
+
+**answer:** E
+**fastest_path:** Convert to decimals: 13/20 = 0.650, 5/8 = 0.625, 3/5 = 0.600, 11/18 ≈ 0.611, 7/12 ≈ 0.583. Largest: 13/20.
+**explanation:** Convert each to a decimal for direct comparison:
+- A) 5/8 = 0.625
+- B) 11/18 ≈ 0.6111
+- C) 7/12 ≈ 0.5833
+- D) 3/5 = 0.600
+- E) 13/20 = 0.650
+
+13/20 = 0.650 is the largest. 5/8 = 0.625 is the runner-up — students who only convert two or three fractions may miss this.
+**mistake_a:** 5/8 = 0.625 — close, but 0.025 below 13/20. Tempting because 8 is a familiar denominator.
+**mistake_b:** 11/18 ≈ 0.611 — harder to convert quickly; students who estimate it as ~0.63 may think it beats 13/20.
+**mistake_c:** 7/12 ≈ 0.583 — the smallest of the five.
+**mistake_d:** 3/5 = 0.600 — clean decimal, easy to convert, but not the largest.
+**common_trap:** Stopping the comparison after checking only the "easy" fractions (3/5, 5/8) and not converting 13/20.
+**takeaway:** When comparing fractions, convert *all* to decimals before deciding. Denominators of 20 (multiply by 5) and 8 (multiply by 125) each give clean decimals. Never skip a choice.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Negative Exponents
+
+What is the value of (2⁻³ × 4²) / 2⁻¹?
+
+- A) 1
+- B) 2
+- C) 4
+- D) 8
+- E) 16
+
+**answer:** C
+**fastest_path:** Rewrite 4² = 2⁴. Expression = 2^(−3+4−(−1)) = 2^(−3+4+1) = 2² = 4.
+**explanation:** Convert everything to powers of 2: 4² = (2²)² = 2⁴ and 2⁻¹ in the denominator becomes 2^(+1) when moved to the numerator. Combine exponents: 2^(−3) × 2^4 × 2^1 = 2^(−3+4+1) = 2² = 4. Alternatively, compute numerically: 2⁻³ = 1/8; 4² = 16; numerator = 16/8 = 2; denominator = 2⁻¹ = 1/2; result = 2 ÷ (1/2) = 4.
+**mistake_a:** Computed 2⁻³ × 4² = 16/8 = 2, then (incorrectly) divided by 2⁻¹ = 1/2 as multiplication: 2 × (1/2) = 1.
+**mistake_b:** Computed the numerator correctly (= 2) but forgot to divide by the denominator 2⁻¹ = 1/2; left the answer as 2.
+**mistake_d:** Added exponents as −3 + 4 + (−1) = 0 somewhere and then doubled; got 8 through arithmetic error.
+**mistake_e:** Applied the exponent rule incorrectly: treated division as multiplying by 2⁻¹ (adding −1) instead of subtracting (adding +1); got 2^(−3+4−1) = 2^0 × 16 = 16.
+**common_trap:** Dividing by a negative exponent — dividing by 2⁻¹ is the same as multiplying by 2¹, not 2⁻¹.
+**takeaway:** Dividing by 2^(−n) = multiplying by 2^n. A negative exponent in the denominator flips to positive in the numerator. Rewrite everything in one base before combining exponents.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Percent — Recovering the Original
+
+After a 30% increase, a quantity equals 91. What was the original quantity?
+
+- A) 63
+- B) 65
+- C) 70
+- D) 77
+- E) 84
+
+**answer:** C
+**fastest_path:** Original × 1.30 = 91 → Original = 91 ÷ 1.30 = 70.
+**explanation:** A 30% increase means the new value is 130% of the original: original × 1.30 = 91. Divide both sides: original = 91/1.30 = 70. Verify: 70 × 1.30 = 70 + 21 = 91 ✓.
+**mistake_a:** Subtracted 30% of 91 from 91: 91 × 0.30 = 27.3; 91 − 27.3 ≈ 63.7 → 63. This reverses the percent change using the *wrong* base.
+**mistake_b:** Subtracted 30 directly from 91: 91 − 30 = 61; then estimated 65.
+**mistake_d:** Computed 91 × 0.85 = 77.35 → 77 (used 15% instead of 30%).
+**mistake_e:** Computed 91 − 91/12 ≈ 84 through a different incorrect reversal.
+**common_trap:** Subtracting 30% of the *new* value to get the original — the 30% must be taken off the *original*, not the new amount.
+**takeaway:** To recover the original from a percent-increased result: divide by (1 + rate). Never subtract the percent of the new value — that gives a different, smaller number.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Ratio Chain
+
+If a:b = 2:3 and b:c = 4:5, what is a:c expressed in simplest form?
+
+- A) 2:5
+- B) 3:8
+- C) 6:10
+- D) 8:15
+- E) 10:12
+
+**answer:** D
+**fastest_path:** Make b consistent: a:b = 8:12; b:c = 12:15. So a:c = 8:15.
+**explanation:** To chain two ratios sharing a middle term, make the b-value identical in both. LCM(3, 4) = 12. Scale a:b = 2:3 → 8:12. Scale b:c = 4:5 → 12:15. Now the b-values match (both 12), so a:c = 8:15. GCF(8, 15) = 1, so 8:15 is already in simplest form.
+**mistake_a:** Took a from the first ratio and c from the second without aligning b: 2:5.
+**mistake_b:** Inverted the ratios: b:a = 3:2 and c:b = 5:4 → some combination to 3:8.
+**mistake_c:** Multiplied across without normalizing: 2×4 : 3×5 = 8:15, but misread as 6:10 from an earlier arithmetic attempt.
+**mistake_e:** Added instead of scaling: a = 2+4 = 6, c = 3+5 = 8; got 6:8 → 10:12 from a different error.
+**common_trap:** Using a:c = (a from first ratio):(c from second ratio) without first making b identical in both ratios.
+**takeaway:** To chain ratios a:b and b:c, scale both so the shared middle term (b) is the same in both, then read off a and c. Alternatively, multiply: a/c = (a/b) × (b/c) = (2/3) × (4/5) = 8/15.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** LCM and GCF — Relationship
+
+The LCM of two positive integers is 120 and their GCF is 4. If one of the integers is 24, what is the other integer?
+
+- A) 15
+- B) 16
+- C) 20
+- D) 30
+- E) 40
+
+**answer:** C
+**fastest_path:** GCF × LCM = a × b → 4 × 120 = 24 × b → b = 480/24 = 20.
+**explanation:** There is a fundamental identity: for any two positive integers a and b, GCF(a, b) × LCM(a, b) = a × b. Substitute: 4 × 120 = 24 × b → 480 = 24b → b = 20. Verify: 24 = 2³ × 3; 20 = 2² × 5. GCF(24, 20) = 2² = 4 ✓. LCM(24, 20) = 2³ × 3 × 5 = 120 ✓.
+**mistake_a:** Computed 120/8 = 15 (divided LCM by some version of GCF × something).
+**mistake_b:** Computed 120/7.5 ≈ 16 (divided LCM by a wrong factor).
+**mistake_d:** Computed LCM/GCF = 120/4 = 30 (wrong formula — this gives LCM/GCF, not the other integer).
+**mistake_e:** Divided one number incorrectly: 120/3 = 40 (used 24's factor 3 as divisor, not 24 itself).
+**common_trap:** Using LCM/GCF = other integer — that's not a valid identity. The correct identity is GCF × LCM = a × b.
+**takeaway:** GCF(a, b) × LCM(a, b) = a × b — always. Use this to find the unknown number when three of the four values are given: unknown = (GCF × LCM) / known.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Compound Percent Change
+
+A town's population grows 20% in Year 1, shrinks 25% in Year 2, and then grows 10% in Year 3. The final population is what percent of the initial population?
+
+- A) 89%
+- B) 92%
+- C) 95%
+- D) 99%
+- E) 105%
+
+**answer:** D
+**fastest_path:** 1.20 × 0.75 × 1.10 = 0.90 × 1.10 = 0.99 = 99%.
+**explanation:** Chain multiplicative percent changes: 20% growth → multiply by 1.20; 25% shrink → multiply by 0.75; 10% growth → multiply by 1.10. Combined: 1.20 × 0.75 × 1.10 = 0.90 × 1.10 = 0.99. The final population is 99% of the original — a net 1% decline despite two growth years.
+**mistake_a:** Summed the net percentage changes: 20% − 25% + 10% = 5% net — applied this as additive: 100% − 5% = 89% (or 95%). Additive percent chaining is always wrong for compound changes.
+**mistake_b:** Computed 1.20 × 0.75 = 0.90 correctly, then forgot to apply the third multiplier; 92% = 100 − 8 from a rounding error.
+**mistake_c:** Computed 1.20 × 0.75 = 0.90 but then applied 10% to the original (not the intermediate), getting 90% + 5% = 95%.
+**mistake_e:** Computed 20% − 25% + 10% = +5% and concluded 105%, missing the nonlinearity.
+**common_trap:** Adding percent changes arithmetically — the order and compounding mean each change applies to a *different* base.
+**takeaway:** Chain percent changes by multiplication: write each as a multiplier (1 ± r/100) and multiply them all together. The net result is never the arithmetic sum of the changes.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Radical Equations — Isolation
+
+If √(x² + 5) + 3 = 7, what is the value of x²?
+
+- A) 2
+- B) 4
+- C) 9
+- D) 11
+- E) 16
+
+**answer:** D
+**fastest_path:** Isolate the radical: √(x² + 5) = 4. Square both sides: x² + 5 = 16. x² = 11.
+**explanation:** Isolate the radical before squaring. Subtract 3: √(x² + 5) = 4. Square both sides: x² + 5 = 16. Subtract 5: x² = 11. Note: x² = 11 has two real solutions (x = √11 and x = −√11) but a unique value of x², which is what the question asks.
+**mistake_a:** Squared 7 directly without isolating: x² + 5 + 9 = 49 → x² = 35; confused with other steps; bubbled 2.
+**mistake_b:** Isolated the radical as 4, then answered "4" (the value of the isolated radical, not x²).
+**mistake_c:** Squared (7 − 3) = 4 and answered 4² / something = 9.
+**mistake_e:** Computed x² + 5 = 16 correctly but bubbled 16 (the value of x² + 5, not x²).
+**common_trap:** Bubbling an intermediate value — the value of the isolated radical (4) or of the squared radical (16) — instead of finishing the solve for x².
+**takeaway:** For radical equations: isolate the radical first, then square. After squaring, solve for the variable. Don't bubble an intermediate result — finish every step through to the asked quantity.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Chained Fraction Ratios
+
+If p/q = 3/5 and q/r = 10/9, what is the value of p/r?
+
+- A) 1/3
+- B) 2/3
+- C) 3/4
+- D) 5/6
+- E) 9/10
+
+**answer:** B
+**fastest_path:** p/r = (p/q) × (q/r) = (3/5) × (10/9) = 30/45 = 2/3.
+**explanation:** Treat p/r as a product of the two given ratios: p/r = (p/q) × (q/r). This works because the q's cancel. Multiply: (3/5) × (10/9) = 30/45 = 2/3. Verify by assigning a value: let q = 10 → p = 6 (from p/q = 3/5); let r = 9 (from q/r = 10/9 → r = 9). Then p/r = 6/9 = 2/3 ✓.
+**mistake_a:** Added instead of multiplied: 3/5 + 10/9 = 27/45 + 50/45 = 77/45 ≈ 1.7; inverted to ≈ 0.58 → 1/3 approximately.
+**mistake_c:** Computed (3 + 10)/(5 + 9) = 13/14 and simplified oddly to 3/4.
+**mistake_d:** Computed 3/5 × 9/10 = 27/50 ≈ 0.54 → estimated to 5/6.
+**mistake_e:** Used just one ratio without multiplying: saw 9/10 and bubbled it.
+**common_trap:** Trying to find a common value for q and comparing p and r directly, rather than recognizing that p/r = (p/q) × (q/r) by cancellation.
+**takeaway:** Chaining ratios: p/r = (p/q) × (q/r). The shared middle variable cancels. This is a direct application of fraction multiplication, and it works for any chain length.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Remainder Algebra
+
+When a positive integer n is divided by 6, the remainder is 4. What is the remainder when 3n + 7 is divided by 6?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** A
+**fastest_path:** n ≡ 4 (mod 6) → 3n ≡ 12 ≡ 0 (mod 6) → 3n + 7 ≡ 7 ≡ 1 (mod 6).
+**explanation:** n ≡ 4 (mod 6) means n = 6k + 4 for some non-negative integer k. Substitute: 3n + 7 = 3(6k + 4) + 7 = 18k + 12 + 7 = 18k + 19. Factor out 6: 18k + 19 = 6(3k + 3) + 1. The remainder when divided by 6 is 1. Concrete test: let n = 10 (10/6 = rem 4). Then 3(10) + 7 = 37. 37/6 = 6 rem 1 ✓. Try n = 16: 3(16) + 7 = 55. 55/6 = 9 rem 1 ✓.
+**mistake_b:** Computed 3 × 4 = 12, then 12 + 7 = 19; divided 19 by 6 using integer division: 3 × 6 = 18, rem = 1 — but students who miscompute 19/6 may get rem 2.
+**mistake_c:** Computed 12 + 7 = 19, then 19 mod 6 = 19 − 3×6 = 19 − 18 = 1; students who divide by 3 (instead of 6) get rem 1 mod 3 = 1, but those expecting "3" may stop at 19 − 16 = 3.
+**mistake_d:** Observed the remainder of n (which is 4) and concluded 3n + 7 also has remainder 4 — ignoring the transformation.
+**mistake_e:** Computed 3 × 4 = 12 and then applied 12 + 7 = 19; performed 19 mod 6 = 7 mod 6 = 1, but a sign error led to 5.
+**common_trap:** Carrying the original remainder (4) forward without applying the algebraic transformation — the remainder of a function of n is not the same as the remainder of n.
+**takeaway:** For remainder problems with algebraic expressions: write n = dk + r (where d is the divisor, r is the given remainder), substitute into the expression, and regroup as d × (something) + leftover. The leftover is the answer. Always sanity-check with a concrete number.
