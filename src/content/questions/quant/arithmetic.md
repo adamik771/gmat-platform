@@ -8,23 +8,23 @@ topic: Arithmetic
 **type:** Problem Solving
 **topic:** Fractions
 
-What is the value of 3/4 + 5/8 - 1/2?
+If 1/5 of a number is 12, what is 3/4 of that number?
 
-- A) 3/8
-- B) 5/8
-- C) 7/8
-- D) 1
-- E) 9/8
+- A) 9
+- B) 16
+- C) 45
+- D) 48
+- E) 60
 
 **answer:** C
-**fastest_path:** Common denominator 8: 6/8 + 5/8 − 4/8 = 7/8.
-**explanation:** Convert each fraction to eighths: 3/4 = 6/8, 5/8 stays, 1/2 = 4/8. Add and subtract numerators: 6 + 5 − 4 = 7. Final fraction: 7/8. Total time: 10 seconds.
-**mistake_a:** Subtracted 5/8 instead of adding it; got 6/8 − 5/8 + 4/8 = 5/8 (then off by one).
-**mistake_b:** Computed 3/4 + 5/8 = 11/8, then subtracted 1/2 from that without consistent denominator.
-**mistake_d:** Added all numerators with mismatched denominators: 3+5−1 = 7 over 14 = 1/2 mistakenly converted to 1.
-**mistake_e:** Forgot to convert; treated 3/4 + 5/8 as 8/12, etc.
-**common_trap:** Adding fractions without finding a common denominator.
-**takeaway:** When adding/subtracting fractions, find the least common denominator first (here, 8). Then operate only on numerators.
+**fastest_path:** Number = 12 × 5 = 60. Then 3/4 × 60 = 45.
+**explanation:** "1/5 of a number is 12" means (1/5) × N = 12, so N = 60. The question asks for 3/4 of N: (3/4) × 60 = 45.
+**mistake_a:** Operated on the given piece directly: 12 × (3/4) = 9. Error: the question asks for 3/4 of the whole number N, not 3/4 of the given piece 12. Always recover the whole first.
+**mistake_b:** Reversed the fraction relationship — answered "12 is 3/4 of what number?": 12 ÷ (3/4) = 16. Error: that answers a different question (finding the whole when 3/4 is given), not the one asked.
+**mistake_d:** Found N = 60 correctly, then applied 4/5 instead of 3/4: (4/5) × 60 = 48. Error: confused the numerator and denominator of the target fraction.
+**mistake_e:** Bubbled N = 60 — the intermediate result — instead of completing the second step and computing 3/4 of N.
+**common_trap:** Stopping at the intermediate value N = 60 without completing the second step.
+**takeaway:** Two-step fraction problems: (1) recover the whole from the given part — if (1/5) × N = 12, then N = 12 × 5; (2) compute the asked fraction of the whole. Never apply the second fraction directly to the given piece.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -46,7 +46,7 @@ A shirt originally priced at $80 is discounted by 15%. What is the sale price of
 **fastest_path:** Sale price = 80 × 0.85 = $68 (use multiplier directly, not "subtract the discount").
 **explanation:** A 15% discount means the customer pays 85% of the original price. Sale price = 0.85 × $80 = $68. Equivalent path: discount = 0.15 × 80 = $12; final = 80 − 12 = $68. The multiplicative form (0.85 × 80) is one step; the subtractive form is two.
 **mistake_a:** Bubbled the discount amount ($12), not the sale price.
-**mistake_b:** Computed 80 − 0.15 = 79.85, then misrounded to 65.
+**mistake_b:** Subtracted 15 as a literal number instead of computing 15% of the price: 80 − 15 = 65. Error: the discount is 15% of $80 = $12, not $15 flat.
 **mistake_d:** Computed 80 × 0.10 = 8 (used 10% instead of 15%).
 **mistake_e:** Computed 80 − 4 = 76 (used 5% instead of 15%).
 **common_trap:** Bubbling the discount amount instead of the sale price.
@@ -123,7 +123,7 @@ A store raises the price of an item by 20% and then offers a 20% discount on the
 **answer:** B
 **fastest_path:** Multiply: 1.20 × 0.80 = 0.96 → 96% of original.
 **explanation:** Chained percent changes multiply. A 20% increase scales by 1.20; a 20% decrease scales by 0.80. Product: 1.20 × 0.80 = 0.96 → final price is 96% of original. Total time: 5 seconds. Verifying with $100: $100 × 1.20 = $120; $120 × 0.80 = $96 ✓.
-**mistake_a:** Computed 1.20 + 0.80 − 1 = 1.00, then doubled the discount; got 92%.
+**mistake_a:** Recognized the net change is not zero but overcorrected: subtracted the 4% difference twice — 100% − 4% − 4% = 92%. The single correct move is 1.20 × 0.80 = 0.96 (96%). The −4% correction applies once, not twice.
 **mistake_c:** Concluded "20% up, 20% down cancels" — additive thinking, not multiplicative.
 **mistake_d:** Computed 100 + 4 = 104 (wrong direction); confusion of which step was up vs. down.
 **mistake_e:** Bubbled 108% from a different miscombination.
@@ -144,15 +144,15 @@ If 2^x = 32 and 3^y = 81, what is the value of x + y?
 - B) 8
 - C) 9
 - D) 10
-- E) 12
+- E) 20
 
 **answer:** C
 **fastest_path:** 32 = 2⁵ → x = 5. 81 = 3⁴ → y = 4. Sum = 9.
-**explanation:** Recognize the powers: 32 = 2⁵, so 2^x = 2⁵ gives x = 5. 81 = 3⁴, so 3^y = 3⁴ gives y = 4. Therefore x + y = 9. Total time: 10 seconds for someone who knows 2-power and 3-power table.
+**explanation:** Recognize the powers: 32 = 2⁵, so 2^x = 2⁵ gives x = 5. 81 = 3⁴, so 3^y = 3⁴ gives y = 4. Therefore x + y = 9. Total time: 10 seconds for someone who knows the 2-power and 3-power table.
 **mistake_a:** Confused both powers by one step each: thought 32 = 2⁴ (so x = 4) AND 81 = 3³ (so y = 3); sum = 7. In fact 2⁴ = 16 and 3³ = 27 — both are the power one step below the correct one.
-**mistake_b:** x = 4, y = 4 (mis-recognized 32 = 2⁴).
-**mistake_d:** y = 5 (mis-recognized 81 = 3⁵).
-**mistake_e:** Computed x × y = 20 then halved or otherwise miscombined.
+**mistake_b:** x = 4, y = 4 (mis-recognized 32 = 2⁴ = 16? No — 2⁴ = 16 ≠ 32. This student conflated 2⁴ with 32 instead of 2⁵).
+**mistake_d:** y = 5 (mis-recognized 81 = 3⁵; in fact 3⁵ = 243 ≠ 81); so x + y = 5 + 5 = 10.
+**mistake_e:** Computed the product x × y = 5 × 4 = 20 instead of the sum — misread "x + y" as "xy."
 **common_trap:** Wrong power recognition — confusing 32 with 2⁴ or 81 with 3³.
 **takeaway:** Memorize the small-power table: 2² = 4, 2³ = 8, 2⁴ = 16, 2⁵ = 32, 2⁶ = 64; 3² = 9, 3³ = 27, 3⁴ = 81; 5² = 25, 5³ = 125. Reflexive recognition saves time.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -176,7 +176,7 @@ A recipe calls for flour, sugar, and butter in the ratio 5:3:2. If a baker uses 
 **fastest_path:** Each part = 750/5 = 150 g. Butter = 2 × 150 = 300 g.
 **explanation:** Ratio is flour:sugar:butter = 5:3:2. Flour = 750 g represents 5 parts, so each part = 750/5 = 150 g. Butter = 2 parts = 2 × 150 = 300 g.
 **mistake_a:** Computed 750 / 5 = 150 (one part) and bubbled.
-**mistake_b:** Computed 750 × (2/5) wrong; got 200.
+**mistake_b:** Used only flour + butter as the denominator (excluded sugar): 5 + 2 = 7 parts. Then butter = (2/7) × 750 ≈ 214 ≈ 200. Error: all three ingredients must appear in the denominator — total parts = 5 + 3 + 2 = 10, not 7.
 **mistake_d:** Bubbled the sugar amount: 3 × 150 = 450 (the trap of answering "another component").
 **mistake_e:** Computed 750/3 × 2 = 500 (used wrong denominator).
 **common_trap:** Bubbling the wrong component — sugar (3 parts) is also computable from the same setup.
@@ -255,8 +255,8 @@ What is the value of (27^(2/3) x 16^(3/4)) / (4^(1/2) x 9^(1/2))?
 **explanation:** Convert each fractional power to its base form. 27^(2/3) = (3³)^(2/3) = 3² = 9. 16^(3/4) = (2⁴)^(3/4) = 2³ = 8. 4^(1/2) = 2. 9^(1/2) = 3. Numerator = 9 × 8 = 72. Denominator = 2 × 3 = 6. Result = 72/6 = 12.
 **mistake_a:** Computed 27^(2/3) wrong (e.g., as 27/3·2 = 18); chained errors to 6.
 **mistake_b:** Got the cubes/squares wrong; arrived at 8.
-**mistake_c:** Computed 16^(3/4) as 2⁴×3/4 = 12; rest fell through to 10.
-**mistake_e:** Forgot to divide by the denominator; got 72 / something else = 18.
+**mistake_c:** Several paths converge near 10 through cascading errors in one exponent combined with a denominator slip. Getting exactly C=10 requires an intermediate error (e.g., miscomputing 16^(3/4)) followed by a secondary arithmetic error; no single clean step produces it. Examine your exponent arithmetic if you landed here.
+**mistake_e:** Misapplied 16^(3/4) as 16 × (3/4) = 12 instead of (16^(1/4))^3 = 2^3 = 8. With that error: numerator = 9 × 12 = 108; denominator = 2 × 3 = 6; result = 108/6 = 18. The fix: a^(m/n) means take the n-th root first, then raise to the m-th power — never multiply the base by the exponent fraction.
 **common_trap:** Fractional exponent arithmetic — applying the wrong order (numerator vs. denominator) of the fractional exponent.
 **takeaway:** a^(m/n) = (a^(1/n))^m = (n-th root of a)^m. Compute the root first when n divides cleanly into a.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -307,7 +307,7 @@ A solution contains water and alcohol in the ratio 4:1. If 5 liters of alcohol a
 **fastest_path:** Initial: 20 water, 5 alcohol. After +5 alcohol: 20 water, 10 alcohol → 2:1.
 **explanation:** Initial composition in 25 L (ratio 4:1, total 5 parts): water = (4/5) × 25 = 20 L; alcohol = (1/5) × 25 = 5 L. Add 5 L pure alcohol: water stays 20 L; alcohol becomes 10 L. New ratio water:alcohol = 20:10 = 2:1.
 **mistake_a:** Treated added alcohol as half of total volume; got 1:1.
-**mistake_c:** Computed alcohol = 5 + 5 = 10 but forgot to simplify, got 20:10 → 3:2 by error.
+**mistake_c:** Treated the addition as a drain-and-replace (exchanged 5 L of water for 5 L of alcohol) instead of a net addition. If 5 L of water is removed and 5 L of alcohol added: water = 20 − 5 = 15, alcohol = 5 + 5 = 10 → ratio = 15:10 = 3:2. Error: the problem says 5 L of alcohol is added to the existing solution, not substituted for water — total volume increases from 25 to 30 L.
 **mistake_d:** Bubbled some intermediate ratio (4:3).
 **mistake_e:** Got the ratio inverted or miscalculated the new total.
 **common_trap:** Mixture problems with composition change — forgetting that adding pure substance changes only one component.
@@ -541,7 +541,7 @@ The sum of the first n terms of a certain sequence equals 3n² + 2n. What is the
 ## Q21
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Mixtures — Acid Solution
+**topic:** Mixtures — Alloys
 
 A chemist has 15 kilograms of an alloy that is 40% zinc by weight; the rest is copper. How many kilograms of a second alloy that is 70% zinc must be added to produce a new mixture that is 55% zinc by weight?
 
@@ -607,8 +607,8 @@ Pipe A alone fills an empty tank in 4 hours. Pipe B alone fills the same tank in
 **answer:** B
 **fastest_path:** Net rate = 1/4 + 1/6 − 1/12 = 4/12 = 1/3 tank/hr. Time = 3 hr.
 **explanation:** Work in tank-fractions per hour. Pipe A: 1/4 tank/hr. Pipe B: 1/6 tank/hr. Drain: −1/12 tank/hr (subtract since it removes water). Net rate = 1/4 + 1/6 − 1/12. Convert to common denominator 12: 3/12 + 2/12 − 1/12 = 4/12 = 1/3 tank/hr. Time to fill 1 tank = 1 ÷ (1/3) = 3 hr.
-**mistake_a:** Added times directly: 4 + 6 − 12 = −2; somehow arrived at 2.5.
-**mistake_c:** Combined rates as 1/4 + 1/6 (forgot the drain): rate = 5/12; time = 12/5 = 2.4 hr; rounded to 3.5.
+**mistake_a:** Forgot the drain entirely and combined only the two fill pipes: rate = 1/4 + 1/6 = 5/12 tank/hr; time = 12/5 = 2.4 hr ≈ 2.5 hr. Error: the drain removes water and must appear as a negative rate in the sum.
+**mistake_c:** Correctly computed the fill-only rate (1/4 + 1/6 = 5/12) but then separately "added back" drain time as 12 × (1/12) = 1 additional hour: 2.4 + 1.1 ≈ 3.5 hr. Error: once the drain's rate is subtracted from the net rate, no further adjustment is needed — the net rate already accounts for the drain.
 **mistake_d:** Forgot the drain entirely; computed time as average of 4 and 6 = 5; nudged to 4.
 **mistake_e:** Used time=4 (Pipe A's solo time) and ignored other pipes.
 **common_trap:** Adding times instead of rates — fill-and-drain problems require *rates* (work per time), then take reciprocal.
@@ -634,7 +634,7 @@ A container holds 20 liters of saline solution that is 30% salt by weight. How m
 **fastest_path:** Salt fixed at 6 L. New concentration = 6/(20+x) = 0.20 → 20+x = 30 → x = 10.
 **explanation:** Salt mass stays constant at 0.30 × 20 = 6 L (only water is added). After adding x L of pure water, total volume = 20 + x; new concentration = 6/(20 + x) = 0.20. Solve: 20 + x = 30 → x = 10.
 **mistake_a:** Averaged concentrations: (30 + 0)/2 = 15% (incorrect for non-equal volumes); arrived at 5.
-**mistake_b:** Computed 6/0.20 = 30 (correctly), then subtracted only initial salt (6); got 7.5.
+**mistake_b:** Correctly found new total volume = 6/0.20 = 30 L, then computed water added as salt ÷ (1 − 0.20) = 6/0.80 = 7.5 L. Error: confused the water-to-salt relationship with the volume calculation. Correct path: water added = new total − original volume = 30 − 20 = 10 L.
 **mistake_d:** Solved 6/(20+x) = 0.15 (using a wrong target percent); got 12.5.
 **mistake_e:** Doubled the answer.
 **common_trap:** Averaging concentrations or treating water as having "non-zero salt." Pure water has no salt — only volume changes.
@@ -688,7 +688,7 @@ Alex and Ben live 60 miles apart. At 8:00 AM, Ben begins walking toward Alex's h
 **explanation:** Two-stage problem with delayed start. Stage 1 (8:00-10:00 AM): only Ben walks. Distance Ben covers = 5 × 2 = 10 mi. Remaining gap at 10:00 AM = 60 − 10 = 50 mi. Stage 2 (from 10:00 AM): both move toward each other. Closing speed = 5 + 45 = 50 mph. Time to close 50 mi = 50/50 = 1 hr. Meeting time = 10:00 + 1:00 = 11:00 AM.
 **mistake_a:** Used Ben's head start incorrectly; computed 30/50 = 0.6 hr → 10:36, rounded to 10:30.
 **mistake_b:** Used 60 mi (full distance, not the remaining 50) at closing speed 50: 60/50 = 1.2 hr → 11:12, rounded to 10:45.
-**mistake_d:** Forgot Ben's head start entirely; used 60 mi at 50 mph from 8:00 = 1.2 hr → 9:12; bumped to 11:15.
+**mistake_d:** Correctly reduced the remaining distance to 50 mi but used a closing speed of 45 − 5 = 40 mph (subtracted Ben's speed instead of adding it): 50 mi / 40 mph = 1.25 hr → 10:00 + 1:15 = 11:15 AM. Error: when two people move toward each other, speeds add to form the closing speed (45 + 5 = 50 mph).
 **mistake_e:** Treated each separately and averaged; got noon.
 **common_trap:** Forgetting the head-start distance — applying closing speed to the *original* distance instead of the *remaining* distance.
 **takeaway:** Delayed-start motion problems: compute head-start distance traveled, subtract from total to get remaining distance, then apply closing speed for the remaining time.
@@ -741,7 +741,7 @@ A chemist has 40 liters of a 25% saline solution. Some of the solution is draine
 **answer:** D
 **fastest_path:** Salt after = 10 − 0.25x. Concentration = (10 − 0.25x)/40 = 0.15 → x = 16.
 **explanation:** Original salt = 0.25 × 40 = 10 L. Drain x L of solution: this removes 0.25x L of salt (proportional to concentration). Replace with x L of pure water: total volume stays 40 L. New salt = 10 − 0.25x. New concentration = (10 − 0.25x) / 40 = 0.15. Solve: 10 − 0.25x = 6 → 0.25x = 4 → x = 16.
-**mistake_a:** Treated drain as removing fixed-volume salt: 10 − x = 6 → x = 4; doubled.
+**mistake_a:** Modeled the replacement incorrectly — treated it as adding pure water without draining (volume increases to 40 + x instead of staying at 40): (10 − 0.25x)/(40 + x) = 0.15 → 10 − 0.25x = 6 + 0.15x → 4 = 0.40x → x = 10. Error: drain-and-replace keeps total volume constant at 40 L; only the salt proportion changes.
 **mistake_b:** Used (10 − 0.25x) / 40 = 0.15 but arithmetic slip: x = 12.
 **mistake_c:** Computed x to drain 10% absolute concentration: 0.10 × 40 = 4; doubled.
 **mistake_e:** Computed 0.50 × 40 = 20 (used wrong target).
@@ -770,8 +770,8 @@ A company's marketing budget is divided among digital, print, and radio channels
 **explanation:** Each ratio "part" = k. Digital = 5k, print = 3k, radio = 2k. Given: digital − radio = 5k − 2k = 3k = 150,000 → k = 50,000. Total = 5k + 3k + 2k = 10k = $500,000.
 **mistake_a:** Computed 150,000 × 2 = 300,000; bubbled.
 **mistake_b:** Computed total parts × $40k unit; got 400,000.
-**mistake_d:** Used wrong difference: 5k − 3k (digital − print) = 2k = 150,000; got total = 750,000.
-**mistake_e:** Computed 150,000 × 5 = 750,000; bubbled.
+**mistake_d:** Solved k = 50,000 correctly but miscounted total parts as 12 — added the radio allocation twice (5 + 3 + 2 + 2 = 12): 12 × 50,000 = 600,000. Error: the three channels sum to exactly 10 parts; no component is counted more than once.
+**mistake_e:** Used the wrong difference — digital minus print (5k − 3k = 2k) instead of digital minus radio (5k − 2k = 3k): 2k = 150,000 → k = 75,000; total = 10 × 75,000 = 750,000. Error: the problem specifies digital vs. radio, not digital vs. print.
 **common_trap:** Computing the wrong difference (digital − print, or digital alone) instead of digital − radio.
 **takeaway:** For ratio problems with a known scalar difference, write each part as k, set up the difference equation, solve for k, then compute the asked quantity (often the total).
 **related_reading:** reading-quant-05-word-problems
@@ -850,8 +850,8 @@ An investor buys $5,000 of Stock X at time zero. Exactly one year later, after S
 - Year 0: invest $5,000.
 - End of year 1: $5,000 × 1.40 = $7,000. Add $5,000 → portfolio = $12,000. Total invested = $10,000.
 - End of year 2: $12,000 × 1.10 = $13,200. Total return = (13,200 − 10,000) / 10,000 = 0.32 = 32%.
-**mistake_a:** Computed (1.40 − 1.10)/1 = 30%; bubbled 25%.
-**mistake_b:** Averaged the rates: (40 + 10)/2 = 25%; nudged to 28%.
+**mistake_a:** Averaged the two annual growth rates: (40% + 10%) / 2 = 25%. Error: the two rates apply to different capital amounts in different years and cannot simply be averaged to get total return on the combined $10,000 invested.
+**mistake_b:** Computed total gain = $3,200 correctly but divided by an average portfolio value (($10,000 + $13,200)/2 ≈ $11,600) instead of the $10,000 invested: $3,200/$11,600 ≈ 27.6% ≈ 28%. Error: return on investment divides by the initial capital invested, not the average portfolio value.
 **mistake_c:** Computed only year 1 growth: $7,000 / $10,000 = $7,000 invested; misset 30%.
 **mistake_e:** Applied both growth rates to full $10,000: 1.40 × 1.10 = 1.54 → 54%; misset to 35%.
 **common_trap:** Applying the year-1 growth rate to capital that wasn't invested in year 1.
