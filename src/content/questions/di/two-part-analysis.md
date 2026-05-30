@@ -166,14 +166,14 @@ From the statements below, identify one that would most strengthen the council's
 | The new streetlights use energy-efficient LED bulbs                                    |             |         |
 | Most accidents on Main Street occur during daylight hours                              |             |         |
 
-**answer:** Strengthens = "A nearby city with similar traffic volume saw 35% fewer accidents after installing lights"; Weakens = "Most accidents on Main Street occur during daylight hours"
-**fastest_path:** Strongest strengthen = direct parallel case (35% in similar city). Strongest weaken = premise-nullifier (lights help nighttime; daylight accidents unaffected).
-**explanation:** A comparable case study showing a 35% reduction directly supports the claim that streetlights will reduce accidents by at least 30%. "Most accidents occur during daylight" weakens the argument because streetlights would have no impact on daylight accidents — making a 30% overall reduction implausible. The other options are either irrelevant (LED bulbs, traffic volume) or only weakly related (speeding vs visibility addresses cause but doesn't directly contradict the claim).
-**mistake_b:** Speeding-not-visibility addresses cause but doesn't directly contradict the 30% reduction claim — only weakly weakens.
-**mistake_c:** Higher traffic volume is irrelevant to whether lights reduce night accidents.
+**answer:** Strengthens = "A nearby city with similar traffic volume saw 35% fewer accidents after installing lights"; Weakens = "Main Street accidents are primarily caused by speeding, not visibility"
+**fastest_path:** Strongest strengthen = direct parallel case (35% in similar city). Strongest weaken = mechanism destroyer (lights fix visibility; if accidents come from speeding, lights don't help).
+**explanation:** A comparable case study showing a 35% reduction directly supports the claim that streetlights will reduce nighttime accidents by at least 30%. The strongest weakener is "primarily caused by speeding, not visibility": streetlights improve visibility — if accidents are caused by speeding rather than poor visibility, improving visibility does nothing, and the 30% reduction cannot happen. Note the claim is specifically about *nighttime* accidents, so "most accidents occur during daylight" does not directly challenge the prediction for nighttime; the council could still be right that the subset of nighttime accidents falls by 30%. The other options are irrelevant: LED bulbs and traffic volume say nothing about whether lights reduce accidents.
+**mistake_c:** Higher traffic volume is irrelevant to whether lights reduce nighttime accidents.
 **mistake_d:** Energy efficiency of bulbs is irrelevant to the accident-reduction mechanism.
-**common_trap:** Picking the speeding option as the strongest weaken — it weakens indirectly. The daylight option directly nullifies the lights' mechanism (lights have no daylight role).
-**takeaway:** Strengthen/weaken: prefer evidence that directly tests the claim's mechanism over evidence that adds peripheral context.
+**mistake_e:** "Most accidents on Main Street occur during daylight hours" sounds like a weakener but does not directly challenge the claim. The council's prediction is specifically about nighttime accidents — even if daytime accidents dominate the total count, streetlights could still reduce the nighttime subset by 30%. This option is only peripherally related.
+**common_trap:** Picking the daylight option as the strongest weakener because it seems to limit the impact of streetlights. But the claim is narrowly scoped to nighttime accidents, so the daytime/nighttime proportion of total accidents is beside the point. The mechanism weakener (speeding) directly cuts the causal link.
+**takeaway:** To weaken a causal claim, attack the mechanism: show the proposed cause cannot produce the predicted effect. Scope matters — always check whether a weakener actually challenges what the argument claims.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---

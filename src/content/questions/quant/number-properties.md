@@ -136,7 +136,7 @@ If the three-digit number 4A6 is divisible by 9, where A represents a single dig
 ## Q6
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Multiples
+**topic:** Greatest Common Factor
 
 What is the greatest common factor of 168 and 252?
 
