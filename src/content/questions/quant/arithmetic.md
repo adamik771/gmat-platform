@@ -19,8 +19,8 @@ What is the value of 3/4 + 5/8 - 1/2?
 **answer:** C
 **fastest_path:** Common denominator 8: 6/8 + 5/8 − 4/8 = 7/8.
 **explanation:** Convert each fraction to eighths: 3/4 = 6/8, 5/8 stays, 1/2 = 4/8. Add and subtract numerators: 6 + 5 − 4 = 7. Final fraction: 7/8. Total time: 10 seconds.
-**mistake_a:** Subtracted 5/8 instead of adding it; got 6/8 − 5/8 + 4/8 = 5/8 (then off by one).
-**mistake_b:** Computed 3/4 + 5/8 = 11/8, then subtracted 1/2 from that without consistent denominator.
+**mistake_a:** Subtracted both 5/8 and 1/2 (misread every term after the first as subtraction): 6/8 − 5/8 − 4/8 = −3/8; then reported the unsigned value as 3/8.
+**mistake_b:** Subtracted 5/8 instead of adding it (misread + as −): 6/8 − 5/8 + 4/8 = 5/8.
 **mistake_d:** Added all numerators with mismatched denominators: 3+5−1 = 7 over 14 = 1/2 mistakenly converted to 1.
 **mistake_e:** Forgot to convert; treated 3/4 + 5/8 as 8/12, etc.
 **common_trap:** Adding fractions without finding a common denominator.
@@ -46,7 +46,7 @@ A shirt originally priced at $80 is discounted by 15%. What is the sale price of
 **fastest_path:** Sale price = 80 × 0.85 = $68 (use multiplier directly, not "subtract the discount").
 **explanation:** A 15% discount means the customer pays 85% of the original price. Sale price = 0.85 × $80 = $68. Equivalent path: discount = 0.15 × 80 = $12; final = 80 − 12 = $68. The multiplicative form (0.85 × 80) is one step; the subtractive form is two.
 **mistake_a:** Bubbled the discount amount ($12), not the sale price.
-**mistake_b:** Computed 80 − 0.15 = 79.85, then misrounded to 65.
+**mistake_b:** Subtracted the percent number (15) rather than 15% of the price: 80 − 15 = $65.
 **mistake_d:** Computed 80 × 0.10 = 8 (used 10% instead of 15%).
 **mistake_e:** Computed 80 − 4 = 76 (used 5% instead of 15%).
 **common_trap:** Bubbling the discount amount instead of the sale price.
@@ -72,7 +72,7 @@ The ratio of red marbles to blue marbles in a jar is 3:5. If there are 40 marble
 **fastest_path:** Parts: 3 + 5 = 8. Each part = 40/8 = 5. Red = 3 × 5 = 15.
 **explanation:** Sum of ratio parts: 3 + 5 = 8 total parts. Each part represents 40/8 = 5 marbles. Red marbles = 3 parts × 5 = 15. Blue marbles = 5 parts × 5 = 25. Total: 15 + 25 = 40 ✓.
 **mistake_a:** Computed 40/5 = 8 (used red ratio as denominator), then... bubbled 8.
-**mistake_b:** Computed 40 × (3/8) = 15 correctly but slipped on arithmetic to 12.
+**mistake_b:** Computed 40 × 3 = 120 correctly but divided by 10 instead of 8: 120 ÷ 10 = 12.
 **mistake_d:** Computed 40 × (1/2) = 20 (treated ratio as half-half).
 **mistake_e:** Bubbled the blue count (25) — the trap for students who answer "the other color."
 **common_trap:** Bubbling the wrong color's count — the question asks for red, but blue's count is also computable and tempting.
@@ -99,7 +99,7 @@ Which of the following is equal to 0.125 x 0.4?
 **explanation:** Convert to fractions: 0.125 = 1/8 and 0.4 = 2/5. Multiply: (1/8) × (2/5) = 2/40 = 1/20 = 0.05. Alternative: count decimal places (3 in 0.125, 1 in 0.4 = 4 total). Compute 125 × 4 = 500. Place the decimal 4 positions: 0.0500 = 0.05.
 **mistake_a:** Counted 5 decimal places (one extra zero); got 0.005.
 **mistake_c:** Lost a decimal place; got 0.5.
-**mistake_d:** Multiplied 125 × 4 = 500, but kept "0.0125" as is.
+**mistake_d:** Misread 0.4 as 0.1 and computed 0.125 × 0.1 = 0.0125.
 **mistake_e:** Added 0.125 + 0.4 = 0.525 instead of multiplying.
 **common_trap:** decimal-place-loss — miscounting the total decimal places in the product.
 **takeaway:** Decimal multiplication: multiply the integer parts, then place the decimal point with total decimal places of the operands. Or convert to fractions when one is a clean fraction equivalent (1/8 = 0.125, 1/4 = 0.25, 2/5 = 0.4).
@@ -202,7 +202,7 @@ If |2x - 7| = 11, what is the sum of all possible values of x?
 **fastest_path:** |2x − 7| = 11 → solutions symmetric about 3.5. Sum = 2(3.5) = 7.
 **explanation:** For |ax − b| = c, the two solutions are symmetric about x = b/a. Here, b/a = 7/2 = 3.5, so the sum of solutions is 2 × 3.5 = 7. Verify by casework: 2x − 7 = 11 → x = 9; 2x − 7 = −11 → x = −2; sum = 7 ✓. Symmetry shortcut: 5 sec; casework: 25 sec.
 **mistake_a:** Took only one solution (x = −2) and bubbled.
-**mistake_b:** Computed only one case correctly (x = 5 from misreading); halved.
+**mistake_b:** Solved the negative case to 2x = −4 correctly but then summed 9 + (−4) = 5 instead of first solving x = −2; added the 2x-value, not the x-value.
 **mistake_d:** Computed only the positive case (x = 9) and bubbled.
 **mistake_e:** Bubbled |11| from the right-hand side.
 **common_trap:** absolute-value-single-case — solving only +c case and missing −c.
@@ -227,7 +227,7 @@ In a certain town, 60% of the adults are women. Of the women, 30% are employed f
 **answer:** C
 **fastest_path:** Total employed = 0.60(0.30) + 0.40(0.50) = 0.18 + 0.20 = 0.38 → 38%.
 **explanation:** Weighted-average problem. Pick a base of 100 adults: 60 women, 40 men. Women employed: 0.30 × 60 = 18. Men employed: 0.50 × 40 = 20. Total: 38 of 100 = 38%. Equivalent direct computation: weight × percent for each group, sum: 0.60 × 0.30 + 0.40 × 0.50 = 0.18 + 0.20 = 0.38.
-**mistake_a:** Averaged 30% and 50% to 40%, then dropped to 32% via wrong weighting.
+**mistake_a:** Applied the men's population weight (40%) to both groups: 0.40 × 30% + 0.40 × 50% = 12% + 20% = 32%; forgot that women represent 60% of the population, not 40%.
 **mistake_b:** Computed 30% + 5% (some compounding error); got 35%.
 **mistake_d:** Took simple average (30 + 50)/2 = 40% — ignored that women are 60% of the population.
 **mistake_e:** Weighted incorrectly: 0.30(0.40) + 0.50(0.60) = 12 + 30 = 42% (swapped weights).
@@ -307,7 +307,7 @@ A solution contains water and alcohol in the ratio 4:1. If 5 liters of alcohol a
 **fastest_path:** Initial: 20 water, 5 alcohol. After +5 alcohol: 20 water, 10 alcohol → 2:1.
 **explanation:** Initial composition in 25 L (ratio 4:1, total 5 parts): water = (4/5) × 25 = 20 L; alcohol = (1/5) × 25 = 5 L. Add 5 L pure alcohol: water stays 20 L; alcohol becomes 10 L. New ratio water:alcohol = 20:10 = 2:1.
 **mistake_a:** Treated added alcohol as half of total volume; got 1:1.
-**mistake_c:** Computed alcohol = 5 + 5 = 10 but forgot to simplify, got 20:10 → 3:2 by error.
+**mistake_c:** Treated the ratio parts as literal liters (water = 4 L, alcohol = 1 L), added 5 L alcohol to get 6 L total alcohol, and formed ratio 4:6; then inverted to water:alcohol = 6:4 → simplified to 3:2. Treating ratio parts as actual volumes is the error.
 **mistake_d:** Bubbled some intermediate ratio (4:3).
 **mistake_e:** Got the ratio inverted or miscalculated the new total.
 **common_trap:** Mixture problems with composition change — forgetting that adding pure substance changes only one component.
@@ -447,7 +447,7 @@ If x = -3 and y = 2, what is the value of |x - y| - |y - x| + |x| - |y|?
 ---
 
 ## Q18
-**difficulty:** Medium
+**difficulty:** Hard
 **type:** Data Sufficiency
 **topic:** Fractions
 
@@ -580,7 +580,7 @@ A class of 24 students has an average test score of 76. When two new students jo
 **answer:** D
 **fastest_path:** New total − old total = 178. Other student = 178 − 92 = 86.
 **explanation:** Total before: 24 × 76 = 1,824. Total after: 26 × 77 = 2,002. The two new students added 2,002 − 1,824 = 178 points combined. One scored 92, so the other scored 178 − 92 = 86.
-**mistake_a:** Computed 178 / 2 = 89; then off by some arithmetic.
+**mistake_a:** Assumed the two new students averaged the new class mean (77) and computed their combined score as 2 × 77 = 154; then 154 − 92 = 62. This confuses the class average with the newcomers' individual total.
 **mistake_b:** Computed 92 − 18 (the average gain × 2) = 74.
 **mistake_c:** Split 178 evenly to 89 each, then nudged to 80.
 **mistake_e:** Bubbled 92 (the given score) — confused which is being asked.
@@ -634,7 +634,7 @@ A container holds 20 liters of saline solution that is 30% salt by weight. How m
 **fastest_path:** Salt fixed at 6 L. New concentration = 6/(20+x) = 0.20 → 20+x = 30 → x = 10.
 **explanation:** Salt mass stays constant at 0.30 × 20 = 6 L (only water is added). After adding x L of pure water, total volume = 20 + x; new concentration = 6/(20 + x) = 0.20. Solve: 20 + x = 30 → x = 10.
 **mistake_a:** Averaged concentrations: (30 + 0)/2 = 15% (incorrect for non-equal volumes); arrived at 5.
-**mistake_b:** Computed 6/0.20 = 30 (correctly), then subtracted only initial salt (6); got 7.5.
+**mistake_b:** Found the required total volume correctly (6/0.20 = 30 L) but then scaled the volume increase by the new water fraction: (30 − 20) × 0.75 = 7.5. The added liquid is pure water — no concentration scaling applies to the volume added.
 **mistake_d:** Solved 6/(20+x) = 0.15 (using a wrong target percent); got 12.5.
 **mistake_e:** Doubled the answer.
 **common_trap:** Averaging concentrations or treating water as having "non-zero salt." Pure water has no salt — only volume changes.
@@ -688,7 +688,7 @@ Alex and Ben live 60 miles apart. At 8:00 AM, Ben begins walking toward Alex's h
 **explanation:** Two-stage problem with delayed start. Stage 1 (8:00-10:00 AM): only Ben walks. Distance Ben covers = 5 × 2 = 10 mi. Remaining gap at 10:00 AM = 60 − 10 = 50 mi. Stage 2 (from 10:00 AM): both move toward each other. Closing speed = 5 + 45 = 50 mph. Time to close 50 mi = 50/50 = 1 hr. Meeting time = 10:00 + 1:00 = 11:00 AM.
 **mistake_a:** Used Ben's head start incorrectly; computed 30/50 = 0.6 hr → 10:36, rounded to 10:30.
 **mistake_b:** Used 60 mi (full distance, not the remaining 50) at closing speed 50: 60/50 = 1.2 hr → 11:12, rounded to 10:45.
-**mistake_d:** Forgot Ben's head start entirely; used 60 mi at 50 mph from 8:00 = 1.2 hr → 9:12; bumped to 11:15.
+**mistake_d:** Subtracted speeds instead of adding them for the closing rate (45 − 5 = 40 mph); 50 mi ÷ 40 mph = 1.25 hr past 10:00 AM = 11:15 AM. When two travelers move toward each other, the closing rate is the *sum* of their speeds, not the difference.
 **mistake_e:** Treated each separately and averaged; got noon.
 **common_trap:** Forgetting the head-start distance — applying closing speed to the *original* distance instead of the *remaining* distance.
 **takeaway:** Delayed-start motion problems: compute head-start distance traveled, subtract from total to get remaining distance, then apply closing speed for the remaining time.
@@ -770,8 +770,8 @@ A company's marketing budget is divided among digital, print, and radio channels
 **explanation:** Each ratio "part" = k. Digital = 5k, print = 3k, radio = 2k. Given: digital − radio = 5k − 2k = 3k = 150,000 → k = 50,000. Total = 5k + 3k + 2k = 10k = $500,000.
 **mistake_a:** Computed 150,000 × 2 = 300,000; bubbled.
 **mistake_b:** Computed total parts × $40k unit; got 400,000.
-**mistake_d:** Used wrong difference: 5k − 3k (digital − print) = 2k = 150,000; got total = 750,000.
-**mistake_e:** Computed 150,000 × 5 = 750,000; bubbled.
+**mistake_d:** Solved 3k = 150,000 correctly (k = 50,000) but mis-added the ratio parts: 5 + 3 + 2 = 12 instead of 10; 12 × 50,000 = $600,000.
+**mistake_e:** Used the wrong channel pair (digital − print = 5k − 3k = 2k = 150,000) → k = 75,000; total = 10 × 75,000 = $750,000. The question specifies digital minus radio (5k − 2k = 3k), not digital minus print.
 **common_trap:** Computing the wrong difference (digital − print, or digital alone) instead of digital − radio.
 **takeaway:** For ratio problems with a known scalar difference, write each part as k, set up the difference equation, solve for k, then compute the asked quantity (often the total).
 **related_reading:** reading-quant-05-word-problems
@@ -794,10 +794,10 @@ An investor deposits $24,000 across two accounts. Account A earns 6% simple annu
 **answer:** B
 **fastest_path:** 0.06x + 0.04(24,000 − x) = 1,200 → 0.02x = 240 → x = $12,000.
 **explanation:** Let x = amount in Account A; then 24,000 − x is in B. Combined interest: 0.06x + 0.04(24,000 − x) = 1,200. Expand: 0.06x + 960 − 0.04x = 1,200 → 0.02x = 240 → x = $12,000. Verify: 0.06(12,000) + 0.04(12,000) = 720 + 480 = 1,200 ✓.
-**mistake_a:** Solved with 5% rate (averaged); 0.05 × x = 600 → 12,000 → confused to 10,000.
-**mistake_c:** Algebra slip: 0.02x = 280 → 14,000.
-**mistake_d:** Computed differently; got 15,000.
-**mistake_e:** Computed 24,000 × 0.75 = 18,000.
+**mistake_a:** Allocated principal by rate ratio: 4/(6+4) × $24,000 = $9,600 ≈ $10,000; the interest-rate ratio does not determine the principal split — solve the algebraic equation instead.
+**mistake_c:** Arithmetic slip: computed 1,200 − 960 = 280 instead of 240; 0.02x = 280 → x = $14,000. Always subtract carefully.
+**mistake_d:** Estimated x = $15,000 without verifying: 0.06(15,000) + 0.04(9,000) = 900 + 360 = $1,260 ≠ $1,200. Substituting back exposes the error immediately.
+**mistake_e:** Used the rate ratio (6:4 = 3:2) as the principal ratio with an incorrect denominator (3+1 = 4 instead of 3+2 = 5): 3/4 × $24,000 = $18,000. The principal ratio must come from the interest equation, not the rate ratio.
 **common_trap:** Averaging the interest rates and applying to the total — misses the actual allocation.
 **takeaway:** Split-investment problems: write rate × amount for each account, sum to total interest, solve for one variable.
 **related_reading:** reading-quant-05-word-problems

@@ -409,10 +409,10 @@ Set X = {8, 10, 12, 14, 16} and Set Y is formed by adding 5 to each element of S
 **answer:** C
 **fastest_path:** Adding constant shifts mean by 5; SD unchanged.
 **explanation:** Adding 5 to each element: mean increases by 5; deviations from new mean = old deviations from old mean → SD unchanged.
-**mistake_a:** Treated additive shift as scaling SD.
-**mistake_b:** Inverted SD direction.
-**mistake_d:** Treated mean as unchanged.
-**mistake_e:** Treated mean as unchanged.
+**mistake_a:** Adding 5 to each element increases every value by the same amount, shifting the mean up by 5. The *deviations* from the mean (how far each value lies from the group average) are completely unchanged — every value and its mean move together by +5, so the gap between them stays the same. A student who reasons "larger values → more spread" is confusing magnitude with dispersion. SD measures spread around the center, not the absolute size of the values.
+**mistake_b:** The mean correctly increases by 5. The student concluded that a higher mean signals a smaller SD — but mean and SD measure different things (center vs. spread). Spread depends on how far each value sits from its mean, not on how large the values are. Adding 5 shifts every deviation by exactly 0, so SD is unchanged.
+**mistake_d:** Adding 5 to every element shifts the entire number line by +5. The mean moves with it: mean(Y) = mean(X) + 5. A student who treats the average as invariant to a uniform shift is forgetting that the mean is simply the arithmetic average of the values — it shifts whenever every value shifts. Verify: mean(X) = 12; mean(Y) = (13+15+17+19+21)/5 = 17 = 12 + 5.
+**mistake_e:** A student may correctly remember that SD is unaffected by an additive shift, but then also apply that same logic to the mean — forgetting that mean and SD follow different rules under linear transformations. The mean *does* shift with the constant; only the SD is invariant. Mean(Y) = 17 ≠ 12 = mean(X).
 **common_trap:** Confusing additive shift (+5) with multiplicative scaling (×5). Only multiplicative changes SD.
 **takeaway:** y = ax + b → mean(y) = a·mean(x) + b; SD(y) = |a|·SD(x). Constant b shifts only the mean.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -574,7 +574,7 @@ A data set of 5 numbers has mean 10 and standard deviation 2. If each number in 
 **mistake_a:** Treated SD as invariant under all transforms — concluded the SD stays at 2. Multiplying by 3 stretches the spread: SD(3x + 4) = 3·SD(x) = 6.
 **mistake_b:** Divided the correct answer by 2 — perhaps misremembered the rule as SD(ax+b) = a·SD(x)/b, or confused the multiplier with something else. Nothing divides the SD here; the rule is SD(3x+4) = 3·2 = 6.
 **mistake_d:** Applied the +4 additive shift as a scaling factor: 3·2 + 4 = 10. Additive constants shift the mean but leave spread unchanged. Only the multiplicative factor |a| scales the SD.
-**mistake_e:** Mis-applied → 22.
+**mistake_e:** Applied the variance-scaling rule to the SD and then also added the constant: 3² × 2 + 4 = 9 × 2 + 4 = 22. Two errors compounded: (1) SD scales by |a|, not a² (squaring the multiplier is the variance rule, not the SD rule); (2) the additive constant b never affects spread of any kind. The correct SD is simply |3| × 2 = 6.
 **common_trap:** Adding the constant b to the SD. Only |a| (multiplier) affects SD.
 **takeaway:** Linear transform y = ax + b: mean shifts by b, SD scales by |a|. Constant b doesn't affect spread.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -733,10 +733,10 @@ In a group of 80 people, 45 own a car and 35 own a bicycle. If 20 people own bot
 **answer:** C
 **fastest_path:** |C ∪ B| = |C| + |B| − |C ∩ B| = 45 + 35 − 20 = 60.
 **explanation:** Inclusion-exclusion: |C ∪ B| = 45 + 35 − 20 = 60.
-**mistake_a:** Bubbled |Car| = 45 (just one set).
-**mistake_b:** Slip → 55.
-**mistake_d:** Slip → 65.
-**mistake_e:** Added without subtracting overlap: 45 + 35 = 80.
+**mistake_a:** Bubbled |Car| = 45 — used only one set's count, ignoring the bicycle owners entirely.
+**mistake_b:** Used an overlap of 25 instead of 20, perhaps misreading "20 own both" as "25 own both": 45 + 35 − 25 = 55. Off-by-5 in the overlap value propagates directly into the union count.
+**mistake_d:** Used an overlap of 15 instead of 20, perhaps halving the stated "20 own both" by mistake: 45 + 35 − 15 = 65. Again an error in reading or computing the intersection.
+**mistake_e:** Added without subtracting the overlap: 45 + 35 = 80 — double-counted the 20 people who own both a car and a bicycle. The inclusion-exclusion correction (−20) brings the union down to 60.
 **common_trap:** Failing to subtract the overlap (|both|) → 80 (double-counts the people who own both).
 **takeaway:** |A ∪ B| = |A| + |B| − |A ∩ B|. Always subtract the intersection once.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -969,7 +969,7 @@ In a survey of 120 customers, 72 bought Product A, 54 bought Product B, and 30 b
 **explanation:** The number who bought at least one product is |A ∪ B| = |A| + |B| − |A ∩ B| = 72 + 54 − 30 = 96. Those who bought neither = total − |A ∪ B| = 120 − 96 = 24.
 **mistake_a:** Noted that 72 + 54 = 126 > 120 and concluded "everyone bought at least one product." The surplus over 120 means some customers were double-counted (the 30 who bought both), not that all customers bought something. Using inclusion-exclusion correctly gives |A ∪ B| = 96 < 120.
 **mistake_b:** Computed 120 − 72 − 54 = −6, then took the absolute value: 6. The negative result signals that the inclusion-exclusion term must be added back; the correct formula subtracts the intersection, it does not produce a negative "neither" count.
-**mistake_c:** Arithmetic slip: perhaps computed |A∪B| = 72 + 54 − 30 = 102 and 120 − 102 = 18.
+**mistake_c:** Computed |A∪B| as |A| + |A∩B| = 72 + 30 = 102, treating the overlap (both) as a *separate group to add onto A* rather than recognizing it is already counted within A. Neither = 120 − 102 = 18. The correct formula subtracts the overlap once to cancel the double-count: |A∪B| = 72 + 54 − 30 = 96.
 **mistake_e:** Bubbled the "both" count (30) — this is the overlap, not the "neither" group.
 **common_trap:** Observing that 72 + 54 = 126 > 120 and concluding that everyone bought something. The 30 who bought both were counted twice in 126. After correcting: 126 − 30 = 96 bought at least one, and 24 bought neither.
 **takeaway:** |Neither| = Total − |A ∪ B| = Total − (|A| + |B| − |A ∩ B|). Always apply inclusion-exclusion before computing "neither."
