@@ -177,7 +177,7 @@ Simplify √12 + √27.
 **explanation:** Radicals only add when they share the same radicand. Simplify each: √12 = √(4 × 3) = 2√3; √27 = √(9 × 3) = 3√3. Both share √3, so add coefficients: 2√3 + 3√3 = 5√3.
 **mistake_a:** Computed √(12 + 27) = √39 (cannot add radicands inside one root).
 **mistake_b:** Computed wrong simplification; got 3√13.
-**mistake_d:** Coefficient addition slip: 2 + 3 = 6 instead of 5.
+**mistake_d:** Mis-simplified √12: correctly pulled out the factor of 4 (√12 = √4 × √3) but wrote the coefficient as 3 rather than 2, producing 3√3 instead of 2√3. Combined with the correct 3√3 for √27: 3√3 + 3√3 = 6√3.
 **mistake_e:** Added radicands and coefficients: (2+3)√(12+27) → 5√39 (wrong); rounded.
 **common_trap:** Adding inside the radical (√a + √b ≠ √(a + b)) — this is one of the most common mistakes.
 **takeaway:** Add radicals only after simplifying to matching radicands. √a + √b = √(a + b) is *false*; treat radicals like variables — only add when they're the same "kind."
@@ -202,7 +202,7 @@ What is the value of 27^(2/3)?
 **fastest_path:** 27^(2/3) = (27^(1/3))² = 3² = 9.
 **explanation:** Fractional exponent rule: a^(m/n) = (a^(1/n))^m. So 27^(2/3) = (27^(1/3))² = 3² = 9. Take the root first (smaller numbers); raising to the power second.
 **mistake_a:** Computed 27^(1/3) = 3 and stopped (didn't square).
-**mistake_b:** Computed 27 × 2/3 = 18, halved to ~6.
+**mistake_b:** Correctly computed 27^(1/3) = 3 but then multiplied by the numerator instead of squaring: 3 × 2 = 6 instead of 3² = 9. This treats the exponent as a scalar multiplier rather than a power-of-power operation.
 **mistake_d:** Computed 27 × 2/3 = 18.
 **mistake_e:** Computed 27² / 3 = 729/3 = 243 (raised to 2 first, then divided by 3 — wrong).
 **common_trap:** Treating a^(m/n) as a × m/n or as a^m / n.
@@ -228,7 +228,7 @@ If (3 * 10⁴) * (2 * 10⁻⁷) = k, what is k?
 **fastest_path:** 3 × 2 = 6; 10⁴ × 10⁻⁷ = 10⁻³. k = 6 × 10⁻³.
 **explanation:** Split into coefficient and power-of-10. Coefficients: 3 × 2 = 6. Powers: 10⁴ × 10⁻⁷ = 10^(4 + (−7)) = 10⁻³. Combine: 6 × 10⁻³.
 **mistake_a:** Multiplied exponents: 4 × (−7) = −28.
-**mistake_b:** Subtracted instead of added: 4 − 7 = −3 (correct), then doubled to −11; or wrote 4 + (−7) = −11 incorrectly.
+**mistake_b:** Added the absolute values of the exponents rather than computing their algebraic sum: |4| + |7| = 11, then applied the negative sign from the negative exponent and got 10⁻¹¹. The correct rule is 4 + (−7) = −3, not −(|4| + |7|) = −11.
 **mistake_d:** Mis-multiplied coefficients (3 + 2 = 5) and computed exponents correctly.
 **mistake_e:** Got the sign of the exponent wrong: +11 instead of −3.
 **common_trap:** Multiplying or subtracting exponents instead of adding.
@@ -307,7 +307,7 @@ Rationalize the denominator: 6 / (√3 + 1).
 **explanation:** To clear a sum/difference with a radical in the denominator, multiply by the *conjugate* (flip the sign between terms). Numerator: 6 × (√3 − 1) = 6√3 − 6. Denominator: (√3 + 1)(√3 − 1) = 3 − 1 = 2 (difference of squares). Result: (6√3 − 6)/2 = 3√3 − 3.
 **mistake_a:** Computed 6(√3 − 1) without dividing by 2.
 **mistake_c:** Used the same sign instead of conjugate.
-**mistake_d:** Divided by 3 instead of 2; got 2√3 − 2.
+**mistake_d:** Used the same sign instead of the conjugate *and* simplified the denominator as (√3)² = 3: multiplied numerator by (√3 + 1), yielding 6(√3 + 1) = 6√3 + 6, then divided by the incorrectly simplified denominator 3, giving (6√3 + 6)/3 = 2√3 + 2. The correct conjugate is (√3 − 1), producing a negative sign in the numerator and denominator (√3 + 1)(√3 − 1) = 3 − 1 = 2.
 **mistake_e:** Cancelled too aggressively; got √3 − 1.
 **common_trap:** Forgetting to use the conjugate's flipped sign — multiplying by (√3 + 1)/(√3 + 1) doesn't clear the radical.
 **takeaway:** Rationalize sums/differences with radicals using the *conjugate*: (a + b)(a − b) = a² − b². The result has no radical in the denominator.
@@ -407,9 +407,6 @@ Each alone? Statement 1 yes, Statement 2 no. → A.
 
 ---
 
-
----
-
 ## Q16
 **difficulty:** Easy
 **type:** Problem Solving
@@ -428,7 +425,7 @@ If 2^x · 3^y = 648 with x and y positive integers, what is x + y?
 **explanation:** Prime factorize 648. Divide by 2 repeatedly: 648 / 2 = 324, /2 = 162, /2 = 81. So 648 = 2³ × 81. 81 = 3⁴. So 648 = 2³ × 3⁴. x = 3, y = 4, x + y = 7.
 **mistake_a:** Miscounted: x = 2 instead of 3.
 **mistake_b:** Stopped factoring early (e.g., 648 = 2 × 324, mis-counted 2-power as 1).
-**mistake_d:** Mis-factored 81 as 3³; got y = 3, sum = 6 → off-by-one to 8.
+**mistake_d:** Counted 81 as the "5th power" of 3 by using 1-based position in the sequence {3⁰ = 1, 3¹ = 3, 3² = 9, 3³ = 27, 3⁴ = 81}: because 81 appears at index 5 when counting from 1, the student wrote y = 5. Then x + y = 3 + 5 = 8. The exponent is 4 (the number of times 3 divides into 81), not the 1-based position in the sequence.
 **mistake_e:** Computed x × y = 12 instead of x + y; rounded.
 **common_trap:** Stopping factoring before reaching smallest primes — 648 = 2 × 324 is correct but unfinished.
 **takeaway:** For 2^x × 3^y type problems: factor to smallest primes (divide repeatedly by 2, then by 3, etc.) and read off the exponents.
@@ -508,15 +505,15 @@ If x = 8^(2/3), what is the value of x²?
 - B) 16
 - C) 32
 - D) 64
-- E) 128
+- E) 256
 
 **answer:** B
 **fastest_path:** x = 8^(2/3) = 2² = 4. x² = 16.
 **explanation:** Compute x first. 8^(2/3) = (8^(1/3))² = 2² = 4. Then x² = 16. Alternative: x² = 8^(4/3) = (8^(1/3))⁴ = 2⁴ = 16.
 **mistake_a:** Computed x = 8 (skipped fractional exponent); bubbled.
-**mistake_c:** Computed x² = 4 × 8 = 32 (wrong path).
-**mistake_d:** Computed x² = 64 (treated x = 8).
-**mistake_e:** Computed x = 64^(1/3) = 4 wrongly; got 128.
+**mistake_c:** Computed x² = 4 × 8 = 32 (multiplied x by the original base instead of squaring x).
+**mistake_d:** Treated x = 8 (ignored the fractional exponent entirely), then x² = 64.
+**mistake_e:** Applied addition instead of multiplication in the power-of-power rule when squaring: wrote (8^(2/3))² = 8^(2/3 + 2) = 8^(8/3) = (8^(1/3))^8 = 2^8 = 256. The correct rule is (a^m)^n = a^(m × n), so (8^(2/3))² = 8^(4/3) = 2^4 = 16.
 **common_trap:** Interpreting a^(m/n) as a × m/n or a^m / n.
 **takeaway:** a^(m/n) = (a^(1/n))^m. Take root first, then power; small numbers are easier.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -595,29 +592,29 @@ III. √63
 **type:** Problem Solving
 **topic:** Radical Equations — Extraneous Roots
 
-If √(3x + 1) = x − 1, what is the sum of all values of x that satisfy the equation?
+If √(3x − 2) = x − 2, what is the sum of all values of x that satisfy the equation?
 
 - A) 0
-- B) 5
+- B) 1
 - C) 6
-- D) 10
-- E) 15
+- D) 7
+- E) 12
 
-**answer:** B
-**fastest_path:** Square: 3x + 1 = x² − 2x + 1 → x² − 5x = 0 → x = 0 or 5. Check: x = 0 fails; x = 5 passes. Sum = 5.
-**explanation:** Square both sides: 3x + 1 = (x − 1)². Expand: 3x + 1 = x² − 2x + 1 → x² − 5x = 0 → x(x − 5) = 0. Candidates: x = 0 or x = 5.
+**answer:** C
+**fastest_path:** Square: 3x−2 = x²−4x+4 → x²−7x+6 = 0 → x=1 or x=6. Check: x=1 fails; x=6 passes. Sum = 6.
+**explanation:** Square both sides: 3x − 2 = (x − 2)². Expand: 3x − 2 = x² − 4x + 4 → x² − 7x + 6 = 0 → (x − 1)(x − 6) = 0. Candidates: x = 1 or x = 6.
 
 Verify against the original (squaring can introduce extraneous solutions):
-- x = 0: √(0 + 1) = 1, but (0 − 1) = −1. Radical is non-negative; right side is negative. Fails.
-- x = 5: √(15 + 1) = √16 = 4, and (5 − 1) = 4. Valid.
+- x = 1: √(3 − 2) = √1 = 1, but (1 − 2) = −1. The radical is non-negative; the right side is negative. Fails — extraneous.
+- x = 6: √(18 − 2) = √16 = 4, and (6 − 2) = 4. Valid. ✓
 
-Only x = 5 satisfies. Sum = 5.
-**mistake_a:** Computed sum = 0 (only x = 0).
-**mistake_c:** Added both candidates 0 + 5 = 5 wrongly to 6 (off-by-one or arithmetic slip).
-**mistake_d:** Squared incorrectly; got x = 5 and x = 5 again (10).
-**mistake_e:** Multiplied candidates × 3.
-**common_trap:** Adding all candidates without checking for extraneous roots that squaring introduced.
-**takeaway:** Squaring radical equations can introduce extraneous solutions. *Always* verify each candidate against the original equation; reject any that fail.
+Only x = 6 satisfies. Sum = 6.
+**mistake_a:** Attempted to verify both candidates but incorrectly concluded neither was valid — perhaps compared √1 to |1 − 2| = 1 (using absolute value instead of the signed expression), accepted x = 1, then doubted it: reported "no solution," sum = 0.
+**mistake_b:** Accepted only the extraneous root x = 1 as valid — saw √1 = 1 and compared with |1 − 2| = 1 (absolute value), concluding the equation "balanced." Failed to check the sign of the right-hand side (1 − 2 = −1 ≠ 1).
+**mistake_d:** Added both algebraic candidates without verifying against the original: 1 + 6 = 7. This is the primary trap — squaring can introduce roots that fail in the original; always check each candidate.
+**mistake_e:** Found valid solution x = 6 and then assumed squaring must have created a symmetric companion; added 6 + 6 = 12. Squaring does not introduce a "mirror" solution of the same value — it can only introduce extraneous roots that fail the original sign condition.
+**common_trap:** Summing all algebraic candidates from the squared equation without verifying each against the original. Squaring a radical equation always risks introducing extraneous solutions; the verification step is not optional.
+**takeaway:** After squaring a radical equation, check each candidate in the *original* equation. Reject any for which the right-hand side is negative (radicals are non-negative). The sum asked is over verified valid solutions only.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 
@@ -641,7 +638,7 @@ If 2^x = 80, which of the following is closest to the value of x?
 **explanation:** 2⁶ = 64, 2⁷ = 128. So x is between 6 and 7. Since 80 is closer to 64 than to 128 (gap 16 vs. 48), x is closer to 6. The actual value: x = log₂(80) ≈ 6.32. Closest answer: 6.3 (C).
 **mistake_a:** Computed differently; got 5.6.
 **mistake_b:** Bubbled exact 6 (close but not the *closest*).
-**mistake_d:** Used linear interpolation: (80 − 64)/(128 − 64) ≈ 0.25; got 6.25 → rounded to 6.8 incorrectly.
+**mistake_d:** Applied linear interpolation from the wrong end: computed the distance from 80 to 128 as a fraction of the full interval — (128 − 80)/(128 − 64) = 48/64 = 0.75 — and added this as a positive offset from 6, giving x ≈ 6.75 ≈ 6.8. The correct forward interpolation uses (80 − 64)/(128 − 64) = 16/64 = 0.25, yielding x ≈ 6.25 ≈ 6.3. Even the correct linear interpolation is only approximate here since 2^x is exponential, not linear.
 **mistake_e:** Bubbled 7 (close to 2⁷ but off).
 **common_trap:** Linear interpolation on logarithms — 2^x is exponential, so the log is not linearly distributed.
 **takeaway:** For 2^x = N, find the bracket (smallest 2^k > N and largest 2^k < N), then estimate x by *proximity to the closer end*, not linear interpolation. Logs grow more slowly than linear.
@@ -667,7 +664,7 @@ If 3^(x + 2) = 81, what is the value of x?
 **fastest_path:** 81 = 3⁴ → x + 2 = 4 → x = 2.
 **explanation:** Rewrite 81 as 3⁴. Equation: 3^(x + 2) = 3⁴. Same base → equal exponents: x + 2 = 4 → x = 2.
 **mistake_a:** Computed x = 81 − 81 = 0.
-**mistake_b:** Computed 81 / 81 = 1.
+**mistake_b:** Correctly recognized 81 = 3⁴ and set x + 2 = 4, but made an arithmetic slip: subtracted 3 instead of 2, getting x = 4 − 3 = 1 instead of x = 4 − 2 = 2.
 **mistake_d:** Recognized 81 = 3⁴ but slipped: x = 3.
 **mistake_e:** Used 81 = 3⁵ (wrong); got x + 2 = 5 → x = 3, nudged to 4.
 **common_trap:** Mis-recognizing the power of 3.
@@ -886,4 +883,484 @@ Verify: 4^(4²) = 4^16 and 4^(4 × 4) = 4^16. Both sides match.
 **mistake_e:** Computed 4² = 16 and confused the exponent value with the solution.
 **common_trap:** Dividing both sides of x² = 4x by x — this discards a valid factor and can hide roots. Always factor the polynomial rather than dividing. Then apply domain constraints to eliminate invalid candidates.
 **takeaway:** For x^A = x^B with x > 0 and x ≠ 1: equate exponents using the one-to-one property. Factor the resulting polynomial — never divide by a variable. Apply domain constraints (x > 0, x ≠ 1) to discard invalid solutions after factoring.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Zero Exponent
+
+What is the value of (−5)⁰?
+
+- A) −25
+- B) −5
+- C) −1
+- D) 0
+- E) 1
+
+**answer:** E
+**fastest_path:** Any nonzero base raised to the 0 power equals 1. The negative sign is inside the base; it does not survive the zero exponent.
+**explanation:** The zero-exponent rule states that a⁰ = 1 for any nonzero a. The base here is −5, which is nonzero, so (−5)⁰ = 1. The negative sign is inside the parentheses, meaning it is part of the base that gets raised to the zero power — it produces 1 just as any other nonzero base would.
+**mistake_a:** Computed (−5)² = 25, then applied a stray negative sign to get −25.
+**mistake_b:** Bubbled the base itself (−5) while ignoring the exponent.
+**mistake_c:** Confused a⁰ with something that yields −1; perhaps misremembered a "negative-base rule."
+**mistake_d:** Confused a⁰ with a × 0 = 0 — conflating exponentiation by zero with multiplication by zero.
+**common_trap:** Treating a⁰ as 0. The confusion arises from mixing up "multiplying by 0" (which gives 0) with "raising to the 0th power" (which gives 1).
+**takeaway:** a⁰ = 1 for all nonzero a — including negative, fractional, and irrational values of a. Only 0⁰ is undefined. The sign of the base is irrelevant.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+Which of the following is equal to (x³)²?
+
+- A) x⁵
+- B) x⁶
+- C) x⁸
+- D) 2x³
+- E) x⁹
+
+**answer:** B
+**fastest_path:** Power of a power: multiply exponents. (x³)² = x^(3 × 2) = x⁶.
+**explanation:** The power-of-a-power rule states (a^m)^n = a^(m × n). Here (x³)² = x^(3 × 2) = x⁶. The two exponents multiply — they do not add.
+**mistake_a:** Added the exponents instead of multiplying: 3 + 2 = 5 → x⁵. This is the rule for x³ × x², not for (x³)².
+**mistake_c:** Computed the outer exponent as if it were applied twice inside: x^(2³) = x⁸, or confused (x²)⁴ = x⁸.
+**mistake_d:** Treated the outer exponent as a scalar coefficient: 2 × x³ = 2x³.
+**mistake_e:** Squared the inner exponent: (x³)² = x^(3²) = x⁹ — this would be correct if the problem were x^(3²), but (x³)² means the entire x³ is squared.
+**common_trap:** Adding exponents (3 + 2 = 5) — that rule applies to multiplication of same-base powers (x³ × x² = x⁵), not to a power of a power.
+**takeaway:** (a^m)^n = a^(mn). Distinguish from same-base multiplication: a^m × a^n = a^(m+n). "Power of a power" → multiply; "product of same base" → add.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Negative Exponents with Fractions
+
+What is the value of (2/3)^(−2)?
+
+- A) −4/9
+- B) 4/9
+- C) 9/4
+- D) −9/4
+- E) 4/6
+
+**answer:** C
+**fastest_path:** Negative exponent → flip the fraction, then apply the positive exponent. (2/3)^(−2) = (3/2)² = 9/4.
+**explanation:** For a fraction, a negative exponent flips the numerator and denominator (takes the reciprocal) and makes the exponent positive: (a/b)^(−n) = (b/a)^n. So (2/3)^(−2) = (3/2)² = 9/4.
+**mistake_a:** Applied the negative sign to the result instead of inverting: −(2/3)² = −4/9.
+**mistake_b:** Computed (2/3)² = 4/9 without applying the reciprocal — used the original fraction with a positive exponent.
+**mistake_d:** Took the reciprocal and squared correctly (9/4) but then applied a stray negative sign: −9/4.
+**mistake_e:** Interpreted the negative exponent as multiplying by −2: (2 × −2)/(3 × −2) = −4/−6 = 4/6. A negative exponent means "reciprocal," not "multiply by the exponent."
+**common_trap:** Computing (2/3)² = 4/9 instead of (3/2)² = 9/4 — forgetting that the negative exponent inverts the fraction before squaring.
+**takeaway:** (a/b)^(−n) = (b/a)^n. Step 1: flip the fraction. Step 2: apply the now-positive exponent. Negative exponents never produce negative results from positive inputs.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of 5³ × 5⁰?
+
+- A) 0
+- B) 5
+- C) 25
+- D) 125
+- E) 625
+
+**answer:** D
+**fastest_path:** 5⁰ = 1, so 5³ × 1 = 125.
+**explanation:** By the zero-exponent rule, 5⁰ = 1. So 5³ × 5⁰ = 125 × 1 = 125. The product rule confirms: 5³ × 5⁰ = 5^(3+0) = 5³ = 125.
+**mistake_a:** Applied a⁰ = 0 (incorrect rule): 5³ × 0 = 0. Exponentiation by zero and multiplication by zero are different operations.
+**mistake_b:** Computed 5^(3 × 0) = 5⁰ = 1 by multiplying exponents (wrong rule here), then confused 1 with the answer "5."
+**mistake_c:** Subtracted 1 from the exponent (perhaps treating 5⁰ as 5⁻¹ × 5): got 5² = 25.
+**mistake_e:** Added 1 to the outer exponent by treating 5⁰ as contributing 1 extra power: computed 5⁴ = 625.
+**common_trap:** Treating 5⁰ as 0 and concluding the entire product is 0. Multiplying by 5⁰ is the same as multiplying by 1 — it leaves the other factor unchanged.
+**takeaway:** a⁰ = 1 for any nonzero a. Multiplying any quantity by a⁰ leaves it unchanged: k × a⁰ = k × 1 = k.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of ∛8 + ∛64?
+
+- A) 2
+- B) 4
+- C) 6
+- D) 8
+- E) ∛72
+
+**answer:** C
+**fastest_path:** ∛8 = 2 (since 2³ = 8); ∛64 = 4 (since 4³ = 64). Sum: 2 + 4 = 6.
+**explanation:** Evaluate each cube root separately. ∛8 = 2 because 2³ = 8. ∛64 = 4 because 4³ = 64. Sum: 2 + 4 = 6.
+**mistake_a:** Computed only ∛8 = 2 and stopped.
+**mistake_b:** Computed only ∛64 = 4 and stopped.
+**mistake_d:** Got 2 + 4 = 6 but then doubled to 8 through an arithmetic slip, or computed ∛8 × ∛64 = ∛512 = 8 (multiplication instead of addition).
+**mistake_e:** Added the radicands inside one cube root: ∛(8 + 64) = ∛72. This conflates the sum of cube roots with the cube root of the sum — the two are not equal.
+**common_trap:** Writing ∛8 + ∛64 = ∛(8 + 64) = ∛72. Radicals do not distribute over addition in that direction.
+**takeaway:** ∛a + ∛b ≠ ∛(a + b). Evaluate each root first, then add. Memorize perfect cubes: 2³=8, 3³=27, 4³=64, 5³=125.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules — Common Base Conversion
+
+What is the value of (2³ × 4²) / 8²?
+
+- A) 1/2
+- B) 1
+- C) 2
+- D) 4
+- E) 8
+
+**answer:** C
+**fastest_path:** Convert to base 2: 4² = 2⁴, 8² = 2⁶. Numerator: 2³ × 2⁴ = 2⁷. Result: 2⁷/2⁶ = 2.
+**explanation:** Rewrite every factor as a power of 2. Since 4 = 2² and 8 = 2³: 4² = (2²)² = 2⁴ and 8² = (2³)² = 2⁶. Substitute: (2³ × 2⁴) / 2⁶ = 2^(3+4) / 2⁶ = 2⁷ / 2⁶ = 2^(7−6) = 2.
+**mistake_a:** Converted 4 as 2¹ (not 2²), writing 4² = 2²: numerator became 2³ × 2² = 2⁵, giving 2⁵/2⁶ = 2⁻¹ = 1/2.
+**mistake_b:** Converted 4² correctly (= 2⁴) but wrote 8² = 2⁵ (used 8 = 2^(5/2) or added exponents instead of multiplying): 2⁷/2⁷ = 1.
+**mistake_d:** Computed numerator correctly as 128 but treated 8² as 32 (computed 8 × 4 = 32 instead of 8² = 64): 128/32 = 4.
+**mistake_e:** Divided incorrectly or did not simplify; reported 8 from partial computation.
+**common_trap:** The critical step is converting both 4 and 8 to base 2 and then correctly multiplying the exponents: (2²)² = 2⁴, not 2². Without converting to a common base, no simplification is possible.
+**takeaway:** When an expression mixes 2, 4, 8, 16, 32 (or 3, 9, 27; or 5, 25, 125), rewrite all to the smallest common base first. Then apply product and quotient rules in one clean pass.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Equations with Exponents — Different Bases
+
+If 4^x = 8^(x−1), what is the value of x?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 6
+
+**answer:** C
+**fastest_path:** Base 2: 2^(2x) = 2^(3(x−1)) → 2x = 3x − 3 → x = 3. Verify: 4³ = 64, 8² = 64. ✓
+**explanation:** Express both sides as powers of 2. Since 4 = 2² and 8 = 2³: 4^x = (2²)^x = 2^(2x) and 8^(x−1) = (2³)^(x−1) = 2^(3(x−1)) = 2^(3x−3). Same base on both sides, so equate exponents: 2x = 3x − 3 → 3 = x.
+**mistake_a:** Distributed the exponent over 8^(x−1) incorrectly as 2^(3x−1) instead of 2^(3x−3): got 2x = 3x − 1 → x = 1.
+**mistake_b:** Made an arithmetic slip after setting up 2x = 3x − 3: subtracted incorrectly to get x = 2 (perhaps solved 3x − 2x = 3 but then halved).
+**mistake_d:** Set up the right equation but added instead of subtracted when isolating x: got −x = −3 → x = 4 via sign error.
+**mistake_e:** Did not convert to a common base; tried 4/8 = 1/2 and combined the exponents with a guess, arriving at x = 6.
+**common_trap:** Writing 8^(x−1) = 2^(3x−1) — forgetting to distribute the multiplication by 3 over the full compound exponent (x−1), giving 3x−3, not 3x−1.
+**takeaway:** (a^m)^n = a^(mn). When the exponent is a compound expression like (x−1), distribute the outer multiplier fully: (2³)^(x−1) = 2^(3·(x−1)) = 2^(3x−3). Always verify by substituting x back into both sides.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractional Exponents with Variables
+
+For x > 0, what is the value of (16x⁸)^(3/4)?
+
+- A) 4x⁶
+- B) 8x⁶
+- C) 12x⁸
+- D) 8x⁸
+- E) 4x⁸
+
+**answer:** B
+**fastest_path:** 16^(3/4) = (⁴√16)³ = 2³ = 8. (x⁸)^(3/4) = x⁶. Result: 8x⁶.
+**explanation:** Apply the exponent to each factor separately. Numeric part: 16^(3/4) = (16^(1/4))³ = 2³ = 8, since ⁴√16 = 2 (because 2⁴ = 16). Variable part: (x⁸)^(3/4) = x^(8 × 3/4) = x^6. Product: 8x⁶.
+**mistake_a:** Used ⁴√16 = 4 (the square root of 16, not the fourth root): 16^(3/4) = 4^3/4... or computed 16^(1/4) = 4 and then 4^(3/4) = (√4)^(3/2) ≈ 2.83, rounding to 4 for the coefficient. Gave 4x⁶.
+**mistake_c:** Treated the fractional exponent as a scalar multiplier: (3/4) × 16 = 12. Left x⁸ unchanged. Result: 12x⁸.
+**mistake_d:** Computed 16^(3/4) = 8 correctly but did not simplify (x⁸)^(3/4): left the variable term as x⁸ instead of x⁶. Result: 8x⁸.
+**mistake_e:** Used √16 = 4 (square root) for the fractional exponent instead of the fourth root: got 4 for the coefficient and left x⁸ unchanged. Result: 4x⁸.
+**common_trap:** Confusing ⁴√16 = 2 with √16 = 4. The denominator of the fractional exponent (4) is the index of the root. ⁴√16 = 2 because 2⁴ = 16, not because 2² = 4.
+**takeaway:** (ab)^(m/n) = a^(m/n) × b^(m/n). For the numeric part, the denominator of the exponent gives the root index. ⁴√16 = 2 (not 4). For the variable part, multiply the exponents: (x⁸)^(3/4) = x^6.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Expressions — Factoring
+
+What is the value of (2^(n+2) − 2^n) / 2^n?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 2^n
+
+**answer:** C
+**fastest_path:** Factor 2^n from the numerator: 2^n(4 − 1) / 2^n = 3.
+**explanation:** Factor 2^n out of the numerator. 2^(n+2) = 2^n × 2² = 4 · 2^n. So the numerator becomes 4 · 2^n − 2^n = 2^n(4 − 1) = 3 · 2^n. Dividing by 2^n: 3 · 2^n / 2^n = 3.
+
+Alternative path: split the fraction. (2^(n+2))/2^n − 2^n/2^n = 2^(n+2−n) − 1 = 2² − 1 = 4 − 1 = 3. Both paths agree.
+**mistake_a:** Cancelled all instances of 2^n from the expression prematurely, concluding everything reduces to 1.
+**mistake_b:** Made an arithmetic error in simplifying 2² − 1: wrote 4 − 2 = 2 instead of 4 − 1 = 3. Perhaps confused the subtracted term's coefficient.
+**mistake_d:** Computed only the first term of the numerator divided by the denominator: 2^(n+2)/2^n = 4, ignoring the subtraction entirely.
+**mistake_e:** Did not cancel 2^n in the last step, leaving the intermediate result 3 × 2^n as the final answer.
+**common_trap:** Forgetting to subtract 1 when splitting the fraction: correctly computing 2^(n+2)/2^n = 4 but then ignoring the −2^n/2^n = −1 term, giving 4 instead of 3.
+**takeaway:** For expressions like (a^(n+k) − a^n)/a^n, factor a^n from the numerator first: a^n(a^k − 1)/a^n = a^k − 1. This avoids the trap of handling the two terms asymmetrically.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Radical Equations
+
+If √(2x − 3) = 5, what is the value of x?
+
+- A) 1
+- B) 11
+- C) 14
+- D) 25
+- E) 28
+
+**answer:** C
+**fastest_path:** Square both sides: 2x − 3 = 25 → 2x = 28 → x = 14. Verify: √(28 − 3) = √25 = 5 ✓.
+**explanation:** Square both sides of the equation to eliminate the radical. (√(2x − 3))² = 5² → 2x − 3 = 25 → 2x = 28 → x = 14. Verify by substitution: √(2(14) − 3) = √(28 − 3) = √25 = 5 ✓. No extraneous root arises here because the right-hand side (5) is already non-negative.
+**mistake_a:** Set 2x − 3 = 5 without squaring the right-hand side: 2x = 8 → x = 4; subsequent arithmetic slip gave 1.
+**mistake_b:** Squared the right-hand side correctly (25) but then computed 2x = 25 − 3 = 22 → x = 11 (subtracted 3 from 25 rather than adding 3 to both sides).
+**mistake_d:** Bubbled 25 — the result of squaring the right-hand side — without completing the solve for x.
+**mistake_e:** Solved 2x = 28 correctly but reported 28 (the value of 2x) instead of x = 14.
+**common_trap:** Forgetting to square the entire right-hand side: √(2x−3) = 5 becomes 2x−3 = 5 (not 25). The step is squaring both sides; the right side squares to 5² = 25.
+**takeaway:** To solve √(expression) = k: (1) ensure k ≥ 0, (2) square both sides to get expression = k², (3) solve the linear equation, (4) check the solution in the original. Because 5 > 0, no verification issue; the verification still takes 5 seconds and prevents careless errors.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Comparison — Different Bases
+
+Which of the following is greater: 2^30 or 3^20?
+
+- A) 2^30
+- B) 3^20
+- C) They are equal
+- D) The comparison requires a calculator to determine
+- E) Neither — both approximate 10^9
+
+**answer:** B
+**fastest_path:** Reduce to a common exponent: 2^30 = (2³)^10 = 8^10; 3^20 = (3²)^10 = 9^10. Since 9 > 8, 9^10 > 8^10.
+**explanation:** Find a common exponent. 30 = 3 × 10 and 20 = 2 × 10, so both can be written as 10th powers: 2^30 = (2³)^10 = 8^10 and 3^20 = (3²)^10 = 9^10. With equal exponents, the larger base wins: 9 > 8, so 9^10 > 8^10, meaning 3^20 > 2^30.
+**mistake_a:** Guessed "larger exponent wins" (30 > 20) without testing or converting — a heuristic that works only when bases are equal.
+**mistake_c:** Observed 2 × 30 = 60 = 3 × 20 (the products of base and exponent are equal) and concluded the values must be equal. That relationship holds for linear functions (2n = 3m → 2^n = 3^m is false in general).
+**mistake_d:** Assumed an exact computation is required; the reduction to 8^10 vs 9^10 resolves it without a calculator.
+**mistake_e:** Used 2^10 ≈ 10^3 to estimate 2^30 ≈ 10^9 and 3^20 ≈ 10^9, treating both as equal. These are approximations; the exact comparison is 8^10 vs 9^10 and they are meaningfully different.
+**common_trap:** Applying "bigger exponent wins" or "bigger base wins" as universal rules. Neither works when both the base and exponent differ. The fix: rewrite to a common exponent.
+**takeaway:** To compare a^m vs b^n when m ≠ n and a ≠ b, look for a common exponent. Here, gcd(30,20) = 10 allows both to be written as 10th powers of 8 and 9 respectively — then the comparison is trivial.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Exponent Equations
+
+What is the value of 3^n?
+
+(1) 9^n = 81
+(2) n is a positive integer less than 5
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER alone is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** (1) 9^n = (3²)^n = 3^(2n) = 81 = 3⁴ → n = 2 → 3^n = 9. Sufficient. (2) n ∈ {1,2,3,4} → 3^n ∈ {3, 9, 27, 81}. Multiple values. Insufficient.
+**explanation:** Statement (1): Rewrite 9 as 3²: (3²)^n = 3^(2n) = 81 = 3⁴. Equal bases → 2n = 4 → n = 2. So 3^n = 3² = 9. Unique answer — sufficient.
+
+Statement (2): n is a positive integer less than 5 → n ∈ {1, 2, 3, 4}. This gives 3^n ∈ {3, 9, 27, 81}. Four possible values — insufficient.
+**mistake_b:** Concluded only Statement 2 is sufficient, perhaps because the range "less than 5" seems narrow.
+**mistake_c:** Required both statements.
+**mistake_d:** Concluded each alone is sufficient, not recognizing that Statement 2 allows four different values of 3^n.
+**mistake_e:** Concluded together insufficient.
+**common_trap:** Assuming a "small range" (n < 5) pins down the answer. Four positive integers still yield four different values of 3^n — Statement 2 is insufficient on its own.
+**takeaway:** Statement (1) alone uniquely determines n via base-matching. "Small range" does not mean "unique value." Always enumerate possible values explicitly before declaring sufficiency.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Roots & Radicals — Rationalizing with Two Radical Terms
+
+What is the simplified form of (√6 + √2) / (√6 − √2)?
+
+- A) (√6 + √2) / 4
+- B) 2 + √3
+- C) 2 − √3
+- D) √3
+- E) 4 + 2√3
+
+**answer:** B
+**fastest_path:** Multiply by conjugate (√6 + √2): denom = 6 − 2 = 4; numer = (√6 + √2)² = 8 + 4√3; result = 2 + √3.
+**explanation:** Multiply numerator and denominator by the conjugate of the denominator, (√6 + √2).
+
+Denominator: (√6 − √2)(√6 + √2) = (√6)² − (√2)² = 6 − 2 = 4.
+Numerator: (√6 + √2)(√6 + √2) = (√6 + √2)² = 6 + 2√12 + 2 = 8 + 2√12.
+Simplify: √12 = √(4 × 3) = 2√3, so 2√12 = 4√3. Numerator = 8 + 4√3.
+Divide: (8 + 4√3) / 4 = 2 + √3.
+
+Numerical check: (√6 + √2)/(√6 − √2) ≈ 3.863/1.035 ≈ 3.732, and 2 + √3 ≈ 3.732 ✓.
+**mistake_a:** Multiplied by the conjugate but stopped before simplifying the numerator and denominator — reported the fraction in partially rationalized form.
+**mistake_c:** Expanded the numerator as if multiplying by the conjugate of the numerator (√6 − √2) rather than the denominator's conjugate: got (√6 + √2)(√6 − √2) = 4 for the numerator and (√6 − √2)² = 8 − 4√3 for the denominator, giving (4)/(8 − 4√3) = 2 − √3 after re-rationalizing.
+**mistake_d:** Correctly computed the denominator as 4 and pulled out 4√3 from the numerator (8 + 4√3), but then divided only the radical term: 4√3/4 = √3, ignoring the constant term 8.
+**mistake_e:** Correctly obtained numerator 8 + 4√3 and denominator 4 but did not divide through by 4 — reported 4(2 + √3) = 8 + 4√3 in expanded form as "4 + 2√3" by halving instead of quartering.
+**common_trap:** Forgetting to simplify √12 = 2√3 in the numerator expansion. Without this step, the expression looks unsimplifiable and students stop early.
+**takeaway:** To rationalize (a + b)/(a − b) where a and b are radical terms, multiply by (a + b)/(a + b). The denominator becomes a² − b² (difference of squares, radical-free). Expand the numerator as (a + b)² = a² + 2ab + b² and simplify any nested radicals (like √12 = 2√3).
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Equations with Exponents — Quadratic Substitution
+
+If 4^x − 5 · 2^x + 4 = 0, what is the sum of all values of x that satisfy the equation?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) 5
+
+**answer:** C
+**fastest_path:** Let u = 2^x (so 4^x = u²): u² − 5u + 4 = 0 → (u−1)(u−4) = 0 → x = 0 or x = 2. Sum = 2.
+**explanation:** Recognize that 4^x = (2²)^x = (2^x)². Let u = 2^x (where u > 0). The equation becomes u² − 5u + 4 = 0. Factor: (u − 1)(u − 4) = 0 → u = 1 or u = 4.
+
+Back-substitute: 2^x = 1 → x = 0; 2^x = 4 = 2² → x = 2. Both solutions are valid (u > 0 is satisfied by u = 1 and u = 4).
+
+Sum: 0 + 2 = 2.
+**mistake_a:** Discarded x = 0 on the incorrect grounds that "x = 0 can't be an exponent." In fact, 2⁰ = 1 is perfectly valid. With only x = 2 remaining, the student either reported x = 2 or misidentified the sum as 0.
+**mistake_b:** Confused the u-value (u = 1) with the x-value: when 2^x = 1 → x = 0, but reported the u-value (1) as the answer.
+**mistake_d:** Correctly found x = 0 and x = 2 but computed their product (0 × 2 = 0) then combined with 3 from a partial calculation.
+**mistake_e:** Added the two u-values (1 + 4 = 5) instead of converting them to x-values and summing (0 + 2 = 2).
+**common_trap:** Summing u-values (1 + 4 = 5) instead of converting back to x-values. The substitution u = 2^x must be reversed: u = 1 gives x = 0, and u = 4 gives x = 2. Sum of x-values: 0 + 2 = 2.
+**takeaway:** For exponential equations of the form a^(2x) + b · a^x + c = 0, substitute u = a^x to convert to a standard quadratic. After solving for u, convert each valid u back to x. The question asks for the sum (or product) of x-values, not u-values.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Roots & Radicals — Inequality
+
+Is √x > x?
+
+(1) 0 < x < 1
+(2) x > 0
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER alone is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** (1) For any x ∈ (0,1): √x > x — consistently yes. Sufficient. (2) x = 0.25: yes. x = 4: √4 = 2 < 4, no. Inconsistent — insufficient.
+**explanation:** Analyze the inequality √x > x for x > 0. Divide both sides by √x (positive): 1 > √x ⟺ √x < 1 ⟺ x < 1. So √x > x if and only if 0 < x < 1.
+
+Statement (1): 0 < x < 1. This matches the condition exactly — yes for all x in this range. Sufficient.
+
+Statement (2): x > 0. This includes x = 0.25 (yes: √0.25 = 0.5 > 0.25) and x = 4 (no: √4 = 2 < 4). Two different answers → insufficient.
+**mistake_b:** Concluded Statement 2 sufficient after testing only x = 0.5 (which gives "yes") — never tested a value greater than 1.
+**mistake_c:** Required both statements; failed to see that Statement 1 uniquely determines the answer.
+**mistake_d:** Concluded each alone sufficient, not realizing Statement 2 spans values where √x > x and where √x < x.
+**mistake_e:** Concluded together insufficient.
+**common_trap:** Testing only "convenient" values for Statement 2 (like x = 0.5) that all give "yes." The habit of testing at least one value above 1 (x = 4) would reveal the inconsistency immediately.
+**takeaway:** √x > x ⟺ 0 < x < 1. For DS questions about this inequality, always test x ∈ (0,1) AND x > 1 when the statement only says "x > 0." The behavior flips at x = 1.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Equations with Exponents — Quadratic Substitution
+
+If 3^(2x) − 12 · 3^x + 27 = 0, what is the product of all values of x that satisfy the equation?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 6
+- E) 12
+
+**answer:** B
+**fastest_path:** Let u = 3^x: u² − 12u + 27 = 0 → (u−3)(u−9) = 0 → x=1 or x=2. Product = 2.
+**explanation:** Recognize 3^(2x) = (3^x)². Let u = 3^x. The equation becomes u² − 12u + 27 = 0. Factor: (u − 3)(u − 9) = 0 → u = 3 or u = 9.
+
+Back-substitute: 3^x = 3 = 3¹ → x = 1; 3^x = 9 = 3² → x = 2. Both valid.
+
+Product: 1 × 2 = 2.
+**mistake_a:** Computed the product of the u-values (3 × 9 = 27) then did something to get 1 — perhaps divided by 27.
+**mistake_c:** Reported the smaller u-value (u = 3) instead of converting back to x and computing the product.
+**mistake_d:** Computed the sum of x-values (1 + 2 = 3) instead of the product. The question asks for the product.
+**mistake_e:** Summed the u-values (3 + 9 = 12) instead of converting to x-values. The question asks for the product of x-values (1 × 2 = 2), not the sum of u-values.
+**common_trap:** Operating on u-values instead of x-values. After substituting u = 3^x, the solve is for u — but the question asks about x. Always reverse the substitution before computing the requested quantity.
+**takeaway:** For 3^(2x) + b · 3^x + c = 0: let u = 3^x, solve the quadratic, then convert u-values back to x using 3^x = u → x = log₃(u). When u is a recognizable power of 3, this is instant. Sum or product the x-values, not the u-values.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q49
+**difficulty:** Challenge
+**type:** Problem Solving
+**topic:** Exponent Comparison — Abstract Pattern
+
+For which integers n > 1 is n^(n+1) > (n+1)^n?
+
+- A) All integers n > 1
+- B) All integers n > 2
+- C) n = 2 only
+- D) n = 2 and n = 3 only
+- E) No integers n > 1
+
+**answer:** B
+**fastest_path:** n=2: 8 < 9 (fails). n=3: 81 > 64 (holds). n=4: 1024 > 625 (holds). Pattern holds for n ≥ 3, i.e., n > 2.
+**explanation:** Test small cases to identify the pattern.
+
+n = 2: 2^3 = 8 vs 3^2 = 9. 8 < 9 → inequality fails.
+n = 3: 3^4 = 81 vs 4^3 = 64. 81 > 64 → holds.
+n = 4: 4^5 = 1024 vs 5^4 = 625. 1024 > 625 → holds.
+n = 5: 5^6 = 15625 vs 6^5 = 7776. 15625 > 7776 → holds.
+
+Structural proof: divide both sides by n^n (positive for n > 1): the inequality n^(n+1) > (n+1)^n is equivalent to n > (1 + 1/n)^n. The right side is the classic compound-interest expression that converges to e ≈ 2.718 from below. It is always less than e. For integer n ≥ 3: n ≥ 3 > e > (1 + 1/n)^n, so the inequality holds. For n = 2: (1 + 1/2)^2 = 2.25, and 2 < 2.25, so the inequality fails.
+
+Therefore the inequality holds for all integers n > 2 (i.e., n ≥ 3).
+**mistake_a:** Tested n = 3 and n = 4 (both give the inequality), assumed it holds for all n > 1, and missed the n = 2 counterexample.
+**mistake_c:** Found that the inequality fails at n = 2 and concluded n = 2 is the only value where it holds — inverted the finding. n = 2 is where the inequality fails, not where it succeeds.
+**mistake_d:** Located the n = 2 failure and the n = 3 success, then stopped testing. With only two data points, inferred that the answer is both — missed the universal pattern for n ≥ 3.
+**mistake_e:** Observed n = 2 fails the inequality and generalized to "fails for all n > 1" after testing only the smallest case.
+**common_trap:** Treating n = 2 as a representative case for all n > 1. For power comparisons, n = 2 is often the exceptional value — always also test n = 3 and n = 4.
+**takeaway:** For abstract power comparisons, test n = 2 and n = 3 first (they often behave differently), then look for the pattern in n ≥ 3 or n ≥ 4. The structural key here: dividing both sides by n^n converts the inequality to n > (1+1/n)^n — a known expression bounded above by e ≈ 2.718.
 **related_reading:** reading-quant-04-algebra-and-equations
