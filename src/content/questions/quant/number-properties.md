@@ -909,3 +909,451 @@ Three bells ring at intervals of 6, 9, and 15 minutes respectively. They all rin
 **common_trap:** Using LCM of only two of the three intervals and forgetting the third, or adding LCMs instead of nesting them.
 **takeaway:** For "next simultaneous event" with periodic events at intervals a, b, c: time = LCM(a, b, c). Compute step-by-step: LCM(a, b) first, then LCM(result, c). All three must factor into the final LCM.
 **related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Perfect Squares
+
+How many perfect squares are there between 50 and 200, inclusive?
+
+- A) 5
+- B) 6
+- C) 7
+- D) 8
+- E) 9
+
+**answer:** C
+**fastest_path:** √50 ≈ 7.1 and √200 ≈ 14.1. Perfect squares: 8² through 14². Count = 14 − 8 + 1 = 7.
+**explanation:** List perfect squares starting from 8²: 64, 81, 100, 121, 144, 169, 196. The next, 15² = 225, exceeds 200; the previous, 7² = 49, falls below 50. Count = 7.
+**mistake_a:** Stopped at 12² = 144 without checking 13² = 169 and 14² = 196, which both lie within the range.
+**mistake_b:** Counted squares 8² through 13² only — stopped one short of 14² = 196.
+**mistake_d:** Included 7² = 49 by misreading the lower bound, or included 15² = 225 by rounding √200 up to 15.
+**mistake_e:** Included both 7² = 49 and 15² = 225 — a boundary error at both ends.
+**common_trap:** Miscounting the square root bounds. √50 ≈ 7.07 means 7² = 49 is just outside; √200 ≈ 14.14 means 14² = 196 is just inside. Students who round carelessly land on 7 or 15 as endpoints and reach 9.
+**takeaway:** Count perfect squares in [a, b] by finding ⌈√a⌉ and ⌊√b⌋, then computing ⌊√b⌋ − ⌈√a⌉ + 1. Always compute the boundary squares explicitly to confirm inclusion.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Consecutive Integers
+
+The product of three consecutive positive integers is 210. What is the sum of these three integers?
+
+- A) 15
+- B) 16
+- C) 17
+- D) 18
+- E) 21
+
+**answer:** D
+**fastest_path:** Cube root of 210 ≈ 5.9. Try 5 × 6 × 7 = 210 ✓. Sum = 18.
+**explanation:** The middle integer is approximately ∛210 ≈ 5.9, so try n = 5, 6, 7: 5 × 6 × 7 = 210 ✓. Sum = 5 + 6 + 7 = 18. Verify uniqueness: 4 × 5 × 6 = 120 and 6 × 7 × 8 = 336, confirming the triple is unique.
+**mistake_a:** Assumed the smallest integer is 5 and tested {4, 5, 6}: 4 × 5 × 6 = 120 ≠ 210.
+**mistake_b:** Found the triple {5, 6, 7} correctly but made an arithmetic slip when summing.
+**mistake_c:** Tried consecutive even integers {4, 6, 8}: 4 × 6 × 8 = 192 ≠ 210.
+**mistake_e:** Tested {6, 7, 8}: 6 × 7 × 8 = 336 ≠ 210; or anchored on ∛210 and summed without verifying the product.
+**common_trap:** Guessing by the look of 210 without anchoring on ∛210. Students who skip the estimate may test the wrong triple.
+**takeaway:** For "product of consecutive integers = N," estimate the middle integer as ∛N, then check neighboring triples. Always verify the product exactly before reporting the sum.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Absolute Value
+
+How many integers n satisfy |n − 4| ≤ 3?
+
+- A) 3
+- B) 5
+- C) 7
+- D) 8
+- E) 9
+
+**answer:** C
+**fastest_path:** |n − 4| ≤ 3 means 1 ≤ n ≤ 7. Integers: 1, 2, 3, 4, 5, 6, 7 → count = 7.
+**explanation:** Rewrite |n − 4| ≤ 3 as −3 ≤ n − 4 ≤ 3, giving 1 ≤ n ≤ 7. The integers in this closed interval are 1, 2, 3, 4, 5, 6, 7 — seven in total.
+**mistake_a:** Used strict inequality |n − 4| < 3: gives 1 < n < 7, so integers 2, 3, 4, 5, 6 → only 5. The problem says ≤, not <.
+**mistake_b:** Dropped one endpoint through an off-by-one error, counting 6 integers instead of 7.
+**mistake_d:** Used radius 4 instead of 3: 0 ≤ n ≤ 8 → 9 integers; then subtracted one without justification.
+**mistake_e:** Added the center and radius: treated the bound as |n| ≤ 4 + 3 = 7, giving too large a range.
+**common_trap:** Applying strict inequality when the problem says ≤, losing the two endpoint integers 1 and 7.
+**takeaway:** |n − c| ≤ r defines the closed interval [c − r, c + r]. Integer count = 2r + 1. Here, 2(3) + 1 = 7. With strict inequality <, endpoints are excluded, giving 2r − 1 = 5.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Digit Representation
+
+A two-digit positive integer has tens digit A and units digit B. The integer equals 6 times the sum of its digits. What is the value of A?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 5
+- E) 9
+
+**answer:** D
+**fastest_path:** 10A + B = 6(A + B) → 4A = 5B → A/B = 5/4. Only single-digit pair: A = 5, B = 4. Check: 54 = 6(9) ✓.
+**explanation:** Set up: 10A + B = 6A + 6B → 4A = 5B. Since gcd(4, 5) = 1, the integer 5 must divide A. Among single digits A ∈ {1, ..., 9}, the only multiple of 5 is A = 5, giving B = 4. Check: 54; 6 × (5 + 4) = 54 ✓. The next candidate, A = 10, exceeds one digit.
+**mistake_a:** Used multiplier 7 instead of 6: 10A + B = 7A + 7B → 3A = 6B → A = 2B. With A=2, B=1 gives 21 = 7(3) ✓ for the wrong equation.
+**mistake_b:** Solved 4A = 5B but made an arithmetic error, landing on A = 3.
+**mistake_c:** Confused tens digit A with units digit B — reported B = 4 instead of A = 5.
+**mistake_e:** Computed A + B = 5 + 4 = 9 — reported the digit sum rather than the tens digit A.
+**common_trap:** Expanding 6(A + B) as 6A + B (applying 6 only to A) rather than 6A + 6B. This error produces a wrong equation and a wrong value.
+**takeaway:** Represent a two-digit integer as 10A + B. Expand both sides of the equation fully before simplifying, and confirm which variable the question asks for.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Inclusion-Exclusion
+
+How many integers from 1 to 30, inclusive, are divisible by 2 or by 3?
+
+- A) 15
+- B) 17
+- C) 18
+- D) 20
+- E) 25
+
+**answer:** D
+**fastest_path:** |A ∪ B| = ⌊30/2⌋ + ⌊30/3⌋ − ⌊30/6⌋ = 15 + 10 − 5 = 20.
+**explanation:** Multiples of 2 from 1–30: ⌊30/2⌋ = 15. Multiples of 3: ⌊30/3⌋ = 10. Multiples of both (multiples of 6): ⌊30/6⌋ = 5. By inclusion-exclusion: 15 + 10 − 5 = 20.
+**mistake_a:** Counted only multiples of 2 and stopped at 15.
+**mistake_b:** Miscounted the overlap: 15 + 10 − 8 = 17, perhaps extending the count of multiples of 6 beyond 30.
+**mistake_c:** Subtracted an off-by-one overlap of 7 instead of 5: 15 + 10 − 7 = 18.
+**mistake_e:** Added both counts without subtracting the overlap: 15 + 10 = 25.
+**common_trap:** Forgetting the inclusion-exclusion subtraction. Numbers divisible by both 2 and 3 are counted in each group and must be subtracted once.
+**takeaway:** Inclusion-exclusion: |A ∪ B| = |A| + |B| − |A ∩ B|. For divisibility problems, |A ∩ B| = count of multiples of LCM(m, n) in the range.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Sum of Divisors
+
+What is the sum of all positive divisors of 28?
+
+- A) 28
+- B) 42
+- C) 52
+- D) 56
+- E) 64
+
+**answer:** D
+**fastest_path:** 28 = 2² · 7. Sum formula: (1 + 2 + 4)(1 + 7) = 7 × 8 = 56.
+**explanation:** Prime-factorize: 28 = 2² × 7. The multiplicative sum-of-divisors formula gives σ(28) = (1 + 2 + 4)(1 + 7) = 7 × 8 = 56. Listing directly: divisors are 1, 2, 4, 7, 14, 28 → sum = 56 ✓.
+**mistake_a:** Summed only the proper divisors (all divisors except 28 itself): 1 + 2 + 4 + 7 + 14 = 28. This is a notable coincidence — 28 is a perfect number, whose proper divisors sum to itself. The question asks for all divisors.
+**mistake_b:** Omitted 14: 1 + 2 + 4 + 7 + 28 = 42.
+**mistake_c:** Omitted 4: 1 + 2 + 7 + 14 + 28 = 52.
+**mistake_e:** Included 8 as a spurious factor (8 does not divide 28: 28 ÷ 8 = 3.5): 1 + 2 + 4 + 7 + 8 + 14 + 28 = 64.
+**common_trap:** Stopping at the proper divisors — either forgetting that n itself is always a divisor, or dropping a middle divisor during a hand-count.
+**takeaway:** For n = p^a × q^b × ..., σ(n) = (1 + p + p² + ... + p^a)(1 + q + ... + q^b).... Use the formula when n has more than a handful of divisors to avoid listing errors.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Counting Factors
+
+How many positive integers less than 100 have exactly 3 positive factors?
+
+- A) 3
+- B) 4
+- C) 5
+- D) 7
+- E) 9
+
+**answer:** B
+**fastest_path:** Exactly 3 factors ↔ n = p² (prime square). Primes with p² < 100: p = 2, 3, 5, 7. Count = 4.
+**explanation:** A positive integer n has exactly 3 positive factors iff n = p² for some prime p — its only factors are 1, p, and p². Check: 2² = 4, 3² = 9, 5² = 25, 7² = 49 — all below 100. The next: 11² = 121 ≥ 100. Count = 4.
+**mistake_a:** Missed p = 7 (perhaps forgot 49 < 100), finding only {4, 9, 25}.
+**mistake_c:** Included p = 11 because "11 < 100" — forgot to square it; 11² = 121 > 100.
+**mistake_d:** Listed all perfect squares below 100 without checking which have exactly 3 factors. For example, 16 = 2⁴ has five factors and 36 = 2² × 3² has nine — only prime squares have exactly 3.
+**mistake_e:** Counted all nine perfect squares below 100 (4, 9, 16, 25, 36, 49, 64, 81, and 1), assuming "perfect square → exactly 3 factors." But only prime squares satisfy this.
+**common_trap:** Thinking all perfect squares have exactly 3 factors. Only prime squares do; composite squares yield strictly more than 3 factors.
+**takeaway:** Factor count = 3 ↔ n = p² for prime p. The factor-count formula gives (2+1) = 3 for p². Any composite square has a factorization yielding more than 3 factors.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Counting Factors
+
+How many positive factors of 216 are perfect cubes?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 6
+- E) 8
+
+**answer:** C
+**fastest_path:** 216 = 2³ · 3³. A cube factor 2^a · 3^b needs a, b each a multiple of 3 within [0, 3]. Choices: a ∈ {0, 3} and b ∈ {0, 3} → 2 × 2 = 4.
+**explanation:** 216 = 6³ = 2³ × 3³. A divisor has form 2^a × 3^b with 0 ≤ a ≤ 3 and 0 ≤ b ≤ 3. For a perfect cube, both a and b must be multiples of 3. Valid values: a ∈ {0, 3} and b ∈ {0, 3}. Four cube factors: (a,b) = (0,0)→1, (3,0)→8, (0,3)→27, (3,3)→216. Count = 4.
+**mistake_a:** Counted only 1 and 216 — the trivial cube factors at the extremes — and ignored 8 and 27.
+**mistake_b:** Listed {1, 8, 27} without noting that 216 = 6³ is itself a perfect cube.
+**mistake_d:** Totaled all factors of 216 and applied an incorrect reduction, arriving at 6.
+**mistake_e:** Confused the total factor count (3+1)(3+1) = 16 with a cube-factor count, then halved to get 8.
+**common_trap:** Forgetting that 216 = 6³ is itself a perfect cube. Students who scan "perfect cubes ≤ 216: 1, 8, 27, 64, 125, 216" sometimes include 64 or 125 without checking divisibility — neither divides 2³ × 3³.
+**takeaway:** For perfect-cube factors of n = p^a · q^b · ...: keep only exponents that are multiples of 3, capped by the actual prime exponent. Count valid choices for each prime, then multiply.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Remainders
+
+What is the remainder when 7^100 is divided by 8?
+
+- A) 0
+- B) 1
+- C) 3
+- D) 5
+- E) 7
+
+**answer:** B
+**fastest_path:** 7 ≡ −1 (mod 8) → 7^100 ≡ (−1)^100 = 1 (mod 8).
+**explanation:** Note 7 = 8 − 1 ≡ −1 (mod 8). Raising to an even power: 7^100 ≡ (−1)^100 = 1 (mod 8). Verify directly: 7² = 49 = 6 × 8 + 1 → remainder 1; the pattern repeats with period 2, and 100 is even.
+**mistake_a:** Assumed gcd(7, 8) > 1 — but 7 is prime and coprime to 8, so 7^100 is never divisible by 8.
+**mistake_c:** Identified the period-2 cycle {7, 1} correctly but indexed it wrong, reading off an incorrect residue for exponent 100.
+**mistake_d:** Computed (−1)^100 = −1 (the sign error), then converted to 8 − 1 = 7 or 8 − 3 = 5.
+**mistake_e:** Bubbled the base — gave the remainder of 7^1 ÷ 8 = 7 without computing any power.
+**common_trap:** Not recognizing 7 ≡ −1 (mod 8) and cycling through powers longhand. Even when the cycle is found, indexing errors for large even exponents are common.
+**takeaway:** When a base ≡ −1 (mod m): even exponents give remainder 1, odd exponents give remainder m − 1. Check for this pattern before attempting a full cycle analysis.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** LCM and GCD
+
+How many ordered pairs of positive integers (p, q) satisfy both LCM(p, q) = 120 and GCD(p, q) = 6?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 6
+- E) 8
+
+**answer:** C
+**fastest_path:** Write p = 6a, q = 6b with gcd(a,b) = 1 and ab = 20. Coprime factor pairs of 20: (1,20) and (4,5), each in two orders → 4 ordered pairs.
+**explanation:** Since GCD(p,q) = 6, write p = 6a and q = 6b with gcd(a,b) = 1. Then LCM(p,q) = 6·LCM(a,b) = 6ab (because gcd(a,b)=1) = 120 → ab = 20. Factor pairs of 20 with gcd = 1: (1,20) ✓ and (4,5) ✓. The pair (2,10) fails since gcd(2,10) = 2. Each unordered pair yields two ordered pairs: {(6,120),(120,6),(24,30),(30,24)} → 4 total.
+**mistake_a:** Found only the two unordered pairs {6,120} and {24,30} without doubling for order.
+**mistake_b:** Included the invalid pair (12,60): GCD(12,60) = 12 ≠ 6 — failed to verify the GCD condition.
+**mistake_d:** Included (2,10) as a coprime pair of 20, but gcd(2,10) = 2 violates the requirement.
+**mistake_e:** Estimated from the factor count of 120 (which has 16 factors) without applying the GCD constraint.
+**common_trap:** Two errors compound: forgetting that (p,q) and (q,p) are distinct ordered pairs; and not checking that each factor pair (a,b) satisfies gcd(a,b) = 1.
+**takeaway:** For LCM/GCD ordered-pair problems: set p = d·a, q = d·b where d = GCD, then gcd(a,b) = 1 and ab = LCM/GCD. List coprime factorizations of that quotient, then double each for ordered pairs.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Remainders
+
+What is the remainder when the product 43 × 44 × 45 is divided by 8?
+
+- A) 0
+- B) 2
+- C) 4
+- D) 5
+- E) 6
+
+**answer:** C
+**fastest_path:** Reduce each factor mod 8: 43 ≡ 3, 44 ≡ 4, 45 ≡ 5. Then 3 × 4 × 5 = 60 → 60 mod 8 = 4.
+**explanation:** 43 = 5·8 + 3 → residue 3; 44 = 5·8 + 4 → residue 4; 45 = 5·8 + 5 → residue 5. Product of residues: 3 × 4 × 5 = 60. Then 60 = 7·8 + 4, so remainder = 4. (Only 44 contributes factors of 2, giving 2², so the product is divisible by 4 but not 8.)
+**mistake_a:** Assumed the product of three consecutive integers is always divisible by 8. It is always divisible by 6 (= 3!), but 8 requires three independent factors of 2.
+**mistake_b:** Halved 44's residue to 2 (perhaps computing 44 mod 4 = 0 rather than 44 mod 8 = 4): 3 × 2 × 5 = 30 → 30 mod 8 = 6.
+**mistake_d:** Picked the residue of 45 mod 8 = 5 as the final answer — took one factor's residue in isolation.
+**mistake_e:** Made an arithmetic slip in the intermediate product: 3 × 4 = 12 → 12 mod 8 = 4; then 4 × 5 = 20 → misread as 20 mod 8 = 6.
+**common_trap:** Thinking "three consecutive integers → divisible by 8." Divisibility by 8 requires three independent factors of 2, which three consecutive integers rarely supply.
+**takeaway:** For products mod m, reduce each factor mod m first, multiply the residues, then reduce again. This prevents overflow and eliminates the need to compute the large product.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Divisibility
+
+If p, q, and r are positive integers, is p divisible by 15?
+
+(1) p = 3q
+(2) p = 5r and q = r + 4
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) alone: p = 3q gives factor of 3 only — insufficient. (2) alone: p = 5r gives factor of 5, no constraint on 3 — insufficient. Together: substitute to get r = 6, p = 30 → YES.
+**explanation:** Statement (1): p = 3q gives p a factor of 3 but not 5. Counterexamples: q=1→p=3 (not div 15); q=5→p=15 (div 15). Insufficient. Statement (2): p = 5r gives a factor of 5; with r=1→p=5 (not div 15) and r=3→p=15 (div 15). Insufficient. Together: p = 3q and q = r + 4 give p = 3(r+4); also p = 5r. So 3(r+4) = 5r → r = 6 → p = 30. Is 30 divisible by 15? Yes. Definite YES → sufficient. Answer: C.
+**mistake_a:** Treated (1) alone as sufficient — p = 3q is divisible by 3 but may lack a factor of 5.
+**mistake_b:** Treated (2) alone as sufficient — p = 5r guarantees a factor of 5 but nothing about divisibility by 3.
+**mistake_d:** Treated each statement alone as sufficient — neither independently ensures both factors of 15.
+**mistake_e:** Concluded both together insufficient — the substitution uniquely determines p = 30.
+**common_trap:** Seeing that each statement supplies one prime factor of 15 (3 from (1), 5 from (2)) and assuming that is enough without solving the system to confirm a unique value.
+**takeaway:** When DS statements share variables, substitute one into the other. If the system pins a unique value, the statements together are sufficient.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Divisibility
+
+For a positive integer k, is k² + k + 1 divisible by 3?
+
+(1) k is divisible by 3.
+(2) k² − 1 is divisible by 3.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** k≡0: k²+k+1≡1 (NO). k≡1: ≡0 (YES). k≡2: ≡1 (NO). (1) forces k≡0 → definite NO → sufficient. (2) means k≡1 or k≡2 → different answers → insufficient.
+**explanation:** Evaluate k² + k + 1 (mod 3) for each residue class. k≡0: 0+0+1=1, not divisible. k≡1: 1+1+1=3≡0, divisible. k≡2: 4+2+1=7≡1, not divisible. Statement (1): k divisible by 3 → k≡0 → answer is NO (definite). Sufficient. Statement (2): k²−1=(k−1)(k+1) divisible by 3 holds when k≡1 (mod 3) [gives YES] or k≡2 (mod 3) [gives NO]. Two different answers → insufficient. Answer: A.
+**mistake_b:** Assumed (2) pins k to a single residue class — but k²−1≡0 (mod 3) holds for both k≡1 and k≡2, producing opposite outcomes for the original expression.
+**mistake_c:** Required both statements — but (1) alone resolves the question with a definite answer.
+**mistake_d:** Treated both as sufficient — statement (2) leaves the answer ambiguous.
+**mistake_e:** Concluded neither sufficient — statement (1) gives a definite NO, which is equally sufficient as a definite YES.
+**common_trap:** Forgetting that a definite NO is just as sufficient as a definite YES. Also, checking only one residue class satisfying (2) and declaring it sufficient without testing both.
+**takeaway:** For polynomial divisibility DS questions, test each residue class modulo the divisor and record the outcome. A statement is sufficient iff every residue class it permits leads to the same answer.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Prime Expressions
+
+If p is a prime number greater than 3, which of the following must be divisible by 24?
+
+- A) p + 1
+- B) p − 1
+- C) p² − 1
+- D) p² + 1
+- E) p³ − p²
+
+**answer:** C
+**fastest_path:** p²−1=(p−1)(p+1). p is odd → consecutive even factors, one divisible by 4 → div 8. Also p≢0 (mod 3) → one of p±1 is div by 3 → div 24.
+**explanation:** Every prime p > 3 is odd and satisfies p ≢ 0 (mod 3). Factoring: p²−1=(p−1)(p+1). Since p is odd, p−1 and p+1 are consecutive even integers; among any two consecutive even integers, one is divisible by 4, so their product is divisible by 8. Since p ≢ 0 (mod 3), either p≡1 (mod 3) → 3|(p−1) or p≡2 (mod 3) → 3|(p+1). Either way 3|(p²−1). Thus lcm(8,3) = 24 divides p²−1. Verify: p=5→24 ✓; p=7→48=2×24 ✓; p=11→120=5×24 ✓.
+**mistake_a:** p+1: p=5 → 6; 6 ÷ 24 is not an integer.
+**mistake_b:** p−1: p=5 → 4; 4 ÷ 24 is not an integer.
+**mistake_d:** p²+1 is always even but not always divisible by 24: p=5 → 26, which is not divisible by 24.
+**mistake_e:** p³−p²=p²(p−1): p=5 → 100; 100 ÷ 24 ≈ 4.17, not an integer.
+**common_trap:** Testing only one prime (p=5) and confirming p²−1=24, then not proving it holds for all primes > 3. Also, mistaking the "always even" property of p²+1 for divisibility by 24.
+**takeaway:** p²−1=(p−1)(p+1) is divisible by 24 for every prime p > 3. Key proof: consecutive even factors give divisibility by 8; p ≢ 0 (mod 3) forces one of the factors to be divisible by 3.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Simultaneous Congruences
+
+A positive integer n satisfies both n ≡ 3 (mod 5) and n ≡ 4 (mod 6). How many such integers n exist with n < 60?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** B
+**fastest_path:** Write n = 5k + 3. Substitute into the second: 5k+3 ≡ 4 (mod 6) → 5k ≡ 1 (mod 6) → k ≡ 5 (mod 6). Smallest k=5 → n=28; next k=11 → n=58. Both < 60 → count = 2.
+**explanation:** From the first condition, n = 5k + 3. Substituting into the second: 5k+3 ≡ 4 (mod 6) → 5k ≡ 1 (mod 6). Since 5×5=25≡1 (mod 6), the inverse of 5 mod 6 is 5, so k ≡ 5 (mod 6). The smallest valid k is 5: n=25+3=28. Next: k=11: n=55+3=58. Next: k=17: n=88>60. Verify: 28÷5=5R3 ✓, 28÷6=4R4 ✓; 58÷5=11R3 ✓, 58÷6=9R4 ✓. Two solutions.
+**mistake_a:** Found n=28 and stopped — did not continue searching within the range.
+**mistake_c:** Included n=88 by miscounting "n < 60" or making an arithmetic error on the period.
+**mistake_d:** Computed ⌊60/30⌋×2 = 4 without verifying which specific solutions fall below 60.
+**mistake_e:** Listed all values n<60 with n≡3 (mod 5) and guessed 5 from inspection without applying the second condition.
+**common_trap:** Finding the first solution and stopping. Once n=28 is found, the period is LCM(5,6)=30, so check whether 28+30=58 also satisfies n<60.
+**takeaway:** For two simultaneous congruences mod m₁ and m₂: write n from one, substitute into the other, find the smallest valid k, then list all solutions in range by adding LCM(m₁,m₂) repeatedly.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Primes
+
+When the digits of a two-digit prime p are reversed, a different two-digit prime q is formed with q > p. Which of the following must be true?
+
+- A) p + q is divisible by 11
+- B) p + q is divisible by 9
+- C) p × q is divisible by 11
+- D) p + q is a perfect square
+- E) q − p is divisible by 11
+
+**answer:** A
+**fastest_path:** Let p = 10a + b and q = 10b + a. Then p + q = 11(a + b). Always divisible by 11.
+**explanation:** With p=10a+b and q=10b+a: p+q=(10a+b)+(10b+a)=11(a+b). This is a multiple of 11 for any digit values a and b. Verify: p=13,q=31 → 44=11×4 ✓; p=17,q=71 → 88=11×8 ✓; p=37,q=73 → 110=11×10 ✓; p=79,q=97 → 176=11×16 ✓.
+**mistake_b:** p+q=11(a+b); divisible by 9 only when 9|(a+b). But p=13 → a+b=4, which is not divisible by 9.
+**mistake_c:** p×q: with p=13,q=31, the product is 403; 403÷11=36.6..., not an integer. (Distinct primes share no common factors, including 11.)
+**mistake_d:** p+q must be divisible by 11 but need not be a perfect square: 44, 88, 110, and 176 are not perfect squares.
+**mistake_e:** q−p=(10b+a)−(10a+b)=9(b−a). This is divisible by 9, not by 11. For p=13,q=31: q−p=18; 18÷11 is not an integer.
+**common_trap:** Confusing q−p (divisible by 9) with p+q (divisible by 11). Both have clean algebraic forms; knowing both identities prevents selecting the wrong expression.
+**takeaway:** Two-digit digit-reversal identities: sum of original and reversed = 11(a+b), always divisible by 11; difference = 9(b−a), always divisible by 9. Memorize both.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q51
+**difficulty:** Challenge
+**type:** Problem Solving
+**topic:** LCM and GCD
+
+How many ordered pairs of positive integers (a, b) satisfy LCM(a, b) = 48?
+
+- A) 15
+- B) 18
+- C) 20
+- D) 27
+- E) 32
+
+**answer:** D
+**fastest_path:** 48 = 2⁴ · 3¹. For each prime, count ordered exponent pairs with the required maximum: (2·4+1)(2·1+1) = 9 × 3 = 27.
+**explanation:** Write 48=2⁴×3. For LCM(a,b)=48, need max(v₂(a),v₂(b))=4 and max(v₃(a),v₃(b))=1. For the prime 2: count ordered pairs (s,u) with s,u∈{0,1,2,3,4} and max(s,u)=4. Total pairs ≤4: 5²=25; pairs with max≤3: 4²=16; pairs with max=4: 25−16=9. For the prime 3: count (t,v) with t,v∈{0,1} and max(t,v)=1. Total: 4; max=0: 1; max=1: 3. Overall: 9×3=27. General formula: for n=p₁^e₁·p₂^e₂·..., the count is ∏(2eᵢ+1)=(2·4+1)(2·1+1)=9·3=27.
+**mistake_a:** Used (4+1)(1+1)=10 — counted exponent choices rather than ordered pairs with the required maximum.
+**mistake_b:** Computed 9×2=18 — used only 2 options for max(t,v)=1 (the pairs {(0,1),(1,0)}) instead of 3 (adding {(1,1)}).
+**mistake_c:** Computed (4+1)(1+1)×2=20 — arithmetic error in applying the formula.
+**mistake_e:** Used (4+1)²(1+1)²=100 then halved and adjusted to 32 — wrong formula for pairs with a specified maximum.
+**common_trap:** Confusing "pairs (s,u) with s,u ≤ k" — which is (k+1)² — with "pairs with max(s,u) = k" — which is (k+1)²−k²=2k+1. The LCM pair formula uses the latter.
+**takeaway:** For LCM(a,b)=n=p₁^e₁·p₂^e₂·...: the number of ordered pairs equals ∏(2eᵢ+1). Each factor 2eᵢ+1 counts ordered exponent pairs whose maximum equals exactly eᵢ.
+**related_reading:** reading-quant-03-number-properties
