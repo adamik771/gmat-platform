@@ -126,8 +126,8 @@ Train A leaves Station X heading east at 70 mph. Two hours later, Train B leaves
 **mistake_a:** Slip → 5.
 **mistake_b:** Slip → 6.
 **mistake_d:** Slip → 8.
-**mistake_e:** Used sum (160 mph) → ~9 hr.
-**common_trap:** Using sum of speeds (160) instead of difference (20) for catch-up.
+**mistake_e:** Set up t as total time since Train A departed — solving 70t = 90(t − 2) gives 20t = 180 → t = 9. But t = 9 is time elapsed since *A* left; the question asks how many hours *after Train B departs* (= t − 2 = 7). Reporting t = 9 instead of t − 2 = 7 is the error.
+**common_trap:** Two setups are both valid: (1) Let t = hours after B departs — simpler; solving 90t = 70t + 140 gives t = 7. (2) Let t = total time since A departed — solving gives t = 9, then subtract the 2-hour head-start to get 7. Omitting that final subtraction in setup (2) yields 9.
 **takeaway:** Catch-up (same direction) → closing rate = *difference*. Approach (opposite) → *sum*.
 **related_reading:** reading-quant-05-word-problems
 
@@ -305,11 +305,11 @@ Five years ago, James was 4 times as old as his nephew. In 3 years, James will b
 **answer:** A
 **fastest_path:** J = 4N − 15; J = 2N + 3 → 2N = 18 → N = 9 → J = 21.
 **explanation:** J − 5 = 4(N − 5) → J = 4N − 15. J + 3 = 2(N + 3) → J = 2N + 3. Equate: 2N = 18 → N = 9 → J = 21. Verify: 5 yrs ago 16 = 4·4 ✓; in 3 yrs 24 = 2·12 ✓.
-**mistake_b:** Slip → 25.
-**mistake_c:** Slip → 29.
-**mistake_d:** Slip → 33.
-**mistake_e:** Slip → 37.
-**common_trap:** Forgetting to apply the time shift to *both* people (e.g., writing J − 5 = 4N instead of 4(N − 5)).
+**mistake_b:** Arithmetic slip when solving 4N − 15 = 2N + 3 → 2N = 20 (added 15 + 5 instead of 15 + 3) → N = 10 → J = 4(10) − 15 = 25.
+**mistake_c:** Arithmetic slip: 2N = 22 → N = 11 → J = 4(11) − 15 = 29.
+**mistake_d:** Arithmetic slip: 2N = 24 → N = 12 → J = 4(12) − 15 = 33.
+**mistake_e:** Arithmetic slip: 2N = 26 → N = 13 → J = 4(13) − 15 = 37.
+**common_trap:** Forgetting to apply the time shift to *both* people (e.g., writing J − 5 = 4N instead of 4(N − 5)), which gives a different system and a wrong N.
 **takeaway:** Time shifts apply to *every* person's age. "5 years ago" → both ages are 5 less.
 **related_reading:** reading-quant-05-word-problems
 
@@ -383,11 +383,11 @@ Ten years ago, Sara was twice as old as her brother Tom. Today, the sum of their
 **answer:** C
 **fastest_path:** S − 10 = 2(T − 10) → S = 2T − 10. With S + T = 62 → T = 24, S = 38.
 **explanation:** S − 10 = 2(T − 10) → S = 2T − 10. Substitute into S + T = 62: 3T − 10 = 62 → T = 24 → S = 38.
-**mistake_a:** Slip → 32.
-**mistake_b:** Slip → 36.
-**mistake_d:** Slip → 40.
-**mistake_e:** Slip → 42.
-**common_trap:** Writing S − 10 = 2T (forgetting Tom's "−10" too).
+**mistake_a:** Arithmetic slip in solving 3T = 72 — computed T = 21 instead of 24, giving S = 2(21) − 10 = 32.
+**mistake_b:** Arithmetic slip — computed T = 23 instead of 24, giving S = 2(23) − 10 = 36.
+**mistake_d:** Arithmetic slip — computed T = 25 instead of 24, giving S = 2(25) − 10 = 40.
+**mistake_e:** Applied an extra time shift at the end — correctly found S = 38 but added 4 more years, giving 42.
+**common_trap:** Writing S − 10 = 2T (forgetting Tom's "−10" too), which gives a different T and a wrong S.
 **takeaway:** "10 years ago" applies to *both* people. Translate: now-age − 10 for everyone.
 **related_reading:** reading-quant-05-word-problems
 
@@ -545,11 +545,11 @@ Five years ago, Alex was three times as old as Sam. Ten years from now, Alex wil
 **answer:** D
 **fastest_path:** A = 3S − 10; A = 2S + 10 → S = 20, A = 50.
 **explanation:** A − 5 = 3(S − 5) → A = 3S − 10. A + 10 = 2(S + 10) → A = 2S + 10. Equate: 3S − 10 = 2S + 10 → S = 20 → A = 50. Verify: 5 yrs ago Alex 45 = 3·15 ✓; in 10 yrs Alex 60 = 2·30 ✓.
-**mistake_a:** Slip → 35.
-**mistake_b:** Slip → 40.
-**mistake_c:** Slip → 45.
-**mistake_e:** Slip → 55.
-**common_trap:** Misreading the time shifts ("5 ago" ≠ "10 from now") or swapping ages.
+**mistake_a:** Arithmetic slip in solving 3S − 10 = 2S + 10 — computed S = 15 instead of 20, giving A = 3(15) − 10 = 35.
+**mistake_b:** Arithmetic slip — computed S = 17 → A = 3(17) − 10 = 41, then rounded/slipped to 40.
+**mistake_c:** Stopped at A − 5 = 45 (Alex's age five years ago) instead of adding 5 to get the current age: 45 + 5 = 50. Read the question — it asks for Alex's *current* age.
+**mistake_e:** Arithmetic slip — computed S = 22 → A = 2(22) + 10 = 54, then slipped to 55.
+**common_trap:** Misreading the time shifts ("5 ago" ≠ "10 from now") or swapping ages in the equations — apply the correct direction and magnitude to each person in each constraint.
 **takeaway:** Each constraint is one linear equation. Two constraints → unique (A, S).
 **related_reading:** reading-quant-05-word-problems
 
@@ -623,11 +623,11 @@ The sum of a mother's current age and her daughter's current age is 45 years. Fi
 **answer:** C
 **fastest_path:** M = 4D − 15. With M + D = 45 → 5D − 15 = 45 → D = 12, M = 33.
 **explanation:** M + D = 45. M − 5 = 4(D − 5) → M = 4D − 15. Substitute: (4D − 15) + D = 45 → 5D = 60 → D = 12 → M = 33. Verify: 5 yrs ago Mom 28 = 4·7 ✓.
-**mistake_a:** Slip → 25.
-**mistake_b:** Slip → 30.
-**mistake_d:** Slip → 35.
-**mistake_e:** Slip → 40.
-**common_trap:** Forgetting the time shift on both ages (writing M − 5 = 4D instead of 4(D − 5)).
+**mistake_a:** Arithmetic slip in solving 5D = 60 — computed D = 10 instead of 12 (perhaps misread the sum as 35 instead of 45: 5D = 50 → D = 10 → M = 25).
+**mistake_b:** Solved for the daughter's age (D = 12) and reported that instead of the mother's (M = 33); or an arithmetic slip giving D ≈ 9, M ≈ 21... rounded to 30.
+**mistake_d:** Arithmetic slip — computed 5D = 65 → D = 13 → M = 4(13) − 15 = 37, slipped to 35.
+**mistake_e:** Skipped the time-shift correction entirely — wrote M = 4D, so 5D = 45 → D = 9 → M = 36 or slipped to 40.
+**common_trap:** Forgetting the time shift on both ages (writing M − 5 = 4D instead of 4(D − 5)), which leads to M = 4D + 5 and a different system.
 **takeaway:** Time shifts apply to *both* people. "5 years ago" → both ages decrease by 5.
 **related_reading:** reading-quant-05-word-problems
 
@@ -1177,6 +1177,8 @@ Of 180 employees, every employee works in at least one of three departments: Ope
 **takeaway:** Challenge overlapping-set problems stack two skills: translating ratio language into algebra (O = 2S) and applying the correct three-set formula (Total = group-sum − E2 − 2·E3). Solve for S first, then find the requested quantity. The coefficient on E3 is 2, not 1 — this is the most common formula error at the hard/challenge level.
 **related_reading:** reading-quant-05-word-problems
 
+---
+
 ## Q46
 
 **difficulty:** Easy
@@ -1202,6 +1204,8 @@ A savings account earns simple interest at an annual rate of 4%. A depositor pla
 **takeaway:** Simple interest: I = P × r × t. All three factors multiply. "Simple" means interest does not compound — it is the same dollar amount each year.
 **related_reading:** reading-quant-05-word-problems
 
+---
+
 ## Q47
 
 **difficulty:** Easy
@@ -1219,7 +1223,7 @@ A company has two departments. Department A has 20 employees with an average sal
 **answer:** B
 **fastest_path:** Weighted avg = (20·50K + 10·80K) / 30 = 1,800,000 / 30 = $60,000.
 **explanation:** Total salary = 20 × 50,000 + 10 × 80,000 = 1,000,000 + 800,000 = 1,800,000. Average = 1,800,000 / 30 = $60,000. Department A, with twice the headcount, pulls the average closer to its own $50,000 than to Department B's $80,000.
-**mistake_a:** Computed the weighted average using the wrong denominator — divided by 20 (Dept A headcount) instead of 30: (20×50K + 10×80K)/20 = 1,800,000/20 = $90,000, then roughly halved by some other slip to reach $55,000. Always divide by the *total* headcount.
+**mistake_a:** Divided the correct total salary ($1,800,000) by Dept A's headcount (20) rather than the combined total (30): $1,800,000 / 20 = $90,000. Because $90,000 is obviously too high, some students make a second adjustment downward and land near $55,000. The root error: always divide by the *total* headcount, not a subgroup count.
 **mistake_c:** Averaged the two group means then adjusted slightly without a principled formula: (50K + 80K)/2 = $65K, then subtracted some rough fraction, landing near $63K. Shortcuts based on "splitting the difference" fail when group sizes differ.
 **mistake_d:** Took the simple (unweighted) arithmetic mean: (50,000 + 80,000) / 2 = $65,000. The classic trap: ignoring that the two groups have different sizes.
 **mistake_e:** Swapped the group sizes — applied the 10-person weight to Dept A and the 20-person weight to Dept B: (10×50K + 20×80K)/30 = $70,000. Re-read the problem: 20 employees are in A ($50K) and 10 are in B ($80K). The larger group pulls the average toward its own mean.
@@ -1227,30 +1231,34 @@ A company has two departments. Department A has 20 employees with an average sal
 **takeaway:** Weighted average = (sum of all values) / (total count). When group sizes differ, larger groups pull the average toward their mean. Never average the group means directly unless the groups are equal in size.
 **related_reading:** reading-quant-05-word-problems
 
+---
+
 ## Q48
 
 **difficulty:** Easy
 **type:** Problem Solving
-**topic:** Rate/Time/Distance — Meeting
+**topic:** Rate/Time/Distance — Catch-Up
 
-Two cyclists start simultaneously from opposite ends of a 90-mile trail and ride toward each other. Cyclist A rides at 18 mph and Cyclist B rides at 12 mph. After how many hours do they meet?
+A car departs City X heading north at 50 mph. A motorcycle leaves City X in the same direction 2 hours later, traveling at 70 mph. How many hours after the motorcycle departs will it catch up to the car?
 
-- A) 2.0
-- B) 2.5
-- C) 3.0
-- D) 3.5
-- E) 6.0
+- A) 2
+- B) 3
+- C) 5
+- D) 7
+- E) 10
 
 **answer:** C
-**fastest_path:** Closing rate = 18 + 12 = 30 mph. t = 90/30 = 3 hr.
-**explanation:** When two objects move toward each other, the gap closes at the *sum* of their speeds: 18 + 12 = 30 mph. Time to close 90 miles: 90/30 = 3 hours. Verify: A travels 18 × 3 = 54 miles; B travels 12 × 3 = 36 miles; 54 + 36 = 90. ✓
-**mistake_a:** Divided distance by the faster speed only: 90/45 = 2. Ignored the other cyclist.
-**mistake_b:** Added 18 + 18 = 36 (accidentally doubled Cyclist A's speed instead of adding both): 90/36 = 2.5. Always re-add the given values: 18 + 12 = 30.
-**mistake_d:** Computed the combined speed correctly as 30 mph, then divided by the wrong distance — perhaps used 105 (90 + 15) instead of 90: 105/30 = 3.5. Double-check which quantity is the gap to close.
-**mistake_e:** Divided by the *average* of the two speeds (15 mph) instead of their sum: 90/15 = 6. The meeting rate is the sum, not the average.
-**common_trap:** Using the average of the speeds (15) instead of the sum (30). When two objects approach each other, each second brings them closer at a combined rate equal to the sum of their individual speeds.
-**takeaway:** Head-on meeting: closing rate = sum of speeds. Time = gap / (v₁ + v₂). Same-direction catch-up: closing rate = difference of speeds.
+**fastest_path:** Head start = 50 × 2 = 100 mi. Closing rate = 70 − 50 = 20 mph. Time = 100/20 = 5 hr.
+**explanation:** By the time the motorcycle departs, the car has a 100-mile head start (50 mph × 2 hr). Same-direction catch-up: the gap closes at the *difference* of their speeds = 70 − 50 = 20 mph. Time = 100/20 = 5 hr. Verify: car travels 50 × (2 + 5) = 350 mi from City X; motorcycle travels 70 × 5 = 350 mi. ✓
+**mistake_a:** Answered with just the head-start time (2 hr) — never converted that to a distance or computed the closing rate.
+**mistake_b:** Arithmetic slip — computed head start as 50 × 1 = 50 miles (used 1 hour instead of 2): 50/20 = 2.5, rounded to 3.
+**mistake_d:** Found the correct 5-hour catch-up window, then added the 2-hour head-start period: 5 + 2 = 7. The question asks how many hours *after the motorcycle departs* — the 5-hour window begins when the motorcycle leaves, so no further adjustment is needed.
+**mistake_e:** Halved the speed difference — used (70 − 50)/2 = 10 mph as the closing rate instead of the full 20 mph: 100/10 = 10 hr. In same-direction catch-up, the full difference in speeds determines how fast the gap closes.
+**common_trap:** Confusing same-direction catch-up with head-on meeting. Same-direction: closing rate = *difference* of speeds (20 mph). Head-on meeting (see Q1): closing rate = *sum* of speeds. Using the sum here gives 100/120 ≈ 0.8 hr — obviously wrong since the motorcycle barely just left.
+**takeaway:** Same-direction catch-up: (1) head-start distance = slower speed × delay time; (2) closing rate = faster − slower; (3) time = head-start distance / closing rate. Contrast with head-on meeting, which uses the sum of speeds.
 **related_reading:** reading-quant-05-word-problems
+
+---
 
 ## Q49
 
@@ -1277,6 +1285,8 @@ Alicia can complete a report in 6 hours working alone. Ben can complete the same
 **takeaway:** Combined work rate = sum of individual rates. 1/a + 1/b gives the fraction completed per unit time. Together = faster, so rates add.
 **related_reading:** reading-quant-05-word-problems
 
+---
+
 ## Q50
 
 **difficulty:** Easy
@@ -1301,6 +1311,8 @@ A loan carries a simple annual interest rate of 8%. The borrower owes $960 in in
 **common_trap:** Computing I / r without multiplying by t first — leaves out a factor of 3 and yields $12,000 or similar.
 **takeaway:** Simple interest: I = Prt. To find P: P = I/(rt). All three — principal, rate, and time — must appear in the denominator together. Rearrange before plugging in numbers.
 **related_reading:** reading-quant-05-word-problems
+
+---
 
 ## Q51
 
@@ -1327,6 +1339,8 @@ An initial investment of $5,000 earns compound interest at an annual rate of 20%
 **takeaway:** Compound interest: FV = P(1 + r)^t. Each period's growth is applied to the running balance. Even one year of compounding difference matters because year-2 interest includes interest on year-1 interest.
 **related_reading:** reading-quant-05-word-problems
 
+---
+
 ## Q52
 
 **difficulty:** Medium
@@ -1344,13 +1358,15 @@ A class of 25 students scored an average of 80 on an exam. The 10 students who s
 **answer:** B
 **fastest_path:** Total = 25×80 = 2000. Front: 10×92 = 920. Remaining: 2000 − 920 = 1080. Avg = 1080/15 = 72.
 **explanation:** Work in totals. Total score for the class: 25 × 80 = 2,000. Front row total: 10 × 92 = 920. The other 15 students' total: 2,000 − 920 = 1,080. Their average: 1,080 / 15 = 72.
-**mistake_a:** Misread the front-row average as 90 instead of 92: 10 × 90 = 900, remaining = 2,000 − 900 = 1,100, average = 1,100/15 ≈ 73. A single digit error cascades; read the given values carefully before computing.
-**mistake_c:** Computed the remaining-student total correctly (1,080) but divided by 16 instead of 15: 1,080/16 = 67.5 ≈ 68, or divided correctly but used a wrong front-row count. The remaining group has 25 − 10 = 15 students, not 16.
-**mistake_d:** Divided the remaining total (1,080) by 9 (perhaps confusing the number of non-front-row rows with the count of students): 1,080/9 = 120, then used an incorrect formula, landing near 76. Always divide remaining-total by the remaining-student *count*, not a row or section count.
+**mistake_a:** Divided by 16 instead of 15 for the remaining students — an off-by-one error on the count (perhaps subtracted 10 from 26 rather than 25): 1,080 / 16 = 67.5 ≈ 68.
+**mistake_c:** Misread the front-row average as 89 instead of 92 (reversed the final two digits): 10 × 89 = 890, remaining total = 2,000 − 890 = 1,110, average = 1,110 / 15 = 74.
+**mistake_d:** Misread the front-row average as 86 instead of 92 (another digit swap): 10 × 86 = 860, remaining total = 2,000 − 860 = 1,140, average = 1,140 / 15 = 76. Always read multi-digit values carefully before computing.
 **mistake_e:** Averaged the two known means: (80 + 92) / 2 = 86. This ignores the different group sizes (10 vs. 15) — the classic weighted-average trap.
 **common_trap:** Averaging the class mean (80) and the front-row mean (92) to get 86 for the other group. This only works if both subgroups are the same size. Here, 15 students' low scores pull the class average *down* from the front-row's 92, so the remaining group average must be below 80.
 **takeaway:** When a group is broken into two subgroups and you know the overall mean plus one subgroup's mean, use totals: total = mean × count for each group, then subtract and divide.
 **related_reading:** reading-quant-05-word-problems
+
+---
 
 ## Q53
 
@@ -1377,6 +1393,8 @@ Rosa invested a total of $10,000. She placed part of the money in Account A at 3
 **takeaway:** Two-rate investment problems: define x as the amount at one rate, set up one interest equation, solve. Then check which account the question asked for — it is frequently the *other* one from your variable definition.
 **related_reading:** reading-quant-05-word-problems
 
+---
+
 ## Q54
 
 **difficulty:** Medium
@@ -1401,6 +1419,8 @@ A 60-liter tank contains a solution that is 30% sugar. How many liters of water 
 **common_trap:** Setting up the fraction as 18/(60) = 0.45 (forgetting that evaporation changes the total volume). The denominator *decreases* when water is removed; the numerator stays fixed.
 **takeaway:** Evaporation/removal problems: the pure substance (sugar) stays constant; the total volume shrinks. Set up the new concentration as (fixed component) / (original volume − removed volume) = target.
 **related_reading:** reading-quant-05-word-problems
+
+---
 
 ## Q55
 
@@ -1427,6 +1447,8 @@ A truck driver travels 120 miles at an average speed of 40 mph, then continues a
 **takeaway:** Average speed = total distance / total time. Never average two speeds arithmetically unless the legs are equal in *time*. When legs have equal *distance*, use the harmonic mean. When neither is equal, compute time for each leg and use total/total.
 **related_reading:** reading-quant-05-word-problems
 
+---
+
 ## Q56
 
 **difficulty:** Medium
@@ -1452,6 +1474,8 @@ A team of 6 workers can complete a construction project in 20 days. After 8 days
 **takeaway:** Worker-days (or worker-hours) are conserved when each worker has the same individual rate. Total WD = workers₁ × days₁ = workers₂ × days₂ for the remaining segment. Compute remaining WD first, then divide by the new team size.
 **related_reading:** reading-quant-05-word-problems
 
+---
+
 ## Q57
 
 **difficulty:** Medium
@@ -1476,6 +1500,8 @@ The sum of four consecutive even integers is 100. What is the product of the sma
 **common_trap:** Squaring the middle value (24² = 576) instead of multiplying the outer pair. For symmetric sets, it's tempting to treat the middle as representative, but the question specifies smallest × largest.
 **takeaway:** For consecutive even integers n, n+2, n+4, n+6: sum = 4n + 12; smallest = n; largest = n+6. Note: 22 × 28 = (25−3)(25+3) = 625−9 = 616 — difference of squares is faster than long multiplication.
 **related_reading:** reading-quant-05-word-problems
+
+---
 
 ## Q58
 
@@ -1504,12 +1530,14 @@ Statement (2): P(1+r) = 11,200. This is one equation with two unknowns (P and r)
 
 Together: P = 10,000 and 10,000(1+r) = 11,200 → r = 12%. Year-2 value = 10,000 × 1.12² = 10,000 × 1.2544 = $12,544. Sufficient.
 **mistake_a:** Concluded statement (1) alone works — knows P but not r.
-**mistake_b:** Concluded statement (2) alone works — the trap: knowing the year-1 value ($11,200) seems to let you compute year-2 value ($11,200 × growth factor). But the growth factor (1+r) is still unknown without P.
+**mistake_b:** Concluded statement (2) alone works — the trap: knowing the year-1 value ($11,200) seems to let you compute the year-2 value by multiplying by the same growth factor. The flaw: statement (2) gives P(1+r) = 11,200, which is one equation with two unknowns. Without knowing P separately, you cannot isolate r and therefore cannot compute the second year's growth.
 **mistake_d:** Concluded each alone sufficient.
 **mistake_e:** Concluded even both together are insufficient.
-**common_trap:** Thinking statement (2) is sufficient because "I know the year-1 value, so I can grow it one more year." The flaw: growing $11,200 requires knowing the rate r, which statement (2) doesn't reveal by itself (it gives P·r, not r alone).
+**common_trap:** Thinking statement (2) is sufficient because "I know the year-1 value, so I can grow it one more year." Statement (2) gives P(1+r) = $11,200 — a single equation with both P and r unknown. The rate r is embedded in the product; extracting it requires a second equation for P.
 **takeaway:** Compound interest has two unknowns: P and r. One equation means one constraint. You need two independent equations to pin down both. Statement (2) = one equation; statement (1) = second equation. Only together are they a solvable system.
 **related_reading:** reading-di-02-data-sufficiency-logic
+
+---
 
 ## Q59
 
@@ -1537,6 +1565,8 @@ Alligation shortcut: distance from boys mean to overall = 80 − 78 = 2. Distanc
 **common_trap:** Alligation inversion. The overall mean (80) is closer to the boys' mean (78) than to the girls' mean (84). Closer proximity means boys are the *larger* group — 2/3, not 1/3. Students who write the ratio unreversed get 1/3 every time.
 **takeaway:** Weighted average fraction: 78b + 84(1−b) = 80. Solve directly, or use alligation with the inversion: boys:girls = (84−80):(80−78) = 4:2 = 2:1 → boys = 2/3. The group *farther* from the overall mean is the smaller group.
 **related_reading:** reading-quant-05-word-problems
+
+---
 
 ## Q60
 
@@ -1572,6 +1602,8 @@ Together: P = $5,000 at 4% = $200; Q = $10,000 at 6% = $600; total = $800. Suffi
 **takeaway:** Interest = rate × principal for each account; total = sum over accounts. To determine total interest, you need BOTH the rates AND the split. One of those alone leaves the computation under-determined.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
+---
+
 ## Q61
 
 **difficulty:** Hard
@@ -1602,6 +1634,8 @@ Verify: 12 days at 1/32 per day = 12/32 = 3/8 ✓. Phase 2: 22 − 12 = 10 days 
 **common_trap:** Computing 22 × (3/8) ≈ 8 — thinking "3/8 of the work = 3/8 of the time." This would be true only if the rate never changed. Because phase 2 is twice as fast, it takes proportionally less time than phase 1 per unit of work done.
 **takeaway:** Two-phase rate problems: express time in each phase as (work fraction)/(rate). Sum the two times to equal total time. Solve for the rate first, then back-substitute for the phase-1 duration.
 **related_reading:** reading-quant-05-word-problems
+
+---
 
 ## Q62
 
@@ -1636,4 +1670,3 @@ Verify: Gardener wages = $1,600; assistant wages = $1,200; difference = $400. �
 **common_trap:** Reporting the number of one worker type instead of the total. After finding g = 8, the question asks for total workers — a second calculation that is easy to skip.
 **takeaway:** Multi-constraint word problems: define one variable for each unknown, translate every condition into an equation, and solve the system. Always re-read the question to confirm which quantity you are reporting — the most common error is bubbling an intermediate value (g or a) instead of the final answer (g + a).
 **related_reading:** reading-quant-05-word-problems
-**takeaway:** Multi-constraint word problems: translate each constraint into an equation, solve the system for the variable, then complete the final calculation the question actually asks for (total workers = g + (g+4), not just g). Always re-read the final question before writing the answer.
