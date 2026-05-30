@@ -110,6 +110,17 @@ problem_sets:
 
 ## @drt-foundation
 
+**The chapter map.** There are six rate-and-work families on the GMAT. They all share D = RT as the core structure — what changes is how many objects are involved, how the rates interact, and which variable is missing. Your goal at test speed is to name the family within ten seconds of reading the question. The full formula reference is in the summary; everything between here and there is how you build the pattern fluency to use it.
+
+| Family | Trigger | Key move |
+|---|---|---|
+| Single-object D=RT | "How far / how long / at what speed" | Identify the missing variable |
+| Combined work | "Working together, how long?" | Add the rates, never the times |
+| Two objects moving | "Toward each other" / "catch up" | Sum or difference of speeds |
+| Average speed (equal legs) | "Round trip, same route" | Harmonic mean: 2ab/(a+b) |
+| Average speed (unequal legs) | "Different distances" | Total distance ÷ total time |
+| Staggered start | "A worked alone, then B joined" | Two-phase template |
+
 Every rate problem on the GMAT — car, train, cyclist, pipe, painter, pump, typist — collapses to one equation:
 
 **D = R × T**
@@ -164,6 +175,8 @@ Students who add *times* (6 + 4 = 10, or average to 5) get answer E every time. 
 
 **Equal-rate shortcut.** If n workers all work at the same rate and one alone takes t hours, together they take t/n hours. Two painters each 5 hours alone → together 5/2 = 2.5 hours. Three pumps each 4 hours → together 4/3. Fast pattern-match for the easiest combined-work questions.
 
+**Three or more workers at different rates.** Just extend the formula: 1/a + 1/b + 1/c = 1/T. Every worker contributes a fraction of the job per hour simultaneously — you add all the fractions. Three pipes filling at 1/3, 1/6, and 1/9 per hour have combined rate 6/18 + 3/18 + 2/18 = 11/18 per hour; tank fills in 18/11 ≈ 1.6 hours. No new logic, just more terms.
+
 **Reverse direction: solving for one unknown rate.** Often the GMAT gives you the combined time and one individual time, and asks for the other.
 
 A finishes in 12 hours alone. A + B finish in 8 hours together. How long does B take alone?
@@ -177,8 +190,6 @@ Trap answer: students who manipulate times compute 12 − 8 = 4 (wrong) or 12 + 
 **Unit of work is arbitrary.** Some problems use "pump-hours" — total work expressed as (workers × time). Three pumps × 4 hours = 12 pump-hours. If the same job is done by 5 pumps: 12/5 = 2.4 hours. This is the combined-work formula reorganized: **(workers) × (time) = total work**, constant for a given job.
 
 **Trap to watch.** "How long does the job take if three pumps work for 2 hours, then two more pumps join?" That is *not* pure combined work — it is a staggered-start problem. Combined work assumes everyone starts at time zero. The staggered case is handled in the next section.
-
-> **Self-explanation prompt.** Before the check question, explain in one sentence: if A takes 4 hours alone and B takes 6 hours alone, why does the combined time land near 2.4 hours rather than near 5 hours? If you can say "because both contribute their full rate every hour, so the job disappears faster than either alone — not at some average speed between them," you've understood why adding times is wrong.
 
 > **Self-explanation prompt.** Before moving on, say this out loud: *why* do you add rates and not times when two workers combine? If you can explain "because each worker independently contributes a fraction of the job per hour — those fractions add; the time to finish is 1 divided by the combined fraction," you've understood the concept, not just memorized the formula. A student who truly understands this will never again add the times, even under pressure.
 
@@ -316,6 +327,8 @@ Remaining work going into phase 2 = total − phase 1 work. Then t₂ = remainin
 
 Write this table in your margin whenever you see "A worked alone for X hours, then B joined."
 
+> **Self-explanation prompt.** Before the worked example: why can't you solve a staggered-start problem with a single combined-work equation that runs from time zero? Think for ten seconds, then read on. (Because the combined rate only applies while *both* workers are active — applying it during the solo phase would wrongly credit the second worker's contribution before they've joined. The two-phase structure fixes this: solo work first, then combined work on the remaining fraction.)
+
 **Worked example.** Pipe X fills a tank in 6 hours. After 2 hours of X alone, Pipe Y (which alone takes 9 hours) joins. How long total?
 
 - Phase 1 (X alone, 2 hours): fraction filled = 2 × (1/6) = **1/3**. Remaining = 2/3.
@@ -358,8 +371,6 @@ The negative root (−60) is discarded because speed must be positive.
 
 Answers: (1) **5.6 hours** — Phase 1: 2 × (1/8) = 1/4 done; remaining = 3/4. Combined rate: 1/8 + 1/12 = 5/24 per hour. Phase 2: (3/4) ÷ (5/24) = 18/5 = 3.6 hr. Total: 2 + 3.6 = 5.6. Sanity check: A+B together alone take 24/5 = 4.8 hr; adding 2 hours of A solo must push total above 4.8, and 5.6 > 4.8. (2) **12 hours** — Phase 1: 3 × (1/6) = 1/2 done; remaining = 1/2. Net fill rate once C opens: 1/6 − 1/9 = 1/18 per hour. Phase 2: (1/2) ÷ (1/18) = 9 hr. Total: 3 + 9 = 12. If you forgot to subtract C's drain rate, you got 6 hours — re-read "When a pipe drains instead of fills" above. (3) **B alone takes 10 hours** — Phase 2 combined rate: (3/5) ÷ 3 = 1/5 per hour. A's rate = 1/10 per hour. B's rate = 1/5 − 1/10 = 1/10 per hour. B alone = 10 hours. If you got 6 hours for B, you may have computed A's remaining contribution incorrectly — only track rates, not times across phases.
 
-> **Self-explanation prompt.** Before the check questions: why can't you solve a staggered-start problem with a single combined-work equation from the beginning? If you can say "because the combined rate only applies during the phase when both are working — during the solo phase, only one worker's rate applies — so a single equation would overcount the second worker's contribution," the two-phase template will feel like the natural approach, not a memorized trick.
-
 > **Self-explanation prompt.** Why does the two-phase template require you to compute the *fraction of the job remaining* after phase 1, rather than working directly with times? If you can say "because phase 2 operates at a different rate, so time alone doesn't tell you how much was done — you need the fraction of work left, then divide that by the new rate to get phase 2 time," you've understood the structure. The moment you try to add or average the times across phases without tracking the fraction of work, you're guaranteed a wrong answer.
 
 ## @summary
@@ -401,6 +412,10 @@ Every GMAT rates/work question reduces to one of six patterns. Identify the patt
 | "Downstream/upstream" | Current/wind | boat + current, boat − current |
 | "Joins X hours later" | Staggered | Phase 1 + Phase 2 |
 
-**What to do next.** Open the practice set for this chapter — Easy first, then Medium. After each incorrect answer, write one sentence naming the pattern you misidentified and one sentence naming the formula you should have used. That annotation habit builds pattern-recognition faster than re-reading this chapter. Once you're hitting 85%+ on Medium, tackle the Hard set. If average-speed or staggered-start questions are where you stumble, re-read those two sections before starting Hard.
+**What to do next.** Run the Easy set untimed first. Easy misses almost always trace to one of two gaps: a unit mismatch in D=RT, or adding times instead of rates on combined work. Identify the exact failure before proceeding — those two errors account for the majority of all rate-question mistakes at the 605–645 range.
+
+On the Medium set, time yourself (2:00 target per question) and log each miss with a two-part tag: the pattern family you thought you were in, and the pattern you were actually in. That two-part tag localizes your recognition gap better than any re-read.
+
+Hard questions cluster in two areas: average-speed edge cases (unequal-distance trips where the harmonic mean doesn't apply) and multi-phase staggered starts. If you miss two or more Hard questions from the same family, that section earns a targeted re-read before your next mock — not the whole chapter.
 
 **Time-management note.** None of these questions should take more than 90 seconds once the pattern is recognized. If you're at 60 seconds and still setting up, you've misidentified the pattern — step back, re-read the first sentence of the problem, and pick the pattern before writing anything.
