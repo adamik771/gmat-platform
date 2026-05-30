@@ -909,3 +909,444 @@ Three bells ring at intervals of 6, 9, and 15 minutes respectively. They all rin
 **common_trap:** Using LCM of only two of the three intervals and forgetting the third, or adding LCMs instead of nesting them.
 **takeaway:** For "next simultaneous event" with periodic events at intervals a, b, c: time = LCM(a, b, c). Compute step-by-step: LCM(a, b) first, then LCM(result, c). All three must factor into the final LCM.
 **related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Factor Counting
+
+How many positive factors does 36 have?
+
+- A) 5
+- B) 7
+- C) 8
+- D) 9
+- E) 12
+
+**answer:** D
+**fastest_path:** 36 = 2² × 3². Number of factors = (2 + 1)(2 + 1) = 9.
+**explanation:** Factor-count formula: if n = p₁^a × p₂^b × ..., then the number of positive factors is (a + 1)(b + 1) × .... Here 36 = 2² × 3², so factors = (2 + 1)(2 + 1) = 3 × 3 = 9. Verify by listing: 1, 2, 3, 4, 6, 9, 12, 18, 36 — exactly 9. ✓
+**mistake_a:** Listed only factors that are ≤ √36 = 6: {1, 2, 3, 4, 6} = 5. Forgot that each small factor pairs with a large one (e.g., 6 pairs with 6, 4 with 9, 3 with 12, 2 with 18, 1 with 36).
+**mistake_b:** Miscounted the list — skipped one of 1 or 36.
+**mistake_c:** Excluded 36 itself (forgot that n is always one of its own factors).
+**mistake_e:** Computed 36 ÷ 3 = 12 (divided by a factor of 36 and reported the quotient as the factor count).
+**common_trap:** Listing only factors ≤ √n and forgetting to count their paired partners greater than √n.
+**takeaway:** Use the formula: factor count of p₁^a × p₂^b = (a + 1)(b + 1). It is faster than listing and eliminates counting errors. Every factor ≤ √n pairs with a unique factor ≥ √n.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Divisibility Rules
+
+Which of the following is divisible by both 3 and 4?
+
+- A) 18
+- B) 24
+- C) 30
+- D) 34
+- E) 42
+
+**answer:** B
+**fastest_path:** Divisible by 4 iff last two digits form a multiple of 4. Divisible by 3 iff digit sum is a multiple of 3. Test 24: 24/4 = 6 ✓, 2 + 4 = 6 ✓.
+**explanation:** Check each option. A) 18: digit sum = 9 (div by 3 ✓); 18 ÷ 4 = 4.5 (not div by 4) ✗. B) 24: digit sum = 6 (div by 3 ✓); 24 ÷ 4 = 6 (div by 4 ✓). Both conditions satisfied. C) 30: digit sum = 3 (div by 3 ✓); 30 ÷ 4 = 7.5 ✗. D) 34: digit sum = 7 (not div by 3) ✗. E) 42: digit sum = 6 (div by 3 ✓); 42 ÷ 4 = 10.5 ✗. Only B satisfies both.
+**mistake_a:** 18 is divisible by 3 but not by 4; student stopped after checking divisibility by 3 only.
+**mistake_c:** 30 is divisible by 3 but not by 4; same partial check.
+**mistake_d:** 34 is divisible by neither — student may have misapplied the divisibility-by-3 rule (7 is not divisible by 3).
+**mistake_e:** 42 is divisible by 3 but not by 4; same one-condition check.
+**common_trap:** Checking divisibility by only one of the two required divisors and stopping there.
+**takeaway:** For "divisible by both X and Y" problems, both conditions must hold simultaneously. Apply the faster rule first (digit-sum for 3, last-two-digits for 4) to screen options quickly.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** GCD and LCM
+
+What is the greatest common divisor (GCD) of 48 and 72?
+
+- A) 6
+- B) 8
+- C) 12
+- D) 24
+- E) 144
+
+**answer:** D
+**fastest_path:** 48 = 2⁴ × 3; 72 = 2³ × 3². GCD = 2^min(4,3) × 3^min(1,2) = 2³ × 3 = 24.
+**explanation:** Prime factorizations: 48 = 2⁴ × 3¹ and 72 = 2³ × 3². For each prime, GCD takes the smaller exponent: min(4, 3) = 3 for the prime 2; min(1, 2) = 1 for the prime 3. GCD = 2³ × 3¹ = 8 × 3 = 24. Verify: 48/24 = 2 ✓, 72/24 = 3 ✓.
+**mistake_a:** Used exponent 1 for every prime instead of the minimum: 2¹ × 3¹ = 6.
+**mistake_b:** Took 2³ = 8 but forgot the factor of 3 entirely.
+**mistake_c:** Used 2² instead of 2³: 2² × 3 = 12 (one step short on the power of 2).
+**mistake_e:** Computed the LCM instead of GCD. LCM takes the larger exponent: 2^max(4,3) × 3^max(1,2) = 2⁴ × 3² = 144.
+**common_trap:** Confusing GCD (take minimum exponents) with LCM (take maximum exponents) — or computing the LCM when the GCD is asked for.
+**takeaway:** GCD = product of each prime raised to the MINIMUM exponent appearing in either factorization. LCM = product of each prime raised to the MAXIMUM exponent. GCD × LCM = a × b (useful identity for checking work).
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Counting Multiples — LCM
+
+How many integers from 1 to 100, inclusive, are divisible by both 4 and 6?
+
+- A) 4
+- B) 8
+- C) 12
+- D) 16
+- E) 25
+
+**answer:** B
+**fastest_path:** Must be divisible by LCM(4, 6) = 12. Count: floor(100/12) = 8.
+**explanation:** A number divisible by both 4 and 6 must be divisible by their LCM. 4 = 2², 6 = 2 × 3, so LCM = 2² × 3 = 12. Multiples of 12 from 1 to 100: 12, 24, 36, 48, 60, 72, 84, 96 — that is 8 values. (12 × 9 = 108 > 100, so stop at 96.) Count = 8.
+**mistake_a:** Computed LCM(4, 6) = 4 × 6 = 24 (wrong — used product instead of LCM), then floor(100/24) = 4.
+**mistake_c:** Used the LCM value (12) as the count rather than computing floor(100/12).
+**mistake_d:** Counted multiples of 6 only: floor(100/6) = 16, ignoring the requirement to also be divisible by 4.
+**mistake_e:** Counted multiples of 4 only: floor(100/4) = 25, ignoring the requirement to also be divisible by 6.
+**common_trap:** Using the product of the two divisors (4 × 6 = 24) instead of their LCM (12) — the LCM is always ≤ the product and is often smaller.
+**takeaway:** "Divisible by both a and b" ⟺ "divisible by LCM(a, b)". Count multiples of m from 1 to n as floor(n/m). Never multiply divisors together as a substitute for computing the LCM.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Odd/Even Arithmetic
+
+For any integer n, which of the following is always odd?
+
+- A) 2n
+- B) n²
+- C) 2n + 1
+- D) n + 2
+- E) n(n + 1)
+
+**answer:** C
+**fastest_path:** 2n is always even; 2n + 1 is always one more than an even number, so always odd.
+**explanation:** Evaluate each expression. A) 2n: always even (any multiple of 2 is even). B) n²: even if n is even, odd if n is odd — not always odd. C) 2n + 1: 2n is always even, and even + 1 = odd, so 2n + 1 is always odd for any integer n. D) n + 2: same parity as n — odd if n is odd, even if n is even. E) n(n + 1): product of consecutive integers, one of which is always even, so always even.
+**mistake_a:** Selected 2n — confusing "always divisible by 2" with "always odd."
+**mistake_b:** Selected n² — forgot that n² inherits the parity of n.
+**mistake_d:** Selected n + 2 — correct that adding 2 preserves parity, but that means the result matches n's parity, not that it is always odd.
+**mistake_e:** Selected n(n+1) — forgot that consecutive integers always include one even, making the product always even.
+**common_trap:** Selecting an expression that is sometimes odd and sometimes even instead of identifying the one that is always odd.
+**takeaway:** 2k is always even for any integer k. 2k + 1 is always odd. These are the definitions of even and odd. Any expression that can be written as 2(something) is even; any expression that can be written as 2(something) + 1 is odd.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Prime Factorization and Counting Factors
+
+How many positive integers are factors of 360?
+
+- A) 12
+- B) 16
+- C) 18
+- D) 24
+- E) 30
+
+**answer:** D
+**fastest_path:** 360 = 2³ × 3² × 5. Factors = (3 + 1)(2 + 1)(1 + 1) = 4 × 3 × 2 = 24.
+**explanation:** Factor 360 completely: 360 = 8 × 45 = 2³ × 3² × 5¹. Apply the formula: for n = p^a × q^b × r^c, the factor count is (a + 1)(b + 1)(c + 1). Here: (3 + 1)(2 + 1)(1 + 1) = 4 × 3 × 2 = 24. Sanity check: 360 has both small factors (1, 2, 3, 4, 5, 6, ...) and their large complements (...72, 90, 120, 180, 360), so a count in the 20s is plausible.
+**mistake_a:** Applied (a + 1)(b + 1)(c) instead of (a + 1)(b + 1)(c + 1) — omitted the "+1" on the smallest prime's exponent (5¹): (4)(3)(1) = 12.
+**mistake_b:** Applied (a + 1)(b)(c + 1) — omitted "+1" on the middle prime's exponent (3²): (4)(2)(2) = 16.
+**mistake_c:** Applied (a)(b + 1)(c + 1) — omitted "+1" on the largest prime's exponent (2³): (3)(3)(2) = 18.
+**mistake_e:** Misfactored 360 as 2⁴ × 3² × 5 (one extra factor of 2), yielding (4 + 1)(2 + 1)(1 + 1) = 5 × 3 × 2 = 30.
+**common_trap:** Forgetting to add 1 to every exponent — the formula is (exponent + 1) for each prime, not just the exponent itself.
+**takeaway:** Factor-count formula: if n = p^a × q^b × r^c, then factors(n) = (a + 1)(b + 1)(c + 1). Every exponent in the factorization contributes a "+1". Get the prime factorization right first — a mis-factored base invalidates the entire calculation.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Remainders — Algebra
+
+When positive integer n is divided by 7, the remainder is 4. What is the remainder when 3n is divided by 7?
+
+- A) 1
+- B) 3
+- C) 5
+- D) 12
+- E) 19
+
+**answer:** C
+**fastest_path:** (3 × 4) mod 7 = 12 mod 7 = 5.
+**explanation:** Write n = 7k + 4 for some non-negative integer k. Then 3n = 3(7k + 4) = 21k + 12 = 7(3k + 1) + 5. The term 7(3k + 1) is divisible by 7, so the remainder when 3n is divided by 7 is 5. Shortcut: (3 × 4) mod 7 = 12 mod 7 = 5. Both methods agree.
+**mistake_a:** Divided the original remainder by the multiplier: 4 ÷ 3 ≈ 1 (rounded down), applying a division instead of a multiplication.
+**mistake_b:** Computed 3 × 4 = 12, then subtracted 9 instead of 7: 12 − 9 = 3. Arithmetic error in the final mod step.
+**mistake_d:** Computed 3 × 4 = 12 and stopped without performing the final division by 7. Reported the intermediate product as the answer.
+**mistake_e:** Computed 3 × 4 = 12, then added the divisor instead of subtracting: 12 + 7 = 19. Added when the goal was to reduce mod 7.
+**common_trap:** Stopping at 3 × remainder = 12 without taking 12 mod 7. When the scaled remainder exceeds the divisor, one more reduction step is needed.
+**takeaway:** If n ≡ r (mod m), then cn ≡ cr (mod m). Compute cr, then reduce mod m if cr ≥ m. The shortcut "multiply the remainder, then reduce" works because modular arithmetic is linear.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Consecutive Integers
+
+The sum of 5 consecutive integers is 85. What is the largest of the five integers?
+
+- A) 15
+- B) 17
+- C) 18
+- D) 19
+- E) 21
+
+**answer:** D
+**fastest_path:** Average = 85/5 = 17 = middle term. Largest = 17 + 2 = 19.
+**explanation:** Let the five consecutive integers be n − 2, n − 1, n, n + 1, n + 2. Their sum = 5n = 85, so n = 17. The integers are 15, 16, 17, 18, 19. The largest is 19. Verify: 15 + 16 + 17 + 18 + 19 = 85 ✓.
+**mistake_a:** Reported the smallest integer (15) instead of the largest.
+**mistake_b:** Reported the middle integer (17), which equals the mean, not the maximum.
+**mistake_c:** Off-by-one — added 1 to the middle term instead of 2.
+**mistake_e:** Added 4 instead of 2 to the middle term (used the full range of the sequence instead of half the range).
+**common_trap:** Reporting the middle (average) integer rather than the largest — for an odd count of consecutive integers, the average equals the middle term, which is 2 below the maximum.
+**takeaway:** For k consecutive integers with sum S: middle term = S/k (only valid when k is odd). From the middle term, the largest is (k − 1)/2 steps above it. For 5 consecutive: largest = middle + 2.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** LCM and GCD Identity
+
+The GCD of two positive integers is 6 and their LCM is 120. If one of the integers is 24, what is the other?
+
+- A) 20
+- B) 24
+- C) 30
+- D) 36
+- E) 48
+
+**answer:** C
+**fastest_path:** GCD × LCM = a × b → 6 × 120 = 24 × b → b = 720/24 = 30.
+**explanation:** For any two positive integers a and b: GCD(a, b) × LCM(a, b) = a × b. Substituting: 6 × 120 = 24 × b → 720 = 24b → b = 30. Verify: 24 = 2³ × 3 and 30 = 2 × 3 × 5. GCD(24, 30) = 2 × 3 = 6 ✓. LCM(24, 30) = 2³ × 3 × 5 = 120 ✓.
+**mistake_a:** Divided LCM by GCD directly: 120 ÷ 6 = 20. This ignores the known value of a and misapplies the identity.
+**mistake_b:** Echoed the given value (24) without computing.
+**mistake_d:** Computed GCD × 6 = 36 — multiplied GCD by itself rather than applying the identity.
+**mistake_e:** Doubled the given integer: 2 × 24 = 48. No mathematical basis.
+**common_trap:** Forgetting the GCD × LCM = a × b identity and resorting to an ad-hoc calculation (like dividing LCM by GCD) that ignores the value of the known integer.
+**takeaway:** GCD(a, b) × LCM(a, b) = a × b. This identity is always true for two positive integers and lets you find the unknown integer in one step when three of the four values are known.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Units Digit Patterns
+
+What is the units digit of 7⁴⁸?
+
+- A) 1
+- B) 3
+- C) 7
+- D) 9
+- E) 4
+
+**answer:** A
+**fastest_path:** Units digits of powers of 7 cycle with period 4: 7, 9, 3, 1. 48 is divisible by 4 → units digit = 1 (4th position in cycle).
+**explanation:** Trace the units digits of successive powers of 7: 7¹ → 7, 7² → 9 (49), 7³ → 3 (343), 7⁴ → 1 (2401), 7⁵ → 7 (cycle restarts). The cycle is {7, 9, 3, 1} with length 4. To find the units digit of 7⁴⁸, divide the exponent by the cycle length: 48 ÷ 4 = 12 with remainder 0. A remainder of 0 corresponds to the last position in the cycle (position 4), which has units digit 1.
+**mistake_b:** Used exponent 47 (off by one): 47 mod 4 = 3 → position 3 → units digit 3.
+**mistake_c:** Reported the units digit of 7 itself (the base), without analyzing the cycle.
+**mistake_d:** Computed 48 mod 4 as 2 (arithmetic error) → position 2 → units digit 9.
+**mistake_e:** Applied an incorrect cycle length of 3 or attempted an unrelated calculation resulting in 4.
+**common_trap:** Misinterpreting a remainder of 0 as "position 0" (which doesn't exist in the cycle). A remainder of 0 always maps to the last position in the cycle.
+**takeaway:** Powers of any integer cycle in their units digit with period dividing 4 (or shorter). Find the remainder r = exponent mod cycle_length. If r = 0, use the last position; otherwise use position r. Memorize cycles: 2→{2,4,8,6}, 3→{3,9,7,1}, 7→{7,9,3,1}, 8→{8,4,2,6}.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Divisibility — Algebraic Expression
+
+For any positive integer n, which of the following expressions is always divisible by 6?
+
+- A) n(n + 1)(n + 2)
+- B) n(n + 2)
+- C) n² + n + 6
+- D) 3n + 3
+- E) 2n(n + 3)
+
+**answer:** A
+**fastest_path:** n(n+1)(n+2) is the product of 3 consecutive integers — always contains a multiple of 2 and a multiple of 3, so always divisible by 6.
+**explanation:** A) n(n+1)(n+2): three consecutive integers always include at least one multiple of 2 and exactly one multiple of 3, so the product is always divisible by 6. B) n(n+2): both n and n+2 have the same parity. If n is odd, both factors are odd, making the product odd — not divisible by 2 or 6. (E.g., n = 1: 1 × 3 = 3.) C) n² + n + 6 = n(n+1) + 6: n(n+1) is always even (consecutive integers), so the sum is even; but divisibility by 3 fails — try n = 1: 1 × 2 + 6 = 8, not divisible by 3. D) 3n + 3 = 3(n+1): always divisible by 3, but when n is even, n+1 is odd, giving 3 × odd = odd — not divisible by 2. (E.g., n = 2: 9.) E) 2n(n+3): always divisible by 2, but try n = 1: 2(1)(4) = 8, not divisible by 3.
+**mistake_b:** Chose n(n+2) — plausible because they appear nearly consecutive; missed that same-parity factors can both be odd.
+**mistake_d:** Chose 3(n+1) — spotted the factor of 3 but forgot to verify divisibility by 2.
+**mistake_e:** Chose 2n(n+3) — spotted the factor of 2 but forgot to verify divisibility by 3.
+**common_trap:** Verifying only one of the two required prime factors (2 or 3) and assuming the other is automatically satisfied.
+**takeaway:** Divisible by 6 requires divisibility by both 2 AND 3. Confirm both independently. Products of k consecutive integers are always divisible by k! — so 3 consecutive integers are always divisible by 3! = 6.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Factor Counting — Target Value
+
+A positive integer n has exactly 9 positive factors. Which of the following could be n?
+
+- A) 36
+- B) 48
+- C) 54
+- D) 60
+- E) 90
+
+**answer:** A
+**fastest_path:** 9 = 3 × 3 → n = p²q² for distinct primes p, q. 36 = 2² × 3² fits. Check: (2+1)(2+1) = 9 ✓.
+**explanation:** For factor count = 9, write 9 as a product of positive integers: 9 = 9 or 9 = 3 × 3. Case 1: (a + 1) = 9 → a = 8 → n = p⁸ (smallest is 2⁸ = 256). Case 2: (a + 1)(b + 1) = 3 × 3 → a = b = 2 → n = p²q² for distinct primes p, q. Smallest example: 2² × 3² = 36. Check each option: A) 36 = 2²×3²: (3)(3) = 9 ✓. B) 48 = 2⁴×3: (5)(2) = 10 ✗. C) 54 = 2×3³: (2)(4) = 8 ✗. D) 60 = 2²×3×5: (3)(2)(2) = 12 ✗. E) 90 = 2×3²×5: (2)(3)(2) = 12 ✗.
+**mistake_b:** 48 has 10 factors — one more than 9; easy to mistake if the count is off by one.
+**mistake_c:** 54 has 8 factors — one fewer than 9; similarly close.
+**mistake_d:** 60 is a "round" number that students often reach for, but it has 12 factors.
+**mistake_e:** 90 is another attractive guess; also has 12 factors.
+**common_trap:** Testing numbers by gut rather than systematically deriving what form n must take (9 = 3×3 → n = p²q²) before evaluating options.
+**takeaway:** For a target factor count T, write T as all possible products of positive integers — each product shape (a+1)(b+1)... tells you the exponent pattern of n. Derive the required form of n first; then test the options against that form.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Remainders — Chinese Remainder Setup
+
+Positive integer n leaves a remainder of 3 when divided by 4 and a remainder of 2 when divided by 3. Which of the following could be n?
+
+- A) 19
+- B) 23
+- C) 27
+- D) 31
+- E) 39
+
+**answer:** B
+**fastest_path:** n ≡ 3 (mod 4) AND n ≡ 2 (mod 3). Test 23: 23 = 4×5 + 3 ✓; 23 = 3×7 + 2 ✓.
+**explanation:** From n ≡ 3 (mod 4): n is in the sequence 3, 7, 11, 15, 19, 23, 27, 31, 35, 39, ... From n ≡ 2 (mod 3): n is in the sequence 2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38, ... The common values repeat with period LCM(4, 3) = 12, starting at n = 11: 11, 23, 35, 47, ... Test each option: A) 19: 19 mod 3 = 1 ✗. B) 23: 23 mod 4 = 3 ✓, 23 mod 3 = 2 ✓. ✓ C) 27: 27 mod 3 = 0 ✗. D) 31: 31 mod 3 = 1 ✗. E) 39: 39 mod 3 = 0 ✗. Only B satisfies both conditions.
+**mistake_a:** 19 mod 4 = 3 (first condition ✓), but 19 mod 3 = 1 ✗. Stopped after verifying the first remainder.
+**mistake_c:** 27 mod 4 = 3 (first condition ✓), but 27 mod 3 = 0 ✗. All wrong answers satisfy the mod-4 condition — the trap is stopping after one check.
+**mistake_d:** 31 mod 4 = 3 (first condition ✓), but 31 mod 3 = 1 ✗.
+**mistake_e:** 39 mod 4 = 3 (first condition ✓), but 39 mod 3 = 0 ✗.
+**common_trap:** Every wrong answer here satisfies the first remainder condition (mod 4). Students who verify only one condition will find multiple candidates and guess incorrectly.
+**takeaway:** In double-remainder problems, both conditions must hold simultaneously. Check them in sequence; discard any option that fails either test. Systematic listing is the safest method: write the sequences for each congruence and find the intersection.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Trailing Zeros in Factorials
+
+How many trailing zeros does 45! have?
+
+- A) 8
+- B) 9
+- C) 10
+- D) 11
+- E) 12
+
+**answer:** C
+**fastest_path:** Count factors of 5 in 45!: floor(45/5) + floor(45/25) = 9 + 1 = 10. Each pairs with a factor of 2 to make a trailing zero.
+**explanation:** Trailing zeros come from factors of 10 = 2 × 5. Since factors of 2 always outnumber factors of 5 in any factorial, the count of trailing zeros equals the number of times 5 divides n!. By Legendre's formula: v₅(45!) = floor(45/5) + floor(45/25) + floor(45/125) + ... = 9 + 1 + 0 = 10. (floor(45/125) = 0, so the series terminates.) Factors of 2 check: v₂(45!) = 22 + 11 + 5 + 2 + 1 = 41, confirming factors of 2 far exceed factors of 5. Trailing zeros = 10.
+**mistake_a:** Computed floor(44/5) = 8 — excluded 45 itself from the count (used 44 instead of 45).
+**mistake_b:** Computed only floor(45/5) = 9 — applied Legendre's formula for one term only and forgot that 25 contributes an extra factor of 5.
+**mistake_d:** Counted floor(45/5) + floor(45/25) = 9 + 1 = 10, then added 1 more erroneously, perhaps from double-counting 25 itself.
+**mistake_e:** Added an extra iteration: 9 + 1 + 2 = 12 (miscomputed floor(45/25) as 2 instead of 1).
+**common_trap:** Stopping at floor(n/5) and missing the extra factor of 5 from multiples of 25 (and 125, 625, ... when applicable). Every multiple of 25 contributes two factors of 5 to n!, not just one.
+**takeaway:** Trailing zeros in n! = v₅(n!) = sum of floor(n/5^k) for k = 1, 2, 3, ... until 5^k > n. For n = 45: floor(45/5) = 9, floor(45/25) = 1, floor(45/125) = 0. Total = 10. Always check whether any power of 5 beyond 5¹ is ≤ n.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Primes and Factors
+
+What is the smallest positive integer n such that n! is divisible by 990?
+
+- A) 9
+- B) 10
+- C) 11
+- D) 12
+- E) 18
+
+**answer:** C
+**fastest_path:** 990 = 2 × 3² × 5 × 11. Largest prime factor is 11. n! contains 11 only when n ≥ 11. Check 11! has 3² (yes: floor(11/3)+floor(11/9)=4). So n = 11.
+**explanation:** Factor 990: 990 = 2 × 495 = 2 × 5 × 99 = 2 × 5 × 9 × 11 = 2 × 3² × 5 × 11. For n! to be divisible by 990, it must contain all prime power factors of 990: at least one factor of 2, at least two factors of 3, at least one factor of 5, and at least one factor of 11. The binding constraint is 11 — since 11 is prime, n! contains a factor of 11 only when n ≥ 11. Verify 11! contains 3²: v₃(11!) = floor(11/3) + floor(11/9) = 3 + 1 = 4 ≥ 2 ✓. All other prime power requirements (2¹, 5¹) are also satisfied by 11!. Since 10! contains no factor of 11, n = 11 is the smallest.
+**mistake_a:** Noticed 9 divides 990 (990 = 9 × 110) and guessed n = 9 — but 9! = 362880 and 990 ∤ 362880 because 9! contains no factor of 11.
+**mistake_b:** Computed 990 = 9 × 110 = 9 × 10 × 11 and thought "the largest factor is 11, but 10 is the last number I multiply before reaching 11" — off by one.
+**mistake_d:** Went one step past the correct answer out of caution.
+**mistake_e:** Computed 990/55 = 18 or some other unrelated calculation.
+**common_trap:** Factoring 990 into composite factors (9 × 110 or 10 × 99) instead of into primes. The largest prime factor of the target number determines the minimum n — because primes only appear in n! once n reaches that prime value.
+**takeaway:** The smallest n such that n! is divisible by m equals the smallest n such that, for every prime power p^k dividing m, v_p(n!) ≥ k. Start by finding the largest prime in m's factorization — that is almost always the binding constraint. Then verify the other prime power requirements are also met.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** GCD and LCM
+
+The GCD of two positive integers a and b is 12, and their LCM is 180. If a < b, how many ordered pairs (a, b) are possible?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 6
+
+**answer:** B
+**fastest_path:** Write a = 12x, b = 12y with GCD(x, y) = 1 and xy = 15. Coprime factor pairs of 15: (1, 15) and (3, 5). Two pairs.
+**explanation:** Since GCD(a, b) = 12, write a = 12x and b = 12y where GCD(x, y) = 1 (x and y share no common factors). Then LCM(a, b) = 12xy = 180, so xy = 15. Find all factor pairs (x, y) with x < y, xy = 15, and GCD(x, y) = 1: (1, 15): GCD(1, 15) = 1 ✓ → (a, b) = (12, 180). (3, 5): GCD(3, 5) = 1 ✓ → (a, b) = (36, 60). (5, 3) and (15, 1) violate x < y. Both solutions verify: GCD(12, 180) = 12 ✓, LCM(12, 180) = 180 ✓; GCD(36, 60) = 12 ✓, LCM(36, 60) = 180 ✓.
+**mistake_a:** Found only one pair — perhaps only tested (12, 180) and stopped, or missed (3, 5) as a coprime factorization of 15.
+**mistake_c:** Counted three factor pairs of 15: {(1,15), (3,5), (5,3)} without applying the x < y constraint, yielding 3.
+**mistake_d:** Listed all factor pairs of 15 — including both orderings and without the coprimality screen: {(1,15), (3,5), (5,3), (15,1)} — giving 4.
+**mistake_e:** Counted all positive divisors of 15 (which is 4: 1, 3, 5, 15), then guessed the answer was 6 by some other overcounting.
+**common_trap:** Listing factor pairs of 15 without filtering for GCD(x, y) = 1, which would include invalid pairs like (x, y) = (1, 15) and (3, 5) — both happen to pass, but the filter is essential in general (e.g., if xy = 12, the pair (4, 3) is valid but (6, 2) is not since GCD(6, 2) = 2 ≠ 1).
+**takeaway:** For a GCD/LCM pair problem, set a = d·x and b = d·y where d = GCD, then use LCM = d·x·y to find xy. Enumerate coprime factor pairs (x, y) with x < y. The coprimality constraint is critical — it ensures that d = GCD(a, b) exactly, not just a common divisor.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Integer Properties
+
+For how many integers n with 1 ≤ n ≤ 100 is the expression n³ − n divisible by 6?
+
+- A) 67
+- B) 75
+- C) 90
+- D) 96
+- E) 100
+
+**answer:** E
+**fastest_path:** n³ − n = (n−1)n(n+1): product of 3 consecutive integers. Always divisible by 3! = 6. All 100 values work.
+**explanation:** Factor: n³ − n = n(n² − 1) = n(n − 1)(n + 1) = (n − 1) · n · (n + 1). This is the product of three consecutive integers. Among any three consecutive integers: (i) at least one is even, so the product is divisible by 2; (ii) exactly one is divisible by 3, so the product is divisible by 3. Since the product is divisible by both 2 and 3, it is divisible by 6 for every integer n. This holds for all 100 values from n = 1 to n = 100 — including n = 1, where (0)(1)(2) = 0, which is divisible by 6 (0 = 6 × 0). Count = 100.
+**mistake_a:** Counted only integers n where n itself is divisible by 6: floor(100/6) = 16 — then multiplied or adjusted to reach 67. Failed to recognize that the factor of 6 can come from the neighboring integers (n − 1) or (n + 1).
+**mistake_b:** Estimated "roughly 3 in 4 integers" satisfy some partially-correct divisibility reasoning, reaching 75. Did not recognize the universal structure.
+**mistake_c:** Excluded a subset of integers based on an incorrect edge-case analysis, reaching 90.
+**mistake_d:** Identified that the formula works for almost all n but mistakenly believed 4 specific values (e.g., n = 1 or prime values) might fail, reaching 96.
+**common_trap:** Assuming that divisibility by 6 is a selective condition that holds only for "special" values of n, rather than recognizing that the algebraic structure guarantees it universally. The factored form (n−1)n(n+1) makes the universality obvious; the unfactored form n³ − n conceals it.
+**takeaway:** When an algebraic expression involves a variable, always try factoring before counting. Here, n³ − n factors into the product of 3 consecutive integers, which is always divisible by 3! = 6. More generally, the product of k consecutive integers is always divisible by k!. This principle, not case-by-case testing, is the GMAT-efficient path.
+**related_reading:** reading-quant-03-number-properties
