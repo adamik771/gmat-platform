@@ -124,36 +124,29 @@ problem_sets:
 
 ## @the-three-step-workflow
 
-Every Table Analysis question follows the same three-step pattern. Internalize the workflow and the question becomes mechanical.
+**Mental model.** Table Analysis tests whether you can extract targeted information from a structured dataset — not whether you can compute. Every question has three Yes/No statements, each of which asks you to filter or sort the table and verify one claim. The students who score highest don't do more arithmetic; they do less, because they've narrowed to the right rows and columns before touching a number. Internalize the three-step workflow and the format becomes mechanical.
 
-**Mental model.** Every TA question has the same three steps: identify the rows, filter or sort, then verify the claim against the filtered subset. Skip the filter step and you over-compute on the full table; skip the verify step and you bubble the trap answer that looks right at a glance. The whole format becomes mechanical once the three-step rhythm is reflexive.
+**What you're looking at.**
+
+Every Table Analysis question presents a sortable data table — you can click any column header to reorder the rows — plus three statements. Your job: decide whether each statement is true or false given the table data. You have roughly 3 minutes per question.
 
 **Step 1: Identify the relevant column(s).**
 
-Read the statement. What columns does it actually ask about? Most statements reference 1-2 columns out of 5-10 in the table. Ignore the rest.
+Read the statement. Which 1–2 columns does it actually ask about? Every other column is irrelevant to this statement. A table with eight columns rarely requires touching more than two for any given statement.
 
-**Example.** Table has columns: Employee, Department, Years, Salary, Age. Statement: "The average salary of Strategy employees is higher than that of Finance employees." Relevant columns: Department (to filter) and Salary (to average). Years and Age are irrelevant to this statement.
+**Step 2: Filter or sort.**
 
-**Step 2: Filter or sort — whichever the statement requires.**
+- Statement specifies a subset ("employees in Strategy," "products below $50") → **filter** to those rows.
+- Statement asks about rank or extremes ("highest-paid employee," "third-most experienced") → **sort** the relevant column.
+- Statement asks about a ranked subset → **filter first**, then sort within the result.
 
-- If the statement specifies a subset ("employees in Strategy," "products priced under $50"), **filter** the table to just those rows.
-- If the statement asks about rank or ordering ("the highest-paid employee," "the second lowest score"), **sort** the column by the relevant metric.
+**Step 3: Verify.**
 
-**Step 3: Verify — compute the check the statement requires.**
+With the right rows isolated, do the minimum computation to confirm or deny the statement.
 
-Once you have the relevant rows, do the arithmetic: compute the average, count the rows, find the max/min, etc. Compare to the statement. Decide Yes or No.
+**Key takeaway.** Never compute more than the statement requires. If the statement asks whether average A > average B, you need to determine the sign of (A − B), not the values of A and B individually. That "minimal computation" principle is what keeps you inside the 60-second target per statement.
 
-**The time budget.**
-
-- Step 1 (identify columns): 5 seconds.
-- Step 2 (filter or sort): 15 seconds.
-- Step 3 (verify): 20-30 seconds.
-
-Total: ~60 seconds per statement. Three statements per question = ~3 minutes. That's your target.
-
-**Example (full workflow).**
-
-Table (Employee Demographics):
+**Worked example.** The table below is used throughout this chapter. Reference it as you work through each section.
 
 | Employee | Department | Years | Salary (K) | Age |
 |---|---|---|---|---|
@@ -166,295 +159,351 @@ Table (Employee Demographics):
 | G | Strategy | 10 | 150 | 40 |
 | H | Finance | 6 | 115 | 33 |
 
-Statement: "The average salary of Strategy employees is higher than that of Finance employees."
+Statement: "Strategy employees earn a higher average salary than Finance employees."
 
-- **Step 1:** Relevant columns: Department, Salary.
-- **Step 2:** Filter by Department. Strategy: A, C, G (salaries 120, 95, 150). Finance: B, E, H (salaries 140, 85, 115).
-- **Step 3:** Strategy average: (120+95+150)/3 = 365/3 ≈ 121.7. Finance average: (140+85+115)/3 = 340/3 ≈ 113.3. Strategy > Finance. **Yes.**
+**Step 1:** Relevant columns — Department (to filter), Salary (to average). Years and Age don't matter here.
 
-**The "you don't have to compute exactly" shortcut.** For Yes/No questions about averages or medians, exact values are often unnecessary — you just need to know which is bigger.
+**Step 2:** Filter. Strategy rows: A (120), C (95), G (150). Finance rows: B (140), E (85), H (115).
 
-**Strategy sum:** 120+95+150 = 365. **Finance sum:** 140+85+115 = 340. Strategy sum > Finance sum, and both have 3 employees — so Strategy average > Finance average. Skip the division entirely.
+**Step 3:** Strategy sum = 120 + 95 + 150 = 365. Finance sum = 140 + 85 + 115 = 340.
 
-> **Recall check.** Close the book. State the three-step Table Analysis workflow. Now state the time budget for each step. (Step 1 identify, Step 2 filter/sort, Step 3 verify. Budget: 5 + 15 + 30 = 60 seconds.) Pattern-drill this three-step until it's reflexive — that's what makes you fast on Table Analysis.
+Both groups have exactly 3 employees. Equal group sizes mean comparing sums is equivalent to comparing averages — skip the division. 365 > 340. **Yes.**
+
+No division performed. That's the minimal computation principle in action: equal counts → sums are enough.
+
+**Time budget per statement.**
+
+| Step | Action | Target |
+|---|---|---|
+| Step 1 | Identify relevant columns | 5 sec |
+| Step 2 | Filter or sort | 15 sec |
+| Step 3 | Verify | 30–40 sec |
+| Total | | ~60 sec |
+
+Three statements × 60 seconds = 3 minutes per question. If a single statement takes more than 90 seconds, something broke down at Step 1 (you read too many columns) or Step 3 (you computed more than necessary). Recognize the sign and reset.
+
+> **Recall check.** Without looking, name the three steps and the time budget for each. Then explain the minimal computation principle in one sentence. (Step 1: identify relevant columns — 5 sec. Step 2: filter or sort — 15 sec. Step 3: verify — 30–40 sec. Minimal computation: determine only whether the statement is true or false, no more.)
 
 ## @sorting-vs-filtering
 
-GMAT Table Analysis tables are **sortable**. You can click a column header to sort ascending or descending — and many statements are much faster to answer after sorting.
+GMAT tables are sortable — clicking any column header reorders the rows. Knowing when to use this feature versus when to filter is what separates students who finish Table Analysis in time from those who don't.
 
-**When to sort:**
+**Mental model.** Ask two questions about the statement before touching the table: (1) Does it define a subset of rows? If yes, filter. (2) Does it ask about rank, extremes, or ordering? If yes, sort. If both conditions apply — a ranked subset — filter first, then sort within the result.
 
-- "The highest/lowest X in a category" — sort the X column and look at top/bottom.
-- "The second [biggest/smallest] value" — sort and count rows.
-- "The median of column X" — sort and find the middle row.
-- "How many rows have X > 50" — sort X ascending, find where it crosses 50, count below/above.
+**When sorting helps:**
 
-**When to filter:**
+- "The highest/lowest value of X is in category Y" — sort by X, check the category at the top or bottom.
+- "The second-most-experienced employee" — sort by Years, read row 2.
+- "The median salary" — sort by Salary, find the middle row(s).
+- "How many rows have salary above $120K" — sort by Salary, count rows above the threshold.
 
-- "Employees in department Y" — filter on department, work with the subset.
-- "Products priced between $10 and $20" — filter on price in a range.
-- "Clients with more than 3 orders AND from region X" — filter on multiple columns.
+**When filtering helps:**
 
-**When to sort AND filter:**
+- "Employees in Finance" — filter on Department = Finance.
+- "Products priced between $10 and $30" — filter on Price within the range.
+- "Clients with rating above 4.0 AND from region East" — filter on both conditions simultaneously.
 
-Some statements require both. "The highest-salaried Finance employee" requires first filtering to Finance, then sorting (or scanning) to find the max salary.
+**When both are needed:**
 
-**The sorting workflow.**
+"The highest-paid Strategy employee earns more than the highest-paid Finance employee." Filter to Strategy → find max. Filter to Finance → find max. Compare.
 
-1. Identify the column you need to sort by (the one the statement asks to rank on).
-2. Decide direction: descending for "highest," "greatest," "largest"; ascending for "lowest," "smallest," "least."
-3. Read off the answer from the top (or bottom).
+**Example (sort only).** Statement: "The most experienced employee works in Operations."
 
-**Example (sort).** Statement: "The highest-paid employee works in Operations."
+Sort by Years descending: D (12), G (10), B (8), F (7), H (6)…
 
-- Sort by Salary descending: D (155), G (150), B (140), F (125), A (120), H (115), C (95), E (85).
-- Top of list: D, Operations. Statement says Operations. **Yes.**
+Top row: D, Operations. **Yes.** Stop as soon as you've identified the top row — no need to sort the rest.
 
-**Example (filter then sort).** Statement: "The highest-paid employee in Strategy earns more than the highest-paid employee in Finance."
+**Example (filter then sort).** Statement: "The highest-paid Strategy employee earns more than the highest-paid Finance employee."
 
-- Filter to Strategy: A (120), C (95), G (150). Highest: G, 150.
-- Filter to Finance: B (140), E (85), H (115). Highest: B, 140.
-- 150 > 140. **Yes.**
+Filter to Strategy: A (120), C (95), G (150). Max = G, 150.
+Filter to Finance: B (140), E (85), H (115). Max = B, 140.
+150 > 140. **Yes.**
 
-**Mental sorting for small tables.** If the table has under 10 rows, you can often sort mentally by scanning the column once. For larger tables, click the sort button.
+**Mental sorting.** For tables with fewer than 10–12 rows, scanning the column visually is often faster than clicking the sort button. Practice finding column maxima by eye. For larger tables, always use the sort feature.
 
-**The "top three" pattern.** Many questions ask about the top (or bottom) 3, 5, 10 rows after sorting. Sort, take the first N, then apply the filter/metric.
+**Trap to watch.** Some statements read like rank questions but are actually existence questions. "Is there any employee over 40 who earns below $130K?" — this is a filter (Age > 40 AND Salary < 130), then an existence check: is the filtered set nonempty? No sorting required.
 
-**Example.** Statement: "Of the top three most-experienced employees, at least one earns less than $130K."
+Working it: employees over 40: D (42, 155), G (40 — not strictly over, skip). Only D qualifies. D earns 155, which is not below 130. Filtered set is empty. **No.**
 
-- Sort by Years descending: D (12, 155), G (10, 150), B (8, 140).
-- Salaries of top three: 155, 150, 140. All > 130. **No.**
-
-**The "what if sorting is ambiguous" problem.** Ties in a sort (two employees with the same years) usually don't matter for the answer. If it does — e.g., "the third-most-experienced employee" and there's a tie for second — the problem is usually set up so ties don't change the answer.
-
-**Trap to watch.** Some statements read like sort questions but are actually filter questions. "Is there any employee over 40 who earns less than $120K?" — this is a filter (age > 40 AND salary < 120) plus existence check (is the filtered set nonempty?). Don't waste time sorting the full table.
+The clue that flipped this from sort to filter: the word "any" signals an existence check, not a rank check.
 
 ## @statement-patterns
 
-Seven statement patterns cover roughly 90% of what you'll see on Table Analysis. Memorize these and you'll recognize the move to make within 5 seconds of reading any statement.
+Seven patterns cover roughly 90% of Table Analysis statements. Recognizing the pattern in the first five seconds of reading means you know the sequence of moves before you touch the table.
 
-**Pattern 1: Simple threshold count.**
+| Pattern | Trigger phrase | Move |
+|---|---|---|
+| Threshold count | "more than X%," "at least N rows" | Filter → count → compare to threshold |
+| Rank check | "the highest/lowest X is in category Y" | Sort by X → check category at top/bottom |
+| Category comparison | "average/median of group A vs. group B" | Filter each → compute → compare |
+| Within-row derivation | "for every row, X > Y" | Scan column pair; one exception = No |
+| Existence check | "at least one row with both X and Y" | Filter on conjunction → nonempty = Yes |
+| Range check | "all values of X between a and b" | Find min/max of X → check bounds |
+| Correlation check | "highest X also has highest/lowest Y" | Find top-X row → check its Y rank |
 
-"More than half of the rows satisfy condition X."
+**The universal vs. existential reflex — the most important pattern skill to build.**
 
-*Move:* filter on X, count, compare to total/2.
+Every statement is either universal or existential:
 
-**Example.** Statement: "More than half of the companies had Q4 revenue greater than their Q1 revenue by at least 25%." For 5 companies, check each: compute Q4/Q1 ratio, compare to 1.25, count yes's. If count > 2.5 (i.e., ≥3), **Yes**; else **No**.
+- **Universal:** "every," "all," "no row" — the claim applies to all rows.
+- **Existential:** "at least one," "some," "there exists" — the claim requires only one row.
 
-**Pattern 2: Rank check.**
+**Mental model.** A universal claim fails the moment you find one counterexample — so scan to refute. An existential claim succeeds the moment you find one confirming row — so scan to confirm. Design your search around what would resolve the statement fastest, not around covering every row.
 
-"The highest/lowest value of X is in category Y."
+**Worked example — universal.** "Every employee over 30 earns more than $100K."
 
-*Move:* sort by X, read off the top/bottom row, check its category.
+Scan employees over 30, looking for *any* earning $100K or less. One counterexample ends the search.
 
-**Pattern 3: Category comparison.**
+Employees over 30: A (32, 120), B (38, 140), D (42, 155), F (35, 125), G (40, 150), H (33, 115). All exceed 100. No counterexample found. **Yes.**
 
-"The average/median of category A exceeds category B."
+**Worked example — existential.** "At least one Finance employee is older than 40."
 
-*Move:* filter to A, compute metric. Filter to B, compute metric. Compare.
+Scan Finance employees, looking for *any* older than 40. One confirming row ends the search.
 
-**Pattern 4: Within-row derivation.**
+Finance: B (38), E (26), H (33). None over 40. Search exhausted with no confirmation. **No.**
 
-"For every row, X > Y" (where X and Y are columns).
+**Pattern 1 in depth: threshold count.**
 
-*Move:* compare the two columns row-by-row. A single counterexample makes the statement false.
+"More than half of the employees earn above $120K."
 
-**Example.** Statement: "Every company's Q4 revenue is higher than its Q1 revenue." Check each company — if any has Q4 ≤ Q1, the statement is **No**.
+Move: filter on Salary > 120, count, compare to total/2.
 
-**Pattern 5: Existence check.**
+Employees above 120: B (140), D (155), F (125), G (150). Count = 4. Total = 8. 4/8 = exactly half — not *more* than half. **No.**
 
-"There is at least one row with both X > a and Y < b."
+**Pro tip.** For "more than half" on a 10-row table, stop counting once you've confirmed 6 qualifying rows — you don't need to check the remaining 4. Apply the same logic in reverse: if you're at 5 qualifying rows with only 4 remaining and need more than 5, stop and answer No.
 
-*Move:* filter on the conjunction. If the filtered set is nonempty, **Yes**; else **No**.
+**Pattern 7 in depth: correlation check.**
 
-**Pattern 6: Range check.**
+"The most experienced employee also earns the highest salary."
 
-"All values of X fall between a and b."
+Move: identify the top-Years employee → check their Salary rank.
 
-*Move:* find min and max of X. If min ≥ a and max ≤ b, **Yes**.
+Sort Years descending: D (12). Now check D's salary: 155. Is 155 the column maximum? Scan: 155 is the highest salary. **Yes.**
 
-**Pattern 7: Correlation/trend check.**
+**Trap to watch.** Correlation checks become a trap when the "also" condition involves a derived metric. "The most experienced employee also has the highest salary-to-age ratio." You'd need to compute Salary/Age for each row and find D's rank on that derived column — not just read D's salary. Read carefully: is the second condition a column that exists, or a ratio you must calculate?
 
-"The company with the highest X also has the highest Y" (or "highest X has lowest Y," etc.).
-
-*Move:* find the top-X row. Check its Y rank. If Y is also top (or bottom, depending on statement), **Yes**.
-
-**The "statement negation" reflex.** To prove a universal statement ("every," "all," "no") false, find one counterexample. To prove an existential statement ("at least one," "some") true, find one example. Focus your scanning accordingly — you don't have to exhaustively verify every row.
-
-**Example.** "Every employee over 30 earns more than $100K." Scan employees over 30. Any earning ≤ 100K? One counterexample disproves.
-
-**Example.** "At least one employee in Finance is older than 40." Scan Finance employees. Any older than 40? One example confirms.
-
-> **Self-explanation prompt.** Why does "every"/"no" require checking every row but "at least one" needs just one example? If you can say "because universal claims fail if a single counterexample exists, while existential claims succeed if a single confirming case exists," you've internalized the asymmetry — and you'll scan tables much faster.
+> **Recall check.** Without looking, name the seven patterns. Then explain the universal/existential reflex: why does a universal claim fail with one counterexample, but an existential claim succeed with one confirming row? (Universals assert that every element satisfies the condition — one violation breaks the claim. Existentials only assert that at least one satisfying element exists — one case is enough to confirm.)
 
 ## @averages-and-medians
 
-When statements involve averages or medians across categories, computation can feel daunting on a large table. Three techniques collapse this to under 30 seconds.
+Most Table Analysis time is wasted on average and median computations. Three techniques together cover almost every case — and most of them eliminate the need for a full computation.
 
-**Technique 1: Sum trick (for averages).**
+**Mental model.** The question is almost never "compute the exact average." It's "is average A greater than average B?" or "is the average above value X?" These comparisons require less precision than a full computation, and the three techniques below let you answer them with the minimum work.
 
-The average is (sum of values) / (count). Comparing averages reduces to comparing sums if counts are equal.
+**Technique 1: Sum comparison for equal-size groups.**
 
-**Example.** Statement: "Average salary of Strategy > average salary of Finance." Strategy has 3 employees, Finance has 3 employees. Compute the two sums — no need to divide. 365 > 340, so Strategy average > Finance average. **Yes.**
+When comparing averages between two groups of the same size, comparing the sums is equivalent — no division needed.
 
-When counts differ, still compute sums first, then do the single division.
+*Why it works:* Average₁ > Average₂ iff Sum₁/n > Sum₂/n iff Sum₁ > Sum₂, when n is the same for both groups.
 
-**Technique 2: Running count for medians.**
+**Worked example.** "Average salary is higher in Strategy than in Finance."
 
-The median of an ordered set of n values is at position (n+1)/2 (for odd n) or average of positions n/2 and n/2+1 (for even n).
+Strategy (3 employees): 120 + 95 + 150 = 365.
+Finance (3 employees): 140 + 85 + 115 = 340.
+365 > 340. **Yes.** No division performed.
 
-**Example.** Sort Salary: 85, 95, 115, 120, 125, 140, 150, 155 (n=8). Median is average of positions 4 and 5: (120+125)/2 = 122.5.
+When group sizes differ, compute each sum first, then divide — but do both divisions before comparing.
 
-**Technique 3: Scanning for "average above X."**
+**Technique 2: Deviation from a target value.**
 
-Sometimes the question is "is the average above X?" without needing the exact average. Shortcut: compute (value - X) for each row and see if the sum is positive. If the sum of deviations is positive, the average is above X.
+When the question is "is the average above threshold X?", compute (row value − X) for each row in the group and sum the deviations. A positive total means the average exceeds X; a negative total means it doesn't.
 
-**Example.** Ages: 32, 38, 28, 42, 26, 35, 40, 33. Is average > 35?
+*Why it works:* The sum of deviations = n × (mean − X). The sign of the sum reveals the sign of (mean − X).
 
-Compute (age - 35) for each: -3, 3, -7, 7, -9, 0, 5, -2. Sum: -3+3-7+7-9+0+5-2 = -6. Sum of deviations is negative, so average is below 35. **No.**
+**Worked example.** Eight employee ages: 32, 38, 28, 42, 26, 35, 40, 33. Is the average above 35?
 
-This is often faster than computing the actual average.
+Deviations from 35: −3, +3, −7, +7, −9, 0, +5, −2. Sum: −6. Negative → average is below 35. **No.**
 
-**The weighted average template.** Some Table Analysis questions involve weighted averages — each row contributes a "weight" (like a transaction count) and the question asks about an overall average.
+This is faster than computing (32 + 38 + 28 + 42 + 26 + 35 + 40 + 33)/8 = 294/8 = 36.75. Wait — actually 36.75 > 35, which would be **Yes**. Let me recount: 32+38=70, +28=98, +42=140, +26=166, +35=201, +40=241, +33=274. 274/8 = 34.25. Below 35. **No.** The deviation sum (−6) gave the right sign immediately.
 
-**Example.** Region sales: East sold 100 units at $5, West sold 200 at $8. Overall average price: (100×5 + 200×8)/(100+200) = (500+1600)/300 = 2100/300 = $7.
+**Technique 3: Median by position.**
 
-**The "median from a large table" shortcut.** For a sorted table with 50 rows, the median is rows 25-26 averaged. You don't have to compute — just click the sort and read the middle rows.
+For a sorted column of n values:
+- n odd → median = value at position (n + 1)/2
+- n even → median = average of values at positions n/2 and (n/2) + 1
 
-> **Recall check.** Without looking, state the two ways to compute a median (odd n vs even n). Now state the "sum trick" for comparing averages when counts are equal. (Answers: odd → middle row by position (n+1)/2; even → average of the two middle rows; sum comparison works when counts match because averages differ only by their sums in that case.) Retrieval of these three rules is what separates a 60-second verification from a 3-minute recomputation.
+Sort the relevant column and read the middle row(s). No arithmetic beyond one addition.
+
+**Worked example.** Sort all salaries ascending: 85, 95, 115, 120, 125, 140, 150, 155. (n = 8, even.) Positions 4 and 5: 120 and 125. Median = (120 + 125)/2 = 122.5.
+
+**The weighted average template.**
+
+Some statements involve an overall average computed from groups of different sizes — a weighted average.
+
+**Worked example.** "What is the overall average price per unit?" Region A: 100 units at $5. Region B: 200 units at $8.
+
+Weighted average = (100 × 5 + 200 × 8) / (100 + 200) = (500 + 1600) / 300 = 2100/300 = $7.
+
+**Trap to watch.** The unweighted average of $5 and $8 is $6.50 — wrong, because Region B is twice as large. Whenever groups differ in size, the unweighted average gives a systematically wrong result. Check whether the statement implies a weighted or unweighted calculation before computing.
+
+A second trap: if the question asks for the median of a *filtered subset*, sort within the subset after filtering — not within the full column. The median of all 8 salaries is 122.5. The median of Finance salaries (sorted: 85, 115, 140) is 115. Very different.
+
+> **Recall check.** State Technique 2 (deviation from target) and explain in one sentence why it works. Then give the two median formulas for odd and even n. (Technique 2: the sum of deviations from X equals n × (mean − X), so a positive sum proves mean > X. Odd n: position (n+1)/2. Even n: average of positions n/2 and n/2+1.)
 
 ## @cross-category-comparisons
 
-Questions that compare across multiple categories require a filter-then-compute-then-compare workflow. The challenge is staying organized so you don't lose track of which numbers go with which category.
+**Mental model.** When comparing across three or more categories, the main failure mode isn't arithmetic — it's disorganization. You compute a value for category A, start on B, and lose track of which number belonged to which group. The fix is simple: write every intermediate value down before moving to the next category.
 
-**The two-pass technique.**
+**The two-pass method.**
 
-Pass 1: identify all categories relevant to the statement.
-Pass 2: for each category, filter and compute the metric.
+Pass 1: list all categories the statement mentions. Write them on scratch paper before you touch the table.
 
-Write down the results as you go — don't try to hold them all in memory.
+Pass 2: compute the relevant metric for each category, one at a time, recording the result next to the category name.
 
-**Example.** Three departments (Strategy, Finance, Operations). Statement: "The average years of experience is highest in Operations."
+Compare only after all computations are complete.
 
-Pass 1: three categories (all three departments).
+**Worked example.** "Average years of experience is highest in Operations."
+
+Pass 1 → categories: Strategy, Finance, Operations. Written down.
+
 Pass 2:
+- Strategy: Years 5, 3, 10 → sum 18, count 3 → avg 6.0
+- Finance: Years 8, 2, 6 → sum 16, count 3 → avg 5.3
+- Operations: Years 12, 7 → sum 19, count 2 → avg 9.5
 
-- Strategy (A, C, G): Years 5, 3, 10. Sum 18, count 3, avg 6.
-- Finance (B, E, H): Years 8, 2, 6. Sum 16, count 3, avg 5.33.
-- Operations (D, F): Years 12, 7. Sum 19, count 2, avg 9.5.
+Operations (9.5) is the highest. **Yes.**
 
-Operations average (9.5) is highest. **Yes.**
+**The unequal counts flag.** Notice Operations had only 2 employees vs. 3 in each other department. When group sizes differ, you cannot compare sums directly — you must divide. Spot unequal counts in Pass 1 so you don't skip the division step in Pass 2.
 
-Note: when counts differ (2 vs 3), you DO need the division. When they're equal, sums suffice.
+**The subgroup max/min pattern.**
 
-**The "best-fit ranking" pattern.**
+"The oldest Finance employee is younger than the oldest Strategy employee."
 
-"Rank the departments by average salary from highest to lowest."
+Filter to Finance → find max age: B (38), E (26), H (33). Max = 38.
+Filter to Strategy → find max age: A (32), C (28), G (40). Max = 40.
+38 < 40. **Yes.**
 
-Compute the average for each, sort, match to the answer choice.
+**The conditional aggregation pattern.**
 
-**The "subgroup max/min" pattern.**
+"The total salary of employees with 5 or more years of experience exceeds $400K."
 
-"The oldest employee in Finance is younger than the oldest employee in Strategy."
+Filter by Years ≥ 5: A (5, 120), B (8, 140), D (12, 155), F (7, 125), G (10, 150).
 
-Filter to Finance, find max age. Filter to Strategy, find max age. Compare.
+Sum = 120 + 140 + 155 + 125 + 150 = 690. 690 > 400. **Yes.**
 
-- Finance: B (38), E (26), H (33). Max age 38.
-- Strategy: A (32), C (28), G (40). Max age 40.
-- 38 < 40. **Yes.**
+**The intersection pattern.**
 
-**The "conditional aggregation" pattern.**
+"Every Finance employee over the age of 30 earns more than $100K."
 
-"The total salary of employees over 35 exceeds $400K."
+Filter on Finance AND Age > 30: B (38, 140), H (33, 115). Both exceed 100. **Yes.**
 
-Filter by age > 35. Sum their salaries. Compare to threshold.
+**Trap to watch.** "Finance AND over 30" is a smaller set than "Finance OR over 30." The AND requires both conditions to hold simultaneously. Re-read the statement and mark the logical connective — "and," "or" — before filtering. Applying the wrong connective changes which rows you include.
 
-- Employees over 35: B (38, 140), D (42, 155), G (40, 150). Sum: 140+155+150 = 445. 445 > 400. **Yes.**
-
-**The "intersection" pattern.**
-
-"All employees in Finance who are over 30 earn more than $100K."
-
-Filter on two conditions (Finance AND over 30). Then check all of them against the threshold.
-
-- Finance over 30: B (38, 140), H (33, 115). Both > 100. **Yes.**
-
-**Trap to watch.** "Overlap" mistakes — filtering on the wrong combination. "Finance AND over 30" is different from "Finance OR over 30." Read the statement carefully: "and" means both conditions must hold; "or" means either (or both). Universal quantifier ("all," "every") combined with filters usually means you're checking whether the filtered set satisfies a condition uniformly.
+**Pro tip.** On comparisons spanning three or more categories, write the category names as headers on your scratch paper before starting. Three seconds of setup ("Str: / Fin: / Ops:") eliminates the number-ownership confusion that causes wrong answers on medium and hard questions.
 
 ## @derived-metrics-and-traps
 
-Some statements require computing a *new* metric from the table columns — a ratio, a percentage, a per-unit value. These are the most arithmetic-heavy Table Analysis questions, and where most errors happen.
+**Mental model.** Derived metrics are the hidden columns in a Table Analysis question — values not present in the table that you must construct from two or more existing columns. Ratios, percent changes, and per-unit metrics are the most common types. The trap isn't computational difficulty; it's applying the wrong formula or reading the wrong source column. Write the formula first, compute second.
 
-**Derived metric: ratio (column A / column B).**
+**The ratio pattern.**
 
-**Example.** Table: Sales, Visitors. Statement: "The region with the highest conversion rate is East."
+"The region with the highest conversion rate is East." (Conversion rate = Sales / Visitors — this column doesn't exist in the table.)
 
-Conversion rate = Sales / Visitors. Compute per row, compare.
+Move: compute Sales/Visitors for each row. Identify the row with the highest result.
 
-**Derived metric: percent change over time.**
+**Mental model.** A ratio question is a hidden sort on a derived column. Once you compute the ratios, you're ranking rows on a metric you had to build — and you can't use the table's sort feature on it.
 
-**Example.** Columns Q1 and Q4. Statement: "More than half of companies grew by at least 25% from Q1 to Q4."
+**The percent change pattern.**
 
-For each row: % change = (Q4 - Q1)/Q1 × 100. Count rows where this ≥ 25. Compare count to half the total.
+"More than half of companies grew revenue by at least 25% from Q1 to Q4."
 
-**Derived metric: per-unit metric.**
+Formula: % change = (Q4 − Q1) / Q1 × 100. The denominator is always the *starting* value.
 
-**Example.** Columns Revenue, Employees. Statement: "Revenue per employee is highest at Company D."
+Move: compute this per row, count rows ≥ 25%, compare to half the total.
 
-Compute Revenue/Employees per row, sort, check top.
+**Trap to watch.** The single most common derived-metric error: using the wrong denominator for percent change. The formula is (new − old) / old — not /new, not /(average), not /(new + old)/2. Write the formula explicitly before computing. One wrong denominator corrupts every comparison you make with it.
 
-**The "multi-step derivation" pattern.** Some questions require two layers of computation. E.g., "The company with the highest revenue-per-employee also has the lowest cost-per-employee." Compute two ratios per row, then check ranks.
+**The per-unit metric pattern.**
 
-**Common traps on Table Analysis.**
+"Revenue per employee is highest at Company D." (Revenue per employee = Revenue / Headcount.)
 
-1. **The "numeric label" trap.** Columns sometimes have numeric-looking labels (e.g., "Rank" 1, 2, 3...). Don't confuse a rank column with the metric being ranked.
+Move: compute Revenue/Headcount per row. Find the row with the highest result.
 
-2. **The "currency vs. units" trap.** Revenue in thousands vs millions; prices in dollars vs cents. Always check units in the column header.
+**Multi-step derivation.**
 
-3. **The "row label confusion" trap.** When filtering, double-check you're reading the values from the right rows. Especially easy to slip when scrolling a long table.
+Some statements chain two derived metrics. "The company with the highest revenue per employee also has the lowest cost per employee."
 
-4. **The "statement says 'each' or 'every' but you only checked one row"** trap. Universal claims require checking all rows (or finding a counterexample to disprove). Don't answer Yes just because the first few rows satisfy the statement.
+Step 1: compute Revenue/Headcount per row → identify the top-ranked company.
+Step 2: compute Cost/Headcount per row → check whether that company is at the bottom.
 
-5. **The "percentage change denominator" trap.** % change = (new - old)/**old**, not (new - old)/new. A common source of close-but-wrong answers.
+Multi-step derivations are the most arithmetic-intensive Table Analysis statements. Slow down and write each intermediate value before moving to the next step.
 
-6. **The "comparing dissimilar metrics" trap.** If one column is revenue and another is profit, comparing them directly ("Region A's revenue exceeds Region B's profit") is valid but unusual — usually the statement compares revenue to revenue or profit to profit. Re-read carefully.
+**The seven common traps.**
 
-7. **The "rounding matters" trap.** If answer choices include 25% and 24.9% as separate options, you can't round casually. Compute exactly.
+**1. Numeric-label column.** A column labeled "Rank" (1, 2, 3…) contains ordinal labels, not quantities. Don't sum or average rank values — the result is meaningless. Check the column header before treating any column as a quantity.
 
-**The "does this even matter?" sanity check.** Before committing to a computation, ask: "Is there a pattern I'm missing?" Some questions are designed to be obvious once you spot the pattern — e.g., "every value in row X is larger than every value in row Y" (no arithmetic needed, just visual scan). Always look for the easy path before doing arithmetic.
+**2. Unit mismatch.** Revenue in thousands vs. millions; prices in dollars vs. cents. Units live in the column header. Verify units for every column you use before computing.
 
-> **Self-explanation prompt.** Why are derived metrics (ratios, percents) the most error-prone? If you can say "because they require two pieces of information per row combined correctly, and one mis-read of either piece corrupts the entire comparison," you've identified why these questions demand extra care — and why writing intermediate values down beats trying to do them in your head.
+**3. Row-identification slip.** When filtering a long table, it's easy to copy a value from an adjacent row. After filtering, verify the row's identifier — company name, employee letter — before recording the number.
+
+**4. Universal quantifier without full coverage.** "Every company satisfies X" requires checking all rows or finding a counterexample. Answering Yes after checking three out of ten rows is wrong.
+
+**5. Percent change denominator.** (new − old) / old. Not /new. Not /(average). Always the starting value.
+
+**6. Dissimilar metrics on opposite sides.** "Region A's revenue exceeds Region B's profit." Revenue and profit are different metrics. Valid comparison, but easy to misread. Slow down whenever the two sides of a comparison use different column labels.
+
+**7. Premature rounding.** If two outcomes are close in value (e.g., 24.9% vs. 25.1%), rounding early produces the wrong answer. Carry extra decimal places or compute exactly when values are near a critical threshold.
+
+**Worked example — catching a trap mid-problem.**
+
+Statement: "The company with the highest revenue also has the highest profit margin."
+
+You sort Revenue descending → Company A is top.
+
+You look for a "Profit Margin" column. It doesn't exist. The table has Revenue and Cost.
+
+Derived: Profit Margin = (Revenue − Cost) / Revenue. Two source columns, non-obvious combination.
+
+You must compute this for each row, then check Company A's rank on the derived column.
+
+The students who miss this question sorted Revenue correctly but assumed "highest revenue = highest margin" — a shortcut that fails when companies have very different cost structures. The tell: the column the statement asks about doesn't exist. Slow down and build it.
+
+> **Self-explanation prompt.** Why are derived metrics the most error-prone Table Analysis statements? Before reading further, say it aloud in one sentence. (Because you must combine two source columns using a formula that isn't written on screen — misreading either column or misremembering the formula corrupts every comparison you make downstream.)
 
 ## @summary
 
-Table Analysis is a mechanical workflow problem. Once you internalize the three-step workflow and recognize the seven statement patterns, every question becomes a 60-second exercise per statement.
+**The five habits that separate efficient Table Analysis solvers.**
 
-**The five Table Analysis habits.**
+**1. Identify relevant columns before reading data.** Read the statement, mark the 1–2 relevant columns, then ignore everything else. This is the single highest-leverage habit — students who skip it read 5–10× more data than necessary.
 
-1. **Identify relevant columns first.** Don't read the whole table; read the statement, then find the 1-2 columns that matter.
-2. **Choose sort or filter based on the question.** Sort for ranks and extremes; filter for subsets.
-3. **Write down intermediate values.** Don't trust your memory across three statements — write the numbers on scratch paper.
-4. **Use sum comparison over average comparison** when counts are equal.
-5. **Find a single counterexample to disprove universals; find a single example to confirm existentials.**
+**2. Decide sort vs. filter before touching the table.** Group or subset → filter. Rank or extreme → sort. Both → filter then sort. Deciding up front prevents mid-problem confusion and wasted moves.
 
-**The seven statement patterns:**
+**3. Write down every intermediate value.** On any multi-group comparison, record each group's metric on scratch paper before comparing. Holding three category averages in working memory while scanning is unreliable — and unnecessary.
 
-| Pattern | Move |
+**4. Apply the universal/existential reflex.** Universals fail with one counterexample — scan to refute. Existentials succeed with one confirming row — scan to confirm. Focused scanning beats exhaustive scanning.
+
+**5. Write the formula before computing derived metrics.** Before any ratio or percent change, write the formula on scratch paper. Before reading any column value, verify the unit in the header.
+
+**The seven statement patterns.**
+
+| Pattern | Trigger phrase | Move |
+|---|---|---|
+| Threshold count | "more than X%," "at least N" | Filter → count → compare |
+| Rank check | "highest/lowest X in category Y" | Sort by X → check category |
+| Category comparison | "average/median of A vs. B" | Filter each → compute → compare |
+| Within-row derivation | "for every row, X > Y" | Scan column pair; one exception = No |
+| Existence check | "at least one row with..." | Filter → nonempty = Yes |
+| Range check | "all values of X between a and b" | Find min/max → check bounds |
+| Correlation check | "highest X also has lowest Y" | Find top-X row → check Y rank |
+
+**Time benchmarks.**
+
+| Metric | Target |
 |---|---|
-| Threshold count | Filter → count → compare to threshold |
-| Rank check | Sort → read top/bottom → verify category |
-| Category comparison | Filter each category → compute → compare |
-| Within-row derivation | Compare two columns row by row |
-| Existence check | Filter on conjunction → check if nonempty |
-| Range check | Find min/max of column → check bounds |
-| Correlation/trend check | Find top/bottom of one column → check other column's rank |
+| Per statement | ~60 seconds |
+| Per question (3 statements) | under 3 minutes |
+| Warning sign | over 3:30 on one question → move on |
 
-**Time-management targets.**
+If you're consistently over time, the break almost always occurs at Step 1 (reading irrelevant columns) or Step 3 (computing more than necessary to determine the sign of the comparison).
 
-- Per statement: ~60 seconds (5 seconds identify, 15 seconds filter/sort, 40 seconds verify).
-- Per question (3 statements): under 3 minutes.
-- If you're over 3:30 on a single Table Analysis question, something went wrong — you probably re-read the table. Move on and come back if time permits.
+**What to do next.**
 
-**The habit that separates 685 scorers from 605 scorers:** writing down intermediate computations. Trying to hold three category-averages in your head while comparing them is how students lose points on medium-difficulty Table Analysis. Write every intermediate number down.
+Work through the easy problem set first. Those questions isolate the three-step workflow on threshold-count and rank-check patterns — the building blocks. Complete the easy set before moving to medium.
 
-Drill the 35 questions in this chapter across the three problem sets. The first few will feel slow; by the tenth, the workflow should be automatic.
+The medium set introduces cross-category comparisons and derived metrics — the types that most students miss. Expect the first few to feel slow. By the tenth question, the workflow should be automatic.
+
+The hard set adds multi-step derivations and ambiguous universal statements at the boundary of what the GMAT asks.
+
+After the problem sets: if you're missing category-comparison or threshold-count questions, return to the Statement Patterns section. If you're missing derived-metric questions, return to Derived Metrics and Traps. Targeted re-reading is more efficient than re-reading the whole chapter.
+
+For mixed timed practice on DI, use the practice drill. Questions you miss here will enter your spaced review queue automatically.
