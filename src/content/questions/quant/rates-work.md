@@ -20,7 +20,7 @@ A cyclist rides at a constant speed of 18 km/h. How far will the cyclist travel 
 **fastest_path:** Convert 40 min = 2/3 hr. D = 18 × 2/3 = 12 km.
 **explanation:** D = RT requires consistent units. Convert 40 min to 40/60 = 2/3 hr. Distance = 18 × 2/3 = 12 km.
 **mistake_a:** Halved the rate ad-hoc: 18/2 = 9.
-**mistake_b:** Approximated 40/60 ≈ 0.5 → 18 × 0.5 = 9, then off-by-one to 10.
+**mistake_b:** Approximated 40/60 ≈ 0.55 hr (splitting the difference between 0.5 and 0.6), then 18 × 0.55 ≈ 9.9, rounded to 10 km. The exact fraction is 2/3 ≈ 0.667, giving 18 × 2/3 = 12 km.
 **mistake_c:** Off-by-one arithmetic on the conversion → 11.
 **mistake_e:** Forgot to convert minutes to hours; used 40/something to get 15.
 **common_trap:** Using the time in minutes directly without converting to hours — the rate is per hour.
@@ -368,7 +368,7 @@ Alex starts painting a fence alone at a rate that would finish the job in 10 hou
 ---
 
 ## Q15
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Two Objects Moving
 
@@ -614,7 +614,7 @@ Machines X and Y operate at constant rates. Working together, they complete a jo
 ---
 
 ## Q24
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Work Rates — Back-Solving One Solo Time
 
@@ -640,7 +640,7 @@ Alex and Ben, working together, complete a job in 6 hours. Alex working alone wo
 ---
 
 ## Q25
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Work Rates — Changing Team Size
 
@@ -736,7 +736,7 @@ Alice can paint a wall in 12 hours, Bob can paint the same wall in 18 hours, and
 **mistake_a:** Divided the fastest solo time (9) by a rough worker-count factor → 9/4 ≈ 2.
 **mistake_b:** Averaged solo times: (12 + 18 + 9)/3 = 13 → rounded to 3.
 **mistake_d:** Arithmetic slip in the fraction addition → 5.
-**mistake_e:** Used only two of the three rates; forgot Carol → time ≈ 6.
+**mistake_e:** Forgot Alice; used only Bob's and Carol's rates: 1/18 + 1/9 = 1/18 + 2/18 = 3/18 = 1/6 → T = 6 hr. (Forgetting Alice is the specific error that happens to produce a choice in the answer set; forgetting Carol gives 1/12 + 1/18 = 5/36 → T = 7.2 hr, which is not an option.)
 **common_trap:** Averaging or adding solo times. Only *rates* (1/t) combine additively.
 **takeaway:** Three workers: sum all three rates (1/t each), then invert. Always convert to 1/t before adding.
 **related_reading:** reading-quant-05-word-problems
@@ -850,25 +850,25 @@ A runner's pace is 8 minutes per mile. At this pace, how many miles will the run
 ## Q33
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Work with Different Rates — Phase
+**topic:** Work Rates — Alternating Shifts
 
-Printer A can complete a print job alone in 10 hours. Printer A works alone for 4 hours, then Printer B joins and together they finish the remaining work in exactly 2 hours. How long would Printer B take to complete the same job alone?
+Pump A fills a tank alone in 6 hours; Pump B fills the same tank alone in 4 hours. The two pumps operate in alternating 1-hour shifts, with Pump A running in hour 1, Pump B in hour 2, Pump A in hour 3, and so on. After exactly how many complete hours will the tank first be full?
 
-- A) 4 hours
-- B) 5 hours
-- C) 6 hours
-- D) 8 hours
-- E) 10 hours
+- A) 4
+- B) 5
+- C) 6
+- D) 7
+- E) 8
 
 **answer:** B
-**fastest_path:** Phase 1: A does 4/10 = 2/5. Remaining 3/5 in 2 hr → joint rate = 3/10. So 1/B = 3/10 − 1/10 = 2/10 → B = 5 hr.
-**explanation:** Phase 1: A alone 4 hr → 4/10 = 2/5 done. Remaining = 3/5. Phase 2: A + B together for 2 hr → joint rate = (3/5)/2 = 3/10 per hr. Isolate B: 1/10 + 1/B = 3/10 → 1/B = 2/10 = 1/5 → B = 5 hr.
-**mistake_a:** Set 1/B equal to the joint rate (3/10) without subtracting A's rate → B ≈ 3.3, rounded to 4.
-**mistake_c:** Arithmetic slip in the remaining-work calculation → B = 6.
-**mistake_d:** Used total elapsed time (4 + 2 = 6) incorrectly in the denominator → B = 8.
-**mistake_e:** Bubbled A's solo time (10 hr) as B's answer.
-**common_trap:** Setting 1/B equal to the *joint* rate (3/10) instead of subtracting A's contribution (1/10) first.
-**takeaway:** Phase setup: compute fraction done in phase 1 → derive joint rate from remaining work and phase-2 time → isolate B via 1/A + 1/B = joint rate.
+**fastest_path:** Each 2-hr cycle (A then B): 1/6 + 1/4 = 5/12. After 2 cycles (4 hr): 10/12 = 5/6. Remaining 1/6; A's next hour fills exactly 1/6 → full at hour 5.
+**explanation:** Each 2-hour cycle (A then B) contributes 1/6 + 1/4 = 2/12 + 3/12 = 5/12 of the tank. After 2 complete cycles (4 hours): 2 × 5/12 = 10/12 = 5/6. Remaining = 1 − 5/6 = 1/6. Hour 5 belongs to Pump A (rate 1/6 per hr); Pump A fills exactly 1/6 in 1 hour → tank is full at the end of hour 5. Verify hour-by-hour: hr 1 (A): 1/6; hr 2 (B): 1/6 + 1/4 = 5/12; hr 3 (A): 5/12 + 1/6 = 7/12; hr 4 (B): 7/12 + 1/4 = 10/12 = 5/6; hr 5 (A): 5/6 + 1/6 = 1 ✓.
+**mistake_a:** Stopped after 2 complete cycles (4 hr) and reported 4, failing to notice 5/6 < 1 — the job was not yet complete.
+**mistake_c:** Counted a third full 2-hour cycle (3 × 5/12 = 15/12 > 1) and reported 6 — without checking whether the tank filled mid-cycle during hour 5. The tank fills at the end of hour 5, one hour before the cycle ends.
+**mistake_d:** Correctly identified that A fills the remaining 1/6 during hour 5, but then second-guessed and ran B's subsequent shift (hour 6) as a check, mistakenly treating hour 7 as the first "confirmed full" hour.
+**mistake_e:** Extended to 4 full 2-hour cycles (4 × 5/12 = 20/12 > 1) without checking mid-cycle completion — the same over-counting error as C, one cycle further.
+**common_trap:** Running complete cycles without testing whether the tank fills mid-cycle. After 4 hours the tank is 5/6 full; the remaining 1/6 is filled exactly by Pump A in hour 5. Never assume the job finishes precisely on a cycle boundary.
+**takeaway:** Alternating-shift problems: (1) identify the per-cycle contribution; (2) find the last cycle boundary before the job is done; (3) determine which pump is active next and compute how long it needs to finish — the answer is usually mid-cycle. Always verify hour-by-hour near the finish.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -916,7 +916,7 @@ Elena commutes 90 miles to work. By driving 15 mph faster than her usual speed, 
 **fastest_path:** Backsolve from D: 90/45 − 90/60 = 2 − 1.5 = 0.5 hr = 30 min ✓.
 **explanation:** Equation: 90/r − 90/(r + 15) = 0.5. Backsolve r = 45: 90/45 − 90/60 = 2 − 1.5 = 0.5 hr = 30 min ✓. Algebraically: 90(r+15) − 90r = 0.5r(r+15) → 1350 = 0.5r² + 7.5r → r² + 15r − 2700 = 0 → (r − 45)(r + 60) = 0 → r = 45.
 **mistake_a:** Test r = 30: 90/30 − 90/45 = 3 − 2 = 1 hr = 60 min ≠ 30 min.
-**mistake_b:** Test r = 35: 90/35 − 90/50 ≈ 0.51 hr ≈ 31 min, close but fails exact check.
+**mistake_b:** Test r = 35: 90/35 ≈ 2.57 hr, 90/50 = 1.80 hr; difference ≈ 0.77 hr ≈ 46 min ≠ 30 min. Far off — eliminates B immediately.
 **mistake_c:** Test r = 40: 90/40 − 90/55 ≈ 0.405 hr ≈ 24 min ≠ 30 min.
 **mistake_e:** Test r = 50: 90/50 − 90/65 ≈ 0.41 hr ≈ 25 min ≠ 30 min.
 **common_trap:** Setting up the equation correctly but mis-solving the quadratic. Backsolving from C or D is faster and avoids sign errors.
@@ -968,10 +968,10 @@ A delivery truck drives 60 miles at 30 mph, then 90 miles at 45 mph, then 30 mil
 **fastest_path:** t₁ = 60/30 = 2 hr, t₂ = 90/45 = 2 hr, t₃ = 30/60 = 0.5 hr. Avg = 180/4.5 = 40 mph.
 **explanation:** t₁ = 2 hr, t₂ = 2 hr, t₃ = 0.5 hr. Total distance = 180 miles, total time = 4.5 hr. Average speed = 180/4.5 = 40 mph.
 **mistake_a:** Arithmetic slip in total time → average too low → 35.
-**mistake_b:** Applied harmonic mean of three speeds: 3/(1/30 + 1/45 + 1/60) ≈ 37.5. Harmonic mean applies only to equal-distance legs.
+**mistake_b:** Averaged only the first two leg speeds and ignored the third segment: (30 + 45)/2 = 37.5 mph — dropped the 30-mile segment at 60 mph. (For reference, the harmonic mean of all three speeds is 540/13 ≈ 41.5 mph, still wrong here because the legs have unequal distances.)
 **mistake_d:** Used a weighted average without the correct denominator → 42.5.
 **mistake_e:** Took the arithmetic mean of the three speeds: (30 + 45 + 60)/3 = 45.
-**common_trap:** Taking the arithmetic mean (E = 45) or harmonic mean (B = 37.5) of the three speeds. Both formulas fail because neither leg distances nor leg times are equal across all three segments.
+**common_trap:** Reaching for a speed-averaging shortcut — arithmetic mean (E = 45) or partial average (B = 37.5) — when legs have neither equal distance nor equal time. The only safe formula is total distance / total time.
 **takeaway:** Average speed = total distance / total time, always. Shortcut formulas only apply in their specific conditions (harmonic mean: equal distances; arithmetic mean: equal times).
 **related_reading:** reading-quant-05-word-problems
 
@@ -1131,7 +1131,7 @@ Two runners, P and Q, start at the same point on a 240-meter circular track and 
 **explanation:** Same direction → P's closing speed on Q = 8 − 6 = 2 m/s. Lapping means P is exactly 240 m ahead. Time = 240/2 = 120 seconds.
 **mistake_a:** Computed P's solo lap time: 240/8 = 30 s (misread "laps Q" as "completes one lap").
 **mistake_b:** Computed Q's solo lap time: 240/6 = 40 s (same misread using Q's speed).
-**mistake_c:** Arithmetic error computing the speed difference: 8 − 6 = 3 → 240/3 = 80.
+**mistake_c:** Used the LCM approach: P's solo lap time = 240/8 = 30 s, Q's = 240/6 = 40 s. Computed LCM(30, 40) = 30 × 40 / GCD(30, 40), but used GCD = 15 instead of 10 (confusing common factors: 30 = 2·3·5, 40 = 2³·5, so GCD = 2·5 = 10) → 1200/15 = 80 s.
 **mistake_e:** Multiplied instead of divided: 240 × 2 = 480 (inverted the formula).
 **common_trap:** Confusing P's solo lap time (30 s) or Q's (40 s) with the lapping time. Lapping is determined by when P's *lead over Q* reaches one full track length, not when any runner completes a single lap.
 **takeaway:** Lapping (same direction): T = track length / (faster speed − slower speed). Solo lap times are irrelevant; only the speed difference and track length matter.
