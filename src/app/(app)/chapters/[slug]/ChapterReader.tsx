@@ -955,13 +955,19 @@ export default function ChapterReader({
             )}
 
             <div className="space-y-10 min-w-0">
-              {sections.map((s) => (
+              {sections.map((s, i) => (
                 <SectionCard
                   key={s.id}
                   section={s}
                   hydrated={hydrated}
                   progress={progress}
                   update={update}
+                  nextSection={
+                    sections[i + 1]
+                      ? { id: sections[i + 1].id, title: sections[i + 1].title }
+                      : null
+                  }
+                  hasProblemSets={problemSets.length > 0}
                 />
               ))}
 
@@ -1312,13 +1318,32 @@ function SectionCard({
   hydrated,
   progress,
   update,
+  nextSection,
+  hasProblemSets,
 }: {
   section: ReaderSection
   hydrated: boolean
   progress: ChapterProgress
   update: (u: (prev: ChapterProgress) => ChapterProgress) => void
+  nextSection: { id: string; title: string } | null
+  hasProblemSets: boolean
 }) {
   const read = !!progress.sectionsRead[s.id]
+  const [justMarkedRead, setJustMarkedRead] = useState(false)
+
+  function handleMarkRead() {
+    setJustMarkedRead(true)
+    update((prev) => ({
+      ...prev,
+      sectionsRead: { ...prev.sectionsRead, [s.id]: true },
+    }))
+  }
+
+  function scrollToId(id: string) {
+    const el = document.getElementById(id)
+    if (!el) return
+    el.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
 
   const icon =
     s.type === "pretest" ? (
@@ -1457,18 +1482,66 @@ function SectionCard({
 
         {!read && hydrated && (
           <button
-            onClick={() =>
-              update((prev) => ({
-                ...prev,
-                sectionsRead: { ...prev.sectionsRead, [s.id]: true },
-              }))
-            }
+            onClick={handleMarkRead}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
             style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
           >
             <Check className="w-3.5 h-3.5" />
             Mark section complete
           </button>
+        )}
+
+        {/* Section-complete transition row — only when the student just
+            marked this section as read in the current session. Replaces the
+            dead-end (button disappears, nothing happens) with a decisive
+            forward pointer keyed to what logically comes next. */}
+        {hydrated && read && justMarkedRead && (
+          <div
+            className="flex items-center justify-between gap-4 p-4 rounded-xl border animate-in fade-in-0 duration-300"
+            style={{
+              borderColor: "var(--read-success-soft)",
+              backgroundColor: "rgba(62,207,142,0.04)",
+            }}
+          >
+            <div className="flex items-center gap-2 min-w-0">
+              <CheckCircle2
+                className="w-4 h-4 flex-shrink-0"
+                style={{ color: "var(--read-success)" }}
+              />
+              <span
+                className="text-[13px] truncate"
+                style={{ color: "var(--read-text-muted)" }}
+              >
+                Section read.
+              </span>
+            </div>
+            {nextSection ? (
+              <button
+                onClick={() => scrollToId(nextSection.id)}
+                className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] hover:opacity-75 transition-opacity flex-shrink-0"
+                style={{ color: "var(--read-gold)" }}
+              >
+                Next
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            ) : hasProblemSets ? (
+              <button
+                onClick={() => scrollToId("chapter-problem-sets")}
+                className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] hover:opacity-75 transition-opacity flex-shrink-0"
+                style={{ color: "var(--read-gold)" }}
+              >
+                Problem sets
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            ) : (
+              <span
+                className="text-[11px] font-semibold uppercase tracking-[0.18em] flex-shrink-0"
+                style={{ color: "var(--read-success)" }}
+              >
+                Chapter done
+              </span>
+            )}
+          </div>
         )}
       </div>
     </article>
