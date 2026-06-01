@@ -2067,3 +2067,477 @@ The passage most strongly suggests that the author views the relationship betwee
 **common_trap:** *Extreme language* — (A) and (B) both push the displacement language past what the passage supports.
 **takeaway:** Inference on a "transition" passage = match the passage's *pace* and *mechanism*. Gradual + by-demonstration is different from rapid + by-refutation.
 **related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 21: Tacit Knowledge and Automation
+
+The distinction between explicit and tacit knowledge, first articulated by philosopher Michael Polanyi, carries profound consequences for labor economics in the era of automation. Explicit knowledge—the kind that can be encoded in manuals, algorithms, and training sets—has proven highly amenable to automation; machine learning systems now perform accounting, radiological screening, and document review at near-human or superhuman levels. Tacit knowledge is fundamentally different. It is the knowledge embedded in skilled practice that the practitioner cannot fully articulate: a carpenter's feel for grain direction, an experienced nurse's intuition that a patient is about to deteriorate, a negotiator's read on a room. These capabilities resist automation not because they are cognitively demanding in the conventional sense, but because they cannot be decomposed into rules that a machine can learn from labeled data.
+
+The economic consequences of this asymmetry are striking. Labor economists studying employment patterns across industries find that the jobs most vulnerable to displacement are neither the simplest nor the most credentialed, but rather those most dependent on routine, articulable steps. Middle-skill routine cognitive jobs—bookkeeping, paralegal work, middle-management coordination—have declined sharply. Meanwhile, both high-tacit-skill positions (plumbers, surgeons, social workers) and low-skill service roles resistant to automation on cost grounds have proven more durable. This pattern, known as labor market polarization, has fueled significant political and economic disruption in advanced economies.
+
+Some economists and technologists argue, however, that tacit knowledge itself is eroding as a barrier. Advances in reinforcement learning and robotic manipulation, combined with increasingly rich sensor data, may allow machines to acquire tacit-like competencies by accumulating experience rather than following prescribed rules. Whether this represents genuine convergence with human tacit knowledge or merely a functional approximation remains contested. What seems clear is that the boundary between automatable and non-automatable work is not fixed—it is continuously renegotiated by technological progress.
+
+### Q74
+**difficulty:** Easy
+**type:** Specific Detail
+**topic:** Reading Comprehension
+
+According to the passage, tacit knowledge differs from explicit knowledge in that:
+
+- A) Tacit knowledge cannot be fully articulated by its practitioners and resists decomposition into learnable rules
+- B) Tacit knowledge requires higher educational credentials to acquire
+- C) Tacit knowledge is found only in physical or manual trades
+- D) Tacit knowledge requires human supervision to verify accuracy
+- E) Tacit knowledge is inherently more cognitively demanding than explicit knowledge
+
+**answer:** A
+**fastest_path:** ¶1 defines tacit knowledge in two clauses: "the practitioner cannot fully articulate" and "cannot be decomposed into rules that a machine can learn." (A) paraphrases both.
+**explanation:** The passage defines tacit knowledge as embedded-in-practice knowledge that "the practitioner cannot fully articulate" and that "cannot be decomposed into rules that a machine can learn from labeled data." (A) is the direct paraphrase. All other choices either fabricate a characteristic or reverse the passage's explicit statements.
+**mistake_b:** *Credential confusion* — passage explicitly separates tacit knowledge from credential level: "neither the simplest nor the most credentialed" jobs are most vulnerable. Tacit is not about credentials.
+**mistake_c:** *Too narrow* — ¶1 gives a nurse's intuition and a negotiator's read as examples alongside a carpenter's skill; tacit knowledge spans physical and cognitive domains.
+**mistake_d:** Fabrication — human supervision to verify accuracy is never mentioned as a characteristic of tacit knowledge.
+**mistake_e:** *Directly refuted* — ¶1 states explicitly that tacit knowledge resists automation "not because they are cognitively demanding in the conventional sense." (E) is the trap the passage specifically warns against.
+**common_trap:** Picking (E) because tacit skill intuitively sounds harder — the passage preemptively refutes this, making it the primary distractor.
+**takeaway:** Specific Detail on a definitional question = use the passage's own words, not intuition. The passage defined tacit knowledge and explicitly ruled out the "cognitively harder" explanation.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q75
+**difficulty:** Medium
+**type:** Main Idea
+**topic:** Reading Comprehension
+
+The primary purpose of the passage is to:
+
+- A) Argue that most jobs will eventually be automated as machine capabilities improve
+- B) Describe how the concept of tacit knowledge helps explain patterns of labor market disruption and raises questions about the limits of automation
+- C) Advocate for policies that protect workers in tacit-knowledge-heavy occupations from technological displacement
+- D) Explain why automation primarily threatens middle-skill routine cognitive jobs rather than all categories equally
+- E) Compare the economic consequences of automation in advanced economies to those in developing nations
+
+**answer:** B
+**fastest_path:** Three paragraphs, three beats: ¶1 defines tacit knowledge, ¶2 uses it to explain polarization, ¶3 opens whether the barrier will hold. (B) covers all three.
+**explanation:** The passage introduces the tacit/explicit framework (¶1), applies it to explain labor market polarization (¶2), then opens the question of whether the boundary is permanent (¶3). (B) is the only choice that captures the full arc: concept → application → open question.
+**mistake_a:** *Extreme* — ¶3 says the boundary is contested, not that all jobs will be automated. The passage resists this conclusion.
+**mistake_c:** *Policy advocacy* — the passage is entirely analytical; no prescriptions are made.
+**mistake_d:** *Too narrow* — this describes ¶2 only; it misses the tacit/explicit framework (¶1) and the contested-boundary coda (¶3).
+**mistake_e:** *Outside scope* — developing versus advanced economies are not compared; the passage is about the mechanism of automation-driven displacement.
+**common_trap:** Picking (D) because ¶2 is the most concrete and data-rich paragraph. But main idea = whole arc, not the most memorable single paragraph.
+**takeaway:** Main Idea = find the choice that accounts for all three paragraphs, not just the most vivid one.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q76
+**difficulty:** Medium
+**type:** Inference
+**topic:** Reading Comprehension
+
+The passage implies that labor market polarization is best explained by:
+
+- A) A shortage of workers willing to fill middle-skill positions in advanced economies
+- B) The tendency of companies to offshore routine work to lower-wage countries
+- C) The specific vulnerability of jobs that rely on articulable, step-by-step procedures to algorithmic automation
+- D) The failure of educational institutions to train workers in tacit skills
+- E) The preference of consumers for automated services over human-provided ones
+
+**answer:** C
+**fastest_path:** ¶2 defines the vulnerable jobs as those dependent on "routine, articulable steps" — not simple, not credentialed, but *articulable*. That's the variable that predicts polarization.
+**explanation:** Passage says jobs vulnerable to displacement are those "most dependent on routine, articulable steps." Polarization follows from this asymmetry: routine-articulable jobs disappear while tacit-skill jobs (both high and low) persist. (C) restates this causal variable.
+**mistake_a:** *Supply-side* — the passage gives a technology-demand explanation, not a worker-supply explanation. Nothing suggests middle-skill workers are unwilling to fill those positions.
+**mistake_b:** Offshoring — the passage explains displacement through automation, not geographic relocation of work. Offshoring is a real-world phenomenon not mentioned here.
+**mistake_d:** Education failure — the passage treats the tacit/explicit distinction as a feature of the work itself, not of worker training. Education is never mentioned.
+**mistake_e:** Consumer preference — the passage focuses on what machines can automate, not on consumer demand choices.
+**common_trap:** Picking (B) because offshoring and automation are often conflated in discussions of job loss — the passage is specifically about automation and the articulable/tacit distinction.
+**takeaway:** Inference on polarization = track the specific explanatory variable the passage names (articulable steps), not real-world alternatives you already know.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q77
+**difficulty:** Hard
+**type:** Inference
+**topic:** Reading Comprehension
+
+The author's primary purpose in discussing reinforcement learning and robotic manipulation in the final paragraph is to:
+
+- A) Demonstrate that all remaining tacit-knowledge jobs will be automated within the next decade
+- B) Refute the claim made in paragraph one that tacit knowledge is fundamentally different from explicit knowledge
+- C) Argue that the distinction between tacit and explicit knowledge is ultimately a false dichotomy
+- D) Qualify the passage's central framework by acknowledging that the boundary between automatable and non-automatable work may be shifting rather than fixed
+- E) Show that human workers in tacit-knowledge roles will need to upgrade their skills to remain competitive
+
+**answer:** D
+**fastest_path:** ¶3's closing sentence: "the boundary... is not fixed — it is continuously renegotiated." The reinforcement learning discussion *leads* to that conclusion. Function = qualify, not demolish.
+**explanation:** ¶3 introduces technological advances that challenge whether tacit knowledge provides a permanent barrier, then concludes with "the boundary... is continuously renegotiated." This qualifies ¶1's framework (tacit = hard to automate) without overturning it — the distinction still exists, but its practical limits may shift. (D) captures this nuanced function.
+**mistake_a:** *Extreme and temporal* — "all remaining" and "within the next decade" are both unsupported. ¶3 raises a contested open question, not a timeline.
+**mistake_b:** *Overstatement* — ¶3 doesn't refute ¶1's definition; it asks whether the practical boundary is permanent. The tacit/explicit distinction remains valid; its scope is what's in question.
+**mistake_c:** *Overstatement* — "false dichotomy" implies the two categories blur into one. The passage maintains the distinction but treats the boundary's extent as contested.
+**mistake_e:** Workforce policy — the passage is about technological capability, not individual worker strategy. No career advice is offered or implied.
+**common_trap:** Confusing "qualifies the argument" with "refutes the argument." ¶3 opens uncertainty about scope; it doesn't demolish the ¶1 framework.
+**takeaway:** Function questions on a final paragraph: ask whether the paragraph demolishes, qualifies, extends, or complicates. "Continuously renegotiated" is a qualifier, not a refutation.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 22: Ocean Acidification
+
+Since pre-industrial times, the world's oceans have absorbed roughly a third of all carbon dioxide emitted by human activity, a capacity that has substantially slowed atmospheric greenhouse gas accumulation. This absorption, however, comes at a cost. Carbon dioxide dissolved in seawater undergoes a series of chemical reactions, ultimately producing carbonic acid and increasing the concentration of hydrogen ions. The ocean's average surface pH has declined from approximately 8.2 to 8.1 since 1750—a shift of 0.1 pH units that, owing to the logarithmic nature of the pH scale, represents a 26 percent increase in hydrogen ion concentration.
+
+The biological consequences fall most heavily on calcifying organisms: corals, mollusks, echinoderms, and certain species of plankton that build shells or skeletons from calcium carbonate. In more acidic water, the carbonate ions these organisms require for calcification become less abundant, and the shells and skeletons they do build are thinner and more brittle. Some studies have documented dissolution rates that exceed construction rates in already-stressed coral systems. Because calcareous plankton occupy foundational positions in oceanic food webs, their decline would cascade through entire ecosystems far beyond the visible loss of coral reefs.
+
+What makes scientists particularly concerned is not merely the magnitude of current pH changes but their rate. The geological record preserves episodes of past ocean acidification associated with volcanic events and asteroid impacts, and many of those episodes correlate with mass extinctions. Critically, the current rate of acidification is estimated to be ten to one hundred times faster than any such historical episode. Biological communities can often adapt to gradual environmental change through evolution and migration; the pace of current acidification leaves little time for such adaptive responses.
+
+### Q78
+**difficulty:** Easy
+**type:** Specific Detail
+**topic:** Reading Comprehension
+
+According to the passage, the decline in ocean pH from 8.2 to 8.1 represents:
+
+- A) A 0.1 percent increase in acidity
+- B) A 10 percent increase in hydrogen ion concentration
+- C) A reduction in the ocean's capacity to absorb further carbon dioxide
+- D) A doubling of carbonic acid levels in surface seawater
+- E) A 26 percent increase in hydrogen ion concentration
+
+**answer:** E
+**fastest_path:** ¶1 states this directly: "a 26 percent increase in hydrogen ion concentration." Return and quote.
+**explanation:** ¶1 gives the figure explicitly: the 0.1 pH drop "represents a 26 percent increase in hydrogen ion concentration" because of the logarithmic pH scale. (E) is the direct quotation.
+**mistake_a:** 0.1% — confuses the numerical pH shift (0.1) with a percentage change in acidity. The pH scale is logarithmic, not linear.
+**mistake_b:** 10% — most tempting distractor; students see the 0.1 unit shift and compute 0.1/1 × 100 = 10%, ignoring the logarithmic nature of the scale explicitly described in the passage.
+**mistake_c:** Absorption capacity — this introduces the CO2 absorption theme from ¶1 but combines it with a mechanism not stated; the passage says humans have absorbed CO2, not that the capacity has changed.
+**mistake_d:** Doubling — fabricated; no claim is made about carbonic acid doubling.
+**common_trap:** Picking (B) by converting the 0.1 unit shift to 10% linearly — the passage explicitly mentions the logarithmic scale precisely to prevent this mistake.
+**takeaway:** Specific Detail with a calculation embedded = trust the passage's stated result, not a quick mental arithmetic shortcut.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q79
+**difficulty:** Medium
+**type:** Main Idea
+**topic:** Reading Comprehension
+
+The passage's central argument is that:
+
+- A) Ocean acidification poses a serious and escalating biological threat, with the unprecedented rate of change being the most alarming dimension
+- B) Reducing carbon emissions is the only effective solution to the threat of ocean acidification
+- C) Ocean acidification will collapse global fisheries within the current century unless immediate action is taken
+- D) The oceans' role as carbon sinks should be curtailed to prevent further chemical damage to marine ecosystems
+- E) Historical episodes of ocean acidification demonstrate that marine life has repeatedly survived major pH shifts
+
+**answer:** A
+**fastest_path:** Three beats — chemistry (¶1), biological threat (¶2), why rate is the sharpest concern (¶3). (A) covers all three and correctly places rate as the primary alarm.
+**explanation:** ¶1 establishes the mechanism, ¶2 documents the biological threat, ¶3 explains why rate — not just magnitude — is the chief concern. (A) is the only choice that covers the full arc and correctly identifies rate as the passage's final emphasis. The word "escalating" captures ¶3's rate argument.
+**mistake_b:** *Policy prescription* — the passage makes no recommendation about reducing emissions. It describes the threat analytically without prescribing solutions.
+**mistake_c:** *Extreme and time-bound* — "within the current century" and "unless immediate action" are both fabricated; the passage raises concern but doesn't make a collapse prediction.
+**mistake_d:** *Policy prescription and reversal* — the passage describes absorption as something that has "slowed atmospheric accumulation," a benefit; it doesn't argue the oceans should stop absorbing CO2.
+**mistake_e:** *Reverses the logic* — ¶3 uses historical events as cautionary evidence (they correlated with mass extinctions), not as reassurance that survival is likely.
+**common_trap:** Picking (E) because "life survived past acidification" sounds like a reasonable inference from historical comparisons — but the passage explicitly uses those historical events as warnings, not comfort.
+**takeaway:** Main Idea = follow the passage's *evaluative stance*, not just its factual claims. The historical comparison is used rhetorically to alarm, not to reassure.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q80
+**difficulty:** Medium
+**type:** Application
+**topic:** Reading Comprehension
+
+Based on the passage, which of the following organisms would face the greatest *direct* threat from ongoing ocean acidification?
+
+- A) A deep-water predatory fish that feeds primarily on squid and smaller fish
+- B) A species of marine snail that constructs its protective shell from calcium carbonate
+- C) A marine mammal with thick blubber adapted to cold-water environments
+- D) A bioluminescent jellyfish lacking any hard skeletal or shell structures
+- E) A surface-diving seabird that hunts fish in shallow coastal waters
+
+**answer:** B
+**fastest_path:** ¶2 names the direct mechanism: calcifying organisms — those that build shells or skeletons from calcium carbonate — are most directly threatened because carbonate ions become scarcer. (B) is the only calcifying organism in the list.
+**explanation:** The direct threat mechanism in ¶2 applies specifically to organisms that build structures from calcium carbonate. A marine snail with a calcium carbonate shell is a textbook calcifying organism; it faces the mechanism directly. All other choices involve organisms whose threat would be indirect (prey decline, food web disruption) or no threat at all.
+**mistake_a:** *Indirect threat* — predatory fish may eventually suffer as their prey declines, but their direct exposure is not the calcification mechanism ¶2 describes.
+**mistake_c:** Marine mammals — no calcification mechanism applies; blubber and thermoregulation are irrelevant to acid-driven carbonate depletion.
+**mistake_d:** Jellyfish — no hard structures, so the calcification mechanism doesn't apply directly.
+**mistake_e:** Seabird — faces at most an indirect threat through reduced fish stocks; the bird itself isn't a marine calcifier.
+**common_trap:** Picking (A) because predatory fish sound ecologically important — but the question asks about *direct* threat, and the direct mechanism is explicitly tied to calcium carbonate shell/skeleton construction.
+**takeaway:** Application = identify the exact mechanism the passage describes, then match it to the answer. "Direct threat" narrows to the organism that faces the named mechanism, not one that might suffer downstream.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q81
+**difficulty:** Hard
+**type:** Inference
+**topic:** Reading Comprehension
+
+The author's comparison of current acidification rates to historical geological episodes primarily serves to:
+
+- A) Suggest that ocean acidification is a natural geological process and is therefore less alarming than anthropogenic pollution
+- B) Demonstrate that past marine ecosystems survived periods of acidification and will likely survive the current one
+- C) Provide context that makes the unprecedented pace of current acidification, rather than its absolute magnitude, the chief source of concern
+- D) Argue that the current acidification episode will inevitably produce a mass extinction comparable to those historical events
+- E) Explain that volcanic eruptions and asteroid impacts are the primary historical drivers of oceanic pH change
+
+**answer:** C
+**fastest_path:** ¶3 signals its own purpose: "not merely the magnitude... but their rate." The geological comparison exists to establish that this rate is historically unprecedented. Function = elevate rate above magnitude as the chief concern.
+**explanation:** ¶3 says the worry is "not merely the magnitude... but their rate," then uses geological episodes to show that the current rate is "ten to one hundred times faster than any such historical episode." The historical comparison serves this specific purpose: quantifying how unusual the rate is, not predicting extinction or normalizing the process.
+**mistake_a:** *Reverses the argument* — the comparison is used to show the current episode is *unnaturally* fast; invoking natural precedents here makes the current situation more alarming, not less.
+**mistake_b:** *Reverses the implication* — the historical episodes correlate with mass extinctions, not with survival. The comparison is cautionary, not reassuring.
+**mistake_d:** *Extreme* — the passage says there is "concern" and organisms may lack adaptation time; it stops well short of predicting inevitable mass extinction.
+**mistake_e:** *Secondary fact, not the function* — volcanic and asteroid causes are mentioned, but the purpose is to establish rate comparison, not to catalog historical drivers.
+**common_trap:** Picking (B) — the "survival" reading feels intuitive because organisms did ultimately persist after historical events, but the passage explicitly connects those events to mass extinctions, not recoveries.
+**takeaway:** Function questions on a paragraph that uses historical comparison: ask what specific claim the comparison is built to support. Here it supports rate > magnitude as the alarm, not any claim about inevitable outcomes.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 23: The Populist Paradox
+
+Political scientists who study populism converge on a core feature: populism is a form of political logic that divides the world into two antagonistic camps, an authentic "people" whose will is sovereign and a corrupt "elite" that has stolen political power. This framing is ideologically thin — it can be grafted onto narratives of the left (elites as financial oligarchs) or the right (elites as cultural cosmopolitans) — and this versatility helps explain populism's resurgence in contexts as diverse as contemporary Hungary, Brazil, India, and the United States.
+
+The paradox that observers note is internal to populism's democratic logic. Populist leaders claim to govern in the name of the whole people and derive their authority from this identity with the popular will. This claim, however, tends to produce a form of power hostile to institutional checks. Legislatures, courts, free press, and independent regulatory agencies are recast as instruments of elite obstruction rather than as safeguards of democracy. By this logic, the populist leader who dismantles such checks is not violating democracy — he or she is fulfilling it, removing the barriers that corrupt elites erected between the people and their true sovereign will. Scholars who track democratic backsliding find that this pattern — elected governments progressively hollowing out the institutions that constrain them — is the most common pathway by which democracies have eroded since 1990.
+
+Not all scholars accept that the paradox is inevitable. Some argue that populist parties which come to power in functioning coalition systems, or which face robust civil society and judicial review, are constrained to govern within democratic norms. On this view, populism is a symptom of underlying institutional dysfunction rather than an autonomous cause of erosion; stronger institutions are therefore both the diagnosis and the prescription. Others remain skeptical, arguing that the populist logic itself systematically generates incentives to erode constraints, regardless of initial institutional strength.
+
+### Q82
+**difficulty:** Easy
+**type:** Specific Detail
+**topic:** Reading Comprehension
+
+According to the passage, the defining feature of populism is:
+
+- A) An emphasis on economic redistribution from wealthy to poor citizens
+- B) A rejection of representative democracy in favor of direct citizen participation
+- C) A reliance on charismatic individual leaders who claim special political authority
+- D) A political logic that divides society into an authentic "people" and a corrupt "elite"
+- E) An opposition to international institutions and economic globalization
+
+**answer:** D
+**fastest_path:** ¶1 opens with the definition: populism "divides the world into two antagonistic camps, an authentic 'people'... and a corrupt 'elite'." (D) quotes it directly.
+**explanation:** The passage opens with the scholarly consensus definition: populism is "a form of political logic that divides the world into two antagonistic camps, an authentic 'people' whose will is sovereign and a corrupt 'elite' that has stolen political power." (D) is the direct paraphrase.
+**mistake_a:** Economic redistribution — this may characterize some *left* populist platforms, but the passage says populism is "ideologically thin" and can attach to either left or right. Redistribution is not the defining feature.
+**mistake_b:** Direct democracy — not stated; the passage focuses on the people-vs.-elite framing, not on referendum-style participation.
+**mistake_c:** Charismatic leadership — real in practice, but not what the passage names as the *defining* feature; the definition is about the ideological structure, not the leadership style.
+**mistake_e:** Anti-globalization — not in the passage's definition. Populism can take this form, but the passage defines it by the people/elite cleavage, not by any specific policy stance.
+**common_trap:** Picking (C) because charismatic populist leaders are the most visible aspect in the news — the passage's scholars' definition is structural (people/elite logic), not biographical (leader type).
+**takeaway:** Definition questions = use the passage's definition, not your real-world associations. The passage carefully limits the definition to the people/elite framing.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q83
+**difficulty:** Easy
+**type:** Specific Detail
+**topic:** Reading Comprehension
+
+According to the passage, scholars who track democratic backsliding since 1990 have found that the most common pathway of democratic erosion is:
+
+- A) Military coups by officers who reject civilian authority
+- B) Economic crises that destabilize elected governments and invite authoritarian replacements
+- C) Constitutional amendments passed by supermajorities that entrench one party's power
+- D) Interference by foreign governments in domestic electoral processes
+- E) Elected governments progressively hollowing out the institutions that constrain them
+
+**answer:** E
+**fastest_path:** ¶2 states this verbatim: "elected governments progressively hollowing out the institutions that constrain them — is the most common pathway by which democracies have eroded since 1990."
+**explanation:** The passage quotes scholars directly: the dominant erosion pattern is "elected governments progressively hollowing out the institutions that constrain them." (E) is the near-verbatim match.
+**mistake_a:** Military coups — a historically common route to authoritarian rule, but the passage explicitly describes the *current* dominant pattern as involving elected governments, not militaries.
+**mistake_b:** Economic crises as trigger — not stated. The passage focuses on the mechanism of institutional hollowing, not its triggering conditions.
+**mistake_c:** Constitutional supermajorities — not mentioned.
+**mistake_d:** Foreign interference — not mentioned.
+**common_trap:** Picking (A) because military coups are the stereotype of democratic collapse — the passage specifically notes that since 1990, elected governments (not armies) are the main agents of erosion.
+**takeaway:** Specific Detail with a precise claim = locate the sentence and reproduce it. Don't substitute a plausible alternative that isn't in the text.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q84
+**difficulty:** Medium
+**type:** Main Idea
+**topic:** Reading Comprehension
+
+The passage is primarily concerned with:
+
+- A) Explaining why populism is politically versatile and examining the tension between its democratic claims and its tendency to erode the institutions of democratic governance
+- B) Arguing that populism is fundamentally incompatible with democracy and should be legally restricted
+- C) Comparing left-wing and right-wing varieties of populism and their different institutional consequences
+- D) Arguing that institutional dysfunction, not populism itself, is the root cause of democratic backsliding
+- E) Chronicling the global spread of populist governments since 1990 and identifying their common features
+
+**answer:** A
+**fastest_path:** Three beats: ¶1 defines versatility, ¶2 establishes the paradox, ¶3 debates whether it is inevitable. (A) covers ¶1 (versatility) + ¶2 (paradox) + ¶3 (tension), without overstating a conclusion.
+**explanation:** The passage moves through: (1) defining populism and explaining its ideological versatility, (2) identifying the paradox between democratic claims and institutional erosion, (3) debating whether the paradox is inherent or contingent. (A) captures all three beats.
+**mistake_b:** *Policy prescription* — the passage is analytical. No legal restrictions are proposed or implied.
+**mistake_c:** *Too narrow* — left vs. right is mentioned in one clause of ¶1 to illustrate versatility, then dropped; it is not the focus of the passage.
+**mistake_d:** *One side of the ¶3 debate* — this is the view of some scholars in ¶3, not the overall argument. The passage presents both sides; it doesn't endorse the institutional-dysfunction explanation.
+**mistake_e:** *Chronicle vs. analysis* — the passage names Hungary, Brazil, India, and the US as illustrative examples, not as a narrative of events. The focus is analytical (why/how populism operates), not historical (what happened).
+**common_trap:** Picking (D) because the institutional-dysfunction argument in ¶3 feels like a conclusion — but ¶3 presents a debate, not a resolution. The passage doesn't endorse either scholarly camp.
+**takeaway:** For a three-paragraph passage that presents a concept, a paradox, and then a debate: the main idea is the full arc, not the final turn.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q85
+**difficulty:** Medium
+**type:** Inference
+**topic:** Reading Comprehension
+
+The passage implies that the populist leader's justification for dismantling institutional checks is internally consistent with which of the following underlying premises?
+
+- A) Executive efficiency requires that authority not be fragmented among competing branches and agencies
+- B) The sovereign will of the people, when authentically represented by the leader, supersedes the legitimacy of countervailing institutions
+- C) Elected officials have a democratic mandate to implement campaign promises regardless of legal constraints
+- D) Institutional checks were designed for routine governance but lose their legitimacy during national emergencies
+- E) Minority rights must yield to majority preferences whenever the two conflict in a genuine democracy
+
+**answer:** B
+**fastest_path:** ¶2 constructs the logic: leader = people's authentic will; checks = elite obstruction of that will; therefore dismantling checks = fulfilling democracy, not violating it. The hidden premise is that authentic representation of the popular will supersedes institutional constraints.
+**explanation:** ¶2 describes the internal logic: the populist leader claims identity with the authentic popular will, and on that basis recasts institutional checks as illegitimate elite barriers. The premise that makes this logically consistent is (B): if the leader *is* the sovereign will of the people, then any institution that constrains the leader is ipso facto constraining the people — and can be dismantled in their name.
+**mistake_a:** Efficiency argument — the passage describes a *legitimacy* claim, not a managerial or efficiency argument. Populist leaders do not justify institutional dismantling as making government faster.
+**mistake_c:** Mandate argument — too thin. A mandate merely authorizes implementation of promised policies; the passage describes a stronger ontological claim (the leader embodies/is the people's will), which can justify dismantling even institutions the leader didn't campaign against.
+**mistake_d:** Emergency exception — not mentioned. The passage describes the logic as applying generally, not as triggered by emergency conditions.
+**mistake_e:** Majority over minority — this is a *consequence* of populist governance, but not the specific premise articulated in ¶2. The logic ¶2 describes is about the leader's identity with "the whole people," not about majority voting preferences.
+**common_trap:** Picking (C) because "mandate" sounds like the populist argument — the passage articulates a stronger identity claim (the leader *is* the people's authentic will), which goes beyond mandate logic and can justify dismantling previously neutral institutions.
+**takeaway:** Inference on a logical structure = trace the exact premise embedded in the passage's reasoning. "Mandate" is a weaker claim than "identity with the sovereign will"; the passage uses the stronger version.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q86
+**difficulty:** Hard
+**type:** Inference
+**topic:** Reading Comprehension
+
+The author's primary purpose in presenting the skeptical view in the final paragraph is to:
+
+- A) Endorse the position that robust institutions are sufficient to constrain populist governments in all contexts
+- B) Suggest that left-wing populism is more susceptible to institutional constraint than its right-wing counterpart
+- C) Acknowledge that scholarly debate exists about whether the paradox is an inherent feature of populist logic or is contingent on institutional context
+- D) Argue that the best prescription for populism is investment in civil society organizations and judicial independence
+- E) Demonstrate that the populist paradox framework is fundamentally flawed and has been discredited by empirical evidence
+
+**answer:** C
+**fastest_path:** ¶3 opens with "not all scholars accept" and closes with "others remain skeptical" — a two-sided presentation without resolution. Function = present the debate's terms, not settle it.
+**explanation:** ¶3 offers two positions: some scholars say robust institutions constrain populism; others say populist logic generates erosion incentives regardless. The author presents both sides without resolving the dispute. The function is to introduce the contested question of inevitability versus contingency — not to endorse, prescribe, or refute.
+**mistake_a:** Endorsement — the passage presents both sides with equal weight; "not all scholars accept" and "others remain skeptical" are given parallel treatment. No endorsement is offered.
+**mistake_b:** Left vs. right — this distinction is introduced in ¶1 and not revisited in ¶3. The ¶3 debate is about institutional strength vs. inherent logic, not party ideology.
+**mistake_d:** Prescription — one side of the ¶3 debate mentions civil society and judicial review, but the author is reporting the scholarly debate, not advocating the prescription.
+**mistake_e:** *Overstatement* — the skeptical view challenges the *universality* of the paradox, not its existence. "Fundamentally flawed and discredited" is much stronger than what the passage conveys.
+**common_trap:** Picking (D) — it accurately describes one scholarly camp's position, but the question asks about the author's *purpose* in including the paragraph, which is to present the debate, not to advocate the solution one side offers.
+**takeaway:** Function of a debate paragraph = presenting the contested question, not resolving it. Don't attribute endorsement to the side mentioned last or described more concretely.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 24: Mirror Neurons and Empathy
+
+The discovery of mirror neurons in the early 1990s seemed to offer neuroscience what researchers had long sought: a cellular mechanism for the human capacity for empathy and social learning. Italian scientists studying macaque monkeys observed that certain neurons in the premotor cortex fired both when the monkey performed a specific action and when it merely observed another individual performing the same action. Subsequent imaging studies appeared to identify analogous circuits in humans. For a time, mirror neurons were celebrated as a neurological explanation for everything from imitation learning and language acquisition to art appreciation and, most controversially, the social deficits characteristic of autism spectrum disorder.
+
+These expansive claims attracted significant scrutiny. Critics noted that the evidence for human mirror neurons rested largely on indirect neuroimaging data rather than single-neuron recordings, the gold standard used in the macaque studies. More fundamentally, the logical leap from "a neuron that responds to observed actions" to "the biological basis of empathy" requires numerous intermediate steps, each contested. Empathy involves not merely perceiving others' actions but modeling their internal states, intentions, and emotions — functions that implicate far wider cortical and subcortical networks than a premotor resonance mechanism could plausibly subserve alone.
+
+The "broken mirror theory" of autism — the hypothesis that social difficulties in autism stem from dysfunctional mirror neuron systems — has fared particularly poorly. Multiple independent studies using rigorous methodologies have failed to find consistent evidence of impaired mirror neuron activity in autistic individuals, and autism researchers now largely attribute the condition to differences in broader social cognition networks rather than to a single cellular mechanism. The mirror neuron episode illustrates a recurring pattern in cognitive neuroscience: a striking laboratory finding generates premature interpretive enthusiasm before the harder work of establishing causal mechanisms is completed.
+
+### Q87
+**difficulty:** Easy
+**type:** Specific Detail
+**topic:** Reading Comprehension
+
+According to the passage, mirror neurons were first observed in:
+
+- A) Human patients undergoing neurosurgical procedures for the treatment of movement disorders
+- B) Autistic individuals in a clinical research setting designed to study social cognition
+- C) Laboratory mice conditioned to imitate gestures performed by human researchers
+- D) Macaque monkeys, during experiments examining premotor cortex activity
+- E) Brain imaging studies of human volunteers engaged in cooperative social tasks
+
+**answer:** D
+**fastest_path:** ¶1 states: "Italian scientists studying macaque monkeys observed that certain neurons in the premotor cortex fired both when the monkey performed a specific action and when it merely observed another individual." Subject = macaques.
+**explanation:** The passage is explicit: Italian scientists studying macaque monkeys discovered mirror neurons when they observed premotor cortex neurons responding both to self-performed and observed actions. (D) is the direct paraphrase.
+**mistake_a:** Human surgical patients — no; the original discovery was in macaques, not in human clinical settings.
+**mistake_b:** Autistic individuals — the broken mirror theory applied mirror neuron concepts to autism later; the original discovery had nothing to do with autism patients.
+**mistake_c:** Laboratory mice — fabricated; the passage names macaques, not rodents.
+**mistake_e:** Brain imaging of humans — ¶1 distinguishes this: human evidence came from "subsequent imaging studies" *after* the original macaque discovery. The original finding used single-neuron recordings in macaques, not human imaging.
+**common_trap:** Picking (E) because brain imaging studies are mentioned and feel more modern and scientific — but ¶1 sequences the discovery (macaques first, human imaging second). The original discovery is the question's subject.
+**takeaway:** Specific Detail with a temporal sequence = identify whether the question asks about the original event or a subsequent development. "First observed" anchors to the macaque finding, not the later human imaging.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q88
+**difficulty:** Medium
+**type:** Inference
+**topic:** Reading Comprehension
+
+The passage implies that evidence for mirror neurons in humans is methodologically weaker than the evidence from macaque studies primarily because:
+
+- A) Human brains are structurally more complex, making precise localization of mirror neuron circuits technically difficult
+- B) Mirror neuron activity is inherently harder to detect in primate species with more developed prefrontal cortices
+- C) Researchers have been unable to find human subjects who display behavioral patterns equivalent to those documented in mirror neuron-implicated macaques
+- D) Human mirror neurons appear to reside in a different cortical region than the premotor areas studied in macaques
+- E) Human studies have relied on indirect neuroimaging data rather than the direct single-neuron recordings that established the macaque findings
+
+**answer:** E
+**fastest_path:** ¶2 names the methodological gap explicitly: "the evidence for human mirror neurons rested largely on indirect neuroimaging data rather than single-neuron recordings, the gold standard used in the macaque studies."
+**explanation:** ¶2 makes the methodological contrast precise: macaque work used single-neuron recordings (gold standard); human work used neuroimaging (indirect). (E) quotes this contrast.
+**mistake_a:** Structural complexity of human brains — a plausible inference, but not what the passage says. The passage's critique is about measurement technique, not anatomical complexity.
+**mistake_b:** Prefrontal cortex development — not mentioned; the passage focuses on recording method, not neural architecture.
+**mistake_c:** Behavioral equivalence testing — not discussed; the passage's critique is about measurement method, not behavioral demonstration.
+**mistake_d:** Different cortical location — not stated. The passage implies the same type of premotor areas are studied; the issue is how they are measured, not where.
+**common_trap:** Picking (A) because "human brains are more complex" sounds scientifically plausible and relevant — but the passage makes a narrow methodological point about indirect versus direct measurement, not a claim about anatomical complexity.
+**takeaway:** Inference on a methodological critique = stay tightly within the specific critique the passage articulates. Passage says "indirect vs. direct recording"; don't substitute a more intuitive but unmentioned explanation.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q89
+**difficulty:** Hard
+**type:** Inference
+**topic:** Reading Comprehension
+
+The author's overall tone toward the mirror neuron hypothesis and its applications can best be described as:
+
+- A) Critically analytical, acknowledging the genuine interest of the original finding while systematically cataloguing the interpretive overreaches and empirical failures that followed
+- B) Dismissive, suggesting the mirror neuron hypothesis was always implausible and that scientific attention to it was wasted
+- C) Enthusiastic but cautious, describing the discovery's explanatory potential while urging researchers to proceed carefully
+- D) Neutral and impartial, presenting claims and counterclaims without indicating a preferred view
+- E) Polemical, arguing that the researchers who made expansive mirror neuron claims acted in scientific bad faith
+
+**answer:** A
+**fastest_path:** The passage treats the original macaque finding as real and interesting ("seemed to offer... what researchers had long sought"), then methodically dismantles the expanded claims. Final sentence: "premature interpretive enthusiasm." Critical but not dismissive — (A) matches exactly.
+**explanation:** The passage's arc: (1) acknowledges the original discovery's appeal, (2) details two methodological and logical failures, (3) explains the broken mirror theory's empirical collapse, (4) explicitly calls the episode "premature interpretive enthusiasm." This is critical but measured — the original finding is not dismissed, only its overextension. (A) captures this nuance.
+**mistake_b:** Dismissive — the original macaque finding is treated as genuine and significant; the author only criticizes the leap to broader applications. "Always implausible" is contradicted by ¶1's description of the discovery's initial appeal.
+**mistake_c:** Enthusiastic — the author's dominant register is critical; ¶2 and ¶3 systematically dismantle the major claims. The passage contains no encouragement to pursue mirror neuron research further.
+**mistake_d:** Neutral — the final sentence, "premature interpretive enthusiasm," is an evaluative judgment that reveals the author's critical stance. A truly neutral passage would not use this phrase.
+**mistake_e:** Polemical and fraud — the author attributes overreach to enthusiasm, not to dishonesty. Polemical writing attacks motives; this passage critiques methods and logical leaps.
+**common_trap:** Picking (D) because the passage presents both the claims and their critique — but tone questions require identifying the author's evaluative stance, not just noting that multiple views appear. "Premature interpretive enthusiasm" is the tone marker.
+**takeaway:** Tone questions = find the author's evaluative language. "Premature interpretive enthusiasm" is a critical phrase, not a neutral one; it anchors the author's position.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q90
+**difficulty:** Hard
+**type:** Application
+**topic:** Reading Comprehension
+**trap_type:** partial-fix trap
+
+The passage identifies two distinct weaknesses in the mirror neuron theory of empathy. Based on those weaknesses, which of the following research findings would, if confirmed, most substantially strengthen the theory?
+
+- A) A neuroimaging study demonstrating that mirror neuron activation correlates strongly with self-reported feelings of compassion in human subjects
+- B) Single-neuron recordings in human subjects confirming that specific neurons respond both to performing and to observing emotionally significant actions, combined with causal evidence linking those neurons to the full range of emotion-modeling capacities that constitute empathy
+- C) A study demonstrating that autistic individuals show mirror neuron activation patterns indistinguishable from those of non-autistic individuals
+- D) Paleontological evidence that mirror neuron circuits evolved earlier in mammalian phylogeny than previously estimated
+- E) A successful replication of the original Italian macaque single-neuron findings in a second, unrelated primate species
+
+**answer:** B
+**fastest_path:** ¶2 names two weaknesses: (1) human evidence is indirect imaging, not single-neuron recordings; (2) logical gap between "responds to observed actions" and "biological basis of empathy." The answer must fix *both*. Only (B) does — single-neuron recordings for (1), causal evidence for the full emotion-modeling range for (2).
+**explanation:** ¶2 identifies the theory's two vulnerabilities: methodological (indirect imaging, not single-neuron recordings) and logical (the gap between action-perception and full empathy modeling). A finding that substantially strengthens the theory must close both gaps. (B) addresses both: direct single-neuron recordings in humans (closes gap 1) plus causal evidence for the full empathy range (closes gap 2). No other choice addresses both.
+**mistake_a:** *Partial fix only* — neuroimaging remains indirect (gap 1 persists), and correlation does not establish the causal mechanism gap 2 requires. This is the most tempting wrong answer because it sounds like strong evidence.
+**mistake_c:** *Wrong sub-hypothesis* — the broken mirror theory of autism is a specific application, not the core empathy theory. Showing autistic individuals have normal mirror neuron activity might vindicate them from one critique but does not strengthen the general empathy mechanism.
+**mistake_d:** Evolutionary timing — phylogenetic history is irrelevant to either the methodological weakness (measurement technique) or the logical weakness (action-perception vs. empathy gap). Earlier evolution doesn't close either gap.
+**mistake_e:** Macaque replication — the macaque finding is not disputed; ¶1 treats it as established. Replicating an undisputed finding in another species does nothing for the human evidence gap or the empathy mechanism gap.
+**common_trap:** Picking (A) — it sounds strong because it links mirror neuron activation directly to compassion, but (1) it still uses imaging (indirect), and (2) correlation ≠ causation and doesn't demonstrate that the neurons subserve the full emotion-modeling range. (A) is the "looks like evidence but fixes neither problem" trap.
+**takeaway:** Challenge Application = the question tells you the weaknesses; your job is to find the answer that fixes *all named weaknesses*, not just the most salient one. Partial fixes are deliberate trap answers.
