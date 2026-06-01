@@ -999,3 +999,477 @@ From the statements below, identify the one that most strengthens the economist'
 **common_trap:** Picking the cross-country study as the strongest strengthener because it provides empirical evidence — but it confirms a stated step. The 60% statistic closes the critical unstated gap.
 **takeaway:** In multi-step causal chains, the strongest strengthener closes an implicit gap; the most critical flaw disrupts a stated link (often via substitution or confounding).
 **related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Markup and Profit
+
+A store marks up all items by 40% over the wholesale cost. A jacket costs the store $75 wholesale. Determine the store's selling price for the jacket (column 1) and the store's profit on the jacket (column 2).
+
+|        | Selling Price | Profit |
+|--------|---------------|--------|
+| $30    |               |        |
+| $75    |               |        |
+| $100   |               |        |
+| $105   |               |        |
+| $150   |               |        |
+
+**answer:** Selling Price = $105, Profit = $30
+**fastest_path:** Selling price = 75 × 1.40 = 105. Profit = 105 − 75 = 30.
+**explanation:** A 40% markup on the $75 wholesale cost means Selling Price = $75 × 1.40 = $105. Profit = Selling Price − Cost = $105 − $75 = $30. The 40% markup applies to the cost base, not to the selling price. Each percentage change always applies to the base at that step.
+**mistake_a:** $30 — that is the profit, not the selling price. Column 1 asks for selling price.
+**mistake_b:** $75 — the wholesale cost itself; the markup has not been applied.
+**mistake_c:** $100 — applies a flat $25 addition or uses incorrect arithmetic on 40% of something other than the cost.
+**mistake_e:** $150 — applies a 100% markup (doubling the cost) instead of 40%.
+**common_trap:** Confusing the profit ($30) with the selling price ($105). Re-read which column asks for which quantity before selecting.
+**takeaway:** Markup on cost: Selling Price = Cost × (1 + markup%). Profit = Selling Price − Cost.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Weighted Average
+
+A class consists of 20 students who scored an average of 70 on a test and 30 students who scored an average of 85. Let T be the total points scored by all 50 students and let A be the weighted average score for the entire class.
+
+|       | T (total points) | A (weighted avg) |
+|-------|------------------|------------------|
+| 75    |                  |                  |
+| 77.5  |                  |                  |
+| 79    |                  |                  |
+| 3,750 |                  |                  |
+| 3,950 |                  |                  |
+
+**answer:** T = 3,950, A = 79
+**fastest_path:** T = 20×70 + 30×85 = 1,400 + 2,550 = 3,950. A = 3,950 / 50 = 79.
+**explanation:** Total points T = (20 × 70) + (30 × 85) = 1,400 + 2,550 = 3,950. Weighted average A = 3,950 / 50 = 79. The simple (unweighted) average of 70 and 85 is 77.5, but that ignores the larger group. Since 30 students scored 85 versus only 20 who scored 70, the class average is pulled toward 85, landing at 79.
+**mistake_a:** 75 — midpoint computed by a different (incorrect) method.
+**mistake_b:** 77.5 — the simple average of the two group averages; forgets to weight by group size.
+**mistake_d:** 3,750 — computing 50 × 75 (uses the wrong average) or an arithmetic slip.
+**common_trap:** Taking the arithmetic mean of the two group averages (77.5) without weighting by group size. Weighted average always requires computing each group's total first.
+**takeaway:** Weighted average = (sum of all values) / (total count). Compute each group's contribution separately, then divide by the overall count.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — System of Equations
+
+Two positive integers sum to 24 and differ by 8. Let L be the larger integer and let S be the smaller integer.
+
+|     | L (larger) | S (smaller) |
+|-----|------------|-------------|
+| 6   |            |             |
+| 8   |            |             |
+| 12  |            |             |
+| 16  |            |             |
+| 20  |            |             |
+
+**answer:** L = 16, S = 8
+**fastest_path:** L + S = 24 and L − S = 8. Add the equations: 2L = 32 → L = 16, S = 8.
+**explanation:** Two equations: L + S = 24 and L − S = 8. Adding eliminates S: 2L = 32 → L = 16. Back-substituting: S = 24 − 16 = 8. Verify: 16 + 8 = 24 ✓ and 16 − 8 = 8 ✓. Both are positive integers ✓.
+**mistake_a:** 6 — a pair (18, 6) sums to 24 but differs by 12, not 8.
+**mistake_c:** 12 — the equal-split of 24 gives difference = 0, not 8.
+**mistake_e:** 20 — the pair (20, 4) differs by 16, not 8.
+**common_trap:** Guessing a split that sums to 24 without checking the difference. Always verify both conditions simultaneously.
+**takeaway:** For "sum = X, difference = Y": L = (X + Y)/2, S = (X − Y)/2. This formula avoids setting up full equations.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Multi-Segment Rate
+
+A cyclist rides at 15 mph for 2 hours, rests for 30 minutes, then rides at 20 mph for 1.5 hours. Let D be the total distance traveled in miles (column 1) and let T be the total elapsed time in hours including the rest (column 2).
+
+|         | D (total distance) | T (total time) |
+|---------|--------------------|----------------|
+| 30 mi   |                    |                |
+| 45 mi   |                    |                |
+| 60 mi   |                    |                |
+| 3.5 hrs |                    |                |
+| 4 hrs   |                    |                |
+| 4.5 hrs |                    |                |
+
+**answer:** D = 60 mi, T = 4 hrs
+**fastest_path:** D = 15×2 + 20×1.5 = 30 + 30 = 60. T = 2 + 0.5 + 1.5 = 4.
+**explanation:** Distance in segment 1 = 15 × 2 = 30 miles. Distance in segment 2 = 20 × 1.5 = 30 miles. Total D = 60 miles. Total time T = 2 hours riding + 0.5 hours rest + 1.5 hours riding = 4 hours. The rest period adds to elapsed time but not to distance.
+**mistake_a:** 30 mi — only the first segment's distance; omits the second segment.
+**mistake_b:** 45 mi — partial sum or wrong rate applied to one segment.
+**mistake_d:** 3.5 hrs — omitting the 30-minute rest from total elapsed time (2 + 1.5 = 3.5).
+**mistake_f:** 4.5 hrs — double-counting the rest period.
+**common_trap:** Forgetting to include the 30-minute rest in total elapsed time. Rest adds to clock time but contributes zero distance.
+**takeaway:** Multi-segment trips: D = sum of (rate × time) for each moving segment only. T = sum of ALL time including stops.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q40
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Logic — Inference vs. Causal Claim
+
+A company survey reports: "Among employees who participated in the voluntary wellness program last year, absentee rates dropped 12% compared with the prior year. Among non-participants, absentee rates dropped 11%."
+
+From the statements below, select the one that can be properly concluded from the data alone (column 1) and the one that best explains why the data do not establish that the program caused the reduction in absenteeism (column 2).
+
+| Statement                                                                                          | Can Conclude | Why Not Causal |
+|----------------------------------------------------------------------------------------------------|--------------|----------------|
+| Absentee rates declined for both participants and non-participants                                 |              |                |
+| A comparable decline in non-participants suggests an external factor may explain the overall trend |              |                |
+| The wellness program reduced absenteeism by improving employee health habits                       |              |                |
+| Mandatory enrollment in the program would eliminate absenteeism entirely                           |              |                |
+| Participants tend to be more health-conscious than non-participants before joining the program     |              |                |
+
+**answer:** Can Conclude = "Absentee rates declined for both participants and non-participants"; Why Not Causal = "A comparable decline in non-participants suggests an external factor may explain the overall trend"
+**fastest_path:** Can conclude = direct reading of the two reported numbers (both groups dropped). Why not causal = the near-equal drop in non-participants is an internal counter-signal embedded in the given data.
+**explanation:** The data explicitly state that both groups had declining absentee rates (12% vs 11%). That is directly inferable. The causal claim fails because non-participants saw nearly the same decline — if the program caused the drop, non-participants should not have improved similarly. Row 3 asserts a mechanism not in the data. Row 4 is prescriptive and extreme. Row 5 raises self-selection but is speculative — the survey does not report pre-program health data.
+**mistake_c:** Asserts a causal mechanism (health habits) that is not stated in the survey.
+**mistake_d:** "Eliminate entirely" is far beyond what the data show and requires additional assumptions.
+**mistake_e:** Self-selection is a plausible confound in general, but it is not established by the data reported — row 2 is grounded in what the data actually show.
+**common_trap:** Choosing row 5 (self-selection) as the reason causation fails. While plausible, row 2 is grounded in the data itself — the non-participant decline is the visible internal counter-signal.
+**takeaway:** The strongest "why not causal" uses evidence already in the data (a near-equal control-group decline), not speculative confounders that are merely possible.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Overlapping Sets (Three Groups)
+
+In a group of 100 students, 55 study Math, 40 study English, and 35 study Science. 20 study both Math and English, 15 study both English and Science, 18 study both Math and Science, and 5 study all three subjects. Let N be the number of students who study none of the three subjects and let E be the number who study exactly one subject.
+
+|     | N (none) | E (exactly one) |
+|-----|----------|-----------------|
+| 5   |          |                 |
+| 18  |          |                 |
+| 25  |          |                 |
+| 39  |          |                 |
+| 42  |          |                 |
+
+**answer:** N = 18, E = 39
+**fastest_path:** Union = 55+40+35−20−15−18+5 = 82. N = 100−82 = 18. Math-only=22, Eng-only=10, Sci-only=7 → E = 39.
+**explanation:** Inclusion-exclusion: |M∪E∪S| = 55+40+35−20−15−18+5 = 82. N = 100−82 = 18. Exactly-one counts: Math-only = 55−20−18+5 = 22; English-only = 40−20−15+5 = 10; Science-only = 35−15−18+5 = 7. E = 22+10+7 = 39. Verify: exactly-two = (20−5)+(15−5)+(18−5) = 15+10+13 = 38. Total = 39+38+5+18 = 100 ✓.
+**mistake_a:** 5 — the all-three count; confused with none.
+**mistake_c:** 25 — omitting the +5 add-back in the inclusion-exclusion formula, causing the union to be underestimated.
+**mistake_e:** 42 — computing exactly-one without properly subtracting pairwise overlaps from each group.
+**common_trap:** Forgetting to add back the triple-overlap in the inclusion-exclusion formula, which over-subtracts the union and inflates N.
+**takeaway:** 3-group inclusion-exclusion: |A∪B∪C| = |A|+|B|+|C|−|A∩B|−|B∩C|−|A∩C|+|A∩B∩C|. Exactly-one = each group minus its paired overlaps plus the triple-overlap.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Consecutive Integers
+
+The product of three consecutive positive integers equals 6 times the largest of the three integers. Let A be the smallest of the three integers and let P be their product.
+
+|     | A (smallest) | P (product) |
+|-----|--------------|-------------|
+| 1   |              |             |
+| 2   |              |             |
+| 3   |              |             |
+| 6   |              |             |
+| 24  |              |             |
+| 60  |              |             |
+
+**answer:** A = 2, P = 24
+**fastest_path:** n(n+1)(n+2) = 6(n+2). Divide by (n+2): n(n+1) = 6 → n²+n−6 = 0 → (n−2)(n+3) = 0 → n = 2. P = 2×3×4 = 24.
+**explanation:** Let the three integers be n, n+1, n+2. Equation: n(n+1)(n+2) = 6(n+2). Since n+2 > 0, divide both sides: n(n+1) = 6 → n²+n−6 = 0 → (n−2)(n+3) = 0. Only n = 2 is a positive integer. The three integers are 2, 3, 4. P = 24. Verify: 2×3×4 = 24 = 6×4 ✓.
+**mistake_a:** 1 — testing n=1: product = 1×2×3 = 6, but 6 × (largest) = 6×3 = 18 ≠ 6. Fails.
+**mistake_c:** 3 — testing n=3: product = 3×4×5 = 60, but 6×5 = 30 ≠ 60. Fails.
+**mistake_d:** 6 — confusing the multiplier (6) with the smallest integer.
+**mistake_f:** 60 — the product for n=3, which does not satisfy the equation.
+**common_trap:** Testing n=1 first because 1×2×3 = 6 "feels right," but the condition requires the product to equal 6 times the largest integer (6×3 = 18), not just 6.
+**takeaway:** Factor out the common term (n+2) to reduce the cubic equation to a quadratic. Always verify the solution satisfies the original equation.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Coordinate Geometry
+
+Line L passes through the points (2, 5) and (8, 17). Let S be the slope of line L and let Y be the y-intercept of line L.
+
+|     | Slope S | Y-intercept Y |
+|-----|---------|---------------|
+| 0.5 |         |               |
+| 1   |         |               |
+| 2   |         |               |
+| 5   |         |               |
+| 6   |         |               |
+
+**answer:** S = 2, Y = 1
+**fastest_path:** S = (17−5)/(8−2) = 12/6 = 2. Back-substitute: 5 = 2(2)+b → b = 1.
+**explanation:** Slope = rise/run = (17−5)/(8−2) = 12/6 = 2. Using point (2, 5) in y = Sx + b: 5 = 2(2) + b → b = 1. Equation: y = 2x + 1. Verify with (8, 17): 2(8)+1 = 17 ✓. The y-intercept is 1, not 5 — a common error is treating a given point's y-coordinate as the y-intercept without substituting x = 0.
+**mistake_a:** 0.5 — inverting slope: run/rise = 6/12 instead of rise/run.
+**mistake_d:** 5 — the y-coordinate of the given point (2, 5) mistaken for the y-intercept. The y-intercept requires x = 0.
+**mistake_e:** 6 — the horizontal distance (run = 8−2 = 6) used as a final answer instead of as a denominator.
+**common_trap:** Using a given point's y-coordinate (5) as the y-intercept. The y-intercept is only equal to a point's y-coordinate when that point has x = 0.
+**takeaway:** Slope = (y₂−y₁)/(x₂−x₁). Y-intercept: substitute either known point into y = Sx + b and solve for b.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Sequential Percentage Changes
+
+A stock's price fell 20% in January, rose 25% in February, and then fell 10% in March. The final price after all three changes is $90. Let P be the stock's starting price (column 1) and let C be the overall percentage change from start to finish (column 2).
+
+|        | P (starting price) | C (overall % change) |
+|--------|-------------------|----------------------|
+| $80    |                   |                      |
+| $90    |                   |                      |
+| $100   |                   |                      |
+| +5%    |                   |                      |
+| −5%    |                   |                      |
+| −10%   |                   |                      |
+
+**answer:** P = $100, C = −10%
+**fastest_path:** Multipliers: 0.80×1.25×0.90 = 0.90. So 0.90P = $90 → P = $100. C = −10%.
+**explanation:** Sequential multipliers: Jan ×0.80, Feb ×1.25, Mar ×0.90. Combined: 0.80×1.25 = 1.00 (Jan and Feb exactly cancel). Then ×0.90 means final = 0.90P. Setting 0.90P = $90 gives P = $100. Overall change = −10%. Key insight: −20% then +25% nets to exactly zero because the +25% applies to the reduced base ($80), not the original.
+**mistake_a:** $80 — miscomputing the combined multiplier as 0.80 instead of 0.90.
+**mistake_b:** $90 — thinking the Jan/Feb changes don't cancel, then setting P equal to the final price.
+**mistake_d:** +5% — adding percentages: −20+25−10 = −5% (even with the sign reversed).
+**mistake_e:** −5% — adding all three changes: −20+25−10 = −5. Arithmetic is correct but the method is wrong.
+**common_trap:** Adding percentage changes: −20+25−10 = −5%. This is wrong. 0.80×1.25 = 1.00, not 1.05. Sequential changes multiply; they never add.
+**takeaway:** Chain of percentage changes: convert each to a multiplier and multiply them. Never add percentage changes — each applies to an updated base.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Compound Interest
+
+An investment of $2,000 earns interest compounded annually at a rate of 10% per year. Let V be the value of the investment after 2 years (column 1) and let I be the total interest earned over those 2 years (column 2).
+
+|        | V (value after 2 yrs) | I (interest earned) |
+|--------|----------------------|---------------------|
+| $400   |                      |                     |
+| $420   |                      |                     |
+| $2,400 |                      |                     |
+| $2,420 |                      |                     |
+| $4,000 |                      |                     |
+
+**answer:** V = $2,420, I = $420
+**fastest_path:** V = 2,000×(1.10)² = 2,000×1.21 = $2,420. I = $2,420−$2,000 = $420.
+**explanation:** Year 1: $2,000×1.10 = $2,200. Year 2: $2,200×1.10 = $2,420. Total interest I = $2,420−$2,000 = $420. Under simple interest, Year 1 and Year 2 both earn $200, giving V = $2,400 and I = $400. Compounding adds an extra $20 in Year 2 because it earns interest on the $200 first-year interest as well as the principal.
+**mistake_a:** $400 — simple interest for 2 years: 2×10%×$2,000 = $400; forgets that Year 2 earns interest on $2,200.
+**mistake_c:** $2,400 — simple interest value; misses the compounding effect.
+**mistake_e:** $4,000 — doubling the principal; applies a 100% rate, not 10%.
+**common_trap:** Using simple interest (2×$200 = $400) instead of compound. The difference here is only $20, but the concept is fundamental: compounded interest earns interest on prior interest.
+**takeaway:** Compound: V = P×(1+r)ⁿ. Simple: V = P×(1+r×n). Verify by computing year-by-year when n is small.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Logic — Evaluating an Argument
+
+A school principal argues: "Students enrolled in our after-school tutoring program earn higher grades than students who do not enroll. Therefore, requiring all students to attend tutoring will raise the school's average grade."
+
+From the statements below, identify the primary logical flaw in the principal's argument (column 1) and the evidence that would most directly resolve that flaw (column 2).
+
+| Statement                                                                                                     | Primary Flaw | Resolves Flaw |
+|---------------------------------------------------------------------------------------------------------------|--------------|---------------|
+| Students who choose tutoring may already be more motivated, making the grade gap a result of motivation rather than tutoring |              |               |
+| Tutoring programs are expensive and the school's budget is limited                                            |              |               |
+| A randomized study assigned half of a school's students to mandatory tutoring and found their grades rose by 9 points on average |              |               |
+| The tutoring program covers only certain subjects and may not improve grades across all coursework            |              |               |
+| Some students may perform worse when tutoring is mandatory because it reduces their sense of autonomy         |              |               |
+
+**answer:** Primary Flaw = "Students who choose tutoring may already be more motivated, making the grade gap a result of motivation rather than tutoring"; Resolves Flaw = "A randomized study assigned half of a school's students to mandatory tutoring and found their grades rose by 9 points on average"
+**fastest_path:** Flaw = self-selection: motivated students choose tutoring AND earn better grades, so tutoring may tag motivation rather than cause improvement. Resolution = RCT removes self-selection by randomly assigning attendance, isolating tutoring's effect.
+**explanation:** The argument leaps from an observed correlation to a causal prescription. The primary flaw is self-selection: students who volunteer for tutoring are likely already more motivated or better-resourced, which independently predicts higher grades. A randomized controlled study directly resolves this — when assignment is random, self-selection is eliminated and any remaining grade difference is attributable to tutoring itself. Row 2 is a resource constraint, not a logical flaw. Row 4 is a scope limitation that does not address the causal inference. Row 5 introduces a potential backfire but does not diagnose the original correlation-vs-causation gap.
+**mistake_b:** A practical budget concern, not a flaw in the causal reasoning.
+**mistake_d:** Subject coverage does not explain why the observed correlation may not be causal.
+**mistake_e:** A new risk from mandatory enrollment, not a diagnosis of the correlation-vs-causation problem.
+**common_trap:** Selecting row 5 (mandatory backfire) as the primary flaw. It introduces a new concern but does not explain why the existing correlation fails to establish causation.
+**takeaway:** When an argument moves from an observed group difference to a policy prescription, the primary flaw is almost always self-selection. Resolution requires random assignment to remove the self-selection mechanism.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q47
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Number Theory
+
+Let A be the number of distinct positive integer factors of 72 and let B be the largest prime factor of 72.
+
+|      | A (factor count) | B (largest prime factor) |
+|------|------------------|--------------------------|
+| 2    |                  |                          |
+| 3    |                  |                          |
+| 6    |                  |                          |
+| 9    |                  |                          |
+| 12   |                  |                          |
+
+**answer:** A = 12, B = 3
+**fastest_path:** 72 = 2³×3². Factor count = (3+1)(2+1) = 12. Largest prime = 3.
+**explanation:** Prime factorization: 72 = 2³×3². Number of factors formula: (3+1)(2+1) = 4×3 = 12. The twelve factors are: 1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72. The prime factors of 72 are only 2 and 3. The largest prime factor is 3. The error-prone step is confusing "largest prime factor" (the prime, 3) with "largest prime power in the factorization" (2³ = 8 or 3² = 9).
+**mistake_a:** 2 — the smaller of the two prime factors; confused smallest with largest.
+**mistake_c:** 6 — either under-counting factors or using 2×3 = 6 as a shortcut.
+**mistake_d:** 9 — the largest prime power in the factorization (3² = 9), but 9 is not itself prime.
+**common_trap:** Picking 9 as the "largest prime factor" because 3² = 9 appears in the factorization and is numerically larger than 2³ = 8. But 9 is composite — the largest prime is 3.
+**takeaway:** Factor count: if n = p₁^a × p₂^b, count = (a+1)(b+1). Largest prime factor means the largest p value, not the largest p^exponent value.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Absolute Value Equation
+
+The equation |2x − 6| = x + 3 has exactly two solutions. Let L be the larger solution and let S be the smaller solution.
+
+|     | L (larger) | S (smaller) |
+|-----|------------|-------------|
+| 1   |            |             |
+| 3   |            |             |
+| 6   |            |             |
+| 9   |            |             |
+| 12  |            |             |
+
+**answer:** L = 9, S = 1
+**fastest_path:** Case 1 (x ≥ 3): 2x−6 = x+3 → x = 9 ✓. Case 2 (x < 3): −(2x−6) = x+3 → x = 1 ✓.
+**explanation:** Case 1: assume 2x−6 ≥ 0 (x ≥ 3). Then 2x−6 = x+3 → x = 9. Check: 9 ≥ 3 ✓ and |18−6| = 12 = 9+3 ✓. Case 2: assume 2x−6 < 0 (x < 3). Then −(2x−6) = x+3 → −2x+6 = x+3 → 3 = 3x → x = 1. Check: 1 < 3 ✓ and |2−6| = 4 = 1+3 ✓. Both solutions are valid: L = 9, S = 1.
+**mistake_b:** 3 — the case boundary, not a solution. At x=3: |6−6| = 0 but 3+3 = 6 ≠ 0. Not valid.
+**mistake_c:** 6 — arithmetic slip in Case 1 (e.g., solving x+3 incorrectly or using the boundary as a solution).
+**mistake_e:** 12 — the intermediate value |2(9)−6| = 12 mistaken for the solution itself.
+**common_trap:** Solving only Case 1 and missing the second solution entirely; or identifying x = 3 (the boundary) as a solution without substituting back into the original equation.
+**takeaway:** Absolute value equations always require two cases. After solving each case, verify the solution satisfies both the case inequality AND the original equation. Never assume a boundary value is a solution.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Divisibility and Modular Arithmetic
+
+The integer N satisfies all three conditions: (1) 100 < N < 200, (2) N is divisible by 6, and (3) when N is divided by 5, the remainder is 3. Let F be the smallest value of N satisfying all three conditions and let G be the total count of integers satisfying all three conditions.
+
+|     | F (smallest N) | G (total count) |
+|-----|----------------|-----------------|
+| 3   |                |                 |
+| 4   |                |                 |
+| 6   |                |                 |
+| 108 |                |                 |
+| 198 |                |                 |
+
+**answer:** F = 108, G = 4
+**fastest_path:** N ≡ 0 (mod 6) and N ≡ 3 (mod 5) → N = 30k+18. Range 100 < N < 200: k = 3,4,5,6 → 4 values; smallest is 108.
+**explanation:** N = 6j for some integer j (divisible by 6), and 6j ≡ 3 (mod 5). Since 6 ≡ 1 (mod 5), this gives j ≡ 3 (mod 5), so j = 5k+3 and N = 6(5k+3) = 30k+18. Applying the range: 100 < 30k+18 < 200 → 82 < 30k < 182 → 2.73 < k < 6.07 → k = 3, 4, 5, 6. Values: N = 108, 138, 168, 198. All four lie strictly between 100 and 200. F = 108, G = 4.
+**mistake_a:** 3 — the remainder condition from dividing by 5; confused with the count.
+**mistake_c:** 6 — the divisibility modulus from condition 2; not the count.
+**mistake_e:** 198 — the largest qualifying value; the question asks for the smallest.
+**common_trap:** Counting only 3 values by excluding 198 — but 198 < 200 satisfies the strict upper bound. "Between 100 and 200" means 100 < N < 200, and 198 qualifies.
+**takeaway:** Combine two modular conditions by finding the combined cycle (LCM of moduli = 30) and the base offset (18). Then list all values in the range and count carefully at strict vs. inclusive boundaries.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Logic — Analogical Transfer and Parallel Arguments
+
+A city council argues: "Cities that banned single-use plastic bags saw a 30% reduction in plastic waste. Our city faces a similar waste management challenge, so banning plastic bags here will reduce our plastic waste by a comparable amount."
+
+From the statements below, identify the most critical unstated assumption the argument requires (column 1) and the argument that contains a structurally parallel flaw (column 2).
+
+| Statement                                                                                                                | Critical Assumption | Parallel Flaw |
+|--------------------------------------------------------------------------------------------------------------------------|---------------------|---------------|
+| The reference cities and our city are sufficiently similar in consumer behavior and waste infrastructure for the results to transfer |                     |               |
+| The bag ban will not cause residents to shift to alternatives that generate equivalent or greater waste                  |                     |               |
+| A physician concludes that because a drug reduced blood pressure in clinical trial patients, it will reduce blood pressure in all patients regardless of differing medical histories |                     |               |
+| The 30% waste reduction is large enough to justify the economic disruption a ban would cause                            |                     |               |
+| A school principal concludes that because students who own laptops score higher, issuing laptops to all students will raise scores |                     |               |
+
+**answer:** Critical Assumption = "The reference cities and our city are sufficiently similar in consumer behavior and waste infrastructure for the results to transfer"; Parallel Flaw = "A physician concludes that because a drug reduced blood pressure in clinical trial patients, it will reduce blood pressure in all patients regardless of differing medical histories"
+**fastest_path:** Core assumption = the analogy holds (study cities ≈ our city). Parallel flaw = physician argument: trial results assumed to transfer to all patients despite possible population differences — same analogical-transfer structure.
+**explanation:** The argument's logic is "it worked in other cities → it will work here." This requires assuming that the reference cities are comparable to our city. Without that, the 30% finding cannot be projected onto a different context. Row 2 is an additional assumption (no waste substitution) but not the one enabling the cross-city comparison itself. The structural parallel is the physician argument: it assumes clinical-trial results (from a specific study population) apply to all patients (a different population), which is the same logical move — results from group A assumed to transfer to group B without establishing comparability. Row 5 (laptop policy) has a self-selection flaw, not an analogical-transfer flaw, making it structurally different.
+**mistake_b:** A valid supplementary assumption but not the assumption enabling the city-to-city analogy.
+**mistake_d:** A cost-benefit concern, not a logical assumption embedded in the argument structure.
+**mistake_e:** The laptop argument commits a correlation-causation error (self-selection), not the same analogical-transfer flaw.
+**common_trap:** Picking row 5 as the parallel because it also involves a policy prescription from observed data. The flaw type differs: the principal's argument conflates correlation with causation; the council's argument conflates findings from one context with outcomes in another.
+**takeaway:** Analogical arguments require the assumption that source and target are sufficiently comparable. The structural parallel is any argument that imports study-population results to a new, possibly dissimilar population without establishing comparability.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Linear Optimization with Binding Constraints
+
+A baker has the following daily constraints: (1) total units produced ≤ 180, (2) total prep time ≤ 480 minutes, and (3) at least 60 cupcakes must be produced to fill standing orders. Each cupcake earns a profit of $3 and requires 2 minutes of prep. Each muffin earns a profit of $4 and requires 3 minutes of prep. Let C* be the cupcake count and M* be the muffin count that together maximize daily profit.
+
+|     | C* (cupcakes) | M* (muffins) |
+|-----|---------------|--------------|
+| 60  |               |              |
+| 80  |               |              |
+| 100 |               |              |
+| 120 |               |              |
+| 160 |               |              |
+
+**answer:** C* = 60, M* = 120
+**fastest_path:** Muffin profit ($4) > cupcake ($3), so minimize cupcakes: set C = 60. Then unit cap: M ≤ 120; prep cap: M ≤ (480−120)/3 = 120. Both bind at M = 120. Profit = 180+480 = $660.
+**explanation:** To maximize 3c+4m, shift as many units as possible to the higher-margin muffin. The lower bound forces c ≥ 60; set c = 60 (its minimum). Unit constraint: 60+m ≤ 180 → m ≤ 120. Prep constraint: 2(60)+3m ≤ 480 → m ≤ 120. Both constraints bind simultaneously at m = 120. Profit = 3(60)+4(120) = $660. Any increase in c above 60 slides m down by 1 unit and reduces profit: at (61, 119), profit = $183+$476 = $659 < $660.
+**mistake_b:** (80, 100): units 180 ✓, prep 460 ✓, profit $240+$400 = $640 < $660.
+**mistake_c:** (100, 80): units 180 ✓, prep 440 ✓, profit $300+$320 = $620 < $660.
+**mistake_e:** (60, 160): units 220 > 180 — violates the unit cap.
+**common_trap:** Guessing a balanced split (e.g., 80/100) instead of driving the lower-margin product to its minimum. When one item has strictly higher margin, it should absorb as much capacity as the constraints allow.
+**takeaway:** In two-product LP-style problems with a minimum floor on one item: set the lower-margin item to its minimum, then solve for the higher-margin item using the binding constraint(s). Always verify all constraints at the proposed solution.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q52
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Conditional Probability (Bayes' Theorem)
+
+A diagnostic test for a rare disease has a sensitivity of 90% (the probability of a positive result given the person has the disease) and a false positive rate of 8% (the probability of a positive result given the person does not have the disease). The disease affects 1% of the population being tested. A person tests positive. Let P be the probability, as a percentage rounded to the nearest whole percent, that the person actually has the disease (column 1) and let F be the expected number of false positives per 10,000 people tested (column 2).
+
+|       | P (% disease given positive) | F (false positives per 10,000) |
+|-------|------------------------------|-------------------------------|
+| 10%   |                              |                               |
+| 47%   |                              |                               |
+| 90%   |                              |                               |
+| 99    |                              |                               |
+| 792   |                              |                               |
+| 800   |                              |                               |
+
+**answer:** P = 10%, F = 792
+**fastest_path:** P(+|disease)×P(disease) = 0.009. P(+|no disease)×P(no disease) = 0.08×0.99 = 0.0792. P(disease|+) = 0.009/0.0882 ≈ 10%. F = 10,000×0.99×0.08 = 792.
+**explanation:** Using Bayes' theorem: P(disease | positive) = [P(positive | disease) × P(disease)] / P(positive). Numerator: 0.90×0.01 = 0.009. Denominator: 0.009 + (0.08×0.99) = 0.009+0.0792 = 0.0882. P(disease | positive) = 0.009/0.0882 ≈ 10.2% ≈ 10%. For false positives per 10,000: of the 9,900 disease-free people, 8% test positive → 9,900×0.08 = 792. The striking result — only ~10% chance of actually having the disease after a positive test — is driven by the low base rate (1%). Even an accurate test produces many false positives when the disease is rare.
+**mistake_b:** 47% — a computation that ignores proper base-rate weighting, e.g., sensitivity/(sensitivity+FPR) = 0.90/1.90 without incorporating prevalence.
+**mistake_c:** 90% — reading sensitivity as positive predictive value. This is base-rate neglect: 90% is P(positive | disease), not P(disease | positive).
+**mistake_d:** 99 — computing 10,000×0.01×0.99 ≈ 99 (true positives), confused with false positive count.
+**mistake_f:** 800 — computing 10,000×0.08 = 800 without restricting to disease-free individuals. False positives come only from the 9,900 non-diseased people (99%), not from all 10,000.
+**common_trap:** Equating test sensitivity (90%) with the probability of disease given a positive result. With only 1% prevalence, the 99% majority of disease-free individuals generate far more false positives than the 1% generate true positives — swamping the numerator.
+**takeaway:** Positive predictive value depends on both test accuracy AND base-rate prevalence. In rare conditions, even a sensitive test yields mostly false positives. Always multiply by the correct population fraction (disease-free, not total) when counting false positives.
+**related_reading:** reading-di-06-two-part-analysis
