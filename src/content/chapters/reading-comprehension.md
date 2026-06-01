@@ -206,6 +206,16 @@ Common paragraph roles:
 
 **The two-paragraph summary habit.** After reading, in 15 seconds or less, silently summarize each paragraph to yourself in one sentence. If you can't, re-read just that paragraph. This habit is the fastest way to confirm you built a real map rather than skimming.
 
+**Micro-drill — paragraph role classification.** The passage below is about the claim that remote work increases employee productivity. Read each excerpt and classify its paragraph role before checking the answers. Target: 8 seconds per excerpt.
+
+1. "Studies from 2020-2023 recorded a 14% average increase in output among remote software engineers compared to in-office peers."
+2. "Critics contend that this productivity gain reflects a one-time novelty effect rather than a durable improvement in working conditions."
+3. "This objection, however, ignores the compounding effect of eliminated commutes: workers who gain back 90 minutes per day convert a portion of that time into productive work."
+4. "While the evidence supports a net productivity advantage for remote work, the magnitude of the effect varies substantially across roles, industries, and managerial quality."
+5. "Together, these findings suggest that blanket return-to-office mandates sacrifice measurable productivity gains without addressing the underlying coordination challenges that motivate them."
+
+Answers: (1) **Provides evidence** — cites data supporting a claim; signal: "Studies...recorded." (2) **Raises a counterargument** — introduces an opposing view; signal: "Critics contend." (3) **Responds to the counter** — the author defends the evidence against the objection; signal: "This objection, however, ignores." (4) **Qualifies/nuances** — acknowledges limits without abandoning the main claim; signal: "While...varies substantially." (5) **Concludes/implicates** — draws a takeaway from the full argument; signal: "Together, these findings suggest." If you misclassified (3) as "provides evidence," note that (3) isn't citing new data — it's deflecting a counterargument. The signal word "however" distinguishes rebuttal from evidence.
+
 > **Recall check.** Close your eyes. State the three passes of the active-reading protocol. Now state at least three paragraph roles (introduce, state thesis, support, counter, respond, qualify, conclude — any three). This retrieval pattern is what makes "reading actively" a deliberate habit rather than a vague intention. Retrieval practice creates structural memory — re-reading creates the illusion of memory (Roediger & Karpicke, 2006).
 
 **Trap to watch.** Don't get sucked into the prose style. GMAT RC passages are written in elevated, academic diction precisely because they intimidate the weak-voiced student into careful word-by-word reading. The passages are rarely as complex as they sound. Skim if you need to, but track structure with discipline.
@@ -322,6 +332,18 @@ Implication: "Companies that rely solely on cancellation friction are less susta
 
 **Distinguishing inference from specific detail.** Specific detail = directly stated. Inference = directly implied. If the answer is an exact paraphrase of a sentence from the passage, it's specific detail (and wrong on an inference question — though that's rare, since specific-detail answers rarely appear under inference stems).
 
+**Micro-drill — "must be true" vs "could be true."** Passage says: *"Companies that adopted cloud infrastructure before 2020 reduced operating costs by an average of 22%. Those adopting after 2022 saw average savings of only 9%. Late adopters also faced higher one-time migration costs."*
+
+Classify each as **Valid inference** (must be true), **Possible** (could be true but not guaranteed), or **Invalid** (unsupported or contradicted):
+
+1. "On average, early adopters of cloud infrastructure achieved greater cost savings than late adopters."
+2. "Every company that adopted cloud before 2020 saved more than 22% on operating costs."
+3. "Late adoption reduced the net cost advantage of cloud infrastructure."
+4. "Cloud adoption will eventually lead to full elimination of operating costs for all firms."
+5. "Some companies that adopted cloud after 2022 found the investment worthwhile despite lower average savings."
+
+Answers: (1) **Valid** — directly follows from 22% > 9%. (2) **Invalid** — "every company" is universal; the passage gives an *average*, which means some companies saved less than 22%. (3) **Valid** — lower gross savings (9% vs 22%) plus higher migration costs = reduced net advantage; both facts come directly from the passage. (4) **Invalid** — massively overstates; "full elimination" is not supported by partial savings data. (5) **Possible but not Valid** — the passage doesn't address individual firms' assessments; this is consistent with the data but not guaranteed by it. If (2) tripped you, remember that an average of 22% allows the full range of individual outcomes — including companies that saved 5% or 35%. "Every" requires all cases.
+
 > **Recall check.** Close the book. State the difference between "must be true" and "could be true." Now: when is the "weakest" inference answer typically correct vs. incorrect? (Answer: the most modestly phrased inference is usually right because it's hardest to disprove; strongly-worded inferences ("always," "all") are usually wrong on RC because a single counter-scenario negates them.) Retrieval of this distinction catches 20% of inference errors.
 
 ## @application-questions
@@ -422,59 +444,67 @@ Function question: "The author mentions dark patterns in order to..."
 
 **The "at what" question.** Be specific about what the attitude is *toward*. The author might be enthusiastic about a theory but skeptical of a specific claim within it. "The author's attitude toward X" requires identifying what X is and reading the author's stance *specifically on X*.
 
+**Micro-drill — function and attitude.** For each mini-excerpt, answer both questions: (a) What function does this sentence serve? (b) What is the author's attitude toward the claim described? Target: 15 seconds per excerpt.
+
+1. "Yet despite these impressive trial results, the FDA's approval timeline remains contingent on long-term safety data that won't be available for another three years."
+2. "Earlier studies had proposed a purely genetic explanation; the new research demonstrates that environmental factors account for at least 40% of the variance."
+3. "Proponents of the policy celebrate its symbolic value, though they concede it has produced no measurable change in the underlying problem."
+
+Answers: (1) Function: **Qualifies the main claim** — the "yet...remains contingent" structure limits the scope of the positive result. Attitude: **Cautious/measured** — acknowledges the impressive results but emphasizes an outstanding hurdle. (2) Function: **Counters a previous position** — "earlier studies had proposed X; new research shows Y" sets up a contrast. Attitude: **Supportive of the new finding** — the phrasing "demonstrates" (not "suggests") gives the new result authority. (3) Function: **Raises a concession within a critique** — the author notes the symbolic value (via "proponents") but pivots to "no measurable change." Attitude: **Skeptical** of the policy's practical impact. If you got (2) wrong, the key is the word "demonstrates" — it shows the author endorses the new research's conclusion, not merely reports it.
+
 > **Recall check.** Without looking, list five positions on the attitude spectrum (enthusiastic, supportive, neutral, measured, skeptical, critical — any five). Now: which end of the spectrum is most likely the right answer on a GMAT attitude question? (Answer: the middle — cautious, measured, qualified tones. Extreme positions are rare.) This bias toward the middle is what saves you from over-picking "strongly endorses" or "harshly criticizes" answers.
 
 ## @rc-answer-choice-traps
 
-The question-type sections above teach you what each RC question is asking for. This section gives you the five answer-choice patterns that show up across every question type. Recognising them cuts elimination time in half — most wrong answers fall into one of these buckets, and the cure is the same line-citation discipline regardless of which question type you're on.
+The question-type sections above teach you what each RC question is asking for. This section gives you the five wrong-answer patterns that appear across every question type. Recognizing them as patterns lets you eliminate deliberately rather than second-guess — and the cure for all five is the same: anchor every answer to a specific passage sentence.
 
-**Trap 1: Distortion.**
+**Trap 1: Too-strong inference.**
 
-The answer says something subtly different from what the passage stated — same words, twisted meaning. The most common forms: a percentage-point change recast as a percentage change, a conditional claim recast as a universal claim, or a hedged claim ("studies suggest") recast as definitive.
+The answer makes a claim that overstates what the passage supports. Signal words: "always," "never," "all," "every," "only," "must," "impossible." RC passages are measured and hedged — universal language in an answer choice is almost always a red flag.
 
-*Example.* Passage: "Studies suggest that mycorrhizal networks transfer nutrients between plants in stressed environments." Distortion: "Mycorrhizal networks transfer nutrients between plants whenever stressed environments exist." The passage made a conditional, hedged claim; the answer made a universal one.
+*Example.* Passage: "Studies suggest that companies with diverse boards often outperform peers." Trap answer: "Diverse boards guarantee superior company performance." The passage gave a hedged statistical tendency; the answer made a universal guarantee.
 
-The cure: for every promising answer, **find the specific sentence in the passage that supports it**. If you can't quote a sentence with effectively the same meaning, the answer is a distortion. Distortions feel right on first read because they share vocabulary with the source — the test is whether they share *meaning*.
+The cure: **prefer the more modestly worded answer when two choices compete.** Modestly worded inferences ("often," "tend to," "may") are harder to disprove and are more reliably supported by hedged academic prose.
 
-**Trap 2: Sounds-smart-but-unsupported.**
+**Trap 2: Word-match distortion.**
 
-The answer uses vocabulary lifted directly from the passage but constructs a claim the passage never makes. Most common on technical passages — the borrowed jargon makes the answer feel authoritative even when it's introducing a new claim.
+The answer uses exact words or phrases from the passage but rearranges them into a claim the passage never makes. Borrowed vocabulary makes the answer feel authoritative — the test is whether the words carry the same *meaning*, not whether they're the same *words*.
 
-*Example.* Passage uses the term "ecosystem lock-in" to describe how subscription companies make leaving costly. Trap answer: "Ecosystem lock-in is the primary driver of subscription pricing premiums." The passage used the term but never made this claim about pricing.
+*Example.* Passage uses "ecosystem lock-in" to describe how subscription companies make switching costly. Trap answer: "Ecosystem lock-in drives premium pricing across the platform." The passage described switching costs, not pricing — the key term was redeployed into a new claim.
 
-The cure: **don't let vocabulary do the work of meaning**. Ask "is this specific claim made anywhere in the passage?" not "does this sound like the passage?"
+The cure: for every promising answer, **find the sentence in the passage that makes this specific claim.** If the sentence shares words but not meaning, it's a distortion.
 
 **Trap 3: Out-of-passage knowledge.**
 
-The answer is true (or plausibly true) in the real world but isn't stated or implied by the passage. Particularly tempting on topics where you have background knowledge — you "know" the answer is right and skip the verification step.
+The answer is plausibly true in the real world but is not stated or implied by the passage. Especially dangerous on familiar topics — you "know" the answer is right and skip the verification step.
 
-*Example.* Passage about subscription churn doesn't mention Netflix specifically. Trap answer: "Netflix has the lowest churn rate in the streaming industry." You might know that's true; the passage doesn't say it. Wrong on RC regardless.
+*Example.* Passage about subscription churn doesn't mention Netflix. Trap answer: "Netflix has the lowest churn rate among streaming services." You may know that's true; the passage doesn't say it. Wrong on RC regardless.
 
-The cure: **answer from the passage only**. RC's standard is "supported by the passage," not "true in general." If you can only justify an answer with outside facts, it's wrong here.
+The cure: **answer from the passage only.** RC's standard is "supported by this passage," not "true in the world." If your justification relies on outside facts, the answer is wrong here.
 
-**Trap 4: Wrong-paragraph reference.**
+**Trap 4: Off-stance.**
 
-The answer is true about *a different paragraph* than the one the question asks about. Most common on Function questions ("the function of paragraph 3 is...") where the answer describes paragraph 2's function instead.
+The answer misrepresents the author's attitude — saying the author endorses something the author criticizes, or treats as neutral something the author opposes. This trap appears on Function, Attitude, and Main Idea questions.
 
-*Example.* Question: "The primary purpose of paragraph 3 is to..." Wrong answer: "Introduce the central thesis." The thesis was introduced in paragraph 1. Paragraph 3 might *support* it or *qualify* it — but it didn't *introduce* it.
+*Example.* Passage: "These practices prioritize retention over user trust, undermining long-term brand value." Trap answer: "The author views dark patterns as an acceptable trade-off given competitive pressures." The author is critical; the answer flips the stance.
 
-The cure: **always re-read the specific paragraph the question references** before evaluating answers. A 10-second targeted re-read prevents minute-long answer-choice confusion.
+The cure: **confirm the author's attitude before evaluating any answer.** Off-stance answers fail the first filter of the main-idea elimination test. Stance is the easiest thing to verify from the passage — look at the verbs and modifiers the author uses about the topic, not about what the passage reports others saying.
 
-**Trap 5: Extreme language.**
+**Trap 5: Wrong-paragraph scope.**
 
-Same as on CR: answers with "always," "never," "all," "none," "only," "must," or "impossible" are usually wrong. RC passages are typically measured and academic — strong absolute claims rarely come from the author and aren't supported by the text.
+The answer is true of the passage — but describes the wrong section. Most common on Function questions ("the purpose of paragraph 3 is...") and Specific Detail questions that specify a paragraph.
 
-*Example.* Inference question. Wrong: "Subscription businesses always succeed when they build switching costs." Right: "Subscription businesses tend to succeed when they build switching costs." The "tend to" version matches the passage; "always" overstates.
+*Example.* Question: "The primary purpose of the second paragraph is to..." Trap answer: "Introduce the author's central thesis." The thesis appeared in paragraph 1; paragraph 2 provides evidence. The answer describes a real function, just not the right paragraph's function.
 
-The cure: when two answers compete and one uses extreme language, **prefer the milder one**. The right RC answer is usually the most modest claim that fits the passage.
+The cure: **re-read the specific paragraph before evaluating answers.** A 10-second targeted re-read prevents 60 seconds of answer-choice confusion. The passage stays on screen exactly for this purpose.
 
 **The unified discipline: cite a line.**
 
-All five traps share a structure — the wrong answer is plausibly related to the passage but lacks direct textual support. The discipline that catches them all is the same: **for every answer you're considering, ask "which sentence in the passage supports this?" If you can't point to one, the answer is wrong.**
+All five traps share the same defect — the wrong answer lacks direct textual support. The discipline that catches them all: **for every answer you're considering, ask "which sentence in the passage supports this?" If you can't identify one, the answer is wrong.**
 
-This rule is strict on Specific Detail and Inference (the answer must be derivable from the text). It's slightly looser on Application (where the answer extends the passage's logic to a new case) and Function (where the answer describes a paragraph's role), but the principle still applies — you should be able to point at the section of the passage that justifies your choice.
+This rule is strict on Specific Detail and Inference (the answer must be derivable from the text). It applies slightly differently on Application (the answer extends the passage's principle to a new case) and Function (the answer describes a structural role, not the content itself) — but you should still be able to point at the passage section that justifies your choice.
 
-> **Self-explanation prompt.** Why does the "cite a line" discipline catch all five traps even though they look different on the surface? If you can say "because the unifying error is *lack of direct textual support* — distortion, vocabulary-borrowing, outside knowledge, wrong-paragraph reference, and extreme language all share the same defect: the passage doesn't actually say what the answer claims," you've understood that RC answer-elimination is a single-discipline skill, not five different ones.
+> **Self-explanation prompt.** Why does the "cite a line" discipline catch all five traps even though they look different on the surface? If you can say "because all five share the same defect — lack of direct textual support — whether the answer overstates, word-matches, imports outside facts, misreads the author's stance, or references the wrong section," you've understood that RC answer-elimination is a single skill applied five different ways.
 
 ## @summary
 
@@ -497,14 +527,13 @@ Reading Comprehension is a structure-extraction skill, not a reading-speed skill
 | Function | Role played by an element in the argument | Describe what the author is DOING, not what the text SAYS |
 | Author's attitude | Stance toward a specific topic | Look at word choice and qualifiers; favor middle-of-spectrum answers |
 
-**The six common traps:**
+**The five wrong-answer traps (consistent with the trap section above):**
 
-1. **Too strong an inference** — "all," "never," "always" claims are usually wrong.
-2. **Word-match trap** — same words as the passage, rearranged into a different claim.
-3. **Outside knowledge** — using real-world facts the passage doesn't state.
-4. **Partial match** — an answer that captures only half of a fuller claim.
-5. **Off-stance** — getting the author's attitude wrong.
-6. **Extreme attitude** — "vehement" or "enthusiastic" when the author is measured.
+1. **Too-strong inference** — "all," "never," "always," "must" overstate what hedged prose supports. Prefer modestly worded answers.
+2. **Word-match distortion** — same words from the passage, rearranged into a different claim. Find the sentence; verify the meaning matches.
+3. **Out-of-passage knowledge** — true in the world but not stated in the passage. Answer from the passage only.
+4. **Off-stance** — misrepresents the author's attitude toward the topic. Confirm stance from verbs and modifiers before evaluating any answer.
+5. **Wrong-paragraph scope** — describes the right function type but the wrong section. Re-read the specified paragraph before choosing.
 
 **Time-management targets.**
 
@@ -512,8 +541,16 @@ Reading Comprehension is a structure-extraction skill, not a reading-speed skill
 - Per question: 60-90 seconds.
 - Total for a passage + 4 questions: 6-9 minutes.
 
-If you're spending >3 minutes on the initial passage read, you're being too thorough. The passage stays on screen — you can re-read when questions demand it. Build the structural map on the first pass, then let the questions drive your re-reads.
+If you're spending more than 3 minutes on the initial passage read, you're being too thorough. The passage stays on screen — you can re-read when questions demand it. Build the structural map on the first pass, then let the questions drive your re-reads.
 
 **The one habit that separates 685 scorers from 605 scorers:** building a structural map during the first read. Students who skim the passage and then scan for answers during questions spend 30-60 seconds extra per question trying to locate information. Students who build a map locate information in 5 seconds because they remember the layout.
 
-Drill the 52 questions across the three problem sets. Each passage is fresh — you have to build the map anew every time. By the end of the hard set, the three-pass protocol should feel automatic, and question-type recognition should happen in under 5 seconds from the stem.
+**What to do next.**
+
+1. **Easy set — passage mapping first.** Before answering any question, write a one-sentence summary of each paragraph. The goal isn't speed — it's building the three-pass habit. Thirteen questions across several passages. If any paragraph summary stumps you, re-read that paragraph once, then move on.
+
+2. **Medium set — question-type recognition.** Read the stem first, classify the question type (Main Idea / Specific Detail / Inference / Application / Function / Attitude), then apply the appropriate technique. Track which question type you miss most — that's your weakest link.
+
+3. **Hard set — trap identification.** On every wrong answer you chose, identify which of the five traps it was. Write one sentence: "I chose this because it [word-matched / sounded confident / felt consistent with my outside knowledge / matched the wrong paragraph / matched an extreme stance]." The discipline of naming the trap converts a mistake into a recognizable pattern — which is the only way to stop repeating it.
+
+Any RC miss on a practice test or mock: log the question type AND the trap that caught you. Two tags per miss. Over a prep cycle, this double-tagging reveals whether your problem is structural (wrong question-type technique) or mechanical (getting caught by the same trap across multiple types).
