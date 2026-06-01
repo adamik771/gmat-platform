@@ -887,3 +887,464 @@ Verify: 4^(4²) = 4^16 and 4^(4 × 4) = 4^16. Both sides match.
 **common_trap:** Dividing both sides of x² = 4x by x — this discards a valid factor and can hide roots. Always factor the polynomial rather than dividing. Then apply domain constraints to eliminate invalid candidates.
 **takeaway:** For x^A = x^B with x > 0 and x ≠ 1: equate exponents using the one-to-one property. Factor the resulting polynomial — never divide by a variable. Apply domain constraints (x > 0, x ≠ 1) to discard invalid solutions after factoring.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of 5⁹ / 5⁴?
+
+- A) 5⁵
+- B) 5¹³
+- C) 1⁵
+- D) 25⁵
+- E) 5^(9/4)
+
+**answer:** A
+**fastest_path:** Same base, division → subtract exponents: 5^(9−4) = 5⁵.
+**explanation:** Division of same-base powers: a^m / a^n = a^(m−n). So 5⁹ / 5⁴ = 5^(9−4) = 5⁵. The base stays at 5; only the exponents combine.
+**mistake_b:** Added exponents instead of subtracting: 9 + 4 = 13 → 5¹³.
+**mistake_c:** Computed 5/5 = 1 as the "new base" and kept the exponent subtraction: 1⁵.
+**mistake_d:** Multiplied the bases (5 × 5 = 25) and subtracted exponents → 25⁵.
+**mistake_e:** Divided the exponents: 9/4 → 5^(9/4).
+**common_trap:** Dividing the exponents (9/4) rather than subtracting (9−4). Division of same-base powers always subtracts the exponents.
+**takeaway:** Same base, division: subtract exponents — a^m / a^n = a^(m−n). The base never changes. Compare: multiplication adds exponents; division subtracts them.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is (2x)³?
+
+- A) 2x³
+- B) 6x³
+- C) 8x
+- D) 8x³
+- E) 6x
+
+**answer:** D
+**fastest_path:** Distribute the exponent: (2x)³ = 2³ × x³ = 8x³.
+**explanation:** Power of a product: (ab)^n = a^n × b^n. So (2x)³ = 2³ × x³ = 8 × x³ = 8x³. The exponent applies to every factor inside the parentheses — both the coefficient and the variable.
+**mistake_a:** Applied the exponent only to x and left the coefficient unchanged: 2x³.
+**mistake_b:** Multiplied the coefficient by the exponent instead of raising it to the power: 2 × 3 = 6, so 6x³.
+**mistake_c:** Raised 2 correctly (2³ = 8) but applied the exponent to x as a multiplier: x × 3 = 3x, giving 8(3x) → 24x. Alternatively, treated x³ as x and got 8x.
+**mistake_e:** Both errors together: multiplied 2 × 3 = 6 AND treated x³ as x → 6x.
+**common_trap:** Multiplying the coefficient by the exponent (2 × 3 = 6) instead of raising it to the power (2³ = 8). The exponent means "multiply by itself n times," not "multiply by n."
+**takeaway:** (ab)^n = a^n × b^n. Distribute the exponent to every factor. Coefficient: raise to the power (not multiply). Variable: same rule — x^1 raised to n is x^n.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+Between which two consecutive integers does √55 lie?
+
+- A) 5 and 6
+- B) 6 and 7
+- C) 7 and 8
+- D) 8 and 9
+- E) 9 and 10
+
+**answer:** C
+**fastest_path:** 7² = 49, 8² = 64. Since 49 < 55 < 64, we have 7 < √55 < 8.
+**explanation:** Find perfect squares that bracket 55. 7² = 49 < 55 < 64 = 8². Therefore √55 is strictly between 7 and 8. No need to compute √55 precisely — bracket it.
+**mistake_a:** Used the wrong squares: thought √55 ≈ √36 = 6 or confused 5 with 7.
+**mistake_b:** Used 6² = 36 and 7² = 49; correctly identified 49 < 55 but concluded the bracket was 6–7 (forgot that 7² = 49, not 64).
+**mistake_d:** Used 8² = 64 as the lower bound; thought √55 > 8.
+**mistake_e:** Greatly overestimated; bubbled 9 or 10.
+**common_trap:** Forgetting perfect square values and guessing. Memorize squares through 15: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225.
+**takeaway:** To locate √N between consecutive integers: find the two consecutive squares that bracket N. If k² < N < (k+1)², then k < √N < k+1. No calculator needed — just know your squares.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+For x > 0, which of the following is equivalent to x^(3/4)?
+
+- A) (∛x)⁴
+- B) (⁴√x)³
+- C) x^(4/3)
+- D) ⁴√(x⁴)
+- E) ³√(x⁴)
+
+**answer:** B
+**fastest_path:** a^(m/n) = (n-th root of a)^m. So x^(3/4) = (⁴√x)³.
+**explanation:** Fractional exponent rule: a^(m/n) = (a^(1/n))^m — take the n-th root, then raise to m. For x^(3/4): n = 4, m = 3. So x^(3/4) = (x^(1/4))³ = (⁴√x)³. Verify: (⁴√x)³ = x^(3/4). ✓
+**mistake_a:** Swapped numerator and denominator: (∛x)⁴ = x^(4/3) — this equals x^(4/3), not x^(3/4).
+**mistake_c:** Directly swapped the fraction: x^(4/3) — this is the reciprocal exponent.
+**mistake_d:** ⁴√(x⁴) = x^(4/4) = x¹ = x — simplifies to x, not x^(3/4).
+**mistake_e:** ³√(x⁴) = x^(4/3) — again the reciprocal exponent.
+**common_trap:** Swapping numerator and denominator in the fractional exponent — x^(3/4) and x^(4/3) look similar but are different numbers. Always read: denominator = root index, numerator = outer power.
+**takeaway:** a^(m/n) = (n-th root of a)^m. Denominator gives the root; numerator gives the power. Two choices here equal x^(4/3) — eliminate those first.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of √6 × √24?
+
+- A) 6
+- B) 12
+- C) 4√6
+- D) √30
+- E) 2√36
+
+**answer:** B
+**fastest_path:** √6 × √24 = √(6 × 24) = √144 = 12.
+**explanation:** Product of radicals: √a × √b = √(ab). Combine under one radical: √(6 × 24) = √144 = 12.
+**mistake_a:** Computed √6 × √6 = 6 — treated both factors as √6.
+**mistake_c:** Partially simplified: √6 × √24 = √6 × 2√6 = 2 × 6 = 12... arrived at 12 but bubbled 4√6 (arithmetic slip).
+**mistake_d:** Added inside the radical: √(6 + 24) = √30.
+**mistake_e:** Wrote √144 as 2√36 without simplifying; 2√36 = 2 × 6 = 12 but left unsimplified.
+**common_trap:** Adding the radicands (6 + 24 = 30) instead of multiplying. The product rule requires multiplication under the radical, not addition.
+**takeaway:** √a × √b = √(ab). Multiply radicands when multiplying radicals. When the product is a perfect square, simplify completely to an integer.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of √(√625)?
+
+- A) 5
+- B) 25
+- C) 5√5
+- D) √25
+- E) 125
+
+**answer:** A
+**fastest_path:** Inner: √625 = 25. Outer: √25 = 5.
+**explanation:** Work from inside out. √625 = 25 (since 25² = 625). Then √25 = 5. Alternatively, write as a single fractional exponent: √(√625) = (625^(1/2))^(1/2) = 625^(1/4) = (5⁴)^(1/4) = 5. Both approaches give 5.
+**mistake_b:** Computed only the inner radical: √625 = 25, then stopped.
+**mistake_c:** Misidentified √625 ≈ √600 ≈ a non-integer; guessed 5√5.
+**mistake_d:** Wrote the result of the inner step as the answer in radical form (√25) without evaluating.
+**mistake_e:** Divided 625 by 5 = 125 instead of taking its root.
+**common_trap:** Stopping after the inner radical (√625 = 25) and reporting 25 — forgetting the outer √ still needs to be applied.
+**takeaway:** Nested radicals: evaluate from inside out, or convert to a single fractional exponent: √(√a) = a^(1/4). The fourth root of a perfect fourth power (like 5⁴ = 625) is simply the base.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is 4³ × 2² expressed as a single power of 2?
+
+- A) 2⁵
+- B) 2⁶
+- C) 2⁷
+- D) 2⁸
+- E) 2¹⁰
+
+**answer:** D
+**fastest_path:** Rewrite 4 as 2²: 4³ = (2²)³ = 2⁶. Then 2⁶ × 2² = 2⁸.
+**explanation:** Express everything in base 2. Step 1: 4 = 2², so 4³ = (2²)³ = 2^(2×3) = 2⁶. Step 2: multiply by 2²: 2⁶ × 2² = 2^(6+2) = 2⁸.
+**mistake_a:** Added raw exponents 3 + 2 = 5 without converting 4 to base 2.
+**mistake_b:** Converted 4³ = 2³ (used the exponent 3 as the new exponent on base 2, ignoring the 4 = 2² step).
+**mistake_c:** Converted 4³ correctly to 2⁶ but added 6 + 1 = 7 (treated 2² as 2¹).
+**mistake_e:** Computed 4³ = 2⁴ (forgot to multiply by the 2 inside 4 = 2²: used exponent 4 from (2^2)^3 incorrectly) then added: 2⁴ × 2² → miscounted, arrived at 2^10.
+**common_trap:** Forgetting to apply the power-of-a-power rule when converting 4³: 4³ = (2²)³ = 2⁶, not 2³. The conversion doubles the exponent.
+**takeaway:** When mixing bases that share a common base (here 4 = 2² and 2 = 2¹), rewrite every factor in terms of the common base first. Then the exponent rules (product = add, power-of-power = multiply) combine everything cleanly.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is √75 − √12?
+
+- A) √63
+- B) √3
+- C) 2√3
+- D) 3√3
+- E) 7√3
+
+**answer:** D
+**fastest_path:** Simplify: √75 = 5√3, √12 = 2√3. Difference: 5√3 − 2√3 = 3√3.
+**explanation:** Simplify each radical before subtracting. √75 = √(25 × 3) = 5√3. √12 = √(4 × 3) = 2√3. Now they share the same radicand √3, so subtract coefficients: 5√3 − 2√3 = 3√3.
+**mistake_a:** Subtracted inside the radical: √(75 − 12) = √63.
+**mistake_b:** Divided instead of subtracting coefficients: 5√3 − 2√3 → 5/2 × √3 ≈ √3.
+**mistake_c:** Mis-simplified √75: used √75 = 4√3 instead of 5√3 → 4√3 − 2√3 = 2√3.
+**mistake_e:** Added instead of subtracted: 5√3 + 2√3 = 7√3.
+**common_trap:** Subtracting inside the radical (√75 − √12 ≠ √63). Radical subtraction requires matching radicands and operating on the *coefficients*, not the radicands.
+**takeaway:** Subtract radicals the same way you subtract like terms: simplify each to the same radicand, then subtract coefficients. √a − √b ≠ √(a − b) — that identity is *false*.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Estimation
+
+Which of the following is greater: 2^30 or 3^20?
+
+- A) 2^30, because 30 > 20
+- B) 3^20, because 3^2 > 2^3
+- C) They are equal
+- D) 2^30, because a larger exponent always wins
+- E) Cannot be determined without a calculator
+
+**answer:** B
+**fastest_path:** Use the benchmark 2^10 ≈ 10^3: 2^30 ≈ 10^9. For 3^20: (3^2)^10 = 9^10 > 8^10 = (2^3)^10 = 2^30. So 3^20 > 2^30.
+**explanation:** Rewrite using common groupings. 2^30 = (2^10)^3 ≈ (10^3)^3 = 10^9. For 3^20: compare 3^2 = 9 versus 2^3 = 8. Then 3^20 = (3^2)^10 = 9^10 and 2^30 = (2^3)^10 = 8^10. Since 9 > 8, we have 9^10 > 8^10, so 3^20 > 2^30. Numerically: 2^30 ≈ 1.07 × 10^9; 3^20 ≈ 3.49 × 10^9.
+**mistake_a:** Assumed the larger exponent always produces the larger result — ignores the base.
+**mistake_c:** Assumed the difference in base and exponent "cancels out" into equality.
+**mistake_d:** Same flawed logic as A, stated differently.
+**mistake_e:** Comparison is fully determinable through exponent manipulation — no calculator needed.
+**common_trap:** Fixating on the larger exponent (30 > 20) without accounting for the base. Rewrite to a common structure: (3^2)^10 vs (2^3)^10 reduces the comparison to 9^10 vs 8^10.
+**takeaway:** To compare exponentials with different bases and exponents, rewrite each as (base^k)^n for the same n. Then compare the inner bases directly. Here, 3^20 = 9^10 and 2^30 = 8^10 — same exponent, compare 9 vs 8.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is 10 / √5 in fully simplified form?
+
+- A) 2√5
+- B) 2√10
+- C) 10√5
+- D) √2
+- E) 5√2
+
+**answer:** A
+**fastest_path:** Rationalize: (10/√5) × (√5/√5) = 10√5/5 = 2√5.
+**explanation:** Rationalize the denominator by multiplying numerator and denominator by √5. Numerator: 10 × √5 = 10√5. Denominator: √5 × √5 = 5. Result: 10√5/5 = 2√5.
+**mistake_b:** Multiplied by √10/√10 instead of √5/√5: (10√10)/√50 = (10√10)/(5√2) = 2√10/√2 = 2√5... reached a different unsimplified form and stopped at 2√10.
+**mistake_c:** Forgot to simplify: left 10√5/5 as 10√5 by not dividing.
+**mistake_d:** Computed 10/√5 ≈ 10/2.24 ≈ 4.47 and guessed √2 ≈ 1.41; arithmetic error.
+**mistake_e:** Computed 10/√5 = 10/√5 × √5/√5 = 10√5/5 = 2√5 correctly but mis-read as √5 × 5^(1/2) = 5√2.
+**common_trap:** Rationalizing by multiplying by the wrong radical. To rationalize 1/√a, multiply by √a/√a — not √(something else).
+**takeaway:** To rationalize 1/√a: multiply numerator and denominator by √a. Denominator becomes a (an integer). Then simplify the fraction. The goal is to eliminate the radical from the denominator.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If 9^x = 27, what is the value of x?
+
+- A) 2/3
+- B) 3/2
+- C) 2
+- D) 3
+- E) 4
+
+**answer:** B
+**fastest_path:** Common base 3: 9^x = (3²)^x = 3^(2x) = 27 = 3³. So 2x = 3 → x = 3/2.
+**explanation:** Express both sides in base 3. 9 = 3², so 9^x = (3²)^x = 3^(2x). And 27 = 3³. Equation: 3^(2x) = 3³. Same base → equal exponents: 2x = 3 → x = 3/2. Verify: 9^(3/2) = (9^(1/2))³ = 3³ = 27. ✓
+**mistake_a:** Reversed the fraction: 9^x = 27 → x = 2/3. This would give 9^(2/3) = (∛9)² ≈ 4.33, not 27.
+**mistake_c:** Guessed x = 2 (thinking 9² = 81 ≈ 27 roughly).
+**mistake_d:** Guessed x = 3 without checking (27 = 3³ association led to x = 3).
+**mistake_e:** Computed 9 + 3 = 12 or used another unrelated approach.
+**common_trap:** Failing to convert to a common base — 9 and 27 are both powers of 3. Without rewriting, the equation looks like it needs logarithms, but base conversion gives a clean answer.
+**takeaway:** When solving a^x = b where a and b share a common base, rewrite both as powers of that base, then equate exponents. Check: is one base a perfect power of the other? 9 = 3², 27 = 3³ → common base 3.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If x^8 = 256 and x > 0, what is the value of x^3?
+
+- A) 4
+- B) 6
+- C) 8
+- D) 16
+- E) 32
+
+**answer:** C
+**fastest_path:** 256 = 2^8, so x = 2. Then x^3 = 2^3 = 8.
+**explanation:** Identify x. Since 256 = 2^8 and x > 0, we have x^8 = 2^8, so x = 2. (Alternatively: x = 256^(1/8) = (2^8)^(1/8) = 2.) Then x^3 = 2^3 = 8.
+**mistake_a:** Computed x^3 = 256^(3/8). Used 256^(1/8) = 2 correctly but wrote x^3 = 4 (thought x = 4^(1/3)).
+**mistake_b:** Guessed x = 2 correctly but computed 2^3 as 6 (multiplied instead of cubed).
+**mistake_d:** Computed x = 4 (used 256 = 4^4, not 4^4 = 256 but 16^2 = 256 confusion), then 4^3 = 64 → bubbled 16.
+**mistake_e:** Computed 256/8 = 32 (divided by the exponent).
+**common_trap:** Recognizing that 256 = 2^8 (and thus x = 2) but then confusing the question — which asks for x^3, not x. Always re-read the question after finding x.
+**takeaway:** Two-step approach: (1) solve for x using x^8 = 256 → x = 2; (2) compute the requested quantity x^3 = 8. Factor 256 to identify the base: 256 = 2^8, 4^4, or 16^2 — match the exponent in the problem.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+If 4^x < 2^15, what is the greatest integer value of x?
+
+- A) 5
+- B) 6
+- C) 7
+- D) 8
+- E) 15
+
+**answer:** C
+**fastest_path:** Rewrite: 4^x = (2²)^x = 2^(2x) < 2^15 → 2x < 15 → x < 7.5. Greatest integer: 7.
+**explanation:** Convert to a common base. 4 = 2², so 4^x = (2²)^x = 2^(2x). Inequality: 2^(2x) < 2^15. Since base 2 > 1, the exponential is increasing, so: 2x < 15 → x < 7.5. The greatest integer satisfying x < 7.5 is x = 7. Verify: 4^7 = 2^14 = 16,384 < 32,768 = 2^15. ✓ And 4^8 = 2^16 > 2^15. ✓
+**mistake_a:** Divided 15 by 4 (instead of 2): 15/4 = 3.75 → integer 3; off by a factor.
+**mistake_b:** Solved 2x < 15 → x < 7.5 correctly but took floor as 6.
+**mistake_d:** Solved 2x < 15 → x < 7.5 but rounded up to 8 (took ceiling instead of floor).
+**mistake_e:** Set x < 15 directly (forgot the base conversion step).
+**common_trap:** Setting x < 15 directly — forgetting that 4^x must first be rewritten as 2^(2x) before comparing exponents. The conversion doubles the exponent, halving the available range.
+**takeaway:** Exponential inequalities with a^x < b: rewrite both sides to the same base, then (if the base > 1) directly compare exponents. The inequality direction is preserved when the base > 1.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Sign Analysis with Exponents
+
+Is √(x²) = x?
+
+(1) x > 0
+(2) x³ > 0
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**fastest_path:** √(x²) = |x|. This equals x exactly when x ≥ 0. (1) x > 0 → |x| = x → YES. (2) x³ > 0 → x > 0 → |x| = x → YES. Both sufficient → D.
+**explanation:** The key identity: √(x²) = |x|, not x in general. The equation √(x²) = x holds only when x ≥ 0 (because then |x| = x).
+
+Statement (1): x > 0, so |x| = x. The equation holds. Sufficient (answer: YES).
+
+Statement (2): x³ > 0. Odd powers preserve sign — x³ > 0 implies x > 0. Same conclusion: |x| = x, equation holds. Sufficient (answer: YES).
+
+Both statements independently establish x > 0 → D.
+**mistake_a:** Concluded only (1) sufficient, overlooked that (2) also pins down the sign of x.
+**mistake_b:** Concluded only (2) sufficient, overlooked that (1) directly gives x > 0.
+**mistake_c:** Required both statements — missed that each alone determines x > 0.
+**mistake_e:** Assumed neither condition is sufficient — overlooked the |x| = x identity when x > 0.
+**common_trap:** Assuming √(x²) = x as a universal fact (ignoring absolute value). The trap works the other way too: a student who knows √(x²) = |x| might underthink both statements and call each insufficient.
+**takeaway:** √(x²) = |x|, not x. The equation √(x²) = x holds iff x ≥ 0. Any condition that establishes x ≥ 0 — including odd-power sign information — is sufficient.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If 9^(n+1) = 27^n, what is the value of n?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 6
+
+**answer:** B
+**fastest_path:** Common base 3: 3^(2n+2) = 3^(3n) → 2n + 2 = 3n → n = 2.
+**explanation:** Express both sides in base 3. 9 = 3², so 9^(n+1) = (3²)^(n+1) = 3^(2n+2). 27 = 3³, so 27^n = (3³)^n = 3^(3n). Equation: 3^(2n+2) = 3^(3n). Same base → equal exponents: 2n + 2 = 3n → n = 2. Verify: 9^3 = 729 and 27^2 = 729. ✓
+**mistake_a:** Set up 9(n+1) = 27n (multiplied instead of exponentiated): 9n + 9 = 27n → 9 = 18n → n = 1/2; rounded to 1.
+**mistake_c:** Misapplied power-of-power: got 2(n+1) = 3n → 2n + 1 = 3n → n = 1; then added 2 to get 3.
+**mistake_d:** Off-by-one in exponent algebra: solved 2n + 2 = 3n but got n = 4.
+**mistake_e:** Multiplied the bases' exponents (2 × 3 = 6) and reported 6.
+**common_trap:** Forgetting to distribute the outer exponent through (n+1) after base conversion. Step: 9^(n+1) = (3²)^(n+1) = 3^(2·(n+1)) = 3^(2n+2). Not 3^(2n+1).
+**takeaway:** For equations of the form a^f(n) = b^g(n) where a and b share a common base: rewrite both sides to that base, apply the power-of-power rule carefully (distribute!), then equate exponents and solve linearly.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Sign Analysis with Exponents
+
+For integers a and b, is a^b > 0?
+
+(1) b is an even integer.
+(2) a > 1.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**fastest_path:** (1) b even: if a = 0 then 0^b = 0, not > 0. INSUFFICIENT. (2) a > 1: a ≥ 2, positive, so a^b > 0 for every integer b. SUFFICIENT → B.
+**explanation:** Statement (1): b is even. An even exponent does NOT guarantee a positive result — it guarantees a non-negative result. If a = 0 and b = 2, then 0² = 0, which is not > 0. Counterexample found → insufficient.
+
+Statement (2): a > 1, so a ≥ 2 (a is a positive integer). For any integer b: if b > 0, a^b ≥ 2 > 0; if b = 0, a^0 = 1 > 0; if b < 0, a^b = 1/a^|b| > 0. In all cases a^b > 0. Sufficient (answer: YES always).
+**mistake_a:** Concluded only (1) sufficient — missed the a = 0 counterexample. A²= 0² = 0 is non-negative but not positive.
+**mistake_c:** Required both statements — unnecessarily; (2) alone is sufficient.
+**mistake_d:** Concluded each alone sufficient — (1) fails when a = 0.
+**mistake_e:** Concluded together insufficient — together a > 1 and b even → a^b > 0, which is sufficient.
+**common_trap:** Confusing "non-negative" with "positive." An even exponent guarantees a^b ≥ 0, but the question asks for a^b > 0 (strict). Zero is the gap — and zero base is the counterexample.
+**takeaway:** Even exponents → non-negative (not positive). The strict inequality a^b > 0 requires a ≠ 0. A positive base (a > 1 here) guarantees a^b > 0 for all integer b, including b = 0 and b < 0.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponent Rules
+**subtype:** Challenge
+
+What is the value of 2^0 + 2^1 + 2^2 + 2^3 + ... + 2^10?
+
+- A) 1,024
+- B) 2,046
+- C) 2,047
+- D) 2,048
+- E) 4,094
+
+**answer:** C
+**fastest_path:** Geometric series: S = (2^11 − 1)/(2 − 1) = 2,048 − 1 = 2,047.
+**explanation:** This is a geometric series with first term a = 1 (= 2^0), common ratio r = 2, and 11 terms (2^0 through 2^10). The sum formula is: S = a(r^n − 1)/(r − 1) = 1 × (2^11 − 1)/(2 − 1) = 2,048 − 1 = 2,047.
+
+Fast insight: the sum of a geometric series 1 + r + r² + ... + r^n equals r^(n+1) − 1 when r = 2. Here, 2^0 + 2^1 + ... + 2^10 = 2^11 − 1 = 2,047.
+
+Intuition check: 2^0 + 2^1 + ... + 2^(n−1) = 2^n − 1. Each term is "one short of doubling the entire previous sum."
+**mistake_a:** Reported 2^10 = 1,024 — stopped at the last term instead of computing the sum.
+**mistake_b:** Computed 2 × 1,024 − 2 = 2,046 — used 2n − 2 instead of 2^(n+1) − 1.
+**mistake_d:** Computed 2^11 = 2,048 without subtracting 1 — forgot the "−1" from the geometric sum formula.
+**mistake_e:** Doubled: 2 × (2^11 − 1) = 4,094 — multiplied the whole sum by 2.
+**common_trap:** Reporting 2^11 = 2,048 (D) — the off-by-one error. The sum of the first n powers of 2 (starting from 2^0) equals 2^n − 1, one less than the next power. Forgetting the "−1" is the single most common mistake on this question type.
+**takeaway:** Geometric series with r = 2: 2^0 + 2^1 + ... + 2^(n−1) = 2^n − 1. Memorize: the sum of the first n powers of 2 is always one less than the next power of 2. This pattern appears in number theory, binary arithmetic, and GMAT combinatorics questions.
+**related_reading:** reading-quant-04-algebra-and-equations
