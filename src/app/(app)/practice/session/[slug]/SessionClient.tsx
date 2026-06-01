@@ -1339,7 +1339,13 @@ export default function SessionClient({
     const difficultyBreakdown = diffLevels
       .map((diff) => {
         const qs = answeredPairs.filter((p) => p.q.difficulty === diff)
-        return { diff, total: qs.length, correct: qs.filter((p) => p.correct).length }
+        const totalMs = qs.reduce((s, p) => s + p.state.elapsedMs, 0)
+        return {
+          diff,
+          total: qs.length,
+          correct: qs.filter((p) => p.correct).length,
+          avgTimeMs: qs.length > 0 ? Math.round(totalMs / qs.length) : 0,
+        }
       })
       .filter((d) => d.total > 0)
 
@@ -1449,14 +1455,21 @@ export default function SessionClient({
           {/* Difficulty breakdown — only when questions span 2+ levels */}
           {difficultyBreakdown.length >= 2 && (
             <div className="mt-6 pt-5 border-t border-white/[0.06]">
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
-                By difficulty
-              </p>
+              <div className="flex items-center justify-between mb-3">
+                <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                  By difficulty
+                </p>
+                <p className="text-[10px] text-[#333333]">avg / question</p>
+              </div>
               <div className="space-y-2.5">
-                {difficultyBreakdown.map(({ diff, total: t, correct: c }) => {
+                {difficultyBreakdown.map(({ diff, total: t, correct: c, avgTimeMs }) => {
                   const pct = t === 0 ? 0 : Math.round((c / t) * 100)
                   const isWeak = t >= 2 && pct < 60
                   const barColor = isWeak ? "#FF6B6B" : pct >= 80 ? "#3ECF8E" : "#C9A84C"
+                  // Flag pacing outliers: > 3 min is slow for GMAT pace, < 45s may be rushing
+                  const isSlow = avgTimeMs > 180_000
+                  const isFast = avgTimeMs < 45_000
+                  const timeColor = isSlow ? "#FF9966" : isFast ? "#5FA8FF" : "#555555"
                   return (
                     <div key={diff} className="flex items-center gap-3">
                       <span
@@ -1476,6 +1489,13 @@ export default function SessionClient({
                         style={{ color: "#888888" }}
                       >
                         {c}/{t} · {pct}%
+                      </span>
+                      <span
+                        className="text-[11px] tabular-nums w-12 text-right flex-shrink-0"
+                        style={{ color: timeColor }}
+                        title={isSlow ? "Over 3 min avg — potential time pressure" : isFast ? "Under 45 s avg — check for rushing" : undefined}
+                      >
+                        {formatDuration(avgTimeMs)}
                       </span>
                     </div>
                   )
@@ -1757,61 +1777,6 @@ export default function SessionClient({
           </Link>
         )}
 
-        {/* What to do next — renders the nextStepNote guidance as direct CTA
-            buttons. The text was computed above but never surfaced in the UI;
-            without a button, students read the advice and then navigate away
-            manually with no clear path. Primary action depends on accuracy
-            band: review the chapter (low), practice again (mid), study plan
-            (high). Chapter link is only shown when the topic maps to one. */}
-        {(() => {
-          const chapterSlug = TOPIC_TO_CHAPTER[topic]
-          const low = accuracy < 60
-          const mid = accuracy >= 60 && accuracy < 78
-
-          const primaryAction = low && chapterSlug
-            ? { label: `Review ${topic} chapter`, href: `/chapters/${chapterSlug}` }
-            : mid
-            ? { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-            : { label: "View your study plan", href: "/study-plan" }
-
-          const secondaryAction =
-            low
-              ? { label: "Practice again", href: `/practice/session/${slug}` }
-              : mid && chapterSlug
-              ? { label: "Review the chapter", href: `/chapters/${chapterSlug}` }
-              : { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-
-          return (
-            <div
-              className="p-5 rounded-xl border border-white/[0.08]"
-              style={{ backgroundColor: "#0D0D0D" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
-                What to do next
-              </p>
-              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-4">
-                {nextStepNote}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Link
-                  href={primaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  {primaryAction.label}
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-                <Link
-                  href={secondaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-white/[0.1] text-[#888888] transition-colors hover:text-[#F0F0F0] hover:border-white/[0.2]"
-                >
-                  {secondaryAction.label}
-                </Link>
-              </div>
-            </div>
-          )
-        })()}
-
         {/* Review list — wrong answers only by default, toggle to show all */}
         {(() => {
           const wrongIndices = questions
@@ -1917,9 +1882,10 @@ export default function SessionClient({
           )
         })()}
 
-        {/* What to do next — surfaces the pre-computed guidance and closes
-            the "session finished, now what?" dead end with 1-2 decisive CTAs
-            keyed to the accuracy band. */}
+        {/* What to do next — closes the "session finished, now what?" dead end
+            with 1-2 decisive CTAs keyed to the accuracy band. Each action
+            carries a brief rationale so students understand the recommendation
+            without having to infer it from the text above. */}
         {answeredCount > 0 && (() => {
           const isPractice =
             !slug.startsWith("diagnostic") &&
@@ -1928,29 +1894,31 @@ export default function SessionClient({
             slug !== "custom"
           const chapterSlug = TOPIC_TO_CHAPTER[topic]
 
-          type NextAction = { label: string; href: string; variant: "primary" | "secondary" }
+          type NextAction = { label: string; href: string; variant: "primary" | "secondary"; rationale: string }
           const actions: NextAction[] = []
 
           if (isMixedReview) {
-            actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
-            actions.push({ label: "Review queue", href: "/review", variant: "secondary" })
+            actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary", rationale: "Continue building topic by topic" })
+            actions.push({ label: "Review queue", href: "/review", variant: "secondary", rationale: "Reinforce what you already know" })
           } else if (accuracy < 60) {
             actions.push({
               label: chapterSlug ? "Review the chapter" : "Go to chapters",
               href: chapterSlug ? `/chapters/${chapterSlug}` : "/chapters",
               variant: "primary",
+              rationale: "Concept gaps compound — reading before drilling sticks better",
             })
             if (isPractice) {
-              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
+              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary", rationale: "More reps, same topic" })
             }
           } else if (accuracy < 80) {
             if (isPractice) {
-              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "primary" })
+              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "primary", rationale: "One more focused session to solidify this topic" })
             }
             actions.push({
               label: chapterSlug ? "Review the chapter" : "Browse chapters",
               href: chapterSlug ? `/chapters/${chapterSlug}` : "/chapters",
               variant: "secondary",
+              rationale: "Re-read any sections that felt shaky",
             })
           } else if (weakestTopic) {
             // Strong session + known weak topic: point directly to the gap
@@ -1958,17 +1926,19 @@ export default function SessionClient({
               label: `Practice ${weakestTopic.topic}`,
               href: `/practice/session/${weakestTopic.practiceSlug}`,
               variant: "primary",
+              rationale: `Your weakest area right now — ${Math.round(weakestTopic.accuracy * 100)}% accuracy`,
             })
             const wtChapter = TOPIC_TO_CHAPTER[weakestTopic.topic]
             actions.push({
               label: wtChapter ? "Review the chapter" : "Go to chapters",
               href: wtChapter ? `/chapters/${wtChapter}` : "/chapters",
               variant: "secondary",
+              rationale: "Read before drilling if the fundamentals feel unclear",
             })
           } else {
-            actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
+            actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary", rationale: "Keep building across topics" })
             if (isPractice) {
-              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
+              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary", rationale: "Stay on this topic for another set" })
             }
           }
 
@@ -1986,23 +1956,27 @@ export default function SessionClient({
               <p className="text-sm text-[#C0C0C0] leading-relaxed mb-5">
                 {nextStepNote}
               </p>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-col gap-2.5">
                 {actions.map((action) =>
                   action.variant === "primary" ? (
+                    <div key={action.href} className="flex items-center gap-3">
                     <Link
-                      key={action.href}
                       href={action.href}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all hover:opacity-90"
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all hover:opacity-90 flex-shrink-0"
                       style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
                     >
                       {action.label}
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
+                    <span className="text-xs leading-snug" style={{ color: "#555555" }}>
+                      {action.rationale}
+                    </span>
+                    </div>
                   ) : (
+                    <div key={action.href} className="flex items-center gap-3">
                     <Link
-                      key={action.href}
                       href={action.href}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium border transition-colors hover:border-white/[0.16] hover:text-[#F0F0F0]"
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium border transition-colors hover:border-white/[0.16] hover:text-[#F0F0F0] flex-shrink-0"
                       style={{
                         borderColor: "rgba(255,255,255,0.08)",
                         color: "#888888",
@@ -2010,6 +1984,10 @@ export default function SessionClient({
                     >
                       {action.label}
                     </Link>
+                    <span className="text-xs leading-snug" style={{ color: "#444444" }}>
+                      {action.rationale}
+                    </span>
+                    </div>
                   )
                 )}
               </div>
