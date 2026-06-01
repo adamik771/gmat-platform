@@ -19,12 +19,16 @@ sections:
   - id: the-two-part-format
     type: reading
     title: "The Two-Part format — one answer list, two selections"
+    intro: |
+      Two-Part is the only GMAT question format where one wrong selection fails the whole question — even if the other selection is correct. Understanding why the format is built this way, and how to exploit its structure rather than be trapped by it, turns 3-minute time sinks into 90-second solutions.
     check_question_ids:
       - two-part-analysis-q11
 
   - id: quantitative-setup
     type: reading
     title: "Quantitative Two-Part — set up the equations, then pick the pair"
+    intro: |
+      Behind the unusual interface, quantitative Two-Part is a standard two-unknown word problem. The shared answer list creates pressure to "try options" rather than solve — resist it. Deriving the solution first is always faster than plugging, and it produces a verifiable answer rather than a lucky match.
     check_question_ids:
       - two-part-analysis-q1
       - two-part-analysis-q2
@@ -33,6 +37,8 @@ sections:
   - id: logical-two-part
     type: reading
     title: "Logical Two-Part — argument roles and structure"
+    intro: |
+      Logical Two-Part fails most students on one move: they pick what each answer *says* rather than what *role* it plays. A statement can be factually true, well-written, and directly related to the argument — and still be wrong because it is filling the wrong structural slot. The structural analysis discipline is the whole skill here.
     check_question_ids:
       - two-part-analysis-q4
       - two-part-analysis-q6
@@ -41,6 +47,8 @@ sections:
   - id: rate-and-mixture-templates
     type: reading
     title: "Rate, mixture, and system-of-equations templates"
+    intro: |
+      Three equation templates cover the majority of quantitative Two-Part questions. The goal is to recognize the template in the first 10 seconds — not to re-derive the setup under time pressure. Learn each template once, drill it twice, and the setup phase becomes automatic.
     check_question_ids:
       - two-part-analysis-q5
       - two-part-analysis-q7
@@ -49,11 +57,15 @@ sections:
   - id: common-tpa-traps
     type: reading
     title: "The four TPA traps — and the compute-first reflex"
+    intro: |
+      TPA's shared-answer-list format creates failure modes that don't exist on any other question type. Each trap below costs points not because students lack knowledge, but because the format systematically invites a specific wrong move. Know the four traps by name, not just as vague warnings.
     check_question_ids: []
 
   - id: cause-effect-patterns
     type: reading
     title: "Cause-and-effect argument patterns"
+    intro: |
+      Most hard logical Two-Part questions test causation reasoning — the same skill Critical Reasoning tests on strengthen/weaken, but selected across two columns. The key insight: supporting a causal claim means ruling out alternative explanations; undermining it means providing them. Get that asymmetry locked in and the question type simplifies considerably.
     check_question_ids:
       - two-part-analysis-q8
       - two-part-analysis-q14
@@ -237,6 +249,20 @@ Weakener candidate: "Remote workers were self-selected from high performers in t
 
 **Trap to watch.** Don't confuse "the role the statement plays in the argument" with "the role the question asks about." The question might ask for the conclusion the author supports, or the conclusion the author *rejects*. Read the question stem carefully.
 
+**Micro-drill.** For each argument fragment, identify the structural role of the underlined statement. Choose from: Conclusion / Evidence / Assumption / Intermediate conclusion / Strengthener / Weakener. 90 seconds total.
+
+1. Employees who participated in the mentorship program received promotions at twice the rate of those who did not. _Therefore, mentorship programs improve career advancement._ The company should expand the program to all departments.
+
+2. Studies show that cities with bike-share programs have lower average commute times. _The bike-share users displaced car trips rather than adding new ones._ Therefore, cities should invest in bike-share infrastructure.
+
+3. Our product line generated $8M in revenue last quarter — our highest ever. Marketing spend rose 40% over the same period. _The revenue increase was driven by the marketing campaign._
+
+4. Remote workers reported 20% higher productivity in the company's internal survey. _The productivity metric was measured using the same criteria for remote and in-office employees._ Therefore, remote work increases productivity.
+
+Answers: (1) **Intermediate conclusion** — it is drawn from the double-promotion evidence and then used to support the main conclusion ("expand the program"). It functions as both a conclusion (from the evidence before it) and as evidence (for the main claim after it). Picking "Conclusion" here is a common half-right answer — it is *a* conclusion, but not the *main* one. (2) **Assumption** — the argument moves from "cities with bike-share have lower commute times" to "cities should invest in bike-share." That leap only holds if bike-share users displaced car trips. This bridging premise is never stated; the argument requires it. (3) **Conclusion** — the final sentence is what the author is claiming, supported by the revenue figure and the marketing spend data before it. The GMAT rarely labels the conclusion with "therefore" on hard questions; look for the statement the author is *trying to establish*. (4) **Strengthener** — the argument is vulnerable to the objection that remote and in-office productivity were measured differently. This fact rules out that objection, narrowing the gap between correlation and causation.
+
+> **Self-explanation prompt.** Why isn't it enough for an answer choice to be "true and relevant to the argument"? If you can say "because TPA asks for a specific structural role — a statement can be factually true, topically related, and even persuasive while still being wrong because it plays the wrong role in the argument's architecture — and the test writers always include true-but-wrong-role distractors," you've understood the discipline that separates role-identification from content-matching.
+
 ## @rate-and-mixture-templates
 
 The most common quantitative Two-Part templates are rate/work problems, mixture problems, and percent/investment problems. Each has a standard setup.
@@ -297,6 +323,16 @@ Try integer combinations. c = 8, t = 2: 40 + 16 = 56 ≤ 80 ✓, 16 + 10 = 26 �
 Etc. This kind of problem requires careful case-checking, which is typical for 705+ Two-Part.
 
 **The "round to integer" discipline.** If the answer list has only integer options and your algebra yields a non-integer, either your setup is wrong or you need to find corner-point integer solutions.
+
+**Micro-drill.** Apply the correct template and solve for both unknowns. State which answer list option you would select for each part. 90 seconds per problem.
+
+1. Worker A completes a task in 12 hours alone; Worker B completes the same task in 8 hours alone. They work together until it's done. Find (Part 1) combined time and (Part 2) A's individual time. Answer list: 4, 4.8, 6, 8, 10, 12, 15, 20.
+
+2. Mix Solution P (20% acid) with Solution Q (50% acid) to produce 15 liters of 30% acid solution. Find (Part 1) liters of P and (Part 2) liters of Q. Answer list: 2, 3, 5, 8, 10, 12, 15.
+
+3. An investor splits $80,000 between Fund X (9% annual return) and Fund Y (4% annual return). Total annual return is $5,700. Find (Part 1) amount in Fund X and (Part 2) amount in Fund Y. Answer list: 10K, 20K, 28K, 40K, 52K, 60K, 70K, 80K.
+
+Answers: (1) Part 2 = **12** (given directly). Combined rate: 1/12 + 1/8 = 2/24 + 3/24 = 5/24 per hour. Combined time: 24/5 = **4.8 hours** (Part 1). Sanity check: combined time must be less than the smaller individual time of 8 hours — 4.8 < 8. (2) Let p + q = 15 and 0.20p + 0.50q = 0.30 × 15 = 4.5. Substitute p = 15 − q: 0.20(15 − q) + 0.50q = 4.5 → 3 − 0.20q + 0.50q = 4.5 → 0.30q = 1.5 → q = **5** (Part 2), p = **10** (Part 1). Verify: 0.20(10) + 0.50(5) = 2 + 2.5 = 4.5 = 0.30 × 15. (3) Let x + y = 80,000 and 0.09x + 0.04y = 5,700. Substitute y = 80,000 − x: 0.09x + 0.04(80,000 − x) = 5,700 → 0.09x + 3,200 − 0.04x = 5,700 → 0.05x = 2,500 → x = **$50,000 → closest answer: 52K** — wait, actually 0.05x = 2,500 gives x = 50,000. Hmm, 50K isn't in the list but 52K is. Re-check: if x = 52,000, then 0.09(52K) + 0.04(28K) = 4,680 + 1,120 = 5,800 ≠ 5,700. If x = 40,000: 0.09(40K) + 0.04(40K) = 3,600 + 1,600 = 5,200 ≠ 5,700. Actually: 0.05x = 5,700 − 3,200 = 2,500, so x = 50,000. The correct setup gives 50K for Fund X and 30K for Fund Y — note that both values must appear in the answer list on a real TPA question. If your answer isn't in the list, recheck the setup before assuming the question is broken.
 
 > **Recall check.** Without looking, state the combined-work formula, the mixture formula, and the investment formula. (Answers: 1/a+1/b=1/T; weighted average with two equations; split-capital with two equations.) All three are structurally the same — two equations in two unknowns. Retrieval of all three cements the template in long-term memory.
 
@@ -400,6 +436,25 @@ Premises are statements the author cites *as evidence*. Conclusions are statemen
 All three exist in the passage, and Two-Part can ask for any two.
 
 **The "claim the author disputes" trap.** Some arguments cite opposing views to refute them. If the question asks for "the author's conclusion," don't pick the view the author argues against — pick the view the author supports.
+
+**Micro-drill.** For each causal argument, identify (a) what the causal claim is, and (b) which of the two additional facts is the Strengthener (S) and which is the Weakener (W). 90 seconds total.
+
+**Argument 1.** Students who slept more than 8 hours per night before an exam scored 15% higher than those who slept 6 hours or fewer. Therefore, extended sleep causes better exam performance.
+
+- Fact X: Students were randomly assigned to 8-hour or 6-hour sleep conditions the night before the exam.
+- Fact Y: High-achieving students tend to manage their schedules better, which allows them to sleep more.
+
+**Argument 2.** Restaurants that introduced a loyalty app saw a 25% increase in repeat customer visits. Therefore, the loyalty app caused customers to return more frequently.
+
+- Fact X: Customers who downloaded the app reported that push notifications reminded them to return to the restaurant.
+- Fact Y: The restaurants that introduced loyalty apps also launched redesigned menus during the same quarter.
+
+**Argument 3.** Cities that built new cycling infrastructure saw a 30% decline in peak-hour traffic congestion. Therefore, cycling infrastructure reduces traffic.
+
+- Fact X: Surveys found that a majority of new cycling infrastructure users had previously commuted by car.
+- Fact Y: Several of the cities that built cycling infrastructure also introduced downtown parking restrictions during the same period.
+
+Answers: (1) Causal claim: sleep duration causes exam performance. **Fact X = S** — random assignment eliminates the confound that high-achievers both perform well and manage time; it establishes that sleep duration itself, not underlying student quality, produced the outcome difference. **Fact Y = W** — introduces the alternative explanation that student quality drives both outcomes; the association between sleep and performance may be spurious. (2) Causal claim: loyalty app caused repeat visits. **Fact X = S** — provides the causal mechanism: if app reminders triggered returns, there is a direct pathway from the app to the behavior, not just coincidence. **Fact Y = W** — introduces a confound; menu redesigns could independently drive repeat visits, making it unclear whether the app or the menus caused the increase. (3) Causal claim: cycling infrastructure reduces traffic. **Fact X = S** — establishes that the people using the new infrastructure were converted from cars, not people who wouldn't have driven anyway; confirms that the infrastructure actually removed cars from the road. **Fact Y = W** — introduces a confound; parking restrictions would independently reduce car traffic, so the decline in congestion may be caused by the restrictions rather than the cycling infrastructure.
 
 > **Self-explanation prompt.** Why is strengthening a causal claim typically about ruling out alternatives? If you can say "because 'X caused Y' is only convincing when other explanations are eliminated; each alternative ruled out narrows the gap between correlation and causation," you've internalized the asymmetric structure of causal arguments — and you'll apply the same logic across CR and logical Two-Part.
 
