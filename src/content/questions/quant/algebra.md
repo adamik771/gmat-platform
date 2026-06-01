@@ -126,7 +126,7 @@ If x² - 5x - 14 = 0, what is the product of the two solutions?
 **answer:** A
 **fastest_path:** Vieta's: for x² + bx + c = 0, product of roots = c. Here c = −14.
 **explanation:** Vieta's formulas: for ax² + bx + c = 0, sum of roots = −b/a, product of roots = c/a. With a = 1, the product is just c = −14. Total time: 5 seconds. Factoring (x − 7)(x + 2) = 0, giving roots 7 and −2 with product −14, also works but takes 30+ seconds.
-**mistake_b:** Computed −b = 5, then halved (some confusion of sum vs product formulas).
+**mistake_b:** Applied the product-of-roots formula as c/a but used a = 2 (the count of roots) instead of a = 1 (the actual leading coefficient): −14/2 = −7.
 **mistake_c:** Sum of roots: −b/a = 5 — confused sum with product.
 **mistake_d:** Forgot the negative sign on the constant term.
 **mistake_e:** Used |c| = 14, missing the sign.
@@ -156,7 +156,7 @@ If f(x) = x² + 2, what is f(a + 1) − f(a − 1)?
 **fastest_path:** f(a+1) = a² + 2a + 3; f(a−1) = a² − 2a + 3. Difference = 4a.
 **explanation:** Use the variable argument — expand algebraically. f(a + 1) = (a + 1)² + 2 = a² + 2a + 1 + 2 = a² + 2a + 3. f(a − 1) = (a − 1)² + 2 = a² − 2a + 1 + 2 = a² − 2a + 3. Subtract: (a² + 2a + 3) − (a² − 2a + 3) = 4a. Both the a² terms and the constant terms cancel; only the linear cross-terms from the (a ± 1)² expansion survive.
 **mistake_a:** Substituted a = 1 to get a specific number: f(2) − f(0) = 6 − 2 = 4, then bubbled B (4). Numerical substitution cannot distinguish variable expressions — plugging in a = 1 gives 4a = 4, which matches B, but so would the constant 4; you need a second test value to confirm dependence on a.
-**mistake_b:** Dropped the variable from the cross-term: computed (2a + 1) − (−2a + 1) = 4 — treated the cross-term as the constant 1 rather than 2a.
+**mistake_b:** Correctly subtracted the expanded expressions to get 4a, then dropped the variable and wrote 4 — simplified 4a → 4 by treating a as 1 (or omitting it entirely from the final step).
 **mistake_d:** Failed to cancel the constant terms: computed 4a + (3 − 3) but added the constants instead of subtracting, arriving at 4a + 4.
 **mistake_e:** Multiplied instead of subtracting: treated f(a+1) − f(a−1) as f(a+1) × f(a−1), then collapsed to 2a².
 **common_trap:** Plugging in a specific number (a = 0 or a = 1) instead of working symbolically — numerical substitution may give a consistent answer, but it can't distinguish between choices that differ only in their variable terms.
@@ -209,8 +209,8 @@ If 2 < |x - 3| < 7, how many integer values of x satisfy the inequality?
 **explanation:** Two absolute-value inequalities create an intersection of two unions. From |x − 3| > 2: x − 3 > 2 (x > 5) or x − 3 < −2 (x < 1). From |x − 3| < 7: −7 < x − 3 < 7, i.e., −4 < x < 10. The intersection is (−4 < x < 1) OR (5 < x < 10) — exclusive on all bounds since the inequalities are strict. Integers in the first range: −3, −2, −1, 0 (4 integers). Integers in the second: 6, 7, 8, 9 (4 integers). Total = 8.
 **mistake_a:** Made a systematic off-by-one error at the integer nearest each strict upper bound: counted {−3, −2, −1} = 3 from the lower range (stopping before 0, which is the integer just below the bound 1) and {6, 7, 8} = 3 from the upper range (stopping before 9, the integer just below the bound 10); total 3 + 3 = 6. This happens when a student is uncertain whether the integer adjacent to a strict bound is included and conservatively excludes it.
 **mistake_b:** Made an off-by-one error in one of the two disjoint ranges — for example, started the lower range at −2 (missing −3), giving {−2,−1,0}=3 integers instead of 4; combined with the upper range of 4 integers: 3+4=7.
-**mistake_d:** Forgot the strict inequalities and included endpoints (1, 5, −4, 10).
-**mistake_e:** Used >, < but counted inclusive on one side.
+**mistake_d:** Treated the outer bound |x − 3| < 7 as ≤ 7 at the lower end, adding x = −4 (since |−4 − 3| = 7 satisfies ≤ 7). Count: {−4, −3, −2, −1, 0} ∪ {6, 7, 8, 9} = 9.
+**mistake_e:** Treated the inner bound |x − 3| > 2 as ≥ 2, adding x = 1 (|1 − 3| = 2 satisfies ≥ 2) and x = 5 (|5 − 3| = 2 satisfies ≥ 2). Count: {−3, −2, −1, 0, 1} ∪ {5, 6, 7, 8, 9} = 10.
 **common_trap:** ignoring-constraints — strict vs. non-strict inequalities; the boundary integers are excluded.
 **takeaway:** Compound absolute-value inequalities split into unions; intersect carefully and exclude boundaries on strict inequalities.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -234,7 +234,7 @@ If the roots of the equation x² + bx + c = 0 are each increased by 2, the resul
 **fastest_path:** Find roots of x² − 6x + 5 = 0 → 1 and 5. Original roots = 1 − 2 = −1 and 5 − 2 = 3. Sum = −b, so b = −2. Product = c, so c = −3. b + c = −5.
 **explanation:** Factor x² − 6x + 5 = (x − 1)(x − 5), so roots are 1 and 5. The new roots are each 2 more than the original, so original roots = −1 and 3. Apply Vieta's to x² + bx + c = 0: sum of roots = −b → (−1 + 3) = −b → b = −2. Product of roots = c → (−1)(3) = c → c = −3. Therefore b + c = −5.
 **mistake_b:** Computed b = +2 (forgot the sign on Vieta's: sum = −b/a, not +b/a).
-**mistake_c:** Mistakenly added 2 to the new roots instead of subtracting (got original roots = 3 and 7, then computed differently).
+**mistake_c:** Found original roots −1 and 3 correctly, but computed their product as +3 instead of −3 (sign error: (−1) × 3 = −3, not +3). Then b = −2, c = 3, and b + c = 1.
 **mistake_d:** Switched the direction of "increased by 2" — added 2 instead of subtracting from the new roots.
 **mistake_e:** Computed sum and product of the *new* roots and reported that.
 **common_trap:** Vieta's sign confusion — sum of roots is −b/a, not b/a.
@@ -261,7 +261,7 @@ If 4^(a+1) = 8^a, what is the value of a?
 **explanation:** Rewrite both sides with the same base. 4 = 2², so 4^(a+1) = 2^(2(a+1)) = 2^(2a+2). 8 = 2³, so 8^a = 2^(3a). The equation becomes 2^(2a+2) = 2^(3a), which (since the bases are equal) requires the exponents to be equal: 2a + 2 = 3a → a = 2. Verify: 4³ = 64 and 8² = 64 ✓.
 **mistake_a:** Set 4 + 1 = 8 × a (treated bases additively).
 **mistake_c:** Converted 8 as 8 = 2² (misremembering the cube root) instead of 2³: got 2^(2a+2) = 2^(2a), which yields no solution. After the dead end, fell back to testing answer choices and landed on 3.
-**mistake_d:** Mis-expanded the left side as 4^(a+1) = 2^(a+2) (confused multiplying by 2 with adding 2 to the exponent): 2^(a+2) = 2^(3a) → a+2 = 3a → 2a = 2 → a = 1, then read "4" from the answer choices on a second pass.
+**mistake_d:** Mis-distributed the exponent: wrote 2(a+1) = 2a + 4 instead of 2a + 2 (evaluated 2 × 1 as 2² = 4, compounding the exponent a second time). Set equal: 2a + 4 = 3a → a = 4.
 **mistake_e:** Misread 4^(a+1) as 4^a + 1, leading to wrong setup.
 **common_trap:** Exponent rules misapplied — power-of-power vs. product-of-powers.
 **takeaway:** When two powers have different bases with a common base relationship (4 = 2², 8 = 2³, 9 = 3², etc.), rewrite with the common base. Equal bases → equal exponents.
