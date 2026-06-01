@@ -155,7 +155,7 @@ If f(x) = x² + 2, what is f(a + 1) − f(a − 1)?
 **hint_setup:** f(a + 1) = (a + 1)² + 2 = a² + 2a + 3; now find f(a − 1) the same way.
 **fastest_path:** f(a+1) = a² + 2a + 3; f(a−1) = a² − 2a + 3. Difference = 4a.
 **explanation:** Use the variable argument — expand algebraically. f(a + 1) = (a + 1)² + 2 = a² + 2a + 1 + 2 = a² + 2a + 3. f(a − 1) = (a − 1)² + 2 = a² − 2a + 1 + 2 = a² − 2a + 3. Subtract: (a² + 2a + 3) − (a² − 2a + 3) = 4a. Both the a² terms and the constant terms cancel; only the linear cross-terms from the (a ± 1)² expansion survive.
-**mistake_a:** Substituted a = 1 to get a specific number: f(2) − f(0) = 6 − 2 = 4, then bubbled B (4). Numerical substitution cannot distinguish variable expressions — plugging in a = 1 gives 4a = 4, which matches B, but so would the constant 4; you need a second test value to confirm dependence on a.
+**mistake_a:** Misread f(x) = x + 2 (dropped the exponent on x²), turning the function linear: f(a+1) = (a+1) + 2 = a + 3 and f(a−1) = (a−1) + 2 = a + 1; difference = 2.
 **mistake_b:** Dropped the variable from the cross-term: computed (2a + 1) − (−2a + 1) = 4 — treated the cross-term as the constant 1 rather than 2a.
 **mistake_d:** Failed to cancel the constant terms: computed 4a + (3 − 3) but added the constants instead of subtracting, arriving at 4a + 4.
 **mistake_e:** Multiplied instead of subtracting: treated f(a+1) − f(a−1) as f(a+1) × f(a−1), then collapsed to 2a².
@@ -469,7 +469,7 @@ For how many integer values of x is |2x + 1| < 9?
 **answer:** B
 **fastest_path:** |2x + 1| < 9 → −9 < 2x + 1 < 9 → −5 < x < 4. Strict bounds → integers {−4, ..., 3} = 8.
 **explanation:** Translate the absolute-value inequality: |expr| < k becomes −k < expr < k. So −9 < 2x + 1 < 9. Subtract 1: −10 < 2x < 8. Divide by 2: −5 < x < 4. Strict inequalities exclude the endpoints, so integers strictly between −5 and 4 are −4, −3, −2, −1, 0, 1, 2, 3 — that's 8 integers.
-**mistake_a:** Excluded one endpoint that should be excluded but also lost an interior integer.
+**mistake_a:** Correct range −5 < x < 4, but counted integers as (upper − lower) = 3 − (−4) = 7 instead of enumerating or using upper − lower − 1 = 8 for strict bounds on both sides. Classic fencepost error.
 **mistake_c:** Included one endpoint (treated < as ≤) somewhere; counted 9.
 **mistake_d:** Included both endpoints (counted −5 and 4) → 10.
 **mistake_e:** Treated as |...| ≤ 9 throughout; counted including endpoints → 11.
@@ -629,10 +629,10 @@ If the roots of the quadratic equation x² + bx + 12 = 0 differ by 1, what are t
 **answer:** C
 **fastest_path:** (r₁ − r₂)² = (r₁ + r₂)² − 4r₁r₂ → 1 = b² − 48 → b² = 49 → b = ±7.
 **explanation:** Use the identity (r₁ − r₂)² = (r₁ + r₂)² − 4r₁r₂. Vieta's: sum = −b, product = 12. Substitute: 1² = b² − 4(12) → b² = 49 → b = ±7. Verify with b = 7: x² + 7x + 12 = (x + 3)(x + 4), roots −3 and −4, which differ by 1 ✓. The ± sign matters: both b = 7 and b = −7 produce roots that differ by 1 (just with flipped signs).
-**mistake_a:** Computed only one sign, missed ±.
-**mistake_b:** b² = 36, took √36 = 6.
-**mistake_d:** b² = 64; took √64 = 8.
-**mistake_e:** b² = 81 (added wrong); took √81 = 9.
+**mistake_a:** Applied the correct identity but used product = 6 instead of 12 (halved the constant, possibly from a partial-factoring attempt): 1 = b² − 4(6) → b² = 25 → ±5.
+**mistake_b:** Set up correctly and reached b² = 49, then recalled √49 = 6 (confusing it with √36 = 6; a memorization slip on perfect squares).
+**mistake_d:** Arithmetic error in the final step: computed 1 + 4(12) = 1 + 48 as 64 instead of 49 (wrote 48 + 1 = 64 in scratch work, confusing 7² = 49 with 8² = 64).
+**mistake_e:** Factored x² + bx + 12 = (x − r)(x − r − 1) correctly, giving r(r + 1) = 12. Solved r² + r − 12 = 0 with the wrong factoring — wrote (r − 4)(r + 3) instead of (r − 3)(r + 4) — getting r = 4; then b = −(r + r + 1) = −9, giving ±9.
 **common_trap:** squaring-without-sign-check — taking √(b²) and missing that b can be ± of the magnitude.
 **takeaway:** When you take a square root in a problem, both ± signs are valid solutions unless additional constraints rule one out. Memorize (r₁ − r₂)² = (r₁ + r₂)² − 4r₁r₂ for "roots differ by k" problems.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -774,8 +774,8 @@ If the roots of the quadratic equation x² + bx + c = 0 are 3 and −5, what is 
 **fastest_path:** Vieta's: sum = −b = 3 + (−5) = −2 → b = 2. Product = c = (3)(−5) = −15. b − c = 2 − (−15) = 17.
 **explanation:** Vieta's formulas for x² + bx + c = 0: sum of roots = −b, product = c. Roots are 3 and −5. Sum = 3 + (−5) = −2, so −b = −2 → b = 2. Product = (3)(−5) = −15, so c = −15. Then b − c = 2 − (−15) = 2 + 15 = 17.
 **mistake_a:** Subtracted in wrong order: c − b = −15 − 2 = −17.
-**mistake_b:** Sign error on b: thought sum = b directly, got b = −2; then b − c = −2 − (−15) = 13.
-**mistake_c:** Got c = 15 (sign error on product); b − c = 2 − 15 = −13. Bubbled |−13| = 13.
+**mistake_b:** Sign error on c: product = (3)(−5) = −15 but wrote c = 15 (dropped the negative); b − c = 2 − 15 = −13.
+**mistake_c:** Sign error on b: applied Vieta's as sum = b (instead of sum = −b), getting b = −2; then b − c = −2 − (−15) = 13.
 **mistake_e:** Computed b + c = 2 + (−15) = −13, then took absolute value or other slip.
 **common_trap:** Vieta's sign confusion — sum = −b/a, not +b/a.
 **takeaway:** For x² + bx + c = 0, sum of roots = −b, product = c (when leading coeff is 1). Re-read the question to confirm whether you're computing b − c, c − b, b + c, or something else.
@@ -840,7 +840,7 @@ If 2a + 3b = 16 and 5a − 3b = 19, what is the value of a + b?
 **explanation:** Coefficients on b are equal-and-opposite (+3 and −3), making addition the obvious one-step path. Adding 2a + 3b + 5a − 3b = 16 + 19 → 7a = 35 → a = 5. Substitute into the first equation: 2(5) + 3b = 16 → 3b = 6 → b = 2. Therefore a + b = 7.
 **mistake_a:** Stopped after finding a = 5 and bubbled — the question asks for a + b, not a alone.
 **mistake_c:** Found a = 5 and b = 2 correctly, then made an arithmetic slip adding: wrote 5 + 4 = 9 instead of 5 + 2 = 7 (mis-read the value of b in their scratch work).
-**mistake_d:** Confused the question with "what is a × b" and computed 5 × 2 = 10, then added a stray 1 from a coefficient in the equations, arriving at 11.
+**mistake_d:** Found a = 5 correctly, then back-substituted into 2(5) + 3b = 16 → 3b = 6, but read "3b = 6" as b = 6 without dividing by 3; computed a + b = 5 + 6 = 11.
 **mistake_e:** Summed both right-hand sides (16 + 19 = 35) and confused this with the answer, then searched for the nearest plausible choice (13) rather than recognizing the sum 35 = 7a.
 **common_trap:** Solving past sufficiency or stopping early — bubbling a (or b) when the question asked for a + b.
 **takeaway:** When two equations have equal-and-opposite coefficients on one variable, add to cancel and solve in one step.
@@ -899,7 +899,7 @@ If x² − 10x + 21 = 0, what is the value of x² − 10x + 25?
 **explanation:** Don't solve for x. The given equation rearranges to x² − 10x = −21. The target expression x² − 10x + 25 differs from the given (x² − 10x + 21) by exactly 4. So target = −21 + 25 = 4. Total time: 10 seconds.
 
 Verification by solving: factor x² − 10x + 21 = (x − 3)(x − 7) = 0, so x = 3 or 7. Plug x = 3: 9 − 30 + 25 = 4 ✓. Plug x = 7: 49 − 70 + 25 = 4 ✓. Same answer, but takes 60+ seconds.
-**mistake_b:** Solved for x (3 or 7), then computed 5² = 25 thinking that was the answer.
+**mistake_b:** Recognized that x² − 10x + 25 = (x − 5)², then solved (x − 5)² = 0 → x = 5 and bubbled 5 — computed the root of the target expression rather than its value given the constraint.
 **mistake_c:** Computed 25 − 21 = 4, then somehow got 6 from another arithmetic operation.
 **mistake_d:** Bubbled 10 (a coefficient appearing in the question).
 **mistake_e:** Bubbled 25 (the constant in the target expression, missed the manipulation).
