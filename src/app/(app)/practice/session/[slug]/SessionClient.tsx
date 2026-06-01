@@ -1072,6 +1072,7 @@ export default function SessionClient({
   >("idle")
   const [savedSessionId, setSavedSessionId] = useState<string | null>(null)
   const [showAllReview, setShowAllReview] = useState(false)
+  const [expandedReview, setExpandedReview] = useState<Set<number>>(new Set())
 
   // Tick the timer once a second for the header readouts.
   useEffect(() => {
@@ -1757,61 +1758,6 @@ export default function SessionClient({
           </Link>
         )}
 
-        {/* What to do next — renders the nextStepNote guidance as direct CTA
-            buttons. The text was computed above but never surfaced in the UI;
-            without a button, students read the advice and then navigate away
-            manually with no clear path. Primary action depends on accuracy
-            band: review the chapter (low), practice again (mid), study plan
-            (high). Chapter link is only shown when the topic maps to one. */}
-        {(() => {
-          const chapterSlug = TOPIC_TO_CHAPTER[topic]
-          const low = accuracy < 60
-          const mid = accuracy >= 60 && accuracy < 78
-
-          const primaryAction = low && chapterSlug
-            ? { label: `Review ${topic} chapter`, href: `/chapters/${chapterSlug}` }
-            : mid
-            ? { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-            : { label: "View your study plan", href: "/study-plan" }
-
-          const secondaryAction =
-            low
-              ? { label: "Practice again", href: `/practice/session/${slug}` }
-              : mid && chapterSlug
-              ? { label: "Review the chapter", href: `/chapters/${chapterSlug}` }
-              : { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-
-          return (
-            <div
-              className="p-5 rounded-xl border border-white/[0.08]"
-              style={{ backgroundColor: "#0D0D0D" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
-                What to do next
-              </p>
-              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-4">
-                {nextStepNote}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Link
-                  href={primaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  {primaryAction.label}
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-                <Link
-                  href={secondaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-white/[0.1] text-[#888888] transition-colors hover:text-[#F0F0F0] hover:border-white/[0.2]"
-                >
-                  {secondaryAction.label}
-                </Link>
-              </div>
-            </div>
-          )
-        })()}
-
         {/* Review list — wrong answers only by default, toggle to show all */}
         {(() => {
           const wrongIndices = questions
@@ -1857,16 +1803,25 @@ export default function SessionClient({
                     const isCorrect = isQuestionCorrect(q, state)
                     const isWrong = state.submitted && !isCorrect
                     const isLast = listIdx === displayItems.length - 1
+                    const isExpanded = expandedReview.has(i)
+                    const isTwoPartQ = !!q.twoPartColumns
                     return (
-                      <button
+                      <div
                         key={q.id}
+                        className={!isLast ? "border-b border-white/[0.05]" : ""}
+                      >
+                      <button
                         onClick={() => {
-                          goTo(i)
-                          setShowResults(false)
+                          if (state.submitted) {
+                            setExpandedReview((prev) => {
+                              const next = new Set(prev)
+                              if (next.has(i)) next.delete(i)
+                              else next.add(i)
+                              return next
+                            })
+                          }
                         }}
-                        className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
-                          !isLast ? "border-b border-white/[0.05]" : ""
-                        }`}
+                        className="w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left"
                         style={isWrong ? { backgroundColor: "rgba(255,68,68,0.025)" } : undefined}
                       >
                         <div className="flex items-center gap-3 min-w-0">
@@ -1900,15 +1855,57 @@ export default function SessionClient({
                             <p className="text-sm text-[#F0F0F0] truncate">
                               {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
                             </p>
+                            {isWrong && state.selected !== null && !isTwoPartQ && (
+                              <p className="text-[11px] mt-0.5" style={{ color: "rgba(255,107,107,0.6)" }}>
+                                You chose {letterFor(state.selected)} · Correct: {q.correctAnswerLetter}
+                              </p>
+                            )}
                           </div>
                         </div>
-                        <span
-                          className="text-xs flex-shrink-0 ml-3"
-                          style={{ color: isWrong ? "rgba(255,107,107,0.6)" : "#888888" }}
-                        >
-                          {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
-                        </span>
+                        <div className="flex items-center gap-2 flex-shrink-0 ml-3">
+                          <span
+                            className="text-xs"
+                            style={{ color: isWrong ? "rgba(255,107,107,0.6)" : "#888888" }}
+                          >
+                            {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
+                          </span>
+                          {state.submitted && (
+                            <ChevronDown
+                              className={`w-3.5 h-3.5 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
+                              style={{ color: "#555555" }}
+                            />
+                          )}
+                        </div>
                       </button>
+                      {isExpanded && q.explanation && (
+                        <div
+                          className="px-4 pb-4 pt-3 border-t border-white/[0.04]"
+                          style={{ backgroundColor: "rgba(255,255,255,0.01)" }}
+                        >
+                          {isWrong && state.selected !== null && !isTwoPartQ && (
+                            <div className="flex items-center gap-3 mb-3">
+                              <span className="text-[11px]" style={{ color: "rgba(255,107,107,0.75)" }}>
+                                You chose {letterFor(state.selected)}
+                              </span>
+                              <span className="text-[11px]" style={{ color: "#333333" }}>·</span>
+                              <span className="text-[11px]" style={{ color: "rgba(62,207,142,0.75)" }}>
+                                Correct: {q.correctAnswerLetter}
+                              </span>
+                            </div>
+                          )}
+                          <PromptBlock text={q.explanation} />
+                          <button
+                            type="button"
+                            onClick={() => { goTo(i); setShowResults(false) }}
+                            className="mt-4 text-[11px] inline-flex items-center gap-1 transition-opacity hover:opacity-70"
+                            style={{ color: "#C9A84C" }}
+                          >
+                            Go to question
+                            <ArrowRight className="w-3 h-3" />
+                          </button>
+                        </div>
+                      )}
+                      </div>
                     )
                   })}
                 </div>
