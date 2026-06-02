@@ -2,7 +2,7 @@
 slug: table-analysis
 title: Table Analysis
 section: DI
-estimated_minutes: 45
+estimated_minutes: 50
 prerequisites: []
 summary: |
   Table Analysis gives you a sortable data table plus a series of Yes/No statements, and asks whether each statement is true given the data. The test isn't about reading speed — it's about efficiency. You need a repeatable filter-sort-verify discipline that answers each statement in under 60 seconds without re-reading the whole table. Master the three-step workflow (identify the relevant column, filter or sort, compute the check), internalize the seven most common statement patterns, and you'll solve every Table Analysis question without ever feeling rushed.
@@ -19,12 +19,16 @@ sections:
   - id: the-three-step-workflow
     type: reading
     title: "The three-step workflow — identify, filter, verify"
+    intro: |
+      Table Analysis questions feel slow when you approach each statement differently. The three-step workflow eliminates that randomness: every statement, regardless of type, gets the same sequence of moves. Internalize this sequence and the question becomes mechanical — you are executing a drill, not solving a novel problem.
     check_question_ids:
       - table-analysis-q13
 
   - id: sorting-vs-filtering
     type: reading
     title: "Sorting vs. filtering — when to use each"
+    intro: |
+      The GMAT Table Analysis table is interactive: you can click any column header to sort it. Most students know this but have no rule for when sorting is faster than filtering. This section gives you that rule — and the 10–15 seconds you save per statement across a 3-statement question is the difference between finishing with time to check and rushing the last one blind.
     check_question_ids:
       - table-analysis-q22
       - table-analysis-q23
@@ -32,6 +36,8 @@ sections:
   - id: statement-patterns
     type: reading
     title: "The seven most common Yes/No statement patterns"
+    intro: |
+      Every Table Analysis statement you will see on the GMAT fits one of seven patterns. Recognizing the pattern within five seconds of reading the statement is the highest-leverage skill in this question type — it tells you immediately which move to make before you have even looked at the table. This section is worth memorizing.
     check_question_ids:
       - table-analysis-q1
       - table-analysis-q2
@@ -40,6 +46,8 @@ sections:
   - id: averages-and-medians
     type: reading
     title: "Averages, medians, and aggregated metrics"
+    intro: |
+      Statements about averages and medians across categories feel computation-heavy until you have three shortcuts. The sum trick eliminates division for equal-group comparisons. The deviation shortcut tells you whether an average clears a threshold without computing it. The median shortcut reads directly off a sorted table. Together they compress what feels like 90-second arithmetic into under 30 seconds.
     check_question_ids:
       - table-analysis-q14
       - table-analysis-q15
@@ -47,6 +55,8 @@ sections:
   - id: cross-category-comparisons
     type: reading
     title: "Cross-category comparisons — subsetting and ranking"
+    intro: |
+      The challenge on multi-category statements is holding three or four computed values in your head simultaneously while doing arithmetic on each. The two-pass technique prevents that: first collect what you need for each category, then compute. When you separate data-collection from arithmetic, you stop mixing up which number belongs to which department.
     check_question_ids:
       - table-analysis-q17
       - table-analysis-q26
@@ -54,6 +64,8 @@ sections:
   - id: derived-metrics-and-traps
     type: reading
     title: "Derived metrics and common traps"
+    intro: |
+      Derived metrics — ratios, percentage changes, per-unit values — produce the highest error rate in Table Analysis. Not because the arithmetic is hard, but because each requires combining two pieces of data correctly, and a single misread corrupts the entire result. This section catalogs the seven traps and gives you the one habit that prevents most of them: write down your intermediate values before comparing.
     check_question_ids:
       - table-analysis-q7
       - table-analysis-q19
@@ -287,6 +299,15 @@ Seven statement patterns cover roughly 90% of what you'll see on Table Analysis.
 
 > **Self-explanation prompt.** Why does "every"/"no" require checking every row but "at least one" needs just one example? If you can say "because universal claims fail if a single counterexample exists, while existential claims succeed if a single confirming case exists," you've internalized the asymmetry — and you'll scan tables much faster.
 
+**Micro-drill.** Use the Employee Demographics table from the workflow section. Identify the pattern type (1–7) and state the move for each statement — 90 seconds total:
+
+1. "The highest-paid employee works in Operations."
+2. "More than half of employees earn more than $115K."
+3. "Every Finance employee is younger than every Operations employee."
+4. "At least one Strategy employee earns more than the highest-paid Finance employee."
+
+Answers: (1) **Pattern 2 (Rank check)** — sort Salary descending, read the top row, check its Department. Top: D (155, Operations). Yes. (2) **Pattern 1 (Threshold count)** — filter to Salary > 115: A (120), D (155), G (150), B (140), F (125) = 5 of 8 employees. 5/8 > 4/8. Yes. (3) **Pattern 4 (Within-row derivation)** — for every Finance employee, verify age < every Operations employee's age. Finance ages: B (38), E (26), H (33). Operations ages: D (42), F (35). Check H (33) vs F (35): 33 < 35? No — H is older than F. One counterexample kills a universal claim. No. (4) **Pattern 5 (Existence check)** — filter Strategy, find max: G = 150. Filter Finance, find max: B = 140. G (150) > B (140), so at least one qualifies. Yes. If you spent more than 15 seconds identifying the pattern for any of these, re-read the seven patterns before the check questions. Pattern recognition is the first 5 seconds — execution is the next 55.
+
 ## @averages-and-medians
 
 When statements involve averages or medians across categories, computation can feel daunting on a large table. Three techniques collapse this to under 30 seconds.
@@ -381,6 +402,8 @@ Filter on two conditions (Finance AND over 30). Then check all of them against t
 
 **Trap to watch.** "Overlap" mistakes — filtering on the wrong combination. "Finance AND over 30" is different from "Finance OR over 30." Read the statement carefully: "and" means both conditions must hold; "or" means either (or both). Universal quantifier ("all," "every") combined with filters usually means you're checking whether the filtered set satisfies a condition uniformly.
 
+> **Recall check.** Cover this section and state the two-pass technique from memory. Then apply it cold: using the employee table, which department has the highest average salary — Strategy, Finance, or Operations? (Pass 1: three categories, metric = Salary. Pass 2: Strategy sums = 120+95+150 = 365, count 3, avg 121.7. Finance = 140+85+115 = 340, count 3, avg 113.3. Operations = 155+125 = 280, count 2, avg 140.0. Operations wins.) The trap: students who visually scan and pick "Operations" because of D's salary of 155 are cherry-picking the max, not computing the average. F (125) brings Operations's average down — but 140 still beats both other departments. Compute the category average, not the category maximum.
+
 ## @derived-metrics-and-traps
 
 Some statements require computing a *new* metric from the table columns — a ratio, a percentage, a per-unit value. These are the most arithmetic-heavy Table Analysis questions, and where most errors happen.
@@ -457,4 +480,12 @@ Table Analysis is a mechanical workflow problem. Once you internalize the three-
 
 **The habit that separates 685 scorers from 605 scorers:** writing down intermediate computations. Trying to hold three category-averages in your head while comparing them is how students lose points on medium-difficulty Table Analysis. Write every intermediate number down.
 
-Drill the 35 questions in this chapter across the three problem sets. The first few will feel slow; by the tenth, the workflow should be automatic.
+**What to do next.**
+
+1. **Easy set, no time limit.** Seven questions. Goal: execute the three-step workflow on every statement — identify columns, choose sort or filter, verify. Do not try to be fast yet. If you miss a question, write down which step failed (wrong columns identified, wrong filter applied, arithmetic error). These three failure modes have different fixes.
+
+2. **Medium set, timed.** Twenty questions, targeting 60 seconds per statement (3 minutes per question). Apply pattern recognition on every statement before touching the table: name the pattern in under 5 seconds, then execute the move. Log every miss by pattern type and by failure mode.
+
+3. **Hard set, two-pass.** Eight questions. First pass untimed: find the correct method, compute carefully, write every intermediate value on scratch paper. Second pass timed: target under 90 seconds per statement. The gap between your two times is the speed gain that repetition alone will give you.
+
+4. **Error log by pattern type.** After the problem sets, tally your misses by statement pattern (threshold count, rank check, category comparison, etc.). The pattern with the most errors tells you which one needs a focused re-drill — not the whole chapter, just that section. One pattern at a time, not all at once.
