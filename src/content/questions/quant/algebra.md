@@ -50,7 +50,7 @@ Which of the following is equivalent to (x³)⁴ / x⁵?
 **explanation:** Two exponent rules: (a) power of a power multiplies exponents — (x³)⁴ = x^(3×4) = x¹². (b) Same-base division subtracts exponents — x¹² / x⁵ = x^(12−5) = x⁷. The whole computation is two mechanical steps.
 **mistake_a:** Subtracted 3 from 5 (treated denominator as numerator) — got x^2.
 **mistake_c:** Stopped at the numerator step: correctly computed (x³)⁴ = x¹² but then did not complete the division by x⁵, bubbling the intermediate result.
-**mistake_d:** Multiplied (x³)⁴ as x^(3+4) = x^7, then multiplied by x^5 instead of dividing — got x^15.
+**mistake_d:** Confused the two exponents 4 and 5: applied (x³)⁵ = x^(3×5) = x^15 by using the denominator's exponent (5) in the power-of-a-power step instead of the numerator's (4). Never reached the division step.
 **mistake_e:** Computed 3 × 4 + 5 = 17 by adding the bottom exponent rather than subtracting.
 **common_trap:** Confusing exponent rules — multiplying when you should subtract, or adding when you should multiply.
 **takeaway:** Memorize the four exponent rules cold: power-of-power multiplies, product-of-same-base adds, quotient subtracts, negative exponent inverts.
@@ -124,6 +124,9 @@ If x² - 5x - 14 = 0, what is the product of the two solutions?
 - E) 14
 
 **answer:** A
+**hint_nudge:** The question asks for the *product* of the solutions — check whether a formula gives this directly without finding the roots individually.
+**hint_strategy:** Vieta's formulas: for x² + bx + c = 0, the product of the roots equals c (the constant term) when the leading coefficient is 1.
+**hint_setup:** The equation is x² − 5x − 14 = 0, so a = 1, b = −5, c = −14. Product of roots = c/a = −14.
 **fastest_path:** Vieta's: for x² + bx + c = 0, product of roots = c. Here c = −14.
 **explanation:** Vieta's formulas: for ax² + bx + c = 0, sum of roots = −b/a, product of roots = c/a. With a = 1, the product is just c = −14. Total time: 5 seconds. Factoring (x − 7)(x + 2) = 0, giving roots 7 and −2 with product −14, also works but takes 30+ seconds.
 **mistake_b:** Computed −b = 5, then halved (some confusion of sum vs product formulas).
@@ -207,7 +210,7 @@ If 2 < |x - 3| < 7, how many integer values of x satisfy the inequality?
 **answer:** C
 **fastest_path:** |x − 3| > 2 → x ∈ (−∞, 1) ∪ (5, ∞). |x − 3| < 7 → x ∈ (−4, 10). Intersection: (−4, 1) ∪ (5, 10). Count integers: {−3, −2, −1, 0, 6, 7, 8, 9} = 8.
 **explanation:** Two absolute-value inequalities create an intersection of two unions. From |x − 3| > 2: x − 3 > 2 (x > 5) or x − 3 < −2 (x < 1). From |x − 3| < 7: −7 < x − 3 < 7, i.e., −4 < x < 10. The intersection is (−4 < x < 1) OR (5 < x < 10) — exclusive on all bounds since the inequalities are strict. Integers in the first range: −3, −2, −1, 0 (4 integers). Integers in the second: 6, 7, 8, 9 (4 integers). Total = 8.
-**mistake_a:** Made a systematic off-by-one error at the integer nearest each strict upper bound: counted {−3, −2, −1} = 3 from the lower range (stopping before 0, which is the integer just below the bound 1) and {6, 7, 8} = 3 from the upper range (stopping before 9, the integer just below the bound 10); total 3 + 3 = 6. This happens when a student is uncertain whether the integer adjacent to a strict bound is included and conservatively excludes it.
+**mistake_a:** Misread the outer bound as |x − 3| < 6 instead of < 7. The outer constraint then gives −3 < x < 9 rather than −4 < x < 10. Intersecting with x < 1 or x > 5 yields (−3, 1) ∪ (5, 9). Integer count: {−2, −1, 0} = 3 (lower range) + {6, 7, 8} = 3 (upper range) = 6. A one-digit misread of the bound collapses both ranges by exactly one integer each.
 **mistake_b:** Made an off-by-one error in one of the two disjoint ranges — for example, started the lower range at −2 (missing −3), giving {−2,−1,0}=3 integers instead of 4; combined with the upper range of 4 integers: 3+4=7.
 **mistake_d:** Forgot the strict inequalities and included endpoints (1, 5, −4, 10).
 **mistake_e:** Used >, < but counted inclusive on one side.
@@ -231,6 +234,9 @@ If the roots of the equation x² + bx + c = 0 are each increased by 2, the resul
 - E) 5
 
 **answer:** A
+**hint_nudge:** The new roots are each 2 more than the original ones. The resulting equation is already given — work backward from it.
+**hint_strategy:** Factor the resulting equation to get the new roots, subtract 2 from each to recover the originals, then apply Vieta's to the original equation x² + bx + c = 0.
+**hint_setup:** x² − 6x + 5 = (x − 1)(x − 5): new roots are 1 and 5. Original roots = 1 − 2 = −1 and 5 − 2 = 3.
 **fastest_path:** Find roots of x² − 6x + 5 = 0 → 1 and 5. Original roots = 1 − 2 = −1 and 5 − 2 = 3. Sum = −b, so b = −2. Product = c, so c = −3. b + c = −5.
 **explanation:** Factor x² − 6x + 5 = (x − 1)(x − 5), so roots are 1 and 5. The new roots are each 2 more than the original, so original roots = −1 and 3. Apply Vieta's to x² + bx + c = 0: sum of roots = −b → (−1 + 3) = −b → b = −2. Product of roots = c → (−1)(3) = c → c = −3. Therefore b + c = −5.
 **mistake_b:** Computed b = +2 (forgot the sign on Vieta's: sum = −b/a, not +b/a).
@@ -309,6 +315,9 @@ If xy = 6 and x² + y² = 20, what is the value of (x + y)²?
 - E) 36
 
 **answer:** D
+**hint_nudge:** You're asked for (x + y)² but you have x² + y² and xy. Those three quantities are linked by a standard identity.
+**hint_strategy:** Expand (x + y)² = x² + 2xy + y², then substitute both given values directly.
+**hint_setup:** (x + y)² = (x² + y²) + 2(xy) = 20 + 2(6).
 **fastest_path:** (x + y)² = x² + y² + 2xy = 20 + 12 = 32.
 **explanation:** Use the algebraic identity (x + y)² = x² + 2xy + y². Substitute the given values: x² + y² = 20 and xy = 6, so (x + y)² = 20 + 2(6) = 32. The identity collapses the answer in one step. Solving for x and y individually (using both given equations) is harder and unnecessary.
 **mistake_a:** Added 20 + 6 = 26 — forgot to double the xy term in the identity.
@@ -361,6 +370,9 @@ If x² - 10x + k = 0 has exactly one real solution, what is the value of k?
 - E) 50
 
 **answer:** D
+**hint_nudge:** "Exactly one real solution" is a special condition on the quadratic. What does it tell you about the discriminant?
+**hint_strategy:** A quadratic has exactly one solution (a repeated root) when its discriminant b² − 4ac equals zero.
+**hint_setup:** Here a = 1, b = −10, c = k. Set (−10)² − 4(1)(k) = 0 and solve for k.
 **fastest_path:** Discriminant = 0 → b² = 4ac → 100 = 4k → k = 25.
 **explanation:** A quadratic has exactly one real solution (a repeated root) when its discriminant b² − 4ac = 0. Here a = 1, b = −10, c = k. Set discriminant = 0: 100 − 4k = 0 → k = 25. The double root is x = 5, since x² − 10x + 25 = (x − 5)². Recognition: when the question asks for the value of a parameter that produces a repeated/equal/single/double root, set discriminant = 0.
 **mistake_a:** Half of b: 10/2 = 5 (used a different and wrong formula).
@@ -391,7 +403,7 @@ If 3x + 2y = 16 and 5x - 2y = 16, what is the value of x + y?
 **explanation:** y coefficients are equal-and-opposite (+2 and −2) — adding the equations eliminates y in one step: 8x = 32 → x = 4. Substitute back: 3(4) + 2y = 16 → 2y = 4 → y = 2. Therefore x + y = 6. Total time: ~30 seconds. Full substitution path takes ~60-75 seconds.
 **mistake_a:** Stopped at x = 4 and bubbled the wrong variable.
 **mistake_b:** Computed y = 2 and bubbled.
-**mistake_d:** Subtracted the equations instead of adding; got 2x = 0 → x = 0, then y = 8, sum = 7.
+**mistake_d:** Added the left sides correctly (8x) but used only one right-hand side value instead of summing both: 8x = 16 → x = 2. Substituting back: 3(2) + 2y = 16 → 2y = 10 → y = 5. Sum = 2 + 5 = 7.
 **mistake_e:** Solved the system correctly (x = 4, y = 2) but computed x × y = 4 × 2 = 8 instead of x + y = 6.
 **common_trap:** Solving past sufficiency or stopping too early — picking up x or y alone after correct setup.
 **takeaway:** When y coefficients are equal-and-opposite, add to cancel y in one step. After computing both, re-read the question to confirm what's asked.
@@ -548,6 +560,9 @@ Let x, y, and z be positive real numbers with x + y + z = 12 and xy + yz + zx = 
 - E) 105
 
 **answer:** B
+**hint_nudge:** You have x + y + z and xy + yz + zx. You want x² + y² + z². Is there an identity that connects all three?
+**hint_strategy:** Square the sum: (x + y + z)² expands to x² + y² + z² + 2(xy + yz + zx). Isolate the sum of squares.
+**hint_setup:** (12)² = (x² + y² + z²) + 2(39). So x² + y² + z² = 144 − 78.
 **fastest_path:** (x+y+z)² = x²+y²+z² + 2(xy+yz+zx) → 144 = sum_of_squares + 78 → sum_of_squares = 66.
 **explanation:** Use the symmetric-sum identity (x + y + z)² = x² + y² + z² + 2(xy + yz + zx). Substitute: (12)² = (x² + y² + z²) + 2(39) → 144 = (x² + y² + z²) + 78 → x² + y² + z² = 66.
 **mistake_a:** Assumed x = y = z = 4 (equal split from x+y+z=12), then computed 3(4²) = 48. The equal-split assumption is wrong — note that x=y=z=4 gives xy+yz+zx=3(16)=48, not 39, so those values are inconsistent with the given constraints.
@@ -627,6 +642,9 @@ If the roots of the quadratic equation x² + bx + 12 = 0 differ by 1, what are t
 - E) ±9
 
 **answer:** C
+**hint_nudge:** You know the roots differ by 1 and their product (from Vieta's). What identity connects the sum, product, and difference of two numbers?
+**hint_strategy:** Use the identity (r₁ − r₂)² = (r₁ + r₂)² − 4r₁r₂. Vieta's gives you (r₁ + r₂) = −b and r₁r₂ = 12.
+**hint_setup:** (r₁ − r₂)² = 1² = 1. (r₁ + r₂)² = b². So 1 = b² − 4(12) → b² = 49.
 **fastest_path:** (r₁ − r₂)² = (r₁ + r₂)² − 4r₁r₂ → 1 = b² − 48 → b² = 49 → b = ±7.
 **explanation:** Use the identity (r₁ − r₂)² = (r₁ + r₂)² − 4r₁r₂. Vieta's: sum = −b, product = 12. Substitute: 1² = b² − 4(12) → b² = 49 → b = ±7. Verify with b = 7: x² + 7x + 12 = (x + 3)(x + 4), roots −3 and −4, which differ by 1 ✓. The ± sign matters: both b = 7 and b = −7 produce roots that differ by 1 (just with flipped signs).
 **mistake_a:** Computed only one sign, missed ±.
