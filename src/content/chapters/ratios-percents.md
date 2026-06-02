@@ -92,6 +92,11 @@ problem_sets:
       - ratios-percents-q28
       - ratios-percents-q29
       - ratios-percents-q30
+      - ratios-percents-q43
+      - ratios-percents-q44
+      - ratios-percents-q45
+      - ratios-percents-q46
+      - ratios-percents-q47
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -120,6 +125,9 @@ problem_sets:
       - ratios-percents-q35
       - ratios-percents-q36
       - ratios-percents-q37
+      - ratios-percents-q48
+      - ratios-percents-q49
+      - ratios-percents-q50
   hard:
     target_accuracy_by_score:
       "605": 25
