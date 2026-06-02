@@ -1388,18 +1388,6 @@ export default function SessionClient({
       }
     }
 
-    // Next-step recommendation keyed to accuracy band. When the student
-    // performed well and the server identified a weak topic, name it
-    // directly — eliminates the "which area?" follow-up navigation.
-    const nextStepNote =
-      accuracy < 60
-        ? "Accuracy below 60% signals a concept gap. Revisiting the chapter before more practice compounds better."
-        : accuracy < 78
-        ? "Accuracy is building. One more focused session on this topic before moving on."
-        : weakestTopic
-        ? `This topic is solid. Based on your practice history, ${weakestTopic.topic} is your weakest area right now — ${Math.round(weakestTopic.accuracy * 100)}% accuracy. That's where the points are.`
-        : "This topic is solid. Investing time in a weaker area is the highest-leverage move now."
-
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
@@ -1809,61 +1797,6 @@ export default function SessionClient({
           </Link>
         )}
 
-        {/* What to do next — renders the nextStepNote guidance as direct CTA
-            buttons. The text was computed above but never surfaced in the UI;
-            without a button, students read the advice and then navigate away
-            manually with no clear path. Primary action depends on accuracy
-            band: review the chapter (low), practice again (mid), study plan
-            (high). Chapter link is only shown when the topic maps to one. */}
-        {(() => {
-          const chapterSlug = TOPIC_TO_CHAPTER[topic]
-          const low = accuracy < 60
-          const mid = accuracy >= 60 && accuracy < 78
-
-          const primaryAction = low && chapterSlug
-            ? { label: `Review ${topic} chapter`, href: `/chapters/${chapterSlug}` }
-            : mid
-            ? { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-            : { label: "View your study plan", href: "/study-plan" }
-
-          const secondaryAction =
-            low
-              ? { label: "Practice again", href: `/practice/session/${slug}` }
-              : mid && chapterSlug
-              ? { label: "Review the chapter", href: `/chapters/${chapterSlug}` }
-              : { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-
-          return (
-            <div
-              className="p-5 rounded-xl border border-white/[0.08]"
-              style={{ backgroundColor: "#0D0D0D" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
-                What to do next
-              </p>
-              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-4">
-                {nextStepNote}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Link
-                  href={primaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  {primaryAction.label}
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-                <Link
-                  href={secondaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-white/[0.1] text-[#888888] transition-colors hover:text-[#F0F0F0] hover:border-white/[0.2]"
-                >
-                  {secondaryAction.label}
-                </Link>
-              </div>
-            </div>
-          )
-        })()}
-
         {/* Review list — wrong answers only by default, toggle to show all */}
         {(() => {
           const wrongIndices = questions
@@ -1969,9 +1902,6 @@ export default function SessionClient({
           )
         })()}
 
-        {/* What to do next — surfaces the pre-computed guidance and closes
-            the "session finished, now what?" dead end with 1-2 decisive CTAs
-            keyed to the accuracy band. */}
         {answeredCount > 0 && (() => {
           const isPractice =
             !slug.startsWith("diagnostic") &&
@@ -1980,91 +1910,117 @@ export default function SessionClient({
             slug !== "custom"
           const chapterSlug = TOPIC_TO_CHAPTER[topic]
 
-          type NextAction = { label: string; href: string; variant: "primary" | "secondary" }
+          type NextAction = { label: string; href: string; reason: string; primary: boolean }
           const actions: NextAction[] = []
 
           if (isMixedReview) {
-            actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
-            actions.push({ label: "Review queue", href: "/review", variant: "secondary" })
+            actions.push({
+              label: "Go to chapters",
+              href: "/chapters",
+              reason: "Mixed review complete — pick your next chapter to advance.",
+              primary: true,
+            })
+            actions.push({
+              label: "Review queue",
+              href: "/review",
+              reason: "Or continue with spaced retrieval to lock in what you've studied.",
+              primary: false,
+            })
           } else if (accuracy < 60) {
             actions.push({
               label: chapterSlug ? "Review the chapter" : "Go to chapters",
               href: chapterSlug ? `/chapters/${chapterSlug}` : "/chapters",
-              variant: "primary",
+              reason: "Accuracy below 60% signals a concept gap — solidify the foundation before more practice.",
+              primary: true,
             })
             if (isPractice) {
-              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
+              actions.push({
+                label: "Practice again",
+                href: `/practice/session/${slug}`,
+                reason: "Return here once the concept is clearer.",
+                primary: false,
+              })
             }
           } else if (accuracy < 80) {
             if (isPractice) {
-              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "primary" })
+              actions.push({
+                label: "Practice again",
+                href: `/practice/session/${slug}`,
+                reason: "One more focused session on this topic will push accuracy above 80%.",
+                primary: true,
+              })
             }
             actions.push({
               label: chapterSlug ? "Review the chapter" : "Browse chapters",
               href: chapterSlug ? `/chapters/${chapterSlug}` : "/chapters",
-              variant: "secondary",
+              reason: "Refer back if any concept still feels fuzzy.",
+              primary: false,
             })
           } else if (weakestTopic) {
-            // Strong session + known weak topic: point directly to the gap
             actions.push({
               label: `Practice ${weakestTopic.topic}`,
               href: `/practice/session/${weakestTopic.practiceSlug}`,
-              variant: "primary",
+              reason: `${Math.round(weakestTopic.accuracy * 100)}% accuracy on ${weakestTopic.topic} — that's your highest-leverage gap right now.`,
+              primary: true,
             })
             const wtChapter = TOPIC_TO_CHAPTER[weakestTopic.topic]
             actions.push({
               label: wtChapter ? "Review the chapter" : "Go to chapters",
               href: wtChapter ? `/chapters/${wtChapter}` : "/chapters",
-              variant: "secondary",
+              reason: "Or study the concept before tackling the practice set.",
+              primary: false,
             })
           } else {
-            actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
+            actions.push({
+              label: "Go to chapters",
+              href: "/chapters",
+              reason: "This topic is solid. Advance to the next chapter.",
+              primary: true,
+            })
             if (isPractice) {
-              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
+              actions.push({
+                label: "Practice again",
+                href: `/practice/session/${slug}`,
+                reason: "Or keep building accuracy on this topic.",
+                primary: false,
+              })
             }
           }
 
           return (
             <div
-              className="p-5 rounded-xl border"
-              style={{
-                borderColor: "rgba(255,255,255,0.06)",
-                backgroundColor: "#0D0D0D",
-              }}
+              className="rounded-xl border border-white/[0.08] overflow-hidden"
+              style={{ backgroundColor: "#0D0D0D" }}
             >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] px-5 pt-5 pb-3">
                 What to do next
               </p>
-              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-5">
-                {nextStepNote}
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {actions.map((action) =>
-                  action.variant === "primary" ? (
-                    <Link
-                      key={action.href}
-                      href={action.href}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all hover:opacity-90"
-                      style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                    >
+              {actions.map((action, i) => (
+                <Link
+                  key={action.href}
+                  href={action.href}
+                  className="flex items-center gap-4 px-5 py-4 border-t border-white/[0.05] hover:bg-white/[0.02] transition-colors group"
+                >
+                  <span
+                    className="text-[10px] font-semibold tabular-nums w-5 flex-shrink-0 text-right"
+                    style={{ color: "rgba(201,168,76,0.35)" }}
+                  >
+                    0{i + 1}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <p className={`text-sm font-semibold ${action.primary ? "text-[#F0F0F0]" : "text-[#888888]"}`}>
                       {action.label}
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  ) : (
-                    <Link
-                      key={action.href}
-                      href={action.href}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium border transition-colors hover:border-white/[0.16] hover:text-[#F0F0F0]"
-                      style={{
-                        borderColor: "rgba(255,255,255,0.08)",
-                        color: "#888888",
-                      }}
-                    >
-                      {action.label}
-                    </Link>
-                  )
-                )}
-              </div>
+                    </p>
+                    <p className="text-xs leading-relaxed mt-0.5" style={{ color: "#555555" }}>
+                      {action.reason}
+                    </p>
+                  </div>
+                  <ArrowRight
+                    className="w-4 h-4 flex-shrink-0 transition-transform group-hover:translate-x-0.5"
+                    style={{ color: action.primary ? "#C9A84C" : "#383838" }}
+                  />
+                </Link>
+              ))}
             </div>
           )
         })()}
