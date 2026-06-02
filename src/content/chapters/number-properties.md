@@ -160,6 +160,16 @@ Answer: B. The trap is trusting statement (1) because "even + even = even" feels
 
 **Trap to watch.** Zero is even. Students forget this constantly on Data Sufficiency. "Is k even?" with `k = 0` is YES. The integer 0 is also divisible by every integer except 0 itself.
 
+**Negative integers have parity too.** −6 is even (−6 = 2 × (−3)). −7 is odd. The GMAT sets traps where k could be negative — don't restrict parity reasoning to positive integers.
+
+**Parity in DS — three patterns to recognize on sight.**
+
+*Chained deduction.* "If a + b is even and b + c is odd, is a + c even or odd?" Since a + b is even, a and b have the same parity. Since b + c is odd, b and c have different parity. Therefore a and c have different parity → a + c is **odd**. These chain problems always resolve — follow the parity through each constraint one step at a time.
+
+*Product forces parity.* "If n² is even, is n even?" Yes — odd × odd = odd, so n² being even forces n to be even. Sufficient. But "n³ − n is even" is useless as a DS statement: n³ − n = n(n−1)(n+1), the product of three consecutive integers, which is always even regardless of n. A statement that holds for every integer gives DS no discriminating power.
+
+*Factor before applying parity.* When an expression looks complex — say, k⁴ − k² — factor it first: k²(k²−1) = k²(k−1)(k+1). Now you can apply parity rules factor by factor. Trying to reason about k⁴ − k² as a whole leads to errors; factored form makes the structure visible.
+
 > **Self-explanation prompt.** Why is the product of any two consecutive integers always even? If you can say "because one of them is even, and even times anything is even," you've internalized the pattern well enough to recognize `k(k+1)` in disguise on the test.
 
 **Micro-drill.** m is even, n is odd. State whether each expression *must* be even, *must* be odd, or *could be either* — 60 seconds total:
@@ -204,6 +214,27 @@ Alternating sum from the right: `1 − 3 + 4 − 2 = 0`. Zero is divisible by 11
 > **Recall check.** Close your eyes. State — without looking — the divisibility rules for 3, 4, 8, 9, and 11. Now test yourself on a number: is 396 divisible by each of 2, 3, 4, 6, 9? (Answers: yes, yes, yes, yes, yes — 396 = 4 × 99 = 4 × 9 × 11. All five rules agree.) Retrieval practice beats re-reading by 40% on delayed tests (Roediger & Karpicke, 2006) — that's why this box is here instead of a re-summary.
 
 **Trap to watch.** A number divisible by 6 is divisible by 3 *and* 2. But divisibility by 8 is NOT "divisible by 4 twice" — 12 is divisible by 4 but not by 8. The rule only composes cleanly when the factors are coprime.
+
+**GMAT application — composing divisibility for harder questions.**
+
+The GMAT doesn't ask you to recite a divisibility rule. It asks things like "Is integer k divisible by 36?" in DS, or "The 4-digit number 2,A14 is divisible by 9 — what is A?" The rules matter because they let you answer in one second rather than long-dividing.
+
+**Composing divisibility.** To confirm "k is divisible by n," every prime power in n's factorization must appear at least as strongly in k's. The shortcut: if gcd(a, b) = 1, then "k divisible by a AND by b" implies "k divisible by a × b." When gcd(a, b) ≠ 1, use LCM instead of the product.
+
+- Divisible by 4 AND by 9? → gcd(4, 9) = 1 → divisible by 36. ✓
+- Divisible by 6 AND by 10? → gcd(6, 10) = 2 ≠ 1 → divisible by LCM(6, 10) = 30. (Not 60.)
+
+**Worked example (DS).** Is integer k divisible by 24?
+
+Statement (1): k is divisible by 8 and by 3.
+
+24 = 2³ × 3. Divisible by 8 supplies 2³; divisible by 3 supplies 3. Together they guarantee 2³ × 3 = 24. Sufficient.
+
+Statement (2): k is divisible by 4 and by 6.
+
+LCM(4, 6) = 12. The two statements together guarantee only that k is divisible by 12. Counterexample: k = 12. Not sufficient.
+
+Answer: A. The trap in Statement (2) is computing 4 × 6 = 24 and concluding "sufficient" — but divisibility doesn't multiply; you need the LCM.
 
 **Micro-drill.** No long division — apply the rules directly. State yes or no:
 
@@ -290,6 +321,20 @@ Using `m × n = GCF × LCM`: `12m = 6 × 36 = 216`, so `m = 18`. Check: `GCF(18,
 - `n(n+2)`: not always by 3 (try n = 1: 1 × 3 = 3, divisible by 3; n = 2: 2 × 4 = 8, not divisible by 3). Not always by 6.
 - `n(n+1)(n+2)`: three consecutive integers, divisible by 3! = 6. ✓
 - The other two: fail for small n.
+
+**Counting multiples in a range.** "How many integers from 1 to 200 are divisible by 7?" Divide and take the floor: ⌊200/7⌋ = 28.
+
+For a range that doesn't start at 1 — "How many multiples of 7 from 50 to 200 inclusive?" — subtract the count below the range start:
+
+⌊200/7⌋ − ⌊49/7⌋ = 28 − 7 = **21**
+
+This formula handles "how many multiples" counting questions, probability problems ("what fraction of integers from 100 to 300 are divisible by 5?"), and every-nth-element sequence questions.
+
+**Example.** How many integers from 100 to 300 inclusive are divisible by both 4 and 6?
+
+Divisible by both means divisible by LCM(4, 6) = 12. Count: ⌊300/12⌋ − ⌊99/12⌋ = 25 − 8 = **17**.
+
+Trap: using the product 4 × 6 = 24 instead of LCM gives ⌊300/24⌋ − ⌊99/24⌋ = 12 − 4 = 8 — wrong. Always use the LCM for "divisible by both" conditions.
 
 **Trap to watch.** GCF and LCM switch in students' heads under time pressure. Quick check: GCF is smaller (or equal) than either number; LCM is larger (or equal). If your "GCF" is bigger than either input, you found the LCM.
 
@@ -427,6 +472,16 @@ I'm going to say something I believe without qualification: if you have 40 hours
 | "Sum of odd # consecutive ints" | count × middle | Bypass summation |
 
 The next two weeks, drill this chapter's problem sets until the check questions feel trivial. Do them on paper the first time, then on scratch, then in your head. When you can sight-factor 720 as `2⁴ × 3² × 5` without writing anything, you're ready for the 725+ versions.
+
+**Score-band guide — where to focus.**
+
+| Target score | Priority sub-skills |
+|---|---|
+| 605 or below | Even/odd parity table; divisibility rules for 2, 3, 4, 5, 9. Make these reflexive before anything else. |
+| 605–645 | Add primes and the factor-count formula. Get factor-counting under 15 seconds for any three-prime number. |
+| 645–685 | GCF/LCM and the product identity. Add the remainder equation. These question types appear consistently at this band. |
+| 685–725 | Units-digit cycles and "must be / could be" DS. The defining questions at 685+ are DS problems about integer expressions. |
+| 725+ | Perfect-square factor counts, remainder-of-products, multi-variable integer DS. Requires all of the above plus mental factoring under 60-second pressure. |
 
 **What to do next.**
 
