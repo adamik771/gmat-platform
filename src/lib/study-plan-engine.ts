@@ -24,6 +24,7 @@ const WEAK_TOPIC_THRESHOLD = 0.7 // accuracy below this = flag as weak
 const REVIEW_QUEUE_URGENT = 10 // if ≥ this many due, review-first
 
 import { TOPIC_TO_CHAPTER } from "./topic-chapter-map"
+import { ERROR_TAG_BY_ID, ROOT_CAUSE_BY_ID } from "@/app/(app)/error-log/constants"
 
 export type FocusActionType =
   | "diagnostic"
@@ -42,12 +43,23 @@ export interface FocusAction {
   priority: number
 }
 
+/**
+ * Whether a weak topic's logged misses skew toward not knowing the
+ * material vs. knowing it but slipping:
+ *   - `conceptual` — gaps in understanding or strategy
+ *   - `execution`  — careless slips, time pressure, misreads
+ *   - `mixed`      — no majority, or too few tagged misses to call
+ */
+export type ErrorPattern = "conceptual" | "execution" | "mixed"
+
 export interface WeakArea {
   topic: string
   section: Section
   accuracy: number
   attempts: number
   chapterSlug: string | null
+  /** Derived from the student's `error_tags` for this topic. */
+  errorPattern: ErrorPattern
 }
 
 export type DailySuggestionType = "lesson" | "practice" | "review" | "chapter" | "mock"
@@ -63,6 +75,77 @@ export interface StudyPlanOutput {
   weakAreas: WeakArea[]
   diagnosticSectionsDone: number
   reviewDueCount: number
+}
+
+/**
+ * Map the platform's live error taxonomies into a conceptual-vs-execution
+ * split. An `error_tags` row can carry a structured `tag` (ERROR_TAG_DEFS —
+ * the WHAT / question-type family), a `root_cause` (ROOT_CAUSE_DEFS — the
+ * WHY / which solve step broke), and/or a pre-framework legacy tag string.
+ * We bucket all three so the classification works whichever vocabulary the
+ * student tagged with.
+ *
+ *   conceptual = doesn't know it / wrong approach
+ *   execution  = knows it but slips (careless, time pressure, misread)
+ */
+const CONCEPTUAL_TAG_FAMILIES = new Set<string>([
+  "Knowledge",
+  "Translation",
+  "DI logic",
+  "Reasoning",
+  "Reading",
+  "DI process",
+])
+const CONCEPTUAL_ROOT_FAMILIES = new Set<string>([
+  "Knowledge",
+  "Representation",
+  "Strategy",
+])
+const LEGACY_TAG_BUCKET: Record<string, "conceptual" | "execution"> = {
+  Conceptual: "conceptual",
+  Strategy: "conceptual",
+  Careless: "execution",
+  "Time Pressure": "execution",
+  Misread: "execution",
+  // "Other" maps to neither — it must not tip the classification.
+}
+
+/** Need at least this many bucketed tags before we call a pattern. */
+const MIN_TAGS_FOR_PATTERN = 2
+
+/**
+ * Bucket a single error_tags row. `root_cause` is the cleanest
+ * conceptual-vs-execution signal (it literally encodes which solve step
+ * broke), so it wins when present; otherwise fall back to the structured
+ * tag family, then the legacy tag string. Returns null when the row maps
+ * to neither bucket (e.g. legacy "Other").
+ */
+function bucketErrorRow(
+  tag: string | null,
+  rootCause: string | null
+): "conceptual" | "execution" | null {
+  if (rootCause) {
+    const fam = ROOT_CAUSE_BY_ID[rootCause]?.family
+    if (fam) return CONCEPTUAL_ROOT_FAMILIES.has(fam) ? "conceptual" : "execution"
+  }
+  if (tag) {
+    const fam = ERROR_TAG_BY_ID[tag]?.family
+    if (fam) return CONCEPTUAL_TAG_FAMILIES.has(fam) ? "conceptual" : "execution"
+    const legacy = LEGACY_TAG_BUCKET[tag]
+    if (legacy) return legacy
+  }
+  return null
+}
+
+/** Majority vote → pattern. A tie or too-few tags resolves to `mixed`. */
+function classifyErrorPattern(
+  conceptual: number,
+  execution: number
+): ErrorPattern {
+  if (conceptual + execution < MIN_TAGS_FOR_PATTERN) return "mixed"
+  if (conceptual > execution) return "conceptual"
+  if (execution > conceptual) return "execution"
+  return "mixed"
 }
 
 /**
@@ -103,7 +186,7 @@ export async function computeStudyPlan(
   // weak-area signals benefit from more history.
   const { data: attemptRows } = await supabase
     .from("practice_attempts")
-    .select("section, topic, is_correct")
+    .select("id, section, topic, is_correct")
     .eq("user_id", userId)
     .limit(5000)
 
@@ -130,10 +213,56 @@ export async function computeStudyPlan(
       accuracy: v.correct / v.total,
       attempts: v.total,
       chapterSlug: TOPIC_TO_CHAPTER[topic] ?? null,
+      errorPattern: "mixed" as ErrorPattern, // refined below from error_tags
     }))
     .filter((w) => w.accuracy < WEAK_TOPIC_THRESHOLD)
     .sort((a, b) => a.accuracy - b.accuracy)
     .slice(0, 3)
+
+  // Differentiate conceptual gaps from execution errors per weak area,
+  // using tags the student has already logged. Minimal IO: we reuse the
+  // attempt rows already in memory to find wrong attempts in the (≤3)
+  // weak topics, then pull only those rows' error_tags in one bounded
+  // query. No new tables, no schema changes.
+  if (weakAreas.length > 0) {
+    const weakTopics = new Set(weakAreas.map((w) => w.topic))
+    const attemptTopic = new Map<string, string>() // wrong attemptId → topic
+    for (const r of attemptRows ?? []) {
+      if (r.is_correct) continue
+      const topic = (r.topic as string | null) ?? "General"
+      if (!weakTopics.has(topic)) continue
+      attemptTopic.set(r.id as string, topic)
+    }
+    const incorrectIds = [...attemptTopic.keys()]
+    if (incorrectIds.length > 0) {
+      const { data: tagRows } = await supabase
+        .from("error_tags")
+        .select("attempt_id, tag, root_cause")
+        .eq("user_id", userId)
+        .in("attempt_id", incorrectIds)
+
+      const counts = new Map<
+        string,
+        { conceptual: number; execution: number }
+      >()
+      for (const t of tagRows ?? []) {
+        const topic = attemptTopic.get(t.attempt_id as string)
+        if (!topic) continue
+        const bucket = bucketErrorRow(
+          (t.tag as string | null) ?? null,
+          (t.root_cause as string | null) ?? null
+        )
+        if (!bucket) continue
+        const c = counts.get(topic) ?? { conceptual: 0, execution: 0 }
+        c[bucket] += 1
+        counts.set(topic, c)
+      }
+      for (const w of weakAreas) {
+        const c = counts.get(w.topic)
+        if (c) w.errorPattern = classifyErrorPattern(c.conceptual, c.execution)
+      }
+    }
+  }
 
   // Today's focus — a ranked list, highest-impact first.
   const todaysFocus: FocusAction[] = []

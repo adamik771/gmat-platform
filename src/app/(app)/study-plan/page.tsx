@@ -1587,6 +1587,32 @@ function WeakAreaCard({ weak }: { weak: WeakArea }) {
   // files live at the same slug (algebra.md both ways). If we ever
   // diverge those, this is the one line that'd need to change.
   const practiceSlug = weak.chapterSlug
+
+  // Tailor the recommended action to the error pattern: a conceptual gap
+  // wants chapter review first, an execution pattern wants timed drilling
+  // with a careless-check focus, and mixed/insufficient signal keeps the
+  // generic practice nudge.
+  const recommendation =
+    weak.errorPattern === "conceptual"
+      ? `Review the ${weak.topic} chapter, then drill medium difficulty`
+      : weak.errorPattern === "execution"
+        ? `Drill timed practice in ${weak.topic} — focus on careless checks`
+        : `Practice ${weak.topic}`
+  const patternChip =
+    weak.errorPattern === "conceptual"
+      ? { label: "Conceptual gap", color: "#C9A84C", bg: "rgba(201,168,76,0.10)" }
+      : weak.errorPattern === "execution"
+        ? { label: "Execution", color: "#3ECF8E", bg: "rgba(62,207,142,0.10)" }
+        : null
+  // For a conceptual gap, lead with the chapter (Read) — but only when a
+  // chapter actually exists to link to; otherwise the drill stays primary.
+  const chapterIsPrimary =
+    weak.errorPattern === "conceptual" && weak.chapterSlug !== null
+  const primaryStyle = { backgroundColor: "#C9A84C", color: "#0A0A0A" }
+  const secondaryStyle = {
+    backgroundColor: "rgba(201,168,76,0.12)",
+    color: "#C9A84C",
+  }
   return (
     <div className="p-5 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] flex items-start sm:items-center justify-between gap-4 flex-col sm:flex-row transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]">
       <div className="flex items-start gap-3">
@@ -1602,6 +1628,17 @@ function WeakAreaCard({ weak }: { weak: WeakArea }) {
             >
               {weak.section}
             </span>
+            {patternChip && (
+              <span
+                className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em]"
+                style={{
+                  backgroundColor: patternChip.bg,
+                  color: patternChip.color,
+                }}
+              >
+                {patternChip.label}
+              </span>
+            )}
             <span className="text-[11px] text-[#888888] tabular-nums">
               {Math.round(weak.accuracy * 100)}% on {weak.attempts} question
               {weak.attempts === 1 ? "" : "s"}
@@ -1610,6 +1647,9 @@ function WeakAreaCard({ weak }: { weak: WeakArea }) {
           <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0]">
             {weak.topic}
           </p>
+          <p className="text-[12px] text-[#888888] mt-1 leading-snug">
+            {recommendation}
+          </p>
         </div>
       </div>
       <div className="flex-shrink-0 flex items-center gap-2 self-end sm:self-auto">
@@ -1617,10 +1657,7 @@ function WeakAreaCard({ weak }: { weak: WeakArea }) {
           <Link
             href={`/practice/session/${practiceSlug}`}
             className="text-xs px-3.5 py-1.5 rounded-xl font-semibold tracking-tight transition-all duration-200 hover:scale-[1.02] inline-flex items-center gap-1"
-            style={{
-              backgroundColor: "#C9A84C",
-              color: "#0A0A0A",
-            }}
+            style={chapterIsPrimary ? secondaryStyle : primaryStyle}
           >
             Drill
           </Link>
@@ -1629,10 +1666,7 @@ function WeakAreaCard({ weak }: { weak: WeakArea }) {
           <Link
             href={`/chapters/${weak.chapterSlug}`}
             className="text-xs px-3.5 py-1.5 rounded-xl font-semibold tracking-tight transition-all duration-200 hover:scale-[1.02] inline-flex items-center gap-1"
-            style={{
-              backgroundColor: "rgba(201,168,76,0.12)",
-              color: "#C9A84C",
-            }}
+            style={chapterIsPrimary ? primaryStyle : secondaryStyle}
           >
             Read
             <ArrowRight className="w-3 h-3" />
