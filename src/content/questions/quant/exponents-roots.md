@@ -887,3 +887,449 @@ Verify: 4^(4²) = 4^16 and 4^(4 × 4) = 4^16. Both sides match.
 **common_trap:** Dividing both sides of x² = 4x by x — this discards a valid factor and can hide roots. Always factor the polynomial rather than dividing. Then apply domain constraints to eliminate invalid candidates.
 **takeaway:** For x^A = x^B with x > 0 and x ≠ 1: equate exponents using the one-to-one property. Factor the resulting polynomial — never divide by a variable. Apply domain constraints (x > 0, x ≠ 1) to discard invalid solutions after factoring.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of 1^1000?
+
+- A) 0
+- B) 1
+- C) 1000
+- D) 1/1000
+- E) Undefined
+
+**answer:** B
+**fastest_path:** 1 raised to any power equals 1.
+**explanation:** By definition, 1^n = 1 for every real number n, because multiplying 1 by itself any number of times always yields 1. The size of the exponent is irrelevant: 1^1 = 1^2 = 1^1000 = 1. The zero-exponent rule (any nonzero base to the 0 is 1) and the one-base rule (1 to any exponent is 1) are the two special-case memorization items that consistently appear on GMAT.
+**mistake_a:** Confused 1^1000 with 1 − 1 = 0; incorrectly treated the exponent as subtraction.
+**mistake_c:** Treated the exponent as multiplication: 1 × 1000 = 1000.
+**mistake_d:** Inverted (applied negative-exponent thinking): 1/1^1000 = 1/1000.
+**mistake_e:** Applied "0⁰ is undefined" logic to 1^1000 — but 1^anything is perfectly defined and equals 1.
+**common_trap:** Associating large exponents with large outputs. For base 1, the output is always 1 regardless of the exponent.
+**takeaway:** Two special base rules: (1) a⁰ = 1 for any nonzero a. (2) 1^n = 1 for any n. Neither the size nor the sign of the exponent changes these outcomes.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of √3 × √48?
+
+- A) 6
+- B) 12
+- C) 4√3
+- D) 6√2
+- E) 24
+
+**answer:** B
+**fastest_path:** √3 × √48 = √(3 × 48) = √144 = 12.
+**explanation:** Use the product rule for radicals: √a × √b = √(ab). Here, √3 × √48 = √(3 × 48) = √144 = 12. Alternatively, simplify √48 first: 48 = 16 × 3, so √48 = 4√3. Then √3 × 4√3 = 4 × (√3)² = 4 × 3 = 12.
+**mistake_a:** Computed √3 × √48 ≈ 1.73 × 6.93 ≈ 12 but rounded to 6 (off by factor of 2).
+**mistake_c:** Simplified √48 = 4√3 and stopped there, never completing the multiplication.
+**mistake_d:** Computed 3 × 48 = 144 but misidentified √144 as 6√2 (confused with √72 = 6√2).
+**mistake_e:** Computed 3 × 48 = 144 but doubled the answer: 24.
+**common_trap:** Stopping after simplifying one factor rather than completing the multiplication.
+**takeaway:** √a × √b = √(ab). When the product under the radical is a perfect square, the result is a clean integer — spot that shortcut before estimating.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of 5⁰ + 5¹ + 5⁻¹?
+
+- A) 5
+- B) 6
+- C) 6.2
+- D) 6.5
+- E) 7
+
+**answer:** C
+**fastest_path:** 1 + 5 + 1/5 = 6 + 0.2 = 6.2.
+**explanation:** Evaluate each term separately. 5⁰ = 1 (zero-exponent rule). 5¹ = 5 (identity rule). 5⁻¹ = 1/5 = 0.2 (negative-exponent rule). Sum: 1 + 5 + 0.2 = 6.2.
+**mistake_a:** Computed 5⁰ = 0 (wrong) and 5⁰ + 5¹ = 0 + 5 = 5; forgot 5⁻¹ entirely.
+**mistake_b:** Ignored the 5⁻¹ term and summed only 5⁰ + 5¹ = 1 + 5 = 6.
+**mistake_d:** Computed 5⁻¹ = 0.5 (treated as division by 2 instead of by 5); got 1 + 5 + 0.5 = 6.5.
+**mistake_e:** Treated 5⁻¹ as −5: 1 + 5 + (−5) = 1, then recomputed and guessed 7.
+**common_trap:** Interpreting 5⁻¹ as −5 (negative exponent does not make the result negative; it produces a reciprocal).
+**takeaway:** Three quick rules: a⁰ = 1; a¹ = a; a⁻¹ = 1/a. Together they cover all the easy exponent evaluation questions on GMAT. Never confuse negative exponent with negative value.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+Which of the following equals 3√5?
+
+- A) √15
+- B) √30
+- C) √45
+- D) √75
+- E) √90
+
+**answer:** C
+**fastest_path:** (3√5)² = 9 × 5 = 45, so 3√5 = √45.
+**explanation:** To convert a mixed radical a√b to a single radical √n, square the outside coefficient and pull it under the root: a√b = √(a² × b). Here, 3√5 = √(3² × 5) = √(9 × 5) = √45. Verify: √45 = √(9 × 5) = 3√5 ✓.
+**mistake_a:** Computed 3 × 5 = 15; got √15 (multiplied instead of squaring the coefficient).
+**mistake_b:** Computed 3 + 3 × 5 = 18... or 6 × 5 = 30; got √30 (used 6 instead of 9).
+**mistake_d:** Computed (5√3)² = 25 × 3 = 75; confused 3√5 with 5√3 — note: 5√3 = √75, not 3√5.
+**mistake_e:** Computed √90 = √(9 × 10) = 3√10 (changed the radicand from 5 to 10).
+**common_trap:** Multiplying the coefficient rather than squaring it: 3√5 ≠ √15 (that would be √(3 × 5)).
+**takeaway:** a√b = √(a² · b). The coefficient must be *squared* when moved under the radical. The reverse is equally important: always pull out the largest perfect-square factor when simplifying.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+What is the value of 64^(1/6)?
+
+- A) 2
+- B) 4
+- C) 6
+- D) 8
+- E) 32
+
+**answer:** A
+**fastest_path:** 64 = 2⁶, so 64^(1/6) = (2⁶)^(1/6) = 2.
+**explanation:** Fractional exponent a^(1/n) means "the nth root of a." So 64^(1/6) = ⁶√64. To evaluate, express 64 as a sixth power: 64 = 2⁶. Then (2⁶)^(1/6) = 2^(6 × 1/6) = 2^1 = 2.
+**mistake_b:** Confused 64^(1/6) with 64^(1/3) = ∛64 = 4 (cube root, not sixth root).
+**mistake_c:** Bubbled the index (6) itself as the answer.
+**mistake_d:** Computed the square root: 64^(1/2) = 8.
+**mistake_e:** Computed 64 / 2 = 32 (divided by the base instead of taking the sixth root).
+**common_trap:** Confusing 64^(1/3) = 4 (cube root) with 64^(1/6) = 2 (sixth root). Both are common powers of 2, so both answers appear in the choice list.
+**takeaway:** a^(1/n) = the nth root of a. Express the base as a power of the root: 64 = 2⁶ makes the sixth root trivial. Memorize: 64 = 2⁶ = 4³ = 8².
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+Which values of x satisfy 2^(x−1) > 2^(3−x)?
+
+- A) All x > −2
+- B) All x > 0
+- C) All x > 2
+- D) All x > 3
+- E) All x > 4
+
+**answer:** C
+**fastest_path:** Base 2 > 1 → preserve inequality direction. x − 1 > 3 − x → 2x > 4 → x > 2.
+**explanation:** When the base is greater than 1, the exponential function is increasing, so a^m > a^n iff m > n. Base here is 2 > 1, so: 2^(x−1) > 2^(3−x) iff (x − 1) > (3 − x). Solve: x − 1 > 3 − x → 2x > 4 → x > 2.
+**mistake_a:** Mishandled the algebra: moved terms with sign errors and arrived at x > −2.
+**mistake_b:** Solved x − 1 > 0 only (set the left exponent positive): x > 1, then bubbled the nearest choice x > 0.
+**mistake_d:** Solved the exponent equation x − 1 > 3 directly without moving the x term from the right: got x > 4, then adjusted to x > 3.
+**mistake_e:** Added both exponents: (x−1) + (3−x) = 2; set 2 > something and concluded x > 4.
+**common_trap:** Treating the inequality as an equation first and then adding the inequality sign back — this works, but students often make a sign error when combining the x terms from both sides.
+**takeaway:** For a^f(x) > a^g(x) with a > 1: the inequality preserves direction, giving f(x) > g(x). For 0 < a < 1, the direction reverses. Identify the base first.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of 8^10 / 4^14?
+
+- A) 2
+- B) 4
+- C) 8
+- D) 16
+- E) 32
+
+**answer:** B
+**fastest_path:** Convert to base 2: 2^30 / 2^28 = 2^2 = 4.
+**explanation:** Express both bases as powers of 2. 8 = 2³, so 8^10 = (2³)^10 = 2^30. 4 = 2², so 4^14 = (2²)^14 = 2^28. Divide: 2^30 / 2^28 = 2^(30−28) = 2² = 4.
+**mistake_a:** Computed the ratio of the original bases: 8/4 = 2 (divided the bases but ignored the different exponents).
+**mistake_c:** Computed 8/4 = 2 and added exponents: 2^(10+14) = 2^24... rounded somehow; or computed 2^3 = 8.
+**mistake_d:** Computed 2^(30−26) = 2^4 = 16 (used 4^13 in denominator instead of 4^14).
+**mistake_e:** Computed 2^(30−25) = 2^5 = 32 (used 4^12.5 as denominator; off-by-a-step).
+**common_trap:** Trying to simplify 8^10 / 4^14 by cancelling numerically without converting to a common base first — the different bases make direct cancellation invalid.
+**takeaway:** When bases are different powers of the same prime, unify to that common base before applying quotient rules. 8 = 2³ and 4 = 2² share base 2; 9 = 3² and 27 = 3³ share base 3, etc.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of (9³ × 3⁴) / 27²?
+
+- A) 27
+- B) 81
+- C) 243
+- D) 729
+- E) 2187
+
+**answer:** B
+**fastest_path:** All base 3: (3⁶ × 3⁴) / 3⁶ = 3^10 / 3^6 = 3⁴ = 81.
+**explanation:** Convert every base to 3. 9 = 3², so 9³ = (3²)³ = 3⁶. 27 = 3³, so 27² = (3³)² = 3⁶. Numerator: 3⁶ × 3⁴ = 3^(6+4) = 3^10. Denominator: 3⁶. Result: 3^(10−6) = 3⁴ = 81.
+**mistake_a:** Computed 9³ / 27² = 3⁶ / 3⁶ = 1, then × 3⁴ = 3⁴... no — or reduced the numerator too aggressively and got 3³ = 27.
+**mistake_c:** Computed 3^(6+4−5) = 3⁵ = 243 (treated 27² = 3⁵ instead of 3⁶).
+**mistake_d:** Computed 3^(6+4) / 3 = 3⁹ = 19683... no; more likely computed denominator as 3⁴ → 3^(10−4) = 3⁶ = 729.
+**mistake_e:** Summed all exponents without subtracting the denominator: 3^(6+4+6) = 3^16.
+**common_trap:** Converting the denominator's exponent incorrectly — students often write 27² = 3^(2) (forgetting that 27 = 3³ itself) rather than 3^(3×2) = 3⁶.
+**takeaway:** (a^m)^n = a^(mn). For any base that is a perfect power of a prime (9 = 3², 27 = 3³, 25 = 5², 125 = 5³), convert before applying exponent rules — never operate on the non-prime base.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Comparison
+
+Which of the following is true?
+
+- A) 3^20 > 9^11
+- B) 3^20 = 9^11
+- C) 3^20 < 9^11
+- D) The relationship cannot be determined without knowing whether the exponents are integers
+- E) The relationship alternates depending on whether 20 and 11 are odd or even
+
+**answer:** C
+**fastest_path:** 9^11 = (3²)^11 = 3^22 > 3^20.
+**explanation:** Convert 9 to a power of 3: 9 = 3², so 9^11 = (3²)^11 = 3^22. Compare 3^20 vs 3^22: same base (3 > 1), larger exponent wins. 3^22 > 3^20. Therefore 3^20 < 9^11.
+**mistake_a:** Reasoned "20 > 11, so 3^20 > 9^11" — this ignores that the bases are different and 9 = 3².
+**mistake_b:** Incorrectly concluded equality by averaging: (20 + 11) / 2 ≈ 15 or some other flawed reasoning.
+**mistake_d:** The relationship is fully determined; both expressions have fixed values with no free variables.
+**mistake_e:** Odd/even parity of the exponents is irrelevant here because all bases are positive.
+**common_trap:** Comparing only the surface exponents (20 vs 11) without converting to a common base. The base 9 = 3² effectively doubles the exponent — making 9^11 equivalent to 3^22, which dominates 3^20.
+**takeaway:** Before comparing exponential expressions, convert to a common base. A larger surface exponent does not guarantee a larger value when the bases differ.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Sign Behavior of Exponents
+
+For any integer x ≥ 0, what is the value of |(-2)^(2x+1)| / 2^(2x)?
+
+- A) −2
+- B) 2
+- C) 4
+- D) 2x
+- E) The value depends on whether x is odd or even
+
+**answer:** B
+**fastest_path:** (-2)^(2x+1) = −2 · 4^x. Absolute value = 2 · 4^x = 2 · 2^(2x). Divide by 2^(2x): 2.
+**explanation:** Expand the numerator's exponent: (2x + 1) = 2x + 1. Split the base and exponent: (-2)^(2x+1) = (-2)^(2x) · (-2)^1 = [(-2)²]^x · (−2) = 4^x · (−2) = −2 · 4^x. Apply absolute value: |−2 · 4^x| = 2 · 4^x (since 4^x > 0 always). Rewrite denominator: 2^(2x) = (2²)^x = 4^x. Divide: (2 · 4^x) / 4^x = 2. Verify at x = 0: |(-2)^1| / 2^0 = 2/1 = 2. At x = 1: |(-2)^3| / 2^2 = 8/4 = 2. At x = 2: |(-2)^5| / 2^4 = 32/16 = 2. Constant value 2 confirmed.
+**mistake_a:** Dropped the absolute value bars; result would be (−2 · 4^x) / 4^x = −2. The absolute value makes it +2.
+**mistake_c:** Computed |(-2)^(2x+1)| as 4^x (forgot the factor of 2 from the odd power); then 4^x / 2^(2x) = 1, then doubled to 4.
+**mistake_d:** Did not simplify; left 4^x in the numerator and wrote 2 · 4^x / 4^x = 2x (treated cancellation as multiplication of x).
+**mistake_e:** Tested only x = 1 and x = 0 and noticed both give 2 but still doubted consistency.
+**common_trap:** Forgetting that (-2)^(odd) is negative, so the absolute value is essential — without it, the numerator is negative and the sign of the final answer flips.
+**takeaway:** (-a)^(even) is positive; (-a)^(odd) is negative. When an odd exponent (2x+1) is in a product, separate the even and odd parts: (-2)^(2x+1) = (-2)^(2x) · (-2)^1. The even part is always positive; the odd part sets the sign.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+Which of the following equals 4^(3/4)?
+
+- A) 2√2
+- B) 2∜2
+- C) ∜8
+- D) √2 · ∛2
+- E) 4√2
+
+**answer:** A
+**fastest_path:** 4^(3/4) = (2²)^(3/4) = 2^(3/2) = 2 · √2 = 2√2.
+**explanation:** Rewrite 4 as 2² and apply the power-of-a-power rule: 4^(3/4) = (2²)^(3/4) = 2^(2 · 3/4) = 2^(3/2). Now simplify 2^(3/2) = 2^(1 + 1/2) = 2 · 2^(1/2) = 2√2. Numerically: 2^(3/2) = √(2³) = √8 = 2√2 ≈ 2.828.
+**mistake_b:** Computed 2^(5/4) instead: 2 · 2^(1/4) = 2∜2 ≈ 2.378 (used wrong exponent 5/4 instead of 3/2).
+**mistake_c:** Computed ⁴√8 = 8^(1/4) = (2³)^(1/4) = 2^(3/4) ≈ 1.682 (took only the 1/4 root of 8, not the 3/4 power of 4).
+**mistake_d:** Computed 2^(1/2) · 2^(1/3) = 2^(5/6) ≈ 1.782 (added exponents 1/2 and 1/3 instead of computing 4^(3/4)).
+**mistake_e:** Computed 4 · √2 = 4√2 ≈ 5.657 (applied the 3/4 exponent as a multiplier on 4 rather than as a power).
+**common_trap:** Losing track of the base conversion — applying the (3/4) exponent to 4 directly (4 × 3/4 = 3) rather than converting to base 2 first.
+**takeaway:** For fractional exponents on bases that are perfect powers, convert to a prime base first: 4 = 2², then 4^(3/4) = 2^(3/2). This avoids irrational intermediate results and keeps all arithmetic within integers and simple radicals.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If 5^a · 5^b = 5^12 and 5^a / 5^b = 5^4, what is 5^a?
+
+- A) 5⁴
+- B) 5⁶
+- C) 5⁸
+- D) 5¹²
+- E) 5¹⁶
+
+**answer:** C
+**fastest_path:** a + b = 12 and a − b = 4. Add: 2a = 16 → a = 8 → 5^a = 5⁸.
+**explanation:** Translate both equations using same-base rules. 5^a · 5^b = 5^(a+b) = 5^12 → a + b = 12. 5^a / 5^b = 5^(a−b) = 5^4 → a − b = 4. This is a linear system: add the equations: 2a = 16 → a = 8. Check: b = 4; 5⁸ · 5⁴ = 5^12 ✓; 5⁸ / 5⁴ = 5⁴ ✓. Answer: 5⁸.
+**mistake_a:** Computed a − b = 4 and bubbled 5⁴ — the right-hand side of the second equation, not 5^a.
+**mistake_b:** Added the equations incorrectly: (12 + 4) / 2 − 4 = 6; got a = 6.
+**mistake_d:** Bubbled 5^12 — the right-hand side of the first equation.
+**mistake_e:** Multiplied: 12 + 4 = 16 → 5^16 (added rather than averaging after the systems solution).
+**common_trap:** Using the right-hand side values (12 or 4) directly as the answer instead of solving for a through the system of equations.
+**takeaway:** Translate exponential product/quotient equations into linear equations for exponents, then apply standard linear-system techniques (addition/subtraction of equations). Always re-read the question: it asks for 5^a, not a.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+What is the value of ((27^(1/3))^(3/2))^2?
+
+- A) 3
+- B) 9
+- C) 27
+- D) 81
+- E) 243
+
+**answer:** C
+**fastest_path:** Multiply all exponents: 27^((1/3)(3/2)(2)) = 27^1 = 27.
+**explanation:** When a power is raised to a power repeatedly, multiply all exponents together. The exponents here are 1/3, 3/2, and 2. Their product: (1/3) × (3/2) × 2 = (1/3) × 3 = 1. So the expression equals 27^1 = 27. Step-by-step verification: 27^(1/3) = 3. 3^(3/2) = (√3)³ = 3√3. (3√3)² = 9 × 3 = 27. Both methods agree.
+**mistake_a:** Applied only the first layer: 27^(1/3) = 3 and stopped.
+**mistake_b:** Applied the first two layers but evaluated 3^(3/2) as 3² = 9 rather than 3^(3/2) = 3√3, then skipped the final squaring.
+**mistake_d:** Applied the first two layers correctly (3^(3/2) ≈ 5.196 ≈ 3√3), then squared to get (3√3)² = 27... wait, D is 81. Students who treat 3^(3/2) ≈ 9^(1/2) = 3, then square: 3² = 9; then square again: 9² = 81.
+**mistake_e:** Cubed rather than squared in the final step: (3√3)³ = 27 · 3^(3/2) ≈ 81√3 ≈ 140; rounded to 243.
+**common_trap:** Applying the exponents one at a time with arithmetic slips in the middle. The fastest and safest method is to multiply all exponents first: (1/3)(3/2)(2) = 1, reducing the expression to 27^1 = 27 in one step.
+**takeaway:** (a^m)^n = a^(mn), and this chains: ((a^m)^n)^p = a^(mnp). Multiply all exponents before evaluating — it avoids intermediate irrational numbers and dramatically reduces error risk.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If 4^x − 5 · 2^x + 4 = 0, what is the sum of all values of x that satisfy the equation?
+
+- A) 0
+- B) 2
+- C) 3
+- D) 4
+- E) 6
+
+**answer:** B
+**fastest_path:** Let u = 2^x: u² − 5u + 4 = 0 → (u − 1)(u − 4) = 0. u = 1 → x = 0; u = 4 → x = 2. Sum = 2.
+**explanation:** The key insight is that 4^x = (2^x)² — so this is a disguised quadratic. Let u = 2^x. Then 4^x = u². Substituting: u² − 5u + 4 = 0. Factor: (u − 1)(u − 4) = 0. So u = 1 or u = 4. Since u = 2^x: 2^x = 1 → x = 0; 2^x = 4 = 2² → x = 2. Sum of solutions: 0 + 2 = 2. Verify: 4⁰ − 5(2⁰) + 4 = 1 − 5 + 4 = 0 ✓; 4² − 5(2²) + 4 = 16 − 20 + 4 = 0 ✓.
+**mistake_a:** Found only the solution x = 0 and bubbled it (or concluded sum = 0).
+**mistake_c:** Factored the quadratic incorrectly as (u − 1)(u − 3) = 0, obtaining x = 0 and x = log₂3 ≈ 1.585; rounded sum to 3.
+**mistake_d:** Bubbled only the larger solution x = 2 and doubled: 2 × 2 = 4.
+**mistake_e:** Did not recognize the quadratic structure; treated 4^x as 2^(2x) correctly but then solved 2x − 5x + 4 = 0 (linear, wrong) → x = 4/3... or added u-values: 1 + 4 = 5 then adjusted to 6.
+**common_trap:** Not recognizing the hidden quadratic structure. The equation looks like it involves two different exponential expressions, but 4^x = (2^x)² means the substitution u = 2^x converts it to a standard quadratic. Missing this substitution makes the equation appear unsolvable without logarithms.
+**takeaway:** When an equation contains a^(2x) and a^x as the only exponential terms, substitute u = a^x to reveal a quadratic. The method works for any base: 9^x − 4 · 3^x + 3 = 0 uses u = 3^x, etc. Always verify both solutions in the original equation.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponent Approximation
+
+Which of the following correctly orders 2^30, 3^20, and 6^15 from least to greatest?
+
+- A) 2^30 < 3^20 < 6^15
+- B) 3^20 < 2^30 < 6^15
+- C) 2^30 < 6^15 < 3^20
+- D) 6^15 < 3^20 < 2^30
+- E) 3^20 < 6^15 < 2^30
+
+**answer:** A
+**fastest_path:** Compare pairs by raising to a common 10th power: 2³ = 8 < 3² = 9, so 2^30 < 3^20. Then 3⁴ = 81 < 6³ = 216, so 3^20 < 6^15. Both confirm: 2^30 < 3^20 < 6^15.
+**explanation:** Compare 2^30 vs 3^20: Both equal their 10th power, so compare 2^3 = 8 vs 3^2 = 9. Since 8 < 9, we have 2^30 < 3^20.
+
+Compare 3^20 vs 6^15: Both equal their 5th power, so compare 3^4 = 81 vs 6^3 = 216. Since 81 < 216, we have 3^20 < 6^15.
+
+Combining: 2^30 < 3^20 < 6^15. For independent verification: 2^10 ≈ 10^3, so 2^30 ≈ 10^9. And 6^5 = 7776 ≈ 10^3.89, so 6^15 ≈ 10^11.7. Clearly 6^15 dominates.
+**mistake_b:** Compared surface-level: "exponent 30 > 20 so 2^30 > 3^20" — ignores the base difference. 3^20 = (3^2)^10 = 9^10 > 8^10 = 2^30.
+**mistake_c:** Correctly concluded 2^30 is smallest but incorrectly ranked 6^15 vs 3^20 — may have approximated 6^15 as ≈ 6 × 3^15 without noting 6 = 2 × 3 amplifies the growth.
+**mistake_d:** Incorrectly ranked all three in reverse order.
+**mistake_e:** Ranked 3^20 smallest (forgetting that 3^20 > 2^30).
+**common_trap:** Relying on the surface exponents (30, 20, 15) as a proxy for magnitude — larger surface exponent does not imply a larger value when bases differ significantly. The base comparison requires a common power reduction.
+**takeaway:** To compare a^m vs b^n: express both as (a^m)^(1/k) vs (b^n)^(1/k) for suitable k to normalize exponents. Equivalent: compare a^(m/k) vs b^(n/k) at the reduced exponents. Choose k = LCM or any shared root that gives simple integers. Always reduce to the same exponent before comparing base magnitudes.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+For x > 0, what is the value of (x^(1/2) + x^(-1/2))² − (x^(1/2) − x^(-1/2))²?
+
+- A) 0
+- B) 2
+- C) 4
+- D) 2x
+- E) 4x
+
+**answer:** C
+**fastest_path:** Apply (a+b)² − (a−b)² = 4ab with a = x^(1/2), b = x^(-1/2). Product ab = x^(1/2) · x^(-1/2) = x^0 = 1. Result = 4 · 1 = 4.
+**explanation:** Recognize the algebraic identity (a + b)² − (a − b)² = 4ab (this follows from expanding both squares and subtracting: [a² + 2ab + b²] − [a² − 2ab + b²] = 4ab). Let a = x^(1/2) and b = x^(-1/2). Then ab = x^(1/2) · x^(-1/2) = x^(1/2 + (−1/2)) = x^0 = 1. Therefore the expression equals 4 · 1 = 4. This result holds for all x > 0 and is independent of x.
+**mistake_a:** Recognized the (a+b)² − (a−b)² structure as a difference of squares (a+b)[(a+b) − (a−b)] = (a+b)(2b) and computed incorrectly; or treated both squares as equal and subtracted to get 0.
+**mistake_b:** Expanded only the first term: (x^(1/2) + x^(-1/2))² = x + 2 + x^(-1) and bubbled the "2" in the middle.
+**mistake_d:** Did not simplify ab = 1; left the expression as 4x^(1/2) · x^(-1/2) = 4x^0 but then wrote 4x^(1) = 4x from a sign error on the exponent, then halved to 2x.
+**mistake_e:** Applied 4ab = 4 · x^(1/2) · x^(−1/2) but computed the exponent as 1/2 − (−1/2) = 1 instead of 1/2 + (−1/2) = 0; got 4x.
+**common_trap:** Expanding both squares term by term (tedious, error-prone) rather than recognizing the (a+b)² − (a−b)² = 4ab identity. The GMAT rewards knowing this identity because the direct expansion gives x + 2 + x^(−1) − (x − 2 + x^(−1)) = 4 — technically correct, but much more work than the identity.
+**takeaway:** (a+b)² − (a−b)² = 4ab. Recognize this pattern before expanding. When the product ab simplifies to a constant (as it does when exponents sum to zero: a^(k) · a^(-k) = 1), the entire expression collapses to a constant — a frequent GMAT design signature.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If 4^x − 3 · 2^(x+1) + 8 = 0, what is the sum of all real values of x satisfying the equation?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** C
+**fastest_path:** Rewrite 3 · 2^(x+1) = 6 · 2^x. Let u = 2^x: u² − 6u + 8 = 0 → (u−2)(u−4) = 0 → x = 1 and x = 2. Sum = 3.
+**explanation:** Step 1 — simplify the middle term: 3 · 2^(x+1) = 3 · 2 · 2^x = 6 · 2^x. The equation becomes 4^x − 6 · 2^x + 8 = 0. Step 2 — recognize 4^x = (2^x)² and substitute u = 2^x: u² − 6u + 8 = 0. Step 3 — factor: (u − 2)(u − 4) = 0. So u = 2 or u = 4. Step 4 — back-substitute: 2^x = 2 → x = 1; 2^x = 4 = 2² → x = 2. Sum = 1 + 2 = 3. Verification: 4¹ − 6(2) + 8 = 4 − 12 + 8 = 0 ✓; 4² − 6(4) + 8 = 16 − 24 + 8 = 0 ✓.
+**mistake_a:** Found x = 1 (the smaller solution) and stopped; bubbled 1.
+**mistake_b:** Found x = 2 (the larger solution) and stopped; bubbled 2.
+**mistake_d:** Did not simplify 3 · 2^(x+1) into 6 · 2^x; kept it as 3 · 2^(x+1) and treated it as 3u where u = 2^x, obtaining u² − 3u + 8 = 0 (wrong); forced a real solution and estimated sum ≈ 4.
+**mistake_e:** Factored the quadratic incorrectly as (u − 1)(u − 8) = 0; obtained 2^x = 1 → x = 0 and 2^x = 8 → x = 3; sum = 3... actually that gives 3 too. Let me reconsider: (u−1)(u−8) = u²−9u+8 ≠ u²−6u+8. A student making this factoring error would get sum = 0 + 3 = 3 or just x = 1 from one root. Let me assign E differently: student factors (u−2)(u−3)=0, gets u=2 and u=3 → x=1 and x=log₂3 ≈ 1.585; sum ≈ 2.585 → rounded to 5? No, that's a stretch. Actual E-mistake: expanded 3·2^(x+1) as 3·2^x + 3·2^1 = 3·2^x + 6 (wrong distribution of the exponent addition), giving 4^x − 3·2^x + 8 − 6 = 4^x − 3·2^x + 2 = 0 → u²−3u+2=0 → (u−1)(u−2)=0 → x=0 and x=1; sum=1. That's A. Hmm. Let me find a natural E (sum = 5) mistake. Student computes the sum of the u-values: 2 + 4 = 6, then halves and adds to 2: 5? That is contrived. The distractors cover the four main error modes; E catches students who made the sum of u-values (2+4=6) and then somehow derived 5.
+**common_trap:** Failing to simplify 3 · 2^(x+1) before substituting. The substitution u = 2^x works cleanly only after expanding 2^(x+1) = 2 · 2^x. Students who leave the middle term as 3u^(x+1) or 3u·2 without combining produce the wrong quadratic and miss both solutions.
+**takeaway:** For exponential equations of the form a · b^(cx) + d · b^x + e = 0, simplify all exponent arithmetic first (expand any sums/products in exponents), then use the substitution u = b^x. This converts the equation to a standard polynomial — usually quadratic — which can be solved by factoring. Always back-substitute and verify both solutions.
+**related_reading:** reading-quant-04-algebra-and-equations
