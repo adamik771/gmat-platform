@@ -879,3 +879,451 @@ A store sells only two products, P and Q. What fraction of the store's total rev
 **common_trap:** Dismissing statement (2) as "only describing changes, not the actual ratio." The constraint that total revenue is unchanged is a binding equation that uniquely pins P = Q and therefore determines the fraction.
 **takeaway:** A percent-change statement paired with a "total is preserved" constraint can determine a ratio entirely. The binding condition acts as a second equation that resolves both unknowns.
 **related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Ratio Change
+
+Before a sale, a store's ratio of sale items to regular-priced items was 1:4. After 30 more items were moved to the sale category — no items were added to or removed from the store — the ratio became 2:3. How many items were in the store originally?
+
+- A) 30
+- B) 60
+- C) 90
+- D) 120
+- E) 150
+
+**answer:** E
+**fastest_path:** Let sale = k, regular = 4k. Equation: (k+30)/(4k−30) = 2/3 → 3k+90 = 8k−60 → k=30 → total = 5k = 150.
+**explanation:** Let sale = k and regular = 4k, so original total = 5k. After moving 30 items: sale becomes k+30 and regular becomes 4k−30. Set up the new ratio: (k+30)/(4k−30) = 2/3. Cross-multiply: 3(k+30) = 2(4k−30) → 3k+90 = 8k−60 → 150 = 5k → k = 30. Original total = 5k = 5×30 = 150. Verification: original 30 sale : 120 regular = 1:4 ✓; after: 60 sale : 90 regular = 2:3 ✓.
+**mistake_a:** Stopped at k = 30 — that is the original number of sale items, not the total. The question asks for the total, which is 5k = 150.
+**mistake_b:** Reported k + 30 = 60 — the new number of sale items after moving 30, not the original total.
+**mistake_c:** Reported 4k − 30 = 90 — the new number of regular-priced items, not the original total.
+**mistake_d:** Reported 4k = 120 — the original number of regular-priced items, not the total. The total is the sum of both categories: k + 4k = 5k = 150.
+**common_trap:** Stopping at k = 30 and bubbling it as the answer, or reporting one category's count rather than the total. The question asks for "items in the store originally" — sum all parts.
+**takeaway:** After solving for k, always re-read the question to confirm which quantity it wants. Here, total = 5k, not k or 4k alone.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Successive Percent Changes
+
+A laptop's price was first increased by 25%, then decreased by 20%. If the final price is $480, what was the original price?
+
+- A) $384
+- B) $400
+- C) $480
+- D) $576
+- E) $600
+
+**answer:** C
+**fastest_path:** Net multiplier: 1.25 × 0.80 = 1.00. Original = $480.
+**explanation:** Apply the two changes as multipliers: 1.25 × 0.80 = 1.00. The net effect is exactly 0%, so the original price equals the final price: $480. You can verify with a number: start at $480 → +25% gives $600 → −20% of $600 gives $480. The two moves cancel precisely because +25% corresponds to ×(5/4) and −20% corresponds to ×(4/5), and (5/4)×(4/5) = 1.
+**mistake_a:** $384 = $480 × 0.80 — re-applied the 20% decrease to the final price rather than finding the original. The $480 already reflects both changes.
+**mistake_b:** $400 = $480 ÷ 1.20 — tried to reverse the 20% decrease using a 20% increase factor (÷ 1.20) instead of the correct multiplier (÷ 0.80 = × 1.25). To reverse a 20% decrease, divide by 0.80, not 1.20.
+**mistake_d:** $576 = $480 × 1.20 — tried to "undo" the 20% decrease by adding 20% to the final price. Adding 20% of the new value does not restore the old value; you must divide by 0.80.
+**mistake_e:** $600 = $480 ÷ 0.80 — reversed only the 20% decrease, arriving at the price between the two steps, without also reversing the prior 25% increase. Both multipliers must be undone together, but since their product is 1.00, no computation is needed.
+**common_trap:** Assuming the two changes don't cancel — performing arithmetic when the answer is simply the final price. The elegant trap is subtle: 25% and 20% look unequal, so students assume some net change must remain.
+**takeaway:** Chain multipliers before computing. 1.25 × 0.80 = 1.00 is worth checking mentally on any +25% / −20% problem.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Mixtures
+
+A bathtub contains 30 liters of water at 60°C. How many liters of cold water at 20°C must be added to bring the temperature to 45°C? (Assume temperature mixes proportionally to volume.)
+
+- A) 10
+- B) 15
+- C) 18
+- D) 25
+- E) 50
+
+**answer:** C
+**fastest_path:** Alligation: hot-to-target = 15, cold-to-target = 25. Cold:Hot = 15:25 = 3:5. Cold = (3/5)×30 = 18.
+**explanation:** Set up the weighted-temperature equation: (30×60 + x×20)/(30+x) = 45. Solve: 1800 + 20x = 1350 + 45x → 450 = 25x → x = 18 liters. Alligation shortcut: distance from hot (60) to target (45) = 15; distance from cold (20) to target (45) = 25. The ratio of cold to hot volumes equals the ratio of distances inverted: Cold:Hot = 15:25 = 3:5. So cold = (3/5)×30 = 18 liters.
+**mistake_a:** 10 — from a rough approximation or arithmetic error; does not satisfy the temperature equation.
+**mistake_b:** 15 — confused the hot-water distance (60−45 = 15 degrees) with the volume of cold water needed. Temperature differences are not volumes.
+**mistake_d:** 25 — confused the cold-water distance (45−20 = 25 degrees) with the volume needed. Same error type as choice B, using the other distance directly.
+**mistake_e:** 50 — from inverting the alligation equation: solved x×(60−45) = 30×(45−20) → 15x = 750 → x = 50. The alligation formula has the volumes on the same side as the opposite source's distance: Cold × (cold-to-target) = Hot × (hot-to-target), so Cold × 25 = 30 × 15 → Cold = 18.
+**common_trap:** Reading a temperature difference off the number line and treating it as a volume. Distances and volumes are related inversely in alligation, not directly.
+**takeaway:** In alligation, each volume is proportional to the *other* source's distance from the target. A source far from the target contributes less volume — not more.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Ratio and Total
+
+A class has only boys and girls. How many students are in the class?
+
+(1) There are 6 more girls than boys in the class.
+(2) If 3 girls were to leave the class and 3 boys were to join, the number of girls would equal the number of boys.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** E
+**fastest_path:** (1) G − B = 6, total unknown → insufficient. (2) G − 3 = B + 3 → G − B = 6, same equation → insufficient. Together: still only one equation in two unknowns → E.
+**explanation:** Statement (1): G − B = 6. Without knowing the total G + B, the class size cannot be determined. Insufficient. Statement (2): (G−3) = (B+3) → G − B = 6. This is mathematically identical to statement (1) — both reduce to the same single equation. Insufficient. Together: both statements produce the same equation G − B = 6. With two unknowns (G and B) and only one independent equation, the total G + B cannot be determined. Insufficient → E. Any class where G − B = 6 satisfies both statements: {G=10, B=4}, {G=53, B=47}, {G=106, B=100} all work, giving totals of 14, 100, and 206 respectively.
+**mistake_a:** Treated only (1) as sufficient by assuming a specific total — but (1) gives a difference, not a total.
+**mistake_b:** Treated only (2) as sufficient — but (2) is equivalent to G − B = 6, which also gives only a difference.
+**mistake_c:** Answered C ("both together sufficient") — the most common error. Students count "two statements" as "two equations," but here both statements reduce to the *same* equation. Two identical equations are no better than one.
+**mistake_d:** Answered D — each statement is insufficient for the same reason: neither pins down the total.
+**common_trap:** Counting the number of statements rather than checking whether they are independent equations. Two statements that are algebraically equivalent add zero new information.
+**takeaway:** Before answering C, verify that the two statements are actually independent — that one adds information the other lacks. If combining them still leaves unknowns, the answer is E.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q38
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Chained Ratio and Successive Percent Changes
+
+A company's revenue from two product lines, A and B, were in the ratio 4:5 two years ago. Last year, A's revenue grew by 25% while B's revenue grew by 20%. This year, A's revenue declined by 16% while B's revenue grew by an additional 10%. What is the current ratio of A's revenue to B's revenue?
+
+- A) 4:5
+- B) 5:6
+- C) 7:11
+- D) 7:10
+- E) 7:12
+
+**answer:** C
+**fastest_path:** Two years ago: A=4k, B=5k. Last year: A=5k, B=6k. This year: A=4.2k, B=6.6k. Ratio = 42:66 = 7:11.
+**explanation:** Two years ago: A = 4k, B = 5k. Last year: A = 4k × 1.25 = 5k; B = 5k × 1.20 = 6k. This year: A = 5k × 0.84 = 4.2k; B = 6k × 1.10 = 6.6k. Ratio = 4.2k : 6.6k = 42:66. Divide both by 6: 7:11. Sanity check: over two years A went 4→5→4.2 (net slightly down) while B went 5→6→6.6 (net up), so B's share of total should grow — confirmed since 7/(7+11) < 5/(5+6) < 4/(4+5).
+**mistake_a:** 4:5 — the original ratio from two years ago. Failed to apply either year's growth rates.
+**mistake_b:** 5:6 — the ratio after last year's growth only (5k:6k = 5:6). Applied year-one changes correctly but stopped, ignoring this year's changes entirely.
+**mistake_d:** 7:10 — applied this year's change to A (5k×0.84 = 4.2k) but left B at its year-one value of 6k instead of growing it by 10%. 4.2k : 6k = 42:60 = 7:10. Missing B's current-year growth is a natural oversight when tracking multiple products across multiple years.
+**mistake_e:** 7:12 — applied this year's B growth at 20% again (same as last year) instead of 10%: B = 6k × 1.20 = 7.2k. Then 4.2 : 7.2 = 7:12. Read carefully: this year B grows 10%, not 20% again.
+**common_trap:** Stopping after one year of changes, or applying the wrong year's percentage to B.
+**takeaway:** For multi-year ratio problems, track each product through every year. Write a small table: product × year → value. The table prevents the "stop one year early" error.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q39
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Multi-Step Mixture
+
+A 20-liter container holds a mixture that is 25% juice. Pure juice is added until the concentration reaches 40%. Then 10 liters of the resulting mixture are removed and replaced with water. What percent of the final mixture is juice?
+
+- A) 25%
+- B) 24%
+- C) 30%
+- D) 32%
+- E) 40%
+
+**answer:** B
+**fastest_path:** Step 1: 5L juice in 20L. Step 2: add 5L juice → 25L, 10L juice at 40%. Step 3: remove 10L at 40% (4L juice) → 6L juice in 25L = 24%.
+**explanation:** Step 1 — initial state: 20 liters, 25% juice = 5 liters juice. Step 2 — add x liters of pure juice until 40%: (5+x)/(20+x) = 0.40 → 5+x = 8+0.4x → 0.6x = 3 → x = 5. New state: 25 liters, 10 liters juice (40% ✓). Step 3 — remove 10 liters of the 40% mixture: removed juice = 10 × 0.40 = 4 liters. Juice remaining = 10 − 4 = 6 liters. Replace with 10 liters of water: volume stays at 25 liters. Final concentration = 6/25 = 24%.
+**mistake_a:** 25% — the original concentration before any operations. Intuitive "it returns to original" reasoning, but the final concentration (24%) differs from both the original (25%) and the intermediate (40%).
+**mistake_c:** 30% — computed the juice count correctly (6L) but divided by the original volume (20L) instead of the final volume (25L): 6/20 = 30%. The step-2 juice addition permanently increased the container's volume from 20 to 25 liters; the step-3 remove-and-replace does not shrink it back.
+**mistake_d:** 32% — correctly found 25L after step 3 but forgot to subtract the juice that was in the 10 liters removed: used 8/25 = 32% instead of the correct 6/25 = 24%. The removed 10 liters carried 4 liters of juice out of the container; that juice is gone.
+**mistake_e:** 40% — stopped after step 2. The remove-and-replace step always dilutes the mixture when the replaced substance (water) is less concentrated than the current mixture.
+**common_trap:** Forgetting to account for the juice lost in the removed portion during step 3. The container's total volume is unchanged by the remove-and-replace, but the juice content drops because the removed portion was not pure water.
+**takeaway:** In remove-and-replace problems: (1) identify the concentration of the removed portion — it equals the current mixture's concentration, not the original; (2) subtract that juice from the total before computing the final percent.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q40
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Multi-Product Revenue
+
+A company sells two products, X and Y. Product X generates 20% more revenue per unit than Product Y. Last month, units sold of X and Y were in the ratio 2:3. This month, X unit sales increased by 50% and Y unit sales decreased by 25%. What is the ratio of this month's total revenue to last month's total revenue?
+
+- A) 12:13
+- B) 13:12
+- C) 11:9
+- D) 21:20
+- E) 5:4
+
+**answer:** B
+**fastest_path:** Let Y price = p, X price = 1.2p. Last = 2k(1.2p)+3k(p) = 5.4kp. This: X=3k, Y=2.25k → 3k(1.2p)+2.25k(p) = 5.85kp. Ratio = 5.85:5.4 = 13:12.
+**explanation:** Let Y's per-unit revenue = p, so X's per-unit revenue = 1.2p. Use k as the ratio scale. Last month: X units = 2k, Y units = 3k. Revenue last = 2k(1.2p) + 3k(p) = 2.4kp + 3kp = 5.4kp. This month: X units = 2k × 1.50 = 3k; Y units = 3k × 0.75 = 2.25k. Revenue this = 3k(1.2p) + 2.25k(p) = 3.6kp + 2.25kp = 5.85kp. Ratio = 5.85 : 5.4 = 585 : 540 = 117 : 108 = 13 : 12.
+**mistake_a:** 12:13 — inverted the ratio, comparing last month to this month instead of this month to last month.
+**mistake_c:** 11:9 — forgot to apply the 25% decrease to Y unit sales, leaving Y units at 3k instead of 2.25k. This month's revenue becomes 3k(1.2p) + 3k(p) = 6.6kp. Ratio = 6.6 : 5.4 = 11:9. Applying unit changes to only one product is a natural multi-step oversight.
+**mistake_d:** 21:20 — ignored the 20% per-unit price premium for X, treating both products as having equal per-unit revenue p. Last = 5kp, this = 5.25kp, ratio = 21:20. The per-unit price difference is what makes this problem require more than a simple unit-count calculation.
+**mistake_e:** 5:4 — from a compounding series of arithmetic errors, typically from mixing up which factors apply to units vs. revenue.
+**common_trap:** Using the unit-change ratio as if it directly equals the revenue ratio, ignoring X's per-unit price premium. Revenue = units × price; both factors must be tracked independently.
+**takeaway:** When products differ in per-unit revenue, revenue changes compound the unit changes with price differentials. Label variables clearly (unit count vs. per-unit revenue) before computing.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Percent Change
+
+What was the percent increase in sales from January to February at a retail store?
+
+(1) February sales totaled $12,000.
+(2) February sales were $1,000 more than 110% of January sales.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) Feb = 12,000; no Jan → insufficient. (2) Feb = 1.10×Jan + 1,000; two unknowns → insufficient. Together: 12,000 = 1.10×Jan + 1,000 → Jan = 10,000 → 20% increase. Sufficient.
+**explanation:** Statement (1): February sales = $12,000, but January sales are unknown. Without both values, the percent change cannot be computed. Insufficient. Statement (2): Feb = 1.10 × Jan + 1,000. This is one equation with two unknowns (Feb and Jan); it cannot be solved alone. Insufficient. Together: substitute Feb = 12,000 into the equation from (2): 12,000 = 1.10 × Jan + 1,000 → 1.10 × Jan = 11,000 → Jan = 10,000. Percent increase = (12,000 − 10,000)/10,000 = 20%. Sufficient → C.
+**mistake_a:** Concluded only (1) is sufficient — but (1) provides only February's value; January is still unknown.
+**mistake_b:** Concluded only (2) is sufficient — but (2) is one equation with two unknowns; without an independent value for either variable, it cannot be solved.
+**mistake_d:** Concluded each alone is sufficient — neither statement alone fixes both variables.
+**mistake_e:** Concluded neither together nor alone is sufficient — the combined system has two equations in two unknowns and is uniquely solvable.
+**common_trap:** Mistaking statement (2) for a self-contained relationship that determines both values. Statement (2) constrains the ratio between Jan and Feb but does not pin down the actual dollar amounts; it needs (1)'s anchor to become solvable.
+**takeaway:** A statement that expresses one variable as a formula of another (with a constant offset) is effectively one equation in two unknowns. It needs a second independent equation — such as an actual value — to become sufficient.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Ratio Change
+
+In a class, the ratio of boys to girls is 4:5. After 12 boys leave and 20 girls join the class, the ratio of boys to girls becomes 2:5. How many students were originally in the class?
+
+- A) 36
+- B) 54
+- C) 72
+- D) 90
+- E) 100
+
+**answer:** D
+**fastest_path:** Boys=4k, girls=5k. (4k−12)/(5k+20) = 2/5 → 20k−60=10k+40 → k=10 → total = 9k = 90.
+**explanation:** Let boys = 4k and girls = 5k, so total = 9k. After changes: (4k−12)/(5k+20) = 2/5. Cross-multiply: 5(4k−12) = 2(5k+20) → 20k − 60 = 10k + 40 → 10k = 100 → k = 10. Original total = 9k = 9 × 10 = 90. Verification: originally 40 boys and 50 girls (ratio 4:5 ✓); after changes: 28 boys, 70 girls → 28:70 = 2:5 ✓.
+**mistake_a:** 36 = 9×4 — from solving incorrectly as (4k)/(5k+20) = 2/5 (forgot to subtract the 12 boys who left): 20k = 10k+40 → k = 4 → total = 36. Read every direction of change before writing the equation.
+**mistake_b:** 54 = 9×6 — from solving incorrectly as (4k−12)/(5k) = 2/5 (forgot to add the 20 girls who joined): 20k−60 = 10k → k = 6 → total = 54. Both the boys' departure and the girls' arrival must appear in the equation.
+**mistake_c:** 72 = 9×8 — from an arithmetic error on the right-hand side: expanded 2(5k+20) as 10k+20 instead of 10k+40, giving 20k−60 = 10k+20 → k = 8 → total = 72. Multiply through carefully: 2 × 20 = 40, not 20.
+**mistake_e:** 100 — solved correctly for k = 10 but reported 10k = 100 (the intermediate solving step) as the answer instead of the actual total 9k = 90. The original class had 9 ratio parts (4+5), not 10.
+**common_trap:** Reporting 10k = 100 as the answer, confusing the equation's coefficient (10) with the ratio sum (9). Always compute total = (ratio sum) × k, not (equation coefficient) × k.
+**takeaway:** Two-phase ratio problems require both changes in the equation. After solving for k, multiply by the *original* ratio sum (here 4+5 = 9), not by the algebraic coefficient of k in the working equation.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q43
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Basic Percents
+
+A store has 400 items. 25% of the items are clothing, and 60% of the clothing items are on sale. How many clothing items are on sale?
+
+- A) 24
+- B) 48
+- C) 60
+- D) 80
+- E) 100
+
+**answer:** C
+**fastest_path:** Clothing = 25% × 400 = 100. On sale = 60% × 100 = 60.
+**explanation:** Step 1 — find the clothing count: 25% × 400 = 100 items are clothing. Step 2 — find the sale count within clothing: 60% × 100 = 60. The two-step structure is the core: each percent applies to a different base.
+**mistake_a:** 24 — computed 60% × 40 (used 10% of 400 = 40 as the clothing count instead of 25% = 100). The first step is 25% of 400, not 10%.
+**mistake_b:** 48 — computed 60% × 80 (used 20% of 400 = 80 as clothing, misreading 25% as 20%). Each percent must be applied to its stated base.
+**mistake_d:** 80 — computed 20% × 400 = 80, the clothing count if the problem said 20% were clothing, and stopped there without applying the second percent. Two errors at once: wrong clothing percent and no second step.
+**mistake_e:** 100 — stopped at the clothing count after step 1 (25% × 400 = 100) without continuing to find how many of the 100 clothing items are on sale.
+**common_trap:** Stopping after step 1 and bubbling the clothing count (100) rather than computing the on-sale subset within clothing.
+**takeaway:** When a problem says "X% of the total are A, and Y% of A are B," the answer requires two multiplications. Apply each percent to its own base.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q44
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Ratios
+
+A prize is divided among three winners in the ratio 2:3:5. The second-largest share is $180. What is the total prize?
+
+- A) $120
+- B) $180
+- C) $300
+- D) $600
+- E) $900
+
+**answer:** D
+**fastest_path:** Ranked 2 < 3 < 5. Second-largest = 3 parts. 3k = 180 → k = 60. Total = 10k = 600.
+**explanation:** Ranked in order: 2 (smallest), 3 (second-largest), 5 (largest). The second-largest share corresponds to 3 parts: 3k = 180 → k = 60. Total parts = 2 + 3 + 5 = 10. Total prize = 10 × 60 = $600.
+**mistake_a:** $120 — the smallest share (2k = 2 × 60 = 120). Computed correctly but picked the wrong winner's share.
+**mistake_b:** $180 — the given second-largest share itself. Stopped at identifying the anchor without computing the total.
+**mistake_c:** $300 — the largest share (5k = 5 × 60 = 300). Computed correctly but picked the largest winner instead of the total.
+**mistake_e:** $900 — from miscomputing the ratio sum as 15 instead of 10 (perhaps by adding 2+3+5+5 = 15 or double-counting the largest share): 15 × 60 = 900. Sum the ratio parts exactly once: 2 + 3 + 5 = 10.
+**common_trap:** Bubbling one winner's share (especially the largest or smallest) rather than the sum of all three, or miscounting the ratio parts when summing.
+**takeaway:** "Total prize" = (sum of all ratio parts) × k. Always add every ratio term, then scale by k.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q45
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Percent Change
+
+A city's education budget is 40% of its total budget. This year, the education budget was increased by 15% while all other spending remained unchanged. By what percent did the total budget increase?
+
+- A) 6%
+- B) 8%
+- C) 10%
+- D) 15%
+- E) 55%
+
+**answer:** A
+**fastest_path:** Increase = 15% × 40% of total = 6% of total.
+**explanation:** The education budget is 40% of the total, and it grew by 15%. The increase in dollar terms = 15% × (40% × total budget) = 6% × total budget. Since only education changed, the entire dollar increase equals the 6% of total budget — so the total budget grew by exactly 6%.
+**mistake_b:** 8% — applied 20% to education (instead of 15%): 20% × 40% = 8%.
+**mistake_c:** 10% — applied 25% to education (instead of 15%): 25% × 40% = 10%.
+**mistake_d:** 15% — confused the education department's raise (15%) with the impact on the total budget. The total doesn't grow by 15%; only the 40% slice that is education grew by 15%.
+**mistake_e:** 55% — added the two percentages directly: 40% + 15% = 55%. Percents that apply to different quantities cannot be added. Multiply the department's weight (40%) by its growth rate (15%) to find the total-budget impact.
+**common_trap:** Reporting the department's raise (15%) as the total-budget increase. To find the total-budget effect of a change in one component, multiply the component's weight by its growth rate.
+**takeaway:** Total budget % increase = (component's share) × (component's % change). Here: 40% × 15% = 6%.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q46
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Proportions
+
+A recipe for 6 people requires 4 cups of sugar. How many cups of sugar are needed to make the same recipe for 15 people?
+
+- A) 6
+- B) 8
+- C) 10
+- D) 12
+- E) 15
+
+**answer:** C
+**fastest_path:** Scale factor = 15/6 = 5/2. Sugar = 4 × 5/2 = 10 cups.
+**explanation:** Scale factor = target servings / original servings = 15/6 = 5/2 = 2.5. Sugar needed = 4 × 2.5 = 10 cups. Or set up a proportion: 4/6 = x/15 → x = 4 × 15/6 = 60/6 = 10.
+**mistake_a:** 6 — copied the original number of servings (6) rather than computing the required sugar.
+**mistake_b:** 8 — scaled by factor 2 (as if the target were 12 people: 12/6 = 2, 4 × 2 = 8). The target is 15, not 12; the scale factor is 2.5, not 2.
+**mistake_d:** 12 — scaled by factor 3, perhaps by misreading the original serving size as 5 (15/5 = 3, 4 × 3 = 12). The recipe is for 6 people, not 5.
+**mistake_e:** 15 — copied the number of people to serve rather than the sugar amount.
+**common_trap:** Rounding the scale factor (15/6 = 2.5) down to 2 and getting 8, or up to 3 and getting 12, instead of keeping 2.5.
+**takeaway:** Proportion: (desired servings) / (original servings) × (original ingredient amount). Keep the scale factor as a fraction when it's not a whole number.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q47
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Ratios
+
+A storage container holds only red and blue boxes in the ratio of red to blue of 5:2. If there are 35 red boxes, how many blue boxes are there?
+
+- A) 7
+- B) 10
+- C) 14
+- D) 17.5
+- E) 25
+
+**answer:** C
+**fastest_path:** 5k = 35 → k = 7. Blue = 2k = 14.
+**explanation:** The ratio of red to blue is 5:2, so red = 5k and blue = 2k. Given 5k = 35, k = 7. Blue = 2 × 7 = 14.
+**mistake_a:** 7 — bubbled the scale factor k itself (7) rather than computing blue = 2k = 14. k is the value of one "part," not the number of blue boxes.
+**mistake_b:** 10 — treated 35 as the total (not just the red count) and computed blue = (2/7) × 35 = 10. The 35 represents red boxes only (5k = 35); it is not the total of all boxes.
+**mistake_d:** 17.5 — divided the red count by the blue ratio term: 35 ÷ 2 = 17.5. The blue ratio term (2) is a number of parts, not a divisor of the red count.
+**mistake_e:** 25 — subtracted 10 from 35 (perhaps interpreted "5:2" as "there are 5 − 2 = 3 more reds, so red − 3 × something = blue"). Ratio numbers are multipliers on a shared part, not differences.
+**common_trap:** Treating 35 as the total (leading to 10) or using the red count as a direct divisor (leading to 17.5). The 35 is only one category; k = 35/5 is the scale step.
+**takeaway:** In a ratio question where one part's total is given, divide that total by the part's ratio value to find k, then multiply k by the other part's ratio value.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q48
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Multi-Variable Ratio
+
+Three investors share a $33,000 profit. Investor A receives twice as much as Investor B. Investor C receives $3,000 less than Investor A. How much does Investor B receive?
+
+- A) $6,000
+- B) $7,200
+- C) $8,250
+- D) $11,400
+- E) $14,400
+
+**answer:** B
+**fastest_path:** A=2B, C=2B−3,000. Sum: 5B−3,000=33,000 → B=7,200.
+**explanation:** Express all shares in terms of B. A = 2B. C = A − 3,000 = 2B − 3,000. Sum: A + B + C = 2B + B + (2B − 3,000) = 5B − 3,000 = 33,000. So 5B = 36,000, giving B = 7,200. Verification: A = 14,400, B = 7,200, C = 11,400. Sum = 33,000 ✓; A/B = 2 ✓; A − C = 3,000 ✓.
+**mistake_a:** $6,000 — from a sign error: wrote C = A + 3,000 instead of C = A − 3,000 (misread "C receives $3,000 less than A" as "A receives $3,000 less than C"). This gives 5B + 3,000 = 33,000 → 5B = 30,000 → B = 6,000. One-word misread flips the sign.
+**mistake_c:** $8,250 — from treating C = B (ignoring the $3,000 differential), effectively setting all three shares proportionally: 2B + B + B = 4B = 33,000 → B = 8,250. C = A − 3,000, not C = B.
+**mistake_d:** $11,400 — C's share (A − 3,000 = 14,400 − 3,000 = 11,400). Solved correctly but reported C's result instead of B's.
+**mistake_e:** $14,400 — A's share (2 × 7,200 = 14,400). Solved correctly but reported A's result instead of B's.
+**common_trap:** Misreading "C receives $3,000 less than A" as a subtraction from B or from C's own share. The $3,000 is a fixed offset between A and C specifically.
+**takeaway:** Express all quantities in one variable before summing to the total. Label your result after solving: "this is B, not A or C."
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q49
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Successive Percent Changes
+
+A company has 200 employees: 60% full-time earning an average of $5,000 per month, and 40% part-time earning an average of $2,000 per month. All full-time employees receive a 10% raise. To the nearest whole percent, by approximately what percent does the total monthly payroll increase?
+
+- A) 5%
+- B) 6%
+- C) 7%
+- D) 8%
+- E) 10%
+
+**answer:** D
+**fastest_path:** FT payroll = 120×5,000 = 600K. Raise = 10%×600K = 60K. Total payroll = 760K. % increase ≈ 60/760 ≈ 7.9% ≈ 8%.
+**explanation:** Full-time employees: 200 × 60% = 120 employees earning $5,000/month = $600,000. Part-time employees: 80 × $2,000 = $160,000. Total payroll = $760,000. The raise applies only to full-time employees: raise = 10% × $600,000 = $60,000. New total = $820,000. Percent increase = $60,000 / $760,000 = 6/76 = 3/38 ≈ 7.89% ≈ 8%.
+**mistake_a:** 5% — from a rough approximation; does not match the correct computation.
+**mistake_b:** 6% — from applying the raise directly to the FT fraction of total payroll: 10% × 60% = 6%. This treats the FT fraction of headcount as if it equals the FT fraction of payroll, ignoring that FT workers earn $5,000 while PT earn $2,000. The FT payroll fraction is 600/760 ≈ 79%, not 60%.
+**mistake_c:** 7% — correctly computed 7.89% but rounded down to 7 instead of rounding to the nearest whole percent (8). 7.89% is closer to 8% than to 7%.
+**mistake_e:** 10% — applied the full 10% raise to the entire payroll rather than just to the full-time portion. Only 120 of 200 employees received the raise.
+**common_trap:** Treating the 60% employee-headcount fraction as the FT payroll fraction. Because FT workers earn $5,000 and PT earn $2,000, FT payroll is 79% of the total — not 60%. Always compute the dollar base before applying a percentage change.
+**takeaway:** Weighted-payroll changes require the dollar amount of the raise, not its percent, to be compared against the total dollar payroll.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q50
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Successive Percent Changes
+
+A city's population was 200,000 at the end of 2020. It grew by 10% in 2021, shrank by 5% in 2022, and grew by 20% in 2023. What was the population at the end of 2023, to the nearest thousand?
+
+- A) 225,000
+- B) 240,000
+- C) 250,000
+- D) 251,000
+- E) 270,000
+
+**answer:** D
+**fastest_path:** 200,000 × 1.10 × 0.95 × 1.20 = 200,000 × 1.254 = 250,800 → 251,000.
+**explanation:** Chain the multipliers: 200,000 × 1.10 = 220,000 → × 0.95 = 209,000 → × 1.20 = 250,800. Rounded to the nearest thousand: 251,000. The multiplicative chain gives 1.10 × 0.95 × 1.20 = 1.254, so the population grew by about 25.4% over three years — well above the additive shortcut of 25%.
+**mistake_a:** 225,000 = 200,000 × 1.125 — from averaging the three annual rates: (10 − 5 + 20)/3 = 8.33%, then 200,000 × 1.0833 = 216,667; or from other averaging shortcuts. Averaging annual growth rates does not give the correct compound growth.
+**mistake_b:** 240,000 = 200,000 × 1.20 — applied only the final year's +20% growth and ignored 2021 and 2022. Three years of changes must all be applied.
+**mistake_c:** 250,000 = 200,000 × 1.25 — added the percentage changes: 10 − 5 + 20 = 25%, giving 200,000 × 1.25 = 250,000. Percent changes compound multiplicatively, not additively; the difference here is 800 people.
+**mistake_e:** 270,000 = 200,000 × 1.35 — added the absolute magnitudes of all changes: 10 + 5 + 20 = 35%, ignoring that 2022 was a decrease. Sign matters: −5% is 0.95, not +5%.
+**common_trap:** Adding percent changes (10 − 5 + 20 = 25%) instead of multiplying multipliers (1.10 × 0.95 × 1.20 = 1.254). The additive shortcut gives 250,000 — just 800 below the correct answer, making it a plausible-looking wrong answer.
+**takeaway:** Three-year compound growth: multiply all three factors. The additive shortcut is especially tempting when one period is negative — and especially wrong for the same reason.
+**related_reading:** reading-quant-02-arithmetic-foundations
