@@ -1072,6 +1072,7 @@ export default function SessionClient({
   >("idle")
   const [savedSessionId, setSavedSessionId] = useState<string | null>(null)
   const [showAllReview, setShowAllReview] = useState(false)
+  const [expandedReviewItems, setExpandedReviewItems] = useState<Set<number>>(new Set())
 
   // Tick the timer once a second for the header readouts.
   useEffect(() => {
@@ -1809,62 +1810,7 @@ export default function SessionClient({
           </Link>
         )}
 
-        {/* What to do next — renders the nextStepNote guidance as direct CTA
-            buttons. The text was computed above but never surfaced in the UI;
-            without a button, students read the advice and then navigate away
-            manually with no clear path. Primary action depends on accuracy
-            band: review the chapter (low), practice again (mid), study plan
-            (high). Chapter link is only shown when the topic maps to one. */}
-        {(() => {
-          const chapterSlug = TOPIC_TO_CHAPTER[topic]
-          const low = accuracy < 60
-          const mid = accuracy >= 60 && accuracy < 78
-
-          const primaryAction = low && chapterSlug
-            ? { label: `Review ${topic} chapter`, href: `/chapters/${chapterSlug}` }
-            : mid
-            ? { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-            : { label: "View your study plan", href: "/study-plan" }
-
-          const secondaryAction =
-            low
-              ? { label: "Practice again", href: `/practice/session/${slug}` }
-              : mid && chapterSlug
-              ? { label: "Review the chapter", href: `/chapters/${chapterSlug}` }
-              : { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-
-          return (
-            <div
-              className="p-5 rounded-xl border border-white/[0.08]"
-              style={{ backgroundColor: "#0D0D0D" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
-                What to do next
-              </p>
-              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-4">
-                {nextStepNote}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Link
-                  href={primaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  {primaryAction.label}
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-                <Link
-                  href={secondaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-white/[0.1] text-[#888888] transition-colors hover:text-[#F0F0F0] hover:border-white/[0.2]"
-                >
-                  {secondaryAction.label}
-                </Link>
-              </div>
-            </div>
-          )
-        })()}
-
-        {/* Review list — wrong answers only by default, toggle to show all */}
+        {/* Review list — wrong answers expand inline; toggle between incorrect / all */}
         {(() => {
           const wrongIndices = questions
             .map((q, i) => ({ q, i, state: states[i] }))
@@ -1909,58 +1855,145 @@ export default function SessionClient({
                     const isCorrect = isQuestionCorrect(q, state)
                     const isWrong = state.submitted && !isCorrect
                     const isLast = listIdx === displayItems.length - 1
+                    const isExpanded = expandedReviewItems.has(i)
                     return (
-                      <button
+                      <div
                         key={q.id}
-                        onClick={() => {
-                          goTo(i)
-                          setShowResults(false)
-                        }}
-                        className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
-                          !isLast ? "border-b border-white/[0.05]" : ""
-                        }`}
+                        className={!isLast ? "border-b border-white/[0.05]" : ""}
                         style={isWrong ? { backgroundColor: "rgba(255,68,68,0.025)" } : undefined}
                       >
-                        <div className="flex items-center gap-3 min-w-0">
-                          <div
-                            className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                            style={{
-                              backgroundColor: state.submitted
-                                ? isCorrect
-                                  ? "rgba(62,207,142,0.1)"
-                                  : "rgba(255,68,68,0.1)"
-                                : "rgba(255,255,255,0.04)",
-                            }}
-                          >
-                            {state.submitted ? (
-                              isCorrect ? (
-                                <Check className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
+                        <button
+                          onClick={() => {
+                            if (isWrong) {
+                              setExpandedReviewItems((prev) => {
+                                const next = new Set(prev)
+                                if (next.has(i)) next.delete(i)
+                                else next.add(i)
+                                return next
+                              })
+                            } else {
+                              goTo(i)
+                              setShowResults(false)
+                            }
+                          }}
+                          className="w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left"
+                        >
+                          <div className="flex items-center gap-3 min-w-0">
+                            <div
+                              className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                              style={{
+                                backgroundColor: state.submitted
+                                  ? isCorrect
+                                    ? "rgba(62,207,142,0.1)"
+                                    : "rgba(255,68,68,0.1)"
+                                  : "rgba(255,255,255,0.04)",
+                              }}
+                            >
+                              {state.submitted ? (
+                                isCorrect ? (
+                                  <Check className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
+                                ) : (
+                                  <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
+                                )
                               ) : (
-                                <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
-                              )
-                            ) : (
-                              <span className="text-[10px] text-[#555555]">—</span>
+                                <span className="text-[10px] text-[#555555]">—</span>
+                              )}
+                            </div>
+                            <div className="min-w-0">
+                              <p
+                                className="text-xs"
+                                style={{ color: isWrong ? "rgba(255,107,107,0.75)" : "#555555" }}
+                              >
+                                Q{i + 1} · {q.subtopic} · {q.difficulty}
+                              </p>
+                              <p className="text-sm text-[#F0F0F0] truncate">
+                                {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2 flex-shrink-0 ml-3">
+                            <span
+                              className="text-xs"
+                              style={{ color: isWrong ? "rgba(255,107,107,0.6)" : "#888888" }}
+                            >
+                              {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
+                            </span>
+                            {isWrong && (
+                              <ChevronDown
+                                className="w-3.5 h-3.5 transition-transform duration-200"
+                                style={{
+                                  color: "#555555",
+                                  transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
+                                }}
+                              />
                             )}
                           </div>
-                          <div className="min-w-0">
-                            <p
-                              className="text-xs"
-                              style={{ color: isWrong ? "rgba(255,107,107,0.75)" : "#555555" }}
+                        </button>
+
+                        {isWrong && isExpanded && (
+                          <div
+                            className="px-4 pb-5"
+                            style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}
+                          >
+                            <div className="space-y-1.5 mb-4 pt-4">
+                              {state.selected !== null && (
+                                <div className="flex items-baseline gap-2.5">
+                                  <span
+                                    className="text-[10px] uppercase tracking-wider w-16 flex-shrink-0 font-medium"
+                                    style={{ color: "#FF6B6B" }}
+                                  >
+                                    You chose
+                                  </span>
+                                  <span className="text-xs leading-snug" style={{ color: "rgba(255,107,107,0.85)" }}>
+                                    <span className="font-semibold">{letterFor(state.selected)})</span>{" "}
+                                    {q.options[state.selected]}
+                                  </span>
+                                </div>
+                              )}
+                              <div className="flex items-baseline gap-2.5">
+                                <span
+                                  className="text-[10px] uppercase tracking-wider w-16 flex-shrink-0 font-medium"
+                                  style={{ color: "#3ECF8E" }}
+                                >
+                                  Correct
+                                </span>
+                                <span className="text-xs leading-snug" style={{ color: "rgba(62,207,142,0.9)" }}>
+                                  <span className="font-semibold">{letterFor(q.correctAnswer)})</span>{" "}
+                                  {q.options[q.correctAnswer]}
+                                </span>
+                              </div>
+                            </div>
+
+                            <div
+                              className="text-[12px] leading-relaxed"
+                              style={{ color: "#888888" }}
                             >
-                              Q{i + 1} · {q.subtopic} · {q.difficulty}
-                            </p>
-                            <p className="text-sm text-[#F0F0F0] truncate">
-                              {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
-                            </p>
+                              <ReactMarkdown
+                                remarkPlugins={[remarkGfm]}
+                                components={{
+                                  strong: ({ children }) => (
+                                    <strong style={{ color: "#C0C0C0", fontWeight: 600 }}>{children}</strong>
+                                  ),
+                                  p: ({ children }) => (
+                                    <p style={{ marginBottom: "0.5rem" }}>{children}</p>
+                                  ),
+                                }}
+                              >
+                                {q.explanation}
+                              </ReactMarkdown>
+                            </div>
+
+                            <button
+                              onClick={() => { goTo(i); setShowResults(false) }}
+                              className="mt-3 inline-flex items-center gap-1 text-[11px] transition-colors hover:text-[#888888]"
+                              style={{ color: "#444444" }}
+                            >
+                              <ArrowRight className="w-3 h-3" />
+                              Review full question
+                            </button>
                           </div>
-                        </div>
-                        <span
-                          className="text-xs flex-shrink-0 ml-3"
-                          style={{ color: isWrong ? "rgba(255,107,107,0.6)" : "#888888" }}
-                        >
-                          {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
-                        </span>
-                      </button>
+                        )}
+                      </div>
                     )
                   })}
                 </div>
