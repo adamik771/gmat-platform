@@ -19,8 +19,8 @@ What is the value of 3/4 + 5/8 - 1/2?
 **answer:** C
 **fastest_path:** Common denominator 8: 6/8 + 5/8 − 4/8 = 7/8.
 **explanation:** Convert each fraction to eighths: 3/4 = 6/8, 5/8 stays, 1/2 = 4/8. Add and subtract numerators: 6 + 5 − 4 = 7. Final fraction: 7/8. Total time: 10 seconds.
-**mistake_a:** Subtracted 5/8 instead of adding it; got 6/8 − 5/8 + 4/8 = 5/8 (then off by one).
-**mistake_b:** Computed 3/4 + 5/8 = 11/8, then subtracted 1/2 from that without consistent denominator.
+**mistake_a:** Treated the + on 5/8 as − (sign confusion), computing 6/8 − 5/8 − 4/8 = −3/8, then bubbled the magnitude 3/8.
+**mistake_b:** Bubbled 5/8 — a number that appears directly in the problem — without completing the computation. Anchoring on a visible fraction is a common impulse-answer trap on Easy questions.
 **mistake_d:** Added all numerators with mismatched denominators: 3+5−1 = 7 over 14 = 1/2 mistakenly converted to 1.
 **mistake_e:** Forgot to convert; treated 3/4 + 5/8 as 8/12, etc.
 **common_trap:** Adding fractions without finding a common denominator.
@@ -46,7 +46,7 @@ A shirt originally priced at $80 is discounted by 15%. What is the sale price of
 **fastest_path:** Sale price = 80 × 0.85 = $68 (use multiplier directly, not "subtract the discount").
 **explanation:** A 15% discount means the customer pays 85% of the original price. Sale price = 0.85 × $80 = $68. Equivalent path: discount = 0.15 × 80 = $12; final = 80 − 12 = $68. The multiplicative form (0.85 × 80) is one step; the subtractive form is two.
 **mistake_a:** Bubbled the discount amount ($12), not the sale price.
-**mistake_b:** Computed 80 − 0.15 = 79.85, then misrounded to 65.
+**mistake_b:** Treated the percentage as a flat dollar amount: 80 − 15 = 65 (subtracted $15 instead of 15% of $80 = $12).
 **mistake_d:** Computed 80 × 0.10 = 8 (used 10% instead of 15%).
 **mistake_e:** Computed 80 − 4 = 76 (used 5% instead of 15%).
 **common_trap:** Bubbling the discount amount instead of the sale price.
@@ -358,7 +358,7 @@ When 0.0837 is rounded to the nearest hundredth, what is the result?
 **answer:** A
 **fastest_path:** Hundredths place = 8 (second after decimal). Next digit = 3 < 5 → round down → 0.08.
 **explanation:** Rounding to the nearest hundredth: keep two decimal places. The hundredths digit in 0.0837 is 8 (the "8" in 0.0**8**37). The deciding digit is the next one (3). Since 3 < 5, round down — keep 0.08.
-**mistake_b:** Rounded to thousandths instead of hundredths.
+**mistake_b:** Truncated at three decimal places instead of rounding — kept 0.083 without checking whether the next digit (7) requires rounding up.
 **mistake_c:** Rounded to thousandths and then up; got 0.084.
 **mistake_d:** Rounded up incorrectly because of the digits *further* to the right (e.g., the 7); only the immediate next digit matters.
 **mistake_e:** Rounded to tenths.
@@ -382,7 +382,7 @@ What is the value of (1 + 1/2) / (1 - 1/3)?
 - E) 5/2
 
 **answer:** D
-**fastest_path:** Numerator: 3/2. Denominator: 2/3. Divide: (3/2) × (3/2) = 9/4.
+**fastest_path:** Numerator: 3/2. Denominator: 2/3. Flip the denominator and multiply: (3/2) ÷ (2/3) = (3/2) × (3/2) = 9/4.
 **explanation:** Simplify each layer first. Numerator: 1 + 1/2 = 3/2. Denominator: 1 − 1/3 = 2/3. Then divide: (3/2) ÷ (2/3) = (3/2) × (3/2) = 9/4 (multiply by reciprocal).
 **mistake_a:** Divided incorrectly: 3/2 ÷ 2 = 3/4.
 **mistake_b:** Multiplied (3/2) × (2/3) = 1, then misadjusted to 9/8.
@@ -447,7 +447,7 @@ If x = -3 and y = 2, what is the value of |x - y| - |y - x| + |x| - |y|?
 ---
 
 ## Q18
-**difficulty:** Medium
+**difficulty:** Hard
 **type:** Data Sufficiency
 **topic:** Fractions
 
@@ -513,10 +513,10 @@ Smallest gap belongs to 13/40. Note that 11/32 (gap ≈ 0.010) is the second-clo
 **type:** Data Sufficiency
 **topic:** Arithmetic Sequences
 
-The sum of the first n terms of a certain sequence equals 3n² + 2n. What is the value of the 10th term?
+What is the value of the 15th term of an arithmetic sequence?
 
-(1) The first term of the sequence is 5.
-(2) The common difference between consecutive terms is 6.
+(1) The sum of the first 10 terms of the sequence is 120.
+(2) The sum of the first 4 terms of the sequence is 24.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
@@ -524,15 +524,15 @@ The sum of the first n terms of a certain sequence equals 3n² + 2n. What is the
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
-**answer:** D
-**fastest_path:** nth term = S_n − S_(n−1) = (3n²+2n) − (3(n−1)²+2(n−1)) = 6n − 1. n=10 → 59. Stem alone sufficient → D.
-**explanation:** The stem fully determines the sequence. nth term = S_n − S_(n−1) = (3n² + 2n) − (3(n−1)² + 2(n−1)). Expand the second: 3(n²−2n+1) + 2n − 2 = 3n² − 6n + 3 + 2n − 2 = 3n² − 4n + 1. Subtract: (3n² + 2n) − (3n² − 4n + 1) = 6n − 1. So 10th term = 6(10) − 1 = 59. The stem alone answers the question; statements (1) and (2) are consistent (1st term = 6(1)−1 = 5; common difference = 6) but redundant.
-**mistake_a:** Treated Statement (1) as adding necessary information.
-**mistake_b:** Treated Statement (2) as required.
-**mistake_c:** Required both, missing that the stem alone is sufficient.
-**mistake_e:** Concluded both insufficient, missing the stem-alone path.
-**common_trap:** Forgetting to test whether the stem alone is sufficient — the stem can sometimes contain enough info to answer without any statement.
-**takeaway:** On every DS question, *first* test whether the stem alone is sufficient. If yes, both statements are individually sufficient (D), assuming they're consistent.
+**answer:** C
+**fastest_path:** Each sum gives one equation in two unknowns (a₁, d). Together: 2a₁+9d=24 and 2a₁+3d=12 → d=2, a₁=3 → a₁₅=31. C.
+**explanation:** For an arithmetic sequence, Sₙ = n/2 × (2a₁ + (n−1)d). Statement (1): S₁₀ = 120 → 5(2a₁ + 9d) = 120 → 2a₁ + 9d = 24. One equation, two unknowns — counterexamples: (a₁=3, d=2) → a₁₅=31; (a₁=12, d=0) → a₁₅=12. Different 15th terms → insufficient. Statement (2): S₄ = 24 → 2(2a₁ + 3d) = 24 → 2a₁ + 3d = 12. Same issue: (a₁=3, d=2) → a₁₅=31; (a₁=6, d=0) → a₁₅=6. Insufficient. Together: subtract the two equations — (2a₁+9d) − (2a₁+3d) = 24 − 12 → 6d = 12 → d = 2; back-substitute: 2a₁ = 12 − 6 = 6 → a₁ = 3. a₁₅ = 3 + 14(2) = 31. Unique value → sufficient. Answer C.
+**mistake_a:** Concluded Statement (1) alone sufficient because "the sum of 10 terms should fix the sequence." It gives one equation in two unknowns — a₁ and d can vary independently.
+**mistake_b:** Same reasoning flaw applied to Statement (2) alone.
+**mistake_d:** Concluded each alone sufficient — both statements provide only one linear equation in a₁ and d; neither pins down the sequence.
+**mistake_e:** Concluded both together insufficient because "two unknowns require more information." Two independent linear equations uniquely solve for both a₁ and d.
+**common_trap:** Assuming one sum-of-terms equation uniquely determines an arithmetic sequence. It never does — any Sₙ equation is one constraint on two unknowns.
+**takeaway:** A single sum-of-terms equation gives 2a₁ + (n−1)d = k — one equation in two unknowns. To pin down an arithmetic sequence you need two independent equations (two different sums, or one sum plus one specific term).
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 
