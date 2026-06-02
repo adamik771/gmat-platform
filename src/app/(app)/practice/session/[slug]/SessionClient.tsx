@@ -1723,6 +1723,58 @@ export default function SessionClient({
           )
         })()}
 
+        {(() => {
+          // Subtopic-level breakdown of wrong answers — surfaces the
+          // specific skill clusters that broke down in this session, not
+          // just the difficulty buckets covered above. Hidden when no
+          // wrong answer carries a usable subtopic label.
+          const wrong = questions.filter(
+            (q, i) =>
+              states[i].submitted && !isQuestionCorrect(q, states[i])
+          )
+          const counts = new Map<string, number>()
+          for (const q of wrong) {
+            const sub = (q.subtopic ?? "").trim()
+            if (!sub) continue
+            counts.set(sub, (counts.get(sub) ?? 0) + 1)
+          }
+          const top = [...counts.entries()]
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 3)
+          if (top.length === 0) return null
+          return (
+            <div className="p-5 rounded-xl border border-white/[0.06] bg-[#0D0D0D]">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+                Where the mistakes fell
+              </p>
+              <div className="space-y-2.5">
+                {top.map(([sub, n]) => (
+                  <div
+                    key={sub}
+                    className="flex items-center justify-between gap-3"
+                  >
+                    <p className="text-sm text-[#C0C0C0] truncate">{sub}</p>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <div className="flex gap-1">
+                        {Array.from({ length: Math.min(n, 5) }).map((_, i) => (
+                          <div
+                            key={i}
+                            className="w-2 h-2 rounded-full"
+                            style={{ backgroundColor: "rgba(255,68,68,0.5)" }}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-xs text-[#555555] w-4 text-right tabular-nums">
+                        {n}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        })()}
+
         {savedSessionId && answeredCount - correctCount > 0 && (
           <Link
             href={`/error-log?session_id=${savedSessionId}`}
