@@ -50,7 +50,7 @@ Which of the following is equivalent to (x³)⁴ / x⁵?
 **explanation:** Two exponent rules: (a) power of a power multiplies exponents — (x³)⁴ = x^(3×4) = x¹². (b) Same-base division subtracts exponents — x¹² / x⁵ = x^(12−5) = x⁷. The whole computation is two mechanical steps.
 **mistake_a:** Subtracted 3 from 5 (treated denominator as numerator) — got x^2.
 **mistake_c:** Stopped at the numerator step: correctly computed (x³)⁴ = x¹² but then did not complete the division by x⁵, bubbling the intermediate result.
-**mistake_d:** Multiplied (x³)⁴ as x^(3+4) = x^7, then multiplied by x^5 instead of dividing — got x^15.
+**mistake_d:** Confused the two exponents 4 and 5: applied (x³)⁵ = x^(3×5) = x^15 by using the denominator's exponent (5) in the power-of-a-power step instead of the numerator's (4). Never reached the division step.
 **mistake_e:** Computed 3 × 4 + 5 = 17 by adding the bottom exponent rather than subtracting.
 **common_trap:** Confusing exponent rules — multiplying when you should subtract, or adding when you should multiply.
 **takeaway:** Memorize the four exponent rules cold: power-of-power multiplies, product-of-same-base adds, quotient subtracts, negative exponent inverts.
@@ -124,6 +124,9 @@ If x² - 5x - 14 = 0, what is the product of the two solutions?
 - E) 14
 
 **answer:** A
+**hint_nudge:** The question asks for the *product* of the solutions — check whether a formula gives this directly without finding the roots individually.
+**hint_strategy:** Vieta's formulas: for x² + bx + c = 0, the product of the roots equals c (the constant term) when the leading coefficient is 1.
+**hint_setup:** The equation is x² − 5x − 14 = 0, so a = 1, b = −5, c = −14. Product of roots = c/a = −14.
 **fastest_path:** Vieta's: for x² + bx + c = 0, product of roots = c. Here c = −14.
 **explanation:** Vieta's formulas: for ax² + bx + c = 0, sum of roots = −b/a, product of roots = c/a. With a = 1, the product is just c = −14. Total time: 5 seconds. Factoring (x − 7)(x + 2) = 0, giving roots 7 and −2 with product −14, also works but takes 30+ seconds.
 **mistake_b:** Computed −b = 5, then halved (some confusion of sum vs product formulas).
@@ -207,7 +210,7 @@ If 2 < |x - 3| < 7, how many integer values of x satisfy the inequality?
 **answer:** C
 **fastest_path:** |x − 3| > 2 → x ∈ (−∞, 1) ∪ (5, ∞). |x − 3| < 7 → x ∈ (−4, 10). Intersection: (−4, 1) ∪ (5, 10). Count integers: {−3, −2, −1, 0, 6, 7, 8, 9} = 8.
 **explanation:** Two absolute-value inequalities create an intersection of two unions. From |x − 3| > 2: x − 3 > 2 (x > 5) or x − 3 < −2 (x < 1). From |x − 3| < 7: −7 < x − 3 < 7, i.e., −4 < x < 10. The intersection is (−4 < x < 1) OR (5 < x < 10) — exclusive on all bounds since the inequalities are strict. Integers in the first range: −3, −2, −1, 0 (4 integers). Integers in the second: 6, 7, 8, 9 (4 integers). Total = 8.
-**mistake_a:** Made a systematic off-by-one error at the integer nearest each strict upper bound: counted {−3, −2, −1} = 3 from the lower range (stopping before 0, which is the integer just below the bound 1) and {6, 7, 8} = 3 from the upper range (stopping before 9, the integer just below the bound 10); total 3 + 3 = 6. This happens when a student is uncertain whether the integer adjacent to a strict bound is included and conservatively excludes it.
+**mistake_a:** Misread the outer bound as |x − 3| < 6 instead of < 7. The outer constraint then gives −3 < x < 9 rather than −4 < x < 10. Intersecting with x < 1 or x > 5 yields (−3, 1) ∪ (5, 9). Integer count: {−2, −1, 0} = 3 (lower range) + {6, 7, 8} = 3 (upper range) = 6. A one-digit misread of the bound collapses both ranges by exactly one integer each.
 **mistake_b:** Made an off-by-one error in one of the two disjoint ranges — for example, started the lower range at −2 (missing −3), giving {−2,−1,0}=3 integers instead of 4; combined with the upper range of 4 integers: 3+4=7.
 **mistake_d:** Forgot the strict inequalities and included endpoints (1, 5, −4, 10).
 **mistake_e:** Used >, < but counted inclusive on one side.
@@ -231,6 +234,9 @@ If the roots of the equation x² + bx + c = 0 are each increased by 2, the resul
 - E) 5
 
 **answer:** A
+**hint_nudge:** The new roots are each 2 more than the original ones. The resulting equation is already given — work backward from it.
+**hint_strategy:** Factor the resulting equation to get the new roots, subtract 2 from each to recover the originals, then apply Vieta's to the original equation x² + bx + c = 0.
+**hint_setup:** x² − 6x + 5 = (x − 1)(x − 5): new roots are 1 and 5. Original roots = 1 − 2 = −1 and 5 − 2 = 3.
 **fastest_path:** Find roots of x² − 6x + 5 = 0 → 1 and 5. Original roots = 1 − 2 = −1 and 5 − 2 = 3. Sum = −b, so b = −2. Product = c, so c = −3. b + c = −5.
 **explanation:** Factor x² − 6x + 5 = (x − 1)(x − 5), so roots are 1 and 5. The new roots are each 2 more than the original, so original roots = −1 and 3. Apply Vieta's to x² + bx + c = 0: sum of roots = −b → (−1 + 3) = −b → b = −2. Product of roots = c → (−1)(3) = c → c = −3. Therefore b + c = −5.
 **mistake_b:** Computed b = +2 (forgot the sign on Vieta's: sum = −b/a, not +b/a).
@@ -279,16 +285,16 @@ For all positive integers n, let f(n) = n² - n. What is the value of f(f(3))?
 - A) 6
 - B) 12
 - C) 30
-- D) 42
-- E) 36
+- D) 36
+- E) 42
 
 **answer:** C
 **fastest_path:** f(3) = 9 − 3 = 6. f(6) = 36 − 6 = 30.
 **explanation:** Composition is applied from inside out. Compute the inner first: f(3) = 3² − 3 = 9 − 3 = 6. Then apply f to that result: f(6) = 6² − 6 = 36 − 6 = 30. Total time: 15 seconds. The whole question is mechanical once you read "f(f(3))" as "apply f twice."
 **mistake_a:** Stopped at the inner computation: f(3) = 6 — bubbled the intermediate value without applying f a second time.
 **mistake_b:** Computed f(3) × 2 = 12 (multiplied the inner result by 2 instead of composing).
-**mistake_d:** Computed f(3) = 6 correctly, then applied the formula with a sign error: 6² + 6 = 42 (used n² + n instead of n² − n).
-**mistake_e:** Computed f(3) = 6 correctly, then took [f(3)]² = 6² = 36 — applied the outer function as "squaring the inner result" rather than evaluating f(6) = 6² − 6.
+**mistake_d:** Computed f(3) = 6 correctly, then took [f(3)]² = 6² = 36 — applied the outer function as "squaring the inner result" rather than evaluating f(6) = 6² − 6.
+**mistake_e:** Computed f(3) = 6 correctly, then applied the formula with a sign error: 6² + 6 = 42 (used n² + n instead of n² − n).
 **common_trap:** Stopping at the inner result and bubbling — composition requires both layers.
 **takeaway:** f(f(x)) means apply f twice: compute f(x) first, then apply f to that result. The outer call is f evaluated at the inner result, not a squaring or multiplication.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -296,7 +302,7 @@ For all positive integers n, let f(n) = n² - n. What is the value of f(f(3))?
 ---
 
 ## Q12
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Systems of Equations
 
@@ -309,6 +315,9 @@ If xy = 6 and x² + y² = 20, what is the value of (x + y)²?
 - E) 36
 
 **answer:** D
+**hint_nudge:** You're asked for (x + y)² but you have x² + y² and xy. Those three quantities are linked by a standard identity.
+**hint_strategy:** Expand (x + y)² = x² + 2xy + y², then substitute both given values directly.
+**hint_setup:** (x + y)² = (x² + y²) + 2(xy) = 20 + 2(6).
 **fastest_path:** (x + y)² = x² + y² + 2xy = 20 + 12 = 32.
 **explanation:** Use the algebraic identity (x + y)² = x² + 2xy + y². Substitute the given values: x² + y² = 20 and xy = 6, so (x + y)² = 20 + 2(6) = 32. The identity collapses the answer in one step. Solving for x and y individually (using both given equations) is harder and unnecessary.
 **mistake_a:** Added 20 + 6 = 26 — forgot to double the xy term in the identity.
@@ -361,6 +370,9 @@ If x² - 10x + k = 0 has exactly one real solution, what is the value of k?
 - E) 50
 
 **answer:** D
+**hint_nudge:** "Exactly one real solution" is a special condition on the quadratic. What does it tell you about the discriminant?
+**hint_strategy:** A quadratic has exactly one solution (a repeated root) when its discriminant b² − 4ac equals zero.
+**hint_setup:** Here a = 1, b = −10, c = k. Set (−10)² − 4(1)(k) = 0 and solve for k.
 **fastest_path:** Discriminant = 0 → b² = 4ac → 100 = 4k → k = 25.
 **explanation:** A quadratic has exactly one real solution (a repeated root) when its discriminant b² − 4ac = 0. Here a = 1, b = −10, c = k. Set discriminant = 0: 100 − 4k = 0 → k = 25. The double root is x = 5, since x² − 10x + 25 = (x − 5)². Recognition: when the question asks for the value of a parameter that produces a repeated/equal/single/double root, set discriminant = 0.
 **mistake_a:** Half of b: 10/2 = 5 (used a different and wrong formula).
@@ -391,7 +403,7 @@ If 3x + 2y = 16 and 5x - 2y = 16, what is the value of x + y?
 **explanation:** y coefficients are equal-and-opposite (+2 and −2) — adding the equations eliminates y in one step: 8x = 32 → x = 4. Substitute back: 3(4) + 2y = 16 → 2y = 4 → y = 2. Therefore x + y = 6. Total time: ~30 seconds. Full substitution path takes ~60-75 seconds.
 **mistake_a:** Stopped at x = 4 and bubbled the wrong variable.
 **mistake_b:** Computed y = 2 and bubbled.
-**mistake_d:** Subtracted the equations instead of adding; got 2x = 0 → x = 0, then y = 8, sum = 7.
+**mistake_d:** Added the left sides correctly (8x) but used only one right-hand side value instead of summing both: 8x = 16 → x = 2. Substituting back: 3(2) + 2y = 16 → 2y = 10 → y = 5. Sum = 2 + 5 = 7.
 **mistake_e:** Solved the system correctly (x = 4, y = 2) but computed x × y = 4 × 2 = 8 instead of x + y = 6.
 **common_trap:** Solving past sufficiency or stopping too early — picking up x or y alone after correct setup.
 **takeaway:** When y coefficients are equal-and-opposite, add to cancel y in one step. After computing both, re-read the question to confirm what's asked.
@@ -526,7 +538,7 @@ The sum of three consecutive even integers is 18 more than twice the smallest of
 **mistake_a:** Translated "consecutive integers" instead of "consecutive even integers" — n, n+1, n+2; got n+2 = 10.
 **mistake_b:** Solved for n itself (12) and bubbled.
 **mistake_c:** Got middle integer n+2 = 14 and bubbled.
-**mistake_e:** Translated "18 more than twice the smallest" as 2n − 18 (sign error); got n = −24 then took absolute or some other slip producing 18.
+**mistake_e:** Correctly found n = 12 but added 6 instead of 4 to compute the largest, reasoning that three integers each 2 apart span 3 × 2 = 6 from smallest to largest: 12 + 6 = 18. The actual span is only 4 (the sequence is n, n+2, n+4), so the largest is n + 4 = 16.
 **common_trap:** Translation errors on "more than" — attaching the +18 to the wrong side, or treating consecutive integers as consecutive evens (or vice versa).
 **takeaway:** "X is Y more than Z" means X = Z + Y. "Consecutive even integers" differ by 2; "consecutive integers" differ by 1.
 **related_reading:** reading-quant-05-word-problems
@@ -548,6 +560,9 @@ Let x, y, and z be positive real numbers with x + y + z = 12 and xy + yz + zx = 
 - E) 105
 
 **answer:** B
+**hint_nudge:** You have x + y + z and xy + yz + zx. You want x² + y² + z². Is there an identity that connects all three?
+**hint_strategy:** Square the sum: (x + y + z)² expands to x² + y² + z² + 2(xy + yz + zx). Isolate the sum of squares.
+**hint_setup:** (12)² = (x² + y² + z²) + 2(39). So x² + y² + z² = 144 − 78.
 **fastest_path:** (x+y+z)² = x²+y²+z² + 2(xy+yz+zx) → 144 = sum_of_squares + 78 → sum_of_squares = 66.
 **explanation:** Use the symmetric-sum identity (x + y + z)² = x² + y² + z² + 2(xy + yz + zx). Substitute: (12)² = (x² + y² + z²) + 2(39) → 144 = (x² + y² + z²) + 78 → x² + y² + z² = 66.
 **mistake_a:** Assumed x = y = z = 4 (equal split from x+y+z=12), then computed 3(4²) = 48. The equal-split assumption is wrong — note that x=y=z=4 gives xy+yz+zx=3(16)=48, not 39, so those values are inconsistent with the given constraints.
@@ -600,7 +615,7 @@ A sequence satisfies a₁ = 3 and a_{n+1} = aₙ + n + 1 for every integer n ≥
 - E) 5,151
 
 **answer:** C
-**fastest_path:** a₁₀₀ = a₁ + Σ_{k=2}^{100} k = 3 + (5050 − 1) = 5052.
+**fastest_path:** a₁₀₀ = a₁ + (2 + 3 + ⋯ + 100) = 3 + (5050 − 1) = 3 + 5049 = 5052.
 **explanation:** Telescope the recurrence: a₂ = a₁ + 2, a₃ = a₂ + 3, …, aₙ = aₙ₋₁ + n. Sum: aₙ = a₁ + (2 + 3 + ... + n) = a₁ + (n(n+1)/2 − 1) (subtracting 1 because the sum starts at 2, not 1). For n = 100: a₁₀₀ = 3 + (5050 − 1) = 3 + 5049 = 5052. Total time: ~60 seconds with the telescoping insight.
 **mistake_a:** Computed n(n+1)/2 = 5050 and bubbled — dropped the offset adjustment.
 **mistake_b:** Off-by-one error: included or excluded the wrong term.
@@ -627,6 +642,9 @@ If the roots of the quadratic equation x² + bx + 12 = 0 differ by 1, what are t
 - E) ±9
 
 **answer:** C
+**hint_nudge:** You know the roots differ by 1 and their product (from Vieta's). What identity connects the sum, product, and difference of two numbers?
+**hint_strategy:** Use the identity (r₁ − r₂)² = (r₁ + r₂)² − 4r₁r₂. Vieta's gives you (r₁ + r₂) = −b and r₁r₂ = 12.
+**hint_setup:** (r₁ − r₂)² = 1² = 1. (r₁ + r₂)² = b². So 1 = b² − 4(12) → b² = 49.
 **fastest_path:** (r₁ − r₂)² = (r₁ + r₂)² − 4r₁r₂ → 1 = b² − 48 → b² = 49 → b = ±7.
 **explanation:** Use the identity (r₁ − r₂)² = (r₁ + r₂)² − 4r₁r₂. Vieta's: sum = −b, product = 12. Substitute: 1² = b² − 4(12) → b² = 49 → b = ±7. Verify with b = 7: x² + 7x + 12 = (x + 3)(x + 4), roots −3 and −4, which differ by 1 ✓. The ± sign matters: both b = 7 and b = −7 produce roots that differ by 1 (just with flipped signs).
 **mistake_a:** Computed only one sign, missed ±.
@@ -683,10 +701,10 @@ If 1/(x − 3) + 1/(x + 3) = 12/(x² − 9), what is the value of x?
 **answer:** D
 **fastest_path:** Common denominator x² − 9 = (x−3)(x+3). LHS = 2x/(x²−9). Set equal: 2x = 12 → x = 6.
 **explanation:** Notice x² − 9 = (x − 3)(x + 3). Combine the left side over the common denominator: 1/(x−3) + 1/(x+3) = [(x+3) + (x−3)] / (x²−9) = 2x / (x²−9). The equation becomes 2x/(x²−9) = 12/(x²−9). Same denominator → numerators equal: 2x = 12 → x = 6. Verify: x = 6 doesn't zero any denominator, so it's valid.
-**mistake_a:** Picked x = 3 without checking the domain — x = 3 makes 1/(x−3) undefined.
-**mistake_b:** Computed 12/3 = 4 from a shortcut that ignored structure.
-**mistake_c:** Solved 2x + 12 = ... or some other miscombined equation; got 5.
-**mistake_e:** Multiplied 12 directly: 12/2 = 6, then doubled wrongly to 12 (or some other setup).
+**mistake_a:** Combined the LHS numerator incorrectly: wrote (x+3) + (x+3) = 2(x+3) instead of (x+3) + (x−3) = 2x, obtaining 2(x+3)/(x²−9) = 12/(x²−9) → 2(x+3) = 12 → x = 3. Note that x = 3 also makes 1/(x−3) undefined, so it fails the domain check as a further red flag.
+**mistake_b:** Did not simplify algebraically and instead tested answer choices; at x = 4 computed LHS = 1/1 + 1/7 ≈ 1.14 and RHS = 12/7 ≈ 1.71, then misread the values as close enough and stopped before reaching x = 6.
+**mistake_c:** Combined numerators with a subtraction instead of addition: wrote (x+3) − (x−3) = 6 instead of 2x, giving 6/(x²−9) = 12/(x²−9) → 6 = 12, a contradiction. After the dead end, guessed C = 5 as the midpoint between the nearest answer choices.
+**mistake_e:** Combined the LHS correctly to 2x/(x²−9) = 12/(x²−9) but then dropped the coefficient of 2 when equating numerators, reading the equation as x = 12 instead of 2x = 12 → x = 6.
 **common_trap:** Domain violations on rational equations — accepting an extraneous solution that makes a denominator zero.
 **takeaway:** When solving rational equations, find the common denominator, simplify, then verify the answer doesn't violate the domain (no denominator = 0).
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -825,25 +843,28 @@ Geometric interpretation: |x−1| + |x−4| + |x−7| is the total distance from
 ## Q31
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Linear Systems — Sum Extraction
+**topic:** Linear Systems — Parametric Consistency
 
-If 2a + 3b = 16 and 5a − 3b = 19, what is the value of a + b?
+The system of equations 3x + ky = 12 and 6x + 10y = 24 has infinitely many solutions. What is the value of k?
 
-- A) 5
-- B) 7
-- C) 9
-- D) 11
-- E) 13
+- A) 2
+- B) 4
+- C) 5
+- D) 6
+- E) 10
 
-**answer:** B
-**fastest_path:** Add to cancel b: 7a = 35 → a = 5. Then 10 + 3b = 16 → b = 2. a + b = 7.
-**explanation:** Coefficients on b are equal-and-opposite (+3 and −3), making addition the obvious one-step path. Adding 2a + 3b + 5a − 3b = 16 + 19 → 7a = 35 → a = 5. Substitute into the first equation: 2(5) + 3b = 16 → 3b = 6 → b = 2. Therefore a + b = 7.
-**mistake_a:** Stopped after finding a = 5 and bubbled — the question asks for a + b, not a alone.
-**mistake_c:** Found a = 5 and b = 2 correctly, then made an arithmetic slip adding: wrote 5 + 4 = 9 instead of 5 + 2 = 7 (mis-read the value of b in their scratch work).
-**mistake_d:** Confused the question with "what is a × b" and computed 5 × 2 = 10, then added a stray 1 from a coefficient in the equations, arriving at 11.
-**mistake_e:** Summed both right-hand sides (16 + 19 = 35) and confused this with the answer, then searched for the nearest plausible choice (13) rather than recognizing the sum 35 = 7a.
-**common_trap:** Solving past sufficiency or stopping early — bubbling a (or b) when the question asked for a + b.
-**takeaway:** When two equations have equal-and-opposite coefficients on one variable, add to cancel and solve in one step.
+**answer:** C
+**hint_nudge:** Infinitely many solutions means both equations describe the same line. What relationship between their coefficients makes that true?
+**hint_strategy:** Reduce equation 2 to lowest terms first, then match it coefficient by coefficient against equation 1.
+**hint_setup:** Divide 6x + 10y = 24 by 2: 3x + 5y = 12. Now compare with 3x + ky = 12.
+**fastest_path:** Divide equation 2 by 2: 3x + 5y = 12. Match against equation 1: k = 5.
+**explanation:** Two linear equations have infinitely many solutions when they represent the same line — i.e., one equation is a scalar multiple of the other. Divide equation 2 by 2: 3x + 5y = 12. This is now identical to equation 1 with k = 5. The x-coefficients match (3 = 3) and so do the constants (12 = 12); the y-coefficient pins k = 5. Three cases for a 2×2 linear system: if the equations are proportional (same line), infinitely many solutions; if they are parallel but distinct (same direction, different constant), no solution; otherwise, a unique solution.
+**mistake_a:** Identified the common factor of {6, 10, 24} as 2 and wrote k = 2 — stopped at the scale factor rather than using it to reduce equation 2 and then read off the y-coefficient.
+**mistake_b:** Correctly divided 10 by 2 but made an arithmetic slip: wrote 10 ÷ 2 = 4 instead of 5.
+**mistake_d:** Read k directly from equation 2 as the x-coefficient 6, without first dividing equation 2 by its scale factor.
+**mistake_e:** Read k directly from equation 2 as the y-coefficient 10, without first dividing equation 2 by its scale factor.
+**common_trap:** Reading coefficients from the unreduced equation — equation 2 must be scaled down by 2 before its coefficients can be matched against equation 1.
+**takeaway:** For infinitely many solutions, reduce each equation to simplest form, then verify that all three ratios (coefficient of x, coefficient of y, constant) are equal. "Infinitely many" → same line → equations are proportional.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 
