@@ -957,3 +957,458 @@ Together: 4 < n < 12 → n ∈ {5, 6, 7, 8, 9, 10, 11}. 7 values. Still not uniq
 **common_trap:** Assuming the triangle inequality plus both bounds pins down a single value — it narrows the range but doesn't unique-ify.
 **takeaway:** Triangle inequality: |a − b| < third side < a + b. To pin down a unique side, need narrower bounds than just an open range.
 **related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Triangle Area
+
+A triangle has a base of 10 and a height of 6. What is the area of the triangle?
+
+- A) 15
+- B) 30
+- C) 60
+- D) 12
+- E) 45
+
+**answer:** B
+**fastest_path:** Area = (1/2)(10)(6) = 30.
+**explanation:** Triangle area = (1/2) × base × height = (1/2)(10)(6) = 30. The height must be perpendicular to the base — not a slant side.
+**mistake_a:** Computed (1/2)(10)(3) = 15, halving the height again.
+**mistake_c:** Computed base × height = 60 (forgot the 1/2).
+**mistake_d:** Computed height − base/2 = 1.
+**mistake_e:** Computed (base + height) × 3 = 45 from a wrong formula.
+**common_trap:** Forgetting the factor of 1/2 — computing base × height instead of half that.
+**takeaway:** Triangle area = (1/2) × base × height. The height is the perpendicular distance from the base to the opposite vertex, not the slant side.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exterior Angle Theorem
+
+In triangle ABC, an exterior angle at vertex C measures 110°. If angle A = 50°, what is the measure of angle B?
+
+- A) 50°
+- B) 55°
+- C) 60°
+- D) 70°
+- E) 110°
+
+**answer:** C
+**fastest_path:** Exterior angle = sum of two non-adjacent interior angles. 110 = 50 + B → B = 60°.
+**explanation:** The Exterior Angle Theorem: an exterior angle of a triangle equals the sum of the two non-adjacent (remote) interior angles. So 110° = angle A + angle B = 50° + angle B → angle B = 60°. Verify: interior angles sum = 50 + 60 + interior-at-C = 180, so interior-at-C = 70°, and 70 + 110 = 180 (straight angle) ✓.
+**mistake_a:** Bubbled angle A (50°) — confused which angle is unknown.
+**mistake_b:** Computed average of 110 and 0: 55°.
+**mistake_d:** Computed 180 − 110 = 70 (interior angle at C, not angle B).
+**mistake_e:** Bubbled the exterior angle (110°) as the answer.
+**common_trap:** Computing the interior angle at C (180 − 110 = 70°) and bubbling that instead of angle B.
+**takeaway:** Exterior Angle Theorem: exterior angle = sum of the two non-adjacent interior angles. Also useful backwards: subtract a known interior angle to find the other non-adjacent interior angle.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Circle Inscribed in a Square
+
+A circle is inscribed in a square. If the side length of the square is 8, what is the radius of the circle?
+
+- A) 2
+- B) 4
+- C) 6
+- D) 8
+- E) 16
+
+**answer:** B
+**fastest_path:** Inscribed circle touches all four sides. Radius = side / 2 = 8 / 2 = 4.
+**explanation:** When a circle is inscribed in a square, the circle is tangent to all four sides. The diameter of the circle equals the side length of the square. Diameter = 8 → radius = 4.
+**mistake_a:** Divided diameter by 4 instead of 2.
+**mistake_c:** Bubbled (side × 3) / 4 = 6.
+**mistake_d:** Confused radius with the side length.
+**mistake_e:** Doubled the side (used diameter × 2).
+**common_trap:** Confusing diameter with radius — the diameter equals the side, not the radius.
+**takeaway:** Circle inscribed in square: diameter = side, so radius = side / 2. Circle circumscribed around square: diagonal = diameter, so radius = diagonal / 2 = side√2 / 2.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Vertical and Supplementary Angles
+
+Two lines intersect, forming four angles. One angle measures 70°. What is the measure of the angle adjacent to it?
+
+- A) 70°
+- B) 90°
+- C) 110°
+- D) 140°
+- E) 180°
+
+**answer:** C
+**fastest_path:** Adjacent angles are supplementary: 180 − 70 = 110°.
+**explanation:** When two lines intersect, adjacent angles are supplementary (they form a straight line, so they sum to 180°). 180 − 70 = 110°. The angle vertical (opposite) to the 70° angle would also be 70°, and the vertical to the 110° would also be 110°.
+**mistake_a:** Confused "adjacent" with "vertical" — bubbled the same angle (70°).
+**mistake_b:** Assumed all intersecting angles are right angles (90°).
+**mistake_d:** Doubled the angle: 70 × 2 = 140.
+**mistake_e:** Bubbled 180 (the straight angle itself, not the adjacent angle measure).
+**common_trap:** Confusing vertical angles (equal) with adjacent angles (supplementary).
+**takeaway:** Intersecting lines: vertical angles are equal; adjacent angles are supplementary (sum to 180°). Four angles are formed: two pairs of verticals, each pair summing to 360°.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Trapezoid Area
+
+A trapezoid has parallel sides of length 5 and 9, and a perpendicular height of 4. What is the area of the trapezoid?
+
+- A) 14
+- B) 20
+- C) 28
+- D) 36
+- E) 56
+
+**answer:** C
+**fastest_path:** Area = (1/2)(b₁ + b₂)(h) = (1/2)(14)(4) = 28.
+**explanation:** Trapezoid area = (1/2)(sum of parallel sides)(height) = (1/2)(5 + 9)(4) = (1/2)(14)(4) = 28. Think of it as the average base times the height: average base = (5 + 9)/2 = 7; area = 7 × 4 = 28.
+**mistake_a:** Bubbled the sum of bases (5 + 9 = 14) without multiplying by height.
+**mistake_b:** Computed 5 × 4 = 20 (only one base × height).
+**mistake_d:** Computed 9 × 4 = 36 (used only the longer base).
+**mistake_e:** Computed (5 + 9) × 4 = 56 (forgot the 1/2).
+**common_trap:** Forgetting the 1/2 in the trapezoid area formula — computing (b₁ + b₂) × h instead of half that.
+**takeaway:** Trapezoid area = (1/2)(b₁ + b₂)(h). Memory hook: "average of the two bases, times the height." The height is perpendicular distance between the parallel sides.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Diagonal of a Rectangle
+
+A rectangle has a length of 15 and a width of 8. What is the length of its diagonal?
+
+- A) 13
+- B) 15
+- C) 17
+- D) 19
+- E) 23
+
+**answer:** C
+**fastest_path:** Recognize 8-15-17 Pythagorean triple → diagonal = 17.
+**explanation:** The diagonal of a rectangle divides it into two right triangles with legs equal to the rectangle's sides. Diagonal = √(8² + 15²) = √(64 + 225) = √289 = 17. Recognize the 8-15-17 Pythagorean triple — no calculation needed once memorized.
+**mistake_a:** Confused with the 5-12-13 triple; bubbled 13.
+**mistake_b:** Bubbled the length (15) — mistook which value was asked.
+**mistake_d:** Rounded up to the nearest "plausible" answer.
+**mistake_e:** Computed 8 + 15 = 23 (added legs).
+**common_trap:** Adding the legs instead of applying the Pythagorean theorem; or confusing the 8-15-17 triple with 5-12-13.
+**takeaway:** Rectangle diagonal: d = √(l² + w²). Memorize all Pythagorean triples: 3-4-5, 5-12-13, 8-15-17, 7-24-25. A rectangle's diagonal is always the hypotenuse of a right triangle.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Sector Area
+
+A circle has a radius of 9. What is the area of the sector with a central angle of 120°?
+
+- A) 6π
+- B) 12π
+- C) 18π
+- D) 27π
+- E) 81π
+
+**answer:** D
+**fastest_path:** Sector = (120/360) × π(9²) = (1/3)(81π) = 27π.
+**explanation:** Sector area = (central angle / 360°) × πr². With angle = 120° and r = 9: (120/360) × π(81) = (1/3)(81π) = 27π. This is exactly one-third of the full circle's area (81π), which makes sense since 120° is one-third of 360°.
+**mistake_a:** Computed (120/360) × 2π(9) = (1/3)(18π) = 6π (used circumference formula instead of area).
+**mistake_b:** Computed (1/3)(2π)(9) × 2 = 12π from a wrong hybrid formula.
+**mistake_c:** Computed (120/360) × πr = (1/3)(9π) × 6 = 18π from a confused formula.
+**mistake_e:** Bubbled the full circle's area (π × 81 = 81π) without applying the angle fraction.
+**common_trap:** Applying the angle fraction to circumference (arc length) rather than to area, or forgetting to apply the fraction at all.
+**takeaway:** Sector area = (θ/360°) × πr². Arc length = (θ/360°) × 2πr. Both use the same angle fraction, applied to area or circumference respectively.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Area of Equilateral Triangle
+
+An equilateral triangle has a side length of 4. What is its area?
+
+- A) 4√2
+- B) 4√3
+- C) 8√3
+- D) 8
+- E) 16
+
+**answer:** B
+**fastest_path:** Area = s²√3/4 = 16√3/4 = 4√3.
+**explanation:** Equilateral triangle area = (s²√3)/4. With s = 4: (16√3)/4 = 4√3. Alternatively, drop a perpendicular from one vertex to the opposite side to split the triangle into two 30-60-90 triangles. The height h = (√3/2) × s = 2√3. Area = (1/2)(4)(2√3) = 4√3. Same answer.
+**mistake_a:** Confused equilateral with isoceles right (45-45-90), used √2 instead of √3.
+**mistake_c:** Computed 2 × 4√3 = 8√3 (doubled the correct answer).
+**mistake_d:** Computed (1/2)(4)(4) = 8 (used side as height — the height is less than the side for an equilateral triangle).
+**mistake_e:** Computed s² = 16 (area formula for a square).
+**common_trap:** Using the side length as the height — the height of an equilateral triangle is (√3/2)s, not s.
+**takeaway:** Equilateral triangle: area = (s²√3)/4. The height = (√3/2)s. Derived from 30-60-90: when you drop a perpendicular, each half is a 30-60-90 with hypotenuse s, short leg s/2, long leg s√3/2.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Circle Inscribed in a Square — Shaded Region
+
+A circle is inscribed in a square with side length 10. What is the area of the region inside the square but outside the circle?
+
+- A) 100 − 10π
+- B) 100 − 25π
+- C) 100 − 50π
+- D) 50 − 25π
+- E) 75
+
+**answer:** B
+**fastest_path:** Square area − circle area = 100 − π(5²) = 100 − 25π.
+**explanation:** For a circle inscribed in a square of side 10, the diameter equals the side, so radius = 5. Square area = 10² = 100. Circle area = π(5²) = 25π. Shaded region = 100 − 25π.
+**mistake_a:** Used circumference (2π × 5 = 10π) instead of area.
+**mistake_c:** Used π(10²) = 100π for the circle (used side as radius instead of half the side).
+**mistake_d:** Divided the square area by 2 before subtracting.
+**mistake_e:** Computed 100 − 25 = 75 (forgot π).
+**common_trap:** Using the side length (10) as the radius instead of half the side (5), which inflates the circle's area.
+**takeaway:** For a circle inscribed in a square: radius = side/2. Shaded corners = square area − circle area = s² − π(s/2)² = s²(1 − π/4). For s = 10: 100(1 − π/4) = 100 − 25π.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Coordinate Geometry — Line Equation
+
+A line passes through the points (0, −3) and (4, 5). Which of the following is the equation of this line?
+
+- A) y = 2x + 3
+- B) y = (1/2)x − 3
+- C) y = 2x − 3
+- D) y = −2x − 3
+- E) y = 2x + 5
+
+**answer:** C
+**fastest_path:** y-int = −3 (given). Slope = (5−(−3))/(4−0) = 8/4 = 2. Equation: y = 2x − 3.
+**explanation:** The point (0, −3) is the y-intercept: b = −3. Slope = rise/run = (5 − (−3))/(4 − 0) = 8/4 = 2. Equation: y = 2x − 3. Check: at x = 4, y = 2(4) − 3 = 5 ✓.
+**mistake_a:** Got the right slope but flipped the y-intercept sign: y = 2x + 3.
+**mistake_b:** Got the y-intercept right but inverted the slope: y = (1/2)x − 3.
+**mistake_d:** Negated the slope: y = −2x − 3.
+**mistake_e:** Used the y-value of the second point (5) as the y-intercept.
+**common_trap:** Sign error on the y-intercept — confusing −3 with +3 because the coordinate says "y goes up from −3 to 5."
+**takeaway:** When one given point is the y-intercept (x = 0), read b directly. Slope = Δy/Δx. Then write y = mx + b and verify by plugging in the second point.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Similar Triangles — Finding a Side
+
+In triangle ABC, point D lies on AB and point E lies on AC such that DE is parallel to BC. If AD = 3, DB = 6, and BC = 15, what is the length of DE?
+
+- A) 3
+- B) 5
+- C) 7
+- D) 9
+- E) 10
+
+**answer:** B
+**fastest_path:** AD/AB = 3/9 = 1/3 → DE = (1/3)(15) = 5.
+**explanation:** DE ∥ BC → triangle ADE is similar to triangle ABC. The similarity ratio is AD/AB = 3/(3 + 6) = 3/9 = 1/3. Corresponding sides are proportional: DE/BC = 1/3 → DE = (1/3)(15) = 5.
+**mistake_a:** Used AD alone as a ratio: (3/15) × 15 = 3 (divided by BC incorrectly).
+**mistake_c:** Computed (DB/AB) × BC = (6/9)(15) = 10 − 3 = 7 (wrong ratio).
+**mistake_d:** Used AD/DB = 3/6 = 1/2 as the ratio: (1/2)(BC) = 7.5, then rounded to 9.
+**mistake_e:** Used DB/AD = 2 as ratio: 2 × 5 = 10 (inverted and wrong).
+**common_trap:** Using AD/DB (the ratio of the parts) instead of AD/AB (the ratio of the part to the whole).
+**takeaway:** When DE ∥ BC with D on AB and E on AC: triangle ADE ~ triangle ABC with ratio AD/AB. Use the whole segment (AB = AD + DB), not just the split.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Volume of a Cone
+
+A cone has a base radius of 6 and a height of 9. What is its volume?
+
+- A) 54π
+- B) 108π
+- C) 162π
+- D) 324π
+- E) 972π
+
+**answer:** B
+**fastest_path:** V = (1/3)πr²h = (1/3)π(36)(9) = 108π.
+**explanation:** Cone volume = (1/3)πr²h. With r = 6 and h = 9: (1/3)π(36)(9) = (1/3)(324π) = 108π. Think of it as one-third of the cylinder with the same base and height: cylinder would be 324π, so cone is 108π.
+**mistake_a:** Computed (1/6)πr²h = 54π (used 1/6 instead of 1/3).
+**mistake_c:** Computed (1/2)πr²h = 162π (used 1/2 instead of 1/3).
+**mistake_d:** Computed πr²h = 324π (forgot the 1/3 — used the cylinder formula).
+**mistake_e:** Computed π(r + h)³ / something = 972π from a garbled formula.
+**common_trap:** Forgetting the 1/3 factor — computing the full cylinder volume instead of the cone's volume.
+**takeaway:** Cone volume = (1/3)πr²h. A cone holds exactly one-third the volume of a cylinder with the same base and height. Similarly, pyramid volume = (1/3) × base area × height.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Coordinate Geometry — Circle Equation
+
+In the coordinate plane, a circle has equation (x − 3)² + (y + 2)² = 25. What is the distance from the center of the circle to the point (3, −8)?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 8
+- E) 10
+
+**answer:** C
+**fastest_path:** Center = (3, −2). Distance to (3, −8) = |−2 − (−8)| = 6.
+**explanation:** Standard form (x − h)² + (y − k)² = r² has center (h, k). Here h = 3, k = −2 (note: y + 2 = y − (−2)), so center = (3, −2) and r = 5. Distance from (3, −2) to (3, −8): since the x-coordinates are the same, distance = |y₁ − y₂| = |−2 − (−8)| = 6. Note: since 6 > r = 5, the point is outside the circle.
+**mistake_a:** Confused the y-coordinate of the center (thought k = +2, got distance |2 − (−8)| − something = 4).
+**mistake_b:** Bubbled the radius (5) — confused distance to point with radius.
+**mistake_d:** Computed (−2) − (−8) then added 2 for a sign error: 8.
+**mistake_e:** Added radius and the computed distance: 5 + 5 = 10.
+**common_trap:** Reading the center's y-coordinate with the wrong sign: the form (y + 2)² corresponds to k = −2, not k = +2.
+**takeaway:** Circle equation (x − h)² + (y − k)² = r² has center (h, k) and radius r. When the equation has (y + 2)², rewrite as (y − (−2))² to read k = −2 correctly. Use the distance formula to find the distance to any other point.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Triangle Area — Base and Height
+
+What is the area of triangle ABC?
+
+(1) The base AB has length 10 and the perpendicular height from C to line AB is 7.
+(2) The three angles of triangle ABC are 30°, 60°, and 90°.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** (1) Area = (1/2)(10)(7) = 35. Sufficient. (2) Angles say the *shape* but not the *size* — scale is unknown. Insufficient. → A.
+**explanation:** Statement (1): base = 10, height = 7 → area = (1/2)(10)(7) = 35. Fully determined. Sufficient.
+
+Statement (2): knowing the three angles tells us the shape of the triangle (30-60-90) but not its size. A 30-60-90 triangle can have legs of 1 and √3, or 5 and 5√3, or any multiple. The area can be anything. Insufficient.
+
+→ A.
+**mistake_b:** Concluded only Statement 2 sufficient — assuming 30-60-90 fixes the size.
+**mistake_c:** Required both, thinking Statement 1 alone needs angle context.
+**mistake_d:** Concluded each alone sufficient.
+**mistake_e:** Concluded together insufficient.
+**common_trap:** Thinking that "30-60-90" pins down the triangle completely — it pins down the shape (angles) but not the scale (size). Area is not determined by angles alone.
+**takeaway:** Area = (1/2)(base)(height). Both base and height must be known. Angle information alone cannot determine area — a triangle can have any set of angles and be arbitrarily large or small.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Shaded Area — Triangle Cut from Rectangle
+
+A rectangle has length 12 and width 8. A right triangle with legs 4 and 6 is cut from one corner of the rectangle. What is the area of the remaining region?
+
+- A) 72
+- B) 80
+- C) 84
+- D) 88
+- E) 92
+
+**answer:** C
+**fastest_path:** Rectangle 12×8 = 96. Triangle = (1/2)(4)(6) = 12. Remaining = 96 − 12 = 84.
+**explanation:** Area of the rectangle = 12 × 8 = 96. Area of the right triangle removed = (1/2)(4)(6) = 12. The remaining region has area 96 − 12 = 84.
+**mistake_a:** Computed (12 − 4)(8 − 6) = 16 then added to a wrong base: 72 — tried to subtract dimensions instead of areas.
+**mistake_b:** Subtracted a wrong triangle area: 96 − 16 = 80.
+**mistake_d:** Computed rectangle area minus just one leg: 96 − 4 − 4 = 88.
+**mistake_e:** Computed rectangle area minus a different piece: 96 − 4 = 92.
+**common_trap:** Trying to subtract from dimensions instead of from areas — you must compare areas, not lengths.
+**takeaway:** Shaded-region problems: always compute the areas separately, then add or subtract. Never subtract lengths to get areas.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Area of Triangle from Coordinates
+
+A triangle has vertices at A(1, 1), B(7, 1), and C(4, 5). What is the area of the triangle?
+
+- A) 8
+- B) 10
+- C) 12
+- D) 15
+- E) 18
+
+**answer:** C
+**fastest_path:** Horizontal base AB = 6. Height = vertical distance from C to line AB = 5 − 1 = 4. Area = (1/2)(6)(4) = 12.
+**explanation:** A and B both have y = 1, so AB lies on the horizontal line y = 1. Base length = |7 − 1| = 6. C is at y = 5. The perpendicular height from C to line AB = |5 − 1| = 4. Area = (1/2)(6)(4) = 12. This coordinate-spotting trick (identify a horizontal or vertical base) is faster than the shoelace formula for triangles with axis-aligned sides.
+**mistake_a:** Computed (1/2)(4)(4) = 8 (used the height twice instead of base and height).
+**mistake_b:** Computed (1/2)(5)(4) = 10 (off-by-one on the base).
+**mistake_d:** Computed (1/2)(6)(5) = 15 (used the y-coordinate of C as the height, not the difference).
+**mistake_e:** Computed 6 × 3 = 18 (forgot the 1/2).
+**common_trap:** Using the raw y-coordinate of C (which is 5) as the height, rather than the difference 5 − 1 = 4 (the perpendicular distance to the base).
+**takeaway:** When triangle vertices share a y-value, that shared edge is a horizontal base. Height = difference in y-coordinates between the apex and the shared y-value. Area = (1/2)(base)(height).
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Rectangle Inscribed in a Circle
+
+In the coordinate plane, a circle has center at the origin and radius 10. Points A, B, C, D are vertices of a rectangle inscribed in the circle, with AB as one side. If A = (6, 8) and B = (6, −8), what is the area of rectangle ABCD?
+
+- A) 120
+- B) 144
+- C) 160
+- D) 192
+- E) 240
+
+**answer:** D
+**fastest_path:** Verify A and B on circle: 6²+8²=100 ✓. AB=16. Diagonal=2r=20. BC=√(20²−16²)=12. Area=16×12=192.
+**explanation:** First verify A and B lie on the circle: 6² + 8² = 36 + 64 = 100 = 10² ✓. Since ABCD is a rectangle inscribed in a circle, all four vertices lie on the circle, so the diagonal of the rectangle = the diameter = 2 × 10 = 20.
+
+Side AB: from (6, 8) to (6, −8), length = 16 (vertical segment).
+
+Using the Pythagorean theorem on the rectangle: diagonal² = AB² + BC² → 400 = 256 + BC² → BC² = 144 → BC = 12.
+
+Area = AB × BC = 16 × 12 = 192.
+**mistake_a:** Computed AB × r = 16 × (10/something) = 120.
+**mistake_b:** Computed 12² = 144 — bubbled BC² instead of AB × BC.
+**mistake_c:** Computed 16 × 10 = 160 (used radius instead of BC for the second side).
+**mistake_e:** Computed 20 × 12 = 240 (used diagonal as one side).
+**common_trap:** Using the radius or diameter directly as a side of the rectangle, when the key relationship is that the diagonal = diameter.
+**takeaway:** Rectangle inscribed in circle: diagonal = diameter. Use Pythagoras to find the unknown side: if one side is known, the other = √(diameter² − known²). Then area = side₁ × side₂. Always verify all four vertices are on the circle before proceeding.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
