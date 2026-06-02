@@ -999,3 +999,532 @@ From the statements below, identify the one that most strengthens the economist'
 **common_trap:** Picking the cross-country study as the strongest strengthener because it provides empirical evidence — but it confirms a stated step. The 60% statistic closes the critical unstated gap.
 **takeaway:** In multi-step causal chains, the strongest strengthener closes an implicit gap; the most critical flaw disrupts a stated link (often via substitution or confounding).
 **related_reading:** reading-di-06-two-part-analysis
+
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Number Properties
+
+Integer N is divisible by both 9 and 15. Let S = the smallest positive value of N, and let D = the sum of the digits of S.
+
+Select the value of S (column 1) and the value of D (column 2).
+
+|     | S (smallest N) | D (digit sum of S) |
+|-----|----------------|--------------------|
+| 9   |                |                    |
+| 15  |                |                    |
+| 27  |                |                    |
+| 36  |                |                    |
+| 45  |                |                    |
+| 135 |                |                    |
+
+**answer:** S = 45, D = 9
+**fastest_path:** LCM(9, 15) = 45. Digit sum: 4 + 5 = 9.
+**explanation:** The smallest positive integer divisible by both 9 and 15 is their least common multiple. Factor each: 9 = 3² and 15 = 3 × 5, so LCM = 3² × 5 = 45. Sum of digits of 45 = 4 + 5 = 9. Notice that D = 9 happens to match the first row — students who compute only the GCD (9) would incorrectly select it for S as well.
+**mistake_a:** 9 — that is the GCD of 9 and 15, not the LCM. Divisibility requires LCM.
+**mistake_b:** 15 — one of the original divisors; 15 is not divisible by 9.
+**mistake_c:** 27 — a multiple of 9 but not of 15 (27/15 is not an integer).
+**mistake_d:** 36 — divisible by 9 (36/9 = 4) but not by 15 (36/15 = 2.4). Fails the 15 requirement.
+**mistake_f:** 135 — a valid common multiple (9 × 15 = 135) but not the smallest; students who multiply instead of computing LCM land here.
+**common_trap:** Multiplying 9 × 15 = 135 instead of computing LCM. GCD(9,15) = 3, so LCM = 9 × 15 / 3 = 45, not 135.
+**takeaway:** Smallest positive integer divisible by A and B = LCM(A, B) = A × B / GCD(A, B).
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Linear System
+
+Anna and Ben together own 48 books. Anna has 8 more books than Ben. Let A = Anna's count and B = Ben's count.
+
+Select the value of A (column 1) and the value of B (column 2).
+
+|     | A (Anna) | B (Ben) |
+|-----|----------|---------|
+| 12  |          |         |
+| 16  |          |         |
+| 20  |          |         |
+| 24  |          |         |
+| 28  |          |         |
+| 32  |          |         |
+
+**answer:** A = 28, B = 20
+**fastest_path:** Half-sum plus/minus half-difference: A = (48+8)/2 = 28, B = (48−8)/2 = 20.
+**explanation:** Two equations: A + B = 48 and A − B = 8. Adding them: 2A = 56 → A = 28. Substituting: B = 48 − 28 = 20. Verify: 28 + 20 = 48 ✓ and 28 − 20 = 8 ✓.
+**mistake_a:** 12 — result of an unrelated arithmetic slip; no natural path here.
+**mistake_b:** 16 — computing B as 48/3 = 16 (using a 2:1 ratio rather than the stated 8-book gap).
+**mistake_c:** 20 — the correct value for B; selecting this for column 1 reverses the answer pair.
+**mistake_d:** 24 — the 50/50 split (48/2), ignoring the 8-book difference.
+**mistake_f:** 32 — computing A as 48 − 16 = 32, using the wrong value of B.
+**common_trap:** Treating 48/2 = 24 as both values — but equal split satisfies the total while ignoring the difference constraint.
+**takeaway:** Sum-and-difference pair: A = (total + difference)/2; B = (total − difference)/2.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Sequential Percentage Change
+
+An item originally costs $80. In January it is discounted by 25%. In February, the January price is increased by 10%. Let J = price after the January discount and F = price after the February increase.
+
+Select the value of J (column 1) and the value of F (column 2).
+
+|     | J (January price) | F (February price) |
+|-----|-------------------|--------------------|
+| 48  |                   |                    |
+| 56  |                   |                    |
+| 60  |                   |                    |
+| 64  |                   |                    |
+| 66  |                   |                    |
+| 68  |                   |                    |
+
+**answer:** J = 60, F = 66
+**fastest_path:** J = 80 × 0.75 = 60. F = 60 × 1.10 = 66.
+**explanation:** January discount of 25%: J = 80 × (1 − 0.25) = 80 × 0.75 = 60. February increase of 10% on the new price: F = 60 × 1.10 = 66. The 10% applies to the January price ($60), not the original price ($80). Many students accidentally apply the February increase to $80 instead of $60.
+**mistake_a:** 48 — computing 80 × 0.60 (a 40% discount instead of 25%).
+**mistake_b:** 56 — computing 80 × 0.70 (a 30% discount instead of 25%).
+**mistake_d:** 64 — computing 80 × 0.80 (a 20% discount instead of 25%).
+**mistake_f:** 68 — applying the 10% increase to the original price instead of the discounted price: 60 + 80 × 0.10 = 60 + 8 = 68.
+**common_trap:** Applying the February 10% increase to the original $80 rather than the $60 January price, giving 60 + 8 = 68 instead of 60 × 1.10 = 66.
+**takeaway:** Sequential percentage changes apply each step to the result of the previous step, not to the original value.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Logic — Argument Components
+
+A manager writes: "Our restaurant introduced a new menu last month. Customer visits increased by 15% compared to the same month last year. Customers rated the new dishes an average of 4.5 out of 5. The new menu is a clear success."
+
+From the statements below, select the conclusion of the argument (column 1) and the statement that, if true, would provide the strongest alternative explanation for the rise in customer visits (column 2).
+
+| Statement | Conclusion | Alt Explanation |
+|---|---|---|
+| Customer visits increased by 15% last month | | |
+| The new menu is a clear success | | |
+| Customer ratings for the new dishes averaged 4.5 out of 5 | | |
+| The restaurant's closest competitor closed permanently the prior month | | |
+| The restaurant reduced its prices by 10% to promote the new menu | | |
+
+**answer:** Conclusion = "The new menu is a clear success"; Alt Explanation = "The restaurant's closest competitor closed permanently the prior month"
+**fastest_path:** The conclusion is the claim being made (introduced by "The new menu is a clear success"). The alt explanation for the visit increase is an external factor — a competitor's closure — not the menu itself.
+**explanation:** The argument concludes that the new menu drove the 15% visit increase and high ratings. Row B states this conclusion explicitly. The strongest alternative explanation for the visit surge is that a nearby competitor closed, displacing customers who now have no alternative — that explanation has nothing to do with the quality of the new menu. Row E (reduced prices) is plausible but is described as promoting the menu, not as a primary alternative cause.
+**mistake_a:** Row A (15% visit increase) is a stated premise, not the conclusion.
+**mistake_c:** Row C (4.5 rating) is a second stated premise.
+**mistake_e:** Row E (price reduction) could be an alternative explanation but is described as secondary to the menu promotion; the competitor closing is a stronger and fully independent cause.
+**common_trap:** Picking a stated premise as the conclusion. The conclusion is what the evidence is meant to prove, not the evidence itself.
+**takeaway:** Conclusion = claim that the premises support. Alternative explanation = external factor that could produce the same observed outcome without the hypothesized cause.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q40
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Ratio and Derived Quantity
+
+A recipe requires flour and sugar in a 3:1 ratio by weight. A chef uses 240 grams of flour. Butter is added in an amount equal to 40% of the combined weight of flour and sugar. Let S = grams of sugar needed and B = grams of butter.
+
+Select the value of S (column 1) and the value of B (column 2).
+
+|     | S (sugar, g) | B (butter, g) |
+|-----|--------------|---------------|
+| 40  |              |               |
+| 60  |              |               |
+| 80  |              |               |
+| 96  |              |               |
+| 120 |              |               |
+| 128 |              |               |
+
+**answer:** S = 80, B = 128
+**fastest_path:** S = 240/3 = 80. Combined = 320. B = 0.40 × 320 = 128.
+**explanation:** The flour-to-sugar ratio is 3:1, so sugar = flour / 3 = 240 / 3 = 80 g. Total flour + sugar = 240 + 80 = 320 g. Butter = 40% of 320 = 0.40 × 320 = 128 g.
+**mistake_a:** 40 — computing sugar as 240/6 (treating the ratio as 6:1 or halving again after finding 80).
+**mistake_b:** 60 — computing sugar as 240/4 (treating the ratio as 4:1).
+**mistake_d:** 96 — computing butter as 40% of flour only (0.40 × 240 = 96), ignoring the sugar component of the combined weight.
+**mistake_e:** 120 — computing butter as 40% of an incorrect combined weight, e.g., 240 + 60 = 300 → 0.40 × 300 = 120.
+**common_trap:** Applying the 40% butter calculation to the flour weight alone ($240) instead of the flour-plus-sugar weight ($320).
+**takeaway:** When a derived quantity is based on a "combined" or "total" weight, compute the total first, then apply the percentage.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Percentage Change and Recovery
+
+A stock originally priced at $200 per share loses 20% of its value during Q1. In Q2 the stock must gain G% to return exactly to the original price. The stock also paid a cash dividend during Q1 equal to 5% of its Q1 end-of-quarter price. Let G = the required Q2 percentage gain and D = the cash dividend paid per share.
+
+Select the value of G (column 1) and the value of D (column 2).
+
+|     | G (%) | D ($) |
+|-----|-------|-------|
+| 8   |       |       |
+| 10  |       |       |
+| 20  |       |       |
+| 25  |       |       |
+| 30  |       |       |
+| 40  |       |       |
+
+**answer:** G = 25, D = 8
+**fastest_path:** Q1 end price = 200 × 0.80 = 160. To recover: 160 × (1 + G/100) = 200 → G = 25. Dividend = 160 × 0.05 = 8.
+**explanation:** After a 20% loss, the Q1 end price = 200 × 0.80 = $160. To regain $200: growth factor = 200/160 = 1.25 → G = 25%. The dividend is 5% of the Q1 end price, not the original: D = 160 × 0.05 = $8. If you mistakenly apply 5% to the original $200 you get $10, not $8.
+**mistake_b:** 10 — computing dividend as 5% of the original price (0.05 × 200 = 10) instead of the Q1 end-of-quarter price.
+**mistake_c:** 20 — assuming the required gain equals the loss percentage. A 20% gain on $160 = $32, bringing the stock to only $192, not $200.
+**mistake_e:** 30 — overestimating the recovery, possibly via 20% × 1.5 mental math.
+**common_trap:** Assuming a 20% loss requires a 20% gain to recover. The gain must be calculated on the lower (post-loss) base, making it larger: 25% on $160 = $40, restoring to $200.
+**takeaway:** To recover from an x% loss, you need a gain of x/(100−x) × 100%, always greater than x%. A 20% loss requires a 25% gain to recover.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Combined Work with Unknown Rate
+
+Printer A can complete a print job alone in 12 minutes. Printers A and B working together finish the job in 4 minutes. Let X = the number of minutes Printer B needs to complete the job alone, and let F = the fraction of the job that Printer B completes during the 4-minute combined run.
+
+Select the value of X (column 1) and the value of F (column 2).
+
+|       | X (min for B alone) | F (B's fraction in 4 min) |
+|-------|---------------------|---------------------------|
+| 1/3   |                     |                           |
+| 1/2   |                     |                           |
+| 2/3   |                     |                           |
+| 3     |                     |                           |
+| 4     |                     |                           |
+| 6     |                     |                           |
+| 8     |                     |                           |
+
+**answer:** X = 6, F = 2/3
+**fastest_path:** 1/X = 1/4 − 1/12 = 3/12 − 1/12 = 2/12 = 1/6 → X = 6. F = 4 × (1/6) = 2/3.
+**explanation:** Combined rate = 1/4 job per minute. Printer A's rate = 1/12 job per minute. Printer B's rate = 1/4 − 1/12 = 3/12 − 1/12 = 2/12 = 1/6 job per minute, so X = 6 minutes solo. In the 4-minute combined run, B's contribution = 4 × (1/6) = 4/6 = 2/3. Cross-check: A's contribution = 4 × (1/12) = 1/3. B's 2/3 + A's 1/3 = 1 whole job ✓.
+**mistake_a:** 1/3 — Printer A's fraction (4 × 1/12), not B's. Students who compute A's contribution and place it in column 2 swap the two printers.
+**mistake_b:** 1/2 — eyeballing the split rather than computing rates.
+**mistake_d:** 3 — computing X = 12/4 = 3, treating the combined time as if it were B's solo rate (a harmonic-mean confusion).
+**mistake_e:** 4 — equating B's solo time with the combined time; there is no reason A and B take the same amount of time alone.
+**mistake_g:** 8 — computing X = 12 − 4 = 8, subtracting times instead of subtracting rates.
+**common_trap:** Subtracting times (12 − 4 = 8) instead of subtracting rates (1/4 − 1/12 = 1/6).
+**takeaway:** Work/rate: rates add (1/A + 1/B = 1/T); do not subtract times. Solve for the unknown rate first, then invert for time.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Digit Constraints
+
+A two-digit integer has tens digit T and units digit U. The tens digit is twice the units digit. The original number exceeds the number formed by reversing its digits by exactly 36. Find T and U.
+
+Select the value of T (column 1) and the value of U (column 2).
+
+|   | T (tens digit) | U (units digit) |
+|---|----------------|-----------------|
+| 2 |                |                 |
+| 3 |                |                 |
+| 4 |                |                 |
+| 6 |                |                 |
+| 7 |                |                 |
+| 8 |                |                 |
+
+**answer:** T = 8, U = 4
+**fastest_path:** T = 2U. Reversal difference: 9(T − U) = 36 → T − U = 4. With T = 2U: U = 4, T = 8.
+**explanation:** The difference between a two-digit number and its reverse = 9(T − U). Setting this equal to 36: T − U = 4. Combining with T = 2U: 2U − U = 4 → U = 4, T = 8. The original number is 84; reversed is 48; 84 − 48 = 36 ✓. Also, T = 2U: 8 = 2 × 4 ✓.
+**mistake_a:** 2 — half of the correct U value; result of applying the 2× relationship in the wrong direction (U = T/2 instead of T = 2U).
+**mistake_b:** 3 — U solved from T − U = 4 alone without applying T = 2U constraint (e.g., U = 7 − 4 = 3 with T = 7, which is not in ratio 2:1).
+**mistake_d:** 6 — T solved from T − U = 4 alone with U assumed to be 2: T = 6, U = 2. Reversal check: 62 − 26 = 36 ✓. But T = 6 ≠ 2 × 2 = 4, violating the 2× constraint. Students who stop after checking only one condition land here.
+**mistake_e:** 7 — off-by-one from T − U = 4 arithmetic.
+**common_trap:** Using only the reversal constraint (T − U = 4) and finding T = 6, U = 2 as a solution without checking that T = 2U also holds.
+**takeaway:** Two constraints, two unknowns: always verify both equations are satisfied by your answer pair.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Linear System (Ticket Sales)
+
+A theater sells standard tickets for $18 and premium tickets for $30. On a given night, 250 tickets were sold for total revenue of $5,700. Let S = number of standard tickets sold and P = number of premium tickets sold.
+
+Select the value of S (column 1) and the value of P (column 2).
+
+|     | S (standard) | P (premium) |
+|-----|--------------|-------------|
+| 80  |              |             |
+| 100 |              |             |
+| 120 |              |             |
+| 130 |              |             |
+| 150 |              |             |
+| 170 |              |             |
+
+**answer:** S = 150, P = 100
+**fastest_path:** If all 250 were standard: revenue = $4,500. Surplus = $1,200. Each premium swap adds $12. Premiums = 1,200/12 = 100. Standards = 150.
+**explanation:** Let S + P = 250 and 18S + 30P = 5,700. Substitute S = 250 − P: 18(250 − P) + 30P = 5,700 → 4,500 + 12P = 5,700 → 12P = 1,200 → P = 100. S = 150. Verify: 150 + 100 = 250 ✓; 18 × 150 + 30 × 100 = 2,700 + 3,000 = 5,700 ✓.
+**mistake_a:** 80 — premiums over-estimated (P = 170), pushing standards too low.
+**mistake_c:** 120 — standards from an arithmetic slip in the substitution (12P = 1,560 → P = 130, S = 120); verify: 18×120 + 30×130 = 2,160 + 3,900 = 6,060 ≠ 5,700.
+**mistake_d:** 130 — premiums over-estimated by the same slip above.
+**mistake_f:** 170 — standards if P is under-counted (P = 80): 18×170 + 30×80 = 3,060 + 2,400 = 5,460 ≠ 5,700.
+**common_trap:** Setting S = P = 125 (equal split): revenue = 18×125 + 30×125 = 2,250 + 3,750 = 6,000 ≠ 5,700. The lower target revenue forces more standard tickets.
+**takeaway:** Two-price sum: set up the "all-low-price" floor, compute the surplus, then divide by the per-unit price gap to find how many high-price units are needed.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Logic — Strengthen and Weaken (Causal Attribution)
+
+A company reports: "Since launching a mentorship program 18 months ago, annual employee turnover has dropped from 22% to 13%. The mentorship program has successfully reduced employee turnover."
+
+From the statements below, select the statement that most seriously weakens the conclusion (column 1) and the statement that most directly supports it (column 2).
+
+| Statement | Weakens | Supports |
+|---|---|---|
+| Turnover at peer companies in the same sector dropped by an average of 10 points over the same period, with no mentorship programs | | |
+| Employees who participated in the mentorship program left the company at half the rate of employees who did not participate | | |
+| A company-wide salary increase of 15% was implemented three months before the mentorship program launched | | |
+| The program required a significant time commitment that temporarily reduced measured output | | |
+| Post-program surveys show that mentees cite career-growth opportunities as their primary reason for staying | | |
+
+**answer:** Weakens = "Turnover at peer companies...dropped by 10 points...with no mentorship programs"; Supports = "Employees who participated...left at half the rate of those who did not"
+**fastest_path:** Strongest weaken = industry-wide trend (external factor explains the drop without the program). Strongest support = within-company A/B comparison showing program participants had lower turnover than non-participants.
+**explanation:** Row A establishes that a similar turnover drop occurred industry-wide without any mentorship program, meaning the drop at this company is likely caused by an external factor (e.g., labor market conditions), not the program. This directly undermines the causal attribution. Row B is the most direct support: a controlled within-company comparison showing that participants left at half the rate of non-participants provides the most proximate evidence that the program itself drove the retention improvement. Row C (prior salary increase) also weakens, but an industry-wide trend with no mentorship is stronger evidence against the specific causal claim.
+**mistake_c:** The salary increase is an alternative cause and does weaken the conclusion — but the industry trend (Row A) eliminates the program's role entirely, making it stronger.
+**mistake_d:** Productivity impact is irrelevant to whether turnover was reduced.
+**mistake_e:** Mentees reporting career growth as a retention reason is a mechanism supporting the conclusion but is weaker than the A/B comparison in Row B, because survey self-reports can be biased.
+**common_trap:** Selecting Row C (salary increase) as the weakener because it is an obvious competing cause — but the industry trend (Row A) is stronger, as it implies the entire drop would have happened without the program.
+**takeaway:** Strongest weakener = evidence that the observed effect would have occurred without the intervention. Strongest support = controlled comparison (participants vs. non-participants) within the same environment.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Conditional Probability
+
+A bag contains 5 red marbles and 7 blue marbles. Two marbles are drawn sequentially without replacement. Let P1 = probability the first marble is red, and P2 = probability the second marble is red given the first was also red.
+
+Select the value of P1 (column 1) and the value of P2 (column 2).
+
+|       | P1 (first red) | P2 (second red \| first red) |
+|-------|----------------|------------------------------|
+| 1/12  |                |                              |
+| 4/11  |                |                              |
+| 4/12  |                |                              |
+| 5/11  |                |                              |
+| 5/12  |                |                              |
+| 7/12  |                |                              |
+
+**answer:** P1 = 5/12, P2 = 4/11
+**fastest_path:** P1 = 5/12 (5 red out of 12 total). After one red is drawn: 4 red remain out of 11 total → P2 = 4/11.
+**explanation:** Initially 5 red + 7 blue = 12 total marbles. P1 = 5/12. Given the first draw was red, the bag now has 4 red and 7 blue marbles (11 total). P2 = 4/11. Key: both the numerator and denominator decrease by 1 when the first red marble is removed.
+**mistake_a:** 1/12 — a minor arithmetic slip with no natural path; included as a near-zero distractor.
+**mistake_c:** 4/12 — computing P2 with the original denominator (12) instead of the updated count after removal (11).
+**mistake_d:** 5/11 — reducing the denominator by 1 (correct) but forgetting to reduce the numerator — treating it as if the first red marble was returned.
+**mistake_f:** 7/12 — the probability that the first marble is blue; students who swap color may select this for P1.
+**common_trap:** Reducing only the denominator (from 12 to 11) while keeping the red count at 5, giving 5/11 instead of 4/11.
+**takeaway:** Without-replacement conditional probability: after a specific color is drawn, subtract 1 from both the count of that color and the total count before computing the next probability.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q47
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Weighted Average Back-Solve
+
+A class of 30 students is divided into two groups: Group 1 took Test A and Group 2 took Test B. The average score on Test A was 70 and on Test B was 90. The overall class average across both tests was 78. Let N1 = the number of students in Group 1 and N2 = the number in Group 2.
+
+Select the value of N1 (column 1) and the value of N2 (column 2).
+
+|     | N1 (Test A) | N2 (Test B) |
+|-----|-------------|-------------|
+| 8   |             |             |
+| 10  |             |             |
+| 12  |             |             |
+| 15  |             |             |
+| 18  |             |             |
+| 20  |             |             |
+
+**answer:** N1 = 18, N2 = 12
+**fastest_path:** 70N1 + 90N2 = 78 × 30 = 2,340. With N1 = 30 − N2: 2,100 + 20N2 = 2,340 → N2 = 12, N1 = 18.
+**explanation:** System: N1 + N2 = 30 and 70N1 + 90N2 = 2,340. Substitute N1 = 30 − N2: 70(30 − N2) + 90N2 = 2,340 → 2,100 + 20N2 = 2,340 → 20N2 = 240 → N2 = 12. N1 = 18. Verify: 70 × 18 + 90 × 12 = 1,260 + 1,080 = 2,340 ✓.
+**mistake_c:** 12 — the correct value for N2; selecting this for column 1 swaps the pair.
+**mistake_d:** 15 — the naive equal split (30/2 = 15). This corresponds to an overall average of 80, not 78. Since 78 is closer to 70 than to 90, Group 1 (Test A, lower average) must be larger.
+**mistake_f:** 20 — over-correcting in the direction of Test A (lower-scoring group).
+**common_trap:** Concluding N1 = N2 = 15 because 78 "looks like" the midpoint of 70 and 90. But the midpoint of 70 and 90 is 80, not 78. The below-midpoint overall average means Group 1 is the larger group.
+**takeaway:** Weighted average: the group with the average closer to the overall average is the larger group. Always verify with 70N1 + 90N2 = overall average × total.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Linear Optimization with Constraints
+
+A farmer has exactly 200 acres to plant with corn and wheat. Each acre of corn earns $400 profit and requires 3 labor-days. Each acre of wheat earns $600 profit and requires 5 labor-days. The farmer has at most 800 labor-days available. To maximize total profit while planting all 200 acres, let C = acres planted with corn and W = acres planted with wheat.
+
+Select the value of C (column 1) and the value of W (column 2).
+
+|     | C (corn acres) | W (wheat acres) |
+|-----|----------------|-----------------|
+| 0   |                |                 |
+| 50  |                |                 |
+| 80  |                |                 |
+| 100 |                |                 |
+| 150 |                |                 |
+| 200 |                |                 |
+
+**answer:** C = 100, W = 100
+**fastest_path:** Profit = 400C + 600W = 400(200−W) + 600W = 80,000 + 200W — maximize W. Labor cap: 3(200−W) + 5W ≤ 800 → 2W ≤ 200 → W ≤ 100. So W = 100, C = 100.
+**explanation:** With C + W = 200 and C = 200 − W, profit simplifies to 80,000 + 200W — every additional acre of wheat adds $200 net profit over corn. The binding constraint is labor: 3C + 5W ≤ 800. Substituting C = 200 − W: 600 − 3W + 5W ≤ 800 → 2W ≤ 200 → W ≤ 100. The profit-maximizing solution is W = 100, C = 100. At W = 150 the labor requirement would be 3×50 + 5×150 = 900 > 800 — infeasible.
+**mistake_a:** C = 0, W = 200 — ignores the labor constraint; 5×200 = 1,000 > 800 labor-days.
+**mistake_b:** C = 50, W = 150 — labor check: 3×50 + 5×150 = 150 + 750 = 900 > 800. Infeasible.
+**mistake_c:** C = 80, W = 120 — labor: 3×80 + 5×120 = 240 + 600 = 840 > 800. Still infeasible.
+**mistake_e:** C = 150, W = 50 — feasible (3×150 + 5×50 = 450+250 = 700 ≤ 800) but not optimal; profit = 60,000+30,000 = $90,000 < $100,000.
+**common_trap:** Allocating all acres to wheat (highest per-acre profit) without checking the labor constraint. Wheat is profitable per acre but expensive in labor-days; the cap binds before you can go beyond W = 100.
+**takeaway:** In constrained optimization, first identify the direction of improvement (maximize the higher-return resource), then find the tightest constraint and set it as an equality to maximize.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Logic — Hidden Assumption and Mechanism Failure
+
+A consulting firm argues: "Surveys show that employees who take at least 15 vacation days per year are 30% more productive than those who take fewer. Our client TechCorp loses an estimated $2 million annually in productivity from overworked employees. If TechCorp mandates 15 minimum vacation days, it will recover at least $1.5 million of that loss."
+
+From the statements below, select the one that most seriously weakens the conclusion (column 1) and the one that identifies the most critical unstated assumption in the argument (column 2).
+
+| Statement | Weakens | Unstated Assumption |
+|---|---|---|
+| Most TechCorp employees will continue performing work tasks during mandated vacation time, meaning the time off will not function as genuine rest | | |
+| The $2 million productivity loss estimate was derived from a study of a different industry with significantly lower workloads | | |
+| The 30% productivity difference between high-vacation and low-vacation employees reflects that high performers self-select into taking longer vacations, not that vacation itself causes productivity gains | | |
+| Mandating vacation will create scheduling complexity that increases management overhead costs | | |
+| The $1.5 million recovery target represents only 75% of the stated $2 million loss, leaving a residual gap | | |
+
+**answer:** Weakens = "Most TechCorp employees will continue performing work tasks during mandated vacation time..."; Unstated Assumption = "The 30% productivity difference...reflects that high performers self-select into taking longer vacations..."
+**fastest_path:** Weakener = mechanism failure (mandated vacation ≠ rest → productivity gain mechanism is disabled). Unstated assumption = the survey correlation is treated as causal (high performers self-select into vacation-taking; mandating it won't replicate the effect).
+**explanation:** The argument's mechanism is: mandate vacation → employees rest → productivity rises by ~30% → $1.5M+ recovery. Row A attacks this mechanism at its root: if employees work during their "vacation," the rest-to-productivity chain never activates. Row C identifies the core unstated assumption: the argument treats a correlation between vacation and productivity as a causal relationship. But if high performers self-select into taking vacations (they have the political capital and confidence to unplug), mandating vacation for all employees would not produce the same productivity boost. Row B weakens the data reliability but does not attack the core mechanism. Row D adds cost but does not negate productivity recovery. Row E is a mathematical restatement, not a logical flaw.
+**mistake_b:** Weakens the data source but does not destroy the mechanism; a partial weakener.
+**mistake_d:** Adds a cost concern but does not weaken the claim that productivity would recover.
+**mistake_e:** Reframes the 75% figure but does not challenge the argument's logic — it restates what 75% means.
+**common_trap:** Selecting Row B as the weakener because "different industry" sounds like a strong methodological flaw. But Row A directly disables the mechanism through which the conclusion is supposed to work, making it the stronger attack.
+**takeaway:** The strongest weakener targets the mechanism, not just the data. The most critical unstated assumption is the one without which the entire conclusion collapses — here, that the correlation is causal.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — River Current with Speed Ratio
+
+A boat travels 72 km upstream against a river current, then 72 km downstream. The downstream trip takes 3 hours less than the upstream trip. The downstream speed is exactly twice the upstream speed. Let B = the boat's speed in still water (km/h) and C = the current's speed (km/h).
+
+Select the value of B (column 1) and the value of C (column 2).
+
+|     | B (still water, km/h) | C (current, km/h) |
+|-----|-----------------------|-------------------|
+| 6   |                       |                   |
+| 9   |                       |                   |
+| 12  |                       |                   |
+| 15  |                       |                   |
+| 18  |                       |                   |
+| 24  |                       |                   |
+
+**answer:** B = 18, C = 6
+**fastest_path:** Downstream = 2 × upstream → B+C = 2(B−C) → B = 3C. Time difference: 72/(B−C) − 72/(B+C) = 3. With B = 3C: 72/(2C) − 72/(4C) = 3 → 18/C = 3 → C = 6, B = 18.
+**explanation:** Let upstream speed = B − C and downstream = B + C. The speed ratio condition B + C = 2(B − C) simplifies to 3C = B. Substituting into the time equation: 72/(2C) − 72/(4C) = 3 → 36/C − 18/C = 3 → 18/C = 3 → C = 6. Therefore B = 3 × 6 = 18. Verification: upstream = 12 km/h → 72/12 = 6 hours; downstream = 24 km/h → 72/24 = 3 hours; difference = 3 hours ✓; downstream = 2 × upstream ✓.
+**mistake_a:** 6 — the correct value for C; selecting this for column 1 reverses the answer pair.
+**mistake_b:** 9 — result of an arithmetic slip in the final step, e.g., solving 18/C = 2 instead of 3.
+**mistake_c:** 12 — the upstream speed (B − C = 18 − 6 = 12); mistaking the upstream speed for B.
+**mistake_d:** 15 — halfway between two meaningful values; no natural derivation.
+**mistake_f:** 24 — the downstream speed (B + C = 18 + 6 = 24); mistaking the downstream speed for B.
+**common_trap:** Confusing the boat's still-water speed B with the upstream speed (B − C = 12) or downstream speed (B + C = 24). B is neither — it's the average of those two: (12 + 24)/2 = 18.
+**takeaway:** Still-water speed = average of upstream and downstream speeds: B = [(B+C) + (B−C)] / 2. Always label what each speed represents before plugging in numbers.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Chinese Remainder Theorem / Number Theory
+
+When positive integer N is divided by 7, the remainder is 3. When N is divided by 4, the remainder is 1. Let S = the smallest positive integer satisfying both conditions, and let R = the remainder when S is divided by 28.
+
+Select the value of S (column 1) and the value of R (column 2).
+
+|     | S (smallest N) | R (S mod 28) |
+|-----|----------------|--------------|
+| 3   |                |              |
+| 10  |                |              |
+| 17  |                |              |
+| 21  |                |              |
+| 24  |                |              |
+| 31  |                |              |
+
+**answer:** S = 17, R = 17
+**fastest_path:** List N mod 7 = 3: {3, 10, 17, ...}. Check mod 4 = 1: 3 mod 4 = 3 ✗; 10 mod 4 = 2 ✗; 17 mod 4 = 1 ✓. S = 17. Since 17 < 28, R = 17.
+**explanation:** The set of integers with remainder 3 when divided by 7: {3, 10, 17, 24, 31, …}. Test each for remainder 1 when divided by 4: 3 mod 4 = 3 (no); 10 mod 4 = 2 (no); 17 mod 4 = 1 (yes). So S = 17. The period of the joint-remainder system = LCM(7, 4) = 28. Because S = 17 < 28, the remainder when 17 is divided by 28 is simply 17 itself. Both column answers are 17 — they can point to the same row.
+**mistake_a:** 3 — satisfies N mod 7 = 3 but fails N mod 4 = 1 (3 mod 4 = 3). Students who check only the first condition stop here.
+**mistake_b:** 10 — satisfies N mod 7 = 3 but 10 mod 4 = 2 ≠ 1.
+**mistake_d:** 21 — 21 mod 7 = 0 ≠ 3; does not satisfy the first condition.
+**mistake_e:** 24 — 24 mod 7 = 3 ✓ but 24 mod 4 = 0 ≠ 1. Looks plausible but fails the second condition.
+**mistake_f:** 31 — the next valid solution after 17 in the periodic sequence (17 + 28 = 45... wait, 31 mod 7 = 3 ✓ and 31 mod 4 = 3 ✗). Students looking for a two-digit answer may land here.
+**common_trap:** Stopping at the first number that satisfies one condition (N = 3 for the mod-7 rule) without verifying the second condition. Always check both constraints before recording an answer.
+**takeaway:** Simultaneous remainder problems: list candidates for the first condition in order, then test each against the second condition. The period of the solution set = LCM of the two divisors.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q52
+**difficulty:** Challenge
+**type:** Two-Part Analysis
+**topic:** Quantitative — Arithmetic Sequence with Efficiency Constraint
+
+A factory operates at 100% efficiency in the first hour of a shift. Each subsequent hour, efficiency drops by 10 percentage points (100%, 90%, 80%, …). At 100% efficiency the factory produces 200 units per hour. Let H = the number of complete hours during which efficiency is at least 50%, and T = the total units produced during those H hours.
+
+Select the value of H (column 1) and the value of T (column 2).
+
+|       | H (hours ≥ 50%) | T (total units) |
+|-------|-----------------|-----------------|
+| 5     |                 |                 |
+| 6     |                 |                 |
+| 7     |                 |                 |
+| 700   |                 |                 |
+| 800   |                 |                 |
+| 900   |                 |                 |
+| 1,000 |                 |                 |
+
+**answer:** H = 6, T = 900
+**fastest_path:** Efficiency ≥ 50%: hours 1–6 (100%, 90%, …, 50%). H = 6. Output = 200 × (1.0+0.9+…+0.5) = 200 × 4.5 = 900.
+**explanation:** Efficiency by hour: H1=100%, H2=90%, H3=80%, H4=70%, H5=60%, H6=50%, H7=40%. The condition "at least 50%" includes the hour of exactly 50%, so H = 6. Production per hour = efficiency × 200: H1=200, H2=180, H3=160, H4=140, H5=120, H6=100. Sum: 200+180+160+140+120+100 = 900. Alternatively, sum the arithmetic sequence of efficiencies: (1.0+0.9+0.8+0.7+0.6+0.5) = 6 terms with first=1.0 and last=0.5 → sum = 6/2 × (1.0+0.5) = 3 × 1.5 = 4.5. Total = 200 × 4.5 = 900 units.
+**mistake_a:** H = 5 — stopping one hour early, treating 50% as "below" rather than "at least" 50%. This also leads to T = 800 (missing the 100 units produced in hour 6).
+**mistake_c:** H = 7 — including hour 7 (40% efficiency), which violates the ≥ 50% requirement.
+**mistake_d:** T = 700 — summing only hours 1–4 or making an arithmetic error in the sequence sum.
+**mistake_e:** T = 800 — summing hours 1–5 only (H = 5 error): 200+180+160+140+120 = 800.
+**mistake_g:** T = 1,000 — computing 200 × (sum of 5 terms: 1.0+0.9+0.8+0.7+0.6 = 4.0) × some incorrect factor, or 200 × 5 = 1,000 (flat-rate mistake).
+**common_trap:** The off-by-one on H is the primary trap: "drops below 50%" in hour 7, so the last qualifying hour is hour 6, not hour 5. Students reading "below 50%" as the cutoff exclude hour 6 (exactly 50%) and get H = 5, T = 800.
+**takeaway:** "At least 50%" includes exactly 50%. Use the arithmetic series sum formula for evenly-spaced sequences: sum = (n/2)(first + last), then multiply by the per-unit rate.
+**related_reading:** reading-di-06-two-part-analysis
