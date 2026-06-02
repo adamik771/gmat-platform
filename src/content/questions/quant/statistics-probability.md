@@ -307,9 +307,9 @@ The mean of five distinct positive integers is 20 and their median is 18. If the
 **explanation:** Order a < b < 18 < d < 40, sum = 100. So a + b + d = 100 − 18 − 40 = 42. Maximize a → minimize d and b. d > 18 (distinct) → d ≥ 19; b < 18 distinct from a → b ≥ a + 1. Tightest: d = 19, b = a + 1 → a + (a+1) + 19 = 42 → a = 11. Check: {11, 12, 18, 19, 40} ✓.
 **mistake_a:** Tried a = 1 without optimizing.
 **mistake_b:** Slip → 5.
-**mistake_d:** Set b = a (ignored "distinct") → got 12.
-**mistake_e:** Slip → 17.
-**common_trap:** Setting b = a (forgetting "distinct") — pushes a up by 1 to 12 but violates distinctness.
+**mistake_d:** Set d equal to the median value 18 (forgetting d must be strictly greater) and set b = a (forgetting distinctness): a + a + 18 = 42 → a = 12. Both violations are needed to reach this answer — with only b = a but d ≥ 19: 2a + 19 = 42 → a = 11.5, which is not an integer, so neither error alone produces 12. Correct constraints: b > a (so b ≥ a + 1) and d > 18 (so d ≥ 19).
+**mistake_e:** Found the maximum value of b (the second-smallest integer) instead of a (the smallest). Setting a = 6 (the smallest workable value to balance the sum) and d = 19 gives b = 42 − 6 − 19 = 17. But the question asks for the greatest possible value of a, not b. With b = a + 1 and d = 19: 2a + 1 + 19 = 42 → a = 11.
+**common_trap:** Allowing d = 18 (equal to the median). The median occupies position 3; d occupies position 4, so d must be strictly greater than 18, giving d ≥ 19. This single constraint drives the maximum value of a down to 11.
 **takeaway:** "Distinct" → strict inequalities. Always check b > a, d > c by ≥ 1.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
@@ -547,8 +547,8 @@ Five distinct positive integers have an average of 20, a median of 22, and a lar
 **explanation:** Order a < b < c < d < e with c = 22 (median), e = 35 (max). Sum = 5 × 20 = 100. So a + b + d = 100 − 22 − 35 = 43. To minimize d, maximize a + b. Distinctness requires d > c, so d ≥ 23. Check d = 23: a + b = 20, e.g., (1, 19) — both distinct, both < 22 ✓. Verify: {1, 19, 22, 23, 35}, sum = 100 ✓.
 **mistake_a:** Set d = c = 22 (same as the median). Violates distinctness — all five integers must be strictly different. d must be strictly greater than c: d ≥ 23.
 **mistake_c:** Required a minimum gap of 2 between d and the median — assumed d ≥ c + 2 = 22 + 2 = 24 because "distinct integers must differ by at least 2." But 'distinct' means no two values are equal, not that they differ by 2 or more. A gap of 1 satisfies distinctness: d = 23 with c = 22 is valid.
-**mistake_d:** Forgot that a and b must also be distinct from *each other* — set a = b = 9: d = 43 − 9 − 9 = 25. Distinctness applies to all five integers, not only d versus c. With a ≠ b required, the tightest valid pair is (a, b) = (a, a+1); maximizing a + b under a < b < 22 gives (10, 11), so d = 43 − 21 = 22, rounded up to 23.
-**mistake_e:** Used a small (a, b) pair without recognizing that minimizing d requires maximizing a + b. Testing (a, b) = (8, 9) gives d = 43 − 8 − 9 = 26. To find the *minimum* of d, a + b should be as large as possible (subject to a < b < 22), not as small as possible. Maximum valid a + b = 10 + 11 = 21, giving d = 22, which rounds up to 23.
+**mistake_d:** Set a = b = 9, treating the two smallest values as equal (ignoring that all five integers must be distinct): d = 43 − 9 − 9 = 25. Distinctness requires a ≠ b. With a and b allowed to differ freely, valid pairs like (a = 1, b = 19) push d as low as 43 − 1 − 19 = 23. No constraint forces a and b to be equal or even close in value — they only need to satisfy 0 < a < b < 22.
+**mistake_e:** Used (a, b) = (8, 9), giving d = 43 − 8 − 9 = 26. This produces a valid set {8, 9, 22, 26, 35}, but not the one with the smallest d. Since d > 22 and d is an integer, the minimum possible d is 23. To reach d = 23, set a + b = 43 − 23 = 20. Many pairs work: (1, 19), (2, 18), (3, 17) — any pair with a < b < 22 and a + b = 20. The choice of (8, 9) was unnecessarily small.
 **common_trap:** Setting d = c (ignoring distinctness) or conflating "distinct" with "differ by ≥ 2."
 **takeaway:** Optimization with distinctness: (1) set up the sum constraint; (2) enforce d > c as d ≥ c + 1; (3) to minimize d, maximize a + b within their constraints. "Distinct" = no ties, not a minimum gap.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -643,7 +643,7 @@ A data set consists of 7 numbers. What is the median of the data set?
 
 A company has two factories. Factory P produces 60% of the company's products; Factory Q produces the remaining 40%. The defect rate at Factory P is 3%, and the defect rate at Factory Q is 5%. A product is selected at random from the company's output; given that the selected product is defective, what is the probability that it came from Factory P?
 
-- A) 3/19
+- A) 3/8
 - B) 6/19
 - C) 9/19
 - D) 10/19
@@ -652,11 +652,11 @@ A company has two factories. Factory P produces 60% of the company's products; F
 **answer:** C
 **fastest_path:** P(P∩D) = 0.6·0.03 = 0.018; P(Q∩D) = 0.4·0.05 = 0.020. P(P|D) = 18/(18+20) = 9/19.
 **explanation:** Bayes. P(P ∩ D) = 0.018; P(Q ∩ D) = 0.020; P(D) = 0.038. P(P | D) = 0.018/0.038 = 18/38 = 9/19.
-**mistake_a:** Used only the raw defect rates, ignoring production shares: P(D|P)/(P(D|P) + P(D|Q)) = 3/(3+5) = 3/8. Bayes requires weighting each branch by its prior probability (60% and 40%). Without the priors, the formula is incomplete.
-**mistake_b:** Doubled the numerator by accident: 2·P(P∩D)/P(D) = 0.036/0.038 ≈ 6/... Alternatively, computed P(D|P)/P(D) = 0.03/0.038 = 15/19 and then halved. The numerator in Bayes is P(P)·P(D|P) = 0.6 × 0.03 = 0.018, not 0.036.
+**mistake_a:** Used only the raw defect rates without weighting by production share: P(D|P) / [P(D|P) + P(D|Q)] = 0.03 / (0.03 + 0.05) = 3/8. This treats both factories as equally likely sources before conditioning, ignoring that 60% of products come from P and 40% from Q. Bayes requires each branch to be weighted by its prior: P(P∩D) = 0.6 × 0.03 = 0.018 and P(Q∩D) = 0.4 × 0.05 = 0.020.
+**mistake_b:** Swapped factory weights in the Bayes numerator — used P(Q) = 0.4 instead of P(P) = 0.6: P(Q) × P(D|P) / P(D) = (0.4 × 0.03) / 0.038 = 0.012 / 0.038 = 6/19. The numerator for P(P|D) must use P's own production weight (0.6), not Q's (0.4). Plugging in the wrong factory's prior is the most common arithmetic slip on Bayes problems with two branches.
 **mistake_d:** Computed P(Q|D) instead of P(P|D): 0.020/0.038 = 20/38 = 10/19. This is the probability the defective item came from Factory Q. Re-read: the question asks for Factory P.
 **mistake_e:** Divided P(P) by [1 − P(D|Q)] instead of P(D): 0.60/0.95 = 12/19. Used the non-defective rate of Factory Q as the denominator rather than the total defect probability P(D) = 0.038.
-**common_trap:** Ignoring the production split (60/40) and using just defect rates: 3/(3+5) = 3/8 ≈ a wrong fraction.
+**common_trap:** Ignoring the production split (60/40) and using only the raw defect rates: 0.03/(0.03 + 0.05) = 3/8. This unweighted ratio is not the conditional probability — it does not account for how many products each factory produces.
 **takeaway:** Bayes: weight each branch by its prior. P(A|B) = P(A∩B)/P(B), where P(B) = sum over all branches.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
@@ -780,7 +780,7 @@ A point is chosen uniformly at random on a line segment from 0 to 30. What is th
 - B) 2/5
 - C) 1/2
 - D) 3/5
-- E) 7/10
+- E) 4/5
 
 **answer:** B
 **fastest_path:** Favorable length = 18 − 6 = 12. Total length = 30. P = 12/30 = 2/5.
@@ -788,8 +788,8 @@ A point is chosen uniformly at random on a line segment from 0 to 30. What is th
 **mistake_a:** Used the left endpoint as the favorable length: 6/30 = 1/5. The probability is the length of the favorable interval, not its starting position.
 **mistake_c:** Estimated that the interval is "roughly half" of the segment — a visual approximation that ignores exact boundaries. The interval 6 to 18 covers 12 out of 30 units, not 15.
 **mistake_d:** Used the right endpoint as the numerator: 18/30 = 3/5. The numerator must be the interval length (18 − 6 = 12), not the endpoint value.
-**mistake_e:** Some over-count or approximation error landing at 21/30 = 7/10 — likely by adding instead of subtracting endpoints.
-**common_trap:** Using an endpoint (6 or 18) as the numerator rather than computing the interval length (18 − 6 = 12).
+**mistake_e:** Added the two endpoints instead of subtracting: (6 + 18) / 30 = 24/30 = 4/5. Length requires subtraction (upper − lower), not addition. This is the single most common arithmetic error in geometric probability.
+**common_trap:** Using an endpoint (6 or 18) directly as the numerator rather than computing the interval length (18 − 6 = 12). Geometric probability always requires a length (a difference), never a raw position value.
 **takeaway:** Geometric probability on a line segment: P = (length of favorable interval) / (total length). Always subtract to find interval length; do not use the raw endpoint values.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
