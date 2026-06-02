@@ -46,7 +46,7 @@ A shirt originally priced at $80 is discounted by 15%. What is the sale price of
 **fastest_path:** Sale price = 80 × 0.85 = $68 (use multiplier directly, not "subtract the discount").
 **explanation:** A 15% discount means the customer pays 85% of the original price. Sale price = 0.85 × $80 = $68. Equivalent path: discount = 0.15 × 80 = $12; final = 80 − 12 = $68. The multiplicative form (0.85 × 80) is one step; the subtractive form is two.
 **mistake_a:** Bubbled the discount amount ($12), not the sale price.
-**mistake_b:** Computed 80 − 0.15 = 79.85, then misrounded to 65.
+**mistake_b:** Applied the discount as a flat dollar deduction: 80 − 15 = $65 (treated "15% discount" as "$15 off" rather than 15% × $80 = $12 off).
 **mistake_d:** Computed 80 × 0.10 = 8 (used 10% instead of 15%).
 **mistake_e:** Computed 80 − 4 = 76 (used 5% instead of 15%).
 **common_trap:** Bubbling the discount amount instead of the sale price.
@@ -144,15 +144,15 @@ If 2^x = 32 and 3^y = 81, what is the value of x + y?
 - B) 8
 - C) 9
 - D) 10
-- E) 12
+- E) 20
 
 **answer:** C
 **fastest_path:** 32 = 2⁵ → x = 5. 81 = 3⁴ → y = 4. Sum = 9.
 **explanation:** Recognize the powers: 32 = 2⁵, so 2^x = 2⁵ gives x = 5. 81 = 3⁴, so 3^y = 3⁴ gives y = 4. Therefore x + y = 9. Total time: 10 seconds for someone who knows 2-power and 3-power table.
 **mistake_a:** Confused both powers by one step each: thought 32 = 2⁴ (so x = 4) AND 81 = 3³ (so y = 3); sum = 7. In fact 2⁴ = 16 and 3³ = 27 — both are the power one step below the correct one.
-**mistake_b:** x = 4, y = 4 (mis-recognized 32 = 2⁴).
-**mistake_d:** y = 5 (mis-recognized 81 = 3⁵).
-**mistake_e:** Computed x × y = 20 then halved or otherwise miscombined.
+**mistake_b:** x = 4, y = 4 (mis-recognized 32 = 2⁴; 2⁴ = 16 ≠ 32).
+**mistake_d:** y = 5 (mis-recognized 81 = 3⁵; 3⁵ = 243 ≠ 81).
+**mistake_e:** Computed the *product* x × y instead of the *sum*: 5 × 4 = 20. The question asks "what is the value of x + y," not x × y.
 **common_trap:** Wrong power recognition — confusing 32 with 2⁴ or 81 with 3³.
 **takeaway:** Memorize the small-power table: 2² = 4, 2³ = 8, 2⁴ = 16, 2⁵ = 32, 2⁶ = 64; 3² = 9, 3³ = 27, 3⁴ = 81; 5² = 25, 5³ = 125. Reflexive recognition saves time.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -202,7 +202,7 @@ If |2x - 7| = 11, what is the sum of all possible values of x?
 **fastest_path:** |2x − 7| = 11 → solutions symmetric about 3.5. Sum = 2(3.5) = 7.
 **explanation:** For |ax − b| = c, the two solutions are symmetric about x = b/a. Here, b/a = 7/2 = 3.5, so the sum of solutions is 2 × 3.5 = 7. Verify by casework: 2x − 7 = 11 → x = 9; 2x − 7 = −11 → x = −2; sum = 7 ✓. Symmetry shortcut: 5 sec; casework: 25 sec.
 **mistake_a:** Took only one solution (x = −2) and bubbled.
-**mistake_b:** Computed only one case correctly (x = 5 from misreading); halved.
+**mistake_b:** Solved only the positive case (2x − 7 = 11 → x = 9), then — instead of performing the negative case — subtracted a rough "half-shift" from the result: 9 − (7/2) ≈ 9 − 4 = 5, attempting to account for a second solution without proper casework.
 **mistake_d:** Computed only the positive case (x = 9) and bubbled.
 **mistake_e:** Bubbled |11| from the right-hand side.
 **common_trap:** absolute-value-single-case — solving only +c case and missing −c.
@@ -332,7 +332,7 @@ Which of the following is the simplified form of 42/98?
 **answer:** B
 **fastest_path:** GCF(42, 98) = 14. 42/14 = 3, 98/14 = 7 → 3/7.
 **explanation:** Find the greatest common factor of 42 and 98. Both have a factor of 14 (42 = 2 × 3 × 7; 98 = 2 × 7²). GCF = 2 × 7 = 14. Divide: 42/14 = 3, 98/14 = 7 → 3/7.
-**mistake_a:** Divided by 21 (one factor): 42/21 = 2, 98/21 = 4.67 (non-integer); rounded.
+**mistake_a:** Divided the numerator and denominator by *different* common factors — 42 ÷ 21 = 2 and 98 ÷ 14 = 7 — yielding 2/7. Valid simplification requires dividing both numerator and denominator by the *same* number; using different divisors on top and bottom breaks the equivalence.
 **mistake_c:** Computed wrong reduction: 42/14 = 3, 98/24.5 = 4 — arithmetic error.
 **mistake_d:** Bubbled 6/14 — equivalent to 3/7 but not fully simplified.
 **mistake_e:** Bubbled 21/49 — also equivalent but not simplified.
@@ -382,7 +382,7 @@ What is the value of (1 + 1/2) / (1 - 1/3)?
 - E) 5/2
 
 **answer:** D
-**fastest_path:** Numerator: 3/2. Denominator: 2/3. Divide: (3/2) × (3/2) = 9/4.
+**fastest_path:** Numerator: 3/2. Denominator: 2/3. Divide: (3/2) ÷ (2/3) = (3/2) × (3/2) = 9/4 (multiply by the reciprocal of the denominator).
 **explanation:** Simplify each layer first. Numerator: 1 + 1/2 = 3/2. Denominator: 1 − 1/3 = 2/3. Then divide: (3/2) ÷ (2/3) = (3/2) × (3/2) = 9/4 (multiply by reciprocal).
 **mistake_a:** Divided incorrectly: 3/2 ÷ 2 = 3/4.
 **mistake_b:** Multiplied (3/2) × (2/3) = 1, then misadjusted to 9/8.
