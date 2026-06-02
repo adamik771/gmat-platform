@@ -2,7 +2,7 @@
 slug: word-problems
 title: Word Problems
 section: Quant
-estimated_minutes: 55
+estimated_minutes: 60
 prerequisites: []
 summary: |
   "Word problems" isn't a topic — it's a translation skill that sits on top of every topic. The question gives you English; you need algebra. This chapter trains the translation habits that convert "twice as many as" and "three years from now" into equations you can actually solve, plus the six most common structural patterns: rate/time/distance, work, mixtures, profit/percent, ages, and sets/Venn. Master the translation rules and the specific templates, and word problems become 60-second setup + 30-second solve.
@@ -19,6 +19,8 @@ sections:
   - id: translation-discipline
     type: reading
     title: "Translation discipline — English to algebra without losing the meaning"
+    intro: |
+      Word problems fail at the translation step — not the arithmetic. The four habits in this section (explicit variable definitions, phrase-by-phrase conversion, strategic variable choice, and back-verification against the English) eliminate the vast majority of setup errors. Get the equation right and the arithmetic is mechanical.
     check_question_ids:
       - word-problems-q13
       - word-problems-q14
@@ -29,6 +31,8 @@ sections:
   - id: rate-time-distance
     type: reading
     title: "Rate, time, distance — D = RT inside a word problem"
+    intro: |
+      D = RT is one equation with three forms. The word-problem layer adds one challenge: figuring out which quantity is the unknown, making sure units match, and recognizing which of the three setups — single-object, two objects moving toward each other, or one object catching another — applies. Identify the setup in the first reading, set up the equation before you start solving, and these questions become straightforward arithmetic.
     check_question_ids:
       - word-problems-q1
       - word-problems-q5
@@ -39,6 +43,8 @@ sections:
   - id: work-rate-problems
     type: reading
     title: "Work rate — add the rates, never the times"
+    intro: |
+      Two workers, so add their times. That intuition is always wrong — and the GMAT puts it in the answer choices every time. Rates add because each worker is contributing simultaneously; times don't add because they're measuring different things. Internalize the correct formula once and this trap stops working on you.
     check_question_ids:
       - word-problems-q4
       - word-problems-q6
@@ -50,6 +56,8 @@ sections:
   - id: mixtures
     type: reading
     title: "Mixtures — the acid/alloy/coffee setup"
+    intro: |
+      Mixture problems look diverse — acid concentrations, coffee blends, metal alloys — but they all reduce to the same conservation principle: the pure component going into the mix equals the pure component in the result. Find the conserved quantity, write the equation, and the algebra is straightforward. The allegation shortcut then handles any two-component problem in five seconds without algebra.
     check_question_ids:
       - word-problems-q7
       - word-problems-q11
@@ -58,6 +66,8 @@ sections:
   - id: profit-and-percent
     type: reading
     title: "Profit, markup, and percent change"
+    intro: |
+      Percent change questions are the GMAT's highest-volume trap generator. The trap is always the same: students add sequential percent changes instead of multiplying them. A 40% markup followed by a 10% discount is not a 30% net gain — the discount applies to the marked price, not the original cost. The multiplier model makes this automatic and immune to the trap.
     check_question_ids:
       - word-problems-q2
       - word-problems-q8
@@ -71,6 +81,8 @@ sections:
   - id: ages-coins-digits
     type: reading
     title: "Ages, coins, and digit problems"
+    intro: |
+      Three different flavors — ages, coins, digit values — all reduce to the same structure: two English clauses, two algebraic equations, one system to solve. The trap lives in translation. "Five years ago, Alex was four times Kim's age" requires 4(Kim − 5) on the right side — not 4 × Kim − 5. One misplaced parenthesis produces a number that looks plausible and fails verification. The back-check against the original English is non-optional.
     check_question_ids:
       - word-problems-q12
       - word-problems-q15
@@ -81,6 +93,8 @@ sections:
   - id: sets-and-venn
     type: reading
     title: "Sets and Venn diagrams — the inclusion-exclusion template"
+    intro: |
+      Set-membership problems ask how many elements fall in overlapping groups. One identity handles every two-set problem: total = |A| + |B| − |A∩B| + neither. Three-set problems use a slightly extended identity, but the logic is identical — add all members of each set, subtract the double-counts, add back the triple-counts. The only skill is identifying which of the four (or seven) values the problem gives you and which it's asking for.
     check_question_ids:
       - word-problems-q17
       - word-problems-q19
@@ -88,6 +102,8 @@ sections:
   - id: max-min-optimization
     type: reading
     title: "Max/min and optimization — extremes under constraint"
+    intro: |
+      Max/min questions appear almost exclusively at 685+ and separate students who can reason under constraints from those who follow templates. The entire strategy fits in one sentence: to maximize X, push everything competing with X to its minimum. Apply that rule to the constraints, write the extreme values out, verify feasibility. These are not hard problems once the strategy is internalized — they just feel unfamiliar until you've seen the pattern a few times.
     check_question_ids:
       - word-problems-q62
 
@@ -357,6 +373,14 @@ General approach: track the pure-component amount through each step, using "curr
 
 **Mixing unequal-quantity blends to match a target.** Whenever the question specifies the blend's concentration AND the final quantity, you have two equations (total quantity + total pure component) and two unknowns — always solvable.
 
+**Micro-drill.** Set up and solve each — no calculator, 90 seconds total:
+
+1. A 20 L solution is 30% acid. How many liters of pure acid must be added to make it a 50% solution?
+2. A 50-lb blend of coffee sells for $6.20/lb. It mixes coffee at $5.00/lb with coffee at $8.00/lb. How many pounds of each variety?
+3. 8 L of a 25% salt solution is mixed with x L of a 70% salt solution to produce a 40% salt solution. Find x.
+
+Answers: (1) Pure acid now: 0.30 × 20 = 6 L. Let x = L of pure acid added. (6 + x)/(20 + x) = 0.50 → 6 + x = 10 + 0.5x → 0.5x = 4 → **x = 8 L**. (2) Let a = lb of $5 variety. a + b = 50, 5a + 8b = 310. Substitute b = 50 − a: 5a + 400 − 8a = 310 → 3a = 90 → **a = 30 lb, b = 20 lb**. Allegation check: distances from $6.20 are $1.20 (high variety) and $1.20 (low variety) — wait, ($6.20 − $5.00) = $1.20, ($8.00 − $6.20) = $1.80; ratio of low to high = 1.80:1.20 = 3:2, so 30 lb of $5 and 20 lb of $8. ✓ (3) Pure salt: 0.25 × 8 + 0.70x = 0.40(8 + x) → 2 + 0.70x = 3.2 + 0.40x → 0.30x = 1.2 → **x = 4 L**. If (1) tripped you, check whether you updated the denominator — the total volume grows when you add pure acid.
+
 **Trap to watch.** When "pure acid" is added, the total volume increases. Forgetting to update the denominator (writing (3+x)/10 instead of (3+x)/(10+x)) is the #1 mixture error.
 
 ## @profit-and-percent
@@ -448,6 +472,8 @@ Middle = 72/3 = 24. Largest = 25. Done in 5 seconds without algebra (for evenly-
 
 The pattern generalizes. For *any* consecutive set (consecutive integers, consecutive even, consecutive multiples of 7), mean = middle = (first + last)/2. Sum = mean × count. This shortcut handles many "sum of N consecutive integers" problems without variables at all.
 
+> **Recall check.** Without looking: state the template for an age problem with two past/future clauses — how many variables, how many equations? Then apply it cold: "In 5 years, Maria will be three times as old as her son will be then. Two years ago, Maria was seven times her son's age. Find the son's current age." Write both equations before reading the solution. (Let M, S = current ages. Eq 1: M + 5 = 3(S + 5) → M = 3S + 10. Eq 2: M − 2 = 7(S − 2) → M = 7S − 12. Set equal: 3S + 10 = 7S − 12 → 4S = 22 → S = **5.5**. Maria = 26.5. Verify: in 5 years, 31.5 = 3 × 10.5 ✓; 2 years ago, 24.5 = 7 × 3.5 ✓.) If you wrote M + 5 = 3S + 5 or M − 2 = 7S − 2 (without parentheses on the right), re-read the trap below — that's exactly the error this recall check is designed to surface before the problem sets.
+
 **Trap to watch.** Age problems with "X years ago" clauses — students often write X − 5 = 4N − 5 instead of X − 5 = 4(N − 5). The parenthesis is non-negotiable: BOTH people were 5 years younger then, so both sides of the equation need to shift by 5.
 
 ## @sets-and-venn
@@ -507,6 +533,14 @@ This two-equation system collapses the three-set problem. Memorize the framework
 | Total   |   50    |   30   |  80   |
 
 Cross-check: row totals and column totals both sum to 80. Fill cells consistently with both constraints.
+
+**Micro-drill.** Apply the inclusion-exclusion identity — 60 seconds total:
+
+1. A class of 50 has 28 who play guitar, 22 who play piano, and 7 who play neither. How many play both?
+2. At a 200-person conference: 110 attended the morning session, 90 attended the afternoon session, 40 attended neither. How many attended both sessions?
+3. A survey of 60 customers: 35 own Product A, 28 own Product B, 9 own neither. How many own exactly one product?
+
+Answers: (1) At least one = 50 − 7 = 43. Both = 28 + 22 − 43 = **7**. (2) At least one = 200 − 40 = 160. Both = 110 + 90 − 160 = **40**. (3) Both = 35 + 28 − (60 − 9) = 63 − 51 = **12**. Exactly one = (35 − 12) + (28 − 12) = 23 + 16 = **39**. Note that (3) requires a two-step move: find "both" using the identity, then use "both" to get "only A" and "only B" separately. That two-step is the signature of medium-hard set problems.
 
 > **Self-explanation prompt.** Why does the "identity 2" in the three-set framework weight n₂ by 2 and n₃ by 3? If you can say "because a person in exactly 2 sets is counted in 2 of the individual set totals, and a person in exactly 3 sets is counted in all 3," you've internalized the inclusion-exclusion logic and won't get confused by the coefficients.
 
@@ -584,7 +618,7 @@ Word problems are translation + template. Translation discipline gets you to a c
 | Rate-time-distance | Match units; single, catch-up, or meeting | D = RT; closing rate = sum or difference |
 | Work rate | Add rates; phase the problem if needed | 1/a + 1/b = 1/T |
 | Mixtures | Conserve the pure component | (pure A) + (pure B) = (pure mixture) |
-| Profit / percent | Compound changes multiply | 1 + r₁ × 1 + r₂ |
+| Profit / percent | Compound changes multiply | (1 + r₁) × (1 + r₂) |
 | Ages, coins, digits | Two clauses → two equations | Plug-in verification at the end |
 | Sets / Venn | Identity 1 + Identity 2 for three sets | n₁ + n₂ + n₃ = t ; \|A\|+\|B\|+\|C\| = n₁ + 2n₂ + 3n₃ |
 | Max / min | Push competing variables to their extremes | "To maximize X, minimize everything else" |
@@ -609,4 +643,11 @@ Word problems are translation + template. Translation discipline gets you to a c
 | "x years from now" | add x |
 | "ratio of A to B" | A/B |
 
-**Time-management note.** Easy word problems (straight D = RT, straight percent) should take under a minute. Medium (two-clause ages, mixtures, percent-of-percent) take up to 2 minutes. Hard (three-set Venn, multi-step profit, compound percent) take 2–2.5 minutes max. If you're past 2:30 and haven't finished the setup, you've overtranslated — step back, re-read the question stem, and identify which of the six patterns you're in.
+**Time-management note.** Easy word problems (straight D = RT, straight percent) should take under a minute. Medium (two-clause ages, mixtures, percent-of-percent) take up to 2 minutes. Hard (three-set Venn, multi-step profit, compound percent) take 2–2.5 minutes max. If you're past 2:30 and haven't finished the setup, you've overtranslated — step back, re-read the question stem, and identify which of the seven patterns you're in.
+
+**What to do next.**
+
+1. **Easy set first — 100% accuracy goal.** Run the 11 easy questions. Every miss is a translation error, not a math error. Before starting the Medium set, go back to the section whose pattern you missed, re-do the self-explanation prompt, and close it again without looking.
+2. **Medium set, timed and logged.** 19 questions, aim for 2:00 average. After each miss, write one word: which pattern did you misidentify? Rate/distance, mixture, percent, age, set, or max/min. That one word tells you exactly which section to re-read.
+3. **Hard set — classify first, compute second.** 15 questions. On every question, before writing anything, state the pattern aloud (or on scratch paper). If you cannot classify the problem within 30 seconds of reading, that's the skill gap — not the algebra. Hard word problems are medium algebra inside hard translations.
+4. **Error log review.** After the chapter, sort your misses by pattern. The pattern with the most entries is your next drill session. Work one section at a time — going back to "re-read word problems" is too broad to fix anything.
