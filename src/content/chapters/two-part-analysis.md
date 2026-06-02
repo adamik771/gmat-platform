@@ -5,7 +5,7 @@ section: DI
 estimated_minutes: 45
 prerequisites: []
 summary: |
-  Two-Part Analysis asks you to pick two values from a shared answer list — the two values must jointly satisfy the constraints of the question. The questions come in two flavors: quantitative (set up equations, pick the pair that solves the system) and logical (identify two roles in an argument, like conclusion and assumption). The trick is recognizing which flavor you're in, then applying the appropriate discipline: algebraic for quantitative, structural for logical. Master those two templates and you'll solve every Two-Part question in 90 seconds.
+  Two-Part Analysis asks you to pick two values from a shared answer list — both values must jointly satisfy the constraints of the question. The questions come in two flavors: quantitative (set up equations, pick the pair that solves the system) and logical (identify two roles in an argument, like conclusion and assumption). The trick is recognizing which flavor you're in within the first 10 seconds, then applying the correct discipline: algebraic for quantitative, structural for logical. Master both templates and you will solve every Two-Part question in under 2 minutes.
 sections:
   - id: pretest
     type: pretest
@@ -19,12 +19,16 @@ sections:
   - id: the-two-part-format
     type: reading
     title: "The Two-Part format — one answer list, two selections"
+    intro: |
+      Two-Part Analysis is the only DI format where a single wrong selection earns zero points — there is no partial credit. Understanding how the format works before diving into content prevents the strategic errors that content knowledge alone cannot fix. Five minutes here will save you five wrong questions on test day.
     check_question_ids:
       - two-part-analysis-q11
 
   - id: quantitative-setup
     type: reading
     title: "Quantitative Two-Part — set up the equations, then pick the pair"
+    intro: |
+      Quantitative Two-Part looks unusual but is fundamentally the same two-equation algebra you already know. Strip the shared-list wrapper and you have two unknowns and two constraints — the same move every time. The list is a verification layer, not a shortcut.
     check_question_ids:
       - two-part-analysis-q1
       - two-part-analysis-q2
@@ -33,6 +37,8 @@ sections:
   - id: logical-two-part
     type: reading
     title: "Logical Two-Part — argument roles and structure"
+    intro: |
+      Logical Two-Part is where most students lose Data Insights points — not from bad logic, but from failing to coordinate two argument roles simultaneously. On a standard CR question, you decompose the argument once and answer one question about one role. Here, you answer two coordinated questions from the same shared list. The coordination requirement is what makes this harder than it looks.
     check_question_ids:
       - two-part-analysis-q4
       - two-part-analysis-q6
@@ -41,6 +47,8 @@ sections:
   - id: rate-and-mixture-templates
     type: reading
     title: "Rate, mixture, and system-of-equations templates"
+    intro: |
+      Three templates cover most quantitative Two-Part questions: combined work, weighted mixture, and split investment. Each reduces to two equations in two unknowns. Recognizing which template you're in is the skill — the algebra is just substitution.
     check_question_ids:
       - two-part-analysis-q5
       - two-part-analysis-q7
@@ -49,11 +57,15 @@ sections:
   - id: common-tpa-traps
     type: reading
     title: "The four TPA traps — and the compute-first reflex"
+    intro: |
+      Four traps appear on almost every hard Two-Part question, and all four are format-specific — they exist only because TPA requires two coordinated answers instead of one. Recognizing them by name converts them from surprises into checkboxes.
     check_question_ids: []
 
   - id: cause-effect-patterns
     type: reading
     title: "Cause-and-effect argument patterns"
+    intro: |
+      The hardest logical Two-Part questions build an argument around a causal claim, then ask you to simultaneously identify one statement that supports it and one that undermines it. The skill is knowing what counts as a genuine strengthener vs. a genuine weakener — quickly enough to match both from the same list under test conditions.
     check_question_ids:
       - two-part-analysis-q8
       - two-part-analysis-q14
@@ -104,9 +116,9 @@ problem_sets:
 
 ## @the-two-part-format
 
-Two-Part Analysis is the most unusual question format on the GMAT. Instead of picking one answer from five, you pick **two answers** from a shared list — one for each of two related questions. The catch: the two selections must *jointly* satisfy the constraints.
+Two-Part Analysis is the most unusual format on the GMAT. Instead of picking one answer from five, you pick **two answers** from a shared list — one for each of two related questions. The catch: the two selections must *jointly* satisfy the constraints. Getting Part 1 right and Part 2 wrong earns you zero — there is no partial credit.
 
-**Mental model.** TPA gives you two columns of answers but a single shared answer set — pick one row for column 1, one row for column 2. The mental shift: *set up the constraints first, scan the answer set second*. Students who jump to the answers and try them all out blow the time budget; students who derive the constraint equations first usually have the answer in 90 seconds.
+**Mental model — one system, two unknowns.** Think of TPA as a system of equations with two unknowns. The answer list is a finite set of candidate values. Your job is to solve the system, then match both solutions to the list simultaneously. Students who treat each column as an independent question consistently fall into the joint-constraint trap (see @common-tpa-traps). Solve the system first; pick the values second.
 
 **The format, in a table.**
 
@@ -121,33 +133,31 @@ Two-Part Analysis is the most unusual question format on the GMAT. Instead of pi
 
 Each row is an option. Each column is a selection (Part 1 and Part 2). You pick exactly one option for Part 1 and exactly one for Part 2 — the two selections may be the same option or different.
 
-**The shared-answer-list constraint.** Both parts draw from the same list of options. This is the critical structural feature. It means the same numeric value (or the same statement) can be the correct answer to both parts, *or* to just one, *or* to neither.
+**The shared-answer-list constraint.** Both parts draw from the same list. The correct answer to Part 1 and the correct answer to Part 2 might be the same row (common on symmetric quant problems) or different rows (common on logical problems). The format allows both — don't be thrown off by either.
 
 **The two flavors.**
 
-- **Quantitative Two-Part** gives you a word problem with two related unknowns (e.g., "find the amount of Solution X AND the amount of Solution Y"). You set up equations, solve, and pick the two values from the list.
+- **Quantitative Two-Part** gives you a word problem with two related unknowns. You set up equations, solve, and pick the two values from the list. Tells: numbers, units, "find the value of X," equations, percentages.
 
-- **Logical Two-Part** gives you an argument and asks you to identify two roles (e.g., "the conclusion of the argument" in row 1, "the primary assumption challenged" in row 2). You analyze the argument's structure and match each role to a statement in the list.
+- **Logical Two-Part** gives you an argument and asks you to identify two structural roles (e.g., "the conclusion" and "the primary assumption"). You analyze argument anatomy and match each role to a statement in the list. Tells: arguments, conclusions, assumptions, "identify the role."
 
-**How to recognize which flavor you're in.**
+**Two reflexes to develop before you hit the test.**
 
-Quantitative tells: numbers, units, "find the value of," equations, percentages.
+**Classify first.** The moment you read the stem, identify the flavor. Going in with the wrong frame — trying to set up equations for a logical question — burns 30 or more wasted seconds. Classify in the first 10 seconds of every question.
 
-Logical tells: arguments, claims, conclusions, assumptions, "identify the role," evidence.
+**Derive first.** Solve the problem on scratchwork before scanning the answer list. Students who scan first anchor on a list value and try to force their algebra to match it — a path that leads to joint-constraint failures. Derive both values from the problem, then find them in the list. The list is a verification layer, not a starting point.
 
-**The general discipline — same as on CR or Quant DS.**
-
-1. Read the stem. Identify what Part 1 and Part 2 are asking for.
-2. If quantitative: set up equations. If logical: decompose the argument.
-3. Solve. Match your answers to the list.
-
-The answer list doesn't force you to guess — you can usually solve the problem independently and then check your values against the list. The list is a safety net for arithmetic errors, not a shortcut.
-
-> **Recall check.** Close your eyes. Describe the Two-Part answer format. Now describe the two flavors of question and how to recognize which one you're in. (Answer: shared answer list, pick one per column. Quant: numbers and equations. Logic: arguments and roles.) Locking in the structure upfront means you never waste time wondering what to do — you just start solving.
+> **Micro-drill — classify the flavor fast.** Read each stem and classify as Quantitative or Logical — 30 seconds total:
+> 1. "A company invests a total of $200,000. Part is invested at 6% annually and the remainder at 9% annually. Identify the amount in each fund."
+> 2. "A news article argues that lower speed limits reduce traffic fatalities. Identify one fact that supports this claim and one fact that challenges it."
+> 3. "A chemist mixes a 40% acid solution and a 90% acid solution to produce 8 liters of 55% acid. Find the volume of each solution."
+> 4. "The following passage concludes that increased advertising drives customer loyalty. Identify the main conclusion and the primary assumption."
+>
+> (Answers: 1 Quant, 2 Logical, 3 Quant, 4 Logical. If you got all four in under 20 seconds, the classify-first reflex is wired in.)
 
 ## @quantitative-setup
 
-Quantitative Two-Part is a word problem with two unknowns. The workflow is exactly like any two-equation, two-unknown algebra problem — just with a specific answer list.
+Quantitative Two-Part is a word problem with two unknowns. The workflow is exactly like any two-equation, two-unknown algebra problem — just with a specific answer list at the end.
 
 **The standard workflow.**
 
@@ -166,7 +176,7 @@ Quantitative Two-Part is a word problem with two unknowns. The workflow is exact
 - Let x = liters of X, y = liters of Y.
 - Total: x + y = 10.
 - Salt: 0.30x + 0.60y = 0.45 × 10 = 4.5.
-- Substitute x = 10 - y: 0.30(10 - y) + 0.60y = 4.5 → 3 - 0.30y + 0.60y = 4.5 → 0.30y = 1.5 → y = 5. So x = 5.
+- Substitute x = 10 − y: 0.30(10 − y) + 0.60y = 4.5 → 3 − 0.30y + 0.60y = 4.5 → 0.30y = 1.5 → y = 5. So x = 5.
 - **Pick 5 for both.**
 
 **Example (investment problem).** "Invest $100,000 total between Fund Alpha (8% return) and Fund Beta (5% return). Total return $6,800. Pick the amount in Alpha and in Beta from the list: 20K, 40K, 50K, 60K, 70K, 80K."
@@ -174,89 +184,108 @@ Quantitative Two-Part is a word problem with two unknowns. The workflow is exact
 - Let a = Alpha, b = Beta.
 - a + b = 100,000.
 - 0.08a + 0.05b = 6,800.
-- Multiply second equation: 8a + 5b = 680,000. And a + b = 100,000, so b = 100,000 - a, and 8a + 5(100,000 - a) = 680,000 → 3a = 180,000 → a = 60,000.
+- Multiply second equation × 100: 8a + 5b = 680,000. Substitute b = 100,000 − a.
+- 8a + 5(100,000 − a) = 680,000 → 3a = 180,000 → a = 60,000.
 - **Pick 60,000 for Alpha, 40,000 for Beta.**
 
-**The "check against the answer list" reflex.** After solving, verify both your answers appear in the list. If one doesn't, check your arithmetic — probably a sign error or a setup mistake.
+**The "check against the answer list" reflex.** After solving, verify both values appear in the list. If one doesn't, check your arithmetic — probably a sign error or a setup mistake.
 
-**The "backsolve if the answer list is small" shortcut.** If the answer list has only 4-5 values and the arithmetic is complex, plug each option into the constraint and see which pair works. This is usually slower than direct solving but can be a backup strategy.
+**The "backsolve" shortcut.** If the answer list has only 4–5 values and the algebra is messy, plug each option into the joint constraint to find the pair that satisfies both equations. Usually slower than direct solving, but a valid backup when the setup is unclear.
 
-**The "same answer for both parts" case.** Sometimes the correct answer for Part 1 and Part 2 is the same option (like the mixture example above where both were 5 liters). The format allows this — don't be thrown off.
+**The "same answer for both parts" case.** Sometimes both Part 1 and Part 2 correctly point to the same option (the mixture example above: both x and y equal 5). The format allows this — trust the math.
 
-**The "two unknowns but one equation" trap.** Some questions might seem underdetermined. But Two-Part quant always has enough constraints — if you think you need more information, you've missed a relationship in the problem statement. Re-read carefully.
+**Percent and ratio patterns.** Translate percentages to decimals before setting up equations (8% → 0.08). Leaving percentages as integers (8, 5, 6800) without converting leads to off-by-100 errors on nearly every problem.
 
-**Percent and ratio patterns.** Many Two-Part questions involve percentages (investment returns, discounts, mixture concentrations). Translate percentages to multipliers (8% → 0.08) before setting up the equation.
+> **Self-explanation prompt.** Why is quantitative Two-Part just a standard two-equation system in a different costume? If you can say "because the shared-list format is a presentation convention; underneath, it's the same algebra as any two-unknown word problem," you've stripped the format of its mystery.
 
-> **Self-explanation prompt.** Why is Two-Part quant just a standard two-equation system? If you can say "because the shared-list format is a presentation convention; underneath, it's the same algebra as any 2-unknown word problem," you've stripped the mystery from the format and can apply your algebra skills directly.
+**Micro-drill.** Set up and solve — 90 seconds total:
+
+1. Pump A fills a tank in 12 hours alone. Together with Pump B, they fill it in 4 hours. How long does Pump B take alone (Part 1)? What is the combined rate as a fraction of the tank per hour (Part 2)? List: 1/4, 1/3, 5, 6, 7, 8.
+
+2. Mix a 40% acid solution with a 90% acid solution to make 10 liters of 55% acid. How many liters of 40% solution (Part 1) and how many liters of 90% solution (Part 2)? List: 2, 3, 5, 6, 7, 8.
+
+Answers: (1) A's rate = 1/12. Combined rate = 1/4. B's rate = 1/4 − 1/12 = 3/12 − 1/12 = 1/6. B alone = **6 hours**. Combined rate = **1/4**. Joint check: 1/12 + 1/6 = 1/12 + 2/12 = 3/12 = 1/4 ✓. (2) Let x = liters of 40%, y = liters of 90%. x + y = 10 and 0.4x + 0.9y = 5.5. Substitute: 0.4(10 − y) + 0.9y = 5.5 → 4 + 0.5y = 5.5 → y = **3**. x = **7**. Joint check: 7 + 3 = 10 ✓; 0.4(7) + 0.9(3) = 2.8 + 2.7 = 5.5 ✓.
 
 ## @logical-two-part
 
-Logical Two-Part asks you to identify two roles in an argument or passage. Classic pairs:
+The gap between logical TPA and a standard CR question is not the underlying logic — it is the coordination requirement. On CR, you decompose the argument once and answer one question about one role. Here, you decompose the same argument and answer two coordinated questions from the same shared list. Each answer must be independently correct and jointly consistent.
 
-- "Identify the conclusion" (row 1) and "Identify the primary assumption" (row 2).
-- "Identify a piece of evidence that strengthens" (row 1) and "Identify a piece of evidence that weakens" (row 2).
-- "Identify the cause claimed by the author" (row 1) and "Identify the effect" (row 2).
+**The three-step process for every logical Two-Part.**
 
-**The workflow.**
+1. **Decompose the argument.** Before reading the answer list, identify: the conclusion (what the author is trying to establish), the evidence (what the author cites as support), and any key assumptions (unstated premises the argument requires). Write these in your margin.
 
-1. Read the argument. Apply the standard CR structural analysis (conclusion, evidence, assumption).
-2. Identify what each of Part 1 and Part 2 are asking for.
-3. For each, scan the answer list for the statement that best matches.
+2. **Read the column headers as instructions.** Part 1 and Part 2 have different requirements — "the primary assumption" and "a fact that would weaken the argument" are different tasks. Execute them in order.
 
-**Example (conclusion + assumption).** Argument: "The new marketing campaign increased sales by 25% in Q1. However, the campaign coincided with a major competitor going bankrupt, reducing market competition. Therefore, the campaign's effectiveness may be overstated."
+3. **Match from your decomposition, then verify.** Find the option that fits Part 1. Find the option that fits Part 2. Re-read the argument with both selections in mind — does the pair make sense together?
 
-- Conclusion: The campaign's effectiveness may be overstated.
-- Evidence: Sales grew 25%; competitor went bankrupt.
-- Primary assumption being challenged: That the full 25% growth is attributable to the campaign alone (i.e., that the competitor's bankruptcy didn't also contribute).
+**Why decompose before scanning the list?** Students who read the answer list first anchor on a plausible-looking statement, then backfill an argument analysis to justify it. This anchoring error causes systematic role-confusion. Decompose the argument cold first; use the list as your lookup table, not your starting point.
 
-Match from the answer list:
-- Part 1 (conclusion) → "The campaign's effectiveness may be overstated."
-- Part 2 (assumption challenged) → "All of the 25% sales growth is attributable to the marketing campaign."
+**Worked example — full process.**
 
-**Example (strengthen + weaken pair).** "A study found that employees working remotely reported 20% higher productivity than office workers. The CEO concluded remote work should be mandated for all staff."
+*Argument:* "A university study found that students who studied in designated quiet rooms performed 12% better on final exams than students who studied elsewhere. The university has decided to expand the number of quiet rooms on campus."
 
-The question might ask: "Identify one fact that strengthens the CEO's conclusion" (Part 1) and "Identify one fact that weakens it" (Part 2). Each part asks for a different kind of statement from the same list.
+*Step 1 — Decompose:*
+- Evidence: Students in quiet rooms scored 12% higher.
+- Conclusion: The university should expand quiet rooms.
+- Key assumption: The performance difference is caused by the quiet environment — not by self-selection of more motivated or better-prepared students into those rooms.
 
-Strengthener candidate: "Productivity metrics were measured identically for both groups."
-Weakener candidate: "Remote workers were self-selected from high performers in the company."
+*Step 2 — Column headers (hypothetical):*
+- Part 1: "The main conclusion of the argument."
+- Part 2: "The primary assumption underlying the argument."
 
-**The decomposition checklist for logical Two-Part.**
+*Step 3 — Match to a hypothetical answer list:*
+- "Quiet rooms are the most cost-effective academic improvement available." → Not in the argument. Incorrect for conclusion.
+- "The university should expand its number of quiet rooms." → This is the conclusion. ✓ **Part 1.**
+- "Students who chose quiet rooms were already more academically motivated." → This challenges the assumption but is not the assumption itself.
+- "The 12% improvement reflects the quiet environment's effect, not the type of student who self-selected into those rooms." → This is the unstated premise the argument requires. ✓ **Part 2.**
 
-| Role | Hallmarks |
-|---|---|
-| Conclusion | The main claim; often after "therefore," "thus," "conclude" |
-| Evidence | Facts, data, observations; often after "because," "since," "research shows" |
-| Assumption | Unstated premise; often about "no alternative causes" or "samples are representative" |
-| Strengthener | Makes the evidence-conclusion link more plausible |
-| Weakener | Introduces alternative cause, confounder, or counter-evidence |
-| Counter-claim | A position the author argues against |
+*Verify:* The conclusion and the assumption are coherent — the assumption is exactly what would need to be true for the conclusion to follow from the evidence. The pair is consistent.
 
-**The "verify both selections" discipline.** After picking your two answers, re-read the argument with your selections substituted. Does the pair capture the roles the question asked for? If Part 1 was the conclusion, does the statement read as the author's main claim? If Part 2 was the assumption, does negating it undermine the argument?
+**The decomposition checklist.**
 
-**The "same option for both parts" possibility.** Unlike quantitative, logical Two-Part almost never has the same statement for both parts — the two roles are distinct.
+| Role | What it is | How to find it |
+|---|---|---|
+| Conclusion | The main claim the author wants to establish | Often follows "therefore," "thus," "should," "conclude" |
+| Evidence | Facts and observations cited as support | Often follows "because," "since," "study shows," "found that" |
+| Assumption | Unstated premise the argument requires | Often about causation, sample representativeness, or scope |
+| Strengthener | New fact that closes the evidence-conclusion gap | Makes the conclusion more likely given the evidence |
+| Weakener | New fact that widens the gap or offers an alternative | Alternative cause, confounder, or counter-evidence |
+| Counter-claim | Position the author argues against | "Critics claim," "opponents argue" — not the author's view |
 
-**Trap to watch.** Don't confuse "the role the statement plays in the argument" with "the role the question asks about." The question might ask for the conclusion the author supports, or the conclusion the author *rejects*. Read the question stem carefully.
+**The "verify both selections" discipline.** After picking your two answers, re-read the argument with both selections substituted. For assumption questions: does negating your Part 2 selection undermine the argument? For strengthener/weakener pairs: do the two selections genuinely pull in opposite directions?
+
+**Trap to watch.** The column header tells you what role to find. "The role the statement plays in the argument" asks you to classify a statement that already exists in the argument. "A fact that would strengthen the conclusion" asks you to evaluate whether a new statement helps. These are different tasks — read the header before you evaluate any option.
+
+> **Micro-drill.** Read the argument and answer in 90 seconds.
+>
+> *Argument:* "A retail chain introduced mandatory customer service training for all employees in Q1. Customer satisfaction scores rose 18% in Q2. The chain's executives attributed the improvement to the training program."
+>
+> Available options: (A) Satisfaction scores rose 18% in Q2. (B) Employees with more training hours scored higher on internal assessments. (C) A major competitor closed stores in Q1, redirecting customers to this chain. (D) The chain also launched a new loyalty rewards program in Q1. (E) The training focused specifically on the skills customers consistently cite as most important.
+>
+> Part 1: "A fact that supports the executives' conclusion." Part 2: "A fact that undermines it."
+>
+> *Answers:* Part 1 → **(E)**: establishes a direct mechanism — the training addressed the specific skills customers value, making the causal link between training and satisfaction concrete. Part 2 → **(C)**: the competitor's closure is an alternative explanation — customers who had no other option might rate any experience highly, regardless of training. Note: (A) is evidence already in the argument, not a new strengthener. (D) also undermines (another Q1 change could explain the Q2 result), but (C) more directly challenges the causal attribution. If you selected (A) for Part 1, re-read the column header: Part 1 asks for a *new* fact that supports the conclusion, not a restatement of evidence.
 
 ## @rate-and-mixture-templates
 
-The most common quantitative Two-Part templates are rate/work problems, mixture problems, and percent/investment problems. Each has a standard setup.
+The most common quantitative Two-Part templates are rate/work problems, mixture problems, and percent/investment problems. Each has a standard two-equation setup.
 
 **Rate template (combined work).**
 
-Workers A and B have individual times `a` and `b`. Combined time T is given by:
+Workers A and B have individual times `a` and `b`. Combined time T is:
 
     1/a + 1/b = 1/T
 
-If the question asks for T and a, solve for T using the above.
+If the question asks for T and one of the individual times, set up and solve for the unknown using this equation.
 
-**Mixture template (weighted-average).**
+**Mixture template (weighted average).**
 
-Mix quantities x and y of solutions with concentrations c_X and c_Y to get total quantity t with concentration c:
+Mix quantities x and y of solutions with concentrations c_X and c_Y to get total t with concentration c:
 
     x + y = t
     c_X × x + c_Y × y = c × t
 
-Two equations, two unknowns. Substitute or eliminate.
+Two equations, two unknowns. Substitute x = t − y into the second equation.
 
 **Percent/investment template.**
 
@@ -265,192 +294,192 @@ Split capital P between two instruments with rates r_A and r_B for total return 
     a + b = P
     r_A × a + r_B × b = R
 
-Standard two-equation system.
+Standard two-equation system. If the answer list is in thousands, work in thousands throughout to avoid arithmetic errors.
 
 **Distance-rate-time template.**
 
-If two objects move at rates r_1 and r_2 over distances d_1 and d_2, possibly with time constraints:
+Two objects moving with rates r_1 and r_2:
 
     d_1 = r_1 × t_1
     d_2 = r_2 × t_2
 
-Plus any constraint relating t_1 and t_2 (same start, meet at a point, one catches the other).
+Plus any constraint relating t_1 and t_2 (same start time, meeting at a point, one catching the other). That constraint is the second equation.
 
-**Example (D/R/T Two-Part).** Two cars drive in opposite directions. Car A at 50 mph, Car B at 70 mph. They start together. After how many hours are they 360 miles apart? Also find the total distance Car A traveled.
+**Example (D/R/T Two-Part).** Two cars leave the same point in opposite directions. Car A at 50 mph, Car B at 70 mph. How many hours until they are 360 miles apart (Part 1)? How many miles did Car A travel (Part 2)?
 
-Let t = hours they traveled.
-- Separation rate: 50 + 70 = 120 mph.
-- 120t = 360 → t = 3 hours.
-- Distance A traveled: 50 × 3 = 150 miles.
-- Pick t = 3 for Part 1, 150 for Part 2.
+- Separation rate: 50 + 70 = 120 mph. Time: 360/120 = **3 hours**.
+- Distance A: 50 × 3 = **150 miles**.
+- Pick 3 for Part 1, 150 for Part 2.
 
-**Example (system of constraints Two-Part).** "A factory produces chairs and tables using wood and labor. Each chair uses 5 units of wood and 2 hours of labor; each table uses 8 units of wood and 5 hours. Budget: 80 units of wood, 35 hours of labor. Find the MAXIMUM number of chairs (Part 1) and tables (Part 2) that can be produced simultaneously. Options: 2, 3, 4, 5, 6, 7, 8, 9, 10."
+**Example (constraint optimization — 705+).** "A factory produces chairs using 5 units of wood and 2 hours of labor each; tables using 8 units of wood and 5 hours. Budget: 80 units of wood, 35 labor-hours. Find the maximum chairs (Part 1) and tables (Part 2) that can be produced simultaneously."
 
-Let c = chairs, t = tables. Constraints: 5c + 8t ≤ 80 and 2c + 5t ≤ 35, c ≥ 0, t ≥ 0.
+This is a linear programming problem, not a standard two-equation system. The approach shifts to testing integer corner points that satisfy both constraints. At 705+, expect to test 3–4 feasible pairs systematically. The "solve and substitute" reflex breaks here — recognize the constraint-optimization structure early and switch to corner-point testing.
 
-To maximize both simultaneously, solve the system:
-- 5c + 8t = 80 and 2c + 5t = 35.
-- Multiply first by 2, second by 5: 10c + 16t = 160 and 10c + 25t = 175. Subtract: 9t = 15, so t = 5/3 ≈ 1.67. That's not an integer — so corner-point optimization.
+> **Recall check.** Without looking back, state the combined-work formula, the mixture setup, and the investment setup. (Answers: 1/a + 1/b = 1/T; x + y = t with weighted concentration; a + b = P with weighted return.) Retrieval of all three in the same breath cements the template-recognition reflex — which is the core skill on quantitative TPA.
 
-Try integer combinations. c = 8, t = 2: 40 + 16 = 56 ≤ 80 ✓, 16 + 10 = 26 ≤ 35 ✓. c = 8, t = 3: 40 + 24 = 64, 16 + 15 = 31 ✓. c = 10, t = 3: 50 + 24 = 74, 20 + 15 = 35 ✓ (tight).
-
-Etc. This kind of problem requires careful case-checking, which is typical for 705+ Two-Part.
-
-**The "round to integer" discipline.** If the answer list has only integer options and your algebra yields a non-integer, either your setup is wrong or you need to find corner-point integer solutions.
-
-> **Recall check.** Without looking, state the combined-work formula, the mixture formula, and the investment formula. (Answers: 1/a+1/b=1/T; weighted average with two equations; split-capital with two equations.) All three are structurally the same — two equations in two unknowns. Retrieval of all three cements the template in long-term memory.
+> **Self-explanation prompt.** Why are all three quantitative TPA templates structurally identical? If you can say "because they all express two constraints — a total constraint and a weighted-average constraint — and solving the system for the two unknowns is always the same move," you have understood what unifies them. The surface content changes (workers, solutions, investments); the algebra does not.
 
 ## @common-tpa-traps
 
-Two-Part Analysis has the most consistently-mis-handled traps of any DI subtype because the format itself creates a unique failure mode: you have to satisfy *two* constraints at once, but you pick *each* answer independently. The four traps below cost more points on hard TPA than any algebra error.
+Two-Part Analysis has the most consistently-mishandled traps of any DI subtype because the format itself creates a unique failure mode: you must satisfy *two* constraints at once, but you pick *each* answer independently. The four traps below cost more points on hard TPA than any algebra error.
 
 **Trap 1: The single-column-valid pair.**
 
-This is the signature TPA failure. You pick a value for Part 1 that's valid considered alone, then a value for Part 2 that's valid considered alone — and the pair fails the joint constraint between them.
+This is the signature TPA failure. You pick a value for Part 1 that's valid in isolation, then a value for Part 2 that's valid in isolation — and the pair fails the joint constraint between them.
 
 *Example.* The problem asks for "amount of Solution X" (Part 1) and "amount of Solution Y" (Part 2), with constraint x + y = 10. The shared list: 2, 3, 4, 5, 6, 7. Under time pressure, a student picks x = 4 (passes the column-1 sanity check) and y = 5 (passes the column-2 sanity check) — but 4 + 5 = 9, not 10. Both individual picks look reasonable; the pair isn't.
 
-The fix: **always verify the joint constraint as the last step**. The pair must satisfy *every* equation in the problem, not just each column's constraint considered separately. If there are two equations in the problem, your two values must satisfy both equations simultaneously.
+The fix: **always verify the joint constraint as the last step.** Your two values must satisfy every equation in the problem simultaneously. One substitution at the end takes 10 seconds and prevents this trap entirely.
 
 **Trap 2: The intermediate-result distractor.**
 
-TPA answer lists almost always include a value that's the result of an intermediate step in a multi-step solve. Students who finish step 3 of a 4-step problem, recognize "their" number in the list, and bubble lose the question.
+TPA answer lists almost always include values that are the result of intermediate steps, not the final answer. Students who recognize "their" number mid-solve and bubble early lose the question.
 
-*Example.* The problem requires solving the system 3a + 5b = 100 and a + b = 24. A student substitutes b = 24 − a, gets 3a + 5(24 − a) = 100, simplifies to −2a = −20, lands on a = 10. Now they need b. But the list happens to include 20 (from the −2a = −20 step), 14 (from b = 24 − 10), 10, 6, 4. The student, having just stared at "20" for a beat, bubbles 20 for Part 1. Wrong — Part 1 was asking for the value of `a`, not the intermediate `2a`.
+*Example.* A problem requires solving 3a + 5b = 100 and a + b = 24. A student substitutes b = 24 − a, gets −2a = −20, and lands on a = 10. The list includes 20 (from −2a = −20), 14 (from b = 24 − 10), 10, 6, 4. The student, having stared at "20" for a beat, bubbles 20 for Part 1. Wrong — the answer is a = 10, not the intermediate 2a = 20.
 
-The fix: **before bubbling, restate what each part is asking for and confirm your value answers that specific question**. "Part 1 asks for the amount of Alpha. My computed value is 60,000. Yes — that's Alpha, not the intermediate sum." Don't trust the recognition reflex; the test writers know which intermediate values to plant.
+The fix: **before bubbling, restate exactly what Part 1 and Part 2 are asking for** and confirm your value answers that specific question. "Part 1 asks for a. My computed a is 10. I select 10." Don't trust the recognition reflex — the intermediate values are planted deliberately.
 
 **Trap 3: The "must differ" assumption.**
 
-Students sometimes assume Part 1 and Part 2 must be different rows. They aren't required to differ. When the math points at the same value for both parts (especially common on mixture problems with equal halves, or symmetric word problems), pick the same row twice and move on. Don't second-guess the format.
+Students sometimes assume Part 1 and Part 2 must be different rows. They can be the same. When the math points to the same value for both parts — common on mixture problems with symmetric solutions and on equal-split investment problems — pick the same row twice and move on.
 
-*Example.* "Mix Solution X (30% salt) with Solution Y (60% salt) to make 10 L of 45% salt solution. List: 2, 3, 4, 5, 6, 7." Solving: x = 5, y = 5. The correct answer is to pick 5 for both — even when it feels weird to pick the same row twice. Logical TPA almost never has the same answer for both, but quantitative TPA does, regularly. Trust the math.
+*Example.* "Mix Solution X (30% salt) with Solution Y (60% salt) to make 10 L of 45% solution. List: 2, 3, 4, 5, 6, 7." Solving: x = 5, y = 5. Pick 5 for both — even when it feels wrong to pick the same row twice. Logical TPA almost never has the same answer for both; quantitative TPA does, regularly. Trust the math.
 
-**Trap 4: Binary scoring → all-or-nothing pacing.**
+**Trap 4: Binary scoring shapes pacing decisions.**
 
-TPA is graded all-or-nothing per question. Getting Part 1 right and Part 2 wrong gives you zero credit — the same as missing both. This shapes pacing in a specific way: if you're stuck on Part 1, don't burn time optimizing Part 2 hoping for partial credit. There is no partial credit.
+TPA is graded all-or-nothing. Getting Part 1 right and Part 2 wrong gives you zero — the same as missing both. This has a specific strategic implication: if you are stuck on Part 1 after 2:30, do not invest more time optimizing Part 2. There is no partial credit. Commit to a best guess for both parts and move to a question you can fully solve.
 
-The strategic consequence on hard questions: at the 2:30 mark, if Part 1 is still uncertain, **commit to a best guess for both parts and skip**. Spending another 90 seconds carefully solving Part 2 when Part 1 is doomed is wasted time — that 90 seconds buys exactly zero expected points on this question and forgoes the chance to fully solve an easier question downstream.
-
-The flip side: if you've nailed Part 1 with confidence, *now* it makes sense to invest in Part 2, because each part you solve correctly is worth the full point.
+The flip side: if you have nailed Part 1 with confidence, now it makes sense to invest in Part 2 — because each part you solve correctly contributes to a full point.
 
 **The compute-first reflex (the meta-discipline).**
 
-Strong TPA solvers compute their answers BEFORE scanning the list, then look for them. Students who scan the list first and "try things" often anchor on a list value (selection bias) and abandon their algebra before it converges. They lock onto a number that fits Part 1, then twist Part 2 to match.
-
-The discipline: **derive both values from the problem on your scratchwork, then look at the list to find them**. If your answer isn't in the list, you know your setup is wrong and can re-check before guessing. The list is a verification layer, not an input.
+Strong TPA solvers compute both answers before scanning the list, then find them. Students who scan the list first anchor on a value and abandon their algebra before it converges. Derive both values from the problem on your scratchwork, then find them in the list. If your answer is missing from the list, you know your setup is wrong — that is more useful feedback than a lucky guess.
 
 **The full TPA verification routine — every question, no exceptions.**
 
-1. Derive both values from the problem (don't peek at the list first).
+1. Derive both values from the problem (don't look at the list first).
 2. Find each value in the list.
-3. Substitute both selections back into *every* original equation. Both must hold.
-4. Restate what each part was asking for. Confirm your selection answers that specific question, not an intermediate quantity.
+3. Substitute both selections back into every original equation. Both must hold.
+4. Restate what each part asked for. Confirm your selection answers that specific question, not an intermediate quantity.
 
-This adds 15–20 seconds per question. It saves you 200+ points across the section over a prep cycle.
+This adds 15–20 seconds per question. It prevents traps 1 and 2 entirely.
 
-> **Self-explanation prompt.** Why is verifying the joint constraint specifically the last step in TPA — rather than treating each part as an independent CR or DS question? If you can say "because TPA's shared-list format invites picking each part in isolation; only joint verification catches the cross-constraint failures the format is designed to surface," you've understood why TPA punishes the same algebra mistake more than DS or PS would.
+> **Self-explanation prompt.** Why is verifying the joint constraint specifically the last step in TPA — rather than treating each part as an independent question? If you can say "because TPA's shared-list format invites picking each part in isolation; only joint verification catches the cross-constraint failures the format is designed to surface," you have understood why TPA punishes the same algebra mistake more than DS or PS would.
 
 ## @cause-effect-patterns
 
-Two-Part Analysis often tests cause-and-effect reasoning, either within a quantitative setup (e.g., "find the cause" and "find the effect") or in a logical argument.
+Causal arguments on the GMAT follow a predictable structure: an author observes a correlation (X and Y occur together), claims X caused Y, and draws a conclusion or recommends an action. Two-Part questions on these arguments ask you to find two pieces of evidence simultaneously — one that closes the gap between correlation and causation, one that widens it.
 
-**The cause-and-effect argument template.**
+**The anatomy of a causal argument.**
 
-Author observes correlation between X and Y, then claims X caused Y. Common Two-Part question: "Identify a fact that supports the causal claim" (Part 1) and "Identify a fact that undermines the causal claim" (Part 2).
+- **Correlation observed:** "We see X and Y together."
+- **Causal claim:** "X caused Y."
+- **Conclusion or recommendation:** "Therefore, do more of X."
 
-**Supporters typically:**
+Every strengthener and weakener operates on the gap between the correlation and the causal claim. The question is whether a new piece of information makes "X caused Y" more or less plausible than it was before.
 
-- Establish temporal order (X happened before Y).
-- Provide a mechanism linking X to Y.
-- Rule out alternative causes.
-- Show that without X, Y doesn't happen.
+**Four types of strengtheners.**
 
-**Underminers typically:**
+1. **Mechanism.** A plausible pathway from X to Y is identified. "The training addressed the specific skills customers value most."
+2. **Temporal order.** X preceded Y. "Sales increased only after the campaign launched, not before."
+3. **Controlled setting.** Confounders were held constant. "Subjects were randomly assigned; the groups were identical on all measured variables before the intervention."
+4. **Dose-response.** More X → more Y. "Departments with more training hours saw proportionally larger improvements."
 
-- Introduce alternative causes.
-- Reverse the direction (Y might cause X).
-- Show confounding variables.
-- Point out that X and Y occur independently in other contexts.
+**Three types of weakeners.**
 
-**Example.** Argument: "Employees who took a leadership training course were promoted twice as fast as those who didn't. Therefore, the course accelerates career advancement."
+1. **Alternative cause (confounding variable).** Something other than X explains Y. "A competitor went out of business in the same quarter, redirecting customers."
+2. **Reverse causation.** Y might have caused X, not the other way around. "Companies that are already growing tend to invest more in training."
+3. **Sampling or scope issue.** The observed correlation doesn't generalize. "Only the highest-performing locations were included in the study."
 
-Support candidates:
-- "Employees were randomly assigned to the course (vs self-selection)."
-- "Course content directly teaches skills that managers evaluate in promotion decisions."
+**Why this framework matters for TPA.** Part 1 (strengthener) and Part 2 (weakener) must be genuine opposites in their effect on the causal claim. A valid strengthener cannot also weaken the claim; a valid weakener cannot also strengthen it. When you are uncertain which option to pick, ask directly: "Does this piece of evidence make X→Y more plausible, or less?" If more, it's a strengthener. If less, it's a weakener. If the answer is neither or both, it's a distractor — eliminate it.
 
-Undermine candidates:
-- "Highly motivated employees were more likely to enroll in the course."
-- "Managers give promotion preference to employees they've seen in training settings."
+**Worked example.**
 
-**Structural Two-Part (conclusion + evidence).**
+*Argument:* "Employees who participated in a company wellness program were absent 3 fewer days per year than non-participants. The company concluded that the wellness program reduces absenteeism."
 
-"Identify a premise the author uses" (Part 1) and "Identify the main conclusion" (Part 2).
+Available options: (A) "Participants self-selected from employees with already-strong health habits." (B) "The program specifically targeted the leading causes of employee sick days." (C) "Absenteeism at peer companies without programs stayed constant during the same period." (D) "Employees with the fewest sick days were most likely to enroll in the wellness program." (E) "A new HR sick-leave tracking policy was introduced at the same time as the wellness program."
 
-Premises are statements the author cites *as evidence*. Conclusions are statements the author is *trying to establish*.
+*Analysis:*
+- (A) → Self-selection bias: healthier employees enrolled, so the wellness program may not have caused the difference. **Weakener.** Alternative cause.
+- (B) → Mechanism: if the program targeted the actual causes of absenteeism, the causal link is plausible. **Strengthener.**
+- (C) → Control comparison: the drop is specific to this company, not a broader trend. **Strengthener** (rules out an industry-wide shift).
+- (D) → Reverse causation: lower absenteeism predicted enrollment, not the other way around. **Weakener.**
+- (E) → Alternative cause: the new tracking policy could have independently changed recorded absenteeism. **Weakener.**
 
-**The "bridging statement" role.** Some arguments have subsidiary conclusions — intermediate steps drawn from evidence, then used as evidence for the main conclusion. A Two-Part question might ask for "the intermediate conclusion" vs "the main conclusion." Both exist in the argument; the intermediate supports the main.
+*Best pair:* Part 1 (strengthener) = **(B)**. Part 2 (weakener) = **(A)** or **(D)**, depending on which undermining mechanism the column header specifies. Read the header before evaluating options.
 
-**Example.** "Studies show that companies with diverse leadership teams outperform their competitors by 15%. Diverse teams bring varied perspectives that improve decision-making. Therefore, companies should invest in diversity initiatives."
+**The "bridging statement" role.** Some arguments contain an intermediate conclusion — a claim drawn from initial evidence that then serves as evidence for the main conclusion. Two-Part may ask you to identify both. Both are claims the author makes; they are at different levels.
 
-- Evidence: "Studies show 15% outperformance."
-- Intermediate conclusion: "Diverse teams make better decisions." (Drawn from evidence; then supports the final claim.)
-- Main conclusion: "Companies should invest in diversity initiatives."
+*Example:* "Exercise reduces cortisol levels. Elevated cortisol impairs cognitive focus. Therefore, regular exercise should improve productivity in office workers."
 
-All three exist in the passage, and Two-Part can ask for any two.
+- Evidence: "Exercise reduces cortisol" and "cortisol impairs focus."
+- Intermediate conclusion (unstated): "Exercise improves cognitive focus." (Implied bridge between the two pieces of evidence and the final claim.)
+- Main conclusion: "Regular exercise should improve productivity."
 
-**The "claim the author disputes" trap.** Some arguments cite opposing views to refute them. If the question asks for "the author's conclusion," don't pick the view the author argues against — pick the view the author supports.
+If a Two-Part question asks for "an implied intermediate conclusion" (Part 1) and "the main conclusion" (Part 2), the intermediate is about focus; the main is about productivity. Both exist in the argument's logic, even when one is not written explicitly.
 
-> **Self-explanation prompt.** Why is strengthening a causal claim typically about ruling out alternatives? If you can say "because 'X caused Y' is only convincing when other explanations are eliminated; each alternative ruled out narrows the gap between correlation and causation," you've internalized the asymmetric structure of causal arguments — and you'll apply the same logic across CR and logical Two-Part.
+> **Micro-drill.** 90 seconds.
+>
+> *Argument:* "Neighborhoods with more public parks have lower rates of childhood obesity than neighborhoods with fewer parks. A city planning commission argued that adding parks to underserved neighborhoods would reduce childhood obesity."
+>
+> Options: (A) "Children in neighborhoods with more parks spend more time in outdoor physical activity." (B) "Families with higher incomes tend to both live near parks and maintain better nutrition habits." (C) "Similar park-building programs in other cities produced no measurable change in obesity rates." (D) "The planning commission included no physicians or public health experts." (E) "Childhood obesity rates rose nationally during the same period."
+>
+> Part 1: strengthener. Part 2: weakener.
+>
+> *Answers:* Part 1 → **(A)**: establishes a mechanism — more parks → more outdoor activity → less obesity. Without this link, the argument rests on correlation alone; with it, a plausible causal pathway exists. Part 2 → **(B)**: income is a confounding variable — wealthier families live near parks AND maintain better nutrition, so the park-obesity correlation may reflect income differences rather than parks themselves. Note: (C) is a weakener too (direct counter-evidence), but (B) is more precise as a causal challenge because it identifies the underlying confounder. (D) is irrelevant to the causal claim. (E) is ambiguous — if obesity rose nationally but fell in park-rich neighborhoods, that would actually strengthen the argument; as stated, the direction is unclear.
 
 ## @summary
 
-Two-Part Analysis is two question types wearing the same dress. Recognizing the flavor (quantitative vs logical) is the first move; applying the appropriate template is the rest.
+Two-Part Analysis is two question types wearing the same format. Recognizing the flavor in the first 10 seconds is the first move; applying the appropriate template is everything else.
 
 **The Two-Part decision tree.**
 
-1. **Read the stem. Classify the flavor.** Numbers and equations → quantitative. Arguments and roles → logical.
-2. **Quantitative:** define variables, set up equations, solve, match to list.
+1. **Classify the flavor.** Numbers, equations, units → quantitative. Arguments, roles, conclusions → logical.
+2. **Quantitative:** define variables, set up two equations, solve, match to list.
 3. **Logical:** decompose the argument (conclusion, evidence, assumption), then match each part's required role to the list.
-4. **Verify against the joint constraint.** Plug both selections into *every* original equation. Each must hold. (See @common-tpa-traps for the full verification routine and the four trap patterns that punish skipping this step.)
+4. **Verify the joint constraint.** Substitute both selections into every original equation (quant), or re-read the argument with both selections in mind (logical). Both must hold.
 
 **The quantitative templates:**
 
-| Template | Formula |
+| Template | Two equations |
 |---|---|
 | Combined work | 1/a + 1/b = 1/T |
 | Weighted mixture | x + y = t; c_X·x + c_Y·y = c·t |
 | Split capital | a + b = P; r_A·a + r_B·b = R |
-| Distance-rate-time | d = r·t, separation rate = sum (opposite) or difference (same) |
+| Distance-rate-time | d = r·t for each object, plus a time or distance constraint |
 
 **The logical roles:**
 
 | Role | Signature |
 |---|---|
-| Conclusion | Main claim, often after "therefore" |
-| Evidence / premise | Facts and observations; often after "because" or "since" |
-| Assumption | Unstated premise the argument requires; often "no alternative cause" |
-| Strengthener | Additional fact that narrows the evidence-conclusion gap |
-| Weakener | Fact that introduces alternative cause or counter-evidence |
-| Counter-claim | View the author argues against (not the author's own position) |
+| Conclusion | Main claim; often after "therefore," "should," "conclude" |
+| Evidence | Facts cited as support; after "because," "since," "shows," "found that" |
+| Assumption | Unstated premise; often about causation, samples, or no alternatives |
+| Strengthener | Mechanism, temporal order, controlled setting, or dose-response |
+| Weakener | Alternative cause, reverse causation, or sampling issue |
+| Counter-claim | View the author argues against — not the author's own position |
 
-**Time-management targets.**
+**Time targets.**
 
-- Easy quantitative Two-Part: under 90 seconds.
-- Medium: 90-120 seconds.
-- Hard: up to 2 minutes.
-
-**The two highest-leverage Two-Part habits:**
-
-1. **Classify the flavor within the first 10 seconds.** Going in with the wrong frame (trying to set up equations for a logical question, or argument-analysis for a quantitative one) burns 30+ wasted seconds.
-
-2. **Always verify your selections against the original stem.** With quantitative, plug the numbers back into the equations. With logical, re-read the argument with your selections substituted — does the pair make sense?
+- Easy quantitative: under 90 seconds.
+- Medium: 90–120 seconds.
+- Hard (constraint optimization or complex logical): up to 2:15.
 
 **Common traps across all Two-Part questions:**
 
-- Picking the *opposite* role for Part 2 than requested (strengthen vs weaken).
-- Skipping verification and submitting values that don't satisfy the constraints.
-- Assuming the two answers must differ (they can be the same).
+- Picking values that each satisfy their column in isolation without verifying the joint constraint.
+- Bubbling an intermediate result instead of the final answer.
+- Assuming Part 1 and Part 2 must be different rows (they can be the same).
 - On logical questions: confusing a claim the author cites with a claim the author endorses.
 
-Drill the 15 questions in this chapter's problem sets. Because Two-Part is a smaller question bank, each question carries more weight in your Data Insights score — aim for 90%+ on the easy and medium sets before the test.
+**What to do next.**
+
+1. **Easy set first — both questions.** TPA has only 2 easy questions in this chapter. Do them without timing yourself, writing out every step: define variables, set up equations, solve, substitute both values back. The goal is method, not speed.
+
+2. **Medium set — 8 questions, 2 minutes each.** After every miss, tag the reason using the four traps from @common-tpa-traps. The trap with the most tags is the reflex to drill next. If most misses are quantitative, re-run the micro-drill in @quantitative-setup. If most are logical, re-do the @logical-two-part micro-drill cold.
+
+3. **Hard set — 5 questions, untimed first.** On the first pass, find the approach at any cost — don't race. On the second pass, time yourself. The gap between your two pass times is a direct measure of how much speed repetition will buy, and it is almost always larger than students expect.
+
+4. **Error log tag.** Every TPA miss should be tagged by trap number. After two problem-set runs, sort those tags. The most common tag is your next focused drill — fix one reflex at a time.
+
+5. **Classification speed target.** You should classify any TPA stem as quantitative or logical within 10 seconds. If you're still uncertain at the 20-second mark, the classify-first section above needs another read, not another problem set.

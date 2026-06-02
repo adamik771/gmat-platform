@@ -177,7 +177,7 @@ Simplify √12 + √27.
 **explanation:** Radicals only add when they share the same radicand. Simplify each: √12 = √(4 × 3) = 2√3; √27 = √(9 × 3) = 3√3. Both share √3, so add coefficients: 2√3 + 3√3 = 5√3.
 **mistake_a:** Computed √(12 + 27) = √39 (cannot add radicands inside one root).
 **mistake_b:** Computed wrong simplification; got 3√13.
-**mistake_d:** Coefficient addition slip: 2 + 3 = 6 instead of 5.
+**mistake_d:** Mis-simplified √12: correctly pulled out the factor of 4 (√12 = √4 × √3) but wrote the coefficient as 3 rather than 2, producing 3√3 instead of 2√3. Combined with the correct 3√3 for √27: 3√3 + 3√3 = 6√3.
 **mistake_e:** Added radicands and coefficients: (2+3)√(12+27) → 5√39 (wrong); rounded.
 **common_trap:** Adding inside the radical (√a + √b ≠ √(a + b)) — this is one of the most common mistakes.
 **takeaway:** Add radicals only after simplifying to matching radicands. √a + √b = √(a + b) is *false*; treat radicals like variables — only add when they're the same "kind."
@@ -202,7 +202,7 @@ What is the value of 27^(2/3)?
 **fastest_path:** 27^(2/3) = (27^(1/3))² = 3² = 9.
 **explanation:** Fractional exponent rule: a^(m/n) = (a^(1/n))^m. So 27^(2/3) = (27^(1/3))² = 3² = 9. Take the root first (smaller numbers); raising to the power second.
 **mistake_a:** Computed 27^(1/3) = 3 and stopped (didn't square).
-**mistake_b:** Computed 27 × 2/3 = 18, halved to ~6.
+**mistake_b:** Correctly computed 27^(1/3) = 3 but then multiplied by the numerator instead of squaring: 3 × 2 = 6 instead of 3² = 9. This treats the exponent as a scalar multiplier rather than a power-of-power operation.
 **mistake_d:** Computed 27 × 2/3 = 18.
 **mistake_e:** Computed 27² / 3 = 729/3 = 243 (raised to 2 first, then divided by 3 — wrong).
 **common_trap:** Treating a^(m/n) as a × m/n or as a^m / n.
@@ -228,7 +228,7 @@ If (3 * 10⁴) * (2 * 10⁻⁷) = k, what is k?
 **fastest_path:** 3 × 2 = 6; 10⁴ × 10⁻⁷ = 10⁻³. k = 6 × 10⁻³.
 **explanation:** Split into coefficient and power-of-10. Coefficients: 3 × 2 = 6. Powers: 10⁴ × 10⁻⁷ = 10^(4 + (−7)) = 10⁻³. Combine: 6 × 10⁻³.
 **mistake_a:** Multiplied exponents: 4 × (−7) = −28.
-**mistake_b:** Subtracted instead of added: 4 − 7 = −3 (correct), then doubled to −11; or wrote 4 + (−7) = −11 incorrectly.
+**mistake_b:** Added the absolute values of the exponents rather than computing their algebraic sum: |4| + |7| = 11, then applied the negative sign from the negative exponent and got 10⁻¹¹. The correct rule is 4 + (−7) = −3, not −(|4| + |7|) = −11.
 **mistake_d:** Mis-multiplied coefficients (3 + 2 = 5) and computed exponents correctly.
 **mistake_e:** Got the sign of the exponent wrong: +11 instead of −3.
 **common_trap:** Multiplying or subtracting exponents instead of adding.
@@ -307,7 +307,7 @@ Rationalize the denominator: 6 / (√3 + 1).
 **explanation:** To clear a sum/difference with a radical in the denominator, multiply by the *conjugate* (flip the sign between terms). Numerator: 6 × (√3 − 1) = 6√3 − 6. Denominator: (√3 + 1)(√3 − 1) = 3 − 1 = 2 (difference of squares). Result: (6√3 − 6)/2 = 3√3 − 3.
 **mistake_a:** Computed 6(√3 − 1) without dividing by 2.
 **mistake_c:** Used the same sign instead of conjugate.
-**mistake_d:** Divided by 3 instead of 2; got 2√3 − 2.
+**mistake_d:** Used the same sign instead of the conjugate *and* simplified the denominator as (√3)² = 3: multiplied numerator by (√3 + 1), yielding 6(√3 + 1) = 6√3 + 6, then divided by the incorrectly simplified denominator 3, giving (6√3 + 6)/3 = 2√3 + 2. The correct conjugate is (√3 − 1), producing a negative sign in the numerator and denominator (√3 + 1)(√3 − 1) = 3 − 1 = 2.
 **mistake_e:** Cancelled too aggressively; got √3 − 1.
 **common_trap:** Forgetting to use the conjugate's flipped sign — multiplying by (√3 + 1)/(√3 + 1) doesn't clear the radical.
 **takeaway:** Rationalize sums/differences with radicals using the *conjugate*: (a + b)(a − b) = a² − b². The result has no radical in the denominator.
@@ -407,9 +407,6 @@ Each alone? Statement 1 yes, Statement 2 no. → A.
 
 ---
 
-
----
-
 ## Q16
 **difficulty:** Easy
 **type:** Problem Solving
@@ -428,7 +425,7 @@ If 2^x · 3^y = 648 with x and y positive integers, what is x + y?
 **explanation:** Prime factorize 648. Divide by 2 repeatedly: 648 / 2 = 324, /2 = 162, /2 = 81. So 648 = 2³ × 81. 81 = 3⁴. So 648 = 2³ × 3⁴. x = 3, y = 4, x + y = 7.
 **mistake_a:** Miscounted: x = 2 instead of 3.
 **mistake_b:** Stopped factoring early (e.g., 648 = 2 × 324, mis-counted 2-power as 1).
-**mistake_d:** Mis-factored 81 as 3³; got y = 3, sum = 6 → off-by-one to 8.
+**mistake_d:** Counted 81 as the "5th power" of 3 by using 1-based position in the sequence {3⁰ = 1, 3¹ = 3, 3² = 9, 3³ = 27, 3⁴ = 81}: because 81 appears at index 5 when counting from 1, the student wrote y = 5. Then x + y = 3 + 5 = 8. The exponent is 4 (the number of times 3 divides into 81), not the 1-based position in the sequence.
 **mistake_e:** Computed x × y = 12 instead of x + y; rounded.
 **common_trap:** Stopping factoring before reaching smallest primes — 648 = 2 × 324 is correct but unfinished.
 **takeaway:** For 2^x × 3^y type problems: factor to smallest primes (divide repeatedly by 2, then by 3, etc.) and read off the exponents.
@@ -508,15 +505,15 @@ If x = 8^(2/3), what is the value of x²?
 - B) 16
 - C) 32
 - D) 64
-- E) 128
+- E) 256
 
 **answer:** B
 **fastest_path:** x = 8^(2/3) = 2² = 4. x² = 16.
 **explanation:** Compute x first. 8^(2/3) = (8^(1/3))² = 2² = 4. Then x² = 16. Alternative: x² = 8^(4/3) = (8^(1/3))⁴ = 2⁴ = 16.
 **mistake_a:** Computed x = 8 (skipped fractional exponent); bubbled.
-**mistake_c:** Computed x² = 4 × 8 = 32 (wrong path).
-**mistake_d:** Computed x² = 64 (treated x = 8).
-**mistake_e:** Computed x = 64^(1/3) = 4 wrongly; got 128.
+**mistake_c:** Computed x² = 4 × 8 = 32 (multiplied x by the original base instead of squaring x).
+**mistake_d:** Treated x = 8 (ignored the fractional exponent entirely), then x² = 64.
+**mistake_e:** Applied addition instead of multiplication in the power-of-power rule when squaring: wrote (8^(2/3))² = 8^(2/3 + 2) = 8^(8/3) = (8^(1/3))^8 = 2^8 = 256. The correct rule is (a^m)^n = a^(m × n), so (8^(2/3))² = 8^(4/3) = 2^4 = 16.
 **common_trap:** Interpreting a^(m/n) as a × m/n or a^m / n.
 **takeaway:** a^(m/n) = (a^(1/n))^m. Take root first, then power; small numbers are easier.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -595,29 +592,29 @@ III. √63
 **type:** Problem Solving
 **topic:** Radical Equations — Extraneous Roots
 
-If √(3x + 1) = x − 1, what is the sum of all values of x that satisfy the equation?
+If √(3x − 2) = x − 2, what is the sum of all values of x that satisfy the equation?
 
 - A) 0
-- B) 5
+- B) 1
 - C) 6
-- D) 10
-- E) 15
+- D) 7
+- E) 12
 
-**answer:** B
-**fastest_path:** Square: 3x + 1 = x² − 2x + 1 → x² − 5x = 0 → x = 0 or 5. Check: x = 0 fails; x = 5 passes. Sum = 5.
-**explanation:** Square both sides: 3x + 1 = (x − 1)². Expand: 3x + 1 = x² − 2x + 1 → x² − 5x = 0 → x(x − 5) = 0. Candidates: x = 0 or x = 5.
+**answer:** C
+**fastest_path:** Square: 3x−2 = x²−4x+4 → x²−7x+6 = 0 → x=1 or x=6. Check: x=1 fails; x=6 passes. Sum = 6.
+**explanation:** Square both sides: 3x − 2 = (x − 2)². Expand: 3x − 2 = x² − 4x + 4 → x² − 7x + 6 = 0 → (x − 1)(x − 6) = 0. Candidates: x = 1 or x = 6.
 
 Verify against the original (squaring can introduce extraneous solutions):
-- x = 0: √(0 + 1) = 1, but (0 − 1) = −1. Radical is non-negative; right side is negative. Fails.
-- x = 5: √(15 + 1) = √16 = 4, and (5 − 1) = 4. Valid.
+- x = 1: √(3 − 2) = √1 = 1, but (1 − 2) = −1. The radical is non-negative; the right side is negative. Fails — extraneous.
+- x = 6: √(18 − 2) = √16 = 4, and (6 − 2) = 4. Valid. ✓
 
-Only x = 5 satisfies. Sum = 5.
-**mistake_a:** Computed sum = 0 (only x = 0).
-**mistake_c:** Added both candidates 0 + 5 = 5 wrongly to 6 (off-by-one or arithmetic slip).
-**mistake_d:** Squared incorrectly; got x = 5 and x = 5 again (10).
-**mistake_e:** Multiplied candidates × 3.
-**common_trap:** Adding all candidates without checking for extraneous roots that squaring introduced.
-**takeaway:** Squaring radical equations can introduce extraneous solutions. *Always* verify each candidate against the original equation; reject any that fail.
+Only x = 6 satisfies. Sum = 6.
+**mistake_a:** Attempted to verify both candidates but incorrectly concluded neither was valid — perhaps compared √1 to |1 − 2| = 1 (using absolute value instead of the signed expression), accepted x = 1, then doubted it: reported "no solution," sum = 0.
+**mistake_b:** Accepted only the extraneous root x = 1 as valid — saw √1 = 1 and compared with |1 − 2| = 1 (absolute value), concluding the equation "balanced." Failed to check the sign of the right-hand side (1 − 2 = −1 ≠ 1).
+**mistake_d:** Added both algebraic candidates without verifying against the original: 1 + 6 = 7. This is the primary trap — squaring can introduce roots that fail in the original; always check each candidate.
+**mistake_e:** Found valid solution x = 6 and then assumed squaring must have created a symmetric companion; added 6 + 6 = 12. Squaring does not introduce a "mirror" solution of the same value — it can only introduce extraneous roots that fail the original sign condition.
+**common_trap:** Summing all algebraic candidates from the squared equation without verifying each against the original. Squaring a radical equation always risks introducing extraneous solutions; the verification step is not optional.
+**takeaway:** After squaring a radical equation, check each candidate in the *original* equation. Reject any for which the right-hand side is negative (radicals are non-negative). The sum asked is over verified valid solutions only.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 
@@ -641,7 +638,7 @@ If 2^x = 80, which of the following is closest to the value of x?
 **explanation:** 2⁶ = 64, 2⁷ = 128. So x is between 6 and 7. Since 80 is closer to 64 than to 128 (gap 16 vs. 48), x is closer to 6. The actual value: x = log₂(80) ≈ 6.32. Closest answer: 6.3 (C).
 **mistake_a:** Computed differently; got 5.6.
 **mistake_b:** Bubbled exact 6 (close but not the *closest*).
-**mistake_d:** Used linear interpolation: (80 − 64)/(128 − 64) ≈ 0.25; got 6.25 → rounded to 6.8 incorrectly.
+**mistake_d:** Applied linear interpolation from the wrong end: computed the distance from 80 to 128 as a fraction of the full interval — (128 − 80)/(128 − 64) = 48/64 = 0.75 — and added this as a positive offset from 6, giving x ≈ 6.75 ≈ 6.8. The correct forward interpolation uses (80 − 64)/(128 − 64) = 16/64 = 0.25, yielding x ≈ 6.25 ≈ 6.3. Even the correct linear interpolation is only approximate here since 2^x is exponential, not linear.
 **mistake_e:** Bubbled 7 (close to 2⁷ but off).
 **common_trap:** Linear interpolation on logarithms — 2^x is exponential, so the log is not linearly distributed.
 **takeaway:** For 2^x = N, find the bracket (smallest 2^k > N and largest 2^k < N), then estimate x by *proximity to the closer end*, not linear interpolation. Logs grow more slowly than linear.
@@ -667,7 +664,7 @@ If 3^(x + 2) = 81, what is the value of x?
 **fastest_path:** 81 = 3⁴ → x + 2 = 4 → x = 2.
 **explanation:** Rewrite 81 as 3⁴. Equation: 3^(x + 2) = 3⁴. Same base → equal exponents: x + 2 = 4 → x = 2.
 **mistake_a:** Computed x = 81 − 81 = 0.
-**mistake_b:** Computed 81 / 81 = 1.
+**mistake_b:** Correctly recognized 81 = 3⁴ and set x + 2 = 4, but made an arithmetic slip: subtracted 3 instead of 2, getting x = 4 − 3 = 1 instead of x = 4 − 2 = 2.
 **mistake_d:** Recognized 81 = 3⁴ but slipped: x = 3.
 **mistake_e:** Used 81 = 3⁵ (wrong); got x + 2 = 5 → x = 3, nudged to 4.
 **common_trap:** Mis-recognizing the power of 3.
