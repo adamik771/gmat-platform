@@ -999,3 +999,480 @@ From the statements below, identify the one that most strengthens the economist'
 **common_trap:** Picking the cross-country study as the strongest strengthener because it provides empirical evidence — but it confirms a stated step. The 60% statistic closes the critical unstated gap.
 **takeaway:** In multi-step causal chains, the strongest strengthener closes an implicit gap; the most critical flaw disrupts a stated link (often via substitution or confounding).
 **related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Overlapping Sets
+
+A class of 40 students was surveyed about sports. 22 students play soccer, 16 play basketball, and 8 play both sports. Select the number of students who play at least one sport (column 1) and the number who play neither sport (column 2).
+
+|    | At least one | Neither |
+|----|--------------|---------|
+| 10 |              |         |
+| 22 |              |         |
+| 30 |              |         |
+| 38 |              |         |
+| 40 |              |         |
+
+**answer:** At least one = 30, Neither = 10
+**fastest_path:** At-least-one = 22 + 16 − 8 = 30 (inclusion-exclusion). Neither = 40 − 30 = 10.
+**explanation:** By inclusion-exclusion: students who play at least one sport = 22 + 16 − 8 = 30 (the overlap is subtracted so the 8 who play both are not double-counted). Students who play neither = 40 − 30 = 10.
+**mistake_b:** 22 — that is the exactly-one count (soccer-only 14 + basketball-only 8 = 22), not the at-least-one total.
+**mistake_d:** 38 — adding 22 + 16 = 38 without subtracting the 8-student overlap; double-counts both-sport students.
+**mistake_e:** 40 — the total class size; nothing subtracted. At-least-one equals the total only if nobody plays neither sport.
+**common_trap:** Adding the two group sizes without subtracting the overlap to produce 38. Inclusion-exclusion: |A ∪ B| = |A| + |B| − |A ∩ B|.
+**takeaway:** At-least-one = A + B − both. Neither = Total − at-least-one. Subtracting the overlap once is mandatory to avoid double-counting.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Sequential Percentage Changes
+
+A store buys a jacket at a wholesale cost of $80. The store marks it up by 35% to set the retail price. During a sale, the store discounts the retail price by 10%. Determine the retail price before the sale discount (column 1) and the final sale price (column 2).
+
+|         | Retail Price | Sale Price |
+|---------|--------------|------------|
+| $72.00  |              |            |
+| $88.00  |              |            |
+| $97.20  |              |            |
+| $108.00 |              |            |
+| $116.00 |              |            |
+
+**answer:** Retail Price = $108.00, Sale Price = $97.20
+**fastest_path:** Retail = 80 × 1.35 = 108. Sale = 108 × 0.90 = 97.20.
+**explanation:** Retail price = $80 × 1.35 = $108.00. The 35% markup applies to the wholesale cost. Sale price = $108.00 × 0.90 = $97.20. The 10% discount applies to the retail price, not to the original $80.
+**mistake_a:** $72.00 — applying the 10% discount to the original $80 cost (80 × 0.90 = 72), skipping the markup entirely.
+**mistake_b:** $88.00 — using a 10% markup instead of 35%: 80 × 1.10 = 88.
+**mistake_e:** $116.00 — applying both percentages to the original base: 80 + 0.35(80) + 0.10(80) = 116. Each step's base is the current price, not the starting price.
+**common_trap:** Applying the 10% discount to the original $80 rather than to the $108 retail price. Sequential percent changes each use the updated base.
+**takeaway:** Markup applies to cost; discount applies to the marked-up price. Each step uses the new base: 80 → 108 → 97.20.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Ratio and Proportion
+
+A recipe calls for flour and sugar in the ratio 5 to 2. A baker uses 35 cups of flour for a large batch. Determine the number of cups of sugar needed (column 1) and the total cups of flour and sugar combined (column 2).
+
+|    | Sugar (cups) | Total (cups) |
+|----|--------------|--------------|
+| 7  |              |              |
+| 14 |              |              |
+| 21 |              |              |
+| 35 |              |              |
+| 49 |              |              |
+
+**answer:** Sugar = 14, Total = 49
+**fastest_path:** Sugar = 35 × (2/5) = 14. Total = 35 + 14 = 49.
+**explanation:** The flour-to-sugar ratio is 5:2. For every 5 cups of flour, 2 cups of sugar are used. With 35 cups of flour: sugar = 35 × (2/5) = 14 cups. Total = 35 + 14 = 49 cups.
+**mistake_a:** 7 — dividing 35 by 5 to get the unit size (7) without multiplying by 2 to get the actual sugar count.
+**mistake_c:** 21 — using a 5:3 ratio by mistake, or misreading the ratio as flour-to-total instead of flour-to-sugar.
+**mistake_d:** 35 — equal parts; treating the ratio as 1:1 and using the flour quantity for sugar.
+**common_trap:** Inverting the ratio to compute sugar = 35 × (5/2) = 87.5, which treats flour as the smaller ingredient.
+**takeaway:** Ratio a:b — given the a-quantity, the b-quantity = (given) × (b/a). Always identify which ingredient the given amount belongs to before applying the ratio.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Circle Geometry
+
+A circle has an area of 36π square centimeters. Determine the radius in centimeters (column 1) and the circumference expressed in terms of π in centimeters (column 2).
+
+|      | Radius (cm) | Circumference |
+|------|-------------|---------------|
+| 3    |             |               |
+| 6    |             |               |
+| 9    |             |               |
+| 6π   |             |               |
+| 12π  |             |               |
+| 18π  |             |               |
+
+**answer:** Radius = 6, Circumference = 12π
+**fastest_path:** πr² = 36π → cancel π → r² = 36 → r = 6. C = 2π(6) = 12π.
+**explanation:** Area = πr² = 36π. Divide both sides by π: r² = 36, so r = 6 cm. Circumference = 2πr = 2π(6) = 12π cm.
+**mistake_a:** 3 — possibly computing r = 36/12 = 3, or confusing radius with half the diameter.
+**mistake_c:** 9 — arithmetic slip in taking the square root, or confusion with a different formula.
+**mistake_d:** 6π — circumference formula applied with the wrong radius of 3: 2π(3) = 6π.
+**mistake_f:** 18π — using an incorrect formula such as πr² /2 or some variant that introduces an extra factor.
+**common_trap:** Failing to cancel π before taking the square root: treating r = √(36π) = 6√π instead of canceling π first to get r² = 36.
+**takeaway:** Area = πr² → cancel π on both sides → r² = the numeric coefficient → r = √coefficient. Then C = 2πr.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q40
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Number Properties (LCM and GCF)
+
+The least common multiple (LCM) of two positive integers is 60, and their greatest common factor (GCF) is 4. One of the integers is 12. Determine the other integer (column 1) and the product of the two integers (column 2).
+
+|     | Other integer | Product |
+|-----|---------------|---------|
+| 15  |               |         |
+| 16  |               |         |
+| 20  |               |         |
+| 24  |               |         |
+| 240 |               |         |
+| 480 |               |         |
+
+**answer:** Other integer = 20, Product = 240
+**fastest_path:** Product = GCF × LCM = 4 × 60 = 240. Other integer = 240 / 12 = 20. Verify: GCF(12, 20) = 4, LCM(12, 20) = 60. Both confirmed.
+**explanation:** For any two positive integers, GCF × LCM = product of the two integers. So product = 4 × 60 = 240. Other integer = 240 / 12 = 20. Verification: 12 = 2² × 3 and 20 = 2² × 5. GCF = 2² = 4 ✓. LCM = 2² × 3 × 5 = 60 ✓.
+**mistake_a:** 15 — LCM(12, 15) = 60 appears to check out, but GCF(12, 15) = 3, not 4. Both conditions must hold simultaneously.
+**mistake_b:** 16 — GCF(12, 16) = 4 checks out, but LCM(12, 16) = 48, not 60. Satisfies only one constraint.
+**mistake_d:** 24 — GCF(12, 24) = 12, not 4. Fails the GCF condition.
+**common_trap:** Verifying only one of the two conditions (GCF or LCM) rather than both. Confirm each stated condition independently.
+**takeaway:** GCF × LCM = product of the two integers. Use this to find the unknown, then verify both the GCF and LCM match the given values.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Logic — Inference vs. Causal Claim
+
+A university study reports: "Students who met with an academic advisor at least three times per semester had an average GPA of 3.4. Students who never met with an advisor had an average GPA of 2.9." The university president concludes: "Expanding our advising program will raise the average student GPA."
+
+From the statements below, identify the one that can be directly inferred from the study data alone (column 1) and the one that most accurately explains why the data do not support the president's conclusion (column 2).
+
+| Statement | Can Be Inferred | Why Not Supported |
+|-----------|-----------------|-------------------|
+| Students who used advising at least three times had higher average GPAs than students who never used it | | |
+| Students who did not use advising lacked awareness of the program's availability | | |
+| Students who frequently seek advising are likely already more motivated to succeed academically | | |
+| The advising staff lacks the capacity to serve the full student body | | |
+| Advising teaches effective time-management skills that directly raise GPA | | |
+
+**answer:** Can Be Inferred = "Students who used advising at least three times had higher average GPAs than students who never used it"; Why Not Supported = "Students who frequently seek advising are likely already more motivated to succeed academically"
+**fastest_path:** Inference = direct restatement of reported averages (3.4 > 2.9). Causal flaw = self-selection: high-motivation students both seek advising and earn higher GPAs independently.
+**explanation:** The first statement is a direct restatement of the reported data requiring no inference beyond what was measured. The president's causal conclusion fails because of self-selection bias: students who proactively seek advising three or more times per semester are likely more academically motivated to begin with. Their motivation — not the advising itself — could be driving both behaviors simultaneously.
+**mistake_b:** Why avoidance-students made their choice is speculative and not stated in the study data.
+**mistake_d:** Staff capacity is an external constraint not mentioned in the study and does not explain the logical gap in the causal claim.
+**mistake_e:** A mechanism plausibly supports the causal claim rather than explaining why it fails. Mechanism strengthens; confound undermines.
+**common_trap:** Confusing mechanism (row 5 supports causation) with confound (row 3 undermines causation). A mechanism explains how the effect could occur; a confound explains why the correlation could exist without causation.
+**takeaway:** Observational data license descriptive inferences only. Causal claims require ruling out self-selection. Ask: would randomly assigned students show the same GPA gain?
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Right Triangle
+
+A right triangle has a hypotenuse of 25 cm and one leg of 7 cm. Determine the length of the other leg in centimeters (column 1) and the area of the triangle in square centimeters (column 2).
+
+|      | Other Leg (cm) | Area (cm²) |
+|------|----------------|------------|
+| 18   |                |            |
+| 20   |                |            |
+| 24   |                |            |
+| 84   |                |            |
+| 87.5 |                |            |
+| 168  |                |            |
+
+**answer:** Other Leg = 24, Area = 84
+**fastest_path:** 7² + b² = 25² → b² = 576 → b = 24. Area = (1/2)(7)(24) = 84.
+**explanation:** By the Pythagorean theorem: 7² + b² = 25² → 49 + b² = 625 → b² = 576 → b = 24 cm. This is the 7-24-25 Pythagorean triple. Area = (1/2)(leg₁)(leg₂) = (1/2)(7)(24) = 84 cm².
+**mistake_a:** 18 — subtracting instead of squaring: 25 − 7 = 18. Does not apply the Pythagorean theorem.
+**mistake_b:** 20 — guessing a common triple; 7² + 20² = 449 ≠ 625. Fails the check.
+**mistake_e:** 87.5 — area computed as (1/2)(hypotenuse)(leg): (1/2)(25)(7) = 87.5. The hypotenuse is not a leg; only the two perpendicular legs form the base and height.
+**mistake_f:** 168 — omitting the 1/2 in the area formula: 7 × 24 = 168.
+**common_trap:** Using the hypotenuse as a dimension in the area formula. For a right triangle, area uses the two legs, not the hypotenuse.
+**takeaway:** Pythagorean theorem: a² + b² = c² (c = hypotenuse). Right triangle area = (1/2)(leg₁)(leg₂). Never substitute the hypotenuse for a leg in the area formula.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Overlapping Sets (Survey)
+
+A survey of 120 people found that 65 read novels, 45 read news articles, and 25 read both. Determine the number of people who read neither type of content (column 1) and the number who read exactly one of the two types (column 2).
+
+|    | Neither | Exactly One |
+|----|---------|-------------|
+| 25 |         |             |
+| 35 |         |             |
+| 60 |         |             |
+| 85 |         |             |
+| 95 |         |             |
+
+**answer:** Neither = 35, Exactly One = 60
+**fastest_path:** At-least-one = 65 + 45 − 25 = 85. Neither = 120 − 85 = 35. Exactly-one = 85 − 25 = 60.
+**explanation:** Inclusion-exclusion: at-least-one = 65 + 45 − 25 = 85. Neither = 120 − 85 = 35. Exactly-one = at-least-one − both = 85 − 25 = 60. Cross-check: novels-only = 65 − 25 = 40; news-only = 45 − 25 = 20; exactly-one = 40 + 20 = 60 ✓.
+**mistake_a:** 25 — the "both" count, confused with "neither." People who read both are not in the neither group.
+**mistake_d:** 85 — at-least-one, mistakenly reported as "neither." Neither = Total − at-least-one = 120 − 85 = 35.
+**mistake_e:** 95 — possibly 120 − 25 = 95, subtracting only the overlap from total and skipping the full inclusion-exclusion step.
+**common_trap:** Confusing the overlap count (25) with the "neither" count. People in the "both" group read two types of content; "neither" is the group outside all categories.
+**takeaway:** Neither = Total − (A + B − both). Exactly-one = A + B − 2(both). Sketch the two-circle Venn diagram to label all four regions before solving.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Weighted Average
+
+An instructor weights the midterm at one-third of the final grade and the final exam at two-thirds. A student scores 72 on the midterm. Determine the minimum score needed on the final exam to achieve an overall grade of exactly 86 (column 1) and the overall grade the student would earn by scoring 90 on the final exam (column 2).
+
+|    | Min final score | Grade if final = 90 |
+|----|-----------------|---------------------|
+| 84 |                 |                     |
+| 86 |                 |                     |
+| 88 |                 |                     |
+| 90 |                 |                     |
+| 93 |                 |                     |
+
+**answer:** Min final score = 93, Grade if final = 90 → 84
+**fastest_path:** (1/3)(72) + (2/3)x = 86 → 24 + (2/3)x = 86 → x = 93. Grade at 90: 24 + (2/3)(90) = 84.
+**explanation:** Weighted equation: (1/3)(72) + (2/3)x = 86 → 24 + (2/3)x = 86 → (2/3)x = 62 → x = 93. For the second column: (1/3)(72) + (2/3)(90) = 24 + 60 = 84. The 72 midterm drags the average down, so even a 90 on the final yields only 84 overall.
+**mistake_b:** 86 — using the target grade directly as the required final score, ignoring the midterm's weighted drag.
+**mistake_c:** 88 — unweighted average of target and a nearby score: arithmetic without applying the weights.
+**mistake_d:** 90 — reporting the final score itself as the overall grade, ignoring the 1/3 contribution of the 72 midterm.
+**common_trap:** Ignoring the midterm's weighted contribution when solving for the required final score. A below-target midterm forces the final score to exceed the target.
+**takeaway:** Weighted average: set up w₁x₁ + w₂x₂ = target and isolate the unknown. A low-weight, below-target component forces the high-weight component above the target to compensate.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Sequential Percentage Changes (Non-Obvious Net)
+
+A retail chain first reduces all prices by 20%, then runs a restock promotion that adds 15% back onto the already-reduced price. A jacket's original price is $120. Determine the jacket's price after the 20% reduction (column 1) and the final price after the 15% addition (column 2).
+
+|          | After 20% cut | After 15% addition |
+|----------|---------------|--------------------|
+| $86.40   |               |                    |
+| $96.00   |               |                    |
+| $102.00  |               |                    |
+| $110.40  |               |                    |
+| $114.00  |               |                    |
+
+**answer:** After 20% cut = $96.00, After 15% addition = $110.40
+**fastest_path:** 120 × 0.80 = 96. 96 × 1.15 = 110.40. Net factor = 0.80 × 1.15 = 0.92, not 0.95.
+**explanation:** After 20% cut: $120 × 0.80 = $96.00. After 15% addition on the reduced price: $96.00 × 1.15 = $110.40. The two-step net factor is 0.80 × 1.15 = 0.92. A "−20% then +15%" sequence is not a net −5%.
+**mistake_a:** $86.40 — applying a 10% reduction to $96 rather than a 15% addition: 96 × 0.90 = 86.40. Misread "addition" as a further discount.
+**mistake_c:** $102.00 — applying only 15% off the original $120: 120 × 0.85 = 102. Skipped the 20% cut.
+**mistake_e:** $114.00 — applying both percentages to the original base: 120 − 24 + 18 = 114. Each step must use the updated price as its base.
+**common_trap:** Netting the two percent changes: −20% + 15% = −5%, yielding 120 × 0.95 = $114. Sequential percentages compound; they do not simply add.
+**takeaway:** Sequential percent changes multiply in order: 0.80 × 1.15 = 0.92. Never add percent changes (−20 + 15 ≠ −5 applied to the original base).
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Logic — Strengthen and Weaken (Clinical Trial)
+
+A pharmaceutical company reports: "In a blinded, randomized clinical trial with 500 participants, patients who received Drug X showed a 40% reduction in symptom severity compared to those who received a placebo. Therefore, Drug X is an effective treatment for this condition."
+
+From the statements below, identify one that most strengthens the conclusion (column 1) and one that most weakens it (column 2).
+
+| Statement | Strengthens | Weakens |
+|-----------|-------------|---------|
+| A meta-analysis of 12 independent trials found Drug X produced a 35–45% symptom reduction across diverse patient populations | | |
+| Patients who withdrew from the Drug X arm early had significantly more severe baseline symptoms than trial completers | | |
+| Drug X's molecular mechanism directly inhibits the receptor linked to the condition's primary symptom pathway | | |
+| Participants were permitted to use over-the-counter pain relievers throughout the trial at their own discretion | | |
+| The trial was conducted at a single research hospital whose patients may not represent the broader population | | |
+
+**answer:** Strengthens = "A meta-analysis of 12 independent trials found Drug X produced a 35–45% symptom reduction across diverse patient populations"; Weakens = "Patients who withdrew from the Drug X arm early had significantly more severe baseline symptoms than trial completers"
+**fastest_path:** Strengthen = replication across 12 blinded trials in diverse populations (highest-quality causal evidence). Weaken = attrition bias: sicker Drug X patients dropped out, inflating the apparent effectiveness.
+**explanation:** The meta-analysis (row 1) replicates the finding across 12 independent blinded trials in different populations — the strongest support for a causal effectiveness claim. Row 2 introduces attrition bias: if the sickest Drug X-arm patients disproportionately withdrew, the remaining completers had milder baseline symptoms, making the observed 40% reduction an overestimate. Row 3 (mechanism) adds plausibility but is not causal human evidence. Row 4 (OTC meds) is expected to be balanced across arms by randomization. Row 5 limits generalizability, not internal validity.
+**mistake_c:** Mechanism plausibility (row 3) is weaker than replicated experimental evidence. Mechanism shows the drug could work in theory; replication shows it does.
+**mistake_d:** OTC medication use is a confound in observational studies but is expected to be balanced across arms in a randomized trial unless blinding is compromised.
+**mistake_e:** A single-site limitation challenges external validity (generalizability), not the internal finding that Drug X reduced symptoms in this trial.
+**common_trap:** Picking mechanism (row 3) as the strongest strengthener. Mechanisms can exist without producing the claimed effect in practice; replication across multiple trials is more powerful.
+**takeaway:** Causal effectiveness: strengthen with replicated experiments across populations; weaken with systematic biases favoring the treatment group (attrition, selection). Mechanism alone cannot establish effectiveness.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q47
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Age Word Problem
+
+Five years ago, Maya was twice as old as her brother Leo. In three years, the sum of their ages will be 40. Determine Maya's current age (column 1) and Leo's current age (column 2).
+
+|    | Maya's age | Leo's age |
+|----|------------|-----------|
+| 8  |            |           |
+| 10 |            |           |
+| 13 |            |           |
+| 15 |            |           |
+| 21 |            |           |
+
+**answer:** Maya's age = 21, Leo's age = 13
+**fastest_path:** Five years ago: M−5 = 2(L−5) → M = 2L−5. In three years: M+L = 34. Substitute: 3L−5 = 34 → L = 13, M = 21.
+**explanation:** Let M and L be their current ages. Five years ago: (M − 5) = 2(L − 5) → M = 2L − 5. In three years: (M + 3) + (L + 3) = 40 → M + L = 34. Substituting: (2L − 5) + L = 34 → 3L = 39 → L = 13, M = 21. Verify: five years ago Maya = 16, Leo = 8; 16 = 2 × 8 ✓. In three years: 24 + 16 = 40 ✓.
+**mistake_a:** 8 — Leo's age five years ago, not his current age; uses the past value without adding back 5 years.
+**mistake_b:** 10 — guessing equal spacing without setting up the constraint equations.
+**mistake_d:** 15 — from M − 5 = 2L (not adjusting Leo's age to the past): gives 3L = 34, L ≈ 11, M ≈ 17; nearby round numbers produce this kind of off-by-a-few guess.
+**common_trap:** Writing M = 2L (present ages) instead of M − 5 = 2(L − 5) (both ages five years ago). Both ages must shift equally to the stated time.
+**takeaway:** Age problems: adjust both ages equally to the stated time. "Five years ago" means subtract 5 from both, not just one person's age.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Dual Constraint Optimization
+
+A catering company can prepare at most 200 servings per day. Meal A requires 10 minutes of prep per serving; Meal B requires 15 minutes per serving. Total available prep time is 2,400 minutes per day. A client orders exactly as many servings of Meal A as Meal B. Let N be the number of servings of each meal type in the largest feasible order. Determine N (column 1) and the total prep time consumed at that order (column 2).
+
+|       | N (servings per meal) | Total prep time (min) |
+|-------|----------------------|-----------------------|
+| 80    |                      |                       |
+| 96    |                      |                       |
+| 100   |                      |                       |
+| 2,000 |                      |                       |
+| 2,400 |                      |                       |
+| 2,500 |                      |                       |
+
+**answer:** N = 96, Total prep time = 2,400
+**fastest_path:** A = B = N. Serving cap: 2N ≤ 200 → N ≤ 100. Prep cap: 25N ≤ 2,400 → N ≤ 96. Binding: N = 96. Prep used = 25(96) = 2,400.
+**explanation:** With A = B = N, two constraints apply. Serving capacity: 2N ≤ 200 → N ≤ 100. Prep time: 10N + 15N = 25N ≤ 2,400 → N ≤ 96. The feasible maximum satisfies both: N = min(100, 96) = 96. Total prep = 25(96) = 2,400 minutes.
+**mistake_c:** 100 — satisfies the serving constraint but requires 25(100) = 2,500 minutes of prep, exceeding the 2,400-minute limit. Only one constraint was checked.
+**mistake_d:** 2,000 — Meal A prep only: 10 × 200 = 2,000. Ignores Meal B prep and the equal-quantity requirement.
+**mistake_f:** 2,500 — total prep at N = 100 (the infeasible case). This is the violated constraint value, not the actual prep used.
+**common_trap:** Checking only the serving-count constraint (N ≤ 100) and missing the prep-time constraint (N ≤ 96). The feasible maximum is the minimum of all binding upper bounds.
+**takeaway:** When multiple constraints restrict the same variable, the feasible maximum equals the minimum of all individual upper bounds. Evaluate every constraint before selecting an answer.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Logic — Multi-Step Causal Chain
+
+An urban planner argues: "Expanding public transit reduces car ownership. Lower car ownership reduces traffic congestion. Reduced congestion decreases commute times. Therefore, expanding public transit will decrease commute times."
+
+From the statements below, identify the one that most strengthens the argument's conclusion by closing its key gap (column 1) and the one that most seriously undermines a stated link in the causal chain (column 2).
+
+| Statement | Strengthens | Undermines a Link |
+|-----------|-------------|-------------------|
+| In cities that expanded transit, average commute times fell by 20% over five years | | |
+| Many commuters who give up their cars still drive to transit stations and park there, generating similar local congestion | | |
+| Transit expansion in dense cities has historically reduced private vehicle registrations by 30% | | |
+| Commute times depend more on remote-work adoption rates than on traffic congestion levels | | |
+| Reduced congestion allows buses to run faster, which further reinforces transit's speed advantage | | |
+
+**answer:** Strengthens = "In cities that expanded transit, average commute times fell by 20% over five years"; Undermines a Link = "Many commuters who give up their cars still drive to transit stations and park there, generating similar local congestion"
+**fastest_path:** Strengthen = empirical evidence spanning the full chain end-to-end (transit → commute times). Undermine = park-and-ride behavior breaks the stated second link (lower car ownership → less congestion).
+**explanation:** Row 1 provides direct empirical evidence that the full causal chain produced the claimed outcome in comparable cities — the strongest possible support. Row 2 disrupts the stated second link: if car-shedders drive to transit stations and park there, road congestion does not decrease despite lower car ownership, breaking the chain. Row 3 confirms only the first link (transit → car ownership) without reaching the conclusion. Row 4 challenges the third link (congestion → commute times) via remote work, but is less precisely targeted than row 2. Row 5 reinforces a stated link rather than closing the conclusion gap.
+**mistake_c:** Row 3 confirms one stated link but does not bridge the chain all the way to the conclusion on commute times.
+**mistake_d:** Row 4 challenges a different stated link than row 2 does, and its mechanism (remote work) is less tied to the specifics of transit expansion.
+**mistake_e:** Row 5 is a reinforcing mechanism for an existing link; it strengthens but does not close the conclusion-level gap.
+**common_trap:** Picking row 3 as the strongest strengthener because it cites a concrete statistic — but it confirms only a stated intermediate step, not the conclusion. End-to-end empirical evidence is the more powerful closer.
+**takeaway:** In multi-step chains, the best strengthener spans the full conclusion; the best underminer targets a specific stated link with a realistic behavioral counter-mechanism.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Number Properties and Quadratic Constraint
+
+P and Q are positive integers with P > Q, P × Q = 120, and P − Q = 2. Determine the value of P (column 1) and the value of Q × (P + Q) (column 2).
+
+|     | Value of P | Q × (P + Q) |
+|-----|------------|-------------|
+| 10  |            |             |
+| 12  |            |             |
+| 15  |            |             |
+| 20  |            |             |
+| 120 |            |             |
+| 220 |            |             |
+
+**answer:** P = 12, Q × (P + Q) = 220
+**fastest_path:** P = Q + 2 → Q(Q+2) = 120 → Q² + 2Q − 120 = 0 → discriminant = 484 = 22² → Q = 10, P = 12. Then Q(P+Q) = 10(22) = 220.
+**explanation:** Substitute P = Q + 2 into P × Q = 120: Q(Q + 2) = 120 → Q² + 2Q − 120 = 0. Quadratic formula: Q = (−2 ± √(4 + 480)) / 2 = (−2 ± 22) / 2. Positive root: Q = 10, P = 12. Verify: 12 × 10 = 120 ✓, 12 − 10 = 2 ✓. Then Q × (P + Q) = 10 × 22 = 220.
+**mistake_a:** 10 — Q's value placed into P's column. Both values appear in the options, making column-swapping a live trap.
+**mistake_c:** 15 — trial guess: 15 × 13 = 195 ≠ 120. Fails the product constraint.
+**mistake_d:** 20 — trial guess: 20 × 18 = 360 ≠ 120. Reflects skipping the algebraic setup.
+**mistake_e:** 120 — the product itself, mistaken for one of the integers.
+**common_trap:** Trial-and-error without the quadratic: students try nearby pairs and give up. Forming Q(Q + 2) = 120 directly yields the exact solution.
+**takeaway:** Two-constraint integer problems: substitute P = Q + (difference), form the single-variable quadratic, apply the formula, verify both original conditions. Algebra beats guessing.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Geometric Sequence
+
+The first three terms of a geometric sequence are 4, 12, and 36. Let T be the 6th term of the sequence and let R be the ratio of the 5th term to the 3rd term. Select the value of T (column 1) and the value of R (column 2).
+
+|      | T (6th term) | R (5th ÷ 3rd) |
+|------|--------------|---------------|
+| 3    |              |               |
+| 9    |              |               |
+| 108  |              |               |
+| 324  |              |               |
+| 972  |              |               |
+| 2916 |              |               |
+
+**answer:** T = 972, R = 9
+**fastest_path:** r = 3. T = 4 × 3^5 = 972. R = r^(5−3) = 3² = 9.
+**explanation:** Common ratio r = 12/4 = 3. General term: aₙ = 4 × 3^(n−1). 6th term: T = 4 × 3^5 = 4 × 243 = 972. For R: 5th term = 4 × 3^4 = 324; 3rd term = 36. R = 324/36 = 9. Fast method: ratio of terms at positions m and n = r^(m−n) = 3^(5−3) = 3^2 = 9.
+**mistake_d:** 324 — the 5th term placed into the T column; one step too early.
+**mistake_c:** 108 — the 4th term (4 × 3³ = 108); two positions short of T.
+**mistake_a:** 3 — the common ratio r, not the ratio of two specific terms R.
+**mistake_f:** 2916 — computing 4 × 3^6 = 2916 using exponent 6 instead of 5 (off-by-one from n vs. n − 1).
+**common_trap:** Using n instead of n − 1 in the general-term formula. The 6th term uses exponent 5 because the first term (n = 1) uses exponent 0.
+**takeaway:** nth geometric term = a₁ × r^(n−1). Ratio of terms at positions m and n = r^(m−n). Subtract positions; do not use them as multipliers.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q52
+**difficulty:** Challenge
+**type:** Two-Part Analysis
+**topic:** Quantitative — Linear Cost Optimization with Floor Constraints
+
+A logistics manager must ship exactly 50 packages split between Carrier A and Carrier B. Carrier A charges $8 per package plus a flat fee of $40 per shipment. Carrier B charges $12 per package with no flat fee. Each carrier must handle at least 5 packages. Let A be the number of packages sent to Carrier A. Determine the value of A that minimizes total cost (column 1) and the corresponding minimum total shipping cost in dollars (column 2).
+
+|      | A (packages to Carrier A) | Minimum total cost |
+|------|--------------------------|-------------------|
+| 5    |                          |                   |
+| 45   |                          |                   |
+| 50   |                          |                   |
+| $440 |                          |                   |
+| $460 |                          |                   |
+| $500 |                          |                   |
+
+**answer:** A = 45, Minimum total cost = $460
+**fastest_path:** Cost = 8A + 40 + 12(50−A) = 640 − 4A. Decreasing in A → maximize A. With B ≥ 5: A ≤ 45. Min cost = 640 − 4(45) = $460.
+**explanation:** Total cost = [8A + 40] + [12(50 − A)] = 8A + 40 + 600 − 12A = 640 − 4A. This linear function decreases by $4 for every additional package sent to Carrier A. To minimize cost, maximize A subject to B = 50 − A ≥ 5, giving A ≤ 45. The A ≥ 5 floor is non-binding since we maximize A. Optimal: A = 45, B = 5. Min cost = 640 − 4(45) = $460. Verify: 8(45) + 40 + 12(5) = 360 + 40 + 60 = $460 ✓.
+**mistake_a:** A = 5 — sending the minimum to Carrier A, driven by intuition "minimize the carrier with the flat fee." But the $40 is paid once regardless; each additional package to A saves $4 vs. B ($8 vs. $12 per package). The per-unit advantage dominates.
+**mistake_c:** A = 50 — violates B ≥ 5; Carrier B must handle at least 5 packages.
+**mistake_d:** $440 — cost if A = 50 (640 − 200 = 440), which requires B = 0. Tempting because it is the unconstrained minimum, but it violates the floor.
+**mistake_e:** $500 could arise from A = 35: 640 − 4(35) = 500. Does not maximize A within the feasible region.
+**common_trap:** Treating the $40 flat fee as a reason to minimize Carrier A usage. Once any packages go to A, the flat fee is sunk. The marginal decision depends purely on the $4/package cost advantage, which always favors sending more to A.
+**takeaway:** Convert cost to an explicit function of the decision variable, determine whether it is increasing or decreasing, then apply the binding constraint. Sunk fixed fees do not affect marginal decisions.
+**related_reading:** reading-di-06-two-part-analysis
