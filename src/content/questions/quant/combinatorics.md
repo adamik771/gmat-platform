@@ -967,23 +967,23 @@ A 3-digit code uses only the digits 1 through 9 (no zeros). The first digit must
 **type:** Problem Solving
 **topic:** Addition Rule — P(A or B)
 
-One card is drawn at random from a standard 52-card deck. What is the probability that the card is either a heart or a face card (jack, queen, or king of any suit)?
+A number is chosen at random from the integers 1 through 20, inclusive. What is the probability that the number is a multiple of 3 or a multiple of 4?
 
 - A) 1/4
-- B) 3/13
-- C) 11/26
-- D) 25/52
-- E) 1/2
+- B) 3/10
+- C) 11/20
+- D) 1/2
+- E) 3/5
 
-**answer:** C
-**fastest_path:** P(heart) + P(face) − P(heart AND face) = 13/52 + 12/52 − 3/52 = 22/52 = 11/26.
-**explanation:** Hearts: 13 cards. Face cards (J, Q, K in all four suits): 3 × 4 = 12 cards. Cards that are both hearts and face cards (J♥, Q♥, K♥): 3 cards. By inclusion-exclusion: (13 + 12 − 3)/52 = 22/52 = 11/26.
-**mistake_a:** Counted hearts only (13/52 = 1/4), ignoring face cards from other suits.
-**mistake_b:** Counted face cards only (12/52 = 3/13), ignoring non-face hearts.
-**mistake_d:** Added P(heart) + P(face card) = 25/52 without subtracting the overlap — double-counted the 3 cards that are both.
-**mistake_e:** Overestimated; 1/2 requires 26 favorable outcomes, but only 22 qualify.
-**common_trap:** 25/52 — adding the two groups without removing their intersection. The three face-card hearts (J♥, Q♥, K♥) fall in both groups, so they must be counted only once.
-**takeaway:** P(A or B) = P(A) + P(B) − P(A and B). Whenever two events can co-occur, subtract the overlap once to avoid double-counting.
+**answer:** D
+**fastest_path:** Multiples of 3 in 1–20: {3,6,9,12,15,18} = 6. Multiples of 4: {4,8,12,16,20} = 5. Overlap (multiples of 12): {12} = 1. P = (6 + 5 − 1)/20 = 10/20 = 1/2.
+**explanation:** Count each group separately, then subtract the overlap. Multiples of 3 up to 20: 3, 6, 9, 12, 15, 18 — that is 6 numbers. Multiples of 4 up to 20: 4, 8, 12, 16, 20 — that is 5 numbers. The overlap (multiples of both 3 and 4, i.e., multiples of 12): just 12 — that is 1 number. By inclusion-exclusion: |A or B| = 6 + 5 − 1 = 10. P = 10/20 = 1/2.
+**mistake_a:** Counted multiples of 4 only (5/20 = 1/4), ignoring multiples of 3.
+**mistake_b:** Counted multiples of 3 only (6/20 = 3/10), ignoring multiples of 4.
+**mistake_c:** Added the two groups without subtracting the overlap: (6 + 5)/20 = 11/20. The number 12 is counted twice — once as a multiple of 3 and once as a multiple of 4 — so the overlap must be removed.
+**mistake_e:** Overcounted by including multiples of 12 twice: 6 + 5 + 1 = 12, giving 12/20 = 3/5. The overlap is subtracted, not added.
+**common_trap:** 11/20 — adding the two groups without removing their intersection. The number 12 is a multiple of both 3 and 4, so it falls in both groups and must be counted only once.
+**takeaway:** P(A or B) = P(A) + P(B) − P(A and B). Identify the overlap by finding the LCM of the two moduli (LCM(3,4) = 12) and listing multiples of that LCM within the range.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
