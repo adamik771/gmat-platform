@@ -5,8 +5,8 @@ topic: Critical Reasoning
 
 ## Q1
 **difficulty:** Easy
-**type:** Strengthen
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Strengthen
 
 A regional grocery chain recently introduced a loyalty program that offers customers a 5% discount on every purchase after their tenth visit. Since the program launched three months ago, the chain's overall revenue has increased by 8%. The chain's management concludes that the loyalty program is responsible for the revenue increase.
 
@@ -33,8 +33,8 @@ Which of the following, if true, most strengthens the argument above?
 
 ## Q2
 **difficulty:** Easy
-**type:** Strengthen
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Strengthen
 
 A city's public health department found that neighborhoods with more parks and green spaces had lower rates of childhood asthma than neighborhoods with fewer green spaces. The department concluded that increasing green space in urban areas would reduce childhood asthma rates.
 
@@ -61,8 +61,8 @@ Which of the following, if true, most strengthens the department's conclusion?
 
 ## Q3
 **difficulty:** Medium
-**type:** Strengthen
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Strengthen
 
 A software company switched from annual performance reviews to quarterly feedback sessions. Employee turnover dropped from 22% to 14% in the year following the change. However, critics argue that the reduction in turnover was primarily due to a downturn in the job market, which made employees less likely to leave regardless of workplace changes.
 
@@ -89,8 +89,8 @@ Which of the following, if true, most strengthens the claim that the new feedbac
 
 ## Q4
 **difficulty:** Medium
-**type:** Strengthen
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Strengthen
 
 Researchers studying a remote island ecosystem found that after a non-native species of beetle was accidentally introduced, the population of a native flowering plant declined by 40% within five years. The researchers hypothesize that the beetle is feeding on the plant's root system, thereby killing the plants.
 
@@ -117,8 +117,8 @@ Which of the following, if true, most strengthens the researchers' hypothesis?
 
 ## Q5
 **difficulty:** Hard
-**type:** Strengthen
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Strengthen
 
 A pharmaceutical company argues that its new migraine medication is more effective than the current market leader. In a clinical trial, 68% of patients taking the new medication reported significant pain relief within two hours, compared with 61% for the market leader. Critics note that the trial's participants were recruited from specialty headache clinics, where patients tend to have more severe and treatment-resistant migraines than the general population of migraine sufferers.
 
@@ -145,8 +145,8 @@ Which of the following, if true, most strengthens the company's argument that it
 
 ## Q6
 **difficulty:** Easy
-**type:** Weaken
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Weaken
 
 A school district implemented a mandatory breakfast program at all elementary schools, providing free meals to every student each morning. After one year, standardized test scores across the district rose by an average of 6%. District officials attribute the improvement to the breakfast program, arguing that well-nourished students learn more effectively.
 
@@ -173,8 +173,8 @@ Which of the following, if true, most weakens the district officials' argument?
 
 ## Q7
 **difficulty:** Easy
-**type:** Weaken
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Weaken
 
 A fitness app company reports that users who log their workouts in the app at least five times per week lose an average of 12 pounds over three months, while users who log fewer than five times per week lose an average of only 3 pounds. The company concludes that using the app more frequently causes greater weight loss.
 
@@ -201,8 +201,8 @@ Which of the following, if true, most weakens the company's conclusion?
 
 ## Q8
 **difficulty:** Medium
-**type:** Weaken
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Weaken
 
 A city council is considering banning single-use plastic bags at all retail stores. Proponents of the ban argue that it will significantly reduce plastic waste in the city's landfills, since single-use plastic bags currently account for approximately 12% of the city's total landfill volume.
 
@@ -229,8 +229,8 @@ Which of the following, if true, most weakens the proponents' argument?
 
 ## Q9
 **difficulty:** Medium
-**type:** Weaken
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Weaken
 
 A technology company's CEO argues that the company should invest heavily in artificial intelligence research rather than expanding its existing product lines. She reasons that companies in the technology sector that spent more than 15% of revenue on research and development over the past decade achieved average stock price growth of 340%, whereas companies that spent less than 15% achieved only 120% growth.
 
@@ -257,8 +257,8 @@ Which of the following, if true, most weakens the CEO's reasoning?
 
 ## Q10
 **difficulty:** Hard
-**type:** Weaken
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Weaken
 
 Environmental scientists have observed that coral reefs near coastal cities with advanced wastewater treatment facilities show higher biodiversity than reefs near cities with outdated treatment systems. They conclude that upgrading wastewater treatment infrastructure is the most cost-effective policy intervention for preserving coral reef biodiversity.
 
@@ -285,8 +285,8 @@ Which of the following, if true, most weakens the scientists' conclusion?
 
 ## Q11
 **difficulty:** Easy
-**type:** Assumption
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Assumption
 
 A restaurant chain plans to boost profits by replacing its beef burgers with plant-based alternatives, reasoning that plant-based patties cost 30% less to produce than beef patties. The chain's executives expect that total burger sales volume will remain unchanged after the switch.
 
@@ -313,8 +313,8 @@ Which of the following is an assumption on which the executives' plan depends?
 
 ## Q12
 **difficulty:** Medium
-**type:** Assumption
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Assumption
 
 A city's transportation department plans to reduce traffic congestion by converting two major downtown roads into one-way streets. The department's traffic engineers argue that one-way streets allow better signal coordination, which will increase average vehicle speeds and reduce the time drivers spend idling at intersections.
 
@@ -341,8 +341,8 @@ Which of the following is an assumption that the traffic engineers' argument req
 
 ## Q13
 **difficulty:** Medium
-**type:** Assumption
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Assumption
 
 A marketing firm found that social media advertisements featuring user-generated content receive 40% more engagement than advertisements produced by professional agencies. The firm advises its clients to allocate their entire advertising budget to user-generated content campaigns in order to maximize customer engagement.
 
@@ -369,8 +369,8 @@ Which of the following is an assumption underlying the firm's advice?
 
 ## Q14
 **difficulty:** Hard
-**type:** Assumption
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Assumption
 
 Economists studying a developing nation's agricultural sector found that farms that adopted genetically modified crop varieties produced 25% higher yields per hectare than farms using traditional varieties. Based on this finding, the economists recommend that the government subsidize the purchase of genetically modified seeds to increase the nation's total agricultural output.
 
@@ -397,8 +397,8 @@ Which of the following is an assumption on which the economists' recommendation 
 
 ## Q15
 **difficulty:** Hard
-**type:** Assumption
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Assumption
 
 A hospital network found that patients admitted on weekends had a 15% higher mortality rate than patients admitted on weekdays. The network's chief medical officer proposed hiring additional specialist physicians for weekend shifts, arguing that the mortality gap is due to reduced specialist availability on weekends.
 
@@ -425,8 +425,8 @@ Which of the following is an assumption that the chief medical officer's proposa
 
 ## Q16
 **difficulty:** Easy
-**type:** Evaluate
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Evaluate
 
 A car manufacturer claims that its new electric vehicle model will be profitable within two years because the battery costs have dropped by 50% over the past three years. The manufacturer expects this cost trend to continue, making the vehicle increasingly affordable to produce.
 
@@ -453,8 +453,8 @@ Which of the following would be most useful to evaluate in order to assess the m
 
 ## Q17
 **difficulty:** Medium
-**type:** Evaluate
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Evaluate
 
 A university recently switched from in-person final exams to take-home essays for all undergraduate courses. Faculty have observed that average grades in these courses increased by half a letter grade. Some faculty members argue that the take-home format allows students to produce more thoughtful and higher-quality work, while others suspect that the increase is primarily due to greater opportunities for academic dishonesty.
 
@@ -481,8 +481,8 @@ Which of the following would be most useful to evaluate in order to determine wh
 
 ## Q18
 **difficulty:** Medium
-**type:** Evaluate
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Evaluate
 
 A tech startup claims that its new algorithm for matching job seekers with employers reduces the average time-to-hire by 35% compared with traditional recruiting methods. The startup tested the algorithm by partnering with 50 companies that volunteered to use the platform for six months.
 
@@ -509,8 +509,8 @@ Which of the following would be most important to know in order to evaluate the 
 
 ## Q19
 **difficulty:** Hard
-**type:** Evaluate
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Evaluate
 
 A government health agency recommends that adults consume at least three servings of whole grains per day, based on studies showing that individuals who eat three or more daily servings of whole grains have a 25% lower risk of cardiovascular disease than individuals who eat fewer than one serving. Critics point out that whole grain consumption correlates with other health-conscious behaviors, such as regular exercise and lower rates of smoking.
 
@@ -537,8 +537,8 @@ Which of the following would be most useful in evaluating whether whole grains t
 
 ## Q20
 **difficulty:** Hard
-**type:** Evaluate
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Evaluate
 
 An educational technology company found that students who used its adaptive learning software for at least 30 minutes per day scored 18% higher on end-of-year assessments than students who did not use the software. The company argues that schools should purchase the software to improve student outcomes. However, usage of the software was voluntary, and teachers reported that the students who chose to use it most frequently were typically among the highest performers in their classes prior to the software's introduction.
 
@@ -565,8 +565,8 @@ Which of the following would be most useful in evaluating the company's argument
 
 ## Q21
 **difficulty:** Easy
-**type:** Inference
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Inference
 
 A recent survey of 500 small business owners found that 78% consider employee retention their biggest challenge, up from 54% five years ago. During the same period, the national unemployment rate dropped from 6.1% to 3.4%, and the average hourly wage for entry-level positions increased by 22%.
 
@@ -593,8 +593,8 @@ Which of the following can be most reasonably inferred from the information abov
 
 ## Q22
 **difficulty:** Easy
-**type:** Inference
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Inference
 
 A consumer electronics company discontinued its tablet product line last year, citing declining sales. This year, the company reported a 15% increase in overall revenue and a 20% increase in profit margin. The company's smartphone and laptop divisions both reported record sales during the same period.
 
@@ -607,22 +607,22 @@ Which of the following can be most reasonably inferred from the information abov
 - E) Smartphones and laptops are more innovative products than tablets.
 
 **answer:** B
-**fastest_path:** Tablet line discontinued → margin up 20% + remaining divisions set records. Inference: tablet line was dragging margins.
-**explanation:** Margin gain after removing the tablet line, plus record performance in the kept divisions, is most simply explained by tablets having been a margin drag. (B) is the simplest text-forced inference.
-**mistake_a:** "Consumers prefer" generalizes from one company to consumer preferences — unsupported.
-**mistake_c:** Competitor data isn't in the passage.
-**mistake_d:** *Extreme* — "never re-enter" is too absolute; nothing rules out future return.
-**mistake_e:** Value judgment about innovation, unsupported.
-**common_trap:** Picking (D) because the company "discontinued" — but discontinuing now ≠ never returning. Inference rejects "always" / "never" without text support.
-**takeaway:** Inference on a "company exit + improved metrics" pattern = the exited line was a drag. Stay with the simplest text-forced explanation.
+**fastest_path:** Tablet discontinued → margin up 20% + other divisions at record highs. The only way removing one line improves margin is if that line's margin was *below* the portfolio average — i.e., it was pulling the blended margin down. (B).
+**explanation:** After discontinuing tablets, both revenue (+15%) and profit margin (+20%) improved, while the retained divisions hit records. The only variable removed was tablets. For removing a product line to *raise* the blended margin, that line's margin must have been below the company average — in other words, it was dragging (reducing) the overall margin. (B) captures this: "reducing" here means pulling the company average below what it would otherwise be, not that tablets were loss-making. That inference is text-forced and requires no outside knowledge.
+**mistake_a:** "Consumers prefer" is a generalisation about all consumers — not forced by one company's discontinuation decision.
+**mistake_c:** Competitor data is not in the passage.
+**mistake_d:** *Extreme* — "never re-enter" overstates; discontinuing a product line now does not rule out re-entry.
+**mistake_e:** "More innovative" is a value judgement with no support in the passage.
+**common_trap:** Picking (D) because "discontinued" feels permanent. Inference rejects "always" / "never" unless the text forces them.
+**takeaway:** Inference on "removed line → margin improved" = the removed line had a below-average margin, pulling the blended figure down. That is the minimum needed to force (B) from the data.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
 
 ## Q23
 **difficulty:** Medium
-**type:** Inference
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Inference
 
 A nationwide study of hospital readmission rates found that patients discharged on Fridays were 18% more likely to be readmitted within 30 days than patients discharged on Tuesdays. The study also found that Friday-discharged patients received, on average, 15 fewer minutes of discharge counseling from nursing staff than Tuesday-discharged patients. Hospitals with the highest Friday readmission rates were also the hospitals where the gap in counseling time between Friday and Tuesday discharges was largest.
 
@@ -649,8 +649,8 @@ Which of the following can be most reasonably inferred from the study's findings
 
 ## Q24
 **difficulty:** Medium
-**type:** Inference
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Inference
 
 A commercial real estate firm observed that office buildings located within one mile of a major public transit station command rental rates 30% higher per square foot than comparable buildings located more than three miles from a station. Despite this premium, vacancy rates in the transit-adjacent buildings average only 4%, compared with 11% for the more distant buildings.
 
@@ -677,8 +677,8 @@ Which of the following can be most reasonably inferred from the information abov
 
 ## Q25
 **difficulty:** Hard
-**type:** Inference
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Inference
 
 A pharmaceutical regulatory agency recently shortened the average drug approval timeline from 14 months to 9 months by hiring additional reviewers and implementing parallel review processes. In the first year after these changes, the agency approved 40% more drugs than in the previous year. However, within two years of their approval, 12% of the newly approved drugs were subject to safety-related label revisions, compared with a historical average of 4% for drugs approved under the previous timeline.
 
@@ -705,8 +705,8 @@ Which of the following can be most reasonably inferred from the information abov
 
 ## Q26
 **difficulty:** Easy
-**type:** Flaw/Paradox
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Flaw in Reasoning
 
 A company's CEO noted that employee satisfaction scores increased by 20% after the company switched to a four-day workweek. He concluded that all companies should adopt a four-day workweek to improve employee satisfaction.
 
@@ -733,8 +733,8 @@ Which of the following best describes a flaw in the CEO's reasoning?
 
 ## Q27
 **difficulty:** Medium
-**type:** Flaw/Paradox
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Resolve the Discrepancy
 
 Despite a 40% increase in the number of organic farms in a certain region over the past decade, the total acreage devoted to organic farming in that region has decreased by 15% during the same period.
 
@@ -761,8 +761,8 @@ Which of the following, if true, most helps to resolve the apparent paradox desc
 
 ## Q28
 **difficulty:** Medium
-**type:** Flaw/Paradox
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Flaw in Reasoning
 
 A health policy analyst argues that the government should cut funding for preventive health programs because hospital admissions for preventable diseases have not decreased despite a decade of increased spending on prevention. Therefore, the analyst concludes, preventive programs are ineffective.
 
@@ -789,8 +789,8 @@ Which of the following best describes a flaw in the analyst's reasoning?
 
 ## Q29
 **difficulty:** Hard
-**type:** Flaw/Paradox
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Flaw in Reasoning
 
 A financial advisor argues that index funds are always superior to actively managed funds for individual investors. She cites a study showing that over any 15-year period in the past century, index funds have outperformed 85% of actively managed funds after accounting for fees. She concludes that no rational investor should ever choose an actively managed fund.
 
@@ -817,8 +817,8 @@ Which of the following best describes a flaw in the financial advisor's reasonin
 
 ## Q30
 **difficulty:** Hard
-**type:** Flaw/Paradox
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Resolve the Discrepancy
 
 A country that introduced a carbon tax five years ago has seen its total carbon emissions decline by 20%. During the same period, however, the country's per capita consumption-based carbon footprint, which includes emissions generated abroad to produce imported goods, has increased by 8%.
 
@@ -900,7 +900,7 @@ The argument above depends on which of the following assumptions?
 ---
 
 ## Q33
-**difficulty:** Easy
+**difficulty:** Medium
 **type:** Critical Reasoning
 **topic:** Inference
 
@@ -1404,7 +1404,7 @@ Which of the following, if true, most seriously weakens the CEO's argument?
 ---
 
 ## Q51
-**difficulty:** Easy
+**difficulty:** Medium
 **type:** Critical Reasoning
 **topic:** Strengthen
 
@@ -1421,11 +1421,11 @@ Which of the following, if true, most strengthens the marketing director's argum
 **answer:** B
 **fastest_path:** Risk: heavy spenders self-selected into the app. Strengthen by *within-person comparison*. (B) does it: app users' spending rose 15% *vs their own pre-app spending*.
 **explanation:** Cross-section comparison is vulnerable to selection. (B) supplies the within-person design: same shoppers, before vs after signing up, 15% lift. That rules out "high spenders were already high spenders."
-**mistake_a:** Promotional detail, not a causal link.
-**mistake_c:** Demographic trivia.
-**mistake_d:** Competitive context, not a causal mechanism.
-**mistake_e:** *Reverses* — if heavy shoppers try features earlier, that *strengthens* the selection-bias concern.
-**common_trap:** Picking (A) because promotion sounds like it could be the actual cause — but the question asks what *strengthens* the director's claim, not what challenges it.
+**mistake_a:** The month-1 promotion is an *alternative cause* for the spending lift — if early users came because of the promotion rather than the app, the 22% gap reflects promotional pull, not app effect. This undermines the causal claim rather than supporting it.
+**mistake_c:** Demographic trivia — the age range of users doesn't bear on whether the app caused the spending increase.
+**mistake_d:** Competitive context — absence of rival apps doesn't establish that *this* app caused the lift.
+**mistake_e:** *Reverses* — if high-frequency shoppers adopt new features earliest, that *strengthens* the selection-bias concern (heavy spenders self-selected in), which weakens the causal claim.
+**common_trap:** Picking (A) because early promotion *sounds* complementary to the app's success. The trap is missing that promotion is a *rival* explanation — it gives high-spending customers an incentive to sign up that has nothing to do with the app's design, making the cross-sectional gap meaningless.
 **takeaway:** Strengthen on a "X-users spend more → X causes spending" claim = within-person before/after. Self-selection's antidote is within-subject design.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -1516,7 +1516,7 @@ Which of the following can be most reliably concluded from the information above
 ---
 
 ## Q55
-**difficulty:** Easy
+**difficulty:** Medium
 **type:** Critical Reasoning
 **topic:** Paradox
 
@@ -2109,8 +2109,8 @@ Which of the following most logically completes the critics' argument?
 
 ## Q76
 **difficulty:** Medium
-**type:** Strengthen
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Strengthen
 
 A midsize logistics firm installed solar panels on the roofs of its 12 regional warehouses two years ago. Since installation, each warehouse's monthly electricity cost has dropped by 38% on average, and the firm projects that by the end of next year the cumulative savings will fully offset the panels' installation cost. The firm therefore concludes that installing solar panels is a sound financial decision for any logistics company that operates regional warehouses.
 
@@ -2137,8 +2137,8 @@ Which of the following, if true, most strengthens the argument above?
 
 ## Q77
 **difficulty:** Medium
-**type:** Weaken
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Weaken
 
 A regional bank observed that customers who enrolled in its new mobile banking app made 40% more deposits per month than customers who did not enroll. Management concludes that expanding the app's features and encouraging enrollment will increase the bank's overall deposit volume.
 
@@ -2165,8 +2165,8 @@ Which of the following, if true, most weakens management's conclusion?
 
 ## Q78
 **difficulty:** Hard
-**type:** Assumption
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Assumption
 
 The city council of Larksville has proposed building a new bike path along the riverfront to reduce automobile traffic during rush hour. Council members argue that once the bike path opens, a significant number of commuters who currently drive will switch to cycling.
 
@@ -2193,8 +2193,8 @@ The argument above depends on which of the following assumptions?
 
 ## Q79
 **difficulty:** Medium
-**type:** Inference
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Inference
 
 A six-month study of adult language learners found that those who studied 45 minutes daily achieved higher proficiency scores than those who studied three hours every Saturday for the same total instructional time. The researchers concluded that daily spaced practice produces more durable language learning than equivalent weekly massed practice. Independent research has also shown that short daily reviews of previously learned material significantly slow the rate of forgetting.
 
@@ -2249,8 +2249,8 @@ Which of the following, if true, most helps to explain the drop in profit?
 
 ## Q81
 **difficulty:** Hard
-**type:** Evaluate
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Evaluate
 
 A pharmaceutical company is deciding whether to advance HypZ, a new hypertension drug, into Phase 3 trials. In Phase 2, HypZ reduced average systolic blood pressure by 12 mmHg over eight weeks — a larger reduction than the 7-mmHg reduction achieved by the current market leader. The company's chief scientist argues that, based on these results, HypZ is likely to outperform the market leader and should proceed.
 
@@ -2277,8 +2277,8 @@ The answer to which of the following questions would be most useful in evaluatin
 
 ## Q82
 **difficulty:** Hard
-**type:** Strengthen
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Strengthen
 
 An online retailer found that product pages featuring short video demonstrations had 18% higher conversion rates than pages with still images only. The marketing team concludes that adding short video demos to every product page will increase overall sales.
 
@@ -2306,8 +2306,8 @@ Which of the following, if true, most strengthens the marketing team's conclusio
 
 ## Q83
 **difficulty:** Medium
-**type:** Strengthen
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Strengthen
 
 A medical research institute claims that regular consumption of a specific plant extract reduces the incidence of seasonal influenza. In a recent study, 500 volunteers who consumed the extract daily for six months had a 35% lower rate of influenza during the flu season compared with 500 control volunteers who did not consume the extract. Critics have argued that lifestyle differences, not the extract itself, account for the lower flu rate.
 
@@ -2334,8 +2334,8 @@ Which of the following, if true, most strengthens the institute's claim?
 
 ## Q84
 **difficulty:** Medium
-**type:** Weaken
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Weaken
 
 A city council has proposed banning a popular brand of electric scooter from city streets after data showed that scooter-related injuries in the city doubled over the past year. The council argues that the scooters themselves are causing the rise in injuries.
 
@@ -2362,8 +2362,8 @@ Which of the following, if true, most weakens the council's argument?
 
 ## Q85
 **difficulty:** Hard
-**type:** Assumption
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Assumption
 
 A consumer group plans to recommend Smart Cleaner, a new laundry detergent, on the ground that lab tests show a standard dose removes 25% more stains than the leading competitor's standard dose. If consumers switch to Smart Cleaner in response to the recommendation, the consumer group claims, household laundry expenses will decrease.
 
@@ -2390,8 +2390,8 @@ The argument above depends on which of the following assumptions?
 
 ## Q86
 **difficulty:** Medium
-**type:** Inference
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Inference
 
 Between 2010 and 2020, the average price of a single-family home in the country rose by 78 percent, while average household income rose by only 22 percent. During the same decade, the homeownership rate among households under age 35 fell from 42 percent to 36 percent.
 
@@ -2474,8 +2474,8 @@ Which of the following best identifies a flaw in the HR director's reasoning?
 
 ## Q89
 **difficulty:** Hard
-**type:** Evaluate
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Evaluate
 
 An energy company that produces natural gas is considering acquiring a specific competing producer. The energy company's CFO argues that the acquisition will increase the firm's revenue and market share, both because the competing company has loyal customers and because its production facilities are more efficient than the energy company's own.
 
@@ -2615,8 +2615,8 @@ In the argument above, the two portions in boldface play which of the following 
 
 ## Q94
 **difficulty:** Medium
-**type:** Strengthen
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Strengthen
 
 A city council is proposing to install streetlights along Pine Road, which currently has no street lighting, in order to reduce the nighttime accident rate on that road. Opponents of the proposal argue that drivers on nearby roads with streetlights have not become more careful since those streetlights were installed.
 
@@ -2643,8 +2643,8 @@ Which of the following, if true, most strengthens the council's proposal?
 
 ## Q95
 **difficulty:** Hard
-**type:** Inference
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Inference
 
 Researchers studying remote work found that employees who work from home report higher job satisfaction than office workers. They also found that remote workers are, on average, 30 percent less likely to receive promotions than comparable office workers. However, among remote workers, those who maintain regular in-person contact with their managers are promoted at nearly the same rate as office workers.
 
@@ -2671,8 +2671,8 @@ Which of the following is most strongly supported by the statements above?
 
 ## Q96
 **difficulty:** Hard
-**type:** Evaluate
-**topic:** Critical Reasoning
+**type:** Critical Reasoning
+**topic:** Evaluate
 
 A city is considering a new public transit strategy: replacing its least-used bus routes with on-demand shuttle services, which dispatch smaller vehicles only when riders request them. City officials argue that the on-demand services will cost less to operate and will attract more riders than the current bus routes because riders will wait less.
 
@@ -2756,8 +2756,8 @@ In the argument, the two portions in boldface play which of the following roles?
 
 ## Q99
 **difficulty:** Hard
-**type:** Inference
-**topic:** Critical Reasoning — Quantitative Inference
+**type:** Critical Reasoning
+**topic:** Inference — Quantitative Inference
 
 A regional hospital reports that patients admitted through its emergency department on Monday have an average length of stay of 4.8 days, compared with 3.6 days for patients admitted on Wednesday. Patients admitted on these two weekdays are otherwise demographically similar, and the emergency department is staffed similarly on both days.
 
@@ -2784,8 +2784,8 @@ Assuming no additional information, which of the following is most strongly supp
 
 ## Q100
 **difficulty:** Hard
-**type:** Inference
-**topic:** Critical Reasoning — Probabilistic Inference
+**type:** Critical Reasoning
+**topic:** Inference — Probabilistic Inference
 
 A company's internal audit found that only 8 percent of expense claims submitted by employees are flagged for review because they contain potential errors. Of those flagged claims that are reviewed, 60 percent are confirmed as containing genuine errors that require correction, while 40 percent are ultimately found to be error-free.
 
@@ -2812,8 +2812,8 @@ Which of the following is most strongly supported by the statements above?
 
 ## Q101
 **difficulty:** Medium
-**type:** Weaken
-**topic:** Critical Reasoning — Confounding Variable
+**type:** Critical Reasoning
+**topic:** Weaken — Confounding Variable
 
 A fitness app that tracks users' workouts reports that users who complete at least 20 workouts per month lose, on average, 2 pounds more over six months than users who complete fewer than 20 workouts per month. Based on this data, the app's developers claim that completing more workouts each month causes greater weight loss.
 
@@ -2840,8 +2840,8 @@ Which of the following, if true, most weakens the developers' claim?
 
 ## Q102
 **difficulty:** Hard
-**type:** Strengthen
-**topic:** Critical Reasoning — Rule Out Confounder
+**type:** Critical Reasoning
+**topic:** Strengthen — Rule Out Confounder
 
 A pharmaceutical company has concluded a six-month trial of a new anti-hypertensive medication. In the trial, 100 patients who received the medication showed an average reduction in systolic blood pressure of 14 mmHg, while 100 patients in a control group receiving a placebo showed an average reduction of 5 mmHg. The company concludes that the medication caused the additional 9 mmHg reduction observed in the treatment group.
 
@@ -2868,8 +2868,8 @@ Which of the following, if true, most strengthens the company's conclusion?
 
 ## Q103
 **difficulty:** Hard
-**type:** Assumption
-**topic:** Critical Reasoning — Necessary Assumption
+**type:** Critical Reasoning
+**topic:** Assumption — Necessary Assumption
 
 A state legislature has proposed raising the minimum driving age from 16 to 18 in order to reduce traffic accidents involving young drivers. Supporters argue that 18-year-old new drivers are safer than 16-year-old new drivers because of more developed cognitive skills, and that even accounting for the inexperience of new drivers at either age, raising the minimum driving age will reduce the overall number of traffic accidents involving young drivers.
 
@@ -2953,8 +2953,8 @@ Which of the following best identifies a flaw in the researchers' reasoning?
 
 ## Q106
 **difficulty:** Medium
-**type:** Strengthen
-**topic:** Critical Reasoning — Rule Out Alternative
+**type:** Critical Reasoning
+**topic:** Strengthen — Rule Out Alternative
 
 A technology company attributes a 40 percent increase in its customer retention rate over the past year to its expanded customer-service team, which added 30 percent more agents and adopted newly redesigned response protocols. Critics argue that the retention improvement is more likely the result of the company's reduced subscription prices, which were introduced at the same time as the service expansion.
 
@@ -2981,8 +2981,8 @@ Which of the following, if true, most strengthens the company's attribution?
 
 ## Q107
 **difficulty:** Medium
-**type:** Weaken
-**topic:** Critical Reasoning — Alternative Cause
+**type:** Critical Reasoning
+**topic:** Weaken — Alternative Cause
 
 A regional bakery observed that sales of its new sourdough loaf were 35 percent higher during its in-store baking demonstration event than during a comparable week without the event. Management concluded that the demonstration event itself drove the sales increase and plans to host similar events every quarter.
 
@@ -3009,8 +3009,8 @@ Which of the following, if true, most weakens management's conclusion?
 
 ## Q108
 **difficulty:** Hard
-**type:** Assumption
-**topic:** Critical Reasoning — Necessary Condition
+**type:** Critical Reasoning
+**topic:** Assumption — Necessary Condition
 
 A manufacturer of industrial sensors argues that switching from quarterly to monthly calibration checks of its sensors will improve long-term accuracy and reduce measurement errors. The company's chief engineer argues that since most significant calibration drift occurs over periods of 2 to 3 months, more frequent checks will catch drift before it affects critical readings.
 
@@ -3065,8 +3065,8 @@ Which of the following, if true, most helps to explain the unexpected increase i
 
 ## Q110
 **difficulty:** Medium
-**type:** Evaluate
-**topic:** Critical Reasoning — Test the Premise
+**type:** Critical Reasoning
+**topic:** Evaluate — Test the Premise
 
 A city proposes to install solar panels on the rooftops of all its municipal buildings, arguing that the project will pay for itself within 10 years through electricity savings. Opponents claim that the roofs of the city's municipal buildings are not ideally oriented to capture sunlight efficiently, and therefore the project will not generate enough electricity to justify the investment.
 
@@ -3094,8 +3094,8 @@ The answer to which of the following questions would be most useful in evaluatin
 
 ## Q111
 **difficulty:** Hard
-**type:** Inference
-**topic:** Critical Reasoning — Reconciling Two Findings
+**type:** Critical Reasoning
+**topic:** Inference — Reconciling Two Findings
 
 A city's department of transportation recently replaced several mid-sized traffic intersections with roundabouts. The department reports that overall vehicle throughput at these intersections has increased by 22 percent since conversion, even during peak hours. However, residents of surrounding neighborhoods complain that traffic now backs up on the side streets leading into the roundabouts, and that their average commute times have actually increased across their full routes.
 
@@ -3150,8 +3150,8 @@ Which of the following best identifies a flaw in the parks department's reasonin
 
 ## Q113
 **difficulty:** Medium-Hard
-**type:** Strengthen
-**topic:** Critical Reasoning — Latent Demand
+**type:** Critical Reasoning
+**topic:** Strengthen — Latent Demand
 
 A regional logistics firm is launching a free office shuttle program from three suburban hubs to its main downtown headquarters. Management argues that the shuttle will reduce parking-lot overcrowding at headquarters by shifting employees who currently drive solo to the shuttle. Critics argue that, based on prior employer-shuttle experiments at peer firms, few employees will switch modes, and the shuttle will simply add a fleet expense without measurably easing parking demand.
 
@@ -3178,8 +3178,8 @@ Which of the following, if true, most strengthens management's argument?
 
 ## Q114
 **difficulty:** Medium
-**type:** Weaken
-**topic:** Critical Reasoning — Self-Selection Confounder
+**type:** Critical Reasoning
+**topic:** Weaken — Self-Selection Confounder
 
 A health insurance company's data show that policyholders who participate in its wellness program have 20 percent lower annual medical claims than policyholders who do not participate. The company argues that expanding the wellness program will significantly reduce total medical claims across its policyholder population.
 
@@ -3206,8 +3206,8 @@ Which of the following, if true, most weakens the company's argument?
 
 ## Q115
 **difficulty:** Hard
-**type:** Assumption
-**topic:** Critical Reasoning — Tradeoff Assumption
+**type:** Critical Reasoning
+**topic:** Assumption — Tradeoff Assumption
 
 A restaurant chain is considering eliminating all of its "luxury" menu items — items priced above $30 — in order to project a more family-friendly image and attract more families with children. Management argues that this menu change will grow the chain's overall sales.
 
@@ -3262,8 +3262,8 @@ Which of the following, if true, best explains why the increase in battery capac
 
 ## Q117
 **difficulty:** Medium
-**type:** Evaluate
-**topic:** Critical Reasoning — Test the Premise
+**type:** Critical Reasoning
+**topic:** Evaluate — Test the Premise
 
 A university is considering implementing a four-day school week to reduce operating costs. Administrators argue that the shift will maintain educational quality because the lost class hours will be redistributed across extended days and structured independent-study time.
 
@@ -3319,8 +3319,8 @@ In the argument above, the three portions in boldface play which of the followin
 
 ## Q119
 **difficulty:** Medium-Hard
-**type:** Strengthen
-**topic:** Critical Reasoning — Local Consumer Preference
+**type:** Critical Reasoning
+**topic:** Strengthen — Local Consumer Preference
 
 A manufacturer of plant-based alternative meat products reports that sales in its retail grocery channel grew 25 percent over the past year. The company's CEO argues that the growth reflects a genuine and increasing consumer preference for plant-based diets, and plans to expand retail distribution next year on the basis of this trend.
 
@@ -3347,8 +3347,8 @@ Which of the following, if true, most strengthens the CEO's argument?
 
 ## Q120
 **difficulty:** Medium
-**type:** Weaken
-**topic:** Critical Reasoning — Selection Bias
+**type:** Critical Reasoning
+**topic:** Weaken — Selection Bias
 
 A university's career services office reports that students who attend at least three networking events during their senior year receive, on average, 30 percent more job offers upon graduation than students who attend fewer networking events. The office concludes that attending more networking events causes students to receive more job offers.
 
@@ -3403,8 +3403,8 @@ Which of the following best identifies a flaw in the executive's reasoning?
 
 ## Q122
 **difficulty:** Medium
-**type:** Assumption
-**topic:** Critical Reasoning — Necessary Causal Mechanism
+**type:** Critical Reasoning
+**topic:** Assumption — Necessary Causal Mechanism
 
 A city's health department has proposed mandatory annual flu vaccination for all hospital staff. Under the proposal, any hospital employee who refuses to be vaccinated (for reasons other than documented medical contraindication) would face termination of employment. Supporters argue that the policy will significantly reduce flu-related patient infections during flu season.
 
@@ -3431,8 +3431,8 @@ The supporters' argument relies on which of the following assumptions?
 
 ## Q123
 **difficulty:** Hard
-**type:** Inference
-**topic:** Critical Reasoning — Quantitative Inference
+**type:** Critical Reasoning
+**topic:** Inference — Quantitative Inference
 
 An employee at Firm X is eligible for a retention bonus if the employee has worked at the firm for at least five years AND has received positive performance reviews every year of employment. Among employees currently employed at Firm X for five or more years, approximately 80 percent have received positive performance reviews in every year of their employment so far.
 
@@ -3459,8 +3459,8 @@ Which of the following is most strongly supported by the statements above?
 
 ## Q124
 **difficulty:** Medium
-**type:** Evaluate
-**topic:** Critical Reasoning — Volume Elasticity
+**type:** Critical Reasoning
+**topic:** Evaluate — Volume Elasticity
 
 A publisher argues that lowering the cover price of its hardcover novels from $25 to $20 will significantly increase total revenue by boosting sales volume. Critics contend that, even with a higher sales volume, the 20 percent price reduction could result in lower total revenue than before if sales volume does not grow enough to offset the per-unit price reduction.
 
