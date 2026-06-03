@@ -155,8 +155,8 @@ If f(x) = x² + 2, what is f(a + 1) − f(a − 1)?
 **hint_setup:** f(a + 1) = (a + 1)² + 2 = a² + 2a + 3; now find f(a − 1) the same way.
 **fastest_path:** f(a+1) = a² + 2a + 3; f(a−1) = a² − 2a + 3. Difference = 4a.
 **explanation:** Use the variable argument — expand algebraically. f(a + 1) = (a + 1)² + 2 = a² + 2a + 1 + 2 = a² + 2a + 3. f(a − 1) = (a − 1)² + 2 = a² − 2a + 1 + 2 = a² − 2a + 3. Subtract: (a² + 2a + 3) − (a² − 2a + 3) = 4a. Both the a² terms and the constant terms cancel; only the linear cross-terms from the (a ± 1)² expansion survive.
-**mistake_a:** Substituted a = 1 to get a specific number: f(2) − f(0) = 6 − 2 = 4, then bubbled B (4). Numerical substitution cannot distinguish variable expressions — plugging in a = 1 gives 4a = 4, which matches B, but so would the constant 4; you need a second test value to confirm dependence on a.
-**mistake_b:** Dropped the variable from the cross-term: computed (2a + 1) − (−2a + 1) = 4 — treated the cross-term as the constant 1 rather than 2a.
+**mistake_a:** Subtracted the arguments rather than the function values: computed (a+1) − (a−1) = 2, treating the inputs as the outputs. This bypasses the f(x) = x² + 2 formula entirely — the function must be evaluated at each argument before subtracting.
+**mistake_b:** Substituted a specific value — for example a = 1 — to get a single number: f(2) − f(0) = 6 − 2 = 4. The trap: choice C (4a) also evaluates to 4 when a = 1, so this substitution cannot distinguish B (the constant 4) from C (the expression 4a). A second check with a = 2 resolves the ambiguity: f(3) − f(1) = 11 − 3 = 8 = 4(2) ✓, confirming the answer depends on a.
 **mistake_d:** Failed to cancel the constant terms: computed 4a + (3 − 3) but added the constants instead of subtracting, arriving at 4a + 4.
 **mistake_e:** Multiplied instead of subtracting: treated f(a+1) − f(a−1) as f(a+1) × f(a−1), then collapsed to 2a².
 **common_trap:** Plugging in a specific number (a = 0 or a = 1) instead of working symbolically — numerical substitution may give a consistent answer, but it can't distinguish between choices that differ only in their variable terms.
