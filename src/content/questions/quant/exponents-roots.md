@@ -887,3 +887,456 @@ Verify: 4^(4²) = 4^16 and 4^(4 × 4) = 4^16. Both sides match.
 **common_trap:** Dividing both sides of x² = 4x by x — this discards a valid factor and can hide roots. Always factor the polynomial rather than dividing. Then apply domain constraints to eliminate invalid candidates.
 **takeaway:** For x^A = x^B with x > 0 and x ≠ 1: equate exponents using the one-to-one property. Factor the resulting polynomial — never divide by a variable. Apply domain constraints (x > 0, x ≠ 1) to discard invalid solutions after factoring.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Nested Radicals
+
+What is the value of √(√625)?
+
+- A) 5
+- B) 10
+- C) 25
+- D) 125
+- E) 625
+
+**answer:** A
+**fastest_path:** √625 = 25; √25 = 5. Or: 625^(1/4) = (5^4)^(1/4) = 5.
+**explanation:** A nested radical √(√n) is the same as n^(1/4). Work from the inside out. Inner radical: √625 = 25 (since 25² = 625). Outer radical: √25 = 5 (since 5² = 25). Alternatively, recognize 625 = 5^4, so 625^(1/4) = 5 directly.
+**mistake_b:** Computed √(25 + 25) or multiplied the two steps rather than composing them; got 10.
+**mistake_c:** Computed only the first radical: √625 = 25, and stopped.
+**mistake_d:** Divided 625 by 5 (applied the index as division rather than as a root).
+**mistake_e:** Did not simplify at all; returned the original radicand.
+**common_trap:** Stopping after the first simplification — the problem asks for the nested root, not just √625.
+**takeaway:** √(√n) = n^(1/4). Evaluate from the inside out, or combine exponents: (n^(1/2))^(1/2) = n^(1/4). Recognize 625 = 5^4, 81 = 3^4, 16 = 2^4 as useful benchmarks.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Special Exponent Values
+
+What is the value of (7^0) × (1^70)?
+
+- A) 0
+- B) 1
+- C) 7
+- D) 70
+- E) 77
+
+**answer:** B
+**fastest_path:** a^0 = 1 (for a ≠ 0); 1^n = 1 always. Product = 1 × 1 = 1.
+**explanation:** Two independent rules apply here. Zero exponent: any nonzero base raised to the zero power equals 1, so 7^0 = 1. Base-one rule: 1 raised to any power is 1, so 1^70 = 1. Product: 1 × 1 = 1.
+**mistake_a:** Assumed 7^0 = 0 (confusing zero exponent with zero result). The zero exponent produces 1, not 0.
+**mistake_c:** Treated 7^0 as 7^1 = 7, ignoring the zero exponent entirely.
+**mistake_d:** Added the exponents: 0 + 70 = 70.
+**mistake_e:** Added the bases: 7 + 70 = 77 (conflated bases with exponents).
+**common_trap:** Confusing "zero exponent" with "zero result." a^0 = 1 for all nonzero a; the result is always 1, never 0.
+**takeaway:** Two foundational special cases: a^0 = 1 (nonzero a), and 1^n = 1 (all n). These simplify expressions immediately — flag them on sight.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If x^3 = 8, what is the value of x^6?
+
+- A) 16
+- B) 24
+- C) 48
+- D) 64
+- E) 512
+
+**answer:** D
+**fastest_path:** x^6 = (x^3)^2 = 8^2 = 64. No need to find x.
+**explanation:** Reframe x^6 using what you already know. x^6 = (x^3)^2. Since x^3 = 8, substitute: (x^3)^2 = 8^2 = 64. This avoids solving for x altogether (x = 2, then 2^6 = 64 confirms the same answer).
+**mistake_a:** Computed x^3 × 2 = 8 × 2 = 16 (treated squaring as doubling).
+**mistake_b:** Computed 8 × 3 = 24 (multiplied by the exponent instead of squaring).
+**mistake_c:** Computed 8 × 6 = 48 (multiplied the value by the target exponent).
+**mistake_e:** Computed 8^3 = 512 (cubed x^3 again instead of squaring it; found x^9).
+**common_trap:** Solving for x unnecessarily — when the question involves a power of a known expression, rewrite the target as (known expression)^k and substitute directly.
+**takeaway:** Look for expressions of the form (x^k)^n whenever an equation gives you x^k. Substituting the whole chunk is faster and avoids intermediate computation errors.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Rewriting with a Common Base
+
+Which of the following equals 4^5?
+
+- A) 2^5
+- B) 2^7
+- C) 2^9
+- D) 2^10
+- E) 2^20
+
+**answer:** D
+**fastest_path:** 4 = 2^2, so 4^5 = (2^2)^5 = 2^10.
+**explanation:** When two expressions share a common base, rewrite the larger base first. 4 = 2^2. Apply power-of-a-power: (2^2)^5 = 2^(2×5) = 2^10.
+**mistake_a:** Left the exponent as 5; ignored the base conversion entirely.
+**mistake_b:** Computed 4 + 3 = 7 (added unrelated numbers to get 7 — no coherent rule).
+**mistake_c:** Computed 4^5 = (4/2) × 5 = 9 (some version of halving the base and adding).
+**mistake_e:** Multiplied 4 × 5 = 20 to get 2^20 — this would be correct if 4 = 2^4, but 4 = 2^2 only.
+**common_trap:** Using the outer exponent (5) directly as the new exponent — the rule is multiply exponents: 2^(2 × 5) = 2^10, not 2^5.
+**takeaway:** To convert a^m to b^n when a = b^k: (b^k)^m = b^(km). Memorize: 4 = 2^2, 8 = 2^3, 9 = 3^2, 27 = 3^3, 25 = 5^2.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+Which of the following equals (3 × 4)^2?
+
+- A) 3^2 × 4
+- B) 3 × 4^2
+- C) 3^2 + 4^2
+- D) 3^2 × 4^2
+- E) 6 × 4^2
+
+**answer:** D
+**fastest_path:** (ab)^n = a^n × b^n. Check: (3 × 4)^2 = 12^2 = 144; 3^2 × 4^2 = 9 × 16 = 144. ✓
+**explanation:** Power distributes over multiplication: (ab)^n = a^n × b^n. So (3 × 4)^2 = 3^2 × 4^2 = 9 × 16 = 144. Confirm: (3 × 4)^2 = 12^2 = 144. ✓
+**mistake_a:** Distributed the exponent to one factor only: 3^2 × 4 = 36.
+**mistake_b:** Distributed the exponent to one factor only: 3 × 4^2 = 48.
+**mistake_c:** Added the squared terms instead of multiplying: 9 + 16 = 25 (this is the Pythagorean relation, not the power rule).
+**mistake_e:** Split 3 × 4 as 6 × 4 and applied the exponent to 4 only: 6 × 4^2 = 96.
+**common_trap:** Distributing the exponent to only one factor — the rule requires raising every factor in the product to the power.
+**takeaway:** (ab)^n = a^n × b^n. The exponent distributes over every factor inside the parentheses. Contrast with (a + b)^n ≠ a^n + b^n — the distribution rule applies to products, not sums.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Intermediate
+**type:** Problem Solving
+**topic:** Comparing Exponential Expressions
+
+Without a calculator, which of the following is greatest?
+
+- A) 2^7
+- B) 3^5
+- C) 5^3
+- D) 7^2
+- E) 4^3
+
+**answer:** B
+**fastest_path:** Compute: 128, 243, 125, 49, 64. Largest is 3^5 = 243.
+**explanation:** Evaluate each option systematically. A: 2^7 = 128. B: 3^5 = 243. C: 5^3 = 125. D: 7^2 = 49. E: 4^3 = 64. The largest value is 243, so B. A useful heuristic: when the base grows but the exponent shrinks, the exponent's effect can dominate — here 3^5 beats 5^3 because 5 multiplications of a factor-3 growth outpaces 3 multiplications of a factor-5 growth.
+**mistake_a:** Chose 2^7 = 128 (second-largest, often confused with 3^5).
+**mistake_c:** Chose 5^3 = 125 (visually large base, but only 3 multiplications).
+**mistake_d:** Chose 7^2 = 49 (largest base, smallest value — only 2 multiplications).
+**mistake_e:** Estimated 4^3 = 64 and rounded up due to the round base.
+**common_trap:** Assuming a larger base always produces a larger value — the exponent controls how many times multiplication occurs. 3^5 involves 5 multiplications of 3; 7^2 involves only 2 multiplications of 7.
+**takeaway:** When comparing exponential expressions, compute (or bracket) carefully. Larger base ≠ larger value; exponent frequency matters. Practice the grid: 2^7=128, 3^5=243, 3^4=81, 4^3=64.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Intermediate
+**type:** Problem Solving
+**topic:** Quadratic-in-Exponential Equations
+
+How many positive values of x satisfy 9^x − 4 · 3^x + 3 = 0?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) Infinitely many
+
+**answer:** B
+**fastest_path:** Let u = 3^x. 9^x = u^2. Equation: u^2 − 4u + 3 = 0 → (u−1)(u−3) = 0 → 3^x = 1 (x = 0, not positive) or 3^x = 3 (x = 1, positive). One positive solution.
+**explanation:** Notice 9^x = (3^2)^x = (3^x)^2. Substitute u = 3^x to turn an exponential equation into a quadratic. u^2 − 4u + 3 = 0 factors as (u − 1)(u − 3) = 0. Roots: u = 1 or u = 3. Translate back: 3^x = 1 → x = 0 (not positive); 3^x = 3 → x = 1 (positive). Exactly one positive solution.
+**mistake_a:** Concluded no positive solutions by ignoring the x = 1 case.
+**mistake_c:** Counted both x = 0 and x = 1 as positive (x = 0 is not positive).
+**mistake_d:** Found the two roots u = 1 and u = 3 and misread each as a distinct positive x value.
+**mistake_e:** Misidentified the quadratic as having infinitely many solutions.
+**common_trap:** Treating x = 0 as a positive value. The question asks for *positive* x. Zero is neither positive nor negative.
+**takeaway:** When an expression contains both a^(2x) and a^x, substitute u = a^x to reveal a quadratic. Solve the quadratic, translate u back to x, then apply domain constraints (here: x > 0).
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Intermediate
+**type:** Problem Solving
+**topic:** Exponential Inequalities
+
+If 5^(2x − 1) > 5^(x + 3), which of the following describes all values of x that satisfy the inequality?
+
+- A) x < 4
+- B) x = 4
+- C) x > 4
+- D) x > 2
+- E) x < −2
+
+**answer:** C
+**fastest_path:** Base 5 > 1 → exponential is increasing → compare exponents directly: 2x − 1 > x + 3 → x > 4.
+**explanation:** The base is 5, which is greater than 1. For an exponential function with base > 1, the function is strictly increasing: a^p > a^q if and only if p > q. Therefore compare exponents directly: 2x − 1 > x + 3. Solve: 2x − x > 3 + 1 → x > 4.
+**mistake_a:** Flipped the inequality direction — this error occurs when students incorrectly treat the base as being between 0 and 1 (where the function is decreasing).
+**mistake_b:** Solved the equality 5^(2x−1) = 5^(x+3) → x = 4, then forgot to reintroduce the strict inequality.
+**mistake_d:** Solved 2x − 1 > 3 (dropped the x from the right side); got x > 2.
+**mistake_e:** Solved −x > 4 by an algebra error; got x < −4 or −2.
+**common_trap:** Flipping the inequality direction. This mistake arises when confusing base > 1 (increasing, preserve inequality) with 0 < base < 1 (decreasing, flip inequality). Always check the base.
+**takeaway:** For b^A > b^B: if b > 1, inequality direction is preserved (A > B); if 0 < b < 1, direction flips (A < B). Identify the base first, then decide whether to preserve or flip.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Intermediate
+**type:** Problem Solving
+**topic:** Multi-Rule Simplification
+
+For a > 0, which of the following equals (a^6)^(1/2) / a^(−1)?
+
+- A) a^2
+- B) a^3
+- C) a^4
+- D) a^5
+- E) a^6
+
+**answer:** C
+**fastest_path:** Numerator: (a^6)^(1/2) = a^3. Denominator: a^(−1). Division: a^3 / a^(−1) = a^(3−(−1)) = a^4.
+**explanation:** Apply rules in sequence. Numerator: power of a power, (a^6)^(1/2) = a^(6 × 1/2) = a^3. Division: a^m / a^n = a^(m − n). Subtracting a negative exponent: a^3 / a^(−1) = a^(3 − (−1)) = a^(3 + 1) = a^4. Three rules used: power-of-a-power, negative-exponent (denominators), and same-base division.
+**mistake_a:** Computed (a^6)^(1/2) = a^3, then divided by a^1 (treated a^(−1) as a^1); got a^(3−1) = a^2.
+**mistake_b:** Stopped at the numerator step: a^3.
+**mistake_d:** Subtracted the wrong way: a^(3−(+1)) instead of a^(3−(−1)).
+**mistake_e:** Incorrectly applied the outer exponent to the denominator: got a^(6+0) or some combination.
+**common_trap:** Forgetting that dividing by a^(−1) is the same as multiplying by a^1. When the denominator's exponent is negative, subtraction becomes addition.
+**takeaway:** Build a chain: (1) power-of-a-power first, (2) rewrite division as subtraction of exponents, (3) handle any negatives carefully — subtracting a negative is adding. Keep a tally column for each variable's exponent.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q42
+**difficulty:** Intermediate
+**type:** Problem Solving
+**topic:** Rationalization with Cube Roots
+
+What is the simplified form of 2 / ∛4?
+
+- A) ∛2
+- B) ∛4
+- C) 2∛4
+- D) 2/∛4
+- E) 4∛2
+
+**answer:** A
+**fastest_path:** Multiply by ∛(4²)/∛(4²): numerator = 2∛16, denominator = ∛64 = 4. Result = 2∛16/4 = ∛16/2 = 2∛2/2 = ∛2.
+**explanation:** To rationalize a cube root in the denominator, multiply by the factor that completes a perfect cube. ∛4 = ∛(4^1); multiply numerator and denominator by ∛(4^2) = ∛16, since 4^1 × 4^2 = 4^3 = 64 and ∛64 = 4. Numerator: 2 × ∛16 = 2∛16. Denominator: ∛4 × ∛16 = ∛64 = 4. Result: 2∛16/4 = ∛16/2. Simplify ∛16 = ∛(8 × 2) = 2∛2. So ∛16/2 = 2∛2/2 = ∛2. Verify numerically: ∛2 ≈ 1.260; 2/∛4 = 2/1.587 ≈ 1.260. ✓
+**mistake_b:** Multiplied numerator and denominator by ∛4/∛4 instead; arrived at a non-simplified form and circled B by misreading the result.
+**mistake_c:** Forgot to rationalize: left the answer as 2∛4 (applied ∛4 to the numerator without handling the denominator).
+**mistake_d:** Selected the original expression, concluding it is already in simplest form.
+**mistake_e:** Confused exponents: approximated 2/∛4 carelessly as 4∛2.
+**common_trap:** Using the conjugate strategy from square roots — that does not generalize to cube roots. For ∛a in the denominator, multiply by ∛(a²) to create a³ under the radical, which then becomes the integer a.
+**takeaway:** To clear ∛a from the denominator, multiply by ∛(a²)/∛(a²): the denominator becomes ∛(a³) = a, an integer. The needed multiplier completes the cube, not the square. After clearing, simplify the remaining radical in the numerator.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Intermediate
+**type:** Problem Solving
+**topic:** Ordering Fractional Exponents
+
+Which of the following correctly orders 8^(2/3), 4^(3/2), and 2^5 from least to greatest?
+
+- A) 8^(2/3) < 4^(3/2) < 2^5
+- B) 4^(3/2) < 8^(2/3) < 2^5
+- C) 8^(2/3) < 2^5 < 4^(3/2)
+- D) 2^5 < 8^(2/3) < 4^(3/2)
+- E) All three are equal
+
+**answer:** A
+**fastest_path:** Convert: 8^(2/3) = 4; 4^(3/2) = 8; 2^5 = 32. Order: 4 < 8 < 32.
+**explanation:** Evaluate each expression. 8^(2/3): take cube root first (8^(1/3) = 2), then square (2^2 = 4). 4^(3/2): take square root first (4^(1/2) = 2), then cube (2^3 = 8). 2^5 = 32. Numerical values: 4, 8, 32. From least to greatest: 8^(2/3) < 4^(3/2) < 2^5.
+**mistake_b:** Swapped the first two: incorrectly computed 4^(3/2) = 4 and 8^(2/3) = 8.
+**mistake_c:** Placed 2^5 in the middle, perhaps estimating it as 16 or 24.
+**mistake_d:** Placed 2^5 as smallest, perhaps confusing 2^5 with 2^3 = 8.
+**mistake_e:** Incorrectly assumed all three expressions reduce to the same value.
+**common_trap:** Applying the exponent in the wrong order for fractional powers: raise to the power first, then take the root — this blows up numbers and is harder to compute. Take the root first (denominator of the fraction), then raise to the power (numerator).
+**takeaway:** For a^(m/n): compute (a^(1/n))^m — root first, then power. Keeping numbers small prevents arithmetic errors. Build a lookup: 4^(1/2)=2, 8^(1/3)=2, 27^(1/3)=3, 9^(1/2)=3, 16^(1/4)=2.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q44
+**difficulty:** Intermediate
+**type:** Problem Solving
+**topic:** Exponential Growth
+
+A population of bacteria doubles every 3 hours. At noon the population is 500. What will the population be at midnight that same day?
+
+- A) 2,000
+- B) 4,000
+- C) 6,000
+- D) 8,000
+- E) 16,000
+
+**answer:** D
+**fastest_path:** Noon to midnight = 12 hours; 12 ÷ 3 = 4 doublings; 500 × 2^4 = 500 × 16 = 8,000.
+**explanation:** Identify the number of doubling periods. From noon to midnight is 12 hours. With a 3-hour doubling time: 12 / 3 = 4 complete periods. Population = 500 × 2^4 = 500 × 16 = 8,000.
+**mistake_a:** Computed 4 doublings as 4 × 500 = 2,000 (multiplied by the count instead of 2^count).
+**mistake_b:** Computed 500 × 2^3 = 4,000 (counted only 3 periods instead of 4; perhaps miscounted noon, 3 PM, 6 PM, 9 PM as three intervals instead of four).
+**mistake_c:** Computed 500 × (3 × 4) = 6,000 (linear model; multiplied by total hours rather than using exponential).
+**mistake_e:** Computed 500 × 2^5 = 16,000 (counted 5 doublings by including the starting point as a doubling event).
+**common_trap:** Counting the starting time as a doubling event. At noon there are 500 bacteria — that is before any doubling occurs. The first doubling brings you to 1,000 at 3 PM. By midnight (12 hours later) there are 4 doublings, not 5.
+**takeaway:** Exponential doubling: population = (initial) × 2^(elapsed time / doubling period). Count elapsed periods, not elapsed time markers. Confirm by listing: noon=500, 3PM=1000, 6PM=2000, 9PM=4000, midnight=8000.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q45
+**difficulty:** Advanced
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If x > 0 and x^(x + 2) = x^8, what is the sum of all values of x that satisfy the equation?
+
+- A) 1
+- B) 6
+- C) 7
+- D) 8
+- E) 14
+
+**answer:** C
+**fastest_path:** Two cases: (1) x = 1: 1^anything = 1. ✓ (2) x ≠ 1: equate exponents → x + 2 = 8 → x = 6. ✓ Sum = 1 + 6 = 7.
+**explanation:** The equation x^A = x^B has two classes of solution for x > 0. Class 1 — base is 1: x = 1 satisfies any equation of the form 1^A = 1^B because 1^n = 1 for all n. Check: 1^(1+2) = 1 = 1^8. ✓ Class 2 — base ≠ 1: an exponential function with base ≠ 1 is one-to-one, so x^A = x^B implies A = B. Equate exponents: x + 2 = 8 → x = 6. Check: 6^8 = 6^8. ✓ Both solutions are positive. Sum = 1 + 6 = 7.
+**mistake_a:** Found only x = 1, missing the x = 6 solution from equating exponents.
+**mistake_b:** Found only x = 6, missing the x = 1 special case.
+**mistake_d:** Bubbled 8 (the exponent value on the right side, not the sum of solutions).
+**mistake_e:** Doubled one root instead of summing both: 2 × 7 = 14.
+**common_trap:** Forgetting that x = 1 is always a solution to x^A = x^B for any A and B. The base-1 case must be checked separately before equating exponents — equating exponents only applies when the base is neither 0 nor 1.
+**takeaway:** For x^A = x^B (x > 0): solve in two branches. Branch 1: x = 1 (always satisfies; verify). Branch 2: x ≠ 1 → equate exponents A = B, solve, keep only valid (positive) roots. Sum all valid solutions.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q46
+**difficulty:** Advanced
+**type:** Data Sufficiency
+**topic:** Radical Inequalities
+
+Is √x > x?
+
+(1) 0 < x < 1
+(2) x is not an integer
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** (1) 0 < x < 1 → √x = x^(1/2) > x^1 because raising a fraction to a smaller exponent gives a larger result. Always yes → sufficient. (2) x = 0.25 → yes; x = 2.5 → no. Inconsistent → insufficient. A.
+**explanation:** Statement (1): For 0 < x < 1, the function f(p) = x^p is decreasing in p (multiplying by x < 1 shrinks the value). Since 1/2 < 1, we have x^(1/2) > x^1, i.e., √x > x. This is true for every x in (0, 1) with no exceptions. Answer is always YES → sufficient.
+
+Statement (2): x is not an integer. Test x = 1/4: √(1/4) = 1/2 > 1/4 (YES). Test x = 9/4: √(9/4) = 3/2 = 1.5 < 9/4 = 2.25 (NO). Inconsistent answers → insufficient.
+**mistake_b:** Concluded only Statement 2 is sufficient; did not test the counterexample x = 9/4.
+**mistake_c:** Required both statements together.
+**mistake_d:** Concluded each alone is sufficient; did not recognize Statement 2 is insufficient.
+**mistake_e:** Concluded together insufficient.
+**common_trap:** Assuming Statement 2 is sufficient because "not an integer" suggests fractions. Non-integers include values like 2.5, 3.7, etc., which exceed 1 and for which √x < x.
+**takeaway:** The inequality √x > x holds exactly when 0 < x < 1. Statement 1 locks in this range (sufficient). Statement 2 does not distinguish between fractions less than 1 and non-integer values greater than 1 (insufficient). Use a number line to organize DS answers about radical inequalities.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q47
+**difficulty:** Advanced
+**type:** Problem Solving
+**topic:** Tower Exponents
+
+If P = 2^(3²) and Q = (2^3)², what is the value of P − Q?
+
+- A) 0
+- B) 64
+- C) 128
+- D) 448
+- E) 512
+
+**answer:** D
+**fastest_path:** P = 2^9 = 512; Q = 2^6 = 64. P − Q = 448.
+**explanation:** Evaluate each expression carefully — parentheses change the order of operations. P = 2^(3²): the exponent is 3² = 9, so P = 2^9 = 512. Q = (2^3)²: the base is 2^3 = 8, then squared, so Q = 8^2 = 64 — equivalently, (2^3)² = 2^(3×2) = 2^6 = 64. P − Q = 512 − 64 = 448.
+**mistake_a:** Assumed P = Q (confused 2^(3²) with (2^3)²).
+**mistake_b:** Reported Q = 64 as the answer rather than P − Q.
+**mistake_c:** Computed P − Q as 512 − 64 but made an arithmetic error, arriving at 128.
+**mistake_e:** Reported P = 512 as the answer rather than P − Q.
+**common_trap:** Treating 2^(3²) and (2^3)² as identical. They are not: 2^(3²) = 2^9 = 512 (exponent applied first to 3); (2^3)² = 2^6 = 64 (power rule multiplies the exponents 3 × 2). Convention: exponentiation is right-to-left, so a^b^c = a^(b^c), not (a^b)^c.
+**takeaway:** Tower exponents (a^(b^c)) are evaluated right-to-left: compute b^c first, then raise a to that result. Parentheses override this convention. 2^(3²) = 2^9 = 512 is very different from (2^3)² = 2^6 = 64. The gap grows rapidly — a defining feature of exponential towers.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q48
+**difficulty:** Advanced
+**type:** Problem Solving
+**topic:** Multi-Rule Variable Simplification
+
+For positive x and y, which of the following equals (x^(1/2) · y^(2/3))^6 / (x^(−1) · y^4)?
+
+- A) x²y²
+- B) x⁴y²
+- C) x⁴
+- D) x³y⁴
+- E) x⁶y⁸
+
+**answer:** C
+**fastest_path:** Numerator: x^3 · y^4. Denominator: x^(−1) · y^4. Quotient: x^(3−(−1)) · y^(4−4) = x^4 · y^0 = x^4.
+**explanation:** Expand the numerator by distributing the outer exponent 6: (x^(1/2))^6 = x^(6/2) = x^3; (y^(2/3))^6 = y^(6 × 2/3) = y^4. Numerator = x^3 · y^4. Denominator = x^(−1) · y^4. Divide by subtracting exponents for each variable. x: 3 − (−1) = 4. y: 4 − 4 = 0. Result: x^4 · y^0 = x^4 · 1 = x^4.
+**mistake_a:** Computed x-exponent as 3 − 1 = 2 (forgot the negative); y-exponent as 4/2 = 2; got x^2y^2.
+**mistake_b:** Computed x-exponent correctly as 4 but left y^2 (halved instead of cancelling).
+**mistake_d:** Evaluated x^3 correctly but then failed to subtract the denominator's x-exponent, and left y^4 unchanged.
+**mistake_e:** Did not apply the outer exponent 6 to the fractional exponents; treated each as if the fractions were already integers.
+**common_trap:** Miscalculating the y-exponent after distributing the outer 6: (y^(2/3))^6 = y^(12/3) = y^4, not y^(2/3+6) or y^(2). The rule is multiply exponents, not add the outer to the inner.
+**takeaway:** Chain three rules in order: (1) power of a power — multiply each inner exponent by the outer; (2) same-base division — subtract exponents variable by variable; (3) zero exponent — any base^0 = 1. Track each variable's exponent separately; errors cluster at the y-component where the fractional × integer multiplication is easy to botch.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q49
+**difficulty:** Advanced
+**type:** Problem Solving
+**topic:** Exponential Systems
+
+If 4^x = 8^y and 9^y = 27^z, what is the value of x/z?
+
+- A) 3/4
+- B) 1
+- C) 4/3
+- D) 2
+- E) 9/4
+
+**answer:** E
+**fastest_path:** Convert to base 2: 2^(2x) = 2^(3y) → x/y = 3/2. Convert to base 3: 3^(2y) = 3^(3z) → y/z = 3/2. Chain: x/z = (x/y) · (y/z) = 9/4.
+**explanation:** Each equation links two quantities via a shared base.
+
+Equation 1: 4^x = 8^y. Rewrite: (2^2)^x = (2^3)^y → 2^(2x) = 2^(3y). Equate exponents: 2x = 3y → x/y = 3/2.
+
+Equation 2: 9^y = 27^z. Rewrite: (3^2)^y = (3^3)^z → 3^(2y) = 3^(3z). Equate exponents: 2y = 3z → y/z = 3/2.
+
+Chain the ratios: x/z = (x/y) × (y/z) = (3/2) × (3/2) = 9/4.
+**mistake_a:** Inverted one ratio: used y/x = 3/2 and y/z = 3/2, then computed x/z as (2/3)×(2/3) = 4/9; chose 3/4 from a misread.
+**mistake_b:** Assumed x = y = z (symmetric-looking equations suggest equal values to some students).
+**mistake_c:** Computed x/y = 4/3 (inverted the correct ratio from equation 1) and y/z = 3/2; got (4/3) × (1) = 4/3.
+**mistake_d:** Found x/y = 3/2 and y/z = 3/2 but added instead of multiplied: 3/2 + 3/2 − 1 = 2.
+**common_trap:** Adding the two ratios rather than multiplying when chaining x/y and y/z. The chain rule for ratios is multiplicative: x/z = (x/y) · (y/z).
+**takeaway:** When two exponential equations share a common variable (here y), convert each to its prime base, equate exponents to extract a ratio, then multiply the ratios to eliminate the shared variable. This technique extends to any chain of three or more variables.
+**related_reading:** reading-quant-04-algebra-and-equations
