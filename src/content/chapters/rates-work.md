@@ -2,12 +2,12 @@
 slug: rates-work
 title: Rates and Work
 section: Quant
-estimated_minutes: 50
+estimated_minutes: 65
 prerequisites: []
 summary: |
-  Every rate-and-work problem on the GMAT is one of six patterns: single-object D=RT, combined work (add the rates), catch-up (subtract the rates), average speed over equal distances (harmonic mean, never arithmetic mean), average speed over unequal distances (total distance ÷ total time), and pipes-or-workers with staggered start times. Learn to recognize which pattern you're in, set up the rate equation in the right units, and every question in this chapter takes under 90 seconds.
+  Every rate-and-work problem on the GMAT falls into one of eight patterns: (1) single-object D=RT, (2) combined work — add the rates, (3) competing rates — fill minus drain, (4) two objects moving in opposite directions — add the speeds, (5) two objects moving the same direction — subtract the speeds, including circular-track lapping, (6) average speed over equal distances — harmonic mean, (7) average speed over equal times — arithmetic mean, (8) partial work and staggered starts — break into phases. Learn to identify the pattern in the first sentence of the problem; the arithmetic follows automatically.
 
-  By the end of this chapter you will: (1) set up D = RT instantly with correct units; (2) add rates — never times — for combined work; (3) avoid the arithmetic-mean trap on average speed; and (4) break any staggered-start problem into phases without confusion.
+  By the end of this chapter you will: (1) apply D = RT instantly with correct units; (2) add rates — never times — for combined work; (3) subtract drain rates from fill rates for competing-pipe problems; (4) choose harmonic mean, arithmetic mean, or total/total based on what's equal; (5) break any staggered-start problem into phases without confusion; and (6) compute circular-track lapping time from the speed difference alone.
 sections:
   - id: pretest
     type: pretest
@@ -25,32 +25,45 @@ sections:
       Every rate problem on the GMAT — cars, trains, painters, pipes, pumps — collapses to the same three-variable equation. Master the equation and the unit discipline that goes with it, and you have the skeleton for every question in this chapter.
     check_question_ids:
       - rates-work-q3
+      - rates-work-q27
 
   - id: combined-work
     type: reading
     title: "Combined work — add the rates, never the times"
     intro: |
-      The most-tested mistake in rates: two workers, so add their times to get the combined time. That is always wrong. This section explains why, gives you the correct formula, and builds the intuition so the mistake feels obviously wrong before you finish reading.
+      The most-tested mistake in rates: two workers, so add their times to get the combined time. That is always wrong. This section explains why, gives you the correct formula, extends it to three-or-more workers, and builds the intuition so the mistake feels obviously wrong before you finish reading.
     check_question_ids:
       - rates-work-q12
+      - rates-work-q28
 
   - id: two-objects-moving
     type: reading
-    title: "Two objects moving — opposite, same, catch-up"
+    title: "Two objects moving — opposite, same, catch-up, lapping"
     intro: |
-      Two objects moving generates exactly three setups. There is a single rule that handles all three and takes five seconds to apply. Learn it here first, then see how it plays out in each setup.
+      Two objects moving generates exactly four setups. There is a single rule that handles all four and takes five seconds to apply. Learn it here first, then see how it plays out in each setup — including the circular-track lapping case that trips up students who never learned what "lapping" actually means.
     check_question_ids:
       - rates-work-q5
       - rates-work-q8
+      - rates-work-q43
+      - rates-work-q39
 
   - id: average-speed
     type: reading
-    title: "Average speed — harmonic mean and the 50-mph trap"
+    title: "Average speed — harmonic mean, arithmetic mean, and the 50-mph trap"
     intro: |
-      Your intuition says average speed is the mean of the two speeds. The GMAT exploits that intuition on every round-trip question. The slow leg consumes more time than the fast leg, so it pulls the true average further toward itself. This section gives you the formula that always works, the shortcut for equal distances, and the two-question test that tells you which to reach for in under five seconds.
+      Your intuition says average speed is the mean of the two speeds. The GMAT exploits that intuition on every round-trip question. The slow leg consumes more time than the fast leg, so it pulls the true average further toward itself. This section gives you the formula that always works, the shortcut for equal distances, the shortcut for equal times, and a two-question test that tells you which to reach for in under five seconds.
     check_question_ids:
       - rates-work-q7
       - rates-work-q13
+      - rates-work-q21
+
+  - id: competing-rates
+    type: reading
+    title: "Competing rates — when one pipe fills and another drains"
+    intro: |
+      Combined work assumes everyone pushes the job forward. When one pipe fills a tank and another drains it simultaneously, the drain subtracts from the fill rate. One sign error here produces an answer that is wrong by a factor of two or more — and the wrong answer always looks tempting. This section gives you the rule and a full worked example.
+    check_question_ids:
+      - rates-work-q34
 
   - id: partial-work-staggered-starts
     type: reading
@@ -60,10 +73,11 @@ sections:
     check_question_ids:
       - rates-work-q14
       - rates-work-q16
+      - rates-work-q33
 
   - id: summary
     type: summary
-    title: "The six-pattern decision tree"
+    title: "The eight-pattern decision tree"
     check_question_ids: []
 
 problem_sets:
@@ -80,6 +94,12 @@ problem_sets:
       - rates-work-q4
       - rates-work-q5
       - rates-work-q6
+      - rates-work-q27
+      - rates-work-q28
+      - rates-work-q29
+      - rates-work-q30
+      - rates-work-q31
+      - rates-work-q32
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -95,6 +115,14 @@ problem_sets:
       - rates-work-q12
       - rates-work-q13
       - rates-work-q14
+      - rates-work-q21
+      - rates-work-q33
+      - rates-work-q34
+      - rates-work-q35
+      - rates-work-q36
+      - rates-work-q37
+      - rates-work-q38
+      - rates-work-q39
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -106,6 +134,18 @@ problem_sets:
       - rates-work-q16
       - rates-work-q17
       - rates-work-q18
+      - rates-work-q19
+      - rates-work-q20
+      - rates-work-q22
+      - rates-work-q23
+      - rates-work-q24
+      - rates-work-q25
+      - rates-work-q26
+      - rates-work-q40
+      - rates-work-q41
+      - rates-work-q42
+      - rates-work-q43
+      - rates-work-q44
 ---
 
 ## @drt-foundation
@@ -174,19 +214,31 @@ A finishes in 12 hours alone. A + B finish in 8 hours together. How long does B 
 
 Trap answer: students who manipulate times compute 12 − 8 = 4 (wrong) or 12 + 8 = 20 (also wrong). The right setup is always rate-based.
 
+**Three-or-more workers.** The formula extends naturally — add all rates simultaneously. For workers taking a, b, and c hours alone:
+
+    1/a + 1/b + 1/c = 1/T
+
+No new formula. Same principle, applied more times.
+
+**Worked example (three workers).** Alice paints a wall in 12 hours, Bob in 18 hours, Carol in 9 hours. Together?
+
+- Alice: 1/12 wall/hr. Bob: 1/18 wall/hr. Carol: 1/9 wall/hr.
+- Combined rate: 1/12 + 1/18 + 1/9. LCD = 36: 3/36 + 2/36 + 4/36 = 9/36 = **1/4 wall/hr**.
+- Combined time: T = **4 hours**.
+
+Sanity check: Carol alone takes 9 hours. Three workers including Carol must finish in under 9. They do (4 < 9). Any answer above 9 is wrong without checking arithmetic.
+
 **Unit of work is arbitrary.** Some problems use "pump-hours" — total work expressed as (workers × time). Three pumps × 4 hours = 12 pump-hours. If the same job is done by 5 pumps: 12/5 = 2.4 hours. This is the combined-work formula reorganized: **(workers) × (time) = total work**, constant for a given job.
 
-**Trap to watch.** "How long does the job take if three pumps work for 2 hours, then two more pumps join?" That is *not* pure combined work — it is a staggered-start problem. Combined work assumes everyone starts at time zero. The staggered case is handled in the next section.
+**Trap to watch.** "How long does the job take if three pumps work for 2 hours, then two more pumps join?" That is *not* pure combined work — it is a staggered-start problem. Combined work assumes everyone starts at time zero. The staggered case is handled in the partial-work section.
 
 > **Self-explanation prompt.** Before the check question, explain in one sentence: if A takes 4 hours alone and B takes 6 hours alone, why does the combined time land near 2.4 hours rather than near 5 hours? If you can say "because both contribute their full rate every hour, so the job disappears faster than either alone — not at some average speed between them," you've understood why adding times is wrong.
 
-> **Self-explanation prompt.** Before moving on, say this out loud: *why* do you add rates and not times when two workers combine? If you can explain "because each worker independently contributes a fraction of the job per hour — those fractions add; the time to finish is 1 divided by the combined fraction," you've understood the concept, not just memorized the formula. A student who truly understands this will never again add the times, even under pressure.
-
-> **Recall check.** Cover this section. Pipe A fills a tank in 8 hours; Pipe B fills the same tank in 12 hours. Can you write the combined rate and the combined time from memory, before looking? If A's rate is 1/8 and B's is 1/12, the combined rate is 1/8 + 1/12 = 5/24, and the combined time is 24/5 = 4.8 hours. If you got a number larger than 8 or computed 8 + 12 = 20, review the section. Spaced retrieval (Roediger & Karpicke, 2006) converts a rule you've read into a rule you own.
+> **Recall check.** Cover this section. Pipe A fills a tank in 8 hours; Pipe B fills the same tank in 12 hours. Can you write the combined rate and the combined time from memory, before looking? If A's rate is 1/8 and B's is 1/12, the combined rate is 1/8 + 1/12 = 5/24, and the combined time is 24/5 = 4.8 hours. If you got a number larger than 8 or computed 8 + 12 = 20, review the section.
 
 ## @two-objects-moving
 
-Two cars, two trains, two people on bikes. Three setups cover every question in this family.
+Two cars, two trains, two people on bikes. Four setups cover every question in this family.
 
 **Mental model.** Ask yourself: is the gap between the two objects growing or shrinking, and are they moving in the same direction or opposite? The answer determines the closing/opening rate in one step.
 
@@ -200,6 +252,7 @@ One rule. Every setup.
 | Moving apart (opposite directions) | v₁ + v₂ | gap = (v₁ + v₂) × t |
 | Moving toward each other | v₁ + v₂ | time = initial gap ÷ (v₁ + v₂) |
 | Same direction, catch-up | v₁ − v₂ | time = head start ÷ (v₁ − v₂) |
+| Circular track lapping | v₁ − v₂ | time = track length ÷ (v₁ − v₂) |
 
 **Setup 1: Moving in opposite directions — separation rate = sum of speeds.**
 
@@ -225,6 +278,20 @@ A freight train leaves at 8 AM at 45 mph. A passenger train leaves the same stat
 By 10 AM, the freight is 2 × 45 = 90 miles ahead. The passenger gains at 65 − 45 = **20 mph** — not 65, because the freight is also moving forward. Catch-up time = 90/20 = 4.5 hours. 10 AM + 4.5 hours = **2:30 PM**.
 
 The key: if you used 65 mph as the closing speed, you're pretending the freight train is standing still. It isn't.
+
+**Setup 4: Circular track lapping — same-direction, one full lap ahead.**
+
+"Lapping" means the faster runner gets exactly one full track length ahead. This is a same-direction catch-up where the target gap is the track circumference rather than zero. The formula is the same — just the target distance changes.
+
+    time to first lap = track circumference ÷ (faster speed − slower speed)
+
+**Worked example.** Two runners start at the same point on a 240-meter track and run in the same direction. P runs at 8 m/s, Q runs at 6 m/s. When does P first lap Q?
+
+- P gains on Q at 8 − 6 = **2 m/s**.
+- P must get 240 meters ahead (one full lap ahead) to have lapped Q.
+- Time = 240 ÷ 2 = **120 seconds**.
+
+The trap: using P's solo lap time (240/8 = 30 s) or Q's (240/6 = 40 s). Those tell you when each runner individually completes one circuit — irrelevant to lapping. Only the **speed difference** and **track length** determine when P laps Q.
 
 **Staggered start times.** When one object leaves before the other, compute each object's actual travel time separately, then add (opposite directions) or compare (same direction).
 
@@ -281,12 +348,23 @@ Redo the 40/60 problem using total/total:
 
 The harmonic mean 2(50)(75)/(50+75) = 60 would be wrong here. Distances are unequal, so only total/total gives the right answer.
 
-**Two-question test before you pick a formula.**
+**When the arithmetic mean is correct: equal time.** If you travel at speed a for t hours, then at speed b for the same t hours, the arithmetic mean (a+b)/2 gives the right average. Equal time weights both speeds equally — so the simple average works.
 
-1. Are the two legs the same distance (round trip on the same route)? → Use harmonic mean: **2ab/(a+b)**
-2. Are the distances different? → Use total/total: **Σ distance ÷ Σ time**
+**Worked example (equal time).** Drive at 40 mph for 2 hours, then at 60 mph for 2 hours.
 
-If you're not certain the distances match, default to total/total. It is always correct; harmonic mean is only a shortcut for the equal-distance case.
+- Distance leg 1: 40 × 2 = 80 miles. Distance leg 2: 60 × 2 = 120 miles.
+- Total: 200 miles in 4 hours → average = 200/4 = **50 mph**.
+- Verify with arithmetic mean: (40 + 60)/2 = **50 mph** ✓ — matches, because the times are equal.
+
+Contrast: the same two speeds (40 and 60) over equal *distances* → **48 mph** (harmonic mean). Over equal *times* → **50 mph** (arithmetic mean). The speeds are identical; the condition differs; the answers differ. Confusing the two cases is a deliberate GMAT trap.
+
+**Three-question test before you pick a formula.**
+
+1. Are the two legs the same distance? → Use harmonic mean: **2ab/(a+b)**
+2. Are the two legs the same duration? → Use arithmetic mean: **(a+b)/2**
+3. Neither? → Use total/total: **Σ distance ÷ Σ time**
+
+If uncertain whether the condition is met, default to total/total. It works in all three cases.
 
 **Micro-drill.** Pick the right formula and compute each — 30 seconds each:
 
@@ -295,11 +373,41 @@ If you're not certain the distances match, default to total/total. It is always 
 3. Drive 60 miles at 30 mph, then drive 90 miles at 45 mph. Average speed?
 4. Drive for 2 hours at 30 mph, then for 2 hours at 60 mph. Average speed?
 
-Answers: (1) **48 mph** — equal distances; harmonic mean: 2(40)(60)/(40+60) = 4800/100 = 48. Verify with total/total: time = 1 + 2/3 = 5/3 hr; 80/(5/3) = 48. (2) **40 mph** — equal distances; harmonic: 2(30)(60)/(30+60) = 3600/90 = 40. Verify: time = 2 + 1 = 3 hr; 120/3 = 40. (3) **37.5 mph** — unequal distances; total/total only: 150 mi ÷ (2 + 2) hr = 37.5. Using harmonic here gives 36 — wrong, because harmonic only applies when the two *distances* are equal. (4) **45 mph** — unequal distances but equal *times*; total/total: (60 + 120) mi ÷ 4 hr = 45. Here the arithmetic mean also works: (30 + 60)/2 = 45 — this is the one case where averaging the speeds is correct, because equal time weights them equally. Total/total always works regardless. If (1) or (2) gave you 50, you averaged the speeds — 50 is wrong because you spend more time at the slower speed, which pulls the true average below the midpoint.
+Answers: (1) **48 mph** — equal distances; harmonic mean: 2(40)(60)/(40+60) = 4800/100 = 48. Verify with total/total: time = 1 + 2/3 = 5/3 hr; 80/(5/3) = 48. (2) **40 mph** — equal distances; harmonic: 2(30)(60)/(30+60) = 3600/90 = 40. Verify: time = 2 + 1 = 3 hr; 120/3 = 40. (3) **37.5 mph** — unequal distances; total/total only: 150 mi ÷ (2 + 2) hr = 37.5. Using harmonic here gives 36 — wrong. (4) **45 mph** — equal *times*; arithmetic mean: (30 + 60)/2 = 45. Or total/total: (60 + 120) mi ÷ 4 hr = 45 ✓. This is the one common case where averaging the speeds is correct.
 
 **Why total/total always works.** Average speed is literally "how far divided by how long" for the whole trip. Any shortcut formula is just a special case of this identity — and total/total is the case that never breaks.
 
 > **Self-explanation prompt.** Why is the harmonic mean always *less* than the arithmetic mean for two positive speeds? If you can explain "because the slow leg occupies more of the total time and drags the weighted average down," you will never pick the arithmetic-mean trap answer again.
+
+## @competing-rates
+
+When workers push in *opposite* directions — one filling, one draining — the rates don't add. They partially cancel.
+
+**The rule.** Net rate = (sum of all fill rates) − (sum of all drain rates). If the net rate is positive, the tank fills. If it's negative, the tank drains faster than it fills and never reaches full.
+
+    net fill rate = fill rate − drain rate
+    time to fill = 1 ÷ net fill rate  (if net rate > 0)
+
+**Worked example.** A tank has an inlet pipe that fills it in 6 hours and a drain that empties a full tank in 10 hours. Both are open from the start. How long to fill the tank?
+
+- Fill rate: 1/6 tank per hour.
+- Drain rate: 1/10 tank per hour.
+- Net fill rate: 1/6 − 1/10 = 5/30 − 3/30 = **2/30 = 1/15 tank per hour**.
+- Time to fill: T = **15 hours**.
+
+Sanity checks: (1) Without the drain, filling takes 6 hours. A drain can only slow things down, so the answer must be above 6 — and 15 > 6 ✓. (2) Confirm the net rate is positive (1/15 > 0) before writing a finite answer. If the drain were faster than the inlet, the tank never fills.
+
+**The trap.** Students who add both rates get combined rate = 1/6 + 1/10 = 8/30 → T ≈ 3.75 hours. This treats the drain as a second filler — it isn't. Always subtract drain rates.
+
+**Worked example (multiple inlets and one drain).** Inlet A fills in 4 hours, Inlet B fills in 6 hours, drain C empties in 12 hours. All three open simultaneously. When is the tank full?
+
+- Fill rate A: 1/4. Fill rate B: 1/6. Drain rate C: 1/12.
+- Net rate: 1/4 + 1/6 − 1/12. LCD = 12: 3/12 + 2/12 − 1/12 = **4/12 = 1/3 per hour**.
+- Time: T = **3 hours**.
+
+**Boat-with-current is the same idea.** Going upstream, the current "drains" your forward speed. Upstream effective speed = boat speed − current. The structure is identical to net fill rate.
+
+> **Self-explanation prompt.** Before the check question: why can't you add the fill and drain rates together? If you can say "because the drain removes what the inlet adds — they work against each other, so their contributions partially cancel, not reinforce," you've understood the sign. That sign is the only difference between this section and combined work.
 
 ## @partial-work-staggered-starts
 
@@ -334,7 +442,7 @@ Sanity check: X + Y together alone would take 18/5 = 3.6 hours. Having X work so
 
 **The scaling shortcut for identical workers.** (workers) × (hours) = total work, constant for a given job. Three pumps × 4 hours = 12 pump-hours. Five pumps: 12/5 = **2.4 hours**. Works because all pumps are interchangeable — total work doesn't change.
 
-**When a pipe drains instead of fills.** Subtract drain rates from fill rates. Three pipes: A fills at 1/a, B fills at 1/b, C drains at 1/c. Combined: 1/a + 1/b − 1/c. Missing that minus sign — treating C as a filler — produces a badly wrong answer.
+**When a worker leaves mid-job.** The phase structure is the same but runs in reverse. Phase 1: full team works. Phase 2: reduced team works. The template still applies — compute fraction done in phase 1, find remaining work, divide by the reduced-team rate.
 
 **When to use algebra instead of phases.** "If her speed were 10 mph higher, she'd arrive 15 minutes earlier" is a speed-comparison problem, not a staggered-phase problem. Write two equations (original, altered), solve the system. This usually produces a quadratic with one valid positive root.
 
@@ -356,30 +464,31 @@ The negative root (−60) is discarded because speed must be positive.
 2. Pipe A fills a tank in 6 hours. After 3 hours of filling alone, Pipe C opens and begins draining the tank at 1/9 tank per hour. Both run until the tank is full. Total time?
 3. Painter A finishes a room in 10 hours. After 4 hours alone, Painter B joins. Together they complete the remaining work in 3 more hours. How long would Painter B take alone?
 
-Answers: (1) **5.6 hours** — Phase 1: 2 × (1/8) = 1/4 done; remaining = 3/4. Combined rate: 1/8 + 1/12 = 5/24 per hour. Phase 2: (3/4) ÷ (5/24) = 18/5 = 3.6 hr. Total: 2 + 3.6 = 5.6. Sanity check: A+B together alone take 24/5 = 4.8 hr; adding 2 hours of A solo must push total above 4.8, and 5.6 > 4.8. (2) **12 hours** — Phase 1: 3 × (1/6) = 1/2 done; remaining = 1/2. Net fill rate once C opens: 1/6 − 1/9 = 1/18 per hour. Phase 2: (1/2) ÷ (1/18) = 9 hr. Total: 3 + 9 = 12. If you forgot to subtract C's drain rate, you got 6 hours — re-read "When a pipe drains instead of fills" above. (3) **B alone takes 10 hours** — Phase 2 combined rate: (3/5) ÷ 3 = 1/5 per hour. A's rate = 1/10 per hour. B's rate = 1/5 − 1/10 = 1/10 per hour. B alone = 10 hours. If you got 6 hours for B, you may have computed A's remaining contribution incorrectly — only track rates, not times across phases.
+Answers: (1) **5.6 hours** — Phase 1: 2 × (1/8) = 1/4 done; remaining = 3/4. Combined rate: 1/8 + 1/12 = 5/24 per hour. Phase 2: (3/4) ÷ (5/24) = 18/5 = 3.6 hr. Total: 2 + 3.6 = 5.6. (2) **12 hours** — Phase 1: 3 × (1/6) = 1/2 done; remaining = 1/2. Net fill rate once C opens: 1/6 − 1/9 = 1/18 per hour. Phase 2: (1/2) ÷ (1/18) = 9 hr. Total: 3 + 9 = 12. If you forgot to subtract C's drain rate, you got 6 hours. (3) **B alone takes 10 hours** — Phase 2 combined rate: (3/5) ÷ 3 = 1/5 per hour. A's rate = 1/10. B's rate = 1/5 − 1/10 = 1/10 per hour. B alone = 10 hours.
 
 > **Self-explanation prompt.** Before the check questions: why can't you solve a staggered-start problem with a single combined-work equation from the beginning? If you can say "because the combined rate only applies during the phase when both are working — during the solo phase, only one worker's rate applies — so a single equation would overcount the second worker's contribution," the two-phase template will feel like the natural approach, not a memorized trick.
 
-> **Self-explanation prompt.** Why does the two-phase template require you to compute the *fraction of the job remaining* after phase 1, rather than working directly with times? If you can say "because phase 2 operates at a different rate, so time alone doesn't tell you how much was done — you need the fraction of work left, then divide that by the new rate to get phase 2 time," you've understood the structure. The moment you try to add or average the times across phases without tracking the fraction of work, you're guaranteed a wrong answer.
-
 ## @summary
 
-Every GMAT rates/work question reduces to one of six patterns. Identify the pattern first; the arithmetic follows.
+Every GMAT rates/work question reduces to one of eight patterns. Identify the pattern first; the arithmetic follows.
 
 **1. Single-object rate.** D = RT, with matching units. Convert minutes ↔ hours before multiplying.
 
-**2. Combined work.** Add the rates: 1/a + 1/b = 1/T. Never add the times.
+**2. Combined work (2+ workers, same direction).** Add the rates: 1/a + 1/b = 1/T. Three workers: 1/a + 1/b + 1/c = 1/T. Never add the times.
 
-**3. Two objects moving.**
-- Opposite directions: rates **add**.
-- Same direction (catch-up): rates **subtract**.
-- Boat + current: add downstream, subtract upstream.
+**3. Competing rates (fill vs. drain).** Net rate = fill rate − drain rate. Time = 1 ÷ net rate (only if positive). If the net rate is negative, the tank never fills.
 
-**4. Average speed over equal distances.** Harmonic mean 2ab/(a+b). **Never** (a+b)/2.
+**4. Two objects moving, opposite directions.** Rates **add**. Toward each other or moving apart — same formula, gap changes at v₁ + v₂.
 
-**5. Average speed over unequal distances.** Total distance ÷ total time. Period.
+**5. Two objects moving, same direction.** Rates **subtract**. Catch-up: head start ÷ (faster − slower). Lapping on a circular track: circumference ÷ (faster − slower).
 
-**6. Partial work / staggered start.** Break into phases: compute fraction done in phase 1, compute time to finish the rest at the new combined rate.
+**6. Average speed, equal distances.** Harmonic mean: **2ab/(a+b)**. Never (a+b)/2.
+
+**7. Average speed, equal times.** Arithmetic mean: **(a+b)/2**. This is the one case where averaging speeds is correct.
+
+**8. Partial work / staggered start.** Break into phases: compute fraction done in phase 1, compute time to finish the rest at the new combined rate.
+
+**Always available fallback:** Total distance ÷ total time works for any average-speed question regardless of whether distances or times are equal. When unsure, use it.
 
 **Sanity checks you can run on any rate answer.**
 
@@ -387,20 +496,25 @@ Every GMAT rates/work question reduces to one of six patterns. Identify the patt
 - Average speed between the two individual speeds? If not, recheck.
 - Units matched when you multiplied R × T? If rate was per hour and time was in minutes, convert first.
 - Catch-up closing speed is the *difference* of the two speeds? If you used a sum, you've set up the wrong scenario.
+- Net fill rate positive before you wrote a finite answer? If drain rate exceeds fill rate, no finite answer exists.
 
 **Pattern-match table.**
 
 | Problem says | You're doing | Formula |
 |---|---|---|
 | "Rate × time" | D = RT | D = R × T |
-| "Working together, how long" | Combined work | 1/a + 1/b = 1/T |
+| "Working together, how long" | Combined work (2 workers) | 1/a + 1/b = 1/T |
+| "All three working together" | Combined work (3 workers) | 1/a + 1/b + 1/c = 1/T |
 | "Catch up" or "overtake" | Same direction | head start ÷ (faster − slower) |
+| "Lap" or "laps the other" | Circular track | circumference ÷ (faster − slower) |
 | "Toward each other" or "meet" | Opposite/toward | distance ÷ (v₁ + v₂) |
 | "Round trip, equal legs" | Harmonic mean | 2ab/(a+b) |
 | "Round trip, different distances" | Total/total | Σ distance ÷ Σ time |
+| "Equal time at each speed" | Arithmetic mean | (a+b)/2 |
 | "Downstream/upstream" | Current/wind | boat + current, boat − current |
+| "Inlet and drain both open" | Competing rates | fill rate − drain rate |
 | "Joins X hours later" | Staggered | Phase 1 + Phase 2 |
 
-**What to do next.** Open the practice set for this chapter — Easy first, then Medium. After each incorrect answer, write one sentence naming the pattern you misidentified and one sentence naming the formula you should have used. That annotation habit builds pattern-recognition faster than re-reading this chapter. Once you're hitting 85%+ on Medium, tackle the Hard set. If average-speed or staggered-start questions are where you stumble, re-read those two sections before starting Hard.
+**What to do next.** Open the practice set for this chapter — Easy first, then Medium. After each incorrect answer, write one sentence naming the pattern you misidentified and one sentence naming the formula you should have used. That annotation habit builds pattern-recognition faster than re-reading this chapter. Once you're hitting 85%+ on Medium, tackle the Hard set. If competing rates, lapping, or staggered-start questions are where you stumble, re-read those sections before starting Hard.
 
 **Time-management note.** None of these questions should take more than 90 seconds once the pattern is recognized. If you're at 60 seconds and still setting up, you've misidentified the pattern — step back, re-read the first sentence of the problem, and pick the pattern before writing anything.

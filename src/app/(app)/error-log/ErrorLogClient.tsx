@@ -26,6 +26,7 @@ import { useMemo, useState, useTransition } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import {
+  BookOpen,
   CheckCheck,
   ChevronDown,
   ChevronRight,
@@ -40,6 +41,7 @@ import {
 import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { cn } from "@/lib/utils"
+import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import type { Section } from "@/types"
 import {
   ERROR_TAGS,
@@ -886,6 +888,46 @@ function ExpandedMistake({
           <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
             {entry.explanation}
           </ReactMarkdown>
+        </div>
+      )}
+
+      {TOPIC_TO_CHAPTER[entry.topic] && (
+        <div
+          className="flex items-center gap-3 px-4 py-3 rounded-lg border"
+          style={{
+            borderColor: "rgba(201,168,76,0.15)",
+            backgroundColor: "rgba(201,168,76,0.04)",
+          }}
+        >
+          <BookOpen
+            className="w-4 h-4 flex-shrink-0"
+            style={{ color: "#C9A84C" }}
+            aria-hidden
+          />
+          <div className="flex-1 min-w-0">
+            <p
+              className="text-[11px] font-semibold leading-snug"
+              style={{ color: "#C9A84C" }}
+            >
+              {entry.topic}
+            </p>
+            <p className="text-[11px] text-[#888888] mt-0.5">
+              Review the chapter to close this gap.
+            </p>
+          </div>
+          <Link
+            href={`/chapters/${TOPIC_TO_CHAPTER[entry.topic]}`}
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex items-center gap-1 text-[12px] font-semibold px-3 py-1.5 rounded-lg border transition-colors hover:opacity-80 flex-shrink-0"
+            style={{
+              color: "#C9A84C",
+              borderColor: "rgba(201,168,76,0.3)",
+              backgroundColor: "rgba(201,168,76,0.08)",
+            }}
+          >
+            Review chapter
+            <ChevronRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
       )}
 
