@@ -56,6 +56,10 @@ export default async function DiagnosticSectionPage({
     correctAnswer: q.correctAnswer,
     correctAnswerLetter: q.correctAnswerLetter,
     explanation: q.explanation,
+    fastestPath: q.fastestPath,
+    commonTrap: q.commonTrap,
+    mistakeAnalysis: q.mistakeAnalysis,
+    takeaway: q.takeaway,
     twoPartColumns: q.twoPartColumns,
     twoPartCorrectAnswers: q.twoPartCorrectAnswers,
   }))

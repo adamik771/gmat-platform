@@ -99,6 +99,10 @@ export default async function ReviewSectionPage({
       correctAnswerLetter: q.correctAnswerLetter,
       explanation: q.explanation,
       hints: q.hints,
+      fastestPath: q.fastestPath,
+      commonTrap: q.commonTrap,
+      mistakeAnalysis: q.mistakeAnalysis,
+      takeaway: q.takeaway,
       twoPartColumns: q.twoPartColumns,
       twoPartCorrectAnswers: q.twoPartCorrectAnswers,
     }))

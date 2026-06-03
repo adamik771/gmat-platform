@@ -47,6 +47,13 @@ export interface SessionQuestion {
   /** Progressive hints in order (nudge → strategy → setup). Empty when
    *  no hints authored — the "Need a hint?" button hides in that case. */
   hints?: { level: "nudge" | "strategy" | "setup"; text: string }[]
+  /** Rich-explanation fields surfaced in the post-submit analysis panel.
+   *  Additive + optional — populated by the session-page mappers from the
+   *  same fields on ParsedQuestion. */
+  fastestPath?: string
+  commonTrap?: string
+  mistakeAnalysis?: Partial<Record<"A" | "B" | "C" | "D" | "E" | "F", string>>
+  takeaway?: string
   /** Two-Part Analysis: column headers (the two "roles"). */
   twoPartColumns?: string[]
   /** Two-Part Analysis: the correct row index for each column. */
@@ -991,6 +998,92 @@ function SaveStatusBanner({
           Sign in
         </Link>
       )}
+    </div>
+  )
+}
+
+function AnalysisRow({
+  label,
+  color,
+  text,
+}: {
+  label: string
+  color: string
+  text: string
+}) {
+  return (
+    <div>
+      <p
+        className="text-[10px] uppercase tracking-widest mb-1.5"
+        style={{ color }}
+      >
+        {label}
+      </p>
+      <PromptBlock text={text} />
+    </div>
+  )
+}
+
+/**
+ * Post-submit deep-analysis block. Surfaces the question's authored
+ * fastest-path, common-trap, the rationale for the student's wrong pick,
+ * and the takeaway — content that already exists but was previously only
+ * shown on the standalone /review/question page. Always expanded on sm+;
+ * collapsed behind a "Show full analysis" toggle on mobile so the result
+ * screen stays scannable on small screens.
+ */
+function FullAnalysis({
+  fastestPath,
+  commonTrap,
+  wrongLetter,
+  wrongMistake,
+  takeaway,
+}: {
+  fastestPath?: string
+  commonTrap?: string
+  wrongLetter: string | null
+  wrongMistake: string | null
+  takeaway?: string
+}) {
+  const [showAll, setShowAll] = useState(false)
+  return (
+    <div className="mt-4 pt-4 border-t border-white/[0.06]">
+      <button
+        type="button"
+        onClick={() => setShowAll((v) => !v)}
+        className="sm:hidden inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em]"
+        style={{ color: "#C9A84C" }}
+        aria-expanded={showAll}
+      >
+        {showAll ? "Hide analysis" : "Show full analysis"}
+        <ChevronDown
+          className={`w-3.5 h-3.5 transition-transform ${
+            showAll ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+      <div
+        className={`${
+          showAll ? "block" : "hidden sm:block"
+        } space-y-4 mt-3 sm:mt-0`}
+      >
+        {fastestPath && (
+          <AnalysisRow label="Fastest path" color="#C9A84C" text={fastestPath} />
+        )}
+        {commonTrap && (
+          <AnalysisRow label="Common trap" color="#FF6B6B" text={commonTrap} />
+        )}
+        {wrongLetter && wrongMistake && (
+          <AnalysisRow
+            label={`Why you picked ${wrongLetter}`}
+            color="#FF6B6B"
+            text={wrongMistake}
+          />
+        )}
+        {takeaway && (
+          <AnalysisRow label="Takeaway" color="#3ECF8E" text={takeaway} />
+        )}
+      </div>
     </div>
   )
 }
@@ -2298,6 +2391,39 @@ export default function SessionClient({
                     )}
                 </div>
                 <PromptBlock text={current.explanation} />
+                {(() => {
+                  const wrongLetter =
+                    !isQuestionCorrect(current, currentState) &&
+                    currentState.selected !== null &&
+                    !isTwoPart
+                      ? (String.fromCharCode(65 + currentState.selected) as
+                          | "A"
+                          | "B"
+                          | "C"
+                          | "D"
+                          | "E"
+                          | "F")
+                      : null
+                  const wrongMistake = wrongLetter
+                    ? current.mistakeAnalysis?.[wrongLetter] ?? null
+                    : null
+                  if (
+                    !current.fastestPath &&
+                    !current.commonTrap &&
+                    !current.takeaway &&
+                    !wrongMistake
+                  )
+                    return null
+                  return (
+                    <FullAnalysis
+                      fastestPath={current.fastestPath}
+                      commonTrap={current.commonTrap}
+                      wrongLetter={wrongLetter}
+                      wrongMistake={wrongMistake}
+                      takeaway={current.takeaway}
+                    />
+                  )
+                })()}
               </div>
             )}
 
