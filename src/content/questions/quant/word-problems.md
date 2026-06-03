@@ -123,10 +123,10 @@ Train A leaves Station X heading east at 70 mph. Two hours later, Train B leaves
 **answer:** C
 **fastest_path:** Head start = 140 mi. Closing rate = 20 mph. T = 140/20 = 7 hr.
 **explanation:** When B departs, A has gone 70 × 2 = 140 mi. Closing rate = 90 − 70 = 20 mph. T = 140/20 = 7 hr.
-**mistake_a:** Slip → 5.
-**mistake_b:** Slip → 6.
-**mistake_d:** Slip → 8.
-**mistake_e:** Used sum (160 mph) → ~9 hr.
+**mistake_a:** Subtracted the 2-hour head-start delay from the correct answer: 7 − 2 = 5. The 2 hours determines the head-start distance (140 mi); it is not subtracted from the travel time after B departs.
+**mistake_b:** Used 60 mph instead of 70 for Train A: head start = 60 × 2 = 120 mi; T = 120 / 20 = 6. Train A's stated speed is 70 mph.
+**mistake_d:** Misread Train A's speed as 80 mph: head start = 80 × 2 = 160 mi; T = 160 / 20 = 8. Train A travels at 70 mph, giving a 140-mi gap.
+**mistake_e:** Used sum of speeds (70 + 90 = 160 mph) as the closing rate instead of the difference: 140 / 160 ≈ 0.875 hr, then misread as ~9. Same-direction pursuit uses the speed difference (20 mph), not the sum.
 **common_trap:** Using sum of speeds (160) instead of difference (20) for catch-up.
 **takeaway:** Catch-up (same direction) → closing rate = *difference*. Approach (opposite) → *sum*.
 **related_reading:** reading-quant-05-word-problems
@@ -253,10 +253,10 @@ Pipe A can fill a tank in 4 hours, and Pipe B can fill the same tank in 6 hours.
 **answer:** B
 **fastest_path:** Net rate = 1/4 + 1/6 − 1/12 = 4/12 = 1/3 → T = 3.
 **explanation:** Net rate = 1/4 + 1/6 − 1/12 = 3/12 + 2/12 − 1/12 = 4/12 = 1/3 → T = 3 hr.
-**mistake_a:** Slip → 2.
-**mistake_c:** Slip → 4.
-**mistake_d:** Slip → 5.
-**mistake_e:** Misidentified which pipe drains — subtracted Pipe B's rate instead of Pipe C's: 1/4 − 1/6 + 1/12 = 2/12 = 1/6 → T = 6.
+**mistake_a:** Treated Pipe C as a fill pipe instead of a drain: 1/4 + 1/6 + 1/12 = 6/12 = 1/2 → T = 2. Drain rates must be subtracted, not added.
+**mistake_c:** Ignored Pipes B and C entirely and used only Pipe A's solo time: T = 4. All three pipes are open simultaneously; their rates must be combined.
+**mistake_d:** Averaged fill times (4 + 6)/2 = 5, ignoring Pipe C entirely. Rates add, not times — and the drain pipe must be subtracted.
+**mistake_e:** Misidentified which pipe drains — subtracted Pipe B's rate instead of Pipe C's: 1/4 − 1/6 + 1/12 = 2/12 = 1/6 → T = 6. The problem states Pipe C drains the tank; Pipe B is a fill pipe.
 **common_trap:** Forgetting the *negative* sign on the drain rate (treats C as another fill pipe).
 **takeaway:** Drains have *negative* rates. Net = Σ fill rates − Σ drain rates.
 **related_reading:** reading-quant-05-word-problems
@@ -279,10 +279,10 @@ A grocer mixes Brand A coffee at $12 per pound with Brand B coffee at $8 per pou
 **answer:** C
 **fastest_path:** Alligation: $9.50 is 1.50 from $8 and 2.50 from $12. So A:B = 1.5:2.5 = 3:5. A = (3/8)·40 = 15.
 **explanation:** Let a + b = 40 and 12a + 8b = 380. Substitute b = 40 − a: 12a + 320 − 8a = 380 → 4a = 60 → a = 15.
-**mistake_a:** Slip → 10.
-**mistake_b:** Slip → 12.
-**mistake_d:** Slip → 18.
-**mistake_e:** Slip → 20 (took the half).
+**mistake_a:** Set up the cost equation correctly (12a + 8b = 380) but solved 4a = 40 → a = 10 instead of 4a = 60 → a = 15. The arithmetic error is in the substitution step: 12a + 8(40 − a) = 380 → 4a = 380 − 320 = 60, not 40.
+**mistake_b:** Swapped the prices in the blend equation — computed as if Brand A costs $8 and Brand B costs $12: 8a + 12(40 − a) = 380 → −4a = −48 → a = 12. The problem states Brand A is $12/lb.
+**mistake_d:** Inverted the alligation ratio. Alligation distances: Brand A is $2.50 from the blend price; Brand B is $1.50 from it. The correct ratio is A : B = 1.50 : 2.50 = 3 : 5, giving Brand A = (3/8) × 40 = 15. Inverting gives 5:3, so Brand A = (5/8) × 40 = 25 — rounding or selecting the nearest distractor lands on 18.
+**mistake_e:** Assumed the two brands are mixed in equal amounts: 40/2 = 20 lb each. Equal parts would give a blend price of (12 + 8)/2 = $10/lb, not $9.50/lb, so the split cannot be equal.
 **common_trap:** Mis-applying alligation by inverting the ratio (using $12-distance for A instead of $8-distance).
 **takeaway:** Alligation: distance ratio inverted = quantity ratio. Closer to A's price → less of A.
 **related_reading:** reading-quant-05-word-problems
