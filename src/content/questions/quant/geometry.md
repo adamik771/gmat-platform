@@ -21,7 +21,7 @@ In a right triangle, the two legs have lengths 5 and 12. What is the length of t
 **explanation:** Pythagorean theorem: c² = 5² + 12² = 25 + 144 = 169 → c = 13. Even faster: recognize 5-12-13 as a memorized triple.
 **mistake_b:** Computed (5+12)/2 + 6.5 = 15 from a wrong shortcut.
 **mistake_c:** Bubbled 17 (the 8-15-17 triple) — wrong triple.
-**mistake_d:** Computed √(12² − 5²) = √119 = ~10.9; rounded to 7. Or computed (12 − 5) = 7.
+**mistake_d:** Computed 12 − 5 = 7, subtracting the shorter leg from the longer instead of applying the Pythagorean theorem. The theorem requires squaring the legs and adding, not subtracting their lengths.
 **mistake_e:** Computed √(12² − 5²) (treated as missing leg, not hypotenuse) = √119.
 **common_trap:** Mis-recognizing a Pythagorean triple — confusing 5-12-13 with 8-15-17.
 **takeaway:** Memorize Pythagorean triples cold: 3-4-5, 5-12-13, 8-15-17, 7-24-25, 20-21-29, 9-40-41. Plus all integer multiples (6-8-10, 9-12-15, etc.).
@@ -34,23 +34,23 @@ In a right triangle, the two legs have lengths 5 and 12. What is the length of t
 **type:** Problem Solving
 **topic:** Circles
 
-A circle has a radius of 6. What is its area?
+A circle has an area numerically equal to its circumference. What is the radius of the circle?
 
-- A) 12π
-- B) 24π
-- C) 36π
-- D) 72π
-- E) 144π
+- A) 1
+- B) 2
+- C) π
+- D) 4
+- E) 2π
 
-**answer:** C
-**fastest_path:** Area = πr² = π × 36 = 36π.
-**explanation:** Circle area formula: πr². With r = 6: π × 6² = 36π.
-**mistake_a:** Computed circumference (2πr = 12π) and bubbled.
-**mistake_b:** Computed 4 × radius = 24π or 2π × 12.
-**mistake_d:** Computed πd² = π × 144 / 2 = 72π wrongly.
-**mistake_e:** Computed πd² = π × 12² = 144π (used diameter instead of radius).
-**common_trap:** Confusing area (πr²) with circumference (2πr) or using diameter instead of radius.
-**takeaway:** Circle: area = πr², circumference = 2πr. Both formulas use radius, not diameter.
+**answer:** B
+**fastest_path:** Set πr² = 2πr → divide both sides by πr → r = 2.
+**explanation:** Area = πr², circumference = 2πr. Setting equal: πr² = 2πr. Divide both sides by πr (valid since r > 0): r = 2. Verify: area = π(4) = 4π; circumference = 2π(2) = 4π ✓.
+**mistake_a:** Tested r = 1: area = π, circumference = 2π — not equal. A natural first test that quickly shows r = 1 is wrong.
+**mistake_c:** Confused the answer with the constant π itself; the radius is a length (r = 2), not a transcendental number.
+**mistake_d:** Made an algebra slip after dividing: wrote r² = 2r → r = 4 (squared both sides instead of dividing by r).
+**mistake_e:** Reversed the area and circumference formulas — set πr = 2πr² → r = 2π.
+**common_trap:** Not simplifying πr² = 2πr by dividing both sides by πr; instead cross-multiplying creates a harder equation than necessary.
+**takeaway:** πr² = 2πr → r = 2. Setting area equal to circumference is a one-step cancel: divide both sides by πr. The result (r = 2) is the only positive solution.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -164,23 +164,23 @@ A rectangular box has dimensions 3 by 4 by 5. What is its volume?
 **type:** Problem Solving
 **topic:** Triangles
 
-An equilateral triangle has a side length of 6. What is its perimeter?
+An equilateral triangle has a perimeter of 18. What is its area?
 
-- A) 12
-- B) 15
-- C) 18
-- D) 21
-- E) 24
+- A) 9
+- B) 9√2
+- C) 9√3
+- D) 18
+- E) 18√3
 
 **answer:** C
-**fastest_path:** Perimeter = 3s = 18.
-**explanation:** Equilateral triangle: all three sides equal. Perimeter = 3 × 6 = 18.
-**mistake_a:** Computed 6 × 2 = 12.
-**mistake_b:** Off-by-one: 15.
-**mistake_d:** Computed 7 × 3 = 21 (off by one on side).
-**mistake_e:** Computed 8 × 3 = 24 (off by two on side).
-**common_trap:** Side count mistakes (computing 4 × 6 or 2 × 6 + 6).
-**takeaway:** Equilateral triangle: 3 sides equal. Perimeter = 3s. Area = s²√3/4. Memorize both.
+**fastest_path:** Side = 18/3 = 6. Area = (√3/4)s² = (√3/4)(36) = 9√3.
+**explanation:** Perimeter of equilateral triangle = 3s, so s = 6. Area = (√3/4)s² = (√3/4)(36) = 9√3. The formula comes from dropping a perpendicular height h = s√3/2 and using (1/2)(base)(height) = (1/2)(6)(3√3) = 9√3.
+**mistake_a:** Used area = s²/4 = 9 — dropped the √3 factor. The correct area is s²√3/4, not s²/4.
+**mistake_b:** Applied a 45-45-90 diagonal formula; the √2 belongs to isoceles right triangles, not equilateral ones.
+**mistake_d:** Confused area with perimeter and bubbled 18 (the perimeter itself) or computed (1/2)(base)(height) = (1/2)(6)(6) = 18 (used base as height).
+**mistake_e:** Used (√3/2)s² = 18√3 — doubled the correct area by using 1/2 instead of 1/4 in the formula.
+**common_trap:** Forgetting the √3 in the equilateral-triangle area formula, or using the wrong coefficient (1/2 vs 1/4).
+**takeaway:** Equilateral triangle with side s: Area = (√3/4)s². Perimeter = 3s. The area formula comes from height = (√3/2)s: Area = (1/2)(s)(s√3/2) = s²√3/4.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -405,25 +405,23 @@ Each alone determines n → D.
 **type:** Problem Solving
 **topic:** Circles
 
-A square is inscribed in a circle of radius 5. What is the area of the square?
+A circle is inscribed in a square with side length 8. What is the area of the region inside the square but outside the circle?
 
-- A) 25
-- B) 50
-- C) 75
-- D) 100
-- E) 25 * √2
+- A) 64 − 4π
+- B) 64 − 8π
+- C) 64 − 16π
+- D) 64 − 32π
+- E) 64 − 64π
 
-**answer:** B
-**fastest_path:** Diagonal = 2r = 10. Area = d²/2 = 100/2 = 50.
-**explanation:** Inscribed square: diagonal = diameter of circle = 2 × 5 = 10. Square area = d²/2 (shortcut from s² where d = s√2). Area = 100/2 = 50.
-
-Alternative: s = d/√2 = 10/√2 = 5√2. Area = s² = (5√2)² = 50. Same answer.
-**mistake_a:** Bubbled r² = 25 instead of d²/2.
-**mistake_c:** Computed (d²+r²)/something = 75.
-**mistake_d:** Bubbled d² = 100 (forgot to divide by 2).
-**mistake_e:** Bubbled 25√2 from a wrong formula.
-**common_trap:** Treating diameter as the side of the square instead of the diagonal.
-**takeaway:** Square inscribed in circle: diagonal = diameter. Square area = (diagonal)²/2.
+**answer:** C
+**fastest_path:** Inscribed circle: r = side/2 = 4. Shaded area = s² − πr² = 64 − 16π.
+**explanation:** A circle inscribed in a square is tangent to all four sides, so its diameter equals the side length: d = 8, r = 4. Square area = 8² = 64. Circle area = πr² = π(16) = 16π. Region inside the square but outside the circle (the four corner segments) = 64 − 16π.
+**mistake_a:** Used πr for circle area instead of πr²: π(4) = 4π. Area is a 2-dimensional measure; the formula is πr², not πr.
+**mistake_b:** Used circumference 2πr = 2π(4) = 8π instead of area. Circumference is a 1D length — it cannot be subtracted from a 2D area.
+**mistake_d:** Used the square's half-diagonal as radius — diagonal = 8√2, half-diagonal = 4√2, so πr² = 32π. The circumradius (half-diagonal) applies to a circle circumscribed about the square, not inscribed inside it. The inscribed circle's radius = s/2, not s√2/2.
+**mistake_e:** Used the full side length as radius: r = 8, πr² = 64π. The radius is half the side (r = 4), not the full side.
+**common_trap:** Confusing the inscribed-circle radius (r = s/2, touches the sides) with the circumscribed-circle radius (r = s√2/2, passes through the corners).
+**takeaway:** Circle inscribed in square: r = s/2. Area of the four corner regions = s² − π(s/2)² = s²(1 − π/4). Circle circumscribed about a square: r = s√2/2 (half the diagonal).
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -760,7 +758,7 @@ Each alone → D.
 A closed cylindrical tank has a radius of 5 feet and a height of 12 feet. What is the total surface area of the tank (including both circular ends)?
 
 - A) 120π
-- B) 140π
+- B) 150π
 - C) 170π
 - D) 190π
 - E) 240π
@@ -768,10 +766,10 @@ A closed cylindrical tank has a radius of 5 feet and a height of 12 feet. What i
 **answer:** C
 **fastest_path:** SA = 2πr² + 2πrh = 50π + 120π = 170π.
 **explanation:** Cylinder total surface area = 2 × (circular end) + lateral surface = 2πr² + 2πrh. Plug in: 2π(25) + 2π(5)(12) = 50π + 120π = 170π.
-**mistake_a:** Bubbled lateral surface only: 2πrh = 120π.
-**mistake_b:** Computed 2πr² + 2πr(h−2) = 140π (mismatched height).
-**mistake_d:** Off-by-one in computation; got 190π.
-**mistake_e:** Doubled lateral: 240π.
+**mistake_a:** Bubbled lateral surface only: 2πrh = 2π(5)(12) = 120π — omitted both circular end caps.
+**mistake_b:** Reduced the height by 2 when computing the lateral surface: 2πr² + 2πr(h−2) = 50π + 2π(5)(10) = 50π + 100π = 150π. The full height h = 12 ft (not 10) is the correct value for the lateral surface formula.
+**mistake_d:** Made an arithmetic slip computing 2π(5)(12): wrote 2π(5)(13) = 130π, then added 50π to get 180π, or other arithmetic near-miss; landed on 190π.
+**mistake_e:** Doubled the lateral surface and forgot the circular ends: 2 × 2πrh = 4πrh = 4π(5)(12) = 240π.
 **common_trap:** Bubbling lateral surface (without the two circular ends) or summing wrong.
 **takeaway:** Closed cylinder total surface = 2πr² (two circular ends) + 2πrh (lateral). Open-top: subtract one πr².
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
@@ -914,7 +912,7 @@ A circular garden has a radius of 10 meters. A concentric circular walkway of un
 **fastest_path:** Annulus = π(R² − r²) = π(144 − 100) = 44π.
 **explanation:** Walkway = ring (annulus) between two circles. Outer radius = 10 + 2 = 12. Walkway area = π(R² − r²) = π(12² − 10²) = π(144 − 100) = 44π.
 
-Use the difference-of-squares shortcut: (12² − 10²) = (12 + 10)(12 − 2) = 22 × 2 = 44.
+Use the difference-of-squares shortcut: (12² − 10²) = (12 + 10)(12 − 10) = 22 × 2 = 44.
 **mistake_a:** Computed 2 × 10 = 20π wrongly.
 **mistake_b:** Computed 4 × 10 = 40π.
 **mistake_d:** Bubbled inner area only: π × 100 = 100π.
