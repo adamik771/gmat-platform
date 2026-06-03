@@ -50,8 +50,8 @@ export interface ParsedQuestion {
   // because legacy questions and grouped passages may not carry them yet.
   /** One-line strategic move — the fastest GMAT-strategic approach. */
   fastestPath?: string
-  /** Per-choice trap analysis. Keys are A-E; correct slot is omitted. */
-  mistakeAnalysis?: Partial<Record<"A" | "B" | "C" | "D" | "E", string>>
+  /** Per-choice trap analysis. Keys are A-F (TPA has a 6th row); correct slot is omitted. */
+  mistakeAnalysis?: Partial<Record<"A" | "B" | "C" | "D" | "E" | "F", string>>
   /** Named primary trap pattern this question deploys. */
   commonTrap?: string
   /** Generalizable lesson — what the student should take away. */
@@ -188,7 +188,7 @@ function parseQuestionBlock(
   if (!headerMatch) return null
   const questionNumber = parseInt(headerMatch[1], 10)
 
-  const metaRegex = /\*\*(difficulty|type|topic|answer|explanation|hint_nudge|hint_strategy|hint_setup|fastest_path|common_trap|takeaway|related_reading|mistake_a|mistake_b|mistake_c|mistake_d|mistake_e|subchapter|skill|trap_type|est_time_seconds|prerequisite):\*\*\s*([^\n]*)/gi
+  const metaRegex = /\*\*(difficulty|type|topic|answer|explanation|hint_nudge|hint_strategy|hint_setup|fastest_path|common_trap|takeaway|related_reading|mistake_[a-z]|subchapter|skill|trap_type|est_time_seconds|prerequisite):\*\*\s*([^\n]*)/gi
   const meta: Record<string, string> = {}
   for (const match of block.matchAll(metaRegex)) {
     const key = match[1].toLowerCase()
@@ -210,11 +210,11 @@ function parseQuestionBlock(
   // per-question basis; surfaced through ParsedQuestion so analytics
   // (diagnostic report, error-log) can render structured feedback
   // without re-parsing the markdown.
-  const mistakeAnalysis: Partial<Record<"A" | "B" | "C" | "D" | "E", string>> = {}
-  for (const letter of ["a", "b", "c", "d", "e"] as const) {
+  const mistakeAnalysis: Partial<Record<"A" | "B" | "C" | "D" | "E" | "F", string>> = {}
+  for (const letter of ["a", "b", "c", "d", "e", "f"] as const) {
     const text = meta[`mistake_${letter}`]
     if (text && text.length > 0) {
-      mistakeAnalysis[letter.toUpperCase() as "A" | "B" | "C" | "D" | "E"] = text
+      mistakeAnalysis[letter.toUpperCase() as "A" | "B" | "C" | "D" | "E" | "F"] = text
     }
   }
   const hasMistakeAnalysis = Object.keys(mistakeAnalysis).length > 0
@@ -255,7 +255,7 @@ function parseQuestionBlock(
     .split("\n")
     .filter(
       (line) =>
-        !/^\*\*(difficulty|type|topic|answer|explanation|hint_nudge|hint_strategy|hint_setup|fastest_path|common_trap|takeaway|related_reading|mistake_[abcde]|subchapter|skill|trap_type|est_time_seconds|prerequisite)/i.test(
+        !/^\*\*(difficulty|type|topic|answer|explanation|hint_nudge|hint_strategy|hint_setup|fastest_path|common_trap|takeaway|related_reading|mistake_[a-z]|subchapter|skill|trap_type|est_time_seconds|prerequisite)/i.test(
           line.trim()
         )
     )
