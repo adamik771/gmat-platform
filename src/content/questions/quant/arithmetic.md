@@ -857,3 +857,445 @@ An investor buys $5,000 of Stock X at time zero. Exactly one year later, after S
 **common_trap:** Applying the year-1 growth rate to capital that wasn't invested in year 1.
 **takeaway:** Sequential-investment return: the second tranche only benefits from growth that occurs *after* it's invested. Track portfolio value step by step.
 **related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** LCM
+
+What is the least common multiple (LCM) of 12 and 18?
+
+- A) 6
+- B) 12
+- C) 24
+- D) 36
+- E) 216
+
+**answer:** D
+**fastest_path:** Prime-factor each: 12 = 2² × 3; 18 = 2 × 3². Take the highest power of each prime: LCM = 2² × 3² = 36.
+**explanation:** Factor completely: 12 = 2² × 3; 18 = 2 × 3². The LCM uses the highest exponent of every prime that appears: 2² × 3² = 4 × 9 = 36. Verify: 36 / 12 = 3 ✓; 36 / 18 = 2 ✓. Both numbers divide evenly into 36, confirming it is a common multiple. No smaller common multiple exists, so 36 is the LCM.
+**mistake_a:** Computed the GCD instead of the LCM: GCD(12, 18) = 6. The GCD uses the lowest shared exponents; the LCM uses the highest.
+**mistake_b:** Bubbled the smaller of the two inputs (12) — confused "least" with the smaller input rather than the smallest shared multiple.
+**mistake_c:** Simply doubled the smaller number: 12 × 2 = 24. Neither 12 nor 18 divides 24 evenly (24 / 18 = 1.33...), so 24 is not a common multiple.
+**mistake_e:** Multiplied the two numbers: 12 × 18 = 216. The product equals the LCM only when GCD = 1; here GCD = 6, so LCM = 216 / 6 = 36.
+**common_trap:** Confusing LCM with GCD (answer A) or with the raw product of the two numbers (answer E).
+**takeaway:** LCM = product of each prime raised to its highest exponent across both numbers. GCD = product of shared primes raised to their lowest exponents. They are related by: LCM × GCD = product of the two numbers.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Prime Numbers
+
+Which of the following is a prime number?
+
+- A) 1
+- B) 15
+- C) 21
+- D) 29
+- E) 33
+
+**answer:** D
+**fastest_path:** Eliminate composites with quick factor checks. Since √29 < 6, only test 2, 3, 5: none divide 29. So 29 is prime.
+**explanation:** A prime has exactly two distinct positive factors: 1 and itself. Check each choice: 1 has only one factor, so it is not prime by definition. 15 = 3 × 5. 21 = 3 × 7. 33 = 3 + 3 = 6, divisible by 3 (digit-sum test), so 33 = 3 × 11. That leaves 29. Test divisibility by primes up to √29 ≈ 5.4 — check 2 (29 is odd), 3 (2 + 9 = 11, not divisible by 3), 5 (does not end in 0 or 5). No factor found, so 29 is prime.
+**mistake_a:** Many students memorize "1 is prime" incorrectly. By definition, primes must have exactly two distinct factors; 1 has only one factor (itself).
+**mistake_b:** 15 looks prime because it is odd and does not end in 5 at first glance — but the factor pair 3 × 5 = 15 makes it composite.
+**mistake_c:** 21 is often confused with primes near 20 (19, 23). The digit-sum test reveals it: 2 + 1 = 3, divisible by 3, so 21 = 3 × 7.
+**mistake_e:** 33 = 3 × 11. Digit-sum test: 3 + 3 = 6, divisible by 3.
+**common_trap:** Including 1 as a prime, or skipping the digit-sum divisibility test for 3 (which would expose 15, 21, and 33).
+**takeaway:** To test primality efficiently: only check primes up to √n. Use three quick filters — is it even (÷2), does the digit sum divide by 3 (÷3), does it end in 0 or 5 (÷5). 1 is never prime.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** GCD
+
+A rectangular garden measuring 24 feet by 36 feet is to be covered entirely with identical square tiles. No tiles may be cut or overlap. What is the largest possible side length, in feet, of each square tile?
+
+- A) 4
+- B) 6
+- C) 8
+- D) 12
+- E) 18
+
+**answer:** D
+**fastest_path:** Tile side must divide both dimensions. Largest such divisor = GCD(24, 36). Factor: 24 = 2³ × 3; 36 = 2² × 3². GCD = 2² × 3 = 12.
+**explanation:** For a square tile to fit without cutting, its side length must divide both 24 and 36 evenly. The largest possible side length is therefore the GCD of 24 and 36. Factor each: 24 = 2³ × 3; 36 = 2² × 3². GCD = lowest shared exponent per prime = 2² × 3¹ = 4 × 3 = 12. Verify: 24 / 12 = 2 tiles wide; 36 / 12 = 3 tiles long; total = 6 tiles. No tile needs cutting.
+**mistake_a:** 4 divides both 24 and 36, but it is not the largest such divisor.
+**mistake_b:** 6 also divides both, but is still not the largest.
+**mistake_c:** 8 does not divide 36 evenly: 36 / 8 = 4.5. An 8-foot tile would require cutting.
+**mistake_e:** 18 does not divide 24 evenly: 24 / 18 = 1.33.... An 18-foot tile would require cutting.
+**common_trap:** Selecting a common divisor that is not the greatest (A or B), or checking only one dimension and missing that the other fails (C or E).
+**takeaway:** "Largest unit that fits exactly into two lengths" = GCD. Always verify that the answer divides both dimensions with zero remainder.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Arithmetic Sequences
+
+What is the sum of all integers from 1 to 50, inclusive?
+
+- A) 1,225
+- B) 1,275
+- C) 1,300
+- D) 2,500
+- E) 2,550
+
+**answer:** B
+**fastest_path:** Sum = n(n+1)/2 = 50 × 51 / 2 = 1,275.
+**explanation:** The sum of the first n positive integers is n(n+1)/2. With n = 50: sum = 50 × 51 / 2 = 2,550 / 2 = 1,275. Intuition: pair the extremes — (1+50), (2+49), ..., (25+26) — each pair sums to 51, and there are 25 pairs: 25 × 51 = 1,275.
+**mistake_a:** Used n = 49 instead of 50: 49 × 50 / 2 = 1,225. Classic off-by-one on the upper limit.
+**mistake_c:** Used the wrong average: computed 50 × 26 = 1,300 (treated the average of 1 to 50 as 26 rather than 25.5).
+**mistake_d:** Applied n² = 50² = 2,500. The "squares" formula has no place here — this is a sum of consecutive integers, not the sum of squares.
+**mistake_e:** Computed 50 × 51 = 2,550 but forgot to divide by 2. Stopping one step early is the single most common error on this type.
+**common_trap:** Forgetting to divide by 2 (answer E). The division by 2 is essential — it converts the raw product n(n+1) into the sum formula.
+**takeaway:** Sum of integers 1 to n = n(n+1)/2. Alternatively: count × average = n × (n+1)/2. The "pair the ends" visualization is the fastest mental sanity check.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Absolute Value
+
+If x = −4, what is the value of |x + 2| − |x − 2|?
+
+- A) −8
+- B) −4
+- C) 0
+- D) 4
+- E) 8
+
+**answer:** B
+**fastest_path:** Substitute directly: |−4 + 2| − |−4 − 2| = |−2| − |−6| = 2 − 6 = −4.
+**explanation:** Substitute x = −4. First term: |x + 2| = |−4 + 2| = |−2| = 2. Second term: |x − 2| = |−4 − 2| = |−6| = 6. Result: 2 − 6 = −4.
+**mistake_a:** Dropped the absolute value bars and distributed signs: computed −(x + 2) − (x − 2) = −(−2) − (−6) = 2 + 6 = 8, then applied an erroneous overall negative to get −8.
+**mistake_c:** Thought |a| − |b| = 0 whenever the expressions inside share a common variable — an incorrect identity. Here |−2| ≠ |−6|, so the terms do not cancel.
+**mistake_d:** Computed the correct magnitude 2 − 6 = −4 but dropped the negative sign, writing 4 instead.
+**mistake_e:** Added instead of subtracted: |x + 2| + |x − 2| = 2 + 6 = 8.
+**common_trap:** Adding instead of subtracting (answer E), or losing the negative sign on the final result (answer D).
+**takeaway:** With absolute values, always substitute first, then evaluate the expression inside each |·| before applying the bars. Never "distribute" or cancel across absolute value bars before computing the interior.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Units Digit
+
+What is the units digit of 7^43?
+
+- A) 1
+- B) 3
+- C) 7
+- D) 9
+- E) 0
+
+**answer:** B
+**fastest_path:** Units digits of powers of 7 cycle with period 4: 7, 9, 3, 1. Compute 43 mod 4 = 3. Units digit of 7^43 = units digit of 7^3 = 3.
+**explanation:** Compute the first few powers of 7 and watch the units digit: 7^1 = 7, 7^2 = 49 (units 9), 7^3 = 343 (units 3), 7^4 = 2401 (units 1), 7^5 = ...7 (cycle repeats). The pattern {7, 9, 3, 1} has period 4. To find 7^43: divide 43 by 4. 43 = 10 × 4 + 3, remainder 3. So 7^43 has the same units digit as 7^3, which is 3.
+**mistake_a:** Used remainder 0 (a multiple of 4) → units digit 1. Happens when the student incorrectly computes 43 mod 4 = 0 (perhaps writing 40/4 = 10 and forgetting the remaining 3).
+**mistake_c:** Used remainder 1 → units digit of 7^1 = 7. Off-by-one error: treated the remainder as 1 instead of 3.
+**mistake_d:** Used remainder 2 → units digit of 7^2 = 9. Misidentified which cycle position 43 falls in.
+**mistake_e:** Powers of 7 never produce a units digit of 0. That would require a factor of both 2 and 5; 7 is prime with neither. Elimination alone rules this out.
+**common_trap:** Mapping remainder 0 to the "first" position in the cycle (getting units digit 7) instead of the "fourth" (last) position (units digit 1). A remainder of 0 means the exponent is an exact multiple of the period — map it to the last element of the cycle.
+**takeaway:** For units-digit cycle problems: (1) write out 4-5 powers to confirm the period; (2) compute exponent mod period; (3) if remainder = 0, use the last cycle position. Here: 43 mod 4 = 3 → position 3 in {7, 9, 3, 1} → units digit 3.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** LCM
+
+A positive integer n is divisible by 6, by 14, and by 21. What is the smallest possible value of n?
+
+- A) 21
+- B) 42
+- C) 84
+- D) 126
+- E) 252
+
+**answer:** B
+**fastest_path:** LCM(6, 14, 21): factor each — 6 = 2 × 3; 14 = 2 × 7; 21 = 3 × 7. LCM = 2 × 3 × 7 = 42.
+**explanation:** The smallest positive integer divisible by a set of numbers is their LCM. Factor each: 6 = 2 × 3; 14 = 2 × 7; 21 = 3 × 7. The LCM takes the highest power of each distinct prime: 2¹ × 3¹ × 7¹ = 42. Verify: 42 / 6 = 7 ✓; 42 / 14 = 3 ✓; 42 / 21 = 2 ✓.
+**mistake_a:** 21 is divisible by 21 but fails the other conditions: 21 / 6 = 3.5 and 21 / 14 = 1.5. A number must satisfy all three divisibility requirements.
+**mistake_c:** 84 = 2 × 42 is a valid common multiple but not the smallest. This arises when a student includes an extra factor of 2 — perhaps from computing LCM(6, 14) = 42, then incorrectly multiplying by 2 again.
+**mistake_d:** 126 = 3 × 42; also a valid common multiple, but the LCM (smallest) is 42.
+**mistake_e:** 252 = 6 × 42 = 6 × 14 × 3. Arises from multiplying pairs: 6 × 14 = 84, then 84 × 21 / GCD(84, 21) should give 84 (since 21 | 84), but if the student forgets this step, they might get a larger number.
+**common_trap:** Using the product of all three numbers (or pairwise products) instead of the LCM. The product 6 × 14 × 21 = 1,764 is much larger than necessary.
+**takeaway:** "Smallest n divisible by a, b, and c" = LCM(a, b, c). Factor each number completely, then take the highest power of every distinct prime that appears. There is always a common multiple smaller than the raw product unless all pairs are coprime.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Percentages
+
+A store marks up its items by 25% above wholesale cost. During a sale, it then discounts the marked-up price by 20%. What is the net percent change from the original wholesale cost to the final sale price?
+
+- A) −5%
+- B) 0%
+- C) 5%
+- D) 25%
+- E) 45%
+
+**answer:** B
+**fastest_path:** Multiply the two multipliers: 1.25 × 0.80 = 1.00 exactly. Net change = 0%.
+**explanation:** Let wholesale cost = $100. After 25% markup: $100 × 1.25 = $125. After 20% discount applied to the marked-up price: $125 × 0.80 = $100. The final price equals the original wholesale cost — a net change of 0%. Algebraically: (1.25)(0.80) = 1.00. The two multipliers cancel exactly.
+**mistake_a:** Subtracted rates with the discount "winning" since it comes second: 20% − 25% = −5%.
+**mistake_c:** Naively subtracted the two percent rates: 25% − 20% = 5%. This treats both percentages as operating on the same base, which they do not. The 20% discount applies to the marked-up price ($125), not the original $100.
+**mistake_d:** Ignored the discount entirely and reported only the markup: 25%.
+**mistake_e:** Added both percentage magnitudes: 25% + 20% = 45%.
+**common_trap:** Subtracting the percent rates as if they operate on the same base (answer C — by far the most common). Because the 20% discount applies to the already-inflated price, the two rates cannot be combined arithmetically.
+**takeaway:** Sequential percent changes: convert each to a multiplier and multiply them. Never add or subtract rates that apply to different bases. 1.25 × 0.80 = 1.00 is a benchmark pair worth memorizing.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Percent — Compound Interest
+
+An investor deposits $2,000 into Account S, which earns 5% simple annual interest, and another $2,000 into Account C, which earns 5% annual interest compounded annually. After 2 years, how much more money is in Account C than in Account S?
+
+- A) $2
+- B) $5
+- C) $10
+- D) $20
+- E) $100
+
+**answer:** B
+**fastest_path:** Simple: 2,000 × 1.10 = $2,200. Compound: 2,000 × 1.05² = 2,000 × 1.1025 = $2,205. Difference = $5.
+**explanation:** Account S (simple): interest = principal × rate × time = 2,000 × 0.05 × 2 = $200; total = $2,200. Account C (compound): 2,000 × (1.05)² = 2,000 × 1.1025 = $2,205. Difference = $2,205 − $2,200 = $5. The extra $5 arises from earning 5% on the first year's interest of $100: 0.05 × $100 = $5. Compounding's advantage after just 2 years is small.
+**mistake_a:** Arithmetic slip — computed a difference less than $5 (perhaps through rounding 1.05² imprecisely).
+**mistake_c:** Overestimated the compounding advantage: thought it was the first year's interest rate applied to the interest again — 0.05 × $200 = $10.
+**mistake_d:** Computed 2,000 × 0.01 = $20, using an assumed 1% rate difference where no such rate difference exists.
+**mistake_e:** Computed 5% of $2,000 = $100 as if simple interest on the full principal represents the compounding advantage.
+**common_trap:** Overestimating how much more compounding earns in just 2 years. The compounding advantage accumulates slowly; after year 2 it equals exactly Pr² = 2,000 × 0.0025 = $5.
+**takeaway:** The extra earned from compounding vs. simple interest after 2 years = Pr² (interest on the first year's interest). For small rates and short horizons, the gap is surprisingly small.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Statistics
+
+The average (arithmetic mean) of five numbers is 18. When a sixth number is added to the set, the average decreases to 16. What is the sixth number?
+
+- A) 2
+- B) 4
+- C) 6
+- D) 8
+- E) 14
+
+**answer:** C
+**fastest_path:** Sum of 5 = 5 × 18 = 90. Sum of 6 = 6 × 16 = 96. Sixth number = 96 − 90 = 6.
+**explanation:** Use the sum-average relationship: sum = average × count. Original sum of five numbers: 5 × 18 = 90. After adding the sixth number, sum of six: 6 × 16 = 96. The sixth number = new sum − old sum = 96 − 90 = 6. Sanity check: 6 < 18 (the original average), so it makes sense that adding 6 pulls the average down from 18 to 16.
+**mistake_a:** Arithmetic slip in one of the multiplications: perhaps computed 6 × 16 = 92 instead of 96, then got 92 − 90 = 2.
+**mistake_b:** Computed 5 × 18 incorrectly as 92 instead of 90, then 96 − 92 = 4.
+**mistake_d:** Set up the second equation with the wrong count or average: perhaps 6 × 17 − 5 × 18 = 102 − 90 = 12, or made a different arithmetic error.
+**mistake_e:** Tried to work with the averages directly without computing sums: estimated the sixth number as "something close to 16," guessed 14.
+**common_trap:** Trying to operate on the averages directly (subtracting 18 − 16 = 2 or multiplying 16 × 2 = 32) without going through sums. Averages cannot be combined without accounting for group sizes.
+**takeaway:** "Working backward from averages" always flows through sums: old sum, new sum, then difference. Never manipulate averages directly — always convert to sums first (sum = average × count).
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Number Properties
+
+How many positive integer factors does 120 have?
+
+- A) 10
+- B) 12
+- C) 14
+- D) 16
+- E) 20
+
+**answer:** D
+**fastest_path:** 120 = 2³ × 3 × 5. Factor count = (3+1)(1+1)(1+1) = 4 × 2 × 2 = 16.
+**explanation:** Prime factorize: 120 = 8 × 15 = 2³ × 3 × 5. For any number p^a × q^b × r^c, the number of positive factors is (a+1)(b+1)(c+1) — each exponent can independently range from 0 to its maximum. Here: (3+1)(1+1)(1+1) = 4 × 2 × 2 = 16. Verify by listing: 1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 24, 30, 40, 60, 120 — exactly 16.
+**mistake_a:** Added the exponents and applied a factor incorrectly: 3 + 1 + 1 = 5, then doubled to 10. Or simply undercounted while listing.
+**mistake_b:** Misfactored 120 as 2² × 3 × 5 × ... (dropped one factor of 2), then applied (2+1)(1+1)(1+1) = 3 × 2 × 2 = 12.
+**mistake_c:** Another off-by-one in the prime factorization or formula application.
+**mistake_e:** Added the (exponent + 1) terms instead of multiplying: (3+1) + (1+1) + (1+1) = 4 + 2 + 2 = 8, then doubled to get 16... or added directly to get 8 and then scaled incorrectly.
+**common_trap:** Multiplying the raw exponents rather than (exponent + 1): using 3 × 1 × 1 = 3 instead of 4 × 2 × 2 = 16. The "+1" is essential — it accounts for choosing zero copies of that prime factor.
+**takeaway:** Factor counting: n = p^a × q^b × r^c → (a+1)(b+1)(c+1) factors. The "+1" in each term accounts for including 0 copies of that prime (which gives a factor that is not divisible by p). Always start with a complete prime factorization.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Percentages
+
+A bookstore purchases a book for $20, then marks it up by 40%. After one month, the store discounts the marked-up price by 30%. What is the book's final selling price?
+
+- A) $16.80
+- B) $18.00
+- C) $19.60
+- D) $20.00
+- E) $22.00
+
+**answer:** C
+**fastest_path:** 20 × 1.40 × 0.70 = 20 × 0.98 = $19.60.
+**explanation:** Step 1 — apply the 40% markup: $20 × 1.40 = $28. Step 2 — apply the 30% discount to the marked-up price: $28 × 0.70 = $19.60. The combined multiplier is 1.40 × 0.70 = 0.98, representing a net 2% decrease from the original purchase price.
+**mistake_a:** Applied the markup rate (40%) again as the discount: $28 × 0.60 = $16.80. The student used the wrong percentage for the sale step, substituting 40% for the correct 30%.
+**mistake_b:** Subtracted the percent rates as if they share a common base: 40% − 30% = 10% net increase; $20 × 0.90 = $18.00. The 30% discount applies to $28 (the marked-up price), not to the original $20.
+**mistake_d:** Concluded the two steps must cancel: $20 × 1.40 × 0.70 = $19.60 ≈ $20 (rounded). Alternatively, confused this with the benchmark pair 1.25 × 0.80 = 1.00 (which does cancel). Here 1.40 × 0.70 = 0.98 ≠ 1.00.
+**mistake_e:** Applied both percentage changes to the original base: $20 × (1 + 0.40 − 0.30) = $20 × 1.10 = $22.00. This adds markup and subtracts discount from the same $20, ignoring that the discount applies to the post-markup price.
+**common_trap:** Combining the two rates as if they share the same base (B and E). Since the 30% discount applies to the already-inflated $28, not the original $20, naive arithmetic with the rates gives a wrong answer.
+**takeaway:** Sequential percent changes: multiply the chain of multipliers — 1.40 × 0.70 = 0.98. Never add or subtract percent rates that apply to different bases.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** LCM
+
+Three machines at a factory start running simultaneously at 6:00 AM. Machine A completes one production cycle every 8 minutes, Machine B every 12 minutes, and Machine C every 18 minutes. At what time will all three machines next complete a cycle at the same moment?
+
+- A) 6:36 AM
+- B) 7:00 AM
+- C) 7:12 AM
+- D) 7:24 AM
+- E) 8:12 AM
+
+**answer:** C
+**fastest_path:** LCM(8, 12, 18): 8 = 2³; 12 = 2² × 3; 18 = 2 × 3². LCM = 2³ × 3² = 72 min. 6:00 AM + 72 min = 7:12 AM.
+**explanation:** All three machines complete a cycle simultaneously at every common multiple of 8, 12, and 18. The first occurrence is at their LCM. Factor each: 8 = 2³; 12 = 2² × 3; 18 = 2 × 3². LCM = highest power per prime = 2³ × 3² = 8 × 9 = 72 minutes. 6:00 AM + 72 min = 7:12 AM. Verify: 72 / 8 = 9 cycles ✓; 72 / 12 = 6 cycles ✓; 72 / 18 = 4 cycles ✓.
+**mistake_a:** Computed LCM(12, 18) = 36 minutes for Machines B and C only, then stopped. Check: 36 / 8 = 4.5 — Machine A has not completed a cycle at 36 minutes, so 6:36 AM is wrong.
+**mistake_b:** Chose 60 minutes (one hour) as a round-number guess without verifying: 60 / 8 = 7.5 — Machine A does not complete a cycle at 60 minutes.
+**mistake_d:** LCM computed as 84: perhaps factored 18 as 2 × 3 × 3 but inadvertently carried an extra factor. Check: 84 / 18 = 4.67 — not exact, so 84 is not a valid common multiple.
+**mistake_e:** Multiplied all three cycle times and divided by a small GCF: 8 × 12 × 18 = 1,728; dividing by various GCFs gives numbers far larger than 72, leading to times well past 8 AM.
+**common_trap:** Finding the LCM for only two of the three machines and stopping (answer A). All three numbers must be included in the LCM computation.
+**takeaway:** For LCM of three or more numbers: prime-factor each, then take the max exponent per prime. The two-number shortcut LCM = (a × b) / GCF(a, b) cannot be applied naively to three numbers — extend it step by step: LCM(LCM(a, b), c).
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Weighted Average
+
+The population of District A is three times the population of District B. Over five years, District A's population grows by 20% and District B's population grows by 60%. By what percent does the combined population of the two districts grow over the five years?
+
+- A) 20%
+- B) 25%
+- C) 30%
+- D) 40%
+- E) 50%
+
+**answer:** C
+**fastest_path:** A = 75% of combined, B = 25%. Weighted growth = 0.75 × 20% + 0.25 × 60% = 15% + 15% = 30%.
+**explanation:** Let B = 100, so A = 300, total = 400. After five years: A → 300 × 1.20 = 360; B → 100 × 1.60 = 160. New total = 520. Percent growth = (520 − 400) / 400 = 120 / 400 = 30%. Equivalently: A is 3/4 of the combined population, B is 1/4. Weighted rate = (3/4)(20%) + (1/4)(60%) = 15% + 15% = 30%.
+**mistake_a:** Used only District A's growth rate (20%) because A is the dominant district, ignoring B entirely.
+**mistake_b:** Arithmetic slip in the weighted computation — a plausible miscalculation that lands between 20% and 30%.
+**mistake_d:** Took a simple (unweighted) average of the two growth rates: (20% + 60%) / 2 = 40%. This is correct only if both districts are the same size, which they are not.
+**mistake_e:** Swapped which district is three times larger. If the student treated A = 25% of the total and B = 75%: 0.25 × 20% + 0.75 × 60% = 5% + 45% = 50%.
+**common_trap:** Simple-averaging the growth rates (D) — by far the most common error. Growth rates must be weighted by each group's share of the total, not averaged equally.
+**takeaway:** When combining growth rates across groups of unequal size, use a weighted average: sum of (fraction of total × rate) for each group. Setting concrete numbers (B = 100, A = 300) is the fastest way to avoid weighting errors.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Weighted Average
+
+In a class, the boys' average exam score is 72 and the girls' average exam score is 84. The overall class average is 80. What fraction of the class is boys?
+
+- A) 1/4
+- B) 1/3
+- C) 2/5
+- D) 1/2
+- E) 2/3
+
+**answer:** B
+**fastest_path:** Alligation: distance from 80 to boys avg = 8; distance from 80 to girls avg = 4. Boys:girls = 4:8 = 1:2. Boys fraction = 1/(1+2) = 1/3.
+**explanation:** Let b = fraction of class that is boys; girls = (1 − b). Weighted average equation: 72b + 84(1 − b) = 80. Expand: 72b + 84 − 84b = 80 → −12b = −4 → b = 1/3. Alligation shortcut: the class average is 8 points above the boys' average and 4 points below the girls' average. These distances are inversely proportional to group sizes: boys:girls = 4:8 = 1:2. Boys fraction = 1 / (1 + 2) = 1/3. Verify: 72(1/3) + 84(2/3) = 24 + 56 = 80 ✓.
+**mistake_a:** Guessed a smaller fraction (1/4) because the class average is much closer to girls' scores, implying far fewer boys — directionally correct but numerically imprecise without computing.
+**mistake_c:** Arithmetic slip in solving −12b = −4: perhaps solved as −12b = −5, giving b ≈ 2/5.
+**mistake_d:** Assumed equal numbers of boys and girls; noted (72 + 84) / 2 = 78 ≠ 80 but selected 1/2 anyway.
+**mistake_e:** Reversed the alligation ratio: took boys fraction = 8 / (8 + 4) = 8/12 = 2/3 instead of girls fraction. The larger distance from the class average corresponds to the smaller group (boys are farther below 80 than girls are above 80, so there are fewer boys).
+**common_trap:** Reversing the alligation (E). The group whose average is farther from the overall average is always the smaller group. Since 80 is closer to 84 than to 72, girls dominate the class.
+**takeaway:** In alligation: ratio of group sizes = (other group's distance) : (this group's distance). The group closer to the overall average is more numerous. Alternatively, set up the equation 72b + 84(1−b) = 80 and solve — it is quick and error-proof.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Percent — Compound Decrease
+
+A product's price is reduced by 10% each year. After how many complete years will the price first fall below half of its original value?
+
+- A) 5
+- B) 6
+- C) 7
+- D) 8
+- E) 10
+
+**answer:** C
+**fastest_path:** (0.9)^n < 0.5. Compute sequentially: year 6 → ≈ 0.531 > 0.5; year 7 → ≈ 0.478 < 0.5. Answer: 7 years.
+**explanation:** Each year the price is multiplied by 0.90. After n years, price = P × (0.9)^n. Solve (0.9)^n < 0.5 by iterating: (0.9)^1 = 0.900; (0.9)^2 = 0.810; (0.9)^3 = 0.729; (0.9)^4 = 0.656; (0.9)^5 ≈ 0.590; (0.9)^6 ≈ 0.531; (0.9)^7 ≈ 0.478. Year 7 is the first year the price drops below 50%. Estimation shortcut: the Rule of 70 predicts a halving time of 70 / 10 = 7 years for a 10% annual decline — exactly matching the computed answer.
+**mistake_a:** Applied linear reasoning: 10% per year × 5 years = 50%, so price halves after 5 years. This ignores that each year's 10% is taken from a smaller base than the previous year — the price declines more slowly than the linear estimate.
+**mistake_b:** Computed (0.9)^6 ≈ 0.531 and concluded the price is below half. But 0.531 > 0.50 — year 6 has not yet reached the threshold. Off-by-one: 7, not 6, is the first year below half.
+**mistake_d:** Rounded (0.9)^7 ≈ 0.48 up to 0.50 (treating it as still at the threshold), then added an extra year for safety.
+**mistake_e:** Applied extreme linear logic: 10% per year for 10 years = 100%, so the price disappears in 10 years; estimated halving at 10 / 2 = 5 years... then overcorrected to 10. Several confused reasoning paths lead here.
+**common_trap:** Linear thinking (answers A and E). "10% off per year for 7 years" is not the same as "70% off" — compounding causes each reduction to be smaller in absolute dollars than the previous one.
+**takeaway:** Repeated percent decreases compound: use (1 − r)^n, not r × n. For small rates, the Rule of 70 gives a fast estimate: halving time ≈ 70 / (rate as a percent). This is the decay analog of the Rule of 72 for compound interest.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Units Digit
+
+What is the units digit of (3^4)^50 + (2^3)^25?
+
+- A) 1
+- B) 3
+- C) 7
+- D) 9
+- E) 0
+
+**answer:** D
+**fastest_path:** Simplify: 3^200 + 2^75. Units of 3^200: 200 mod 4 = 0 → cycle position 4 → units digit 1. Units of 2^75: 75 mod 4 = 3 → units digit of 2^3 = 8. Sum: 1 + 8 = 9.
+**explanation:** Step 1 — simplify the exponents using the power rule: (3^4)^50 = 3^(4×50) = 3^200; (2^3)^25 = 2^(3×25) = 2^75. Step 2 — units digit of 3^200: powers of 3 cycle {3, 9, 7, 1} with period 4. Since 200 ÷ 4 = 50 remainder 0, the exponent is a multiple of 4 → same units digit as 3^4 = 81 → units digit 1. Step 3 — units digit of 2^75: powers of 2 cycle {2, 4, 8, 6} with period 4. Since 75 ÷ 4 = 18 remainder 3, units digit = units digit of 2^3 = 8. Step 4 — add the units digits: 1 + 8 = 9.
+**mistake_a:** Computed only 3^200's units digit (1) and reported that as the answer, forgetting to add the contribution from 2^75.
+**mistake_b:** Made an off-by-one error when mapping remainder 0 in the cycle for 3^200: treated remainder 0 as "position 0" (the first element, units digit 3) instead of "position 4" (the last element, units digit 1). Then reported 3 + 8 = 11 → units digit 1... or bubbled 3 directly.
+**mistake_c:** Found the wrong cycle position for 2^75: selected the 4th element {2, 4, 8, 6} → 6 (using 1-indexed position 4) instead of the 3rd element → 8. Then computed 1 + 6 = 7.
+**mistake_e:** Assumed one or both terms could end in 0. Powers of 3 and powers of 2 never produce a units digit of 0 — that would require factors of both 2 and 5, which neither 3 nor 2 provides (outside of their respective powers having 5 as a factor, which they do not).
+**common_trap:** Two errors combine here: (1) mapping remainder 0 to the first cycle position instead of the last (corrupts the 3^200 term), and (2) forgetting to add both terms (stops after the first).
+**takeaway:** Multi-term units-digit problems require computing each term independently, then adding the resulting units digits. When remainder = 0, map to the last cycle position (not the first). Always verify by working through the cycle manually for small exponents before scaling.
+**related_reading:** reading-quant-02-arithmetic-foundations
