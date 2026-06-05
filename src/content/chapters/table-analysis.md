@@ -2,10 +2,12 @@
 slug: table-analysis
 title: Table Analysis
 section: DI
-estimated_minutes: 45
+estimated_minutes: 50
 prerequisites: []
 summary: |
-  Table Analysis gives you a sortable data table plus a series of Yes/No statements, and asks whether each statement is true given the data. The test isn't about reading speed — it's about efficiency. You need a repeatable filter-sort-verify discipline that answers each statement in under 60 seconds without re-reading the whole table. Master the three-step workflow (identify the relevant column, filter or sort, compute the check), internalize the seven most common statement patterns, and you'll solve every Table Analysis question without ever feeling rushed.
+  Table Analysis gives you a sortable data table plus a series of Yes/No statements, and asks whether each statement is true given the data. The test isn't about reading speed — it's about efficiency. You need a repeatable filter-sort-verify discipline that answers each statement in under 60 seconds without re-reading the whole table. Master the three-step workflow, internalize the seven most common statement patterns, and apply the three speed techniques for averages and medians — and every Table Analysis question becomes a mechanical exercise, not a judgment call.
+
+  By the end of this chapter you will: (1) apply the three-step workflow reflexively to any statement; (2) classify a Yes/No statement into one of seven patterns in under five seconds; (3) use sum comparison, the deviation shortcut, and position-based median reading to evaluate aggregate metrics without unnecessary division; and (4) recognize the seven most common Table Analysis traps before they cost you a point.
 sections:
   - id: pretest
     type: pretest
@@ -19,12 +21,16 @@ sections:
   - id: the-three-step-workflow
     type: reading
     title: "The three-step workflow — identify, filter, verify"
+    intro: |
+      This is the most important section in the chapter. Students who skip it — or read it passively — answer Table Analysis statements by scanning the whole table each time, which is slow and error-prone. Students who internalize the three-step rhythm answer every statement in under 60 seconds without reading a single row they don't need. The micro-drill at the end of this section will tell you whether you've actually absorbed it or just recognized it.
     check_question_ids:
       - table-analysis-q13
 
   - id: sorting-vs-filtering
     type: reading
     title: "Sorting vs. filtering — when to use each"
+    intro: |
+      The GMAT's Table Analysis interface lets you sort any column — and most students use it far less than they should. Sorting is the fastest way to answer rank-based statements; filtering is the fastest way to handle subset-based statements. Using the wrong tool adds 20-30 seconds per statement. This section gives you a five-second classification rule and a set of statements to apply it immediately.
     check_question_ids:
       - table-analysis-q22
       - table-analysis-q23
@@ -32,6 +38,8 @@ sections:
   - id: statement-patterns
     type: reading
     title: "The seven most common Yes/No statement patterns"
+    intro: |
+      Roughly 90% of Yes/No statements belong to seven patterns. Once you can classify a statement in five seconds, the method to answer it is automatic. The other 10% are combinations of these seven — and once you know them individually, compound cases are just two-step versions of patterns you already own. This section also covers the statement-negation reflex, which tells you whether you need a single confirming example or an exhaustive scan.
     check_question_ids:
       - table-analysis-q1
       - table-analysis-q2
@@ -40,6 +48,8 @@ sections:
   - id: averages-and-medians
     type: reading
     title: "Averages, medians, and aggregated metrics"
+    intro: |
+      Average and median statements are where students lose the most time on Table Analysis — not because the math is hard, but because they compute full divisions when a faster check would suffice. Three techniques cut per-statement time from 60 seconds to under 30. If you leave this section with one thing, make it the sum comparison: it eliminates the most common "I divided when I didn't have to" mistake.
     check_question_ids:
       - table-analysis-q14
       - table-analysis-q15
@@ -47,6 +57,8 @@ sections:
   - id: cross-category-comparisons
     type: reading
     title: "Cross-category comparisons — subsetting and ranking"
+    intro: |
+      Multi-category statements require comparing numbers you computed yourself — not numbers printed in the table. The single biggest error students make here is accidentally reading rows from the wrong category when going back for a second comparison. The two-pass technique in this section solves that by keeping category computations separated and written down before any comparison is made.
     check_question_ids:
       - table-analysis-q17
       - table-analysis-q26
@@ -54,6 +66,8 @@ sections:
   - id: derived-metrics-and-traps
     type: reading
     title: "Derived metrics and common traps"
+    intro: |
+      Derived metrics — percentages, ratios, per-unit figures — appear in the hardest Table Analysis statements. They require two pieces of information per row combined correctly; a mis-read of either piece corrupts the whole comparison. This section covers the five most common derived-metric types and the seven traps the test places around them. At least two of those traps appear in nearly every Table Analysis set at the medium-hard level.
     check_question_ids:
       - table-analysis-q7
       - table-analysis-q19
@@ -178,6 +192,25 @@ Statement: "The average salary of Strategy employees is higher than that of Fina
 
 > **Recall check.** Close the book. State the three-step Table Analysis workflow. Now state the time budget for each step. (Step 1 identify, Step 2 filter/sort, Step 3 verify. Budget: 5 + 15 + 30 = 60 seconds.) Pattern-drill this three-step until it's reflexive — that's what makes you fast on Table Analysis.
 
+**Micro-drill.** Apply the three-step workflow to each statement below — write out all three steps before computing, even for the easy ones. The habit only forms if you practice it, not just read it. Budget: 90 seconds per statement.
+
+Table (Tech Startup Revenue):
+
+| Company | Sector | Q1 Rev ($M) | Q4 Rev ($M) | Headcount | Gross Margin |
+|---|---|---|---|---|---|
+| Altera | SaaS | 12 | 18 | 80 | 72% |
+| Brova | Hardware | 20 | 16 | 120 | 38% |
+| Citrus | SaaS | 8 | 15 | 55 | 68% |
+| Delphi | Hardware | 25 | 30 | 150 | 42% |
+| Esper | SaaS | 14 | 21 | 90 | 75% |
+| Fenix | Hardware | 18 | 17 | 100 | 35% |
+
+1. More than half of the companies grew revenue from Q1 to Q4.
+2. The company with the highest gross margin is in the SaaS sector.
+3. The average Q4 revenue of SaaS companies exceeds that of Hardware companies.
+
+Answers: (1) **Yes** — Step 1: Q1 Rev and Q4 Rev columns. Step 2: compare each row. Growth: Altera 18>12 ✓, Brova 16<20 ✗, Citrus 15>8 ✓, Delphi 30>25 ✓, Esper 21>14 ✓, Fenix 17<18 ✗. Count: 4 of 6. 4 > 3 (half of 6). (2) **Yes** — Step 1: Gross Margin and Sector columns. Step 2: sort Gross Margin descending. Top row: Esper, 75%, SaaS. Statement confirmed. (3) **No** — Step 1: Sector and Q4 Rev columns. Step 2: filter by Sector. SaaS Q4 sum: 18+15+21 = 54. Hardware Q4 sum: 16+30+17 = 63. Equal counts of 3 each — compare sums directly. 54 < 63. Hardware average exceeds SaaS. Statement is false. If you said Yes, you may have compared a single company's Q4 rather than computing category averages.
+
 ## @sorting-vs-filtering
 
 GMAT Table Analysis tables are **sortable**. You can click a column header to sort ascending or descending — and many statements are much faster to answer after sorting.
@@ -228,6 +261,17 @@ Some statements require both. "The highest-salaried Finance employee" requires f
 **The "what if sorting is ambiguous" problem.** Ties in a sort (two employees with the same years) usually don't matter for the answer. If it does — e.g., "the third-most-experienced employee" and there's a tie for second — the problem is usually set up so ties don't change the answer.
 
 **Trap to watch.** Some statements read like sort questions but are actually filter questions. "Is there any employee over 40 who earns less than $120K?" — this is a filter (age > 40 AND salary < 120) plus existence check (is the filtered set nonempty?). Don't waste time sorting the full table.
+
+**Micro-drill — sort or filter?** Using the Tech Startup table from the previous section, classify each statement as sort, filter, or both — before computing. 60 seconds total.
+
+1. "The highest-revenue company in Q4 is in the Hardware sector."
+2. "All SaaS companies have gross margins above 65%."
+3. "The company with the second-lowest headcount grew revenue from Q1 to Q4."
+4. "Is there any Hardware company with Q4 revenue under $18M and headcount over 100?"
+
+Answers: (1) **Sort** — sort Q4 descending; top row: Delphi, Hardware. Yes. (2) **Filter** — filter to SaaS (Altera 72%, Citrus 68%, Esper 75%). Lowest is 68% > 65%. Yes. (3) **Sort then check** — sort headcount ascending: 55 (Citrus), 80 (Altera), 90 (Esper)... Second-lowest headcount = Altera (80). Altera Q4 18 > Q1 12. Yes. (4) **Filter** — filter Hardware AND Q4 < 18 AND headcount > 100. Brova: Q4=16 < 18 ✓, headcount=120 > 100 ✓. Exists. Yes. Students who sort by Q4 for statement 4 scan more rows than they need — filtering to Hardware first shrinks the problem immediately.
+
+> **Self-explanation prompt.** When does sorting save time and when does filtering save time? If you can say "sorting is fastest when the statement asks about rank — highest, lowest, nth — while filtering is fastest when the statement asks about a defined subset," you have the classification rule. The trap is defaulting to one tool for everything; neither is universally faster.
 
 ## @statement-patterns
 
@@ -287,6 +331,8 @@ Seven statement patterns cover roughly 90% of what you'll see on Table Analysis.
 
 > **Self-explanation prompt.** Why does "every"/"no" require checking every row but "at least one" needs just one example? If you can say "because universal claims fail if a single counterexample exists, while existential claims succeed if a single confirming case exists," you've internalized the asymmetry — and you'll scan tables much faster.
 
+> **Recall check.** Cover this section. Without looking, list all seven pattern names and state the move for each. (Answers: 1. Threshold count → filter, count, compare to half. 2. Rank check → sort, read top/bottom, verify category. 3. Category comparison → filter each category, compute metric, compare. 4. Within-row derivation → compare two columns row by row. 5. Existence check → filter on conjunction, check nonempty. 6. Range check → find min/max, check bounds. 7. Correlation/trend check → find top/bottom of one column, check other column's rank.) If you reproduced all seven, you're ready for the problem sets. If any pattern was missing, re-read its definition once, close the page, and re-test before moving on.
+
 ## @averages-and-medians
 
 When statements involve averages or medians across categories, computation can feel daunting on a large table. Three techniques collapse this to under 30 seconds.
@@ -307,11 +353,11 @@ The median of an ordered set of n values is at position (n+1)/2 (for odd n) or a
 
 **Technique 3: Scanning for "average above X."**
 
-Sometimes the question is "is the average above X?" without needing the exact average. Shortcut: compute (value - X) for each row and see if the sum is positive. If the sum of deviations is positive, the average is above X.
+Sometimes the question is "is the average above X?" without needing the exact average. Shortcut: compute (value − X) for each row and see if the sum is positive. If the sum of deviations is positive, the average is above X.
 
 **Example.** Ages: 32, 38, 28, 42, 26, 35, 40, 33. Is average > 35?
 
-Compute (age - 35) for each: -3, 3, -7, 7, -9, 0, 5, -2. Sum: -3+3-7+7-9+0+5-2 = -6. Sum of deviations is negative, so average is below 35. **No.**
+Compute (age − 35) for each: −3, 3, −7, 7, −9, 0, 5, −2. Sum: −3+3−7+7−9+0+5−2 = −6. Sum of deviations is negative, so average is below 35. **No.**
 
 This is often faster than computing the actual average.
 
@@ -321,7 +367,15 @@ This is often faster than computing the actual average.
 
 **The "median from a large table" shortcut.** For a sorted table with 50 rows, the median is rows 25-26 averaged. You don't have to compute — just click the sort and read the middle rows.
 
-> **Recall check.** Without looking, state the two ways to compute a median (odd n vs even n). Now state the "sum trick" for comparing averages when counts are equal. (Answers: odd → middle row by position (n+1)/2; even → average of the two middle rows; sum comparison works when counts match because averages differ only by their sums in that case.) Retrieval of these three rules is what separates a 60-second verification from a 3-minute recomputation.
+> **Recall check.** Without looking, state the two ways to compute a median (odd n vs even n). Now state the sum trick for comparing averages when counts are equal. (Answers: odd → middle row at position (n+1)/2; even → average of the two middle rows; sum comparison works when counts match because averages differ only by their sums in that case.) Retrieval of these three rules is what separates a 60-second verification from a 3-minute recomputation.
+
+**Micro-drill.** Using the Tech Startup table, apply the right technique for each — 45 seconds each. Do not compute more than the technique requires.
+
+1. Is the average headcount across all six companies greater than 100?
+2. What is the median Q1 revenue across all six companies?
+3. Is the average gross margin of SaaS companies greater than 70%?
+
+Answers: (1) **No** — Use the deviation shortcut. Deviations from 100: 80−100=−20, 120−100=+20, 55−100=−45, 150−100=+50, 90−100=−10, 100−100=0. Sum: −20+20−45+50−10+0 = −5. Negative sum means average is below 100. (2) **$16M** — Sort Q1 ascending: 8, 12, 14, 18, 20, 25. n=6 (even). Median = average of 3rd and 4th values = (14+18)/2 = 16. (3) **Yes** — SaaS companies: Altera 72%, Citrus 68%, Esper 75%. Sum = 215. Equal count of 3 — compare sum to 3×70 = 210. 215 > 210, so average > 70%. No division required. If you divided 215 by 3 to get 71.7% before comparing, that's valid but slower — the sum comparison skips the arithmetic.
 
 ## @cross-category-comparisons
 
@@ -381,6 +435,24 @@ Filter on two conditions (Finance AND over 30). Then check all of them against t
 
 **Trap to watch.** "Overlap" mistakes — filtering on the wrong combination. "Finance AND over 30" is different from "Finance OR over 30." Read the statement carefully: "and" means both conditions must hold; "or" means either (or both). Universal quantifier ("all," "every") combined with filters usually means you're checking whether the filtered set satisfies a condition uniformly.
 
+**Micro-drill.** Using the Tech Startup table, work this statement from scratch — use the two-pass technique and write down each sector's result before making any comparison. Two minutes maximum.
+
+Statement: "Among the two sectors, the sector with higher total Q4 revenue also has the higher average gross margin."
+
+Pass 1: two sectors — SaaS and Hardware.
+Pass 2: compute both metrics for each sector, written down:
+
+- SaaS Q4 total: 18+15+21 = 54 ($M). SaaS gross margins: 72%, 68%, 75%. Sum = 215; equal count of 3; avg = 215/3 ≈ 71.7%.
+- Hardware Q4 total: 16+30+17 = 63 ($M). Hardware gross margins: 38%, 42%, 35%. Sum = 115; equal count of 3; avg = 115/3 ≈ 38.3%.
+
+Hardware has higher total Q4 revenue (63 > 54). But Hardware has lower average gross margin (38.3% < 71.7%). The statement claims both metrics go to the same sector — they don't. **No.**
+
+The trap: high revenue does not imply high margin. The statement tests whether you check both metrics independently or assume they move together.
+
+> **Self-explanation prompt.** Why does the two-pass technique require writing down each category's result before comparing? If you can say "because once you switch from computing category A to computing category B, you will misremember category A's exact number unless it's written down — and a single misread corrupts the comparison," you've identified the mechanical reason the habit matters. This is not about skill; it's about managing the limits of working memory under time pressure.
+
+> **Recall check.** State the two-pass technique from memory. (Pass 1: identify all categories named in the statement. Pass 2: for each category, filter and compute the required metric, writing it down.) Now name the cross-category trap. (Two metrics don't necessarily rank in the same order across categories — always compute both before concluding which sector "wins.")
+
 ## @derived-metrics-and-traps
 
 Some statements require computing a *new* metric from the table columns — a ratio, a percentage, a per-unit value. These are the most arithmetic-heavy Table Analysis questions, and where most errors happen.
@@ -395,7 +467,7 @@ Conversion rate = Sales / Visitors. Compute per row, compare.
 
 **Example.** Columns Q1 and Q4. Statement: "More than half of companies grew by at least 25% from Q1 to Q4."
 
-For each row: % change = (Q4 - Q1)/Q1 × 100. Count rows where this ≥ 25. Compare count to half the total.
+For each row: % change = (Q4 − Q1)/Q1 × 100. Count rows where this ≥ 25. Compare count to half the total.
 
 **Derived metric: per-unit metric.**
 
@@ -415,15 +487,23 @@ Compute Revenue/Employees per row, sort, check top.
 
 4. **The "statement says 'each' or 'every' but you only checked one row"** trap. Universal claims require checking all rows (or finding a counterexample to disprove). Don't answer Yes just because the first few rows satisfy the statement.
 
-5. **The "percentage change denominator" trap.** % change = (new - old)/**old**, not (new - old)/new. A common source of close-but-wrong answers.
+5. **The "percentage change denominator" trap.** % change = (new − old)/**old**, not (new − old)/new. A common source of close-but-wrong answers.
 
-6. **The "comparing dissimilar metrics" trap.** If one column is revenue and another is profit, comparing them directly ("Region A's revenue exceeds Region B's profit") is valid but unusual — usually the statement compares revenue to revenue or profit to profit. Re-read carefully.
+6. **The "comparing dissimilar metrics" trap.** If one column is revenue and another is profit, comparing them directly is valid but unusual — re-read carefully to confirm what the statement is actually claiming.
 
-7. **The "rounding matters" trap.** If answer choices include 25% and 24.9% as separate options, you can't round casually. Compute exactly.
+7. **The "rounding matters" trap.** If answer choices are close (e.g., 25% vs 24.9%), compute exactly — do not round mid-calculation.
 
 **The "does this even matter?" sanity check.** Before committing to a computation, ask: "Is there a pattern I'm missing?" Some questions are designed to be obvious once you spot the pattern — e.g., "every value in row X is larger than every value in row Y" (no arithmetic needed, just visual scan). Always look for the easy path before doing arithmetic.
 
-> **Self-explanation prompt.** Why are derived metrics (ratios, percents) the most error-prone? If you can say "because they require two pieces of information per row combined correctly, and one mis-read of either piece corrupts the entire comparison," you've identified why these questions demand extra care — and why writing intermediate values down beats trying to do them in your head.
+> **Self-explanation prompt.** Why are derived metrics the most error-prone? If you can say "because they require two pieces of information per row combined correctly, and one mis-read of either piece corrupts the entire comparison," you've identified why these questions demand extra care — and why writing intermediate values down beats trying to do them in your head.
+
+**Micro-drill.** Using the Tech Startup table, compute each derived metric and answer Yes or No. Work at test pace — no more than 90 seconds each.
+
+1. Citrus had the highest percentage revenue growth from Q1 to Q4 of any company.
+2. Revenue per employee in Q4 (Q4 Rev ÷ Headcount) is highest at Esper.
+3. Gross profit in Q4 (Q4 Rev × Gross Margin) is highest at Delphi.
+
+Answers: (1) **Yes** — Percentage growth = (Q4 − Q1)/Q1. Altera: 6/12 = 50%. Brova: −4/20 = −20%. Citrus: 7/8 = 87.5%. Delphi: 5/25 = 20%. Esper: 7/14 = 50%. Fenix: −1/18 ≈ −6%. Citrus 87.5% is highest. Trap: if you used (Q4−Q1)/Q4 for any company, you used the wrong denominator — percent change is always over the base period (Q1), not the final period. (2) **No** — Q4 revenue ÷ headcount: Altera 18/80 = 0.225, Brova 16/120 ≈ 0.133, Citrus 15/55 ≈ 0.273, Delphi 30/150 = 0.200, Esper 21/90 ≈ 0.233, Fenix 17/100 = 0.170. Highest is Citrus (0.273), not Esper (0.233). Trap: Esper has the highest gross margin in the table — that's a distractor. Revenue per employee is a separate derived metric; never assume two rankings move together. (3) **No** — Gross profit = Q4 revenue × gross margin. Altera: 18×0.72 = 12.96. Brova: 16×0.38 = 6.08. Citrus: 15×0.68 = 10.20. Delphi: 30×0.42 = 12.60. Esper: 21×0.75 = 15.75. Fenix: 17×0.35 = 5.95. Highest is Esper (15.75), not Delphi (12.60). Trap: Delphi has the highest Q4 revenue — but revenue and gross profit rank differently when margins vary. High revenue at low margin loses to moderate revenue at high margin.
 
 ## @summary
 
@@ -432,7 +512,7 @@ Table Analysis is a mechanical workflow problem. Once you internalize the three-
 **The five Table Analysis habits.**
 
 1. **Identify relevant columns first.** Don't read the whole table; read the statement, then find the 1-2 columns that matter.
-2. **Choose sort or filter based on the question.** Sort for ranks and extremes; filter for subsets.
+2. **Choose sort or filter based on the statement.** Sort for ranks and extremes; filter for subsets.
 3. **Write down intermediate values.** Don't trust your memory across three statements — write the numbers on scratch paper.
 4. **Use sum comparison over average comparison** when counts are equal.
 5. **Find a single counterexample to disprove universals; find a single example to confirm existentials.**
@@ -457,4 +537,14 @@ Table Analysis is a mechanical workflow problem. Once you internalize the three-
 
 **The habit that separates 685 scorers from 605 scorers:** writing down intermediate computations. Trying to hold three category-averages in your head while comparing them is how students lose points on medium-difficulty Table Analysis. Write every intermediate number down.
 
-Drill the 35 questions in this chapter across the three problem sets. The first few will feel slow; by the tenth, the workflow should be automatic.
+**What to do next.**
+
+1. **Easy set immediately.** The Easy questions test whether the three-step workflow is reflexive. If any statement takes more than 90 seconds, the gap is the workflow itself — re-read the first section and re-do its recall check before advancing. Do not proceed to Medium until Easy feels mechanical, not effortful.
+
+2. **Medium set: classify before computing.** Before any computation, name the pattern (one of the seven). If you can't, re-read the patterns section. Pattern misclassification is the most common source of medium-difficulty errors — it causes unnecessary computation rather than wrong computation, and the distinction matters for time management.
+
+3. **If average/median statements slow you down:** return to the Averages and Medians section and practice all three techniques (sum comparison, deviation shortcut, position-based median) on five questions before moving to Hard. These are skills, not insights — they get faster with repetition.
+
+4. **Hard set: derived metrics and compound filters.** The Hard questions combine multiple patterns — filter to a subset, then compute a derived ratio per row, then determine a rank. Work each one with the two-pass technique written out on scratch paper. Under time pressure, students skip the write-down step first — and that's exactly when the row-confusion error happens.
+
+5. **Error log discipline.** For every wrong answer, identify two things: the pattern (which of the seven?) and the specific error (wrong denominator, filter confusion, reversed comparison, unit mismatch). Two wrong answers in the same pattern signals a conceptual gap; the same execution error across multiple patterns signals a habit to fix. One tag per wrong answer, one week of tagging — and you will know exactly where to drill.

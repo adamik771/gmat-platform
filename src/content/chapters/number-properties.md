@@ -2,10 +2,10 @@
 slug: number-properties
 title: Number Properties
 section: Quant
-estimated_minutes: 55
+estimated_minutes: 60
 prerequisites: []
 summary: |
-  Number properties is the single highest-leverage Quant topic on the GMAT Focus — no other topic returns as much score per hour of study. The concepts are concrete (even, odd, prime, divisible), the question types repeat, and the difficulty ceiling is brutal. Master this chapter and you'll pick up 30-50 points across your score range.
+  Number properties is the single highest-leverage Quant topic on the GMAT Focus — no other topic returns as much score per hour of study. The concepts are concrete (even, odd, prime, divisible), the question types repeat, and the difficulty ceiling is brutal. Master this chapter and you will pick up 30-50 points across your score range. By the end you will: (1) apply the full parity table and consecutive-integer rules instantly; (2) use divisibility rules on expressions, not just numbers; (3) factor any integer under 1000 in under 15 seconds; (4) compute the remainder of a large power using the cycle method; (5) identify and use LCM for periodic-event questions; and (6) handle all "must be / could be" DS formats with a three-step discipline.
 sections:
   - id: pretest
     type: pretest
@@ -20,7 +20,7 @@ sections:
     type: reading
     title: "Even and odd — the smallest ideas with the biggest payoff"
     intro: |
-      Even and odd feel elementary until the GMAT pairs them with Data Sufficiency: "is n even?" becomes genuinely hard when n could be 0, or when the expression is k² + k rather than k itself. This section gives you a two-second parity table, the consecutive-integer patterns that recur constantly, and the specific DS traps that catch students who learned the rules but not when they fail.
+      Even and odd feel elementary until the GMAT pairs them with Data Sufficiency: "is n even?" becomes genuinely hard when n could be 0, when the expression is k² + k rather than k itself, or when both statements are always true and tell you nothing. This section gives you a two-second parity table, the consecutive-integer patterns that recur constantly, and the specific DS traps that catch students who learned the rules but not when they fail.
     check_question_ids:
       - number-properties-q2
       - number-properties-q17
@@ -29,7 +29,7 @@ sections:
     type: reading
     title: "Divisibility rules — the shortcuts you can't afford to rederive"
     intro: |
-      You will never be asked to state a divisibility rule on the GMAT. You need them anyway — because checking that a number's digit sum is divisible by 9 takes one second, while long-dividing a three-digit number takes fifteen. These nine rules are the mental shortcuts that let you factor fast enough to spend your two minutes thinking, not computing.
+      You will never be asked to state a divisibility rule on the GMAT. You need them anyway — because checking that a number's digit sum is divisible by 9 takes one second, while long-dividing a three-digit number takes fifteen. These nine rules are the mental shortcuts that let you factor fast enough to spend your two minutes thinking, not computing. This section also shows you how to apply the rules to expressions and variable-based DS questions — where they do the most damage to wrong answer choices.
     check_question_ids:
       - number-properties-q5
       - number-properties-q9
@@ -38,7 +38,7 @@ sections:
     type: reading
     title: "Primes and prime factorization — the atomic structure of integers"
     intro: |
-      Prime factorization is not a topic — it is a technique that unlocks GCF, LCM, factor counts, perfect-square tests, and divisibility questions. All of them reduce to the same move: factor, then take minimum or maximum exponents. This section gives you the factorization reflex, the fifteen primes under 50 you should recognize on sight, and the factor-counting formula that solves an entire class of 685+ questions in under 30 seconds.
+      Prime factorization is not a topic — it is a technique that unlocks GCF, LCM, factor counts, perfect-square tests, perfect-cube tests, and divisibility questions. All of them reduce to the same move: factor, then take minimum or maximum exponents. This section gives you the factorization reflex, the fifteen primes under 50 you should recognize on sight, and the factor-counting formula that solves an entire class of 685+ questions in under 30 seconds.
     check_question_ids:
       - number-properties-q1
       - number-properties-q8
@@ -47,7 +47,7 @@ sections:
     type: reading
     title: "Factors, multiples, GCF, and LCM"
     intro: |
-      GCF and LCM are the two most-confused tools in number properties — students swap the algorithms and get a number that's too large or too small. One identity (m × n = GCF × LCM) connects them so tightly that knowing any three of {m, n, GCF, LCM} gives you the fourth. That identity appears on Data Sufficiency more than any other single GCF/LCM fact.
+      GCF and LCM are the two most-confused tools in number properties — students swap the algorithms and get a number that's too large or too small. One identity (m × n = GCF × LCM) connects them so tightly that knowing any three of {m, n, GCF, LCM} gives you the fourth. This section also covers the LCM pattern for periodic events — a recurring GMAT question type that most students solve by listing multiples instead of factoring.
     check_question_ids:
       - number-properties-q3
       - number-properties-q13
@@ -56,7 +56,7 @@ sections:
     type: reading
     title: "Remainders — modular arithmetic, GMAT-style"
     intro: |
-      Remainder questions appear at 685+ difficulty at a disproportionate rate — they look ad hoc until you see the master equation: n = dk + r. Once you have that template, every variant (multiplication of remainders, remainder after squaring, "what values could n take?") is the same move. This section gives you the algebraic approach and a faster pick-a-number shortcut that handles most GMAT remainder questions in under 30 seconds.
+      Remainder questions appear at 685+ difficulty at a disproportionate rate — they look ad hoc until you see the master equation: n = dk + r. Once you have that template, every variant (multiplication of remainders, remainder after squaring, remainder of a large power, two-constraint DS questions) is the same move applied twice. This section gives you the algebraic approach, the pick-a-number shortcut, the cycle method for large powers, and a Data Sufficiency example that combines two remainder constraints into a single answer.
     check_question_ids:
       - number-properties-q4
       - number-properties-q12
@@ -65,7 +65,7 @@ sections:
     type: reading
     title: "Integer properties of expressions and units digits"
     intro: |
-      Two skills live here that look unrelated: units-digit cycles (which turn a question about 7⁴³ into a one-second lookup) and the "must be / could be" framework for integer expressions. The connection is that both require tracking a single, small property — units digit or parity — through an expression without computing the whole thing. That meta-skill is what separates students who answer 705+ questions cold from those who expand everything and hope the arithmetic works out.
+      Two skills live here that look unrelated: units-digit cycles (which turn a question about 7⁴³ into a one-second lookup) and the "must be / could be" framework for integer expressions. The connection is that both require tracking a single small property — units digit or parity — through an expression without computing the whole thing. This section adds harder DS examples, negative-integer edge cases, and a worked "must be divisible by 12" problem that covers the DS format you'll see most at the 685+ tier.
     check_question_ids:
       - number-properties-q11
       - number-properties-q16
@@ -141,15 +141,17 @@ Even and odd feel like elementary-school ideas. They're not — on the GMAT, the
 
 **Example.** If `m` is even and `n` is odd, which of the following *must* be odd: `m + 2n`, `mn`, `m² + n`, `2m + 2n`, `m − n + 1`?
 
-- `m + 2n`: `even + even = even`. (2n is even regardless of n.)
-- `mn`: `even × odd = even`.
-- `m² + n`: `even + odd = odd`. ✓
-- `2m + 2n`: `even + even = even`.
-- `m − n + 1`: `even − odd + odd = even`.
+- `m + 2n`: even + even = even. (2n is even regardless of n.)
+- `mn`: even × odd = even.
+- `m² + n`: even + odd = odd. ✓
+- `2m + 2n`: even + even = even.
+- `m − n + 1`: even − odd + odd = even.
 
 Only `m² + n` must be odd. Every GMAT even/odd question is built this way — translate each symbol, apply the table, pick the one that's forced to the stated parity.
 
 **The expression trick: consecutive integers.** `k(k+1)` is always even because one of two consecutive integers must be even. `k(k+1)(k+2)` is always divisible by `3! = 6` because at least one factor is even and exactly one is divisible by 3. This generalizes — the product of n consecutive integers is divisible by `n!`.
+
+**Negative integers obey the same parity rules.** −4 is even; −3 is odd; −2 is even. Fractions and non-integers have no parity — "even" and "odd" are properties of integers only. A Data Sufficiency statement that restricts a variable to "an integer" without specifying sign still leaves the parity rules fully intact. Substituting n = −1 or n = −2 when testing "must be" claims is often the fastest way to kill a wrong answer.
 
 **Example (Data Sufficiency).** Is integer k odd?
 
@@ -158,18 +160,26 @@ Only `m² + n` must be odd. Every GMAT even/odd question is built this way — t
 
 Answer: B. The trap is trusting statement (1) because "even + even = even" feels informative — it isn't, because `k² + k` is even for every integer k.
 
+**Example (Data Sufficiency — harder).** Is k even?
+
+- Statement (1): `k(k + 2)` is even. If k is even, then k+2 is also even, and the product is even ✓. If k is odd, then k+2 is also odd (integers two apart share parity), and the product is odd × odd = odd ✗. So `k(k + 2)` is even *exactly when* k is even — Statement (1) is sufficient.
+- Statement (2): `k² − k` is even. Factor: `k² − k = k(k − 1)`, the product of two consecutive integers — always even, for every integer k. Statement (2) is always true and gives zero parity information. Insufficient.
+
+Answer: A. Statement (1) required you to analyze both cases rather than accepting a surface pattern. The key insight: k and k+2 are two apart and share parity — unlike consecutive integers, which differ in parity.
+
 **Trap to watch.** Zero is even. Students forget this constantly on Data Sufficiency. "Is k even?" with `k = 0` is YES. The integer 0 is also divisible by every integer except 0 itself.
 
 > **Self-explanation prompt.** Why is the product of any two consecutive integers always even? If you can say "because one of them is even, and even times anything is even," you've internalized the pattern well enough to recognize `k(k+1)` in disguise on the test.
 
-**Micro-drill.** m is even, n is odd. State whether each expression *must* be even, *must* be odd, or *could be either* — 60 seconds total:
+**Micro-drill.** m is even, n is odd. State whether each expression *must* be even, *must* be odd, or *could be either* — 75 seconds total:
 
 1. m + n + 1 → ___
 2. mn + m → ___
 3. n² + 2n → ___
 4. (m + 1)² → ___
+5. n(n + 2) → ___
 
-Answers: (1) **even** — even + odd + odd = even. (2) **even** — mn contains m's factor of 2; m is even; even + even = even. (3) **odd** — n² = odd × odd = odd; 2n = even; odd + even = odd. (4) **odd** — m + 1 is odd; odd² = odd. If you missed (3), the chain is: odd² stays odd, and odd + even = odd. If you missed (4), note that squaring preserves parity — only even numbers stay even when squared; odd numbers stay odd.
+Answers: (1) **even** — even + odd + odd = even. (2) **even** — mn contains m's factor of 2; m is even; even + even = even. (3) **odd** — n² = odd × odd = odd; 2n = even; odd + even = odd. (4) **odd** — m + 1 is odd; odd² = odd. (5) **odd** — n is odd and n+2 is also odd (two apart, same parity), so n(n+2) = odd × odd = odd. The trap on (5): this resembles a consecutive-integer product, but consecutive integers have a gap of 1. n and n+2 are two apart and share parity — neither contributes a factor of 2. If you missed (3), trace the chain: odd² stays odd, and odd + even = odd. If you answered even on (5) by applying the consecutive-integer rule, re-read the "same parity" note above.
 
 ## @divisibility-rules
 
@@ -195,9 +205,19 @@ Digit sum `= 4 + A + 6 = 10 + A`. For this to be divisible by 9, and A must be a
 
 **The 11-rule example.** Is 2431 divisible by 11?
 
-Alternating sum from the right: `1 − 3 + 4 − 2 = 0`. Zero is divisible by 11 (by convention, every integer divides 0). So yes, 2431 is divisible by 11. Confirm: `2431 / 11 = 221`. ✓
+Alternating sum from the right: `1 − 3 + 4 − 2 = 0`. Zero is divisible by 11 (every integer divides 0). So yes, 2431 is divisible by 11. Confirm: `2431 / 11 = 221`. ✓
 
 **The rules compose.** Divisibility by 12 = divisibility by 3 AND by 4. Divisibility by 15 = divisibility by 3 AND by 5. Divisibility by 36 = divisibility by 4 AND by 9 (not 6 × 6 = 36 via "divisible by 6 twice" — that would double-count the factor of 2). The rule: to check divisibility by `ab` where `gcd(a, b) = 1`, check both `a` and `b` separately.
+
+**Divisibility rules applied to expressions — DS application.** A common 685+ Data Sufficiency pattern asks whether an *expression* involving a variable is divisible by some number. The answer often requires no statement at all.
+
+The method: decompose each term of the expression into its divisibility by the target. If every term is divisible by d, the sum is always divisible by d. If any term leaves a fixed non-zero remainder mod d, the sum can never be divisible by d.
+
+**Example.** Is `12k + 8` divisible by 4 for all integers k? `12k = 4(3k)` — always divisible by 4. `8 = 4 × 2` — always divisible by 4. The expression is always divisible by 4. No statement needed; the answer is always yes.
+
+**Example.** Is `6n + 7` divisible by 3? `6n` is always divisible by 3. `7 mod 3 = 1` — 7 is never divisible by 3. The expression always leaves remainder 1 when divided by 3 — it is *never* divisible by 3 for any integer n. No statement changes this.
+
+When you see a DS question of the form "Is [expression with variable] divisible by [number]?" — check the terms individually before reading the statements. Many of these questions are resolved before you look at the data.
 
 **The 7 rule exists but isn't worth memorizing.** The GMAT virtually never tests divisibility by 7 through a digit-manipulation rule. If you see "divisible by 7," just do the division.
 
@@ -234,25 +254,32 @@ Fifteen primes. You should know all of them on sight. Students who have to test 
 
 **Example.** How many positive factors does 720 have? `720 = 2⁴ × 3² × 5`. Factor count `= (4+1)(2+1)(1+1) = 5 × 3 × 2 = 30`.
 
-**Perfect squares and prime factorization.** An integer is a perfect square if and only if every exponent in its prime factorization is even. `144 = 2⁴ × 3²` (both exponents even) → perfect square. `72 = 2³ × 3²` (one odd exponent) → not a perfect square.
+**Perfect squares and prime factorization.** An integer is a perfect square if and only if every exponent in its prime factorization is even. `144 = 2⁴ × 3²` (both even) → perfect square. `72 = 2³ × 3²` (one odd exponent) → not a perfect square.
+
+**Perfect cubes and prime factorization.** An integer is a perfect cube if and only if every exponent in its prime factorization is divisible by 3. `216 = 2³ × 3³` → perfect cube. `72 = 2³ × 3²` → not a perfect cube (exponent of 3 is 2, not divisible by 3).
 
 **Example (hard).** If `n²` is divisible by 72, what's the smallest positive integer n?
 
 `72 = 2³ × 3²`. For `n²` to absorb `2³`, and `n²` is a perfect square (even exponents only), we need `n²` divisible by `2⁴ × 3²`. So `n` must be divisible by `2² × 3 = 12`. Check: `12² = 144 = 72 × 2`. ✓ Smallest n is 12.
 
-**Counting special kinds of factors.** For `n = 2⁵ × 3⁴ × 5³`, how many factors are perfect squares? A factor looks like `2^a × 3^b × 5^c` with `0 ≤ a ≤ 5`, `0 ≤ b ≤ 4`, `0 ≤ c ≤ 3`. For it to be a perfect square, each of a, b, c must be even. a: 0, 2, 4 → 3 choices. b: 0, 2, 4 → 3 choices. c: 0, 2 → 2 choices. Total: `3 × 3 × 2 = 18`.
+**Example.** What is the smallest positive integer n such that `1080n` is a perfect cube?
+
+`1080 = 2³ × 3³ × 5`. For a perfect cube, every exponent must be divisible by 3. The primes 2 and 3 already have exponents 3 ✓. The prime 5 has exponent 1 — to reach the next multiple of 3, we need 5². So n must supply `5² = 25`. Verify: `1080 × 25 = 27000 = 30³`. ✓
+
+**Counting special kinds of factors.** For `n = 2⁵ × 3⁴ × 5³`, how many factors are perfect squares? A factor looks like `2^a × 3^b × 5^c` with `0 ≤ a ≤ 5`, `0 ≤ b ≤ 4`, `0 ≤ c ≤ 3`. For it to be a perfect square, each exponent must be even. a: 0, 2, 4 → 3 choices. b: 0, 2, 4 → 3 choices. c: 0, 2 → 2 choices. Total: `3 × 3 × 2 = 18`.
 
 **Trap to watch.** 1 is a factor of every positive integer and should be counted when the question asks for "positive factors." But 1 is NOT a prime. The distinction matters on every single factor-counting question.
 
 > **Self-explanation prompt.** Why does the factor-count formula `(a+1)(b+1)(c+1)` work? If you can say "because each prime's exponent has `(exponent + 1)` choices from 0 up to its maximum, and each combination gives a unique factor," you understand the formula and won't misapply it.
 
-**Micro-drill.** No calculator — 90 seconds total:
+**Micro-drill.** No calculator — 2 minutes total:
 
 1. How many positive factors does 720 have? → ___
 2. List all primes between 40 and 55. → ___
 3. What is the smallest positive integer n such that n² is divisible by 180? → ___
+4. What is the smallest positive integer n such that 360n is a perfect cube? → ___
 
-Answers: (1) **30** — 720 = 2⁴ × 3² × 5; factor count = (4+1)(2+1)(1+1) = 5 × 3 × 2 = 30. (2) **41, 43, 47, 53** — eliminate composites: 45 = 9×5, 49 = 7², 51 = 3×17; the four survivors are prime. (3) **n = 30** — 180 = 2² × 3² × 5. Since n² must have all even exponents, the single factor of 5 in 180 forces 5² into n², so 5 | n. Similarly 2 | n and 3 | n. Smallest such n = 2 × 3 × 5 = 30. Verify: 30² = 900 = 180 × 5. ✓
+Answers: (1) **30** — 720 = 2⁴ × 3² × 5; factor count = (4+1)(2+1)(1+1) = 5 × 3 × 2 = 30. (2) **41, 43, 47, 53** — eliminate composites: 45 = 9×5, 49 = 7², 51 = 3×17; the four survivors are prime. (3) **n = 30** — 180 = 2² × 3² × 5; the single factor of 5 forces 5² into n², so 5 | n; similarly 2 | n and 3 | n; smallest n = 2 × 3 × 5 = 30. Verify: 30² = 900 = 180 × 5. ✓ (4) **n = 75** — 360 = 2³ × 3² × 5; for a perfect cube every exponent must be divisible by 3; 2³ ✓, 3² needs one more 3 (→ 3³), 5¹ needs two more 5s (→ 5³); so n = 3 × 5² = 75. Verify: 360 × 75 = 27000 = 30³. ✓
 
 ## @factors-and-multiples
 
@@ -287,9 +314,21 @@ Using `m × n = GCF × LCM`: `12m = 6 × 36 = 216`, so `m = 18`. Check: `GCF(18,
 **Example.** Which must be divisible by 6 for all positive integers n: `n(n+1)`, `n(n+2)`, `n(n+1)(n+2)`, `n² + n + 1`, `n³ + 1`?
 
 - `n(n+1)`: two consecutive integers, divisible by 2! = 2. Not always by 3.
-- `n(n+2)`: not always by 3 (try n = 1: 1 × 3 = 3, divisible by 3; n = 2: 2 × 4 = 8, not divisible by 3). Not always by 6.
+- `n(n+2)`: not always by 3 (n = 2: 2 × 4 = 8, not divisible by 3). Not always by 6.
 - `n(n+1)(n+2)`: three consecutive integers, divisible by 3! = 6. ✓
 - The other two: fail for small n.
+
+**LCM for periodic events.** When two recurring events each happen on a fixed cycle, they next coincide after `LCM(period₁, period₂)` time units. This is the standard pattern for "two buses with different schedules," "two machines running cycles at different rates," or any problem asking when two periodic events next align.
+
+**Example.** Machine A runs a cleaning cycle every 9 minutes; Machine B runs every 12 minutes. Both run simultaneously at 8:00 AM. When do they next run simultaneously?
+
+`9 = 3²`, `12 = 2² × 3`. LCM = `2² × 3² = 36`. Next simultaneous cycle: 8:00 AM + 36 minutes = **8:36 AM**.
+
+**Example (three cycles).** Three lights blink on periods of 4, 6, and 10 seconds. They all blink together at time zero. After how many seconds do they next all blink simultaneously?
+
+`4 = 2²`, `6 = 2 × 3`, `10 = 2 × 5`. LCM = `2² × 3 × 5 = 60`. All three blink together again after **60 seconds**.
+
+The trap on periodic-event questions: students add the periods or average them instead of computing the LCM. The LCM gives the first overlap; every subsequent overlap is at integer multiples of the LCM.
 
 **Trap to watch.** GCF and LCM switch in students' heads under time pressure. Quick check: GCF is smaller (or equal) than either number; LCM is larger (or equal). If your "GCF" is bigger than either input, you found the LCM.
 
@@ -303,7 +342,7 @@ Remainder questions show up on 685+ difficulty constantly because they have so m
 
 **Example.** n divided by 7 leaves remainder 4. What is the remainder when 3n + 5 is divided by 7?
 
-Write `n = 7k + 4`. Then `3n + 5 = 3(7k + 4) + 5 = 21k + 12 + 5 = 21k + 17`. Now `21k` is divisible by 7, and `17 = 2(7) + 3`. So the remainder is 3.
+Write `n = 7k + 4`. Then `3n + 5 = 3(7k + 4) + 5 = 21k + 17`. Now `21k` is divisible by 7, and `17 = 2(7) + 3`. Remainder is **3**.
 
 **Even faster: pick a number.** Choose `n = 4` (smallest n satisfying the condition). Then `3(4) + 5 = 17`, and `17 / 7` has remainder 3. Same answer, no algebra.
 
@@ -311,22 +350,66 @@ Write `n = 7k + 4`. Then `3n + 5 = 3(7k + 4) + 5 = 21k + 12 + 5 = 21k + 17`. Now
 
 **Example (hard).** `x = 8q + 5`, `y = 8r + 3`. Find the remainder when xy is divided by 8.
 
-`xy = (8q + 5)(8r + 3) = 64qr + 24q + 40r + 15`. Every term except 15 is divisible by 8. `15 = 8 × 1 + 7`, so remainder is 7.
+`xy = (8q + 5)(8r + 3) = 64qr + 24q + 40r + 15`. Every term except 15 is divisible by 8. `15 = 8 × 1 + 7`, so remainder is **7**.
 
 **Remainders under squaring.** If `n = 5k + 2`, then `n² = 25k² + 20k + 4 = 5(5k² + 4k) + 4`, so `n²` leaves remainder 4 when divided by 5. You can always compute `r²` and reduce mod the divisor.
 
-**The remainder-cycle pattern.** Remainders repeat with period equal to the divisor. If you divide `0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, …` by 4, the remainders are `0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, …`. Every fourth integer has the same remainder. This is why remainders behave like addition modulo d.
+**Remainders of large powers — the cycle method.** Any power sequence `n^1, n^2, n^3, …` always eventually cycles when taken modulo a fixed divisor d. To find the remainder when `n^exponent` is divided by d:
+
+1. Compute `n^1 mod d`, `n^2 mod d`, `n^3 mod d`, … until the cycle repeats.
+2. Note the cycle length (period).
+3. Compute `exponent mod period`. If the result is 0, use the last entry; otherwise use that position in the cycle.
+
+**Example.** What is the remainder when `7^100` is divided by 4?
+
+- `7^1 mod 4 = 3`
+- `7^2 = 49 mod 4 = 1`
+- `7^3 mod 4 = 3 × 1 = 3` (cycle repeats)
+
+Cycle: (3, 1), period 2. `100 mod 2 = 0` → last entry → remainder **1**.
+
+Shortcut: 7 ≡ 3 (mod 4), and 3² = 9 ≡ 1 (mod 4). Every even power of 7 is ≡ 1 (mod 4). 100 is even → remainder 1.
+
+**Example.** What is the remainder when `3^47` is divided by 5?
+
+Cycle of 3^k mod 5: `3, 9→4, 27→2, 81→1`, period 4. `47 mod 4 = 3` → third entry (2) → remainder **2**.
+
+Notice: the units-digit cycle for base 3 (3, 9, 7, 1) and the remainder cycle of 3^k mod 10 are the same thing. Large-power remainders and units-digit questions are two faces of the same pattern.
+
+**Two-constraint remainder problems.** The GMAT occasionally gives two remainder conditions and asks for a specific value. The method: list candidates from the first constraint, then filter by the second.
+
+**Example.** n leaves remainder 3 when divided by 5, and remainder 2 when divided by 3. What is the smallest positive integer n satisfying both conditions?
+
+From `n ≡ 3 (mod 5)`: n can be 3, 8, 13, 18, 23, …
+
+Filter by `n ≡ 2 (mod 3)`:
+- 3 mod 3 = 0 ✗
+- 8 mod 3 = 2 ✓
+
+Smallest valid n is **8**. The next valid n is 8 + LCM(5, 3) = 8 + 15 = 23. All valid values form an arithmetic sequence with common difference LCM(5, 3) = 15.
+
+**Example (Data Sufficiency).** What is the remainder when n is divided by 6?
+
+- Statement (1): n leaves remainder 2 when divided by 3. Possible n: 2, 5, 8, 11, 14, 17, … Divided by 6, remainders cycle: 2, 5, 2, 5, … Two possible remainders. Insufficient.
+- Statement (2): n is even. Possible n: 0, 2, 4, 6, 8, 10, … Divided by 6, remainders cycle: 0, 2, 4, 0, 2, 4, … Three possible remainders. Insufficient.
+- Combined: n is even AND n ≡ 2 (mod 3). Together these force n ≡ 2 (mod 6) — every qualifying n is in the set {2, 8, 14, 20, …}, each leaving remainder 2. Sufficient.
+
+Answer: C. The combined constraint uniquely pinned the remainder. This is the CRT (Chinese Remainder Theorem) pattern in GMAT clothing: two coprime moduli together determine behavior mod their LCM.
+
+**The remainder-cycle pattern.** Remainders repeat with period equal to the divisor. Dividing `0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, …` by 4 gives remainders `0, 1, 2, 3, 0, 1, 2, 3, …`. Every fourth integer has the same remainder. This is why you can multiply remainders and reduce mod d — the arithmetic is closed within the cycle.
 
 **Trap to watch.** The remainder is always non-negative. If algebra gives you a negative "remainder," add the divisor until you land in `[0, d)`. E.g., `−7 mod 5`: `−7 + 5 = −2`, still negative; `−2 + 5 = 3`. So `−7` has remainder 3 mod 5.
 
 > **Self-explanation prompt.** In one sentence, why can you just multiply remainders to get the remainder of a product? If you can say "because every other piece of the expanded product is divisible by d, leaving only the product of remainders," you've understood modular arithmetic without needing the formal notation.
 
-**Micro-drill.** Use the remainder equation or pick-a-number — 90 seconds total:
+**Micro-drill.** Use the remainder equation or pick-a-number — 2 minutes total:
 
 1. n leaves remainder 4 when divided by 6. What remainder does 3n − 1 leave when divided by 6? → ___
 2. k leaves remainder 7 when divided by 9. What remainder does k² leave when divided by 9? → ___
+3. What is the remainder when `4^53` is divided by 7? → ___
+4. n leaves remainder 3 when divided by 4, and remainder 1 when divided by 3. What is the smallest positive n? → ___
 
-Answers: (1) Pick n = 4. Then 3(4) − 1 = 11. 11 ÷ 6 = 1 R **5**. Algebraically: n = 6m + 4, so 3n − 1 = 18m + 12 − 1 = 18m + 11; since 18m + 6 is divisible by 6, remainder = 11 − 6 = **5**. (2) Pick k = 7. Then k² = 49. 49 ÷ 9 = 5 R **4**. Algebraically: k = 9m + 7, so k² = 81m² + 126m + 49; every term except 49 is divisible by 9, and 49 = 5(9) + 4, so remainder = **4**. The pick-a-number shortcut handles both in under 20 seconds — use algebra only when the problem is too abstract to plug in.
+Answers: (1) Pick n = 4. Then 3(4) − 1 = 11. 11 ÷ 6 = 1 R **5**. (2) Pick k = 7. Then k² = 49. 49 ÷ 9 = 5 R **4**. (3) Cycle of 4^k mod 7: 4^1 = 4, 4^2 = 16 → 2, 4^3 = 64 → 1, period 3. `53 mod 3 = 2` → second entry → remainder **2**. (4) From n ≡ 3 (mod 4): candidates 3, 7, 11, 15, … Filter by n ≡ 1 (mod 3): 3 mod 3 = 0 ✗, 7 mod 3 = 1 ✓ → smallest n = **7**. LCM(4, 3) = 12; next valid value is 7 + 12 = 19. For (3), if you got 4, you placed 53 in position 1 of the cycle — but 53 mod 3 = 2, which maps to position 2 (value 2), not position 1 (value 4).
 
 ## @integer-properties-of-expressions
 
@@ -349,7 +432,7 @@ The GMAT frequently asks "must be" or "could be" questions about expressions bui
 
 **How to find the cycle position.** Compute `exponent mod period`. The result gives the position in the cycle — except when the result is 0, which maps to the **last** position (not position zero; there is no zeroth entry).
 
-**Example.** Units digit of `3²⁴`? Period 4 cycle is (3, 9, 7, 1). `24 mod 4 = 0` → last position (4) → units digit **1**. Verify: 3⁴ = 81, 3⁸ = 6561, 3¹² = 531441 — every multiple of 4 brings you back to 1. ✓
+**Example.** Units digit of `3²⁴`? Period 4 cycle is (3, 9, 7, 1). `24 mod 4 = 0` → last position → units digit **1**. Verify: 3⁴ = 81 ends in 1; every multiple of 4 in the exponent brings you back to 1. ✓
 
 **Example.** Units digit of `7⁴³`? Cycle (7, 9, 3, 1), period 4. `43 mod 4 = 3` → third entry → units digit **3**.
 
@@ -371,27 +454,52 @@ Middle × 5 = 85 → middle = 17 → largest = 17 + 2 = **19**. No variable need
 
 Four consecutive integers → divisible by 4! = 24. Since 24 = 3 × 8, the product is always divisible by 8. ✓
 
+**Negative integers as test cases.** When a "must be" claim involves an integer expression, always test n = −1 and n = −2 alongside n = 0, 1, 2. The GMAT places counter-examples at small values precisely because students assume n is a typical positive integer.
+
+**Example.** Must n² − n + 1 be odd for all integers n?
+
+Factor: n² − n = n(n−1), the product of two consecutive integers — always even. Even + 1 = odd. Yes, always odd. This holds for negative n too: (−2)(−3) = 6, 6 + 1 = 7 ✓. The parity-of-polynomial approach bypasses case-by-case testing for any integer n.
+
 **Sign and parity of products.** A product is negative if and only if it has an odd number of negative factors. If `xyz < 0`, then exactly 1 or 3 of {x, y, z} are negative.
 
 **Example (Data Sufficiency).** If `xyz < 0`, is `xy` positive?
 
-Statement (1): `z < 0`. With z contributing one negative factor, x and y together must contribute an even count of negatives (so the total stays odd). Even count means both positive or both negative — either way, `xy > 0`. Statement (1) is sufficient.
+Statement (1): `z < 0`. With z contributing one negative factor, x and y together must contribute an even count of negatives (so the total is odd). Even count means both positive or both negative — either way, `xy > 0`. Sufficient.
 
-Statement (2): `x > 0`. Then y and z produce the odd-negative count. y and z could each be negative (making xy negative) or just one of them negative (making xy positive). Not sufficient.
+Statement (2): `x > 0`. Then y and z produce the odd-negative count. y and z could both be negative (making xy negative) or just z negative (making xy positive). Insufficient.
 
-Answer: **A**. The key move was using the odd-negative-count rule to constrain x and y.
+Answer: **A**.
+
+**"Must be divisible by" — the case-analysis discipline.** At 685+ difficulty, the standard approach for "must n(n+1)(n+2) be divisible by k?" is: (a) factor the expression, (b) identify the minimum divisibility the structure guarantees, (c) test whether the DS statements push past that minimum.
+
+**Example (hard, Data Sufficiency).** Is n(n+1)(n+2) divisible by 12?
+
+Without constraints: three consecutive integers, always divisible by 3! = 6. But 6 is not always divisible by 12 — try n = 1: 1 × 2 × 3 = 6, not divisible by 12. So the base answer is "not necessarily."
+
+Statement (1): n is even. Then n = 2k and n+2 = 2(k+1). The product now carries two even factors (n and n+2), contributing at least 4. Combined with the guaranteed factor of 3, the product is always divisible by 4 × 3 = 12. Sufficient.
+
+Statement (2): n is divisible by 3. This reinforces the factor of 3 — but that factor was already guaranteed. It says nothing about whether the product has a factor of 4. Try n = 9: 9 × 10 × 11 = 990; 990 ÷ 12 = 82.5 — not an integer. Insufficient.
+
+Answer: A. Statement (1) provided the missing factor of 4; Statement (2) duplicated an already-present factor of 3.
 
 **The "must be / could be" discipline.** For "must be" questions, the property must hold for every valid integer — one counter-example kills the choice. For "could be" questions, you only need one case where it holds. Reflex: test n = 0, 1, 2, −1 before trusting intuition.
 
 **Example.** Must `n² − n` be even for all integers n?
 
-Factor: `n² − n = n(n − 1)`, the product of two consecutive integers. Exactly one of them is even, so the product is always even. ✓
+Factor: `n² − n = n(n − 1)`, product of two consecutive integers. Exactly one is even, so the product is always even. ✓
 
-Alternative: if n = 2k, then `n² − n = 2k(2k−1)`, which contains 2k. If n = 2k+1, then `n² − n = (2k+1)(2k)`, which contains 2k. Either case gives a factor of 2.
-
-**Trap to watch.** "Must be divisible by X" fails if any single integer breaks it. Test n = 1 or n = 2 before claiming "must be" — the GMAT will have placed a counter-example among the easy cases.
+**Trap to watch.** "Must be divisible by X" fails if any single integer breaks it. Test n = 1 or n = 2 before claiming "must be" — the GMAT places counter-examples among the easy cases.
 
 > **Self-explanation prompt.** Cover the units-digit cycle table. From memory, write out the cycles for bases ending in 2, 3, 7, and 8 — each is period 4. (Answers: 2 → 2,4,8,6 / 3 → 3,9,7,1 / 7 → 7,9,3,1 / 8 → 8,4,2,6.) Now apply them: units digit of `8¹⁰⁰⁰ + 3⁵⁰⁰`? (8¹⁰⁰⁰: 1000 mod 4 = 0 → last position → 6. 3⁵⁰⁰: 500 mod 4 = 0 → last position → 1. Sum's units digit: 6 + 1 = **7**.) If you couldn't reproduce the cycles, re-read the table before the problem sets — these turn 30-second questions into one-second questions on the 685+ tier.
+
+**Micro-drill.** 90 seconds total:
+
+1. Units digit of `3^24`? → ___
+2. Units digit of `2^50 + 7^30`? → ___
+3. Must n(n+1)(n+2)(n+3) be divisible by 24 for all positive integers n? → ___
+4. Must n² − n + 1 be odd for all integers n? Prove it in one sentence without testing individual cases. → ___
+
+Answers: (1) **1** — cycle (3,9,7,1), 24 mod 4 = 0 → last entry = 1. (2) **3** — 2^50: 50 mod 4 = 2 → 4; 7^30: 30 mod 4 = 2 → 9; units digit of 4 + 9 = 13 is 3. (3) **Yes** — four consecutive integers, always divisible by 4! = 24. (4) **Yes** — n² − n = n(n−1), product of consecutive integers, always even; even + 1 is always odd.
 
 ## @summary
 
@@ -406,12 +514,13 @@ I'm going to say something I believe without qualification: if you have 40 hours
 
 **The core toolkit, in order of reach:**
 
-1. **Prime factorization** unlocks GCF, LCM, factor counts, perfect-square tests, and divisibility.
-2. **Divisibility rules** (2, 3, 4, 5, 6, 8, 9, 10, 11) let you factor mentally.
-3. **Even/odd parity** resolves most "must be" Data Sufficiency.
-4. **Remainder equation** (`n = dk + r`) handles every remainder question.
+1. **Prime factorization** unlocks GCF, LCM, factor counts, perfect-square tests, and perfect-cube tests.
+2. **Divisibility rules** (2, 3, 4, 5, 6, 8, 9, 10, 11) let you factor mentally — including on variable expressions.
+3. **Even/odd parity** resolves most "must be" Data Sufficiency — and applies equally to negative integers.
+4. **Remainder equation** (`n = dk + r`) handles every remainder question; the cycle method handles large-power remainders.
 5. **Units digit cycles** (memorize all nine) crush large-power questions.
 6. **Consecutive-integer facts** (product of n consecutive ints is divisible by n!; sum of odd count = count × middle) show up constantly.
+7. **LCM for periodic events** — when two recurring cycles next coincide, the answer is the LCM of their periods.
 
 **Pattern-match table:**
 
@@ -419,18 +528,23 @@ I'm going to say something I believe without qualification: if you have 40 hours
 |---|---|---|
 | "How many factors of n" | Prime-factor, apply formula | `(a+1)(b+1)…` |
 | "Is n divisible by k" | Use divisibility rule | For 3, 9: digit sum |
+| "Is [expression with var] divisible by k" | Decompose term by term | Each term mod k; check if sum is always 0 |
 | "GCF / LCM" | Prime-factor both | Min powers / Max powers |
-| "Remainder when n/d" | Write `n = dk + r` | Or plug smallest n |
+| "Remainder when n/d" | Write `n = dk + r` | Or plug smallest valid n |
+| "Remainder when n^k / d" | Powers cycle mod d | Find cycle, use exponent mod period |
 | "Units digit of nᵏ" | Check cycle | Period is 1, 2, or 4 |
-| "Must be even/odd" | Parity table | Consecutive ints → even |
+| "Must be even/odd" | Parity table | Consecutive ints → even; test n = −1 |
 | "n² divisible by k" | Perfect-square test | Every prime exponent even |
+| "n³ divisible by k" | Perfect-cube test | Every prime exponent divisible by 3 |
 | "Sum of odd # consecutive ints" | count × middle | Bypass summation |
+| "When do two cycles coincide" | LCM of the periods | Not GCF; not sum |
+| "n satisfies two remainder conditions" | List candidates, filter | Step = LCM(d₁, d₂) |
 
 The next two weeks, drill this chapter's problem sets until the check questions feel trivial. Do them on paper the first time, then on scratch, then in your head. When you can sight-factor 720 as `2⁴ × 3² × 5` without writing anything, you're ready for the 725+ versions.
 
 **What to do next.**
 
 1. **Easy set first.** Run the six easy questions back-to-back, untimed. Goal: 100% accuracy with the right method (not lucky guesses). If you miss one, the issue is a definition you forgot — go back to the relevant reading section and re-do the recall prompt before moving on.
-2. **Medium set, timed.** Eight questions, 2:00 average. Log every miss with the tool you used (factor count, divisibility rule, parity table, remainder equation, units cycle, GCF/LCM) — that tag is what tells you which sub-skill is still soft.
+2. **Medium set, timed.** Eight questions, 2:00 average. Log every miss with the tool you used (factor count, divisibility rule, parity table, remainder equation, units cycle, GCF/LCM, LCM-scheduling) — that tag is what tells you which sub-skill is still soft.
 3. **Hard set, untimed first, then timed.** Six questions. On the first pass, take as long as you need; the goal is to *find* the trick, not race. On the second pass, time yourself — the gap between your two times is a measure of how much speed you'll gain by repetition alone.
 4. **Error log review.** End the week by sorting your number-properties misses by sub-skill. The tag that has the most rows is your next focused drill. One sub-skill at a time, not all at once — even on the topic with the highest score-per-hour leverage, focus beats breadth.
