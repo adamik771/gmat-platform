@@ -5,13 +5,15 @@ section: Quant
 estimated_minutes: 60
 prerequisites: []
 summary: |
-  Combinatorics on the GMAT is a small number of patterns repeated constantly. Master the four decisions (order or no? repeats allowed? restrictions? circular or linear?), internalize the key formulas, and you will solve every counting and probability question on test day in under two minutes.
+  Combinatorics has a reputation for being hard, but the GMAT repeats the same handful of patterns. Students who miss these questions almost always make the same mistake: they reach for a formula before identifying which formula applies. This chapter fixes that by building every formula from one underlying idea — slot-filling — so you can reconstruct any formula in 10 seconds when memory fails. Master the four-decision process, learn the six core patterns, and you will solve every counting and probability question on test day without guessing at formulas.
 sections:
   - id: pretest
     type: pretest
     title: Try before you learn
     intro: |
-      Before I teach you anything, try these two. It's fine to miss both — research shows that *attempting* questions before instruction primes your brain to encode the lesson better. Rate your confidence honestly; your calibration matters more than your accuracy right now.
+      Before instruction, try these two. Missing both is expected and fine — attempting questions first primes the brain to encode the lesson more deeply (this is called desirable difficulty in learning research). Rate your confidence honestly; your calibration here predicts whether you'll think clearly or panic on test day.
+
+      By the end of this chapter you will be able to: apply the four-decision process to identify the right formula in under 10 seconds; solve all six core patterns (permutations, combinations, circular arrangements, repeated objects, distributions, and probability) without a formula sheet; and name the five traps that cost most students points on this topic.
     pretest_question_ids:
       - combinatorics-q1
       - combinatorics-q4
@@ -36,7 +38,7 @@ sections:
 
   - id: restrictions
     type: reading
-    title: "Restrictions — adjacent, forbidden, alternating, compound"
+    title: "Restrictions — adjacent, forbidden, compound, alternating"
     check_question_ids:
       - combinatorics-q8
       - combinatorics-q9
@@ -127,7 +129,11 @@ problem_sets:
 
 ## @enumeration
 
-Enumeration means **writing out every possibility and counting them**. It sounds too primitive for the GMAT, but it is the foundation every formula is built on — and for small sets (3 or 4 objects) it is often the fastest approach on test day.
+**Mental model — why formula-first fails.** Students who memorize P(n, k) and C(n, k) without understanding what those formulas count get the standard problems right — and freeze the moment a problem deviates from the template. This chapter takes the opposite approach: build every formula from one idea so that when memory fails under pressure, you can reconstruct the formula in 10 seconds instead of guessing.
+
+That idea is slot-filling. The best way to internalize it is to start with the primitive approach: enumerate — write out every possibility and count.
+
+Enumeration means **writing out every possibility and counting them**. For small sets (3 or 4 objects) it is often the fastest approach on test day, and it is the foundation every formula in this chapter is built on.
 
 **Mental model — the Fundamental Counting Principle.** Counting problems reduce to filling slots, one at a time. How many choices for slot 1? How many for slot 2 given what's in slot 1? Multiply. Every formula in this chapter — P(n, k), C(n, k), (n − 1)!, n!/(r₁! × r₂!) — is just this slot-filling logic run faster. If you understand the slots, you can re-derive any formula in 10 seconds when memory fails.
 
@@ -238,7 +244,7 @@ The structure is always the same: count favorable arrangements in the numerator,
 
 ## @restrictions
 
-Restriction problems add a constraint to a basic arrangement or selection. There are four patterns; recognize which one applies before picking a method.
+Restriction problems add a constraint to a basic arrangement or selection. There are four patterns; identify which one applies before reaching for a method.
 
 ### The glue trick — required adjacency
 
@@ -252,7 +258,7 @@ If the glued items are *distinct* (e.g., two named people), multiply by 2! for t
 
 ### The complement trick — forbidden adjacency and "at least one"
 
-Never count the hard condition directly. Count the total, count the forbidden version, subtract.
+Never count the hard condition directly. Count the total, count the forbidden case, subtract.
 
 **Worked example.** Six people in a row, Ana and Ben must NOT sit together.
 
@@ -266,19 +272,6 @@ Never count the hard condition directly. Count the total, count the forbidden ve
 
 Example: C(9, 3) − C(5, 3) = 84 − 10 = **74**. Counting "exactly 1, 2, 3 women" directly takes three calculations; counting "zero women" takes one.
 
-### Alternating patterns
-
-When objects of two types must strictly alternate (men/women, red/blue, vowel/consonant), the key insight is that there are **two possible starting patterns** and each is counted independently.
-
-**Worked example.** 4 men and 4 women seated in a row, men and women must alternate.
-
-Two patterns exist: MWMWMWMW and WMWMWMWM.
-
-- For each pattern: 4! ways to assign the men to M-slots × 4! ways to assign women to W-slots = 24 × 24 = 576
-- Two patterns: 2 × 576 = **1,152**
-
-**Trap to watch.** Students who count only one pattern (e.g., only "men go first") get exactly half the right answer. Always ask: can the other group start instead?
-
 ### Compound restrictions
 
 When a problem requires one pair to be adjacent AND another pair to not be adjacent, break it into two stages: count the required-adjacent case, then subtract the sub-case where both constraints are violated simultaneously.
@@ -289,42 +282,42 @@ When a problem requires one pair to be adjacent AND another pair to not be adjac
 - (A and B together AND C and D together): 4! × 2 × 2 = 96
 - Net (A and B together, C and D not together): 240 − 96 = **144**
 
-**Trap to watch.** The most common error is computing the "required" constraint correctly (240) and then forgetting to remove the sub-case that also satisfies the "forbidden" constraint. One subtraction step is all it takes — but students skip it under time pressure.
+**Trap to watch.** Compute the required constraint first, then subtract the sub-case where *both* constraints are violated simultaneously. Students who stop at 240 miss that final step — and that one omission costs the answer.
 
-**Alternating arrangements.** When two types must strictly alternate in a line — MFMFMF or ABABAB — the approach is:
+### Alternating patterns
 
-1. Count the number of valid patterns.
-2. For each pattern, count the arrangements of each type in its allotted slots.
-3. Multiply.
+When objects of two types must strictly alternate in a line, the approach is: count the valid starting patterns, count the arrangements within each pattern, multiply.
 
-**Example.** 3 men (M) and 3 women (W) sit in a row of 6 chairs, alternating genders. How many arrangements?
+**Worked example — equal groups.** 3 men and 3 women sit in a row of 6 chairs, genders alternating.
 
-Valid patterns are MWMWMW and WMWMWM — exactly 2.
+Valid starting patterns: MWMWMW and WMWMWM — exactly 2.
 
 For each pattern:
-- 3 men fill the "M" slots: 3! = 6 ways
-- 3 women fill the "W" slots: 3! = 6 ways
+- 3 men fill the M-slots: 3! = 6 ways
+- 3 women fill the W-slots: 3! = 6 ways
 - Per pattern: 6 × 6 = 36
 
-Total: 2 × 36 = **72**
+Total: 2 × 36 = **72**.
 
-Quick formula for equal groups: **2 × (n!)²** where n is the size of each group.
+Quick formula for equal-sized groups of n: **2 × (n!)²**.
 
-**What if the groups are unequal?** If you have 4 men and 3 women alternating, only the MWMWMWM pattern works (the larger group must start and end). One pattern, so: 1 × 4! × 3! = 24 × 6 = **144**.
+**Unequal groups.** 4 men and 3 women alternating in a row: only MWMWMWM is valid — the larger group must start and end. One pattern: 4! × 3! = 24 × 6 = **144**.
 
-**Alternating at a round table.** Circular + alternating: fix one person to eliminate rotational duplicates, then arrange the remaining n − 1 in the alternating pattern. For 3 men and 3 women at a round table: fix one man, place 2 remaining men in 2! = 2 ways, then fill the 3 women's gaps in 3! = 6 ways. Total: 2 × 6 = **12**. (No factor of 2 — rotational equivalence collapses the two patterns into each other.)
+**Alternating at a round table.** Fix one person to remove rotational duplicates, then alternate from there. For 3 men and 3 women: fix one man, place the 2 remaining men in 2! = 2 ways, fill the 3 women's gaps in 3! = 6 ways. Total: 2 × 6 = **12**. There is no factor of 2 for two starting patterns — rotational equivalence at a round table collapses both into one.
+
+**Trap to watch.** Equal groups, linear arrangement: students who count only one starting pattern get exactly half the right answer. Always ask whether the other group could start instead.
 
 ## @circular
 
-In a **circular arrangement** — people around a round table, beads on a bracelet — **rotations of the same arrangement count as identical**. There is no "seat #1" because every seat is equivalent.
+**The key intuition.** At a rectangular table, each seat has a label — seat 1, seat 6. At a round table there is no seat 1; every position is equivalent and no spot is the "head." Rotating everyone one seat clockwise leaves each person with identical neighbors; nothing about the experience of the arrangement has changed. Five people generate 5 rotations of every distinct configuration, so 5! = 120 counts each distinct seating 5 times. Fix one person's position to stop the overcounting, then arrange the remaining 4 in 4! = 24 ways.
 
-Fix one object in place, then arrange the rest linearly.
+In a **circular arrangement** — people around a round table, beads on a bracelet — **rotations of the same arrangement count as identical**. Fix one object in place, then arrange the rest linearly.
 
 **Formula:** Circular arrangements of n distinct objects = **(n − 1)!**
 
 **Worked example.** 5 people around a round table: (5 − 1)! = 4! = **24**, not 5! = 120.
 
-**Why?** Rotating any arrangement by one seat produces the same *relative* ordering — Ana still has Ben to her left and Cal to her right. Five rotations of the same configuration all look the same, so 5! / 5 = 4! = 24.
+**Why it works.** Rotating any arrangement by one seat produces the same *relative* ordering — Ana still has Ben to her left and Cal to her right. Five rotations of the same configuration are indistinguishable, so 5! / 5 = 4! = 24.
 
 **Watch for distinguishable seats.** A head table with a specific "head" chair, a rectangular table where the ends differ, a round table with numbered chairs — these are not truly circular. Use n! (normal permutations) when seats are distinguishable.
 
@@ -389,11 +382,17 @@ This is different from arrangement problems. Arrangement problems use distinct o
 
 ### Stars and bars — no minimum constraint
 
-To distribute n identical candies among k distinct children (each child may get zero):
+**Build the formula from a picture.** Distribute 4 identical coins to 3 named children. Lay the coins in a row and insert 2 dividers ( | ) anywhere — including before the first coin or after the last:
+
+    ★ | ★ ★ | ★    →  child 1 gets 1, child 2 gets 2, child 3 gets 1
+    ★ ★ ★ ★ | |    →  child 1 gets 4, child 2 gets 0, child 3 gets 0
+    | | ★ ★ ★ ★    →  child 1 gets 0, child 2 gets 0, child 3 gets 4
+
+You have n = 4 stars and k − 1 = 2 dividers: n + k − 1 = 5 objects total. Choosing which 2 of those 5 positions the dividers occupy gives every possible distribution. That is C(5, 2) = C(n + k − 1, k − 1) = **10** distinct distributions.
+
+**Formula.** To distribute n identical items among k distinct recipients, each getting zero or more:
 
 **C(n + k − 1, k − 1)**
-
-**The mental model.** Imagine n identical stars ( ★ ★ ★ ... ) in a row, separated by k − 1 dividers ( | ). The dividers split the row into k groups — one per child. Choosing where to place the k − 1 dividers among n + k − 1 total positions is equivalent to choosing a distribution.
 
 **Worked example.** Distribute 6 identical candies among 4 distinct children. No minimum.
 
@@ -480,9 +479,7 @@ C(n, k) counts the arrangements of k successes in n positions; p^k gives the pro
 
 > **Self-explanation prompt.** Why does C(n, k) appear in the binomial formula? Because the k successes can occur in any of C(n, k) orderings across the n trials — and the probability is the same for each ordering. If you can explain that, the formula stops being something to memorize and starts being something to re-derive in 5 seconds.
 
-> **Self-explanation prompt.** Why does swapping two identical letters not produce a new arrangement? If you can say "because the result looks the same — the string is unchanged — so it's not a distinct outcome," you understand why we divide. The denominator doesn't subtract anything; it cancels out the overcounting that straight factorial committed.
-
-> **Recall check.** Write the multiset formula from memory. Then apply it to BANANA (6 letters: 1 B, 3 A's, 2 N's). The answer is 6! / (1! × 3! × 2!) = 720 / 12 = 60. If you got it right, you're ready for the problem set. If not, re-read the formula once more, then close it and recompute without looking.
+> **Recall check.** Without notes: write the probability template (P = favorable / total), the complement rule for "at least one," and the distinction between with-replacement and without-replacement draws. These three items cover the setup for the majority of GMAT probability questions. If you can state all three in 30 seconds, you are ready for the problem set.
 
 ## @decision
 
