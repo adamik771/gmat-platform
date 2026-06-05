@@ -1140,7 +1140,7 @@ Two runners, P and Q, start at the same point on a 240-meter circular track and 
 ---
 
 ## Q44
-**difficulty:** Challenge
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Work Rates — Two-Scenario System
 

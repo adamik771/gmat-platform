@@ -46,9 +46,9 @@ A merchant buys a product for $40 and sells it for $52. What is the merchant's p
 **fastest_path:** Profit/cost = 12/40 = 30%.
 **explanation:** Profit = 52 − 40 = 12. Profit % of cost = (12/40) × 100 = 30%.
 **mistake_a:** Bubbled the dollar profit (12) as a percent.
-**mistake_b:** Estimated 20%.
+**mistake_b:** Rounded 30% down: converted 12/40 = 3/10 but misread it as approximately 20%. Compute exactly: 12 ÷ 40 = 0.30 = 30%. This is an exact ratio, not an approximation.
 **mistake_c:** Computed profit/sell price = 12/52 ≈ 23%.
-**mistake_d:** Slip → 25%.
+**mistake_d:** Approximated the profit as $10 instead of $12 (small rounding error): 10/40 = 25%. The actual profit is 52 − 40 = $12 exactly.
 **common_trap:** Computing profit as % of *selling price* (12/52 ≈ 23%) instead of % of *cost* (12/40 = 30%).
 **takeaway:** Always identify the *base* of a percent. "Profit % of cost" → base is cost.
 **related_reading:** reading-quant-05-word-problems
@@ -123,10 +123,10 @@ Train A leaves Station X heading east at 70 mph. Two hours later, Train B leaves
 **answer:** C
 **fastest_path:** Head start = 140 mi. Closing rate = 20 mph. T = 140/20 = 7 hr.
 **explanation:** When B departs, A has gone 70 × 2 = 140 mi. Closing rate = 90 − 70 = 20 mph. T = 140/20 = 7 hr.
-**mistake_a:** Slip → 5.
-**mistake_b:** Slip → 6.
-**mistake_d:** Slip → 8.
-**mistake_e:** Used sum (160 mph) → ~9 hr.
+**mistake_a:** Miscalculated A's head-start distance as 100 miles (arithmetic slip on 70 × 2), then divided by the closing rate: 100 ÷ 20 = 5. The head start is 70 × 2 = 140 miles; 140 ÷ 20 = 7.
+**mistake_b:** Misread Train A's speed as 60 mph instead of 70 mph, giving a head start of 60 × 2 = 120 miles: 120 ÷ 20 = 6. Re-read the problem: Train A travels at 70 mph.
+**mistake_d:** Used the average of both trains' speeds for the head-start calculation: (70 + 90)/2 = 80 mph → 80 × 2 = 160 miles → 160 ÷ 20 = 8. Use A's actual speed (70 mph) for the head-start distance, not the average of both trains.
+**mistake_e:** Correctly found that B catches A 7 hours after B departs, then added A's 2-hour head start: 7 + 2 = 9. The question asks for hours after Train B departs, not the total time from A's departure.
 **common_trap:** Using sum of speeds (160) instead of difference (20) for catch-up.
 **takeaway:** Catch-up (same direction) → closing rate = *difference*. Approach (opposite) → *sum*.
 **related_reading:** reading-quant-05-word-problems
@@ -149,8 +149,8 @@ Machine A can complete a job in 6 hours. Machine B can complete the same job in 
 **answer:** B
 **fastest_path:** 1/6 + 1/12 = 1/4 → T = 4 hr.
 **explanation:** Combined rate = 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4 job/hr → T = 4 hr.
-**mistake_a:** Slip → 3.
-**mistake_c:** Slip → 5.
+**mistake_a:** Assumed both machines work at Machine A's faster rate: 1/6 + 1/6 = 1/3 → T = 3 hours. Machine B's solo time is 12 hours — its rate is 1/12, half of A's rate.
+**mistake_c:** Combined the rates correctly to 3/12 = 1/4, then made an arithmetic error inverting: wrote T = 5 instead of T = 4. If rate = 1/4 job/hour, then T = 1 ÷ (1/4) = 4 hours.
 **mistake_d:** Bubbled A's solo time (6).
 **mistake_e:** Averaged times: (6+12)/2 = 9.
 **common_trap:** Averaging solo times instead of adding rates.
@@ -175,10 +175,10 @@ A chemist has 10 liters of a 30% acid solution. How many liters of pure acid mus
 **answer:** C
 **fastest_path:** Acid = 3 L. (3+x)/(10+x) = 0.5 → x = 4.
 **explanation:** Initial acid = 0.30 × 10 = 3 L. After adding x L pure acid: (3+x)/(10+x) = 0.5 → 3 + x = 5 + 0.5x → 0.5x = 2 → x = 4.
-**mistake_a:** Slip → 2.
-**mistake_b:** Slip → 3.
-**mistake_d:** Slip → 5.
-**mistake_e:** Slip → 6.
+**mistake_a:** Set up the equation with a fixed denominator of 10: (3 + x)/10 = 0.5 → x = 2. Adding pure acid increases the total volume to 10 + x — the denominator must grow with x.
+**mistake_b:** Arithmetic slip solving 0.5x = 2: got x = 3 instead of 4. Dividing by 0.5 is the same as multiplying by 2: 2 ÷ 0.5 = 4.
+**mistake_d:** Computed x as 50% of the original 10-liter volume: 0.5 × 10 = 5. This treats x as "half the original solution" rather than solving the equation (3 + x)/(10 + x) = 0.5, which gives x = 4.
+**mistake_e:** Arithmetic slip computing 2 ÷ 0.5: got 6 instead of 4. Dividing by 0.5 doubles the number: 2 ÷ 0.5 = 2 × 2 = 4.
 **common_trap:** Adding x to numerator only (forgetting denominator also grows).
 **takeaway:** When adding pure substance, both numerator and denominator gain x. Set new fraction = target.
 **related_reading:** reading-quant-05-word-problems
@@ -253,9 +253,9 @@ Pipe A can fill a tank in 4 hours, and Pipe B can fill the same tank in 6 hours.
 **answer:** B
 **fastest_path:** Net rate = 1/4 + 1/6 − 1/12 = 4/12 = 1/3 → T = 3.
 **explanation:** Net rate = 1/4 + 1/6 − 1/12 = 3/12 + 2/12 − 1/12 = 4/12 = 1/3 → T = 3 hr.
-**mistake_a:** Slip → 2.
-**mistake_c:** Slip → 4.
-**mistake_d:** Slip → 5.
+**mistake_a:** Treated Pipe C as a second fill pipe instead of a drain: 1/4 + 1/6 + 1/12 = 6/12 = 1/2 → T = 2 hours. Pipe C drains the tank — its rate must be subtracted.
+**mistake_c:** Ignored Pipe B and Pipe C entirely, using only Pipe A's rate: T = 4 hours. The net rate from all three pipes is (1/4 + 1/6) − 1/12 = 4/12 = 1/3 → T = 3.
+**mistake_d:** Correctly found the net rate as 4/12 = 1/3, then made an arithmetic slip inverting it: got T = 5 instead of T = 3. If rate = 1/3 job/hour, then T = 1 ÷ (1/3) = 3 hours.
 **mistake_e:** Misidentified which pipe drains — subtracted Pipe B's rate instead of Pipe C's: 1/4 − 1/6 + 1/12 = 2/12 = 1/6 → T = 6.
 **common_trap:** Forgetting the *negative* sign on the drain rate (treats C as another fill pipe).
 **takeaway:** Drains have *negative* rates. Net = Σ fill rates − Σ drain rates.
@@ -279,10 +279,10 @@ A grocer mixes Brand A coffee at $12 per pound with Brand B coffee at $8 per pou
 **answer:** C
 **fastest_path:** Alligation: $9.50 is 1.50 from $8 and 2.50 from $12. So A:B = 1.5:2.5 = 3:5. A = (3/8)·40 = 15.
 **explanation:** Let a + b = 40 and 12a + 8b = 380. Substitute b = 40 − a: 12a + 320 − 8a = 380 → 4a = 60 → a = 15.
-**mistake_a:** Slip → 10.
-**mistake_b:** Slip → 12.
-**mistake_d:** Slip → 18.
-**mistake_e:** Slip → 20 (took the half).
+**mistake_a:** Arithmetic slip computing 380 − 320 = 40 instead of 60: 4a = 40 → a = 10. Recheck: 9.50 × 40 = 380, and 380 − 320 = 60, giving a = 15.
+**mistake_b:** Arithmetic slip: computed 380 − 320 = 48 instead of 60: 4a = 48 → a = 12. The correct subtraction is 380 − 320 = 60.
+**mistake_d:** Arithmetic error: computed 380 − 320 = 72 instead of 60: 4a = 72 → a = 18. The correct subtraction is 380 − 320 = 60.
+**mistake_e:** Assumed equal parts of both brands (20 lbs each): equal parts of $12 and $8 average to $10/lb, not $9.50. Since $9.50 is closer to $8, more of Brand B is needed. Set up the weighted equation to find the correct split.
 **common_trap:** Mis-applying alligation by inverting the ratio (using $12-distance for A instead of $8-distance).
 **takeaway:** Alligation: distance ratio inverted = quantity ratio. Closer to A's price → less of A.
 **related_reading:** reading-quant-05-word-problems
@@ -305,10 +305,10 @@ Five years ago, James was 4 times as old as his nephew. In 3 years, James will b
 **answer:** A
 **fastest_path:** J = 4N − 15; J = 2N + 3 → 2N = 18 → N = 9 → J = 21.
 **explanation:** J − 5 = 4(N − 5) → J = 4N − 15. J + 3 = 2(N + 3) → J = 2N + 3. Equate: 2N = 18 → N = 9 → J = 21. Verify: 5 yrs ago 16 = 4·4 ✓; in 3 yrs 24 = 2·12 ✓.
-**mistake_b:** Slip → 25.
-**mistake_c:** Slip → 29.
-**mistake_d:** Slip → 33.
-**mistake_e:** Slip → 37.
+**mistake_b:** Set up both equations correctly but applied the future condition as 2N = 20 instead of 2N = 18 (added 5 years instead of 3): N = 10 → J = 4(10) − 15 = 25. The future constraint gives J + 3 = 2(N + 3) → 2N = 18.
+**mistake_c:** Misread "3 years later" as "7 years later": 4N − 15 = 2N + 7 → 2N = 22 → N = 11 → J = 29. Re-read: "In 3 years, James will be twice as old as his nephew."
+**mistake_d:** Misread the future time as 9 years: 4N − 15 = 2N + 9 → 2N = 24 → N = 12 → J = 33. The future condition is 3 years, not 9.
+**mistake_e:** Cascading setup errors give N = 13 → J = 37. Back-check after solving: 5 years ago James = 16 = 4 × 4 ✓; in 3 years James = 24 = 2 × 12 ✓. Verification catches the wrong N before it corrupts J.
 **common_trap:** Forgetting to apply the time shift to *both* people (e.g., writing J − 5 = 4N instead of 4(N − 5)).
 **takeaway:** Time shifts apply to *every* person's age. "5 years ago" → both ages are 5 less.
 **related_reading:** reading-quant-05-word-problems
@@ -1154,7 +1154,7 @@ In a school of 200 students, every student is in at least one of three clubs: De
 ---
 
 ## Q45
-**difficulty:** Challenge
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Overlapping Sets — Three Groups, Ratio Constraints and Reverse Setup
 
@@ -1636,4 +1636,3 @@ Verify: Gardener wages = $1,600; assistant wages = $1,200; difference = $400. �
 **common_trap:** Reporting the number of one worker type instead of the total. After finding g = 8, the question asks for total workers — a second calculation that is easy to skip.
 **takeaway:** Multi-constraint word problems: define one variable for each unknown, translate every condition into an equation, and solve the system. Always re-read the question to confirm which quantity you are reporting — the most common error is bubbling an intermediate value (g or a) instead of the final answer (g + a).
 **related_reading:** reading-quant-05-word-problems
-**takeaway:** Multi-constraint word problems: translate each constraint into an equation, solve the system for the variable, then complete the final calculation the question actually asks for (total workers = g + (g+4), not just g). Always re-read the final question before writing the answer.
