@@ -887,3 +887,481 @@ Verify: 4^(4²) = 4^16 and 4^(4 × 4) = 4^16. Both sides match.
 **common_trap:** Dividing both sides of x² = 4x by x — this discards a valid factor and can hide roots. Always factor the polynomial rather than dividing. Then apply domain constraints to eliminate invalid candidates.
 **takeaway:** For x^A = x^B with x > 0 and x ≠ 1: equate exponents using the one-to-one property. Factor the resulting polynomial — never divide by a variable. Apply domain constraints (x > 0, x ≠ 1) to discard invalid solutions after factoring.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Distribution
+
+Which of the following equals (2a³)⁴?
+
+- A) 8a¹²
+- B) 8a⁷
+- C) 16a⁷
+- D) 16a¹²
+- E) 2a¹²
+
+**answer:** D
+**fastest_path:** Raise coefficient and variable separately: 2⁴ × (a³)⁴ = 16 × a¹² = 16a¹².
+**explanation:** The rule (xy)^n = x^n × y^n extends to any product raised to a power. Apply it step by step: (2a³)⁴ = 2⁴ × (a³)⁴. For the coefficient: 2⁴ = 16. For the variable: (a³)⁴ = a^(3 × 4) = a¹² (power-of-a-power rule). Result: 16a¹².
+**mistake_a:** Cubed instead of raising to the 4th: 2³ = 8, giving 8a¹².
+**mistake_b:** Cubed the coefficient (2³ = 8) and added exponents instead of multiplying (3 + 4 = 7), giving 8a⁷.
+**mistake_c:** Correctly raised the coefficient (2⁴ = 16) but added exponents instead of multiplying (3 + 4 = 7), giving 16a⁷.
+**mistake_e:** Left the coefficient unchanged (2) instead of raising it to the 4th power, giving 2a¹².
+**common_trap:** Raising only the variable part to the power while leaving the numeric coefficient alone — every factor inside the parentheses must be raised to the outer exponent.
+**takeaway:** (xyⁿ)^m = x^m × y^(nm). Distribute the outer exponent to *every* factor, including numeric coefficients. Both the coefficient and the variable base get raised to the power.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+For any real number x, which of the following equals √(x²)?
+
+- A) x
+- B) −x
+- C) x²
+- D) |x|
+- E) x, if x > 0; undefined otherwise
+
+**answer:** D
+**fastest_path:** The square root always returns the non-negative result. √(x²) = |x| for all real x.
+**explanation:** The principal square root function always returns a non-negative value. For x = 3: √(3²) = √9 = 3 = |3|. For x = −3: √((−3)²) = √9 = 3 = |−3|. In both cases the output equals |x|, not x itself. The key distinction: √(x²) = x is only true when x ≥ 0. For negative x it equals −x, and |x| captures both cases in one expression.
+**mistake_a:** √(x²) = x is true only when x ≥ 0. For x = −5: √25 = 5, but x = −5. Not equal.
+**mistake_b:** −x is correct only when x ≤ 0. For x = 4: √16 = 4, but −x = −4 ≠ 4.
+**mistake_c:** √(x²) produces x, not x². For x = 3: √9 = 3, not 9.
+**mistake_e:** √(x²) is defined for all real x, because x² is non-negative for any x. The restriction applies to √(negative number), not √(x²).
+**common_trap:** Writing √(x²) = x — this omits the absolute value and produces the wrong sign for negative inputs. On the GMAT, this error costs points whenever x could be negative.
+**takeaway:** √(x²) = |x| for all real x. Never assume √(x²) = x unless you are told x ≥ 0. This is one of the most frequently tested exponent/radical identities because the x-vs-|x| distinction is invisible unless you test a negative value.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of (1/2)^(−3)?
+
+- A) −8
+- B) −1/8
+- C) 1/8
+- D) 3/2
+- E) 8
+
+**answer:** E
+**fastest_path:** Negative exponent → flip the base: (1/2)^(−3) = (2/1)³ = 2³ = 8.
+**explanation:** The negative-exponent rule states a^(−n) = 1/a^n. Equivalently, (a/b)^(−n) = (b/a)^n — invert the fraction and make the exponent positive. So (1/2)^(−3) = (2/1)³ = 2³ = 8. The negative exponent never makes the result negative; it inverts.
+**mistake_a:** Applied the negative sign to the result: −2³ = −8. Negative exponents flip the base, not the sign of the answer.
+**mistake_b:** Computed (1/2)³ = 1/8 without acting on the negative exponent at all.
+**mistake_c:** Same as B — computed (1/2)³ = 1/8 and stopped.
+**mistake_d:** Treated the exponent as multiplication: (1/2) × (−3) → then somehow arrived at 3/2.
+**common_trap:** Confusing a negative exponent with a negative result. (1/2)^(−3) = 8, which is positive — the negative exponent inverted the fraction, nothing more.
+**takeaway:** (a/b)^(−n) = (b/a)^n. For fractions, a negative exponent flips numerator and denominator, then applies the positive exponent. The result is always positive if the base is positive.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of √(25/36)?
+
+- A) 5/36
+- B) 5/6
+- C) 25/6
+- D) 5√6/6
+- E) √25/36
+
+**answer:** B
+**fastest_path:** √(a/b) = √a/√b: √25/√36 = 5/6.
+**explanation:** The square root distributes over division: √(25/36) = √25/√36 = 5/6. Both 25 and 36 are perfect squares, so the result is a clean fraction.
+**mistake_a:** Took √25 = 5 but left the denominator unchanged: 5/36.
+**mistake_c:** Took √36 = 6 but left the numerator unchanged: 25/6.
+**mistake_d:** Attempted to rationalize a denominator that doesn't need rationalization; got a complex expression.
+**mistake_e:** Left √25 unsimplified (treated the whole expression as √25 over 36 rather than √(25/36)).
+**common_trap:** Forgetting to take the root of both the numerator and the denominator — or taking the root of only one of them.
+**takeaway:** √(a/b) = √a / √b. Apply the root to both parts of the fraction. When both are perfect squares, the result is a simple rational number.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of 5⁰ + 0⁵?
+
+- A) 0
+- B) 1
+- C) 5
+- D) 6
+- E) Undefined
+
+**answer:** B
+**fastest_path:** 5⁰ = 1 (nonzero base, zero exponent). 0⁵ = 0 (zero base, positive exponent). Sum = 1.
+**explanation:** Two separate rules at work. First: 5⁰ = 1. Any nonzero number raised to the zero power equals 1 — this follows from a^n / a^n = a^0 = 1. Second: 0⁵ = 0. Zero raised to any positive integer power equals zero (0 × 0 × 0 × 0 × 0 = 0). Sum: 1 + 0 = 1. Note: 0⁰ is undefined, but this problem has 5⁰ and 0⁵ — both are well-defined.
+**mistake_a:** Thought 5⁰ = 0 (confused zero exponent with multiplying by zero: 5 × 0 = 0 is a different operation).
+**mistake_c:** Thought 5⁰ = 5 (concluded the exponent has no effect and left the base unchanged).
+**mistake_d:** Thought 5⁰ = 5 and 0⁵ = 1, giving 5 + 1 = 6.
+**mistake_e:** Confused this with 0⁰ (which is indeterminate) — but neither term here is 0⁰.
+**common_trap:** Confusing 5⁰ = 0 with 5 × 0 = 0. The zero exponent rule and multiplying by zero are completely different operations.
+**takeaway:** a⁰ = 1 for any nonzero a. 0^n = 0 for any positive n. 0⁰ is the only indeterminate case — it doesn't appear here. Keep these three rules distinct.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Distribution
+
+Which of the following equals (2x³y⁻¹)²?
+
+- A) 4x⁶y⁻²
+- B) 4x⁵y⁻²
+- C) 2x⁶y⁻²
+- D) 4x⁶y⁻¹
+- E) 4x⁶y²
+
+**answer:** A
+**fastest_path:** Square each factor: 2² × (x³)² × (y⁻¹)² = 4 × x⁶ × y⁻² = 4x⁶y⁻².
+**explanation:** Distribute the outer exponent to every factor: (2x³y⁻¹)² = 2² × (x³)² × (y⁻¹)². Compute each: 2² = 4; (x³)² = x^(3×2) = x⁶; (y⁻¹)² = y^(−1×2) = y⁻². Combine: 4x⁶y⁻².
+**mistake_b:** Added instead of multiplied the exponent on x: x^(3+2) = x⁵.
+**mistake_c:** Left the coefficient unchanged (2 instead of 2² = 4).
+**mistake_d:** Multiplied the y exponent incorrectly: (−1) × 2 computed as −1 instead of −2.
+**mistake_e:** Squared the y exponent magnitude but dropped the negative sign: y^(1×2) = y².
+**common_trap:** Forgetting that negative exponents also get multiplied by the outer power. (y⁻¹)² = y⁻², not y⁻¹ or y².
+**takeaway:** When raising a product to a power, distribute the exponent to every factor — including those with negative exponents. The rule (y^m)^n = y^(mn) applies regardless of the sign of m.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+If x is a negative integer and y = √(x²) − x, which of the following must be true?
+
+- A) y = 0
+- B) y = 2x
+- C) y = −2x
+- D) y = x²
+- E) y = |x|
+
+**answer:** C
+**fastest_path:** For x < 0: √(x²) = |x| = −x. So y = −x − x = −2x.
+**explanation:** Because x is a negative integer, |x| = −x (a positive number). Using √(x²) = |x|: y = √(x²) − x = |x| − x = −x − x = −2x. Since x < 0, −2x is positive, as expected. Verify with x = −3: y = √9 − (−3) = 3 + 3 = 6. And −2(−3) = 6. ✓
+**mistake_a:** y = 0 would require √(x²) = x, which is only true when x ≥ 0.
+**mistake_b:** y = 2x would give 2(−3) = −6 for x = −3, but the actual value is 6.
+**mistake_d:** y = x² gives 9 for x = −3, not 6.
+**mistake_e:** y = |x| gives 3 for x = −3, missing the second −x term.
+**common_trap:** Writing √(x²) = x and then concluding y = x − x = 0. For negative x, √(x²) = −x, not x. The absolute value is essential here.
+**takeaway:** When you see √(x²) with an unknown sign on x, replace it with |x|. Then use the definition of absolute value: |x| = x if x ≥ 0; |x| = −x if x < 0. Test a specific negative value to confirm.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+What is the value of √(√256)?
+
+- A) 2
+- B) 4
+- C) 8
+- D) 16
+- E) 128
+
+**answer:** B
+**fastest_path:** √(√256) = 256^(1/4). 256 = 4⁴, so 256^(1/4) = 4.
+**explanation:** A nested radical is a fractional exponent applied twice. √(√256) = (256^(1/2))^(1/2) = 256^(1/4). Recognize 256 = 4⁴ (or 2⁸). So 256^(1/4) = (4⁴)^(1/4) = 4. Alternatively, compute step by step: √256 = 16, then √16 = 4.
+**mistake_a:** Applied the wrong fractional exponent: 256^(1/8) = (2⁸)^(1/8) = 2.
+**mistake_c:** Stopped after halving the exponent of 2: (2⁸)^(1/2) = 2⁴ = ... then confused 2⁴ with 8 somewhere, or halved the result instead of taking the square root (16/2 = 8).
+**mistake_d:** Completed only the inner root: √256 = 16, then stopped.
+**mistake_e:** Divided 256 by 2 to get 128 instead of applying the root.
+**common_trap:** Stopping at √256 = 16 and forgetting the outer radical. A nested √(√n) requires two applications of the square root.
+**takeaway:** √(√n) = n^(1/4). Nested radicals become a single fractional exponent by multiplying the indices: √(∛n) = n^(1/6), and so on. Alternatively, compute from the inside out, one root at a time.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If 4^x = 8, what is the value of x?
+
+- A) 1/2
+- B) 2/3
+- C) 3/2
+- D) 2
+- E) 3
+
+**answer:** C
+**fastest_path:** Write both sides in base 2: (2²)^x = 2³ → 2x = 3 → x = 3/2.
+**explanation:** Neither 4 nor 8 is a power of the other directly, but both are powers of 2. Rewrite: 4 = 2², so 4^x = (2²)^x = 2^(2x). And 8 = 2³. Equation: 2^(2x) = 2³. Same base → equal exponents: 2x = 3 → x = 3/2. Verify: 4^(3/2) = (4^(1/2))³ = 2³ = 8. ✓
+**mistake_a:** Selected 1/2 — perhaps guessed that "halfway between 1 and 2" works, or computed 4^(1/2) = 2 and confused the output with the solution.
+**mistake_b:** Flipped the fraction: got 2/3 instead of 3/2 by mixing up numerator and denominator in 2x = 3.
+**mistake_d:** Checked: 4² = 16 ≠ 8. Selected anyway without verifying.
+**mistake_e:** Checked: 4³ = 64 ≠ 8. Confused 2³ = 8 with 4³.
+**common_trap:** Trying to solve by inspection when the bases differ — recognizing that 4 and 8 share base 2 is the unlock. Equations with different bases almost always require rewriting to a common base.
+**takeaway:** When a^x = b and the bases differ, express both as powers of a common base (usually a prime). Then equate exponents. This technique handles any pair from {2, 4, 8, 16, 32, 64, 128} by rewriting everything as powers of 2.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Roots & Radicals
+
+Is √(n²) = n?
+
+(1) n² = 36
+(2) n > 0
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER alone is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**fastest_path:** √(n²) = n iff n ≥ 0. (1) n = ±6 → both possible → insufficient. (2) n > 0 → always yes → sufficient. B.
+**explanation:** The key identity: √(n²) = |n|. So the question asks: is |n| = n? This is true if and only if n ≥ 0.
+
+Statement (1): n² = 36 → n = 6 or n = −6. If n = 6: √36 = 6 = n (Yes). If n = −6: √36 = 6 ≠ −6 (No). Two different answers → insufficient.
+
+Statement (2): n > 0 → n is positive → |n| = n → √(n²) = n is always Yes. Sufficient.
+**mistake_a:** Concluded Statement 1 sufficient — did not test the negative case n = −6.
+**mistake_c:** Required both statements — missed that Statement 2 alone resolves the question entirely.
+**mistake_d:** Concluded each alone sufficient — didn't notice Statement 1 yields two contradictory answers.
+**mistake_e:** Concluded together insufficient — but together they force n = 6 > 0, giving a definitive Yes.
+**common_trap:** Assuming n² = 36 uniquely determines n. It doesn't — a square has two roots, positive and negative. Always check both signs in DS questions involving even powers.
+**takeaway:** √(n²) = |n|, not n. The equation |n| = n holds iff n ≥ 0. For DS: whenever the question involves √(variable²), ask yourself whether the sign of the variable is known. A squared variable hides its sign; its square root restores only the magnitude.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+Which of the following equals (x²/y³)^(−2)?
+
+- A) x⁴/y⁶
+- B) y⁶/x⁴
+- C) x⁴y⁶
+- D) 1/(x⁴y⁶)
+- E) y³/x²
+
+**answer:** B
+**fastest_path:** Negative exponent flips the fraction, then square: (y³/x²)² = y⁶/x⁴.
+**explanation:** Two equivalent approaches. Method 1 (flip then power): a negative exponent inverts the base. (x²/y³)^(−2) = (y³/x²)². Now square: (y³)² / (x²)² = y⁶/x⁴. Method 2 (distribute the exponent): x^(2×(−2)) / y^(3×(−2)) = x^(−4) / y^(−6) = y⁶/x⁴ (negative exponents in the denominator move to the numerator as positives).
+**mistake_a:** Applied positive 2 instead of −2: (x²/y³)² = x⁴/y⁶.
+**mistake_c:** Inverted correctly but then multiplied the two parts together instead of keeping them in fraction form: y⁶ × x⁴.
+**mistake_d:** Applied the negative exponent as an additional inversion on top of the already-flipped fraction, producing 1/(x⁴y⁶).
+**mistake_e:** Stopped after the first inversion step without squaring: (y³/x²)¹ = y³/x².
+**common_trap:** Applying the outer exponent to only the numerator or only the denominator. Both parts of the fraction must be raised to the outer power.
+**takeaway:** (a/b)^(−n) = (b/a)^n. Flip the fraction first (the negative exponent), then raise both numerator and denominator to the positive power n. Each of the two steps must be completed; skipping either one produces a wrong answer.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Scientific Notation
+
+Which of the following lists the three numbers in order from least to greatest?
+
+5 × 10^(−4), 3 × 10^(−3), 2 × 10^(−4)
+
+- A) 5 × 10^(−4) < 2 × 10^(−4) < 3 × 10^(−3)
+- B) 2 × 10^(−4) < 5 × 10^(−4) < 3 × 10^(−3)
+- C) 3 × 10^(−3) < 2 × 10^(−4) < 5 × 10^(−4)
+- D) 3 × 10^(−3) < 5 × 10^(−4) < 2 × 10^(−4)
+- E) 2 × 10^(−4) < 3 × 10^(−3) < 5 × 10^(−4)
+
+**answer:** B
+**fastest_path:** Convert: 2×10^(−4)=0.0002, 5×10^(−4)=0.0005, 3×10^(−3)=0.003. Order: B.
+**explanation:** Convert each to a decimal for direct comparison. 2 × 10^(−4) = 0.0002. 5 × 10^(−4) = 0.0005. 3 × 10^(−3) = 0.003. Ordering these: 0.0002 < 0.0005 < 0.003. That matches answer B. Note: both of the 10^(−4) numbers are smaller than the 10^(−3) number, because 10^(−4) = 0.0001 while 10^(−3) = 0.001 — the more negative the exponent, the smaller the power of ten.
+**mistake_a:** Reversed the two 10^(−4) numbers: concluded 5 × 10^(−4) < 2 × 10^(−4) because 5 < ... wait, that would only happen with confused logic. Likely: treated the coefficient 5 as meaning "five times further from zero" in the wrong direction.
+**mistake_c:** Concluded that a more negative exponent means a larger number — reversed the entire ordering.
+**mistake_d:** Similar reversal error: treated "more negative exponent" as "closer to zero, therefore smaller" while also reversing the coefficient comparison within the 10^(−4) group.
+**mistake_e:** Placed 3 × 10^(−3) between the two 10^(−4) values — a sign-confusion error that misidentifies which power of ten is larger.
+**common_trap:** Thinking "−3 < −4, so 10^(−3) < 10^(−4)." In fact, −3 > −4, so 10^(−3) > 10^(−4). A less negative exponent means a larger power of ten for negative exponents.
+**takeaway:** For negative powers of ten: 10^(−3) = 0.001 > 10^(−4) = 0.0001. Smaller (more negative) exponent → smaller number. When in doubt, convert to decimals and compare directly.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponential Substitution
+
+If 4^x − 5(2^x) + 4 = 0, what are all values of x that satisfy the equation?
+
+- A) x = 0 only
+- B) x = 2 only
+- C) x = 0 or x = 2
+- D) x = 1 or x = 4
+- E) x = 0 or x = 1
+
+**answer:** C
+**fastest_path:** Let u = 2^x. Then 4^x = u². Equation: u² − 5u + 4 = 0 → (u−1)(u−4) = 0 → u = 1 or 4 → x = 0 or 2.
+**explanation:** The equation looks like two different exponential terms, but 4^x = (2²)^x = (2^x)², so 4^x is just the square of 2^x. Substitute u = 2^x: u² − 5u + 4 = 0. Factor: (u − 1)(u − 4) = 0. Solutions: u = 1 or u = 4. Back-substitute: 2^x = 1 → x = 0; 2^x = 4 = 2² → x = 2. Verify both: x = 0: 1 − 5 + 4 = 0 ✓. x = 2: 16 − 20 + 4 = 0 ✓.
+**mistake_a:** Found only the u = 1 solution (x = 0) and missed u = 4. Perhaps stopped after the first factor or only tested x = 0.
+**mistake_b:** Found only the u = 4 solution (x = 2) and missed u = 1. May have ignored the smaller factor.
+**mistake_d:** Made a factoring error on u² − 5u + 4 — perhaps confused it with u² − 5u + 6 = (u−2)(u−3), giving x = 1 and x = ... or misidentified the factors.
+**mistake_e:** Factored correctly but made a back-substitution error: solved 2^x = 4 → x = 1 (thinking 2^1 = 4 instead of 2^2 = 4).
+**common_trap:** Not recognizing that 4^x = (2^x)². The substitution is invisible until you notice both bases (4 and 2) are powers of the same prime. Once you set u = 2^x, the quadratic structure is obvious.
+**takeaway:** When an equation contains exponential terms with bases that are powers of each other (e.g., 4^x and 2^x, or 9^x and 3^x), use substitution: let u equal the smaller-base term. The larger-base term becomes u². The result is a standard quadratic in u — factor, solve, then back-substitute to find x.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Roots & Radicals
+
+If k is an integer, is √(k² + 2k + 1) = k + 1?
+
+(1) k > −1
+(2) k² > 1
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER alone is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** Factor: k²+2k+1 = (k+1)². So √((k+1)²) = |k+1|. Question is: |k+1| = k+1? True iff k+1 ≥ 0. (1) k > −1 (integer → k ≥ 0) → k+1 ≥ 1 > 0 → Yes. Sufficient. (2) k² > 1 → k ≥ 2 or k ≤ −2 → if k = 2: Yes; if k = −2: No → Insufficient. A.
+**explanation:** First, recognize the perfect square: k² + 2k + 1 = (k + 1)². So √(k² + 2k + 1) = √((k+1)²) = |k + 1|. The question becomes: is |k + 1| = k + 1? This holds exactly when k + 1 ≥ 0, i.e., k ≥ −1.
+
+Statement (1): k > −1, k integer → k ≥ 0 → k + 1 ≥ 1 > 0 → |k+1| = k+1. Always Yes. Sufficient.
+
+Statement (2): k² > 1, k integer → |k| ≥ 2 → k ≥ 2 or k ≤ −2. Test k = 2: k + 1 = 3 > 0 → Yes. Test k = −2: k + 1 = −1 < 0 → |k+1| = 1 ≠ −1 → No. Two answers → insufficient.
+**mistake_b:** Concluded Statement 2 sufficient without testing k = −2 as a counterexample.
+**mistake_c:** Required both — missed that Statement 1 alone resolves the question completely.
+**mistake_d:** Concluded each alone sufficient — did not test the negative case in Statement 2.
+**mistake_e:** Concluded together insufficient — but together they force k ≥ 2 (since k ≥ 0 from Statement 1 and |k| ≥ 2 from Statement 2), giving a definitive Yes.
+**common_trap:** Not factoring k² + 2k + 1 into (k+1)² first. Without the factoring step, the absolute value structure is hidden and the question appears harder than it is.
+**takeaway:** When you see a quadratic under a square root in DS, always try to factor it as a perfect square first. √((k+1)²) = |k+1|, and then the question reduces to a sign check on k+1 — a much simpler condition to evaluate from each statement.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Sign Behavior of Exponents
+
+If x < 0 and n is a positive odd integer, which of the following must be negative?
+
+I. x^n
+II. x^(n+1)
+III. x^(2n+1)
+
+- A) I only
+- B) II only
+- C) I and III only
+- D) I, II, and III
+- E) III only
+
+**answer:** C
+**fastest_path:** n odd: I = x^(odd) < 0 ✓. n+1 = even: II = x^(even) > 0 ✗. 2n+1 = odd (even+1): III < 0 ✓. C.
+**explanation:** The sign of a power depends on whether the exponent is odd or even, combined with the sign of the base (x < 0).
+
+I. x^n: n is a positive odd integer → odd exponent on a negative base → negative. Must be negative. ✓
+
+II. x^(n+1): n is odd → n + 1 is even → even exponent on any nonzero real number → positive. x^(n+1) > 0. Not negative. ✗
+
+III. x^(2n+1): 2n is even (any integer times 2) → 2n + 1 is odd → odd exponent on a negative base → negative. Must be negative. ✓
+
+Statements I and III must be negative.
+**mistake_a:** Identified I but overlooked III, perhaps missing that 2n+1 is always odd.
+**mistake_b:** Made an error on I and thought only II is relevant, confusing even/odd behavior.
+**mistake_d:** Concluded all three are negative without checking that n+1 is even — an even exponent always produces a non-negative result.
+**mistake_e:** Identified III but missed I — perhaps incorrectly reasoned about the parity of n.
+**common_trap:** Assuming x^(n+1) is also negative because x < 0 and n+1 seems "almost odd." The parity of the exponent is what governs the sign — n+1 is even when n is odd, and an even exponent always gives a non-negative result.
+**takeaway:** For a negative base: odd exponent → negative result; even exponent → positive result. To determine parity of a composite exponent like 2n+1 (always odd) or n+1 (even when n is odd), factor or use a test value. Plug in n=1 to verify: x^1 < 0, x^2 > 0, x^3 < 0 — pattern confirmed.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+If x > 0, which of the following equals (8x⁶)^(2/3) / (4x²)?
+
+- A) 1
+- B) x²
+- C) x²/2
+- D) 4x²
+- E) x²/4
+
+**answer:** B
+**fastest_path:** 8^(2/3) = (2³)^(2/3) = 2² = 4; (x⁶)^(2/3) = x⁴. Numerator = 4x⁴. Divide by 4x²: x².
+**explanation:** Simplify the numerator using (ab)^(2/3) = a^(2/3) × b^(2/3). Numeric part: 8^(2/3) = (2³)^(2/3) = 2^(3 × 2/3) = 2² = 4. Variable part: (x⁶)^(2/3) = x^(6 × 2/3) = x⁴. Numerator: 4x⁴. Divide by 4x²: 4x⁴/(4x²) = x^(4−2) = x². Result: x².
+**mistake_a:** Canceled aggressively and concluded the whole expression simplifies to 1.
+**mistake_c:** Computed 8^(2/3) = 4 correctly, but used (x⁶)^(2/3) = x³ (multiplied 6 × 1/3 instead of 6 × 2/3): got 4x³/(4x²) = x; then misidentified answer.
+**mistake_d:** Did not divide the numeric coefficient: left 4 in the numerator without canceling the 4 in the denominator, giving 4x² instead of x².
+**mistake_e:** Computed 8^(2/3) as 8^(1/3) = 2 (took only the cube root, forgot to square): got 2x⁴/(4x²) = x²/2.
+**common_trap:** Applying only half of a fractional exponent — for 8^(2/3), both the cube root (1/3 part) and the squaring (2 part) must be applied. Getting 8^(1/3) = 2 instead of 8^(2/3) = 4 is the most common error here.
+**takeaway:** For a^(m/n): take the n-th root first (root = denominator), then raise to the m-th power (power = numerator). For multi-factor expressions, distribute the fractional exponent to each factor separately and simplify each in turn. After computing the numerator, check whether any common numeric or variable factors cancel with the denominator.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponential Substitution
+
+If 9^x − 4(3^(x+1)) + 27 = 0, what is the product of all values of x that satisfy the equation?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) 9
+
+**answer:** C
+**fastest_path:** 4(3^(x+1)) = 12(3^x). Let u = 3^x: u² − 12u + 27 = 0 → (u−3)(u−9) = 0 → x = 1 or 2. Product = 2.
+**explanation:** Step 1 — rewrite to reveal common base. 9^x = (3²)^x = (3^x)². Expand 4(3^(x+1)): 4 × 3 × 3^x = 12(3^x). Equation: (3^x)² − 12(3^x) + 27 = 0.
+
+Step 2 — substitute u = 3^x: u² − 12u + 27 = 0. Factor: (u − 3)(u − 9) = 0. Solutions: u = 3 or u = 9.
+
+Step 3 — back-substitute. 3^x = 3 → x = 1. 3^x = 9 = 3² → x = 2.
+
+Step 4 — verify. x = 1: 9 − 4(9) + 27 = 9 − 36 + 27 = 0 ✓. x = 2: 81 − 4(27) + 27 = 81 − 108 + 27 = 0 ✓.
+
+Product: 1 × 2 = 2.
+**mistake_a:** Product = 0 — concluded there is only one solution or multiplied by zero somewhere.
+**mistake_b:** Found x = 1 only and reported its value as the product.
+**mistake_d:** Computed the sum (1 + 2 = 3) instead of the product. A classic misdirection — re-read: the question asks for the *product*, not the sum.
+**mistake_e:** Confused the u-values (3 and 9) with the x-values, reporting 3 × 9 = 27 or one of the u-values.
+**common_trap:** Two-step errors: (1) not expanding 4(3^(x+1)) = 12(3^x) before substituting — leaving it as 4(3^(x+1)) makes the substitution messier; (2) answering sum instead of product. Always re-read the final question before choosing an answer.
+**takeaway:** The exponential substitution technique: identify a base b such that every exponential term in the equation is either b^(kx) for some integer k. Set u = b^x. Then higher powers like b^(2x) = u² and coefficients like 4(b^(x+1)) = 4b·u can all be written in terms of u. The substitution converts a transcendental equation into an algebra problem. Remember to expand coefficient-exponent combinations like 3^(x+1) = 3·3^x before substituting.
+**related_reading:** reading-quant-04-algebra-and-equations
