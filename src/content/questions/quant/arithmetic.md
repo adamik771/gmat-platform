@@ -19,7 +19,7 @@ What is the value of 3/4 + 5/8 - 1/2?
 **answer:** C
 **fastest_path:** Common denominator 8: 6/8 + 5/8 − 4/8 = 7/8.
 **explanation:** Convert each fraction to eighths: 3/4 = 6/8, 5/8 stays, 1/2 = 4/8. Add and subtract numerators: 6 + 5 − 4 = 7. Final fraction: 7/8. Total time: 10 seconds.
-**mistake_a:** Subtracted 5/8 instead of adding it; got 6/8 − 5/8 + 4/8 = 5/8 (then off by one).
+**mistake_a:** Treated all three operations as subtractions: 6/8 − 5/8 − 4/8 = −3/8; then dropped the negative sign → 3/8.
 **mistake_b:** Computed 3/4 + 5/8 = 11/8, then subtracted 1/2 from that without consistent denominator.
 **mistake_d:** Added all numerators with mismatched denominators: 3+5−1 = 7 over 14 = 1/2 mistakenly converted to 1.
 **mistake_e:** Forgot to convert; treated 3/4 + 5/8 as 8/12, etc.
@@ -72,7 +72,7 @@ The ratio of red marbles to blue marbles in a jar is 3:5. If there are 40 marble
 **fastest_path:** Parts: 3 + 5 = 8. Each part = 40/8 = 5. Red = 3 × 5 = 15.
 **explanation:** Sum of ratio parts: 3 + 5 = 8 total parts. Each part represents 40/8 = 5 marbles. Red marbles = 3 parts × 5 = 15. Blue marbles = 5 parts × 5 = 25. Total: 15 + 25 = 40 ✓.
 **mistake_a:** Computed 40/5 = 8 (used red ratio as denominator), then... bubbled 8.
-**mistake_b:** Computed 40 × (3/8) = 15 correctly but slipped on arithmetic to 12.
+**mistake_b:** Found each part = 40 ÷ 8 = 5 marbles correctly, then multiplied 3 × 4 = 12 instead of 3 × 5 — a one-step multiplication slip.
 **mistake_d:** Computed 40 × (1/2) = 20 (treated ratio as half-half).
 **mistake_e:** Bubbled the blue count (25) — the trap for students who answer "the other color."
 **common_trap:** Bubbling the wrong color's count — the question asks for red, but blue's count is also computable and tempting.
@@ -554,7 +554,7 @@ A chemist has 15 kilograms of an alloy that is 40% zinc by weight; the rest is c
 **answer:** C
 **fastest_path:** Zinc balance: 0.40(15) + 0.70x = 0.55(15 + x) → 0.15x = 2.25 → x = 15.
 **explanation:** Mixture problems use mass balance, not concentration averaging. Total zinc before adding = 0.40 × 15 = 6 kg. After adding x kg of 70% alloy: zinc added = 0.70x; total zinc = 6 + 0.70x. Total mass: 15 + x. New concentration = (6 + 0.70x) / (15 + x) = 0.55. Cross-multiply: 6 + 0.70x = 0.55(15 + x) = 8.25 + 0.55x. → 0.15x = 2.25 → x = 15.
-**mistake_a:** Averaged the concentrations: (40 + 70)/2 = 55%, then matched directly without solving.
+**mistake_a:** Set up the balance equation correctly and simplified to 0.15x = 8.25 − 6, but computed the right-hand side as 1.5 instead of 2.25 (arithmetic slip: 8.25 − 6 = 1.5). Then x = 1.5 ÷ 0.15 = 10.
 **mistake_b:** Solved 0.40(15) + 0.70x = 0.55x; got 12.
 **mistake_d:** Algebra slip: 0.15x = 2.7 → x = 18.
 **mistake_e:** Set up correctly but added wrong: 0.15x = 3 → x = 20.
@@ -580,7 +580,7 @@ A class of 24 students has an average test score of 76. When two new students jo
 **answer:** D
 **fastest_path:** New total − old total = 178. Other student = 178 − 92 = 86.
 **explanation:** Total before: 24 × 76 = 1,824. Total after: 26 × 77 = 2,002. The two new students added 2,002 − 1,824 = 178 points combined. One scored 92, so the other scored 178 − 92 = 86.
-**mistake_a:** Computed 178 / 2 = 89; then off by some arithmetic.
+**mistake_a:** Used the new average (77) instead of the old average (76) when computing the original total: 24 × 77 = 1,848. Two-student sum = 26 × 77 − 24 × 77 = 2 × 77 = 154. Other score = 154 − 92 = 62.
 **mistake_b:** Computed 92 − 18 (the average gain × 2) = 74.
 **mistake_c:** Split 178 evenly to 89 each, then nudged to 80.
 **mistake_e:** Bubbled 92 (the given score) — confused which is being asked.
@@ -741,7 +741,7 @@ A chemist has 40 liters of a 25% saline solution. Some of the solution is draine
 **answer:** D
 **fastest_path:** Salt after = 10 − 0.25x. Concentration = (10 − 0.25x)/40 = 0.15 → x = 16.
 **explanation:** Original salt = 0.25 × 40 = 10 L. Drain x L of solution: this removes 0.25x L of salt (proportional to concentration). Replace with x L of pure water: total volume stays 40 L. New salt = 10 − 0.25x. New concentration = (10 − 0.25x) / 40 = 0.15. Solve: 10 − 0.25x = 6 → 0.25x = 4 → x = 16.
-**mistake_a:** Treated drain as removing fixed-volume salt: 10 − x = 6 → x = 4; doubled.
+**mistake_a:** Took the percentage-point drop (25% − 15% = 10 pp) and treated that number directly as the answer in liters, without setting up the mass-balance equation.
 **mistake_b:** Used (10 − 0.25x) / 40 = 0.15 but arithmetic slip: x = 12.
 **mistake_c:** Computed x to drain 10% absolute concentration: 0.10 × 40 = 4; doubled.
 **mistake_e:** Computed 0.50 × 40 = 20 (used wrong target).
