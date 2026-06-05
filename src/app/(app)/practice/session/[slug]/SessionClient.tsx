@@ -1484,11 +1484,16 @@ export default function SessionClient({
     // Next-step recommendation keyed to accuracy band. When the student
     // performed well and the server identified a weak topic, name it
     // directly — eliminates the "which area?" follow-up navigation.
+    // In the mid-accuracy band (60–78%), also surface the cross-topic weak
+    // area when it differs from the current topic: students building on one
+    // topic deserve to know which gap is costing them the most overall.
     const nextStepNote =
       accuracy < 60
         ? "Accuracy below 60% signals a concept gap. Revisiting the chapter before more practice compounds better."
         : accuracy < 78
-        ? "Accuracy is building. One more focused session on this topic before moving on."
+        ? weakestTopic && weakestTopic.topic !== topic
+          ? `Accuracy is building — one more focused session here will sharpen this topic. Across your full history, ${weakestTopic.topic} sits at ${Math.round(weakestTopic.accuracy * 100)}% accuracy. That's the highest-leverage target once this topic is solid.`
+          : "Accuracy is building. One more focused session on this topic before moving on."
         : weakestTopic
         ? `This topic is solid. Based on your practice history, ${weakestTopic.topic} is your weakest area right now — ${Math.round(weakestTopic.accuracy * 100)}% accuracy. That's where the points are.`
         : "This topic is solid. Investing time in a weaker area is the highest-leverage move now."
@@ -2097,6 +2102,16 @@ export default function SessionClient({
               href: chapterSlug ? `/chapters/${chapterSlug}` : "/chapters",
               variant: "secondary",
             })
+            // When a weaker topic is known and distinct from the current one,
+            // surface it as a direct escape hatch — students who plateau here
+            // can jump straight to the gap without navigating back to practice.
+            if (weakestTopic && weakestTopic.topic !== topic) {
+              actions.push({
+                label: `Practice ${weakestTopic.topic}`,
+                href: `/practice/session/${weakestTopic.practiceSlug}`,
+                variant: "secondary",
+              })
+            }
           } else if (weakestTopic) {
             // Strong session + known weak topic: point directly to the gap
             actions.push({
