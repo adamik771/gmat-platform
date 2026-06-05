@@ -45,9 +45,9 @@ Pipe A can fill a tank in 6 hours and pipe B can fill the same tank in 4 hours. 
 **answer:** C
 **fastest_path:** 1/6 + 1/4 = 5/12 → T = 12/5 = 2.4 hr.
 **explanation:** Combined rate = 1/6 + 1/4 = 2/12 + 3/12 = 5/12 tank/hr → T = 12/5 = 2.4 hr.
-**mistake_a:** Computed 4·6/(4+6+something) wrongly → 1.6.
+**mistake_a:** Made an arithmetic error in the numerator of T = ab/(a+b): computed 4 × 4 = 16 instead of 4 × 6 = 24, then 16 ÷ 10 = 1.6. The numerator must be the *product* of the two solo times, not a squared.
 **mistake_b:** Estimated to round 2.4 → 2.
-**mistake_d:** Took (6−4) + 1 = 3 from confused setup.
+**mistake_d:** Got the correct setup (combined rate = 5/12, T = 12/5 = 2.4 hr) but rounded up to the nearest whole number, D = 3 hr. The answer 12/5 = 2.4 hr is exact; express as a decimal or 2 hr 24 min — never round a rate-work time unless the problem requires it.
 **mistake_e:** Averaged the times: (6 + 4)/2 = 5.
 **common_trap:** Averaging or adding solo *times* instead of adding *rates*.
 **takeaway:** For combined work: rates add, not times. T = ab/(a + b) when two workers have solo times a and b.
@@ -71,8 +71,8 @@ A train travels 210 miles in 3.5 hours. What is its average speed in miles per h
 **answer:** C
 **fastest_path:** 210/3.5 = 60.
 **explanation:** Rate = D/T = 210/3.5. Multiply numerator and denominator by 2: 420/7 = 60 mph.
-**mistake_a:** Rough division → 55.
-**mistake_b:** Computational slip → 58.
+**mistake_a:** Computed 420/7 but verified with the wrong product: checked 7 × 55 = 385 and accepted it (off by 35). Always verify: 7 × 60 = 420. Alternatively, divided by 4 instead of 3.5: 210/4 = 52.5, rounded to 55.
+**mistake_b:** Rounded 3.5 hr to 3.6 hr before dividing: 210/3.6 ≈ 58.3. Never round the time before dividing; use the exact value 3.5 = 7/2, then 210 × 2/7 = 420/7 = 60.
 **mistake_d:** Slip in division → 65.
 **mistake_e:** Rounded 3.5 to 3 → 210/3 = 70.
 **common_trap:** Rounding 3.5 hr to 3 hr and computing 210/3 = 70.
@@ -123,7 +123,7 @@ Two cars start from the same point and drive in opposite directions. One drives 
 **answer:** C
 **fastest_path:** Closing rate = 50 + 70 = 120 km/h. T = 360/120 = 3.
 **explanation:** Opposite directions → separation rate is the sum: 50 + 70 = 120 km/h. T = 360/120 = 3 hr.
-**mistake_a:** Used average speed 60: 360/60 = 6, then halved to 2 (confused setup).
+**mistake_a:** Computed the arithmetic mean of the two speeds (50+70)/2 = 60 mph and added it to the combined speed as a third component: 50+70+60=180, then 360/180=2. Opposite-direction closing speed is simply the sum 50+70=120 mph; no averaging step belongs in the formula.
 **mistake_b:** Slight slip → 2.5.
 **mistake_d:** Slip → 3.5.
 **mistake_e:** Used difference 70 − 50 = 20 with wrong setup → 4.
@@ -149,7 +149,7 @@ Tom leaves home jogging at 6 km/h. Thirty minutes later, his sister leaves the s
 **answer:** D
 **fastest_path:** Tom: 1 hr × 6 = 6 km. Sister: 0.5 hr × 4 = 2 km. Total = 8.
 **explanation:** Tom has been moving 1 hour: 6 × 1 = 6 km. Sister has been moving only 0.5 hour: 4 × 0.5 = 2 km. Opposite directions → distances add: 6 + 2 = 8 km.
-**mistake_a:** Computed sister's distance only (4) — ignored Tom.
+**mistake_a:** Used the full 1 hour for the sister rather than her actual 0.5-hour travel time: 4 km/h × 1 hr = 4 km, then reported only that value and ignored Tom. Sister left 30 minutes late, so at t = 1 hr she has traveled 4 × 0.5 = 2 km — add Tom's 6 km for the correct total of 8 km.
 **mistake_b:** Assumed Tom also traveled only 0.5 hr (matching sister's head start) → 6 × 0.5 = 3 km; plus sister's 4 × 0.5 = 2 km → 5 km total.
 **mistake_c:** Bubbled Tom's distance alone (6 km).
 **mistake_e:** Took both at full hour: 6 + 4 = 10 — forgot sister's late start.
@@ -228,7 +228,7 @@ Three identical pumps working together can drain a pool in 4 hours. How long wou
 **fastest_path:** Total work = 3·4 = 12 pump-hours. T = 12/5 = 2.4 hr = 2h 24m.
 **explanation:** Total work = pumps × time = 3 × 4 = 12 pump-hours. With 5 pumps: T = 12/5 = 2.4 hr. Convert 0.4 hr × 60 = 24 min → 2h 24m.
 **mistake_a:** Used 12/6 = 2 (wrong divisor).
-**mistake_c:** 0.4 × 60 → mis-computed → 40 min, gave 2h 40m.
+**mistake_c:** Got T = 12/5 = 2.4 hr correctly but converted 0.4 hr to 40 minutes by treating the decimal as a direct minute count rather than multiplying by 60. Correct conversion: 0.4 hr × 60 min/hr = 24 min, giving 2h 24m, not 2h 40m.
 **mistake_d:** Computed 12/4 = 3 (didn't update # pumps).
 **mistake_e:** 12/3.6 ≈ 3.33 → 3h 20m.
 **common_trap:** Pumps and time are inversely proportional, but the conversion 0.4 hr → 24 min trips up students who default to "0.4 hr ≈ 40 min."
@@ -305,9 +305,9 @@ Worker A can complete a job in 12 hours. When A and B work together, they finish
 **answer:** C
 **fastest_path:** 1/12 + 1/b = 1/8 → 1/b = 1/8 − 1/12 = 1/24 → b = 24.
 **explanation:** Use 1/a + 1/b = 1/T. 1/12 + 1/b = 1/8 → 1/b = 3/24 − 2/24 = 1/24 → b = 24 hr.
-**mistake_a:** Slip → 16.
+**mistake_a:** Used an incorrect LCD of 16 instead of 24 when computing 1/8 − 1/12: arrived at 1/b ≈ 1/16 → b = 16. The correct LCD of 8 and 12 is 24: 3/24 − 2/24 = 1/24 → b = 24.
 **mistake_b:** Added times: 12 + 8 = 20 (treats as additive).
-**mistake_d:** Off-by-arithmetic → 30.
+**mistake_d:** Made compounded arithmetic errors solving 1/12 + 1/b = 1/8 — e.g., finding the wrong common denominator, mishandling the subtraction, or inverting the result incorrectly — and arrived at b ≈ 30. The clean path: 1/b = 1/8 − 1/12 = 3/24 − 2/24 = 1/24 → b = 24.
 **mistake_e:** Multiplied solos: 12 × 8 / something → 36.
 **common_trap:** Treating times additively. b ≠ A + T or A − T; only rates compose linearly.
 **takeaway:** Work problems combine in *rate* space, never in time space. 1/a + 1/b = 1/T.
@@ -333,7 +333,7 @@ Anna drives the first 100 miles of a trip at 50 mph and the last 150 miles at 75
 **explanation:** Distances differ → can't use harmonic mean. Use total distance / total time. t₁ = 2 hr, t₂ = 2 hr → total 250 mi in 4 hr → avg = 62.5 mph.
 **mistake_a:** Estimated 60 from rough averaging.
 **mistake_c:** Slip → 65.
-**mistake_d:** Used wrong total time (3.75 hr) → 66.67.
+**mistake_d:** Applied a distance-weighted shortcut incorrectly, producing a total time of 3.75 hr instead of 4 hr, which gives 250/3.75 = 66.67 mph. The correct method is straightforward: t₁ = 100/50 = 2 hr, t₂ = 150/75 = 2 hr, total = 4 hr, average = 250/4 = 62.5 mph. No weighting formula is needed.
 **mistake_e:** Picked arithmetic mean of (50 + 75 + estimate) → 70.
 **common_trap:** Using harmonic mean (which assumes equal distances) when legs are unequal.
 **takeaway:** Default for average speed: *total distance / total time*. Use harmonic mean only when distances are equal.
@@ -357,7 +357,7 @@ Alex starts painting a fence alone at a rate that would finish the job in 10 hou
 **answer:** D
 **fastest_path:** Alex 4 hr → 4/10 = 2/5 done. Remaining 3/5 in 3 hr → joint rate 1/5/hr. So 1/10 + 1/b = 1/5 → b = 10.
 **explanation:** Alex alone for 4 hr: completes 4/10 = 2/5. Remaining 3/5 in 3 hr (joint) → joint rate = (3/5)/3 = 1/5 per hour. Then 1/10 + 1/b = 1/5 → 1/b = 1/10 → b = 10 hr.
-**mistake_a:** Estimated 5 from rough division.
+**mistake_a:** Attributed the entire joint rate to Beth rather than isolating her contribution: saw the joint rate = 1/5 per hour and took b = 5 hr directly. But the joint rate includes Alex's share (1/10 per hr); Beth's rate alone is joint rate − 1/10 = 1/5 − 1/10 = 1/10 → b = 10 hr.
 **mistake_b:** Slip → 6.
 **mistake_c:** Used wrong remaining → 7.5.
 **mistake_e:** Computed joint rate then mis-applied → 15.
@@ -548,7 +548,7 @@ A driver travels at 40 mph for the first hour of a trip and 60 mph for the secon
 **answer:** D
 **fastest_path:** Equal time → arithmetic mean: (40 + 60) / 2 = 50 mph.
 **explanation:** Distance in hour 1 = 40 miles; distance in hour 2 = 60 miles. Total = 100 miles in 2 hours → average = 50 mph. Because elapsed time is equal across both legs, the arithmetic mean gives the correct result: (40 + 60)/2 = 50. Compare Q7: the same two speeds with equal *distances* yield 48 (harmonic mean). Here equal *times* yield 50 (arithmetic mean).
-**mistake_a:** Over-correction — pushed the average further below 50 due to misapplied intuition about harmonic weighting → 46.
+**mistake_a:** Applied the harmonic mean formula (2×40×60)/(40+60) = 48 — which is correct for equal-distance trips — then adjusted downward by 2 points, reasoning that equal-time should yield an even lower average: 48 − 2 = 46. Both moves are wrong: the harmonic mean does not apply when time is equal, and no further adjustment is needed. The arithmetic mean (50) follows directly from total distance ÷ total time.
 **mistake_b:** Applied the harmonic mean formula 2(40)(60)/(40+60) = 48 — which applies when *distances* are equal (see Q7). The equal-time condition calls for the arithmetic mean instead.
 **mistake_c:** Rough estimate between 48 and 50 → 49.
 **mistake_e:** Slight over-estimate → 52.
@@ -787,7 +787,7 @@ Machine A produces widgets at twice the rate of machine B. Machine B takes 18 ho
 **explanation:** Rate_B = 1/18 batch per hr. A runs twice as fast: Rate_A = 2/18. Combined = 3/18 = 1/6. T = 6 hr.
 **mistake_a:** Confused "twice the rate" with some other shortcut and over-reduced → 4.
 **mistake_b:** Arithmetic slip when combining rates → 5.
-**mistake_d:** Used only A's solo time (18/2 = 9) and applied a wrong "together = half" formula → 9/2 ≈ 4... re-guessed → 8.
+**mistake_d:** Correctly found A's solo time as 18/2 = 9 hr, then applied the "two equal workers → half the time" shortcut: 9/2 = 4.5 hr, rounded to D = 8. This shortcut requires both workers to be identical. Here A runs at 2/18 per hr and B at 1/18 per hr — unequal rates. Use the rates directly: 2/18 + 1/18 = 3/18 = 1/6 → T = 6 hr.
 **mistake_e:** Flipped the relationship: read "twice the rate" as "twice the time" → A's solo time = 36, combined ≈ 12 → rounded → 9, or bubbled B's solo time.
 **common_trap:** Confusing "A is twice as fast as B" with "A takes twice as long." Rate is the inverse of time: twice the rate means half the time.
 **takeaway:** "k times as fast" → k times the rate → 1/k times the solo time. Here A's solo time = 18/2 = 9 hr, not 36.
@@ -891,7 +891,7 @@ A tank has an inlet pipe that fills it in 6 hours and an outlet pipe (drain) tha
 **explanation:** Inlet fills at 1/6 per hour; outlet drains at 1/10 per hour. Net = 1/6 − 1/10 = (5 − 3)/30 = 2/30 = 1/15. T = 15 hr.
 **mistake_a:** Added both rates: 1/6 + 1/10 → T ≈ 3.75 → rounded to 4 (treated drain as a second filler).
 **mistake_b:** Averaged the two times: (6 + 10)/2 = 8.
-**mistake_c:** Used 10 − 6 = 4 as the net time somehow → confused arithmetic → 12.
+**mistake_c:** Reasoned that a drain "roughly doubles" the fill time: since the inlet alone takes 6 hr, estimated T ≈ 6 × 2 = 12 hr. This ignores the drain's actual rate (1/10 per hr); the correct net rate is 1/6 − 1/10 = 2/30 = 1/15 → T = 15 hr, which is less than a doubling of 6.
 **mistake_e:** Arithmetic error computing the net rate using wrong LCD → 2/32 → T = 16.
 **common_trap:** Adding both rates (treating the drain as a second filler) instead of subtracting. Competing pipes → net rate = fill rate − drain rate.
 **takeaway:** When one pipe fills and another drains simultaneously, net rate = (fill rate) − (drain rate). Only add rates when all workers push in the same direction.
@@ -944,7 +944,7 @@ Workers A, B, and C together can complete a project in 6 hours. After working to
 **mistake_a:** Used phase-2 elapsed time (8 hr) directly as C's solo time.
 **mistake_b:** Off-by-arithmetic in the rate subtraction → 10 hr.
 **mistake_d:** Added 2 + 8 = 10 total hours and introduced it into a wrong formula → 15.
-**mistake_e:** Subtracted the wrong pair: 1/6 − 1/8 = 1/24 → C = 24, or arithmetic error landed on 18.
+**mistake_e:** Used the phase-2 duration (8 hr) as a rate directly, computing C's rate as 1/6 − 1/8 = 1/24 → C = 24 hr (not among the choices), then selected the nearest answer E = 18. The A+B rate must be derived from phase-2 data first: 2/3 remaining ÷ 8 hr = 1/12 per hr. Then C rate = 1/6 − 1/12 = 1/12 → C = 12 hr.
 **common_trap:** Subtracting the wrong rate pair. C's rate = (all-three rate) − (A+B rate), not (A+B rate) alone. Compute A+B's rate from phase-2 data first.
 **takeaway:** To find a departed worker's solo time: (all-together rate) − (remaining team rate) = departed worker's rate. Always extract each team's rate from its own phase data.
 **related_reading:** reading-quant-05-word-problems
