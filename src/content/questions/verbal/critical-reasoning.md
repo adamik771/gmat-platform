@@ -2373,7 +2373,8 @@ Which of the following, if true, most strengthens the marketing team's conclusio
 
 **answer:** D
 **fastest_path:** Risk: video pages were hand-picked for products that convert anyway. Strengthen by *random-sample replication*. (D) does it: random cross-section showed similar 16% conversion lift.
-**explanation:** Selection-bias risk on the original 18% gap (C articulates the risk and is a *weakener*). (D) neutralizes it: random pilot replicated the effect at 16%. The lift is real, not selection.
+**situation:** An online retailer finds product pages with short video demos convert 18% higher than still-image pages and concludes that adding video demos to every page will increase overall sales.
+**reasoning:** *Strengthen a "feature → conversion" claim against selection.* *What would show the 18% lift is the video, not the products that happen to have video?* The risk is that the video pages were favorable products (made explicit by C, a weakener). (D) neutralizes it: a pilot adding videos to a *randomly selected* cross-section of other categories produced a similar 16% lift, so the effect replicates outside the hand-picked set. (A) cost and (E) competitor behavior don't bear on the effect; (B) time-on-page is an intermediate metric, not conversion.
 **mistake_a:** Cost ≠ effect.
 **mistake_b:** Time on page is intermediate metric, not conversion.
 **mistake_c:** *Articulates* the selection-bias objection — weakens.
@@ -2402,7 +2403,8 @@ Which of the following, if true, most strengthens the institute's claim?
 
 **answer:** A
 **fastest_path:** Critics' objection: lifestyle differences explain the 35% gap. Strengthen by *random assignment* — makes lifestyle comparable in expectation. (A) does it.
-**explanation:** Random assignment defeats the lifestyle-confounder objection by ensuring the two groups are statistically comparable on lifestyle factors. The 35% gap is more credibly attributable to the extract.
+**situation:** A study found 500 volunteers taking a plant extract daily had 35% less influenza than 500 controls; the institute credits the extract, but critics say lifestyle differences explain the gap.
+**reasoning:** *Strengthen against a named confounder.* *What would neutralize the lifestyle objection?* If the two groups were assembled to be comparable, lifestyle can't explain the gap. (A) supplies it: volunteers were randomly assigned to extract and control groups, making lifestyle factors comparable in expectation, so the 35% gap is more credibly the extract. (B) availability and (C) funding source aren't causal; (D) other extracts is analogical, weaker than a direct control; (E) a global decline affects both groups equally.
 **mistake_b:** Availability irrelevant to causation.
 **mistake_c:** Funding provenance, not evidence.
 **mistake_d:** Analogy from other extracts, weaker than direct control.
@@ -2430,7 +2432,8 @@ Which of the following, if true, most weakens the council's argument?
 
 **answer:** A
 **fastest_path:** Rentals 3× while injuries 2× → per-use injury rate *fell*. Council's "scooters are causing more injuries" interpretation is wrong — more riding, not more dangerous scooters, drives the absolute count.
-**explanation:** Rate-vs-count trap. Council saw injury count double and inferred causation. (A) reveals exposure tripled, so the per-ride rate actually *declined*. The scooter isn't more dangerous; it's just being used more.
+**situation:** After scooter-related injuries doubled in a year, a city council blames the scooters themselves and proposes banning the brand.
+**reasoning:** *Weaken a "count rose → the thing is dangerous" claim.* *What fact would show the scooters aren't more dangerous?* Injury count must be read against exposure. (A) supplies it: rentals *tripled* over the year, so with injuries only doubling, the per-ride injury rate actually *fell* — more usage, not more dangerous scooters, drives the absolute count. (B) other cities and (E) bicycle injuries are tangential, (C) certifications don't address the rate, and (D) declining helmet use is qualitative where (A) is quantitatively decisive.
 **mistake_b:** Other cities tangential to causation here.
 **mistake_c:** Certifications don't address the rate.
 **mistake_d:** Helmet-use weakens but is qualitative; (A) is *quantitatively* decisive.
@@ -2458,7 +2461,8 @@ The argument above depends on which of the following assumptions?
 
 **answer:** C
 **fastest_path:** Conclusion is about *expenses*, premise is about *effectiveness*. Bridge: the effectiveness advantage isn't *swallowed* by a higher per-load cost. (C) is the bridge.
-**explanation:** 25% better stain removal is good only if per-load cost stays competitive. Negate (C): Smart Cleaner is *much* pricier per load → effectiveness advantage doesn't translate to expense savings → conclusion fails.
+**situation:** A consumer group will recommend Smart Cleaner because a standard dose removes 25% more stains than the competitor's standard dose, claiming the switch will lower household laundry expenses.
+**reasoning:** *Find a required assumption — bridging effectiveness to expense.* *What must hold for better stain removal to mean lower expenses?* The conclusion shifts dimension from effectiveness to cost, so it assumes the per-load price isn't so much higher that it erases the advantage. Negate (C): Smart Cleaner costs far more per load, and the effectiveness edge doesn't reduce expenses — so (C) is required. (A) "priced lower" is stronger than needed (only "not much higher" is required); (B) purchase motives and (E) dosing amounts aren't the cost bridge; (D) isn't needed.
 **mistake_a:** *Stronger* than needed ("lower" rather than "not much higher").
 **mistake_b:** Purchase motives, not expenses.
 **mistake_d:** Not required for the cost claim.
@@ -2486,7 +2490,8 @@ Which of the following is most strongly supported by the information above?
 
 **answer:** C
 **fastest_path:** Home prices +78% vs incomes +22% (3.5×), young-household ownership 42% → 36%. Hedged inference: rising prices relative to incomes *likely contributed* to the ownership decline.
-**explanation:** Two co-varying facts: affordability worsened sharply, ownership fell. (C) ties them with the right hedge ("likely contributed"). Anything stronger imports unsupported claims.
+**situation:** From 2010–2020, average single-family home prices rose 78% while household income rose only 22%, and homeownership among under-35 households fell from 42% to 36%.
+**reasoning:** *Draw the inference scoped to the data's strength.* *What do worsening affordability and falling young-ownership jointly support?* Prices outran incomes by roughly 3.5×, and young ownership dropped, so (C) ties them with the right hedge: rising prices relative to incomes *likely contributed* to the ownership decline. (A) preference change and (D) government policy aren't in the data; (B) "most rent" doesn't follow from 36% without knowing the other 64%; (E) is a forecast, not an inference.
 **mistake_a:** *Outside knowledge* — preference change isn't in the data.
 **mistake_b:** *Extreme* — 36% ownership doesn't force "most rent" without a calculation.
 **mistake_d:** *Outside knowledge* — government policy isn't mentioned.
@@ -2514,7 +2519,8 @@ In the argument above, the two portions in boldface play which of the following 
 
 **answer:** C
 **fastest_path:** Three beats: (1) advocates' claim, (2) industry disputes, (3) author rebuts the dispute with cross-country evidence. Bold 1 = disputed claim, Bold 2 = evidence rebutting the *dispute*.
-**explanation:** Argument structure: claim → counter-claim (industry) → rebuttal evidence (other countries). (C) names this precisely: Bold 1 is the *target of dispute*; Bold 2 supports the rebuttal *against* the dispute (i.e., back to the original claim).
+**situation:** Bold 1 is advocates' claim that requiring artificial-sweetener labels helps consumers avoid ingredients they wish to avoid. Industry counters that labels only confuse consumers since the sweeteners are certified safe. Bold 2 reports that countries with similar requirements saw measurable declines in sweetener use, suggesting labels influence purchases even when safety isn't in question.
+**reasoning:** *Identify each boldface's structural role.* *Which party does each statement serve?* Bold 1 is the advocates' claim that industry disputes; Bold 2 is evidence supporting a rebuttal to that industry dispute — matching (C). (A) miscasts Bold 2 as direct support rather than rebuttal of the counter-claim; (B) and (E) mislabel Bold 1 as the conclusion or a hypothesis; (D) wrongly says the argument opposes Bold 2.
 **mistake_a:** Mislabels Bold 2's role — it's not direct support, it's rebuttal of the counter-claim.
 **mistake_b:** Inverts relationship.
 **mistake_d:** Mislabels structure.
@@ -2542,7 +2548,8 @@ Which of the following best identifies a flaw in the HR director's reasoning?
 
 **answer:** D
 **fastest_path:** Flaw: confounders not ruled out. Director jumps from correlation (program → scores fell) to causation. (D) names the missing alternative-cause check.
-**explanation:** Stress scores fell after the program — but other things happened in those six months too: economic conditions, firm-wide policy changes, season, etc. The director rules out none of them. (D) is the canonical confounder-gap flaw.
+**situation:** After a new wellness program launched, employees' self-reported stress scores fell 15% over six months, and the HR director concludes the program effectively reduces workplace stress.
+**reasoning:** *Name the logical vulnerability.* *Does a post-program decline prove the program caused it?* No — other things changed over those six months. (D) names the flaw: the director rules out no alternative causes, such as broader economic conditions or firm-wide policy changes that could have driven the decline. (A) measurement reliability and (B) seasonal variation are narrower concerns ((B) is just one confounder); (C) sample representativeness isn't the conclusion's issue; (E) statistical significance doesn't address the causal leap.
 **mistake_a:** Real concern about measurement reliability, but not the *central* causal inference gap.
 **mistake_b:** Narrows the confounder space (only seasonal); (D) is broader and stronger.
 **mistake_c:** Generalization-to-workforce, but conclusion is about the program's effect, not workforce coverage.
@@ -2570,7 +2577,8 @@ The answer to which of the following questions would be most useful in evaluatin
 
 **answer:** B
 **fastest_path:** CFO's argument depends on the target's *loyal customers* sticking with the combined firm. (B) tests whether they will. Either answer flips the conclusion.
-**explanation:** Acquisition value rests on customer retention post-deal. (B) probes that directly. Customers defect → revenue premise collapses. Customers stay → CFO's argument holds. Hallmark Evaluate question.
+**situation:** A natural-gas producer's CFO argues acquiring a competitor will raise revenue and market share because the target has loyal customers and more efficient facilities.
+**reasoning:** *Identify the decisive test.* *On what does the revenue claim most depend?* It rests on the target's loyal customers staying with the combined firm. (B) probes exactly that: will those customers remain post-acquisition rather than switch to competitors? If they defect, the revenue premise collapses; if they stay, the CFO's argument holds. (A) market price is context, (C) financing is affordability not deal value, (D) drilling compatibility is tangential to revenue, and (E) regulatory barriers concern closing the deal, not its benefits.
 **mistake_a:** Market context, not acquisition value.
 **mistake_c:** Financing affordability, separate from whether the deal works.
 **mistake_d:** Operational compatibility, tangential to revenue.
@@ -2599,7 +2607,8 @@ In the argument above, the two portions in boldface play which of the following 
 
 **answer:** A
 **fastest_path:** Three beats: (1) biologists recommend habitat expansion; (2) Bold 1 = evidence *weakening* that recommendation; (3) Bold 2 = rebuttal of the weakening evidence. So Bold 1 = weakener, Bold 2 = anti-weakener rebuttal.
-**explanation:** Argument structure: recommendation → weakening evidence → rebuttal. (A) names the weakener-then-rebuttal pairing. The weather-drove-it explanation undoes the "no expansion needed" inference.
+**situation:** Some biologists recommend expanding the bird's protected habitat. Bold 1 reports the species grew steadily over a decade with no habitat expansion, suggesting expansion may be unnecessary. Bold 2 responds that the growth was driven by unusually favorable weather unlikely to persist, and that without expansion the species will decline once weather normalizes.
+**reasoning:** *Identify each boldface's structural role.* *What does each statement do to the recommendation?* Bold 1 is evidence weakening the habitat-expansion recommendation (the species grew without it); Bold 2 rebuts that weakening evidence by attributing the growth to temporary weather — matching (A). (B) miscasts Bold 1 as the biologists' position rather than evidence against it; (C) wrongly assigns a bold to "the author" (both are reported); (D) and (E) mislabel the roles.
 **mistake_b:** Mischaracterizes Bold 1 — it's not biologists' position, it's evidence against their recommendation.
 **mistake_c:** Wrongly attributes evidence to "the author" — both bolds are reported.
 **mistake_d:** Mislabels the roles.
@@ -2627,7 +2636,8 @@ Which of the following best identifies a flaw in the researcher's reasoning?
 
 **answer:** A
 **fastest_path:** Flaw: *hasty generalization* — extending from 100 residents of *one* small town to *all* towns in the region.
-**explanation:** Conclusion leaps from a tiny single-town sample to a region-wide claim. (A) names the inferential gap directly: representativeness wasn't established.
+**situation:** Finding 72 of 100 surveyed residents of one small town favored a recycling center, a researcher concludes a majority of residents in all towns across the surrounding region would favor similar centers.
+**reasoning:** *Name the logical error.* *What unjustified leap does the conclusion make?* It generalizes from one small town's 100 residents to every town in the region. (A) names it: the argument assumes that town's residents are representative of the wider region — representativeness never established, a hasty generalization. (B) center proximity, (C) cost, (D) opinion stability, and (E) other environmental views are all tangential to the sampling leap.
 **mistake_b:** Tangential design detail.
 **mistake_c:** Cost — different argument.
 **mistake_d:** Time stability — not the conclusion's scope.
