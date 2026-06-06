@@ -887,3 +887,473 @@ Verify: 4^(4²) = 4^16 and 4^(4 × 4) = 4^16. Both sides match.
 **common_trap:** Dividing both sides of x² = 4x by x — this discards a valid factor and can hide roots. Always factor the polynomial rather than dividing. Then apply domain constraints to eliminate invalid candidates.
 **takeaway:** For x^A = x^B with x > 0 and x ≠ 1: equate exponents using the one-to-one property. Factor the resulting polynomial — never divide by a variable. Apply domain constraints (x > 0, x ≠ 1) to discard invalid solutions after factoring.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of √(√256)?
+
+- A) 2
+- B) 4
+- C) 8
+- D) 16
+- E) 64
+
+**answer:** B
+**fastest_path:** √256 = 16, then √16 = 4. Or: 256^(1/4) = (2^8)^(1/4) = 2^2 = 4.
+**explanation:** Work from the inside out. Inner radical: √256 = 16 (since 16² = 256). Outer radical: √16 = 4 (since 4² = 16). Shortcut: √(√n) = n^(1/4). Factor 256 = 2^8 → 256^(1/4) = 2^(8/4) = 2^2 = 4.
+**mistake_a:** Took the fourth root by halving twice but divided instead of rooting: 16 ÷ 2 = 8, then 8 ÷ 2 = 4... wait, let's clarify. Some students compute √256 = 16 and then divide 16 by some number, landing on 2.
+**mistake_c:** Stopped after the first square root and then halved 16 arithmetically: 16 ÷ 2 = 8.
+**mistake_d:** Stopped after the first square root: √256 = 16, without applying the outer radical.
+**mistake_e:** Divided 256 by 4 without taking any roots: 256 / 4 = 64.
+**common_trap:** Stopping after the first root — √(√n) requires two separate applications of the square root.
+**takeaway:** √(√n) = n^(1/4). Nested radicals compound: each √ halves the exponent. Work from the inside out.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+Which of the following is equal to (2xy)⁴?
+
+- A) 2x⁴y⁴
+- B) 8x⁴y⁴
+- C) 16x⁴y⁴
+- D) 16x⁴y
+- E) 16xy⁴
+
+**answer:** C
+**fastest_path:** Distribute the exponent to every factor: 2⁴ × x⁴ × y⁴ = 16x⁴y⁴.
+**explanation:** Power-of-a-product rule: (abc)^n = a^n × b^n × c^n. The exponent applies to every factor inside the parentheses. 2⁴ = 16. x becomes x⁴. y becomes y⁴. Result: 16x⁴y⁴.
+**mistake_a:** Did not raise the coefficient: kept 2^1 instead of 2⁴, giving 2x⁴y⁴.
+**mistake_b:** Applied exponent 3 to the coefficient instead of 4: 2³ = 8.
+**mistake_d:** Raised the coefficient and x correctly but left y with exponent 1: 16x⁴y.
+**mistake_e:** Raised the coefficient and y correctly but left x with exponent 1: 16xy⁴.
+**common_trap:** Distributing the exponent to variables only while leaving the numeric coefficient unchanged.
+**takeaway:** (abc)^n = a^n b^n c^n. Every factor — numbers and variables alike — receives the exponent.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+Which of the following is the greatest?
+
+- A) 3⁴
+- B) 4³
+- C) 2⁶
+- D) 4³ and 2⁶ are equal and both greater than 3⁴
+- E) All three are equal
+
+**answer:** A
+**fastest_path:** Compute: 3⁴ = 81, 4³ = 64, 2⁶ = 64. Largest = 81.
+**explanation:** Evaluate each expression. 3⁴ = 81. 4³ = 64. 2⁶ = (2²)³ = 4³ = 64, so B and C are equal at 64. Comparing: 81 > 64, so 3⁴ is the greatest. D reverses the inequality, wrongly claiming 64 > 81.
+**mistake_b:** Assumed the largest base (4) produces the largest output without computing — 4³ = 64 < 3⁴ = 81.
+**mistake_c:** Selected 2⁶ = 64 without comparing against 3⁴ = 81.
+**mistake_d:** Correctly identified 4³ = 2⁶ = 64, but then reversed the comparison and claimed 64 > 81.
+**mistake_e:** Assumed all three produce the same value without computing.
+**common_trap:** Assuming a larger base always produces a larger result — the exponent contribution can dominate even when the base is smaller.
+**takeaway:** To compare powers, compute or estimate rather than relying on base size alone. Spot-check with small calculations rather than relying on intuition about which base is larger.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of √6 × √24?
+
+- A) 6
+- B) 2√6
+- C) 12
+- D) 30
+- E) √30
+
+**answer:** C
+**fastest_path:** √6 × √24 = √(6 × 24) = √144 = 12.
+**explanation:** Product of radicals: √a × √b = √(ab). Multiply the radicands: 6 × 24 = 144. Then √144 = 12. Alternatively: √24 = 2√6, so √6 × 2√6 = 2 × (√6)² = 2 × 6 = 12.
+**mistake_a:** Returned only the smaller radicand without performing the multiplication.
+**mistake_b:** Simplified √24 = 2√6 but stopped without completing the multiplication with √6.
+**mistake_d:** Added the radicands instead of multiplying: 6 + 24 = 30.
+**mistake_e:** Added the radicands under the root sign: √(6 + 24) = √30. This applies the addition-of-radicals error to multiplication.
+**common_trap:** Adding radicands instead of multiplying: √a × √b ≠ √(a + b).
+**takeaway:** √a × √b = √(ab). Multiply the radicands, then simplify. Never add radicands when the operation is multiplication.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+What is the value of 4^(1/2) + 9^(1/2) + 25^(1/2)?
+
+- A) √38
+- B) 5
+- C) 9
+- D) 10
+- E) 38
+
+**answer:** D
+**fastest_path:** a^(1/2) = √a. Evaluate: √4 + √9 + √25 = 2 + 3 + 5 = 10.
+**explanation:** A fractional exponent of 1/2 equals the square root. Evaluate each term separately: 4^(1/2) = 2; 9^(1/2) = 3; 25^(1/2) = 5. Sum: 2 + 3 + 5 = 10.
+**mistake_a:** Added the bases inside a single radical: √(4 + 9 + 25) = √38. This conflates addition of bases with addition of their roots — a^(1/2) + b^(1/2) ≠ (a + b)^(1/2).
+**mistake_b:** Evaluated only the last term: 25^(1/2) = 5 and stopped.
+**mistake_c:** Computed the first two terms (2 + 3 = 5) but then miscomputed 25^(1/2) = 4 (off by one), getting 5 + 4 = 9.
+**mistake_e:** Added the original bases without taking roots: 4 + 9 + 25 = 38.
+**common_trap:** Adding the bases and then taking one root — (a + b + c)^(1/2) ≠ a^(1/2) + b^(1/2) + c^(1/2).
+**takeaway:** a^(1/2) + b^(1/2) + c^(1/2) = √a + √b + √c. Evaluate each root independently, then sum. Never add under a shared radical.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+For any nonzero real number x, which of the following equals (x^(−3) × x^5) / (x^(−1) × x^2)?
+
+- A) x^(−1)
+- B) 1
+- C) x
+- D) x^2
+- E) x^3
+
+**answer:** C
+**fastest_path:** Numerator: x^(−3+5) = x^2. Denominator: x^(−1+2) = x. Quotient: x^(2−1) = x.
+**explanation:** Apply the product rule inside the numerator and denominator separately, then the quotient rule. Numerator: x^(−3) × x^5 = x^(−3+5) = x^2. Denominator: x^(−1) × x^2 = x^(−1+2) = x^1. Division: x^2 / x^1 = x^(2−1) = x.
+**mistake_a:** Sign error in combining the numerator or denominator exponents; arrived at x^(−1).
+**mistake_b:** Combined all exponents with wrong signs: (−3+5) − (−1+2) = 2 − 1 = 1; mis-applied to get x^0 = 1.
+**mistake_d:** Correctly simplified numerator to x^2 but treated the denominator as x^0 = 1, leaving x^2.
+**mistake_e:** Added all four exponents without splitting into numerator and denominator: −3 + 5 + (−1) + 2 = 3 → x^3.
+**common_trap:** Adding all exponents together instead of combining numerator and denominator separately before applying the quotient rule.
+**takeaway:** Simplify in stages: consolidate numerator (product rule), consolidate denominator (product rule), then divide (quotient rule). Negative exponents in the denominator demand careful sign tracking.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of √48 + 2√3 − √75?
+
+- A) √3
+- B) √3 + 2
+- C) 3√3
+- D) 5√3
+- E) 11√3
+
+**answer:** A
+**fastest_path:** √48 = 4√3, √75 = 5√3. Combine: 4√3 + 2√3 − 5√3 = (4+2−5)√3 = √3.
+**explanation:** Simplify each radical to expose a common radicand. √48 = √(16 × 3) = 4√3. √75 = √(25 × 3) = 5√3. The middle term 2√3 is already simplified. Combine like radicals: (4 + 2 − 5)√3 = 1√3 = √3.
+**mistake_b:** Added the coefficient 2 to √3 without merging with the other radical terms: √3 + 2.
+**mistake_c:** Arithmetic error in the coefficient combination: treated 4 + 2 − 5 as 3 instead of 1.
+**mistake_d:** Forgot the negative sign on √75, adding instead of subtracting: 4 + 2 + (−5) → computed as 4 + 2 = 6, then subtracted nothing.
+**mistake_e:** Ignored the minus sign entirely and added all coefficients: 4 + 2 + 5 = 11.
+**common_trap:** Dropping the negative sign on the √75 term — subtracting 5√3 turns the sum into 1√3, not 11√3.
+**takeaway:** To combine radicals, simplify each to the same radicand first, then add or subtract coefficients arithmetically (respecting signs). The radicand itself never changes.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of (2³ × 3²) / 6²?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 6
+
+**answer:** B
+**fastest_path:** Decompose 6² = 2² × 3². Then: (2³ × 3²) / (2² × 3²) = 2^(3−2) × 3^0 = 2 × 1 = 2.
+**explanation:** Factor 6 into primes: 6 = 2 × 3, so 6² = 2² × 3². Rewrite the fraction: (2³ × 3²) / (2² × 3²). Apply the quotient rule to each base: 2^(3−2) = 2; 3^(2−2) = 3^0 = 1. Product: 2 × 1 = 2.
+**mistake_a:** Cancelled both bases entirely, arriving at 1.
+**mistake_c:** Cancelled 2³ / 2² = 2 correctly but left 3² / 6 = 3²/6 = 9/6 = 1.5... or made a different error leaving 3.
+**mistake_d:** Did not decompose 6²: computed 72 / 36 = 2 and then doubled to 4 from a mis-step.
+**mistake_e:** Divided without decomposing: (8 × 9) / 36 = 72 / 36 = 2 but reported 6 from a place-value error.
+**common_trap:** Treating 6² as a single indivisible base rather than (2 × 3)² = 2² × 3². Once decomposed, the cancellation is immediate.
+**takeaway:** When a composite base (6, 12, 15, etc.) appears alongside its prime factors, factor it first: 6² = 2² × 3². Then apply the quotient rule base-by-base.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Fractional Exponents
+
+For positive x, is x^(1/2) > x^(1/3)?
+
+(1) x > 1
+(2) x² > x
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER alone is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**fastest_path:** For x > 1, larger exponent gives larger value: x^(1/2) > x^(1/3). Both statements force x > 1. Each alone sufficient → D.
+**explanation:** When x > 1, the function x^p is increasing in p, so 1/2 > 1/3 means x^(1/2) > x^(1/3). When 0 < x < 1, the function x^p is decreasing in p, reversing the inequality. When x = 1, both sides equal 1.
+
+Statement (1): x > 1 directly places x in the region where x^(1/2) > x^(1/3). YES consistently. Sufficient.
+
+Statement (2): x² > x with x > 0 means x(x − 1) > 0, and since x > 0, this requires x > 1. Identical conclusion to Statement (1). Sufficient.
+
+Each statement alone is sufficient → D.
+**mistake_a:** Concluded only Statement (1) works; didn't check that Statement (2) also implies x > 1.
+**mistake_b:** Concluded only Statement (2) works; didn't see that Statement (1) directly resolves the inequality.
+**mistake_c:** Required both statements; missed that each one independently establishes x > 1.
+**mistake_e:** Concluded together insufficient; the opposite is true.
+**common_trap:** Not recognizing that the direction of the x^(1/2) vs x^(1/3) comparison flips at x = 1 — establishing that x > 1 is both necessary and sufficient.
+**takeaway:** For fractional-exponent comparisons with base x > 0: larger exponent wins when x > 1; smaller exponent wins when 0 < x < 1. Identify which region x occupies.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+If x^(3/2) = 8 and x > 0, what is the value of x?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 8
+- E) 16
+
+**answer:** C
+**fastest_path:** Raise both sides to the 2/3 power: x = 8^(2/3) = (∛8)² = 2² = 4.
+**explanation:** To isolate x, apply the reciprocal exponent to both sides: (x^(3/2))^(2/3) = 8^(2/3). Left side: x^(3/2 × 2/3) = x^1 = x. Right side: 8^(2/3) = (8^(1/3))^2 = 2^2 = 4. So x = 4.
+
+Verify: 4^(3/2) = (√4)^3 = 2^3 = 8 ✓.
+**mistake_a:** Computed 8^(1/3) = 2 — applied only the cube-root part of the inverse without squaring.
+**mistake_b:** Estimated or made an arithmetic error in the inverse operation; arrived at 3.
+**mistake_d:** Returned 8 (the right-hand side value) without solving.
+**mistake_e:** Computed 8^(2/3) as 8^2 / 3 = 64/3 or some other mis-application leading to 16.
+**common_trap:** Applying only part of the inverse: using exponent 1/(3/2) = 2/3 requires raising to both the 2 and the /3 simultaneously — i.e., 8^(2/3), not just 8^(1/3).
+**takeaway:** To solve x^(p/q) = k, raise both sides to the reciprocal q/p: x = k^(q/p). Then evaluate as (k^(1/p))^q — take the root first, then raise to the power.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+If (3^m)^n = 3^12 and m and n are positive integers, what is the least possible value of m + n?
+
+- A) 5
+- B) 7
+- C) 8
+- D) 12
+- E) 13
+
+**answer:** B
+**fastest_path:** (3^m)^n = 3^(mn) = 3^12 → mn = 12. Factor pair (3,4) gives the minimum sum: 3 + 4 = 7.
+**explanation:** Power of a power: (3^m)^n = 3^(mn). So mn = 12. Enumerate positive-integer factor pairs (m, n) with mn = 12 and their sums: (1,12) → 13; (2,6) → 8; (3,4) → 7; (4,3) → 7; (6,2) → 8; (12,1) → 13. Minimum sum = 7. By AM-GM, the sum m + n for fixed product mn is minimized when m and n are as close together as possible; √12 ≈ 3.46, so (3, 4) is the optimal integer pair.
+**mistake_a:** Used an incorrect formula and arrived at 5.
+**mistake_c:** Selected the (2,6) pair as "close enough": sum = 8, missing (3,4).
+**mistake_d:** Confused m + n with mn = 12.
+**mistake_e:** Used the (1,12) pair: sum = 13, the maximum, not the minimum.
+**common_trap:** Choosing the (2,6) pair when (3,4) is actually closer to √12 and yields a smaller sum.
+**takeaway:** (a^m)^n = a^(mn). To minimize a sum m + n subject to a fixed product mn, choose the factor pair nearest to √(mn). For mn = 12: √12 ≈ 3.46, so (3,4) is optimal.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Estimation
+
+Which of the following is the greatest?
+
+- A) 2^15
+- B) 3^10
+- C) 4^8
+- D) 2^15 and 3^10 are equal
+- E) All three are equal
+
+**answer:** C
+**fastest_path:** Rewrite 4^8 = (2^2)^8 = 2^16. Compare: 2^16 > 2^15. Estimate 3^10 ≈ 59,000 < 2^16 = 65,536. So 4^8 is greatest.
+**explanation:** Convert to a common base where possible. 4 = 2^2, so 4^8 = 2^(2×8) = 2^16. Now compare 2^16 vs 2^15: clearly 2^16 > 2^15. For 3^10: use 3^5 = 243, so 3^10 = 243^2 = 59,049. But 2^16 = 65,536. So 4^8 = 65,536 > 3^10 = 59,049 > 2^15 = 32,768.
+**mistake_a:** Assumed the largest exponent on base 2 wins, without converting 4^8 to base 2 first.
+**mistake_b:** Estimated 3^10 ≈ 60,000 > 65,000 ≈ 4^8 — close, but the direction is wrong.
+**mistake_d:** Wrongly equated 2^15 = 3^10; they differ by nearly 2×.
+**mistake_e:** Assumed equal values without computing.
+**common_trap:** Not converting 4^8 to 2^16 — without this step, comparing 4^8 to 2^15 appears harder than it is.
+**takeaway:** When bases are related (4 = 2²), convert to the common base first. This collapses a cross-base comparison into a simple exponent comparison.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+If f(x) = x^(2/3) and g(x) = x^(3/4), what is the value of g(f(64))?
+
+- A) 4
+- B) 6
+- C) 8
+- D) 12
+- E) 16
+
+**answer:** C
+**fastest_path:** f(64) = 64^(2/3) = 4² = 16. g(16) = 16^(3/4) = 2³ = 8.
+**explanation:** Evaluate from the inside out. Step 1 — compute f(64): 64^(2/3) = (64^(1/3))^2 = 4^2 = 16 (since ∛64 = 4). Step 2 — compute g(16): 16^(3/4) = (16^(1/4))^3 = 2^3 = 8 (since ⁴√16 = 2).
+
+Shortcut — chain the exponents: g(f(x)) = (x^(2/3))^(3/4) = x^(2/3 × 3/4) = x^(1/2). So g(f(64)) = 64^(1/2) = 8. Both methods confirm the answer.
+**mistake_a:** Computed f(64) = 16 correctly but then took 16^(1/4) = 2 only, forgetting to cube: g(16) = 16^(3/4) ≠ 16^(1/4).
+**mistake_b:** Arithmetic slip during one of the two root computations.
+**mistake_d:** Computed f(64) = 16 correctly but then applied 16 × (3/4) = 12 instead of the fractional exponent.
+**mistake_e:** Computed f(64) = 16 and stopped without applying g.
+**common_trap:** Computing 16^(3/4) as 16 × 3/4 = 12 instead of (⁴√16)^3 = 2^3 = 8 — the exponent is not a multiplier.
+**takeaway:** For composed fractional exponents, evaluate in sequence (inside out) or chain them via multiplication: (x^p)^q = x^(pq). Always use root-first, then power.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Roots & Radicals
+
+If a and b are nonzero real numbers, is √(a²) + √(b²) = a + b?
+
+(1) a + b > 0
+(2) ab > 0
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER alone is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** √(a²) = |a|. Question: is |a|+|b| = a+b? True iff both a > 0 and b > 0. Neither statement alone forces both positive; together they do.
+**explanation:** √(a²) = |a| and √(b²) = |b|. The question becomes: is |a| + |b| = a + b? This holds if and only if a ≥ 0 and b ≥ 0.
+
+Statement (1): a + b > 0. YES case: a = 5, b = 2 → |5|+|2| = 7 = 5+2. NO case: a = 5, b = −2 → |5|+|2| = 7 ≠ 3 = 5+(−2). Inconsistent. Insufficient.
+
+Statement (2): ab > 0 means a and b share the same sign. YES case: a = 5, b = 2 (both positive). NO case: a = −5, b = −2 (both negative) → |−5|+|−2| = 7 ≠ (−5)+(−2) = −7. Inconsistent. Insufficient.
+
+Together: ab > 0 (same sign) and a + b > 0 (positive sum). Both negative would give a + b < 0 — contradiction. So both are positive. Then |a| + |b| = a + b. YES consistently. Sufficient.
+**mistake_a:** Concluded Statement (1) alone sufficient; missed the (5, −2) counterexample.
+**mistake_b:** Concluded Statement (2) alone sufficient; missed the both-negative counterexample.
+**mistake_d:** Concluded each alone sufficient.
+**mistake_e:** Concluded together insufficient.
+**common_trap:** Forgetting √(x²) = |x|, not x. The square root always returns a non-negative value, so the sign of x matters crucially.
+**takeaway:** √(x²) = |x| for all real x. For |a| + |b| = a + b to hold, both a and b must be non-negative. In DS, test both the same-sign-positive and same-sign-negative cases separately.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of 1/√2 + 1/√8 + 1/√18?
+
+- A) √2/2
+- B) 11√2/12
+- C) 11√2/24
+- D) √2
+- E) 5√2/12
+
+**answer:** B
+**fastest_path:** Simplify each: √2/2 + √2/4 + √2/6. Factor √2: √2(1/2 + 1/4 + 1/6) = √2 × 11/12 = 11√2/12.
+**explanation:** Rationalize each term individually. √8 = 2√2, so 1/√8 = 1/(2√2) = √2/4. √18 = 3√2, so 1/√18 = 1/(3√2) = √2/6. The first term: 1/√2 = √2/2. Factor out √2: √2(1/2 + 1/4 + 1/6). LCD of the fractions is 12: 6/12 + 3/12 + 2/12 = 11/12. Multiply: √2 × 11/12 = 11√2/12.
+**mistake_a:** Computed only the first term: 1/√2 = √2/2 and stopped.
+**mistake_c:** Obtained the correct numerator coefficient 11 but used denominator 24 instead of 12 — arithmetic error combining the fractions (doubled the LCD unnecessarily).
+**mistake_d:** Estimated the sum as approximately √2 ≈ 1.41 without rationalizing.
+**mistake_e:** Added only two of the three terms (1/2 + 1/4 = 3/4) and multiplied by √2, giving 3√2/4, then mis-reduced.
+**common_trap:** Not recognizing that √8 = 2√2 and √18 = 3√2 — without simplifying the denominators first, the common factor √2 is hidden.
+**takeaway:** When radicals in denominators share a common factor after simplification (here all become k√2), factor it out after rationalizing. Then combine with a common denominator.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If 2^x − 2^(x−2) = 3 × 2^13, what is the value of x?
+
+- A) 13
+- B) 14
+- C) 15
+- D) 16
+- E) 17
+
+**answer:** C
+**fastest_path:** Factor out 2^(x−2): 2^(x−2)(2² − 1) = 3 × 2^13 → 3 × 2^(x−2) = 3 × 2^13 → x − 2 = 13 → x = 15.
+**explanation:** Factor the left side by the smaller power. Rewrite 2^x = 2^(x−2) × 2^2 = 4 × 2^(x−2). So 2^x − 2^(x−2) = 4 × 2^(x−2) − 2^(x−2) = 2^(x−2)(4 − 1) = 3 × 2^(x−2). Set equal to the right side: 3 × 2^(x−2) = 3 × 2^13. Divide by 3: 2^(x−2) = 2^13. Equal bases → x − 2 = 13 → x = 15.
+
+Verify: 2^15 − 2^13 = 32,768 − 8,192 = 24,576 = 3 × 8,192 = 3 × 2^13 ✓.
+**mistake_a:** Solved 2^(x−2) = 2^13 → x − 2 = 13 but then reported 13 instead of 15.
+**mistake_b:** Made an off-by-one error after the factoring step; solved x − 2 = 13 as x = 14.
+**mistake_d:** Added 3 rather than 2 when recovering x from x − 2 = 13: 13 + 3 = 16.
+**mistake_e:** Added 4 instead of 2 when recovering x from x − 2 = 13: 13 + 4 = 17.
+**common_trap:** Trying to evaluate 2^x − 2^(x−2) without factoring — the expression looks intractable. Factor out the smaller power to create a manageable coefficient.
+**takeaway:** When two exponential terms share a base and differ by a constant in the exponent, factor out the smaller power: a^n − a^(n−k) = a^(n−k)(a^k − 1). This converts the subtraction into a single term, which you can then equate to the right side.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+If a > 0, b > 0, and a^6 = b^4, which of the following must be true?
+
+- A) a = b
+- B) a > b
+- C) a < b
+- D) a³ = b²
+- E) a² = b³
+
+**answer:** D
+**fastest_path:** Take the positive square root of both sides: (a^6)^(1/2) = (b^4)^(1/2) → a^3 = b^2.
+**explanation:** Since a > 0 and b > 0, all quantities are positive. Raise both sides of a^6 = b^4 to the 1/2 power: a^(6/2) = b^(4/2) → a^3 = b^2. This is a necessary algebraic consequence for every valid (a, b) pair.
+
+Verify: a^3 = b^2 → (a^3)^2 = (b^2)^2 → a^6 = b^4 ✓.
+
+Why the other choices fail: A holds only when a = b = 1. B and C are relational claims that depend on the actual values — e.g., a = 4, b = 8 satisfies a^6 = b^4 (both equal 4096) and has a < b; but a = 1/4, b = 1/8 also satisfies the equation and has a > b. Neither direction must always hold. E: a^2 = b^3 implies a^6 = b^9 ≠ b^4 in general.
+**mistake_a:** Selected a = b; true only at (1,1) — not for all valid (a, b).
+**mistake_b:** Tested one example where a > b and concluded it must always be true.
+**mistake_c:** Tested one example where a < b and concluded it must always be true.
+**mistake_e:** Chose a^2 = b^3; cubing both sides gives a^6 = b^9 ≠ b^4 (unless b = 1).
+**common_trap:** Testing a single example to check an inequality direction — one confirming case doesn't prove a "must be true" claim. Algebraic derivation is required.
+**takeaway:** To find a "must be true" relationship from a^m = b^n (with a, b > 0), apply a fractional exponent to both sides that simplifies to lowest terms: here raise to 1/2, giving a^3 = b^2. Verify by reversing the operation.
+**related_reading:** reading-quant-04-algebra-and-equations
