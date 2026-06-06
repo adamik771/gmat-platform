@@ -1514,7 +1514,64 @@ export default function SessionClient({
           </p>
         </div>
 
+        {/* Compact action strip — primary CTA is visible without any scrolling.
+            The full "What to do next" cards below repeat these for students who
+            read through the analysis first. */}
+        {answeredCount > 0 && (() => {
+          const _chapterSlug = TOPIC_TO_CHAPTER[topic]
+          const _low = accuracy < 60
+          const _mid = accuracy >= 60 && accuracy < 78
+
+          const _primaryHref = _low && _chapterSlug
+            ? `/chapters/${_chapterSlug}`
+            : _mid
+            ? `/practice/session/${slug}`
+            : weakestTopic
+            ? `/practice/session/${weakestTopic.practiceSlug}`
+            : "/study-plan"
+
+          const _primaryLabel = _low && _chapterSlug
+            ? `Review ${topic} chapter`
+            : _mid
+            ? `Practice ${topic} again`
+            : weakestTopic
+            ? `Practice ${weakestTopic.topic}`
+            : "View your study plan"
+
+          const _quickNote = accuracy < 60
+            ? "Concept gap — review the chapter before more reps."
+            : accuracy < 78
+            ? weakestTopic && weakestTopic.topic !== topic
+              ? `Building here. Your highest-leverage target overall is ${weakestTopic.topic}.`
+              : "Building. One more focused session will solidify this."
+            : weakestTopic
+            ? `${weakestTopic.topic} is your highest-leverage target now.`
+            : "Strong session. Focus on your weakest area next."
+
+          return (
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+              <Link
+                href={_primaryHref}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-opacity hover:opacity-90 flex-shrink-0"
+                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              >
+                {_primaryLabel}
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+              <p className="text-xs leading-relaxed" style={{ color: "#555555" }}>
+                {_quickNote}
+              </p>
+            </div>
+          )
+        })()}
+
         <SaveStatusBanner status={saveStatus} onRetry={saveSession} />
+
+        {answeredCount > 0 && (
+          <p className="text-[10px] uppercase tracking-widest" style={{ color: "#2A2A2A" }}>
+            Session breakdown
+          </p>
+        )}
 
         {/* Core metrics + insight breakdown */}
         <div
@@ -1936,11 +1993,8 @@ export default function SessionClient({
               className="p-5 rounded-xl border border-white/[0.08]"
               style={{ backgroundColor: "#0D0D0D" }}
             >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
                 What to do next
-              </p>
-              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-4">
-                {nextStepNote}
               </p>
               <div className="flex flex-wrap gap-2">
                 <Link
@@ -1998,8 +2052,12 @@ export default function SessionClient({
                   className="p-5 rounded-xl border border-white/[0.06] text-center"
                   style={{ backgroundColor: "rgba(62,207,142,0.03)" }}
                 >
-                  <p className="text-sm text-[#3ECF8E] font-semibold">All correct</p>
-                  <p className="text-xs text-[#555555] mt-1">Nothing to review here.</p>
+                  <p className="text-sm font-semibold" style={{ color: "#3ECF8E" }}>
+                    Perfect session.
+                  </p>
+                  <p className="text-xs mt-1" style={{ color: "#555555" }}>
+                    Use the time to raise the ceiling — move to harder questions or a weaker topic.
+                  </p>
                 </div>
               ) : (
                 <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
@@ -2140,11 +2198,8 @@ export default function SessionClient({
                 backgroundColor: "#0D0D0D",
               }}
             >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
                 What to do next
-              </p>
-              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-5">
-                {nextStepNote}
               </p>
               <div className="flex flex-wrap gap-3">
                 {actions.map((action) =>
