@@ -239,7 +239,16 @@ export function buildReport(
   }
 
   const totalScore = sections.length
-    ? Math.round(sections.reduce((acc, s) => acc + s.score, 0) / sections.length / 10) * 10
+    ? Math.max(
+        205,
+        Math.min(
+          805,
+          205 +
+            Math.round(
+              (sections.reduce((acc, s) => acc + s.score, 0) / sections.length - 205) / 10,
+            ) * 10,
+        ),
+      )
     : 205
 
   return { takenAt, sections, totalScore }
