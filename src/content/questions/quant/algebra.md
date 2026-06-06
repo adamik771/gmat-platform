@@ -156,7 +156,7 @@ If f(x) = x² + 2, what is f(a + 1) − f(a − 1)?
 **fastest_path:** f(a+1) = a² + 2a + 3; f(a−1) = a² − 2a + 3. Difference = 4a.
 **explanation:** Use the variable argument — expand algebraically. f(a + 1) = (a + 1)² + 2 = a² + 2a + 1 + 2 = a² + 2a + 3. f(a − 1) = (a − 1)² + 2 = a² − 2a + 1 + 2 = a² − 2a + 3. Subtract: (a² + 2a + 3) − (a² − 2a + 3) = 4a. Both the a² terms and the constant terms cancel; only the linear cross-terms from the (a ± 1)² expansion survive.
 **mistake_a:** Substituted a = 1 to get a specific number: f(2) − f(0) = 6 − 2 = 4, then bubbled B (4). Numerical substitution cannot distinguish variable expressions — plugging in a = 1 gives 4a = 4, which matches B, but so would the constant 4; you need a second test value to confirm dependence on a.
-**mistake_b:** Dropped the variable from the cross-term: computed (2a + 1) − (−2a + 1) = 4 — treated the cross-term as the constant 1 rather than 2a.
+**mistake_b:** Applied the difference-of-squares factorization — (a+1)²−(a−1)² = [(a+1)−(a−1)][(a+1)+(a−1)] = [2][2a] = 4a — but dropped the variable from the second factor, computing [2][2] = 4 instead of [2][2a] = 4a.
 **mistake_d:** Failed to cancel the constant terms: computed 4a + (3 − 3) but added the constants instead of subtracting, arriving at 4a + 4.
 **mistake_e:** Multiplied instead of subtracting: treated f(a+1) − f(a−1) as f(a+1) × f(a−1), then collapsed to 2a².
 **common_trap:** Plugging in a specific number (a = 0 or a = 1) instead of working symbolically — numerical substitution may give a consistent answer, but it can't distinguish between choices that differ only in their variable terms.
@@ -184,7 +184,7 @@ At a bakery, 2 muffins and 3 scones cost $21, while 4 muffins and 1 scone cost $
 **mistake_a:** Picked the smallest answer without testing.
 **mistake_b:** Computed 4m + s = 17 with s = 2: m = $3.75 (non-integer; should reject as a "clean" trial signal).
 **mistake_c:** Tested s = 3 and didn't iterate to higher values when arithmetic didn't match.
-**mistake_d:** Algebra slip: −10m = 30 (sign error), got m = −3, then s = 29.
+**mistake_d:** Correctly solved the system and found m = $3, then bubbled the cost of the muffin instead of the scone — the question asks for the cost of one scone.
 **common_trap:** algebra-by-default — full elimination on a problem with backsolvable integer answer choices.
 **takeaway:** Two-equation, two-unknown problems with integer answer choices reward backsolving the asked variable; algebra is the fallback.
 **related_reading:** reading-quant-08-method-selection
@@ -261,7 +261,7 @@ If 4^(a+1) = 8^a, what is the value of a?
 **explanation:** Rewrite both sides with the same base. 4 = 2², so 4^(a+1) = 2^(2(a+1)) = 2^(2a+2). 8 = 2³, so 8^a = 2^(3a). The equation becomes 2^(2a+2) = 2^(3a), which (since the bases are equal) requires the exponents to be equal: 2a + 2 = 3a → a = 2. Verify: 4³ = 64 and 8² = 64 ✓.
 **mistake_a:** Set 4 + 1 = 8 × a (treated bases additively).
 **mistake_c:** Converted 8 as 8 = 2² (misremembering the cube root) instead of 2³: got 2^(2a+2) = 2^(2a), which yields no solution. After the dead end, fell back to testing answer choices and landed on 3.
-**mistake_d:** Mis-expanded the left side as 4^(a+1) = 2^(a+2) (confused multiplying by 2 with adding 2 to the exponent): 2^(a+2) = 2^(3a) → a+2 = 3a → 2a = 2 → a = 1, then read "4" from the answer choices on a second pass.
+**mistake_d:** Correctly expressed both sides as powers of 2 — 2^(2a+2) = 2^(3a) — then solved the exponent equation with an arithmetic slip: subtracted 2a from the right side but also added 2 to the right (transposing with the wrong sign), writing "2+2 = 3a−2a" → a = 4. The correct step is 2a+2 = 3a → 2 = 3a−2a → a = 2.
 **mistake_e:** Misread 4^(a+1) as 4^a + 1, leading to wrong setup.
 **common_trap:** Exponent rules misapplied — power-of-power vs. product-of-powers.
 **takeaway:** When two powers have different bases with a common base relationship (4 = 2², 8 = 2³, 9 = 3², etc.), rewrite with the common base. Equal bases → equal exponents.
@@ -337,8 +337,8 @@ What is the sum of the solutions to x² + 4x - 21 = 0?
 **answer:** B
 **fastest_path:** Vieta's: sum of roots = −b/a = −4/1 = −4.
 **explanation:** For ax² + bx + c = 0, sum of roots = −b/a. With a = 1 and b = 4: sum = −4. Total time: 5 seconds. Factoring (x + 7)(x − 3) = 0 gives roots −7 and 3, summing to −4 — same answer in 30+ seconds.
-**mistake_a:** Sum of *factor terms* in the factored form (7 + 3 not −7 + 3, getting +7 or −7).
-**mistake_c:** Computed product of roots instead of sum: −21/1 → some confusion to −3.
+**mistake_a:** Factored correctly to (x + 7)(x − 3) = 0, found x = −7 first, and stopped without computing the second root x = 3. Bubbled the single root (−7) instead of summing both.
+**mistake_c:** Partially factored and identified 7 as a factor of 21, then divided the constant by that factor: −21 ÷ 7 = −3 — confused a step in factoring with the answer for the sum.
 **mistake_d:** Sign error: +b/a instead of −b/a.
 **mistake_e:** Got the magnitude right but wrong sign.
 **common_trap:** missing-algebraic-shortcut — factoring when Vieta's gives the answer directly.
@@ -445,7 +445,7 @@ If |x - 4| = 7, what is the sum of all possible values of x?
 **fastest_path:** For |x − a| = b, solutions are symmetric about a, so sum = 2a = 2(4) = 8.
 **explanation:** Two ways to solve. (1) Symmetry shortcut: |x − 4| = 7 means x is 7 units from 4, so x = 11 or x = −3. The sum of any two values symmetric about a is 2a, here 2(4) = 8. (2) Casework: x − 4 = 7 → x = 11; x − 4 = −7 → x = −3; sum = 8. The shortcut is faster (5 sec vs. 20 sec) once you've internalized that |x − a| = b gives symmetric solutions.
 **mistake_a:** Wrong sign on one or both solutions; got 4 − 7 = −3, then doubled the negative.
-**mistake_b:** Forgot the negative case; computed only x = 11 then halved.
+**mistake_b:** Solved only the negative case: x − 4 = −7 → x = −3, and bubbled that single value without also solving the positive case x − 4 = +7.
 **mistake_c:** Computed |x| = 11, didn't process the −4 offset.
 **mistake_e:** Computed only the positive case (x = 11) and bubbled.
 **common_trap:** absolute-value-single-case — solving only x − 4 = +7 and missing the negative case.
@@ -528,7 +528,7 @@ The sum of three consecutive even integers is 18 more than twice the smallest of
 **mistake_a:** Translated "consecutive integers" instead of "consecutive even integers" — n, n+1, n+2; got n+2 = 10.
 **mistake_b:** Solved for n itself (12) and bubbled.
 **mistake_c:** Got middle integer n+2 = 14 and bubbled.
-**mistake_e:** Translated "18 more than twice the smallest" as 2n − 18 (sign error); got n = −24 then took absolute or some other slip producing 18.
+**mistake_e:** Set up the equation correctly (3n + 6 = 2n + 18 → n = 18 − 6) but made an arithmetic slip computing 18 − 6 = 14 instead of 12; then bubbled the largest integer n + 4 = 14 + 4 = 18.
 **common_trap:** Translation errors on "more than" — attaching the +18 to the wrong side, or treating consecutive integers as consecutive evens (or vice versa).
 **takeaway:** "X is Y more than Z" means X = Z + Y. "Consecutive even integers" differ by 2; "consecutive integers" differ by 1.
 **related_reading:** reading-quant-05-word-problems
@@ -631,7 +631,7 @@ If the roots of the quadratic equation x² + bx + 12 = 0 differ by 1, what are t
 **answer:** C
 **fastest_path:** (r₁ − r₂)² = (r₁ + r₂)² − 4r₁r₂ → 1 = b² − 48 → b² = 49 → b = ±7.
 **explanation:** Use the identity (r₁ − r₂)² = (r₁ + r₂)² − 4r₁r₂. Vieta's: sum = −b, product = 12. Substitute: 1² = b² − 4(12) → b² = 49 → b = ±7. Verify with b = 7: x² + 7x + 12 = (x + 3)(x + 4), roots −3 and −4, which differ by 1 ✓. The ± sign matters: both b = 7 and b = −7 produce roots that differ by 1 (just with flipped signs).
-**mistake_a:** Computed only one sign, missed ±.
+**mistake_a:** Applied the identity correctly — b² − 4(product) = (difference)² → b² − 4(12) = 1 — but made an arithmetic slip computing 4 × 12 = 24 instead of 48, giving b² = 1 + 24 = 25 → b = ±5.
 **mistake_b:** b² = 36, took √36 = 6.
 **mistake_d:** b² = 64; took √64 = 8.
 **mistake_e:** b² = 81 (added wrong); took √81 = 9.
@@ -852,7 +852,7 @@ If 2a + 3b = 16 and 5a − 3b = 19, what is the value of a + b?
 ---
 
 ## Q32
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Inequality Systems — Multiple Constraints
 
