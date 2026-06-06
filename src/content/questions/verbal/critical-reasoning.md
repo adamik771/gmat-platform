@@ -1151,7 +1151,8 @@ Which of the following must be true on the basis of the information above?
 
 **answer:** C
 **fastest_path:** Direct restatement of the data. White-light plants had more leaves but less fruit → those extra leaves *didn't* translate to more fruit yield. Tightest must-be-true.
-**explanation:** Data: under white light, more leaves but less fruit. (C) restates this comparison directly: in this experiment, the additional leaves didn't translate to greater yield. Airtight; nothing causal, nothing universal.
+**situation:** Under controlled greenhouse conditions, tomato plants under red LEDs produced 25% more fruit by weight than those under white LEDs; the red-light plants grew taller but had fewer leaves.
+**reasoning:** *Draw the must-be-true inference — the tightest restatement.* *What does the data force, with no causal or universal add-ons?* The white-light plants had more leaves yet less fruit, so it must be true that, under these conditions, the extra leaves did not translate into greater fruit yield (C). (A) "all tomato cultivation" and (B) "always" overgeneralize from one greenhouse; (D) blue light was never tested; (E) "caused" exceeds what must-be-true licenses — even a controlled result makes causation well-supported, not forced.
 **mistake_a:** *Extreme* — "all tomato cultivation" overgeneralizes from one greenhouse.
 **mistake_b:** *Extreme* — "always" is a universal claim about height, unsupported.
 **mistake_d:** *Outside knowledge* — blue spectrum wasn't tested.
@@ -1179,7 +1180,8 @@ Which of the following, if true, most strengthens the company's claim?
 
 **answer:** B
 **fastest_path:** Comparison-based superiority claim. Strengthen by *eliminating baseline confounders*. (B) does it: random assignment + matching on age/sex/cardiovascular risk.
-**explanation:** The 7-pt gap could reflect drug effect *or* group differences. (B) eliminates the latter: randomization plus matching on key variables means the comparison is internally valid. The gap is more credibly attributable to the drug.
+**situation:** A company claims StatinX beats the leading competitor, citing a trial where StatinX cut LDL cholesterol 35% versus 28%.
+**reasoning:** *Strengthen a between-group comparison.* *What would make the 7-point gap attributable to the drug rather than to differences between the groups?* The comparison is trustworthy only if the two arms were alike at baseline. (B) supplies that: random assignment plus matching on baseline cholesterol, age, sex, and cardiovascular risk removes the obvious confounders, so the gap more credibly reflects the drug itself. (A) cost and (C) novelty don't bear on efficacy; (D) is background; (E) comparable side effects speaks to safety, not the efficacy claim.
 **mistake_a:** Cost is irrelevant to efficacy.
 **mistake_c:** Novelty isn't efficacy.
 **mistake_d:** Background — competitor's market history.
@@ -1207,7 +1209,8 @@ Which of the following, if true, most seriously weakens the HR managers' argumen
 
 **answer:** C
 **fastest_path:** "Worked elsewhere → will work here" plan argument. Weaken by *showing the mechanism doesn't apply here*. (C) does it: continuous machine ops can't compress into 4 days.
-**explanation:** The 12% gain at pilot firms came from a schedule compression that *doesn't fit* this firm's process. (C) shows the mechanism is infeasible in context — whatever drove the gain elsewhere can't operate here.
+**situation:** An HR team argues a four-day (4×10) week will raise productivity at a large manufacturer, citing 12% output gains at three smaller firms in unrelated industries.
+**reasoning:** *Weaken a "transplant the policy" plan.* *What fact would show the mechanism behind the pilots can't operate here?* The plan assumes what worked elsewhere will work in this context. (C) breaks that: the firm's process needs continuous machine operation that can't be compressed into four days, so the schedule compression that drove the pilot gains is infeasible here. (A) only undermines the pilot *evidence* (weaker than blocking feasibility); (B) is a soft objection, (D) scale alone isn't decisive, and (E) industry adoption *strengthens* the move.
 **mistake_a:** Tempting (alternative cause for the 12% gain) but only weakens the *evidence*. (C) attacks the plan's *feasibility in this context* — stronger.
 **mistake_b:** Weak objection to a productivity claim.
 **mistake_d:** Scale alone — not decisive.
@@ -1235,7 +1238,8 @@ Which of the following most logically completes the argument?
 
 **answer:** A
 **fastest_path:** Premise chain: higher wage → less turnover → lower hiring/training costs. For *high-turnover* industries, the savings are largest, so they'd see the strongest profit cushion. (A) completes the chain.
-**explanation:** Argument structure: stated link (higher wage → lower turnover → lower hiring/training costs) + amplification (high-turnover industries gain more from this mechanism). (A) is the *direct consequence* — savings offset wage increases enough to preserve profits.
+**situation:** Economists argue a moderate minimum-wage rise lowers turnover and thus cuts hiring and training costs; the prompt asks what employers in high-turnover industries should therefore generally experience.
+**reasoning:** *Complete the argument with the direct consequence of the stated chain.* *Where does "higher wage → less turnover → lower hiring/training costs" lead for high-turnover industries?* They have the most turnover cost to save, so those savings offset much of the wage increase — yielding (A): preserved or higher profits even when productivity gains don't fully cover the raise. (B) and (E) reverse the stated mechanism, (C) dismisses the premise that wages affect turnover, and (D) imports an outside labor-pool effect the chain never mentions.
 **mistake_b:** *Reverses* — ignores the offset mechanism the argument just stated.
 **mistake_c:** *Dismisses* the stated link.
 **mistake_d:** *Outside knowledge* — labor pool side effects aren't in the chain.
@@ -1263,7 +1267,8 @@ Which of the following, if true, best helps explain the apparent discrepancy?
 
 **answer:** B
 **fastest_path:** Total gasoline = MPG × #vehicles × miles/vehicle. Better MPG cuts total, but *more vehicles + more miles* (B) overwhelms the per-unit gain. Math works.
-**explanation:** Per-vehicle improvement is swamped by volume growth. (B) supplies both pieces: 45% more vehicles + more miles each. Even with 30% better MPG, total demand rises ~12%. Single mechanism explains both trends.
+**situation:** New-vehicle fuel efficiency in Velora improved 30% over a decade, yet total gasoline consumed by passenger vehicles rose 12%.
+**reasoning:** *Resolve the paradox — explain both facts at once.* *What could raise total fuel use despite better efficiency?* Total fuel = efficiency × number of vehicles × miles each, so volume growth can swamp per-vehicle gains. (B) supplies both volume pieces: 45% more vehicles and more miles driven per vehicle — enough to lift total consumption ~12% even with 30% better mileage. (A) cheap gas is one step removed and unquantified; (C) transit and (E) EVs would *cut* gasoline use, deepening the paradox; (D) is a cross-country comparison.
 **mistake_a:** Stable prices could explain *more driving* but doesn't quantify; (B) is direct.
 **mistake_c:** Public transit would *cut* gasoline use, deepening the paradox.
 **mistake_d:** Cross-country comparison — irrelevant to domestic consumption.
@@ -1291,7 +1296,8 @@ In the argument above, the two statements in boldface play which of the followin
 
 **answer:** A
 **fastest_path:** Bold 1 = general principle. Bold 2 = *explanation* of the luxury-segment exception. Match: principle + explained-exception. (A).
-**explanation:** Argument structure: state the rule (Bold 1) → present a counter-example (luxury) → explain why the counter-example happens (Bold 2). (A) names this principle/exception/explanation arc.
+**situation:** Bold 1 states the rule that a firm facing more competition should cut prices to keep market share. The argument then notes luxury handbag makers raised prices amid intensifying competition and gained share, and Bold 2 explains that in luxury, higher prices signal exclusivity and attract affluent buyers.
+**reasoning:** *Identify each boldface's structural role.* *What job does each statement do in the argument?* Bold 1 is a general principle; the passage offers the luxury segment as a counter-case and Bold 2 *explains* that exception — matching (A): a general principle, then an exception with its explanation. (B) inverts the roles (Bold 1 is setup, not the conclusion); (C) misreads tone (the author doesn't endorse Bold 1); (D) calls Bold 2 a prediction when it is a causal explanation; (E) overstates "disputes" and miscasts Bold 2 as an assumption.
 **mistake_b:** *Inverts roles* — Bold 1 is setup, not the conclusion. Bold 2 is the explanation, not evidence for Bold 1.
 **mistake_c:** *Reverses tone* — author doesn't endorse Bold 1; the argument shows it has exceptions.
 **mistake_d:** Bold 2 isn't a prediction; it's a causal explanation.
@@ -1319,7 +1325,8 @@ The agency's projection depends on which of the following assumptions?
 
 **answer:** B
 **fastest_path:** Projection transfers a result from another state. Required: the new locations match the *factors that drive* the effect. (B) is the bridge.
-**explanation:** Agency uses neighboring-state results to predict 15% in *its* state. Bridge: the chosen 200 locations resemble the prior locations on the factors that make speed cameras work. Negate (B): they don't → 15% projection has no basis.
+**situation:** An agency projects speed cameras at its 200 highest-accident sites will cut fatalities there at least 15% in two years, based on a neighboring state's similar program.
+**reasoning:** *Find a required assumption.* *What must hold to transfer the neighboring state's 15% result here?* The projection assumes the chosen locations resemble the prior program's locations on the factors that make speed cameras reduce fatalities. Negate (B): the sites differ on those factors, and the borrowed 15% has no basis — so (B) is required. (A) advance notice and (E) lifelong caution overshoot (the projection needs only a 2-year effect), while (C) cost-effectiveness and (D) funding are a different question and feasibility, not logic.
 **mistake_a:** Driver awareness — operational design choice, not a logical premise of the projection.
 **mistake_c:** Cost-effectiveness comparison — separate question from whether the cameras work.
 **mistake_d:** Funding feasibility — practical, not logical.
@@ -1347,7 +1354,8 @@ The columnist's argument is most vulnerable to which of the following criticisms
 
 **answer:** B
 **fastest_path:** Flaw: *scope/timeframe mismatch*. Evidence = immediate post-reading bump from one story. Conclusion = durable change in graduates from daily reading. The two are not comparable.
-**explanation:** Argument leaps from a momentary lab effect to a long-term policy outcome. The study measured one reading, one assessment, one moment. The conclusion is about people shaped over years. There's no evidence the effect persists, compounds, or scales to schoolwide daily practice.
+**situation:** Citing a study where readers of a literary story scored higher on an immediately-administered empathy test than readers of a nonfiction article, a columnist concludes schools should require daily fiction reading to graduate more empathetic students.
+**reasoning:** *Name the logical vulnerability.* *Do the evidence and the conclusion share the same scope and timeframe?* No: the evidence is a one-time, immediate bump from a single story, while the conclusion claims durable, years-long character change from daily reading. (B) names this scope/timeframe mismatch — nothing shows the effect persists or scales. (A) is a definition quibble, (C) an irrelevant factual assumption, (D) mislabels a strength (randomization) as a weakness, and (E) doesn't undercut fiction's own measured effect.
 **mistake_a:** Definitional quibble, not a logical flaw.
 **mistake_c:** Factual assumption (no fiction currently assigned), but doesn't undermine the causal chain.
 **mistake_d:** *Reverses* — random assignment is a strength, not a vulnerability.
@@ -1375,7 +1383,8 @@ The answer to which of the following questions would be most useful for the admi
 
 **answer:** B
 **fastest_path:** Before/after at one site → biggest threat is *measurement change*. (B) tests it: did error-recording methodology change between the two periods?
-**explanation:** A 40% drop is dramatic. But same-site before/after is only credible if the *measurement* is constant. (B) tests that. Yes — same recording → real safety gain. No — recording changed → reporting artifact.
+**situation:** Proponents cite a pilot where one department's tablet checklist cut recorded surgical errors 40% versus the prior six months on paper, and want all teams switched.
+**reasoning:** *Identify the decisive test.* *What is the biggest threat to a same-site before/after comparison?* A 40% drop is credible only if errors were recorded and classified the same way in both periods. (B) probes exactly that: if the recording method changed, the drop is a reporting artifact; if it held constant, the safety gain is real. (A) cost is downstream, (C) surgeon age is a less direct confounder, (D) speed is about efficiency not safety, and (E) Wi-Fi is an implementation detail.
 **mistake_a:** Cost is downstream of the efficacy question.
 **mistake_c:** Hints at confounders but less decisive than measurement consistency.
 **mistake_d:** Efficiency, not safety.
@@ -1403,7 +1412,8 @@ In the argument above, the two statements in boldface play which of the followin
 
 **answer:** B
 **fastest_path:** Bold 1 = mainstream economist view. Argument *challenges* it via Marisol. Bold 2 = the *mechanism-level explanation* of why the mainstream view failed in this case.
-**explanation:** Structure: state mainstream view (Bold 1) → present counter-case (Marisol) → explain why mainstream failed there (Bold 2). (B) names this challenged-view + explained-failure arc.
+**situation:** Bold 1 gives the mainstream view that raising interest rates is the most reliable way to curb inflation, since higher rates cool demand. The argument counters with Marisol, where aggressive 2022–2024 rate hikes failed to tame inflation, and Bold 2 explains that Marisol's inflation came from global commodity supply shocks monetary policy can't address.
+**reasoning:** *Identify each boldface's structural role.* *Which view does the argument push against, and which statement does the pushing?* Bold 1 is a widely held view the argument challenges; Bold 2 supplies the mechanism explaining why that view failed in Marisol — matching (B). (A) inverts roles (Bold 1 is the target, not the conclusion); (C) miscasts Bold 1 as a prediction; (D) calls Bold 1 an assumption and Bold 2 a derived conclusion; (E) claims both support one conclusion when they play opposing roles.
 **mistake_a:** *Inverts roles* — Bold 1 is the *target* of critique, not the conclusion.
 **mistake_c:** Bold 1 isn't a prediction; it's a general principle.
 **mistake_d:** Bold 1 is a claim, not an assumption. Bold 2 is an explanation, not a derived conclusion.
