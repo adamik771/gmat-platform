@@ -442,7 +442,6 @@ The closest is **13/40** (gap ≈ 0.008). A rigorous check uses cross-multiplica
 
 **Estimation heuristics worth memorizing:**
 
-- `π ≈ 3.14 ≈ 22/7`. Close enough for any GMAT geometry question.
 - `√2 ≈ 1.414`, `√3 ≈ 1.732`, `√5 ≈ 2.236`. Decimals of these three roots show up constantly.
 - 10% of a number is easy; 1% is easier. For 17% of 350, compute 10% = 35, plus 7% = 7 × 3.5 = 24.5. Total ≈ 59.5.
 - Doubling and halving preserves a product: `25 × 16 = 50 × 8 = 100 × 4 = 400`. Cleaner numbers, same answer.
@@ -467,7 +466,7 @@ The closest is **13/40** (gap ≈ 0.008). A rigorous check uses cross-multiplica
 
 ## @summary
 
-Arithmetic is not a separate Quant topic — it's the substrate that every other Quant topic sits on. A word problem about ratios, a Data Sufficiency about remainders, a geometry problem about a circle — all of them reduce at some point to an arithmetic operation. The students who score above 685 are not better at algebra than 605 scorers; they're dramatically faster and more accurate at arithmetic.
+Arithmetic is not a separate Quant topic — it's the substrate that every other Quant topic sits on. A word problem about ratios, a Data Sufficiency about remainders, a statistics question about a weighted average — all of them reduce at some point to an arithmetic operation. The students who score above 685 are not better at algebra than 605 scorers; they're dramatically faster and more accurate at arithmetic.
 
 **The nine habits that produce that speed:**
 
@@ -502,6 +501,6 @@ Arithmetic is not a separate Quant topic — it's the substrate that every other
 
 3. **Hard set, untimed first pass.** The hard questions layer multiple habits: a fraction inside a negative-exponent expression, a percent change on a Data Sufficiency, or an estimation requiring knowing when *not* to estimate. Solve completely on the first pass without rushing; time yourself on the second.
 
-4. **Error log rule.** Any arithmetic error you make on a non-arithmetic chapter (algebra, geometry, word problems) — trace it here, not to the topic chapter. Arithmetic errors happen inside other problems; they belong to the arithmetic habit that broke.
+4. **Error log rule.** Any arithmetic error you make on a non-arithmetic chapter (algebra, word problems) — trace it here, not to the topic chapter. Arithmetic errors happen inside other problems; they belong to the arithmetic habit that broke.
 
 The students scoring 685+ on Quant are not faster thinkers — they make fewer arithmetic errors per minute because these nine habits run in the background without drawing on working memory. Drill until the habits are background noise.

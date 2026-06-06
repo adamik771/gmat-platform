@@ -236,18 +236,18 @@ export default function PostPage() {
             &ldquo;Sometimes yes&rdquo; means not sufficient.
           </p>
 
-          <H3>3. Geometry value questions</H3>
+          <H3>3. Statistics value questions</H3>
           <p>
-            Common DS variant. &ldquo;What is the area of triangle
-            ABC?&rdquo; with statements about side lengths or angles.
+            Common DS variant. &ldquo;What is the average of the five
+            test scores?&rdquo; with statements about totals, individual
+            values, or ranges.
           </p>
           <p>
-            Sufficiency requires that the triangle is uniquely
-            determined &mdash; not just that one is consistent with the
-            statement. Two triangles can have the same two sides and
-            different areas, so &ldquo;sides AB and BC are both 5&rdquo;
-            is not sufficient by itself even though it constrains the
-            shape significantly.
+            Sufficiency requires that the quantity is uniquely
+            determined &mdash; not just constrained. A statement like
+            &ldquo;the three lowest scores sum to 180&rdquo; narrows the
+            data significantly but leaves the average open, so it is not
+            sufficient by itself even though it pins down part of the set.
           </p>
 
           <H3>4. Conditional / system questions</H3>
