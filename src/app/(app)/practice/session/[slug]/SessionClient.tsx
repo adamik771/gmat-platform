@@ -1165,6 +1165,7 @@ export default function SessionClient({
   >("idle")
   const [savedSessionId, setSavedSessionId] = useState<string | null>(null)
   const [showAllReview, setShowAllReview] = useState(false)
+  const [reviewExpandedIdx, setReviewExpandedIdx] = useState<number | null>(null)
 
   // Tick the timer once a second for the header readouts.
   useEffect(() => {
@@ -2007,58 +2008,179 @@ export default function SessionClient({
                     const isCorrect = isQuestionCorrect(q, state)
                     const isWrong = state.submitted && !isCorrect
                     const isLast = listIdx === displayItems.length - 1
+                    const isExpanded = reviewExpandedIdx === i
                     return (
-                      <button
+                      <div
                         key={q.id}
-                        onClick={() => {
-                          goTo(i)
-                          setShowResults(false)
-                        }}
-                        className={`w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left ${
-                          !isLast ? "border-b border-white/[0.05]" : ""
-                        }`}
-                        style={isWrong ? { backgroundColor: "rgba(255,68,68,0.025)" } : undefined}
+                        className={!isLast ? "border-b border-white/[0.05]" : ""}
                       >
-                        <div className="flex items-center gap-3 min-w-0">
-                          <div
-                            className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                            style={{
-                              backgroundColor: state.submitted
-                                ? isCorrect
-                                  ? "rgba(62,207,142,0.1)"
-                                  : "rgba(255,68,68,0.1)"
-                                : "rgba(255,255,255,0.04)",
-                            }}
-                          >
-                            {state.submitted ? (
-                              isCorrect ? (
-                                <Check className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
+                        <button
+                          onClick={() => {
+                            if (state.submitted) {
+                              setReviewExpandedIdx(isExpanded ? null : i)
+                            } else {
+                              goTo(i)
+                              setShowResults(false)
+                            }
+                          }}
+                          className="w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left"
+                          style={
+                            isWrong
+                              ? { backgroundColor: isExpanded ? "rgba(255,68,68,0.04)" : "rgba(255,68,68,0.025)" }
+                              : undefined
+                          }
+                        >
+                          <div className="flex items-center gap-3 min-w-0">
+                            <div
+                              className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                              style={{
+                                backgroundColor: state.submitted
+                                  ? isCorrect
+                                    ? "rgba(62,207,142,0.1)"
+                                    : "rgba(255,68,68,0.1)"
+                                  : "rgba(255,255,255,0.04)",
+                              }}
+                            >
+                              {state.submitted ? (
+                                isCorrect ? (
+                                  <Check className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
+                                ) : (
+                                  <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
+                                )
                               ) : (
-                                <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
-                              )
-                            ) : (
-                              <span className="text-[10px] text-[#555555]">—</span>
+                                <span className="text-[10px] text-[#555555]">—</span>
+                              )}
+                            </div>
+                            <div className="min-w-0">
+                              <p
+                                className="text-xs"
+                                style={{ color: isWrong ? "rgba(255,107,107,0.75)" : "#555555" }}
+                              >
+                                Q{i + 1} · {q.subtopic} · {q.difficulty}
+                              </p>
+                              <p className="text-sm text-[#F0F0F0] truncate">
+                                {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2 flex-shrink-0 ml-3">
+                            <span
+                              className="text-xs"
+                              style={{ color: isWrong ? "rgba(255,107,107,0.6)" : "#888888" }}
+                            >
+                              {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
+                            </span>
+                            {state.submitted && (
+                              <ChevronDown
+                                className={`w-3.5 h-3.5 flex-shrink-0 transition-transform duration-200 ${isExpanded ? "" : "-rotate-90"}`}
+                                style={{ color: "#444444" }}
+                              />
                             )}
                           </div>
-                          <div className="min-w-0">
-                            <p
-                              className="text-xs"
-                              style={{ color: isWrong ? "rgba(255,107,107,0.75)" : "#555555" }}
+                        </button>
+
+                        {isExpanded && (
+                          <div
+                            className="px-5 pb-5 border-t border-white/[0.04]"
+                            style={{
+                              backgroundColor: isWrong
+                                ? "rgba(255,40,40,0.02)"
+                                : "rgba(62,207,142,0.01)",
+                            }}
+                          >
+                            {/* Answer comparison — immediate visual contrast between what the student
+                                chose and what was correct, before the explanation reinforces why. */}
+                            {!q.twoPartColumns &&
+                              state.selected !== null &&
+                              q.correctAnswer >= 0 && (
+                                <div className={`pt-4 ${isWrong ? "pb-4" : "pb-3"}`}>
+                                  {isWrong ? (
+                                    <div className="flex gap-3">
+                                      <div
+                                        className="flex-1 p-3 rounded-lg border"
+                                        style={{
+                                          borderColor: "rgba(255,68,68,0.22)",
+                                          backgroundColor: "rgba(255,68,68,0.05)",
+                                        }}
+                                      >
+                                        <p
+                                          className="text-[10px] uppercase tracking-[0.18em] font-semibold mb-1.5"
+                                          style={{ color: "#FF6666" }}
+                                        >
+                                          Your answer
+                                        </p>
+                                        <p className="text-sm text-[#F0F0F0] leading-snug">
+                                          <span className="font-semibold">{letterFor(state.selected)}</span>
+                                          {q.options[state.selected]
+                                            ? ` · ${q.options[state.selected].replace(/\s+/g, " ").slice(0, 70)}`
+                                            : ""}
+                                        </p>
+                                      </div>
+                                      <div
+                                        className="flex-1 p-3 rounded-lg border"
+                                        style={{
+                                          borderColor: "rgba(62,207,142,0.22)",
+                                          backgroundColor: "rgba(62,207,142,0.05)",
+                                        }}
+                                      >
+                                        <p
+                                          className="text-[10px] uppercase tracking-[0.18em] font-semibold mb-1.5"
+                                          style={{ color: "#3ECF8E" }}
+                                        >
+                                          Correct answer
+                                        </p>
+                                        <p className="text-sm text-[#F0F0F0] leading-snug">
+                                          <span className="font-semibold">{q.correctAnswerLetter}</span>
+                                          {q.options[q.correctAnswer]
+                                            ? ` · ${q.options[q.correctAnswer].replace(/\s+/g, " ").slice(0, 70)}`
+                                            : ""}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  ) : (
+                                    <div
+                                      className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border"
+                                      style={{
+                                        borderColor: "rgba(62,207,142,0.2)",
+                                        backgroundColor: "rgba(62,207,142,0.06)",
+                                      }}
+                                    >
+                                      <Check className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#3ECF8E" }} />
+                                      <span className="text-sm text-[#F0F0F0]">
+                                        <span className="font-semibold">{q.correctAnswerLetter}</span>
+                                        {q.options[q.correctAnswer]
+                                          ? ` · ${q.options[q.correctAnswer].replace(/\s+/g, " ").slice(0, 80)}`
+                                          : ""}
+                                      </span>
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+
+                            {/* Explanation */}
+                            {q.explanation && (
+                              <div>
+                                <p
+                                  className="text-[10px] uppercase tracking-[0.22em] font-semibold mb-2"
+                                  style={{ color: "#C9A84C" }}
+                                >
+                                  Explanation
+                                </p>
+                                <PromptBlock text={q.explanation} />
+                              </div>
+                            )}
+
+                            {/* Secondary nav for full question context (two-part grid, hints, etc.) */}
+                            <button
+                              onClick={() => { goTo(i); setShowResults(false) }}
+                              className="mt-4 text-[11px] transition-colors hover:text-[#C0C0C0]"
+                              style={{ color: "#555555" }}
                             >
-                              Q{i + 1} · {q.subtopic} · {q.difficulty}
-                            </p>
-                            <p className="text-sm text-[#F0F0F0] truncate">
-                              {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
-                            </p>
+                              View full question in session
+                            </button>
                           </div>
-                        </div>
-                        <span
-                          className="text-xs flex-shrink-0 ml-3"
-                          style={{ color: isWrong ? "rgba(255,107,107,0.6)" : "#888888" }}
-                        >
-                          {state.submitted ? formatDuration(state.elapsedMs) : "skipped"}
-                        </span>
-                      </button>
+                        )}
+                      </div>
                     )
                   })}
                 </div>
