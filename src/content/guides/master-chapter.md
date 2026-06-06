@@ -25,7 +25,7 @@ This chapter is long because the section structure is deep. It is not long becau
 
 ### Section overview
 
-On the surface, Quant tests algebra, arithmetic, number properties, and a narrow slice of geometry and statistics. No calculus. No trigonometry. No advanced combinatorics. The raw knowledge required is covered by a strong high school curriculum.
+On the surface, Quant tests algebra, arithmetic, number properties, statistics, and a narrow slice of coordinate geometry. No plane geometry (the Focus Edition removed it). No calculus. No trigonometry. No advanced combinatorics. The raw knowledge required is covered by a strong high school curriculum.
 
 Underneath, Quant tests three things in this order of importance: method selection, precision under speed, and pattern recognition. Method selection — given a problem and five answer choices, which of several legitimate approaches gets you to the answer fastest? — is the single largest lever above the 70th percentile. Precision under speed is whether you can compute accurately at roughly two minutes per problem, including translation and recovery from the occasional false start. Pattern recognition is whether you can see that today's problem is structurally identical to something you've solved before, even when the surface detail looks different.
 
@@ -37,7 +37,7 @@ Most students misdiagnose reasoning gaps as knowledge gaps and spend weeks re-st
 
 ### Core mindset
 
-Before computing anything, scan the problem and answer choices for thirty seconds and ask four questions. What's the shape — word problem, algebra manipulation, number property, geometry, probability? What's the variable — one unknown, two, or none? What do the answer choices tell me — are they numeric and plausible to test, variable expressions, nice fractions, or odd decimals that rule out estimation? Is there a hidden constraint — "positive integer," "distinct," "at least one," "greater than zero"? These aren't decoration. Circle them mentally.
+Before computing anything, scan the problem and answer choices for thirty seconds and ask four questions. What's the shape — word problem, algebra manipulation, number property, coordinate plane, probability? What's the variable — one unknown, two, or none? What do the answer choices tell me — are they numeric and plausible to test, variable expressions, nice fractions, or odd decimals that rule out estimation? Is there a hidden constraint — "positive integer," "distinct," "at least one," "greater than zero"? These aren't decoration. Circle them mentally.
 
 Most Quant problems contain at least one irrelevant or redundant detail, included to test whether you can identify what drives the problem. Names, units that cancel, parenthetical clarifications, elaborate scenario setup that collapses into one equation. Read for the equation, not the story.
 
