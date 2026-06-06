@@ -1481,17 +1481,37 @@ export default function SessionClient({
       }
     }
 
-    // Next-step recommendation keyed to accuracy band. When the student
-    // performed well and the server identified a weak topic, name it
-    // directly — eliminates the "which area?" follow-up navigation.
-    const nextStepNote =
-      accuracy < 60
-        ? "Accuracy below 60% signals a concept gap. Revisiting the chapter before more practice compounds better."
-        : accuracy < 78
-        ? "Accuracy is building. One more focused session on this topic before moving on."
+    // Coaching note — derived from the difficulty pattern and pacing data
+    // so guidance is specific to what this session revealed, not just the
+    // overall accuracy band.
+    const wrongCount = incorrectPairs.length
+    const wrongDiffs = incorrectPairs.map((p) => p.q.difficulty)
+    const allWrongAdvanced =
+      wrongCount > 0 && wrongDiffs.every((d) => d === "Advanced")
+    const allWrongBeginner =
+      wrongCount > 0 &&
+      wrongDiffs.every((d) => d === "Beginner" || d === "Intermediate")
+    const hasTimingGap =
+      avgCorrectMs !== null &&
+      avgIncorrectMs !== null &&
+      avgIncorrectMs / avgCorrectMs > 1.4
+
+    const coachingNote =
+      wrongCount === 0
+        ? "Clean session. That clears this topic — move to a harder area or push up to Advanced difficulty."
+        : isMixedReview
+        ? "Spaced retrieval sessions reinforce what you've already practiced. Return tomorrow to see what resurfaces."
+        : accuracy < 60
+        ? "Below 60% signals a concept gap, not just a practice gap. One chapter review before drilling again will compound better."
+        : allWrongAdvanced && accuracy >= 65
+        ? "You held the Beginner and Intermediate questions — the Advanced ones are the remaining frontier. That's a tractable gap."
+        : allWrongBeginner
+        ? "Some foundational questions slipped. A chapter review before more drilling will compound better than repeating this set."
+        : hasTimingGap && accuracy < 80
+        ? `Time is the variable here — wrong answers averaged ${formatDuration(avgIncorrectMs!)} vs ${formatDuration(avgCorrectMs!)} on correct ones. One more session, but cut uncertain questions at the 2-minute mark.`
         : weakestTopic
-        ? `This topic is solid. Based on your practice history, ${weakestTopic.topic} is your weakest area right now — ${Math.round(weakestTopic.accuracy * 100)}% accuracy. That's where the points are.`
-        : "This topic is solid. Investing time in a weaker area is the highest-leverage move now."
+        ? `This topic is solid. Practice history shows ${weakestTopic.topic} at ${Math.round(weakestTopic.accuracy * 100)}% accuracy — that's the highest-leverage gap to close now.`
+        : "Accuracy is building. One more focused session here before moving on."
 
     return (
       <div className="max-w-3xl mx-auto space-y-6">
@@ -1902,61 +1922,6 @@ export default function SessionClient({
           </Link>
         )}
 
-        {/* What to do next — renders the nextStepNote guidance as direct CTA
-            buttons. The text was computed above but never surfaced in the UI;
-            without a button, students read the advice and then navigate away
-            manually with no clear path. Primary action depends on accuracy
-            band: review the chapter (low), practice again (mid), study plan
-            (high). Chapter link is only shown when the topic maps to one. */}
-        {(() => {
-          const chapterSlug = TOPIC_TO_CHAPTER[topic]
-          const low = accuracy < 60
-          const mid = accuracy >= 60 && accuracy < 78
-
-          const primaryAction = low && chapterSlug
-            ? { label: `Review ${topic} chapter`, href: `/chapters/${chapterSlug}` }
-            : mid
-            ? { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-            : { label: "View your study plan", href: "/study-plan" }
-
-          const secondaryAction =
-            low
-              ? { label: "Practice again", href: `/practice/session/${slug}` }
-              : mid && chapterSlug
-              ? { label: "Review the chapter", href: `/chapters/${chapterSlug}` }
-              : { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-
-          return (
-            <div
-              className="p-5 rounded-xl border border-white/[0.08]"
-              style={{ backgroundColor: "#0D0D0D" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
-                What to do next
-              </p>
-              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-4">
-                {nextStepNote}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Link
-                  href={primaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  {primaryAction.label}
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-                <Link
-                  href={secondaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-white/[0.1] text-[#888888] transition-colors hover:text-[#F0F0F0] hover:border-white/[0.2]"
-                >
-                  {secondaryAction.label}
-                </Link>
-              </div>
-            </div>
-          )
-        })()}
-
         {/* Review list — wrong answers only by default, toggle to show all */}
         {(() => {
           const wrongIndices = questions
@@ -2129,8 +2094,15 @@ export default function SessionClient({
                 What to do next
               </p>
               <p className="text-sm text-[#C0C0C0] leading-relaxed mb-5">
-                {nextStepNote}
+                {coachingNote}
               </p>
+              {wrongCount > 0 && !isMixedReview && (
+                <div className="border-t border-white/[0.06] pt-4 mb-5">
+                  <p className="text-xs leading-relaxed" style={{ color: "#555555" }}>
+                    {wrongCount} mistake{wrongCount !== 1 ? "s" : ""} from this session enter your spaced review queue automatically — they resurface based on recency and repeat patterns.
+                  </p>
+                </div>
+              )}
               <div className="flex flex-wrap gap-3">
                 {actions.map((action) =>
                   action.variant === "primary" ? (
