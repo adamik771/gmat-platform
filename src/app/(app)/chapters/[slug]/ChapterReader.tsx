@@ -1950,6 +1950,7 @@ function ProblemSetsBlock({
             key={set.difficulty}
             slug={slug}
             set={set}
+            allSets={readySets}
             targetScore={targetScore}
             progress={progress}
             update={update}
@@ -1995,12 +1996,14 @@ function countAttemptedProblemSets(progress: ChapterProgress): number {
 function ProblemSetCard({
   slug,
   set,
+  allSets,
   targetScore,
   progress,
   update,
 }: {
   slug: string
   set: ReaderProblemSet
+  allSets: ReaderProblemSet[]
   targetScore: number | null
   progress: ChapterProgress
   update: (u: (prev: ChapterProgress) => ChapterProgress) => void
@@ -2008,6 +2011,12 @@ function ProblemSetCard({
   const [running, setRunning] = useState(false)
   const result = progress.problemSetResults[set.difficulty]
   const targetPct = resolveAccuracyTarget(set.targetAccuracyByScore, targetScore)
+
+  const difficultyOrder = ["easy", "medium", "hard"] as const
+  const currentIdx = difficultyOrder.indexOf(set.difficulty)
+  const nextDifficulty =
+    difficultyOrder.slice(currentIdx + 1).find((d) => allSets.some((s) => s.difficulty === d)) ??
+    null
   const achievedPct =
     result && result.total > 0
       ? Math.round((result.correct / result.total) * 100)
@@ -2088,6 +2097,7 @@ function ProblemSetCard({
           slug={slug}
           set={set}
           targetPct={targetPct}
+          nextDifficulty={nextDifficulty}
           onClose={() => setRunning(false)}
           onFinish={(correct, total) =>
             update((prev) => ({
@@ -2107,12 +2117,14 @@ function ProblemSetCard({
 function ProblemSetRunner({
   set,
   targetPct,
+  nextDifficulty,
   onClose,
   onFinish,
 }: {
   slug: string
   set: ReaderProblemSet
   targetPct: number
+  nextDifficulty: "medium" | "hard" | null
   onClose: () => void
   onFinish: (correct: number, total: number) => void
 }) {
@@ -2140,6 +2152,13 @@ function ProblemSetRunner({
     setIdx(idx + 1)
     setSelected(null)
     setSubmitted(false)
+  }
+  function reset() {
+    setIdx(0)
+    setSelected(null)
+    setSubmitted(false)
+    setAnswers([])
+    setDone(false)
   }
 
   // Modal-ish overlay. No portal — just a fixed position card.
@@ -2191,7 +2210,10 @@ function ProblemSetRunner({
           <RunnerResults
             answers={answers}
             total={set.questions.length}
+            difficulty={set.difficulty}
+            nextDifficulty={nextDifficulty}
             targetPct={targetPct}
+            onRetake={reset}
             onClose={onClose}
           />
         ) : (
@@ -2314,32 +2336,59 @@ function ProblemSetRunner({
 function RunnerResults({
   answers,
   total,
+  difficulty,
+  nextDifficulty,
   targetPct,
+  onRetake,
   onClose,
 }: {
   answers: boolean[]
   total: number
+  difficulty: "easy" | "medium" | "hard"
+  nextDifficulty: "medium" | "hard" | null
   targetPct: number
+  onRetake: () => void
   onClose: () => void
 }) {
   const correct = answers.filter(Boolean).length
   const pct = Math.round((correct / total) * 100)
   const passed = pct >= targetPct
+
+  const performanceLabel =
+    pct >= 90
+      ? "Excellent."
+      : passed
+      ? "Target met."
+      : pct >= 60
+      ? "Getting there."
+      : "Needs more work."
+
+  const nextStepCopy = passed
+    ? nextDifficulty
+      ? `You're ready for the ${nextDifficulty} set. Close this and select it below.`
+      : difficulty === "hard"
+      ? "All sets complete. Move on to mixed practice or the next chapter."
+      : "Set complete. Move on to the next difficulty when you're ready."
+    : pct >= 60
+    ? "Most of the material is there. Review any sections that felt uncertain, then retake."
+    : "Revisit the chapter before retaking — the foundations need reinforcement first."
+
   return (
-    <div className="px-6 py-10 text-center space-y-6">
-      <div
-        className="mx-auto w-16 h-16 rounded-full flex items-center justify-center"
-        style={{
-          backgroundColor: passed ? "var(--read-success-soft)" : "var(--read-error-soft)",
-        }}
-      >
-        {passed ? (
-          <Award className="w-8 h-8" style={{ color: "var(--read-success)" }} />
-        ) : (
-          <BrainCircuit className="w-8 h-8" style={{ color: "var(--read-error)" }} />
-        )}
-      </div>
-      <div>
+    <div className="px-6 py-8 space-y-6">
+      {/* Score block */}
+      <div className="text-center space-y-2">
+        <div
+          className="mx-auto w-14 h-14 rounded-full flex items-center justify-center"
+          style={{
+            backgroundColor: passed ? "var(--read-success-soft)" : "var(--read-error-soft)",
+          }}
+        >
+          {passed ? (
+            <Award className="w-7 h-7" style={{ color: "var(--read-success)" }} />
+          ) : (
+            <BrainCircuit className="w-7 h-7" style={{ color: "var(--read-error)" }} />
+          )}
+        </div>
         <p
           className="font-display text-5xl font-semibold tabular-nums tracking-tight"
           style={{ color: "var(--read-text)" }}
@@ -2347,27 +2396,68 @@ function RunnerResults({
           {pct}%
         </p>
         <p
-          className="text-[13px] mt-2 tabular-nums"
-          style={{ color: "var(--read-text-muted)" }}
+          className="text-[10px] font-semibold uppercase tracking-[0.2em]"
+          style={{ color: passed ? "var(--read-success)" : "var(--read-error)" }}
         >
-          {correct} / {total} correct
+          {performanceLabel}
+        </p>
+        <p className="text-[12px] tabular-nums" style={{ color: "var(--read-text-muted)" }}>
+          {correct} of {total} correct &middot; goal {targetPct}%
         </p>
       </div>
+
+      {/* Per-question dots — quick visual scan of answer pattern */}
+      {answers.length > 0 && (
+        <div className="flex flex-wrap justify-center gap-1.5">
+          {answers.map((isCorrect, i) => (
+            <div
+              key={i}
+              className="w-2.5 h-2.5 rounded-full"
+              title={`Q${i + 1}: ${isCorrect ? "correct" : "incorrect"}`}
+              style={{
+                backgroundColor: isCorrect ? "var(--read-success)" : "var(--read-error)",
+                opacity: isCorrect ? 0.75 : 1,
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Next step */}
       <p
-        className="text-[14px] leading-relaxed max-w-sm mx-auto"
-        style={{ color: passed ? "var(--read-success)" : "var(--read-error)" }}
+        className="text-[13px] leading-relaxed text-center max-w-xs mx-auto"
+        style={{ color: "var(--read-text-body)" }}
       >
-        {passed
-          ? `Nice — you beat your target of ${targetPct}%.`
-          : `Target was ${targetPct}%. Review the chapter and retake when you're ready.`}
+        {nextStepCopy}
       </p>
-      <button
-        onClick={onClose}
-        className="px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
-        style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
-      >
-        Close
-      </button>
+
+      {/* Actions */}
+      <div className="flex justify-center gap-2.5">
+        {!passed && (
+          <button
+            onClick={onRetake}
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
+            style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
+          >
+            Retake
+          </button>
+        )}
+        <button
+          onClick={onClose}
+          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
+          style={
+            passed
+              ? { backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }
+              : {
+                  border: "1px solid var(--read-border-strong)",
+                  color: "var(--read-text)",
+                  backgroundColor: "transparent",
+                }
+          }
+        >
+          {passed && nextDifficulty ? `Try ${nextDifficulty} set` : "Close"}
+        </button>
+      </div>
     </div>
   )
 }
