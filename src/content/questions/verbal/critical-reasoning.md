@@ -3306,7 +3306,8 @@ Which of the following, if true, most weakens the company's argument?
 
 **answer:** A
 **fastest_path:** Voluntary wellness program → enrollees are *self-selected* healthier policyholders. The 20% claims gap reflects pre-existing health, not program effect. Expanding won't replicate the gap.
-**explanation:** Wellness program is optional. (A) names the self-selection confounder: healthier and more health-conscious people enrolled. The 20% lower claims rate isn't the program's effect; it's the kind of person who chose to enroll. Expansion to the whole population won't reproduce the result.
+**situation:** An insurer finds wellness-program participants have 20% lower annual medical claims than non-participants and argues expanding the program will significantly cut total claims across all policyholders.
+**reasoning:** *Weaken a "participants do better → program works" claim.* *What fact would show the 20% gap isn't the program's effect?* The program is optional, so enrollees are self-selected. (A) names the confounder: those who voluntarily enroll are already healthier and more health-conscious — so the lower claims reflect who enrolls, not the program, and expansion to everyone won't reproduce the gap. (B) age range, (C) other insurers' results, and (D) a claims trend are background; (E) program content isn't the selection issue.
 **mistake_b:** Age range — background.
 **mistake_c:** Other companies' results — not this argument's logic.
 **mistake_d:** Trend — background.
@@ -3334,7 +3335,8 @@ Management's argument relies on which of the following assumptions?
 
 **answer:** B
 **fastest_path:** Eliminating luxury items → revenue loss + family-customer gain. Argument: net sales grow. Required: family gain *exceeds* luxury-revenue loss. (B) is the bridge.
-**explanation:** Net sales = (new family revenue) − (luxury revenue lost). Negate (B): the loss exceeds the gain → sales fall → conclusion fails. Necessary tradeoff assumption.
+**situation:** A chain weighs cutting all luxury menu items (priced above $30) to look more family-friendly and attract families, arguing the change will grow overall sales.
+**reasoning:** *Find a required assumption.* *What must hold for dropping luxury items to grow total sales?* Net sales equal new family revenue minus the lost luxury revenue, so the plan assumes the family gain more than offsets the luxury loss. Negate (B): the loss exceeds the gain and sales fall — so (B) is required. (A) "unpopular with all" overstates, (C) competitors aren't the issue, (D) is one narrow channel within (B), and (E) existing-customer frequency isn't the core tradeoff.
 **mistake_a:** *Extreme* — "unpopular with all" overstates.
 **mistake_c:** Competitors, not this chain's sales.
 **mistake_d:** Subset of (B) — close but narrower.
@@ -3362,7 +3364,8 @@ Which of the following, if true, best explains why the increase in battery capac
 
 **answer:** B
 **fastest_path:** Paradox: 2× battery, only 15% more screen-on time. Resolve: per-hour drain *also rose* (heavier apps), so the capacity gain is mostly absorbed.
-**explanation:** Net screen-on time = capacity / per-hour drain. (B) shows per-hour drain rose to consume the doubled capacity. Capacity ↑, drain ↑, so net usage barely budges. Single mechanism explains both trends.
+**situation:** Over a decade smartphone battery capacity roughly doubled, yet average daily screen-on time rose only ~15% — consumers aren't using phones for many more hours.
+**reasoning:** *Resolve the paradox — explain both facts at once.* *Why didn't doubled capacity roughly double usage time?* Screen-on time is capacity divided by per-hour drain, so a rise in drain absorbs the gain. (B) supplies it: apps and features became far more computationally demanding, draining battery faster per hour and offsetting most of the added capacity. (C) battery-saver modes and (E) more-efficient processors would *raise* screen-on time, deepening the paradox; (A) charging behavior and (D) more social-media use don't explain the flatness.
 **mistake_a:** Charging behavior, not usage.
 **mistake_c:** Battery-saver modes would *increase* screen-on time, deepening the paradox.
 **mistake_d:** Social media → more screen-on, not less.
@@ -3390,7 +3393,8 @@ The answer to which of the following questions would be most useful in evaluatin
 
 **answer:** B
 **fastest_path:** Load-bearing premise: redistributed hours + independent study = same quality. Evaluate by *testing that premise*. (B) does it.
-**explanation:** Quality depends on whether students *use* the redistributed time effectively. (B) tests this. Yes — quality preserved; conclusion holds. No — independent-study hours wasted; conclusion fails.
+**situation:** A university weighs a four-day week to cut costs, arguing quality will hold because lost class hours move to extended days and structured independent study.
+**reasoning:** *Identify the decisive test.* *What would tell us whether quality is actually preserved?* The claim hinges on whether students *use* the redistributed time effectively. (B) probes exactly that: will students use the extended hours and independent study to reach the same outcomes as now? If yes, quality holds; if those hours are wasted, it fails. (A) cost savings and (D) fixed-vs-variable costs are about money, (C) is an external reference, and (E) raw hour count isn't effective use.
 **mistake_a:** Cost magnitude, not quality.
 **mistake_c:** External reference.
 **mistake_d:** Cost accounting.
@@ -3419,7 +3423,8 @@ In the argument above, the three portions in boldface play which of the followin
 
 **answer:** A
 **fastest_path:** Three bolds: (1) proposal, (2) data rebutting cost-objection, (3) additional supporting argument (fire-safety). Three-part proposal-defense structure.
-**explanation:** Argument structure: propose ordinance → opponents raise cost objection → cited analysis rebuts the cost objection → proponents add fire-safety argument as further support. (A) names this three-part flow precisely.
+**situation:** Bold 1 is the council's proposal requiring pre-1970 commercial buildings to install modern fire-suppression within five years. Opponents object the costs would force small businesses out. Bold 2 reports that in fifty comparable buildings in neighboring cities, businesses absorbed the costs via modest rent adjustments over the compliance period rather than relocating. Bold 3 is proponents' added point that, given rising fire-damage rates in pre-1970 buildings, the safety benefits likely outweigh the temporary economic pressure.
+**reasoning:** *Identify each boldface's structural role.* *What job does each of the three statements do?* Bold 1 is the proposal; Bold 2 is data rebutting the specific cost/relocation objection; Bold 3 is an additional argument supporting the proposal — matching (A). (B) mislabels Bold 2 as the case *against* and Bold 3 as a concession; (C) confuses argument levels; (D) and (E) misread the rhetorical direction (both later bolds support, not oppose, the proposal).
 **mistake_b:** Mislabels Bold 2 (rebuts, not argues for).
 **mistake_c:** Confuses argument levels.
 **mistake_d:** Misreads rhetorical direction.
@@ -3447,7 +3452,8 @@ Which of the following, if true, most strengthens the CEO's argument?
 
 **answer:** B
 **fastest_path:** CEO claims sales growth reflects *genuine consumer preference* shift. Strengthen by *direct preference evidence*: 22% → 38% of shoppers actively seek plant-based. (B).
-**explanation:** Direct survey evidence in the manufacturer's markets shows the preference shift CEO posits. (B) supports the causal link from preference to sales growth. Other choices either offer alternative explanations or are about different markets.
+**situation:** A plant-based meat maker reports 25% retail sales growth, and the CEO attributes it to a genuine, rising consumer preference for plant-based diets, planning to expand distribution on that basis.
+**reasoning:** *Strengthen a "growth reflects a preference shift" claim.* *What would directly evidence the preference change the CEO posits?* (B) supplies it: a survey in the manufacturer's own markets shows the share of shoppers actively seeking plant-based alternatives rose from 22% to 38% in the year — direct support for the preference-to-sales link. (A) peer growth doesn't isolate preference from industry-wide advertising; (C) higher pricing is a headwind; (D) the firm's own ad spend is an *alternative* cause; (E) is about EU regulation, not these markets.
 **mistake_a:** Consistent but less specific — could be industry-wide advertising.
 **mistake_c:** Higher pricing is a headwind, not supporting.
 **mistake_d:** *Alternative cause* — advertising could explain growth, weakening.
@@ -3475,7 +3481,8 @@ Which of the following, if true, most weakens the office's conclusion?
 
 **answer:** B
 **fastest_path:** Voluntary attendance → self-selected students. (B) names the confounder: heavy attendees are already more motivated and skilled. The 30% lift reflects who attends, not the events' effect.
-**explanation:** Students who voluntarily attend ≥3 networking events skew toward already-motivated, already-skilled job-seekers. (B) shows their pre-existing characteristics independently raise offers. The events get credit they don't earn.
+**situation:** A career office finds seniors who attend 3+ networking events get 30% more job offers than those attending fewer, and concludes attending more events causes more offers.
+**reasoning:** *Weaken a "participants do better → activity works" claim.* *What fact would show the 30% gap isn't caused by the events?* Attendance is voluntary, so attendees are self-selected. (B) names the confounder: students who choose to attend 3+ events are already more motivated and have stronger interview and résumé skills — traits that independently raise offers — so the events get undue credit. (A) scheduling and (C) other attendance motives are ambiguous, (D) other services affect both groups, and (E) is about salary, not offer count.
 **mistake_a:** Scheduling, not causation.
 **mistake_c:** Other reasons for attendance, ambiguous.
 **mistake_d:** Other career services available — doesn't undermine the networking comparison directly.
@@ -3503,7 +3510,8 @@ Which of the following best identifies a flaw in the executive's reasoning?
 
 **answer:** A
 **fastest_path:** Flaw: *cherry-picking*. Executive dismisses earlier trials as "preliminary" without an objective methodological basis — likely because they didn't support his case.
-**explanation:** Selecting only the favorable trials and self-justifying the dismissal of others is the textbook cherry-picking flaw. If the earlier trials had been positive, the executive likely wouldn't have called them "underpowered." (A) names the flaw directly.
+**situation:** An executive argues a rare-disease therapy is well-supported by citing the three most recent Phase 2 trials (treatment beat placebo), while omitting earlier Phase 2 trials he dismisses as "preliminary" and "not statistically powerful enough."
+**reasoning:** *Name the logical error.* *Is the evidence base complete or curated?* (A) names cherry-picking: the executive cites only the trials that support his claim and dismisses the earlier ones with no objective methodological justification — plausibly because they didn't favor the therapy. (B) sample sizes and (C) definitional consistency are secondary, (D) cost is irrelevant, and (E) Phase 2-to-3 generalization is a different concern from the selective citation itself.
 **mistake_b:** Sample-size concern, secondary.
 **mistake_c:** Definitional clarity, not the selection flaw.
 **mistake_d:** Cost, irrelevant.
@@ -3531,7 +3539,8 @@ The supporters' argument relies on which of the following assumptions?
 
 **answer:** B
 **fastest_path:** Mandate → fewer infections. Required: vaccinated staff are *less likely to transmit* than unvaccinated, *even with standard PPE*. (B) is the bridge.
-**explanation:** Negate (B): vaccinated and unvaccinated staff transmit at the same rate when both follow infection-control protocols → mandate adds no benefit beyond existing precautions → conclusion fails.
+**situation:** A health department proposes mandatory annual flu vaccination for all hospital staff (refusal without a medical exemption means termination), with supporters arguing it will significantly reduce flu-related patient infections.
+**reasoning:** *Find a required assumption.* *What must hold for the mandate to cut patient infections?* It assumes vaccinated staff transmit flu to patients less than unvaccinated staff would, *even when both follow standard infection-control protocols*. Negate (B): with standard precautions, transmission is the same either way, so the mandate adds no benefit and the conclusion fails — making (B) required. (A) "primary source" overstates, (C) attrition is orthogonal, (D) safety isn't the mechanism, and (E) seasonal timing is background.
 **mistake_a:** *Extreme* — "primary source" overstates.
 **mistake_c:** Workforce attrition, orthogonal.
 **mistake_d:** Safety concern, not mechanism.
@@ -3559,7 +3568,8 @@ Which of the following is most strongly supported by the statements above?
 
 **answer:** B
 **fastest_path:** Eligibility = 5+ years tenure AND positive reviews every year. Among 5+ year employees, 80% meet the reviews condition. Both conditions → ~80% eligible.
-**explanation:** Eligibility is conjunctive (tenure AND reviews). Tenure is given (focused on 5+ year employees). Reviews are met by 80%. Combined: ~80% of the 5+ year population is eligible. (B) restates this directly.
+**situation:** At Firm X the retention bonus requires 5+ years of tenure AND positive reviews every year; among current employees with 5+ years, about 80% have had positive reviews every year so far.
+**reasoning:** *Draw the text-forced inference on conjunctive eligibility.* *Within the 5+ year group, what share meets both conditions?* Tenure is already satisfied for this group, and 80% also meet the all-positive-reviews condition, so ~80% of 5+ year employees are eligible (B). (A) requires 100% positive reviews when only 80% qualify; (C) addresses a group the data don't cover; (D) generalizes beyond the 5+ year population; (E) is a motivational claim not in the stimulus.
 **mistake_a:** *Extreme* — requires 100% positive reviews, which only 80% have.
 **mistake_c:** Other eligibility categories not discussed.
 **mistake_d:** Generalizes beyond the 5+ year population.
@@ -3587,7 +3597,8 @@ The answer to which of the following questions would be most useful in evaluatin
 
 **answer:** B
 **fastest_path:** Revenue = price × volume. 20% price cut needs >25% volume gain to grow revenue (since 0.80 × 1.25 = 1.00). Evaluate by *asking the volume-growth rate*. (B).
-**explanation:** Whole disagreement hinges on *price elasticity*: does volume grow enough to compensate? (B) asks the decisive number. >25% growth → revenue rises; ≤25% → revenue falls. Direct verification.
+**situation:** A publisher argues cutting hardcover price from $25 to $20 will raise total revenue by boosting volume; critics say a 20% price cut could lower revenue if volume doesn't grow enough to offset it.
+**reasoning:** *Identify the decisive test.* *What single number settles the dispute?* Revenue = price × volume, and a 20% cut needs volume to grow more than 25% to increase revenue (since 0.80 × 1.25 = 1.00). (B) asks exactly that: the expected percentage volume growth in response to the cut — above ~25% revenue rises, at or below it revenue falls. (A) customer mix, (C) hardcover share, (D) competitor pricing, and (E) price duration don't resolve the elasticity question.
 **mistake_a:** Customer mix, not volume elasticity.
 **mistake_c:** Hardcover share is composition, not elasticity.
 **mistake_d:** Competitor response, separate question.
