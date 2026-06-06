@@ -140,7 +140,6 @@ function questionTypeFromString(value: string | undefined): QuestionType {
     "Data Sufficiency",
     "Critical Reasoning",
     "Reading Comprehension",
-    "Sentence Correction",
     "Data Insights",
     "Multi-Source Reasoning",
     "Table Analysis",
