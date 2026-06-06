@@ -46,7 +46,7 @@ A shirt originally priced at $80 is discounted by 15%. What is the sale price of
 **fastest_path:** Sale price = 80 × 0.85 = $68 (use multiplier directly, not "subtract the discount").
 **explanation:** A 15% discount means the customer pays 85% of the original price. Sale price = 0.85 × $80 = $68. Equivalent path: discount = 0.15 × 80 = $12; final = 80 − 12 = $68. The multiplicative form (0.85 × 80) is one step; the subtractive form is two.
 **mistake_a:** Bubbled the discount amount ($12), not the sale price.
-**mistake_b:** Computed 80 − 0.15 = 79.85, then misrounded to 65.
+**mistake_b:** Subtracted 15 (the percentage number) directly from $80 instead of computing 15% of $80: 80 − 15 = 65. This confuses "a 15% discount" with "subtract $15."
 **mistake_d:** Computed 80 × 0.10 = 8 (used 10% instead of 15%).
 **mistake_e:** Computed 80 − 4 = 76 (used 5% instead of 15%).
 **common_trap:** Bubbling the discount amount instead of the sale price.
@@ -155,7 +155,7 @@ If 2^x = 32 and 3^y = 81, what is the value of x + y?
 **mistake_e:** Computed x × y = 20 then halved or otherwise miscombined.
 **common_trap:** Wrong power recognition — confusing 32 with 2⁴ or 81 with 3³.
 **takeaway:** Memorize the small-power table: 2² = 4, 2³ = 8, 2⁴ = 16, 2⁵ = 32, 2⁶ = 64; 3² = 9, 3³ = 27, 3⁴ = 81; 5² = 25, 5³ = 125. Reflexive recognition saves time.
-**related_reading:** reading-quant-04-algebra-and-equations
+**related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
 
@@ -382,7 +382,7 @@ What is the value of (1 + 1/2) / (1 - 1/3)?
 - E) 5/2
 
 **answer:** D
-**fastest_path:** Numerator: 3/2. Denominator: 2/3. Divide: (3/2) × (3/2) = 9/4.
+**fastest_path:** Numerator: 3/2. Denominator: 2/3. Divide: (3/2) ÷ (2/3) = (3/2) × (3/2) = 9/4.
 **explanation:** Simplify each layer first. Numerator: 1 + 1/2 = 3/2. Denominator: 1 − 1/3 = 2/3. Then divide: (3/2) ÷ (2/3) = (3/2) × (3/2) = 9/4 (multiply by reciprocal).
 **mistake_a:** Divided incorrectly: 3/2 ÷ 2 = 3/4.
 **mistake_b:** Multiplied (3/2) × (2/3) = 1, then misadjusted to 9/8.
@@ -857,3 +857,55 @@ An investor buys $5,000 of Stock X at time zero. Exactly one year later, after S
 **common_trap:** Applying the year-1 growth rate to capital that wasn't invested in year 1.
 **takeaway:** Sequential-investment return: the second tranche only benefits from growth that occurs *after* it's invested. Track portfolio value step by step.
 **related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Number Properties — LCM
+
+Three machines start running simultaneously. Machine A completes one cycle every 12 minutes, Machine B every 18 minutes, and Machine C every 24 minutes. How many minutes after start will all three machines first complete a cycle at the same time?
+
+- A) 24
+- B) 36
+- C) 48
+- D) 72
+- E) 144
+
+**answer:** D
+**fastest_path:** Prime-factor each: 12 = 2²·3, 18 = 2·3², 24 = 2³·3. LCM = 2³·3² = 72.
+**explanation:** The first simultaneous completion occurs at the LCM of the three cycle times. Prime factorize: 12 = 2²·3; 18 = 2·3²; 24 = 2³·3. The LCM takes the highest power of each prime that appears: 2³·3² = 8·9 = 72. Verify: 72/12 = 6 ✓; 72/18 = 4 ✓; 72/24 = 3 ✓. All three return to the start of a cycle exactly at t = 72 min.
+**mistake_a:** Confused LCM with the largest single cycle time (24) — while Machine C does complete at 24 min, Machines A and B do not simultaneously complete at that moment.
+**mistake_b:** Computed LCM(12, 18) = 36 and stopped, forgetting Machine C. At t = 36: 36/12 = 3 ✓, 36/18 = 2 ✓, but 36/24 = 1.5 ✗.
+**mistake_c:** Computed 2 × 24 = 48 (tried to "double the largest") — not a principled method.
+**mistake_e:** Multiplied all three times: 12 × 18 × 24 = 5,184. Multiplying always overestimates when the numbers share prime factors; LCM avoids double-counting.
+**common_trap:** Multiplying instead of taking LCM — the product 12 × 18 × 24 exceeds the LCM whenever the cycle times share prime factors. LCM is always ≤ the product.
+**takeaway:** When multiple periodic events must coincide, use LCM. Prime-factorize each number, take the highest power of every prime that appears. LCM ≤ product of all numbers (equal only when the numbers share no common factors).
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Decimals — Scientific Notation
+
+What is the value of (6.0 × 10⁻³) ÷ (1.2 × 10⁴)?
+
+- A) 5.0 × 10⁻⁸
+- B) 5.0 × 10⁻⁷
+- C) 5.0 × 10⁻⁶
+- D) 5.0 × 10⁷
+- E) 5.0 × 10⁸
+
+**answer:** B
+**fastest_path:** Divide coefficients: 6.0 ÷ 1.2 = 5.0. Subtract exponents: −3 − 4 = −7. Result: 5.0 × 10⁻⁷.
+**explanation:** Scientific notation division separates into two independent steps. Step 1 — coefficients: 6.0 ÷ 1.2 = 5.0. Step 2 — powers of 10: 10⁻³ ÷ 10⁴ = 10^(−3 − 4) = 10⁻⁷. Combine: 5.0 × 10⁻⁷. Sanity check: numerator ≈ 0.006 (small), denominator = 12,000 (large), so quotient must be very small — 5 × 10⁻⁷ = 0.0000005 ✓.
+**mistake_a:** Added exponents as if multiplying: 10^(−3 + (−4)) = 10⁻⁸. The rule for division is subtract, not add.
+**mistake_c:** Arithmetic slip on the exponent subtraction: −3 − 4 = −6 (treating the magnitudes as 3 + 4 = 6 but forgetting the true sum is 7, so the result should be −7, not −6).
+**mistake_d:** Reversed the exponent subtraction order — applied (denominator exponent) − (numerator exponent) instead of (numerator) − (denominator): 4 − (−3) = 4 + 3 = 7. The correct formula is numerator minus denominator: −3 − 4 = −7.
+**mistake_e:** Combined both errors — reversed the subtraction order (4 − (−3) = 7) and then added an extra exponent unit by re-misreading the negative in the numerator, pushing the result from 10⁷ to 10⁸. A sanity check (numerator ≈ 0.006, denominator = 12,000) immediately rules out any positive or huge exponent: the answer must be much less than 1.
+**common_trap:** Adding exponents (multiplication rule) instead of subtracting (division rule) — the most frequent scientific-notation error.
+**takeaway:** (a × 10ᵐ) ÷ (b × 10ⁿ) = (a ÷ b) × 10^(m − n). Divide the coefficients, subtract the exponents. Remember the sign of the exponent in the denominator is subtracted as-is (here 10⁴ contributes −4 to the exponent total).
+**related_reading:** reading-quant-02-arithmetic-foundations
