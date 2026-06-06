@@ -13,7 +13,7 @@ This is a reference guide, not a lesson. It covers every formula, rule, and shor
 
 Review this sheet daily during your prep — 10 minutes in the morning, 10 before bed. In the week before your test, you should have every formula here memorized cold. Do not rely on the sheet during practice problems. When you get stuck, force recall first; look up only after you've committed to an answer. That friction is what moves formulas from recognition to retrieval.
 
-The most-tested topics are arithmetic, algebra, word problems, number properties, geometry, rates, ratios and percents, and statistics. Sections are ordered roughly by frequency. If you only have an hour, drill Arithmetic, Number Properties, and Rates first.
+The most-tested topics are arithmetic, algebra, word problems, number properties, rates, ratios and percents, and statistics. Sections are ordered roughly by frequency. If you only have an hour, drill Arithmetic, Number Properties, and Rates first.
 
 ---
 
@@ -226,66 +226,11 @@ To find the units digit of a^n, take n mod (cycle length) and read off that posi
 
 ---
 
-## Geometry
+## Coordinate Geometry
 
-### Triangles
+The Focus Edition removed plane geometry (triangles, circles, polygons, solids) from Quant. What survives lives on the coordinate plane, where the GMAT treats it as algebra.
 
-- Area = ½ · base · height
-- Sum of interior angles = 180°
-- Exterior angle = sum of the two non-adjacent interior angles
-- Larger side is opposite the larger angle
-- Triangle inequality: each side < sum of the other two; each side > absolute difference of the other two
-
-### Right Triangles
-
-Pythagorean theorem: a² + b² = c² (c is the hypotenuse).
-
-Common Pythagorean triples:
-- 3-4-5 (and multiples: 6-8-10, 9-12-15, 12-16-20)
-- 5-12-13 (and multiples)
-- 7-24-25
-- 8-15-17
-- 9-40-41
-- 20-21-29
-
-### Special Right Triangles
-
-- 45-45-90: legs x, x; hypotenuse x√2. (Half a square.)
-- 30-60-90: short leg x (opposite 30°), long leg x√3 (opposite 60°), hypotenuse 2x (opposite 90°). (Half an equilateral triangle.)
-
-### Isosceles and Equilateral
-
-- Isosceles: two equal sides; the two angles opposite those sides are equal.
-- Equilateral: all sides equal, all angles 60°. Area = (s²√3)/4. Height = (s√3)/2.
-
-### Quadrilaterals
-
-- Rectangle: area = l × w; perimeter = 2(l + w); diagonal = √(l² + w²)
-- Square: area = s²; perimeter = 4s; diagonal = s√2
-- Parallelogram: area = base × height (height is perpendicular to base, not the slanted side)
-- Trapezoid: area = ½(b₁ + b₂) · h
-- Rhombus: area = (d₁ · d₂)/2 (half the product of diagonals); also base × height
-
-### Polygons
-
-- Sum of interior angles of an n-gon = (n - 2) · 180°
-- Each interior angle of a regular n-gon = (n - 2) · 180° / n
-- Sum of exterior angles of any convex polygon = 360°
-- Each exterior angle of a regular n-gon = 360°/n
-- Number of diagonals = n(n - 3)/2
-
-### Circles
-
-- Circumference C = 2πr = πd
-- Area A = πr²
-- Arc length = (θ/360) · 2πr (θ is the central angle in degrees)
-- Sector area = (θ/360) · πr²
-- Inscribed angle = ½ of the central angle subtending the same arc
-- Angle inscribed in a semicircle = 90°
-- A tangent line is perpendicular to the radius at the point of tangency
-- Two tangents from the same external point have equal length
-
-### Coordinate Geometry
+### Points and Lines
 
 - Distance: d = √((x₂ - x₁)² + (y₂ - y₁)²)
 - Midpoint: ((x₁ + x₂)/2, (y₁ + y₂)/2)
@@ -304,15 +249,6 @@ Common Pythagorean triples:
 - Parallel lines: same slope, different intercepts
 - Perpendicular lines: slopes multiply to -1 (one is the negative reciprocal of the other)
 - Horizontal ⊥ vertical (special case since one slope is undefined)
-
-### 3D Solids
-
-- Rectangular prism (box): V = l · w · h; SA = 2(lw + lh + wh); space diagonal = √(l² + w² + h²)
-- Cube: V = s³; SA = 6s²; space diagonal = s√3
-- Cylinder: V = πr²h; SA = 2πr² + 2πrh (two circular ends plus lateral surface)
-- Sphere: V = (4/3)πr³; SA = 4πr²
-- Cone: V = (1/3)πr²h; lateral SA = πr · ℓ (ℓ = slant height = √(r² + h²))
-- Pyramid: V = (1/3) · base area · height
 
 ---
 
