@@ -16,6 +16,7 @@ import {
   Star,
   Tags,
   X,
+  Zap,
 } from "lucide-react"
 import { DI_METHOD_CARDS, hasMethodCard } from "@/lib/di-method-cards"
 import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
@@ -2266,38 +2267,112 @@ export default function SessionClient({
 
             {currentState.submitted && current.explanation && (
               <div
-                className="mt-5 p-4 rounded-lg border transition-all duration-150 animate-in fade-in-0 zoom-in-95"
-                style={{
-                  borderColor: "rgba(201,168,76,0.15)",
-                  backgroundColor: "rgba(201,168,76,0.03)",
-                }}
+                className="mt-5 rounded-lg border overflow-hidden transition-all duration-150 animate-in fade-in-0 zoom-in-95"
+                style={{ borderColor: "rgba(201,168,76,0.15)" }}
               >
-                <div className="flex items-center gap-2.5 mb-3">
-                  <p className="text-[10px] uppercase tracking-widest text-[#555555]">
-                    Explanation
-                  </p>
-                  {!isQuestionCorrect(current, currentState) &&
-                    currentState.selected !== null &&
-                    !isTwoPart && (
-                      <>
-                        <span className="text-[10px] text-[#333333]">&middot;</span>
-                        <span
-                          className="text-[10px]"
-                          style={{ color: "rgba(255,107,107,0.75)" }}
-                        >
-                          You chose {letterFor(currentState.selected)}
-                        </span>
-                        <span className="text-[10px] text-[#333333]">&middot;</span>
-                        <span
-                          className="text-[10px]"
-                          style={{ color: "rgba(62,207,142,0.75)" }}
-                        >
-                          Correct: {current.correctAnswerLetter}
-                        </span>
-                      </>
-                    )}
+                {/* Explanation */}
+                <div className="p-4" style={{ backgroundColor: "rgba(201,168,76,0.03)" }}>
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                      Explanation
+                    </p>
+                    {!isQuestionCorrect(current, currentState) &&
+                      currentState.selected !== null &&
+                      !isTwoPart && (
+                        <>
+                          <span className="text-[10px] text-[#333333]">&middot;</span>
+                          <span
+                            className="text-[10px]"
+                            style={{ color: "rgba(255,107,107,0.75)" }}
+                          >
+                            You chose {letterFor(currentState.selected)}
+                          </span>
+                          <span className="text-[10px] text-[#333333]">&middot;</span>
+                          <span
+                            className="text-[10px]"
+                            style={{ color: "rgba(62,207,142,0.75)" }}
+                          >
+                            Correct: {current.correctAnswerLetter}
+                          </span>
+                        </>
+                      )}
+                  </div>
+                  <PromptBlock text={current.explanation} />
                 </div>
-                <PromptBlock text={current.explanation} />
+
+                {/* Fastest path — always shown when authored */}
+                {current.fastestPath && (
+                  <div
+                    className="px-4 py-3 border-t border-white/[0.04]"
+                    style={{ backgroundColor: "rgba(201,168,76,0.02)" }}
+                  >
+                    <p className="text-[10px] uppercase tracking-[0.16em] text-[#555555] mb-1.5 flex items-center gap-1.5">
+                      <Zap className="w-3 h-3" style={{ color: "#C9A84C" }} />
+                      Fastest path
+                    </p>
+                    <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
+                      {current.fastestPath}
+                    </p>
+                  </div>
+                )}
+
+                {/* Trap diagnosis — only shown when answer was wrong */}
+                {!isQuestionCorrect(current, currentState) &&
+                  currentState.selected !== null &&
+                  !isTwoPart &&
+                  (current.commonTrap ||
+                    current.mistakeAnalysis?.[
+                      letterFor(currentState.selected) as "A" | "B" | "C" | "D" | "E"
+                    ]) && (
+                    <div
+                      className="px-4 py-3 border-t border-white/[0.04]"
+                      style={{ backgroundColor: "rgba(255,68,68,0.02)" }}
+                    >
+                      <p
+                        className="text-[10px] uppercase tracking-[0.16em] mb-2 flex items-center gap-1.5"
+                        style={{ color: "rgba(255,68,68,0.6)" }}
+                      >
+                        <AlertTriangle className="w-3 h-3" />
+                        Trap
+                      </p>
+                      {current.commonTrap && (
+                        <p className="text-[13px] text-[#C0C0C0] leading-relaxed mb-2">
+                          {current.commonTrap}
+                        </p>
+                      )}
+                      {current.mistakeAnalysis?.[
+                        letterFor(currentState.selected) as "A" | "B" | "C" | "D" | "E"
+                      ] && (
+                        <p
+                          className="text-[13px] leading-relaxed"
+                          style={{ color: "rgba(255,107,107,0.85)" }}
+                        >
+                          Why {letterFor(currentState.selected)}:{" "}
+                          {
+                            current.mistakeAnalysis?.[
+                              letterFor(currentState.selected) as "A" | "B" | "C" | "D" | "E"
+                            ]
+                          }
+                        </p>
+                      )}
+                    </div>
+                  )}
+
+                {/* Takeaway — always shown when authored */}
+                {current.takeaway && (
+                  <div
+                    className="px-4 py-3 border-t border-white/[0.04]"
+                    style={{ backgroundColor: "rgba(62,207,142,0.02)" }}
+                  >
+                    <p className="text-[10px] uppercase tracking-[0.16em] text-[#555555] mb-1.5 flex items-center gap-1.5">
+                      <Sparkles className="w-3 h-3" style={{ color: "#3ECF8E" }} />
+                      Takeaway
+                    </p>
+                    <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
+                      {current.takeaway}
+                    </p>
+                  </div>
+                )}
               </div>
             )}
 
