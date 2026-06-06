@@ -1161,7 +1161,8 @@ Is |2x - 5| < 3?
 
 **answer:** C
 **fastest_path:** Yes/no |2x−5|<3 ↔ 1<x<4. (1) x>2 alone: x=3 yes, x=10 no. (2) x<3 alone: x=2 yes, x=0 no. Together: 2<x<3 ⊂ (1,4) → always yes.
-**explanation:** Translate: |2x−5|<3 ↔ 1<x<4. (1): x>2 — could be 3 (yes) or 10 (no). Insufficient. (2): x<3 — could be 2 (yes) or 0 (no). Insufficient. Together: 2<x<3, fully inside (1,4) → always yes. Sufficient. Answer C.
+**situation:** The question asks whether |2x − 5| < 3. Statement (1): x > 2; statement (2): x < 3.
+**reasoning:** *Yes/no DS — first translate the target: |2x − 5| < 3 ⟺ 1 < x < 4.* Statement (1): x > 2 gives x = 3 (yes) or x = 10 (no) — insufficient. Statement (2): x < 3 gives x = 2 (yes) or x = 0 (no) — insufficient. Together: 2 < x < 3, fully inside (1, 4), so the answer is always yes — sufficient, answer C. Translate |expr| < k into a bounded interval before comparing to the statements' ranges.
 **mistake_a:** A requires (1) alone sufficient — but yes/no split.
 **mistake_b:** B requires (2) alone sufficient — same split.
 **mistake_d:** D requires each alone — neither works.
@@ -1190,7 +1191,8 @@ At a conference of 80 attendees, each person drinks coffee, tea, or both. How ma
 
 **answer:** C
 **fastest_path:** Only-coffee = total-coffee − both. (1) gives total-coffee; (2) gives both. Together: 50−15=35.
-**explanation:** Only-coffee subtracts the overlap from total-coffee. (1): coffee=50, no overlap data. Insufficient. (2): both=15, no total. Insufficient. Together: 50−15=35. Sufficient. Answer C.
+**situation:** Of 80 attendees who each drink coffee, tea, or both, the question asks how many drink only coffee. Statement (1): 50 drink coffee; statement (2): 15 drink both.
+**reasoning:** *Value DS — only-coffee = total-coffee − both.* Statement (1): coffee = 50 but no overlap — insufficient. Statement (2): both = 15 but no coffee total — insufficient. Together: 50 − 15 = 35 — sufficient, answer C. The "everyone drinks at least one" setup is what makes only-coffee = total-coffee − both.
 **mistake_a:** A requires (1) alone sufficient — but overlap unknown.
 **mistake_b:** B requires (2) alone sufficient — but total unknown.
 **mistake_d:** D requires each alone — neither works.
@@ -1219,7 +1221,8 @@ A rectangle has area 48. What is its perimeter?
 
 **answer:** A
 **fastest_path:** (1) L=3W and LW=48 → W=4, L=12 → perimeter 32. (2) integer pairs (1,48),(2,24),…(6,8) give different perimeters. A.
-**explanation:** (1): L=3W with LW=48 → 3W²=48 → W=4, L=12 → P=32. Sufficient. (2): integer pairs with product 48 yield perimeters 98, 52, 38, 32, 28 — all different. Insufficient. Answer A.
+**situation:** A rectangle has area 48; the question asks for its perimeter. Statement (1): length = 3 × width; statement (2): length and width are both integers.
+**reasoning:** *Value DS — is the perimeter pinned down?* Statement (1): L = 3W with LW = 48 gives 3W² = 48, so W = 4, L = 12, perimeter = 32 — sufficient. Statement (2): integer factor pairs of 48 — (1,48), (2,24), (3,16), (4,12), (6,8) — give perimeters 98, 52, 38, 32, 28, all different — insufficient. Since (1) alone fixes the shape, the answer is A. A fixed area plus integer dimensions still permits many factor pairs; a length-to-width ratio is what determines the shape.
 **mistake_b:** B requires (2) alone sufficient — but multiple integer pairs.
 **mistake_c:** C-trap — adding (2) doesn't help; (1) already pins it.
 **mistake_d:** D requires each alone — (2) fails.
@@ -1248,7 +1251,8 @@ A car travels from town X to town Y. What was its average speed for the entire t
 
 **answer:** C
 **fastest_path:** Avg speed = total distance / total time. (1) gives distance only. (2) gives total time only (5h). Together: 180/5 = 36 mph.
-**explanation:** (1): 180 miles, no time. Insufficient. (2): "first half" = first half of distance, so total time = 2+3 = 5h. But distance unknown. Insufficient. Together: 180 miles / 5 hours = 36 mph. Sufficient. Answer C.
+**situation:** A car travels from X to Y; the question asks its average speed for the whole trip. Statement (1): it traveled 180 miles; statement (2): the first half took 2 hours and the second half took 3 hours.
+**reasoning:** *Value DS — average speed = total distance / total time.* Statement (1): 180 miles, no time — insufficient. Statement (2): total time = 2 + 3 = 5 hours, but distance unknown — insufficient. Together: 180 / 5 = 36 mph — sufficient, answer C. Distance plus time always determines average speed; stop once you have both.
 **mistake_a:** A requires (1) alone sufficient — but no time given.
 **mistake_b:** B requires (2) alone sufficient — but no total distance.
 **mistake_d:** D requires each alone — neither has both.
@@ -1277,7 +1281,8 @@ The sequence s_1, s_2, s_3, ... is defined by s_n = s_(n-1) + s_(n-2) for all n 
 
 **answer:** C
 **fastest_path:** Recurrence s_n = s_{n−1} + s_{n−2}. Express s_7 in terms of s_1, s_2: s_7 = 5s_1 + 8s_2. (1) s_1+s_2=5; (2) s_1+2s_2=8. Together: solve uniquely.
-**explanation:** Fibonacci-like: s_3=s_1+s_2, s_4=s_1+2s_2, s_5=2s_1+3s_2, s_6=3s_1+5s_2, s_7=5s_1+8s_2. (1): s_1+s_2=5 — many s_7 values. Insufficient. (2): s_1+2s_2=8 — many. Insufficient. Together: subtract → s_2=3, s_1=2 → s_7=10+24=34 < 40. Definite "no". Sufficient. Answer C.
+**situation:** A Fibonacci-like sequence has s_n = s_{n−1} + s_{n−2} for n ≥ 3; the question asks whether s₇ > 40. Statement (1): s₃ = 5; statement (2): s₄ = 8.
+**reasoning:** *Yes/no DS — express s₇ via the two seeds: s₇ = 5s₁ + 8s₂.* Statement (1): s₃ = s₁ + s₂ = 5 is one equation with many s₇ values — insufficient. Statement (2): s₄ = s₁ + 2s₂ = 8 is one equation — insufficient. Together: subtracting gives s₂ = 3, s₁ = 2, so s₇ = 10 + 24 = 34 < 40, a definite no — sufficient, answer C. A two-term linear recurrence is fixed by two initial values, and a definite "no" is sufficient.
 **mistake_a:** A requires (1) alone sufficient — but s_7 depends on both s_1 and s_2.
 **mistake_b:** B requires (2) alone sufficient — same issue.
 **mistake_d:** D requires each alone — neither has both initial values.
@@ -1306,7 +1311,8 @@ In the xy-plane, the circle C has center (h, k) and radius r. Does the point (3,
 
 **answer:** E
 **fastest_path:** Point inside iff distance(center, point) < r. (1) origin on circle → h²+k²=r² (many configurations). (2) center at origin (no radius). Together: r=0, degenerate.
-**explanation:** Point (3,4) inside iff (3−h)²+(4−k)²<r². (1): h²+k²=r². Try (h,k,r)=(3,4,5): yes. (h,k,r)=(−10,0,10): no. Insufficient. (2): center=(0,0), radius unknown. r=10 yes; r=2 no. Insufficient. Together: center origin AND origin on circle → r=0 (degenerate). No valid circle; DS is unanswerable in standard convention. Answer E.
+**situation:** Circle C has center (h, k) and radius r; the question asks whether (3, 4) lies inside it. Statement (1): the circle passes through the origin; statement (2): h = 0 and k = 0.
+**reasoning:** *Yes/no DS — (3, 4) is inside iff (3 − h)² + (4 − k)² < r².* Statement (1): the origin on the circle means h² + k² = r², which allows both answers — (h, k, r) = (3, 4, 5) gives yes, (−10, 0, 10) gives no — insufficient. Statement (2): center at the origin but unknown r — r = 10 (yes) vs r = 2 (no) — insufficient. Together: a center at the origin that also passes through the origin forces r = 0, a degenerate non-circle with no valid case to evaluate — so the answer is E. Contradictory or degenerate combined information is insufficient, not sufficient.
 **mistake_a:** A requires (1) alone sufficient — but configurations split yes/no.
 **mistake_b:** B requires (2) alone sufficient — but radius unknown.
 **mistake_c:** C says together sufficient — but combined info is inconsistent (zero-radius is degenerate).
