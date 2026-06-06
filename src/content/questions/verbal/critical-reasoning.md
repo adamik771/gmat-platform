@@ -2985,7 +2985,8 @@ The supporters' argument above relies on which of the following assumptions?
 
 **answer:** B
 **fastest_path:** Argument: raise age → fewer accidents. Required: raising the age doesn't push young people into *unlicensed, untrained* driving (which would increase accidents).
-**explanation:** Negate (B): unlicensed teens drive without training → accident totals rise → conclusion fails. (B) is the necessary substitution-block.
+**situation:** A legislature proposes raising the minimum driving age from 16 to 18 to cut young-driver accidents, arguing 18-year-old new drivers are cognitively safer and that, even allowing for new-driver inexperience at either age, the change will reduce overall young-driver accidents.
+**reasoning:** *Find a required assumption.* *What must hold for raising the age to actually reduce accidents?* The conclusion assumes the change won't simply push young people into unlicensed, untrained driving. Negate (B): many drive unlicensed and untrained, accident totals rise, and the conclusion fails — so (B) is required. (A) is irrelevant to new-driver rates, (C) reverses the supporters' point, (D) parental discouragement isn't load-bearing, and (E) "only factor" is too strong (they claimed cognition is *a* factor).
 **mistake_a:** Irrelevant to new-driver rates.
 **mistake_c:** *Reverses* — goes against supporters.
 **mistake_d:** Parental discouragement isn't load-bearing.
@@ -3014,7 +3015,8 @@ Which of the following best identifies a flaw in the safety director's reasoning
 
 **answer:** B
 **fastest_path:** Flaw: *scope shift*. Data covers the *downtown commercial district*; conclusion claims *citywide* effect. The two scopes don't match.
-**explanation:** Director's evidence is downtown-only. Conclusion is about citywide crime reduction. (B) names the scope-shift directly. The downtown 22% drop doesn't license the city-level claim.
+**situation:** A safety director cites a 22% crime drop in the downtown commercial district and concludes the new neighborhood policing program has effectively reduced crime citywide.
+**reasoning:** *Name the logical error.* *Do the evidence and the conclusion cover the same area?* No — the data are downtown-only, but the conclusion claims a citywide effect. (B) names the scope shift: a 22% downtown drop doesn't license a city-level reduction claim. (A) measurement reliability is a side concern, (C) a definitional change is secondary, (D) nearby cities are off-scope, and (E) addresses future continuation, not the area mismatch.
 **mistake_a:** Measurement-reliability concern, not the inferential leap.
 **mistake_c:** Definitional change — possible but secondary.
 **mistake_d:** Off-scope.
@@ -3042,7 +3044,8 @@ Which of the following best identifies a flaw in the researchers' reasoning?
 
 **answer:** B
 **fastest_path:** Flaw: *reverse causation*. Walking ↔ lower anxiety is consistent with either direction. Owners with less anxiety may simply be *more able* to walk daily.
-**explanation:** Correlation without temporal or experimental ordering can't decide causal direction. (B) names this directly. Maybe walking lowers anxiety, but maybe pre-existing low anxiety makes people more capable of daily walking.
+**situation:** A study finds dog owners who walk their dogs daily report less chronic anxiety than those who don't, and researchers conclude daily dog-walking reduces owners' anxiety.
+**reasoning:** *Name the logical error.* *Can this correlation fix the direction of causation?* No. (B) names reverse causation: lower-anxiety owners may simply be more able to walk their dogs daily, so the anxiety difference could cause the walking rather than result from it. (A) pre-acquisition baselines and (E) self-report reliability are secondary, and (C) other pets and (D) dog breed or size are peripheral.
 **mistake_a:** Pre-study design gap — real, but secondary.
 **mistake_c:** Comparison group, peripheral.
 **mistake_d:** Breed/size — methodological detail.
@@ -3070,7 +3073,8 @@ Which of the following, if true, most strengthens the company's attribution?
 
 **answer:** B
 **fastest_path:** Critics name *price cut* as the alternative cause. Strengthen by *direct weighing*: customers cite service over price in retention surveys. (B).
-**explanation:** Customers' own stated reasons rank service over price. That's the strongest direct evidence that the service expansion (not price) drove retention. (B) defeats the named alternative.
+**situation:** A company credits a 40% retention rise to its expanded customer-service team (more agents, new protocols); critics say the simultaneous subscription-price cut is the likelier cause.
+**reasoning:** *Strengthen against a named alternative cause.* *What would show service, not the price cut, drove retention?* (B) supplies direct evidence: in post-renewal surveys, most retained customers cited helpful support as a key reason while far fewer cited lower price — ranking the candidate causes in the company's favor. (A) a stable prior baseline is weaker context, (C) a modest price cut only infers magnitude, (D) competitors are irrelevant, and (E) generic satisfaction isn't a retention cause.
 **mistake_a:** Stable baseline is helpful context but weaker.
 **mistake_c:** Price cut being modest is suggestive but doesn't directly attribute.
 **mistake_d:** Competitors irrelevant to this firm's retention.
@@ -3098,7 +3102,8 @@ Which of the following, if true, most weakens management's conclusion?
 
 **answer:** B
 **fastest_path:** Sales spiked during demo week. Weaken by *naming a co-occurring alternative cause*: newspaper feature ran the same week. Either could explain the 35% lift.
-**explanation:** Two interventions ran simultaneously — the in-store demo and a newspaper feature. (B) introduces the alternative cause: the feature could have driven sales independently. Demo's claim isn't isolated.
+**situation:** A bakery's new sourdough sold 35% more during its in-store baking-demo week than a comparable non-event week, and management credits the demo and plans quarterly events.
+**reasoning:** *Weaken a causal attribution.* *What fact would show the demo wasn't what drove the 35%?* (B) names a co-occurring alternative cause: the local newspaper ran a featured article on the loaf the same week, which could have driven the spike independently — so the demo isn't isolated. (A) weakens the demo's plausibility but adds no competing cause, (C) loyalty growth fits either story, (D) attendee share is ambiguous, and (E) is about other bakeries, not this one.
 **mistake_a:** Weakens event plausibility but doesn't introduce a competing cause.
 **mistake_c:** Loyalty growth is consistent with both stories.
 **mistake_d:** Attendee share, ambiguous.
@@ -3126,7 +3131,8 @@ The chief engineer's argument depends on which of the following assumptions?
 
 **answer:** B
 **fastest_path:** Argument: more frequent checks → better accuracy. Required: the checks themselves don't *introduce more error* than they prevent. (B) is the bridge.
-**explanation:** Net accuracy = drift caught − error introduced by checks. Negate (B): checks add measurement variability that exceeds the drift they catch → no net improvement → conclusion fails.
+**situation:** A sensor maker argues switching from quarterly to monthly calibration checks will improve long-term accuracy, since most significant drift occurs over 2–3 months, so monthly checks catch drift before it affects readings.
+**reasoning:** *Find a required assumption.* *What must hold for more frequent checks to yield net better accuracy?* Net accuracy is drift caught minus any error the checks themselves introduce. Negate (B): the extra checks add measurement variability exceeding the drift they catch, so there's no net improvement — making (B) required. (A) cost and (E) automation aren't about accuracy, (C) customer applications isn't a premise, and (D) the origin of the quarterly schedule is beside the point.
 **mistake_a:** Cost ≠ accuracy.
 **mistake_c:** Customer applications ≠ argument premise.
 **mistake_d:** Rationale for current schedule, not the net effect.
@@ -3154,7 +3160,8 @@ Which of the following, if true, most helps to explain the unexpected increase i
 
 **answer:** C
 **fastest_path:** Paradox: free vaccines + 18% *more* reported cases. Resolve via *detection effect*: the program also expanded testing capacity. More testing = more *reported* cases, even if actual incidence fell.
-**explanation:** Reported ≠ actual. (C) shows the program bundled testing expansion with vaccinations. Many cases that would have been undiagnosed before now get reported. Actual incidence may have fallen; reporting just captures more of it.
+**situation:** After a free flu-vaccination program launched in September, reported flu cases by March rose 18% versus the prior year, surprising officials who expected fewer cases.
+**reasoning:** *Resolve the paradox — explain both facts at once.* *How could free vaccination coincide with more reported cases?* Reported is not the same as actual. (C) supplies the detection effect: the program also expanded flu testing and case-reporting capacity, so many cases that previously went undetected are now reported — actual incidence may have fallen while reporting captured more of it. (A) 60% efficacy means *fewer* infections, (B) +3% population is too small for an 18% jump, (D) refusal is minor, and (E) a mild prior year is a weaker partial contributor.
 **mistake_a:** 60% effective explains *fewer* infections, not more reports.
 **mistake_b:** Population +3% too small for an 18% rise.
 **mistake_d:** Vaccine refusal is a minor factor.
@@ -3182,7 +3189,8 @@ The answer to which of the following questions would be most useful in evaluatin
 
 **answer:** C
 **fastest_path:** 10-year payback rests on assumed sunlight exposure. Evaluate by *testing the exposure assumption*. (C) does it directly.
-**explanation:** Payback projection requires the city's roofs to actually receive the sunlight assumed in the calculation. (C) tests this premise. If exposure is below assumed, payback stretches; if at/above, claim holds.
+**situation:** A city plans rooftop solar on all municipal buildings, claiming a 10-year payback from electricity savings; opponents say the roofs aren't well oriented to capture sunlight efficiently.
+**reasoning:** *Identify the decisive test.* *What would tell us whether the 10-year payback holds?* The projection rests on assumed sunlight exposure, which opponents dispute. (C) tests exactly that: do the roofs actually receive sunlight comparable to the payback projection's assumptions? Below-assumed exposure stretches payback; at or above it, the claim holds. (A) building count, (D) other cities, and (E) the current rate (likely already in the model) don't test the load-bearing input; (B) panel lifespan addresses longer-term ROI, not the 10-year claim.
 **mistake_a:** Count question, not evaluation.
 **mistake_b:** Useful for longer-term economics, not the 10-year claim.
 **mistake_d:** External reference, not this city.
@@ -3211,7 +3219,8 @@ If both the department's measurement and the residents' complaints are accurate,
 
 **answer:** B
 **fastest_path:** Two facts: throughput +22% at intersections; commute times worse on side streets. Both true via *different scopes*: department measures intersection only; residents measure full route.
-**explanation:** Department's metric (throughput at intersection) and residents' metric (full-route commute time) measure different things. Roundabout can clear faster while side streets back up further. (B) reconciles via scope.
+**situation:** After converting intersections to roundabouts, a transportation department reports vehicle throughput at those intersections rose 22% even at peak, yet nearby residents say side streets now back up and their full-route commute times increased.
+**reasoning:** *Draw the inference that reconciles both true findings.* *How can intersection throughput rise while full-route commutes worsen?* The two measure different scopes. (B) names it: the department's throughput figure captures only the intersections themselves, not the effect on side streets and the broader network — so a roundabout can clear faster while side streets back up. (A) "always" overgeneralizes, (C) dismisses residents' data, (D) is a policy prescription, and (E) asserts an unsupported equality.
 **mistake_a:** *Extreme* — "always" overgeneralizes.
 **mistake_c:** Dismisses residents' data without justification.
 **mistake_d:** Policy prescription, not inference.
@@ -3239,7 +3248,8 @@ Which of the following best identifies a flaw in the parks department's reasonin
 
 **answer:** A
 **fastest_path:** Flaw: *lab-to-field generalization* — controlled lab conditions don't transfer to outdoor public-garden conditions.
-**explanation:** Teacher's 8-foot average came from controlled lab plants. Parks department projects the same height for uncontrolled outdoor gardens (variable soil, weather, pests). The transfer is the inferential leap.
+**situation:** Citing a teacher's finding that 30 lab-grown corn plants averaged 8 feet, a parks department announces that corn in its public gardens can be expected to average 8 feet.
+**reasoning:** *Name the logical error.* *Do controlled lab results transfer to outdoor gardens?* (A) names the flaw: the department assumes the public gardens' uncontrolled outdoor conditions will match the teacher's controlled lab conditions, when soil, weather, and pests differ. (B) measurement accuracy is less central, (C) plant count is an implementation detail, (D) soil variation is one specific factor under the broader transfer flaw, and (E) is false of any average (averages already imply variation).
 **mistake_b:** Measurement accuracy — less central.
 **mistake_c:** Implementation detail.
 **mistake_d:** Plant-to-plant variation among "average" results — already implicit in averages.
@@ -3267,7 +3277,8 @@ Which of the following, if true, most strengthens management's argument?
 
 **answer:** C
 **fastest_path:** Critics doubt employees will switch. Strengthen with *direct local-survey evidence*: 35% of solo drivers said they'd switch. (C).
-**explanation:** Internal survey at *this firm* gives direct evidence of latent demand. The critics' objection (peer firms' shuttles failed) is partially answered by showing this firm's commuters have stated willingness to switch.
+**situation:** A logistics firm will run free suburban-hub shuttles to its downtown HQ to ease parking overcrowding by shifting solo drivers; critics cite peer-firm shuttle experiments where few employees switched, predicting only added cost.
+**reasoning:** *Strengthen against a "few will switch" objection.* *What would show this firm's employees actually will switch?* (C) supplies direct local evidence: an internal survey found ~35% of solo-driving employees would switch if the shuttle served their hub on their schedule — concrete latent demand at this firm, answering the peer-firm objection. (A) demographic similarity to peers is analogical and weaker, (B) is a national trend, (D) cost answers a different objection, and (E) suburban-hub parking is irrelevant to HQ demand.
 **mistake_a:** Analogical support — weaker than direct local evidence.
 **mistake_b:** National trend, not this firm.
 **mistake_d:** Cost — answers a different objection.
