@@ -150,6 +150,15 @@ Multiply: 3 × 2 × 1 = **6**. This is 3! (read "three factorial").
 
 *Memorize these:* 3! = 6, 4! = 24, 5! = 120, 6! = 720, 7! = 5040. They appear in answer choices constantly. 8! = 40,320 — you won't compute it on the clock, but you'll recognize it.
 
+**Micro-drill.** Four slot-filling problems — no formulas, just multiply:
+
+1. Five books on a shelf. How many orders? → ___
+2. Three people take the roles of speaker, timer, and notetaker. How many assignments? → ___
+3. A four-digit PIN uses the digits 1–4 with no repetition. How many PINs? → ___
+4. Two books from a shelf of 5 are placed side-by-side on a display (left vs. right matters). How many ways? → ___
+
+Answers: (1) **120** — 5 × 4 × 3 × 2 × 1. (2) **6** — 3 × 2 × 1; three named slots, same logic. (3) **24** — 4 × 3 × 2 × 1. (4) **20** — 5 choices for the left slot, 4 for the right; only 2 slots filled.
+
 > **Self-explanation prompt.** Before you look at the check question, explain in one sentence: *why* does each additional slot have one fewer choice than the slot before it? If you can say "because each previous slot already used up one object," you've internalized the rule. Don't move on until you can say it.
 
 ## @permutations
@@ -268,16 +277,25 @@ Example: C(9, 3) − C(5, 3) = 84 − 10 = **74**. Counting "exactly 1, 2, 3 wom
 
 ### Alternating patterns
 
-When objects of two types must strictly alternate (men/women, red/blue, vowel/consonant), the key insight is that there are **two possible starting patterns** and each is counted independently.
+When two types must strictly alternate in a line, count the valid starting-pattern options first.
 
-**Worked example.** 4 men and 4 women seated in a row, men and women must alternate.
+**Equal groups — two starting patterns.**
 
-Two patterns exist: MWMWMWMW and WMWMWMWM.
+**Worked example.** 3 men and 3 women in a row, alternating genders.
 
-- For each pattern: 4! ways to assign the men to M-slots × 4! ways to assign women to W-slots = 24 × 24 = 576
-- Two patterns: 2 × 576 = **1,152**
+Valid patterns: MWMWMW and WMWMWM — exactly 2. For each:
+- Men fill the 3 M-slots: 3! = 6 ways
+- Women fill the 3 W-slots: 3! = 6 ways
 
-**Trap to watch.** Students who count only one pattern (e.g., only "men go first") get exactly half the right answer. Always ask: can the other group start instead?
+Total: 2 × 6 × 6 = **72**. Quick formula: **2 × (n!)²** where n is each group's size.
+
+**Unequal groups — one starting pattern.**
+
+When one group is larger (e.g., 4 men, 3 women), only one starting pattern is possible — MWMWMWM. The larger group must occupy both the first and the last position.
+
+Total: 1 × 4! × 3! = 24 × 6 = **144**.
+
+**Trap to watch.** With equal groups, counting only one pattern gives exactly half the right answer. Always ask: can the other group start? With unequal groups, only one pattern works — no factor of 2.
 
 ### Compound restrictions
 
@@ -290,29 +308,6 @@ When a problem requires one pair to be adjacent AND another pair to not be adjac
 - Net (A and B together, C and D not together): 240 − 96 = **144**
 
 **Trap to watch.** The most common error is computing the "required" constraint correctly (240) and then forgetting to remove the sub-case that also satisfies the "forbidden" constraint. One subtraction step is all it takes — but students skip it under time pressure.
-
-**Alternating arrangements.** When two types must strictly alternate in a line — MFMFMF or ABABAB — the approach is:
-
-1. Count the number of valid patterns.
-2. For each pattern, count the arrangements of each type in its allotted slots.
-3. Multiply.
-
-**Example.** 3 men (M) and 3 women (W) sit in a row of 6 chairs, alternating genders. How many arrangements?
-
-Valid patterns are MWMWMW and WMWMWM — exactly 2.
-
-For each pattern:
-- 3 men fill the "M" slots: 3! = 6 ways
-- 3 women fill the "W" slots: 3! = 6 ways
-- Per pattern: 6 × 6 = 36
-
-Total: 2 × 36 = **72**
-
-Quick formula for equal groups: **2 × (n!)²** where n is the size of each group.
-
-**What if the groups are unequal?** If you have 4 men and 3 women alternating, only the MWMWMWM pattern works (the larger group must start and end). One pattern, so: 1 × 4! × 3! = 24 × 6 = **144**.
-
-**Alternating at a round table.** Circular + alternating: fix one person to eliminate rotational duplicates, then arrange the remaining n − 1 in the alternating pattern. For 3 men and 3 women at a round table: fix one man, place 2 remaining men in 2! = 2 ways, then fill the 3 women's gaps in 3! = 6 ways. Total: 2 × 6 = **12**. (No factor of 2 — rotational equivalence collapses the two patterns into each other.)
 
 ## @circular
 
@@ -340,6 +335,19 @@ The glue trick applies in circular arrangements too. Treat the required-adjacent
 - Total: 120 × 2 = **240**
 
 **Trap to watch.** Forgetting the × 2 internal ordering of the block is the most common error. The two people in the block can swap seats — that is a distinct arrangement.
+
+### Circular + alternating
+
+Combining a circular arrangement with an alternating gender constraint: fix one member to eliminate rotational duplicates, then count the remaining arrangements.
+
+**Worked example.** 3 men and 3 women at a round table, alternating genders.
+
+- Fix one man (removes rotational equivalence): 1 way.
+- Arrange the 2 remaining men in the 2 other M-seats: 2! = 2 ways.
+- Arrange 3 women in the 3 W-seats: 3! = 6 ways.
+- Total: 2 × 6 = **12**.
+
+There is no factor of 2 for two starting patterns here — fixing the first man makes both patterns rotationally equivalent, so they collapse into a single count.
 
 **Bracelets and necklaces** (rare on GMAT): circular AND flippable, meaning mirror images are identical. Divide by 2: (n − 1)! / 2. If you see this, it is a 745+ question — note the extra division and move on.
 
@@ -389,11 +397,19 @@ This is different from arrangement problems. Arrangement problems use distinct o
 
 ### Stars and bars — no minimum constraint
 
+**Build the intuition before the formula.** Line up n identical stars in a row. To divide them among k children, place k − 1 dividers somewhere in the sequence. Each placement is one valid distribution.
+
+For 4 stars (candies) among 3 children — 2 dividers needed:
+
+    ★ | ★ ★ | ★     →  child 1 gets 1, child 2 gets 2, child 3 gets 1
+    ★ ★ | ★ ★ |      →  child 1 gets 2, child 2 gets 2, child 3 gets 0
+    | ★ ★ ★ ★ |      →  child 1 gets 0, child 2 gets 4, child 3 gets 0
+
+The stars and dividers share n + k − 1 positions total. You choose k − 1 of those positions for the dividers. That choice is C(n + k − 1, k − 1).
+
 To distribute n identical candies among k distinct children (each child may get zero):
 
 **C(n + k − 1, k − 1)**
-
-**The mental model.** Imagine n identical stars ( ★ ★ ★ ... ) in a row, separated by k − 1 dividers ( | ). The dividers split the row into k groups — one per child. Choosing where to place the k − 1 dividers among n + k − 1 total positions is equivalent to choosing a distribution.
 
 **Worked example.** Distribute 6 identical candies among 4 distinct children. No minimum.
 
@@ -480,9 +496,41 @@ C(n, k) counts the arrangements of k successes in n positions; p^k gives the pro
 
 > **Self-explanation prompt.** Why does C(n, k) appear in the binomial formula? Because the k successes can occur in any of C(n, k) orderings across the n trials — and the probability is the same for each ordering. If you can explain that, the formula stops being something to memorize and starts being something to re-derive in 5 seconds.
 
-> **Self-explanation prompt.** Why does swapping two identical letters not produce a new arrangement? If you can say "because the result looks the same — the string is unchanged — so it's not a distinct outcome," you understand why we divide. The denominator doesn't subtract anything; it cancels out the overcounting that straight factorial committed.
+### Conditional probability — dependent events
 
-> **Recall check.** Write the multiset formula from memory. Then apply it to BANANA (6 letters: 1 B, 3 A's, 2 N's). The answer is 6! / (1! × 3! × 2!) = 720 / 12 = 60. If you got it right, you're ready for the problem set. If not, re-read the formula once more, then close it and recompute without looking.
+**P(A | B)** is the probability of A *given* that B has already occurred. B's occurrence changes the pool you're counting from.
+
+You will almost never use the algebraic formula on the GMAT. Instead, apply the logic: after something is drawn or fixed, adjust the remaining counts.
+
+**Example.** A bag holds 3 red and 2 blue balls. One red is drawn and kept. What is P(next draw is red)?
+
+Pool is now 2 red, 2 blue — 4 total. P(red) = 2/4 = **1/2**. The "given" clause just says: start counting from the updated pool.
+
+This is why "without replacement" problems feel different from "with replacement" ones — the pool shrinks (and the probabilities shift) with every draw.
+
+### Mutually exclusive events
+
+Two events are **mutually exclusive** if they cannot both occur on the same trial.
+
+**P(A or B) = P(A) + P(B)** [mutually exclusive only]
+
+**Example.** Drawing a red or a black card in one draw: P(red or black) = 1/2 + 1/2 = 1. They can't overlap.
+
+When events *can* overlap — when both could occur at once — you must subtract the double-counted intersection:
+
+**P(A or B) = P(A) + P(B) − P(A and B)**
+
+**Example.** P(ace or heart) from a standard deck:
+
+- P(ace) = 4/52
+- P(heart) = 13/52
+- P(ace of hearts) = 1/52 — counted in both groups above
+
+P(ace or heart) = 4/52 + 13/52 − 1/52 = **16/52 = 4/13**
+
+**Trap to watch.** Adding probabilities for overlapping events produces a number that is too high — sometimes over 1. Before adding, ask: can both events happen simultaneously? If yes, subtract the overlap.
+
+> **Self-explanation prompt.** Why does the complement rule P(at least 1) = 1 − P(none) always work? Because "at least 1" and "none" are mutually exclusive AND exhaustive — every outcome lands in exactly one of the two groups, so their probabilities must sum to 1. If you can state that, you understand why the complement is always safe.
 
 ## @decision
 
@@ -524,6 +572,9 @@ Every combinatorics question on the GMAT reduces to four decisions. Run through 
 | "Letters of [repeated word]" | Multiset | n! / (r₁! × r₂! × …) |
 | "Round-robin: every pair plays once" | Combination | C(n, 2) |
 | "Probability, drawn at random" | Combinations as ratio | C(favorable) / C(total) |
+| "Given that X already occurred…" | Conditional probability | Adjust remaining pool counts |
+| "A or B (cannot both happen)" | Mutually exclusive | P(A) + P(B) |
+| "A or B (can both happen)" | Inclusive or | P(A) + P(B) − P(A and B) |
 
 **What to do next.**
 
