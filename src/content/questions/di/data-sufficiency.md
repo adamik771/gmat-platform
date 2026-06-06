@@ -21,7 +21,8 @@ What is the value of x?
 
 **answer:** A
 **fastest_path:** Value DS — looking for *unique* x. (1) is one equation in one variable → unique. (2) names a range → many. A.
-**explanation:** (1): 3x+7=22 → x=5. Unique value, sufficient. (2): x ∈ {1,2,…,9}. Nine candidates, not sufficient. Answer A.
+**situation:** The question asks for the single value of x. Statement (1) gives 3x + 7 = 22; statement (2) says x is a positive integer less than 10.
+**reasoning:** *Value DS — is x pinned to one number?* Statement (1): 3x + 7 = 22 solves uniquely to x = 5 — sufficient. Statement (2): x could be any of 1 through 9, nine candidates — not sufficient. Since (1) alone settles the value and (2) alone does not, the answer is A. Don't combine "for safety" once a single statement nails a unique value.
 **mistake_b:** B requires (2) alone sufficient — but (2) leaves 9 possible values.
 **mistake_c:** C-trap — adding (2) doesn't help; (1) alone already nails x=5.
 **mistake_d:** D requires *each* alone sufficient — but (2) leaves 9 candidates.
@@ -50,7 +51,8 @@ Is the integer n divisible by 6?
 
 **answer:** C
 **fastest_path:** Yes/no DS on divisibility. 6 = 2 × 3 (coprime). Each statement gives one factor → both together nail divisibility by 6.
-**explanation:** (1) div by 3: n=9 no, n=12 yes — split. (2) div by 2: n=8 no, n=12 yes — split. Together: div by 2 *and* 3, with 2,3 coprime → div by 6. Sufficient. Answer C.
+**situation:** The question asks whether integer n is divisible by 6. Statement (1) says n is divisible by 3; statement (2) says n is divisible by 2.
+**reasoning:** *Yes/no DS — is n divisible by 6 = 2 × 3?* Statement (1) alone: n = 9 (no) vs n = 12 (yes) — split, insufficient. Statement (2) alone: n = 8 (no) vs n = 12 (yes) — split, insufficient. Together: n is divisible by both 2 and 3, and since 2 and 3 are coprime, n must be divisible by their product 6 — sufficient, so the answer is C. The composition works only because the factors are coprime (divisible by 4 and 6 does not give 24).
 **mistake_a:** A requires (1) alone sufficient — n=9 vs n=12 gives different yes/no.
 **mistake_b:** B requires (2) alone sufficient — same issue (n=8 vs n=12).
 **mistake_d:** D needs each alone — neither works alone.
@@ -79,7 +81,8 @@ A store sells a jacket at a discount off the original price. What is the discoun
 
 **answer:** C
 **fastest_path:** Need price × (1 − discount). Each statement gives only one factor.
-**explanation:** (1): Original $120, no discount % → can't compute. (2): 25% off, no original → can't compute. Together: $120 × 0.75 = $90. Sufficient. Answer C.
+**situation:** The question asks for the discounted price of a jacket. Statement (1) gives the original price ($120); statement (2) gives the discount (25% off).
+**reasoning:** *Value DS — can we compute price × (1 − discount)?* Statement (1) gives the base but no discount rate — insufficient. Statement (2) gives the rate but no base — insufficient. Together: $120 × 0.75 = $90 — sufficient, so the answer is C. A percentage value needs both a base and a rate; when the statements split them, the answer is C.
 **mistake_a:** A requires (1) alone sufficient — but no discount %.
 **mistake_b:** B requires (2) alone sufficient — but no base price.
 **mistake_d:** D needs each alone — neither has both pieces.
@@ -108,7 +111,8 @@ In a class, the ratio of boys to girls is r. How many boys are in the class?
 
 **answer:** C
 **fastest_path:** Need ratio AND total to get a count. Statements split the two; together they suffice.
-**explanation:** (1): 3:4 ratio without total → infinite scalings. (2): 28 students without ratio → can't decompose. Together: boys = (3/7) × 28 = 12. Sufficient. Answer C.
+**situation:** The question asks how many boys are in the class. Statement (1) gives the boys-to-girls ratio (3/4); statement (2) gives the total (28 students).
+**reasoning:** *Value DS — can we fix an actual count?* Statement (1) gives only a ratio, which scales to infinitely many counts — insufficient. Statement (2) gives only the total, with no way to split it — insufficient. Together: boys = (3/7) × 28 = 12 — sufficient, so the answer is C. A ratio never yields a count and a count never yields a split; you need both.
 **mistake_a:** A requires (1) alone sufficient — ratio alone gives no count.
 **mistake_b:** B requires (2) alone sufficient — total alone doesn't split into boys/girls.
 **mistake_d:** D needs each alone — neither has both pieces.
@@ -137,7 +141,8 @@ What is the median of a set of five different positive integers?
 
 **answer:** A
 **fastest_path:** (1) lists the five values → median is the third one. (2) gives mean only — many distinct-positive sets can share a mean.
-**explanation:** (1): Sorted set 3,7,11,15,19 → median = 11 (third). Sufficient. (2): mean = 11 admits many medians, e.g., {1,2,11,20,21} (med 11) vs {1,2,3,20,29} (med 3). Not sufficient. Answer A.
+**situation:** The question asks for the median of five different positive integers. Statement (1) lists them in order (3, 7, 11, 15, 19); statement (2) gives their mean (11).
+**reasoning:** *Value DS — is the middle value pinned down?* Statement (1) gives the sorted set outright, so the median is the third value, 11 — sufficient. Statement (2) gives only the mean, which many different sets share: {1, 2, 11, 20, 21} has median 11 while {1, 2, 3, 20, 29} has median 3 — insufficient. Since (1) alone settles it, the answer is A. When a statement hands you the sorted data, you already have the median; don't combine for appearance.
 **mistake_b:** B requires (2) alone sufficient — but mean doesn't pin median.
 **mistake_c:** C-trap — adding (2) doesn't help; (1) gives the median directly.
 **mistake_d:** D requires each alone — (2) fails as shown.
@@ -166,7 +171,8 @@ If a and b are nonzero numbers, is a/b > 0?
 
 **answer:** E
 **fastest_path:** Yes/no DS: a/b > 0 ⟺ a, b *same sign*. Test for both yes and no under each statement (and combined). Both possible → insufficient.
-**explanation:** (1): a−b>0 doesn't fix signs. a=5,b=2 (yes); a=3,b=−1 (no). Insufficient. (2): a+b>0 same: a=5,b=2 (yes); a=5,b=−2 (no). Insufficient. Together: a=3,b=1 (yes); a=5,b=−2 (a−b=7>0, a+b=3>0, but a/b=−5/2<0, no). Still split. Answer E.
+**situation:** For nonzero a and b, the question asks whether a/b > 0 — equivalently, whether a and b share the same sign. Statement (1) says a − b > 0; statement (2) says a + b > 0.
+**reasoning:** *Yes/no DS on signs — can we force same-sign or not?* Statement (1): a = 5, b = 2 gives yes, but a = 3, b = −1 gives no — insufficient. Statement (2): a = 5, b = 2 gives yes, but a = 5, b = −2 gives no — insufficient. Together: a = 3, b = 1 gives yes, while a = 5, b = −2 satisfies both (a − b = 7 > 0, a + b = 3 > 0) yet a/b < 0 — still split, so the answer is E. Sign questions live or die on remembering to test negative values.
 **mistake_a:** A requires (1) alone sufficient — but sign split shown.
 **mistake_b:** B requires (2) alone sufficient — same split.
 **mistake_c:** C says together sufficient — but yes/no split persists.
@@ -195,7 +201,8 @@ If k is a positive integer, is k² + k divisible by 4?
 
 **answer:** E
 **fastest_path:** Factor: k(k+1). When k is odd, k+1 is even — but is k+1 divisible by *4*? Depends on k. Test small odd k.
-**explanation:** (1) k odd: k=1 → 1·2=2, no; k=3 → 3·4=12, yes. Insufficient. (2) k prime > 2 ⟹ k odd. k=3 yes; k=5 → 30, no. Insufficient. Together: (2) implies (1), so combined info = (2) alone. Still insufficient. Answer E.
+**situation:** For positive integer k, the question asks whether k² + k = k(k+1) is divisible by 4. Statement (1) says k is odd; statement (2) says k is a prime greater than 2.
+**reasoning:** *Yes/no DS — is k(k+1) divisible by 4?* Statement (1) k odd: k = 1 gives 1·2 = 2 (no), k = 3 gives 3·4 = 12 (yes) — split, insufficient. Statement (2) k prime > 2 implies k is odd: k = 3 (yes) vs k = 5 → 30 (no) — split, insufficient. Together: statement (2) already implies statement (1), so combining adds no information and the split persists — the answer is E. When one statement contains the other, the combination equals the stronger statement alone.
 **mistake_a:** A requires (1) alone sufficient — but yes/no split.
 **mistake_b:** B requires (2) alone sufficient — same split.
 **mistake_c:** C requires together to add info — but (2) ⟹ (1), no new info.
@@ -224,7 +231,8 @@ Last year, Company X's revenue was $500,000. What was Company X's profit last ye
 
 **answer:** D
 **fastest_path:** Revenue is given. (1) gives expenses → profit by subtraction. (2) gives profit margin → profit directly. Both alone work.
-**explanation:** Revenue = $500K. (1): expenses = 0.80 × 500 = $400K → profit = $100K. Sufficient. (2): margin 20% → profit = 0.20 × 500 = $100K. Sufficient. Each alone works. Answer D.
+**situation:** Revenue was $500,000; the question asks for last year's profit. Statement (1) says expenses were 80% of revenue; statement (2) says the profit margin was 20% of revenue.
+**reasoning:** *Value DS — is profit computable from each statement, given revenue?* Statement (1): expenses = 0.80 × 500K = $400K, so profit = $100K — sufficient. Statement (2): profit = 0.20 × 500K = $100K directly — sufficient. Each statement alone determines profit, so the answer is D. That the two routes agree is irrelevant to the verdict; what matters is each alone suffices.
 **mistake_a:** A requires only (1) sufficient — but (2) also yields $100K.
 **mistake_b:** B requires only (2) sufficient — but (1) also yields $100K.
 **mistake_c:** C-trap — combining is unnecessary; either alone solves.
@@ -253,7 +261,8 @@ A solution is made by mixing chemical A and chemical B. What fraction of the sol
 
 **answer:** A
 **fastest_path:** Fraction A/(A+B) depends only on the *ratio*, not the volumes. (1) gives the ratio. Done.
-**explanation:** (1): A:B = 2:3 → fraction of A = 2/(2+3) = 2/5. Sufficient (no volumes needed). (2): B = 6L without ratio — can't determine fraction. Not sufficient. Answer A.
+**situation:** The question asks what fraction of a two-chemical solution is chemical A. Statement (1) gives the A:B ratio (2:3); statement (2) gives the volume of B (6 liters).
+**reasoning:** *Value DS — does the fraction A/(A+B) get pinned down?* Statement (1): the fraction depends only on the ratio, so A:B = 2:3 gives 2/(2+3) = 2/5 — sufficient, no volumes needed. Statement (2): an absolute volume of B without the ratio can't fix the fraction — insufficient. Since (1) alone settles it, the answer is A. Fractions of a mixture depend on ratios, not absolute amounts.
 **mistake_b:** B requires (2) alone sufficient — but absolute B doesn't fix the ratio.
 **mistake_c:** C-trap — adding (2) doesn't help; (1) already gives the fraction.
 **mistake_d:** D requires each alone — (2) fails.
@@ -282,7 +291,8 @@ What is the range of a set S of seven distinct integers?
 
 **answer:** C
 **fastest_path:** Range = max − min. Each statement gives one endpoint. Together they suffice.
-**explanation:** (1): min = −4, no max. (2): max = 18, no min. Together: 18 − (−4) = 22. Sufficient. Answer C.
+**situation:** The question asks for the range of a set of seven distinct integers. Statement (1) gives the smallest value (−4); statement (2) gives the largest (18).
+**reasoning:** *Value DS — is range = max − min determined?* Statement (1) gives only the minimum — insufficient. Statement (2) gives only the maximum — insufficient. Together: 18 − (−4) = 22 — sufficient, so the answer is C. The count and distinctness of the seven integers add nothing; only the two endpoints determine the range.
 **mistake_a:** A requires (1) alone sufficient — but no max given.
 **mistake_b:** B requires (2) alone sufficient — but no min given.
 **mistake_d:** D requires each alone — neither works.
