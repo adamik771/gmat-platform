@@ -1441,7 +1441,8 @@ Which of the following, if true, most seriously weakens the CEO's argument?
 
 **answer:** C
 **fastest_path:** CEO blames remote work for 40% patent decline. Weaken by *naming the headcount confounder*: R&D workforce halved during the same period. Half the inventors → fewer patents, regardless of where they sit.
-**explanation:** Argument claims remote work caused the patent drop. (C) reveals the dominant confounder: R&D headcount fell in half. Patent output drops mechanically when you have half the inventors — that has nothing to do with location.
+**situation:** A CEO mandates a five-day office return to boost innovation, citing 40% more patents per year in the three pre-pandemic in-office years than in the three remote years.
+**reasoning:** *Weaken a "policy → output drop" claim.* *What fact would explain the 40% patent decline without blaming remote work?* The argument assumes location drove the drop. (C) reveals the dominant confounder: the R&D workforce was roughly halved by pandemic layoffs — half the inventors mechanically produce fewer patents, wherever they sit. (A) an industry-wide decline doesn't pin down this company; (B) preference isn't output; (D) cites counterexamples to an aggregate trend; (E) is a metric quibble.
 **mistake_a:** Industry-wide decline is suggestive of macro factors, but doesn't explain *this* company's specific drop.
 **mistake_b:** Preference, not innovation output.
 **mistake_d:** Counterexamples don't undermine the aggregate trend.
@@ -1469,7 +1470,8 @@ Which of the following, if true, most strengthens the marketing director's argum
 
 **answer:** B
 **fastest_path:** Risk: heavy spenders self-selected into the app. Strengthen by *within-person comparison*. (B) does it: app users' spending rose 15% *vs their own pre-app spending*.
-**explanation:** Cross-section comparison is vulnerable to selection. (B) supplies the within-person design: same shoppers, before vs after signing up, 15% lift. That rules out "high spenders were already high spenders."
+**situation:** A grocery chain finds loyalty-app users spend 22% more per visit than non-users; the marketing director concludes the app causes the higher spending and plans a national rollout.
+**reasoning:** *Strengthen a "users spend more → the tool causes it" claim.* *What would rule out that heavy spenders simply self-select into the app?* The cross-sectional gap is vulnerable to selection, so the strongest support is a within-person comparison. (B) supplies it: the same users' spending rose 15% versus their own pre-signup spending, isolating the app's effect from who chose to use it. (A) promotion and (C) demographics aren't causal links; (D) is competitive context; (E) actually *reinforces* the selection worry.
 **mistake_a:** Promotional detail, not a causal link.
 **mistake_c:** Demographic trivia.
 **mistake_d:** Competitive context, not a causal mechanism.
@@ -1497,7 +1499,8 @@ Which of the following, if true, most seriously weakens the council's argument?
 
 **answer:** C
 **fastest_path:** Council attributes Oakdale's 30% drop to cameras. Weaken by *naming co-occurring interventions*. (C) does it: lower speed limit + new crosswalks installed at the same time.
-**explanation:** Three interventions launched simultaneously: cameras, lower limit, new crosswalks. Any one — or the combination — could have caused the 30% drop. Cameras alone aren't isolated, so the inference for Maple Avenue collapses.
+**situation:** Brenton's council proposes speed cameras on Maple Avenue to cut accidents, citing Oakdale's 30% accident drop after installing cameras on a similar road.
+**reasoning:** *Weaken a "worked there → will work here" claim.* *What fact would show Oakdale's 30% drop wasn't the cameras alone?* The argument credits the cameras for the drop. (C) names co-occurring interventions: Oakdale also lowered the speed limit 10 mph and added crosswalks in the same period, so any of them — or the combination — could explain the drop, breaking the inference for Maple Avenue. (A) endorsement and (D) driver complaints aren't causes; (B) budget is feasibility; (E) vandalism is irrelevant to accident rates.
 **mistake_a:** Endorsement isn't a cause.
 **mistake_b:** Budget feasibility, not efficacy.
 **mistake_d:** Driver attitudes, not accidents.
@@ -1525,7 +1528,8 @@ The conclusion above depends on which of the following assumptions?
 
 **answer:** B
 **fastest_path:** 68% vs 52% comparison → causal superiority claim. Required: groups didn't differ on baseline factors that affect BP. (B) is the bridge.
-**explanation:** Treatment-comparison logic only works if the two groups are comparable. Negate (B): groups differed on age, baseline BP, comorbidities → the gap could reflect those differences, not the drug.
+**situation:** A company claims its once-daily hypertension pill is superior because 68% of its trial patients hit target blood pressure versus 52% on the standard twice-daily pill, and concludes doctors should prescribe it first-line.
+**reasoning:** *Find a required assumption.* *What must hold for the 16-point gap to reflect the drug rather than the patients?* The superiority claim assumes the two groups were comparable on factors affecting blood pressure. Negate (B): the groups differed on age, baseline BP, or comorbidities, and the gap could be those differences, not the drug — so (B) is required. (A) manufacturing cost and (D) dosing preference aren't about efficacy; (C) "no side effects whatsoever" is too strong; (E) company history is reputational.
 **mistake_a:** Manufacturing economics — separate from efficacy.
 **mistake_c:** *Extreme* — "no side effects whatsoever" is too strong. Efficacy claim doesn't need that.
 **mistake_d:** Preference, not efficacy.
@@ -1553,7 +1557,8 @@ Which of the following can be most reliably concluded from the information above
 
 **answer:** B
 **fastest_path:** EV adoption 2% → 18% adds significant residential demand. Total residential rose only 4% with no other changes. Math reconciles only if *non-vehicle use per household declined* (efficiency).
-**explanation:** Constraint: significant new EV load + 4% total rise + no offsetting changes (size, weather, price). Logic forces non-EV consumption per household to have *fallen* enough to absorb most of the EV load. (B) names this efficiency improvement.
+**situation:** In Verida, EV-owning households rose from 2% to 18% (2015–2023), yet total residential electricity use rose only 4%, with no change in household size, weather, or pricing.
+**reasoning:** *Draw the text-forced inference from a math constraint.* *What has to give for a large new EV load to coincide with only a 4% total rise?* Significant EV charging was added, but total residential use barely moved and nothing else changed — so non-vehicle electricity use per household must have fallen to absorb most of the EV load (B), i.e., greater efficiency on average. (A) "less overall" overshoots, (C) compares to other countries never mentioned, (D) is a prediction, and (E) gasoline price is outside the electricity scope.
 **mistake_a:** *Extreme* — "consume less overall" overshoots; we don't know about absolute consumption levels.
 **mistake_c:** *Outside knowledge* — other countries weren't compared.
 **mistake_d:** Prediction, not inference.
@@ -1581,7 +1586,8 @@ Which of the following, if true, best resolves the apparent paradox?
 
 **answer:** B
 **fastest_path:** Paradox: rate ↓ 25%, count ↑ 15%. Resolution: population grew + composition shifted toward higher-risk groups (elderly). Both metrics make sense.
-**explanation:** Rate (per-person) fell, but count rose. The math reconciles when underlying population grows AND its composition shifts toward higher-risk demographics. (B) names both pieces.
+**situation:** The national flu hospitalization *rate* fell 25% over a decade, yet the total *number* of flu hospitalizations rose nearly 15%.
+**reasoning:** *Resolve the paradox — explain both facts at once.* *What could lower the per-person rate while raising the total count?* A growing, aging population does both. (B) supplies both pieces: the population grew substantially and its higher-risk elderly share grew even faster, so more people — and more high-risk people — lift the count even as the per-person rate falls. (A) better vaccines, (C) cautious admissions, (D) prevention awareness, and (E) home treatment would each push the count *down*, deepening the paradox.
 **mistake_a:** Better vaccines push *both* numbers down.
 **mistake_c:** More cautious admissions push count *down*.
 **mistake_d:** Vague — would push both down.
@@ -1609,7 +1615,8 @@ Which of the following most logically completes the argument?
 
 **answer:** C
 **fastest_path:** Blank must name what the recommendation *overlooks*. The classic missing consideration: *reverse causation* — big spenders may seek out samples, not the reverse.
-**explanation:** Consultant's leap is from correlation (samples ↔ higher spending) to intervention (more samples → more spending). The missing consideration is the selection-causation gap: shoppers inclined to spend may already gravitate to samples. (C) names this directly.
+**situation:** Shoppers who got in-store samples spent 18% more per visit; a consultant urges more samples to boost revenue — and the prompt says the recommendation overlooks something.
+**reasoning:** *Complete the argument by naming what the recommendation overlooks.* *Which gap sits between the correlation and the "more samples → more spending" leap?* The missing consideration is the selection / reverse-causation gap. (C) names it: shoppers who seek out samples may already be inclined to spend more, so samples may not be what causes the higher spending. (A) staffing cost and (E) supplier coordination are cost/logistics, not the causal gap; (B) is segment trivia; (D) is a minor preference issue.
 **mistake_a:** Cost concern, not a causal one.
 **mistake_b:** Segment distribution, not the causal chain.
 **mistake_d:** Minor preference issue.
@@ -1637,7 +1644,8 @@ Which of the following, if true, most strengthens the partners' conclusion?
 
 **answer:** B
 **fastest_path:** 55% vs 25% → causal claim about founding experience. Strengthen by *eliminating confounders*. (B) does it: matched on industry, funding, conditions.
-**explanation:** Comparison only credibly attributes the gap to experience if other factors are held constant. (B) shows industries, funding amounts, and market conditions were comparable — pulling in the confounders that could otherwise explain the gap.
+**situation:** In a VC portfolio, repeat-founder startups reached profitability at 55% versus 25% for first-time-CEO startups; the partners conclude founding experience causes success and will steer 70% of future investment to repeat founders.
+**reasoning:** *Strengthen a between-group comparison.* *What would make the 55%-vs-25% gap attributable to experience rather than to other differences?* The causal claim holds only if the groups were otherwise alike. (B) supplies that: repeat and first-time founders operated in similar industries, raised comparable amounts, and faced similar conditions — removing the obvious confounders. (A) first-timers getting more money yet doing worse complicates the story; (C) stronger networks is an *alternative* cause; (D) is anecdote; (E) stage variety is neutral.
 **mistake_a:** *Reverses* — first-timers got more money and still did worse, which weakens or complicates.
 **mistake_c:** *Alternative cause* — networks could explain the gap.
 **mistake_d:** Anecdotal counterexample.
@@ -1665,7 +1673,8 @@ Which of the following, if true, most seriously weakens the columnist's argument
 
 **answer:** B
 **fastest_path:** Argument: unit decline → category dies. Weaken by showing the market has *restructured* into a viable premium niche. (B) does it: revenue rising, premium segment that smartphones don't serve.
-**explanation:** "Disappear entirely" is too strong if a profitable, defensible niche exists. (B) shows revenue is *rising*, driven by professionals — a segment smartphones can't replace. Category persists in restructured form.
+**situation:** A columnist predicts standalone cameras will vanish entirely, citing unit sales falling from 120M (2014) to 8M (2024) as smartphone cameras improved.
+**reasoning:** *Weaken a "category will die" prediction.* *What fact would show a durable market survives despite the unit collapse?* "Disappear entirely" fails if a profitable, defensible niche persists. (B) supplies it: standalone-camera *revenue* has grown for three years on premium models bought by professionals and enthusiasts — a segment smartphones don't serve — so the category endures in restructured form. (A) a low-light quality gap doesn't prove commercial viability; (C) is mild dual-use; (D) reduced marketing and (E) better smartphones both *strengthen* the death prediction.
 **mistake_a:** Quality gap exists but doesn't show commercial viability.
 **mistake_c:** Mild dual-use observation.
 **mistake_d:** *Strengthens* — reduced marketing fits a dying market.
@@ -1693,7 +1702,8 @@ The committee's argument depends on which of the following assumptions?
 
 **answer:** B
 **fastest_path:** Voluntary pilot → self-selected enrollees. Required: enrollees and non-enrollees didn't differ in motivation or preparation. (B) is the bridge.
-**explanation:** 92% vs 78% comparison from a voluntary pilot is fatally vulnerable to selection. The committee needs to assume volunteers weren't already more motivated/prepared than non-volunteers. Negate (B): they were → the gap is selection, not the seminar.
+**situation:** A committee proposes requiring a study-skills seminar for all freshmen to improve retention, citing a voluntary pilot where 92% of enrollees returned for sophomore year versus 78% of non-enrollees.
+**reasoning:** *Find a required assumption.* *What must hold to credit the seminar for the 92%-vs-78% gap?* Because enrollment was voluntary, the committee assumes enrollees weren't already more motivated or better prepared in ways that boost retention on their own. Negate (B): they were, and the gap is selection rather than the seminar — so (B) is required. (A) cost and (E) instructor type are feasibility/details, (C) universal completion is too strong, and (D) is a value judgment about which metric matters (already granted).
 **mistake_a:** Cost feasibility.
 **mistake_c:** *Extreme* — universal completion isn't required for an average effect.
 **mistake_d:** Values judgment about which retention metric matters.
@@ -1721,7 +1731,8 @@ Which of the following can be most reliably concluded from the information above
 
 **answer:** B
 **fastest_path:** Workers report 64% higher productivity; managers measure flat or declining team output. Inference: *self-reported gains haven't translated to measured team gains*. Tightest restatement.
-**explanation:** Two facts: workers say they're more productive; managers measure that team output didn't rise. The valid inference is exactly that disconnect — no translation from self-reported individual gains to measured team output.
+**situation:** Surveyed remote workers report higher productivity (64% higher, 11% lower, 25% unchanged), yet managers at the same firms measured no overall rise in team output — and some declines.
+**reasoning:** *Draw the text-forced inference — the tightest restatement.* *What do the two findings jointly force, with no motive or honesty add-ons?* Workers' self-reported individual gains coexist with flat-or-declining measured team output, so the supported conclusion is exactly that disconnect: self-reported individual productivity gains have not translated into measurable team-level output (B). (A) and (E) impute dishonesty or exaggeration not shown; (C) reads managers' minds; (D) is an unsupported counterfactual.
 **mistake_a:** *Outside knowledge* — character judgment about honesty isn't supported.
 **mistake_c:** *Outside knowledge* — manager *attitudes* aren't given.
 **mistake_d:** *Counterfactual* the data don't reach.
