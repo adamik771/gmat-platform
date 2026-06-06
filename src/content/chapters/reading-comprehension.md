@@ -19,12 +19,16 @@ sections:
   - id: how-to-read-an-rc-passage
     type: reading
     title: "How to read an RC passage — the three-pass active-reading protocol"
+    intro: |
+      Most RC mistakes happen during the passage read itself, before students reach the first question. This section gives you a three-pass framework that replaces passive skimming with active structure-tracking. It cuts re-reads nearly to zero and builds the mental map that makes every question faster to answer.
     check_question_ids:
       - reading-comprehension-q5
 
   - id: main-idea-questions
     type: reading
     title: "Main idea — the single unifying claim"
+    intro: |
+      Main idea questions are the most frequently wrong "easy" RC questions, because students answer from memory and miss the precision the question requires. This section gives you a three-filter test — too narrow, too broad, off-stance — that eliminates wrong answers in under 20 seconds and forces you to match the author's specific claim.
     check_question_ids:
       - reading-comprehension-q9
       - reading-comprehension-q17
@@ -32,6 +36,8 @@ sections:
   - id: specific-detail-questions
     type: reading
     title: "Specific detail — find the support in the passage"
+    intro: |
+      Specific detail is the only RC question type where the answer is explicitly stated in the passage — no inference required. That sounds easy, but wrong answers are engineered to exploit careless reading. This section shows you when to re-read, when to scan, and how to spot the word-match and partial-match traps that make "easy" detail questions go wrong.
     check_question_ids:
       - reading-comprehension-q10
       - reading-comprehension-q22
@@ -39,6 +45,8 @@ sections:
   - id: inference-questions
     type: reading
     title: "Inference — what the passage implies but doesn't state"
+    intro: |
+      Inference is the hardest RC question type for most students because the correct answer is never stated in the passage — it only has to follow from what is. The "must be true" standard is strict. This section teaches that standard and introduces the negation test, which lets you verify any answer in under 10 seconds and cut through the two-option deadlocks that waste the most time.
     check_question_ids:
       - reading-comprehension-q11
       - reading-comprehension-q23
@@ -46,6 +54,8 @@ sections:
   - id: application-questions
     type: reading
     title: "Application — extending the author's logic to new cases"
+    intro: |
+      Application questions test whether you extracted the author's underlying principle — not just the examples they illustrated it with. Think of these as "inference extended to a new case outside the passage." The discipline is to identify the principle first, then evaluate each answer choice against it, rather than matching answers to the passage text directly.
     check_question_ids:
       - reading-comprehension-q4
       - reading-comprehension-q40
@@ -53,6 +63,8 @@ sections:
   - id: function-and-attitude
     type: reading
     title: "Function and author's attitude — role and tone questions"
+    intro: |
+      Function and attitude questions ask you to zoom out from the passage content to the author's moves and stance. Instead of "what does this say?" you answer "what is the author doing here?" and "what does the author think about this?" Both question types reward students who tracked structure and signal words during the initial read rather than trying to recall content.
     check_question_ids:
       - reading-comprehension-q28
       - reading-comprehension-q27
@@ -60,6 +72,8 @@ sections:
   - id: rc-answer-choice-traps
     type: reading
     title: "Five answer-choice traps that span every RC question type"
+    intro: |
+      Every question type has its own content standard — but wrong answers across all six types share the same structural patterns. This section identifies five of those patterns. Once you can name them on sight, your answer-elimination speed roughly doubles, because you stop evaluating each wrong answer from scratch and start recognizing which trap it is.
     check_question_ids: []
 
   - id: summary
@@ -206,6 +220,26 @@ Common paragraph roles:
 
 **The two-paragraph summary habit.** After reading, in 15 seconds or less, silently summarize each paragraph to yourself in one sentence. If you can't, re-read just that paragraph. This habit is the fastest way to confirm you built a real map rather than skimming.
 
+**What a completed passage map looks like.**
+
+Suppose you read a 280-word passage on how trade networks spread technology across civilizations. A strong passage map would look like this:
+
+- **Scope:** Silk road → technology transfer between civilizations
+- **P1 role:** Thesis — trade routes transferred knowledge, not only goods
+- **P2 role:** Evidence — three technologies (printing, papermaking, gunpowder) spread westward, documented in specific time windows
+- **P3 role:** Counterargument — some historians claim parallel independent invention, not transfer
+- **P4 role:** Author's rebuttal — naming conventions and adoption time-lags are fingerprints of transfer, not parallel discovery
+- **Stance:** Confident that transfers occurred; measured dismissal of the parallel-invention counterargument
+
+With this map in place before you see the first question:
+
+- "Where's the evidence?" → P2, re-read there.
+- "What's the main idea?" → Thesis in P1.
+- "Author's attitude toward the parallel-invention view?" → Measured skepticism.
+- "Function of paragraph 3?" → Introduces the counterargument the author rebuts.
+
+Every question is now a 10-second navigation task, not a passage re-read. Building this map takes 30 seconds during the read. Not building it costs 30-60 seconds per question in search time.
+
 > **Recall check.** Close your eyes. State the three passes of the active-reading protocol. Now state at least three paragraph roles (introduce, state thesis, support, counter, respond, qualify, conclude — any three). This retrieval pattern is what makes "reading actively" a deliberate habit rather than a vague intention. Retrieval practice creates structural memory — re-reading creates the illusion of memory (Roediger & Karpicke, 2006).
 
 **Trap to watch.** Don't get sucked into the prose style. GMAT RC passages are written in elevated, academic diction precisely because they intimidate the weak-voiced student into careful word-by-word reading. The passages are rarely as complex as they sound. Skim if you need to, but track structure with discipline.
@@ -322,6 +356,29 @@ Implication: "Companies that rely solely on cancellation friction are less susta
 
 **Distinguishing inference from specific detail.** Specific detail = directly stated. Inference = directly implied. If the answer is an exact paraphrase of a sentence from the passage, it's specific detail (and wrong on an inference question — though that's rare, since specific-detail answers rarely appear under inference stems).
 
+**The negation test — the fastest inference verifier.**
+
+When two answers both look plausible, apply the negation test. Take each candidate answer and negate it (make it the opposite claim). Then ask: *if this negated version were true, would it contradict or undermine the passage?*
+
+- If negating the answer **does** contradict the passage → the passage requires the original to be true → it is a valid inference.
+- If negating the answer **has no effect** on the passage → the passage doesn't depend on this being true → it's not inferred.
+
+**Example.** Passage: "Subscription businesses lose 30% of customers annually, requiring constant new customer acquisition to sustain revenue."
+
+*Candidate A:* "Subscription businesses cannot grow their customer base without ongoing acquisition investment."
+
+Negate: "Subscription businesses can grow their customer base without ongoing acquisition investment."
+
+Does that contradict the passage? Yes — if you lose 30% annually without replacing them, the base shrinks. The passage's logic demands ongoing acquisition. Candidate A survives negation → valid inference.
+
+*Candidate B:* "Most subscription businesses will become unprofitable within a decade."
+
+Negate: "Most subscription businesses will remain profitable for at least a decade."
+
+Does that contradict the passage? No — the passage says they face a retention challenge; it makes no claim about eventual profitability or timelines. The negated version is perfectly consistent with the passage. Candidate B fails negation → not inferred.
+
+The negation test is especially useful at the two-option deadlock — one candidate will survive negation and one won't. It takes under 10 seconds once the habit is built, and it forces you to check *whether the passage requires the claim* rather than *whether the claim sounds consistent with the passage*. Those two questions have very different answers.
+
 > **Recall check.** Close the book. State the difference between "must be true" and "could be true." Now: when is the "weakest" inference answer typically correct vs. incorrect? (Answer: the most modestly phrased inference is usually right because it's hardest to disprove; strongly-worded inferences ("always," "all") are usually wrong on RC because a single counter-scenario negates them.) Retrieval of this distinction catches 20% of inference errors.
 
 ## @application-questions
@@ -396,6 +453,15 @@ Function question: "The author mentions dark patterns in order to..."
 - D) "Argue that dark patterns are illegal." — Wrong; the passage makes no legal claim.
 
 **The "both sides of a contrast" clue.** When the author mentions something alongside a contrast word ("however," "in contrast," "while"), the function is usually to set up or illustrate the contrast.
+
+**Eliminating wrong function answers — the two-question filter.**
+
+After identifying a candidate function answer, apply these two checks:
+
+1. *Does it describe a role, not content?* If the answer just paraphrases what the passage says ("dark patterns are used by some subscription companies"), it describes content, not function. Wrong.
+2. *Does it match the context where the element appears?* If the mentioned element follows a contrast word and the answer says "to provide background context," that conflicts with the structural signal. A contrast-word position usually means "to illustrate the contrast." Wrong.
+
+These two checks eliminate most wrong function answers faster than evaluating each option from scratch.
 
 ### Author's attitude questions
 
@@ -492,7 +558,7 @@ Reading Comprehension is a structure-extraction skill, not a reading-speed skill
 |---|---|---|
 | Main idea | Single unifying claim + author's stance | Filter: too narrow / too broad / off-stance |
 | Specific detail | Direct textual support | Scan passage for the topic; re-read that paragraph |
-| Inference | Logical consequence of stated claims | "Must be true" standard; favor modestly-worded answers |
+| Inference | Logical consequence of stated claims | "Must be true" standard; use negation test to verify; favor modestly-worded answers |
 | Application | Extension of author's principle to new cases | Extract the principle; test each answer against it |
 | Function | Role played by an element in the argument | Describe what the author is DOING, not what the text SAYS |
 | Author's attitude | Stance toward a specific topic | Look at word choice and qualifiers; favor middle-of-spectrum answers |
