@@ -2372,75 +2372,106 @@ export default function SessionClient({
               />
             )}
 
-            {currentState.submitted && current.explanation && (
-              <div
-                className="mt-5 p-4 rounded-lg border transition-all duration-150 animate-in fade-in-0 zoom-in-95"
-                style={{
-                  borderColor: "rgba(201,168,76,0.15)",
-                  backgroundColor: "rgba(201,168,76,0.03)",
-                }}
-              >
-                <div className="flex items-center gap-2.5 mb-3">
-                  <p className="text-[10px] uppercase tracking-widest text-[#555555]">
-                    Explanation
-                  </p>
-                  {!isQuestionCorrect(current, currentState) &&
-                    currentState.selected !== null &&
-                    !isTwoPart && (
-                      <>
-                        <span className="text-[10px] text-[#333333]">&middot;</span>
-                        <span
-                          className="text-[10px]"
-                          style={{ color: "rgba(255,107,107,0.75)" }}
+            {currentState.submitted && current.explanation && (() => {
+              const sessionIsWrong =
+                !isQuestionCorrect(current, currentState) &&
+                currentState.selected !== null &&
+                !isTwoPart
+              const wrongLetter = sessionIsWrong
+                ? (String.fromCharCode(65 + (currentState.selected as number)) as
+                    | "A" | "B" | "C" | "D" | "E" | "F")
+                : null
+              const wrongMistake = wrongLetter
+                ? (current.mistakeAnalysis?.[wrongLetter] ?? null)
+                : null
+              const hasRemainingAnalysis =
+                current.fastestPath || current.commonTrap || current.takeaway
+
+              return (
+                <div
+                  className="mt-5 rounded-lg border overflow-hidden transition-all duration-150 animate-in fade-in-0 zoom-in-95"
+                  style={{
+                    borderColor: sessionIsWrong
+                      ? "rgba(255,107,107,0.18)"
+                      : "rgba(201,168,76,0.15)",
+                    backgroundColor: sessionIsWrong
+                      ? "rgba(255,68,68,0.02)"
+                      : "rgba(201,168,76,0.03)",
+                  }}
+                >
+                  {sessionIsWrong ? (
+                    <div
+                      className="flex items-center justify-between gap-3 px-4 py-2.5 border-b"
+                      style={{
+                        borderColor: "rgba(255,107,107,0.12)",
+                        backgroundColor: "rgba(255,68,68,0.04)",
+                      }}
+                    >
+                      <div className="flex items-center gap-2">
+                        <div
+                          className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
+                          style={{ backgroundColor: "rgba(255,68,68,0.15)" }}
                         >
-                          You chose {letterFor(currentState.selected)}
+                          <X className="w-2.5 h-2.5" style={{ color: "#FF4444" }} />
+                        </div>
+                        <span className="text-xs font-semibold" style={{ color: "#FF6B6B" }}>
+                          Incorrect
                         </span>
-                        <span className="text-[10px] text-[#333333]">&middot;</span>
-                        <span
-                          className="text-[10px]"
-                          style={{ color: "rgba(62,207,142,0.75)" }}
+                        <span className="text-[10px]" style={{ color: "#555555" }}>
+                          · You chose {letterFor(currentState.selected as number)}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[10px] text-[#555555]">Correct:</span>
+                        <span className="text-sm font-bold" style={{ color: "#3ECF8E" }}>
+                          {current.correctAnswerLetter}
+                        </span>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="px-4 pt-4 pb-0">
+                      <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                        Explanation
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="p-4">
+                    {/* Wrong answer: surface the per-choice mistake analysis BEFORE
+                        the explanation so students read the explanation through the
+                        lens of their specific error, not after a wall of text. */}
+                    {sessionIsWrong && wrongMistake && (
+                      <div
+                        className="mb-4 pb-4 border-b"
+                        style={{ borderColor: "rgba(255,107,107,0.1)" }}
+                      >
+                        <p
+                          className="text-[10px] uppercase tracking-widest mb-2"
+                          style={{ color: "rgba(255,107,107,0.55)" }}
                         >
-                          Correct: {current.correctAnswerLetter}
-                        </span>
-                      </>
+                          Why {letterFor(currentState.selected as number)} seems right
+                        </p>
+                        <PromptBlock text={wrongMistake} />
+                      </div>
                     )}
+
+                    <PromptBlock text={current.explanation} />
+
+                    {/* Additional analysis: fastestPath, commonTrap, takeaway.
+                        wrongMistake is already surfaced above for wrong answers. */}
+                    {hasRemainingAnalysis && (
+                      <FullAnalysis
+                        fastestPath={current.fastestPath}
+                        commonTrap={current.commonTrap}
+                        wrongLetter={null}
+                        wrongMistake={null}
+                        takeaway={current.takeaway}
+                      />
+                    )}
+                  </div>
                 </div>
-                <PromptBlock text={current.explanation} />
-                {(() => {
-                  const wrongLetter =
-                    !isQuestionCorrect(current, currentState) &&
-                    currentState.selected !== null &&
-                    !isTwoPart
-                      ? (String.fromCharCode(65 + currentState.selected) as
-                          | "A"
-                          | "B"
-                          | "C"
-                          | "D"
-                          | "E"
-                          | "F")
-                      : null
-                  const wrongMistake = wrongLetter
-                    ? current.mistakeAnalysis?.[wrongLetter] ?? null
-                    : null
-                  if (
-                    !current.fastestPath &&
-                    !current.commonTrap &&
-                    !current.takeaway &&
-                    !wrongMistake
-                  )
-                    return null
-                  return (
-                    <FullAnalysis
-                      fastestPath={current.fastestPath}
-                      commonTrap={current.commonTrap}
-                      wrongLetter={wrongLetter}
-                      wrongMistake={wrongMistake}
-                      takeaway={current.takeaway}
-                    />
-                  )
-                })()}
-              </div>
-            )}
+              )
+            })()}
 
             {currentState.submitted && (
               <>
