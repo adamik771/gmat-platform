@@ -1902,61 +1902,6 @@ export default function SessionClient({
           </Link>
         )}
 
-        {/* What to do next — renders the nextStepNote guidance as direct CTA
-            buttons. The text was computed above but never surfaced in the UI;
-            without a button, students read the advice and then navigate away
-            manually with no clear path. Primary action depends on accuracy
-            band: review the chapter (low), practice again (mid), study plan
-            (high). Chapter link is only shown when the topic maps to one. */}
-        {(() => {
-          const chapterSlug = TOPIC_TO_CHAPTER[topic]
-          const low = accuracy < 60
-          const mid = accuracy >= 60 && accuracy < 78
-
-          const primaryAction = low && chapterSlug
-            ? { label: `Review ${topic} chapter`, href: `/chapters/${chapterSlug}` }
-            : mid
-            ? { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-            : { label: "View your study plan", href: "/study-plan" }
-
-          const secondaryAction =
-            low
-              ? { label: "Practice again", href: `/practice/session/${slug}` }
-              : mid && chapterSlug
-              ? { label: "Review the chapter", href: `/chapters/${chapterSlug}` }
-              : { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-
-          return (
-            <div
-              className="p-5 rounded-xl border border-white/[0.08]"
-              style={{ backgroundColor: "#0D0D0D" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
-                What to do next
-              </p>
-              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-4">
-                {nextStepNote}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Link
-                  href={primaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  {primaryAction.label}
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-                <Link
-                  href={secondaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-white/[0.1] text-[#888888] transition-colors hover:text-[#F0F0F0] hover:border-white/[0.2]"
-                >
-                  {secondaryAction.label}
-                </Link>
-              </div>
-            </div>
-          )
-        })()}
-
         {/* Review list — wrong answers only by default, toggle to show all */}
         {(() => {
           const wrongIndices = questions
@@ -2041,6 +1986,18 @@ export default function SessionClient({
                               style={{ color: isWrong ? "rgba(255,107,107,0.75)" : "#555555" }}
                             >
                               Q{i + 1} · {q.subtopic} · {q.difficulty}
+                              {isWrong && state.confidence && state.confidence !== "low" && (
+                                <span
+                                  className="ml-1.5 inline-flex items-center px-1 py-px rounded text-[9px] font-semibold uppercase tracking-wide"
+                                  style={
+                                    state.confidence === "high"
+                                      ? { backgroundColor: "rgba(255,153,102,0.15)", color: "#FF9966" }
+                                      : { backgroundColor: "rgba(255,255,255,0.05)", color: "#555555" }
+                                  }
+                                >
+                                  {state.confidence === "high" ? "Confident" : "Unsure"}
+                                </span>
+                              )}
                             </p>
                             <p className="text-sm text-[#F0F0F0] truncate">
                               {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
