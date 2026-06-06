@@ -1760,7 +1760,8 @@ The editorial's reasoning is most vulnerable to which of the following criticism
 
 **answer:** A
 **fastest_path:** Flaw: ignores that grads may *leak out of the funnel* — leave the state or take non-engineering jobs. Without that pipeline assumption, the "failing to prepare" verdict has no basis.
-**explanation:** Argument: more majors + more unfilled jobs → universities aren't preparing students. Hidden assumption: grads stay in-state *and* go into software engineering. If they leave for other states or other roles, the gap reflects geography or career choice — not preparation quality.
+**situation:** An editorial notes CS majors rose 30% over five years while unfilled software-engineering jobs at state employers rose 40%, and concludes the universities are failing to prepare students for those jobs.
+**reasoning:** *Name the logical vulnerability.* *What must be true about graduates for "more majors + more vacancies" to indict preparation?* The argument assumes graduates stay in-state and enter software engineering. (A) attacks that pipeline assumption: if grads take jobs outside the state or outside engineering, the unfilled-jobs gap reflects geography or career choice, not poor preparation. (B) experience level is secondary; (C) other states' supply is orthogonal; (D) is about emphasis; (E) demands specificity, not a logical fix.
 **mistake_b:** Secondary assumption about experience level — not the dominant flaw.
 **mistake_c:** Other states' supply — orthogonal.
 **mistake_d:** Emphasis on which growth rate matters more, not the causal flaw.
@@ -1788,7 +1789,8 @@ The answer to which of the following questions would be most useful in evaluatin
 
 **answer:** B
 **fastest_path:** Cross-firm comparison → biggest threat is *baseline differences*. (B) tests it: did the study control for size, industry, comp?
-**explanation:** The 18% gap supports a causal recommendation only if quarterly-feedback firms weren't already different in turnover-relevant ways. (B) probes that. Without controls, the gap could reflect firm composition, not feedback cadence.
+**situation:** Citing a 2023 study where firms using quarterly feedback had 18% lower voluntary turnover than firms using annual reviews, an HR director concludes that switching to quarterly feedback will cut his firm's turnover.
+**reasoning:** *Identify the decisive test.* *What would tell us whether feedback cadence, not firm differences, produced the 18% gap?* The cross-firm comparison supports a causal recommendation only if the quarterly-feedback firms weren't already lower-turnover for other reasons. (B) probes exactly that: did the study control for firm size, industry, and compensation? If yes, the gap credibly reflects cadence; if not, it may be composition. (A) cost is downstream, (C) preference isn't outcome data, and (D) tenure of the practice and (E) peer adoption don't test causation.
 **mistake_a:** Cost is downstream.
 **mistake_c:** Employee attitudes ≠ outcome data.
 **mistake_d:** Historical context, not causal.
@@ -1816,7 +1818,8 @@ Which of the following, if true, most helps to resolve the paradox?
 
 **answer:** B
 **fastest_path:** Paradox: fewer cars + more rail, but longer commutes. Resolve: total commuters *surged* (employment +20%) and bottlenecked into a downtown core whose capacity was already maxed.
-**explanation:** Per-capita car use fell, but headcount of commuters rose enough to overwhelm both road and rail capacity at the bottleneck. (B) supplies both pieces — employment growth and concentration — explaining how more transit can coexist with worse aggregate experience.
+**situation:** In Harpen, average commute time rose seven minutes over five years even though registered cars fell 12% and the city added two subway lines.
+**reasoning:** *Resolve the paradox — explain both facts at once.* *What could lengthen commutes despite fewer cars and more rail?* A surge in commuters funneled into a capacity-constrained core does it. (B) supplies both pieces: employment grew 20% with new jobs concentrated in a downtown whose road and rail capacity was already near its limit — so total commuters overwhelm the bottleneck even as per-capita car use drops. (A) gas prices are vague, (C) recent rail timing explains only muted benefit not the increase, and (D) biking and (E) road maintenance would *shorten* commutes.
 **mistake_a:** Too vague — gas prices fluctuating doesn't directly explain time.
 **mistake_c:** Partial — only explains why rail benefits haven't materialized fully, not the *increase*.
 **mistake_d:** Biking would *cut* commute times.
@@ -1844,7 +1847,8 @@ In the argument above, the two portions in boldface play which of the following 
 
 **answer:** B
 **fastest_path:** Bold 1 = popular municipal-leader view. Argument *rebuts* it via Ridgemont. Bold 2 = the *diagnostic mechanism* (jobs would have come to the region regardless).
-**explanation:** Structure: state common view (Bold 1) → counterexample (Ridgemont) → mechanism explaining why the view failed (Bold 2). (B) names the rebuttal + mechanism arc.
+**situation:** Bold 1 gives the popular view that tax incentives to tech firms are the most effective way for mid-size cities to grow employment. The argument counters with Ridgemont, which granted over $200M in breaks yet grew employment no faster than the region, and Bold 2 says those breaks mostly subsidized jobs the firms would have created in the region regardless of city.
+**reasoning:** *Identify each boldface's structural role.* *Which view does the argument oppose, and what does the second statement do?* Bold 1 is a popular position the argument rebuts; Bold 2 identifies the mechanism by which it fails in Ridgemont — the jobs would have come to the region anyway — matching (B). (A) and (E) wrongly have the author endorsing or both supporting Bold 1; (C) miscasts Bold 2 as the sole conclusion; (D) invents a second policy proposal.
 **mistake_a:** *Backwards* — author rejects Bold 1, not endorses.
 **mistake_c:** Bold 2 explains, but isn't the sole conclusion.
 **mistake_d:** Invents a second proposal.
@@ -1872,7 +1876,8 @@ Which of the following most logically completes the argument?
 
 **answer:** B
 **fastest_path:** Conclusion overreaches: "wasting money" presumes *purity is the only reason* to buy. Blank must point out the *other reasons* (convenience, taste).
-**explanation:** Microplastic data only undermines purchases *for purity*. If consumers buy for taste, convenience, or perceived quality unrelated to purity, the finding doesn't prove they're wasting money. (B) names this scope mismatch.
+**situation:** Testing 12 "spring water" brands, a group found 9 had microplastics comparable to tap water and concluded that consumers buying bottled water for purity are wasting money — but the prompt says this overreaches.
+**reasoning:** *Complete the argument by naming what the verdict overreaches.* *Why doesn't a purity finding establish that the purchase is wasteful?* The "wasting money" verdict assumes purity is the only reason people buy bottled water. (B) supplies the gap: consumers may buy for convenience or taste, which the microplastic data doesn't address — so the finding can't show they're wasting money. (A) sample size is moot (9 of 12 is decisive), (C) method detail and (E) drinking frequency don't touch motive, and (D) widens scope unhelpfully.
 **mistake_a:** Sample-size complaint — but 9 of 12 is decisive.
 **mistake_c:** Methodological vague.
 **mistake_d:** Widens scope without helping.
@@ -1901,7 +1906,8 @@ Which of the following, if true, most strengthens the director's conclusion?
 
 **answer:** B
 **fastest_path:** 81% vs 58% comparison → causal claim about curriculum. Strengthen by *matching the groups* on confounders. (B) does it: prior experience, background, employer-screening criteria.
-**explanation:** Bootcamp vs two-year placement gap could reflect student selection or program effect. (B) eliminates the selection alternative by matching on the major confounders. Curriculum becomes the credible cause.
+**situation:** A bootcamp reports an 81% six-month placement rate versus 58% for regional two-year computing programs, and its director concludes the accelerated, project-based curriculum is more effective at preparing students for entry-level tech jobs.
+**reasoning:** *Strengthen a between-program comparison.* *What would make the 81%-vs-58% gap attributable to the curriculum rather than to who enrolls?* The claim holds only if the two student groups were otherwise comparable. (B) supplies that: bootcamp and two-year students didn't differ in prior programming experience, educational background, or employer-screening criteria — removing the selection alternative, so curriculum becomes the credible cause. (A) cost is separate; (C) older students is an *alternative* cause; (D) is anecdote; (E) rising regional hiring lifts both groups equally.
 **mistake_a:** Cost — separate from outcome.
 **mistake_c:** *Reverses* — older students are an alternative explanation, weakening.
 **mistake_d:** Anecdotal.
@@ -1929,7 +1935,8 @@ The columnist's reasoning is most vulnerable to which of the following criticism
 
 **answer:** B
 **fastest_path:** Flaw: *correlation-to-causation in observational data*. Tea drinkers are healthier, but they also exercise more, smoke less, earn more. Recommendation ignores the confounders.
-**explanation:** Multiple observational studies show association, but observational ≠ causal. Tea drinkers self-select into a healthier lifestyle bundle. Recommending tea-drinking to reduce *your* risk assumes the tea is the active ingredient — which observation alone doesn't establish.
+**situation:** A columnist notes multiple studies show people drinking 2+ cups of green tea daily have 20% lower cardiovascular risk and concludes anyone wanting lower risk should drink at least two cups a day.
+**reasoning:** *Name the logical vulnerability.* *Does an observational association justify a do-this recommendation?* No — the studies are observational, and tea drinkers tend to self-select into a healthier lifestyle (more exercise, less smoking). (B) names the flaw: treating that correlation as if green tea itself caused the lower risk. (A) taste and (E) caffeine aren't logical flaws, (C) is a value judgment about priorities, and (D) dose-response is a separate question from the correlation-causation leap.
 **mistake_a:** Taste preference, not a logical flaw.
 **mistake_c:** Values judgment about what risks to prioritize.
 **mistake_d:** Dose-response is a separate question, not the core flaw.
@@ -1957,7 +1964,8 @@ The answer to which of the following questions would be most useful in evaluatin
 
 **answer:** B
 **fastest_path:** Manufacturer's 2% figure is only relevant if its *test conditions* match this airline's flight profile. (B) tests it directly.
-**explanation:** Fuel savings are profile-sensitive. Short-haul vs long-haul, frequent vs sparse stops — all change the math. (B) asks the decisive question: were the test conditions comparable? If yes, the projection holds; if no, savings could be much smaller.
+**situation:** A seat manufacturer says lighter composite seats cut fuel costs ~2% per flight, and a CFO cites that figure to project multi-million-dollar annual savings from switching.
+**reasoning:** *Identify the decisive test.* *What would tell us whether the vendor's 2% applies to this airline?* Fuel savings are profile-sensitive, so the figure matters only if it came from operation resembling this airline's flights. (B) probes exactly that: were the 2% figures derived from real-world operation with similar flight profiles? If yes, the projection holds; if not, real savings could be far smaller. (A) adoption count and (E) vendor tenure are social proof and credibility, while (C) seat color and (D) comfort don't test the number.
 **mistake_a:** Social proof — doesn't test the figure.
 **mistake_c:** Trivial.
 **mistake_d:** Passenger experience.
@@ -1985,7 +1993,8 @@ Which of the following, if true, most seriously weakens the economist's argument
 
 **answer:** B
 **fastest_path:** Economist uses the wrong baseline. Weaken via *counterfactual*: without subsidies the decline would have been *worse* (70% vs 40%). Subsidies *did* preserve farms — relative to no-subsidy world.
-**explanation:** "Failed" because farms declined anyway is the static-baseline error. (B) supplies the counterfactual: subsidies softened a 70% decline into a 40% decline. That's a 30-point preservation effect — meaningful success.
+**situation:** An economist argues farm subsidies should end: despite $50B over 20 years, small family farms fell over 40% and average farm size rose, so the subsidies failed to preserve the small-farm sector.
+**reasoning:** *Weaken a "policy didn't reduce X, so it failed" claim.* *What fact would show the subsidies worked despite the decline?* The argument compares the outcome only to itself, ignoring the counterfactual. (B) supplies it: without subsidies the decline would have been ~70% rather than 40%, so the subsidies preserved a large share of farms — meaningful success, not failure. (A) subsidy scope, (C) land cost, and (D) organic grants are tangential, and (E) demand growth is a non-policy force that doesn't supply the counterfactual.
 **mistake_a:** Scope of subsidy distribution.
 **mistake_c:** Background fact about land cost.
 **mistake_d:** Tangential program.
@@ -2013,7 +2022,8 @@ The startup's claim depends on which of the following assumptions?
 
 **answer:** B
 **fastest_path:** Lab → market commercial viability requires that efficiency *survives the scale-up* AND the *manufacturing cost* allows competitive pricing. (B) packages both.
-**explanation:** "Commercially viable in three years" is a manufacturing-and-market claim, not a science claim. Lab prototypes routinely lose efficiency at scale due to yield, defects, cost. Negate (B): efficiency drops or cost balloons → no commercial viability. Necessary assumption.
+**situation:** A startup claims its solar panel will be commercially viable within three years because lab prototypes hit 34% efficiency versus 22% for the best commercial panels — and it raised $80M on that claim.
+**reasoning:** *Find a required assumption.* *What must hold for a lab efficiency to become commercial viability?* Viability is a manufacturing-and-market claim, not just a science result, so it assumes the 34% can be largely preserved at manufacturing scale and at a cost allowing competitive pricing. Negate (B): efficiency drops or costs balloon at scale, and viability collapses — so (B) is required. (A) is a historical absolute, (C) a non sequitur, (D) narrows the market without basis, and (E) imports a subsidy dependency the argument never invokes.
 **mistake_a:** Historical absolute, distracting.
 **mistake_c:** Non sequitur — VC investment doesn't guarantee success.
 **mistake_d:** Narrows market without basis.
