@@ -906,7 +906,7 @@ What is the value of √(√256)?
 **answer:** B
 **fastest_path:** √256 = 16, then √16 = 4. Or: 256^(1/4) = (2^8)^(1/4) = 2^2 = 4.
 **explanation:** Work from the inside out. Inner radical: √256 = 16 (since 16² = 256). Outer radical: √16 = 4 (since 4² = 16). Shortcut: √(√n) = n^(1/4). Factor 256 = 2^8 → 256^(1/4) = 2^(8/4) = 2^2 = 4.
-**mistake_a:** Took the fourth root by halving twice but divided instead of rooting: 16 ÷ 2 = 8, then 8 ÷ 2 = 4... wait, let's clarify. Some students compute √256 = 16 and then divide 16 by some number, landing on 2.
+**mistake_a:** Computed √256 = 16 correctly, then halved again instead of taking a square root: 16 ÷ 8 = 2. Dividing by 8 is not the same as √16. The outer radical requires finding the number whose square is 16 — that is 4, not 2. Division and square-rooting are different operations.
 **mistake_c:** Stopped after the first square root and then halved 16 arithmetically: 16 ÷ 2 = 8.
 **mistake_d:** Stopped after the first square root: √256 = 16, without applying the outer radical.
 **mistake_e:** Divided 256 by 4 without taking any roots: 256 / 4 = 64.
@@ -1037,7 +1037,7 @@ For any nonzero real number x, which of the following equals (x^(−3) × x^5) /
 **fastest_path:** Numerator: x^(−3+5) = x^2. Denominator: x^(−1+2) = x. Quotient: x^(2−1) = x.
 **explanation:** Apply the product rule inside the numerator and denominator separately, then the quotient rule. Numerator: x^(−3) × x^5 = x^(−3+5) = x^2. Denominator: x^(−1) × x^2 = x^(−1+2) = x^1. Division: x^2 / x^1 = x^(2−1) = x.
 **mistake_a:** Sign error in combining the numerator or denominator exponents; arrived at x^(−1).
-**mistake_b:** Combined all exponents with wrong signs: (−3+5) − (−1+2) = 2 − 1 = 1; mis-applied to get x^0 = 1.
+**mistake_b:** Correctly simplified numerator to x^2 and denominator to x^1, then misread the denominator exponent as 2 when subtracting: x^(2−2) = x^0 = 1. The denominator exponent is −1+2 = **1** (not 2), so the quotient is x^(2−1) = x^1 = x.
 **mistake_d:** Correctly simplified numerator to x^2 but treated the denominator as x^0 = 1, leaving x^2.
 **mistake_e:** Added all four exponents without splitting into numerator and denominator: −3 + 5 + (−1) + 2 = 3 → x^3.
 **common_trap:** Adding all exponents together instead of combining numerator and denominator separately before applying the quotient rule.
@@ -1064,7 +1064,7 @@ What is the value of √48 + 2√3 − √75?
 **explanation:** Simplify each radical to expose a common radicand. √48 = √(16 × 3) = 4√3. √75 = √(25 × 3) = 5√3. The middle term 2√3 is already simplified. Combine like radicals: (4 + 2 − 5)√3 = 1√3 = √3.
 **mistake_b:** Added the coefficient 2 to √3 without merging with the other radical terms: √3 + 2.
 **mistake_c:** Arithmetic error in the coefficient combination: treated 4 + 2 − 5 as 3 instead of 1.
-**mistake_d:** Forgot the negative sign on √75, adding instead of subtracting: 4 + 2 + (−5) → computed as 4 + 2 = 6, then subtracted nothing.
+**mistake_d:** Added the first two terms correctly (4√3 + 2√3 = 6√3) but then dropped the coefficient when subtracting √75: wrote −√3 instead of −5√3, giving 6√3 − √3 = 5√3. The simplification √75 = 5√3 must carry its full coefficient into the subtraction: 6√3 − 5√3 = 1√3 = √3, not 5√3.
 **mistake_e:** Ignored the minus sign entirely and added all coefficients: 4 + 2 + 5 = 11.
 **common_trap:** Dropping the negative sign on the √75 term — subtracting 5√3 turns the sum into 1√3, not 11√3.
 **takeaway:** To combine radicals, simplify each to the same radicand first, then add or subtract coefficients arithmetically (respecting signs). The radicand itself never changes.
@@ -1177,7 +1177,7 @@ If (3^m)^n = 3^12 and m and n are positive integers, what is the least possible 
 **answer:** B
 **fastest_path:** (3^m)^n = 3^(mn) = 3^12 → mn = 12. Factor pair (3,4) gives the minimum sum: 3 + 4 = 7.
 **explanation:** Power of a power: (3^m)^n = 3^(mn). So mn = 12. Enumerate positive-integer factor pairs (m, n) with mn = 12 and their sums: (1,12) → 13; (2,6) → 8; (3,4) → 7; (4,3) → 7; (6,2) → 8; (12,1) → 13. Minimum sum = 7. By AM-GM, the sum m + n for fixed product mn is minimized when m and n are as close together as possible; √12 ≈ 3.46, so (3, 4) is the optimal integer pair.
-**mistake_a:** Used an incorrect formula and arrived at 5.
+**mistake_a:** Approximated √12 ≈ 3 and immediately chose (m, n) = (2, 3) as "integers near √12," giving m + n = 5 — but 2 × 3 = 6 ≠ 12. The pair must satisfy mn = 12 exactly. The correct pair nearest √12 with product 12 is (3, 4): 3 × 4 = 12 ✓, sum = 7.
 **mistake_c:** Selected the (2,6) pair as "close enough": sum = 8, missing (3,4).
 **mistake_d:** Confused m + n with mn = 12.
 **mistake_e:** Used the (1,12) pair: sum = 13, the maximum, not the minimum.

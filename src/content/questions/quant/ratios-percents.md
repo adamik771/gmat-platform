@@ -175,7 +175,7 @@ The price of a stock increases by 20% in January, then decreases by 20% in Febru
 **answer:** A
 **fastest_path:** 1.20 × 0.80 = 0.96 → −4%.
 **explanation:** Successive % changes compound multiplicatively: 1.20 × 0.80 = 0.96 → 4% decrease. Smart number 100: 100 → 120 → 96.
-**mistake_b:** Computed 1.20 × 0.82 = 0.984 → −1.6% ≈ −2%, from misreading the February decrease as 18% instead of 20%. The problem states "decreases by 20%," so the February multiplier is 0.80, not 0.82.
+**mistake_b:** Computed 1.20 × 0.80 = 0.96 correctly but misread the final result: 1 − 0.96 = 0.04, which is a 4% decrease, not 2%. A net change of −2% would require a multiplier of 0.98, which this chain does not produce. Read the distance from 1 carefully: |1 − 0.96| = 0.04 = 4%.
 **mistake_c:** Treated as additive (+20 − 20 = 0) → unchanged.
 **mistake_d:** Inverted sign → +2%.
 **mistake_e:** Inverted sign and rounded → +4%.
@@ -201,7 +201,7 @@ A chemist has 30 liters of a 20% salt solution. How many liters of pure water mu
 **answer:** C
 **fastest_path:** Salt fixed at 6 L. New total = 6/0.15 = 40 → add 10 L water.
 **explanation:** Salt = 0.20 × 30 = 6 L (unchanged). New total: 6/0.15 = 40 L. Water added = 40 − 30 = 10 L.
-**mistake_a:** Computed 5 from a halving shortcut — treated "drop from 20% to 15%" as halving the change (5 of 30 is roughly 1/6, near "half of 5%"). The salt-conservation method gives an exact 10, not a near-5.
+**mistake_a:** Added the percentage-point drop (5) directly as the liters to add: "the concentration drops by 5 percentage points, so add 5 liters." The amount to add is determined by anchoring on the salt: 6 L salt / 0.15 = 40 L new total → add 40 − 30 = 10 L. The number 5 appears in the problem as a percent-point difference but has no direct relationship to the volume of water to add.
 **mistake_b:** Computed 7.5 from dividing 30 by 4 — treating the concentration drop as "1/4 of the volume." The correct math uses fixed salt: 6/0.15 = 40 → add 10.
 **mistake_d:** Computed 12 from solving (0.20)(30) = (0.15)(30 + x) with a sign error → x ≈ 12 instead of 10. Recompute: 6 = 0.15(30+x) → 30+x = 40 → x = 10.
 **mistake_e:** Computed 15 as 30 × 0.5 — defaulted to "halve the volume" thinking. The concentration only drops by a quarter (20→15, a 25% relative drop), so the volume change is smaller.
@@ -577,7 +577,7 @@ A jar contains red, blue, and green marbles in the ratio 3 : 4 : 5. If there are
 **answer:** D
 **fastest_path:** 4 parts = 24 → 1 part = 6. Total = 12 parts = 72.
 **explanation:** Blue corresponds to 4 parts. 4 parts = 24 → 1 part = 6. Total parts = 3 + 4 + 5 = 12 → 12 × 6 = 72.
-**mistake_a:** Counted only two colors (e.g., red + blue = 7 or blue + green = 9 parts, scaled to 48 via 8 × 6) — missed including all three groups in the total.
+**mistake_a:** Added only two of the three color groups' parts and multiplied by the scale factor — for example, red + green = 3 + 5 = 8 parts, then 8 × 6 = 48, leaving out blue's 4 parts entirely. Always sum *all* ratio parts (3 + 4 + 5 = 12) before multiplying by the scale factor.
 **mistake_b:** Counted 10 parts (perhaps 3 + 4 + 3 from a misread of green = 3 instead of 5) → 10 × 6 = 60. Re-add the parts: 3 + 4 + 5 = 12.
 **mistake_c:** Computed 11 × 6 = 66 — used 11 parts instead of 12 (off-by-one on the part sum). Sum carefully: 3 + 4 + 5 = 12.
 **mistake_e:** Computed 14 × 6 = 84 — used 14 parts, perhaps from 3 + 4 + 5 + 2 (added an extra). The ratio has exactly three groups.
@@ -818,8 +818,8 @@ In a recipe, flour and sugar are used in a ratio of 5:2 by weight. Sugar and but
 **fastest_path:** Butter/Flour = (Butter/Sugar) × (Sugar/Flour) = (1/3) × (2/5) = 2/15. Butter = (2/15) × 90 = 12 g.
 **explanation:** Chain the ratios through the shared ingredient, sugar. Flour:Sugar = 5:2; Sugar:Butter = 3:1. Scale both so sugar matches: Flour:Sugar = 15:6 (×3); Sugar:Butter = 6:2 (×2). Combined: Flour:Sugar:Butter = 15:6:2. For 90 g of flour: scale factor = 90 ÷ 15 = 6. Butter = 6 × 2 = 12 g. Alternatively, Butter/Flour = (1/3) × (2/5) = 2/15, and 90 × (2/15) = 12 g.
 **mistake_a:** Computed only the scale factor: 90 ÷ 15 = 6, then stopped without multiplying by the butter part (2).
-**mistake_b:** Arithmetic slip in the chaining step → 8.
-**mistake_c:** Arithmetic slip → 10.
+**mistake_b:** Chained correctly through sugar — 90 × (2/5) = 36 g — but then computed 36 ÷ 3 as 8 rather than 12. Division check: 3 × 8 = 24 ≠ 36; the correct division is 3 × 12 = 36 ✓.
+**mistake_c:** Made a scaling error in the flour-to-sugar step: applied the wrong ratio and computed sugar = 90 × (1/3) = 30 g instead of 90 × (2/5) = 36 g, then divided by 3: 30 ÷ 3 = 10. The flour:sugar ratio is 5:2 — for every 5 g flour there are 2 g sugar — giving 90 × (2/5) = 36 g.
 **mistake_e:** Applied the flour:sugar ratio directly to butter: 90 ÷ 5 = 18 — skipped chaining through sugar entirely.
 **common_trap:** Using one of the two given ratios in isolation rather than chaining through the shared ingredient. Both Flour:Sugar and Sugar:Butter must be combined to get the Flour:Butter ratio.
 **takeaway:** To chain A:B and B:C ratios, scale so the B-values match (use the LCM), or compute directly: A/C = (A/B) × (B/C). Always chain through the shared quantity.
@@ -1082,7 +1082,7 @@ In a school club, the ratio of seniors to juniors to sophomores is 4:3:2. The nu
 **explanation:** Seniors = 4k, juniors = 3k, sophomores = 2k. The constraint "seniors exceed sophomores by 16" means 4k − 2k = 16 → 2k = 16 → k = 8. Juniors = 3 × 8 = 24.
 **mistake_a:** Reported k = 8, confusing the scale factor with the junior count. The question asks for juniors = 3k = 24, not k.
 **mistake_c:** Reported seniors (4k = 32) instead of juniors (3k). Re-read: the question asks specifically for juniors.
-**mistake_d:** Applied the wrong pair in the constraint — used seniors minus *juniors* = 16 → 4k − 3k = k = 16 → juniors = 3 × 16 = 48... wait, that gives 48 not 36. D (36) comes from k = 12 via a different setup error. Regardless, re-read the problem: the difference is between seniors and *sophomores*.
+**mistake_d:** Solved 4k − 2k = 2k = 16 → k = 8 correctly but then introduced an error extracting the junior count — perhaps combining the wrong ratio terms or making an arithmetic mistake after finding k. The correct step: juniors = 3k = 3 × 8 = 24. Sanity check: seniors = 32, sophomores = 16, seniors − sophomores = 16 ✓.
 **mistake_e:** Used seniors minus juniors = 16 → k = 16 → juniors = 48.
 **common_trap:** Using the wrong pair for the difference — juniors instead of sophomores — or reading off the wrong group from the ratio after solving for k.
 **takeaway:** Label all parts (4k, 3k, 2k), write the exact constraint from the problem, solve for k, then compute the *specific quantity asked for*.
@@ -1296,7 +1296,7 @@ In a company, executives, managers, and staff are employed in the ratio 1:4:15. 
 **explanation:** Use k = 1 as the scale factor. Executives: 1 person × $200K = $200K. Managers: 4 people × $90K = $360K. Staff: 15 people × $40K = $600K. Total payroll = $1,160K. Manager percent = 360/1,160 = 9/29 ≈ 31.0%.
 **mistake_a:** Computed manager share of *headcount* only: 4/(1 + 4 + 15) = 4/20 = 20%. This ignores that different groups earn different salaries.
 **mistake_d:** Arithmetic error in the total: perhaps 200 + 360 + 400 = 960 → 360/960 = 37.5% ≈ 36%. Staff payroll is 15 × 40 = 600, not 400.
-**mistake_b:** Adjusted the headcount fraction by a rough premium but undershot: arrived at 25% rather than 31%.
+**mistake_b:** Started from the headcount fraction (4/20 = 20%) and adjusted upward to account for managers' higher salary, but estimated the adjustment too conservatively and stopped at 25%. Compute exactly: manager payroll = 4 × $90K = $360K; total payroll = $1,160K; percent = 360/1,160 ≈ 31%. Shortcuts work only if you track the dollar amounts precisely.
 **mistake_e:** Overcounted total or manager payroll, arriving at 40%.
 **common_trap:** Using the ratio of headcounts (4/20 = 20%) rather than the ratio of payroll dollars (360/1,160 ≈ 31%). Payroll weighting is the critical step.
 **takeaway:** When a count ratio combines with per-unit values, multiply each group's count by its value, sum the products for the total, then compute the desired group's weighted share.
