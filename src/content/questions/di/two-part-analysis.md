@@ -825,35 +825,6 @@ Select the value of F (column 1) and the value of S (column 2).
 
 ---
 
-## Q30
-**difficulty:** Easy
-**type:** Two-Part Analysis
-**topic:** Quantitative — Geometry
-
-A rectangle has a perimeter of 40 cm. The length is 6 cm more than the width. Determine the length in centimeters (column 1) and the area in square centimeters (column 2).
-
-|      | Length (cm) | Area (cm²) |
-|------|-------------|------------|
-| 7    |             |            |
-| 13   |             |            |
-| 17   |             |            |
-| 49   |             |            |
-| 91   |             |            |
-| 130  |             |            |
-
-**answer:** Length = 13, Area = 91
-**fastest_path:** l + w = 20 and l = w + 6 → w = 7, l = 13. Area = 13 × 7 = 91.
-**explanation:** Perimeter = 2(l + w) = 40, so l + w = 20. Since l = w + 6: (w + 6) + w = 20 → 2w = 14 → w = 7 cm. Length = 7 + 6 = 13 cm. Area = 13 × 7 = 91 cm².
-**mistake_a:** 7 — the width, not the length; selecting this for column 1 reverses the two dimensions.
-**mistake_c:** 17 — computing (20 + 6)/2 = 13 correctly but then confusing the equation and obtaining 17 = 40/2 − 3.
-**mistake_d:** 49 — computing area as 7 × 7, squaring the width instead of multiplying by the length.
-**mistake_f:** 130 — computing area as 13 × 10, using 10 for the width instead of 7.
-**common_trap:** Forgetting to halve the perimeter: using l + w = 40 instead of l + w = 20.
-**takeaway:** Perimeter = 2(l + w), so l + w = P/2. Apply the second constraint to get both dimensions, then multiply for area.
-**related_reading:** reading-di-06-two-part-analysis
-
----
-
 ## Q31
 **difficulty:** Medium
 **type:** Two-Part Analysis

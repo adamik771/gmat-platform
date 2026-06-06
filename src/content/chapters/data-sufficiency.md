@@ -83,9 +83,7 @@ problem_sets:
       - data-sufficiency-q5
       - data-sufficiency-q16
       - data-sufficiency-q17
-      - data-sufficiency-q18
       - data-sufficiency-q19
-      - data-sufficiency-q31
       - data-sufficiency-q32
       - data-sufficiency-q33
       - data-sufficiency-q34
@@ -106,7 +104,6 @@ problem_sets:
       - data-sufficiency-q22
       - data-sufficiency-q23
       - data-sufficiency-q24
-      - data-sufficiency-q25
       - data-sufficiency-q26
       - data-sufficiency-q27
       - data-sufficiency-q35
@@ -115,7 +112,6 @@ problem_sets:
       - data-sufficiency-q38
       - data-sufficiency-q39
       - data-sufficiency-q40
-      - data-sufficiency-q41
       - data-sufficiency-q42
   hard:
     target_accuracy_by_score:
@@ -130,7 +126,6 @@ problem_sets:
       - data-sufficiency-q14
       - data-sufficiency-q15
       - data-sufficiency-q28
-      - data-sufficiency-q29
       - data-sufficiency-q30
       - data-sufficiency-q43
       - data-sufficiency-q44
