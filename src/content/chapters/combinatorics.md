@@ -266,53 +266,45 @@ Never count the hard condition directly. Count the total, count the forbidden ve
 
 Example: C(9, 3) − C(5, 3) = 84 − 10 = **74**. Counting "exactly 1, 2, 3 women" directly takes three calculations; counting "zero women" takes one.
 
-### Alternating patterns
-
-When objects of two types must strictly alternate (men/women, red/blue, vowel/consonant), the key insight is that there are **two possible starting patterns** and each is counted independently.
-
-**Worked example.** 4 men and 4 women seated in a row, men and women must alternate.
-
-Two patterns exist: MWMWMWMW and WMWMWMWM.
-
-- For each pattern: 4! ways to assign the men to M-slots × 4! ways to assign women to W-slots = 24 × 24 = 576
-- Two patterns: 2 × 576 = **1,152**
-
-**Trap to watch.** Students who count only one pattern (e.g., only "men go first") get exactly half the right answer. Always ask: can the other group start instead?
-
 ### Compound restrictions
 
-When a problem requires one pair to be adjacent AND another pair to not be adjacent, break it into two stages: count the required-adjacent case, then subtract the sub-case where both constraints are violated simultaneously.
+When a problem imposes two constraints simultaneously — one pair must be adjacent AND another pair must not be adjacent — count the required constraint first, then subtract the sub-case where both constraints are satisfied at once.
 
 **Worked example.** Six people in a row: A and B must be adjacent, C and D must not be adjacent.
 
-- (A and B together): 5! × 2 = 240
-- (A and B together AND C and D together): 4! × 2 × 2 = 96
-- Net (A and B together, C and D not together): 240 − 96 = **144**
+- Count (A and B adjacent): glue A and B as one block → arrange 5 units: 5! × 2 = 240
+- Subtract (A and B adjacent AND C and D adjacent): glue both pairs → arrange 4 units: 4! × 2 × 2 = 96
+- Net: 240 − 96 = **144**
 
-**Trap to watch.** The most common error is computing the "required" constraint correctly (240) and then forgetting to remove the sub-case that also satisfies the "forbidden" constraint. One subtraction step is all it takes — but students skip it under time pressure.
+**Trap to watch.** The most common error is computing the "required" constraint (240) and forgetting to subtract the sub-case where the forbidden constraint is also satisfied. One clean subtraction — but students skip it under time pressure.
 
-**Alternating arrangements.** When two types must strictly alternate in a line — MFMFMF or ABABAB — the approach is:
+### Alternating arrangements
 
-1. Count the number of valid patterns.
+When two types of objects must strictly alternate — MWMWMW or ABABAB — work through three steps in order:
+
+1. Count the valid starting patterns.
 2. For each pattern, count the arrangements of each type in its allotted slots.
 3. Multiply.
 
-**Example.** 3 men (M) and 3 women (W) sit in a row of 6 chairs, alternating genders. How many arrangements?
+**Worked example — equal groups.** 3 men and 3 women seat themselves in a row of 6, alternating genders.
 
-Valid patterns are MWMWMW and WMWMWM — exactly 2.
+Valid patterns: MWMWMW and WMWMWM — exactly 2.
 
-For each pattern:
-- 3 men fill the "M" slots: 3! = 6 ways
-- 3 women fill the "W" slots: 3! = 6 ways
-- Per pattern: 6 × 6 = 36
+For each: 3! ways to assign the men to M-slots × 3! ways to assign women to W-slots = 6 × 6 = 36.
 
-Total: 2 × 36 = **72**
+Total: 2 × 36 = **72**. Quick formula for equal groups: **2 × (n!)²** where n is the size of each group.
 
-Quick formula for equal groups: **2 × (n!)²** where n is the size of each group.
+**Worked example — unequal groups.** 4 men and 3 women, alternating in a row of 7.
 
-**What if the groups are unequal?** If you have 4 men and 3 women alternating, only the MWMWMWM pattern works (the larger group must start and end). One pattern, so: 1 × 4! × 3! = 24 × 6 = **144**.
+Only the MWMWMWM pattern works — the larger group must occupy both ends. One valid pattern.
 
-**Alternating at a round table.** Circular + alternating: fix one person to eliminate rotational duplicates, then arrange the remaining n − 1 in the alternating pattern. For 3 men and 3 women at a round table: fix one man, place 2 remaining men in 2! = 2 ways, then fill the 3 women's gaps in 3! = 6 ways. Total: 2 × 6 = **12**. (No factor of 2 — rotational equivalence collapses the two patterns into each other.)
+Total: 1 × 4! × 3! = 24 × 6 = **144**.
+
+**Alternating at a round table.** Fix one person to eliminate rotational duplicates, then count the rest linearly. Three men and 3 women at a round table, alternating: fix one man, arrange the remaining 2 men in the 2 M-slots in 2! = 2 ways, fill the 3 women's gaps in 3! = 6 ways. Total: 2 × 6 = **12**. No factor of 2 here — circular equivalence already collapses both starting patterns into one.
+
+**Trap to watch.** For equal groups, both starting patterns are valid — multiply by 2. For unequal groups, only the pattern with the larger group at both ends is valid — do not multiply by 2. Students who always double, or always don't double, miss half the alternating questions.
+
+> **Self-explanation prompt.** Before the check questions: for each of the four restriction patterns — glue trick, complement trick, compound, alternating — name the first number you would compute. (Glue: arrangements of the block plus remaining items. Complement: total unrestricted count. Compound: the required-constraint count before the subtraction. Alternating: number of valid starting patterns.) If you can do this without looking, the decision framework is forming. If any one is blank, re-read that subsection before moving on.
 
 ## @circular
 
@@ -394,6 +386,14 @@ To distribute n identical candies among k distinct children (each child may get 
 **C(n + k − 1, k − 1)**
 
 **The mental model.** Imagine n identical stars ( ★ ★ ★ ... ) in a row, separated by k − 1 dividers ( | ). The dividers split the row into k groups — one per child. Choosing where to place the k − 1 dividers among n + k − 1 total positions is equivalent to choosing a distribution.
+
+**Visual — why the formula has the form it does.** Distribute 4 candies among 3 children: you need 2 dividers to create 3 groups. Write 4 stars and 2 bars in a row of 6 positions:
+
+    ★ ★ | ★ | ★    → Child A gets 2, Child B gets 1, Child C gets 1
+    ★ ★ ★ | | ★    → Child A gets 3, Child B gets 0, Child C gets 1
+    | ★ ★ ★ ★ |    → Child A gets 0, Child B gets 4, Child C gets 0
+
+The question becomes: choose 2 positions (for the bars) from 4 + 3 − 1 = 6 total positions. That's C(6, 2) = C(n + k − 1, k − 1) = 15. The formula is just this row-of-positions picture stated algebraically. Once you see it, you can re-derive the formula in 10 seconds — it is not something to memorize.
 
 **Worked example.** Distribute 6 identical candies among 4 distinct children. No minimum.
 
@@ -480,9 +480,7 @@ C(n, k) counts the arrangements of k successes in n positions; p^k gives the pro
 
 > **Self-explanation prompt.** Why does C(n, k) appear in the binomial formula? Because the k successes can occur in any of C(n, k) orderings across the n trials — and the probability is the same for each ordering. If you can explain that, the formula stops being something to memorize and starts being something to re-derive in 5 seconds.
 
-> **Self-explanation prompt.** Why does swapping two identical letters not produce a new arrangement? If you can say "because the result looks the same — the string is unchanged — so it's not a distinct outcome," you understand why we divide. The denominator doesn't subtract anything; it cancels out the overcounting that straight factorial committed.
-
-> **Recall check.** Write the multiset formula from memory. Then apply it to BANANA (6 letters: 1 B, 3 A's, 2 N's). The answer is 6! / (1! × 3! × 2!) = 720 / 12 = 60. If you got it right, you're ready for the problem set. If not, re-read the formula once more, then close it and recompute without looking.
+> **Recall check.** Cover this section. A committee of 4 is drawn at random from 5 men and 6 women. What is the probability that exactly 2 are men? Set up the counting fraction before computing: favorable = C(5, 2) × C(6, 2) = 10 × 15 = 150; total = C(11, 4) = 330; probability = 150/330 = **5/11**. If you listed individual outcomes instead of the combination product, you are solving the right problem but building the wrong habit — the GMAT expects the counting formula in the numerator.
 
 ## @decision
 
