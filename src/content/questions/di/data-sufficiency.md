@@ -951,7 +951,8 @@ A printer prints pages at a constant rate. How many pages does it print in 12 mi
 
 **answer:** A
 **fastest_path:** (1) gives rate (40/5 = 8/min) → 12·8 = 96. (2) just restates constant rate — no number. A.
-**explanation:** (1): 40 pages / 5 min = 8 pages/min → 12 × 8 = 96. Sufficient. (2): "Twice as many in 10 min as in 5 min" follows from any constant rate — it adds no numerical info. Insufficient. Answer A.
+**situation:** A printer runs at a constant rate; the question asks how many pages it prints in 12 minutes. Statement (1): 40 pages in 5 minutes; statement (2): it prints twice as many in 10 minutes as in 5 minutes.
+**reasoning:** *Value DS — is the rate, hence the 12-minute output, fixed?* Statement (1): 40 pages / 5 min = 8 pages/min, so 12 min → 96 pages — sufficient. Statement (2): "twice as many in twice the time" is true of any constant rate and supplies no number — insufficient. Since (1) alone settles it, the answer is A. Check whether a statement actually constrains values; a restatement of a given condition adds nothing.
 **mistake_b:** B requires (2) alone sufficient — but it's tautological.
 **mistake_c:** C-trap — adding (2) gives nothing new; (1) already solves.
 **mistake_d:** D requires each alone — (2) is empty.
@@ -980,7 +981,8 @@ A store sold x televisions in March and y televisions in April. What is the valu
 
 **answer:** C
 **fastest_path:** (1) y=1.2x. (2) y=72. Together: 72=1.2x → x=60.
-**explanation:** (1): y=1.2x — one equation, two unknowns. Insufficient. (2): y=72 — no link to x. Insufficient. Together: 72=1.2x → x=60. Sufficient. Answer C.
+**situation:** A store sold x TVs in March and y in April; the question asks for x. Statement (1): April was 20% greater than March; statement (2): April sales were 72.
+**reasoning:** *Value DS — is x pinned down?* Statement (1): y = 1.2x is one equation in two unknowns — insufficient. Statement (2): y = 72 with no link to x — insufficient. Together: 72 = 1.2x gives x = 60 — sufficient, answer C. A percent relation plus one anchor value yields a unique solution.
 **mistake_a:** A requires (1) alone sufficient — but no anchor on x.
 **mistake_b:** B requires (2) alone sufficient — y alone gives no x.
 **mistake_d:** D requires each alone — neither does.
@@ -1009,7 +1011,8 @@ What is the value of |k - 3|?
 
 **answer:** D
 **fastest_path:** (1) k=7 → |4|=4. (2) (k−3)²=16 → |k−3|=√16=4 directly (k could be 7 or −1, both give 4). Each alone solves.
-**explanation:** (1): k=7 → |k−3|=4. Sufficient. (2): (k−3)²=16 → |k−3|=√16=4 (since |x|=√(x²)). k=7 or k=−1, but both give the absolute value 4. Sufficient. Answer D.
+**situation:** The question asks for the value of |k − 3|. Statement (1): k = 7; statement (2): (k − 3)² = 16.
+**reasoning:** *Value DS — is |k − 3| determined?* Statement (1): k = 7 gives |4| = 4 — sufficient. Statement (2): (k − 3)² = 16 gives |k − 3| = √16 = 4 directly; k could be 7 or −1, but both yield 4 — sufficient. Each statement alone settles it, so the answer is D. When the question asks for |expr| and a statement gives (expr)², square-root-then-absolute-value answers it without finding the variable.
 **mistake_a:** A requires only (1) sufficient — but (2) also solves.
 **mistake_b:** B requires only (2) sufficient — but (1) also solves.
 **mistake_c:** C-trap — combining is unnecessary.
@@ -1038,7 +1041,8 @@ In the xy-plane, line L passes through the points (2, 5) and (a, b). What is the
 
 **answer:** C
 **fastest_path:** Slope formula (b−5)/(a−2)=3. (1) gives slope; (2) gives a. Plug: b−5=3(6−2)=12 → b=17.
-**explanation:** (1): Slope=3 → b−5=3(a−2). Two unknowns. Insufficient. (2): a=6 alone gives no b. Insufficient. Together: b−5=12 → b=17. Sufficient. Answer C.
+**situation:** Line L passes through (2, 5) and (a, b); the question asks for b. Statement (1): the slope of L is 3; statement (2): a = 6.
+**reasoning:** *Value DS — is b determined?* Statement (1): slope 3 gives b − 5 = 3(a − 2), still two unknowns — insufficient. Statement (2): a = 6 alone says nothing about b — insufficient. Together: b − 5 = 3(6 − 2) = 12, so b = 17 — sufficient, answer C. Slope plus one point fixes the line, but a specific b needs its matching x-coordinate a.
 **mistake_a:** A requires (1) alone sufficient — slope alone has infinite (a,b) pairs.
 **mistake_b:** B requires (2) alone sufficient — a alone gives no b.
 **mistake_d:** D requires each alone — neither does.
@@ -1067,7 +1071,8 @@ Machines A and B work simultaneously at their respective constant rates to fill 
 
 **answer:** C
 **fastest_path:** Combined rate = sum of individual rates. (1) gives A's rate; (2) gives B's rate. Together: 1/6 + 1/3 = 1/2 order/hour → 2 hours.
-**explanation:** Combined-rate formula: rate_combined = rate_A + rate_B; time = 1/rate_combined. (1): rate_A = 1/6. Without B's rate, can't combine. (2): rate_B = 1/3. Without A. Together: 1/6 + 1/3 = 1/2 → 2 hours. Sufficient. Answer C.
+**situation:** Machines A and B work together at constant rates; the question asks how long they take together. Statement (1): A alone takes 6 hours; statement (2): B alone takes 3 hours.
+**reasoning:** *Value DS — combined time = 1/(rate_A + rate_B), so both rates are needed.* Statement (1): rate_A = 1/6, but B's rate is unknown — insufficient. Statement (2): rate_B = 1/3, but A's is unknown — insufficient. Together: 1/6 + 1/3 = 1/2 order/hour, so the time is 2 hours — sufficient, answer C. One rate alone never gives the joint time; this is the standard C for combined-work DS.
 **mistake_a:** A requires (1) alone sufficient — need both rates.
 **mistake_b:** B requires (2) alone sufficient — need both.
 **mistake_d:** D requires each alone — neither has both.
@@ -1096,7 +1101,8 @@ At a company, the ratio of men to women is 3 to 5. After 10 new employees were h
 
 **answer:** A
 **fastest_path:** Original men=3k, women=5k. New ratio 2:3 after 10 hires. (1) m=10, w=0 → solve for k uniquely → 90 men.
-**explanation:** Setup: original 3k men, 5k women. Hires: m men + w women with m+w=10. New ratio (3k+m)/(5k+w)=2/3 → 3m−2w=k. (1): m=10, w=0 → k=30 → original men=3·30=90. Sufficient. (2): post women = 5k+w=50. Combined with the rest gives a non-integer m=35/6, so the constraint isn't internally consistent without specifying the breakdown — can't fix original count. Insufficient. Answer A.
+**situation:** Men:women started 3:5 and became 2:3 after 10 new hires; the question asks how many men worked there before. Statement (1): all 10 hires were men; statement (2): after hiring there were 50 women.
+**reasoning:** *Value DS — write original 3k men, 5k women, with m men and w women hired (m + w = 10).* The new ratio gives (3k + m)/(5k + w) = 2/3, i.e., 3m − 2w = k. Statement (1): m = 10, w = 0 gives k = 30, so original men = 3·30 = 90 — sufficient. Statement (2): post-women 5k + w = 50, but without the hire breakdown the system is under-determined (it forces a non-integer m), so it can't fix the original count — insufficient. Since (1) alone solves it, the answer is A. When the hire breakdown is specified, the original count follows algebraically.
 **mistake_b:** B requires (2) alone sufficient — but the system is under-determined and inconsistent without the breakdown.
 **mistake_c:** C-trap — adding (2) doesn't help; (1) already solves.
 **mistake_d:** D requires each alone — (2) fails.
@@ -1125,7 +1131,8 @@ In the sequence a_1, a_2, a_3, ..., each term after the first is a fixed amount 
 
 **answer:** C
 **fastest_path:** Arithmetic seq: a_n = a_1 + (n−1)d. (1) gives one equation; (2) gives another. Together: solve for a_1 and d uniquely.
-**explanation:** (1): 3a_1+3d=15 → a_1+d=5. One equation, two unknowns. Insufficient. (2): 3a_1+12d=33 → a_1+4d=11. One equation. Insufficient. Together: subtract → 3d=6 → d=2, a_1=3. a_10=3+9·2=21. Sufficient. Answer C.
+**situation:** In an arithmetic sequence (each term a fixed amount above the previous), the question asks for a₁₀. Statement (1): a₁ + a₂ + a₃ = 15; statement (2): a₄ + a₅ + a₆ = 33.
+**reasoning:** *Value DS — a₁₀ = a₁ + 9d needs both a₁ and d.* Statement (1): 3a₁ + 3d = 15, i.e., a₁ + d = 5 — one equation, two unknowns, insufficient. Statement (2): 3a₁ + 12d = 33, i.e., a₁ + 4d = 11 — one equation, insufficient. Together: subtracting gives 3d = 6, so d = 2 and a₁ = 3, hence a₁₀ = 3 + 9·2 = 21 — sufficient, answer C. Two independent linear relations fix the two sequence parameters.
 **mistake_a:** A requires (1) alone sufficient — but two unknowns.
 **mistake_b:** B requires (2) alone sufficient — same.
 **mistake_d:** D requires each alone — neither does.
