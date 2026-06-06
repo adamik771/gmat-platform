@@ -1481,17 +1481,37 @@ export default function SessionClient({
       }
     }
 
-    // Next-step recommendation keyed to accuracy band. When the student
-    // performed well and the server identified a weak topic, name it
-    // directly — eliminates the "which area?" follow-up navigation.
-    const nextStepNote =
-      accuracy < 60
-        ? "Accuracy below 60% signals a concept gap. Revisiting the chapter before more practice compounds better."
-        : accuracy < 78
-        ? "Accuracy is building. One more focused session on this topic before moving on."
+    // Coaching note — derived from the difficulty pattern and pacing data
+    // so guidance is specific to what this session revealed, not just the
+    // overall accuracy band.
+    const wrongCount = incorrectPairs.length
+    const wrongDiffs = incorrectPairs.map((p) => p.q.difficulty)
+    const allWrongAdvanced =
+      wrongCount > 0 && wrongDiffs.every((d) => d === "Advanced")
+    const allWrongBeginner =
+      wrongCount > 0 &&
+      wrongDiffs.every((d) => d === "Beginner" || d === "Intermediate")
+    const hasTimingGap =
+      avgCorrectMs !== null &&
+      avgIncorrectMs !== null &&
+      avgIncorrectMs / avgCorrectMs > 1.4
+
+    const coachingNote =
+      wrongCount === 0
+        ? "Clean session. That clears this topic — move to a harder area or push up to Advanced difficulty."
+        : isMixedReview
+        ? "Spaced retrieval sessions reinforce what you've already practiced. Return tomorrow to see what resurfaces."
+        : accuracy < 60
+        ? "Below 60% signals a concept gap, not just a practice gap. One chapter review before drilling again will compound better."
+        : allWrongAdvanced && accuracy >= 65
+        ? "You held the Beginner and Intermediate questions — the Advanced ones are the remaining frontier. That's a tractable gap."
+        : allWrongBeginner
+        ? "Some foundational questions slipped. A chapter review before more drilling will compound better than repeating this set."
+        : hasTimingGap && accuracy < 80
+        ? `Time is the variable here — wrong answers averaged ${formatDuration(avgIncorrectMs!)} vs ${formatDuration(avgCorrectMs!)} on correct ones. One more session, but cut uncertain questions at the 2-minute mark.`
         : weakestTopic
-        ? `This topic is solid. Based on your practice history, ${weakestTopic.topic} is your weakest area right now — ${Math.round(weakestTopic.accuracy * 100)}% accuracy. That's where the points are.`
-        : "This topic is solid. Investing time in a weaker area is the highest-leverage move now."
+        ? `This topic is solid. Practice history shows ${weakestTopic.topic} at ${Math.round(weakestTopic.accuracy * 100)}% accuracy — that's the highest-leverage gap to close now.`
+        : "Accuracy is building. One more focused session here before moving on."
 
     return (
       <div className="max-w-3xl mx-auto space-y-6">
@@ -2074,8 +2094,15 @@ export default function SessionClient({
                 What to do next
               </p>
               <p className="text-sm text-[#C0C0C0] leading-relaxed mb-5">
-                {nextStepNote}
+                {coachingNote}
               </p>
+              {wrongCount > 0 && !isMixedReview && (
+                <div className="border-t border-white/[0.06] pt-4 mb-5">
+                  <p className="text-xs leading-relaxed" style={{ color: "#555555" }}>
+                    {wrongCount} mistake{wrongCount !== 1 ? "s" : ""} from this session enter your spaced review queue automatically — they resurface based on recency and repeat patterns.
+                  </p>
+                </div>
+              )}
               <div className="flex flex-wrap gap-3">
                 {actions.map((action) =>
                   action.variant === "primary" ? (
