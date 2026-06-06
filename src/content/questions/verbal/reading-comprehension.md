@@ -2067,3 +2067,505 @@ The passage most strongly suggests that the author views the relationship betwee
 **common_trap:** *Extreme language* — (A) and (B) both push the displacement language past what the passage supports.
 **takeaway:** Inference on a "transition" passage = match the passage's *pace* and *mechanism*. Gradual + by-demonstration is different from rapid + by-refutation.
 **related_reading:** reading-verbal-06-rc-question-types
+
+
+---
+
+
+---
+
+## Passage 21: Choice Architecture and Its Critics
+
+The concept of "choice architecture" — the design of environments in which people make decisions — gained prominence following behavioral economics research of the early 2000s. Its central insight is that the way options are presented systematically influences which option is selected, independent of the options' objective merits. Architects of this kind argue that default settings, physical arrangement, and framing can nudge individuals toward better outcomes without eliminating freedom of choice, a paradigm its proponents call "libertarian paternalism."
+
+Critics of choice architecture raise both practical and philosophical objections. On practical grounds, the effectiveness of nudges tends to decay over time as individuals adapt to their environments and learn to navigate defaults consciously. A savings account designed to automatically enroll employees, for instance, increases initial participation rates dramatically, but the long-term effect on wealth accumulation is modest compared to financial education interventions. On philosophical grounds, critics argue that designing environments to exploit predictable cognitive biases — however benevolently — undermines the very autonomy it claims to preserve, because a choice made under structural influence is not fully free.
+
+Defenders respond that pure neutrality in choice design is an illusion: every decision environment is architected by someone, and failing to design it well is itself a choice with consequences. The debate thus shifts from whether to use choice architecture to how to deploy it responsibly, with an emerging consensus favoring transparency — informing people when and how their choices are being shaped — as the primary constraint on its use.
+
+### Q74
+**difficulty:** Easy
+**type:** Primary Purpose
+**topic:** Reading Comprehension
+
+The primary purpose of the passage is to:
+
+- A) advocate for the widespread adoption of choice architecture in public policy
+- B) examine the concept of choice architecture and the debate surrounding its use
+- C) argue that libertarian paternalism is philosophically incoherent
+- D) compare the effectiveness of nudges with traditional financial education interventions
+- E) demonstrate that designing decision environments always harms individual autonomy
+
+**answer:** B
+**fastest_path:** Trace the arc — ¶1 introduces the concept, ¶2 presents critics, ¶3 presents defenders. The answer must span all three paragraphs.
+**explanation:** The passage's three paragraphs map neatly onto introduction, critique, and defense of choice architecture. (B) covers this entire arc. (A) would require the author to endorse choice architecture, which the passage never does. (C) is the critics' philosophical argument, not the passage's overall conclusion. (D) and (E) are narrow details lifted from individual sentences.
+**mistake_a:** *Author-endorses* trap — the passage presents both sides and describes an emerging consensus, but does not itself advocate for choice architecture.
+**mistake_c:** This is what the critics argue in paragraph 2 (one side of the debate), not the passage's overall purpose.
+**mistake_d:** Too narrow — the savings-account comparison is one sentence in paragraph 2 illustrating a practical limitation, not the main topic.
+**mistake_e:** Reverses the defenders' point — paragraph 3 argues that even inaction shapes choices, not that design always harms autonomy.
+**common_trap:** Picking an answer that matches one paragraph rather than the full three-paragraph arc.
+**takeaway:** Primary purpose = whole-arc answer. If a choice covers only one paragraph, it loses by definition.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q75
+**difficulty:** Easy
+**type:** Specific Detail
+**topic:** Reading Comprehension
+
+According to the passage, which of the following is given as an example of choice architecture in practice?
+
+- A) Publishing behavioral economics research that identifies predictable cognitive biases
+- B) Requiring financial advisors to disclose potential conflicts of interest
+- C) Automatically enrolling employees in a savings account by default
+- D) Educating individuals about the pitfalls of predictable decision errors
+- E) Prohibiting employers from using automatic enrollment in benefit plans
+
+**answer:** C
+**fastest_path:** The passage gives one concrete example in ¶2: automatic enrollment in a savings account. Locate it and match.
+**explanation:** Paragraph 2 states directly: "A savings account designed to automatically enroll employees... increases initial participation rates dramatically." That is the concrete, named example of choice architecture in practice. All other choices are either absent from the passage (B, E) or represent alternatives to choice architecture (A = behavioral research, D = financial education, which the passage explicitly contrasts with nudges).
+**mistake_a:** Publishing research is how choice architecture was discovered, not an instance of it being deployed in practice.
+**mistake_b:** Disclosure requirements are not mentioned anywhere in the passage.
+**mistake_d:** Financial education is explicitly contrasted with nudges in paragraph 2 as a different type of intervention.
+**mistake_e:** Prohibiting automatic enrollment is the opposite of the example — the example uses the default to enroll employees, not to block them.
+**common_trap:** Confusing what *enables* choice architecture (research) with an *instance* of it in use.
+**takeaway:** Specific Detail = anchor the answer directly to text. When the passage names an example explicitly, the correct answer quotes or paraphrases that named example.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q76
+**difficulty:** Medium
+**type:** Inference
+**topic:** Reading Comprehension
+
+Based on the passage, the author most likely believes which of the following about the debate over choice architecture?
+
+- A) The critics' practical objections are more compelling than their philosophical objections.
+- B) The debate has been definitively resolved in favor of using choice architecture with transparency.
+- C) The proper question is not whether to use choice architecture, but how to deploy it responsibly.
+- D) Defenders have fully addressed the critics' concerns about autonomy.
+- E) Choice architecture is harmful in practice even when it is used transparently.
+
+**answer:** C
+**fastest_path:** ¶3's final sentence is nearly verbatim: "The debate thus shifts from whether to use choice architecture to how to deploy it responsibly."
+**explanation:** Paragraph 3 states explicitly: "The debate thus shifts from whether to use choice architecture to how to deploy it responsibly." (C) restates this precisely. (B) is close but too strong — "emerging consensus" is not a "definitive resolution." (A) has no support; the passage presents both objections in parallel without ranking them. (D) goes beyond the text: defenders "respond," but the passage does not indicate critics are satisfied.
+**mistake_b:** *Overstates* — "emerging consensus" is hedged language signaling the debate is ongoing, not concluded. "Definitively resolved" misreads the qualifier.
+**mistake_a:** The passage presents both practical and philosophical objections in parallel without ranking their persuasive force.
+**mistake_d:** The passage says defenders *respond*, not that they *fully address* critics' concerns — a meaningful distinction.
+**mistake_e:** Contradicts paragraph 3, which frames transparency as a constraint that can make choice architecture responsible.
+**common_trap:** Choosing (B) because it sounds like a strong conclusion — but "emerging consensus" is explicitly hedged and does not mean resolution.
+**takeaway:** When an inference question has an answer nearly verbatim in the text, take it. Don't overthink.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q77
+**difficulty:** Medium
+**type:** Function
+**topic:** Reading Comprehension
+
+The author mentions that "pure neutrality in choice design is an illusion" (paragraph 3) primarily in order to:
+
+- A) concede that the critics' philosophical objections cannot be answered
+- B) undermine the philosophical objection by establishing that the alternative to choice architecture is not neutral either
+- C) introduce a new criterion for measuring the effectiveness of nudges quantitatively
+- D) explain why the practical effects of nudges decay over time as individuals adapt
+- E) demonstrate that transparency is the only valid ethical constraint on choice architecture
+
+**answer:** B
+**fastest_path:** The phrase appears in the defenders' rebuttal. Its job: "not designing is also a design." That removes the premise that inaction is neutral, countering the philosophical critique.
+**explanation:** In paragraph 3, defenders use "pure neutrality is an illusion" to argue that choosing *not* to design environments is itself a consequential choice. This directly counters the philosophical critics' implied premise that a neutral alternative to choice architecture exists. (B) captures this purpose. (A) is the opposite — this sentence appears in the *defenders'* section, not as a concession. (C), (D), and (E) introduce concepts (measurement criteria, decay, list of valid constraints) that this sentence does not address.
+**mistake_a:** This sentence is in the defenders' section of paragraph 3; a concession would be located in the critics' section of paragraph 2.
+**mistake_c:** No quantitative measurement criterion is introduced in this sentence or in paragraph 3.
+**mistake_d:** The decay of nudge effects is discussed in paragraph 2's practical objections — a different paragraph making a different argument.
+**mistake_e:** The sentence establishes why design is inescapable; it does not claim transparency is the *only* constraint or create a ranked list.
+**common_trap:** Confusing the location of the sentence (in the defenders' paragraph) with a concession to critics. Location in the defenders' rebuttal signals a defensive, not concessive, purpose.
+**takeaway:** Function questions: identify who is speaking and why they are speaking at that moment. Defenders' paragraph → defensive purpose.
+**related_reading:** reading-verbal-06-rc-question-types
+
+
+---
+
+
+---
+
+## Passage 22: Thermal Resilience in Coral Reefs
+
+Coral reefs support roughly a quarter of all marine species despite covering less than one percent of the ocean floor. Their survival depends on a symbiosis between corals and photosynthetic algae called zooxanthellae, which provide up to ninety percent of the coral's energy. When ocean temperatures rise even one to two degrees Celsius above seasonal norms, this relationship breaks down: the coral expels the algae, turns white, and becomes vulnerable to starvation and disease — a process called bleaching.
+
+Scientists have observed that some coral populations exhibit differential thermal tolerance: certain colonies withstand bleaching events that devastate neighboring colonies, raising the possibility of managed intervention. One proposed strategy, selective assisted gene flow, involves identifying thermally tolerant individuals and transplanting their offspring — or crossbreeding them with susceptible populations — to spread tolerance alleles faster than natural selection allows. Early field trials have reported higher survival rates in transplanted corals during subsequent thermal anomalies.
+
+The strategy is not without controversy. Critics warn that artificially accelerating allele spread could reduce the genetic diversity that allows ecosystems to respond to novel stressors. Others note that thermal tolerance traits appear to be partially environment-dependent rather than purely genetic, meaning laboratory or nursery selection may not reliably predict field performance. Even proponents acknowledge that the strategy addresses only one stressor in a system simultaneously facing ocean acidification, overfishing, and coastal runoff.
+
+### Q78
+**difficulty:** Easy
+**type:** Primary Purpose
+**topic:** Reading Comprehension
+
+The passage primarily discusses:
+
+- A) the economic importance of coral reefs to coastal communities worldwide
+- B) evidence that coral reefs are more biologically resilient than scientists previously believed
+- C) a proposed conservation strategy for coral reefs, including its potential benefits and its limitations
+- D) the scientific debate over whether thermal tolerance in corals is genetic or environmental in origin
+- E) the role of ocean acidification in accelerating the pace of coral bleaching events
+
+**answer:** C
+**fastest_path:** ¶1 = bleaching threat, ¶2 = strategy proposed, ¶3 = limitations. Full arc = C.
+**explanation:** Paragraph 1 establishes the threat (bleaching), paragraph 2 introduces selective assisted gene flow as a proposed response, and paragraph 3 presents multiple objections. (C) accurately covers all three beats: proposed strategy, potential benefit (higher survival rates in trials), and limitations. (D) is one detail from a single sentence in paragraph 3 — the "partially environment-dependent" observation — not the passage's focus.
+**mistake_a:** No economic data or coastal communities appear anywhere in the passage.
+**mistake_b:** The passage presents a serious ongoing threat and contested solutions, not evidence of unexpected resilience.
+**mistake_d:** Too narrow — the genetic-versus-environmental question is one of three limitations listed in paragraph 3, not the passage's organizing theme.
+**mistake_e:** Ocean acidification is mentioned only in the last sentence as one of several additional stressors; it is not the passage's topic.
+**common_trap:** Choosing (D) after reading paragraph 3 carefully — a detail trap that activates when students read one paragraph closely and neglect the others.
+**takeaway:** Main Idea = whole passage. The most-discussed topic is the conservation strategy and its assessment, not any single limitation.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q79
+**difficulty:** Medium
+**type:** Inference
+**topic:** Reading Comprehension
+
+Which of the following can be most reasonably inferred from the passage about selective assisted gene flow?
+
+- A) It has been proven effective at protecting coral reefs against all threats they currently face.
+- B) It was developed in response to scientists' observation that some coral colonies are naturally more heat-tolerant than others.
+- C) Field trials have been conducted long enough to produce statistically reliable data on long-term reef recovery.
+- D) It is the conservation strategy preferred by most marine biologists working on coral reef restoration.
+- E) It eliminates the need for other conservation measures by targeting the primary driver of bleaching.
+
+**answer:** B
+**fastest_path:** ¶2 sequences: observation of differential tolerance → "raising the possibility of managed intervention" → strategy. That sequence implies B: observation motivated the strategy.
+**explanation:** Paragraph 2 presents the logic chain: scientists observed differential thermal tolerance → this "raised the possibility of managed intervention" → one proposed strategy is selective assisted gene flow. The sequence directly supports (B): the field observation preceded and motivated the strategy's development. (A) contradicts paragraph 3 (strategy addresses "only one stressor"). (C) is unsupported — "early field trials" signals limited, preliminary data. (D) and (E) have no support anywhere in the passage.
+**mistake_a:** Directly contradicted — paragraph 3 explicitly states the strategy addresses "only one stressor" among several.
+**mistake_c:** "Early field trials" signals the opposite of long-running data; early implies preliminary.
+**mistake_d:** No comparison to other biologists' preferences or strategies is made anywhere in the passage.
+**mistake_e:** Directly contradicted — paragraph 3 lists additional stressors (acidification, overfishing, runoff) that the strategy does not address.
+**common_trap:** (A) tempts readers who remember the positive field trial result — but higher survival rates in those trials does not prove effectiveness against all threats.
+**takeaway:** Inference = what the passage *implies*, not just what is stated. A causal sequence in a paragraph often implies motivational logic.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q80
+**difficulty:** Hard
+**type:** Inference — Must Be True
+**topic:** Reading Comprehension
+
+Which of the following, if true, would most directly challenge the viability of selective assisted gene flow as a coral reef conservation strategy?
+
+- A) Thermally tolerant coral colonies are found in every major ocean basin globally, not only in localized pockets.
+- B) The number of thermally tolerant individuals currently available for transplantation is insufficient to supply all identified high-risk reefs simultaneously.
+- C) Genetic diversity in coral populations worldwide has declined by approximately 15% over the past century.
+- D) Research confirms that thermal tolerance in corals is determined primarily by local environmental conditions rather than by heritable genetic traits.
+- E) Ocean acidification poses a more severe long-term threat to coral reef ecosystems than thermal stress alone.
+
+**answer:** D
+**fastest_path:** The strategy's core premise: tolerance is heritable and can be bred or transplanted. D destroys that premise — if it's environmental, not genetic, the mechanism doesn't transfer.
+**explanation:** Selective assisted gene flow works by identifying thermally tolerant individuals and spreading their genetic material. If (D) is true — tolerance is primarily environmental, not heritable — then transplanting or crossbreeding tolerant individuals cannot reliably reproduce that tolerance in new populations, because the trait is not transmitted through genes. The passage notes this concern in paragraph 3 ("partially environment-dependent"), but (D) makes the environmental component dominant, rendering the strategy's genetic foundation invalid. (B) is a practical supply constraint, not a challenge to the mechanism itself. (E) expands the scope of threats but does not undermine what the strategy does address.
+**mistake_a:** If tolerance alleles are widespread globally, the strategy might be less necessary at scale, but this does not mean it fails to work where implemented — it challenges necessity, not viability.
+**mistake_b:** Supply constraints are real but temporary; they challenge *scaling*, not the fundamental mechanism. Once supply increases, the strategy remains viable in principle.
+**mistake_c:** Declining genetic diversity is already a concern noted in paragraph 3, but this does not show the strategy itself fails — it shows the strategy may have an undesirable side effect.
+**mistake_e:** Even if acidification is a more severe long-term threat, the strategy could still be valid for addressing the thermal-stress component specifically. A worse threat elsewhere does not negate the mechanism.
+**common_trap:** (B) and (E) are plausible concerns but address supply limitations or scope, not the genetic mechanism that makes selective gene flow viable at all.
+**takeaway:** "Most directly challenges viability" = attacks the foundational premise. Here the foundation is heritability; (D) removes it.
+**related_reading:** reading-verbal-06-rc-question-types
+
+
+---
+
+
+---
+
+## Passage 23: Transit-Oriented Development and Its Limits
+
+Transit-oriented development (TOD) — the practice of designing dense, walkable neighborhoods around public transit hubs — has emerged as a favored strategy among urban planners seeking to reduce automobile dependence. The theory holds that proximity to transit increases land value, which funds transit operations and attracts residents who prefer car-free lifestyles. Proponents point to successful implementations in Singapore, Copenhagen, and Arlington, Virginia, where TOD corridors have produced compact, economically vibrant neighborhoods.
+
+The empirical record is more contested than the theory implies. Studies examining American TOD projects have found that anticipated ridership gains often fail to materialize when development is not accompanied by reforms eliminating minimum parking requirements. When developers are permitted — or required — to build parking garages, automobile-oriented design undermines pedestrian circulation and dilutes transit ridership by encouraging residents to drive for non-commute trips. Analysts call this pattern "transit-adjacent development": it resembles TOD in form but not in function.
+
+A further complication arises from the displacement dynamics that frequently accompany rising property values near transit stations. Neighborhoods targeted for TOD often contain lower-income residents who depend on transit for economic mobility; rising rents displace these residents to neighborhoods with fewer transit options — a paradox planners call "transit gentrification." Some jurisdictions have attempted to counter this through affordable housing set-asides in TOD projects, though critics argue that set-asides are too modest in scale to offset market-rate displacement.
+
+### Q81
+**difficulty:** Medium
+**type:** Inference — Vocabulary in Context
+**topic:** Reading Comprehension
+
+The author uses the phrase "transit-adjacent development" most likely to suggest that:
+
+- A) American cities have consistently underinvested in public transit infrastructure relative to peer nations
+- B) the success of TOD in Singapore and Copenhagen cannot be replicated in the United States
+- C) some developments marketed as TOD produce automobile-dependent patterns rather than increased transit ridership
+- D) minimum parking requirements are the sole factor responsible for TOD underperformance in American cities
+- E) TOD works only in cities that already have a pedestrian-friendly street grid
+
+**answer:** C
+**fastest_path:** The passage defines the phrase directly: "resembles TOD in form but not in function." Translate: looks like TOD, doesn't behave like TOD (still automobile-dependent).
+**explanation:** The passage explicitly defines "transit-adjacent development" as something that "resembles TOD in form but not in function" — meaning the physical setup (density, transit proximity) exists but the behavioral outcome (transit ridership) does not. (C) paraphrases this precisely. (D) overstates the passage — parking requirements are one factor in an "if not accompanied by" conditional, not the exclusive cause.
+**mistake_a:** The passage discusses planning strategy and implementation choices, not levels of infrastructure investment.
+**mistake_b:** The passage does not say international success is unreplicable; it says American implementations face specific implementation failures, which are identified.
+**mistake_d:** "Sole factor" is too strong — paragraph 2 frames parking requirement reform as one necessary accompaniment, not the only variable that matters.
+**mistake_e:** Street grids are never mentioned in the passage.
+**common_trap:** (D) tempts readers who focused on the parking discussion — but "sole factor" overclaims what the passage supports.
+**takeaway:** Vocabulary-in-context: the passage usually defines the coined term in the surrounding sentence. Locate that definition and match it.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q82
+**difficulty:** Hard
+**type:** Author's Attitude
+**topic:** Reading Comprehension
+
+The author's attitude toward transit-oriented development is best described as:
+
+- A) enthusiastically supportive, treating international success stories as conclusive proof of concept
+- B) fundamentally skeptical, arguing that the strategy's core theoretical assumptions are flawed
+- C) neutral and analytical, presenting theoretical benefits alongside documented implementation failures
+- D) cautiously optimistic, suggesting that policy reforms could make the strategy consistently effective
+- E) morally critical of planners who prioritize ridership metrics over community displacement concerns
+
+**answer:** C
+**fastest_path:** Test each choice against the full structure: ¶1 = theoretical case + successes, ¶2 = empirical failures, ¶3 = displacement paradox + inadequate response. No endorsement, no condemnation. C.
+**explanation:** The passage presents: the theory with supporting examples (¶1), empirical implementation failures (¶2), and a secondary complication with a proposed but inadequate response (¶3). The author presents each perspective without endorsing or condemning TOD. (D) is the hardest trap: the passage mentions reforms (parking, set-asides), but immediately undercuts both — set-asides are "too modest," and parking reform is framed as a precondition that often isn't met, not as a recommendation the author advances.
+**mistake_a:** International examples are presented as evidence for the theory, but the author then presents empirical counter-cases — true enthusiasm would treat the positive examples as conclusive.
+**mistake_b:** The author never challenges the *theory* of TOD; the critique concerns *implementation* outcomes. Those are different targets.
+**mistake_d:** The most difficult distractor. The passage describes reforms but shows them as inadequate or unreliable, not as promising paths the author advocates adopting.
+**mistake_e:** The author describes displacement analytically as a documented paradox; there is no moral judgment directed at specific planners.
+**common_trap:** (D) sounds balanced and forward-looking. The key distinction: the passage *describes* proposed reforms while simultaneously documenting their insufficiency — that is analysis, not optimism.
+**takeaway:** Author's attitude = how the author treats *all* the evidence. A balanced-presentation passage with no endorsement or advocacy is "neutral and analytical," not "cautiously optimistic."
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q83
+**difficulty:** Hard
+**type:** Weaken
+**topic:** Reading Comprehension
+
+Which of the following, if true, would most weaken the argument made by critics who contend that affordable housing set-asides are "too modest in scale to offset market-rate displacement"?
+
+- A) Most American jurisdictions lack the political infrastructure to enforce set-aside requirements once TOD projects are approved.
+- B) Research shows that TOD projects requiring set-asides at 25% or more of total units maintain neighborhood income diversity at rates statistically comparable to pre-development baselines.
+- C) Affordable housing units within TOD set-asides cost significantly more per unit to construct than comparable market-rate units in the same development.
+- D) Residents who obtain affordable set-aside units in TOD developments use public transit at higher rates than residents of market-rate units in the same development.
+- E) Transit gentrification has been documented in international TOD implementations, not only in American projects.
+
+**answer:** B
+**fastest_path:** Critics say set-asides are too small to stop displacement. B says: at 25%, they do stop displacement. Direct contradiction of the "too modest" claim.
+**explanation:** The critics' claim is that set-asides are "too modest in scale to offset market-rate displacement." (B) directly rebuts this: at a sufficient scale (25%+), set-asides actually do preserve income diversity at pre-development levels. This implies the problem is not with set-asides as a mechanism but with the *proportion* at which they are mandated, and that larger mandates could work. (A) addresses political enforcement, not scale effectiveness. (C) notes construction costs but not whether larger set-asides prevent displacement. (D) speaks to transit behavior, irrelevant to the displacement argument. (E) expands the geographic scope of the problem and actually supports the critics.
+**mistake_a:** Political feasibility of enforcement does not address whether larger-scale set-asides would succeed if implemented — it addresses implementation challenges, not the critics' specific claim about scale.
+**mistake_c:** Higher construction costs make the strategy harder to mandate at scale but do not show it fails to prevent displacement when mandated.
+**mistake_d:** Transit ridership rates are irrelevant to the critics' specific argument about displacement of existing residents.
+**mistake_e:** Documentation of transit gentrification internationally *supports* the critics' concern by showing the problem is structural and widespread, not by weakening their scale argument.
+**common_trap:** (A) tempts because "political enforcement" sounds like a practical rebuttal — but the critics' claim is specifically about *scale effectiveness*, and (A) addresses a different obstacle.
+**takeaway:** Weaken = attack the specific claim, not a related concern. Match the challenge to the exact premise being questioned: critics claim set-asides are too small, so the weaker must show larger set-asides work.
+**related_reading:** reading-verbal-06-rc-question-types
+
+
+---
+
+
+---
+
+## Passage 24: Information Control and the Control Paradox
+
+When Gutenberg's press proliferated across Europe in the second half of the fifteenth century, observers differed sharply on its implications. Humanist scholars celebrated it as a technology of liberation, arguing that it would democratize access to knowledge previously confined to manuscript copies held by monasteries and wealthy patrons. Church authorities recognized that the same technology enabling wider distribution of classical texts could equally amplify heterodox religious opinion, and they moved within decades to establish licensing regimes requiring official approval before publication.
+
+The history of these early censorship efforts reveals a recurring pattern that media scholars have generalized across subsequent information technologies: initial attempts at control focus on the means of production, since controlling presses is more feasible than controlling the circulation of already-printed material. When this approach proves inadequate — as it did in the sixteenth century, when underground presses proliferated and prohibited texts circulated through informal networks — authorities shift toward prosecuting distributors and consumers of prohibited content, a strategy equally difficult to sustain in environments where enforcement capacity is limited and public sympathy favors the censored.
+
+The printing press episode also illustrates what scholars call the "control paradox": aggressive attempts to suppress a technology or content category often amplify awareness of the suppressed material, because prohibition signals that the content poses a genuine threat to established authority. This paradox has been documented across subsequent centuries, from the treatment of banned books in eighteenth-century France to the circulation of samizdat literature in the Soviet Union.
+
+### Q84
+**difficulty:** Easy
+**type:** Specific Detail
+**topic:** Reading Comprehension
+
+According to the passage, why did Church authorities establish licensing regimes after the printing press spread across Europe?
+
+- A) They wanted to ensure that classical manuscripts reached the widest possible audience.
+- B) They recognized that the press could spread heterodox religious opinions as easily as it spread classical texts.
+- C) They sought to protect the economic position of monasteries as the primary producers of manuscripts.
+- D) They were responding to demands by humanist scholars for official oversight of publications.
+- E) They believed that unregulated printing would reduce literacy by flooding the market with low-quality texts.
+
+**answer:** B
+**fastest_path:** ¶1 states the reason directly: Church authorities "recognized that the same technology...could equally amplify heterodox religious opinion."
+**explanation:** Paragraph 1 is explicit: Church authorities recognized that the same technology distributing classical texts could equally spread heterodox religious opinion, and *for that reason* established licensing regimes. (B) paraphrases the stated reason directly. (A) reverses the intent — the Church *restricted* distribution rather than expanding it. (C) is not mentioned. (D) reverses the power dynamic — the Church imposed licensing; it was not responding to humanist requests.
+**mistake_a:** The Church restricted distribution; it did not seek to maximize access to classical manuscripts.
+**mistake_c:** The economic interests of monasteries as manuscript producers are not mentioned anywhere in the passage.
+**mistake_d:** Reverses the power relationship — Church authorities imposed licensing as a control measure, not in response to humanist scholars' requests for oversight.
+**mistake_e:** Literacy levels and print quality are never raised in the passage.
+**common_trap:** (A) is a tempting reversal — the passage does mention classical texts in this sentence, but the Church's response was to restrict, not promote, distribution.
+**takeaway:** Specific Detail on "why" = find the causal statement in the text. Church authorities → concern about heterodox opinion → licensing.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q85
+**difficulty:** Medium
+**type:** Organization
+**topic:** Reading Comprehension
+
+The passage is primarily organized as:
+
+- A) a chronological account of censorship regimes spanning from the fifteenth century to the twentieth century
+- B) a historical case study used to establish a recurring pattern, which is then labeled as a named theoretical concept
+- C) a debate between humanist scholars and Church authorities about the social implications of the printing press
+- D) a critique of historical censorship regimes as both ineffective and ultimately counterproductive
+- E) a comparison of the printing press with subsequent technologies to assess which produced greater social disruption
+
+**answer:** B
+**fastest_path:** ¶1 = case (printing press episode), ¶2 = "recurring pattern generalized across subsequent technologies," ¶3 = names the pattern (control paradox) + documents additional examples. Case → pattern → named concept.
+**explanation:** Paragraph 1 introduces the printing press as a case study. Paragraph 2 extracts from it a "recurring pattern that media scholars have generalized across subsequent information technologies." Paragraph 3 names the structural concept (the "control paradox") and cites additional historical documentation. This is the classic academic structure: case → generalization → named principle. (A) is wrong because the organization is conceptual, not chronological — time markers serve the conceptual argument rather than structuring the passage as history. (C) is wrong because the scholars-versus-authorities debate is only the opening two sentences of paragraph 1.
+**mistake_a:** The passage mentions multiple time periods, but time markers are incidental to the conceptual argument, not the organizing logic. Chronological organization would require the passage to move through events in order; this one moves through a concept's development.
+**mistake_c:** The humanist-versus-Church debate is only the first two sentences of paragraph 1 — a setup for the case study, not the organizing framework.
+**mistake_d:** The passage analyzes patterns rather than passing moral judgment; it describes how censorship efforts develop and fail without calling censors wrong.
+**mistake_e:** The passage generalizes a *pattern* across technologies; it does not rank them by social disruption or compare them on that dimension.
+**common_trap:** (A) attracts readers who notice the passage cites multiple historical periods — but the presence of chronological details does not mean the *organization* is chronological.
+**takeaway:** Structure questions: map each paragraph to its rhetorical function, not its time period. Case study → generalized pattern → named concept is a recognizable academic organization.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q86
+**difficulty:** Hard
+**type:** Inference — Application
+**topic:** Reading Comprehension
+
+Based on the passage's description of the "control paradox," which of the following contemporary scenarios would best exemplify the paradox?
+
+- A) A government that increases prison sentences for online content violations deters a measurable share of potential violators.
+- B) A streaming platform's quiet removal of a controversial documentary generates widespread public attention to that documentary.
+- C) A newspaper that publishes leaked government documents faces prosecution under laws governing distribution of prohibited material.
+- D) A technology company that refuses to cooperate with government data requests is ultimately compelled to comply through court orders.
+- E) A country that licenses its domestic media industry controls information flow more effectively than one without licensing requirements.
+
+**answer:** B
+**fastest_path:** Control paradox = suppression amplifies awareness because prohibition signals threat. B: quiet removal → widespread attention. That's exactly the mechanism.
+**explanation:** The control paradox holds that "aggressive attempts to suppress...often amplify awareness of the suppressed material, because prohibition signals that the content poses a genuine threat." (B) exemplifies this: the act of removal (suppression) itself generates public attention (amplified awareness). The key mechanism — suppression creates the signal that amplifies interest — is present. (A) and (E) describe suppression *working*, which is the opposite of the paradox. (C) describes the second-stage control tactic (prosecuting distributors) from paragraph 2, not the paradox of awareness amplification. (D) describes legal compulsion with no paradoxical awareness effect.
+**mistake_a:** Successful deterrence = suppression working. The control paradox describes suppression *backfiring* — the opposite.
+**mistake_c:** This describes prosecuting a distributor, which is the second-stage enforcement tactic described in paragraph 2. The question asks about the *control paradox* specifically, not the general control pattern.
+**mistake_d:** The company complies under court order — no awareness amplification occurs. This is about enforcement mechanics, not the paradox.
+**mistake_e:** Effective licensing = suppression working, again the opposite of the paradox, which requires suppression to amplify awareness.
+**common_trap:** (C) is the hardest distractor — it involves prohibited content and distribution, keywords from paragraph 2. But the question asks about the *control paradox*, and (C) describes enforcement, not paradoxical amplification.
+**takeaway:** Application questions: translate the concept to new facts by checking for the *mechanism*, not just the topic. The control paradox's mechanism = suppression signals threat → amplifies awareness. Match that.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q87
+**difficulty:** Hard
+**type:** Inference — Must Be True
+**topic:** Reading Comprehension
+
+The passage's account of the printing press and its references to subsequent historical examples most strongly implies which of the following?
+
+- A) Every information technology follows an identical trajectory from liberation to attempted suppression to failed censorship.
+- B) The control paradox operates only in societies where the censoring authority lacks popular legitimacy.
+- C) The pattern of censorship response documented in the sixteenth century has predictive relevance for contemporary information control debates.
+- D) Censorship has never succeeded in suppressing information once it has been printed, recorded, or otherwise distributed.
+- E) The humanist scholars who praised the printing press were ultimately more historically correct than the Church authorities who sought to restrict it.
+
+**answer:** C
+**fastest_path:** "Generalized across subsequent technologies" + "documented across subsequent centuries" = the pattern has tracked accurately across history → it should carry predictive weight going forward. C.
+**explanation:** The passage says media scholars have "generalized" this pattern "across subsequent information technologies" and documents the control paradox "across subsequent centuries, from eighteenth-century France to the Soviet Union." Two features make (C) the correct inference: the pattern has generalized descriptively across diverse contexts, and the documentation spans centuries and political systems. Taken together, these imply sufficient historical regularity to carry predictive relevance for contemporary debates. (A) uses "every" and "identical" — too absolute; the passage uses "recurring pattern" and "tends to" without claiming universality. (B) adds a legitimacy condition never mentioned. (D) uses "never succeeded" — too absolute; the passage describes frequent failure without claiming total failure. (E) is a value judgment the author never makes.
+**mistake_a:** "Every" and "identical" overclaim the passage's language — "recurring pattern" implies regularity, not universality without exception.
+**mistake_b:** The passage never mentions political legitimacy as a condition for the paradox to operate; this adds a constraint unsupported by the text.
+**mistake_d:** "Never succeeded" overreads — the passage describes how censorship often fails but does not rule out the possibility that it occasionally works.
+**mistake_e:** The passage presents both humanists and Church authorities as historical observers; it never evaluates which side was ultimately correct.
+**common_trap:** (A) is the most tempting distractor because the passage does generalize across technologies — but "recurring pattern" and "every technology with an identical trajectory" are fundamentally different claims: probabilistic regularity vs. universal law.
+**takeaway:** Must-Be-True: the correct inference is the most modest claim fully warranted by the evidence. "Predictive relevance" follows from "documented generalization across centuries." Universal statements do not follow from patterns.
+**related_reading:** reading-verbal-06-rc-question-types
+
+
+---
+
+
+---
+
+## Passage 25: The Grid Storage Problem
+
+The intermittency of solar and wind power — the fact that output fluctuates with weather conditions rather than tracking demand — has long been cited as the principal barrier to displacing fossil fuels in electricity grids. Grid operators must balance supply and demand in real time, and traditional systems achieved this balance through dispatchable generation: power plants whose output could be increased or reduced on command. Replacing dispatchable capacity with intermittent renewables introduces the challenge of storing energy generated during periods of oversupply for release during periods of deficit.
+
+Lithium-ion battery storage has become the dominant grid-scale technology over the past decade, driven by cost reductions exceeding 90% since 2010. Critics who once dismissed battery storage as prohibitively expensive have largely revised their projections, but a distinct technical limitation remains: lithium-ion batteries degrade under high cycling rates and are best suited for short-duration storage of four to eight hours, not for multi-day or seasonal storage. Low-wind, low-solar conditions regularly extend beyond this window, particularly during winter months at higher latitudes.
+
+Advocates of hydrogen as a long-duration storage medium argue that surplus renewable electricity can be used to split water into hydrogen and oxygen via electrolysis, with the hydrogen stored and later reconverted to electricity through fuel cells. The round-trip efficiency of this pathway — roughly 30 to 40 percent — is considerably lower than lithium-ion's 80 to 90 percent, but proponents contend that for seasonal storage the efficiency penalty is an acceptable cost. Skeptics reply that the required storage and distribution infrastructure does not yet exist at scale, and that cost projections for green hydrogen remain highly uncertain.
+
+### Q88
+**difficulty:** Easy
+**type:** Primary Purpose
+**topic:** Reading Comprehension
+
+The passage primarily discusses:
+
+- A) the environmental consequences of continued reliance on fossil fuels for grid reliability
+- B) the technical and economic challenges of grid-scale energy storage, and two technologies proposed to address them
+- C) the argument that hydrogen is superior to lithium-ion batteries for all electricity storage applications
+- D) the reasons why solar and wind power cannot ultimately replace fossil fuels in modern electricity grids
+- E) the history of cost reductions in lithium-ion battery technology over the past decade
+
+**answer:** B
+**fastest_path:** ¶1 = the storage challenge, ¶2 = lithium-ion (technology 1 + limits), ¶3 = hydrogen (technology 2 + debate). B covers the full arc.
+**explanation:** Paragraph 1 establishes the storage challenge; paragraphs 2 and 3 each present one storage technology with its characteristics, strengths, and limitations. (B) covers all three paragraphs accurately. (C) is wrong because the passage presents hydrogen as contested and limited — not as superior. (D) reverses the framing: the passage treats intermittency as a solvable engineering problem by introducing storage solutions, not as a reason renewables must fail.
+**mistake_c:** The passage explicitly presents hydrogen's 30-40% efficiency as a significant drawback and notes skeptics' concerns about infrastructure and cost — it does not argue hydrogen is superior for all applications.
+**mistake_d:** The passage is about *solving* the intermittency problem; it frames renewables as viable if storage challenges are addressed, not as inherently incapable of replacing fossil fuels.
+**mistake_a:** Environmental consequences of fossil fuels are not discussed — the passage focuses on grid management and storage technology.
+**mistake_e:** Too narrow — cost reduction history is one supporting detail in paragraph 2, not the passage's focus.
+**common_trap:** (D) tempts readers who focused on paragraph 1's problem framing — but the *purpose* includes the solutions in paragraphs 2 and 3, not just the problem statement.
+**takeaway:** If the passage ends by discussing solutions, the primary purpose likely includes those solutions. Don't stop at the problem framing in paragraph 1.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q89
+**difficulty:** Medium
+**type:** Inference
+**topic:** Reading Comprehension
+
+Based on the passage, advocates of hydrogen as a long-duration storage medium accept which of the following trade-offs?
+
+- A) Higher initial capital investment in exchange for lower operating costs over the lifetime of the infrastructure
+- B) Significantly lower round-trip energy efficiency than lithium-ion in exchange for the ability to store energy across longer time periods
+- C) Greater environmental impact during normal operation in exchange for more reliable electricity output during peak demand
+- D) Lower volumetric energy density in exchange for safer handling and transport at large scale
+- E) Reduced grid operational flexibility in exchange for more predictable output during periods of peak demand
+
+**answer:** B
+**fastest_path:** ¶3 states it directly: 30-40% efficiency vs. lithium-ion's 80-90% is "an acceptable cost" specifically for *seasonal storage* (= longer time periods).
+**explanation:** Paragraph 3 explicitly describes the trade-off: the round-trip efficiency of hydrogen (30-40%) is "considerably lower" than lithium-ion's (80-90%), "but proponents contend that for seasonal storage the efficiency penalty is an acceptable cost." (B) restates this trade-off precisely: lower efficiency in exchange for longer-duration storage capability. (A), (C), (D), and (E) all introduce concepts — capital costs, environmental impact during operation, energy density, operational flexibility — that do not appear in the passage.
+**mistake_a:** Capital costs and long-term operating costs are not discussed in the passage.
+**mistake_c:** Environmental impact during hydrogen operation is not addressed anywhere in the passage.
+**mistake_d:** Volumetric energy density and safe handling are not mentioned.
+**mistake_e:** Operational flexibility and peak demand patterns are not discussed in the passage's framing of the hydrogen trade-off.
+**common_trap:** (A) can sound plausible because skeptics mention infrastructure doesn't "exist at scale," which implies high capital costs — but that is the *skeptics'* concern, not a trade-off that advocates explicitly accept.
+**takeaway:** Inference about a group's stated position: find where the passage describes what that group argues or concedes. "Proponents contend...acceptable cost" = explicitly accepted trade-off.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q90
+**difficulty:** Medium
+**type:** Inference
+**topic:** Reading Comprehension
+
+Based on the passage, which of the following would most likely be true of a grid that relied exclusively on lithium-ion battery storage to support its renewable energy capacity?
+
+- A) It would likely be unable to meet electricity demand during extended periods of low wind and solar output.
+- B) Its operating costs would be prohibitively high relative to conventional fossil-fuel-based dispatchable generation.
+- C) It would achieve lower round-trip energy efficiency than a comparable grid using hydrogen storage.
+- D) It would be better suited to serve regions at higher latitudes than to serve regions with year-round solar availability.
+- E) It would eliminate the need for any dispatchable backup generation by supplying continuous renewable power.
+
+**answer:** A
+**fastest_path:** ¶2: lithium-ion = 4-8 hours max. ¶2: low-output periods "regularly extend beyond this window." Exclusive reliance on 4-8 hour storage = no backstop for multi-day gaps = A.
+**explanation:** Paragraph 2 states that lithium-ion handles "four to eight hours" of storage and that "low-wind, low-solar conditions regularly extend beyond this window, particularly during winter months at higher latitudes." A grid relying *exclusively* on lithium-ion would have no mechanism to bridge those multi-day gaps, making (A) a direct inference. (C) is wrong — lithium-ion has *higher* efficiency (80-90%) than hydrogen (30-40%), the opposite of what (C) states. (D) is wrong — higher latitudes have *longer* winter low-output periods that most exceed lithium-ion's window, meaning the fit there is *worse*, not better.
+**mistake_b:** The passage states that critics who once called battery storage prohibitively expensive have "largely revised their projections" — so (B) contradicts the passage.
+**mistake_c:** Reverses the numbers — lithium-ion has 80-90% efficiency vs. hydrogen's 30-40%. A lithium-ion grid would have *higher* round-trip efficiency, not lower.
+**mistake_d:** Reverses the relationship — higher latitudes have longer winter periods of low output that exceed the 4-8 hour window. The limitation is *more* severe at higher latitudes, not less.
+**mistake_e:** Directly contradicted — the passage's entire premise is that intermittent renewables cannot provide continuous power, which is precisely why grid-scale storage is necessary.
+**common_trap:** (D) is a sophisticated reversal trap — higher latitudes are mentioned in the context of where the limitation is *worst*, which students may misread as "better suited" because they recall the connection to that region.
+**takeaway:** Inference with directional relationships: always check which direction the passage states. Higher latitudes = worse fit for lithium-ion, not better. The passage explicitly says the problem is worst there.
+**related_reading:** reading-verbal-06-rc-question-types
