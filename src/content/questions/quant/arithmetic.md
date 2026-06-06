@@ -19,7 +19,7 @@ What is the value of 3/4 + 5/8 - 1/2?
 **answer:** C
 **fastest_path:** Common denominator 8: 6/8 + 5/8 − 4/8 = 7/8.
 **explanation:** Convert each fraction to eighths: 3/4 = 6/8, 5/8 stays, 1/2 = 4/8. Add and subtract numerators: 6 + 5 − 4 = 7. Final fraction: 7/8. Total time: 10 seconds.
-**mistake_a:** Subtracted 5/8 instead of adding it; got 6/8 − 5/8 + 4/8 = 5/8 (then off by one).
+**mistake_a:** Correctly found the common denominator 8 and added: 6/8 + 5/8 = 11/8. Then, to subtract 1/2, divided the denominator 8 by 2 and wrote 11/8 − 8/8 = 3/8, confusing "1/2 of the denominator" with the equivalent numerator (4/8). The error was subtracting 8 instead of 4 from the numerator.
 **mistake_b:** Computed 3/4 + 5/8 = 11/8, then subtracted 1/2 from that without consistent denominator.
 **mistake_d:** Added all numerators with mismatched denominators: 3+5−1 = 7 over 14 = 1/2 mistakenly converted to 1.
 **mistake_e:** Forgot to convert; treated 3/4 + 5/8 as 8/12, etc.
@@ -307,7 +307,7 @@ A solution contains water and alcohol in the ratio 4:1. If 5 liters of alcohol a
 **fastest_path:** Initial: 20 water, 5 alcohol. After +5 alcohol: 20 water, 10 alcohol → 2:1.
 **explanation:** Initial composition in 25 L (ratio 4:1, total 5 parts): water = (4/5) × 25 = 20 L; alcohol = (1/5) × 25 = 5 L. Add 5 L pure alcohol: water stays 20 L; alcohol becomes 10 L. New ratio water:alcohol = 20:10 = 2:1.
 **mistake_a:** Treated added alcohol as half of total volume; got 1:1.
-**mistake_c:** Computed alcohol = 5 + 5 = 10 but forgot to simplify, got 20:10 → 3:2 by error.
+**mistake_c:** Treated "adding alcohol" as "converting water to alcohol" — subtracted 5 from water and added 5 to alcohol: water = 20 − 5 = 15, alcohol = 5 + 5 = 10; ratio = 15:10 = 3:2. The correct operation adds only to alcohol volume while leaving water unchanged.
 **mistake_d:** Bubbled some intermediate ratio (4:3).
 **mistake_e:** Got the ratio inverted or miscalculated the new total.
 **common_trap:** Mixture problems with composition change — forgetting that adding pure substance changes only one component.
@@ -382,7 +382,7 @@ What is the value of (1 + 1/2) / (1 - 1/3)?
 - E) 5/2
 
 **answer:** D
-**fastest_path:** Numerator: 3/2. Denominator: 2/3. Divide: (3/2) × (3/2) = 9/4.
+**fastest_path:** Numerator: 3/2. Denominator: 2/3. Divide: (3/2) ÷ (2/3) = (3/2) × (3/2) = 9/4.
 **explanation:** Simplify each layer first. Numerator: 1 + 1/2 = 3/2. Denominator: 1 − 1/3 = 2/3. Then divide: (3/2) ÷ (2/3) = (3/2) × (3/2) = 9/4 (multiply by reciprocal).
 **mistake_a:** Divided incorrectly: 3/2 ÷ 2 = 3/4.
 **mistake_b:** Multiplied (3/2) × (2/3) = 1, then misadjusted to 9/8.
@@ -513,10 +513,10 @@ Smallest gap belongs to 13/40. Note that 11/32 (gap ≈ 0.010) is the second-clo
 **type:** Data Sufficiency
 **topic:** Arithmetic Sequences
 
-The sum of the first n terms of a certain sequence equals 3n² + 2n. What is the value of the 10th term?
+What is the value of the 10th term of a certain arithmetic sequence?
 
-(1) The first term of the sequence is 5.
-(2) The common difference between consecutive terms is 6.
+(1) The first term of the sequence is 5 and the common difference is 6.
+(2) The 5th term of the sequence is 29 and the 15th term is 89.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
@@ -525,14 +525,20 @@ The sum of the first n terms of a certain sequence equals 3n² + 2n. What is the
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**fastest_path:** nth term = S_n − S_(n−1) = (3n²+2n) − (3(n−1)²+2(n−1)) = 6n − 1. n=10 → 59. Stem alone sufficient → D.
-**explanation:** The stem fully determines the sequence. nth term = S_n − S_(n−1) = (3n² + 2n) − (3(n−1)² + 2(n−1)). Expand the second: 3(n²−2n+1) + 2n − 2 = 3n² − 6n + 3 + 2n − 2 = 3n² − 4n + 1. Subtract: (3n² + 2n) − (3n² − 4n + 1) = 6n − 1. So 10th term = 6(10) − 1 = 59. The stem alone answers the question; statements (1) and (2) are consistent (1st term = 6(1)−1 = 5; common difference = 6) but redundant.
-**mistake_a:** Treated Statement (1) as adding necessary information.
-**mistake_b:** Treated Statement (2) as required.
-**mistake_c:** Required both, missing that the stem alone is sufficient.
-**mistake_e:** Concluded both insufficient, missing the stem-alone path.
-**common_trap:** Forgetting to test whether the stem alone is sufficient — the stem can sometimes contain enough info to answer without any statement.
-**takeaway:** On every DS question, *first* test whether the stem alone is sufficient. If yes, both statements are individually sufficient (D), assuming they're consistent.
+**fastest_path:** (1) a₁ = 5, d = 6 → a₁₀ = 5 + 9(6) = 59. Sufficient. (2) two terms give two equations: 10d = a₁₅ − a₅ = 60 → d = 6 → a₁ = 5 → same answer. D.
+**explanation:** For an arithmetic sequence, the nth term is a_n = a₁ + (n − 1)d.
+
+Statement (1): a₁ = 5 and d = 6 are both given directly. a₁₀ = 5 + 9 × 6 = 5 + 54 = 59. Unique value — sufficient.
+
+Statement (2): a₅ = a₁ + 4d = 29 and a₁₅ = a₁ + 14d = 89. Subtracting the first equation from the second: 10d = 60 → d = 6. Back-substituting: a₁ + 24 = 29 → a₁ = 5. Then a₁₀ = 5 + 54 = 59. Unique value — sufficient.
+
+Both statements independently determine the same answer. Answer: D.
+**mistake_a:** Used Statement (1) correctly (a₁₀ = 59), then concluded Statement (2) is insufficient because "it doesn't state a₁ and d directly" — overlooked that the two-equation system in Statement (2) uniquely solves for both unknowns.
+**mistake_b:** Correctly used Statement (2)'s two-equation system to find d = 6 and a₁ = 5, but then concluded Statement (1) is insufficient because "knowing just the first term and difference doesn't give a formula" — an arithmetic sequence is fully defined by a₁ and d.
+**mistake_c:** Concluded neither statement alone is sufficient and required both — failed to test each statement's system or the direct information in (1).
+**mistake_e:** Concluded both together are insufficient — arithmetic error or misread the question.
+**common_trap:** Dismissing a statement that provides two terms (instead of explicit a₁ and d) as insufficient. Two points on an arithmetic sequence form two linear equations in two unknowns — always uniquely solvable.
+**takeaway:** For arithmetic sequence DS: a₁ and d fully define the sequence. Any two (term index, value) pairs give two independent equations that determine both a₁ and d — each such statement is sufficient alone.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 
@@ -541,7 +547,7 @@ The sum of the first n terms of a certain sequence equals 3n² + 2n. What is the
 ## Q21
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Mixtures — Acid Solution
+**topic:** Mixtures — Metal Alloy
 
 A chemist has 15 kilograms of an alloy that is 40% zinc by weight; the rest is copper. How many kilograms of a second alloy that is 70% zinc must be added to produce a new mixture that is 55% zinc by weight?
 
@@ -580,7 +586,7 @@ A class of 24 students has an average test score of 76. When two new students jo
 **answer:** D
 **fastest_path:** New total − old total = 178. Other student = 178 − 92 = 86.
 **explanation:** Total before: 24 × 76 = 1,824. Total after: 26 × 77 = 2,002. The two new students added 2,002 − 1,824 = 178 points combined. One scored 92, so the other scored 178 − 92 = 86.
-**mistake_a:** Computed 178 / 2 = 89; then off by some arithmetic.
+**mistake_a:** Computed the old total using the new average: 24 × 77 = 1,848 (should be 24 × 76 = 1,824). New total = 26 × 77 = 2,002. Two new students combined = 2,002 − 1,848 = 154. Other student = 154 − 92 = 62. The error: applying the post-addition average to the pre-addition class size.
 **mistake_b:** Computed 92 − 18 (the average gain × 2) = 74.
 **mistake_c:** Split 178 evenly to 89 each, then nudged to 80.
 **mistake_e:** Bubbled 92 (the given score) — confused which is being asked.
@@ -600,17 +606,17 @@ Pipe A alone fills an empty tank in 4 hours. Pipe B alone fills the same tank in
 
 - A) 2.5 hours
 - B) 3 hours
-- C) 3.5 hours
-- D) 4 hours
-- E) 5 hours
+- C) 4 hours
+- D) 5 hours
+- E) 6 hours
 
 **answer:** B
 **fastest_path:** Net rate = 1/4 + 1/6 − 1/12 = 4/12 = 1/3 tank/hr. Time = 3 hr.
 **explanation:** Work in tank-fractions per hour. Pipe A: 1/4 tank/hr. Pipe B: 1/6 tank/hr. Drain: −1/12 tank/hr (subtract since it removes water). Net rate = 1/4 + 1/6 − 1/12. Convert to common denominator 12: 3/12 + 2/12 − 1/12 = 4/12 = 1/3 tank/hr. Time to fill 1 tank = 1 ÷ (1/3) = 3 hr.
-**mistake_a:** Added times directly: 4 + 6 − 12 = −2; somehow arrived at 2.5.
-**mistake_c:** Combined rates as 1/4 + 1/6 (forgot the drain): rate = 5/12; time = 12/5 = 2.4 hr; rounded to 3.5.
-**mistake_d:** Forgot the drain entirely; computed time as average of 4 and 6 = 5; nudged to 4.
-**mistake_e:** Used time=4 (Pipe A's solo time) and ignored other pipes.
+**mistake_a:** Omitted the drain and combined only the two fill pipes: 1/4 + 1/6 = 5/12 tank/hr; time = 12/5 = 2.4 hr, rounded to the nearest answer of 2.5. The drain must be included as a negative rate.
+**mistake_c:** Bubbled Pipe A's solo fill time (4 hr) without computing the combined rate. Pipe B and the drain both affect the result.
+**mistake_d:** Averaged Pipe A and B's fill times: (4 + 6)/2 = 5 hr, ignoring the drain and the rule that rates (not times) add together.
+**mistake_e:** Ignored Pipe B and used only Pipe A with the drain: rate = 1/4 − 1/12 = 3/12 − 1/12 = 2/12 = 1/6 tank/hr; time = 6 hr. The error: forgetting Pipe B contributes an additional 2/12 tank/hr.
 **common_trap:** Adding times instead of rates — fill-and-drain problems require *rates* (work per time), then take reciprocal.
 **takeaway:** When multiple pipes/workers operate together, add their *rates* (with negative for drains), then take reciprocal of the net rate to get total time.
 **related_reading:** reading-quant-05-word-problems
@@ -634,7 +640,7 @@ A container holds 20 liters of saline solution that is 30% salt by weight. How m
 **fastest_path:** Salt fixed at 6 L. New concentration = 6/(20+x) = 0.20 → 20+x = 30 → x = 10.
 **explanation:** Salt mass stays constant at 0.30 × 20 = 6 L (only water is added). After adding x L of pure water, total volume = 20 + x; new concentration = 6/(20 + x) = 0.20. Solve: 20 + x = 30 → x = 10.
 **mistake_a:** Averaged concentrations: (30 + 0)/2 = 15% (incorrect for non-equal volumes); arrived at 5.
-**mistake_b:** Computed 6/0.20 = 30 (correctly), then subtracted only initial salt (6); got 7.5.
+**mistake_b:** Correctly computed new total volume = 6/0.20 = 30 L, but then applied the original salt concentration (25%) to the new volume: 30 × 0.25 = 7.5, treating this as the amount of water to add. The error: computing 25% of the new volume instead of the volume difference (30 − 20 = 10).
 **mistake_d:** Solved 6/(20+x) = 0.15 (using a wrong target percent); got 12.5.
 **mistake_e:** Doubled the answer.
 **common_trap:** Averaging concentrations or treating water as having "non-zero salt." Pure water has no salt — only volume changes.
@@ -762,18 +768,18 @@ A company's marketing budget is divided among digital, print, and radio channels
 - A) $300,000
 - B) $400,000
 - C) $500,000
-- D) $600,000
-- E) $750,000
+- D) $750,000
+- E) $1,500,000
 
 **answer:** C
 **fastest_path:** Digital − Radio = 3k = 150,000 → k = 50,000. Total = 10k = $500,000.
 **explanation:** Each ratio "part" = k. Digital = 5k, print = 3k, radio = 2k. Given: digital − radio = 5k − 2k = 3k = 150,000 → k = 50,000. Total = 5k + 3k + 2k = 10k = $500,000.
-**mistake_a:** Computed 150,000 × 2 = 300,000; bubbled.
-**mistake_b:** Computed total parts × $40k unit; got 400,000.
-**mistake_d:** Used wrong difference: 5k − 3k (digital − print) = 2k = 150,000; got total = 750,000.
-**mistake_e:** Computed 150,000 × 5 = 750,000; bubbled.
-**common_trap:** Computing the wrong difference (digital − print, or digital alone) instead of digital − radio.
-**takeaway:** For ratio problems with a known scalar difference, write each part as k, set up the difference equation, solve for k, then compute the asked quantity (often the total).
+**mistake_a:** Treated the digital budget itself as $150,000: 5k = 150,000 → k = 30,000 → total = 10 × 30,000 = $300,000. The error: $150,000 is the *difference* between digital and radio, not the digital budget.
+**mistake_b:** Correctly found k = $50,000 but then summed only digital + print (8 parts), omitting radio: 8 × 50,000 = $400,000. Always include all three channels in the total.
+**mistake_d:** Identified the wrong pair for the difference — used digital − print (5k − 3k = 2k) instead of digital − radio (3k): 2k = 150,000 → k = 75,000 → total = 10 × 75,000 = $750,000.
+**mistake_e:** Skipped solving for k entirely; treated 150,000 as k directly: total = 10 × 150,000 = $1,500,000. The $150,000 difference spans 3 ratio parts, so k = 150,000 / 3 = 50,000.
+**common_trap:** Misidentifying which two channels the $150,000 difference refers to — digital minus radio (3k), not digital minus print (2k).
+**takeaway:** For ratio problems with a known scalar difference, write each part as k, set up the difference equation (digital − radio = 3k), solve for k, then compute the total (10k).
 **related_reading:** reading-quant-05-word-problems
 
 ---
