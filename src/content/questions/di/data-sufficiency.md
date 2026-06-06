@@ -531,7 +531,8 @@ What is the area of rectangle ABCD?
 
 **answer:** C
 **fastest_path:** Area = LW. (1) gives L²+W²=100; (2) gives L+W=14. Use (L+W)² = L²+W² + 2LW: 196=100+2LW → LW=48.
-**explanation:** (1): L²+W²=100. Many (L,W) pairs (6,8 → 48; 7.07,7.07 → 50). Insufficient. (2): L+W=14. 7×7=49 vs 6×8=48. Insufficient. Together: (L+W)²−(L²+W²) = 2LW → 196−100 = 2LW → LW=48. Sufficient. Answer C.
+**situation:** The question asks for the area of rectangle ABCD. Statement (1) gives the diagonal AC = 10; statement (2) gives the perimeter = 28.
+**reasoning:** *Value DS — area is L × W, so look for the product, not L and W separately.* Statement (1): L² + W² = 100 allows many shapes (6, 8 → area 48; 7.07, 7.07 → 50) — insufficient. Statement (2): L + W = 14 also allows different areas (7×7 = 49 vs 6×8 = 48) — insufficient. Together: (L + W)² = L² + 2LW + W², so 196 = 100 + 2LW gives LW = 48 — sufficient, answer C. For a product question, the (L + W)² identity yields LW without ever solving for L and W.
 **mistake_a:** A requires (1) alone sufficient — but L²+W²=100 has many area outcomes.
 **mistake_b:** B requires (2) alone sufficient — same issue with L+W=14.
 **mistake_d:** D requires each alone — neither works.
@@ -560,7 +561,8 @@ If p is an integer, is p even?
 
 **answer:** D
 **fastest_path:** Yes/no DS — each alone forces p even. (1) p² even ⟹ p even (2 prime in factorization). (2) p+1 odd ⟹ p even. D.
-**explanation:** (1): p² even. Since 2 is prime, p² having factor 2 means p has factor 2 → p even. Sufficient (yes). (2): p+1 odd ⟹ p even. Sufficient (yes). Each alone solves. Answer D.
+**situation:** For integer p, the question asks whether p is even. Statement (1): p² is even; statement (2): p + 1 is odd.
+**reasoning:** *Yes/no DS on parity — does each statement fix p's parity?* Statement (1): since 2 is prime, p² having a factor of 2 forces p to have one, so p is even — sufficient. Statement (2): p + 1 odd means p is even — sufficient. Each statement alone settles it, so the answer is D. Parity is inherited through prime factors (if p² has prime factor q, so does p); check each statement alone before C.
 **mistake_a:** A requires only (1) sufficient — (2) also pins p as even.
 **mistake_b:** B requires only (2) sufficient — (1) also does.
 **mistake_c:** *C-trap* — combining is unnecessary; each alone solves.
@@ -589,7 +591,8 @@ Is x > y?
 
 **answer:** B
 **fastest_path:** (1) x²>y² ↔ |x|>|y|, says nothing about *signed* order. (2) x−y>0 ↔ x>y. Sufficient.
-**explanation:** (1): x²>y² gives only |x|>|y|. x=3,y=1 (yes); x=−3,y=1 (no). Insufficient. (2): x−y>0 directly rearranges to x>y. Sufficient. Answer B.
+**situation:** The question asks whether x > y. Statement (1): x² > y²; statement (2): x − y > 0.
+**reasoning:** *Yes/no DS on signed order.* Statement (1): x² > y² gives only |x| > |y|, which ignores sign — x = 3, y = 1 (yes) vs x = −3, y = 1 (no) — insufficient. Statement (2): x − y > 0 rearranges directly to x > y — sufficient. Since (2) alone settles it and (1) doesn't, the answer is B. Squaring strips sign; only the direct subtraction preserves order.
 **mistake_a:** A requires only (1) sufficient — but sign split shown.
 **mistake_c:** C says together sufficient — but (2) alone already does.
 **mistake_d:** D requires each alone — (1) fails.
@@ -618,7 +621,8 @@ If 4x + 3y = 24, what is the value of y?
 
 **answer:** A
 **fastest_path:** Integer constraint dramatically reduces solution space. Test y=1..8 modulo 4 — only y=4 yields integer x. Sufficient.
-**explanation:** (1): 4x+3y=24 with positive integers. Need 24−3y divisible by 4 *and* x positive. Only y=4 works (x=3). y unique → sufficient. (2): x>4 with no integer constraint — infinite y. Insufficient. Answer A.
+**situation:** Given 4x + 3y = 24, the question asks for the value of y. Statement (1): x and y are positive integers; statement (2): x > 4.
+**reasoning:** *Value DS — does the constraint collapse the line to one point?* Statement (1): with positive integers, 24 − 3y must be divisible by 4 and leave x positive; only y = 4 (x = 3) works — a unique y, sufficient. Statement (2): x > 4 with no integer constraint leaves infinitely many y — insufficient. Since (1) alone pins y, the answer is A. Don't reflexively call one equation in two unknowns insufficient — an integer constraint often leaves a single lattice point.
 **mistake_b:** B requires (2) alone sufficient — but x>4 alone leaves y free.
 **mistake_c:** C-trap — adding (2) doesn't help; (1) already pins y.
 **mistake_d:** D requires each alone — (2) fails.
@@ -647,7 +651,8 @@ Is x > 0?
 
 **answer:** C
 **fastest_path:** Yes/no x>0. Factor (1): x(x−1)(x+1)>0 → x∈(−1,0)∪(1,∞). (2): x∈(−1,1). Intersect: x∈(−1,0) → x<0. Always "no". C.
-**explanation:** (1): x³>x ↔ x(x²−1)>0 ↔ x in (−1,0) ∪ (1,∞). Both signs possible (yes for x>1, no for −1<x<0). Insufficient. (2): x²<1 ↔ −1<x<1. Both signs. Insufficient. Together: intersection (−1,0) → x<0 always (no). Sufficient. Answer C.
+**situation:** The question asks whether x > 0. Statement (1): x³ > x; statement (2): x² < 1.
+**reasoning:** *Yes/no DS on sign — factor the inequalities.* Statement (1): x³ > x ⟺ x(x − 1)(x + 1) > 0 ⟺ x ∈ (−1, 0) ∪ (1, ∞) — both signs possible, insufficient. Statement (2): x² < 1 ⟺ −1 < x < 1 — both signs possible, insufficient. Together: the intersection is (−1, 0), where x is always negative — a definite no, sufficient, answer C. Cubic inequalities split the line into sign zones; factor before judging.
 **mistake_a:** A requires (1) alone sufficient — both sign cases possible.
 **mistake_b:** B requires (2) alone sufficient — same issue.
 **mistake_d:** D requires each alone — neither works.
@@ -676,7 +681,8 @@ If n is a positive integer, what is the remainder when n is divided by 5?
 
 **answer:** A
 **fastest_path:** (1) n = 10k+3. Since 10 = 5·2, n mod 5 = 3 mod 5 = 3. Sufficient.
-**explanation:** (1): n = 10k + 3 → n mod 5 = (10k mod 5) + (3 mod 5) = 0 + 3 = 3. Always 3. Sufficient. (2): n odd. n=1 (r=1); n=3 (r=3); n=5 (r=0). Insufficient. Answer A.
+**situation:** For positive integer n, the question asks the remainder when n is divided by 5. Statement (1): n leaves remainder 3 when divided by 10; statement (2): n is odd.
+**reasoning:** *Value DS — is the remainder mod 5 fixed?* Statement (1): n = 10k + 3, and since 10 is a multiple of 5, n mod 5 = 3 always — sufficient. Statement (2): odd n gives different remainders (n = 1 → 1, n = 3 → 3, n = 5 → 0) — insufficient. Since (1) alone settles it, the answer is A. Remainders inherit through divisor-multiples: if n mod (kd) = r, then n mod d = r mod d.
 **mistake_b:** B requires (2) alone sufficient — but odd n yields different remainders.
 **mistake_c:** C-trap — adding (2) doesn't help; (1) already gives the remainder.
 **mistake_d:** D requires each alone — (2) fails.
@@ -705,7 +711,8 @@ If a, b, and c are real numbers, what is the value of a + b + c?
 
 **answer:** C
 **fastest_path:** Three unknowns. (1) gives one equation, (2) gives two. Combined: three independent equations → unique sum.
-**explanation:** (1): a+b=10, c free. Insufficient. (2): b+c=12, a+c=8. Two equations, three unknowns. Adding: a+b+2c=20 — but a+b+c not unique. Insufficient. Together: a+b=10 (from 1), a+b+2c=20 (sum of 2's eqs) → 2c=10, c=5 → a+b+c=15. Sufficient. Answer C.
+**situation:** For real a, b, c, the question asks for a + b + c. Statement (1): a + b = 10; statement (2): b + c = 12 and a + c = 8.
+**reasoning:** *Value DS — is the sum a + b + c determined?* Statement (1) leaves c free — insufficient. Statement (2) is two equations in three unknowns; adding them gives a + b + 2c = 20, which doesn't isolate a + b + c — insufficient. Together: subtract a + b = 10 from a + b + 2c = 20 to get 2c = 10, so c = 5 and a + b + c = 15 — sufficient, answer C. Two equations can't fix three unknowns (or their sum) without a third independent constraint.
 **mistake_a:** A requires (1) alone sufficient — c free.
 **mistake_b:** B requires (2) alone sufficient — only 2 of 3 unknowns determined.
 **mistake_d:** D requires each alone — neither has 3 independent equations.
