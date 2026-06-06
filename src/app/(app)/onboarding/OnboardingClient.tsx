@@ -35,7 +35,6 @@ const WEAK_AREA_OPTIONS = [
   { id: "Algebra", section: "Quant" },
   { id: "Number Properties", section: "Quant" },
   { id: "Word Problems", section: "Quant" },
-  { id: "Geometry", section: "Quant" },
   { id: "Combinatorics", section: "Quant" },
   { id: "Statistics", section: "Quant" },
   { id: "Rates and Work", section: "Quant" },

@@ -29,10 +29,10 @@ import type { Section } from "@/types"
  */
 
 export const DIAGNOSTIC_QUESTION_IDS: Record<Section, string[]> = {
-  // -------- Quant (10): spans 9 topic files + 3 difficulty levels --------
+  // -------- Quant (10): spans 8 topic files + 3 difficulty levels --------
   // Easy (3) — anchor topics: arithmetic, algebra, number properties
   // Medium (4) — exponents/roots, ratios/percents, rates/work, statistics
-  // Hard (3) — geometry, word problems, combinatorics
+  // Hard (3) — number properties, word problems, combinatorics
   Quant: [
     "arithmetic-q1", // Easy — fraction-decimal-percent baseline
     "algebra-q1", // Easy — linear equations recognition
@@ -41,7 +41,7 @@ export const DIAGNOSTIC_QUESTION_IDS: Record<Section, string[]> = {
     "ratios-percents-q11", // Medium — reverse percent (50% increase reverse)
     "rates-work-q12", // Medium — combined work, rate-vs-time trap
     "statistics-probability-q14", // Medium — mean shift via added value
-    "geometry-q16", // Hard — square inscribed in circle
+    "number-properties-q18", // Hard — sign reasoning, must-be-true
     "word-problems-q22", // Hard — piecewise revenue optimization
     "combinatorics-q20", // Hard — restricted combinations
   ],
@@ -90,7 +90,7 @@ export const DIAGNOSTIC_SECTION_GUIDANCE: Record<
 > = {
   Quant: {
     description:
-      "10 stratified questions across all 9 quant topics. Tests both content recall (formulas, rules) and method-selection (when to estimate, when to backsolve, when to set up algebra).",
+      "10 stratified questions across all 8 quant topics. Tests both content recall (formulas, rules) and method-selection (when to estimate, when to backsolve, when to set up algebra).",
     targetMinutes: 21,
   },
   Verbal: {
