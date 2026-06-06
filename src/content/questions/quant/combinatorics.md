@@ -384,11 +384,7 @@ From 8 candidates, a committee of 3 is chosen AND one of the three is designated
 
 **answer:** C
 **fastest_path:** Pick chair first (8) × C(7, 2) for rest = 8 × 21 = 168.
-**explanation:** Two equivalent paths.
-(1) Pick the chair first: 8 choices. Then pick 2 more committee members from the remaining 7: C(7, 2) = 21. Total = 8 × 21 = 168.
-(2) Pick 3 of 8 unordered: C(8, 3) = 56. Then designate one of the 3 as chair: 56 × 3 = 168.
-
-Both paths give 168, confirming the logic.
+**explanation:** Two equivalent paths confirm the count. Path 1 — pick the chair first (8 choices), then choose 2 more members from the remaining 7: C(7, 2) = 21, giving 8 × 21 = 168. Path 2 — choose the unordered committee of 3 from 8: C(8, 3) = 56, then designate one of the 3 as chair: 56 × 3 = 168. Both give 168. The two non-chair members hold no rank, so they form an unordered pair — using P(7, 2) = 42 instead of C(7, 2) = 21 double-counts and produces the trap answer 336.
 **mistake_a:** Computed C(8, 3) = 56 (forgot to assign the chair role).
 **mistake_b:** Computed 56 × 2 = 112 (off by one in role assignment).
 **mistake_d:** Computed 8 × P(7, 2) = 8 × 42 = 336: chose the chair correctly (8 options) but then ordered the two remaining seats, using P(7, 2) = 7 × 6 = 42 instead of C(7, 2) = 21. The non-chair committee members hold no rank — they form an unordered pair. Ordering slots that carry no distinct role inflates the count by 2! = 2.

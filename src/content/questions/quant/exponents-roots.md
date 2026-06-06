@@ -541,13 +541,7 @@ If a and b are integers, is a^b > b^a?
 
 **answer:** B
 **fastest_path:** (1) Counterexamples: (3,2) yes, (4,3) no → insufficient. (2) Specific values: 3²=9 > 2³=8 → yes, sufficient. → B.
-**explanation:** Statement (1): a > b > 1. Test cases.
-- (a=3, b=2): a^b = 9, b^a = 8 → 9 > 8 (yes).
-- (a=4, b=3): a^b = 64, b^a = 81 → 64 < 81 (no).
-
-Different answers → insufficient.
-
-Statement (2): a = 3, b = 2 (specific). a^b = 9, b^a = 8 → 9 > 8 (yes). Sufficient.
+**explanation:** Statement (1) a > b > 1: test cases. (a=3, b=2) gives a^b = 9 > b^a = 8 (yes), but (a=4, b=3) gives a^b = 64 < b^a = 81 (no) — two different answers, so insufficient. Statement (2) fixes a = 3, b = 2: a^b = 9 > b^a = 8 (yes), a definite answer, so sufficient. Only statement (2) alone settles the question, so the answer is B. The lesson: a^b versus b^a is non-monotonic, so the intuition "larger base wins" is false — always probe with consecutive-integer pairs like (3,2) and (4,3).
 **mistake_a:** Concluded only Statement 1 sufficient (didn't test counterexamples).
 **mistake_c:** Required both.
 **mistake_d:** Concluded each alone sufficient.
@@ -847,11 +841,7 @@ If 2^(x+y) = 64 and 2^(x−y) = 4, what is the value of 2^x?
 
 **answer:** B
 **fastest_path:** Multiply the two equations: 2^(2x) = 64 × 4 = 256 = 2⁸ → 2x = 8 → x = 4 → 2^x = 16.
-**explanation:** Two methods reach the same answer.
-
-Method 1 (algebraic): Same base on both sides, so equate exponents. 2^(x+y) = 2⁶ → x + y = 6. 2^(x−y) = 2² → x − y = 2. Add the two equations: 2x = 8 → x = 4. So 2^x = 2⁴ = 16.
-
-Method 2 (fastest): Multiply the original equations: 2^(x+y) × 2^(x−y) = 64 × 4. Left side: 2^(2x). Right side: 256 = 2⁸. So 2x = 8 → x = 4 → 2^x = 16. Multiplying eliminates y in one step.
+**explanation:** Match bases, then solve the linear system. Method 1 (algebraic): 2^(x+y) = 2⁶ gives x + y = 6, and 2^(x−y) = 2² gives x − y = 2; adding them yields 2x = 8, so x = 4 and 2^x = 2⁴ = 16. Method 2 (fastest): skip solving for y entirely — multiply the original equations so 2^(x+y) × 2^(x−y) = 2^(2x) = 64 × 4 = 256 = 2⁸, giving 2x = 8 directly. Re-read the question before answering: it asks for 2^x = 16, not x = 4 or the given outputs 64 and 4.
 **mistake_a:** Arithmetic slip in the addition step: obtained 2x = 6 → x = 3 → 2^x = 8.
 **mistake_c:** Found x = 4 correctly but misread the question and reported 2^y = 2² = 4 or related value that rounded to 32.
 **mistake_d:** Computed 64 − 4 = 60, then halved; confused arithmetic with exponent algebra.

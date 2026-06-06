@@ -846,10 +846,7 @@ An investor buys $5,000 of Stock X at time zero. Exactly one year later, after S
 
 **answer:** D
 **fastest_path:** Year 1 portfolio = 7,000. Year 2 = (7,000+5,000)(1.10) = 13,200. Return = (13,200-10,000)/10,000 = 32%.
-**explanation:** Track the portfolio value at each step.
-- Year 0: invest $5,000.
-- End of year 1: $5,000 × 1.40 = $7,000. Add $5,000 → portfolio = $12,000. Total invested = $10,000.
-- End of year 2: $12,000 × 1.10 = $13,200. Total return = (13,200 − 10,000) / 10,000 = 0.32 = 32%.
+**explanation:** Track the portfolio value step by step rather than averaging rates. Year 0: invest $5,000. End of year 1: $5,000 × 1.40 = $7,000; then add the new $5,000, so the portfolio is $12,000 on $10,000 total invested. End of year 2: $12,000 × 1.10 = $13,200. Total return = (13,200 − 10,000) / 10,000 = 0.32 = 32%. The key is that the second $5,000 only earns the 10% second-year growth — it was never exposed to the 40% first-year rise.
 **mistake_a:** Computed (1.40 − 1.10)/1 = 30%; bubbled 25%.
 **mistake_b:** Averaged the rates: (40 + 10)/2 = 25%; nudged to 28%.
 **mistake_c:** Computed only year 1 growth: $7,000 / $10,000 = $7,000 invested; misset 30%.
