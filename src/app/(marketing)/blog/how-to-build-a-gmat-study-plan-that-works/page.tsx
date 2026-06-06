@@ -111,8 +111,8 @@ export default function PostPage() {
           <H3>Failure 1 — Topic-by-topic, in textbook order</H3>
           <p>
             The default plan most students build looks like: week 1, Algebra;
-            week 2, Geometry; week 3, Word Problems; and so on through every
-            topic in every section. It&apos;s neat, it&apos;s comforting, and
+            week 2, Number Properties; week 3, Word Problems; and so on through
+            every topic in every section. It&apos;s neat, it&apos;s comforting, and
             it has nothing to do with where your score will move fastest.
           </p>
           <p>
@@ -144,8 +144,8 @@ export default function PostPage() {
             Most plans are written once and never revised. You set a
             16-week schedule in week one, and by week six the schedule and
             your actual weaknesses have nothing in common. The plan keeps
-            telling you to do Geometry while your real bottleneck is the
-            CR question type you keep missing in mocks.
+            telling you to do Number Properties while your real bottleneck is
+            the CR question type you keep missing in mocks.
           </p>
           <p>
             A plan that doesn&apos;t adjust to last week&apos;s data is a
