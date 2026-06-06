@@ -19,7 +19,7 @@ What is the value of 3/4 + 5/8 - 1/2?
 **answer:** C
 **fastest_path:** Common denominator 8: 6/8 + 5/8 − 4/8 = 7/8.
 **explanation:** Convert each fraction to eighths: 3/4 = 6/8, 5/8 stays, 1/2 = 4/8. Add and subtract numerators: 6 + 5 − 4 = 7. Final fraction: 7/8. Total time: 10 seconds.
-**mistake_a:** Subtracted 5/8 instead of adding it; got 6/8 − 5/8 + 4/8 = 5/8 (then off by one).
+**mistake_a:** Misread the expression as 3/4 − 5/8 − 1/2 (subtracted both right-hand terms): 6/8 − 5/8 − 4/8 = −3/8; took the absolute value or ignored the sign → bubbled 3/8.
 **mistake_b:** Computed 3/4 + 5/8 = 11/8, then subtracted 1/2 from that without consistent denominator.
 **mistake_d:** Added all numerators with mismatched denominators: 3+5−1 = 7 over 14 = 1/2 mistakenly converted to 1.
 **mistake_e:** Forgot to convert; treated 3/4 + 5/8 as 8/12, etc.
@@ -46,7 +46,7 @@ A shirt originally priced at $80 is discounted by 15%. What is the sale price of
 **fastest_path:** Sale price = 80 × 0.85 = $68 (use multiplier directly, not "subtract the discount").
 **explanation:** A 15% discount means the customer pays 85% of the original price. Sale price = 0.85 × $80 = $68. Equivalent path: discount = 0.15 × 80 = $12; final = 80 − 12 = $68. The multiplicative form (0.85 × 80) is one step; the subtractive form is two.
 **mistake_a:** Bubbled the discount amount ($12), not the sale price.
-**mistake_b:** Computed 80 − 0.15 = 79.85, then misrounded to 65.
+**mistake_b:** Treated the percentage number as the dollar discount — subtracted $15 (the rate) instead of computing 15% of $80 = $12: $80 − $15 = $65.
 **mistake_d:** Computed 80 × 0.10 = 8 (used 10% instead of 15%).
 **mistake_e:** Computed 80 − 4 = 76 (used 5% instead of 15%).
 **common_trap:** Bubbling the discount amount instead of the sale price.
@@ -99,7 +99,7 @@ Which of the following is equal to 0.125 x 0.4?
 **explanation:** Convert to fractions: 0.125 = 1/8 and 0.4 = 2/5. Multiply: (1/8) × (2/5) = 2/40 = 1/20 = 0.05. Alternative: count decimal places (3 in 0.125, 1 in 0.4 = 4 total). Compute 125 × 4 = 500. Place the decimal 4 positions: 0.0500 = 0.05.
 **mistake_a:** Counted 5 decimal places (one extra zero); got 0.005.
 **mistake_c:** Lost a decimal place; got 0.5.
-**mistake_d:** Multiplied 125 × 4 = 500, but kept "0.0125" as is.
+**mistake_d:** Used 0.1 instead of 0.4 (misread or miscopied the second factor): 0.125 × 0.1 = 0.0125.
 **mistake_e:** Added 0.125 + 0.4 = 0.525 instead of multiplying.
 **common_trap:** decimal-place-loss — miscounting the total decimal places in the product.
 **takeaway:** Decimal multiplication: multiply the integer parts, then place the decimal point with total decimal places of the operands. Or convert to fractions when one is a clean fraction equivalent (1/8 = 0.125, 1/4 = 0.25, 2/5 = 0.4).
@@ -123,7 +123,7 @@ A store raises the price of an item by 20% and then offers a 20% discount on the
 **answer:** B
 **fastest_path:** Multiply: 1.20 × 0.80 = 0.96 → 96% of original.
 **explanation:** Chained percent changes multiply. A 20% increase scales by 1.20; a 20% decrease scales by 0.80. Product: 1.20 × 0.80 = 0.96 → final price is 96% of original. Total time: 5 seconds. Verifying with $100: $100 × 1.20 = $120; $120 × 0.80 = $96 ✓.
-**mistake_a:** Computed 1.20 + 0.80 − 1 = 1.00, then doubled the discount; got 92%.
+**mistake_a:** Knew compounding requires a correction term beyond the simple sum, but doubled it: applied 100% − 2(r₁ × r₂) = 100% − 2(4%) = 92% instead of the single cross-term loss of 4%.
 **mistake_c:** Concluded "20% up, 20% down cancels" — additive thinking, not multiplicative.
 **mistake_d:** Computed 100 + 4 = 104 (wrong direction); confusion of which step was up vs. down.
 **mistake_e:** Bubbled 108% from a different miscombination.
@@ -167,7 +167,7 @@ If 2^x = 32 and 3^y = 81, what is the value of x + y?
 A recipe calls for flour, sugar, and butter in the ratio 5:3:2. If a baker uses 750 grams of flour, how many grams of butter does the recipe require?
 
 - A) 150
-- B) 200
+- B) 250
 - C) 300
 - D) 450
 - E) 500
@@ -175,10 +175,10 @@ A recipe calls for flour, sugar, and butter in the ratio 5:3:2. If a baker uses 
 **answer:** C
 **fastest_path:** Each part = 750/5 = 150 g. Butter = 2 × 150 = 300 g.
 **explanation:** Ratio is flour:sugar:butter = 5:3:2. Flour = 750 g represents 5 parts, so each part = 750/5 = 150 g. Butter = 2 parts = 2 × 150 = 300 g.
-**mistake_a:** Computed 750 / 5 = 150 (one part) and bubbled.
-**mistake_b:** Computed 750 × (2/5) wrong; got 200.
+**mistake_a:** Computed 750/5 = 150 (one part) and bubbled — stopped one step early.
+**mistake_b:** Treated the problem as equal-share: 750 g divided evenly among 3 ingredients gives 250 g each — ignored that the ratio is 5:3:2, not 1:1:1.
 **mistake_d:** Bubbled the sugar amount: 3 × 150 = 450 (the trap of answering "another component").
-**mistake_e:** Computed 750/3 × 2 = 500 (used wrong denominator).
+**mistake_e:** Used the sugar parts (3) as the denominator instead of flour parts (5): 750/3 × 2 = 500.
 **common_trap:** Bubbling the wrong component — sugar (3 parts) is also computable from the same setup.
 **takeaway:** For ratio problems with one known quantity, find "per part" first, then multiply by the parts of the asked quantity. Always re-read which component the question asks about.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -307,7 +307,7 @@ A solution contains water and alcohol in the ratio 4:1. If 5 liters of alcohol a
 **fastest_path:** Initial: 20 water, 5 alcohol. After +5 alcohol: 20 water, 10 alcohol → 2:1.
 **explanation:** Initial composition in 25 L (ratio 4:1, total 5 parts): water = (4/5) × 25 = 20 L; alcohol = (1/5) × 25 = 5 L. Add 5 L pure alcohol: water stays 20 L; alcohol becomes 10 L. New ratio water:alcohol = 20:10 = 2:1.
 **mistake_a:** Treated added alcohol as half of total volume; got 1:1.
-**mistake_c:** Computed alcohol = 5 + 5 = 10 but forgot to simplify, got 20:10 → 3:2 by error.
+**mistake_c:** Computed 20:10 correctly but then tried to reduce by dividing by 6 instead of 10 (misidentified the GCF): 20/6 ≈ 3 and 10/6 ≈ 2, arriving at the approximate 3:2.
 **mistake_d:** Bubbled some intermediate ratio (4:3).
 **mistake_e:** Got the ratio inverted or miscalculated the new total.
 **common_trap:** Mixture problems with composition change — forgetting that adding pure substance changes only one component.
@@ -321,49 +321,49 @@ A solution contains water and alcohol in the ratio 4:1. If 5 liters of alcohol a
 **type:** Problem Solving
 **topic:** Fractions
 
-Which of the following is the simplified form of 42/98?
+What is 2/3 of 3/4 of 4/5 of 5/6 of 180?
 
-- A) 2/7
-- B) 3/7
-- C) 4/7
-- D) 6/14
-- E) 21/49
+- A) 60
+- B) 90
+- C) 120
+- D) 150
+- E) 180
 
-**answer:** B
-**fastest_path:** GCF(42, 98) = 14. 42/14 = 3, 98/14 = 7 → 3/7.
-**explanation:** Find the greatest common factor of 42 and 98. Both have a factor of 14 (42 = 2 × 3 × 7; 98 = 2 × 7²). GCF = 2 × 7 = 14. Divide: 42/14 = 3, 98/14 = 7 → 3/7.
-**mistake_a:** Divided by 21 (one factor): 42/21 = 2, 98/21 = 4.67 (non-integer); rounded.
-**mistake_c:** Computed wrong reduction: 42/14 = 3, 98/24.5 = 4 — arithmetic error.
-**mistake_d:** Bubbled 6/14 — equivalent to 3/7 but not fully simplified.
-**mistake_e:** Bubbled 21/49 — also equivalent but not simplified.
-**common_trap:** Stopping the simplification before fully reducing — D and E are equal to 3/7 but not in simplest form.
-**takeaway:** "Simplified" / "lowest terms" means dividing numerator and denominator by their GCF until they share no common factors > 1. Always verify by checking the result has no shared factors.
-**related_reading:** reading-quant-03-number-properties
+**answer:** A
+**fastest_path:** Telescoping: (2/3)(3/4)(4/5)(5/6) = 2/6 = 1/3. Then 1/3 × 180 = 60.
+**explanation:** The four fractions form a telescoping chain: the numerator of each equals the denominator of the next, so they cancel. (2 × 3 × 4 × 5) / (3 × 4 × 5 × 6) = 2/6 = 1/3. Final: 1/3 × 180 = 60. Spotting the cancellation takes 5 seconds; multiplying all numerators and denominators numerically takes 60+ seconds and invites arithmetic errors.
+**mistake_b:** Applied telescoping to only the last three fractions — (3/4)(4/5)(5/6) = 3/6 = 1/2 — then computed 1/2 × 180 = 90, forgetting the leading 2/3.
+**mistake_c:** Applied only the first fraction: 2/3 × 180 = 120 — treated "2/3 of" as the only multiplier and ignored the remaining chain.
+**mistake_d:** Applied only the last fraction: 5/6 × 180 = 150 — picked the fraction closest to 1 and skipped the others.
+**mistake_e:** Did not multiply at all; misread "of 180" as the answer — bubbled the original value.
+**common_trap:** Computing numerically one fraction at a time instead of recognizing the telescoping cancellation.
+**takeaway:** In a product of fractions where each numerator equals the next denominator, the entire chain collapses to first-numerator / last-denominator. Identify this pattern before computing.
+**related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
 
 ## Q14
 **difficulty:** Easy
 **type:** Problem Solving
-**topic:** Decimals
+**topic:** Fractions
 
-When 0.0837 is rounded to the nearest hundredth, what is the result?
+Which of the following correctly orders 3/7, 7/16, and 4/9 from least to greatest?
 
-- A) 0.08
-- B) 0.083
-- C) 0.084
-- D) 0.09
-- E) 0.1
+- A) 3/7 < 7/16 < 4/9
+- B) 3/7 < 4/9 < 7/16
+- C) 4/9 < 3/7 < 7/16
+- D) 7/16 < 3/7 < 4/9
+- E) 4/9 < 7/16 < 3/7
 
 **answer:** A
-**fastest_path:** Hundredths place = 8 (second after decimal). Next digit = 3 < 5 → round down → 0.08.
-**explanation:** Rounding to the nearest hundredth: keep two decimal places. The hundredths digit in 0.0837 is 8 (the "8" in 0.0**8**37). The deciding digit is the next one (3). Since 3 < 5, round down — keep 0.08.
-**mistake_b:** Rounded to thousandths instead of hundredths.
-**mistake_c:** Rounded to thousandths and then up; got 0.084.
-**mistake_d:** Rounded up incorrectly because of the digits *further* to the right (e.g., the 7); only the immediate next digit matters.
-**mistake_e:** Rounded to tenths.
-**common_trap:** Looking past the immediate next digit to decide rounding — only the digit *immediately* after the rounding place matters.
-**takeaway:** Round to nearest X means keep digits up to X; if the next digit ≥ 5, round up; else round down. Only the immediate next digit decides.
+**fastest_path:** Cross-multiply pairs. 3/7 vs. 7/16: 3×16=48 < 7×7=49 → 3/7 < 7/16. 7/16 vs. 4/9: 7×9=63 < 4×16=64 → 7/16 < 4/9. Order: 3/7 < 7/16 < 4/9.
+**explanation:** All three fractions cluster near 0.43 (3/7 ≈ 0.4286, 7/16 = 0.4375, 4/9 ≈ 0.4444), so decimal estimation is unreliable — differences are only 0.009 and 0.007. Cross-multiplication is required. Step 1: Compare 3/7 and 7/16. Cross-products: 3×16=48 and 7×7=49. Since 48 < 49, we have 3/7 < 7/16. Step 2: Compare 7/16 and 4/9. Cross-products: 7×9=63 and 4×16=64. Since 63 < 64, we have 7/16 < 4/9. Combined order: 3/7 < 7/16 < 4/9.
+**mistake_b:** Cross-multiplied the first pair correctly (3/7 < 7/16) but then estimated "4 > 3, so 4/9 > 7/16" without accounting for denominators — incorrectly placed 4/9 last.
+**mistake_c:** Relied on numerator size alone: "4 > 3" → ranked 4/9 first — ignored that the denominator 9 > 7 pulls the value down.
+**mistake_d:** Relied on denominator size alone: "smaller denominator = bigger fraction" — incorrectly ranked 7/16 first because 16 > 9 > 7.
+**mistake_e:** Rounded all three to 0.44 and broke the three-way tie arbitrarily — decimal approximation loses the small differences.
+**common_trap:** Estimating fraction order by numerator or denominator alone — valid only when the other quantity is held fixed.
+**takeaway:** Cross-multiply to compare two fractions: a/b vs. c/d → compare a×d with b×c; the fraction with the larger cross-product is larger. Use this when fractions are too close for decimal rounding to be reliable.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -397,25 +397,25 @@ What is the value of (1 + 1/2) / (1 - 1/3)?
 ## Q16
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Order of Operations
+**topic:** Arithmetic Shortcuts
 
-What is the value of 8 - 2 x (3 - 5)² + 12 / 4?
+What is the value of 49 × 51?
 
-- A) -5
-- B) 1
-- C) 3
-- D) 7
-- E) 19
+- A) 2,450
+- B) 2,499
+- C) 2,500
+- D) 2,501
+- E) 2,549
 
-**answer:** C
-**fastest_path:** PEMDAS: (3−5)² = 4; 2×4 = 8; 12/4 = 3. Then 8 − 8 + 3 = 3.
-**explanation:** Apply PEMDAS strictly. Parentheses first: (3 − 5) = −2. Exponent: (−2)² = 4. Multiplication/division left to right: 2 × 4 = 8; 12/4 = 3. Finally addition/subtraction left to right: 8 − 8 + 3 = 3.
-**mistake_a:** Computed 8 − 2 = 6 first (violates PEMDAS), then 6 × 4 = 24 + 3 = 27, then... arrived at −5.
-**mistake_b:** Used (3 − 5)² = (−2)² = 4 but then computed 8 − (2 × 4 + 12/4) = 8 − 11 = −3, miscombined to 1.
-**mistake_d:** Did 8 − 8 = 0, then 0 + 12/4 + 4 = 7.
-**mistake_e:** Computed 8 + 2 instead of 8 − 2 somewhere; got 19.
-**common_trap:** Order of operations — computing left-to-right without respecting PEMDAS hierarchy.
-**takeaway:** PEMDAS: Parentheses → Exponents → Multiplication/Division (L-to-R) → Addition/Subtraction (L-to-R). Multiplication binds tighter than subtraction.
+**answer:** B
+**fastest_path:** (50−1)(50+1) = 50² − 1² = 2,500 − 1 = 2,499.
+**explanation:** Recognize the difference-of-squares pattern: (a − b)(a + b) = a² − b². Here 49 = 50 − 1 and 51 = 50 + 1, so 49 × 51 = 50² − 1² = 2,500 − 1 = 2,499. The key is spotting the symmetry around 50 before computing. Direct multiplication (49 × 50 + 49 × 1 = 2,450 + 49 = 2,499) confirms the answer and takes roughly 20 seconds vs. 5 seconds with the identity.
+**mistake_a:** Computed only the partial product 49 × 50 = 2,450 and stopped — forgot to add 49 × 1.
+**mistake_c:** Rounded 49 × 51 ≈ 50 × 50 = 2,500 without applying the −1 correction from the identity. The product of two numbers symmetric about N is always N² − k², where k is the offset; here k=1 matters.
+**mistake_d:** Applied the identity with the wrong sign: thought (a−b)(a+b) = a² + b² = 2,500 + 1 = 2,501.
+**mistake_e:** Computed 50 × 51 = 2,550 correctly as a partial product, then subtracted only 1 (not the full 51 for the one fewer 51): 2,550 − 1 = 2,549.
+**common_trap:** Rounding to the midpoint square and forgetting the −k² correction — the product of two numbers symmetric about a round number is always less than that square.
+**takeaway:** (n − k)(n + k) = n² − k². When a product is symmetric about a round number n, this collapses to a single subtraction. The product is always k² less than n².
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
