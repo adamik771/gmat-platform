@@ -70,6 +70,11 @@ problem_sets:
     question_ids:
       - multi-source-reasoning-q10
       - multi-source-reasoning-q13
+      - multi-source-reasoning-q37
+      - multi-source-reasoning-q41
+      - multi-source-reasoning-q44
+      - multi-source-reasoning-q45
+      - multi-source-reasoning-q48
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -85,6 +90,13 @@ problem_sets:
       - multi-source-reasoning-q11
       - multi-source-reasoning-q14
       - multi-source-reasoning-q15
+      - multi-source-reasoning-q38
+      - multi-source-reasoning-q39
+      - multi-source-reasoning-q42
+      - multi-source-reasoning-q46
+      - multi-source-reasoning-q49
+      - multi-source-reasoning-q50
+      - multi-source-reasoning-q51
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -97,6 +109,11 @@ problem_sets:
       - multi-source-reasoning-q8
       - multi-source-reasoning-q9
       - multi-source-reasoning-q12
+      - multi-source-reasoning-q40
+      - multi-source-reasoning-q43
+      - multi-source-reasoning-q47
+      - multi-source-reasoning-q52
+      - multi-source-reasoning-q53
 ---
 
 ## @the-two-pass-navigation
