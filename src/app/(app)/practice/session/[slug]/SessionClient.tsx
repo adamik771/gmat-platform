@@ -44,6 +44,11 @@ export interface SessionQuestion {
   correctAnswer: number
   correctAnswerLetter: string
   explanation: string
+  /** Official-rationale structured fields. When present, the post-submit
+   *  panel renders them as labeled Situation / Reasoning blocks instead of
+   *  the flat explanation. Optional + additive. */
+  situation?: string
+  reasoning?: string
   /** Progressive hints in order (nudge → strategy → setup). Empty when
    *  no hints authored — the "Need a hint?" button hides in that case. */
   hints?: { level: "nudge" | "strategy" | "setup"; text: string }[]
@@ -2372,7 +2377,8 @@ export default function SessionClient({
               />
             )}
 
-            {currentState.submitted && current.explanation && (
+            {currentState.submitted &&
+              (current.explanation || current.situation || current.reasoning) && (
               <div
                 className="mt-5 p-4 rounded-lg border transition-all duration-150 animate-in fade-in-0 zoom-in-95"
                 style={{
@@ -2405,7 +2411,28 @@ export default function SessionClient({
                       </>
                     )}
                 </div>
-                <PromptBlock text={current.explanation} />
+                {current.situation || current.reasoning ? (
+                  <div className="flex flex-col gap-3">
+                    {current.situation && (
+                      <div>
+                        <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1.5">
+                          Situation
+                        </p>
+                        <PromptBlock text={current.situation} />
+                      </div>
+                    )}
+                    {current.reasoning && (
+                      <div>
+                        <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1.5">
+                          Reasoning
+                        </p>
+                        <PromptBlock text={current.reasoning} />
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <PromptBlock text={current.explanation} />
+                )}
                 {(() => {
                   const wrongLetter =
                     !isQuestionCorrect(current, currentState) &&
