@@ -391,7 +391,7 @@ If 3x + 2y = 16 and 5x - 2y = 16, what is the value of x + y?
 **explanation:** y coefficients are equal-and-opposite (+2 and −2) — adding the equations eliminates y in one step: 8x = 32 → x = 4. Substitute back: 3(4) + 2y = 16 → 2y = 4 → y = 2. Therefore x + y = 6. Total time: ~30 seconds. Full substitution path takes ~60-75 seconds.
 **mistake_a:** Stopped at x = 4 and bubbled the wrong variable.
 **mistake_b:** Computed y = 2 and bubbled.
-**mistake_d:** Subtracted the equations instead of adding; got 2x = 0 → x = 0, then y = 8, sum = 7.
+**mistake_d:** Correctly found x = 4 by adding the equations (8x = 32), then when back-substituting into Eq1 computed 3 × 4 = 9 (confused with 3 × 3 = 9): 9 + 2y = 16 → 2y = 7 → y = 3.5, rounded to y = 3. Sum = 4 + 3 = 7.
 **mistake_e:** Solved the system correctly (x = 4, y = 2) but computed x × y = 4 × 2 = 8 instead of x + y = 6.
 **common_trap:** Solving past sufficiency or stopping too early — picking up x or y alone after correct setup.
 **takeaway:** When y coefficients are equal-and-opposite, add to cancel y in one step. After computing both, re-read the question to confirm what's asked.
