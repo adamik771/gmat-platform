@@ -41,9 +41,9 @@ sections:
     intro: |
       Roughly 90% of Yes/No statements belong to seven patterns. Once you can classify a statement in five seconds, the method to answer it is automatic. The other 10% are combinations of these seven — and once you know them individually, compound cases are just two-step versions of patterns you already own. This section also covers the statement-negation reflex, which tells you whether you need a single confirming example or an exhaustive scan.
     check_question_ids:
-      - table-analysis-q1
-      - table-analysis-q2
-      - table-analysis-q3
+      - table-analysis-q16
+      - table-analysis-q18
+      - table-analysis-q25
 
   - id: averages-and-medians
     type: reading
@@ -69,7 +69,7 @@ sections:
     intro: |
       Derived metrics — percentages, ratios, per-unit figures — appear in the hardest Table Analysis statements. They require two pieces of information per row combined correctly; a mis-read of either piece corrupts the whole comparison. This section covers the five most common derived-metric types and the seven traps the test places around them. At least two of those traps appear in nearly every Table Analysis set at the medium-hard level.
     check_question_ids:
-      - table-analysis-q7
+      - table-analysis-q36
       - table-analysis-q19
 
   - id: summary
@@ -99,13 +99,6 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - table-analysis-q1
-      - table-analysis-q2
-      - table-analysis-q3
-      - table-analysis-q5
-      - table-analysis-q7
-      - table-analysis-q8
-      - table-analysis-q9
       - table-analysis-q14
       - table-analysis-q15
       - table-analysis-q16
@@ -119,6 +112,9 @@ problem_sets:
       - table-analysis-q30
       - table-analysis-q31
       - table-analysis-q32
+      - table-analysis-q36
+      - table-analysis-q37
+      - table-analysis-q38
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -126,14 +122,13 @@ problem_sets:
       "685": 60
       "725": 80
     question_ids:
-      - table-analysis-q4
-      - table-analysis-q6
-      - table-analysis-q10
       - table-analysis-q19
       - table-analysis-q20
       - table-analysis-q33
       - table-analysis-q34
       - table-analysis-q35
+      - table-analysis-q40
+      - table-analysis-q48
 ---
 
 ## @the-three-step-workflow

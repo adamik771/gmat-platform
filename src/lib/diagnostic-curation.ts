@@ -68,13 +68,13 @@ export const DIAGNOSTIC_QUESTION_IDS: Record<Section, string[]> = {
   DI: [
     "data-sufficiency-q1", // Easy — DS yes/no recognition
     "data-sufficiency-q15", // Medium — DS value sufficiency
-    "table-analysis-q3", // Easy — Tables, sort-to-find
+    "table-analysis-q21", // Easy — Tables, sort-to-find
     "graphics-interpretation-q5", // Medium — Graphics, axes-before-content
-    "multi-source-reasoning-q1", // Medium — MSR, source mapping
+    "multi-source-reasoning-q16", // Medium — MSR, source mapping
     "two-part-analysis-q5", // Medium — TPA, constraint-pair elimination
     "data-sufficiency-q40", // Hard — DS with edge-case testing
     "table-analysis-q20", // Hard — Tables, unit-checking trap
-    "multi-source-reasoning-q10", // Hard — MSR cross-source synthesis
+    "multi-source-reasoning-q30", // Hard — MSR cross-source synthesis
     "data-sufficiency-q56", // Hard — DS, alone-first protocol
   ],
 }

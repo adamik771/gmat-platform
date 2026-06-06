@@ -13,42 +13,42 @@ sections:
     intro: |
       Before I teach you anything, try these two — they both reference Set 4 (Lumen Beverages). Read the tabs once, then answer. Rate your confidence honestly. Research shows that attempting before instruction primes your brain to encode the lesson that follows.
     pretest_question_ids:
-      - multi-source-reasoning-q10
-      - multi-source-reasoning-q13
+      - multi-source-reasoning-q16
+      - multi-source-reasoning-q20
 
   - id: the-two-pass-navigation
     type: reading
     title: "The two-pass navigation protocol"
     check_question_ids:
-      - multi-source-reasoning-q1
+      - multi-source-reasoning-q17
 
   - id: matching-question-to-tab
     type: reading
     title: "Simple lookup — matching the question to the right tab"
     check_question_ids:
-      - multi-source-reasoning-q2
-      - multi-source-reasoning-q11
+      - multi-source-reasoning-q22
+      - multi-source-reasoning-q26
 
   - id: cross-tab-synthesis
     type: reading
     title: "Cross-tab synthesis — combining two or more sources"
     check_question_ids:
-      - multi-source-reasoning-q4
-      - multi-source-reasoning-q7
+      - multi-source-reasoning-q19
+      - multi-source-reasoning-q28
 
   - id: conditional-and-hypothetical
     type: reading
     title: "Conditional and hypothetical questions — 'what if' reasoning"
     check_question_ids:
-      - multi-source-reasoning-q3
-      - multi-source-reasoning-q12
+      - multi-source-reasoning-q21
+      - multi-source-reasoning-q24
 
   - id: yes-no-statement-checks
     type: reading
     title: "Yes/No statement checks against multi-tab constraints"
     check_question_ids:
-      - multi-source-reasoning-q8
-      - multi-source-reasoning-q14
+      - multi-source-reasoning-q25
+      - multi-source-reasoning-q34
 
   - id: answer-choice-traps
     type: reading
@@ -68,8 +68,8 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - multi-source-reasoning-q10
-      - multi-source-reasoning-q13
+      - multi-source-reasoning-q16
+      - multi-source-reasoning-q20
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -77,14 +77,15 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - multi-source-reasoning-q1
-      - multi-source-reasoning-q2
-      - multi-source-reasoning-q4
-      - multi-source-reasoning-q6
-      - multi-source-reasoning-q7
-      - multi-source-reasoning-q11
-      - multi-source-reasoning-q14
-      - multi-source-reasoning-q15
+      - multi-source-reasoning-q17
+      - multi-source-reasoning-q19
+      - multi-source-reasoning-q22
+      - multi-source-reasoning-q23
+      - multi-source-reasoning-q26
+      - multi-source-reasoning-q28
+      - multi-source-reasoning-q31
+      - multi-source-reasoning-q32
+      - multi-source-reasoning-q35
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -92,11 +93,14 @@ problem_sets:
       "685": 60
       "725": 80
     question_ids:
-      - multi-source-reasoning-q3
-      - multi-source-reasoning-q5
-      - multi-source-reasoning-q8
-      - multi-source-reasoning-q9
-      - multi-source-reasoning-q12
+      - multi-source-reasoning-q18
+      - multi-source-reasoning-q21
+      - multi-source-reasoning-q24
+      - multi-source-reasoning-q27
+      - multi-source-reasoning-q29
+      - multi-source-reasoning-q30
+      - multi-source-reasoning-q33
+      - multi-source-reasoning-q36
 ---
 
 ## @the-two-pass-navigation
