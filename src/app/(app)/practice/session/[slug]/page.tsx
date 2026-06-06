@@ -85,6 +85,7 @@ export default async function PracticeSessionPage({
     updatedAt: 0,
   }
   let weakestTopic: WeakTopicHint | null = null
+  let priorTopicAccuracy: number | undefined
   try {
     const supabase = await createSupabaseServer()
     const {
@@ -115,6 +116,14 @@ export default async function PracticeSessionPage({
         }
 
         const currentTopic = questions[0].topic
+
+        // Prior accuracy on this topic — needs ≥5 attempts for a
+        // meaningful baseline before surfacing it as a benchmark.
+        const topicStats = stats.get(currentTopic)
+        if (topicStats && topicStats.total >= 5) {
+          priorTopicAccuracy = topicStats.correct / topicStats.total
+        }
+
         const worst = [...stats.entries()]
           .filter(([t, s]) => t !== currentTopic && s.total >= 3)
           .map(([t, s]) => ({ topic: t, accuracy: s.correct / s.total }))
@@ -144,6 +153,7 @@ export default async function PracticeSessionPage({
       skillLevel={skill.level}
       skillAttempts={skill.attempts}
       weakestTopic={weakestTopic ?? undefined}
+      priorTopicAccuracy={priorTopicAccuracy}
     />
   )
 }

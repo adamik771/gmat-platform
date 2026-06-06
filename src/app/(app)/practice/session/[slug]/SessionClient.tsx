@@ -103,6 +103,11 @@ interface SessionClientProps {
    *  completion screen when accuracy is strong — directs students to
    *  their highest-leverage next session instead of a generic CTA. */
   weakestTopic?: WeakTopicHint
+  /** Rolling average accuracy on this topic from prior sessions (0–1).
+   *  Computed server-side from practice_attempts. Only passed when there
+   *  are ≥5 prior attempts — below that the sample is too small to show
+   *  a meaningful delta. When undefined the benchmark chip is hidden. */
+  priorTopicAccuracy?: number
 }
 
 function formatDuration(ms: number): string {
@@ -1096,6 +1101,7 @@ export default function SessionClient({
   skillLevel,
   skillAttempts,
   weakestTopic,
+  priorTopicAccuracy,
 }: SessionClientProps) {
   const router = useRouter()
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -1525,6 +1531,23 @@ export default function SessionClient({
               <p className="text-3xl font-bold mt-2" style={{ color: "#C9A84C" }}>
                 {accuracy}%
               </p>
+              {priorTopicAccuracy !== undefined && (() => {
+                const avg = Math.round(priorTopicAccuracy * 100)
+                const delta = accuracy - avg
+                const isUp = delta > 2
+                const isDown = delta < -2
+                const deltaColor = isUp ? "#3ECF8E" : isDown ? "rgba(255,107,107,0.7)" : "#555555"
+                const label = isUp
+                  ? `↑ +${delta}pp vs your avg (${avg}%)`
+                  : isDown
+                  ? `↓ ${delta}pp vs your avg (${avg}%)`
+                  : `≈ your avg (${avg}%)`
+                return (
+                  <p className="text-[11px] mt-1.5 tabular-nums" style={{ color: deltaColor }}>
+                    {label}
+                  </p>
+                )
+              })()}
             </div>
             <div>
               <p className="text-[10px] uppercase tracking-widest text-[#555555]">Correct</p>
