@@ -2665,7 +2665,8 @@ Which of the following best identifies a flaw in the group's reasoning?
 
 **answer:** C
 **fastest_path:** Flaw: *response bias* — 12% return rate means responses are *self-selected*, not random. Strong-opinion holders over-represent.
-**explanation:** Only 1,200 of 10,000 surveys returned — that's a self-selected subset, not a random sample. People with strong opinions (positive or negative) skew the response pool. (C) names this response-bias / non-response-bias flaw directly.
+**situation:** From 10,000 mailed satisfaction surveys, only 1,200 were returned; based on those, a group reports Brand X rated highest and concludes Brand X is the most satisfying appliance brand on the market.
+**reasoning:** *Name the logical vulnerability.* *Can a 12% return rate represent all consumers?* No — the 1,200 respondents are self-selected, not a random sample, and people with strong opinions are over-represented. (C) names this response/non-response bias: the conclusion rests on a subset that may not represent all appliance consumers. (A) breakdown rates and (B) price aren't the issue; (D) brand inclusion and (E) ownership-duration weighting are secondary to the dominant low-response-rate flaw.
 **mistake_a:** Breakdown rates — different concern.
 **mistake_b:** Price isn't the issue.
 **mistake_d:** Brand inclusion is methodological but not the core sampling problem.
@@ -2693,7 +2694,8 @@ In the argument above, the two portions in boldface play which of the following 
 
 **answer:** A
 **fastest_path:** Bold 1 = manufacturer's *plan* (close plant). Bold 2 = union's *counterproposal* (replace equipment instead). Plan + counterproposal.
-**explanation:** Argument reports two positions: the manufacturer's plan and the union's alternative. (A) names this plan-vs-counterproposal pairing directly. The passage doesn't take a side; both bolds are reported positions.
+**situation:** Bold 1 is the manufacturer's plan to close its oldest, least-productive assembly plant to cut costs. Bold 2 is the union's argument that replacing the aging equipment would raise productivity enough to make the plant competitive, so closing it is premature.
+**reasoning:** *Identify each boldface's structural role.* *What does each statement represent?* Bold 1 is a plan (close the plant); Bold 2 is a counterproposal (modernize instead) — matching (A). The passage reports both positions without endorsing either. (B) wrongly gives the argument its own conclusion; (C) "fact + supported claim," (D) "observation + consequence," and (E) "evidence + conclusion" all mislabel a plan/counterproposal pairing.
 **mistake_b:** Close, but the passage doesn't have its own conclusion — it reports two positions.
 **mistake_c:** "Fact + supported claim" doesn't fit a plan/counterproposal shape.
 **mistake_d:** "Observation + consequence" mislabels.
@@ -2721,7 +2723,8 @@ Which of the following, if true, most strengthens the council's proposal?
 
 **answer:** A
 **fastest_path:** Opponents attack the "lighting changes driver carefulness" channel. Strengthen by *different causal channel*: lighting helps via *visibility*, not carefulness. (A).
-**explanation:** Council's claim survives the carefulness objection if a different mechanism is at play. (A) supplies it: nighttime accidents on Pine Road come from drivers losing their way in the dark — a visibility/wayfinding problem. Lighting helps on that channel even if driver behavior is unchanged.
+**situation:** A council proposes streetlights on unlit Pine Road to cut nighttime accidents; opponents note drivers on nearby lit roads didn't become more careful after lighting was installed.
+**reasoning:** *Strengthen against an objection to one causal channel.* *How can lighting reduce accidents even if it doesn't change driver carefulness?* The opponents attack only the behavior channel, so opening a different channel rescues the claim. (A) supplies it: Pine Road's nighttime accidents come mainly from drivers losing their way in the dark — a visibility problem lighting directly fixes, regardless of carefulness. (C) actively *weakens* (worst drivers undeterred by light); (B) timing, (D) traffic volume, and (E) mixed studies are tangential or neutral.
 **mistake_b:** Timing of other installs — tangential.
 **mistake_c:** *Weakens* — drivers most likely to crash aren't deterred by light.
 **mistake_d:** Traffic volume, not lighting effect.
@@ -2749,7 +2752,8 @@ Which of the following is most strongly supported by the statements above?
 
 **answer:** B
 **fastest_path:** Two findings: (i) remote workers less likely promoted, (ii) among remotes, in-person manager contact restores promotion rates. Hedged inference: in-person contact *may be an important factor* in remote promotions.
-**explanation:** Stimulus shows the gap closes when remote workers maintain in-person manager contact. (B) names this correlational link with the right hedge. Anything stronger leaks into prescription or overgeneralization.
+**situation:** Remote workers report higher job satisfaction yet are 30% less likely to be promoted than comparable office workers; however, remote workers who keep regular in-person manager contact are promoted at nearly the office rate.
+**reasoning:** *Draw the text-forced inference — descriptive, not prescriptive.* *What does the closing of the promotion gap with in-person contact support?* (B): regular in-person contact with managers *may be an important factor* in remote workers' promotion rates — the correlational link with the right hedge. (A) "should seek" and (E) ending remote policies are prescriptions, (C) links promotion to satisfaction (not shown), and (D) "generally bad for advancement" overstates given the gap closes with contact.
 **mistake_a:** *Prescriptive leap* — "should seek" goes past inference.
 **mistake_c:** Promotion-to-satisfaction link not supported.
 **mistake_d:** *Extreme* — "generally bad" overstates.
@@ -2777,7 +2781,8 @@ The answer to which of the following questions would be most useful in evaluatin
 
 **answer:** D
 **fastest_path:** Officials claim wait times will *fall* with on-demand. Evaluate by *baseline wait times*. (D) tests it: if current wait is already short, on-demand brings no improvement.
-**explanation:** "Riders will wait less" only holds if there's wait time to cut. (D) directly tests that. Already-short waits → no improvement → conclusion fails. Long waits → on-demand can deliver gains.
+**situation:** A city weighs replacing its least-used bus routes with on-demand shuttles, arguing they'll cost less and attract more riders because riders will wait less.
+**reasoning:** *Identify the decisive test.* *What would tell us whether on-demand can actually cut wait time?* The "wait less" claim only holds if there's wait time to cut. (D) probes that baseline: the current average wait on the least-used routes. If waits are already short, on-demand yields no improvement; if long, it can deliver gains. (A) route count is descriptive, (B) coverage and (C) dispatch staffing are operational and cost concerns that don't directly test the wait-time claim, and (E) past implementation is context.
 **mistake_a:** Counting question, not evaluation.
 **mistake_b:** Operationally important but doesn't test the claim.
 **mistake_c:** Cost-side, less sharply either-way than D.
@@ -2806,7 +2811,8 @@ In the argument above, the two portions in boldface play which of the following 
 
 **answer:** A
 **fastest_path:** Bold 1 = plan (adopt digital lending). Opponents raise an objection (less foot traffic → less engagement). Bold 2 = evidence that *defeats the specific objection*.
-**explanation:** Argument structure: plan → objection → counter-evidence to the objection. (A) names this "plan + support against criticism" arc. Bold 2 specifically targets the engagement-decline worry the opponents raised.
+**situation:** Bold 1 is the library's plan to adopt a cost-saving digital lending system. Opponents object that digital lending would cut foot traffic, historically key to engagement. Bold 2 reports that at libraries already using digital lending, physical visits dip modestly but overall patron engagement (visits + digital borrows + program participation) held steady or rose slightly.
+**reasoning:** *Identify each boldface's structural role.* *What does the second statement do for the plan?* Bold 1 is a plan under consideration; Bold 2 is evidence defending the plan against the specific foot-traffic/engagement objection — matching (A). (B) inverts Bold 2 into a reason to reconsider; (C) calls Bold 2 evidence *against* the policy; (D) and (E) mislabel the structure.
 **mistake_b:** Inverts Bold 2's role.
 **mistake_c:** Mislabels Bold 1.
 **mistake_d:** Structurally off.
@@ -2834,7 +2840,8 @@ In the argument, the two portions in boldface play which of the following roles?
 
 **answer:** A
 **fastest_path:** Bold 1 = researchers' hypothesis (warming → jellyfish range). Critics raise alternatives. Bold 2 = *defense* of the hypothesis via multivariable model attribution (70% to temperature).
-**explanation:** Argument structure: hypothesis → critics' alternatives → defense via stat-model evidence isolating temperature. (A) names this hypothesis + defense pairing.
+**situation:** Bold 1 is the researchers' hypothesis that a jellyfish increase is primarily due to warming oceans expanding its range. Critics cite pollution and predator overfishing as alternatives. Bold 2 is the researchers' defense: statistical models that include pollution and predator decline as separate variables still attribute ~70% of the increase to temperature alone.
+**reasoning:** *Identify each boldface's structural role.* *What does the second statement do against the critics?* Bold 1 is the researchers' hypothesis; Bold 2 defends it against the competing explanations by isolating temperature's contribution in a multivariable model — matching (A). (B) wrongly attributes Bold 1 to critics; (C) confuses a hypothesis with a finding; (D) mislabels generality; (E) calls Bold 2 a restatement when it is new model-based evidence.
 **mistake_b:** Wrongly attributes Bold 1 to critics.
 **mistake_c:** Confuses hypothesis with finding.
 **mistake_d:** Mislabels levels of generality.
@@ -2862,7 +2869,8 @@ Assuming no additional information, which of the following is most strongly supp
 
 **answer:** B
 **fastest_path:** 1.2-day stay gap despite demographic + staffing similarity → something systematic differs (case mix or workflow). (B) is the minimal hedged inference.
-**explanation:** Demographics and staffing match, but stays differ by 1.2 days. Logic forces some other systematic difference: condition mix (different acute presentations on different days) or workflow (discharge timing, referral patterns). (B) names this minimal disjunction without committing to either.
+**situation:** Patients admitted via the ER on Monday average a 4.8-day stay versus 3.6 days on Wednesday, though the two days' patients are demographically similar and the department is staffed similarly.
+**reasoning:** *Draw the text-forced inference — the minimal disjunction.* *With demographics and staffing matched, what must explain a 1.2-day gap?* Some other systematic difference must remain. (B) names it minimally: Monday admissions differ in their mix of conditions, in-hospital workflow factors, or both. (A) severity and (C) staffing inefficiency each single out one cause the data don't isolate — and staffing is stated to be similar; (D) extrapolates to weekends; (E) is a recommendation.
 **mistake_a:** *Specific cause* (severity) — stimulus doesn't uniquely support it.
 **mistake_c:** *Specific cause* (staffing efficiency) — stimulus says staffing is similar.
 **mistake_d:** Extrapolates to weekends, not in the data.
@@ -2890,7 +2898,8 @@ Which of the following is most strongly supported by the statements above?
 
 **answer:** D
 **fastest_path:** Probability chain: 8% flagged × 60% confirmed-as-error = 4.8% of *all* claims contain confirmed errors. Direct multiplication.
-**explanation:** Two rates compose: of all claims, 8% get flagged; of flagged, 60% are real errors. Multiply: 0.08 × 0.60 = 0.048 = 4.8% of all claims. (D) expresses this precisely.
+**situation:** An audit finds 8% of expense claims are flagged for potential errors; of flagged claims reviewed, 60% are confirmed as genuine errors and 40% are error-free.
+**reasoning:** *Draw the text-forced inference — chain the conditional rates.* *What share of all claims contain confirmed errors?* Multiply: 8% flagged × 60% confirmed = 0.08 × 0.60 = 0.048 = 4.8% of all claims, which is exactly (D). (A) misreads the 60% as overall audit accuracy; (B) generalizes to all claims when only flagged ones were checked; (C) and (E) import outside assumptions about amounts and responsibility.
 **mistake_a:** Misreads — 60% applies to flagged claims, not audit accuracy overall.
 **mistake_b:** Goes beyond data — we only know about flagged claims.
 **mistake_c:** Imports outside assumption.
@@ -2918,7 +2927,8 @@ Which of the following, if true, most weakens the developers' claim?
 
 **answer:** A
 **fastest_path:** Causal claim: more workouts → more weight loss. Weaken via *confounder*: heavy workout users *also* improved diet. Diet, not workout frequency, may drive the extra loss.
-**explanation:** (A) names the classic lifestyle-bundle confounder. The 2-pound gap could reflect diet change rather than workout frequency. The two are correlated in users, so one effect can't be cleanly attributed to either alone.
+**situation:** A fitness app reports users completing 20+ workouts/month lose 2 more pounds over six months than those doing fewer, and developers claim more workouts cause greater weight loss.
+**reasoning:** *Weaken a correlation-to-causation claim.* *What fact would explain the 2-pound gap without workout frequency being the cause?* (A) names the lifestyle-bundle confounder: heavy-workout users also improve their diet at the same time, so diet — not workout count — may drive the extra loss, and the two are entangled in users. (B) sample size and (D) pricing are neutral, (C) affects individual measurement not the group average, and (E) is a background fact about maintenance.
 **mistake_b:** Sample size — neutral.
 **mistake_c:** Affects individual measurement, not the group average.
 **mistake_d:** Tangential pricing detail.
@@ -2946,7 +2956,8 @@ Which of the following, if true, most strengthens the company's conclusion?
 
 **answer:** B
 **fastest_path:** 9 mmHg gap → causal claim. Strengthen by *ruling out measurement artifact*. (B) does it: same calibrated equipment + same staff for both groups.
-**explanation:** A causal claim survives by eliminating measurement bias and consistency errors. (B) holds the measurement system constant across treatment and control, so the 9 mmHg difference is unlikely to be a measurement artifact.
+**situation:** In a six-month trial, 100 patients on a new anti-hypertensive averaged a 14 mmHg systolic drop versus 5 mmHg for 100 placebo patients, and the company concludes the drug caused the extra 9 mmHg.
+**reasoning:** *Strengthen a treatment-vs-placebo causal claim.* *What would rule out a measurement artifact behind the 9 mmHg gap?* (B) supplies it: readings for both groups were taken with calibrated equipment by the same staff throughout, holding the measurement system constant so the difference isn't an instrument or technique artifact. (A) greater treatment-group motivation is a *confounder* that weakens; (C) cost is irrelevant; (D) narrows the population without supporting causation; (E) unblinding the control biases the placebo response.
 **mistake_a:** *Weakens* — motivation is a confounder favoring the treatment group.
 **mistake_c:** Cost ≠ causality.
 **mistake_d:** Narrows population but doesn't strengthen the causal claim.
