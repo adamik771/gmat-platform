@@ -2051,7 +2051,8 @@ Which of the following can be most reliably concluded from the information above
 
 **answer:** B
 **fastest_path:** Workers report personal gains; managers measure flat team output. Inference: *self-reported individual gains haven't translated to team-level output gains*. Direct restatement of the disconnect.
-**explanation:** Two facts: (i) majority of AI users report efficiency gains, (ii) managers report no team-level output-per-worker increase. The valid inference tracks the gap exactly. (B) does. Anything stronger imports motive or character claims.
+**situation:** A survey finds 72% of knowledge workers use generative AI weekly; among those users 61% report more efficiency, 14% less, 25% no change — yet managers report team-level output per worker hasn't measurably risen since adoption.
+**reasoning:** *Draw the text-forced inference — the tightest restatement.* *What do the worker reports and the manager measurements jointly force?* Reported individual efficiency gains coexist with flat measured output per worker, so the supported conclusion is exactly that disconnect: the reported individual gains have not translated into measured team-level output per worker (B). (A) "no benefit for any worker" overshoots a survey where most users report gains; (C) and (D) impute manager bias or worker exaggeration the passage doesn't establish; (E) confuses "weekly" with "daily."
 **mistake_a:** *Extreme* — "no real benefit for any worker" overshoots; reported gains can be real for individuals even if team metrics are flat.
 **mistake_c:** Attributes motive — passage doesn't.
 **mistake_d:** Character claim about exaggeration.
@@ -2079,7 +2080,8 @@ Which of the following, if true, best resolves the apparent discrepancy?
 
 **answer:** B
 **fastest_path:** Paradox: 35% fewer teen drivers + 12% more accidents. Resolve: *exposure shifted* — remaining teen drivers skew rural and drive more than twice as far each.
-**explanation:** Accident count scales with miles driven, not headcount. (B) supplies both pieces: composition shift (rural skew) + exposure increase (miles doubled). Smaller population × much more driving each = more total accidents.
+**situation:** Over a decade, licensed teenage drivers in a state fell 35%, yet annual accidents involving teen drivers rose 12%.
+**reasoning:** *Resolve the paradox — explain both facts at once.* *What could raise total accidents while the driver count drops?* Accidents scale with miles driven, not headcount, so a jump in exposure can do it. (B) supplies both pieces: the remaining teen drivers skew rural and now drive more than twice as far each — fewer drivers multiplied by far more driving each yields more total accidents. (A) higher license age and (C) lower car ownership push the count *down*; (D) safety campaigns reduce accidents; (E) repeat-accident drivers is a marginal amplifier, not the dominant mechanism.
 **mistake_a:** Cutting both count and headcount, not explaining the increase.
 **mistake_c:** Aligned with count going down, not up.
 **mistake_d:** Safety campaigns reduce accidents.
@@ -2107,7 +2109,8 @@ In the argument above, the two statements in boldface play which of the followin
 
 **answer:** B
 **fastest_path:** Bold 1 = standard retail-exec view. Argument *complicates* it via Brantco. Bold 2 = the *mechanism* (turnover/training + theft/error savings) that let wages rise without price hikes.
-**explanation:** Structure: state the common view (Bold 1) → counterexample (Brantco) → mechanism explaining the counterexample (Bold 2). (B) names this challenged-view + explained-mechanism arc.
+**situation:** Bold 1 gives the common retail-executive view that raising cashier wages will inevitably raise prices as labor costs pass to consumers. The argument complicates it with Brantco, which raised starting wages 18% in 2023 without raising prices while margins held, and Bold 2 explains that Brantco offset the increase with savings from lower turnover-related training costs and reduced theft and error.
+**reasoning:** *Identify each boldface's structural role.* *Which view does the argument question, and what does the second statement do?* Bold 1 is a common view the argument calls into question; Bold 2 explains the mechanism by which, in Brantco's case, the predicted price rise didn't occur — matching (B). (A) wrongly has the argument endorsing Bold 1; (C) reverses roles; (D) invents a conditional; (E) flattens the opposition between the two bolds.
 **mistake_a:** Misreads — argument doesn't endorse Bold 1.
 **mistake_c:** Reverses roles.
 **mistake_d:** Invents a conditional.
@@ -2135,7 +2138,8 @@ The analyst's reasoning is most vulnerable to which of the following criticisms?
 
 **answer:** A
 **fastest_path:** Flaw: *narrative-premium vs economic-value* conflation. A 22% post-announcement share-price bump can reflect investor excitement about a buzzword rather than operational improvement.
-**explanation:** Argument leaps from share-price reaction to "substantial shareholder value" to "CEOs should prioritize AI." That conflates market sentiment with economic fundamentals. AI announcements ride a narrative premium that may evaporate when results don't match — especially around hyped buzzwords.
+**situation:** An analyst notes that firms publicly announcing AI initiatives saw share prices rise 22% more than non-announcing peers, and concludes AI adoption creates substantial shareholder value, so CEOs should prioritize AI.
+**reasoning:** *Name the logical vulnerability.* *Does a post-announcement share-price bump prove lasting economic value?* (A) names the flaw: the argument assumes share-price movement after an announcement reflects durable value rather than short-term investor sentiment about a fashionable trend — a narrative premium that can evaporate when results disappoint. (B) is a motivational guess, (C) demands technology specificity that isn't the flaw, and (D) equal access and (E) international operations are premises the argument never needs.
 **mistake_b:** Motivational guess.
 **mistake_c:** Specificity demand, not the causal flaw.
 **mistake_d:** Egalitarian premise not needed.
@@ -2163,7 +2167,8 @@ Which of the following most logically completes the critics' argument?
 
 **answer:** C
 **fastest_path:** Critics need a *backfire* mechanism — not "imperfect," but "makes it worse." (C) supplies it: high compliance costs push advisers out of the small-account segment → vulnerable retirees lose *all* advice, not just biased advice.
-**explanation:** "Backfire" requires showing the rule produces *worse* outcomes than the status quo. (C) is the supply-side withdrawal mechanism: small-account retirees go from imperfect advice to *no* advice. Net welfare loss for the most vulnerable group.
+**situation:** Supporters say a fiduciary rule for retirement advisers will cut the $17B/year retirees lose to conflicted advice; critics argue the rule will backfire — and the prompt asks for the critics' completion.
+**reasoning:** *Complete the critics' argument with a genuine backfire mechanism.* *What would make the rule produce worse outcomes than the status quo, not merely redundant ones?* (C) supplies it: if compliance costs are high enough, many advisers stop serving smaller retirement accounts, leaving those retirees with *no* advice rather than imperfect advice — a net welfare loss for the most vulnerable. (A) is mild redundancy, not backfire; (B) addresses a different subgroup (self-managers); (D) attacks the estimate's source; (E) is macro noise.
 **mistake_a:** Mild pushback on necessity, not backfire.
 **mistake_b:** Different subgroup (self-managers).
 **mistake_d:** Attacks premise's source, not logic.
@@ -2194,7 +2199,8 @@ Which of the following, if true, most strengthens the argument above?
 
 **answer:** B
 **fastest_path:** Argument generalizes one firm's 12 sites to "any logistics company." Strengthen by confirming the *driver inputs* (roof area, sunlight, electricity rates) generalize. (B) does it.
-**explanation:** Generalization works only if the inputs that drove the 38% savings — roof area, sunlight, electricity rates — apply across the industry. (B) confirms all three are comparable across regional logistics warehouses. The conditions transfer.
+**situation:** After solar panels cut each of its 12 warehouses' electricity costs 38% on average — projected to fully offset installation by next year — a logistics firm concludes that installing solar is a sound financial decision for *any* logistics company with regional warehouses.
+**reasoning:** *Strengthen a "what worked here works everywhere" generalization.* *What would confirm the conditions that produced the 38% savings carry across the industry?* The generalization holds only if the inputs driving the savings — roof area, sunlight hours, electricity rates — are typical. (B) confirms all three are comparable across regional logistics warehouses, so the conditions transfer. (A) sunlight-rich states and (C) a one-time tax credit make this firm *atypical* (weakening); (D) falling panel prices is peripheral; (E) LED upgrades confound how much of the 38% came from panels.
 **mistake_a:** *Weakens* — sunlight-rich states make this firm's conditions atypical.
 **mistake_c:** *Weakens* — a one-time tax credit specific to this firm doesn't generalize.
 **mistake_d:** Peripheral cost context.
@@ -2222,7 +2228,8 @@ Which of the following, if true, most weakens management's conclusion?
 
 **answer:** B
 **fastest_path:** Management assumes enrollment *caused* deposits to rise. Weaken via *selection bias*: the two groups already differed before enrollment. (B) does it.
-**explanation:** 40% gap could be app effect or self-selection. (B) shows enrollees were already higher depositors. Expanding features won't lift non-enrollees' behavior; the gap was always going to be there.
+**situation:** A bank finds app-enrolled customers make 40% more monthly deposits than non-enrolled ones and concludes that expanding the app and pushing enrollment will raise overall deposit volume.
+**reasoning:** *Weaken a "users of X do more → X causes it" claim.* *What fact would show enrollment didn't cause the higher deposits?* The conclusion assumes the app drives deposits. (B) reveals selection: enrollees were already depositing more than non-enrollees in the 12 months *before* the app launched — so the gap predates the app, and pushing enrollment won't lift non-enrollees' behavior. (A) an eligibility threshold is a sample-definition issue, not causation; (C) competitors, (D) branch preference, and (E) development cost don't address the causal link.
 **mistake_a:** Limits the sample but doesn't address causation.
 **mistake_c:** Competitor context, peripheral.
 **mistake_d:** Customer survey color, doesn't address causation.
@@ -2250,7 +2257,8 @@ The argument above depends on which of the following assumptions?
 
 **answer:** C
 **fastest_path:** Argument: bike path → driver-to-cyclist switch. Required: enough drivers are *physically able* AND *close enough* to switch. Negate (C): no one can → no switch.
-**explanation:** Without a significant pool of physically-able, geographically-close drivers, the predicted switch cannot materialize. (C) is the bridge. Negate it and the path opens to no switchers.
+**situation:** Larksville's council proposes a riverfront bike path to cut rush-hour car traffic, arguing many current drivers will switch to cycling once it opens.
+**reasoning:** *Find a required assumption.* *What must be true for the predicted driver-to-cyclist switch to happen?* The switch requires a real pool of drivers who *can* cycle and live close enough to do so. Negate (C): few drivers are physically able or within cycling distance, and the path opens to essentially no switchers — so (C) is required. (A) per-capita cyclist counts and (D) path-type safety aren't needed, (B) completion timing is a detail, and (E) transit ridership is unrelated.
 **mistake_a:** Per-capita cyclist counts not required.
 **mistake_b:** Timing detail, not the core claim.
 **mistake_d:** Path-type safety comparison — irrelevant.
@@ -2278,7 +2286,8 @@ Which of the following is most strongly supported by the statements above?
 
 **answer:** C
 **fastest_path:** Two findings: (i) daily 45min beats weekly 3hr in adults; (ii) brief daily reviews slow forgetting. Combined inference: daily brief study likely produces greater retention *at least among adults*. Hedged, scoped to the data.
-**explanation:** (C) combines the two findings with the right hedges. The stimulus supports a directional claim about retention with adult-scoped, "likely" framing. Anything stronger overshoots.
+**situation:** A six-month study found adult learners studying 45 minutes daily outscored those studying three hours each Saturday for equal total time; separately, brief daily reviews are shown to slow forgetting.
+**reasoning:** *Draw the inference scoped to the data's strength.* *What do the two findings jointly support, with the right hedges?* Combining the daily-beats-weekly result in adults with the forgetting-slowing effect of brief daily review supports (C): daily brief study is *likely* to produce greater retention than equivalent weekly blocks, *at least among adults*. (A), (B), and (E) overshoot with "cannot," "every," and "no strategy"; (D) makes a methodological claim the stimulus never raises.
 **mistake_a:** *Extreme* — under-45-min study isn't ruled out.
 **mistake_b:** *Extreme* — "every weekend program ineffective" overshoots.
 **mistake_d:** Methodological claim not in the stimulus.
@@ -2306,7 +2315,8 @@ Which of the following, if true, most helps to explain the drop in profit?
 
 **answer:** A
 **fastest_path:** Profit = revenue − cost. Labor ↓ and output ↑ should help. The drop must come from a *different cost spike* (or revenue drop). (A) supplies it: bean prices +25% on every bag.
-**explanation:** Bean prices spiked 25% on every unit produced. Labor savings can't offset that magnitude of input-cost increase across higher output. Single mechanism that quantitatively explains the profit drop.
+**situation:** A roastery's new automated line raised output 28% and cut labor hours 35% as planned last quarter, yet total quarterly profit fell versus the prior quarter.
+**reasoning:** *Resolve the paradox — explain both facts at once.* *Since profit = revenue − cost and labor fell while output rose, where did profit go?* The drop must come from a different cost spike or a revenue fall. (A) supplies it quantitatively: the bean supplier raised prices 25% on every bag, and that input-cost increase across higher output swamps the labor savings. (B) a competitor's line doesn't touch this firm's P&L; (C) rising consumption would *help*; (D) maintenance is unquantified; (E) customer praise doesn't move profit directly.
 **mistake_b:** Competitor's line doesn't touch this firm's P&L.
 **mistake_c:** Macro consumption rise would *help*.
 **mistake_d:** Maintenance is qualitatively plausible but unquantified.
@@ -2334,7 +2344,8 @@ The answer to which of the following questions would be most useful in evaluatin
 
 **answer:** B
 **fastest_path:** Cross-trial comparison (HypZ Phase 2 vs market leader's earlier Phase 2). Evaluate by *comparing patient populations*. (B) does it.
-**explanation:** 12 vs 7 mmHg gap is only credible if patient populations were similar at baseline. If HypZ enrolled milder cases, the gap reflects sample bias, not efficacy. (B) tests this directly. Either answer flips the conclusion.
+**situation:** In Phase 2, HypZ cut systolic blood pressure 12 mmHg over eight weeks versus 7 mmHg for the market leader in its own earlier trial, and the chief scientist argues HypZ will likely outperform and should advance to Phase 3.
+**reasoning:** *Identify the decisive test.* *What would tell us whether the 12-vs-7 gap reflects the drug rather than different patients?* This is a cross-trial comparison, credible only if the populations were similar at baseline. (B) probes exactly that: were HypZ's Phase 2 patients comparable in baseline blood pressure, age, and health to the market leader's trial patients? If HypZ enrolled milder cases, the gap is sample bias, not efficacy. (A) manufacturing cost and (C) regulatory speed are downstream; (D) placebo and (E) side effects don't address the cross-trial comparability driving the superiority claim.
 **mistake_a:** Cost — separate from efficacy.
 **mistake_c:** Regulatory logistics.
 **mistake_d:** Placebo comparison — different question.
