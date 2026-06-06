@@ -1556,7 +1556,8 @@ A company's total 2023 revenue was the sum of revenue from three divisions, A, B
 
 **answer:** C
 **fastest_path:** (1) ratio 3:2:1 (no scalar). (2) C=$20M (no ratio). Together: 1 part = $20M → A = 3·$20M = $60M.
-**explanation:** Ratio + anchor pattern. (1): ratio 3:2:1 alone — no dollar amount. Insufficient. (2): C=$20M — no relative size. Insufficient. Together: C is 1 part = $20M, so A (3 parts) = $60M. Sufficient. Answer C.
+**situation:** Total 2023 revenue is the sum of divisions A, B, and C; the question asks Division A's revenue. Statement (1): A : B : C = 3 : 2 : 1; statement (2): C earned $20 million.
+**reasoning:** *Value DS — A's actual revenue needs both the ratio and an anchor.* Statement (1): the 3 : 2 : 1 ratio has no dollar amount — insufficient. Statement (2): C = $20M with no relative size — insufficient. Together: C is 1 part = $20M, so A (3 parts) = $60M — sufficient, answer C. A ratio plus at least one absolute value fixes every component.
 **mistake_a:** A requires (1) alone sufficient — ratio without anchor.
 **mistake_b:** B requires (2) alone sufficient — anchor without ratio.
 **mistake_d:** D requires each alone — neither has both.
@@ -1585,7 +1586,8 @@ In a class of 30 students, the ratio of boys to girls is 3 to 2. How many boys s
 
 **answer:** E
 **fastest_path:** Question asks how many *boys* scored above mean. Neither statement gives the gender breakdown of the 14 high-scorers. Together still doesn't.
-**explanation:** Class: 18 boys, 12 girls. Question: how many of the boys are in the above-mean group? (1): mean=75 (numeric value) — irrelevant to gender split. Insufficient. (2): 14 above mean — but their gender mix is open. Insufficient. Together: still no link between "14 above mean" and "how many boys." 0–12 girls + 2–14 boys all consistent. Answer E.
+**situation:** In a class of 30 with boys:girls = 3:2 (18 boys, 12 girls), the question asks how many boys scored above the class mean. Statement (1): the mean was 75; statement (2): 14 students scored above the mean.
+**reasoning:** *Value DS — we need the gender breakdown of the above-mean group.* Statement (1): the mean's numeric value says nothing about who is above it — insufficient. Statement (2): 14 scored above the mean, but their gender mix is open — insufficient. Together: there is still no link between the count of 14 and how many are boys (anywhere from a few to all 14) — so the answer is E. Aggregate counts and demographic ratios don't determine a subgroup split by an independent criterion like above-mean.
 **mistake_a:** A requires (1) alone sufficient — mean value tells nothing.
 **mistake_b:** B requires (2) alone sufficient — gender split of 14 still unknown.
 **mistake_c:** C says together sufficient — but the gender mix is independent of the count.
@@ -1615,7 +1617,8 @@ What is the area of triangle ABC?
 
 **answer:** C
 **fastest_path:** Triangle area = (1/2)·a·b·sin(angle between them). (1) gives two sides; (2) gives the angle. Together: (1/2)(8)(6)(1)=24.
-**explanation:** Area = (1/2)·AB·AC·sin(∠BAC). (1): AB=8, AC=6 — no angle, area not determined. Insufficient. (2): ∠BAC=90° — no sides. Insufficient. Together: area = (1/2)(8)(6)(sin 90°) = 24. Sufficient. Answer C.
+**situation:** The question asks the area of triangle ABC. Statement (1): AB = 8 and AC = 6; statement (2): angle BAC = 90°.
+**reasoning:** *Value DS — area = ½ · AB · AC · sin(∠BAC), the SAS formula.* Statement (1): two sides but no included angle, so the area isn't fixed — insufficient. Statement (2): the angle but no sides — insufficient. Together: ½ · 8 · 6 · sin 90° = 24 — sufficient, answer C. Two sides plus the included angle (or base and height) is what area requires; two sides alone aren't enough.
 **mistake_a:** A requires (1) alone sufficient — but area depends on angle.
 **mistake_b:** B requires (2) alone sufficient — but no sides given.
 **mistake_d:** D requires each alone — neither has both pieces.
@@ -1645,7 +1648,8 @@ A rectangle has perimeter P and area A. What is the value of A?
 
 **answer:** C
 **fastest_path:** Need l+w (perimeter) AND l/w ratio. (1) gives l+w=14. (2) gives l=3w. Solve: w=3.5, l=10.5, area=36.75.
-**explanation:** (1): 2(l+w)=28 → l+w=14. Area=lw varies with split. Insufficient. (2): l=3w. Ratio without scalar — area=3w² unknown. Insufficient. Together: l+w=14 and l=3w → 4w=14 → w=3.5, l=10.5, area=36.75. Sufficient. Answer C.
+**situation:** A rectangle has perimeter P and area A; the question asks A. Statement (1): the perimeter is 28; statement (2): the length is 3 times the width.
+**reasoning:** *Value DS — area needs both l + w and the shape.* Statement (1): 2(l + w) = 28 gives l + w = 14, but the area varies with the split — insufficient. Statement (2): l = 3w is a ratio with no scalar — insufficient. Together: l + w = 14 and l = 3w give 4w = 14, so w = 3.5, l = 10.5, area = 36.75 — sufficient, answer C. The same perimeter allows areas from near zero up to 49 (the square), so perimeter alone never fixes area.
 **mistake_a:** A requires (1) alone sufficient — perimeter doesn't fix area.
 **mistake_b:** B requires (2) alone sufficient — ratio without anchor.
 **mistake_d:** D requires each alone — neither does.
@@ -1675,7 +1679,8 @@ A data set consists of 7 numbers. What is the median of the data set?
 
 **answer:** C
 **fastest_path:** Sort: a≤b≤c≤d≤e≤f≤g, median=d. (1) total sum=140. (2) sum without median=98. Subtract: d=42.
-**explanation:** Median of 7 sorted values is the 4th (d). (1): total = 140. Doesn't isolate d. Insufficient. (2): sum-without-median = 98. Doesn't give d alone. Insufficient. Together: 140 − 98 = 42 = d. Sufficient. Answer C.
+**situation:** A data set has 7 numbers; the question asks the median. Statement (1): the mean is 20; statement (2): the sum of all numbers except the median is 98.
+**reasoning:** *Value DS — sort as a ≤ … ≤ g; the median is the 4th value, d.* Statement (1): mean 20 gives total 140 but doesn't isolate d — insufficient. Statement (2): the all-but-median sum is 98 but doesn't give d alone — insufficient. Together: d = 140 − 98 = 42 — sufficient, answer C. Total sum minus the "all but the median" sum isolates the median; don't assume the mean equals the median.
 **mistake_a:** A requires (1) alone sufficient — but mean doesn't pin median.
 **mistake_b:** B requires (2) alone sufficient — but it's a partial sum.
 **mistake_d:** D requires each alone — neither does.
