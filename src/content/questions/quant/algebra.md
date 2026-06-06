@@ -928,18 +928,51 @@ n is an integer. Does the equation x² − (n + 1)x + n = 0 have two distinct re
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** Discriminant = (n+1)² − 4n = n²−2n+1 = (n−1)². Two distinct roots ↔ (n−1)² > 0 ↔ n ≠ 1. (1): n > 1 → n ≠ 1 → always YES. Sufficient. (2): n = 1 is odd (answer NO) and n = 3 is odd (answer YES). Insufficient.
-**explanation:** Compute the discriminant: Δ = (n+1)² − 4(1)(n) = n² + 2n + 1 − 4n = n² − 2n + 1 = (n−1)². The equation has two distinct real roots if and only if Δ > 0, i.e., (n−1)² > 0, i.e., n ≠ 1. When n = 1 the equation becomes x² − 2x + 1 = (x−1)² = 0, which has exactly one repeated root.
+**fastest_path:** Factor: x² − (n+1)x + n = (x−1)(x−n). Roots are 1 and n; distinct iff n ≠ 1. (1): n > 1 → n ≠ 1 → always YES. Sufficient. (2): n=1 (odd) gives repeated root → NO; n=3 (odd) gives distinct roots → YES. Insufficient.
+**explanation:** Fastest approach — factor the quadratic directly: x² − (n+1)x + n = (x−1)(x−n). Roots are 1 and n. They are distinct if and only if n ≠ 1 (i.e., n = 1 gives a repeated root (x−1)²).
 
-Statement (1): n > 1 guarantees n ≠ 1, so (n−1)² > 0 and the answer is always YES. Sufficient.
+Backup approach — discriminant: Δ = (n+1)² − 4n = n² − 2n + 1 = (n−1)². Two distinct roots iff Δ > 0 iff n ≠ 1. Both paths arrive at the same condition.
 
-Statement (2): n is odd. Test n = 1 (odd): Δ = 0 — one repeated root, answer is NO. Test n = 3 (odd): Δ = 4 — two distinct roots, answer is YES. The answer depends on which odd integer n is. Insufficient.
+Statement (1): n > 1 guarantees n ≠ 1 → always YES. Sufficient.
 
-The key insight is factoring the discriminant. Students who expand (n+1)² − 4n but do not re-factor it cannot easily determine when it is positive and tend to pick C or E.
+Statement (2): n is odd. Test n = 1 (odd) → repeated root → NO. Test n = 3 (odd) → distinct roots → YES. Answer depends on which odd integer n is. Insufficient.
 **mistake_b:** Concluded (2) alone is sufficient because "all odd integers share some property" — missed that n = 1 is odd and produces a repeated root.
 **mistake_c:** Tested both statements together: n > 1 and n odd. Combined, this eliminates n = 1, but (1) alone already did so; the error is not recognizing (1) is sufficient on its own.
 **mistake_d:** Concluded each statement alone is sufficient; did not test n = 1 against statement (2) and assumed "odd" must imply some number-theoretic guarantee.
 **mistake_e:** Could not simplify the discriminant expression; concluded that without a specific numerical value of n neither statement can determine the sign of Δ.
 **common_trap:** Failing to factor the discriminant — expanding (n+1)² − 4n but not recognizing it equals (n−1)², leaving an unfactorable-looking quadratic in n that obscures the simple condition n ≠ 1.
 **takeaway:** When a quadratic has a parametric coefficient, fully simplify the discriminant; it often factors cleanly and reveals the exact constraint on the parameter. Two distinct real roots ↔ Δ > 0.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Coordinate Geometry — Lines
+
+In the xy-plane, what is the slope of line ℓ?
+
+(1) Line ℓ passes through the points (1, 5) and (3, 9).
+(2) Line ℓ is perpendicular to the line y = −(1/2)x + 4.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**fastest_path:** (1) Slope = (9 − 5) / (3 − 1) = 2. Sufficient. (2) Perpendicular to slope −1/2 → slope of ℓ = 2. Sufficient. Answer: D.
+**explanation:** Statement (1) alone: two distinct points uniquely determine a line's slope. Slope = (y₂ − y₁)/(x₂ − x₁) = (9 − 5)/(3 − 1) = 4/2 = 2. Sufficient.
+
+Statement (2) alone: y = −(1/2)x + 4 has slope −1/2. Perpendicular lines have slopes that are negative reciprocals of each other: slope of ℓ = −1/(−1/2) = 2. Sufficient.
+
+Each statement alone determines slope = 2, so the answer is D. Critical insight: the question asks for slope only — not the full equation of ℓ. A point on the line would be required to fix the intercept, but slope is a direction property, not a position property. Statement (2) gives slope directly through the perpendicularity relationship without any position information needed.
+**mistake_a:** Concluded (1) sufficient but (2) insufficient — assumed "perpendicular" is not enough to find slope without also knowing a point on ℓ. But a perpendicular relationship fully determines slope without any anchor point.
+**mistake_b:** Concluded (2) sufficient but (1) insufficient — perhaps confused the two-point slope formula with solving a two-variable system (which would require two equations). Two points give slope in one formula.
+**mistake_c:** Required both statements, not recognizing that each alone determines slope.
+**mistake_e:** Over-cautious; concluded both together insufficient — perhaps confused "find the slope" with "find the full equation," which requires a point in addition to slope.
+**common_trap:** Confusing "find the slope" with "find the equation of line ℓ" — the full equation (y = mx + b) requires both slope and intercept, but slope alone is determined by either given statement without a point on ℓ.
+**takeaway:** Slope measures direction, not position. (a) Two points → use slope formula; (b) perpendicular to a known line → negative reciprocal of that line's slope. Neither requires knowing where on the plane ℓ sits.
 **related_reading:** reading-quant-04-algebra-and-equations
