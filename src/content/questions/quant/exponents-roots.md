@@ -887,3 +887,489 @@ Verify: 4^(4²) = 4^16 and 4^(4 × 4) = 4^16. Both sides match.
 **common_trap:** Dividing both sides of x² = 4x by x — this discards a valid factor and can hide roots. Always factor the polynomial rather than dividing. Then apply domain constraints to eliminate invalid candidates.
 **takeaway:** For x^A = x^B with x > 0 and x ≠ 1: equate exponents using the one-to-one property. Factor the resulting polynomial — never divide by a variable. Apply domain constraints (x > 0, x ≠ 1) to discard invalid solutions after factoring.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponential Expressions
+
+What is the value of 3⁵ + 3⁵ + 3⁵?
+
+- A) 3⁵
+- B) 3⁶
+- C) 3⁹
+- D) 3¹⁵
+- E) 9¹⁵
+
+**answer:** B
+**fastest_path:** Three copies of 3⁵ = 3 × 3⁵ = 3^(1+5) = 3⁶.
+**explanation:** Adding identical terms is multiplication: 3⁵ + 3⁵ + 3⁵ = 3 × 3⁵. Apply the product rule: 3¹ × 3⁵ = 3^(1+5) = 3⁶. Numerically: 3⁵ = 243, and 243 × 3 = 729 = 3⁶. The base stays 3; only the exponent increases by 1.
+**mistake_a:** Treated addition as a no-op and returned the original term 3⁵.
+**mistake_c:** Confused addition with multiplication of bases: "(3 threes)" → base 9, exponent 9.
+**mistake_d:** Applied the product rule (add exponents) to addition: 5 + 5 + 5 = 15 → 3¹⁵.
+**mistake_e:** Combined two separate errors: raised the base to 9 AND added the exponents to 15.
+**common_trap:** Applying exponent product rules to addition. The product rule (add exponents) works for 3⁵ × 3⁵ × 3⁵ = 3¹⁵, NOT for 3⁵ + 3⁵ + 3⁵.
+**takeaway:** n copies of aᵏ added together = n × aᵏ, not a^(nk). Factor out the common term first, then apply the product rule: n × aᵏ = a^(log_a(n) + k) only when n is a power of a. Here, 3 × 3⁵ = 3⁶ — increment the exponent by 1.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Fractional Base Behavior
+
+If 0 < x < 1, which of the following has the greatest value?
+
+- A) x
+- B) x²
+- C) x³
+- D) x⁴
+- E) x¹⁰
+
+**answer:** A
+**fastest_path:** For 0 < x < 1, each multiplication by x shrinks the result: x > x² > x³ > ... So x is greatest.
+**explanation:** When the base is strictly between 0 and 1, raising it to a higher power makes it smaller. Test x = 0.5: x = 0.5, x² = 0.25, x³ = 0.125, x⁴ = 0.0625, x¹⁰ ≈ 0.001. The order reverses from the case where x > 1. The first power is the largest.
+**mistake_b:** Chose x² — confused with the rule for x > 1 where larger exponents give larger values.
+**mistake_c:** Applied wrong intuition: "cubing makes things bigger."
+**mistake_d:** Thought higher exponent always dominates.
+**mistake_e:** Chose x¹⁰ — applied the x > 1 pattern where larger exponents win.
+**common_trap:** Importing the rule "larger exponent = larger value" from positive integers. That rule requires x > 1. For 0 < x < 1 the inequality reverses.
+**takeaway:** For a > 1: aˣ grows as x increases. For 0 < a < 1: aˣ shrinks as x increases. The direction of the inequality flips completely when the base crosses 1.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Cyclical Units Digits
+
+What is the units digit of 6¹⁰⁰?
+
+- A) 0
+- B) 2
+- C) 4
+- D) 6
+- E) 8
+
+**answer:** D
+**fastest_path:** Powers of 6 always end in 6: 6¹=6, 6²=36, 6³=216, ... → units digit is always 6.
+**explanation:** Every positive integer power of 6 ends in 6. 6¹ = 6; 6² = 36; 6³ = 216; 6⁴ = 1296. The units digit is 6 regardless of the exponent. This is because 6 × 6 = 36, and any number ending in 6 times 6 gives a product ending in 6 (since 6 × 6 = 36). The cycle has length 1: {6}.
+**mistake_a:** Confused with powers of 10 (which end in 0).
+**mistake_b:** Confused with powers of 2 (cycle 2, 4, 8, 6).
+**mistake_c:** Thought the cycle alternates to 4 at some point.
+**mistake_e:** Confused with powers of 8 (cycle 8, 4, 2, 6).
+**common_trap:** Applying a multi-step cycle to 6, which has a trivial cycle of length 1. Only 0, 1, 5, and 6 have length-1 cycles for units digits.
+**takeaway:** Units-digit constants: 0^n always ends in 0; 1^n always ends in 1; 5^n always ends in 5 (for n ≥ 1); 6^n always ends in 6. Memorize these as fixed points before computing cycles for other digits.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Negative Exponents on Fractions
+
+What is the value of (2/3)^(−2)?
+
+- A) 4/9
+- B) 9/4
+- C) −4/9
+- D) −9/4
+- E) 2/3
+
+**answer:** B
+**fastest_path:** Negative exponent flips the fraction: (2/3)^(−2) = (3/2)² = 9/4.
+**explanation:** The negative exponent rule a^(−n) = 1/aⁿ generalizes to fractions: (p/q)^(−n) = (q/p)^n. So (2/3)^(−2) = (3/2)² = 9/4. Step-by-step: (2/3)^(−2) = 1/(2/3)² = 1/(4/9) = 9/4.
+**mistake_a:** Applied the exponent but forgot the negative means reciprocal; computed (2/3)² = 4/9.
+**mistake_c:** Kept a negative sign in the result — negative exponents never produce negative values from positive bases.
+**mistake_d:** Both errors: took the reciprocal AND kept the negative sign, giving −9/4.
+**mistake_e:** Cancelled the exponent and the negative sign (treated (−2) as cancelling to give the base itself).
+**common_trap:** Thinking that a negative exponent makes the result negative. Negative exponents invert (flip), they don't negate (change sign).
+**takeaway:** (p/q)^(−n) = (q/p)^n. Flip the fraction, then apply the positive exponent. The result is always positive when p and q are positive.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Zero Exponent
+
+What is the value of (5³)⁰?
+
+- A) 0
+- B) 1
+- C) 5
+- D) 15
+- E) 125
+
+**answer:** B
+**fastest_path:** Any nonzero number to the 0 power equals 1. (5³)⁰ = 5⁰ = 1.
+**explanation:** Two equivalent approaches. Direct: (5³)⁰ = 1 because 5³ = 125 ≠ 0, and any nonzero base to the 0 power equals 1. Via power-of-a-power: (5³)⁰ = 5^(3 × 0) = 5⁰ = 1. Both give 1.
+**mistake_a:** Confused with 0^n = 0; applied the zero base rule to the zero exponent.
+**mistake_c:** Kept the base 5 and dropped both the inner exponent (3) and the outer exponent (0).
+**mistake_d:** Computed 5 × 3 = 15 (multiplied base by inner exponent and ignored the outer zero).
+**mistake_e:** Evaluated 5³ = 125 and stopped (ignored the outer ⁰ exponent).
+**common_trap:** Evaluating the inner expression to 125 and then forgetting to apply the outer exponent of 0. The outermost exponent must be applied last.
+**takeaway:** a⁰ = 1 for any nonzero a. Chains: (aᵐ)⁰ = a^(m×0) = a⁰ = 1. This works regardless of how large or complex the expression inside the parentheses is, as long as it is nonzero.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Compound Base Conversion
+
+If 4^n × 8^n = 2^k, what is k in terms of n?
+
+- A) 4n
+- B) 5n
+- C) 6n
+- D) 8n
+- E) 12n
+
+**answer:** B
+**fastest_path:** 4^n = 2^(2n), 8^n = 2^(3n). Product: 2^(2n + 3n) = 2^(5n). So k = 5n.
+**explanation:** Convert both bases to powers of 2. 4 = 2², so 4^n = (2²)^n = 2^(2n). 8 = 2³, so 8^n = (2³)^n = 2^(3n). Multiply: 2^(2n) × 2^(3n) = 2^(2n + 3n) = 2^(5n). Therefore k = 5n.
+**mistake_a:** Used 4n — added only 4 + 0 (counted only the base-4 contribution, not base-8's).
+**mistake_c:** Used 6n — computed 2 + 4 = 6 (confused 2³ as giving a factor of 4 rather than 3).
+**mistake_d:** Used 8n — multiplied 4 × 2 = 8 (treated exponent arithmetic as base multiplication).
+**mistake_e:** Used 12n — multiplied 4n × 3n or made a product-of-exponents error.
+**common_trap:** Computing 4 × 8 = 32 and writing 32^n = 2^5n correctly, but then misidentifying 32 = 2⁵ and rushing past the base-conversion step.
+**takeaway:** To combine exponential expressions with different bases, rewrite each base as a power of the lowest common base, then consolidate using the product rule. 4 = 2², 8 = 2³, 16 = 2⁴, 32 = 2⁵ — these conversions are essential.
+**related_reading:** reading-quant-04-algebra-and-equations
+**hint_nudge:** Can you write 4 and 8 as powers of 2?
+**hint_strategy:** Once both are written as 2^(something × n), use the product rule to add the exponents.
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Cyclical Units Digits
+
+What is the units digit of 3^47?
+
+- A) 1
+- B) 3
+- C) 7
+- D) 9
+- E) 27
+
+**answer:** C
+**fastest_path:** Cycle for 3: units digits 3, 9, 7, 1 (period 4). 47 mod 4 = 3 → position 3 → units digit 7.
+**explanation:** The units digits of powers of 3 repeat with period 4: 3¹=3, 3²=9, 3³=27 (units 7), 3⁴=81 (units 1), 3⁵=243 (units 3), ... The pattern is {3, 9, 7, 1}. To find where 3^47 falls: compute 47 mod 4 = 3 (since 44 = 4 × 11, so 47 = 44 + 3). Remainder 3 corresponds to position 3 in the cycle, which has units digit 7 (same as 3³ = 27).
+**mistake_a:** Used 47 mod 4 = 0 or concluded the cycle lands on position 4 (units digit 1).
+**mistake_b:** Thought 3^47 ends in 3 (same as 3¹) — made a mod-4 error, treating 47 as 48 or using remainder 1.
+**mistake_d:** Confused position 2 (units digit 9) with position 3.
+**mistake_e:** Bubbled 27, the value of 3³ itself, rather than its units digit.
+**common_trap:** Confusing the cycle position with the remainder. The remainder gives the position; position 1 → 3, position 2 → 9, position 3 → 7, position 0 (or 4) → 1.
+**takeaway:** Four-step method for units digit of a^n: (1) find the cycle length for a's units digit, (2) compute n mod (cycle length), (3) if remainder is 0, the answer is the last element; otherwise, the answer is the element at that position. For base 3: cycle {3,9,7,1}, length 4.
+**related_reading:** reading-quant-02-arithmetic-foundations
+**hint_nudge:** Write out 3¹, 3², 3³, 3⁴ and look at just the units digits. Do they repeat?
+**hint_strategy:** Once you spot the cycle, find 47 mod 4 to determine which position in the cycle 3^47 lands on.
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponential Growth
+
+A savings account doubles in value every 5 years. The account holds $500 today. What will its value be exactly 20 years from now?
+
+- A) $2,000
+- B) $4,000
+- C) $8,000
+- D) $16,000
+- E) $32,000
+
+**answer:** C
+**fastest_path:** 20 years = 4 doubling periods. Value = 500 × 2⁴ = 500 × 16 = $8,000.
+**explanation:** Count the doubling events: at year 5, 10, 15, and 20 — exactly 4 doublings. Exponential form: Value = 500 × 2⁴ = 500 × 16 = $8,000. Each additional period multiplies by 2, not adds a fixed dollar amount. After 4 doublings: 500 → 1,000 → 2,000 → 4,000 → 8,000.
+**mistake_a:** Applied linear growth: 500 × 4 = $2,000 (assumed the account added $500 per 5-year period instead of doubling).
+**mistake_b:** Counted only 3 doublings: 500 × 2³ = $4,000 (off-by-one — stopped at year 15 or started counting from year 5).
+**mistake_d:** Counted 5 doublings: 500 × 2⁵ = $16,000 (treated years 0, 5, 10, 15, 20 as five intervals).
+**mistake_e:** Counted 6 doublings: 500 × 2⁶ = $32,000 (doubled error in period count).
+**common_trap:** Counting years-as-intervals vs. doublings-as-events. In 20 years with a 5-year period: 20/5 = 4 doublings. The starting value is not a "doubling event."
+**takeaway:** For exponential growth with period T: after time t, there are t/T doubling (or multiplying) events, and the value is V₀ × r^(t/T). Distinguish linear ("adds X per period") from exponential ("multiplies by r per period").
+**related_reading:** reading-quant-02-arithmetic-foundations
+**hint_nudge:** How many times does the account double in 20 years if it doubles every 5 years?
+**hint_strategy:** Write the value after each 5-year period: $500, then $1,000, then... The pattern is V × 2^(number of periods).
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Ordering Exponential Expressions
+
+Which of the following correctly ranks 2^40, 3^25, and 5^15 from greatest to least?
+
+- A) 2^40 > 3^25 > 5^15
+- B) 3^25 > 2^40 > 5^15
+- C) 5^15 > 3^25 > 2^40
+- D) 3^25 > 5^15 > 2^40
+- E) 2^40 > 5^15 > 3^25
+
+**answer:** A
+**fastest_path:** Raise each to the power of 1/5 to equate exponents: 2^8=256, 3^5=243, 5^3=125. Greatest base wins: 256 > 243 > 125, so 2^40 > 3^25 > 5^15.
+**explanation:** To compare exponential expressions with different bases and exponents, convert them to a common exponent. The LCM of 40, 25, 15 is large, but dividing each exponent by 5 works cleanly: (2^40)^(1/5) = 2^8 = 256; (3^25)^(1/5) = 3^5 = 243; (5^15)^(1/5) = 5^3 = 125. Since the 1/5 power is an increasing function, the original order matches the order of 256, 243, 125 — giving 2^40 > 3^25 > 5^15.
+**mistake_b:** Concluded 3^25 > 2^40 from "3 > 2" without accounting for the exponent difference (40 vs. 25).
+**mistake_c:** Ordered by base size alone: 5 > 3 > 2, ignoring the much larger exponent on 2.
+**mistake_d:** A hybrid of the base-size error: 3 > 5 error combined with ignoring 2^40.
+**mistake_e:** Got 2^40 at the top correctly but swapped 3^25 and 5^15 (failed to apply the equal-exponent test to the middle two).
+**common_trap:** Ranking by base size when bases and exponents both differ. A larger base can be overwhelmed by a much smaller exponent — the only reliable method is reducing to a common exponent.
+**takeaway:** To compare aᵐ, bⁿ, cᵖ: find the smallest k such that m/k, n/k, p/k are integers, then compare a^(m/k), b^(n/k), c^(p/k) directly as numbers. Larger base at the same exponent wins. Here k=5 works cleanly.
+**related_reading:** reading-quant-04-algebra-and-equations
+**hint_nudge:** Can you find an exponent that divides evenly into 40, 25, and 15?
+**hint_strategy:** Divide each exponent by 5: the three expressions become 2^8, 3^5, and 5^3. Now compare these as plain numbers.
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Nested Radicals
+
+For x > 0, what is the simplified form of √(√(x¹⁶))?
+
+- A) x²
+- B) x⁴
+- C) x⁸
+- D) x¹²
+- E) x¹⁶
+
+**answer:** B
+**fastest_path:** (x¹⁶)^(1/2 × 1/2) = x^(16/4) = x⁴.
+**explanation:** Work from the inside out. Inner radical: √(x¹⁶) = x^(16/2) = x⁸ (for x > 0, no absolute value needed). Outer radical: √(x⁸) = x^(8/2) = x⁴. Alternatively, combine the two square roots into a fourth root: √(√(x¹⁶)) = (x¹⁶)^(1/4) = x^(16/4) = x⁴.
+**mistake_a:** Applied only one square root: x^(16/2)/2 = x^4 miscomputed as x^2.
+**mistake_c:** Applied only the inner root: stopped at √(x¹⁶) = x⁸ and forgot the outer root.
+**mistake_d:** Subtracted 4 from 16 instead of dividing: 16 − 4 = 12 → x¹².
+**mistake_e:** Did not simplify at all and returned the original x¹⁶.
+**common_trap:** Forgetting to apply the outer radical after simplifying the inner one. Two nested square roots equal one fourth root.
+**takeaway:** Nested radicals multiply their fractional exponents: √(√(aⁿ)) = (aⁿ)^(1/4) = a^(n/4). In general, an m-th root inside an n-th root equals an (mn)-th root.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Comparing Variable Exponents
+
+Is x⁴ > x?
+
+(1) x > 0
+(2) x > 1
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER alone is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**fastest_path:** (1) x=0.5 → 0.0625 < 0.5 (No); x=2 → 16 > 2 (Yes). Not sufficient. (2) x>1 → x⁴/x = x³ > 1, so x⁴ > x. Always Yes. Sufficient.
+**explanation:** Statement (1): x > 0. Test x = 0.5: x⁴ = 0.0625, x = 0.5 → 0.0625 < 0.5, answer is No. Test x = 2: x⁴ = 16, x = 2 → 16 > 2, answer is Yes. Two different answers → insufficient.
+
+Statement (2): x > 1. Then x⁴ = x · x³. Since x > 1, we have x³ > 1, so x · x³ > x · 1 = x. The answer is always Yes → sufficient.
+**mistake_a:** Concluded Statement 1 sufficient — did not test the fractional case x = 0.5, which violates x⁴ > x.
+**mistake_c:** Required both statements — correctly saw that Statement 1 fails but overcorrected by requiring both.
+**mistake_d:** Concluded each alone sufficient — did not test a counterexample for Statement 1.
+**mistake_e:** Concluded together insufficient — correct logic for Statement 2 would resolve the question.
+**common_trap:** Assuming x > 0 implies x⁴ > x. This requires x > 1; for 0 < x < 1, every additional power shrinks the value below x.
+**takeaway:** For the inequality xⁿ > x (n > 1, integer): it holds when x > 1 and fails when 0 < x < 1. The break-even point is x = 1. Always test the fractional interval (0,1) as a separate case when positivity alone is given.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponential Inequalities
+
+If k is a positive integer and 2^k < 3^(k−1), what is the smallest possible value of k?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 5
+- E) 6
+
+**answer:** B
+**fastest_path:** Test k=2: 4 < 3 (No). Test k=3: 8 < 9 (Yes). Smallest k = 3.
+**explanation:** Check consecutive positive integers starting from 1. k=1: 2¹=2, 3⁰=1. 2 < 1? No. k=2: 2²=4, 3¹=3. 4 < 3? No. k=3: 2³=8, 3²=9. 8 < 9? Yes. The condition first becomes true at k=3. For k ≥ 3 it remains true because 3 grows faster per step than 2 (multiplying by 3 vs. multiplying by 2 at each increment of k).
+**mistake_a:** Chose k=2, the case that fails by 1.
+**mistake_c:** Chose k=4 — tested only even values, or mistakenly thought k=3 fails.
+**mistake_d:** Chose k=5 — made arithmetic errors on the earlier cases.
+**mistake_e:** Chose k=6 — significantly overestimated the crossover point.
+**common_trap:** Not testing k=3 because 8 and 9 are close — the difference of 1 is easy to misread. Always compute both sides explicitly rather than estimating.
+**takeaway:** For crossover-point problems ("smallest k such that..."), start testing from the smallest valid value and check each integer in order. Stop at the first success. These problems often have a crossover at a small k that surprises students who rely on intuition.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Quadratic in Exponent
+
+If 4^x − 5 · 2^x + 4 = 0, what is the sum of all real values of x that satisfy the equation?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 4
+- E) 6
+
+**answer:** C
+**fastest_path:** Let u = 2^x. Then 4^x = u². Equation: u² − 5u + 4 = 0 → (u−1)(u−4) = 0 → u = 1 or 4. So x = 0 or x = 2. Sum = 2.
+**explanation:** The key substitution is u = 2^x, which converts 4^x = (2^x)² = u². The equation becomes a standard quadratic: u² − 5u + 4 = 0. Factor: (u − 1)(u − 4) = 0 → u = 1 or u = 4. Reverse the substitution: 2^x = 1 → x = 0 (since 2⁰ = 1); 2^x = 4 = 2² → x = 2. Both solutions are valid (no domain issues — all 2^x > 0, and −5 doesn't introduce extraneous roots). Sum of solutions: 0 + 2 = 2.
+
+Verify: x=0: 4⁰ − 5·2⁰ + 4 = 1 − 5 + 4 = 0 ✓. x=2: 4² − 5·2² + 4 = 16 − 20 + 4 = 0 ✓.
+**mistake_a:** Bubbled 0, treating x = 0 as the only solution (dismissed 2^x = 4 as "no solution" because they confused u with x).
+**mistake_b:** Computed 1 — arithmetic slip in the sum, or confused u-values with x-values.
+**mistake_d:** Bubbled 4 — reported one of the u-values (2^x = 4) directly as the answer instead of converting back to x = 2.
+**mistake_e:** Added the two u-values: 1 + 4 + 1 = 6, confusing u-values with x-values in the sum.
+**common_trap:** Reporting the value of u (the substituted variable) as the final answer instead of converting back to x. After solving the quadratic in u, always reverse the substitution: 2^x = u → x = log₂(u).
+**takeaway:** When an equation contains both aˣ and a^(2x) or (a²)^x, substitute u = aˣ to turn it into a quadratic in u. Solve the quadratic, then convert each u back to x via x = logₐ(u). Check that u > 0 (since aˣ > 0 always), rejecting any negative u-roots.
+**related_reading:** reading-quant-04-algebra-and-equations
+**hint_nudge:** Notice that 4^x = (2^x)². Does that suggest a substitution?
+**hint_strategy:** Let u = 2^x. Rewrite every term in u, then solve the quadratic in u. After finding u, convert each solution back to x.
+**hint_setup:** Substituting u = 2^x gives u² − 5u + 4 = 0. Factor this as (u − ?)(u − ?) = 0. For each u, solve 2^x = u by recognizing the power of 2.
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Sign Analysis with Exponents
+
+If m and n are positive integers, is (−1)^m · 2^n > 0?
+
+(1) m + n is even.
+(2) m is even.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER alone is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**fastest_path:** The sign of (−1)^m · 2^n depends only on m's parity, since 2^n > 0 always. Stmt (2) gives m even → (−1)^m = 1 → expression > 0. Sufficient. Stmt (1): m even AND n even works (Yes); m odd AND n odd also gives m+n even but expression < 0 (No). Not sufficient.
+**explanation:** The key insight: 2^n is always positive for any positive integer n. So the sign of the entire expression is determined solely by (−1)^m: positive when m is even, negative when m is odd.
+
+Statement (1): m + n is even means m and n have the same parity (both even or both odd). Case 1 — m=2, n=2: (−1)^2 · 2^2 = 1 · 4 = 4 > 0 (Yes). Case 2 — m=1, n=1: (−1)^1 · 2^1 = −2 < 0 (No). Two different answers → insufficient.
+
+Statement (2): m is even → (−1)^m = (−1)^(even) = +1 → expression = 2^n > 0. Answer is always Yes → sufficient.
+**mistake_a:** Concluded Statement 1 is sufficient — did not check the both-odd sub-case (m=1, n=1).
+**mistake_c:** Required both statements — correctly saw Statement 1 fails, but didn't fully analyze Statement 2 alone.
+**mistake_d:** Concluded each alone sufficient — made the same error as in A for Statement 1.
+**mistake_e:** Concluded together insufficient — correct analysis of Statement 2 would resolve it.
+**common_trap:** Assuming "same parity" (Statement 1) always forces m to be even. It doesn't: both m and n can be odd, which satisfies m+n even but gives a negative result.
+**takeaway:** In sign-analysis DS problems, isolate which variable determines the sign, then check whether each statement pins down that variable's behavior. Here, only m's parity matters. Statement 1 constrains m and n jointly, not m alone — that joint constraint is weaker.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Fractional Exponent Identities
+
+If x > 0 and x^(1/2) + x^(−1/2) = 4, what is the value of x + x^(−1)?
+
+- A) 8
+- B) 12
+- C) 14
+- D) 16
+- E) 18
+
+**answer:** C
+**fastest_path:** Square both sides: x + 2 · x^(1/2) · x^(−1/2) + x^(−1) = 16. The middle term = 2 · x⁰ = 2. So x + x^(−1) = 16 − 2 = 14.
+**explanation:** Square the given equation: (x^(1/2) + x^(−1/2))² = 4² = 16. Expand the left side using (a + b)² = a² + 2ab + b²: (x^(1/2))² + 2 · x^(1/2) · x^(−1/2) + (x^(−1/2))² = x + 2 · x^(1/2 − 1/2) + x^(−1) = x + 2 · x⁰ + x^(−1) = x + 2 + x^(−1). Setting this equal to 16: x + 2 + x^(−1) = 16 → x + x^(−1) = 14.
+
+Verification: The exact value of x satisfies x² − 14x + 1 = 0, giving x = 7 + 4√3. Check: x^(1/2) = 2 + √3, x^(−1/2) = 2 − √3, sum = 4 ✓.
+**mistake_a:** Computed 4² − 8 = 8 (subtracted 2 twice, or used (a+b)² − 4ab ≠ a² + b²).
+**mistake_b:** Computed 4² − 4 = 12 (subtracted only 4 instead of 2).
+**mistake_d:** Bubbled 16 (the square of 4) without subtracting the middle term.
+**mistake_e:** Computed 4² + 2 = 18 (added the middle term instead of subtracting it from the target).
+**common_trap:** Forgetting the cross term 2ab when squaring a binomial. Squaring (a + b) produces a² + 2ab + b², not a² + b². Here, 2ab = 2 · x^(1/2) · x^(−1/2) = 2 · x⁰ = 2 — and that 2 must be subtracted from 16, not added.
+**takeaway:** The identity (√x + 1/√x)² = x + 2 + 1/x is the algebraic key. More generally: if (a + b) = k, then (a² + b²) = k² − 2ab. Use this to "chain" between sums of different powers of the same base.
+**related_reading:** reading-quant-04-algebra-and-equations
+**hint_nudge:** If you knew x^(1/2) + x^(−1/2), could you square that to get something useful?
+**hint_strategy:** Square the given equation. The expansion produces x + 2 · x^(1/2) · x^(−1/2) + x^(−1). Simplify the middle product using exponent rules.
+**hint_setup:** (x^(1/2) + x^(−1/2))² = x + 2·x^(0) + x^(−1) = x + 2 + x^(−1) = 16. Solve for x + x^(−1).
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Exponent Comparison
+
+Is a^b > b^a?
+
+(1) a = b² and b > 1.
+(2) b = 2 and a = 4.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER alone is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**fastest_path:** Stmt (2): 4² = 16, 2⁴ = 16. Equal → a^b is NOT > b^a. Definite No. Sufficient. Stmt (1): b=1.5, a=2.25 → 2.25^1.5 ≈ 3.4 > 1.5^2.25 ≈ 2.5 (Yes); b=3, a=9 → 9³=729 < 3⁹=19683 (No). Not sufficient.
+**explanation:** Statement (2): With a=4 and b=2: a^b = 4² = 16; b^a = 2⁴ = 16. The expression 4² = 2⁴ = 16 (a well-known equality). So a^b = b^a; it is NOT true that a^b > b^a. This gives a definite No → sufficient.
+
+Statement (1): a = b², b > 1. Test b=1.5: a=2.25. a^b = 2.25^1.5 = 2.25 × √2.25 = 2.25 × 1.5 = 3.375. b^a = 1.5^2.25 ≈ 1.5² × 1.5^0.25 ≈ 2.25 × 1.107 ≈ 2.49. Here a^b > b^a → Yes. Test b=3: a=9. a^b = 9³ = 729. b^a = 3⁹ = 19,683. Here a^b < b^a → No. Two different answers → insufficient.
+**mistake_a:** Concluded Statement 1 sufficient — only tested the b=3 case (No) and didn't find a Yes case, or only tested b=1.5 and didn't find a No case.
+**mistake_c:** Required both statements — correctly saw Statement 1 fails but did not fully analyze Statement 2.
+**mistake_d:** Concluded each alone sufficient — made Statement 1 error.
+**mistake_e:** Concluded together insufficient — correctly combined would give a definite answer (No), since Statement 2 already gives a definite answer on its own.
+**common_trap:** Treating (4² vs. 2⁴) as an open question rather than a known identity. The equality 4² = 2⁴ = 16 is a benchmark worth memorizing: it's the unique pair (with a≠b, both integers > 1) where a^b = b^a.
+**takeaway:** 4² = 2⁴ = 16 is the unique integer case (besides trivial pairs) where a^b = b^a with a ≠ b. In DS, a specific assignment of values quickly produces a definite answer; the challenge is testing abstract constraints (like Statement 1) against multiple cases.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Power Tower Units Digit
+
+What is the units digit of 7^(7^49)?
+
+- A) 1
+- B) 3
+- C) 7
+- D) 9
+- E) 0
+
+**answer:** B
+**fastest_path:** Units digits of 7^n cycle as 7,9,3,1 (period 4). Need 7^49 mod 4: 7≡3 (mod 4), and 3^(odd)≡3 (mod 4), so 7^49≡3 (mod 4). Position 3 in cycle → units digit 3.
+**explanation:** This problem requires two nested modular arithmetic steps.
+
+Step 1 — Identify the cycle. Units digits of powers of 7: 7¹→7, 7²→9, 7³→3, 7⁴→1, 7⁵→7,... The cycle is {7, 9, 3, 1} with period 4.
+
+Step 2 — Find the exponent (7^49) mod 4 to determine the cycle position. The key: 7 ≡ 3 (mod 4). Powers of 3 mod 4 alternate: 3¹≡3, 3²≡1, 3³≡3, 3⁴≡1,... (period 2, always 3 for odd exponents, 1 for even). Since 49 is odd: 7^49 ≡ 3^49 ≡ 3 (mod 4).
+
+Step 3 — Read the cycle position. The exponent 7^49 leaves remainder 3 when divided by 4 → same units digit as 7³ = 343 → units digit 3.
+**mistake_a:** Used 7^49 mod 4 = 0 (thought 7^49 is divisible by 4) or incorrectly mapped to cycle position 4 → units digit 1.
+**mistake_c:** Computed the units digit of 7^49 itself (which is 7, since 49 mod 4 = 1 → position 1 → units digit 7) and stopped one level too early. The question asks for 7^(7^49), not 7^49.
+**mistake_d:** Used 7^49 mod 4 = 2 (arithmetic slip) → cycle position 2 → units digit 9.
+**mistake_e:** Confused with a power of 10 or 70; any power of 7 has units digit in {7,9,3,1} and can never end in 0.
+**common_trap:** Stopping at the units digit of 7^49 (which is 7) instead of continuing to use that as the exponent of the outer 7. Two-level tower problems require two separate modular calculations.
+**takeaway:** For units digit of a^(b^c): (1) find the cycle length L of a's units digit, (2) find b^c mod L (this is a separate modular calculation), (3) use that remainder to index into the cycle. Each additional level of the tower adds one more mod step.
+**related_reading:** reading-quant-02-arithmetic-foundations
+**hint_nudge:** What pattern do units digits of powers of 7 follow?
+**hint_strategy:** Once you find the cycle {7,9,3,1}, you need the exponent 7^49 mod 4. To find 7^49 mod 4, use the fact that 7 ≡ 3 (mod 4) and find the pattern of powers of 3 mod 4.
+**hint_setup:** 7 ≡ 3 (mod 4). Powers of 3 mod 4 alternate: 3^(odd) ≡ 3, 3^(even) ≡ 1. Since 49 is odd, 7^49 ≡ 3 (mod 4). Now index into the cycle: position 3 gives units digit 3.
