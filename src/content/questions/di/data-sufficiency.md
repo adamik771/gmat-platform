@@ -741,7 +741,8 @@ In triangle ABC, what is the measure of angle A?
 
 **answer:** E
 **fastest_path:** Yes triangle isosceles + B=70, but *which* pair is equal? A=70 (if A=B), or A=40 (if B=C), or A=55 (if A=C). Three cases. Insufficient.
-**explanation:** (1): B=70, A+C=110 — many splits. Insufficient. (2): Isosceles, but which pair equal? Insufficient. Together: B=70 and isosceles, three cases — A=B=70 → A=70; B=C=70 → A=40; A=C, both =55. Three values for A. Insufficient. Answer E.
+**situation:** In triangle ABC, the question asks for the measure of angle A. Statement (1): angle B = 70°; statement (2): triangle ABC is isosceles.
+**reasoning:** *Value DS — is angle A a single number?* Statement (1): B = 70° leaves A + C = 110° with many splits — insufficient. Statement (2): isosceles, but which pair is equal is unspecified — insufficient. Together: with B = 70° and isosceles, three configurations survive — A = B = 70° (A = 70), B = C = 70° (A = 40), or A = C = 55° (A = 55) — three values, so the answer is E. "Isosceles" names a family of three configurations, not a unique angle.
 **mistake_a:** A requires (1) alone sufficient — A+C=110 has many splits.
 **mistake_b:** B requires (2) alone sufficient — pair unspecified.
 **mistake_c:** *C-to-E trap* — adding the isosceles constraint *doesn't* pin down which pair is equal.
@@ -770,7 +771,8 @@ If x and y are nonzero real numbers, is x/y < 1?
 
 **answer:** E
 **fastest_path:** Yes/no x/y<1. Test sign combos. (1) x<y silent on signs. (2) same sign silent on order. Together: both pos (x/y<1) vs both neg with x<y (x/y>1). Split.
-**explanation:** (1): x<y. Pos x=1,y=2 (x/y=0.5, yes). Neg x=−2,y=−1 (x/y=2, no). Insufficient. (2): xy>0 (same sign). x=1,y=2 (yes); x=2,y=1 (no). Insufficient. Together: both pos with x<y → x/y<1 (yes); both neg with x<y → x/y>1 (no). Still split. Answer E.
+**situation:** For nonzero reals x and y, the question asks whether x/y < 1. Statement (1): x < y; statement (2): xy > 0 (same sign).
+**reasoning:** *Yes/no DS — test sign and order together.* Statement (1): x = 1, y = 2 gives x/y = 0.5 (yes), but x = −2, y = −1 gives x/y = 2 (no) — insufficient. Statement (2): same sign without order — x = 1, y = 2 (yes) vs x = 2, y = 1 (no) — insufficient. Together: two positives with x < y give x/y < 1 (yes), but two negatives with x < y give x/y > 1 (no) — still split, so the answer is E. Dividing two negatives flips the quotient relationship you'd expect from the positive case.
 **mistake_a:** A requires (1) alone sufficient — split shown.
 **mistake_b:** B requires (2) alone sufficient — order matters.
 **mistake_c:** *C-to-E trap*: combining seems to lock it down, but negative-pair behavior flips x/y<1 to x/y>1.
@@ -799,7 +801,8 @@ Set S consists of five distinct positive integers. Is the median of S greater th
 
 **answer:** A
 **fastest_path:** Yes/no median>mean. (1) e > 2(a+b+c+d) makes the largest dominant — mean dragged way above median. Always "no". Sufficient.
-**explanation:** Sorted a<b<c<d<e; median=c, mean=(sum)/5. (1): e > 2(a+b+c+d) ⟹ sum > 3(a+b+c+d), so mean > 3(a+b+c+d)/5 = (3/5)·(sum without e). Concrete: {1,2,3,4,21} (e=21 > 2·10=20). Median=3, mean=6.2 → no. The huge e forces mean above median. Sufficient (always "no"). (2): smallest=1. {1,2,3,4,5} (med=3=mean, no). {1,2,10,11,12} (med=10, mean=7.2, yes). Insufficient. Answer A.
+**situation:** Set S has five distinct positive integers; the question asks whether the median exceeds the mean. Statement (1): the largest is more than twice the sum of the other four; statement (2): the smallest is 1.
+**reasoning:** *Yes/no DS on skew — sort as a < b < c < d < e (median c).* Statement (1): e > 2(a+b+c+d) makes the largest value dominate, dragging the mean far above the median — e.g., {1, 2, 3, 4, 21} has median 3 but mean 6.2 (no), and this holds in general — a definite no, sufficient. Statement (2): smallest = 1 allows both — {1,2,3,4,5} has median 3 = mean (no) while {1,2,10,11,12} has median 10 > mean 7.2 (yes) — insufficient. Since (1) alone gives a definite answer, the answer is A. A single very large value pulls the mean above the median, and a definite "no" is sufficient.
 **mistake_b:** B requires (2) alone sufficient — yes/no split shown.
 **mistake_c:** C-trap — adding (2) doesn't help; (1) alone gives definitive no.
 **mistake_d:** D requires each alone — (2) fails.
@@ -828,7 +831,8 @@ If x is a positive integer, is x prime?
 
 **answer:** A
 **fastest_path:** (1) "Exactly two positive divisors" *is* the definition of prime. Always yes. Sufficient.
-**explanation:** (1): Two positive divisors = 1 and x itself = definition of prime. Sufficient (yes). (2): x+1=p². p=2 → x=3 (prime, yes). p=3 → x=8 (not, no). Insufficient. Answer A.
+**situation:** For positive integer x, the question asks whether x is prime. Statement (1): x has exactly two positive divisors; statement (2): x + 1 is the square of a prime.
+**reasoning:** *Yes/no DS — does each statement settle primality?* Statement (1): having exactly two positive divisors (1 and x) is the definition of prime — always yes, sufficient. Statement (2): x + 1 = p² gives x = 3 when p = 2 (prime, yes) but x = 8 when p = 3 (not prime, no) — insufficient. Since (1) alone is conclusive, the answer is A. A statement that restates the very definition of the property asked is sufficient by tautology.
 **mistake_b:** B requires (2) alone sufficient — yes/no split.
 **mistake_c:** C-trap — adding (2) doesn't help; (1) alone is the prime definition.
 **mistake_d:** D requires each alone — (2) fails.
@@ -857,7 +861,8 @@ A circle is inscribed in square ABCD. What is the area of the circle?
 
 **answer:** D
 **fastest_path:** Inscribed circle: diameter = side. (1) diag=10√2 ⟹ side=10 ⟹ r=5, area=25π. (2) outside-region match gives s=10. Each alone works.
-**explanation:** Inscribed circle's diameter = square's side. (1): diag=10√2 ⟹ side=10 ⟹ r=5 ⟹ area=25π. Sufficient. (2): region outside = s²−π(s/2)² = s²(1−π/4) = 100−25π ⟹ s=10 ⟹ r=5 ⟹ area=25π. Sufficient. Each alone works. Answer D.
+**situation:** A circle is inscribed in square ABCD; the question asks the circle's area. Statement (1): the square's diagonal is 10√2; statement (2): the area inside the square but outside the circle is 100 − 25π.
+**reasoning:** *Value DS — for an inscribed circle the diameter equals the square's side, so any datum fixing the side fixes the area.* Statement (1): diagonal 10√2 gives side 10, radius 5, area 25π — sufficient. Statement (2): the outside region is s²(1 − π/4) = 100 − 25π, which gives s = 10, radius 5, area 25π — sufficient. Each statement alone determines the area, so the answer is D. When both routes lead to s = 10, don't reach for C "for safety."
 **mistake_a:** A requires only (1) sufficient — but (2) also pins down area.
 **mistake_b:** B requires only (2) sufficient — but (1) also does.
 **mistake_c:** *C-trap*: combining is unnecessary — each statement alone gives s=10.
@@ -886,7 +891,8 @@ If a, b, and c are nonzero integers, is abc > 0?
 
 **answer:** C
 **fastest_path:** abc>0 ↔ even number of negatives. (1) forces a,b,c same sign (all pos or all neg). (2) excludes all-neg. Together: all pos → abc>0.
-**explanation:** (1): ab>0 and bc>0 ⟹ a,b same sign and b,c same sign ⟹ all three share b's sign. All pos (abc>0) or all neg (abc<0). Insufficient. (2): a+b+c>0 admits mixed signs. Insufficient. Together: same sign + positive sum → all pos → abc>0. Sufficient. Answer C.
+**situation:** For nonzero integers a, b, c, the question asks whether abc > 0. Statement (1): ab > 0 and bc > 0; statement (2): a + b + c > 0.
+**reasoning:** *Yes/no DS — abc > 0 means an even number of negatives (here, zero).* Statement (1): ab > 0 and bc > 0 force a, b, c to share b's sign — all positive (abc > 0) or all negative (abc < 0) — insufficient. Statement (2): a positive sum still allows mixed signs — insufficient. Together: same sign plus a positive sum rules out all-negative, leaving all positive, so abc > 0 — sufficient, answer C. "Same sign" alone isn't a yes, because all-negative is also same-sign; (2) excludes it.
 **mistake_a:** A requires (1) alone sufficient — but all-neg case gives abc<0.
 **mistake_b:** B requires (2) alone sufficient — mixed signs admit yes/no.
 **mistake_d:** D requires each alone — neither works.
@@ -915,7 +921,8 @@ In triangle PQR, what is the measure of angle P?
 
 **answer:** C
 **fastest_path:** Triangle angles sum to 180. Need two angles to find the third. Each statement gives one. Together: P = 180−70−55 = 55.
-**explanation:** P+Q+R=180. (1) Q=70 alone leaves P+R=110, P unknown. (2) R=55 alone leaves P+Q=125, P unknown. Together: P=180−70−55=55. Sufficient. Answer C.
+**situation:** In triangle PQR, the question asks for the measure of angle P. Statement (1): angle Q = 70°; statement (2): angle R = 55°.
+**reasoning:** *Value DS — the three angles sum to 180°, so two of them fix the third.* Statement (1): Q = 70° leaves P + R = 110°, P unknown — insufficient. Statement (2): R = 55° leaves P + Q = 125°, P unknown — insufficient. Together: P = 180 − 70 − 55 = 55° — sufficient, answer C. A specific angle needs two of the three known.
 **mistake_a:** A requires (1) alone sufficient — only one angle given.
 **mistake_b:** B requires (2) alone sufficient — same.
 **mistake_d:** D requires each alone — neither has two angles.
