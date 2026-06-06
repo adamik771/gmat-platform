@@ -20,7 +20,7 @@ Which of the following, if true, most strengthens the argument above?
 
 **answer:** B
 **fastest_path:** Causal claim — program → revenue. Strengthen by *ruling out* the obvious alternative cause (broader market trend). (B) does it: comparable competitor without program *lost* revenue, so the gain isn't just market lift.
-**explanation:** Argument: loyalty program caused 8% revenue gain. The competitor comparison in (B) controls for market conditions — same region, no program, revenue actually fell. That isolates the program as the differentiating factor.
+**explanation:** *Argument Evaluation — Strengthen a causal claim.* **Situation:** A grocery chain launched a loyalty program; over the next three months revenue rose 8%; management concludes the program caused the rise. **Reasoning:** *What additional fact would make it more likely that the program — rather than something else — drove the 8%?* The conclusion is causal, so it depends on the assumption that no competing factor explains the gain. The strongest threat to that assumption is a general market upswing that would have lifted revenue with or without the program. Any fact that rules out that alternative strengthens the argument. (B) is precisely a controlled comparison: a competitor in the same region — facing the same market — but with no program saw revenue *fall* 2%. Had the market been the cause, the competitor should have risen too; it didn't, which isolates the program as the differentiator.
 **mistake_a:** Irrelevant — advertising spend doesn't bear on whether the program *caused* the gain (and could even introduce a confounder).
 **mistake_c:** *Weakens* — if customers were already past 10 visits, the program's design didn't change their behavior much.
 **mistake_d:** Neutral — average transaction unchanged is consistent with revenue rising from more customers, but doesn't strengthen the *causal* claim.
@@ -48,7 +48,7 @@ Which of the following, if true, most strengthens the department's conclusion?
 
 **answer:** B
 **fastest_path:** Conclusion is *causal* (green space → less asthma). Strengthen by supplying the mechanism. (B) names it: vegetation absorbs particulates.
-**explanation:** Argument moves from correlation (more green space, less asthma) to causation (green space *causes* less asthma). (B) supplies a plausible biological mechanism — particulate absorption — making the causal step credible.
+**explanation:** *Argument Evaluation — Strengthen a causal claim.* **Situation:** A health department finds neighborhoods with more green space have lower childhood-asthma rates and concludes that adding green space would reduce asthma. **Reasoning:** *What would make it more likely that green space itself reduces asthma, rather than the correlation arising some other way?* Moving from correlation to causation assumes there is a genuine causal pathway from green space to lower asthma, with no confounder driving both. Supplying a concrete mechanism closes that gap. (B) names one: vegetation absorbs airborne particulate matter, a known asthma trigger — so more green space plausibly lowers the trigger load, making the causal step credible.
 **mistake_a:** *Reverse causation* — families move to green areas *because* of asthma. That weakens the causal claim, not strengthens.
 **mistake_c:** *Confounding variable* — income could be the real driver. Weakens.
 **mistake_d:** Ambiguous — outdoor time could increase OR decrease asthma exposure depending on triggers. Not a clean strengthen.
@@ -76,7 +76,7 @@ Which of the following, if true, most strengthens the claim that the new feedbac
 
 **answer:** C
 **fastest_path:** Critics offer alternative cause (job market). Strengthen the *original* claim by showing the alternative doesn't explain the data. (C) does it: same-industry firms with no change in feedback systems saw no turnover drop.
-**explanation:** If the job market had been the real driver, peer firms with the same labor market should have seen the same effect. (C) shows they didn't — isolating the feedback-system change as the real differentiator.
+**explanation:** *Argument Evaluation — Strengthen against a named alternative cause.* **Situation:** A company switched to quarterly feedback; turnover fell from 22% to 14%. Critics counter that a job-market downturn — not the feedback change — kept employees from leaving. **Reasoning:** *What fact would show the feedback system, not the labor market, drove the drop?* The original claim survives only if the market alternative can be ruled out, and the cleanest way to rule it out is to isolate the variable: firms exposed to the same market but without the feedback change. (C) does exactly that — same-industry firms that kept annual reviews saw no turnover change, so the shared market cannot explain the drop, leaving the feedback system as the differentiator.
 **mistake_a:** Suggestive but not decisive — better satisfaction is consistent with the program working, but doesn't rule out the job-market alternative.
 **mistake_b:** *Introduces another alternative cause* — salary bump could be the real lever. Weakens.
 **mistake_d:** Cost is irrelevant to causation.
@@ -104,7 +104,7 @@ Which of the following, if true, most strengthens the researchers' hypothesis?
 
 **answer:** A
 **fastest_path:** Hypothesis names a specific *mechanism* (root feeding). Strengthen by supporting that mechanism, not the broader claim. (A) does it: beetle is *known* to root-feed in its native habitat.
-**explanation:** The hypothesis isn't just "beetle caused decline" — it's "beetle caused decline *via root feeding*." (A) directly supports the mechanism. (B) supports the broader causation but not the specific mechanism the hypothesis names.
+**explanation:** *Argument Evaluation — Strengthen a mechanism-specific hypothesis.* **Situation:** After a non-native beetle arrived, a native plant declined 40%. Researchers hypothesize specifically that the beetle kills the plants by feeding on their roots. **Reasoning:** *What supports not just "the beetle did it" but the precise root-feeding mechanism?* Because the hypothesis names a mechanism, the assumption to support is that the beetle actually consumes roots — not merely that its arrival coincided with the decline. (A) supplies it: the beetle is a known root-feeder in its native habitat, making the proposed mechanism credible. The trap is (B), which supports beetle-as-cause in general but says nothing about roots — the exact claim under test.
 **mistake_b:** Supports beetle-as-cause generally but doesn't bear on root-feeding specifically. Solid for "beetle did it," weak for "beetle ate roots."
 **mistake_c:** *Alternative cause* — drought could explain the plant decline.
 **mistake_d:** *Alternative cause* — broader environmental issue could be at fault.
@@ -132,7 +132,7 @@ Which of the following, if true, most strengthens the company's argument that it
 
 **answer:** B
 **fastest_path:** Critics: trial sample skews toward treatment-resistant patients. (B) flips this — treatment-resistant patients usually show *smaller* differences between meds, so the 7-pt advantage is impressive *despite* the bias. The general-population effect would be even larger.
-**explanation:** Critics' point is meant to undermine generalizability. (B) inverts it: if hard-to-treat populations show smaller drug-vs-drug differences, then a 68% vs 61% gap in the harder-to-treat clinic population implies the gap in the general population is even bigger. Strengthens the company's claim.
+**explanation:** *Argument Evaluation — Strengthen against a named sampling bias.* **Situation:** A drug beat the market leader 68% to 61% in a trial, but critics note that participants came from specialty clinics where migraines are unusually severe and treatment-resistant — questioning whether the edge generalizes. **Reasoning:** *What fact would make the 7-point edge more impressive despite the skewed sample?* The argument needs the assumption that the clinic result understates, rather than overstates, the general-population edge. (B) establishes it: treatment-resistant patients show *smaller* differences between competing drugs, so a 7-point gap in the hardest-to-treat population implies an even larger gap in the general population. The very bias the critics raised actually works in the company's favor.
 **mistake_a:** Safety is irrelevant to relative effectiveness.
 **mistake_c:** Mechanism difference doesn't address the population-bias concern.
 **mistake_d:** Confirms protocol but doesn't bear on the population issue.
@@ -160,7 +160,7 @@ Which of the following, if true, most weakens the district officials' argument?
 
 **answer:** B
 **fastest_path:** Causal claim — breakfast → scores. Weaken by *naming an alternative cause*. (B) does it: new curriculum + reading specialists at the same time. Either could explain the gain.
-**explanation:** Argument attributes a 6% score gain to the breakfast program. (B) introduces two simultaneous interventions (new math curriculum + new reading specialists) that could account for the same gain. The causal claim becomes ambiguous.
+**explanation:** *Argument Evaluation — Weaken a causal claim.* **Situation:** A district added free breakfast; test scores rose 6%; officials credit the breakfast program. **Reasoning:** *What fact would make it less likely that breakfast specifically caused the gain?* The causal claim assumes no other change explains the same 6%. (B) supplies a competing cause operating in the same year — a new math curriculum and added reading specialists — either of which could account for the score rise, leaving the breakfast program's contribution unestablished. Watch polarity: (E), peer districts without the program staying flat, *strengthens* the officials' claim rather than weakening it.
 **mistake_a:** Irrelevant — student preference doesn't affect whether the program improved learning.
 **mistake_c:** Background — prior performance doesn't bear on whether the program drove the gain.
 **mistake_d:** Cost ≠ effectiveness.
@@ -188,7 +188,7 @@ Which of the following, if true, most weakens the company's conclusion?
 
 **answer:** B
 **fastest_path:** Correlation between logging frequency and weight loss → causation claim. Weaken by *naming the confounder*. (B) does it: pre-existing motivation drives both. Logging doesn't cause loss; both are effects of motivation.
-**explanation:** Classic correlation-causation flaw. The company sees a pattern (more logging → more loss) and infers causation. (B) names the common cause: motivated people are more likely to log AND more likely to lose weight. The app didn't cause the loss; motivation caused both.
+**explanation:** *Argument Evaluation — Weaken a correlation-to-causation claim.* **Situation:** Frequent loggers lost 12 lb; infrequent loggers lost 3 lb; the company concludes that logging more *causes* more weight loss. **Reasoning:** *What fact would explain the gap without logging being the cause?* Inferring causation from an observed correlation assumes no third factor produces both behaviors. (B) names that confounder: people more motivated to lose weight both exercise more and log more — so motivation drives both the logging and the loss, and the app itself is not the cause. Note that (D), some heavy loggers losing nothing, only cites exceptions to an average and leaves the causal logic untouched.
 **mistake_a:** Calorie-tracking unused — irrelevant to whether logging frequency causes loss.
 **mistake_c:** Redesign — doesn't bear on the logging-loss correlation.
 **mistake_d:** Exceptions don't undermine an average; some non-losers are consistent with the pattern still holding overall.
@@ -216,7 +216,7 @@ Which of the following, if true, most weakens the proponents' argument?
 
 **answer:** B
 **fastest_path:** Argument assumes ban *reduces* total landfill plastic. Weaken by *substitution effect*. (B) does it: people buy thicker trash bags that take up *more* landfill space than the bags banned.
-**explanation:** Conclusion: ban → reduce landfill plastic. (B) shows the ban triggers a substitution that may *increase* landfill plastic (thicker bags). The very mechanism that reduces single-use bag waste creates a larger trash-bag waste stream.
+**explanation:** *Argument Evaluation — Weaken a "policy reduces metric" claim.* **Situation:** Single-use bags are 12% of landfill volume; proponents argue banning them will significantly cut landfill plastic. **Reasoning:** *What fact would show the ban fails to reduce — or even increases — landfill plastic?* The argument assumes the banned volume simply disappears, ignoring what consumers do instead. (B) supplies the unintended consequence: after such bans, consumers buy more thick plastic trash bags that occupy *more* landfill space per unit than the single-use bags they replace — so total landfill plastic may not fall. Track the exact metric: (D), waterway and park litter, supports the ban in general but is not about *landfill* volume.
 **mistake_a:** Strengthens — peer cities saw reductions.
 **mistake_c:** Cost-to-consumer is irrelevant to landfill volume.
 **mistake_d:** *Strengthens* the broader case for the ban (water/park litter), but doesn't address landfill specifically.
@@ -244,7 +244,7 @@ Which of the following, if true, most weakens the CEO's reasoning?
 
 **answer:** B
 **fastest_path:** CEO's reasoning: high-R&D companies grew more → therefore *spending* more drove the growth. Weaken by showing the high-R&D companies had *other* characteristics (size, diversification) that drove growth. (B) does it.
-**explanation:** Correlation (R&D % ↔ stock growth) → causal recommendation (spend more on R&D). (B) names the confounder: large diversified firms could afford high R&D *and* had financial cushioning that drove growth. The CEO's company may not be in that bucket.
+**explanation:** *Argument Evaluation — Weaken a correlation-based recommendation.* **Situation:** Tech firms that spent over 15% of revenue on R&D grew 340% versus 120% for lower spenders; the CEO concludes her company should pour money into AI R&D. **Reasoning:** *What fact would show that high R&D spending was not what produced the growth?* The recommendation assumes the spending itself caused the growth, not some shared trait of the high-spending firms. (B) names that confounder: those firms were predominantly large, diversified companies that could absorb R&D risk — their size and diversification, not the R&D ratio, may explain the growth, and the CEO's firm may lack those traits. Note that (A) pushes in the *same* direction as the CEO's recommendation, so it cannot be the weakener.
 **mistake_a:** *Supports* the recommendation (current trajectory is bad, so change is needed).
 **mistake_c:** AI being transformative is a separate question; doesn't address the R&D-growth correlation.
 **mistake_d:** Volatility en route to growth is consistent with the original claim, not a weaken.
@@ -272,7 +272,7 @@ Which of the following, if true, most weakens the scientists' conclusion?
 
 **answer:** B
 **fastest_path:** Conclusion: wastewater upgrade is the *most cost-effective* intervention. Weaken by showing the cities with upgrades *also* implemented other reef-protective policies, so the biodiversity gain might be from those. (B).
-**explanation:** Argument observes correlation (advanced treatment ↔ better biodiversity) and infers causation + cost-effectiveness. (B) bundles confounders: cities with advanced treatment also have stricter rules on industrial runoff, pesticides, and coastal development. Any of these could explain the biodiversity gap, undermining the cost-effectiveness claim for treatment alone.
+**explanation:** *Argument Evaluation — Weaken a correlation-based cost-effectiveness claim.* **Situation:** Reefs near cities with advanced wastewater treatment show higher biodiversity than reefs near cities with outdated systems; scientists conclude that upgrading treatment is the *most cost-effective* way to preserve reef biodiversity. **Reasoning:** *What fact would show the biodiversity advantage is not attributable to the treatment upgrade itself?* The conclusion assumes treatment is what separates the healthy reefs from the rest. (B) bundles confounders: the same cities also enforce stricter limits on industrial runoff, pesticides, and coastal development — any of which could produce the biodiversity gap, so crediting treatment alone (let alone calling it the *most* cost-effective lever) is unsupported. Note polarity: (C), cheaper upgrades, *strengthens* cost-effectiveness, and (E) does not explain the observed correlation the conclusion rests on.
 **mistake_a:** Too general — yes biodiversity has many drivers, but that doesn't isolate treatment.
 **mistake_c:** Cost decreasing *strengthens* cost-effectiveness.
 **mistake_d:** Reefs far from cities is irrelevant to the city-comparison logic.
@@ -300,7 +300,7 @@ Which of the following is an assumption on which the executives' plan depends?
 
 **answer:** C
 **fastest_path:** Plan: cost-savings → profit boost, *if* sales volume holds. Negate (C): customers *do* defect to beef competitors → revenue drop wipes out the cost savings. Argument breaks. So (C) is required.
-**explanation:** Profit increase = (cost savings × volume) − lost margin from customer defection. The plan only works if (C) holds. Negation test: if customers leave for competitors in large enough numbers, the lost revenue exceeds the cost savings, breaking the plan.
+**explanation:** *Argument Construction — Find a required assumption.* **Situation:** A chain plans to lift profit by swapping beef patties for plant-based ones that cost 30% less, expecting total burger volume to hold. **Reasoning:** *What must be true for cheaper patties to actually raise profit?* Profit rises only if the cost savings are not erased by lost revenue, so the plan assumes customers will not defect to beef-serving competitors. Apply the negation test to (C): if customers *do* leave in large enough numbers, the lost revenue outweighs the savings and the plan fails — so (C) is required. The wrong choices (health, top-seller status, future ingredient prices, past menu changes) can each be false without breaking the cost-arbitrage logic.
 **mistake_a:** Burgers don't need to be the top-seller for the cost-savings math to work.
 **mistake_b:** Health is irrelevant to the profit calculation.
 **mistake_d:** Future cost trends aren't required — current 30% gap suffices.
@@ -328,7 +328,7 @@ Which of the following is an assumption that the traffic engineers' argument req
 
 **answer:** B
 **fastest_path:** Argument: one-way → better signal coordination → less time idling. Required assumption: drivers don't *re-route* and create congestion elsewhere. Negate (B): they do reroute → congestion just moves → claim breaks.
-**explanation:** The mechanism (signal coordination → faster speeds) only delivers congestion reduction *if* the same drivers stay on the road. (B) is required. Negation: drivers divert in large numbers → city-wide congestion stays the same or worsens, even if the converted streets flow faster.
+**explanation:** *Argument Construction — Find a required assumption.* **Situation:** A city will convert two downtown roads to one-way streets; engineers argue better signal coordination will raise speeds and cut idling time. **Reasoning:** *What must hold for the mechanism to actually reduce congestion?* Faster signal flow reduces congestion only if the same drivers stay on these roads rather than re-routing. Negate (B): drivers divert in large numbers and create congestion elsewhere, so citywide congestion is unchanged even if these streets flow faster — making (B) required. Distinguish logical from practical premises: (D) budget feasibility concerns whether the project *can be funded*, not whether the mechanism *works*.
 **mistake_a:** Worst-streets isn't required; the argument is about whether *these* streets improve.
 **mistake_c:** Pedestrian safety is a separate issue.
 **mistake_d:** Budget feasibility is practical, not a logical premise of the mechanism.
@@ -356,7 +356,7 @@ Which of the following is an assumption underlying the firm's advice?
 
 **answer:** B
 **fastest_path:** Recommendation: maximize engagement. Underlying assumption: engagement *translates to business outcomes*. Negate (B): engagement doesn't translate to sales/loyalty → "maximize engagement" is bad advice.
-**explanation:** Firm's recommendation only makes sense if engagement is *worth* maximizing. (B) is the bridge from "engagement up" to "client benefits up." Negate it and the entire premise of the recommendation collapses.
+**explanation:** *Argument Construction — Find a required assumption.* **Situation:** User-generated ads get 40% more engagement than agency ads; the firm advises clients to put their *entire* budget into user-generated campaigns to maximize engagement. **Reasoning:** *What must be true for chasing engagement to be sound advice?* The recommendation assumes engagement is worth maximizing — that it translates into real business outcomes such as sales or loyalty. Negate (B): engagement does not convert to business results, and the advice loses its point — so (B) is the required bridge. Watch for over-strong distractors: (E) says engagement is the *most important* metric, more than the argument needs; negate it and the advice still stands, so it is not required.
 **mistake_a:** Cost is not the basis of the argument; engagement is.
 **mistake_c:** Future platform growth is unnecessary — the recommendation is about *current* allocation.
 **mistake_d:** Background spending pattern is irrelevant to the logic.
@@ -384,7 +384,7 @@ Which of the following is an assumption on which the economists' recommendation 
 
 **answer:** A
 **fastest_path:** Recommendation rests on causal claim (GM seeds → yield gain). Required assumption: yield gain *isn't* due to confounders (better soil, irrigation, capital). Negate (A): GM-adopting farms had those advantages → yield gain wasn't from seeds → recommendation collapses.
-**explanation:** Economists observe a 25% yield difference and recommend subsidizing seeds. This only works if the yield difference is *causally* due to the seeds, not to the kind of farms that adopted them. (A) blocks the most plausible confounder.
+**explanation:** *Argument Construction — Find a required assumption.* **Situation:** Farms using GM varieties out-yielded traditional farms by 25%; economists recommend subsidizing GM seeds to raise national output. **Reasoning:** *What must be true for the subsidy to deliver the yield gain?* The recommendation treats the 25% gap as caused by the seeds, so it assumes the GM-adopting farms were not simply better-resourced. Negate (A): those farms also had superior irrigation, soil, or capital — then the gain came from those advantages, not the seeds, and subsidizing seeds will not reproduce it. Distinguish assumption from evidence: (E), other nations' results, would *support* the case but is not something that *must* be true for it to hold.
 **mistake_b:** Safety is a separate consideration; the recommendation is about output, not safety.
 **mistake_c:** GDP-share is irrelevant to whether the policy would work mechanically.
 **mistake_d:** Argument doesn't claim GM is the *only* path — just that it works. Negate (D): conventional breeding works too → recommendation still stands.
@@ -412,7 +412,7 @@ Which of the following is an assumption that the chief medical officer's proposa
 
 **answer:** B
 **fastest_path:** Proposal: hire specialists *because* lower availability causes the gap. Negate (B): weekend admissions are sicker patients → severity, not staffing, drives the gap → proposal misses the actual cause → fails.
-**explanation:** CMO attributes the mortality gap to specialist staffing. The proposal only works if patient severity isn't the real driver. Negate (B) — weekend admissions are disproportionately emergencies — and the staffing fix doesn't help, because the gap was severity-driven all along.
+**explanation:** *Argument Construction — Find a required assumption.* **Situation:** Weekend admissions have 15% higher mortality than weekday admissions; the CMO proposes hiring weekend specialists, blaming reduced specialist availability. **Reasoning:** *What must be true for more specialists to close the gap?* The proposal assumes staffing — not who gets admitted — drives the gap. Negate (B): weekend patients are simply sicker (more emergencies), so severity explains the mortality difference and adding specialists will not fix it — making (B) required. The case-mix confounder is the load-bearing assumption; (A) budget and (D) other-network data are feasibility and evidence, not logical requirements.
 **mistake_a:** Budget is feasibility, not logic. Argument can hold even with funding constraints.
 **mistake_c:** Specialist-vs-GP effectiveness is true in context but not the *required* assumption — even if specialists are equally effective as generalists, the proposal still needs (B) to hold.
 **mistake_d:** Other-network evidence is supporting, not necessary.
@@ -440,7 +440,7 @@ Which of the following would be most useful to evaluate in order to assess the m
 
 **answer:** B
 **fastest_path:** Evaluate = which question's answer would *flip the conclusion*? Battery cost trend continuing is the load-bearing premise. (B) tests it — if declines slow, profitability claim collapses; if they continue, it holds.
-**explanation:** Manufacturer's claim rests on continued cost declines. (B) directly tests that premise: "yes, declines slow as tech matures" → profitability claim weakens; "no, declines continue" → claim strengthens. Either answer changes the assessment.
+**explanation:** *Argument Evaluation — Identify the decisive test.* **Situation:** A maker claims its EV will be profitable within two years because battery costs fell 50% over three years and are expected to keep falling. **Reasoning:** *Which question's answer would swing the conclusion either way?* The claim rests entirely on the cost decline continuing, so the useful test probes that premise. (B) does: if declines slow as the technology matures, profitability is in doubt; if they continue, the claim holds — the answer moves the verdict in both directions. The distractors (C, D, E) are demand-side, but the argument's logic is supply-side cost, so they cannot decide it.
 **mistake_a:** Tangential — past profitability doesn't bear on the cost-trend argument.
 **mistake_c:** Demand question, not cost.
 **mistake_d:** Demand question, not cost.
@@ -468,7 +468,7 @@ Which of the following would be most useful to evaluate in order to determine wh
 
 **answer:** B
 **fastest_path:** Two competing explanations: better work vs cheating. (B) is the *natural experiment* — courses with plagiarism detection vs without. Same grade increase → cheating ruled out; only-no-detection courses rose → cheating confirmed.
-**explanation:** Question asks how to discriminate between hypotheses. (B) splits the data: presence of plagiarism detection should suppress the cheating-driven gain but not the better-work-driven gain. The differential predicts which hypothesis is right.
+**explanation:** *Argument Evaluation — Find the test that separates two hypotheses.* **Situation:** Switching to take-home essays raised average grades half a letter; one camp credits more thoughtful work, the other suspects more cheating. **Reasoning:** *Which question's answer would tell the two explanations apart?* A decisive test makes the hypotheses predict different things. (B) does exactly that: plagiarism-detection software should suppress a cheating-driven gain but leave a genuine-quality gain intact — so if detection courses rose just as much, cheating is ruled out; if only non-detection courses rose, cheating is implicated. Preference (E) and grading workload (D) do not discriminate between the causes.
 **mistake_a:** Different population (graduate) — doesn't bear on the undergraduate question.
 **mistake_c:** Tuition irrelevant.
 **mistake_d:** Faculty workload, not student performance.
