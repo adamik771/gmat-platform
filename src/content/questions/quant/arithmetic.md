@@ -19,7 +19,7 @@ What is the value of 3/4 + 5/8 - 1/2?
 **answer:** C
 **fastest_path:** Common denominator 8: 6/8 + 5/8 − 4/8 = 7/8.
 **explanation:** Convert each fraction to eighths: 3/4 = 6/8, 5/8 stays, 1/2 = 4/8. Add and subtract numerators: 6 + 5 − 4 = 7. Final fraction: 7/8. Total time: 10 seconds.
-**mistake_a:** Subtracted 5/8 instead of adding it; got 6/8 − 5/8 + 4/8 = 5/8 (then off by one).
+**mistake_a:** Added 3/4 + 5/8 = 11/8 correctly, then subtracted 1/2 as if it were a whole (8/8) instead of 4/8: 11/8 − 8/8 = 3/8. The error is treating 1/2 as 1 when converting to eighths.
 **mistake_b:** Computed 3/4 + 5/8 = 11/8, then subtracted 1/2 from that without consistent denominator.
 **mistake_d:** Added all numerators with mismatched denominators: 3+5−1 = 7 over 14 = 1/2 mistakenly converted to 1.
 **mistake_e:** Forgot to convert; treated 3/4 + 5/8 as 8/12, etc.
@@ -307,7 +307,7 @@ A solution contains water and alcohol in the ratio 4:1. If 5 liters of alcohol a
 **fastest_path:** Initial: 20 water, 5 alcohol. After +5 alcohol: 20 water, 10 alcohol → 2:1.
 **explanation:** Initial composition in 25 L (ratio 4:1, total 5 parts): water = (4/5) × 25 = 20 L; alcohol = (1/5) × 25 = 5 L. Add 5 L pure alcohol: water stays 20 L; alcohol becomes 10 L. New ratio water:alcohol = 20:10 = 2:1.
 **mistake_a:** Treated added alcohol as half of total volume; got 1:1.
-**mistake_c:** Computed alcohol = 5 + 5 = 10 but forgot to simplify, got 20:10 → 3:2 by error.
+**mistake_c:** Approximated water content as 15 L (estimated "roughly 60% of 25") instead of computing exactly 4/5 × 25 = 20 L; then water = 15, alcohol = 5 + 5 = 10 → 15:10 = 3:2. Always compute exact composition from the given ratio before adding.
 **mistake_d:** Bubbled some intermediate ratio (4:3).
 **mistake_e:** Got the ratio inverted or miscalculated the new total.
 **common_trap:** Mixture problems with composition change — forgetting that adding pure substance changes only one component.
@@ -332,7 +332,7 @@ Which of the following is the simplified form of 42/98?
 **answer:** B
 **fastest_path:** GCF(42, 98) = 14. 42/14 = 3, 98/14 = 7 → 3/7.
 **explanation:** Find the greatest common factor of 42 and 98. Both have a factor of 14 (42 = 2 × 3 × 7; 98 = 2 × 7²). GCF = 2 × 7 = 14. Divide: 42/14 = 3, 98/14 = 7 → 3/7.
-**mistake_a:** Divided by 21 (one factor): 42/21 = 2, 98/21 = 4.67 (non-integer); rounded.
+**mistake_a:** Applied a different factor to numerator and denominator: 42 ÷ 21 = 2 and 98 ÷ 14 = 7 → 2/7. Using mismatched divisors (21 vs. 14) instead of the single GCF (14) applied uniformly to both.
 **mistake_c:** Computed wrong reduction: 42/14 = 3, 98/24.5 = 4 — arithmetic error.
 **mistake_d:** Bubbled 6/14 — equivalent to 3/7 but not fully simplified.
 **mistake_e:** Bubbled 21/49 — also equivalent but not simplified.
@@ -358,7 +358,7 @@ When 0.0837 is rounded to the nearest hundredth, what is the result?
 **answer:** A
 **fastest_path:** Hundredths place = 8 (second after decimal). Next digit = 3 < 5 → round down → 0.08.
 **explanation:** Rounding to the nearest hundredth: keep two decimal places. The hundredths digit in 0.0837 is 8 (the "8" in 0.0**8**37). The deciding digit is the next one (3). Since 3 < 5, round down — keep 0.08.
-**mistake_b:** Rounded to thousandths instead of hundredths.
+**mistake_b:** Truncated to three decimal places (dropped the 7) instead of rounding: kept 0.083 without applying the rounding rule. The 7 in the ten-thousandths place would round the thousandths digit up to 4, giving 0.084 (choice C) — but the question asks for hundredths, not thousandths.
 **mistake_c:** Rounded to thousandths and then up; got 0.084.
 **mistake_d:** Rounded up incorrectly because of the digits *further* to the right (e.g., the 7); only the immediate next digit matters.
 **mistake_e:** Rounded to tenths.
@@ -555,7 +555,7 @@ A chemist has 15 kilograms of an alloy that is 40% zinc by weight; the rest is c
 **fastest_path:** Zinc balance: 0.40(15) + 0.70x = 0.55(15 + x) → 0.15x = 2.25 → x = 15.
 **explanation:** Mixture problems use mass balance, not concentration averaging. Total zinc before adding = 0.40 × 15 = 6 kg. After adding x kg of 70% alloy: zinc added = 0.70x; total zinc = 6 + 0.70x. Total mass: 15 + x. New concentration = (6 + 0.70x) / (15 + x) = 0.55. Cross-multiply: 6 + 0.70x = 0.55(15 + x) = 8.25 + 0.55x. → 0.15x = 2.25 → x = 15.
 **mistake_a:** Averaged the concentrations: (40 + 70)/2 = 55%, then matched directly without solving.
-**mistake_b:** Solved 0.40(15) + 0.70x = 0.55x; got 12.
+**mistake_b:** Set up correctly but miscomputed 0.55 × 15: wrote 7.80 instead of 8.25 (moved decimal incorrectly: 55 × 15 = 825 → placed as 7.80 rather than 8.25). Result: 6 + 0.70x = 7.80 + 0.55x → 0.15x = 1.80 → x = 12.
 **mistake_d:** Algebra slip: 0.15x = 2.7 → x = 18.
 **mistake_e:** Set up correctly but added wrong: 0.15x = 3 → x = 20.
 **common_trap:** Averaging concentrations instead of balancing total mass of the active ingredient.
@@ -608,7 +608,7 @@ Pipe A alone fills an empty tank in 4 hours. Pipe B alone fills the same tank in
 **fastest_path:** Net rate = 1/4 + 1/6 − 1/12 = 4/12 = 1/3 tank/hr. Time = 3 hr.
 **explanation:** Work in tank-fractions per hour. Pipe A: 1/4 tank/hr. Pipe B: 1/6 tank/hr. Drain: −1/12 tank/hr (subtract since it removes water). Net rate = 1/4 + 1/6 − 1/12. Convert to common denominator 12: 3/12 + 2/12 − 1/12 = 4/12 = 1/3 tank/hr. Time to fill 1 tank = 1 ÷ (1/3) = 3 hr.
 **mistake_a:** Added times directly: 4 + 6 − 12 = −2; somehow arrived at 2.5.
-**mistake_c:** Combined rates as 1/4 + 1/6 (forgot the drain): rate = 5/12; time = 12/5 = 2.4 hr; rounded to 3.5.
+**mistake_c:** Computed fill rate for A and B only (forgot the drain): 1/4 + 1/6 = 5/12 → time = 12/5 = 2.4 hr. Knowing the drain slows filling, added a subjective upward correction and selected the nearest answer above 2.4 hr: 3.5 hr. The drain must be incorporated as a negative rate (−1/12) from the start — it's not an afterthought adjustment.
 **mistake_d:** Forgot the drain entirely; computed time as average of 4 and 6 = 5; nudged to 4.
 **mistake_e:** Used time=4 (Pipe A's solo time) and ignored other pipes.
 **common_trap:** Adding times instead of rates — fill-and-drain problems require *rates* (work per time), then take reciprocal.
@@ -661,7 +661,7 @@ An investor deposits $10,000 into an account that earns 4% annual interest, comp
 **fastest_path:** Final = 10,000 × (1.04)² = 10,816. Interest = 816.
 **explanation:** Compound interest: A = P(1 + r)^n. With P = $10,000, r = 0.04, n = 2: A = 10,000 × (1.04)² = 10,000 × 1.0816 = $10,816. Interest earned = $10,816 − $10,000 = $816.
 **mistake_a:** Computed only year 1 interest: 10,000 × 0.04 = $400.
-**mistake_b:** Computed only year 1 interest plus a small adjustment.
+**mistake_b:** Computed total interest at $816, then divided by 2 (averaging per year instead of reporting total): $816 ÷ 2 = $408. The question asks for total interest earned over 2 years, not the annual average.
 **mistake_c:** Used simple interest: 10,000 × 0.04 × 2 = $800. Misses second-year interest on first-year interest.
 **mistake_e:** Computed 10,000 × 1.084 = 10,840 (typo on 1.0816).
 **common_trap:** Treating compound interest as simple interest — multiplying rate by years instead of compounding.
@@ -741,7 +741,7 @@ A chemist has 40 liters of a 25% saline solution. Some of the solution is draine
 **answer:** D
 **fastest_path:** Salt after = 10 − 0.25x. Concentration = (10 − 0.25x)/40 = 0.15 → x = 16.
 **explanation:** Original salt = 0.25 × 40 = 10 L. Drain x L of solution: this removes 0.25x L of salt (proportional to concentration). Replace with x L of pure water: total volume stays 40 L. New salt = 10 − 0.25x. New concentration = (10 − 0.25x) / 40 = 0.15. Solve: 10 − 0.25x = 6 → 0.25x = 4 → x = 16.
-**mistake_a:** Treated drain as removing fixed-volume salt: 10 − x = 6 → x = 4; doubled.
+**mistake_a:** Confused the original salt content (10 L = 25% × 40 L) with the volume to drain — bubbled the intermediate value that appears prominently in the calculation. The salt content is a mass, not a volume to drain.
 **mistake_b:** Used (10 − 0.25x) / 40 = 0.15 but arithmetic slip: x = 12.
 **mistake_c:** Computed x to drain 10% absolute concentration: 0.10 × 40 = 4; doubled.
 **mistake_e:** Computed 0.50 × 40 = 20 (used wrong target).
@@ -770,8 +770,8 @@ A company's marketing budget is divided among digital, print, and radio channels
 **explanation:** Each ratio "part" = k. Digital = 5k, print = 3k, radio = 2k. Given: digital − radio = 5k − 2k = 3k = 150,000 → k = 50,000. Total = 5k + 3k + 2k = 10k = $500,000.
 **mistake_a:** Computed 150,000 × 2 = 300,000; bubbled.
 **mistake_b:** Computed total parts × $40k unit; got 400,000.
-**mistake_d:** Used wrong difference: 5k − 3k (digital − print) = 2k = 150,000; got total = 750,000.
-**mistake_e:** Computed 150,000 × 5 = 750,000; bubbled.
+**mistake_d:** Solved 3k = 150,000 → k = 50,000 correctly, but added ratio parts wrong: counted 5 + 3 + 2 = 12 instead of 10 → total = 12 × 50,000 = 600,000. Always recheck that simple digit sum (5+3+2 = 10).
+**mistake_e:** Used the digital–print difference (5k − 3k = 2k) instead of digital–radio (5k − 2k = 3k): 2k = 150,000 → k = 75,000 → total = 10k = 750,000. Misread which two channels were being compared.
 **common_trap:** Computing the wrong difference (digital − print, or digital alone) instead of digital − radio.
 **takeaway:** For ratio problems with a known scalar difference, write each part as k, set up the difference equation, solve for k, then compute the asked quantity (often the total).
 **related_reading:** reading-quant-05-word-problems
@@ -794,7 +794,7 @@ An investor deposits $24,000 across two accounts. Account A earns 6% simple annu
 **answer:** B
 **fastest_path:** 0.06x + 0.04(24,000 − x) = 1,200 → 0.02x = 240 → x = $12,000.
 **explanation:** Let x = amount in Account A; then 24,000 − x is in B. Combined interest: 0.06x + 0.04(24,000 − x) = 1,200. Expand: 0.06x + 960 − 0.04x = 1,200 → 0.02x = 240 → x = $12,000. Verify: 0.06(12,000) + 0.04(12,000) = 720 + 480 = 1,200 ✓.
-**mistake_a:** Solved with 5% rate (averaged); 0.05 × x = 600 → 12,000 → confused to 10,000.
+**mistake_a:** Assumed each account earned equal interest ($1,200 ÷ 2 = $600), then back-solved for Account A: $600 ÷ 0.06 = $10,000. Interest does not split equally — it depends on the amount deposited in each account and that account's rate.
 **mistake_c:** Algebra slip: 0.02x = 280 → 14,000.
 **mistake_d:** Computed differently; got 15,000.
 **mistake_e:** Computed 24,000 × 0.75 = 18,000.
