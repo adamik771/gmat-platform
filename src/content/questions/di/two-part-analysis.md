@@ -999,3 +999,493 @@ From the statements below, identify the one that most strengthens the economist'
 **common_trap:** Picking the cross-country study as the strongest strengthener because it provides empirical evidence — but it confirms a stated step. The 60% statistic closes the critical unstated gap.
 **takeaway:** In multi-step causal chains, the strongest strengthener closes an implicit gap; the most critical flaw disrupts a stated link (often via substitution or confounding).
 **related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Simple Interest
+
+A savings account earns 6% per year in simple interest. A deposit of $4,000 is made with no additional deposits or withdrawals. Select the total interest earned after 5 years (column 1) and the account balance at that point (column 2).
+
+|         | Interest earned | Account balance |
+|---------|-----------------|-----------------|
+| $240    |                 |                 |
+| $1,000  |                 |                 |
+| $1,200  |                 |                 |
+| $1,500  |                 |                 |
+| $5,000  |                 |                 |
+| $5,200  |                 |                 |
+
+**answer:** Interest = $1,200, Balance = $5,200
+**fastest_path:** Simple interest = P × r × t = 4,000 × 0.06 × 5 = 1,200. Balance = 4,000 + 1,200 = 5,200.
+**explanation:** Simple interest is calculated only on the original principal. Annual interest = 4,000 × 0.06 = $240. Over 5 years: $240 × 5 = $1,200. The account balance is the principal plus all interest: 4,000 + 1,200 = $5,200. Note that $240 is the one-year interest — a common error is to stop there and use it for the 5-year total.
+**mistake_a:** $240 — interest for a single year only; the question asks for 5 years.
+**mistake_b:** $1,000 — using 5% instead of 6%: 4,000 × 0.05 × 5 = 1,000.
+**mistake_d:** $1,500 — using 7.5% or misreading the rate: 4,000 × 0.075 × 5 = 1,500.
+**mistake_e:** $5,000 — adding the wrong interest ($1,000) to the principal; pairs with the 5% rate mistake.
+**common_trap:** Forgetting to multiply the annual interest by the number of years — stopping at one year's interest and using it as the total.
+**takeaway:** Simple interest = P × r × t. Balance = P + interest. The rate always applies to the original principal, never to accumulated interest.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Age Problem
+
+Currently, Maria is 3 times as old as her daughter Sofia. In 12 years, Maria will be exactly twice as old as Sofia will be at that time. Select Maria's current age (column 1) and Sofia's current age (column 2).
+
+|     | Maria's age | Sofia's age |
+|-----|-------------|-------------|
+| 6   |             |             |
+| 12  |             |             |
+| 18  |             |             |
+| 24  |             |             |
+| 36  |             |             |
+| 48  |             |             |
+
+**answer:** Maria = 36, Sofia = 12
+**fastest_path:** M = 3S and M+12 = 2(S+12) → 3S+12 = 2S+24 → S = 12, M = 36.
+**explanation:** Let S be Sofia's current age and M = 3S be Maria's current age. In 12 years: Maria is M+12 = 3S+12, Sofia is S+12. Condition: 3S+12 = 2(S+12) → 3S+12 = 2S+24 → S = 12. Then M = 36. Verify: currently 36 = 3 × 12 ✓; in 12 years, Maria is 48 and Sofia is 24, and 48 = 2 × 24 ✓.
+**mistake_a:** 6 — half of Sofia's correct age; likely halved the ratio or used an incorrect equation setup.
+**mistake_c:** 18 — selecting the midpoint between 12 and 24 without solving the system.
+**mistake_d:** 24 — Sofia's age in 12 years, not her current age; future-vs-present confusion.
+**mistake_f:** 48 — Maria's age in 12 years, not her current age; column confusion between present and future values.
+**common_trap:** Confusing current ages with future ages. The future condition constrains current values — always substitute back into the "currently" statement to verify.
+**takeaway:** Age problems: express one age as a multiple of the other, then apply the future condition to get a single equation. Verify both conditions at the end.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Consecutive Integers
+
+The sum of three consecutive even integers is 66. Let F be the smallest of the three integers and L be the largest.
+
+Select the value of F (column 1) and the value of L (column 2).
+
+|     | F (smallest) | L (largest) |
+|-----|--------------|-------------|
+| 18  |              |             |
+| 20  |              |             |
+| 22  |              |             |
+| 24  |              |             |
+| 26  |              |             |
+
+**answer:** F = 20, L = 24
+**fastest_path:** Three consecutive even integers: F, F+2, F+4. Sum = 3F+6 = 66 → F = 20, L = 24.
+**explanation:** Let the three consecutive even integers be F, F+2, and F+4. Their sum: F + (F+2) + (F+4) = 3F + 6 = 66 → 3F = 60 → F = 20. The largest is F+4 = 24. The middle integer is 22. Verify: 20 + 22 + 24 = 66 ✓.
+**mistake_a:** 18 — one step below the sequence start; off-by-one at the bottom.
+**mistake_c:** 22 — the middle integer, not the smallest.
+**mistake_e:** 26 — one step beyond the largest; off-by-one at the top.
+**common_trap:** Using consecutive integers (n, n+1, n+2) instead of consecutive EVEN integers (n, n+2, n+4). Consecutive even integers differ by 2, not 1.
+**takeaway:** Consecutive even integers: let first = n, then n, n+2, n+4. Their sum = 3n+6. Solving gives the smallest; add 4 for the largest.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Unit Rate
+
+A factory produces 480 units in an 8-hour shift. A newer machine runs at 50% higher output per hour than the original machine. Select the number of units the original machine produces per hour (column 1) and the number of units the newer machine produces per hour (column 2).
+
+|     | Original (units/hr) | Newer (units/hr) |
+|-----|---------------------|------------------|
+| 40  |                     |                  |
+| 60  |                     |                  |
+| 80  |                     |                  |
+| 90  |                     |                  |
+| 120 |                     |                  |
+
+**answer:** Original = 60, Newer = 90
+**fastest_path:** Original rate = 480 / 8 = 60. Newer = 60 × 1.5 = 90.
+**explanation:** Original machine rate = 480 units / 8 hours = 60 units per hour. The newer machine runs at 50% higher output: 60 × 1.50 = 90 units per hour. Common error: adding 50 instead of multiplying by 1.5, giving 60 + 50 = 110 (not in the table, which signals the error).
+**mistake_a:** 40 — dividing 480 by 12 instead of 8; misreading the shift length.
+**mistake_c:** 80 — adding a flat 20 units (not a 50% increase) to the original rate.
+**mistake_e:** 120 — doubling (100% increase) rather than a 50% increase.
+**common_trap:** Treating "50% higher" as "50 units more" rather than "1.5 times as many." Percentage increases are multiplicative, not additive.
+**takeaway:** "X% higher" means multiply by (1 + X/100). Unit rate = total output / total time. Apply the percentage to the base rate.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q40
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Proportional Scaling
+
+A recipe requires 3 cups of flour and 2 cups of sugar to make 24 cookies. A baker wants to make exactly 48 cookies using the same recipe. Select the cups of flour needed (column 1) and the cups of sugar needed (column 2).
+
+|     | Flour (cups) | Sugar (cups) |
+|-----|--------------|--------------|
+| 2   |              |              |
+| 4   |              |              |
+| 6   |              |              |
+| 8   |              |              |
+| 9   |              |              |
+
+**answer:** Flour = 6, Sugar = 4
+**fastest_path:** Scale factor = 48/24 = 2. Flour = 3 × 2 = 6. Sugar = 2 × 2 = 4.
+**explanation:** The target batch is 48 cookies versus the original 24 — scale factor = 48/24 = 2. Multiply each ingredient by 2: flour = 3 × 2 = 6 cups, sugar = 2 × 2 = 4 cups. All ingredients scale proportionally.
+**mistake_a:** 2 — the original sugar amount placed in the flour column; column swap.
+**mistake_b:** 4 — correct for sugar; placing this in the flour column swaps the two answers.
+**mistake_d:** 8 — adding 2 cups to each ingredient (additive error) rather than multiplying.
+**mistake_e:** 9 — tripling flour (scale factor 3) rather than doubling.
+**common_trap:** Swapping the two columns or adding a fixed amount to each ingredient rather than multiplying by the scale factor.
+**takeaway:** Proportional scaling: scale factor = desired / original. Multiply every ingredient by the scale factor — nothing else changes.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Simple vs. Compound Interest
+
+An investor places $10,000 into two different accounts for exactly 2 years. Account A pays 10% per year using simple interest. Account B pays 10% per year compounded annually. Select the interest earned by Account A after 2 years (column 1) and the interest earned by Account B after 2 years (column 2).
+
+|         | Account A interest | Account B interest |
+|---------|--------------------|--------------------|
+| $1,000  |                    |                    |
+| $2,000  |                    |                    |
+| $2,100  |                    |                    |
+| $2,200  |                    |                    |
+| $3,310  |                    |                    |
+
+**answer:** Account A = $2,000, Account B = $2,100
+**fastest_path:** Simple: 10,000 × 0.10 × 2 = 2,000. Compound: 10,000 × (1.10)² − 10,000 = 12,100 − 10,000 = 2,100.
+**explanation:** Simple interest always applies the rate to the original principal: 10,000 × 0.10 × 2 = $2,000. Compound interest applies the rate to the growing balance: Year 1 balance = 11,000; Year 2 balance = 11,000 × 1.10 = 12,100. Interest = 12,100 − 10,000 = $2,100. The $100 difference is interest-on-interest: Year 1 interest ($1,000) itself earns 10% in Year 2 = $100. The compound account always outperforms simple over more than one period.
+**mistake_a:** $1,000 — one year's interest only; the question asks for 2 years.
+**mistake_d:** $2,200 — using a flat 11% per year on principal (incorrect hybrid).
+**mistake_e:** $3,310 — compound interest after 3 years: 10,000 × (1.10)³ − 10,000 = 3,310; wrong time period.
+**common_trap:** Using the simple interest formula for the compound account. Both accounts earn the same in Year 1; the difference only appears in Year 2 because compound interest earns on accumulated interest, simple does not.
+**takeaway:** Simple interest = P × r × t (always on principal). Compound interest = P × (1+r)^t − P. The gap = "interest on interest" and grows each year.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Logic — Argument Structure
+
+An education consultant argues: "Oakwood Academy recently introduced mandatory morning exercise sessions. Within one semester, student test scores rose by an average of 12 points. Since Oakwood is the only school in the district that introduced morning exercise, this improvement must be a result of the exercise program."
+
+From the statements below, identify the central assumption underlying the argument (column 1) and the statement that most weakens the conclusion (column 2).
+
+| Statement                                                                                           | Central Assumption | Most Weakens |
+|-----------------------------------------------------------------------------------------------------|--------------------|--------------| 
+| No other significant change at Oakwood could explain the score increase                            |                    |              |
+| Morning exercise improves blood flow to the brain, which aids concentration                        |                    |              |
+| The district standardized its curriculum across all schools during the same semester               |                    |              |
+| Oakwood's students previously had below-average physical fitness levels                            |                    |              |
+| Test scores at all other schools in the district remained flat during the semester                 |                    |              |
+
+**answer:** Central Assumption = "No other significant change at Oakwood could explain the score increase"; Most Weakens = "The district standardized its curriculum across all schools during the same semester"
+**fastest_path:** Causal-from-correlation assumption: nothing else changed. Weaken = supply a simultaneous alternative cause.
+**explanation:** The argument moves from "exercise introduced → scores rose" to "exercise caused the rise." That causal leap requires assuming no other simultaneous change explains the gain — this is the unstated structural assumption (row 1). The curriculum standardization (row 3) directly undermines the conclusion: if all schools received new curriculum in the same semester, Oakwood's score rise may reflect the new curriculum, not the exercise. Row 5 (other schools flat) is a strengthener — it rules out district-wide trends as an alternative cause, the opposite of what the weaken column needs.
+**mistake_b:** Row 2 — brain blood flow is a plausible mechanism for how exercise might help, but it is not the structural assumption the argument depends on; it is a supporting detail.
+**mistake_d:** Row 4 — poor prior fitness makes exercise more plausible to help, but is not the central logical assumption that bridges the causal claim.
+**mistake_e:** Row 5 — this strengthens the argument by eliminating a district-wide alternative cause; choosing it as the weakener reverses the direction of evidence.
+**common_trap:** Selecting the mechanism (blood flow) as the assumption. Assumptions are structural — they are the unstated premises without which the argument's logic collapses. The mechanism merely explains a pathway; the argument needs "no other cause" to justify the causal conclusion.
+**takeaway:** Causal arguments always assume "no alternative cause was active." Weaken a causal claim by introducing a confounder that was simultaneously present; strengthen it by ruling out alternatives.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Sequential Percentage Changes
+
+A retailer raised all prices by 20% in January, then reduced all prices by 15% in March. Select the final price expressed as a percentage of the original price (column 1) and the net percentage change from the original to the final price (column 2).
+
+|        | Final as % of original | Net % change |
+|--------|------------------------|--------------|
+| −5%    |                        |              |
+| +2%    |                        |              |
+| +5%    |                        |              |
+| 95%    |                        |              |
+| 102%   |                        |              |
+| 105%   |                        |              |
+
+**answer:** Final as % of original = 102%, Net % change = +2%
+**fastest_path:** 1.20 × 0.85 = 1.02 → final is 102% of original → net change = +2%.
+**explanation:** Apply each change to the updated base. Starting with a $100 item: after 20% increase → $120. After 15% reduction on $120 → $120 × 0.85 = $102. The final price is 102% of the original, a net change of +2%. Key: sequential percentage changes multiply (1.20 × 0.85 = 1.02), never add.
+**mistake_c:** +5% and 105% — adding the percentages directly: 20 − 15 = 5. This is the most common error; the 15% reduction applies to the inflated $120 base, not the original $100.
+**mistake_a:** −5% and 95% — reversing sign (subtracting 20 − 15 in the wrong direction) or computing a net decrease.
+**common_trap:** Computing 20% − 15% = 5% net. Sequential percentage changes are multiplicative. The 15% decrease reduces a base that is already 20% larger, so the net gain is less than 5%.
+**takeaway:** Sequential percent changes: multiply the multipliers. (1+a)(1+b) ≠ 1+(a+b) when both a and b are non-zero. The product is always less than the simple sum when one is positive and one is negative.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Combinatorics
+
+A student must choose 2 subjects from the following five: Math, Physics, Chemistry, Biology, and History. From those 2 chosen subjects, the student then selects 1 to study first. Select the number of ways to choose the 2 subjects (column 1) and the total number of distinct ordered study plans (column 2).
+
+|     | Ways to choose 2 | Ordered study plans |
+|-----|------------------|---------------------|
+| 5   |                  |                     |
+| 10  |                  |                     |
+| 15  |                  |                     |
+| 20  |                  |                     |
+| 25  |                  |                     |
+| 30  |                  |                     |
+
+**answer:** Ways to choose 2 = 10, Ordered study plans = 20
+**fastest_path:** C(5,2) = 10 unordered pairs. Each pair has 2 orderings → 10 × 2 = 20. Equivalently P(5,2) = 5 × 4 = 20.
+**explanation:** Choosing 2 subjects from 5 without regard to order: C(5,2) = 5! / (2! × 3!) = 10. For an ordered study plan, which subject is studied first matters: each of the 10 unordered pairs can be arranged in 2 ways → 10 × 2 = 20. Equivalently, P(5,2) = 5 × 4 = 20 counts ordered pairs directly.
+**mistake_a:** 5 — counting the number of subjects, not pairs.
+**mistake_c:** 15 — C(6,2) or a sum-of-integers error (4+3+2+1 = 10, but student uses 5+4+3+2+1 = 15).
+**mistake_d:** 20 — correct for ordered plans; placing this in column 1 treats the unordered choice as ordered.
+**mistake_e:** 25 — computing 5 × 5 = 25, sampling with replacement (allowing the same subject twice).
+**mistake_f:** 30 — P(6,2) or another off-by-one permutation.
+**common_trap:** Using the ordered count (20) for the unordered selection step. Combinations count sets (no order); permutations count sequences (order matters). The two-step structure — choose, then order — separates these clearly.
+**takeaway:** Unordered selection of k from n: C(n,k). Ordered: P(n,k) = C(n,k) × k!. When a problem has both a selection step and an ordering step, compute them separately.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Work with Fractional Efficiency
+
+A painter can paint a room in 6 hours working alone. An assistant works at exactly half the painter's efficiency. If the painter and one assistant work together, the job takes T hours. If the painter works simultaneously with three such assistants, the job takes S hours.
+
+Select the value of T (column 1) and the value of S (column 2).
+
+|       | T (painter + 1 assistant) | S (painter + 3 assistants) |
+|-------|---------------------------|----------------------------|
+| 2.0   |                           |                            |
+| 2.4   |                           |                            |
+| 3.0   |                           |                            |
+| 4.0   |                           |                            |
+| 4.8   |                           |                            |
+| 6.0   |                           |                            |
+
+**answer:** T = 4.0, S = 2.4
+**fastest_path:** Painter: 1/6/hr. Assistant: 1/12/hr. T = 1/(1/6+1/12) = 1/(3/12) = 4. S = 1/(1/6+3/12) = 1/(5/12) = 2.4.
+**explanation:** Painter's rate: 1/6 room per hour. Each assistant's rate = half the painter's = 1/12 room per hour. For T (painter + 1 assistant): combined rate = 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4. T = 4 hours. For S (painter + 3 assistants): combined rate = 1/6 + 3 × (1/12) = 2/12 + 3/12 = 5/12. S = 12/5 = 2.4 hours.
+**mistake_a:** 2.0 — confusing 3 assistants with tripling the painter; 6/3 = 2, ignoring the fractional efficiency.
+**mistake_c:** 3.0 — thinking one half-speed helper halves the job time: 6/2 = 3. Incorrect; a helper at half efficiency adds half the painter's rate, which cuts less than half the time.
+**mistake_e:** 4.8 — arithmetic slip in the 3-assistant case; possibly doubling 2.4 instead of computing from rates.
+**mistake_f:** 6.0 — painter's solo time; helpers ignored entirely.
+**common_trap:** Halving the time when a half-speed helper joins. Rates add; the combined time depends on the sum of rates, not a simple division of the original time.
+**takeaway:** Parallel work: add individual rates. "Half efficiency" = half the rate (1/12), not half the solo time (3 hr). Combined time = 1 / (sum of rates).
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Modular Arithmetic
+
+When positive integer n is divided by 7, the remainder is 3. Select the remainder when 2n is divided by 7 (column 1) and the remainder when n² is divided by 7 (column 2).
+
+|     | Remainder of 2n ÷ 7 | Remainder of n² ÷ 7 |
+|-----|---------------------|----------------------|
+| 0   |                     |                      |
+| 1   |                     |                      |
+| 2   |                     |                      |
+| 3   |                     |                      |
+| 4   |                     |                      |
+| 6   |                     |                      |
+
+**answer:** Remainder of 2n ÷ 7 = 6, Remainder of n² ÷ 7 = 2
+**fastest_path:** n ≡ 3 (mod 7). 2n ≡ 6 (mod 7). n² ≡ 9 ≡ 2 (mod 7).
+**explanation:** Write n = 7q + 3 for some non-negative integer q. Then 2n = 14q + 6 = 7(2q) + 6, so the remainder when 2n is divided by 7 is 6. For n²: (7q + 3)² = 49q² + 42q + 9 = 7(7q² + 6q + 1) + 2, so the remainder is 2. Shortcut: work directly with the remainder — since n ≡ 3 (mod 7), substitute 3 for n: 2×3 = 6 (less than 7, remainder = 6); 3² = 9, and 9 − 7 = 2 (remainder = 2).
+**mistake_b:** 1 — arithmetic slip when reducing 9 mod 7, e.g., subtracting 8 instead of 7.
+**mistake_c:** 2 — correct for n² but placed in the 2n column; column swap.
+**mistake_d:** 3 — the original remainder, incorrectly carried forward to both expressions.
+**mistake_e:** 4 — doubling the remainder then subtracting 2 instead of reducing mod 7 correctly.
+**common_trap:** Doubling or squaring the original remainder but forgetting to reduce mod 7 afterward. After any operation on remainders, always check whether the result is ≥ 7 and subtract 7 if so.
+**takeaway:** Modular arithmetic shortcut: replace n with its remainder (here, 3) and evaluate the expression numerically. Then reduce the result mod 7. This works because (a + 7k) ≡ a (mod 7) for any integer k.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q47
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Contribution Margin and Net Profit
+
+A company sells Product X at $80 per unit. Each unit costs $50 to produce. Monthly fixed costs are $4,500. In October, the company sold 250 units. Select the total contribution margin for October (column 1) and the net profit or loss for October (column 2).
+
+|          | Contribution margin | Net profit / (loss) |
+|----------|---------------------|----------------------|
+| $3,000   |                     |                      |
+| $4,500   |                     |                      |
+| $7,500   |                     |                      |
+| $12,500  |                     |                      |
+| $15,500  |                     |                      |
+| $20,000  |                     |                      |
+
+**answer:** Contribution margin = $7,500, Net profit = $3,000
+**fastest_path:** CM/unit = 80 − 50 = 30. Total CM = 30 × 250 = 7,500. Net = 7,500 − 4,500 = 3,000.
+**explanation:** Contribution margin per unit = selling price − variable cost = 80 − 50 = $30. Total contribution margin = $30 × 250 = $7,500 (the pool available to cover fixed costs). Net profit = total contribution margin − fixed costs = 7,500 − 4,500 = $3,000.
+**mistake_a:** $3,000 — correct for net profit; selecting this for column 1 confuses the two measures.
+**mistake_b:** $4,500 — monthly fixed costs mistakenly treated as the profit figure.
+**mistake_d:** $12,500 — using variable cost per unit as the selling price: 250 × 50 = 12,500; wrong base.
+**mistake_e:** $15,500 — revenue minus fixed costs only: 80 × 250 − 4,500 = 15,500; variable costs omitted.
+**mistake_f:** $20,000 — total revenue only: 80 × 250; no costs subtracted.
+**common_trap:** Stopping after one cost layer. The correct sequence is: revenue → subtract variable costs → contribution margin → subtract fixed costs → net profit.
+**takeaway:** Contribution margin = revenue − variable costs. Net profit = contribution margin − fixed costs. Two distinct layers; confusing them mis-states both figures.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Mixed Interest (Compound + Simple)
+
+$12,000 is divided between two accounts. Account P earns 10% annual interest compounded annually. Account Q earns 6% annual simple interest. After exactly 2 years, the combined interest from both accounts totals $1,944. Determine the amount placed in Account P (column 1) and the amount placed in Account Q (column 2).
+
+|          | Account P | Account Q |
+|----------|-----------|-----------|
+| $3,000   |           |           |
+| $4,800   |           |           |
+| $5,600   |           |           |
+| $6,400   |           |           |
+| $7,200   |           |           |
+| $9,000   |           |           |
+
+**answer:** Account P = $5,600, Account Q = $6,400
+**fastest_path:** 2-yr compound factor = 0.21; 2-yr simple factor = 0.12. Set 0.21p + 0.12(12,000−p) = 1,944 → 0.09p = 504 → p = 5,600.
+**explanation:** Account P (compound, 10%, 2 yr): interest factor = (1.10)² − 1 = 0.21. Account Q (simple, 6%, 2 yr): interest factor = 0.06 × 2 = 0.12. Using p + q = 12,000 and 0.21p + 0.12q = 1,944, substitute q = 12,000 − p: 0.21p + 0.12(12,000 − p) = 1,944 → 0.21p + 1,440 − 0.12p = 1,944 → 0.09p = 504 → p = 5,600. Then q = 6,400. Verify: 5,600 × 0.21 = 1,176; 6,400 × 0.12 = 768; 1,176 + 768 = 1,944 ✓.
+**mistake_b:** $4,800 — using 0.20 instead of 0.21 for the compound factor (off by 0.01 from the actual (1.10)² − 1).
+**mistake_e:** $7,200 — arithmetic slip in the final division step (0.09p = 648 instead of 504).
+**mistake_f:** $9,000 — assuming the higher-rate account gets the larger share; the revenue equation actually forces more into the lower-rate account.
+**common_trap:** Using 20% instead of 21% for the two-year compound factor. (1.10)² − 1 = 1.21 − 1 = 0.21, not 0.20. Compound interest over 2 years at 10% slightly exceeds 2 × 10%.
+**takeaway:** Two-year compound factor = (1+r)² − 1 = 2r + r². Set up the combined interest equation using both factors before substituting; the $1 difference in factors changes the answer by hundreds of dollars.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Digit Problem
+
+A two-digit positive integer N has two properties: (1) when its digits are reversed, the resulting number exceeds N by exactly 27; (2) the sum of the two digits of N equals 9. Let T be the tens digit of N and U be the units digit.
+
+Select the value of T (column 1) and the value of U (column 2).
+
+|     | Tens digit T | Units digit U |
+|-----|--------------|---------------|
+| 1   |              |               |
+| 2   |              |               |
+| 3   |              |               |
+| 4   |              |               |
+| 5   |              |               |
+| 6   |              |               |
+
+**answer:** T = 3, U = 6
+**fastest_path:** Reversed > N → U > T. Reversed difference = 9(U−T) = 27 → U−T = 3. T+U = 9. Solve: U = 6, T = 3.
+**explanation:** Write N = 10T + U. Reversed number = 10U + T. Condition (1): (10U + T) − (10T + U) = 27 → 9(U − T) = 27 → U − T = 3. Condition (2): T + U = 9. Adding the two equations: 2U = 12 → U = 6. Then T = 3. N = 36. Check: reversed = 63; 63 − 36 = 27 ✓; 3 + 6 = 9 ✓.
+**mistake_b:** T = 2, U = 7 — digit sum = 9 ✓, but reversed difference = 9(7−2) = 45 ≠ 27 ✗.
+**mistake_d:** T = 4, U = 5 — digit sum = 9 ✓, but reversed difference = 9(5−4) = 9 ≠ 27 ✗.
+**mistake_f:** T = 6, U = 3 — column swap; N = 63, and the reversed number (36) is 27 less than 63, not more. The problem states the reversed number exceeds N, so T < U, meaning N = 36.
+**common_trap:** Swapping T and U: N = 63 has the reversed number smaller, not larger. The "reversed number exceeds N" condition forces T < U, pinning N = 36 as the unique answer.
+**takeaway:** For a two-digit number, (reversed) − (original) = 9(U − T). Use this to find U − T quickly from the given difference, then pair with the digit-sum equation to solve the 2×2 system.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Logic — Experimental Design and Causal Validity
+
+A pharmaceutical company announces: "In our clinical trial, 78% of patients who took our drug showed symptom reduction. Only 45% of patients who took the placebo showed reduction. Therefore, our drug is effective at treating this condition."
+
+From the statements below, select the one that most strengthens the company's conclusion (column 1) and the one that identifies the most significant flaw limiting the conclusion's validity (column 2).
+
+| Statement                                                                                                                       | Most Strengthens | Most Significant Flaw |
+|---------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------------|
+| The trial used random assignment, and neither patients nor physicians knew who received the drug or the placebo                 |                  |                       |
+| The company that manufactures the drug also funded and conducted the trial without independent oversight                        |                  |                       |
+| Trial participants were exclusively patients aged 20 to 35, while the condition primarily affects patients over age 60          |                  |                       |
+| The drug produced mild headaches in 15% of trial participants                                                                   |                  |                       |
+| A separate independent research team replicated the study and found a 31-percentage-point improvement                          |                  |                       |
+
+**answer:** Most Strengthens = "The trial used random assignment, and neither patients nor physicians knew who received the drug or the placebo"; Most Significant Flaw = "Trial participants were exclusively patients aged 20 to 35, while the condition primarily affects patients over age 60"
+**fastest_path:** Strengthen = double-blind RCT (best internal validity). Flaw = unrepresentative sample (fatal external validity problem).
+**explanation:** A double-blind randomized controlled trial (row 1) is the gold standard: random assignment eliminates self-selection bias, and blinding eliminates expectation effects. This most directly supports the causal conclusion. The most significant flaw (row 3) is external validity — the trial enrolled only 20-35-year-olds while the condition primarily affects those over 60. Concluding the drug "is effective at treating this condition" overstates what the data can support. Row 2 (funding conflict) raises credibility concerns but doesn't constitute a structural methodological flaw in the stated data. Row 5 strengthens further but is already a secondary endorsement once row 1 establishes the primary methodology.
+**mistake_b:** Row 2 — conflict of interest is a credibility concern, not a formal flaw in the trial design itself; it motivates skepticism but does not identify a logical gap in the stated methodology.
+**mistake_d:** Row 4 — side effects bear on safety, not efficacy; irrelevant to whether the drug reduces symptoms.
+**mistake_e:** Row 5 — independent replication strengthens the conclusion; selecting this as a flaw reverses the direction of evidence.
+**common_trap:** Choosing funding bias (row 2) as the most significant flaw. Bias is a concern about result accuracy, not a structural limitation on who the conclusion applies to. The sampling restriction (row 3) is a categorical gap: the trial simply cannot support conclusions about patients it never studied.
+**takeaway:** Internal validity = was the within-trial comparison fair? (randomization, blinding). External validity = does the sample represent the target population? Sampling restrictions are the most common external validity flaw — the conclusion's scope must not exceed the trial's sample.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Constrained Area Optimization
+
+A farmer has 120 meters of fencing to enclose a rectangular garden. One side of the garden runs along a barn wall and requires no fencing. The remaining three sides must be fully fenced. Select the width W in meters — the dimension perpendicular to the barn — that maximizes the enclosed area (column 1) and the corresponding maximum area A in square meters (column 2).
+
+|       | Optimal width W (m) | Maximum area A (m²) |
+|-------|---------------------|----------------------|
+| 20    |                     |                      |
+| 30    |                     |                      |
+| 40    |                     |                      |
+| 60    |                     |                      |
+| 900   |                     |                      |
+| 1,800 |                     |                      |
+
+**answer:** W = 30, A = 1,800
+**fastest_path:** Three-sided constraint: 2W + L = 120 → L = 120−2W. Area = W(120−2W). Vertex at W = 120/4 = 30. A = 30 × 60 = 1,800.
+**explanation:** The three fenced sides consist of two widths and one length (the barn provides the fourth side). Constraint: 2W + L = 120, so L = 120 − 2W. Area = W × (120 − 2W) = 120W − 2W², a downward-opening parabola. Maximum at vertex: W = 120 / (2 × 2) = 30 meters. Then L = 120 − 60 = 60 meters. Maximum area = 30 × 60 = 1,800 m². Verify: fencing used = 2(30) + 60 = 120 ✓.
+**mistake_a:** W = 20 — plausible but not optimal; area = 20 × 80 = 1,600 m².
+**mistake_c:** W = 40 — symmetric to W = 20 on the parabola; area = 40 × 40 = 1,600 m².
+**mistake_d:** W = 60 — uses the full fencing for just two widths; L = 0 and area = 0.
+**mistake_e:** 900 m² — applying the four-sided perimeter formula: 2W + 2L = 120 → W + L = 60 → maximum area = 30 × 30 = 900. Forgetting the barn eliminates one length.
+**common_trap:** Using the four-sided perimeter formula (2W + 2L = 120) instead of the three-sided formula (2W + L = 120). The barn removes one side, and this fundamentally shifts the optimal solution.
+**takeaway:** When one side needs no fencing, the constraint changes from 2W + 2L = P to 2W + L = P. The three-sided solution always produces a longer length and greater area than the four-sided solution for the same perimeter.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q52
+**difficulty:** Challenge
+**type:** Two-Part Analysis
+**topic:** Quantitative — Integer-Constrained Optimization
+
+A bookstore sells novels at $12 each and textbooks at $28 each. A customer plans to spend exactly $220 and must buy at least one novel and at least one textbook. The customer wants to maximize the total number of books purchased. Select the number of novels in the optimal purchase (column 1) and the total number of books in the optimal purchase (column 2).
+
+|     | Novels | Total books |
+|-----|--------|-------------|
+| 1   |        |             |
+| 2   |        |             |
+| 4   |        |             |
+| 9   |        |             |
+| 16  |        |             |
+| 17  |        |             |
+
+**answer:** Novels = 16, Total books = 17
+**fastest_path:** Minimize textbooks to maximize count. Equation: 3n + 7t = 55 (dividing 12n+28t=220 by 4). Try t=1: n=16 ✓. Try t=2: n=41/3 ✗. Try t=4: n=9 ✓ (total 13). Minimum valid t=1 gives maximum total=17.
+**explanation:** Divide the budget equation by 4: 3n + 7t = 55, with n ≥ 1 and t ≥ 1. To maximize n + t, minimize t (textbooks cost more per book). Test integer solutions: t=1: 3n = 48 → n = 16. Total = 17. t=2: 3n = 41 → not an integer. t=3: 3n = 34 → not an integer. t=4: 3n = 27 → n = 9. Total = 13. t=7: 3n = 6 → n = 2. Total = 9. The three feasible solutions are (n, t) = (16, 1), (9, 4), (2, 7), yielding totals of 17, 13, and 9 respectively. Maximum = 17 with 16 novels and 1 textbook.
+**mistake_b:** 2 novels — the (2, 7) solution; minimizes novels instead of maximizing total count.
+**mistake_d:** 9 novels — the (9, 4) solution; valid but not the maximum.
+**mistake_c:** 4 total — confusing the textbook count (t=4) with the total books in that solution.
+**mistake_f:** 17 novels — selecting the total as the novel count; column confusion.
+**common_trap:** Not checking the integer constraint across all possible values of t. Any non-integer solution is invalid — the customer cannot buy fractional books. The equation 3n + 7t = 55 only has integer solutions when 7t ≡ 55 ≡ 1 (mod 3), i.e., t ≡ 1 (mod 3).
+**takeaway:** Integer-constrained optimization: enumerate feasible integer solutions from the minimum of the binding variable. Use modular arithmetic to skip non-integer cases. Verify no smaller t value beats the first-found maximum.
+**related_reading:** reading-di-06-two-part-analysis

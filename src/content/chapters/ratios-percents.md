@@ -114,12 +114,6 @@ problem_sets:
       - ratios-percents-q23
       - ratios-percents-q24
       - ratios-percents-q31
-      - ratios-percents-q32
-      - ratios-percents-q33
-      - ratios-percents-q34
-      - ratios-percents-q35
-      - ratios-percents-q36
-      - ratios-percents-q37
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -132,11 +126,8 @@ problem_sets:
       - ratios-percents-q18
       - ratios-percents-q21
       - ratios-percents-q25
-      - ratios-percents-q38
-      - ratios-percents-q39
-      - ratios-percents-q40
-      - ratios-percents-q41
-      - ratios-percents-q42
+      - ratios-percents-q32
+      - ratios-percents-q33
 ---
 
 ## @ratio-fundamentals

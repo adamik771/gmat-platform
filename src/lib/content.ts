@@ -45,6 +45,12 @@ export interface ParsedQuestion {
   twoPartColumns?: string[]
   /** Two-Part Analysis: the correct row index for each column. Same length as twoPartColumns. */
   twoPartCorrectAnswers?: number[]
+  /** Table Analysis (grouped): the statements to judge against the shared table. */
+  tableStatements?: string[]
+  /** Table Analysis: correct choice index per statement (0 = first label, 1 = second). */
+  tableStatementAnswers?: number[]
+  /** Table Analysis: the two response labels, e.g. ["Yes","No"] or ["True","False"]. */
+  tableChoiceLabels?: string[]
   // ---------- Standardized 6-section explanation fields ----------
   // Present in bulk-rewritten questions (QUESTION_TAXONOMY format). Optional
   // because legacy questions and grouped passages may not carry them yet.
