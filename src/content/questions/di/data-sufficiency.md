@@ -1341,7 +1341,8 @@ A positive integer N is the product of exactly two distinct primes p and q. What
 
 **answer:** C
 **fastest_path:** N=pq, distinct primes. Divisor sum = (1+p)(1+q) = 72 (1) gives multiple candidates; (2) gives multiple. Intersection: N=51.
-**explanation:** Divisors of N=pq are {1, p, q, pq}, sum = (1+p)(1+q). (1): (1+p)(1+q)=72. Prime-distinct pairs: (2,23)→N=46; (3,17)→N=51; (5,11)→N=55. Three candidates. Insufficient. (2): p+q=20, primes: (3,17)→N=51; (7,13)→N=91. Two candidates. Insufficient. Together: {46,51,55} ∩ {51,91} = {51}. Sufficient. Answer C.
+**situation:** N is the product of two distinct primes p and q; the question asks for N. Statement (1): the sum of N's divisors (including 1 and N) is 72; statement (2): p + q = 20.
+**reasoning:** *Value DS — the divisors of N = pq are {1, p, q, pq}, summing to (1 + p)(1 + q).* Statement (1): (1 + p)(1 + q) = 72 has several distinct-prime solutions — (2, 23) → 46, (3, 17) → 51, (5, 11) → 55 — insufficient. Statement (2): p + q = 20 gives (3, 17) → 51 and (7, 13) → 91 — insufficient. Together: the candidate sets {46, 51, 55} and {51, 91} intersect only at N = 51 — sufficient, answer C. Enumerate factor pairs systematically rather than assuming a single factorization of 72.
 **mistake_a:** A requires (1) alone sufficient — three candidates remain.
 **mistake_b:** B requires (2) alone sufficient — two candidates remain.
 **mistake_d:** D requires each alone — neither narrows to one.
@@ -1371,7 +1372,8 @@ At a factory, machine X and machine Y each produce parts at constant but differe
 
 **answer:** C
 **fastest_path:** (1) x+y=540 (scalar). (2) y=1.4x (ratio). Together: 2.4x=540 → x=225.
-**explanation:** Let X's rate=x, Y's=y. (1): x+y=540 — one equation, two unknowns. Insufficient. (2): y=1.4x — ratio, no scalar. Insufficient. Together: 2.4x=540 → x=225. Sufficient. Answer C.
+**situation:** Machines X and Y produce at constant but different rates; the question asks X's rate. Statement (1): together they make 540 parts/hour; statement (2): Y makes 40% more per hour than X.
+**reasoning:** *Value DS — let X = x and Y = y.* Statement (1): x + y = 540 is one equation in two unknowns — insufficient. Statement (2): y = 1.4x is a ratio with no scalar — insufficient. Together: 2.4x = 540 gives x = 225 — sufficient, answer C. One absolute total plus one ratio between the rates pins both — the rate analogue of the ratio-and-count pairing.
 **mistake_a:** A requires (1) alone sufficient — but two unknowns.
 **mistake_b:** B requires (2) alone sufficient — ratio without scalar fails.
 **mistake_d:** D requires each alone — neither does.
@@ -1401,7 +1403,8 @@ In a plane, triangle ABC has vertices A, B, and C. What is the area of triangle 
 
 **answer:** C
 **fastest_path:** Triangle area = (1/2)·base·height. (1) gives base; (2) gives height. Together: (1/2)(10)(6)=30.
-**explanation:** Area formula needs base AND height. (1): base=10 only. (2): height=6 only. Together: area=30. Sufficient. Answer C.
+**situation:** Triangle ABC has vertices A, B, C; the question asks its area. Statement (1): BC = 10; statement (2): the perpendicular distance from A to line BC is 6.
+**reasoning:** *Value DS — area = ½ · base · height.* Statement (1): base = 10 only — insufficient. Statement (2): height = 6 only — insufficient. Together: ½ · 10 · 6 = 30 — sufficient, answer C. DS asks for unique determination, not a specific drawn shape; base and its matching perpendicular height are exactly what the area formula needs.
 **mistake_a:** A requires (1) alone sufficient — but no height.
 **mistake_b:** B requires (2) alone sufficient — but no base.
 **mistake_d:** D requires each alone — neither has both.
@@ -1430,7 +1433,8 @@ If x and y are positive integers with x < y, is y − x a multiple of 4?
 
 **answer:** C
 **fastest_path:** Yes/no. Each alone has split. Together: x+y div by 8 (so both even) AND xy div by 16 → both x,y div by 4 → y−x div by 4.
-**explanation:** (1): (1,7) sum=8, y−x=6 (no); (2,6) sum=8, y−x=4 (yes). Insufficient. (2): (1,16) xy=16, y−x=15 (no); (2,8) xy=16, y−x=6 (no). Insufficient. Together: x+y mult of 8 → both even. Write x=2a, y=2b: a+b=4k, ab=4m. Combining forces both a, b even. So x, y both div by 4 → y−x div by 4. Sufficient yes. Answer C.
+**situation:** For positive integers x < y, the question asks whether y − x is a multiple of 4. Statement (1): x + y is a multiple of 8; statement (2): xy is a multiple of 16.
+**reasoning:** *Yes/no DS.* Statement (1): (1, 7) sum 8 gives y − x = 6 (no) vs (2, 6) sum 8 gives y − x = 4 (yes) — insufficient. Statement (2): (1, 16) gives y − x = 15 (no) vs (2, 8) gives y − x = 6 (no), and other cases vary — insufficient. Together: x + y a multiple of 8 forces both even; writing x = 2a, y = 2b, the conditions push a and b to be even too, so x and y are both divisible by 4 and y − x is divisible by 4 — a definite yes, answer C. Combine parity with divisibility-by-a-square to force a higher power.
 **mistake_a:** A requires (1) alone sufficient — split shown.
 **mistake_b:** B requires (2) alone sufficient — same.
 **mistake_d:** D requires each alone — neither works.
@@ -1460,7 +1464,8 @@ Is the positive integer n divisible by 12?
 
 **answer:** C
 **fastest_path:** 12 = 4·3 (coprime). (1) gives factor 4. (2) gives factor 9 (which contains factor 3). Together: factors 4 and 3 → div by 12.
-**explanation:** 12 = 4 × 3 with 4, 3 coprime. (1): n=4 (no) or n=12 (yes). Insufficient. (2): n=9 (no) or n=36 (yes). Insufficient. Together: div by 4 AND div by 9 → div by LCM(4,9)=36, which is div by 12. Sufficient yes. Answer C.
+**situation:** The question asks whether positive integer n is divisible by 12. Statement (1): n is divisible by 4; statement (2): n is divisible by 9.
+**reasoning:** *Yes/no DS — 12 = 4 × 3 with 4 and 3 coprime.* Statement (1): divisible by 4 — n = 4 (no) vs n = 12 (yes) — insufficient. Statement (2): divisible by 9 — n = 9 (no) vs n = 36 (yes) — insufficient. Together: divisible by 4 and by 9 means divisible by LCM(4, 9) = 36, which is divisible by 12 — a definite yes, answer C. Note 9 supplies the needed factor of 3; factor the target into coprime pieces and check each is covered.
 **mistake_a:** A requires (1) alone sufficient — but div by 4 alone doesn't ensure div by 3.
 **mistake_b:** B requires (2) alone sufficient — div by 9 doesn't ensure factor of 4.
 **mistake_d:** D requires each alone — neither does.
@@ -1490,7 +1495,8 @@ In right triangle ABC, angle C is the right angle and side AB is the hypotenuse.
 
 **answer:** C
 **fastest_path:** Right triangle with hypotenuse: BC² = AB² − AC². (1) gives AB; (2) gives AC. Together: 5-12-13 triple → BC=12.
-**explanation:** Right angle at C → AB hypotenuse. Pythagorean: BC² = AB² − AC² = 169 − 25 = 144 → BC=12. (1) alone: only AB. (2) alone: only AC. Together: BC=12. Sufficient. Answer C.
+**situation:** Right triangle ABC has the right angle at C, so AB is the hypotenuse; the question asks the length of BC. Statement (1): AB = 13; statement (2): AC = 5.
+**reasoning:** *Value DS — by the Pythagorean theorem, BC² = AB² − AC².* Statement (1) gives only AB — insufficient. Statement (2) gives only AC — insufficient. Together: BC² = 169 − 25 = 144, so BC = 12 (the 5-12-13 triple) — sufficient, answer C. Recognizing the triple from one number isn't determination; two sides are needed to fix the third.
 **mistake_a:** A requires (1) alone sufficient — one side doesn't fix the other.
 **mistake_b:** B requires (2) alone sufficient — same.
 **mistake_d:** D requires each alone — neither does.
@@ -1519,7 +1525,8 @@ In a plane, two distinct lines l and m are cut by a transversal t. Are lines l a
 
 **answer:** D
 **fastest_path:** Each statement is a *standard parallel-line theorem*. (1) equal corresponding angles ⟺ parallel. (2) common perpendicular ⟺ parallel. D.
-**explanation:** (1): Converse of corresponding-angles postulate — equal corresponding angles ⟹ l ∥ m. Sufficient. (2): A transversal perpendicular to both lines forces parallel (Euclidean). Sufficient. Each alone solves. Answer D.
+**situation:** Two distinct lines l and m are cut by a transversal t; the question asks whether l and m are parallel. Statement (1): two corresponding angles are equal; statement (2): t is perpendicular to both l and m.
+**reasoning:** *Yes/no DS — each statement is a standalone parallel-line criterion.* Statement (1): equal corresponding angles is the converse of the corresponding-angles postulate, forcing l ∥ m — sufficient. Statement (2): a transversal perpendicular to both lines forces them parallel — sufficient. Each statement alone settles it, so the answer is D. Geometric criteria are often independently sufficient; don't combine reflexively.
 **mistake_a:** A requires only (1) sufficient — but (2) also solves.
 **mistake_b:** B requires only (2) sufficient — but (1) also does.
 **mistake_c:** C-trap — combining is unnecessary; each alone is a parallel theorem.
