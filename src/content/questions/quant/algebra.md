@@ -941,3 +941,423 @@ The key insight is factoring the discriminant. Students who expand (n+1)² − 4
 **common_trap:** Failing to factor the discriminant — expanding (n+1)² − 4n but not recognizing it equals (n−1)², leaving an unfactorable-looking quadratic in n that obscures the simple condition n ≠ 1.
 **takeaway:** When a quadratic has a parametric coefficient, fully simplify the discriminant; it often factors cleanly and reveals the exact constraint on the parameter. Two distinct real roots ↔ Δ > 0.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Absolute Value Inequalities
+
+The shaded segment on the number line below represents every value of x that satisfies a certain inequality. The endpoints are filled, so they are included.
+
+```numberline
+min: -4
+max: 8
+shade: -3..7
+closed: both
+```
+
+Which of the following inequalities describes the shaded region?
+
+- A) |x − 2| ≤ 5
+- B) |x + 2| ≤ 5
+- C) |x − 2| ≤ 7
+- D) |x − 5| ≤ 2
+- E) |x| ≤ 5
+
+**answer:** A
+**fastest_path:** Center = midpoint of −3 and 7 = 2; radius = half the width = (7−(−3))/2 = 5. So |x − center| ≤ radius = |x − 2| ≤ 5.
+**explanation:** Any closed interval [a, b] is exactly the solution set of |x − c| ≤ r, where c is the midpoint and r is the distance from the midpoint to either end. Here a = −3 and b = 7, so c = (−3 + 7)/2 = 2 and r = (7 − (−3))/2 = 5. That gives |x − 2| ≤ 5, which unpacks to −5 ≤ x − 2 ≤ 5, i.e., −3 ≤ x ≤ 7 — exactly the shaded segment. Filled endpoints mean ≤, not <.
+**mistake_b:** Sign error on the center: |x + 2| ≤ 5 gives −7 ≤ x ≤ 3, the interval reflected about 0.
+**mistake_c:** Used the right endpoint (7) as the radius instead of the half-width: |x − 2| ≤ 7 gives −5 ≤ x ≤ 9.
+**mistake_d:** Swapped center and radius: |x − 5| ≤ 2 gives 3 ≤ x ≤ 7 — right edge, wrong left edge.
+**mistake_e:** Forgot the interval is not centered at 0: |x| ≤ 5 gives −5 ≤ x ≤ 5.
+**common_trap:** Reading the radius off an endpoint instead of computing the half-width. The radius is half the distance between the two endpoints, never an endpoint itself (unless the interval happens to be centered at 0).
+**takeaway:** A closed interval [a, b] equals |x − c| ≤ r with c = (a+b)/2 and r = (b−a)/2. Find the midpoint, then the half-width.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Absolute Value
+
+The shaded segment below shows all values of x satisfying an inequality, with both endpoints included.
+
+```numberline
+min: -6
+max: 6
+shade: -4..4
+closed: both
+```
+
+Which inequality describes the shaded region?
+
+- A) |x| ≤ 8
+- B) |x| ≤ 4
+- C) |x| < 4
+- D) |x + 4| ≤ 4
+- E) |x| ≥ 4
+
+**answer:** B
+**fastest_path:** Symmetric about 0 from −4 to 4, endpoints included → |x| ≤ 4.
+**explanation:** The interval runs from −4 to 4 and is centered at 0, so the center term is just |x| (no shift). The radius is 4, and the filled endpoints make it ≤. Therefore |x| ≤ 4, which is −4 ≤ x ≤ 4.
+**mistake_a:** Doubled the radius: |x| ≤ 8 gives −8 ≤ x ≤ 8, far wider than shown.
+**mistake_c:** Read the endpoints as open: |x| < 4 excludes −4 and 4, but the dots are filled.
+**mistake_d:** Added a phantom shift: |x + 4| ≤ 4 gives −8 ≤ x ≤ 0, not centered at 0.
+**mistake_e:** Reversed the inequality direction: |x| ≥ 4 is everything outside [−4, 4], the complement of the shaded region.
+**common_trap:** Confusing ≤ (filled dots, interval) with ≥ (the two outward rays). Shaded *between* the endpoints means the absolute value is small, i.e., ≤.
+**takeaway:** A segment symmetric about 0 is |x| ≤ r. Filled endpoints = ≤; a shaded middle = "absolute value at most," never "at least."
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Absolute Value Inequalities
+
+The number line below has its shaded segment running from 0 to 6, with both endpoints filled.
+
+```numberline
+min: -2
+max: 8
+shade: 0..6
+closed: both
+```
+
+Which inequality has this shaded region as its solution set?
+
+- A) |x − 3| ≤ 6
+- B) |x + 3| ≤ 3
+- C) |x − 3| ≤ 3
+- D) |x − 6| ≤ 3
+- E) |x − 3| < 3
+
+**answer:** C
+**fastest_path:** Midpoint of 0 and 6 is 3; half-width is 3 → |x − 3| ≤ 3.
+**explanation:** Center c = (0 + 6)/2 = 3 and radius r = (6 − 0)/2 = 3, so the inequality is |x − 3| ≤ 3, which expands to 0 ≤ x ≤ 6. The dots are filled, so the relation is ≤.
+**mistake_a:** Used an endpoint (6) as the radius: |x − 3| ≤ 6 gives −3 ≤ x ≤ 9.
+**mistake_b:** Sign error on the center: |x + 3| ≤ 3 gives −6 ≤ x ≤ 0.
+**mistake_d:** Centered on the right endpoint: |x − 6| ≤ 3 gives 3 ≤ x ≤ 9.
+**mistake_e:** Treated the filled endpoints as open: |x − 3| < 3 gives 0 < x < 6, excluding 0 and 6.
+**common_trap:** Forgetting that the center need not be 0 — here it is 3, so the expression is |x − 3|, not |x|.
+**takeaway:** Even when an endpoint sits at 0, compute the midpoint: a [0, 6] interval is centered at 3, not at 0.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Inequalities
+
+The shaded segment below runs from −2 to 5, and both endpoints are filled (included).
+
+```numberline
+min: -4
+max: 7
+shade: -2..5
+closed: both
+```
+
+Which of the following describes the shaded region?
+
+- A) −2 ≤ x ≤ 5
+- B) −2 < x < 5
+- C) 2 ≤ x ≤ 5
+- D) −5 ≤ x ≤ 2
+- E) x ≤ 5
+
+**answer:** A
+**fastest_path:** Filled dots at −2 and 5, shaded between → −2 ≤ x ≤ 5.
+**explanation:** The shading covers every value from −2 to 5, and the filled endpoints include both ends. As a compound inequality that is simply −2 ≤ x ≤ 5. (Its midpoint is 1.5, which is not an integer, so an absolute-value form would be messy — the compound form is the natural reading.)
+**mistake_b:** Read the filled dots as open circles: −2 < x < 5 wrongly excludes the endpoints.
+**mistake_c:** Dropped the negative sign on the left endpoint: 2 ≤ x ≤ 5 starts at the wrong place.
+**mistake_d:** Reflected the interval about 0: −5 ≤ x ≤ 2.
+**mistake_e:** Captured only the upper bound and ignored the left endpoint, describing a ray instead of a segment.
+**common_trap:** Mismatching the endpoint style — filled means "or equal to" (≤), hollow means strict (<). Always check the dots before choosing the inequality symbol.
+**takeaway:** A bounded shaded segment is a compound inequality a ≤ x ≤ b (filled) or a < x < b (hollow). Read both endpoints and both dot styles.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Absolute Value Inequalities
+
+On the number line below, the endpoints are open (hollow), so they are *not* included in the shaded region.
+
+```numberline
+min: -3
+max: 7
+shade: -1..5
+closed: none
+```
+
+Which inequality describes the shaded region?
+
+- A) |x − 2| < 3
+- B) |x − 2| ≤ 3
+- C) |x − 2| < 5
+- D) |x + 2| < 3
+- E) |x − 2| > 3
+
+**answer:** A
+**fastest_path:** Center = (−1 + 5)/2 = 2; radius = 3; hollow endpoints → strict. So |x − 2| < 3.
+**explanation:** Midpoint c = 2 and radius r = 3, giving |x − 2| < 3, which is −1 < x < 5. The open circles mean the inequality is strict (<), so the endpoints −1 and 5 are excluded.
+**mistake_b:** Used ≤ despite the open endpoints: |x − 2| ≤ 3 would fill in −1 and 5.
+**mistake_c:** Used an endpoint (5) as the radius: |x − 2| < 5 gives −3 < x < 7.
+**mistake_d:** Sign error on the center: |x + 2| < 3 gives −5 < x < 1.
+**mistake_e:** Reversed direction: |x − 2| > 3 is everything outside (−1, 5).
+**common_trap:** Ignoring the dot style. Open circles force a strict inequality; the most tempting wrong answer is the same expression with ≤.
+**takeaway:** Hollow endpoints → strict inequality (<). Filled → ≤. The center and radius set the expression; the dots set the symbol.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Inequalities
+
+On the number line below, the left endpoint (2) is filled and the right endpoint (8) is open.
+
+```numberline
+min: 0
+max: 10
+shade: 2..8
+closed: left
+```
+
+Which of the following describes the shaded region exactly?
+
+- A) 2 ≤ x < 8
+- B) 2 < x ≤ 8
+- C) 2 ≤ x ≤ 8
+- D) 2 < x < 8
+- E) 2 ≤ x < 6
+
+**answer:** A
+**fastest_path:** Filled left (include 2 → ≤ on the left), open right (exclude 8 → < on the right): 2 ≤ x < 8.
+**explanation:** A half-open interval needs two different endpoint symbols. The left dot is filled, so 2 is included: the left relation is 2 ≤ x. The right dot is open, so 8 is excluded: the right relation is x < 8. Combined: 2 ≤ x < 8. This cannot be written with a single absolute value because absolute-value inequalities are symmetric and always include or exclude *both* endpoints together.
+**mistake_b:** Swapped which endpoint is included: 2 < x ≤ 8 reverses both dot styles.
+**mistake_c:** Treated both endpoints as filled: 2 ≤ x ≤ 8 wrongly includes 8.
+**mistake_d:** Treated both endpoints as open: 2 < x < 8 wrongly excludes 2.
+**mistake_e:** Misread the right endpoint as 6 instead of 8.
+**common_trap:** Assuming both endpoints share the same symbol. Mixed (one filled, one open) endpoints require a half-open interval, which no single absolute-value inequality can express.
+**takeaway:** Match each endpoint's symbol to its own dot. A mixed-endpoint segment is always a compound inequality, never a clean |x − c| form.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Absolute Value Inequalities
+
+The shaded segment below runs from −6 to 2 with both endpoints filled.
+
+```numberline
+min: -8
+max: 4
+shade: -6..2
+closed: both
+```
+
+Which inequality describes the shaded region?
+
+- A) |x − 2| ≤ 4
+- B) |x + 2| ≤ 4
+- C) |x + 2| ≤ 6
+- D) |x + 6| ≤ 2
+- E) |x + 2| < 4
+
+**answer:** B
+**fastest_path:** Center = (−6 + 2)/2 = −2; radius = (2 − (−6))/2 = 4. Center −2 → the term is |x − (−2)| = |x + 2|. So |x + 2| ≤ 4.
+**explanation:** The midpoint is c = (−6 + 2)/2 = −2 and the radius is r = (2 − (−6))/2 = 4. Because the center is negative, the expression becomes |x − (−2)| = |x + 2|. With filled endpoints: |x + 2| ≤ 4, which expands to −6 ≤ x ≤ 2.
+**mistake_a:** Wrong center sign: |x − 2| ≤ 4 gives −2 ≤ x ≤ 6, centered at +2 instead of −2.
+**mistake_c:** Used the endpoint magnitude (6) as the radius: |x + 2| ≤ 6 gives −8 ≤ x ≤ 4.
+**mistake_d:** Centered on the left endpoint: |x + 6| ≤ 2 gives −8 ≤ x ≤ −4.
+**mistake_e:** Used a strict inequality despite filled endpoints: |x + 2| < 4 excludes −6 and 2.
+**common_trap:** Getting the sign of the center wrong. A center at −2 produces |x + 2|, because |x − c| with c = −2 is |x − (−2)| = |x + 2|.
+**takeaway:** The sign inside the absolute value is the *opposite* of the center's sign: center −2 → |x + 2|; center +2 → |x − 2|.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Absolute Value Inequalities
+
+The shaded segment below runs from −4 to 6 with both endpoints filled.
+
+```numberline
+min: -6
+max: 8
+shade: -4..6
+closed: both
+```
+
+Which inequality has exactly this solution set?
+
+- A) |x − 1| < 5
+- B) |x − 1| ≤ 5
+- C) |x − 1| ≤ 6
+- D) |x + 1| ≤ 5
+- E) |x − 5| ≤ 1
+
+**answer:** B
+**fastest_path:** Center = (−4 + 6)/2 = 1; radius = (6 − (−4))/2 = 5; filled → ≤. So |x − 1| ≤ 5.
+**explanation:** Midpoint c = 1, radius r = 5, endpoints included, so |x − 1| ≤ 5, i.e., −4 ≤ x ≤ 6.
+**mistake_a:** Used a strict inequality: |x − 1| < 5 excludes the filled endpoints −4 and 6.
+**mistake_c:** Took the right endpoint (6) as the radius: |x − 1| ≤ 6 gives −5 ≤ x ≤ 7.
+**mistake_d:** Sign error on the center: |x + 1| ≤ 5 gives −6 ≤ x ≤ 4.
+**mistake_e:** Swapped center and radius: |x − 5| ≤ 1 gives 4 ≤ x ≤ 6.
+**common_trap:** The two strongest distractors here differ from the answer only by the inequality symbol (A) or by one unit of radius (C). Compute both center and radius exactly, then read the dots.
+**takeaway:** Pin down three things independently: center (midpoint), radius (half-width), and symbol (dot style). Each wrong answer usually breaks exactly one of them.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Absolute Value Inequalities
+
+On the number line below, both endpoints are open (hollow).
+
+```numberline
+min: -8
+max: 2
+shade: -6..0
+closed: none
+```
+
+Which inequality describes the shaded region?
+
+- A) |x + 3| ≤ 3
+- B) |x − 3| < 3
+- C) |x + 3| < 3
+- D) |x + 3| < 6
+- E) |x + 6| < 3
+
+**answer:** C
+**fastest_path:** Center = (−6 + 0)/2 = −3; radius = 3; hollow → strict. Center −3 → |x + 3|. So |x + 3| < 3.
+**explanation:** Midpoint c = −3, radius r = 3. Since the center is −3, the term is |x − (−3)| = |x + 3|, and the open endpoints make the inequality strict: |x + 3| < 3, i.e., −6 < x < 0.
+**mistake_a:** Used ≤ despite open endpoints: |x + 3| ≤ 3 would include −6 and 0.
+**mistake_b:** Sign error on the center: |x − 3| < 3 gives 0 < x < 6.
+**mistake_d:** Used an endpoint magnitude (6) as the radius: |x + 3| < 6 gives −9 < x < 3.
+**mistake_e:** Centered on the left endpoint: |x + 6| < 3 gives −9 < x < −3.
+**common_trap:** Combining two independent errors — center sign and endpoint style. Here the trap answers each fix one error but miss the other; only C gets both the |x + 3| center and the strict < right.
+**takeaway:** Negative center flips the inner sign (|x + 3|), and open dots force <. Resolve both before selecting.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Inequalities
+
+On the number line below, the left endpoint (−5) is open and the right endpoint (1) is filled.
+
+```numberline
+min: -7
+max: 3
+shade: -5..1
+closed: right
+```
+
+Which of the following describes the shaded region exactly?
+
+- A) −5 < x ≤ 1
+- B) −5 ≤ x ≤ 1
+- C) −5 ≤ x < 1
+- D) −5 < x < 1
+- E) −1 < x ≤ 5
+
+**answer:** A
+**fastest_path:** Open left (exclude −5 → <), filled right (include 1 → ≤): −5 < x ≤ 1.
+**explanation:** The left dot is open, so −5 is excluded: −5 < x. The right dot is filled, so 1 is included: x ≤ 1. Together: −5 < x ≤ 1. A half-open interval like this can never be captured by a single absolute-value inequality, since those treat both endpoints identically.
+**mistake_b:** Treated the open left endpoint as filled: −5 ≤ x ≤ 1.
+**mistake_c:** Swapped both endpoint symbols: −5 ≤ x < 1.
+**mistake_d:** Treated both endpoints as open: −5 < x < 1, dropping the included 1.
+**mistake_e:** Reflected the interval about 0: −1 < x ≤ 5.
+**common_trap:** Forcing matching symbols on the two ends. Each endpoint carries its own dot style and therefore its own symbol; here the left is strict and the right is inclusive.
+**takeaway:** Read each endpoint independently. Open → strict; filled → inclusive. Mixed endpoints rule out any single |x − c| answer.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Absolute Value Inequalities
+
+The shaded segment below runs from −1 to 5 with both endpoints filled.
+
+```numberline
+min: -3
+max: 7
+shade: -1..5
+closed: both
+```
+
+Which of the following inequalities has exactly this shaded region as its solution set?
+
+- A) |2x − 4| ≤ 6
+- B) |2x − 2| ≤ 6
+- C) |x − 2| ≤ 6
+- D) |2x + 4| ≤ 6
+- E) |2x − 4| < 6
+
+**answer:** A
+**fastest_path:** The interval is |x − 2| ≤ 3 (center 2, radius 3, closed). Multiply both sides inside by 2: |2x − 4| ≤ 6. Check: |2x − 4| ≤ 6 ↔ |x − 2| ≤ 3.
+**explanation:** First read the picture: center 2, radius 3, filled endpoints, so the base inequality is |x − 2| ≤ 3, i.e., −1 ≤ x ≤ 5. Now the answer choices scale the variable, so test each. |2x − 4| = 2|x − 2|, so |2x − 4| ≤ 6 ↔ 2|x − 2| ≤ 6 ↔ |x − 2| ≤ 3 — exactly the shaded set. The trap is that a coefficient on x must be factored out (and it divides the constant) before comparing to the picture.
+**mistake_b:** |2x − 2| = 2|x − 1|, so |2x − 2| ≤ 6 ↔ |x − 1| ≤ 3 ↔ −2 ≤ x ≤ 4 — wrong center.
+**mistake_c:** Ignored the coefficient entirely: |x − 2| ≤ 6 ↔ −4 ≤ x ≤ 8 — radius too large.
+**mistake_d:** |2x + 4| = 2|x + 2|, so |2x + 4| ≤ 6 ↔ |x + 2| ≤ 3 ↔ −5 ≤ x ≤ 1 — wrong center.
+**mistake_e:** Correct expression but strict: |2x − 4| < 6 ↔ −1 < x < 5 excludes the filled endpoints.
+**common_trap:** Comparing the constant inside (4) or outside (6) directly to the picture without factoring the coefficient of x. |ax − b| ≤ c is |x − b/a| ≤ c/a after dividing through by |a|.
+**takeaway:** When x has a coefficient, factor it out: |ax − b| ≤ c ↔ |x − b/a| ≤ c/a. Only then do center and radius match the number line.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Absolute Value Inequalities
+
+The shaded segment below runs from −2 to 6 with both endpoints filled.
+
+```numberline
+min: -4
+max: 8
+shade: -2..6
+closed: both
+```
+
+Each of the following describes the shaded region EXCEPT:
+
+- A) |x − 2| ≤ 4
+- B) −2 ≤ x ≤ 6
+- C) |2 − x| ≤ 4
+- D) |x − 2| < 4
+- E) the distance between x and 2 on the number line is at most 4
+
+**answer:** D
+**fastest_path:** The picture is the closed interval −2 ≤ x ≤ 6, i.e., |x − 2| ≤ 4. The four correct choices all equal that; the exception is the one with a strict <, which drops the endpoints.
+**explanation:** The shaded set is the closed interval [−2, 6], center 2 and radius 4, so |x − 2| ≤ 4. Check each choice against that. (B) −2 ≤ x ≤ 6 is the interval written directly — matches. (C) |2 − x| = |x − 2| because absolute value is symmetric, so |2 − x| ≤ 4 is identical — matches. (E) "distance between x and 2 is at most 4" is the verbal definition of |x − 2| ≤ 4 — matches. (D) |x − 2| < 4 is −2 < x < 6, which excludes the filled endpoints −2 and 6, so it does NOT describe the region. Since the question asks for the exception, the answer is (D).
+**mistake_a:** |x − 2| ≤ 4 is exactly the shaded set; it describes the region, so it is not the exception.
+**mistake_b:** −2 ≤ x ≤ 6 is the interval itself; it matches, so it is not the exception.
+**mistake_c:** |2 − x| ≤ 4 equals |x − 2| ≤ 4 by the symmetry |a − b| = |b − a|; it matches and is not the exception.
+**mistake_e:** The distance phrasing is the literal meaning of |x − 2| ≤ 4; it matches and is not the exception.
+**common_trap:** On an EXCEPT question, the four equivalent forms (algebraic, compound, reversed-order absolute value, and verbal-distance) are designed to look different but mean the same thing. The outlier is the one that quietly swaps ≤ for <.
+**takeaway:** |a − b| = |b − a|, and "distance at most r" means ≤ r. On EXCEPT questions, hunt for the single choice that changes the *meaning* — here, open vs. closed endpoints.
+**related_reading:** reading-quant-04-algebra-and-equations

@@ -136,7 +136,7 @@ function detectDeviceType(): DeviceType {
  * panel. Key win over the old `<pre>` fallback: pipe tables render as real
  * HTML <table>s for Table Analysis and Multi-Source Reasoning.
  */
-function PromptBlock({ text, className = "" }: { text: string; className?: string }) {
+function MarkdownBlock({ text, className = "" }: { text: string; className?: string }) {
   return (
     <div className={`text-sm leading-relaxed text-[#F0F0F0] ${className}`}>
       <ReactMarkdown
@@ -230,6 +230,210 @@ function PromptBlock({ text, className = "" }: { text: string; className?: strin
       >
         {text}
       </ReactMarkdown>
+    </div>
+  )
+}
+
+/** Parsed spec for an inline number-line figure (```numberline fenced block). */
+interface NumberLineSpec {
+  min: number
+  max: number
+  shadeFrom?: number
+  shadeTo?: number
+  closedLeft: boolean
+  closedRight: boolean
+  points: { at: number; closed: boolean }[]
+}
+
+/**
+ * Parses a ```numberline fenced block. Supported keys:
+ *   min: -6            (left end of the axis, integer)
+ *   max: 6             (right end of the axis, integer)
+ *   shade: -5..3       (interval to shade; omit for none)
+ *   closed: both       (both | left | right | none — filled vs. open endpoints)
+ *   points: 2:closed, -3:open   (standalone marked points)
+ */
+function parseNumberLineSpec(raw: string): NumberLineSpec | null {
+  const get = (key: string) => {
+    const m = raw.match(new RegExp(`^\\s*${key}\\s*:\\s*(.+)$`, "im"))
+    return m ? m[1].trim() : undefined
+  }
+  const min = Number(get("min"))
+  const max = Number(get("max"))
+  if (!Number.isFinite(min) || !Number.isFinite(max) || max <= min) return null
+
+  let shadeFrom: number | undefined
+  let shadeTo: number | undefined
+  const shade = get("shade")
+  if (shade) {
+    const m = shade.match(/(-?\d+(?:\.\d+)?)\s*\.\.\s*(-?\d+(?:\.\d+)?)/)
+    if (m) {
+      shadeFrom = Number(m[1])
+      shadeTo = Number(m[2])
+    }
+  }
+
+  const closed = (get("closed") ?? "both").toLowerCase()
+  const closedLeft = closed === "both" || closed === "left"
+  const closedRight = closed === "both" || closed === "right"
+
+  const points: { at: number; closed: boolean }[] = []
+  const pointsRaw = get("points")
+  if (pointsRaw) {
+    for (const part of pointsRaw.split(",")) {
+      const [v, kind] = part.split(":").map((s) => s.trim())
+      const at = Number(v)
+      if (Number.isFinite(at)) {
+        points.push({ at, closed: (kind ?? "closed").toLowerCase() !== "open" })
+      }
+    }
+  }
+
+  return { min, max, shadeFrom, shadeTo, closedLeft, closedRight, points }
+}
+
+/** Renders an inline number line as SVG (axis, ticks, shaded interval, endpoints). */
+function NumberLine({ spec }: { spec: NumberLineSpec }) {
+  const { min, max, shadeFrom, shadeTo, closedLeft, closedRight, points } = spec
+  const STEP = 32
+  const PAD = 28
+  const AXIS_Y = 34
+  const span = max - min
+  const width = PAD * 2 + span * STEP
+  const height = 58
+  const xOf = (v: number) => PAD + (v - min) * STEP
+
+  const ticks: number[] = []
+  for (let v = min; v <= max; v++) ticks.push(v)
+  const hasShade = shadeFrom !== undefined && shadeTo !== undefined
+
+  return (
+    <div className="my-4 overflow-x-auto">
+      <svg width={width} height={height} role="img" aria-label="number line" className="block">
+        <line
+          x1={PAD - 14}
+          y1={AXIS_Y}
+          x2={width - PAD + 14}
+          y2={AXIS_Y}
+          stroke="#888888"
+          strokeWidth={1.5}
+        />
+        <polyline
+          points={`${PAD - 8},${AXIS_Y - 4} ${PAD - 14},${AXIS_Y} ${PAD - 8},${AXIS_Y + 4}`}
+          fill="none"
+          stroke="#888888"
+          strokeWidth={1.5}
+        />
+        <polyline
+          points={`${width - PAD + 8},${AXIS_Y - 4} ${width - PAD + 14},${AXIS_Y} ${width - PAD + 8},${AXIS_Y + 4}`}
+          fill="none"
+          stroke="#888888"
+          strokeWidth={1.5}
+        />
+        {hasShade && (
+          <line
+            x1={xOf(shadeFrom!)}
+            y1={AXIS_Y}
+            x2={xOf(shadeTo!)}
+            y2={AXIS_Y}
+            stroke="#C9A84C"
+            strokeWidth={3}
+          />
+        )}
+        {ticks.map((v) => (
+          <g key={v}>
+            <line
+              x1={xOf(v)}
+              y1={AXIS_Y - 5}
+              x2={xOf(v)}
+              y2={AXIS_Y + 5}
+              stroke="#888888"
+              strokeWidth={1}
+            />
+            <text
+              x={xOf(v)}
+              y={AXIS_Y + 20}
+              textAnchor="middle"
+              fontSize={11}
+              fill="#C0C0C0"
+              fontFamily="monospace"
+            >
+              {v}
+            </text>
+          </g>
+        ))}
+        {hasShade && (
+          <>
+            <circle
+              cx={xOf(shadeFrom!)}
+              cy={AXIS_Y}
+              r={5}
+              fill={closedLeft ? "#C9A84C" : "#0A0A0A"}
+              stroke="#C9A84C"
+              strokeWidth={2}
+            />
+            <circle
+              cx={xOf(shadeTo!)}
+              cy={AXIS_Y}
+              r={5}
+              fill={closedRight ? "#C9A84C" : "#0A0A0A"}
+              stroke="#C9A84C"
+              strokeWidth={2}
+            />
+          </>
+        )}
+        {points.map((p, i) => (
+          <circle
+            key={i}
+            cx={xOf(p.at)}
+            cy={AXIS_Y}
+            r={5}
+            fill={p.closed ? "#C9A84C" : "#0A0A0A"}
+            stroke="#C9A84C"
+            strokeWidth={2}
+          />
+        ))}
+      </svg>
+    </div>
+  )
+}
+
+/**
+ * Renders prompt/option/explanation text. Splits out ```numberline fenced
+ * figures (rendered as SVG) and passes everything else to MarkdownBlock —
+ * react-markdown v10 has no raw-HTML/SVG support, so figures can't live
+ * inside the markdown pipeline.
+ */
+function PromptBlock({ text, className = "" }: { text: string; className?: string }) {
+  if (!text.includes("```numberline")) {
+    return <MarkdownBlock text={text} className={className} />
+  }
+
+  const segments: { type: "md" | "figure"; content: string }[] = []
+  const re = /```numberline\s*\n([\s\S]*?)```/g
+  let lastIndex = 0
+  let m: RegExpExecArray | null
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > lastIndex) {
+      segments.push({ type: "md", content: text.slice(lastIndex, m.index) })
+    }
+    segments.push({ type: "figure", content: m[1] })
+    lastIndex = m.index + m[0].length
+  }
+  if (lastIndex < text.length) {
+    segments.push({ type: "md", content: text.slice(lastIndex) })
+  }
+
+  return (
+    <div className={className}>
+      {segments.map((seg, i) => {
+        if (seg.type === "figure") {
+          const spec = parseNumberLineSpec(seg.content)
+          return spec ? <NumberLine key={i} spec={spec} /> : null
+        }
+        if (!seg.content.trim()) return null
+        return <MarkdownBlock key={i} text={seg.content} />
+      })}
     </div>
   )
 }
