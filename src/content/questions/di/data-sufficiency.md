@@ -321,7 +321,8 @@ If x and y are integers, what is the value of x?
 
 **answer:** C
 **fastest_path:** Value DS — need unique x. (1) leaves multiple (x,y) pairs. (2) bounds x and fixes y but doesn't pin x. Together: y=0 + x<3 + (1) → x=2.
-**explanation:** (1): |x−3|=2y+1 with y a non-negative integer admits multiple x's. Insufficient. (2): x<3 and y=0 — x could be 2,1,0,…. Insufficient. Together: y=0 in (1) → |x−3|=1 → x=2 or 4; (2) restricts x<3 → x=2. Sufficient. Answer C.
+**situation:** For integers x and y, the question asks for the value of x. Statement (1) gives |x − 3| = 2y + 1; statement (2) says x < 3 and y = 0.
+**reasoning:** *Value DS — is x pinned to one number?* Statement (1): |x − 3| = 2y + 1 has many integer (x, y) solutions — insufficient. Statement (2): x < 3 with y = 0 leaves x as any integer below 3 — insufficient. Together: y = 0 turns (1) into |x − 3| = 1, so x = 2 or x = 4, and the restriction x < 3 selects x = 2 — sufficient, so the answer is C. Remember |expr| = k yields two candidates; the inequality is what picks between them.
 **mistake_a:** A requires (1) alone sufficient — multiple (x,y) pairs.
 **mistake_b:** B requires (2) alone sufficient — x not uniquely fixed.
 **mistake_d:** D requires each alone — neither works.
@@ -350,7 +351,8 @@ If p and q are positive integers and pq = 36, is p + q > 13?
 
 **answer:** E
 **fastest_path:** Yes/no DS on p+q>13. List factor pairs of 36, then test each statement (and combined) for *both* yes and no answers. Both possible → insufficient.
-**explanation:** Factor pairs of 36: (1,36),(2,18),(3,12),(4,9),(6,6),(9,4),(12,3),(18,2),(36,1). (1) p perfect square: (1,36)→37 yes, (4,9)→13 no, split. (2) q<p: (9,4)→13 no, (12,3)→15 yes, split. Together (perfect square AND q<p): (9,4)→13 no, (36,1)→37 yes. Still split. Answer E.
+**situation:** For positive integers with pq = 36, the question asks whether p + q > 13. Statement (1) says p is a perfect square; statement (2) says q < p.
+**reasoning:** *Yes/no DS — list the factor pairs of 36 and test each statement for both answers.* Statement (1) p a perfect square: (1, 36) → 37 (yes) vs (4, 9) → 13 (no) — split, insufficient. Statement (2) q < p: (12, 3) → 15 (yes) vs (9, 4) → 13 (no) — split, insufficient. Together (perfect-square p and q < p): (36, 1) → 37 (yes) vs (9, 4) → 13 (no) — still split, so the answer is E. Watch the boundary: p + q = 13 is not greater than 13, and (9, 4) hits it exactly.
 **mistake_a:** A requires (1) alone sufficient — yes/no split shown.
 **mistake_b:** B requires (2) alone sufficient — same split.
 **mistake_c:** C says together sufficient — but split persists (p=9,q=4 vs p=36,q=1).
@@ -379,7 +381,8 @@ In a company, 60% of employees are full-time. Did the total number of employees 
 
 **answer:** C
 **fastest_path:** Last year: 0.6T full + 0.4T part. (1) gives only FT change. (2) gives only PT change. Together: this year = 1.1(0.6T) + 0.95(0.4T) = 1.04T > T. Yes.
-**explanation:** Let T = last year's total. (1): FT this year = 1.1·0.6T = 0.66T, but PT unknown → total unknown. (2): PT this year = 0.95·0.4T = 0.38T, but FT unknown. Together: 0.66T + 0.38T = 1.04T > T → total increased. Sufficient. Answer C.
+**situation:** Last year 60% of employees were full-time; the question asks whether this year's total exceeds last year's. Statement (1): full-time rose 10%; statement (2): part-time fell 5%.
+**reasoning:** *Yes/no DS on the total — let last year's total be T (0.6T full-time, 0.4T part-time).* Statement (1) gives this year's full-time as 1.1·0.6T = 0.66T but leaves part-time unknown — insufficient. Statement (2) gives part-time as 0.95·0.4T = 0.38T but leaves full-time unknown — insufficient. Together: 0.66T + 0.38T = 1.04T > T, so the total increased — sufficient, answer C. Note the 60% split is *last year's*; this year's split could differ.
 **mistake_a:** A requires (1) alone sufficient — FT alone doesn't determine total.
 **mistake_b:** B requires (2) alone sufficient — PT alone doesn't either.
 **mistake_d:** D requires each alone — neither works.
@@ -408,7 +411,8 @@ Three partners -- F, G, and H -- split a profit in the ratio of their investment
 
 **answer:** C
 **fastest_path:** H's fraction = h / total. Each statement gives one piece (h or total). Together: 40,000 / 140,000 = 2/7.
-**explanation:** Let G=g, F=2g, H=h. Total = 3g+h. H's share = h/(3g+h). (1): h=$40K, no g. (2): 3g+h=$140K, no h. Together: 40K/140K = 2/7. Sufficient. Answer C.
+**situation:** F, G, and H split profit by investment with F = 2G; the question asks H's fraction of the total. Statement (1): H invested $40,000; statement (2): the three invested $140,000 in total.
+**reasoning:** *Value DS — H's fraction is h/total, so we need the part and the whole.* Writing G = g, F = 2g, H = h, the share is h/(3g + h). Statement (1) gives h = $40K but not the total — insufficient. Statement (2) gives the total $140K but not h — insufficient. Together: 40,000 / 140,000 = 2/7 — sufficient, answer C. The F = 2G ratio fixes F and G relative to each other but says nothing about H, which needs its own data.
 **mistake_a:** A requires (1) alone sufficient — without g (or total), can't compute fraction.
 **mistake_b:** B requires (2) alone sufficient — without h, can't compute fraction.
 **mistake_d:** D requires each alone — neither has both pieces.
@@ -437,7 +441,8 @@ A data set contains eight positive numbers. Is the standard deviation of the dat
 
 **answer:** A
 **fastest_path:** Yes/no DS on SD>5. Range 4 caps SD at ≤ range/2 = 2 < 5. Definite "no" → (1) sufficient.
-**explanation:** (1): Range = 4 ⟹ SD ≤ range/2 = 2 < 5. Definite no. Sufficient. (2): Mean = 50 says nothing about spread — values could be all 50 (SD 0) or spread widely (SD > 5). Insufficient. Answer A.
+**situation:** Eight positive numbers; the question asks whether the standard deviation exceeds 5. Statement (1): the range is 4; statement (2): the mean is 50.
+**reasoning:** *Yes/no DS on spread — recall SD ≤ range/2.* Statement (1): range = 4 forces SD ≤ 2 < 5, a definite no — sufficient. Statement (2): the mean says nothing about spread (all values could equal 50, SD 0, or be widely spread, SD > 5) — insufficient. Since (1) alone gives a definite answer, the answer is A. A confident "no" is just as sufficient as a confident "yes."
 **mistake_b:** B requires (2) alone sufficient — but mean is silent on SD.
 **mistake_c:** C-trap — adding (2) doesn't help; (1) alone gives a definitive no.
 **mistake_d:** D requires each alone — (2) fails.
@@ -466,7 +471,8 @@ If n is a positive integer, is n odd?
 
 **answer:** D
 **fastest_path:** Yes/no DS — each statement alone forces n odd. (1) 3n odd ⟹ n odd (3 is odd, odd·even=even). (2) n+4 odd ⟹ n odd (even+even=even). D.
-**explanation:** (1): 3n odd. Since 3 is odd, 3n's parity = n's parity. So n is odd. Sufficient (yes). (2): n+4 odd, 4 is even, so n must be odd. Sufficient (yes). Each alone settles it. Answer D.
+**situation:** For positive integer n, the question asks whether n is odd. Statement (1): 3n is odd; statement (2): n + 4 is odd.
+**reasoning:** *Yes/no DS on parity — does each statement fix n's parity?* Statement (1): 3 is odd, so 3n has the same parity as n, and 3n odd forces n odd — sufficient. Statement (2): 4 is even, so n + 4 has n's parity, and n + 4 odd forces n odd — sufficient. Each statement alone settles it, so the answer is D. Parity propagates through addition and odd-multiplication; test each statement alone before reaching for C.
 **mistake_a:** A requires only (1) sufficient — but (2) also pins n as odd.
 **mistake_b:** B requires only (2) sufficient — but (1) also does.
 **mistake_c:** *C-trap* — combining is unnecessary; each alone solves.
@@ -495,7 +501,8 @@ What is the value of x?
 
 **answer:** C
 **fastest_path:** One equation in two unknowns is rarely sufficient. (2) gives y. Sub: 2x+9=17 → x=4.
-**explanation:** (1): 2x+3y=17 alone — infinite (x,y) pairs. (2): y=3 alone — x unconstrained. Together: 2x+9=17 → x=4. Sufficient. Answer C.
+**situation:** The question asks for the value of x. Statement (1): 2x + 3y = 17; statement (2): y = 3.
+**reasoning:** *Value DS — count independent equations against unknowns.* Statement (1) is one equation in two unknowns, with infinitely many (x, y) pairs — insufficient. Statement (2) fixes y but says nothing about x alone — insufficient. Together: substitute y = 3 to get 2x + 9 = 17, so x = 4 — sufficient, answer C. Two independent equations in two unknowns almost always pin a unique solution.
 **mistake_a:** A requires (1) alone sufficient — but two unknowns, one equation.
 **mistake_b:** B requires (2) alone sufficient — y alone says nothing about x.
 **mistake_d:** D requires each alone — neither has both pieces.
