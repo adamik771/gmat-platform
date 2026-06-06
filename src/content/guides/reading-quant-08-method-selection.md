@@ -222,6 +222,6 @@ If you missed any, re-read the relevant section and test yourself in three days.
 
 ## Connection to other skills
 
-Method selection is the spine of the Quant section. Every prior chapter assumes the protocol introduced here. *The Quant Mindset* (Chapter 1.1) is the introduction; *Arithmetic Foundations* (Chapter 1.2) is the engine that lets every method deploy fast; *Number Properties*, *Algebra*, *Word Problems*, *Statistics*, and *Geometry* (Chapters 1.3 to 1.7) are the content surfaces on which the methods operate.
+Method selection is the spine of the Quant section. Every prior chapter assumes the protocol introduced here. *The Quant Mindset* (Chapter 1.1) is the introduction; *Arithmetic Foundations* (Chapter 1.2) is the engine that lets every method deploy fast; *Number Properties*, *Algebra*, *Word Problems*, and *Statistics* (Chapters 1.3 to 1.6) are the content surfaces on which the methods operate.
 
 The cross-section connection: method selection in DI is *which approach to take* given a tab structure (read everything? scan first? jump to the question?). In Verbal, it's *which elimination strategy* to use given the question type (pre-think and match? eliminate aggressively? compare two finalists?). The skill of *choosing the approach before executing it* is one skill across all three sections. Quant is its most explicit instance because the methods are most clearly defined; the same discipline transfers throughout.

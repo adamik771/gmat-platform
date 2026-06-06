@@ -32,7 +32,7 @@ Here is the day-by-day structure. Treat it as a scaffold, not a prison. If life 
 
 ### Day -6: Mock Analysis, No New Material
 - Spend 60 to 90 minutes on the mock. Categorize every miss: content gap, strategy error, careless error, or timing error.
-- Identify 2 to 3 patterns — not 10. If your DS on weighted averages broke twice, that is a pattern. If you missed one geometry question, that is noise.
+- Identify 2 to 3 patterns — not 10. If your DS on weighted averages broke twice, that is a pattern. If you missed one careless arithmetic question, that is noise.
 - Write the patterns down. These are what you drill tomorrow. Everything else you leave alone.
 - Rationale: you are compressing the mock into a short, specific to-do list. Breadth is your enemy this week.
 

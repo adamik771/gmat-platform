@@ -9,9 +9,9 @@ type: reading
 
 ## Core idea
 
-GMAT Quant is not a math test. It is a *method-selection test* that uses math as its medium. The content floor is high-school algebra, a thin slice of geometry, and a small set of number-property and statistics rules. Above that floor — which most serious test-takers reach within four to six weeks of prep — every additional point comes from one habit: scanning the problem and the answer choices for ten to twenty seconds before computing, and picking the method that the problem rewards rather than the first method that comes to mind.
+GMAT Quant is not a math test. It is a *method-selection test* that uses math as its medium. The content floor is high-school algebra, a thin slice of coordinate geometry, and a small set of number-property and statistics rules. Above that floor — which most serious test-takers reach within four to six weeks of prep — every additional point comes from one habit: scanning the problem and the answer choices for ten to twenty seconds before computing, and picking the method that the problem rewards rather than the first method that comes to mind.
 
-That single habit is what this chapter teaches. Everything else in the Quant curriculum — the algebra, the number properties, the word problems, the geometry — assumes you have it. Without it, every other chapter teaches you content that you will then deploy with the wrong method under time pressure. With it, the same content compounds.
+That single habit is what this chapter teaches. Everything else in the Quant curriculum — the algebra, the number properties, the word problems, the statistics — assumes you have it. Without it, every other chapter teaches you content that you will then deploy with the wrong method under time pressure. With it, the same content compounds.
 
 ### Quick check
 
@@ -135,7 +135,7 @@ How do you know which tool to pick? The problem and the answer choices tell you,
 
 Read the *answer choices first*. This will feel wrong because it is the opposite of how every math class taught you to read a problem. Do it anyway. The answer choices are diagnostic. Numeric, spread far apart? Estimation is in play. Numeric, close together? Direct calculation. Variable expressions with no constraints on the variable? Test cases. Five clean numbers between 1 and 50? Backsolving is on the table.
 
-Read the *problem second*, looking specifically for three things. *Shape* — is this an algebra problem, a number-property problem, a word problem with a hidden equation, a geometry problem? *Constraint* — does it specify "positive integer," "distinct," "greater than," or any other condition that narrows the solution set? *Variable count* — how many unknowns are introduced, and are they connected by enough equations to solve directly? Three unknowns with two equations almost always means the problem is asking for a relationship, not a value.
+Read the *problem second*, looking specifically for three things. *Shape* — is this an algebra problem, a number-property problem, a word problem with a hidden equation, a coordinate-plane problem? *Constraint* — does it specify "positive integer," "distinct," "greater than," or any other condition that narrows the solution set? *Variable count* — how many unknowns are introduced, and are they connected by enough equations to solve directly? Three unknowns with two equations almost always means the problem is asking for a relationship, not a value.
 
 Then *pick your tool*. If you cannot decide between two, default to the simpler one. If estimation will produce the answer, do not do algebra. If backsolving is faster than algebra, do not do algebra. Algebra is the most-overused tool on the GMAT. It is the right tool for many problems and the wrong tool for many others. Knowing the difference is the skill.
 

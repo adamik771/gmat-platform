@@ -25,7 +25,7 @@ Let's go.
 
 ## What Quant actually measures
 
-The surface of GMAT Quant is familiar. Algebra, arithmetic, number properties, a thin slice of geometry and coordinate geometry, statistics, probability, a few word problems. No trigonometry. No calculus. No matrices. The raw mathematical content is what a strong high school student knows, plus a few recognition patterns. Any adult who took algebra II and remembers it reasonably well has the content floor.
+The surface of GMAT Quant is familiar. Algebra, arithmetic, number properties, a thin slice of coordinate geometry, statistics, probability, a few word problems. No plane geometry (the Focus Edition removed it), no trigonometry, no calculus, no matrices. The raw mathematical content is what a strong high school student knows, plus a few recognition patterns. Any adult who took algebra II and remembers it reasonably well has the content floor.
 
 What Quant *actually* measures is layered on top of that floor and has almost nothing to do with more math. It measures three things, in this order of importance above the 70th percentile.
 
@@ -49,7 +49,7 @@ Before you compute anything, spend thirty seconds reading the problem, the answe
 
 The scan has four questions. Run them in order, every time, on every problem, until they are automatic.
 
-*What is the shape of the problem?* Word problem with a story, algebra manipulation with variables, number property with integer constraints, geometry with a figure, probability with a scenario, statistics with a list, rates with movement, mixture with concentrations. Name the shape in three words. This narrows method candidates immediately. A number property problem with "positive integers" in the stem rarely wants algebra — it wants test cases or divisibility logic. A geometry problem with a figure wants you to label the figure before anything else. Naming the shape lets your brain reach for the right drawer.
+*What is the shape of the problem?* Word problem with a story, algebra manipulation with variables, number property with integer constraints, coordinate setup on the xy-plane, probability with a scenario, statistics with a list, rates with movement, mixture with concentrations. Name the shape in three words. This narrows method candidates immediately. A number property problem with "positive integers" in the stem rarely wants algebra — it wants test cases or divisibility logic. A coordinate-plane problem wants you to write down the relevant formula — distance, slope, or midpoint — before anything else. Naming the shape lets your brain reach for the right drawer.
 
 *What is the variable landscape?* How many unknowns, how constrained are they, and what are the answer choices telling you? One unknown with numeric answer choices is usually a backsolve candidate. One unknown with algebraic answer choices (x+3, 2x−1, etc.) is usually a test-cases candidate. Two unknowns with a clean relationship is usually straight algebra. Three or more unknowns with nothing obviously linking them is usually a signal you are reading the problem wrong and there is a shortcut you are missing. Count the unknowns explicitly.
 
@@ -783,17 +783,17 @@ The GMAT reuses a finite library of traps. If you know the library, you stop fal
 
 *40. Missing the implicit "between" in "how many integers between."* "How many integers between 1 and 10" usually means exclusive (not including 1 or 10), but sometimes inclusive. Reread.
 
-### Geometry and coordinate traps
+### Coordinate-plane traps
 
-*41. Assuming a figure is drawn to scale.* GMAT figures often aren't. Don't measure — use the given values.
+*41. Reversing the slope formula.* Slope is Δy/Δx — the change in y over the change in x. Flipping it to Δx/Δy is a classic slip.
 
 *42. Misidentifying the slope of a perpendicular.* Perpendicular to slope 2/3 is slope −3/2, the negative reciprocal.
 
 *43. Forgetting the ± in distance-squared equations.* Solving d² = 25 gives d = 5 (distances are non-negative by convention), not d = ±5.
 
-*44. Confusing circumference and area of a circle.* Circumference is 2πr. Area is πr². They're different.
+*44. Treating a vertical line as slope zero.* A vertical line has undefined slope; a horizontal line has slope zero. Don't swap them.
 
-*45. Assuming a triangle is right when no right angle is given.* Triangles can have all kinds of angles. Don't apply Pythagoras unless you're sure it's a right triangle.
+*45. Misreading the order of an (x, y) pair.* The first coordinate is x, the second is y. Plotting (3, 1) as if it were (1, 3) corrupts every downstream calculation.
 
 ### Statistics and probability traps
 

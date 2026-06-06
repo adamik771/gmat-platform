@@ -496,35 +496,6 @@ What is the value of x?
 
 ---
 
-## Q18
-**difficulty:** Easy
-**type:** Data Sufficiency
-**topic:** Geometry
-
-What is the area of rectangle ABCD?
-
-(1) The length of diagonal AC is 10.
-(2) The perimeter of ABCD is 28.
-
-- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
-- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
-- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
-- D) EACH statement ALONE is sufficient.
-- E) Statements (1) and (2) TOGETHER are NOT sufficient.
-
-**answer:** C
-**fastest_path:** Area = LW. (1) gives L²+W²=100; (2) gives L+W=14. Use (L+W)² = L²+W² + 2LW: 196=100+2LW → LW=48.
-**explanation:** (1): L²+W²=100. Many (L,W) pairs (6,8 → 48; 7.07,7.07 → 50). Insufficient. (2): L+W=14. 7×7=49 vs 6×8=48. Insufficient. Together: (L+W)²−(L²+W²) = 2LW → 196−100 = 2LW → LW=48. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but L²+W²=100 has many area outcomes.
-**mistake_b:** B requires (2) alone sufficient — same issue with L+W=14.
-**mistake_d:** D requires each alone — neither works.
-**mistake_e:** E says together insufficient — but the algebraic identity nails LW.
-**common_trap:** Trying to solve for L and W individually. You don't need them — you need *LW*, which the (L+W)² identity reveals directly.
-**takeaway:** Geometry/algebra DS: when the question is about a *product* (area, LW), look for the identity (L+W)² = L²+2LW+W². You rarely need L,W separately.
-**related_reading:** reading-di-02-data-sufficiency-logic
-
----
-
 ## Q19
 **difficulty:** Easy
 **type:** Data Sufficiency
@@ -699,35 +670,6 @@ If a, b, and c are real numbers, what is the value of a + b + c?
 
 ---
 
-## Q25
-**difficulty:** Medium
-**type:** Data Sufficiency
-**topic:** Geometry
-
-In triangle ABC, what is the measure of angle A?
-
-(1) Angle B = 70 degrees.
-(2) Triangle ABC is isosceles.
-
-- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
-- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
-- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
-- D) EACH statement ALONE is sufficient.
-- E) Statements (1) and (2) TOGETHER are NOT sufficient.
-
-**answer:** E
-**fastest_path:** Yes triangle isosceles + B=70, but *which* pair is equal? A=70 (if A=B), or A=40 (if B=C), or A=55 (if A=C). Three cases. Insufficient.
-**explanation:** (1): B=70, A+C=110 — many splits. Insufficient. (2): Isosceles, but which pair equal? Insufficient. Together: B=70 and isosceles, three cases — A=B=70 → A=70; B=C=70 → A=40; A=C, both =55. Three values for A. Insufficient. Answer E.
-**mistake_a:** A requires (1) alone sufficient — A+C=110 has many splits.
-**mistake_b:** B requires (2) alone sufficient — pair unspecified.
-**mistake_c:** *C-to-E trap* — adding the isosceles constraint *doesn't* pin down which pair is equal.
-**mistake_d:** D requires each alone — neither works.
-**common_trap:** *C-to-E trap*: students see "B=70 + isosceles" and assume it must work. But "isosceles" gives a *family* of three configurations, not a unique angle.
-**takeaway:** Triangle DS with "isosceles": always count *which pair* is equal. The vertex of isosceles is ambiguous unless specified.
-**related_reading:** reading-di-02-data-sufficiency-logic
-
----
-
 ## Q26
 **difficulty:** Medium
 **type:** Data Sufficiency
@@ -815,35 +757,6 @@ If x is a positive integer, is x prime?
 
 ---
 
-## Q29
-**difficulty:** Hard
-**type:** Data Sufficiency
-**topic:** Geometry
-
-A circle is inscribed in square ABCD. What is the area of the circle?
-
-(1) The diagonal of square ABCD is 10 √2.
-(2) The area of the region inside the square but outside the circle is 100 - 25π.
-
-- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
-- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
-- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
-- D) EACH statement ALONE is sufficient.
-- E) Statements (1) and (2) TOGETHER are NOT sufficient.
-
-**answer:** D
-**fastest_path:** Inscribed circle: diameter = side. (1) diag=10√2 ⟹ side=10 ⟹ r=5, area=25π. (2) outside-region match gives s=10. Each alone works.
-**explanation:** Inscribed circle's diameter = square's side. (1): diag=10√2 ⟹ side=10 ⟹ r=5 ⟹ area=25π. Sufficient. (2): region outside = s²−π(s/2)² = s²(1−π/4) = 100−25π ⟹ s=10 ⟹ r=5 ⟹ area=25π. Sufficient. Each alone works. Answer D.
-**mistake_a:** A requires only (1) sufficient — but (2) also pins down area.
-**mistake_b:** B requires only (2) sufficient — but (1) also does.
-**mistake_c:** *C-trap*: combining is unnecessary — each statement alone gives s=10.
-**mistake_e:** E says together insufficient — but each alone works.
-**common_trap:** *D-as-C-trap* in geometry: when both statements lead to the same calculation, students reach for C "for safety." Each alone solves.
-**takeaway:** Inscribed-circle geometry: side = diameter. Either side info or area-relationship info alone fixes the figure.
-**related_reading:** reading-di-02-data-sufficiency-logic
-
----
-
 ## Q30
 **difficulty:** Hard
 **type:** Data Sufficiency
@@ -869,35 +782,6 @@ If a, b, and c are nonzero integers, is abc > 0?
 **mistake_e:** E says together insufficient — but (1) + (2) excludes all-neg.
 **common_trap:** Stopping at (1) once you get "same sign." That's only a *yes* if signs are positive. Need (2) to exclude all-negative.
 **takeaway:** Sign-product DS: count negatives. abc>0 = 0 or 2 negatives. Same-sign info alone fails because "all negative" is also same-sign.
-**related_reading:** reading-di-02-data-sufficiency-logic
-
----
-
-## Q31
-**difficulty:** Easy
-**type:** Data Sufficiency
-**topic:** Geometry
-
-In triangle PQR, what is the measure of angle P?
-
-(1) Angle Q = 70 degrees.
-(2) Angle R = 55 degrees.
-
-- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
-- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
-- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
-- D) EACH statement ALONE is sufficient.
-- E) Statements (1) and (2) TOGETHER are NOT sufficient.
-
-**answer:** C
-**fastest_path:** Triangle angles sum to 180. Need two angles to find the third. Each statement gives one. Together: P = 180−70−55 = 55.
-**explanation:** P+Q+R=180. (1) Q=70 alone leaves P+R=110, P unknown. (2) R=55 alone leaves P+Q=125, P unknown. Together: P=180−70−55=55. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — only one angle given.
-**mistake_b:** B requires (2) alone sufficient — same.
-**mistake_d:** D requires each alone — neither has two angles.
-**mistake_e:** E says together insufficient — but two angles uniquely fix the third.
-**common_trap:** Treating one angle as enough. Triangle DS for a specific angle needs *two* of the three.
-**takeaway:** Triangle DS: angle sum = 180 means n−1 angles fix the nth. Always count which angles are pinned.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -992,7 +876,7 @@ What is the value of |k - 3|?
 ## Q35
 **difficulty:** Medium
 **type:** Data Sufficiency
-**topic:** Geometry
+**topic:** Coordinate Geometry
 
 In the xy-plane, line L passes through the points (2, 5) and (a, b). What is the value of b?
 
@@ -1163,35 +1047,6 @@ At a conference of 80 attendees, each person drinks coffee, tea, or both. How ma
 
 ---
 
-## Q41
-**difficulty:** Medium
-**type:** Data Sufficiency
-**topic:** Geometry
-
-A rectangle has area 48. What is its perimeter?
-
-(1) The length is 3 times the width.
-(2) The length and width are both integers.
-
-- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
-- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
-- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
-- D) EACH statement ALONE is sufficient.
-- E) Statements (1) and (2) TOGETHER are NOT sufficient.
-
-**answer:** A
-**fastest_path:** (1) L=3W and LW=48 → W=4, L=12 → perimeter 32. (2) integer pairs (1,48),(2,24),…(6,8) give different perimeters. A.
-**explanation:** (1): L=3W with LW=48 → 3W²=48 → W=4, L=12 → P=32. Sufficient. (2): integer pairs with product 48 yield perimeters 98, 52, 38, 32, 28 — all different. Insufficient. Answer A.
-**mistake_b:** B requires (2) alone sufficient — but multiple integer pairs.
-**mistake_c:** C-trap — adding (2) doesn't help; (1) already pins it.
-**mistake_d:** D requires each alone — (2) fails.
-**mistake_e:** E says together insufficient — but (1) alone solves.
-**common_trap:** Picking C because integer constraint *seems* to help. But fixed area + integer dimensions still permits many factor pairs; you need the *specific* shape constraint from (1).
-**takeaway:** Rectangle-perimeter DS with fixed area: shape constraint (length-to-width ratio) is the deterministic lever. Integer constraint alone permits many pairs.
-**related_reading:** reading-di-02-data-sufficiency-logic
-
----
-
 ## Q42
 **difficulty:** Medium
 **type:** Data Sufficiency
@@ -1253,7 +1108,7 @@ The sequence s_1, s_2, s_3, ... is defined by s_n = s_(n-1) + s_(n-2) for all n 
 ## Q44
 **difficulty:** Hard
 **type:** Data Sufficiency
-**topic:** Geometry
+**topic:** Coordinate Geometry
 
 In the xy-plane, the circle C has center (h, k) and radius r. Does the point (3, 4) lie inside circle C?
 
@@ -1339,35 +1194,6 @@ At a factory, machine X and machine Y each produce parts at constant but differe
 
 ---
 
-## Q47
-**difficulty:** Easy
-**type:** Data Sufficiency
-**topic:** Geometry — Triangle Area
-
-In a plane, triangle ABC has vertices A, B, and C. What is the area of triangle ABC?
-
-(1) The length of side BC is 10 units.
-(2) The perpendicular distance from vertex A to line BC is 6 units.
-
-- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
-- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
-- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
-- D) EACH statement ALONE is sufficient.
-- E) Statements (1) and (2) TOGETHER are NOT sufficient.
-
-**answer:** C
-**fastest_path:** Triangle area = (1/2)·base·height. (1) gives base; (2) gives height. Together: (1/2)(10)(6)=30.
-**explanation:** Area formula needs base AND height. (1): base=10 only. (2): height=6 only. Together: area=30. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but no height.
-**mistake_b:** B requires (2) alone sufficient — but no base.
-**mistake_d:** D requires each alone — neither has both.
-**mistake_e:** E says together insufficient — but base × height = area.
-**common_trap:** Imagining a specific triangle shape from one piece of info. DS is about *unique determination*, not shape inference.
-**takeaway:** Triangle-area DS: base AND perpendicular height to that base. Two-piece formula = standard C.
-**related_reading:** reading-di-02-data-sufficiency-logic
-
----
-
 ## Q48
 **difficulty:** Hard
 **type:** Data Sufficiency
@@ -1428,65 +1254,6 @@ Is the positive integer n divisible by 12?
 
 ---
 
-## Q50
-**difficulty:** Medium
-**type:** Data Sufficiency
-**topic:** Right Triangle — Missing Leg
-
-In right triangle ABC, angle C is the right angle and side AB is the hypotenuse. What is the length of side BC?
-
-(1) AB = 13.
-(2) AC = 5.
-
-- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
-- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
-- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
-- D) EACH statement ALONE is sufficient.
-- E) Statements (1) and (2) TOGETHER are NOT sufficient.
-
-**answer:** C
-**fastest_path:** Right triangle with hypotenuse: BC² = AB² − AC². (1) gives AB; (2) gives AC. Together: 5-12-13 triple → BC=12.
-**explanation:** Right angle at C → AB hypotenuse. Pythagorean: BC² = AB² − AC² = 169 − 25 = 144 → BC=12. (1) alone: only AB. (2) alone: only AC. Together: BC=12. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — one side doesn't fix the other.
-**mistake_b:** B requires (2) alone sufficient — same.
-**mistake_d:** D requires each alone — neither does.
-**mistake_e:** E says together insufficient — but Pythagoras solves uniquely.
-**common_trap:** Recognizing 5-12-13 from one number alone. But DS is about *unique determination*; you need both to lock it.
-**takeaway:** Right-triangle DS: the Pythagorean triple needs *two* sides to fix the third. Standard C answer for missing-leg questions.
-**related_reading:** reading-di-02-data-sufficiency-logic
-
----
-
-## Q51
-**difficulty:** Medium
-**type:** Data Sufficiency
-**topic:** Parallel Lines and Transversals
-
-In a plane, two distinct lines l and m are cut by a transversal t. Are lines l and m parallel?
-
-(1) Two corresponding angles formed by the transversal are equal in measure.
-(2) The transversal t is perpendicular to both line l and line m.
-
-- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
-- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
-- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
-- D) EACH statement ALONE is sufficient.
-- E) Statements (1) and (2) TOGETHER are NOT sufficient.
-
-**answer:** D
-**fastest_path:** Each statement is a *standard parallel-line theorem*. (1) equal corresponding angles ⟺ parallel. (2) common perpendicular ⟺ parallel. D.
-**explanation:** (1): Converse of corresponding-angles postulate — equal corresponding angles ⟹ l ∥ m. Sufficient. (2): A transversal perpendicular to both lines forces parallel (Euclidean). Sufficient. Each alone solves. Answer D.
-**mistake_a:** A requires only (1) sufficient — but (2) also solves.
-**mistake_b:** B requires only (2) sufficient — but (1) also does.
-**mistake_c:** C-trap — combining is unnecessary; each alone is a parallel theorem.
-**mistake_e:** E says together insufficient — both alone solve.
-**common_trap:** *C-trap on geometry theorems*: each piece of geometric info is often a *standalone* sufficiency criterion. Don't combine reflexively.
-**takeaway:** Parallel-line DS: equal corresponding angles, equal alternate interior angles, common perpendicular — each is *independently* sufficient.
-**related_reading:** reading-di-02-data-sufficiency-logic
-
-
----
-
 ## Q52
 **difficulty:** Medium
 **type:** Data Sufficiency
@@ -1541,66 +1308,6 @@ In a class of 30 students, the ratio of boys to girls is 3 to 2. How many boys s
 **mistake_d:** D requires each alone — neither does.
 **common_trap:** Picking C because "everything seems specified" — but the *gender breakdown of the 14* is the missing piece that no statement supplies.
 **takeaway:** When the question asks for one *subgroup's* count, beware: aggregate counts + ratios don't determine subgroup-by-criterion splits. The criterion (here: above-mean) is independent of the demographic.
-**related_reading:** reading-di-02-data-sufficiency-logic
-
-
----
-
-## Q54
-**difficulty:** Hard
-**type:** Data Sufficiency
-**topic:** Triangle Area — Two Sides and the Angle Between Them
-
-What is the area of triangle ABC?
-
-(1) AB = 8 and AC = 6.
-(2) Angle BAC = 90°.
-
-- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
-- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
-- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
-- D) EACH statement ALONE is sufficient.
-- E) Statements (1) and (2) TOGETHER are NOT sufficient.
-
-**answer:** C
-**fastest_path:** Triangle area = (1/2)·a·b·sin(angle between them). (1) gives two sides; (2) gives the angle. Together: (1/2)(8)(6)(1)=24.
-**explanation:** Area = (1/2)·AB·AC·sin(∠BAC). (1): AB=8, AC=6 — no angle, area not determined. Insufficient. (2): ∠BAC=90° — no sides. Insufficient. Together: area = (1/2)(8)(6)(sin 90°) = 24. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but area depends on angle.
-**mistake_b:** B requires (2) alone sufficient — but no sides given.
-**mistake_d:** D requires each alone — neither has both pieces.
-**mistake_e:** E says together insufficient — but two-sides + included-angle is the SAS area formula.
-**common_trap:** Forgetting that triangle area requires *side, side, and the included angle* (or base and height). Two sides without the angle aren't enough.
-**takeaway:** Triangle-area DS via SAS: (1/2)·a·b·sin(C). When C=90°, sin=1, formula reduces to (1/2)·a·b — the right-triangle case.
-**related_reading:** reading-di-02-data-sufficiency-logic
-
-
----
-
-## Q55
-**difficulty:** Medium
-**type:** Data Sufficiency
-**topic:** Rectangle Area — Given Perimeter and One Dimension
-
-A rectangle has perimeter P and area A. What is the value of A?
-
-(1) The rectangle's perimeter is 28.
-(2) The rectangle's length is 3 times its width.
-
-- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
-- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
-- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
-- D) EACH statement ALONE is sufficient.
-- E) Statements (1) and (2) TOGETHER are NOT sufficient.
-
-**answer:** C
-**fastest_path:** Need l+w (perimeter) AND l/w ratio. (1) gives l+w=14. (2) gives l=3w. Solve: w=3.5, l=10.5, area=36.75.
-**explanation:** (1): 2(l+w)=28 → l+w=14. Area=lw varies with split. Insufficient. (2): l=3w. Ratio without scalar — area=3w² unknown. Insufficient. Together: l+w=14 and l=3w → 4w=14 → w=3.5, l=10.5, area=36.75. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — perimeter doesn't fix area.
-**mistake_b:** B requires (2) alone sufficient — ratio without anchor.
-**mistake_d:** D requires each alone — neither does.
-**mistake_e:** E says together insufficient — but two equations in two unknowns solve.
-**common_trap:** Believing perimeter pins down area. Same perimeter (28) with different splits gives areas from near-zero to 49 (square).
-**takeaway:** Rectangle DS: perimeter alone never fixes area. Need *another* dimension or shape constraint (ratio).
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 

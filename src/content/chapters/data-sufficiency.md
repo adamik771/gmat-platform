@@ -57,7 +57,7 @@ sections:
 
   - id: topic-specific-patterns
     type: reading
-    title: "Topic-specific patterns — equations, inequalities, geometry, stats"
+    title: "Topic-specific patterns — equations, inequalities, stats"
     check_question_ids:
       - data-sufficiency-q17
       - data-sufficiency-q20
@@ -83,9 +83,7 @@ problem_sets:
       - data-sufficiency-q5
       - data-sufficiency-q16
       - data-sufficiency-q17
-      - data-sufficiency-q18
       - data-sufficiency-q19
-      - data-sufficiency-q31
       - data-sufficiency-q32
       - data-sufficiency-q33
       - data-sufficiency-q34
@@ -106,7 +104,6 @@ problem_sets:
       - data-sufficiency-q22
       - data-sufficiency-q23
       - data-sufficiency-q24
-      - data-sufficiency-q25
       - data-sufficiency-q26
       - data-sufficiency-q27
       - data-sufficiency-q35
@@ -115,7 +112,6 @@ problem_sets:
       - data-sufficiency-q38
       - data-sufficiency-q39
       - data-sufficiency-q40
-      - data-sufficiency-q41
       - data-sufficiency-q42
   hard:
     target_accuracy_by_score:
@@ -130,7 +126,6 @@ problem_sets:
       - data-sufficiency-q14
       - data-sufficiency-q15
       - data-sufficiency-q28
-      - data-sufficiency-q29
       - data-sufficiency-q30
       - data-sufficiency-q43
       - data-sufficiency-q44
@@ -223,7 +218,7 @@ A number's square is odd if and only if the number itself is odd. Rephrase: "Is 
 
 From statement: (x + y)² = (x - y)² + 4xy = 16 + 20 = 36, so x + y = ±6. That's two possible values → **not sufficient**. But notice you didn't have to solve for x and y individually — you used the algebraic identity to get to x + y directly.
 
-**Rephrasing geometry questions.** "Is triangle ABC isosceles?" Rephrase to "Does triangle ABC have at least two equal sides, OR equivalently, at least two equal angles?" The "or equivalently" form often lets you use statements about angles instead of sides (or vice versa).
+**Rephrasing divisibility questions.** "Is n divisible by 12?" Rephrase to "Is n divisible by 4 AND by 3?" Splitting a composite divisor into its prime-power factors often lets a statement about one factor settle part of the question — and shows you exactly what's still missing.
 
 **Rephrasing inequality questions.** "Is x > y?" often rephrases to "Is x - y > 0?" — now statements that give you info about "x - y" (like "x² > y²" or "x + y > 0") become relevant.
 
@@ -390,15 +385,15 @@ A student who's already read (2) sees Statement (1) and thinks "x is a positive 
 
 The cure: **mentally reset to "stem only" before each statement test.** Some students literally cover Statement (2) with a finger when working on Statement (1). The discipline matters more than the technique.
 
-**Trap 2: Figure-not-to-scale on geometry DS.**
+**Trap 2: Reading a definite "no" as insufficient on yes/no DS.**
 
-GMAT DS geometry figures are *illustrative*, not metric. The figure may show what looks like a right triangle, equal sides, parallel lines, or a square — but unless the problem text says so, none of it is given. Inferring properties from how the figure looks is a guaranteed wrong answer on hard geometry DS.
+On yes/no DS, a statement is sufficient when it forces a *definite* answer — and a reliable "no" counts exactly as much as a reliable "yes." Students reflexively treat "the answer is no" as a failure and call the statement insufficient.
 
-*Example.* "In triangle ABC, what is the length of BC?" with a figure that looks like a right triangle at vertex A. (1) AB = 6, AC = 8.
+*Example.* "Is the integer n even? (1) n = 2k + 1 for some integer k."
 
-A student who trusts the figure invokes Pythagoras: 6² + 8² = 36 + 64 = 100, so BC = 10. **Sufficient — but wrong.** Without the problem stating that angle A is 90°, BC could be anything between |8 − 6| = 2 and 6 + 8 = 14 (the triangle inequality). The figure looked right-angled, but no statement actually said so. **Insufficient.**
+Statement (1) forces n to be odd, so the answer to "is n even?" is a definite **no**, every time. That is **sufficient**. A statement is only insufficient when it sometimes yields "yes" and sometimes "no" — not when it lands firmly on "no."
 
-The cure: **never use a property unless the problem text gives it to you in writing.** A figure is a visual aid, not a source of constraints. Build the habit of asking "is that given in the stem or only suggested by the picture?" before using any property.
+The cure: **on yes/no DS, ask "does the statement pin the answer to one side?" — not "is the answer yes?"** A consistent "no" settles the question just as well as a consistent "yes."
 
 **Trap 3: The "I solved it, so it's sufficient" reflex on value DS.**
 
@@ -415,10 +410,10 @@ The cure: **after every value-DS statement test, ask explicitly "is this the *on
 Each of these traps comes from a different cognitive shortcut: importing information you shouldn't, trusting visual cues over text, or stopping at "an answer" instead of checking for uniqueness. The fix in each case is the same shape: **explicitly re-state the standard before committing to an answer.**
 
 - "Statement (1) alone" → reset to stem-only context.
-- Geometry figure → only properties given in writing are usable.
+- Yes/no DS → a definite "no" is sufficient, not just a "yes."
 - Value DS sufficient → exactly one value, not just *a* value.
 
-> **Self-explanation prompt.** Why is each of these three traps fundamentally a *discipline* failure rather than a *knowledge* failure? If you can say "because the algebra and geometry are usually right; what's missing is the meta-check that the rules of DS (stem-only context, text-not-figure, uniqueness for value) are being honored at each step," you've understood the actual error mode on hard DS. The knowledge isn't the bottleneck — the rule-following is.
+> **Self-explanation prompt.** Why is each of these three traps fundamentally a *discipline* failure rather than a *knowledge* failure? If you can say "because the underlying math is usually right; what's missing is the meta-check that the rules of DS (stem-only context, both answers count, uniqueness for value) are being honored at each step," you've understood the actual error mode on hard DS. The knowledge isn't the bottleneck — the rule-following is.
 
 ## @topic-specific-patterns
 
@@ -436,13 +431,6 @@ Each math topic has DS-specific patterns that come up repeatedly. Learning these
 - **"Is x > y?"**: need to know the sign of x - y. Statements about squares, absolute values, or products can be tricky because they lose sign information.
 - **Adding inequalities:** if a > b and c > d, then a + c > b + d. Works cleanly. *Subtracting* or *multiplying* inequalities does NOT work cleanly — signs matter.
 - **Multiplying by a variable:** if you multiply by x without knowing x's sign, you can't preserve the inequality direction. Always check whether x > 0 or x < 0.
-
-### Geometry
-
-- **Similar triangles / ratios:** one ratio + one actual length usually pins down everything.
-- **Right triangles:** if you have two sides (including hypotenuse specification), Pythagorean gets the third.
-- **Regular polygons:** knowing the number of sides OR one interior angle pins down everything (since exterior angle = 360/n).
-- **Inscribed figures:** the shared dimension (diagonal, diameter) is often the key piece.
 
 ### Statistics
 

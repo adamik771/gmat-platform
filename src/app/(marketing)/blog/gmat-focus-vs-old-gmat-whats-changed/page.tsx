@@ -146,15 +146,23 @@ export default function PostPage() {
 
           <H3>Quant</H3>
           <p>
-            The Quant section is the most stable. Same content topics
-            (algebra, arithmetic, number properties, geometry, etc.).
-            Same scoring scale per section (60-90 on Focus, formerly
-            6-51 on the old test). Same general difficulty distribution.
+            The scoring mechanics held steady &mdash; same 60-90 scale per
+            section, same general difficulty distribution &mdash; but the
+            content footprint shrank. Quant now covers algebra, arithmetic,
+            number properties, statistics, rates/ratios/percentages, and
+            word problems.
           </p>
           <p>
             <Strong>What changed:</Strong>
           </p>
           <ul>
+            <li>
+              <Strong>Geometry is gone.</Strong> The Focus Edition removed
+              geometry entirely &mdash; no triangles, circles, polygons, or
+              solids. Coordinate-plane questions can still appear, but
+              they are treated as algebra. That frees up real study time
+              for higher-yield topics.
+            </li>
             <li>
               <Strong>Length:</Strong> 21 questions in 45 minutes
               (was 31 in 62 minutes). Per-question time is roughly the

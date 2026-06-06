@@ -36,7 +36,7 @@ const SECTION_ORDER: Array<PracticeSetData["section"]> = ["Quant", "Verbal", "DI
 
 const SECTION_BLURB: Record<PracticeSetData["section"], string> = {
   Quant:
-    "Algebra, arithmetic, number properties, geometry, rates, ratios, probability, word translation.",
+    "Algebra, arithmetic, number properties, rates, ratios, probability, word translation.",
   Verbal:
     "Critical Reasoning and Reading Comprehension. Tight logic, dense text, steady pacing.",
   DI: "Multi-source, table analysis, graphics, two-part, data sufficiency. One strategy per format.",

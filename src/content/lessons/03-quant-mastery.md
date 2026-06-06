@@ -35,7 +35,7 @@ The topic coverage you can expect, in rough order of frequency:
 - **Statistics and probability** — mean, median, range, standard deviation, basic probability, combinatorics
 - **Exponents and roots** — including problems that look hard but collapse once you simplify
 
-Geometry is gone from GMAT Focus Quant. No circles, no triangles, no coordinate geometry in this section. If you are working from older prep material, you can skip the geometry chapters for Quant purposes. Any geometry-flavored spatial reasoning you encounter will show up in Data Insights, not here.
+Plane geometry is gone from GMAT Focus Quant. No circles, no triangles, no area or volume formulas. Coordinate-plane questions can still appear — lines, slopes, distances — but the GMAT treats those as algebra, not as a separate geometry topic. If you are working from older prep material, you can skip the plane-geometry chapters for Quant purposes. Any geometry-flavored spatial reasoning you encounter will show up in Data Insights, not here.
 
 The adaptive algorithm matters too. Focus is question-level adaptive within the section, meaning the next question is chosen based on your running performance. Early questions matter more than late ones — not because they are weighted heavier in some mystical way, but because they calibrate the difficulty band you end up in. This has a practical consequence: never rush the first third of the section. I would rather you spend 2:30 on question 3 to lock it in than save 20 seconds by guessing and get routed to an easier band for the rest of the test.
 

@@ -78,7 +78,6 @@ problem_sets:
       - two-part-analysis-q10
       - two-part-analysis-q28
       - two-part-analysis-q29
-      - two-part-analysis-q30
   medium:
     target_accuracy_by_score:
       "605": 50

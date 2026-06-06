@@ -9,7 +9,7 @@ type: reference
 
 ## Introduction
 
-Data Sufficiency is the most learnable format on the test. The answer choices are always the same five. The reasoning style is always the same: is the information sufficient? The problems recycle a finite library of quantitative content — number properties, linear equations, inequalities, statistics, geometry, probability. Master DS, and you've unlocked a quarter to a third of the DI section's score impact.
+Data Sufficiency is the most learnable format on the test. The answer choices are always the same five. The reasoning style is always the same: is the information sufficient? The problems recycle a finite library of quantitative content — number properties, linear equations, inequalities, statistics, probability. Master DS, and you've unlocked a quarter to a third of the DI section's score impact.
 
 I score 735s on this test. DS is the format where my error rate is closest to zero, and it got there from explicit systematic training — the five-step process applied to every problem, the negation test on every yes/no question, the counterexample hunt on every value question. Every DS error I made during prep was logged, labeled with its trap pattern, and used to drive targeted practice. That methodology is what this guide teaches.
 
@@ -263,24 +263,24 @@ Together: factor of 24 AND > 6. Candidates: 8, 12, 24. Still multiple. *Not suff
 
 *Trap to avoid.* Thinking "combined" narrowed it enough. Always check if the remaining set has more than one value.
 
-### Value DS worked example 7 — geometry value
+### Value DS worked example 7 — average value
 
-*Stem.* What is the area of triangle ABC?
+*Stem.* What is the average (arithmetic mean) of the numbers in a list?
 
-*(1)* The base AB = 8.
-*(2)* The height from C to AB = 5.
+*(1)* The numbers sum to 80.
+*(2)* The list contains 16 numbers.
 
 *Analysis.*
 
-(1) Base alone doesn't determine area — need height. *Not sufficient.*
+(1) The sum alone doesn't determine the average — need the count. *Not sufficient.*
 
-(2) Height alone doesn't determine area — need base. *Not sufficient.*
+(2) The count alone doesn't determine the average — need the sum. *Not sufficient.*
 
-Together: area = (1/2)(8)(5) = 20. *Sufficient.*
+Together: average = 80/16 = 5. *Sufficient.*
 
 *Answer: (C).*
 
-*Recognition cue.* Classical area problem — need both dimensions.
+*Recognition cue.* Average = sum ÷ count — you need both pieces, never just one.
 
 ### Value DS traps, expanded
 
@@ -532,12 +532,6 @@ Factoring 60 gives multiple (x, y) pairs. Statements narrow the candidates via a
 
 Statements provide inequalities or specific values. Solve by case analysis or substitution.
 
-### Geometry + algebra
-
-"In triangle ABC, angle A = 60°. What is the length of side BC?"
-
-Statements give other sides or angles. Apply law of cosines or sines, or Pythagorean theorem, or trig identities (limited on GMAT).
-
 ### Statistics + algebra
 
 "What is the average of five numbers a, b, c, d, e?"
@@ -586,7 +580,7 @@ Together: x > y AND both positive. Both positive means |x| = x and |y| = y. x > 
 
 *Answer: (C).*
 
-### Advanced worked example 3 — geometry + algebra
+### Advanced worked example 3 — coordinate plane + algebra
 
 *Stem.* In the coordinate plane, is the distance from point P(x, y) to the origin less than 5?
 

@@ -219,7 +219,7 @@ If you missed any, re-read the relevant section and test yourself in three days.
 
 ## Connection to other skills
 
-Algebra connects everywhere in Quant. *Word Problems* (Chapter 1.5) is largely a translation-into-algebra skill — once the equations are written, the algebra in this chapter takes over. *Number Properties* (Chapter 1.3) often hides inside algebra problems with integer constraints. *Statistics, Probability, and Combinatorics* (Chapter 1.6) uses algebraic manipulation for weighted averages, expected values, and probability calculations. *Geometry* (Chapter 1.7) frequently converts geometric problems into algebraic ones via the coordinate plane.
+Algebra connects everywhere in Quant. *Word Problems* (Chapter 1.5) is largely a translation-into-algebra skill — once the equations are written, the algebra in this chapter takes over. *Number Properties* (Chapter 1.3) often hides inside algebra problems with integer constraints. *Statistics, Probability, and Combinatorics* (Chapter 1.6) uses algebraic manipulation for weighted averages, expected values, and probability calculations. *Coordinate geometry* lives almost entirely in algebra — lines, slopes, and distances become equations the moment you set up the plane.
 
 The most important meta-connection is to *Quant Method Selection* (Chapter 1.8), which treats algebra as one of five solving modes. The protocol in this chapter — pause-for-shortcut at Step 2 — is the same pause that applies to every method, and it is the highest-leverage habit in the section.
 

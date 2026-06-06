@@ -169,7 +169,7 @@ export const ENTRIES: GlossaryEntry[] = [
   {
     term: "Quant",
     definition:
-      "The first section of the GMAT Focus (45 minutes, 21 questions). Tests algebra, arithmetic, number properties, geometry, statistics, and word problems. Scoring scale 60-90 per section. On Focus, Quant is Problem Solving only — Data Sufficiency lives in DI.",
+      "The first section of the GMAT Focus (45 minutes, 21 questions). Tests algebra, arithmetic, number properties, statistics, and word problems. Geometry was removed in the Focus Edition. Scoring scale 60-90 per section. On Focus, Quant is Problem Solving only — Data Sufficiency lives in DI.",
   },
   {
     term: "Reading Comprehension (RC)",

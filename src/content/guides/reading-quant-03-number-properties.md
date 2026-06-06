@@ -45,13 +45,13 @@ Treat this chapter as the most important content area in Quant after method sele
 
 **7.** Two students score similarly on Quant overall, but one consistently wins number-property problems and loses them only by careless errors. The other gets fewer right. Diagnosis for each? *A.* First student has automated number-property reasoning; loses on arithmetic. Second student knows the rules but hasn't connected them — solves slowly and inconsistently. *T.* Treating both as equal "number-property weakness." *L.* Identify whether the gap is *connection* or *automation* — different fixes.
 
-**8.** Why does the chapter argue prep on number properties has higher ROI than geometry, despite both being "small content surfaces"? *A.* Number-property reasoning *transfers* to algebra/word problems/probability; geometry stays in geometry. The compounding is real. *T.* Treating prep ROI as just per-topic accuracy. *L.* Cross-topic transfer is a hidden multiplier.
+**8.** Why does the chapter argue prep on number properties has unusually high ROI for such a "small content surface"? *A.* Number-property reasoning *transfers* to algebra, word problems, and probability rather than staying boxed in one topic. The compounding is real. *T.* Treating prep ROI as just per-topic accuracy. *L.* Cross-topic transfer is a hidden multiplier.
 
 ## Why it matters
 
 Three reasons number properties decides scores.
 
-*The content is encyclopedic but small*. You can master it in a focused weekend. The whole rule-set fits on one index card. So once you've put in the content time, every additional reasoning rep on number-property problems compounds at high efficiency. There is no "I just don't know enough rules" plateau here, the way there is in geometry.
+*The content is encyclopedic but small*. You can master it in a focused weekend. The whole rule-set fits on one index card. So once you've put in the content time, every additional reasoning rep on number-property problems compounds at high efficiency. There is no "I just don't know enough rules" plateau here — the rule set is finite and closes fast.
 
 *The traps are concentrated*. Half a dozen recurring traps — divisor confusion, the "2 is the only even prime" gap, divisibility-of-products misreads, missing the integer constraint — generate most of the wrong answers on number-property problems. Memorizing the traps closes most of the gap.
 
@@ -62,10 +62,10 @@ Three reasons number properties decides scores.
 1. Why does number properties cluster at hard difficulty levels (the 600-700 band specifically)?
 2. About how many recurring traps cover most wrong number-property answers?
 3. Strong number-property reasoning quietly improves your score in which other content area?
-4. What's the structural advantage of number properties over geometry for prep efficiency?
+4. What's the structural advantage that makes number properties so prep-efficient?
 5. The cross-content connection — what hidden integer-constraint questions exist outside number properties?
 
-*Answers.* (1) Content is small but reasoning is deep — perfect adaptive-test target. (2) About six recurring traps. (3) Algebra problems with integer constraints. (4) Number properties has a finite, masterable rule set; geometry has a much wider content surface. (5) "How many widgets," "how many people in a room," "how many full crates can be loaded" — all integer-constrained.
+*Answers.* (1) Content is small but reasoning is deep — perfect adaptive-test target. (2) About six recurring traps. (3) Algebra problems with integer constraints. (4) Number properties has a finite, masterable rule set, so reasoning reps compound instead of stalling on missing content. (5) "How many widgets," "how many people in a room," "how many full crates can be loaded" — all integer-constrained.
 
 ### Micro-drill — Why it matters
 

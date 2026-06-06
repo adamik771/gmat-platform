@@ -36,7 +36,7 @@ const topicsByModule: Record<number, string[]> = {
   3: [
     "Number properties & arithmetic",
     "Algebra & word problems",
-    "Geometry fundamentals",
+    "Rates, ratios & percentages",
     "Data Sufficiency strategy",
     "Quant timing framework",
   ],
