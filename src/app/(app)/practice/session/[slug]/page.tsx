@@ -40,6 +40,8 @@ export default async function PracticeSessionPage({
       correctAnswer: q.correctAnswer,
       correctAnswerLetter: q.correctAnswerLetter,
       explanation: q.explanation,
+      situation: q.situation,
+      reasoning: q.reasoning,
       hints: q.hints,
       fastestPath: q.fastestPath,
       commonTrap: q.commonTrap,

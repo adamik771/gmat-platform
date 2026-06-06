@@ -866,13 +866,7 @@ For how many integer values of x are all three of the following conditions simul
 
 **answer:** C
 **fastest_path:** Solve each: x > −3, x ≤ 7, −3 < x < 4. Intersection: −3 < x < 4. Integers {−2,−1,0,1,2,3} = 6.
-**explanation:** Solve each inequality, then intersect:
-
-(1) 2x + 1 > −5 → 2x > −6 → x > −3.
-(2) x − 3 ≤ 4 → x ≤ 7.
-(3) |2x − 1| < 7 → −7 < 2x − 1 < 7 → −6 < 2x < 8 → −3 < x < 4.
-
-Intersection: x > −3 AND x ≤ 7 AND −3 < x < 4 reduces to −3 < x < 4 (the third condition is the tightest). Integers strictly between −3 and 4: −2, −1, 0, 1, 2, 3 — six values.
+**explanation:** Solve each inequality, then intersect. (1) 2x + 1 > −5 → 2x > −6 → x > −3. (2) x − 3 ≤ 4 → x ≤ 7. (3) |2x − 1| < 7 → −7 < 2x − 1 < 7 → −6 < 2x < 8 → −3 < x < 4. The third condition is the tightest, so the intersection x > −3 AND x ≤ 7 AND −3 < x < 4 reduces to −3 < x < 4. The integers strictly between −3 and 4 are −2, −1, 0, 1, 2, 3 — six values. Both endpoints are excluded because every relevant bound on x is strict (<), so the boundary integers never qualify.
 **mistake_a:** Excluded one endpoint that should be included or vice versa; got 4.
 **mistake_b:** Missed one of the intersections; got 5.
 **mistake_d:** Included an endpoint (treated < as ≤ in one condition); got 7.

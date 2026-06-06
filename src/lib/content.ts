@@ -48,6 +48,15 @@ export interface ParsedQuestion {
   // ---------- Standardized 6-section explanation fields ----------
   // Present in bulk-rewritten questions (QUESTION_TAXONOMY format). Optional
   // because legacy questions and grouped passages may not carry them yet.
+  /** Neutral, compressed restatement of the scenario/argument — the official
+   *  rationale's "Situation" line. Rebuilds the logical skeleton before the
+   *  reader judges the choices. */
+  situation?: string
+  /** The official rationale's "Reasoning" block: the guiding question, the
+   *  unstated assumption named explicitly, the strengthen/weaken/solve
+   *  criterion, and why the correct choice satisfies it. Supersedes the
+   *  flatter `explanation` field when present. */
+  reasoning?: string
   /** One-line strategic move — the fastest GMAT-strategic approach. */
   fastestPath?: string
   /** Per-choice trap analysis. Keys are A-F (TPA has a 6th row); correct slot is omitted. */
@@ -188,7 +197,7 @@ function parseQuestionBlock(
   if (!headerMatch) return null
   const questionNumber = parseInt(headerMatch[1], 10)
 
-  const metaRegex = /\*\*(difficulty|type|topic|answer|explanation|hint_nudge|hint_strategy|hint_setup|fastest_path|common_trap|takeaway|related_reading|mistake_[a-z]|subchapter|skill|trap_type|est_time_seconds|prerequisite):\*\*\s*([^\n]*)/gi
+  const metaRegex = /\*\*(difficulty|type|topic|answer|situation|reasoning|explanation|hint_nudge|hint_strategy|hint_setup|fastest_path|common_trap|takeaway|related_reading|mistake_[a-z]|subchapter|skill|trap_type|est_time_seconds|prerequisite):\*\*\s*([^\n]*)/gi
   const meta: Record<string, string> = {}
   for (const match of block.matchAll(metaRegex)) {
     const key = match[1].toLowerCase()
@@ -255,7 +264,7 @@ function parseQuestionBlock(
     .split("\n")
     .filter(
       (line) =>
-        !/^\*\*(difficulty|type|topic|answer|explanation|hint_nudge|hint_strategy|hint_setup|fastest_path|common_trap|takeaway|related_reading|mistake_[a-z]|subchapter|skill|trap_type|est_time_seconds|prerequisite)/i.test(
+        !/^\*\*(difficulty|type|topic|answer|situation|reasoning|explanation|hint_nudge|hint_strategy|hint_setup|fastest_path|common_trap|takeaway|related_reading|mistake_[a-z]|subchapter|skill|trap_type|est_time_seconds|prerequisite)/i.test(
           line.trim()
         )
     )
@@ -338,7 +347,15 @@ function parseQuestionBlock(
     options,
     correctAnswer: twoPartCorrectAnswers ? -1 : letterToIndex(answerLetter),
     correctAnswerLetter: twoPartCorrectAnswers ? "" : answerLetter,
-    explanation: meta.explanation ?? "",
+    // Fallback chain: when a question is authored in the structured
+    // Situation/Reasoning format and omits the flat `explanation`, synthesize
+    // one from those fields so renderers that read only `explanation`
+    // (mock runner, chapter reader) still surface the full rationale.
+    explanation:
+      meta.explanation ||
+      [meta.situation, meta.reasoning].filter(Boolean).join("\n\n"),
+    situation: meta.situation || undefined,
+    reasoning: meta.reasoning || undefined,
     hints,
     rawBody: block.trim(),
     twoPartColumns,
