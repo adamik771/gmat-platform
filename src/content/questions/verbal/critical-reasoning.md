@@ -513,7 +513,8 @@ Which of the following would be most important to know in order to evaluate the 
 
 **answer:** B
 **fastest_path:** Volunteer-only sample = selection bias risk. (B) tests it: if volunteers were already faster than average, the 35% gain may be selection effect, not algorithm effect.
-**explanation:** Trial design has a self-selection flaw — companies *volunteered*. (B) tests whether they were already efficient. Yes → algorithm impact is overstated; no → claim holds.
+**situation:** A startup claims its matching algorithm cuts average time-to-hire by 35%, based on 50 companies that *volunteered* to use the platform for six months.
+**reasoning:** *Identify the decisive test.* *Which fact would tell us whether the algorithm, not the sample, produced the 35%?* The trial is self-selected — companies opted in — so the result is trustworthy only if those volunteers weren't already unusually fast hirers. (B) probes exactly that: if the volunteers were already faster than average before adopting the algorithm, the 35% is a selection effect; if they were typical, the claim holds. (E) role-type is secondary, and (A), (C), (D) — founders, implementation, pricing — say nothing about whether the tool caused the speed-up.
 **mistake_a:** Founders' experience irrelevant to algorithm performance.
 **mistake_c:** Implementation detail (ML vs rules) doesn't bear on whether it works.
 **mistake_d:** Business model unrelated to the claim.
@@ -541,7 +542,8 @@ Which of the following would be most useful in evaluating whether whole grains t
 
 **answer:** B
 **fastest_path:** Critics name a *confounding variable* (other health behaviors). (B) tests whether the studies controlled for it. Yes → causal claim holds; no → critics' objection wins.
-**explanation:** Question is about whether whole grains *themselves* reduce risk. (B) directly probes the critics' confounding objection: did the studies adjust for exercise, smoking, etc.? Answers different ways shift the conclusion.
+**situation:** An agency recommends three daily servings of whole grains because heavy consumers have 25% lower cardiovascular risk; critics note that whole-grain eaters also exercise more and smoke less.
+**reasoning:** *Identify the decisive test.* *Which fact would tell us whether whole grains themselves cut risk, rather than the healthy habits that travel with them?* The critics have named a confounder, so the useful question is whether the studies removed it. (B) does: if the studies controlled for exercise, smoking, and similar behaviors, the causal claim survives; if not, the 25% may belong to those other habits. Dose-response (E) is scientific-sounding but does not address confounding, and (A), (C), (D) — historical intake, price, other guidelines — are irrelevant to causation.
 **mistake_a:** Historical change in guidelines is irrelevant to current causal claim.
 **mistake_c:** Cost is unrelated to causation.
 **mistake_d:** Cross-validation in other guidelines doesn't address the confounding issue.
@@ -569,7 +571,8 @@ Which of the following would be most useful in evaluating the company's argument
 
 **answer:** B
 **fastest_path:** Voluntary use → selection bias. Question: does the software *cause* gains, or do the same students who self-select also do well anyway? (B) tests by isolating initially-low performers.
-**explanation:** Argument: students who use software score 18% higher. Risk: high-performers self-selected into use. (B) tests directly — initially-low performers who use the software for the same duration. If they also gain 18%, software works; if not, gains are selection effect.
+**situation:** A company finds that 30-min/day users of its adaptive software scored 18% higher and urges schools to buy it — but usage was voluntary and the heaviest users were already the top performers.
+**reasoning:** *Identify the decisive test.* *Which fact would separate a real software effect from the head start of the students who chose to use it?* The passage names the confounder — initial ability — so the decisive test isolates it. (B) does: if initially-low performers who use the software for the same 30 minutes gain comparably, the software works; if they don't, the 18% is selection. (E) tests a different confounder (teacher quality); (B) controls the exact variable the passage flagged, so it is the stronger test.
 **mistake_a:** Compatibility logistic, not effectiveness.
 **mistake_c:** Pricing logistic, not effectiveness.
 **mistake_d:** Coverage relevant but secondary to the selection-bias core issue.
@@ -597,7 +600,8 @@ Which of the following can be most reasonably inferred from the information abov
 
 **answer:** B
 **fastest_path:** Data: tighter labor market (lower unemployment + higher entry wages) + retention concerns up sharply. Inference: the labor market is *the cause* of the retention difficulty.
-**explanation:** Two co-varying facts: market got tighter, retention got harder. The reasonable inference is that the market is making retention harder. (B) is text-forced.
+**situation:** A survey shows retention concern among small-business owners jumped from 54% to 78% over five years, while unemployment fell from 6.1% to 3.4% and entry-level wages rose 22%.
+**reasoning:** *Draw the text-forced inference.* *What do these co-moving facts directly support — no more, no less?* A tighter labor market (lower unemployment, higher entry wages) coincides with a sharp rise in retention difficulty, so the supported inference is that labor-market conditions have made keeping workers harder (B). The others overreach: (A) profit and (E) management skill aren't in the data, (C) compares to large firms never mentioned, and (D) claims wage increases "didn't solve" the problem — which would require data on what owners actually did.
 **mistake_a:** Profit drop isn't supported — retention concern ≠ profit loss.
 **mistake_c:** Large-corporation comparison isn't in the data.
 **mistake_d:** Tempting but goes beyond data — we don't know what individual businesses did with wages.
@@ -625,7 +629,8 @@ Which of the following can be most reasonably inferred from the information abov
 
 **answer:** B
 **fastest_path:** Tablet line discontinued → margin up 20% + remaining divisions set records. Inference: tablet line was dragging margins.
-**explanation:** Margin gain after removing the tablet line, plus record performance in the kept divisions, is most simply explained by tablets having been a margin drag. (B) is the simplest text-forced inference.
+**situation:** After discontinuing its tablet line for declining sales, a company posted +15% revenue and +20% profit margin, with its smartphone and laptop divisions setting records.
+**reasoning:** *Draw the text-forced inference.* *What does removing the tablet line plus rising margins most directly imply?* The simplest text-supported reading is that the tablet line had been dragging the company's profit margin down (B). The rest go beyond the text: (A) and (E) make claims about consumer preference and innovation, (C) invokes competitor data not given, and (D) says the company will "never" return — an absolute the passage cannot support.
 **mistake_a:** "Consumers prefer" generalizes from one company to consumer preferences — unsupported.
 **mistake_c:** Competitor data isn't in the passage.
 **mistake_d:** *Extreme* — "never re-enter" is too absolute; nothing rules out future return.
@@ -653,7 +658,8 @@ Which of the following can be most reasonably inferred from the study's findings
 
 **answer:** C
 **fastest_path:** Three correlated facts: Friday-discharged readmission rate higher + Friday counseling time shorter + hospital-level data tracks (more counseling gap → more readmission gap). Inference: counseling time *may be* a factor. Hedged, not absolute.
-**explanation:** The hospital-level tracking is the key — variation in the gap predicts variation in readmissions. That's stronger than just two co-varying facts. But the inference must stay hedged ("may be a factor"); it doesn't force "primary cause" or "policy."
+**situation:** Friday-discharged patients are 18% more likely to be readmitted than Tuesday ones, receive 15 fewer minutes of discharge counseling, and the hospitals with the largest counseling gaps show the largest readmission gaps.
+**reasoning:** *Draw the text-forced inference — matched to the data's strength.* *How strong a claim do these correlations actually license?* Because the hospital-level pattern (bigger counseling gap → bigger readmission gap) reinforces the individual-level correlation, the data support that counseling time *may be a factor* in readmission (C). Stronger phrasings fail: (A) "primarily" and (B) "prohibit Friday discharges" overreach a correlation, (D) blames staff *competence* (the data show time, not skill), and (E) invents data about other weekdays.
 **mistake_a:** *Extreme* — "primarily a matter of" overstates. Counseling is *a* factor, not *the* factor.
 **mistake_b:** *Extreme* policy recommendation — data don't force a Friday discharge ban.
 **mistake_d:** Attributes to *competence* — data show time pressure, not skill.
@@ -681,7 +687,8 @@ Which of the following can be most reasonably inferred from the information abov
 
 **answer:** A
 **fastest_path:** 30% rent premium + lower vacancy = demand stays high *despite* the premium. Inference: tenants find the benefits worth the cost.
-**explanation:** If rent were too high, vacancies would rise. Lower vacancies at higher rents force the inference that demand exceeds the premium — i.e., tenants think the benefits outweigh the cost. (A) is text-forced.
+**situation:** Transit-adjacent office buildings rent for 30% more per square foot than distant ones, yet their vacancy averages just 4% versus 11% for the distant buildings.
+**reasoning:** *Draw the text-forced inference.* *What does higher rent combined with lower vacancy directly imply?* If the premium exceeded what the location was worth, vacancies would rise, not fall; lower vacancy at higher rent forces the conclusion that tenants find the benefits worth the extra cost (A). The others aren't text-forced: (B) building age, (D) employee productivity, and (C) a market "downturn" are never established, and (E) "all firms prefer" overgeneralizes.
 **mistake_b:** "Newer and more modern" is fabrication — passage gave no info on building age.
 **mistake_c:** *Extreme* — 11% vacancy isn't necessarily a downturn.
 **mistake_d:** Productivity claim isn't supported by rent data.
@@ -709,7 +716,8 @@ Which of the following can be most reasonably inferred from the information abov
 
 **answer:** B
 **fastest_path:** Faster reviews + tripled safety-revision rate. Inference: faster review *may have* meant less thorough evaluation. Hedged, text-forced.
-**explanation:** 4% → 12% revision rate after the timeline change is a strong signal. (B) appropriately hedges with "may have" — text supports correlation without forcing definitive causation.
+**situation:** After cutting drug-approval time from 14 to 9 months (more reviewers, parallel review), an agency approved 40% more drugs — but 12% of them later needed safety-related label revisions, versus a 4% historical norm.
+**reasoning:** *Draw the text-forced inference — matched to the data's strength.* *How strong a claim does the tripled revision rate license?* The jump from 4% to 12% after the timeline change supports that the shorter review *may have* produced less thorough safety evaluation of some drugs (B) — note the hedge. The others fail: (A) blames inexperienced reviewers (one unproven mechanism), (C) invents industry pressure, (D) says "all" new drugs are riskier when 88% were fine, and (E) is a policy recommendation, not an inference.
 **mistake_a:** Specific cause (less-experienced reviewers) — possible but not the only explanation, and not text-supported.
 **mistake_c:** Pharma-pressure claim isn't in the passage.
 **mistake_d:** *Extreme* — "all" overstates; 88% of new approvals were fine.
@@ -737,7 +745,8 @@ Which of the following best describes a flaw in the CEO's reasoning?
 
 **answer:** B
 **fastest_path:** CEO generalizes from *one* company to *all* companies. Classic *hasty generalization* flaw.
-**explanation:** Flaw: hasty generalization. The CEO concludes from one company's experience that all companies should adopt the change, ignoring industry, size, and workforce differences that affect whether the schedule change works.
+**situation:** A CEO sees employee satisfaction rise 20% after his company adopts a four-day week and concludes that *all* companies should adopt it to improve satisfaction.
+**reasoning:** *Name the logical error.* *What unjustified leap does the argument make?* It generalizes from a single company's result to every company, ignoring differences in industry, size, and workforce — a hasty generalization (B). The distractors raise evidence-quality worries (A temporary effect, C productivity, E measurement) or a non-issue (D), but the structural flaw is the one-case-to-all-cases jump, not how the satisfaction figure was gathered.
 **mistake_a:** Methodological concern (temporary effect) but not the core logical flaw.
 **mistake_c:** Productivity tangent — not the structural flaw.
 **mistake_d:** Irrelevant — a 20% increase implies a baseline, no contradiction there.
@@ -765,7 +774,8 @@ Which of the following, if true, most helps to resolve the apparent paradox desc
 
 **answer:** C
 **fastest_path:** Paradox: more farms, less acreage. Resolution must explain *both* trends at once. (C) does it: large farms gone (acreage drops) + small new farms (count rises).
-**explanation:** Paradox = two facts must coexist. (C) supplies the asymmetry: small new farms add to count without restoring acreage; large lost farms drop acreage without affecting count proportionally. Both facts explained.
+**situation:** Over a decade the number of organic farms in a region rose 40%, yet total organic acreage *fell* 15%.
+**reasoning:** *Resolve the paradox — explain both facts at once.* *What could raise the farm count while shrinking total acreage?* The resolution needs an asymmetry between count and size. (C) supplies it: large organic farms were subdivided and sold off (acreage drops) while the new organic farms are small specialty operations (count rises). (B) pushes both numbers the same way (more acres and more farms), worsening the paradox; (A) demand, (D) labor per acre, and (E) climate each explain at most one of the two trends.
 **mistake_a:** Demand growth doesn't explain *acreage decline*.
 **mistake_b:** Conventional → organic conversion would *increase* acreage, *worsening* the paradox.
 **mistake_d:** Labor per acre doesn't explain count or acreage trends.
@@ -793,7 +803,8 @@ Which of the following best describes a flaw in the analyst's reasoning?
 
 **answer:** B
 **fastest_path:** Flaw: the *static-baseline* error — comparing observed-with-program to itself, not to *what would have happened without the program*. Without counterfactual, "no change" doesn't equal "ineffective."
-**explanation:** Analyst sees flat admissions and concludes the programs failed. But admissions might have *risen* without prevention — flat could mean the programs successfully held the line. The argument needs a counterfactual baseline, not just a temporal comparison.
+**situation:** An analyst argues preventive programs are ineffective — and funding should be cut — because admissions for preventable diseases didn't fall despite a decade of higher prevention spending.
+**reasoning:** *Name the logical error.* *What does "no decrease" fail to account for?* The argument compares the outcome only to itself over time, ignoring the counterfactual: admissions might have *risen* without the programs, so flat numbers could mean the programs held the line (B). The other options raise side benefits (A quality of life), methodology (C disease mix), an irrelevant comparison (D other countries), or program heterogeneity (E) — none is the missing-baseline error the conclusion actually commits.
 **mistake_a:** Quality-of-life is a *side benefit* concern, not the structural flaw in the effectiveness argument.
 **mistake_c:** Methodological detail.
 **mistake_d:** Cross-country comparison — not the flaw being committed.
@@ -821,7 +832,8 @@ Which of the following best describes a flaw in the financial advisor's reasonin
 
 **answer:** B
 **fastest_path:** Flaw: "85% underperform" doesn't license "no investor should pick active" — that ignores whether the 15% can be *identified ex ante*. The advisor jumps from average to universal.
-**explanation:** From "actively managed funds underperform on average" to "no rational investor should pick active." The leap ignores that some investors may have reliable methods to identify the 15% that outperform. (B) names the missed possibility.
+**situation:** An advisor notes index funds beat 85% of actively managed funds (after fees) over any 15-year period and concludes that no rational investor should *ever* pick an active fund.
+**reasoning:** *Name the logical error.* *What does an 85%-of-the-time average fail to settle for an individual choice?* The leap runs from an average outcome to a universal prohibition. (B) names the gap: if the 15% of active funds that outperform can be identified in advance, it can be rational for some investors to choose them — so the average does not dictate every decision. (C) "past ≠ future" applies equally to index funds and doesn't touch the average-to-universal jump; (A), (D), (E) are a definition quibble, a non-financial motive, and a fee detail.
 **mistake_a:** Semantic quibble about "rational."
 **mistake_c:** Generic objection that applies to both fund types — doesn't differentiate.
 **mistake_d:** Enjoyment isn't the financial-rationality argument.
@@ -849,7 +861,8 @@ Which of the following, if true, most helps to explain the apparent discrepancy 
 
 **answer:** C
 **fastest_path:** Paradox: domestic emissions ↓ but consumption-based emissions ↑. Resolution: production *moved abroad* (carbon leakage). Both trends explained at once.
-**explanation:** (C) names carbon leakage: tax pushed manufacturers offshore. Domestic emissions fell because production left the country; consumption-based emissions rose because the same goods (now made abroad) carry foreign emissions counted in the per-capita measure. Single mechanism explains both.
+**situation:** Five years after a carbon tax, a country's territorial emissions fell 20%, yet its per-capita consumption-based footprint (which counts emissions abroad for imported goods) rose 8%.
+**reasoning:** *Resolve the paradox — explain both facts at once.* *What single change could lower domestic emissions while raising consumption-based emissions?* (C) supplies carbon leakage: the tax pushed manufacturers to relocate production abroad, so emissions for domestically consumed goods now occur offshore — territorial emissions drop while the consumption-based measure rises. One mechanism, both trends. (A) a rising tax and (D) more renewables push domestic emissions down but don't raise the consumption measure; (B) population and (E) other countries each address at most one half.
 **mistake_a:** Tax rate increase would push both measures *down*, not in opposite directions.
 **mistake_b:** Population decline could explain a per-capita increase if total stayed flat — but doesn't explain the domestic *decline*.
 **mistake_d:** Renewables explain domestic decline but not consumption-based increase.
@@ -877,7 +890,8 @@ Which of the following, if true, most weakens the CFO's conclusion?
 
 **answer:** B
 **fastest_path:** CFO blames jets for 15% fuel cost rise. Weaken by *alternative cause* — industry-wide fuel rose 20%, so jets actually *softened* the cost shock; staying on turboprops would have been worse.
-**explanation:** Argument: jets caused 15% cost rise → bad financial call. (B) reframes the data: fuel rose 20% across the industry, so the airline's 15% rise underperforms the market in *the right direction* — jets actually outperformed the baseline. The "mistake" framing collapses.
+**situation:** After replacing turboprops with jets on short-haul routes, an airline's fuel cost per passenger rose 15%, and the CFO calls the switch a financial mistake.
+**reasoning:** *Weaken the causal verdict.* *What fact would show the jets weren't the culprit behind the 15%?* The conclusion assumes the cost rise reflects the aircraft choice. (B) reframes it against the industry baseline: fuel prices rose ~20% everywhere, so a 15% rise actually beat the market — the jets *softened* the shock rather than caused a loss. (A) maintenance and (E) marketing address other cost categories, not fuel; (C) constant loads merely keeps the per-passenger metric clean; (D) competitors' choices don't bear on this airline's economics.
 **mistake_a:** Maintenance is a different cost category — doesn't directly attack the fuel-cost claim.
 **mistake_c:** Constant loads make the per-passenger metric clean; neutral, not weakening.
 **mistake_d:** Competitor choices are irrelevant to this airline's economics.
@@ -905,7 +919,8 @@ The argument above depends on which of the following assumptions?
 
 **answer:** D
 **fastest_path:** Premise: LED uses 60% less *electricity*. Conclusion: lower *total annual cost*. Bridge: other costs (purchase/install) don't offset the electricity savings. (D) is the bridge.
-**explanation:** Total cost ≠ electricity cost alone. (D) is the necessary assumption: install + bulb costs don't overwhelm the electricity savings. Negate (D): they do offset → the total-cost claim collapses.
+**situation:** A city plans to replace sodium-vapor lamps with LEDs, arguing that because LEDs use 60% less electricity, the switch will significantly cut annual street-lighting costs.
+**reasoning:** *Find a required assumption.* *What must hold for an electricity saving to become a total-cost saving?* Total cost is more than electricity, so the argument assumes the other components — buying and installing the new lamps — won't swallow the savings. Negate (D): purchase and installation costs offset the electricity savings, and the total-cost claim collapses, so (D) is required. (A) longevity is a separate argument, (B) public support and (C) future electricity prices aren't needed, and (E) other cities is evidence, not an assumption.
 **mistake_a:** Longevity is a different argument; this one is about electricity-driven cost.
 **mistake_b:** Public support is irrelevant to whether the cost claim works.
 **mistake_c:** *Reverses* — if electricity got cheaper, savings shrink, but the argument doesn't depend on future prices.
@@ -933,7 +948,8 @@ Which of the following can be properly inferred from the information above?
 
 **answer:** B
 **fastest_path:** Observational study → only *association* is supported. (B) hedges to "associated"; (A) claims causation which observation can't establish.
-**explanation:** Study compares satisfaction across two self-selected groups with equal vacation totals. Result: a difference in satisfaction. Inference must stay at the *association* level — (B) is the hedged claim that fits.
+**situation:** At one firm, employees taking at least two consecutive vacation weeks reported 30% higher job satisfaction than those taking scattered days off — with equal total days, workloads, and tenure.
+**reasoning:** *Draw the text-forced inference — stop at the data's strength.* *What does an observational comparison actually license?* The groups self-selected their vacation pattern, so the data support only an *association* between vacation pattern and reported satisfaction at this firm (B). (A) makes the causal leap observation cannot support; (C) preferences and (D) performance were never measured; (E) is a policy recommendation. The hallmark trap is jumping from correlation (B) to causation (A).
 **mistake_a:** *Causal leap* — observational data don't establish causation.
 **mistake_c:** *Outside knowledge* — preferences weren't measured, only satisfaction.
 **mistake_d:** Performance was never measured.
@@ -961,7 +977,8 @@ Which of the following, if true, best explains the discrepancy described above?
 
 **answer:** B
 **fastest_path:** Paradox: price ↓ but revenue ↓. (B) explains: customers bought during a sale *two weeks ago* — the demand pool got drained before this sale started.
-**explanation:** Demand cannibalization. (B) supplies the mechanism: the same buyers who would have purchased this week already bought during the prior sale. The discount has a thin pool to attract from, so volume drops enough to overcome the discounted unit price.
+**situation:** A retailer cut its top headphones' price 25% for a week, yet that sale week's revenue from them came in *below* a typical non-sale week.
+**reasoning:** *Resolve the paradox — explain both facts at once.* *What could make a discount coincide with lower revenue?* A price cut should lift volume unless the buyers are already gone. (B) supplies that: a similar sale two weeks earlier drew the customers who anticipated the drop, draining the demand pool — so this sale attracts too few buyers to offset the lower unit price. (A) advertising would raise revenue and (D) best-seller status is background; (E) implies high volume, contradicting the premise; (C) competitor discounts in a normal market still wouldn't push revenue *below* baseline.
 **mistake_a:** Ads would *boost* revenue, deepening the paradox.
 **mistake_c:** Tempting, but competitor discounts in a normal week wouldn't push revenue *below* a typical non-sale baseline.
 **mistake_d:** Background fact; doesn't explain the trajectory.
@@ -989,7 +1006,8 @@ Which of the following, if true, most strengthens the research director's conclu
 
 **answer:** B
 **fastest_path:** Cross-species jump (mice → humans) is the soft step. Strengthen by *precedent for this jump*. (B) does it: prior drugs with the same mechanism translated successfully.
-**explanation:** Conclusion isn't "drug works in mice" — it's "drug will work in humans." (B) directly supports that *cross-species translation*: previous drugs using the same mechanism translated reliably. That's the bridge.
+**situation:** A drug shrank tumors in 70% of mice versus 20% on placebo, and the research director concludes it will likely work on similar human tumors.
+**reasoning:** *Strengthen a cross-domain inference.* *What would make the mouse-to-human leap more reliable?* The soft step is the species jump, so the strongest support is precedent for that exact jump. (B) provides it: in three prior cases, drugs producing this specific mechanism in mice later showed comparable efficacy in humans for the same tumor type. (C) a realistic mouse model and (D) a valid placebo bolster the *mouse* result's internal validity, not its translation; (A) is upstream computational design and (E) is company reputation, not biology.
 **mistake_a:** Computational design is upstream of the trial — doesn't bear on whether mouse results translate.
 **mistake_c:** Realism of the mouse model is helpful but weaker than direct translation precedent.
 **mistake_d:** Placebo validity is about *internal* validity of the mouse trial, not the species jump.
@@ -1017,7 +1035,8 @@ Which of the following, if true, most seriously weakens the editor's argument?
 
 **answer:** B
 **fastest_path:** Argument: end print → save costs. Weaken by showing print *generates more revenue than it costs*. (B) does it: print ad revenue exceeds total production costs. Killing print kills more in revenue than it saves in costs.
-**explanation:** Editor frames the decision as cost-only. (B) flips it to a profit calculation: print is a *net contributor* — its ad revenue exceeds its production costs. Saving 40% of production costs is irrelevant if you're losing more in revenue. The conclusion (digital-only) is financially worse.
+**situation:** An editor argues for going digital-only: 80% of subscribers already read on the app, and dropping print would cut production costs 40%.
+**reasoning:** *Weaken the recommendation.* *What fact would make killing print financially worse, not better?* The argument treats print as pure cost. (B) reframes it as profit: print ad rates far exceed digital, and print-ad revenue currently *exceeds total production costs* — so print is a net contributor, and eliminating it loses more revenue than the 40% cost saving. (C) peer success actually *strengthens* the switch; (A) app reviews, (D) reader age, and (E) a printing contract are friction or color, not attacks on the economic premise.
 **mistake_a:** App reviews don't bear on the print-vs-digital cost-benefit calculation.
 **mistake_c:** *Strengthens* — peer-magazine success suggests the transition can work.
 **mistake_d:** Demographics are color, not a decisive financial argument.
@@ -1045,7 +1064,8 @@ The supporters' argument depends on which of the following assumptions?
 
 **answer:** B
 **fastest_path:** Argument: switchers leave highway → less congestion. Required: *induced demand doesn't undo it* — other drivers don't fill the freed space. (B) is the bridge.
-**explanation:** Mechanism only works if the freed road space stays free. (B) blocks the induced-demand counter: drivers who avoided the highway, drove off-peak, etc., don't move *into* the now-less-congested route. Negate (B): they do → congestion bounces back → conclusion fails.
+**situation:** Supporters say a new light-rail line will cut rush-hour highway congestion because many car commuters will switch to the train.
+**reasoning:** *Find a required assumption.* *What must hold for switchers to actually reduce congestion?* The freed road space reduces congestion only if it isn't refilled. (B) blocks induced demand: other drivers — who had avoided the highway or driven off-peak — don't move into the now-clearer route. Negate (B): they do, and congestion bounces back, so (B) is required. (C) overshoots — the argument needs only "many" switchers, not "most" highway drivers; (A) budget and (E) maintenance cost are feasibility, and (D) other cities is evidence, not an assumption.
 **mistake_a:** Budget is feasibility, not logic.
 **mistake_c:** Tempting, but argument needs only "many" switchers, not "most highway drivers."
 **mistake_d:** Analogy from other cities is supporting evidence, not necessary assumption.
@@ -1073,7 +1093,8 @@ Which of the following best describes a flaw in the firm's reasoning?
 
 **answer:** B
 **fastest_path:** Flaw: *base-rate neglect*. The firm asked "what fraction of *successful founders* came from Big Tech?" but should have asked "what fraction of *Big Tech employees* become successful founders?" Without the denominator, the recommendation is unsupported.
-**explanation:** 42/50 successful founders came from Big Tech. But the relevant question for *aspiring entrepreneurs* is the conditional probability the *other way*: P(success | Big Tech employee). If millions worked at those firms, the base rate of success could be vanishingly small. The firm reasoned from the wrong denominator.
+**situation:** Seeing that 42 of the 50 fastest-growing startups had founders from one of five big tech firms, a consultancy advises aspiring entrepreneurs to work at those firms to maximize their chance of founding a fast-growing startup.
+**reasoning:** *Name the logical error.* *Which probability did the firm measure, and which does the advice need?* It measured P(came from Big Tech | successful founder) = 42/50, but the advice requires P(successful founder | Big Tech employee). (B) names the missing base rate: the vast majority of Big Tech employees never found startups, so the success rate per employee could be tiny — base-rate neglect. (D) merely notes exceptions, which don't break a statistical claim; (A), (C), (E) are a future-existence worry, a definition quibble, and generic data-quality doubt.
 **mistake_a:** Speculative future concern; doesn't engage the structural flaw.
 **mistake_c:** Definitional quibble.
 **mistake_d:** Tempting (notes exceptions) but exceptions don't destroy a probabilistic argument; *base-rate neglect* does.
@@ -1101,7 +1122,8 @@ The answer to which of the following questions would be most useful in evaluatin
 
 **answer:** B
 **fastest_path:** Self-selected comparison. Evaluate by asking *whether the groups were comparable at baseline*. (B) does it: demographic + academic profiles of dorm vs off-campus students.
-**explanation:** Dorm and off-campus students self-selected. If they differ at baseline (income, high-school GPA, age), the 0.3 GPA gap reflects those differences, not dorm life. (B) tests this directly. Different answers shift the conclusion either way.
+**situation:** A university weighs requiring first-years to live on campus, citing a study where dorm-dwelling first-years had a 0.3-higher average GPA than off-campus first-years.
+**reasoning:** *Identify the decisive test.* *Which fact would tell us whether dorm life, not the students themselves, produced the gap?* The two groups self-selected, so the result depends on whether they were comparable to begin with. (B) probes that: comparing the demographic and academic profiles of dorm versus off-campus students reveals whether baseline differences (income, high-school GPA, age) explain the 0.3 gap. (C) tests a different population (upper-class students), (A) rent and (E) the current dorm share are descriptive, and (D) a decade-long trend doesn't isolate this mechanism.
 **mistake_a:** Affordability is downstream, not the causal question.
 **mistake_c:** Tests a different population (upper-class students) — at best indirect.
 **mistake_d:** Trend data, not the specific causal mechanism.
