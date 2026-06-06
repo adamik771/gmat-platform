@@ -124,6 +124,8 @@ problem_sets:
 
 ## @the-three-step-workflow
 
+Table Analysis is the one DI question type where your discipline matters more than your math. The computations are never hard — simple averages, counts, and comparisons. What trips students up is inefficiency: reading too much of the table, re-computing values already computed, or holding three numbers in memory simultaneously. The three-step workflow eliminates all three failure modes.
+
 Every Table Analysis question follows the same three-step pattern. Internalize the workflow and the question becomes mechanical.
 
 **Mental model.** Every TA question has the same three steps: identify the rows, filter or sort, then verify the claim against the filtered subset. Skip the filter step and you over-compute on the full table; skip the verify step and you bubble the trap answer that looks right at a glance. The whole format becomes mechanical once the three-step rhythm is reflexive.
@@ -147,7 +149,7 @@ Once you have the relevant rows, do the arithmetic: compute the average, count t
 
 - Step 1 (identify columns): 5 seconds.
 - Step 2 (filter or sort): 15 seconds.
-- Step 3 (verify): 20-30 seconds.
+- Step 3 (verify): 30-40 seconds.
 
 Total: ~60 seconds per statement. Three statements per question = ~3 minutes. That's your target.
 
@@ -176,11 +178,13 @@ Statement: "The average salary of Strategy employees is higher than that of Fina
 
 **Strategy sum:** 120+95+150 = 365. **Finance sum:** 140+85+115 = 340. Strategy sum > Finance sum, and both have 3 employees — so Strategy average > Finance average. Skip the division entirely.
 
-> **Recall check.** Close the book. State the three-step Table Analysis workflow. Now state the time budget for each step. (Step 1 identify, Step 2 filter/sort, Step 3 verify. Budget: 5 + 15 + 30 = 60 seconds.) Pattern-drill this three-step until it's reflexive — that's what makes you fast on Table Analysis.
+> **Recall check.** Close the book. State the three-step Table Analysis workflow. Now state the time budget for each step. (Step 1 identify, Step 2 filter/sort, Step 3 verify. Budget: 5 + 15 + 40 = 60 seconds.) Pattern-drill this three-step until it's reflexive — that's what makes you fast on Table Analysis.
 
 ## @sorting-vs-filtering
 
 GMAT Table Analysis tables are **sortable**. You can click a column header to sort ascending or descending — and many statements are much faster to answer after sorting.
+
+**Why sorting works.** Sorting physically moves extreme values to the first or last row. That turns a "scan every cell" problem into a "read one row" problem. A statement about the highest salary in Finance requires scanning all Finance employees — unless you sort by Salary descending first, making the answer the topmost Finance row. Any time a statement involves a rank, extreme, or median, the sort click is faster than scanning.
 
 **When to sort:**
 
@@ -247,6 +251,8 @@ Seven statement patterns cover roughly 90% of what you'll see on Table Analysis.
 
 *Move:* sort by X, read off the top/bottom row, check its category.
 
+**Example.** Statement: "The highest-paid employee works in Operations." Sort Salary descending: D (155, Operations) is the top row. Department = Operations. **Yes.**
+
 **Pattern 3: Category comparison.**
 
 "The average/median of category A exceeds category B."
@@ -259,7 +265,9 @@ Seven statement patterns cover roughly 90% of what you'll see on Table Analysis.
 
 *Move:* compare the two columns row-by-row. A single counterexample makes the statement false.
 
-**Example.** Statement: "Every company's Q4 revenue is higher than its Q1 revenue." Check each company — if any has Q4 ≤ Q1, the statement is **No**.
+**Example.** Statement: "Every Strategy employee has more than 4 years of experience." Strategy rows: A (5 years), C (3 years), G (10 years). C has 3 years — that's ≤ 4. One counterexample disproves. **No.**
+
+The move is identical whether the statement uses "every," "all," or "no [column] exceeds X" — always scan for the exception, not the confirmation.
 
 **Pattern 5: Existence check.**
 
@@ -273,11 +281,15 @@ Seven statement patterns cover roughly 90% of what you'll see on Table Analysis.
 
 *Move:* find min and max of X. If min ≥ a and max ≤ b, **Yes**.
 
+**Example.** Statement: "All salaries in the table fall between $80K and $160K." Sort Salary ascending: lowest is E (85K), highest is D (155K). 85 ≥ 80 and 155 ≤ 160. **Yes.** You only need to check two values — the minimum and maximum — not every row.
+
 **Pattern 7: Correlation/trend check.**
 
 "The company with the highest X also has the highest Y" (or "highest X has lowest Y," etc.).
 
 *Move:* find the top-X row. Check its Y rank. If Y is also top (or bottom, depending on statement), **Yes**.
+
+**Example.** Statement: "The highest-earning employee also has the most years of experience." Sort Salary descending: top row is D (Salary 155K, Years 12). Sort Years descending: top row is also D (Years 12). Both extremes belong to the same row. **Yes.** You only need to find the top-X row and check where it ranks on Y — no need to compute every row.
 
 **The "statement negation" reflex.** To prove a universal statement ("every," "all," "no") false, find one counterexample. To prove an existential statement ("at least one," "some") true, find one example. Focus your scanning accordingly — you don't have to exhaustively verify every row.
 
@@ -458,3 +470,9 @@ Table Analysis is a mechanical workflow problem. Once you internalize the three-
 **The habit that separates 685 scorers from 605 scorers:** writing down intermediate computations. Trying to hold three category-averages in your head while comparing them is how students lose points on medium-difficulty Table Analysis. Write every intermediate number down.
 
 Drill the 35 questions in this chapter across the three problem sets. The first few will feel slow; by the tenth, the workflow should be automatic.
+
+**What to do next.**
+
+- Below 60% on the medium set: revisit the @statement-patterns and @averages-and-medians sections. Most medium-difficulty errors come from skipping the filter step or misidentifying which rows belong to the subset.
+- Above 80% on medium: move to the hard set. Hard questions almost always involve derived metrics — ratios and percent changes. Review @derived-metrics-and-traps before starting.
+- After completing this chapter: the closest sibling is Graphics Interpretation, which uses the same filter-then-compute logic on charts instead of tables. Two-Part Analysis and Multi-Source Reasoning are the other DI types worth scheduling next.
