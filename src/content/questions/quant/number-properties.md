@@ -73,7 +73,7 @@ How many positive factors does the number 36 have?
 **explanation:** Factor 36 = 2² × 3². Number of positive factors = (2+1)(2+1) = 9. Listing: 1, 2, 3, 4, 6, 9, 12, 18, 36.
 **mistake_a:** Counted only divisors up to √36 (1, 2, 3, 6) and stopped — forgot to mirror.
 **mistake_b:** Listed 1, 2, 3, 4, 6, 9 and stopped — missed 12, 18, 36.
-**mistake_c:** Hand-counted and missed two of {1, 2, 3, 4, 6, 9, 12, 18, 36}.
+**mistake_c:** Counted factor pairs around √36 = 6: pairs (1,36), (2,18), (3,12), (4,9), (6,6) = 5 pairs. Correctly recognized (6,6) contributes only one factor, but then computed 4 × 2 = 8 (treating the remaining 4 pairs as contributing exactly 2 each) while forgetting that each pair contributes two distinct members: 1 and 36, 2 and 18, 3 and 12, 4 and 9 — that's 4 × 2 + 1 = 9 total.
 **mistake_e:** Computed (2+1) + (2+1)·... mismatched additive vs. multiplicative.
 **common_trap:** Hand-listing instead of using the (a+1)(b+1)... formula. Hand-counting always loses factors.
 **takeaway:** Factor count of n = 2^a · 3^b · 5^c · ... is (a+1)(b+1)(c+1).... Always factor first, then apply.
@@ -97,10 +97,10 @@ When the positive integer n is divided by 7, the remainder is 4. What is the rem
 **answer:** C
 **fastest_path:** Pick n = 4: 3(4) + 5 = 17 → 17 mod 7 = 3.
 **explanation:** Pick the smallest valid n = 4: 3(4) + 5 = 17, and 17 = 2·7 + 3, so remainder is 3. Algebraically: n = 7k + 4 → 3n + 5 = 21k + 17 = 21k + 14 + 3, remainder 3.
-**mistake_a:** Computed 17 mod 7 wrong — divided 17 by 7 and claimed no remainder (perhaps misread 7 × 2 = 17).
+**mistake_a:** Arithmetic slip — believed 7 × 3 = 17 (actual value: 21), so concluded 17 is exactly divisible by 7 and wrote remainder 0.
 **mistake_b:** Computed 7 × 2 = 16 (arithmetic slip), so 17 − 16 = 1 instead of 17 − 14 = 3.
 **mistake_d:** Bubbled the "+5" alone, ignoring the 3n contribution.
-**mistake_e:** Inverted: 7 − 3 = 4, then bubbled 6 from another residue confusion.
+**mistake_e:** Applied the +5 inside the multiplication: computed 3(n + 5) = 3(4 + 5) = 3(9) = 27 instead of 3n + 5 = 17, then 27 mod 7 = 6 (since 7 × 3 = 21, 27 − 21 = 6).
 **common_trap:** Trying to track n directly instead of working modulo 7 from the start.
 **takeaway:** When asked for a remainder, work modulo from the start. Plugging in the smallest valid n verifies in one step.
 **related_reading:** reading-quant-03-number-properties
@@ -124,7 +124,7 @@ If the three-digit number 4A6 is divisible by 9, where A represents a single dig
 **fastest_path:** Digit sum 4 + A + 6 = 10 + A divisible by 9 → A = 8 (sum = 18).
 **explanation:** Divisibility by 9: digit sum divisible by 9. 4 + A + 6 = 10 + A. For 10 + A ∈ {9, 18, 27, ...} with A ∈ {0..9}, only A = 8 works → digit sum 18.
 **mistake_a:** Used the divisibility-by-3 test (10 + 2 = 12 div by 3, not 9).
-**mistake_b:** Used the divisibility-by-3 test (10 + 4 = 14 — fails both).
+**mistake_b:** Applied the digit-sum rule correctly (10 + A must be divisible by 9) but targeted the wrong multiple: aimed for 10 + A = 14 rather than 18, perhaps recalling "the next 9-multiple after 10 is around 14." With A = 4 the sum is 14 — not divisible by 9.
 **mistake_c:** Bubbled 6 because "the digit 6 is already in the number."
 **mistake_e:** Bubbled 9 because "9 is the divisor" — forgot to apply the digit-sum test.
 **common_trap:** Confusing the divisibility-by-9 rule with divisibility-by-3 (which only requires sum div by 3).
@@ -169,17 +169,17 @@ If x and y are positive integers such that x = 8q + 5 and y = 8r + 3, where q an
 - A) 1
 - B) 3
 - C) 5
-- D) 7
-- E) 15
+- D) 6
+- E) 7
 
-**answer:** D
+**answer:** E
 **fastest_path:** Multiply remainders: 5 × 3 = 15. Then 15 mod 8 = 7.
 **explanation:** When taking remainders of products, multiply the remainders then reduce mod 8. 5 × 3 = 15 = 8 + 7 → remainder 7. Algebraic check: (8q + 5)(8r + 3) = 64qr + 24q + 40r + 15 = 8(8qr + 3q + 5r + 1) + 7.
-**mistake_a:** Reduced 15 mod 8 incorrectly — subtracted 8 twice (got 1 instead of 7).
-**mistake_b:** Took (x mod 8) + (y mod 8) = 8 → 0, then bubbled 3 from another path.
-**mistake_c:** Bubbled 5 (just one of the original remainders).
-**mistake_e:** Forgot to reduce — bubbled the raw product 15.
-**common_trap:** Forgetting to reduce the product back mod 8 — leaving 15 as the answer.
+**mistake_a:** Computed distance to the *next* multiple of 8 instead of the true remainder: 8 × 2 = 16, gap = 16 − 15 = 1. But remainder is the distance *below* the last multiple (15 − 8 = 7), not the gap up to the next one.
+**mistake_b:** Took (x mod 8) + (y mod 8) = 5 + 3 = 8 → 0 (mod 8), then bubbled 3 from another path.
+**mistake_c:** Bubbled 5 — used just one of the original remainders and skipped the product step.
+**mistake_d:** Arithmetic slip when reducing: correctly reached 5 × 3 = 15, then subtracted 9 instead of 8 when reducing mod 8 — getting 15 − 9 = 6 rather than 15 − 8 = 7.
+**common_trap:** Failing to reduce cleanly mod 8 — either skipping the final reduction step or subtracting the wrong value (9 instead of 8) when stripping one multiple of 8 from 15.
 **takeaway:** (x mod m)(y mod m) mod m = xy mod m. Multiply the residues, then reduce. Never skip the final reduction.
 **related_reading:** reading-quant-03-number-properties
 
@@ -358,7 +358,7 @@ How many positive factors does 720 have?
 **fastest_path:** 720 = 2⁴·3²·5 → (4+1)(2+1)(1+1) = 5·3·2 = 30.
 **explanation:** Prime-factorize: 720 = 8 · 9 · 10 = 2³ · 3² · 2 · 5 = 2⁴ · 3² · 5. Factor count = (4+1)(2+1)(1+1) = 30.
 **mistake_a:** Used 2³ instead of 2⁴: (3+1)(2+1)(1+1) = 24.
-**mistake_b:** Off-by-one on one exponent: 28 = 7·4 from (6+1)(3+1) — wrong factorization.
+**mistake_b:** Arrived at a wrong prime factorization — exponents (6, 3) for (2, 3) via a chain-division slip — then applied the formula: (6+1)(3+1) = 7 × 4 = 28. The factorization 2^6 × 3^3 = 1728 ≠ 720; verifying the factored product before plugging into the formula would have caught this.
 **mistake_d:** Mis-factored 720 as 2³·3³·5 (over-counted the exponent of 3): (3+1)(3+1)(1+1) = 4·4·2 = 32.
 **mistake_e:** Mis-factored 720 as 2⁵·3²·5 (over-counted the exponent of 2): (5+1)(2+1)(1+1) = 6·3·2 = 36.
 **common_trap:** Mis-factorizing 720 by missing one factor of 2 or one factor of 3 — the count formula then deviates.

@@ -6,6 +6,8 @@ estimated_minutes: 60
 prerequisites: []
 summary: |
   Combinatorics on the GMAT is a small number of patterns repeated constantly. Master the four decisions (order or no? repeats allowed? restrictions? circular or linear?), internalize the key formulas, and you will solve every counting and probability question on test day in under two minutes.
+
+  By the end of this chapter you will: (1) apply the Fundamental Counting Principle without a formula; (2) pick permutation vs. combination instantly from the problem's wording; (3) handle restrictions using the glue trick and complement without confusion; (4) adjust for circular arrangements and repeated letters; (5) convert any probability question into a counting ratio.
 sections:
   - id: pretest
     type: pretest
@@ -127,6 +129,19 @@ problem_sets:
 
 ## @enumeration
 
+**Where this fits.** Every formula in this chapter — permutations, combinations, circular arrangements, multiset arrangements — is the slot-filling logic in this section run faster. Before you learn any formula, understand why the formula works. That understanding is the difference between pattern-matching confidently and freezing when a question doesn't look like the examples.
+
+The chapter is organized around four decisions you'll make on every combinatorics question:
+
+1. Does order matter? (permutation vs. combination)
+2. Are objects repeated or identical? (divide by factorial of repeated groups)
+3. Is there a restriction? (glue trick, complement, alternating)
+4. Is it circular or linear? (shift formula)
+
+This section teaches the foundation that makes all four decisions precise.
+
+---
+
 Enumeration means **writing out every possibility and counting them**. It sounds too primitive for the GMAT, but it is the foundation every formula is built on — and for small sets (3 or 4 objects) it is often the fastest approach on test day.
 
 **Mental model — the Fundamental Counting Principle.** Counting problems reduce to filling slots, one at a time. How many choices for slot 1? How many for slot 2 given what's in slot 1? Multiply. Every formula in this chapter — P(n, k), C(n, k), (n − 1)!, n!/(r₁! × r₂!) — is just this slot-filling logic run faster. If you understand the slots, you can re-derive any formula in 10 seconds when memory fails.
@@ -149,6 +164,8 @@ Multiply: 3 × 2 × 1 = **6**. This is 3! (read "three factorial").
     n × (n − 1) × (n − 2) × … × 1 = n!
 
 *Memorize these:* 3! = 6, 4! = 24, 5! = 120, 6! = 720, 7! = 5040. They appear in answer choices constantly. 8! = 40,320 — you won't compute it on the clock, but you'll recognize it.
+
+**Trap to watch.** When the problem involves selecting from a group rather than arranging all members, students often apply n! when they should restrict it. Lining up all 5 books on a shelf is 5! = 120. Choosing 3 of those books to display is not 3! = 6 — that ignores the pool. The difference between "arrange all" and "select and arrange a subset" is the pivot between n! and P(n, k). If the pool is larger than the slots, you are not doing a simple factorial.
 
 > **Self-explanation prompt.** Before you look at the check question, explain in one sentence: *why* does each additional slot have one fewer choice than the slot before it? If you can say "because each previous slot already used up one object," you've internalized the rule. Don't move on until you can say it.
 
@@ -266,19 +283,6 @@ Never count the hard condition directly. Count the total, count the forbidden ve
 
 Example: C(9, 3) − C(5, 3) = 84 − 10 = **74**. Counting "exactly 1, 2, 3 women" directly takes three calculations; counting "zero women" takes one.
 
-### Alternating patterns
-
-When objects of two types must strictly alternate (men/women, red/blue, vowel/consonant), the key insight is that there are **two possible starting patterns** and each is counted independently.
-
-**Worked example.** 4 men and 4 women seated in a row, men and women must alternate.
-
-Two patterns exist: MWMWMWMW and WMWMWMWM.
-
-- For each pattern: 4! ways to assign the men to M-slots × 4! ways to assign women to W-slots = 24 × 24 = 576
-- Two patterns: 2 × 576 = **1,152**
-
-**Trap to watch.** Students who count only one pattern (e.g., only "men go first") get exactly half the right answer. Always ask: can the other group start instead?
-
 ### Compound restrictions
 
 When a problem requires one pair to be adjacent AND another pair to not be adjacent, break it into two stages: count the required-adjacent case, then subtract the sub-case where both constraints are violated simultaneously.
@@ -291,28 +295,32 @@ When a problem requires one pair to be adjacent AND another pair to not be adjac
 
 **Trap to watch.** The most common error is computing the "required" constraint correctly (240) and then forgetting to remove the sub-case that also satisfies the "forbidden" constraint. One subtraction step is all it takes — but students skip it under time pressure.
 
-**Alternating arrangements.** When two types must strictly alternate in a line — MFMFMF or ABABAB — the approach is:
+### Alternating arrangements
 
-1. Count the number of valid patterns.
+When objects of two types must strictly alternate in a line — MFMFMF or ABABAB — the approach is always the same three steps:
+
+1. Count the number of valid starting patterns.
 2. For each pattern, count the arrangements of each type in its allotted slots.
 3. Multiply.
 
-**Example.** 3 men (M) and 3 women (W) sit in a row of 6 chairs, alternating genders. How many arrangements?
+**Equal groups.** 3 men (M) and 3 women (W) sit in a row of 6 chairs, alternating genders. How many arrangements?
 
-Valid patterns are MWMWMW and WMWMWM — exactly 2.
+Valid patterns: MWMWMW and WMWMWM — exactly **2**.
 
 For each pattern:
-- 3 men fill the "M" slots: 3! = 6 ways
-- 3 women fill the "W" slots: 3! = 6 ways
+- 3 men fill the M-slots: 3! = 6 ways
+- 3 women fill the W-slots: 3! = 6 ways
 - Per pattern: 6 × 6 = 36
 
-Total: 2 × 36 = **72**
+Total: 2 × 36 = **72**.
 
 Quick formula for equal groups: **2 × (n!)²** where n is the size of each group.
 
-**What if the groups are unequal?** If you have 4 men and 3 women alternating, only the MWMWMWM pattern works (the larger group must start and end). One pattern, so: 1 × 4! × 3! = 24 × 6 = **144**.
+**Unequal groups.** If there are 4 men and 3 women alternating, only MWMWMWM works — the larger group must start and end. One pattern: 1 × 4! × 3! = 24 × 6 = **144**.
 
-**Alternating at a round table.** Circular + alternating: fix one person to eliminate rotational duplicates, then arrange the remaining n − 1 in the alternating pattern. For 3 men and 3 women at a round table: fix one man, place 2 remaining men in 2! = 2 ways, then fill the 3 women's gaps in 3! = 6 ways. Total: 2 × 6 = **12**. (No factor of 2 — rotational equivalence collapses the two patterns into each other.)
+**Alternating at a round table.** Fix one person to eliminate rotational duplicates, then arrange the remaining n − 1 in the alternating pattern. For 3 men and 3 women at a round table: fix one man, arrange 2 remaining men in 2! = 2 ways, fill 3 women's gaps in 3! = 6 ways. Total: 2 × 6 = **12**. There is no factor of 2 for starting patterns — rotational equivalence collapses the two linear patterns into each other.
+
+**Trap to watch.** Students who count only one starting pattern (e.g., only "men go first") get exactly half the right answer on equal-group line problems. Always ask: can the other group start instead? For round-table alternating problems, the answer is no — so do not double.
 
 ## @circular
 
@@ -480,9 +488,7 @@ C(n, k) counts the arrangements of k successes in n positions; p^k gives the pro
 
 > **Self-explanation prompt.** Why does C(n, k) appear in the binomial formula? Because the k successes can occur in any of C(n, k) orderings across the n trials — and the probability is the same for each ordering. If you can explain that, the formula stops being something to memorize and starts being something to re-derive in 5 seconds.
 
-> **Self-explanation prompt.** Why does swapping two identical letters not produce a new arrangement? If you can say "because the result looks the same — the string is unchanged — so it's not a distinct outcome," you understand why we divide. The denominator doesn't subtract anything; it cancels out the overcounting that straight factorial committed.
-
-> **Recall check.** Write the multiset formula from memory. Then apply it to BANANA (6 letters: 1 B, 3 A's, 2 N's). The answer is 6! / (1! × 3! × 2!) = 720 / 12 = 60. If you got it right, you're ready for the problem set. If not, re-read the formula once more, then close it and recompute without looking.
+> **Recall check.** Cover this section. From memory: state the three probability structures covered here — the counting ratio, the complement rule, and the binomial formula. Then state the one question you ask to choose between them: Is this an "at least one" problem? → complement. Is this "exactly k successes in n independent trials"? → binomial. Everything else? → counting ratio. If you can retrieve all three and route correctly, you're ready for the problem set.
 
 ## @decision
 
