@@ -47,6 +47,13 @@ export interface SessionQuestion {
   /** Progressive hints in order (nudge → strategy → setup). Empty when
    *  no hints authored — the "Need a hint?" button hides in that case. */
   hints?: { level: "nudge" | "strategy" | "setup"; text: string }[]
+  /** Rich-explanation fields surfaced in the post-submit analysis panel.
+   *  Additive + optional — populated by the session-page mappers from the
+   *  same fields on ParsedQuestion. */
+  fastestPath?: string
+  commonTrap?: string
+  mistakeAnalysis?: Partial<Record<"A" | "B" | "C" | "D" | "E" | "F", string>>
+  takeaway?: string
   /** Two-Part Analysis: column headers (the two "roles"). */
   twoPartColumns?: string[]
   /** Two-Part Analysis: the correct row index for each column. */
@@ -995,6 +1002,92 @@ function SaveStatusBanner({
   )
 }
 
+function AnalysisRow({
+  label,
+  color,
+  text,
+}: {
+  label: string
+  color: string
+  text: string
+}) {
+  return (
+    <div>
+      <p
+        className="text-[10px] uppercase tracking-widest mb-1.5"
+        style={{ color }}
+      >
+        {label}
+      </p>
+      <PromptBlock text={text} />
+    </div>
+  )
+}
+
+/**
+ * Post-submit deep-analysis block. Surfaces the question's authored
+ * fastest-path, common-trap, the rationale for the student's wrong pick,
+ * and the takeaway — content that already exists but was previously only
+ * shown on the standalone /review/question page. Always expanded on sm+;
+ * collapsed behind a "Show full analysis" toggle on mobile so the result
+ * screen stays scannable on small screens.
+ */
+function FullAnalysis({
+  fastestPath,
+  commonTrap,
+  wrongLetter,
+  wrongMistake,
+  takeaway,
+}: {
+  fastestPath?: string
+  commonTrap?: string
+  wrongLetter: string | null
+  wrongMistake: string | null
+  takeaway?: string
+}) {
+  const [showAll, setShowAll] = useState(false)
+  return (
+    <div className="mt-4 pt-4 border-t border-white/[0.06]">
+      <button
+        type="button"
+        onClick={() => setShowAll((v) => !v)}
+        className="sm:hidden inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em]"
+        style={{ color: "#C9A84C" }}
+        aria-expanded={showAll}
+      >
+        {showAll ? "Hide analysis" : "Show full analysis"}
+        <ChevronDown
+          className={`w-3.5 h-3.5 transition-transform ${
+            showAll ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+      <div
+        className={`${
+          showAll ? "block" : "hidden sm:block"
+        } space-y-4 mt-3 sm:mt-0`}
+      >
+        {fastestPath && (
+          <AnalysisRow label="Fastest path" color="#C9A84C" text={fastestPath} />
+        )}
+        {commonTrap && (
+          <AnalysisRow label="Common trap" color="#FF6B6B" text={commonTrap} />
+        )}
+        {wrongLetter && wrongMistake && (
+          <AnalysisRow
+            label={`Why you picked ${wrongLetter}`}
+            color="#FF6B6B"
+            text={wrongMistake}
+          />
+        )}
+        {takeaway && (
+          <AnalysisRow label="Takeaway" color="#3ECF8E" text={takeaway} />
+        )}
+      </div>
+    </div>
+  )
+}
+
 export default function SessionClient({
   slug,
   topic,
@@ -1391,11 +1484,16 @@ export default function SessionClient({
     // Next-step recommendation keyed to accuracy band. When the student
     // performed well and the server identified a weak topic, name it
     // directly — eliminates the "which area?" follow-up navigation.
+    // In the mid-accuracy band (60–78%), also surface the cross-topic weak
+    // area when it differs from the current topic: students building on one
+    // topic deserve to know which gap is costing them the most overall.
     const nextStepNote =
       accuracy < 60
         ? "Accuracy below 60% signals a concept gap. Revisiting the chapter before more practice compounds better."
         : accuracy < 78
-        ? "Accuracy is building. One more focused session on this topic before moving on."
+        ? weakestTopic && weakestTopic.topic !== topic
+          ? `Accuracy is building — one more focused session here will sharpen this topic. Across your full history, ${weakestTopic.topic} sits at ${Math.round(weakestTopic.accuracy * 100)}% accuracy. That's the highest-leverage target once this topic is solid.`
+          : "Accuracy is building. One more focused session on this topic before moving on."
         : weakestTopic
         ? `This topic is solid. Based on your practice history, ${weakestTopic.topic} is your weakest area right now — ${Math.round(weakestTopic.accuracy * 100)}% accuracy. That's where the points are.`
         : "This topic is solid. Investing time in a weaker area is the highest-leverage move now."
@@ -1723,6 +1821,58 @@ export default function SessionClient({
           )
         })()}
 
+        {(() => {
+          // Subtopic-level breakdown of wrong answers — surfaces the
+          // specific skill clusters that broke down in this session, not
+          // just the difficulty buckets covered above. Hidden when no
+          // wrong answer carries a usable subtopic label.
+          const wrong = questions.filter(
+            (q, i) =>
+              states[i].submitted && !isQuestionCorrect(q, states[i])
+          )
+          const counts = new Map<string, number>()
+          for (const q of wrong) {
+            const sub = (q.subtopic ?? "").trim()
+            if (!sub) continue
+            counts.set(sub, (counts.get(sub) ?? 0) + 1)
+          }
+          const top = [...counts.entries()]
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 3)
+          if (top.length === 0) return null
+          return (
+            <div className="p-5 rounded-xl border border-white/[0.06] bg-[#0D0D0D]">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+                Where the mistakes fell
+              </p>
+              <div className="space-y-2.5">
+                {top.map(([sub, n]) => (
+                  <div
+                    key={sub}
+                    className="flex items-center justify-between gap-3"
+                  >
+                    <p className="text-sm text-[#C0C0C0] truncate">{sub}</p>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <div className="flex gap-1">
+                        {Array.from({ length: Math.min(n, 5) }).map((_, i) => (
+                          <div
+                            key={i}
+                            className="w-2 h-2 rounded-full"
+                            style={{ backgroundColor: "rgba(255,68,68,0.5)" }}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-xs text-[#555555] w-4 text-right tabular-nums">
+                        {n}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        })()}
+
         {savedSessionId && answeredCount - correctCount > 0 && (
           <Link
             href={`/error-log?session_id=${savedSessionId}`}
@@ -1952,6 +2102,16 @@ export default function SessionClient({
               href: chapterSlug ? `/chapters/${chapterSlug}` : "/chapters",
               variant: "secondary",
             })
+            // When a weaker topic is known and distinct from the current one,
+            // surface it as a direct escape hatch — students who plateau here
+            // can jump straight to the gap without navigating back to practice.
+            if (weakestTopic && weakestTopic.topic !== topic) {
+              actions.push({
+                label: `Practice ${weakestTopic.topic}`,
+                href: `/practice/session/${weakestTopic.practiceSlug}`,
+                variant: "secondary",
+              })
+            }
           } else if (weakestTopic) {
             // Strong session + known weak topic: point directly to the gap
             actions.push({
@@ -2246,6 +2406,39 @@ export default function SessionClient({
                     )}
                 </div>
                 <PromptBlock text={current.explanation} />
+                {(() => {
+                  const wrongLetter =
+                    !isQuestionCorrect(current, currentState) &&
+                    currentState.selected !== null &&
+                    !isTwoPart
+                      ? (String.fromCharCode(65 + currentState.selected) as
+                          | "A"
+                          | "B"
+                          | "C"
+                          | "D"
+                          | "E"
+                          | "F")
+                      : null
+                  const wrongMistake = wrongLetter
+                    ? current.mistakeAnalysis?.[wrongLetter] ?? null
+                    : null
+                  if (
+                    !current.fastestPath &&
+                    !current.commonTrap &&
+                    !current.takeaway &&
+                    !wrongMistake
+                  )
+                    return null
+                  return (
+                    <FullAnalysis
+                      fastestPath={current.fastestPath}
+                      commonTrap={current.commonTrap}
+                      wrongLetter={wrongLetter}
+                      wrongMistake={wrongMistake}
+                      takeaway={current.takeaway}
+                    />
+                  )
+                })()}
               </div>
             )}
 

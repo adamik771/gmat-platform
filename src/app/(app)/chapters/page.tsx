@@ -519,20 +519,39 @@ function JourneyNode({
   isLast,
 }: JourneyNodeProps) {
   const num = String(index + 1).padStart(2, "0")
-  const cta =
-    status === "complete" ? "Review" : status === "current" ? "Continue" : "Start"
-  const cardBorder =
-    status === "current"
-      ? accent
-      : status === "complete"
-      ? "rgba(255,255,255,0.06)"
-      : "rgba(255,255,255,0.05)"
-  const cardBg =
-    status === "current"
-      ? accentSoft
-      : status === "complete"
-      ? "rgba(255,255,255,0.012)"
-      : "#0D0D0D"
+
+  // Reading is done but problem sets haven't been attempted yet. This is a
+  // common dropout point — the student feels "done" because reading is complete
+  // and misses that the graded sets are the actual learning consolidation step.
+  const readingDoneProblemsPending =
+    status === "complete" &&
+    item.problemSetCount > 0 &&
+    item.accuracyPct === null
+
+  const cta = readingDoneProblemsPending
+    ? "Start problems"
+    : status === "complete"
+    ? "Review"
+    : status === "current"
+    ? "Continue"
+    : "Start"
+
+  const cardBorder = readingDoneProblemsPending
+    ? "rgba(201,168,76,0.35)"
+    : status === "current"
+    ? accent
+    : status === "complete"
+    ? "rgba(255,255,255,0.06)"
+    : "rgba(255,255,255,0.05)"
+
+  const cardBg = readingDoneProblemsPending
+    ? "rgba(201,168,76,0.04)"
+    : status === "current"
+    ? accentSoft
+    : status === "complete"
+    ? "rgba(255,255,255,0.012)"
+    : "#0D0D0D"
+
   const href =
     status === "current" && item.resumeAnchor
       ? `${item.href}#${item.resumeAnchor}`
@@ -545,10 +564,15 @@ function JourneyNode({
         <span
           className="relative z-10 flex items-center justify-center w-9 h-9 rounded-full transition-transform"
           style={{
-            backgroundColor:
-              status === "complete" ? accent : "var(--read-bg-elevated, #0F0F0F)",
+            backgroundColor: readingDoneProblemsPending
+              ? "rgba(201,168,76,0.15)"
+              : status === "complete"
+              ? accent
+              : "var(--read-bg-elevated, #0F0F0F)",
             border: `1.5px solid ${
-              status === "complete"
+              readingDoneProblemsPending
+                ? "#C9A84C"
+                : status === "complete"
                 ? accent
                 : status === "current"
                 ? accent
@@ -560,7 +584,13 @@ function JourneyNode({
                 : "none",
           }}
         >
-          {status === "complete" ? (
+          {readingDoneProblemsPending ? (
+            <Target
+              className="w-4 h-4"
+              style={{ color: "#C9A84C" }}
+              aria-label="Problem sets ready"
+            />
+          ) : status === "complete" ? (
             <CheckCircle2
               className="w-4 h-4"
               style={{ color: "#0A0A0A" }}
@@ -582,7 +612,11 @@ function JourneyNode({
             className="absolute top-14 bottom-[-1.25rem] left-1/2 -translate-x-px w-px"
             style={{
               background: `linear-gradient(to bottom, ${
-                status === "complete" ? accent : "rgba(255,255,255,0.08)"
+                readingDoneProblemsPending
+                  ? "#C9A84C"
+                  : status === "complete"
+                  ? accent
+                  : "rgba(255,255,255,0.08)"
               } 0%, rgba(255,255,255,0.06) 70%, transparent 100%)`,
             }}
             aria-hidden
@@ -603,10 +637,13 @@ function JourneyNode({
               : "inset 0 1px 0 rgba(255,255,255,0.02)",
         }}
       >
-        {status === "current" && (
+        {(status === "current" || readingDoneProblemsPending) && (
           <div
             className="absolute inset-x-0 top-0 h-px"
-            style={{ backgroundColor: accent, opacity: 0.7 }}
+            style={{
+              backgroundColor: readingDoneProblemsPending ? "#C9A84C" : accent,
+              opacity: 0.7,
+            }}
             aria-hidden
           />
         )}
@@ -627,7 +664,19 @@ function JourneyNode({
                   Current
                 </span>
               )}
-              {status === "complete" && (
+              {readingDoneProblemsPending && (
+                <span
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em] font-semibold"
+                  style={{
+                    backgroundColor: "rgba(201,168,76,0.12)",
+                    color: "#C9A84C",
+                  }}
+                >
+                  <Target className="w-3 h-3" />
+                  Test yourself
+                </span>
+              )}
+              {status === "complete" && !readingDoneProblemsPending && (
                 <span
                   className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em] font-semibold"
                   style={{
@@ -644,7 +693,9 @@ function JourneyNode({
               className="font-display text-lg sm:text-xl font-semibold tracking-tight leading-[1.2]"
               style={{
                 color:
-                  status === "complete" ? "rgba(240,240,240,0.7)" : "#F0F0F0",
+                  status === "complete" && !readingDoneProblemsPending
+                    ? "rgba(240,240,240,0.7)"
+                    : "#F0F0F0",
               }}
             >
               {item.title}
@@ -690,7 +741,9 @@ function JourneyNode({
             {(() => {
               const statusText = chapterStatusLine(item)
               if (!statusText) return null
-              const tone = item.isComplete
+              const tone = readingDoneProblemsPending
+                ? "rgba(201,168,76,0.80)"
+                : item.isComplete
                 ? "rgba(62,207,142,0.85)"
                 : accent
               return (
@@ -702,6 +755,17 @@ function JourneyNode({
                 </p>
               )
             })()}
+            {/* Nudge strip when all reading is done but no problem-set attempt
+                exists yet. Gives the student a clear, specific next action
+                instead of letting them think "Complete" means they're done. */}
+            {readingDoneProblemsPending && (
+              <p
+                className="mt-3 text-[11px] leading-snug"
+                style={{ color: "rgba(201,168,76,0.65)" }}
+              >
+                Reading complete. Now test your understanding — problem sets turn passive knowledge into active recall.
+              </p>
+            )}
             {/* Progress bar lives on the current card only — once you've
                 moved on it just becomes visual noise. Completed cards
                 speak for themselves; available cards have nothing to
@@ -731,12 +795,13 @@ function JourneyNode({
           <div
             className="flex items-center gap-1.5 text-[11px] uppercase tracking-[0.18em] font-semibold flex-shrink-0 mt-1 transition-transform group-hover:translate-x-0.5"
             style={{
-              color:
-                status === "current"
-                  ? accent
-                  : status === "complete"
-                  ? "#888888"
-                  : "rgba(255,255,255,0.6)",
+              color: readingDoneProblemsPending
+                ? "#C9A84C"
+                : status === "current"
+                ? accent
+                : status === "complete"
+                ? "#888888"
+                : "rgba(255,255,255,0.6)",
             }}
           >
             {cta}

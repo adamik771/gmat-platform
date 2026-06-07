@@ -49,7 +49,9 @@ sections:
   - id: common-tpa-traps
     type: reading
     title: "The four TPA traps — and the compute-first reflex"
-    check_question_ids: []
+    check_question_ids:
+      - two-part-analysis-q17
+      - two-part-analysis-q18
 
   - id: cause-effect-patterns
     type: reading
@@ -57,6 +59,7 @@ sections:
     check_question_ids:
       - two-part-analysis-q8
       - two-part-analysis-q14
+      - two-part-analysis-q35
 
   - id: summary
     type: summary
@@ -73,6 +76,9 @@ problem_sets:
     question_ids:
       - two-part-analysis-q9
       - two-part-analysis-q10
+      - two-part-analysis-q28
+      - two-part-analysis-q29
+      - two-part-analysis-q30
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -88,6 +94,14 @@ problem_sets:
       - two-part-analysis-q11
       - two-part-analysis-q12
       - two-part-analysis-q13
+      - two-part-analysis-q17
+      - two-part-analysis-q19
+      - two-part-analysis-q23
+      - two-part-analysis-q26
+      - two-part-analysis-q27
+      - two-part-analysis-q31
+      - two-part-analysis-q32
+      - two-part-analysis-q33
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -100,6 +114,15 @@ problem_sets:
       - two-part-analysis-q7
       - two-part-analysis-q14
       - two-part-analysis-q15
+      - two-part-analysis-q16
+      - two-part-analysis-q18
+      - two-part-analysis-q20
+      - two-part-analysis-q21
+      - two-part-analysis-q22
+      - two-part-analysis-q24
+      - two-part-analysis-q25
+      - two-part-analysis-q34
+      - two-part-analysis-q35
 ---
 
 ## @the-two-part-format
@@ -142,6 +165,8 @@ Logical tells: arguments, claims, conclusions, assumptions, "identify the role,"
 3. Solve. Match your answers to the list.
 
 The answer list doesn't force you to guess — you can usually solve the problem independently and then check your values against the list. The list is a safety net for arithmetic errors, not a shortcut.
+
+**The cost of misclassification.** Students who misread a logical TPA as quantitative spend 30 seconds looking for equations in an argument. Students who misread a quantitative problem as logical look for "evidence" and "conclusions" in a word problem. Misclassification costs more time than wrong math because the entire framework is wrong. The 10-second rule: if there is a "therefore," a conclusion, or someone making an argument, it's logical. If there are units, unknowns, and numeric constraints, it's quantitative. Commit to a classification before writing anything.
 
 > **Recall check.** Close your eyes. Describe the Two-Part answer format. Now describe the two flavors of question and how to recognize which one you're in. (Answer: shared answer list, pick one per column. Quant: numbers and equations. Logic: arguments and roles.) Locking in the structure upfront means you never waste time wondering what to do — you just start solving.
 
@@ -202,6 +227,10 @@ Logical Two-Part asks you to identify two roles in an argument or passage. Class
 1. Read the argument. Apply the standard CR structural analysis (conclusion, evidence, assumption).
 2. Identify what each of Part 1 and Part 2 are asking for.
 3. For each, scan the answer list for the statement that best matches.
+
+**What "structural analysis" means in practice.** Don't skip from "read" to "scan." Three moves, every time: (1) mark the conclusion — the claim the author is trying to establish, often after "therefore," "thus," or "conclude"; (2) mark the evidence — the facts and observations cited, often after "because," "since," or "studies show"; (3) identify the central assumption — the unstated premise required for the evidence to support the conclusion, typically about no alternative causes, or that the sample is representative.
+
+Students who scan the list before completing these three moves anchor on whatever statement catches their eye first. The wrong answers are designed for that.
 
 **Example (conclusion + assumption).** Argument: "The new marketing campaign increased sales by 25% in Q1. However, the campaign coincided with a major competitor going bankrupt, reducing market competition. Therefore, the campaign's effectiveness may be overstated."
 
@@ -349,6 +378,8 @@ The discipline: **derive both values from the problem on your scratchwork, then 
 
 This adds 15–20 seconds per question. It saves you 200+ points across the section over a prep cycle.
 
+**Key takeaway.** Four traps, one verification sequence. Before you submit any Two-Part answer: (1) did you derive both values from the stem independently, without scanning the list first? (2) did you verify the joint constraint — both values plugged into every equation in the stem? (3) does each selection answer its specific column question, not an intermediate result? (4) if quantitative, are the two values dimensionally correct for what each column asks? Fifteen seconds of checklist prevents the trap patterns that cost the most points at medium and hard difficulty.
+
 > **Self-explanation prompt.** Why is verifying the joint constraint specifically the last step in TPA — rather than treating each part as an independent CR or DS question? If you can say "because TPA's shared-list format invites picking each part in isolation; only joint verification catches the cross-constraint failures the format is designed to surface," you've understood why TPA punishes the same algebra mistake more than DS or PS would.
 
 ## @cause-effect-patterns
@@ -436,15 +467,18 @@ Two-Part Analysis is two question types wearing the same dress. Recognizing the 
 
 **Time-management targets.**
 
-- Easy quantitative Two-Part: under 90 seconds.
-- Medium: 90-120 seconds.
-- Hard: up to 2 minutes.
+- Easy: under 90 seconds.
+- Medium: 90–150 seconds.
+- Hard: up to 2:30 (constraint-optimization and multi-step probability questions can reach this).
+- At the 2:30 mark on any question: commit a best guess for both parts and move on. Partial time spent on a doomed Part 1 produces zero expected points; that time buys a full solve on an easier question downstream.
 
-**The two highest-leverage Two-Part habits:**
+**The three highest-leverage Two-Part habits:**
 
-1. **Classify the flavor within the first 10 seconds.** Going in with the wrong frame (trying to set up equations for a logical question, or argument-analysis for a quantitative one) burns 30+ wasted seconds.
+1. **Classify the flavor within the first 10 seconds.** If there is a "therefore" or an argument making a causal or evaluative claim, it is logical. If there are units, unknowns, and numeric constraints, it is quantitative. The wrong frame costs more than the wrong math.
 
-2. **Always verify your selections against the original stem.** With quantitative, plug the numbers back into the equations. With logical, re-read the argument with your selections substituted — does the pair make sense?
+2. **Solve independently before scanning the list.** Derive both values from the stem on scratchwork. Then find them in the list. Students who scan first anchor on wrong values and backfit their algebra. The list is a safety net, not a starting point.
+
+3. **Verify the joint constraint as the final step.** Plug both selections back into every equation in the stem. One selection that is individually valid can still fail the joint constraint — and TPA is graded all-or-nothing.
 
 **Common traps across all Two-Part questions:**
 
@@ -453,4 +487,4 @@ Two-Part Analysis is two question types wearing the same dress. Recognizing the 
 - Assuming the two answers must differ (they can be the same).
 - On logical questions: confusing a claim the author cites with a claim the author endorses.
 
-Drill the 15 questions in this chapter's problem sets. Because Two-Part is a smaller question bank, each question carries more weight in your Data Insights score — aim for 90%+ on the easy and medium sets before the test.
+Drill the 35 questions in this chapter's problem sets. The easy set builds pattern recognition; the medium set covers every quantitative template and logical role type; the hard set adds probability, exponential models, causal chains, and constraint optimization. Two-Part is a smaller subtype on the GMAT, so each question carries disproportionate weight in your Data Insights score — aim for 90%+ on easy and 75%+ on medium before moving to hard.
