@@ -909,3 +909,454 @@ Three bells ring at intervals of 6, 9, and 15 minutes respectively. They all rin
 **common_trap:** Using LCM of only two of the three intervals and forgetting the third, or adding LCMs instead of nesting them.
 **takeaway:** For "next simultaneous event" with periodic events at intervals a, b, c: time = LCM(a, b, c). Compute step-by-step: LCM(a, b) first, then LCM(result, c). All three must factor into the final LCM.
 **related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Divisibility Rules
+
+Which of the following numbers is divisible by 4?
+
+- A) 314
+- B) 526
+- C) 718
+- D) 832
+- E) 946
+
+**answer:** D
+**fastest_path:** A number is divisible by 4 if and only if its last two digits form a multiple of 4. 32 / 4 = 8.
+**explanation:** Divisibility by 4 depends only on the last two digits. Check each: 14 / 4 = 3.5 (no); 26 / 4 = 6.5 (no); 18 / 4 = 4.5 (no); 32 / 4 = 8 (yes); 46 / 4 = 11.5 (no). Answer: D.
+**mistake_a:** Confused divisibility by 2 with divisibility by 4 — 314 ends in 4, which looks like a multiple of 4, but 14 / 4 is not an integer.
+**mistake_b:** 526 ends in an even digit but 26 / 4 = 6.5 — being even is necessary but not sufficient for divisibility by 4.
+**mistake_c:** 18 / 4 = 4.5 — even last digit does not guarantee divisibility by 4.
+**mistake_e:** 46 / 4 = 11.5 — similarly, the last digit 6 fails the two-digit check.
+**common_trap:** Testing only the last digit rather than the last two digits. Divisibility by 4 requires the number formed by the last two digits to be a multiple of 4.
+**takeaway:** Divisibility rules: by 4 — last two digits divisible by 4; by 8 — last three digits divisible by 8. The number of digits to examine equals the power of 2 in the divisor (4 = 2², so 2 digits; 8 = 2³, so 3 digits).
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Consecutive Odd Integers
+
+The sum of six consecutive odd integers is 96. What is the largest of these integers?
+
+- A) 11
+- B) 15
+- C) 17
+- D) 19
+- E) 21
+
+**answer:** E
+**fastest_path:** Smallest = a. Sum = 6a + 30 = 96 → a = 11. Largest = a + 10 = 21.
+**explanation:** Six consecutive odd integers starting at a: a, a+2, a+4, a+6, a+8, a+10. Sum = 6a + (0+2+4+6+8+10) = 6a + 30 = 96 → 6a = 66 → a = 11. Largest = 11 + 10 = 21. Verify: 11+13+15+17+19+21 = 96 ✓.
+**mistake_a:** Bubbled the smallest integer (a = 11) instead of the largest — solved the algebra correctly but reported the wrong term.
+**mistake_b:** Bubbled the third term (a + 4 = 15) — picked an interior value rather than the endpoint.
+**mistake_c:** Computed a + 6 = 17 (the fourth term) — off by two in the offset.
+**mistake_d:** Bubbled a + 8 = 19 (the fifth term) — one short of the largest.
+**common_trap:** Solving the algebra correctly but then forgetting to add the full offset (10) to get the largest term. Always identify which term the question asks for before marking.
+**takeaway:** For k consecutive terms with common difference d starting at a: sum = ka + d·k(k-1)/2. Largest term = a + d(k-1). Here d = 2, k = 6, so largest = a + 10.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Absolute Value and Integer Counting
+
+How many integers satisfy |n − 3| ≤ 2?
+
+- A) 3
+- B) 4
+- C) 5
+- D) 6
+- E) 7
+
+**answer:** C
+**fastest_path:** |n − 3| ≤ 2 → 1 ≤ n ≤ 5. Integers: 1, 2, 3, 4, 5 → count 5.
+**explanation:** Rewrite: −2 ≤ n − 3 ≤ 2, so 1 ≤ n ≤ 5. Integer values in the range: 1, 2, 3, 4, 5. Count = 5.
+**mistake_a:** Counted only interior integers (2, 3, 4) and excluded the boundary values 1 and 5.
+**mistake_b:** Included 1 but excluded 5 (applied a strict inequality at one endpoint): counted 1, 2, 3, 4.
+**mistake_d:** Included n = 0 or n = 6 — but |0 − 3| = 3 > 2 and |6 − 3| = 3 > 2, so both fail.
+**mistake_e:** Mis-expanded the inequality as |n − 3| ≤ 2 → n ≤ 3 + 4 = 7 (doubled the right-hand side), yielding a wider range.
+**common_trap:** Forgetting that the ≤ (non-strict) inequality includes the boundary values n = 1 and n = 5. Always convert to a compound inequality before counting.
+**takeaway:** |n − a| ≤ k expands to a − k ≤ n ≤ a + k. Inclusive bounds include both endpoints. Integer count = (a + k) − (a − k) + 1 = 2k + 1.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Counting Multiples — LCM Application
+
+How many integers from 1 to 100, inclusive, are divisible by both 4 and 6?
+
+- A) 6
+- B) 7
+- C) 8
+- D) 9
+- E) 10
+
+**answer:** C
+**fastest_path:** LCM(4, 6) = 12. Count = floor(100/12) = 8.
+**explanation:** A number divisible by both 4 and 6 must be divisible by LCM(4, 6). Since 4 = 2² and 6 = 2·3, LCM = 2²·3 = 12. Multiples of 12 from 1 to 100: 12, 24, 36, 48, 60, 72, 84, 96. Count = floor(100/12) = 8.
+**mistake_a:** Used GCF(4, 6) = 2 instead of LCM — then counted multiples of 2 (50 total) and reduced incorrectly, or otherwise arrived at 6.
+**mistake_b:** Off-by-one — perhaps excluded 96 or made an error at the boundary: 12 × 8 = 96 ≤ 100, so 8 is correct.
+**mistake_d:** Treated "divisible by both" as divisible by the product 4 × 6 = 24 (not LCM): floor(100/24) = 4, then over-counted something to reach 9.
+**mistake_e:** Counted multiples of 4 in 1–100: floor(100/4) = 25, then halved without justification to reach 10 or 12.
+**common_trap:** Using the product (24) instead of the LCM (12) as the combined divisor. The LCM is always correct for "divisible by both."
+**takeaway:** "Divisible by both a and b" means divisible by LCM(a, b). Count of multiples of k in [1, n] = floor(n/k). These two facts combine here: LCM(4, 6) = 12, floor(100/12) = 8.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Factor Pairs
+
+The product of two positive integers is 48 and their sum is 14. What is the larger of the two integers?
+
+- A) 6
+- B) 7
+- C) 8
+- D) 9
+- E) 12
+
+**answer:** C
+**fastest_path:** Factor pairs of 48: (1,48), (2,24), (3,16), (4,12), (6,8). Only (6, 8) sums to 14. Larger = 8.
+**explanation:** List factor pairs of 48 in order: (1, 48), (2, 24), (3, 16), (4, 12), (6, 8). Check each sum: only 6 + 8 = 14 ✓. The larger integer is 8.
+**mistake_a:** Bubbled 6 — the smaller of the two integers.
+**mistake_b:** Computed the average 14/2 = 7 and guessed 7 is one of the factors — but 48 / 7 is not an integer.
+**mistake_d:** Tested 9 as a factor of 48 — but 48 / 9 is not an integer; 9 does not divide 48.
+**mistake_e:** Picked the largest-looking factor (12), but 12 + 4 = 16 ≠ 14.
+**common_trap:** Guessing large factors of 48 without checking all pairs systematically. A systematic factor-pair list prevents missing the correct pair.
+**takeaway:** For "product = P and sum = S" problems: list all factor pairs of P in ascending order and check sums. Alternatively, set up x + y = S and xy = P to form a quadratic: x² − Sx + P = 0.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Remainders — Powers
+
+What is the remainder when 7^100 is divided by 4?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) It depends on the exponent.
+
+**answer:** B
+**fastest_path:** 7 ≡ −1 (mod 4). (−1)^100 = 1. Remainder = 1.
+**explanation:** 7 = 4 + 3, so 7 ≡ −1 (mod 4). Raising to the 100th power: 7^100 ≡ (−1)^100 = 1 (mod 4). Remainder = 1. Alternatively, powers of 7 mod 4 cycle as 3, 1, 3, 1, ... (period 2); 100 is even → lands on position 2 in the cycle → value 1.
+**mistake_a:** Concluded 7^100 is divisible by 4 because 7 × 100 = 700 is divisible by 4 — confused 7^100 (exponentiation) with 7 × 100 (multiplication).
+**mistake_c:** Computed 7^2 = 49, noted 49 mod 4 = 1, then halved to 0.5 and rounded to 2 — spurious arithmetic after finding the square.
+**mistake_d:** Evaluated 7 mod 4 = 3 and stopped — computed the remainder of the base but ignored the exponent entirely.
+**mistake_e:** Assumed the answer varies with the exponent — but the cycle has period 2, so parity of the exponent is all that matters.
+**common_trap:** Stopping at 7 mod 4 = 3 without applying the exponent. Always reduce the base, determine the cycle of its powers, then apply the exponent.
+**takeaway:** For a^n mod m: (1) reduce the base to r = a mod m, (2) find the cycle length of r^k mod m, (3) find n mod (cycle length) to get the position. Here r = −1, cycle length 2, 100 mod 2 = 0 → position 2 → value 1.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Factor Counting with Variable Primes
+
+If p and q are distinct prime numbers, how many positive factors does p²q³ have?
+
+- A) 5
+- B) 6
+- C) 9
+- D) 12
+- E) 24
+
+**answer:** D
+**fastest_path:** Factor count = (2+1)(3+1) = 3 × 4 = 12.
+**explanation:** For n = p^a · q^b with p and q distinct primes, the positive factor count is (a+1)(b+1). Here a = 2 and b = 3: (2+1)(3+1) = 3 × 4 = 12. Concretely, each factor has the form p^i · q^j where 0 ≤ i ≤ 2 (3 choices) and 0 ≤ j ≤ 3 (4 choices), giving 3 × 4 = 12.
+**mistake_a:** Added the exponents: 2 + 3 = 5 — used an additive formula instead of the multiplicative one.
+**mistake_b:** Computed (2+1) + (3+1) = 3 + 3 = 6 — added the per-prime contributions instead of multiplying them.
+**mistake_c:** Used exponent 2 for both primes: (2+1)(2+1) = 9 — dropped the exponent 3 for q.
+**mistake_e:** Multiplied the base values of the exponents: 2 × 3 = 6, then multiplied by 4 for some other reason — confused factor count with the value of the number.
+**common_trap:** Adding (a+1) + (b+1) rather than multiplying. Each prime's exponent choices multiply independently.
+**takeaway:** Factor count of p₁^a₁ · p₂^a₂ · ... = (a₁+1)(a₂+1).... The formula is multiplicative across distinct primes. It works the same whether primes are given as numerals or variables like p and q.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Perfect Squares and Integer Bounds
+
+For which positive integer n does n² < 200 < (n+1)²?
+
+- A) 12
+- B) 13
+- C) 14
+- D) 15
+- E) 16
+
+**answer:** C
+**fastest_path:** sqrt(200) ≈ 14.1. Check: 14² = 196 < 200 < 225 = 15². So n = 14.
+**explanation:** Find the integer part of sqrt(200). sqrt(200) = sqrt(4 × 50) = 2·sqrt(50) ≈ 2 × 7.07 = 14.14. So floor(sqrt(200)) = 14. Verify: 14² = 196 < 200 < 225 = 15². Both conditions satisfied → n = 14.
+**mistake_a:** Tested n = 12: 144 < 200 < 169 — but 169 < 200 as well, so 200 > (12+1)², failing the right inequality. Stopped too early.
+**mistake_b:** Tested n = 13: 169 < 200 < 196? But 196 < 200 also, so 200 > 14² = 196 — the right inequality fails. Students may miscompute 14² as something larger than 200.
+**mistake_d:** Bubbled 15 — but 15² = 225 > 200, which means 15² is NOT less than 200, so the left inequality fails.
+**mistake_e:** Tried n = 16: 256 > 200, so 16² > 200 immediately fails the left condition.
+**common_trap:** Finding one valid condition (n² < 200) without verifying the other ((n+1)² > 200). Both must hold simultaneously. Memorize: 14² = 196 and 15² = 225.
+**takeaway:** n² < k < (n+1)² means n = floor(sqrt(k)). Useful squares to know: 12²=144, 13²=169, 14²=196, 15²=225, 16²=256. Recognizing these boundaries prevents square-root computation.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Divisibility by 12
+
+Is the positive integer n divisible by 12?
+
+(1) n is divisible by 6.
+(2) n is divisible by 8.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** 12 = 2²·3. (1) gives 2¹·3 — missing one factor of 2. (2) gives 2³ — missing the factor of 3. Together: LCM(6, 8) = 24, and 12 | 24 → YES always.
+**explanation:** 12 = 2² × 3. Statement (1): n divisible by 6 = 2·3 guarantees one factor of 2 and one factor of 3, but not the second factor of 2 needed for 4. Counter: n = 6 is not divisible by 12. Insufficient. Statement (2): n divisible by 8 = 2³ guarantees 2² (more than enough 2s) but provides no factor of 3. Counter: n = 8 is not divisible by 12. Insufficient. Together: n is divisible by LCM(6, 8) = 24. Since 12 divides 24, every multiple of 24 is a multiple of 12 → definite YES. Sufficient. Answer: C.
+**mistake_a:** Assumed (1) provides 4 × 3 = 12 — but divisibility by 6 gives only 2¹ × 3, not 2² × 3.
+**mistake_b:** Assumed (2) alone is sufficient — provides plenty of 2s but no factor of 3.
+**mistake_d:** Assumed each alone is sufficient — both are individually missing one prime component.
+**mistake_e:** Concluded together insufficient — LCM(6, 8) = 24, and 12 | 24, so the combined constraint pins the answer to YES.
+**common_trap:** Checking whether each statement alone gives one required prime and concluding "close enough." Both 6 and 8 each give only part of what 12 = 2² × 3 requires.
+**takeaway:** To combine divisibility conditions: compute LCM of the given divisors and ask whether the target divides the LCM. LCM(6, 8) = 24; 12 | 24 → yes, together sufficient.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Counting with Inclusion-Exclusion
+
+How many two-digit positive integers are divisible by 7 but not by 3?
+
+- A) 7
+- B) 8
+- C) 9
+- D) 10
+- E) 13
+
+**answer:** C
+**fastest_path:** Two-digit multiples of 7: 13 total. Of these, multiples of LCM(7,3) = 21: 4 values. Answer: 13 − 4 = 9.
+**explanation:** Two-digit multiples of 7: from 7×2=14 to 7×14=98, count = 14 − 2 + 1 = 13. List: 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98. Of these, divisible by 3 means divisible by LCM(7, 3) = 21. Two-digit multiples of 21: 21, 42, 63, 84 → 4 values (next is 105, three digits). Divisible by 7 but not 3: 13 − 4 = 9.
+**mistake_a:** Over-excluded — subtracted 6 instead of 4, perhaps including 105/21 = 5 as a two-digit multiple of 21.
+**mistake_b:** Found only 3 two-digit multiples of 21 — stopped the list before 84.
+**mistake_d:** Subtracted only 3 multiples of 21: 13 − 3 = 10.
+**mistake_e:** Did not subtract any multiples of 3 — reported the raw count of two-digit multiples of 7 (13).
+**common_trap:** Miscounting the multiples of 21 in the two-digit range. The list 21, 42, 63, 84 has exactly 4 entries; the next (105) is three digits. Listing them explicitly prevents an off-by-one error.
+**takeaway:** "Divisible by A but not by B" = (count div by A) − (count div by LCM(A, B)). Always recompute LCM rather than using the product when A and B share a common factor.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Smallest Integer with Exactly N Factors
+
+What is the smallest positive integer that has exactly 6 positive factors?
+
+- A) 8
+- B) 10
+- C) 12
+- D) 16
+- E) 18
+
+**answer:** C
+**fastest_path:** Factor count 6 = 3 × 2 → form p²·q. Smallest: 2²·3 = 12. Factor count 6 = 6 → form p⁵. Smallest: 2⁵ = 32. Winner: 12.
+**explanation:** Factor count = 6 requires exponent structure (a₁+1)(a₂+1)... = 6. Factor 6 as products: 6 = 6 (→ p⁵, smallest is 2⁵ = 32) or 6 = 3×2 (→ p²·q, smallest is 2²×3 = 12). Assign the largest exponent to the smallest prime. Smallest overall: 12. Verify: factors of 12 are 1, 2, 3, 4, 6, 12 — exactly 6. ✓
+**mistake_a:** 8 = 2³ has factor count (3+1) = 4, not 6.
+**mistake_b:** 10 = 2·5 has factor count (1+1)(1+1) = 4, not 6.
+**mistake_d:** 16 = 2⁴ has factor count (4+1) = 5, not 6.
+**mistake_e:** 18 = 2·3² has factor count (1+1)(2+1) = 6 ✓ — but 18 > 12, so 12 is the smaller answer with 6 factors.
+**common_trap:** Identifying 18 as a valid number with 6 factors but failing to check whether a smaller number also qualifies. Always exhaust all exponent factorizations of the target count and compare.
+**takeaway:** To minimize n with a given factor count k: factor k as (a+1)(b+1)... with a ≥ b ≥ ..., then assign 2^a × 3^b × 5^c... (largest exponents on smallest primes). Compare all factorizations of k.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Divisibility of a Consecutive Integer Product
+
+If n is a positive integer, is n(n+1)(n+2) divisible by 12?
+
+(1) n is even.
+(2) n is divisible by 3.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** (1) n even → n and n+2 both even → product has factor 2×2=4; consecutive triple always supplies factor of 3 → divisible by 12. Sufficient. (2) n=9: 9×10×11=990, 990/12 not an integer. Insufficient.
+**explanation:** 12 = 4 × 3. Products of 3 consecutive integers are always divisible by 3! = 6, so a factor of 3 is already guaranteed. The question reduces to: is the product also divisible by 4? Statement (1): n even → n+2 is also even (two even numbers). The product picks up at least 2 from n and at least 2 from n+2, giving factor 4. Combined with the guaranteed factor of 3: divisible by 12. Sufficient — always YES. Statement (2): n div by 3, but this supplies an extra factor of 3 (already guaranteed) rather than the missing factor of 2. Counter: n = 9 → 9×10×11 = 990. 990 / 12 = 82.5, not an integer. Insufficient. Answer: A.
+**mistake_b:** Concluded (2) sufficient because 3 | n — but the product already has a factor of 3 from the consecutive triple; the missing ingredient for 12 is an extra factor of 2, which (2) does not provide.
+**mistake_c:** Required both — but (1) alone resolves the question.
+**mistake_d:** Concluded each alone works.
+**mistake_e:** Concluded neither works — (1) guarantees divisibility by 12.
+**common_trap:** Thinking that having n divisible by 3 strengthens divisibility in a useful way — it provides a redundant factor of 3 rather than the needed factor of 4. Analyze which prime powers are missing relative to the target.
+**takeaway:** Product of 3 consecutive integers is always divisible by 6. For 12 you need an additional factor of 2 (to reach 4). When n is even, both n and n+2 are even, providing that extra factor.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Inclusion-Exclusion — Symmetric Difference
+
+How many integers from 1 to 200, inclusive, are divisible by 3 or by 7, but not by both?
+
+- A) 57
+- B) 66
+- C) 76
+- D) 85
+- E) 94
+
+**answer:** C
+**fastest_path:** Only-3: 66 − 9 = 57. Only-7: 28 − 9 = 19. Total: 57 + 19 = 76.
+**explanation:** Multiples of 3 in [1,200]: floor(200/3) = 66. Multiples of 7: floor(200/7) = 28. Multiples of both (= LCM(3,7) = 21): floor(200/21) = 9. "Only 3" = 66 − 9 = 57. "Only 7" = 28 − 9 = 19. "3 or 7 but not both" = 57 + 19 = 76. Equivalently: |A| + |B| − 2|A ∩ B| = 66 + 28 − 18 = 76.
+**mistake_a:** Reported 57 — computed "only divisible by 3" correctly but forgot to add the "only divisible by 7" count of 19.
+**mistake_b:** Reported 66 — the count of all multiples of 3, ignoring the "not by both" restriction and the contribution of multiples of 7 only.
+**mistake_d:** Reported 85 = 66 + 28 − 9 — the standard inclusion-exclusion union (divisible by 3 OR 7 inclusive). Subtracted the overlap once rather than twice.
+**mistake_e:** Reported 94 = 66 + 28 — simply added both counts without any overlap adjustment.
+**common_trap:** Using the standard union formula |A ∪ B| = |A| + |B| − |A ∩ B| = 85, which counts the "both" region once. The exclusive-or ("but not both") removes the overlap entirely: subtract it a second time, giving 85 − 9 = 76.
+**takeaway:** "A or B but not both" (symmetric difference) = |A| + |B| − 2|A ∩ B|. The inclusive union formula subtracts the overlap once; the exclusive version subtracts it twice. These two formulas differ by exactly |A ∩ B|.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Units Digit via Higher Powers
+
+What is the units digit of the positive integer n?
+
+(1) The units digit of n² is 9.
+(2) The units digit of n³ is 3.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**fastest_path:** (1) n² ends in 9 → n ends in 3 or 7. Two options — insufficient. (2) n³ ends in 3 → check all digits: only 7³ = 343 ends in 3. Units digit = 7 — sufficient.
+**explanation:** Statement (1): squares ending in 9 come from digits 3 (3²=9) and 7 (7²=49). Two possible units digits → insufficient. Statement (2): compute units digit of k³ for k = 0 through 9: 0→0, 1→1, 2→8, 3→7, 4→4, 5→5, 6→6, 7→3, 8→2, 9→9. Only k = 7 produces a cube ending in 3. Units digit of n must be 7. Sufficient. Answer: B.
+**mistake_a:** Assumed (1) is sufficient — but both 3 and 7 produce squares ending in 9, giving two possible answers.
+**mistake_c:** Required both statements — (2) alone uniquely identifies units digit 7. (Combining: n ends in 7 → n² ends in 9 ✓ and n³ ends in 3 ✓ — consistent, but (2) already resolved it.)
+**mistake_d:** Assumed each alone works — (1) is ambiguous between units digits 3 and 7.
+**mistake_e:** Assumed neither works — (2) produces a unique match at units digit 7.
+**common_trap:** For statement (2), students sometimes verify that 7³ ends in 3 without checking whether any other digit also gives a cube ending in 3. Systematic enumeration is required to establish uniqueness.
+**takeaway:** Units-digit of squares is not a bijection: both 3 and 7 map to the same square-units digit (9). But units-digit of cubes IS a bijection — each digit maps to a distinct cube-units digit. This asymmetry is the key insight in DS problems involving cubes.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Sum of All Factors Formula
+
+What is the sum of all positive factors of 2⁴ × 3²?
+
+- A) 195
+- B) 279
+- C) 360
+- D) 403
+- E) 465
+
+**answer:** D
+**fastest_path:** Sum = (1+2+4+8+16)(1+3+9) = 31 × 13 = 403.
+**explanation:** The sum of all factors of p^a × q^b = (1 + p + ... + p^a)(1 + q + ... + q^b). For 2⁴ × 3²: (1+2+4+8+16)(1+3+9) = 31 × 13 = 403. Equivalently: (2⁵−1)/(2−1) × (3³−1)/(3−1) = 31 × 13 = 403. Verify: 2⁴×3² = 144, which has 15 factors (listed: 1,2,3,4,6,8,9,12,16,18,24,36,48,72,144) summing to 403 ✓.
+**mistake_a:** Missed the 2⁴ = 16 term in the first bracket: (1+2+4+8) × 13 = 15 × 13 = 195.
+**mistake_b:** Used the value 3² = 9 directly instead of the geometric sum 1+3+9 = 13: 31 × 9 = 279.
+**mistake_c:** Dropped the 1 from both brackets: (2+4+8+16)(3+9) = 30 × 12 = 360.
+**mistake_e:** Added a spurious extra term to the 3-bracket (perhaps 3³ = 27 divided by 2, rounded to something): 31 × 15 = 465, which arises if the 3-sum is mistakenly evaluated as 1+5+9 = 15 or 3+3+9 = 15.
+**common_trap:** Confusing the sum-of-factors formula (multiplicative geometric sums) with the factor-count formula. Also: forgetting to include the leading 1 in each geometric series (1 + p + ... rather than p + p² + ...).
+**takeaway:** Sum of factors of p₁^a₁ × p₂^a₂ × ... = product of geometric sums (p_i^(a_i+1) − 1)/(p_i − 1). For 2⁴: (2⁵−1)/1 = 31. For 3²: (3³−1)/2 = 13. Final sum = 31 × 13 = 403. Memorize the geometric-series closed form.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Quadratic Equations and Prime Constraints
+
+If p is a prime number and p² − p − 6 = 0, what is the value of p²?
+
+- A) 4
+- B) 9
+- C) 25
+- D) 49
+- E) There is no prime that satisfies the equation.
+
+**answer:** B
+**fastest_path:** Factor: (p − 3)(p + 2) = 0 → p = 3 or p = −2. Only p = 3 is prime. p² = 9.
+**explanation:** Factor the quadratic: p² − p − 6 = (p − 3)(p + 2) = 0. Solutions: p = 3 or p = −2. Since p must be a prime number (a positive integer greater than 1), p = 3. Then p² = 9.
+**mistake_a:** Took p = −2 (the other root) and computed p² = (−2)² = 4 — but −2 is not prime. Primes are positive integers greater than 1 by definition.
+**mistake_c:** Tested p = 5 without solving: 25 − 5 − 6 = 14 ≠ 0. p = 5 is not a solution.
+**mistake_d:** Tested p = 7: 49 − 7 − 6 = 36 ≠ 0. p = 7 is not a solution.
+**mistake_e:** Concluded no prime works — perhaps because −2 is the only negative solution, assumed all solutions must be non-prime. But p = 3 is the positive root and is prime.
+**common_trap:** Two traps compound: (1) failing to factor and instead guessing prime values by trial, wasting time; (2) accepting p = −2 as valid and computing p² = 4, violating the definition of prime.
+**takeaway:** When a problem restricts a variable to a specific set (here, primes), solve algebraically for all roots first, then apply the restriction to eliminate invalid ones. Don't trial-and-error when factoring is available.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Perfect Squares and Divisor Count Parity
+
+How many integers from 1 to 100, inclusive, have an odd number of positive divisors?
+
+- A) 8
+- B) 9
+- C) 10
+- D) 11
+- E) 12
+
+**answer:** C
+**fastest_path:** Odd divisor count ↔ perfect square. Perfect squares in [1, 100]: 1², 2², ..., 10² → 10 values.
+**explanation:** Divisors pair naturally: for each d that divides n, n/d also divides n, giving pairs (d, n/d). This pairing is one-to-one unless d = n/d, i.e., d² = n — which occurs only when n is a perfect square. So a number has an odd count of divisors if and only if it is a perfect square (the square root is the unpaired divisor). Perfect squares from 1 to 100: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100. Count = 10.
+**mistake_a:** Counted perfect squares from 4 to 81 only — excluded both 1 (= 1², one divisor, which is odd) and 100 (= 10²).
+**mistake_b:** Counted 9 values — excluded either 1 or 100 but not both.
+**mistake_d:** Included 0 as a "perfect square" (0 = 0²) or added a non-square integer.
+**mistake_e:** Made an off-by-two error — included two non-perfect-squares or miscounted the range.
+**common_trap:** Overlooking the endpoints 1 and 100. Both satisfy the perfect-square condition: 1 has one divisor (odd) and 100 = 10² has (2+1)(1+1) = 6... wait, 100 = 2²·5², so factor count = (2+1)(2+1) = 9 divisors (odd) ✓. Always check both endpoints of any range.
+**takeaway:** The characterization "perfect squares have an odd number of divisors, all other positive integers have an even number" is a fundamental divisor-theory result. It follows directly from the pairing argument. On the GMAT it is always tested as a counting problem over a range.
+**related_reading:** reading-quant-03-number-properties
