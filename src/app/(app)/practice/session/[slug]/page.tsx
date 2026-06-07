@@ -41,6 +41,10 @@ export default async function PracticeSessionPage({
       correctAnswerLetter: q.correctAnswerLetter,
       explanation: q.explanation,
       hints: q.hints,
+      fastestPath: q.fastestPath,
+      commonTrap: q.commonTrap,
+      mistakeAnalysis: q.mistakeAnalysis,
+      takeaway: q.takeaway,
       twoPartColumns: q.twoPartColumns,
       twoPartCorrectAnswers: q.twoPartCorrectAnswers,
     }))

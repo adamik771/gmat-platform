@@ -50,7 +50,7 @@ Which of the following is equivalent to (x³)⁴ / x⁵?
 **explanation:** Two exponent rules: (a) power of a power multiplies exponents — (x³)⁴ = x^(3×4) = x¹². (b) Same-base division subtracts exponents — x¹² / x⁵ = x^(12−5) = x⁷. The whole computation is two mechanical steps.
 **mistake_a:** Subtracted 3 from 5 (treated denominator as numerator) — got x^2.
 **mistake_c:** Stopped at the numerator step: correctly computed (x³)⁴ = x¹² but then did not complete the division by x⁵, bubbling the intermediate result.
-**mistake_d:** Multiplied (x³)⁴ as x^(3+4) = x^7, then multiplied by x^5 instead of dividing — got x^15.
+**mistake_d:** Applied the power-of-power step using 5 (the denominator's exponent) instead of 4 (the outer power): computed (x³)^5 = x^(3×5) = x^15, then stopped without performing the division by x^5.
 **mistake_e:** Computed 3 × 4 + 5 = 17 by adding the bottom exponent rather than subtracting.
 **common_trap:** Confusing exponent rules — multiplying when you should subtract, or adding when you should multiply.
 **takeaway:** Memorize the four exponent rules cold: power-of-power multiplies, product-of-same-base adds, quotient subtracts, negative exponent inverts.
@@ -179,7 +179,7 @@ At a bakery, 2 muffins and 3 scones cost $21, while 4 muffins and 1 scone cost $
 - E) $5
 
 **answer:** E
-**fastest_path:** Backsolve from C (s = $3): 4m + 3 = 17 → m = $3.50; then 2(3.50) + 3(3) = 16, ≠ 21. Try larger s. At s = $5: 4m + 5 = 17 → m = $3; then 2(3) + 3(5) = 21 ✓.
+**fastest_path:** Backsolve from C (s = $3): 4m + 3 = 17 → m = $3.50 (non-integer — signals wrong); go higher. D (s = $4): 4m + 4 = 17 → m = $3.25 (non-integer — skip). E (s = $5): 4m + 5 = 17 → m = $3; check: 2(3) + 3(5) = 21 ✓.
 **explanation:** With clean integer answer choices and two checkable constraints (cost equations), backsolving from C and adjusting based on direction is faster than full elimination/substitution. Algebra path: from 4m + s = 17, s = 17 − 4m. Substitute: 2m + 3(17 − 4m) = 21 → −10m = −30 → m = 3, then s = 17 − 12 = 5. Same answer, ~30 sec longer.
 **mistake_a:** Picked the smallest answer without testing.
 **mistake_b:** Computed 4m + s = 17 with s = 2: m = $3.75 (non-integer; should reject as a "clean" trial signal).
@@ -419,6 +419,7 @@ What is the value of x?
 **fastest_path:** Eq (2) = 2 × Eq (1), so they're equivalent, not independent. One equation's worth of info on two unknowns → E.
 **explanation:** Statement (1) alone: one equation, two unknowns → infinite solutions, insufficient. Statement (2) alone: divide by 2 to get 2x + 3y = 14 — same as (1), still insufficient. Together: the statements are not independent (one is a scalar multiple of the other), so combining them gives no new information — still one equation, two unknowns. Two linear equations only pin down a unique solution when they're *linearly independent*.
 **mistake_a:** Assumed Statement (1) alone is sufficient because it "looks like" a complete equation.
+**mistake_b:** Divided Statement (2) by 2 to get 2x + 3y = 14 and concluded that this "simpler" form is a distinct, independent equation. Statement (2) is merely Statement (1) scaled by 2 — they carry identical information. One equation in two unknowns cannot determine a unique value of x regardless of how it is presented.
 **mistake_c:** Counted two statements and concluded "two equations, two unknowns → solvable" without checking independence.
 **mistake_d:** Concluded each alone is sufficient; missed that one equation in two unknowns is never enough for a unique value.
 **common_trap:** non-independent-equations — assuming two equations always pin down a two-variable system without checking linear independence.
@@ -499,6 +500,7 @@ If f(x) = ax + b where a and b are constants, what is the value of f(5)?
 **fastest_path:** f(x) = ax + b has 2 unknowns. Each statement gives 1 equation. Need both → C.
 **explanation:** The function has two parameters: a and b. Statement (1) alone: f(1) = a + b = 7 — one equation, two unknowns, insufficient. Statement (2) alone: f(3) = 3a + b = 13 — also insufficient. Combined: subtract (1) from (2) to get 2a = 6 → a = 3, then b = 4. The two equations are linearly independent, so they uniquely pin down a and b. Then f(5) = 3(5) + 4 = 19.
 **mistake_a:** Treated Statement (1) as "f is linear" sufficient — confused linear *form* with knowing the function.
+**mistake_b:** Concluded that f(3) = 13 alone determines f because "3a + b = 13 pins down the line." One equation in two unknowns a and b yields infinitely many solutions — e.g., a = 3, b = 4 gives f(x) = 3x + 4, and a = 4, b = 1 gives f(x) = 4x + 1; both satisfy f(3) = 13. A second linearly independent constraint is required.
 **mistake_d:** Concluded each alone is sufficient because each is "an equation" — missed two unknowns.
 **mistake_e:** Concluded together insufficient because "two unknowns require two unknowns to specify" — confused.
 **common_trap:** Counting equations without checking independence and unknowns.

@@ -43,7 +43,7 @@ const topicsByModule: Record<number, string[]> = {
   4: [
     "Critical Reasoning argument mapping",
     "RC passage strategy for dense texts",
-    "Sentence Correction core rules",
+    "Inference and assumption techniques",
     "Non-native speaker shortcuts",
     "Verbal timing framework",
   ],

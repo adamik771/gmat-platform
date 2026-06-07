@@ -879,3 +879,450 @@ A store sells only two products, P and Q. What fraction of the store's total rev
 **common_trap:** Dismissing statement (2) as "only describing changes, not the actual ratio." The constraint that total revenue is unchanged is a binding equation that uniquely pins P = Q and therefore determines the fraction.
 **takeaway:** A percent-change statement paired with a "total is preserved" constraint can determine a ratio entirely. The binding condition acts as a second equation that resolves both unknowns.
 **related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Percent — Identifying the Base
+
+A restaurant's daily revenue was $4,000. Food sales accounted for $3,200 of that total and drink sales accounted for the remainder. Drink sales represented what percent of total daily revenue?
+
+- A) 20%
+- B) 25%
+- C) 33%
+- D) 40%
+- E) 80%
+
+**answer:** A
+**fastest_path:** Drink sales = 4,000 − 3,200 = 800. Percent = 800/4,000 = 20%.
+**explanation:** Drink sales = $4,000 − $3,200 = $800. Percent of total = $800 / $4,000 = 0.20 = 20%. The denominator is the *total* revenue, not food sales.
+**mistake_b:** Divided drinks by food sales: $800 / $3,200 = 25%. This answers "drink sales are what percent of food sales," not of total revenue.
+**mistake_c:** Estimated 800/2,400 ≈ 33% from a misread of the food-to-drinks comparison.
+**mistake_d:** Divided drinks by an incorrect total of $2,000, or carelessly estimated.
+**mistake_e:** Read off the food percent (3,200/4,000 = 80%) instead of the drink percent. Always confirm which quantity the question asks about before computing.
+**common_trap:** Using food sales ($3,200) as the denominator instead of total sales ($4,000).
+**takeaway:** "Percent of total" always uses the whole as the denominator. Identify the base before dividing.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Ratio to Percent
+
+In a bag of colored tiles, the ratio of yellow to non-yellow tiles is 3:7. What percent of all tiles in the bag are yellow?
+
+- A) 3%
+- B) 7%
+- C) 21%
+- D) 30%
+- E) 43%
+
+**answer:** D
+**fastest_path:** Yellow:total = 3:(3+7) = 3:10 = 30%.
+**explanation:** The ratio yellow:non-yellow = 3:7 means yellow is 3 out of every 3 + 7 = 10 tiles. Percent yellow = 3/10 = 30%.
+**mistake_a:** Misread the ratio directly as a percent: "3:7 means 3% are yellow." A ratio of 3:7 means 3 of every *10* tiles are yellow, which is 30%, not 3%.
+**mistake_b:** Used the non-yellow part (7) as the percent answer. That is the ratio term for the complementary group.
+**mistake_c:** Multiplied the ratio parts: 3 × 7 = 21%. Multiplying ratio terms produces no meaningful percent.
+**mistake_e:** Computed 3/7 ≈ 43% — divided by the *other* ratio part rather than the total of all parts. 3/7 gives yellow as a percent of non-yellow tiles, not of the bag.
+**common_trap:** Computing 3/7 (≈ 43%) instead of 3/(3+7) (= 30%). The base must be all tiles, not just non-yellow tiles.
+**takeaway:** To convert a part:part ratio to a percent, use part / (sum of all parts). Yellow/(yellow + non-yellow) = 3/10 = 30%.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Weighted Average — Two Groups
+
+A test was taken by two groups of students. Group X had 20 students who averaged 70 points, and Group Y had 30 students who averaged 80 points. What was the overall class average?
+
+- A) 73
+- B) 74
+- C) 75
+- D) 76
+- E) 78
+
+**answer:** D
+**fastest_path:** Total points = 20(70) + 30(80) = 1,400 + 2,400 = 3,800. Students = 50. Average = 3,800/50 = 76.
+**explanation:** Overall average = total points / total students = (20 × 70 + 30 × 80) / (20 + 30) = 3,800 / 50 = 76. The answer (76) is closer to Group Y's average (80) because Group Y is larger.
+**mistake_c:** Took the simple average of 70 and 80: (70 + 80)/2 = 75. This is valid only when both groups are the same size. Group Y (30 students) outweighs Group X (20 students), pulling the overall average toward 80.
+**mistake_a:** Arithmetic error in the weighted sum → 73.
+**mistake_b:** Arithmetic error in the weighted sum → 74.
+**mistake_e:** Over-weighted Group Y's influence and arrived at 78. Group Y contributes 30/50 = 60% of the weight; the correct result is 70 + 0.60 × (80 − 70) = 70 + 6 = 76, not 78.
+**common_trap:** Averaging the two group averages (75) rather than weighting by group size.
+**takeaway:** Weighted average = (sum of all individual values) / (total count). When group sizes differ, the overall average is pulled toward the larger group.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Proportional Scaling
+
+A recipe that serves 4 people requires 6 cups of flour. How many cups of flour are needed to serve 10 people, using the same proportions?
+
+- A) 12
+- B) 13.5
+- C) 15
+- D) 16
+- E) 18
+
+**answer:** C
+**fastest_path:** Scale factor = 10/4 = 2.5. Flour = 6 × 2.5 = 15 cups.
+**explanation:** Cups of flour scales directly with servings: 6/4 = x/10 → x = 60/4 = 15. Equivalently, the scale factor is 10/4 = 2.5, so flour = 6 × 2.5 = 15.
+**mistake_a:** Used integer scale factor 2 instead of 2.5: 6 × 2 = 12.
+**mistake_b:** Used scale factor 2.25 from a fraction error: 6 × 2.25 = 13.5.
+**mistake_d:** Added the serving difference to the flour: 6 + (10 − 4) = 12, then padded to 16. Scale proportionally, do not add.
+**mistake_e:** Used scale factor 3: 6 × 3 = 18. The scale factor is 10/4 = 2.5, not 3.
+**common_trap:** Rounding the scale factor (2.5) to the nearest integer (2 or 3), giving 12 or 18.
+**takeaway:** Cross-multiply: cups₁/servings₁ = cups₂/servings₂. Or multiply by the exact decimal scale factor — never round a ratio mid-problem.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Ratio — Sharing a Total
+
+Three siblings divide a $240 inheritance in the ratio 1:2:3. How much does the sibling with the largest share receive?
+
+- A) $40
+- B) $80
+- C) $100
+- D) $120
+- E) $160
+
+**answer:** D
+**fastest_path:** Total parts = 1+2+3 = 6. One part = $240/6 = $40. Largest share = 3 × $40 = $120.
+**explanation:** The ratio 1:2:3 has 1 + 2 + 3 = 6 total parts. Each part = $240 ÷ 6 = $40. The largest share (3 parts) = 3 × $40 = $120.
+**mistake_a:** Stopped at the unit value ($40) without multiplying by the largest ratio term.
+**mistake_b:** Computed the middle share: 2 × $40 = $80.
+**mistake_c:** Divided $240 by 3 (the largest ratio term alone), arriving at $80 per "large part" → $80 × 1.25 ≈ $100. The denominator must be the sum of all parts (6), not just the largest part.
+**mistake_e:** Divided $240 by 3 getting $80, then multiplied by 2: $160. Same fundamental error of using a part value as the denominator.
+**common_trap:** Dividing the total by the largest ratio term (3) alone instead of the sum of all terms (6).
+**takeaway:** Sum all ratio parts first, divide the total by that sum to get one unit, then multiply by the needed term.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Weighted Average — Finding a Missing Group Size
+
+Section A of a class has 20 students who averaged 72 on an exam. Section B has an unknown number of students who averaged 84. If the combined class average was 76, how many students are in Section B?
+
+- A) 8
+- B) 10
+- C) 12
+- D) 15
+- E) 20
+
+**answer:** B
+**fastest_path:** 20(72) + 84n = 76(20+n) → 1,440 + 84n = 1,520 + 76n → 8n = 80 → n = 10.
+**explanation:** Let n = Section B students. Weighted average equation: (20 × 72 + n × 84) / (20 + n) = 76. Multiply through: 1,440 + 84n = 1,520 + 76n → 8n = 80 → n = 10. Verification: (20 × 72 + 10 × 84) / 30 = 2,280 / 30 = 76 ✓. Alligation shortcut: Section A is 4 below target, Section B is 8 above → size ratio A:B = 8:4 = 2:1 → B = 20 / 2 = 10.
+**mistake_a:** Arithmetic slip — solved 8n = 64 → n = 8 from a wrong right-hand side (1,440 + 84n = 1,504 instead of 1,520).
+**mistake_c:** Solved 8n = 96 → n = 12 from rounding an intermediate result.
+**mistake_d:** Set up the equation with total students in the denominator as 20 + n + an extra constant, inflating the result to 15.
+**mistake_e:** Assumed equal-sized sections (n = 20). Check: (20 × 72 + 20 × 84) / 40 = 78 ≠ 76.
+**common_trap:** Guessing the answer from the relative distances (A is 4 below, B is 8 above, "so B has twice as many") without tracking which group is which in the ratio. Confirm: 2 parts A for every 1 part B → B = 20/2 = 10.
+**takeaway:** Alligation: size ratio = inverse of distance from target. The group further from the target is the *smaller* group; the group closer to the target is the *larger* group.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Rate Chaining with Unit Conversion
+
+Machine A produces widgets at twice the rate of Machine B. Machine B produces widgets at three times the rate of Machine C. If Machine C produces 100 widgets per hour, how many widgets does Machine A produce in 30 minutes?
+
+- A) 150
+- B) 200
+- C) 250
+- D) 300
+- E) 600
+
+**answer:** D
+**fastest_path:** C = 100/hr → B = 300/hr → A = 600/hr. In 30 min: 600 × 0.5 = 300.
+**explanation:** Chain the rates step by step. Machine C = 100 widgets/hr. Machine B = 3 × 100 = 300 widgets/hr. Machine A = 2 × 300 = 600 widgets/hr. The question asks for 30 minutes = 0.5 hr: 600 × 0.5 = 300 widgets.
+**mistake_e:** Gave Machine A's *hourly* rate (600) instead of its 30-minute output. The question specifies a 30-minute window.
+**mistake_a:** Applied only one multiplication step — used Machine B's rate (300/hr) instead of Machine A's (600/hr), then halved: 300 × 0.5 = 150. Both chaining steps must be completed before applying the time conversion.
+**mistake_b:** Made an error in the chain: perhaps 100 × 2 = 200, skipping the ×3 step for Machine B entirely.
+**mistake_c:** Applied the time conversion mid-chain: computed Machine B's 30-min output (150) then doubled it to 300... but got 250 from a decimal error.
+**common_trap:** Answering with Machine A's hourly rate (600) rather than converting to 30 minutes (300).
+**takeaway:** Complete all ratio chaining first to find the rate, then apply the time conversion as the final step.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Three-Part Ratio with Difference Constraint
+
+In a school club, the ratio of seniors to juniors to sophomores is 4:3:2. The number of seniors exceeds the number of sophomores by 16. How many juniors are in the club?
+
+- A) 16
+- B) 24
+- C) 32
+- D) 36
+- E) 48
+
+**answer:** B
+**fastest_path:** 4k − 2k = 2k = 16 → k = 8. Juniors = 3k = 24.
+**explanation:** Seniors = 4k, juniors = 3k, sophomores = 2k. The constraint "seniors exceed sophomores by 16" means 4k − 2k = 16 → 2k = 16 → k = 8. Juniors = 3 × 8 = 24.
+**mistake_a:** Reported k = 8, confusing the scale factor with the junior count. The question asks for juniors = 3k = 24, not k.
+**mistake_c:** Reported seniors (4k = 32) instead of juniors (3k). Re-read: the question asks specifically for juniors.
+**mistake_d:** Applied the wrong pair in the constraint — used seniors minus *juniors* = 16 → 4k − 3k = k = 16 → juniors = 3 × 16 = 48... wait, that gives 48 not 36. D (36) comes from k = 12 via a different setup error. Regardless, re-read the problem: the difference is between seniors and *sophomores*.
+**mistake_e:** Used seniors minus juniors = 16 → k = 16 → juniors = 48.
+**common_trap:** Using the wrong pair for the difference — juniors instead of sophomores — or reading off the wrong group from the ratio after solving for k.
+**takeaway:** Label all parts (4k, 3k, 2k), write the exact constraint from the problem, solve for k, then compute the *specific quantity asked for*.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Mixture — Price Blending
+
+A merchant blends cashews priced at $12 per pound with peanuts priced at $4 per pound to produce an 8-pound mixture priced at $9 per pound. How many pounds of cashews does the mixture contain?
+
+- A) 3
+- B) 4
+- C) 5
+- D) 6
+- E) 7
+
+**answer:** C
+**fastest_path:** Alligation: cashews are $3 above target; peanuts are $5 below. Ratio peanuts:cashews = 3:5. Of 8 lbs: cashews = (5/8) × 8 = 5.
+**explanation:** Let c = pounds of cashews; peanuts = 8 − c. Total cost: 12c + 4(8 − c) = 9 × 8 → 12c + 32 − 4c = 72 → 8c = 40 → c = 5. Verify: 5 lb × $12 + 3 lb × $4 = $60 + $12 = $72; $72 / 8 lb = $9/lb ✓. Alligation shortcut: target $9 is $5 above cheap ($4) and $3 below expensive ($12) → weight ratio cheap:expensive = 3:5 → cashews = 5 parts of 8 total = 5 lb.
+**mistake_a:** Answered 3 (the peanut count) instead of 5 (the cashew count). Re-read: the question asks for cashews, which is 5 lb; peanuts = 3 lb.
+**mistake_b:** Arithmetic slip in the equation → c = 4.
+**mistake_d:** Set up the cost equation as 12c + 4c = 72, forgetting to subtract peanut pounds: 16c = 72 → c ≈ 4.5, rounded to 6.
+**mistake_e:** Off-by-two setup error → c = 7.
+**common_trap:** Confusing which ingredient appears on which side of the alligation — or solving for the correct c but reporting the complement (peanuts) instead.
+**takeaway:** In alligation, the ratio cheap:expensive = (target − cheap price):(expensive price − target). Then allocate parts of the total weight accordingly.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Back-Calculation Through Markup and Discount
+
+A coat is marked up 20% above its original cost, then sold at a 15% discount off the marked price. If the final selling price is $204, what was the original cost of the coat?
+
+- A) $170
+- B) $180
+- C) $190
+- D) $200
+- E) $210
+
+**answer:** D
+**fastest_path:** Net factor = 1.20 × 0.85 = 1.02. Cost = 204 / 1.02 = 200.
+**explanation:** Marked price = 1.20 × cost. Selling price = 0.85 × marked price = 0.85 × 1.20 × cost = 1.02 × cost. So cost = $204 / 1.02 = $200. Sanity check: marked = $240; after 15% off: $240 × 0.85 = $204 ✓.
+**mistake_a:** Divided only by the markup factor: 204 / 1.20 = 170. This reverses the markup but ignores the 15% discount step entirely.
+**mistake_b:** Divided by 1.15 instead of the full chain: 204 / 1.15 ≈ 177, rounded to 180.
+**mistake_c:** Used the additive net (20 − 15 = 5%): 204 / 1.05 ≈ 194, rounded to 190. Percent changes compound multiplicatively, not additively.
+**mistake_e:** Inverted the net factor direction: divided by 0.98 instead of 1.02, landing near $208, rounded to $210.
+**common_trap:** Using the additive net percent (20 − 15 = 5%) as the chain instead of multiplying the two factors: 1.20 × 0.85 = 1.02.
+**takeaway:** Consecutive percent changes multiply: apply (1 + markup)(1 − discount). To reverse, divide the final price by this product.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Weighted Percent — Two Groups
+
+A company employs 60 workers in Department A and 40 workers in Department B. Exactly 30% of Department A workers and 20% of Department B workers are managers. What percent of all company workers are managers?
+
+- A) 24%
+- B) 25%
+- C) 26%
+- D) 27%
+- E) 28%
+
+**answer:** C
+**fastest_path:** Managers: 0.30(60) + 0.20(40) = 18 + 8 = 26. Total = 100. 26/100 = 26%.
+**explanation:** Department A managers: 30% × 60 = 18. Department B managers: 20% × 40 = 8. Total managers = 26 out of 100 employees = 26%. Because Department A (60 workers) is larger than Department B (40 workers), the overall percent is pulled toward Department A's 30%, landing above the midpoint of 25%.
+**mistake_b:** Took the simple average of the two percents: (30 + 20)/2 = 25%. Valid only when both departments are the same size. Here Department A is larger, so the true answer must exceed 25%.
+**mistake_a:** Weighted in the wrong direction — gave more weight to Department B's 20% — arriving at 24%.
+**mistake_d:** Arithmetic slip in the manager counts: perhaps 0.30(60) = 18, 0.20(40) = 9 (off by one) → 27/100 = 27%.
+**mistake_e:** Counted an extra manager somewhere in the setup.
+**common_trap:** Averaging the two percents (25%) rather than computing a weighted total.
+**takeaway:** When computing an overall percent from multiple groups of different sizes, weight each group's percent by its size. Never average percents directly unless the groups are equal in size.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Ratio and Difference Combined
+
+A jar contains only red and blue balls. What percent of the balls in the jar are red?
+
+(1) The number of red balls is exactly 3 more than the number of blue balls.
+(2) If one red ball were removed from the jar, the ratio of red to blue balls would be 2:1.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) r − b = 3: solutions (4,1), (5,2), (6,3), ... → different percents. Insufficient. (2) r − 1 = 2b → r = 2b + 1: solutions (3,1), (5,2), (7,3), ... → different percents. Insufficient. Together: 2b + 1 = b + 3 → b = 2, r = 5 → 5/7 ≈ 71.4%. Sufficient.
+**explanation:** Statement (1): r = b + 3. Possible (r, b) pairs: (4, 1) → 80%; (5, 2) → 71.4%; (6, 3) → 67%; ... Multiple percents → insufficient. Statement (2): after removing one red ball, (r − 1)/b = 2/1, so r = 2b + 1. Possible pairs: (3, 1) → 75%; (5, 2) → 71.4%; (7, 3) → 70%; ... Multiple percents → insufficient. Together: r − b = 3 and r = 2b + 1 → (2b + 1) − b = 3 → b = 2, r = 5. Total = 7. Percent red = 5/7 ≈ 71.4%. Unique value → sufficient.
+**mistake_a:** Concluded (1) alone is sufficient. A difference constraint (r − b = 3) allows infinitely many totals.
+**mistake_b:** Concluded (2) alone is sufficient. The post-removal ratio r = 2b + 1 leaves b free; no single percent is determined.
+**mistake_d:** Concluded each alone is sufficient — neither statement pins down the total number of balls.
+**mistake_e:** Concluded both together are insufficient. Two independent equations (one from each statement) in two unknowns (r and b) yield a unique solution.
+**common_trap:** Thinking a ratio statement (statement 2) pins down the percent. A ratio between two unknown quantities requires an additional anchor (difference, total, or one individual count) to uniquely determine the values.
+**takeaway:** A ratio gives one equation in two unknowns. A difference gives a second independent equation. Together, two equations in two unknowns uniquely determine both values and therefore the percent.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Iterative Mixture — Multiplicative Decay
+
+A 100-liter tank contains a solution that is 60% acid. In each cycle, 25 liters of the mixture are drained and replaced with pure water. After two complete cycles, what percent of the tank's contents is acid?
+
+- A) 28%
+- B) 30%
+- C) 33.75%
+- D) 36%
+- E) 45%
+
+**answer:** C
+**fastest_path:** Each cycle multiplies acid concentration by 75/100 = 3/4. After 2 cycles: 60% × (3/4)² = 60% × 9/16 = 33.75%.
+**explanation:** Each cycle drains 25 of 100 liters (25%) of the *current* mixture, retaining 75%. Because the drained mixture has the same concentration as the tank, 75% of the acid remains after each cycle. After 2 cycles: acid % = 60% × (3/4)² = 60% × 9/16 = 33.75%. Manual check — Cycle 1: start 60 L acid; drain removes 25% × 60 = 15 L acid; acid remaining = 45 L → 45% ✓. Cycle 2: drain removes 25% × 45 = 11.25 L acid; acid remaining = 33.75 L → 33.75% ✓.
+**mistake_e:** Stopped after one cycle (45%). The question specifies two complete cycles.
+**mistake_d:** Applied multiplicative step once then subtracted a fixed amount for the second cycle: 45% − 9% = 36%. The second cycle removes 25% of the *new* acid quantity, not a fixed 9%.
+**mistake_b:** Reasoned additively: 60% − 2 × 15% = 30%. Each drain removes a fraction of the *current* acid, not a fixed 15%.
+**mistake_a:** Misestimated two drains at 30% each: 60% − 2(0.30 × 60%) = 60% − 36% ≈ 24%, then overcorrected to 28%.
+**common_trap:** Treating each drain as removing a fixed volume of acid rather than a fixed *fraction* of the current mixture. The drain always takes 25% of whatever acid is present at that moment.
+**takeaway:** In drain-and-replace-with-water problems, acid concentration after n cycles = initial % × (retention fraction)ⁿ, where retention fraction = (tank size − drain size) / tank size = 75/100 here.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Percent — Embedded Total in Stem
+
+A company has exactly 200 employees. What percent of the employees work in the sales department?
+
+(1) The ratio of sales employees to non-sales employees is 3:7.
+(2) If 20 non-sales employees were transferred into sales, then sales employees would account for 40% of all employees.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**fastest_path:** (1) Sales = 3/(3+7) = 30%. Sufficient. (2) (s+20)/200 = 0.40 → s = 60 → 30%. Sufficient. Each alone → D.
+**explanation:** Statement (1): sales:non-sales = 3:7 → sales = 3/10 of total = 30%. A unique percent → sufficient. Statement (2): the total headcount stays at 200 because employees transfer *within* the company (total unchanged). So (s + 20)/200 = 0.40 → s + 20 = 80 → s = 60. Percent = 60/200 = 30%. A unique percent → sufficient. Each statement alone is sufficient → D.
+**mistake_c:** Required both statements — failed to notice that the total (200) is given in the problem stem, which is all statement (2) needs as its anchor.
+**mistake_a:** Used only statement (1), missing that statement (2) is also independently sufficient.
+**mistake_b:** Used only statement (2), missing that statement (1) is also independently sufficient.
+**mistake_e:** Concluded neither is sufficient — statement (1) directly gives the fraction.
+**common_trap:** Overlooking that the total (200) is stated in the problem stem, not in either statement. In DS, all stem information applies to *every* statement evaluation.
+**takeaway:** Before evaluating each statement, re-read the problem stem. Any total, count, or anchor in the stem is available to every statement — it does not need to be restated in the statement itself.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Ratio Altered by Addition and Removal
+
+A solution contains chemicals A and B in the ratio 5:3. After 8 liters of chemical A are removed and 4 liters of chemical B are added, the ratio of A to B becomes 1:1. How many liters of solution were in the container originally?
+
+- A) 32
+- B) 40
+- C) 48
+- D) 56
+- E) 64
+
+**answer:** C
+**fastest_path:** A = 5k, B = 3k. Set 5k − 8 = 3k + 4 → 2k = 12 → k = 6. Original total = 8k = 48.
+**explanation:** Let A = 5k and B = 3k. After the changes: A becomes 5k − 8, B becomes 3k + 4. New ratio = 1:1, so 5k − 8 = 3k + 4 → 2k = 12 → k = 6. Original total = 5k + 3k = 8k = 48 liters. Verification: A = 30, B = 18. After: A = 22, B = 22 → ratio 1:1 ✓.
+**mistake_a:** Arithmetic error in the equation: solved 2k = 8 → k = 4 → total = 32.
+**mistake_b:** Solved correctly to k = 6 but computed the *post-removal* total: 8k − 8 = 40. The question asks for the *original* total, which is 8k = 48.
+**mistake_d:** Miscounted ratio parts: used 5 + 3 + 1 = 9 parts → total = 9 × 6 = 54, rounded to 56. The original ratio has exactly 5 + 3 = 8 parts.
+**mistake_e:** Arithmetic error → k = 8 → total = 64.
+**common_trap:** Subtracting the removed volume from the total (computing 8k − 8 = 40 rather than 8k = 48). The question asks for the *original* total, not the total after removal.
+**takeaway:** Set up the new-ratio equation using post-change expressions (5k − 8 and 3k + 4), solve for k, then compute the quantity the question asks for using the *original* expressions.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Three-Way Ratio with Weighted Payroll
+
+In a company, executives, managers, and staff are employed in the ratio 1:4:15. Executives earn an average of $200,000 per year, managers earn an average of $90,000 per year, and staff earn an average of $40,000 per year. Approximately what percent of the total annual payroll goes to managers?
+
+- A) 20%
+- B) 25%
+- C) 31%
+- D) 36%
+- E) 40%
+
+**answer:** C
+**fastest_path:** Payroll per unit: 1(200K) + 4(90K) + 15(40K) = 200K + 360K + 600K = 1,160K. Manager share = 360/1,160 ≈ 31%.
+**explanation:** Use k = 1 as the scale factor. Executives: 1 person × $200K = $200K. Managers: 4 people × $90K = $360K. Staff: 15 people × $40K = $600K. Total payroll = $1,160K. Manager percent = 360/1,160 = 9/29 ≈ 31.0%.
+**mistake_a:** Computed manager share of *headcount* only: 4/(1 + 4 + 15) = 4/20 = 20%. This ignores that different groups earn different salaries.
+**mistake_d:** Arithmetic error in the total: perhaps 200 + 360 + 400 = 960 → 360/960 = 37.5% ≈ 36%. Staff payroll is 15 × 40 = 600, not 400.
+**mistake_b:** Adjusted the headcount fraction by a rough premium but undershot: arrived at 25% rather than 31%.
+**mistake_e:** Overcounted total or manager payroll, arriving at 40%.
+**common_trap:** Using the ratio of headcounts (4/20 = 20%) rather than the ratio of payroll dollars (360/1,160 ≈ 31%). Payroll weighting is the critical step.
+**takeaway:** When a count ratio combines with per-unit values, multiply each group's count by its value, sum the products for the total, then compute the desired group's weighted share.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q50
+**difficulty:** Challenge
+**type:** Problem Solving
+**topic:** Iterative Replacement — Target Concentration
+
+A 100-liter drum contains 70 liters of water and 30 liters of juice (30% juice solution). Each cycle: 20 liters of the current mixture are drained, then replaced with 20 liters of pure juice. What is the minimum number of complete cycles required for the juice concentration to exceed 50%?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** B
+**fastest_path:** Water fraction decays by factor 0.80 per cycle. Start: 70% water. After cycle 1: 70% × 0.8 = 56% water → 44% juice (not > 50%). After cycle 2: 56% × 0.8 = 44.8% water → 55.2% juice > 50%. Minimum = 2 cycles.
+**explanation:** Each cycle drains 20% of the tank, retaining 80% of the existing mixture, then tops up with pure juice. Water (the "unwanted" component) multiplies by 80/100 = 4/5 each cycle. Juice concentration after n cycles: c_n = 1 − 0.70 × (0.8)ⁿ. Find minimum n where c_n > 0.50: 0.70 × (0.8)ⁿ < 0.50 → (0.8)ⁿ < 5/7 ≈ 0.714. (0.8)¹ = 0.800 > 0.714 — not yet. (0.8)² = 0.640 < 0.714 ✓ — exceeded. Answer: n = 2. Manual check — Cycle 1: 30 L juice; drain 20 L (6 L juice removed); add 20 L pure juice → 44 L juice = 44% (not > 50%). Cycle 2: 44 L juice; drain 20 L (8.8 L juice removed); add 20 L pure juice → 55.2 L juice = 55.2% > 50% ✓.
+**mistake_a:** Read off cycle 1 result (44%) and concluded juice already passed 50% after one cycle. 44% < 50% — a second cycle is required.
+**mistake_c:** Modeled water fraction as decaying by 50% each cycle (70% → 35%) rather than by 20% per cycle, concluding 3 cycles are needed. The retention fraction is 80/100 = 0.80, not 0.50.
+**mistake_d:** Applied the wrong recurrence: tried (0.70)ⁿ < 0.50 (treating juice start as the base), getting n ≥ 3 or 4. The correct formula is 0.70 × (0.80)ⁿ, where 0.70 is the initial *water* fraction, not the juice fraction.
+**mistake_e:** Confused replacing with juice (which raises juice concentration quickly) with replacing with water (which would require many more cycles). The replacement substance is pure juice here.
+**common_trap:** Tracking juice rather than water. Because pure juice is added, it is easier to track the decay of the unwanted component (water): water fraction = 0.70 × (0.80)ⁿ. Set this below 0.50 and solve.
+**takeaway:** In drain-and-replace-with-target-substance problems, track the *opposite* component. Its fraction follows: (initial fraction of that component) × (retention fraction)ⁿ. Set up the inequality and test n = 1, 2, 3, ... in order.

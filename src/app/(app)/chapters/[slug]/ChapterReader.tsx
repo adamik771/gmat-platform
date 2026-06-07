@@ -955,15 +955,21 @@ export default function ChapterReader({
             )}
 
             <div className="space-y-10 min-w-0">
-              {sections.map((s) => (
-                <SectionCard
-                  key={s.id}
-                  section={s}
-                  hydrated={hydrated}
-                  progress={progress}
-                  update={update}
-                />
-              ))}
+              {sections.map((s, i) => {
+                const next = sections[i + 1] ?? null
+                return (
+                  <SectionCard
+                    key={s.id}
+                    section={s}
+                    hydrated={hydrated}
+                    progress={progress}
+                    update={update}
+                    nextSectionId={next?.id ?? null}
+                    nextSectionTitle={next?.title ?? null}
+                    hasProblemSets={problemSets.length > 0}
+                  />
+                )
+              })}
 
               {problemSets.length > 0 && (
                 <div id="chapter-problem-sets" className="scroll-mt-6">
@@ -986,6 +992,9 @@ export default function ChapterReader({
                     totalSections={totalSections}
                     problemSetCount={problemSets.length}
                     attemptedProblemSetCount={countAttemptedProblemSets(progress)}
+                    problemSetResults={progress.problemSetResults}
+                    sets={problemSets}
+                    targetScore={targetScore}
                   />
                 )}
             </div>
@@ -1080,11 +1089,9 @@ function HeroCta({
 }
 
 /**
- * Satisfying completion block surfaced at the bottom of the chapter
- * once the student has read every section AND attempted the end-of-
- * chapter problem sets (when present). Suggests two next moves —
- * topic-specific practice and the global review queue — plus a path
- * back to the chapter index.
+ * Completion block surfaced at the bottom of the chapter once every
+ * section has been read. Shows per-difficulty problem-set scores against
+ * the student's accuracy target, plus adaptive coaching copy and CTAs.
  */
 function ChapterCompletionCard({
   section,
@@ -1092,18 +1099,86 @@ function ChapterCompletionCard({
   totalSections,
   problemSetCount,
   attemptedProblemSetCount,
+  problemSetResults,
+  sets,
+  targetScore,
 }: {
   section: Section
   title: string
   totalSections: number
   problemSetCount: number
   attemptedProblemSetCount: number
+  problemSetResults: ChapterProgress["problemSetResults"]
+  sets: ReaderProblemSet[]
+  targetScore: number | null
 }) {
   const practiceSlug =
     section === "Quant" ? "quant" : section === "Verbal" ? "verbal" : "di"
   const hasProblemSets = problemSetCount > 0
   const allSetsDone = hasProblemSets && attemptedProblemSetCount >= problemSetCount
   const noneAttempted = hasProblemSets && attemptedProblemSetCount === 0
+
+  // Build a score row per difficulty that exists in this chapter.
+  const setMap = new Map(sets.map((s) => [s.difficulty, s]))
+  type ScoreRow = {
+    difficulty: "easy" | "medium" | "hard"
+    accuracy: number | null
+    target: number
+    metTarget: boolean | null
+  }
+  const scoreRows: ScoreRow[] = (["easy", "medium", "hard"] as const)
+    .filter((d) => setMap.has(d))
+    .map((d) => {
+      const result = problemSetResults[d]
+      const ps = setMap.get(d)!
+      const target = resolveAccuracyTarget(ps.targetAccuracyByScore, targetScore)
+      const accuracy =
+        result && result.total > 0
+          ? Math.round((result.correct / result.total) * 100)
+          : null
+      return {
+        difficulty: d,
+        accuracy,
+        target,
+        metTarget: accuracy !== null ? accuracy >= target : null,
+      }
+    })
+
+  const attemptedRows = scoreRows.filter((r) => r.accuracy !== null)
+  const belowTargetRows = attemptedRows.filter((r) => r.metTarget === false)
+  const allAboveTarget = attemptedRows.length > 0 && belowTargetRows.length === 0
+
+  // Coaching copy keyed to problem-set performance.
+  let coachingCopy: React.ReactNode
+  if (noneAttempted) {
+    coachingCopy = (
+      <>
+        The reading is the easy part — retrieval is what locks it in.
+        Try a graded problem set next.
+      </>
+    )
+  } else if (allAboveTarget) {
+    coachingCopy = (
+      <>
+        Problem set performance is on target. Independent timed practice
+        is the highest-leverage next step — the patterns need to hold under
+        time pressure, not just in deliberate study.
+      </>
+    )
+  } else {
+    const weakest = belowTargetRows.reduce((min, r) =>
+      (r.accuracy ?? 100) < (min.accuracy ?? 100) ? r : min
+    )
+    const gap = weakest.target - (weakest.accuracy ?? 0)
+    coachingCopy = (
+      <>
+        The {weakest.difficulty} set is {gap}% below target. One more
+        focused session before moving on will compound better than advancing
+        with gaps at that difficulty.
+      </>
+    )
+  }
+
   return (
     <div
       className="relative overflow-hidden rounded-2xl border px-7 sm:px-10 py-9 sm:py-11"
@@ -1140,8 +1215,8 @@ function ChapterCompletionCard({
           {title}
         </h2>
         <p
-          className="text-[14px] mt-3 leading-[1.6] max-w-xl"
-          style={{ color: "var(--read-text-body)" }}
+          className="text-[13px] mt-3 leading-[1.6]"
+          style={{ color: "var(--read-text-muted)" }}
         >
           {totalSections} section{totalSections === 1 ? "" : "s"} read
           {hasProblemSets
@@ -1155,19 +1230,73 @@ function ChapterCompletionCard({
                 } attempted`
               : ` · ${attemptedProblemSetCount} of ${problemSetCount} graded problem sets attempted`
             : ""}
-          .{" "}
-          {noneAttempted ? (
-            <>
-              The reading is the easy part — retrieval is what locks it in.
-              Try a graded problem set next.
-            </>
-          ) : (
-            <>
-              The skill won&apos;t stick without retrieval — try a timed
-              drill or the spaced-review queue next.
-            </>
-          )}
         </p>
+
+        {/* Per-difficulty score grid — only visible when at least one set has been attempted */}
+        {hasProblemSets && attemptedRows.length > 0 && (
+          <div className="mt-5 flex flex-wrap gap-3">
+            {scoreRows.map(({ difficulty, accuracy, target, metTarget }) => (
+              <div
+                key={difficulty}
+                className="flex flex-col gap-1.5 px-4 py-3 rounded-xl border min-w-[88px]"
+                style={{
+                  backgroundColor: "var(--read-bg-inset)",
+                  borderColor:
+                    metTarget === true
+                      ? "rgba(62,207,142,0.22)"
+                      : metTarget === false
+                      ? "rgba(255,68,68,0.18)"
+                      : "var(--read-border)",
+                }}
+              >
+                <span
+                  className="text-[10px] uppercase tracking-[0.18em] font-semibold"
+                  style={{ color: "var(--read-text-faint)" }}
+                >
+                  {difficulty}
+                </span>
+                {accuracy !== null ? (
+                  <>
+                    <span
+                      className="text-[22px] font-semibold leading-none tracking-tight tabular-nums"
+                      style={{
+                        color:
+                          metTarget === true
+                            ? "var(--read-success)"
+                            : metTarget === false
+                            ? "#E07070"
+                            : "var(--read-text)",
+                      }}
+                    >
+                      {accuracy}%
+                    </span>
+                    <span
+                      className="text-[11px] leading-none"
+                      style={{ color: "var(--read-text-faint)" }}
+                    >
+                      target {target}%{metTarget === true ? " ✓" : ""}
+                    </span>
+                  </>
+                ) : (
+                  <span
+                    className="text-[20px] font-semibold leading-none"
+                    style={{ color: "var(--read-text-faint)" }}
+                  >
+                    —
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+
+        <p
+          className="text-[14px] mt-5 leading-[1.6] max-w-xl"
+          style={{ color: "var(--read-text-body)" }}
+        >
+          {coachingCopy}
+        </p>
+
         <div className="flex flex-wrap gap-3 mt-6">
           {noneAttempted ? (
             <a
@@ -1312,13 +1441,40 @@ function SectionCard({
   hydrated,
   progress,
   update,
+  nextSectionId,
+  nextSectionTitle,
+  hasProblemSets,
 }: {
   section: ReaderSection
   hydrated: boolean
   progress: ChapterProgress
   update: (u: (prev: ChapterProgress) => ChapterProgress) => void
+  nextSectionId: string | null
+  nextSectionTitle: string | null
+  hasProblemSets: boolean
 }) {
   const read = !!progress.sectionsRead[s.id]
+
+  // Where the "Continue" CTA sends the student once this section is read:
+  // the next section if there is one, otherwise the problem sets (the
+  // natural next step after the last reading section). Null only on the
+  // final section of a chapter with no problem sets — nothing follows.
+  const continueTarget = nextSectionId
+    ? { id: nextSectionId, label: nextSectionTitle ?? "the next section" }
+    : hasProblemSets
+      ? { id: "chapter-problem-sets", label: "the problem sets" }
+      : null
+
+  function handleContinue(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault()
+    if (!continueTarget) return
+    const el = document.getElementById(continueTarget.id)
+    if (!el) return
+    el.scrollIntoView({ behavior: "smooth", block: "start" })
+    if (typeof window !== "undefined") {
+      window.history.replaceState(null, "", `#${continueTarget.id}`)
+    }
+  }
 
   const icon =
     s.type === "pretest" ? (
@@ -1469,6 +1625,30 @@ function SectionCard({
             <Check className="w-3.5 h-3.5" />
             Mark section complete
           </button>
+        )}
+
+        {/* Once read, replace the dead-end button with a forward CTA so the
+            student keeps moving through the chapter instead of navigating
+            back to the table of contents by hand. */}
+        {read && hydrated && continueTarget && (
+          <div className="flex items-center gap-3 flex-wrap">
+            <span
+              className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em]"
+              style={{ color: "var(--read-success)" }}
+            >
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              Section complete
+            </span>
+            <a
+              href={`#${continueTarget.id}`}
+              onClick={handleContinue}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
+              style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
+            >
+              Continue to {continueTarget.label}
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
         )}
       </div>
     </article>
