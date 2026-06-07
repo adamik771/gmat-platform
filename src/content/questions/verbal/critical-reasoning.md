@@ -495,14 +495,14 @@ Which of the following would be most important to know in order to evaluate the 
 - E) Whether the companies in the study primarily hire for technical or non-technical roles.
 
 **answer:** B
-**fastest_path:** Volunteer-only sample = selection bias risk. (B) tests it: if volunteers were already faster than average, the 35% gain may be selection effect, not algorithm effect.
-**explanation:** Trial design has a self-selection flaw — companies *volunteered*. (B) tests whether they were already efficient. Yes → algorithm impact is overstated; no → claim holds.
-**mistake_a:** Founders' experience irrelevant to algorithm performance.
-**mistake_c:** Implementation detail (ML vs rules) doesn't bear on whether it works.
-**mistake_d:** Business model unrelated to the claim.
-**mistake_e:** Some relevance (technical roles often hire faster) but doesn't address the core volunteer-bias issue.
-**common_trap:** Picking (E) because it sounds like a control variable — but it's a *secondary* concern; selection bias on volunteers (B) is the dominant risk.
-**takeaway:** Self-selected samples → ask "were volunteers already different?" That's almost always the right Evaluate question.
+**fastest_path:** It's an Evaluate question on a study whose companies *volunteered* — the classic setup for selection bias. The most useful thing to learn is whether those volunteers were already unusually fast hirers, because if so the 35% gain reflects who signed up, not the algorithm.
+**explanation:** To evaluate "the algorithm cut time-to-hire 35%," find the weakest link in the study design — here, that the 50 companies *volunteered*. The right test is a question whose two possible answers swing the conclusion in opposite directions. **(B)** does exactly that: if the volunteers were *already* faster-than-average hirers, the improvement reflects who they were, not the tool (claim weakened); if they were typical, the 35% gain is credibly the algorithm's doing (claim supported). An answer that flips the conclusion depending on its result is the most important to ask. Answer **B**.
+**mistake_a:** Whether the founders have recruiting experience says nothing about whether the *algorithm* actually reduced time-to-hire — it doesn't move the data either way.
+**mistake_c:** How the algorithm works internally (machine learning vs. rules) is irrelevant to whether the measured 35% effect is real.
+**mistake_d:** The pricing or business model has no bearing on the performance claim being evaluated.
+**mistake_e:** Role type (technical vs. non-technical) has a whiff of relevance, but it's a secondary variable — it doesn't address the central self-selection flaw the way (B) does.
+**common_trap:** Choosing the answer that "sounds like a control variable" (E) over the one that targets the study's actual structural weakness (volunteer self-selection). On Evaluate, find the load-bearing assumption first, then test *that*.
+**takeaway:** When a study uses a self-selected sample, the highest-value Evaluate question is almost always "were the volunteers already different on the very outcome being measured?"
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -1531,14 +1531,14 @@ Which of the following, if true, best resolves the apparent paradox?
 - E) Some patients who were previously hospitalized for flu are now treated at home.
 
 **answer:** B
-**fastest_path:** Paradox: rate ↓ 25%, count ↑ 15%. Resolution: population grew + composition shifted toward higher-risk groups (elderly). Both metrics make sense.
-**explanation:** Rate (per-person) fell, but count rose. The math reconciles when underlying population grows AND its composition shifts toward higher-risk demographics. (B) names both pieces.
-**mistake_a:** Better vaccines push *both* numbers down.
-**mistake_c:** More cautious admissions push count *down*.
-**mistake_d:** Vague — would push both down.
-**mistake_e:** Treating at home pushes count down.
-**common_trap:** Picking (A) because better vaccines fits the rate decline. But it would also pull the count down, deepening the paradox. Need a mechanism that pushes count *up* while rate falls.
-**takeaway:** Rate-vs-count paradoxes resolve via *population growth + composition shift*. Always check whether the demographic mix changed.
+**fastest_path:** The paradox is rate-down but count-up. To reconcile a falling per-person rate with a rising total, the underlying population must grow *and* shift toward the highest-risk group — and (B) supplies both moves at once.
+**explanation:** The tension: the hospitalization *rate* (per person) fell 25%, yet the *total count* rose 15%. A resolution has to push the count up even as the rate drops. **(B)** does this two ways: the population grew substantially (more people means more hospitalizations even at a lower rate), and within it the high-risk elderly share grew faster than average (shifting the mix toward people hospitalized at much higher rates). Both forces raise the raw count while the average rate still falls. Answer **B**.
+**mistake_a:** More available and effective vaccines would push *both* the rate and the count down — that deepens the paradox instead of resolving it.
+**mistake_c:** Hospitals admitting fewer mild cases would lower the count, again worsening the contradiction.
+**mistake_d:** Greater prevention awareness is vague and, if anything, pushes both numbers down.
+**mistake_e:** Shifting patients to home treatment lowers the hospitalization count — the wrong direction.
+**common_trap:** Grabbing the choice that explains the *rate* decline (A, better vaccines) while ignoring that it also drives the *count* down. A paradox answer must move the two figures in the directions the stimulus actually reports.
+**takeaway:** Rate-vs-count paradoxes almost always resolve through population growth and/or a composition shift toward a higher-risk subgroup. Check the denominator and the mix, not just the headline rate.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -2545,14 +2545,14 @@ Which of the following best identifies a flaw in the researcher's reasoning?
 - E) The researcher did not ask residents about their views on other environmental policies.
 
 **answer:** A
-**fastest_path:** Flaw: *hasty generalization* — extending from 100 residents of *one* small town to *all* towns in the region.
-**explanation:** Conclusion leaps from a tiny single-town sample to a region-wide claim. (A) names the inferential gap directly: representativeness wasn't established.
-**mistake_b:** Tangential design detail.
-**mistake_c:** Cost — different argument.
-**mistake_d:** Time stability — not the conclusion's scope.
-**mistake_e:** Unrelated environmental policies.
-**common_trap:** Picking (B) because *proximity* feels relevant — but the conclusion is about regional generalization, not local design.
-**takeaway:** Flaw on a "small sample → broad conclusion" argument → the answer that names the *inferential leap itself* (representativeness).
+**fastest_path:** Spot the scope jump — the evidence covers 100 residents of *one* small town, but the conclusion is about *all* towns across the region. That unjustified leap from a single sample to a whole population is the hasty generalization, and (A) names it.
+**explanation:** The flaw is a scope mismatch between evidence and conclusion. **Evidence:** 72 of 100 residents in *one small town* favor the recycling center. **Conclusion:** a majority of residents in *all towns across the surrounding region* would favor similar centers. The argument never establishes that this one town represents the wider region — its residents could be unusually pro-recycling. **(A)** identifies exactly this unwarranted assumption of representativeness. Answer **A**.
+**mistake_b:** Whether the center is near residents' homes is a survey-design quibble; it doesn't touch the leap from one town to the whole region.
+**mistake_c:** Construction cost is a different argument entirely — the conclusion is about *support*, not affordability.
+**mistake_d:** Stability of opinions over time isn't the issue; the conclusion is about scope (which places), not timing.
+**mistake_e:** Views on other environmental policies fall outside the argument's claim about this proposal.
+**common_trap:** Choosing a choice that raises a *real-sounding* but off-target concern (B, proximity) instead of the one that names the actual inferential gap. On Flaw questions, the answer must describe the *reasoning error*, not just point to something the argument left out.
+**takeaway:** When a conclusion generalizes from one sample to a broader population, the flaw is almost always representativeness — pick the choice that names the unsupported "this group speaks for all groups" leap.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -2742,14 +2742,14 @@ In the argument, the two portions in boldface play which of the following roles?
 - E) The first is a conclusion; the second is a restatement of that conclusion.
 
 **answer:** A
-**fastest_path:** Bold 1 = researchers' hypothesis (warming → jellyfish range). Critics raise alternatives. Bold 2 = *defense* of the hypothesis via multivariable model attribution (70% to temperature).
-**explanation:** Argument structure: hypothesis → critics' alternatives → defense via stat-model evidence isolating temperature. (A) names this hypothesis + defense pairing.
-**mistake_b:** Wrongly attributes Bold 1 to critics.
-**mistake_c:** Confuses hypothesis with finding.
-**mistake_d:** Mislabels levels of generality.
-**mistake_e:** Bold 2 is new reasoning, not restatement.
-**common_trap:** Picking (E) because the closing bold *restates* the temperature primacy — but it does so via *new evidence* (model output), not as a recap.
-**takeaway:** "Hypothesis + defense via modeling" is a textbook scientific-CR pairing. The defense is the modeling step, not a recap.
+**fastest_path:** Track who says what. Bold 1 is the researchers' own hypothesis (warming → wider jellyfish range); critics then offer rival causes; Bold 2 is the researchers fighting back with model evidence that still pins ~70% on temperature. So: hypothesis, then defense of it.
+**explanation:** Follow the flow and the ownership. The researchers propose that warming expands the jellyfish's range — that's **Bold 1**, their hypothesis. Critics counter with alternative causes (pollution, predator loss). The researchers then reply that their statistical models, which *include* those alternatives as separate variables, still attribute ~70% of the rise to temperature — that's **Bold 2**, whose job is to *defend* the hypothesis against the competing explanations. Bold 1 = the hypothesis, Bold 2 = a defense of it. Answer **A**.
+**mistake_b:** Assigns Bold 1 to the critics, but it's the *researchers'* hypothesis — the critics' position appears only in the unbolded middle sentence.
+**mistake_c:** Calls Bold 1 a "finding," but it's an explanatory hypothesis (a proposed cause), not a reported observation.
+**mistake_d:** Mislabels the generality levels — Bold 1 isn't a raw observation and Bold 2 isn't a broad theory derived from it; Bold 2 is a targeted rebuttal.
+**mistake_e:** Treats Bold 2 as a restatement of Bold 1, but Bold 2 introduces *new evidence* (the model attribution), so it argues rather than repeats.
+**common_trap:** Picking (E) because Bold 2 reasserts temperature's primacy — but it does so by adding model evidence, which makes it a defense, not a recap. In boldface, separate "supports with new reasoning" from "merely restates."
+**takeaway:** For boldface, label each portion by speaker and function. "Hypothesis, challenged, then defended with evidence" is a classic science-CR shape; the closing bold is the defense, not a summary.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -2798,14 +2798,14 @@ Which of the following is most strongly supported by the statements above?
 - E) Employees are responsible for the majority of expense claim errors.
 
 **answer:** D
-**fastest_path:** Probability chain: 8% flagged × 60% confirmed-as-error = 4.8% of *all* claims contain confirmed errors. Direct multiplication.
-**explanation:** Two rates compose: of all claims, 8% get flagged; of flagged, 60% are real errors. Multiply: 0.08 × 0.60 = 0.048 = 4.8% of all claims. (D) expresses this precisely.
-**mistake_a:** Misreads — 60% applies to flagged claims, not audit accuracy overall.
-**mistake_b:** Goes beyond data — we only know about flagged claims.
-**mistake_c:** Imports outside assumption.
-**mistake_e:** Imports outside assumption.
-**common_trap:** Picking (B) because "60% of flagged claims have errors" *seems* to imply most claims have errors — but only flagged ones were checked. Unflagged claims could be largely error-free.
-**takeaway:** Probabilistic inference = chain the conditional rates literally. P(error) = P(flagged) × P(error | flagged), not the marginal of either alone.
+**fastest_path:** This is a two-step probability chain, not a single rate. Of *all* claims, 8% get flagged; of *flagged* claims, 60% are real errors. Multiply along the chain: 0.08 × 0.60 = 4.8% of all claims are confirmed errors.
+**explanation:** The two percentages sit on different bases, so chain them. 8% of *all* claims are flagged; among *those flagged*, 60% turn out to be genuine errors. The share of *all* claims that are confirmed errors = 0.08 × 0.60 = 0.048 = **4.8%**, which is exactly **(D)**. The key move is recognizing the 60% is conditional on being flagged, so it gets multiplied by the 8% rather than applied to the whole pool. Answer **D**.
+**mistake_a:** Reads the 60% as the audit's overall accuracy, but 60% is the share of *flagged* claims that are real errors — it says nothing about how often the process reaches a correct determination.
+**mistake_b:** Concludes most claims contain errors, but only the 8% that were flagged got checked; the other 92% were never examined and could be overwhelmingly clean.
+**mistake_c:** Brings in claim amounts and review thresholds, a detail found nowhere in the stimulus.
+**mistake_e:** Asserts employees cause most errors — an outside attribution the data don't address.
+**common_trap:** Applying the 60% to all claims (or treating it as a global accuracy rate) instead of multiplying it by the 8% flag rate. A conditional percentage lives on its own subgroup until you chain it.
+**takeaway:** Probabilistic inference = multiply the conditional rates along the chain: P(error) = P(flagged) × P(error | flagged). Never average them or transplant a conditional rate onto a different base.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -2882,14 +2882,14 @@ The supporters' argument above relies on which of the following assumptions?
 - E) Cognitive skill development is the only factor that influences traffic accident rates.
 
 **answer:** B
-**fastest_path:** Argument: raise age → fewer accidents. Required: raising the age doesn't push young people into *unlicensed, untrained* driving (which would increase accidents).
-**explanation:** Negate (B): unlicensed teens drive without training → accident totals rise → conclusion fails. (B) is the necessary substitution-block.
-**mistake_a:** Irrelevant to new-driver rates.
-**mistake_c:** *Reverses* — goes against supporters.
-**mistake_d:** Parental discouragement isn't load-bearing.
-**mistake_e:** *Extreme* — supporters said cognitive is *a* factor, not *the only* factor.
-**common_trap:** Picking (E) because cognitive-development is the supporters' main mechanism — but the argument doesn't require it to be the *only* factor. Necessary assumption is the minimal claim.
-**takeaway:** Policies on age/access always assume *no substitution into unsafe alternatives*. Teen driving and minimum-age regulations especially.
+**fastest_path:** Find the conclusion (raising the age cuts young-driver accidents) and ask what *must* hold for the policy to work. A necessary assumption is the minimal bridge — here, that drivers don't just shift into a worse category (unlicensed, untrained). Confirm with the negation test.
+**explanation:** Map it. **Premise:** 18-year-old new drivers are safer than 16-year-old new drivers, even after accounting for inexperience. **Conclusion:** raising the minimum age will reduce the *total* accidents involving young drivers. The gap: the premise is about *licensed new drivers at each age*, but the conclusion is about *all young drivers on the road* after the law — so the policy can't quietly create a new pool of dangerous drivers. Negation-test **(B):** suppose raising the age *does* significantly increase young people driving unlicensed and untrained — you've swapped relatively-safer licensed 16-year-olds for untrained ones, accident totals can rise, and the conclusion collapses. Because negating (B) breaks the argument, (B) is necessary. Answer **B**.
+**mistake_a:** Compares 18-year-old experienced vs. new drivers — a pairing the argument never uses (it's 16-new vs. 18-new), so it isn't load-bearing.
+**mistake_c:** Runs *against* the supporters: if 16-year-olds already drive more cautiously, that undercuts raising the age. A necessary assumption can't weaken the conclusion.
+**mistake_d:** Whether parents discourage 16-year-olds is irrelevant to whether the *law* cuts accidents. Negate it and the argument is untouched, so it isn't necessary.
+**mistake_e:** The too-extreme trap. Supporters use cognitive development as *a* reason, not *the only* one. Negate (E) — other factors also matter — and the argument still stands, so (E) isn't required. "Only/sole" wording is almost always too strong for a necessary assumption.
+**common_trap:** Picking the choice that restates the argument's mechanism (E, cognitive development) over the one that protects the conclusion from a side effect (B). Necessary-assumption answers are usually *defensive and minimal* — they rule out a way the plan backfires, not restate the premise.
+**takeaway:** On Necessary Assumption, use the negation test: negate the choice; if the argument falls apart, it's required. And in any policy or ban argument, watch for *substitution effects* — the plan must not push people into an equally-bad alternative.
 **related_reading:** reading-verbal-04-cr-question-types
 
 

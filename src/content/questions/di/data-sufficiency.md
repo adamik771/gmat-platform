@@ -20,14 +20,14 @@ What is the value of x?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** Value DS — looking for *unique* x. (1) is one equation in one variable → unique. (2) names a range → many. A.
-**explanation:** (1): 3x+7=22 → x=5. Unique value, sufficient. (2): x ∈ {1,2,…,9}. Nine candidates, not sufficient. Answer A.
-**mistake_b:** B requires (2) alone sufficient — but (2) leaves 9 possible values.
-**mistake_c:** C-trap — adding (2) doesn't help; (1) alone already nails x=5.
-**mistake_d:** D requires *each* alone sufficient — but (2) leaves 9 candidates.
-**mistake_e:** E says even together insufficient — but (1) solves it alone.
-**common_trap:** *C-trap*: combining statements "for safety" when one alone is already sufficient. Stop the moment a statement nails a unique value.
-**takeaway:** Value DS — a single equation in a single variable is almost always sufficient. Don't keep going.
+**fastest_path:** This is a "find the value" DS, so sufficiency means pinning x to exactly one number — a single linear equation in one unknown always does that, a range never does. Classify each statement on that one test.
+**explanation:** For value DS, a statement is sufficient only if it forces *one* value of x. **(1):** 3x + 7 = 22 → 3x = 15 → x = 5 — one equation, one unknown, exactly one solution, so it's sufficient. **(2):** "positive integer less than 10" allows x = 1, 2, 3, …, 9 — nine different values, so x isn't pinned down and it's not sufficient. (1) alone works, (2) alone doesn't → **A**.
+**mistake_b:** Picks (2) as the sufficient statement, but "positive integer less than 10" leaves nine candidates (1–9); narrowing the field to a list isn't the same as forcing a single value.
+**mistake_c:** The C-trap — combining statements "to be safe" when (1) alone already nails x = 5. Choosing C here means you didn't trust a statement that was already sufficient on its own.
+**mistake_d:** "Each alone" requires *both* statements to work individually, but (2) leaves nine possible values, so it fails by itself.
+**mistake_e:** Says even both together can't solve it, yet (1) by itself already gives x = 5 — it's clearly solvable.
+**common_trap:** Over-combining. The instant one statement forces a unique value, stop — reaching for the second statement "for safety" is exactly how a clean A turns into a wrong C.
+**takeaway:** In value DS, one linear equation in one variable is the canonical sufficient statement; a range or inequality almost never is. Test each statement against "does this force exactly one value?"
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -281,14 +281,14 @@ What is the range of a set S of seven distinct integers?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Range = max − min. Each statement gives one endpoint. Together they suffice.
-**explanation:** (1): min = −4, no max. (2): max = 18, no min. Together: 18 − (−4) = 22. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but no max given.
-**mistake_b:** B requires (2) alone sufficient — but no min given.
-**mistake_d:** D requires each alone — neither works.
-**mistake_e:** E says together insufficient — but two endpoints fix the range.
-**common_trap:** Treating the seven distinct integers as a constraint that adds info — but the count and distinctness don't determine min or max alone.
-**takeaway:** Range DS: max − min, period. The two endpoints are the only data needed.
+**fastest_path:** Range depends on exactly two numbers — the maximum and the minimum (range = max − min). Everything else about the set (that there are seven values, that they're distinct) is noise. So ask only: do the statements hand me both endpoints?
+**explanation:** Range = max − min, so the *only* data that matters is the two endpoints. **(1):** min = −4, but the maximum could be 5, 50, or anything larger, so the range isn't fixed → not sufficient. **(2):** max = 18, but the minimum is unknown, so the range still isn't fixed → not sufficient. **Together:** max = 18 and min = −4 give range = 18 − (−4) = 22, one fixed value → sufficient. Answer **C**. The "seven distinct integers" is a distractor — count and distinctness never enter a range calculation.
+**mistake_a:** (1) gives the minimum but no maximum, so the range could be any value above that floor — one endpoint can't fix a difference.
+**mistake_b:** (2) gives the maximum but no minimum — the same gap in reverse.
+**mistake_d:** "Each alone" needs both statements to work solo, but each supplies only one of the two endpoints.
+**mistake_e:** Says even together they fail, yet two fixed endpoints determine the range exactly: 18 − (−4) = 22.
+**common_trap:** Letting extra set details ("seven distinct integers") feel like usable constraints. They restrict the *interior* of the set, not its endpoints, so they're irrelevant to the range.
+**takeaway:** For range DS, strip the set down to its two endpoints — max and min are the only inputs. Count, spacing, and distinctness are decoys.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -397,14 +397,14 @@ Three partners -- F, G, and H -- split a profit in the ratio of their investment
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** H's fraction = h / total. Each statement gives one piece (h or total). Together: 40,000 / 140,000 = 2/7.
-**explanation:** Let G=g, F=2g, H=h. Total = 3g+h. H's share = h/(3g+h). (1): h=$40K, no g. (2): 3g+h=$140K, no h. Together: 40K/140K = 2/7. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — without g (or total), can't compute fraction.
-**mistake_b:** B requires (2) alone sufficient — without h, can't compute fraction.
-**mistake_d:** D requires each alone — neither has both pieces.
-**mistake_e:** E says together insufficient — but two values determine the fraction.
-**common_trap:** Treating the 2:1 ratio of F:G as enough to compute everything — but H's investment is independent and needs its own data.
-**takeaway:** Fraction-of-total DS: need *the part* and *the total*. Ratios of *other* parts don't substitute.
+**fastest_path:** H's share of the profit = H's investment ÷ total investment, so you need exactly two numbers: H's piece and the whole. The F = 2G ratio describes the *other* two partners and never substitutes for either. Check which statement supplies which.
+**explanation:** H's fraction of the profit equals H's investment over the total: h / (F + G + H). The ratio F = 2G means F + G = 3g, so the total is 3g + h — but you still need real amounts. **(1):** H = $40,000, yet with no value for g (or the total) you can't form the fraction → not sufficient. **(2):** total = $140,000, but with no value for H you can't isolate H's share → not sufficient. **Together:** 40,000 / 140,000 = **2/7** → sufficient. Answer **C**.
+**mistake_a:** (1) gives H's dollar amount but no total to divide by — a part without a whole can't form a fraction.
+**mistake_b:** (2) gives the total but not H's amount — a whole without the part can't either.
+**mistake_d:** "Each alone" needs both statements to work individually; each provides only one of the two required quantities.
+**mistake_e:** Claims even together it fails, but part ($40K) over whole ($140K) is a fully determined fraction.
+**common_trap:** Treating the F = 2G ratio as if it unlocked everything. It fixes the F:G split but says nothing about how large H is relative to the total — H's data is independent and must be supplied on its own.
+**takeaway:** "Fraction of total" DS needs the part and the total. A ratio among the *other* components fills neither slot.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -571,14 +571,14 @@ Is x > y?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** B
-**fastest_path:** (1) x²>y² ↔ |x|>|y|, says nothing about *signed* order. (2) x−y>0 ↔ x>y. Sufficient.
-**explanation:** (1): x²>y² gives only |x|>|y|. x=3,y=1 (yes); x=−3,y=1 (no). Insufficient. (2): x−y>0 directly rearranges to x>y. Sufficient. Answer B.
-**mistake_a:** A requires only (1) sufficient — but sign split shown.
-**mistake_c:** C says together sufficient — but (2) alone already does.
-**mistake_d:** D requires each alone — (1) fails.
-**mistake_e:** E says together insufficient — but (2) alone solves.
-**common_trap:** Treating squared inequalities as if they preserved sign. Squaring strips sign — always test negatives explicitly.
-**takeaway:** Inequality DS: x²>y² says nothing about *signed* order. Only the direct subtraction (x−y) preserves order.
+**fastest_path:** The question wants the *signed* order x > y. Squaring destroys sign (x² > y² only tells you |x| > |y|), so (1) can't settle it; but x − y > 0 is just a rearrangement of x > y, so (2) answers it outright.
+**explanation:** We need a definite yes/no on x > y. **(1):** x² > y² is equivalent to |x| > |y| — it compares magnitudes, not signs. Test it: x = 3, y = 1 gives "yes" (3 > 1), but x = −3, y = 1 also satisfies x² > y² while giving "no" (−3 > 1 is false). Two opposite answers → not sufficient. **(2):** x − y > 0 rearranges directly to x > y — a guaranteed "yes" → sufficient. (2) alone settles it, (1) doesn't → **B**.
+**mistake_a:** Backs (1) as sufficient, but squaring strips sign: x = −3, y = 1 satisfies x² > y² yet makes x > y false, so (1) yields both answers.
+**mistake_c:** Says you need both statements, but (2) alone already forces "yes" — (1) adds nothing.
+**mistake_d:** "Each alone" fails because (1) is insufficient by itself (the negative-value counterexample).
+**mistake_e:** Claims even together they fail, but (2) by itself is sufficient, so the pair certainly is.
+**common_trap:** Assuming x² > y² preserves order. Squaring is sign-blind — the moment you see a squared inequality in DS, test a negative value to expose it.
+**takeaway:** For "is x > y?", only sign-preserving information (like x − y > 0) settles it. Magnitude facts — squares, absolute values — generally cannot.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1151,14 +1151,14 @@ At a conference of 80 attendees, each person drinks coffee, tea, or both. How ma
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Only-coffee = total-coffee − both. (1) gives total-coffee; (2) gives both. Together: 50−15=35.
-**explanation:** Only-coffee subtracts the overlap from total-coffee. (1): coffee=50, no overlap data. Insufficient. (2): both=15, no total. Insufficient. Together: 50−15=35. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but overlap unknown.
-**mistake_b:** B requires (2) alone sufficient — but total unknown.
-**mistake_d:** D requires each alone — neither works.
-**mistake_e:** E says together insufficient — but overlap-subtraction directly solves.
-**common_trap:** Set-overlap DS often surfaces the "everyone is in at least one" assumption. The 80-attendees-each-drinks-something detail is given upfront and crucial.
-**takeaway:** Set-overlap DS: only-A = (total-A) − (both-A-and-B). Need both pieces.
+**fastest_path:** Translate before touching the statements: "only coffee" = (all coffee drinkers) − (both coffee and tea). You need exactly two numbers — the coffee total and the overlap — so just check which statement hands you which.
+**explanation:** Rephrase first: *only-coffee = (coffee drinkers) − (both)*. That's the only relationship that matters, so you're hunting for two quantities. **(1) alone:** 50 drink coffee, but you don't know how many of them also drink tea — if 0 overlap, only-coffee = 50; if 15 overlap, only-coffee = 35. Two outcomes → not sufficient. **(2) alone:** 15 drink both, but with no coffee total there's nothing to subtract from → not sufficient. **Together:** only-coffee = 50 − 15 = **35**, one fixed value → sufficient. Answer **C**. Watch the 80: because every attendee drinks at least one beverage, "only coffee" depends solely on the coffee total and the overlap — you never use it.
+**mistake_a:** Tempting if you forget the overlap matters — (1) fixes the coffee total at 50, but until you know how many of those also drink tea, only-coffee floats between 35 and 50.
+**mistake_b:** (2) gives the intersection (15) with nothing to remove it from — no coffee total means no subtraction, so it's insufficient alone.
+**mistake_d:** "Each alone" fails for the same reasons (1) and (2) each fail individually — neither single statement pins only-coffee to one value.
+**mistake_e:** The over-caution pick. It feels like overlap problems always need the grand total, but once you have the coffee total and the overlap the subtraction is immediate — together they fully determine the answer.
+**common_trap:** Reaching for the group total (80) as if every overlap problem needs it. Here only-coffee = coffee − both, so the 80 is a distractor. Always rephrase the target quantity first and pull only the terms it actually requires.
+**takeaway:** For two-set overlap DS, write the target as a formula *before* reading the statements (only-A = A − both; at-least-one = A + B − both; neither = total − at-least-one). Sufficiency is then just "do the statements supply every term in my formula?"
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1356,14 +1356,14 @@ In a plane, triangle ABC has vertices A, B, and C. What is the area of triangle 
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Triangle area = (1/2)·base·height. (1) gives base; (2) gives height. Together: (1/2)(10)(6)=30.
-**explanation:** Area formula needs base AND height. (1): base=10 only. (2): height=6 only. Together: area=30. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but no height.
-**mistake_b:** B requires (2) alone sufficient — but no base.
-**mistake_d:** D requires each alone — neither has both.
-**mistake_e:** E says together insufficient — but base × height = area.
-**common_trap:** Imagining a specific triangle shape from one piece of info. DS is about *unique determination*, not shape inference.
-**takeaway:** Triangle-area DS: base AND perpendicular height to that base. Two-piece formula = standard C.
+**fastest_path:** Triangle area = ½ · base · height, where the height is the perpendicular distance from the opposite vertex to that base. You need both numbers, and each statement hands you exactly one — so neither alone, both together.
+**explanation:** Area of a triangle = ½ · base · height. Here BC is a base and the perpendicular from A to line BC is the matching height. **(1):** base BC = 10, but with no height the area is undetermined (the triangle could be short or tall) → not sufficient. **(2):** height = 6, but with no base the area is again undetermined → not sufficient. **Together:** area = ½ · 10 · 6 = **30** → sufficient. Answer **C**. Note you don't need the triangle's exact shape — a base and its height alone fix the area.
+**mistake_a:** (1) gives the base but no height; infinitely many triangles share base BC = 10 while having different areas.
+**mistake_b:** (2) gives the height but no base; the same indeterminacy in reverse.
+**mistake_d:** "Each alone" needs both statements to work solo, but each supplies only one factor of ½ · base · height.
+**mistake_e:** Says even together it fails, but base and height are exactly what the area formula requires.
+**common_trap:** Feeling you must know the triangle's specific shape (other sides, angles) to get the area. DS only asks whether the area is *uniquely determined* — base plus perpendicular height does that, shape notwithstanding.
+**takeaway:** Triangle-area DS reduces to "do I have a base and the perpendicular height to that base?" If yes, the area is fixed; the rest of the figure is irrelevant.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
