@@ -887,3 +887,446 @@ Verify: 4^(4²) = 4^16 and 4^(4 × 4) = 4^16. Both sides match.
 **common_trap:** Dividing both sides of x² = 4x by x — this discards a valid factor and can hide roots. Always factor the polynomial rather than dividing. Then apply domain constraints to eliminate invalid candidates.
 **takeaway:** For x^A = x^B with x > 0 and x ≠ 1: equate exponents using the one-to-one property. Factor the resulting polynomial — never divide by a variable. Apply domain constraints (x > 0, x ≠ 1) to discard invalid solutions after factoring.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+
+---
+
+## Q33
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+Simplify (5²)⁴.
+
+- A) 5⁶
+- B) 10⁸
+- C) 25⁸
+- D) 5¹⁶
+- E) 5⁸
+
+**answer:** E
+**fastest_path:** Power of a power → multiply exponents: 2 × 4 = 8, so (5²)⁴ = 5⁸.
+**explanation:** The rule (a^m)^n = a^(m×n). Here the exponents multiply: 2 × 4 = 8, and the base stays 5. So (5²)⁴ = 5⁸. A quick sanity check: (5²)⁴ means 5² multiplied by itself four times — that is 5²·5²·5²·5² = 5^(2+2+2+2) = 5⁸, confirming the multiply-the-exponents shortcut.
+**mistake_a:** Added the exponents (2 + 4 = 6) instead of multiplying — that rule is for a^m × a^n, not (a^m)^n.
+**mistake_b:** Doubled the base (5 → 10) while keeping exponent 8.
+**mistake_c:** Raised the base to the inner power as well (5² = 25) and then kept exponent 8, giving 25⁸.
+**mistake_d:** Treated it as a power tower 5^(2⁴) = 5¹⁶, raising 2 to the 4th rather than multiplying 2 × 4.
+**common_trap:** Confusing "power of a power" (multiply exponents) with "product of powers" (add exponents).
+**takeaway:** (a^m)^n = a^(m×n): multiply the exponents, leave the base alone. Contrast with a^m × a^n = a^(m+n).
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q34
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Negative Exponents
+
+What is the value of (3/4)⁻²?
+
+- A) 9/16
+- B) 16/9
+- C) −9/16
+- D) 6/8
+- E) 8/6
+
+**answer:** B
+**fastest_path:** Negative exponent flips the fraction: (3/4)⁻² = (4/3)² = 16/9.
+**explanation:** A negative exponent means reciprocal: a⁻ⁿ = (1/a)ⁿ. For a fraction, (3/4)⁻² = (4/3)². Squaring: 4² = 16, 3² = 9, so the result is 16/9. The negative sign on the exponent controls the flip — it never makes the answer itself negative.
+**mistake_a:** Squared without flipping: (3/4)² = 9/16, ignoring the negative exponent.
+**mistake_c:** Treated the negative exponent as a negative sign on the result: −(3/4)² = −9/16.
+**mistake_d:** Read the exponent as a multiplier on numerator and denominator: 3×2/4×2 = 6/8.
+**mistake_e:** Flipped correctly to 4/3 but then doubled instead of squaring: 4×2/3×2 = 8/6.
+**common_trap:** Thinking a negative exponent makes the value negative. It produces a reciprocal, not a sign change.
+**takeaway:** (p/q)⁻ⁿ = (q/p)ⁿ. Flip first, then apply the positive exponent. A negative exponent never changes the sign of the result.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Radical Simplification
+
+Simplify √72.
+
+- A) 8√2
+- B) 6√3
+- C) 36√2
+- D) 6√2
+- E) 12√2
+
+**answer:** D
+**fastest_path:** 72 = 36 × 2 → √72 = √36 · √2 = 6√2.
+**explanation:** Factor out the largest perfect square. 72 = 36 × 2, and 36 is a perfect square, so √72 = √36 × √2 = 6√2. Checking: 6² × 2 = 36 × 2 = 72, confirming 6√2 is correct.
+**mistake_a:** Used 64 as the perfect-square factor (√64 = 8), but 64 × 2 = 128 ≠ 72 — wrong factorization.
+**mistake_b:** Took √36 = 6 correctly but mis-recorded the remaining factor as 3 instead of 2 (since 72/36 = 2).
+**mistake_c:** Forgot to take the square root of 36, leaving it outside as 36√2.
+**mistake_e:** Doubled the coefficient (used 12 instead of 6).
+**common_trap:** Pulling out a non-square factor, or forgetting to actually take the root of the perfect-square part.
+**takeaway:** To simplify √n, factor n = (largest perfect square) × (rest), then √n = √(square) × √(rest). Memorize the perfect squares through 144.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of 7¹⁰ / 7⁷?
+
+- A) 7³
+- B) 7¹⁷
+- C) 7^(10/7)
+- D) 49³
+- E) 1
+
+**answer:** A
+**fastest_path:** Same base, division → subtract exponents: 10 − 7 = 3, so 7¹⁰ / 7⁷ = 7³.
+**explanation:** The quotient rule for same-base powers: a^m / a^n = a^(m−n). Here 10 − 7 = 3, and the base stays 7, giving 7³ ( = 343). The base never changes during this operation.
+**mistake_b:** Added the exponents (10 + 7 = 17) instead of subtracting.
+**mistake_c:** Divided the exponents (10/7) rather than subtracting them.
+**mistake_d:** Multiplied the bases (7 × 7 = 49) — that is the product trap — then subtracted exponents, giving 49³.
+**mistake_e:** Cancelled the bases entirely (7/7 = 1), assuming the whole expression reduces to 1.
+**common_trap:** Dividing or cancelling bases instead of subtracting exponents on a same-base quotient.
+**takeaway:** a^m / a^n = a^(m−n): subtract exponents, keep the base. Same base on top and bottom does not cancel to 1 unless the exponents are equal.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Zero and Negative Exponents
+
+What is the value of 4⁰ + 4⁻¹?
+
+- A) 1
+- B) 1/4
+- C) 0
+- D) 5
+- E) 5/4
+
+**answer:** E
+**fastest_path:** 4⁰ = 1 and 4⁻¹ = 1/4, so the sum is 1 + 1/4 = 5/4.
+**explanation:** Two separate rules. Any nonzero base to the zero power equals 1, so 4⁰ = 1. A negative exponent means reciprocal, so 4⁻¹ = 1/4. Adding: 1 + 1/4 = 5/4.
+**mistake_a:** Treated the negative exponent as 0 (or as "nothing"), getting 1 + 0 = 1.
+**mistake_b:** Treated 4⁰ as 0 instead of 1, getting 0 + 1/4 = 1/4.
+**mistake_c:** Treated both terms as 0 (4⁰ = 0 and 4⁻¹ = 0).
+**mistake_d:** Took 4⁰ = 1 but read 4⁻¹ as 4, getting 1 + 4 = 5.
+**common_trap:** Believing a⁰ = 0 or that a negative exponent yields 0; both are false.
+**takeaway:** For any nonzero a: a⁰ = 1 and a⁻¹ = 1/a. These are independent facts — apply each carefully before combining.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Factoring Common Powers
+
+If 3¹² + 3¹⁰ = k · 3¹⁰, what is the value of k?
+
+- A) 3
+- B) 10
+- C) 9
+- D) 4
+- E) 27
+
+**answer:** B
+**fastest_path:** Factor out 3¹⁰: 3¹² + 3¹⁰ = 3¹⁰(3² + 1) = 3¹⁰ · 10, so k = 10.
+**explanation:** When adding powers of the same base, factor out the smallest power. 3¹² = 3¹⁰ · 3², so 3¹² + 3¹⁰ = 3¹⁰(3² + 1) = 3¹⁰(9 + 1) = 3¹⁰ · 10. Matching the form k · 3¹⁰ gives k = 10. You cannot add exponents when the operation is addition — factoring is the move.
+**mistake_a:** Subtracted exponents to get 3¹ = 3 (the ratio is actually 3² = 9) and also dropped the "+1," reporting k = 3.
+**mistake_c:** Computed 3² = 9 but forgot the "+1" from the second term.
+**mistake_d:** Used 3¹²/3¹⁰ = 3 (correct ratio is 3² = 9) and then added 1, getting 3 + 1 = 4.
+**mistake_e:** Cubed instead: read the exponent gap as 3 and computed 3³ = 27, ignoring the +1.
+**common_trap:** Forgetting the "+1" that comes from the un-factored term, or mis-subtracting the exponent gap (12 − 10 = 2, so the ratio is 3², not 3¹).
+**takeaway:** To combine a^m + a^n (same base), factor out the smaller power: a^n(a^(m−n) + 1). The leftover "+1" is the most commonly dropped piece.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+What is the value of 16^(3/4)?
+
+- A) 12
+- B) 64
+- C) 8
+- D) 6
+- E) 2
+
+**answer:** C
+**fastest_path:** Root first: 16^(1/4) = 2, then 2³ = 8.
+**explanation:** A fractional exponent a^(m/n) = (a^(1/n))^m — take the nth root, then raise to the mth power. The denominator 4 is the root, the numerator 3 is the power. 16^(1/4) = 2 (since 2⁴ = 16), and 2³ = 8. Taking the root first keeps the numbers small.
+**mistake_a:** Multiplied base by the fraction: 16 × 3/4 = 12, treating the exponent as a coefficient.
+**mistake_b:** Used the square root instead of the fourth root: (16^(1/2))³ = 4³ = 64, misreading the denominator as 2.
+**mistake_d:** Took the fourth root correctly (16^(1/4) = 2) but then multiplied by 3 instead of cubing: 2 × 3 = 6.
+**mistake_e:** Took only the root (16^(1/4) = 2) and ignored the numerator 3.
+**common_trap:** Reading the denominator as a square root by habit, or multiplying instead of raising to a power.
+**takeaway:** a^(m/n): the denominator n is the root index, the numerator m is the power. Take the root first (smaller numbers), then apply the power.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Sign and Parity of Exponents
+
+If n is a positive integer, what is the value of (−1)^(2n) + (−1)^(2n+1)?
+
+- A) 0
+- B) 2
+- C) −2
+- D) 2n
+- E) −1
+
+**answer:** A
+**fastest_path:** 2n is even → (−1)^(2n) = 1; 2n+1 is odd → (−1)^(2n+1) = −1. Sum = 1 + (−1) = 0.
+**explanation:** (−1) raised to an even power is +1; raised to an odd power is −1. Since 2n is always even and 2n+1 is always odd (for any integer n), the two terms are 1 and −1. Their sum is 0, regardless of the value of n.
+**mistake_b:** Treated both exponents as even, getting 1 + 1 = 2.
+**mistake_c:** Treated both exponents as odd, getting −1 + −1 = −2.
+**mistake_d:** Read the exponents as multipliers and tried to keep n in the answer, producing an algebraic expression like 2n.
+**mistake_e:** Evaluated the second term only (or took the first term as 0), reporting −1.
+**common_trap:** Losing track of which exponent is even and which is odd; 2n+1 is always odd no matter what n is.
+**takeaway:** (−1)^even = 1, (−1)^odd = −1. Expressions like 2n (even) and 2n+1 (odd) lock the parity regardless of n — the answer is constant.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Comparing Powers via Common Base
+
+Which of the following correctly relates 4³⁰ and 8²⁰?
+
+- A) 4³⁰ > 8²⁰
+- B) 8²⁰ > 4³⁰
+- C) 8²⁰ = 2 · 4³⁰
+- D) 4³⁰ = 8²⁰
+- E) 4³⁰ = 4 · 8²⁰
+
+**answer:** D
+**fastest_path:** Rewrite both on base 2: 4³⁰ = 2⁶⁰ and 8²⁰ = 2⁶⁰. Equal.
+**explanation:** When bases differ but share a common prime, convert to that prime. 4 = 2², so 4³⁰ = 2^(2·30) = 2⁶⁰. 8 = 2³, so 8²⁰ = 2^(3·20) = 2⁶⁰. Both equal 2⁶⁰, so the two quantities are exactly equal. The differing surface forms (4 vs 8, 30 vs 20) hide an identity.
+**mistake_a:** Compared exponents directly (30 > 20) and concluded the first is larger, ignoring the different bases.
+**mistake_b:** Compared bases directly (8 > 4) and concluded the second is larger, ignoring the different exponents.
+**mistake_c:** Converted to base 2 but mis-multiplied one exponent (e.g., 2·30 = 60 vs 3·20 misread as 61), inventing a factor of 2.
+**mistake_e:** Same conversion slip in the other direction, inventing a factor of 4.
+**common_trap:** Judging size by comparing bases or exponents in isolation. You must put both on the same base before comparing.
+**takeaway:** To compare powers, rewrite on a common base, then compare the exponents. Different-looking powers can be exactly equal — 4³⁰ = 8²⁰ = 2⁶⁰.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Radicals with Variables
+
+If x > 0, which of the following is equal to √(48x⁶)?
+
+- A) 16x³√3
+- B) 4x⁶√3
+- C) 4x³√6
+- D) 16x⁶√3
+- E) 4x³√3
+
+**answer:** E
+**fastest_path:** √48 = 4√3 (48 = 16·3) and √(x⁶) = x³ (since x > 0). So √(48x⁶) = 4x³√3.
+**explanation:** Split the radical: √(48x⁶) = √48 · √(x⁶). For the number, 48 = 16 × 3, so √48 = √16 · √3 = 4√3. For the variable, √(x⁶) = x^(6/2) = x³, and because x > 0 no absolute-value sign is needed. Combining: 4x³√3.
+**mistake_a:** Left the 16 outside the radical instead of taking √16 = 4, writing 16√3.
+**mistake_b:** Forgot to halve the variable's exponent: kept x⁶ instead of √(x⁶) = x³.
+**mistake_c:** Took √16 = 4 correctly but mis-recorded the leftover factor as 6 instead of 3 (48/16 = 3).
+**mistake_d:** Made both errors: left the 16 outside and kept x⁶.
+**common_trap:** Halving the exponent under a square root is easy to forget, and so is actually evaluating √(perfect square) rather than carrying it along.
+**takeaway:** √(c·x^(2k)) = √c · x^k for x > 0. Pull the largest perfect square from the number and halve the (even) exponent of the variable.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Scientific Notation
+
+Expressed in scientific notation, (4 × 10⁵)(2.5 × 10⁻⁸) equals which of the following?
+
+- A) 10 × 10⁻³
+- B) 1 × 10⁻²
+- C) 1 × 10⁻³
+- D) 1 × 10²
+- E) 6.5 × 10⁻³
+
+**answer:** B
+**fastest_path:** Coefficients: 4 × 2.5 = 10. Powers: 10⁵ · 10⁻⁸ = 10⁻³. So 10 × 10⁻³ = 1 × 10⁻².
+**explanation:** Multiply the coefficients and add the exponents separately. 4 × 2.5 = 10 and 5 + (−8) = −3, giving 10 × 10⁻³. But scientific notation requires the coefficient to be between 1 and 10. Since 10 = 1 × 10¹, rewrite: 10 × 10⁻³ = 1 × 10^(1−3) = 1 × 10⁻². Properly normalized, the answer is 1 × 10⁻².
+**mistake_a:** Stopped at 10 × 10⁻³ — correct value, but the coefficient 10 is not in [1, 10), so it is not valid scientific notation.
+**mistake_c:** Normalized the coefficient to 1 but forgot that the extra factor of 10 bumps the exponent from −3 to −2.
+**mistake_d:** Made a sign error adding exponents (5 + (−8) treated as +3) after normalizing.
+**mistake_e:** Added the coefficients (4 + 2.5 = 6.5) instead of multiplying them.
+**common_trap:** Leaving a coefficient of 10 (or 0.x) unnormalized, or forgetting the normalization shifts the exponent.
+**takeaway:** Multiply coefficients, add exponents, then renormalize so 1 ≤ coefficient < 10 — and remember the renormalization changes the power of 10.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If 2^(x+3) = 8^(x−1), what is the value of x?
+
+- A) 6
+- B) 2
+- C) 3
+- D) −3
+- E) 0
+
+**answer:** C
+**fastest_path:** Put both on base 2: 8^(x−1) = 2^(3(x−1)). Then x + 3 = 3(x − 1) → x + 3 = 3x − 3 → 6 = 2x → x = 3.
+**explanation:** Rewrite 8 as 2³ so both sides share base 2: 8^(x−1) = (2³)^(x−1) = 2^(3(x−1)) = 2^(3x−3). Equation: 2^(x+3) = 2^(3x−3). Same base means equal exponents: x + 3 = 3x − 3. Solving: 3 + 3 = 3x − x → 6 = 2x → x = 3.
+**mistake_a:** Reached 2x = 6 but forgot to divide by 2, reporting 6.
+**mistake_b:** Distribution error: wrote 3(x − 1) = 3x − 1 (forgot to multiply the −1 by 3), giving x + 3 = 3x − 1 → 4 = 2x → x = 2.
+**mistake_d:** Sign error when moving terms across the equation, landing on −3.
+**mistake_e:** Ignored the base difference, set x + 3 = x − 1, hit the contradiction 3 = −1, and guessed 0.
+**common_trap:** Failing to distribute the converted power across the entire exponent: (2³)^(x−1) = 2^(3x−3), not 2^(3x−1).
+**takeaway:** Convert to a common base, distribute the multiplied exponent across the whole bracket, then equate exponents and solve.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q45
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponential Equations — Quadratic Substitution
+
+If 2^(2x) − 9(2^x) + 8 = 0, what are all the values of x?
+
+- A) 0 and 3
+- B) 1 and 8
+- C) 0 and 8
+- D) 1 and 3
+- E) 3 only
+
+**answer:** A
+**fastest_path:** Let y = 2^x. Then y² − 9y + 8 = 0 → (y − 1)(y − 8) = 0 → y = 1 or 8 → 2^x = 1 (x = 0) or 2^x = 8 (x = 3).
+**explanation:** Notice 2^(2x) = (2^x)². Substituting y = 2^x turns the equation into a quadratic: y² − 9y + 8 = 0, which factors as (y − 1)(y − 8) = 0, so y = 1 or y = 8. Now convert back — this is the step most people drop. 2^x = 1 means x = 0 (any base to the 0 power is 1); 2^x = 8 means x = 3. Both check: at x = 0, 1 − 9 + 8 = 0; at x = 3, 64 − 72 + 8 = 0. So x = 0 and x = 3.
+**mistake_b:** Solved for y = 2^x and stopped at y = 1 and 8, forgetting to convert back to x.
+**mistake_c:** Converted one root (2^x = 1 → x = 0) but left the other as 8.
+**mistake_d:** Converted one root (2^x = 8 → x = 3) but left the other as 1.
+**mistake_e:** Discarded x = 0 on the false assumption that the exponent must be positive — but 2^0 = 1 is perfectly valid.
+**common_trap:** Treating the y-values (1 and 8) as the final answers, or rejecting x = 0 as if zero exponents were disallowed.
+**takeaway:** When you see a^(2x) and a^x together, substitute y = a^x to expose a hidden quadratic — then always convert y back to x. Don't reflexively drop x = 0.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Radical Equations — Extraneous Roots
+
+What is the value of x if √(x + 12) = x?
+
+- A) 1
+- B) −3
+- C) 4
+- D) Both 4 and −3
+- E) No real solution
+
+**answer:** C
+**fastest_path:** Square: x + 12 = x² → x² − x − 12 = 0 → (x − 4)(x + 3) = 0 → x = 4 or −3. The square root output must be ≥ 0, so x ≥ 0; reject −3. x = 4.
+**explanation:** Squaring both sides gives x + 12 = x², or x² − x − 12 = 0, which factors as (x − 4)(x + 3) = 0, so the candidates are x = 4 and x = −3. Squaring can introduce extraneous roots, so test each in the original equation. For x = 4: √(4 + 12) = √16 = 4 ✓. For x = −3: √(−3 + 12) = √9 = 3, but the right side is −3, and 3 ≠ −3 ✗. Also, the principal square root is never negative, so x = √(…) forces x ≥ 0. Only x = 4 survives.
+**mistake_a:** Added the two roots of the quadratic (4 + (−3) = 1), as if the question wanted their sum.
+**mistake_b:** Solved the quadratic and picked the extraneous root −3 without testing it.
+**mistake_d:** Reported both algebraic roots without checking for extraneous solutions.
+**mistake_e:** Assumed the negative candidate breaks the equation entirely and concluded there is no solution, overlooking x = 4.
+**common_trap:** Forgetting that squaring can create false roots, and that √(expression) is always non-negative — so the side it equals must be non-negative too.
+**takeaway:** After squaring a radical equation, always substitute each candidate back into the original. The principal root is ≥ 0, which immediately rules out negative right-hand sides.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Systems with Exponents
+
+If 2^a · 8^b = 64 and 4^a · 2^b = 128, what is the value of a + b?
+
+- A) 3
+- B) 6
+- C) 7
+- D) 4
+- E) 1
+
+**answer:** D
+**fastest_path:** Convert all to base 2. First: 2^a · 2^(3b) = 2⁶ → a + 3b = 6. Second: 2^(2a) · 2^b = 2⁷ → 2a + b = 7. Solve: a = 3, b = 1 → a + b = 4.
+**explanation:** Every base here is a power of 2, so rewrite everything on base 2. 8 = 2³ and 4 = 2², while 64 = 2⁶ and 128 = 2⁷. The first equation becomes 2^a · 2^(3b) = 2⁶, i.e., a + 3b = 6. The second becomes 2^(2a) · 2^b = 2⁷, i.e., 2a + b = 7. From the first, a = 6 − 3b; substitute: 2(6 − 3b) + b = 7 → 12 − 5b = 7 → b = 1, then a = 3. So a + b = 4. (Check: 2³·8¹ = 8·8 = 64 ✓; 4³·2¹ = 64·2 = 128 ✓.)
+**mistake_a:** Solved the system correctly for a = 3 but reported a alone instead of a + b.
+**mistake_b:** Converted the right sides (64 = 2⁶, 128 = 2⁷) but left the left-side bases unconverted (treated 8^b as 2^b and 4^a as 2^a), getting a + b = 6 and reporting that.
+**mistake_c:** Same base-conversion oversight, but read off the second equation's a + b = 7.
+**mistake_e:** Solved correctly for b = 1 but reported b alone instead of a + b.
+**common_trap:** Converting only the side that "looks like" it needs it — every base (including 8 and 4 on the left) must be rewritten on the common base before equating exponents.
+**takeaway:** For systems of exponential equations, convert all bases to one prime, turn each equation into a linear equation in the exponents, then solve the system — and answer the exact quantity asked (a + b, not a single variable).
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Units Digits of Powers
+
+What is the units digit of 7⁸³ × 3⁴⁷?
+
+- A) 3
+- B) 1
+- C) 7
+- D) 9
+- E) 2
+
+**answer:** B
+**fastest_path:** 7's cycle (7, 9, 3, 1): 83 mod 4 = 3 → units 3. 3's cycle (3, 9, 7, 1): 47 mod 4 = 3 → units 7. Then 3 × 7 = 21 → units 1.
+**explanation:** Units digits of powers repeat in cycles of length 4. For 7: 7¹→7, 7²→9, 7³→3, 7⁴→1, then repeat. 83 ÷ 4 leaves remainder 3, so 7⁸³ ends in the 3rd value, 3. For 3: 3¹→3, 3²→9, 3³→7, 3⁴→1. 47 ÷ 4 leaves remainder 3, so 3⁴⁷ ends in 7. The units digit of the product depends only on the units digits of the factors: 3 × 7 = 21, which ends in 1.
+**mistake_a:** Found the units digit of 7⁸³ (which is 3) but forgot to multiply by the second factor.
+**mistake_c:** Found the units digit of 3⁴⁷ (which is 7) but ignored the first factor.
+**mistake_d:** Mis-counted a cycle position by one (e.g., used remainder 2 → 9 for one factor) before multiplying.
+**mistake_e:** Took remainder 0 (treated 83 or 47 as a multiple of 4) and then mis-multiplied the cycle's last digits.
+**common_trap:** Off-by-one in the cycle: when the exponent divides evenly (remainder 0), use the 4th (last) digit in the cycle, not the 1st.
+**takeaway:** Units digits cycle with period 4. Reduce the exponent mod 4 (remainder 0 → use the 4th term), find each factor's units digit, then multiply and keep only the units digit.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponents Meet Number Properties (Challenge)
+
+If x and y are positive integers with x > y and 2^x − 2^y = 1920, what is x + y?
+
+- A) 18
+- B) 11
+- C) 7
+- D) 15
+- E) 17
+
+**answer:** A
+**fastest_path:** Factor: 2^y(2^(x−y) − 1) = 1920 = 2⁷ · 15. The factor (2^(x−y) − 1) is odd, so 2^y must absorb all the 2's: 2^y = 2⁷ → y = 7, and 2^(x−y) − 1 = 15 → 2^(x−y) = 16 → x − y = 4 → x = 11. So x + y = 18.
+**explanation:** Pull out the smaller power: 2^x − 2^y = 2^y(2^(x−y) − 1). Since x > y, the exponent x − y is a positive integer, so 2^(x−y) is even and 2^(x−y) − 1 is odd. Now factor the right side into its powers of 2: 1920 = 128 × 15 = 2⁷ × 15, where 15 is odd. Because (2^(x−y) − 1) carries no factors of 2, every factor of 2 in 1920 must come from 2^y — this forces 2^y = 2⁷, so y = 7. The odd part then satisfies 2^(x−y) − 1 = 15, so 2^(x−y) = 16 = 2⁴, giving x − y = 4 and x = 11. Verify: 2¹¹ − 2⁷ = 2048 − 128 = 1920 ✓. Therefore x + y = 11 + 7 = 18.
+**mistake_b:** Found x = 11 correctly but reported x instead of x + y.
+**mistake_c:** Found y = 7 correctly but reported y instead of x + y.
+**mistake_d:** Stopped at the odd factor, reporting 1920/128 = 15 as the answer.
+**mistake_e:** Mis-factored 1920 (e.g., took 2^y = 2⁶ = 64, forcing 2^(x−y) − 1 = 30 and rounding 31 ≈ 2⁵), landing on x = 11, y = 6 → 17.
+**common_trap:** Not recognizing that 2^(x−y) − 1 is odd, which is the key that pins 2^y to the full power-of-2 part of 1920. Skipping the verification step lets a bad factorization slip through.
+**takeaway:** For 2^x − 2^y, factor out 2^y; the leftover (2^(x−y) − 1) is always odd, so it must equal the odd part of the target and 2^y must equal the even (power-of-2) part. Split the number into 2^k × odd to read off both unknowns.
+**related_reading:** reading-quant-03-number-properties
