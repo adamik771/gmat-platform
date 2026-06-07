@@ -858,108 +858,109 @@ An investor buys $5,000 of Stock X at time zero. Exactly one year later, after S
 **takeaway:** Sequential-investment return: the second tranche only benefits from growth that occurs *after* it's invested. Track portfolio value step by step.
 **related_reading:** reading-quant-05-word-problems
 
+
 ---
 
 ## Q33
 **difficulty:** Easy
 **type:** Problem Solving
-**topic:** LCM
+**topic:** GCF and LCM
 
-What is the least common multiple (LCM) of 12 and 18?
+What is the least common multiple of 12 and 18?
 
 - A) 6
 - B) 12
-- C) 24
+- C) 18
 - D) 36
 - E) 216
 
 **answer:** D
-**fastest_path:** Prime-factor each: 12 = 2² × 3; 18 = 2 × 3². Take the highest power of each prime: LCM = 2² × 3² = 36.
-**explanation:** Factor completely: 12 = 2² × 3; 18 = 2 × 3². The LCM uses the highest exponent of every prime that appears: 2² × 3² = 4 × 9 = 36. Verify: 36 / 12 = 3 ✓; 36 / 18 = 2 ✓. Both numbers divide evenly into 36, confirming it is a common multiple. No smaller common multiple exists, so 36 is the LCM.
-**mistake_a:** Computed the GCD instead of the LCM: GCD(12, 18) = 6. The GCD uses the lowest shared exponents; the LCM uses the highest.
-**mistake_b:** Bubbled the smaller of the two inputs (12) — confused "least" with the smaller input rather than the smallest shared multiple.
-**mistake_c:** Simply doubled the smaller number: 12 × 2 = 24. Neither 12 nor 18 divides 24 evenly (24 / 18 = 1.33...), so 24 is not a common multiple.
-**mistake_e:** Multiplied the two numbers: 12 × 18 = 216. The product equals the LCM only when GCD = 1; here GCD = 6, so LCM = 216 / 6 = 36.
-**common_trap:** Confusing LCM with GCD (answer A) or with the raw product of the two numbers (answer E).
-**takeaway:** LCM = product of each prime raised to its highest exponent across both numbers. GCD = product of shared primes raised to their lowest exponents. They are related by: LCM × GCD = product of the two numbers.
-**related_reading:** reading-quant-02-arithmetic-foundations
+**fastest_path:** 12 = 2²×3, 18 = 2×3². LCM = 2²×3² = 36.
+**explanation:** Prime-factor each number: 12 = 2²×3 and 18 = 2×3². The LCM takes the highest power of every prime that appears: 2² from 12 and 3² from 18. LCM = 4×9 = 36. Verify: 36/12 = 3 ✓, 36/18 = 2 ✓.
+**mistake_a:** Bubbled 6, which is the GCF, not the LCM — the most common mix-up between GCF and LCM.
+**mistake_b:** Bubbled 12 — one of the original numbers; it's a common multiple only if 18 divides it (it doesn't: 18 > 12).
+**mistake_c:** Bubbled 18 — the larger of the two numbers; 18/12 is not an integer, so 18 is not a multiple of 12.
+**mistake_e:** Multiplied 12 × 18 = 216 (the product), which equals LCM × GCF, not just LCM.
+**common_trap:** Confusing LCM with GCF, or computing the product of the two numbers instead of the LCM.
+**takeaway:** LCM = product of highest prime-power from each number. GCF = product of lowest prime-power shared by both. Product of LCM and GCF always equals the product of the two numbers.
+**related_reading:** reading-quant-03-number-properties
 
 ---
 
 ## Q34
 **difficulty:** Easy
 **type:** Problem Solving
-**topic:** Prime Numbers
+**topic:** Consecutive Integers
 
-Which of the following is a prime number?
+The sum of three consecutive integers is 48. What is the largest of the three?
 
-- A) 1
+- A) 14
 - B) 15
-- C) 21
-- D) 29
-- E) 33
+- C) 16
+- D) 17
+- E) 18
 
 **answer:** D
-**fastest_path:** Eliminate composites with quick factor checks. Since √29 < 6, only test 2, 3, 5: none divide 29. So 29 is prime.
-**explanation:** A prime has exactly two distinct positive factors: 1 and itself. Check each choice: 1 has only one factor, so it is not prime by definition. 15 = 3 × 5. 21 = 3 × 7. 33 = 3 + 3 = 6, divisible by 3 (digit-sum test), so 33 = 3 × 11. That leaves 29. Test divisibility by primes up to √29 ≈ 5.4 — check 2 (29 is odd), 3 (2 + 9 = 11, not divisible by 3), 5 (does not end in 0 or 5). No factor found, so 29 is prime.
-**mistake_a:** Many students memorize "1 is prime" incorrectly. By definition, primes must have exactly two distinct factors; 1 has only one factor (itself).
-**mistake_b:** 15 looks prime because it is odd and does not end in 5 at first glance — but the factor pair 3 × 5 = 15 makes it composite.
-**mistake_c:** 21 is often confused with primes near 20 (19, 23). The digit-sum test reveals it: 2 + 1 = 3, divisible by 3, so 21 = 3 × 7.
-**mistake_e:** 33 = 3 × 11. Digit-sum test: 3 + 3 = 6, divisible by 3.
-**common_trap:** Including 1 as a prime, or skipping the digit-sum divisibility test for 3 (which would expose 15, 21, and 33).
-**takeaway:** To test primality efficiently: only check primes up to √n. Use three quick filters — is it even (÷2), does the digit sum divide by 3 (÷3), does it end in 0 or 5 (÷5). 1 is never prime.
-**related_reading:** reading-quant-02-arithmetic-foundations
+**fastest_path:** Three consecutive integers center on their average: 48/3 = 16. Largest = 16 + 1 = 17.
+**explanation:** Let the integers be n, n+1, n+2. Their sum: 3n + 3 = 48 → 3n = 45 → n = 15. The three integers are 15, 16, 17. Largest = 17. Shortcut: the middle integer always equals the average (48/3 = 16), so the largest is 16 + 1 = 17.
+**mistake_a:** Computed 48/3 = 16 and subtracted 2, confusing "smallest" with "middle."
+**mistake_b:** Bubbled the first (smallest) integer.
+**mistake_c:** Bubbled the middle integer — the average — without adding 1.
+**mistake_e:** Added 1 to the wrong anchor; got 18.
+**common_trap:** Bubbling the average (middle term) instead of the largest, or bubbling the smallest instead of the largest.
+**takeaway:** For n consecutive integers, the middle term equals their average. Largest = average + floor(n/2). For 3 integers: largest = average + 1.
+**related_reading:** reading-quant-03-number-properties
 
 ---
 
 ## Q35
 **difficulty:** Easy
 **type:** Problem Solving
-**topic:** GCD
+**topic:** Divisibility
 
-A rectangular garden measuring 24 feet by 36 feet is to be covered entirely with identical square tiles. No tiles may be cut or overlap. What is the largest possible side length, in feet, of each square tile?
+Which of the following integers is divisible by both 4 and 6?
 
-- A) 4
-- B) 6
-- C) 8
-- D) 12
-- E) 18
+- A) 10
+- B) 14
+- C) 18
+- D) 24
+- E) 26
 
 **answer:** D
-**fastest_path:** Tile side must divide both dimensions. Largest such divisor = GCD(24, 36). Factor: 24 = 2³ × 3; 36 = 2² × 3². GCD = 2² × 3 = 12.
-**explanation:** For a square tile to fit without cutting, its side length must divide both 24 and 36 evenly. The largest possible side length is therefore the GCD of 24 and 36. Factor each: 24 = 2³ × 3; 36 = 2² × 3². GCD = lowest shared exponent per prime = 2² × 3¹ = 4 × 3 = 12. Verify: 24 / 12 = 2 tiles wide; 36 / 12 = 3 tiles long; total = 6 tiles. No tile needs cutting.
-**mistake_a:** 4 divides both 24 and 36, but it is not the largest such divisor.
-**mistake_b:** 6 also divides both, but is still not the largest.
-**mistake_c:** 8 does not divide 36 evenly: 36 / 8 = 4.5. An 8-foot tile would require cutting.
-**mistake_e:** 18 does not divide 24 evenly: 24 / 18 = 1.33.... An 18-foot tile would require cutting.
-**common_trap:** Selecting a common divisor that is not the greatest (A or B), or checking only one dimension and missing that the other fails (C or E).
-**takeaway:** "Largest unit that fits exactly into two lengths" = GCD. Always verify that the answer divides both dimensions with zero remainder.
-**related_reading:** reading-quant-02-arithmetic-foundations
+**fastest_path:** Need divisible by LCM(4,6) = 12. Only 24 among the choices is a multiple of 12.
+**explanation:** To be divisible by both 4 and 6, a number must be divisible by their LCM. LCM(4,6): 4 = 2², 6 = 2×3. LCM = 2²×3 = 12. Check the choices against 12: 10/12 — no; 14/12 — no; 18/12 = 1.5 — no; 24/12 = 2 — yes; 26/12 — no. Answer: 24.
+**mistake_a:** Checked divisibility by 4+6=10 instead of LCM; 10 is divisible by 10, not by both 4 and 6.
+**mistake_b:** 14 is divisible by neither 4 nor 6.
+**mistake_c:** 18 is divisible by 6 (18/6=3) but not by 4 (18/4=4.5) — satisfies only one condition.
+**mistake_e:** 26 is even but not divisible by 4 (26/4=6.5) or 6.
+**common_trap:** Checking divisibility by each number individually without verifying both, leading to a choice (like 18) that satisfies only one condition.
+**takeaway:** Divisible by both A and B ⟺ divisible by LCM(A,B). Never just add divisors. Always verify all conditions on a candidate.
+**related_reading:** reading-quant-03-number-properties
 
 ---
 
 ## Q36
 **difficulty:** Easy
 **type:** Problem Solving
-**topic:** Arithmetic Sequences
+**topic:** Integer Operations
 
-What is the sum of all integers from 1 to 50, inclusive?
+If a = -4 and b = 7, what is the value of |a + b| + |a - b|?
 
-- A) 1,225
-- B) 1,275
-- C) 1,300
-- D) 2,500
-- E) 2,550
+- A) 3
+- B) 11
+- C) 14
+- D) 18
+- E) 22
 
-**answer:** B
-**fastest_path:** Sum = n(n+1)/2 = 50 × 51 / 2 = 1,275.
-**explanation:** The sum of the first n positive integers is n(n+1)/2. With n = 50: sum = 50 × 51 / 2 = 2,550 / 2 = 1,275. Intuition: pair the extremes — (1+50), (2+49), ..., (25+26) — each pair sums to 51, and there are 25 pairs: 25 × 51 = 1,275.
-**mistake_a:** Used n = 49 instead of 50: 49 × 50 / 2 = 1,225. Classic off-by-one on the upper limit.
-**mistake_c:** Used the wrong average: computed 50 × 26 = 1,300 (treated the average of 1 to 50 as 26 rather than 25.5).
-**mistake_d:** Applied n² = 50² = 2,500. The "squares" formula has no place here — this is a sum of consecutive integers, not the sum of squares.
-**mistake_e:** Computed 50 × 51 = 2,550 but forgot to divide by 2. Stopping one step early is the single most common error on this type.
-**common_trap:** Forgetting to divide by 2 (answer E). The division by 2 is essential — it converts the raw product n(n+1) into the sum formula.
-**takeaway:** Sum of integers 1 to n = n(n+1)/2. Alternatively: count × average = n × (n+1)/2. The "pair the ends" visualization is the fastest mental sanity check.
+**answer:** C
+**fastest_path:** |−4+7| + |−4−7| = |3| + |−11| = 3 + 11 = 14.
+**explanation:** Substitute directly. a + b = −4 + 7 = 3, so |a + b| = 3. a − b = −4 − 7 = −11, so |a − b| = 11. Sum = 3 + 11 = 14. The absolute values make both terms positive regardless of sign.
+**mistake_a:** Bubbled only the first term |a+b| = 3, stopping after one computation.
+**mistake_b:** Bubbled only the second term |a−b| = 11.
+**mistake_d:** Computed |a| + |b| + |a| + |b| = 4 + 7 + 4 + 7 = 22... then halved? Or computed |a+b| as |a|+|b| = 11, and |a−b| as |a|+|b| = 11, getting 22.
+**mistake_e:** Computed |a|+|b|+|a|+|b| = 4+7+4+7 = 22, treating |a+b| as |a|+|b| throughout.
+**common_trap:** Distributing the absolute value over addition/subtraction: |a+b| ≠ |a|+|b| in general. Always evaluate the expression inside the absolute value first.
+**takeaway:** Absolute value is applied after evaluating the expression inside. |a+b| and |a|+|b| are equal only when a and b have the same sign.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -967,25 +968,25 @@ What is the sum of all integers from 1 to 50, inclusive?
 ## Q37
 **difficulty:** Easy
 **type:** Problem Solving
-**topic:** Absolute Value
+**topic:** Estimation
 
-If x = −4, what is the value of |x + 2| − |x − 2|?
+Which of the following integers is closest to √200?
 
-- A) −8
-- B) −4
-- C) 0
-- D) 4
-- E) 8
+- A) 12
+- B) 13
+- C) 14
+- D) 15
+- E) 16
 
-**answer:** B
-**fastest_path:** Substitute directly: |−4 + 2| − |−4 − 2| = |−2| − |−6| = 2 − 6 = −4.
-**explanation:** Substitute x = −4. First term: |x + 2| = |−4 + 2| = |−2| = 2. Second term: |x − 2| = |−4 − 2| = |−6| = 6. Result: 2 − 6 = −4.
-**mistake_a:** Dropped the absolute value bars and distributed signs: computed −(x + 2) − (x − 2) = −(−2) − (−6) = 2 + 6 = 8, then applied an erroneous overall negative to get −8.
-**mistake_c:** Thought |a| − |b| = 0 whenever the expressions inside share a common variable — an incorrect identity. Here |−2| ≠ |−6|, so the terms do not cancel.
-**mistake_d:** Computed the correct magnitude 2 − 6 = −4 but dropped the negative sign, writing 4 instead.
-**mistake_e:** Added instead of subtracted: |x + 2| + |x − 2| = 2 + 6 = 8.
-**common_trap:** Adding instead of subtracting (answer E), or losing the negative sign on the final result (answer D).
-**takeaway:** With absolute values, always substitute first, then evaluate the expression inside each |·| before applying the bars. Never "distribute" or cancel across absolute value bars before computing the interior.
+**answer:** C
+**fastest_path:** 14² = 196 and 15² = 225. Gap from 200 to 196 is 4; gap to 225 is 25. Much closer to 14.
+**explanation:** Test the nearby perfect squares: 14² = 196 (gap from 200: only 4) and 15² = 225 (gap from 200: 25). Since 200 is far closer to 196 than to 225, √200 ≈ 14.14 — the integer 14 is the best answer. No need for a calculator; comparing gaps to nearby perfect squares takes under 10 seconds.
+**mistake_a:** 12² = 144, too far below 200.
+**mistake_b:** 13² = 169, still 31 below 200 — farther than 14² = 196.
+**mistake_d:** 15² = 225, 25 above 200 — much farther than 14.
+**mistake_e:** 16² = 256, way above 200.
+**common_trap:** Estimating √200 as half of 200 (= 100) or dividing 200 by 2 instead of finding the square root.
+**takeaway:** To find the closest integer to √N: identify the two perfect squares that bracket N, then measure the gaps. The closer perfect square determines the answer.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -993,155 +994,155 @@ If x = −4, what is the value of |x + 2| − |x − 2|?
 ## Q38
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Units Digit
+**topic:** LCM Applied
 
-What is the units digit of 7^43?
+Three indicator lights on a machine flash at regular intervals: Light A every 6 seconds, Light B every 10 seconds, and Light C every 15 seconds. If all three flash simultaneously at the start, after how many seconds will they next all flash at the same time?
 
-- A) 1
-- B) 3
-- C) 7
-- D) 9
-- E) 0
+- A) 30
+- B) 60
+- C) 90
+- D) 150
+- E) 900
 
-**answer:** B
-**fastest_path:** Units digits of powers of 7 cycle with period 4: 7, 9, 3, 1. Compute 43 mod 4 = 3. Units digit of 7^43 = units digit of 7^3 = 3.
-**explanation:** Compute the first few powers of 7 and watch the units digit: 7^1 = 7, 7^2 = 49 (units 9), 7^3 = 343 (units 3), 7^4 = 2401 (units 1), 7^5 = ...7 (cycle repeats). The pattern {7, 9, 3, 1} has period 4. To find 7^43: divide 43 by 4. 43 = 10 × 4 + 3, remainder 3. So 7^43 has the same units digit as 7^3, which is 3.
-**mistake_a:** Used remainder 0 (a multiple of 4) → units digit 1. Happens when the student incorrectly computes 43 mod 4 = 0 (perhaps writing 40/4 = 10 and forgetting the remaining 3).
-**mistake_c:** Used remainder 1 → units digit of 7^1 = 7. Off-by-one error: treated the remainder as 1 instead of 3.
-**mistake_d:** Used remainder 2 → units digit of 7^2 = 9. Misidentified which cycle position 43 falls in.
-**mistake_e:** Powers of 7 never produce a units digit of 0. That would require a factor of both 2 and 5; 7 is prime with neither. Elimination alone rules this out.
-**common_trap:** Mapping remainder 0 to the "first" position in the cycle (getting units digit 7) instead of the "fourth" (last) position (units digit 1). A remainder of 0 means the exponent is an exact multiple of the period — map it to the last element of the cycle.
-**takeaway:** For units-digit cycle problems: (1) write out 4-5 powers to confirm the period; (2) compute exponent mod period; (3) if remainder = 0, use the last cycle position. Here: 43 mod 4 = 3 → position 3 in {7, 9, 3, 1} → units digit 3.
-**related_reading:** reading-quant-02-arithmetic-foundations
+**answer:** A
+**fastest_path:** LCM(6, 10, 15). Factor: 6=2×3, 10=2×5, 15=3×5. LCM = 2×3×5 = 30.
+**explanation:** The lights next coincide at the LCM of their intervals. 6 = 2×3, 10 = 2×5, 15 = 3×5. LCM = highest power of each prime: 2¹×3¹×5¹ = 30. Verify: 30/6=5 ✓, 30/10=3 ✓, 30/15=2 ✓.
+**mistake_b:** Doubled the correct answer; perhaps added 6+10+15+... instead of taking LCM.
+**mistake_c:** Tripled 30 by mistake or computed 6×15 = 90 directly.
+**mistake_d:** Multiplied 10×15 = 150, ignoring that 6 shares factors with both.
+**mistake_e:** Multiplied all three numbers: 6×10×15 = 900 — this is LCM × GCF², not LCM alone when there are shared factors.
+**common_trap:** Multiplying all the intervals together instead of computing the LCM — the product overcounts when the numbers share common factors.
+**takeaway:** "When do repeating events next coincide?" → LCM of their periods. Always factor first; multiplying directly inflates the answer whenever common factors exist.
+**related_reading:** reading-quant-03-number-properties
 
 ---
 
 ## Q39
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** LCM
+**topic:** Consecutive Integers
 
-A positive integer n is divisible by 6, by 14, and by 21. What is the smallest possible value of n?
+The sum of five consecutive even integers is 130. What is the smallest of the five integers?
 
-- A) 21
-- B) 42
-- C) 84
-- D) 126
-- E) 252
+- A) 20
+- B) 22
+- C) 24
+- D) 26
+- E) 28
 
 **answer:** B
-**fastest_path:** LCM(6, 14, 21): factor each — 6 = 2 × 3; 14 = 2 × 7; 21 = 3 × 7. LCM = 2 × 3 × 7 = 42.
-**explanation:** The smallest positive integer divisible by a set of numbers is their LCM. Factor each: 6 = 2 × 3; 14 = 2 × 7; 21 = 3 × 7. The LCM takes the highest power of each distinct prime: 2¹ × 3¹ × 7¹ = 42. Verify: 42 / 6 = 7 ✓; 42 / 14 = 3 ✓; 42 / 21 = 2 ✓.
-**mistake_a:** 21 is divisible by 21 but fails the other conditions: 21 / 6 = 3.5 and 21 / 14 = 1.5. A number must satisfy all three divisibility requirements.
-**mistake_c:** 84 = 2 × 42 is a valid common multiple but not the smallest. This arises when a student includes an extra factor of 2 — perhaps from computing LCM(6, 14) = 42, then incorrectly multiplying by 2 again.
-**mistake_d:** 126 = 3 × 42; also a valid common multiple, but the LCM (smallest) is 42.
-**mistake_e:** 252 = 6 × 42 = 6 × 14 × 3. Arises from multiplying pairs: 6 × 14 = 84, then 84 × 21 / GCD(84, 21) should give 84 (since 21 | 84), but if the student forgets this step, they might get a larger number.
-**common_trap:** Using the product of all three numbers (or pairwise products) instead of the LCM. The product 6 × 14 × 21 = 1,764 is much larger than necessary.
-**takeaway:** "Smallest n divisible by a, b, and c" = LCM(a, b, c). Factor each number completely, then take the highest power of every distinct prime that appears. There is always a common multiple smaller than the raw product unless all pairs are coprime.
-**related_reading:** reading-quant-05-word-problems
+**fastest_path:** Average = 130/5 = 26 (the middle term). Smallest = 26 − 4 = 22.
+**explanation:** Let the five consecutive even integers be n, n+2, n+4, n+6, n+8. Their sum: 5n + 20 = 130 → 5n = 110 → n = 22. Shortcut: for any odd number of evenly-spaced values, the average equals the middle term. Here, 130/5 = 26 is the 3rd (middle) integer; smallest = 26 − 4 = 22.
+**mistake_a:** Computed 130/5 = 26 and subtracted 6 (too many steps back).
+**mistake_c:** Bubbled the middle term (26 − 2 = 24) rather than the smallest.
+**mistake_d:** Bubbled the middle term 26 directly.
+**mistake_e:** Added 2 to the middle term instead of subtracting: 26 + 2 = 28.
+**common_trap:** Bubbling the middle term (the average) instead of adding/subtracting the appropriate spacing to reach the smallest or largest value.
+**takeaway:** For k consecutive even integers, middle term = sum/k. Smallest = middle − (k−1). For 5 evens: smallest = average − 4.
+**related_reading:** reading-quant-03-number-properties
 
 ---
 
 ## Q40
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Percentages
+**topic:** GCF Applied
 
-A store marks up its items by 25% above wholesale cost. During a sale, it then discounts the marked-up price by 20%. What is the net percent change from the original wholesale cost to the final sale price?
+A rectangular floor measures 48 inches by 36 inches. Square tiles of equal size are to be laid to cover the floor exactly, with no tiles cut and no gaps. What is the largest possible side length of each tile, in inches?
 
-- A) −5%
-- B) 0%
-- C) 5%
-- D) 25%
-- E) 45%
+- A) 6
+- B) 9
+- C) 12
+- D) 16
+- E) 18
 
-**answer:** B
-**fastest_path:** Multiply the two multipliers: 1.25 × 0.80 = 1.00 exactly. Net change = 0%.
-**explanation:** Let wholesale cost = $100. After 25% markup: $100 × 1.25 = $125. After 20% discount applied to the marked-up price: $125 × 0.80 = $100. The final price equals the original wholesale cost — a net change of 0%. Algebraically: (1.25)(0.80) = 1.00. The two multipliers cancel exactly.
-**mistake_a:** Subtracted rates with the discount "winning" since it comes second: 20% − 25% = −5%.
-**mistake_c:** Naively subtracted the two percent rates: 25% − 20% = 5%. This treats both percentages as operating on the same base, which they do not. The 20% discount applies to the marked-up price ($125), not the original $100.
-**mistake_d:** Ignored the discount entirely and reported only the markup: 25%.
-**mistake_e:** Added both percentage magnitudes: 25% + 20% = 45%.
-**common_trap:** Subtracting the percent rates as if they operate on the same base (answer C — by far the most common). Because the 20% discount applies to the already-inflated price, the two rates cannot be combined arithmetically.
-**takeaway:** Sequential percent changes: convert each to a multiplier and multiply them. Never add or subtract rates that apply to different bases. 1.25 × 0.80 = 1.00 is a benchmark pair worth memorizing.
-**related_reading:** reading-quant-02-arithmetic-foundations
+**answer:** C
+**fastest_path:** GCF(48, 36) = 12. Largest square tile side = 12 inches.
+**explanation:** The tile side length must divide both floor dimensions exactly. The largest such length is GCF(48, 36). Factor: 48 = 2⁴×3, 36 = 2²×3². GCF = 2²×3 = 12. Verify: 48/12 = 4 tiles along one side; 36/12 = 3 tiles along the other; total 12 tiles, no cutting needed ✓.
+**mistake_a:** Used GCF of 12 and 18 (halved the dimensions by mistake), got 6.
+**mistake_b:** Bubbled 9, which divides 36 (36/9=4) but does not divide 48 (48/9=5.33).
+**mistake_d:** Bubbled 16, which divides 48 (48/16=3) but not 36 (36/16=2.25).
+**mistake_e:** Bubbled 18, which divides 36 (36/18=2) but not 48 (48/18=2.67).
+**common_trap:** Picking a number that divides one dimension but not the other — both must be checked.
+**takeaway:** "Largest square that tiles a rectangle exactly" = GCF of the two dimensions. A candidate tile size must divide *both* dimensions without remainder.
+**related_reading:** reading-quant-03-number-properties
 
 ---
 
 ## Q41
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Percent — Compound Interest
+**topic:** Counting Factors
 
-An investor deposits $2,000 into Account S, which earns 5% simple annual interest, and another $2,000 into Account C, which earns 5% annual interest compounded annually. After 2 years, how much more money is in Account C than in Account S?
+How many positive factors does 120 have, including 1 and 120 itself?
 
-- A) $2
-- B) $5
-- C) $10
-- D) $20
-- E) $100
+- A) 8
+- B) 10
+- C) 12
+- D) 14
+- E) 16
 
-**answer:** B
-**fastest_path:** Simple: 2,000 × 1.10 = $2,200. Compound: 2,000 × 1.05² = 2,000 × 1.1025 = $2,205. Difference = $5.
-**explanation:** Account S (simple): interest = principal × rate × time = 2,000 × 0.05 × 2 = $200; total = $2,200. Account C (compound): 2,000 × (1.05)² = 2,000 × 1.1025 = $2,205. Difference = $2,205 − $2,200 = $5. The extra $5 arises from earning 5% on the first year's interest of $100: 0.05 × $100 = $5. Compounding's advantage after just 2 years is small.
-**mistake_a:** Arithmetic slip — computed a difference less than $5 (perhaps through rounding 1.05² imprecisely).
-**mistake_c:** Overestimated the compounding advantage: thought it was the first year's interest rate applied to the interest again — 0.05 × $200 = $10.
-**mistake_d:** Computed 2,000 × 0.01 = $20, using an assumed 1% rate difference where no such rate difference exists.
-**mistake_e:** Computed 5% of $2,000 = $100 as if simple interest on the full principal represents the compounding advantage.
-**common_trap:** Overestimating how much more compounding earns in just 2 years. The compounding advantage accumulates slowly; after year 2 it equals exactly Pr² = 2,000 × 0.0025 = $5.
-**takeaway:** The extra earned from compounding vs. simple interest after 2 years = Pr² (interest on the first year's interest). For small rates and short horizons, the gap is surprisingly small.
-**related_reading:** reading-quant-05-word-problems
+**answer:** E
+**fastest_path:** 120 = 2³×3×5. Factor count = (3+1)(1+1)(1+1) = 4×2×2 = 16.
+**explanation:** Prime factorize 120: 120 = 8×15 = 2³×3×5. For any integer n = p₁^a × p₂^b × …, the number of factors is (a+1)(b+1)…. Here: (3+1)(1+1)(1+1) = 4×2×2 = 16. Partial list to confirm: 1,2,3,4,5,6,8,10,12,15,20,24,30,40,60,120 — exactly 16 divisors ✓.
+**mistake_a:** Counted only prime factors and immediate products; listed 8 divisors by hand and stopped early.
+**mistake_b:** Used (3)(1)(1)+1 = 10; misapplied the formula.
+**mistake_c:** Applied (a)(b)(c) = 3×1×1 = 3, then multiplied by 4; got 12.
+**mistake_d:** Computed 2³+3+5+3 = 14 (some ad hoc sum).
+**common_trap:** Listing divisors by hand and stopping early, or misapplying the (a+1)(b+1)… formula by forgetting to add 1 to each exponent.
+**takeaway:** Number of factors formula: if n = p₁^a₁ × p₂^a₂ × … then factor count = (a₁+1)(a₂+1)…. The "+1" accounts for the exponent-zero case (i.e., p not used). Memorize this; listing by hand is slow and error-prone.
+**related_reading:** reading-quant-03-number-properties
 
 ---
 
 ## Q42
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Statistics
+**topic:** Comparing Fractions
 
-The average (arithmetic mean) of five numbers is 18. When a sixth number is added to the set, the average decreases to 16. What is the sixth number?
+Which of the following fractions is the greatest?
 
-- A) 2
-- B) 4
-- C) 6
-- D) 8
-- E) 14
+- A) 7/9
+- B) 8/11
+- C) 11/14
+- D) 13/17
+- E) 5/6
 
-**answer:** C
-**fastest_path:** Sum of 5 = 5 × 18 = 90. Sum of 6 = 6 × 16 = 96. Sixth number = 96 − 90 = 6.
-**explanation:** Use the sum-average relationship: sum = average × count. Original sum of five numbers: 5 × 18 = 90. After adding the sixth number, sum of six: 6 × 16 = 96. The sixth number = new sum − old sum = 96 − 90 = 6. Sanity check: 6 < 18 (the original average), so it makes sense that adding 6 pulls the average down from 18 to 16.
-**mistake_a:** Arithmetic slip in one of the multiplications: perhaps computed 6 × 16 = 92 instead of 96, then got 92 − 90 = 2.
-**mistake_b:** Computed 5 × 18 incorrectly as 92 instead of 90, then 96 − 92 = 4.
-**mistake_d:** Set up the second equation with the wrong count or average: perhaps 6 × 17 − 5 × 18 = 102 − 90 = 12, or made a different arithmetic error.
-**mistake_e:** Tried to work with the averages directly without computing sums: estimated the sixth number as "something close to 16," guessed 14.
-**common_trap:** Trying to operate on the averages directly (subtracting 18 − 16 = 2 or multiplying 16 × 2 = 32) without going through sums. Averages cannot be combined without accounting for group sizes.
-**takeaway:** "Working backward from averages" always flows through sums: old sum, new sum, then difference. Never manipulate averages directly — always convert to sums first (sum = average × count).
-**related_reading:** reading-quant-05-word-problems
+**answer:** E
+**fastest_path:** Measure each fraction's distance from 1: 7/9 → gap 2/9≈0.222; 8/11 → 3/11≈0.273; 11/14 → 3/14≈0.214; 13/17 → 4/17≈0.235; 5/6 → 1/6≈0.167. Smallest gap = 5/6.
+**explanation:** All five fractions are close to 1, so the greatest has the smallest gap from 1. Compute (denominator − numerator) / denominator for each: A: 2/9≈0.222; B: 3/11≈0.273; C: 3/14≈0.214; D: 4/17≈0.235; E: 1/6≈0.167. The fraction with the smallest gap from 1 is 5/6. Alternatively convert to decimals: 5/6≈0.833 vs. 11/14≈0.786, the next highest.
+**mistake_a:** Compared numerators only (7 is the largest numerator); ignored denominators.
+**mistake_b:** Compared denominators only (11 is mid-range); confused "largest denominator = largest fraction."
+**mistake_c:** Chose 11/14 as the second-closest to 1 without checking 5/6.
+**mistake_d:** Chose 13/17 (large numerator relative to denominator) without converting.
+**common_trap:** Comparing fractions by their numerators or denominators alone, or short-circuiting the comparison after evaluating only 2–3 choices.
+**takeaway:** For fractions close to 1, the smallest gap (1 − fraction) wins. For fractions close to 0, the smallest fraction/(1) wins. Or convert to decimals — fast when denominators are single digits.
+**related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
 
 ## Q43
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Number Properties
+**topic:** Averages
 
-How many positive integer factors does 120 have?
+What is the average (arithmetic mean) of all integers from 15 to 35, inclusive?
 
-- A) 10
-- B) 12
-- C) 14
-- D) 16
-- E) 20
+- A) 24
+- B) 25
+- C) 26
+- D) 27
+- E) 28
 
-**answer:** D
-**fastest_path:** 120 = 2³ × 3 × 5. Factor count = (3+1)(1+1)(1+1) = 4 × 2 × 2 = 16.
-**explanation:** Prime factorize: 120 = 8 × 15 = 2³ × 3 × 5. For any number p^a × q^b × r^c, the number of positive factors is (a+1)(b+1)(c+1) — each exponent can independently range from 0 to its maximum. Here: (3+1)(1+1)(1+1) = 4 × 2 × 2 = 16. Verify by listing: 1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 24, 30, 40, 60, 120 — exactly 16.
-**mistake_a:** Added the exponents and applied a factor incorrectly: 3 + 1 + 1 = 5, then doubled to 10. Or simply undercounted while listing.
-**mistake_b:** Misfactored 120 as 2² × 3 × 5 × ... (dropped one factor of 2), then applied (2+1)(1+1)(1+1) = 3 × 2 × 2 = 12.
-**mistake_c:** Another off-by-one in the prime factorization or formula application.
-**mistake_e:** Added the (exponent + 1) terms instead of multiplying: (3+1) + (1+1) + (1+1) = 4 + 2 + 2 = 8, then doubled to get 16... or added directly to get 8 and then scaled incorrectly.
-**common_trap:** Multiplying the raw exponents rather than (exponent + 1): using 3 × 1 × 1 = 3 instead of 4 × 2 × 2 = 16. The "+1" is essential — it accounts for choosing zero copies of that prime factor.
-**takeaway:** Factor counting: n = p^a × q^b × r^c → (a+1)(b+1)(c+1) factors. The "+1" in each term accounts for including 0 copies of that prime (which gives a factor that is not divisible by p). Always start with a complete prime factorization.
+**answer:** B
+**fastest_path:** Consecutive integers: average = (first + last)/2 = (15 + 35)/2 = 25.
+**explanation:** The integers from 15 to 35 are evenly spaced (consecutive), so their average equals the midpoint of the range: (15 + 35) / 2 = 50 / 2 = 25. No need to sum or count; the symmetry of evenly-spaced sets means average = midpoint.
+**mistake_a:** Computed (15 + 35)/2 − 1 = 24 (off by one error).
+**mistake_c:** Computed 35/2 + 15/2 with arithmetic error; got 26.
+**mistake_d:** Thought midpoint of 15 to 35 is (35 − 15)/2 = 10 then added to 15 + 2 = 27.
+**mistake_e:** Computed (15 + 35 + 2)/2 = 26... some adjustment error.
+**common_trap:** Attempting to sum all integers and count them, then dividing — slow and error-prone. Missing the shortcut that average = midpoint for evenly-spaced sets.
+**takeaway:** For any evenly spaced set (consecutive integers, consecutive even/odd, arithmetic sequences), average = (first + last)/2. No summing required.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -1149,153 +1150,153 @@ How many positive integer factors does 120 have?
 ## Q44
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Percentages
+**topic:** Number Line
 
-A bookstore purchases a book for $20, then marks it up by 40%. After one month, the store discounts the marked-up price by 30%. What is the book's final selling price?
+On a number line, point A is at −3 and point B is at 9. Point C lies on segment AB such that AC:CB = 1:2. What is the coordinate of point C?
 
-- A) $16.80
-- B) $18.00
-- C) $19.60
-- D) $20.00
-- E) $22.00
+- A) −1
+- B) 1
+- C) 3
+- D) 5
+- E) 7
 
-**answer:** C
-**fastest_path:** 20 × 1.40 × 0.70 = 20 × 0.98 = $19.60.
-**explanation:** Step 1 — apply the 40% markup: $20 × 1.40 = $28. Step 2 — apply the 30% discount to the marked-up price: $28 × 0.70 = $19.60. The combined multiplier is 1.40 × 0.70 = 0.98, representing a net 2% decrease from the original purchase price.
-**mistake_a:** Applied the markup rate (40%) again as the discount: $28 × 0.60 = $16.80. The student used the wrong percentage for the sale step, substituting 40% for the correct 30%.
-**mistake_b:** Subtracted the percent rates as if they share a common base: 40% − 30% = 10% net increase; $20 × 0.90 = $18.00. The 30% discount applies to $28 (the marked-up price), not to the original $20.
-**mistake_d:** Concluded the two steps must cancel: $20 × 1.40 × 0.70 = $19.60 ≈ $20 (rounded). Alternatively, confused this with the benchmark pair 1.25 × 0.80 = 1.00 (which does cancel). Here 1.40 × 0.70 = 0.98 ≠ 1.00.
-**mistake_e:** Applied both percentage changes to the original base: $20 × (1 + 0.40 − 0.30) = $20 × 1.10 = $22.00. This adds markup and subtracts discount from the same $20, ignoring that the discount applies to the post-markup price.
-**common_trap:** Combining the two rates as if they share the same base (B and E). Since the 30% discount applies to the already-inflated $28, not the original $20, naive arithmetic with the rates gives a wrong answer.
-**takeaway:** Sequential percent changes: multiply the chain of multipliers — 1.40 × 0.70 = 0.98. Never add or subtract percent rates that apply to different bases.
-**related_reading:** reading-quant-05-word-problems
+**answer:** B
+**fastest_path:** Total length AB = 12. AC = (1/3)(12) = 4. C = −3 + 4 = 1.
+**explanation:** The segment AB has length 9 − (−3) = 12. Ratio AC:CB = 1:2 means C is 1/3 of the way from A to B. Distance from A to C = (1/3)(12) = 4. Coordinate of C = −3 + 4 = 1. Verify: CB = 9 − 1 = 8; AC:CB = 4:8 = 1:2 ✓.
+**mistake_a:** Computed −3 + (1/3)(|−3|) = −3 + 1 = −2, then rounded; used only the magnitude of A.
+**mistake_c:** Found the midpoint (−3+9)/2 = 3, answering as if ratio were 1:1.
+**mistake_d:** Used ratio 2:1 (swapped): C = −3 + (2/3)(12) = −3 + 8 = 5 — the point 2/3 of the way from A, not 1/3.
+**mistake_e:** Moved from B instead of A: 9 − (1/3)(12) = 9 − 4 = 5 (same as D), or B − (2/3)(12) = 9 − 8 = 1 (correct). Arithmetic went off: 9 − 2 = 7.
+**common_trap:** Swapping the ratio direction — using 2:1 instead of 1:2 — and landing on D (5) rather than B (1).
+**takeaway:** To find the point dividing AB in ratio m:n from A: coordinate = A + m/(m+n) × (B − A). Always measure from the anchor point (A), not from the origin.
+**related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
 
 ## Q45
 **difficulty:** Hard
 **type:** Problem Solving
-**topic:** LCM
+**topic:** GCF and LCM
 
-Three machines at a factory start running simultaneously at 6:00 AM. Machine A completes one production cycle every 8 minutes, Machine B every 12 minutes, and Machine C every 18 minutes. At what time will all three machines next complete a cycle at the same moment?
+The GCF of two positive integers is 12 and their LCM is 180. If one of the integers is 36, what is the other integer?
 
-- A) 6:36 AM
-- B) 7:00 AM
-- C) 7:12 AM
-- D) 7:24 AM
-- E) 8:12 AM
+- A) 36
+- B) 48
+- C) 60
+- D) 72
+- E) 144
 
 **answer:** C
-**fastest_path:** LCM(8, 12, 18): 8 = 2³; 12 = 2² × 3; 18 = 2 × 3². LCM = 2³ × 3² = 72 min. 6:00 AM + 72 min = 7:12 AM.
-**explanation:** All three machines complete a cycle simultaneously at every common multiple of 8, 12, and 18. The first occurrence is at their LCM. Factor each: 8 = 2³; 12 = 2² × 3; 18 = 2 × 3². LCM = highest power per prime = 2³ × 3² = 8 × 9 = 72 minutes. 6:00 AM + 72 min = 7:12 AM. Verify: 72 / 8 = 9 cycles ✓; 72 / 12 = 6 cycles ✓; 72 / 18 = 4 cycles ✓.
-**mistake_a:** Computed LCM(12, 18) = 36 minutes for Machines B and C only, then stopped. Check: 36 / 8 = 4.5 — Machine A has not completed a cycle at 36 minutes, so 6:36 AM is wrong.
-**mistake_b:** Chose 60 minutes (one hour) as a round-number guess without verifying: 60 / 8 = 7.5 — Machine A does not complete a cycle at 60 minutes.
-**mistake_d:** LCM computed as 84: perhaps factored 18 as 2 × 3 × 3 but inadvertently carried an extra factor. Check: 84 / 18 = 4.67 — not exact, so 84 is not a valid common multiple.
-**mistake_e:** Multiplied all three cycle times and divided by a small GCF: 8 × 12 × 18 = 1,728; dividing by various GCFs gives numbers far larger than 72, leading to times well past 8 AM.
-**common_trap:** Finding the LCM for only two of the three machines and stopping (answer A). All three numbers must be included in the LCM computation.
-**takeaway:** For LCM of three or more numbers: prime-factor each, then take the max exponent per prime. The two-number shortcut LCM = (a × b) / GCF(a, b) cannot be applied naively to three numbers — extend it step by step: LCM(LCM(a, b), c).
-**related_reading:** reading-quant-05-word-problems
+**fastest_path:** GCF × LCM = product of the two integers. 12 × 180 = 36 × n → n = 2160/36 = 60.
+**explanation:** For any two positive integers m and n: GCF(m, n) × LCM(m, n) = m × n. Substituting: 12 × 180 = 36 × n → 2160 = 36n → n = 60. Verify: GCF(36, 60) = ? 36 = 2²×3², 60 = 2²×3×5. GCF = 2²×3 = 12 ✓. LCM = 2²×3²×5 = 180 ✓.
+**mistake_a:** Concluded that the two integers must be equal (both 36) when GCF/LCM is given — invalid.
+**mistake_b:** Computed 12 × 4 = 48 (multiplied GCF by 4 without basis).
+**mistake_d:** Divided 2160 by 30 (or made a factor error) to get 72.
+**mistake_e:** Divided LCM by GCF: 180/12 = 15, then multiplied by 36/something; got 144.
+**common_trap:** Not knowing the identity GCF × LCM = product of the two numbers, and instead attempting to reconstruct the integers by trial and error.
+**takeaway:** GCF(a,b) × LCM(a,b) = a × b. Memorize this identity — it converts two-variable GCF/LCM problems into one-step algebra.
+**related_reading:** reading-quant-03-number-properties
 
 ---
 
 ## Q46
 **difficulty:** Hard
 **type:** Problem Solving
-**topic:** Weighted Average
+**topic:** Absolute Value Inequality
 
-The population of District A is three times the population of District B. Over five years, District A's population grows by 20% and District B's population grows by 60%. By what percent does the combined population of the two districts grow over the five years?
+How many integers x satisfy |2x − 5| ≤ 7?
 
-- A) 20%
-- B) 25%
-- C) 30%
-- D) 40%
-- E) 50%
+- A) 5
+- B) 6
+- C) 7
+- D) 8
+- E) 9
 
-**answer:** C
-**fastest_path:** A = 75% of combined, B = 25%. Weighted growth = 0.75 × 20% + 0.25 × 60% = 15% + 15% = 30%.
-**explanation:** Let B = 100, so A = 300, total = 400. After five years: A → 300 × 1.20 = 360; B → 100 × 1.60 = 160. New total = 520. Percent growth = (520 − 400) / 400 = 120 / 400 = 30%. Equivalently: A is 3/4 of the combined population, B is 1/4. Weighted rate = (3/4)(20%) + (1/4)(60%) = 15% + 15% = 30%.
-**mistake_a:** Used only District A's growth rate (20%) because A is the dominant district, ignoring B entirely.
-**mistake_b:** Arithmetic slip in the weighted computation — a plausible miscalculation that lands between 20% and 30%.
-**mistake_d:** Took a simple (unweighted) average of the two growth rates: (20% + 60%) / 2 = 40%. This is correct only if both districts are the same size, which they are not.
-**mistake_e:** Swapped which district is three times larger. If the student treated A = 25% of the total and B = 75%: 0.25 × 20% + 0.75 × 60% = 5% + 45% = 50%.
-**common_trap:** Simple-averaging the growth rates (D) — by far the most common error. Growth rates must be weighted by each group's share of the total, not averaged equally.
-**takeaway:** When combining growth rates across groups of unequal size, use a weighted average: sum of (fraction of total × rate) for each group. Setting concrete numbers (B = 100, A = 300) is the fastest way to avoid weighting errors.
-**related_reading:** reading-quant-05-word-problems
+**answer:** D
+**fastest_path:** −7 ≤ 2x−5 ≤ 7 → −2 ≤ 2x ≤ 12 → −1 ≤ x ≤ 6 → integers: −1,0,1,2,3,4,5,6 → 8 integers.
+**explanation:** |2x − 5| ≤ 7 means −7 ≤ 2x − 5 ≤ 7. Add 5 throughout: −2 ≤ 2x ≤ 12. Divide by 2: −1 ≤ x ≤ 6. The integers in this range are −1, 0, 1, 2, 3, 4, 5, 6. Count: from −1 to 6 inclusive = 6−(−1)+1 = 8. Each satisfies the original inequality: test endpoints: |2(−1)−5| = |−7| = 7 ≤ 7 ✓; |2(6)−5| = |7| = 7 ≤ 7 ✓.
+**mistake_a:** Forgot the negative case and counted only x = 0 through 4; got 5.
+**mistake_b:** Used strict inequality (< instead of ≤) at the endpoints, excluding −1 and 6; got 6.
+**mistake_c:** Dropped −1 (forgot negative integers are possible) and counted 0–6; got 7.
+**mistake_e:** Made an off-by-one error in the count formula: used (6 − (−1)) = 7 instead of +1.
+**common_trap:** Forgetting to include the negative endpoint (x = −1), or forgetting the inclusive-count formula (b − a + 1 for integers from a to b).
+**takeaway:** |f(x)| ≤ c → −c ≤ f(x) ≤ c. Then solve for x, and count integers with (high − low + 1) when bounds are integers.
+**related_reading:** reading-quant-04-algebra-and-equations
 
 ---
 
 ## Q47
 **difficulty:** Hard
 **type:** Problem Solving
-**topic:** Weighted Average
+**topic:** Remainders
 
-In a class, the boys' average exam score is 72 and the girls' average exam score is 84. The overall class average is 80. What fraction of the class is boys?
+When positive integer n is divided by 7, the remainder is 4. What is the remainder when 3n + 5 is divided by 7?
 
-- A) 1/4
-- B) 1/3
-- C) 2/5
-- D) 1/2
-- E) 2/3
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 6
 
-**answer:** B
-**fastest_path:** Alligation: distance from 80 to boys avg = 8; distance from 80 to girls avg = 4. Boys:girls = 4:8 = 1:2. Boys fraction = 1/(1+2) = 1/3.
-**explanation:** Let b = fraction of class that is boys; girls = (1 − b). Weighted average equation: 72b + 84(1 − b) = 80. Expand: 72b + 84 − 84b = 80 → −12b = −4 → b = 1/3. Alligation shortcut: the class average is 8 points above the boys' average and 4 points below the girls' average. These distances are inversely proportional to group sizes: boys:girls = 4:8 = 1:2. Boys fraction = 1 / (1 + 2) = 1/3. Verify: 72(1/3) + 84(2/3) = 24 + 56 = 80 ✓.
-**mistake_a:** Guessed a smaller fraction (1/4) because the class average is much closer to girls' scores, implying far fewer boys — directionally correct but numerically imprecise without computing.
-**mistake_c:** Arithmetic slip in solving −12b = −4: perhaps solved as −12b = −5, giving b ≈ 2/5.
-**mistake_d:** Assumed equal numbers of boys and girls; noted (72 + 84) / 2 = 78 ≠ 80 but selected 1/2 anyway.
-**mistake_e:** Reversed the alligation ratio: took boys fraction = 8 / (8 + 4) = 8/12 = 2/3 instead of girls fraction. The larger distance from the class average corresponds to the smaller group (boys are farther below 80 than girls are above 80, so there are fewer boys).
-**common_trap:** Reversing the alligation (E). The group whose average is farther from the overall average is always the smaller group. Since 80 is closer to 84 than to 72, girls dominate the class.
-**takeaway:** In alligation: ratio of group sizes = (other group's distance) : (this group's distance). The group closer to the overall average is more numerous. Alternatively, set up the equation 72b + 84(1−b) = 80 and solve — it is quick and error-proof.
-**related_reading:** reading-quant-05-word-problems
+**answer:** C
+**fastest_path:** n ≡ 4 (mod 7) → 3n ≡ 12 ≡ 5 (mod 7) → 3n+5 ≡ 10 ≡ 3 (mod 7).
+**explanation:** Use modular arithmetic. n ≡ 4 (mod 7) means n = 7k + 4 for some non-negative integer k. Then 3n + 5 = 3(7k + 4) + 5 = 21k + 12 + 5 = 21k + 17. Divide 17 by 7: 17 = 2(7) + 3, so the remainder is 3. Equivalently: 3(4) + 5 = 17, and 17 mod 7 = 3. Quick check with n = 4 (k = 0): 3(4)+5 = 17; 17/7 = 2 R 3 ✓. Check with n = 11 (k = 1): 3(11)+5 = 38; 38/7 = 5 R 3 ✓.
+**mistake_a:** Computed 3×4 = 12, 12 mod 7 = 5, then added the +5 to the remainder: 5+5=10, 10 mod 7 = 3... but made an error and got 1.
+**mistake_b:** Used n = 4 directly: 3(4)+5 = 17, then computed 17 − 15 = 2 (chose the wrong multiple of 7).
+**mistake_d:** Bubbled the original remainder (4) without applying the transformation.
+**mistake_e:** Computed 3×4+5 = 17, then 17 − 7 = 10, 10 − 7 = 3 but made an arithmetic error and got 6.
+**common_trap:** Bubbling the original remainder (4) without accounting for the multiplier and addend; or computing 3×4 mod 7 and forgetting the +5.
+**takeaway:** To find (a·n + b) mod m when n ≡ r (mod m): substitute r for n, compute a·r + b, then take mod m. The result is the remainder. Linear functions preserve remainders under this substitution.
+**related_reading:** reading-quant-03-number-properties
 
 ---
 
 ## Q48
 **difficulty:** Hard
 **type:** Problem Solving
-**topic:** Percent — Compound Decrease
+**topic:** LCM with Constraint
 
-A product's price is reduced by 10% each year. After how many complete years will the price first fall below half of its original value?
+Bell A rings every k minutes and Bell B rings every (k + 3) minutes, where k is a positive integer. The two bells next ring together exactly 60 minutes after ringing together at noon. What is the value of k?
 
-- A) 5
-- B) 6
-- C) 7
-- D) 8
-- E) 10
+- A) 8
+- B) 9
+- C) 10
+- D) 12
+- E) 15
 
-**answer:** C
-**fastest_path:** (0.9)^n < 0.5. Compute sequentially: year 6 → ≈ 0.531 > 0.5; year 7 → ≈ 0.478 < 0.5. Answer: 7 years.
-**explanation:** Each year the price is multiplied by 0.90. After n years, price = P × (0.9)^n. Solve (0.9)^n < 0.5 by iterating: (0.9)^1 = 0.900; (0.9)^2 = 0.810; (0.9)^3 = 0.729; (0.9)^4 = 0.656; (0.9)^5 ≈ 0.590; (0.9)^6 ≈ 0.531; (0.9)^7 ≈ 0.478. Year 7 is the first year the price drops below 50%. Estimation shortcut: the Rule of 70 predicts a halving time of 70 / 10 = 7 years for a 10% annual decline — exactly matching the computed answer.
-**mistake_a:** Applied linear reasoning: 10% per year × 5 years = 50%, so price halves after 5 years. This ignores that each year's 10% is taken from a smaller base than the previous year — the price declines more slowly than the linear estimate.
-**mistake_b:** Computed (0.9)^6 ≈ 0.531 and concluded the price is below half. But 0.531 > 0.50 — year 6 has not yet reached the threshold. Off-by-one: 7, not 6, is the first year below half.
-**mistake_d:** Rounded (0.9)^7 ≈ 0.48 up to 0.50 (treating it as still at the threshold), then added an extra year for safety.
-**mistake_e:** Applied extreme linear logic: 10% per year for 10 years = 100%, so the price disappears in 10 years; estimated halving at 10 / 2 = 5 years... then overcorrected to 10. Several confused reasoning paths lead here.
-**common_trap:** Linear thinking (answers A and E). "10% off per year for 7 years" is not the same as "70% off" — compounding causes each reduction to be smaller in absolute dollars than the previous one.
-**takeaway:** Repeated percent decreases compound: use (1 − r)^n, not r × n. For small rates, the Rule of 70 gives a fast estimate: halving time ≈ 70 / (rate as a percent). This is the decay analog of the Rule of 72 for compound interest.
-**related_reading:** reading-quant-05-word-problems
+**answer:** D
+**fastest_path:** Need LCM(k, k+3) = 60 with both k and k+3 dividing 60. Only pair of divisors of 60 that differ by 3 is (12, 15). So k = 12.
+**explanation:** LCM(k, k+3) = 60. For this to hold, both k and k+3 must individually divide 60. List the positive divisors of 60: 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60. Scan for a pair differing by 3: (2,5) — LCM = 10 ≠ 60; (3,6) — LCM = 6 ≠ 60; (12,15) — LCM = 60 ✓. So k = 12. Verify: Bell A rings at 12, 24, 36, 48, 60 min; Bell B rings at 15, 30, 45, 60 min. Both ring at 60 min ✓.
+**mistake_a:** Tested k=8: k+3=11. 11 does not divide 60 (60/11 ≈ 5.45). LCM ≠ 60.
+**mistake_b:** Tested k=9: 9 does not divide 60 (60/9 ≈ 6.67). Not valid.
+**mistake_c:** Tested k=10: k+3=13. 13 does not divide 60. Not valid.
+**mistake_e:** Bubbled 15 — the value of k+3, not k. Confusion about which bell is A.
+**common_trap:** Bubbling k+3 = 15 instead of k = 12, or failing to check that both k and k+3 must divide the LCM.
+**takeaway:** When LCM(a,b) = L is given, both a and b must be divisors of L. Enumerate divisors of L and search for a pair matching the constraint (here, differing by 3).
+**related_reading:** reading-quant-03-number-properties
 
 ---
 
 ## Q49
 **difficulty:** Hard
 **type:** Problem Solving
-**topic:** Units Digit
+**topic:** GCF Decomposition
 
-What is the units digit of (3^4)^50 + (2^3)^25?
+The product of two positive integers a and b is 360, and GCF(a, b) = 6. How many ordered pairs (a, b) satisfy these conditions?
 
-- A) 1
+- A) 2
 - B) 3
-- C) 7
-- D) 9
-- E) 0
+- C) 4
+- D) 6
+- E) 8
 
-**answer:** D
-**fastest_path:** Simplify: 3^200 + 2^75. Units of 3^200: 200 mod 4 = 0 → cycle position 4 → units digit 1. Units of 2^75: 75 mod 4 = 3 → units digit of 2^3 = 8. Sum: 1 + 8 = 9.
-**explanation:** Step 1 — simplify the exponents using the power rule: (3^4)^50 = 3^(4×50) = 3^200; (2^3)^25 = 2^(3×25) = 2^75. Step 2 — units digit of 3^200: powers of 3 cycle {3, 9, 7, 1} with period 4. Since 200 ÷ 4 = 50 remainder 0, the exponent is a multiple of 4 → same units digit as 3^4 = 81 → units digit 1. Step 3 — units digit of 2^75: powers of 2 cycle {2, 4, 8, 6} with period 4. Since 75 ÷ 4 = 18 remainder 3, units digit = units digit of 2^3 = 8. Step 4 — add the units digits: 1 + 8 = 9.
-**mistake_a:** Computed only 3^200's units digit (1) and reported that as the answer, forgetting to add the contribution from 2^75.
-**mistake_b:** Made an off-by-one error when mapping remainder 0 in the cycle for 3^200: treated remainder 0 as "position 0" (the first element, units digit 3) instead of "position 4" (the last element, units digit 1). Then reported 3 + 8 = 11 → units digit 1... or bubbled 3 directly.
-**mistake_c:** Found the wrong cycle position for 2^75: selected the 4th element {2, 4, 8, 6} → 6 (using 1-indexed position 4) instead of the 3rd element → 8. Then computed 1 + 6 = 7.
-**mistake_e:** Assumed one or both terms could end in 0. Powers of 3 and powers of 2 never produce a units digit of 0 — that would require factors of both 2 and 5, which neither 3 nor 2 provides (outside of their respective powers having 5 as a factor, which they do not).
-**common_trap:** Two errors combine here: (1) mapping remainder 0 to the first cycle position instead of the last (corrupts the 3^200 term), and (2) forgetting to add both terms (stops after the first).
-**takeaway:** Multi-term units-digit problems require computing each term independently, then adding the resulting units digits. When remainder = 0, map to the last cycle position (not the first). Always verify by working through the cycle manually for small exponents before scaling.
-**related_reading:** reading-quant-02-arithmetic-foundations
+**answer:** C
+**fastest_path:** Write a=6m, b=6n with GCF(m,n)=1. Then mn=10; coprime pairs: (1,10),(10,1),(2,5),(5,2) → 4 ordered pairs.
+**explanation:** Since GCF(a,b) = 6, write a = 6m and b = 6n where m and n are positive integers with GCF(m, n) = 1 (so the shared factor is exactly 6, no more). Then ab = 36mn = 360 → mn = 10. List all ordered pairs (m, n) of positive integers with mn = 10 and GCF(m, n) = 1: (1, 10): GCF = 1 ✓; (10, 1): GCF = 1 ✓; (2, 5): GCF = 1 ✓; (5, 2): GCF = 1 ✓. That is 4 ordered pairs. Corresponding (a, b): (6, 60), (60, 6), (12, 30), (30, 12). Verify: GCF(12, 30) = 6 ✓, 12×30 = 360 ✓.
+**mistake_a:** Counted only unordered pairs {(6,60),(12,30)} → 2. The question asks for *ordered* pairs.
+**mistake_b:** Missed one of the coprime pairs by overlooking (10,1) or (1,10); got 3.
+**mistake_d:** Counted all divisor pairs (a,b) with ab=360, ignoring the GCF=6 constraint; 360 has many more factor pairs.
+**mistake_e:** Double-counted the unordered set as 2, then multiplied by 4 (number of divisors of 10); got 8.
+**common_trap:** Counting unordered pairs instead of ordered, or failing to enforce the coprimality condition GCF(m,n) = 1 (which eliminates pairs like (m,n) = (2,5) — wait, GCF(2,5)=1 which is fine — but would eliminate something like (m,n)=(4,10) if mn=40).
+**takeaway:** GCF(a,b) = d → write a = dm, b = dn with GCF(m,n) = 1. Then ab = d²mn = given product. Solve for mn, then enumerate coprime pairs. Ordered vs. unordered: (m,n) and (n,m) are different ordered pairs unless m = n.
+**related_reading:** reading-quant-03-number-properties

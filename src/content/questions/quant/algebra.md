@@ -296,7 +296,7 @@ For all positive integers n, let f(n) = n² - n. What is the value of f(f(3))?
 ---
 
 ## Q12
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Systems of Equations
 
@@ -528,7 +528,7 @@ The sum of three consecutive even integers is 18 more than twice the smallest of
 **mistake_a:** Translated "consecutive integers" instead of "consecutive even integers" — n, n+1, n+2; got n+2 = 10.
 **mistake_b:** Solved for n itself (12) and bubbled.
 **mistake_c:** Got middle integer n+2 = 14 and bubbled.
-**mistake_e:** Translated "18 more than twice the smallest" as 2n − 18 (sign error); got n = −24 then took absolute or some other slip producing 18.
+**mistake_e:** Correctly found n = 12 but added 6 instead of 4 to compute the largest, reasoning that three integers each 2 apart span 3 × 2 = 6 from smallest to largest: 12 + 6 = 18. The actual span is only 4 (the sequence is n, n+2, n+4), so the largest is n + 4 = 16.
 **common_trap:** Translation errors on "more than" — attaching the +18 to the wrong side, or treating consecutive integers as consecutive evens (or vice versa).
 **takeaway:** "X is Y more than Z" means X = Z + Y. "Consecutive even integers" differ by 2; "consecutive integers" differ by 1.
 **related_reading:** reading-quant-05-word-problems
@@ -602,7 +602,7 @@ A sequence satisfies a₁ = 3 and a_{n+1} = aₙ + n + 1 for every integer n ≥
 - E) 5,151
 
 **answer:** C
-**fastest_path:** a₁₀₀ = a₁ + Σ_{k=2}^{100} k = 3 + (5050 − 1) = 5052.
+**fastest_path:** a₁₀₀ = a₁ + (2 + 3 + ⋯ + 100) = 3 + (5050 − 1) = 3 + 5049 = 5052.
 **explanation:** Telescope the recurrence: a₂ = a₁ + 2, a₃ = a₂ + 3, …, aₙ = aₙ₋₁ + n. Sum: aₙ = a₁ + (2 + 3 + ... + n) = a₁ + (n(n+1)/2 − 1) (subtracting 1 because the sum starts at 2, not 1). For n = 100: a₁₀₀ = 3 + (5050 − 1) = 3 + 5049 = 5052. Total time: ~60 seconds with the telescoping insight.
 **mistake_a:** Computed n(n+1)/2 = 5050 and bubbled — dropped the offset adjustment.
 **mistake_b:** Off-by-one error: included or excluded the wrong term.
@@ -685,10 +685,10 @@ If 1/(x − 3) + 1/(x + 3) = 12/(x² − 9), what is the value of x?
 **answer:** D
 **fastest_path:** Common denominator x² − 9 = (x−3)(x+3). LHS = 2x/(x²−9). Set equal: 2x = 12 → x = 6.
 **explanation:** Notice x² − 9 = (x − 3)(x + 3). Combine the left side over the common denominator: 1/(x−3) + 1/(x+3) = [(x+3) + (x−3)] / (x²−9) = 2x / (x²−9). The equation becomes 2x/(x²−9) = 12/(x²−9). Same denominator → numerators equal: 2x = 12 → x = 6. Verify: x = 6 doesn't zero any denominator, so it's valid.
-**mistake_a:** Picked x = 3 without checking the domain — x = 3 makes 1/(x−3) undefined.
-**mistake_b:** Computed 12/3 = 4 from a shortcut that ignored structure.
-**mistake_c:** Solved 2x + 12 = ... or some other miscombined equation; got 5.
-**mistake_e:** Multiplied 12 directly: 12/2 = 6, then doubled wrongly to 12 (or some other setup).
+**mistake_a:** Combined the LHS numerator incorrectly: wrote (x+3) + (x+3) = 2(x+3) instead of (x+3) + (x−3) = 2x, obtaining 2(x+3)/(x²−9) = 12/(x²−9) → 2(x+3) = 12 → x = 3. Note that x = 3 also makes 1/(x−3) undefined, so it fails the domain check as a further red flag.
+**mistake_b:** Did not simplify algebraically and instead tested answer choices; at x = 4 computed LHS = 1/1 + 1/7 ≈ 1.14 and RHS = 12/7 ≈ 1.71, then misread the values as close enough and stopped before reaching x = 6.
+**mistake_c:** Combined numerators with a subtraction instead of addition: wrote (x+3) − (x−3) = 6 instead of 2x, giving 6/(x²−9) = 12/(x²−9) → 6 = 12, a contradiction. After the dead end, guessed C = 5 as the midpoint between the nearest answer choices.
+**mistake_e:** Combined the LHS correctly to 2x/(x²−9) = 12/(x²−9) but then dropped the coefficient of 2 when equating numerators, reading the equation as x = 12 instead of 2x = 12 → x = 6.
 **common_trap:** Domain violations on rational equations — accepting an extraneous solution that makes a denominator zero.
 **takeaway:** When solving rational equations, find the common denominator, simplify, then verify the answer doesn't violate the domain (no denominator = 0).
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -827,25 +827,28 @@ Geometric interpretation: |x−1| + |x−4| + |x−7| is the total distance from
 ## Q31
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Linear Systems — Sum Extraction
+**topic:** Linear Systems — Parametric Consistency
 
-If 2a + 3b = 16 and 5a − 3b = 19, what is the value of a + b?
+The system of equations 3x + ky = 12 and 6x + 10y = 24 has infinitely many solutions. What is the value of k?
 
-- A) 5
-- B) 7
-- C) 9
-- D) 11
-- E) 13
+- A) 2
+- B) 4
+- C) 5
+- D) 6
+- E) 10
 
-**answer:** B
-**fastest_path:** Add to cancel b: 7a = 35 → a = 5. Then 10 + 3b = 16 → b = 2. a + b = 7.
-**explanation:** Coefficients on b are equal-and-opposite (+3 and −3), making addition the obvious one-step path. Adding 2a + 3b + 5a − 3b = 16 + 19 → 7a = 35 → a = 5. Substitute into the first equation: 2(5) + 3b = 16 → 3b = 6 → b = 2. Therefore a + b = 7.
-**mistake_a:** Stopped after finding a = 5 and bubbled — the question asks for a + b, not a alone.
-**mistake_c:** Found a = 5 and b = 2 correctly, then made an arithmetic slip adding: wrote 5 + 4 = 9 instead of 5 + 2 = 7 (mis-read the value of b in their scratch work).
-**mistake_d:** Confused the question with "what is a × b" and computed 5 × 2 = 10, then added a stray 1 from a coefficient in the equations, arriving at 11.
-**mistake_e:** Summed both right-hand sides (16 + 19 = 35) and confused this with the answer, then searched for the nearest plausible choice (13) rather than recognizing the sum 35 = 7a.
-**common_trap:** Solving past sufficiency or stopping early — bubbling a (or b) when the question asked for a + b.
-**takeaway:** When two equations have equal-and-opposite coefficients on one variable, add to cancel and solve in one step.
+**answer:** C
+**hint_nudge:** Infinitely many solutions means both equations describe the same line. What relationship between their coefficients makes that true?
+**hint_strategy:** Reduce equation 2 to lowest terms first, then match it coefficient by coefficient against equation 1.
+**hint_setup:** Divide 6x + 10y = 24 by 2: 3x + 5y = 12. Now compare with 3x + ky = 12.
+**fastest_path:** Divide equation 2 by 2: 3x + 5y = 12. Match against equation 1: k = 5.
+**explanation:** Two linear equations have infinitely many solutions when they represent the same line — i.e., one equation is a scalar multiple of the other. Divide equation 2 by 2: 3x + 5y = 12. This is now identical to equation 1 with k = 5. The x-coefficients match (3 = 3) and so do the constants (12 = 12); the y-coefficient pins k = 5. Three cases for a 2×2 linear system: if the equations are proportional (same line), infinitely many solutions; if they are parallel but distinct (same direction, different constant), no solution; otherwise, a unique solution.
+**mistake_a:** Identified the common factor of {6, 10, 24} as 2 and wrote k = 2 — stopped at the scale factor rather than using it to reduce equation 2 and then read off the y-coefficient.
+**mistake_b:** Correctly divided 10 by 2 but made an arithmetic slip: wrote 10 ÷ 2 = 4 instead of 5.
+**mistake_d:** Read k directly from equation 2 as the x-coefficient 6, without first dividing equation 2 by its scale factor.
+**mistake_e:** Read k directly from equation 2 as the y-coefficient 10, without first dividing equation 2 by its scale factor.
+**common_trap:** Reading coefficients from the unreduced equation — equation 2 must be scaled down by 2 before its coefficients can be matched against equation 1.
+**takeaway:** For infinitely many solutions, reduce each equation to simplest form, then verify that all three ratios (coefficient of x, coefficient of y, constant) are equal. "Infinitely many" → same line → equations are proportional.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 
