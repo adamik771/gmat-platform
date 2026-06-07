@@ -195,6 +195,41 @@ function parseQuestionBlock(
       meta[key] = match[2].trim()
     }
   }
+
+  // Prose fields may span multiple lines in the source. The single-line
+  // `metaRegex` above captures only the first line, which silently truncated
+  // multi-line explanations (and per-choice trap analysis) down to their
+  // opening sentence — the rich reasoning authors wrote below the first line
+  // never reached the student. Re-extract these fields with a multi-line scan
+  // that runs until the next known field marker, an option line, a question
+  // header, or the end of the block. Metadata fields (difficulty, type, topic,
+  // answer, related_reading, etc.) stay single-line so the prompt that follows
+  // them is never absorbed.
+  const fieldBoundary =
+    String.raw`\*\*(?:difficulty|type|topic|answer|explanation|hint_nudge|hint_strategy|hint_setup|fastest_path|common_trap|takeaway|related_reading|mistake_[a-z]|subchapter|skill|trap_type|est_time_seconds|prerequisite):\*\*`
+  const PROSE_FIELDS = [
+    "explanation",
+    "fastest_path",
+    "common_trap",
+    "takeaway",
+    "mistake_a",
+    "mistake_b",
+    "mistake_c",
+    "mistake_d",
+    "mistake_e",
+    "mistake_f",
+  ] as const
+  for (const field of PROSE_FIELDS) {
+    const re = new RegExp(
+      String.raw`\*\*${field}:\*\*[ \t]*([\s\S]*?)(?=\n\s*${fieldBoundary}|\n\s*-\s+[A-E]\)|\n#{2,3}\s|$)`,
+      "i"
+    )
+    const m = block.match(re)
+    if (m) {
+      const value = m[1].trim()
+      if (value.length > 0) meta[field] = value
+    }
+  }
   // Progressive hints — optional. Authors can add any subset of
   // `**hint_nudge:**`, `**hint_strategy:**`, `**hint_setup:**` to a
   // question. Order is fixed (nudge → strategy → setup) so the UI
