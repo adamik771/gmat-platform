@@ -957,3 +957,553 @@ Together: 4 < n < 12 → n ∈ {5, 6, 7, 8, 9, 10, 11}. 7 values. Still not uniq
 **common_trap:** Assuming the triangle inequality plus both bounds pins down a single value — it narrows the range but doesn't unique-ify.
 **takeaway:** Triangle inequality: |a − b| < third side < a + b. To pin down a unique side, need narrower bounds than just an open range.
 **related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Triangles
+**skill:** triangle-area-formula
+**trap_type:** formula-confusion
+**est_time_seconds:** 45
+
+A triangle has a base of 8 and a corresponding height of 5. What is its area?
+
+- A) 13
+- B) 20
+- C) 26
+- D) 40
+- E) 80
+
+**answer:** B
+**hint_nudge:** A triangle's area uses one half of base times height — don't confuse it with a perimeter or with the full rectangle.
+**hint_strategy:** Multiply the base by the height, then take half.
+**hint_setup:** ½ × 8 × 5 = ½ × 40.
+**fastest_path:** Area = ½ × base × height = ½ × 8 × 5 = 20.
+**explanation:** The area of any triangle is ½ × base × height, using a height that is perpendicular to the chosen base. Here that is ½ × 8 × 5 = ½ × 40 = 20. The base-times-height product (40) is the area of the parallelogram with the same base and height — a triangle is exactly half of that, which is the single most common slip on this formula.
+**mistake_a:** Added the two given lengths (8 + 5 = 13) instead of using the area formula.
+**mistake_c:** Computed a perimeter-style sum, 2(8 + 5) = 26.
+**mistake_d:** Forgot the ½ and bubbled base × height = 40 (the full parallelogram, twice the triangle).
+**mistake_e:** Multiplied by 2 instead of ½: 2 × 8 × 5 = 80.
+**common_trap:** Dropping the one-half — treating base × height as the triangle's area.
+**takeaway:** Triangle area = ½ × base × height. The base × height product is the parallelogram of the same base and height — exactly double the triangle.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Circles
+**skill:** circle-circumference
+**trap_type:** radius-diameter-swap
+**est_time_seconds:** 40
+
+A circle has a diameter of 14. What is its circumference? (Leave your answer in terms of π.)
+
+- A) 7π
+- B) 14π
+- C) 28π
+- D) 49π
+- E) 196π
+
+**answer:** B
+**hint_nudge:** Circumference can be written two equivalent ways — one of them uses the diameter directly, with no halving.
+**hint_strategy:** C = πd, and the diameter is given, so substitute straight in.
+**hint_setup:** C = π × 14.
+**fastest_path:** C = πd = 14π (equivalently 2πr = 2π·7 = 14π).
+**explanation:** Circumference is C = 2πr = πd. The diameter is given directly as 14, so C = π × 14 = 14π. The only care needed is not to confuse circumference with area, and not to plug the diameter into the 2πr form (which double-counts the radius).
+**mistake_a:** Used the radius as the answer (7π), e.g. wrote C = πr.
+**mistake_c:** Plugged the diameter into 2πr: 2π × 14 = 28π (double-counted).
+**mistake_d:** Computed the area with the radius: πr² = π × 49 = 49π.
+**mistake_e:** Computed πd² = π × 14² = 196π (area-style with the diameter).
+**common_trap:** Confusing circumference with area, or mixing radius and diameter inside the 2πr versus πd forms.
+**takeaway:** C = 2πr = πd; area = πr². Use πd when the diameter is given so you never have to halve and re-double.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Quadrilaterals
+**skill:** trapezoid-area
+**trap_type:** averaging-omission
+**est_time_seconds:** 45
+
+A trapezoid has parallel sides of length 6 and 10, and the perpendicular distance between those sides is 4. What is its area?
+
+- A) 24
+- B) 32
+- C) 40
+- D) 64
+- E) 240
+
+**answer:** B
+**hint_nudge:** A trapezoid's area uses the average of the two parallel sides, times the height between them.
+**hint_strategy:** Add the parallel sides, halve, then multiply by the height.
+**hint_setup:** ½ × (6 + 10) × 4 = ½ × 16 × 4.
+**fastest_path:** Area = ½(b₁ + b₂)h = ½(6 + 10)(4) = ½(16)(4) = 32.
+**explanation:** A trapezoid's area is the average of its two parallel sides times the perpendicular height: ½(b₁ + b₂)h. Here ½(6 + 10)(4) = ½ × 16 × 4 = 32. Intuitively, the average base (8) times the height (4) gives 32 — the same number, which is a good sanity check.
+**mistake_a:** Used only one base: 6 × 4 = 24.
+**mistake_c:** Used the other base: 10 × 4 = 40.
+**mistake_d:** Forgot the ½: (6 + 10) × 4 = 64.
+**mistake_e:** Multiplied all three numbers: 6 × 10 × 4 = 240.
+**common_trap:** Using a single base instead of the average of the two parallel sides (or forgetting the ½).
+**takeaway:** Trapezoid area = ½(b₁ + b₂) × h — the average of the parallel sides times the height.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** 3D / Solids
+**skill:** cube-volume-surface-area
+**trap_type:** incomplete-formula
+**est_time_seconds:** 50
+
+The volume of a cube is 64. What is its total surface area?
+
+- A) 16
+- B) 24
+- C) 48
+- D) 96
+- E) 384
+
+**answer:** D
+**hint_nudge:** First recover the edge length from the volume, then apply the surface-area formula.
+**hint_strategy:** s is the cube root of the volume; a cube has 6 faces, each of area s².
+**hint_setup:** s = ∛64 = 4; surface area = 6 × 4².
+**fastest_path:** s³ = 64 → s = 4; SA = 6s² = 6(16) = 96.
+**explanation:** A cube of edge s has volume s³ and total surface area 6s² (six square faces). From s³ = 64, the edge is s = 4. So the surface area is 6 × 4² = 6 × 16 = 96. The two-step structure — recover the edge, then apply the other formula — is where most errors creep in.
+**mistake_a:** Computed one face only: s² = 16.
+**mistake_b:** Used the edge instead of edge² in the count: 6 × 4 = 24.
+**mistake_c:** Counted only three faces (or halved): 3 × 16 = 48.
+**mistake_e:** Used the volume as the face area: 6 × 64 = 384.
+**common_trap:** Forgetting the factor of 6 (one face versus all six) or using the edge instead of its square.
+**takeaway:** Cube: V = s³, SA = 6s². Recover the edge first, then apply whichever formula the question wants.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Angles
+**skill:** supplementary-angles
+**trap_type:** answer-the-wrong-quantity
+**est_time_seconds:** 50
+
+Points A, B, and C lie on a straight line, with B between A and C. Ray BD is drawn from B. If angle ABD is twice the measure of angle DBC, what is the measure, in degrees, of angle ABD?
+
+- A) 45
+- B) 60
+- C) 90
+- D) 120
+- E) 135
+
+**answer:** D
+**hint_nudge:** Angles on one side of a straight line add up to 180°.
+**hint_strategy:** Let the smaller angle be x; then the other is 2x, and the two together make a straight angle.
+**hint_setup:** x + 2x = 180, so x = 60 and ABD = 2x.
+**fastest_path:** ABD + DBC = 180 and ABD = 2·DBC → 3·DBC = 180 → DBC = 60, so ABD = 120.
+**explanation:** Because A, B, C are collinear, angles ABD and DBC sit on one side of a straight line and so are supplementary: ABD + DBC = 180°. With ABD = 2·DBC, substitute to get 2·DBC + DBC = 180°, i.e. 3·DBC = 180°, so DBC = 60° and ABD = 2(60) = 120°. The decisive step is naming what the question asks for — ABD, the larger angle — before bubbling.
+**mistake_a:** Used a 3:1 split and took the small piece: ¼ × 180 = 45.
+**mistake_b:** Found DBC = 60 correctly but bubbled the smaller angle instead of ABD.
+**mistake_c:** Assumed the two angles are equal (each 90°).
+**mistake_e:** Used a 3:1 split for ABD: ¾ × 180 = 135.
+**common_trap:** Solving for the wrong angle (the smaller one) and bubbling it.
+**takeaway:** Angles forming a straight line are supplementary (sum 180°). Always re-read which angle is requested before answering.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+**skill:** line-equation-intercept
+**trap_type:** sign-error-negative-slope
+**est_time_seconds:** 90
+
+Line k passes through the points (−2, 3) and (4, −9). At what point does line k cross the y-axis?
+
+- A) (0, −1)
+- B) (0, 1)
+- C) (0, 7)
+- D) (0, −5)
+- E) (0, 5)
+
+**answer:** A
+**hint_nudge:** Find the slope first, then use one known point to solve for the y-intercept.
+**hint_strategy:** m = Δy/Δx; then b = y − m·x using either given point.
+**hint_setup:** m = (−9 − 3)/(4 − (−2)) = −12/6 = −2; with (−2, 3): b = 3 − (−2)(−2).
+**fastest_path:** Slope = (−9 − 3)/(4 + 2) = −2; y-intercept b = 3 − (−2)(−2) = 3 − 4 = −1, so (0, −1).
+**explanation:** The slope is m = (−9 − 3)/(4 − (−2)) = −12/6 = −2. Using point-slope or y = mx + b with the point (−2, 3): 3 = (−2)(−2) + b = 4 + b, so b = −1. The y-axis crossing is (0, −1). The hazard is the double negative in m·x = (−2)(−2) = +4; mishandling it flips the intercept's sign.
+**mistake_b:** Sign slip on b (used 3 = −4 + b → b = 7 then mis-copied), landing at +1.
+**mistake_c:** Took the slope as +2: 3 = (2)(−2) + b → b = 7.
+**mistake_d:** Substituted the other point with a sign error.
+**mistake_e:** Mixed a sign error with the +2 slope to reach +5.
+**common_trap:** Sign errors when the slope is negative and a coordinate is also negative (the m·x double negative).
+**takeaway:** The y-intercept is b in y = mx + b: compute the slope, then b = y₁ − m·x₁, watching every sign.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Circles
+**skill:** sector-area
+**trap_type:** arc-vs-sector
+**est_time_seconds:** 75
+
+A circle has a radius of 9. A sector of this circle has a central angle of 40°. What is the area of the sector?
+
+- A) 2π
+- B) 9π
+- C) 18π
+- D) 81π
+- E) 9
+
+**answer:** B
+**hint_nudge:** A sector's area is a fraction of the whole circle's area, and the fraction is the central angle over 360.
+**hint_strategy:** (central angle / 360) × πr².
+**hint_setup:** (40/360) × π × 9² = (1/9) × 81π.
+**fastest_path:** (40/360)·πr² = (1/9)·81π = 9π.
+**explanation:** A sector is the fraction (θ/360) of the full circle, so its area is (θ/360)·πr². Here (40/360) = 1/9 and πr² = 81π, giving (1/9)(81π) = 9π. The most common error is computing arc length, (θ/360)·2πr = (1/9)(18π) = 2π, which answers a different question.
+**mistake_a:** Computed the arc length, (40/360)·2πr = 2π, instead of the area.
+**mistake_c:** Doubled the correct area to 18π (used 2πr-style scaling).
+**mistake_d:** Bubbled the whole circle's area, πr² = 81π.
+**mistake_e:** Dropped the π and reported 9.
+**common_trap:** Computing arc length (2πr-based) when the question asks for sector area (πr²-based).
+**takeaway:** Sector area = (θ/360)·πr²; arc length = (θ/360)·2πr. Match the base formula to what is asked.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Triangles
+**skill:** equilateral-triangle-area
+**trap_type:** missing-root-three
+**est_time_seconds:** 90
+
+An equilateral triangle has a side length of 12. What is its area?
+
+- A) 18√3
+- B) 36√3
+- C) 72
+- D) 72√3
+- E) 144√3
+
+**answer:** B
+**hint_nudge:** Drop an altitude to split the equilateral triangle into two 30-60-90 triangles — the height is not 12.
+**hint_strategy:** Height = (√3/2)·side; then area = ½·base·height. Or use Area = (√3/4)s² directly.
+**hint_setup:** Height = (√3/2)(12) = 6√3; area = ½ × 12 × 6√3.
+**fastest_path:** Area = (√3/4)s² = (√3/4)(144) = 36√3.
+**explanation:** An equilateral triangle's altitude splits it into two 30-60-90 triangles, so the height is (√3/2)·side = (√3/2)(12) = 6√3. The area is ½ × base × height = ½ × 12 × 6√3 = 36√3. Equivalently, use the standard result Area = (√3/4)s² = (√3/4)(144) = 36√3. The √3 is non-negotiable — it comes from the 30-60-90 ratio.
+**mistake_a:** Used half the base as well: ½ × 6 × 6√3 = 18√3.
+**mistake_c:** Used the side as the height (no √3): ½ × 12 × 12 = 72.
+**mistake_d:** Forgot the ½: 12 × 6√3 = 72√3.
+**mistake_e:** Used the (√3/4)s² result without the /4: √3 × 144 = 144√3.
+**common_trap:** Treating the side length as the height — forgetting the √3 factor from the 30-60-90 split.
+**takeaway:** Equilateral triangle: height = (√3/2)s, area = (√3/4)s². The √3 always appears; if it is missing, you used the side as the height.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** 3D / Solids
+**skill:** box-space-diagonal
+**trap_type:** dimension-undercount
+**est_time_seconds:** 75
+
+What is the length of the longest straight rod that can fit entirely inside a closed rectangular box with dimensions 3 by 4 by 12?
+
+- A) 12
+- B) 13
+- C) 5
+- D) √19
+- E) 19
+
+**answer:** B
+**hint_nudge:** The longest rod runs along the box's interior 3-D diagonal — not along an edge or a single face.
+**hint_strategy:** Space diagonal = √(l² + w² + h²).
+**hint_setup:** √(3² + 4² + 12²) = √(9 + 16 + 144).
+**fastest_path:** Space diagonal = √(3² + 4² + 12²) = √169 = 13.
+**explanation:** The longest segment inside a box is its space diagonal, √(l² + w² + h²). Here √(9 + 16 + 144) = √169 = 13. A clean way to see it: the 3-by-4 face has diagonal 5 (3-4-5), and that 5 combines with the 12 edge as 5-12-13. So the rod is 13.
+**mistake_a:** Bubbled the longest edge (12), ignoring the diagonal.
+**mistake_c:** Used only the 3-4 face diagonal (√25 = 5), ignoring the 12.
+**mistake_d:** Added the dimensions before rooting: √(3 + 4 + 12) = √19.
+**mistake_e:** Summed the dimensions: 3 + 4 + 12 = 19.
+**common_trap:** Using a face diagonal (two dimensions) or a single edge instead of all three dimensions.
+**takeaway:** Box space diagonal = √(l² + w² + h²). 3-4-12-13 is a handy Pythagorean quadruple.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+**skill:** midpoint-find-endpoint
+**trap_type:** midpoint-direction
+**est_time_seconds:** 75
+
+Point M(5, −2) is the midpoint of segment PQ. If P has coordinates (1, 4), what are the coordinates of Q?
+
+- A) (3, 1)
+- B) (9, −8)
+- C) (6, 2)
+- D) (−3, 10)
+- E) (9, 8)
+
+**answer:** B
+**hint_nudge:** M is exactly halfway, so Q is the same distance past M as P is before it — extend, don't average.
+**hint_strategy:** Q = 2M − P, coordinate by coordinate.
+**hint_setup:** x: 2(5) − 1 = 9; y: 2(−2) − 4 = −8.
+**fastest_path:** Q = 2M − P = (2·5 − 1, 2·(−2) − 4) = (9, −8).
+**explanation:** Since M is the midpoint, each coordinate of M is the average of the corresponding coordinates of P and Q. Solving (1 + Qx)/2 = 5 gives Qx = 9, and (4 + Qy)/2 = −2 gives Qy = −8. The shortcut is Q = 2M − P. The classic error is to average P and M, which finds the wrong point (a point between them) rather than the far endpoint.
+**mistake_a:** Averaged P and M: ((1+5)/2, (4−2)/2) = (3, 1).
+**mistake_c:** Added the displacement to M instead of P incorrectly: (5+1, −2+4) = (6, 2).
+**mistake_d:** Moved the wrong direction: P − (M − P) = (−3, 10).
+**mistake_e:** Got the x-coordinate right but missed the sign on y: (9, 8).
+**common_trap:** Averaging P and M (treating M as an endpoint) instead of extrapolating to the far endpoint.
+**takeaway:** If M is the midpoint of PQ, then Q = 2M − P. Extend through M; don't average.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Polygons
+**skill:** regular-polygon-sides
+**trap_type:** interior-not-converted
+**est_time_seconds:** 75
+
+Each interior angle of a regular polygon measures 150°. How many sides does the polygon have?
+
+- A) 8
+- B) 12
+- C) 15
+- D) 24
+- E) 30
+
+**answer:** B
+**hint_nudge:** Each exterior angle is the supplement of the interior angle, and the exterior angles of any polygon total 360°.
+**hint_strategy:** exterior = 180 − interior; number of sides = 360 / exterior.
+**hint_setup:** exterior = 180 − 150 = 30; n = 360/30.
+**fastest_path:** Exterior angle = 180 − 150 = 30; n = 360/30 = 12.
+**explanation:** The fastest route uses exterior angles: each exterior angle of a regular polygon is 180 − interior = 180 − 150 = 30°, and the exterior angles always sum to 360°, so n = 360/30 = 12. (Checking with the interior formula: (n − 2)·180/n = 150 → 180n − 360 = 150n → 30n = 360 → n = 12.)
+**mistake_a:** Misremembered the interior as 135° (octagon), giving exterior 45 and n = 8.
+**mistake_c:** Inverted the relationship: 360/24 = 15.
+**mistake_d:** Halved the exterior angle to 15 by mistake: 360/15 = 24.
+**mistake_e:** Bubbled the exterior angle (30) instead of the number of sides.
+**common_trap:** Working with the interior angle directly instead of first converting to the exterior angle.
+**takeaway:** For a regular n-gon, each exterior angle = 360/n = 180 − interior. The exterior route beats the (n − 2)·180 formula.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Quadrilaterals
+**skill:** rectangle-sufficiency
+**trap_type:** property-scope-overreach
+**est_time_seconds:** 110
+
+In quadrilateral WXYZ, is WXYZ a rectangle?
+
+(1) WXYZ is a parallelogram with one interior angle equal to 90°.
+(2) The diagonals WY and XZ are equal in length.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**hint_nudge:** A fact that defines a rectangle within the parallelogram family may not define it for a general quadrilateral.
+**hint_strategy:** Test statement (2) against a non-rectangle that still has equal diagonals.
+**hint_setup:** An isosceles trapezoid has equal diagonals but is not a rectangle — so (2) cannot be sufficient alone.
+**fastest_path:** (1) A parallelogram with one 90° angle has all four 90° → rectangle (sufficient). (2) Equal diagonals don't force a rectangle without "parallelogram" (isosceles trapezoid) → insufficient. Answer A.
+**explanation:** Statement (1): in a parallelogram, opposite angles are equal and consecutive angles are supplementary, so one 90° angle forces all four to be 90°. That makes WXYZ a rectangle — sufficient. Statement (2): "equal diagonals implies rectangle" is true only after you already know the figure is a parallelogram. For a general quadrilateral it fails: an isosceles trapezoid has equal diagonals but is not a rectangle. Insufficient. So (1) alone works and (2) alone does not — answer A.
+**mistake_b:** Treated "equal diagonals" as sufficient on its own (the parallelogram-only fact misapplied).
+**mistake_c:** Thought both statements were needed, missing that (1) already forces a rectangle.
+**mistake_d:** Concluded each alone is sufficient, overlooking the isosceles-trapezoid counterexample for (2).
+**mistake_e:** Concluded even together insufficient, ignoring that (1) alone settles it.
+**common_trap:** Applying "equal diagonals ⇒ rectangle" (valid only for parallelograms) to a general quadrilateral.
+**takeaway:** "Equal diagonals" implies a rectangle only once the figure is known to be a parallelogram; isosceles trapezoids also have equal diagonals.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Circles
+**skill:** inscribed-right-triangle
+**trap_type:** diameter-as-radius
+**est_time_seconds:** 120
+
+A right triangle is inscribed in a circle so that its hypotenuse is a diameter of the circle. The triangle's legs have lengths 16 and 30. What is the area of the region that is inside the circle but outside the triangle?
+
+- A) 289π − 240
+- B) 289π − 480
+- C) 1156π − 240
+- D) 256π − 240
+- E) 289π − 120
+
+**answer:** A
+**hint_nudge:** The hypotenuse being a diameter is the key fact — it hands you the radius through the Pythagorean theorem (Thales' theorem).
+**hint_strategy:** Hypotenuse = diameter; radius = hypotenuse/2; shaded region = circle area − triangle area.
+**hint_setup:** Hypotenuse = √(16² + 30²) = 34, so r = 17; shaded = π(17²) − ½(16)(30).
+**fastest_path:** Hypotenuse = √(16² + 30²) = √1156 = 34 = diameter → r = 17. Shaded = πr² − ½(16)(30) = 289π − 240.
+**explanation:** Any right triangle inscribed in a circle with its hypotenuse on a diameter satisfies Thales' theorem: the right angle subtends the diameter. So the hypotenuse equals the diameter. Here the hypotenuse is √(16² + 30²) = √(256 + 900) = √1156 = 34, giving radius 17. The circle's area is π(17²) = 289π, and the triangle's area is ½ × 16 × 30 = 240. The region inside the circle but outside the triangle is 289π − 240.
+**mistake_b:** Dropped the ½ on the triangle's area: 289π − 480.
+**mistake_c:** Used the diameter 34 as the radius: π(34²) = 1156π, minus 240.
+**mistake_d:** Used a leg (16) as the radius: π(16²) = 256π, minus 240.
+**mistake_e:** Halved the triangle area a second time: ¼(16)(30) = 120.
+**common_trap:** Using the diameter (34) as the radius, or dropping the ½ on the triangle.
+**takeaway:** An inscribed right angle subtends a diameter (Thales). Halve the hypotenuse for the radius, and keep the ½ in the leg-leg triangle area.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Triangles
+**skill:** isosceles-case-analysis
+**trap_type:** untested-second-case
+**est_time_seconds:** 105
+
+An isosceles triangle has one side of length 4 and another side of length 9. What is the perimeter of the triangle?
+
+- A) 17
+- B) 22
+- C) 17 or 22
+- D) 13
+- E) 26
+
+**answer:** B
+**hint_nudge:** "Isosceles" gives two candidate triangles — but one of them might be geometrically impossible.
+**hint_strategy:** List both cases for the third side, then apply the triangle inequality to discard any impossible one.
+**hint_setup:** Case {4, 4, 9}: 4 + 4 = 8, which is not greater than 9 — impossible. Case {9, 9, 4}: valid.
+**fastest_path:** Third side is 4 or 9. {4, 4, 9} fails the triangle inequality (4 + 4 < 9); only {9, 9, 4} works → 9 + 9 + 4 = 22.
+**explanation:** Isosceles means two sides are equal, so the third side is either 4 or 9. If the sides were {4, 4, 9}, the two short sides sum to 8, which is less than 9 — that violates the triangle inequality, so no such triangle exists. The only legal triangle is {9, 9, 4}, with perimeter 9 + 9 + 4 = 22. The "17 or 22" choice is the designed trap for anyone who enumerates both cases but never tests feasibility.
+**mistake_a:** Chose the {4, 4, 9} case (perimeter 17) without checking that it's impossible.
+**mistake_c:** Listed both cases but skipped the triangle-inequality check, so reported both.
+**mistake_d:** Added only the two distinct given sides: 4 + 9 = 13.
+**mistake_e:** Doubled both given sides: 2(4) + 2(9) = 26.
+**common_trap:** Reporting both perimeters (or the impossible one) without applying a + b > c to each case.
+**takeaway:** With ambiguous isosceles sides, enumerate cases and test the triangle inequality on each. A "two answers" choice is often a trap when one case is impossible.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+**skill:** circle-equation-complete-square
+**trap_type:** r-squared-vs-r
+**est_time_seconds:** 120
+
+In the xy-plane, a circle is given by the equation x² + y² − 6x + 8y = 0. What is the area of the circle?
+
+- A) 25π
+- B) 5π
+- C) 25
+- D) 100π
+- E) 50π
+
+**answer:** A
+**hint_nudge:** Rewrite the equation in center-radius form by completing the square in both x and y.
+**hint_strategy:** x² − 6x → (x − 3)² − 9; y² + 8y → (y + 4)² − 16; then move the constants to the right side.
+**hint_setup:** (x − 3)² + (y + 4)² = 9 + 16.
+**fastest_path:** Complete the square: (x − 3)² + (y + 4)² = 25 → r² = 25 → area = πr² = 25π.
+**explanation:** Completing the square: x² − 6x = (x − 3)² − 9 and y² + 8y = (y + 4)² − 16. The equation becomes (x − 3)² − 9 + (y + 4)² − 16 = 0, i.e. (x − 3)² + (y + 4)² = 25. The right-hand side is r², so r² = 25 (r = 5) and the area is πr² = 25π. The trap is that 25 is r², not r and not the area — so 25π is correct, while "25" forgets the π and "100π" treats 5 as a radius-to-double.
+**mistake_b:** Read 25 as r and multiplied by π once: 5π (used r, not r²).
+**mistake_c:** Took r² = 25 as the area, dropping the π.
+**mistake_d:** Treated the radius as a diameter: doubled to 10, then π(10²) = 100π.
+**mistake_e:** Mis-added the completed-square constants (e.g. doubled 25) to get r² = 50.
+**common_trap:** Confusing r² with r, or treating the constant on the right (25) as the area itself.
+**takeaway:** For x² + y² + Dx + Ey + F = 0, complete the square; the number isolated on the right is r². Area = πr².
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Coordinate Geometry
+**skill:** line-determination-ds
+**trap_type:** ignore-stem-point
+**est_time_seconds:** 120
+
+In the xy-plane, line ℓ has positive slope and passes through the point (2, 3). Does line ℓ also pass through the point (5, 9)?
+
+(1) Line ℓ has slope 2.
+(2) Line ℓ passes through the point (0, −1).
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**hint_nudge:** The stem already hands you one point on the line — so how much more does it take to fix the line completely?
+**hint_strategy:** A line is determined by a point plus a slope, or by two points. Check what each statement adds to the given point (2, 3).
+**hint_setup:** (1) point (2, 3) + slope 2 → unique line. (2) points (2, 3) and (0, −1) → unique line. Then test whether (5, 9) lies on it.
+**fastest_path:** The stem gives the point (2, 3). (1) adds a slope → the line is fixed; at x = 5, y = 3 + 2(3) = 9 → yes. (2) adds a second point (0, −1) → slope = 4/2 = 2, same line → yes. Each alone determines the line, so each gives a definite answer. Answer D.
+**explanation:** A yes/no DS question about a line is settled the moment the line is uniquely determined. The stem already supplies one point, (2, 3). Statement (1) adds the slope (2): point + slope fixes the line y = 2x − 1, and at x = 5 we get y = 9 — yes, definitively. Statement (2) adds a second point, (0, −1): two points fix the line, whose slope is (3 − (−1))/(2 − 0) = 2, giving the same line y = 2x − 1, again passing through (5, 9). Because each statement alone pins the line, each alone answers the question — D. The trap is forgetting the stem's point and judging each statement as if it stood alone (a slope or a single point in isolation would be insufficient).
+**mistake_a:** Forgot that (2) supplies a second point, so a unique line is determined without (1).
+**mistake_b:** Forgot that (1) plus the stem's point already fixes the line.
+**mistake_c:** Required both, ignoring that the stem's point makes each statement self-sufficient.
+**mistake_e:** Judged the statements without using the stem's point at all.
+**common_trap:** Ignoring the point given in the stem, so each statement looks weaker than it is.
+**takeaway:** Fold the stem's information into every statement first. A point in the stem plus either a slope or a second point determines the line.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Quadrilaterals
+**skill:** square-corner-triangle-area
+**trap_type:** extraneous-root
+**est_time_seconds:** 165
+
+Square ABCD has side length 10. Point P lies on side BC and point Q lies on side CD such that CP = CQ. The area of triangle APQ is 32. What is the length of CP?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 8
+- E) 16
+
+**answer:** A
+**hint_nudge:** A direct base-times-height setup for triangle APQ is awkward — instead take the square's area and subtract the three corner right triangles.
+**hint_strategy:** Let CP = CQ = x. Write the three corner triangles in terms of x, subtract from 100, and set the result equal to 32.
+**hint_setup:** Corner triangles: ABP = ½·10·(10 − x), ADQ = ½·10·(10 − x), PCQ = ½·x·x. Area(APQ) = 100 − [these].
+**fastest_path:** With CP = x, Area(APQ) = 100 − [10(10 − x) + ½x²] = 10x − ½x². Set 10x − ½x² = 32 → x² − 20x + 64 = 0 → x = 4 or 16; reject 16 (must have x ≤ 10) → CP = 4.
+**explanation:** Place the figure so CP = CQ = x. Triangle APQ is what remains after you remove the three right triangles at the corners A-adjacent and at C. Their areas are ABP = ½·10·(10 − x), ADQ = ½·10·(10 − x), and PCQ = ½·x·x. Summing: 10(10 − x) + ½x² = 100 − 10x + ½x². Subtracting from the square's 100 gives Area(APQ) = 10x − ½x². Setting this to 32: 10x − ½x² = 32, or x² − 20x + 64 = 0, which factors as (x − 4)(x − 16) = 0. The root x = 16 is impossible because P lies on a side of length 10, so x ≤ 10. Therefore CP = 4. (Check: ABP = 30, ADQ = 30, PCQ = 8, total 68; 100 − 68 = 32.)
+**mistake_b:** Assumed P and Q are midpoints (CP = 5) and never used the given area.
+**mistake_c:** Solved correctly for x = 4 but reported the complement, 10 − 4 = 6 (distance from B instead of C).
+**mistake_d:** Set the area as ½·CP·CP and solved ½x² = 32, getting x = 8.
+**mistake_e:** Took the extraneous root x = 16 of the quadratic without checking x ≤ 10.
+**common_trap:** Accepting an algebraic root that violates the figure's geometric bounds (here x ≤ 10).
+**takeaway:** For a triangle pinned to a square's corners, "whole minus the corner triangles" beats a direct base-height setup. Always test quadratic roots against the figure's physical limits.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
