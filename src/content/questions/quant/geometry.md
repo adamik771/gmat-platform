@@ -19,7 +19,7 @@ In a right triangle, the two legs have lengths 5 and 12. What is the length of t
 **answer:** A
 **fastest_path:** Recognize 5-12-13 Pythagorean triple → c = 13.
 **explanation:** Pythagorean theorem: c² = 5² + 12² = 25 + 144 = 169 → c = 13. Even faster: recognize 5-12-13 as a memorized triple.
-**mistake_b:** Computed (5+12)/2 + 6.5 = 15 from a wrong shortcut.
+**mistake_b:** Saw the 12 and grabbed 15 from the 9-12-15 triple (a 3-4-5 multiple) — wrong triple for these legs.
 **mistake_c:** Bubbled 17 (the 8-15-17 triple) — wrong triple.
 **mistake_d:** Computed √(12² − 5²) = √119 = ~10.9; rounded to 7. Or computed (12 − 5) = 7.
 **mistake_e:** Computed √(12² − 5²) (treated as missing leg, not hypotenuse) = √119.
@@ -193,10 +193,10 @@ An equilateral triangle has a side length of 6. What is its perimeter?
 In triangle ABC, angle A = 90 degrees, angle B = 30 degrees, and the hypotenuse BC has length 10. What is the length of side AC (opposite the 30-degree angle)?
 
 - A) 5
-- B) 5 * √2
-- C) 5 * √3
+- B) 5√2
+- C) 5√3
 - D) 10
-- E) 10 * √3
+- E) 10√3
 
 **answer:** A
 **fastest_path:** 30-60-90 ratio 1:√3:2. Hypotenuse 10 → opposite-30 = 10/2 = 5.
@@ -323,9 +323,9 @@ A right circular cylinder has a radius of 3 and a height of 10. What is its volu
 A right triangle has legs of length x and x. If its hypotenuse is 8, what is x?
 
 - A) 4
-- B) 4 * √2
+- B) 4√2
 - C) 8
-- D) 8 * √2
+- D) 8√2
 - E) 16
 
 **answer:** B
@@ -855,7 +855,7 @@ A triangle has vertices at (0, 0), (6, 0), and (0, 4). What is the length of the
 **answer:** A
 **fastest_path:** Legs 6 and 4 → hyp = √(36+16) = √52 = 2√13.
 **explanation:** Right triangle at origin with legs 6 (x-axis) and 4 (y-axis). Pythagorean: √(6² + 4²) = √(36 + 16) = √52 = √(4 × 13) = 2√13.
-**mistake_b:** Computed √(40) = 2√10 (used 6² − 16 wrongly).
+**mistake_b:** Squared only one leg: √(6² + 4) = √(36 + 4) = √40 = 2√10 — forgot to square the second leg.
 **mistake_c:** Bubbled the horizontal leg (6).
 **mistake_d:** Bubbled the vertical leg + 4 = 8 (or some sum).
 **mistake_e:** Added legs: 6 + 4 = 10.
@@ -914,7 +914,7 @@ A circular garden has a radius of 10 meters. A concentric circular walkway of un
 **fastest_path:** Annulus = π(R² − r²) = π(144 − 100) = 44π.
 **explanation:** Walkway = ring (annulus) between two circles. Outer radius = 10 + 2 = 12. Walkway area = π(R² − r²) = π(12² − 10²) = π(144 − 100) = 44π.
 
-Use the difference-of-squares shortcut: (12² − 10²) = (12 + 10)(12 − 2) = 22 × 2 = 44.
+Use the difference-of-squares shortcut: (12² − 10²) = (12 + 10)(12 − 10) = 22 × 2 = 44.
 **mistake_a:** Computed 2 × 10 = 20π wrongly.
 **mistake_b:** Computed 4 × 10 = 40π.
 **mistake_d:** Bubbled inner area only: π × 100 = 100π.
