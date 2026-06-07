@@ -957,3 +957,598 @@ Together: 4 < n < 12 → n ∈ {5, 6, 7, 8, 9, 10, 11}. 7 values. Still not uniq
 **common_trap:** Assuming the triangle inequality plus both bounds pins down a single value — it narrows the range but doesn't unique-ify.
 **takeaway:** Triangle inequality: |a − b| < third side < a + b. To pin down a unique side, need narrower bounds than just an open range.
 **related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Triangles — 30-60-90
+
+In triangle ABC, angle B = 90°, angle A = 30°, and the hypotenuse AC has length 14. What is the length of BC, the side opposite the 30° angle?
+
+- A) 14√3
+- B) 7
+- C) 7√2
+- D) 7√3
+- E) 14
+
+**answer:** B
+**fastest_path:** In a 30-60-90 triangle the side opposite 30° is half the hypotenuse. 14 ÷ 2 = 7.
+**explanation:** A 30-60-90 triangle has sides in the ratio 1 : √3 : 2, where the "1" sits opposite the 30° angle, the "√3" opposite the 60° angle, and the "2" (hypotenuse) opposite the 90° angle.
+
+Here the hypotenuse AC = 14 corresponds to the "2." Scale factor = 14 ÷ 2 = 7. So the side opposite 30° (the "1") = 7, and the side opposite 60° (the "√3") = 7√3.
+
+BC is opposite angle A = 30°, so BC = 7.
+**mistake_d:** Found the side opposite the 60° angle (7√3) instead of the 30° angle. Always pair the side with its opposite angle.
+**mistake_c:** Used the 45-45-90 ratio (1 : 1 : √2) by mistake, giving 7√2.
+**mistake_e:** Reported the hypotenuse itself rather than the requested leg.
+**mistake_a:** Doubled the hypotenuse instead of finding a leg.
+**common_trap:** Matching a side to the wrong angle — taking the 60° side when the 30° side was asked for.
+**trap_type:** wrong-angle-side-pairing
+**takeaway:** In a 30-60-90 triangle, the side opposite 30° is always half the hypotenuse; the side opposite 60° is that half times √3.
+**est_time_seconds:** 45
+**hint_nudge:** This is one of the two "special" right triangles — you don't need trig, just a fixed side ratio.
+**hint_strategy:** Write the 30-60-90 ratio 1 : √3 : 2 and line each part up with the angle it sits across from.
+**hint_setup:** The hypotenuse 14 is the "2" in the ratio, so the scale factor is 7. The side opposite 30° is the "1."
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Circles — Circumference and Area
+
+A circle has a circumference of 16π. What is its area?
+
+- A) 8π
+- B) 16π
+- C) 64π
+- D) 128π
+- E) 256π
+
+**answer:** C
+**fastest_path:** C = 2πr → r = 8. Area = πr² = 64π.
+**explanation:** Circumference is C = 2πr. Setting 2πr = 16π gives r = 8.
+
+Area is A = πr² = π(8)² = 64π.
+
+The single most common slip here is to confuse the two formulas, so anchor them: circumference scales with r (one power), area scales with r² (two powers).
+**mistake_a:** Forgot to square the radius and computed π·r = 8π.
+**mistake_b:** Set the area equal to the circumference (16π) — different formulas.
+**mistake_d:** Computed πr² correctly but then doubled it.
+**mistake_e:** Treated the "16" in 16π as the radius, giving π·16² = 256π.
+**common_trap:** Confusing the circumference formula (2πr) with the area formula (πr²), or skipping the squaring step.
+**trap_type:** area-vs-circumference-confusion
+**takeaway:** Solve for r first, then plug into the formula you actually need. Circumference is linear in r; area is quadratic in r.
+**est_time_seconds:** 50
+**hint_nudge:** You can't jump straight to area — find the radius first.
+**hint_strategy:** Use C = 2πr to extract r, then feed that r into A = πr².
+**hint_setup:** 2πr = 16π means r = 8. Now square it: π(8)².
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Coordinate Geometry — Slope
+
+What is the slope of the line passing through the points (−2, 3) and (4, −6)?
+
+- A) −2/3
+- B) 2/3
+- C) −1/2
+- D) −3/2
+- E) 3/2
+
+**answer:** D
+**fastest_path:** Slope = (−6 − 3) / (4 − (−2)) = −9 / 6 = −3/2.
+**explanation:** Slope = (change in y) / (change in x) = (y₂ − y₁) / (x₂ − x₁).
+
+Using (−2, 3) as point 1 and (4, −6) as point 2: slope = (−6 − 3) / (4 − (−2)) = −9 / 6 = −3/2.
+
+The line falls from left to right, so a negative slope is expected — a quick sanity check against sign errors.
+**mistake_e:** Dropped the negative sign. The y-value decreases while x increases, so the slope must be negative.
+**mistake_a:** Inverted the ratio, computing run-over-rise (Δx/Δy) instead of rise-over-run.
+**mistake_b:** Inverted the ratio and lost the sign.
+**mistake_c:** Mis-subtracted one of the coordinate differences.
+**common_trap:** Putting the change in x on top (run over rise) or mishandling the double negative in 4 − (−2).
+**trap_type:** rise-run-inverted
+**takeaway:** Slope is rise over run: Δy on top, Δx on the bottom. Subtract coordinates in the same order for both.
+**est_time_seconds:** 45
+**hint_nudge:** Decide the sign before you compute — is the line going up or down as you move right?
+**hint_strategy:** Slope = (y₂ − y₁)/(x₂ − x₁); keep the points in the same order top and bottom.
+**hint_setup:** Numerator: −6 − 3. Denominator: 4 − (−2). Watch the double negative.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Quadrilaterals — Rectangles
+
+A rectangle has a perimeter of 34 and a length of 10. What is its area?
+
+- A) 120
+- B) 140
+- C) 240
+- D) 100
+- E) 70
+
+**answer:** E
+**fastest_path:** Half-perimeter = 17 = length + width → width = 7. Area = 10 × 7 = 70.
+**explanation:** Perimeter of a rectangle is P = 2(l + w). So 2(10 + w) = 34, which gives 10 + w = 17, so w = 7.
+
+Area = l × w = 10 × 7 = 70.
+
+The fastest route is to halve the perimeter immediately: l + w = 17, so the width is just 17 − 10.
+**mistake_b:** Computed 34 − 2(10) = 14 and used 14 as the width (forgetting the remaining 14 is 2w, not w). Area would be 140.
+**mistake_a:** Used width 12 from (34 − 10)/2, forgetting that two lengths must be removed.
+**mistake_c:** Never halved the perimeter — used width 24 (34 − 10), giving 240.
+**mistake_d:** Assumed the figure was a square (10 × 10).
+**common_trap:** Forgetting that the perimeter counts two lengths and two widths, so isolating w requires dividing the right quantity by 2.
+**trap_type:** perimeter-double-count
+**takeaway:** For a rectangle, P/2 = l + w. Halving the perimeter first turns a two-step problem into one subtraction.
+**est_time_seconds:** 50
+**hint_nudge:** Half of the perimeter equals one length plus one width.
+**hint_strategy:** From 2(l + w) = 34, get l + w = 17, then subtract the known length.
+**hint_setup:** l + w = 17 and l = 10, so w = 7. Area is l × w.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Polygons — Interior Angles
+
+What is the sum of the interior angles of an octagon?
+
+- A) 135°
+- B) 1080°
+- C) 1440°
+- D) 900°
+- E) 360°
+
+**answer:** B
+**fastest_path:** (n − 2) × 180° with n = 8: 6 × 180° = 1080°.
+**explanation:** The sum of the interior angles of any polygon with n sides is (n − 2) × 180°. This works because a polygon with n sides can be cut into (n − 2) triangles, each contributing 180°.
+
+For an octagon, n = 8, so the sum is (8 − 2) × 180° = 6 × 180° = 1080°.
+**mistake_c:** Used n × 180° (8 × 180°) instead of (n − 2) × 180°, skipping the "−2."
+**mistake_d:** Used n = 7 (a heptagon) — likely miscounted octagon's sides.
+**mistake_e:** Reported the sum of the exterior angles, which is always 360° for any polygon.
+**mistake_a:** Found the measure of one interior angle of a regular octagon (1080° ÷ 8 = 135°) instead of the total.
+**common_trap:** Dropping the "−2" in the formula, or confusing the interior-angle sum with the constant 360° exterior-angle sum.
+**trap_type:** polygon-angle-formula
+**takeaway:** Interior-angle sum = (n − 2) × 180°. The exterior angles always total 360° no matter how many sides.
+**est_time_seconds:** 45
+**hint_nudge:** Think about how many triangles a polygon splits into from one vertex.
+**hint_strategy:** Use (n − 2) × 180°, where n is the number of sides.
+**hint_setup:** An octagon has 8 sides, so compute (8 − 2) × 180°.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Quadrilaterals — Square Diagonal
+
+A square has an area of 50. What is the length of its diagonal?
+
+- A) 5
+- B) 25
+- C) 10
+- D) 5√2
+- E) 10√2
+
+**answer:** C
+**fastest_path:** For a square, diagonal² = 2 × area = 100, so diagonal = 10.
+**explanation:** If the side is s, then area = s² = 50, so s = √50 = 5√2.
+
+The diagonal of a square is s√2 (it's the hypotenuse of a 45-45-90 triangle), so diagonal = 5√2 × √2 = 5 × 2 = 10.
+
+Shortcut worth memorizing: a square's diagonal² = s²·2 = 2 × (area). Here that's 2 × 50 = 100, so the diagonal is √100 = 10 — no need to find the side at all.
+**mistake_d:** Reported the side length (5√2) instead of the diagonal.
+**mistake_e:** Multiplied the diagonal by an extra √2, or applied s√2 to the wrong quantity, landing on 10√2.
+**mistake_a:** Took the square root of half the area (√25) by mishandling the relationship.
+**mistake_b:** Halved the area (50/2) and stopped.
+**common_trap:** Solving for the side and forgetting the final ×√2, or stacking √2 one time too many.
+**trap_type:** square-diagonal-relationship
+**takeaway:** Diagonal of a square = s√2, and equivalently diagonal² = 2 × area — the second form skips finding the side.
+**est_time_seconds:** 75
+**hint_nudge:** The diagonal cuts the square into two 45-45-90 triangles.
+**hint_strategy:** Either find the side from the area then multiply by √2, or use the shortcut diagonal² = 2 × area.
+**hint_setup:** diagonal² = 2 × 50 = 100. Take the square root.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Circles — Sector Area
+
+A circle has a radius of 6. A sector of the circle is bounded by a central angle of 60°. What is the area of the sector?
+
+- A) 2π
+- B) 12π
+- C) 6
+- D) 6π
+- E) 36π
+
+**answer:** D
+**fastest_path:** Sector area = (60/360) × π·6² = (1/6)(36π) = 6π.
+**explanation:** A sector is a fraction of the whole circle, and that fraction equals (central angle)/360°.
+
+Full-circle area = πr² = π(6)² = 36π. The sector's fraction is 60/360 = 1/6.
+
+Sector area = (1/6)(36π) = 6π.
+**mistake_e:** Used the full circle's area (36π), ignoring the 60° fraction.
+**mistake_a:** Computed the arc length instead: (1/6)(2π·6) = 2π. Arc length is a length, not an area.
+**mistake_b:** Doubled the correct value, perhaps by using 2πr² or mishandling the fraction.
+**mistake_c:** Dropped π from the calculation.
+**common_trap:** Confusing sector area with arc length, or forgetting to scale the full area by the angle fraction.
+**trap_type:** sector-fraction-vs-arc-length
+**takeaway:** Sector area = (angle/360) × πr²; arc length = (angle/360) × 2πr. The fraction is the same; the base quantity differs.
+**est_time_seconds:** 80
+**hint_nudge:** A sector is just a slice — what fraction of the whole circle is it?
+**hint_strategy:** Multiply the full area πr² by the fraction (central angle)/360.
+**hint_setup:** Fraction = 60/360 = 1/6. Full area = 36π. Take one-sixth.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Coordinate Geometry — Distance Formula
+
+What is the distance between the points (1, 2) and (7, 10) in the xy-plane?
+
+- A) 14
+- B) √14
+- C) 100
+- D) 2√10
+- E) 10
+
+**answer:** E
+**fastest_path:** Δx = 6, Δy = 8 — a 6-8-10 right triangle. Distance = 10.
+**explanation:** The distance between two points is √((x₂ − x₁)² + (y₂ − y₁)²).
+
+Here Δx = 7 − 1 = 6 and Δy = 10 − 2 = 8, so distance = √(6² + 8²) = √(36 + 64) = √100 = 10.
+
+Recognizing the 6-8-10 triangle (a scaled 3-4-5) lets you skip the arithmetic entirely.
+**mistake_a:** Added the legs (6 + 8) instead of using the Pythagorean theorem.
+**mistake_b:** Added the differences before squaring: √(6 + 8) = √14.
+**mistake_c:** Forgot the square root and reported 100.
+**mistake_d:** Mis-subtracted a coordinate (e.g., used Δy = 2), giving √(36 + 4) = √40 = 2√10.
+**common_trap:** Treating distance as the sum of the horizontal and vertical gaps rather than the hypotenuse joining them.
+**trap_type:** distance-sum-vs-hypotenuse
+**takeaway:** Distance = √(Δx² + Δy²). Spotting Pythagorean triples (3-4-5, 5-12-13) turns the formula into instant recall.
+**est_time_seconds:** 70
+**hint_nudge:** The two points are corners of a right triangle — the distance is its hypotenuse.
+**hint_strategy:** Find the horizontal and vertical gaps, then apply the Pythagorean theorem.
+**hint_setup:** Δx = 6, Δy = 8. Compute √(6² + 8²).
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Composite Figures — Area
+
+A square has a side of length 10. A semicircle is removed from the square, with the semicircle's diameter lying along one entire side of the square. What is the area of the region that remains?
+
+- A) 100 − 12.5π
+- B) 100 − 25π
+- C) 100 − 50π
+- D) 100 − 6.25π
+- E) 50 − 12.5π
+
+**answer:** A
+**fastest_path:** Square 10² = 100. Semicircle radius = 5, area = ½π(5²) = 12.5π. Remaining = 100 − 12.5π.
+**explanation:** Break the figure into the parts you know. The square has area 10² = 100.
+
+The semicircle's diameter equals the side of the square, 10, so its radius is 5. A full circle of radius 5 has area π(5)² = 25π, and a semicircle is half of that: 12.5π.
+
+Remaining region = 100 − 12.5π.
+**mistake_b:** Used the full circle's area (25π) instead of halving it for a semicircle.
+**mistake_c:** Treated the side length 10 as the radius, giving ½π(10²) = 50π.
+**mistake_d:** Mistook the radius for 2.5 (halving the radius instead of the diameter), giving roughly 6.25π.
+**mistake_e:** Halved the square's area as well, which has no basis here.
+**common_trap:** Forgetting the "semi" (using a full circle) or confusing the diameter (10) with the radius (5).
+**trap_type:** semicircle-radius-diameter
+**takeaway:** "Remaining area" = whole minus removed. For a semicircle, area = ½πr², and the radius is half the diameter.
+**est_time_seconds:** 90
+**hint_nudge:** Compute the square and the removed piece separately, then subtract.
+**hint_strategy:** The semicircle's diameter is the square's side, so its radius is 5; a semicircle is half a circle.
+**hint_setup:** Square = 100. Semicircle = ½ · π · 5². Subtract.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Triangle Similarity — Parallel Cut
+
+In triangle ABC, point D lies on side AB and point E lies on side AC such that segment DE is parallel to BC. If AD = 4, DB = 6, and BC = 15, what is the length of DE?
+
+- A) 4
+- B) 6
+- C) 9
+- D) 7.5
+- E) 10
+
+**answer:** B
+**fastest_path:** DE ∥ BC makes triangle ADE ~ triangle ABC. DE/BC = AD/AB = 4/10, so DE = 6.
+**explanation:** Because DE is parallel to BC, triangle ADE is similar to triangle ABC (equal corresponding angles). Corresponding sides are therefore proportional.
+
+The side of the small triangle that corresponds to BC is DE, and the side corresponding to AB is AD. AB = AD + DB = 4 + 6 = 10.
+
+So DE/BC = AD/AB → DE/15 = 4/10 → DE = 15 × (4/10) = 6.
+**mistake_c:** Used DB/AB = 6/10 as the ratio, multiplying 15 by 3/5 to get 9 — the wrong segment goes on top.
+**mistake_d:** Assumed DE was a midsegment (half of BC = 7.5), which is only true when D is the midpoint of AB.
+**mistake_e:** Used the ratio AD/DB = 4/6 instead of AD/AB, giving 15 × (4/6) = 10.
+**mistake_a:** Reported AD (4) instead of solving for DE.
+**common_trap:** Using AD/DB (segment to segment) rather than AD/AB (part to whole) as the similarity ratio.
+**trap_type:** similarity-wrong-ratio
+**takeaway:** For a line parallel to a side, the ratio is part-to-whole: AD/AB, not AD/DB. Always compare the full corresponding sides.
+**est_time_seconds:** 95
+**hint_nudge:** A line parallel to one side creates a smaller, similar triangle.
+**hint_strategy:** Match DE with BC and AD with the full side AB, then set the ratios equal.
+**hint_setup:** AB = 4 + 6 = 10. So DE/15 = 4/10.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** 3D / Solids — Cylinder Volume
+
+A cylindrical tank has a radius of 3 meters and a height of 10 meters. What is its volume? (Leave the answer in terms of π.)
+
+- A) 180π
+- B) 900π
+- C) 90π
+- D) 30π
+- E) 60π
+
+**answer:** C
+**fastest_path:** V = πr²h = π(3²)(10) = 90π.
+**explanation:** The volume of a cylinder is V = πr²h — the area of the circular base (πr²) times the height.
+
+V = π(3)²(10) = π(9)(10) = 90π cubic meters.
+**mistake_d:** Used πrh (forgot to square the radius): π(3)(10) = 30π.
+**mistake_e:** Computed the lateral surface area, 2πrh = 2π(3)(10) = 60π, which is an area, not a volume.
+**mistake_a:** Doubled the correct volume, perhaps by inserting an extra factor of 2 (as in surface-area formulas).
+**mistake_b:** Squared the height instead of the radius: π(9)(100) = 900π.
+**common_trap:** Forgetting to square the radius, or grabbing a surface-area formula instead of the volume formula.
+**trap_type:** cylinder-volume-vs-surface
+**takeaway:** Cylinder volume = (base area)(height) = πr²h. Only the radius gets squared; the height is linear.
+**est_time_seconds:** 75
+**hint_nudge:** Volume is the base area times the height — what's the area of the circular base?
+**hint_strategy:** Compute πr² for the base, then multiply by the height h.
+**hint_setup:** Base area = π(3²) = 9π. Multiply by 10.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Triangles — Angle Ratios
+
+The measures of the three interior angles of a triangle are in the ratio 2 : 3 : 4. What is the measure of the largest angle?
+
+- A) 40°
+- B) 20°
+- C) 90°
+- D) 80°
+- E) 60°
+
+**answer:** D
+**fastest_path:** Parts total 2 + 3 + 4 = 9, and angles sum to 180°, so each part = 20°. Largest = 4 × 20° = 80°.
+**explanation:** Let the angles be 2x, 3x, and 4x. They must sum to 180°: 2x + 3x + 4x = 9x = 180°, so x = 20°.
+
+The largest angle corresponds to the largest ratio term, 4x = 4(20°) = 80°.
+**mistake_e:** Found the middle angle, 3x = 60°.
+**mistake_a:** Found the smallest angle, 2x = 40°.
+**mistake_b:** Reported the unit value x = 20° rather than the largest angle 4x.
+**mistake_c:** Assumed a right triangle and chose 90° without using the ratio.
+**common_trap:** Stopping at x or picking the wrong ratio term — the largest angle is the largest multiple of x, not x itself.
+**trap_type:** ratio-largest-part
+**takeaway:** Convert a ratio to actual values by setting the sum of parts equal to the known total. The largest quantity is the largest ratio term times the unit.
+**est_time_seconds:** 80
+**hint_nudge:** Let the angles be 2x, 3x, and 4x — what must they add up to?
+**hint_strategy:** Sum them to 180°, solve for x, then take the term you actually want.
+**hint_setup:** 9x = 180° gives x = 20°. The largest angle is 4x.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Coordinate Geometry — Equidistant Point
+
+In the xy-plane, point P lies on the x-axis and is equidistant from A(0, 4) and B(8, 0). What is the x-coordinate of P?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 2
+- E) 3
+
+**answer:** E
+**fastest_path:** Set PA² = PB² for P = (x, 0): x² + 16 = (x − 8)². Expand: 16 = −16x + 64 → x = 3.
+**explanation:** Let P = (x, 0) since it lies on the x-axis. "Equidistant from A and B" means PA = PB, and squaring removes the radicals:
+
+PA² = (x − 0)² + (0 − 4)² = x² + 16.
+PB² = (x − 8)² + (0 − 0)² = x² − 16x + 64.
+
+Set them equal: x² + 16 = x² − 16x + 64. The x² cancels: 16 = −16x + 64, so 16x = 48 and x = 3.
+
+(Check: PA = √(9 + 16) = 5 and PB = √(25) = 5. They match.)
+**mistake_a:** Took the midpoint's x-coordinate of A and B (which is 4). The set of equidistant points is the perpendicular bisector, and it crosses the x-axis at x = 3, not at the segment's midpoint, because A sits off the axis.
+**mistake_b:** Reported the common distance PA = PB = 5 instead of the coordinate.
+**mistake_c:** Sign slip when expanding (x − 8)², landing on x = 6.
+**mistake_d:** Set the differences in distance equal without squaring, producing 2.
+**common_trap:** Assuming "equidistant" means the midpoint of the segment — true only for points on the segment, not for an arbitrary point constrained to the x-axis.
+**trap_type:** equidistant-not-midpoint
+**takeaway:** Equidistant from two points = on the perpendicular bisector. Set the squared distances equal; the squared terms cancel and leave a linear equation.
+**est_time_seconds:** 130
+**hint_nudge:** P is on the x-axis, so its y-coordinate is 0 — that's the hidden constraint.
+**hint_strategy:** Write PA² = PB² with P = (x, 0); squaring kills the square roots and the x² terms cancel.
+**hint_setup:** x² + 16 = (x − 8)². Expand the right side and solve the resulting linear equation.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Square Inscribed in a Circle
+
+A square is inscribed in a circle of radius 5, with all four of its vertices on the circle. What is the area of the square?
+
+- A) 25π
+- B) 50
+- C) 100
+- D) 25
+- E) 50√2
+
+**answer:** B
+**fastest_path:** The square's diagonal = the circle's diameter = 10. Area = diagonal²/2 = 100/2 = 50.
+**explanation:** When a square is inscribed in a circle, the square's diagonal is a diameter of the circle (it passes through the center). So diagonal = 2 × 5 = 10.
+
+For any square, area = diagonal²/2 (since diagonal = s√2 means s² = diagonal²/2). So area = 10²/2 = 100/2 = 50.
+
+Equivalently, side = 10/√2 = 5√2, and area = (5√2)² = 50.
+**mistake_c:** Treated the diameter (10) as the square's side, giving 10² = 100.
+**mistake_d:** Treated the radius (5) as the square's side, giving 5² = 25.
+**mistake_e:** Used area = diagonal·s or stacked a stray √2, landing on 50√2.
+**mistake_a:** Computed the circle's area, πr² = 25π, instead of the square's.
+**common_trap:** Confusing which length is the square's side. The diameter equals the diagonal, not the side, of an inscribed square.
+**trap_type:** inscribed-diagonal-vs-side
+**takeaway:** Square inscribed in a circle → diagonal = diameter. Then area = diagonal²/2, a clean one-step relation.
+**est_time_seconds:** 120
+**hint_nudge:** What part of the square stretches all the way across the circle?
+**hint_strategy:** The diagonal equals the diameter; for a square, area = diagonal²/2.
+**hint_setup:** Diameter = 10, so diagonal = 10. Area = 10²/2.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Triangles — Area Ratio from a Shared Height
+
+In triangle ABC, point D lies on side BC such that BD : DC = 3 : 2. If the area of triangle ABC is 40, what is the area of triangle ABD?
+
+- A) 60
+- B) 12
+- C) 24
+- D) 16
+- E) 20
+
+**answer:** C
+**fastest_path:** ABD and ABC share the height from A to line BC, so their areas are in the ratio of bases: BD/BC = 3/5. Area = (3/5)(40) = 24.
+**explanation:** Triangles ABD and ABC share the same vertex A and have bases BD and BC lying on the same line, so they have the same height (the perpendicular distance from A to line BC).
+
+When triangles share a height, their areas are proportional to their bases. BC is split in the ratio 3 : 2, so BD is 3/(3 + 2) = 3/5 of BC.
+
+Area of ABD = (3/5) × area of ABC = (3/5)(40) = 24.
+**mistake_d:** Found the area of the other piece, triangle ADC = (2/5)(40) = 16.
+**mistake_e:** Assumed D was the midpoint and halved the area to 20.
+**mistake_a:** Multiplied 40 by the raw ratio 3/2 instead of the fraction-of-the-whole 3/5, giving 60 — larger than the whole triangle, which is impossible.
+**mistake_b:** Used 3/10 of the area, mishandling the fraction of the whole.
+**common_trap:** Using the part-to-part ratio (3/2) instead of the part-to-whole fraction (3/5) when the shared-height triangle is a piece of the larger one.
+**trap_type:** part-to-whole-area-ratio
+**takeaway:** Triangles with the same height have areas in the ratio of their bases. Convert a part-to-part ratio to part-to-whole before scaling, and sanity-check that a piece is smaller than the whole.
+**est_time_seconds:** 120
+**hint_nudge:** Where is the height of triangle ABD, and how does it compare to the height of ABC?
+**hint_strategy:** Both triangles drop the same height from A onto line BC, so area scales with base length.
+**hint_setup:** BD is 3/(3+2) = 3/5 of BC. Take that fraction of 40.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** 3D / Solids — Space Diagonal
+
+A rectangular box has dimensions 2 by 3 by 6. What is the length of the longest straight segment that fits entirely inside the box?
+
+- A) √11
+- B) 11
+- C) 6
+- D) 7
+- E) 3√5
+
+**answer:** D
+**fastest_path:** Space diagonal = √(2² + 3² + 6²) = √(4 + 9 + 36) = √49 = 7.
+**explanation:** The longest segment inside a rectangular box is its space diagonal (corner to opposite corner), found by extending the Pythagorean theorem to three dimensions: d = √(l² + w² + h²).
+
+d = √(2² + 3² + 6²) = √(4 + 9 + 36) = √49 = 7.
+
+The numbers were chosen so the sum is a perfect square — a signal you've set it up right.
+**mistake_e:** Found the largest face diagonal, √(3² + 6²) = √45 = 3√5 ≈ 6.7, instead of the space diagonal through the interior.
+**mistake_a:** Added the dimensions first and then took the root: √(2 + 3 + 6) = √11.
+**mistake_b:** Summed the edge lengths (2 + 3 + 6) without using the Pythagorean theorem.
+**mistake_c:** Took the single longest edge (6) as the longest interior segment.
+**common_trap:** Settling for a face diagonal (only two dimensions) rather than the space diagonal that uses all three.
+**trap_type:** face-vs-space-diagonal
+**takeaway:** The longest segment in a box is the space diagonal: √(l² + w² + h²) — the 3-D Pythagorean theorem.
+**est_time_seconds:** 110
+**hint_nudge:** The longest segment goes from one corner to the farthest opposite corner, cutting through the interior.
+**hint_strategy:** Extend the Pythagorean theorem: square all three dimensions, add, take the root.
+**hint_setup:** Compute √(2² + 3² + 6²).
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q51
+**difficulty:** Challenge
+**type:** Problem Solving
+**topic:** Triangles — Inscribed Circle (Inradius)
+
+In the xy-plane, a triangle has vertices at A(0, 0), B(6, 0), and C(0, 8). A circle is inscribed in the triangle, tangent to all three sides. What is the radius of that circle?
+
+- A) 1
+- B) 4
+- C) 2.4
+- D) 5
+- E) 2
+
+**answer:** E
+**fastest_path:** Right triangle, legs 6 and 8, hypotenuse 10. Inradius r = (leg + leg − hypotenuse)/2 = (6 + 8 − 10)/2 = 2.
+**explanation:** The three vertices form a right triangle with the right angle at the origin: the legs lie along the axes with lengths 6 and 8, and the hypotenuse is √(6² + 8²) = 10.
+
+General method — the inradius of any triangle is r = Area / s, where s is the semiperimeter.
+- Area = ½ × 6 × 8 = 24.
+- Semiperimeter s = (6 + 8 + 10)/2 = 12.
+- r = 24 / 12 = 2.
+
+Right-triangle shortcut — for a right triangle with legs a, b and hypotenuse c, r = (a + b − c)/2 = (6 + 8 − 10)/2 = 2. Either route gives r = 2.
+**mistake_a:** Divided the area by the full perimeter (24) instead of the semiperimeter (12), getting 1.
+**mistake_b:** Used the right-triangle shortcut but forgot to divide by 2: (6 + 8 − 10) = 4.
+**mistake_c:** Divided the area by the hypotenuse (24/10 = 2.4) rather than by the semiperimeter.
+**mistake_d:** Found the circumradius instead — for a right triangle that's half the hypotenuse (10/2 = 5), the radius of the circumscribed circle, not the inscribed one.
+**common_trap:** Using the perimeter instead of the semiperimeter in r = Area/s, or confusing the inscribed circle with the circumscribed circle.
+**trap_type:** inradius-semiperimeter
+**takeaway:** Inradius r = Area / semiperimeter for any triangle; for a right triangle, r = (a + b − c)/2. Don't confuse it with the circumradius (half the hypotenuse).
+**est_time_seconds:** 165
+**hint_nudge:** The vertices form a right triangle on the axes — find its legs and hypotenuse first.
+**hint_strategy:** Use r = Area / semiperimeter, or the right-triangle shortcut r = (a + b − c)/2.
+**hint_setup:** Area = 24, semiperimeter = (6 + 8 + 10)/2 = 12. Divide.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
