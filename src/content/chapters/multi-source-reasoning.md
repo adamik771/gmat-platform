@@ -19,12 +19,16 @@ sections:
   - id: the-two-pass-navigation
     type: reading
     title: "The two-pass navigation protocol"
+    intro: |
+      The instinct on MSR is to read all three tabs carefully before answering anything. That instinct is the single biggest time sink in Data Insights. This section replaces it with the protocol strong scorers run on autopilot: map the tabs first, read deeply only when a question demands it.
     check_question_ids:
       - multi-source-reasoning-q1
 
   - id: matching-question-to-tab
     type: reading
     title: "Simple lookup — matching the question to the right tab"
+    intro: |
+      The most common MSR question asks for one fact from one tab. It looks trivial — and it is, *if* you reach the right cell in three seconds instead of re-scanning all three tabs. This section turns navigation into a reflex, so lookups cost you 15 seconds, not 90.
     check_question_ids:
       - multi-source-reasoning-q2
       - multi-source-reasoning-q11
@@ -32,6 +36,8 @@ sections:
   - id: cross-tab-synthesis
     type: reading
     title: "Cross-tab synthesis — combining two or more sources"
+    intro: |
+      This is where MSR points are won and lost. Synthesis questions force you to pull data from two or three tabs and combine it — and the failure mode is almost never the arithmetic. It's losing track of a number mid-navigation. This section gives you the discipline that prevents that.
     check_question_ids:
       - multi-source-reasoning-q4
       - multi-source-reasoning-q7
@@ -39,6 +45,8 @@ sections:
   - id: conditional-and-hypothetical
     type: reading
     title: "Conditional and hypothetical questions — 'what if' reasoning"
+    intro: |
+      Hypotheticals change one thing about the scenario and ask what follows. The skill is surgical: update exactly what the question moved, cascade to whatever depends on it, and freeze everything else. This section shows you the two patterns these questions always take.
     check_question_ids:
       - multi-source-reasoning-q3
       - multi-source-reasoning-q12
@@ -46,6 +54,8 @@ sections:
   - id: yes-no-statement-checks
     type: reading
     title: "Yes/No statement checks against multi-tab constraints"
+    intro: |
+      These questions hand you three to five statements and ask you to verify each one independently. The trap isn't the data — it's the wording. "Exceeded," "at least," and "every" each carry a different standard, and the test writes near-misses on exactly that edge. This section makes you precise.
     check_question_ids:
       - multi-source-reasoning-q8
       - multi-source-reasoning-q14
@@ -53,6 +63,8 @@ sections:
   - id: answer-choice-traps
     type: reading
     title: "Five wrong-answer patterns that recur across MSR"
+    intro: |
+      Wrong answers on MSR aren't random — they're manufactured from five recurring patterns. Once you can name the pattern a wrong answer is built on, you eliminate it deliberately instead of second-guessing. This section is your trap inventory.
     check_question_ids: []
 
   - id: summary
@@ -101,9 +113,9 @@ problem_sets:
 
 ## @the-two-pass-navigation
 
-**What this section builds:** The foundational MSR workflow. Learn it once; use it on every set.
-
 Multi-Source Reasoning gives you 2-3 tabs — memos, tables, rule lists, research abstracts, meeting notes — and asks 3 questions per set. The tabs contain far more information than any single question needs. That's by design: the test rewards students who extract only what's relevant, not students who try to absorb everything upfront.
+
+**Mental model.** Treat the tab set as a database, not an essay. You don't read a database cover to cover — you learn where each kind of record lives, then run a targeted query for each question. MSR is a navigation skill wearing a reading-comprehension costume.
 
 **The core insight.** Reading every tab thoroughly before question 1 is a trap. You'll spend 3+ minutes on content you'll never use. MSR rewards selective reading driven by the question, not comprehensive reading driven by anxiety.
 
@@ -149,6 +161,15 @@ Students who deep-read all three tabs upfront often spend 3+ minutes on the orie
 | Total for a 3-question set | 5-6 minutes |
 
 If you're over 7 minutes on a single set, something broke in your process — almost always re-reading tabs you didn't need on question 2 or 3.
+
+**Micro-drill (routing, 10 seconds each).** A set has three tabs: (1) the COO's strategy memo, (2) a quarterly revenue table by region, (3) the board's compliance thresholds. For each question below, name the single tab you'd open first — before reading any of them carefully:
+
+1. "What was the Western region's Q3 revenue?"
+2. "Why did the COO recommend pausing the Northern expansion?"
+3. "Did software revenue meet the board's 45% minimum?"
+4. "Which region grew fastest year over year?"
+
+Answers: (1) Tab 2 — specific number lives in the table. (2) Tab 1 — reasoning and intent live in the memo. (3) Tabs 3 *and* 2 — a compliance check needs the threshold *and* the actual, so it's the only one that touches two tabs. (4) Tab 2 — a comparison across regions is a table operation. If you reached for the memo on (1) or (4), you're reading for content when you should be routing for data — that habit is what blows the time budget.
 
 > **Recall check.** Close the book. State the two-pass protocol in two sentences. Then answer: in pass 1, what specifically do you NOT try to do? The answer: you don't memorize content — you build a navigation map. The test is whether you can distinguish *orientation* from *comprehension*. Students who can't make this distinction re-read all tabs on every question and run 2-3 minutes over time per set.
 
@@ -259,6 +280,12 @@ Before computing, write out the chain: "I need [entity from Tab 1] → its [metr
 
 **The "conflicting sources" rule.** Sometimes a memo says "6% decline" and the table shows 5.8%. The table is authoritative for numbers; the memo is authoritative for reasoning, attribution, and intent. If the question asks for the specific figure, use the table. If it asks why a result occurred, use the memo.
 
+**Trap to watch.** When you combine percentages across entities of different sizes, never average the percentages — average the underlying totals. "The four regions averaged 40% software share" does not mean the company is at 40%; a single large region can drag the true figure far from the simple average. Sum the software dollars, sum the total dollars, then divide. Averaging percentages is the most expensive single error in cross-tab synthesis because the wrong number always looks reasonable.
+
+**Micro-drill (60 seconds).** Two tabs. Tab 1 (table): Region A sold $9.0M, of which $3.6M was software; Region B sold $1.0M, of which $0.6M was software. Tab 2 (board target): company-wide software share must be at least 40%. Question: did the company meet the target? Work it before reading on.
+
+Answer: **Yes, barely.** Simple average of the two shares is (40% + 60%) / 2 = 50%, which would clear the target with room to spare — but that's the trap. Weighted: total software = $3.6M + $0.6M = $4.2M; total revenue = $10.0M; share = 42%. Still above 40%, so the company complies — but the honest figure (42%) is much closer to the line than the averaged figure (50%) suggested. On a question where the target were 41%, averaging the percentages would have flipped your answer.
+
 > **Recall check.** Without looking: state the three-step workflow. Then explain why step 2 — writing numbers down — is the part you cannot skip. If you said "because mental tracking of 3+ data points across tab switches exceeds working memory capacity under timed conditions" — correct. Writing takes two seconds; forgetting a number and recollecting costs thirty. The three-step workflow exists because multi-tab synthesis is genuinely harder than it sounds when time pressure is on.
 
 ## @conditional-and-hypothetical
@@ -320,7 +347,11 @@ Work from "what changed" — don't recheck regions obviously far from the bounda
 
 **Reading hypothetical stems precisely.** The stem has two parts: (1) what changed, and (2) what are you asked to compute. Confusing them is the most common error on this question type. Before touching any tab, write both parts on scratch paper: "Change: [X]. Compute: [Y]."
 
-**Trap: rounding intermediate values.** Hypothetical questions often produce answers close to round numbers. If you round $8,400 to $8,000 during computation, your final answer shifts enough to land on the wrong choice. Keep precision through all intermediate steps; round only at the final comparison if "approximately" appears in the question.
+**Trap to watch.** Rounding intermediate values. Hypothetical questions often produce answers close to round numbers. If you round $8,400 to $8,000 during computation, your final answer shifts enough to land on the wrong choice. Keep full precision through every intermediate step; round only at the final comparison, and only if "approximately" appears in the question.
+
+**Micro-drill (45 seconds).** Tab data: Product A sold 50,000 units; total units across all products = 250,000. The question states that 10,000 of Product A's units came from a one-time bulk order. "If the bulk order is excluded, what is Product A's share of total units?" Compute before reading on.
+
+Answer: **16.7%.** The removed 10,000 units come out of *both* Product A and the company total: adjusted A = 40,000; adjusted total = 240,000; share = 40,000 / 240,000 = 16.7%. The cascade error is to shrink only the numerator — 40,000 / 250,000 = 16.0% — which is a real answer choice the test plants for exactly this slip. Whenever you remove a component, ask "what totals did this component live inside?" and adjust every one of them.
 
 > **Recall check.** What are the two flavors of hypothetical question? For the data carve-out type — what is the "cascade" error students make, and why does it produce a wrong answer? (Answer: reducing only the numerator while leaving the denominator unchanged — because the removed component was also part of the total, the denominator must decrease too. Missing this gives a slightly low adjusted share, which maps to the wrong answer choice.) This is the highest-frequency error on conditional questions.
 
@@ -381,6 +412,15 @@ This is a precision trap. The test writes $42.00 exactly because students who do
 
 If you stopped after checking North, South, and East — all yes — you'd bubble Yes. The one exception you didn't check overturns the whole claim.
 
+**Micro-drill (quantifier precision, 15 seconds each).** The table shows: Product P revenue per unit = $30.00 exactly; four regions grew +5%, +5%, +5%, and +5%; total revenue = $48M. Mark each statement Yes or No:
+
+1. "Product P's revenue per unit exceeded $30."
+2. "Product P's revenue per unit was at least $30."
+3. "Every region grew by more than 4%."
+4. "Total revenue exceeded $48M."
+
+Answers: (1) **No** — "exceeded" is strictly greater than; $30.00 does not exceed $30. (2) **Yes** — "at least" includes equality; $30.00 ≥ $30. (3) **Yes** — every region cleared 4%, and "every" is satisfied because all four did. (4) **No** — "exceeded $48M" needs strictly more than $48M; exactly $48M fails. If you missed (1) or (4), you are reading quantifiers loosely — and that is precisely the edge the test writes its near-misses on.
+
 > **Self-explanation prompt.** Why does the GMAT use Yes/No format for MSR rather than five-choice format? If you can say "because multi-tab verification produces 3-5 independent binary judgments — each one requires locating and checking data — the format tests depth of process, not just the final answer" — you've understood the design. A student who checks only 2 of 4 statements carefully will get some wrong even if their math is sound. Completeness and precision are the skill.
 
 ## @answer-choice-traps
@@ -422,6 +462,8 @@ Example: "All four regions met the board's growth target." Three did. Central di
 Within a single session, you may work multiple MSR sets. A number from an earlier set's tabs can bleed into memory and contaminate your retrieval for the current set. Or within a single set, a number from one tab is recalled as if it came from another.
 
 *Defense:* For any specific numerical answer, go back to the tab and read the number directly rather than recalling it from memory — unless you read it in the last 10 seconds. Memory degrades fast under cognitive load. The tab is always right; your memory of the tab is sometimes not.
+
+**Takeaway.** Four of these five traps share one root: the wrong answer is built from *real* material — a real number, a real region, a real intermediate result — placed where it doesn't belong. That's why MSR rewards anchoring every answer to a specific line in a specific tab. If you can't point to where the answer comes from, you haven't earned it, no matter how familiar the number looks.
 
 ## @summary
 
@@ -468,3 +510,7 @@ If a set runs past 7 minutes, identify the moment it slipped. Almost always: re-
 **What to notice as you drill the problem sets.**
 
 Each set of 2-3 questions shares the same tabs. The orientation pass you do for question 1 pays off on questions 2 and 3 — you already know the tab map. By the end of the hard problem set, the two-pass protocol should feel like a reflex, not a procedure you have to consciously invoke. That's the goal.
+
+**What to do next.** Open this chapter's problem sets — Easy first, then Medium. Run the two-pass protocol on every set from question one, even when a single careful read would be faster; you're training the reflex, not optimizing this one set. After each miss, write a single sentence naming which of the five wrong-answer patterns caught you, and tag the attempt in your error log so it resurfaces in your review queue. Once you're clearing Medium at 80%+, move to Hard and start a timer: the standard is 5-6 minutes per 3-question set, and Hard is where pacing breaks first. If you consistently run long, the problem is almost always orientation — go back and re-read the two-pass section before your next session.
+
+**Time discipline in one line.** Orient in 30-45 seconds, spend 90-120 seconds per question, and never re-read a tab you've already mapped unless the question forces a specific number you didn't capture. Hold that and MSR stops being the section that eats your clock.
