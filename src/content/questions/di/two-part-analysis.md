@@ -1301,7 +1301,7 @@ From the statements below, select the statement that most seriously weakens the 
 | The program required a significant time commitment that temporarily reduced measured output | | |
 | Post-program surveys show that mentees cite career-growth opportunities as their primary reason for staying | | |
 
-**answer:** Weakens = "Turnover at peer companies...dropped by 10 points...with no mentorship programs"; Supports = "Employees who participated...left at half the rate of those who did not"
+**answer:** Weakens = "Turnover at peer companies in the same sector dropped by an average of 10 points"; Supports = "Employees who participated in the mentorship program left the company at half the rate"
 **fastest_path:** Strongest weaken = industry-wide trend (external factor explains the drop without the program). Strongest support = within-company A/B comparison showing program participants had lower turnover than non-participants.
 **explanation:** Row A establishes that a similar turnover drop occurred industry-wide without any mentorship program, meaning the drop at this company is likely caused by an external factor (e.g., labor market conditions), not the program. This directly undermines the causal attribution. Row B is the most direct support: a controlled within-company comparison showing that participants left at half the rate of non-participants provides the most proximate evidence that the program itself drove the retention improvement. Row C (prior salary increase) also weakens, but an industry-wide trend with no mentorship is stronger evidence against the specific causal claim.
 **mistake_c:** The salary increase is an alternative cause and does weaken the conclusion — but the industry trend (Row A) eliminates the program's role entirely, making it stronger.
@@ -1322,7 +1322,7 @@ A bag contains 5 red marbles and 7 blue marbles. Two marbles are drawn sequentia
 
 Select the value of P1 (column 1) and the value of P2 (column 2).
 
-|       | P1 (first red) | P2 (second red \| first red) |
+|       | P1 (first red) | P2 (second red given first red) |
 |-------|----------------|------------------------------|
 | 1/12  |                |                              |
 | 4/11  |                |                              |
@@ -1422,7 +1422,7 @@ From the statements below, select the one that most seriously weakens the conclu
 | Mandating vacation will create scheduling complexity that increases management overhead costs | | |
 | The $1.5 million recovery target represents only 75% of the stated $2 million loss, leaving a residual gap | | |
 
-**answer:** Weakens = "Most TechCorp employees will continue performing work tasks during mandated vacation time..."; Unstated Assumption = "The 30% productivity difference...reflects that high performers self-select into taking longer vacations..."
+**answer:** Weakens = "Most TechCorp employees will continue performing work tasks during mandated vacation time"; Unstated Assumption = "The 30% productivity difference between high-vacation and low-vacation employees reflects that high performers self-select into taking longer vacations"
 **fastest_path:** Weakener = mechanism failure (mandated vacation ≠ rest → productivity gain mechanism is disabled). Unstated assumption = the survey correlation is treated as causal (high performers self-select into vacation-taking; mandating it won't replicate the effect).
 **explanation:** The argument's mechanism is: mandate vacation → employees rest → productivity rises by ~30% → $1.5M+ recovery. Row A attacks this mechanism at its root: if employees work during their "vacation," the rest-to-productivity chain never activates. Row C identifies the core unstated assumption: the argument treats a correlation between vacation and productivity as a causal relationship. But if high performers self-select into taking vacations (they have the political capital and confidence to unplug), mandating vacation for all employees would not produce the same productivity boost. Row B weakens the data reliability but does not attack the core mechanism. Row D adds cost but does not negate productivity recovery. Row E is a mathematical restatement, not a logical flaw.
 **mistake_b:** Weakens the data source but does not destroy the mechanism; a partial weakener.

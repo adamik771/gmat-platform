@@ -19,10 +19,10 @@ In a right triangle, the two legs have lengths 5 and 12. What is the length of t
 **answer:** A
 **fastest_path:** Recognize 5-12-13 Pythagorean triple → c = 13.
 **explanation:** Pythagorean theorem: c² = 5² + 12² = 25 + 144 = 169 → c = 13. Even faster: recognize 5-12-13 as a memorized triple.
-**mistake_b:** Computed (5+12)/2 + 6.5 = 15 from a wrong shortcut.
-**mistake_c:** Bubbled 17 (the 8-15-17 triple) — wrong triple.
-**mistake_d:** Computed √(12² − 5²) = √119 = ~10.9; rounded to 7. Or computed (12 − 5) = 7.
-**mistake_e:** Computed √(12² − 5²) (treated as missing leg, not hypotenuse) = √119.
+**mistake_b:** Misremembered the triple as 5-12-15 instead of 5-12-13.
+**mistake_c:** Added the two legs (5 + 12 = 17) instead of using the theorem. 17 is also the 8-15-17 hypotenuse, which can reinforce the slip.
+**mistake_d:** Subtracted the legs (12 − 5 = 7), solving as if for a missing leg rather than the hypotenuse.
+**mistake_e:** Treated 12 as the hypotenuse and solved for the other leg: √(12² − 5²) = √119.
 **common_trap:** Mis-recognizing a Pythagorean triple — confusing 5-12-13 with 8-15-17.
 **takeaway:** Memorize Pythagorean triples cold: 3-4-5, 5-12-13, 8-15-17, 7-24-25, 20-21-29, 9-40-41. Plus all integer multiples (6-8-10, 9-12-15, etc.).
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
@@ -71,10 +71,10 @@ The length of a rectangle is 3 times its width. If the perimeter is 48, what is 
 **answer:** C
 **fastest_path:** Width = w, length = 3w. 2(w + 3w) = 8w = 48 → w = 6. Area = 6 × 18 = 108.
 **explanation:** Let w = width; length = 3w. Perimeter = 2(w + 3w) = 8w = 48 → w = 6. So length = 18. Area = w × 3w = 6 × 18 = 108.
-**mistake_a:** Computed w² = 36 (used width as length).
-**mistake_b:** Computed 12 × 6 = 72 (off-by-one on width or length).
-**mistake_d:** Used perimeter 48 / 2 = 24 as one side; got 144.
-**mistake_e:** Computed 12 × 16 (mis-computed sides); got 192.
+**mistake_a:** Found w = 6 but squared it (6² = 36), treating the width as the whole area.
+**mistake_b:** Used the ratio backward — length = 2 × width instead of 3 × — giving 6 × 12 = 72.
+**mistake_d:** Ignored the 3:1 ratio and treated the figure as a square of perimeter 48: side 12, area 12² = 144.
+**mistake_e:** Counted only the two longer sides as the perimeter: 2(3w) = 6w = 48 → w = 8, length 24, area 8 × 24 = 192.
 **common_trap:** Setting up wrong relationship between length and width, or using semi-perimeter incorrectly.
 **takeaway:** Rectangle: P = 2(L + W), A = L × W. When sides are in a ratio, define one variable and express the other.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
@@ -175,10 +175,10 @@ An equilateral triangle has a side length of 6. What is its perimeter?
 **answer:** C
 **fastest_path:** Perimeter = 3s = 18.
 **explanation:** Equilateral triangle: all three sides equal. Perimeter = 3 × 6 = 18.
-**mistake_a:** Computed 6 × 2 = 12.
-**mistake_b:** Off-by-one: 15.
-**mistake_d:** Computed 7 × 3 = 21 (off by one on side).
-**mistake_e:** Computed 8 × 3 = 24 (off by two on side).
+**mistake_a:** Doubled the side (6 × 2 = 12), counting only two sides.
+**mistake_b:** A value between doubling (12) and tripling (18) — the result of miscounting how many sides an equilateral triangle has.
+**mistake_d:** Tripled a misread side length (3 × 7 = 21).
+**mistake_e:** Multiplied by 4 (4 × 6 = 24), counting sides as if the figure were a square.
 **common_trap:** Side count mistakes (computing 4 × 6 or 2 × 6 + 6).
 **takeaway:** Equilateral triangle: 3 sides equal. Perimeter = 3s. Area = s²√3/4. Memorize both.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
@@ -357,10 +357,10 @@ What is the midpoint of the segment connecting (-3, 5) and (7, -1)?
 **answer:** A
 **fastest_path:** Avg coordinates: ((−3 + 7)/2, (5 − 1)/2) = (2, 2).
 **explanation:** Midpoint formula: ((x₁ + x₂)/2, (y₁ + y₂)/2). x-midpoint: (−3 + 7)/2 = 4/2 = 2. y-midpoint: (5 + (−1))/2 = 4/2 = 2. Midpoint = (2, 2).
-**mistake_b:** Off-by-one on y: (2, 3).
-**mistake_c:** Got x wrong: (4, 2) — added without dividing.
-**mistake_d:** Computed (5, 2) — average error.
-**mistake_e:** Both wrong: (5, 3).
+**mistake_b:** Subtracted the y-coordinates instead of adding: (5 − (−1))/2 = 3, giving (2, 3).
+**mistake_c:** Added the x-coordinates without dividing by 2: (−3 + 7) = 4, giving (4, 2).
+**mistake_d:** Used half the difference instead of the average for x: (7 − (−3))/2 = 5, giving (5, 2).
+**mistake_e:** Combined both slips — half-difference for x (5) and subtraction for y (3) — giving (5, 3).
 **common_trap:** Forgetting to divide by 2 (just summing coordinates).
 **takeaway:** Midpoint = average of x-coordinates, average of y-coordinates. ((x₁ + x₂)/2, (y₁ + y₂)/2).
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
@@ -591,9 +591,9 @@ A rectangle has two sides on the legs of a right triangle with legs of length 6 
 **answer:** B
 **fastest_path:** Max inscribed rectangle = half triangle area = (1/2)(24) = 12.
 **explanation:** Triangle area = (1/2)(6)(8) = 24. Max inscribed rectangle of this configuration always equals *half the triangle's area*: 12. Verify: hypotenuse satisfies 4x + 3y = 24. Area xy = x(24 − 4x)/3, maximized at x = 3 → y = 4 → area = 12.
-**mistake_a:** Computed 6 + 4 = 10.
-**mistake_c:** Computed (legs/2) × 2 = 16.
-**mistake_d:** Bubbled an arithmetic-slip value.
+**mistake_a:** Added the optimal dimensions (6 + 4 = 10) instead of multiplying them.
+**mistake_c:** Took the rectangle as 4 × 4 = 16; the true optimum is the 3 × 4 rectangle.
+**mistake_d:** Landed between the correct 12 and the triangle-area trap 24 — an arithmetic slip while maximizing xy = x(24 − 4x)/3.
 **mistake_e:** Bubbled the half of the legs' product = 24, the triangle's area.
 **common_trap:** Bubbling the triangle's area or some other characteristic value rather than the maximized rectangle area.
 **takeaway:** Max inscribed rectangle (right angle at vertex of right triangle) = half the triangle's area. Memorize this identity.
@@ -618,10 +618,10 @@ In triangle ABC, points D and E lie on sides AB and AC respectively such that li
 **answer:** B
 **fastest_path:** Linear ratio 1/3 → area ratio (1/3)² = 1/9. Area = 108/9 = 12.
 **explanation:** DE ∥ BC → △ADE ~ △ABC. Linear ratio = AD/AB = 4/12 = 1/3. Areas scale as the *square* of the linear ratio: (1/3)² = 1/9. Area of △ADE = 108 × 1/9 = 12.
-**mistake_a:** Computed 108/12 = 9 (used wrong divisor).
-**mistake_c:** Computed 108 × (1/3) × something = 24.
-**mistake_d:** Used linear ratio directly: 108/3 = 36.
-**mistake_e:** Used 108/(some function of side ratios) wrongly.
+**mistake_a:** Divided by the wrong factor (108 ÷ 12 = 9) instead of scaling by the area ratio.
+**mistake_c:** Doubled the correct answer (2 × 12 = 24), as if two of the small triangles made up the difference.
+**mistake_d:** Used the linear ratio directly instead of its square: 108 × (1/3) = 36.
+**mistake_e:** Used the wrong segment ratio DB/AB = 8/12 = 2/3: (2/3)² × 108 = 48, instead of (AD/AB)².
 **common_trap:** Using linear ratio directly for area instead of squaring it.
 **takeaway:** Similar triangles: linear ratio k → area ratio k². For DE ∥ BC, ratio = AD/AB; area scales as (AD/AB)².
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
@@ -645,8 +645,8 @@ In a circle with center O, chord AB subtends a central angle (the angle ∠AOB a
 **answer:** B
 **fastest_path:** Inscribed = central / 2 = 80/2 = 40°.
 **explanation:** Inscribed-angle theorem: an inscribed angle is half the central angle that subtends the same arc. Inscribed = 80°/2 = 40°.
-**mistake_a:** Computed 80/4 = 20°.
-**mistake_c:** Bubbled 50° (off-by-one or wrong fraction).
+**mistake_a:** Divided the central angle by 4 instead of 2 (80 ÷ 4 = 20).
+**mistake_c:** A near-miss value the inscribed-angle rule never produces — it gives exactly half, 40°.
 **mistake_d:** Bubbled the central angle (80°) — confused which is asked.
 **mistake_e:** Bubbled 2 × central = 160° (inverse of the rule).
 **common_trap:** Inverting the rule (multiplying by 2 instead of dividing).
@@ -769,8 +769,8 @@ A closed cylindrical tank has a radius of 5 feet and a height of 12 feet. What i
 **fastest_path:** SA = 2πr² + 2πrh = 50π + 120π = 170π.
 **explanation:** Cylinder total surface area = 2 × (circular end) + lateral surface = 2πr² + 2πrh. Plug in: 2π(25) + 2π(5)(12) = 50π + 120π = 170π.
 **mistake_a:** Bubbled lateral surface only: 2πrh = 120π.
-**mistake_b:** Computed 2πr² + 2πr(h−2) = 140π (mismatched height).
-**mistake_d:** Off-by-one in computation; got 190π.
+**mistake_b:** Used the wrong height in the lateral term: 2π(25) + 2π(5)(9) = 50π + 90π = 140π.
+**mistake_d:** Used h = 14 in the lateral term: 2π(25) + 2π(5)(14) = 50π + 140π = 190π.
 **mistake_e:** Doubled lateral: 240π.
 **common_trap:** Bubbling lateral surface (without the two circular ends) or summing wrong.
 **takeaway:** Closed cylinder total surface = 2πr² (two circular ends) + 2πrh (lateral). Open-top: subtract one πr².
@@ -855,9 +855,9 @@ A triangle has vertices at (0, 0), (6, 0), and (0, 4). What is the length of the
 **answer:** A
 **fastest_path:** Legs 6 and 4 → hyp = √(36+16) = √52 = 2√13.
 **explanation:** Right triangle at origin with legs 6 (x-axis) and 4 (y-axis). Pythagorean: √(6² + 4²) = √(36 + 16) = √52 = √(4 × 13) = 2√13.
-**mistake_b:** Computed √(40) = 2√10 (used 6² − 16 wrongly).
+**mistake_b:** Squared only one leg: √(6² + 4) = √40 = 2√10.
 **mistake_c:** Bubbled the horizontal leg (6).
-**mistake_d:** Bubbled the vertical leg + 4 = 8 (or some sum).
+**mistake_d:** Bubbled twice the shorter leg (2 × 4 = 8), or a stray sum of the legs.
 **mistake_e:** Added legs: 6 + 4 = 10.
 **common_trap:** Adding legs instead of applying Pythagorean theorem; or simplifying √52 incorrectly.
 **takeaway:** Triangles with right angle at origin and legs along axes: legs are the coordinate values; hypotenuse via Pythagorean. Simplify radicals: √52 = 2√13.
@@ -914,7 +914,7 @@ A circular garden has a radius of 10 meters. A concentric circular walkway of un
 **fastest_path:** Annulus = π(R² − r²) = π(144 − 100) = 44π.
 **explanation:** Walkway = ring (annulus) between two circles. Outer radius = 10 + 2 = 12. Walkway area = π(R² − r²) = π(12² − 10²) = π(144 − 100) = 44π.
 
-Use the difference-of-squares shortcut: (12² − 10²) = (12 + 10)(12 − 2) = 22 × 2 = 44.
+Use the difference-of-squares shortcut: (12² − 10²) = (12 + 10)(12 − 10) = 22 × 2 = 44.
 **mistake_a:** Computed 2 × 10 = 20π wrongly.
 **mistake_b:** Computed 4 × 10 = 40π.
 **mistake_d:** Bubbled inner area only: π × 100 = 100π.

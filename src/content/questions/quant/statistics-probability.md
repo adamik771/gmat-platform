@@ -1106,7 +1106,6 @@ A project manager must choose between two investment strategies. Strategy P has 
 **mistake_b:** Treated the 60% loss scenario as break-even ($0) in Strategy P: EV(P) = 0.40 × $800,000 = $320,000. Then EV(Q) = $280,000, giving P leading by $40,000. Forgetting to account for losses is a critical error when computing expected value.
 **mistake_c:** A smaller gap from a different computational error, e.g., misidentifying the loss probability or rounding mid-calculation.
 **mistake_d:** Correct that Q leads, but underestimated the gap — e.g., from computing EV(P) = $240,000 instead of $200,000.
-**mistake_e:** Correct. The negative outcome in Strategy P (60% × $200,000 loss = $120,000 drag) offsets much of the upside, leaving Strategy Q's more reliable $280,000 EV ahead.
 **common_trap:** Ignoring the loss in Strategy P by treating the 60% outcome as $0 (break-even) instead of −$200,000. Always include negative payoffs in expected value calculations.
 **takeaway:** Expected value includes all outcomes — wins and losses. A strategy with a large upside can still have a lower EV than one with a modest, reliable payoff if the downside probability is large enough.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
