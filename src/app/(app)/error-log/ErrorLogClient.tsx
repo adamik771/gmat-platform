@@ -309,6 +309,38 @@ export default function ErrorLogClient({
     return list
   }, [mistakes, sectionFilter, statusFilter])
 
+  // Live counts for the filter chips + momentum strip. Derived from the
+  // local `mistakes` state (not the SSR snapshot) so every figure updates
+  // the instant a row is marked reviewed — the page-header count is
+  // server-rendered and stays stale until a refresh, which is exactly the
+  // "did my work register?" gap this fills.
+  const counts = useMemo(() => {
+    const bySection: Record<string, number> = { All: mistakes.length }
+    let reviewed = 0
+    for (const m of mistakes) {
+      bySection[m.section] = (bySection[m.section] ?? 0) + 1
+      if (m.reviewed) reviewed += 1
+    }
+    return {
+      bySection,
+      total: mistakes.length,
+      reviewed,
+      pending: mistakes.length - reviewed,
+    }
+  }, [mistakes])
+
+  // Review progress is scoped to the section the student is looking at —
+  // "you're 4 of 9 through Quant" is more actionable than a global figure
+  // when they've filtered down to one section to grind through it.
+  const scoped = useMemo(() => {
+    const list =
+      sectionFilter === "All"
+        ? mistakes
+        : mistakes.filter((m) => m.section === sectionFilter)
+    const reviewed = list.filter((m) => m.reviewed).length
+    return { total: list.length, reviewed }
+  }, [mistakes, sectionFilter])
+
   // Live remediation counts. The server passes snapshot counts so SSR
   // renders the chip instantly; once the user cycles a row we re-derive
   // from local `mistakes` so the chip tracks the optimistic update.
@@ -391,6 +423,19 @@ export default function ErrorLogClient({
 
   return (
     <div className="space-y-4">
+      {/* Review-momentum strip — reframes the wall of misses as a finite,
+          shrinking task. Lives in the client (not the SSR header) so the
+          bar fills the moment a row is marked reviewed. Scoped to the
+          active section filter so "X of Y" tracks what's actually on
+          screen. Hidden when the log is empty (the empty state covers it). */}
+      {counts.total > 0 && (
+        <ReviewMomentumStrip
+          reviewed={scoped.reviewed}
+          total={scoped.total}
+          scope={sectionFilter === "All" ? null : sectionFilter}
+        />
+      )}
+
       {/* Remediation summary chip — "N in progress · M completed this week".
           Zero-zero case is hidden so a brand-new student doesn't see
           an empty stat; any non-zero state surfaces the chip. */}
@@ -432,37 +477,68 @@ export default function ErrorLogClient({
           Filter
         </div>
         <div className="flex gap-2">
-          {SECTION_FILTERS.map((f) => (
-            <button
-              key={f}
-              onClick={() => setSectionFilter(f)}
-              className={cn(
-                "px-3.5 py-1.5 rounded-xl text-xs font-semibold tracking-tight transition-all duration-200",
-                sectionFilter === f
-                  ? "text-[#0A0A0A] scale-[1.02]"
-                  : "border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.18]"
-              )}
-              style={sectionFilter === f ? { backgroundColor: "#C9A84C" } : {}}
-            >
-              {f}
-            </button>
-          ))}
+          {SECTION_FILTERS.map((f) => {
+            const n = counts.bySection[f] ?? 0
+            const active = sectionFilter === f
+            return (
+              <button
+                key={f}
+                onClick={() => setSectionFilter(f)}
+                className={cn(
+                  "inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold tracking-tight transition-all duration-200",
+                  active
+                    ? "text-[#0A0A0A] scale-[1.02]"
+                    : "border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.18]"
+                )}
+                style={active ? { backgroundColor: "#C9A84C" } : {}}
+              >
+                {f}
+                {n > 0 && (
+                  <span
+                    className="tabular-nums text-[10px] font-semibold"
+                    style={{
+                      color: active ? "rgba(10,10,10,0.6)" : "#555555",
+                    }}
+                  >
+                    {n}
+                  </span>
+                )}
+              </button>
+            )
+          })}
         </div>
         <div className="flex gap-2">
-          {STATUS_FILTERS.map((f) => (
-            <button
-              key={f}
-              onClick={() => setStatusFilter(f)}
-              className={cn(
-                "px-3.5 py-1.5 rounded-xl text-xs font-semibold tracking-tight transition-colors",
-                statusFilter === f
-                  ? "border border-[#C9A84C]/40 text-[#C9A84C] bg-[#C9A84C]/10"
-                  : "border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.18]"
-              )}
-            >
-              {f}
-            </button>
-          ))}
+          {STATUS_FILTERS.map((f) => {
+            const n =
+              f === "All"
+                ? counts.total
+                : f === "Pending"
+                ? counts.pending
+                : counts.reviewed
+            const active = statusFilter === f
+            return (
+              <button
+                key={f}
+                onClick={() => setStatusFilter(f)}
+                className={cn(
+                  "inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold tracking-tight transition-colors",
+                  active
+                    ? "border border-[#C9A84C]/40 text-[#C9A84C] bg-[#C9A84C]/10"
+                    : "border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.18]"
+                )}
+              >
+                {f}
+                {n > 0 && (
+                  <span
+                    className="tabular-nums text-[10px] font-semibold"
+                    style={{ color: active ? "#C9A84C" : "#555555" }}
+                  >
+                    {n}
+                  </span>
+                )}
+              </button>
+            )
+          })}
         </div>
       </div>
 
@@ -654,6 +730,87 @@ export default function ErrorLogClient({
           })}
         </div>
       )}
+    </div>
+  )
+}
+
+/**
+ * Calm, premium progress strip that sits atop the mistake list. Turns the
+ * raw count of misses into a finite, shrinking task — the single most
+ * important reframe for a mistake log, where an undifferentiated pile of
+ * "things you got wrong" reads as discouraging rather than useful.
+ *
+ * Updates live off the local mistake state, so marking a row reviewed
+ * visibly advances the bar — closing the "did that register?" loop the
+ * server-rendered header count can't. Scoped to the active section filter
+ * via `scope` so the figure tracks what's on screen.
+ */
+function ReviewMomentumStrip({
+  reviewed,
+  total,
+  scope,
+}: {
+  reviewed: number
+  total: number
+  scope: Section | null
+}) {
+  const pct = total > 0 ? Math.round((reviewed / total) * 100) : 0
+  const done = total > 0 && reviewed === total
+  const remaining = total - reviewed
+  const where = scope ? `${scope} ` : ""
+
+  const caption = done
+    ? `Every logged ${where}mistake reviewed. This is the work that actually moves the score — not more new questions.`
+    : reviewed === 0
+    ? `${total} ${where}mistake${total === 1 ? "" : "s"} to work through. Reviewing and tagging each one turns a loss into a pattern you can train away.`
+    : `${remaining} ${where}mistake${remaining === 1 ? "" : "s"} left to review. Each one you close is a leak sealed before the real test.`
+
+  const barColor = done ? "#3ECF8E" : "#C9A84C"
+
+  return (
+    <div
+      className="rounded-2xl border p-5"
+      style={{
+        borderColor: done ? "rgba(62,207,142,0.22)" : "rgba(201,168,76,0.18)",
+        backgroundColor: done ? "rgba(62,207,142,0.04)" : "#0D0D0D",
+      }}
+    >
+      <div className="flex items-center justify-between gap-3 mb-3">
+        <div className="flex items-center gap-2">
+          {done ? (
+            <CheckCircle2 className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
+          ) : (
+            <Target className="w-3.5 h-3.5" style={{ color: "#C9A84C" }} />
+          )}
+          <p
+            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+            style={{ color: done ? "#3ECF8E" : "#C9A84C" }}
+          >
+            {scope ? `${scope} review progress` : "Review progress"}
+          </p>
+        </div>
+        <p className="text-[12px] tabular-nums" style={{ color: "#888888" }}>
+          <span
+            className="font-display font-semibold text-[15px]"
+            style={{ color: "#F0F0F0" }}
+          >
+            {reviewed}
+          </span>{" "}
+          / {total} reviewed
+        </p>
+      </div>
+      <div
+        className="h-1 rounded-full overflow-hidden"
+        style={{ backgroundColor: "rgba(255,255,255,0.06)" }}
+      >
+        <div
+          className="h-full rounded-full transition-all duration-500"
+          style={{ width: `${Math.max(pct, reviewed > 0 ? 3 : 0)}%`, backgroundColor: barColor }}
+        />
+      </div>
+      <p className="text-[12px] leading-relaxed mt-3" style={{ color: "#C0C0C0" }}>
+        {caption}
+      </p>
     </div>
   )
 }
