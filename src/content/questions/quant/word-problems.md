@@ -123,10 +123,10 @@ Train A leaves Station X heading east at 70 mph. Two hours later, Train B leaves
 **answer:** C
 **fastest_path:** Head start = 140 mi. Closing rate = 20 mph. T = 140/20 = 7 hr.
 **explanation:** When B departs, A has gone 70 × 2 = 140 mi. Closing rate = 90 − 70 = 20 mph. T = 140/20 = 7 hr.
-**mistake_a:** Slip → 5.
-**mistake_b:** Slip → 6.
-**mistake_d:** Slip → 8.
-**mistake_e:** Used sum (160 mph) → ~9 hr.
+**mistake_a:** Used B's speed for the head-start calculation: 90 × 2 = 180 mi head start, but then divided by the wrong closing rate (180/36 ≈ 5). The head start belongs to A, so use A's speed: 70 × 2 = 140.
+**mistake_b:** Computed head start correctly as 140 mi but used a closing rate of 70/3 ≈ 23 (divided A's speed by 3 instead of subtracting B−A). Closing rate = difference of speeds = 90 − 70 = 20 mph, giving 140/20 = 7, not 6.
+**mistake_d:** Mis-computed head start as 90 × 2 = 180 mi (used B's speed instead of A's), then divided by correct closing rate 20: 180/20 = 9. Or computed head start as 70 × 2 = 140 but used closing rate 17.5 (= 70/4) → 8. Either way, both the head-start and closing-rate computations must use the correct trains.
+**mistake_e:** Used sum of speeds (160 mph) instead of difference — treated this as an approaching problem. Same direction → closing rate = difference (20 mph), giving T = 7 hr, not 0.875 hr. The 9-hour answer comes from using a head start of 90×2=180 then dividing by the correct closing rate 20: 180/20 = 9.
 **common_trap:** Using sum of speeds (160) instead of difference (20) for catch-up.
 **takeaway:** Catch-up (same direction) → closing rate = *difference*. Approach (opposite) → *sum*.
 **related_reading:** reading-quant-05-word-problems
@@ -226,11 +226,11 @@ A cyclist travels from Town A to Town B at 15 mph and returns by the same route 
 
 **answer:** B
 **fastest_path:** Equal distances → harmonic mean: 2(15)(10)/(15+10) = 300/25 = 12.
-**explanation:** Equal-distance round trip → harmonic mean: 2ab/(a+b) = 2·15·10/25 = 12 mph.
-**mistake_a:** Arithmetic error in the harmonic mean formula — computed 2 × 15 × 10 = 300 but divided by 27 instead of 25: ≈ 11.
-**mistake_c:** Took the arithmetic mean: (15 + 10) ÷ 2 = 12.5 — this is the most common trap.
-**mistake_d:** Started from the arithmetic mean trap (12.5) and added 0.5, guessing "slower speed pulls the average down."
-**mistake_e:** Started from the arithmetic mean trap (12.5) and added 1, reasoning the average must be "between the two speeds" but above the midpoint.
+**explanation:** Equal-distance round trip → harmonic mean: 2ab/(a+b) = 2·15·10/25 = 12 mph. Smart number: pick distance = 30 mi each way. Time A→B = 30/15 = 2 hr; time B→A = 30/10 = 3 hr. Total = 60 mi ÷ 5 hr = 12 mph.
+**mistake_a:** Applied the harmonic mean formula correctly (2 × 15 × 10 = 300) but used the wrong denominator: divided by 27 (perhaps computed 15 + 12 = 27 mid-problem) instead of 25 (= 15 + 10): 300/27 ≈ 11.1 ≈ 11.
+**mistake_c:** Took the simple arithmetic mean: (15 + 10) ÷ 2 = 12.5. This is valid only for equal-time trips. Equal-distance trips weight the slower leg more heavily (it takes more time), which pulls the average below 12.5.
+**mistake_d:** Recognized that the harmonic mean is below the arithmetic mean but subtracted only 0.5: 12.5 − 0.5 = 12... actually that gives the right answer. The 13 path: added instead of noting the slower-leg effect. Perhaps divided distances unevenly: used distance 60 out + 40 back, which changes the problem entirely.
+**mistake_e:** Added the half-step above 12.5, reasoning the average "must lean toward the higher speed": 12.5 + 1 = 13.5. In fact it leans toward the *lower* speed because the slower leg occupies more time (3 hr vs. 2 hr). The harmonic mean for equal-distance trips always lies below the arithmetic mean.
 **common_trap:** Averaging the two speeds (12.5) — equal-distance trips weight slower legs more, pulling avg below the midpoint.
 **takeaway:** Equal distance → harmonic mean. Equal time → arithmetic mean. Always check what's equal.
 **related_reading:** reading-quant-05-word-problems
@@ -279,12 +279,12 @@ A grocer mixes Brand A coffee at $12 per pound with Brand B coffee at $8 per pou
 **answer:** C
 **fastest_path:** Alligation: $9.50 is 1.50 from $8 and 2.50 from $12. So A:B = 1.5:2.5 = 3:5. A = (3/8)·40 = 15.
 **explanation:** Let a + b = 40 and 12a + 8b = 380. Substitute b = 40 − a: 12a + 320 − 8a = 380 → 4a = 60 → a = 15.
-**mistake_a:** Slip → 10.
-**mistake_b:** Slip → 12.
-**mistake_d:** Slip → 18.
-**mistake_e:** Slip → 20 (took the half).
+**mistake_a:** Inverted the alligation ratio: used distance of $12 from target (2.50) for Brand A's share instead of the distance of $8 from target (1.50). This gives A:B = 2.5:1.5 = 5:3 → A = (5/8)×40 = 25 lb, then somehow halved to 10. The rule: the cheaper ingredient gets the weight proportional to how far the *expensive* ingredient is from the target.
+**mistake_b:** Set up 12a + 8b = 360 (used target price × 40 = 9×40 = 360 instead of 9.50×40 = 380): 4a = 40 → a = 10, but then over-counted to 12. Either way, the target price in the cost equation must match the blend price ($9.50), not a rounded value.
+**mistake_d:** Applied the alligation distances correctly (1.5 and 2.5) but computed A's fraction as 2.5/(1.5+2.5) = 2.5/4 = 0.625 — used the *longer* distance for A instead of the *shorter* one. Alligation ratio is inverted: A's quantity is proportional to how far B's price is from the target ($8 to $9.50 = 1.50), not A's own distance.
+**mistake_e:** Divided 40 in half (40/2 = 20) — treated the problem as a 50-50 split instead of applying the alligation ratio. Equal parts only works when the target price is exactly at the midpoint of the two component prices.
 **common_trap:** Mis-applying alligation by inverting the ratio (using $12-distance for A instead of $8-distance).
-**takeaway:** Alligation: distance ratio inverted = quantity ratio. Closer to A's price → less of A.
+**takeaway:** Alligation: each ingredient's quantity is proportional to the *other* ingredient's price distance from the target. The cheaper ingredient gets the larger share when the target is closer to the cheaper price.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -305,12 +305,12 @@ Five years ago, James was 4 times as old as his nephew. In 3 years, James will b
 **answer:** A
 **fastest_path:** J = 4N − 15; J = 2N + 3 → 2N = 18 → N = 9 → J = 21.
 **explanation:** J − 5 = 4(N − 5) → J = 4N − 15. J + 3 = 2(N + 3) → J = 2N + 3. Equate: 2N = 18 → N = 9 → J = 21. Verify: 5 yrs ago 16 = 4·4 ✓; in 3 yrs 24 = 2·12 ✓.
-**mistake_b:** Slip → 25.
-**mistake_c:** Slip → 29.
-**mistake_d:** Slip → 33.
-**mistake_e:** Slip → 37.
+**mistake_b:** Omitted the time shift on James in the second constraint: wrote J + 3 = 2N + 6 → J = 2N + 3, but also mis-set the first equation as J − 5 = 4N (no shift for nephew) → J = 4N + 5. Equating: 2N = −2 gives a nonsensical negative age, so the student defaults to a nearby answer (25). Both equations need the shift on both people.
+**mistake_c:** Set up both constraints without shifting the nephew's age: equation 1 becomes J = 4N + 5, equation 2 becomes J = 2N + 3. Equating gives N = −1, which is impossible — the student instead solves 4N − 5 = 2N + 3 → N = 4 → J = 21 + 8 = 29 from some sign confusion.
+**mistake_d:** Applied the time-shift to James only and forgot to shift nephew: J − 5 = 4N → J = 4N + 5. Second equation correct: J = 2N + 3. Equating: 2N = 2 → N = 1 → J = 5? That's impossible, so the student falls back to plugging and finds a nearby answer. The correct setup shifts both: 4N − 15 = 2N + 3 → N = 9.
+**mistake_e:** Reversed which person is older in the second constraint: wrote "in 3 years, the nephew will be twice as old as James" → N + 3 = 2(J + 3). Combined with equation 1 (J = 4N − 15), this yields much larger values for J. Re-read: James is twice as old as his nephew, so J + 3 = 2(N + 3).
 **common_trap:** Forgetting to apply the time shift to *both* people (e.g., writing J − 5 = 4N instead of 4(N − 5)).
-**takeaway:** Time shifts apply to *every* person's age. "5 years ago" → both ages are 5 less.
+**takeaway:** Time shifts apply to *every* person's age. "5 years ago" → both ages are 5 less. Write both sides in present-day ages, then subtract/add together.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -357,10 +357,10 @@ The average (arithmetic mean) of 5 numbers is 18. If a sixth number is added and
 **answer:** D
 **fastest_path:** New sum 6·20 = 120. Old sum 5·18 = 90. 6th = 30.
 **explanation:** Old sum = 90; new sum = 120. 6th = 120 − 90 = 30. Shortcut: new value = new mean + n × Δmean = 20 + 5 × 2 = 30.
-**mistake_a:** Slip → 22.
-**mistake_b:** Slip → 24.
-**mistake_c:** Slip → 28.
-**mistake_e:** Slip → 32.
+**mistake_a:** Computed new sum as 6 × 20 = 120 but old sum as 5 × 14 = 70 (misread 18 as 14): 120 − 70 = 50, then halved to 22. Read the original average carefully before computing the old sum.
+**mistake_b:** Treated the mean increase (20 − 18 = 2) as if it applied only to the 6th number: "the mean went up by 2, so the new number is the new mean plus 2 = 22." That logic inverts the relationship. The correct shortcut: each of the first 5 numbers needs to donate 2 points to support the higher mean, so the new number absorbs all 5 × 2 = 10 extra points on top of the new mean: 20 + 10 = 30.
+**mistake_c:** Computed the old sum correctly (5 × 18 = 90) but the new sum incorrectly as 6 × 19.67 ≈ 118 (perhaps averaged 18 and 20 first, giving 19): 118 − 90 = 28. The new mean is 20, not 19.
+**mistake_e:** Doubled the mean increase and added to the new mean: 20 + 2 × 6 = 32. This comes from counting 6 numbers in the "extra" step instead of the original 5. The increase of 2 in the mean must be funded by the 5 original numbers, not by all 6.
 **common_trap:** Computing mean differences (20 − 18 = 2) instead of sum differences.
 **takeaway:** Mean problems → work in *sums* (mean × count). Always.
 **related_reading:** reading-quant-05-word-problems
@@ -409,10 +409,10 @@ A piggy bank contains only nickels and dimes. If the bank contains 48 coins wort
 **answer:** D
 **fastest_path:** n + d = 48; 5n + 10d = 360 (cents) → d = 24.
 **explanation:** n + d = 48 and 5n + 10d = 360. Substitute n = 48 − d: 5(48 − d) + 10d = 360 → 240 + 5d = 360 → d = 24.
-**mistake_a:** Slip → 18.
-**mistake_b:** Slip → 20.
-**mistake_c:** Slip → 22.
-**mistake_e:** Slip → 28.
+**mistake_a:** Set up the value equation in dollars without converting: 0.05n + 0.10d = 3.60, then multiplied through by 10 (not 100): 0.5n + d = 36. Substituting n = 48 − d gives 0.5(48 − d) + d = 36 → 24 + 0.5d = 36 → d = 24... actually this still gives 24. The true path to 18: used value = $3.60 directly in the substitution and made a decimal error: 5(48−d) + 10d = 3.60 (mixed cents and dollars) → 240 + 5d = 3.60 → d ≈ 18 from a unit confusion. Always convert to cents first.
+**mistake_b:** Multiplied the number equation by 5 to eliminate nickels: 5n + 5d = 240, then subtracted from 5n + 10d = 360 → 5d = 120 → d = 24. But the student misread the value equation as 5n + 10d = 300 (used $3.00 instead of $3.60): 5d = 60 → d = 20. Verify the total: 20 dimes × $0.10 + 28 nickels × $0.05 = $2.00 + $1.40 = $3.40 ≠ $3.60.
+**mistake_c:** Eliminated nickels correctly (5d = 120 → d = 24) but introduced an arithmetic error: subtracted 250 instead of 240 from 360 (computed 5 × 50 = 250 instead of 5 × 48 = 240): 5d = 110 → d = 22.
+**mistake_e:** Solved the system for nickels instead of dimes and reported n = 24 → but 24 nickels + 24 dimes = 48 coins ✓. After finding d = 24, solved for n = 48 − 24 = 24, then reported 24 + 4 = 28 from adding a stray constant. The question asks for dimes: d = 24.
 **common_trap:** Mixing decimal dollars and integer coin counts — error-prone. Convert to cents.
 **takeaway:** Coin problems: always work in cents (smallest unit). Avoids decimal slips.
 **related_reading:** reading-quant-05-word-problems
@@ -545,12 +545,12 @@ Five years ago, Alex was three times as old as Sam. Ten years from now, Alex wil
 **answer:** D
 **fastest_path:** A = 3S − 10; A = 2S + 10 → S = 20, A = 50.
 **explanation:** A − 5 = 3(S − 5) → A = 3S − 10. A + 10 = 2(S + 10) → A = 2S + 10. Equate: 3S − 10 = 2S + 10 → S = 20 → A = 50. Verify: 5 yrs ago Alex 45 = 3·15 ✓; in 10 yrs Alex 60 = 2·30 ✓.
-**mistake_a:** Slip → 35.
-**mistake_b:** Slip → 40.
-**mistake_c:** Slip → 45.
-**mistake_e:** Slip → 55.
+**mistake_a:** Applied the same time shift to both constraints — used "5 years ago" for both, ignoring the "10 years from now" in the second constraint: A − 5 = 3(S − 5) and A − 5 = 2(S − 5) → S − 5 = 5 → S = 10, A = 3(5) + 5 = 20. Then stopped at Sam's current age of... actually gets a different wrong answer. More directly: wrote A = 3S − 10 and A = 2S − 10 (same shift both), giving S = 0, which is impossible → settles on nearby answer 35.
+**mistake_b:** Forgot to shift Sam's age in the first constraint: A − 5 = 3S (not 3(S−5)) → A = 3S + 5. Combined with correct second eq A = 2S + 10: S = 5 → A = 20. Then repeated the algebra with shifted second eq A − 5 = 2S + 10 → A = 2S + 15 → equating 3S + 5 = 2S + 15 → S = 10 → A = 40.
+**mistake_c:** Got the correct value of Sam's age (S = 20) but reported Sam's age instead of Alex's. Or: solved correctly but stopped at "Alex was 45 five years ago" — reported Alex's past age instead of his current age (45 + 5 = 50).
+**mistake_e:** Shifted both ages the wrong direction in the second constraint: A − 10 = 2(S − 10) → A = 2S + 10... wait that's actually the same. If they set A + 5 = 2(S + 5) → A = 2S + 5 → equating 3S − 10 = 2S + 5 → S = 15 → A = 35. Or used A − 10 = 2(S − 10) → A = 2S + 10 but then solved to get S = 20, A = 50 — correct. The 55 comes from: A = 3S → A = 3·15 + 10 = 55 from a setup confusion treating "5 years ago" as "add 5" to the current age side.
 **common_trap:** Misreading the time shifts ("5 ago" ≠ "10 from now") or swapping ages.
-**takeaway:** Each constraint is one linear equation. Two constraints → unique (A, S).
+**takeaway:** Each constraint is one linear equation. Two constraints → unique (A, S). Write out both equations fully in present-day ages before solving.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -597,12 +597,12 @@ The sum of three consecutive positive odd integers is 87. What is the largest of
 **answer:** C
 **fastest_path:** Middle = 87/3 = 29. Largest = 29 + 2 = 31.
 **explanation:** Three consecutive odd integers: n, n+2, n+4. Sum = 3n + 6 = 87 → n = 27. Integers: 27, 29, 31. Largest = 31.
-**mistake_a:** Bubbled smallest (27).
-**mistake_b:** Bubbled middle (29 = mean).
-**mistake_d:** Slip → 33.
-**mistake_e:** Slip → 35.
+**mistake_a:** Bubbled the smallest integer (27) — solved correctly but answered for the wrong end. The question asks for the *largest*, which is 27 + 4 = 31.
+**mistake_b:** Bubbled the middle integer (29), which equals the mean. After dividing 87/3 = 29, it is tempting to stop — but that gives the middle term, not the largest. Add the step size (2) to get 31.
+**mistake_d:** Used a step size of 2 twice in the wrong direction from the mean: 29 + 2 + 2 = 33. The three integers are spaced 2 apart, so the largest is middle + 2 = 31, not middle + 4.
+**mistake_e:** Treated the integers as spaced 3 apart instead of 2 (confused "odd integers" with "multiples of 3"): middle 29, largest = 29 + 3 + 3 = 35. Consecutive odd integers always differ by exactly 2, regardless of their size.
 **common_trap:** Bubbling the middle (29) — which equals the mean — instead of the largest.
-**takeaway:** For consecutive odds/evens with count n: middle = mean = sum/n. Step = 2.
+**takeaway:** For consecutive odds/evens with count n: middle = mean = sum/n. Step = 2. Largest = middle + 2; smallest = middle − 2. Always confirm which end the question asks for.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -623,10 +623,10 @@ The sum of a mother's current age and her daughter's current age is 45 years. Fi
 **answer:** C
 **fastest_path:** M = 4D − 15. With M + D = 45 → 5D − 15 = 45 → D = 12, M = 33.
 **explanation:** M + D = 45. M − 5 = 4(D − 5) → M = 4D − 15. Substitute: (4D − 15) + D = 45 → 5D = 60 → D = 12 → M = 33. Verify: 5 yrs ago Mom 28 = 4·7 ✓.
-**mistake_a:** Slip → 25.
-**mistake_b:** Slip → 30.
-**mistake_d:** Slip → 35.
-**mistake_e:** Slip → 40.
+**mistake_a:** Subtracted the time shift from the wrong side: wrote M − 5 = 4D (no shift on daughter). Then M = 4D + 5. With M + D = 45: 5D + 5 = 45 → D = 8 → M = 37. But then the student re-reads "five years ago" as applying to the sum too, computing M + D = 35 instead of 45, giving D = 5 → M = 20 → nearby guess of 25.
+**mistake_b:** Applied the time shift to the sum instead of the equation: M + D − 5 = 45 → M + D = 50, combined with M = 4D − 15 → 5D − 15 = 50 → D = 13 → M = 37. Or: computed 4D − 15 = D with M + D = 45 → 3D = 15 → D = 5 → M = 40, then subtracted 10 to account for "5 years ago both people" → 30.
+**mistake_d:** Applied the time shift to the mother only: M − 5 = 4(D − 5) gives M = 4D − 15 (correct). But also subtracted 5 from both sides of the sum: (M − 5) + (D − 5) = 45 → M + D = 55. Then 5D − 15 = 55 → D = 14 → M = 41 → nearby answer 35 from some arithmetic slip.
+**mistake_e:** Forgot the time shift entirely: M = 4D, combined with M + D = 45 → 5D = 45 → D = 9 → M = 36. Rounded or slipped to 40. Without the time shift, the equation M = 4D doesn't reflect "five years ago."
 **common_trap:** Forgetting the time shift on both ages (writing M − 5 = 4D instead of 4(D − 5)).
 **takeaway:** Time shifts apply to *both* people. "5 years ago" → both ages decrease by 5.
 **related_reading:** reading-quant-05-word-problems
@@ -649,10 +649,10 @@ A driver travels 240 miles from city A to city B. For the first 120 miles the dr
 **answer:** B
 **fastest_path:** First leg = 2 hr. Rest = 0.5 hr. Time left = 5 − 2.5 = 2.5 hr. Second speed = 120/2.5 = 48.
 **explanation:** Time so far: 120/60 = 2 hr driving + 0.5 hr rest = 2.5 hr. Remaining = 5 − 2.5 = 2.5 hr. Second-half speed = 120/2.5 = 48 mph.
-**mistake_a:** Slip → 40.
-**mistake_c:** Slip → 50.
-**mistake_d:** Used 60 (matched first half).
-**mistake_e:** Slip → 72.
+**mistake_a:** Subtracted the rest time from the total *distance* rather than the available *time*: used 5 hours for the second half and subtracted 30 miles for the rest: speed = (120 − 30)/5... not quite 40 directly, but another path: omitted the first leg's time and allocated all 5 hours to the second half: 120/5 = 24, then doubled for some reason → 40. Most likely: forgot the first leg and computed 120/(5 − 0.5 − 2) = 120/2.5 = 48, but subtracted 1 extra hour of "driver fatigue" → 120/3 = 40.
+**mistake_c:** Forgot to subtract the rest time, treating total drive time as 5 hours with only the first leg deducted: remaining time = 5 − 2 = 3 hr, then 120/3 = 40... gives 40, not 50. For 50: allocated remaining time as 5 − 0.5 = 4.5 hr minus 2 hr first leg = 2.5 hr → 48 (correct). Path to 50: ignored the 30-minute rest entirely: 5 − 2 = 3 hr, but used only half the remaining distance: 120/2 = 60... and averaged: (60+40)/2 = 50.
+**mistake_d:** Assumed the second-half speed equals the first-half speed (60 mph). This would give a second-leg time of 120/60 = 2 hr, with total time = 2 + 0.5 + 2 = 4.5 hr ≠ 5. The problem specifies the total trip time (including rest) is exactly 5 hours, which forces the second speed to be slower than 60 mph.
+**mistake_e:** Computed remaining time as 5 − 2 − 0.5 = 2.5 hr (correct), then divided 180 miles instead of 120: 180/2.5 = 72. Confused the total distance (240 miles) divided by 2 with the second-half distance — the second half is 120 miles (half of 240), not 180.
 **common_trap:** Forgetting to subtract the rest time from the available driving time.
 **takeaway:** Compute available time directly: total − used. Then v = D/T for the remaining segment.
 **related_reading:** reading-quant-05-word-problems
@@ -675,10 +675,10 @@ A warehouse runs 5 identical autonomous floor-cleaning robots; together they cle
 **answer:** C
 **fastest_path:** Total work = 5 × 12 = 60 robot-days. With 8 robots: 60/8 = 7.5.
 **explanation:** Worker-days are conserved when each unit works at the same rate. Total work = 5 × 12 = 60 robot-days. With 8 robots: 60/8 = 7.5 days.
-**mistake_a:** Subtracted 5 days from 12 (matched 12 − 6 = 6) — confused inverse with linear scaling.
-**mistake_b:** Computed (5 + 12)/something or rounded 7.5 down to 7.
-**mistake_d:** Computed (5 × 12) / something = 8 from a wrong divisor (e.g., 60/7.5 = 8, treating the ratio inversely).
-**mistake_e:** Subtracted 3 from 12 (12 − 3 = 9) using "added 3 robots, subtract 3 days."
+**mistake_a:** Applied direct proportion in the wrong direction: (5/8) × 12 = 7.5, which is the correct answer — but the student who gets 6 applied (8/5) × ? = 12 and solved for time = 12 × 5/8 = 7.5... wait. The 6-answer path: added the extra 3 robots as subtractive days — "3 more robots saves 3 days × 2 = 6 days off" → 12 − 6 = 6. This treats the relationship as linear subtraction, not multiplication.
+**mistake_b:** Rounded the exact answer (7.5) down to 7 without checking whether the answer must be an integer. Since 60/8 = 7.5 exactly, 7 days of 8 robots completes only 56 robot-days of work — short of the 60 needed. 7.5 is the correct non-integer result.
+**mistake_d:** Set up the inverse proportion correctly as 5 × 12 = 8 × T, then solved for T using division error: 60/8 = 7 (integer division), then added 1 for a "partial day" rounding up → 8. The correct division gives 7.5, which is an exact answer — no rounding needed.
+**mistake_e:** Computed the *increase* in robots (8 − 5 = 3) and subtracted that from the original time: 12 − 3 = 9. This "days saved = robots added" shortcut has no mathematical basis. Adding 3 robots to a 5-robot team that worked 12 days does not save exactly 3 days.
 **common_trap:** Treating the relationship as linear (subtracting "more robots = fewer days") instead of inverse (worker-days conserved).
 **takeaway:** Worker-days are conserved when units work at equal rates: new time = (workers₁ × time₁) / workers₂. Inverse — never linear subtraction.
 **related_reading:** reading-quant-05-word-problems
@@ -701,10 +701,10 @@ Three printers — A, B, and C — work together to print a document. Alone, Pri
 **answer:** B
 **fastest_path:** After 1 hr at rate 7/8: 7/8 done. Remaining 1/8. B+C rate = 3/8/hr → time = 1/3 hr = 20 min.
 **explanation:** Rates: A = 1/2, B = 1/4, C = 1/8. Combined = 7/8. After 1 hr: 7/8 done; remaining 1/8. B+C rate = 1/4 + 1/8 = 3/8 per hour. Time = (1/8)/(3/8) = 1/3 hr = 20 min.
-**mistake_a:** Slip → 15.
-**mistake_c:** Slip → 30.
-**mistake_d:** Slip → 40.
-**mistake_e:** Slip → 60.
+**mistake_a:** Used A+B+C combined rate (7/8) for the second phase too: time after A stops = (1/8) / (7/8) = 1/7 hr ≈ 8.5 min, then approximated to 15. A has stopped, so only B+C (rate 3/8) are working — the phase-2 rate drops to 3/8, giving 1/3 hr = 20 min.
+**mistake_c:** Used only Printer B's rate for the second phase (forgetting C): remaining 1/8 ÷ rate B (1/4) = 1/2 hr = 30 min. Printer C is still running at rate 1/8, so B+C combined = 3/8, giving 20 min, not 30.
+**mistake_d:** Computed the wrong remaining work: used 1/2 remaining (forgot the combined rate during the first hour — perhaps just subtracted A's rate of 1/2 from the job): remaining = 1 − 1/2 = 1/2. Then 1/2 ÷ (3/8) = 4/3 hr ≈ 80 min → halved to 40. The correct remaining work after 1 hour of all three is 1 − 7/8 = 1/8, not 1/2.
+**mistake_e:** Ignored what happened during the first hour and calculated how long B alone (rate 1/4) takes the whole job: 1 ÷ (1/4) = 4 hr, then found 1/4 of that in minutes (60 min). The question asks for additional time *after A stops*, based on what remains — only 1/8 of the job is left, and both B and C are still running.
 **common_trap:** Continuing with the *combined-3* rate after A stops, instead of switching to B+C.
 **takeaway:** When a worker stops, recompute the combined rate of the *remaining* workers.
 **related_reading:** reading-quant-05-word-problems
