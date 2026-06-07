@@ -728,6 +728,83 @@ function isQuestionCorrect(q: SessionQuestion, state: QuestionState): boolean {
   return state.selected === q.correctAnswer
 }
 
+/**
+ * Segmented session navigator. Replaces the old position-only progress bar
+ * with a per-question map of the session: each segment shows whether a
+ * question is correct, missed, current, or still ahead, and doubles as a
+ * jump control. Glanceable progress is a stronger motivator than a single
+ * sliding bar — the student sees their correct answers accumulate in real
+ * time (reward), knows exactly how much is left (manageable), and can step
+ * back to a flagged question without losing their place.
+ */
+function QuestionStrip({
+  questions,
+  states,
+  currentIdx,
+  onJump,
+}: {
+  questions: SessionQuestion[]
+  states: QuestionState[]
+  currentIdx: number
+  onJump: (idx: number) => void
+}) {
+  const total = questions.length
+  return (
+    <div
+      className="flex items-center gap-[3px] mt-4"
+      role="group"
+      aria-label="Session progress — jump to a question"
+    >
+      {questions.map((q, i) => {
+        const state = states[i]
+        const isCurrent = i === currentIdx
+        const isSubmitted = state.submitted
+        const correct = isSubmitted && isQuestionCorrect(q, state)
+        const incorrect = isSubmitted && !correct
+
+        let bg = "rgba(255,255,255,0.06)" // unanswered / ahead
+        if (isCurrent) {
+          bg = "linear-gradient(90deg, #C9A84C, #E8C97A)"
+        } else if (correct) {
+          bg = "rgba(62,207,142,0.55)"
+        } else if (incorrect) {
+          bg = "rgba(255,68,68,0.6)"
+        }
+
+        const status = isCurrent
+          ? "current"
+          : correct
+          ? "correct"
+          : incorrect
+          ? "missed"
+          : "not yet answered"
+
+        return (
+          <button
+            key={q.id}
+            onClick={() => onJump(i)}
+            aria-label={`Question ${i + 1} of ${total}, ${status}. Jump to it.`}
+            aria-current={isCurrent ? "step" : undefined}
+            title={`Q${i + 1} · ${status}`}
+            className="group/seg flex-1 min-w-[6px] py-1.5 rounded-full transition-transform duration-150 hover:scale-y-[1.6] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#C9A84C]"
+          >
+            <span
+              className="block h-1.5 rounded-full transition-all duration-300"
+              style={{
+                background: bg,
+                boxShadow: isCurrent
+                  ? "0 0 8px rgba(201,168,76,0.45)"
+                  : undefined,
+                opacity: isCurrent || isSubmitted ? 1 : 0.9,
+              }}
+            />
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
 interface SessionInsight {
   label: string
   observation: string
@@ -2187,7 +2264,6 @@ export default function SessionClient({
   }
 
   const sessionElapsed = now - sessionStart
-  const progressPct = Math.round(((currentIdx + (currentState.submitted ? 1 : 0)) / total) * 100)
   const hasContext = !!current.context && current.context.length > 0
 
   return (
@@ -2268,16 +2344,15 @@ export default function SessionClient({
           </div>
         </div>
 
-        {/* Progress bar */}
-        <div className="h-1 rounded-full bg-white/[0.06] overflow-hidden mt-4">
-          <div
-            className="h-full rounded-full transition-all duration-300"
-            style={{
-              width: `${progressPct}%`,
-              background: "linear-gradient(90deg, #C9A84C, #E8C97A)",
-            }}
-          />
-        </div>
+        {/* Segmented progress + jump navigator — each segment is one
+            question, colored by outcome (correct / missed / current /
+            ahead) and clickable to revisit. */}
+        <QuestionStrip
+          questions={questions}
+          states={states}
+          currentIdx={currentIdx}
+          onJump={goTo}
+        />
       </div>
 
       {/* Body: passage (if grouped) + question. Mobile: stack
