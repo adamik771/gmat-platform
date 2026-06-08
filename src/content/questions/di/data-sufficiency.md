@@ -48,14 +48,15 @@ Is the integer n divisible by 6?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Yes/no DS on divisibility. 6 = 2 × 3 (coprime). Each statement gives one factor → both together nail divisibility by 6.
-**explanation:** (1) div by 3: n=9 no, n=12 yes — split. (2) div by 2: n=8 no, n=12 yes — split. Together: div by 2 *and* 3, with 2,3 coprime → div by 6. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — n=9 vs n=12 gives different yes/no.
-**mistake_b:** B requires (2) alone sufficient — same issue (n=8 vs n=12).
-**mistake_d:** D needs each alone — neither works alone.
-**mistake_e:** E says together insufficient — but coprime factors compose.
-**common_trap:** Confusing "divisible by both factors" with "divisible by their product." This works *only* when the factors are coprime. div by 4 AND 6 ≠ div by 24.
-**takeaway:** Coprime-factor decomposition is a clean DS lever for divisibility. Always check whether the factors share a common divisor before composing.
+**explanation:** The question asks whether the integer n is divisible by 6. Since 6 = 2 x 3 and the factors 2 and 3 share no common divisor greater than 1, n is divisible by 6 if and only if n is divisible by both 2 and 3. We therefore seek to determine whether n carries both of these factors.
+
+Statement (1) establishes that n is divisible by 3. This alone does not settle the question. If n = 9, then n is divisible by 3 but not by 6, yielding a No. If n = 12, then n is divisible by 3 and also by 6, yielding a Yes. Because both outcomes are possible, Statement (1) alone is not sufficient.
+
+Statement (2) establishes that n is divisible by 2. This alone is likewise inconclusive. If n = 8, then n is divisible by 2 but not by 6, yielding a No. If n = 12, then n is divisible by 2 and also by 6, yielding a Yes. Because both outcomes are possible, Statement (2) alone is not sufficient.
+
+Taking the two statements together, n is divisible by both 3 and 2. Because 2 and 3 are coprime, divisibility by each separately guarantees divisibility by their product, 6. We may therefore conclude with certainty that n is divisible by 6. The combined statements yield a definite answer, so together they are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -77,14 +78,15 @@ A store sells a jacket at a discount off the original price. What is the discoun
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Need price × (1 − discount). Each statement gives only one factor.
-**explanation:** (1): Original $120, no discount % → can't compute. (2): 25% off, no original → can't compute. Together: $120 × 0.75 = $90. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but no discount %.
-**mistake_b:** B requires (2) alone sufficient — but no base price.
-**mistake_d:** D needs each alone — neither has both pieces.
-**mistake_e:** E says together insufficient — but two factors give the product.
-**common_trap:** Picking E because the question feels under-specified. But two complementary pieces (price + percent) suffice for any percent calculation.
-**takeaway:** Percentage value-DS: you need *base × rate*. If statements split base and rate, the answer is C.
+**explanation:** We are asked to determine the discounted price of the jacket. The discounted price equals the original price multiplied by the quantity (1 minus the discount rate). Thus we require two pieces of information: the original price and the discount rate.
+
+Statement (1) tells us that the original price of the jacket is $120, but it provides no discount rate. If the discount were 10 percent, the discounted price would be $108; if the discount were 50 percent, the discounted price would be $60. Because two different discount rates yield two different discounted prices, Statement (1) alone is not sufficient.
+
+Statement (2) tells us that the discount is 25 percent off the original price, but it provides no original price. If the original price were $120, the discounted price would be $90; if the original price were $200, the discounted price would be $150. Because two different original prices yield two different discounted prices, Statement (2) alone is not sufficient.
+
+Taking the two statements together, we have the original price, $120, and the discount rate, 25 percent. Therefore the discounted price is $120 times (1 minus 0.25), which equals $120 times 0.75, or $90. A single value is determined, so the two statements together are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -106,14 +108,15 @@ In a class, the ratio of boys to girls is r. How many boys are in the class?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Need ratio AND total to get a count. Statements split the two; together they suffice.
-**explanation:** (1): 3:4 ratio without total → infinite scalings. (2): 28 students without ratio → can't decompose. Together: boys = (3/7) × 28 = 12. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — ratio alone gives no count.
-**mistake_b:** B requires (2) alone sufficient — total alone doesn't split into boys/girls.
-**mistake_d:** D needs each alone — neither has both pieces.
-**mistake_e:** E says together insufficient — but ratio + total fully determine.
-**common_trap:** Treating ratios as if they gave counts. Ratios scale; you need at least one absolute number to fix the scale.
-**takeaway:** Ratio-and-count DS: ratio alone never gives count, count alone never gives split. Together is the standard pairing.
+**explanation:** The question asks for the number of boys in the class, an absolute count. To determine such a count, we require both the proportion of boys among the students and the total number of students, since a ratio by itself describes only a relationship between quantities, not their actual sizes.
+
+Statement (1) gives the ratio of boys to girls as r = 3/4, so that boys and girls are in the proportion 3 to 4. This proportion is satisfied by many different class sizes. For example, a class could contain 3 boys and 4 girls, or it could contain 6 boys and 8 girls; in the first case there are 3 boys, and in the second there are 6 boys. Because two different outcomes are possible, Statement (1) alone is not sufficient.
+
+Statement (2) gives the total number of students as 28 but provides no information about how those students are divided between boys and girls. The class might consist of 12 boys and 16 girls, or it might consist of 14 boys and 14 girls; in the first case there are 12 boys, and in the second there are 14 boys. Because two different outcomes are possible, Statement (2) alone is not sufficient.
+
+Taking the two statements together, the ratio of boys to girls is 3 to 4, so the boys constitute 3 out of every 7 students. With a total of 28 students, the number of boys is therefore (3/7) times 28, which equals 12. This value is uniquely determined, so the two statements together are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -135,14 +138,13 @@ What is the median of a set of five different positive integers?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** (1) lists the five values → median is the third one. (2) gives mean only — many distinct-positive sets can share a mean.
-**explanation:** (1): Sorted set 3,7,11,15,19 → median = 11 (third). Sufficient. (2): mean = 11 admits many medians, e.g., {1,2,11,20,21} (med 11) vs {1,2,3,20,29} (med 3). Not sufficient. Answer A.
-**mistake_b:** B requires (2) alone sufficient — but mean doesn't pin median.
-**mistake_c:** C-trap — adding (2) doesn't help; (1) gives the median directly.
-**mistake_d:** D requires each alone — (2) fails as shown.
-**mistake_e:** E says together insufficient — but (1) alone solves.
-**common_trap:** *C-trap*: when (1) lists the data outright, you already have everything. Don't combine for the appearance of rigor.
-**takeaway:** Median DS: if a statement gives the *sorted set*, you have the median for free. Mean alone never determines median.
+**explanation:** We are asked to determine the median of a set of five different positive integers. Because the set contains an odd number of values, its median is the middle value, that is, the third integer when the five are arranged in increasing order. To answer the question we must be able to identify that third value uniquely.
+
+Statement (1) states that the five integers in increasing order are 3, 7, 11, 15, and 19. The set is therefore given explicitly and already sorted, so the third value is 11. The median is 11. Statement (1) alone is sufficient.
+
+Statement (2) states that the mean of the five integers is 11, which means their sum is 55. The mean fixes the total but does not determine the middle value. For example, the set {1, 2, 11, 20, 21} consists of five different positive integers whose sum is 55, and its median is 11. The set {1, 2, 3, 20, 29} also consists of five different positive integers whose sum is 55, but its median is 3. Two different medians arise from sets satisfying the condition, so the value of the median cannot be determined. Statement (2) alone is not sufficient.
+
+Since Statement (1) alone is sufficient and Statement (2) alone is not, there is no need to combine the statements. The correct answer is A.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -164,14 +166,15 @@ If a and b are nonzero numbers, is a/b > 0?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**fastest_path:** Yes/no DS: a/b > 0 ⟺ a, b *same sign*. Test for both yes and no under each statement (and combined). Both possible → insufficient.
-**explanation:** (1): a−b>0 doesn't fix signs. a=5,b=2 (yes); a=3,b=−1 (no). Insufficient. (2): a+b>0 same: a=5,b=2 (yes); a=5,b=−2 (no). Insufficient. Together: a=3,b=1 (yes); a=5,b=−2 (a−b=7>0, a+b=3>0, but a/b=−5/2<0, no). Still split. Answer E.
-**mistake_a:** A requires (1) alone sufficient — but sign split shown.
-**mistake_b:** B requires (2) alone sufficient — same split.
-**mistake_c:** C says together sufficient — but yes/no split persists.
-**mistake_d:** D requires each alone — neither works.
-**common_trap:** Forgetting to test *negative* values. The sign question on a/b lives or dies on whether you remember a or b can be negative.
-**takeaway:** Yes/no DS on signs: always test both sign combinations explicitly. If you can produce yes AND no, the statement is insufficient.
+**explanation:** We are told that a and b are nonzero numbers, and we must determine whether a/b > 0. A quotient of two nonzero numbers is positive precisely when the two numbers share the same sign and is negative when they have opposite signs. Therefore the question is equivalent to asking whether a and b have the same sign.
+
+Statement (1) tells us that a - b > 0, that is, a > b. This does not fix the signs of a and b. Let a = 5 and b = 2; then a - b = 3 > 0 and a/b = 2.5 > 0, so the answer is yes. Now let a = 3 and b = -1; then a - b = 4 > 0 and a/b = -3 < 0, so the answer is no. Because both a yes and a no are possible, Statement (1) alone is not sufficient.
+
+Statement (2) tells us that a + b > 0. This likewise fails to fix the signs. Let a = 5 and b = 2; then a + b = 7 > 0 and a/b = 2.5 > 0, so the answer is yes. Now let a = 5 and b = -2; then a + b = 3 > 0 and a/b = -2.5 < 0, so the answer is no. Because both outcomes are possible, Statement (2) alone is not sufficient.
+
+Considering the statements together, we require both a - b > 0 and a + b > 0. Let a = 3 and b = 1; then a - b = 2 > 0, a + b = 4 > 0, and a/b = 3 > 0, so the answer is yes. Now let a = 5 and b = -2; then a - b = 7 > 0, a + b = 3 > 0, and a/b = -2.5 < 0, so the answer is no. Both conditions are satisfied in each case, yet the sign of a/b differs, so the two statements together remain insufficient.
+
+The correct answer is E.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -193,14 +196,15 @@ If k is a positive integer, is k² + k divisible by 4?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**fastest_path:** Factor: k(k+1). When k is odd, k+1 is even — but is k+1 divisible by *4*? Depends on k. Test small odd k.
-**explanation:** (1) k odd: k=1 → 1·2=2, no; k=3 → 3·4=12, yes. Insufficient. (2) k prime > 2 ⟹ k odd. k=3 yes; k=5 → 30, no. Insufficient. Together: (2) implies (1), so combined info = (2) alone. Still insufficient. Answer E.
-**mistake_a:** A requires (1) alone sufficient — but yes/no split.
-**mistake_b:** B requires (2) alone sufficient — same split.
-**mistake_c:** C requires together to add info — but (2) ⟹ (1), no new info.
-**mistake_d:** D requires each alone — neither works.
-**common_trap:** *Implied-statement trap*: when (2) implies (1), combining gives no new info. Don't fall for "C feels comprehensive."
-**takeaway:** When one statement *contains* the other, the combined information equals the stronger statement alone. C is a trap if neither alone suffices.
+**explanation:** We are asked whether k² + k is divisible by 4, where k is a positive integer. Since k² + k factors as k(k + 1), the question is equivalent to asking whether the product of two consecutive integers, k and k + 1, is a multiple of 4. The answer required is a definite yes or a definite no.
+
+Consider Statement (1), that k is odd. When k is odd, k + 1 is even, so the product k(k + 1) is even; however, being even does not guarantee divisibility by 4. Let k = 1; then k(k + 1) = 1 · 2 = 2, which is not divisible by 4, giving the answer no. Let k = 3; then k(k + 1) = 3 · 4 = 12, which is divisible by 4, giving the answer yes. Because both a yes and a no can occur, Statement (1) is not sufficient.
+
+Consider Statement (2), that k is a prime number greater than 2. Let k = 3; then k(k + 1) = 3 · 4 = 12, which is divisible by 4, giving the answer yes. Let k = 5; then k(k + 1) = 5 · 6 = 30, which is not divisible by 4, giving the answer no. Because both a yes and a no can occur, Statement (2) is not sufficient.
+
+We now combine the statements. Every prime number greater than 2 is odd, so the condition in Statement (2) already implies the condition in Statement (1); the two statements together provide no more information than Statement (2) provides by itself. The values k = 3 and k = 5 each satisfy both statements yet yield different answers, so the statements together remain insufficient.
+
+The correct answer is E.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -222,14 +226,15 @@ Last year, Company X's revenue was $500,000. What was Company X's profit last ye
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**fastest_path:** Revenue is given. (1) gives expenses → profit by subtraction. (2) gives profit margin → profit directly. Both alone work.
-**explanation:** Revenue = $500K. (1): expenses = 0.80 × 500 = $400K → profit = $100K. Sufficient. (2): margin 20% → profit = 0.20 × 500 = $100K. Sufficient. Each alone works. Answer D.
-**mistake_a:** A requires only (1) sufficient — but (2) also yields $100K.
-**mistake_b:** B requires only (2) sufficient — but (1) also yields $100K.
-**mistake_c:** C-trap — combining is unnecessary; either alone solves.
-**mistake_e:** E says together insufficient — but each alone solves.
-**common_trap:** Picking C because both statements *agree*. But agreement is irrelevant — each alone is sufficient, so the answer is D.
-**takeaway:** D requires each alone to be sufficient. When statements give equivalent info via different routes, D is the call.
+**explanation:** The question gives Company X's revenue for last year as $500,000 and asks for the profit, where profit equals revenue minus total expenses. Because the revenue is fixed, determining the profit requires only enough information to pin down either the total expenses or the profit itself to a single value.
+
+Statement (1) states that total expenses were 80 percent of revenue. We compute total expenses as 0.80 times $500,000, which equals $400,000. The profit is then revenue minus expenses, namely $500,000 minus $400,000, which equals $100,000. This determines the profit uniquely, so Statement (1) alone is sufficient.
+
+Statement (2) states that the profit margin, defined as profit as a percentage of revenue, was 20 percent. Therefore the profit equals 0.20 times revenue, namely 0.20 times $500,000, which equals $100,000. This determines the profit uniquely, so Statement (2) alone is sufficient.
+
+Since each statement alone determines the profit, the statements need not be combined. We note that the two statements are consistent with each other, but that consistency is incidental and is not required for either to be sufficient.
+
+The correct answer is D.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -251,14 +256,13 @@ A solution is made by mixing chemical A and chemical B. What fraction of the sol
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** Fraction A/(A+B) depends only on the *ratio*, not the volumes. (1) gives the ratio. Done.
-**explanation:** (1): A:B = 2:3 → fraction of A = 2/(2+3) = 2/5. Sufficient (no volumes needed). (2): B = 6L without ratio — can't determine fraction. Not sufficient. Answer A.
-**mistake_b:** B requires (2) alone sufficient — but absolute B doesn't fix the ratio.
-**mistake_c:** C-trap — adding (2) doesn't help; (1) already gives the fraction.
-**mistake_d:** D requires each alone — (2) fails.
-**mistake_e:** E says together insufficient — but (1) alone solves.
-**common_trap:** *C-trap*: thinking you need a volume number to compute a fraction. Fractions depend on ratios, not absolute amounts.
-**takeaway:** Fraction-of-mixture DS: ratio alone is sufficient; absolute amounts add no information.
+**explanation:** The question asks for the fraction of the solution that consists of chemical A. If we let A represent the volume of chemical A and B represent the volume of chemical B, then the target quantity is A / (A + B). This fraction depends only on the relative amounts of A and B, not on their absolute volumes.
+
+Statement (1) gives the ratio of the volume of chemical A to the volume of chemical B as 2 to 3. We may therefore write the volume of chemical A as 2k and the volume of chemical B as 3k for some positive value k. The fraction of the solution that is chemical A is then 2k / (2k + 3k) = 2k / 5k = 2/5. The factor k cancels, so the fraction is 2/5 regardless of the value of k. Statement (1) determines the fraction uniquely; therefore Statement (1) alone is sufficient.
+
+Statement (2) gives only that there are 6 liters of chemical B in the solution, with no information about the volume of chemical A. If the volume of chemical A is 2 liters, the fraction of A is 2 / (2 + 6) = 1/4. If the volume of chemical A is 6 liters, the fraction of A is 6 / (6 + 6) = 1/2. Because two different volumes of chemical A yield two different fractions, Statement (2) does not determine the target quantity; therefore Statement (2) alone is not sufficient. The specific value of 6 liters is a distractor, since the fraction depends on the ratio of the two chemicals rather than on any single absolute volume.
+
+The correct answer is A.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -308,14 +312,15 @@ If x and y are integers, what is the value of x?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Value DS — need unique x. (1) leaves multiple (x,y) pairs. (2) bounds x and fixes y but doesn't pin x. Together: y=0 + x<3 + (1) → x=2.
-**explanation:** (1): |x−3|=2y+1 with y a non-negative integer admits multiple x's. Insufficient. (2): x<3 and y=0 — x could be 2,1,0,…. Insufficient. Together: y=0 in (1) → |x−3|=1 → x=2 or 4; (2) restricts x<3 → x=2. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — multiple (x,y) pairs.
-**mistake_b:** B requires (2) alone sufficient — x not uniquely fixed.
-**mistake_d:** D requires each alone — neither works.
-**mistake_e:** E says together insufficient — but they intersect on x=2.
-**common_trap:** *Forgetting absolute-value gives two cases* — |x−3|=1 gives x=2 *or* x=4, so the inequality from (2) is needed to pick x=2.
-**takeaway:** Absolute-value DS: |expr|=k gives *two* candidates. Look for a second statement to pick between them.
+**explanation:** This is a value question: we must determine a single numerical value of the integer x. A statement is sufficient only if it forces exactly one value of x.
+
+Statement (1): |x - 3| = 2y + 1, where x and y are integers. This is a single equation in two unknowns, so it does not isolate x. For instance, if y = 0, then |x - 3| = 1, which gives x = 2 or x = 4. If y = 1, then |x - 3| = 3, which gives x = 0 or x = 6. Since more than one value of x is possible, Statement (1) alone is not sufficient.
+
+Statement (2): x < 3 and y = 0. The condition y = 0 is given but says nothing on its own about x, and the inequality x < 3 permits many integer values: x could be 2, 1, 0, -1, and so on. Because x is not pinned to a single value, Statement (2) alone is not sufficient.
+
+Taking the statements together, we substitute y = 0 from Statement (2) into the equation of Statement (1): |x - 3| = 2(0) + 1 = 1. Therefore x - 3 = 1, giving x = 4, or x - 3 = -1, giving x = 2. The remaining condition x < 3 from Statement (2) eliminates x = 4, leaving x = 2 as the only possibility. Thus the two statements together determine a unique value, x = 2, and are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -337,14 +342,15 @@ If p and q are positive integers and pq = 36, is p + q > 13?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**fastest_path:** Yes/no DS on p+q>13. List factor pairs of 36, then test each statement (and combined) for *both* yes and no answers. Both possible → insufficient.
-**explanation:** Factor pairs of 36: (1,36),(2,18),(3,12),(4,9),(6,6),(9,4),(12,3),(18,2),(36,1). (1) p perfect square: (1,36)→37 yes, (4,9)→13 no, split. (2) q<p: (9,4)→13 no, (12,3)→15 yes, split. Together (perfect square AND q<p): (9,4)→13 no, (36,1)→37 yes. Still split. Answer E.
-**mistake_a:** A requires (1) alone sufficient — yes/no split shown.
-**mistake_b:** B requires (2) alone sufficient — same split.
-**mistake_c:** C says together sufficient — but split persists (p=9,q=4 vs p=36,q=1).
-**mistake_d:** D requires each alone — neither works.
-**common_trap:** *Edge-case omission*: forgetting that p+q=13 is *not* greater than 13. Strict inequality is the trap; (9,4) gives exactly 13, which is "no."
-**takeaway:** Yes/no DS with strict inequalities: always test the *boundary* case. p+q=13 is the most likely answer to fail "p+q>13."
+**explanation:** We are given that p and q are positive integers with pq = 36, and we must determine whether p + q > 13. This is a yes/no question, so a statement is sufficient only if it forces a single answer for every case it permits. The ordered factor pairs (p, q) satisfying pq = 36 are (1, 36), (2, 18), (3, 12), (4, 9), (6, 6), (9, 4), (12, 3), (18, 2), and (36, 1). We note that the inequality is strict, so a sum equal to 13 counts as "no."
+
+Statement (1) tells us that p is a perfect square. The perfect-square divisors of 36 are 1, 4, 9, and 36. If p = 1, then q = 36 and p + q = 37, which is greater than 13, giving the answer "yes." If p = 4, then q = 9 and p + q = 13, which is not greater than 13, giving the answer "no." Because both outcomes are possible, Statement (1) alone is not sufficient.
+
+Statement (2) tells us that q < p. If p = 12 and q = 3, then p + q = 15, which is greater than 13, giving the answer "yes." If p = 9 and q = 4, then p + q = 13, which is not greater than 13, giving the answer "no." Because both outcomes are possible, Statement (2) alone is not sufficient.
+
+Taking the two statements together, we require that p be a perfect square and that q < p. The pair p = 36, q = 1 satisfies both conditions, since 36 is a perfect square and 1 < 36; here p + q = 37, which is greater than 13, giving "yes." The pair p = 9, q = 4 also satisfies both conditions, since 9 is a perfect square and 4 < 9; here p + q = 13, which is not greater than 13, giving "no." Because both outcomes remain possible, the two statements together are not sufficient.
+
+The correct answer is E.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -366,14 +372,15 @@ In a company, 60% of employees are full-time. Did the total number of employees 
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Last year: 0.6T full + 0.4T part. (1) gives only FT change. (2) gives only PT change. Together: this year = 1.1(0.6T) + 0.95(0.4T) = 1.04T > T. Yes.
-**explanation:** Let T = last year's total. (1): FT this year = 1.1·0.6T = 0.66T, but PT unknown → total unknown. (2): PT this year = 0.95·0.4T = 0.38T, but FT unknown. Together: 0.66T + 0.38T = 1.04T > T → total increased. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — FT alone doesn't determine total.
-**mistake_b:** B requires (2) alone sufficient — PT alone doesn't either.
-**mistake_d:** D requires each alone — neither works.
-**mistake_e:** E says together insufficient — but the weighted sum is computable.
-**common_trap:** Reading "60% full-time" as fixed for *both* years. The 60% is *last year's* split; this year's split could differ.
-**takeaway:** Yes/no DS on totals: when each statement gives one component's change, combining always gives the weighted sum. Use the original split as weights.
+**explanation:** We are asked whether the total number of employees increased from last year to this year. This is a yes/no question, and a definite answer requires determining the sign of the change in the total. We let T represent last year's total number of employees. Because 60% of the employees were full-time last year, last year there were 0.6T full-time employees and 0.4T part-time employees. The total this year is the sum of this year's full-time employees and this year's part-time employees, so we must be able to evaluate both components, or their combined effect, relative to T. Note that the 60% figure describes only last year's composition; it does not constrain this year's composition and is not by itself sufficient to answer the question.
+
+Statement (1) tells us that the number of full-time employees increased by 10%, so this year's full-time count is 1.1 multiplied by 0.6T, which equals 0.66T. However, this statement provides no information about the part-time employees this year. If the part-time count remained at 0.4T, the total this year would be 0.66T plus 0.4T, or 1.06T, which exceeds T, indicating an increase. If instead all part-time employees left, so that the part-time count this year were 0, the total this year would be 0.66T, which is less than T, indicating a decrease. Because these two admissible scenarios yield opposite answers, Statement (1) alone is not sufficient.
+
+Statement (2) tells us that the number of part-time employees decreased by 5%, so this year's part-time count is 0.95 multiplied by 0.4T, which equals 0.38T. This statement provides no information about the full-time employees this year. If the full-time count remained at 0.6T, the total this year would be 0.6T plus 0.38T, or 0.98T, which is less than T, indicating a decrease. If the full-time count doubled to 1.2T, the total this year would be 1.2T plus 0.38T, or 1.58T, which exceeds T, indicating an increase. Because these two admissible scenarios yield opposite answers, Statement (2) alone is not sufficient.
+
+Taking the two statements together, this year's full-time count is 0.66T and this year's part-time count is 0.38T, so the total this year is 0.66T plus 0.38T, which equals 1.04T. Since T is positive, 1.04T is greater than T, and therefore the total number of employees increased. The combined information yields a definite answer of yes, so both statements together are sufficient, while neither statement alone is sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -395,14 +402,15 @@ Three partners -- F, G, and H -- split a profit in the ratio of their investment
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** H's share of the profit = H's investment ÷ total investment, so you need exactly two numbers: H's piece and the whole. The F = 2G ratio describes the *other* two partners and never substitutes for either. Check which statement supplies which.
-**explanation:** H's fraction of the profit equals H's investment over the total: h / (F + G + H). The ratio F = 2G means F + G = 3g, so the total is 3g + h — but you still need real amounts. **(1):** H = $40,000, yet with no value for g (or the total) you can't form the fraction → not sufficient. **(2):** total = $140,000, but with no value for H you can't isolate H's share → not sufficient. **Together:** 40,000 / 140,000 = **2/7** → sufficient. Answer **C**.
-**mistake_a:** (1) gives H's dollar amount but no total to divide by — a part without a whole can't form a fraction.
-**mistake_b:** (2) gives the total but not H's amount — a whole without the part can't either.
-**mistake_d:** "Each alone" needs both statements to work individually; each provides only one of the two required quantities.
-**mistake_e:** Claims even together it fails, but part ($40K) over whole ($140K) is a fully determined fraction.
-**common_trap:** Treating the F = 2G ratio as if it unlocked everything. It fixes the F:G split but says nothing about how large H is relative to the total — H's data is independent and must be supplied on its own.
-**takeaway:** "Fraction of total" DS needs the part and the total. A ratio among the *other* components fills neither slot.
+**explanation:** The question asks for the fraction of the total profit that Partner H received. Because the profit is split in the ratio of the investments, this fraction equals H's investment divided by the total investment, that is, H / (F + G + H). We are told that F = 2G, so F + G = 3G and the total investment can be written as 3G + H. To answer the question we therefore need both H's amount and the total amount; the relationship F = 2G describes only how the other two partners' investments compare and does not by itself supply either quantity.
+
+Statement (1) tells us that H = $40,000. With no value for G (and hence no value for the total), the fraction H / (3G + H) is not determined. For instance, if G = $10,000, the total is $70,000 and H's fraction is 40,000/70,000 = 4/7; if G = $20,000, the total is $100,000 and H's fraction is 40,000/100,000 = 2/5. Two different outcomes are possible, so Statement (1) alone is not sufficient.
+
+Statement (2) tells us that the total investment was $140,000, so 3G + H = 140,000. However, H itself is not determined. If H = $40,000, then H's fraction is 40,000/140,000 = 2/7; if H = $20,000, then H's fraction is 20,000/140,000 = 1/7. Two different outcomes are again possible, so Statement (2) alone is not sufficient.
+
+Taking the two statements together, we have H = $40,000 and a total of $140,000. The required fraction is therefore 40,000/140,000 = 2/7, a single determined value. The given relationship F = 2G is a distractor here: it never provides H's amount or the total, both of which come only from the statements. The two statements together are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
