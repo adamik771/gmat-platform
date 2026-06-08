@@ -316,6 +316,108 @@ function cn(...classes: (string | false | null | undefined)[]): string {
   return classes.filter(Boolean).join(" ")
 }
 
+/**
+ * Post-submit verdict banner. The single clear "how did I do?" moment the
+ * card was previously missing — before this, correctness was only legible
+ * by reading option colours plus a small line tucked into the explanation
+ * header, forcing the student to decode the result instead of being told
+ * it.
+ *
+ * Tone is deliberate. A correct answer gets a calm green confirmation with
+ * its pacing context (the next-most-useful fact once you know you were
+ * right). A wrong answer is *not* rendered in alarm-red — that colour is
+ * already carrying the "this option was wrong" signal on the chosen tile.
+ * The banner instead uses brand gold and reframes the miss as the
+ * highest-value study moment, naming the correct letter so the eye doesn't
+ * have to hunt for the green tile. This serves the "mistakes feel useful,
+ * not discouraging" goal directly.
+ */
+function ResultBanner({
+  correct,
+  elapsedMs,
+  correctLetter,
+  section,
+}: {
+  correct: boolean
+  elapsedMs: number
+  correctLetter: string | null
+  section: SessionQuestion["section"]
+}) {
+  // Same per-section pace targets used by the session insight engine. A
+  // small slack factor keeps "on pace" honest without nagging over a few
+  // seconds.
+  const targetMs = section === "Verbal" ? 90_000 : 120_000
+  const onPace = elapsedMs <= targetMs * 1.15
+
+  if (correct) {
+    return (
+      <div
+        className="mt-5 flex items-start gap-3 p-3.5 rounded-lg border animate-in fade-in-0 zoom-in-95 duration-150"
+        style={{
+          borderColor: "rgba(62,207,142,0.25)",
+          backgroundColor: "rgba(62,207,142,0.05)",
+        }}
+        role="status"
+        aria-live="polite"
+      >
+        <div
+          className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+          style={{ backgroundColor: "rgba(62,207,142,0.14)" }}
+        >
+          <Check className="w-4 h-4" style={{ color: "#3ECF8E" }} />
+        </div>
+        <div className="min-w-0">
+          <p className="text-sm font-semibold" style={{ color: "#3ECF8E" }}>
+            Correct
+          </p>
+          <p className="text-[12px] text-[#888888] mt-0.5 leading-relaxed">
+            {formatDuration(elapsedMs)}
+            {onPace ? " · on pace" : " · slightly over GMAT pace"}. Note why the
+            method worked before moving on — that&apos;s what makes it
+            repeatable under pressure.
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div
+      className="mt-5 flex items-start gap-3 p-3.5 rounded-lg border animate-in fade-in-0 zoom-in-95 duration-150"
+      style={{
+        borderColor: "rgba(201,168,76,0.25)",
+        backgroundColor: "rgba(201,168,76,0.04)",
+      }}
+      role="status"
+      aria-live="polite"
+    >
+      <div
+        className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+        style={{ backgroundColor: "rgba(201,168,76,0.14)" }}
+      >
+        <X className="w-4 h-4" style={{ color: "#C9A84C" }} />
+      </div>
+      <div className="min-w-0">
+        <p className="text-sm font-semibold text-[#F0F0F0]">
+          Not quite
+          {correctLetter ? (
+            <>
+              {" "}
+              — the answer was{" "}
+              <span style={{ color: "#3ECF8E" }}>{correctLetter}</span>
+            </>
+          ) : null}
+        </p>
+        <p className="text-[12px] text-[#888888] mt-0.5 leading-relaxed">
+          This is where the points are. Read the explanation for the method,
+          not just the answer — a miss you understand is worth more than a guess
+          you got right.
+        </p>
+      </div>
+    </div>
+  )
+}
+
 function ConfidencePanel({
   value,
   submitted,
@@ -1907,56 +2009,119 @@ export default function SessionClient({
           </Link>
         )}
 
-        {/* What to do next — renders the nextStepNote guidance as direct CTA
-            buttons. The text was computed above but never surfaced in the UI;
-            without a button, students read the advice and then navigate away
-            manually with no clear path. Primary action depends on accuracy
-            band: review the chapter (low), practice again (mid), study plan
-            (high). Chapter link is only shown when the topic maps to one. */}
-        {(() => {
+        {/* What to do next — the single, authoritative closing action for
+            the session. Surfaces the pre-computed nextStepNote and resolves
+            it into 1-3 decisive CTAs keyed to the accuracy band (plus the
+            cross-topic weak area when one is known). Placed directly above
+            the review list so the path forward is visible without scrolling
+            past every question, and carries a calm gold accent so it reads
+            as the primary next step rather than one more neutral panel. */}
+        {answeredCount > 0 && (() => {
+          const isPractice =
+            !slug.startsWith("diagnostic") &&
+            !slug.startsWith("mock") &&
+            !slug.startsWith("review") &&
+            slug !== "custom"
           const chapterSlug = TOPIC_TO_CHAPTER[topic]
-          const low = accuracy < 60
-          const mid = accuracy >= 60 && accuracy < 78
 
-          const primaryAction = low && chapterSlug
-            ? { label: `Review ${topic} chapter`, href: `/chapters/${chapterSlug}` }
-            : mid
-            ? { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-            : { label: "View your study plan", href: "/study-plan" }
+          type NextAction = { label: string; href: string; variant: "primary" | "secondary" }
+          const actions: NextAction[] = []
 
-          const secondaryAction =
-            low
-              ? { label: "Practice again", href: `/practice/session/${slug}` }
-              : mid && chapterSlug
-              ? { label: "Review the chapter", href: `/chapters/${chapterSlug}` }
-              : { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
+          if (isMixedReview) {
+            actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
+            actions.push({ label: "Review queue", href: "/review", variant: "secondary" })
+          } else if (accuracy < 60) {
+            actions.push({
+              label: chapterSlug ? "Review the chapter" : "Go to chapters",
+              href: chapterSlug ? `/chapters/${chapterSlug}` : "/chapters",
+              variant: "primary",
+            })
+            if (isPractice) {
+              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
+            }
+          } else if (accuracy < 80) {
+            if (isPractice) {
+              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "primary" })
+            }
+            actions.push({
+              label: chapterSlug ? "Review the chapter" : "Browse chapters",
+              href: chapterSlug ? `/chapters/${chapterSlug}` : "/chapters",
+              variant: "secondary",
+            })
+            // When a weaker topic is known and distinct from the current one,
+            // surface it as a direct escape hatch — students who plateau here
+            // can jump straight to the gap without navigating back to practice.
+            if (weakestTopic && weakestTopic.topic !== topic) {
+              actions.push({
+                label: `Practice ${weakestTopic.topic}`,
+                href: `/practice/session/${weakestTopic.practiceSlug}`,
+                variant: "secondary",
+              })
+            }
+          } else if (weakestTopic) {
+            // Strong session + known weak topic: point directly to the gap
+            actions.push({
+              label: `Practice ${weakestTopic.topic}`,
+              href: `/practice/session/${weakestTopic.practiceSlug}`,
+              variant: "primary",
+            })
+            const wtChapter = TOPIC_TO_CHAPTER[weakestTopic.topic]
+            actions.push({
+              label: wtChapter ? "Review the chapter" : "Go to chapters",
+              href: wtChapter ? `/chapters/${wtChapter}` : "/chapters",
+              variant: "secondary",
+            })
+          } else {
+            actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
+            if (isPractice) {
+              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
+            }
+          }
 
           return (
             <div
-              className="p-5 rounded-xl border border-white/[0.08]"
-              style={{ backgroundColor: "#0D0D0D" }}
+              className="p-5 rounded-xl border"
+              style={{
+                borderColor: "rgba(201,168,76,0.22)",
+                backgroundColor: "#0D0D0D",
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
+              }}
             >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+              <p
+                className="text-[10px] uppercase tracking-widest mb-2"
+                style={{ color: "#C9A84C" }}
+              >
                 What to do next
               </p>
-              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-4">
+              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-5">
                 {nextStepNote}
               </p>
-              <div className="flex flex-wrap gap-2">
-                <Link
-                  href={primaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  {primaryAction.label}
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-                <Link
-                  href={secondaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-white/[0.1] text-[#888888] transition-colors hover:text-[#F0F0F0] hover:border-white/[0.2]"
-                >
-                  {secondaryAction.label}
-                </Link>
+              <div className="flex flex-wrap gap-3">
+                {actions.map((action) =>
+                  action.variant === "primary" ? (
+                    <Link
+                      key={action.href}
+                      href={action.href}
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all hover:opacity-90"
+                      style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                    >
+                      {action.label}
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  ) : (
+                    <Link
+                      key={action.href}
+                      href={action.href}
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium border transition-colors hover:border-white/[0.16] hover:text-[#F0F0F0]"
+                      style={{
+                        borderColor: "rgba(255,255,255,0.08)",
+                        color: "#888888",
+                      }}
+                    >
+                      {action.label}
+                    </Link>
+                  )
+                )}
               </div>
             </div>
           )
@@ -2063,116 +2228,6 @@ export default function SessionClient({
                   })}
                 </div>
               )}
-            </div>
-          )
-        })()}
-
-        {/* What to do next — surfaces the pre-computed guidance and closes
-            the "session finished, now what?" dead end with 1-2 decisive CTAs
-            keyed to the accuracy band. */}
-        {answeredCount > 0 && (() => {
-          const isPractice =
-            !slug.startsWith("diagnostic") &&
-            !slug.startsWith("mock") &&
-            !slug.startsWith("review") &&
-            slug !== "custom"
-          const chapterSlug = TOPIC_TO_CHAPTER[topic]
-
-          type NextAction = { label: string; href: string; variant: "primary" | "secondary" }
-          const actions: NextAction[] = []
-
-          if (isMixedReview) {
-            actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
-            actions.push({ label: "Review queue", href: "/review", variant: "secondary" })
-          } else if (accuracy < 60) {
-            actions.push({
-              label: chapterSlug ? "Review the chapter" : "Go to chapters",
-              href: chapterSlug ? `/chapters/${chapterSlug}` : "/chapters",
-              variant: "primary",
-            })
-            if (isPractice) {
-              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
-            }
-          } else if (accuracy < 80) {
-            if (isPractice) {
-              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "primary" })
-            }
-            actions.push({
-              label: chapterSlug ? "Review the chapter" : "Browse chapters",
-              href: chapterSlug ? `/chapters/${chapterSlug}` : "/chapters",
-              variant: "secondary",
-            })
-            // When a weaker topic is known and distinct from the current one,
-            // surface it as a direct escape hatch — students who plateau here
-            // can jump straight to the gap without navigating back to practice.
-            if (weakestTopic && weakestTopic.topic !== topic) {
-              actions.push({
-                label: `Practice ${weakestTopic.topic}`,
-                href: `/practice/session/${weakestTopic.practiceSlug}`,
-                variant: "secondary",
-              })
-            }
-          } else if (weakestTopic) {
-            // Strong session + known weak topic: point directly to the gap
-            actions.push({
-              label: `Practice ${weakestTopic.topic}`,
-              href: `/practice/session/${weakestTopic.practiceSlug}`,
-              variant: "primary",
-            })
-            const wtChapter = TOPIC_TO_CHAPTER[weakestTopic.topic]
-            actions.push({
-              label: wtChapter ? "Review the chapter" : "Go to chapters",
-              href: wtChapter ? `/chapters/${wtChapter}` : "/chapters",
-              variant: "secondary",
-            })
-          } else {
-            actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
-            if (isPractice) {
-              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
-            }
-          }
-
-          return (
-            <div
-              className="p-5 rounded-xl border"
-              style={{
-                borderColor: "rgba(255,255,255,0.06)",
-                backgroundColor: "#0D0D0D",
-              }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
-                What to do next
-              </p>
-              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-5">
-                {nextStepNote}
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {actions.map((action) =>
-                  action.variant === "primary" ? (
-                    <Link
-                      key={action.href}
-                      href={action.href}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all hover:opacity-90"
-                      style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                    >
-                      {action.label}
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  ) : (
-                    <Link
-                      key={action.href}
-                      href={action.href}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium border transition-colors hover:border-white/[0.16] hover:text-[#F0F0F0]"
-                      style={{
-                        borderColor: "rgba(255,255,255,0.08)",
-                        color: "#888888",
-                      }}
-                    >
-                      {action.label}
-                    </Link>
-                  )
-                )}
-              </div>
             </div>
           )
         })()}
@@ -2354,6 +2409,15 @@ export default function SessionClient({
                   )
                 })}
               </div>
+            )}
+
+            {currentState.submitted && (
+              <ResultBanner
+                correct={isQuestionCorrect(current, currentState)}
+                elapsedMs={currentState.elapsedMs}
+                correctLetter={isTwoPart ? null : current.correctAnswerLetter}
+                section={section}
+              />
             )}
 
             <ConfidencePanel
