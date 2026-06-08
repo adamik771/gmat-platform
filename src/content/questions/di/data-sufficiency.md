@@ -1152,7 +1152,15 @@ At a conference of 80 attendees, each person drinks coffee, tea, or both. How ma
 
 **answer:** C
 **fastest_path:** Translate before touching the statements: "only coffee" = (all coffee drinkers) − (both coffee and tea). You need exactly two numbers — the coffee total and the overlap — so just check which statement hands you which.
-**explanation:** Rephrase first: *only-coffee = (coffee drinkers) − (both)*. That's the only relationship that matters, so you're hunting for two quantities. **(1) alone:** 50 drink coffee, but you don't know how many of them also drink tea — if 0 overlap, only-coffee = 50; if 15 overlap, only-coffee = 35. Two outcomes → not sufficient. **(2) alone:** 15 drink both, but with no coffee total there's nothing to subtract from → not sufficient. **Together:** only-coffee = 50 − 15 = **35**, one fixed value → sufficient. Answer **C**. Watch the 80: because every attendee drinks at least one beverage, "only coffee" depends solely on the coffee total and the overlap — you never use it.
+**explanation:** The question asks how many attendees drink *only* coffee. Since every attendee drinks coffee, tea, or both, the coffee drinkers split into those who drink only coffee and those who drink both, so only coffee = (coffee drinkers) − (both coffee and tea). Finding this value requires knowing both the number of coffee drinkers and the number who drink both.
+
+Statement (1) gives the number of coffee drinkers, 50, but not how many of them also drink tea. The only-coffee count could be 50 (if none also drink tea) or 35 (if 15 do), so statement (1) alone is not sufficient.
+
+Statement (2) gives the number who drink both, 15, but not the total number of coffee drinkers, so there is nothing to subtract it from. Statement (2) alone is not sufficient.
+
+Taken together, the statements give only coffee = 50 − 15 = 35, a single value, so the two statements together are sufficient. (The total of 80 attendees is never used: the only-coffee count depends only on the coffee total and the overlap.)
+
+The correct answer is C.
 **mistake_a:** Tempting if you forget the overlap matters — (1) fixes the coffee total at 50, but until you know how many of those also drink tea, only-coffee floats between 35 and 50.
 **mistake_b:** (2) gives the intersection (15) with nothing to remove it from — no coffee total means no subtraction, so it's insufficient alone.
 **mistake_d:** "Each alone" fails for the same reasons (1) and (2) each fail individually — neither single statement pins only-coffee to one value.

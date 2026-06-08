@@ -187,13 +187,37 @@ function parseQuestionBlock(
   if (!headerMatch) return null
   const questionNumber = parseInt(headerMatch[1], 10)
 
-  const metaRegex = /\*\*(difficulty|type|topic|answer|explanation|hint_nudge|hint_strategy|hint_setup|fastest_path|common_trap|takeaway|related_reading|mistake_[a-z]|subchapter|skill|trap_type|est_time_seconds|prerequisite):\*\*\s*([^\n]*)/gi
+  // Field keys come in two flavors. SINGLE-LINE keys are structural fields
+  // that can appear *before* the prompt — table-analysis is "prompt-first",
+  // with difficulty/type/topic ahead of the prompt — so capturing them across
+  // lines would let `**topic:**` swallow the prompt and options. MULTI-LINE
+  // keys are the rich explanation fields, always authored at the tail after
+  // the options; they may span paragraphs, lists, and tables so an explanation
+  // can render as real markdown. For all-single-line content the two passes
+  // produce exactly the same result as the previous single-line parser.
+  const SINGLE_LINE_KEYS =
+    "difficulty|type|topic|answer|hint_nudge|hint_strategy|hint_setup|related_reading|subchapter|skill|trap_type|est_time_seconds|prerequisite"
+  const MULTI_LINE_KEYS = "explanation|fastest_path|common_trap|takeaway|mistake_[a-z]"
+  const ALL_KEYS = `${SINGLE_LINE_KEYS}|${MULTI_LINE_KEYS}`
   const meta: Record<string, string> = {}
-  for (const match of block.matchAll(metaRegex)) {
+  // Single-line fields: value is the remainder of the line (original behavior).
+  const singleLineRegex = new RegExp(
+    `\\*\\*(${SINGLE_LINE_KEYS}):\\*\\*\\s*([^\\n]*)`,
+    "gi"
+  )
+  for (const match of block.matchAll(singleLineRegex)) {
     const key = match[1].toLowerCase()
-    if (!meta[key]) {
-      meta[key] = match[2].trim()
-    }
+    if (!meta[key]) meta[key] = match[2].trim()
+  }
+  // Multi-line fields: capture lazily up to the next `**field:**` marker at the
+  // start of a line, or the end of the block. First occurrence wins.
+  const multiLineRegex = new RegExp(
+    `\\*\\*(${MULTI_LINE_KEYS}):\\*\\*[ \\t]*([\\s\\S]*?)\\s*(?=\\n\\*\\*(?:${ALL_KEYS}):\\*\\*|$)`,
+    "gi"
+  )
+  for (const match of block.matchAll(multiLineRegex)) {
+    const key = match[1].toLowerCase()
+    if (!meta[key]) meta[key] = match[2].trim()
   }
   // Progressive hints — optional. Authors can add any subset of
   // `**hint_nudge:**`, `**hint_strategy:**`, `**hint_setup:**` to a
