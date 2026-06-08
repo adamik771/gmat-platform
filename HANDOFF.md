@@ -4,7 +4,18 @@ This file exists so a fresh Claude chat can pick up exactly where the previous o
 
 ## CONTEXT SWITCH — 2026-06-07 (Deep explanations: OG format locked, multi-line parser, generation script)
 
-All work is on branch `claude/deep-explanations-pilot-2026-06-07` (**NOT merged to main**). Commits: `9a376e6` (12-question coaching-style pilot), `039b22d` (multi-line parser + OG recasts + generator). Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/deep-explanations-pilot-2026-06-07?expand=1`
+All work is on branch `claude/deep-explanations-pilot-2026-06-07` (**NOT merged to main**). Commits `9a376e6` … `dcebaeb` (pilot → multi-line parser → generation script → orphan fix → the full OG rollout below). Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/deep-explanations-pilot-2026-06-07?expand=1`
+
+### PROGRESS — standard single-question bank COMPLETE (644/912), end of 2026-06-07 session
+The free pipeline ran end to end: parallel **session subagents** (no metered-API cost) each write `{id}.json` to `/tmp/og` → assemble → `npm run generate:explanations -- --from <json> --apply` (OG-pure surgery) → `validate:content` (0 errors) → an **answer-consistency gate** (the explanation's stated "The correct answer is X." must equal the key; CR also checks per-choice coverage). Every batch passed. Committed in batches (`5ac50b6` … `dcebaeb`).
+- **Quant fully OG (520):** Data Sufficiency 56 · word-problems 62 · 9 PS files 402 (arithmetic 49, algebra 34, number-properties 51, exponents-roots 49, ratios-percents 50, combinatorics 46, geometry 34, rates-work 44, statistics-probability 45).
+- **Critical Reasoning fully OG (124).**
+- **Bug fixed:** `word-problems.md` was missing `---` separators between q45–q62, so the parser had silently dropped q46–q62 (not loading in the app). Inserted them — total question count **895 → 912**. An audit (header count vs parsed count) confirmed **no other file is affected**.
+- **Validator:** removed the now-obsolete `fastest_path`/`common_trap`/`takeaway` "missing field" WARN rules (OG-pure).
+- **API key:** Adam pasted it into `.env.local`, but generation uses free session subagents (not the metered API), so the key is only needed for the in-app tutor. **Rotate the exposed key** (it was pasted in chat).
+
+### REMAINING (268) — grouped/multi-part, needs write-back code first
+RC (73) + MSR (36) are grouped passages (`## Passage` + `### Qn`); TA (49) + GI (50) + TPA (52) are multi-part (per-RO blocks); `curriculum/q-quant-01-mindset` (8) carries special taxonomy fields. `--apply` currently **skips** all of these (it only rewrites standard `## Qn` blocks). To finish them: (1) extend `rewriteBlock`/`applyToFile` in `scripts/generate-explanations.ts` to handle grouped `### Qn` blocks, TPA/per-RO structure, and preserve curriculum fields; (2) per-type OG formats (RC/MSR = prose anchored to the passage/exhibits + per-choice; TA/GI/TPA = one self-contained "The correct answer is X." block per response RO1/RO2…); (3) run the same subagent-workflow pattern.
 
 ### Decision — explanations now follow the GMAT Official Guide "Rationale" format, OG-pure
 Adam supplied ~15 official-guide rationale screenshots as the gold standard; adopted wholesale, replacing the earlier coaching voice. **OG-pure**: dropped `fastest_path` / `common_trap` / `takeaway`; per-choice `mistake_*` kept ONLY for Verbal (CR/RC). Per-type templates:
