@@ -46,3 +46,20 @@ export const CR_TYPE_TO_CHAPTER: Record<string, string> = {
   "Flaw/Paradox": "critical-reasoning-flaw-paradox",
   Paradox: "critical-reasoning-flaw-paradox",
 }
+
+/**
+ * Maps a Reading Comprehension question's `type` (from question frontmatter,
+ * e.g. "Main Idea", "Specific Detail") to the focused spoke chapter that
+ * teaches it. The shared "Reading Comprehension" topic still routes to the
+ * foundations hub via TOPIC_TO_CHAPTER above; this finer map lets weak-area
+ * surfaces send a student to the exact question-type chapter once they
+ * consume `question_type`. Function and Author's Attitude share a chapter.
+ */
+export const RC_TYPE_TO_CHAPTER: Record<string, string> = {
+  "Main Idea": "reading-comprehension-main-idea",
+  "Specific Detail": "reading-comprehension-specific-detail",
+  Inference: "reading-comprehension-inference",
+  Application: "reading-comprehension-application",
+  Function: "reading-comprehension-function-attitude",
+  "Author's Attitude": "reading-comprehension-function-attitude",
+}
