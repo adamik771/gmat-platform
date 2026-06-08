@@ -946,3 +946,536 @@ The key insight is factoring the discriminant. Students who expand (n+1)² − 4
 **common_trap:** Failing to factor the discriminant — expanding (n+1)² − 4n but not recognizing it equals (n−1)², leaving an unfactorable-looking quadratic in n that obscures the simple condition n ≠ 1.
 **takeaway:** When a quadratic has a parametric coefficient, fully simplify the discriminant; it often factors cleanly and reveals the exact constraint on the parameter. Two distinct real roots ↔ Δ > 0.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Linear Equations
+**skill:** Solve for a requested expression rather than the variable
+
+If 5(y − 2) = 35, what is the value of y + 3?
+
+- A) 7
+- B) 9
+- C) 10
+- D) 12
+- E) 14
+
+**answer:** D
+**fastest_path:** 5(y − 2) = 35 → y − 2 = 7. Then y + 3 = (y − 2) + 5 = 7 + 5 = 12 — no need to isolate y.
+**explanation:** Divide both sides by 5: y − 2 = 7, so y = 9 and y + 3 = 12. The faster route never solves for y: since y + 3 = (y − 2) + 5 and y − 2 = 7, you get 7 + 5 = 12 directly. Whenever the answer is an expression rather than the variable, look for a one-step bridge from an intermediate result.
+**mistake_a:** Stopped at the intermediate value y − 2 = 7 and bubbled 7.
+**mistake_b:** Solved for the variable (y = 9) and answered that instead of y + 3.
+**mistake_c:** Divided 35 / 5 = 7 and treated that as y, then added 3 → 10, forgetting to add back the 2.
+**mistake_e:** Found y = 9 but misread the expression as y + 5, giving 14.
+**common_trap:** Answering the variable (y = 9) instead of the requested expression y + 3. Error-log tag: Setup error (Q_SETUP).
+**trap_type:** answered-wrong-quantity
+**takeaway:** Read exactly what the question asks for. When it wants an expression like y + 3, check whether you can build it from an intermediate result instead of fully solving for the variable.
+**est_time_seconds:** 50
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponents
+**skill:** Add to an exponent by multiplying the base value
+
+If 2ˣ = 8, what is the value of 2⁽ˣ⁺²⁾?
+
+- A) 10
+- B) 12
+- C) 16
+- D) 32
+- E) 64
+
+**answer:** D
+**fastest_path:** 2⁽ˣ⁺²⁾ = 2ˣ · 2² = 8 · 4 = 32 — no need to find x.
+**explanation:** Adding 2 to an exponent multiplies the value by 2² = 4. Since 2ˣ = 8, we get 2⁽ˣ⁺²⁾ = 8 × 4 = 32. (Solving x = 3 first and computing 2⁵ = 32 reaches the same place one step slower.)
+**mistake_a:** Added the exponent to the value: 8 + 2 = 10.
+**mistake_b:** Added 2² to the value instead of multiplying: 8 + 4 = 12.
+**mistake_c:** Multiplied by only one factor of 2: 8 × 2 = 16.
+**mistake_e:** Squared the value instead of multiplying by 2²: 8² = 64.
+**common_trap:** Treating "+2 in the exponent" as an addition to the value rather than a multiplication by 2². Error-log tag: Concept gap (Q_CONCEPT).
+**trap_type:** exponent-add-vs-multiply
+**takeaway:** aᵐ⁺ⁿ = aᵐ · aⁿ. Adding to an exponent multiplies the base value; it never adds to it.
+**est_time_seconds:** 50
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Inequalities
+**skill:** Flip the inequality when dividing by a negative
+
+If 4 − 2x < 10, which of the following must be true?
+
+- A) x > −3
+- B) x < −3
+- C) x > 3
+- D) x < 3
+- E) x > −5
+
+**answer:** A
+**fastest_path:** 4 − 2x < 10 → −2x < 6 → divide by −2 and flip: x > −3.
+**explanation:** Subtract 4 from both sides: −2x < 6. Divide by −2 and reverse the inequality (dividing by a negative flips direction): x > −3. Sanity check with x = 0: 4 − 0 = 4 < 10 ✓; with x = −10: 4 + 20 = 24, which is not < 10, confirming x must be greater than −3.
+**mistake_b:** Solved correctly but forgot to flip the inequality, landing on x < −3.
+**mistake_c:** Dropped the negative sign on the bound, giving x > 3.
+**mistake_d:** Made both errors at once: x < 3.
+**mistake_e:** Ignored the constant 4 (treated −2x < 10), giving x > −5.
+**common_trap:** Failing to reverse the inequality when dividing both sides by a negative number. Error-log tag: Concept gap (Q_CONCEPT).
+**trap_type:** inequality-sign-flip-miss
+**takeaway:** Multiplying or dividing an inequality by a negative flips its direction. Plug in a test value to confirm which way the sign points.
+**est_time_seconds:** 55
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Systems of Equations
+**skill:** Solve a sum-and-difference system by adding the equations
+
+If x + y = 10 and x − y = 4, what is the value of xy?
+
+- A) 18
+- B) 21
+- C) 24
+- D) 28
+- E) 40
+
+**answer:** B
+**fastest_path:** Add the equations: 2x = 14 → x = 7, so y = 3. xy = 21.
+**explanation:** Adding the two equations eliminates y: (x + y) + (x − y) = 2x = 14, so x = 7, and y = 10 − 7 = 3. Then xy = 7 × 3 = 21.
+**mistake_a:** Arithmetic slip 2x = 12 → x = 6, giving 6 × 3 = 18.
+**mistake_c:** Arithmetic slip 2x = 16 → x = 8, giving 8 × 3 = 24.
+**mistake_d:** Multiplied x by the difference 4 instead of by y: 7 × 4 = 28.
+**mistake_e:** Multiplied the two given right-hand sides as if that produced xy: 10 × 4 = 40.
+**common_trap:** Multiplying the equation constants (10 × 4 = 40) instead of the solved values. Error-log tag: Setup error (Q_SETUP).
+**trap_type:** product-of-givens-trap
+**takeaway:** Recover individual values from a sum and a difference by adding and subtracting the equations. xy is the product of the solved values, never of the equation constants.
+**est_time_seconds:** 60
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Algebra Translation
+**skill:** Reverse a percent increase by dividing
+
+A number increased by 40% equals 70. What is the number?
+
+- A) 28
+- B) 30
+- C) 42
+- D) 50
+- E) 98
+
+**answer:** D
+**fastest_path:** "Increased by 40%" means 1.4n = 70 → n = 70 / 1.4 = 50.
+**explanation:** A number increased by 40% is 1.4 times itself, so 1.4n = 70 and n = 70 / 1.4 = 50. Check: 50 increased by 40% is 50 + 20 = 70 ✓. The 70 is the result, so you divide to recover the original.
+**mistake_a:** Took 40% of 70: 70 × 0.4 = 28.
+**mistake_b:** Subtracted 40 from 70: 30.
+**mistake_c:** Decreased 70 by 40%: 70 × 0.6 = 42.
+**mistake_e:** Increased 70 by 40% instead of reversing the operation: 70 × 1.4 = 98.
+**common_trap:** Operating on 70 (the result) instead of recognizing it as 1.4 times the unknown. Error-log tag: Setup error (Q_SETUP).
+**trap_type:** reverse-percent-direction
+**takeaway:** "x increased by 40% = 70" translates to 1.4x = 70, so divide. To undo a percent increase, divide by (1 + rate); do not multiply.
+**est_time_seconds:** 55
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Quadratic Equations
+**skill:** Identify consecutive integers from a product
+
+The product of two consecutive positive integers is 156. What is their sum?
+
+- A) 23
+- B) 24
+- C) 25
+- D) 26
+- E) 156
+
+**answer:** C
+**hint_nudge:** Estimate the square root of 156 to locate the two consecutive integers.
+**hint_strategy:** √156 ≈ 12.5, so the integers straddle 12.5 — test 12 × 13.
+**hint_setup:** 12 × 13 = 156, so the integers are 12 and 13; the question asks for their sum.
+**fastest_path:** √156 ≈ 12.5 → the integers are 12 and 13. Sum = 25.
+**explanation:** Two consecutive integers near √156: since 12 × 13 = 156, they are 12 and 13, summing to 25. Algebraically, n(n + 1) = 156 → n² + n − 156 = 0 → (n − 12)(n + 13) = 0 → n = 12 (taking the positive root). Sum = 12 + 13 = 25.
+**mistake_a:** Guessed the pair too low (11 and 12), giving 23.
+**mistake_b:** Found 12 but doubled it (12 + 12 = 24), using the same integer twice.
+**mistake_d:** Took 13 twice or computed 12 + 14, giving 26.
+**mistake_e:** Re-bubbled the product 156 instead of the sum.
+**common_trap:** Off-by-one on consecutive integers, or stopping at one of the two values. Error-log tag: Calc slip (CALC_SLIP).
+**trap_type:** consecutive-integer-off-by-one
+**takeaway:** For "product of consecutive integers," estimate the square root to find the pair instantly, then re-read whether the question wants one value, the sum, or the product.
+**est_time_seconds:** 95
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponents
+**skill:** Factor out a common power before combining
+
+If 3¹⁰ + 3¹⁰ + 3¹⁰ = 3ˣ, what is the value of x?
+
+- A) 10
+- B) 11
+- C) 13
+- D) 30
+- E) 33
+
+**answer:** B
+**hint_nudge:** The three terms are identical — adding them is the same as multiplying one of them by 3.
+**hint_strategy:** 3¹⁰ + 3¹⁰ + 3¹⁰ = 3 × 3¹⁰, and 3 = 3¹.
+**hint_setup:** 3 × 3¹⁰ = 3¹ × 3¹⁰ = 3¹⁺¹⁰.
+**fastest_path:** Factor: 3¹⁰ + 3¹⁰ + 3¹⁰ = 3 × 3¹⁰ = 3¹ × 3¹⁰ = 3¹¹. So x = 11.
+**explanation:** The three identical terms sum to 3 × 3¹⁰. Since 3 = 3¹, multiply same-base powers by adding exponents: 3¹ × 3¹⁰ = 3¹¹, so x = 11. You cannot add the exponents of the original terms — adding values is not the same as multiplying them.
+**mistake_a:** Assumed that adding equal powers leaves the exponent unchanged, giving 10.
+**mistake_c:** Added the count (3) to the exponent (10 + 3) instead of recognizing 3 = 3¹, giving 13.
+**mistake_d:** Multiplied the base 3 by the exponent 10, giving 30.
+**mistake_e:** Multiplied the correct result 11 by the number of terms (3 × 11), giving 33.
+**common_trap:** Adding the term count to the exponent, or leaving the exponent unchanged. The number of equal terms becomes a factor, raising the exponent by exactly 1 here. Error-log tag: Concept gap (Q_CONCEPT).
+**trap_type:** factor-out-like-powers
+**takeaway:** Equal powers add as aᵏ + aᵏ + … (n times) = n × aᵏ. When n is itself a power of a, fold it in by adding exponents.
+**est_time_seconds:** 75
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Functions
+**skill:** Back out inputs from outputs, then combine as asked
+
+The function f is defined by f(x) = 2x − 3 for all x. If f(a) = 7 and f(b) = −5, what is the value of a − b?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 9
+- E) 12
+
+**answer:** C
+**hint_nudge:** Solve 2a − 3 = 7 and 2b − 3 = −5 separately for a and b.
+**hint_strategy:** Find a from the first equation, b from the second, then subtract.
+**hint_setup:** a = 5 and b = −1; the question asks for a − b, not f(a) − f(b).
+**fastest_path:** 2a − 3 = 7 → a = 5. 2b − 3 = −5 → b = −1. a − b = 5 − (−1) = 6.
+**explanation:** f(a) = 7 means 2a − 3 = 7, so a = 5. f(b) = −5 means 2b − 3 = −5, so 2b = −2 and b = −1. Then a − b = 5 − (−1) = 6. The double negative is the heart of the question: subtracting −1 adds 1.
+**mistake_a:** Dropped the negative when dividing −2 / 2, getting b = 1, so 5 − 1 = 4.
+**mistake_b:** Bubbled a alone (5) without subtracting b.
+**mistake_d:** Sign slip on b's equation (2b = −8 → b = −4), giving 5 − (−4) = 9.
+**mistake_e:** Computed f(a) − f(b) = 7 − (−5) = 12 — the difference of the outputs instead of the inputs.
+**common_trap:** Taking the difference of the function values instead of the inputs, or mishandling the double negative. Error-log tag: Setup error (Q_SETUP).
+**trap_type:** answered-wrong-quantity
+**takeaway:** Given f(a) and f(b), recover a and b individually, then combine them exactly as asked. Watch the sign when subtracting a negative input.
+**est_time_seconds:** 95
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Inequalities
+**skill:** Solve a compound inequality and count integers inclusively
+
+If −2 ≤ 3 − x ≤ 5, how many integer values of x satisfy the inequality?
+
+- A) 6
+- B) 7
+- C) 8
+- D) 9
+- E) 10
+
+**answer:** C
+**hint_nudge:** Split into two inequalities and solve each for x, minding the sign flip.
+**hint_strategy:** 3 − x ≥ −2 gives x ≤ 5; 3 − x ≤ 5 gives x ≥ −2. Then count integers inclusively.
+**hint_setup:** The range is −2 ≤ x ≤ 5. Count the integers from −2 to 5 inclusive.
+**fastest_path:** Solve each side: x ≤ 5 and x ≥ −2, so −2 ≤ x ≤ 5. Integer count = 5 − (−2) + 1 = 8.
+**explanation:** From 3 − x ≥ −2: −x ≥ −5, so x ≤ 5 (flip when multiplying by −1). From 3 − x ≤ 5: −x ≤ 2, so x ≥ −2. Combined: −2 ≤ x ≤ 5. Both endpoints are included, so the integers are −2, −1, 0, 1, 2, 3, 4, 5 — that is 8 values, since 5 − (−2) + 1 = 8.
+**mistake_a:** Treated the bounds as strict (excluded both endpoints), counting only −1 through 4 → 6.
+**mistake_b:** Computed 5 − (−2) = 7 but forgot to add 1 for inclusive counting.
+**mistake_d:** Added 1 twice or double-counted an endpoint, giving 9.
+**mistake_e:** Miscounted the span of the range, giving 10.
+**common_trap:** Forgetting the "+1" when counting inclusive integers, or treating "≤" bounds as strict. Error-log tag: Calc slip (CALC_SLIP).
+**trap_type:** inclusive-endpoint-count
+**takeaway:** The count of integers from m to n inclusive is n − m + 1. Track whether each bound is "≤" (included) or "<" (excluded).
+**est_time_seconds:** 100
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Systems of Equations
+**skill:** Scale and eliminate, then answer the requested item
+
+At a concession stand, 3 hot dogs and 2 sodas cost $13, while 2 hot dogs and 4 sodas cost $14. What is the price of one hot dog?
+
+- A) $2.00
+- B) $2.50
+- C) $3.00
+- D) $3.50
+- E) $4.00
+
+**answer:** C
+**hint_nudge:** Set up an equation from each purchase, then eliminate the sodas.
+**hint_strategy:** 3h + 2s = 13 and 2h + 4s = 14; halve the second to h + 2s = 7, then subtract.
+**hint_setup:** (3h + 2s) − (h + 2s) = 13 − 7 → 2h = 6.
+**fastest_path:** Halve equation 2: h + 2s = 7. Subtract from equation 1 (3h + 2s = 13): 2h = 6 → h = 3.
+**explanation:** Let h and s be the prices. Then 3h + 2s = 13 and 2h + 4s = 14. Divide the second by 2: h + 2s = 7. Subtract it from the first: (3h + 2s) − (h + 2s) = 13 − 7 → 2h = 6 → h = 3 (and s = 2). Check: 3(3) + 2(2) = 13 ✓ and 2(3) + 4(2) = 14 ✓.
+**mistake_a:** Solved for the soda price ($2) and answered the wrong item.
+**mistake_b:** Arithmetic slip in the elimination, giving $2.50.
+**mistake_d:** Used only the second equation (14 / 4 = 3.5) instead of solving the system.
+**mistake_e:** Sign error in elimination giving h = 4.
+**common_trap:** Solving for the soda price and answering it, or dividing one total by its quantity. Error-log tag: Setup error (Q_SETUP).
+**trap_type:** answered-wrong-variable
+**takeaway:** In a two-item system, scale one equation so a variable cancels cleanly, then re-read which item the question wanted before bubbling.
+**est_time_seconds:** 105
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Sequences
+**skill:** Apply the arithmetic-sequence nth-term formula
+
+In a sequence, each term after the first is 4 more than the previous term. If the first term is 7, what is the 20th term?
+
+- A) 76
+- B) 80
+- C) 83
+- D) 87
+- E) 91
+
+**answer:** C
+**hint_nudge:** From term 1 to term 20 there are 19 steps, not 20.
+**hint_strategy:** nth term = a₁ + (n − 1)d = 7 + (20 − 1) × 4.
+**hint_setup:** 7 + 19 × 4 = 7 + 76.
+**fastest_path:** a₂₀ = 7 + (20 − 1) × 4 = 7 + 76 = 83.
+**explanation:** An arithmetic sequence's nth term is a₁ + (n − 1)d. With a₁ = 7, d = 4, n = 20: 7 + 19 × 4 = 7 + 76 = 83. The crux is that there are 19 steps between term 1 and term 20, not 20.
+**mistake_a:** Computed 19 × 4 = 76 but forgot to add the first term.
+**mistake_b:** Computed 4 × 20 = 80, ignoring both the offset and the first term.
+**mistake_d:** Used n instead of n − 1: 7 + 20 × 4 = 87, counting 20 gaps.
+**mistake_e:** Used 21 gaps: 7 + 21 × 4 = 91.
+**common_trap:** Using n instead of (n − 1) — counting 20 steps and landing on 87. Error-log tag: Concept gap (Q_CONCEPT).
+**trap_type:** arithmetic-sequence-off-by-one
+**takeaway:** nth term = first term + (n − 1) × common difference. There is always one fewer step than the term number.
+**est_time_seconds:** 90
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Symmetric Sums
+**skill:** Square x + 1/x to reach x² + 1/x²
+
+If x + 1/x = 5, what is the value of x² + 1/x²?
+
+- A) 10
+- B) 21
+- C) 23
+- D) 25
+- E) 27
+
+**answer:** C
+**hint_nudge:** Don't solve for x — square the given expression.
+**hint_strategy:** (x + 1/x)² = x² + 2 + 1/x².
+**hint_setup:** 5² = x² + 1/x² + 2, so x² + 1/x² = 25 − 2.
+**fastest_path:** (x + 1/x)² = x² + 1/x² + 2 = 25, so x² + 1/x² = 23.
+**explanation:** Square the given: (x + 1/x)² = x² + 2·x·(1/x) + 1/x² = x² + 2 + 1/x². Since x + 1/x = 5, the square is 25, so x² + 1/x² = 25 − 2 = 23. The cross term is exactly 2 because x·(1/x) = 1.
+**mistake_a:** Doubled the given (2 × 5) instead of squaring it, giving 10.
+**mistake_b:** Subtracted 4 instead of 2 (25 − 4), giving 21.
+**mistake_d:** Forgot the cross term entirely, leaving 5² = 25.
+**mistake_e:** Added 2 instead of subtracting (25 + 2), giving 27.
+**common_trap:** Forgetting the +2 cross term (answering 25) or subtracting the wrong constant. Error-log tag: Concept gap (Q_CONCEPT).
+**trap_type:** square-of-sum-cross-term
+**takeaway:** (x + 1/x)² = x² + 1/x² + 2. The middle term is always 2 because x times its reciprocal is 1 — subtract it to isolate the squares.
+**est_time_seconds:** 100
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Integer Constraints — Optimization
+**skill:** Enumerate lattice points under a positive-integer constraint
+
+If x and y are positive integers and 3x + 5y = 47, what is the greatest possible value of xy?
+
+- A) 28
+- B) 35
+- C) 36
+- D) 40
+- E) 42
+
+**answer:** C
+**hint_nudge:** x and y must be positive integers — only some values of x make y a whole number.
+**hint_strategy:** 5y = 47 − 3x must be positive and divisible by 5; test x = 4, 9, 14.
+**hint_setup:** The valid pairs are (4, 7), (9, 4), (14, 1). Compare their products.
+**fastest_path:** 5y = 47 − 3x must be a positive multiple of 5. x = 4 → y = 7 (xy = 28); x = 9 → y = 4 (xy = 36); x = 14 → y = 1 (xy = 14). Max = 36.
+**explanation:** Because 47 − 3x must be divisible by 5 and positive, x ≡ 4 (mod 5): x = 4, 9, 14. The pairs are (4, 7), (9, 4), (14, 1) with products 28, 36, 14. The greatest is xy = 36 at (9, 4). The continuous "balanced" optimum (where 3x ≈ 5y) hints at a large product, but integrality forces you to check the actual lattice points.
+**mistake_a:** Stopped at the first valid pair (4, 7), giving 28.
+**mistake_b:** Bubbled the intermediate value 5y at x = 4 (which is 35).
+**mistake_d:** Treated x and y as continuous, maximized near the balanced point, and rounded to 40.
+**mistake_e:** Bubbled the intermediate value 3x at x = 14 (which is 42).
+**common_trap:** Stopping at the first valid pair, or optimizing as if x and y were continuous. Error-log tag: Condition miss (R2 / Q_SETUP).
+**trap_type:** integer-constraint-optimization
+**takeaway:** When a linear equation carries a positive-integer constraint, use divisibility to list the finite set of valid pairs — don't assume the continuous optimum is reachable.
+**est_time_seconds:** 150
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Functions — Functional Equation
+**skill:** Build a solvable system from a paired substitution
+
+The function f satisfies f(x) + 2f(1 − x) = x for every real number x. What is the value of f(2)?
+
+- A) −4/3
+- B) −2/3
+- C) 0
+- D) 2/3
+- E) 4/3
+
+**answer:** A
+**hint_nudge:** One substitution isn't enough — f(2) is tied to f(−1). Make a second equation.
+**hint_strategy:** Substitute x = 2 and x = −1 (since 1 − (−1) = 2) to get two equations in f(2) and f(−1).
+**hint_setup:** f(2) + 2f(−1) = 2 and f(−1) + 2f(2) = −1. Solve the system for f(2).
+**fastest_path:** Sub x = 2: f(2) + 2f(−1) = 2. Sub x = −1: f(−1) + 2f(2) = −1. Solving gives f(2) = −4/3.
+**explanation:** The relation links f(x) and f(1 − x). Substituting x = 2 gives f(2) + 2f(−1) = 2; substituting x = −1 gives f(−1) + 2f(2) = −1 (because 1 − (−1) = 2). Let a = f(2) and b = f(−1): a + 2b = 2 and 2a + b = −1. From the second, b = −1 − 2a; substitute: a + 2(−1 − 2a) = 2 → −3a − 2 = 2 → a = −4/3. The self-pairing transform x ↔ 1 − x is the entire trick.
+**mistake_b:** Arithmetic slip while solving the system, giving −2/3.
+**mistake_c:** Assumed f is the identity (which fails) or guessed 0.
+**mistake_d:** Solved for the magnitude or made a sign error, giving 2/3.
+**mistake_e:** Dropped the negative sign at the end, giving 4/3.
+**common_trap:** Trying to read f(2) from a single substitution, or losing the sign in the system. Error-log tag: Wrong strategy choice (S1 / Q_SETUP).
+**trap_type:** paired-substitution-functional-equation
+**takeaway:** When f is defined implicitly through f(x) and a transform of x, substitute both x and its transform to get a solvable system. Here x → 1 − x pairs with itself.
+**est_time_seconds:** 165
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Inequalities — Must Be True
+**skill:** Disprove "must be true" claims with signed counterexamples
+
+If a and b are nonzero numbers with a < b, which of the following must be true?
+
+I. a² < b²
+II. 1/a > 1/b
+III. a³ < b³
+
+- A) III only
+- B) I and III
+- C) II and III
+- D) I, II, and III
+- E) None
+
+**answer:** A
+**hint_nudge:** "Must be true" fails if even one counterexample exists — try negatives.
+**hint_strategy:** Test a = −3, b = 1 on I and II; recall that cubing preserves order for all reals.
+**hint_setup:** I fails (9 < 1 is false). II fails at a = −1, b = 2 (−1 > 0.5 is false). III always holds.
+**fastest_path:** Test a = −3, b = 1: I gives 9 < 1 (false); II gives −1/3 > 1 (false). III: cubing is increasing for all reals, so a³ < b³ always. Only III.
+**explanation:** Here a < b with both nonzero. (I) a² < b²? Take a = −3, b = 1: a² = 9, b² = 1, and 9 < 1 is false — squaring flips the order when the smaller number is more negative. (II) 1/a > 1/b? Take a = −1, b = 2: 1/a = −1, 1/b = 0.5, and −1 > 0.5 is false — reciprocals reverse order only when a and b share a sign. (III) a³ < b³? Cubing is strictly increasing over all reals, so a < b forces a³ < b³ — always true. Only III must be true.
+**mistake_b:** Assumed squaring preserves order, forgetting a negative of larger magnitude.
+**mistake_c:** Assumed reciprocals always flip the inequality — true only when a and b have the same sign.
+**mistake_d:** Treated every power and reciprocal as order-preserving.
+**mistake_e:** Over-corrected and rejected III, the one statement that does hold.
+**common_trap:** Assuming squaring or reciprocating preserves or uniformly reverses order without checking signs. Error-log tag: Condition miss (R2).
+**trap_type:** must-be-true-counterexample
+**takeaway:** For "must be true" inequalities, hunt for a counterexample using negatives and reciprocals. Odd powers (cubes) preserve order everywhere; even powers and reciprocals do not.
+**est_time_seconds:** 150
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Quadratics — Vieta's Formulas
+**skill:** Count k-values via unordered integer factor pairs
+
+The quadratic x² − kx + 24 = 0 has two distinct positive integer roots. How many distinct values of k are possible?
+
+- A) 3
+- B) 4
+- C) 5
+- D) 6
+- E) 8
+
+**answer:** B
+**hint_nudge:** By Vieta's formulas, the roots multiply to 24 and add to k.
+**hint_strategy:** List the positive integer factor pairs of 24; each gives k = the sum. Count distinct sums.
+**hint_setup:** Pairs (1, 24), (2, 12), (3, 8), (4, 6) give k = 25, 14, 11, 10.
+**fastest_path:** Roots multiply to 24 and add to k. Factor pairs: (1, 24), (2, 12), (3, 8), (4, 6) → k = 25, 14, 11, 10. Four values.
+**explanation:** For x² − kx + 24 = 0, Vieta's formulas give (root₁)(root₂) = 24 and (root₁) + (root₂) = k. The positive-integer factor pairs of 24 are (1, 24), (2, 12), (3, 8), (4, 6) — four unordered pairs. Since 24 is not a perfect square, no pair has equal roots, so "distinct" rules nothing out. Each pair gives a different k (25, 14, 11, 10), so 4 values of k are possible.
+**mistake_a:** Missed a factor pair (commonly (1, 24)), counting only 3.
+**mistake_c:** Counted a pair with a repeated root or a non-integer factor, reaching 5.
+**mistake_d:** Counted ordered pairs partially or added a stray pair, reaching 6.
+**mistake_e:** Counted all 8 divisors of 24 instead of the 4 unordered pairs.
+**common_trap:** Counting all 8 divisors of 24 rather than the 4 unordered factor pairs. Error-log tag: Setup error (Q_SETUP).
+**trap_type:** unordered-factor-pair-count
+**takeaway:** A monic quadratic with integer roots multiplying to N has one k per unordered factor pair of N. Check whether N is a perfect square, which would add an equal-roots pair that "distinct" may exclude.
+**est_time_seconds:** 140
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q51
+**difficulty:** Challenge
+**type:** Problem Solving
+**topic:** Symmetric Sums — Nested Power Identity
+**skill:** Climb power sums by repeated squaring
+
+If x is a positive real number and x + 1/x = 3, what is the value of x⁴ + 1/x⁴?
+
+- A) 43
+- B) 45
+- C) 47
+- D) 49
+- E) 81
+
+**answer:** C
+**hint_nudge:** Build up in stages: first find x² + 1/x², then use it to find x⁴ + 1/x⁴.
+**hint_strategy:** (x + 1/x)² = x² + 1/x² + 2 and (x² + 1/x²)² = x⁴ + 1/x⁴ + 2.
+**hint_setup:** x² + 1/x² = 3² − 2 = 7. Then x⁴ + 1/x⁴ = 7² − 2.
+**fastest_path:** x² + 1/x² = 3² − 2 = 7. Then x⁴ + 1/x⁴ = 7² − 2 = 47.
+**explanation:** Square once: (x + 1/x)² = x² + 1/x² + 2 = 9, so x² + 1/x² = 7. Square again: (x² + 1/x²)² = x⁴ + 1/x⁴ + 2 = 49, so x⁴ + 1/x⁴ = 47. Each squaring introduces a +2 cross term (because x·(1/x) = 1), which you subtract back out. Skipping either subtraction, or jumping straight to 3⁴, is the trap.
+**mistake_a:** Over-subtracted at the final step (for example 49 − 6), giving 43.
+**mistake_b:** Subtracted 4 instead of 2 at the final step (49 − 4), giving 45.
+**mistake_d:** Stopped at (x² + 1/x²)² and forgot the final − 2, leaving 49.
+**mistake_e:** Computed (x + 1/x)⁴ = 3⁴ = 81, ignoring the cross terms entirely.
+**common_trap:** Forgetting one of the two "− 2" corrections, or raising 3 to the 4th power directly. Error-log tag: Concept gap (Q_CONCEPT).
+**trap_type:** nested-power-sum-identity
+**takeaway:** To climb from x + 1/x to higher powers, square step by step and subtract 2 each time: x² + 1/x² = (x + 1/x)² − 2, then x⁴ + 1/x⁴ = (x² + 1/x²)² − 2. Never jump powers in a single leap.
+**est_time_seconds:** 165
+**related_reading:** reading-quant-04-algebra-and-equations
