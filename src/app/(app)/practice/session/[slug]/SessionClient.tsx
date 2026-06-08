@@ -1088,6 +1088,83 @@ function FullAnalysis({
   )
 }
 
+/**
+ * ResultHeadline — the calm "what just happened" moment at the top of the
+ * post-submit explanation panel. Replaces a bare "Explanation" eyebrow with
+ * an outcome-aware status + one constructive sentence.
+ *
+ * Why this exists: the only other outcome signal post-submit is the option
+ * colouring, and the confidence-calibration note only appears when the
+ * student actually rated their confidence (optional, often skipped). So most
+ * submissions had no affirmation of a correct answer and no reframing of a
+ * miss. This guarantees every submission gets a clear, framed result —
+ * correct answers are affirmed (and a hint-assisted win is named honestly so
+ * the student knows to re-test it cold), misses are reframed as the useful
+ * kind of data rather than a failure. It lives inside the explanation panel
+ * that already renders, so it adds clarity without adding a new box.
+ */
+function ResultHeadline({
+  wasCorrect,
+  hintsUsed,
+  wrongLetter,
+  correctLetter,
+}: {
+  wasCorrect: boolean
+  hintsUsed: number
+  wrongLetter: string | null
+  correctLetter: string | null
+}) {
+  const message = wasCorrect
+    ? hintsUsed > 0
+      ? "Correct — with a nudge. Come back and solve a similar one unaided to be sure it has stuck."
+      : "Correct. Read the method below so it holds up on the harder variants of this idea."
+    : "Not quite — and this is the useful kind of miss. The explanation below shows exactly where the path diverged."
+  return (
+    <div className="mb-3">
+      <div className="flex items-center gap-2.5 flex-wrap">
+        <span
+          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-[0.18em]"
+          style={
+            wasCorrect
+              ? { backgroundColor: "rgba(62,207,142,0.12)", color: "#3ECF8E" }
+              : { backgroundColor: "rgba(232,201,122,0.12)", color: "#E8C97A" }
+          }
+        >
+          {wasCorrect ? (
+            <Check className="w-3 h-3" aria-hidden />
+          ) : (
+            <Lightbulb className="w-3 h-3" aria-hidden />
+          )}
+          {wasCorrect ? "Correct" : "Not quite"}
+        </span>
+        {wrongLetter && correctLetter && (
+          <>
+            <span
+              className="text-[10px]"
+              style={{ color: "rgba(255,107,107,0.75)" }}
+            >
+              You chose {wrongLetter}
+            </span>
+            <span className="text-[10px] text-[#333333]">&middot;</span>
+            <span
+              className="text-[10px]"
+              style={{ color: "rgba(62,207,142,0.75)" }}
+            >
+              Correct: {correctLetter}
+            </span>
+          </>
+        )}
+      </div>
+      <p
+        className="text-[13px] leading-relaxed mt-2"
+        style={{ color: "#C0C0C0" }}
+      >
+        {message}
+      </p>
+    </div>
+  )
+}
+
 export default function SessionClient({
   slug,
   topic,
@@ -2380,31 +2457,27 @@ export default function SessionClient({
                   backgroundColor: "rgba(201,168,76,0.03)",
                 }}
               >
-                <div className="flex items-center gap-2.5 mb-3">
-                  <p className="text-[10px] uppercase tracking-widest text-[#555555]">
-                    Explanation
-                  </p>
-                  {!isQuestionCorrect(current, currentState) &&
+                <ResultHeadline
+                  wasCorrect={isQuestionCorrect(current, currentState)}
+                  hintsUsed={currentState.hintsRevealed}
+                  wrongLetter={
+                    !isQuestionCorrect(current, currentState) &&
                     currentState.selected !== null &&
-                    !isTwoPart && (
-                      <>
-                        <span className="text-[10px] text-[#333333]">&middot;</span>
-                        <span
-                          className="text-[10px]"
-                          style={{ color: "rgba(255,107,107,0.75)" }}
-                        >
-                          You chose {letterFor(currentState.selected)}
-                        </span>
-                        <span className="text-[10px] text-[#333333]">&middot;</span>
-                        <span
-                          className="text-[10px]"
-                          style={{ color: "rgba(62,207,142,0.75)" }}
-                        >
-                          Correct: {current.correctAnswerLetter}
-                        </span>
-                      </>
-                    )}
-                </div>
+                    !isTwoPart
+                      ? letterFor(currentState.selected)
+                      : null
+                  }
+                  correctLetter={
+                    !isQuestionCorrect(current, currentState) &&
+                    currentState.selected !== null &&
+                    !isTwoPart
+                      ? current.correctAnswerLetter
+                      : null
+                  }
+                />
+                <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+                  Explanation
+                </p>
                 <PromptBlock text={current.explanation} />
                 {(() => {
                   const wrongLetter =
