@@ -432,14 +432,15 @@ A data set contains eight positive numbers. Is the standard deviation of the dat
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** Yes/no DS on SD>5. Range 4 caps SD at ≤ range/2 = 2 < 5. Definite "no" → (1) sufficient.
-**explanation:** (1): Range = 4 ⟹ SD ≤ range/2 = 2 < 5. Definite no. Sufficient. (2): Mean = 50 says nothing about spread — values could be all 50 (SD 0) or spread widely (SD > 5). Insufficient. Answer A.
-**mistake_b:** B requires (2) alone sufficient — but mean is silent on SD.
-**mistake_c:** C-trap — adding (2) doesn't help; (1) alone gives a definitive no.
-**mistake_d:** D requires each alone — (2) fails.
-**mistake_e:** E says together insufficient — but (1) alone solves.
-**common_trap:** Forgetting that *definite no* counts as sufficient. Sufficiency = a unique answer (yes or no), not just "yes."
-**takeaway:** Yes/no DS: a confident "no" is just as sufficient as a confident "yes." Range-bounds-SD is a powerful inequality lever.
+**explanation:** The data set consists of eight positive numbers, and the question asks whether its standard deviation exceeds 5. Standard deviation measures how far the values spread from their mean, so we must determine whether the information given forces a unique answer of "yes" or "no." A definite "no" is just as conclusive as a definite "yes."
+
+Consider Statement (1) alone. The range of the data set is 4, meaning the largest value exceeds the smallest by exactly 4. For a fixed range, the standard deviation is greatest when the values are pushed as far apart as possible, that is, when they cluster at the two extremes. Even in that most-spread case, every value lies within 2 of the mean, so the standard deviation cannot exceed range/2 = 2. Since the standard deviation is at most 2, it is certainly not greater than 5. The answer is a definite "no," so Statement (1) alone is sufficient.
+
+Consider Statement (2) alone. The mean of the data set is 50. The mean fixes the center of the data but places no restriction on the spread. For example, if all eight numbers equal 50, the standard deviation is 0, which is not greater than 5, giving the answer "no." Alternatively, if four numbers equal 40 and four equal 60, the mean is still 50 but the standard deviation is 10, which is greater than 5, giving the answer "yes." Because both outcomes are possible, Statement (2) alone is not sufficient. Note that the specific value 50 is a distractor; the magnitude of the mean is irrelevant to the spread.
+
+Since Statement (1) alone is sufficient and Statement (2) alone is not, there is no need to combine the statements.
+
+The correct answer is A.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -461,14 +462,15 @@ If n is a positive integer, is n odd?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**fastest_path:** Yes/no DS — each statement alone forces n odd. (1) 3n odd ⟹ n odd (3 is odd, odd·even=even). (2) n+4 odd ⟹ n odd (even+even=even). D.
-**explanation:** (1): 3n odd. Since 3 is odd, 3n's parity = n's parity. So n is odd. Sufficient (yes). (2): n+4 odd, 4 is even, so n must be odd. Sufficient (yes). Each alone settles it. Answer D.
-**mistake_a:** A requires only (1) sufficient — but (2) also pins n as odd.
-**mistake_b:** B requires only (2) sufficient — but (1) also does.
-**mistake_c:** *C-trap* — combining is unnecessary; each alone solves.
-**mistake_e:** E says together insufficient — both individually solve, so combined certainly does.
-**common_trap:** *C-trap* on parity questions: students reflexively combine. Each parity statement on a multiplied or shifted n usually fixes n's parity alone.
-**takeaway:** Parity DS: parity propagates through addition (mod 2) and odd-multiplication. Always test each statement *alone* before reaching for C.
+**explanation:** We are told that n is a positive integer, and we must determine whether the question "Is n odd?" can be answered definitively. This is a yes/no question; a statement is sufficient if it forces a single, consistent answer (either always yes or always no), and insufficient if it permits both an odd and an even value of n.
+
+Consider Statement (1) alone: 3n is odd. The factor 3 is odd, and the product of two integers is odd precisely when both factors are odd. Since 3 is odd, the product 3n is odd if and only if n is odd. Therefore 3n being odd guarantees that n is odd, and the answer to the question is always yes. Statement (1) alone is sufficient.
+
+Consider Statement (2) alone: n + 4 is odd. The number 4 is even, and adding an even integer does not change parity. Thus n + 4 and n have the same parity, so n + 4 is odd if and only if n is odd. Therefore n + 4 being odd guarantees that n is odd, and the answer is again always yes. Statement (2) alone is sufficient.
+
+Because each statement alone determines that n is odd, there is no need to combine them. Each statement independently answers the question.
+
+The correct answer is D.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -490,14 +492,15 @@ What is the value of x?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** One equation in two unknowns is rarely sufficient. (2) gives y. Sub: 2x+9=17 → x=4.
-**explanation:** (1): 2x+3y=17 alone — infinite (x,y) pairs. (2): y=3 alone — x unconstrained. Together: 2x+9=17 → x=4. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but two unknowns, one equation.
-**mistake_b:** B requires (2) alone sufficient — y alone says nothing about x.
-**mistake_d:** D requires each alone — neither has both pieces.
-**mistake_e:** E says together insufficient — but two equations in two unknowns solve.
-**common_trap:** Picking E because the question feels constrained. Two independent equations in two unknowns almost always solve.
-**takeaway:** Linear-system DS: count *independent* equations vs unknowns. n equations and n unknowns (independent) → unique solution.
+**explanation:** We are asked to determine the value of x. To establish sufficiency, a statement must pin x down to a single value; to establish insufficiency, it suffices to exhibit two outcomes in which x differs.
+
+Statement (1) provides the single linear equation 2x + 3y = 17, which relates two unknowns, x and y. Solving for x gives x = (17 - 3y) / 2, so the value of x depends on y, which is not fixed. For instance, if y = 3, then x = 4, whereas if y = 1, then x = 7. Two different values of x are possible, so Statement (1) alone is not sufficient.
+
+Statement (2) provides y = 3. This fixes the value of y but imposes no constraint on x, which may be any real number. For instance, x = 0 and x = 10 are both consistent with y = 3. Since x is not determined, Statement (2) alone is not sufficient.
+
+Taking the two statements together, we substitute y = 3 from Statement (2) into the equation 2x + 3y = 17 from Statement (1). This yields 2x + 9 = 17, so 2x = 8 and x = 4. The value of x is uniquely determined, so both statements together are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -519,14 +522,15 @@ What is the area of rectangle ABCD?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Area = LW. (1) gives L²+W²=100; (2) gives L+W=14. Use (L+W)² = L²+W² + 2LW: 196=100+2LW → LW=48.
-**explanation:** (1): L²+W²=100. Many (L,W) pairs (6,8 → 48; 7.07,7.07 → 50). Insufficient. (2): L+W=14. 7×7=49 vs 6×8=48. Insufficient. Together: (L+W)²−(L²+W²) = 2LW → 196−100 = 2LW → LW=48. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but L²+W²=100 has many area outcomes.
-**mistake_b:** B requires (2) alone sufficient — same issue with L+W=14.
-**mistake_d:** D requires each alone — neither works.
-**mistake_e:** E says together insufficient — but the algebraic identity nails LW.
-**common_trap:** Trying to solve for L and W individually. You don't need them — you need *LW*, which the (L+W)² identity reveals directly.
-**takeaway:** Geometry/algebra DS: when the question is about a *product* (area, LW), look for the identity (L+W)² = L²+2LW+W². You rarely need L,W separately.
+**explanation:** We are asked for the area of rectangle ABCD. Letting L denote its length and W its width, the area equals LW, so it suffices to determine the value of the product LW; the individual values of L and W are not required.
+
+Statement (1) states that diagonal AC has length 10. Since the diagonal, length, and width of a rectangle satisfy L² + W² = 10² = 100, this fixes the sum of the squares but not the product. For example, L = 6 and W = 8 satisfy L² + W² = 100 and give an area of 48, whereas L = W = √50 also satisfy L² + W² = 100 and give an area of 50. Because two different areas are possible, Statement (1) alone is not sufficient.
+
+Statement (2) states that the perimeter of ABCD is 28, so 2(L + W) = 28, which gives L + W = 14. This fixes the sum but not the product. For example, L = 6 and W = 8 give L + W = 14 and an area of 48, whereas L = 7 and W = 7 give L + W = 14 and an area of 49. Because two different areas are possible, Statement (2) alone is not sufficient.
+
+Taking the two statements together, we have L² + W² = 100 and L + W = 14. Applying the identity (L + W)² = L² + 2LW + W², we obtain 14² = 100 + 2LW, so 196 = 100 + 2LW, giving 2LW = 96 and therefore LW = 48. The area is determined to be 48, so the two statements together are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -548,14 +552,15 @@ If p is an integer, is p even?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**fastest_path:** Yes/no DS — each alone forces p even. (1) p² even ⟹ p even (2 prime in factorization). (2) p+1 odd ⟹ p even. D.
-**explanation:** (1): p² even. Since 2 is prime, p² having factor 2 means p has factor 2 → p even. Sufficient (yes). (2): p+1 odd ⟹ p even. Sufficient (yes). Each alone solves. Answer D.
-**mistake_a:** A requires only (1) sufficient — (2) also pins p as even.
-**mistake_b:** B requires only (2) sufficient — (1) also does.
-**mistake_c:** *C-trap* — combining is unnecessary; each alone solves.
-**mistake_e:** E says together insufficient — both work alone.
-**common_trap:** *C-trap* — second instance in DS, same lesson. Always check each parity statement alone.
-**takeaway:** Parity propagates through prime-factor inheritance: if p² has a prime factor q, so does p. Use this for parity D-type DS.
+**explanation:** We are given that p is an integer, and we must determine whether p is even. This is a yes/no question, so a statement is sufficient if it forces a single, definite answer (always even, or always odd).
+
+Consider Statement (1) alone: p² is even. Write p² = p · p. Because 2 is prime, if 2 divides the product p · p, then 2 must divide one of its factors, namely p itself. Hence p is even, and the answer to the question is a definite "yes." Statement (1) alone is sufficient.
+
+Consider Statement (2) alone: p + 1 is odd. For any integer p, the value p + 1 is odd precisely when p is even, since an odd integer plus 1 is even and an even integer plus 1 is odd. Therefore p is even, and the answer is again a definite "yes." Statement (2) alone is sufficient.
+
+Each statement alone establishes that p is even, so there is no need to combine them.
+
+The correct answer is D.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -577,14 +582,15 @@ Is x > y?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** B
-**fastest_path:** The question wants the *signed* order x > y. Squaring destroys sign (x² > y² only tells you |x| > |y|), so (1) can't settle it; but x − y > 0 is just a rearrangement of x > y, so (2) answers it outright.
-**explanation:** We need a definite yes/no on x > y. **(1):** x² > y² is equivalent to |x| > |y| — it compares magnitudes, not signs. Test it: x = 3, y = 1 gives "yes" (3 > 1), but x = −3, y = 1 also satisfies x² > y² while giving "no" (−3 > 1 is false). Two opposite answers → not sufficient. **(2):** x − y > 0 rearranges directly to x > y — a guaranteed "yes" → sufficient. (2) alone settles it, (1) doesn't → **B**.
-**mistake_a:** Backs (1) as sufficient, but squaring strips sign: x = −3, y = 1 satisfies x² > y² yet makes x > y false, so (1) yields both answers.
-**mistake_c:** Says you need both statements, but (2) alone already forces "yes" — (1) adds nothing.
-**mistake_d:** "Each alone" fails because (1) is insufficient by itself (the negative-value counterexample).
-**mistake_e:** Claims even together they fail, but (2) by itself is sufficient, so the pair certainly is.
-**common_trap:** Assuming x² > y² preserves order. Squaring is sign-blind — the moment you see a squared inequality in DS, test a negative value to expose it.
-**takeaway:** For "is x > y?", only sign-preserving information (like x − y > 0) settles it. Magnitude facts — squares, absolute values — generally cannot.
+**explanation:** We must determine whether the signed order x > y can be established with certainty; that is, whether the available information forces a single yes-or-no answer.
+
+Statement (1) asserts that x² > y², which is equivalent to |x| > |y|. This condition compares only the magnitudes of x and y and reveals nothing about their signs. Let x = 3 and y = 1. Then x² = 9 > 1 = y², and x > y is true. Now let x = -3 and y = 1. Then x² = 9 > 1 = y² still holds, yet x > y is false because -3 > 1 is false. Two cases consistent with Statement (1) yield opposite answers, so Statement (1) alone is not sufficient.
+
+Statement (2) asserts that x - y > 0. Adding y to both sides gives x > y directly. This is precisely the relationship in question, so the answer is a definite yes. Statement (2) alone is sufficient.
+
+Because Statement (2) alone settles the question while Statement (1) alone does not, there is no need to combine the statements.
+
+The correct answer is B.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -606,14 +612,15 @@ If 4x + 3y = 24, what is the value of y?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** Integer constraint dramatically reduces solution space. Test y=1..8 modulo 4 — only y=4 yields integer x. Sufficient.
-**explanation:** (1): 4x+3y=24 with positive integers. Need 24−3y divisible by 4 *and* x positive. Only y=4 works (x=3). y unique → sufficient. (2): x>4 with no integer constraint — infinite y. Insufficient. Answer A.
-**mistake_b:** B requires (2) alone sufficient — but x>4 alone leaves y free.
-**mistake_c:** C-trap — adding (2) doesn't help; (1) already pins y.
-**mistake_d:** D requires each alone — (2) fails.
-**mistake_e:** E says together insufficient — (1) alone solves.
-**common_trap:** Defaulting to "one equation in two unknowns is insufficient." When the constraint includes *integers*, only finitely many points on the line satisfy. Often unique.
-**takeaway:** Integer constraints can collapse a multi-unknown linear equation to a unique solution. Always enumerate integer cases before declaring insufficient.
+**explanation:** We are given the linear equation 4x + 3y = 24 and asked to determine the value of y. Because a single linear equation in two unknowns ordinarily describes infinitely many (x, y) pairs, y can be pinned to one value only if additional information restricts the solutions to a single point.
+
+Consider Statement (1) alone: x and y are positive integers. Solving the equation for x gives x = (24 - 3y)/4, so we require 24 - 3y to be positive and divisible by 4. Testing the positive integer values of y, we find that y = 1, 2, 3 give 21/4, 18/4, 15/4, none of which is an integer; y = 4 gives x = 12/4 = 3, which is a positive integer; and y = 5, 6, 7 give 9/4, 6/4, 3/4, none an integer, while y = 8 or larger forces x to be zero or negative. Thus the only pair of positive integers satisfying the equation is (x, y) = (3, 4), so y must equal 4. Statement (1) alone is sufficient.
+
+Consider Statement (2) alone: x > 4. This condition imposes no integer requirement, so y may take many values. For example, x = 5 yields y = 4/3, while x = 6 yields y = 0. Two different values of y satisfy the conditions, so Statement (2) alone is not sufficient.
+
+Since Statement (1) alone determines y while Statement (2) alone does not, there is no need to combine the statements. We note that the inequality in Statement (2) is a distractor that does not narrow y to a single value on its own.
+
+The correct answer is A.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -635,14 +642,15 @@ Is x > 0?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Yes/no x>0. Factor (1): x(x−1)(x+1)>0 → x∈(−1,0)∪(1,∞). (2): x∈(−1,1). Intersect: x∈(−1,0) → x<0. Always "no". C.
-**explanation:** (1): x³>x ↔ x(x²−1)>0 ↔ x in (−1,0) ∪ (1,∞). Both signs possible (yes for x>1, no for −1<x<0). Insufficient. (2): x²<1 ↔ −1<x<1. Both signs. Insufficient. Together: intersection (−1,0) → x<0 always (no). Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — both sign cases possible.
-**mistake_b:** B requires (2) alone sufficient — same issue.
-**mistake_d:** D requires each alone — neither works.
-**mistake_e:** E says together insufficient — but intersection nails sign.
-**common_trap:** Forgetting cubic-inequality factoring. x³>x rarely means x>0 — it means x is in two disjoint zones, depending on sign.
-**takeaway:** Cubic-inequality DS: factor first. x(x−a)(x+a) sign analysis is the standard tool.
+**explanation:** The question asks whether x is positive. This is a yes/no question, so a statement is sufficient only if it forces a single answer; if it permits both a positive value of x and a non-positive value of x, it is insufficient.
+
+Consider Statement (1) alone: x^3 > x. Subtracting x from both sides gives x^3 - x > 0, which factors as x(x - 1)(x + 1) > 0. A sign analysis of this product shows that it is positive precisely when x lies in the interval (-1, 0) or in the interval (1, infinity). Both regions are permitted. For example, x = 2 satisfies the statement and is positive, while x = -1/2 also satisfies the statement and is negative. Because both a yes and a no answer are possible, Statement (1) alone is not sufficient.
+
+Consider Statement (2) alone: x^2 < 1. This inequality holds exactly when -1 < x < 1. This interval contains positive values such as x = 1/2 and negative values such as x = -1/2, so both a yes and a no answer are possible. Therefore Statement (2) alone is not sufficient.
+
+Taking the two statements together, x must lie in both the set (-1, 0) union (1, infinity) and the interval (-1, 1). The intersection of these sets is the interval (-1, 0). Every value of x in this interval is negative, so the answer to the question is always no. The two statements together are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -664,14 +672,15 @@ If n is a positive integer, what is the remainder when n is divided by 5?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** (1) n = 10k+3. Since 10 = 5·2, n mod 5 = 3 mod 5 = 3. Sufficient.
-**explanation:** (1): n = 10k + 3 → n mod 5 = (10k mod 5) + (3 mod 5) = 0 + 3 = 3. Always 3. Sufficient. (2): n odd. n=1 (r=1); n=3 (r=3); n=5 (r=0). Insufficient. Answer A.
-**mistake_b:** B requires (2) alone sufficient — but odd n yields different remainders.
-**mistake_c:** C-trap — adding (2) doesn't help; (1) already gives the remainder.
-**mistake_d:** D requires each alone — (2) fails.
-**mistake_e:** E says together insufficient — but (1) alone solves.
-**common_trap:** Treating "remainder when divided by 10" as separate from "remainder when divided by 5." When the divisor of (1) is a multiple of the divisor we're asked about, the (1)-remainder transfers directly.
-**takeaway:** Remainder DS: if n mod (kd) = r, then n mod d = r mod d. Remainders inherit through divisor-multiples.
+**explanation:** We are asked to determine the remainder when the positive integer n is divided by 5. A single numerical value for this remainder is required for sufficiency.
+
+Statement (1) states that the remainder when n is divided by 10 is 3, so n can be written as n = 10k + 3 for some nonnegative integer k. Because 10 is a multiple of 5, we have n = 5(2k) + 3, in which 5(2k) is divisible by 5 and 3 is the remainder. Thus the remainder when n is divided by 5 is always 3, regardless of the value of k. Statement (1) alone is sufficient.
+
+Statement (2) states that n is odd. Let n = 1; then the remainder upon division by 5 is 1. Let n = 3; then the remainder upon division by 5 is 3. These two odd values of n yield different remainders, so the remainder is not determined. Statement (2) alone is not sufficient.
+
+Since Statement (1) alone is sufficient and Statement (2) alone is not, there is no need to combine the statements.
+
+The correct answer is A.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -693,14 +702,15 @@ If a, b, and c are real numbers, what is the value of a + b + c?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Three unknowns. (1) gives one equation, (2) gives two. Combined: three independent equations → unique sum.
-**explanation:** (1): a+b=10, c free. Insufficient. (2): b+c=12, a+c=8. Two equations, three unknowns. Adding: a+b+2c=20 — but a+b+c not unique. Insufficient. Together: a+b=10 (from 1), a+b+2c=20 (sum of 2's eqs) → 2c=10, c=5 → a+b+c=15. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — c free.
-**mistake_b:** B requires (2) alone sufficient — only 2 of 3 unknowns determined.
-**mistake_d:** D requires each alone — neither has 3 independent equations.
-**mistake_e:** E says together insufficient — but combined gives 3 independent equations.
-**common_trap:** Assuming (2) alone works because it has two equations. Two equations in three unknowns can never solve for all variables (or their sum) without a third constraint.
-**takeaway:** Counting-rank principle: n unknowns need n independent equations. Sum of variables sometimes solvable with fewer, but only when the equations align.
+**explanation:** We are asked to determine the value of the sum a + b + c, where a, b, and c are real numbers. A single value is required for sufficiency.
+
+Consider Statement (1) alone. It gives a + b = 10, so that a + b + c = 10 + c. Since c is not constrained, the sum is not determined. For instance, taking c = 0 yields a sum of 10, whereas taking c = 1 yields a sum of 11. Because two different values of the sum are possible, Statement (1) alone is not sufficient.
+
+Consider Statement (2) alone. It gives b + c = 12 and a + c = 8, which is a system of two equations in three unknowns. Adding the two equations gives a + b + 2c = 20, so that a + b + c = 20 - c. Since c remains free, the sum is not determined. For instance, taking c = 0 forces b = 12 and a = 8, giving a sum of 20, whereas taking c = 1 forces b = 11 and a = 7, giving a sum of 19. Because two different values of the sum are possible, Statement (2) alone is not sufficient. Note that having two equations is the distractor here; two equations cannot fix three unknowns or their sum without a third independent relationship.
+
+Taking both statements together, Statement (1) gives a + b = 10, and summing the equations in Statement (2) gives a + b + 2c = 20. Substituting the first into the second yields 10 + 2c = 20, so c = 5. Therefore a + b + c = 10 + 5 = 15, a single determined value, and both statements together are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -722,14 +732,15 @@ In triangle ABC, what is the measure of angle A?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**fastest_path:** Yes triangle isosceles + B=70, but *which* pair is equal? A=70 (if A=B), or A=40 (if B=C), or A=55 (if A=C). Three cases. Insufficient.
-**explanation:** (1): B=70, A+C=110 — many splits. Insufficient. (2): Isosceles, but which pair equal? Insufficient. Together: B=70 and isosceles, three cases — A=B=70 → A=70; B=C=70 → A=40; A=C, both =55. Three values for A. Insufficient. Answer E.
-**mistake_a:** A requires (1) alone sufficient — A+C=110 has many splits.
-**mistake_b:** B requires (2) alone sufficient — pair unspecified.
-**mistake_c:** *C-to-E trap* — adding the isosceles constraint *doesn't* pin down which pair is equal.
-**mistake_d:** D requires each alone — neither works.
-**common_trap:** *C-to-E trap*: students see "B=70 + isosceles" and assume it must work. But "isosceles" gives a *family* of three configurations, not a unique angle.
-**takeaway:** Triangle DS with "isosceles": always count *which pair* is equal. The vertex of isosceles is ambiguous unless specified.
+**explanation:** We are asked to determine the measure of angle A in triangle ABC. Because the interior angles of any triangle sum to 180 degrees, we have A + B + C = 180. To answer the question, we must be able to pin angle A down to a single numerical value.
+
+Consider Statement (1) alone. If B = 70 degrees, then A + C = 110 degrees. This relationship is satisfied by many distinct values of A; for example, A could equal 50 degrees with C = 60 degrees, or A could equal 60 degrees with C = 50 degrees. Since more than one value of A is possible, Statement (1) alone is not sufficient.
+
+Consider Statement (2) alone. Knowing only that triangle ABC is isosceles tells us that some pair of its angles are equal, but it neither specifies which pair is equal nor fixes any particular measure. The triangle could, for instance, have angles 70, 70, and 40 or angles 80, 80, and 20, yielding different measures for A. Thus Statement (2) alone is not sufficient.
+
+Consider the two statements together. We now know that B = 70 degrees and that the triangle is isosceles, but the isosceles condition still leaves open which pair of angles is equal, and this produces three different configurations. If A = B, then A = 70 degrees. If B = C, then both equal 70 degrees, so A = 180 - 140 = 40 degrees. If instead A = C is the equal pair, then 2A + 70 = 180, giving A = 55 degrees. These three admissible cases yield A = 70, A = 40, and A = 55, so angle A is not uniquely determined even with both statements. It is tempting to assume that combining a specific angle with the isosceles condition must force a single answer, but the isosceles property describes a family of three configurations rather than one. Therefore the two statements together are not sufficient.
+
+The correct answer is E.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -751,14 +762,15 @@ If x and y are nonzero real numbers, is x/y < 1?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**fastest_path:** Yes/no x/y<1. Test sign combos. (1) x<y silent on signs. (2) same sign silent on order. Together: both pos (x/y<1) vs both neg with x<y (x/y>1). Split.
-**explanation:** (1): x<y. Pos x=1,y=2 (x/y=0.5, yes). Neg x=−2,y=−1 (x/y=2, no). Insufficient. (2): xy>0 (same sign). x=1,y=2 (yes); x=2,y=1 (no). Insufficient. Together: both pos with x<y → x/y<1 (yes); both neg with x<y → x/y>1 (no). Still split. Answer E.
-**mistake_a:** A requires (1) alone sufficient — split shown.
-**mistake_b:** B requires (2) alone sufficient — order matters.
-**mistake_c:** *C-to-E trap*: combining seems to lock it down, but negative-pair behavior flips x/y<1 to x/y>1.
-**mistake_d:** D requires each alone — neither works.
-**common_trap:** *Sign-of-quotient flip* under negation: dividing two negatives flips all the inequalities you'd assume from the positive case. Always test both signs.
-**takeaway:** Quotient-inequality DS: sign matters. x<y AND same-sign doesn't pin x/y vs 1 — negative pairs flip the result.
+**explanation:** We are asked to determine whether the quotient x/y is less than 1, where x and y are nonzero real numbers. The truth of the inequality x/y < 1 depends on both the relative sizes of x and y and on their signs, since dividing by a negative quantity reverses an inequality.
+
+Statement (1) tells us that x < y. This places no restriction on the signs of x and y. Let x = 1 and y = 2; then both are positive, x < y holds, and x/y = 1/2 < 1, so the answer is yes. Now let x = -2 and y = -1; then x < y still holds, but x/y = 2, which is not less than 1, so the answer is no. Because two permissible cases yield different answers, Statement (1) alone is not sufficient.
+
+Statement (2) tells us that xy > 0, which means x and y share the same sign. This says nothing about which of x and y is larger. Let x = 1 and y = 2; then xy > 0 and x/y = 1/2 < 1, so the answer is yes. Now let x = 2 and y = 1; then xy > 0 but x/y = 2, which is not less than 1, so the answer is no. Because two permissible cases yield different answers, Statement (2) alone is not sufficient.
+
+Taking the statements together, we know that x < y and that x and y have the same sign. If both are positive, take x = 1 and y = 2: then x/y = 1/2 < 1, so the answer is yes. If both are negative, take x = -2 and y = -1, for which x < y holds and the signs match: then x/y = 2, which is not less than 1, so the answer is no. The two statements together still permit both a yes and a no answer, because dividing two negative numbers reverses the order suggested by x < y. The statements together are therefore not sufficient.
+
+The correct answer is E.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -780,14 +792,15 @@ Set S consists of five distinct positive integers. Is the median of S greater th
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** Yes/no median>mean. (1) e > 2(a+b+c+d) makes the largest dominant — mean dragged way above median. Always "no". Sufficient.
-**explanation:** Sorted a<b<c<d<e; median=c, mean=(sum)/5. (1): e > 2(a+b+c+d) ⟹ sum > 3(a+b+c+d), so mean > 3(a+b+c+d)/5 = (3/5)·(sum without e). Concrete: {1,2,3,4,21} (e=21 > 2·10=20). Median=3, mean=6.2 → no. The huge e forces mean above median. Sufficient (always "no"). (2): smallest=1. {1,2,3,4,5} (med=3=mean, no). {1,2,10,11,12} (med=10, mean=7.2, yes). Insufficient. Answer A.
-**mistake_b:** B requires (2) alone sufficient — yes/no split shown.
-**mistake_c:** C-trap — adding (2) doesn't help; (1) alone gives definitive no.
-**mistake_d:** D requires each alone — (2) fails.
-**mistake_e:** E says together insufficient — but (1) alone solves.
-**common_trap:** Forgetting that *definite no* is sufficient. Sufficiency = unique yes-or-no, not just yes.
-**takeaway:** Skewness DS: a single value much larger than the rest pulls the mean far above the median. Always "no" for "median>mean" in heavily right-skewed sets.
+**explanation:** Let the five distinct positive integers of set S, listed in increasing order, be a < b < c < d < e. The median is the middle value c, and the mean is (a + b + c + d + e)/5. The question asks whether the median exceeds the mean, that is, whether c > (a + b + c + d + e)/5. This is a yes-or-no question, so a statement is sufficient if it forces a single definite answer.
+
+Statement (1) gives e > 2(a + b + c + d). Let T = a + b + c + d denote the sum of the four smaller numbers. Then the total sum equals T + e, and since e > 2T, the sum exceeds T + 2T = 3T. Hence the mean exceeds 3T/5. Because a, b, and d are positive integers with a < b < c < d, we have a + b + d at least 1 + 2 + (c + 1) = c + 4, so T = c + (a + b + d) exceeds 2c, which gives 3T/5 greater than 6c/5, and therefore greater than c. Thus the mean exceeds c, the median, in every case allowed by Statement (1), so the answer to the question is always no. For example, the set {1, 2, 3, 4, 21} satisfies e = 21 > 2(10) = 20; its median is 3 and its mean is 6.2, and indeed the median does not exceed the mean. Statement (1) yields a definite no and is sufficient.
+
+Statement (2) states only that the smallest number is 1. Consider {1, 2, 3, 4, 5}: the median is 3 and the mean is 3, so the median does not exceed the mean, giving the answer no. Now consider {1, 2, 10, 11, 12}: the median is 10 and the mean is 7.2, so the median does exceed the mean, giving the answer yes. Two different outcomes are possible, so Statement (2) is not sufficient.
+
+Because Statement (1) alone settles the question while Statement (2) alone does not, no combination is required.
+
+The correct answer is A.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -809,14 +822,15 @@ If x is a positive integer, is x prime?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** (1) "Exactly two positive divisors" *is* the definition of prime. Always yes. Sufficient.
-**explanation:** (1): Two positive divisors = 1 and x itself = definition of prime. Sufficient (yes). (2): x+1=p². p=2 → x=3 (prime, yes). p=3 → x=8 (not, no). Insufficient. Answer A.
-**mistake_b:** B requires (2) alone sufficient — yes/no split.
-**mistake_c:** C-trap — adding (2) doesn't help; (1) alone is the prime definition.
-**mistake_d:** D requires each alone — (2) fails.
-**mistake_e:** E says together insufficient — but (1) is conclusive alone.
-**common_trap:** Missing that "exactly two positive divisors" = prime, by definition. Statements that restate the definition are sufficient by tautology.
-**takeaway:** When a statement *is* the definition of the property being asked about, it's automatically sufficient. Recognize defining conditions on sight.
+**explanation:** We are given that x is a positive integer, and we must determine whether x is prime. A positive integer is prime if and only if it has exactly two distinct positive divisors, namely 1 and the integer itself. The task therefore reduces to deciding whether each statement forces x to have this property.
+
+Statement (1) asserts that x has exactly two positive divisors. This condition is precisely the definition of a prime number: any positive integer possessing exactly two positive divisors must be prime, and conversely. Hence the answer to the question is always "yes," regardless of the particular value of x. Statement (1) is sufficient.
+
+Statement (2) asserts that x + 1 is the square of a prime. We test whether this determines a unique answer. Let the prime be 2; then x + 1 = 2^2 = 4, so x = 3, which is prime, giving the answer "yes." Now let the prime be 3; then x + 1 = 3^2 = 9, so x = 8, which is not prime, giving the answer "no." Since two admissible values of x yield opposite answers, Statement (2) does not determine whether x is prime. Statement (2) is not sufficient.
+
+Because Statement (1) alone settles the question while Statement (2) alone does not, there is no need to combine the statements.
+
+The correct answer is A.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -838,14 +852,15 @@ A circle is inscribed in square ABCD. What is the area of the circle?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**fastest_path:** Inscribed circle: diameter = side. (1) diag=10√2 ⟹ side=10 ⟹ r=5, area=25π. (2) outside-region match gives s=10. Each alone works.
-**explanation:** Inscribed circle's diameter = square's side. (1): diag=10√2 ⟹ side=10 ⟹ r=5 ⟹ area=25π. Sufficient. (2): region outside = s²−π(s/2)² = s²(1−π/4) = 100−25π ⟹ s=10 ⟹ r=5 ⟹ area=25π. Sufficient. Each alone works. Answer D.
-**mistake_a:** A requires only (1) sufficient — but (2) also pins down area.
-**mistake_b:** B requires only (2) sufficient — but (1) also does.
-**mistake_c:** *C-trap*: combining is unnecessary — each statement alone gives s=10.
-**mistake_e:** E says together insufficient — but each alone works.
-**common_trap:** *D-as-C-trap* in geometry: when both statements lead to the same calculation, students reach for C "for safety." Each alone solves.
-**takeaway:** Inscribed-circle geometry: side = diameter. Either side info or area-relationship info alone fixes the figure.
+**explanation:** Because the circle is inscribed in square ABCD, the circle is tangent to all four sides, so its diameter equals the side length of the square. If we let s denote the side of the square, then the radius of the circle is s/2 and the area of the circle is π(s/2)². Determining the area of the circle is therefore equivalent to determining s.
+
+Consider Statement (1) alone. The diagonal of a square with side s has length s√2. Setting s√2 = 10√2 gives s = 10. The radius is then 5, and the area of the circle is π(5)² = 25π. The value is uniquely determined, so Statement (1) alone is sufficient.
+
+Consider Statement (2) alone. The region inside the square but outside the circle has area s² − π(s/2)² = s²(1 − π/4). Setting this equal to 100 − 25π = 100(1 − π/4) gives s²(1 − π/4) = 100(1 − π/4). Since 1 − π/4 is a nonzero constant, it follows that s² = 100, so s = 10. The radius is 5, and the area of the circle is 25π. The value is uniquely determined, so Statement (2) alone is sufficient.
+
+Each statement alone fixes the side length at 10 and hence the area of the circle at 25π; no combination of the statements is required.
+
+The correct answer is D.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -867,14 +882,15 @@ If a, b, and c are nonzero integers, is abc > 0?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** abc>0 ↔ even number of negatives. (1) forces a,b,c same sign (all pos or all neg). (2) excludes all-neg. Together: all pos → abc>0.
-**explanation:** (1): ab>0 and bc>0 ⟹ a,b same sign and b,c same sign ⟹ all three share b's sign. All pos (abc>0) or all neg (abc<0). Insufficient. (2): a+b+c>0 admits mixed signs. Insufficient. Together: same sign + positive sum → all pos → abc>0. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but all-neg case gives abc<0.
-**mistake_b:** B requires (2) alone sufficient — mixed signs admit yes/no.
-**mistake_d:** D requires each alone — neither works.
-**mistake_e:** E says together insufficient — but (1) + (2) excludes all-neg.
-**common_trap:** Stopping at (1) once you get "same sign." That's only a *yes* if signs are positive. Need (2) to exclude all-negative.
-**takeaway:** Sign-product DS: count negatives. abc>0 = 0 or 2 negatives. Same-sign info alone fails because "all negative" is also same-sign.
+**explanation:** We are given that a, b, and c are nonzero integers, and we must determine whether the product abc is positive. Because none of the three integers is zero, the sign of abc is governed entirely by how many of them are negative: the product is positive when an even number of the factors (zero or two) are negative, and negative when an odd number (one or three) are negative. The task therefore reduces to determining whether the number of negative factors is even.
+
+Statement (1) tells us that ab > 0 and bc > 0. Since ab > 0, the integers a and b have the same sign; since bc > 0, the integers b and c have the same sign. Consequently a, b, and c all share the common sign of b, so the three integers are either all positive or all negative. If they are all positive, as with a = b = c = 1, then abc = 1 > 0. If they are all negative, as with a = b = c = -1, then abc = -1 < 0. The two cases yield opposite answers, so Statement (1) alone is not sufficient.
+
+Statement (2) tells us that a + b + c > 0, but it places no joint restriction on the signs of the factors. Taking a = b = c = 1 gives a sum of 3 > 0 and abc = 1 > 0, while taking a = 2, b = 2, and c = -1 gives a sum of 3 > 0 and abc = -4 < 0. Again the two cases yield opposite answers, so Statement (2) alone is not sufficient.
+
+Taking the statements together, Statement (1) forces a, b, and c to share a single sign, while Statement (2) requires their sum to be positive. A common sign of negative would make the sum negative, contradicting Statement (2); hence the shared sign must be positive, and all three integers are positive. With zero negative factors, abc > 0, and the answer is a definite yes. The two statements together are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -896,14 +912,15 @@ In triangle PQR, what is the measure of angle P?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Triangle angles sum to 180. Need two angles to find the third. Each statement gives one. Together: P = 180−70−55 = 55.
-**explanation:** P+Q+R=180. (1) Q=70 alone leaves P+R=110, P unknown. (2) R=55 alone leaves P+Q=125, P unknown. Together: P=180−70−55=55. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — only one angle given.
-**mistake_b:** B requires (2) alone sufficient — same.
-**mistake_d:** D requires each alone — neither has two angles.
-**mistake_e:** E says together insufficient — but two angles uniquely fix the third.
-**common_trap:** Treating one angle as enough. Triangle DS for a specific angle needs *two* of the three.
-**takeaway:** Triangle DS: angle sum = 180 means n−1 angles fix the nth. Always count which angles are pinned.
+**explanation:** The task is to determine the measure of angle P in triangle PQR. Because the three interior angles of any triangle sum to 180 degrees, we have P + Q + R = 180, so P = 180 - Q - R. A single value of P can be established only when both of the other two angle measures are known.
+
+Consider Statement (1) alone, which gives Q = 70. This reduces the relationship to P + R = 110, but it places no restriction on how those 110 degrees are divided between P and R. For example, P could be 60 with R = 50, or P could be 40 with R = 70. Since more than one value of P is possible, Statement (1) alone is not sufficient.
+
+Consider Statement (2) alone, which gives R = 55. This reduces the relationship to P + Q = 125, again leaving the split between P and Q undetermined. For example, P could be 70 with Q = 55, or P could be 50 with Q = 75. Since more than one value of P is possible, Statement (2) alone is not sufficient.
+
+Taking the two statements together, Q = 70 and R = 55, so P = 180 - 70 - 55 = 55. A unique value is obtained, so the two statements together are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -925,14 +942,15 @@ A printer prints pages at a constant rate. How many pages does it print in 12 mi
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** (1) gives rate (40/5 = 8/min) → 12·8 = 96. (2) just restates constant rate — no number. A.
-**explanation:** (1): 40 pages / 5 min = 8 pages/min → 12 × 8 = 96. Sufficient. (2): "Twice as many in 10 min as in 5 min" follows from any constant rate — it adds no numerical info. Insufficient. Answer A.
-**mistake_b:** B requires (2) alone sufficient — but it's tautological.
-**mistake_c:** C-trap — adding (2) gives nothing new; (1) already solves.
-**mistake_d:** D requires each alone — (2) is empty.
-**mistake_e:** E says together insufficient — but (1) alone solves.
-**common_trap:** Falling for tautological statements. "Twice as many in twice the time" is *true for any constant rate* — adds no information.
-**takeaway:** DS hygiene: check whether a statement actually constrains values. Restatements of given conditions add nothing.
+**explanation:** The printer operates at a constant rate, so the number of pages produced in 12 minutes is fixed once the rate, expressed in pages per minute, is known. The task therefore reduces to determining that constant rate. Let r denote the rate in pages per minute; then the desired quantity is 12r.
+
+Statement (1) reports that the printer prints 40 pages in 5 minutes. Dividing gives r = 40/5 = 8 pages per minute, a single determined value. The number of pages printed in 12 minutes is then 12 × 8 = 96, a unique answer; Statement (1) is sufficient.
+
+Statement (2) reports that the printer prints twice as many pages in 10 minutes as it does in 5 minutes. Because 10 minutes is twice 5 minutes, this relationship holds automatically for every constant rate and so supplies no numerical value for r. For instance, a rate of 8 pages per minute yields 40 pages in 5 minutes and 80 in 10 minutes, giving 96 pages in 12 minutes, while a rate of 10 pages per minute yields 50 pages in 5 minutes and 100 in 10 minutes, giving 120 pages in 12 minutes; both are consistent with Statement (2). Since two different totals are possible, Statement (2) is not sufficient.
+
+Statement (1) alone determines the answer, whereas Statement (2) alone, being a mere restatement of the constant-rate condition, does not.
+
+The correct answer is A.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -954,14 +972,15 @@ A store sold x televisions in March and y televisions in April. What is the valu
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** (1) y=1.2x. (2) y=72. Together: 72=1.2x → x=60.
-**explanation:** (1): y=1.2x — one equation, two unknowns. Insufficient. (2): y=72 — no link to x. Insufficient. Together: 72=1.2x → x=60. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but no anchor on x.
-**mistake_b:** B requires (2) alone sufficient — y alone gives no x.
-**mistake_d:** D requires each alone — neither does.
-**mistake_e:** E says together insufficient — but two equations in two unknowns solve.
-**common_trap:** Picking E because problem feels under-specified. Percent-relation + absolute number = solvable.
-**takeaway:** Percent-comparison DS: ratio + one anchor value = unique solution.
+**explanation:** We are asked to determine the value of x, the number of televisions the store sold in March. To fix x, we need information that pins it down to a single numerical value.
+
+Statement (1) tells us that the number of televisions sold in April was 20 percent greater than the number sold in March, which means y = 1.2x. This is a single equation relating two unknowns, and it places no restriction on the actual size of x. For example, x = 50 with y = 60 satisfies the relationship, and x = 100 with y = 120 also satisfies it. Since more than one value of x is possible, Statement (1) alone is not sufficient.
+
+Statement (2) tells us that the store sold 72 televisions in April, so y = 72. This gives the value of y but says nothing about how y relates to x. The value of x could be 40, 72, or any other number while April sales remain 72. Since x is not determined, Statement (2) alone is not sufficient.
+
+Taking the two statements together, we combine y = 1.2x from Statement (1) with y = 72 from Statement (2). Substituting gives 72 = 1.2x, so x = 60. This is a unique value, so the two statements together are sufficient to determine x.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -983,14 +1002,15 @@ What is the value of |k - 3|?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**fastest_path:** (1) k=7 → |4|=4. (2) (k−3)²=16 → |k−3|=√16=4 directly (k could be 7 or −1, both give 4). Each alone solves.
-**explanation:** (1): k=7 → |k−3|=4. Sufficient. (2): (k−3)²=16 → |k−3|=√16=4 (since |x|=√(x²)). k=7 or k=−1, but both give the absolute value 4. Sufficient. Answer D.
-**mistake_a:** A requires only (1) sufficient — but (2) also solves.
-**mistake_b:** B requires only (2) sufficient — but (1) also solves.
-**mistake_c:** C-trap — combining is unnecessary.
-**mistake_e:** E says together insufficient — both alone solve.
-**common_trap:** Thinking (2) only narrows k to two values. But the question asks for |k−3|, which is the same for both — so (2) is actually sufficient.
-**takeaway:** When the question is *|expression|* and a statement gives *(expression)²*, square-root-then-absolute-value gives the answer directly — no need to find the original variable.
+**explanation:** We are asked for the value of |k - 3|, the distance between k and 3 on the number line. A statement is sufficient if it forces this absolute value to a single determined number, even if it does not pin down k itself.
+
+Consider Statement (1) alone. We are told that k = 7. Then |k - 3| = |7 - 3| = |4| = 4. The value is uniquely determined, so Statement (1) alone is sufficient.
+
+Consider Statement (2) alone. We are told that (k - 3)² = 16. Taking the nonnegative square root of both sides gives |k - 3| = √16 = 4, since |x| = √(x²) for every real number x. Although this statement does not determine k uniquely (it permits both k = 7 and k = -1), the question asks only for |k - 3|, and both possibilities yield |k - 3| = 4. The value is therefore uniquely determined, so Statement (2) alone is sufficient. One might be tempted to treat the existence of two solutions for k as a sign of insufficiency, but the target quantity is the absolute value, not k, and that quantity is the same in both cases.
+
+Because each statement alone determines the value of |k - 3|, there is no need to combine them.
+
+The correct answer is D.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1012,14 +1032,15 @@ In the xy-plane, line L passes through the points (2, 5) and (a, b). What is the
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Slope formula (b−5)/(a−2)=3. (1) gives slope; (2) gives a. Plug: b−5=3(6−2)=12 → b=17.
-**explanation:** (1): Slope=3 → b−5=3(a−2). Two unknowns. Insufficient. (2): a=6 alone gives no b. Insufficient. Together: b−5=12 → b=17. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — slope alone has infinite (a,b) pairs.
-**mistake_b:** B requires (2) alone sufficient — a alone gives no b.
-**mistake_d:** D requires each alone — neither does.
-**mistake_e:** E says together insufficient — but two pieces nail b.
-**common_trap:** Thinking slope plus *one* point uniquely determines a line — true. But b is the y-coordinate at a specific x; you need *that x* (a) to compute b.
-**takeaway:** Coordinate DS: slope + one point fixes the line. To get a specific b, you also need the matching a.
+**explanation:** Line L passes through the points (2, 5) and (a, b), and the task is to determine the value of b, which is the y-coordinate of the second point. Since b depends jointly on the line's slope and on the location of the point along that line, it is helpful to recall that the slope of L can be written as (b - 5)/(a - 2). The value of b is therefore determined only when both this slope and the corresponding value of a are known.
+
+Consider Statement (1) alone, which states that the slope of line L is 3. This gives the relationship (b - 5)/(a - 2) = 3, or equivalently b = 5 + 3(a - 2). Because a is not specified, b is not determined. For example, if a = 3 then b = 8, whereas if a = 4 then b = 11. Two different values of b arise, so Statement (1) alone is not sufficient.
+
+Consider Statement (2) alone, which states that a = 6. This fixes only the x-coordinate of the second point and says nothing about the slope of L. A line through (2, 5) and (6, b) may have any slope, so b is unrestricted. For instance, a slope of 1 gives b = 9, while a slope of 2 gives b = 13. Two different values of b arise, so Statement (2) alone is not sufficient.
+
+Taking the two statements together, we have both the slope and the value of a. Substituting a = 6 into b = 5 + 3(a - 2) yields b = 5 + 3(6 - 2) = 5 + 12 = 17. The value of b is uniquely determined, so the two statements together are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1041,14 +1062,15 @@ Machines A and B work simultaneously at their respective constant rates to fill 
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Combined rate = sum of individual rates. (1) gives A's rate; (2) gives B's rate. Together: 1/6 + 1/3 = 1/2 order/hour → 2 hours.
-**explanation:** Combined-rate formula: rate_combined = rate_A + rate_B; time = 1/rate_combined. (1): rate_A = 1/6. Without B's rate, can't combine. (2): rate_B = 1/3. Without A. Together: 1/6 + 1/3 = 1/2 → 2 hours. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — need both rates.
-**mistake_b:** B requires (2) alone sufficient — need both.
-**mistake_d:** D requires each alone — neither has both.
-**mistake_e:** E says together insufficient — but combined-rate formula gives unique time.
-**common_trap:** Adding rates conceptually but forgetting that *one rate alone* never tells you the combined time. Both individual rates needed.
-**takeaway:** Combined-rate DS: T_combined = 1/(1/T_A + 1/T_B). Need both individual times. Standard C answer for joint-work problems.
+**explanation:** We are asked for the time required for Machines A and B, working together at their respective constant rates, to fill the order. For combined work, the combined rate is the sum of the individual rates, and the time equals the reciprocal of that combined rate. Let the order represent 1 job. If A fills the order in t_A hours, then A's rate is 1/t_A; if B fills the order in t_B hours, then B's rate is 1/t_B. The quantity we seek is 1 / (1/t_A + 1/t_B), so we need both individual rates to determine it.
+
+Statement (1) tells us that Machine A alone would fill the order in 6 hours, so A's rate is 1/6 of the order per hour. Nothing is known about B's rate. If B were very fast, the combined time would be short; if B were very slow, the combined time would be longer. For example, if B's rate were 1/6, the combined time would be 3 hours, whereas if B's rate were 1/3, the combined time would be 2 hours. Two different outcomes are possible, so Statement (1) alone is not sufficient.
+
+Statement (2) tells us that Machine B alone would fill the order in 3 hours, so B's rate is 1/3 of the order per hour. Nothing is known about A's rate. If A's rate were 1/3, the combined time would be 1.5 hours, whereas if A's rate were 1/6, the combined time would be 2 hours. Two different outcomes are possible, so Statement (2) alone is not sufficient.
+
+Taking the two statements together, A's rate is 1/6 and B's rate is 1/3. The combined rate is 1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2 of the order per hour, so the combined time is 1 / (1/2) = 2 hours. This produces a single, unique value, so both statements together are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1070,14 +1092,15 @@ At a company, the ratio of men to women is 3 to 5. After 10 new employees were h
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** Original men=3k, women=5k. New ratio 2:3 after 10 hires. (1) m=10, w=0 → solve for k uniquely → 90 men.
-**explanation:** Setup: original 3k men, 5k women. Hires: m men + w women with m+w=10. New ratio (3k+m)/(5k+w)=2/3 → 3m−2w=k. (1): m=10, w=0 → k=30 → original men=3·30=90. Sufficient. (2): post women = 5k+w=50. Combined with the rest gives a non-integer m=35/6, so the constraint isn't internally consistent without specifying the breakdown — can't fix original count. Insufficient. Answer A.
-**mistake_b:** B requires (2) alone sufficient — but the system is under-determined and inconsistent without the breakdown.
-**mistake_c:** C-trap — adding (2) doesn't help; (1) already solves.
-**mistake_d:** D requires each alone — (2) fails.
-**mistake_e:** E says together insufficient — but (1) alone solves.
-**common_trap:** Picking C because the problem feels like it needs both. But when (1) fully constrains the hiring breakdown, the original count drops out cleanly.
-**takeaway:** Ratio-change DS: when the *breakdown of new hires* is specified, solve algebraically; you don't need the post-hire absolute counts.
+**explanation:** Because the original ratio of men to women is 3 to 5, the original counts may be written as 3k men and 5k women for some positive integer k. The task is to determine the original number of men, namely 3k, which reduces to determining k.
+
+Suppose that of the 10 new employees, m are men and w are women, so that m + w = 10. After the hiring the company has 3k + m men and 5k + w women, and this new ratio equals 2 to 3. Thus (3k + m)/(5k + w) = 2/3, which gives 3(3k + m) = 2(5k + w), so 9k + 3m = 10k + 2w, and therefore k = 3m - 2w. Determining the original number of men therefore amounts to determining how the 10 new hires were divided between men and women.
+
+Statement (1) states that all 10 new hires were men, so m = 10 and w = 0. Then k = 3(10) - 2(0) = 30, and the original number of men is 3k = 3(30) = 90. (As a check, the company would have had 90 men and 150 women originally; after hiring 10 men it has 100 men and 150 women, a ratio of 2 to 3.) The value is determined uniquely, so Statement (1) alone is sufficient.
+
+Statement (2) states that after the hiring there were 50 women, so 5k + w = 50. Because the split of the 10 hires is not given, w is not known, and this single equation relates the two unknowns k and w without fixing either; the original number of men cannot be determined. Indeed, combining 5k + w = 50 with k = 3m - 2w and m + w = 10 forces m = 35/6, which is not a whole number, so no consistent breakdown of the new hires is even pinned down by this statement. Thus the post-hiring count of 50 women does not by itself reveal the original number of men, and Statement (2) alone is not sufficient.
+
+The correct answer is A.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1099,14 +1122,15 @@ In the sequence a_1, a_2, a_3, ..., each term after the first is a fixed amount 
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Arithmetic seq: a_n = a_1 + (n−1)d. (1) gives one equation; (2) gives another. Together: solve for a_1 and d uniquely.
-**explanation:** (1): 3a_1+3d=15 → a_1+d=5. One equation, two unknowns. Insufficient. (2): 3a_1+12d=33 → a_1+4d=11. One equation. Insufficient. Together: subtract → 3d=6 → d=2, a_1=3. a_10=3+9·2=21. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but two unknowns.
-**mistake_b:** B requires (2) alone sufficient — same.
-**mistake_d:** D requires each alone — neither does.
-**mistake_e:** E says together insufficient — but two independent linear equations solve.
-**common_trap:** Trying to compute a_10 directly from one statement. Arithmetic sequences need *both* a_1 and d — two pieces of independent info.
-**takeaway:** Arithmetic-sequence DS: needs *both* first term and common difference. One sum gives one equation; you need a second independent sum.
+**explanation:** Because each term after the first exceeds the previous term by a fixed amount, the sequence is arithmetic. Let a_1 denote the first term and let d denote the common difference, so that the general term is a_n = a_1 + (n - 1)d. The quantity sought is a_10 = a_1 + 9d, which is determined precisely when both a_1 and d are known.
+
+Consider Statement (1) alone. Since a_1 + a_2 + a_3 = a_1 + (a_1 + d) + (a_1 + 2d) = 3a_1 + 3d, the condition a_1 + a_2 + a_3 = 15 reduces to a_1 + d = 5. This is a single linear equation in two unknowns and does not fix a_1 and d individually. For example, a_1 = 4 and d = 1 satisfy it and give a_10 = 4 + 9(1) = 13, whereas a_1 = 3 and d = 2 also satisfy it and give a_10 = 3 + 9(2) = 21. Because two different values of a_10 are possible, Statement (1) alone is not sufficient.
+
+Consider Statement (2) alone. Since a_4 + a_5 + a_6 = (a_1 + 3d) + (a_1 + 4d) + (a_1 + 5d) = 3a_1 + 12d, the condition a_4 + a_5 + a_6 = 33 reduces to a_1 + 4d = 11. This too is a single linear equation in two unknowns. For example, a_1 = 7 and d = 1 satisfy it and give a_10 = 7 + 9(1) = 16, whereas a_1 = 3 and d = 2 also satisfy it and give a_10 = 3 + 9(2) = 21. Because two different values of a_10 are possible, Statement (2) alone is not sufficient.
+
+Taking the two statements together yields the system a_1 + d = 5 and a_1 + 4d = 11. Subtracting the first equation from the second gives 3d = 6, so d = 2, and then a_1 = 3. These two independent linear equations determine a_1 and d uniquely, so a_10 = 3 + 9(2) = 21 is fixed. The two statements together are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1128,14 +1152,15 @@ Is |2x - 5| < 3?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Yes/no |2x−5|<3 ↔ 1<x<4. (1) x>2 alone: x=3 yes, x=10 no. (2) x<3 alone: x=2 yes, x=0 no. Together: 2<x<3 ⊂ (1,4) → always yes.
-**explanation:** Translate: |2x−5|<3 ↔ 1<x<4. (1): x>2 — could be 3 (yes) or 10 (no). Insufficient. (2): x<3 — could be 2 (yes) or 0 (no). Insufficient. Together: 2<x<3, fully inside (1,4) → always yes. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but yes/no split.
-**mistake_b:** B requires (2) alone sufficient — same split.
-**mistake_d:** D requires each alone — neither works.
-**mistake_e:** E says together insufficient — but the intersection is contained in the target interval.
-**common_trap:** Forgetting to *translate* |2x−5|<3 into the equivalent interval 1<x<4. Without that, the comparison to x>2 and x<3 isn't visible.
-**takeaway:** Absolute-value DS: translate |expr|<k into a bounded interval first, then check whether each statement's interval lies inside.
+**explanation:** The question asks whether the inequality |2x - 5| < 3 holds. We first restate this condition in a more usable form. The inequality |2x - 5| < 3 is equivalent to -3 < 2x - 5 < 3. Adding 5 throughout gives 2 < 2x < 8, and dividing by 2 yields 1 < x < 4. Thus the question is equivalent to asking whether x lies strictly between 1 and 4.
+
+Consider Statement (1) alone: x > 2. Let x = 3. Then x lies in the interval (1, 4), so the answer is yes. Now let x = 10. Then x does not lie in (1, 4), so the answer is no. Because both a yes case and a no case are possible, Statement (1) alone is not sufficient.
+
+Consider Statement (2) alone: x < 3. Let x = 2. Then x lies in (1, 4), so the answer is yes. Now let x = 0. Then x does not lie in (1, 4), so the answer is no. Because both a yes case and a no case are possible, Statement (2) alone is not sufficient.
+
+Taking the two statements together, we have x > 2 and x < 3, which means 2 < x < 3. Every value in the interval (2, 3) also lies in the interval (1, 4), so the condition 1 < x < 4 is always satisfied, and the answer is always yes. Therefore the two statements together are sufficient, while neither alone is sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1194,14 +1219,13 @@ A rectangle has area 48. What is its perimeter?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** (1) L=3W and LW=48 → W=4, L=12 → perimeter 32. (2) integer pairs (1,48),(2,24),…(6,8) give different perimeters. A.
-**explanation:** (1): L=3W with LW=48 → 3W²=48 → W=4, L=12 → P=32. Sufficient. (2): integer pairs with product 48 yield perimeters 98, 52, 38, 32, 28 — all different. Insufficient. Answer A.
-**mistake_b:** B requires (2) alone sufficient — but multiple integer pairs.
-**mistake_c:** C-trap — adding (2) doesn't help; (1) already pins it.
-**mistake_d:** D requires each alone — (2) fails.
-**mistake_e:** E says together insufficient — but (1) alone solves.
-**common_trap:** Picking C because integer constraint *seems* to help. But fixed area + integer dimensions still permits many factor pairs; you need the *specific* shape constraint from (1).
-**takeaway:** Rectangle-perimeter DS with fixed area: shape constraint (length-to-width ratio) is the deterministic lever. Integer constraint alone permits many pairs.
+**explanation:** We are told that a rectangle has area 48, and we must determine its perimeter. Let L denote the length and W denote the width, so that LW = 48. The perimeter equals 2(L + W). To answer the question, we need a single, determined value for L + W.
+
+Statement (1) tells us that the length is 3 times the width, so L = 3W. Substituting into LW = 48 gives 3W^2 = 48, hence W^2 = 16. Since the width must be positive, W = 4, and therefore L = 3(4) = 12. The perimeter is then 2(12 + 4) = 32, a single determined value. Statement (1) alone is sufficient.
+
+Statement (2) tells us that the length and width are both integers. Many pairs of positive integers have product 48, and they yield different perimeters. For example, if L = 6 and W = 8, then L + W = 14 and the perimeter is 28; but if L = 12 and W = 4, then L + W = 16 and the perimeter is 32. Two distinct perimeters arise from the same information, so Statement (2) alone is not sufficient. The integer condition restricts the dimensions to a finite list of factor pairs, but it does not single out one shape, which is why it fails to fix the perimeter.
+
+The correct answer is A.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1223,14 +1247,15 @@ A car travels from town X to town Y. What was its average speed for the entire t
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Avg speed = total distance / total time. (1) gives distance only. (2) gives total time only (5h). Together: 180/5 = 36 mph.
-**explanation:** (1): 180 miles, no time. Insufficient. (2): "first half" = first half of distance, so total time = 2+3 = 5h. But distance unknown. Insufficient. Together: 180 miles / 5 hours = 36 mph. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but no time given.
-**mistake_b:** B requires (2) alone sufficient — but no total distance.
-**mistake_d:** D requires each alone — neither has both.
-**mistake_e:** E says together insufficient — but distance + time = avg speed.
-**common_trap:** Picking E because the question feels under-specified. Two complementary pieces (distance + time) always solve avg speed.
-**takeaway:** Avg-speed DS: total distance + total time fully determines avg speed. Stop the moment you have both.
+**explanation:** The question asks for the car's average speed over the entire trip from town X to town Y. By definition, average speed equals the total distance traveled divided by the total time elapsed. To determine a unique value, we must therefore know both the total distance and the total time.
+
+Statement (1) tells us that the car traveled 180 miles, which establishes the total distance but provides no information about the time taken. If the trip lasted 5 hours, the average speed would be 180/5 = 36 miles per hour; if instead it lasted 6 hours, the average speed would be 180/6 = 30 miles per hour. Since different elapsed times yield different average speeds, Statement (1) alone is not sufficient.
+
+Statement (2) tells us that the first half took 2 hours and the second half took 3 hours, so the total time was 2 + 3 = 5 hours. However, the distance covered is unknown. If the car traveled 180 miles, the average speed would be 180/5 = 36 miles per hour; if it traveled 240 miles, the average speed would be 240/5 = 48 miles per hour. Since different distances yield different average speeds, Statement (2) alone is not sufficient.
+
+Taking the two statements together, the total distance is 180 miles and the total time is 5 hours. The average speed is therefore 180/5 = 36 miles per hour, a single determined value. The breakdown of the time into 2 hours and 3 hours for the two halves is not itself needed once the total of 5 hours is known. Both statements together are sufficient, while neither alone is.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1252,14 +1277,23 @@ The sequence s_1, s_2, s_3, ... is defined by s_n = s_(n-1) + s_(n-2) for all n 
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Recurrence s_n = s_{n−1} + s_{n−2}. Express s_7 in terms of s_1, s_2: s_7 = 5s_1 + 8s_2. (1) s_1+s_2=5; (2) s_1+2s_2=8. Together: solve uniquely.
-**explanation:** Fibonacci-like: s_3=s_1+s_2, s_4=s_1+2s_2, s_5=2s_1+3s_2, s_6=3s_1+5s_2, s_7=5s_1+8s_2. (1): s_1+s_2=5 — many s_7 values. Insufficient. (2): s_1+2s_2=8 — many. Insufficient. Together: subtract → s_2=3, s_1=2 → s_7=10+24=34 < 40. Definite "no". Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but s_7 depends on both s_1 and s_2.
-**mistake_b:** B requires (2) alone sufficient — same issue.
-**mistake_d:** D requires each alone — neither has both initial values.
-**mistake_e:** E says together insufficient — but two equations in two unknowns solve.
-**common_trap:** Forgetting that *definite no* is sufficient. s_7 = 34 < 40 settles "Is s_7 > 40?" with a definitive no.
-**takeaway:** Recurrence DS: a 2-term linear recurrence is fully specified by *two* initial values. Two equations on those values = unique sequence.
+**explanation:** The sequence is defined by the recurrence s_n = s_(n-1) + s_(n-2) for all n greater than or equal to 3, so every term is determined once the two initial terms s_1 and s_2 are fixed. We express the term in question entirely in terms of s_1 and s_2:
+
+s_3 = s_1 + s_2
+s_4 = s_3 + s_2 = s_1 + 2s_2
+s_5 = s_4 + s_3 = 2s_1 + 3s_2
+s_6 = s_5 + s_4 = 3s_1 + 5s_2
+s_7 = s_6 + s_5 = 5s_1 + 8s_2
+
+The question asks whether s_7 = 5s_1 + 8s_2 exceeds 40. A definite answer of either yes or no constitutes sufficiency.
+
+Statement (1) gives s_3 = 5, that is, s_1 + s_2 = 5. This is a single equation in two unknowns and does not fix s_1 and s_2 individually. Writing s_7 = 5(s_1 + s_2) + 3s_2 = 25 + 3s_2, we see the value depends on s_2. For example, s_1 = 4 and s_2 = 1 give s_7 = 25 + 3 = 28, which is not greater than 40, whereas s_1 = -10 and s_2 = 15 give s_7 = 25 + 45 = 70, which is greater than 40. The two outcomes differ, so Statement (1) alone is not sufficient.
+
+Statement (2) gives s_4 = 8, that is, s_1 + 2s_2 = 8. Again this is one equation in two unknowns. Substituting s_1 = 8 - 2s_2 yields s_7 = 5(8 - 2s_2) + 8s_2 = 40 - 2s_2, which depends on s_2. For example, s_2 = 1 and s_1 = 6 give s_7 = 40 - 2 = 38, which is not greater than 40, whereas s_2 = -10 and s_1 = 28 give s_7 = 40 + 20 = 60, which is greater than 40. The two outcomes differ, so Statement (2) alone is not sufficient.
+
+Taking the two statements together, we have the system s_1 + s_2 = 5 and s_1 + 2s_2 = 8. Subtracting the first equation from the second gives s_2 = 3, and then s_1 = 2. These two initial values determine the entire sequence, so s_7 = 5(2) + 8(3) = 10 + 24 = 34. Since 34 is not greater than 40, the answer to the question is a definite no. The two statements together are therefore sufficient. A definite no settles the yes-or-no question just as firmly as a definite yes would; the value need not exceed 40 for the data to be sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1281,14 +1315,15 @@ In the xy-plane, the circle C has center (h, k) and radius r. Does the point (3,
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**fastest_path:** Point inside iff distance(center, point) < r. (1) origin on circle → h²+k²=r² (many configurations). (2) center at origin (no radius). Together: r=0, degenerate.
-**explanation:** Point (3,4) inside iff (3−h)²+(4−k)²<r². (1): h²+k²=r². Try (h,k,r)=(3,4,5): yes. (h,k,r)=(−10,0,10): no. Insufficient. (2): center=(0,0), radius unknown. r=10 yes; r=2 no. Insufficient. Together: center origin AND origin on circle → r=0 (degenerate). No valid circle; DS is unanswerable in standard convention. Answer E.
-**mistake_a:** A requires (1) alone sufficient — but configurations split yes/no.
-**mistake_b:** B requires (2) alone sufficient — but radius unknown.
-**mistake_c:** C says together sufficient — but combined info is inconsistent (zero-radius is degenerate).
-**mistake_d:** D requires each alone — neither works.
-**common_trap:** Picking C because "two pieces of info should solve geometry." But contradictory info is *not* sufficient.
-**takeaway:** Geometry DS: when two statements jointly force a degenerate or impossible figure, the combined info is *insufficient* (no valid case exists to evaluate).
+**explanation:** A point lies inside a circle precisely when its distance from the center is strictly less than the radius. Thus the point (3, 4) lies inside circle C if and only if (3 - h)^2 + (4 - k)^2 < r^2. The question therefore asks whether enough is known about the center (h, k) and the radius r to determine the truth of this inequality.
+
+Consider Statement (1) alone. If the circle passes through the origin, then the distance from the center to (0, 0) equals the radius, giving h^2 + k^2 = r^2. This single equation fixes neither the center nor the radius. For example, let the center be (3, 4) with r = 5; then h^2 + k^2 = 9 + 16 = 25 = r^2, the condition is satisfied, and the distance from (3, 4) to the center is 0, which is less than 5, so the point lies inside. Alternatively, let the center be (-10, 0) with r = 10; then h^2 + k^2 = 100 = r^2, the condition is satisfied, but the distance from (3, 4) to (-10, 0) is the square root of (169 + 16) = the square root of 185, approximately 13.6, which exceeds 10, so the point lies outside. Because Statement (1) permits both a yes answer and a no answer, it is not sufficient.
+
+Consider Statement (2) alone. This fixes the center at the origin but says nothing about the radius. If r = 10, the distance from (3, 4) to the origin is 5, which is less than 10, so the point lies inside (yes). If instead r = 2, that distance of 5 exceeds 2, so the point lies outside (no). Two different outcomes are possible, so Statement (2) is not sufficient.
+
+Taking the statements together, Statement (2) places the center at the origin, while Statement (1) requires the circle to pass through the origin. A circle whose center is the origin and which also passes through the origin would have radius r = 0, which is a single point rather than a genuine circle of positive radius. The two statements jointly describe a degenerate figure, so no valid circle exists for which the inquiry can be evaluated, and the combined information fails to yield a determinate answer. Hence the statements together are not sufficient.
+
+The correct answer is E.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1310,14 +1345,15 @@ A positive integer N is the product of exactly two distinct primes p and q. What
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** N=pq, distinct primes. Divisor sum = (1+p)(1+q) = 72 (1) gives multiple candidates; (2) gives multiple. Intersection: N=51.
-**explanation:** Divisors of N=pq are {1, p, q, pq}, sum = (1+p)(1+q). (1): (1+p)(1+q)=72. Prime-distinct pairs: (2,23)→N=46; (3,17)→N=51; (5,11)→N=55. Three candidates. Insufficient. (2): p+q=20, primes: (3,17)→N=51; (7,13)→N=91. Two candidates. Insufficient. Together: {46,51,55} ∩ {51,91} = {51}. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — three candidates remain.
-**mistake_b:** B requires (2) alone sufficient — two candidates remain.
-**mistake_d:** D requires each alone — neither narrows to one.
-**mistake_e:** E says together insufficient — but the intersection is a single value.
-**common_trap:** Trying to factor 72 only as 8×9 and missing other pairs. Always enumerate factor pairs systematically.
-**takeaway:** Two-prime DS: divisor sum (1+p)(1+q) and sum p+q each give candidate sets; intersection often unique.
+**explanation:** We are told that N is a positive integer equal to the product of exactly two distinct primes p and q, so N = pq. The task is to determine a single numerical value for N. Because the divisors of pq are precisely 1, p, q, and pq, the sum of the divisors of N equals 1 + p + q + pq, which factors as (1 + p)(1 + q). This factored form is the most efficient way to test the statements.
+
+Statement (1) states that the sum of the divisors of N is 72, so (1 + p)(1 + q) = 72. We seek factor pairs of 72 in which each factor, reduced by 1, is prime, and the two primes are distinct. Writing 72 as 3 x 24 gives p = 2 and q = 23, both prime, so N = 46. Writing 72 as 4 x 18 gives p = 3 and q = 17, both prime, so N = 51. Writing 72 as 6 x 12 gives p = 5 and q = 11, both prime, so N = 55. (The pair 8 x 9 fails, since 9 minus 1 = 8 is not prime.) Because at least two distinct values of N arise, for instance 46 and 51, Statement (1) alone is not sufficient.
+
+Statement (2) states that p + q = 20. The distinct prime pairs summing to 20 include 3 and 17, giving N = 51, and 7 and 13, giving N = 91. Since both 51 and 91 are possible, Statement (2) alone is not sufficient.
+
+Taking the statements together, N must lie in the set permitted by each. From Statement (1) the candidates are 46, 51, and 55; from Statement (2) the candidates are 51 and 91. The only value common to both sets is 51, so N = 51 is determined uniquely. The two statements together are therefore sufficient, while neither is sufficient alone.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 
@@ -1340,14 +1376,15 @@ At a factory, machine X and machine Y each produce parts at constant but differe
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** (1) x+y=540 (scalar). (2) y=1.4x (ratio). Together: 2.4x=540 → x=225.
-**explanation:** Let X's rate=x, Y's=y. (1): x+y=540 — one equation, two unknowns. Insufficient. (2): y=1.4x — ratio, no scalar. Insufficient. Together: 2.4x=540 → x=225. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but two unknowns.
-**mistake_b:** B requires (2) alone sufficient — ratio without scalar fails.
-**mistake_d:** D requires each alone — neither does.
-**mistake_e:** E says together insufficient — but scalar + ratio = unique solution.
-**common_trap:** Picking E because each alone looks "too thin." Scalar + ratio is a textbook C combination.
-**takeaway:** Rate DS: one absolute total + one ratio between rates = unique values for each. Like the classic ratio-and-count pairing.
+**explanation:** We are asked to determine the exact number of parts per hour produced by machine X. Let x represent machine X's hourly production and let y represent machine Y's hourly production, where x and y are constant but unequal. A single numerical value of x is required for sufficiency.
+
+Statement (1) tells us that the two machines together produce 540 parts per hour, so x + y = 540. This is a single equation in two unknowns, and many pairs satisfy it. For instance, if y = 240 then x = 300, whereas if y = 315 then x = 225. Since two different values of x are possible, Statement (1) alone is not sufficient.
+
+Statement (2) tells us that machine Y produces 40 percent more parts per hour than machine X, so y = 1.4x. This fixes only the ratio between the two rates and supplies no absolute quantity. For instance, x = 100 (with y = 140) and x = 200 (with y = 280) both satisfy the condition. Since two different values of x are possible, Statement (2) alone is not sufficient.
+
+Taking the two statements together, we substitute y = 1.4x into x + y = 540, giving x + 1.4x = 540, that is 2.4x = 540, so x = 225. This yields a single numerical value for machine X's hourly production, and correspondingly y = 315. The two statements together are therefore sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 
@@ -1370,14 +1407,15 @@ In a plane, triangle ABC has vertices A, B, and C. What is the area of triangle 
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Triangle area = ½ · base · height, where the height is the perpendicular distance from the opposite vertex to that base. You need both numbers, and each statement hands you exactly one — so neither alone, both together.
-**explanation:** Area of a triangle = ½ · base · height. Here BC is a base and the perpendicular from A to line BC is the matching height. **(1):** base BC = 10, but with no height the area is undetermined (the triangle could be short or tall) → not sufficient. **(2):** height = 6, but with no base the area is again undetermined → not sufficient. **Together:** area = ½ · 10 · 6 = **30** → sufficient. Answer **C**. Note you don't need the triangle's exact shape — a base and its height alone fix the area.
-**mistake_a:** (1) gives the base but no height; infinitely many triangles share base BC = 10 while having different areas.
-**mistake_b:** (2) gives the height but no base; the same indeterminacy in reverse.
-**mistake_d:** "Each alone" needs both statements to work solo, but each supplies only one factor of ½ · base · height.
-**mistake_e:** Says even together it fails, but base and height are exactly what the area formula requires.
-**common_trap:** Feeling you must know the triangle's specific shape (other sides, angles) to get the area. DS only asks whether the area is *uniquely determined* — base plus perpendicular height does that, shape notwithstanding.
-**takeaway:** Triangle-area DS reduces to "do I have a base and the perpendicular height to that base?" If yes, the area is fixed; the rest of the figure is irrelevant.
+**explanation:** We are asked for the area of triangle ABC. The area of any triangle equals one-half the product of a base and the perpendicular height to that base, so the area is determined precisely when we can fix both a base length and the corresponding perpendicular height. Here it is natural to take side BC as the base, in which case the matching height is the perpendicular distance from the opposite vertex A to line BC.
+
+Consider Statement (1) alone. We are told that BC = 10, which supplies a base. However, no information is given about how far vertex A lies from line BC, so the height is unknown. Vertex A may be placed close to line BC, giving a small area, or far from it, giving a large area; for instance, a height of 1 yields area 5, while a height of 4 yields area 20. Because two different areas are possible, Statement (1) alone is not sufficient.
+
+Consider Statement (2) alone. We are told that the perpendicular distance from A to line BC is 6, which supplies the height for base BC. However, no length is given for BC, so the base is unknown. If BC = 2 the area is 6, while if BC = 10 the area is 30. Since two different areas are possible, Statement (2) alone is not sufficient.
+
+Taking the two statements together, we have base BC = 10 and the corresponding perpendicular height equal to 6. The area is therefore one-half times 10 times 6, which equals 30. The value is uniquely determined, so the two statements together are sufficient. We note that the exact shape of the triangle, including its other side lengths and angles, is not needed; a base together with its perpendicular height fixes the area on its own.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1399,14 +1437,15 @@ If x and y are positive integers with x < y, is y − x a multiple of 4?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Yes/no. Each alone has split. Together: x+y div by 8 (so both even) AND xy div by 16 → both x,y div by 4 → y−x div by 4.
-**explanation:** (1): (1,7) sum=8, y−x=6 (no); (2,6) sum=8, y−x=4 (yes). Insufficient. (2): (1,16) xy=16, y−x=15 (no); (2,8) xy=16, y−x=6 (no). Insufficient. Together: x+y mult of 8 → both even. Write x=2a, y=2b: a+b=4k, ab=4m. Combining forces both a, b even. So x, y both div by 4 → y−x div by 4. Sufficient yes. Answer C.
-**mistake_a:** A requires (1) alone sufficient — split shown.
-**mistake_b:** B requires (2) alone sufficient — same.
-**mistake_d:** D requires each alone — neither works.
-**mistake_e:** E says together insufficient — but parity + factor analysis nails it.
-**common_trap:** Stopping at "both even" once you get x+y mult of 8. You also need the factor-of-16 from (2) to push to "both div by 4."
-**takeaway:** Number-theory DS: combine *parity* with *divisibility-by-square* constraints. They often interact to force divisibility-by-higher-powers.
+**explanation:** We are given that x and y are positive integers with x < y, and we must determine whether y − x is a multiple of 4. This is a yes/no question; a statement is sufficient only if it forces a single answer for every case it permits.
+
+Statement (1) tells us that x + y is a multiple of 8. Consider x = 2 and y = 6: here x + y = 8, and y − x = 4, which is a multiple of 4, so the answer is yes. Now consider x = 1 and y = 7: here x + y = 8 as well, but y − x = 6, which is not a multiple of 4, so the answer is no. Because the same condition yields both a yes and a no, Statement (1) alone is not sufficient.
+
+Statement (2) tells us that xy is a multiple of 16. Consider x = 4 and y = 8: here xy = 32, a multiple of 16, and y − x = 4, a multiple of 4, so the answer is yes. Now consider x = 2 and y = 8: here xy = 16, a multiple of 16, but y − x = 6, which is not a multiple of 4, so the answer is no. Because both outcomes occur, Statement (2) alone is not sufficient.
+
+Taking the two statements together, we use both conditions. Since x + y is a multiple of 8, it is even, so x and y share the same parity. They cannot both be odd, because then xy would be odd and could not be a multiple of 16; hence x and y are both even. Let x = 2a and y = 2b, where a and b are positive integers. Then x + y = 2(a + b) is a multiple of 8, so a + b is a multiple of 4, and xy = 4ab is a multiple of 16, so ab is a multiple of 4. Because a + b is even, a and b share the same parity. They cannot both be odd, for then ab would be odd and not a multiple of 4; hence a and b are both even. It follows that x = 2a and y = 2b are each multiples of 4, so y − x is a multiple of 4. The answer is definitively yes, so the two statements together are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 
@@ -1429,14 +1468,15 @@ Is the positive integer n divisible by 12?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** 12 = 4·3 (coprime). (1) gives factor 4. (2) gives factor 9 (which contains factor 3). Together: factors 4 and 3 → div by 12.
-**explanation:** 12 = 4 × 3 with 4, 3 coprime. (1): n=4 (no) or n=12 (yes). Insufficient. (2): n=9 (no) or n=36 (yes). Insufficient. Together: div by 4 AND div by 9 → div by LCM(4,9)=36, which is div by 12. Sufficient yes. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but div by 4 alone doesn't ensure div by 3.
-**mistake_b:** B requires (2) alone sufficient — div by 9 doesn't ensure factor of 4.
-**mistake_d:** D requires each alone — neither does.
-**mistake_e:** E says together insufficient — but coprime factors compose.
-**common_trap:** Forgetting that 9 contains 3, so (2) supplies the 3-factor needed for 12. The coprime-decomposition of 12 = 4·3 is the key.
-**takeaway:** Divisibility-by-N DS: factor N into coprime pieces. If statements supply each piece (or stronger), together divides N.
+**explanation:** We are asked to determine whether the positive integer n is divisible by 12. Since 12 = 4 × 3, where 4 and 3 share no common factor greater than 1, n is divisible by 12 if and only if n is divisible by both 4 and 3. The task therefore reduces to establishing whether n possesses both of these coprime factors.
+
+Statement (1) tells us that n is divisible by 4. This guarantees the factor of 4 but says nothing about the factor of 3. Let n = 4: this is divisible by 4 but not by 12. Let n = 12: this is divisible by 4 and also by 12. Because divisibility by 12 can either fail or hold under this condition, Statement (1) alone is not sufficient.
+
+Statement (2) tells us that n is divisible by 9. Since 9 = 3 × 3, this guarantees the factor of 3 but says nothing about the factor of 4. Let n = 9: this is divisible by 9 but not by 12. Let n = 36: this is divisible by 9 and also by 12. Because divisibility by 12 can either fail or hold under this condition, Statement (2) alone is not sufficient.
+
+Taking the two statements together, n is divisible by 4 and n is divisible by 9. Divisibility by 9 implies divisibility by 3. Thus n is divisible by both 4 and 3, the two coprime factors of 12, and so n is divisible by their least common multiple, 36, which is itself a multiple of 12. Therefore n must be divisible by 12, and the two statements together are sufficient. We note that the factor of 9 in Statement (2) is stronger than required; only the factor of 3 it contains is needed to complete the decomposition of 12.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 
@@ -1459,14 +1499,15 @@ In right triangle ABC, angle C is the right angle and side AB is the hypotenuse.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Right triangle with hypotenuse: BC² = AB² − AC². (1) gives AB; (2) gives AC. Together: 5-12-13 triple → BC=12.
-**explanation:** Right angle at C → AB hypotenuse. Pythagorean: BC² = AB² − AC² = 169 − 25 = 144 → BC=12. (1) alone: only AB. (2) alone: only AC. Together: BC=12. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — one side doesn't fix the other.
-**mistake_b:** B requires (2) alone sufficient — same.
-**mistake_d:** D requires each alone — neither does.
-**mistake_e:** E says together insufficient — but Pythagoras solves uniquely.
-**common_trap:** Recognizing 5-12-13 from one number alone. But DS is about *unique determination*; you need both to lock it.
-**takeaway:** Right-triangle DS: the Pythagorean triple needs *two* sides to fix the third. Standard C answer for missing-leg questions.
+**explanation:** We are asked to determine the length of side BC in right triangle ABC, where the right angle is at C and AB is the hypotenuse. Because angle C is the right angle, the Pythagorean theorem gives AB^2 = AC^2 + BC^2, so BC^2 = AB^2 - AC^2. Determining BC therefore requires knowing both the length of the hypotenuse AB and the length of the other leg AC.
+
+Statement (1) tells us that AB = 13. This fixes the hypotenuse but says nothing about leg AC, so BC is not determined. For example, if AC = 5, then BC^2 = 169 - 25 = 144 and BC = 12; but if AC = 12, then BC^2 = 169 - 144 = 25 and BC = 5. Two different values of BC are possible, so Statement (1) alone is not sufficient.
+
+Statement (2) tells us that AC = 5. This fixes one leg but says nothing about the hypotenuse AB, so BC is not determined. For example, if AB = 13, then BC^2 = 169 - 25 = 144 and BC = 12; but if AB = 5*sqrt(2), then BC^2 = 50 - 25 = 25 and BC = 5. Two different values of BC are possible, so Statement (2) alone is not sufficient.
+
+Taking the two statements together, we have AB = 13 and AC = 5. Then BC^2 = AB^2 - AC^2 = 169 - 25 = 144, so BC = 12, a single determined value. The two statements together are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1488,14 +1529,15 @@ In a plane, two distinct lines l and m are cut by a transversal t. Are lines l a
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**fastest_path:** Each statement is a *standard parallel-line theorem*. (1) equal corresponding angles ⟺ parallel. (2) common perpendicular ⟺ parallel. D.
-**explanation:** (1): Converse of corresponding-angles postulate — equal corresponding angles ⟹ l ∥ m. Sufficient. (2): A transversal perpendicular to both lines forces parallel (Euclidean). Sufficient. Each alone solves. Answer D.
-**mistake_a:** A requires only (1) sufficient — but (2) also solves.
-**mistake_b:** B requires only (2) sufficient — but (1) also does.
-**mistake_c:** C-trap — combining is unnecessary; each alone is a parallel theorem.
-**mistake_e:** E says together insufficient — both alone solve.
-**common_trap:** *C-trap on geometry theorems*: each piece of geometric info is often a *standalone* sufficiency criterion. Don't combine reflexively.
-**takeaway:** Parallel-line DS: equal corresponding angles, equal alternate interior angles, common perpendicular — each is *independently* sufficient.
+**explanation:** We are given two distinct lines l and m in a plane, both cut by a transversal t. The question asks whether l and m are parallel; a definite answer of "yes" or a definite answer of "no" is sufficient.
+
+Evaluate Statement (1) alone. Two corresponding angles formed by the transversal are equal in measure. By the converse of the corresponding-angles postulate, if a transversal cuts two lines so that a pair of corresponding angles is equal, then the two lines are parallel. Thus l and m must be parallel, and the answer is a definite "yes." Statement (1) alone is sufficient.
+
+Evaluate Statement (2) alone. The transversal t is perpendicular to both line l and line m. In the Euclidean plane, two lines that are each perpendicular to the same line are parallel to each other. Hence l and m must be parallel, and the answer is again a definite "yes." Statement (2) alone is sufficient.
+
+Because each statement alone determines that the lines are parallel, there is no need to combine them; combining the statements would be unnecessary. Each statement expresses a standard, independent criterion for parallelism.
+
+The correct answer is D.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 
@@ -1518,14 +1560,15 @@ A company's total 2023 revenue was the sum of revenue from three divisions, A, B
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** (1) ratio 3:2:1 (no scalar). (2) C=$20M (no ratio). Together: 1 part = $20M → A = 3·$20M = $60M.
-**explanation:** Ratio + anchor pattern. (1): ratio 3:2:1 alone — no dollar amount. Insufficient. (2): C=$20M — no relative size. Insufficient. Together: C is 1 part = $20M, so A (3 parts) = $60M. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — ratio without anchor.
-**mistake_b:** B requires (2) alone sufficient — anchor without ratio.
-**mistake_d:** D requires each alone — neither has both.
-**mistake_e:** E says together insufficient — but ratio + anchor = unique.
-**common_trap:** Trying to compute total revenue from (2) alone. C alone doesn't tell you A.
-**takeaway:** Revenue/composition DS with ratios: ratio + at least one absolute value = unique solution for any other component.
+**explanation:** We are asked to determine Division A's 2023 revenue, where the company's total 2023 revenue equals the sum of the revenues of Divisions A, B, and C. Equivalently, we must find a single numerical value for A.
+
+Statement (1) gives the ratio of the divisions' revenues as A : B : C = 3 : 2 : 1. We may write A = 3k, B = 2k, and C = k for some positive constant k, but the value of k is unknown. For instance, if k = 10 then A = 30 (in millions), while if k = 20 then A = 60. Because A can take more than one value, Statement (1) alone is not sufficient.
+
+Statement (2) states that Division C's 2023 revenue was $20 million. This fixes C but provides no information about how A relates to C, so A could be any positive amount. For instance, A could be $10 million or $100 million, each consistent with C = $20 million. Therefore Statement (2) alone is not sufficient.
+
+Taking the two statements together, the ratio from Statement (1) gives C = k, and Statement (2) gives C = $20 million, so k = 20. Then A = 3k = 3 times $20 million = $60 million, a single determined value. Thus the two statements together are sufficient, although neither is sufficient alone. (Note that knowing C from Statement (2) without the ratio, or the ratio from Statement (1) without any dollar anchor, leaves A undetermined; both pieces are required.)
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1547,14 +1590,15 @@ In a class of 30 students, the ratio of boys to girls is 3 to 2. How many boys s
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**fastest_path:** Question asks how many *boys* scored above mean. Neither statement gives the gender breakdown of the 14 high-scorers. Together still doesn't.
-**explanation:** Class: 18 boys, 12 girls. Question: how many of the boys are in the above-mean group? (1): mean=75 (numeric value) — irrelevant to gender split. Insufficient. (2): 14 above mean — but their gender mix is open. Insufficient. Together: still no link between "14 above mean" and "how many boys." 0–12 girls + 2–14 boys all consistent. Answer E.
-**mistake_a:** A requires (1) alone sufficient — mean value tells nothing.
-**mistake_b:** B requires (2) alone sufficient — gender split of 14 still unknown.
-**mistake_c:** C says together sufficient — but the gender mix is independent of the count.
-**mistake_d:** D requires each alone — neither does.
-**common_trap:** Picking C because "everything seems specified" — but the *gender breakdown of the 14* is the missing piece that no statement supplies.
-**takeaway:** When the question asks for one *subgroup's* count, beware: aggregate counts + ratios don't determine subgroup-by-criterion splits. The criterion (here: above-mean) is independent of the demographic.
+**explanation:** The class contains 30 students in a boys-to-girls ratio of 3 to 2, so there are 18 boys and 12 girls. The question asks for a single subgroup count: the number of boys, specifically, who scored above the class mean. To answer it we must determine how the above-mean group is divided between boys and girls.
+
+Statement (1) reports that the class mean was 75. This is a numeric value of the mean and says nothing about how many students, of either gender, scored above it. It is therefore consistent with any breakdown of high scorers. Statement (1) alone is not sufficient.
+
+Statement (2) reports that 14 students scored above the class mean. This fixes the size of the above-mean group but leaves its gender composition open. For example, the 14 could consist of 2 boys and 12 girls, or of 14 boys and 0 girls; both are consistent with 18 boys and 12 girls. Because the number of boys among the 14 can take more than one value, Statement (2) alone is not sufficient.
+
+Taking the statements together, we know the mean is 75 and that 14 students exceeded it, but nothing connects the above-mean criterion to gender. The number of boys above the mean can still range from 2 (with 12 girls above) to 14 (with 0 girls above), so the value is not determined. The mean value of 75 in Statement (1) is a distractor that contributes nothing to the gender split. The two statements together are not sufficient.
+
+The correct answer is E.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 
@@ -1577,14 +1621,15 @@ What is the area of triangle ABC?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Triangle area = (1/2)·a·b·sin(angle between them). (1) gives two sides; (2) gives the angle. Together: (1/2)(8)(6)(1)=24.
-**explanation:** Area = (1/2)·AB·AC·sin(∠BAC). (1): AB=8, AC=6 — no angle, area not determined. Insufficient. (2): ∠BAC=90° — no sides. Insufficient. Together: area = (1/2)(8)(6)(sin 90°) = 24. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but area depends on angle.
-**mistake_b:** B requires (2) alone sufficient — but no sides given.
-**mistake_d:** D requires each alone — neither has both pieces.
-**mistake_e:** E says together insufficient — but two-sides + included-angle is the SAS area formula.
-**common_trap:** Forgetting that triangle area requires *side, side, and the included angle* (or base and height). Two sides without the angle aren't enough.
-**takeaway:** Triangle-area DS via SAS: (1/2)·a·b·sin(C). When C=90°, sin=1, formula reduces to (1/2)·a·b — the right-triangle case.
+**explanation:** The question asks for the area of triangle ABC. The area of any triangle equals one-half the product of two of its sides and the sine of the angle included between those two sides. In this case, taking AB and AC as the two sides, the area equals (1/2)(AB)(AC)(sin angle BAC). Determining the area therefore requires knowing both side lengths AB and AC and the measure of the included angle BAC.
+
+Statement (1) gives AB = 8 and AC = 6 but provides no information about the included angle BAC. Without that angle, the area is not determined. For example, if angle BAC is very small, the triangle is nearly degenerate and its area is close to 0, whereas if angle BAC = 90 degrees the area is (1/2)(8)(6)(1) = 24. Since two different angle measures yield two different areas, Statement (1) alone is not sufficient.
+
+Statement (2) gives angle BAC = 90 degrees but provides no side lengths. A right angle at A is consistent with triangles of many different sizes and therefore many different areas; for instance, legs of 8 and 6 give area 24, while legs of 4 and 3 give area 6. Since two different outcomes are possible, Statement (2) alone is not sufficient.
+
+Taking the two statements together, we have AB = 8, AC = 6, and the included angle BAC = 90 degrees. The area is then (1/2)(8)(6)(sin 90 degrees) = (1/2)(48)(1) = 24. The area is uniquely determined, so the two statements together are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 
@@ -1607,14 +1652,15 @@ A rectangle has perimeter P and area A. What is the value of A?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Need l+w (perimeter) AND l/w ratio. (1) gives l+w=14. (2) gives l=3w. Solve: w=3.5, l=10.5, area=36.75.
-**explanation:** (1): 2(l+w)=28 → l+w=14. Area=lw varies with split. Insufficient. (2): l=3w. Ratio without scalar — area=3w² unknown. Insufficient. Together: l+w=14 and l=3w → 4w=14 → w=3.5, l=10.5, area=36.75. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — perimeter doesn't fix area.
-**mistake_b:** B requires (2) alone sufficient — ratio without anchor.
-**mistake_d:** D requires each alone — neither does.
-**mistake_e:** E says together insufficient — but two equations in two unknowns solve.
-**common_trap:** Believing perimeter pins down area. Same perimeter (28) with different splits gives areas from near-zero to 49 (square).
-**takeaway:** Rectangle DS: perimeter alone never fixes area. Need *another* dimension or shape constraint (ratio).
+**explanation:** We are asked for the area A of a rectangle, where A equals the product of its length and width. Determining A therefore requires enough information to fix both dimensions, or at least to fix their product.
+
+Statement (1) states that the perimeter is 28, so 2(length + width) = 28, which gives length + width = 14. A fixed sum of the two dimensions does not fix their product. For example, a rectangle with dimensions 7 and 7 has area 49, while a rectangle with dimensions 13 and 1 also has perimeter 28 but area 13. Because two different areas are possible, Statement (1) alone is not sufficient.
+
+Statement (2) states that the length is 3 times the width. Let w = width; then the length is 3w and the area is 3w squared. This expression depends on w, which is unknown. For example, w = 1 gives area 3, while w = 2 gives area 12. Because two different areas are possible, Statement (2) alone is not sufficient.
+
+Taking the statements together, we have length + width = 14 and length = 3 times width. Substituting gives 3w + w = 14, so 4w = 14 and w = 3.5. Then the length is 10.5, and the area is 10.5 times 3.5 = 36.75. A unique value results, so the two statements together are sufficient. Note that the specific perimeter value of 28 in Statement (1) is essential, not a distractor; without an absolute measurement the ratio in Statement (2) alone could be scaled to any size.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 
@@ -1637,12 +1683,13 @@ A data set consists of 7 numbers. What is the median of the data set?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Sort: a≤b≤c≤d≤e≤f≤g, median=d. (1) total sum=140. (2) sum without median=98. Subtract: d=42.
-**explanation:** Median of 7 sorted values is the 4th (d). (1): total = 140. Doesn't isolate d. Insufficient. (2): sum-without-median = 98. Doesn't give d alone. Insufficient. Together: 140 − 98 = 42 = d. Sufficient. Answer C.
-**mistake_a:** A requires (1) alone sufficient — but mean doesn't pin median.
-**mistake_b:** B requires (2) alone sufficient — but it's a partial sum.
-**mistake_d:** D requires each alone — neither does.
-**mistake_e:** E says together insufficient — but subtraction isolates the median.
-**common_trap:** Picking D thinking mean=20 alone gives median=20. Mean ≠ median in general.
-**takeaway:** Median-isolation DS: total sum + (total minus median) = median. Subtraction trick when one statement gives an "all but one" sum.
+**explanation:** The data set consists of 7 numbers. When the values are arranged in nondecreasing order, the median is the 4th value. Let the ordered values be a ≤ b ≤ c ≤ d ≤ e ≤ f ≤ g, so that the quantity we seek is d. Determining the median therefore requires determining the value of d, the middle term.
+
+Statement (1) gives the mean of the 7 numbers as 20, so the total is a + b + c + d + e + f + g = 7 × 20 = 140. Knowing the total does not by itself determine d. For instance, the seven values 20, 20, 20, 20, 20, 20, 20 sum to 140 and have median 20, while the seven values 0, 0, 0, 10, 30, 50, 50 also sum to 140 but have median 10. Two different medians are consistent with the given mean, so Statement (1) alone is not sufficient.
+
+Statement (2) gives the sum of the three smallest numbers and the three largest numbers, that is, the sum of all the numbers except the median, as (a + b + c) + (e + f + g) = 98. This fixes the total of the six non-median terms but places no constraint on d itself. For instance, the values 1, 1, 1, 10, 30, 30, 35 have a non-median sum of 1 + 1 + 1 + 30 + 30 + 35 = 98 and a median of 10, while the values 1, 1, 1, 20, 30, 30, 35 have the same non-median sum of 98 but a median of 20. Two different medians are consistent with the given sum, so Statement (2) alone is not sufficient.
+
+Taking the two statements together, the total of all seven numbers is 140 and the total of the six numbers other than the median is 98. The median is the difference of these two totals: d = 140 − 98 = 42. This determines the median uniquely, so the two statements together are sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
