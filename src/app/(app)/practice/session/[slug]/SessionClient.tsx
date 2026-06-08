@@ -316,6 +316,108 @@ function cn(...classes: (string | false | null | undefined)[]): string {
   return classes.filter(Boolean).join(" ")
 }
 
+/**
+ * Post-submit verdict banner. The single clear "how did I do?" moment the
+ * card was previously missing — before this, correctness was only legible
+ * by reading option colours plus a small line tucked into the explanation
+ * header, forcing the student to decode the result instead of being told
+ * it.
+ *
+ * Tone is deliberate. A correct answer gets a calm green confirmation with
+ * its pacing context (the next-most-useful fact once you know you were
+ * right). A wrong answer is *not* rendered in alarm-red — that colour is
+ * already carrying the "this option was wrong" signal on the chosen tile.
+ * The banner instead uses brand gold and reframes the miss as the
+ * highest-value study moment, naming the correct letter so the eye doesn't
+ * have to hunt for the green tile. This serves the "mistakes feel useful,
+ * not discouraging" goal directly.
+ */
+function ResultBanner({
+  correct,
+  elapsedMs,
+  correctLetter,
+  section,
+}: {
+  correct: boolean
+  elapsedMs: number
+  correctLetter: string | null
+  section: SessionQuestion["section"]
+}) {
+  // Same per-section pace targets used by the session insight engine. A
+  // small slack factor keeps "on pace" honest without nagging over a few
+  // seconds.
+  const targetMs = section === "Verbal" ? 90_000 : 120_000
+  const onPace = elapsedMs <= targetMs * 1.15
+
+  if (correct) {
+    return (
+      <div
+        className="mt-5 flex items-start gap-3 p-3.5 rounded-lg border animate-in fade-in-0 zoom-in-95 duration-150"
+        style={{
+          borderColor: "rgba(62,207,142,0.25)",
+          backgroundColor: "rgba(62,207,142,0.05)",
+        }}
+        role="status"
+        aria-live="polite"
+      >
+        <div
+          className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+          style={{ backgroundColor: "rgba(62,207,142,0.14)" }}
+        >
+          <Check className="w-4 h-4" style={{ color: "#3ECF8E" }} />
+        </div>
+        <div className="min-w-0">
+          <p className="text-sm font-semibold" style={{ color: "#3ECF8E" }}>
+            Correct
+          </p>
+          <p className="text-[12px] text-[#888888] mt-0.5 leading-relaxed">
+            {formatDuration(elapsedMs)}
+            {onPace ? " · on pace" : " · slightly over GMAT pace"}. Note why the
+            method worked before moving on — that&apos;s what makes it
+            repeatable under pressure.
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div
+      className="mt-5 flex items-start gap-3 p-3.5 rounded-lg border animate-in fade-in-0 zoom-in-95 duration-150"
+      style={{
+        borderColor: "rgba(201,168,76,0.25)",
+        backgroundColor: "rgba(201,168,76,0.04)",
+      }}
+      role="status"
+      aria-live="polite"
+    >
+      <div
+        className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+        style={{ backgroundColor: "rgba(201,168,76,0.14)" }}
+      >
+        <X className="w-4 h-4" style={{ color: "#C9A84C" }} />
+      </div>
+      <div className="min-w-0">
+        <p className="text-sm font-semibold text-[#F0F0F0]">
+          Not quite
+          {correctLetter ? (
+            <>
+              {" "}
+              — the answer was{" "}
+              <span style={{ color: "#3ECF8E" }}>{correctLetter}</span>
+            </>
+          ) : null}
+        </p>
+        <p className="text-[12px] text-[#888888] mt-0.5 leading-relaxed">
+          This is where the points are. Read the explanation for the method,
+          not just the answer — a miss you understand is worth more than a guess
+          you got right.
+        </p>
+      </div>
+    </div>
+  )
+}
+
 function ConfidencePanel({
   value,
   submitted,
@@ -1488,7 +1590,9 @@ export default function SessionClient({
     // area when it differs from the current topic: students building on one
     // topic deserve to know which gap is costing them the most overall.
     const nextStepNote =
-      accuracy < 60
+      answeredCount === 0
+        ? "You ended before answering anything. Start with the chapter to lock in the method, then come back and practice."
+        : accuracy < 60
         ? "Accuracy below 60% signals a concept gap. Revisiting the chapter before more practice compounds better."
         : accuracy < 78
         ? weakestTopic && weakestTopic.topic !== topic
@@ -1907,61 +2011,6 @@ export default function SessionClient({
           </Link>
         )}
 
-        {/* What to do next — renders the nextStepNote guidance as direct CTA
-            buttons. The text was computed above but never surfaced in the UI;
-            without a button, students read the advice and then navigate away
-            manually with no clear path. Primary action depends on accuracy
-            band: review the chapter (low), practice again (mid), study plan
-            (high). Chapter link is only shown when the topic maps to one. */}
-        {(() => {
-          const chapterSlug = TOPIC_TO_CHAPTER[topic]
-          const low = accuracy < 60
-          const mid = accuracy >= 60 && accuracy < 78
-
-          const primaryAction = low && chapterSlug
-            ? { label: `Review ${topic} chapter`, href: `/chapters/${chapterSlug}` }
-            : mid
-            ? { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-            : { label: "View your study plan", href: "/study-plan" }
-
-          const secondaryAction =
-            low
-              ? { label: "Practice again", href: `/practice/session/${slug}` }
-              : mid && chapterSlug
-              ? { label: "Review the chapter", href: `/chapters/${chapterSlug}` }
-              : { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-
-          return (
-            <div
-              className="p-5 rounded-xl border border-white/[0.08]"
-              style={{ backgroundColor: "#0D0D0D" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
-                What to do next
-              </p>
-              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-4">
-                {nextStepNote}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Link
-                  href={primaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  {primaryAction.label}
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-                <Link
-                  href={secondaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-white/[0.1] text-[#888888] transition-colors hover:text-[#F0F0F0] hover:border-white/[0.2]"
-                >
-                  {secondaryAction.label}
-                </Link>
-              </div>
-            </div>
-          )
-        })()}
-
         {/* Review list — wrong answers only by default, toggle to show all */}
         {(() => {
           const wrongIndices = questions
@@ -2067,10 +2116,12 @@ export default function SessionClient({
           )
         })()}
 
-        {/* What to do next — surfaces the pre-computed guidance and closes
-            the "session finished, now what?" dead end with 1-2 decisive CTAs
-            keyed to the accuracy band. */}
-        {answeredCount > 0 && (() => {
+        {/* What to do next — the single, decisive closing CTA. Surfaces the
+            pre-computed guidance and closes the "session finished, now what?"
+            dead end with 1-2 actions keyed to the accuracy band. Always
+            renders (including the ended-without-answering case) so the page
+            never strands the student without a next move. */}
+        {(() => {
           const isPractice =
             !slug.startsWith("diagnostic") &&
             !slug.startsWith("mock") &&
@@ -2354,6 +2405,15 @@ export default function SessionClient({
                   )
                 })}
               </div>
+            )}
+
+            {currentState.submitted && (
+              <ResultBanner
+                correct={isQuestionCorrect(current, currentState)}
+                elapsedMs={currentState.elapsedMs}
+                correctLetter={isTwoPart ? null : current.correctAnswerLetter}
+                section={section}
+              />
             )}
 
             <ConfidencePanel
