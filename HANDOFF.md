@@ -2,6 +2,37 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-08 (Deep explanations COMPLETE: all 268 grouped/multi-part done — bank is 912/912 OG)
+
+All work on branch `claude/deep-explanations-pilot-2026-06-07` (**still NOT merged to main**). The deep-explanations project is **finished**: every question in the bank (912/912) now carries an Official-Guide "Rationale"-style explanation. The remaining 268 grouped/multi-part questions from the prior session were generated, gated, and committed this session.
+
+### DONE this session (9 commits, `f4a03e9` … `1958f3d`)
+- **Write-back surgery extended** (`f4a03e9`): `applyToFile` now matches both flat `## Qn` and grouped `### Qn`; `fileForSlug` probes `questions/{quant,verbal,di,curriculum}`; `applySupported` is permissive (every type handled, `rewriteBlock` self-guards). TPA per-RO content lives inside the single `**explanation:**`; curriculum taxonomy fields (`subchapter`/`skill`/`trap_type`/`est_time_seconds`/`prerequisite`) are preserved because they sit ahead of the rewritten region.
+- **Content batches** (OG-format, write+verify pipeline, `validate:content` 0 errors + answer-consistency gate 100% on each): curriculum 8 (`cf29cf8`), graphics-interpretation 50 (`673a45d`), table-analysis 49 (`86b503d`), multi-source-reasoning 36 (`b288b4f`), reading-comprehension 73 (`90a0809`), two-part-analysis 52 (`1958f3d`).
+- **Two real parser/content bugs fixed** (each was making a question render the WRONG correct answer in the live app):
+  - `0e83b7c` — TPA answer split: a second key starting with a digit (q19 `"30% solution = 4, 70% solution = 4"`) never split, so q19 rendered as a 5-option MC. Split on `,\s*(?=[^,]*=)`.
+  - `6c5c6a2` — TPA value→row resolution used prefix matching, so `"55"` collapsed onto row `"5"` and `"4,000"` onto `"4"` (q31, q34). Now exact-match first, prefix only as fallback. q31 (T=55) and q34 (V=4,000) were regenerated after the fix.
+- **Final state:** `npx tsc --noEmit` clean; `npm run validate:content` → 912 questions, **0 errors** (4 warnings + 2 info, all pre-existing); full answer-consistency gate **912/912 pass**; 0 HTML entities and 0 orphaned segments across all six rewritten files.
+
+### How it was generated — the embedded-content pure-function pipeline (improves on the old recipe)
+Instead of subagents `sed`-ing blocks out of files (which risked them editing `src/`), each question's full content (prompt, options, passage/set context, credited answer) was **extracted via the parser and embedded into a generated Workflow script** (`/tmp/gen-wf.py` writes `/tmp/wf-<slug>.js` from `/tmp/data-<slug>.json` produced by `/tmp/extract.ts`). Agents are then pure functions — prompt in, structured `{explanation, mistakes}` out — and never touch the filesystem. Pipeline per batch: a **write** subagent then an **adversarial verify** subagent (both `general-purpose`, `claude-sonnet-4-6`, structured-output schema, phases Write/Verify). The workflow returns the array; `/tmp/assemble.py` sanitizes + writes `scripts/explanation-proposals.json` (gitignored); then `npm run generate:explanations -- --from … --apply` → `validate:content` → the gate → commit. Sonnet-4-6 quality was strong throughout; the verify stage caught real issues (entity escaping, fabricated tables — see gotchas).
+
+### Gotchas discovered (read before any similar batch run)
+1. **TA/GI "continued" questions lose their table.** TA/GI are flat `## Qn (Set N — …)` blocks; the parser does NOT carry context across them, so a per-question extract of "Same table as Q1" has NO data and the agent **fabricates values** (GI q2 invented April/June; TA q39 pulled "OG Q38" from training data). The verify stage flagged these. Fix: `/tmp/fix-continued.py` keys each continued question to its set's lead (by "Set N" number, else title) and injects the lead's table/description prose as context, then regenerate just those (11 TA + 5 GI were redone and are grounded). **NOTE — pre-existing app bug:** those same continued questions also don't render their referenced table in the live app (parser carries no context for flat `## Qn` sets). Not fixed here; a real UX gap to address separately (either renumber TA/GI into `## Set`/`### Qn` grouped form, or have the renderer resolve "Same table as QN").
+2. **A standalone `---`/`***`/`___` line inside an explanation splits the question block** on re-parse (`/\n---+\n/`), truncating the explanation and orphaning everything after it (hit TPA q8/12/20/21). `/tmp/assemble.py` now strips horizontal-rule lines. RC/MSR/curriculum were clean.
+3. **Agents sometimes emit HTML entities** (`&lt;`, `&gt;`, `&amp;`) in math; the verify stage usually fixes them and `assemble.py` sanitizes as a backstop. Final files have 0 entities.
+4. **The answer-consistency gate is type-aware** (`/tmp/gate.ts`, ephemeral — re-create if needed; imports `getAllQuestions`, run from repo root). Letter types: last "The correct answer is X." must equal `correctAnswerLetter`; Verbal also requires `mistakeAnalysis` to cover exactly the wrong letters. TPA has no single letter — it checks the credited row VALUES appear in the explanation. RC/MSR carry context natively so they were not affected by gotcha #1.
+
+### Question-design ties to revisit (NOT bugs in the explanations — the credited answer is valid and justified)
+The verify stage flagged questions where the credited statistic is **tied** by more than one option/row, so the question lacks a unique answer even though the credited choice is correct: **GI q13** (max QoQ change tied C/E) and **TA q17/q18/q19/q23/q27**. Adam may want to tweak these questions for uniqueness; left as-is for now (each explanation justifies the credited answer).
+
+### NEXT
+- **Merge the branch.** Everything is green. The only non-explanation changes are the three logically-independent fixes already noted (two TPA parser fixes + the diagnostic-save orphan fix from 2026-06-07). Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/deep-explanations-pilot-2026-06-07?expand=1`
+- Rotate the exposed `ANTHROPIC_API_KEY` (it was pasted in chat last session). Generation used the free session-subagent pipeline, so the key is only needed for the in-app tutor.
+- Optional: fix the TA/GI continued-question table rendering in-app (gotcha #1), and the 6 tie questions above.
+
+---
+
 ## CONTEXT SWITCH — 2026-06-07 (Deep explanations: OG format locked, multi-line parser, generation script)
 
 All work is on branch `claude/deep-explanations-pilot-2026-06-07` (**NOT merged to main**). Commits `9a376e6` … `dcebaeb` (pilot → multi-line parser → generation script → orphan fix → the full OG rollout below). Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/deep-explanations-pilot-2026-06-07?expand=1`
