@@ -957,3 +957,515 @@ Together: 4 < n < 12 → n ∈ {5, 6, 7, 8, 9, 10, 11}. 7 values. Still not uniq
 **common_trap:** Assuming the triangle inequality plus both bounds pins down a single value — it narrows the range but doesn't unique-ify.
 **takeaway:** Triangle inequality: |a − b| < third side < a + b. To pin down a unique side, need narrower bounds than just an open range.
 **related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+**trap_type:** averaging-vs-differencing
+**est_time_seconds:** 35
+
+What is the midpoint of the line segment with endpoints (2, −3) and (10, 7)?
+
+- A) (6, 2)
+- B) (6, 5)
+- C) (4, 2)
+- D) (12, 4)
+- E) (4, 5)
+
+**answer:** A
+**hint_nudge:** "Midpoint" means the average of the coordinates, not the gap between them.
+**fastest_path:** Average each coordinate: x = (2 + 10)/2 = 6, y = (−3 + 7)/2 = 2 → (6, 2).
+**explanation:** The midpoint formula averages the endpoints: ((x₁ + x₂)/2, (y₁ + y₂)/2). x: (2 + 10)/2 = 6. y: (−3 + 7)/2 = 4/2 = 2. The only live trap here is the sign on −3 — adding it as +3 flips the y-coordinate to 5. Midpoint is (6, 2).
+**mistake_b:** Dropped the negative sign on −3 and computed (3 + 7)/2 = 5 for the y-coordinate.
+**mistake_c:** Used half the *difference* for x — (10 − 2)/2 = 4 — confusing the midpoint formula with the distance/run.
+**mistake_d:** Summed the coordinates without dividing by 2: (2 + 10, −3 + 7) = (12, 4).
+**mistake_e:** Used half the difference for both coordinates: ((10 − 2)/2, (7 − (−3))/2) = (4, 5).
+**common_trap:** Confusing the midpoint (an average) with the distance or the run/rise (a difference), and mishandling the negative coordinate. Error family: a careless setup slip (CALC_SLIP / Q_SETUP).
+**takeaway:** Midpoint = average the coordinates; distance = difference the coordinates. Watch the sign on any negative endpoint.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Triangles — 45-45-90
+**trap_type:** special-triangle-ratio-mixup
+**est_time_seconds:** 30
+
+An isosceles right triangle has legs of length 7. What is the length of its hypotenuse?
+
+- A) 7
+- B) 7√2
+- C) 7√3
+- D) 14
+- E) 14√2
+
+**answer:** B
+**hint_nudge:** Isosceles right triangle = 45-45-90. What is its fixed side ratio?
+**fastest_path:** 45-45-90 sides are in ratio 1 : 1 : √2. Hypotenuse = leg × √2 = 7√2.
+**explanation:** An isosceles right triangle is a 45-45-90 triangle, with side ratio 1 : 1 : √2 (leg : leg : hypotenuse). With legs of 7, the hypotenuse is 7√2. You can confirm with the Pythagorean theorem: c² = 7² + 7² = 98, so c = √98 = 7√2.
+**mistake_a:** Assumed the hypotenuse equals a leg (no ratio applied).
+**mistake_c:** Used the 30-60-90 multiplier √3 instead of the 45-45-90 multiplier √2.
+**mistake_d:** Doubled the leg, treating the hypotenuse as 2 × leg (true only when the leg is opposite a 30° angle in a 30-60-90).
+**mistake_e:** Applied a multiplier of 2√2 — combined the "double the leg" error with the √2 ratio.
+**common_trap:** Mixing up the 45-45-90 ratio (√2) with the 30-60-90 ratio (√3), or with the "hypotenuse = twice the short leg" relationship. Error family: a knowledge/concept gap (Q_CONCEPT).
+**takeaway:** Memorize both special right triangles cold: 45-45-90 is 1 : 1 : √2; 30-60-90 is 1 : √3 : 2.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Circles
+**trap_type:** confusing-given-value-with-radius
+**est_time_seconds:** 45
+
+A circle has a circumference of 10π. What is its area?
+
+- A) 5π
+- B) 10π
+- C) 25π
+- D) 50π
+- E) 100π
+
+**answer:** C
+**hint_nudge:** The given quantity is a circumference, not the radius. Back out r first.
+**fastest_path:** C = 2πr = 10π → r = 5. Area = πr² = 25π.
+**explanation:** Don't skip the conversion step. Circumference = 2πr, so 2πr = 10π → r = 5. Area = πr² = π(5²) = 25π. The number "10" is the circumference's coefficient, not the radius — students who treat 10 as r get 100π.
+**mistake_a:** Forgot to square the radius: computed πr = π(5) = 5π.
+**mistake_b:** Reported the circumference value as the area without computing.
+**mistake_d:** Used the "10" as a diameter shortcut and computed πd²/2 = π(100)/2 = 50π.
+**mistake_e:** Treated the given coefficient 10 as the radius: π(10²) = 100π.
+**common_trap:** Plugging the given number straight into the area formula instead of solving for the radius first. Error family: a setup/translation slip (Q_SETUP).
+**takeaway:** When a problem gives circumference (or area) and asks for the other, solve for r first — it is the bridge between the two formulas.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Quadrilaterals
+**trap_type:** using-diagonal-as-a-side
+**est_time_seconds:** 50
+
+A rectangle has a diagonal of length 10 and one side of length 6. What is the area of the rectangle?
+
+- A) 24
+- B) 30
+- C) 48
+- D) 60
+- E) 80
+
+**answer:** C
+**hint_nudge:** The diagonal, a side, and the unknown side form a right triangle. Notice the triple.
+**fastest_path:** 6-8-10 right triangle → other side = 8. Area = 6 × 8 = 48.
+**explanation:** The diagonal splits the rectangle into two right triangles with legs equal to the sides and hypotenuse equal to the diagonal. So the missing side = √(10² − 6²) = √(100 − 36) = √64 = 8 — a scaled 3-4-5 triple (6-8-10). Area = length × width = 6 × 8 = 48.
+**mistake_a:** Computed the area of one half-triangle: ½ × 6 × 8 = 24.
+**mistake_b:** Treated the rectangle as a triangle with the diagonal as a base: ½ × 6 × 10 = 30.
+**mistake_d:** Multiplied the given side by the diagonal: 6 × 10 = 60, using the diagonal as the other side.
+**mistake_e:** Found the correct side 8 but multiplied by the diagonal: 8 × 10 = 80.
+**common_trap:** Multiplying by the diagonal instead of the perpendicular side — the diagonal is not a side of the rectangle. Error family: a setup slip (Q_SETUP).
+**takeaway:** In a rectangle, side² + side² = diagonal². Recognize 6-8-10 (and other 3-4-5 multiples) instantly.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Parallel Lines and Transversals
+**trap_type:** same-side-interior-vs-equal
+**est_time_seconds:** 55
+
+Two parallel lines are cut by a transversal. The two same-side interior angles measure (3x + 10)° and (2x + 30)°. What is the value of x?
+
+- A) 10
+- B) 14
+- C) 20
+- D) 28
+- E) 36
+
+**answer:** D
+**hint_nudge:** Same-side interior angles between parallel lines are not equal — what do they add to?
+**fastest_path:** Same-side interior angles are supplementary: (3x + 10) + (2x + 30) = 180 → 5x + 40 = 180 → x = 28.
+**explanation:** When parallel lines are cut by a transversal, same-side (co-interior) interior angles are supplementary — they sum to 180°, not to each other. So (3x + 10) + (2x + 30) = 180 → 5x + 40 = 180 → 5x = 140 → x = 28. Check: 3(28) + 10 = 94 and 2(28) + 30 = 86, and 94 + 86 = 180. ✓
+**mistake_a:** Set the sum to 90 instead of 180: 5x + 40 = 90 → x = 10.
+**mistake_b:** Solved 5x = 140 but then divided 140 by 10 instead of 5.
+**mistake_c:** Set the two angles equal (treating them as alternate or corresponding): 3x + 10 = 2x + 30 → x = 20.
+**mistake_e:** Divided the full 180 by 5 while ignoring the +40 constant: 180/5 = 36.
+**common_trap:** Treating same-side interior angles as equal. Equal pairs are alternate-interior and corresponding angles; same-side interior angles are supplementary. Error family: a concept gap (Q_CONCEPT).
+**takeaway:** Across parallel lines: alternate-interior and corresponding angles are equal; same-side (co-interior) angles are supplementary (sum to 180°).
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Quadrilaterals — Area Scaling
+**trap_type:** linear-vs-area-scaling
+**est_time_seconds:** 60
+
+Each dimension of a rectangle is increased by 50% to produce a larger rectangle. The area of the larger rectangle is what percent greater than the area of the original?
+
+- A) 50%
+- B) 100%
+- C) 125%
+- D) 150%
+- E) 225%
+
+**answer:** C
+**hint_nudge:** Area scales with the *square* of the linear factor, and the question asks for the increase, not the ratio.
+**hint_strategy:** Let the original be 1 × 1. Scale each side by 1.5 and compare the new area to 1.
+**fastest_path:** Linear factor 1.5 → area factor 1.5² = 2.25 → that is a 125% increase.
+**explanation:** Increasing each dimension by 50% multiplies each side by 1.5. Area scales by the square of the linear factor: 1.5² = 2.25. So the new area is 2.25 times the original — that is 1.25 (or 125%) *greater* than the original. Concretely, a 2 × 2 square (area 4) becomes 3 × 3 (area 9): the increase is 5/4 = 125%.
+**mistake_a:** Reported the linear increase (50%) without squaring for area.
+**mistake_b:** Assumed doubling: thought "+50% and +50% = +100%."
+**mistake_d:** Took 1.5 as the area factor (treating one dimension) → 150% of the area, then mislabeled it as the increase.
+**mistake_e:** Reported the area *ratio* (225% of original) instead of the *increase* (125% greater).
+**common_trap:** Confusing the linear scale factor with the area scale factor, and confusing "as great as" (ratio) with "greater than" (increase). Error family: a concept gap (Q_CONCEPT).
+**takeaway:** Scaling all linear dimensions by k scales area by k² and volume by k³. Then separate the ratio (k²) from the increase (k² − 1).
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Circles — Shaded Region
+**trap_type:** inscribed-radius-equals-half-side
+**est_time_seconds:** 60
+
+A circle is inscribed in a square with side length 8. What is the area of the region inside the square but outside the circle?
+
+- A) 64 − 64π
+- B) 64 − 32π
+- C) 64 − 16π
+- D) 64 − 8π
+- E) 16π − 64
+
+**answer:** C
+**hint_nudge:** An inscribed circle touches all four sides — its diameter equals the side, so the radius is half the side.
+**fastest_path:** Square = 8² = 64. Inscribed circle radius = 8/2 = 4 → area 16π. Region = 64 − 16π.
+**explanation:** A circle inscribed in a square is tangent to all four sides, so its diameter equals the square's side (8), making the radius 4. Square area = 8² = 64; circle area = π(4²) = 16π. The leftover corner region = 64 − 16π.
+**mistake_a:** Used the side length 8 as the radius: π(8²) = 64π.
+**mistake_b:** Used the side 8 as the diameter but doubled the circle area, or used r² = 32.
+**mistake_d:** Used r² = 8 (treated √8 as the radius or halved 16π's coefficient).
+**mistake_e:** Subtracted in the wrong order (circle − square), producing a negative-style expression.
+**common_trap:** Using the square's side as the circle's radius instead of recognizing that the inscribed circle's *diameter* equals the side. Error family: a setup slip (Q_SETUP).
+**takeaway:** Inscribed circle in a square: diameter = side, so radius = side/2. (Contrast: a circle *circumscribing* a square has diameter = the square's diagonal.)
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Triangle Similarity — Shadows
+**trap_type:** inverted-proportion
+**est_time_seconds:** 60
+
+A 6-foot-tall man casts a shadow 4 feet long. At the same moment, a nearby flagpole casts a shadow 30 feet long. How tall is the flagpole, in feet?
+
+- A) 20
+- B) 36
+- C) 40
+- D) 45
+- E) 180
+
+**answer:** D
+**hint_nudge:** Same time of day means the height-to-shadow ratio is identical for both objects.
+**hint_strategy:** Set up height/shadow = height/shadow and keep the same quantity in the same position on both sides.
+**fastest_path:** Height : shadow is constant = 6/4 = 1.5. Flagpole = 1.5 × 30 = 45.
+**explanation:** The sun's angle is the same, so the man and the flagpole form similar right triangles: height/shadow is constant. The man's ratio is 6/4 = 1.5. The flagpole's height = 1.5 × 30 = 45 feet. Equivalently, 6/4 = h/30 → h = (6 × 30)/4 = 45.
+**mistake_a:** Inverted the proportion: used shadow/height, getting (4/6) × 30 = 20.
+**mistake_b:** Added the gap (30 − 4 = 26) or applied the wrong ratio to reach 36.
+**mistake_c:** Slipped on the arithmetic of 6 × 30 / 4, rounding to 40.
+**mistake_e:** Forgot to divide by the man's shadow: multiplied 6 × 30 = 180.
+**common_trap:** Inverting the similar-triangle proportion — putting shadow over height on one side and height over shadow on the other. Error family: a setup/translation slip (Q_SETUP).
+**takeaway:** In similar triangles, set up the proportion with corresponding parts in the same position on both sides, then sanity-check direction (a taller object casts a longer shadow).
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Coordinate Geometry — Lines and Area
+**trap_type:** forgetting-the-half / intercept-as-answer
+**est_time_seconds:** 75
+
+In the xy-plane, a line has slope −3/2 and y-intercept 6. What is the area of the triangle formed by this line and the two coordinate axes?
+
+- A) 4
+- B) 6
+- C) 10
+- D) 12
+- E) 24
+
+**answer:** D
+**hint_nudge:** The triangle's legs are the two intercepts. Find both, then it is a simple right triangle.
+**hint_strategy:** Write y = −(3/2)x + 6. The y-intercept is one leg; set y = 0 to get the x-intercept (the other leg).
+**hint_setup:** y-intercept = 6 (leg). For the x-intercept, 0 = −(3/2)x + 6 → x = 4 (leg). Area = ½ × 4 × 6.
+**fastest_path:** Intercepts are (4, 0) and (0, 6). Area = ½ × 4 × 6 = 12.
+**explanation:** The line is y = −(3/2)x + 6. Its y-intercept is 6 (point (0, 6)); its x-intercept comes from setting y = 0: 0 = −(3/2)x + 6 → (3/2)x = 6 → x = 4 (point (4, 0)). The line and the axes bound a right triangle with legs 4 and 6 along the axes. Area = ½ × 4 × 6 = 12.
+**mistake_a:** Bubbled the x-intercept (4) instead of computing the area.
+**mistake_b:** Bubbled the y-intercept (6) instead of the area.
+**mistake_c:** Averaged the intercepts (½(4 + 6) = 5) or made a related half-sum slip.
+**mistake_e:** Forgot the ½ factor: computed base × height = 4 × 6 = 24.
+**common_trap:** Reporting an intercept as the answer, or forgetting the ½ in the triangle-area formula. Error family: a careless calculation slip (CALC_SLIP).
+**takeaway:** A line crossing both axes makes a right triangle with legs |x-intercept| and |y-intercept|; area = ½ |x-int| |y-int|.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Triangles — 30-60-90
+**trap_type:** dropping-the-irrational-side
+**est_time_seconds:** 75
+
+In a right triangle, one of the acute angles is 30° and the hypotenuse has length 12. What is the perimeter of the triangle?
+
+- A) 12 + 6√3
+- B) 18 + 6√2
+- C) 18 + 6√3
+- D) 18 + 12√3
+- E) 24
+
+**answer:** C
+**hint_nudge:** A 30-60-90 triangle has sides in a fixed ratio. Anchor it from the hypotenuse.
+**hint_strategy:** In a 30-60-90, sides are short : long : hyp = 1 : √3 : 2. The hypotenuse is 12, so the scale factor is 6.
+**fastest_path:** Sides scale from 1 : √3 : 2 with factor 6 → 6, 6√3, 12. Perimeter = 18 + 6√3.
+**explanation:** A 30-60-90 triangle has side ratio 1 : √3 : 2 (opposite 30° : opposite 60° : hypotenuse). The hypotenuse 12 corresponds to the "2," so the scale factor is 6. The legs are 6 (opposite 30°) and 6√3 (opposite 60°). Perimeter = 6 + 6√3 + 12 = 18 + 6√3.
+**mistake_a:** Dropped the short leg (6), summing only 6√3 + 12.
+**mistake_b:** Used the 45-45-90 ratio (√2) for the longer leg instead of √3.
+**mistake_d:** Doubled the √3 side (used 12√3 instead of 6√3).
+**mistake_e:** Treated the triangle as 1 : 1 : 2-ish and ignored the irrational leg: 6 + 6 + 12 = 24.
+**common_trap:** Forgetting that the longer leg carries the √3, or mixing the √3 (30-60-90) and √2 (45-45-90) multipliers. Error family: a concept gap (Q_CONCEPT).
+**takeaway:** 30-60-90 sides are 1 : √3 : 2. Anchor from the known side, find the scale factor, then read off the others — including the irrational one.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Quadrilaterals — Area
+**trap_type:** missing-the-sum-product-identity
+**est_time_seconds:** 90
+
+A rectangle has a perimeter of 28. What is its area?
+
+(1) The length is 3 times the width.
+(2) The diagonal has length 10.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**hint_nudge:** Statement (2) looks like it leaves two unknowns — but the area is L × W, and there's an identity linking it to L + W and L² + W².
+**hint_strategy:** From the stem, L + W = 14. For statement (2), recall (L + W)² = L² + W² + 2LW.
+**hint_setup:** (2): (L + W)² = 14² = 196 and L² + W² = 10² = 100, so 2LW = 196 − 100 = 96 → LW = 48.
+**fastest_path:** Stem: L + W = 14. (1) L = 3W → W = 3.5, L = 10.5, area unique. (2) (L+W)² − (L²+W²) = 2LW → 196 − 100 = 96 → LW = 48, area unique. Each alone works → D.
+**explanation:** Perimeter 28 gives L + W = 14. Statement (1): L = 3W with L + W = 14 → 4W = 14 → W = 3.5, L = 10.5, area = 36.75. Unique → sufficient. Statement (2): the diagonal gives L² + W² = 100. Use the identity (L + W)² = L² + W² + 2LW: 196 = 100 + 2LW → LW = 48. Since area = LW, the area is 48 — without ever solving for L and W individually (they happen to be 8 and 6). Unique → sufficient. Each statement alone determines the area → D.
+**mistake_a:** Judged statement (2) insufficient because it "has two unknowns," missing that the sum-and-diagonal identity pins down the product directly.
+**mistake_b:** Judged statement (1) insufficient because the dimensions are non-integers (3.5 and 10.5) — but DS does not require integer sides; the area is still unique.
+**mistake_c:** Assumed both statements are needed, not noticing each independently fixes the area.
+**mistake_e:** Concluded neither works, missing both shortcuts.
+**common_trap:** Failing to recognize the (L + W)² = L² + W² + 2LW identity, which converts "sum + diagonal" into the area without isolating each side. Error family: a sufficiency-judgment error driven by a missed algebraic identity (DS_SUFF).
+**takeaway:** When you know L + W and L² + W² (a diagonal), you know LW = area via (L + W)² − (L² + W²) = 2LW — no need to find the sides separately.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Circles — Sectors
+**trap_type:** sector-area-vs-arc-length
+**est_time_seconds:** 60
+
+A sector of a circle of radius 9 has a central angle of 60°. What is the area of the sector?
+
+- A) 3π
+- B) 6π
+- C) 13.5π
+- D) 27π
+- E) 81π
+
+**answer:** C
+**hint_nudge:** A sector is a fraction of the whole circle's *area*. What fraction is 60°?
+**hint_strategy:** Sector area = (central angle / 360°) × full-circle area. Don't confuse it with arc length.
+**fastest_path:** (60/360) × π(9²) = (1/6)(81π) = 13.5π.
+**explanation:** A 60° sector is 60/360 = 1/6 of the circle. The full circle's area is π(9²) = 81π, so the sector area is (1/6)(81π) = 13.5π. Keep this distinct from the *arc length*, which is (1/6) of the circumference = (1/6)(2π·9) = 3π.
+**mistake_a:** Computed the arc length (3π) instead of the sector area.
+**mistake_b:** Doubled the arc length, or used 1/3 of the arc by mis-reading the fraction.
+**mistake_d:** Used (1/3) of the circle's area, mistaking 60° for one-third instead of one-sixth, or used radius 9 with a wrong fraction.
+**mistake_e:** Reported the full circle's area (81π) without applying the 1/6 fraction.
+**common_trap:** Confusing sector area (uses πr²) with arc length (uses 2πr). Both scale by angle/360, but one is an area and one is a length. Error family: a concept gap (Q_CONCEPT).
+**takeaway:** Sector area = (θ/360)πr²; arc length = (θ/360)(2πr). Match the dimension the question asks for.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** 3D / Solids — Space Diagonal
+**trap_type:** face-diagonal-vs-space-diagonal
+**est_time_seconds:** 75
+
+A rectangular box has dimensions 3 by 4 by 12. What is the length of the longest straight rod that can fit entirely inside the box?
+
+- A) 5
+- B) √160
+- C) 13
+- D) 16√2
+- E) 19
+
+**answer:** C
+**hint_nudge:** The longest segment runs corner to opposite corner — through the interior, not along a face.
+**hint_strategy:** The space diagonal of a box with edges a, b, c is √(a² + b² + c²). Use all three edges.
+**fastest_path:** √(3² + 4² + 12²) = √(9 + 16 + 144) = √169 = 13.
+**explanation:** The longest rod sits along the space (interior) diagonal, which connects two opposite corners through the box's interior. Its length is √(a² + b² + c²) = √(3² + 4² + 12²) = √(9 + 16 + 144) = √169 = 13. (Note the hidden 3-4-12-13 pattern: the 3-4 face gives a 5, and 5-12-13 finishes it.)
+**mistake_a:** Computed only the 3-4 face diagonal (√(9 + 16) = 5), stopping one dimension short.
+**mistake_b:** Used only two of the three edges, e.g. √(4² + 12²) = √160, forgetting the third edge.
+**mistake_d:** Treated it as a 45-45-90 using the longest edge twice: 12√2 ≈ 16√2 confusion.
+**mistake_e:** Added the edges: 3 + 4 + 12 = 19.
+**common_trap:** Computing a *face* diagonal (two edges) instead of the *space* diagonal (all three edges), or simply summing the edges. Error family: a concept gap (Q_CONCEPT).
+**takeaway:** Box space diagonal = √(a² + b² + c²) — it is the 3-D Pythagorean theorem, using all three edges at once.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Coordinate Geometry — Hidden Constraint
+**trap_type:** equidistant-implies-perpendicular-bisector
+**est_time_seconds:** 90
+
+In the xy-plane, point P lies on the line y = 2x − 3 and is equidistant from the points (0, 0) and (6, 0). What is the y-coordinate of P?
+
+- A) −3
+- B) 0
+- C) 3
+- D) 6
+- E) 9
+
+**answer:** C
+**hint_nudge:** "Equidistant from two points" is a strong geometric condition — where do all such points live?
+**hint_strategy:** The set of points equidistant from two fixed points is the perpendicular bisector of the segment joining them.
+**hint_setup:** (0,0) and (6,0) are both on the x-axis; their perpendicular bisector is the vertical line x = 3. So P has x = 3.
+**fastest_path:** Equidistant from (0,0) and (6,0) → x = 3. Then y = 2(3) − 3 = 3.
+**explanation:** Any point equidistant from (0, 0) and (6, 0) lies on the perpendicular bisector of that segment — the vertical line x = 3 (halfway between x = 0 and x = 6). Since P is also on y = 2x − 3, substitute x = 3: y = 2(3) − 3 = 3. So P = (3, 3). Check: distance to (0,0) is √(9 + 9) = √18, and to (6,0) is √(9 + 9) = √18. ✓
+**mistake_a:** Bubbled the line's y-intercept (−3) without using the equidistance condition.
+**mistake_b:** Assumed P sits on the x-axis (y = 0) because the two given points do.
+**mistake_d:** Set x = 6 (one of the given x-values) instead of the midpoint x = 3, then mis-solved.
+**mistake_e:** Used x = 6 in the line: y = 2(6) − 3 = 9.
+**common_trap:** Missing that "equidistant from two points" forces P onto their perpendicular bisector — the hidden constraint that fixes x. Error family: a setup/translation slip from an unrecognized constraint (Q_SETUP).
+**takeaway:** Equidistant from two points ⇒ on the perpendicular bisector of their segment. For two points sharing a y-value, that bisector is the vertical line through their midpoint.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Triangles — Area Ratios
+**trap_type:** chaining-two-area-ratios
+**est_time_seconds:** 105
+
+In triangle ABC, point D is the midpoint of side BC, and point E lies on segment AD such that AE : ED = 3 : 1. If the area of triangle ABC is 40, what is the area of triangle ABE?
+
+- A) 5
+- B) 10
+- C) 15
+- D) 20
+- E) 30
+
+**answer:** C
+**hint_nudge:** Two facts combine here: what a median does to area, and what a point along a cevian does to area.
+**hint_strategy:** First use the median (AD) to find the area of triangle ABD. Then scale by where E sits on AD.
+**hint_setup:** Median AD splits ABC into two equal halves, so [ABD] = 20. Triangles ABE and ABD share vertex B and bases AE, AD on the same line.
+**fastest_path:** Median → [ABD] = 20. E on AD with AE = ¾ AD → [ABE] = ¾ × 20 = 15.
+**explanation:** Two steps. (1) D is the midpoint of BC, so AD is a median; a median divides a triangle into two equal-area halves, giving [ABD] = 40/2 = 20. (2) Triangles ABE and ABD share vertex B, and their bases AE and AD lie on the same line AD — so the height from B to that line is identical. Their areas are therefore in the ratio AE : AD = 3 : 4. Thus [ABE] = (3/4)(20) = 15.
+**mistake_a:** Took only the ED portion of only the median's half: (1/4)(20) = 5.
+**mistake_b:** Applied the (1/4) "ED" fraction to the whole triangle: (1/4)(40) = 10, missing the median split.
+**mistake_d:** Used the whole half [ABD] = 20, forgetting to scale by where E lies on AD.
+**mistake_e:** Applied the 3/4 ratio to the whole triangle (3/4 × 40 = 30) instead of to the median's half.
+**common_trap:** Applying only one of the two scalings — either forgetting the median halves the area, or forgetting that E is partway along AD. Error family: a multi-step concept gap (Q_CONCEPT).
+**takeaway:** A median halves a triangle's area. Triangles sharing a vertex with bases on one line have areas proportional to those bases. Chain both ratios deliberately.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Circles — Chord and Central Angle
+**trap_type:** chord-equals-radius-implies-equilateral
+**est_time_seconds:** 75
+
+In a circle with center O, a chord AB has the same length as the radius. What is the measure, in degrees, of the minor arc AB?
+
+- A) 30
+- B) 45
+- C) 60
+- D) 90
+- E) 120
+
+**answer:** C
+**hint_nudge:** Draw radii OA and OB. What kind of triangle is OAB if all three sides are equal?
+**hint_strategy:** OA and OB are radii, and AB equals the radius too — so triangle OAB has three equal sides.
+**fastest_path:** OA = OB = AB = r → equilateral → angle AOB = 60° → minor arc AB = 60°.
+**explanation:** Draw the radii OA and OB. Both equal the radius r, and the chord AB also equals r. So triangle OAB is equilateral, and its angles are all 60°. The central angle AOB is 60°, and a minor arc's measure equals its central angle — so minor arc AB = 60°.
+**mistake_a:** Halved the central angle to 30°, confusing it with an inscribed angle subtending the same arc.
+**mistake_b:** Guessed a 45-45-90 configuration (45°) with no equilateral recognition.
+**mistake_d:** Assumed the chord-equals-radius condition makes angle AOB a right angle.
+**mistake_e:** Reported the major-arc style value or 180 − 60 = 120, taking the wrong arc.
+**common_trap:** Not spotting that chord = radius forces an equilateral triangle with the two radii (central angle 60°), and confusing central with inscribed angles. Error family: a concept gap (Q_CONCEPT).
+**takeaway:** When a chord equals the radius, the triangle formed with the two radii is equilateral, so the central angle — and the minor arc — is 60°. A minor arc equals its central angle.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Nested Figures — Synthesis
+**trap_type:** linear-vs-area-scaling-in-nested-figures
+**est_time_seconds:** 120
+
+A circle is inscribed in a square, and a smaller square is then inscribed in that circle. What is the ratio of the area of the smaller square to the area of the larger square?
+
+- A) 1/4
+- B) 1/3
+- C) 1/√2
+- D) 1/2
+- E) 2
+
+**answer:** D
+**hint_nudge:** Track one length all the way through: the big square's side becomes the circle's diameter becomes the small square's diagonal.
+**hint_strategy:** Let the big square have side s. The inscribed circle's diameter is s. The small square is inscribed in that circle, so its diagonal is s.
+**hint_setup:** Small square diagonal = s → small side = s/√2 → small area = s²/2. Big area = s².
+**fastest_path:** Big side s → circle diameter s → small square diagonal s → small area = s²/2 → ratio 1/2.
+**explanation:** Let the larger square have side s, so its area is s². The inscribed circle touches all four sides, so its diameter equals s. The smaller square is inscribed in that circle, meaning its diagonal equals the circle's diameter = s. A square with diagonal d has area d²/2, so the smaller square's area = s²/2. The ratio (smaller : larger) = (s²/2) : s² = 1/2 — and notice it is independent of s.
+**mistake_a:** Squared the side relationship incorrectly — assumed the smaller square's side is half the larger's (ratio 1/4), conflating the two nesting steps.
+**mistake_b:** Guessed 1/3 from a vague "shrinks each step" intuition.
+**mistake_c:** Reported the linear ratio (small side / big side = 1/√2) instead of the area ratio.
+**mistake_e:** Inverted the ratio (larger to smaller = 2).
+**common_trap:** Losing track of which length is which across the two nesting steps (diameter vs. diagonal), and reporting a linear ratio where an area ratio is asked. Error family: a concept gap requiring careful abstraction (Q_CONCEPT).
+**takeaway:** In nested figures, propagate a single length through every step (side → diameter → diagonal → side) and convert to area only at the end. A square inscribed in the circle inscribed in a square has exactly half that square's area.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
