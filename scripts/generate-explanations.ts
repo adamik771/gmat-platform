@@ -89,12 +89,15 @@ function usesPerChoice(q: ParsedQuestion): boolean {
   return q.section === "Verbal"
 }
 
-// Grouped formats (RC passages, MSR sets) and Two-Part Analysis aren't handled
-// by the write-back surgery yet — they still get proposals in dry-run.
-function applySupported(q: ParsedQuestion): boolean {
-  return q.setSlug !== "reading-comprehension" &&
-    q.setSlug !== "multi-source-reasoning" &&
-    q.type !== "Two-Part Analysis"
+// Every question type is now handled by the write-back surgery: standard `## Qn`
+// blocks, grouped `### Qn` blocks (RC passages, MSR sets), Two-Part Analysis
+// (per-RO content lives inside the single `**explanation:**` field), and the
+// curriculum-aligned file (its extra taxonomy fields sit ahead of the rewritten
+// region and are preserved). `rewriteBlock` self-guards: it returns null for any
+// block missing the `**fastest_path:**`/`**explanation:**` markers, so a
+// malformed block is logged as skipped rather than corrupted.
+function applySupported(_q: ParsedQuestion): boolean {
+  return true
 }
 
 function selectQuestions(all: ParsedQuestion[], args: Args): ParsedQuestion[] {
@@ -304,9 +307,13 @@ function applyToFile(
   const skipped: number[] = []
   for (let i = 0; i < parts.length; i++) {
     const seg = parts[i]
-    const m = seg.match(/^##\s+Q(\d+)\b/m)
+    // Match both flat `## Qn` (PS/DS/CR/TA/GI/TPA) and grouped `### Qn` (RC
+    // passages, MSR sets). For a grouped segment that also carries its passage/
+    // set prose (the first question of each group), the prose precedes the
+    // `**fastest_path:**`/`**explanation:**` markers, so rewriteBlock leaves it
+    // untouched. A `## Passage`/`## Set` header does not match (not `Q<n>`).
+    const m = seg.match(/^#{2,3}\s+Q(\d+)\b/m)
     if (!m) continue
-    if (/^###\s+Q\d+/m.test(seg)) continue // grouped block — unsupported
     const qnum = parseInt(m[1], 10)
     const hit = byNum.get(qnum)
     if (!hit) continue
@@ -320,6 +327,13 @@ function applyToFile(
 }
 
 function fileForSlug(slug: string, section: string): string {
+  // Curriculum-aligned questions live under questions/curriculum/, not the
+  // section dir keyed off `section`. Probe every content subdir for the slug
+  // and use whichever exists; fall back to the section-derived path.
+  for (const dir of ["quant", "verbal", "di", "curriculum"]) {
+    const p = path.join(CONTENT_ROOT, dir, `${slug}.md`)
+    if (fs.existsSync(p)) return p
+  }
   const dir = section === "Quant" ? "quant" : section === "Verbal" ? "verbal" : "di"
   return path.join(CONTENT_ROOT, dir, `${slug}.md`)
 }
@@ -342,7 +356,7 @@ function applyAll(proposals: Proposal[], byId: Map<string, ParsedQuestion>) {
     totalApplied += applied.length
     console.log(`  ${path.relative(process.cwd(), absPath)}: applied ${applied.length}` + (skipped.length ? `, skipped ${skipped.length} (${skipped.join(",")})` : ""))
   }
-  if (unsupported.length) console.log(`  NOT applied (grouped RC/MSR or TPA — write-back unsupported): ${unsupported.length} -> ${unsupported.join(", ")}`)
+  if (unsupported.length) console.log(`  NOT applied (write-back reported unsupported): ${unsupported.length} -> ${unsupported.join(", ")}`)
   if (unknown.length) console.log(`  NOT applied (unknown id): ${unknown.length} -> ${unknown.join(", ")}`)
   console.log(`\nApplied ${totalApplied} question(s). Now run: npm run validate:content`)
 }
