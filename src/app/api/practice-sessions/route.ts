@@ -102,6 +102,24 @@ export async function POST(request: Request) {
     .insert(attempts)
 
   if (attemptError) {
+    // The session row already persisted above. Without cleanup, a failed
+    // attempts insert leaves an orphaned session — the hub counts it as
+    // "done" while the report has no attempts to show (the bug Adam hit live
+    // when prod was missing the newer attempt columns). PostgREST gives no
+    // multi-statement transaction here, so compensate by deleting the
+    // just-created session. Best-effort: log (don't mask the original error)
+    // if the cleanup is itself blocked (e.g. a missing owner-delete policy).
+    const { error: cleanupError } = await supabase
+      .from("practice_sessions")
+      .delete()
+      .eq("id", session.id)
+      .eq("user_id", user.id)
+    if (cleanupError) {
+      console.error(
+        `practice-sessions: failed to roll back orphaned session ${session.id} after attempts insert error:`,
+        cleanupError.message
+      )
+    }
     return Response.json({ error: attemptError.message }, { status: 500 })
   }
 
