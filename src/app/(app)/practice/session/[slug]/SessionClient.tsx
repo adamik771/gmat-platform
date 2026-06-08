@@ -316,6 +316,108 @@ function cn(...classes: (string | false | null | undefined)[]): string {
   return classes.filter(Boolean).join(" ")
 }
 
+/**
+ * Post-submit verdict banner. The single clear "how did I do?" moment the
+ * card was previously missing — before this, correctness was only legible
+ * by reading option colours plus a small line tucked into the explanation
+ * header, forcing the student to decode the result instead of being told
+ * it.
+ *
+ * Tone is deliberate. A correct answer gets a calm green confirmation with
+ * its pacing context (the next-most-useful fact once you know you were
+ * right). A wrong answer is *not* rendered in alarm-red — that colour is
+ * already carrying the "this option was wrong" signal on the chosen tile.
+ * The banner instead uses brand gold and reframes the miss as the
+ * highest-value study moment, naming the correct letter so the eye doesn't
+ * have to hunt for the green tile. This serves the "mistakes feel useful,
+ * not discouraging" goal directly.
+ */
+function ResultBanner({
+  correct,
+  elapsedMs,
+  correctLetter,
+  section,
+}: {
+  correct: boolean
+  elapsedMs: number
+  correctLetter: string | null
+  section: SessionQuestion["section"]
+}) {
+  // Same per-section pace targets used by the session insight engine. A
+  // small slack factor keeps "on pace" honest without nagging over a few
+  // seconds.
+  const targetMs = section === "Verbal" ? 90_000 : 120_000
+  const onPace = elapsedMs <= targetMs * 1.15
+
+  if (correct) {
+    return (
+      <div
+        className="mt-5 flex items-start gap-3 p-3.5 rounded-lg border animate-in fade-in-0 zoom-in-95 duration-150"
+        style={{
+          borderColor: "rgba(62,207,142,0.25)",
+          backgroundColor: "rgba(62,207,142,0.05)",
+        }}
+        role="status"
+        aria-live="polite"
+      >
+        <div
+          className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+          style={{ backgroundColor: "rgba(62,207,142,0.14)" }}
+        >
+          <Check className="w-4 h-4" style={{ color: "#3ECF8E" }} />
+        </div>
+        <div className="min-w-0">
+          <p className="text-sm font-semibold" style={{ color: "#3ECF8E" }}>
+            Correct
+          </p>
+          <p className="text-[12px] text-[#888888] mt-0.5 leading-relaxed">
+            {formatDuration(elapsedMs)}
+            {onPace ? " · on pace" : " · slightly over GMAT pace"}. Note why the
+            method worked before moving on — that&apos;s what makes it
+            repeatable under pressure.
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div
+      className="mt-5 flex items-start gap-3 p-3.5 rounded-lg border animate-in fade-in-0 zoom-in-95 duration-150"
+      style={{
+        borderColor: "rgba(201,168,76,0.25)",
+        backgroundColor: "rgba(201,168,76,0.04)",
+      }}
+      role="status"
+      aria-live="polite"
+    >
+      <div
+        className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+        style={{ backgroundColor: "rgba(201,168,76,0.14)" }}
+      >
+        <X className="w-4 h-4" style={{ color: "#C9A84C" }} />
+      </div>
+      <div className="min-w-0">
+        <p className="text-sm font-semibold text-[#F0F0F0]">
+          Not quite
+          {correctLetter ? (
+            <>
+              {" "}
+              — the answer was{" "}
+              <span style={{ color: "#3ECF8E" }}>{correctLetter}</span>
+            </>
+          ) : null}
+        </p>
+        <p className="text-[12px] text-[#888888] mt-0.5 leading-relaxed">
+          This is where the points are. Read the explanation for the method,
+          not just the answer — a miss you understand is worth more than a guess
+          you got right.
+        </p>
+      </div>
+    </div>
+  )
+}
+
 function ConfidencePanel({
   value,
   submitted,
@@ -2354,6 +2456,15 @@ export default function SessionClient({
                   )
                 })}
               </div>
+            )}
+
+            {currentState.submitted && (
+              <ResultBanner
+                correct={isQuestionCorrect(current, currentState)}
+                elapsedMs={currentState.elapsedMs}
+                correctLetter={isTwoPart ? null : current.correctAnswerLetter}
+                section={section}
+              />
             )}
 
             <ConfidencePanel
