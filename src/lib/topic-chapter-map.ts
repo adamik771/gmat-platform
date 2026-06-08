@@ -25,3 +25,24 @@ export const TOPIC_TO_CHAPTER: Record<string, string> = {
   "Multi-Source Reasoning": "multi-source-reasoning",
   "Two-Part Analysis": "two-part-analysis",
 }
+
+/**
+ * Maps a Critical Reasoning question's `type` (from question frontmatter,
+ * e.g. "Strengthen", "Assumption") to the focused spoke chapter that teaches
+ * it. The shared "Critical Reasoning" topic still routes to the foundations
+ * hub via TOPIC_TO_CHAPTER above; this finer map lets weak-area surfaces send
+ * a student to the exact question-type chapter once they consume `question_type`.
+ *
+ * Keys cover the spoke chapters; types without a dedicated spoke (Boldface,
+ * Complete, and generic "Critical Reasoning") fall back to the hub.
+ */
+export const CR_TYPE_TO_CHAPTER: Record<string, string> = {
+  Strengthen: "critical-reasoning-strengthen-weaken",
+  Weaken: "critical-reasoning-strengthen-weaken",
+  Assumption: "critical-reasoning-assumption",
+  Inference: "critical-reasoning-inference",
+  Evaluate: "critical-reasoning-evaluate",
+  Flaw: "critical-reasoning-flaw-paradox",
+  "Flaw/Paradox": "critical-reasoning-flaw-paradox",
+  Paradox: "critical-reasoning-flaw-paradox",
+}
