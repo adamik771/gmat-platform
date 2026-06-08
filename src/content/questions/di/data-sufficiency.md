@@ -20,14 +20,13 @@ What is the value of x?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** This is a "find the value" DS, so sufficiency means pinning x to exactly one number — a single linear equation in one unknown always does that, a range never does. Classify each statement on that one test.
-**explanation:** For value DS, a statement is sufficient only if it forces *one* value of x. **(1):** 3x + 7 = 22 → 3x = 15 → x = 5 — one equation, one unknown, exactly one solution, so it's sufficient. **(2):** "positive integer less than 10" allows x = 1, 2, 3, …, 9 — nine different values, so x isn't pinned down and it's not sufficient. (1) alone works, (2) alone doesn't → **A**.
-**mistake_b:** Picks (2) as the sufficient statement, but "positive integer less than 10" leaves nine candidates (1–9); narrowing the field to a list isn't the same as forcing a single value.
-**mistake_c:** The C-trap — combining statements "to be safe" when (1) alone already nails x = 5. Choosing C here means you didn't trust a statement that was already sufficient on its own.
-**mistake_d:** "Each alone" requires *both* statements to work individually, but (2) leaves nine possible values, so it fails by itself.
-**mistake_e:** Says even both together can't solve it, yet (1) by itself already gives x = 5 — it's clearly solvable.
-**common_trap:** Over-combining. The instant one statement forces a unique value, stop — reaching for the second statement "for safety" is exactly how a clean A turns into a wrong C.
-**takeaway:** In value DS, one linear equation in one variable is the canonical sufficient statement; a range or inequality almost never is. Test each statement against "does this force exactly one value?"
+**explanation:** The question asks for the single value of x. A statement is sufficient only if it restricts x to exactly one number; a statement that permits more than one value of x is not sufficient.
+
+Statement (1) gives 3x + 7 = 22. Subtracting 7 gives 3x = 15, and dividing by 3 gives x = 5. One linear equation in one unknown determines a single value, so statement (1) alone is sufficient.
+
+Statement (2) says x is a positive integer less than 10, that is, one of 1, 2, 3, 4, 5, 6, 7, 8, 9. For instance x could be 2 or 8; these are different values, so statement (2) alone is not sufficient.
+
+Since statement (1) alone is sufficient and statement (2) alone is not, there is no need to consider the statements together. The correct answer is A.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -281,14 +280,13 @@ What is the range of a set S of seven distinct integers?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** Range depends on exactly two numbers — the maximum and the minimum (range = max − min). Everything else about the set (that there are seven values, that they're distinct) is noise. So ask only: do the statements hand me both endpoints?
-**explanation:** Range = max − min, so the *only* data that matters is the two endpoints. **(1):** min = −4, but the maximum could be 5, 50, or anything larger, so the range isn't fixed → not sufficient. **(2):** max = 18, but the minimum is unknown, so the range still isn't fixed → not sufficient. **Together:** max = 18 and min = −4 give range = 18 − (−4) = 22, one fixed value → sufficient. Answer **C**. The "seven distinct integers" is a distractor — count and distinctness never enter a range calculation.
-**mistake_a:** (1) gives the minimum but no maximum, so the range could be any value above that floor — one endpoint can't fix a difference.
-**mistake_b:** (2) gives the maximum but no minimum — the same gap in reverse.
-**mistake_d:** "Each alone" needs both statements to work solo, but each supplies only one of the two endpoints.
-**mistake_e:** Says even together they fail, yet two fixed endpoints determine the range exactly: 18 − (−4) = 22.
-**common_trap:** Letting extra set details ("seven distinct integers") feel like usable constraints. They restrict the *interior* of the set, not its endpoints, so they're irrelevant to the range.
-**takeaway:** For range DS, strip the set down to its two endpoints — max and min are the only inputs. Count, spacing, and distinctness are decoys.
+**explanation:** The question asks for the range of set S, defined as the difference between the largest and smallest elements: range = maximum - minimum. Determining it therefore requires both endpoints. That S contains seven distinct integers describes only the interior of the set and never enters a range calculation; it is a distractor.
+
+Statement (1) gives the minimum, -4, but says nothing about the maximum. If the largest element is 5 the range is 5 - (-4) = 9; if it is 100 the range is 100 - (-4) = 104. Two different ranges are possible, so statement (1) alone is not sufficient.
+
+Statement (2) gives the maximum, 18, but says nothing about the minimum. If the smallest element is 0 the range is 18; if it is -50 the range is 68. Again not sufficient.
+
+Together the endpoints are fixed at maximum 18 and minimum -4, so the range is 18 - (-4) = 22, a single value. Both statements together are sufficient while neither alone suffices. The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---

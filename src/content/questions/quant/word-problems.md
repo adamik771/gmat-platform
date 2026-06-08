@@ -17,14 +17,13 @@ Two friends start at opposite ends of an 18-mile trail and walk toward each othe
 - E) 9
 
 **answer:** B
-**fastest_path:** Approaching → add speeds: 4 + 2 = 6 mph. Time = 18 ÷ 6 = 3 hr.
-**explanation:** When two people walk toward each other, they close the gap at their combined speed: 4 + 2 = 6 mph. Time = 18 ÷ 6 = 3 hr.
-**mistake_a:** Subtracted speeds instead of adding (4 − 2 = 2) — treated this like a same-direction catch-up problem.
-**mistake_c:** Used only Maria's speed: 18 ÷ 4 = 4.5 — ignored James's contribution.
-**mistake_d:** Averaged the two speeds ((4 + 2) ÷ 2 = 3), then divided: 18 ÷ 3 = 6.
-**mistake_e:** Used only James's speed: 18 ÷ 2 = 9 — ignored Maria's contribution.
-**common_trap:** Confusing approaching (add speeds) with same-direction catch-up (subtract speeds). Both walkers close the gap simultaneously, so speeds add.
-**takeaway:** Approaching each other → closing rate = sum of speeds. Same-direction catch-up → closing rate = difference of speeds.
+**explanation:** This is a rate-time-distance problem involving two objects moving toward each other. The governing principle is that when two travelers move toward each other along the same path, the distance separating them decreases at a rate equal to the sum of their individual speeds.
+
+Let t represent the number of hours after the two friends begin walking until they meet. Maria walks at 4 miles per hour, so in t hours she covers 4t miles. James walks at 2 miles per hour, so in t hours he covers 2t miles. Because they start at opposite ends of the 18-mile trail and walk toward each other, the sum of the distances they cover must equal the full length of the trail when they meet. Therefore 4t + 2t = 18.
+
+Combining like terms gives 6t = 18, and dividing both sides by 6 yields t = 18/6 = 3. Equivalently, the two friends close the gap at a combined rate of 4 + 2 = 6 miles per hour, so the time to close the 18-mile gap is 18/6 = 3 hours.
+
+The correct answer is B.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -43,14 +42,13 @@ A merchant buys a product for $40 and sells it for $52. What is the merchant's p
 - E) 30%
 
 **answer:** E
-**fastest_path:** Profit/cost = 12/40 = 30%.
-**explanation:** Profit = 52 − 40 = 12. Profit % of cost = (12/40) × 100 = 30%.
-**mistake_a:** Bubbled the dollar profit (12) as a percent.
-**mistake_b:** Estimated 20%.
-**mistake_c:** Computed profit/sell price = 12/52 ≈ 23%.
-**mistake_d:** Slip → 25%.
-**common_trap:** Computing profit as % of *selling price* (12/52 ≈ 23%) instead of % of *cost* (12/40 = 30%).
-**takeaway:** Always identify the *base* of a percent. "Profit % of cost" → base is cost.
+**explanation:** Profit expressed as a percentage of cost is the profit divided by the cost, then multiplied by 100. The base of this percentage is the cost, not the selling price.
+
+The cost is $40 and the selling price is $52, so the profit is the selling price minus the cost: 52 - 40 = 12 dollars.
+
+Dividing the profit by the cost and converting to a percentage gives (12 / 40) x 100 = 0.30 x 100 = 30 percent. Therefore the merchant's profit, measured as a percentage of the cost, is 30 percent.
+
+The correct answer is E.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -69,14 +67,13 @@ A father's age is currently three times his daughter's age. The sum of their cur
 - E) 52
 
 **answer:** C
-**fastest_path:** 3d + d = 52 → d = 13, father = 39. Future: 39 + 5 = 44.
-**explanation:** Let daughter's age = d. Father = 3d. Sum: 4d = 52 → d = 13, father = 39. In 5 years: 39 + 5 = 44.
-**mistake_a:** Stopped at the father's current age (39) — solved the system correctly but forgot to add the 5 years.
-**mistake_b:** Arithmetic slip in the final step (added 2 instead of 5).
-**mistake_d:** Arithmetic slip — over-counted the time shift.
-**mistake_e:** Answered with the sum of current ages (52) — misidentified what the question was asking.
-**common_trap:** Stopping at the father's current age (39). The system gives the current age; the question asks for a future age. Always apply the time shift as the final step.
-**takeaway:** Two-step age problems: (1) set up equations for current ages, (2) re-read whether the question asks for now or later, and add the offset only at the end.
+**explanation:** This problem is solved by translating the two stated relationships into a system of linear equations, solving for the present ages, and then applying the required time shift.
+
+Let d represent the daughter's current age. Because the father's age is currently three times the daughter's age, the father's current age is 3d. The sum of their current ages is 52, which gives 3d + d = 52, that is, 4d = 52. Dividing both sides by 4 yields d = 13. So the daughter is 13 and the father is 3d = 3(13) = 39.
+
+The question asks for the father's age in 5 years, not his current age, so we add the 5-year offset: 39 + 5 = 44.
+
+The correct answer is C.
 **related_reading:** reading-quant-05-word-problems
 
 ---

@@ -495,14 +495,15 @@ Which of the following would be most important to know in order to evaluate the 
 - E) Whether the companies in the study primarily hire for technical or non-technical roles.
 
 **answer:** B
-**fastest_path:** It's an Evaluate question on a study whose companies *volunteered* — the classic setup for selection bias. The most useful thing to learn is whether those volunteers were already unusually fast hirers, because if so the 35% gain reflects who signed up, not the algorithm.
-**explanation:** To evaluate "the algorithm cut time-to-hire 35%," find the weakest link in the study design — here, that the 50 companies *volunteered*. The right test is a question whose two possible answers swing the conclusion in opposite directions. **(B)** does exactly that: if the volunteers were *already* faster-than-average hirers, the improvement reflects who they were, not the tool (claim weakened); if they were typical, the 35% gain is credibly the algorithm's doing (claim supported). An answer that flips the conclusion depending on its result is the most important to ask. Answer **B**.
-**mistake_a:** Whether the founders have recruiting experience says nothing about whether the *algorithm* actually reduced time-to-hire — it doesn't move the data either way.
-**mistake_c:** How the algorithm works internally (machine learning vs. rules) is irrelevant to whether the measured 35% effect is real.
-**mistake_d:** The pricing or business model has no bearing on the performance claim being evaluated.
-**mistake_e:** Role type (technical vs. non-technical) has a whiff of relevance, but it's a secondary variable — it doesn't address the central self-selection flaw the way (B) does.
-**common_trap:** Choosing the answer that "sounds like a control variable" (E) over the one that targets the study's actual structural weakness (volunteer self-selection). On Evaluate, find the load-bearing assumption first, then test *that*.
-**takeaway:** When a study uses a self-selected sample, the highest-value Evaluate question is almost always "were the volunteers already different on the very outcome being measured?"
+**explanation:** **Situation.** A tech startup reports that its job-matching algorithm reduces average time-to-hire by 35 percent relative to traditional methods, a figure from a six-month trial of 50 companies that volunteered to use the platform.
+
+**Reasoning.** The task is to find the question whose answer would most help evaluate the claim that the algorithm itself produced the 35 percent reduction. Because the 50 companies were not chosen at random but volunteered, the study is open to self-selection: the participants may differ systematically from companies in general on the very outcome being measured. The most useful question is one whose possible answers pull the conclusion in opposite directions. Choice B does this: if the volunteers were already faster than average at hiring before adopting the algorithm, the reported gain may reflect who signed up rather than the algorithm, undermining the claim; if they were typical, the reduction is more plausibly the algorithm's effect, supporting it.
+
+The correct answer is B.
+**mistake_a:** Choice A is tempting because the founders' recruiting experience seems to bear on credibility, but it concerns the people behind the algorithm, not whether the algorithm produced the measured reduction. Its answer leaves the trial data and the self-selection concern untouched.
+**mistake_c:** Choice C invites the assumption that a sophisticated method would validate the result, but the algorithm's internal mechanism is irrelevant to whether the observed effect is genuine. Machine learning or rule-based logic, the self-selection question remains unanswered.
+**mistake_d:** Choice D concerns the commercial model, which has surface appeal as a business matter but no bearing on the performance claim. Subscription or one-time purchase does nothing to confirm or undercut the reduction in time-to-hire.
+**mistake_e:** Choice E is the most tempting wrong answer because role mix sounds like it could affect hiring speed, but it is a secondary factor that misses the central weakness. Even knowing the role composition, whether the volunteers were already faster-than-average hirers would stay unresolved, whereas B addresses that flaw directly.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---

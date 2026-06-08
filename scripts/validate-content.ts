@@ -133,16 +133,11 @@ for (const q of questions) {
     })
   }
 
-  // Optional but recommended: 6-section taxonomy
-  if (!q.commonTrap && !q.trapType) {
-    push({ ...ctx, severity: "WARN", rule: "missing-trap-type", detail: "No commonTrap or trapType field" })
-  }
-  if (!q.takeaway) {
-    push({ ...ctx, severity: "WARN", rule: "missing-takeaway", detail: "No takeaway field" })
-  }
-  if (!q.fastestPath) {
-    push({ ...ctx, severity: "WARN", rule: "missing-fastest-path", detail: "No fastestPath field" })
-  }
+  // Note: the legacy "recommended field missing" warnings for fastestPath /
+  // commonTrap / takeaway were removed when explanations moved to the GMAT
+  // Official Guide ("OG-pure") format, which intentionally drops those fields.
+  // trapType / commonTrap remain valid on curriculum-aligned items but are no
+  // longer flagged when absent.
 
   // Related-reading FK check
   if (q.relatedReading && !knownReadingSlugs.has(q.relatedReading)) {
