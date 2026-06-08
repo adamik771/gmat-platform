@@ -6,6 +6,8 @@ estimated_minutes: 45
 prerequisites: []
 summary: |
   Table Analysis gives you a sortable data table plus a series of Yes/No statements, and asks whether each statement is true given the data. The test isn't about reading speed — it's about efficiency. You need a repeatable filter-sort-verify discipline that answers each statement in under 60 seconds without re-reading the whole table. Master the three-step workflow (identify the relevant column, filter or sort, compute the check), internalize the seven most common statement patterns, and you'll solve every Table Analysis question without ever feeling rushed.
+
+  By the end of this chapter you will: (1) run the identify-filter-verify workflow on any table in under 60 seconds per statement; (2) decide between sorting and filtering instantly from the statement's wording; (3) recognize all seven statement patterns on sight; and (4) sidestep the quantifier and derived-metric traps that decide the hard set.
 sections:
   - id: pretest
     type: pretest
@@ -19,12 +21,16 @@ sections:
   - id: the-three-step-workflow
     type: reading
     title: "The three-step workflow — identify, filter, verify"
+    intro: |
+      Table Analysis rewards process, not horsepower. The arithmetic is always easy; points are won or lost on how efficiently you move from statement to answer. This section gives you the three-step rhythm that turns every question — however large the table — into the same mechanical sequence.
     check_question_ids:
       - table-analysis-q13
 
   - id: sorting-vs-filtering
     type: reading
     title: "Sorting vs. filtering — when to use each"
+    intro: |
+      The GMAT table is interactive — one click sorts any column. Knowing when to sort, when to filter, and when to do both is the difference between reading a single row and scanning forty. This section makes that decision automatic so you never spend time on the wrong move.
     check_question_ids:
       - table-analysis-q22
       - table-analysis-q23
@@ -32,6 +38,8 @@ sections:
   - id: statement-patterns
     type: reading
     title: "The seven most common Yes/No statement patterns"
+    intro: |
+      Almost every Yes/No statement you will ever see is one of seven recurring shapes. Once you can name the shape in the first five seconds, you already know the move to make — before doing any arithmetic. This section turns reading the statement into instant recognition.
     check_question_ids:
       - table-analysis-q1
       - table-analysis-q2
@@ -40,6 +48,8 @@ sections:
   - id: averages-and-medians
     type: reading
     title: "Averages, medians, and aggregated metrics"
+    intro: |
+      Averages and medians look like the computation-heavy part of Table Analysis, but three shortcuts collapse most of them to a comparison you can do in your head. The goal here is to never divide when you don't have to, and never recompute what a single sort already tells you.
     check_question_ids:
       - table-analysis-q14
       - table-analysis-q15
@@ -47,6 +57,8 @@ sections:
   - id: cross-category-comparisons
     type: reading
     title: "Cross-category comparisons — subsetting and ranking"
+    intro: |
+      When a statement pits two or three categories against each other, the danger is no longer the math — it's losing track of which numbers belong to which group. This section gives you a filter-compute-compare discipline that stays organized under time pressure, where unstructured solving quietly drops a value.
     check_question_ids:
       - table-analysis-q17
       - table-analysis-q26
@@ -54,6 +66,8 @@ sections:
   - id: derived-metrics-and-traps
     type: reading
     title: "Derived metrics and common traps"
+    intro: |
+      The hardest Table Analysis questions don't read a column — they build a new one: a ratio, a percent change, a per-unit rate. This section covers how to construct derived metrics cleanly and the trap patterns that cluster around them, because this is where the section's points are actually decided.
     check_question_ids:
       - table-analysis-q7
       - table-analysis-q19
@@ -178,6 +192,14 @@ Statement: "The average salary of Strategy employees is higher than that of Fina
 
 **Strategy sum:** 120+95+150 = 365. **Finance sum:** 140+85+115 = 340. Strategy sum > Finance sum, and both have 3 employees — so Strategy average > Finance average. Skip the division entirely.
 
+**Micro-drill.** Using the Employee Demographics table above, run the workflow on each statement — name the move, then answer Yes or No. 60 seconds total:
+
+1. The most experienced employee also earns the most. → ___
+2. More than half the employees earn above $120K. → ___
+3. Every Strategy employee earns more than $100K. → ___
+
+Answers: (1) **Yes** — sort by Years (D, 12) and by Salary (D, 155); both extremes are the same row. (2) **No** — only B, D, F, G earn strictly above 120K, that's 4 of 8. "More than half" needs 5; exactly half does not qualify. A's 120 is *not* above 120. (3) **No** — C earns 95K. One counterexample kills a universal claim; you don't need to check A or G once C fails.
+
 > **Recall check.** Close the book. State the three-step Table Analysis workflow. Now state the time budget for each step. (Step 1 identify, Step 2 filter/sort, Step 3 verify. Budget: 5 + 15 + 40 = 60 seconds.) Pattern-drill this three-step until it's reflexive — that's what makes you fast on Table Analysis.
 
 ## @sorting-vs-filtering
@@ -232,6 +254,16 @@ Some statements require both. "The highest-salaried Finance employee" requires f
 **The "what if sorting is ambiguous" problem.** Ties in a sort (two employees with the same years) usually don't matter for the answer. If it does — e.g., "the third-most-experienced employee" and there's a tie for second — the problem is usually set up so ties don't change the answer.
 
 **Trap to watch.** Some statements read like sort questions but are actually filter questions. "Is there any employee over 40 who earns less than $120K?" — this is a filter (age > 40 AND salary < 120) plus existence check (is the filtered set nonempty?). Don't waste time sorting the full table.
+
+**Micro-drill.** For each statement, decide whether you'd **sort**, **filter**, or do **both** — then answer Yes or No from the Employee Demographics table. 60 seconds total:
+
+1. The third-highest-paid employee works in Finance. → ___
+2. Some employee over 40 earns less than $130K. → ___
+3. The highest-paid Strategy employee out-earns the highest-paid Finance employee. → ___
+
+Answers: (1) **Sort → Yes.** Salary descending: D (155), G (150), B (140). Third is B, who is in Finance. (2) **Filter → No.** Only D is over 40 (G is exactly 40, so excluded); D earns 155K, not under 130K, so the filtered set is empty. (3) **Both → Yes.** Filter to Strategy, take the max (G, 150); filter to Finance, take the max (B, 140); 150 > 140.
+
+> **Recall check.** Without looking, state the one-line rule for choosing your move: when do you **sort**, when do you **filter**, and when do you do **both**? (Sort for ranks, extremes, and medians — it moves the answer to the top or bottom row. Filter for subsets and conditions. Do both when the statement asks for a rank *within* a subset, like "the highest-paid Finance employee.") Misclassifying the move is the most common way students over-read a table — locking in this rule is what keeps you at one click instead of forty scans.
 
 ## @statement-patterns
 
@@ -297,6 +329,14 @@ The move is identical whether the statement uses "every," "all," or "no [column]
 
 **Example.** "At least one employee in Finance is older than 40." Scan Finance employees. Any older than 40? One example confirms.
 
+**Micro-drill.** Name which of the seven patterns each statement is, then answer from the Employee Demographics table. The naming is the skill — do it before any arithmetic. 60 seconds total:
+
+1. All ages in the table fall between 25 and 45. → ___
+2. At least one Finance employee is older than 35. → ___
+3. Fewer than half the employees are older than 35. → ___
+
+Answers: (1) **Range check → Yes.** Only the min (E, 26) and max (D, 42) matter; both sit inside 25–45, so you check two values, not eight. (2) **Existence check → Yes.** Scan Finance for one confirming case: B is 38. Stop there. (3) **Threshold count → Yes.** Older than 35 means strictly above 35: B (38), D (42), G (40) — that's 3. F at exactly 35 doesn't count. Three is fewer than half of eight (four), so Yes.
+
 > **Self-explanation prompt.** Why does "every"/"no" require checking every row but "at least one" needs just one example? If you can say "because universal claims fail if a single counterexample exists, while existential claims succeed if a single confirming case exists," you've internalized the asymmetry — and you'll scan tables much faster.
 
 ## @averages-and-medians
@@ -332,6 +372,14 @@ This is often faster than computing the actual average.
 **Example.** Region sales: East sold 100 units at $5, West sold 200 at $8. Overall average price: (100×5 + 200×8)/(100+200) = (500+1600)/300 = 2100/300 = $7.
 
 **The "median from a large table" shortcut.** For a sorted table with 50 rows, the median is rows 25-26 averaged. You don't have to compute — just click the sort and read the middle rows.
+
+**Micro-drill.** Use the fastest technique each statement allows — don't compute more than you need. Employee Demographics table, 90 seconds total:
+
+1. The median salary exceeds $120K. → ___
+2. The average age exceeds 34. → ___
+3. Strategy's average salary is higher than Operations'. → ___
+
+Answers: (1) **Yes** — sort salaries (85, 95, 115, 120, 125, 140, 150, 155); with 8 values the median is the average of the 4th and 5th: (120 + 125)/2 = 122.5 > 120. (2) **Yes** — use the deviation trick: sum of (age − 34) is +2 (the total of the ages is 274, and 8 × 34 = 272), so the average is 34.25 — above 34. Note it does *not* exceed 35, so read the threshold carefully. (3) **No** — counts differ (3 vs 2), so the sum trick is invalid; you must divide. Strategy: 365/3 ≈ 121.7. Operations: 280/2 = 140. Operations is higher, even though its *sum* is smaller — the trap the unequal-count case is built to spring.
 
 > **Recall check.** Without looking, state the two ways to compute a median (odd n vs even n). Now state the "sum trick" for comparing averages when counts are equal. (Answers: odd → middle row by position (n+1)/2; even → average of the two middle rows; sum comparison works when counts match because averages differ only by their sums in that case.) Retrieval of these three rules is what separates a 60-second verification from a 3-minute recomputation.
 
@@ -393,6 +441,16 @@ Filter on two conditions (Finance AND over 30). Then check all of them against t
 
 **Trap to watch.** "Overlap" mistakes — filtering on the wrong combination. "Finance AND over 30" is different from "Finance OR over 30." Read the statement carefully: "and" means both conditions must hold; "or" means either (or both). Universal quantifier ("all," "every") combined with filters usually means you're checking whether the filtered set satisfies a condition uniformly.
 
+**Micro-drill.** Filter first, write down the subset, then answer. Employee Demographics table, 90 seconds total:
+
+1. The total salary of employees under 35 exceeds $400K. → ___
+2. The oldest Operations employee is older than the oldest Finance employee. → ___
+3. Every Finance employee earning over $100K is older than 35. → ___
+
+Answers: (1) **Yes** — under 35 means age strictly below 35: A (120), C (95), E (85), H (115); F at exactly 35 is excluded. Sum = 415K > 400K. (2) **Yes** — Operations max age is D (42); Finance max age is B (38); 42 > 38. (3) **No** — this is an AND filter (Finance *and* salary > 100K): B (140, age 38) and H (115, age 33). Now apply the universal: H is 33, not older than 35. One failure inside the filtered set makes the whole claim No.
+
+> **Self-explanation prompt.** Why does writing the filtered subset on scratch paper beat holding it in your head on these questions? If you can say "because cross-category statements force me to track which numbers belong to which group across two or three filters, and a single value reassigned to the wrong category flips the comparison," you've found the reason this question type punishes mental math more than any other in the section.
+
 ## @derived-metrics-and-traps
 
 Some statements require computing a *new* metric from the table columns — a ratio, a percentage, a per-unit value. These are the most arithmetic-heavy Table Analysis questions, and where most errors happen.
@@ -434,6 +492,14 @@ Compute Revenue/Employees per row, sort, check top.
 7. **The "rounding matters" trap.** If answer choices include 25% and 24.9% as separate options, you can't round casually. Compute exactly.
 
 **The "does this even matter?" sanity check.** Before committing to a computation, ask: "Is there a pattern I'm missing?" Some questions are designed to be obvious once you spot the pattern — e.g., "every value in row X is larger than every value in row Y" (no arithmetic needed, just visual scan). Always look for the easy path before doing arithmetic.
+
+**Micro-drill.** Build a derived column — salary per year of experience (Salary ÷ Years) — from the Employee Demographics table, then answer. 90 seconds total:
+
+1. Which employee earns the most salary per year of experience? → ___
+2. Which earns the least per year of experience? → ___
+3. Does the highest-paid employee also have the highest salary-per-year? → ___
+
+Answers: (1) **E** — 85/2 = 42.5K per year, ahead of C at 95/3 ≈ 31.7. (2) **D** — 155/12 ≈ 12.9K per year, just below G at 150/10 = 15. (3) **No** — D is the highest-paid employee (155K) but ranks *last* on salary-per-year, because the long tenure inflates the denominator. That rank-flip is the whole point of a derived metric: the new column reorders the table, so you cannot reuse the raw-salary ranking.
 
 > **Self-explanation prompt.** Why are derived metrics (ratios, percents) the most error-prone? If you can say "because they require two pieces of information per row combined correctly, and one mis-read of either piece corrupts the entire comparison," you've identified why these questions demand extra care — and why writing intermediate values down beats trying to do them in your head.
 
