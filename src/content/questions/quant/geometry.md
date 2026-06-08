@@ -957,3 +957,516 @@ Together: 4 < n < 12 → n ∈ {5, 6, 7, 8, 9, 10, 11}. 7 values. Still not uniq
 **common_trap:** Assuming the triangle inequality plus both bounds pins down a single value — it narrows the range but doesn't unique-ify.
 **takeaway:** Triangle inequality: |a − b| < third side < a + b. To pin down a unique side, need narrower bounds than just an open range.
 **related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Triangles
+
+Two angles of a triangle measure 35° and 85°. What is the measure of the third angle?
+
+- A) 50
+- B) 55
+- C) 60
+- D) 70
+- E) 120
+
+**answer:** C
+**fastest_path:** Angles sum to 180. Third = 180 − (35 + 85) = 60.
+**explanation:** The three interior angles of any triangle sum to 180°. Two are given: 35 + 85 = 120. The third is 180 − 120 = 60°.
+**mistake_a:** Subtracted only one given angle, or guessed 180 − 85 − 45.
+**mistake_b:** Arithmetic slip on 180 − 120.
+**mistake_d:** Computed 180 − 110 from misreading a given angle.
+**mistake_e:** Bubbled the sum of the two given angles (120) instead of the remaining angle.
+**common_trap:** Bubbling the sum of the known angles rather than the leftover from 180.
+**takeaway:** Interior angles of a triangle always sum to 180°. The "missing" angle is 180 minus the sum of the others — not the sum itself.
+**trap_type:** answer-the-wrong-quantity
+**est_time_seconds:** 30
+**hint_nudge:** What do all three interior angles of a triangle add up to?
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Circles
+
+A circle has a diameter of 14. What is its circumference?
+
+- A) 7π
+- B) 14π
+- C) 28π
+- D) 49π
+- E) 196π
+
+**answer:** B
+**fastest_path:** C = πd = π(14) = 14π.
+**explanation:** Circumference equals π times the diameter: C = πd = 14π. (Equivalently, the radius is 7 and C = 2πr = 2π(7) = 14π.)
+**mistake_a:** Used the radius (7) directly as the answer coefficient.
+**mistake_c:** Doubled the diameter as well (2πd) instead of using C = πd.
+**mistake_d:** Computed area with the radius: πr² = π(7²) = 49π.
+**mistake_e:** Computed πd² = π(14²) = 196π, squaring the diameter as if it were an area.
+**common_trap:** Confusing circumference (linear, uses first power) with area (squared) — or mixing radius and diameter.
+**takeaway:** C = 2πr = πd (linear). A = πr² (squared). Check whether the problem gives you the radius or the diameter before plugging in.
+**trap_type:** formula-confusion
+**est_time_seconds:** 30
+**hint_nudge:** Circumference uses the first power of the radius; area uses the square. Which one is asked here?
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Quadrilaterals
+
+A square has a perimeter of 36. What is its area?
+
+- A) 36
+- B) 64
+- C) 72
+- D) 81
+- E) 324
+
+**answer:** D
+**fastest_path:** Side = 36/4 = 9. Area = 9² = 81.
+**explanation:** A square's perimeter is 4 times its side, so the side is 36/4 = 9. Area = side² = 9² = 81.
+**mistake_a:** Bubbled the perimeter (36) without converting to area.
+**mistake_b:** Used side 8 (from a miscount of 32/4) → 64.
+**mistake_c:** Computed 9 × 8 = 72 with a slip on the side length.
+**mistake_e:** Squared the perimeter's half (18² = 324) instead of the side.
+**common_trap:** Squaring the wrong length — using the perimeter or half-perimeter rather than the side.
+**takeaway:** For a square: side = perimeter/4, then area = side². Always reduce to the side length first.
+**trap_type:** wrong-length-squared
+**est_time_seconds:** 30
+**hint_nudge:** Find the side length first — what is the perimeter divided by 4?
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+
+In the xy-plane, what is the distance between the points (1, 2) and (7, 10)?
+
+- A) 8
+- B) 10
+- C) 12
+- D) 14
+- E) √72
+
+**answer:** B
+**fastest_path:** Δx = 6, Δy = 8 → 6-8-10 right triangle → distance 10.
+**explanation:** Distance = √((7−1)² + (10−2)²) = √(6² + 8²) = √(36 + 64) = √100 = 10. Recognizing the 6-8-10 (a 3-4-5 multiple) gives it instantly.
+**mistake_a:** Bubbled the larger leg (8) instead of the hypotenuse.
+**mistake_c:** Averaged or mis-added the legs.
+**mistake_d:** Added the legs (6 + 8) instead of using the Pythagorean distance.
+**mistake_e:** Subtracted under the root (√(64 − 36)·... ) or mis-squared one coordinate difference, leaving an unsimplified √72.
+**common_trap:** Adding the coordinate differences directly instead of squaring, summing, and taking the root.
+**takeaway:** Distance = √(Δx² + Δy²). Watch for 3-4-5 multiples (6-8-10, 9-12-15) to skip the arithmetic.
+**trap_type:** add-instead-of-pythagorean
+**est_time_seconds:** 40
+**hint_nudge:** The horizontal and vertical gaps form the legs of a right triangle. What are they?
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** 3D / Solids
+
+A rectangular box has a square base of side 5 and a height of 8. What is its volume?
+
+- A) 40
+- B) 160
+- C) 200
+- D) 210
+- E) 250
+
+**answer:** C
+**fastest_path:** Base area = 5² = 25. Volume = 25 × 8 = 200.
+**explanation:** The base is a 5-by-5 square, so its area is 25. Volume = base area × height = 25 × 8 = 200.
+**mistake_a:** Multiplied one base edge by the height (5 × 8 = 40), one face area only.
+**mistake_b:** Computed the lateral surface area: perimeter × height = (4 × 5)(8) = 160.
+**mistake_d:** Computed the total surface area: 2(25) + 160 = 210.
+**mistake_e:** Treated the base as 5 × 10 or slipped the height to 10, getting 250.
+**common_trap:** Squaring nothing (using a single edge instead of the base area), or computing a surface area instead of volume.
+**takeaway:** Volume of a prism = base area × height. With a square base, the base area is side², not side. Surface area is a different quantity.
+**trap_type:** volume-vs-surface-area
+**est_time_seconds:** 35
+**hint_nudge:** The base is a square — find its area first, then stack it over the height.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Triangles
+
+An equilateral triangle has a side length of 6. What is its area?
+
+- A) 9
+- B) 9√3
+- C) 18
+- D) 18√3
+- E) 36√3
+
+**answer:** B
+**fastest_path:** Area = (√3/4)s² = (√3/4)(36) = 9√3.
+**explanation:** The area of an equilateral triangle with side s is (√3/4)s². With s = 6: (√3/4)(36) = 9√3. (Derivation: the altitude is 3√3, so area = ½ · 6 · 3√3 = 9√3.)
+**mistake_a:** Dropped the √3, treating the altitude as if it equalled the half-base.
+**mistake_c:** Computed ½ · 6 · 6 = 18, using a side as the height (only valid for a right angle between them).
+**mistake_d:** Used altitude = 6 instead of 3√3, doubling the true area.
+**mistake_e:** Used s² · √3 without the 1/4 factor.
+**common_trap:** Treating a side as the height. In an equilateral triangle the height is (√3/2)s, not s.
+**takeaway:** Equilateral area = (√3/4)s². Height = (√3/2)s. The √3 is non-negotiable — a side is never the height.
+**trap_type:** missing-irrational-factor
+**est_time_seconds:** 60
+**hint_nudge:** The height of an equilateral triangle is not equal to a side — what is it in terms of s?
+**hint_strategy:** Drop an altitude to split it into two 30-60-90 triangles; the altitude is (√3/2)·side.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Circles
+
+A sector of a circle has a central angle of 60° and lies in a circle of radius 12. What is the area of the sector?
+
+- A) 4π
+- B) 24π
+- C) 48π
+- D) 72π
+- E) 144π
+
+**answer:** B
+**fastest_path:** Fraction = 60/360 = 1/6. Sector area = (1/6)(π·12²) = (1/6)(144π) = 24π.
+**explanation:** A sector's area is its angle-fraction of the whole circle: (60/360) = 1/6 of πr². Full area = π(12²) = 144π, so the sector is 144π/6 = 24π.
+**mistake_a:** Computed the arc length, (1/6)(2π·12) = 4π, instead of the area.
+**mistake_c:** Used a 120° fraction (1/3 of 144π = 48π) or doubled the correct value.
+**mistake_d:** Used the fraction 1/2 (treated 60° as half of 120°).
+**mistake_e:** Bubbled the whole circle's area without taking the 1/6 fraction.
+**common_trap:** Computing arc length when area is asked, or forgetting to scale the full area by the angle fraction.
+**takeaway:** Sector area = (angle/360)·πr²; arc length = (angle/360)·2πr. Identify which is asked before you start.
+**trap_type:** arc-vs-sector
+**est_time_seconds:** 60
+**hint_nudge:** What fraction of the full circle does a 60° sector represent?
+**hint_strategy:** Find the whole circle's area, then multiply by the angle fraction 60/360.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Quadrilaterals
+
+A trapezoid has parallel sides of length 8 and 14 and a height of 6. What is its area?
+
+- A) 33
+- B) 60
+- C) 66
+- D) 84
+- E) 132
+
+**answer:** C
+**fastest_path:** Area = ½(b₁ + b₂)h = ½(8 + 14)(6) = ½(22)(6) = 66.
+**explanation:** Trapezoid area = ½ × (sum of parallel sides) × height = ½(8 + 14)(6) = ½(22)(6) = 66.
+**mistake_a:** Took half of the sum of the parallel sides (½·22 = 11)·... or halved the answer twice, landing near 33.
+**mistake_b:** Used the average base (11) times something off, or 10 × 6.
+**mistake_d:** Multiplied the longer base by the height (14 × 6) and ignored the shorter base and the ½.
+**mistake_e:** Forgot the ½ factor: (8 + 14)(6) = 132.
+**common_trap:** Omitting the 1/2, or multiplying by only one of the two parallel sides.
+**takeaway:** Trapezoid area = (average of the two parallel sides) × height = ½(b₁ + b₂)h. The 1/2 is essential.
+**trap_type:** dropped-one-half-factor
+**est_time_seconds:** 45
+**hint_nudge:** The area uses the average of the two parallel sides, not just one of them.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Polygons
+
+What is the measure of each interior angle of a regular octagon?
+
+- A) 45
+- B) 108
+- C) 120
+- D) 135
+- E) 1080
+
+**answer:** D
+**fastest_path:** Each exterior angle = 360/8 = 45 → interior = 180 − 45 = 135.
+**explanation:** Sum of interior angles = (n − 2)·180 = (8 − 2)·180 = 1080. For a regular octagon, divide evenly: 1080/8 = 135. (Faster: each exterior angle is 360/8 = 45, so each interior angle is 180 − 45 = 135.)
+**mistake_a:** Bubbled the exterior angle (360/8 = 45) instead of the interior angle.
+**mistake_b:** Used the regular-pentagon interior angle (108).
+**mistake_c:** Used the regular-hexagon interior angle (120).
+**mistake_e:** Bubbled the total of all interior angles (1080) instead of one angle.
+**common_trap:** Reporting the angle sum or the exterior angle instead of a single interior angle.
+**takeaway:** Interior-angle sum = (n − 2)·180; each angle in a regular n-gon = that sum / n, or simply 180 − 360/n.
+**trap_type:** sum-vs-single-angle
+**est_time_seconds:** 50
+**hint_nudge:** The exterior angles of any polygon sum to 360°. What is one exterior angle here?
+**hint_strategy:** Interior = 180 − exterior, and exterior = 360/n for a regular polygon.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+
+In the xy-plane, a line passes through the points (−2, 3) and (4, −9). What is the slope of the line?
+
+- A) −2
+- B) −1/2
+- C) 1/2
+- D) 2
+- E) −3
+
+**answer:** A
+**fastest_path:** Slope = (−9 − 3)/(4 − (−2)) = −12/6 = −2.
+**explanation:** Slope = (y₂ − y₁)/(x₂ − x₁) = (−9 − 3)/(4 − (−2)) = −12/6 = −2.
+**mistake_b:** Inverted the ratio (Δx/Δy = 6/−12) instead of Δy/Δx.
+**mistake_c:** Inverted the ratio and dropped the sign.
+**mistake_d:** Dropped the negative sign on Δy.
+**mistake_e:** Mishandled the double negative in the denominator (used 4 − 2 = 2 → −12/... ) or a sign slip yielding −3.
+**common_trap:** Sign errors from the negative coordinate, or inverting rise/run.
+**takeaway:** Slope = rise/run = Δy/Δx. Subtract in the same order top and bottom, and watch the double negative: 4 − (−2) = 6.
+**trap_type:** sign-or-inversion-error
+**est_time_seconds:** 45
+**hint_nudge:** Slope is the change in y over the change in x — and 4 − (−2) is not 2.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** 3D / Solids
+
+A right circular cylinder has a diameter of 8 and a height of 5. What is its volume?
+
+- A) 20π
+- B) 40π
+- C) 80π
+- D) 160π
+- E) 320π
+
+**answer:** C
+**fastest_path:** Diameter 8 → radius 4. V = πr²h = π(16)(5) = 80π.
+**explanation:** First convert: a diameter of 8 means a radius of 4. Cylinder volume = πr²h = π(4²)(5) = π(16)(5) = 80π.
+**mistake_a:** Used πrh (forgot to square the radius): π(4)(5) = 20π.
+**mistake_b:** Computed the lateral surface area, 2πrh = 2π(4)(5) = 40π.
+**mistake_d:** Forgot to halve the diameter but then halved the result: π(64)(5)/2 = 160π.
+**mistake_e:** Used the diameter as the radius: π(8²)(5) = 320π.
+**common_trap:** Plugging the diameter straight into r² (quadruples the answer), or computing surface area instead of volume.
+**takeaway:** Cylinder volume = πr²h, and r is half the diameter. Convert the diameter to a radius before squaring — the radius is squared, the height is not.
+**trap_type:** diameter-as-radius
+**est_time_seconds:** 50
+**hint_nudge:** You are given the diameter, not the radius. What must you do before plugging into πr²h?
+**hint_strategy:** Halve the diameter to get r = 4, then volume = πr²h.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Circles and Triangles
+
+A triangle is inscribed in a circle so that one of its sides is a diameter of length 10. If a second side of the triangle has length 6, what is the length of the third side?
+
+- A) 4
+- B) √34
+- C) 8
+- D) 2√34
+- E) √136
+
+**answer:** C
+**fastest_path:** A triangle inscribed on a diameter has a right angle opposite it → right triangle with hypotenuse 10, leg 6 → other leg 8 (6-8-10).
+**explanation:** By Thales' theorem, any triangle inscribed in a circle with one side as the diameter has a right angle opposite that diameter. So this is a right triangle with hypotenuse 10 (the diameter) and one leg 6. The third side: √(10² − 6²) = √(100 − 36) = √64 = 8.
+**mistake_a:** Subtracted lengths directly (10 − 6 = 4) instead of using the Pythagorean relationship.
+**mistake_b:** Treated 6 and the radius (5) as legs: √(6² − 5²) = √11... or some half-figure giving √34.
+**mistake_d:** Added the squares as if finding a hypotenuse from legs 6 and 10: √(136) then mis-simplified to 2√34.
+**mistake_e:** Added the squares (10² + 6² = 136), treating both given sides as legs rather than recognizing 10 as the hypotenuse.
+**common_trap:** Missing the hidden right angle, or treating the diameter as a leg rather than the hypotenuse.
+**takeaway:** A side that is a diameter forces a right angle opposite it (angle in a semicircle = 90°). The diameter is the hypotenuse, so subtract under the root.
+**trap_type:** hidden-right-angle
+**est_time_seconds:** 75
+**hint_nudge:** A triangle with one side on a diameter has a special angle — what is it?
+**hint_strategy:** Angle in a semicircle is 90°. The diameter is the hypotenuse, so use a² = c² − b².
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Triangles
+
+In triangle ABC, angle B = 90°, angle A = 30°, and the hypotenuse AC = 12. What is the area of triangle ABC?
+
+- A) 18
+- B) 18√3
+- C) 36
+- D) 36√3
+- E) 72
+
+**answer:** B
+**fastest_path:** 30-60-90 with hypotenuse 12 → legs 6 and 6√3. Area = ½(6)(6√3) = 18√3.
+**explanation:** A 30-60-90 triangle has sides in ratio 1 : √3 : 2, scaled by the hypotenuse. Hypotenuse 12 → the side opposite 30° is 6, the side opposite 60° is 6√3. These two legs meet at the right angle B, so area = ½(6)(6√3) = 18√3.
+**mistake_a:** Dropped the √3 from the longer leg, computing ½(6)(6) = 18.
+**mistake_c:** Used ½ · 6 · 12 (a leg times the hypotenuse) = 36.
+**mistake_d:** Forgot the ½ factor: 6 · 6√3 = 36√3.
+**mistake_e:** Used both legs as 12 or mis-scaled the ratio, giving 72.
+**common_trap:** Mis-assigning which leg is opposite 30° vs 60°, dropping the √3, or multiplying by the hypotenuse rather than the second leg.
+**takeaway:** 30-60-90 sides are 1 : √3 : 2. The two legs (opposite 30° and 60°) are the base and height; the hypotenuse is never a height here.
+**trap_type:** special-triangle-ratio
+**est_time_seconds:** 90
+**hint_nudge:** This is a 30-60-90 triangle — what are its side ratios?
+**hint_strategy:** Hypotenuse corresponds to the "2" in 1 : √3 : 2. Scale to find both legs, then take ½ · leg · leg.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Circles and Quadrilaterals
+
+A square has a side length of 8. A quarter circle is drawn inside the square, centered at one corner of the square with radius 8 (so its two straight edges lie along two sides of the square). What is the area of the region inside the square but outside the quarter circle?
+
+- A) 64 − 16π
+- B) 64 − 8π
+- C) 64 − 64π
+- D) 16 − 16π
+- E) 64 − 4π
+
+**answer:** A
+**fastest_path:** Square 8² = 64. Quarter circle ¼·π·8² = 16π. Region = 64 − 16π.
+**explanation:** The square's area is 8² = 64. The quarter circle has radius 8, so its area is ¼ of a full circle: ¼ · π · 8² = ¼ · 64π = 16π. The leftover region is the square minus the quarter circle: 64 − 16π.
+**mistake_b:** Used ¼ · 2π · 8 (a quarter of the circumference) = 4π... or halved 16π to 8π by using a semicircle/area slip.
+**mistake_c:** Used the full circle's area (π·8² = 64π) without taking the quarter.
+**mistake_d:** Used radius 4 (half the side) for the square's area as well, scaling everything down.
+**mistake_e:** Took a quarter of the circumference (¼ · 2π · 8 = 4π) instead of a quarter of the area.
+**common_trap:** Forgetting the 1/4 factor on the circle, or subtracting a circumference-based quantity instead of an area.
+**takeaway:** Shaded-region problems are "big shape − small shape." Match units: subtract an area from an area, and apply the correct fraction (here, 1/4) to the circle.
+**trap_type:** shaded-region-fraction
+**est_time_seconds:** 90
+**hint_nudge:** Compute the square's area and the quarter circle's area separately, then subtract.
+**hint_strategy:** Quarter circle area = ¼·πr² with r = 8. Don't confuse it with a quarter of the circumference.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Triangles
+
+Is triangle PQR a right triangle?
+
+(1) The lengths of its three sides are in the ratio 3 : 4 : 5.
+(2) The largest angle of the triangle is twice the smallest angle.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**fastest_path:** (1) 3-4-5 satisfies 3² + 4² = 5² → right, regardless of scale → sufficient. (2) "Largest = 2·smallest" allows both 45-45-90 (right) and 36-72-72 (not right) → insufficient. → A.
+**explanation:** Statement (1): sides in ratio 3 : 4 : 5 mean the sides are 3k, 4k, 5k. Since (3k)² + (4k)² = (5k)², the triangle satisfies the Pythagorean theorem for every k — it is always right. Sufficient.
+
+Statement (2): let the smallest angle be a, so the largest is 2a. With the middle angle b, we have 3a + b = 180 and the ordering a ≤ b ≤ 2a. This allows a range of triangles. For example, a = 45 gives angles 45, 45, 90 — a right triangle. But a = 36 gives 36, 72, 72 — not a right triangle. Two valid cases disagree, so insufficient.
+
+Statement (1) alone settles the question; statement (2) alone does not. Answer A.
+**mistake_b:** Believed the "twice the smallest" relation forces 90° while doubting the ratio — reversed sufficiency.
+**mistake_c:** Thought neither alone works and combined them, missing that the 3-4-5 ratio alone is decisive.
+**mistake_d:** Assumed statement (2) also forces a right triangle (only checked the 45-45-90 case).
+**mistake_e:** Concluded both together still leave it open, overlooking that (1) is self-sufficient.
+**common_trap:** Assuming "largest angle = twice the smallest" pins the triangle as right (it does not), and undervaluing that a fixed side ratio fully determines a triangle's shape.
+**takeaway:** A fixed side ratio fixes all angles (similar triangles), so 3 : 4 : 5 is provably right. An angle relation alone usually leaves a family of triangles — test multiple cases before calling it sufficient.
+**trap_type:** angle-relation-overreach
+**est_time_seconds:** 105
+**hint_nudge:** A fixed ratio of all three sides determines the shape exactly. Does the angle relation do the same?
+**hint_strategy:** For (2), try to build two different triangles where the largest angle is twice the smallest — does one come out right-angled and another not?
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+
+In the xy-plane, triangle ABC has vertices A(0, 0), B(8, 0), and C(2, 6). What is the length of the median drawn from vertex C to side AB?
+
+- A) 6
+- B) 2√10
+- C) √52
+- D) 10
+- E) 2√13
+
+**answer:** B
+**fastest_path:** Midpoint of AB = (4, 0). Median length = distance from (2, 6) to (4, 0) = √(2² + 6²) = √40 = 2√10.
+**explanation:** A median goes from a vertex to the midpoint of the opposite side. Midpoint of AB = ((0+8)/2, (0+0)/2) = (4, 0). The median's length is the distance from C(2, 6) to (4, 0): √((4−2)² + (0−6)²) = √(4 + 36) = √40 = 2√10.
+**mistake_a:** Bubbled the height of C (its y-coordinate, 6) instead of the median length.
+**mistake_c:** Used an endpoint of AB (e.g., (8,0)) instead of its midpoint, or mis-took Δx = 6: √(6² + 4²) = √52.
+**mistake_d:** Mistook the median for the distance to vertex B: from C(2,6) to B(8,0) = √(36 + 36) = √72... or rounded to 10.
+**mistake_e:** Used Δx = 6, Δy = 4 (swapped roles): √(36 + 16) = √52 = 2√13.
+**common_trap:** Drawing the median to a vertex rather than to the midpoint, or swapping Δx and Δy after finding the midpoint.
+**takeaway:** A median connects a vertex to the midpoint of the opposite side. Find the midpoint first, then apply the distance formula.
+**trap_type:** midpoint-vs-endpoint
+**est_time_seconds:** 90
+**hint_nudge:** A median goes to the midpoint of the opposite side — find that midpoint first.
+**hint_strategy:** Midpoint of AB is (4, 0). Now use the distance formula from C(2, 6) to that point.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Quadrilaterals — Challenge
+
+Point P lies in the interior of rectangle ABCD, where A, B, C, D are consecutive vertices. The distances from P to three of the corners are PA = 4, PB = 6, and PC = 8. What is the length of PD?
+
+- A) 2√3
+- B) 2√11
+- C) 2√13
+- D) 10
+- E) 6√2
+
+**answer:** B
+**fastest_path:** British Flag Theorem: PA² + PC² = PB² + PD² → 16 + 64 = 36 + PD² → PD² = 44 → PD = 2√11.
+**explanation:** For any point P and a rectangle with consecutive vertices A, B, C, D, the sums of squared distances to opposite corners are equal: PA² + PC² = PB² + PD² (the British Flag Theorem). Here A and C are opposite corners, as are B and D. So 4² + 8² = 6² + PD² → 16 + 64 = 36 + PD² → 80 = 36 + PD² → PD² = 44 → PD = √44 = 2√11.
+
+You can derive it with coordinates: place the rectangle at (0,0), (w,0), (w,h), (0,h) and let P = (x,y). Then PA² + PC² = (x² + y²) + ((x−w)² + (y−h)²) and PB² + PD² = ((x−w)² + y²) + (x² + (y−h)²); both expand to 2x² + 2y² − 2wx − 2hy + w² + h². They are identically equal.
+**mistake_a:** Paired the wrong corners (e.g., PA² + PB² = PC² + PD²): 16 + 36 = 64 + PD² gives a negative square, so a student fudges to 2√3 (√12).
+**mistake_c:** Used PA² + PB² = PC² + PD² in the other direction: PD² = 16 + 36 − ... landing on √52 = 2√13.
+**mistake_d:** Added the two "adjacent" distances (4 + 6) or treated PD as PA + PB.
+**mistake_e:** Took √72 = 6√2 by summing the wrong pair of squares (36 + 36) or mis-pairing.
+**common_trap:** Pairing adjacent corners instead of opposite ones — the theorem links the two diagonally opposite pairs.
+**takeaway:** British Flag Theorem: for any point and a rectangle, the squared distances to one pair of opposite corners equal those to the other pair: PA² + PC² = PB² + PD². Identify the opposite-corner pairs before substituting.
+**trap_type:** opposite-vs-adjacent-pairing
+**est_time_seconds:** 150
+**hint_nudge:** There is a clean relationship between a point's distances to the four corners of a rectangle. Which corners pair up?
+**hint_strategy:** The squared distances to one diagonal pair of corners equal those to the other diagonal pair. A and C are opposite; B and D are opposite.
+**hint_setup:** Set PA² + PC² = PB² + PD², plug in 16 + 64 = 36 + PD², and solve for PD.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
