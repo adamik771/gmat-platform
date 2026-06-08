@@ -15,7 +15,6 @@ import type {
   RecurringWeakness,
   TrapFrequency,
 } from "@/lib/mistake-insights"
-import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 
 /**
  * InsightsPanel — the auto-classification dashboard for the error log.
@@ -105,7 +104,7 @@ export default function InsightsPanel({
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {insights.recurringWeaknesses.map((w) => {
-              const chapterSlug = TOPIC_TO_CHAPTER[w.topic]
+              const chapterSlug = w.chapterSlug
               return (
                 <WeaknessCard
                   key={`${w.section}-${w.subskill}`}

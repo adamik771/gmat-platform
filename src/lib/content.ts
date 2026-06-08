@@ -27,6 +27,12 @@ export interface ParsedQuestion {
   subtopic: string
   difficulty: Difficulty
   type: QuestionType
+  /** The raw authored `type:` value from the question markdown, before
+   *  coercion to the high-level QuestionType. For Verbal questions this is
+   *  the question *sub-type* ("Strengthen", "Main Idea", "Function", …) —
+   *  `type` is coerced to "Problem Solving" for these, so this is the only
+   *  field where the sub-type survives. Used for sub-type chapter routing. */
+  authoredType?: string
   prompt: string
   /** Shared passage / set / tab context for grouped questions (RC passages, MSR sets). */
   context?: string
@@ -331,6 +337,7 @@ function parseQuestionBlock(
     subtopic: meta.topic ?? topLevelTopic,
     difficulty: difficultyFromString(meta.difficulty),
     type: questionTypeFromString(meta.type),
+    authoredType: meta.type,
     prompt,
     context,
     setSlug: fileSlug,
