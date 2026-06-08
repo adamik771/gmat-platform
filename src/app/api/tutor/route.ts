@@ -68,7 +68,7 @@ ID: ${question.id}
 Section: ${question.section}
 Topic: ${question.topic}${question.subtopic ? ` · ${question.subtopic}` : ""}
 Difficulty: ${question.difficulty}
-
+${question.context ? `\nShared exhibit (the passage, table, or chart this question refers to):\n${question.context}\n` : ""}
 Prompt:
 ${question.prompt}
 

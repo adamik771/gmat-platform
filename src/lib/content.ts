@@ -284,6 +284,20 @@ function parseQuestionBlock(
     )
   let prompt = promptLines.join("\n").replace(/^\n+/, "").replace(/\n+$/, "").trim()
 
+  // Continued questions in flat Table-Analysis / Graphics-Interpretation sets
+  // open with a pointer line such as "Same table as Q1." / "Same graph as Q3."
+  // / "Same scatter plot as Q5." Those questions inherit the shared table or
+  // chart through `context` (assembled in parseQuestionFile), so the pointer is
+  // redundant on screen — strip it so only the question-specific text remains.
+  // Guarded by `context` so it never touches a standalone or lead question; the
+  // "Same … as Q<n>" shape doesn't occur in RC/MSR prompts that also carry
+  // context.
+  if (context) {
+    prompt = prompt
+      .replace(/^\s*Same\s+[^\n]*?\bas\s+Q\d+\b[^\n]*(?:\n+|$)/i, "")
+      .trim()
+  }
+
   // ---------- Two-Part Analysis table detection ----------
   // TPA questions have a pipe table in the prompt instead of - A) through - E)
   // options. When detected, we parse the table into structured data, strip it
@@ -388,6 +402,31 @@ function parseQuestionBlock(
   }
 }
 
+/**
+ * Extract the shared reference material from the *lead* question of a flat
+ * `## Qn (Set N — Title)` set (Table Analysis, Graphics Interpretation). In
+ * these files the lead question carries the table or chart description inline,
+ * sitting between the `## Qn` header line and the first `**field:**` metadata
+ * marker. The "continued" questions in the same set only say "Same table as
+ * Q1." and have no data of their own, so they inherit this block as `context`.
+ *
+ * Returns the trimmed reference (description + any pipe table), or undefined
+ * when nothing precedes the metadata.
+ */
+function extractFlatSetReference(block: string): string | undefined {
+  const headerMatch = block.match(/^##\s+Q\d+[^\n]*/m)
+  if (!headerMatch) return undefined
+  const afterHeader = block.slice(headerMatch.index! + headerMatch[0].length)
+  // The reference ends at the first metadata field. `difficulty`/`type`/`topic`
+  // always lead the metadata block in these files; matching any structural key
+  // keeps this robust if the order ever changes.
+  const metaMatch = afterHeader.match(
+    /^\*\*(?:difficulty|type|topic|answer):\*\*/im
+  )
+  const ref = (metaMatch ? afterHeader.slice(0, metaMatch.index) : afterHeader).trim()
+  return ref.length > 0 ? ref : undefined
+}
+
 function parseQuestionFile(filePath: string): ParsedQuestion[] {
   const raw = fs.readFileSync(filePath, "utf8")
   const { frontmatter, body } = parseFrontmatter(raw)
@@ -402,6 +441,11 @@ function parseQuestionFile(filePath: string): ParsedQuestion[] {
   // time we hit a new `## Passage N:` or `## Set N:` header; carried forward
   // to every `### Qn` block until the next header.
   let currentContext: string | undefined = undefined
+  // Running shared reference for flat `## Qn (Set N — Title)` sets (TA, GI).
+  // Set when a lead question is seen; consumed by the set's "continued"
+  // questions. Kept separate from `currentContext` (grouped RC/MSR) because the
+  // two formats never co-occur in one file but the parser is shared.
+  let flatSetReference: string | undefined = undefined
   for (const block of blocks) {
     // If this block opens a new group, capture the context prose (everything
     // before the first `### Qn` in the block) and reset the running context.
@@ -413,6 +457,26 @@ function parseQuestionFile(filePath: string): ParsedQuestion[] {
 
     if (!/^#{2,3}\s+Q\d+/m.test(block)) continue
 
+    // Flat "## Qn (Set N — Title[, continued])" sets used by Table Analysis and
+    // Graphics Interpretation. Accepts both numbered ("Set 1 — …") and
+    // unnumbered ("Set — …") headers. The lead question holds the table/chart
+    // inline (it renders everywhere, including the tutor, which only sees the
+    // prompt); each continued question inherits that reference as `context`.
+    let contextForBlock = currentContext
+    const flatSetMatch = block.match(/^##\s+Q\d+\s*\(Set\b([^)]*)\)/m)
+    if (flatSetMatch) {
+      if (/continued/i.test(flatSetMatch[1])) {
+        contextForBlock = flatSetReference
+      } else {
+        flatSetReference = extractFlatSetReference(block)
+        contextForBlock = undefined
+      }
+    } else if (!groupHeaderMatch) {
+      // A standalone `## Qn` (no Set marker) ends any running flat-set
+      // reference so it can't leak into later unrelated standalone questions.
+      flatSetReference = undefined
+    }
+
     // For grouped formats, strip the context prefix so parseQuestionBlock sees
     // only the question. For simple `## Qn` blocks, the block is unchanged.
     const questionOnly = (() => {
@@ -421,7 +485,7 @@ function parseQuestionFile(filePath: string): ParsedQuestion[] {
       return firstQuestionIdx === -1 ? block : block.slice(firstQuestionIdx)
     })()
 
-    const question = parseQuestionBlock(questionOnly, section, topic, fileSlug, currentContext)
+    const question = parseQuestionBlock(questionOnly, section, topic, fileSlug, contextForBlock)
     if (question) parsed.push(question)
   }
   return parsed

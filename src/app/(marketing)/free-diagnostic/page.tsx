@@ -47,6 +47,10 @@ export default function FreeDiagnosticPage() {
       section,
       topic: q.topic,
       prompt: q.prompt,
+      // Shared exhibit for "continued" Table Analysis / Graphics Interpretation
+      // questions (the lead's table/chart). Without it the pointer-stripped
+      // prompt would show a statement with no data to reason about.
+      context: q.context,
       options: q.options,
       correctAnswer: q.correctAnswer,
       correctAnswerLetter: q.correctAnswerLetter,
