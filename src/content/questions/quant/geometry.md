@@ -17,14 +17,22 @@ In a right triangle, the two legs have lengths 5 and 12. What is the length of t
 - E) √119
 
 **answer:** A
-**fastest_path:** Recognize 5-12-13 Pythagorean triple → c = 13.
-**explanation:** Pythagorean theorem: c² = 5² + 12² = 25 + 144 = 169 → c = 13. Even faster: recognize 5-12-13 as a memorized triple.
-**mistake_b:** Computed (5+12)/2 + 6.5 = 15 from a wrong shortcut.
-**mistake_c:** Bubbled 17 (the 8-15-17 triple) — wrong triple.
-**mistake_d:** Computed √(12² − 5²) = √119 = ~10.9; rounded to 7. Or computed (12 − 5) = 7.
-**mistake_e:** Computed √(12² − 5²) (treated as missing leg, not hypotenuse) = √119.
-**common_trap:** Mis-recognizing a Pythagorean triple — confusing 5-12-13 with 8-15-17.
-**takeaway:** Memorize Pythagorean triples cold: 3-4-5, 5-12-13, 8-15-17, 7-24-25, 20-21-29, 9-40-41. Plus all integer multiples (6-8-10, 9-12-15, etc.).
+**explanation:** In a right triangle, the lengths of the three sides are related by the Pythagorean theorem, which states that the square of the hypotenuse equals the sum of the squares of the two legs. The hypotenuse is the side opposite the right angle and is the longest side.
+
+Let a and b denote the lengths of the two legs and let c denote the length of the hypotenuse. We are given that a = 5 and b = 12, and we are asked to find c.
+
+Applying the Pythagorean theorem:
+
+c^2 = a^2 + b^2
+c^2 = 5^2 + 12^2
+c^2 = 25 + 144
+c^2 = 169
+
+Taking the positive square root, since a length must be positive:
+
+c = sqrt(169) = 13
+
+The correct answer is A.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -43,14 +51,13 @@ A circle has a radius of 6. What is its area?
 - E) 144π
 
 **answer:** C
-**fastest_path:** Area = πr² = π × 36 = 36π.
-**explanation:** Circle area formula: πr². With r = 6: π × 6² = 36π.
-**mistake_a:** Computed circumference (2πr = 12π) and bubbled.
-**mistake_b:** Computed 4 × radius = 24π or 2π × 12.
-**mistake_d:** Computed πd² = π × 144 / 2 = 72π wrongly.
-**mistake_e:** Computed πd² = π × 12² = 144π (used diameter instead of radius).
-**common_trap:** Confusing area (πr²) with circumference (2πr) or using diameter instead of radius.
-**takeaway:** Circle: area = πr², circumference = 2πr. Both formulas use radius, not diameter.
+**explanation:** The area of a circle is governed by the formula A = πr², where r denotes the radius. This relationship is distinct from the circumference, C = 2πr, and it is essential to use the radius rather than the diameter when applying it.
+
+Let r = 6 be the given radius. Substituting this value into the area formula yields A = πr² = π(6)².
+
+Squaring the radius gives 6² = 36. Therefore, A = π × 36 = 36π.
+
+The correct answer is C.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -69,14 +76,31 @@ The length of a rectangle is 3 times its width. If the perimeter is 48, what is 
 - E) 192
 
 **answer:** C
-**fastest_path:** Width = w, length = 3w. 2(w + 3w) = 8w = 48 → w = 6. Area = 6 × 18 = 108.
-**explanation:** Let w = width; length = 3w. Perimeter = 2(w + 3w) = 8w = 48 → w = 6. So length = 18. Area = w × 3w = 6 × 18 = 108.
-**mistake_a:** Computed w² = 36 (used width as length).
-**mistake_b:** Computed 12 × 6 = 72 (off-by-one on width or length).
-**mistake_d:** Used perimeter 48 / 2 = 24 as one side; got 144.
-**mistake_e:** Computed 12 × 16 (mis-computed sides); got 192.
-**common_trap:** Setting up wrong relationship between length and width, or using semi-perimeter incorrectly.
-**takeaway:** Rectangle: P = 2(L + W), A = L × W. When sides are in a ratio, define one variable and express the other.
+**explanation:** The area of a rectangle is the product of its length and width, and its perimeter is twice the sum of its length and width: P = 2(L + W). Because the two dimensions are given in a fixed ratio, we represent both in terms of a single variable.
+
+Let w = the width of the rectangle. Since the length is 3 times the width, the length is 3w.
+
+Translating the perimeter condition into an equation, we have
+
+2(w + 3w) = 48.
+
+Combining like terms inside the parentheses gives
+
+2(4w) = 48,
+
+so that
+
+8w = 48.
+
+Dividing both sides by 8 yields
+
+w = 6.
+
+The width is therefore 6, and the length is 3w = 3(6) = 18. The area is the product of the length and the width:
+
+Area = L × W = 18 × 6 = 108.
+
+The correct answer is C.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -95,14 +119,23 @@ What is the distance between the points (1, 2) and (4, 6) in the coordinate plan
 - E) 7
 
 **answer:** C
-**fastest_path:** Differences (3, 4) → 3-4-5 right triangle → distance = 5.
-**explanation:** Distance formula: √((x₂−x₁)² + (y₂−y₁)²) = √((4−1)² + (6−2)²) = √(9 + 16) = √25 = 5. Recognize the 3-4-5 right triangle pattern — instant.
-**mistake_a:** Bubbled the horizontal leg (3).
-**mistake_b:** Bubbled the vertical leg (4).
-**mistake_d:** Computed 3 + 4 − 1 = 6.
-**mistake_e:** Added the legs: 3 + 4 = 7.
-**common_trap:** Bubbling one leg of the right triangle instead of the hypotenuse, or adding the legs.
-**takeaway:** Distance between (x₁, y₁) and (x₂, y₂) = √((Δx)² + (Δy)²). Often a Pythagorean triple is hiding in the coordinates.
+**explanation:** The distance between two points in the coordinate plane is found using the distance formula, which is a direct application of the Pythagorean theorem to the horizontal and vertical separations between the points.
+
+Let the two points be (x1, y1) = (1, 2) and (x2, y2) = (4, 6). The horizontal separation is x2 - x1 = 4 - 1 = 3, and the vertical separation is y2 - y1 = 6 - 2 = 4.
+
+The distance d between the points is given by
+
+d = sqrt((x2 - x1)^2 + (y2 - y1)^2).
+
+Substituting the values gives
+
+d = sqrt((4 - 1)^2 + (6 - 2)^2)
+  = sqrt(3^2 + 4^2)
+  = sqrt(9 + 16)
+  = sqrt(25)
+  = 5.
+
+The correct answer is C.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -121,14 +154,23 @@ What is the sum of the interior angles of a hexagon?
 - E) 1080
 
 **answer:** C
-**fastest_path:** (n − 2) × 180 = 4 × 180 = 720.
-**explanation:** Sum of interior angles of an n-sided polygon = (n − 2) × 180°. For hexagon (n = 6): (6 − 2) × 180° = 4 × 180° = 720°.
-**mistake_a:** Used quadrilateral formula (4 − 2) × 180 = 360.
-**mistake_b:** Used pentagon formula (5 − 2) × 180 = 540.
-**mistake_d:** Used heptagon formula (7 − 2) × 180 = 900.
-**mistake_e:** Used octagon formula (8 − 2) × 180 = 1080.
-**common_trap:** Off-by-one on the n value, or forgetting the (n − 2) subtraction.
-**takeaway:** Sum of interior angles = (n − 2) × 180°. Memorize: triangle 180°, quad 360°, pentagon 540°, hexagon 720°.
+**explanation:** The sum of the interior angles of any convex polygon is determined by the number of its sides. A polygon with n sides can be divided into (n − 2) triangles by drawing all the diagonals from a single vertex, and the angles of each triangle sum to 180°. Therefore the sum of the interior angles of an n-sided polygon equals (n − 2) × 180°.
+
+Let n denote the number of sides of the polygon. A hexagon has six sides, so n = 6. Substituting this value into the formula gives
+
+(n − 2) × 180° = (6 − 2) × 180°.
+
+We simplify the expression inside the parentheses:
+
+6 − 2 = 4.
+
+We then multiply:
+
+4 × 180° = 720°.
+
+Thus the interior angles of a hexagon sum to 720°.
+
+The correct answer is C.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -147,14 +189,18 @@ A rectangular box has dimensions 3 by 4 by 5. What is its volume?
 - E) 94
 
 **answer:** D
-**fastest_path:** V = lwh = 3 × 4 × 5 = 60.
-**explanation:** Volume of rectangular box: V = l × w × h = 3 × 4 × 5 = 60.
-**mistake_a:** Computed 3 × 4 = 12 (only one face).
-**mistake_b:** Computed 4 × 5 = 20 (only one face).
-**mistake_c:** Computed half of surface area: 47.
-**mistake_e:** Computed surface area: 2(3×4 + 4×5 + 3×5) = 2(12 + 20 + 15) = 94.
-**common_trap:** Confusing volume (lwh) with surface area (2(lw + wh + lh)).
-**takeaway:** Volume = lwh; surface area = 2(lw + wh + lh). For cube (s³ vs. 6s²) similarly. Memorize both for each common solid.
+**explanation:** The volume of a rectangular box (rectangular solid) is the product of its three mutually perpendicular edge lengths; that is, for length l, width w, and height h, the volume is V = l x w x h.
+
+Let l = 3, w = 4, and h = 5 denote the three given dimensions of the box. Substituting these values into the formula for the volume gives the following.
+
+V = l x w x h
+V = 3 x 4 x 5
+
+Multiplying the first two factors, we obtain 3 x 4 = 12. Multiplying this result by the remaining factor, we obtain 12 x 5 = 60.
+
+Therefore, the volume of the box is 60.
+
+The correct answer is D.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -173,14 +219,17 @@ An equilateral triangle has a side length of 6. What is its perimeter?
 - E) 24
 
 **answer:** C
-**fastest_path:** Perimeter = 3s = 18.
-**explanation:** Equilateral triangle: all three sides equal. Perimeter = 3 × 6 = 18.
-**mistake_a:** Computed 6 × 2 = 12.
-**mistake_b:** Off-by-one: 15.
-**mistake_d:** Computed 7 × 3 = 21 (off by one on side).
-**mistake_e:** Computed 8 × 3 = 24 (off by two on side).
-**common_trap:** Side count mistakes (computing 4 × 6 or 2 × 6 + 6).
-**takeaway:** Equilateral triangle: 3 sides equal. Perimeter = 3s. Area = s²√3/4. Memorize both.
+**explanation:** The perimeter of any polygon is the sum of the lengths of its sides. An equilateral triangle is, by definition, a triangle whose three sides are equal in length, so its perimeter equals three times the common side length.
+
+Let s denote the length of one side of the equilateral triangle. We are given that s = 6. Because all three sides have the same length, the perimeter P is
+
+P = 3s.
+
+Substituting s = 6 gives
+
+P = 3 × 6 = 18.
+
+The correct answer is C.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -199,14 +248,13 @@ In triangle ABC, angle A = 90 degrees, angle B = 30 degrees, and the hypotenuse 
 - E) 10 * √3
 
 **answer:** A
-**fastest_path:** 30-60-90 ratio 1:√3:2. Hypotenuse 10 → opposite-30 = 10/2 = 5.
-**explanation:** 30-60-90 triangle has sides in ratio 1 : √3 : 2 (opposite 30°, 60°, 90° respectively). Hypotenuse (opposite 90°) = 10, so the "2" position. The "1" position (opposite 30°) is 10/2 = 5.
-**mistake_b:** Used 45-45-90 ratio instead; got 5√2.
-**mistake_c:** Confused which side is opposite 30°; got 5√3 (the side opposite 60°).
-**mistake_d:** Bubbled the hypotenuse (10) — confused which side is asked.
-**mistake_e:** Computed 10√3 (longer than hypotenuse — implausible).
-**common_trap:** Confusing which side is opposite which angle in the 1:√3:2 ratio.
-**takeaway:** 30-60-90 triangle: sides in ratio 1:√3:2 = (opposite 30°) : (opposite 60°) : (opposite 90°). The shortest side is opposite the smallest angle.
+**explanation:** This problem is governed by the fixed side ratios of a 30-60-90 right triangle, in which the sides opposite the 30 degree, 60 degree, and 90 degree angles are in the ratio 1 : sqrt(3) : 2. Each side is paired with the angle it faces, so the longest side, the hypotenuse, lies opposite the right angle.
+
+Let the side opposite the 30 degree angle be x, the side opposite the 60 degree angle be x times sqrt(3), and the hypotenuse, opposite the 90 degree angle, be 2x. In triangle ABC the right angle is at A, so the hypotenuse is BC, and we are given BC = 10. Setting the hypotenuse equal to the 2x position gives 2x = 10.
+
+Solving for x yields x = 5. The requested length AC is opposite angle B, which measures 30 degrees, so AC occupies the x position in the ratio. Therefore AC = 5.
+
+The correct answer is A.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -225,14 +273,25 @@ A circle has a circumference of 10π. What is the length of an arc that subtends
 - E) 5π
 
 **answer:** B
-**fastest_path:** Arc = (72/360) × 10π = (1/5) × 10π = 2π.
-**explanation:** Arc length = (central angle / 360°) × circumference. (72/360) × 10π = (1/5) × 10π = 2π.
-**mistake_a:** Computed 72/720 × 10π = π (used wrong fraction).
-**mistake_c:** Computed 3π from a wrong proportion setup.
-**mistake_d:** Computed (72/360) × 5 × π wrongly = 4π or used radius instead of circumference.
-**mistake_e:** Bubbled the radius (5π or 5) directly.
-**common_trap:** Using radius instead of circumference, or wrong angle fraction.
-**takeaway:** Arc length / circumference = (central angle) / 360°. Same proportion holds for sector area / circle area.
+**explanation:** The length of an arc of a circle is proportional to the measure of the central angle that subtends it. Specifically, the ratio of the arc length to the circumference equals the ratio of the central angle to the full angle of 360 degrees.
+
+Let L denote the length of the arc that subtends a central angle of 72 degrees. The circumference of the circle is given as 10π. By the proportion stated above:
+
+L / (circumference) = (central angle) / 360°
+
+Substituting the known values:
+
+L / 10π = 72 / 360
+
+The fraction 72/360 reduces to 1/5, so:
+
+L / 10π = 1/5
+
+Solving for L:
+
+L = (1/5)(10π) = 2π
+
+The correct answer is B.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -251,14 +310,21 @@ Line L passes through the points (2, 3) and (6, 11). What is the slope of any li
 - E) -4
 
 **answer:** B
-**fastest_path:** Slope L = 8/4 = 2. Perpendicular slope = −1/m = −1/2.
-**explanation:** Slope of L = (11 − 3)/(6 − 2) = 8/4 = 2. Perpendicular slope = negative reciprocal = −1/2. Verify: 2 × (−1/2) = −1 ✓.
-**mistake_a:** Computed 1/2 (positive reciprocal) and negated to −2 — sign error.
-**mistake_c:** Bubbled positive reciprocal: 1/2.
-**mistake_d:** Bubbled the original slope: 2.
-**mistake_e:** Computed 8/4 wrong as −4.
-**common_trap:** Forgetting the *negative* in "negative reciprocal" — many students just take the reciprocal.
-**takeaway:** Perpendicular slopes: m₁ × m₂ = −1. To find perpendicular: take reciprocal AND flip sign.
+**explanation:** Two nonvertical lines are perpendicular if and only if the product of their slopes equals -1; equivalently, the slope of a line perpendicular to a given line is the negative reciprocal of that line's slope. The method is therefore to determine the slope of line L from the two given points and then take its negative reciprocal.
+
+The slope of a line through two points (x1, y1) and (x2, y2) is defined as m = (y2 - y1)/(x2 - x1). Let the two given points be (x1, y1) = (2, 3) and (x2, y2) = (6, 11).
+
+Substituting these coordinates gives the slope of L:
+
+m = (11 - 3)/(6 - 2) = 8/4 = 2.
+
+Let m_perp denote the slope of any line perpendicular to L. By the perpendicularity condition, m * m_perp = -1, so
+
+m_perp = -1/m = -1/2.
+
+As a check, the product of the two slopes is 2 * (-1/2) = -1, which confirms that the lines are perpendicular.
+
+The correct answer is B.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -277,14 +343,23 @@ A square and an equilateral triangle have the same perimeter. If the side of the
 - E) 10
 
 **answer:** C
-**fastest_path:** Square P = 4(6) = 24. Triangle side = 24/3 = 8.
-**explanation:** Square perimeter = 4 × 6 = 24. Triangle has the same perimeter and three equal sides: side = 24/3 = 8.
-**mistake_a:** Bubbled the square's side length.
-**mistake_b:** Off-by-one: 7.
-**mistake_d:** Computed 27/3 = 9 (used wrong perimeter).
-**mistake_e:** Computed 30/3 = 10 (used wrong perimeter).
-**common_trap:** Forgetting that an equilateral triangle has 3 sides (not 4).
-**takeaway:** Equilateral triangle has 3 equal sides; square has 4. Match perimeter equations: 4s_square = 3s_triangle.
+**explanation:** The perimeter of a polygon is the sum of the lengths of its sides. A square has four sides of equal length, so its perimeter equals four times the length of one side. An equilateral triangle has three sides of equal length, so its perimeter equals three times the length of one side.
+
+Let s denote the length of a side of the equilateral triangle. The side of the square is given as 6, so the perimeter of the square is
+
+4 multiplied by 6, which equals 24.
+
+We are told that the square and the equilateral triangle have the same perimeter. Therefore the perimeter of the triangle is also 24, and we have
+
+3s = 24.
+
+Dividing both sides by 3 gives
+
+s = 24 divided by 3, which equals 8.
+
+Thus the side of the equilateral triangle is 8.
+
+The correct answer is C.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -303,14 +378,16 @@ A right circular cylinder has a radius of 3 and a height of 10. What is its volu
 - E) 300π
 
 **answer:** C
-**fastest_path:** V = πr²h = π × 9 × 10 = 90π.
-**explanation:** Cylinder volume: πr²h = π × 3² × 10 = π × 9 × 10 = 90π.
-**mistake_a:** Computed 2πr × h = 6π × 10 / 2 = 30π (used circumference, halved).
-**mistake_b:** Computed 2πrh = 60π (lateral surface area).
-**mistake_d:** Computed πr × h = 30π × 10/3 = 100π (mis-formula).
-**mistake_e:** Computed π × 30 × 10 = 300π (used diameter or wrong squared form).
-**common_trap:** Confusing cylinder volume (πr²h) with lateral surface area (2πrh) or total surface area.
-**takeaway:** Cylinder: V = πr²h (base area × height); lateral surface = 2πrh; total surface = 2πr(r+h).
+**explanation:** The volume of a right circular cylinder is the area of its circular base multiplied by its height. The base is a circle of radius r, whose area is πr², and the height of the cylinder is h, so the volume is given by V = πr²h.
+
+Let r = 3 be the radius of the base and let h = 10 be the height. Substituting these values into the formula gives:
+
+V = πr²h
+V = π × 3² × 10
+V = π × 9 × 10
+V = 90π
+
+The correct answer is C.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -329,14 +406,7 @@ A right triangle has legs of length x and x. If its hypotenuse is 8, what is x?
 - E) 16
 
 **answer:** B
-**fastest_path:** 45-45-90 ratio 1:1:√2. x√2 = 8 → x = 8/√2 = 4√2.
-**explanation:** Isoceles right triangle (legs equal) → 45-45-90 → sides 1:1:√2. Hypotenuse = x√2 = 8 → x = 8/√2. Rationalize: 8/√2 × √2/√2 = 8√2/2 = 4√2.
-**mistake_a:** Computed 8/2 = 4 (used wrong divisor).
-**mistake_c:** Bubbled hypotenuse (8) instead of leg.
-**mistake_d:** Computed 8 × √2 = 8√2 (multiplied instead of divided).
-**mistake_e:** Computed 8² = 64; halved to 16.
-**common_trap:** Forgetting to divide by √2 (or equivalent: multiply by √2/2) for the leg in a 45-45-90.
-**takeaway:** 45-45-90 triangle: sides 1:1:√2 = leg:leg:hypotenuse. Leg = hypotenuse / √2 = hypotenuse × √2 / 2.
+**explanation:** The Pythagorean theorem governs the relationship among the sides of a right triangle: the square of the hypotenuse equals the sum of the squares of the two legs. Let x denote the common length of the two legs, and note that the hypotenuse has length 8. Substituting these values gives x squared plus x squared equals 8 squared. The left side combines to 2 times x squared, and the right side evaluates to 64, so we have 2 times x squared equals 64. Dividing both sides by 2 yields x squared equals 32. Taking the positive square root, since a length must be positive, gives x equals the square root of 32. Factoring 32 as 16 times 2, we obtain the square root of 16 times the square root of 2, which is 4 times the square root of 2. The correct answer is B.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -355,14 +425,19 @@ What is the midpoint of the segment connecting (-3, 5) and (7, -1)?
 - E) (5, 3)
 
 **answer:** A
-**fastest_path:** Avg coordinates: ((−3 + 7)/2, (5 − 1)/2) = (2, 2).
-**explanation:** Midpoint formula: ((x₁ + x₂)/2, (y₁ + y₂)/2). x-midpoint: (−3 + 7)/2 = 4/2 = 2. y-midpoint: (5 + (−1))/2 = 4/2 = 2. Midpoint = (2, 2).
-**mistake_b:** Off-by-one on y: (2, 3).
-**mistake_c:** Got x wrong: (4, 2) — added without dividing.
-**mistake_d:** Computed (5, 2) — average error.
-**mistake_e:** Both wrong: (5, 3).
-**common_trap:** Forgetting to divide by 2 (just summing coordinates).
-**takeaway:** Midpoint = average of x-coordinates, average of y-coordinates. ((x₁ + x₂)/2, (y₁ + y₂)/2).
+**explanation:** The midpoint of a segment in the coordinate plane is found by averaging the x-coordinates of the two endpoints and averaging their y-coordinates. That is, for endpoints (x1, y1) and (x2, y2), the midpoint is ((x1 + x2)/2, (y1 + y2)/2).
+
+Let (x1, y1) = (-3, 5) and (x2, y2) = (7, -1).
+
+We compute the x-coordinate of the midpoint:
+(x1 + x2)/2 = (-3 + 7)/2 = 4/2 = 2.
+
+We compute the y-coordinate of the midpoint:
+(y1 + y2)/2 = (5 + (-1))/2 = 4/2 = 2.
+
+Therefore, the midpoint is (2, 2).
+
+The correct answer is A.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -384,18 +459,15 @@ How many sides does regular polygon P have?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**fastest_path:** (1) Each interior 150° → exterior 30° → n = 360/30 = 12. (2) (n−2)180 = 1800 → n = 12. Both alone work → D.
-**explanation:** Statement (1): each interior 150° → each exterior = 30°. Exterior angles sum to 360°: n = 360/30 = 12. Sufficient.
+**explanation:** This question asks for the number of sides of a regular polygon P, and it is sufficient to determine that number exactly. Two standard relationships govern a regular polygon with n sides: the exterior angles sum to 360 degrees, so each exterior angle measures 360/n degrees and each interior angle measures 180 minus 360/n degrees; and the interior angles sum to (n minus 2) times 180 degrees. We evaluate each statement against these relationships.
 
-Statement (2): sum of interior = (n − 2) × 180 = 1800 → n − 2 = 10 → n = 12. Sufficient.
+Statement (1) gives that each interior angle measures 150 degrees. Since an interior angle and its adjacent exterior angle are supplementary, each exterior angle measures 180 minus 150, which is 30 degrees. Because the exterior angles of any polygon sum to 360 degrees, we have n times 30 equals 360, so n equals 360 divided by 30, which is 12. The number of sides is determined uniquely. Statement (1) alone is sufficient.
 
-Each alone determines n → D.
-**mistake_a:** Concluded only Statement 1 sufficient.
-**mistake_b:** Concluded only Statement 2 sufficient.
-**mistake_c:** Required both statements.
-**mistake_e:** Concluded together insufficient.
-**common_trap:** Treating one statement as redundant; both independently determine n.
-**takeaway:** Regular polygon shortcuts: exterior-angle-sum = 360°. n = 360/(each exterior) = 360/(180 − each interior).
+Statement (2) gives that the sum of the interior angles is 1800 degrees. Using (n minus 2) times 180 equals 1800, we divide both sides by 180 to obtain n minus 2 equals 10, so n equals 12. The number of sides is again determined uniquely. Statement (2) alone is sufficient.
+
+Because each statement alone determines that P has 12 sides, each statement alone is sufficient.
+
+The correct answer is D.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -414,16 +486,15 @@ A square is inscribed in a circle of radius 5. What is the area of the square?
 - E) 25 * √2
 
 **answer:** B
-**fastest_path:** Diagonal = 2r = 10. Area = d²/2 = 100/2 = 50.
-**explanation:** Inscribed square: diagonal = diameter of circle = 2 × 5 = 10. Square area = d²/2 (shortcut from s² where d = s√2). Area = 100/2 = 50.
+**explanation:** When a square is inscribed in a circle, the four vertices of the square lie on the circle, and the diagonal of the square is a diameter of the circle. We use this relationship together with the fact that the diagonal of a square relates to its side by a factor of the square root of 2.
 
-Alternative: s = d/√2 = 10/√2 = 5√2. Area = s² = (5√2)² = 50. Same answer.
-**mistake_a:** Bubbled r² = 25 instead of d²/2.
-**mistake_c:** Computed (d²+r²)/something = 75.
-**mistake_d:** Bubbled d² = 100 (forgot to divide by 2).
-**mistake_e:** Bubbled 25√2 from a wrong formula.
-**common_trap:** Treating diameter as the side of the square instead of the diagonal.
-**takeaway:** Square inscribed in circle: diagonal = diameter. Square area = (diagonal)²/2.
+Let s be the length of a side of the square, and let d be the length of its diagonal. Because the diagonal is a diameter of the circle and the radius is 5, we have d = 2r = 2(5) = 10.
+
+The diagonal of a square divides it into two isosceles right triangles, so by the Pythagorean theorem d^2 = s^2 + s^2 = 2s^2. The area of the square is s^2, and solving the relationship d^2 = 2s^2 for s^2 gives s^2 = d^2 / 2.
+
+Substituting d = 10 yields an area of s^2 = 10^2 / 2 = 100 / 2 = 50.
+
+The correct answer is B.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -442,14 +513,29 @@ A sphere has a surface area of 36π. What is its volume?
 - E) 108π
 
 **answer:** C
-**fastest_path:** SA = 4πr² = 36π → r = 3. V = (4/3)πr³ = (4/3)π(27) = 36π.
-**explanation:** Sphere surface area = 4πr². Set 4πr² = 36π → r² = 9 → r = 3. Volume = (4/3)πr³ = (4/3)π(27) = 36π. (Coincidence: sphere SA = V numerically only when r = 3.)
-**mistake_a:** Computed (4/3)π × 9 = 12π (used r² instead of r³).
-**mistake_b:** Computed πr³ = 27π (forgot 4/3).
-**mistake_d:** Computed differently; got 48π.
-**mistake_e:** Computed 4πr³ = 108π (forgot to divide by 3).
-**common_trap:** Forgetting the (4/3) coefficient on sphere volume; using r² instead of r³.
-**takeaway:** Sphere: SA = 4πr², V = (4/3)πr³. The factor of 4/3 on volume is the most common slip.
+**explanation:** The relationship between a sphere's radius and its measures is governed by two standard formulas: the surface area is given by 4πr² and the volume by (4/3)πr³, where r denotes the radius. Because both measures depend only on r, the radius can be recovered from the given surface area and then used to compute the volume.
+
+Let r be the radius of the sphere. We are told that the surface area equals 36π, so we set the surface-area formula equal to this value:
+
+4πr² = 36π.
+
+Dividing both sides by 4π gives:
+
+r² = 9.
+
+Taking the positive square root, since a radius must be positive, yields:
+
+r = 3.
+
+We now substitute this radius into the volume formula:
+
+V = (4/3)πr³ = (4/3)π(3)³.
+
+Since 3³ = 27, this becomes:
+
+V = (4/3)π(27) = (4 × 27 / 3)π = (108/3)π = 36π.
+
+The correct answer is C.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -468,14 +554,21 @@ A line passes through (0, 4) and has a slope of -2. At what x-value does this li
 - E) 4
 
 **answer:** D
-**fastest_path:** y = −2x + 4. At y = 0: x = 4/2 = 2.
-**explanation:** Slope-intercept form: y = mx + b. With m = −2, b = 4: y = −2x + 4. At x-axis, y = 0: 0 = −2x + 4 → x = 2.
-**mistake_a:** Sign error: bubbled −2.
-**mistake_b:** Sign error: −1.
-**mistake_c:** Computed 4 − 2 − 1 wrongly.
-**mistake_e:** Bubbled the y-intercept (4) instead of x-intercept.
-**common_trap:** Bubbling the y-intercept when the question asks for x-intercept (or sign error on slope).
-**takeaway:** y = mx + b. x-intercept: set y = 0 and solve for x.
+**explanation:** Any nonvertical line in the coordinate plane can be written in slope-intercept form, y = mx + b, where m is the slope and b is the y-coordinate of the point at which the line crosses the y-axis. The x-intercept is the x-coordinate of the point at which the line crosses the x-axis, and at every point on the x-axis the y-coordinate equals 0. The method is therefore to determine the equation of the line and then set y = 0 and solve for x.
+
+Let m denote the slope and b denote the y-intercept. We are given that the slope is -2, so m = -2. We are also given that the line passes through (0, 4); because this point has x-coordinate 0, its y-coordinate is the y-intercept, so b = 4. Substituting these values into y = mx + b gives the equation of the line:
+
+y = -2x + 4.
+
+To find the x-intercept, we set y = 0 and solve for x:
+
+0 = -2x + 4.
+
+Adding 2x to both sides yields 2x = 4. Dividing both sides by 2 yields x = 2.
+
+Thus the line crosses the x-axis at x = 2.
+
+The correct answer is D.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -497,18 +590,15 @@ In triangle ABC, is angle A a right angle?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** (1) Pyth converse: AB² + AC² = BC² → angle A = 90°. Sufficient. (2) 2 sides, no third → insufficient. → A.
-**explanation:** Statement (1): AB² + AC² = BC². This is the converse of the Pythagorean theorem — if true, then angle A (opposite the longest side BC) is 90°. Sufficient.
+**explanation:** This is a data sufficiency question, so the task is to determine, for each statement, whether the information given settles the question "Is angle A a right angle?" with a definite yes or a definite no. The governing principle is the Pythagorean theorem together with its converse: in a triangle with sides a, b, and c, the angle opposite side c is a right angle if and only if a² + b² = c². In triangle ABC, the angle at vertex A is opposite side BC, while sides AB and AC are the two sides adjacent to A.
 
-Statement (2): AB = 3 and AC = 4 — gives two sides but no information about BC or the angle. Could be a 3-4-5 right triangle (yes) or 3-4-6 (no). Insufficient.
+Statement (1): The side lengths satisfy AB² + AC² = BC². By the converse of the Pythagorean theorem, the equality of the sum of the squares of two sides with the square of the third side forces the angle opposite that third side to be a right angle. Here the two squared sides are AB and AC, and the squared third side is BC, so the angle opposite BC, which is angle A, must measure 90 degrees. This holds for every triangle whose sides obey the given equation, so the answer to the question is a definite yes. Statement (1) is sufficient.
 
-→ A.
-**mistake_b:** Concluded only Statement 2 sufficient (assumed 3-4-5 triangle).
-**mistake_c:** Required both statements.
-**mistake_d:** Concluded each alone sufficient.
-**mistake_e:** Concluded together insufficient.
-**common_trap:** Assuming 3 and 4 imply a 3-4-5 right triangle. Without info on the third side or the angle, BC could be any value satisfying the triangle inequality.
-**takeaway:** Pythagorean *converse*: if a² + b² = c² for the three sides, then the triangle is right-angled at the vertex opposite c. Don't assume from individual side lengths without the equation.
+Statement (2): AB = 3 and AC = 4. This fixes the two sides adjacent to angle A but provides no information about BC or about the measure of angle A itself. Let BC = x. The triangle inequality permits any x with 1 < x < 7, and the angle at A varies continuously with x. If x = 5, then AB² + AC² = 9 + 16 = 25 = 5² = BC², so angle A is 90 degrees and the answer is yes. If instead x = 6, then AB² + AC² = 9 + 16 = 25, while BC² = 36, and since 25 is not equal to 36, angle A is not 90 degrees and the answer is no. Because both a yes case and a no case are possible, statement (2) does not settle the question. Statement (2) is not sufficient.
+
+Since statement (1) alone is sufficient and statement (2) alone is not sufficient, the credited response is the choice indicating that statement (1) alone suffices but statement (2) alone does not.
+
+The correct answer is A.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -530,20 +620,15 @@ What is the area of rectangle ABCD?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** (1) L²+W²=100. (2) L+W=14. Square (2): (L+W)²=196=L²+2LW+W²=100+2LW → LW=48. → C.
-**explanation:** Let the rectangle's sides be L and W; the area we want is LW. Each statement gives one equation in two unknowns — neither alone pins both sides — but together they yield the *product* via the squared-sum identity.
+**explanation:** The governing method is to recognize that the area of a rectangle is the product of its two side lengths, and that this product can be obtained from a sum and a sum of squares by means of the algebraic identity (L + W)^2 = L^2 + 2LW + W^2. We let L and W denote the length and width of rectangle ABCD, so the area sought is LW. A single linear or quadratic equation in the two unknowns L and W does not by itself determine the value of LW.
 
-Statement (1): diagonal L² + W² = 100. Multiple (L, W) pairs satisfy. Insufficient.
+Statement (1) states that diagonal AC has length 10. By the Pythagorean theorem applied to the right triangle formed by two adjacent sides and the diagonal, L^2 + W^2 = 10^2 = 100. This is one equation in two unknowns, and infinitely many pairs (L, W) satisfy it while producing different products. For instance, L^2 + W^2 = 100 is consistent with both (6, 8), giving LW = 48, and with (sqrt 50, sqrt 50), giving LW = 50. Statement (1) alone is not sufficient.
 
-Statement (2): perimeter 2(L + W) = 28 → L + W = 14. Multiple pairs satisfy. Insufficient.
+Statement (2) states that the perimeter of the rectangle is 28. Since the perimeter equals 2(L + W), we have 2(L + W) = 28, hence L + W = 14. This too is one equation in two unknowns, satisfied by many pairs with different products; for example, (4, 10) gives LW = 40 while (7, 7) gives LW = 49. Statement (2) alone is not sufficient.
 
-Together: square the sum: (L + W)² = L² + 2LW + W² = 196. Substitute: 100 + 2LW = 196 → LW = 48. Sufficient.
-**mistake_a:** Concluded only Statement 1 sufficient.
-**mistake_b:** Concluded only Statement 2 sufficient.
-**mistake_d:** Concluded each alone sufficient.
-**mistake_e:** Concluded together insufficient.
-**common_trap:** Missing the squared-sum trick that combines two facts into the product LW.
-**takeaway:** When given L² + W² and L + W, square the sum to unlock 2LW. (L + W)² − (L² + W²) = 2LW.
+Taking the two statements together, we have both L^2 + W^2 = 100 and L + W = 14. Squaring the second equation gives (L + W)^2 = 14^2 = 196. Expanding the left side yields L^2 + 2LW + W^2 = 196. Substituting L^2 + W^2 = 100 produces 100 + 2LW = 196, so 2LW = 96 and therefore LW = 48. The area is uniquely determined, so both statements together are sufficient, although neither alone is sufficient.
+
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 
@@ -563,14 +648,17 @@ In the xy-plane, line ℓ passes through the point (2, 5) and is perpendicular t
 - E) 13/3
 
 **answer:** A
-**fastest_path:** Original slope = −3/4. Perp slope = 4/3. Through (2,5): b = 5 − (4/3)(2) = 7/3.
-**explanation:** Rewrite 3x + 4y = 20 → y = −(3/4)x + 5. Slope = −3/4. Perpendicular slope = negative reciprocal = 4/3. Line ℓ: y − 5 = (4/3)(x − 2) → y = (4/3)x − 8/3 + 5 = (4/3)x + 7/3. y-intercept = 7/3.
-**mistake_b:** Computed perpendicular slope wrong: 5/3.
-**mistake_c:** Bubbled 3 (the value of b in the original line, or 5 − 8/3 wrong).
-**mistake_d:** Computed 4(5) − 8 = 12 − 1 = 11, then divided by 3.
-**mistake_e:** Computed 13/3 from wrong arithmetic.
-**common_trap:** Reusing the original slope (−3/4) instead of the perpendicular's negative reciprocal (4/3).
-**takeaway:** To find perpendicular line: take negative reciprocal of original slope. Use point-slope form: y − y₀ = m(x − x₀), then convert to slope-intercept to read off b.
+**explanation:** The slope of a line written in the form ax + by = c can be found by solving for y, and two nonvertical lines are perpendicular exactly when the slope of one is the negative reciprocal of the slope of the other. Once a slope and a point on a line are known, the point-slope form y - y0 = m(x - x0) determines the line, and converting to slope-intercept form y = mx + b reveals the y-intercept b.
+
+First, rewrite the given line 3x + 4y = 20 in slope-intercept form. Subtracting 3x from both sides gives 4y = -3x + 20, and dividing by 4 gives y = -(3/4)x + 5. The slope of the given line is therefore -3/4.
+
+Let m denote the slope of line l. Because line l is perpendicular to the given line, m is the negative reciprocal of -3/4, so m = 4/3.
+
+Line l passes through the point (2, 5). Substituting into the point-slope form gives y - 5 = (4/3)(x - 2). Expanding the right side gives y - 5 = (4/3)x - 8/3. Adding 5 to both sides gives y = (4/3)x - 8/3 + 5. Writing 5 as 15/3, the constant term becomes -8/3 + 15/3 = 7/3, so y = (4/3)x + 7/3.
+
+The y-intercept of line l is the constant term 7/3.
+
+The correct answer is A.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -589,14 +677,31 @@ A rectangle has two sides on the legs of a right triangle with legs of length 6 
 - E) 24
 
 **answer:** B
-**fastest_path:** Max inscribed rectangle = half triangle area = (1/2)(24) = 12.
-**explanation:** Triangle area = (1/2)(6)(8) = 24. Max inscribed rectangle of this configuration always equals *half the triangle's area*: 12. Verify: hypotenuse satisfies 4x + 3y = 24. Area xy = x(24 − 4x)/3, maximized at x = 3 → y = 4 → area = 12.
-**mistake_a:** Computed 6 + 4 = 10.
-**mistake_c:** Computed (legs/2) × 2 = 16.
-**mistake_d:** Bubbled an arithmetic-slip value.
-**mistake_e:** Bubbled the half of the legs' product = 24, the triangle's area.
-**common_trap:** Bubbling the triangle's area or some other characteristic value rather than the maximized rectangle area.
-**takeaway:** Max inscribed rectangle (right angle at vertex of right triangle) = half the triangle's area. Memorize this identity.
+**explanation:** The area of a rectangle is the product of its two adjacent side lengths, so the task is to maximize this product subject to the constraint that one vertex lies on the hypotenuse of the triangle. The standard method is to express one dimension in terms of the other using the equation of the hypotenuse, write the area as a function of a single variable, and then locate the maximum of that function.
+
+Place the right angle at the origin with the legs along the coordinate axes, the leg of length 8 along the x-axis and the leg of length 6 along the y-axis. Then the triangle has vertices at (0, 0), (8, 0), and (0, 6). The rectangle has two sides on the legs, so its corner at the origin lies at (0, 0) and its sides run along the axes. Let x be the length of the side along the x-axis and let y be the length of the side along the y-axis, so the vertex opposite the origin is the point (x, y), and this is the vertex that lies on the hypotenuse.
+
+The hypotenuse joins (8, 0) and (0, 6), so it satisfies the intercept equation x/8 + y/6 = 1. Multiplying through by 24 gives 3x + 4y = 24. Solving for y yields
+
+y = (24 - 3x)/4.
+
+The area of the rectangle is therefore
+
+A = xy = x * (24 - 3x)/4 = (24x - 3x^2)/4.
+
+This is a downward-opening quadratic in x, so its maximum occurs at the vertex of the parabola. The expression 24x - 3x^2 = -3x^2 + 24x reaches its maximum at
+
+x = -24/(2 * -3) = 24/6 = 4.
+
+Substituting x = 4 gives
+
+y = (24 - 3 * 4)/4 = (24 - 12)/4 = 12/4 = 3.
+
+The maximum area is then
+
+A = xy = 4 * 3 = 12.
+
+The correct answer is B.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 
@@ -616,14 +721,21 @@ In triangle ABC, points D and E lie on sides AB and AC respectively such that li
 - E) 48
 
 **answer:** B
-**fastest_path:** Linear ratio 1/3 → area ratio (1/3)² = 1/9. Area = 108/9 = 12.
-**explanation:** DE ∥ BC → △ADE ~ △ABC. Linear ratio = AD/AB = 4/12 = 1/3. Areas scale as the *square* of the linear ratio: (1/3)² = 1/9. Area of △ADE = 108 × 1/9 = 12.
-**mistake_a:** Computed 108/12 = 9 (used wrong divisor).
-**mistake_c:** Computed 108 × (1/3) × something = 24.
-**mistake_d:** Used linear ratio directly: 108/3 = 36.
-**mistake_e:** Used 108/(some function of side ratios) wrongly.
-**common_trap:** Using linear ratio directly for area instead of squaring it.
-**takeaway:** Similar triangles: linear ratio k → area ratio k². For DE ∥ BC, ratio = AD/AB; area scales as (AD/AB)².
+**explanation:** When a line is drawn parallel to one side of a triangle, it creates a smaller triangle that is similar to the original, and the ratio of the areas of two similar triangles equals the square of the ratio of any pair of corresponding sides.
+
+Because DE is parallel to BC, triangle ADE is similar to triangle ABC. Let k denote the ratio of corresponding sides, taken between the smaller triangle ADE and the larger triangle ABC. The sides AD and AB correspond, so
+
+k = AD/AB = 4/12 = 1/3.
+
+Since the areas of similar triangles are in the ratio of the squares of their corresponding sides,
+
+(area of ADE)/(area of ABC) = k^2 = (1/3)^2 = 1/9.
+
+The area of triangle ABC is 108, so
+
+area of ADE = (1/9)(108) = 12.
+
+The correct answer is B.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 
@@ -643,14 +755,13 @@ In a circle with center O, chord AB subtends a central angle (the angle ∠AOB a
 - E) 160°
 
 **answer:** B
-**fastest_path:** Inscribed = central / 2 = 80/2 = 40°.
-**explanation:** Inscribed-angle theorem: an inscribed angle is half the central angle that subtends the same arc. Inscribed = 80°/2 = 40°.
-**mistake_a:** Computed 80/4 = 20°.
-**mistake_c:** Bubbled 50° (off-by-one or wrong fraction).
-**mistake_d:** Bubbled the central angle (80°) — confused which is asked.
-**mistake_e:** Bubbled 2 × central = 160° (inverse of the rule).
-**common_trap:** Inverting the rule (multiplying by 2 instead of dividing).
-**takeaway:** Inscribed angle = (1/2) × central angle when both subtend the same arc. Central is twice inscribed.
+**explanation:** This problem is governed by the inscribed-angle theorem, which states that an inscribed angle is half of the central angle that subtends the same arc. Here both the central angle and the inscribed angle subtend chord AB and its associated minor arc.
+
+Let c denote the central angle and let i denote the inscribed angle measured from a point on the major arc, both subtending chord AB. We are given that c = 80 degrees. The inscribed-angle theorem gives the relationship i = c / 2.
+
+Substituting the given value, we have i = 80 / 2 = 40 degrees.
+
+The correct answer is B.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -672,20 +783,15 @@ In a plane, lines l and m are cut by transversal t. Are lines l and m parallel?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**fastest_path:** (1) Co-interior sum = 180° → parallel (converse). (2) Alt interior equal → parallel (converse). Each alone → D.
-**explanation:** Both statements are converses of standard parallel-line theorems.
+**explanation:** This question asks whether lines l and m, cut by transversal t, are parallel. The governing principle is the set of converse parallel-line criteria: a single relationship among the angles a transversal forms with two lines can guarantee that the lines are parallel. A statement is sufficient if it determines a definite yes-or-no answer to the question.
 
-Statement (1): co-interior (same-side interior) angles sum to 180° → lines are parallel. Sufficient.
+Consider Statement (1). Let the two co-interior (same-side interior) angles be a and b, and suppose a + b = 180. By the converse of the Co-Interior Angles Theorem, if a pair of same-side interior angles formed by a transversal is supplementary, then the two lines cut by the transversal are parallel. Hence a + b = 180 forces lines l and m to be parallel, yielding a definite answer of yes. Statement (1) alone is sufficient.
 
-Statement (2): alternate interior angles equal → lines are parallel. Sufficient.
+Consider Statement (2). Let the two alternate interior angles each measure 65 degrees, so they are equal. By the converse of the Alternate Interior Angles Theorem, if a pair of alternate interior angles formed by a transversal is equal, then the two lines cut by the transversal are parallel. Hence equal alternate interior angles force lines l and m to be parallel, again yielding a definite answer of yes. Statement (2) alone is sufficient.
 
-Each alone is a textbook parallel-lines test → D.
-**mistake_a:** Concluded only Statement 1 sufficient.
-**mistake_b:** Concluded only Statement 2 sufficient.
-**mistake_c:** Required both statements (treated each as partial info).
-**mistake_e:** Concluded together insufficient.
-**common_trap:** Not knowing the parallel-line criteria from converses.
-**takeaway:** Parallel-line tests (any one suffices): corresponding angles equal; alternate interior angles equal; alternate exterior angles equal; co-interior angles sum to 180°.
+Because each statement alone establishes that lines l and m are parallel, each statement alone is sufficient.
+
+The correct answer is D.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 
@@ -705,14 +811,33 @@ In triangle ABC, AB = AC and the measure of angle ABC is 75°. What is the measu
 - E) 75°
 
 **answer:** B
-**fastest_path:** Isoceles AB=AC → ∠B = ∠C = 75°. ∠A = 180 − 150 = 30°.
-**explanation:** AB = AC → isoceles triangle. Base angles (at B and C) are equal: ∠ABC = ∠ACB = 75°. Sum of angles = 180°, so ∠BAC = 180 − 75 − 75 = 30°.
-**mistake_a:** Off by 15°.
-**mistake_c:** Computed 180 − 75 − 60 = 45 (used wrong base angle).
-**mistake_d:** Treated as equilateral; bubbled 60.
-**mistake_e:** Bubbled the same as the given base angle (75°).
-**common_trap:** Treating isoceles as equilateral (all three angles 60°) or as equilateral with the given angle.
-**takeaway:** Isoceles triangle: equal sides → equal opposite angles. Sum of all three = 180°.
+**explanation:** In any triangle, the three interior angles sum to 180 degrees, and the Isosceles Triangle Theorem states that the angles opposite two equal sides are themselves equal. We are told that AB = AC, so triangle ABC is isosceles with the two equal sides being AB and AC.
+
+Let x equal the measure of angle BAC, the angle we wish to find. The angle opposite side AB is angle ACB, and the angle opposite side AC is angle ABC. Because the sides opposite them are equal, these two base angles are equal:
+
+measure of angle ABC = measure of angle ACB.
+
+We are given that the measure of angle ABC is 75 degrees, so the measure of angle ACB is also 75 degrees.
+
+Applying the fact that the interior angles sum to 180 degrees:
+
+measure of angle BAC + measure of angle ABC + measure of angle ACB = 180.
+
+Substituting the known values gives
+
+x + 75 + 75 = 180.
+
+Combining the constants yields
+
+x + 150 = 180,
+
+and subtracting 150 from both sides gives
+
+x = 30.
+
+Therefore the measure of angle BAC is 30 degrees.
+
+The correct answer is B.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -734,20 +859,17 @@ Is quadrilateral ABCD (vertices labeled in order around the perimeter) a paralle
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**fastest_path:** (1) Opposite sides equal → parallelogram (theorem). (2) Diagonals bisect → parallelogram (theorem). Each alone → D.
-**explanation:** Both statements are standard parallelogram criteria.
+**explanation:** This is a data sufficiency question, so the task is to determine whether each statement, alone or in combination, provides enough information to decide whether quadrilateral ABCD, with its vertices labeled consecutively around the perimeter, is a parallelogram. The relevant principle is that a quadrilateral can be proven to be a parallelogram by any one of several equivalent criteria; among these, two standard theorems are decisive here: a quadrilateral in which both pairs of opposite sides are equal in length is a parallelogram, and a quadrilateral whose diagonals bisect each other is a parallelogram.
 
-(1) Both pairs of opposite sides equal (AB = CD and AD = BC) → parallelogram. Sufficient.
+Let the quadrilateral be ABCD with sides AB, BC, CD, and DA, and with diagonals AC and BD.
 
-(2) Diagonals bisect each other → parallelogram. Sufficient.
+Consider statement (1): AB = CD and AD = BC. This asserts that both pairs of opposite sides have equal length. By the theorem that a quadrilateral with both pairs of opposite sides equal is a parallelogram, ABCD must be a parallelogram. The question can therefore be answered with a definite yes, so statement (1) alone is sufficient.
 
-Each alone → D.
-**mistake_a:** Concluded only Statement 1 sufficient.
-**mistake_b:** Concluded only Statement 2 sufficient.
-**mistake_c:** Required both.
-**mistake_e:** Concluded together insufficient.
-**common_trap:** Not knowing the parallelogram criteria as standalone tests.
-**takeaway:** Parallelogram tests (any one suffices for convex quadrilateral): both pairs opposite sides equal; both pairs opposite sides parallel; diagonals bisect each other; one pair both equal AND parallel.
+Consider statement (2): the diagonals AC and BD bisect each other. This means the two diagonals intersect at a point that is the midpoint of each. By the theorem that a quadrilateral whose diagonals bisect each other is a parallelogram, ABCD must be a parallelogram. The question can again be answered with a definite yes, so statement (2) alone is sufficient.
+
+Since each statement alone is sufficient to determine that ABCD is a parallelogram, neither statement is needed to support the other.
+
+The correct answer is D.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -766,14 +888,20 @@ A closed cylindrical tank has a radius of 5 feet and a height of 12 feet. What i
 - E) 240π
 
 **answer:** C
-**fastest_path:** SA = 2πr² + 2πrh = 50π + 120π = 170π.
-**explanation:** Cylinder total surface area = 2 × (circular end) + lateral surface = 2πr² + 2πrh. Plug in: 2π(25) + 2π(5)(12) = 50π + 120π = 170π.
-**mistake_a:** Bubbled lateral surface only: 2πrh = 120π.
-**mistake_b:** Computed 2πr² + 2πr(h−2) = 140π (mismatched height).
-**mistake_d:** Off-by-one in computation; got 190π.
-**mistake_e:** Doubled lateral: 240π.
-**common_trap:** Bubbling lateral surface (without the two circular ends) or summing wrong.
-**takeaway:** Closed cylinder total surface = 2πr² (two circular ends) + 2πrh (lateral). Open-top: subtract one πr².
+**explanation:** The total surface area of a closed (right circular) cylinder is the sum of its lateral surface area and the areas of its two circular ends. The lateral surface, when unrolled, forms a rectangle whose width equals the circumference of the base, 2πr, and whose height equals the height of the cylinder, h; its area is therefore 2πrh. Each circular end has area πr², and there are two of them, contributing 2πr². Hence the total surface area is given by 2πr² + 2πrh.
+
+Let r denote the radius and h denote the height of the tank. We are given r = 5 feet and h = 12 feet.
+
+We first compute the area of the two circular ends:
+2πr² = 2π(5)² = 2π(25) = 50π.
+
+Next we compute the lateral surface area:
+2πrh = 2π(5)(12) = 120π.
+
+Adding these two quantities gives the total surface area:
+50π + 120π = 170π.
+
+The correct answer is C.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 
@@ -796,18 +924,17 @@ In a plane, line l and line m intersect at point P, and line n also passes throu
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**fastest_path:** (1) Bisection only (no number). (2) n-m = 35° (no l-m). Together: l-n = n-m = 35°, so l-m = 70°. → C.
-**explanation:** Statement (1) only: bisection without a numerical angle. Insufficient.
+**explanation:** The governing principle is that an angle bisector divides an angle into two equal parts, so a full angle can be determined when one of its two equal halves is known. The question asks for the measure of the angle formed at P by lines l and m.
 
-Statement (2) only: angle between n and m is 35°, but says nothing about l. Insufficient.
+Let a denote the measure of the angle between lines l and m. Determining a requires a numerical value.
 
-Together: n bisects the l-m angle, so the angle between n and l equals the angle between n and m = 35°. l-m angle = 35° + 35° = 70°. Sufficient.
-**mistake_a:** Concluded only Statement 1 sufficient.
-**mistake_b:** Concluded only Statement 2 sufficient.
-**mistake_d:** Concluded each alone sufficient.
-**mistake_e:** Concluded together insufficient.
-**common_trap:** Treating one statement as enough by itself.
-**takeaway:** Angle bisector + measured half-angle = full angle. Each individual fact insufficient; combined they pin down the angle.
+Consider Statement (1) alone. We are told only that line n bisects one of the angles formed by lines l and m. This establishes that the angle between n and l equals the angle between n and m, but it supplies no numerical measure. The angle a could be 60 degrees, 70 degrees, or any other value, with n simply splitting it in half. Statement (1) alone is not sufficient.
+
+Consider Statement (2) alone. We are told that the acute angle between line n and line m measures 35 degrees. This describes the position of n relative to m, but it imposes no constraint relating n to l, and so it tells us nothing about the angle between l and m. The angle a could take many values. Statement (2) alone is not sufficient.
+
+Consider both statements together. From Statement (1), line n bisects the angle between l and m, so the angle between n and l equals the angle between n and m. From Statement (2), the angle between n and m is 35 degrees. Therefore the angle between n and l is also 35 degrees. Adding the two equal halves gives the full angle between l and m: a = 35 + 35 = 70 degrees. The angle is uniquely determined, so both statements together are sufficient.
+
+Since neither statement alone is sufficient but the two together are sufficient, the correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -826,14 +953,27 @@ A square is inscribed in a circle of radius 6. What is the area of the square?
 - E) 144
 
 **answer:** B
-**fastest_path:** Diagonal = 2r = 12. Area = d²/2 = 144/2 = 72.
-**explanation:** Square inscribed in circle: diagonal = circle's diameter = 2 × 6 = 12. Square area = (diagonal)²/2 = 144/2 = 72. (Verify via the side: s = 12/√2 = 6√2, so s² = (6√2)² = 36 × 2 = 72. Same answer.)
-**mistake_a:** Bubbled r² = 36 — used the radius as a side length instead of as half the diagonal. The radius and the side aren't equal; the side is r√2.
-**mistake_c:** Averaged d² and r²: (144 + 36)/2 = 90, then nudged down to 84 from rough arithmetic. The right shortcut is d²/2, not (d² + r²)/2.
-**mistake_d:** Computed (3/2) × 72 = 108 — over-corrected by adding a "rotation" factor that doesn't exist. The clean path: d²/2 = 72.
-**mistake_e:** Bubbled d² = 144 — forgot the /2 step. The diagonal squared equals *twice* the square's area, not the area itself.
-**common_trap:** Using diameter as the side length instead of the diagonal. The diagonal of the inscribed square equals the diameter, which gives s = d/√2, not s = d.
-**takeaway:** Square inscribed in circle: diagonal = diameter. Area = (diagonal)²/2 = (2r)²/2 = 2r².
+**explanation:** When a square is inscribed in a circle, all four vertices of the square lie on the circle, and the square's diagonal passes through the center of the circle. Consequently, the diagonal of the square is equal to the diameter of the circle. We use this relationship, together with the fact that the area of a square can be expressed in terms of its diagonal, to determine the area.
+
+Let r denote the radius of the circle, so r = 6. Let d denote the length of the diagonal of the square. Since the diagonal equals the diameter, we have
+
+d = 2r = 2(6) = 12.
+
+For any square, the diagonal d and the side length s are related by the Pythagorean theorem applied to the right triangle formed by two sides and the diagonal:
+
+d^2 = s^2 + s^2 = 2s^2.
+
+The area of the square is s^2, so solving for s^2 gives
+
+s^2 = d^2 / 2.
+
+Substituting d = 12 yields
+
+s^2 = 12^2 / 2 = 144 / 2 = 72.
+
+Thus the area of the square is 72.
+
+The correct answer is B.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 
@@ -853,14 +993,21 @@ A triangle has vertices at (0, 0), (6, 0), and (0, 4). What is the length of the
 - E) 10
 
 **answer:** A
-**fastest_path:** Legs 6 and 4 → hyp = √(36+16) = √52 = 2√13.
-**explanation:** Right triangle at origin with legs 6 (x-axis) and 4 (y-axis). Pythagorean: √(6² + 4²) = √(36 + 16) = √52 = √(4 × 13) = 2√13.
-**mistake_b:** Computed √(40) = 2√10 (used 6² − 16 wrongly).
-**mistake_c:** Bubbled the horizontal leg (6).
-**mistake_d:** Bubbled the vertical leg + 4 = 8 (or some sum).
-**mistake_e:** Added legs: 6 + 4 = 10.
-**common_trap:** Adding legs instead of applying Pythagorean theorem; or simplifying √52 incorrectly.
-**takeaway:** Triangles with right angle at origin and legs along axes: legs are the coordinate values; hypotenuse via Pythagorean. Simplify radicals: √52 = 2√13.
+**explanation:** The length of the hypotenuse of a right triangle can be found using the Pythagorean theorem, which states that the square of the hypotenuse equals the sum of the squares of the two legs.
+
+Let the vertices be A = (0, 0), B = (6, 0), and C = (0, 4). The side AB lies along the x-axis and the side AC lies along the y-axis. Because the x-axis and the y-axis are perpendicular, the angle at vertex A is a right angle, so the triangle is a right triangle with its right angle at the origin. The two legs are therefore AB and AC, and the hypotenuse is the side BC opposite the right angle.
+
+The length of leg AB is the distance from (0, 0) to (6, 0), which is 6. The length of leg AC is the distance from (0, 0) to (0, 4), which is 4.
+
+Applying the Pythagorean theorem to find the hypotenuse BC, we have
+
+BC = √(6² + 4²) = √(36 + 16) = √52.
+
+We simplify the radical by factoring out the largest perfect square: 52 = 4 × 13, so
+
+BC = √(4 × 13) = √4 × √13 = 2√13.
+
+The correct answer is A.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -882,16 +1029,15 @@ Are triangles ABC and DEF congruent?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
-**fastest_path:** (1) SSS → congruent. (2) Perimeters equal but shapes can differ. → A.
-**explanation:** Statement (1): all three side-length correspondences (AB = DE, BC = EF, AC = DF) → SSS congruence theorem applies → triangles are congruent. Sufficient.
+**explanation:** Two triangles are congruent when a recognized congruence criterion is satisfied; the relevant criterion here is Side-Side-Side (SSS), which states that if the three sides of one triangle are equal in length to the three corresponding sides of another triangle, the two triangles are congruent. Each statement must be evaluated to determine whether it forces a definite "yes" or "no" answer to the question of whether triangles ABC and DEF are congruent.
 
-Statement (2): equal perimeters don't imply congruence. Counterexample: (3, 4, 5) and (2, 5, 5) both have perimeter 12 but are not congruent. Insufficient.
-**mistake_b:** Concluded only Statement 2 sufficient.
-**mistake_c:** Required both statements.
-**mistake_d:** Concluded each alone sufficient.
-**mistake_e:** Concluded together insufficient.
-**common_trap:** Thinking "equal perimeters" implies congruence — only the sum is constrained, not individual sides.
-**takeaway:** Triangle congruence: SSS, SAS, ASA, AAS (specific side/angle correspondences). Perimeter alone is not a congruence test.
+Let the sides of triangle ABC be AB, BC, and AC, and let the corresponding sides of triangle DEF be DE, EF, and DF.
+
+Consider Statement (1). We are told that AB = DE, BC = EF, and AC = DF. The three sides of triangle ABC are therefore equal to the three corresponding sides of triangle DEF. By the SSS congruence criterion, the two triangles must be congruent. The answer to the question is a definite "yes," so Statement (1) alone is sufficient.
+
+Consider Statement (2). We are told that the perimeters of the two triangles are equal. Equality of perimeters constrains only the sum of the three side lengths, not the individual side lengths, so it does not determine the shape of either triangle. To show this, let triangle ABC have sides 3, 4, and 5, giving a perimeter of 3 + 4 + 5 = 12, and let triangle DEF have sides 2, 5, and 5, giving a perimeter of 2 + 5 + 5 = 12. The perimeters are equal, yet the side lengths differ, so the triangles are not congruent. By contrast, two triangles each with sides 4, 4, and 4 also have perimeter 12 and are congruent. The same perimeter therefore permits both a "yes" and a "no" answer, so Statement (2) alone is not sufficient.
+
+The correct answer is A.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 
@@ -911,16 +1057,21 @@ A circular garden has a radius of 10 meters. A concentric circular walkway of un
 - E) 144π m²
 
 **answer:** C
-**fastest_path:** Annulus = π(R² − r²) = π(144 − 100) = 44π.
-**explanation:** Walkway = ring (annulus) between two circles. Outer radius = 10 + 2 = 12. Walkway area = π(R² − r²) = π(12² − 10²) = π(144 − 100) = 44π.
+**explanation:** The area of a circular ring, or annulus, bounded by two concentric circles equals the area of the larger circle minus the area of the smaller circle. For a circle of radius t, the area is πt², so the area of the ring is π(R² − r²), where R is the outer radius and r is the inner radius.
 
-Use the difference-of-squares shortcut: (12² − 10²) = (12 + 10)(12 − 2) = 22 × 2 = 44.
-**mistake_a:** Computed 2 × 10 = 20π wrongly.
-**mistake_b:** Computed 4 × 10 = 40π.
-**mistake_d:** Bubbled inner area only: π × 100 = 100π.
-**mistake_e:** Bubbled outer area only: π × 144 = 144π.
-**common_trap:** Bubbling the area of one circle (inner or outer) instead of the difference (annulus).
-**takeaway:** Annulus area = π(R² − r²). Difference-of-squares: (R² − r²) = (R + r)(R − r). For width-w walkway: R − r = w.
+Let r denote the radius of the garden and R denote the outer radius of the walkway. The garden has radius r = 10 meters. Because the walkway has uniform width 2 meters and surrounds the garden, its outer radius exceeds the garden radius by 2 meters: R = 10 + 2 = 12 meters.
+
+The walkway is precisely the ring lying between the circle of radius 10 and the concentric circle of radius 12. Its area is therefore
+
+π(R² − r²) = π(12² − 10²).
+
+Computing the squares gives 12² = 144 and 10² = 100, so
+
+π(144 − 100) = 44π.
+
+The area of the walkway is 44π square meters.
+
+The correct answer is C.
 **related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
 
 ---
@@ -942,18 +1093,15 @@ A triangle has side lengths 5, 8, and n, where n is a positive integer. What is 
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**fastest_path:** Triangle inequality 3 < n < 13. (1) n > 4. (2) n < 12. Together: 4 < n < 12 → 7 values. → E.
-**explanation:** Triangle inequality: |5 − 8| < n < 5 + 8, i.e., 3 < n < 13. With n a positive integer: n ∈ {4, 5, ..., 12}.
+**explanation:** The governing principle is the triangle inequality, which states that for any triangle the length of each side must be greater than the positive difference of the other two sides and less than their sum. The question asks for the unique value of the positive integer n.
 
-Statement (1): n > 4 → n ∈ {5, 6, ...}. With triangle constraint: {5, 6, ..., 12}. 8 values. Insufficient.
+Let the three side lengths be 5, 8, and n. Applying the triangle inequality to the side of length n yields the bound |8 - 5| < n < 8 + 5, which simplifies to 3 < n < 13. Because n is a positive integer, the permissible values are n = 4, 5, 6, 7, 8, 9, 10, 11, and 12. Determining the value of n therefore requires narrowing this set to a single member.
 
-Statement (2): n < 12 → n ∈ {..., 11}. With triangle constraint: {4, 5, ..., 11}. 8 values. Insufficient.
+Consider Statement (1): n > 4. Combined with the triangle inequality, this restricts n to the values 5, 6, 7, 8, 9, 10, 11, and 12. Several values remain possible, so a unique value of n cannot be determined. Statement (1) alone is not sufficient.
 
-Together: 4 < n < 12 → n ∈ {5, 6, 7, 8, 9, 10, 11}. 7 values. Still not unique. → E.
-**mistake_a:** Concluded only Statement 1 sufficient.
-**mistake_b:** Concluded only Statement 2 sufficient.
-**mistake_c:** Required both, missing that combined still leaves multiple values.
-**mistake_d:** Concluded each alone sufficient.
-**common_trap:** Assuming the triangle inequality plus both bounds pins down a single value — it narrows the range but doesn't unique-ify.
-**takeaway:** Triangle inequality: |a − b| < third side < a + b. To pin down a unique side, need narrower bounds than just an open range.
+Consider Statement (2): n < 12. Combined with the triangle inequality, this restricts n to the values 4, 5, 6, 7, 8, 9, 10, and 11. Several values remain possible, so a unique value of n cannot be determined. Statement (2) alone is not sufficient.
+
+Now take both statements together. The two conditions combine to give 4 < n < 12, which permits n = 5, 6, 7, 8, 9, 10, and 11. Seven distinct integer values remain, so even with both statements the value of n is not uniquely determined. The two statements together are not sufficient.
+
+The correct answer is E.
 **related_reading:** reading-di-02-data-sufficiency-logic
