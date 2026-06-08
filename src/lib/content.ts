@@ -335,14 +335,17 @@ function parseQuestionBlock(
           if (eqIdx === -1) continue
           const value = part.slice(eqIdx + 1).trim().replace(/^["']|["']$/g, "")
           const normalizedValue = value.toLowerCase()
-          const rowIdx = rows.findIndex((row) => {
-            const normalizedRow = row.toLowerCase()
-            return (
-              normalizedRow === normalizedValue ||
-              normalizedRow.startsWith(normalizedValue) ||
-              normalizedValue.startsWith(normalizedRow)
-            )
-          })
+          // Prefer an exact (normalized) row match. Only fall back to prefix
+          // matching when no row equals the value, so that a value like "55"
+          // resolves to the row "55" rather than the row "5" (whose prefix it
+          // shares); likewise "4,000" must not collapse onto "4".
+          let rowIdx = rows.findIndex((row) => row.toLowerCase() === normalizedValue)
+          if (rowIdx === -1) {
+            rowIdx = rows.findIndex((row) => {
+              const normalizedRow = row.toLowerCase()
+              return normalizedRow.startsWith(normalizedValue) || normalizedValue.startsWith(normalizedRow)
+            })
+          }
           if (rowIdx !== -1) correctIndices.push(rowIdx)
         }
         twoPartCorrectAnswers =
