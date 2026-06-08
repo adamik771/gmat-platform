@@ -114,7 +114,7 @@ export default function CoursePage() {
   const included = [
     {
       icon: BookOpen,
-      title: "17 research-backed chapters",
+      title: "Research-backed chapters",
       description:
         "Reading-first curriculum with in-chapter checks and graded problem sets. No video filler — built to be worked through, not watched.",
     },

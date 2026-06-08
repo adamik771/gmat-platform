@@ -65,7 +65,7 @@ const categories: FAQCategory[] = [
       {
         question: "What does the free trial include?",
         answer:
-          "Seven days of full access to everything: the 30-question diagnostic, all 17 chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
+          "Seven days of full access to everything: the 30-question diagnostic, every interactive chapter, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
       },
       {
         question: "Do I need a credit card to start the trial?",
