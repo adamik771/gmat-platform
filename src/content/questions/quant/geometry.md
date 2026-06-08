@@ -855,7 +855,7 @@ A triangle has vertices at (0, 0), (6, 0), and (0, 4). What is the length of the
 **answer:** A
 **fastest_path:** Legs 6 and 4 → hyp = √(36+16) = √52 = 2√13.
 **explanation:** Right triangle at origin with legs 6 (x-axis) and 4 (y-axis). Pythagorean: √(6² + 4²) = √(36 + 16) = √52 = √(4 × 13) = 2√13.
-**mistake_b:** Computed √(40) = 2√10 (used 6² − 16 wrongly).
+**mistake_b:** Computed √40 = 2√10 — added 6² + 4 = 40, forgetting to square the second leg (used 4 instead of 4² = 16).
 **mistake_c:** Bubbled the horizontal leg (6).
 **mistake_d:** Bubbled the vertical leg + 4 = 8 (or some sum).
 **mistake_e:** Added legs: 6 + 4 = 10.
@@ -914,7 +914,7 @@ A circular garden has a radius of 10 meters. A concentric circular walkway of un
 **fastest_path:** Annulus = π(R² − r²) = π(144 − 100) = 44π.
 **explanation:** Walkway = ring (annulus) between two circles. Outer radius = 10 + 2 = 12. Walkway area = π(R² − r²) = π(12² − 10²) = π(144 − 100) = 44π.
 
-Use the difference-of-squares shortcut: (12² − 10²) = (12 + 10)(12 − 2) = 22 × 2 = 44.
+Use the difference-of-squares shortcut: (12² − 10²) = (12 + 10)(12 − 10) = 22 × 2 = 44.
 **mistake_a:** Computed 2 × 10 = 20π wrongly.
 **mistake_b:** Computed 4 × 10 = 40π.
 **mistake_d:** Bubbled inner area only: π × 100 = 100π.
