@@ -63,3 +63,57 @@ export const RC_TYPE_TO_CHAPTER: Record<string, string> = {
   Function: "reading-comprehension-function-attitude",
   "Author's Attitude": "reading-comprehension-function-attitude",
 }
+
+/** Topics that have a sub-type → spoke map (i.e. were split hub-and-spoke). */
+const SUBTYPE_MAPS: Record<string, Record<string, string>> = {
+  "Critical Reasoning": CR_TYPE_TO_CHAPTER,
+  "Reading Comprehension": RC_TYPE_TO_CHAPTER,
+}
+
+/** Concentration threshold: a weakness must be at least this fraction of one
+ *  sub-type before we route the student to that single spoke chapter rather
+ *  than the broader foundations hub. Below it, the hub is the safer entry. */
+const SUBTYPE_CONCENTRATION = 0.6
+
+/**
+ * Resolve the best chapter slug for a weakness.
+ *
+ * Falls back to the topic-level hub (TOPIC_TO_CHAPTER) — which is the prior
+ * behaviour — unless `authoredTypes` (the raw `type:` values of the questions
+ * driving the weakness, from `ParsedQuestion.authoredType`) are concentrated
+ * in a single sub-type that has its own spoke chapter. In that case it returns
+ * the spoke, so a student whose misses cluster on, say, Assumption is sent to
+ * the Assumption chapter instead of the general Critical Reasoning hub.
+ *
+ * Used only for chapter *reading* links. Never use it for drill / practice
+ * slugs: those route through /practice/session/{slug} keyed on the question-
+ * file slug, which the spoke slugs are not — keep those on the hub/topic slug.
+ */
+export function resolveChapterSlug(
+  topic: string,
+  authoredTypes?: string[]
+): string | undefined {
+  const hub = TOPIC_TO_CHAPTER[topic]
+  const subtypeMap = SUBTYPE_MAPS[topic]
+  if (!subtypeMap || !authoredTypes || authoredTypes.length === 0) return hub
+
+  const counts = new Map<string, number>()
+  let mapped = 0
+  for (const t of authoredTypes) {
+    const slug = subtypeMap[t]
+    if (!slug) continue
+    counts.set(slug, (counts.get(slug) ?? 0) + 1)
+    mapped += 1
+  }
+  if (mapped === 0) return hub
+
+  let best: string | undefined
+  let bestN = 0
+  for (const [slug, n] of counts) {
+    if (n > bestN) {
+      best = slug
+      bestN = n
+    }
+  }
+  return best && bestN / mapped >= SUBTYPE_CONCENTRATION ? best : hub
+}

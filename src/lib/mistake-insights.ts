@@ -1,6 +1,6 @@
 import type { MistakeClassification } from "./mistake-classifier"
 import type { ParsedQuestion } from "./content"
-import { TOPIC_TO_CHAPTER } from "./topic-chapter-map"
+import { TOPIC_TO_CHAPTER, resolveChapterSlug } from "./topic-chapter-map"
 import type { Section } from "@/types"
 
 /**
@@ -30,6 +30,10 @@ export interface RecurringWeakness {
   lastSeenMs: number | null
   /** Difficulty distribution of the misses (so we can say "5 Hard misses on this"). */
   byDifficulty: { Beginner: number; Intermediate: number; Advanced: number }
+  /** Resolved chapter reading link — the sub-type spoke when the misses
+   *  concentrate on one Verbal question type, otherwise the topic hub.
+   *  undefined only when the topic has no mapped chapter. */
+  chapterSlug?: string
 }
 
 export interface TrapFrequency {
@@ -125,6 +129,15 @@ export function buildMistakeInsights(
 ): MistakeInsights {
   const { questionsById, attemptTimestamps } = options
 
+  // Authored sub-types ("Strengthen", "Main Idea", …) of the questions
+  // driving a weakness — used to route a Verbal weakness to its sub-type
+  // spoke chapter instead of the broad hub. Empty for topics that weren't
+  // split, so resolveChapterSlug falls back to the hub.
+  const authoredTypesOf = (questionIds: string[]): string[] =>
+    questionIds
+      .map((qid) => questionsById.get(qid)?.authoredType)
+      .filter((t): t is string => Boolean(t))
+
   // ---------- 1. Sub-skill aggregation ----------
   const subskillMap = new Map<
     string,
@@ -173,6 +186,7 @@ export function buildMistakeInsights(
       misses: s.misses,
       lastSeenMs: s.lastSeenMs,
       byDifficulty: s.byDifficulty,
+      chapterSlug: resolveChapterSlug(s.topic, authoredTypesOf(s.questionIds)),
     }))
     .sort((a, b) => b.misses - a.misses)
     .slice(0, 8)
@@ -227,9 +241,14 @@ export function buildMistakeInsights(
   // Subskill-driven — use TOPIC_TO_CHAPTER to route to the right chapter.
   // Pull driving question ids from the same subskill bucket we built above.
   for (const s of recurringWeaknesses) {
-    const slug = TOPIC_TO_CHAPTER[s.topic]
-    if (!slug) continue
+    const hubSlug = TOPIC_TO_CHAPTER[s.topic]
+    if (!hubSlug) continue
     const bucket = subskillMap.get(`${s.section}::${s.subskill}`)
+    // Route to the sub-type spoke when the misses concentrate on one type
+    // (Verbal only); otherwise this resolves back to the hub.
+    const slug =
+      resolveChapterSlug(s.topic, authoredTypesOf(bucket?.questionIds ?? [])) ??
+      hubSlug
     upsertChapter({
       chapterSlug: slug,
       title: s.topic,
@@ -290,7 +309,14 @@ export function buildMistakeInsights(
         : 0
     const hardWeight = s.byDifficulty.Advanced * 4
     const priority = s.misses * 6 + hardWeight + recencyBoost
-    const chapterSlug = TOPIC_TO_CHAPTER[s.topic]
+    // Drill slug must stay the topic/question-file slug (practice routes
+    // through /practice/session/{slug}); only the chapter reading link may
+    // point at a sub-type spoke.
+    const drillSlug = TOPIC_TO_CHAPTER[s.topic]
+    const bucket = subskillMap.get(`${s.section}::${s.subskill}`)
+    const chapterSlug =
+      resolveChapterSlug(s.topic, authoredTypesOf(bucket?.questionIds ?? [])) ??
+      drillSlug
     fixes.push({
       id: `subskill::${s.section}::${s.subskill}`,
       kind: "subskill",
@@ -301,7 +327,7 @@ export function buildMistakeInsights(
           : ""
       }. Read the chapter, then drill at the difficulty that's failing.`,
       chapterSlug,
-      drillSlug: chapterSlug,
+      drillSlug,
       section: s.section,
       misses: s.misses,
       priority,
