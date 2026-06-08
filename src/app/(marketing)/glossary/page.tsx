@@ -182,7 +182,7 @@ export default function GlossaryPage() {
           </h2>
           <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-7 max-w-xl mx-auto">
             Apply them in a structured 12-week plan with the platform.
-            Free diagnostic + 17 chapters + adaptive plan + error log,
+            Free diagnostic + every chapter + adaptive plan + error log,
             all on the trial. No card required.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
