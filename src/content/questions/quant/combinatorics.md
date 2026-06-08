@@ -78,7 +78,7 @@ From a group of 7 candidates, how many ways can a president and a vice-president
 **fastest_path:** 7 choices for president × 6 for VP = 42.
 **explanation:** Distinct roles (president, VP) → order matters → permutation. P(7, 2) = 7 × 6 = 42. Equivalently, 7 ways to fill president, then 6 remaining for VP.
 **mistake_a:** Computed 7 × 2 = 14 (wrong formula).
-**mistake_b:** Computed 7 + 14 (some wrong combination); got 21.
+**mistake_b:** Computed C(7, 2) = 21 — treated the two distinct roles as an unordered selection. President and VP are different positions, so order matters: use P(7, 2) = 42, not C(7, 2) = 21.
 **mistake_d:** Computed 7² = 49 (treated as with-replacement).
 **mistake_e:** Computed 7! = 5040 (counted full arrangement, not just two roles).
 **common_trap:** arrangements-vs-combinations confusion — treating distinct-role assignment as a combination, or computing the full factorial when only k slots are needed.
@@ -126,7 +126,7 @@ A pizza shop offers 8 toppings. How many different 2-topping pizzas are possible
 
 - A) 16
 - B) 28
-- C) 40
+- C) 36
 - D) 56
 - E) 64
 
@@ -134,7 +134,7 @@ A pizza shop offers 8 toppings. How many different 2-topping pizzas are possible
 **fastest_path:** C(8, 2) = (8 × 7)/2 = 28.
 **explanation:** Toppings on a pizza don't have order — pepperoni + mushroom = mushroom + pepperoni. Use combinations: C(8, 2) = (8 × 7)/(2 × 1) = 28.
 **mistake_a:** Computed 8 × 2 = 16 (wrong formula).
-**mistake_c:** Computed 8 + 32 = 40 from a wrong combination.
+**mistake_c:** Computed C(9, 2) = 36 — allowed repeated toppings (a "double" of one topping), i.e. combinations *with* repetition: C(8 + 2 − 1, 2) = 36. A standard 2-topping pizza uses two different toppings, so repetition is not allowed: C(8, 2) = 28.
 **mistake_d:** Computed 8 × 7 = 56 (used permutations, didn't divide by 2!).
 **mistake_e:** Computed 8² = 64 (treated as with-replacement).
 **common_trap:** arrangements-vs-combinations confusion on unordered selections.
@@ -216,11 +216,11 @@ In how many arrangements of the letters in LESSON do the two S's appear next to 
 
 **answer:** B
 **fastest_path:** Glue SS as one block → arrange 5 items → 5! = 120.
-**explanation:** When "must be adjacent," glue them into a single block. The block "SS" plus L, E, O, N = 5 items. Arrange: 5! = 120. The two S's are identical, so no internal ordering of the block adds variation.
-**mistake_a:** Computed 5!/2 = 60 (over-divided).
-**mistake_c:** Computed 6!/3 = 240 (wrong divisor).
-**mistake_d:** Computed 6! × 2/4 = 360.
-**mistake_e:** Computed 6! = 720 (didn't apply the "adjacent" constraint).
+**explanation:** When "must be adjacent," glue them into a single block. The block "SS" plus L, E, O, N = 5 items. Arrange: 5! = 120. The two S's are identical, so no internal ordering of the block adds variation. (For reference, LESSON has 6!/2! = 360 distinct arrangements in total; 120 of those keep the two S's together.)
+**mistake_a:** Computed 5!/2 = 60 — divided the block arrangement by 2 a second time, even though the repeated S's are already inside one fixed block.
+**mistake_c:** Computed 5! × 2 = 240 — treated the two S's inside the block as distinct and multiplied by 2! for their internal order. The S's are identical, so the block has only one internal arrangement: 5! × 1 = 120.
+**mistake_d:** Computed 6!/2! = 360 — the total number of distinct LESSON arrangements, ignoring the "S's adjacent" constraint entirely.
+**mistake_e:** Computed 6! = 720 — ignored the adjacency constraint *and* treated the two identical S's as distinct (the true unconstrained count is 6!/2! = 360, not 720).
 **common_trap:** Forgetting that identical letters within a block don't add internal arrangements.
 **takeaway:** "Must be adjacent" → glue as one block. If the items in the block are *distinct*, multiply by the block's internal arrangements (k!). If *identical*, no multiplication.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -246,7 +246,7 @@ Six people sit in a row of 6 chairs. If Ana and Ben refuse to sit next to each o
 **fastest_path:** Total − adjacent = 6! − (2 × 5!) = 720 − 240 = 480.
 **explanation:** Use the complement. Total arrangements: 6! = 720. Arrangements with Ana and Ben *together* (as a block): 5! × 2 = 240 (5! for block placement, × 2 for AB vs BA). Subtract: 720 − 240 = 480. Direct counting of "not-adjacent" arrangements is much harder.
 **mistake_a:** Computed 6! − 2(6) = 240; under-counted forbidden.
-**mistake_b:** Computed 6! − 2(6!) /something incorrectly; got 360.
+**mistake_b:** Assumed exactly half of the 720 arrangements are non-adjacent: 720 ÷ 2 = 360. But the adjacent count is 5! × 2 = 240 (not 360), so non-adjacent = 720 − 240 = 480.
 **mistake_d:** Computed 6! − 5! = 720 − 120 = 600; forgot the × 2 internal ordering.
 **mistake_e:** Computed 6! = 720 directly without applying the constraint.
 **common_trap:** Forgetting the × 2 internal ordering of the block, or computing direct ("not-adjacent") instead of using the complement.
@@ -273,11 +273,11 @@ From 5 men and 4 women, a committee of 3 must be formed with exactly 2 men and 1
 **answer:** C
 **fastest_path:** C(5, 2) × C(4, 1) = 10 × 4 = 40.
 **explanation:** "Exactly 2 men AND 1 woman" — independent selections, then multiply. C(5, 2) = 10 (pick 2 from 5 men); C(4, 1) = 4 (pick 1 from 4 women). Total = 10 × 4 = 40.
-**mistake_a:** Computed C(5, 2) + C(4, 1) = 14, then doubled to 20.
-**mistake_b:** Computed C(9, 3) − some adjustment = 30.
-**mistake_d:** Computed C(5, 2) × C(4, 2) or other miscombination = 60.
+**mistake_a:** Computed C(5, 1) × C(4, 1) = 5 × 4 = 20 — picked just 1 man and 1 woman, ignoring that 2 men are required (and leaving the 3-seat committee one short).
+**mistake_b:** Computed C(5, 1) × C(4, 2) = 5 × 6 = 30 — swapped the composition to 1 man and 2 women.
+**mistake_d:** Computed C(5, 2) × C(4, 2) = 10 × 6 = 60 — chose 2 women instead of 1 (which fills a 4-person committee, not 3).
 **mistake_e:** Computed C(9, 3) = 84 (didn't apply the constraint).
-**common_trap:** Adding the two combinations instead of multiplying — multiplication captures "AND."
+**common_trap:** Mis-reading the required composition — swapping how many of each type to choose, or under-/over-filling the committee.
 **takeaway:** "Exactly X of type A AND Y of type B" → C(n_A, X) × C(n_B, Y). The "AND" requires both conditions, which means multiplication.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
@@ -384,11 +384,7 @@ From 8 candidates, a committee of 3 is chosen AND one of the three is designated
 
 **answer:** C
 **fastest_path:** Pick chair first (8) × C(7, 2) for rest = 8 × 21 = 168.
-**explanation:** Two equivalent paths.
-(1) Pick the chair first: 8 choices. Then pick 2 more committee members from the remaining 7: C(7, 2) = 21. Total = 8 × 21 = 168.
-(2) Pick 3 of 8 unordered: C(8, 3) = 56. Then designate one of the 3 as chair: 56 × 3 = 168.
-
-Both paths give 168, confirming the logic.
+**explanation:** Two equivalent paths. (1) Pick the chair first: 8 choices; then pick 2 more committee members from the remaining 7: C(7, 2) = 21; total = 8 × 21 = 168. (2) Pick 3 of 8 unordered: C(8, 3) = 56; then designate one of the 3 as chair: 56 × 3 = 168. Both paths give 168, confirming the logic.
 **mistake_a:** Computed C(8, 3) = 56 (forgot to assign the chair role).
 **mistake_b:** Computed 56 × 2 = 112 (off by one in role assignment).
 **mistake_d:** Computed 8 × P(7, 2) = 8 × 42 = 336: chose the chair correctly (8 options) but then ordered the two remaining seats, using P(7, 2) = 7 × 6 = 42 instead of C(7, 2) = 21. The non-chair committee members hold no rank — they form an unordered pair. Ordering slots that carry no distinct role inflates the count by 2! = 2.
@@ -438,18 +434,18 @@ A bag has 6 red marbles and 5 blue marbles. How many ways can 4 marbles be drawn
 
 - A) 100
 - B) 150
-- C) 200
+- C) 265
 - D) 330
 - E) 462
 
 **answer:** B
 **fastest_path:** C(6, 2) × C(5, 2) = 15 × 10 = 150.
 **explanation:** "Exactly 2 red" → also "exactly 2 blue" (since only 4 marbles drawn, and only red/blue available). Choose 2 red from 6: C(6, 2) = 15. Choose 2 blue from 5: C(5, 2) = 10. Multiply (AND): 15 × 10 = 150.
-**mistake_a:** Computed C(6, 2) + C(5, 2) = 25 (added instead of multiplied).
-**mistake_c:** Computed C(6, 4) = 15, then halved or used wrong path; got 200.
-**mistake_d:** Computed C(11, 4) = 330 (no constraint applied).
-**mistake_e:** Computed C(11, 4) and adjusted incorrectly; got 462.
-**common_trap:** Adding instead of multiplying for compound conditions.
+**mistake_a:** Computed C(6, 3) × C(5, 1) = 20 × 5 = 100 — set up 3 red and 1 blue instead of 2 red and 2 blue (over by one red).
+**mistake_c:** Computed "at least 2 red" = exactly 2 + exactly 3 + exactly 4 = 150 + 100 + 15 = 265, instead of exactly 2. The problem asks for exactly 2 red.
+**mistake_d:** Computed C(11, 4) = 330 (no constraint applied — any 4 of the 11 marbles).
+**mistake_e:** Computed C(11, 5) = 462 — drew 5 marbles instead of 4 and ignored the "exactly 2 red" constraint.
+**common_trap:** Solving for the wrong count — "at least 2 red" instead of "exactly 2," or the wrong red/blue split.
 **takeaway:** "Exactly X red AND exactly Y blue" → C(red, X) × C(blue, Y). Always check that X + Y matches the total drawn.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
@@ -522,21 +518,16 @@ A 5-person committee must be selected from a pool of 7 men and 5 women. If the c
 - A) 420
 - B) 560
 - C) 595
-- D) 630
-- E) 756
+- D) 596
+- E) 770
 
 **answer:** C
 **fastest_path:** Decompose by valid gender splits: (2W, 3M) + (3W, 2M) + (4W, 1M) = 350 + 210 + 35 = 595.
-**explanation:** Decompose by gender split (committee = 5 with at least 2W and at least 1M). Valid splits:
-- (2W, 3M): C(5, 2) × C(7, 3) = 10 × 35 = 350
-- (3W, 2M): C(5, 3) × C(7, 2) = 10 × 21 = 210
-- (4W, 1M): C(5, 4) × C(7, 1) = 5 × 7 = 35
-
-(5W, 0M) excluded by "at least 1 man." Total: 350 + 210 + 35 = 595.
+**explanation:** Decompose by gender split (5 seats, at least 2W and at least 1M). Valid splits: (2W, 3M) = C(5, 2) × C(7, 3) = 10 × 35 = 350; (3W, 2M) = C(5, 3) × C(7, 2) = 10 × 21 = 210; (4W, 1M) = C(5, 4) × C(7, 1) = 5 × 7 = 35. The (5W, 0M) split is excluded by "at least 1 man." Total: 350 + 210 + 35 = 595.
 **mistake_a:** Set up the (2W, 3M) case correctly as C(5,2)·C(7,3) = 350, but in the (3W, 2M) case mis-indexed the men's combination as C(7, 1) = 7 instead of C(7, 2) = 21, getting C(5,3)·C(7,1) = 10·7 = 70. Summing those two (and missing the third case entirely) gives 350 + 70 = 420. The committee has 5 seats; with 3 women, exactly 2 men remain — use C(7, 2), not C(7, 1).
-**mistake_b:** Missed (4W, 1M); got 560.
-**mistake_d:** Computed C(12, 5) − some adjustment; got 630.
-**mistake_e:** Computed C(12, 5) − (5W, 0M case) = 792 − 1 = 791... no, more like 756.
+**mistake_b:** Missed the (4W, 1M) case: 350 + 210 = 560 (forgot to add C(5, 4)·C(7, 1) = 35).
+**mistake_d:** Used the complement but forgot the all-women committee: C(12, 5) − C(7, 5) − C(5, 1)·C(7, 4) = 792 − 21 − 175 = 596. The "at least 1 man" rule also removes the single (5W, 0M) committee, giving 596 − 1 = 595.
+**mistake_e:** Used the complement but forgot the one-woman committees: C(12, 5) − C(7, 5) − C(5, 5) = 792 − 21 − 1 = 770. The 175 one-woman committees, C(5, 1)·C(7, 4), must also be subtracted.
 **common_trap:** Missing one of the valid gender-split cases (especially the edge case at the upper bound on women).
 **takeaway:** "At least X of A AND at least Y of B" with limited size: enumerate all valid splits and sum the products. Don't forget edge cases.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -561,13 +552,7 @@ At a conference, every attendee wore a red badge, a blue badge, or both. 40 atte
 
 **answer:** D
 **fastest_path:** Inclusion-exclusion: total = 40 + 30 − |both| = 70 − |both|. Each statement determines |both|, so each alone suffices → D.
-**explanation:** Inclusion-exclusion: total = |R| + |B| − |both| = 70 − |both|.
-
-Statement (1): |both| = 12 → total = 58. Sufficient.
-
-Statement (2): let b = |both|. Only red = 40 − b; only blue = 30 − b. Set 40 − b = 3(30 − b) → 40 − b = 90 − 3b → 2b = 50 → b = 25 → total = 45. Sufficient.
-
-Each alone determines |both| (and thus total), so the answer is D.
+**explanation:** Inclusion-exclusion: total = |R| + |B| − |both| = 40 + 30 − |both| = 70 − |both|. Statement (1): |both| = 12 → total = 58 — sufficient. Statement (2): let b = |both|; only red = 40 − b, only blue = 30 − b; set 40 − b = 3(30 − b) → 40 − b = 90 − 3b → 2b = 50 → b = 25 → total = 45 — sufficient. Each statement alone determines |both| (and thus total), so the answer is D.
 **mistake_a:** Concluded only Statement 1 sufficient, missed that Statement 2 also pins down |both|.
 **mistake_b:** Concluded only Statement 2 sufficient.
 **mistake_c:** Required both statements, missing each-alone-sufficient logic.
@@ -594,13 +579,11 @@ A drawer contains 10 socks: 4 black, 4 blue, and 2 red. If 3 socks are drawn at 
 
 **answer:** E
 **fastest_path:** Complement: P(no black) = C(6, 3)/C(10, 3) = 20/120 = 1/6. P(≥1 black) = 1 − 1/6 = 5/6.
-**explanation:** "At least one" → use complement. P(no black) means all 3 drawn are non-black (from the 6 non-black socks: 4 blue + 2 red). P(no black) = C(6, 3)/C(10, 3) = 20/120 = 1/6. So P(at least one black) = 1 − 1/6 = 5/6.
-
-Direct counting (P(exactly 1) + P(exactly 2) + P(exactly 3)) is much harder.
+**explanation:** "At least one" → use complement. P(no black) means all 3 drawn are non-black (from the 6 non-black socks: 4 blue + 2 red): P(no black) = C(6, 3)/C(10, 3) = 20/120 = 1/6. So P(at least one black) = 1 − 1/6 = 5/6. Direct counting — P(exactly 1) + P(exactly 2) + P(exactly 3) — is much harder.
 **mistake_a:** Computed P(no black) = 1/6 and bubbled (forgot to take complement).
-**mistake_b:** Computed P(exactly 1 black) = some intermediate value.
-**mistake_c:** Computed P(exactly 2 black) ≈ 1/2.
-**mistake_d:** Computed something between exact and complement.
+**mistake_b:** Mis-computed P(no black) as 1/3 and reported it directly (also forgetting to take the complement). The correct P(no black) = C(6, 3)/C(10, 3) = 20/120 = 1/6.
+**mistake_c:** Computed P(exactly 1 black) = C(4, 1)·C(6, 2)/C(10, 3) = (4 × 15)/120 = 60/120 = 1/2 — answered "exactly one black" instead of "at least one black."
+**mistake_d:** Took 1 − (mis-computed P(no black) = 1/3) = 2/3. The complement step is right, but P(no black) = 1/6, so the answer is 1 − 1/6 = 5/6.
 **common_trap:** complement-not-used — computing direct (exactly 1, 2, 3) instead of using "1 − P(none)."
 **takeaway:** "At least one" → complement: P(at least 1) = 1 − P(none). The complement is one calculation; direct counting is multiple.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -623,13 +606,7 @@ Six people — A, B, C, D, E, and F — are to be seated in a row of 6 seats. In
 
 **answer:** B
 **fastest_path:** (AB together) − (AB together AND CD together) = 240 − 96 = 144.
-**explanation:** Compute "A and B together" and subtract the cases where C and D also end up together.
-
-(A and B together): glue AB → 5 items × 2 internal orders = 5! × 2 = 240.
-
-(A and B together AND C and D together): glue both → 4 items × 2 × 2 = 4! × 4 = 96.
-
-Net (A and B together, C and D NOT together) = 240 − 96 = 144.
+**explanation:** Compute "A and B together," then subtract the cases where C and D also end up together. (A and B together): glue AB → 5 items × 2 internal orders = 5! × 2 = 240. (A and B together AND C and D together): glue both pairs → 4 items × 2 × 2 = 4! × 4 = 96. Net (AB together, CD NOT together) = 240 − 96 = 144.
 **mistake_a:** Stopped at the (AB together) AND (CD together) count — glue both pairs into blocks, giving 4 units × 2 AB-orderings × 2 CD-orderings = 4! × 4 = 96 — and treated that as the final answer. This is the value to *subtract*, not the result. The answer requires (AB together) − (AB together AND CD together) = 240 − 96 = 144.
 **mistake_c:** Forgot one of the × 2 internal orderings; got 192.
 **mistake_d:** Computed 5! × 2 = 240 (only the first piece, didn't subtract).
@@ -709,13 +686,7 @@ A department must form a committee of 4 from 8 candidates: 3 economists, 3 engin
 
 **answer:** B
 **fastest_path:** Split (2,1,1) by group: 18 + 18 + 9 = 45.
-**explanation:** Committee = 4, with at least one from each of 3 groups. Only valid splits: (2, 1, 1) with the "2" from one group.
-
-- (2 econ, 1 eng, 1 law): C(3, 2)·C(3, 1)·C(2, 1) = 3·3·2 = 18
-- (1 econ, 2 eng, 1 law): C(3, 1)·C(3, 2)·C(2, 1) = 3·3·2 = 18
-- (1 econ, 1 eng, 2 law): C(3, 1)·C(3, 1)·C(2, 2) = 3·3·1 = 9
-
-Sum: 18 + 18 + 9 = 45.
+**explanation:** Committee = 4 with at least one from each of 3 groups, so the only valid splits are (2, 1, 1) with the "2" coming from one group. (2 econ, 1 eng, 1 law): C(3, 2)·C(3, 1)·C(2, 1) = 3·3·2 = 18; (1 econ, 2 eng, 1 law): C(3, 1)·C(3, 2)·C(2, 1) = 3·3·2 = 18; (1 econ, 1 eng, 2 law): C(3, 1)·C(3, 1)·C(2, 2) = 3·3·1 = 9. Sum: 18 + 18 + 9 = 45.
 **mistake_a:** Computed only first two cases; got 36.
 **mistake_c:** Mis-counted (2 law) case as 18; got 54.
 **mistake_d:** Computed (3,1,0) cases incorrectly; got 60.
@@ -859,7 +830,7 @@ A clothing shop offers shirts in 3 colors, pants in 4 styles, and shoes in 2 typ
 ---
 
 ## Q31
-**difficulty:** Easy
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Grid Path Counting
 
@@ -1263,15 +1234,7 @@ A committee of 4 is to be selected from 10 candidates: 2 rivals (X and Y who ref
 
 **answer:** D
 **fastest_path:** Total − (both X&Y) − (no senior) + (both X&Y AND no senior) = 210 − 28 − 35 + 10 = 157.
-**explanation:** Total committees: C(10,4) = 210. Apply inclusion-exclusion over two "bad" conditions.
-
-Condition 1 violated (both X and Y on committee): choose 2 more from the remaining 8 people → C(8,2) = 28 committees.
-
-Condition 2 violated (no senior on committee): choose 4 from {X, Y, J1, J2, J3, J4, J5} = 7 non-senior people → C(7,4) = 35 committees.
-
-Both conditions violated (both X&Y AND no senior): X and Y are on the committee, so choose 2 more from {J1,…,J5} = 5 juniors only → C(5,2) = 10 committees.
-
-By inclusion-exclusion: invalid = 28 + 35 − 10 = 53. Valid = 210 − 53 = 157.
+**explanation:** Total committees: C(10, 4) = 210. Apply inclusion-exclusion over two "bad" conditions. Condition 1 violated (both X and Y on the committee): choose 2 more from the remaining 8 → C(8, 2) = 28. Condition 2 violated (no senior): choose 4 from the 7 non-seniors {X, Y, J1–J5} → C(7, 4) = 35. Both violated (X & Y on, and no senior): X and Y are in, so choose 2 more from the 5 juniors only → C(5, 2) = 10. By inclusion-exclusion: invalid = 28 + 35 − 10 = 53. Valid = 210 − 53 = 157.
 **mistake_a:** Subtracted the overlap instead of adding it: 210 − 28 − 35 − 10 = 137.
 **mistake_b:** Omitted the inclusion-exclusion addback: 210 − 28 − 35 = 147. Without adding back the overlap, those 10 committees are subtracted twice.
 **mistake_c:** Some other arithmetic slip, arriving at 152.
