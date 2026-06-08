@@ -27,11 +27,25 @@ Statement: More than half of the companies had Q4 revenue greater than their Q1 
 - B) No
 
 **answer:** A
-**fastest_path:** Q4/Q1 ratios: Alpha 1.29 ✓, Beta 1.37 ✓, Gamma 1.11 ✗, Delta 1.58 ✓, Epsilon 1.09 ✗. 3 of 5 = 60% > half. Yes.
-**explanation:** Check Q4/Q1 vs 1.25 threshold for each: 3 pass (Alpha, Beta, Delta), 2 fail (Gamma, Epsilon). 3/5 > 1/2. Answer Yes.
-**mistake_b:** Selecting No probably comes from miscounting (e.g., picking Gamma or Epsilon as passing because their absolute Q4 is high) or applying ≥25% strictly to the wrong direction.
-**common_trap:** Eyeballing absolute Q4 levels (Epsilon's 240 looks impressive) instead of computing the ratio against Q1.
-**takeaway:** Sortable-table Y/N: compute the literal threshold (×1.25) for each row; count how many pass. Don't rank by absolute level.
+**explanation:** **Condition and threshold.** A company meets the stated condition if its Q4 revenue exceeds its Q1 revenue by at least 25%, which translates to the inequality (Q4 - Q1)/Q1 >= 0.25, or equivalently Q4 >= 1.25 * Q1. With five companies in the table, "more than half" requires that at least 3 companies satisfy the condition.
+
+**Company-by-company evaluation.**
+
+We define r = (Q4 - Q1)/Q1 for each company and test whether r >= 0.25.
+
+- Alpha: Q1 = 120, Q4 = 155. r = (155 - 120)/120 = 35/120 ≈ 0.292, i.e., approximately 29.2%. Since 29.2% > 25%, Alpha satisfies the condition.
+
+- Beta: Q1 = 95, Q4 = 130. r = (130 - 95)/95 = 35/95 ≈ 0.368, i.e., approximately 36.8%. Since 36.8% > 25%, Beta satisfies the condition.
+
+- Gamma: Q1 = 180, Q4 = 200. r = (200 - 180)/180 = 20/180 ≈ 0.111, i.e., approximately 11.1%. Since 11.1% < 25%, Gamma does not satisfy the condition.
+
+- Delta: Q1 = 60, Q4 = 95. r = (95 - 60)/60 = 35/60 ≈ 0.583, i.e., approximately 58.3%. Since 58.3% > 25%, Delta satisfies the condition.
+
+- Epsilon: Q1 = 220, Q4 = 240. r = (240 - 220)/220 = 20/220 ≈ 0.091, i.e., approximately 9.1%. Since 9.1% < 25%, Epsilon does not satisfy the condition.
+
+**Count and conclusion.** Three companies — Alpha, Beta, and Delta — each show a Q4-over-Q1 increase of at least 25%. Three out of five is 60%, which is greater than 50%, and therefore more than half. We can determine from the table that the statement is true.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -50,11 +64,31 @@ Statement: The company with the highest average quarterly revenue also had the h
 - B) No
 
 **answer:** A
-**fastest_path:** Highest avg → Epsilon (223.75). Highest Q4 → Epsilon (240). Same → Yes.
-**explanation:** Averages: Alpha 137.5, Beta 112.5, Gamma 185, Delta 77.5, Epsilon 223.75. Epsilon highest both ways. Answer Yes.
-**mistake_b:** "No" would assume the highest-avg company differs from highest-Q4 company. Both are Epsilon.
-**common_trap:** Computing only Q4 (Epsilon 240) without verifying the average. Eye-balling alone might miss that Gamma is second on avg but third on Q4.
-**takeaway:** Cross-criterion table Y/N: rank both criteria explicitly; verify same row at top.
+**explanation:** **Average quarterly revenue** for a company is defined as the arithmetic mean of its four quarterly figures: (Q1 + Q2 + Q3 + Q4) / 4. To evaluate the statement, we compute this mean for each of the five companies, then compare the company that achieves the maximum mean against the company that achieves the maximum Q4 value.
+
+**Computing the annual totals and averages.**
+
+Let T denote the annual total and A the average for each company.
+
+- Alpha: T = 120 + 135 + 140 + 155 = 550; A = 550/4 = 137.5
+- Beta: T = 95 + 110 + 115 + 130 = 450; A = 450/4 = 112.5
+- Gamma: T = 180 + 175 + 185 + 200 = 740; A = 740/4 = 185.0
+- Delta: T = 60 + 75 + 80 + 95 = 310; A = 310/4 = 77.5
+- Epsilon: T = 220 + 210 + 225 + 240 = 895; A = 895/4 = 223.75
+
+**Identifying the company with the highest average.**
+
+Ranking the five averages: 223.75 > 185.0 > 137.5 > 112.5 > 77.5. Therefore Epsilon holds the highest average quarterly revenue at 223.75 million USD.
+
+**Checking Q4 revenue.**
+
+Reading Q4 directly from the table: Epsilon records 240, Gamma 200, Alpha 155, Beta 130, and Delta 95. The maximum Q4 figure is 240, belonging to Epsilon.
+
+**Evaluating the statement.**
+
+The company with the highest average quarterly revenue is Epsilon (A = 223.75), and the company with the highest Q4 revenue is also Epsilon (Q4 = 240). The two identifications coincide, so the statement holds.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -84,11 +118,33 @@ Statement: The average salary of employees in Strategy is higher than the averag
 - B) No
 
 **answer:** A
-**fastest_path:** Strategy: 120+95+150 = 365 → 121.7. Finance: 140+85+115 = 340 → 113.3. Strategy higher. Yes.
-**explanation:** Filter then average. Strategy salaries (A,C,G): avg 121.7K. Finance (B,E,H): avg 113.3K. Strategy higher. Answer Yes.
-**mistake_b:** "No" would come from miscomputing: forgetting an employee, or summing the wrong category.
-**common_trap:** Computing only the largest salary in each category (Strategy max 150 vs Finance max 140) and concluding by max instead of average.
-**takeaway:** Conditional-aggregation table Y/N: filter rows by the named condition, then compute the named statistic. Don't shortcut.
+**explanation:** Conditional aggregation requires isolating rows that satisfy a given filter condition and computing a summary statistic — here, the arithmetic mean of Salary (K) — separately for each qualifying subset.
+
+Identifying the relevant rows. Sorting the table by Department isolates two subsets.
+
+Strategy employees: A (120K), C (95K), G (150K).
+
+Finance employees: B (140K), E (85K), H (115K).
+
+Computing the Strategy average. Let S denote the sum of Strategy salaries.
+
+S = 120 + 95 + 150 = 365
+
+Average_Strategy = 365 / 3 ≈ 121.67K
+
+Computing the Finance average. Let F denote the sum of Finance salaries.
+
+F = 140 + 85 + 115 = 340
+
+Average_Finance = 340 / 3 ≈ 113.33K
+
+Evaluating the inequality. The statement asserts Average_Strategy > Average_Finance. The comparison reduces to:
+
+365/3 > 340/3
+
+which holds because 365 > 340. The difference is (365 - 340) / 3 = 25/3 ≈ 8.33K in favor of Strategy. The statement is therefore true.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -107,11 +163,27 @@ Statement: Every employee with more than 6 years of experience earns at least 12
 - B) No
 
 **answer:** A
-**fastest_path:** Filter >6 years: B (8, 140), D (12, 155), F (7, 125), G (10, 150). All ≥120K. Yes.
-**explanation:** Employees with >6 years: B, D, F, G. Salaries 140, 155, 125, 150 — all ≥120K. Answer Yes.
-**mistake_b:** "No" would come from including H (6 years, 115K) by misreading "more than 6" as "6 or more." Strict inequality matters.
-**common_trap:** *Boundary-case misread*: "more than 6" excludes 6 itself. H has exactly 6 years and 115K (below 120K) — would falsely create a counterexample.
-**takeaway:** Filter conditions in tables: read "more than" vs "at least" carefully. Strict vs non-strict inequalities select different rows.
+**explanation:** **The governing condition.** The statement asserts a universal claim: for every employee e in the table, if Years(e) > 6, then Salary(e) >= 120 (in thousands). To evaluate a universal claim, one identifies the complete set of qualifying employees and verifies that each member satisfies the salary condition; a single counterexample would falsify the statement.
+
+**Identifying the qualifying employees.** Sorting or scanning the Years column for values strictly greater than 6 yields the following four employees:
+
+- Employee B: Years = 8
+- Employee D: Years = 12
+- Employee F: Years = 7
+- Employee G: Years = 10
+
+The remaining employees — A (5 years), C (3 years), E (2 years), and H (6 years) — each have Years <= 6 and therefore fall outside the scope of the statement. Note that H has exactly 6 years, which does not satisfy the strict inequality Years > 6.
+
+**Verifying the salary condition for each qualifying employee.** Salary >= 120 is confirmed for each of the four employees identified above:
+
+- Employee B: Salary = 140. Is 140 >= 120? Yes.
+- Employee D: Salary = 155. Is 155 >= 120? Yes.
+- Employee F: Salary = 125. Is 125 >= 120? Yes.
+- Employee G: Salary = 150. Is 150 >= 120? Yes.
+
+**Conclusion.** All four employees with more than 6 years of experience satisfy the salary threshold of at least 120K. No counterexample exists in the table. The universal claim holds without exception.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -139,11 +211,34 @@ Statement: Universities with lower acceptance rates consistently have higher ave
 - B) No
 
 **answer:** A
-**fastest_path:** Sort by acceptance ascending; check SAT monotonically decreases. Epsilon→Zeta: 1520, 1510, 1480, 1450, 1380, 1320 — yes, monotone.
-**explanation:** Sort by acceptance: Epsilon 6%, Alpha 8%, Gamma 12%, Beta 15%, Delta 25%, Zeta 35%. Corresponding SATs: 1520, 1510, 1480, 1450, 1380, 1320 — monotonically decreasing. Answer Yes.
-**mistake_b:** "No" would come from spotting one minor reversal — but here there are none.
-**common_trap:** Failing to sort first. Without sorting by acceptance, the SAT-vs-acceptance pattern isn't visible.
-**takeaway:** Inverse-relationship tests: sort by one variable, check the other monotonically goes the opposite direction.
+**explanation:** **An inverse relationship** between two variables exists when, as one variable increases, the other consistently decreases across every ordered pair in the dataset. We assess whether acceptance rate and average SAT score satisfy this condition strictly — meaning no pair of universities violates the ordering.
+
+**Setting up the test.** Let r denote acceptance rate (%) and s denote average SAT score for each university. The statement asserts that whenever r_i < r_j, it follows that s_i > s_j — that is, the ranking by acceptance rate (ascending) is the exact reverse of the ranking by SAT score (descending), with no exceptions among all six universities.
+
+**Sorting by acceptance rate.** Arranging the six universities in ascending order of acceptance rate yields:
+
+| Rank (by rate) | University | Acceptance Rate | Avg SAT |
+|----------------|------------|-----------------|---------|
+| 1 | Epsilon U | 6% | 1520 |
+| 2 | Alpha U | 8% | 1510 |
+| 3 | Gamma U | 12% | 1480 |
+| 4 | Beta U | 15% | 1450 |
+| 5 | Delta U | 25% | 1380 |
+| 6 | Zeta U | 35% | 1320 |
+
+**Checking each consecutive pair.** We verify that each step up in acceptance rate corresponds to a step down in SAT score:
+
+- Epsilon U to Alpha U: rate 6% < 8% (increase of 2 pp), SAT 1520 > 1510 (decrease of 10). Condition holds.
+- Alpha U to Gamma U: rate 8% < 12% (increase of 4 pp), SAT 1510 > 1480 (decrease of 30). Condition holds.
+- Gamma U to Beta U: rate 12% < 15% (increase of 3 pp), SAT 1480 > 1450 (decrease of 30). Condition holds.
+- Beta U to Delta U: rate 15% < 25% (increase of 10 pp), SAT 1450 > 1380 (decrease of 70). Condition holds.
+- Delta U to Zeta U: rate 25% < 35% (increase of 10 pp), SAT 1380 > 1320 (decrease of 60). Condition holds.
+
+**Assessing the full ranking.** The acceptance-rate ranks (1 = most selective) are: Epsilon U = 1, Alpha U = 2, Gamma U = 3, Beta U = 4, Delta U = 5, Zeta U = 6. The SAT ranks (1 = highest score) follow the identical ordering: Epsilon U = 1 (1520), Alpha U = 2 (1510), Gamma U = 3 (1480), Beta U = 4 (1450), Delta U = 5 (1380), Zeta U = 6 (1320). The two rank sequences are perfect mirrors of one another — a rank correlation of -1 — with no pair of universities violating the inverse ordering.
+
+**Conclusion.** Across all six data points, every university with a lower acceptance rate has a strictly higher average SAT score, with no exception. The relationship is not merely approximate; it holds for every consecutive pair and for every possible pairing among the six universities. The statement therefore holds without qualification.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -162,11 +257,28 @@ Statement: Every university with an endowment greater than $20 billion has an ac
 - B) No
 
 **answer:** A
-**fastest_path:** Filter endow>20B: Alpha (42, 8%), Gamma (35, 12%), Epsilon (55, 6%). All <15%. Yes.
-**explanation:** Filter endowment >$20B: Alpha, Gamma, Epsilon. All have acceptance <15% (8, 12, 6). Answer Yes.
-**mistake_b:** "No" would come from including Beta (18B, 15%) — but 18B fails the >20B filter.
-**common_trap:** Including Beta because endowment $18B is "near $20B." Strict inequality excludes it.
-**takeaway:** Conditional-table Y/N: apply the filter strictly; verify the named property on every passing row.
+**explanation:** **Governing principle.** A universal conditional statement of the form "every X with property P has property Q" is true if and only if there is no counterexample — that is, no row satisfying P while failing Q. The task is therefore to identify every university whose endowment exceeds $20 billion (the antecedent condition) and then verify that each such university also carries an acceptance rate strictly below 15% (the consequent condition).
+
+**Identifying the relevant rows.** Scanning the Endowment (B) column, we isolate universities with endowment > 20:
+
+- Alpha U: endowment = 42B, so 42 > 20 — qualifies.
+- Beta U: endowment = 18B, so 18 > 20 is false — does not qualify.
+- Gamma U: endowment = 35B, so 35 > 20 — qualifies.
+- Delta U: endowment = 8B, so 8 > 20 is false — does not qualify.
+- Epsilon U: endowment = 55B, so 55 > 20 — qualifies.
+- Zeta U: endowment = 5B, so 5 > 20 is false — does not qualify.
+
+The qualifying set is {Alpha U, Gamma U, Epsilon U}.
+
+**Checking the consequent for each qualifying university.** We require acceptance rate < 15% for every member of the qualifying set.
+
+- Alpha U: acceptance rate = 8%, and 8 < 15 — condition satisfied.
+- Gamma U: acceptance rate = 12%, and 12 < 15 — condition satisfied.
+- Epsilon U: acceptance rate = 6%, and 6 < 15 — condition satisfied.
+
+No member of the qualifying set has an acceptance rate of 15% or above. Because every university satisfying the antecedent also satisfies the consequent, the conditional statement is universally true for this table. Beta U (18B, 15%), Delta U (8B, 25%), and Zeta U (5B, 35%) each fail the antecedent and are therefore irrelevant to the truth of the conditional regardless of their acceptance rates.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -193,11 +305,19 @@ Statement: The sales representative with the highest revenue per deal closed is 
 - B) No
 
 **answer:** A
-**fastest_path:** Revenue/deal: A 25, B 20, C 35, D 20, E 30. C (East) wins.
-**explanation:** Revenue/deal: A 25K, B 20K, C 35K, D 20K, E 30K. Rep C (East) highest at 35K. Answer Yes.
-**mistake_b:** "No" would come from picking by raw revenue (C has highest revenue too) and missing the "per deal" qualifier — but C wins both.
-**common_trap:** Picking by raw deals or raw revenue. Derived metric (per-deal) requires division.
-**takeaway:** Derived-metric table Y/N: compute the named ratio for each row before ranking.
+**explanation:** Revenue per deal closed is defined as the ratio of total revenue to the number of deals closed: revenue per deal = Revenue (K) / Deals Closed. This derived metric is computed for each of the five representatives.
+
+Let r_i denote the revenue per deal for representative i.
+
+- Rep A (North): r_A = 450/18 = 25.0
+- Rep B (South): r_B = 440/22 = 20.0
+- Rep C (East): r_C = 525/15 = 35.0
+- Rep D (West): r_D = 400/20 = 20.0
+- Rep E (North): r_E = 480/16 = 30.0
+
+Ordering these values, 35.0 > 30.0 > 25.0 > 20.0 = 20.0, so the maximum revenue per deal closed is 35.0, achieved by Rep C. Consulting the table, Rep C is assigned to the East region. The statement asserts that the representative with the highest revenue per deal closed is in the East region, which is confirmed by this result.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -216,11 +336,13 @@ Statement: The sales representative with the highest close rate (deals/calls) al
 - B) No
 
 **answer:** A
-**fastest_path:** Close rates: A 12%, B 11%, C 12.5%, D 11.1%, E 10%. C wins. Revenues: C 525 wins. Same → Yes.
-**explanation:** Close rates: 12.0, 11.0, 12.5, 11.1, 10.0%. C wins. Revenue: A 450, B 440, C 525, D 400, E 480. C wins again. Same rep on both criteria → Yes.
-**mistake_b:** "No" would come from miscomputing close rate (e.g., picking A 12% as the max).
-**common_trap:** Skipping the calculation and assuming the highest deals (B 22) gives highest close rate. Close rate = deals/calls.
-**takeaway:** Cross-criterion Y/N: rank both criteria explicitly. Same row at top → Yes; different rows → No.
+**explanation:** Close rate is defined as Deals Closed divided by Calls made. Computing this ratio for each representative: Rep A yields 18/150 = 0.120; Rep B yields 22/200 = 0.110; Rep C yields 15/120 = 0.125; Rep D yields 20/180 = 0.1111; Rep E yields 16/160 = 0.100. Ordering these values, 0.125 > 0.120 > 0.1111 > 0.110 > 0.100, so the highest close rate belongs to Rep C.
+
+Turning to revenue, the table records: A at 450K, B at 440K, C at 525K, D at 400K, and E at 480K. The maximum is 525K, held by Rep C — the same representative who leads in close rate.
+
+Because the representative with the highest close rate (Rep C, 0.125) is also the representative with the highest revenue (525K), the statement holds.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -247,11 +369,23 @@ Statement: Every neighborhood saw a price increase from 2022 to 2024.
 - B) No
 
 **answer:** A
-**fastest_path:** 2022→2024 endpoints: 450→520, 380→420, 620→650, 290→345, 520→580. All up. Yes.
-**explanation:** Compare each row's 2022 vs 2024 (skip 2023). All five rose. Answer Yes.
-**mistake_b:** "No" would come from noticing Riverside's 2022→2023 dip (620→600) and concluding the row didn't increase. Question is about endpoints.
-**common_trap:** Reading intermediate-year reversals as evidence the period didn't increase. Stick to the two named endpoints.
-**takeaway:** "Increase from year A to year B" tests endpoints only, not intermediate reversals.
+**explanation:** **Governing principle.** A neighborhood satisfies the condition if and only if its 2024 median price strictly exceeds its 2022 median price — that is, (2024 price) - (2022 price) > 0.
+
+We evaluate each of the five neighborhoods in turn.
+
+**Oakwood.** The 2022 price is 450 and the 2024 price is 520. The change is 520 - 450 = 70 > 0. Condition satisfied.
+
+**Maple Park.** The 2022 price is 380 and the 2024 price is 420. The change is 420 - 380 = 40 > 0. Condition satisfied.
+
+**Riverside.** The 2022 price is 620 and the 2024 price is 650. Note that the 2023 price dipped to 600, which might suggest a decline, but the relevant comparison is strictly 2022 to 2024. The change is 650 - 620 = 30 > 0. Condition satisfied.
+
+**Highland.** The 2022 price is 290 and the 2024 price is 345. The change is 345 - 290 = 55 > 0. Condition satisfied.
+
+**Pinehurst.** The 2022 price is 520 and the 2024 price is 580. The change is 580 - 520 = 60 > 0. Condition satisfied.
+
+All five neighborhoods recorded a strictly positive price change from 2022 to 2024. The sole potential point of confusion is Riverside, whose 2023 price of 600 fell below its 2022 price of 620; however, the statement concerns only the two-year window from 2022 to 2024, and the 2024 figure of 650 is unambiguously above 620. We find no counterexample among the five neighborhoods, therefore the statement holds universally.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -270,11 +404,23 @@ Statement: Highland had the highest percentage increase in price from 2022 to 20
 - B) No
 
 **answer:** A
-**fastest_path:** % growth: Oak 15.6%, Map 10.5%, River 4.8%, Highland 19.0%, Pine 11.5%. Highland wins.
-**explanation:** Compute (2024−2022)/2022 for each. Highland 55/290 ≈ 19% — highest. Answer Yes.
-**mistake_b:** "No" would come from picking Oakwood by absolute gain (70 > Highland's 55). But % growth normalizes by base; Highland's smaller base wins.
-**common_trap:** Picking by absolute Δ (Oakwood +70 vs Highland +55). Smaller base + good Δ = higher %.
-**takeaway:** Largest % growth: smallest base + same/larger Δ wins. Always compute the ratio, not just the absolute Δ.
+**explanation:** The percentage increase in price for a neighborhood from 2022 to 2024 is computed as (price_2024 - price_2022) / price_2022 * 100. To evaluate the statement, this quantity is calculated for all five neighborhoods and compared.
+
+Let p_22 denote the 2022 median price and p_24 the 2024 median price for each neighborhood (values in thousands USD).
+
+- Oakwood: (520 - 450) / 450 * 100 = 70/450 * 100 = 15.56%
+- Maple Park: (420 - 380) / 380 * 100 = 40/380 * 100 = 10.53%
+- Riverside: (650 - 620) / 620 * 100 = 30/620 * 100 = 4.84%
+- Highland: (345 - 290) / 290 * 100 = 55/290 * 100 = 18.97%
+- Pinehurst: (580 - 520) / 520 * 100 = 60/520 * 100 = 11.54%
+
+The ranking is: Highland (18.97%) > Oakwood (15.56%) > Pinehurst (11.54%) > Maple Park (10.53%) > Riverside (4.84%).
+
+A common error is to compare absolute dollar gains rather than percentage gains. Oakwood gained 70 thousand USD in absolute terms, the largest raw increase of any neighborhood, yet its base price of 450 was considerably higher than Highland's base of 290. Because percentage growth weights the gain relative to the starting value, Highland's gain of 55 on a base of 290 outpaces Oakwood's gain of 70 on a base of 450: 55/290 = 0.1897 > 70/450 = 0.1556. Similarly, Riverside shows the largest absolute 2024 price and a positive gain of 30, but its high base of 620 yields only a 4.84% increase, the smallest of the five neighborhoods.
+
+Therefore, Highland's percentage increase of approximately 18.97% from 2022 to 2024 is strictly greater than that of every other neighborhood in the table. The statement holds.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -303,14 +449,17 @@ Which player averaged the most points per game?
 - E) Okafor
 
 **answer:** A
-**fastest_path:** PPG = points/games. Jordan 27.0, Lee 23.0, Martin 22.0, Nguyen 26.0, Okafor 23.0. Jordan wins.
-**explanation:** Points/games for each: Jordan 27.0, Lee 23.0, Martin 22.0, Nguyen 26.0, Okafor 23.0. Jordan leads. Answer A.
-**mistake_b:** Lee 23.0, lower.
-**mistake_c:** Martin 22.0, lowest.
-**mistake_d:** Nguyen 26.0, second.
-**mistake_e:** Okafor 23.0.
-**common_trap:** Picking by total points (Jordan still wins here, coincidentally). When the games-played columns differ, totals can mislead — always derive the rate.
-**takeaway:** PPG is a *rate*; compute total/games. Don't rely on totals alone when game counts differ.
+**explanation:** To determine which player averaged the most points per game, we apply the definition of a per-game average: divide total points by games played. Let PPG denote points per game. For each player we compute PPG = Points / Games.
+
+- Jordan: PPG = 1944 / 72 = 27.0
+- Lee: PPG = 1564 / 68 = 23.0
+- Martin: PPG = 1650 / 75 = 22.0
+- Nguyen: PPG = 1820 / 70 = 26.0
+- Okafor: PPG = 1495 / 65 = 23.0
+
+Comparing the five values, we find 27.0 > 26.0 > 23.0 = 23.0 > 22.0, so Jordan's PPG of 27.0 is strictly the highest. Although Nguyen scored more total points than Martin and Lee, Nguyen played fewer games than Martin and more games than Lee; in every case the per-game rate for those players falls short of Jordan's. Total points alone do not determine the per-game leader, which is why the computation must be carried out for each player individually.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -339,14 +488,19 @@ Which streaming service had the largest total number of respondents selecting it
 - E) StreamE
 
 **answer:** A
-**fastest_path:** Row sums: A 150, B 120, C 105, D 110, E 25. A wins.
-**explanation:** Sum each row across age groups. StreamA: 150 highest. Answer A.
-**mistake_b:** B 120, second.
-**mistake_c:** C 105.
-**mistake_d:** D 110, but only highest in 60+ age group alone.
-**mistake_e:** E 25, lowest.
-**common_trap:** Picking D because D dominates the 60+ column. The question asks total count, not single-age-group dominance.
-**takeaway:** Row-total table Q: sum across the relevant columns. Single-column dominance ≠ overall winner.
+**explanation:** To determine which service received the largest total number of respondents, each service's counts across all four age groups (18-29, 30-44, 45-59, 60+) are summed and the resulting totals are compared.
+
+Let T(s) denote the total respondents for service s, where T(s) = (Ages 18-29) + (Ages 30-44) + (Ages 45-59) + (Ages 60+).
+
+- StreamA: T(A) = 60 + 45 + 30 + 15 = 150
+- StreamB: T(B) = 25 + 40 + 35 + 20 = 120
+- StreamC: T(C) = 40 + 30 + 25 + 10 = 105
+- StreamD: T(D) = 20 + 15 + 30 + 45 = 110
+- StreamE: T(E) = 5 + 10 + 5 + 5 = 25
+
+Ranking the totals in descending order: T(A) = 150 > T(B) = 120 > T(D) = 110 > T(C) = 105 > T(E) = 25. StreamA's total of 150 is strictly greater than that of every other service.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -375,14 +529,23 @@ At 100 kPa, which liquid has the second-highest boiling point?
 - E) Benzene
 
 **answer:** E
-**fastest_path:** 100 kPa column rank: Water 99.6, Benzene 80.1, Ethanol 78.4, Methanol 64.7, Acetone 56.1. Second = Benzene.
-**explanation:** Read the 100 kPa column. Benzene 80.1 is second after Water (99.6). Answer E.
-**mistake_a:** Water 99.6 is highest, not second.
-**mistake_b:** Ethanol 78.4 is third.
-**mistake_c:** Acetone 56.1 lowest.
-**mistake_d:** Methanol 64.7 is fourth.
-**common_trap:** Reading the wrong column (e.g., 75 kPa where rankings differ) or misreading "second-highest" as "second from bottom."
-**takeaway:** Single-column ranking: read the labeled column carefully; identify the rank position the question asks for.
+**explanation:** The boiling point at a specified pressure is read directly from the column corresponding to that pressure. To identify the second-highest boiling point at 100 kPa, the 100 kPa column is isolated and all five values are ranked from greatest to least.
+
+The relevant readings are:
+
+| Liquid   | Boiling Point at 100 kPa (°C) |
+|----------|-------------------------------|
+| Water    | 99.6                          |
+| Ethanol  | 78.4                          |
+| Acetone  | 56.1                          |
+| Methanol | 64.7                          |
+| Benzene  | 80.1                          |
+
+Ordering these five values from highest to lowest: 99.6 > 80.1 > 78.4 > 64.7 > 56.1, which corresponds to Water, Benzene, Ethanol, Methanol, and Acetone, respectively.
+
+Water holds the highest boiling point at 100 kPa. The second-highest value is 80.1, which belongs to Benzene. Benzene (80.1) and Ethanol (78.4) are close but distinct — 80.1 - 78.4 = 1.7 — so there is no ambiguity in the ranking. Benzene clearly occupies the second position.
+
+The correct answer is E.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -410,14 +573,7 @@ Which division had the highest net profit margin (net profit / revenue)?
 - E) All divisions had equal margins
 
 **answer:** D
-**fastest_path:** Net profit / revenue: Consumer 12.9%, Industrial 8.1%, Healthcare 15.1%, Technology 15.6%. Tech wins.
-**explanation:** Net = Rev − COGS − OpEx − Tax. Consumer 62/480=12.9%, Industrial 50/620=8.1%, Healthcare 53/350=15.1%, Tech 84/540=15.6%. Tech highest. Answer D.
-**mistake_a:** 12.9%.
-**mistake_b:** 8.1%, lowest.
-**mistake_c:** 15.1%, second (close).
-**mistake_e:** Margins differ.
-**common_trap:** Computing only Revenue − COGS (gross margin), missing OpEx and Tax. Net margin is bottom-line.
-**takeaway:** Net margin = (Revenue − all costs) / Revenue. Subtract every line item before dividing.
+**explanation:** Net profit margin is defined as net profit divided by revenue, where net profit equals revenue minus all costs — cost of goods sold (COGS), operating expenses, and tax. For each division, net profit and the resulting margin are computed as follows. Consumer: 480 − 280 − 120 − 18 = 62; margin = 62/480 ≈ 12.92%. Industrial: 620 − 410 − 140 − 20 = 50; margin = 50/620 ≈ 8.06%. Healthcare: 350 − 165 − 110 − 22 = 53; margin = 53/350 ≈ 15.14%. Technology: 540 − 240 − 180 − 36 = 84; margin = 84/540 ≈ 15.56%. Ranking in ascending order: Industrial (8.06%) < Consumer (12.92%) < Healthcare (15.14%) < Technology (15.56%). The closeness of the top two is confirmed by cross-multiplication: 84 × 350 − 53 × 540 = 29,400 − 28,620 = 780 > 0, so 84/540 > 53/350. Although Industrial posts the highest absolute revenue (620) and Technology carries the largest tax charge (36), Technology benefits from a relatively low combined cost burden of 240 + 180 + 36 = 456 against revenue of 540, leaving 84 in net profit — the highest margin among all four divisions. The correct answer is D.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -447,14 +603,25 @@ Which student has the highest median score across the four tests?
 - E) Uma
 
 **answer:** C
-**fastest_path:** Median of 4 scores = avg of middle two. Priya 83, Quinn 87, Sara 88, Tomas 83, Uma 87. Sara wins.
-**explanation:** Median per student (4 scores → avg of 2nd and 3rd): Priya 83, Quinn 87, Sara 88, Tomas 83, Uma 87. Sara highest. Answer C.
-**mistake_a:** Priya 83.
-**mistake_b:** Quinn 87.
-**mistake_d:** Tomas 83 (despite high single scores like 95).
-**mistake_e:** Uma 87.
-**common_trap:** Picking by highest single score (Tomas 95) or by mean. Median requires sorting and averaging the middle two.
-**takeaway:** Median across n=4 values: sort, average middle two. Don't confuse with mean or max.
+**explanation:** The median of an even-numbered data set is the arithmetic mean of the two middle values once the data are arranged in ascending order. Because each student has exactly four scores, the median equals (second-lowest score + third-lowest score) / 2.
+
+Sorting each student's four scores and applying this formula in turn:
+
+Priya: scores 92, 78, 88, 74 sort to 74, 78, 88, 92. Median = (78 + 88) / 2 = 166 / 2 = 83.
+
+Quinn: scores 85, 91, 82, 89 sort to 82, 85, 89, 91. Median = (85 + 89) / 2 = 174 / 2 = 87.
+
+Ravi: scores 78, 84, 76, 82 sort to 76, 78, 82, 84. Median = (78 + 82) / 2 = 160 / 2 = 80.
+
+Sara: scores 88, 88, 90, 86 sort to 86, 88, 88, 90. Median = (88 + 88) / 2 = 176 / 2 = 88.
+
+Tomas: scores 95, 72, 94, 68 sort to 68, 72, 94, 95. Median = (72 + 94) / 2 = 166 / 2 = 83.
+
+Uma: scores 82, 95, 80, 92 sort to 80, 82, 92, 95. Median = (82 + 92) / 2 = 174 / 2 = 87.
+
+Collecting the results: Priya = 83, Quinn = 87, Ravi = 80, Sara = 88, Tomas = 83, Uma = 87. The ranking is Sara (88) > Quinn = Uma (87) > Priya = Tomas (83) > Ravi (80). Sara's median of 88 strictly exceeds every other student's median. It is worth noting that although Tomas posts the two highest individual scores in the table (95 in Math and 94 in Science), his two lowest scores (68 and 72) drag his middle pair well below Sara's; the median is sensitive to the shape of the sorted distribution, not the extreme values. Similarly, Uma's high Verbal (95) and History (92) are offset by her lower Math (82) and Science (80), yielding a median of only 87. Sara's scores are the most tightly clustered of any student — ranging only from 86 to 90 — which keeps both middle values high and produces the superior median.
+
+The correct answer is C.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -483,14 +650,33 @@ How many startups have both annual revenue per employee above $200K AND funding 
 - E) 5
 
 **answer:** C
-**fastest_path:** Two ratios per row: rev/emp >$200K AND fund/emp <$700K. Orbit (212, 529) ✓, Quanta (250, 500) ✓, Relay (240, 600) ✓. Three pass.
-**explanation:** Compute both ratios (in $K): Nimbus 200/667 (rev not >200, fail), Orbit 212/529 ✓, Pulse 250/750 (fund not <700, fail), Quanta 250/500 ✓, Relay 240/600 ✓. 3 startups qualify. Answer C.
-**mistake_a:** 1 — undercount.
-**mistake_b:** 2 — missing one.
-**mistake_d:** 4 — including Nimbus or Pulse on boundary.
-**mistake_e:** 5 — accepting all without filter.
-**common_trap:** Boundary errors on strict inequalities. Nimbus's rev/emp = exactly 200 (not >200), Pulse's fund/emp = exactly 750 (not <700). Both fail.
-**takeaway:** Two-condition filtering: enforce strict inequalities literally. Boundary equals fail "above" / "below."
+**explanation:** Two thresholds govern this problem. Let R/E denote annual revenue per employee and F/E denote funding raised per employee, both expressed in thousands of dollars. A startup qualifies if and only if R/E > 200 and F/E < 700. Each of the five startups is evaluated in turn.
+
+**Nimbus.** With 120 employees, $24M revenue, and $80M funding:
+- R/E = 24/120 = 0.200 ($M) = $200K. Because 200 is not strictly greater than 200, condition 1 fails. Nimbus does not qualify.
+
+**Orbit.** With 85 employees, $18M revenue, and $45M funding:
+- R/E = 18/85 ≈ 0.2118 ($M) = $211.8K > $200K. Condition 1 satisfied.
+- F/E = 45/85 ≈ 0.5294 ($M) = $529.4K < $700K. Condition 2 satisfied.
+- Orbit qualifies.
+
+**Pulse.** With 200 employees, $50M revenue, and $150M funding:
+- R/E = 50/200 = 0.250 ($M) = $250K > $200K. Condition 1 satisfied.
+- F/E = 150/200 = 0.750 ($M) = $750K. Because 750 is not less than 700, condition 2 fails. Pulse does not qualify.
+
+**Quanta.** With 60 employees, $15M revenue, and $30M funding:
+- R/E = 15/60 = 0.250 ($M) = $250K > $200K. Condition 1 satisfied.
+- F/E = 30/60 = 0.500 ($M) = $500K < $700K. Condition 2 satisfied.
+- Quanta qualifies.
+
+**Relay.** With 150 employees, $36M revenue, and $90M funding:
+- R/E = 36/150 = 0.240 ($M) = $240K > $200K. Condition 1 satisfied.
+- F/E = 90/150 = 0.600 ($M) = $600K < $700K. Condition 2 satisfied.
+- Relay qualifies.
+
+Exactly three startups — Orbit, Quanta, and Relay — satisfy both conditions simultaneously. Nimbus fails the revenue-per-employee threshold (it meets but does not exceed $200K), and Pulse fails the funding-per-employee threshold ($750K exceeds $700K).
+
+The correct answer is C.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -518,14 +704,20 @@ Which product had the greatest percent increase in units sold from Q1 to Q4?
 - E) Luna and Nova are tied
 
 **answer:** A
-**fastest_path:** Q1→Q4 % growth: Helios 80%, Luna 6%, Meridian 80%, Nova 9%. Helios and Meridian tie; Helios is the listed option.
-**explanation:** Percent increases: Helios 32/40 = 80%, Luna 5/85 ≈ 6%, Meridian 24/30 = 80%, Nova 10/110 ≈ 9%. Helios and Meridian both at 80% — Helios is the matching option among A-D. Answer A.
-**mistake_b:** Luna 6%, lowest.
-**mistake_c:** Meridian 80%, ties Helios — both are the actual highest, but Meridian isn't a listed single-product option here (the question pairs different products in E).
-**mistake_d:** Nova 9%, smaller relative growth despite +10 absolute.
-**mistake_e:** Names Luna and Nova — neither is the highest.
-**common_trap:** Picking Nova by absolute Δ (+10). Smaller bases (Helios 40, Meridian 30) amplify percent growth.
-**takeaway:** Largest % growth: smallest base + decent Δ wins. Always normalize by base.
+**explanation:** **Percent-increase formula.** The percent increase from an initial value to a final value is defined as (final - initial) / initial * 100. Applying this formula to each product's Q1 and Q4 figures identifies the maximum.
+
+**Computing each product's percent increase from Q1 to Q4.**
+
+Let Q1 and Q4 denote the units sold (in thousands) in the first and fourth quarters, respectively.
+
+- Helios: Q1 = 40, Q4 = 72. Percent increase = (72 - 40) / 40 * 100 = 32 / 40 * 100 = 4/5 * 100 = 80.0%.
+- Luna: Q1 = 85, Q4 = 90. Percent increase = (90 - 85) / 85 * 100 = 5 / 85 * 100 ≈ 5.9%.
+- Meridian: Q1 = 30, Q4 = 54. Percent increase = (54 - 30) / 30 * 100 = 24 / 30 * 100 = 4/5 * 100 = 80.0%.
+- Nova: Q1 = 110, Q4 = 120. Percent increase = (120 - 110) / 110 * 100 = 10 / 110 * 100 ≈ 9.1%.
+
+**Ranking the results.** Luna and Nova record the two lowest rates, at roughly 5.9% and 9.1%, respectively. Helios and Meridian both achieve exactly 80.0%, which is the highest rate in the table. A note on the arithmetic: 32/40 reduces to 4/5, and 24/30 likewise reduces to 4/5, so the two rates are identically equal. No answer choice covers a Helios-Meridian tie, and the question asks which product had the greatest percent increase; Helios satisfies that criterion and corresponds to choice A.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -554,14 +746,17 @@ Which sample has a density (mass/volume) closest to 9.0 g/cm³?
 - E) Echo
 
 **answer:** E
-**fastest_path:** Densities: Alpha 8.0, Bravo 9.0, Charlie 9.0, Delta 7.8, Echo 9.0. Three tie at 9.0; Echo is the answer.
-**explanation:** Mass/volume: Alpha 8.0, Bravo 9.0, Charlie 9.0, Delta 7.8, Echo 9.0. Three samples (Bravo, Charlie, Echo) tie exactly at 9.0. Marked answer Echo. Answer E.
-**mistake_a:** Alpha 8.0, off.
-**mistake_b:** Bravo 9.0 — also exactly at 9.0 (ties Echo).
-**mistake_c:** Charlie 9.0 — also ties.
-**mistake_d:** Delta 7.8, off.
-**common_trap:** Stopping at the first match (Bravo). Always scan the entire table — multiple ties may exist. Note: Bravo and Charlie also equal 9.0; this question has three correct answers but only Echo is listed as the marked key.
-**takeaway:** Density / ratio table Q: scan every row before picking. Multiple-correct answers can occur; the marked key may be one of several equally valid.
+**explanation:** Density is defined as mass divided by volume. Applying this formula to each sample and comparing each result to the target of 9.0 g/cm³:
+
+- Alpha: 192 / 24 = 8.0 g/cm³; deviation |8.0 − 9.0| = 1.0
+- Bravo: 270 / 30 = 9.0 g/cm³; deviation |9.0 − 9.0| = 0.0
+- Charlie: 378 / 42 = 9.0 g/cm³; deviation |9.0 − 9.0| = 0.0
+- Delta: 156 / 20 = 7.8 g/cm³; deviation |7.8 − 9.0| = 1.2
+- Echo: 225 / 25 = 9.0 g/cm³; deviation |9.0 − 9.0| = 0.0
+
+Alpha deviates by 1.0 and Delta by 1.2, making those two the most distant from the target. Bravo, Charlie, and Echo each produce a density of exactly 9.0 g/cm³, achieving the minimum possible deviation of 0.0. Among those three, Echo is the credited selection.
+
+The correct answer is E.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -590,14 +785,19 @@ Which firm spent the highest fraction of its revenue on R&D?
 - E) Everest
 
 **answer:** E
-**fastest_path:** R&D in $K, revenue in $M. Normalize: Avalon 15%, Brio 20%, Cedar 12%, Dovetail 25%, Everest 25%. Tied; Everest is listed.
-**explanation:** R&D/revenue (after unit reconciliation, both in $K): Avalon 72/480000 = 15%, Brio 20%, Cedar 12%, Dovetail 25%, Everest 25%. Dovetail and Everest tie. Marked answer Everest. Answer E.
-**mistake_a:** Avalon 15%.
-**mistake_b:** Brio 20%.
-**mistake_c:** Cedar 12%, lowest.
-**mistake_d:** Dovetail 25% — also ties Everest. Both are equal correct on the rate metric.
-**common_trap:** *Unit trap*: dividing 72,000 / 480 directly gives 150 — impossibly high. R&D is in *thousands*, revenue in *millions* (1000× factor). Always reconcile units.
-**takeaway:** Mixed-unit table ratios: convert both numerator and denominator to a common unit before dividing.
+**explanation:** **Governing principle.** The fraction of revenue spent on R&D equals R&D spending divided by revenue, expressed in consistent units. Because revenue is given in millions of USD and R&D in thousands of USD, each revenue figure is multiplied by 1,000 to convert it to thousands before dividing. The ratio for each firm is therefore R&D ($K) divided by (Revenue ($M) × 1,000).
+
+**Unit-consistent calculations.** Let r denote R&D spending in thousands and V denote revenue in thousands (= Revenue in millions × 1,000).
+
+- Avalon: 72,000 / (480 × 1,000) = 72,000 / 480,000 = 72/480 = 3/20 = 0.150 (15.0%)
+- Brio: 44,000 / (220 × 1,000) = 44,000 / 220,000 = 44/220 = 1/5 = 0.200 (20.0%)
+- Cedar: 78,000 / (650 × 1,000) = 78,000 / 650,000 = 78/650 = 3/25 = 0.120 (12.0%)
+- Dovetail: 35,000 / (140 × 1,000) = 35,000 / 140,000 = 35/140 = 1/4 = 0.250 (25.0%)
+- Everest: 95,000 / (380 × 1,000) = 95,000 / 380,000 = 95/380 = 1/4 = 0.250 (25.0%)
+
+**Comparison.** Ranking the five ratios in ascending order: Cedar (3/25) < Avalon (3/20) < Brio (1/5) < Dovetail (1/4) = Everest (1/4). The three smaller values fall clearly below 1/4. Dovetail and Everest both reduce to exactly 1/4, yielding a precise tie at the top with no rounding involved. Among the two tied firms, the credited answer designates Everest as the correct selection.
+
+The correct answer is E.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -627,14 +827,32 @@ An app's net MAU change equals New Signups minus (MAU × Churn Rate). Which app 
 - E) Glimpse
 
 **answer:** A
-**fastest_path:** Net = Signups − MAU·Churn. Chatter +2.0M, Drift +1.08, Ember +1.2, Flick +1.2, Glimpse +0.95, Helix +0.675. Chatter wins.
-**explanation:** Lost = MAU × churn. Net = signups − lost. Chatter 5.2−3.2=+2.0M (highest). Answer A.
-**mistake_b:** Drift +1.08M.
-**mistake_c:** Ember +1.2M (large MAU × low churn).
-**mistake_d:** Flick +1.2M.
-**mistake_e:** Glimpse +0.95M.
-**common_trap:** Eyeballing churn rate alone. Flick has highest churn (8%) but small MAU base limits absolute loss; Ember has lowest churn (3%) but huge MAU magnifies it.
-**takeaway:** Net-change formulas: compute the full expression for each row, don't shortcut by extreme rates or extreme bases.
+**explanation:** Net MAU gain defined.
+
+The net MAU change for any app is given by the formula
+
+net change = New Signups (M) - MAU (M) x Churn Rate
+
+where the product MAU x Churn Rate represents the number of users lost to attrition during the month. This quantity is computed for all six apps and the maximum is identified.
+
+Let S denote new signups (in millions), M denote MAU (in millions), and r denote the monthly churn rate expressed as a decimal. Then net change = S - M*r.
+
+Computing churned users and net change for each app.
+
+- Chatter: churned = 80 x 0.04 = 3.20; net = 5.2 - 3.20 = 2.00
+- Drift: churned = 45 x 0.065 = 2.925; net = 4.0 - 2.925 = 1.075
+- Ember: churned = 120 x 0.03 = 3.60; net = 4.8 - 3.60 = 1.20
+- Flick: churned = 30 x 0.08 = 2.40; net = 3.6 - 2.40 = 1.20
+- Glimpse: churned = 65 x 0.05 = 3.25; net = 4.2 - 3.25 = 0.95
+- Helix: churned = 95 x 0.035 = 3.325; net = 4.0 - 3.325 = 0.675
+
+Comparing the results.
+
+Ranking the six net-change values in descending order: Chatter (2.00) > Ember (1.20) = Flick (1.20) > Drift (1.075) > Glimpse (0.95) > Helix (0.675).
+
+Chatter's net gain of 2.00 million exceeds every other app. Notably, Ember has the largest absolute user base (120 M) but its relatively high signup volume of 4.8 M is more than offset by its large absolute churn: 120 x 0.03 = 3.60 M lost, leaving only a 1.20 M net gain. Chatter, by contrast, carries the second-lowest churn rate (4.0%) among the six apps, and its 5.2 M in new signups — the highest in the table — yields a loss of only 3.20 M churned users, therefore producing a net gain of 2.00 M that no other app matches.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -663,14 +881,21 @@ Which store sold the most total units over the four-day weekend?
 - E) Elm
 
 **answer:** D
-**fastest_path:** Row sums: Aspen 1820, Birch 1710, Cedar 1510, Dogwood 2140, Elm 1730. Dogwood wins.
-**explanation:** Sum across the four days. Dogwood 2140 highest. Answer D.
-**mistake_a:** Aspen 1820.
-**mistake_b:** Birch 1710.
-**mistake_c:** Cedar 1510, lowest.
-**mistake_e:** Elm 1730.
-**common_trap:** Picking by single-column dominance (Dogwood happens to dominate Saturday). Always sum across.
-**takeaway:** Row-total table Q: explicit sum.
+**explanation:** Totaling across all four days identifies the store with the greatest sales. Each store's units across Friday, Saturday, Sunday, and Monday are summed and compared.
+
+Let T(s) denote the four-day total for store s:
+
+- T(Aspen)   = 420 + 580 + 510 + 310 = 1820
+- T(Birch)   = 350 + 610 + 470 + 280 = 1710
+- T(Cedar)   = 290 + 530 + 440 + 250 = 1510
+- T(Dogwood) = 510 + 690 + 600 + 340 = 2140
+- T(Elm)     = 380 + 560 + 490 + 300 = 1730
+
+Ordering these results from highest to lowest: 2140 > 1820 > 1730 > 1710 > 1510, corresponding to Dogwood > Aspen > Elm > Birch > Cedar.
+
+Dogwood leads every individual day — its daily figures of 510, 690, 600, and 340 are each the highest among the five stores — and its four-day total of 2140 exceeds the next-highest store (Aspen, at 1820) by 320 units.
+
+The correct answer is D.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -699,14 +924,19 @@ Which student had the highest total score across the four quizzes?
 - E) Ewan
 
 **answer:** C
-**fastest_path:** Sums: Aiden 172, Bianca 160, Chen 187, Diya 149, Ewan 161. Chen wins.
-**explanation:** Sum the four scores per student. Chen 187 highest. Answer C.
-**mistake_a:** Aiden 172.
-**mistake_b:** Bianca 160.
-**mistake_d:** Diya 149, lowest.
-**mistake_e:** Ewan 161.
-**common_trap:** Picking by best single quiz. Chen's totals win, but verify by summing.
-**takeaway:** Total = explicit sum across all columns.
+**explanation:** To identify the student with the highest total score, we sum each student's four quiz results and compare the five totals.
+
+Let T(s) denote the total score for student s.
+
+- T(Aiden) = 42 + 38 + 45 + 47 = 172
+- T(Bianca) = 36 + 41 + 39 + 44 = 160
+- T(Chen) = 48 + 46 + 44 + 49 = 187
+- T(Diya) = 31 + 35 + 40 + 43 = 149
+- T(Ewan) = 40 + 42 + 38 + 41 = 161
+
+Comparing the five totals: 187 > 172 > 161 > 160 > 149. T(Chen) = 187 is strictly greater than every other student's total. Chen therefore had the highest aggregate score across all four quizzes.
+
+The correct answer is C.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -735,14 +965,19 @@ Which city had the largest ABSOLUTE increase in population from 2005 to 2020?
 - E) Jasper
 
 **answer:** B
-**fastest_path:** Absolute Δ: F 45, G 60, H 40, I 60, J 10. G ties I; G is the marked choice.
-**explanation:** Absolute changes: Fairhaven +45, Glenwood +60, Harbordale +40, Ivyton +60, Jasper +10. Glenwood and Ivyton tie at +60; marked answer Glenwood. Answer B.
-**mistake_a:** Fairhaven +45.
-**mistake_c:** Harbordale +40.
-**mistake_d:** Ivyton +60 — also ties Glenwood for the highest absolute Δ.
-**mistake_e:** Jasper +10, lowest.
-**common_trap:** Computing % change instead of absolute. Ivyton has highest % growth (67%) but ties Glenwood on absolute. Question asks absolute.
-**takeaway:** Absolute Δ vs % change: read the question's verb. Absolute = (end − start). % = (end − start)/start.
+**explanation:** The absolute increase in population for each city is computed as the 2020 census figure minus the 2005 census figure, using the values stated in thousands. Sorting the table by this difference identifies the largest gain.
+
+For each city, let the absolute increase be d = population(2020) - population(2005):
+
+- Fairhaven: d = 225 - 180 = 45
+- Glenwood: d = 200 - 140 = 60
+- Harbordale: d = 260 - 220 = 40
+- Ivyton: d = 150 - 90 = 60
+- Jasper: d = 320 - 310 = 10
+
+Ranking these differences from largest to smallest: Glenwood = 60, Ivyton = 60, Fairhaven = 45, Harbordale = 40, Jasper = 10. Glenwood and Ivyton are tied at 60, and both values exceed those of the remaining three cities. Among the answer choices offered, choice B (Glenwood) is credited as correct. Glenwood's gain of 60 thousand is therefore selected as the credited largest absolute increase.
+
+The correct answer is B.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -771,14 +1006,19 @@ Which patient had the largest drop in resting heart rate from Visit 1 to Visit 4
 - E) Vera
 
 **answer:** D
-**fastest_path:** Δ V1−V4: Rosa 8, Samir 5, Tae −3 (rose), Uri 10, Vera 5. Uri wins.
-**explanation:** Compute V1 − V4 for each patient: Rosa 78−70=8, Samir 82−77=5, Tae 68−71=−3 (rose, didn't drop), Uri 90−80=10, Vera 74−69=5. Uri's 10 bpm decrease is the largest absolute drop.
-**mistake_a:** Rosa 8.
-**mistake_b:** Samir 5.
-**mistake_c:** Tae actually *rose* (68→71).
-**mistake_e:** Vera 5.
-**common_trap:** Eyeballing % drops; Uri (11.1%) and Rosa (10.3%) close. Question is *absolute* drop.
-**takeaway:** Drop = V1 − V4 (absolute). Read the metric.
+**explanation:** The quantity of interest is the signed change in resting heart rate from Visit 1 to Visit 4, defined as d = Visit 1 value minus Visit 4 value. A positive value of d indicates a decrease in heart rate, and the patient with the largest d has the greatest drop.
+
+Computing d for each patient using the data in the table:
+
+- Rosa: d = 78 - 70 = 8
+- Samir: d = 82 - 77 = 5
+- Tae: d = 68 - 71 = -3 (heart rate increased by 3 bpm; no drop occurred)
+- Uri: d = 90 - 80 = 10
+- Vera: d = 74 - 69 = 5
+
+Ordering these results, 10 > 8 > 5 = 5 > -3. Uri's drop of 10 bpm is strictly greater than every other patient's drop. Rosa's drop of 8 bpm is the next largest, followed by Samir and Vera both at 5 bpm. Tae's rate rose over the four visits and therefore does not contribute a positive drop at all.
+
+The correct answer is D.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -806,14 +1046,19 @@ Which chain had the largest percent increase in operating PROFIT (revenue minus 
 - E) Boreal and Evergreen are tied
 
 **answer:** D
-**fastest_path:** Profit = Rev − Cost. % growth: Boreal 25%, Coastline 0%, Dune 28.6%, Evergreen 57.1%. Evergreen wins.
-**explanation:** Q1 profits: B 60, C 50, D 70, E 35. Q4: 75, 50, 90, 55. % growth: 25, 0, 28.6, 57.1. Evergreen wins. Answer D.
-**mistake_a:** Boreal 25%.
-**mistake_b:** Coastline flat.
-**mistake_c:** Dune 28.6% (most absolute revenue gain but smaller %).
-**mistake_e:** Boreal and Evergreen don't tie.
-**common_trap:** Ranking by absolute revenue Δ. Profit % depends on the *profit base*, which is small for Evergreen (35) and amplifies a $20M gain to 57%.
-**takeaway:** % profit growth = (Δ profit) / (prior profit). Small profit base + decent Δ wins.
+**explanation:** Operating profit for a given quarter equals revenue minus cost. The percent change in operating profit from Q1 to Q4 is defined as ((profit Q4 - profit Q1) / profit Q1) * 100. Let P1 denote operating profit in Q1 and P4 denote operating profit in Q4.
+
+For Boreal, P1 = 240 - 180 = 60 and P4 = 300 - 225 = 75, yielding a percent change of (75 - 60) / 60 * 100 = 15/60 * 100 = 25.00%.
+
+For Coastline, P1 = 180 - 130 = 50 and P4 = 220 - 170 = 50, yielding a percent change of (50 - 50) / 50 * 100 = 0.00%. Coastline's profit did not grow at all.
+
+For Dune, P1 = 360 - 290 = 70 and P4 = 400 - 310 = 90, yielding a percent change of (90 - 70) / 70 * 100 = 20/70 * 100 ≈ 28.57%.
+
+For Evergreen, P1 = 150 - 115 = 35 and P4 = 195 - 140 = 55, yielding a percent change of (55 - 35) / 35 * 100 = 20/35 * 100 ≈ 57.14%.
+
+Ranking the four results: Evergreen ≈ 57.14% > Dune ≈ 28.57% > Boreal = 25.00% > Coastline = 0.00%. Evergreen's absolute profit gain (20) equals Dune's absolute gain (20), but because Evergreen starts from the much smaller base of 35 (versus Dune's base of 70), the same absolute increase produces a percent change that is exactly double. The question asks for the largest percent increase, not the largest absolute increase, so the small base matters decisively. Evergreen's ≈ 57.14% is strictly greater than the next-highest figure of ≈ 28.57%, and no tie exists among the remaining chains.
+
+The correct answer is D.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -843,14 +1088,15 @@ How many associates had BOTH a call-to-meeting conversion rate above 20% AND rev
 - E) 5
 
 **answer:** B
-**fastest_path:** Two filters: Mtg/Call >20% AND Rev/Deal >$14K. Benji 25%/15K ✓, Devi 25%/15K ✓. Two pass.
-**explanation:** Conversion: A 15%, B 25%, C 10%, D 25%, E 15%, F 15%. Pass: B, D. Rev/deal: A 15, B 15, C 15, D 15, E 15, F 15 — all ≥14. Both pass: B and D. Answer B.
-**mistake_a:** 1 — undercount.
-**mistake_c:** 3 — including Adaeze (15% conversion fails).
-**mistake_d:** 4 — over-counting.
-**mistake_e:** 5 — ignoring conversion filter.
-**common_trap:** Testing only one condition. Both must pass.
-**takeaway:** Two-filter table count: apply both filters strictly per row.
+**explanation:** Two conditions must hold simultaneously: the call-to-meeting conversion rate (meetings divided by calls) must exceed 20%, and revenue per deal (revenue divided by deals closed) must exceed $14K.
+
+Computing the conversion rate for each associate: Adaeze posts 60/400 = 15.0%, Benji posts 80/320 = 25.0%, Cressida posts 50/500 = 10.0%, Devi posts 70/280 = 25.0%, Emeka posts 54/360 = 15.0%, and Fiona posts 66/440 = 15.0%. Only Benji and Devi exceed the 20% threshold; the remaining four associates are eliminated from further consideration.
+
+For the two qualifying associates, revenue per deal is computed as follows: Benji records 480/32 = $15.0K per deal, and Devi records 420/28 = $15.0K per deal. Both values exceed $14K, so both associates satisfy the second condition as well.
+
+Benji and Devi each clear both hurdles. No other associate passed the first screen, so no other associate can satisfy the conjunction. The total count of associates meeting both criteria is exactly 2.
+
+The correct answer is B.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -880,14 +1126,20 @@ Which striker had the highest shot-conversion rate (goals / shots)?
 - E) Esposito
 
 **answer:** D
-**fastest_path:** G/S: A 20%, B 20%, C 20%, D 25%, E 15%, F 25%. D ties F; D listed.
-**explanation:** Goals/shots: 20, 20, 20, 25, 15, 25%. Duarte and Fofana tie at 25%; marked answer Duarte. Answer D.
-**mistake_a:** A 20%.
-**mistake_b:** B 20%.
-**mistake_c:** C has most goals but only 20% conversion.
-**mistake_e:** E lowest 15%.
-**common_trap:** Picking by total goals (Cruz 24). Conversion is rate, not total.
-**takeaway:** Conversion rate = goals/shots. High volume ≠ high efficiency.
+**explanation:** Shot-conversion rate is defined as the ratio of goals scored to shots taken: rate = goals / shots. A higher ratio indicates that a striker converts a greater proportion of his attempts into goals. The ratio is computed for each of the six strikers below.
+
+| Striker  | Goals | Shots | Rate (goals / shots)   |
+|----------|-------|-------|------------------------|
+| Alvarez  | 18    | 90    | 18/90 = 0.200 (20.0%)  |
+| Bako     | 14    | 70    | 14/70 = 0.200 (20.0%)  |
+| Cruz     | 24    | 120   | 24/120 = 0.200 (20.0%) |
+| Duarte   | 15    | 60    | 15/60 = 0.250 (25.0%)  |
+| Esposito | 12    | 80    | 12/80 = 0.150 (15.0%)  |
+| Fofana   | 18    | 72    | 18/72 = 0.250 (25.0%)  |
+
+Alvarez, Bako, and Cruz each convert exactly 20.0% of their shots; Esposito trails at 15.0%. Duarte and Fofana both reach 25.0%, the highest figure in the table. Of those two, only Duarte appears among the answer choices (Fofana is not listed as an option), making Duarte the uniquely selectable striker with the highest shot-conversion rate. Duarte's rate of 15/60 = 0.25 exceeds every other listed choice: Alvarez (0.20), Bako (0.20), Cruz (0.20), and Esposito (0.15).
+
+The correct answer is D.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -916,14 +1168,25 @@ Across the five cities, what is the median percentage of commuters who use the b
 - E) 30%
 
 **answer:** B
-**fastest_path:** Bus column sorted: 15, 20, 20, 25, 30. Median (3rd) = 20.
-**explanation:** Bus percentages: 20, 25, 30, 15, 20. Sorted: 15, 20, 20, 25, 30. 3rd value = 20%. Answer B.
-**mistake_a:** 15 — minimum.
-**mistake_c:** 22 — *mean*, not median.
-**mistake_d:** 25 — 4th value.
-**mistake_e:** 30 — max.
-**common_trap:** Computing the mean (22%) instead of median.
-**takeaway:** Median ≠ mean. Sort + middle value.
+**explanation:** The median of a set of values is the middle value when all values are arranged in ascending order. For an odd number of observations n, the median is the value at position (n + 1) / 2.
+
+Here n = 5 cities, so the median occupies position (5 + 1) / 2 = 3 in the ordered list.
+
+Extracting the bus-usage percentages from the table for each city:
+
+- Alston: 20%
+- Breston: 25%
+- Cawdor: 30%
+- Denholm: 15%
+- Eastkirk: 20%
+
+Arranging these five values in ascending order: 15, 20, 20, 25, 30.
+
+The value in the 3rd position is 20%. The information that 800 commuters were surveyed is extraneous for this question; since each percentage is already given and the question asks for a comparison of percentages rather than absolute counts, no conversion is required.
+
+Therefore, the median percentage of commuters who use the bus as their primary mode, across the five cities, is 20%.
+
+The correct answer is B.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -952,14 +1215,33 @@ How many firms have BOTH average revenue per customer (ARR/Customers) above $35,
 - E) 5
 
 **answer:** B
-**fastest_path:** ARPC: 40K, 50K, 50K, 30K, 40K. GM: 72, 80, 68, 75, 70%. Pass both (>35K and >70%): Helion and Isoria.
-**explanation:** ARR/customers: Helion 40K, Isoria 50K, Jovian 50K, Kestrel 30K, Lyra 40K. Apply both filters: Helion (40K, 72%) ✓, Isoria (50K, 80%) ✓, Jovian (68%) fails, Kestrel (30K) fails, Lyra (70% boundary) fails. 2 firms. Answer B.
-**mistake_a:** 1 — missing one.
-**mistake_c:** 3 — including Lyra (boundary).
-**mistake_d:** 4 — including Jovian.
-**mistake_e:** 5 — no filter applied.
-**common_trap:** Lyra at exactly 70% — "above 70%" is strict; 70% fails.
-**takeaway:** Strict inequality on tables: boundary values fail "above" / "below."
+**explanation:** **Governing definitions.** Average revenue per customer (ARPC) is defined as ARR divided by the number of customers. Because ARR is reported in millions of dollars, the conversion to a per-customer dollar figure requires multiplying by 1,000,000. The two screening conditions that must hold simultaneously are: (1) ARPC > 35,000, and (2) gross margin > 70%. The strict inequalities mean that a firm with ARPC equal to exactly $35,000 or a gross margin equal to exactly 70% does not qualify.
+
+**Row-by-row computation.**
+
+For each firm, let ARPC = (ARR x 1,000,000) / Customers.
+
+- **Helion.** ARPC = 48,000,000 / 1200 = 40,000. Gross margin = 72%. Condition (1): 40,000 > 35,000 — satisfied. Condition (2): 72% > 70% — satisfied. Both conditions hold.
+
+- **Isoria.** ARPC = 30,000,000 / 600 = 50,000. Gross margin = 80%. Condition (1): 50,000 > 35,000 — satisfied. Condition (2): 80% > 70% — satisfied. Both conditions hold.
+
+- **Jovian.** ARPC = 90,000,000 / 1800 = 50,000. Gross margin = 68%. Condition (1): 50,000 > 35,000 — satisfied. Condition (2): 68% > 70% — not satisfied. Fails.
+
+- **Kestrel.** ARPC = 24,000,000 / 800 = 30,000. Gross margin = 75%. Condition (1): 30,000 > 35,000 — not satisfied. Fails.
+
+- **Lyra.** ARPC = 60,000,000 / 1500 = 40,000. Gross margin = 70%. Condition (1): 40,000 > 35,000 — satisfied. Condition (2): 70% > 70% — not satisfied, because the inequality is strict. Fails.
+
+**Summary.**
+
+| Firm | ARPC ($) | Gross Margin | ARPC > 35,000? | GM > 70%? | Both? |
+|---------|----------|-------------|----------------|-----------|-------|
+| Helion | 40,000 | 72% | Yes | Yes | Yes |
+| Isoria | 50,000 | 80% | Yes | Yes | Yes |
+| Jovian | 50,000 | 68% | Yes | No | No |
+| Kestrel | 30,000 | 75% | No | Yes | No |
+| Lyra | 40,000 | 70% | Yes | No | No |
+
+Two firms — Helion and Isoria — satisfy both conditions simultaneously. Jovian's high ARPC is offset by a below-threshold gross margin; Kestrel's strong gross margin is offset by an ARPC below $35,000; Lyra meets the ARPC requirement but its gross margin of exactly 70% does not satisfy the strict inequality. The correct answer is B.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -989,14 +1271,22 @@ How many participants consumed more than 100 grams of protein AND at least 25 gr
 - E) 5
 
 **answer:** C
-**fastest_path:** Two filters: protein >100 AND fiber ≥25. P1 (110, 28) ✓, P3 (125, 30) ✓, P6 (115, 32) ✓. Three pass.
-**explanation:** Apply both: P1 ✓, P2 fails (protein 80), P3 ✓, P4 fails (90), P5 fails (=100, not >), P6 ✓. 3 participants. Answer C.
-**mistake_a:** 1 — undercount.
-**mistake_b:** 2 — missing one.
-**mistake_d:** 4 — including P5 (exactly 100, fails strict).
-**mistake_e:** 5 — no filter.
-**common_trap:** P5 at 100g exactly — "more than 100" excludes it. Strict vs non-strict.
-**takeaway:** Strict-inequality boundaries: "more than X" excludes X; "at least X" includes it.
+**explanation:** The question asks how many of the six participants satisfy two simultaneous conditions: (1) daily protein intake strictly greater than 100 g, and (2) daily fiber intake greater than or equal to 25 g. Both conditions must hold for a participant to be counted; failure on either condition disqualifies that participant.
+
+The two thresholds are defined explicitly. Let P denote a participant's daily protein intake in grams and F denote daily fiber intake in grams. The joint criterion is: P > 100 AND F >= 25.
+
+Applying this criterion row by row:
+
+- P1: P = 110, F = 28. Since 110 > 100 and 28 >= 25, both conditions hold. P1 qualifies.
+- P2: P = 80, F = 22. Since 80 is not > 100, the first condition fails immediately. P2 does not qualify.
+- P3: P = 125, F = 30. Since 125 > 100 and 30 >= 25, both conditions hold. P3 qualifies.
+- P4: P = 90, F = 18. Since 90 is not > 100, the first condition fails immediately. P4 does not qualify.
+- P5: P = 100, F = 25. The first condition requires P strictly greater than 100. Because 100 is not strictly greater than 100, the first condition fails. P5 does not qualify, even though F = 25 exactly meets the fiber threshold.
+- P6: P = 115, F = 32. Since 115 > 100 and 32 >= 25, both conditions hold. P6 qualifies.
+
+The qualifying participants are P1, P3, and P6, giving a total count of 3. Note that P5 is the critical case: its protein value of exactly 100 g does not satisfy the strict inequality P > 100, so it is correctly excluded despite meeting the fiber requirement.
+
+The correct answer is C.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -1025,14 +1315,33 @@ Given that volume of a sphere = (4/3)π r³, which bearing has the HIGHEST densi
 - E) Type E
 
 **answer:** D
-**fastest_path:** Density = m / [(4/3)π r³]. Compute each: A 8.00, B 7.98, C 7.99, D 8.02, E 7.99. D wins (narrowly).
-**explanation:** Densities (g/cm³): A 8.00, B 7.98, C 7.99, D 8.02, E 7.99. Type D highest. Answer D.
-**mistake_a:** A 8.00, second.
-**mistake_b:** B 7.98, lowest.
-**mistake_c:** C 7.99.
-**mistake_e:** E has highest mass but volume scales with r³.
-**common_trap:** Picking E by mass (113g largest). Density normalizes by volume; r³ scaling penalizes large bearings.
-**takeaway:** Density = m/V. Volume cubes the linear dimension; large radii dilute density.
+**explanation:** Density is defined as rho = m / V, where m is mass and V is volume. For a sphere of radius r, the volume formula V = (4/3) * pi * r^3 applies. Because the factor (4/3) * pi is a positive constant shared by every bearing, comparing densities reduces to comparing the ratio m / r^3 across all five types: the bearing with the largest m / r^3 has the highest density.
+
+Each bearing's diameter d is given; the radius is r = d / 2. The five radii are therefore:
+
+- Type A: r = 20 / 2 = 10 mm
+- Type B: r = 15 / 2 = 7.5 mm
+- Type C: r = 25 / 2 = 12.5 mm
+- Type D: r = 10 / 2 = 5 mm
+- Type E: r = 30 / 2 = 15 mm
+
+Because rho = m / ((4/3) * pi * r^3) = [m / r^3] / ((4/3) * pi), rankings follow from the dimensionless index k = m / r^3:
+
+- Type A: r^3 = 10^3 = 1000; k = 33.5 / 1000 = 0.0335
+- Type B: r^3 = 7.5^3 = 421.875; k = 14.1 / 421.875 ≈ 0.03342
+- Type C: r^3 = 12.5^3 = 1953.125; k = 65.4 / 1953.125 ≈ 0.03349
+- Type D: r^3 = 5^3 = 125; k = 4.2 / 125 = 0.0336
+- Type E: r^3 = 15^3 = 3375; k = 113.0 / 3375 ≈ 0.03348
+
+Ordering from highest to lowest: Type D (0.0336) > Type A (0.0335) > Type C (0.03349) > Type E (0.03348) > Type B (0.03342). Type D produces the largest k value.
+
+Using V = (4/3) * pi * r^3 with pi ≈ 3.14159 to confirm with actual density:
+
+- Type D: V = (4/3) * 3.14159 * 125 ≈ 523.60 mm^3; rho = 4.2 / 523.60 ≈ 0.008021 g/mm^3
+
+No other bearing achieves a density above 0.008000 g/mm^3; the next highest is Type A at approximately 0.007998 g/mm^3. Although the five values are numerically close — reflecting that all bearings are made of similarly dense metal alloys — Type D's ratio of mass to cube-of-radius is strictly the largest, giving it the highest density.
+
+The correct answer is D.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -1060,14 +1369,19 @@ Ranked by OPERATING MARGIN (operating profit / revenue), which company ranks SEC
 - E) Pinnacle and Summit tie
 
 **answer:** D
-**fastest_path:** Margins: Pinnacle 21.25%, Summit 20.31%, Quorum 20.19%, Radiance 15.83%. Second = Summit.
-**explanation:** Op profit / revenue: Pinnacle 21.25%, Quorum 20.19%, Radiance 15.83%, Summit 20.31%. Sorted: Pinnacle, Summit, Quorum, Radiance. Second = Summit. Answer D.
-**mistake_a:** Pinnacle is *first*, not second.
-**mistake_b:** Quorum 20.19% — third.
-**mistake_c:** Radiance highest absolute profit (190M) but lowest margin.
-**mistake_e:** Pinnacle 21.25% vs Summit 20.31% — not tied.
-**common_trap:** Ranking by absolute profit (Radiance 190M wins). Margin rewards efficiency, not scale.
-**takeaway:** Margin = profit/revenue. Largest margin ≠ largest profit.
+**explanation:** Operating margin is defined as operating profit divided by revenue, where operating profit equals revenue minus total operating costs. With total costs equal to the sum of Content Costs, Marketing, and G&A, the margin M for each company is M = (Revenue - Total Costs) / Revenue.
+
+For Pinnacle: total costs = 420 + 120 + 90 = 630; operating profit = 800 - 630 = 170; M = 170/800 = 17/80 = 0.2125, or 21.25%.
+
+For Quorum: total costs = 260 + 85 + 70 = 415; operating profit = 520 - 415 = 105; M = 105/520 = 21/104 = 0.201923..., or approximately 20.19%.
+
+For Radiance: total costs = 720 + 180 + 110 = 1010; operating profit = 1200 - 1010 = 190; M = 190/1200 = 19/120 = 0.15833..., or approximately 15.83%.
+
+For Summit: total costs = 300 + 130 + 80 = 510; operating profit = 640 - 510 = 130; M = 130/640 = 13/64 = 0.203125, or 20.3125%.
+
+Ranking by operating margin from highest to lowest: Pinnacle at 21.25%, Summit at 20.3125%, Quorum at 20.19%, and Radiance at 15.83%. Pinnacle holds the highest operating margin, and Summit holds the second-highest. Although Summit's absolute operating profit of 130 is lower than Radiance's 190, the margin calculation normalizes for scale, and Summit's lower cost base relative to its revenue places it clearly above both Quorum and Radiance. The gap between Summit and Quorum is small but unambiguous given exact fractions: 13/64 = 0.203125, which is strictly greater than 21/104 = 0.201923.... Therefore Summit ranks second.
+
+The correct answer is D.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -1096,14 +1410,25 @@ Ranked by marketing-to-revenue ratio (marketing as a percentage of revenue), whi
 - E) Everglade
 
 **answer:** D
-**fastest_path:** Normalize: Mkt/Rev. Aurora 15%, Bristol 20%, Cascade 10%, Drummond 25%, Everglade 10%. Drummond wins.
-**explanation:** Mkt $K / Rev $M (after unit fix to common $K): Aurora 48/320000=15%, Bristol 20%, Cascade 10%, Drummond 25%, Everglade 10%. Drummond highest. Answer D.
-**mistake_a:** Aurora 15%.
-**mistake_b:** Bristol 20%.
-**mistake_c:** Cascade highest absolute spend (54K) but middling rate (10%).
-**mistake_e:** Everglade 10%.
-**common_trap:** Forgetting unit mismatch. Revenue is $M; Marketing is $K. Different by 1000×.
-**takeaway:** Mixed-unit ratios: convert to common unit first.
+**explanation:** The marketing-to-revenue ratio expresses annual marketing spend as a percentage of annual revenue. Because the two quantities are given in different units — marketing in thousands of USD and revenue in millions of USD — a unit conversion is required before any comparison is valid. Since 1 million = 1,000 thousands, 1 million USD of revenue equals 1,000 thousand USD. Therefore, for each brand the ratio is computed as:
+
+ratio = Marketing ($K) / (Revenue ($M) * 1,000) * 100
+
+Equivalently, letting M denote marketing spend in thousands and R denote revenue in millions:
+
+ratio (%) = M / (R * 1,000) * 100 = M / (10 * R)
+
+Applying this formula to each brand:
+
+- Aurora: 48,000 / (10 * 320) = 48,000 / 3,200 = 15.0%
+- Bristol: 36,000 / (10 * 180) = 36,000 / 1,800 = 20.0%
+- Cascade: 54,000 / (10 * 540) = 54,000 / 5,400 = 10.0%
+- Drummond: 60,000 / (10 * 240) = 60,000 / 2,400 = 25.0%
+- Everglade: 40,000 / (10 * 400) = 40,000 / 4,000 = 10.0%
+
+Ranking the five brands in descending order: Drummond (25.0%) > Bristol (20.0%) > Aurora (15.0%) > Cascade (10.0%) = Everglade (10.0%). Drummond's ratio of 25% is the highest — achieved because its marketing spend of $60,000K is the largest in the table while its revenue of $240M is the second lowest. The unit-conversion step is essential: the proper basis of comparison is the ratio of marketing spend to revenue, not the absolute spend figures. Comparing raw marketing figures without adjusting for revenue scale would not constitute a valid ranking by ratio.
+
+The correct answer is D.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -1133,14 +1458,25 @@ How many cities have ALL of the following: median income above $60K, unemploymen
 - E) 4
 
 **answer:** D
-**fastest_path:** 3 filters: income>60, unemp<5, crime<3.5. Pass: Ashford (62, 4.2, 3.1), Clarendon (71, 3.5, 2.4), Elmworth (65, 4.8, 3.3). 3 cities.
-**explanation:** Check each row: 3 pass (Ashford, Clarendon, Elmworth). Answer D.
-**mistake_a:** 0 — undercount.
-**mistake_b:** 1 — checking only one filter.
-**mistake_c:** 2 — missing one.
-**mistake_e:** 4 — adding Belcourt or Fairholm (low income).
-**common_trap:** Skipping the triple-check and counting rows that pass only two filters.
-**takeaway:** Triple-filter table count: enforce all three strictly per row.
+**explanation:** The question asks for a count of cities satisfying three simultaneous conditions: median income above $60K, unemployment below 5%, and violent crime per 1,000 residents below 3.5. Let the three thresholds be defined as I > 60, U < 5, and C < 3.5, where I denotes median income in thousands of dollars, U denotes the unemployment rate as a percentage, and C denotes the violent crime rate per 1,000 residents. A city qualifies only if all three inequalities hold concurrently; failure on any single condition disqualifies it.
+
+We examine each city in turn.
+
+Ashford. I = 62 > 60 (satisfied); U = 4.2 < 5 (satisfied); C = 3.1 < 3.5 (satisfied). All three conditions hold. Ashford qualifies.
+
+Belcourt. I = 58, and 58 > 60 is false. The income condition fails immediately; Belcourt does not qualify regardless of its other values.
+
+Clarendon. I = 71 > 60 (satisfied); U = 3.5 < 5 (satisfied); C = 2.4 < 3.5 (satisfied). All three conditions hold. Clarendon qualifies.
+
+Derwent. I = 48, and 48 > 60 is false. The income condition fails; Derwent does not qualify.
+
+Elmworth. I = 65 > 60 (satisfied); U = 4.8 < 5 (satisfied); C = 3.3 < 3.5 (satisfied). All three conditions hold. Elmworth qualifies.
+
+Fairholm. I = 55, and 55 > 60 is false. The income condition fails; Fairholm does not qualify.
+
+The qualifying cities are Ashford, Clarendon, and Elmworth, giving a total count of 3.
+
+The correct answer is D.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -1170,14 +1506,25 @@ Ranked by PERCENT CHANGE in revenue per headcount (revenue/headcount) from 2024 
 - E) Ephraim
 
 **answer:** D
-**fastest_path:** Rev/head Δ%: Asha −4%, Bodie 0%, Carmen 0%, Dieter +5%, Ephraim +2.7%, Freya −6.7%. Dieter wins.
-**explanation:** Per-head 2024 → 2025 changes: −4, 0, 0, +5, +2.7, −6.7%. Dieter +5% leads. Answer D.
-**mistake_a:** Asha −4%.
-**mistake_b:** Bodie 0%.
-**mistake_c:** Carmen 0%.
-**mistake_e:** Ephraim +2.67%.
-**common_trap:** Picking Freya (revenue +40%, biggest absolute jump). But headcount grew 50%, so per-head *fell*.
-**takeaway:** Per-head productivity = revenue/headcount. Revenue growth alone doesn't equal per-head growth.
+**explanation:** The metric under examination is revenue per headcount, defined as RPH = Revenue / Headcount for each manager in each year. The percent change in RPH from 2024 to 2025 is computed as (RPH_2025 - RPH_2024) / RPH_2024 * 100.
+
+**Asha.** RPH_2024 = 1800/12 = 150. RPH_2025 = 2160/15 = 144. Percent change = (144 - 150)/150 * 100 = -4.0%.
+
+**Bodie.** RPH_2024 = 2400/20 = 120. RPH_2025 = 2640/22 = 120. Percent change = (120 - 120)/120 * 100 = 0.0%.
+
+**Carmen.** RPH_2024 = 1500/10 = 150. RPH_2025 = 1950/13 = 150. Percent change = (150 - 150)/150 * 100 = 0.0%.
+
+**Dieter.** RPH_2024 = 3000/25 = 120. RPH_2025 = 3150/25 = 126. Because headcount is unchanged, the percent change in RPH equals the percent change in revenue directly: (126 - 120)/120 * 100 = 5.0%.
+
+**Ephraim.** RPH_2024 = 2100/14 = 150. RPH_2025 = 2310/15 = 154. Percent change = (154 - 150)/150 * 100 = 4/150 * 100 ≈ 2.67%.
+
+**Freya.** RPH_2024 = 1200/8 = 150. RPH_2025 = 1680/12 = 140. Percent change = (140 - 150)/150 * 100 = -10/150 * 100 ≈ -6.67%.
+
+Ranking from highest to lowest: Dieter (+5.0%) > Ephraim (+2.67%) > Bodie (0.0%) = Carmen (0.0%) > Asha (-4.0%) > Freya (-6.67%).
+
+Dieter alone posts the largest positive percent change, driven exclusively by revenue growth from $3,000K to $3,150K — a 5% gain — with no change in headcount, so the RPH improvement passes through at the same 5% rate. Managers such as Carmen and Bodie added headcount at rates that exactly offset their revenue gains, leaving RPH flat. Asha and Freya hired headcount faster than their revenues grew, causing RPH to decline.
+
+The correct answer is D.
 **related_reading:** reading-di-03-table-analysis
 
 
@@ -1208,14 +1555,31 @@ Which location has the highest operating profit per customer?
 - E) Central
 
 **answer:** B
-**fastest_path:** OP/customer: N $28.6, S $42.9, E $31.7, W $34.6, C $39.4. South wins.
-**explanation:** OP=Rev−Cost; OP/Customers: 100/3.5K=$28.6, 120/2.8K=$42.9, 130/4.1K=$31.7, 90/2.6K=$34.6, 130/3.3K=$39.4. South highest. Answer B.
-**mistake_a:** $28.6, lowest.
-**mistake_c:** $31.7 (East has highest absolute OP $130K but most customers).
-**mistake_d:** $34.6.
-**mistake_e:** $39.4 (Central's $130K matches East but fewer customers).
-**common_trap:** Picking East by absolute OP ($130K). Per-customer normalizes by customer count.
-**takeaway:** Per-X metric: divide by X. Highest absolute ≠ highest per-unit.
+**explanation:** Operating profit per customer is defined as operating profit divided by the number of customers served, where operating profit equals revenue minus costs. Let P(L) denote the operating profit for location L, C(L) denote its customer count, and R(L) denote the ratio P(L)/C(L). Because the question asks for the location with the highest R(L), this derived metric must be computed for all five locations rather than relying on either profit or customer count alone.
+
+Revenue and costs are given in thousands of dollars, so operating profit is also expressed in thousands of dollars.
+
+- North: P = 420 - 320 = 100 ($K)
+- South: P = 380 - 260 = 120 ($K)
+- East: P = 500 - 370 = 130 ($K)
+- West: P = 340 - 250 = 90 ($K)
+- Central: P = 460 - 330 = 130 ($K)
+
+To express profit per customer in dollars rather than thousands, each profit figure is multiplied by 1,000 before dividing by customer count.
+
+- North: (100 × 1,000) / 3,500 = 100,000 / 3,500 ≈ $28.57
+- South: (120 × 1,000) / 2,800 = 120,000 / 2,800 ≈ $42.86
+- East: (130 × 1,000) / 4,100 = 130,000 / 4,100 ≈ $31.71
+- West: (90 × 1,000) / 2,600 = 90,000 / 2,600 ≈ $34.62
+- Central: (130 × 1,000) / 3,300 = 130,000 / 3,300 ≈ $39.39
+
+Arranging in descending order: South (≈$42.86) > Central (≈$39.39) > West (≈$34.62) > East (≈$31.71) > North (≈$28.57).
+
+A notable comparison is East versus South: East produces the highest absolute operating profit (130 vs. 120), yet it also serves significantly more customers (4,100 vs. 2,800). The ratio 130/4,100 ≈ 0.03171 is strictly less than 120/2,800 ≈ 0.04286, confirming that a larger numerator does not guarantee a larger ratio when the denominator grows proportionally faster. Similarly, Central matches East in absolute profit but serves 3,300 customers, yielding a per-customer figure of approximately $39.39 — second-highest but still below South. West, despite the smallest absolute profit, benefits from a small customer base; its ratio of approximately $34.62 nevertheless trails South.
+
+South achieves the highest operating profit per customer at approximately $42.86.
+
+The correct answer is B.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -1245,14 +1609,25 @@ Which of the following is most strongly supported by the data?
 - E) Epsilon has the highest percentage of trainees within one standard deviation of its mean.
 
 **answer:** B
-**fastest_path:** SD = variability. Delta SD=15, highest of {12,6,10,15,8}. B directly supported.
-**explanation:** SD measures variability. Delta SD=15 highest. Answer B.
-**mistake_a:** Low SD ≠ few outliers in a strict sense; relates but not equivalent.
-**mistake_c:** Gamma median 74 implies *at most half* below 75; not "more below than above" without distribution assumptions.
-**mistake_d:** Contradicts Alpha's median 80 (definition: half at/below).
-**mistake_e:** Distribution shape not given.
-**common_trap:** Treating SD as a proxy for outliers (it includes outliers but isn't synonymous).
-**takeaway:** SD = variability metric. Median + mean alone don't fix distribution shape.
+**explanation:** **Standard deviation** is the primary statistical measure of dispersion — the greater the standard deviation, the more spread out the individual scores are around the mean. To determine which cohort shows the greatest variability, the standard deviations can be compared directly from the table.
+
+Reading the Standard Deviation column for each cohort:
+
+| Cohort   | Standard Deviation |
+|----------|--------------------|
+| Alpha    | 12                 |
+| Beta     | 6                  |
+| Gamma    | 10                 |
+| Delta    | 15                 |
+| Epsilon  | 8                  |
+
+The ranking from highest to lowest is: Delta (15) > Alpha (12) > Gamma (10) > Epsilon (8) > Beta (6). Delta's standard deviation of 15 is the largest value in the column, and it exceeds the next-highest value (Alpha's 12) by 3 points — a margin of 3/12 = 25%, which is substantial.
+
+Because each cohort contains the same number of trainees (60), no adjustment for sample size is needed; the raw standard deviations are directly comparable. The choice asserting that Beta has the fewest high-scoring outliers conflates a low standard deviation with a specific claim about the tails that cannot be confirmed without distributional assumptions. Similarly, the claims about Gamma's, Alpha's, and Epsilon's trainees relative to specific cutoffs require knowledge of the full distribution shape, not merely the mean and median — the mean-median relationships shown (e.g., Alpha: mean 78 < median 80, suggesting slight left skew; Delta: mean 80 > median 78, suggesting slight right skew) offer weak directional hints but do not permit precise percentage calculations. The only statement that follows directly and unambiguously from a single column of the table is the comparison of standard deviations, which identifies Delta as the most variable cohort.
+
+Therefore, the statement that Delta shows the greatest variability in scores among the five cohorts is the one most strongly supported by the data.
+
+The correct answer is B.
 **related_reading:** reading-di-03-table-analysis
 
 
@@ -1283,14 +1658,21 @@ Which city has the highest ratio of median income to crime rate (income divided 
 - E) E
 
 **answer:** D
-**fastest_path:** Income/crime: A 5.67, B 6.88, C 4.00, D 8.00, E 3.73. D wins.
-**explanation:** Ratios: 68/12, 55/8, 72/18, 48/6, 82/22 = 5.67, 6.88, 4.00, 8.00, 3.73. D highest. Answer D.
-**mistake_a:** A 5.67.
-**mistake_b:** B 6.88.
-**mistake_c:** C 4.00.
-**mistake_e:** E has highest income but also high crime → low ratio.
-**common_trap:** Anchoring on absolute income (E $82K). Ratio normalizes by crime rate.
-**takeaway:** Ratio Q: compute the named ratio per row. Don't pick by either component alone.
+**explanation:** The ratio of median income to crime rate is defined here as median income (in $K) divided by crime rate (per 1,000 residents). Let R(x) = Income(x) / Crime(x) for each city x. The city with the largest R(x) is the answer.
+
+Computing R(x) for each city in turn:
+
+- City A: R(A) = 68 / 12 = 5.667
+- City B: R(B) = 55 / 8 = 6.875
+- City C: R(C) = 72 / 18 = 4.000
+- City D: R(D) = 48 / 6 = 8.000
+- City E: R(E) = 82 / 22 = 3.727
+
+Ranking these values: R(D) = 8.000 > R(B) = 6.875 > R(A) = 5.667 > R(C) = 4.000 > R(E) = 3.727.
+
+A common error is to focus on whichever city has the highest absolute income (City E at $82K) or the lowest absolute crime rate (City D at 6 per 1,000) in isolation; the question asks for the ratio of the two. City E's crime rate of 22 per 1,000 is so elevated relative to its income that R(E) = 82/22 = 3.727, the lowest ratio of all five cities. City D, by contrast, pairs a modest income of $48K with the lowest crime rate of 6 per 1,000, yielding R(D) = 48/6 = 8.000 — strictly greater than every other city's ratio.
+
+The correct answer is D.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -1311,11 +1693,31 @@ Statement: Every city with a median income above $60K also has a crime rate abov
 - B) No
 
 **answer:** A
-**fastest_path:** Income>60K: A (12), C (18), E (22). All have crime>10. Yes.
-**explanation:** Filter income > 60K: A, C, E. All have crime > 10 (12, 18, 22). Answer Yes.
-**mistake_b:** "No" requires a counterexample; none exists.
-**common_trap:** Forgetting to filter first; including all cities and finding D's crime 6.
-**takeaway:** Universal-statement Y/N: filter, then verify property on every passing row.
+**explanation:** The governing principle for this type of statement is universal affirmation: the statement "Every city with property P also has property Q" is true if and only if there is no counterexample — that is, no city that satisfies P but fails Q. All cities for which median income exceeds $60K must therefore be identified, and each must be checked against the crime-rate condition.
+
+**Identifying the qualifying set.**
+
+Scanning the Median Income column reveals three cities whose values exceed $60K:
+
+- City A: median income = $68K, so 68 > 60. Qualifies.
+- City C: median income = $72K, so 72 > 60. Qualifies.
+- City E: median income = $82K, so 82 > 60. Qualifies.
+
+Cities B ($55K) and D ($48K) fall below the threshold and are therefore outside the qualifying set. Their crime rates are irrelevant to the truth of this statement.
+
+**Checking the crime-rate condition for each qualifying city.**
+
+For City A: crime rate = 12. The check 12 > 10 is true.
+
+For City C: crime rate = 18. The check 18 > 10 is true.
+
+For City E: crime rate = 22. The check 22 > 10 is true.
+
+**Conclusion.**
+
+All three cities that clear the income threshold (A, C, and E) also clear the crime-rate threshold. Because no counterexample exists in the data — no city with median income above $60K has a crime rate of 10 or below — the universal statement holds without exception. The answer is therefore Yes.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 
@@ -1347,14 +1749,23 @@ A candidate qualifies for the "senior track" position only if ALL of the followi
 - E) 5
 
 **answer:** C
-**fastest_path:** 3 filters (yrs≥5, GPA≥3.5, interview≥8). Pass: #1, #4, #5. Three qualify.
-**explanation:** Check all three thresholds: #1 (5/3.6/8) ✓, #2 fails GPA, #3 fails years, #4 (10/3.5/9) ✓, #5 (6/3.8/8) ✓, #6 fails years. 3 qualify. Answer C.
-**mistake_a:** 1 — undercount.
-**mistake_b:** 2 — missing one.
-**mistake_d:** 4 — counting #2 (GPA fails) or #6 (years fail).
-**mistake_e:** 5 — ignoring filters.
-**common_trap:** Treating "≥3.5" as ">3.5" and knocking out candidate #4 (exactly 3.5).
-**takeaway:** Triple-AND filter: read inclusivity carefully. ≥ includes the boundary.
+**explanation:** A candidate qualifies for the senior track if and only if three conditions hold simultaneously: years of experience >= 5, GPA >= 3.5, and interview score >= 8. Let E denote years of experience, G denote GPA, and I denote interview score. The qualifying rule is therefore E >= 5 AND G >= 3.5 AND I >= 8. Because the rule is conjunctive, failure on any single criterion eliminates a candidate regardless of performance on the others.
+
+We apply this filter to each of the six candidates in turn.
+
+**Candidate 1.** E = 5, G = 3.6, I = 8. Checking each condition: 5 >= 5 is satisfied; 3.6 >= 3.5 is satisfied; 8 >= 8 is satisfied. All three conditions hold. Candidate 1 qualifies.
+
+**Candidate 2.** E = 8, G = 3.2, I = 9. The experience condition 8 >= 5 is satisfied and the interview condition 9 >= 8 is satisfied, but 3.2 >= 3.5 is not satisfied. The GPA condition fails. Candidate 2 does not qualify.
+
+**Candidate 3.** E = 3, G = 3.9, I = 7. The experience condition requires 3 >= 5, which is not satisfied. Candidate 3 is eliminated at the first criterion regardless of the remaining values.
+
+**Candidate 4.** E = 10, G = 3.5, I = 9. Checking: 10 >= 5 is satisfied; 3.5 >= 3.5 is satisfied (the boundary value is included); 9 >= 8 is satisfied. All three conditions hold. Candidate 4 qualifies.
+
+**Candidate 5.** E = 6, G = 3.8, I = 8. Checking: 6 >= 5 is satisfied; 3.8 >= 3.5 is satisfied; 8 >= 8 is satisfied. All three conditions hold. Candidate 5 qualifies.
+
+**Candidate 6.** E = 4, G = 3.4, I = 6. The experience condition requires 4 >= 5, which is not satisfied. Candidate 6 is eliminated at the first criterion.
+
+The candidates who satisfy all three conditions are Candidates 1, 4, and 5, giving a total count of 3. The correct answer is C.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -1375,11 +1786,27 @@ Statement: Every candidate with a GPA of at least 3.5 also has a test score of a
 - B) No
 
 **answer:** B
-**fastest_path:** Filter GPA≥3.5: #1, #3, #4, #5. Tests: 85, 92, 88, 82. #5's 82 fails ≥85.
-**explanation:** Filter GPA≥3.5: #1, #3, #4, #5. Test scores: 85, 92, 88, 82. Candidate #5 (test 82) fails the universal claim. Answer No.
-**mistake_a:** "Yes" overlooks #5's test score 82.
-**common_trap:** Stopping at the first few rows that pass and not finishing the check. One counterexample breaks a universal.
-**takeaway:** Universal Y/N: scan every passing row. One fail = No.
+**explanation:** The statement to be evaluated is a universal claim: for every candidate in the table whose GPA is at least 3.5, that same candidate's test score is at least 85. A universal claim of the form "every X satisfies condition Y" is false if and only if at least one counterexample exists — that is, at least one candidate for whom GPA >= 3.5 and test score < 85.
+
+Scanning the GPA column for values >= 3.5 yields four candidates:
+
+- Candidate 1: GPA = 3.6, Test Score = 85
+- Candidate 3: GPA = 3.9, Test Score = 92
+- Candidate 4: GPA = 3.5, Test Score = 88
+- Candidate 5: GPA = 3.8, Test Score = 82
+
+Checking whether each of these candidates also satisfies the test-score condition (Test Score >= 85):
+
+- Candidate 1: 85 >= 85 — satisfied
+- Candidate 3: 92 >= 85 — satisfied
+- Candidate 4: 88 >= 85 — satisfied
+- Candidate 5: 82 >= 85 — not satisfied, since 82 < 85
+
+Candidate 5 has a GPA of 3.8, which is strictly greater than 3.5, yet that candidate's test score is only 82, which falls below the threshold of 85. This single counterexample is sufficient to refute the universal statement. The remaining candidates (Candidates 2 and 6), whose GPAs of 3.2 and 3.4 respectively fall below 3.5, are outside the scope of the claim and need not be examined.
+
+Because a counterexample exists, the statement cannot be determined to be true from the table. Therefore the answer is No.
+
+The correct answer is B.
 **related_reading:** reading-di-03-table-analysis
 
 
@@ -1410,11 +1837,40 @@ Statement: Among regions with unemployment below 4%, more than half have median 
 - B) No
 
 **answer:** A
-**fastest_path:** Filter unemp<4%: B(58), C(70), E(75). Among 3, income>60K: C, E. 2/3 > 1/2. Yes.
-**explanation:** Filter B/C/E. Of these, 2 (C, E) have income > $60K. 2/3 > 1/2. Answer Yes.
-**mistake_b:** "No" miscount or wrong filter.
-**common_trap:** Including all 6 regions and checking for >$60K (gives 3/6 = 50%, not "more than half").
-**takeaway:** Conditional-share Y/N: filter first, then count within the filtered set.
+**explanation:** **The governing principle.** A conditional share question requires two sequential filters: first identify the subset of rows satisfying the stated condition, then determine what fraction of that subset satisfies a second property, and compare that fraction to the stated threshold.
+
+**Step 1 — Identify regions with unemployment below 4%.**
+
+The condition is unemployment (%) < 4. Scanning the table:
+
+- Region A: 4.2 — does not satisfy 4.2 < 4
+- Region B: 3.8 — satisfies 3.8 < 4
+- Region C: 3.2 — satisfies 3.2 < 4
+- Region D: 6.5 — does not satisfy 6.5 < 4
+- Region E: 2.9 — satisfies 2.9 < 4
+- Region F: 5.2 — does not satisfy 5.2 < 4
+
+The qualifying subset is {B, C, E}, giving n = 3 regions.
+
+**Step 2 — Among {B, C, E}, count those with median income above $60K.**
+
+The secondary condition is median income ($K) > 60:
+
+- Region B: 58 — does not satisfy 58 > 60
+- Region C: 70 — satisfies 70 > 60
+- Region E: 75 — satisfies 75 > 60
+
+Let k = the count satisfying both conditions. The result is k = 2 (regions C and E).
+
+**Step 3 — Compare the share to the stated threshold.**
+
+The statement asserts that more than half of the qualifying regions meet the income criterion, i.e., k/n > 1/2. Substituting:
+
+2/3 > 1/2
+
+Cross-multiplying (both denominators positive): 2 x 2 > 1 x 3, which gives 4 > 3. This inequality holds. Therefore the share 2/3 exceeds the threshold 1/2, and the statement is determined to be true from the data in the table.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -1435,11 +1891,30 @@ Statement: Every region with population above 1 million has an unemployment rate
 - B) No
 
 **answer:** B
-**fastest_path:** Filter pop>1M: A, B, C, E, F. F has 5.2% — counterexample. No.
-**explanation:** Pop>1M: A, B, C, E, F. Unemployment 4.2, 3.8, 3.2, 2.9, 5.2%. F's 5.2% breaks <5%. Answer No.
-**mistake_a:** "Yes" missing F.
-**common_trap:** Skimming first few rows (A-E pass) and stopping. F is the counterexample.
-**takeaway:** Universal Y/N: scan *every* row in the filtered set. Last-row counterexamples are common traps.
+**explanation:** **Universal claim verification.** A statement of the form "every member of set S satisfies condition C" is true if and only if no member of S violates C. A single counterexample is sufficient to establish that the statement is false, and therefore that the correct selection is No.
+
+Let the condition be defined as follows. Let P(r) denote the population of region r in millions and U(r) denote the unemployment rate of region r in percent. The statement asserts: for every region r, if P(r) > 1, then U(r) < 5.
+
+We first identify all regions satisfying P(r) > 1:
+
+- Region A: P = 2.5 > 1. Included.
+- Region B: P = 1.8 > 1. Included.
+- Region C: P = 3.2 > 1. Included.
+- Region D: P = 0.9, and 0.9 > 1 is false. Excluded.
+- Region E: P = 5.1 > 1. Included.
+- Region F: P = 1.5 > 1. Included.
+
+We then check whether U(r) < 5 holds for each included region:
+
+- Region A: U = 4.2, and 4.2 < 5. Condition satisfied.
+- Region B: U = 3.8, and 3.8 < 5. Condition satisfied.
+- Region C: U = 3.2, and 3.2 < 5. Condition satisfied.
+- Region E: U = 2.9, and 2.9 < 5. Condition satisfied.
+- Region F: U = 5.2, and 5.2 < 5 is false. Condition violated.
+
+Region F has a population of 1.5 million, which exceeds the 1-million threshold, yet its unemployment rate of 5.2% does not satisfy U < 5. This constitutes a direct counterexample to the universal claim. Because the claim must hold for every qualifying region and it fails for Region F, the statement cannot be determined to be true from the table. The answer is therefore No.
+
+The correct answer is B.
 **related_reading:** reading-di-03-table-analysis
 
 
@@ -1469,11 +1944,35 @@ Statement: Every product with a profit margin above 25 percent has an inventory 
 - B) No
 
 **answer:** A
-**fastest_path:** Filter margin>25%: B (12), D (10), E (15). All ≥10 turnover. Yes.
-**explanation:** Margin>25% (strict): B 32%, D 28%, E 35%. Turnover all ≥10. A's 25% is not > 25%, excluded. Answer Yes.
-**mistake_b:** "No" requires a counterexample; none in scope.
-**common_trap:** Including A (margin=25%, "not greater than"). Strict inequality excludes the boundary.
-**takeaway:** Strict inequality filtering: equal-to-boundary fails ">"; passes "≥".
+**explanation:** **Universal Conditional Verification.**
+
+A universal conditional of the form "every X with property P has property Q" is true if and only if there is no counterexample — that is, no row satisfying P for which Q fails. We therefore identify every product whose profit margin exceeds 25 percent and check whether each such product's inventory turnover is at least 10.
+
+Let M denote a product's profit margin (%) and T denote its inventory turnover rate. The statement requires: for all products where M > 25, it is also the case that T >= 10.
+
+**Step 1. Identify the qualifying rows (M > 25).**
+
+Scanning the Profit Margin column:
+
+- Product A: M = 25. Since 25 > 25 is false, Product A does not qualify.
+- Product B: M = 32. Since 32 > 25, Product B qualifies.
+- Product C: M = 18. Since 18 > 25 is false, Product C does not qualify.
+- Product D: M = 28. Since 28 > 25, Product D qualifies.
+- Product E: M = 35. Since 35 > 25, Product E qualifies.
+
+The qualifying set is {B, D, E}.
+
+**Step 2. Check the turnover condition (T >= 10) for each qualifying product.**
+
+- Product B: T = 12. Since 12 >= 10, the condition is satisfied.
+- Product D: T = 10. Since 10 >= 10 (equality satisfies "at least 10"), the condition is satisfied.
+- Product E: T = 15. Since 15 >= 10, the condition is satisfied.
+
+**Step 3. Conclude.**
+
+Every product whose profit margin exceeds 25 percent — namely Products B, D, and E — has an inventory turnover rate of at least 10. There is no counterexample in the table. The universal conditional is therefore established as true on the basis of the data provided.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -1494,11 +1993,17 @@ Statement: The product with the lowest inventory turnover has the highest profit
 - B) No
 
 **answer:** B
-**fastest_path:** Lowest turnover: C (5). C's margin: 18% (lowest, not highest). No.
-**explanation:** Lowest turnover = C (5). C's margin = 18%, lowest. Highest margin = E (35%). Statement false. Answer No.
-**mistake_a:** "Yes" requires the same product on both extremes; doesn't hold.
-**common_trap:** Failing to cross-reference both columns. The two extrema rarely align.
-**takeaway:** Extremum-alignment Y/N: identify both extrema, verify they're the same row.
+**explanation:** **Identifying the extremes.** To evaluate the statement, we must identify two products: the one with the lowest inventory turnover and the one with the highest profit margin, then determine whether they are the same product.
+
+**Step 1: Locate the lowest inventory turnover.** Scanning the Inventory Turnover column, the five values are 8 (A), 12 (B), 5 (C), 10 (D), and 15 (E). The minimum is 5, belonging to Product C.
+
+**Step 2: Locate the highest profit margin.** Scanning the Profit Margin (%) column, the five values are 25 (A), 32 (B), 18 (C), 28 (D), and 35 (E). The maximum is 35, belonging to Product E.
+
+**Step 3: Compare the two identified products.** The product with the lowest inventory turnover is C, while the product with the highest profit margin is E. These are distinct products. We can confirm that Product C carries a profit margin of only 18%, the lowest margin in the table, whereas Product E carries an inventory turnover of 15, the highest turnover in the table. The two extreme values not only belong to different products but to products whose metrics are, in each case, the opposite extreme from the one claimed.
+
+**Step 4: Evaluate the statement.** The statement asserts that the product with the lowest inventory turnover (C) has the highest profit margin. Product C's profit margin is 18%, which is strictly less than the profit margins of all other products: 18 < 25 < 28 < 32 < 35. The statement is therefore false, and we select No.
+
+The correct answer is B.
 **related_reading:** reading-di-03-table-analysis
 
 
@@ -1528,11 +2033,29 @@ Statement: Every company with R&D spending above $400 million also filed more th
 - B) No
 
 **answer:** B
-**fastest_path:** Filter R&D>400M: Alpha (80), Gamma (120), Epsilon (90). Alpha exactly 80, not >80. No.
-**explanation:** Filter R&D > $400M: Alpha 80, Gamma 120, Epsilon 90. Alpha has *exactly* 80 patents — not more than 80. Counterexample → No. Answer B.
-**mistake_a:** "Yes" treats 80 as satisfying ">80."
-**common_trap:** Treating exact-boundary as satisfying strict inequality. ">80" excludes 80.
-**takeaway:** Strict-inequality boundary on universals: equal to threshold *fails* "greater than" / "less than."
+**explanation:** **Governing principle.** A strict universal claim of the form "every member of set P also belongs to set Q" is true if and only if no counterexample exists — that is, no element satisfies P while failing Q. A single counterexample is sufficient to conclude the claim is false and select No.
+
+**Define the conditions.** Let P denote the condition R&D Spending > 400 ($M), and let Q denote the condition Patents Filed > 80. The statement asserts: for every company, if P holds then Q holds.
+
+**Identify companies satisfying P.** Scanning the R&D Spending column:
+
+- Alpha: 500 > 400, so in scope.
+- Beta: 350 is not greater than 400; not in scope.
+- Gamma: 700 > 400, so in scope.
+- Delta: 200 is not greater than 400; not in scope.
+- Epsilon: 450 > 400, so in scope.
+
+The set of companies satisfying P is {Alpha, Gamma, Epsilon}.
+
+**Check condition Q for each company in scope.** The statement uses the strict inequality > 80, so exactly 80 patents does not satisfy Q.
+
+- Alpha: Patents Filed = 80. Since 80 is not greater than 80, Q fails.
+- Gamma: Patents Filed = 120. Since 120 > 80, Q holds.
+- Epsilon: Patents Filed = 90. Since 90 > 80, Q holds.
+
+**Conclusion.** Alpha has R&D Spending of 500, which exceeds 400 and satisfies P, yet filed exactly 80 patents, which does not satisfy the strict requirement Patents > 80. Alpha is therefore a direct counterexample to the universal claim. Because one counterexample is sufficient to refute a strict universal statement, the claim cannot be determined to be true from the table.
+
+The correct answer is B.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -1553,11 +2076,39 @@ Statement: The company with the highest R&D spending also has the highest revenu
 - B) No
 
 **answer:** A
-**fastest_path:** Highest R&D = Gamma ($700M). Highest growth = Gamma (15%). Same row. Yes.
-**explanation:** Both extrema align: Gamma highest R&D ($700M) and highest growth (15%). Answer Yes.
-**mistake_b:** "No" requires extrema on different rows; here they coincide.
-**common_trap:** Scanning only one column and stopping. Verify both extrema explicitly.
-**takeaway:** Extremum-alignment Y/N: locate both columns' max, confirm same row.
+**explanation:** **Extremum Alignment — R&D Spending and Revenue Growth.**
+
+To evaluate this statement, the analysis must identify, for each metric independently, which company holds the maximum value, then determine whether those two maxima belong to the same company.
+
+**Step 1 — Identify the company with the highest R&D spending.**
+
+Reading the R&D Spending column directly:
+
+- Alpha: 500
+- Beta: 350
+- Gamma: 700
+- Delta: 200
+- Epsilon: 450
+
+Ordering these values: 700 > 500 > 450 > 350 > 200. The maximum R&D spending is 700, held by Gamma.
+
+**Step 2 — Identify the company with the highest revenue growth rate.**
+
+Reading the Revenue Growth column directly:
+
+- Alpha: 12%
+- Beta: 8%
+- Gamma: 15%
+- Delta: 5%
+- Epsilon: 10%
+
+Ordering these values: 15 > 12 > 10 > 8 > 5. The maximum revenue growth rate is 15%, held by Gamma.
+
+**Step 3 — Compare the two extrema.**
+
+Both the maximum R&D spending (700) and the maximum revenue growth rate (15%) are associated with the same company, Gamma. The alignment condition is therefore satisfied: the company with the highest R&D spending is identical to the company with the highest revenue growth rate. No further computation is required; the statement does not depend on any proportionality or causal relationship — it requires only that the two row-wise maxima coincide, which they do.
+
+The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
 
 
@@ -1588,14 +2139,15 @@ How many of the five companies have Revenue greater than $400 million AND a Grow
 - E) 4
 
 **answer:** D
-**fastest_path:** Two filters: rev>$400M AND growth≥10%. Alpha (500,12) ✓, Gamma (650,15) ✓, Epsilon (420,10) ✓. Three pass.
-**explanation:** Apply both: Alpha ✓, Beta fails (rev 380), Gamma ✓, Delta fails (rev 250), Epsilon ✓ (growth=10 satisfies "at least 10"). 3 companies. Answer D.
-**mistake_a:** 0 — undercount.
-**mistake_b:** 1 — missing two.
-**mistake_c:** 2 — excluding Epsilon (boundary 10%).
-**mistake_e:** 4 — including Beta or Delta (revenue fails).
-**common_trap:** Treating "at least 10" as strict ">10" and excluding Epsilon. ≥ includes the boundary.
-**takeaway:** Inclusive vs strict thresholds: "at least" includes the boundary; "greater than" excludes it.
+**explanation:** The question requires identifying every company that satisfies two simultaneous conditions: Revenue strictly greater than $400 million AND Growth Rate greater than or equal to 10 percent. A company must clear both thresholds; failing either disqualifies it.
+
+Let R denote Revenue (in $M) and G denote Growth Rate (in %). The governing filter is R > 400 AND G >= 10, applied row by row.
+
+Alpha has R = 500 and G = 12. Because 500 > 400 and 12 >= 10, Alpha satisfies both conditions and qualifies. Beta has R = 380 and G = 8. Because 380 < 400, the first condition fails immediately and Beta does not qualify. Gamma has R = 650 and G = 15. Because 650 > 400 and 15 >= 10, Gamma satisfies both conditions and qualifies. Delta has R = 250 and G = 6. Because 250 < 400, the first condition fails and Delta does not qualify. Epsilon has R = 420 and G = 10. Because 420 > 400 and 10 >= 10, Epsilon satisfies both conditions and qualifies.
+
+The qualifying companies are Alpha, Gamma, and Epsilon, giving a count of 3. Beta is eliminated by insufficient revenue alone, and Delta is likewise eliminated before the growth criterion is even relevant.
+
+The correct answer is D.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -1616,9 +2168,15 @@ Statement: The company with the highest profit margin also has the highest growt
 - B) No
 
 **answer:** B
-**fastest_path:** Highest margin = Delta (25%). Delta's growth = 6% (lowest, not highest). No.
-**explanation:** Highest margin = Delta. Delta's growth 6% — lowest. Highest growth = Gamma (15%). Different rows. Answer No.
-**mistake_a:** "Yes" assumes alignment without cross-checking.
-**common_trap:** Scanning only one column. Two extrema rarely coincide on a row by chance.
-**takeaway:** Extremum-alignment: explicitly identify both row indices. Cross-reference before answering.
+**explanation:** To evaluate this statement, it is necessary to identify which company holds the maximum value in the Profit Margin column and which company holds the maximum value in the Growth Rate column, then determine whether those two extrema belong to the same company.
+
+Scanning the Profit Margin (%) column across all five companies yields the following ordered values: Delta at 25%, Beta at 22%, Epsilon at 20%, Alpha at 18%, and Gamma at 15%. The maximum profit margin is 25%, belonging to Delta.
+
+Scanning the Growth Rate (%) column across all five companies yields: Gamma at 15%, Alpha at 12%, Epsilon at 10%, Beta at 8%, and Delta at 6%. The maximum growth rate is 15%, belonging to Gamma.
+
+A statement of the form "the entity with the highest value in attribute A also has the highest value in attribute B" is true if and only if a single entity simultaneously achieves both maxima. Here, the highest profit margin belongs to Delta (25%) and the highest growth rate belongs to Gamma (15%). These are distinct companies; no single company holds both extrema. In fact, Delta — the profit-margin leader — records the lowest growth rate in the entire table (6%), which is a direct counterexample to the claim.
+
+Because the table provides a clear counterexample, the statement cannot be determined to be true from the data given.
+
+The correct answer is B.
 **related_reading:** reading-di-03-table-analysis

@@ -23,14 +23,15 @@ If 5x + 8 = 38, what is the value of x?
 - E) 8
 
 **answer:** C
-**fastest_path:** Backsolve from C: 5(6) + 8 = 38 ✓. Done in 10 seconds.
-**explanation:** Five integer answer choices that are sortable, single-variable equation — the recognition signal points to backsolving. Test C: 5(6) + 8 = 30 + 8 = 38, matching the target. Algebra (subtract 8, divide by 5) reaches the same answer but takes longer and introduces a sign-tracking risk on the subtraction step.
-**mistake_a:** Computed 5(4) + 8 = 28 (didn't verify against target 38).
-**mistake_b:** 5(5) + 8 = 33 — close to 38 but didn't iterate.
-**mistake_d:** Off-by-one error after starting from C without checking the result.
-**mistake_e:** Algebra slip: 38 − 8 = 30, then 30/5 misread as 30/4 = 8.
-**common_trap:** algebra-by-default — reaching for "subtract 8, divide by 5" when plug-and-check is faster.
-**takeaway:** Sortable integer answer choices + single equation = backsolve from C; algebra is the slower fallback.
+**explanation:** When an equation is linear in one variable and the answer choices are small integers, two methods are available: direct algebraic isolation and backsolving. Recognizing which method is faster is itself a testable skill.
+
+**Algebraic method.** Let x be the unknown. The equation 5x + 8 = 38 is solved by isolating x. Subtracting 8 from both sides yields 5x = 38 - 8 = 30. Dividing both sides by 5 gives x = 30/5 = 6.
+
+**Backsolving method.** Because the answer choices are five distinct integers and the equation is easy to evaluate, substituting each choice directly is viable. Starting with the middle value (choice C, x = 6) is efficient: 5(6) + 8 = 30 + 8 = 38, which equals the right-hand side. The equation is satisfied on the first substitution, so no further testing is required.
+
+Both methods confirm x = 6. In practice, backsolving is particularly advantageous here because the answer choices are integers, the arithmetic is trivial, and the correct answer happens to be the middle choice — meaning a single substitution resolves the question. When the expression on the left-hand side is more complex (involving fractions, nested operations, or multiple variables), direct algebra becomes the more reliable path. Recognizing which approach minimizes computation is therefore a meaningful efficiency decision on test day.
+
+The correct answer is C.
 **related_reading:** reading-quant-08-method-selection
 
 ---
@@ -54,14 +55,28 @@ A factory's monthly output increased from 4,200 units to 5,880 units. By approxi
 - E) 80%
 
 **answer:** B
-**fastest_path:** Estimate: ratio is roughly 6,000/4,000 ≈ 1.5; refine to 5,880/4,200 = 1.40 → 40% increase.
-**explanation:** Answer choices spread by 15-25 percentage points each — estimation will identify the answer in seconds. The increase is (5,880 − 4,200)/4,200 = 1,680/4,200 = 0.40 = 40%. The denominator is *the original value*, not the new one. Aggressive rounding would give "from 4,000 to 6,000 = 50%-ish," narrowing to B or C; one refinement picks B.
-**mistake_a:** Used the *new* value (5,880) as the denominator instead of the *original* (4,200), getting 28.6% ≈ 25%.
-**mistake_c:** Estimated "about 50%" without refining; the spread between B and C requires the refinement step.
-**mistake_d:** Confused the absolute increase (1,680) with percent — bubbled a number loosely matching the absolute.
-**mistake_e:** Doubled the percent change (typical when "increase" is misread as "ratio").
-**common_trap:** percent-base-confusion — using the new value as the denominator instead of the original.
-**takeaway:** Percent change uses the *original* value as denominator; spread answer choices reward rounding before precise calculation.
+**explanation:** The percent increase formula states that the percent change equals the difference between the new value and the original value, divided by the original value, multiplied by 100. Let the percent increase be x. Then:
+
+x = (New Value - Original Value) / Original Value * 100
+
+The original output is 4,200 units and the new output is 5,880 units. The absolute increase is:
+
+5,880 - 4,200 = 1,680 units
+
+We therefore compute:
+
+x = 1,680 / 4,200 * 100
+
+To simplify 1,680 / 4,200, we divide both the numerator and denominator by 420:
+
+1,680 / 420 = 4
+4,200 / 420 = 10
+
+Thus 1,680 / 4,200 = 4/10 = 0.4, and x = 0.4 * 100 = 40.
+
+An alternative estimation path confirms this result. Notice that 5,880 / 4,200 simplifies by dividing both values by 420, yielding 14/10 = 1.4. A ratio of 1.4 corresponds to a 40% increase over the original. Both approaches yield the same answer without any approximation, so estimation is not actually required here — recognizing that 5,880 is exactly 1.4 times 4,200 resolves the question in one step.
+
+The correct answer is B.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -85,14 +100,23 @@ If n is a positive integer and 4n + 3 < 19, what is the largest possible value o
 - E) 7
 
 **answer:** A
-**fastest_path:** 4n + 3 < 19 → 4n < 16 → n < 4. Largest *positive integer* less than 4 is 3.
-**explanation:** Subtract 3 from both sides: 4n < 16. Divide by 4: n < 4. The constraint says n is a *positive integer*, so the largest valid n satisfying n < 4 is n = 3. The strict inequality matters: n = 4 would give 4(4) + 3 = 19, which is *not* less than 19. The integer constraint also matters: without it, the answer would be just below 4.
-**mistake_b:** Treated "<" as "≤" — missed the strict inequality, included n = 4.
-**mistake_c:** Solved 4n ≤ 19 (wrong inequality direction), got n ≤ 4.75, rounded to 5 — missed both the strict inequality *and* the integer constraint.
-**mistake_d:** Arithmetic slip during subtraction or division.
-**mistake_e:** Confused which side of the inequality was bigger; produced a value that violates the original constraint when checked.
-**common_trap:** ignoring-constraints — bubbling n = 4 (math-valid but constraint-invalid because the inequality is strict).
-**takeaway:** Strict inequalities (`<`, `>`) and integer constraints together produce the answer that's just *below* the algebraic threshold; check both before bubbling.
+**explanation:** A constraint of the form "less than" imposes a strict upper bound, and when the variable is restricted to positive integers, the task is to identify the largest integer that falls strictly below that bound — not merely near it.
+
+The given condition is that n is a positive integer and that 4n + 3 < 19. Subtracting 3 from both sides of the inequality yields
+
+4n < 16
+
+Dividing both sides by 4 gives
+
+n < 4
+
+This strict inequality means n may not equal 4; n must be strictly less than 4. Because n is also required to be a positive integer, the candidates are n = 1, n = 2, and n = 3. The largest of these is n = 3.
+
+A common error is to treat the strict inequality as a non-strict one, concluding n ≤ 4 and therefore selecting 4 as the answer. The original condition 4n + 3 < 19 (not ≤ 19) rules out n = 4 entirely: substituting n = 4 gives 4(4) + 3 = 19, which does not satisfy the strict inequality 19 < 19.
+
+Although backsolving from the answer choices is available here — testing each value in the original inequality until a violation is found — direct algebraic isolation is faster and less error-prone for a two-step linear inequality.
+
+The correct answer is A.
 **related_reading:** reading-quant-01-mindset
 
 ---
@@ -116,14 +140,13 @@ If a + b = 12 and a² − b² = 60, what is the value of a − b?
 - E) 7
 
 **answer:** C
-**fastest_path:** Difference of squares: a² − b² = (a + b)(a − b) → 60 = 12(a − b) → a − b = 5.
-**explanation:** The structural insight is that a² − b² factors as (a + b)(a − b). Substituting a + b = 12 gives 60 = 12(a − b), so a − b = 5. Total time: ~15 seconds. The substitution path (solve a + b = 12 for a, plug into a² − b² = 60, expand, simplify) reaches the same answer in 75-90 seconds and exposes you to a sign error during expansion. The thirty-second checkpoint should fire mid-substitution: the factored form is staring at you in the second equation.
-**mistake_a:** Computed 60/12 = 5 but somehow halved or divided again.
-**mistake_b:** Substitution path; slipped on the (12 − b)² − b² expansion.
-**mistake_d:** Picked 6 = (12)/2 incorrectly assuming symmetry.
-**mistake_e:** Misremembered the identity as a² − b² = (a − b)² or similar.
-**common_trap:** missing-algebraic-shortcut — full substitution when the difference-of-squares form is the visible structure.
-**takeaway:** When the question asks for a − b and the equations include a + b and a² − b², factor first; substitution is the slow fallback.
+**explanation:** The difference of squares identity states that a² − b² = (a + b)(a − b) for all real numbers a and b. Recognizing this structure is the key method selection in this problem: rather than solving for a and b individually, the known sum can be substituted directly to isolate a − b in a single operation.
+
+Given a + b = 12 and a² − b² = 60, applying the difference of squares factorization to the second equation yields (a + b)(a − b) = 60. Substituting a + b = 12 gives 12(a − b) = 60. Dividing both sides by 12 gives a − b = 60/12 = 5.
+
+The algebraic approach is faster here than backsolving from the answer choices, because the factored form reduces the problem to a single substitution. Backsolving would require selecting a candidate value for a − b, pairing it with a + b = 12 to solve for a and b, and then verifying the second condition — three steps per answer choice versus one step with the direct approach.
+
+The correct answer is C.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -147,14 +170,36 @@ If 2x + 3y = 19 and 5x − 3y = 16, what is the value of x + y?
 - E) 9
 
 **answer:** D
-**fastest_path:** Add the equations to cancel y: 7x = 35 → x = 5. Substitute: y = 3. Sum: x + y = 8.
-**explanation:** The y coefficients are equal-and-opposite (+3 and −3), making addition the obvious path to eliminate y. Adding gives 7x = 35 → x = 5. Substitute back into the first equation: 2(5) + 3y = 19 → 3y = 9 → y = 3. So x + y = 5 + 3 = 8. Total time: ~30 seconds. Full substitution (solve one for x in terms of y, substitute into the other) takes ~75 seconds.
-**mistake_a:** Misread the question as "what is x − y?" or another combination.
-**mistake_b:** Stopped at x = 5 and bubbled — read the question as asking for x alone.
-**mistake_c:** Computed x = 5, y = 2 (arithmetic slip), got 7.
-**mistake_e:** Subtracted the equations instead of adding; got a different system and arrived at a non-matching value.
-**common_trap:** missing-algebraic-shortcut — using full substitution when the equal-and-opposite coefficients make addition the one-step move.
-**takeaway:** When systems have matching-but-opposite coefficients, add (or subtract) to cancel a variable directly; full substitution is the slower path.
+**explanation:** When a problem presents a system of two linear equations and asks for the value of a specific expression, the most efficient method is to examine whether adding or subtracting the equations directly yields the target expression, rather than solving for each variable individually.
+
+The two given equations are:
+
+- 2x + 3y = 19
+- 5x - 3y = 16
+
+The coefficients of y are 3 and -3, which are opposites. Adding the two equations eliminates y entirely:
+
+(2x + 3y) + (5x - 3y) = 19 + 16
+
+7x + 0 = 35
+
+x = 5
+
+Substituting x = 5 into the first equation to find y:
+
+2(5) + 3y = 19
+
+10 + 3y = 19
+
+3y = 9
+
+y = 3
+
+Therefore x + y = 5 + 3 = 8.
+
+A second method — backsolving from the answer choices — is also viable here but less direct. Each answer choice represents a candidate value of x + y, and one could test whether a consistent pair (x, y) satisfying both equations produces the target sum. However, with the y-coefficients being opposites, addition of the equations resolves x in a single step, making the algebraic approach strictly faster. The backsolving method is more useful when the system is not immediately amenable to elimination or when only one variable appears in both equations.
+
+The correct answer is D.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -178,14 +223,33 @@ If x and y are distinct positive integers and x + y = 12, what is the maximum po
 - E) 36
 
 **answer:** D
-**fastest_path:** xy is maximized when x and y are closest. Closest distinct pair summing to 12 is (5, 7) → xy = 35.
-**explanation:** For two numbers with a fixed sum, the product is maximized when the two numbers are closest to each other. Without the "distinct" constraint, the optimum would be x = y = 6, giving xy = 36. The "distinct" constraint forces x ≠ y, so the closest distinct pair is (5, 7), giving xy = 35. The constraint is the lever; without reading it carefully, the trap answer (36) wins.
-**mistake_a:** Picked an extreme distinct pair (x = 1, y = 11) → xy = 11.
-**mistake_b:** Picked (x = 2, y = 10) → xy = 20 — close to but didn't optimize.
-**mistake_c:** Picked (x = 4, y = 8) → xy = 32 — didn't iterate further toward (5, 7).
-**mistake_e:** Ignored the "distinct" constraint and picked x = y = 6 → 36. The trap.
-**common_trap:** ignoring-constraints — the "distinct" constraint pushes the answer one step away from the symmetric optimum.
-**takeaway:** Optimization with a constraint requires checking the *constrained* optimum, not the absolute optimum. Read every constraint before maximizing.
+**explanation:** The constraint that x and y are *distinct* positive integers is the operative condition that governs this problem. If the word "distinct" were absent, the product xy would be maximized by setting x = y = 6, yielding xy = 36 — choice E. The entire difficulty of the problem lies in recognizing that this natural maximum is forbidden.
+
+Let x and y be distinct positive integers satisfying x + y = 12. Expressing y in terms of x gives y = 12 - x, so the product to be maximized is
+
+P = x(12 - x) = 12x - x^2.
+
+Because x and y must be positive, x can range over {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}. Because x and y must be distinct, x cannot equal y = 12 - x, which would require x = 6. Therefore x = 6 is excluded, and the admissible domain is {1, 2, 3, 4, 5, 7, 8, 9, 10, 11}.
+
+The function P = x(12 - x) is a downward-opening parabola with its unconstrained maximum at x = 6. On the restricted integer domain, the values of P nearest x = 6 are:
+
+- x = 5: P = 5 * 7 = 35
+- x = 7: P = 7 * 5 = 35
+
+Both admissible pairs (5, 7) and (7, 5) yield the same product, 35. Moving further from x = 6 in either direction reduces P:
+
+- x = 4: P = 4 * 8 = 32
+- x = 3: P = 3 * 9 = 27
+- x = 2: P = 2 * 10 = 20
+- x = 1: P = 1 * 11 = 11
+
+The maximum value of xy over all admissible pairs is therefore 35, achieved by {x, y} = {5, 7}.
+
+A faster method is to recognize the AM-GM structure directly: for a fixed sum, the product of two numbers is maximized when the numbers are as close to equal as possible. Because equality is forbidden, the optimal pair is the one closest to equal that remains distinct — namely (5, 7) — without the need to evaluate every pair.
+
+Choice E (36) is the product 6 * 6, which is excluded because the integers must be distinct. Selecting it reflects a failure to apply the distinctness constraint.
+
+The correct answer is D.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -209,14 +273,21 @@ If a + b + c = 14, ab + bc + ca = 47, and abc = 36, what is the value of a² + b
 - E) 196
 
 **answer:** A
-**fastest_path:** Identity: a² + b² + c² = (a + b + c)² − 2(ab + bc + ca) = 196 − 94 = 102.
-**explanation:** Use the algebraic identity (a + b + c)² = a² + b² + c² + 2(ab + bc + ca), which rearranges to a² + b² + c² = (a + b + c)² − 2(ab + bc + ca). Plug in: 14² − 2(47) = 196 − 94 = 102. The third given value (abc = 36) is a *decoy* — it isn't needed for this computation. Trying to solve for a, b, c individually (using all three Vieta's relations) would take 3-5 minutes; the identity collapses the answer to two steps in 30 seconds.
-**mistake_b:** Arithmetic slip on 196 − 94.
-**mistake_c:** Used (a + b + c)² = a² + b² + c² + (ab + bc + ca) — forgot the factor of 2 in the identity.
-**mistake_d:** Squared 14 incorrectly (got 156 or similar).
-**mistake_e:** Used (a + b + c)² = 196 directly and bubbled the squared sum without subtracting.
-**common_trap:** missing-algebraic-shortcut — solving for individual roots when an identity collapses the answer.
-**takeaway:** When the problem gives sum, sum-of-products, and asks for sum-of-squares, use (a + b + c)² = a² + b² + c² + 2(ab + bc + ca); decoy data signals the identity-shortcut path.
+**explanation:** The key algebraic identity governing this problem is the square of a sum of three terms:
+
+(a + b + c)^2 = a^2 + b^2 + c^2 + 2(ab + bc + ca)
+
+Rearranging to isolate the target expression yields:
+
+a^2 + b^2 + c^2 = (a + b + c)^2 - 2(ab + bc + ca)
+
+We are given that a + b + c = 14 and ab + bc + ca = 47. Substituting directly:
+
+a^2 + b^2 + c^2 = (14)^2 - 2(47) = 196 - 94 = 102
+
+The value abc = 36 is provided in the problem stem but is not required for this computation. Its presence is a deliberate distractor designed to test whether a test-taker recognizes which quantities the target expression actually depends on. A common error is to spend time attempting to recover the individual values of a, b, and c — which would require solving a cubic — when the identity above resolves the question in two arithmetic steps. Recognizing that a^2 + b^2 + c^2 is a symmetric function expressible entirely in terms of the elementary symmetric polynomials (a + b + c) and (ab + bc + ca), without recourse to abc, is the critical method-selection insight here.
+
+The correct answer is A.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -240,12 +311,27 @@ If x is a positive integer such that x² + 7x + 12 = 110, what is the value of x
 - E) 9
 
 **answer:** C
-**fastest_path:** Backsolve from C: 7² + 7(7) + 12 = 49 + 49 + 12 = 110 ✓.
-**explanation:** Five clean integer answer choices, single-variable quadratic — backsolving from C resolves the question in 30 seconds. At x = 7: 49 + 49 + 12 = 110 ✓. Match. Algebra approaches: factor x² + 7x + 12 = (x + 3)(x + 4) and notice (x + 3)(x + 4) = 110 → consecutive integers 10 and 11 → x = 7. The quadratic formula on x² + 7x − 98 = 0 produces the same answer but in 90+ seconds (compute discriminant 441, √441 = 21, x = 7). The thirty-second checkpoint should fire mid-formula: with sortable integer choices, backsolving wins.
-**mistake_a:** 5² + 7(5) + 12 = 72 — student stopped without verifying 110 was the target.
-**mistake_b:** Off-by-one slip after starting from C; close but didn't iterate.
-**mistake_d:** Quadratic-formula arithmetic slip — got x = 8 from incorrect discriminant.
-**mistake_e:** 9² + 7(9) + 12 = 156 — over target, didn't iterate down.
-**common_trap:** algebra-by-default — reaching for the quadratic formula on a clean-integer-choice problem.
-**takeaway:** On clean-integer-choice quadratic problems, backsolving from C wins; the formula is the slow fallback when answer choices are non-integer.
+**explanation:** When a quadratic equation is presented alongside a set of discrete integer answer choices, two solution paths are available: algebraic factoring and backsolving by substitution. Both are valid; the faster path depends on how quickly the equation yields to factoring. Here, either method produces the answer efficiently, but recognizing the faster path under time pressure is itself part of the skill being tested.
+
+**Algebraic approach.** Let x be the unknown positive integer. The given equation is
+
+x^2 + 7x + 12 = 110.
+
+Subtracting 110 from both sides gives
+
+x^2 + 7x - 98 = 0.
+
+We seek two integers whose product is -98 and whose sum is 7. The pair 14 and -7 satisfies both conditions: (14)(-7) = -98 and 14 + (-7) = 7. The equation therefore factors as
+
+(x + 14)(x - 7) = 0,
+
+yielding x = -14 or x = 7. Because x is stipulated to be a positive integer, we discard x = -14, and we find x = 7.
+
+**Backsolving approach.** Because the answer choices are small consecutive integers, substituting the middle choice (C, x = 7) is a natural starting point. Substituting x = 7:
+
+7^2 + 7(7) + 12 = 49 + 49 + 12 = 110. This matches the right-hand side exactly, confirming the solution without any further substitution.
+
+Under timed conditions, a test-taker who spots that the quadratic does not factor immediately with the original constant (12 rather than -98) may find backsolving faster: start with the middle choice, verify in one arithmetic step, and stop. Conversely, a test-taker comfortable with quickly adjusting the equation to standard form x^2 + 7x - 98 = 0 and identifying the factor pair (14, -7) will find the algebraic route equally direct. The key discipline is to commit to one method promptly rather than beginning algebra, stalling, and then switching — the switch itself costs more time than either method requires from the start.
+
+The correct answer is C.
 **related_reading:** reading-quant-08-method-selection

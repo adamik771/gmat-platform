@@ -187,13 +187,37 @@ function parseQuestionBlock(
   if (!headerMatch) return null
   const questionNumber = parseInt(headerMatch[1], 10)
 
-  const metaRegex = /\*\*(difficulty|type|topic|answer|explanation|hint_nudge|hint_strategy|hint_setup|fastest_path|common_trap|takeaway|related_reading|mistake_[a-z]|subchapter|skill|trap_type|est_time_seconds|prerequisite):\*\*\s*([^\n]*)/gi
+  // Field keys come in two flavors. SINGLE-LINE keys are structural fields
+  // that can appear *before* the prompt — table-analysis is "prompt-first",
+  // with difficulty/type/topic ahead of the prompt — so capturing them across
+  // lines would let `**topic:**` swallow the prompt and options. MULTI-LINE
+  // keys are the rich explanation fields, always authored at the tail after
+  // the options; they may span paragraphs, lists, and tables so an explanation
+  // can render as real markdown. For all-single-line content the two passes
+  // produce exactly the same result as the previous single-line parser.
+  const SINGLE_LINE_KEYS =
+    "difficulty|type|topic|answer|hint_nudge|hint_strategy|hint_setup|related_reading|subchapter|skill|trap_type|est_time_seconds|prerequisite"
+  const MULTI_LINE_KEYS = "explanation|fastest_path|common_trap|takeaway|mistake_[a-z]"
+  const ALL_KEYS = `${SINGLE_LINE_KEYS}|${MULTI_LINE_KEYS}`
   const meta: Record<string, string> = {}
-  for (const match of block.matchAll(metaRegex)) {
+  // Single-line fields: value is the remainder of the line (original behavior).
+  const singleLineRegex = new RegExp(
+    `\\*\\*(${SINGLE_LINE_KEYS}):\\*\\*\\s*([^\\n]*)`,
+    "gi"
+  )
+  for (const match of block.matchAll(singleLineRegex)) {
     const key = match[1].toLowerCase()
-    if (!meta[key]) {
-      meta[key] = match[2].trim()
-    }
+    if (!meta[key]) meta[key] = match[2].trim()
+  }
+  // Multi-line fields: capture lazily up to the next `**field:**` marker at the
+  // start of a line, or the end of the block. First occurrence wins.
+  const multiLineRegex = new RegExp(
+    `\\*\\*(${MULTI_LINE_KEYS}):\\*\\*[ \\t]*([\\s\\S]*?)\\s*(?=\\n\\*\\*(?:${ALL_KEYS}):\\*\\*|$)`,
+    "gi"
+  )
+  for (const match of block.matchAll(multiLineRegex)) {
+    const key = match[1].toLowerCase()
+    if (!meta[key]) meta[key] = match[2].trim()
   }
   // Progressive hints — optional. Authors can add any subset of
   // `**hint_nudge:**`, `**hint_strategy:**`, `**hint_setup:**` to a
@@ -296,23 +320,32 @@ function parseQuestionBlock(
         options.push(...rows)
 
         // Parse the answer string to find the correct row index for each column.
-        // Answer format: "Key1 = Value1, Key2 = Value2" or "Key1 = Value1; Key2 = Value2"
+        // Answer format: "Key1 = Value1, Key2 = Value2" or "Key1 = Value1; Key2 = Value2".
+        // Split on ";" or on a "," that begins a new "key = value" pair. The
+        // lookahead `[^,]*=` matches when the next comma-delimited segment
+        // contains "=", which (a) splits even when the key starts with a digit
+        // (e.g. "70% solution = 4") and (b) does NOT split inside values that
+        // carry their own commas (e.g. "$60,000", whose inner segment "000" has
+        // no "=" before the next comma).
         const answerRaw = meta.answer ?? ""
-        const answerParts = answerRaw.split(/;\s*|,\s*(?=[A-Za-z].*=)/)
+        const answerParts = answerRaw.split(/;\s*|,\s*(?=[^,]*=)/)
         const correctIndices: number[] = []
         for (const part of answerParts) {
           const eqIdx = part.indexOf("=")
           if (eqIdx === -1) continue
           const value = part.slice(eqIdx + 1).trim().replace(/^["']|["']$/g, "")
           const normalizedValue = value.toLowerCase()
-          const rowIdx = rows.findIndex((row) => {
-            const normalizedRow = row.toLowerCase()
-            return (
-              normalizedRow === normalizedValue ||
-              normalizedRow.startsWith(normalizedValue) ||
-              normalizedValue.startsWith(normalizedRow)
-            )
-          })
+          // Prefer an exact (normalized) row match. Only fall back to prefix
+          // matching when no row equals the value, so that a value like "55"
+          // resolves to the row "55" rather than the row "5" (whose prefix it
+          // shares); likewise "4,000" must not collapse onto "4".
+          let rowIdx = rows.findIndex((row) => row.toLowerCase() === normalizedValue)
+          if (rowIdx === -1) {
+            rowIdx = rows.findIndex((row) => {
+              const normalizedRow = row.toLowerCase()
+              return normalizedRow.startsWith(normalizedValue) || normalizedValue.startsWith(normalizedRow)
+            })
+          }
           if (rowIdx !== -1) correctIndices.push(rowIdx)
         }
         twoPartCorrectAnswers =

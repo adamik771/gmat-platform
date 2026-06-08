@@ -2,6 +2,123 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-08 (Deep explanations COMPLETE: all 268 grouped/multi-part done — bank is 912/912 OG)
+
+All work on branch `claude/deep-explanations-pilot-2026-06-07` (**still NOT merged to main**). The deep-explanations project is **finished**: every question in the bank (912/912) now carries an Official-Guide "Rationale"-style explanation. The remaining 268 grouped/multi-part questions from the prior session were generated, gated, and committed this session.
+
+### DONE this session (9 commits, `f4a03e9` … `1958f3d`)
+- **Write-back surgery extended** (`f4a03e9`): `applyToFile` now matches both flat `## Qn` and grouped `### Qn`; `fileForSlug` probes `questions/{quant,verbal,di,curriculum}`; `applySupported` is permissive (every type handled, `rewriteBlock` self-guards). TPA per-RO content lives inside the single `**explanation:**`; curriculum taxonomy fields (`subchapter`/`skill`/`trap_type`/`est_time_seconds`/`prerequisite`) are preserved because they sit ahead of the rewritten region.
+- **Content batches** (OG-format, write+verify pipeline, `validate:content` 0 errors + answer-consistency gate 100% on each): curriculum 8 (`cf29cf8`), graphics-interpretation 50 (`673a45d`), table-analysis 49 (`86b503d`), multi-source-reasoning 36 (`b288b4f`), reading-comprehension 73 (`90a0809`), two-part-analysis 52 (`1958f3d`).
+- **Two real parser/content bugs fixed** (each was making a question render the WRONG correct answer in the live app):
+  - `0e83b7c` — TPA answer split: a second key starting with a digit (q19 `"30% solution = 4, 70% solution = 4"`) never split, so q19 rendered as a 5-option MC. Split on `,\s*(?=[^,]*=)`.
+  - `6c5c6a2` — TPA value→row resolution used prefix matching, so `"55"` collapsed onto row `"5"` and `"4,000"` onto `"4"` (q31, q34). Now exact-match first, prefix only as fallback. q31 (T=55) and q34 (V=4,000) were regenerated after the fix.
+- **Final state:** `npx tsc --noEmit` clean; `npm run validate:content` → 912 questions, **0 errors** (4 warnings + 2 info, all pre-existing); full answer-consistency gate **912/912 pass**; 0 HTML entities and 0 orphaned segments across all six rewritten files.
+
+### How it was generated — the embedded-content pure-function pipeline (improves on the old recipe)
+Instead of subagents `sed`-ing blocks out of files (which risked them editing `src/`), each question's full content (prompt, options, passage/set context, credited answer) was **extracted via the parser and embedded into a generated Workflow script** (`/tmp/gen-wf.py` writes `/tmp/wf-<slug>.js` from `/tmp/data-<slug>.json` produced by `/tmp/extract.ts`). Agents are then pure functions — prompt in, structured `{explanation, mistakes}` out — and never touch the filesystem. Pipeline per batch: a **write** subagent then an **adversarial verify** subagent (both `general-purpose`, `claude-sonnet-4-6`, structured-output schema, phases Write/Verify). The workflow returns the array; `/tmp/assemble.py` sanitizes + writes `scripts/explanation-proposals.json` (gitignored); then `npm run generate:explanations -- --from … --apply` → `validate:content` → the gate → commit. Sonnet-4-6 quality was strong throughout; the verify stage caught real issues (entity escaping, fabricated tables — see gotchas).
+
+### Gotchas discovered (read before any similar batch run)
+1. **TA/GI "continued" questions lose their table.** TA/GI are flat `## Qn (Set N — …)` blocks; the parser does NOT carry context across them, so a per-question extract of "Same table as Q1" has NO data and the agent **fabricates values** (GI q2 invented April/June; TA q39 pulled "OG Q38" from training data). The verify stage flagged these. Fix: `/tmp/fix-continued.py` keys each continued question to its set's lead (by "Set N" number, else title) and injects the lead's table/description prose as context, then regenerate just those (11 TA + 5 GI were redone and are grounded). **NOTE — pre-existing app bug:** those same continued questions also don't render their referenced table in the live app (parser carries no context for flat `## Qn` sets). Not fixed here; a real UX gap to address separately (either renumber TA/GI into `## Set`/`### Qn` grouped form, or have the renderer resolve "Same table as QN").
+2. **A standalone `---`/`***`/`___` line inside an explanation splits the question block** on re-parse (`/\n---+\n/`), truncating the explanation and orphaning everything after it (hit TPA q8/12/20/21). `/tmp/assemble.py` now strips horizontal-rule lines. RC/MSR/curriculum were clean.
+3. **Agents sometimes emit HTML entities** (`&lt;`, `&gt;`, `&amp;`) in math; the verify stage usually fixes them and `assemble.py` sanitizes as a backstop. Final files have 0 entities.
+4. **The answer-consistency gate is type-aware** (`/tmp/gate.ts`, ephemeral — re-create if needed; imports `getAllQuestions`, run from repo root). Letter types: last "The correct answer is X." must equal `correctAnswerLetter`; Verbal also requires `mistakeAnalysis` to cover exactly the wrong letters. TPA has no single letter — it checks the credited row VALUES appear in the explanation. RC/MSR carry context natively so they were not affected by gotcha #1.
+
+### Question-design ties to revisit (NOT bugs in the explanations — the credited answer is valid and justified)
+The verify stage flagged questions where the credited statistic is **tied** by more than one option/row, so the question lacks a unique answer even though the credited choice is correct: **GI q13** (max QoQ change tied C/E) and **TA q17/q18/q19/q23/q27**. Adam may want to tweak these questions for uniqueness; left as-is for now (each explanation justifies the credited answer).
+
+### NEXT
+- **Merge the branch.** Everything is green. The only non-explanation changes are the three logically-independent fixes already noted (two TPA parser fixes + the diagnostic-save orphan fix from 2026-06-07). Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/deep-explanations-pilot-2026-06-07?expand=1`
+- Rotate the exposed `ANTHROPIC_API_KEY` (it was pasted in chat last session). Generation used the free session-subagent pipeline, so the key is only needed for the in-app tutor.
+- Optional: fix the TA/GI continued-question table rendering in-app (gotcha #1), and the 6 tie questions above.
+
+---
+
+## CONTEXT SWITCH — 2026-06-07 (Deep explanations: OG format locked, multi-line parser, generation script)
+
+All work is on branch `claude/deep-explanations-pilot-2026-06-07` (**NOT merged to main**). Commits `9a376e6` … `dcebaeb` (pilot → multi-line parser → generation script → orphan fix → the full OG rollout below). Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/deep-explanations-pilot-2026-06-07?expand=1`
+
+### PROGRESS — standard single-question bank COMPLETE (644/912), end of 2026-06-07 session
+The free pipeline ran end to end: parallel **session subagents** (no metered-API cost) each write `{id}.json` to `/tmp/og` → assemble → `npm run generate:explanations -- --from <json> --apply` (OG-pure surgery) → `validate:content` (0 errors) → an **answer-consistency gate** (the explanation's stated "The correct answer is X." must equal the key; CR also checks per-choice coverage). Every batch passed. Committed in batches (`5ac50b6` … `dcebaeb`).
+- **Quant fully OG (520):** Data Sufficiency 56 · word-problems 62 · 9 PS files 402 (arithmetic 49, algebra 34, number-properties 51, exponents-roots 49, ratios-percents 50, combinatorics 46, geometry 34, rates-work 44, statistics-probability 45).
+- **Critical Reasoning fully OG (124).**
+- **Bug fixed:** `word-problems.md` was missing `---` separators between q45–q62, so the parser had silently dropped q46–q62 (not loading in the app). Inserted them — total question count **895 → 912**. An audit (header count vs parsed count) confirmed **no other file is affected**.
+- **Validator:** removed the now-obsolete `fastest_path`/`common_trap`/`takeaway` "missing field" WARN rules (OG-pure).
+- **API key:** Adam pasted it into `.env.local`, but generation uses free session subagents (not the metered API), so the key is only needed for the in-app tutor. **Rotate the exposed key** (it was pasted in chat).
+
+### REMAINING (268) — grouped/multi-part, needs write-back code first
+RC (73) + MSR (36) are grouped passages (`## Passage` + `### Qn`); TA (49) + GI (50) + TPA (52) are multi-part (per-RO blocks); `curriculum/q-quant-01-mindset` (8) carries special taxonomy fields. `--apply` currently **skips** all of these (it only rewrites standard `## Qn` blocks). To finish them: (1) extend `rewriteBlock`/`applyToFile` in `scripts/generate-explanations.ts` to handle grouped `### Qn` blocks, TPA/per-RO structure, and preserve curriculum fields; (2) per-type OG formats (RC/MSR = prose anchored to the passage/exhibits + per-choice; TA/GI/TPA = one self-contained "The correct answer is X." block per response RO1/RO2…); (3) run the same subagent-workflow pattern.
+
+### How to continue — the free pipeline recipe + gotchas (reproduce this; no paid API)
+Generation runs on **session subagents via the Workflow tool**, applied centrally. Per file/section:
+1. Numbers: `grep -oE '^## Q[0-9]+' <file> | grep -oE '[0-9]+'` (RC/MSR use `### Qn` under `## Passage`).
+2. Launch a Workflow: per question, a **write** subagent then a **verify** subagent (`agentType: 'general-purpose'`, phases Write/Verify, `opts.phase`). Each is told to `sed` its question block out of the file, write the OG explanation, and **save ONLY to `/tmp/og/<id>.json`** as `{"id","after":{"explanation","mistakes":[...]}}`, and to **NEVER edit any file under `src/`** (subagents WILL edit files if not explicitly forbidden — it happened this session; we reverted). For Verbal, `mistakes` = one `{letter,text}` per wrong choice; otherwise `[]`.
+3. Apply: assemble all `/tmp/og/*.json` into `scripts/explanation-proposals.json` (JSON.parse each, keep `{id, after}`), then `npm run generate:explanations -- --from scripts/explanation-proposals.json --apply` (the verified OG-pure write-back), then `npm run validate:content` (must be 0 errors). `rm -rf /tmp/og` between batches; commit the changed file(s).
+4. **Answer-consistency gate (always run):** via `getAllQuestions()`, each applied explanation's "The correct answer is X." letter must equal `q.correctAnswerLetter`; for Verbal, `mistakeAnalysis` must cover the wrong letters and exclude the correct one.
+GOTCHAS: (a) **HARDCODE the question-number list in the workflow script** — the Workflow `args` param did NOT arrive as an array; use a literal `const nums = [...]`. (b) Keep total agents < 1000 (write+verify = 2× questions). (c) **Run the header-vs-parsed audit first** (count `^#{2,3} Q\d+` per file vs `getAllQuestions` count per setSlug) to catch missing `---` separators. (d) `usesPerChoice(q) = q.section === 'Verbal'`.
+
+### Decision — explanations now follow the GMAT Official Guide "Rationale" format, OG-pure
+Adam supplied ~15 official-guide rationale screenshots as the gold standard; adopted wholesale, replacing the earlier coaching voice. **OG-pure**: dropped `fastest_path` / `common_trap` / `takeaway`; per-choice `mistake_*` kept ONLY for Verbal (CR/RC). Per-type templates:
+- **PS (Quant):** principle → variable setup → worked steps → answer line. No per-choice.
+- **DS (DI):** rephrase the target quantity → test Statement (1) then (2) separately (prove insufficiency with two outcomes) → combine → answer. No per-choice; flag distractor data.
+- **CR (Verbal):** `**Situation.**` (paraphrase) + `**Reasoning.**` (task + logic; negation test for Assumption) + answer; PLUS per-choice `mistake_*` for wrong choices in OG voice.
+- **RC/MSR (Verbal):** prose anchored to the passage/exhibits, ruling options in/out; per-choice optional.
+- **TA/GI/TPA (DI multi-part):** one self-contained block per response (RO1/RO2…), each ending "The correct answer is X."
+- Voice: formal third-person ("we", "Let x"), no second-person, no shorthand/arrows, show all work, every answer ends "The correct answer is X." Area/skill tag lives in `subtopic`.
+
+### Multi-line parser (`src/lib/content.ts`) — shipped, backward-compatible
+`parseQuestionBlock` parses the rich fields (`explanation`/`fastest_path`/`common_trap`/`takeaway`/`mistake_[a-z]`) **across multiple lines** (until the next `**field:**` marker or block end); structural keys (`difficulty`/`type`/`topic`/`answer`/scalars) stay single-line — required because table-analysis is "prompt-first" (`**topic:**` would otherwise swallow the prompt + options). Identical output for genuinely single-line content. **Side benefit: recovered 34 explanations the old single-line parser was silently truncating to their first line** (e.g. combinatorics-q14 showed only "Two equivalent paths."). `npm run validate:content` → 0 errors (warnings dropped 9→4).
+
+### Pilot status
+12 CR/DS rewritten. First pass used the OLD coaching voice (DS q1/q10/q14/q20/q40/q47; CR q18/q55/q91/q98/q100/q103). Then **DS q40 + CR q103 were recast to OG format** as the format proof (multi-line). The other 10 pilot questions are still coaching-voice and will be regenerated by the script.
+
+### Generation script — built + verified, but NOT yet run (needs API key)
+`scripts/generate-explanations.ts` + `npm run generate:explanations`. Anthropic batch generator: model `claude-opus-4-8` (override `--model`/`ANTHROPIC_MODEL`), adaptive thinking + `effort:high`, OG spec cached as the system prompt (~90% input-cost cut), structured JSON output (`{explanation, mistakes[]}`), OG-pure write-back. Modes: dry-run → `scripts/explanation-proposals.json`; `--apply` (surgery into the .md); `--from <json> --apply` (apply reviewed/edited proposals; `GEN_CONTENT_ROOT` env applies against copies for safe testing). Filters: `--type <Quant|Verbal|DI | file-slug>`, `--ids a,b`, `--limit N`, `--print-prompt`. tsc clean; write-back surgery verified on copies (replaces explanation, drops coaching fields, keeps `answer` + `related_reading`, per-choice only for Verbal). **Not supported yet:** RC/MSR (grouped) + TPA write-back — proposals are generated but `--apply` skips and logs them.
+**WARNING: `ANTHROPIC_API_KEY` is NOT in `.env.local`** (only in Vercel) — add it to run. Full ~900 run ≈ $40–70 live (≈half via the Batches API, noted in-script); `--model claude-sonnet-4-6` ≈40% cheaper.
+
+### NEXT (Adam)
+1. Add `ANTHROPIC_API_KEY` to `.env.local`.
+2. `npm run generate:explanations -- --type data-sufficiency --limit 5` → review `scripts/explanation-proposals.json` → tune `SYSTEM_SPEC` in the script if the voice needs adjusting.
+3. Scale (Batches/Sonnet for cost) → `--apply` → `npm run validate:content` → merge the branch.
+
+### Also fixed this session — diagnostic-save orphan bug (closes the long-standing TODO)
+`src/app/api/practice-sessions/route.ts`: if the `practice_attempts` insert fails after the `practice_sessions` row was created, the route now deletes that session row (owner-scoped compensating cleanup; logs if blocked) so a partial save never orphans again. (No PostgREST transaction available here; an RPC transaction remains a nice-to-have.) This change is logically independent of the deep-explanations work — fine to split into its own PR.
+
+### Earlier 2026-05-24 immediate-todos — status as of 2026-06-07
+- `fix-tpa-answer-keys` → **MERGED** (PR #298, on main).
+- `gi-chart-renderer` → **STILL UNMERGED** (6 commits; merges clean into current main). Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/gi-chart-renderer-2026-05-24?expand=1`
+- `zakariangmat.com` → **LIVE** (returns 200, served by Vercel, apex→www). Hobby deploy cap long since reset.
+
+---
+
+## CONTEXT SWITCH — 2026-05-24 (Dogfooding sprint: GI charts, scoring fix, diagnostic save, agent-PR triage)
+
+Big session. Adam dogfooded the live app and we fixed a string of real bugs, shipped a Graphics-Interpretation chart system, and triaged the agent-PR backlog. `gh` is NOT installed — all PR work is browser-side via `https://github.com/adamik771/gmat-platform/compare/main...<branch>?expand=1`. PR numbers map via `git ls-remote origin 'refs/pull/*/head'`.
+
+### OPEN branches to merge (pushed, NOT yet merged)
+1. `claude/gi-chart-renderer-2026-05-24` — **Graphics Interpretation now renders real charts** (49/50; Q38 is a numeric dashboard, left as prose). Engine: `src/lib/chart-spec.ts` (ChartSpec, 8 types) + `src/components/shared/QuestionChart.tsx` (Recharts renderer, incl. dual-axis `composed`) + `content.ts` parses a fenced ```chart JSON block into `ParsedQuestion.chartSpec` (type-only import so node scripts still run) + plumbed `chartSpec` through `SessionQuestion` + the 4 session mappers, rendered above the prompt. Adds the **recharts** dependency. Verified: tsc/eslint/validate:content/build all clean.
+2. `claude/fix-tpa-answer-keys-2026-05-24` — fixes 3 broken TPA questions (q45/q46/q49) that shipped via agent PR #223 (out-of-bounds answer keys; q46 had an escaped `\|` in its table header; q45/q49 quoted rows with ellipses). `validate:content` back to 0 errors. **Merge this to clear main's errors.**
+
+### Merged this session (landed on main)
+errorPattern (study-plan conceptual-vs-execution from error_tags) · chapter "Continue to next section" CTA · `mistake_f` parser leak fix · session subtopic digest · **session explanation panel** (surfaces fastestPath/commonTrap/per-choice mistake/takeaway in-session; plumbed those 4 fields through SessionQuestion + mappers) · **scoring grid fix** (`scoring.ts`/`diagnostic.ts`: GMAT Focus scores end in **5**, cap **805** — fixed the 810/750 bug) · `vercel-ignore` script · Today's Mission hero · agent `cool-fermi-8YDhk`. Plus Adam merged agent question PRs #286 (remove Sentence Correction from course page), #170/#222/#276/#259 (quant question adds), #223 (broken — fixed by branch above).
+
+### CRITICAL bug fixed live — diagnostic save
+Diagnostic sections appeared "done" on the hub but the report said "take the diagnostic first." Root cause: the save POSTs `practice_sessions` + `practice_attempts` with **no transaction**; prod `practice_attempts` was **missing newer columns**, so the attempt-insert 500'd while the session row persisted → orphaned sessions. Adam ran in Supabase: `alter table public.practice_attempts add column if not exists confidence text, add column if not exists hints_revealed integer not null default 0, add column if not exists first_interaction_ms integer, add column if not exists device_type text;` — confirmed working (report populates). **TODO (not done):** wrap the two inserts in a transaction / delete the session if attempts fail, so a partial save never orphans again (`src/app/api/practice-sessions/route.ts`).
+
+### Vercel
+4 duplicate projects (`-61zf`/`-gz1e`/`-lcwy`) were accidental re-imports → Adam disconnected them, kept `gmat-platform`. Ignored Build Step wired to `bash ./scripts/vercel-ignore.sh` (only `main` deploys; agent `claude/*` branches skip). Hobby daily deploy cap was hit — **nothing is live until the cap resets (~24h) and `main` redeploys.** ⚠️ **Custom domain `zakariangmat.com` was returning 404** (was attached to a removed project) — needs re-attaching: gmat-platform → Settings → Domains → Add Existing → `zakariangmat.com`. CONFIRM whether Adam did this.
+
+### NEXT BIG THING (approved, not started) — deep explanations
+Adam wants **very detailed** explanations: per-choice "why the correct one is correct and why each wrong one is wrong," in a student-teaching voice. The in-session panel now *surfaces* the authored fields, but the core `explanation` field is terse (median ~184 chars) and quality is uneven (the DS inclusion-exclusion example he flagged was thin/redundant). Plan agreed: define a **per-type explanation spec** (DS = test each statement with the actual algebra; CR = argument map + per-choice debunk + trap; PS = worked steps) and **AI-generate** them (the platform already uses the Claude API for the tutor) → Adam reviews → bake into content. Start with a CR/DS pilot batch for sign-off before scaling.
+
+### Agent-PR backlog (267 open, unreviewed)
+These are Adam's **routine agents'** output (`cool-fermi-*`, `wonderful-johnson-*`, `practical-ride-*`, `youthful-bohr-*`), NOT this session's work. Triage: 71 already merged, **209 conflict** with main (close/skip), 58 merge clean — but the clean ones are **heavily redundant** (e.g. 11 branches all edit `SessionClient.tsx`, 7 all edit `exponents-roots.md`) and some ship **broken content** (#223 did). **Rule: never bulk-merge; run `npm run validate:content` after merging any agent content PR.** Worth-it distinct ones flagged: #285 (remove geometry from onboarding — also addresses the off-syllabus geometry issue) still open for review. Realistically only a handful of the 267 deserve to land; the rest should be closed.
+
+### Other deferred
+- **Geometry is off-syllabus** (GMAT Focus removed it) but a chapter + question bank + diagnostic/practice refs still exist; #285 handles onboarding, the rest is a pending hide/delete decision.
+- This HANDOFF.md is ~535 KB and bloated — worth trimming to recent sessions.
+
+---
+
 ## CONTEXT SWITCH — 2026-05-01/02/03 (Critique-driven premium pass + AI tutor + offline PWA + SEO + marketing copy)
 
 **Multi-day continuation across three dates.** Adam ran a deep critique cycle — eight pages got 5–7/10 reviews from an external evaluator, and we worked through them one at a time, redesign + verification per page. After that landed, work expanded into the broader "what's missing for top-tier" gap list: AI tutor, social-proof scaffolding, real adaptive question rotation on mocks, lint baseline cleanup, full PWA + offline drill loop, marketing SEO + OG cards + a founder-story blog post. Trial copy under the hero CTA is now confirmed (7-day full access). Sprint built on top of the 2026-04-29/30 UI/UX work and the 2026-04-28 launch-readiness pass — those entries below remain valid context.
