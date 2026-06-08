@@ -320,9 +320,15 @@ function parseQuestionBlock(
         options.push(...rows)
 
         // Parse the answer string to find the correct row index for each column.
-        // Answer format: "Key1 = Value1, Key2 = Value2" or "Key1 = Value1; Key2 = Value2"
+        // Answer format: "Key1 = Value1, Key2 = Value2" or "Key1 = Value1; Key2 = Value2".
+        // Split on ";" or on a "," that begins a new "key = value" pair. The
+        // lookahead `[^,]*=` matches when the next comma-delimited segment
+        // contains "=", which (a) splits even when the key starts with a digit
+        // (e.g. "70% solution = 4") and (b) does NOT split inside values that
+        // carry their own commas (e.g. "$60,000", whose inner segment "000" has
+        // no "=" before the next comma).
         const answerRaw = meta.answer ?? ""
-        const answerParts = answerRaw.split(/;\s*|,\s*(?=[A-Za-z].*=)/)
+        const answerParts = answerRaw.split(/;\s*|,\s*(?=[^,]*=)/)
         const correctIndices: number[] = []
         for (const part of answerParts) {
           const eqIdx = part.indexOf("=")
