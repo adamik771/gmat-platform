@@ -49,7 +49,7 @@ Four books are placed on a shelf. How many arrangements are possible if one spec
 **answer:** A
 **fastest_path:** Pin one book to position 1; arrange remaining 3 → 3! = 6.
 **explanation:** One book is fixed in position 1. The other 3 books fill the remaining 3 positions in any order: 3! = 6 ways. The fixed object reduces the problem from 4! to 3!.
-**mistake_b:** Computed 4 × 2 = 8 from a wrong setup.
+**mistake_b:** Computed 4 × 2 = 8 instead of arranging the 3 free books. With one book pinned to the front, the remaining 3 fill the other 3 slots in 3! = 6 ways.
 **mistake_c:** Computed 4!/2 = 12.
 **mistake_d:** Computed 3 × 6 = 18 (added an unnecessary factor).
 **mistake_e:** Computed 4! = 24 (forgot the constraint).
@@ -78,7 +78,7 @@ From a group of 7 candidates, how many ways can a president and a vice-president
 **fastest_path:** 7 choices for president × 6 for VP = 42.
 **explanation:** Distinct roles (president, VP) → order matters → permutation. P(7, 2) = 7 × 6 = 42. Equivalently, 7 ways to fill president, then 6 remaining for VP.
 **mistake_a:** Computed 7 × 2 = 14 (wrong formula).
-**mistake_b:** Computed 7 + 14 (some wrong combination); got 21.
+**mistake_b:** Computed C(7, 2) = (7 × 6)/2 = 21 — treated the two roles as an unordered selection (combination), dividing out order. But president and vice-president are distinct positions, so order matters: use P(7, 2) = 42 with no division by 2!.
 **mistake_d:** Computed 7² = 49 (treated as with-replacement).
 **mistake_e:** Computed 7! = 5040 (counted full arrangement, not just two roles).
 **common_trap:** arrangements-vs-combinations confusion — treating distinct-role assignment as a combination, or computing the full factorial when only k slots are needed.
@@ -134,7 +134,7 @@ A pizza shop offers 8 toppings. How many different 2-topping pizzas are possible
 **fastest_path:** C(8, 2) = (8 × 7)/2 = 28.
 **explanation:** Toppings on a pizza don't have order — pepperoni + mushroom = mushroom + pepperoni. Use combinations: C(8, 2) = (8 × 7)/(2 × 1) = 28.
 **mistake_a:** Computed 8 × 2 = 16 (wrong formula).
-**mistake_c:** Computed 8 + 32 = 40 from a wrong combination.
+**mistake_c:** Reached 40 by an ad-hoc product or sum rather than the combination C(8, 2) = 28. A 2-topping selection is exactly one C(8, 2) computation — order doesn't matter, so no other product applies.
 **mistake_d:** Computed 8 × 7 = 56 (used permutations, didn't divide by 2!).
 **mistake_e:** Computed 8² = 64 (treated as with-replacement).
 **common_trap:** arrangements-vs-combinations confusion on unordered selections.
@@ -246,7 +246,7 @@ Six people sit in a row of 6 chairs. If Ana and Ben refuse to sit next to each o
 **fastest_path:** Total − adjacent = 6! − (2 × 5!) = 720 − 240 = 480.
 **explanation:** Use the complement. Total arrangements: 6! = 720. Arrangements with Ana and Ben *together* (as a block): 5! × 2 = 240 (5! for block placement, × 2 for AB vs BA). Subtract: 720 − 240 = 480. Direct counting of "not-adjacent" arrangements is much harder.
 **mistake_a:** Computed 6! − 2(6) = 240; under-counted forbidden.
-**mistake_b:** Computed 6! − 2(6!) /something incorrectly; got 360.
+**mistake_b:** Assumed half of all arrangements have Ana and Ben adjacent: 6!/2 = 360. But the adjacent count is 2 × 5! = 240 (the pair sits together in 1/3 of arrangements, not 1/2), so the answer is 720 − 240 = 480, not 360.
 **mistake_d:** Computed 6! − 5! = 720 − 120 = 600; forgot the × 2 internal ordering.
 **mistake_e:** Computed 6! = 720 directly without applying the constraint.
 **common_trap:** Forgetting the × 2 internal ordering of the block, or computing direct ("not-adjacent") instead of using the complement.
@@ -274,8 +274,8 @@ From 5 men and 4 women, a committee of 3 must be formed with exactly 2 men and 1
 **fastest_path:** C(5, 2) × C(4, 1) = 10 × 4 = 40.
 **explanation:** "Exactly 2 men AND 1 woman" — independent selections, then multiply. C(5, 2) = 10 (pick 2 from 5 men); C(4, 1) = 4 (pick 1 from 4 women). Total = 10 × 4 = 40.
 **mistake_a:** Computed C(5, 2) + C(4, 1) = 14, then doubled to 20.
-**mistake_b:** Computed C(9, 3) − some adjustment = 30.
-**mistake_d:** Computed C(5, 2) × C(4, 2) or other miscombination = 60.
+**mistake_b:** Added the two selections — C(5, 2) + C(4, 1) = 10 + 4 = 14 — then adjusted upward to 30. "Exactly 2 men AND 1 woman" requires multiplying the independent counts, not adding: 10 × 4 = 40.
+**mistake_d:** Computed C(5, 2) × C(4, 2) = 10 × 6 = 60 — selected 2 women instead of 1, over-drawing from the women's pool. The committee needs exactly 1 woman: C(4, 1) = 4.
 **mistake_e:** Computed C(9, 3) = 84 (didn't apply the constraint).
 **common_trap:** Adding the two combinations instead of multiplying — multiplication captures "AND."
 **takeaway:** "Exactly X of type A AND Y of type B" → C(n_A, X) × C(n_B, Y). The "AND" requires both conditions, which means multiplication.
@@ -349,7 +349,7 @@ A code consists of 4 digits chosen from {0–9}. How many codes are possible if 
 How many arrangements of the letters in MISSISSIPPI are possible?
 
 - A) 34650
-- B) 46200
+- B) 138600
 - C) 69300
 - D) 277200
 - E) 332640
@@ -357,10 +357,10 @@ How many arrangements of the letters in MISSISSIPPI are possible?
 **answer:** A
 **fastest_path:** 11! / (4! × 4! × 2!) = 39,916,800 / 1,152 = 34,650.
 **explanation:** MISSISSIPPI has 11 letters: 4 I's, 4 S's, 2 P's, 1 M. Arrangements = 11! / (4! × 4! × 2! × 1!) = 11!/(24 × 24 × 2) = 39,916,800 / 1,152 = 34,650.
-**mistake_b:** Forgot to divide by 2! for the P's; got 11!/(4! × 4!) = 69,300; halved.
-**mistake_c:** Divided by only 4! once; got 11!/24 = 1,663,200, then misadjusted to 69,300.
-**mistake_d:** Divided incorrectly: 11!/144 = 277,200.
-**mistake_e:** Computed 11! / (3! × 4! × 2!) = 332,640.
+**mistake_b:** Miscounted the I's as 3 instead of 4, dividing by 3! rather than 4! for that group: 11! / (3! × 4! × 2!) = 39,916,800 / 288 = 138,600.
+**mistake_c:** Forgot to divide by 2! for the two P's: 11! / (4! × 4!) = 39,916,800 / 576 = 69,300. Every repeated-letter group needs its own factorial in the denominator — the P's count too.
+**mistake_d:** Counted the S's as 3 instead of 4 and dropped the P's divisor entirely: 11! / (4! × 3!) = 39,916,800 / 144 = 277,200.
+**mistake_e:** Lumped all the repeats into a single group of 5 and divided by 5! once: 11! / 5! = 39,916,800 / 120 = 332,640. The repeats form three separate groups (4 I's, 4 S's, 2 P's), each needing its own factorial.
 **common_trap:** Forgetting to divide by the factorial for *each* repeated letter group.
 **takeaway:** Distinct arrangements with repeats = total! / (product of factorial of each repeated group). Identify all repeated letters and their counts before computing.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -392,7 +392,7 @@ Both paths give 168, confirming the logic.
 **mistake_a:** Computed C(8, 3) = 56 (forgot to assign the chair role).
 **mistake_b:** Computed 56 × 2 = 112 (off by one in role assignment).
 **mistake_d:** Computed 8 × P(7, 2) = 8 × 42 = 336: chose the chair correctly (8 options) but then ordered the two remaining seats, using P(7, 2) = 7 × 6 = 42 instead of C(7, 2) = 21. The non-chair committee members hold no rank — they form an unordered pair. Ordering slots that carry no distinct role inflates the count by 2! = 2.
-**mistake_e:** Computed 8 × 7 × 6 / 2 = 168 wrong, got 504 from another miscombination.
+**mistake_e:** Computed C(8, 3) × 3 × 3 = 56 × 9 = 504 — multiplied by 3 twice, designating the chair role two separate times. The chair is chosen once: C(8, 3) × 3 = 168.
 **common_trap:** Forgetting the role-assignment step — picking the committee but not the chair.
 **takeaway:** When the problem mixes "select group" + "designate a role," compute both stages: combinations for the group + role assignment within. Verify by the alternate path (role first, then rest).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -523,7 +523,7 @@ A 5-person committee must be selected from a pool of 7 men and 5 women. If the c
 - B) 560
 - C) 595
 - D) 630
-- E) 756
+- E) 770
 
 **answer:** C
 **fastest_path:** Decompose by valid gender splits: (2W, 3M) + (3W, 2M) + (4W, 1M) = 350 + 210 + 35 = 595.
@@ -535,8 +535,8 @@ A 5-person committee must be selected from a pool of 7 men and 5 women. If the c
 (5W, 0M) excluded by "at least 1 man." Total: 350 + 210 + 35 = 595.
 **mistake_a:** Set up the (2W, 3M) case correctly as C(5,2)·C(7,3) = 350, but in the (3W, 2M) case mis-indexed the men's combination as C(7, 1) = 7 instead of C(7, 2) = 21, getting C(5,3)·C(7,1) = 10·7 = 70. Summing those two (and missing the third case entirely) gives 350 + 70 = 420. The committee has 5 seats; with 3 women, exactly 2 men remain — use C(7, 2), not C(7, 1).
 **mistake_b:** Missed (4W, 1M); got 560.
-**mistake_d:** Computed C(12, 5) − some adjustment; got 630.
-**mistake_e:** Computed C(12, 5) − (5W, 0M case) = 792 − 1 = 791... no, more like 756.
+**mistake_d:** Double-counted the (4W, 1M) split — added its 35 committees twice: 350 + 210 + 35 + 35 = 630. Each valid gender split is counted exactly once; (4W, 1M) contributes 35, not 70.
+**mistake_e:** Misread "at least 2 women" as "at least 1 woman." By the complement: 792 − (0 women) − (0 men) = 792 − C(7, 5) − 1 = 792 − 21 − 1 = 770. The real floor is 2 women, which also removes the 175 one-woman committees, leaving 595.
 **common_trap:** Missing one of the valid gender-split cases (especially the edge case at the upper bound on women).
 **takeaway:** "At least X of A AND at least Y of B" with limited size: enumerate all valid splits and sum the products. Don't forget edge cases.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -598,9 +598,9 @@ A drawer contains 10 socks: 4 black, 4 blue, and 2 red. If 3 socks are drawn at 
 
 Direct counting (P(exactly 1) + P(exactly 2) + P(exactly 3)) is much harder.
 **mistake_a:** Computed P(no black) = 1/6 and bubbled (forgot to take complement).
-**mistake_b:** Computed P(exactly 1 black) = some intermediate value.
-**mistake_c:** Computed P(exactly 2 black) ≈ 1/2.
-**mistake_d:** Computed something between exact and complement.
+**mistake_b:** 1/3 matches no single case here (P(no black) = 1/6, P(exactly one black) = 1/2) — it reads like a guess between them. Use the complement: 1 − 1/6 = 5/6.
+**mistake_c:** Computed P(exactly one black) = C(4, 1) × C(6, 2)/C(10, 3) = 60/120 = 1/2 — solved "exactly one" instead of "at least one."
+**mistake_d:** Estimated "at least one" as 2/3 without computing the complement. The exact value is 1 − P(none) = 1 − 1/6 = 5/6.
 **common_trap:** complement-not-used — computing direct (exactly 1, 2, 3) instead of using "1 − P(none)."
 **takeaway:** "At least one" → complement: P(at least 1) = 1 − P(none). The complement is one calculation; direct counting is multiple.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -686,7 +686,7 @@ A jar contains 6 red and 4 blue marbles. Two marbles are drawn at random, with t
 **explanation:** With replacement, the two draws are independent. Each draw has probability 6/10 = 3/5 of red. P(both red) = (3/5) × (3/5) = 9/25.
 **mistake_b:** Computed without replacement: (6/10)(5/9) = 30/90 = 1/3.
 **mistake_c:** Computed (6/10) directly = 3/5 (only one draw); mistakenly bubbled.
-**mistake_d:** Computed 1/2 from a sloppy estimate.
+**mistake_d:** Estimated roughly 1/2 without computing. With replacement the draws are independent: (3/5)² = 9/25 ≈ 0.36, well below 1/2.
 **mistake_e:** Computed (6/10) for one draw and (4/10) for the other (mismatched).
 **common_trap:** independence-confusion — treating with-replacement draws as without-replacement (or vice versa).
 **takeaway:** With replacement → independent → multiply individual probabilities. Without replacement → conditional → adjust each probability after the previous draw.
@@ -825,7 +825,7 @@ A fair coin is flipped 5 times. What is the probability of getting exactly 3 hea
 **mistake_b:** Computed 3/8 (wrong combinatorial setup).
 **mistake_c:** Computed 1/2 (confused "exactly 3 heads" with "at least 3 heads" — which is 1/2 by symmetry but requires more work).
 **mistake_d:** Computed 5/8 (some inverse setup).
-**mistake_e:** Computed 1/4 from a partial computation.
+**mistake_e:** 1/4 matches no clean case — likely (1/2)² from counting only 2 of the 5 flips. All five flips enter the binomial: C(5, 3) × (1/2)⁵ = 10/32 = 5/16.
 **common_trap:** Confusing "exactly k" with "at least k" — different probabilities; "at least" requires summing across multiple cases.
 **takeaway:** Binomial: P(exactly k of n trials, each prob p) = C(n, k) × p^k × (1−p)^(n−k). For fair coin: × (1/2)^n.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -901,7 +901,7 @@ A fair six-sided die (faces 1–6) is rolled and a fair coin is flipped. What is
 **fastest_path:** P(>4) = 2/6 = 1/3; P(tails) = 1/2. Independent: (1/3)(1/2) = 1/6.
 **explanation:** Numbers greater than 4 on a six-sided die: {5, 6} — that is 2 out of 6 faces, so P(>4) = 1/3. The die and coin are independent, so P(>4 AND tails) = P(>4) × P(tails) = (1/3)(1/2) = 1/6.
 **mistake_a:** Computed P(rolling exactly 4) × P(tails) = (1/6)(1/2) = 1/12 — misread ">4" as "=4."
-**mistake_c:** Computed 1/4 from a rough estimate without careful fraction arithmetic.
+**mistake_c:** Misread "greater than 4" as "at least 4": {4, 5, 6} = 3/6 = 1/2, then (1/2)(1/2) = 1/4. "Greater than 4" excludes 4, leaving only {5, 6} = 2/6 = 1/3.
 **mistake_d:** Reported P(>4) = 1/3 without multiplying by the coin probability — forgot the second event.
 **mistake_e:** Reported P(tails) = 1/2 without multiplying by the die probability — forgot the first event.
 **common_trap:** Misreading "greater than 4" as "equal to 4," which changes P(die) from 1/3 to 1/6 and gives 1/12.
@@ -1006,7 +1006,7 @@ A standard deck has 26 red and 26 black cards. Two cards are drawn without repla
 **explanation:** After one red card is removed, the deck has 51 cards left, of which 25 are red and 26 are black. P(2nd red | 1st red) = 25/51.
 **mistake_a:** Used the original proportion: 26/52 = 1/2. This ignores that the first card has already been removed and the deck has changed.
 **mistake_c:** Correct numerator (25 red remaining) but wrong denominator (52 instead of 51): forgot to reduce the total count after removal.
-**mistake_d:** Halved the remaining red count (25/2 ≈ 13) — no valid reasoning; a confusion artifact.
+**mistake_d:** Put 13 in the numerator — half of the deck's original 26 reds — instead of the reds that actually remain. After one red is removed, 25 reds (not 13) are left out of 51, so the probability is 25/51.
 **mistake_e:** Counted 26 red in numerator — forgot to remove the drawn red card, leaving the count unchanged.
 **common_trap:** Reporting 26/52 = 1/2 — using the original deck proportions without updating for the removed card. Conditional probability requires updating the sample space to reflect the known outcome.
 **takeaway:** Conditional probability = update the sample space. After each draw without replacement, reduce both the numerator (by the drawn card's type if it matches) and the denominator (by 1 for each card drawn).
@@ -1109,8 +1109,8 @@ An ice cream shop offers 5 flavors. How many ways can you order a bowl of 3 scoo
 **fastest_path:** Stars-and-bars: C(n + k − 1, k) = C(5 + 3 − 1, 3) = C(7, 3) = 35.
 **explanation:** Choosing k items from n types with repetition, where order doesn't matter, is a "multiset" or "stars-and-bars" problem. Formula: C(n + k − 1, k) = C(5 + 3 − 1, 3) = C(7, 3) = (7 × 6 × 5)/(3 × 2 × 1) = 35.
 **mistake_a:** Used C(5, 3) = 10 — standard combinations formula, which counts selections *without* repetition. Repetition is allowed here.
-**mistake_b:** Computed 5 + 3 + ... = 15 from some partial stars-and-bars setup.
-**mistake_c:** Used C(6, 2) = 15 or C(7, 2) = 21 — off-by-one errors on either n or k in the formula.
+**mistake_b:** Computed C(6, 2) = 15 — off-by-one on the total, using n + k − 2 = 6 instead of n + k − 1 = 7. The correct count is C(7, 3) = 35.
+**mistake_c:** Computed C(7, 2) = 21 — used C(n + k − 1, k − 1) instead of C(n + k − 1, k). The formula chooses k = 3 divider positions, not k − 1 = 2.
 **mistake_e:** Computed 5³ = 125 — counted ordered selections with repetition (a permutation-with-repetition formula). This overcounts because order does not matter.
 **common_trap:** Using standard C(n, k) (without repetition) when the problem allows repeats. Repetition with unordered selection requires the stars-and-bars formula C(n + k − 1, k).
 **takeaway:** Combinations with repetition: C(n + k − 1, k). Memorize the "n + k − 1" adjustment. Standard C(n, k) is for selections without repetition only.
@@ -1186,7 +1186,7 @@ A traveler walks from (0, 0) to (4, 3) on a grid, moving only right or up. The i
 **answer:** B
 **fastest_path:** Total C(7,3) − through (2,2): C(4,2)×C(3,1) = 35 − 18 = 17.
 **explanation:** Total paths from (0,0) to (4,3): C(4+3, 3) = C(7,3) = 35. Blocked paths (those passing through (2,2)): paths from (0,0) to (2,2) × paths from (2,2) to (4,3). (0,0)→(2,2): 2 right+2 up → C(4,2) = 6. (2,2)→(4,3): 2 right+1 up → C(3,1) = 3. Blocked = 6×3 = 18. Valid = 35−18 = 17.
-**mistake_a:** Miscomputed the blocked paths as C(4,1)×C(3,2) = 4×3 = 12, then 35−12 = 23... or some other arithmetic slip yielding 35−23 = 12.
+**mistake_a:** Reported a blocked-path count as the final answer instead of subtracting it from the total — and mis-indexed that count as C(4,1) × C(3,2) = 4 × 3 = 12 (swapping which coordinate gets which step count). The correct blocked count is C(4,2) × C(3,1) = 18, and the answer is total − blocked = 35 − 18 = 17.
 **mistake_c:** Computed the (2,2)-blocked count incorrectly as 14, giving 35−14 = 21.
 **mistake_d:** Forgot to multiply both segments — only subtracted the first-segment count: 35−6 = 29.
 **mistake_e:** Reported the total unrestricted count C(7,3) = 35 without applying the blocked intersection.
@@ -1215,7 +1215,7 @@ A 3-person committee is selected at random from 6 Democrats and 4 Republicans. W
 **mistake_a:** Counted only all-Democrat committees: 20/120 = 1/6. Misread "majority" as "unanimous."
 **mistake_b:** Counted only exactly-2-Democrat committees: 60/120 = 1/2. "At least 2" includes the 3D case as well.
 **mistake_c:** 1/3 is P(Republican majority) — see below. Computed the correct value for the wrong group.
-**mistake_e:** 5/6 is not a natural result of a clean calculation from this setup; likely an overestimate.
+**mistake_e:** 5/6 = 100/120 over-counts the favorable cases — it counts more than the 80 majority-Democrat committees (60 with exactly 2D, plus 20 with exactly 3D). The correct count is 60 + 20 = 80, so 80/120 = 2/3.
 **common_trap:** Forgetting the "exactly 3 Democrats" case when counting "at least 2." "At least 2" means 2 or 3 — both cases must be added. Note also that P(D majority) + P(R majority) = 1 because a 3-person committee cannot tie: 2/3 + 1/3 = 1 ✓.
 **takeaway:** "At least k" in a selection problem = sum all cases where the count meets or exceeds k. Here, count the 2D+1R case and the 3D+0R case, then add.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -1238,7 +1238,7 @@ Twelve students are to be divided into three equal groups of 4 for a field trip.
 **answer:** B
 **fastest_path:** C(12,4)×C(8,4)×C(4,4) / 3! = 34,650 / 6 = 5,775.
 **explanation:** Step 1 — select first group of 4: C(12,4) = 495. Step 2 — select second group of 4 from remaining 8: C(8,4) = 70. Step 3 — last group is determined: C(4,4) = 1. Raw product: 495 × 70 × 1 = 34,650. But since the three groups carry no labels, every actual partition has been counted 3! = 6 times (once for each way to order three identical-status groups). Divide: 34,650 / 6 = 5,775.
-**mistake_a:** Divided by a wrong factorial (e.g., 4! = 24 instead of 3!): 34,650/24 ≈ 1,443 — rounded or slipped to 3,960.
+**mistake_a:** Divided by the wrong factorial — used the group size (4! = 24) instead of the number of interchangeable groups (3! = 6). The overcount comes from the 3! orderings of three unlabeled groups, so the right division is 34,650 / 6 = 5,775.
 **mistake_c:** Divided by 3 instead of 3! = 6: 34,650/3 = 11,550.
 **mistake_d:** Forgot to divide by 3! entirely — treated the three groups as labeled (e.g., "Group A," "Group B," "Group C"): 34,650.
 **mistake_e:** Multiplied by an extra factor after computing the product: 34,650 × 2 = 69,300.
