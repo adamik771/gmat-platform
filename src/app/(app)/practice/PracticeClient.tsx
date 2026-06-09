@@ -10,6 +10,7 @@ import {
   Target,
   Wrench,
 } from "lucide-react"
+import { MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
 
 export interface PracticeSetData {
   slug: string
@@ -20,6 +21,27 @@ export interface PracticeSetData {
   medium: number
   hard: number
   estimatedMinutes: number
+}
+
+/** Per-topic mastery summary surfaced on each bank card. Sourced from
+ *  `user_metadata.topic_skill_levels` — the same map that drives adaptive
+ *  question ordering — so the bank mirrors the student's real trajectory. */
+export interface TopicSkillSummary {
+  /** Proficiency in [0, 1]. */
+  level: number
+  /** Cumulative attempts logged on this topic. */
+  attempts: number
+}
+
+/** Four named mastery tiers, matching `levelLabel()` thresholds and the
+ *  post-session skill track. Index doubles as how many segments fill. */
+const MASTERY_TIERS = ["Foundation", "Building", "Proficient", "Advanced"] as const
+
+function tierIndexFor(level: number): number {
+  if (level < 0.35) return 0
+  if (level < 0.65) return 1
+  if (level < 0.85) return 2
+  return 3
 }
 
 export interface PracticeRecommendation {
@@ -51,9 +73,11 @@ const SECTION_ACCENT: Record<PracticeSetData["section"], string> = {
 export default function PracticeClient({
   sets,
   recommendations = [],
+  skillBySlug = {},
 }: {
   sets: PracticeSetData[]
   recommendations?: PracticeRecommendation[]
+  skillBySlug?: Record<string, TopicSkillSummary>
 }) {
   const grouped: Record<PracticeSetData["section"], PracticeSetData[]> = {
     Quant: [],
@@ -326,6 +350,13 @@ export default function PracticeClient({
         if (items.length === 0) return null
         const accent = SECTION_ACCENT[section]
         const totalQuestions = items.reduce((sum, s) => sum + s.questions, 0)
+        // How many topics in this section the student has begun — a
+        // section-level coverage read so the bank shows the shape of the
+        // journey, not just its raw size.
+        const startedCount = items.reduce(
+          (n, s) => n + ((skillBySlug[s.slug]?.attempts ?? 0) > 0 ? 1 : 0),
+          0
+        )
         // First-by-alphabetical-order topic in section is the baseline
         // entry point. Not personalized, but it's a sensible default
         // when the user doesn't yet have a recommendation.
@@ -362,6 +393,14 @@ export default function PracticeClient({
                     {items.length} topic{items.length === 1 ? "" : "s"} ·{" "}
                     {totalQuestions} question
                     {totalQuestions === 1 ? "" : "s"}
+                    {startedCount > 0 && (
+                      <>
+                        {" · "}
+                        <span style={{ color: accent }}>
+                          {startedCount}/{items.length} started
+                        </span>
+                      </>
+                    )}
                   </p>
                 </div>
               </div>
@@ -383,7 +422,12 @@ export default function PracticeClient({
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {items.map((set) => (
-                <TopicCard key={set.slug} set={set} accent={accent} />
+                <TopicCard
+                  key={set.slug}
+                  set={set}
+                  accent={accent}
+                  skill={skillBySlug[set.slug]}
+                />
               ))}
             </div>
           </section>
@@ -402,18 +446,94 @@ export default function PracticeClient({
 }
 
 /**
- * Topic-card with difficulty pills + estimated runtime. Replaces the
- * flat "topic + count + Start set" card so the student can decide what
- * mix of work each set buys before clicking through.
+ * Compact per-topic mastery strip: a four-segment tier track
+ * (Foundation → Building → Proficient → Advanced) plus the current tier
+ * label. Reads from the same skill map that drives adaptive ordering, so
+ * the bank becomes a map of the student's trajectory rather than a flat
+ * catalogue. Calm by design — no badges, no streaks, just the climb.
+ *
+ *   - untouched topic  → muted "Not started", empty track
+ *   - 1–2 attempts     → "Calibrating", track shown in a neutral tone
+ *   - 3+ attempts      → tier label in the section accent, segments fill
+ */
+function MasteryStrip({
+  skill,
+  accent,
+}: {
+  skill: TopicSkillSummary | undefined
+  accent: string
+}) {
+  const attempts = skill?.attempts ?? 0
+  const established = attempts >= MIN_ATTEMPTS_FOR_ADAPTIVE
+  const tierIdx = skill ? tierIndexFor(skill.level) : 0
+  // Segments filled: the tier index + 1 once established; while
+  // calibrating we still hint at the current tier so progress reads as
+  // motion, but in a muted tone since the level isn't trusted yet.
+  const filled = attempts === 0 ? 0 : tierIdx + 1
+
+  let label: string
+  let labelColor: string
+  if (attempts === 0) {
+    label = "Not started"
+    labelColor = "#555555"
+  } else if (!established) {
+    label = `Calibrating · ${attempts}`
+    labelColor = "#888888"
+  } else {
+    label = MASTERY_TIERS[tierIdx]
+    labelColor = accent
+  }
+
+  return (
+    <div className="mt-3 flex items-center gap-2.5" aria-hidden>
+      <div className="flex items-center gap-1 flex-1">
+        {MASTERY_TIERS.map((_, i) => {
+          const isFilled = i < filled
+          const isCurrent = established && i === tierIdx
+          return (
+            <span
+              key={i}
+              className="h-1 flex-1 rounded-full transition-colors"
+              style={{
+                backgroundColor: isFilled
+                  ? established
+                    ? isCurrent
+                      ? accent
+                      : `${accent}66`
+                    : "rgba(255,255,255,0.22)"
+                  : "rgba(255,255,255,0.06)",
+              }}
+            />
+          )
+        })}
+      </div>
+      <span
+        className="text-[10px] font-semibold uppercase tracking-[0.14em] flex-shrink-0"
+        style={{ color: labelColor }}
+      >
+        {label}
+      </span>
+    </div>
+  )
+}
+
+/**
+ * Topic-card with mastery strip, difficulty pills + estimated runtime.
+ * Replaces the flat "topic + count + Start set" card so the student can
+ * both see how far they've climbed on the topic and decide what mix of
+ * work each set buys before clicking through.
  */
 function TopicCard({
   set,
   accent,
+  skill,
 }: {
   set: PracticeSetData
   accent: string
+  skill?: TopicSkillSummary
 }) {
   const { easy, medium, hard, questions, estimatedMinutes } = set
+  const started = (skill?.attempts ?? 0) > 0
   // Only render pills for non-zero buckets — keeps the row tidy when a
   // small set only carries one or two difficulty levels.
   const pills: Array<{ label: string; count: number }> = []
@@ -442,6 +562,7 @@ function TopicCard({
       <h3 className="font-display text-lg sm:text-xl font-semibold text-[#F0F0F0] tracking-tight leading-[1.2]">
         {set.topic}
       </h3>
+      <MasteryStrip skill={skill} accent={accent} />
       {pills.length > 0 && (
         <div className="mt-3 flex flex-wrap gap-1.5">
           {pills.map((p) => (
@@ -478,7 +599,7 @@ function TopicCard({
           ~{estimatedMinutes} min
         </span>
         <span className="inline-flex items-center gap-1.5 group-hover:text-[#C9A84C] transition-colors">
-          Start set
+          {started ? "Continue" : "Start set"}
           <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
         </span>
       </div>

@@ -6,9 +6,11 @@ import {
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { collectAdaptiveSignals } from "@/lib/adaptive-plan-engine"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
+import { getTopicSkillLevels } from "@/lib/topic-skill"
 import PracticeClient, {
   type PracticeRecommendation,
   type PracticeSetData,
+  type TopicSkillSummary,
 } from "./PracticeClient"
 
 /**
@@ -65,6 +67,11 @@ export default async function PracticePage() {
   // Failure here is non-fatal: the page renders without recommendations.
   const knownSlugs = new Set(sets.map((s) => s.slug))
   let recommendations: PracticeRecommendation[] = []
+  // Per-topic mastery, keyed by set slug. Read from the same
+  // `user_metadata.topic_skill_levels` map that the adaptive question
+  // ordering already maintains — so the bank reflects the student's
+  // real trajectory with zero extra storage. Empty for signed-out users.
+  const skillBySlug: Record<string, TopicSkillSummary> = {}
   try {
     const supabase = await createSupabaseServer()
     const {
@@ -88,10 +95,22 @@ export default async function PracticePage() {
           section: w.section,
           misses: w.misses,
         }))
+
+      const skillMap = getTopicSkillLevels(user.user_metadata)
+      for (const [slug, value] of Object.entries(skillMap)) {
+        if (!knownSlugs.has(slug)) continue
+        skillBySlug[slug] = { level: value.level, attempts: value.attempts }
+      }
     }
   } catch {
-    // Signals unavailable — render without recommendations.
+    // Signals unavailable — render without recommendations / mastery.
   }
 
-  return <PracticeClient sets={sets} recommendations={recommendations} />
+  return (
+    <PracticeClient
+      sets={sets}
+      recommendations={recommendations}
+      skillBySlug={skillBySlug}
+    />
+  )
 }
