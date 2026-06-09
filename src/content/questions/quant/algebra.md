@@ -7,6 +7,8 @@ topic: Algebra
 **difficulty:** Easy
 **type:** Problem Solving
 **topic:** Linear Equations
+**trap_type:** target-expression-misread
+**est_time_seconds:** 75
 
 If 3x + 7 = 22, what is the value of 6x + 5?
 
@@ -23,6 +25,13 @@ If 3x + 7 = 22, what is the value of 6x + 5?
 **explanation:** Because the quantity sought, 6x + 5, depends on the value of x, we first determine x from the given linear equation and then evaluate the requested expression. Let x denote the unknown quantity. The given condition is that 3x + 7 = 22. Subtracting 7 from both sides yields 3x = 15, and dividing both sides by 3 gives x = 5. We now substitute this value into the expression 6x + 5: 6(5) + 5 = 30 + 5 = 35.
 
 The correct answer is C.
+**fastest_path:** 6x + 5 = 2(3x) + 5. The equation hands you 3x = 15 directly, so 6x + 5 = 2(15) + 5 = 35 — there is no need to isolate x at all.
+**mistake_a:** 25 comes from finding x = 5 correctly but then evaluating 6x − 5, flipping the sign of the constant (30 − 5).
+**mistake_b:** 30 is just 6x = 6(5); the +5 constant was dropped from the target expression.
+**mistake_d:** 40 carries the equation's 7 into the target as an extra coefficient or constant (e.g. 6(5) + 10) — an arithmetic slip with no valid basis.
+**mistake_e:** 45 over-adds the constant, treating the target as 6x + 15 or adding 5 twice; no correct method yields it.
+**common_trap:** The hard part is done the moment you have 3x = 15. Points are lost in the final substitution — dropping the +5 or mis-signing it.
+**takeaway:** On "find the expression, not x" problems, read the target character for character and scale the known block (here 3x) rather than solving from scratch. If you slipped on the arithmetic, tag it Careless.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -31,6 +40,8 @@ The correct answer is C.
 **difficulty:** Easy
 **type:** Problem Solving
 **topic:** Exponents
+**trap_type:** exponent-rule-confusion
+**est_time_seconds:** 60
 
 Which of the following is equivalent to (x³)⁴ / x⁵?
 
@@ -48,6 +59,13 @@ Let the expression be (x^3)^4 / x^5. We simplify the numerator first. Applying t
 We now apply the quotient rule. Subtracting the exponent of the denominator from the exponent of the numerator gives x^(12-5) = x^7.
 
 The correct answer is B.
+**fastest_path:** Collapse top-down: (x³)⁴ = x¹² (multiply the powers), then divide by x⁵ (subtract the exponents): x^(12 − 5) = x⁷.
+**mistake_a:** x² comes from adding the exponents in the numerator (3 + 4 = 7) instead of multiplying, then subtracting 5: 7 − 5 = 2.
+**mistake_c:** x¹² simplifies the numerator correctly but forgets to divide by x⁵ — the quotient step is skipped entirely.
+**mistake_d:** x¹⁵ mishandles the powers, e.g. multiplying 3 × 5 or adding the denominator's exponent; it matches no correct rule.
+**mistake_e:** x¹⁷ adds the exponents during division (12 + 5) instead of subtracting them.
+**common_trap:** Mixing the two exponent rules — multiply for a power of a power, subtract for a quotient. Reversing either one lands on a distractor.
+**takeaway:** Power of a power multiplies exponents; dividing like bases subtracts them. Keep the two operations distinct — confusing them is Conceptual.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -56,6 +74,8 @@ The correct answer is B.
 **difficulty:** Easy
 **type:** Problem Solving
 **topic:** Inequalities
+**trap_type:** inequality-sign-flip
+**est_time_seconds:** 60
 
 If -3x + 9 > 0, which of the following must be true?
 
@@ -73,6 +93,13 @@ We begin with the inequality −3x + 9 > 0. Subtracting 9 from both sides yields
 Thus every value of x satisfying the original inequality satisfies x < 3.
 
 The correct answer is D.
+**fastest_path:** Avoid dividing by a negative: −3x + 9 > 0 ⇒ 9 > 3x ⇒ 3 > x, i.e. x < 3. Moving the −3x across keeps every coefficient positive and removes the sign-flip risk.
+**mistake_a:** x > 3 divides −3x > −9 by −3 but forgets to reverse the inequality sign.
+**mistake_b:** x > −3 forgets to flip the sign and also mishandles −9 / −3, compounding two errors.
+**mistake_c:** x < −3 reverses the inequality correctly but also negates the 3, over-applying the sign change to the boundary value.
+**mistake_e:** x = 3 solves −3x + 9 = 0 as an equation, ignoring that the relation is a strict inequality.
+**common_trap:** Dividing both sides by the negative coefficient −3 without reversing the inequality direction — the single most common inequality error.
+**takeaway:** Multiplying or dividing an inequality by a negative flips its direction. Safer still, add the variable term to both sides so you never divide by a negative. Forgetting the flip is Conceptual.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -100,6 +127,8 @@ If x + y = 12 and x - y = 4, what is the value of x?
 **difficulty:** Medium
 **type:** Problem Solving
 **topic:** Quadratics
+**trap_type:** sum-product-confusion
+**est_time_seconds:** 75
 
 If x² - 5x - 14 = 0, what is the product of the two solutions?
 
@@ -119,6 +148,13 @@ Applying Vieta's product formula, the product of the two solutions is c/a = −1
 We may confirm this by factoring. We seek two numbers whose product is −14 and whose sum is −5; these numbers are −7 and 2. Thus x² − 5x − 14 = (x − 7)(x + 2) = 0, which gives the solutions x = 7 and x = −2. Their product is (7)(−2) = −14, in agreement with the result obtained from Vieta's formula.
 
 The correct answer is A.
+**fastest_path:** For x² + bx + c, the product of the roots is c/a = −14/1 = −14. No factoring is required.
+**mistake_b:** −7 is one root (from (x − 7)(x + 2)); a single root was reported instead of the product.
+**mistake_c:** 5 is −b/a, the sum of the roots, not their product.
+**mistake_d:** 7 is the other root, again a single root rather than the product of both.
+**mistake_e:** 14 applies c/a but drops the negative sign of c, which is −14.
+**common_trap:** Confusing the product of the roots (c/a) with their sum (−b/a), or losing the sign of c.
+**takeaway:** Vieta's formulas: sum = −b/a, product = c/a. The sign of c flows straight into the product, so track it. Mixing up sum and product is Conceptual.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -315,7 +351,9 @@ The correct answer is C.
 ## Q12
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Systems of Equations
+**topic:** Algebraic Identities
+**trap_type:** identity-missing-cross-term
+**est_time_seconds:** 90
 
 If xy = 6 and x² + y² = 20, what is the value of (x + y)²?
 
@@ -338,6 +376,13 @@ The problem states that x² + y² = 20 and that xy = 6. Substituting these value
 (x + y)² = 32
 
 The correct answer is D.
+**fastest_path:** (x + y)² = (x² + y²) + 2xy = 20 + 2(6) = 32. The identity delivers the answer with no need to find x or y separately.
+**mistake_a:** 26 adds xy once (20 + 6), dropping the factor of 2 on the cross-term.
+**mistake_b:** 28 misreads or mis-multiplies the cross-term (e.g. using 2xy = 8); it matches no correct substitution.
+**mistake_c:** 30 is an arithmetic slip in 20 + 2(6), such as writing 20 + 10; no valid step produces it.
+**mistake_e:** 36 squares the product, (xy)² = 6², instead of doubling it, confusing the structure of the identity.
+**common_trap:** Forgetting the factor of 2 on the 2xy term, or squaring xy instead of doubling it.
+**takeaway:** (x + y)² = x² + 2xy + y² — the cross-term carries a factor of 2. Know the three square identities cold; dropping the 2 is Conceptual.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -346,6 +391,8 @@ The correct answer is D.
 **difficulty:** Easy
 **type:** Problem Solving
 **topic:** Quadratic Equations
+**trap_type:** root-sum-sign
+**est_time_seconds:** 70
 
 What is the sum of the solutions to x² + 4x - 21 = 0?
 
@@ -369,6 +416,12 @@ This result can be confirmed by solving the equation explicitly. Factoring the l
 which agrees with the value obtained from the coefficients.
 
 The correct answer is B.
+**fastest_path:** Sum of the roots = −b/a = −4/1 = −4, read straight off the coefficients.
+**mistake_a:** −7 is a single root (from (x + 7)(x − 3)), not the sum of both.
+**mistake_d:** 3 is the other root, again reported instead of the sum.
+**mistake_e:** 7 is the magnitude of the root −7 with its sign dropped.
+**common_trap:** Forgetting the negative sign in −b/a, or reporting an individual root instead of the requested sum.
+**takeaway:** Sum of roots = −b/a (mind the minus); product = c/a. When the question asks for the sum, the roots themselves are not the answer. A sign slip here is Careless; reporting a root is Conceptual.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -377,6 +430,8 @@ The correct answer is B.
 **difficulty:** Medium
 **type:** Problem Solving
 **topic:** Quadratic Equations
+**trap_type:** discriminant-mishandling
+**est_time_seconds:** 90
 
 If x² - 10x + k = 0 has exactly one real solution, what is the value of k?
 
@@ -402,6 +457,13 @@ k = 25
 With k = 25, the equation becomes x² − 10x + 25 = 0, which factors as (x − 5)² = 0, confirming the single repeated root x = 5.
 
 The correct answer is D.
+**fastest_path:** One real root ⇒ discriminant 0 ⇒ b² = 4ac ⇒ 100 = 4k ⇒ k = 25. Equivalently, x² − 10x + k is a perfect square (x − 5)², so k = 5² = 25.
+**mistake_a:** 5 is the repeated root x = 5 from (x − 5)²; it was reported as k instead of being squared.
+**mistake_b:** 10 uses b rather than b², or reads k off the −10x term directly.
+**mistake_c:** 20 reaches 4k = 100 but mis-divides, taking 100/5 instead of 100/4.
+**mistake_e:** 50 uses 2ac instead of 4ac in the discriminant, halving (100/2) rather than quartering.
+**common_trap:** Mishandling the discriminant — using b instead of b², or dropping the factor of 4.
+**takeaway:** A quadratic has one (repeated) real root exactly when b² − 4ac = 0; a monic quadratic with one root is a perfect square (x − r)², so its constant equals r². Misremembering the discriminant is Conceptual.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -465,6 +527,8 @@ The correct answer is E.
 **difficulty:** Easy
 **type:** Problem Solving
 **topic:** Absolute Value
+**trap_type:** single-root-reported
+**est_time_seconds:** 70
 
 If |x - 4| = 7, what is the sum of all possible values of x?
 
@@ -486,6 +550,13 @@ In the second case, x - 4 = -7. Adding 4 to both sides gives x = -3.
 The two possible values of x are 11 and -3. Their sum is 11 + (-3) = 8.
 
 The correct answer is D.
+**fastest_path:** The two solutions of |x − a| = b are symmetric about a, so their sum is 2a = 2(4) = 8 — no need to find either value individually.
+**mistake_a:** −11 solves x − 4 = −7 as x = −7 − 4, subtracting 4 instead of adding it.
+**mistake_b:** −3 reports only the negative solution instead of the sum of both.
+**mistake_c:** 4 is the center value a (where x − 4 = 0), not the sum of the two solutions.
+**mistake_e:** 11 reports only the positive solution instead of the sum.
+**common_trap:** Reporting a single solution, or summing with a sign error on the −7 branch.
+**takeaway:** |x − a| = b has two solutions symmetric about a, so their sum is always 2a. When asked for a sum, never stop at one root. Stopping early or slipping a sign is Careless.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -561,6 +632,8 @@ The correct answer is C.
 **difficulty:** Medium
 **type:** Problem Solving
 **topic:** Algebra Translation
+**trap_type:** wrong-quantity-reported
+**est_time_seconds:** 105
 
 The sum of three consecutive even integers is 18 more than twice the smallest of the three. What is the largest of the three integers?
 
@@ -598,6 +671,12 @@ n = 12.
 The largest of the three integers is n + 4 = 12 + 4 = 16.
 
 The correct answer is D.
+**fastest_path:** Let the integers be n, n + 2, n + 4. Then 3n + 6 = 2n + 18 ⇒ n = 12, so the largest is n + 4 = 16.
+**mistake_b:** 12 is the smallest integer n; the algebra is correct, but the question asks for the largest.
+**mistake_c:** 14 is the middle integer n + 2, not the largest n + 4.
+**mistake_e:** 18 lifts the "18" straight from the problem text, or tacks on one extra +2 step.
+**common_trap:** Solving correctly for the smallest integer and reporting it when the question asks for the largest.
+**takeaway:** Translate, solve, then answer the exact quantity asked. Define the variable as the smallest and read off largest = n + 4. Reporting the wrong member of the set is a Misread.
 **related_reading:** reading-quant-05-word-problems
 
 
@@ -887,6 +966,8 @@ The correct answer is C.
 **difficulty:** Medium
 **type:** Problem Solving
 **topic:** Quadratics — Root Reconstruction
+**trap_type:** sign-and-operation-slip
+**est_time_seconds:** 95
 
 If the roots of the quadratic equation x² + bx + c = 0 are 3 and −5, what is the value of b − c?
 
@@ -915,6 +996,12 @@ We are asked for the value of b − c. Substituting the values obtained:
 b − c = 2 − (−15) = 2 + 15 = 17
 
 The correct answer is D.
+**fastest_path:** Vieta: −b = sum = 3 + (−5) = −2 ⇒ b = 2; c = product = (3)(−5) = −15. Then b − c = 2 − (−15) = 17.
+**mistake_a:** −17 computes c − b (−15 − 2) instead of b − c, reversing the subtraction order.
+**mistake_b:** −13 computes b + c (2 + (−15)) — adding instead of subtracting.
+**mistake_c:** 13 computes b + c but drops the negative sign of the result.
+**common_trap:** Reversing the subtraction order, adding instead of subtracting, or losing a sign — because c is negative, b − c becomes b + 15.
+**takeaway:** From x² + bx + c with roots r and s: −b = r + s and c = rs. Track every sign and apply the exact operation requested (here b − c). Sign and operation slips here are Careless.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 
@@ -1023,6 +1110,8 @@ The correct answer is C.
 **difficulty:** Medium
 **type:** Problem Solving
 **topic:** Polynomial Transformation
+**trap_type:** solve-instead-of-substitute
+**est_time_seconds:** 90
 
 If x² − 10x + 21 = 0, what is the value of x² − 10x + 25?
 
@@ -1044,6 +1133,13 @@ The target expression is x² − 10x + 25. Because it contains the same x² − 
 x² − 10x + 25 = (−21) + 25 = 4.
 
 The correct answer is A.
+**fastest_path:** The given equation yields x² − 10x = −21; substitute the shared block into the target: x² − 10x + 25 = −21 + 25 = 4. Never solve for x.
+**mistake_e:** 25 ignores the substitution and reports the target's constant alone, as if x² − 10x = 0.
+**mistake_b:** 5 stops at the 5 inside the perfect square x² − 10x + 25 = (x − 5)² rather than evaluating it.
+**mistake_d:** 10 lifts the 10 from the −10x term instead of computing the expression's value.
+**mistake_c:** 6 is a sign or arithmetic slip on −21 + 25 (e.g. 21 − 25 then negated); no correct step yields it.
+**common_trap:** Solving for x and substituting (slow and error-prone), or mis-adding −21 + 25, instead of substituting the shared block x² − 10x = −21.
+**takeaway:** When a target expression contains the same variable block as the given equation, isolate that block and substitute it directly. Reaching for the individual roots is wasted work — a Strategy miss.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
