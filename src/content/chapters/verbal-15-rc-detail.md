@@ -46,35 +46,76 @@ problem_sets:
 
 ## @rc-detail
 
-Specific detail questions ask about explicitly stated facts: "According to the passage, which of the following is true of Y?" or "The passage states that Z is responsible for which of the following?"
+Specific detail questions ask about explicitly stated facts: "According to the passage, which of the following is true of Y?" or "The passage states that Z is responsible for which of the following?" They are among the most winnable questions on the GMAT Focus verbal section — not because they are easy, but because the answer is sitting on the screen, and your only job is to go get it and confirm it word by word. The student who treats detail questions as a hunt-and-verify task, rather than a memory test, converts them from "usually right" into "almost always right." That conversion is worth a measurable amount of scaled score, because detail questions appear in nearly every Reading Comprehension passage you will see.
 
-**The template.** The answer is literally in the passage — not paraphrased, not implied, but directly supported by a specific line.
+**The template.** The answer is literally in the passage — not paraphrased away from the facts, not implied, but directly supported by a specific line you can point to. If you cannot put your finger on the sentence that proves the answer, you have not finished the question. "It sounds right" is not proof. "Line 14 says it" is proof. This single discipline — refusing to commit until you have anchored the answer to text — is the spine of the entire method. Everything else in this section is built to support it.
 
-**The workflow.**
+**Why this question type rewards a return-and-verify habit.** Main-idea questions reward holding the whole passage in your head. Detail questions reward the opposite skill: locating one small place and reading it with surgical care. The passage stays on screen for exactly this reason. Treat answering from memory as the single biggest unforced error you can make here — memory blurs "rose 60% over five years" into "rose about 60%," and the trap answers are built to punish exactly that blur. The test-makers know that after reading a dense paragraph about, say, ocean acidification, your recollection of the specific carbonate concentration is fuzzy. They write a wrong answer that matches your fuzzy memory and a right answer that matches the actual line. Return, and you win. Trust memory, and you walk into the trap they laid for you.
 
-1. Read the question. Identify the specific topic (a noun phrase: "customer acquisition costs," "silk road traders," "mycorrhizal networks").
-2. Scan the passage for that topic. Find the paragraph(s) that address it.
-3. Re-read that paragraph carefully.
-4. Match to the answer that is directly supported by those lines.
+**Decode the stem so you know it's a detail question.** The wording tells you what kind of reading the question wants.
 
-**The re-read discipline.** You SHOULD re-read for specific-detail questions. That's the whole point — these questions test careful reading of specific parts, and the passage stays on screen exactly so you can re-read. Don't try to answer from memory; scan, find, verify.
+| Stem wording | What it's asking | Your move |
+| --- | --- | --- |
+| "According to the passage…" | Stated fact, verbatim support exists | Return and verify against a line |
+| "The passage states that…" | Stated fact, near-quote in text | Return and verify against a line |
+| "The passage indicates / mentions…" | Stated fact, possibly lightly paraphrased | Return and verify against a line |
+| "The author suggests / implies…" | Inference, NOT pure detail | Find support, then take one small logical step |
+| "It can be inferred that…" | Inference | Do not look for a verbatim match |
 
-**The five-second scan.** Your eye can often find a noun phrase in the passage in 5 seconds, especially since RC passages aren't long. Scan, don't re-read everything.
+The first three rows are detail questions and behave identically. The last two are inference questions — they tolerate a small logical step, which detail questions do not. Misreading "states" as "suggests" makes you accept an answer that is merely compatible. Misreading "suggests" as "states" makes you reject the right inference because it isn't quoted. Read the verb. It is the cheapest, highest-leverage two seconds you will spend on the question, and skipping it is how strong readers still get easy points wrong.
 
-**The word-match trap.** Wrong answers often repeat *specific words* from the passage but rearrange them into a claim the passage doesn't make. Example: passage says "costs rose 60% over five years." Trap answer: "costs have risen by about 60% over the past decade." Same words, wrong time frame.
+> **Recall check.** Without looking back, what are the three "detail" stem verbs that tell you a verbatim match exists in the passage? (*"states," "according to," "indicates/mentions."* If "suggests" or "infer" appears, you're on an inference question and may take a small logical step.) Forcing yourself to produce that list from memory wires the stem-decoding reflex far harder than re-reading the table would — retrieval is what builds the recall pathway, while rereading only builds a false sense of familiarity.
 
-**The "close paraphrase" trick for the right answer.** The correct answer usually doesn't use the exact words from the passage — it paraphrases lightly. This is deliberate. The GMAT wants to test whether you understood the content, not whether you can match keywords.
+**The memorizable procedure.** Run these steps every time, in order:
 
-**The "consistent with" trap.** Wrong answers are sometimes consistent with the passage but not *stated* by it. Specific Detail questions require stated, not merely compatible, information. If a claim "seems true" given the passage but isn't supported by specific lines, it's wrong here — though it might be right on an inference question.
+1. **Read the stem and extract the specific topic** — a noun phrase you can hunt for: "customer acquisition costs," "Silk Road traders," "mycorrhizal networks." Ignore the answer choices for now, because reading them first lets their phrasing contaminate what you go looking for.
+2. **Scan the passage for that topic.** Let your eye sweep for the noun phrase or an obvious synonym. RC passages are short; this should take seconds, not a re-read of everything.
+3. **Locate the sentence(s) that address the topic** and put a mental finger on them.
+4. **Re-read those lines carefully** — slowly enough to register quantities, time frames, qualifiers ("some," "only," "primarily"), and who-did-what-to-whom.
+5. **Predict** what a correct answer should say, in your own words, before reading the choices. A prediction makes you the judge of the choices instead of letting the choices lead you.
+6. **Match to the choice that is directly supported** by those exact lines. The right answer usually *paraphrases* the text; do not insist on identical words.
+7. **Verify the winner against the line.** If you cannot point to the sentence that proves it, eliminate it and re-scan.
 
-**The "partial match" trap.** An answer that captures half of what the passage says is still wrong. "The passage states X and Y." If an answer says only X, it's incomplete. Look for the answer that fully matches.
+**The five-second scan.** Your eye can usually find a noun phrase in a short RC passage in about five seconds. Scan, don't re-read everything. The skill is locating, not re-absorbing. If you find yourself re-reading the whole passage to answer one detail question, you have abandoned the method and reverted to the slow, error-prone default.
 
-**Examples of common specific-detail topics.**
+**Worked example (straightforward).** Passage line: *"Between 1995 and 2005, the company's customer acquisition costs rose 60 percent, even as its retention rate held steady at 70 percent."* Question: "According to the passage, which of the following is true of the company's retention rate during the period discussed?" The topic is *retention rate*. Scan, land on the line, read carefully: retention "held steady at 70 percent." The correct answer says something like "It remained constant." That is a clean paraphrase of "held steady" — different words, same fact. Confirmed against the line. Done. Notice how short the path is once you trust the procedure: extract topic, scan, read, match, verify.
 
-- "According to the passage, the author attributes [outcome] to [cause]."
-- "The passage states that researchers found [result]."
-- "The passage indicates that [entity] has [property]."
+**Worked example (the word-match trap).** Same line as above. A trap choice reads: "The company's costs rose by about 60 percent over the past decade." Every flashy word matches — *costs, rose, 60 percent* — but the passage frames the rise over *1995 to 2005*, a specific window, not "the past decade." The reused vocabulary is bait. The trap exploits the reader who matched keywords from memory instead of returning to verify the time frame. Also note the subtle subject swap: the question asked about the *retention rate*, but this choice is about *costs* — wrong subject entirely. Eliminate it.
 
-In all cases, the technique is the same: find the specific sentence(s), verify the match.
+**The word-match trap, stated as a rule.** Wrong answers often repeat *specific words* from the passage but rearrange them into a claim the passage doesn't make. Same vocabulary, wrong number, wrong time frame, wrong subject, wrong direction. The more an answer sounds like a greatest-hits reel of passage phrases, the more suspicious you should be.
 
-**Trap to watch.** Don't bring in outside knowledge. You might *know* that subscription businesses have a 75% retention rate — but if the passage says 70%, the answer matching the passage is right, regardless of reality. RC tests what the passage says, not what's true.
+**The "close paraphrase" trick for the right answer.** The correct answer usually does *not* use the exact words from the passage — it paraphrases lightly ("held steady" becomes "remained constant"). This is deliberate. The GMAT tests whether you understood the content, not whether you can pattern-match keywords. So flip your instinct: an answer that quotes the passage verbatim is more often the trap, and the modest paraphrase is more often the key.
+
+> **Self-explanation prompt.** In your own words, why would the test-makers deliberately phrase the *correct* answer in different words from the passage, while phrasing a *wrong* answer in the passage's exact words? (Because matching the surface words tests memory of vocabulary, not comprehension — so they invert it: the paraphrase rewards real understanding, and the verbatim echo baits the keyword-matcher.) Saying this out loud forces you to own the principle rather than nod at it, and ownership is what makes you apply it under time pressure.
+
+**Worked example (the "consistent with" trap, medium).** Passage: *"The 2008 reforms reduced reporting requirements for small firms; compliance complaints from those firms fell sharply the following year."* Question: "The passage states which of the following about small firms after the 2008 reforms?" A tempting choice: "Small firms became more profitable after the reforms." That is *plausible* — lighter reporting could free up resources — but the passage never *states* it. It states reduced requirements and fewer complaints, nothing about profit. On a detail question, plausible-but-unstated loses to the choice that says "Complaints from small firms declined." Stated beats compatible. The mental move that saves you here is asking, "Which line says this?" — and finding that no line does.
+
+**The "consistent with" trap, stated as a rule.** Wrong answers are sometimes consistent with the passage but not *stated* by it. Detail questions require *stated*, not merely *compatible*, information. If a claim "seems true" given the passage but isn't anchored to specific lines, it's wrong here — even though that same claim might be the credited answer on an inference question.
+
+> **Recall check.** What is the one-line difference between a detail question and an inference question? (*Detail needs a sentence that directly states the answer; inference needs support plus one small logical step.*) Retrieving the boundary now is what stops you, mid-test, from accepting a "reasonable" answer on a question that demands a quoted one — and re-reading this paragraph wouldn't build that stop-reflex.
+
+**Worked example (the partial-match trap, hard).** Passage: *"The treaty achieved its two stated goals: it lowered tariffs on manufactured goods and established a binding arbitration panel for trade disputes."* Question: "According to the passage, the treaty accomplished which of the following?" Choice A: "It lowered tariffs on manufactured goods." Choice B: "It lowered tariffs on manufactured goods and created a binding arbitration mechanism for disputes." Choice A is *true* but *incomplete* — it captures one of the two stated accomplishments. The question asks what the treaty accomplished, and the passage names two things in one breath. B fully matches; A is a half-answer engineered to catch readers who stop reading at the first true clause. Choose B. When the passage pairs two facts in a single sentence with "two stated goals" or "both," expect a trap that offers you only one of them.
+
+**The partial-match trap, stated as a rule.** An answer that captures half of what the passage says is still wrong. If the text supports "X and Y" and a choice asserts only "X," it is incomplete. Hunt for the choice that matches *fully*, especially when the relevant sentence bundles two claims together or signals a count ("two goals," "three factors," "both").
+
+**Worked example (outside-knowledge trap, hard).** Passage: *"In the firm's subscription division, the annual renewal rate was 70 percent."* Question: "According to the passage, what was the renewal rate in the subscription division?" You happen to know that healthy SaaS businesses often renew at 90 percent or more, and a choice offers "approximately 90 percent." Irrelevant. The passage says 70. The credited answer matches the passage, not the industry, not reality. Your real-world expertise is a liability here unless it matches the line. This trap hits experienced professionals hardest precisely because they have more outside knowledge to override the text with.
+
+**Trap to watch.** Don't bring in outside knowledge. You might *know* that subscription businesses average a 75 percent retention rate — but if the passage says 70, the answer matching the passage is right, regardless of reality. RC tests what the passage *says*, not what is true in the world. The instant a choice feels right because of something you knew before you opened the passage, treat that feeling as a warning, not a confirmation.
+
+**Worked example (the distorted-qualifier trap, hard).** Passage: *"Some economists argue that the tax cut spurred short-term hiring, though its long-term effect on wages remains disputed."* Question: "According to the passage, which of the following is true of the tax cut?" A trap choice: "Economists agree that the tax cut spurred hiring." The passage says *some* economists *argue* — not that economists *agree*, and not that hiring was a settled fact. The trap swapped a soft qualifier ("some... argue") for a hard one ("agree"). The correct answer preserves the hedge: "Some economists credit the tax cut with short-term hiring gains." Qualifiers are not decoration — "some," "many," "most," "argue," "suggest," and "proves" carry the whole meaning. Read them as carefully as you read the numbers.
+
+**Common mistakes.**
+
+- **Answering from memory** instead of returning to the line — memory rounds numbers and smears time frames, and the traps are built on exactly those smears.
+- **Keyword-matching** — picking the choice that reuses the most passage words, which is disproportionately the trap, not the key.
+- **Accepting "consistent with"** — choosing a plausible, compatible statement the passage never actually states.
+- **Settling for a partial match** — taking a half-true choice when the passage bundled two facts and the credited answer needs both.
+- **Ignoring qualifiers** — treating "some economists argue" as if it read "economists agree," which strengthens a hedged claim into a false one.
+
+**Recap.**
+
+- The answer is *stated* in the passage; verify it against a specific line before you commit — if you can't point to the sentence, you're not done.
+- Decode the stem verb: "states/according to/indicates" means return-and-verify; "suggests/infer" means a small logical step is allowed.
+- Run the procedure: extract the noun phrase, scan, re-read the lines carefully, predict, match the light paraphrase, verify.
+- The right answer usually *paraphrases*; verbatim echoes, plausible-but-unstated claims, partial matches, and distorted qualifiers are the standard traps.
+- Ignore outside knowledge entirely — the passage's number wins even when it's wrong about the real world.
