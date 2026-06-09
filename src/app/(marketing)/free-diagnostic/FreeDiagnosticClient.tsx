@@ -25,6 +25,8 @@ export interface SampleQuestion {
   section: Section
   topic: string
   prompt: string
+  /** Shared exhibit (table/chart) for "continued" TA/GI questions. */
+  context?: string
   options: string[]
   correctAnswer: number
   correctAnswerLetter: string
@@ -196,6 +198,13 @@ export default function FreeDiagnosticClient({
                 </span>
                 <span className="text-[11px] text-[#888888]">{q.topic}</span>
               </div>
+              {q.context && (
+                <div className="mb-4 p-4 rounded-xl border border-white/[0.06] bg-[#0D0D0D] text-[13px] text-[#C0C0C0] leading-relaxed overflow-x-auto [&_table]:w-full [&_table]:border-collapse [&_td]:border [&_td]:border-white/[0.08] [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:border-white/[0.08] [&_th]:px-2 [&_th]:py-1 [&_th]:text-left">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {q.context}
+                  </ReactMarkdown>
+                </div>
+              )}
               <div className="text-[15px] text-[#F0F0F0] leading-relaxed mb-4">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
                   {q.prompt}
