@@ -105,7 +105,7 @@ problem_sets:
 
 Multi-Source Reasoning gives you 2-3 tabs — memos, tables, rule lists, research abstracts, meeting notes — and asks 3 questions per set. The tabs contain far more information than any single question needs. That's by design: the test rewards students who extract only what's relevant, not students who try to absorb everything upfront.
 
-**The core insight.** Reading every tab thoroughly before question 1 is a trap. You'll spend 3+ minutes on content you'll never use. MSR rewards selective reading driven by the question, not comprehensive reading driven by anxiety.
+**Mental model.** Reading every tab thoroughly before question 1 is a trap. You'll spend 3+ minutes on content you'll never use. MSR rewards selective reading driven by the question, not comprehensive reading driven by anxiety. Treat the tabs as a reference manual you consult, not a chapter you study — orientation first, comprehension only where a question sends you.
 
 **The two-pass protocol.**
 
@@ -138,7 +138,7 @@ Students who deep-read all three tabs upfront often spend 3+ minutes on the orie
 
 **The "who said what" distinction.** Narrative tabs often include multiple voices — a VP's memo may quote a CFO, or meeting notes may summarize three committee members. Track who is making each claim. MSR questions frequently ask "based on Nguyen's memo" or "which committee member argued for X." Conflating sources is a common, avoidable error.
 
-**The "numbers live in tables" heuristic.** Memos describe data in prose but imprecisely. When a question asks for a specific dollar figure or percentage, go to the table. When it asks for rationale or intent, go to the memo. Each source is authoritative for what it's specifically designed to convey.
+**Pro tip.** Memos describe data in prose but imprecisely; tables carry the exact figures. When a question asks for a specific dollar amount or percentage, go to the table. When it asks for rationale or intent, go to the memo. Each source is authoritative only for what it was built to convey — don't take a number from a sentence when a cell is available.
 
 **The time budget.**
 
@@ -149,6 +149,8 @@ Students who deep-read all three tabs upfront often spend 3+ minutes on the orie
 | Total for a 3-question set | 5-6 minutes |
 
 If you're over 7 minutes on a single set, something broke in your process — almost always re-reading tabs you didn't need on question 2 or 3.
+
+**Takeaway.** Pass 1 buys speed on every later question. Thirty seconds spent building a tab map turns each question into a targeted dive instead of a fresh read of three screens. Skipping orientation feels faster and is reliably slower.
 
 > **Recall check.** Close the book. State the two-pass protocol in two sentences. Then answer: in pass 1, what specifically do you NOT try to do? The answer: you don't memorize content — you build a navigation map. The test is whether you can distinguish *orientation* from *comprehension*. Students who can't make this distinction re-read all tabs on every question and run 2-3 minutes over time per set.
 
@@ -182,7 +184,7 @@ When you see any of these framings, your only job is to navigate precisely and r
 
 **The re-read vs. recall decision.** For lookup questions, you can sometimes answer from pass-1 memory if the data point was prominent (e.g., "which region had the highest revenue?"). For anything requiring a specific number, re-read. Don't trust recalled figures for precision — a remembered "$6.9M" might be $6.96M or $6.09M, and that difference can determine a whole Yes/No.
 
-**The memo-vs-table precision trap.** Memos frequently characterize data in prose: "Central region revenue declined." A lookup question asking "what was the Central region's revenue decline?" needs the table number, not the memo's characterization. The memo says "declined"; the table says "$4.37M, down from $4.60M, a 5% decline." These are different levels of precision. The question determines which you need.
+**Trap to watch.** Memos frequently characterize data in prose: "Central region revenue declined." A lookup question asking "what was the Central region's revenue decline?" needs the table number, not the memo's characterization. The memo says "declined"; the table says "$4.37M, down from $4.60M, a 5% decline." These are different levels of precision. The question determines which you need — and a vague prose phrase is never a substitute for the figure.
 
 **Partial-tab reading discipline.** When you go to the data table for a lookup, read only the relevant row and column. Scanning the whole table for context wastes time and introduces distracting numbers that can contaminate your answer.
 
@@ -193,6 +195,8 @@ When you see any of these framings, your only job is to navigate precisely and r
 - "What growth target did the board set for hardware products?" → Tab 3. Done.
 
 Each question takes 15-20 seconds once you navigate correctly. The navigation IS the skill being tested.
+
+**Takeaway.** A lookup question is a navigation test wearing a knowledge costume. The student who knows instantly which tab holds the answer banks the time; the student who re-scans all three tabs gets it right but pays for it on the synthesis question that follows.
 
 > **Self-explanation prompt.** Why does the test include lookup questions if they seem easy? If you can say "because under time pressure, students who re-read all tabs rather than navigating precisely will answer lookup questions correctly but run out of time on synthesis questions — efficient process is part of what's being measured" — you've understood the format. Lookup questions are the warm-up for harder synthesis, and they reward process discipline, not just knowledge.
 
@@ -222,11 +226,7 @@ One tab has a target or threshold. Another has the actual result. The question a
 
 Workflow: locate the target → locate the actual → compare precisely.
 
-**Example.** Tab 3: board target = software revenue must be at least 45% of total. Tab 2: software = $10.93M out of $24.30M total.
-
-Actual software share: $10.93M / $24.30M = 44.97%. Target: 45%. Does it meet the target?
-
-44.97% < 45%. No — misses by 0.03 percentage points. Note: if you had approximated 44.97% as "roughly 45%," you'd answer incorrectly. Precision matters on compliance questions. Don't round until you've made the comparison.
+**Worked example.** Tab 3 sets the board target: software revenue must be at least 45% of total. Tab 2 gives software = $10.93M out of $24.30M total. Actual share: $10.93M / $24.30M = 44.97%, just under the 45% target. **No — it misses by 0.03 of a percentage point.** Had you eyeballed 44.97% as "roughly 45%," you'd answer Yes and lose the point. On compliance questions, don't round until after the comparison is made.
 
 **Synthesis pattern 2: Extract, then adjust (remove or add a component).**
 
@@ -258,6 +258,8 @@ Sometimes the logic runs through all three: Tab 1 identifies the entity → Tab 
 Before computing, write out the chain: "I need [entity from Tab 1] → its [metric from Tab 2] → compared against [constraint from Tab 3]." Collect each piece, then evaluate.
 
 **The "conflicting sources" rule.** Sometimes a memo says "6% decline" and the table shows 5.8%. The table is authoritative for numbers; the memo is authoritative for reasoning, attribution, and intent. If the question asks for the specific figure, use the table. If it asks why a result occurred, use the memo.
+
+**Takeaway.** Synthesis errors are working-memory errors, not math errors. List the data points the question needs, write each one down as you find it, then combine on paper. The arithmetic is never the hard part — holding four numbers across three tab switches is.
 
 > **Recall check.** Without looking: state the three-step workflow. Then explain why step 2 — writing numbers down — is the part you cannot skip. If you said "because mental tracking of 3+ data points across tab switches exceeds working memory capacity under timed conditions" — correct. Writing takes two seconds; forgetting a number and recollecting costs thirty. The three-step workflow exists because multi-tab synthesis is genuinely harder than it sounds when time pressure is on.
 
@@ -320,7 +322,9 @@ Work from "what changed" — don't recheck regions obviously far from the bounda
 
 **Reading hypothetical stems precisely.** The stem has two parts: (1) what changed, and (2) what are you asked to compute. Confusing them is the most common error on this question type. Before touching any tab, write both parts on scratch paper: "Change: [X]. Compute: [Y]."
 
-**Trap: rounding intermediate values.** Hypothetical questions often produce answers close to round numbers. If you round $8,400 to $8,000 during computation, your final answer shifts enough to land on the wrong choice. Keep precision through all intermediate steps; round only at the final comparison if "approximately" appears in the question.
+**Trap to watch.** Rounding intermediate values. Hypothetical questions often produce answers close to round numbers. If you round $8,400 to $8,000 during computation, your final answer shifts enough to land on the wrong choice. Keep precision through all intermediate steps; round only at the final comparison, and only if "approximately" appears in the question.
+
+**Takeaway.** Every hypothetical is "change one thing, cascade only what's downstream." Adjust the figure the question names, follow it into any total that contains it, recompute the ratios built on those totals — and freeze everything else. The error is almost always cascading too little (forgetting the denominator) or too much (touching untouched entities).
 
 > **Recall check.** What are the two flavors of hypothetical question? For the data carve-out type — what is the "cascade" error students make, and why does it produce a wrong answer? (Answer: reducing only the numerator while leaving the denominator unchanged — because the removed component was also part of the total, the denominator must decrease too. Missing this gives a slightly low adjusted share, which maps to the wrong answer choice.) This is the highest-frequency error on conditional questions.
 
@@ -356,7 +360,7 @@ Treat each statement as completely independent. Don't carry assumptions from one
 
 The test writes quantifiers to create near-misses. A statement claiming "Product B's revenue per unit exceeded $42" with actual data showing exactly $42.00 is designed to trap students who read "exceeded" loosely. "Exceeded" means strictly greater than. $42.00 does not exceed $42. Answer: No.
 
-**The "every" trap in detail.** A statement like "every region achieved positive revenue growth" requires checking all four (or five) regions. Most students check two or three, see yes, and stop. If any single region is flat or negative, the answer is No — regardless of what the other regions did. Before checking, count how many instances the statement claims to cover, then verify all of them.
+**Trap to watch.** The "every" claim checked halfway. A statement like "every region achieved positive revenue growth" requires checking all four (or five) regions. Most students check two or three, see yes, and stop. If any single region is flat or negative, the answer is No — regardless of what the other regions did. Before checking, count how many instances the statement claims to cover, then verify all of them.
 
 **The "can be determined" variant.** Some questions ask whether a statement *can be determined* from the available information. This is a three-way judgment: Yes, No, or Cannot Be Determined. If the tabs contain the necessary data — answer Yes or No based on it. If the tabs are silent on what the statement claims — answer Cannot Be Determined. This is different from No. "No" means the data contradicts it. "Cannot Be Determined" means the data doesn't address it.
 
@@ -380,6 +384,8 @@ This is a precision trap. The test writes $42.00 exactly because students who do
 - Answer: **No.**
 
 If you stopped after checking North, South, and East — all yes — you'd bubble Yes. The one exception you didn't check overturns the whole claim.
+
+**Takeaway.** Yes/No checks reward two habits above all: parse the quantifier exactly ("exceeded" is strictly greater; "at least" includes equality) and verify every instance a universal claim covers. Most misses here are reading errors, not data errors.
 
 > **Self-explanation prompt.** Why does the GMAT use Yes/No format for MSR rather than five-choice format? If you can say "because multi-tab verification produces 3-5 independent binary judgments — each one requires locating and checking data — the format tests depth of process, not just the final answer" — you've understood the design. A student who checks only 2 of 4 statements carefully will get some wrong even if their math is sound. Completeness and precision are the skill.
 
@@ -423,7 +429,11 @@ Within a single session, you may work multiple MSR sets. A number from an earlie
 
 *Defense:* For any specific numerical answer, go back to the tab and read the number directly rather than recalling it from memory — unless you read it in the last 10 seconds. Memory degrades fast under cognitive load. The tab is always right; your memory of the tab is sometimes not.
 
+**Takeaway.** Every MSR answer must trace back to a specific line in a specific tab. If you can't point to the source, the choice isn't supported — no matter how reasonable it sounds. "Plausible" is the signature of the trap, not the answer.
+
 ## @summary
+
+**Key takeaway.** MSR is navigation under time pressure, not reading comprehension. Orient once, then let each question pull you to the exact tab and cell it needs — extracting precisely, combining on paper, and anchoring every answer in a source line. The students who run out of time aren't slow readers; they're re-readers.
 
 **The MSR workflow — two steps, applied to every set.**
 

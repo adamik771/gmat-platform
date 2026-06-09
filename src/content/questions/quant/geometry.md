@@ -1105,3 +1105,712 @@ Now take both statements together. The two conditions combine to give 4 < n < 12
 
 The correct answer is E.
 **related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Triangles
+**trap_type:** half-factor-omission
+**est_time_seconds:** 45
+
+A right triangle has legs of length 9 and 12. What is the area of the triangle?
+
+- A) 108
+- B) 54
+- C) 21
+- D) 15
+- E) 45
+
+**answer:** B
+**fastest_path:** The two legs of a right triangle are perpendicular, so they already serve as base and height — area is just half their product. Do not waste time finding the hypotenuse; it is not needed.
+**explanation:** In a right triangle the two legs meet at the right angle, which means each leg is perpendicular to the other. One leg can therefore be taken as the base and the other as the height, and the area is one-half the product of base and height.
+
+Let the legs be the base and height: base = 12 and height = 9. The area is
+
+Area = (1/2) × base × height = (1/2) × 12 × 9.
+
+Multiplying gives 12 × 9 = 108, and taking half of that gives 54.
+
+Notice that the hypotenuse — which here would be √(9² + 12²) = √225 = 15 — plays no role in the area at all. It is offered as a distractor.
+
+The correct answer is B.
+**mistake_a:** 108 is the full product of the two legs. Forgetting the one-half factor in the area formula is the single most common careless slip on triangle-area questions.
+**mistake_c:** 21 is the sum of the two legs (9 + 12). That sum is part of the perimeter, not the area.
+**mistake_d:** 15 is the length of the hypotenuse (√(9² + 12²) = 15). It is a real quantity in this triangle, but it answers a question that was not asked.
+**mistake_e:** 45 results from halving only one leg before multiplying, e.g. (1/2)(9)(10) or a similar arithmetic slip; it does not correspond to a correct method.
+**common_trap:** Dropping the one-half factor and reporting the bare product of the legs. The legs of a right triangle are a ready-made base-height pair, but the area is still half their product, not the product itself.
+**takeaway:** For a right triangle, the legs are perpendicular and serve directly as base and height: area = (1/2)(leg₁)(leg₂). Reaching for the hypotenuse is wasted work. If you missed this for arithmetic reasons rather than concept, tag it Careless.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Circles
+**trap_type:** radius-diameter-confusion
+**est_time_seconds:** 50
+
+A circle has a circumference of 10π. What is the area of the circle?
+
+- A) 10π
+- B) 100π
+- C) 25π
+- D) 5π
+- E) 50π
+
+**answer:** C
+**fastest_path:** Circumference 2πr = 10π collapses instantly to r = 5; then area = πr² = 25π. The whole question is "recover r first, then square it."
+
+**explanation:** The circumference of a circle is C = 2πr and its area is A = πr², where r is the radius. The two formulas share the radius, so the standard move is to extract r from the given circumference and feed it into the area formula.
+
+From C = 10π and C = 2πr we have
+
+2πr = 10π.
+
+Dividing both sides by 2π gives r = 5.
+
+Substituting into the area formula,
+
+A = πr² = π(5²) = π(25) = 25π.
+
+The correct answer is C.
+**mistake_b:** 100π comes from treating the value 10 as the radius (10² π = 100π). But 10π is the circumference, not the radius; solving 2πr = 10π gives r = 5, not 10.
+**mistake_a:** 10π simply repeats the given circumference. Area and circumference are different quantities with different units (square units versus linear units); they are not interchangeable.
+**mistake_d:** 5π uses the radius r = 5 but multiplies by π without squaring. That is closer to a circumference-style computation (πd-type), not the area formula πr².
+**mistake_e:** 50π comes from πr × something, e.g. multiplying the radius 5 by the circumference 10π and halving, or a similar mash-up; it matches no correct route.
+**common_trap:** Plugging the numeric part of the circumference directly in as the radius. The given "10" is wrapped inside 2πr, so the radius is 5, not 10. Always solve for r explicitly before squaring.
+**takeaway:** When a circle problem gives you one measurement (circumference, area, or diameter) and asks for another, route everything through the radius. Extract r first, then apply the target formula. A radius-versus-diameter slip here is a Conceptual error, not a careless one.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Quadrilaterals
+**trap_type:** perimeter-area-swap
+**est_time_seconds:** 45
+
+A square has an area of 49. What is its perimeter?
+
+- A) 21
+- B) 14
+- C) 196
+- D) 28
+- E) 56
+
+**answer:** D
+**fastest_path:** Area 49 means side 7 (since 7² = 49); a square has four equal sides, so perimeter = 4 × 7 = 28. Two clean steps.
+
+**explanation:** For a square with side length s, the area is s² and the perimeter is 4s. The area pins down the side, and the side then gives the perimeter.
+
+From s² = 49 we take the positive square root: s = 7 (a length cannot be negative).
+
+The perimeter is then
+
+P = 4s = 4 × 7 = 28.
+
+The correct answer is D.
+**mistake_b:** 14 doubles the side (2 × 7) instead of taking all four sides. That would be the perimeter of only two sides, or twice the side length — not the full boundary of the square.
+**mistake_c:** 196 is the area squared (49 × 4 = 196), or 4 times the area. The perimeter uses 4 times the side, not 4 times the area.
+**mistake_a:** 21 is 3 times the side (3 × 7). A square has four sides, not three.
+**mistake_e:** 56 is 8 times the side, i.e. it double-counts each of the four sides. The perimeter is 4s, not 8s.
+**common_trap:** Confusing the operations that act on the side versus the area. Once you have the side (7), the perimeter is a straight multiply by 4 — but only after you have correctly converted area to side by taking a square root.
+**takeaway:** Square problems hinge on the side length: get s from whatever you are given (here, s = √area), then compute the requested quantity. Mixing up "multiply the area" with "multiply the side" is a Conceptual slip worth tagging.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Triangles
+**trap_type:** missing-division-step
+**est_time_seconds:** 50
+
+In an isosceles triangle, the vertex angle (the angle between the two equal sides) measures 40°. What is the measure of each base angle?
+
+- A) 100°
+- B) 140°
+- C) 40°
+- D) 55°
+- E) 70°
+
+**answer:** E
+**fastest_path:** The two base angles are equal and share what's left after the 40° vertex. So (180 − 40)/2 = 70. The division by 2 is the whole point.
+
+**explanation:** The three interior angles of any triangle sum to 180°. In an isosceles triangle the two base angles — the angles opposite the two equal sides — are themselves equal.
+
+Let each base angle measure x. Then the angle sum gives
+
+40 + x + x = 180,
+40 + 2x = 180,
+2x = 140,
+x = 70.
+
+Each base angle measures 70°.
+
+The correct answer is E.
+**mistake_b:** 140° is 180 − 40, the combined measure of the two base angles. The question asks for each base angle, so this total must still be split in two: 140 ÷ 2 = 70.
+**mistake_c:** 40° simply echoes the vertex angle. The base angles equal each other, but they are not equal to the vertex angle unless the triangle is equilateral (which would require a 60° vertex).
+**mistake_d:** 55° would be correct only if the 40° were one of the base angles and you solved (180 − 40 − x = x). But 40° is the vertex angle, so this misreads which angle was given.
+**mistake_a:** 100° comes from 180 − 40 − 40, treating 40° as appearing twice. Only one 40° angle (the vertex) was given.
+**common_trap:** Computing 180 − 40 = 140 and stopping there. That 140° is the sum of the two equal base angles; you must divide by 2 to get a single base angle.
+**takeaway:** "Isosceles" means two equal angles. Subtract the odd angle out from 180, then divide the remainder by 2. Stopping one step early (forgetting the division) is a Careless error; misreading which angle is the vertex is a Misread.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+**trap_type:** ratio-inversion
+**est_time_seconds:** 45
+
+What is the slope of the line that passes through the points (2, 3) and (6, 11)?
+
+- A) 2
+- B) 1/2
+- C) 4
+- D) 8
+- E) −2
+
+**answer:** A
+**fastest_path:** Slope is rise over run: change in y over change in x. (11 − 3)/(6 − 2) = 8/4 = 2.
+
+**explanation:** The slope of a line through two points (x₁, y₁) and (x₂, y₂) is the ratio of the change in y to the change in x:
+
+slope = (y₂ − y₁) / (x₂ − x₁).
+
+Using (x₁, y₁) = (2, 3) and (x₂, y₂) = (6, 11):
+
+slope = (11 − 3) / (6 − 2) = 8 / 4 = 2.
+
+The order in which the points are taken does not matter as long as the same point supplies the "first" coordinate in both the numerator and the denominator. Reversing both gives (3 − 11)/(2 − 6) = (−8)/(−4) = 2, the same value.
+
+The correct answer is A.
+**mistake_b:** 1/2 inverts the ratio — it computes run over rise, (6 − 2)/(11 − 3) = 4/8, instead of rise over run. Slope is always the change in y on top.
+**mistake_c:** 4 is the run alone (6 − 2 = 4), the denominator of the slope, not the slope itself.
+**mistake_d:** 8 is the rise alone (11 − 3 = 8), the numerator of the slope, not the slope itself.
+**mistake_e:** −2 comes from subtracting the coordinates in mismatched order, e.g. (11 − 3)/(2 − 6) = 8/(−4). Mixing the subtraction order between numerator and denominator flips the sign.
+**common_trap:** Putting the x-difference on top. The mnemonic "rise over run" fixes the order: vertical change (y) divided by horizontal change (x).
+**takeaway:** Slope = Δy/Δx. Keep the same point first in both differences to protect the sign, and keep y on top to protect the value. An inverted ratio is a Conceptual error.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+**trap_type:** half-factor-omission
+**est_time_seconds:** 90
+
+The line 3x + 4y = 24 forms a triangle with the x-axis and the y-axis. What is the area of that triangle?
+
+- A) 14
+- B) 48
+- C) 24
+- D) 12
+- E) 96
+
+**answer:** C
+**fastest_path:** The triangle's legs are the two intercepts. Set y = 0 → x = 8; set x = 0 → y = 6. Area = (1/2)(8)(6) = 24.
+
+**explanation:** A line that crosses both axes forms a right triangle whose two legs lie along the axes; the legs are exactly the magnitudes of the x-intercept and the y-intercept, and the right angle sits at the origin.
+
+Find the x-intercept by setting y = 0:
+
+3x = 24, so x = 8. The x-intercept is (8, 0).
+
+Find the y-intercept by setting x = 0:
+
+4y = 24, so y = 6. The y-intercept is (0, 6).
+
+The two legs therefore have lengths 8 and 6, meeting at a right angle at the origin. The area is
+
+Area = (1/2)(8)(6) = (1/2)(48) = 24.
+
+The correct answer is C.
+**mistake_b:** 48 is the product of the two intercepts without the one-half factor. The intercepts are the legs of a right triangle, so the area is half their product, not the full product.
+**mistake_a:** 14 is the sum of the intercepts (8 + 6). Adding the legs has nothing to do with area; it is part of the triangle's perimeter.
+**mistake_d:** 12 halves only one intercept, e.g. (1/2)(8)(3) or treating one leg as 6/2 = 3. It reflects an arithmetic slip in applying the area formula.
+**mistake_e:** 96 doubles the product (2 × 48) or uses 4 × 24, applying the wrong factor entirely. Area is (1/2) × product of legs.
+**common_trap:** Multiplying the two intercepts and forgetting that they are the legs of a right triangle — so the result must still be halved. The "1/2" in the triangle-area formula is the most-dropped factor on these problems.
+**takeaway:** A line plus the two axes makes a right triangle whose legs are the intercepts. Find both intercepts, then area = (1/2) × (x-intercept) × (y-intercept). Forgetting the half is a Careless error; adding the intercepts instead is Conceptual.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Circles
+**trap_type:** radius-diameter-confusion
+**est_time_seconds:** 95
+
+A circle is inscribed in a square whose side length is 8, so the circle touches all four sides of the square. What is the area of the region that lies inside the square but outside the circle?
+
+- A) 64 − 4π
+- B) 64 − 64π
+- C) 64 − 8π
+- D) 64 − 16π
+- E) 16π − 64
+
+**answer:** D
+**fastest_path:** Inscribed means the circle's diameter equals the square's side, so radius = 8/2 = 4. Leftover region = square − circle = 8² − π(4²) = 64 − 16π.
+
+**explanation:** When a circle is inscribed in a square, it is tangent to all four sides, so the circle's diameter equals the side of the square. The shaded region is the square's area minus the circle's area.
+
+The square has side 8, so its area is 8² = 64.
+
+The circle's diameter equals the side, 8, so its radius is 8/2 = 4. Its area is π(4²) = 16π.
+
+The region inside the square but outside the circle is therefore
+
+64 − 16π.
+
+(As a sanity check, 16π ≈ 50.3, so the leftover is about 13.7 — a positive, sensible fraction of the 64-unit square.)
+
+The correct answer is D.
+**mistake_b:** 64 − 64π uses radius 8 (the full side) instead of 4. But the side equals the diameter, so the radius is half the side. 64π ≈ 201 is larger than the square itself, which is geometrically impossible for an inscribed circle.
+**mistake_c:** 64 − 8π comes from area = πr with r = 8, or π(diameter) — using the wrong power or the wrong length. The circle's area is πr² with r = 4, giving 16π.
+**mistake_a:** 64 − 4π uses πr² with r = 2 (quartering the side) or π × something undersized. The radius is 4, so the area is 16π, not 4π.
+**mistake_e:** 16π − 64 is the negative of the correct answer — it subtracts in the wrong direction. The square (64) is larger than the circle (16π ≈ 50.3), so the leftover region must be 64 − 16π, a positive value.
+**common_trap:** Setting the radius equal to the square's side. "Inscribed in a square of side 8" makes the diameter 8, so the radius is 4. The factor-of-two slip then propagates (squared) into a wildly wrong circle area.
+**takeaway:** Inscribed circle in a square: diameter = side, radius = side/2. Translate the picture into the radius before computing area, and subtract larger-minus-smaller so the leftover region stays positive. A radius/diameter mix-up here is Conceptual.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Triangles
+**trap_type:** ratio-inversion
+**est_time_seconds:** 95
+
+At a certain moment, a person who is 6 feet tall casts a shadow 9 feet long. At that same moment, a nearby flagpole casts a shadow 30 feet long. Assuming the ground is level and the sun's rays are parallel, how tall is the flagpole, in feet?
+
+- A) 18
+- B) 45
+- C) 27
+- D) 33
+- E) 20
+
+**answer:** E
+**fastest_path:** Same instant, parallel rays → height and shadow are proportional. The person's height-to-shadow ratio is 6/9 = 2/3, so the pole is (2/3)(30) = 20.
+
+**explanation:** When the sun's rays are parallel and the ground is level, an object and its shadow form similar right triangles for every object at that moment. Therefore the ratio of height to shadow length is the same for the person and the flagpole.
+
+Let h be the flagpole's height. Setting the two height-to-shadow ratios equal:
+
+(person's height) / (person's shadow) = (pole's height) / (pole's shadow)
+6 / 9 = h / 30.
+
+Cross-multiplying: 9h = 6 × 30 = 180, so h = 180 / 9 = 20.
+
+Equivalently, the person's ratio is 6/9 = 2/3, and (2/3)(30) = 20.
+
+The correct answer is E.
+**mistake_b:** 45 inverts the ratio, setting up 9/6 = h/30 (shadow over height) and getting h = 45. A pole taller than its 30-foot shadow at the same low sun angle that gives a 6-foot person a 9-foot shadow is inconsistent; the height must be the smaller of the pair here.
+**mistake_c:** 27 comes from 30 − 9 + 6 or another additive mash-up. Similar-triangle problems multiply by a ratio; they do not add or subtract the given lengths.
+**mistake_d:** 33 adds the differences (30 + 9 − 6) or similar. Again, the relationship is multiplicative, governed by the constant height-to-shadow ratio, not a sum.
+**mistake_a:** 18 uses the ratio 6/10 or (6/30)(... ) — an arithmetic slip such as 30 × 6/10. The correct scaling factor is 30/9 applied to the height, or equivalently 30 × (6/9) = 20.
+**common_trap:** Flipping the proportion so that shadow sits over height. Keep the same quantity (height) in the numerator on both sides of the equation. A quick reality check — the pole's height should be two-thirds of its shadow, just as the person's is — catches the inversion.
+**takeaway:** Shadow problems are similar triangles: set up height/shadow = height/shadow with matching quantities in matching positions. Inverting the ratio is a Conceptual error; sanity-check by confirming the new figure scales the same way as the reference figure.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** 3D / Solids
+**trap_type:** face-versus-solid-confusion
+**est_time_seconds:** 100
+
+The surface area of a cube is 96. What is the volume of the cube?
+
+- A) 64
+- B) 16
+- C) 96
+- D) 512
+- E) 48
+
+**answer:** A
+**fastest_path:** A cube has 6 equal faces, so each face is 96/6 = 16, giving edge = 4. Volume = 4³ = 64.
+
+**explanation:** A cube has six identical square faces. If the edge length is s, each face has area s², the total surface area is 6s², and the volume is s³. The chain is: surface area → one face → edge → volume.
+
+From 6s² = 96, divide by 6 to get s² = 16, so s = 4.
+
+The volume is then
+
+V = s³ = 4³ = 64.
+
+The correct answer is A.
+**mistake_b:** 16 is the area of a single face (s² = 16). That is an intermediate quantity, not the volume; you still need to take the edge (4) and cube it.
+**mistake_c:** 96 simply repeats the given surface area. Surface area and volume are different quantities — one scales as s², the other as s³ — and a cube's volume equals its surface area only by coincidence at a specific size (s = 6), not here.
+**mistake_d:** 512 is 8³, which would follow from edge 8. But s² = 16 gives s = 4, not 8. The 8 likely comes from mis-dividing (96/... ) or taking √96 ≈ ... incorrectly.
+**mistake_e:** 48 is half the surface area, or 96/2. Halving the surface area has no geometric meaning for volume; the route to volume runs through the edge length.
+**common_trap:** Stopping at the face area (16) or confusing the surface area with the volume. Always isolate the edge length s as the hinge, then apply whichever formula the question asks for.
+**takeaway:** For a cube, everything pivots on the edge s: surface area = 6s², volume = s³. Convert the given measure to s first, then build the requested quantity. Reporting a face area or the surface area as if it were the volume is a Conceptual error.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Polygons
+**trap_type:** interior-exterior-confusion
+**est_time_seconds:** 90
+
+What is the measure, in degrees, of each interior angle of a regular octagon?
+
+- A) 45
+- B) 135
+- C) 120
+- D) 1080
+- E) 144
+
+**answer:** B
+**fastest_path:** Interior-angle sum of an n-gon is (n − 2)·180. For n = 8 that's 6·180 = 1080; divide by 8 equal angles → 135.
+
+**explanation:** The interior angles of a polygon with n sides sum to (n − 2) × 180°. In a regular polygon all interior angles are equal, so each one is that sum divided by n.
+
+For an octagon, n = 8. The sum of the interior angles is
+
+(8 − 2) × 180° = 6 × 180° = 1080°.
+
+Dividing by the 8 equal angles:
+
+1080° / 8 = 135°.
+
+A useful cross-check: each exterior angle of a regular octagon is 360°/8 = 45°, and an interior angle is its supplement, 180° − 45° = 135°. ✓
+
+The correct answer is B.
+**mistake_a:** 45 is the exterior angle (360°/8), not the interior angle. The two are supplementary; the interior angle is 180° − 45° = 135°.
+**mistake_c:** 120 is the interior angle of a regular hexagon (n = 6), not an octagon. It comes from using the wrong value of n.
+**mistake_d:** 1080 is the sum of all eight interior angles, not a single one. The question asks for each angle, so this total must be divided by 8.
+**mistake_e:** 144 is the interior angle of a regular decagon (n = 10). Again this substitutes the wrong number of sides into the formula.
+**common_trap:** Reporting the exterior angle (45°) when the interior angle was asked, or handing back the full angle sum (1080°) without dividing by the number of sides. Track which quantity the question wants.
+**takeaway:** Two formulas to keep straight: interior-angle sum = (n − 2)·180, and each exterior angle = 360/n. For a regular polygon, each interior angle = sum/n = 180 − 360/n. Mixing up interior and exterior is a Conceptual error.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+**trap_type:** radius-diameter-confusion
+**est_time_seconds:** 100
+
+The points (1, 2) and (7, 10) are the endpoints of a diameter of a circle. What is the area of the circle?
+
+- A) 10π
+- B) 100π
+- C) 50π
+- D) 25π
+- E) 20π
+
+**answer:** D
+**fastest_path:** Distance between the endpoints is the diameter: √((7−1)² + (10−2)²) = √(36+64) = 10. So radius = 5 and area = 25π.
+
+**explanation:** The two given points are the endpoints of a diameter, so the distance between them is the diameter, and the radius is half of that. Then the area follows from πr².
+
+Compute the distance between (1, 2) and (7, 10):
+
+diameter = √((7 − 1)² + (10 − 2)²) = √(6² + 8²) = √(36 + 64) = √100 = 10.
+
+The radius is half the diameter: r = 10/2 = 5.
+
+The area is
+
+A = πr² = π(5²) = 25π.
+
+The correct answer is D.
+**mistake_b:** 100π treats the diameter (10) as the radius: π(10²) = 100π. The distance between the endpoints is the diameter, so it must be halved before squaring.
+**mistake_c:** 50π comes from π(d²)/2 = π(100)/2, i.e. halving after squaring instead of before. The radius must be halved first: r = d/2 = 5, then r² = 25.
+**mistake_a:** 10π multiplies the diameter by π (πd), which is the circumference, not the area. Area requires squaring the radius.
+**mistake_e:** 20π is πr with r = ... or 2 × 10π; it mixes a linear factor with π and never squares the radius properly.
+**common_trap:** Using the computed distance — the diameter — directly as the radius. The endpoints of a diameter give you the diameter; halve it before applying πr². Squaring then magnifies the factor-of-two error into a factor-of-four.
+**takeaway:** "Endpoints of a diameter" → distance = diameter → radius = distance/2 → area = πr². Halve before you square. A radius/diameter confusion is a Conceptual error worth tagging so it does not recur on the harder circle problems.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+**trap_type:** half-factor-omission
+**est_time_seconds:** 105
+
+In the coordinate plane, a triangle has vertices P(1, 1), Q(5, 2), and R(3, 6). What is the area of triangle PQR?
+
+- A) 10
+- B) 18
+- C) 12
+- D) 4.5
+- E) 9
+
+**answer:** E
+**fastest_path:** Use the shoelace formula: area = (1/2)|x_P(y_Q − y_R) + x_Q(y_R − y_P) + x_R(y_P − y_Q)|. Plug once and read off 9 — no need to find side lengths or a height.
+
+**explanation:** When no side of a triangle is conveniently horizontal or vertical, the shoelace (coordinate) formula gives the area directly from the vertices:
+
+Area = (1/2) |x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂)|.
+
+With P(1, 1), Q(5, 2), R(3, 6):
+
+= (1/2) |1·(2 − 6) + 5·(6 − 1) + 3·(1 − 2)|
+= (1/2) |1·(−4) + 5·(5) + 3·(−1)|
+= (1/2) |−4 + 25 − 3|
+= (1/2) |18|
+= 9.
+
+(Cross-check with a bounding box: the smallest axis-aligned rectangle containing the triangle runs x from 1 to 5 and y from 1 to 6, area 4 × 5 = 20. Subtracting the three corner right triangles, (1/2)(4)(1) + (1/2)(2)(4) + (1/2)(2)(5) = 2 + 4 + 5 = 11, leaves 20 − 11 = 9. ✓)
+
+The correct answer is E.
+**mistake_b:** 18 is the value of the absolute-value expression before applying the one-half factor. The shoelace formula's leading 1/2 is essential; the bracket alone gives twice the area.
+**mistake_c:** 12 results from a sign error inside the bracket — for example, mishandling one of the (y − y) differences — which inflates the sum before halving.
+**mistake_d:** 4.5 halves the area a second time (applying 1/4 instead of 1/2), or divides the correct 9 by 2 out of over-caution. Only one factor of 1/2 belongs in the formula.
+**mistake_a:** 10 comes from approximating with the bounding box (20) and halving, or a rounding shortcut; it ignores the precise corner-triangle subtraction that yields exactly 9.
+**common_trap:** Dropping the leading 1/2 in the shoelace formula and reporting twice the true area. The bracketed cross-product sum is always double the area, so the half is not optional.
+**takeaway:** For a triangle given by coordinates, the shoelace formula is the fastest route — but it carries a mandatory factor of 1/2. Keep careful track of signs inside the bracket and never omit the half. A dropped 1/2 here is a Careless error.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+**trap_type:** axis-misread
+**est_time_seconds:** 135
+
+A circle has center (3, −1) and passes through the point (7, 2). What is the length of the chord that the circle cuts off along the x-axis?
+
+- A) 4√6
+- B) 2√6
+- C) 8
+- D) 4√3
+- E) 10
+
+**answer:** A
+**fastest_path:** Radius = distance from (3,−1) to (7,2) = √(16+9) = 5. The center sits |−1| = 1 unit from the x-axis, so the half-chord on that axis is √(5² − 1²) = √24, and the full chord is 2√24 = 4√6.
+
+**explanation:** Two facts drive this problem: the radius, and the perpendicular distance from the center to the chord's line. For a chord, half the chord, the perpendicular distance to the chord, and the radius form a right triangle, so (half-chord)² + (distance)² = r².
+
+First the radius. It is the distance from the center (3, −1) to the known point (7, 2):
+
+r = √((7 − 3)² + (2 − (−1))²) = √(4² + 3²) = √(16 + 9) = √25 = 5.
+
+Next, the chord lies along the x-axis, the line y = 0. The perpendicular distance from the center (3, −1) to the line y = 0 is the absolute value of the center's y-coordinate: |−1| = 1.
+
+Now apply the right-triangle relation, with half the chord as one leg:
+
+(half-chord)² = r² − d² = 5² − 1² = 25 − 1 = 24,
+half-chord = √24 = 2√6.
+
+The full chord is twice this: 2 × 2√6 = 4√6.
+
+The correct answer is A.
+**mistake_b:** 2√6 is the half-chord — the result of √(r² − d²) — without doubling. The chord is symmetric about the foot of the perpendicular, so its full length is twice the half-chord.
+**mistake_c:** 8 is the chord the circle cuts along the *y*-axis, not the x-axis. Distance from the center to the y-axis (x = 0) is |3| = 3, giving 2√(25 − 9) = 2√16 = 8. This is the trap of using the wrong coordinate for the distance — the chord on the x-axis depends on the y-coordinate of the center.
+**mistake_d:** 4√3 comes from using d = √13 or another mis-set distance, e.g. √(25 − 13) = √12 = 2√3 doubled. The correct perpendicular distance to the x-axis is just 1.
+**mistake_e:** 10 is the diameter (2r). A chord equals the diameter only if it passes through the center; the x-axis does not pass through (3, −1), so the chord is shorter than the diameter.
+**common_trap:** Using the wrong coordinate as the distance to the axis. The distance from a point to the x-axis is the magnitude of its y-coordinate, and the distance to the y-axis is the magnitude of its x-coordinate. Swapping them produces the plausible-looking 8.
+**takeaway:** Chord length = 2√(r² − d²), where d is the perpendicular distance from the center to the chord's line. For the x-axis, d = |y-coordinate of center|; for the y-axis, d = |x-coordinate|. Reading the wrong axis is a Misread; forgetting to double the half-chord is Careless.
+**hint_nudge:** You need two numbers: the circle's radius and how far the center sits from the x-axis.
+**hint_strategy:** Get the radius from the center-to-point distance. Then the half-chord, the center's distance to the x-axis, and the radius form a right triangle.
+**hint_setup:** r = √((7−3)² + (2+1)²) = 5; distance from (3, −1) to the x-axis is 1; half-chord = √(5² − 1²). Double it.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** 3D / Solids
+**trap_type:** wrong-solid-formula
+**est_time_seconds:** 130
+
+A cylinder has a volume of 96π and a height of 6. A sphere has the same radius as the cylinder. What is the surface area of the sphere?
+
+- A) 256π
+- B) 16π
+- C) 96π
+- D) 64π
+- E) 48π
+
+**answer:** D
+**fastest_path:** Cylinder volume πr²h = 96π with h = 6 gives r² = 16, so r = 4. Sphere surface area is 4πr² = 4π(16) = 64π — and you never even need r itself, only r².
+
+**explanation:** This is a two-solid relay: extract the shared radius from the cylinder, then feed it into the sphere's surface-area formula.
+
+The volume of a cylinder is V = πr²h. Here V = 96π and h = 6:
+
+πr²(6) = 96π.
+
+Divide both sides by π: 6r² = 96, so r² = 16 (and r = 4).
+
+The surface area of a sphere is S = 4πr². Since r² = 16:
+
+S = 4π(16) = 64π.
+
+Note that the work needs only r² = 16, which the cylinder hands you directly — taking the square root to r = 4 is optional.
+
+The correct answer is D.
+**mistake_b:** 16π is just πr² — the area of a single great circle of the sphere, or a forgotten factor of 4. The sphere's surface area is 4πr², four times this.
+**mistake_c:** 96π recycles the cylinder's volume as if it were the answer. The two solids share only the radius; their volumes and surface areas are different quantities entirely.
+**mistake_a:** 256π uses r³ (= 64) in place of r² inside 4π( · ): 4π(64) = 256π. The surface-area formula squares the radius, it does not cube it — cubing belongs to volume.
+**mistake_e:** 48π is the lateral surface area of the cylinder, 2πrh = 2π(4)(6) = 48π. It answers a surface-area question about the wrong solid.
+**common_trap:** Pulling in the wrong power of r or the wrong solid's formula. The sphere's surface area uses r², the same power that appears in the cylinder's volume — which is exactly why r² (not r) is the natural quantity to carry across.
+**takeaway:** Multi-solid problems are relays: identify the shared dimension (here r², not even r), then apply the target formula precisely. Memorize the sphere pair cleanly — surface area 4πr², volume (4/3)πr³ — so you never swap the square for the cube. Using the wrong formula is a Conceptual error.
+**hint_nudge:** The cylinder is only there to give you the radius. What does πr²h = 96π tell you when h = 6?
+**hint_strategy:** Solve the cylinder volume for r² first; the sphere surface-area formula needs r², so you may not need r at all.
+**hint_setup:** 6r² = 96 → r² = 16. Sphere surface area = 4πr² = 4π(16).
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Triangles
+**trap_type:** strict-inequality-endpoints
+**est_time_seconds:** 130
+
+Two sides of a triangle have lengths 7 and 11. If the length of the third side is an integer, what is the positive difference between the greatest and least possible values of the third side?
+
+- A) 14
+- B) 12
+- C) 13
+- D) 10
+- E) 11
+
+**answer:** B
+**fastest_path:** Triangle inequality bounds the third side strictly between 11 − 7 = 4 and 11 + 7 = 18. Integers run 5 to 17, so the spread is 17 − 5 = 12.
+
+**explanation:** The triangle inequality says each side must be strictly less than the sum of the other two and strictly greater than their positive difference. With sides 7 and 11 and third side x:
+
+|11 − 7| < x < 11 + 7,
+4 < x < 18.
+
+The inequalities are strict — a side equal to 4 or to 18 would make the triangle degenerate (flat), not a genuine triangle.
+
+Since x must be an integer, the allowed values are 5, 6, 7, …, 17. The greatest is 17 and the least is 5.
+
+The positive difference is
+
+17 − 5 = 12.
+
+The correct answer is B.
+**mistake_a:** 14 uses the boundary values 4 and 18 themselves (18 − 4 = 14), ignoring that the triangle inequality is strict. Neither 4 nor 18 produces an actual triangle, so the largest and smallest *integers* are 17 and 5, not 18 and 4.
+**mistake_c:** 13 takes 17 − 4 (mixing the correct largest integer with the open lower bound) or 18 − 5 (the reverse mismatch). Both endpoints must be treated consistently as the extreme integers, 17 and 5.
+**mistake_d:** 10 might come from a narrower (and incorrect) range such as 6 to 16, perhaps from misreading the inequality as ≤ on a shifted interval. The correct integer endpoints are 5 and 17.
+**mistake_e:** 11 is simply one of the given side lengths, surfacing as a tempting "round" answer. It is not the difference of the extreme third-side values.
+**common_trap:** Treating the triangle-inequality bounds as inclusive and using 4 and 18 as achievable side lengths. They are strict bounds: equality flattens the triangle. With an integer constraint, the real extremes are the largest and smallest integers strictly inside (4, 18) — namely 17 and 5.
+**takeaway:** Third-side range: (difference) < x < (sum), strictly. When the side must be an integer, step inward to the nearest integers (here 5 and 17) before computing anything. Using the open endpoints as if attainable is a Conceptual trap the GMAT sets repeatedly.
+**hint_nudge:** What is the full range of possible lengths for the third side, before the "integer" condition?
+**hint_strategy:** Apply the triangle inequality to get a strict open interval, then pick the largest and smallest integers inside it.
+**hint_setup:** 11 − 7 < x < 11 + 7, so 4 < x < 18. The extreme integers are 5 and 17.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+**trap_type:** missing-normalization
+**est_time_seconds:** 140
+
+Point P lies somewhere on the line y = 2x + 1. What is the shortest possible distance from P to the origin?
+
+- A) √5
+- B) 1/5
+- C) √5 / 5
+- D) 1
+- E) 2√5 / 5
+
+**answer:** C
+**fastest_path:** Shortest distance from a point to a line is the perpendicular distance. Write the line as 2x − y + 1 = 0 and apply |2(0) − 0 + 1| / √(2² + (−1)²) = 1/√5 = √5/5.
+
+**explanation:** The shortest distance from a fixed point to a line is measured along the perpendicular from the point to the line. For a line written as ax + by + c = 0 and a point (x₀, y₀), that distance is
+
+d = |a·x₀ + b·y₀ + c| / √(a² + b²).
+
+Rewrite y = 2x + 1 in standard form: 2x − y + 1 = 0, so a = 2, b = −1, c = 1. The point is the origin, (x₀, y₀) = (0, 0):
+
+d = |2·0 + (−1)·0 + 1| / √(2² + (−1)²) = |1| / √(4 + 1) = 1 / √5.
+
+Rationalizing, 1/√5 = √5/5 ≈ 0.447.
+
+The correct answer is C.
+**mistake_b:** 1/5 forgets the square root in the denominator, using a² + b² = 5 directly instead of √(a² + b²) = √5. The normalizing denominator must be the square root of the sum of squares.
+**mistake_a:** √5 inverts the formula, placing √(a² + b²) in the numerator (or computing √5 / 1). The √5 belongs in the denominator, so the distance is its reciprocal, 1/√5.
+**mistake_d:** 1 ignores the denominator entirely and reports just the numerator |c| = 1. That would be the distance only if a² + b² equaled 1, which it does not here.
+**mistake_e:** 2√5/5 = 2/√5 uses a numerator of 2 — for instance reading the coefficient a = 2 as the numerator instead of the constant term, or doubling |c|. The numerator is |a·x₀ + b·y₀ + c|, which at the origin reduces to |c| = 1, not 2.
+**common_trap:** Dropping the square-root normalization in the denominator (giving 1/5) or omitting it altogether (giving 1). The point-to-line distance always divides by √(a² + b²), not by a² + b² and not by 1.
+**takeaway:** Shortest distance from a point to a line = perpendicular distance = |ax₀ + by₀ + c| / √(a² + b²). Put the line in ax + by + c = 0 form first, and never forget the square root in the denominator. A missing normalization is a Conceptual error.
+**hint_nudge:** "Shortest distance" from a point to a line always means the perpendicular distance — there is a formula for it.
+**hint_strategy:** Rewrite the line as ax + by + c = 0, then use d = |ax₀ + by₀ + c| / √(a² + b²) with the origin as (x₀, y₀).
+**hint_setup:** Line: 2x − y + 1 = 0; point (0, 0). Numerator |1|, denominator √(4 + 1).
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Triangles
+**trap_type:** wrong-relation-shortcut
+**est_time_seconds:** 180
+
+In right triangle ABC, the right angle is at C, and the legs have lengths CA = 9 and CB = 12. A square is drawn inside the triangle with one of its vertices at C and the two sides meeting at C lying along the legs; the vertex of the square opposite C lies on the hypotenuse AB. What is the side length of the square?
+
+- A) 36/5
+- B) 36/7
+- C) 6
+- D) 108/13
+- E) 21/4
+
+**answer:** B
+**fastest_path:** Place C at the origin with legs on the axes. The square's far corner is (s, s) and must lie on the hypotenuse x/12 + y/9 = 1. Solve s/12 + s/9 = 1 → s(7/36) = 1 → s = 36/7.
+
+**explanation:** Set up coordinates with the right angle at the origin and the legs along the axes: C = (0, 0), B = (12, 0), and A = (0, 9). The hypotenuse AB runs from (12, 0) to (0, 9). Its equation in intercept form is
+
+x/12 + y/9 = 1.
+
+The square has one vertex at C with its sides along the two legs (the axes), so its corner opposite C is the point (s, s), where s is the side length. For the square to be inscribed with that corner on the hypotenuse, (s, s) must satisfy the line's equation:
+
+s/12 + s/9 = 1.
+
+Combine the fractions over a common denominator of 36:
+
+3s/36 + 4s/36 = 1,
+7s/36 = 1,
+s = 36/7.
+
+So the square's side length is 36/7 ≈ 5.14, which sensibly is just under the shorter leg of 9. (This matches the general result for a square inscribed in the right angle of a right triangle with legs a and b: side = ab/(a + b) = (9·12)/(9 + 12) = 108/21 = 36/7.)
+
+The correct answer is B.
+**mistake_a:** 36/5 = ab / (hypotenuse) = 108/15. This confuses the inscribed-square relation with the altitude-to-the-hypotenuse, which is (leg·leg)/hypotenuse. The inscribed square divides by the *sum of the legs* (a + b = 21), not by the hypotenuse (15).
+**mistake_c:** 6 is the average of the legs, (9 + 12)/2 ... no — it is a naive "halfway" guess, or √(... ). The inscribed square's side is the harmonic-style quantity ab/(a + b), not the arithmetic mean of the legs.
+**mistake_d:** 108/13 uses 13 in the denominator, treating the legs as 5 and 12 (whose hypotenuse is 13) or otherwise importing the wrong figure. With legs 9 and 12, the hypotenuse is 15 and the relevant denominator is a + b = 21 regardless.
+**mistake_e:** 21/4 is (a + b)/4 = 21/4, an unmotivated combination of the legs. The correct expression is the product over the sum, ab/(a + b), not the sum over a constant.
+**common_trap:** Substituting the hypotenuse for the sum of the legs in the inscribed-square relation — yielding the altitude-to-hypotenuse value 36/5 instead of 36/7. The square inscribed in the right angle is governed by ab/(a + b); deriving it from the line equation (rather than recalling a formula) protects against the swap.
+**takeaway:** For a square inscribed in the right-angle corner of a right triangle, set the far corner at (s, s) and force it onto the hypotenuse's intercept equation — the algebra delivers s = ab/(a + b) cleanly. When a near-miss distractor (here 36/5) mirrors a different standard result (the altitude to the hypotenuse), that is a deliberate trap; deriving from first principles beats pattern-matching the wrong formula.
+**hint_nudge:** Put the right angle at the origin with the legs on the axes. Where does the square's far corner sit, in coordinates?
+**hint_strategy:** The far corner is (s, s). Write the hypotenuse as an intercept-form line and require (s, s) to lie on it.
+**hint_setup:** Hypotenuse: x/12 + y/9 = 1. Substitute x = y = s and solve s/12 + s/9 = 1.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
