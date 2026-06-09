@@ -5,7 +5,9 @@ section: DI
 estimated_minutes: 45
 prerequisites: []
 summary: |
-  Table Analysis gives you a sortable data table plus a series of Yes/No statements, and asks whether each statement is true given the data. The test isn't about reading speed — it's about efficiency. You need a repeatable filter-sort-verify discipline that answers each statement in under 60 seconds without re-reading the whole table. Master the three-step workflow (identify the relevant column, filter or sort, compute the check), internalize the seven most common statement patterns, and you'll solve every Table Analysis question without ever feeling rushed.
+  Table Analysis hands you a sortable data table and a set of Yes/No statements, then asks whether each is true. The skill being tested is not reading speed — it is disciplined efficiency: answering each statement in under 60 seconds without ever re-reading the whole table. The students who run out of time are not slow at arithmetic; they are undisciplined about what they read. This chapter fixes that with one repeatable loop (identify the column, filter or sort, verify the claim) and the seven statement patterns that cover roughly 90% of what the test shows you.
+
+  By the end of this chapter you will: (1) run the identify-filter-verify loop on autopilot; (2) know on sight whether to sort or filter; (3) name any statement's pattern within five seconds; (4) compare averages and medians without heavy computation; and (5) sidestep the derived-metric traps that produce close-but-wrong answers.
 sections:
   - id: pretest
     type: pretest
@@ -19,12 +21,16 @@ sections:
   - id: the-three-step-workflow
     type: reading
     title: "The three-step workflow — identify, filter, verify"
+    intro: |
+      Table Analysis rewards process, not horsepower. The arithmetic is never the obstacle — the obstacle is reading too much, recomputing what you already know, and juggling three numbers in your head at once. This section installs a single loop that removes all three failure modes. Run it until it is reflexive, and every statement becomes mechanical.
     check_question_ids:
       - table-analysis-q13
 
   - id: sorting-vs-filtering
     type: reading
     title: "Sorting vs. filtering — when to use each"
+    intro: |
+      The table on your screen is interactive, and most students never use the one feature that makes it trivial: a single click on a column header. Sorting turns "scan every row" into "read one row." Knowing *when* to sort versus filter is the biggest speed lever on this question type — a decision you can make in under five seconds once the rules are automatic.
     check_question_ids:
       - table-analysis-q22
       - table-analysis-q23
@@ -32,6 +38,8 @@ sections:
   - id: statement-patterns
     type: reading
     title: "The seven most common Yes/No statement patterns"
+    intro: |
+      Three statements per question, and nearly every one is a variation on seven recurring shapes. The instant you can name the pattern, you stop improvising and start executing a move you have already rehearsed. This is the section that converts Table Analysis from a reading task into pure pattern recognition.
     check_question_ids:
       - table-analysis-q1
       - table-analysis-q2
@@ -40,6 +48,8 @@ sections:
   - id: averages-and-medians
     type: reading
     title: "Averages, medians, and aggregated metrics"
+    intro: |
+      The moment a statement says "average" or "median," most students reach for division — and they rarely need it. This section gives you three shortcuts that answer aggregate questions with almost no arithmetic, because the test is daring you to compute exact values it never actually asked for.
     check_question_ids:
       - table-analysis-q14
       - table-analysis-q15
@@ -47,6 +57,8 @@ sections:
   - id: cross-category-comparisons
     type: reading
     title: "Cross-category comparisons — subsetting and ranking"
+    intro: |
+      Multi-category statements are where careless points leak — not because the math is hard, but because you are holding three group-results in your head and lose track of which is which. The fix is not a better memory; it is a two-pass routine that puts every number on paper before you compare. One second slower per step, far faster over the whole question.
     check_question_ids:
       - table-analysis-q17
       - table-analysis-q26
@@ -54,6 +66,8 @@ sections:
   - id: derived-metrics-and-traps
     type: reading
     title: "Derived metrics and common traps"
+    intro: |
+      This is the deep end: ratios, percent change, per-unit values — metrics the table never hands you directly. It is also where the test plants its sharpest traps, because every derived number combines two inputs and a single misread corrupts the answer. Own the handful of derivations here, and the hard set stops surprising you.
     check_question_ids:
       - table-analysis-q7
       - table-analysis-q19
@@ -178,6 +192,14 @@ Statement: "The average salary of Strategy employees is higher than that of Fina
 
 **Strategy sum:** 120+95+150 = 365. **Finance sum:** 140+85+115 = 340. Strategy sum > Finance sum, and both have 3 employees — so Strategy average > Finance average. Skip the division entirely.
 
+**Micro-drill.** Run the identify-filter-verify loop on the Employee Demographics table above. Name the relevant columns, then decide Yes or No — 30 seconds each:
+
+1. More than half of the employees earn at least $120K.
+2. The average age in Operations is greater than the average age in Strategy.
+3. Every employee with more than 6 years of experience earns more than $130K.
+
+Answers: (1) **Yes** — relevant column: Salary. Filter salary ≥ 120: A (120), B (140), D (155), F (125), G (150) — that's 5 of 8, and 5 > 4. You never touch Department, Years, or Age. (2) **Yes** — columns: Department, Age. Operations ages 42, 35 → sum 77, avg 38.5; Strategy ages 32, 28, 40 → sum 100, avg 33.3. Counts differ (2 vs 3), so you must divide. 38.5 > 33.3. (3) **No** — columns: Years, Salary. Filter Years > 6: B (8 yrs, 140), D (12, 155), F (7, 125), G (10, 150). F earns 125, which is not more than 130 — one counterexample ends it. If you answered Yes, you confirmed the first few rows instead of hunting for the exception; universal claims ("every") are disproved by a single miss.
+
 > **Recall check.** Close the book. State the three-step Table Analysis workflow. Now state the time budget for each step. (Step 1 identify, Step 2 filter/sort, Step 3 verify. Budget: 5 + 15 + 40 = 60 seconds.) Pattern-drill this three-step until it's reflexive — that's what makes you fast on Table Analysis.
 
 ## @sorting-vs-filtering
@@ -232,6 +254,16 @@ Some statements require both. "The highest-salaried Finance employee" requires f
 **The "what if sorting is ambiguous" problem.** Ties in a sort (two employees with the same years) usually don't matter for the answer. If it does — e.g., "the third-most-experienced employee" and there's a tie for second — the problem is usually set up so ties don't change the answer.
 
 **Trap to watch.** Some statements read like sort questions but are actually filter questions. "Is there any employee over 40 who earns less than $120K?" — this is a filter (age > 40 AND salary < 120) plus existence check (is the filtered set nonempty?). Don't waste time sorting the full table.
+
+**Micro-drill.** For each statement, first call it — sort, filter, or both — then answer using the Employee Demographics table. 30 seconds each:
+
+1. The third-highest salary belongs to a Finance employee.
+2. No employee under 30 years old earns more than $100K.
+3. The most-experienced Operations employee earns more than the most-experienced Strategy employee.
+
+Answers: (1) **Sort. Yes** — sort Salary descending: D (155), G (150), B (140). Third row is B, Finance. (2) **Filter. Yes** — filter Age < 30: C (28, 95K), E (26, 85K). Neither exceeds 100K, so "no employee" holds. You only inspect two rows, not eight. (3) **Filter then sort. Yes** — filter Operations: D (12 yrs, 155), F (7 yrs, 125); most experienced is D, earning 155. Filter Strategy: G (10 yrs, 150) is most experienced, earning 150. 155 > 150. Note that you compare the right people only after the filter — the most-experienced employee in each group, not the highest earner.
+
+> **Recall check.** Cover this section. When does a statement call for a sort, and when for a filter? (Sort for ranks and extremes — highest, lowest, second-largest, median. Filter for subsets — a department, a price range, a compound condition.) Now: a statement asks for "the median salary." Sort or filter? (Sort the Salary column, then read the middle row(s) — no computation needed.) If you reached for a filter, re-read the "When to sort" list; medians are a sort move.
 
 ## @statement-patterns
 
@@ -299,6 +331,14 @@ The move is identical whether the statement uses "every," "all," or "no [column]
 
 > **Self-explanation prompt.** Why does "every"/"no" require checking every row but "at least one" needs just one example? If you can say "because universal claims fail if a single counterexample exists, while existential claims succeed if a single confirming case exists," you've internalized the asymmetry — and you'll scan tables much faster.
 
+**Micro-drill.** For each statement, name the pattern (1-7) before you compute, then answer using the Employee Demographics table. The naming is the point — 20 seconds each:
+
+1. The highest-paid employee is also the oldest.
+2. At least one Strategy employee is older than 38.
+3. All employees are between 25 and 45 years old.
+
+Answers: (1) **Pattern 7 (correlation/trend). Yes** — top of Salary is D (155); top of Age is also D (42). Same row owns both extremes, so check one row, not eight. (2) **Pattern 5 (existence). Yes** — Strategy ages 32, 28, 40; G at 40 confirms it on the first hit. Stop scanning the moment you find one. (3) **Pattern 6 (range). Yes** — you only need the min and max of Age: lowest is E (26), highest is D (42); 26 ≥ 25 and 42 ≤ 45. Two values settle a statement about all eight. If naming the pattern took longer than the arithmetic, that is exactly the reflex to drill — the label tells you the move before you read a single number.
+
 ## @averages-and-medians
 
 When statements involve averages or medians across categories, computation can feel daunting on a large table. Three techniques collapse this to under 30 seconds.
@@ -332,6 +372,13 @@ This is often faster than computing the actual average.
 **Example.** Region sales: East sold 100 units at $5, West sold 200 at $8. Overall average price: (100×5 + 200×8)/(100+200) = (500+1600)/300 = 2100/300 = $7.
 
 **The "median from a large table" shortcut.** For a sorted table with 50 rows, the median is rows 25-26 averaged. You don't have to compute — just click the sort and read the middle rows.
+
+**Micro-drill.** Use the deviation trick or the sort-to-the-middle move on the Employee Demographics table — no long division. 30 seconds each:
+
+1. The average salary across all eight employees exceeds $120K.
+2. The median salary is greater than $120K.
+
+Answers: (1) **Yes** — deviation trick. Subtract 120 from each salary: 0, +20, −25, +35, −35, +5, +30, −5. Sum = +25. A positive total of deviations means the average sits above 120 — no need to find that it is actually 985 ÷ 8 ≈ 123.1. (2) **Yes** — sort Salary: 85, 95, 115, 120, 125, 140, 150, 155 (n = 8). Median is the average of positions 4 and 5: (120 + 125) / 2 = 122.5 > 120. You read two rows instead of summing all eight. Notice the average (123.1) and median (122.5) are close here only because the salaries are fairly symmetric — when a statement contrasts the two, expect a skew the test is exploiting.
 
 > **Recall check.** Without looking, state the two ways to compute a median (odd n vs even n). Now state the "sum trick" for comparing averages when counts are equal. (Answers: odd → middle row by position (n+1)/2; even → average of the two middle rows; sum comparison works when counts match because averages differ only by their sums in that case.) Retrieval of these three rules is what separates a 60-second verification from a 3-minute recomputation.
 
@@ -393,6 +440,15 @@ Filter on two conditions (Finance AND over 30). Then check all of them against t
 
 **Trap to watch.** "Overlap" mistakes — filtering on the wrong combination. "Finance AND over 30" is different from "Finance OR over 30." Read the statement carefully: "and" means both conditions must hold; "or" means either (or both). Universal quantifier ("all," "every") combined with filters usually means you're checking whether the filtered set satisfies a condition uniformly.
 
+**Micro-drill.** Run the two-pass routine on the Employee Demographics table — write each group's numbers down before comparing. 40 seconds each:
+
+1. Operations has the highest average salary of the three departments.
+2. The total salary of employees aged 35 or older exceeds $550K.
+
+Answers: (1) **Yes** — Pass 1: three departments. Pass 2: Strategy (120, 95, 150) → 365 / 3 ≈ 121.7; Finance (140, 85, 115) → 340 / 3 ≈ 113.3; Operations (155, 125) → 280 / 2 = 140. Operations wins. Because Operations has only 2 employees against 3, you cannot compare raw sums here — the division is mandatory. (2) **Yes** — filter Age ≥ 35: B (38, 140), D (42, 155), F (35, 125), G (40, 150). Sum = 140 + 155 + 125 + 150 = 570 > 550. Watch the boundary: "35 or older" includes F at exactly 35; drop F and you get 445 and the wrong answer.
+
+> **Self-explanation prompt.** Why does writing each group's result on paper beat holding them in your head, even when the math is easy? If you can say "because the error on these questions is almost never the arithmetic — it's attaching the right number to the wrong category under time pressure, and paper makes that mix-up impossible," you understand why the two-pass routine exists. Speed on cross-category questions comes from never having to re-derive a number you already computed.
+
 ## @derived-metrics-and-traps
 
 Some statements require computing a *new* metric from the table columns — a ratio, a percentage, a per-unit value. These are the most arithmetic-heavy Table Analysis questions, and where most errors happen.
@@ -436,6 +492,13 @@ Compute Revenue/Employees per row, sort, check top.
 **The "does this even matter?" sanity check.** Before committing to a computation, ask: "Is there a pattern I'm missing?" Some questions are designed to be obvious once you spot the pattern — e.g., "every value in row X is larger than every value in row Y" (no arithmetic needed, just visual scan). Always look for the easy path before doing arithmetic.
 
 > **Self-explanation prompt.** Why are derived metrics (ratios, percents) the most error-prone? If you can say "because they require two pieces of information per row combined correctly, and one mis-read of either piece corrupts the entire comparison," you've identified why these questions demand extra care — and why writing intermediate values down beats trying to do them in your head.
+
+**Micro-drill.** These two test the traps directly. Compute, then read the warning. 40 seconds each:
+
+1. Using the Employee Demographics table, compute salary per year of experience (Salary ÷ Years) for D and F. Which is higher — and what does that reveal?
+2. Employee C's salary rose from $95K to $120K. The statement claims that is a 25% increase. True or false?
+
+Answers: (1) **F is higher.** D: 155 / 12 ≈ 12.9K per year. F: 125 / 7 ≈ 17.9K per year. D earns more in total but less per year of tenure — proof that a derived ranking can invert the raw ranking, which is exactly the inversion these statements are built on. Never assume the top earner also leads on a per-unit metric. (2) **False.** Percent change is over the *old* value: (120 − 95) / 95 = 25 / 95 ≈ 26.3%, not 25%. The trap answer comes from dividing by the new value (25 / 120 ≈ 20.8%) or from eyeballing the $25 jump as "25%." On any percent-change statement, the denominator is the starting number, every time.
 
 ## @summary
 
