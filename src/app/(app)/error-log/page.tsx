@@ -27,6 +27,7 @@ import BreakdownCard, {
   type RootCauseBucket,
 } from "./BreakdownCard"
 import InsightsPanel from "./InsightsPanel"
+import ResolutionMomentum from "./ResolutionMomentum"
 
 export default async function ErrorLogPage({
   searchParams,
@@ -436,6 +437,12 @@ export default async function ErrorLogPage({
         />
       ) : (
         <>
+          <ResolutionMomentum
+            total={totalMistakes}
+            reviewed={reviewedCount}
+            resolvedThisWeek={remediationCompletedThisWeek}
+          />
+
           <InsightsPanel insights={insights} />
 
           <BreakdownCard
