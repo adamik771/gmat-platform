@@ -1077,3 +1077,584 @@ Since statement (1) alone is sufficient and statement (2) alone is not, statemen
 
 The correct answer is A.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Linear Equations
+**skill:** isolate-then-evaluate-target-expression
+**trap_type:** answered-wrong-quantity
+**est_time_seconds:** 45
+
+If x/3 + 4 = 9, what is the value of x + 1?
+
+- A) 5
+- B) 6
+- C) 15
+- D) 16
+- E) 40
+
+**answer:** D
+**hint_nudge:** Solving the equation is only step one — read the final question again and make sure you report the quantity it actually asks for.
+**hint_strategy:** Undo the operations on x in reverse order: first remove the +4, then remove the division by 3. Only then attach the "+1."
+**hint_setup:** x/3 + 4 = 9 gives x/3 = 5, so x = 15. The question wants x + 1.
+**explanation:** The equation tells us about x, but the question asks for x + 1, so we first solve for x and then evaluate the requested expression. Starting from x/3 + 4 = 9, subtract 4 from both sides to isolate the term containing x: x/3 = 5. Because x is divided by 3, we undo that by multiplying both sides by 3, giving x = 15. Finally, the quantity requested is x + 1 = 15 + 1 = 16.
+
+The correct answer is D.
+**fastest_path:** Peel the operations off x in reverse: 9 − 4 = 5, then ×3 gives x = 15, then +1 gives 16. The only place students lose this question is the very last step, so anchor on "x + 1" before you commit.
+**mistake_a:** 5 is the value of x/3, the intermediate result after subtracting 4. You still have to multiply by 3 and add 1.
+**mistake_b:** 6 comes from adding the "+1" to x/3 (which is 5) rather than to x. The "+1" attaches to x, not to x/3.
+**mistake_c:** 15 is x itself. The question asks for x + 1, not x — a classic case of solving correctly but answering the wrong quantity.
+**mistake_e:** 40 comes from adding 4 to both sides instead of subtracting (x/3 = 13, so x = 39, then x + 1 = 40). The +4 must move to the other side as −4.
+**common_trap:** The arithmetic is trivial; the trap is the final read. The answer you naturally solve for is x = 15, and 15 sits right there as choice C. Always re-read the target expression before bubbling.
+**takeaway:** On "find this expression" problems, write the target quantity at the top of your scratch work. Half of all careless misses here are answering x when the question wants x + 1.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Inequalities
+**skill:** solve-linear-inequality-flip-rule
+**trap_type:** forgot-to-flip-inequality
+**est_time_seconds:** 40
+
+If 7 − 2x > 1, which of the following must be true?
+
+- A) x > 3
+- B) x < 3
+- C) x > −3
+- D) x < −3
+- E) x > 4
+
+**answer:** B
+**hint_nudge:** There is exactly one step in this problem where the inequality sign behaves differently from an equals sign. Find it.
+**hint_strategy:** Isolate the x-term, then divide. Whenever you divide both sides of an inequality by a negative number, the direction of the sign flips.
+**hint_setup:** 7 − 2x > 1 becomes −2x > −6. Dividing by −2 reverses the inequality.
+**explanation:** Solving a linear inequality follows the same isolating steps as a linear equation, with one crucial extra rule: dividing (or multiplying) both sides by a negative number reverses the direction of the inequality. We begin with 7 − 2x > 1. Subtracting 7 from both sides gives −2x > −6. To isolate x we divide both sides by −2; because −2 is negative, the ">" must become "<", yielding x < 3. Every value of x that satisfies the original inequality satisfies x < 3.
+
+The correct answer is B.
+**fastest_path:** Move the x to the side where its coefficient is positive and you never have to flip: 7 − 2x > 1 becomes 7 − 1 > 2x, so 6 > 2x, so 3 > x — that is, x < 3. Routing around the negative coefficient removes the only place this problem traps people.
+**mistake_a:** x > 3 is what you get if you divide by −2 but forget to reverse the inequality sign. This is the single most common error on negative-coefficient inequalities.
+**mistake_c:** x > −3 keeps the original ">" and mishandles the sign of the result, as if −2x > −6 simplified to x > −3.
+**mistake_d:** x < −3 correctly flips the sign but botches the arithmetic of −6 ÷ −2, landing on −3 instead of +3.
+**mistake_e:** x > 4 mixes an arithmetic slip (treating the constant as 8 rather than 6) with the failure to flip the sign.
+**common_trap:** The negative coefficient on x. Students reflexively divide and keep the inequality pointing the same way, producing the exact-opposite answer that sits waiting as choice A.
+**takeaway:** Dividing or multiplying an inequality by a negative number flips the sign. If you would rather not think about it, move the variable to the side where its coefficient is already positive.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponents
+**skill:** common-base-exponent-equations
+**trap_type:** exponent-rule-confusion
+**est_time_seconds:** 40
+
+If 2^x · 8 = 2^7, what is the value of x?
+
+- A) 3
+- B) 4
+- C) 5
+- D) 7
+- E) 21
+
+**answer:** B
+**hint_nudge:** Everything in this equation can be written as a power of 2. Rewrite the 8 that way.
+**hint_strategy:** Express 8 as a power of 2, combine the powers on the left using the product rule (add exponents), then match exponents on both sides.
+**hint_setup:** 8 = 2³, so the left side is 2^x · 2³ = 2^(x+3). Set x + 3 equal to 7.
+**explanation:** When both sides of an equation are powers of the same base, the exponents must be equal. The obstacle here is the factor of 8, which we rewrite as a power of 2: 8 = 2³. The left side then becomes 2^x · 2³, and by the product rule for like bases (add the exponents) this equals 2^(x+3). The equation is now 2^(x+3) = 2^7. Equating the exponents gives x + 3 = 7, so x = 4.
+
+The correct answer is B.
+**fastest_path:** Recognize 8 = 2³ instantly, so the left exponent is x + 3. Match to 7: x = 4. The whole problem is the single conversion 8 = 2³.
+**mistake_a:** 3 is the exponent of 8 itself (8 = 2³). It is a piece of the solution, not the answer; you still need x + 3 = 7.
+**mistake_c:** 5 comes from writing 8 as 2² instead of 2³, giving x + 2 = 7. Eight is 2 × 2 × 2 = 2³, not 2².
+**mistake_d:** 7 ignores the factor of 8 entirely and reads the equation as 2^x = 2^7.
+**mistake_e:** 21 comes from multiplying 7 × 3 — combining the exponents with the wrong operation. Powers of the same base multiply by adding exponents, not multiplying them.
+**common_trap:** Mis-powering 8. Students who rush write 8 = 2² (confusing the value with the exponent count) and land on choice C.
+**takeaway:** To solve an exponential equation, force a common base first. Memorize the small powers of 2 (and 3): 8 = 2³, 16 = 2⁴, 27 = 3³.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Systems of Equations
+**skill:** elimination-by-subtraction
+**trap_type:** answered-wrong-item
+**est_time_seconds:** 45
+
+At a stand, 2 muffins and 1 juice cost $7, while 1 muffin and 1 juice cost $5. What is the price of one muffin?
+
+- A) $1
+- B) $2
+- C) $3
+- D) $4
+- E) $5
+
+**answer:** B
+**hint_nudge:** The two orders differ by exactly one muffin. What is the difference in their prices?
+**hint_strategy:** Subtract the second equation from the first. The juice term cancels, leaving the price of the one extra muffin directly.
+**hint_setup:** (2m + j) − (m + j) = 7 − 5 isolates m in a single step.
+**explanation:** Let m be the price of a muffin and j the price of a juice. The two orders give 2m + j = 7 and m + j = 5. Because both orders contain exactly one juice, subtracting the second equation from the first eliminates j: (2m + j) − (m + j) = 7 − 5, which simplifies to m = 2. So one muffin costs $2. (For completeness, j = 5 − 2 = $3, and the first order checks: 2(2) + 3 = 7.)
+
+The correct answer is B.
+**fastest_path:** The first order is just the second order plus one extra muffin, and it costs $2 more. That $2 difference is the muffin — no algebra needed.
+**mistake_a:** $1 comes from finding the $2 price difference correctly but then halving it, as if the difference of $2 had to be split between two muffins. The difference reflects exactly one extra muffin.
+**mistake_c:** $3 is the price of the juice, not the muffin. The system was set up correctly, but the wrong variable was reported.
+**mistake_d:** $4 is the cost of two muffins (2m). The first order's muffin portion is $4, but the question asks for one muffin.
+**mistake_e:** $5 simply restates the second given (one muffin plus one juice) without solving anything.
+**common_trap:** Reporting the juice price. Once you find m = 2 you can immediately get j = 3, and "3" feels like the satisfying final number — but the question asked for the muffin.
+**takeaway:** When two scenarios differ by exactly one item, subtract them; the difference is that item's price. Then double-check which item the question actually wants.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Absolute Value
+**skill:** absolute-value-two-cases
+**trap_type:** dropped-second-absolute-case
+**est_time_seconds:** 50
+
+If |2x − 6| = 10, what is the sum of all possible values of x?
+
+- A) −16
+- B) −2
+- C) 6
+- D) 8
+- E) 10
+
+**answer:** C
+**hint_nudge:** An absolute-value equation almost always has two solutions, not one. Have you found both?
+**hint_strategy:** Split into two cases: the inside equals +10, and the inside equals −10. Solve each, then add the roots.
+**hint_setup:** Case 1: 2x − 6 = 10. Case 2: 2x − 6 = −10. Find both x-values and sum them.
+**explanation:** An equation of the form |expression| = 10 means the expression is either 10 or −10, so we solve two cases. Case 1: 2x − 6 = 10 gives 2x = 16, so x = 8. Case 2: 2x − 6 = −10 gives 2x = −4, so x = −2. The two possible values are 8 and −2, and their sum is 8 + (−2) = 6.
+
+The correct answer is C.
+**fastest_path:** The roots of |2x − 6| = 10 are symmetric about the value that makes the inside zero, namely 2x − 6 = 0, so x = 3. Two symmetric roots sum to twice the center: 2 × 3 = 6. You can answer without computing either root individually.
+**mistake_a:** −16 is the product of the two roots (8 × −2), not their sum. Read the question's operation carefully.
+**mistake_b:** −2 is only the root from the negative case. The positive case (2x − 6 = +10) gives a second root you must also include.
+**mistake_d:** 8 is only the root from the positive case; the negative case is missing.
+**mistake_e:** 10 is the right-hand side of the equation, or the sum of the roots' absolute values (8 + 2). The actual roots are 8 and −2, which sum to 6.
+**common_trap:** Solving only one case. Absolute-value equations split into two, and dropping the second case is the defining error here — it leaves you with 8 or −2 instead of their sum.
+**takeaway:** |stuff| = k splits into stuff = k and stuff = −k. The two roots are symmetric about the point where the inside is zero, so their sum is twice that center.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Quadratics — Vieta's Formulas
+**skill:** vieta-with-root-ratio-and-sign-constraint
+**trap_type:** ignoring-constraints
+**est_time_seconds:** 90
+
+The quadratic x² + bx + 12 = 0 has two integer roots, and one root is 3 times the other. If b is negative, what is the value of b?
+
+- A) −8
+- B) −7
+- C) −4
+- D) 7
+- E) 8
+
+**answer:** A
+**hint_nudge:** Call the roots r and 3r. Vieta's formulas connect their product and sum to the coefficients 12 and b.
+**hint_strategy:** Product of roots = 12 = c/a; sum of roots = −b. Use the ratio condition to find r, then apply the sign restriction on b.
+**hint_setup:** r · 3r = 12 gives r² = 4, so r = ±2. The sum 4r must equal −b, and b is negative.
+**explanation:** Let the roots be r and 3r. By Vieta's formulas for x² + bx + 12 = 0, the product of the roots equals the constant term: r · 3r = 12, so 3r² = 12 and r² = 4, giving r = 2 or r = −2. The sum of the roots is 4r, and Vieta says the sum equals −b. If r = 2, the roots are 2 and 6 (product 12, and 6 is indeed 3 × 2), their sum is 8, so −b = 8 and b = −8. If r = −2, the roots are −2 and −6, sum −8, giving b = 8. The condition that b is negative selects b = −8.
+
+The correct answer is A.
+**fastest_path:** The roots are r and 3r with product 12, so 3r² = 12 and r = ±2. A negative b means a positive root-sum, so take r = 2: roots 2 and 6, sum 8, b = −8.
+**mistake_b:** −7 comes from grabbing the factor pair of 12 that contains a 3 — namely 3 and 4, which sum to 7 — because "3" appears in the problem. But 4 is not three times 3; the ratio condition is violated.
+**mistake_c:** −4 uses the sum incorrectly, for example treating r = 2 alone (or 2 + 2) as the root-sum rather than r + 3r = 8.
+**mistake_d:** 7 makes the same 3-and-4 pairing error and also drops the negative sign on b.
+**mistake_e:** 8 takes the r = −2 branch (or computes the sum and forgets the minus sign in −b), ignoring the explicit condition that b is negative.
+**common_trap:** Two traps stack here: choosing the wrong factor pair of 12 (3 and 4, lured by the "3" in the prompt) and ignoring the sign constraint on b. The ratio "one root is 3 times the other" is the real condition, not the appearance of the digit 3.
+**takeaway:** When roots are in a ratio, write them as r and kr and use product/sum from Vieta. Then honor every stated constraint — here, the sign of b decides between two otherwise-valid answers.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Functions — Linear
+**skill:** linear-rate-extrapolation
+**trap_type:** wrong-slope-denominator
+**est_time_seconds:** 75
+
+A linear function f satisfies f(2) = 7 and f(6) = 19. What is f(10)?
+
+- A) 23
+- B) 27
+- C) 31
+- D) 33
+- E) 38
+
+**answer:** C
+**hint_nudge:** A linear function changes by the same amount over equal steps in x. How big is each step here?
+**hint_strategy:** Find the rate of change (slope) between the two known points, then apply it over the next equal interval.
+**hint_setup:** From x = 2 to x = 6 (a step of 4), f rose from 7 to 19. The step from 6 to 10 is the same size.
+**explanation:** A linear function has a constant rate of change. Between x = 2 and x = 6 — a change of 4 in x — the function rose from 7 to 19, an increase of 12. The slope is therefore 12 ÷ 4 = 3. Moving from x = 6 to x = 10 is another increase of 4 in x, so f increases by another 4 × 3 = 12: f(10) = 19 + 12 = 31. (Equivalently, f(x) = 3x + 1, and f(10) = 31.)
+
+The correct answer is C.
+**fastest_path:** Equal x-steps produce equal y-steps. From x = 2 to 6 the value rose 12. From 6 to 10 is the same step of 4, so add 12 again: 19 + 12 = 31. No need to find the intercept.
+**mistake_a:** 23 comes from adding 4 — the change in x — instead of 12, the change in y over that interval: 19 + 4 = 23.
+**mistake_b:** 27 uses a slope of 2, obtained by dividing the rise of 12 by 6 (the x-value) rather than by 4 (the change in x): 19 + 2(4) = 27.
+**mistake_d:** 33 applies the correct slope but over the wrong number of steps, for example treating x = 10 as 3.5 steps from the start, or computing 19 + 14.
+**mistake_e:** 38 simply doubles 19, treating "f(10) for f(6) = 19" as a proportional scaling — but linear functions add a constant amount, they do not scale.
+**common_trap:** Dividing by the x-coordinate instead of the change in x. The rate of change is Δy/Δx = 12/4 = 3, not 12/6. Getting the denominator wrong produces choice B.
+**takeaway:** For evenly spaced inputs, skip the intercept: equal steps in x mean equal jumps in f. Identify the step size and add the jump.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Compound Inequalities
+**skill:** interval-arithmetic-subtraction
+**trap_type:** subtracting-intervals-without-crossing-extremes
+**est_time_seconds:** 75
+
+If −1 < x < 4 and 2 < y < 5, which of the following gives the full range of x − y?
+
+- A) −6 < x − y < 2
+- B) −6 < x − y < −1
+- C) −3 < x − y < −1
+- D) −1 < x − y < 4
+- E) 1 < x − y < 9
+
+**answer:** A
+**hint_nudge:** To make x − y as small as possible, what should x and y each be — and are those the same choices that make it largest?
+**hint_strategy:** For a difference, the minimum uses the smallest x with the largest y; the maximum uses the largest x with the smallest y. Cross the extremes.
+**hint_setup:** Minimum of x − y ≈ (−1) − 5; maximum ≈ 4 − 2. Both bounds stay strict.
+**explanation:** To subtract two ranges you cross the extremes. The difference x − y is smallest when x is at its smallest and y is at its largest: (−1) − 5 = −6. It is largest when x is at its largest and y is at its smallest: 4 − 2 = 2. Because all four original bounds are strict, the result is strict as well: −6 < x − y < 2.
+
+The correct answer is A.
+**fastest_path:** Minimize x − y by minimizing x and maximizing y: −1 − 5 = −6. Maximize it the opposite way: 4 − 2 = 2. Answer: −6 < x − y < 2. The whole skill is remembering to cross the extremes for a difference.
+**mistake_b:** −6 < x − y < −1 takes the correct minimum but uses largest-minus-largest (4 − 5 = −1) for the upper bound instead of largest-minus-smallest.
+**mistake_c:** −3 < x − y < −1 subtracts the bounds in matching positions — low minus low (−1 − 2 = −3) and high minus high (4 − 5 = −1) — instead of crossing them. This same-position subtraction is the classic error.
+**mistake_d:** −1 < x − y < 4 just copies the range of x, ignoring the subtraction of y altogether.
+**mistake_e:** 1 < x − y < 9 is the range of x + y (−1 + 2 = 1 up to 4 + 5 = 9). It comes from adding when the problem asks you to subtract.
+**common_trap:** Subtracting endpoints in place (low − low, high − high) feels natural but is wrong for a difference. You must pair the smallest x with the largest y for the minimum, and vice versa for the maximum.
+**takeaway:** Range of a sum: add matching endpoints. Range of a difference: cross the endpoints (small minus large for the low end). When in doubt, ask what choices push the result to each extreme.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Algebra Translation
+**skill:** coin-mixture-two-equations
+**trap_type:** answered-wrong-variable
+**est_time_seconds:** 90
+
+A jar holds only nickels (5 cents) and dimes (10 cents) worth $2.40 in total. There are 30 coins in all. How many dimes are in the jar?
+
+- A) 12
+- B) 15
+- C) 18
+- D) 20
+- E) 24
+
+**answer:** C
+**hint_nudge:** You have two facts — a count of coins and a total value. That is two equations for two unknowns.
+**hint_strategy:** Let n = nickels and d = dimes. Write the count equation and the value equation (in cents), then eliminate one variable.
+**hint_setup:** n + d = 30 and 5n + 10d = 240. Divide the value equation by 5 to make elimination clean.
+**explanation:** Let n be the number of nickels and d the number of dimes. The count gives n + d = 30, and the value (in cents) gives 5n + 10d = 240. Dividing the value equation by 5 yields n + 2d = 48. Subtracting the count equation from this, (n + 2d) − (n + d) = 48 − 30, leaves d = 18. So there are 18 dimes (and 12 nickels; checking: 12 × 5 + 18 × 10 = 60 + 180 = 240 ✓).
+
+The correct answer is C.
+**fastest_path:** If all 30 coins were nickels, the jar would hold 150 cents. The actual 240 is 90 cents more, and each nickel-to-dime swap adds 5 cents, so 90 ÷ 5 = 18 dimes. Done in one line.
+**mistake_a:** 12 is the number of nickels, not dimes. The system is solved correctly but the wrong coin is reported — and nickels (n) are often the variable you isolate first.
+**mistake_b:** 15 splits the 30 coins evenly, ignoring the value equation entirely.
+**mistake_d:** 20 is an arithmetic slip in the elimination step (for example, mis-dividing 240 by 12 or mishandling the subtraction).
+**mistake_e:** 24 treats the entire $2.40 as dimes (240 ÷ 10 = 24), ignoring the 30-coin constraint.
+**common_trap:** Solving for the nickel count and reporting it. The natural first variable to fall out is n = 12, which sits as choice A, but the question asks for dimes.
+**takeaway:** Two facts (count and value) give two equations — convert to a single unit (cents) and eliminate. Then confirm which quantity the question wants before answering.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponential Equations
+**skill:** common-base-distribute-exponents
+**trap_type:** sign-loss-distribution
+**est_time_seconds:** 90
+
+If 4^(x + 1) = 8^(x − 1), what is the value of x?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 5
+- E) 10
+
+**answer:** D
+**hint_nudge:** Both 4 and 8 are powers of 2. Rewrite each side with base 2.
+**hint_strategy:** Replace 4 with 2² and 8 with 2³, then use the power-of-a-power rule. Distribute each outer exponent across its whole parenthesis.
+**hint_setup:** Left side: 2^(2(x + 1)). Right side: 2^(3(x − 1)). Set 2(x + 1) = 3(x − 1) and distribute carefully.
+**explanation:** Write both sides as powers of 2: 4 = 2² and 8 = 2³. By the power-of-a-power rule, 4^(x + 1) = 2^(2(x + 1)) and 8^(x − 1) = 2^(3(x − 1)). Equating the exponents gives 2(x + 1) = 3(x − 1). Distributing fully, 2x + 2 = 3x − 3. Subtracting 2x from both sides gives 2 = x − 3, so x = 5. (Check: 4^6 = 2^12 and 8^4 = 2^12 ✓.)
+
+The correct answer is D.
+**fastest_path:** Convert to base 2 and equate exponents: 2(x + 1) = 3(x − 1). Distribute both sides completely — 2x + 2 = 3x − 3 — and the x falls out as 5. The entire difficulty is distributing the 3 across both terms, including the −1.
+**mistake_a:** 2 comes from under-distributing both sides: writing 2(x + 1) as 2x + 1 and 3(x − 1) as 3x − 1, giving 2x + 1 = 3x − 1 and x = 2.
+**mistake_b:** 3 comes from distributing the left side correctly but slipping on the right: 3(x − 1) → 3x − 1, giving 2x + 2 = 3x − 1 and x = 3.
+**mistake_c:** 4 comes from the opposite slip — distributing the right side correctly but writing 2(x + 1) as 2x + 1, giving 2x + 1 = 3x − 3 and x = 4.
+**mistake_e:** 10 comes from a sign error in the final step, combining the constants as 2 + 3 + 5 or otherwise mishandling the move of terms across the equals sign.
+**common_trap:** Forgetting to multiply the outer exponent by the "−1" inside the parentheses. Each incomplete distribution produces a different wrong answer (2, 3, or 4), which is why three of the traps cluster just below the correct value.
+**takeaway:** After rewriting with a common base, distribute every outer exponent across the entire parenthesis — including the constant term. The minus sign inside (x − 1) is where these problems are won or lost.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Systems of Equations
+**skill:** symmetric-system-sum-shortcut
+**trap_type:** forgot-to-halve-doubled-sum
+**est_time_seconds:** 60
+
+If a + b = 5, b + c = 9, and a + c = 8, what is the value of a + b + c?
+
+- A) 7
+- B) 9
+- C) 11
+- D) 14
+- E) 22
+
+**answer:** C
+**hint_nudge:** You do not need a, b, and c individually. What happens if you add all three equations at once?
+**hint_strategy:** Add the three equations. Each variable appears in exactly two of them, so the left side becomes 2(a + b + c).
+**hint_setup:** (a + b) + (b + c) + (a + c) = 5 + 9 + 8 gives 2(a + b + c) = 22.
+**explanation:** Adding the three equations, the left side is (a + b) + (b + c) + (a + c). Each of a, b, and c appears in exactly two of the three equations, so this sum equals 2a + 2b + 2c = 2(a + b + c). The right side is 5 + 9 + 8 = 22. Thus 2(a + b + c) = 22, and dividing by 2 gives a + b + c = 11.
+
+The correct answer is C.
+**fastest_path:** Add all three equations: every variable is counted twice, so 2(a + b + c) = 22, hence a + b + c = 11. There is no reason to solve for a, b, or c separately.
+**mistake_a:** 7 comes from adding only two of the equations and halving, for example (5 + 9)/2 = 7, rather than using all three.
+**mistake_b:** 9 simply reports b + c, one of the given sums, as if it were the total of all three variables.
+**mistake_d:** 14 adds just two of the sums (5 + 9 = 14) and treats that as a + b + c.
+**mistake_e:** 22 adds all three equations correctly but forgets that each variable was counted twice, skipping the final division by 2.
+**common_trap:** Adding the equations to get 22 and stopping. The doubled sum, 22, sits there as choice E. You must divide by 2 because each variable was counted twice.
+**takeaway:** For symmetric systems asking for a + b + c, sum every equation and divide by how many times each variable appears. Solving for individual variables is slower and error-prone.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Function Composition
+**skill:** solve-rational-function-equation
+**trap_type:** input-output-confusion
+**est_time_seconds:** 75
+
+A function is defined by f(x) = (x + 2)/(x − 2) for x ≠ 2. If f(a) = 3, what is the value of a?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 8
+- E) 10
+
+**answer:** C
+**hint_nudge:** f(a) = 3 is the output. You are solving for the input a, which is generally not 3.
+**hint_strategy:** Set (a + 2)/(a − 2) equal to 3 and cross-multiply. Distribute the 3 across both terms of (a − 2).
+**hint_setup:** (a + 2)/(a − 2) = 3 becomes a + 2 = 3(a − 2). Expand the right side fully.
+**explanation:** We want the input a for which the output is 3, so we solve (a + 2)/(a − 2) = 3. Cross-multiplying (valid since a ≠ 2), a + 2 = 3(a − 2). Distributing the 3 gives a + 2 = 3a − 6. Subtracting a from both sides and adding 6: 8 = 2a, so a = 4. (Check: f(4) = (4 + 2)/(4 − 2) = 6/2 = 3 ✓.)
+
+The correct answer is C.
+**fastest_path:** Cross-multiply immediately: a + 2 = 3a − 6. The a-terms and constants separate to 2a = 8, so a = 4. The only slip to avoid is distributing the 3 to both parts of (a − 2).
+**mistake_a:** 2 is the excluded value (x ≠ 2) and is also what you get from the distribution slip 3(a − 2) → 3a − 2, giving a + 2 = 3a − 2 and a = 2 — doubly tempting and doubly wrong.
+**mistake_b:** 3 confuses the output with the input, assuming f(a) = 3 means a = 3. The 3 is the value of the function, not the value of a.
+**mistake_d:** 8 solves 2a = 8 but forgets the final division by 2.
+**mistake_e:** 10 comes from a cross-multiplication or addition slip, such as combining the constants as 8 + 2.
+**common_trap:** Reading f(a) = 3 as a = 3. Substituting the output back in as the input is the signature error on "f(a) = k, find a" problems.
+**takeaway:** f(a) = k tells you the output; you still must solve for the input a. Cross-multiply rational equations carefully and distribute across the full denominator.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Quadratics — Integer Roots
+**skill:** integer-root-factor-pairs-with-constraints
+**trap_type:** ignoring-constraints
+**est_time_seconds:** 120
+
+For how many integer values of k does the equation x² − kx + 36 = 0 have two distinct positive integer roots?
+
+- A) 3
+- B) 4
+- C) 5
+- D) 8
+- E) 9
+
+**answer:** B
+**hint_nudge:** If the roots are positive integers p and q, what do Vieta's formulas tell you about pq and p + q?
+**hint_strategy:** The roots multiply to 36 and add to k. List the factor pairs of 36, keep only those with two different positive factors, and count the distinct sums.
+**hint_setup:** pq = 36, p + q = k. Enumerate pairs (1,36), (2,18), (3,12), (4,9), (6,6) and apply "distinct."
+**explanation:** By Vieta's formulas, if the roots are p and q then pq = 36 and p + q = k. We need p and q to be distinct positive integers. The unordered factor pairs of 36 are (1, 36), (2, 18), (3, 12), (4, 9), and (6, 6). The pair (6, 6) gives equal roots, which violates "distinct," so we discard it. The four remaining pairs give k = p + q equal to 37, 20, 15, and 13 respectively — four distinct integer values of k.
+
+The correct answer is B.
+**fastest_path:** Positive-integer roots multiply to 36, so list the factor pairs: (1,36),(2,18),(3,12),(4,9),(6,6). Throw out (6,6) for failing "distinct." Four pairs remain, so four values of k.
+**mistake_a:** 3 drops one valid pair — often (1, 36), if you wrongly assume 1 is not allowed as a root, or you miss (4, 9).
+**mistake_c:** 5 includes the pair (6, 6). That pair gives a repeated root, so it fails the "two distinct roots" requirement; counting it overcounts by one.
+**mistake_d:** 8 also counts the negative factor pairs — (−1, −36), (−2, −18), and so on — which multiply to 36 but are not positive, so they are excluded by "positive integer roots."
+**mistake_e:** 9 counts the 9 divisors of 36 as if each were a separate value of k, ignoring that roots come in pairs.
+**common_trap:** The perfect-square pair (6, 6). It satisfies pq = 36 and feels like a legitimate fifth case, but equal roots are not "two distinct roots," so including it gives the trap answer 5.
+**takeaway:** "Two distinct positive integer roots" hides three constraints — distinct, positive, integer. Enumerate factor pairs, then prune any pair that breaks even one of them.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Absolute Value — Extraneous Roots
+**skill:** absolute-value-domain-validation
+**trap_type:** squaring-without-sign-check
+**est_time_seconds:** 120
+
+How many real solutions does the equation |x − 3| = 2x − 8 have?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) Infinitely many
+
+**answer:** B
+**hint_nudge:** The left side of the equation can never be negative. What does that force the right side to be?
+**hint_strategy:** Because |x − 3| ≥ 0, you need 2x − 8 ≥ 0 first. Solve both sign cases, then discard any root that violates this domain.
+**hint_setup:** Require 2x − 8 ≥ 0, i.e. x ≥ 4. Then solve x − 3 = 2x − 8 and x − 3 = −(2x − 8), checking each root against x ≥ 4.
+**explanation:** An absolute value is never negative, so the right side must satisfy 2x − 8 ≥ 0, that is x ≥ 4. Now solve the two sign cases. Case 1: x − 3 = 2x − 8 gives x = 5, which satisfies x ≥ 4 and checks (|5 − 3| = 2 and 2(5) − 8 = 2 ✓). Case 2: x − 3 = −(2x − 8) gives 3x = 11, so x = 11/3 ≈ 3.67, which fails x ≥ 4 (and indeed 2(11/3) − 8 = −2/3 is negative, so |x − 3| could never equal it). Only x = 5 survives, so there is exactly one real solution.
+
+The correct answer is B.
+**fastest_path:** Set the domain first: the right side 2x − 8 must be ≥ 0, so x ≥ 4. The negative-case root 11/3 is below 4 and dies on arrival; only the positive case, x = 5, survives. One solution.
+**mistake_a:** 0 assumes the equation has no solution, perhaps after a sign error rejects both roots, or from wrongly concluding that an absolute value can never equal a linear expression.
+**mistake_c:** 2 solves both cases and accepts x = 11/3 without testing it against the domain 2x − 8 ≥ 0. This is the textbook extraneous-root trap — both algebraic cases produce a number, but one of them is invalid.
+**mistake_d:** 3 overcounts, typically by also counting the boundary value or a spurious third case.
+**mistake_e:** Infinitely many misreads the equation as an identity rather than a conditional equation with isolated solutions.
+**common_trap:** Accepting both case-roots blindly. The case 2 root 11/3 makes the right side negative, so it can never equal an absolute value — it is extraneous. Forgetting the domain check 2x − 8 ≥ 0 yields the trap answer 2.
+**takeaway:** When an absolute value equals a variable expression, first force that expression to be non-negative. Always substitute candidate roots back; absolute-value and squaring steps routinely introduce extraneous solutions.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Symmetric Expressions
+**skill:** cube-of-sum-symmetric-identity
+**trap_type:** dropped-correction-term
+**est_time_seconds:** 105
+
+If x + 1/x = 4, what is the value of x³ + 1/x³?
+
+- A) 40
+- B) 52
+- C) 58
+- D) 64
+- E) 76
+
+**answer:** B
+**hint_nudge:** Cubing x + 1/x produces x³ + 1/x³ plus an extra term. Write out (x + 1/x)³ fully.
+**hint_strategy:** Use the identity (a + b)³ = a³ + b³ + 3ab(a + b). With a = x and b = 1/x, the product ab is 1, which simplifies the correction term.
+**hint_setup:** (x + 1/x)³ = x³ + 1/x³ + 3(x + 1/x). Solve for x³ + 1/x³ using x + 1/x = 4.
+**explanation:** Cube the given sum: (x + 1/x)³ = x³ + 3x²(1/x) + 3x(1/x)² + 1/x³ = x³ + 1/x³ + 3x + 3/x = x³ + 1/x³ + 3(x + 1/x). Therefore x³ + 1/x³ = (x + 1/x)³ − 3(x + 1/x). Substituting x + 1/x = 4 gives 4³ − 3(4) = 64 − 12 = 52.
+
+The correct answer is B.
+**fastest_path:** Memorize the shape: x³ + 1/x³ = s³ − 3s where s = x + 1/x. With s = 4, that is 64 − 12 = 52. One substitution.
+**mistake_a:** 40 comes from using a wrong correction term, such as subtracting 3 × 8 = 24 (treating the middle term as 3 · 2³) to get 64 − 24 = 40.
+**mistake_c:** 58 borrows the "−2" from the squaring identity (x² + 1/x² = s² − 2) and subtracts 3 × 2 = 6 instead of 3 × 4, giving 64 − 6 = 58.
+**mistake_d:** 64 cubes 4 and stops, dropping the −3(x + 1/x) correction term entirely. This is the most common error.
+**mistake_e:** 76 adds the correction instead of subtracting it: 64 + 12 = 76, mishandling the sign in the rearranged identity.
+**common_trap:** Forgetting the middle term. Cubing a binomial is not just cubing each piece; the cross terms collapse into 3(x + 1/x), and omitting them leaves you with the bare 64 of choice D.
+**takeaway:** Keep two identities ready: x² + 1/x² = s² − 2 and x³ + 1/x³ = s³ − 3s, where s = x + 1/x. Note the different correction terms (−2 versus −3s) — mixing them up is the trap.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Inequalities — Powers and Sign
+**skill:** monotonicity-odd-vs-even-powers
+**trap_type:** squaring-without-sign-check
+**est_time_seconds:** 105
+
+Is x > y?
+
+(1) x² > y²
+(2) x³ > y³
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**hint_nudge:** Even powers erase sign information; odd powers preserve it. Which statement actually pins down the order of x and y?
+**hint_strategy:** Test each statement with negatives allowed. x² > y² only compares magnitudes; x³ > y³ compares the numbers themselves because cubing is order-preserving.
+**hint_setup:** For (1), try x = −3, y = 1. For (2), recall that t³ is strictly increasing, so x³ > y³ forces x > y.
+**explanation:** We need to decide whether x > y. Statement (1): x² > y² means |x| > |y|, which says nothing about order. Take x = −3, y = 1: then x² = 9 > 1 = y², yet x = −3 < 1 = y, a No. But x = 3, y = 1 gives x² > y² and x > y, a Yes. The answer varies, so (1) is not sufficient. Statement (2): the cube function is strictly increasing over all real numbers, so x³ > y³ holds if and only if x > y. Thus (2) guarantees x > y — a definite Yes — and is sufficient on its own. Statement (2) alone is sufficient and statement (1) alone is not.
+
+The correct answer is B.
+**fastest_path:** Odd powers keep order, even powers do not. x³ > y³ ⇔ x > y (sufficient); x² > y² only says |x| > |y| (insufficient — try one negative). Statement (2) alone.
+**mistake_a:** Choosing A treats x² > y² as if it meant x > y, forgetting that squaring discards sign — a negative number with large magnitude breaks it.
+**mistake_c:** Choosing C assumes you need both statements, but statement (2) already settles the question by itself, so combining is unnecessary.
+**mistake_d:** Choosing D wrongly accepts statement (1) as also sufficient, again confusing magnitude comparison with order comparison.
+**mistake_e:** Choosing E doubts the monotonicity of cubing. Because t³ is strictly increasing for all real t, x³ > y³ does force x > y, so the data are sufficient.
+**common_trap:** Treating x² > y² like x > y. Squaring loses sign, so it only compares absolute values; the trap is to forget that x could be a large-magnitude negative.
+**takeaway:** Odd powers (and cube roots) preserve order across all reals, so x³ > y³ ⇔ x > y. Even powers compare magnitude only. Whenever a statement squares an inequality, probe it with negatives.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Linear Diophantine Equations
+**skill:** linear-diophantine-optimization
+**trap_type:** ignoring-constraints
+**est_time_seconds:** 150
+
+If x and y are positive integers such that 3x + 5y = 47, what is the greatest possible value of x − y?
+
+- A) 5
+- B) 9
+- C) 11
+- D) 13
+- E) 14
+
+**answer:** D
+**hint_nudge:** To make x − y as large as possible, you want x big and y small — and y must be a positive integer that keeps x an integer too.
+**hint_strategy:** Solve x = (47 − 5y)/3. Find the positive integer values of y for which this is a positive integer, then take the smallest such y.
+**hint_setup:** Test y = 1, 2, 3, ...: you need 47 − 5y to be a positive multiple of 3. The smallest valid y gives the largest x − y.
+**explanation:** Solve for x: x = (47 − 5y)/3. We need x to be a positive integer, so 47 − 5y must be a positive multiple of 3. Testing positive integers y: y = 1 gives 42, and 42/3 = 14 (valid); y = 2 gives 37 (not divisible by 3); y = 3 gives 32 (not divisible); y = 4 gives 27, and 27/3 = 9 (valid); y = 7 gives 12, and 12/3 = 4 (valid); larger y makes x negative. The valid solutions (x, y) are (14, 1), (9, 4), and (4, 7). Since x decreases and y increases as we move down the list, x − y is largest at the first solution: 14 − 1 = 13.
+
+The correct answer is D.
+**fastest_path:** To maximize x − y, drive y to its smallest valid value. y = 1 makes 47 − 5 = 42, which is divisible by 3, giving x = 14. That single solution maximizes x and minimizes y simultaneously, so x − y = 14 − 1 = 13.
+**mistake_a:** 5 uses the middle solution (x, y) = (9, 4): 9 − 4 = 5. That is a valid value of x − y, but not the greatest.
+**mistake_b:** 9 reports the x-value from the middle solution (x = 9) rather than the difference x − y, or stops at an intermediate quantity.
+**mistake_c:** 11 assumes y = 3 is allowed (it is not — 47 − 15 = 32 is not divisible by 3) and computes 14 − 3 = 11, pairing the largest x with an invalid y.
+**mistake_e:** 14 is the largest possible value of x alone, reported instead of x − y. The greatest x is 14, but you must still subtract its paired y = 1.
+**common_trap:** Treating this as a continuous optimization. If x and y could be any reals, you would send y toward 0 and get x near 47/3 — but the integrality constraint restricts y to {1, 4, 7}. Forgetting that, or reporting x instead of x − y, produces the traps.
+**takeaway:** In linear Diophantine problems, the constraints "positive" and "integer" do the real work. Find the actual integer solutions first, then optimize over that small list — and answer the exact expression requested.
+**related_reading:** reading-quant-04-algebra-and-equations
