@@ -19,12 +19,16 @@ sections:
   - id: linear-equations-one-unknown
     type: reading
     title: "Linear equations in one unknown — isolate-the-variable discipline"
+    intro: |
+      Everything in this chapter rests on one move: getting the variable alone. Master the discipline here — change *both* sides, never just one — and the harder sections become variations on a habit you already own. Sloppy isolation is where most "I knew how to do this" algebra points quietly disappear.
     check_question_ids:
       - algebra-q1
 
   - id: systems-of-equations
     type: reading
     title: "Systems of equations — substitution vs. elimination"
+    intro: |
+      Two equations, two unknowns — and two clean techniques that cover every version. The skill that matters most isn't the algebra; it's choosing substitution or elimination in two seconds and spotting the redundant-equation trap that turns a "sufficient" into an E on Data Sufficiency.
     check_question_ids:
       - algebra-q4
       - algebra-q15
@@ -32,17 +36,23 @@ sections:
   - id: inequalities
     type: reading
     title: "Inequalities — the sign flip you can't forget"
+    intro: |
+      Inequalities behave exactly like equations except for one rule — and that one rule is the most common algebra mistake on the entire test. This section drills the sign flip until forgetting it feels wrong, then shows you how to count integer solutions without second-guessing the endpoints.
     check_question_ids:
       - algebra-q3
 
   - id: polynomial-inequalities-wavy-line
     type: reading
     title: "Polynomial and rational inequalities — the wavy-line method"
+    intro: |
+      This is the single highest-leverage 705+ trick in algebra. When an inequality has more than one root, you can't isolate x — the sign flips at every root. The wavy-line method turns that into a 30-second sign chart. Learn it once and an entire class of hard questions becomes mechanical.
     check_question_ids: []
 
   - id: absolute-value
     type: reading
     title: "Absolute value — the two-case approach"
+    intro: |
+      Absolute value is just distance from zero — and once you see it that way, every equation splits cleanly into two cases and every inequality becomes either one interval or two. This section gives you the split, the "less thAND, greater thOR" memory hook, and the edge cases the test hides on Data Sufficiency.
     check_question_ids:
       - algebra-q17
       - algebra-q18
@@ -50,6 +60,8 @@ sections:
   - id: quadratics-and-factoring
     type: reading
     title: "Quadratics and factoring — FOIL, reverse FOIL, and Vieta's"
+    intro: |
+      Quadratics reward pattern recognition over grinding. Three tools — factoring, Vieta's, and the discriminant — answer every GMAT quadratic, and two of them skip solving entirely. This section shows you when each is faster, so you stop reaching for the quadratic formula by reflex.
     check_question_ids:
       - algebra-q5
       - algebra-q13
@@ -57,6 +69,8 @@ sections:
   - id: functions-and-sequences
     type: reading
     title: "Functions, sequences, and custom characters"
+    intro: |
+      Function notation and custom symbols look intimidating and are pure substitution: whatever sits inside the parentheses goes wherever the variable was, nothing more. This section gives you the inside-out discipline for nested functions and the two sequence formulas that handle every "nth term" question.
     check_question_ids:
       - algebra-q6
       - algebra-q11
@@ -64,6 +78,8 @@ sections:
   - id: algebraic-manipulation
     type: reading
     title: "Algebraic manipulation — identities and exponent rules"
+    intro: |
+      High-score Quant is mostly rewriting — turning the expression you're given into the one you need. A handful of identities, plus six exponent rules, do almost all of that work. Memorize them here and questions that look like they need heavy algebra collapse to a single line.
     check_question_ids:
       - algebra-q2
       - algebra-q12
@@ -71,6 +87,8 @@ sections:
   - id: word-problem-translation
     type: reading
     title: "Word-problem translation — English into equations"
+    intro: |
+      The algebra is rarely the hard part of a word problem — the translation is. This section makes English-to-equation a literal, left-to-right habit, so you never again lose a point to "less than" pointing the wrong way. Get the equation right and the solving is mechanical.
     check_question_ids:
       - algebra-q7
       - algebra-q20
@@ -157,6 +175,14 @@ That's it. Every algebraic step reduces to one of these four. If you find yourse
 
 **Trap to watch.** When you multiply or divide both sides by an expression containing a variable, you may be multiplying by zero or flipping a sign. If `x − 2` could be negative, multiplying an inequality by `x − 2` flips the inequality sign. Keep track of what's in your multiplier.
 
+**Micro-drill.** Solve each, and look for the shortcut before grinding — 30 seconds each:
+
+1. If `5x − 3 = 12`, find `10x + 1`.
+2. Solve `x/2 + x/5 = 7`.
+3. If `4(y + 2) = 2y + 18`, find `y`.
+
+Answers: (1) **31** — you never need x. From `5x = 15`, the target is `10x + 1 = 2(5x) + 1 = 2(15) + 1 = 31`. Solving for x first (x = 3, then 31) is correct but slower. (2) **x = 10** — clear fractions by multiplying both sides by the LCD, 10: `5x + 2x = 70` → `7x = 70`. (3) **y = 5** — expand: `4y + 8 = 2y + 18` → `2y = 10`. If you "moved" the 8 without subtracting it from both sides, recheck — every step is one of the four balance operations. If (1) cost you more than 15 seconds, you solved for x out of habit; the question handed you `5x` and asked for a multiple of it.
+
 > **Self-explanation prompt.** In one sentence, why is "isolate the variable" good discipline? If you can say "because once the variable is alone, every remaining step is arithmetic," you've internalized why this is the only reliable path through multi-step algebra.
 
 ## @systems-of-equations
@@ -225,6 +251,14 @@ Students who forget to flip write `x > 3` — exactly the wrong answer.
 - Integer values in `−4 < x < 1`: −3, −2, −1, 0 (4 values). In `5 < x < 10`: 6, 7, 8, 9 (4 values). Total: 8.
 
 **Trap to watch.** Reciprocals flip inequalities only when both sides have the same sign. `2 < 5` gives `1/2 > 1/5` (positive, flips). But `−2 < 5` does NOT give `−1/2 > 1/5`; when the signs differ, you can't take reciprocals cleanly. This trap is frequent on Data Sufficiency.
+
+**Micro-drill.** Watch the sign flip and the endpoints — 30 seconds each:
+
+1. Solve `−2x + 5 ≥ 11`.
+2. How many integers satisfy `|x − 1| ≤ 4`?
+3. If `−5 < 3 − 2x < 7`, give the range of x.
+
+Answers: (1) **x ≤ −3** — `−2x ≥ 6`, then divide by −2 *and flip*. Writing `x ≥ −3` is the classic miss. (2) **9** — `−4 ≤ x − 1 ≤ 4` → `−3 ≤ x ≤ 5`; the inequality is *not* strict, so both endpoints count: −3, −2, −1, 0, 1, 2, 3, 4, 5. (3) **−2 < x < 4** — subtract 3 from all three parts: `−8 < −2x < 4`; divide by −2 and flip the whole chain: `4 > x > −2`, i.e., `−2 < x < 4`. If you forgot to flip in (3), you'd reverse the interval — the most common compound-inequality error.
 
 ## @polynomial-inequalities-wavy-line
 
@@ -380,6 +414,14 @@ The difference-of-squares identity is the one you'll use most. `99 × 101 = (100
 
 New equation factors as `(x − 1)(x − 5) = 0`, roots 1 and 5. Original roots: 1 − 2 = −1 and 5 − 2 = 3. By Vieta's: sum = −b → `−1 + 3 = 2 = −b` → `b = −2`. Product = c → `−1 × 3 = −3 = c`. So `b + c = −5`.
 
+**Micro-drill.** Pick the fastest tool — factor, Vieta's, or discriminant — for each. 30 seconds each:
+
+1. Solve `x² − 7x + 12 = 0`.
+2. For what value(s) of k does `x² + kx + 16 = 0` have exactly one real root?
+3. Without factoring, give the sum and product of the roots of `2x² − 5x − 3 = 0`.
+
+Answers: (1) **x = 3 or 4** — two numbers multiplying to 12 and adding to 7 are 3 and 4: `(x − 3)(x − 4) = 0`. (2) **k = ±8** — one real root means discriminant 0: `k² − 4(1)(16) = 0` → `k² = 64`. Don't forget the negative root; "k = 8" alone is half an answer. (3) **sum = 5/2, product = −3/2** — Vieta's with a ≠ 1: sum `= −b/a = 5/2`, product `= c/a = −3/2`. Factoring here would waste 30 seconds you don't need to spend.
+
 **Trap to watch.** Vieta's gives sum `= −b/a`, not `+b/a`. The negative sign is a common slip. Also, when a ≠ 1 (e.g., `2x² + 5x − 3 = 0`), use `−b/a` and `c/a`, not just `−b` and `c`.
 
 ## @functions-and-sequences
@@ -496,6 +538,14 @@ The most common GMAT question using these: you're given `xy` and `x² + y²`, an
 
 **Example.** `f(n) = n² − n`. Find `f(f(3))`. First `f(3) = 9 − 3 = 6`. Then `f(6) = 36 − 6 = 30`.
 
+**Micro-drill.** Reach for an identity or an exponent rule before brute force — 30 seconds each:
+
+1. If `x + y = 7` and `xy = 10`, find `x² + y²`.
+2. Simplify `(x⁴ · x³) / x²`.
+3. Evaluate `(2³)² / 2⁴`.
+
+Answers: (1) **29** — `x² + y² = (x + y)² − 2xy = 49 − 20`. No need to solve for x and y individually (they're 2 and 5, but finding them is the slow path). (2) **x⁵** — add exponents when multiplying (`x⁷`), subtract when dividing (`x⁷⁻² = x⁵`). (3) **4** — `(2³)² = 2⁶`, then `2⁶ / 2⁴ = 2² = 4`. If (1) made you solve the system, that is exactly the instinct to retrain — the identity turns it into a single subtraction.
+
 **Trap to watch.** `(x + y)² ≠ x² + y²`. Students drop the `2xy` cross term constantly. Whenever you square a sum, write all three terms: `x² + 2xy + y²`.
 
 ## @word-problem-translation
@@ -540,6 +590,14 @@ From equation 2: `s = 17 − 4m`. Substitute: `2m + 3(17 − 4m) = 21` → `2m +
 **Rates and percents in words.** A 20% raise: multiply by 1.20. A 20% cut: multiply by 0.80. "30% of x" is `0.30x`. "Twenty percent more than x" is `1.20x`, not `x + 20`. Always convert percents to decimals before multiplying.
 
 **Trap to watch.** "Three more than half of x" is `x/2 + 3`, not `(x + 3)/2`. Parse the English by the last operation first: "more than" is the outer verb, applied to "half of x" (inner). Always resolve inner phrases before outer ones.
+
+**Micro-drill.** Translate first, solve second — 30 seconds each:
+
+1. Write "7 less than three times a number n" as an expression.
+2. Write "x is 30% less than y" as an equation.
+3. The sum of three consecutive odd integers is 5 more than twice the largest. Find the integers.
+
+Answers: (1) **3n − 7** — "less than" subtracts from the thing before it; `7 − 3n` is the trap. (2) **x = 0.70y** — "30% less than y" means 70% of y; `x = y − 0.30` (dropping the y on the percent) is the classic slip. (3) **7, 9, 11** — let the integers be n, n + 2, n + 4. Sum = `3n + 6`; "5 more than twice the largest" = `2(n + 4) + 5 = 2n + 13`. Set equal: `3n + 6 = 2n + 13` → n = 7. Check: 7 + 9 + 11 = 27, and 2(11) + 5 = 27. The translation is the whole battle; the algebra is one line.
 
 > **Self-explanation prompt.** Translate in one breath: "the number of boys is 5 fewer than twice the number of girls." If you wrote `b = 2g − 5`, you've got it. If you wrote `b = 5 − 2g`, re-read — "fewer than" means subtract from the bigger thing.
 

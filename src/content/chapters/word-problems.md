@@ -19,6 +19,8 @@ sections:
   - id: translation-discipline
     type: reading
     title: "Translation discipline — English to algebra without losing the meaning"
+    intro: |
+      Every word problem is two jobs welded together: turn English into algebra, then solve. Almost every miss happens in the first job — the equation comes out wrong, then gets solved perfectly. Four habits here kill 90% of those errors before they start.
     check_question_ids:
       - word-problems-q13
       - word-problems-q14
@@ -29,6 +31,8 @@ sections:
   - id: rate-time-distance
     type: reading
     title: "Rate, time, distance — D = RT inside a word problem"
+    intro: |
+      D = RT is the whole engine; the "word problem" is just deciding which quantity is which and whether the units agree. Once you can spot single-object, catch-up, and meeting setups on sight, these stop being puzzles and become plug-ins.
     check_question_ids:
       - word-problems-q1
       - word-problems-q5
@@ -39,6 +43,8 @@ sections:
   - id: work-rate-problems
     type: reading
     title: "Work rate — add the rates, never the times"
+    intro: |
+      Work problems are combined-rate problems wearing a costume. One formula — add the rates, never the times — handles painters, pipes, and printers alike. This section makes the rate-not-time reflex automatic and shows you how to phase the problems where one worker starts late.
     check_question_ids:
       - word-problems-q4
       - word-problems-q6
@@ -50,6 +56,8 @@ sections:
   - id: mixtures
     type: reading
     title: "Mixtures — the acid/alloy/coffee setup"
+    intro: |
+      Every mixture problem hides one conserved quantity — the pure component — and the entire setup is just balancing it before and after. Find that anchor and acid, alloy, and coffee-blend questions all collapse to the same equation, with an allegation shortcut for when you want speed.
     check_question_ids:
       - word-problems-q7
       - word-problems-q11
@@ -58,6 +66,8 @@ sections:
   - id: profit-and-percent
     type: reading
     title: "Profit, markup, and percent change"
+    intro: |
+      The formulas here are easy; the trap is that the GMAT loves compound percent changes that students add when they must multiply. This section gives you the identities and, more importantly, the instinct that "up 40% then down 10%" is never "up 30%."
     check_question_ids:
       - word-problems-q2
       - word-problems-q8
@@ -71,6 +81,8 @@ sections:
   - id: ages-coins-digits
     type: reading
     title: "Ages, coins, and digit problems"
+    intro: |
+      Three classic disguises, one skeleton: read two clauses, write two equations, solve. The flavor text changes — ages, coins, reversed digits — but the move never does. This section also hands you the small shortcuts (reversed-digit difference, work-in-cents) that shave the arithmetic.
     check_question_ids:
       - word-problems-q12
       - word-problems-q15
@@ -81,6 +93,8 @@ sections:
   - id: sets-and-venn
     type: reading
     title: "Sets and Venn diagrams — the inclusion-exclusion template"
+    intro: |
+      Overlapping-group questions yield to one identity for two sets and one small framework for three. Stop drawing circles and guessing; this section gives you the inclusion-exclusion equations that turn "how many ordered exactly two" into a two-line solve.
     check_question_ids:
       - word-problems-q17
       - word-problems-q19
@@ -88,6 +102,8 @@ sections:
   - id: max-min-optimization
     type: reading
     title: "Max/min and optimization — extremes under constraint"
+    intro: |
+      This is the 685-to-725 section: max/min questions have no formula, only a strategy — to push your target to an extreme, drive everything competing with it to the opposite extreme. Learn the move and the feasibility check, and the hardest word problems become disciplined, not lucky.
     check_question_ids:
       - word-problems-q62
 
@@ -228,6 +244,14 @@ Verify: 10 years ago, Sara was 28 and Tom was 14. Was 28 = 2 × 14? Yes. ✓
 
 **Note on the James-and-nephew problem.** Same template. Two clauses → two equations → substitute or eliminate. The arithmetic is more complex, but the structure is identical.
 
+**Micro-drill.** Translate carefully, then solve — 40 seconds each:
+
+1. Write "Maria has 4 fewer than twice as many books as Jon (j)" as an expression.
+2. Five consecutive integers sum to 95. What is the middle one?
+3. In 4 years, Ana will be 3 times as old as she was 2 years ago. How old is Ana now?
+
+Answers: (1) **2j − 4** — "fewer than" subtracts from the thing before it; `4 − 2j` is the trap. (2) **19** — for an odd count of consecutive integers the middle is the mean: 95 / 5 = 19, no algebra. (3) **5** — let a = Ana now: `a + 4 = 3(a − 2)` → `a + 4 = 3a − 6` → `2a = 10`. The parenthesis around `a − 2` is non-negotiable; dropping it (`a + 4 = 3a − 2`) is the most common age-problem error. Notice every miss here is a *translation* error, never an arithmetic one.
+
 > **Self-explanation prompt.** Why does picking the "middle" variable work for consecutive-integer problems? If you can say "because the middle is the mean, so the sum collapses to (count)(middle) with no extra +1, +2 terms," you've internalized the why — and you'll apply it to evenly-spaced sets of any size.
 
 ## @rate-time-distance
@@ -275,6 +299,14 @@ Or via total/total: assume 30 miles each way. Times: 30/15 = 2 and 30/10 = 3. To
 
 **When the trip has unequal legs.** Use total/total directly — harmonic mean doesn't apply.
 
+**Micro-drill.** Identify the template first, then compute — 40 seconds each:
+
+1. A car travels at 48 mph for 40 minutes. How far does it go?
+2. Train A leaves at 60 mph. One hour later, Train B leaves the same direction at 80 mph. How long after B departs does it catch A?
+3. A cyclist rides to a town at 30 mph and returns along the same road at 60 mph. Average speed for the round trip?
+
+Answers: (1) **32 miles** — convert first: 40 min = 2/3 hour, so D = 48 × 2/3 = 32. Multiplying 48 × 40 ignores units and gives a nonsense 1,920. (2) **3 hours** — same-direction catch-up: A's head start is 60 miles, closing rate is 80 − 60 = 20 mph, so 60 / 20 = 3. Using 80 as the closing rate pretends A is parked. (3) **40 mph** — equal legs, so harmonic mean: 2(30)(60)/(30 + 60) = 3600 / 90 = 40, not the (30 + 60)/2 = 45 trap. The slower leg eats more time, dragging the average below the midpoint.
+
 **Trap to watch.** Students often forget to convert minutes to hours before using D = RT with a rate in mph. If the problem says "2 hours and 30 minutes," convert to 2.5 hours before plugging in.
 
 ## @work-rate-problems
@@ -311,6 +343,14 @@ The minus sign for C is essential. Draining is "negative filling."
 - 1/10 (Alex) + 1/b (Beth) = 1/5, so 1/b = 1/10 → b = **10 hours**.
 
 Beth is exactly as fast as Alex. Coincidence is common on the GMAT — the setup often produces suspiciously clean answers. Don't second-guess.
+
+**Micro-drill.** Add rates, never times — and mind the sign on a drain. 40 seconds each:
+
+1. Pump A fills a tank in 3 hours, Pump B in 6 hours. How long together?
+2. Pipe A fills a tank in 4 hours; drain C empties a full tank in 12 hours. Starting empty with both open, how long to fill?
+3. A printer prints 180 pages in 6 minutes. How many pages in 10 minutes?
+
+Answers: (1) **2 hours** — `1/3 + 1/6 = 1/2` per hour, so T = 2. Sanity check: together must beat the faster pump's 3 hours, and 2 < 3. (2) **6 hours** — net rate `1/4 − 1/12 = 1/6` per hour. Dropping the minus sign (treating C as a filler) gives 3 hours — a badly wrong answer. (3) **300 pages** — pure proportion: 180 / 6 = 30 pages per minute, then 30 × 10. If you answered (1) as 9 or 4.5, you added or averaged the times — the exact trap the formula exists to prevent.
 
 > **Self-explanation prompt.** Why do rates add but times don't? If you can say "because rates measure work per hour, and independent workers on the same job genuinely contribute additive work — while times aren't additive because 'faster together' means less time, not more," you've cemented why the formula is 1/a + 1/b = 1/T and not a + b = T.
 
@@ -404,6 +444,14 @@ Simple interest is rare on modern GMAT; compound is the default assumption unles
 - "B is what percent **more than** A?" → (B−A)/A × 100
 
 Read carefully. The prepositions matter.
+
+**Micro-drill.** Multiply percent changes, and watch the base — 40 seconds each:
+
+1. An item costs $80 and sells for $100. Profit as a percent of cost?
+2. A price rises 25%, then falls 20%. Net change?
+3. A $50 item's price rises to $65. Percent increase?
+
+Answers: (1) **25%** — profit is 20, base is cost 80, so 20/80 = 25%. Dividing by the sell price (20/100 = 20%) is the trap. (2) **0% (back to original)** — `1.25 × 0.80 = 1.00`. Adding (+25 − 20 = +5%) is wrong because the 20% cut applies to the larger, marked-up price. (3) **30%** — change 15 over the *old* value 50: 15/50 = 30%. Using the new value (15/65 ≈ 23%) is the denominator trap. Whenever percents compound, multiply the factors; never add the rates.
 
 > **Self-explanation prompt.** Why do successive percent changes multiply instead of adding? If you can say "because each percent is applied to whatever the current value is, not the original value," you've internalized why 20% up then 20% down doesn't return to start.
 
@@ -507,6 +555,13 @@ This two-equation system collapses the three-set problem. Memorize the framework
 | Total   |   50    |   30   |  80   |
 
 Cross-check: row totals and column totals both sum to 80. Fill cells consistently with both constraints.
+
+**Micro-drill.** Use the two-set identity, then the exactly-two framework. 60 seconds each:
+
+1. Of 100 people, 60 like tea, 50 like coffee, and 20 like neither. How many like both?
+2. Of 200 guests, 120 ordered an appetizer, 110 a dessert, 90 coffee, and 40 ordered all three; every guest ordered something. How many ordered exactly two items?
+
+Answers: (1) **30** — at least one = 100 − 20 = 80. By the identity, `80 = 60 + 50 − both`, so both = 30. (2) **40** — total in at least one is t = 200; the sum of individual totals is 120 + 110 + 90 = 320. Identity 1: `n₁ + n₂ + 40 = 200` → `n₁ + n₂ = 160`. Identity 2: `n₁ + 2n₂ + 3(40) = 320` → `n₁ + 2n₂ = 200`. Subtract the first from the second: `n₂ = 40`. The two-equation system is the whole trick — no Venn diagram required.
 
 > **Self-explanation prompt.** Why does the "identity 2" in the three-set framework weight n₂ by 2 and n₃ by 3? If you can say "because a person in exactly 2 sets is counted in 2 of the individual set totals, and a person in exactly 3 sets is counted in all 3," you've internalized the inclusion-exclusion logic and won't get confused by the coefficients.
 
