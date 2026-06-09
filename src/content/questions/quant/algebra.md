@@ -1077,3 +1077,513 @@ Since statement (1) alone is sufficient and statement (2) alone is not, statemen
 
 The correct answer is A.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Algebraic Identities
+**est_time_seconds:** 50
+
+If a + b = 12 and a − b = 3, what is the value of a² − b²?
+
+- A) 9
+- B) 15
+- C) 36
+- D) 135
+- E) 144
+
+**answer:** C
+**hint_nudge:** You are not asked for a or b individually — look at how a² − b² factors.
+**hint_strategy:** a² − b² is a difference of squares. It factors into two pieces you were handed directly.
+**hint_setup:** a² − b² = (a + b)(a − b). Substitute 12 and 3.
+**fastest_path:** a² − b² = (a + b)(a − b) = 12 × 3 = 36. No need to find a or b.
+**explanation:** The whole question is recognizing the difference-of-squares identity: a² − b² = (a + b)(a − b). Both factors are given outright, so the answer is 12 × 3 = 36. Solving for the variables first (a = 7.5, b = 4.5, then 56.25 − 20.25 = 36) reaches the same place but burns 40+ seconds and invites an arithmetic slip with the decimals. When a question hands you a sum and a difference and asks for a difference of squares, the factoring is the entire move.
+**mistake_a:** Computed only a − b (or 12 − 3 = 9), treating the answer as one of the given quantities.
+**mistake_b:** Added the two givens (12 + 3 = 15), as if a² − b² = (a + b) + (a − b).
+**mistake_d:** Computed (a + b)² − (a − b)² = 144 − 9 = 135 — squared each given separately instead of multiplying them.
+**mistake_e:** Squared only (a + b): 12² = 144, dropping the (a − b) factor entirely.
+**common_trap:** missing-the-identity — grinding out a and b instead of seeing a² − b² = (a+b)(a−b). (tags: Q_CONCEPT, S1)
+**takeaway:** When you see a sum and a difference together, watch for difference of squares: (a+b)(a−b) lets you answer without ever isolating a variable.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Linear Equations
+**est_time_seconds:** 60
+
+If x/2 + x/5 = 7, what is x?
+
+- A) 1
+- B) 10
+- C) 14
+- D) 35
+- E) 49
+
+**answer:** B
+**hint_nudge:** Combine the two fractions into a single coefficient on x before dividing.
+**hint_strategy:** Either find a common denominator on the left, or multiply the whole equation by 10 to clear fractions in one stroke.
+**hint_setup:** Multiply every term by 10: 5x + 2x = 70, so 7x = 70.
+**fastest_path:** Multiply both sides by 10: 5x + 2x = 70 → 7x = 70 → x = 10.
+**explanation:** Clearing denominators is the cleanest path. The least common denominator of 2 and 5 is 10, so multiply every term — including the right side — by 10: (x/2)(10) + (x/5)(10) = 7(10) → 5x + 2x = 70 → 7x = 70 → x = 10. The most common error is multiplying only the left side by 10 and leaving the right side as 7, or "adding the denominators" to get x/7. Check: 10/2 + 10/5 = 5 + 2 = 7. ✓
+**mistake_a:** Cleared the left side by 10 but forgot to scale the right side, getting 7x = 7 → x = 1.
+**mistake_c:** Solved x/2 = 7 in isolation (ignored the x/5 term), giving x = 14.
+**mistake_d:** Solved x/5 = 7 in isolation (ignored the x/2 term), giving x = 35.
+**mistake_e:** Added the denominators: treated x/2 + x/5 as x/7 = 7, giving x = 49.
+**common_trap:** denominator-mishandling — scaling only one side, or adding denominators instead of finding a common one. (tags: Q_SETUP, CALC_SLIP)
+**takeaway:** To clear fractions, multiply EVERY term (both sides) by the common denominator. You can never add denominators.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Inequalities
+**est_time_seconds:** 55
+
+If 3x − 4 ≤ 11, what is the greatest possible integer value of x?
+
+- A) 2
+- B) 4
+- C) 5
+- D) 15
+- E) 45
+
+**answer:** C
+**hint_nudge:** Isolate x first, then ask which integers are allowed.
+**hint_strategy:** Add 4 to both sides, then divide by 3. Because you divide by a positive number, the inequality direction does not change.
+**hint_setup:** 3x ≤ 15, so x ≤ 5. The largest integer that is "less than or equal to 5" is 5 itself.
+**fastest_path:** 3x − 4 ≤ 11 → 3x ≤ 15 → x ≤ 5. The boundary 5 is included (≤), so the greatest integer is 5.
+**explanation:** Add 4 to both sides: 3x ≤ 15. Divide by 3 (positive, so no flip): x ≤ 5. The relation is "less than or equal to," so x = 5 is allowed, and it is the greatest such integer. The most common slip is treating ≤ as < and answering 4. A second slip is sign management on the −4: moving it as a subtraction (3x ≤ 11 − 4 = 7) instead of adding.
+**mistake_a:** Moved the −4 to the right as a subtraction: 3x ≤ 11 − 4 = 7 → x ≤ 2.33 → greatest integer 2.
+**mistake_b:** Treated ≤ as strict <, concluding x < 5 and answering 4 even though x = 5 is permitted.
+**mistake_d:** Added 4 correctly to get 3x ≤ 15 but forgot to divide by 3, reading off 15.
+**mistake_e:** Multiplied by 3 instead of dividing: 3 × 15 = 45.
+**common_trap:** boundary-inclusion — dropping the equality case of ≤ and losing the endpoint. (tags: R2, Q_CONCEPT)
+**takeaway:** With ≤ or ≥, the boundary value is allowed. Always re-read whether the inequality is strict before naming the largest or smallest integer.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Functions
+**est_time_seconds:** 60
+
+The function f is defined by f(x) = 2x² − 3x. What is f(−3)?
+
+- A) −9
+- B) 9
+- C) 18
+- D) 27
+- E) 45
+
+**answer:** D
+**hint_nudge:** Substitute carefully — track the sign on each term.
+**hint_strategy:** Square the input before multiplying by 2, and remember that subtracting 3 times a negative becomes adding.
+**hint_setup:** (−3)² = 9, so 2x² = 18. Then −3x = −3(−3) = +9.
+**fastest_path:** f(−3) = 2(−3)² − 3(−3) = 2(9) + 9 = 18 + 9 = 27.
+**explanation:** Two sign-sensitive steps. First, (−3)² = 9 (a negative squared is positive), so 2(9) = 18. Second, −3x at x = −3 is −3(−3) = +9 — subtracting a negative adds. Total: 18 + 9 = 27. The classic traps are (a) mishandling the square as if (−3)² = −9, and (b) squaring the coefficient too, computing (2·−3)² = 36.
+**mistake_a:** Took −3(−3) as −9 (sign slip on the linear term): 18 + (−9) = 9 — and a deeper slip gives −9.
+**mistake_b:** Made the linear-term sign error: 18 − 9 = 9, forgetting that −3(−3) is positive.
+**mistake_c:** Dropped the −3x term entirely, evaluating only 2x² = 18.
+**mistake_e:** Squared the coefficient with the variable: (2·−3)² = 36, then +9 = 45.
+**common_trap:** negative-substitution — losing a sign when squaring a negative or subtracting a negative term. (tags: CALC_SLIP, E1)
+**takeaway:** When plugging in a negative, wrap it in parentheses and resolve each sign explicitly: (−3)² = 9 and −3(−3) = +9.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Literal Equations
+**est_time_seconds:** 60
+
+If y = (3x − 5)/2, which of the following expresses x in terms of y?
+
+- A) (2y + 5)/3
+- B) (2y − 5)/3
+- C) (y + 5)/3
+- D) (2y + 5)/6
+- E) (3y + 5)/2
+
+**answer:** A
+**hint_nudge:** "Solve for x" means undo every operation done to x, in reverse order.
+**hint_strategy:** First clear the denominator by multiplying both sides by 2, then move the constant, then divide off the coefficient of x.
+**hint_setup:** 2y = 3x − 5 → 3x = 2y + 5 → x = (2y + 5)/3.
+**fastest_path:** Multiply by 2: 2y = 3x − 5. Add 5: 3x = 2y + 5. Divide by 3: x = (2y + 5)/3.
+**explanation:** Three reversible steps. Multiply both sides by 2 to clear the fraction: 2y = 3x − 5. Add 5: 2y + 5 = 3x. Divide by 3: x = (2y + 5)/3. The errors cluster around the first step — forgetting to multiply the lone y by 2 (which drops the 2 from the numerator) — and the sign on the 5 when moving it across.
+**mistake_b:** Sign error moving the −5: wrote 3x = 2y − 5 instead of 2y + 5.
+**mistake_c:** Forgot to multiply the left side by 2 when clearing the denominator, losing the 2 on y: (y + 5)/3.
+**mistake_d:** Multiplied the denominator instead of the numerator side, leaving 6 underneath: (2y + 5)/6.
+**mistake_e:** Solved as if the original were y = (3x + 5)/2 — wrong constant sign and kept the wrong coefficient layout.
+**common_trap:** distribute-the-clear — when you multiply both sides to clear a fraction, every term scales, including the isolated variable on the other side. (tags: Q_SETUP, R1)
+**takeaway:** To solve a literal equation, clear the denominator across the whole equation first, then peel operations off the target variable in reverse order.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Systems of Equations
+**est_time_seconds:** 110
+
+A theater sold 50 tickets one evening for a total of $480. Adult tickets cost $12 and child tickets cost $7. How many child tickets were sold?
+
+- A) 20
+- B) 24
+- C) 26
+- D) 30
+- E) 34
+
+**answer:** B
+**hint_nudge:** Set up two relationships: one counting tickets, one counting dollars.
+**hint_strategy:** Use the "all one type" baseline — if all 50 were adults, the revenue would overshoot; each child ticket you swap in lowers revenue by the price gap.
+**hint_setup:** If all 50 were adults: 50 × 12 = 600. You overshot by 600 − 480 = 120. Each child ticket costs $5 less than an adult, so number of children = 120 ÷ 5.
+**fastest_path:** All-adults revenue = 50(12) = 600. Excess = 600 − 480 = 120. Each child swapped in saves 12 − 7 = 5 dollars, so children = 120 ÷ 5 = 24.
+**explanation:** Let a + c = 50 and 12a + 7c = 480. Substitute a = 50 − c: 12(50 − c) + 7c = 480 → 600 − 12c + 7c = 480 → 600 − 5c = 480 → 5c = 120 → c = 24 (and a = 26). The fast "baseline" method skips the algebra: pretend all 50 are adults ($600), then each $7 child ticket replacing a $12 adult ticket drops the total by $5; you need to drop $120, so 120/5 = 24 children. Check: 26(12) + 24(7) = 312 + 168 = 480. ✓
+**mistake_a:** Used the wrong price gap (12 + 7 = 19, or 6 instead of 5): 120 ÷ 6 = 20.
+**mistake_c:** Solved correctly but reported the adult count (26) instead of the child count.
+**mistake_d:** Split the tickets toward an even-ish guess (e.g., assumed revenue split evenly), landing on 30.
+**mistake_e:** Set up the value equation with the prices swapped (7a + 12c) and solved for c, getting 34.
+**common_trap:** answer-the-wrong-quantity — solving the system correctly but reporting adults when children were asked, plus price-gap setup slips. (tags: Q_SETUP, R2)
+**takeaway:** Circle exactly which quantity the question wants before you start, and consider the all-one-type baseline shortcut for two-price mixture problems.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Quadratics — Vieta's Formulas
+**est_time_seconds:** 105
+
+The equation x² − 9x + k = 0 has two roots, and one root is twice the other. What is the value of k?
+
+- A) 4.5
+- B) 9
+- C) 18
+- D) 20.25
+- E) 40.5
+
+**answer:** C
+**hint_nudge:** Name the two roots in terms of a single variable, then use what the coefficients tell you about their sum and product.
+**hint_strategy:** For x² + bx + c, the roots sum to −b and multiply to c. Here the sum is 9 and the product is k.
+**hint_setup:** Let the roots be r and 2r. Then r + 2r = 9, so r = 3. The roots are 3 and 6, and k = their product.
+**fastest_path:** Roots r and 2r sum to 3r = 9 → r = 3. Roots are 3 and 6, so k = 3 × 6 = 18.
+**explanation:** By Vieta's formulas, for x² − 9x + k = 0 the roots sum to 9 and multiply to k. Let the roots be r and 2r. Their sum 3r = 9 gives r = 3, so the roots are 3 and 6 and k = 3 · 6 = 18. The dominant trap is ignoring the "one root is twice the other" condition and instead assuming the roots are equal (a double root), which would put each root at 4.5 and give k = 20.25 — but equal roots are not "one twice the other," and the discriminant here (81 − 4k) is positive at k = 18, confirming two distinct real roots.
+**mistake_a:** Found r = 3 (the smaller root via 3r = 9) but reported 4.5, conflating the root with the equal-roots value.
+**mistake_b:** Reported the sum of the roots (9, i.e., −b) as if that were k.
+**mistake_d:** Ignored "twice" and assumed equal roots: each = 4.5, product = 20.25.
+**mistake_e:** Multiplied the equal-roots value by the sum (4.5 × 9 = 40.5), mixing two relationships.
+**common_trap:** ignore-the-relationship — dropping the "twice" condition and defaulting to equal roots. (tags: R2, Q_CONCEPT)
+**takeaway:** Encode every stated relationship between roots before using Vieta's: sum = −b, product = c, and let the relationship fix the single unknown.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponents
+**est_time_seconds:** 100
+
+If 4^(x + 1) = 8^x, what is x?
+
+- A) 1
+- B) 2
+- C) 3
+- D) −2
+- E) 6
+
+**answer:** B
+**hint_nudge:** Both 4 and 8 are powers of the same small number.
+**hint_strategy:** Rewrite each side with base 2, then set the exponents equal. Be careful to distribute the outer exponent across (x + 1).
+**hint_setup:** 4 = 2², 8 = 2³, so 2^(2(x+1)) = 2^(3x) → 2(x + 1) = 3x.
+**fastest_path:** Base 2: 2^(2x + 2) = 2^(3x) → 2x + 2 = 3x → x = 2.
+**explanation:** Convert to a common base: 4 = 2² and 8 = 2³, so 4^(x+1) = 2^(2(x+1)) = 2^(2x + 2) and 8^x = 2^(3x). Equal bases means equal exponents: 2x + 2 = 3x → x = 2. Check: 4³ = 64 and 8² = 64. ✓ The signature error is failing to distribute the 2 across (x + 1) — writing 2x + 1 instead of 2x + 2 — which yields x = 1.
+**mistake_a:** Failed to distribute: wrote 2(x + 1) as 2x + 1, solving 2x + 1 = 3x → x = 1.
+**mistake_c:** Arithmetic slip combining 2x + 2 = 3x (e.g., 2 + 1 from the exponents) landing on 3.
+**mistake_d:** Sign error isolating x: treated 2x + 2 = 3x as 2x − 3x = 2 → −x = 2 → x = −2.
+**mistake_e:** Never converted to a common base and matched 4 and 8 to the digits, producing 6.
+**common_trap:** distribute-the-exponent — dropping the multiplication when an exponent like 2 acts on a sum (x + 1). (tags: CALC_SLIP, Q_CONCEPT)
+**takeaway:** With exponential equations, first force a common base; then distribute any outer exponent fully before equating.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Absolute Value
+**est_time_seconds:** 95
+
+If |2x − 3| = 9, what is the sum of all possible values of x?
+
+- A) −3
+- B) 3
+- C) 6
+- D) 9
+- E) 15
+
+**answer:** B
+**hint_nudge:** An absolute-value equation usually splits into two cases.
+**hint_strategy:** Solve 2x − 3 = 9 and 2x − 3 = −9 separately, then add the two solutions.
+**hint_setup:** Case 1: 2x − 3 = 9 → x = 6. Case 2: 2x − 3 = −9 → x = −3. Add them.
+**fastest_path:** Two cases: x = 6 and x = −3. Sum = 6 + (−3) = 3. (The solutions are symmetric about 3/2, so the sum is 2 × 3/2 = 3.)
+**explanation:** |2x − 3| = 9 means 2x − 3 = 9 or 2x − 3 = −9. The first gives 2x = 12 → x = 6; the second gives 2x = −6 → x = −3. The sum is 6 + (−3) = 3. A faster check: the two solutions are mirror images about the point where 2x − 3 = 0 (x = 3/2), so they sum to 2 × 3/2 = 3. The biggest trap is forgetting the negative branch and reporting only x = 6.
+**mistake_a:** Solved only the negative branch (x = −3) and reported it.
+**mistake_c:** Solved only the positive branch (x = 6) and reported it.
+**mistake_d:** Reused the right-hand value 9, or summed the absolute values |6| + |−3| = 9.
+**mistake_e:** Added 6 and 9, or otherwise combined the wrong numbers.
+**common_trap:** forgot-a-branch — solving the positive case of an absolute value but never the negative case. (tags: Q_CONCEPT, R2)
+**takeaway:** |expression| = k always splits into expression = k and expression = −k. Solve both, and note the solutions are symmetric, so their sum is predictable.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Function Composition
+**est_time_seconds:** 110
+
+Let f(x) = 2x + 1 and g(x) = x² − 1. What is the value of f(g(3)) − g(f(3))?
+
+- A) −31
+- B) 0
+- C) 17
+- D) 31
+- E) 48
+
+**answer:** A
+**hint_nudge:** Work each composition from the inside out, and keep the order of subtraction the question gives.
+**hint_strategy:** Compute g(3) then feed it to f; separately compute f(3) then feed it to g. Composition is not commutative, so the two results differ.
+**hint_setup:** g(3) = 8 → f(8) = 17. f(3) = 7 → g(7) = 48. Then 17 − 48.
+**fastest_path:** f(g(3)) = f(8) = 17. g(f(3)) = g(7) = 48. 17 − 48 = −31.
+**explanation:** Inside out. g(3) = 3² − 1 = 8, then f(8) = 2(8) + 1 = 17. Separately, f(3) = 2(3) + 1 = 7, then g(7) = 7² − 1 = 48. The expression is f(g(3)) − g(f(3)) = 17 − 48 = −31. The key conceptual point is that f∘g ≠ g∘f; assuming they are equal gives 0. The other trap is reversing the subtraction (48 − 17 = 31).
+**mistake_b:** Assumed composition is commutative, so f(g(3)) = g(f(3)) and the difference is 0.
+**mistake_c:** Computed only f(g(3)) = 17 and stopped.
+**mistake_d:** Reversed the subtraction order: g(f(3)) − f(g(3)) = 48 − 17 = 31.
+**mistake_e:** Computed only g(f(3)) = 48 and stopped.
+**common_trap:** order-of-composition — treating f∘g and g∘f as interchangeable, or flipping the subtraction. (tags: Q_CONCEPT, R2)
+**takeaway:** Always evaluate compositions inside-out and respect order: f(g(x)) and g(f(x)) are generally different, and the minus sign is not symmetric.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Rational Equations
+**est_time_seconds:** 100
+
+If (2x + 1)/(x − 3) = 3, what is x?
+
+- A) −4
+- B) 4
+- C) 9
+- D) 10
+- E) 16
+
+**answer:** D
+**hint_nudge:** Clear the fraction by multiplying both sides by the denominator.
+**hint_strategy:** Multiply both sides by (x − 3), distribute the 3 fully, then collect x-terms.
+**hint_setup:** 2x + 1 = 3(x − 3) = 3x − 9. Solve for x.
+**fastest_path:** 2x + 1 = 3(x − 3) → 2x + 1 = 3x − 9 → 1 + 9 = 3x − 2x → x = 10.
+**explanation:** Multiply both sides by (x − 3): 2x + 1 = 3(x − 3). Distribute: 2x + 1 = 3x − 9. Move x-terms together and constants together: 1 + 9 = 3x − 2x → x = 10. Check: (2·10 + 1)/(10 − 3) = 21/7 = 3. ✓ The headline error is failing to distribute the 3 across both terms (writing 3x − 3), which yields x = 4; that value fails the check, so plugging your answer back catches it.
+**mistake_a:** Combined a distribution error with a sign error, landing on −4.
+**mistake_b:** Distributed only partially: 3(x − 3) → 3x − 3 instead of 3x − 9, giving x = 4.
+**mistake_c:** Dropped the +1: solved 2x = 3x − 9 → x = 9.
+**mistake_e:** Misapplied cross-multiplication, treating 3 as 3/1 against both numerator and denominator incorrectly.
+**common_trap:** partial-distribution — multiplying the constant across only one term inside the parentheses. (tags: CALC_SLIP, Q_SETUP)
+**takeaway:** After cross-multiplying, distribute completely, then verify by substituting your answer back into the original fraction.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q46
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Quadratics — Integer Roots
+**est_time_seconds:** 140
+
+For how many integer values of k does x² − kx + 48 = 0 have two distinct positive integer roots?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 8
+- E) 10
+
+**answer:** B
+**hint_nudge:** If the roots are integers p and q, what do p + q and p·q equal in terms of the coefficients?
+**hint_strategy:** The roots multiply to 48 and sum to k. List the unordered factor pairs of 48 with two different positive factors — each pair fixes one k.
+**hint_setup:** Positive integer pairs multiplying to 48: (1,48), (2,24), (3,16), (4,12), (6,8). Count them; each gives a distinct k = sum.
+**fastest_path:** Roots p, q satisfy pq = 48, p + q = k. Distinct positive factor pairs of 48: (1,48), (2,24), (3,16), (4,12), (6,8) — 5 pairs, so 5 values of k.
+**explanation:** By Vieta's, the roots multiply to 48 and sum to k. "Two distinct positive integer roots" means two different positive integers whose product is 48. The unordered factor pairs are (1,48), (2,24), (3,16), (4,12), (6,8) — exactly 5. (There is no pair of equal factors because 48 is not a perfect square, so distinctness costs us nothing here.) Each pair gives a different k (49, 26, 19, 16, 14), so there are 5 valid values. The traps: counting the 10 divisors of 48 as if order mattered (E), or sneaking in negative-factor pairs that would make the roots negative (D), or dropping the (1,48) pair as "trivial" (A).
+**mistake_a:** Discarded the (1, 48) pair as trivial, counting only 4.
+**mistake_c:** Miscounted by adding a phantom pair or double-listing one of the five.
+**mistake_d:** Included negative factor pairs like (−1, −48); those give positive product 48 but negative roots, which the "positive roots" condition forbids.
+**mistake_e:** Counted all 10 divisors of 48 (or all ordered pairs), ignoring that (a, b) and (b, a) give the same equation.
+**common_trap:** ordered-vs-unordered + hidden-positivity — over-counting factor pairs and ignoring the "positive" and "distinct" qualifiers. (tags: Q_CONCEPT, R2)
+**takeaway:** Integer-root problems reduce to factor-pair counting via Vieta's. Watch three qualifiers: positive vs. all integers, distinct vs. repeated, and ordered vs. unordered.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Symmetric Sums
+**est_time_seconds:** 145
+
+If x + 1/x = 5, what is the value of x³ + 1/x³?
+
+- A) 23
+- B) 110
+- C) 125
+- D) 128
+- E) 140
+
+**answer:** B
+**hint_nudge:** Cube the given expression and see which terms reproduce what you want.
+**hint_strategy:** (x + 1/x)³ expands to x³ + 1/x³ plus 3(x + 1/x). Rearrange to isolate the cube you need.
+**hint_setup:** (x + 1/x)³ = x³ + 1/x³ + 3(x + 1/x). So 5³ = (x³ + 1/x³) + 3(5).
+**fastest_path:** (x + 1/x)³ = x³ + 1/x³ + 3(x + 1/x) → 125 = (x³ + 1/x³) + 15 → x³ + 1/x³ = 110.
+**explanation:** Expand the cube: (x + 1/x)³ = x³ + 3x²(1/x) + 3x(1/x²) + 1/x³ = x³ + 1/x³ + 3x + 3/x = x³ + 1/x³ + 3(x + 1/x). Plug in x + 1/x = 5: 5³ = (x³ + 1/x³) + 3(5) → 125 = (x³ + 1/x³) + 15 → x³ + 1/x³ = 110. The dominant trap is cubing 5 and stopping at 125, forgetting the 3(x + 1/x) correction term. A second trap is answering with the square identity x² + 1/x² = 5² − 2 = 23, which solves the wrong power.
+**mistake_a:** Computed x² + 1/x² = 5² − 2 = 23 — the squared identity, not the cubed one.
+**mistake_c:** Cubed the 5 and stopped, ignoring the −3(x + 1/x) correction: answered 125.
+**mistake_d:** Subtracted 3 instead of 3·5 = 15: 125 + 3 = 128 (also botched the sign).
+**mistake_e:** Added the correction instead of subtracting: 125 + 15 = 140.
+**common_trap:** drop-the-cross-terms — treating (a + b)³ as a³ + b³ and losing the 3(a + b) term in the reciprocal identity. (tags: Q_CONCEPT, CALC_SLIP)
+**takeaway:** Memorize the reciprocal identities: x² + 1/x² = (x + 1/x)² − 2 and x³ + 1/x³ = (x + 1/x)³ − 3(x + 1/x). The cross-terms are the whole point.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Linear Diophantine Equations
+**est_time_seconds:** 150
+
+Marcus spends exactly $54 buying notebooks at $4 each and folders at $7 each, purchasing at least one of each. How many different numbers of notebooks could he have bought?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 5
+- E) 10
+
+**answer:** B
+**hint_nudge:** Write 4n + 7f = 54 and remember both n and f must be positive whole numbers.
+**hint_strategy:** Solve for one variable and require the result to be a positive integer. Test allowable folder counts, or use divisibility on 54 − 7f.
+**hint_setup:** 4n = 54 − 7f. For n to be a positive integer, 54 − 7f must be positive and divisible by 4. Test f = 1, 2, 3, …
+**fastest_path:** 4n = 54 − 7f must be positive and divisible by 4. f = 2 → 40 → n = 10. f = 6 → 12 → n = 3. Other f values fail. Two notebook counts: 10 and 3.
+**explanation:** The constraint is 4n + 7f = 54 with n ≥ 1, f ≥ 1, both integers. Solve for n: n = (54 − 7f)/4. This is a positive integer only when 54 − 7f > 0 and divisible by 4. Since 54 ≡ 2 (mod 4) and 7f ≡ 3f (mod 4), we need 3f ≡ 2 (mod 4), i.e., f ≡ 2 (mod 4). So f = 2 (n = 10) and f = 6 (n = 3); f = 10 would make 54 − 70 negative. Two valid solutions, so two possible notebook counts. The question asks how many counts are possible — not what those counts are — so reporting 10 or 3 is the classic misread.
+**mistake_a:** Found f = 2 → n = 10 and stopped, never testing the larger folder counts and missing f = 6.
+**mistake_c:** Reported the notebook value n = 3 (one of the answers) instead of the number of possibilities.
+**mistake_d:** Counted folder values 1 through 5 (or guessed a range) without applying the divisibility filter.
+**mistake_e:** Reported n = 10 (the other valid notebook value) rather than the count of possibilities.
+**common_trap:** answer-the-count-not-a-value + missing-a-solution — solving the Diophantine constraint but reporting a value, or stopping at the first solution. (tags: R2, Q_SETUP)
+**takeaway:** For "how many" Diophantine problems, enumerate ALL positive-integer solutions using divisibility, then re-read whether the question wants the count or a specific value.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Quadratic Inequalities
+**est_time_seconds:** 130
+
+How many integers x satisfy x² − 10x + 21 < 0?
+
+- A) 0
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** C
+**hint_nudge:** Factor the quadratic, then think about where a product of two factors is negative.
+**hint_strategy:** A product of two factors is negative only between its roots. Find the roots, then count the integers strictly inside.
+**hint_setup:** x² − 10x + 21 = (x − 3)(x − 7). The product is negative for 3 < x < 7.
+**fastest_path:** (x − 3)(x − 7) < 0 → 3 < x < 7 → integers 4, 5, 6 → 3 integers.
+**explanation:** Factor: x² − 10x + 21 = (x − 3)(x − 7). A product of two factors is negative exactly when the factors have opposite signs, which happens between the roots: 3 < x < 7. Because the inequality is strict (< 0), the endpoints 3 and 7 are excluded — at those points the expression equals 0, not less than 0. The integers strictly between 3 and 7 are 4, 5, and 6: three integers. Traps: including the endpoints (treating < as ≤) gives 4 or 5; solving the inequality in the wrong direction gives the "outside" region and a feeling that no small set works.
+**mistake_a:** Solved (x − 3)(x − 7) > 0 (wrong direction) or concluded the interval was empty.
+**mistake_b:** Off-by-one inside the interval, counting only 4 and 5 (or 5 and 6).
+**mistake_d:** Included one endpoint (treated < as ≤ on one side), counting 3, 4, 5, 6 or 4, 5, 6, 7.
+**mistake_e:** Treated the inequality as ≤ 0, counting both endpoints: 3, 4, 5, 6, 7.
+**common_trap:** strict-vs-inclusive + region-direction — including roots that make the expression zero, or picking the outside region. (tags: Q_CONCEPT, R2)
+**takeaway:** For a quadratic < 0, the solution is the open interval between the roots; for > 0 it is the two outer rays. Strict inequalities exclude the roots themselves.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Functional Equations
+**est_time_seconds:** 185
+
+A function f satisfies f(x) + 2·f(1/x) = 3x for every nonzero real number x. What is f(2)?
+
+- A) −7
+- B) −1
+- C) 2
+- D) 7/2
+- E) 6
+
+**answer:** B
+**hint_nudge:** The relation links f at x and f at 1/x. Use a second, cleverly chosen value of x to get a second equation.
+**hint_strategy:** Plug in x = 2 and then x = 1/2. You get two equations in the two unknowns f(2) and f(1/2). Solve the system.
+**hint_setup:** x = 2: f(2) + 2f(1/2) = 6. x = 1/2: f(1/2) + 2f(2) = 3/2. Solve for f(2).
+**fastest_path:** x = 2: f(2) + 2f(1/2) = 6. x = 1/2: f(1/2) + 2f(2) = 3/2. Multiply the second by 2: 2f(1/2) + 4f(2) = 3. Subtract the first: 3f(2) = −3 → f(2) = −1.
+**explanation:** The trick with this kind of self-referential relation is to substitute both x and its reciprocal. Plug x = 2: f(2) + 2f(1/2) = 6. Plug x = 1/2: f(1/2) + 2f(2) = 3/2. Now treat f(2) and f(1/2) as two unknowns. Multiply the second equation by 2: 2f(1/2) + 4f(2) = 3. Subtract the first equation (f(2) + 2f(1/2) = 6): (4f(2) − f(2)) + (2f(1/2) − 2f(1/2)) = 3 − 6 → 3f(2) = −3 → f(2) = −1. (Sanity check: f(1/2) = 7/2, and f(2) + 2(7/2) = −1 + 7 = 6. ✓) The big traps are using only the x = 2 equation and assuming the f(1/2) term vanishes (giving 6), or guessing f(x) = x (giving 2) — but f(x) = x does not satisfy the relation since x + 2/x ≠ 3x.
+**mistake_a:** Sign error while eliminating, e.g. adding the equations instead of subtracting, landing on −7.
+**mistake_c:** Guessed the "obvious" linear f(x) = x without verifying it satisfies the functional equation, giving f(2) = 2.
+**mistake_d:** Solved the system correctly but reported f(1/2) = 7/2 instead of f(2).
+**mistake_e:** Used only the x = 2 equation and assumed 2f(1/2) = 0, reading f(2) = 6.
+**common_trap:** single-substitution — treating one equation as enough when the relation couples f(x) and f(1/x), so a second substitution is required. (tags: S1, Q_CONCEPT)
+**takeaway:** When a functional equation relates f(x) to f(g(x)), substitute x and g(x) to build a solvable system. Never assume a coupled term is zero, and verify any guessed closed form against the relation.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q51
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Systems of Equations
+**est_time_seconds:** 95
+
+If 2x + 3y = 17 and 3x + 2y = 18, what is the value of x + y?
+
+- A) 1
+- B) 7
+- C) 12
+- D) 17
+- E) 35
+
+**answer:** B
+**hint_nudge:** You are asked for x + y, not for x and y separately — look for a way to get the combination directly.
+**hint_strategy:** Add the two equations. The coefficients on x and y become equal, which hands you a multiple of (x + y).
+**hint_setup:** Adding: (2x + 3x) + (3y + 2y) = 17 + 18 → 5x + 5y = 35 → 5(x + y) = 35.
+**fastest_path:** Add the equations: 5x + 5y = 35 → x + y = 7. No need to solve for x and y individually.
+**explanation:** Because the question asks for x + y, you do not need each variable. Adding the two equations lines up symmetric coefficients: (2x + 3y) + (3x + 2y) = 17 + 18 → 5x + 5y = 35 → x + y = 7. (If you did want the individuals: subtracting gives x − y = 1, so x = 4, y = 3 — check: 2(4) + 3(3) = 17 ✓.) The fast move is recognizing that a symmetric system answers a symmetric question in one step. The traps: subtracting instead of adding (which gives x − y = 1), or adding correctly to 35 but forgetting to divide by 5.
+**mistake_a:** Subtracted the equations, getting x − y = 1, and reported that instead of x + y.
+**mistake_c:** Solved for x = 4 and y = 3, then multiplied (xy = 12) instead of adding.
+**mistake_d:** Re-used the right-hand side 17 of the first equation as the answer.
+**mistake_e:** Added the equations to 5(x + y) = 35 but forgot to divide by 5.
+**common_trap:** solve-too-much — grinding out x and y separately (and risking the add-vs-subtract mixup) when adding the equations yields x + y directly. (tags: S1, CALC_SLIP)
+**takeaway:** When a system is symmetric and the question asks for a symmetric combination (x + y, x − y), add or subtract the equations to get it in one step.
+**related_reading:** reading-quant-04-algebra-and-equations
