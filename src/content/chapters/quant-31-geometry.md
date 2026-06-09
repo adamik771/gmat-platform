@@ -38,7 +38,7 @@ sections:
     type: reading
     title: "Quadrilaterals and regular polygons"
     intro: |
-      Quadrilaterals rarely generate hard questions on their own — the formulas are short and most setups are a formula-plug plus algebra. The real test is the interior-angle formula for polygons, which appears in disguise on DS questions about regular polygons. Know the angle-sum formula, the exterior-angle shortcut (faster on DS), and the six special quadrilateral formulas cold. This section should take under 10 minutes.
+      Quadrilaterals rarely generate hard questions on their own — the formulas are short and most setups are a formula-plug plus algebra. The real test is the interior-angle formula for polygons, which appears in disguise in questions about regular polygons. Know the angle-sum formula, the exterior-angle shortcut (the faster route), and the six special quadrilateral formulas cold. This section should take under 10 minutes.
     check_question_ids:
       - geometry-q3
       - geometry-q5
@@ -68,7 +68,7 @@ sections:
     type: reading
     title: "Inscribed figures and combined shapes"
     intro: |
-      Inscribed and combined figures are the upper tier of GMAT geometry — these are the questions worth a full two minutes. Every setup uses the same framework: identify the *shared element* between the two shapes (the link that converts one shape's measurement into the other's), then apply both formulas and one piece of algebra. The hardest version on the test — rectangle diagonal plus perimeter on DS — is solved by a single algebraic identity, not by finding the two sides separately.
+      Inscribed and combined figures are the upper tier of GMAT geometry — these are the questions worth a full two minutes. Every setup uses the same framework: identify the *shared element* between the two shapes (the link that converts one shape's measurement into the other's), then apply both formulas and one piece of algebra. The hardest version on the test — a rectangle's diagonal plus its perimeter — is solved by a single algebraic identity, not by finding the two sides separately.
     check_question_ids:
       - geometry-q16
       - geometry-q20
@@ -173,7 +173,7 @@ Every triangle: three interior angles sum to 180°.
 
 If two sides are 5 and 8, the third side satisfies |8 − 5| < x < 8 + 5, i.e., **3 < x < 13**. The third side can be any value in that range.
 
-**Converse of the Pythagorean theorem.** If a² + b² = c², the triangle is a right triangle with the right angle opposite c. This shows up on DS — statement "AB² + AC² = BC²" is sufficient to conclude angle A is a right angle.
+**Converse of the Pythagorean theorem.** If a² + b² = c², the triangle is a right triangle with the right angle opposite c. This shows up in disguise — being told "AB² + AC² = BC²" is enough to conclude angle A is a right angle.
 
 **Equilateral triangle formulas.** Side s:
 
@@ -338,9 +338,9 @@ For regular polygons (all angles equal), each interior angle is [(n − 2) × 18
 - Hexagon (n = 6): 720° total, so each angle is 120° in a regular hexagon.
 - Octagon (n = 8): 1080°, so each angle is 135° in a regular octagon.
 
-**The exterior-angle shortcut.** For any convex polygon, the sum of exterior angles is always **360°**. For a regular n-gon, each exterior angle is 360/n. This is often the fastest route on DS.
+**The exterior-angle shortcut.** For any convex polygon, the sum of exterior angles is always **360°**. For a regular n-gon, each exterior angle is 360/n. This is often the fastest route to the number of sides.
 
-**Example (DS shortcut).** "Each interior angle is 150°. How many sides?" Exterior angle = 180 − 150 = 30°. Number of sides = 360/30 = **12**. Three lines of arithmetic. Alternative via interior-angle-sum formula also works: [(n−2)×180]/n = 150 → 180n − 360 = 150n → 30n = 360 → n = 12.
+**Example (exterior-angle shortcut).** "Each interior angle is 150°. How many sides?" Exterior angle = 180 − 150 = 30°. Number of sides = 360/30 = **12**. Three lines of arithmetic. Alternative via interior-angle-sum formula also works: [(n−2)×180]/n = 150 → 180n − 360 = 150n → 30n = 360 → n = 12.
 
 **Area of a regular hexagon with side s:** 6 × (s² √3 / 4) = (3√3 × s²) / 2. Treat the hexagon as six equilateral triangles. Rarely tested but appears in 705+ problems.
 
@@ -504,11 +504,11 @@ Alternative: diagonal = s√2, so s = 10/√2 = 5√2, area = (5√2)² = 50. Ei
 - Sides L and W. Diagonal: L² + W² = 100. Perimeter: 2L + 2W = 28, so L + W = 14.
 - Square the sum: (L + W)² = L² + 2LW + W² = 196. Substitute: 100 + 2LW = 196, so LW = **48**.
 
-The general trick: **(L + W)² = (L² + W²) + 2LW**, so if you know sum-of-squares and sum, you can unlock the product LW, which is the area of the rectangle. This identity comes up constantly on DS.
+The general trick: **(L + W)² = (L² + W²) + 2LW**, so if you know sum-of-squares and sum, you can unlock the product LW, which is the area of the rectangle. This identity comes up constantly.
 
 **Combined circles and rectangles.** Shaded regions inside complex figures are usually (big shape area) − (small shape area). Sketch a clean diagram, label every known and unknown, and subtract.
 
-**When a DS problem gives "diagonal" in one statement and "perimeter" in the other.** Neither alone is sufficient (many L, W pairs satisfy each). Together, by the square-the-sum trick above, they lock down the product LW, so the answer is **C (together sufficient, neither alone)**.
+**When a problem gives a rectangle's diagonal and its perimeter.** Neither one alone fixes L and W (many L, W pairs share a given diagonal, and many share a given perimeter). But the two together, via the square-the-sum trick above, lock down the product LW — and hence the area — in a single step.
 
 **Area ratios in similar figures.** If two similar shapes have linear dimensions in ratio k, their areas are in ratio k² and volumes in ratio k³. Shows up when the problem doubles or halves a dimension and asks about the area change.
 
@@ -571,7 +571,7 @@ GMAT geometry is a formula-sheet topic. The student who has memorized the formul
 - Sphere volume: (4/3)πr³; surface area: 4πr²
 - Space diagonal of a box: √(L² + W² + H²)
 
-**The one identity that breaks hard combined-shape DS problems.** (L + W)² = L² + 2LW + W². If you're given sum-of-squares and sum, squaring the sum gives you the product LW.
+**The one identity that breaks hard combined-shape problems.** (L + W)² = L² + 2LW + W². If you're given sum-of-squares and sum, squaring the sum gives you the product LW.
 
 **Pattern-recognition table — what you see on the test:**
 
@@ -584,7 +584,7 @@ GMAT geometry is a formula-sheet topic. The student who has memorized the formul
 | Triangle inscribed with base = diameter | Semicircle corollary | Right angle at top vertex |
 | "Arc" or "sector" | Central angle fraction | (θ/360) × full-circle formula |
 | Two shapes share a boundary | Combined figure | Find the shared element |
-| DS: diagonal + perimeter of rectangle | Identity trick | (L+W)² = (L²+W²) + 2LW |
+| Rectangle's diagonal + perimeter | Identity trick | (L+W)² = (L²+W²) + 2LW |
 | Coordinates, two points | Distance formula | Check for a Pythagorean triple |
 
 **Time-management note.** Simple formula-plug questions (triangle with given sides, rectangle with given dimensions) should take under 45 seconds. Inscribed-figure and combined-shape questions take up to 2 minutes. Coordinate-geometry questions requiring multiple steps (find intersection, distance from intercept, etc.) take 90 seconds.

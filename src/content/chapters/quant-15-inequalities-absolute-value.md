@@ -82,7 +82,7 @@ Students who forget to flip write `x > 3` — exactly the wrong answer. A safer 
 - `x > 2` AND `x < 7` → `2 < x < 7` (one bounded interval — the overlap).
 - `x < −3` OR `x > 5` → two disjoint intervals (everything outside the gap).
 
-Be careful when *adding* two inequalities together. You may add two inequalities that point the same way: from `a > b` and `c > d` you get `a + c > b + d`. You may **not** subtract one inequality from another, and you may not multiply two inequalities unless you know all quantities are positive. This restriction shows up constantly on Data Sufficiency, where a tempting statement looks combinable but isn't. The reason subtraction fails is the same reflection principle: subtracting one inequality from another secretly negates it, and you can't negate an inequality without flipping it — so the "subtract straight across" move silently violates the flip rule.
+Be careful when *adding* two inequalities together. You may add two inequalities that point the same way: from `a > b` and `c > d` you get `a + c > b + d`. You may **not** subtract one inequality from another, and you may not multiply two inequalities unless you know all quantities are positive. This restriction shows up constantly, where a tempting pair of inequalities looks combinable but isn't. The reason subtraction fails is the same reflection principle: subtracting one inequality from another secretly negates it, and you can't negate an inequality without flipping it — so the "subtract straight across" move silently violates the flip rule.
 
 **Worked example — adding inequalities (and why subtracting fails).** Given `3 < x < 8` and `1 < y < 4`, find the full range of `x − y`.
 
@@ -116,7 +116,7 @@ There is a counting shortcut worth memorizing. For integers strictly between two
 
 Geometrically this is the set of points whose distance from 3 is between 2 and 7 — two symmetric "rings" on either side of 3. Picturing it as distance-from-3 is faster than algebra once you trust the image. The center is whatever value makes the inside zero (here x = 3); "greater than" gives the outside of a band, "less than" gives the inside.
 
-**Worked example — backsolving an inequality DS-style trap.** A question asks: the integer x satisfies `2 < |x − 3| < 7`; which of the following could be the value of x? With answer choices (A) 1 (B) 4 (C) 5 (D) 7 (E) 11.
+**Worked example — backsolving an inequality trap.** A question asks: the integer x satisfies `2 < |x − 3| < 7`; which of the following could be the value of x? With answer choices (A) 1 (B) 4 (C) 5 (D) 7 (E) 11.
 
 Here the strategic move is **plugging in the answer choices** (backsolving) rather than re-deriving the interval — five quick distance checks beat re-solving the compound inequality under time pressure. Compute `|choice − 3|` and demand it land strictly between 2 and 7:
 
@@ -146,11 +146,11 @@ Answer: `x < −4` OR `x > 3`. Note that x = −4 is excluded (the expression eq
 
 **Worked example — estimation under squaring.** Is `x² < x` true? Find all x.
 
-A common reflex is "always true since squaring shrinks things," but that only holds on a narrow band. Rewrite: `x² − x < 0`  →  `x(x − 1) < 0`. A product of two factors is negative only when they have opposite signs, which happens strictly between the roots: `0 < x < 1`. So `x² < x` *only* for x in `(0, 1)` — proper fractions. For `x = 0`, `x = 1`, negatives, or x greater than 1, the claim fails (e.g. `x = 2` gives `4 < 2`, false; `x = −1` gives `1 < −1`, false). This "fractions behave backwards" fact — squaring a number between 0 and 1 makes it *smaller* — is a frequent Data Sufficiency lever. When a DS statement says `0 < x < 1`, immediately recall the full ladder `x² < x < sqrt(x)`. The general technique on display here is **plugging in numbers from each regime** — a negative, a value in (0,1), and a value above 1 — to map where a claim holds; it turns an abstract inequality into three quick arithmetic tests.
+A common reflex is "always true since squaring shrinks things," but that only holds on a narrow band. Rewrite: `x² − x < 0`  →  `x(x − 1) < 0`. A product of two factors is negative only when they have opposite signs, which happens strictly between the roots: `0 < x < 1`. So `x² < x` *only* for x in `(0, 1)` — proper fractions. For `x = 0`, `x = 1`, negatives, or x greater than 1, the claim fails (e.g. `x = 2` gives `4 < 2`, false; `x = −1` gives `1 < −1`, false). This "fractions behave backwards" fact — squaring a number between 0 and 1 makes it *smaller* — is a frequent test lever. Whenever a problem tells you `0 < x < 1`, immediately recall the full ladder `x² < x < sqrt(x)`. The general technique on display here is **plugging in numbers from each regime** — a negative, a value in (0,1), and a value above 1 — to map where a claim holds; it turns an abstract inequality into three quick arithmetic tests.
 
 > **Recall check.** For `0 < x < 1`, order `x`, `x²`, and `sqrt(x)` from smallest to largest. (`x² < x < sqrt(x)` — squaring shrinks a proper fraction, taking the square root grows it.)
 
-**Trap to watch.** Reciprocals flip inequalities only when both sides have the same sign. `2 < 5` gives `1/2 > 1/5` (both positive, flips). But `−2 < 5` does NOT give `−1/2 > 1/5`; when the signs differ, the reciprocal relationship is not clean (−1/2 is in fact *less* than 1/5). This trap is frequent on Data Sufficiency, where you're told something like `a < b` and asked about `1/a` versus `1/b` — without knowing the signs of a and b, the statement is insufficient. The instant you see a reciprocal comparison in DS, your first question must be "do I know the signs?"; if not, lean toward insufficient until proven otherwise.
+**Trap to watch.** Reciprocals flip inequalities only when both sides have the same sign. `2 < 5` gives `1/2 > 1/5` (both positive, flips). But `−2 < 5` does NOT give `−1/2 > 1/5`; when the signs differ, the reciprocal relationship is not clean (−1/2 is in fact *less* than 1/5). This trap is frequent on the GMAT, where you're told something like `a < b` and asked about `1/a` versus `1/b` — without knowing the signs of a and b, the relationship can't be pinned down. The instant you see a reciprocal comparison, your first question must be "do I know the signs?"; if not, the comparison isn't settled.
 
 **Trap to watch — squaring an inequality.** You may square both sides only when both sides are known nonnegative. `−3 < 2` is true, but squaring gives the false `9 < 4`. The negative left side poisons the operation, exactly as with reciprocals. So treat squaring like reciprocal-taking: legal only on a same-sign (here, nonnegative) region, and never as a reflex to "clear" a square root or absolute value without first checking signs.
 
@@ -177,7 +177,7 @@ A common reflex is "always true since squaring shrinks things," but that only ho
 
 When an inequality has a polynomial (like `x^2 − 5x + 6 > 0`) or a rational expression (like `(x − 2)(x + 3) / (x − 1) < 0`), you can't just "isolate x" — the sign of the expression flips at each root. The **wavy-line method** (also called the sign-chart method) solves every polynomial or rational inequality in under 30 seconds once you know the technique. It's the single highest-leverage 705+ trick in algebra, and it is *bulletproof*: where slower test-takers reason their way region by region (and make a sign error somewhere in the middle), you draw one snaking curve and read the answer straight off.
 
-The reason this matters so much on the GMAT Focus Quant section is that the alternatives are slow and error-prone. You *could* test a sample value in every region — but a cubic has four regions, and on a timed section you will eventually plug a number into the wrong factor. The wavy line replaces four arithmetic checks with one curve and one rule (alternate, except bounce on even powers). Master it and an entire family of "hard" questions becomes mechanical. It also shows up disguised: Data Sufficiency statements like "Is `x^2 > x`?" are secretly asking "where is `x(x − 1) > 0`?" — and the test writers count on you to *not* see the disguise.
+The reason this matters so much on the GMAT Focus Quant section is that the alternatives are slow and error-prone. You *could* test a sample value in every region — but a cubic has four regions, and on a timed section you will eventually plug a number into the wrong factor. The wavy line replaces four arithmetic checks with one curve and one rule (alternate, except bounce on even powers). Master it and an entire family of "hard" questions becomes mechanical. It also shows up disguised: a question like "Is `x^2 > x`?" is secretly asking "where is `x(x − 1) > 0`?" — and the test writers count on you to *not* see the disguise.
 
 **The four-step recipe.**
 
@@ -308,7 +308,7 @@ We want `≤ 0`, which is the negative region. Answer: `x < 3`. Note `x = 3` is 
 
 **Trap to watch (the squaring/clearing shortcut that backfires).** It is tempting to "clear the denominator" in `(x − 1)/(x − 4) ≥ 0` by multiplying both sides by `(x − 4)`. **Do not** — because `(x − 4)` can be negative, multiplying by it may flip the inequality, and you won't know which way without already knowing the sign of `x − 4`. The wavy line sidesteps this entirely: keep the rational form, mark both roots, sweep. This is precisely why the method is safer than algebraic clearing.
 
-**Trap to watch (the Data Sufficiency disguise).** "Is `x^2 > x`?" is *not* answered by "is `x > 1`?" — that's the mistake the question is built to catch. Rearrange to `x^2 − x > 0`, i.e. `x(x − 1) > 0`, roots at 0 and 1. The wavy line gives positive *outside* the roots: `x < 0` OR `x > 1`. So `x^2 > x` is true for negative `x` too (e.g. `x = −2`: `4 > −2` ✓), and false on the whole interval `0 ≤ x ≤ 1`. Never divide an inequality by a variable whose sign you don't know — factor and sign-chart instead.
+**Trap to watch (the hidden disguise).** "Is `x^2 > x`?" is *not* answered by "is `x > 1`?" — that's the mistake the question is built to catch. Rearrange to `x^2 − x > 0`, i.e. `x(x − 1) > 0`, roots at 0 and 1. The wavy line gives positive *outside* the roots: `x < 0` OR `x > 1`. So `x^2 > x` is true for negative `x` too (e.g. `x = −2`: `4 > −2` ✓), and false on the whole interval `0 ≤ x ≤ 1`. Never divide an inequality by a variable whose sign you don't know — factor and sign-chart instead.
 
 **Common mistakes.**
 
@@ -327,7 +327,7 @@ We want `≤ 0`, which is the negative region. Answer: `x < 3`. Note `x = 3` is 
 
 Absolute value measures **distance from zero** on the number line. `|x| = 3` means x sits 3 units from zero, so x = 3 or x = −3. That single geometric idea — distance, never sign — is the engine behind every absolute-value equation and inequality on the GMAT. Because distance can be reached from either direction, almost every absolute-value statement **splits into two cases**, and the entire topic is really about doing that split cleanly and then checking your work against the never-negative rule. The hardest problems in this section never test the splitting mechanically; they test whether you remember to *isolate first*, *screen for negatives*, and *verify after squaring*. Get those three reflexes automatic and absolute value becomes one of the most reliable point-sources on the Quant section.
 
-Keep one fact bolted down before anything else: `|expression|` is **always ≥ 0**. It can equal zero (when the inside is zero) and it can be any positive number, but it can never be negative. Half the traps in this section are just that rule wearing a disguise — a statement that *looks* like it constrains x but actually tells you nothing, or one that looks solvable but has no solution at all. On Data Sufficiency especially, "no solution" and "always true" are both decisive answers, so reading the never-negative rule correctly is often the whole problem.
+Keep one fact bolted down before anything else: `|expression|` is **always ≥ 0**. It can equal zero (when the inside is zero) and it can be any positive number, but it can never be negative. Half the traps in this section are just that rule wearing a disguise — a condition that *looks* like it constrains x but actually tells you nothing, or one that looks solvable but has no solution at all. Both "no solution" and "always true" are decisive outcomes, so reading the never-negative rule correctly is often the whole problem.
 
 **The two-case recipe for `|expression| = k` (with `k ≥ 0`):**
 
@@ -412,7 +412,7 @@ Result: `−4 < x < 1` OR `5 < x < 10`. Two symmetric bands sitting on either si
 
 **Strategic trick — backsolve a "how many solutions" question.** Consider: *How many integer values of x satisfy `|x − 5| + |x + 1| = 6`?* Rather than wrestling with two nested absolute values algebraically, recognize the geometry: `|x − 5| + |x + 1|` is the **total distance from x to 5 plus the distance from x to −1**. The two anchor points are −1 and 5, which are 6 apart. Any point *between* them (inclusive) has total distance exactly equal to that gap, 6; any point outside adds extra on both ends. So every x with `−1 ≤ x ≤ 5` works, giving integers −1, 0, 1, 2, 3, 4, 5 — **seven** values. Backsolving by testing x = 0 (`5 + 1 = 6` ✓) and x = 6 (`1 + 7 = 8` ✗) confirms the boundary instantly. **Sum-of-two-distances equal to the gap means "anywhere between the anchors"** — a pattern worth memorizing cold.
 
-**When the right-hand side can be negative — the silent edge cases.** These appear constantly on Data Sufficiency, where they quietly make a statement sufficient or useless:
+**When the right-hand side can be negative — the silent edge cases.** These appear constantly, and they quietly make a problem trivial (no solution) or wide open (always true):
 
 - `|expr| = −5` → **no solution.** Absolute value can't equal a negative number.
 - `|expr| > −5` → **always true.** Absolute value is always ≥ 0, which already exceeds −5, so every real x works. This is often a statement that looks restrictive but tells you *nothing*.
@@ -450,7 +450,7 @@ The only solution is `x = 3`. Had you trusted the algebra and reported both, you
 - **Splitting before isolating.** `3|x + 2| − 5 = 10` must become `|x + 2| = 5` first; cases on the un-isolated form are wrong.
 - **Dropping the negative branch** of a greater-than inequality (writing only `x > 8` for `|x − 3| > 5` and forgetting `x < −2`).
 - **Chaining a greater-than** into one inequality like `−2 > x > 8` — impossible; greater-than is OR, never a single chain.
-- **Forgetting the never-negative rule**, declaring `|expr| = −5` "no real info" when it actually means **no solution** (a powerful DS fact).
+- **Forgetting the never-negative rule**, declaring `|expr| = −5` "no real info" when it actually means **no solution** (a powerful fact).
 - **Trusting squared-equation roots** without re-checking, then including an extraneous solution.
 - **Ignoring the constraint when a variable sits opposite the bars** — failing to require that side ≥ 0 and keeping a candidate that makes it negative.
 - **Flipping the inequality direction** only when you multiply or divide by a negative — that lives in the inequalities rules, and it still applies inside absolute-value work after you split.

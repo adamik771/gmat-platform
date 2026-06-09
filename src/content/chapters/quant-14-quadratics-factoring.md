@@ -133,12 +133,13 @@ The discriminant is the tool for any question phrased around the *number* of sol
 - `k² − 4(1)(9) > 0` → `k² − 36 > 0` → `k² > 36`.
 - So `k > 6` **or** `k < −6`. The trap is reporting only `k > 6`; `k² > 36` is satisfied by large-magnitude negatives too. Write `k² > 36 ⇒ |k| > 6` to catch both branches.
 
-**Worked example (discriminant inside Data Sufficiency thinking).** Does `x² + 6x + c = 0` have two distinct real solutions? (1) `c = 8`. (2) `c < 9`.
+**Worked example (discriminant as the deciding quantity).** For how many of the values `c = 7, 8, 9, 10` does `x² + 6x + c = 0` have two distinct real solutions?
 
 - The condition for two distinct real solutions is `b² − 4ac > 0`, i.e. `36 − 4c > 0`, i.e. `c < 9`.
-- Statement (1): `c = 8 < 9`, so yes — two distinct roots. Sufficient.
-- Statement (2): `c < 9` is *exactly* the condition, so it guarantees two distinct roots for every allowed `c`. Sufficient.
-- Answer: each statement alone suffices (D). The lesson: in DS, translate the *number-of-solutions* question into the discriminant inequality first, then test the statements against that single inequality. Don't get baited into solving for `x`.
+- `c = 7` and `c = 8` satisfy `c < 9` → two distinct roots each.
+- `c = 9` gives discriminant `36 − 36 = 0` → one repeated root, not two.
+- `c = 10` gives discriminant `36 − 40 < 0` → no real roots.
+- So **2** of the four values produce two distinct real solutions. The lesson: translate a *number-of-solutions* question into the discriminant inequality first, then test the candidates against that single inequality. Don't get baited into solving for `x`.
 
 > **Recall check.** A quadratic `ax² + bx + c = 0` has exactly one real solution. What does that tell you about `b² − 4ac`, and what does it tell you about the two roots? (`b² − 4ac = 0`; the two roots coincide — it's a repeated/double root, so the trinomial is a perfect square.)
 
@@ -250,7 +251,7 @@ This *looks* unfamiliar but it's the same identity with `y = 1/x`. Square both s
 
 > **Self-explanation prompt.** Why does squaring `x + 1/x` always produce a clean `+2` in the middle, regardless of the value of x? (Because the cross term is `2 · x · (1/x)`, and `x · (1/x) = 1` for any nonzero x, so the middle term is forced to be exactly `2`.)
 
-**An edge case worth one minute of your study time: sign ambiguity.** Suppose `x + 1/x = 5` and the question asks for `x − 1/x`. You'd compute `(x − 1/x)² = (x + 1/x)² − 4·x·(1/x) = 25 − 4 = 21`, so `x − 1/x = ±√21`. The square gives you a *magnitude*; the *sign* is not determined unless you know whether `x > 1/x`. On Data Sufficiency, this ambiguity is frequently the entire trap: a statement that pins down `(x − y)²` does **not** pin down `x − y`. Always ask, "does squaring lose a sign I needed?"
+**An edge case worth one minute of your study time: sign ambiguity.** Suppose `x + 1/x = 5` and the question asks for `x − 1/x`. You'd compute `(x − 1/x)² = (x + 1/x)² − 4·x·(1/x) = 25 − 4 = 21`, so `x − 1/x = ±√21`. The square gives you a *magnitude*; the *sign* is not determined unless you know whether `x > 1/x`. This ambiguity is frequently the entire trap: knowing `(x − y)²` does **not** tell you `x − y`. Always ask, "does squaring lose a sign I needed?"
 
 **Difference of squares as a computation shortcut.** The identity `a² − b² = (a − b)(a + b)` is the most useful one on the test, and not only for factoring. Use it to dodge ugly arithmetic.
 

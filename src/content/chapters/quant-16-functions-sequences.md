@@ -116,7 +116,7 @@ Now the strategic alternative, in case the algebra felt slippery. This is **back
 
 The single-input version (a "postfix" symbol like `n#`) trips people who expect two slots. Read the definition's arity — how many inputs it takes — before plugging.
 
-**Worked example (custom operator that hides a Data Sufficiency trap).** Define `x ▽ y = x + y − xy`. A DS question asks: *Is `a ▽ b = 0`?* with **Statement (1):** `a = 0`. Substitute literally: `a ▽ b = 0 + b − 0·b = b`. So `a ▽ b = 0` exactly when `b = 0`. Statement (1) alone fixes `a` but says nothing about `b` — **insufficient.** The lesson: even after you correctly substitute, a custom-operator DS question still demands you ask "does the statement pin down *every* surviving variable?" The intimidating symbol is resolved by substitution; the sufficiency judgment is a separate, ordinary DS step. Don't let relief at cracking the operator make you sloppy on sufficiency.
+**Worked example (custom operator — substitute literally).** Define `x ▽ y = x + y − xy`. If `a ▽ b = 0` and `a = 0`, what is the value of `b`? Substitute literally: `a ▽ b = 0 + b − 0·b = b`, so the condition `a ▽ b = 0` becomes simply `b = 0`. The value is **b = 0**. The lesson: the intimidating symbol is fully resolved by substitution — `▽` is just shorthand for `x + y − xy`. Once you plug in the given value, what's left is an ordinary equation. The only trap is letting relief at decoding the operator make you sloppy on the algebra that follows.
 
 **Trap to watch.** When a custom operator appears *inside* an expression with regular arithmetic, resolve the custom operator first unless parentheses say otherwise, and never assume it commutes or associates. `(a ◇ b) ◇ c` is generally not `a ◇ (b ◇ c)`. Check with the earlier definition `a ◇ b = 2a − b`: `(1 ◇ 2) ◇ 3 = 0 ◇ 3 = −3`, but `1 ◇ (2 ◇ 3) = 1 ◇ 1 = 1`. Different answers — so grouping is everything.
 
@@ -150,7 +150,7 @@ The elegant interpretation: the sum of n terms equals n times the *average* term
 
 The "`+ 1`" in the count is the classic **fence-post** error: the gaps between terms number one fewer than the terms themselves. Always `(last − first)/d + 1`. Forgetting the `+ 1` here would give 13 terms and a sum of `(13/2)(125) = 812.5` — not even an integer, which is itself a clue you miscounted.
 
-**Worked example (estimation as a sanity check).** A 700-level DS-style prompt asks for the sum of the integers from 17 to 83 inclusive, and one answer choice is 3,300. Should you trust it? Don't grind — **estimate.** The count is `(83 − 17) + 1 = 67`. The average term is `(17 + 83)/2 = 50`. So the sum is about `67 × 50 = 3,350`. The candidate 3,300 is close but not exact, so it is wrong; the true value is exactly `67 × 50 = 3,350`. **Estimation** here doubles as the actual method — "count times average term" *is* the sum — and it instantly flags a near-miss decoy. When answer choices are spread out, a 10-second estimate often eliminates three of them.
+**Worked example (estimation as a sanity check).** A 700-level prompt asks for the sum of the integers from 17 to 83 inclusive, and one answer choice is 3,300. Should you trust it? Don't grind — **estimate.** The count is `(83 − 17) + 1 = 67`. The average term is `(17 + 83)/2 = 50`. So the sum is about `67 × 50 = 3,350`. The candidate 3,300 is close but not exact, so it is wrong; the true value is exactly `67 × 50 = 3,350`. **Estimation** here doubles as the actual method — "count times average term" *is* the sum — and it instantly flags a near-miss decoy. When answer choices are spread out, a 10-second estimate often eliminates three of them.
 
 > **Recall check.** Without scrolling up, state the formula for the nth term of an arithmetic sequence and the formula for the nth term of a geometric sequence. Now state the sum formula for an arithmetic sequence, and the rule for counting how many terms run from first to last. (`aₙ = a₁ + (n − 1)d`; `aₙ = a₁ × r^(n − 1)`; `Sₙ = (n/2)(a₁ + aₙ)`; count `= (last − first)/d + 1`.) If you can write them from memory, you've encoded the template; if not, re-read the boxes and try again in two minutes. Retrieval beats re-reading — that's the single most robust finding in the learning-science literature.
 
@@ -168,13 +168,13 @@ Same `(n − 1)` logic: to reach the nth term you *multiply* by `r` exactly `n �
 
 Two things bite here. First, the exponent is `4 − 1 = 3`, not 4. Second, a negative ratio makes the terms **alternate in sign**: 2, −6, 18, −54, … An odd power of a negative is negative; an even power is positive. If a question asks for the sign of a far-out term, you don't need its value — just the parity of the exponent.
 
-**Worked example (geometric, solve for the ratio with a hidden second answer).** A geometric sequence has `a₁ = 4` and `a₃ = 36`. What is `a₂`? Using `a₃ = a₁ · r^2`: `36 = 4r^2`, so `r^2 = 9` and `r = ±3`. **Both signs are legal** for a geometric sequence. If `r = 3`, then `a₂ = 4·3 = 12`; if `r = −3`, then `a₂ = 4·(−3) = −12`. A Problem Solving question that lists only 12 is exploiting the assumption that `r` must be positive; a well-built DS question would be *insufficient* precisely because of the `±`. **Trap:** taking the square root of `r^2` without writing the negative branch. Whenever a geometric problem hands you an even-spaced relationship (`a₁` and `a₃`, or `a₂` and `a₄`), expect two ratios unless the problem rules one out (e.g., "all terms positive").
+**Worked example (geometric, solve for the ratio with a hidden second answer).** A geometric sequence has `a₁ = 4` and `a₃ = 36`. What is `a₂`? Using `a₃ = a₁ · r^2`: `36 = 4r^2`, so `r^2 = 9` and `r = ±3`. **Both signs are legal** for a geometric sequence. If `r = 3`, then `a₂ = 4·3 = 12`; if `r = −3`, then `a₂ = 4·(−3) = −12`. A Problem Solving question that lists only 12 is exploiting the assumption that `r` must be positive; the correct reading carries both 12 and −12 unless the problem rules one out. **Trap:** taking the square root of `r^2` without writing the negative branch. Whenever a geometric problem hands you an even-spaced relationship (`a₁` and `a₃`, or `a₂` and `a₄`), expect two ratios unless the problem rules one out (e.g., "all terms positive").
 
 **Sum of a geometric sequence:**
 
     Sₙ = a₁ × (1 − rⁿ) / (1 − r)   (for r ≠ 1)
 
-Rare on the GMAT but occasionally appears in 705+ DS questions about compounding. You will far more often just write out the handful of terms and add them — for short geometric sequences that is faster and less error-prone than the formula.
+Rare on the GMAT but occasionally appears in 705+ questions about compounding. You will far more often just write out the handful of terms and add them — for short geometric sequences that is faster and less error-prone than the formula.
 
 **The "recurrence" definition.** Some GMAT problems define a sequence recursively: "each term is the previous plus 5" (`aₙ = aₙ₋₁ + 5`) or "each term is twice the previous minus 3" (`aₙ = 2aₙ₋₁ − 3`). Write out the first 4–5 terms to spot the pattern, then apply the arithmetic or geometric formula **only if one cleanly fits**. Many recurrences are neither purely arithmetic nor purely geometric — the `2aₙ₋₁ − 3` type, for instance — and the safe move there is to grind out terms.
 
@@ -228,7 +228,7 @@ The trap is satisfying one condition and forgetting the other. When a function h
 - Treating `f(a + b)` as `f(a) + f(b)` — only true if `f` is strictly linear (no exponent, no constant inside a product). For `f(x) = x^2`, it fails.
 - Skipping the inner step in `f(f(x))` and writing `f(x + x)` — coincidentally right sometimes, usually wrong.
 - Assuming a custom operator commutes (`a ◇ b = b ◇ a`) or associates (`(a ◇ b) ◇ c = a ◇ (b ◇ c)`) — usually false.
-- Cracking a custom-operator DS question's substitution but then forgetting to check sufficiency for *every* remaining variable.
+- Cracking a custom-operator question's substitution but then mishandling the ordinary equation that's left.
 - Using `n` instead of `(n − 1)` in the sequence term formulas — the universal off-by-one.
 - Forgetting the `+ 1` when counting terms — the fence-post error.
 - Dropping the sign on `(−r)` raised to an odd power, or taking only the positive root when `r^2 = k` (the missing `±r` branch in geometric problems).

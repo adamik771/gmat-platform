@@ -2,6 +2,25 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-10 (DS-format cleanup: Quant chapters made Problem-Solving-only)
+
+Picked up from the 2026-06-08→10 handoff below. Two of its three OPEN items are now resolved:
+- **OPEN #1 (merge `claude/quant-chapters-deeper`) → DONE.** It was merged as **PR #361** (`origin/main` = `1cda399`). The deepened Quant topic chapters are live.
+- **OPEN #2 (DS-format leak in Quant chapters) → DONE this session.** GMAT Focus Quant is Problem-Solving-only (DS lives in Data Insights), but the chapters presented Data Sufficiency as a live Quant question type — not just isolated "Is k odd? Statement (1)/(2)…" examples but whole DS-strategy passages (exponent sign-DS, the linear-dependence "C-trap" section, the percent dollar-anchor "DS pattern," the statistics mean/median/range DS examples, etc.).
+
+### What was done — branch `claude/quant-ds-to-ps-cleanup` (off main; pushed, NOT merged)
+- Converted **every DS-format worked example → an equivalent Problem-Solving question** with a single numeric/answer-choice answer that teaches the same concept, and **scrubbed all "Statement (1)/(2)" / "on Data Sufficiency" framing** so nothing tells a Focus-Quant student to expect DS. Underlying concepts were preserved (parity identities, even-power sign ambiguity, linear dependence / `ae−bd≠0`, dollar-anchor = rate+anchor, range needs both extremes, zero-SD, etc.).
+- **16 chapter files changed:** examples converted in quant-05, 08, 09, 10, 11, 13, 14, 16, 19, 23; phrase-level DS scrubs in quant-07, 15, 26, 27, 29; plus quant-31-geometry (cleaned at Adam's request even though geometry is off-syllabus and still pending a hide/delete decision).
+- **Kept** the one legit cross-reference: quant-30-timing's "no Data Sufficiency on this screen — that work lives in Data Insights now."
+- **Verified:** `npx tsc --noEmit` clean; `npm run validate:content` → **0 errors** (4 warnings + 18 info, all pre-existing — the warnings are RC `duplicate-prompt`, unrelated to chapters); worked-example marker counts identical before/after in all converted files (converted in place, dropped nothing); 0 HTML entities; no stray `---` HR lines; full-repo DS sweep shows only the quant-30 cross-ref remaining.
+- Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/quant-ds-to-ps-cleanup?expand=1`
+
+### STILL OPEN
+- **Geometry (`quant-31`)** is off-syllabus (GMAT Focus removed it). Its DS framing is now cleaned, but the **hide/delete decision for the whole chapter is still Adam's call.**
+- Optional (unchanged): www-canonical sitemap; rotate the once-exposed `ANTHROPIC_API_KEY` (prod tutor is off — no key on Vercel); per-sub-topic question tagging.
+
+---
+
 ## CONTEXT SWITCH — 2026-06-08→10 (Ship deep-explanations to prod + full chapter-architecture rebuild across all 3 sections)
 
 Long multi-day session continuing from the deep-explanations work below. Everything is shipped to prod except the one open PR noted at the end. `gh` is NOT installed — PRs are opened from `https://github.com/adamik771/gmat-platform/compare/main...<branch>?expand=1` and merged in the browser.

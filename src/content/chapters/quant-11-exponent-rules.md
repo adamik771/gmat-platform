@@ -230,7 +230,7 @@ Here **backsolving** — testing answer choices against the equation — is fast
 
 ## @even-odd-exponent-signs
 
-Sign behavior with exponents follows one simple rule — but the GMAT uses it in subtle ways, especially in Data Sufficiency. This whole section is really about one question: **after I raise something to a power, can I still tell whether it was positive or negative?** Sometimes yes, sometimes no — and knowing which is which is the difference between a clean "sufficient" and a careless wrong answer. The same machinery shows up in Problem Solving too, hidden inside expressions like (−1)^n or −x^4, where the test is betting you'll compute fast and attach the wrong sign. Slow down on the sign; speed up on the magnitude. That order is the entire skill.
+Sign behavior with exponents follows one simple rule — but the GMAT uses it in subtle ways. This whole section is really about one question: **after I raise something to a power, can I still tell whether it was positive or negative?** Sometimes yes, sometimes no — and knowing which is which is the difference between a clean answer and a careless wrong one. The machinery hides inside expressions like (−1)^n or −x^4, where the test is betting you'll compute fast and attach the wrong sign. Slow down on the sign; speed up on the magnitude. That order is the entire skill.
 
 **Even exponent → always non-negative.** (−3)^2 = 9, not −9. Raising any real number to an even power erases the sign. The pairs cancel: (−3)^2 = (−3)(−3) = 9. Concretely: (−a)^even = a^even. The intuition: an even exponent means the negative signs come in matched pairs, and every pair of negatives multiplies to a positive. Two negatives, four negatives, six negatives — they always pair off with none left over. The only way an even power equals zero is if the base itself is zero; otherwise the result is strictly positive. So "even power" really means "non-negative," and for a nonzero base it means "positive."
 
@@ -261,36 +261,36 @@ Take each term with the parenthesis test. (−1)^4: even power, so +1. (−1)^5:
 
 Don't reach for a calculator instinct — there is no big number to compute, only parity to read. 100 even → +1. 99 odd → −1. 50 even → +1. 51 odd → −1. Substitute, watching the subtraction signs: (+1) − (−1) + (+1) − (−1) = 1 + 1 + 1 + 1 = 4. The double-negative on the odd terms is the only place to slip. The named tactic here is **reduce to parity first, arithmetic second**: convert every power to ±1 before you touch the plus and minus signs between terms.
 
-> **Self-explanation prompt.** Without looking: (a) What is (−5)^4? (b) What is −5^4? (c) Why are they different? Then: in a DS context, if you're told x^6 = 64, can you determine the sign of x? If your answer is "no, because an even exponent loses sign information," you understand the DS trap. If you said yes, re-read the section above — the even-exponent erasure is the entire point. (Answers: (a) +625; (b) −625; (c) the parentheses pull the minus through the even power in (a), but in (b) the exponent acts first and the minus is applied last.)
+> **Self-explanation prompt.** Without looking: (a) What is (−5)^4? (b) What is −5^4? (c) Why are they different? Then: if you're told x^6 = 64, can you determine the sign of x? If your answer is "no, because an even exponent loses sign information," you understand the trap. If you said yes, re-read the section above — the even-exponent erasure is the entire point. (Answers: (a) +625; (b) −625; (c) the parentheses pull the minus through the even power in (a), but in (b) the exponent acts first and the minus is applied last.)
 
-**The DS trap: even exponents hide sign.** If a question tells you x^2 = 9, you cannot conclude x = 3. You know x = 3 or x = −3. Even exponents destroy sign information, so you cannot recover it from the result alone. DS statements of the form "x^2 = k" are almost never sufficient alone when the sign of x matters. The same logic applies to x^4 = 16 (x = ±2), x^6 = 64 (x = ±2), and any even power: the equation hands you a magnitude but withholds the sign. The lone exception is x^even = 0, which pins x = 0 exactly — zero has no sign to hide.
+**The trap: even exponents hide sign.** If a problem tells you x^2 = 9, you cannot conclude x = 3 — you know x = 3 or x = −3. Even exponents destroy sign information, so you cannot recover it from the result alone. A fact of the form "x^2 = k" almost never pins down x by itself when the sign matters; you must carry both roots. The same logic applies to x^4 = 16 (x = ±2), x^6 = 64 (x = ±2), and any even power: the equation hands you a magnitude but withholds the sign. The lone exception is x^even = 0, which pins x = 0 exactly — zero has no sign to hide.
 
-**The DS shortcut: odd exponents reveal sign.** If a statement says x^5 > 0, you can conclude x > 0 — because an odd power preserves sign, a positive result demands a positive base. This is a clean "sufficient alone" pattern that appears on hard DS questions. Symmetrically, x^5 < 0 forces x < 0, and x^3 = −8 forces x = −2 exactly (only one real cube root, sign included). Odd powers are **invertible with sign intact**; even powers are not.
+**The shortcut: odd exponents reveal sign.** If you know x^5 > 0, you can conclude x > 0 — because an odd power preserves sign, a positive result demands a positive base. That single fact pins the sign cleanly. Symmetrically, x^5 < 0 forces x < 0, and x^3 = −8 forces x = −2 exactly (only one real cube root, sign included). Odd powers are **invertible with sign intact**; even powers are not.
 
 The table below is the whole section compressed into a decision grid. When a statement gives you a power equal to (or compared with) a constant, find the row and read off whether the sign is recoverable.
 
 | You're told | Exponent | Sign recoverable? | Conclusion |
 |---|---|---|---|
-| x^2 = 9 | even | No | x = 3 or x = −3 (insufficient if sign matters) |
+| x^2 = 9 | even | No | x = 3 or x = −3 (two candidates if sign matters) |
 | x^4 = 16 | even | No | x = 2 or x = −2 |
 | x^6 = 0 | even | Yes | x = 0 (only case where even pins it) |
 | x^3 = 27 | odd | Yes | x = 3 uniquely |
 | x^5 > 0 | odd | Yes | x > 0 |
 | x^5 < 0 | odd | Yes | x < 0 |
 
-> **Recall check.** A DS statement says n^4 = 81. Can you determine n? What about a statement that says n^3 = 27? (No for the first — n = 3 or n = −3; yes for the second — n = 3 uniquely, because odd powers keep the sign.)
+> **Recall check.** A problem tells you n^4 = 81. Can you determine n? What about n^3 = 27? (No for the first — n = 3 or n = −3; yes for the second — n = 3 uniquely, because odd powers keep the sign.)
 
-**Worked example (DS reasoning — plugging in numbers).** Is x > 0? Statement (1): x^2 = 49. Statement (2): x^3 < 0.
+**Worked example (even hides sign, odd reveals it — plugging in numbers).** If x^2 = 49 and x^3 < 0, what is the value of x?
 
-Test statement (1) by **plugging in numbers** that satisfy it. x = 7 works (x > 0) and x = −7 also works (x < 0). The same statement allows both a positive and a negative answer to the question, so (1) is **not sufficient**. Now statement (2): x^3 < 0. An odd power preserves sign, so a negative cube means a negative base — x must be negative, so "Is x > 0?" is definitively **No**. A definite "No" is still a definite answer, so (2) **is sufficient**. The answer is (B): statement (2) alone is sufficient. The trick named here is **plug in numbers**: when an even-power statement looks sufficient, deliberately try one positive and one negative value to expose the hidden sign ambiguity.
+From x^2 = 49, **plugging in numbers** shows the ambiguity directly: x = 7 works and x = −7 works too, so the even power alone leaves two candidates. Now bring in x^3 < 0: an odd power preserves sign, so a negative cube means a negative base — x must be negative. That eliminates +7 and leaves **x = −7**. The lesson, and the named tactic: when an even-power equation looks like it "solves" the problem, deliberately try one positive and one negative value to expose the hidden sign ambiguity, then use an odd-power fact (or any sign information) to break the tie.
 
 **Worked example (hard — combining parity with inequalities, backsolving the logic).** If x is a nonzero number and x^5 and x^2 have opposite signs, what can you conclude about x?
 
 Reason through parity. x^2 is an even power, so x^2 is **always positive** (x is nonzero). For x^5 to have the **opposite** sign from x^2, x^5 must be negative. x^5 is an odd power, so x^5 negative forces x negative. Conclusion: **x < 0.** You can confirm by **backsolving** with a candidate: try x = −2. Then x^2 = 4 (positive) and x^5 = −32 (negative) — opposite signs, condition satisfied. Try x = +2: x^2 = 4 and x^5 = 32, both positive — condition fails. So only negative x works, confirming the deduction. The strategic move: rather than juggle abstract sign rules, **pick a concrete negative number and a concrete positive number and check which one fits the stated condition.**
 
-**Worked example (hard DS — combining two statements with sign logic).** Is x = −4? Statement (1): x^2 = 16. Statement (2): x^3 < 0.
+**Worked example (hard — two facts pin a unique value with sign logic).** If x^2 = 16 and x^3 < 0, what is x?
 
-Statement (1) alone: x^2 = 16 means x = 4 or x = −4. Could be either, so the answer to "Is x = −4?" is sometimes yes, sometimes no — **insufficient**. Statement (2) alone: x^3 < 0 means x < 0, but x could be any negative number (−4, −1, −100), so we can't confirm it's exactly −4 — **insufficient**. Together: (1) narrows x to {4, −4}; (2) forces x negative, eliminating 4 and leaving x = −4 uniquely. The answer to "Is x = −4?" is now a definite **yes**. The answer is (C): both statements together are sufficient, neither alone. Watch the trap — a tempting wrong path treats (1) as already sufficient because "x^2 = 16 looks solved." The even power is precisely what leaves two candidates, and only the odd-power statement breaks the tie.
+Take the facts in turn. x^2 = 16 means x = 4 or x = −4 — two candidates, because the even power has thrown away the sign. x^3 < 0 means x < 0, but on its own that allows any negative number (−4, −1, −100), so it doesn't name a value either. Put them together: x^2 = 16 narrows x to {4, −4}, and x^3 < 0 forces x negative, eliminating 4 and leaving **x = −4** uniquely. Watch the trap — it's tempting to treat x^2 = 16 as already "solved" at x = 4. The even power is precisely what leaves two candidates, and only the odd-power fact breaks the tie.
 
 **Procedure to memorize — reading any signed power.**
 
@@ -298,16 +298,16 @@ Statement (1) alone: x^2 = 16 means x = 4 or x = −4. Could be either, so the a
 2. **Read the exponent's parity.** Even or odd?
 3. **Apply the sign rule.** Negative base + even exponent → positive. Negative base + odd exponent → negative. Positive base → always positive.
 4. **Only now compute the magnitude.** Evaluate the power as if everything were positive, then attach the sign from step 3.
-5. **In DS, run the inverse.** Given a result, ask: was the exponent even (sign lost — try ± values) or odd (sign preserved — unique answer)?
+5. **Run the inverse.** Given a result, ask: was the exponent even (sign lost — carry both ± values) or odd (sign preserved — unique answer)?
 
-**Trap to watch.** The deadliest trap is treating −x^2 and (−x)^2 as interchangeable, or assuming x^2 = 9 "means" x = 3. Both errors come from skipping step 1 (locate the base) or skipping the DS inverse in step 5. Whenever you see an even power equal to a constant in a DS statement, your reflex should be "**two values, probably not sufficient**" — not "solved it." And whenever you see a bare negative in front of a power, your reflex should be "**negate last**," not "the answer is positive." A second, sneakier trap: even powers don't only hide the minus sign, they can also make a small fraction look like growth — but the sign rule is the one the GMAT tests most.
+**Trap to watch.** The deadliest trap is treating −x^2 and (−x)^2 as interchangeable, or assuming x^2 = 9 "means" x = 3. Both errors come from skipping step 1 (locate the base) or skipping the sign-inverse in step 5. Whenever you see an even power equal to a constant, your reflex should be "**two values — carry both**" — not "solved it." And whenever you see a bare negative in front of a power, your reflex should be "**negate last**," not "the answer is positive." A second, sneakier trap: even powers don't only hide the minus sign, they can also make a small fraction look like growth — but the sign rule is the one the GMAT tests most.
 
 **Common mistakes.**
 
 - Writing (−3)^2 = −9. The even power makes it +9; the negatives pair off.
 - Confusing −2^4 (= −16) with (−2)^4 (= +16). No parentheses means the exponent acts first.
-- Concluding x = 3 from x^2 = 9 in a DS problem, forgetting x = −3 is equally valid.
-- Thinking an odd-power statement like x^3 > 0 is "not enough" — it actually pins the sign and is often sufficient alone.
+- Concluding x = 3 from x^2 = 9, forgetting x = −3 is equally valid.
+- Thinking an odd-power fact like x^3 > 0 is "not enough" — it actually pins the sign down completely.
 - Mishandling the subtraction between ±1 terms (e.g., reading − (−1) as −1 instead of +1) when summing powers of −1.
 - Computing the big number before checking the sign, then losing track of whether to negate.
 
@@ -316,10 +316,10 @@ Statement (1) alone: x^2 = 16 means x = 4 or x = −4. Could be either, so the a
 - (−a)^odd = negative (always)
 - (−1)^even = 1, (−1)^odd = −1 (pure sign switch)
 - −a^even = negative, but (−a)^even = positive (parentheses decide)
-- x^even = k > 0 → x = ±sqrt(k) (two solutions; not signed, so even-power DS alone is usually insufficient)
-- x^odd > 0 → x > 0, and x^odd < 0 → x < 0 (one solution; sign is determined, often sufficient alone)
+- x^even = k > 0 → x = ±sqrt(k) (two solutions; not signed, so an even-power fact alone usually leaves the sign open)
+- x^odd > 0 → x > 0, and x^odd < 0 → x < 0 (one solution; sign is determined outright)
 
-**Recap.** Even exponents erase sign — every result is non-negative, and in DS that means an even-power equation hands you a magnitude but hides the ±, so probe it with one positive and one negative value. Odd exponents preserve sign — the result carries the base's sign, so an odd-power fact (positive, negative, or an exact value) usually nails down the sign and can be sufficient alone. The parenthesis test decides whether a leading minus rides through the power or gets applied last, and powers of −1 collapse to a simple parity count. Read the base first (the parenthesis test), read the parity second, attach the sign third, and compute the magnitude last. Master that order and the GMAT's favorite sign traps stop working on you.
+**Recap.** Even exponents erase sign — every result is non-negative, which means an even-power equation hands you a magnitude but hides the ±, so carry both the positive and negative root. Odd exponents preserve sign — the result carries the base's sign, so an odd-power fact (positive, negative, or an exact value) nails down the sign outright. The parenthesis test decides whether a leading minus rides through the power or gets applied last, and powers of −1 collapse to a simple parity count. Read the base first (the parenthesis test), read the parity second, attach the sign third, and compute the magnitude last. Master that order and the GMAT's favorite sign traps stop working on you.
 
 ## @scientific-notation
 
@@ -395,7 +395,7 @@ You don't need a precise product — the choices differ only in their exponents,
 
 **A second trap — the decimal-count slip.** When converting, count *places moved*, not *zeros visible*. For 6,300,000 the answer is 10⁶ (six slides), even though there are only five trailing zeros after the 63. Counting zeros instead of slides is the single most common conversion error, and it's always an off-by-one in the exponent.
 
-**The load-bearing benchmark: 2¹⁰ ≈ 10³.** Exactly, 2¹⁰ = 1,024. This approximation lets you compare powers of 2 against powers of 10 with no calculator: 2²⁰ ≈ 10⁶, 2³⁰ ≈ 10⁹, and in general 2¹⁰ⁿ ≈ 10³ⁿ. The approximation runs slightly low (1,024 is about 2.4% above 1,000), but for GMAT comparison and order-of-magnitude questions it's close enough — and one of the hardest exponent Data Sufficiency questions on the test hinges on recognizing it. If a problem asks "is 2⁴⁰ greater than 10¹²?", convert: 2⁴⁰ = (2¹⁰)⁴ ≈ (10³)⁴ = 10¹², and since 2¹⁰ is actually a hair above 10³, 2⁴⁰ is just *above* 10¹². That's the whole question.
+**The load-bearing benchmark: 2¹⁰ ≈ 10³.** Exactly, 2¹⁰ = 1,024. This approximation lets you compare powers of 2 against powers of 10 with no calculator: 2²⁰ ≈ 10⁶, 2³⁰ ≈ 10⁹, and in general 2¹⁰ⁿ ≈ 10³ⁿ. The approximation runs slightly low (1,024 is about 2.4% above 1,000), but for GMAT comparison and order-of-magnitude questions it's close enough — and one of the hardest exponent comparison questions on the test hinges on recognizing it. If a problem asks "is 2⁴⁰ greater than 10¹²?", convert: 2⁴⁰ = (2¹⁰)⁴ ≈ (10³)⁴ = 10¹², and since 2¹⁰ is actually a hair above 10³, 2⁴⁰ is just *above* 10¹². That's the whole question.
 
 **Worked example (the benchmark in action).** Roughly how many digits does 2³⁰ have?
 

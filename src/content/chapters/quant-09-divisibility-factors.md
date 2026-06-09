@@ -51,7 +51,7 @@ problem_sets:
 
 ## @divisibility-rules
 
-Every 685+ scorer has the full set of divisibility rules memorized. Not because the test asks you to *state* them — because they let you factor mentally at test-speed without scratch paper. When a question buries a factor of 3 inside a five-digit number, the scorer who knows the digit-sum rule has the answer before the slow solver has finished writing the long-division bracket. These rules are not trivia; they are the difference between a 90-second problem and a 30-second problem, and on a section where time is the binding constraint, that gap decides scores. Divisibility shows up everywhere on GFQ — in remainder questions, in number-properties Data Sufficiency, in factor-counting, in word problems where a quantity must split evenly into groups. You will not always *see* the word "divisible," but the underlying machinery is the same, so the payoff from owning this table is enormous.
+Every 685+ scorer has the full set of divisibility rules memorized. Not because the test asks you to *state* them — because they let you factor mentally at test-speed without scratch paper. When a question buries a factor of 3 inside a five-digit number, the scorer who knows the digit-sum rule has the answer before the slow solver has finished writing the long-division bracket. These rules are not trivia; they are the difference between a 90-second problem and a 30-second problem, and on a section where time is the binding constraint, that gap decides scores. Divisibility shows up everywhere on GFQ — in remainder questions, in number-properties problems, in factor-counting, in word problems where a quantity must split evenly into groups. You will not always *see* the word "divisible," but the underlying machinery is the same, so the payoff from owning this table is enormous.
 
 **The rules, in the order you'll use them:**
 
@@ -101,9 +101,9 @@ The 4-rule depends only on the **last two digits**, which here are `B2`. So I ne
 
 You could add: `5 + 55 + 555 + 5555 = 6170`. Now apply the 9-rule to the result: digit sum `= 6 + 1 + 7 + 0 = 14`, which is not divisible by 9. So N is **not** divisible by 9. The strategic point: when a problem hands you a clumsy sum and asks about divisibility, compute the sum once and let the digit-sum rule finish the job — you do not need to perform a single division. (Cross-check with the 3-rule: 14 isn't divisible by 3 either, so N isn't even divisible by 3, let alone 9.)
 
-**Worked example (medium-hard — backsolving Data Sufficiency).** Here is the same machinery in a Data Sufficiency frame, where the named tactic is *test extreme cases*. Statement: "The three-digit number `5K1` is divisible by 3." Is K uniquely determined?
+**Worked example (medium-hard — divisibility by 3 with an unknown digit).** For how many digits K (from 0 to 9) is the three-digit number `5K1` divisible by 3?
 
-The 3-rule gives digit sum `= 5 + K + 1 = 6 + K`. For divisibility by 3, `6 + K` must be a multiple of 3; since 6 is already a multiple of 3, K itself must be a multiple of 3. The single-digit multiples of 3 are `0, 3, 6, 9` — four values, so K is **not** uniquely determined. The tactic of writing the digit sum as "known multiple of 3, plus the unknown" instantly reveals that the unknown alone carries the divisibility, which is exactly the kind of shortcut that turns a DS statement from a guess into a certainty. Had the statement instead fixed the number to be divisible by 9, the digit sum `6 + K` would need to hit 9 or 18, giving `K = 3` or `K = 12` (rejected) — a *unique* K = 3, and the answer flips.
+The 3-rule gives digit sum `= 5 + K + 1 = 6 + K`. For divisibility by 3, `6 + K` must be a multiple of 3; since 6 is already a multiple of 3, K itself must be a multiple of 3. The single-digit multiples of 3 are `0, 3, 6, 9` — **four** values. Writing the digit sum as "known multiple of 3, plus the unknown" instantly reveals that the unknown digit alone carries the divisibility, which is exactly the kind of shortcut that turns a divisibility question from a guess into a certainty. Had the problem instead required `5K1` to be divisible by 9, the digit sum `6 + K` would need to hit 9 or 18, giving `K = 3` only (`K = 12` is rejected) — a *unique* value, and the count drops to one.
 
 **Worked example (hard — answer-choice elimination, *named tactic: estimation/elimination*).** Which of the following is divisible by both 8 and 9?
 
@@ -156,7 +156,7 @@ That leaves (A) and (B) both passing — which means the question as posed would
 
 Answers: (1) **Yes** — digit sum 5+7+6=18, divisible by 9. (2) **Yes** — last three digits are 848; 848 ÷ 8 = 106. (3) **Yes** — digit sum 4+6+5+3=18, divisible by 3. (4) **Yes** — alternating sum from right: 2−3+4−3=0, and 0 is divisible by 11. If (2) slowed you down, the last-three-digits rule for 8 is the one worth drilling — find the three digits, divide by 8, done.
 
-**Recap.** Memorize the nine rules, but more importantly memorize their *shapes*: last-digit (2, 5, 10), digit-sum (3, 9), trailing-block (4, 8), alternating-sum (11). For any composite divisor, split it into **coprime** factors and demand that every factor's rule passes — never split into pieces that share a prime. When the rule meets an unknown digit, write the digit sum (or last-block) as "known part plus unknown" and let the unknown carry the divisibility — that move solves the "find the digit" and DS variants instantly. On answer-choice questions, layer the cheapest, most selective rules to eliminate fast instead of dividing, and backsolve when no rule exists. Skip a memory rule for 7; just divide. Master this and you factor at the speed the 685+ section demands — mentally, without scratch paper.
+**Recap.** Memorize the nine rules, but more importantly memorize their *shapes*: last-digit (2, 5, 10), digit-sum (3, 9), trailing-block (4, 8), alternating-sum (11). For any composite divisor, split it into **coprime** factors and demand that every factor's rule passes — never split into pieces that share a prime. When the rule meets an unknown digit, write the digit sum (or last-block) as "known part plus unknown" and let the unknown carry the divisibility — that move solves the "find the digit" variants instantly. On answer-choice questions, layer the cheapest, most selective rules to eliminate fast instead of dividing, and backsolve when no rule exists. Skip a memory rule for 7; just divide. Master this and you factor at the speed the 685+ section demands — mentally, without scratch paper.
 
 ## @factors-and-multiples
 
@@ -205,9 +205,9 @@ It is worth seeing the two rules side by side, because under time pressure the o
 - LCM = max powers = 2^3 × 3^2 = 8 × 9 = 72.
 - Sanity check with the identity below: 24 × 36 = 864, and GCF × LCM = 12 × 72 = 864. Match confirms both answers.
 
-**The GCF-LCM identity.** For any two positive integers m and n: m × n = GCF(m, n) × LCM(m, n). Useful on Data Sufficiency when the question gives you any three of {m, n, GCF, LCM} and asks for the fourth. (Note: this two-number identity does *not* extend to three or more numbers — m × n × p ≠ GCF × LCM in general. Use it only for pairs.)
+**The GCF-LCM identity.** For any two positive integers m and n: m × n = GCF(m, n) × LCM(m, n). Useful whenever a question gives you any three of {m, n, GCF, LCM} and asks for the fourth. (Note: this two-number identity does *not* extend to three or more numbers — m × n × p ≠ GCF × LCM in general. Use it only for pairs.)
 
-**Worked example (DS — using the identity to backsolve for a value).** What is the value of m? n = 12, GCF(m, n) = 6, LCM(m, n) = 36.
+**Worked example (using the identity to backsolve for a value).** What is the value of m? n = 12, GCF(m, n) = 6, LCM(m, n) = 36.
 
 Using m × n = GCF × LCM: 12m = 6 × 36 = 216, so m = 18. Check: GCF(18, 12) = 6, LCM(18, 12) = 36. The identity turns a "find the number" puzzle into one division — that's the whole reason to memorize it. Named tactic: when a stem hands you three of the four quantities, **backsolve through the identity** rather than hunting for the number by trial; the algebra is a single step and leaves no room for arithmetic drift.
 

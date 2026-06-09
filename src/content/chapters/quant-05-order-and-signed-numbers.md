@@ -131,7 +131,7 @@ Answers: (1) **0** — (−3)² = 9 and 3² = 9, difference is 0. (2) **−16** 
 
 ## @integers-vs-non-integers
 
-The GMAT cares intensely about whether a number is an integer or not. Many Data Sufficiency questions hinge on this single distinction, and many Problem Solving traps plant a non-integer where a student assumed an integer.
+The GMAT cares intensely about whether a number is an integer or not. This single distinction underlies a whole class of traps, where a problem plants a non-integer exactly where a student assumed an integer.
 
 **Integer facts to internalize:**
 
@@ -142,37 +142,36 @@ The GMAT cares intensely about whether a number is an integer or not. Many Data 
 
 **When the GMAT tests integer-ness:**
 
-1. "Is x an integer?" Data Sufficiency. Requires you to track whether a division produces a clean result.
+1. Problems that hinge on whether a quantity is an integer — you must track whether a division produces a clean (whole-number) result or a fraction.
 2. "How many integer values of x satisfy…?" Count carefully; endpoints matter.
 3. Word problems where the unknown must be an integer by context (people, books, trips).
 
-**The fraction-comparison trick.** `p/q > 1/2` is equivalent to `2p > q` (assuming `q > 0`). You can cross-multiply to compare fractions, but only if you know the sign of the denominator. If `q` could be negative, the inequality can flip. On the GMAT, Data Sufficiency problems will exploit this ambiguity.
+**The fraction-comparison trick.** `p/q > 1/2` is equivalent to `2p > q` (assuming `q > 0`). You can cross-multiply to compare fractions, but only if you know the sign of the denominator. If `q` could be negative, the inequality can flip. The GMAT will exploit this ambiguity, so confirm the sign of the denominator before you cross-multiply.
 
-**Example.** Is `p/q > 1/2`? You're told `q = 2p − 5`.
+**Example.** For how many of the integers `p = 1, 2, 3, 4, 5` is `p/(2p − 5) > 1/2`?
 
-Manipulate: `p/q > 1/2` becomes `2p > q` when `q > 0`. Substituting `q = 2p − 5`: we want `2p > 2p − 5`, i.e., `0 > −5`. Always true (given `q > 0`). So statement (2) is sufficient.
+The instinct is to cross-multiply `p/q > 1/2` into `2p > q`, but that step is valid only when `q = 2p − 5 > 0` — that is, when `p ≥ 3`. For those values, `2p > 2p − 5` reduces to `0 > −5`, always true, so `p = 3, 4, 5` all work. For `p = 1` and `p = 2` the denominator is negative; cross-multiplying would flip the inequality, and a direct check shows `p/q` is negative there — not greater than `1/2`. So **3** of the five values satisfy it. The takeaway: never cross-multiply a fraction comparison until you know the sign of the denominator.
 
 **Terminating vs non-terminating decimals.** A fraction `a/b` (in lowest terms) has a terminating decimal if and only if `b` has no prime factors other than 2 and 5. `3/8 = 0.375` (b = 2³, terminates). `1/3 = 0.333…` (b = 3, doesn't terminate). `1/6 = 0.1666…` (b = 2 × 3, the 3 forces non-termination).
 
-**Trap to watch.** "x is a positive number" does NOT mean "x is a positive integer." Always read the problem twice to check whether the integer constraint was given. Students who assume integers when the problem allowed rationals lose points on Data Sufficiency constantly.
+**Trap to watch.** "x is a positive number" does NOT mean "x is a positive integer." Always read the problem twice to check whether the integer constraint was given. Students who assume integers when the problem allowed rationals lose points constantly.
 
-**The DS integer-assumption pattern — one of the highest-leverage distinctions in this chapter.**
+**The integer-assumption pattern — one of the highest-leverage distinctions in this chapter.**
 
 The GMAT will state integer constraints explicitly when they matter, using language like "n is a positive integer," "k is a whole number," "x is divisible by 3," or "p is prime." If those words aren't there, x can be 1.5, 0.7, or √2.
 
-**Example.** Is x² > x?
+**Example.** For which of these values is x² > x?  I. x = −2   II. x = 1/2   III. x = 3
 
-- If x is any real number: x = 0.5 gives 0.25 > 0.5, which is false. x = 2 gives 4 > 2, which is true. Whether x² > x depends entirely on whether x > 1, x = 0 or 1, or x is between 0 and 1 or negative — no single statement can answer this without pinning x down precisely.
-- Statement (1): x > 1. Then x² > x always (multiply both sides of x > 1 by x, which is positive). **Sufficient** — and "x > 1" says nothing about integers.
+`x² > x` is *not* automatically true — it holds only when x < 0 or x > 1, and fails for 0 ≤ x ≤ 1. Check each: x = −2 gives 4 > −2 (true); x = 1/2 gives 1/4 > 1/2 (false); x = 3 gives 9 > 3 (true). So **I and III**. Notice that the condition "x > 1" would capture III but says nothing about whether x is an integer — 1.5 qualifies just as much as 3. The region x lives in, not its integer-ness, is what decides x² versus x.
 
-**The "x² = 9" sufficiency split.** What is x, given x² = 9?
+**The "x² = 9" two-root issue.** The equation x² = 9 has *two* solutions, x = 3 and x = −3.
 
-- With no constraints: x = 3 or x = −3. **Not sufficient.**
-- With "x is a positive real number": x = 3 only. **Sufficient.**
-- With "x is a positive integer": x = 3 only. **Sufficient.**
+- With no constraints, both survive — you cannot name a single value.
+- With "x is a positive real number," only x = 3.
+- With "x is a positive integer," only x = 3.
 
-Same equation; the sufficiency verdict changes with the domain. On every DS question involving a squared variable, ask immediately: "could x be negative?" If the problem doesn't rule it out, it can't be ruled out.
+Same equation; the answer changes with the domain. Whenever a squared variable appears and you're tempted to write one root, ask immediately: "could x be negative?" If the problem doesn't rule it out, you must carry both roots — and the test writer is usually counting on you to drop the negative one.
 
-**DS language that signals integer context (pattern-match on sight):** "n is a positive integer" / "k is a whole number" / "factor of" / "multiple of" / "divisible by" / "prime" / "remainder when divided by" — any of these phrases signal you're in integer territory. Without them, stay in real-number territory and test fractions as candidates.
+**Language that signals integer context (pattern-match on sight):** "n is a positive integer" / "k is a whole number" / "factor of" / "multiple of" / "divisible by" / "prime" / "remainder when divided by" — any of these phrases signal you're in integer territory. Without them, stay in real-number territory and test fractions as candidates.
 
 > **Self-explanation prompt.** Why does `1/7` not terminate? If you can say "because 7 has no factors of 2 or 5, so no power of 10 is divisible by 7," you've internalized the rule — and you'll never have to memorize terminating-decimal lists.

@@ -82,7 +82,7 @@ GMAT speed standard: for two-digit numbers, prime factorization is usually faste
 1. **Fraction simplification.** Divide numerator and denominator by GCF. `42/98 ÷ (14/14) = 3/7`. No guessing, one step.
 2. **Adding fractions.** The LCD is the LCM of the denominators. `1/8 + 1/12` → LCD = LCM(8, 12) = 24 → `3/24 + 2/24 = 5/24`.
 3. **Cycle word problems.** "Two buses depart together; bus A runs every 8 minutes, bus B every 12 minutes. When do they next depart together?" → LCM(8, 12) = **24 minutes**. Any "when do two periodic events coincide?" question is LCM in disguise.
-4. **Data Sufficiency.** "Is GCF(x, y) > 1?" — the test will ask this in disguise as "do x and y share a common prime factor?" or "is there a number greater than 1 that divides both x and y?"
+4. **Shared-factor questions.** "Is GCF(x, y) > 1?" — the test will ask this in disguise as "do x and y share a common prime factor?" or "is there a number greater than 1 that divides both x and y?"
 
 **The "fully reduced" check.** After reducing a fraction, verify the result by checking that numerator and denominator share no prime factors. For `3/7`: 3 is prime, 7 is prime, they're different — fully reduced. For `6/14`: both are divisible by 2 → not reduced. The GMAT includes partially-reduced equivalents as trap answer choices (see Q13).
 
