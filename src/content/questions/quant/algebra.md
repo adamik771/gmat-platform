@@ -20,6 +20,11 @@ If 3x + 7 = 22, what is the value of 6x + 5?
 **hint_nudge:** You don't actually need to know x — notice the expression 6x + 5 has a relationship to 3x + 7.
 **hint_strategy:** 6x = 2(3x), so if you can isolate 3x from the given equation you can multiply and add without solving for x.
 **hint_setup:** From 3x + 7 = 22 you get 3x = 15. Then 6x + 5 = 2(3x) + 5 = 2(15) + 5.
+**fastest_path:** Don't solve for x in isolation — notice 6x = 2(3x). From 3x + 7 = 22 you get 3x = 15, so 6x = 30 and 6x + 5 = 35.
+**common_trap:** Reporting an intermediate quantity (6x = 30) instead of the exact expression the question asks for (6x + 5).
+**takeaway:** Re-read the target expression before you grid an answer. The test rewards the value asked for, not the first value you happen to compute.
+**mistake_b:** 30 is 6x — you found it correctly but forgot to add the +5 the question asks for.
+**mistake_a:** 25 comes from computing 6x = 30 and then subtracting the 5 instead of adding it.
 **explanation:** Because the quantity sought, 6x + 5, depends on the value of x, we first determine x from the given linear equation and then evaluate the requested expression. Let x denote the unknown quantity. The given condition is that 3x + 7 = 22. Subtracting 7 from both sides yields 3x = 15, and dividing both sides by 3 gives x = 5. We now substitute this value into the expression 6x + 5: 6(5) + 5 = 30 + 5 = 35.
 
 The correct answer is C.
@@ -41,6 +46,12 @@ Which of the following is equivalent to (x³)⁴ / x⁵?
 - E) x¹⁷
 
 **answer:** B
+**fastest_path:** Power-of-a-power multiplies (3 × 4 = 12); same-base division subtracts (12 − 5 = 7). The answer is x⁷ with no expansion.
+**common_trap:** Mixing the exponent rules — adding exponents when you should multiply, or adding the denominator's exponent instead of subtracting it.
+**takeaway:** Keep the two operations straight: a power raised to a power multiplies exponents; dividing like bases subtracts them.
+**mistake_a:** x² comes from adding the numerator exponents (3 + 4 = 7) instead of multiplying, then subtracting 5.
+**mistake_c:** x¹² is the simplified numerator (x³)⁴ — but you forgot to divide by x⁵.
+**mistake_e:** x¹⁷ comes from multiplying to get x¹² and then adding the denominator's 5 instead of subtracting it.
 **explanation:** This problem is solved by applying the laws of exponents. Two rules govern the computation. First, the power-of-a-power rule states that raising a power to another power multiplies the exponents: (x^a)^b = x^(a*b). Second, the quotient rule for like bases states that dividing powers of the same base subtracts the exponents: x^a / x^b = x^(a-b).
 
 Let the expression be (x^3)^4 / x^5. We simplify the numerator first. Applying the power-of-a-power rule, we have (x^3)^4 = x^(3*4) = x^12. The expression therefore becomes x^12 / x^5.
@@ -66,6 +77,11 @@ If -3x + 9 > 0, which of the following must be true?
 - E) x = 3
 
 **answer:** D
+**fastest_path:** Isolate the variable term: −3x > −9, then divide by −3 and FLIP the sign, giving x < 3.
+**common_trap:** Forgetting to reverse the inequality direction when dividing (or multiplying) by a negative number.
+**takeaway:** The one rule that breaks inequalities: dividing or multiplying by a negative flips the sign. Flag the negative coefficient before you divide.
+**mistake_a:** x > 3 is what you get if you divide by −3 without flipping the inequality sign.
+**mistake_c:** x < −3 keeps the flip but mishandles the constant (−9 ÷ −3 is +3, not −3).
 **explanation:** To determine which statement must be true, we solve the given linear inequality for x, applying the rule that multiplying or dividing both sides of an inequality by a negative quantity reverses the direction of the inequality.
 
 We begin with the inequality −3x + 9 > 0. Subtracting 9 from both sides yields −3x > −9. We now isolate x by dividing both sides by −3. Because −3 is negative, the inequality sign reverses, giving x < 3.
@@ -91,6 +107,11 @@ If x + y = 12 and x - y = 4, what is the value of x?
 - E) 16
 
 **answer:** C
+**fastest_path:** Add the two equations so y cancels: 2x = 16, so x = 8 in a single step.
+**common_trap:** Solving the system correctly but reporting the wrong variable, or stopping at an intermediate quantity like 2x.
+**takeaway:** When coefficients are equal and opposite, add to eliminate — then confirm the variable you isolated is the one the question wants.
+**mistake_a:** 4 is the value of y (from subtracting the equations: 2y = 8). You solved the system but answered for the wrong variable.
+**mistake_e:** 16 is 2x — you stopped one step early and forgot to divide by 2.
 **explanation:** When a system of two linear equations contains a variable whose coefficients are equal in magnitude and opposite in sign, the equations can be combined by addition to eliminate that variable in a single step. Here we are given the system x + y = 12 and x - y = 4, and we are asked for the value of x. The term y appears with coefficient +1 in the first equation and coefficient -1 in the second equation, so adding the two equations together cancels y. Adding the left sides and the right sides separately gives (x + y) + (x - y) = 12 + 4, which simplifies to 2x = 16. Dividing both sides by 2 yields x = 8. The correct answer is C.
 **related_reading:** reading-quant-04-algebra-and-equations
 
@@ -110,6 +131,12 @@ If x² - 5x - 14 = 0, what is the product of the two solutions?
 - E) 14
 
 **answer:** A
+**fastest_path:** Product of the roots = c/a = −14/1 = −14. No factoring required.
+**common_trap:** Confusing the product of roots (c/a) with the sum (−b/a), or losing the sign of c.
+**takeaway:** Vieta's formulas: sum of roots = −b/a, product = c/a. Read which one is asked and carry the sign of c exactly.
+**mistake_c:** 5 is −b (= −(−5)) — that is the sum of the roots, not the product the question asks for.
+**mistake_d:** 7 is one of the two roots (the equation factors to x = 7 and x = −2), not their product.
+**mistake_e:** 14 drops the negative sign of c; the product is −14, not +14.
 **explanation:** For any quadratic equation of the form ax² + bx + c = 0, Vieta's formulas relate the coefficients to the two solutions: the product of the solutions equals c/a. We can therefore determine the requested product directly from the coefficients, without first solving for the individual roots.
 
 The given equation is x² − 5x − 14 = 0. Comparing this with ax² + bx + c = 0, we identify a = 1, b = −5, and c = −14.
@@ -140,6 +167,12 @@ If f(x) = x² + 2, what is f(a + 1) − f(a − 1)?
 **hint_nudge:** The argument contains a variable — work symbolically rather than plugging in a specific number.
 **hint_strategy:** Expand f(a + 1) and f(a − 1) separately using the formula, then subtract.
 **hint_setup:** f(a + 1) = (a + 1)² + 2 = a² + 2a + 3; now find f(a − 1) the same way.
+**fastest_path:** f(a+1) − f(a−1) = (a+1)² − (a−1)², a difference of squares = (2)(2a) = 4a. The +2 constants cancel.
+**common_trap:** Plugging in a specific number for a and reporting a numeral, or forgetting that the constant terms cancel in the difference.
+**takeaway:** For f(a+1) − f(a−1) with a quadratic, the difference of squares collapses to a linear 4a. Work symbolically and track the cancellations.
+**mistake_b:** 4 typically comes from substituting a convenient value like a = 1 and reporting the number instead of the general expression 4a.
+**mistake_a:** 2 is (a+1) − (a−1) — you found the difference of the inputs but never squared them through f.
+**mistake_e:** 2a² keeps an a² term that should have canceled when the two squares were subtracted.
 **explanation:** Because the argument of the function contains a variable, we evaluate the function symbolically by substituting the given expressions directly into the rule for f and then simplifying.
 
 Let f(x) = x^2 + 2. To find f(a + 1), we substitute a + 1 for x:
@@ -177,6 +210,10 @@ At a bakery, 2 muffins and 3 scones cost $21, while 4 muffins and 1 scone cost $
 - E) $5
 
 **answer:** E
+**fastest_path:** From the second equation s = 17 − 4m; substitute into the first: 2m + 3(17 − 4m) = 21 → −10m = −30 → m = 3, so s = 5.
+**common_trap:** Solving the system correctly but answering for the wrong unknown — the muffin price instead of the scone price.
+**takeaway:** Label your variables and underline what's asked. Word-problem systems punish solving for the variable you isolated first instead of the one requested.
+**mistake_c:** 3 is the muffin price m, not the scone price s the question asks for.
 **explanation:** A pair of conditions relating two unknown quantities can be expressed as a system of two linear equations, which is solved by isolating one variable and substituting into the other equation.
 
 Let m represent the cost in dollars of one muffin and let s represent the cost in dollars of one scone. The condition that 2 muffins and 3 scones cost $21 translates to 2m + 3s = 21, and the condition that 4 muffins and 1 scone cost $17 translates to 4m + s = 17.
@@ -204,6 +241,12 @@ If 2 < |x - 3| < 7, how many integer values of x satisfy the inequality?
 - E) 10
 
 **answer:** C
+**fastest_path:** Read it as a distance ring: 2 < |x − 3| < 7 means x sits between 2 and 7 units from 3, so x is in (−4, 1) or (5, 10). Count integers: 4 + 4 = 8.
+**common_trap:** Treating the strict inequalities as inclusive and counting the boundary integers (−4, 1, 5, 10).
+**takeaway:** A two-sided |x − c| inequality carves out two symmetric bands. Sketch them on a number line and respect strict vs. inclusive endpoints when counting.
+**mistake_d:** 9 comes from including one excluded boundary (such as 1 or 5); both inequalities are strict, so the endpoints don't count.
+**mistake_e:** 10 includes both excluded boundary pairs, as if the inequalities were ≤ rather than <.
+**mistake_b:** 7 is an off-by-one — one integer in one of the two bands was dropped.
 **explanation:** A compound absolute-value inequality of the form a < |expression| < b is equivalent to two simultaneous conditions: the value of the expression must lie more than a units from zero and fewer than b units from zero. We therefore split the statement 2 < |x - 3| < 7 into the two requirements |x - 3| > 2 and |x - 3| < 7, find the integers satisfying both, and count them.
 
 Let x denote the unknown. The condition |x - 3| > 2 means that x - 3 is more than 2 units from zero, so x - 3 > 2 or x - 3 < -2. Adding 3 to each part gives x > 5 or x < 1.
@@ -233,6 +276,11 @@ If the roots of the equation x² + bx + c = 0 are each increased by 2, the resul
 - E) 5
 
 **answer:** A
+**fastest_path:** The new roots are 1 and 5, so the original roots are −1 and 3. Then b = −(sum) = −2 and c = product = −3, giving b + c = −5.
+**common_trap:** Shifting the roots in the wrong direction. "Increased by 2" means the NEW roots equal the old roots plus 2, so old = new − 2.
+**takeaway:** When roots are transformed, find the known roots first, invert the transformation to recover the originals, then apply Vieta's formulas. Track the direction of the shift.
+**mistake_e:** 5 results from shifting the roots the wrong way (adding 2 to the new roots instead of subtracting) or sign-flipping b + c.
+**mistake_b:** −3 is c alone (the product of the original roots); you found c but dropped b.
 **explanation:** This problem is governed by the relationship between the coefficients of a monic quadratic and its roots, expressed through Vieta's formulas: for x² + px + q = 0, the sum of the roots equals −p and the product of the roots equals q.
 
 We begin with the resulting equation, x² − 6x + 5 = 0, because its roots are known quantities. Factoring gives (x − 1)(x − 5) = 0, so the roots of the resulting equation are 1 and 5.
@@ -262,6 +310,10 @@ If 4^(a+1) = 8^a, what is the value of a?
 - E) 6
 
 **answer:** B
+**fastest_path:** Rewrite both sides over base 2: 2^(2a+2) = 2^(3a), so 2a + 2 = 3a, giving a = 2.
+**common_trap:** Setting the exponents equal before rewriting both sides to the same base, or distributing a power only to part of an exponent.
+**takeaway:** Exponential equations unlock when you force a common base first, THEN equate exponents. Here 4 = 2² and 8 = 2³.
+**mistake_a:** a = 1 comes from writing (2²)^(a+1) as 2^(2a+1) — distributing the outer power to a but not to the +1 — which gives 2a + 1 = 3a.
 **explanation:** When an exponential equation involves powers of different bases, the governing method is to express both sides as powers of a single common base; once the bases are identical, the equation holds precisely when the exponents are equal.
 
 Let a denote the unknown exponent. The two bases, 4 and 8, are both powers of 2, since 4 = 2^2 and 8 = 2^3. We rewrite each side accordingly.
@@ -297,6 +349,11 @@ For all positive integers n, let f(n) = n² - n. What is the value of f(f(3))?
 - E) 42
 
 **answer:** C
+**fastest_path:** Work inside-out: f(3) = 9 − 3 = 6, then f(6) = 36 − 6 = 30.
+**common_trap:** Evaluating only the inner function and forgetting to apply f a second time.
+**takeaway:** f(f(3)) is two steps — evaluate the inside fully, then feed that number back into f. Always work strictly inside-out.
+**mistake_a:** 6 is f(3), the inner value — you stopped before applying f the second time.
+**mistake_d:** 36 is 6², from forgetting the −n term when computing f(6) = 6² − 6.
 **explanation:** This problem requires evaluating a composite function, in which a function is applied to the output of the same function. The governing principle is that f(f(3)) is evaluated from the inside outward: we first determine the value of the inner expression f(3), and then apply f to that result.
 
 Let f(n) = n^2 - n for all positive integers n.
@@ -326,6 +383,10 @@ If xy = 6 and x² + y² = 20, what is the value of (x + y)²?
 - E) 36
 
 **answer:** D
+**fastest_path:** (x + y)² = x² + y² + 2xy = 20 + 2(6) = 32. No need to find x and y individually.
+**common_trap:** Dropping the middle term 2xy, or forgetting the factor of 2 on it.
+**takeaway:** (x + y)² = x² + y² + 2xy. The cross term is the entire point of these "squared sum" problems — never drop the 2.
+**mistake_a:** 26 = 20 + 6 — you added xy once but forgot the factor of 2 in 2xy.
 **explanation:** This problem is solved most efficiently by applying the algebraic identity for the square of a sum rather than by determining the individual values of the variables.
 
 Let x and y be the two unknowns. The expansion of the square of their sum is given by the identity (x + y)² = x² + 2xy + y². This can be rewritten as (x + y)² = (x² + y²) + 2(xy), which expresses the target quantity entirely in terms of the two values that are provided.
@@ -356,6 +417,11 @@ What is the sum of the solutions to x² + 4x - 21 = 0?
 - E) 7
 
 **answer:** B
+**fastest_path:** Sum of the roots = −b/a = −4/1 = −4. (Check: the roots are −7 and 3, which sum to −4.)
+**common_trap:** Reporting an individual root instead of the requested sum, or dropping the sign on −b.
+**takeaway:** Sum of roots = −b/a — instant from the coefficients. Don't factor and then report just one root.
+**mistake_d:** 3 is one of the two roots, not the sum the question asks for.
+**mistake_a:** −7 is the other root, again not the sum.
 **explanation:** The sum of the solutions of a quadratic equation can be found directly from its coefficients. For any quadratic equation of the form ax² + bx + c = 0, the sum of its solutions equals −b/a.
 
 In the given equation x² + 4x − 21 = 0, we identify the coefficients as a = 1, b = 4, and c = −21. Applying the relationship, the sum of the solutions is
@@ -387,6 +453,10 @@ If x² - 10x + k = 0 has exactly one real solution, what is the value of k?
 - E) 50
 
 **answer:** D
+**fastest_path:** One repeated root means discriminant = 0: (−10)² − 4(1)k = 0 → 100 = 4k → k = 25.
+**common_trap:** Solving for the root (x = 5) instead of the constant k, or mishandling the discriminant equation.
+**takeaway:** "Exactly one real solution" is code for discriminant zero. Set b² − 4ac = 0 and solve for the unknown the question names.
+**mistake_a:** 5 is the repeated root x of the resulting perfect square (x − 5)², not the value of k.
 **explanation:** A quadratic equation of the form ax² + bx + c = 0 has exactly one real solution (a repeated root) precisely when its discriminant equals zero, that is, when b² − 4ac = 0.
 
 Let the equation be x² − 10x + k = 0. Comparing it with the standard form ax² + bx + c = 0, we identify a = 1, b = −10, and c = k.
@@ -420,6 +490,10 @@ If 3x + 2y = 16 and 5x - 2y = 16, what is the value of x + y?
 - E) 8
 
 **answer:** C
+**fastest_path:** The y-terms are +2y and −2y, so add the equations: 8x = 32, x = 4; back-substitute y = 2; x + y = 6.
+**common_trap:** Stopping at x and forgetting the question asks for x + y.
+**takeaway:** Elimination gives one variable fast, but finish the job — back-substitute for the second variable and combine exactly as asked.
+**mistake_a:** 4 is x alone; the question asks for x + y.
 **explanation:** A system of two linear equations in two unknowns can be solved efficiently by the elimination method, in which the equations are combined so that one variable cancels. We are given the two equations 3x + 2y = 16 and 5x - 2y = 16. Because the coefficients of y are equal in magnitude and opposite in sign (+2 and -2), adding the two equations term by term eliminates y. Adding the left sides gives (3x + 2y) + (5x - 2y) = 8x, and adding the right sides gives 16 + 16 = 32, so 8x = 32. Dividing both sides by 8 yields x = 4. Substituting x = 4 into the first equation gives 3(4) + 2y = 16, that is, 12 + 2y = 16. Subtracting 12 from both sides gives 2y = 4, and dividing by 2 gives y = 2. The quantity requested is x + y, which equals 4 + 2 = 6.
 
 The correct answer is C.
@@ -444,6 +518,12 @@ What is the value of x?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
+**fastest_path:** Notice statement (2) is exactly 2 × statement (1) — the same line. One equation in two unknowns can never fix x, so the answer is E. Spot the multiple before doing any algebra.
+**common_trap:** Seeing two different-looking equations and assuming that two equations always solve a two-variable system.
+**takeaway:** Two equations determine two unknowns only if they are independent. If one is a scalar multiple of the other, they are a single constraint — answer E.
+**mistake_a:** Statement (1) is one equation in two unknowns; x can take infinitely many values, so it is not sufficient alone.
+**mistake_b:** Statement (2) reduces to the same equation as (1), so it too leaves x undetermined.
+**mistake_c:** Combining adds nothing, because (2) is just 2 × (1) — the two statements describe the identical line, so together they are still one equation in two unknowns.
 **explanation:** This problem asks for the value of x, and the governing principle is that a single linear equation in two unknowns does not determine a unique value for either variable. A unique solution for x requires at least one equation, or a system of equations, that is sufficient to isolate x; in a two-variable setting this means the available equations must be linearly independent, so that one is not merely a scalar multiple of another.
 
 Let x and y denote the two unknowns. We examine the information that each statement provides about these variables.
@@ -475,6 +555,12 @@ If |x - 4| = 7, what is the sum of all possible values of x?
 - E) 11
 
 **answer:** D
+**fastest_path:** x − 4 = ±7 gives x = 11 or x = −3; their sum is 8. (Shortcut: the two solutions are symmetric about 4, so they sum to 2 × 4 = 8.)
+**common_trap:** Solving only one branch of the absolute value, or confusing the center value with the sum of solutions.
+**takeaway:** |x − c| = k has two solutions, c ± k, and they always sum to 2c. Capture both branches.
+**mistake_e:** 11 is only the positive branch (x − 4 = 7); you ignored the x = −3 solution.
+**mistake_b:** −3 is only the negative branch (x − 4 = −7); you ignored the x = 11 solution.
+**mistake_c:** 4 is the center point c, not the sum of the two solutions.
 **explanation:** The governing principle is that the absolute value of a quantity equals its distance from zero, so an equation of the form |y| = b, where b is a positive number, has exactly two solutions: y = b and y = -b. We apply this principle to the equation |x - 4| = 7.
 
 Let x represent the unknown value. The expression x - 4 must therefore equal either 7 or -7.
@@ -504,6 +590,12 @@ For how many integer values of x is |2x + 1| < 9?
 - E) 11
 
 **answer:** B
+**fastest_path:** −9 < 2x + 1 < 9 → −10 < 2x < 8 → −5 < x < 4. The integers −4 through 3 number 8.
+**common_trap:** Including the endpoints of a strict inequality when counting integers.
+**takeaway:** Convert |·| < k to −k < · < k, solve the band, then count integers — strict inequalities exclude the endpoints.
+**mistake_c:** 9 counts one boundary value (−5 or 4) that the strict inequality excludes.
+**mistake_d:** 10 counts both boundary values, as if the inequality were ≤ instead of <.
+**mistake_a:** 7 is an off-by-one — one interior integer was dropped.
 **explanation:** An absolute-value inequality of the form |expr| < k, where k is positive, is equivalent to the compound inequality −k < expr < k. We apply this principle and then count the integers that satisfy the resulting bounds.
 
 Here the expression is 2x + 1 and k = 9, so the inequality |2x + 1| < 9 is equivalent to
@@ -542,6 +634,12 @@ If f(x) = ax + b where a and b are constants, what is the value of f(5)?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
+**fastest_path:** f(5) = 5a + b needs both a and b. One point gives one equation in two unknowns (insufficient); two distinct points pin the line, so the answer is C.
+**common_trap:** Thinking one functional value is enough to evaluate the function, or thinking two still are not.
+**takeaway:** A linear function has two unknowns (slope and intercept). Two independent input-output pairs determine it exactly — no more, no fewer.
+**mistake_a:** f(1) = 7 gives a + b = 7, one equation in two unknowns; f(5) could be 19, 23, and so on, so (1) alone is not sufficient.
+**mistake_b:** f(3) = 13 gives 3a + b = 13, again a single equation in two unknowns, so (2) alone is not sufficient.
+**mistake_e:** Together the two points are independent and solve to a = 3, b = 4 uniquely, so E understates what the statements give.
 **explanation:** The governing principle is that a linear function f(x) = ax + b is completely determined precisely when its two unknown constants, a and b, are both known; computing any particular value such as f(5) therefore requires enough information to fix both constants.
 
 Let a and b denote the unknown constants, so that f(x) = ax + b. We then have f(5) = 5a + b. Determining f(5) reduces to determining a and b.
@@ -571,6 +669,11 @@ The sum of three consecutive even integers is 18 more than twice the smallest of
 - E) 18
 
 **answer:** D
+**fastest_path:** Let the integers be n, n + 2, n + 4. Then 3n + 6 = 2n + 18 → n = 12, so the largest is n + 4 = 16.
+**common_trap:** Solving for n (the smallest) and reporting it, when the question asks for the largest.
+**takeaway:** Translate carefully and answer the exact quantity. Define the smallest as n, but re-read whether the question wants the smallest, middle, or largest.
+**mistake_b:** 12 is n, the smallest integer, not the largest.
+**mistake_c:** 14 is n + 2, the middle integer, not the largest.
 **explanation:** This problem is solved by translating the verbal conditions into an algebraic equation and solving for the unknown. Consecutive even integers differ by 2, and the phrase "is more than" indicates addition to the smaller quantity.
 
 Let n represent the smallest of the three integers. Since the integers are consecutive even integers, each successive integer exceeds the previous one by 2, so the three integers are n, n + 2, and n + 4.
@@ -617,6 +720,11 @@ Let x, y, and z be positive real numbers with x + y + z = 12 and xy + yz + zx = 
 - E) 105
 
 **answer:** B
+**fastest_path:** (x + y + z)² = (x² + y² + z²) + 2(xy + yz + zx), so 144 = S + 2(39) → S = 144 − 78 = 66.
+**common_trap:** Forgetting the factor of 2 on the pairwise-product term, or subtracting it only once instead of doubled.
+**takeaway:** The three-variable square-of-a-sum is (x+y+z)² = Σx² + 2Σxy. Isolate the sum of squares and never drop the 2.
+**mistake_e:** 105 = 144 − 39 — you subtracted the pairwise sum once, forgetting to double it (2 × 39 = 78).
+**mistake_d:** 78 is the term you subtract, 2(xy + yz + zx), reported instead of the sum of squares S itself.
 **explanation:** This problem is solved using the symmetric-sum identity that relates the square of a sum to the sum of squares and the sum of pairwise products. For any three real numbers, (x + y + z)² = x² + y² + z² + 2(xy + yz + zx). This identity allows the sum of squares to be isolated without determining the individual values of x, y, and z.
 
 Let S denote the quantity we seek, so that S = x² + y² + z². The given information states that x + y + z = 12 and xy + yz + zx = 39.
@@ -655,6 +763,11 @@ For how many integer values of x is |2x − 5| < |x − 8|?
 - E) 9
 
 **answer:** C
+**fastest_path:** Both sides are non-negative, so square them: (2x − 5)² < (x − 8)². The difference of squares factors to (x + 3)(3x − 13) < 0, giving −3 < x < 13/3. Integers −2 through 4 number 7.
+**common_trap:** Doing sign casework on each absolute value (slow and error-prone) instead of squaring, then miscounting integers in the open interval.
+**takeaway:** When both sides of an inequality are absolute values (hence non-negative), square to eliminate the bars — no casework required.
+**mistake_d:** 8 counts a boundary value (−3 or 13/3) that the strict inequality excludes.
+**mistake_b:** 6 drops one interior integer — an off-by-one in the count.
 **explanation:** Because both sides of the inequality are absolute values, both are non-negative. Squaring a comparison between two non-negative quantities preserves the direction of the inequality, so we may square both sides and avoid casework on the signs of the expressions inside the absolute-value bars.
 
 Let x denote the integer we seek. The condition |2x - 5| < |x - 8| becomes (2x - 5)^2 < (x - 8)^2, which we rewrite as (2x - 5)^2 - (x - 8)^2 < 0.
@@ -688,6 +801,12 @@ A sequence satisfies a₁ = 3 and a_{n+1} = aₙ + n + 1 for every integer n ≥
 - E) 5,151
 
 **answer:** C
+**fastest_path:** Telescope: a₁₀₀ = a₁ + (2 + 3 + ... + 100). Since 1 + ... + 100 = 5050, the sum from 2 is 5049, so a₁₀₀ = 3 + 5049 = 5052.
+**common_trap:** Off-by-one in the telescoping sum — using 1 + ... + 100 directly without removing the first term, or misjudging which increments are added.
+**takeaway:** For "add-a-step" recurrences, telescope: target term = first term + the arithmetic series of increments. Pin down exactly which increments appear.
+**mistake_a:** 5050 is 1 + ... + 100 alone — you ignored a₁ = 3 and the index shift.
+**mistake_e:** 5151 = 1 + ... + 101 — you summed one increment too many.
+**mistake_b:** 5051 is an off-by-one (5050 + 1) on the telescoping bounds.
 **explanation:** When a sequence is defined by a recurrence that adds a known quantity at each step, the value of a later term can be found by telescoping: we write each successive difference and sum them so that the intermediate terms cancel, leaving the target term expressed in terms of the first term plus an arithmetic series.
 
 Let a_n denote the nth term of the sequence. We are given that a_1 = 3 and that a_{n+1} = a_n + n + 1 for every integer n greater than or equal to 1. Setting n = 1, 2, 3, and so on, the recurrence produces the successive relations
@@ -730,6 +849,9 @@ If the roots of the quadratic equation x² + bx + 12 = 0 differ by 1, what are t
 - E) ±9
 
 **answer:** C
+**fastest_path:** Use (r₁ − r₂)² = (r₁ + r₂)² − 4r₁r₂ = (−b)² − 4(12). Set it equal to 1² = 1: b² − 48 = 1 → b² = 49 → b = ±7.
+**common_trap:** Solving for the individual roots instead of b, or forgetting the (sum)² − 4(product) form of the squared difference.
+**takeaway:** The squared difference of the roots equals (−b)² − 4c. Set it equal to the given difference squared and solve directly for b — both signs are valid.
 **explanation:** For a quadratic equation of the form x² + bx + c = 0 with roots r₁ and r₂, Vieta's formulas state that the sum of the roots equals −b and the product of the roots equals c. The difference of the roots can then be obtained from the algebraic identity (r₁ − r₂)² = (r₁ + r₂)² − 4r₁r₂, which expresses the squared difference entirely in terms of the sum and the product.
 
 Let r₁ and r₂ denote the two roots of x² + bx + 12 = 0. Applying Vieta's formulas, we have r₁ + r₂ = −b and r₁r₂ = 12. We are given that the roots differ by 1, so r₁ − r₂ = 1, and therefore (r₁ − r₂)² = 1.
@@ -758,6 +880,9 @@ Two hikers start at the same time from opposite ends of a trail that is 24 miles
 - E) 12:00 noon
 
 **answer:** C
+**fastest_path:** Closing speed = 3 + 5 = 8 mph; time to meet = 24 / 8 = 3 hours; 8:00 AM + 3 hours = 11:00 AM.
+**common_trap:** Using one hiker's speed, or the difference of speeds, instead of the combined closing speed.
+**takeaway:** When two objects move toward each other, add their speeds to get the closing speed, then time = distance / closing speed.
 **explanation:** When two objects travel toward each other along the same straight path, the rate at which the distance between them decreases is the sum of their individual speeds. This combined rate is the closing speed, and the time required for them to meet equals the total separating distance divided by that closing speed.
 
 Let T represent the time, in hours, that elapses from the start until the two hikers meet. During this interval, Hiker X travels at 3 miles per hour and Hiker Y travels at 5 miles per hour. Because the hikers move toward each other, the sum of the distances they cover equals the full length of the trail, 24 miles. We translate this into an equation:
@@ -794,6 +919,11 @@ If 1/(x − 3) + 1/(x + 3) = 12/(x² − 9), what is the value of x?
 - E) 12
 
 **answer:** D
+**fastest_path:** The right denominator factors: x² − 9 = (x − 3)(x + 3), the common denominator. Combining the left gives 2x/(x² − 9) = 12/(x² − 9), so 2x = 12 and x = 6.
+**common_trap:** Not recognizing that x² − 9 = (x − 3)(x + 3), or failing to check the domain (x ≠ ±3) for extraneous roots.
+**takeaway:** Spot that the right-side denominator factors into the two left denominators; equate numerators over the shared denominator, then confirm the root keeps every denominator nonzero.
+**mistake_e:** 12 is 2x — you solved 2x = 12 but forgot to divide by 2.
+**mistake_a:** 3 is a domain-excluded value: x = 3 makes the denominator x − 3 zero, so it can never be a solution.
 **explanation:** To solve a rational equation, we express the terms over a common denominator and then equate the resulting expressions. The key observation here is that the denominator on the right side factors: x² − 9 = (x − 3)(x + 3). This factorization is precisely the common denominator of the two fractions on the left side.
 
 Let x denote the unknown value. We first combine the left side over the common denominator (x − 3)(x + 3):
@@ -840,6 +970,11 @@ If g(x) = 3x − 2 and f(g(x)) = 6x − 1 for all x, what is f(4)?
 **hint_nudge:** You cannot plug 4 directly into f(g(x)) — first figure out which x makes g(x) = 4.
 **hint_strategy:** Set g(x) = 4 and solve for x; then substitute that x into the composite formula f(g(x)) = 6x − 1.
 **hint_setup:** 3x − 2 = 4 → x = 2. Now f(4) = f(g(2)) = ?
+**fastest_path:** f is defined only through f(g(x)). To get f(4), find the x with g(x) = 4: 3x − 2 = 4 → x = 2. Then f(4) = f(g(2)) = 6(2) − 1 = 11.
+**common_trap:** Plugging 4 directly into 6x − 1 (treating it as f(x)) instead of first finding the x that makes g(x) = 4.
+**takeaway:** When f is given only as f(g(x)), evaluate f at a target by solving g(x) = target, then substitute that x into the composite formula.
+**mistake_e:** 23 comes from plugging 4 straight into 6x − 1: 6(4) − 1 = 23 — the headline trap.
+**mistake_b:** 10 comes from plugging 4 into g (3·4 − 2 = 10), confusing f with g.
 **explanation:** The function f is not given directly; it is defined only through the composition f(g(x)) = 6x − 1. Because this formula produces the value of f at g(x) rather than at x itself, evaluating f at a specific input requires first determining the value of x for which g(x) equals that input.
 
 Let the target input be 4. We seek the value of x that satisfies g(x) = 4. Since g(x) = 3x − 2, this requires 3x − 2 = 4. Adding 2 to both sides gives 3x = 6, and dividing both sides by 3 gives x = 2.
@@ -866,6 +1001,11 @@ For how many integer values of x is |3x + 2| + |x − 4| ≤ 10?
 - E) 7
 
 **answer:** C
+**fastest_path:** Critical points at x = −2/3 and x = 4. On the middle region the sum is 2x + 6 ≤ 10 → x ≤ 2; on the left region −4x + 2 ≤ 10 → x ≥ −2. Net −2 ≤ x ≤ 2: integers −2 through 2 number 5.
+**common_trap:** Mishandling the sign of an absolute value in one of the regions, or miscounting the integers in the final range.
+**takeaway:** Sum-of-absolute-values inequalities: split at each critical point, drop the bars with the correct sign per region, solve, then union and count.
+**mistake_d:** 6 is an off-by-one — an endpoint was double-counted or an extra integer slipped in.
+**mistake_b:** 4 drops one integer in the range — an off-by-one short.
 **explanation:** When an inequality contains a sum of absolute-value expressions, the governing method is to locate the critical points at which each expression changes sign, partition the real line into the resulting intervals, and on each interval rewrite the absolute values as ordinary linear expressions so that the inequality becomes a plain linear inequality that can be solved directly.
 
 The two expressions are 3x + 2 and x - 4. We set each equal to zero to find the critical points. The expression 3x + 2 equals zero when x = -2/3, and the expression x - 4 equals zero when x = 4. These two values divide the real line into three intervals, which we examine in turn.
@@ -897,6 +1037,11 @@ If the roots of the quadratic equation x² + bx + c = 0 are 3 and −5, what is 
 - E) 23
 
 **answer:** D
+**fastest_path:** b = −(sum of roots) = −(3 + (−5)) = 2; c = product = (3)(−5) = −15; so b − c = 2 − (−15) = 17.
+**common_trap:** Sign errors in Vieta's formulas (sum = −b, product = c), or mishandling the double negative in b − c.
+**takeaway:** For x² + bx + c with given roots: b = −(sum), c = product. Substitute carefully and watch the double negative when the product is negative.
+**mistake_b:** −13 comes from treating the product as +15 (losing the sign of 3 × −5): 2 − 15 = −13.
+**mistake_a:** −17 flips both signs (b = −2 or c − b), reversing the intended subtraction.
 **explanation:** The relationship between the roots of a quadratic equation and its coefficients is given by Vieta's formulas. For a monic quadratic of the form x² + bx + c = 0, whose leading coefficient is 1, the sum of the two roots equals −b and the product of the two roots equals c.
 
 Let the roots be r₁ = 3 and r₂ = −5, as given. Applying Vieta's formulas:
@@ -934,6 +1079,11 @@ For how many integer values of x is |x − 1| + |x − 4| + |x − 7| ≤ 8?
 - E) 7
 
 **answer:** C
+**fastest_path:** Critical points 1, 4, 7. On the inner regions: 10 − x ≤ 8 → x ≥ 2 and x + 2 ≤ 8 → x ≤ 6, so 2 ≤ x ≤ 6: integers 2 through 6 number 5.
+**common_trap:** Sign slips across the three critical points, or counting the endpoints of the final range incorrectly.
+**takeaway:** For a sum of absolute values, break at every critical point; on the inner regions the expression is linear, so solve, intersect, then count integers.
+**mistake_d:** 6 is an off-by-one — an extra boundary integer was included.
+**mistake_b:** 4 drops one integer inside the range — an off-by-one short.
 **explanation:** An expression that is a sum of absolute values can be analyzed by locating its critical points, the values at which each absolute-value term changes sign. The critical points partition the number line into regions; within each region every absolute value can be rewritten without bars, using a fixed sign, and the resulting linear inequality can be solved and intersected with that region.
 
 Let x be the variable in the inequality |x − 1| + |x − 4| + |x − 7| ≤ 8. The three terms change sign at x = 1, x = 4, and x = 7, which divide the number line into four regions.
@@ -970,6 +1120,11 @@ The system of equations 3x + ky = 12 and 6x + 10y = 24 has infinitely many solut
 **hint_nudge:** Infinitely many solutions means both equations describe the same line. What relationship between their coefficients makes that true?
 **hint_strategy:** Reduce equation 2 to lowest terms first, then match it coefficient by coefficient against equation 1.
 **hint_setup:** Divide 6x + 10y = 24 by 2: 3x + 5y = 12. Now compare with 3x + ky = 12.
+**fastest_path:** Reduce the second equation by 2: 3x + 5y = 12. For the same line it must match 3x + ky = 12, so k = 5.
+**common_trap:** Reading the y-coefficient 10 straight off as k without first reducing the second equation, or matching the wrong ratio.
+**takeaway:** Infinitely many solutions means the two equations are the same line. Reduce one to lowest terms and match it coefficient-by-coefficient.
+**mistake_e:** 10 is the unreduced y-coefficient of the second equation — taken as k without dividing by the common factor 2.
+**mistake_a:** 2 is the scalar relating the two equations (the factor of 2), not the y-coefficient k.
 **explanation:** A system of two linear equations in two variables has infinitely many solutions precisely when the two equations represent the same line, which occurs when one equation is a nonzero scalar multiple of the other. In that case the coefficients of x, the coefficients of y, and the constant terms are all in the same ratio.
 
 The given system is 3x + ky = 12 and 6x + 10y = 24. We compare the second equation with the first to determine the scalar relating them. Examining the x-coefficients, we have 6 = 2 times 3, and examining the constant terms, we have 24 = 2 times 12. Thus the second equation is the first equation multiplied by 2, provided the y-coefficients also satisfy this same factor of 2.
@@ -1002,6 +1157,11 @@ For how many integer values of x are all three of the following conditions simul
 - E) 8
 
 **answer:** C
+**fastest_path:** Solve each: 2x + 1 > −5 → x > −3; x − 3 ≤ 4 → x ≤ 7; |2x − 1| < 7 → −3 < x < 4. The third is tightest, so −3 < x < 4: integers −2 through 3 number 6.
+**common_trap:** Dropping one of the three constraints, or including the endpoints of a strict bound when counting.
+**takeaway:** For a system of inequalities, solve each, intersect them, then count — the strictest pair of bounds governs, and strict inequalities exclude the endpoints.
+**mistake_d:** 7 counts one excluded endpoint (−3 or 4) of the strict range.
+**mistake_e:** 8 counts both excluded endpoints, as if the bounds were inclusive.
 **explanation:** To determine how many integers satisfy a system of inequalities, we solve each inequality independently, intersect the resulting solution sets, and then count the integers that lie in the common region. We let x denote the integer in question.
 
 We begin with the first condition, 2x + 1 > -5. Subtracting 1 from both sides gives 2x > -6, and dividing both sides by 2 gives x > -3.
@@ -1033,6 +1193,10 @@ If x² − 10x + 21 = 0, what is the value of x² − 10x + 25?
 - E) 25
 
 **answer:** A
+**fastest_path:** From the equation, x² − 10x = −21. The target x² − 10x + 25 = (−21) + 25 = 4, without ever solving for x.
+**common_trap:** Solving for x and re-substituting (slower and error-prone) instead of substituting the shared block x² − 10x.
+**takeaway:** When the target expression shares a chunk with the given equation, isolate that chunk and substitute it — don't solve for the variable.
+**mistake_e:** 25 comes from adding 25 to 0, as if x² − 10x were 0 rather than −21.
 **explanation:** This problem can be solved by recognizing that the target expression shares a common quadratic and linear portion with the given equation, so it is unnecessary to solve for the individual values of x. The governing method is to isolate the recurring portion of the expression and substitute its value directly.
 
 Let the given equation be x² − 10x + 21 = 0. Subtracting 21 from both sides isolates the recurring portion:
@@ -1065,6 +1229,13 @@ n is an integer. Does the equation x² − (n + 1)x + n = 0 have two distinct re
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
+**fastest_path:** Compute the discriminant: (n + 1)² − 4n = n² − 2n + 1 = (n − 1)². Two distinct roots ⇔ (n − 1)² > 0 ⇔ n ≠ 1. The question reduces to "is n ≠ 1?"
+**common_trap:** Not simplifying the discriminant to the perfect square (n − 1)² — once you do, the whole question collapses to whether n = 1.
+**takeaway:** For "distinct real roots?" compute and simplify the discriminant. Here it is a perfect square, so the answer hinges only on whether n equals 1.
+**mistake_b:** n odd includes n = 1 (a repeated root, answer No) and n = 3 (answer Yes), so statement (2) alone is not sufficient.
+**mistake_c:** Combining is unnecessary — statement (1) alone (n > 1) already forces n ≠ 1, so the answer is not C.
+**mistake_d:** Statement (2) alone fails (n = 1 is odd and gives a repeated root), so "each alone" is wrong.
+**mistake_e:** Statement (1) alone is sufficient, so "together not sufficient" understates the information.
 **explanation:** A quadratic equation of the form ax² + bx + c = 0 with a ≠ 0 has two distinct real roots if and only if its discriminant, Δ = b² − 4ac, is strictly positive. We therefore evaluate the discriminant of the given equation as a function of n and determine whether each statement forces it to be positive.
 
 Let the equation be x² − (n + 1)x + n = 0, so that a = 1, b = −(n + 1), and c = n. Computing the discriminant, we have Δ = b² − 4ac = (n + 1)² − 4(1)(n) = n² + 2n + 1 − 4n = n² − 2n + 1 = (n − 1)². The equation has two distinct real roots precisely when (n − 1)² > 0, which holds if and only if n ≠ 1. The question thus reduces to determining whether n ≠ 1.
