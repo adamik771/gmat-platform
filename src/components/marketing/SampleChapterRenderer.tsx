@@ -133,7 +133,7 @@ export default function SampleChapterRenderer({
             <span className="text-[#444444]">·</span>
             <span>Chapter</span>
             <span className="text-[#444444]">·</span>
-            <span>{chapter.estimatedMinutes} min full read</span>
+            <span>{chapter.estimatedPages} pages</span>
           </div>
           <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-5">
             {chapter.title}

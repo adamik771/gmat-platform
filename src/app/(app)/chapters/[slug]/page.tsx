@@ -186,7 +186,7 @@ export default async function ChapterDetailPage({
         slug={chapter.slug}
         title={chapter.title}
         section={chapter.section}
-        estimatedMinutes={chapter.estimatedMinutes}
+        estimatedPages={chapter.estimatedPages}
         summary={chapter.summary ?? null}
         sections={sections}
         problemSets={problemSets}

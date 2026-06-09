@@ -1,6 +1,6 @@
 ---
-slug: verbal-1-foundations
-title: Verbal Foundations
+slug: verbal-01-foundations
+title: "Verbal Foundations"
 section: Verbal
 estimated_minutes: 30
 prerequisites: []

@@ -686,6 +686,10 @@ export interface ParsedChapter {
   title: string
   section: Section
   estimatedMinutes: number
+  /** Approximate reading length in pages, derived from the section word count
+   *  (~400 words/page). Shown in the UI instead of a time estimate so students
+   *  read at their own pace rather than racing an implied clock. */
+  estimatedPages: number
   prerequisites: string[]
   summary?: string
   sections: ChapterSection[]
@@ -782,11 +786,20 @@ function parseChapterFile(filepath: string): ParsedChapter | null {
       questionIds: fm.problem_sets![d]!.question_ids,
     }))
 
+  // Reading length in pages from the section prose (~400 words/page), so the UI
+  // can show "~N pages" rather than a time estimate that pressures students.
+  const wordCount = sections.reduce(
+    (sum, s) => sum + (s.body ? s.body.trim().split(/\s+/).filter(Boolean).length : 0),
+    0
+  )
+  const estimatedPages = Math.max(1, Math.round(wordCount / 400))
+
   return {
     slug: fm.slug,
     title: fm.title,
     section: fm.section,
     estimatedMinutes: fm.estimated_minutes,
+    estimatedPages,
     prerequisites: fm.prerequisites ?? [],
     summary: fm.summary,
     sections,
