@@ -77,6 +77,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  // Google Search Console ownership verification (HTML-tag method). Emits
+  // <meta name="google-site-verification" content="..."> into <head>.
+  verification: {
+    google: "IkL___StkwO8aX58q2m4QSPUbniMlfqHk5s12e3EKnM",
+  },
 }
 
 export default function RootLayout({
