@@ -42,6 +42,17 @@ const nextConfig: NextConfig = {
       { source: "/chapters/verbal-4-rc-reading-process", destination: "/chapters/verbal-13-rc-reading-process", permanent: true },
       { source: "/chapters/verbal-5-rc-question-families", destination: "/chapters/verbal-14-rc-main-idea", permanent: true },
       { source: "/chapters/verbal-6-mixed-timing", destination: "/chapters/verbal-21-mixed-timing", permanent: true },
+      // Quant was split into one chapter per sub-topic; the old topic chapters
+      // forward to their first sub-chapter. (geometry kept its slug, off-syllabus.)
+      { source: "/chapters/arithmetic", destination: "/chapters/quant-05-order-and-signed-numbers", permanent: true },
+      { source: "/chapters/number-properties", destination: "/chapters/quant-08-even-odd-integer-properties", permanent: true },
+      { source: "/chapters/exponents-roots", destination: "/chapters/quant-11-exponent-rules", permanent: true },
+      { source: "/chapters/algebra", destination: "/chapters/quant-13-linear-equations-systems", permanent: true },
+      { source: "/chapters/ratios-percents", destination: "/chapters/quant-18-ratios-proportions", permanent: true },
+      { source: "/chapters/rates-work", destination: "/chapters/quant-21-rate-time-distance", permanent: true },
+      { source: "/chapters/statistics-probability", destination: "/chapters/quant-23-statistics", permanent: true },
+      { source: "/chapters/combinatorics", destination: "/chapters/quant-24-counting-basics", permanent: true },
+      { source: "/chapters/word-problems", destination: "/chapters/quant-17-translating-word-problems", permanent: true },
     ]
   },
 };
