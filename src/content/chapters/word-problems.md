@@ -5,7 +5,9 @@ section: Quant
 estimated_minutes: 55
 prerequisites: []
 summary: |
-  "Word problems" isn't a topic — it's a translation skill that sits on top of every topic. The question gives you English; you need algebra. This chapter trains the translation habits that convert "twice as many as" and "three years from now" into equations you can actually solve, plus the six most common structural patterns: rate/time/distance, work, mixtures, profit/percent, ages, and sets/Venn. Master the translation rules and the specific templates, and word problems become 60-second setup + 30-second solve.
+  "Word problems" isn't a topic — it's a translation skill that sits on top of every topic. The question gives you English; you need algebra. This chapter trains the translation habits that convert "twice as many as" and "three years from now" into equations you can actually solve, plus the seven structural patterns that cover the GMAT's word problems: rate/time/distance, work, mixtures, profit/percent, ages-coins-digits, sets/Venn, and max/min. Master the translation rules and the specific templates, and word problems become 60-second setup + 30-second solve.
+
+  By the end of this chapter you will: (1) translate any English clause into algebra without dropping a "more than" or reversing a "less than"; (2) name which of the seven patterns a question belongs to from its first sentence; (3) reach for the right template — D = RT, 1/a + 1/b = 1/T, pure-component conservation, multiply-don't-add for percents, two-clause systems, inclusion-exclusion, or push-the-competitor-to-the-extreme — without hesitation; and (4) verify every answer against the original English, the single habit that catches the majority of word-problem errors.
 sections:
   - id: pretest
     type: pretest
@@ -19,6 +21,8 @@ sections:
   - id: translation-discipline
     type: reading
     title: "Translation discipline — English to algebra without losing the meaning"
+    intro: |
+      Most word-problem points are won or lost right here — in the translation, not the algebra. This section gives you four habits that turn English into the *correct* equation, so the math you do is the math the question actually asked for. Slow down on the setup and the solve takes care of itself.
     check_question_ids:
       - word-problems-q13
       - word-problems-q14
@@ -29,6 +33,8 @@ sections:
   - id: rate-time-distance
     type: reading
     title: "Rate, time, distance — D = RT inside a word problem"
+    intro: |
+      Distance problems are D = RT wearing a costume. The only real work is deciding which quantity is which and forcing the units to agree. Get those two reflexes down and catch-up, meeting, and round-trip questions all collapse to the same three letters.
     check_question_ids:
       - word-problems-q1
       - word-problems-q5
@@ -39,6 +45,8 @@ sections:
   - id: work-rate-problems
     type: reading
     title: "Work rate — add the rates, never the times"
+    intro: |
+      Work problems are rate problems where the "distance" is a finished job. One formula handles every one of them — and one tempting mistake, adding the times instead of the rates, sinks students on nearly every test. This section locks in the formula and makes the mistake feel obviously wrong.
     check_question_ids:
       - word-problems-q4
       - word-problems-q6
@@ -50,6 +58,8 @@ sections:
   - id: mixtures
     type: reading
     title: "Mixtures — the acid/alloy/coffee setup"
+    intro: |
+      Mixtures look like they need a special method; they don't. Every one of them is a single conservation statement: the pure component you start with, plus the pure component you add, equals the pure component you end with. Track that one quantity and the equation writes itself.
     check_question_ids:
       - word-problems-q7
       - word-problems-q11
@@ -58,6 +68,8 @@ sections:
   - id: profit-and-percent
     type: reading
     title: "Profit, markup, and percent change"
+    intro: |
+      Percent is the GMAT's favorite place to set a trap, and the trap is almost always the same: adding percents that should be multiplied. This section gives you the handful of identities you actually need and trains the multiply-don't-add reflex that protects your score.
     check_question_ids:
       - word-problems-q2
       - word-problems-q8
@@ -71,6 +83,8 @@ sections:
   - id: ages-coins-digits
     type: reading
     title: "Ages, coins, and digit problems"
+    intro: |
+      Three different cover stories, one identical engine: two clauses become two equations, then you solve. Once you see that ages, coins, and digit problems are the same machine with different paint, none of them can surprise you.
     check_question_ids:
       - word-problems-q12
       - word-problems-q15
@@ -81,6 +95,8 @@ sections:
   - id: sets-and-venn
     type: reading
     title: "Sets and Venn diagrams — the inclusion-exclusion template"
+    intro: |
+      Overlap problems feel crowded until you have the right framework. Two identities — one for two groups, one for three — turn every membership question into plug-and-solve. This section gives you both, plus the table that handles the simple cases in seconds.
     check_question_ids:
       - word-problems-q17
       - word-problems-q19
@@ -88,6 +104,8 @@ sections:
   - id: max-min-optimization
     type: reading
     title: "Max/min and optimization — extremes under constraint"
+    intro: |
+      This is the skill that separates a strong scorer from a top one. Max/min questions have no formula — just one strategy applied with discipline: to push your target to an extreme, push everything competing with it to the opposite extreme. Learn the move here and the hardest word problems become methodical.
     check_question_ids:
       - word-problems-q62
 
@@ -226,7 +244,18 @@ Simplify eq 2: S − 10 = 2T − 20, so S = 2T − 10. Substitute into eq 1: (2T
 
 Verify: 10 years ago, Sara was 28 and Tom was 14. Was 28 = 2 × 14? Yes. ✓
 
-**Note on the James-and-nephew problem.** Same template. Two clauses → two equations → substitute or eliminate. The arithmetic is more complex, but the structure is identical.
+**The same template scales to harder problems.** A multi-clause age problem ("five years ago James was four times his nephew; in three years he'll be twice as old") looks intimidating, but it's this exact move: two clauses become two equations, then substitute or eliminate. The arithmetic gets longer; the structure never changes. You'll see that exact problem worked end-to-end in the ages section.
+
+**Micro-drill.** Translate each phrase into algebra before reading the answer — 10 seconds each. Let n be the original number or quantity.
+
+1. "Seven less than three times a number is 20."
+2. "A jacket costs $15 more than twice the price of a shirt." (Let s = shirt price; write the jacket price j.)
+3. "In four years, Ana will be three times as old as she was two years ago." (Let a = Ana's age now.)
+4. "The number of girls is 60% of the number of boys." (Let b = boys; write girls g.)
+
+Answers: (1) 3n − 7 = 20. The "is" marks the equals sign; "seven less than" subtracts *after* you build "three times a number," so it's 3n − 7, never 7 − 3n. (2) j = 2s + 15. "More than" adds; "twice the price of a shirt" is 2s. (3) a + 4 = 3(a − 2). Both time-shifts attach to Ana, and the "three times" multiplies the *whole* past-age expression — parentheses are mandatory. (4) g = 0.6b. "60% of the boys" is (60/100) × b. If you wrote any of these with the subtraction reversed or the parentheses dropped, that is exactly the translation error this section exists to kill.
+
+> **Recall check.** Cover the section and state all four translation habits from memory. (1) Define the variable in words, with units. (2) Translate clause by clause — "is" is equals, "less than" reverses the order, "of" multiplies. (3) Choose the variable that gives the cleanest equation — the middle of an evenly-spaced set, the smaller of two ages. (4) Verify the final number against the original *English*, not the algebra. If you can recite all four, you own the setup half of every word problem on the test.
 
 > **Self-explanation prompt.** Why does picking the "middle" variable work for consecutive-integer problems? If you can say "because the middle is the mean, so the sum collapses to (count)(middle) with no extra +1, +2 terms," you've internalized the why — and you'll apply it to evenly-spaced sets of any size.
 
@@ -274,6 +303,15 @@ Or via total/total: assume 30 miles each way. Times: 30/15 = 2 and 30/10 = 3. To
 **Why the answer isn't the simple average.** You spend more time at the slower speed, so the slower leg has greater weight. See the "average speed" section in the Rates and Work chapter for the full explanation.
 
 **When the trip has unequal legs.** Use total/total directly — harmonic mean doesn't apply.
+
+**Micro-drill.** No calculator. Name the setup first (single, catch-up, meeting, or average speed), then compute — 30 seconds each.
+
+1. A car travels at 50 mph for 1 hour 12 minutes. How far?
+2. Two trains leave the same station going opposite directions at 60 and 80 mph. How long until they are 350 miles apart?
+3. A runner does 6 miles out at 6 mph and 6 miles back at 4 mph. Average speed for the round trip?
+4. A cyclist leaves at noon at 12 mph. A second cyclist leaves the same point at 1 PM, same direction, at 18 mph. At what time does the second catch the first?
+
+Answers: (1) **60 miles** — single object; 1 hr 12 min = 1.2 hr, so 50 × 1.2 = 60. (Convert minutes *before* multiplying, or you'll get 50 × 1 = 50 and miss.) (2) **2.5 hours** — opposite directions, so separation rate is the sum: 60 + 80 = 140 mph; 350 ÷ 140 = 2.5. (3) **4.8 mph** — equal-distance round trip, so harmonic mean: 2(6)(4)/(6+4) = 48/10 = 4.8; *not* the simple average of 5, because the slow leg eats more time. (4) **3 PM** — catch-up; the first cyclist has a one-hour, 12-mile head start; closing rate is the difference, 18 − 12 = 6 mph; 12 ÷ 6 = 2 hours after 1 PM. If you used the *sum* for the catch-up or the *difference* for the meeting, re-read which scenario uses which.
 
 **Trap to watch.** Students often forget to convert minutes to hours before using D = RT with a rate in mph. If the problem says "2 hours and 30 minutes," convert to 2.5 hours before plugging in.
 
@@ -405,6 +443,17 @@ Simple interest is rare on modern GMAT; compound is the default assumption unles
 
 Read carefully. The prepositions matter.
 
+**Micro-drill.** Each one hides the add-don't-multiply trap. Compute the real answer, then notice the trap value you avoided — 30 seconds each.
+
+1. A price rises 20%, then rises another 50%. Net percent change?
+2. A stock falls 50%, then rises 50%. Net percent change?
+3. A $200 item is marked up 30%, then that price is discounted 25%. Final price?
+4. A salary goes up 10% three years in a row. Total percent increase (to the nearest whole percent)?
+
+Answers: (1) **+80%** — 1.20 × 1.50 = 1.80. The trap answer is +70% (adding 20 + 50). (2) **−25%** — 0.50 × 1.50 = 0.75. The trap is 0% ("down 50 then up 50 cancels"); it never cancels, because the +50% applies to the smaller halved value. (3) **$195** — 200 × 1.30 = 260, then 260 × 0.75 = 195. The trap is $210 (treating +30 − 25 = +5%). (4) **about +33%** — 1.1³ = 1.331, so ≈ 33%, not 30%. Compounding always beats the naive sum. If any trap value tempted you, that instinct is exactly what the GMAT prices into the wrong answers.
+
+> **Recall check.** Cover the section. State the base rule for percent change (what goes in the denominator?), and state what you do to combine two successive percent changes. (Percent change = (new − old) / **old**, always the *starting* value as the base. Successive changes *multiply* their factors, 1 + each rate — they never add.) Then, fast: a price drops 20% and later drops another 25% — what single percent drop is that? (0.80 × 0.75 = 0.60, a 40% drop, not 45%.) Retrieving these two rules cold is what stops you from bubbling the adding-percents trap under time pressure.
+
 > **Self-explanation prompt.** Why do successive percent changes multiply instead of adding? If you can say "because each percent is applied to whatever the current value is, not the original value," you've internalized why 20% up then 20% down doesn't return to start.
 
 ## @ages-coins-digits
@@ -508,6 +557,14 @@ This two-equation system collapses the three-set problem. Memorize the framework
 
 Cross-check: row totals and column totals both sum to 80. Fill cells consistently with both constraints.
 
+**Micro-drill.** Pick the tool first (two-set identity, two-way table, or the three-set framework), then solve — 60 seconds each.
+
+1. In a class of 50, 30 take physics and 25 take chemistry; 8 take neither. How many take both?
+2. Of 120 people, 70 own a car and 50 own a bike; 20 own both. How many own at least one?
+3. Among 100 survey respondents, 60 like tea, 55 like coffee, 40 like juice, and 25 like all three; everyone likes at least one. How many like exactly two?
+
+Answers: (1) **13** — two-set identity: at-least-one = 50 − 8 = 42; |P ∩ C| = |P| + |C| − |P ∪ C| = 30 + 25 − 42 = 13. (2) **100** — |A ∪ B| = 70 + 50 − 20 = 100. (3) **5** — three-set framework. Identity 1: n₁ + n₂ + n₃ = 100, and n₃ = 25, so n₁ + n₂ = 75. Identity 2: |A| + |B| + |C| = n₁ + 2n₂ + 3n₃, so 60 + 55 + 40 = 155 = n₁ + 2n₂ + 75, giving n₁ + 2n₂ = 80. Subtract identity 1 from that: n₂ = 5. If you reached for the raw three-circle formula instead of the n₁/n₂/n₃ identities, you did three times the arithmetic for the same answer.
+
 > **Self-explanation prompt.** Why does the "identity 2" in the three-set framework weight n₂ by 2 and n₃ by 3? If you can say "because a person in exactly 2 sets is counted in 2 of the individual set totals, and a person in exactly 3 sets is counted in all 3," you've internalized the inclusion-exclusion logic and won't get confused by the coefficients.
 
 ## @max-min-optimization
@@ -608,5 +665,7 @@ Word problems are translation + template. Translation discipline gets you to a c
 | "x years ago" | subtract x |
 | "x years from now" | add x |
 | "ratio of A to B" | A/B |
+
+**What to do next.** Open this chapter's problem set — Easy first, then Medium. After every miss, write two sentences: one naming the pattern you were actually in, one naming the translation step or template you got wrong. That two-line annotation builds pattern-recognition faster than re-reading the chapter, because it forces you to diagnose *where* the setup broke. When you clear 85% on Medium, move to Hard — those questions are almost always max/min or multi-step percent, so re-read those two sections before you start. If your misses cluster in one pattern (say, every mixture question or every catch-up problem), that pattern is your weak area: drill it in isolation from the practice library before mixing patterns again. The fastest gain on word problems is not learning new math — it's making the translation step automatic so your scratch work is always solving the right equation.
 
 **Time-management note.** Easy word problems (straight D = RT, straight percent) should take under a minute. Medium (two-clause ages, mixtures, percent-of-percent) take up to 2 minutes. Hard (three-set Venn, multi-step profit, compound percent) take 2–2.5 minutes max. If you're past 2:30 and haven't finished the setup, you've overtranslated — step back, re-read the question stem, and identify which of the six patterns you're in.
