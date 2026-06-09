@@ -2,18 +2,18 @@ import type { Metadata } from "next"
 import SampleChapterRenderer from "@/components/marketing/SampleChapterRenderer"
 
 export const metadata: Metadata = {
-  title: "Sample chapter — Critical Reasoning",
+  title: "Sample chapter — CR Core Logic",
   description:
-    "Read two full sections from the Zakarian GMAT Critical Reasoning chapter — argument structure and the strengthen / weaken templates. No signup required.",
+    "Read two full sections from the Zakarian GMAT CR Core Logic chapter — argument structure and the assumption + negation test. No signup required.",
   alternates: { canonical: "/sample-chapter" },
 }
 
 export default function SampleVerbalChapterPage() {
   return (
     <SampleChapterRenderer
-      chapterSlug="critical-reasoning"
+      chapterSlug="verbal-2-cr-core-logic"
       sectionLabel="Verbal"
-      publicSectionIds={["argument-structure", "strengthen-and-weaken"]}
+      publicSectionIds={["argument-structure", "assumption-and-negation-test"]}
       siblings={[
         {
           href: "/sample-chapter/quant",
