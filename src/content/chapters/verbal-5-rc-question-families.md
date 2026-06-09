@@ -1,72 +1,59 @@
 ---
-slug: reading-comprehension
-title: Reading Comprehension
+slug: verbal-5-rc-question-families
+title: RC Question Families
 section: Verbal
-estimated_minutes: 60
-prerequisites: []
+estimated_minutes: 70
+prerequisites:
+  - verbal-4-rc-reading-process
 summary: |
-  Reading Comprehension isn't about reading speed or prior knowledge — it's about extracting structure from dense, compressed prose and answering six specific question types against that structure. The passages are short (250-400 words) but written to sound harder than they are. Master the active-reading protocol (three-pass method: scope, structure, stance), learn what each of the six question types is actually testing, and you'll finish every RC passage-and-question set in under 6 minutes without reading the passage twice.
+  Once you can map a passage, every RC question is a lookup against that map. This chapter drills the six RC question types — main idea, specific detail, inference, application, function, and author's attitude — plus the answer-choice traps that recur across all of them.
 sections:
   - id: pretest
     type: pretest
-    title: Try before you learn
+    title: "Try before you learn"
     intro: |
-      Before I teach you anything, try these two — they both reference Passage 1. Read the passage once, then answer. Rate your confidence honestly. Research shows that attempting before instruction primes your encoding of the lesson that follows.
+      Two question-type problems first. With a passage mapped, see how each stem sends you to a different part of the structure.
     pretest_question_ids:
-      - reading-comprehension-q1
-      - reading-comprehension-q2
-
-  - id: how-to-read-an-rc-passage
-    type: reading
-    title: "How to read an RC passage — the three-pass active-reading protocol"
-    check_question_ids:
-      - reading-comprehension-q5
-
+      - reading-comprehension-q4
+      - reading-comprehension-q9
   - id: main-idea-questions
     type: reading
     title: "Main idea — the single unifying claim"
     check_question_ids:
       - reading-comprehension-q9
       - reading-comprehension-q17
-
   - id: specific-detail-questions
     type: reading
     title: "Specific detail — find the support in the passage"
     check_question_ids:
       - reading-comprehension-q10
       - reading-comprehension-q22
-
   - id: inference-questions
     type: reading
     title: "Inference — what the passage implies but doesn't state"
     check_question_ids:
       - reading-comprehension-q11
       - reading-comprehension-q23
-
   - id: application-questions
     type: reading
     title: "Application — extending the author's logic to new cases"
     check_question_ids:
       - reading-comprehension-q4
       - reading-comprehension-q40
-
   - id: function-and-attitude
     type: reading
     title: "Function and author's attitude — role and tone questions"
     check_question_ids:
       - reading-comprehension-q28
       - reading-comprehension-q27
-
   - id: rc-answer-choice-traps
     type: reading
     title: "Five answer-choice traps that span every RC question type"
     check_question_ids: []
-
   - id: summary
     type: summary
     title: "The six RC question types and the three-pass protocol"
     check_question_ids: []
-
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -75,19 +62,11 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - reading-comprehension-q2
-      - reading-comprehension-q6
       - reading-comprehension-q10
       - reading-comprehension-q14
       - reading-comprehension-q18
       - reading-comprehension-q22
       - reading-comprehension-q26
-      - reading-comprehension-q30
-      - reading-comprehension-q34
-      - reading-comprehension-q38
-      - reading-comprehension-q42
-      - reading-comprehension-q46
-      - reading-comprehension-q50
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -95,10 +74,6 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - reading-comprehension-q1
-      - reading-comprehension-q5
-      - reading-comprehension-q9
-      - reading-comprehension-q13
       - reading-comprehension-q17
       - reading-comprehension-q21
       - reading-comprehension-q25
@@ -107,27 +82,6 @@ problem_sets:
       - reading-comprehension-q37
       - reading-comprehension-q41
       - reading-comprehension-q45
-      - reading-comprehension-q49
-      - reading-comprehension-q4
-      - reading-comprehension-q8
-      - reading-comprehension-q12
-      - reading-comprehension-q16
-      - reading-comprehension-q20
-      - reading-comprehension-q23
-      - reading-comprehension-q36
-      - reading-comprehension-q48
-      - reading-comprehension-q53
-      - reading-comprehension-q54
-      - reading-comprehension-q56
-      - reading-comprehension-q57
-      - reading-comprehension-q59
-      - reading-comprehension-q62
-      - reading-comprehension-q65
-      - reading-comprehension-q66
-      - reading-comprehension-q67
-      - reading-comprehension-q68
-      - reading-comprehension-q71
-      - reading-comprehension-q72
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -135,80 +89,16 @@ problem_sets:
       "685": 60
       "725": 80
     question_ids:
-      - reading-comprehension-q3
       - reading-comprehension-q7
-      - reading-comprehension-q11
-      - reading-comprehension-q15
       - reading-comprehension-q19
       - reading-comprehension-q24
       - reading-comprehension-q27
       - reading-comprehension-q28
       - reading-comprehension-q31
-      - reading-comprehension-q32
-      - reading-comprehension-q35
       - reading-comprehension-q39
       - reading-comprehension-q40
       - reading-comprehension-q43
-      - reading-comprehension-q44
-      - reading-comprehension-q47
-      - reading-comprehension-q51
-      - reading-comprehension-q52
-      - reading-comprehension-q55
-      - reading-comprehension-q58
-      - reading-comprehension-q60
-      - reading-comprehension-q61
-      - reading-comprehension-q63
-      - reading-comprehension-q64
-      - reading-comprehension-q69
-      - reading-comprehension-q70
-      - reading-comprehension-q73
 ---
-
-## @how-to-read-an-rc-passage
-
-Reading Comprehension on the GMAT is not a reading-speed test. Passages are short by academic standards (250-400 words) but dense — every paragraph does multiple jobs, and the authors compress structure that would take pages in a typical article into a few hundred words. The students who struggle aren't slow readers; they're *passive* readers, moving through prose without actively tracking what's happening.
-
-**Mental model.** RC tests structure, not content. Each paragraph plays a *role* — introduces, supports, qualifies, counters, concludes — and the answer to most questions flows from the role, not the words. Strong RC readers track the skeleton (what is each paragraph *doing*?) and let the prose flow over them. Weak RC readers try to memorize content and run out of time and short-term memory by paragraph three.
-
-**The three-pass active-reading protocol.**
-
-Don't read the passage the way you'd read a novel — word by word, trying to absorb every detail. Read it the way a reporter scans a press release: looking for three specific things.
-
-**Pass 1 — Scope.** In the first 10 seconds, after the first sentence or two, ask: "What is this passage about? What entity, theory, phenomenon, or claim?" Write a 3-5 word mental label: "subscription economy challenges" or "silk road innovation" or "basic income debate."
-
-**Pass 2 — Structure.** As you read each paragraph, ask: "What is this paragraph *doing*?" Every paragraph plays a role: introducing a claim, providing evidence, raising an objection, responding to that objection, offering a new angle. Track the role, not the details.
-
-Common paragraph roles:
-
-| Role | Signal words | Function |
-|---|---|---|
-| Introduce the topic | "In recent years...", "A central question is..." | Set up scope |
-| State the main claim | "However...", "This article argues..." | Announce thesis |
-| Provide evidence | "Research shows...", "For example..." | Support thesis |
-| Raise a counterargument | "Critics argue...", "However, others point out..." | Introduce opposition |
-| Respond to counter | "Yet the evidence suggests...", "But this view misses..." | Defend thesis |
-| Qualify / nuance | "Still, this does not mean...", "The effect depends on..." | Limit scope |
-| Conclude / implicate | "Taken together, these findings...", "Ultimately..." | Wrap up |
-
-**Pass 3 — Stance.** What is the author's attitude toward the main topic? Is the author enthusiastic, skeptical, neutral-descriptive, measured, critical? Identifying the author's stance solves Author's Attitude questions instantly and heavily informs Main Idea and Function questions too.
-
-**The 90-second passage read.** On test day, you have about 2-3 minutes to read the passage and then ~90 seconds per question. Spend the passage time building the map. Spend the question time checking your answers against the map.
-
-**The critical mental discipline: don't memorize details.** You don't have to remember every number or fact. The passage stays on screen — you can re-read specific parts when a Specific Detail question asks. What you CAN'T re-read fast is the overall structure; so your first read should build structure, not content memory.
-
-**Key landmarks to mentally bookmark during the read.**
-
-- **Thesis sentence** (usually in paragraph 1 or 2): the single claim the author wants you to accept.
-- **Transition words** ("however," "yet," "nonetheless," "therefore," "in contrast"): signal structural pivots. Highlight these — they mark where the author shifts direction.
-- **Absolute statements** ("all," "every," "never," "only"): often tested directly in inference questions.
-- **Qualifiers** ("some," "often," "may," "sometimes"): signal the author is being cautious; expect inference questions that test whether you caught the caution.
-- **Author's own voice** vs. **views the author reports**: phrases like "critics claim," "some researchers argue" often introduce views the author will rebut.
-
-**The two-paragraph summary habit.** After reading, in 15 seconds or less, silently summarize each paragraph to yourself in one sentence. If you can't, re-read just that paragraph. This habit is the fastest way to confirm you built a real map rather than skimming.
-
-> **Recall check.** Close your eyes. State the three passes of the active-reading protocol. Now state at least three paragraph roles (introduce, state thesis, support, counter, respond, qualify, conclude — any three). This retrieval pattern is what makes "reading actively" a deliberate habit rather than a vague intention. Retrieval practice creates structural memory — re-reading creates the illusion of memory (Roediger & Karpicke, 2006).
-
-**Trap to watch.** Don't get sucked into the prose style. GMAT RC passages are written in elevated, academic diction precisely because they intimidate the weak-voiced student into careful word-by-word reading. The passages are rarely as complex as they sound. Skim if you need to, but track structure with discipline.
 
 ## @main-idea-questions
 
