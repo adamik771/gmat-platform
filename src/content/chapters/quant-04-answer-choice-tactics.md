@@ -1,0 +1,58 @@
+---
+slug: quant-04-answer-choice-tactics
+title: "Method: Answer-Choice Tactics"
+section: Quant
+estimated_minutes: 8
+prerequisites:
+  - quant-03-estimation
+summary: |
+  The five choices are data. This chapter teaches ballpark elimination, sign and unit checks, and spotting the engineered trap answer before you compute.
+sections:
+  - id: pretest
+    type: pretest
+    title: "Try before you learn"
+    intro: |
+      Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
+  - id: answer-choice-tactics
+    type: reading
+    title: "Method: Answer-Choice Tactics"
+    check_question_ids: []
+problem_sets:
+---
+
+## @answer-choice-tactics
+
+The five answer choices are not a menu you consult after solving. They are **part of the problem** — five free data points the test-writer hands you before you compute a single thing. Read them first, every time. On a hard problem they tell you what kind of answer is even possible; on an easy one they tell you you've already done too much work.
+
+**Mental model.** Treat the choices as a **constraint set**. Each one you can rule out on sign, magnitude, parity, or units is a choice you never have to test and a wrong turn your pencil never takes. The strongest test-takers narrow five to two before the real arithmetic starts, then spend their effort only where it changes the answer.
+
+Start with the cheapest filters, in this order:
+
+- **Sign.** Is the answer forced positive or negative? A difference, a net change, a slope — these carry a sign you can often predict.
+- **Ballpark magnitude.** Is it "around 10" or "around 1000"? One rough multiplication usually settles it.
+- **Parity / divisibility.** Counting and "how many integers" questions often must be even, divisible by 5, or a multiple of the group size.
+- **Units / form.** Does the choice have the right dimensions — a rate vs. a total, an area vs. a length?
+
+**Worked example.** A car travels 240 miles out at 40 mph and returns the same 240 miles at 60 mph. What is the average speed for the whole trip? Choices: (A) 45 (B) 48 (C) 50 (D) 52 (E) 55. Before any harmonic-mean work, **read the spread.** The naive average is (40+60)/2 = 50, which is choice (C) — the **engineered trap**, built from skipping the "more time is spent at the slower speed" step. The true answer must be **pulled below 50** toward the slower leg, which instantly kills (C), (D), (E). Now you're choosing between (A) and (B), and you barely need to compute: total distance 480, time = 240/40 + 240/60 = 6 + 4 = 10 hours, so 480/10 = **48**. Answer (B). The choices flagged the trap and cut your real work in half.
+
+**Worked example.** If x^2 - 5x - 14 = 0 and x < 0, what is x? Choices: (A) -7 (B) -2 (C) 2 (D) 7 (E) 9. Do not factor blindly — **use the sign condition the problem handed you.** x < 0 eliminates (C), (D), (E) on inspection. Two choices remain, and instead of solving the quadratic you **plug in a choice as your test value**: (-2)^2 - 5(-2) - 14 = 4 + 10 - 14 = 0. Answer (B). One substitution confirmed what factoring would have taken three lines to reach.
+
+**Worked example.** A jar holds only red and blue marbles in the ratio 3:5, and the total is fewer than 36. Which could be the total number of marbles? Choices: (A) 22 (B) 26 (C) 32 (D) 40 (E) 50. This is pure **divisibility filtering**. A 3:5 ratio forces the total to be a multiple of 3+5 = 8. Scan: 22 (no), 26 (no), 32 = 8·4 (**yes**), 40 = 8·5 (yes), 50 (no). Two survive the divisibility cut — (C) and (D) — so apply the second constraint the stem already gave you: "fewer than 36" knocks out (D) 40 and leaves **(C) 32**. Answer (C). You never multiplied out the ratio; you tested the choices for the two properties the answer must have.
+
+> **Recall check.** Of the four cheap filters, which comes first and why? (Sign — it's the single fastest cut and often eliminates two or three choices for free.)
+
+> **Self-explanation prompt.** Why does the "obvious" choice matching a naive average so often turn out wrong? (Because the test-writer builds the trap from the exact step a rushed solver skips — the trap is the answer to a simpler, wrong question.)
+
+Now use the **spread of the choices** to decide your method. This is the move that separates an estimate from a full computation:
+
+| When the choices look like… | Do this |
+|---|---|
+| Spread far apart (e.g. 12, 45, 90, 200, 500) | **Estimate.** One rough calc lands you in exactly one bucket. |
+| Clustered tight (e.g. 48, 49, 50, 51, 52) | **Compute exactly.** Rounding can't separate neighbors. |
+| All share a factor or form (all even, all /5, all sqrt-of) | Solve for the **distinguishing digit or sign**, not the whole value. |
+| One is the "naive" number (a sum, an average, a simple product) | Suspect the **trap** — verify it requires the skipped step. |
+| Contains 0, 1, or "cannot be determined" | Test **edge cases** and a single counterexample first. |
+
+**Trap to watch.** The deadliest error is treating tightly-clustered choices as if they were spread out. If the options are 0.24, 0.25, 0.27, 0.30, you **cannot** round to "about a quarter" and pick — you've thrown away the precision the spread is demanding. Read the gaps: tight gaps are the test telling you it will punish estimation. Conversely, grinding out exact arithmetic when the choices sit an order of magnitude apart is wasted time and a fresh chance for a sign slip.
+
+The discipline is one beat of overhead and it compounds. Before you compute, ask: **what sign, what size, what form must the answer have — and which choice is the bait?** Most hard problems shrink to a two-way decision, and the two you keep are the only two worth your arithmetic.

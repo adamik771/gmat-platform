@@ -1716,11 +1716,11 @@ const PERSONA_PATHS: Record<PersonaPathKey, PersonaPathDef> = {
       "Four chapters cover the fundamentals that every other topic leans on. Work them in order — each one unlocks comfort for the next. Don't skip to mixed sets until you've finished these.",
     steps: [
       {
-        href: "/chapters/arithmetic",
+        href: "/chapters/quant-05-order-and-signed-numbers",
         section: "Quant",
-        label: "Arithmetic",
+        label: "Arithmetic Foundations",
         why: "Basic Quant fluency — every other Quant topic leans on this.",
-        completionTag: "chapter-started:arithmetic",
+        completionTag: "chapter-started:quant-05-order-and-signed-numbers",
       },
       {
         href: "/chapters/verbal-01-foundations",
