@@ -1105,3 +1105,679 @@ Now take both statements together. The two conditions combine to give 4 < n < 12
 
 The correct answer is E.
 **related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Triangles
+**skill:** triangle-area-from-base-and-height
+**trap_type:** dropped-one-half-factor
+**est_time_seconds:** 45
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+A triangle has a base of length 12 and a height of length 5 drawn to that base. What is the area of the triangle?
+
+- A) 17
+- B) 30
+- C) 34
+- D) 60
+- E) 120
+
+**answer:** B
+**explanation:** The area of any triangle is one-half the product of a base and the height drawn to that base: Area = (1/2) × base × height. The factor of one-half is what distinguishes a triangle from the parallelogram (or rectangle) that shares the same base and height, and it is the single most-forgotten part of the formula.
+
+Here the base is 12 and the height is 5, so
+
+Area = (1/2)(12)(5) = (1/2)(60) = 30.
+
+The correct answer is B.
+**fastest_path:** Multiply base and height first (12 × 5 = 60), then halve once at the end. Halving last avoids fractions mid-calculation and makes the missing-one-half error visible — if your final number equals base × height, you skipped the halving.
+**common_trap:** Computing base × height and reporting it as the area, forgetting that a triangle covers exactly half of the enclosing rectangle.
+**mistake_a:** 17 is base + height (12 + 5). This adds the two dimensions instead of multiplying them — a sign the area formula was confused with a perimeter-style sum.
+**mistake_c:** 34 is 2 × (12 + 5), the perimeter of the enclosing 12-by-5 rectangle. This blends the perimeter formula into an area question.
+**mistake_d:** 60 is base × height without the factor of one-half. This is the area of the full 12-by-5 rectangle, exactly twice the triangle. It is the most common wrong answer here.
+**mistake_e:** 120 is 2 × base × height, doubling instead of halving — the one-half factor was inverted into a factor of two.
+**takeaway:** A triangle is always half of the rectangle built on the same base and height. If a triangle-area answer matches base × height exactly, you forgot to halve. (Error-log tag: Careless.)
+**hint_nudge:** What fraction of a 12-by-5 rectangle does a triangle with that same base and height occupy?
+**hint_strategy:** Use Area = (1/2) × base × height. Identify the base and the height before plugging in.
+**hint_setup:** Base = 12, height = 5, so Area = (1/2)(12)(5).
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Circles
+**skill:** circumference-from-radius
+**trap_type:** radius-diameter-and-area-confusion
+**est_time_seconds:** 45
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+A circle has a radius of 7. What is its circumference?
+
+- A) 7π
+- B) 14π
+- C) 28π
+- D) 49π
+- E) 196π
+
+**answer:** B
+**explanation:** The circumference of a circle is C = 2πr, where r is the radius. It is linear in the radius, in contrast to the area A = πr², which is quadratic. Keeping these two formulas distinct is the entire task here.
+
+With r = 7,
+
+C = 2π(7) = 14π.
+
+The correct answer is B.
+**fastest_path:** Circumference uses 2πr, so just double the radius and attach π: 2 × 7 = 14, giving 14π. If you ever wrote a squared term, you reached for the area formula by mistake.
+**common_trap:** Reflexively squaring the radius — the area formula πr² — when the question asks for the one-dimensional distance around the circle.
+**mistake_a:** 7π treats the radius as if it were the diameter and uses C = πd with d = 7, or equivalently uses πr instead of 2πr. The factor of 2 is missing.
+**mistake_c:** 28π comes from doubling the diameter: using 2πr with r mistaken for the diameter (14), giving 2π(14) = 28π. The radius and diameter were swapped.
+**mistake_d:** 49π is the area, πr² = π(7²) = 49π. This answers a different question — area instead of circumference.
+**mistake_e:** 196π squares the diameter, π(14)², compounding both the radius/diameter swap and the area/circumference swap.
+**takeaway:** Circumference grows linearly with the radius (2πr); area grows with its square (πr²). When you see a squared radius in a "distance around" question, you have switched formulas. (Error-log tag: Conceptual.)
+**hint_nudge:** Are you being asked for a distance (around the circle) or an area (inside it)?
+**hint_strategy:** Circumference is C = 2πr, a length. Area is πr². Pick the length formula.
+**hint_setup:** C = 2πr = 2π(7).
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Quadrilaterals
+**skill:** rectangle-diagonal-via-pythagoras
+**trap_type:** adding-sides-instead-of-pythagoras
+**est_time_seconds:** 60
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+A rectangle has length 8 and width 6. What is the length of its diagonal?
+
+- A) 2√7
+- B) 10
+- C) 14
+- D) 28
+- E) 48
+
+**answer:** B
+**explanation:** A diagonal of a rectangle splits it into two right triangles whose legs are the length and the width and whose hypotenuse is the diagonal. The diagonal therefore satisfies the Pythagorean theorem: d² = length² + width².
+
+Here
+
+d² = 8² + 6² = 64 + 36 = 100, so d = √100 = 10.
+
+The correct answer is B.
+**fastest_path:** Recognize 6 and 8 as the legs of a 3-4-5 triangle scaled by 2 (6-8-10). The diagonal is 10 on sight, no squaring required.
+**common_trap:** Adding the two sides (8 + 6 = 14) as if the diagonal were a straight-line sum, rather than using the Pythagorean relationship for the hypotenuse.
+**mistake_a:** 2√7 = √28 comes from subtracting the squares, √(64 − 36), instead of adding them. The Pythagorean theorem sums the squares of the legs.
+**mistake_c:** 14 is 8 + 6, the sum of the sides. The diagonal of a rectangle is always shorter than the sum of two sides, so 14 cannot be a straight-line diagonal across an 8-by-6 box.
+**mistake_d:** 28 is the perimeter, 2(8 + 6). This answers a different question.
+**mistake_e:** 48 is the area, 8 × 6. Also a different quantity.
+**takeaway:** Any "diagonal of a rectangle" question is a hypotenuse problem: d² = L² + W². Memorizing the 3-4-5 and 5-12-13 families lets you skip the arithmetic. (Error-log tag: Conceptual.)
+**hint_nudge:** A diagonal cuts the rectangle into two right triangles. What are the legs?
+**hint_strategy:** Use d² = 8² + 6². Do the legs match a familiar Pythagorean triple?
+**hint_setup:** d² = 64 + 36 = 100.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Lines and Angles
+**skill:** supplementary-angles-on-a-line
+**trap_type:** solved-for-variable-not-the-asked-angle
+**est_time_seconds:** 60
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+Two angles lie along a straight line and together form it. Their measures are 2x degrees and 3x degrees. What is the measure of the larger angle?
+
+- A) 36
+- B) 72
+- C) 90
+- D) 108
+- E) 120
+
+**answer:** D
+**explanation:** Angles that together form a straight line are supplementary: their measures sum to 180 degrees. Setting up that equation gives the value of x, after which the question's specific request — the larger of the two angles — determines which expression to evaluate.
+
+The two angles sum to a straight angle:
+
+2x + 3x = 180, so 5x = 180 and x = 36.
+
+The two angles measure 2x = 72 and 3x = 108. The larger is 3x = 108.
+
+The correct answer is D.
+**fastest_path:** The angles split 180 in the ratio 2 : 3, a total of 5 parts. The larger angle is 3 of those 5 parts: (3/5)(180) = 108. The ratio shortcut skips solving for x.
+**common_trap:** Solving for x correctly and then reporting x itself (36) or the smaller angle (72), instead of the larger angle the question asks for.
+**mistake_a:** 36 is the value of x, not an angle in the figure. The algebra is correct but stops one step early.
+**mistake_b:** 72 is the smaller angle, 2x. The question asks for the larger one — a classic "answered the wrong angle" slip.
+**mistake_c:** 90 assumes a right angle, but nothing here forces the angles to be equal or perpendicular; it ignores the 2 : 3 ratio entirely.
+**mistake_e:** 120 would result from splitting 180 in a 1 : 2 ratio, or from using the wrong total. It does not match the 2 : 3 split.
+**takeaway:** Always re-read what the question asks for after solving. Finding x is a means, not the answer; the trap is built around the gap between x and the requested angle. (Error-log tag: Misread.)
+**hint_nudge:** What do two angles that form a straight line add up to?
+**hint_strategy:** Set 2x + 3x = 180, solve for x, then identify which expression is the larger angle.
+**hint_setup:** 5x = 180, so x = 36; the larger angle is 3x.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+**skill:** midpoint-of-a-segment
+**trap_type:** displacement-or-sum-mistaken-for-midpoint
+**est_time_seconds:** 60
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+In the xy-plane, what is the midpoint of the segment whose endpoints are (2, -3) and (8, 5)?
+
+- A) (3, 4)
+- B) (5, 1)
+- C) (5, 2)
+- D) (6, 8)
+- E) (10, 2)
+
+**answer:** B
+**explanation:** The midpoint of a segment is the coordinatewise average of its endpoints: ((x1 + x2)/2, (y1 + y2)/2). Each coordinate is handled independently, and both must be divided by 2.
+
+For the x-coordinate: (2 + 8)/2 = 10/2 = 5.
+For the y-coordinate: (-3 + 5)/2 = 2/2 = 1.
+
+The midpoint is (5, 1).
+
+The correct answer is B.
+**fastest_path:** Average each coordinate separately. The x's, 2 and 8, average to 5; the y's, -3 and 5, average to 1. Done in two mental steps — just watch the negative sign in the y average.
+**common_trap:** Computing the differences (the displacement) instead of the averages, or summing the coordinates without dividing by 2.
+**mistake_a:** (3, 4) halves the differences, ((8−2)/2, (5−(−3))/2) = (3, 4) — that is half the displacement vector, not the midpoint, which uses sums.
+**mistake_c:** (5, 2) gets the x-coordinate right but leaves the y-sum un-halved: (-3 + 5) = 2 was reported without dividing by 2. A partial-division slip.
+**mistake_d:** (6, 8) is the displacement itself: (8 − 2, 5 − (−3)) = (6, 8). This is the run and rise between the points, not their middle.
+**mistake_e:** (10, 2) sums the coordinates without dividing: (2 + 8, -3 + 5) = (10, 2). The averaging step was skipped on both coordinates.
+**takeaway:** Midpoint = average = sum over two, done to each coordinate. If your answer used differences, you found displacement; if it skipped the division, you found the raw sum. (Error-log tag: Careless.)
+**hint_nudge:** The midpoint is the average of the endpoints, not the difference between them.
+**hint_strategy:** Average the x-coordinates and the y-coordinates separately, each divided by 2.
+**hint_setup:** x: (2 + 8)/2; y: (-3 + 5)/2.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Triangle Similarity
+**skill:** similar-triangles-shadow-proportion
+**trap_type:** inverted-proportion
+**est_time_seconds:** 90
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+At a given moment, a vertical pole 6 feet tall casts a shadow 4 feet long. At that same moment, a nearby flagpole casts a shadow 30 feet long. What is the height of the flagpole, in feet?
+
+- A) 20
+- B) 32
+- C) 36
+- D) 45
+- E) 50
+
+**answer:** D
+**explanation:** Because the sun's rays strike both objects at the same angle at the same instant, each object and its shadow form a right triangle, and the two triangles are similar. In similar triangles, corresponding sides are in equal ratio, so height and shadow length scale together.
+
+Set up the proportion with height over shadow for each object:
+
+6/4 = h/30.
+
+Cross-multiplying gives 4h = 6 × 30 = 180, so h = 45.
+
+The correct answer is D.
+**fastest_path:** Find the height-to-shadow ratio once: 6/4 = 1.5. Every shadow at this instant is two-thirds of its object's height, so height = 1.5 × shadow = 1.5 × 30 = 45. One ratio, one multiplication.
+**common_trap:** Writing the proportion upside down — pairing the small shadow with the large height — which inverts the ratio and shrinks the answer instead of growing it.
+**mistake_a:** 20 inverts the proportion: 4/6 = h/30 gives h = 20. A quick sanity check kills this — the flagpole's shadow (30) dwarfs the pole's (4), so the flagpole must be much taller than 6 feet, not just over three times.
+**mistake_b:** 32 has no clean source; it typically comes from mismatching which numbers pair, a sign the corresponding sides were not lined up.
+**mistake_c:** 36 adds rather than scales — treating the 30-foot shadow as 6 taller, or 6 × 6 — ignoring the actual 6 : 4 ratio.
+**mistake_e:** 50 rounds the ratio to a clean 30 + 20 or uses 5/3 incorrectly; it overshoots the exact 45.
+**takeaway:** In shadow/similar-triangle problems, keep the ratio in a consistent order (height/shadow = height/shadow) and sanity-check direction: a longer shadow means a taller object. (Error-log tag: Conceptual.)
+**hint_nudge:** The object and its shadow form similar right triangles. Set the ratios equal.
+**hint_strategy:** Write height/shadow for both objects and set them equal: 6/4 = h/30.
+**hint_setup:** 4h = 180.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Circles
+**skill:** sector-area-as-fraction-of-circle
+**trap_type:** arc-length-vs-sector-area
+**est_time_seconds:** 90
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+A circle has radius 6. A sector of this circle has a central angle of 60 degrees. What is the area of the sector?
+
+- A) 2π
+- B) 6π
+- C) 9π
+- D) 12π
+- E) 36π
+
+**answer:** B
+**explanation:** A sector is a "slice" of a circle, and its area is the same fraction of the whole circle's area as its central angle is of the full 360 degrees. So Sector Area = (central angle / 360) × πr².
+
+The full circle's area is πr² = π(6²) = 36π. The central angle is 60 degrees, which is 60/360 = 1/6 of the circle. Therefore
+
+Sector Area = (1/6)(36π) = 6π.
+
+The correct answer is B.
+**fastest_path:** 60 degrees is one-sixth of the circle, so the sector is one-sixth of the area. One-sixth of 36π is 6π. Reduce the angle fraction first, then take that share of πr².
+**common_trap:** Computing the arc length, (angle/360)(2πr), instead of the sector area, (angle/360)(πr²) — the two formulas differ by a factor of r/2 and are easy to conflate.
+**mistake_a:** 2π is the arc length of this sector: (1/6)(2π · 6) = 2π. It answers "how long is the curved edge," not "how much area is enclosed."
+**mistake_c:** 9π is one-quarter of the circle's area, the value for a 90-degree sector. The angle 60 was treated as a quarter-turn instead of a sixth.
+**mistake_d:** 12π is one-third of the area, the value for a 120-degree sector — the 60 was doubled, perhaps by reading the supplementary angle.
+**mistake_e:** 36π is the area of the entire circle. The fractional weighting by the central angle was dropped.
+**takeaway:** Sector area scales the full area πr² by angle/360; arc length scales the full circumference 2πr. Match the formula to the quantity (area vs. length) the question wants. (Error-log tag: Conceptual.)
+**hint_nudge:** What fraction of a full circle is a 60-degree slice?
+**hint_strategy:** Sector area = (angle/360) × πr². Find the fraction, then multiply by the full area.
+**hint_setup:** (60/360)(36π).
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+**skill:** line-equation-find-y-intercept
+**trap_type:** slope-reported-as-intercept
+**est_time_seconds:** 105
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+In the xy-plane, a line passes through the points (2, 3) and (6, 11). What is the y-intercept of this line?
+
+- A) -1
+- B) 0
+- C) 1
+- D) 2
+- E) 3
+
+**answer:** A
+**explanation:** A line's y-intercept is the value of y where the line crosses the y-axis (x = 0). To find it, first determine the slope from the two points, then use point-slope or slope-intercept form to solve for the intercept.
+
+The slope is the change in y over the change in x:
+
+m = (11 − 3)/(6 − 2) = 8/4 = 2.
+
+Using y = mx + b with the point (2, 3): 3 = 2(2) + b, so 3 = 4 + b, giving b = −1.
+
+The y-intercept is −1.
+
+The correct answer is A.
+**fastest_path:** Slope is 2. From (2, 3), step back two units in x to reach x = 0; each x-step of -1 lowers y by the slope (2), so y drops by 4: 3 − 4 = −1. Walking the line back to the axis is faster than full algebra.
+**common_trap:** Computing the slope and reporting it as the y-intercept — answering 2 because that number was the last thing computed.
+**mistake_b:** 0 results from forgetting the +b term or assuming the line passes through the origin. Plugging (2, 3) shows the line does not pass through (0, 0).
+**mistake_c:** 1 is a sign slip: writing 3 = 4 + b but solving b = +1 instead of −1, dropping the negative.
+**mistake_d:** 2 is the slope, not the intercept. The slope was found correctly, then mislabeled as the answer.
+**mistake_e:** 3 is the y-coordinate of the first given point, not where the line crosses the y-axis. The point's y-value was mistaken for the intercept.
+**takeaway:** Slope and y-intercept are different roles in y = mx + b. After finding m, you still must solve for b using a known point — and mind the sign. (Error-log tag: Careless.)
+**hint_nudge:** The y-intercept is b in y = mx + b — you need the slope first, then solve for b.
+**hint_strategy:** Find the slope from the two points, then plug one point into y = mx + b to solve for b.
+**hint_setup:** m = 8/4 = 2; then 3 = 2(2) + b.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Polygons
+**skill:** regular-polygon-side-count-from-angle
+**trap_type:** interior-exterior-angle-confusion
+**est_time_seconds:** 105
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+Each interior angle of a regular polygon measures 150 degrees. How many sides does the polygon have?
+
+- A) 8
+- B) 10
+- C) 12
+- D) 15
+- E) 20
+
+**answer:** C
+**explanation:** At each vertex of a polygon, the interior angle and the exterior angle are supplementary, summing to 180 degrees. For a regular polygon, all exterior angles are equal and they always sum to exactly 360 degrees, so the number of sides is 360 divided by one exterior angle. This exterior-angle route is faster than the interior-angle-sum formula.
+
+Each exterior angle is 180 − 150 = 30 degrees. The number of sides is
+
+n = 360/30 = 12.
+
+(Check with the interior-angle-sum formula: (n − 2)180/n = (10)(180)/12 = 1800/12 = 150. Confirmed.)
+
+The correct answer is C.
+**fastest_path:** Interior 150 means exterior 30. Sides = 360/30 = 12. The exterior angle turns a one-line subtraction-then-division into the whole solution — no (n−2)·180 algebra needed.
+**common_trap:** Dividing 360 by the interior angle (360/150) instead of the exterior angle, or trying to force the interior-angle-sum equation and making an algebra error.
+**mistake_a:** 8 is an octagon, whose interior angles are 135 degrees, not 150. It is a tempting "nearby polygon" guess.
+**mistake_b:** 10 is a decagon, interior angle 144 degrees. Close to 150 but not equal — a guess that didn't verify.
+**mistake_d:** 15 corresponds to an interior angle of 156 degrees, overshooting 150. It often comes from dividing 360 by 24 or other miscomputed exterior angles.
+**mistake_e:** 20 corresponds to interior angles of 162 degrees. This results from an exterior angle of 18 (360/18 = 20), i.e., using 180 − 162 rather than 180 − 150.
+**takeaway:** For regular-polygon problems, convert to the exterior angle (180 − interior) and use the fact that exterior angles sum to 360. It is faster and sidesteps the (n − 2)180 algebra. (Error-log tag: Strategy.)
+**hint_nudge:** Each exterior angle is 180 minus the interior angle, and they sum to 360 around the polygon.
+**hint_strategy:** Find the exterior angle, then divide 360 by it to get the number of sides.
+**hint_setup:** Exterior angle = 180 − 150 = 30; n = 360/30.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** 3D / Solids
+**skill:** space-diagonal-of-rectangular-box
+**trap_type:** face-diagonal-vs-space-diagonal
+**est_time_seconds:** 105
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+A rectangular box has dimensions 2 by 3 by 6. What is the length of the longest diagonal of the box (the segment connecting two opposite corners through the interior)?
+
+- A) 7
+- B) √40
+- C) √45
+- D) 9
+- E) 11
+
+**answer:** A
+**explanation:** The longest diagonal of a rectangular box (its space diagonal) connects two opposite vertices through the interior, and its length is the square root of the sum of the squares of all three dimensions: d = √(l² + w² + h²). This is the three-dimensional extension of the Pythagorean theorem.
+
+With dimensions 2, 3, and 6:
+
+d = √(2² + 3² + 6²) = √(4 + 9 + 36) = √49 = 7.
+
+The correct answer is A.
+**fastest_path:** Sum the three squares: 4 + 9 + 36 = 49, a perfect square, so d = 7. Spotting that the squares total a perfect square confirms you used all three dimensions.
+**common_trap:** Using only two of the three dimensions — computing a face diagonal — and stopping before extending into the third dimension.
+**mistake_b:** √40 is the diagonal of the 2-by-6 face, √(4 + 36). It ignores the dimension of length 3 and measures across one face only.
+**mistake_c:** √45 is the diagonal of the 3-by-6 face, √(9 + 36). It ignores the dimension of length 2 — the most tempting face diagonal because 3 and 6 are the two larger numbers.
+**mistake_d:** 9 is 3 + 6, adding the two largest edges as if the diagonal ran straight along them. A diagonal is shorter than any such edge sum.
+**mistake_e:** 11 is 2 + 3 + 6, the sum of all three edges. The diagonal is far shorter than walking along all three edges.
+**takeaway:** A space diagonal uses all three dimensions: √(l² + w² + h²). If your radical contains only two squared terms, you found a face diagonal, not the longest one. (Error-log tag: Conceptual.)
+**hint_nudge:** The longest diagonal cuts through the interior — how many of the three dimensions should it involve?
+**hint_strategy:** Use the 3D Pythagorean theorem: d = √(l² + w² + h²).
+**hint_setup:** d = √(4 + 9 + 36).
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Isoceles Triangle
+**skill:** base-angles-of-isosceles-triangle
+**trap_type:** skipped-halving-of-remaining-angle
+**est_time_seconds:** 90
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+In triangle ABC, AB = AC and the measure of angle A is 40 degrees. What is the measure of angle B?
+
+- A) 40
+- B) 50
+- C) 70
+- D) 100
+- E) 140
+
+**answer:** C
+**explanation:** In an isosceles triangle, the angles opposite the equal sides are equal. Here AB = AC, so the angles opposite them — angle C (opposite AB) and angle B (opposite AC) — are the two equal base angles. Angle A, between the equal sides, is the apex angle. The three angles sum to 180 degrees.
+
+The apex angle A is 40, so the two equal base angles share the remaining 180 − 40 = 140 degrees:
+
+angle B = angle C = 140/2 = 70.
+
+The correct answer is C.
+**fastest_path:** Subtract the apex from 180 (180 − 40 = 140) and halve, because the two base angles are equal: 140/2 = 70. The "subtract, then split in two" rhythm is the whole problem.
+**common_trap:** Subtracting the apex from 180 and reporting that remainder (140) as a single base angle, forgetting it must be split between the two equal angles.
+**mistake_a:** 40 assumes angle B equals angle A. But A is the apex angle (between the two equal sides); the base angles are generally different from it.
+**mistake_b:** 50 comes from treating the triangle as right-angled — assuming a 90-degree angle somewhere and computing 180 − 40 − 90 = 50. Nothing in the problem gives a right angle.
+**mistake_d:** 100 treats the given 40 as one of the base angles, making the other base angle 40 too and the apex 180 − 80 = 100. This misidentifies which angle is the apex.
+**mistake_e:** 140 is the combined measure of both base angles (180 − 40). The halving step was skipped.
+**takeaway:** In an isosceles triangle, the two equal sides sit opposite the two equal base angles; the included angle is the apex. Subtract the apex from 180 and divide the rest by two. (Error-log tag: Conceptual.)
+**hint_nudge:** Equal sides face equal angles. Which two angles must be equal here?
+**hint_strategy:** Angle A is the apex; B and C are the equal base angles. Use B = (180 − A)/2.
+**hint_setup:** angle B = (180 − 40)/2.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+**skill:** triangle-area-from-coordinates
+**trap_type:** wrong-height-or-dropped-half
+**est_time_seconds:** 120
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+In the xy-plane, a triangle has vertices at (1, 2), (7, 2), and (3, 9). What is the area of the triangle?
+
+- A) 18
+- B) 21
+- C) 27
+- D) 42
+- E) 63
+
+**answer:** B
+**explanation:** When two vertices of a triangle share a y-coordinate, the segment between them is horizontal and makes a convenient base. The base length is the horizontal distance between those two points, and the height is the perpendicular (vertical) distance from the third vertex to that base line.
+
+The points (1, 2) and (7, 2) both lie on the line y = 2, so the base runs along y = 2 with length 7 − 1 = 6. The third vertex is (3, 9); its perpendicular distance to the line y = 2 is the vertical gap 9 − 2 = 7. Then
+
+Area = (1/2)(base)(height) = (1/2)(6)(7) = 21.
+
+The correct answer is B.
+**fastest_path:** Spot the two points sharing y = 2: that gives base 6 instantly. The height is the apex's y minus the base's y, 9 − 2 = 7, not the apex's y itself. Then (1/2)(6)(7) = 21.
+**common_trap:** Using the apex's raw y-coordinate (9) as the height instead of its distance above the base line (7), or dropping the factor of one-half.
+**mistake_a:** 18 uses height 6 (perhaps confusing base and height, both small numbers) in (1/2)(6)(6), or otherwise mismatches the dimensions.
+**mistake_c:** 27 uses the apex's y-coordinate 9 as the height: (1/2)(6)(9) = 27. The height is the vertical distance to the base (9 − 2 = 7), not the raw coordinate.
+**mistake_d:** 42 is base × height (6 × 7) without the one-half factor — the area of the enclosing rectangle, twice the triangle.
+**mistake_e:** 63 is 6 × 9 + ... or 9 × 7, combining the wrong-height error (using 9) with the dropped-half error.
+**takeaway:** With a horizontal base, the height is the vertical gap between the apex and the base line — subtract the y-coordinates, do not use the apex's coordinate directly. And never forget the one-half. (Error-log tag: Careless.)
+**hint_nudge:** Two of the vertices share the same y-coordinate. What does that make easy to measure?
+**hint_strategy:** Take the horizontal side as the base; the height is the vertical distance from the third point to that base's line.
+**hint_setup:** base = 7 − 1 = 6; height = 9 − 2 = 7; Area = (1/2)(6)(7).
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Circle — Inscribed Angle
+**skill:** thales-hypotenuse-as-diameter
+**trap_type:** hidden-diameter-and-diameter-as-radius
+**est_time_seconds:** 135
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+A right triangle with legs of length 6 and 8 is inscribed in a circle so that its hypotenuse is a diameter of the circle. What is the area of the circle?
+
+- A) 24π
+- B) 25π
+- C) 50π
+- D) 75π
+- E) 100π
+
+**answer:** B
+**explanation:** A right triangle inscribed in a circle with its hypotenuse on the circle has that hypotenuse as a diameter — this is Thales' theorem, the converse of the fact that an angle inscribed in a semicircle is a right angle. So the key is to find the hypotenuse, recognize it as the diameter, and halve it to get the radius.
+
+The legs are 6 and 8, so the hypotenuse is √(6² + 8²) = √(36 + 64) = √100 = 10. This hypotenuse is the diameter, so the radius is 10/2 = 5. The area is
+
+A = πr² = π(5²) = 25π.
+
+The correct answer is B.
+**fastest_path:** 6-8-10 is a scaled 3-4-5, so the hypotenuse is 10 on sight. That is the diameter, so radius 5, area 25π. The only trap to dodge is halving the diameter before squaring.
+**common_trap:** Using the diameter (10) directly as the radius in πr², which quadruples the area, or computing the triangle's area instead of the circle's.
+**mistake_a:** 24π attaches π to the triangle's area, (1/2)(6)(8) = 24. The question asks for the circle's area, a different figure entirely.
+**mistake_c:** 50π uses πr with r squared incompletely, or doubles 25π — a common result of mixing the diameter and radius midway.
+**mistake_d:** 75π has no consistent derivation; it usually comes from combining a radius/diameter slip with an arithmetic error.
+**mistake_e:** 100π uses the diameter 10 as the radius: π(10²) = 100π. Forgetting to halve the diameter is the signature mistake here, and it makes the area four times too large.
+**takeaway:** When a right triangle is inscribed in a circle, its hypotenuse is the diameter (Thales). Find the hypotenuse, halve it for the radius, then apply πr². Don't square the diameter. (Error-log tag: Conceptual.)
+**hint_nudge:** Where must the right angle sit relative to the circle, and what does that make the hypotenuse?
+**hint_strategy:** The hypotenuse is the diameter. Find it with the Pythagorean theorem, halve it, then use πr².
+**hint_setup:** hypotenuse = √(36 + 64) = 10, so r = 5.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Coordinate Geometry
+**skill:** distance-from-point-to-line
+**trap_type:** forgot-to-normalize-by-coefficient-magnitude
+**est_time_seconds:** 150
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+In the xy-plane, what is the distance from the origin to the line 3x + 4y = 24?
+
+- A) 4.8
+- B) 6
+- C) 8
+- D) 9.6
+- E) 24
+
+**answer:** A
+**explanation:** The distance from a point (x0, y0) to the line ax + by = c is |ax0 + by0 − c| divided by √(a² + b²). The denominator — the magnitude of the coefficient vector — is what converts the raw expression into an actual perpendicular distance, and it is the step most often omitted.
+
+Here a = 3, b = 4, c = 24, and the point is the origin (0, 0). The numerator is |3(0) + 4(0) − 24| = |−24| = 24. The denominator is √(3² + 4²) = √(9 + 16) = √25 = 5. So the distance is
+
+24/5 = 4.8.
+
+The correct answer is A.
+**fastest_path:** Plug the origin into 3x + 4y − 24 to get -24, take the absolute value, and divide by √(3² + 4²) = 5: 24/5 = 4.8. The 3-4-5 pattern makes the denominator instant.
+**common_trap:** Reporting 24 (the raw constant) without dividing by √(a² + b²), or confusing the line's intercepts with the perpendicular distance.
+**mistake_b:** 6 is the y-intercept of the line (set x = 0: 4y = 24, y = 6). The distance from the origin to the line, measured perpendicularly, is shorter than the distance straight up the axis to the intercept.
+**mistake_c:** 8 is the x-intercept (set y = 0: 3x = 24, x = 8). Like the y-intercept, this is a distance along an axis, not the perpendicular distance to the line.
+**mistake_d:** 9.6 is 48/5, double the correct value — a slip such as using √(a² + b²)/2 or doubling the numerator. It also exceeds both intercepts' perpendicular feet, which is impossible.
+**mistake_e:** 24 is the numerator |c| alone, with the normalization by √(a² + b²) = 5 forgotten entirely. This is the headline trap.
+**takeaway:** The point-to-line distance formula must be normalized by √(a² + b²); without it you have an unscaled quantity, not a distance. The perpendicular distance is always less than either intercept distance — a built-in sanity check. (Error-log tag: Conceptual.)
+**hint_nudge:** The perpendicular distance is shorter than the distance to either axis intercept — so it can't be 6 or 8.
+**hint_strategy:** Use distance = |ax0 + by0 − c| / √(a² + b²) with the origin as the point.
+**hint_setup:** |−24| / √(9 + 16) = 24/5.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** 3D / Solids
+**skill:** cube-volume-scaling-from-surface-area
+**trap_type:** linear-scale-applied-to-volume
+**est_time_seconds:** 135
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+A cube has a surface area of 96. A second cube has edges that are twice as long as the edges of the first cube. What is the volume of the second cube?
+
+- A) 64
+- B) 128
+- C) 256
+- D) 512
+- E) 4096
+
+**answer:** D
+**explanation:** This problem chains two ideas: recovering the edge length from the surface area, then scaling correctly into three dimensions. A cube's surface area is 6 times the area of one square face, 6s², and its volume is s³. When a length is scaled by a factor k, area scales by k² and volume by k³.
+
+First cube: 6s² = 96, so s² = 16 and s = 4. Its volume is 4³ = 64. The second cube has edges twice as long (k = 2), so its volume is 2³ = 8 times larger: 8 × 64 = 512. (Equivalently, the second edge is 8, and 8³ = 512.)
+
+The correct answer is D.
+**fastest_path:** Get s = 4 from 6s² = 96. Doubling the edge multiplies volume by 2³ = 8, so the answer is 8 × 4³ = 8 × 64 = 512 — or just cube the new edge directly, 8³ = 512.
+**common_trap:** Scaling the volume by the linear factor 2 (or the area factor 4) instead of the volume factor 2³ = 8.
+**mistake_a:** 64 is the volume of the first cube (4³). It answers for the wrong cube — the scaling step was not applied.
+**mistake_b:** 128 multiplies the first cube's volume by the linear factor 2 (64 × 2). Doubling the edge does far more than double the volume.
+**mistake_c:** 256 multiplies by the area factor 4 (64 × 4), as if volume scaled like area. Volume scales by the cube of the linear factor, not the square.
+**mistake_e:** 4096 mistakes s² = 16 for s = 16, then cubes the doubled edge of 32 — or computes 16³. The error is reading the edge as 16 instead of taking the square root to get 4.
+**takeaway:** Scaling lengths by k scales areas by k² and volumes by k³. Doubling a cube's edge multiplies its volume by 8. Also: surface area gives s², so take the square root to get the edge. (Error-log tag: Conceptual.)
+**hint_nudge:** Doubling every edge does more than double the volume — by what factor does volume grow?
+**hint_strategy:** Find the first edge from 6s² = 96, then scale volume by 2³ when the edge doubles.
+**hint_setup:** 6s² = 96 gives s = 4; new volume = 2³ × 4³.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Triangle Inequality
+**skill:** triangle-inequality-with-parity-constraint
+**trap_type:** ignored-secondary-constraint
+**est_time_seconds:** 150
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+Two sides of a triangle have lengths 7 and 11. The third side has an integer length, and the perimeter of the triangle is an even integer. How many different values are possible for the perimeter?
+
+- A) 5
+- B) 6
+- C) 7
+- D) 12
+- E) 13
+
+**answer:** B
+**explanation:** This is a triangle-inequality counting problem with an extra parity filter layered on top. The triangle inequality fixes the range of the third side; the "even perimeter" condition then removes half of those values.
+
+Let the third side be x. The triangle inequality requires x to lie strictly between the difference and the sum of the other two sides: 11 − 7 < x < 11 + 7, i.e., 4 < x < 18. Since x is an integer, x ranges over 5, 6, 7, …, 17 — that is 13 possible values.
+
+Now apply the parity condition. The perimeter is 7 + 11 + x = 18 + x. Because 18 is even, 18 + x is even exactly when x is even. The even integers in 5 ≤ x ≤ 17 are 6, 8, 10, 12, 14, 16 — that is 6 values. Each gives a distinct perimeter, so there are 6 possible perimeters.
+
+The correct answer is B.
+**fastest_path:** Range 4 < x < 18 gives x = 5…17. Even perimeter ⇔ x even (since 18 is even), and the even values 6,8,…,16 number (16 − 6)/2 + 1 = 6. Count the constrained values directly rather than listing all perimeters.
+**common_trap:** Counting all 13 integer values of x and forgetting that the even-perimeter condition keeps only the even ones.
+**mistake_a:** 5 undercounts the even values — typically an off-by-one when counting 6, 8, 10, 12, 14, 16, or mistakenly excluding an endpoint.
+**mistake_c:** 7 counts the odd values of x instead of the even ones (5, 7, 9, 11, 13, 15, 17 is 7 values). The parity that makes the perimeter even is x even, since 18 is even — the parity was flipped.
+**mistake_d:** 12 comes from a boundary error in the triangle inequality, such as using 4 ≤ x ≤ 16 or otherwise miscounting the range before applying parity, or halving 13 and rounding.
+**mistake_e:** 13 is the count of all integer values of x satisfying only the triangle inequality. The even-perimeter constraint was ignored entirely — the headline trap.
+**takeaway:** Read for every constraint. Here the triangle inequality sets the range and a parity condition halves it; missing the second constraint doubles your count. Check the parity of the fixed part (18) to know whether x must be even or odd. (Error-log tag: Misread.)
+**hint_nudge:** First bound the third side with the triangle inequality, then ask which of those values make the perimeter even.
+**hint_strategy:** Find the integer range for x from 4 < x < 18, then keep only the x that make 18 + x even.
+**hint_setup:** x ∈ {5, …, 17}; even perimeter needs x even.
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Inscribed and Circumscribed Figures
+**skill:** chaining-inscribed-square-circle-square
+**trap_type:** linear-ratio-reported-for-area
+**est_time_seconds:** 165
+**prerequisite:** reading-quant-07-geometry-and-coordinate-reasoning
+
+A circle is inscribed in a square, and a second, smaller square is inscribed in that circle. What is the ratio of the area of the larger square to the area of the smaller square?
+
+- A) √2 to 1
+- B) 2 to 1
+- C) 2√2 to 1
+- D) 4 to 1
+- E) 1 to 2
+
+**answer:** B
+**explanation:** Nothing in this problem requires actual numbers — the figures are linked through the shared circle, and choosing a convenient value for one length makes the relationships transparent. The two key bridges are: (1) a circle inscribed in a square touches all four sides, so the square's side equals the circle's diameter; and (2) a square inscribed in a circle has its corners on the circle, so the square's diagonal equals the circle's diameter.
+
+Let the larger square have side s. The inscribed circle then has diameter s. The smaller square is inscribed in that circle, so its diagonal equals the circle's diameter, s. A square with diagonal d has side d/√2, so the smaller square has side s/√2.
+
+Now compare areas:
+- Larger square area = s².
+- Smaller square area = (s/√2)² = s²/2.
+
+The ratio is s² : s²/2 = 1 : (1/2) = 2 : 1.
+
+The correct answer is B.
+**fastest_path:** Let the big square's side be √2 (so the circle's diameter is √2 and the small square's diagonal is √2, making its side 1). Areas are 2 and 1 — ratio 2 to 1. Picking the side as √2 clears the radical instantly.
+**common_trap:** Comparing the side lengths (whose ratio is √2 to 1) and reporting that instead of the area ratio, which is the square of the linear ratio.
+**mistake_a:** √2 to 1 is the ratio of the side lengths, not the areas. Since area scales as the square of length, the area ratio is (√2)² = 2 to 1. This is the dominant trap.
+**mistake_c:** 2√2 to 1 mixes a linear and an area factor — for example, multiplying the side ratio √2 by the area ratio 2. It double-counts the scaling.
+**mistake_d:** 4 to 1 squares the wrong linear ratio, treating the side ratio as 2 to 1 (perhaps confusing the diagonal/side relationship) and then squaring to 4. The side ratio is √2, not 2.
+**mistake_e:** 1 to 2 inverts the comparison, giving smaller-to-larger when the question asks larger-to-smaller.
+**takeaway:** When figures are nested through a shared circle, translate via "inscribed square's diagonal = diameter = circumscribing square's side," and remember that an area ratio is the square of the corresponding length ratio. Assigning a convenient length avoids algebra. (Error-log tag: Conceptual.)
+**hint_nudge:** The circle's diameter equals the big square's side and also the small square's diagonal — that single length links both squares.
+**hint_strategy:** Let the big square's side be s. Find the small square's side from its diagonal (= s), then compare areas, not sides.
+**hint_setup:** Big side s, small square diagonal s so small side s/√2; compare s² to (s/√2)².
+**related_reading:** reading-quant-07-geometry-and-coordinate-reasoning
