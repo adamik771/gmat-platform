@@ -1736,6 +1736,117 @@ export default function SessionClient({
           )
         })()}
 
+        {/* Confidence calibration — the session-level metacognition read.
+            ConfidencePanel trains calibration one question at a time; this
+            aggregates the whole session so the student can see the shape of
+            their certainty. The signal that matters is the gap between how
+            sure they felt and how often they were right: over-confidence
+            (sure but wrong) is the riskiest pattern under test conditions,
+            under-confidence (doubted but right) means leaving a trustworthy
+            instinct unused. Only renders when ≥3 questions were rated so the
+            read is built on real signal, not one stray click. */}
+        {(() => {
+          const rated = answeredPairs.filter((p) => p.state.confidence != null)
+          if (rated.length < 3) return null
+
+          const LEVELS = [
+            { id: "high", label: "High", color: "#3ECF8E" },
+            { id: "medium", label: "Medium", color: "#E8C97A" },
+            { id: "low", label: "Low", color: "#FF4444" },
+          ] as const
+
+          const byLevel = LEVELS.map((lvl) => {
+            const qs = rated.filter((p) => p.state.confidence === lvl.id)
+            return {
+              ...lvl,
+              total: qs.length,
+              correct: qs.filter((p) => p.correct).length,
+            }
+          })
+
+          const high = byLevel.find((b) => b.id === "high")!
+          const low = byLevel.find((b) => b.id === "low")!
+
+          // One-line read, priority-ordered: over-confidence is the most
+          // test-relevant pattern, then under-confidence, then a calibrated
+          // confirmation, then a neutral building note when signal is thin.
+          let read: { tone: "warn" | "good" | "ok"; text: string }
+          if (high.total >= 2 && high.correct / high.total < 0.7) {
+            read = {
+              tone: "warn",
+              text: `You felt sure on ${high.total} question${high.total === 1 ? "" : "s"} and got ${high.total - high.correct} wrong. Your certainty is running ahead of your accuracy — the exact pattern that costs points on the real test, where there's no second look. Treat a "sure" feeling as a cue to double-check the premise, not commit.`,
+            }
+          } else if (low.total >= 2 && low.correct / low.total >= 0.7) {
+            read = {
+              tone: "good",
+              text: `You doubted ${low.total} question${low.total === 1 ? "" : "s"} you actually got right. Your instinct is sharper than your confidence — under timed conditions, that hesitation costs you time you don't need to spend. Trust your first read more.`,
+            }
+          } else if (high.total >= 2 && high.correct / high.total >= 0.85) {
+            read = {
+              tone: "ok",
+              text: "Your confidence tracks your accuracy — when you feel sure, you're right. That alignment is a mark of test-readiness: it means you can trust your own signal to pace yourself on the day.",
+            }
+          } else {
+            read = {
+              tone: "ok",
+              text: "Keep rating your confidence as you practise. A few more sessions and the gap between how sure you feel and how often you're right becomes a reliable signal you can pace by.",
+            }
+          }
+
+          const readColor =
+            read.tone === "warn"
+              ? "#FF9966"
+              : read.tone === "good"
+              ? "#3ECF8E"
+              : "#C0C0C0"
+
+          return (
+            <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1">
+                Confidence calibration
+              </p>
+              <p className="text-[11px] text-[#666666] leading-relaxed mb-3.5">
+                How often you were right at each confidence level you used.
+              </p>
+              <div className="space-y-2.5">
+                {byLevel
+                  .filter((b) => b.total > 0)
+                  .map((b) => {
+                    const pct = Math.round((b.correct / b.total) * 100)
+                    return (
+                      <div key={b.id} className="flex items-center gap-3">
+                        <span className="flex items-center gap-2 w-24 flex-shrink-0">
+                          <span
+                            className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                            style={{ backgroundColor: b.color }}
+                          />
+                          <span className="text-xs" style={{ color: "#888888" }}>
+                            {b.label}
+                          </span>
+                        </span>
+                        <div className="flex-1 h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
+                          <div
+                            className="h-full rounded-full transition-all duration-500"
+                            style={{ width: `${pct}%`, backgroundColor: b.color }}
+                          />
+                        </div>
+                        <span className="text-[11px] tabular-nums w-16 text-right flex-shrink-0 text-[#888888]">
+                          {b.correct}/{b.total} · {pct}%
+                        </span>
+                      </div>
+                    )
+                  })}
+              </div>
+              <p
+                className="text-xs mt-4 pt-3 border-t border-white/[0.05] leading-relaxed"
+                style={{ color: readColor }}
+              >
+                {read.text}
+              </p>
+            </div>
+          )
+        })()}
+
         {/* High-confidence misses — surfaces only when the student rated a question
             "high" and got it wrong. These are the most important mistakes in the
             session: the gap between felt certainty and actual error reveals a
