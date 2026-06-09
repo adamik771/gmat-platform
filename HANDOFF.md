@@ -2,6 +2,35 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-08→10 (Ship deep-explanations to prod + full chapter-architecture rebuild across all 3 sections)
+
+Long multi-day session continuing from the deep-explanations work below. Everything is shipped to prod except the one open PR noted at the end. `gh` is NOT installed — PRs are opened from `https://github.com/adamik771/gmat-platform/compare/main...<branch>?expand=1` and merged in the browser.
+
+### Shipped to production (all merged to main)
+- **Deep explanations live.** The 912/912 OG-format bank (the branch below) was merged (PRs #338/#339) and deployed. The two TPA parser fixes and the diagnostic-save fix rode along.
+- **Domain consolidation + SEO.** Adam owns two domains: `zakariangmat.com` (the real Vercel app) and `adamzakarian-gmat.com` (an old Netlify "565 to 735" landing page). Pointed the old domain's nameservers (at **Name.com**, the registrar) to Vercel's `ns1/ns2.vercel-dns.com`, added it to the Vercel project as a **308 redirect to www.zakariangmat.com** — so the old domain now forwards to the real site (verified live). Old Netlify site is orphaned (Adam can delete). Added a **Google Search Console** verification meta tag (`verification.google` in `app/layout.tsx`, PR #352) — Adam verified `www.zakariangmat.com` and submitted `/sitemap.xml`. **Sitemap still emits non-www `zakariangmat.com` URLs** (NEXT_PUBLIC_SITE_URL unset → apex fallback); a www-canonical pass (set the env or change the fallback) is a nice-to-have.
+- **Chapter architecture, fully rebuilt to be granular + deep (per Adam):**
+  - **Verbal 2 → 21 chapters.** First split into 6 spec modules (PR #356), then re-split to **one chapter per question type** (PR #358): `verbal-01-foundations`, `verbal-02..12` (CR: argument structure, assumption, strengthen, weaken, inference, evaluate, flaw, paradox, boldface, complete, traps), `verbal-13-rc-reading-process`, `verbal-14..20` (RC: main idea, detail, inference, application, function, attitude, traps), `verbal-21-mixed-timing`. Then **expanded the 18 short per-type chapters ~3x for retention** (PR #360): each now ~2000-2900 words with a memorizable procedure, 4-6 worked examples, 2-3 *spaced* recall checks, common-mistakes + recap.
+  - **DI 5 → 7 chapters** (PR #357): added `di-1-foundations` + `di-7-timing-mixed`; the 5 existing (DS/TA/GI/TPA/MSR) were file-renamed `di-2..6` for order but **kept their slugs** (no URL breakage).
+  - **Quant 10 → 31 chapters** (PR #359, **merged**): 4 Strategic Methods chapters (`quant-01` backsolving, `02` plugging-in-numbers, `03` estimation, `04` answer-choice-tactics) + 25 per-sub-topic chapters (`quant-05..29`, promoted/grouped from the old chapters' sections) + `quant-30-timing`. Geometry is off-syllabus → kept but renamed to sort **last** (`quant-31-geometry.md`, slug `geometry`); hide/delete is still Adam's call.
+- **Time → page count.** Chapters now show "~N pages" instead of "~N min" everywhere they render (`content.ts` derives `estimatedPages` at ~400 words/page; updated chapters journey, ChapterReader, ChapterRightPanel, SampleChapterRenderer). Adam felt the time estimate made students rush. Practice-set/study-plan/dashboard times were left as time (genuine planning aids).
+- **Wiring pattern for every chapter rename:** `src/lib/topic-chapter-map.ts` (topic → first sub-chapter), `next.config.ts` `redirects()` (308 from every retired slug), `study-plan/page.tsx` fundamentals-rebuild links, and the `sample-chapter` marketing pages. All chapter renames used zero-padded slugs so the filename sort = journey order. **Gotcha:** YAML chapter `title:` containing a colon (e.g. "CR: Strengthen") MUST be quoted or `parseChapterFile` silently drops the chapter. **Gotcha:** the dev server's Turbopack cache goes stale across branch switches — `rm -rf .next` + restart before trusting a 404/render.
+
+### How the chapters were built (reuse the recipe)
+Free **Workflow** subagent pipeline (write→polish, `general-purpose`, structured `{body}` schema). Existing hand-authored chapter sections were *extracted* (`## @id` blocks), regrouped, and reused; only genuinely-new content (methods, timing, the split mirror-pairs, the retention expansions) was generated. Assembly via throwaway `/tmp/*.py` scripts (entity-sanitize `&lt;`→`<` etc., strip standalone `---` HR lines, emit frontmatter + `## @id` bodies). After every batch: `npx tsc --noEmit`, `npm run validate:content` (0 errors required), entity grep, then commit + push a branch.
+
+### Current chapter counts: **Quant 31 · Verbal 21 · DI 7** (59 total). All validate 0 errors.
+
+### OPEN — needs Adam
+1. **PR `claude/quant-chapters-deeper` is pushed but NOT merged** — it deepens the 22 Quant topic chapters (54 sections) for retention exactly like Verbal (hard topics deepest: e.g. permutations-combinations 27p/31 examples, probability 25p). tsc + validate clean. Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/quant-chapters-deeper?expand=1`
+2. **DS-format examples leaked into ~12 Quant chapters** (`"Is k odd? Statement (1)/(2)…"`). GMAT Focus Quant is Problem-Solving-only (DS is in Data Insights), so the *format* is mismatched though the reasoning is valid. Adam was offered a quick targeted PS-only cleanup pass and was deciding. Do this BEFORE/AFTER merging #1 per his call.
+3. Optional: www-canonical sitemap; rotate the once-exposed `ANTHROPIC_API_KEY` (prod tutor is currently off — no key on Vercel); per-sub-topic question tagging (chapter problem sets are allocated by family-bank chunks, not sub-topic-matched).
+
+### Per-section quality note
+Validator emits INFO "thin-examples"/callout-count notes on the most focused chapters — expected and non-blocking; each still carries its Mental model + worked examples + traps.
+
+---
+
 ## CONTEXT SWITCH — 2026-06-08 (Deep explanations COMPLETE: all 268 grouped/multi-part done — bank is 912/912 OG)
 
 All work on branch `claude/deep-explanations-pilot-2026-06-07` (**still NOT merged to main**). The deep-explanations project is **finished**: every question in the bank (912/912) now carries an Official-Guide "Rationale"-style explanation. The remaining 268 grouped/multi-part questions from the prior session were generated, gated, and committed this session.
