@@ -1,10 +1,10 @@
 ---
-slug: verbal-4-rc-reading-process
-title: RC Reading Process
+slug: verbal-13-rc-reading-process
+title: "RC Reading Process"
 section: Verbal
 estimated_minutes: 40
 prerequisites:
-  - verbal-1-foundations
+  - verbal-01-foundations
 summary: |
   Reading Comprehension is won on the first read. This chapter teaches the active-reading process for RC: the three-pass protocol, mapping each paragraph's function, tracking the thesis and the author's stance, and using structure markers to predict where a passage is going — so you answer the question set without ever reading the passage twice.
 sections:

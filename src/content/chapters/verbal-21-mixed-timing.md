@@ -1,11 +1,11 @@
 ---
-slug: verbal-6-mixed-timing
-title: Mixed Verbal & Timing
+slug: verbal-21-mixed-timing
+title: "Mixed Verbal & Timing"
 section: Verbal
 estimated_minutes: 40
 prerequisites:
-  - verbal-3-cr-task-families
-  - verbal-5-rc-question-families
+  - verbal-12-cr-answer-traps
+  - verbal-20-rc-answer-traps
 summary: |
   Knowing the techniques is half the score; deploying them under a 45-minute clock is the other half. This chapter is the meta-skill layer: pacing and passage triage, disciplined elimination, controlling the pull of trap answers, and using the Focus review-and-edit feature to bank and spend time well.
 sections:
