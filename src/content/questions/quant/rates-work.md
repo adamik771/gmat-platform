@@ -224,6 +224,9 @@ A driver travels from town X to town Y at 40 km/h and returns along the same roa
 - E) 55 km/h
 
 **answer:** B
+**hint_nudge:** Equal distances at two speeds — the average is NOT the simple mean (50); it is pulled toward the slower leg.
+**hint_strategy:** Use average speed = total distance / total time. Pick a distance both speeds divide, like 120 km, instead of carrying a variable.
+**hint_setup:** With d = 120: outbound 120/40 = 3 h, return 120/60 = 2 h. Average = total distance 240 km / total time __ h.
 **explanation:** Average speed is defined as total distance divided by total time, not as the simple average of the individual speeds. Because the two legs of this trip cover equal distances at different speeds, more time is spent on the slower leg, so the two speeds cannot be averaged directly. We must compute the total distance traveled and the total time elapsed, then divide.
 
 Let d represent the one-way distance, in kilometers, from town X to town Y. The driver covers this distance twice, so the total distance for the round trip is 2d kilometers.
@@ -257,6 +260,9 @@ A freight train leaves station P at 8:00 AM traveling east at 45 mph. A passenge
 - E) 6:00 PM
 
 **answer:** A
+**hint_nudge:** Same direction, so the passenger train only has to close the gap — it does not need the total distance.
+**hint_strategy:** Find the freight train's head start at 10:00 AM, then divide it by the closing speed (the difference of the two speeds).
+**hint_setup:** Head start = 2 h x 45 = 90 mi; closing rate = 65 - 45 = 20 mph; time to close = 90/20 h after 10:00 AM.
 **explanation:** Because both trains travel in the same direction along the same route, this is a catch-up problem, and the rate at which the faster train closes the gap equals the difference of the two speeds.
 
 Let t be the number of hours after 10:00 AM at which the passenger train overtakes the freight train. The freight train departs at 8:00 AM at 45 miles per hour, so by 10:00 AM, when the passenger train departs, it has already traveled for 2 hours. Thus the freight train begins with a head start of 2(45) = 90 miles.
@@ -287,6 +293,9 @@ Three identical pumps working together can drain a pool in 4 hours. How long wou
 - E) 3 hours 20 minutes
 
 **answer:** B
+**hint_nudge:** More pumps means less time, but the total work is fixed — count it in pump-hours.
+**hint_strategy:** Total work = pumps x hours is constant; get it from the first scenario, then divide by the new pump count.
+**hint_setup:** Total work = 3 x 4 = 12 pump-hours. For 5 pumps, time = 12/5 hours, then convert the fractional hour to minutes.
 **explanation:** This problem relies on the principle that for a fixed task, the total amount of work is constant and can be measured in pump-hours, the product of the number of pumps and the number of hours they operate. Because the pumps are identical, each contributes equally, so the number of pumps and the time required are inversely proportional.
 
 We first determine the total work. Let the total work required to drain the pool be expressed in pump-hours. Three identical pumps working together drain the pool in 4 hours, so the total work is
@@ -326,6 +335,9 @@ A commuter drives 60 miles to work. If she increases her usual speed by 10 mph, 
 - E) 50
 
 **answer:** C
+**hint_nudge:** Same 60-mile distance at two speeds; the 18-minute saving is the hook — convert it to hours first.
+**hint_strategy:** Set 60/r - 60/(r+10) equal to 18/60 = 3/10 hour, or just test the answer choices.
+**hint_setup:** Testing r = 40: 60/40 - 60/50 = 1.5 - 1.2 = __ h (target 3/10 h).
 **explanation:** This problem is governed by the relationship distance = rate × time, equivalently time = distance ÷ rate. The two scenarios share the same distance, so we express each travel time in terms of the unknown speed and use the fact that the faster trip takes 18 minutes less.
 
 Let r be the commuter's usual speed in miles per hour. At the usual speed, the time required to drive the 60 miles is 60/r hours. At the increased speed of r + 10 miles per hour, the time required is 60/(r + 10) hours. Because the commuter arrives 18 minutes earlier at the increased speed, the usual time exceeds the faster time by 18 minutes, which is 18/60 = 3/10 of an hour.
@@ -381,6 +393,9 @@ Two friends live 48 km apart. They start biking toward each other at the same ti
 - E) 2 hours 30 minutes
 
 **answer:** C
+**hint_nudge:** Moving toward each other — they close the gap at the SUM of their speeds.
+**hint_strategy:** Closing rate = sum of the speeds; time to meet = initial distance / closing rate.
+**hint_setup:** Closing rate = 14 + 10 = 24 km/h; time = 48/24 h.
 **explanation:** When two objects move directly toward each other, the distance separating them shrinks at a rate equal to the sum of their individual speeds. This combined rate is called the closing rate, and the time required for the objects to meet is found by dividing the initial distance between them by that closing rate.
 
 Let d represent the distance separating the two friends, so that d = 48 kilometers. Let the two speeds be 14 kilometers per hour and 10 kilometers per hour. Because the friends ride toward each other, the closing rate r is the sum of these speeds:
@@ -412,6 +427,9 @@ Worker A can complete a job in 12 hours. When A and B work together, they finish
 - E) 36 hours
 
 **answer:** C
+**hint_nudge:** Rates add, times do not — work with 1/time, not the times themselves.
+**hint_strategy:** B's rate = combined rate - A's rate; then invert to recover B's solo time.
+**hint_setup:** 1/b = 1/8 - 1/12. Over denominator 24: 1/b = 3/24 - 2/24.
 **explanation:** This is a combined-work problem, and the governing principle is that rates of work add, whereas times do not. If a worker completes a job in t hours, that worker's rate is 1/t of the job per hour, and the rates of workers laboring together sum to the combined rate.
 
 Let b denote the number of hours B requires to complete the job alone. Worker A finishes the job in 12 hours, so A's rate is 1/12 of the job per hour. B's rate is 1/b of the job per hour. Working together, A and B finish the job in 8 hours, so their combined rate is 1/8 of the job per hour.
@@ -457,6 +475,9 @@ Anna drives the first 100 miles of a trip at 50 mph and the last 150 miles at 75
 - E) 70 mph
 
 **answer:** B
+**hint_nudge:** Do not average the speeds — find the time on each leg, since the legs differ in length.
+**hint_strategy:** average speed = total distance / total time; each leg's time = distance / speed.
+**hint_setup:** First leg 100/50 = 2 h, second leg 150/75 = 2 h; average = 250 mi / __ h.
 **explanation:** Average speed is defined as total distance divided by total time, not as the simple arithmetic average of the individual speeds. This distinction matters whenever the legs of a trip are traveled at different rates, so we must compute the time spent on each leg and then combine.
 
 Let t₁ denote the time for the first leg and t₂ the time for the second leg. Since time equals distance divided by speed, we have:
@@ -489,6 +510,9 @@ Alex starts painting a fence alone at a rate that would finish the job in 10 hou
 - E) 15 hours
 
 **answer:** D
+**hint_nudge:** Split it into Alex's solo stretch and the joint stretch; find how much job is left for the pair.
+**hint_strategy:** Compute Alex's work in 4 h, subtract from 1, then the pair's combined rate = remaining work / 3 h.
+**hint_setup:** Alex does 4 x 1/10 = 2/5; remaining 3/5 in 3 h gives combined rate 1/5. Then 1/10 + 1/b = 1/5.
 **explanation:** This problem is governed by the principle that work rates are additive: when several agents work together, their combined rate equals the sum of their individual rates, and the amount of work completed in any interval equals rate multiplied by time. The whole job is taken to be 1 fence.
 
 Let b represent the number of hours Beth would require to paint the fence alone, so that Beth's rate is 1/b of the fence per hour. Alex's rate is 1/10 of the fence per hour, since he would finish the job in 10 hours alone.
@@ -534,6 +558,9 @@ A boat travels 24 km downstream in 2 hours and returns upstream over the same di
 - E) 12 km/h
 
 **answer:** C
+**hint_nudge:** Downstream and upstream speeds are boat +/- current; ADD the two to cancel the current.
+**hint_strategy:** b + c = downstream speed, b - c = upstream speed; adding the equations gives 2b.
+**hint_setup:** b + c = 24/2 = 12, b - c = 24/3 = 8; so 2b = 12 + 8.
 **explanation:** When an object moves through a current, its effective speed equals its still-water speed adjusted by the current: the speed downstream is the sum of the two, and the speed upstream is their difference. The governing relationship in each direction is distance = speed x time.
 
 Let b be the speed of the boat in still water, in km/h, and let c be the speed of the current, in km/h. Going downstream, the effective speed is b + c; going upstream, it is b - c.
@@ -573,6 +600,9 @@ Pipe X can fill a tank in 6 hours and pipe Y can fill it in 9 hours. Pipe X is o
 - E) 5.2 hours
 
 **answer:** C
+**hint_nudge:** Two phases — X alone, then both pipes. The question wants TOTAL time, so keep the first 2 hours.
+**hint_strategy:** Find what X fills alone in 2 h, divide the remainder by the combined rate, then add the 2 h back.
+**hint_setup:** X fills 2/6 = 1/3 alone; remaining 2/3 at combined 1/6 + 1/9 = 5/18; phase-2 time = (2/3)/(5/18), then add 2.
 **explanation:** In work problems involving a constant rate, the portion of a task completed equals the rate of work multiplied by the time spent working, and the rates of agents working simultaneously add together. Because the two pipes operate over different intervals here, we partition the process into two phases and account for each separately.
 
 Let the capacity of the tank be 1 full task. Pipe X fills the tank in 6 hours, so its rate is 1/6 of the tank per hour, and pipe Y fills it in 9 hours, so its rate is 1/9 of the tank per hour.
@@ -623,6 +653,9 @@ A car traveled from city M to city N. What was its average speed for the trip?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
+**hint_nudge:** Average speed needs a distance AND a time — test whether each statement supplies what's missing.
+**hint_strategy:** Check each statement for whether it fixes both distance and time; a purely relative time statement is not enough alone.
+**hint_setup:** (1) gives distance only; (2) gives time only, relative to an unknown distance. Try them together.
 **explanation:** Average speed is governed by the relationship average speed = distance / time, so determining a single numerical value for the average speed requires knowing, or being able to derive, both the distance traveled and the time taken. We evaluate each statement against this requirement.
 
 Statement (1) gives the distance from M to N as 180 miles but provides no information about the time the trip took. With distance known and time unknown, the average speed cannot be determined to a single value. Statement (1) alone is not sufficient.
@@ -653,6 +686,9 @@ Two workers, P and Q, together complete a job. How many hours did they work toge
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
+**hint_nudge:** The hours worked together depend on the ABSOLUTE combined rate, not just the ratio of the two rates.
+**hint_strategy:** A statement is sufficient only if it fixes a numeric combined rate; a '50% faster' relation fixes only the ratio.
+**hint_setup:** (1) gives both solo times, so combined rate = 1/10 + 1/15 = 1/6 — is that enough on its own?
 **explanation:** In combined-work problems, individual rates of work add to give a combined rate, and the time required to finish one job together is the reciprocal of that combined rate. To determine the hours worked together, we must be able to compute an absolute combined rate, not merely a relationship between the two workers' rates.
 
 Let p be P's rate and q be Q's rate, each measured as the fraction of the job completed per hour. The time T worked together satisfies (p + q) * T = 1, so T = 1 / (p + q). The question can be answered precisely when (1) determines a numerical value for p + q.
@@ -682,6 +718,9 @@ Pump A fills a tank in 6 hours. Pump B fills the same tank in 9 hours. Both pump
 - E) 5 hours
 
 **answer:** C
+**hint_nudge:** After the joint phase only B works — use B's SOLO rate for the leftover, not the combined rate.
+**hint_strategy:** Compute the joint work in 2 h, subtract from 1, then divide the remainder by B's solo rate.
+**hint_setup:** Combined 1/6 + 1/9 = 5/18; in 2 h that is 5/9; remaining 4/9 at B's rate 1/9 gives t = (4/9)/(1/9).
 **explanation:** Work-rate problems are governed by the principle that a worker's rate is the reciprocal of the time required to complete one whole job alone, and that rates of agents working simultaneously add. When the set of working agents changes partway through the task, the work done in each phase must be computed with the rate that applies to that phase.
 
 Let the entire job equal 1 tank. Since Pump A fills the tank in 6 hours, its rate is 1/6 of the tank per hour. Since Pump B fills the tank in 9 hours, its rate is 1/9 of the tank per hour.
@@ -730,6 +769,9 @@ Working alone, Alex can complete a project in h hours; working alone, Ben can co
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
+**hint_nudge:** The scenario itself gives one equation linking h and k; each statement supplies the second.
+**hint_strategy:** Build the stem equation from the work done, then test whether each statement plus the stem fixes h uniquely.
+**hint_setup:** Stem: 3(1/h + 1/k) + 2/k = 1, i.e. 3/h + 5/k = 1. With (1) k = 5h: 3/h + 5/(5h) = 1.
 **explanation:** This is a data sufficiency problem, so the task is to determine whether each statement provides enough information to fix a single value of h, not to compute h for its own sake. The governing method is to model work as additive rates: a worker who finishes a project alone in t hours completes 1/t of the project per hour, and the amounts of the project completed by different workers over given time intervals sum to 1 (the whole project).
 
 Let 1/h be Alex's hourly rate and 1/k be Ben's hourly rate. During the first 3 hours both work, contributing 3(1/h + 1/k) of the project. Then Ben works alone for 2 more hours, contributing 2(1/k). Together these complete the project:
@@ -767,6 +809,9 @@ A driver travels at 40 mph for the first hour of a trip and 60 mph for the secon
 - E) 52
 
 **answer:** D
+**hint_nudge:** The two speeds are held for equal TIMES here, so the simple average does work — but confirm with distance/time.
+**hint_strategy:** average speed = total distance / total time; each leg lasts exactly 1 hour, so the distances equal the speeds.
+**hint_setup:** Distance = 40 + 60 = 100 mi over total time 2 h; average = 100/2.
 **explanation:** Average speed is defined as total distance divided by total time, so the governing method is to compute each quantity separately and then form the quotient; the arithmetic mean of two speeds applies only when the two speeds are sustained for equal amounts of time.
 
 Let d_1 be the distance covered in the first hour and d_2 the distance covered in the second hour. Since distance equals rate times time, and each leg lasts exactly one hour, we have d_1 = (40)(1) = 40 miles and d_2 = (60)(1) = 60 miles.
@@ -796,6 +841,9 @@ Two trains leave stations that are 450 miles apart, traveling toward each other 
 - E) 250
 
 **answer:** B
+**hint_nudge:** Find WHEN they meet using the closing speed first, then convert that time into A's distance alone.
+**hint_strategy:** Closing rate = 60 + 75; meeting time = 450 / closing rate; then A's distance = 60 x time.
+**hint_setup:** 135t = 450 gives t = 10/3 h; distance from A = 60 x 10/3.
 **explanation:** When two objects move directly toward each other, their separation decreases at a rate equal to the sum of their individual speeds. We apply this closing-rate principle together with the relationship distance = rate × time.
 
 Let t = the number of hours each train travels before they meet. Because the trains depart simultaneously and move toward each other, they close the 450-mile gap at the combined rate of 60 + 75 = 135 miles per hour. The total distance covered by both trains together must equal the initial separation, so 135t = 450.
@@ -826,6 +874,9 @@ Machines X and Y operate at constant rates. Working together, they complete a jo
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
+**hint_nudge:** The stem already gives 1/x + 1/y = 1/4; each statement either adds a relation or hands you x directly.
+**hint_strategy:** Test each statement against the stem equation for a unique value of x.
+**hint_setup:** (1) y = 2x gives 1/x + 1/(2x) = 1/4, i.e. 3/(2x) = 1/4. (2) states x = 6 outright.
 **explanation:** This question concerns combined work rates, which are governed by the principle that the rates of machines working together add. If a machine completes a job in t hours, its rate is 1/t of the job per hour. Let x represent the number of hours machine X alone would need to complete the job, and let y represent the number of hours machine Y alone would need. The information that the two machines working together complete the job in 4 hours translates into the equation 1/x + 1/y = 1/4. The task is to determine the value of x.
 
 Statement (1) provides that machine Y alone would take twice as long as machine X alone, which translates into y = 2x. Substituting this into the combined-rate equation gives 1/x + 1/(2x) = 1/4. Combining the two terms on the left over the common denominator 2x yields 2/(2x) + 1/(2x) = 3/(2x), so the equation becomes 3/(2x) = 1/4. Cross-multiplying gives 2x = 12, and therefore x = 6. A unique value for x is determined, so Statement (1) alone is sufficient.
@@ -853,6 +904,9 @@ Alex and Ben, working together, complete a job in 6 hours. Alex working alone wo
 - E) 16 hours
 
 **answer:** D
+**hint_nudge:** Rates add — B's rate is the combined rate minus A's rate.
+**hint_strategy:** Compute 1/b = 1/6 - 1/10, then invert.
+**hint_setup:** Over denominator 30: 1/b = 5/30 - 3/30.
 **explanation:** This is a work-rate problem, and the governing principle is that individual rates of work add together to give a combined rate, where each rate is the reciprocal of the time required to complete one job alone.
 
 Let b represent the number of hours Ben would need to complete the job working alone. Then Ben's rate of work is 1/b job per hour. Alex completes the job alone in 10 hours, so Alex's rate is 1/10 job per hour. Working together, the pair completes the job in 6 hours, so their combined rate is 1/6 job per hour.
@@ -890,6 +944,9 @@ A team of 8 workers can complete a project in 12 days. After 3 days of work by a
 - E) 18
 
 **answer:** C
+**hint_nudge:** Measure the whole job in worker-days; the total is fixed no matter who leaves.
+**hint_strategy:** Total worker-days from the first scenario, minus phase-one work, divided by the new crew size.
+**hint_setup:** Total = 8 x 12 = 96 worker-days; phase one uses 8 x 3 = 24; remaining 72 / 6 workers.
 **explanation:** This problem is governed by the principle that the total amount of work in a job can be measured in worker-days, the product of the number of workers and the number of days they labor, and that this total is conserved regardless of how the workforce changes over time. Each worker contributes at the same constant individual rate, so the work completed by any group equals the number of workers multiplied by the number of days worked.
 
 Let the total work required for the project be measured in worker-days. Because a team of 8 workers completes the project in 12 days, the total work equals 8 multiplied by 12, which is 96 worker-days.
@@ -921,6 +978,9 @@ A boat travels 24 miles downstream along a river, then returns the same 24 miles
 - E) 10 mph
 
 **answer:** D
+**hint_nudge:** One distance, two speeds differing by a fixed amount, total time given — this becomes a quadratic in the upstream speed.
+**hint_strategy:** Let upstream = u and downstream = u + 4; sum the two leg times to 5 and clear denominators, or test the answers.
+**hint_setup:** 24/u + 24/(u+4) = 5. Testing u = 8: 24/8 + 24/12 = 3 + 2 = __ (target 5).
 **explanation:** This is a uniform-rate problem in which a single distance is covered at two different speeds, so the governing relationship is time = distance / rate, and the total time is the sum of the times for the two legs.
 
 Let u represent the boat's upstream speed in miles per hour. The downstream speed is 4 miles per hour greater, so it equals u + 4. Each leg covers 24 miles. The time for the downstream leg is therefore 24 / (u + 4), and the time for the upstream leg is 24 / u. Because the round trip takes 5 hours in total, we have
@@ -1164,6 +1224,9 @@ Printer A can complete a print job alone in 10 hours. Printer A works alone for 
 - E) 10 hours
 
 **answer:** B
+**hint_nudge:** Two phases: A alone, then A and B together. Track the fraction left after phase one.
+**hint_strategy:** A's 4-hour work subtracted from 1 gives the remaining job; divide it by 2 h for the pair's combined rate.
+**hint_setup:** A does 4/10 = 2/5; remaining 3/5 in 2 h gives combined rate 3/10. Then 1/10 + 1/B = 3/10.
 **explanation:** Work problems of this type are governed by the principle that rates of work are additive: when two machines operate simultaneously, their combined rate equals the sum of their individual rates, and the fraction of a job completed equals rate multiplied by time. The strategy here is to track the job in two phases, determine the fraction completed in each, and then isolate the unknown rate.
 
 Let the entire print job represent 1 unit of work. Since Printer A completes the job alone in 10 hours, its rate is 1/10 of the job per hour. Let B be the number of hours Printer B requires to complete the job alone, so that Printer B's rate is 1/B of the job per hour.
@@ -1213,6 +1276,9 @@ A tank has an inlet pipe that fills it in 6 hours and an outlet pipe (drain) tha
 - E) 16 hours
 
 **answer:** D
+**hint_nudge:** The drain works AGAINST the inlet — subtract its rate rather than add it.
+**hint_strategy:** Net rate = inlet rate - outlet rate; total time = 1 / net rate.
+**hint_setup:** Net rate = 1/6 - 1/10. Over denominator 30: 5/30 - 3/30.
 **explanation:** This is a combined-work problem in which two agents act in opposing directions, so the governing principle is that simultaneous rates are additive when measured with a consistent sign: the net rate at which the tank fills equals the inlet rate minus the outlet rate, and the total time is the reciprocal of that net rate.
 
 Let the capacity of the tank be 1 full tank. The inlet pipe fills the tank in 6 hours, so its rate is 1/6 of the tank per hour. The outlet pipe empties a full tank in 10 hours, so it removes 1/10 of the tank per hour. Because the outlet works against the inlet, its contribution to the filling is negative.
@@ -1258,6 +1324,9 @@ Elena commutes 90 miles to work. By driving 15 mph faster than her usual speed, 
 - E) 50
 
 **answer:** D
+**hint_nudge:** Same 90-mile distance at two speeds; the 30-minute saving is 0.5 hour.
+**hint_strategy:** Set 90/r - 90/(r+15) = 1/2, or test the answer choices for the half-hour gap.
+**hint_setup:** Testing r = 45: 90/45 - 90/60 = 2 - 1.5 = __ h (target 1/2 h).
 **explanation:** This problem is governed by the relationship distance = rate × time, which can be rearranged to time = distance ÷ rate. Because the same 90-mile distance is covered at two different speeds, the difference between the two travel times equals the 30 minutes saved.
 
 Let r denote Elena's usual speed in miles per hour. Her faster speed is then r + 15 miles per hour. The time required at the usual speed is 90/r hours, and the time required at the faster speed is 90/(r + 15) hours. Because driving at the faster speed saves 30 minutes, which is 0.5 hour, the slower trip takes 0.5 hour longer than the faster trip. This translates into the equation
@@ -1307,6 +1376,9 @@ Workers A, B, and C together can complete a project in 6 hours. After working to
 - E) 18 hours
 
 **answer:** C
+**hint_nudge:** You can recover C's rate by subtracting the A+B rate from the all-three rate.
+**hint_strategy:** Find what's left after 2 h of all three, get A+B's rate from finishing it in 8 h, then C = (all three) - (A+B).
+**hint_setup:** All three do 2/6 = 1/3; remaining 2/3 by A+B in 8 h gives A+B rate 1/12. Then C = 1/6 - 1/12.
 **explanation:** The governing principle for combined-work problems is that rates are additive: when several workers labor simultaneously, the fraction of the project completed equals the sum of their individual rates multiplied by the time worked. A team's rate can therefore be recovered from the amount of work it completes during a given interval, and a single worker's rate can be isolated by subtracting one team's rate from another.
 
 Let the entire project equal 1 unit of work. Because A, B, and C together complete the project in 6 hours, their combined rate is 1/6 of the project per hour.
@@ -1350,6 +1422,9 @@ A delivery truck drives 60 miles at 30 mph, then 90 miles at 45 mph, then 30 mil
 - E) 45
 
 **answer:** C
+**hint_nudge:** Three legs of different length and speed — only total distance over total time gives the average.
+**hint_strategy:** Compute each leg's time, sum the distances, sum the times, then divide.
+**hint_setup:** Times 60/30 = 2, 90/45 = 2, 30/60 = 0.5 h; average = 180 mi / __ h.
 **explanation:** Average speed is governed by a single relationship: the average speed over an entire trip equals the total distance traveled divided by the total time elapsed. This quantity cannot be obtained by averaging the individual leg speeds, because the legs differ in both distance and duration. We must therefore compute the total distance and the total time separately, then divide.
 
 Let t₁, t₂, and t₃ denote the times, in hours, required for the three legs of the trip. Since time equals distance divided by speed, we translate each leg as follows.
@@ -1389,6 +1464,9 @@ Two machines, M and N, work at constant rates producing identical components. Wo
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
+**hint_nudge:** To time 60 components you need the COMBINED rate, which means both machines' rates.
+**hint_strategy:** Each statement gives only one machine's rate; check whether either pins down both.
+**hint_setup:** (1) gives only M (40/hr); (2) gives only N (10/hr). Neither alone fixes m + n — consider them together.
 **explanation:** This question asks for the time required for machines M and N, working together at their constant rates, to produce 60 components. When objects work together, their individual rates add, so the combined rate equals the rate of M plus the rate of N. The time to complete a fixed amount of work equals that amount divided by the combined rate. To determine the requested time, we therefore need the combined rate, which requires knowing both individual rates.
 
 Let m denote the rate of machine M and n denote the rate of machine N, each measured in components per hour. The quantity sought is 60 divided by the quantity (m + n).
@@ -1418,6 +1496,9 @@ A boat travels 30 miles downstream in 2 hours and returns 30 miles upstream in 3
 - E) 5.0
 
 **answer:** C
+**hint_nudge:** Downstream speed = boat + current, upstream = boat - current; their DIFFERENCE isolates the current.
+**hint_strategy:** Get both effective speeds, then subtract the equations to eliminate the boat's still-water speed.
+**hint_setup:** b + c = 30/2 = 15, b - c = 30/3 = 10; subtract to get 2c = __.
 **explanation:** This problem concerns motion in a current, where the boat's effective speed is its speed in still water adjusted by the speed of the current. When traveling downstream, the current adds to the boat's still-water speed; when traveling upstream, the current subtracts from it. Each effective speed equals distance divided by time.
 
 Let b denote the speed of the boat in still water, in miles per hour, and let c denote the speed of the current, in miles per hour. The downstream effective speed is b + c, and the upstream effective speed is b − c.
@@ -1462,6 +1543,9 @@ Workers A, B, and C together complete a task in 4 hours. Workers A and B togethe
 - E) 24
 
 **answer:** D
+**hint_nudge:** You do not need each individual rate — subtract the right pair to leave A alone.
+**hint_strategy:** A's rate = (all three) - (B+C); the B+C group is exactly the one that excludes A.
+**hint_setup:** rA = 1/4 - 1/5. Over denominator 20: 5/20 - 4/20.
 **explanation:** The governing principle for combined-work problems is that rates add: when several workers labor simultaneously, their individual rates of completing the task sum to the rate of the group. A rate is expressed as the fraction of the task completed in one hour, which is the reciprocal of the time the worker or group requires to finish the entire task alone.
 
 Let rA, rB, and rC denote the rates of Workers A, B, and C, respectively, each measured in tasks per hour. Translating each given time into a rate, we obtain the following three equations.
@@ -1502,6 +1586,9 @@ Machine P takes p hours to complete a job alone and machine Q takes q hours alon
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
+**hint_nudge:** A ratio alone fixes only proportion; one combined-rate equation alone leaves two unknowns.
+**hint_strategy:** Each statement is one equation in p and q — one equation cannot pin a single p. See if the two together form a solvable system.
+**hint_setup:** (1) p = (3/4)q; (2) 1/p + 1/q = 7/12. Each alone is one equation in two unknowns.
 **explanation:** This is a value question, so a statement is sufficient only if it forces a single numerical value of p. The governing principle for work rates is that a machine completing a job in t hours works at a rate of 1/t of the job per hour, and the rates of machines working together add. Let the rate of machine P be 1/p and the rate of machine Q be 1/q.
 
 Statement (1): The relation p/q = 3/4 can be rewritten as p = (3/4)q. This is a single equation relating the two unknowns p and q, and it fixes only their proportion, not their actual sizes. For instance, p = 3 with q = 4 satisfies it, and so does p = 6 with q = 8. Because p is not determined to a single value, statement (1) is not sufficient.
@@ -1529,6 +1616,9 @@ A factory uses three identical machines to complete a production run. All three 
 - E) 12
 
 **answer:** C
+**hint_nudge:** Find ONE machine's rate first; the three identical machines share the combined rate equally.
+**hint_strategy:** Single-machine rate = combined / 3; run the 2-hour all-three phase, then finish the rest with two machines.
+**hint_setup:** Each machine = (1/6)/3 = 1/18; all three in 2 h do 1/3; remaining 2/3 at 2 x 1/18 = 1/9 gives time (2/3)/(1/9), then add 2.
 **explanation:** Combined work rates add, and the rate of a single worker is the combined rate divided by the number of identical workers. Let r denote the rate of one machine, measured in runs per hour. Since the three identical machines together complete the run in 6 hours, their combined rate is 1/6 of the run per hour. Three identical machines share this rate equally, so each machine works at r = (1/6) / 3 = 1/18 of the run per hour.
 
 The job proceeds in two phases. In the first phase all three machines run for 2 hours, completing 3 × (1/18) × 2 = 6/18 = 1/3 of the run. The fraction of the run remaining is therefore 1 - 1/3 = 2/3.
@@ -1556,6 +1646,9 @@ Two runners, P and Q, start at the same point on a 240-meter circular track and 
 - E) 480
 
 **answer:** D
+**hint_nudge:** To lap, the faster runner must gain one FULL track length on the slower one — the gain accrues at the speed difference.
+**hint_strategy:** time to lap = track length / (difference in speeds).
+**hint_setup:** Gain rate = 8 - 6 = 2 m/s; need 240 m, so t = 240/2.
 **explanation:** When two objects move along a circular track in the same direction, the faster object gains on the slower one at a rate equal to the difference of their speeds. The faster object laps the slower object when this accumulated gain equals one full track length, so the governing relation is: time to lap = track length divided by the difference in speeds.
 
 Let t be the number of seconds after the start at which P first laps Q. P runs at 8 meters per second and Q runs at 6 meters per second, so in t seconds P travels 8t meters and Q travels 6t meters. Because they start at the same point and run in the same direction, P's lead over Q after t seconds is the difference of these distances:
@@ -1578,7 +1671,7 @@ The correct answer is D.
 ---
 
 ## Q44
-**difficulty:** Challenge
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Work Rates — Two-Scenario System
 
@@ -1596,6 +1689,9 @@ What is the value of x + y?
 - E) 24
 
 **answer:** D
+**hint_nudge:** Each scenario is a 'works alone for a while, then the other finishes' equation; the work fractions sum to 1.
+**hint_strategy:** Let a = 1/x and b = 1/y to linearize; write one equation per scenario and solve the 2x2 system.
+**hint_setup:** Scenario 1: 3a + 8b = 1; Scenario 2: 6a + 2b = 1. Solve for a, then recover x and y.
 **explanation:** For work-rate problems, the governing principle is that the fraction of a project completed by a crew equals the crew's rate multiplied by the time it works, and the fractions completed by all crews must sum to 1 when the project is finished. A crew that requires t hours alone has a rate of 1/t of the project per hour.
 
 Let x be the number of hours Crew X needs to complete the project alone, and let y be the number of hours Crew Y needs alone. Then Crew X works at a rate of 1/x per hour and Crew Y at a rate of 1/y per hour.

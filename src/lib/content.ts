@@ -128,9 +128,24 @@ function sectionFromString(value: string | undefined): Section {
 }
 
 function difficultyFromString(value: string | undefined): Difficulty {
-  const normalized = (value ?? "").toLowerCase()
+  const normalized = (value ?? "").trim().toLowerCase()
   if (normalized === "easy" || normalized === "beginner") return "Beginner"
-  if (normalized === "hard" || normalized === "advanced") return "Advanced"
+  // Canonical content vocabulary is Easy / Medium / Hard. A few questions were
+  // authored with top-tier aliases ("Challenge") or a between-tier label
+  // ("Medium-Hard"). Without these cases they fall through to the Intermediate
+  // default below, silently downgrading the bank's hardest items — which then
+  // mis-stratifies the diagnostic (DIFFICULTY_QUOTA buckets by Beginner /
+  // Intermediate / Advanced) and skews per-difficulty timing analytics. Map any
+  // "harder than medium" label up to Advanced.
+  if (
+    normalized === "hard" ||
+    normalized === "advanced" ||
+    normalized === "challenge" ||
+    normalized === "medium-hard" ||
+    normalized === "medium hard"
+  ) {
+    return "Advanced"
+  }
   return "Intermediate"
 }
 
