@@ -720,6 +720,11 @@ Let x, y, and z be positive real numbers with x + y + z = 12 and xy + yz + zx = 
 - E) 105
 
 **answer:** B
+**fastest_path:** (x + y + z)² = (x² + y² + z²) + 2(xy + yz + zx), so 144 = S + 2(39) → S = 144 − 78 = 66.
+**common_trap:** Forgetting the factor of 2 on the pairwise-product term, or subtracting it only once instead of doubled.
+**takeaway:** The three-variable square-of-a-sum is (x+y+z)² = Σx² + 2Σxy. Isolate the sum of squares and never drop the 2.
+**mistake_e:** 105 = 144 − 39 — you subtracted the pairwise sum once, forgetting to double it (2 × 39 = 78).
+**mistake_d:** 78 is the term you subtract, 2(xy + yz + zx), reported instead of the sum of squares S itself.
 **explanation:** This problem is solved using the symmetric-sum identity that relates the square of a sum to the sum of squares and the sum of pairwise products. For any three real numbers, (x + y + z)² = x² + y² + z² + 2(xy + yz + zx). This identity allows the sum of squares to be isolated without determining the individual values of x, y, and z.
 
 Let S denote the quantity we seek, so that S = x² + y² + z². The given information states that x + y + z = 12 and xy + yz + zx = 39.
@@ -758,6 +763,11 @@ For how many integer values of x is |2x − 5| < |x − 8|?
 - E) 9
 
 **answer:** C
+**fastest_path:** Both sides are non-negative, so square them: (2x − 5)² < (x − 8)². The difference of squares factors to (x + 3)(3x − 13) < 0, giving −3 < x < 13/3. Integers −2 through 4 number 7.
+**common_trap:** Doing sign casework on each absolute value (slow and error-prone) instead of squaring, then miscounting integers in the open interval.
+**takeaway:** When both sides of an inequality are absolute values (hence non-negative), square to eliminate the bars — no casework required.
+**mistake_d:** 8 counts a boundary value (−3 or 13/3) that the strict inequality excludes.
+**mistake_b:** 6 drops one interior integer — an off-by-one in the count.
 **explanation:** Because both sides of the inequality are absolute values, both are non-negative. Squaring a comparison between two non-negative quantities preserves the direction of the inequality, so we may square both sides and avoid casework on the signs of the expressions inside the absolute-value bars.
 
 Let x denote the integer we seek. The condition |2x - 5| < |x - 8| becomes (2x - 5)^2 < (x - 8)^2, which we rewrite as (2x - 5)^2 - (x - 8)^2 < 0.
@@ -791,6 +801,12 @@ A sequence satisfies a₁ = 3 and a_{n+1} = aₙ + n + 1 for every integer n ≥
 - E) 5,151
 
 **answer:** C
+**fastest_path:** Telescope: a₁₀₀ = a₁ + (2 + 3 + ... + 100). Since 1 + ... + 100 = 5050, the sum from 2 is 5049, so a₁₀₀ = 3 + 5049 = 5052.
+**common_trap:** Off-by-one in the telescoping sum — using 1 + ... + 100 directly without removing the first term, or misjudging which increments are added.
+**takeaway:** For "add-a-step" recurrences, telescope: target term = first term + the arithmetic series of increments. Pin down exactly which increments appear.
+**mistake_a:** 5050 is 1 + ... + 100 alone — you ignored a₁ = 3 and the index shift.
+**mistake_e:** 5151 = 1 + ... + 101 — you summed one increment too many.
+**mistake_b:** 5051 is an off-by-one (5050 + 1) on the telescoping bounds.
 **explanation:** When a sequence is defined by a recurrence that adds a known quantity at each step, the value of a later term can be found by telescoping: we write each successive difference and sum them so that the intermediate terms cancel, leaving the target term expressed in terms of the first term plus an arithmetic series.
 
 Let a_n denote the nth term of the sequence. We are given that a_1 = 3 and that a_{n+1} = a_n + n + 1 for every integer n greater than or equal to 1. Setting n = 1, 2, 3, and so on, the recurrence produces the successive relations
@@ -833,6 +849,9 @@ If the roots of the quadratic equation x² + bx + 12 = 0 differ by 1, what are t
 - E) ±9
 
 **answer:** C
+**fastest_path:** Use (r₁ − r₂)² = (r₁ + r₂)² − 4r₁r₂ = (−b)² − 4(12). Set it equal to 1² = 1: b² − 48 = 1 → b² = 49 → b = ±7.
+**common_trap:** Solving for the individual roots instead of b, or forgetting the (sum)² − 4(product) form of the squared difference.
+**takeaway:** The squared difference of the roots equals (−b)² − 4c. Set it equal to the given difference squared and solve directly for b — both signs are valid.
 **explanation:** For a quadratic equation of the form x² + bx + c = 0 with roots r₁ and r₂, Vieta's formulas state that the sum of the roots equals −b and the product of the roots equals c. The difference of the roots can then be obtained from the algebraic identity (r₁ − r₂)² = (r₁ + r₂)² − 4r₁r₂, which expresses the squared difference entirely in terms of the sum and the product.
 
 Let r₁ and r₂ denote the two roots of x² + bx + 12 = 0. Applying Vieta's formulas, we have r₁ + r₂ = −b and r₁r₂ = 12. We are given that the roots differ by 1, so r₁ − r₂ = 1, and therefore (r₁ − r₂)² = 1.
@@ -861,6 +880,9 @@ Two hikers start at the same time from opposite ends of a trail that is 24 miles
 - E) 12:00 noon
 
 **answer:** C
+**fastest_path:** Closing speed = 3 + 5 = 8 mph; time to meet = 24 / 8 = 3 hours; 8:00 AM + 3 hours = 11:00 AM.
+**common_trap:** Using one hiker's speed, or the difference of speeds, instead of the combined closing speed.
+**takeaway:** When two objects move toward each other, add their speeds to get the closing speed, then time = distance / closing speed.
 **explanation:** When two objects travel toward each other along the same straight path, the rate at which the distance between them decreases is the sum of their individual speeds. This combined rate is the closing speed, and the time required for them to meet equals the total separating distance divided by that closing speed.
 
 Let T represent the time, in hours, that elapses from the start until the two hikers meet. During this interval, Hiker X travels at 3 miles per hour and Hiker Y travels at 5 miles per hour. Because the hikers move toward each other, the sum of the distances they cover equals the full length of the trail, 24 miles. We translate this into an equation:
@@ -897,6 +919,11 @@ If 1/(x − 3) + 1/(x + 3) = 12/(x² − 9), what is the value of x?
 - E) 12
 
 **answer:** D
+**fastest_path:** The right denominator factors: x² − 9 = (x − 3)(x + 3), the common denominator. Combining the left gives 2x/(x² − 9) = 12/(x² − 9), so 2x = 12 and x = 6.
+**common_trap:** Not recognizing that x² − 9 = (x − 3)(x + 3), or failing to check the domain (x ≠ ±3) for extraneous roots.
+**takeaway:** Spot that the right-side denominator factors into the two left denominators; equate numerators over the shared denominator, then confirm the root keeps every denominator nonzero.
+**mistake_e:** 12 is 2x — you solved 2x = 12 but forgot to divide by 2.
+**mistake_a:** 3 is a domain-excluded value: x = 3 makes the denominator x − 3 zero, so it can never be a solution.
 **explanation:** To solve a rational equation, we express the terms over a common denominator and then equate the resulting expressions. The key observation here is that the denominator on the right side factors: x² − 9 = (x − 3)(x + 3). This factorization is precisely the common denominator of the two fractions on the left side.
 
 Let x denote the unknown value. We first combine the left side over the common denominator (x − 3)(x + 3):
@@ -943,6 +970,11 @@ If g(x) = 3x − 2 and f(g(x)) = 6x − 1 for all x, what is f(4)?
 **hint_nudge:** You cannot plug 4 directly into f(g(x)) — first figure out which x makes g(x) = 4.
 **hint_strategy:** Set g(x) = 4 and solve for x; then substitute that x into the composite formula f(g(x)) = 6x − 1.
 **hint_setup:** 3x − 2 = 4 → x = 2. Now f(4) = f(g(2)) = ?
+**fastest_path:** f is defined only through f(g(x)). To get f(4), find the x with g(x) = 4: 3x − 2 = 4 → x = 2. Then f(4) = f(g(2)) = 6(2) − 1 = 11.
+**common_trap:** Plugging 4 directly into 6x − 1 (treating it as f(x)) instead of first finding the x that makes g(x) = 4.
+**takeaway:** When f is given only as f(g(x)), evaluate f at a target by solving g(x) = target, then substitute that x into the composite formula.
+**mistake_e:** 23 comes from plugging 4 straight into 6x − 1: 6(4) − 1 = 23 — the headline trap.
+**mistake_b:** 10 comes from plugging 4 into g (3·4 − 2 = 10), confusing f with g.
 **explanation:** The function f is not given directly; it is defined only through the composition f(g(x)) = 6x − 1. Because this formula produces the value of f at g(x) rather than at x itself, evaluating f at a specific input requires first determining the value of x for which g(x) equals that input.
 
 Let the target input be 4. We seek the value of x that satisfies g(x) = 4. Since g(x) = 3x − 2, this requires 3x − 2 = 4. Adding 2 to both sides gives 3x = 6, and dividing both sides by 3 gives x = 2.
@@ -969,6 +1001,11 @@ For how many integer values of x is |3x + 2| + |x − 4| ≤ 10?
 - E) 7
 
 **answer:** C
+**fastest_path:** Critical points at x = −2/3 and x = 4. On the middle region the sum is 2x + 6 ≤ 10 → x ≤ 2; on the left region −4x + 2 ≤ 10 → x ≥ −2. Net −2 ≤ x ≤ 2: integers −2 through 2 number 5.
+**common_trap:** Mishandling the sign of an absolute value in one of the regions, or miscounting the integers in the final range.
+**takeaway:** Sum-of-absolute-values inequalities: split at each critical point, drop the bars with the correct sign per region, solve, then union and count.
+**mistake_d:** 6 is an off-by-one — an endpoint was double-counted or an extra integer slipped in.
+**mistake_b:** 4 drops one integer in the range — an off-by-one short.
 **explanation:** When an inequality contains a sum of absolute-value expressions, the governing method is to locate the critical points at which each expression changes sign, partition the real line into the resulting intervals, and on each interval rewrite the absolute values as ordinary linear expressions so that the inequality becomes a plain linear inequality that can be solved directly.
 
 The two expressions are 3x + 2 and x - 4. We set each equal to zero to find the critical points. The expression 3x + 2 equals zero when x = -2/3, and the expression x - 4 equals zero when x = 4. These two values divide the real line into three intervals, which we examine in turn.
@@ -1000,6 +1037,11 @@ If the roots of the quadratic equation x² + bx + c = 0 are 3 and −5, what is 
 - E) 23
 
 **answer:** D
+**fastest_path:** b = −(sum of roots) = −(3 + (−5)) = 2; c = product = (3)(−5) = −15; so b − c = 2 − (−15) = 17.
+**common_trap:** Sign errors in Vieta's formulas (sum = −b, product = c), or mishandling the double negative in b − c.
+**takeaway:** For x² + bx + c with given roots: b = −(sum), c = product. Substitute carefully and watch the double negative when the product is negative.
+**mistake_b:** −13 comes from treating the product as +15 (losing the sign of 3 × −5): 2 − 15 = −13.
+**mistake_a:** −17 flips both signs (b = −2 or c − b), reversing the intended subtraction.
 **explanation:** The relationship between the roots of a quadratic equation and its coefficients is given by Vieta's formulas. For a monic quadratic of the form x² + bx + c = 0, whose leading coefficient is 1, the sum of the two roots equals −b and the product of the two roots equals c.
 
 Let the roots be r₁ = 3 and r₂ = −5, as given. Applying Vieta's formulas:
@@ -1037,6 +1079,11 @@ For how many integer values of x is |x − 1| + |x − 4| + |x − 7| ≤ 8?
 - E) 7
 
 **answer:** C
+**fastest_path:** Critical points 1, 4, 7. On the inner regions: 10 − x ≤ 8 → x ≥ 2 and x + 2 ≤ 8 → x ≤ 6, so 2 ≤ x ≤ 6: integers 2 through 6 number 5.
+**common_trap:** Sign slips across the three critical points, or counting the endpoints of the final range incorrectly.
+**takeaway:** For a sum of absolute values, break at every critical point; on the inner regions the expression is linear, so solve, intersect, then count integers.
+**mistake_d:** 6 is an off-by-one — an extra boundary integer was included.
+**mistake_b:** 4 drops one integer inside the range — an off-by-one short.
 **explanation:** An expression that is a sum of absolute values can be analyzed by locating its critical points, the values at which each absolute-value term changes sign. The critical points partition the number line into regions; within each region every absolute value can be rewritten without bars, using a fixed sign, and the resulting linear inequality can be solved and intersected with that region.
 
 Let x be the variable in the inequality |x − 1| + |x − 4| + |x − 7| ≤ 8. The three terms change sign at x = 1, x = 4, and x = 7, which divide the number line into four regions.
@@ -1073,6 +1120,11 @@ The system of equations 3x + ky = 12 and 6x + 10y = 24 has infinitely many solut
 **hint_nudge:** Infinitely many solutions means both equations describe the same line. What relationship between their coefficients makes that true?
 **hint_strategy:** Reduce equation 2 to lowest terms first, then match it coefficient by coefficient against equation 1.
 **hint_setup:** Divide 6x + 10y = 24 by 2: 3x + 5y = 12. Now compare with 3x + ky = 12.
+**fastest_path:** Reduce the second equation by 2: 3x + 5y = 12. For the same line it must match 3x + ky = 12, so k = 5.
+**common_trap:** Reading the y-coefficient 10 straight off as k without first reducing the second equation, or matching the wrong ratio.
+**takeaway:** Infinitely many solutions means the two equations are the same line. Reduce one to lowest terms and match it coefficient-by-coefficient.
+**mistake_e:** 10 is the unreduced y-coefficient of the second equation — taken as k without dividing by the common factor 2.
+**mistake_a:** 2 is the scalar relating the two equations (the factor of 2), not the y-coefficient k.
 **explanation:** A system of two linear equations in two variables has infinitely many solutions precisely when the two equations represent the same line, which occurs when one equation is a nonzero scalar multiple of the other. In that case the coefficients of x, the coefficients of y, and the constant terms are all in the same ratio.
 
 The given system is 3x + ky = 12 and 6x + 10y = 24. We compare the second equation with the first to determine the scalar relating them. Examining the x-coefficients, we have 6 = 2 times 3, and examining the constant terms, we have 24 = 2 times 12. Thus the second equation is the first equation multiplied by 2, provided the y-coefficients also satisfy this same factor of 2.
@@ -1105,6 +1157,11 @@ For how many integer values of x are all three of the following conditions simul
 - E) 8
 
 **answer:** C
+**fastest_path:** Solve each: 2x + 1 > −5 → x > −3; x − 3 ≤ 4 → x ≤ 7; |2x − 1| < 7 → −3 < x < 4. The third is tightest, so −3 < x < 4: integers −2 through 3 number 6.
+**common_trap:** Dropping one of the three constraints, or including the endpoints of a strict bound when counting.
+**takeaway:** For a system of inequalities, solve each, intersect them, then count — the strictest pair of bounds governs, and strict inequalities exclude the endpoints.
+**mistake_d:** 7 counts one excluded endpoint (−3 or 4) of the strict range.
+**mistake_e:** 8 counts both excluded endpoints, as if the bounds were inclusive.
 **explanation:** To determine how many integers satisfy a system of inequalities, we solve each inequality independently, intersect the resulting solution sets, and then count the integers that lie in the common region. We let x denote the integer in question.
 
 We begin with the first condition, 2x + 1 > -5. Subtracting 1 from both sides gives 2x > -6, and dividing both sides by 2 gives x > -3.
@@ -1136,6 +1193,10 @@ If x² − 10x + 21 = 0, what is the value of x² − 10x + 25?
 - E) 25
 
 **answer:** A
+**fastest_path:** From the equation, x² − 10x = −21. The target x² − 10x + 25 = (−21) + 25 = 4, without ever solving for x.
+**common_trap:** Solving for x and re-substituting (slower and error-prone) instead of substituting the shared block x² − 10x.
+**takeaway:** When the target expression shares a chunk with the given equation, isolate that chunk and substitute it — don't solve for the variable.
+**mistake_e:** 25 comes from adding 25 to 0, as if x² − 10x were 0 rather than −21.
 **explanation:** This problem can be solved by recognizing that the target expression shares a common quadratic and linear portion with the given equation, so it is unnecessary to solve for the individual values of x. The governing method is to isolate the recurring portion of the expression and substitute its value directly.
 
 Let the given equation be x² − 10x + 21 = 0. Subtracting 21 from both sides isolates the recurring portion:
@@ -1168,6 +1229,13 @@ n is an integer. Does the equation x² − (n + 1)x + n = 0 have two distinct re
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** A
+**fastest_path:** Compute the discriminant: (n + 1)² − 4n = n² − 2n + 1 = (n − 1)². Two distinct roots ⇔ (n − 1)² > 0 ⇔ n ≠ 1. The question reduces to "is n ≠ 1?"
+**common_trap:** Not simplifying the discriminant to the perfect square (n − 1)² — once you do, the whole question collapses to whether n = 1.
+**takeaway:** For "distinct real roots?" compute and simplify the discriminant. Here it is a perfect square, so the answer hinges only on whether n equals 1.
+**mistake_b:** n odd includes n = 1 (a repeated root, answer No) and n = 3 (answer Yes), so statement (2) alone is not sufficient.
+**mistake_c:** Combining is unnecessary — statement (1) alone (n > 1) already forces n ≠ 1, so the answer is not C.
+**mistake_d:** Statement (2) alone fails (n = 1 is odd and gives a repeated root), so "each alone" is wrong.
+**mistake_e:** Statement (1) alone is sufficient, so "together not sufficient" understates the information.
 **explanation:** A quadratic equation of the form ax² + bx + c = 0 with a ≠ 0 has two distinct real roots if and only if its discriminant, Δ = b² − 4ac, is strictly positive. We therefore evaluate the discriminant of the given equation as a function of n and determine whether each statement forces it to be positive.
 
 Let the equation be x² − (n + 1)x + n = 0, so that a = 1, b = −(n + 1), and c = n. Computing the discriminant, we have Δ = b² − 4ac = (n + 1)² − 4(1)(n) = n² + 2n + 1 − 4n = n² − 2n + 1 = (n − 1)². The equation has two distinct real roots precisely when (n − 1)² > 0, which holds if and only if n ≠ 1. The question thus reduces to determining whether n ≠ 1.
