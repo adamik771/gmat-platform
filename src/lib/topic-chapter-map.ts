@@ -15,7 +15,6 @@ export const TOPIC_TO_CHAPTER: Record<string, string> = {
   Combinatorics: "quant-24-counting-basics",
   "Rates and Work": "quant-21-rate-time-distance",
   "Statistics & Probability": "quant-23-statistics",
-  Geometry: "geometry",
   "Word Problems": "quant-17-translating-word-problems",
   "Critical Reasoning": "verbal-02-cr-argument-structure",
   "Reading Comprehension": "verbal-13-rc-reading-process",

@@ -15,9 +15,18 @@ Picked up from the 2026-06-08→10 handoff below. Two of its three OPEN items ar
 - **Verified:** `npx tsc --noEmit` clean; `npm run validate:content` → **0 errors** (4 warnings + 18 info, all pre-existing — the warnings are RC `duplicate-prompt`, unrelated to chapters); worked-example marker counts identical before/after in all converted files (converted in place, dropped nothing); 0 HTML entities; no stray `---` HR lines; full-repo DS sweep shows only the quant-30 cross-ref remaining.
 - Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/quant-ds-to-ps-cleanup?expand=1`
 
+### Geometry fully REMOVED (second commit on the same branch)
+Adam chose **delete** (over hide), including coordinate geometry. Done as a second commit on `claude/quant-ds-to-ps-cleanup` (so the PR now has two commits: DS→PS conversion, then geometry removal).
+- **Deleted 4 files:** `chapters/quant-31-geometry.md`, `questions/quant/geometry.md` (all 34 Qs), `guides/reading-quant-07-geometry-and-coordinate-reasoning.md`, `guides/quant-coordinate-geometry.md`.
+- **Routing/diagnostic:** added a 308 redirect `/chapters/geometry → /chapters/quant-01-backsolving` (`next.config.ts`); removed the `Geometry` entry from `topic-chapter-map.ts`; swapped the diagnostic's hard geometry question (`diagnostic-curation.ts`: `geometry-q16` → `number-properties-q8`, Hard PS, primes/factors).
+- **UI/marketing copy:** removed Geometry from onboarding weak-area options, the practice blurb, the glossary Quant def (now says "geometry is no longer tested"), the marketing course outline, and a study-plan blog example; updated the "Focus vs old GMAT" blog to add a "Geometry was removed" bullet.
+- **Reference guides:** removed the off-syllabus `## Geometry` formula-sheet section and the three geometry sections in `quant-master-chapter.md` (renumbered its trap list); reworded the dangling "Geometry (Chapter 1.7)" cross-refs in `reading-quant-02/04/08` and `reading-di-04`.
+- **Kept (correct):** DI-section geometry questions (8 in `data-sufficiency.md`, 1 in `two-part-analysis.md`) — geometry is still tested in Data Insights via DS; the DS-strategy blog's "Geometry value questions" (DI); old-GMAT/GRE comparison mentions.
+- **Verified:** `next build` passes; `tsc` clean; `validate:content` 0 errors (878 questions, −34); no dangling `geometry-q*` refs; all 18 `TOPIC_TO_CHAPTER` consumers guard the now-absent `Geometry` key (a DI-geometry miss shows no chapter link rather than a dead one).
+
 ### STILL OPEN
-- **Geometry (`quant-31`)** is off-syllabus (GMAT Focus removed it). Its DS framing is now cleaned, but the **hide/delete decision for the whole chapter is still Adam's call.**
 - Optional (unchanged): www-canonical sitemap; rotate the once-exposed `ANTHROPIC_API_KEY` (prod tutor is off — no key on Vercel); per-sub-topic question tagging.
+- Stale internal docs still name geometry question files (`AUDIT.md`, `QUESTION_TAXONOMY.md`) — harmless, left untouched per the no-docs rule.
 
 ---
 

@@ -43,7 +43,9 @@ const nextConfig: NextConfig = {
       { source: "/chapters/verbal-5-rc-question-families", destination: "/chapters/verbal-14-rc-main-idea", permanent: true },
       { source: "/chapters/verbal-6-mixed-timing", destination: "/chapters/verbal-21-mixed-timing", permanent: true },
       // Quant was split into one chapter per sub-topic; the old topic chapters
-      // forward to their first sub-chapter. (geometry kept its slug, off-syllabus.)
+      // forward to their first sub-chapter. Geometry was removed (off-syllabus on
+      // GMAT Focus Quant) — its slug forwards to the start of the Quant journey.
+      { source: "/chapters/geometry", destination: "/chapters/quant-01-backsolving", permanent: true },
       { source: "/chapters/arithmetic", destination: "/chapters/quant-05-order-and-signed-numbers", permanent: true },
       { source: "/chapters/number-properties", destination: "/chapters/quant-08-even-odd-integer-properties", permanent: true },
       { source: "/chapters/exponents-roots", destination: "/chapters/quant-11-exponent-rules", permanent: true },
