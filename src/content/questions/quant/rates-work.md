@@ -1638,3 +1638,624 @@ Therefore x + y = 7 + 14 = 21.
 
 The correct answer is D.
 **related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q45
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Distance-Rate-Time
+
+A train travels 240 miles in 4 hours at a constant speed. At this same speed, how far will the train travel in 7 hours?
+
+- A) 60 miles
+- B) 360 miles
+- C) 420 miles
+- D) 480 miles
+- E) 1,680 miles
+
+**answer:** C
+**hint_nudge:** Find the constant speed first, then apply it to the new time.
+**hint_strategy:** Speed = distance ÷ time gives the rate; distance = rate × time gives the answer.
+**hint_setup:** Speed = 240 ÷ 4 = 60 mph; then distance = 60 × 7.
+**explanation:** Because the speed is constant, the distance is proportional to the time, so the cleanest path is to find the speed once and reuse it. Speed = distance ÷ time = 240 ÷ 4 = 60 miles per hour. Over 7 hours the distance is
+
+distance = rate × time = 60 × 7 = 420 miles.
+
+The correct answer is C.
+**fastest_path:** 240/4 = 60 mph, then 60 × 7 = 420 — two quick steps.
+**common_trap:** Multiplying the original 240 miles by the new time, or reporting the speed itself.
+**mistake_a:** 60 is the speed (miles per hour), not a distance.
+**mistake_b:** 360 uses 6 hours instead of 7.
+**mistake_d:** 480 uses 8 hours instead of 7.
+**mistake_e:** 1,680 multiplies 240 by 7, ignoring that 240 was the distance for 4 hours, not the rate.
+**takeaway:** When speed is constant, reduce to a per-hour rate first; then every later question is one multiplication.
+**trap_type:** rate-vs-distance (Conceptual)
+**est_time_seconds:** 60
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q46
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combined Work
+
+One printer can finish a print job in 6 hours. A second, identical printer can finish the same job in 6 hours. Working together on one job, how long will the two printers take?
+
+- A) 2 hours
+- B) 3 hours
+- C) 6 hours
+- D) 9 hours
+- E) 12 hours
+
+**answer:** B
+**hint_nudge:** You can't add the times — add what each printer does per hour.
+**hint_strategy:** Add the rates (jobs per hour), then invert to get the time for one job.
+**hint_setup:** Combined rate = 1/6 + 1/6; time = 1 ÷ (combined rate).
+**explanation:** Work problems add rates, not times. Each printer completes 1/6 of the job per hour, so together they complete
+
+1/6 + 1/6 = 2/6 = 1/3 of the job per hour.
+
+The time for one whole job is the reciprocal of the combined rate: 1 ÷ (1/3) = 3 hours. A useful sanity check: two equal workers always halve the solo time, and half of 6 is 3.
+
+The correct answer is B.
+**fastest_path:** Two identical workers halve the solo time: 6 ÷ 2 = 3 hours.
+**common_trap:** Adding the two times (6 + 6) or averaging them, instead of adding rates.
+**mistake_a:** 2 hours over-counts the speed-up; two equal printers halve the time, they don't third it.
+**mistake_c:** 6 hours is the solo time; together must be faster than either one alone.
+**mistake_d:** 9 hours is slower than one printer — impossible when a second printer helps.
+**mistake_e:** 12 hours adds the two times, which is the opposite of what cooperation does.
+**takeaway:** Combined work = sum of rates; the joint time is always shorter than the fastest individual time.
+**trap_type:** adding-times-not-rates (Conceptual)
+**est_time_seconds:** 60
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q47
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Constant Rate — Scaling
+
+A machine produces 150 widgets every 5 minutes at a constant rate. How many widgets does it produce in one hour?
+
+- A) 30
+- B) 900
+- C) 1,500
+- D) 1,800
+- E) 9,000
+
+**answer:** D
+**hint_nudge:** How many 5-minute blocks fit in an hour?
+**hint_strategy:** Either count the number of 5-minute blocks in 60 minutes, or find the per-minute rate first.
+**hint_setup:** 60 ÷ 5 = 12 blocks, each producing 150 widgets.
+**explanation:** An hour is 60 minutes, which contains 60 ÷ 5 = 12 intervals of 5 minutes. The machine makes 150 widgets in each interval, so in one hour it makes
+
+12 × 150 = 1,800 widgets.
+
+(Equivalently, the per-minute rate is 150 ÷ 5 = 30 widgets per minute, and 30 × 60 = 1,800.)
+
+The correct answer is D.
+**fastest_path:** 150 widgets × (60/5) = 150 × 12 = 1,800.
+**common_trap:** Miscounting the number of 5-minute blocks in an hour, or stopping at the per-minute rate.
+**mistake_a:** 30 is the per-minute rate, not the hourly output.
+**mistake_b:** 900 uses 6 blocks, as if each block were 10 minutes long.
+**mistake_c:** 1,500 uses 10 blocks instead of 12.
+**mistake_e:** 9,000 multiplies by 60 minutes without dividing the 150 by its 5-minute window first.
+**takeaway:** Convert the rate to a clean per-unit basis (or count the blocks) before scaling to a new time window.
+**trap_type:** interval-miscount (Careless)
+**est_time_seconds:** 60
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q48
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Average Speed — Equal Time Segments
+
+A car travels at 50 miles per hour for 2 hours, then at 70 miles per hour for the next 2 hours. What is the car's average speed for the entire 4-hour trip?
+
+- A) 55 mph
+- B) 58.3 mph
+- C) 60 mph
+- D) 62 mph
+- E) 120 mph
+
+**answer:** C
+**hint_nudge:** Average speed is total distance over total time — but check whether the two legs took equal time.
+**hint_strategy:** Because the two speeds are held for equal times, the average speed is the simple average of the two speeds.
+**hint_setup:** Equal times ⟹ average = (50 + 70) / 2.
+**explanation:** Average speed is always total distance ÷ total time. Here the distances are 50 × 2 = 100 miles and 70 × 2 = 140 miles, totaling 240 miles over 4 hours, so the average is 240 ÷ 4 = 60 mph. Because the two speeds were maintained for equal durations, this equals the simple average (50 + 70) ÷ 2 = 60 mph.
+
+The correct answer is C.
+**fastest_path:** Equal time on each leg means the average speed is just the midpoint of the two speeds: (50 + 70)/2 = 60.
+**common_trap:** Reaching for the harmonic-mean shortcut, which applies only when the two legs cover equal distances (not equal times).
+**mistake_a:** 55 splits 50 and 70 unevenly or mis-weights the legs.
+**mistake_b:** 58.3 is the harmonic mean (2·50·70/120) — correct for equal distances, but here the legs are equal in time.
+**mistake_d:** 62 weights the faster leg too heavily.
+**mistake_e:** 120 adds the two speeds instead of averaging them.
+**takeaway:** Equal time ⟹ arithmetic mean of speeds; equal distance ⟹ harmonic mean. Identify which is held equal before averaging.
+**trap_type:** mean-type-confusion (Strategy)
+**est_time_seconds:** 75
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q49
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Constant Rate — Direct Scaling
+
+Four identical machines together produce 80 units per hour. At the same per-machine rate, how many units would 10 of these machines produce in one hour?
+
+- A) 160
+- B) 180
+- C) 200
+- D) 240
+- E) 800
+
+**answer:** C
+**hint_nudge:** Find what a single machine produces per hour first.
+**hint_strategy:** Per-machine rate = total ÷ number of machines; then multiply by the new machine count.
+**hint_setup:** Each machine = 80 ÷ 4 = 20 units/hour; then 20 × 10.
+**explanation:** Output is proportional to the number of identical machines, so we find the per-machine rate and rescale. Each machine produces 80 ÷ 4 = 20 units per hour. With 10 machines the hourly output is
+
+20 × 10 = 200 units.
+
+The correct answer is C.
+**fastest_path:** 80 ÷ 4 = 20 per machine, then 20 × 10 = 200.
+**common_trap:** Treating 80 as a single machine's rate, or scaling by the wrong factor.
+**mistake_a:** 160 just doubles 80, as if going from 4 to 8 machines.
+**mistake_b:** 180 adds 100 arbitrarily rather than scaling proportionally.
+**mistake_d:** 240 triples 80, as if going from 4 to 12 machines.
+**mistake_e:** 800 treats 80 as the per-machine rate (80 × 10), skipping the divide-by-4 step.
+**takeaway:** With identical units, reduce to one unit's rate before scaling to any new count.
+**trap_type:** rate-per-unit (Conceptual)
+**est_time_seconds:** 60
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q50
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combined Work
+
+Pipe A can fill a tank in 4 hours, and pipe B can fill the same tank in 12 hours. If both pipes are open, how long will it take to fill the tank?
+
+- A) 3 hours
+- B) 4 hours
+- C) 6 hours
+- D) 8 hours
+- E) 16 hours
+
+**answer:** A
+**hint_nudge:** Add the fill rates, not the fill times.
+**hint_strategy:** Combined rate = 1/4 + 1/12 tank per hour; invert for the time.
+**hint_setup:** 1/4 + 1/12 = 3/12 + 1/12 = 4/12 = 1/3; time = 1 ÷ (1/3).
+**explanation:** Filling rates add. Pipe A fills 1/4 of the tank per hour and pipe B fills 1/12 per hour. Together:
+
+1/4 + 1/12 = 3/12 + 1/12 = 4/12 = 1/3 of the tank per hour.
+
+The time to fill one tank is the reciprocal: 1 ÷ (1/3) = 3 hours. Note the answer must be less than the faster pipe's 4 hours, which 3 satisfies.
+
+The correct answer is A.
+**fastest_path:** 1/4 + 1/12 = 1/3, so 3 hours — and it must beat the faster pipe's 4 hours.
+**common_trap:** Averaging the two times (giving 8) or adding them (giving 16).
+**mistake_b:** 4 hours is pipe A's solo time; two pipes together must be faster.
+**mistake_c:** 6 hours comes from mishandling the fractions (e.g., 1/4 + 1/12 read as 1/6).
+**mistake_d:** 8 hours averages the two times — but rates add, times do not.
+**mistake_e:** 16 hours adds the two times, the opposite of cooperation.
+**takeaway:** The combined fill time is always shorter than the fastest single pipe; use it as a reality check.
+**trap_type:** adding-times-not-rates (Conceptual)
+**est_time_seconds:** 90
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q51
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Two Objects Moving
+
+Two cars start 300 miles apart and drive directly toward each other along the same road. One travels at 40 mph and the other at 60 mph. How many hours until they meet?
+
+- A) 2.5
+- B) 3
+- C) 5
+- D) 6
+- E) 7.5
+
+**answer:** B
+**hint_nudge:** When two objects move toward each other, the gap closes at the sum of their speeds.
+**hint_strategy:** Closing speed = 40 + 60; time to meet = distance ÷ closing speed.
+**hint_setup:** Closing speed = 100 mph; time = 300 ÷ 100.
+**explanation:** When two objects move toward each other, the distance between them shrinks at the combined rate, so the closing speed is 40 + 60 = 100 mph. The 300-mile gap closes in
+
+300 ÷ 100 = 3 hours.
+
+The correct answer is B.
+**fastest_path:** Add the speeds (100 mph) and divide the gap: 300 / 100 = 3.
+**common_trap:** Using only one car's speed, or averaging the two speeds instead of adding them.
+**mistake_a:** 2.5 divides by 120 (an inflated closing speed) or mis-arithmetic.
+**mistake_c:** 5 uses only the 60 mph car (300 ÷ 60).
+**mistake_d:** 6 averages the speeds to 50 and divides (300 ÷ 50).
+**mistake_e:** 7.5 uses only the 40 mph car (300 ÷ 40).
+**takeaway:** Toward each other ⟹ add speeds (closing); same direction ⟹ subtract speeds (catch-up).
+**trap_type:** relative-speed-direction (Conceptual)
+**est_time_seconds:** 90
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q52
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combined-Then-Solo Work Rates
+
+Worker A can complete a task alone in 8 hours. A works alone for the first 2 hours, after which worker B — who can also complete the task alone in 8 hours — joins, and they finish together. What is the total time, from the start, to complete the task?
+
+- A) 3 hours
+- B) 4 hours
+- C) 5 hours
+- D) 6 hours
+- E) 4.5 hours
+
+**answer:** C
+**hint_nudge:** Figure out how much A finished alone before B arrived, then split the rest.
+**hint_strategy:** A's solo stint completes part of the job; the remaining fraction is done at the combined rate. Add the two phases.
+**hint_setup:** In 2 hours A does 2 × (1/8) = 1/4; combined rate is 1/8 + 1/8 = 1/4 per hour for the remaining 3/4.
+**explanation:** Break the job into its two phases. In the first 2 hours, A works alone at 1/8 per hour and completes 2 × (1/8) = 1/4 of the task, leaving 3/4 remaining. When B joins, the combined rate is 1/8 + 1/8 = 1/4 of the task per hour, so the remaining 3/4 takes
+
+(3/4) ÷ (1/4) = 3 hours.
+
+The total time from the start is 2 + 3 = 5 hours.
+
+The correct answer is C.
+**fastest_path:** A alone clears 1/4 in 2 hrs; the pair clears the rest at 1/4 per hour → 3 more hours; total 5.
+**common_trap:** Reporting only the cooperative phase (3 hours) and forgetting A's 2-hour head start.
+**mistake_a:** 3 hours is just the time the two work together, ignoring the first 2 hours.
+**mistake_b:** 4 hours under-counts either the head-start work or the remaining time.
+**mistake_d:** 6 hours over-counts, e.g., adding A's full solo time to part of the cooperation.
+**mistake_e:** 4.5 hours mishandles the remaining fraction (e.g., halving 3/4 incorrectly).
+**takeaway:** For staggered starts, total the work done in each phase separately, then add the phase durations.
+**trap_type:** ignored-head-start (Strategy)
+**est_time_seconds:** 105
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q53
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Average Rate / Harmonic Mean
+
+A driver travels from town X to town Y at 40 mph and returns along the exact same route at 60 mph. What is the average speed for the entire round trip?
+
+- A) 48 mph
+- B) 50 mph
+- C) 52 mph
+- D) 24 mph
+- E) 96 mph
+
+**answer:** A
+**hint_nudge:** The two legs cover the same distance but take different times — so don't just average the speeds.
+**hint_strategy:** Pick a convenient round-trip distance (or use the harmonic mean) and compute total distance ÷ total time.
+**hint_setup:** Let each leg be 120 miles: time out = 120/40 = 3, time back = 120/60 = 2; average = 240 ÷ 5.
+**explanation:** Average speed is total distance ÷ total time. Because the legs are equal in distance but unequal in time, the simple average of the speeds is wrong. Choose a convenient distance, say 120 miles each way (a common multiple of 40 and 60). The outbound leg takes 120/40 = 3 hours and the return takes 120/60 = 2 hours. The total is 240 miles in 5 hours:
+
+average speed = 240 ÷ 5 = 48 mph.
+
+(Equivalently, the harmonic mean: 2·40·60 / (40 + 60) = 4800 / 100 = 48.)
+
+The correct answer is A.
+**fastest_path:** Equal distances ⟹ harmonic mean: 2(40)(60)/(40 + 60) = 48.
+**common_trap:** Taking the arithmetic mean (50), which over-weights the faster leg because it ignores that the slower leg takes more time.
+**mistake_b:** 50 is the simple average of 40 and 60 — valid only for equal times, not equal distances.
+**mistake_c:** 52 over-weights the faster speed even further.
+**mistake_d:** 24 multiplies a fraction incorrectly or halves the harmonic mean.
+**mistake_e:** 96 doubles the harmonic mean (or adds the speeds and mishandles).
+**takeaway:** Same distance, two speeds ⟹ harmonic mean; the answer always lands below the arithmetic average.
+**trap_type:** arithmetic-vs-harmonic (Strategy)
+**est_time_seconds:** 105
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q54
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Rates — Unit Conversion
+
+A snail moves at a constant speed of 3 centimeters per minute. What is its speed in meters per hour?
+
+- A) 0.18
+- B) 1.8
+- C) 18
+- D) 180
+- E) 0.05
+
+**answer:** B
+**hint_nudge:** Two separate conversions are needed: minutes to hours, and centimeters to meters.
+**hint_strategy:** Multiply by 60 (minutes per hour), then divide by 100 (centimeters per meter).
+**hint_setup:** 3 × 60 = 180 cm/hour; then 180 ÷ 100 meters/hour.
+**explanation:** Two unit conversions are required. First convert the time: 3 cm/min × 60 min/hour = 180 centimeters per hour. Then convert the length: 180 cm ÷ 100 = 1.8 meters per hour.
+
+The correct answer is B.
+**fastest_path:** 3 × 60 / 100 = 180/100 = 1.8 m/hour in one combined step.
+**common_trap:** Doing only one of the two conversions, or converting in the wrong direction.
+**mistake_a:** 0.18 divides by 1,000 instead of 100 (confusing meters with kilometers).
+**mistake_c:** 18 converts time but forgets to convert centimeters to meters, then mis-scales by 10.
+**mistake_d:** 180 is the speed in centimeters per hour — the time was converted but not the length.
+**mistake_e:** 0.05 converts cm to m but divides time instead of multiplying (3/60 type error).
+**takeaway:** Handle each unit independently and check the direction: more minutes per hour multiplies; more cm per meter divides.
+**trap_type:** unit-conversion (Careless)
+**est_time_seconds:** 90
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q55
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Work Rates — Fraction Remaining
+
+A crew can pave an entire road in 10 days, working at a constant rate. After the crew has worked for 4 days, what fraction of the road remains unpaved?
+
+- A) 2/5
+- B) 1/2
+- C) 3/5
+- D) 2/3
+- E) 3/10
+
+**answer:** C
+**hint_nudge:** Find the fraction paved first, then take what's left.
+**hint_strategy:** Fraction done = (days worked) × (rate per day); remaining = 1 − fraction done.
+**hint_setup:** Done = 4 × (1/10) = 2/5; remaining = 1 − 2/5.
+**explanation:** The crew paves 1/10 of the road per day. In 4 days it paves 4 × (1/10) = 4/10 = 2/5 of the road. The unpaved portion is therefore
+
+1 − 2/5 = 3/5.
+
+The correct answer is C.
+**fastest_path:** 4 of 10 days is 2/5 done, so 3/5 remains.
+**common_trap:** Reporting the fraction completed instead of the fraction remaining.
+**mistake_a:** 2/5 is the portion already paved, not the portion remaining.
+**mistake_b:** 1/2 assumes the job is half done at day 4, which would require a 8-day total.
+**mistake_d:** 2/3 mis-divides (e.g., 4 days out of 6).
+**mistake_e:** 3/10 confuses the daily rate with the remaining fraction.
+**takeaway:** Read the final question carefully — "remaining" is 1 minus the completed fraction.
+**trap_type:** done-vs-remaining (Misread)
+**est_time_seconds:** 75
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q56
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Two Objects Moving — Catch-Up
+
+A train leaves a station traveling at 60 mph. Two hours later, a second train leaves the same station on the same track, traveling in the same direction at 80 mph. How many hours after the second train departs will it catch up to the first train?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 8
+- E) 10
+
+**answer:** C
+**hint_nudge:** When the second train starts, the first already has a head-start distance — find it first.
+**hint_strategy:** Head start = 60 × 2 miles; the gap closes at the difference of the speeds (80 − 60).
+**hint_setup:** Head start = 120 miles; catch-up rate = 20 mph; time = 120 ÷ 20.
+**explanation:** By the time the second train departs, the first train has traveled 60 × 2 = 120 miles. Both then move in the same direction, so the gap closes at the difference of their speeds: 80 − 60 = 20 mph. The 120-mile gap closes in
+
+120 ÷ 20 = 6 hours after the second train departs.
+
+The correct answer is C.
+**fastest_path:** Head start 120 miles, closing at 20 mph → 120/20 = 6 hours.
+**common_trap:** Adding the speeds (a toward-each-other move) instead of subtracting, or forgetting the head-start distance.
+**mistake_a:** 4 uses a 160-mile head start or mishandles the gap.
+**mistake_b:** 5 mis-divides the head start by the wrong closing speed.
+**mistake_d:** 8 divides 160 by 20, over-counting the head start (using the wrong elapsed time).
+**mistake_e:** 10 divides the head start by half the closing speed.
+**takeaway:** Catch-up problems use the speed difference; always convert the head start into a distance before dividing.
+**trap_type:** relative-speed-direction (Strategy)
+**est_time_seconds:** 120
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q57
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Work Rates — Two-Scenario System
+
+Working together, machines P and Q can complete a job in 4 hours. Machine P, working alone, would take 6 hours longer than machine Q would take alone. How many hours does machine Q take to complete the job alone?
+
+- A) 4
+- B) 6
+- C) 8
+- D) 10
+- E) 12
+
+**answer:** B
+**hint_nudge:** Name Q's solo time with a variable and write P's in terms of it.
+**hint_strategy:** Let Q = t and P = t + 6. Set 1/t + 1/(t+6) = 1/4 and solve the resulting quadratic; keep the positive root.
+**hint_setup:** 1/t + 1/(t+6) = 1/4 clears to t² − 2t − 24 = 0.
+**explanation:** Let Q's solo time be t hours, so P's solo time is t + 6. Their rates add to the combined rate:
+
+1/t + 1/(t + 6) = 1/4.
+
+Multiply through by 4t(t + 6):
+
+4(t + 6) + 4t = t(t + 6)
+4t + 24 + 4t = t² + 6t
+8t + 24 = t² + 6t
+t² − 2t − 24 = 0
+(t − 6)(t + 4) = 0.
+
+The positive root is t = 6, so Q takes 6 hours alone (and P takes 12). Check: 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4. ✓
+
+The correct answer is B.
+**fastest_path:** Set 1/t + 1/(t+6) = 1/4, clear to t² − 2t − 24 = 0, factor to (t − 6)(t + 4); take t = 6.
+**common_trap:** Solving the quadratic but reporting P's time, or keeping the negative root.
+**mistake_a:** 4 is the combined time, not Q's solo time.
+**mistake_c:** 8 fails the equation; verify 1/8 + 1/14 ≠ 1/4.
+**mistake_d:** 10 also fails the equation; only t = 6 satisfies it.
+**mistake_e:** 12 is P's solo time (t + 6), not Q's.
+**takeaway:** In two-scenario work problems, define one solo time as the variable, build a rate equation, and re-read which machine the question wants.
+**trap_type:** answering-the-wrong-quantity (Strategy)
+**est_time_seconds:** 135
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q58
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Average Rate — Find a Leg
+
+A car travels a total of 120 miles. It covers the first 60 miles at 30 mph and the remaining 60 miles at a speed of v mph. If the average speed for the entire 120-mile trip is 40 mph, what is v?
+
+- A) 45
+- B) 50
+- C) 60
+- D) 72
+- E) 90
+
+**answer:** C
+**hint_nudge:** Work in times, not speeds — the average speed fixes the total time.
+**hint_strategy:** Total time = total distance ÷ average speed; subtract the first leg's time to get the second leg's time, then v = 60 ÷ that time.
+**hint_setup:** Total time = 120/40 = 3 hours; first leg = 60/30 = 2 hours; second leg = 1 hour.
+**explanation:** Average speed pins down the total time: total time = total distance ÷ average speed = 120 ÷ 40 = 3 hours. The first leg takes 60 ÷ 30 = 2 hours, so the second leg must take 3 − 2 = 1 hour. Covering 60 miles in 1 hour gives
+
+v = 60 ÷ 1 = 60 mph.
+
+The correct answer is C.
+**fastest_path:** Total time must be 120/40 = 3 hrs; the first leg eats 2, leaving 1 hr for 60 miles → v = 60.
+**common_trap:** Averaging speeds directly — e.g., assuming v = 2(40) − 30 = 50 — instead of routing through times.
+**mistake_a:** 45 comes from averaging 30 and an assumed value rather than using times.
+**mistake_b:** 50 uses the false "average of speeds" rule (2·40 − 30), which ignores that the legs take different times.
+**mistake_d:** 72 over-corrects, picking a speed that makes the second leg too quick.
+**mistake_e:** 90 triples the slow leg's speed without checking the total time.
+**takeaway:** Whenever "average speed" is given or wanted, convert everything to time; speeds never average linearly across equal distances.
+**trap_type:** average-of-speeds (Conceptual)
+**est_time_seconds:** 135
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q59
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Combined Work — Subtracting Rates
+
+Three workers, A, B, and C, working together can finish a task in 2 hours. Workers A and B, working together without C, would finish the same task in 3 hours. Working alone, how long would C take to finish the task?
+
+- A) 1 hour
+- B) 4 hours
+- C) 5 hours
+- D) 6 hours
+- E) 12 hours
+
+**answer:** D
+**hint_nudge:** C's rate is what the trio has beyond what A and B contribute.
+**hint_strategy:** C's rate = (all-three rate) − (A-and-B rate); then invert for C's solo time.
+**hint_setup:** C's rate = 1/2 − 1/3; solo time = 1 ÷ (that rate).
+**explanation:** Rates subtract just as they add. The three together work at 1/2 of the task per hour; A and B together work at 1/3 per hour. C's individual rate is the difference:
+
+1/2 − 1/3 = 3/6 − 2/6 = 1/6 of the task per hour.
+
+C alone therefore takes 1 ÷ (1/6) = 6 hours.
+
+The correct answer is D.
+**fastest_path:** C's rate = 1/2 − 1/3 = 1/6, so C alone takes 6 hours.
+**common_trap:** Forgetting to invert the rate (reporting 1/6 as "1 hour"), or subtracting times instead of rates.
+**mistake_a:** 1 hour mistakes the rate difference (1/6) for a time, or inverts incorrectly.
+**mistake_b:** 4 hours subtracts the times (3 − 2 ... mis-scaled) instead of the rates.
+**mistake_c:** 5 hours averages or mis-adds the given times.
+**mistake_e:** 12 hours doubles C's correct solo time.
+**takeaway:** To isolate one worker, subtract the known group rate from the total rate, then invert — never subtract times.
+**trap_type:** rate-subtraction (Conceptual)
+**est_time_seconds:** 120
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q60
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Work Rates — Machine Breakdown Mid-Job
+
+Two identical pumps begin draining a full pool together; each pump alone would empty the pool in 12 hours. After they work together for 3 hours, one pump breaks down and the other finishes draining the pool alone. What is the total time, from the start, to empty the pool?
+
+- A) 6 hours
+- B) 7.5 hours
+- C) 9 hours
+- D) 12 hours
+- E) 15 hours
+
+**answer:** C
+**hint_nudge:** Split the job at the breakdown: how much is drained in the first 3 hours, and how long does one pump need for the rest?
+**hint_strategy:** Compute the fraction drained while both run, then divide the remaining fraction by a single pump's rate. Add the two phases.
+**hint_setup:** Together rate = 1/12 + 1/12 = 1/6; in 3 hours that drains 1/2. Remaining 1/2 at 1/12 per hour.
+**explanation:** Phase one: both pumps run at 1/12 each, so together 1/6 of the pool per hour. In 3 hours they drain 3 × (1/6) = 1/2 of the pool, leaving 1/2.
+
+Phase two: one pump alone drains at 1/12 per hour, so the remaining 1/2 takes (1/2) ÷ (1/12) = 6 hours.
+
+Total time = 3 + 6 = 9 hours.
+
+The correct answer is C.
+**fastest_path:** Both pumps clear half the pool in 3 hrs; one pump needs 6 more hours for the other half → 9 total.
+**common_trap:** Reporting only the solo phase (6 hours) or only the combined-rate full-job time, ignoring the breakdown.
+**mistake_a:** 6 hours is just the second phase (one pump finishing the remaining half), missing the first 3 hours.
+**mistake_b:** 7.5 hours mishandles the remaining fraction or its rate.
+**mistake_d:** 12 hours is a single pump's full-pool time, ignoring that two pumps started together.
+**mistake_e:** 15 hours over-counts, e.g., adding a full solo job to the 3-hour phase.
+**takeaway:** When the team size changes mid-job, freeze the work completed at the change point, then re-rate the remainder.
+**trap_type:** phase-change-accounting (Strategy)
+**est_time_seconds:** 135
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q61
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Competing Rates — Delayed Drain (Challenge)
+
+An inlet pipe fills an empty tank in 6 hours. Two hours after the inlet is opened, a drain is also opened; the drain alone would empty a full tank in 12 hours. Both the inlet and the drain remain open until the tank is full. What is the total time, measured from the moment the inlet was opened, to fill the tank?
+
+- A) 6 hours
+- B) 8 hours
+- C) 10 hours
+- D) 12 hours
+- E) 14 hours
+
+**answer:** C
+**hint_nudge:** The first two hours behave differently from the rest — the drain isn't open yet.
+**hint_strategy:** Phase 1: inlet only fills part of the tank. Phase 2: net rate = inlet − drain fills the remainder. Add the phase durations.
+**hint_setup:** Phase 1 (2 hrs): fills 2 × (1/6) = 1/3. Remaining 2/3 at net rate 1/6 − 1/12 = 1/12 per hour.
+**explanation:** This is a two-phase competing-rates problem; the delayed drain forces a split.
+
+Phase 1 — first 2 hours, inlet only: the inlet fills 1/6 per hour, so in 2 hours it fills 2 × (1/6) = 1/3 of the tank. That leaves 2/3 to go.
+
+Phase 2 — both open: the net fill rate is 1/6 − 1/12 = 2/12 − 1/12 = 1/12 of the tank per hour. The remaining 2/3 takes
+
+(2/3) ÷ (1/12) = (2/3) × 12 = 8 hours.
+
+Total time from the start = 2 + 8 = 10 hours.
+
+The correct answer is C.
+**fastest_path:** Inlet alone banks 1/3 in 2 hrs; the leftover 2/3 fills at a net 1/12 per hour → 8 hrs; total 10.
+**common_trap:** Applying the net rate to the whole tank (ignoring that the drain was closed for the first 2 hours), or solving only one phase.
+**mistake_a:** 6 hours is the inlet-alone time, ignoring the drain entirely.
+**mistake_b:** 8 hours is just the phase-2 duration, forgetting the 2-hour head start.
+**mistake_d:** 12 hours applies the net rate (1/12) to the full tank from the start, ignoring the drain's delayed opening.
+**mistake_e:** 14 hours adds the 2-hour delay to the full-tank net-rate time, double-counting the head start incorrectly.
+**takeaway:** A delayed competing rate splits the timeline; credit the early phase's work first, then apply the net rate only to what remains.
+**trap_type:** delayed-competing-rate (Strategy)
+**est_time_seconds:** 165
+**related_reading:** reading-quant-05-word-problems
