@@ -142,13 +142,11 @@ Before you compute anything, you have to read the chart correctly. Three out of 
 
 Most traps exploit a mismatch between what the question asks and what the chart actually shows. "Average revenue" might refer to *monthly* average when the data is quarterly — check what unit the question uses.
 
-**Axis labels and the "missing zero" trap.** Many real-world charts (and many GMAT charts) start the y-axis at a non-zero value. A bar that "looks" twice as tall as another might reflect only a 10% difference — because the y-axis starts at, say, 100 and goes to 200, not 0 to 200.
+**Trap to watch.** The missing zero. Many GMAT charts start the y-axis at a non-zero value, so a bar that "looks" twice as tall as another might reflect only a 10% difference — the axis runs from, say, 100 to 200, not 0 to 200. Always read the number at the bottom of the y-axis. If it isn't 0, the visual proportions are lying to you; compute actual values before declaring one bar "much bigger."
 
-Always look at the y-axis number at the bottom of the chart. If it's not 0, the visual proportions are misleading. Compute actual values before declaring one bar "much bigger."
+**Speed tip.** Estimation is usually fine; precision is usually wasteful. Most GI answer choices are spaced far apart (1.5, 1.8, 2.1, 2.5, 3.0), so three-decimal accuracy is wasted effort. Read values to the nearest grid line and compute — the spacing of the choices tells you how rough you can afford to be.
 
-**Estimation is usually fine — precision is usually wasteful.** Most GMAT Graphics Interpretation answer choices are spaced far apart (1.5, 1.8, 2.1, 2.5, 3.0). You don't need three-decimal accuracy. Read values to the nearest grid line and compute.
-
-**Example.** A line graph shows revenue from 85 to 180 across 12 months. The answer choices for "ratio of highest to lowest revenue" are 1.5, 1.8, 2.1, 2.5, 3.0. Highest ≈ 180, lowest ≈ 85. Ratio ≈ 180/85 ≈ 2.12. Pick 2.1. No need to try for 2.117.
+**Worked example.** A line graph shows revenue from 85 to 180 across 12 months. The answer choices for "ratio of highest to lowest revenue" are 1.5, 1.8, 2.1, 2.5, 3.0. Highest ≈ 180, lowest ≈ 85. Ratio ≈ 180/85 ≈ 2.12. Pick 2.1. No need to try for 2.117.
 
 **Reading data off a chart: three techniques.**
 
@@ -181,6 +179,8 @@ Answers: (1) **130/90 ≈ 1.44** — read the actual y-axis values, not the visu
 
 **Trap to watch.** Bubble charts represent the third variable by bubble **area**, not bubble *diameter*. A bubble that looks "twice as wide" as another is actually **four times as big** in area. This is almost always the trap on bubble-chart questions.
 
+**Takeaway.** Spend your first five seconds auditing the axes — units, scale, and origin — before any arithmetic. A misread chart corrupts every calculation downstream, and you can't catch it after you've submitted. Reading discipline, not math, is what wins points here.
+
 ## @line-graphs-and-trends
 
 Line graphs plot a variable (y-axis) over a continuous index (x-axis, usually time). The questions ask four kinds of things: values at specific points, trends (increasing/decreasing), rates of change (slope), or comparisons between periods.
@@ -192,7 +192,7 @@ Line graphs plot a variable (y-axis) over a continuous index (x-axis, usually ti
 3. **Rate comparison.** "How does the rate of change in Q1 compare to Q2?" Compute slope as (y2 - y1) / (x2 - x1) for each period.
 4. **Average over a range.** "What was the average monthly revenue for Q2?" Read values for April, May, June; average them.
 
-**The "steepness" shortcut for rate questions.** The slope of a line segment equals the *visual* steepness. On a chart with a consistent scale, steeper = larger rate of change. Just eyeball.
+**Speed tip.** For rate-of-change questions, slope equals visual steepness. On a chart with a consistent scale, the steeper segment is the larger rate — just eyeball it instead of computing every slope. The one exception: unequal x-axis intervals, where you must actually compute.
 
 **Example.** "During which month did revenue grow the most?" Look at the line graph and find the segment with the biggest visible jump. That's your answer — no computation needed.
 
@@ -211,7 +211,7 @@ Line graphs plot a variable (y-axis) over a continuous index (x-axis, usually ti
 
 **Multiple lines on one graph.** Each line is a different series (maybe two products, two companies, two time periods). Questions often ask when one line crosses another, or when one is higher/lower. Find the intersection visually and read off the x-value.
 
-**Rate vs. absolute change trap.** "Biggest rate of change" is measured by **slope** (change per unit time). "Biggest absolute change" is just the difference between two points, regardless of time. A 10-unit increase over 2 months is a bigger rate than a 10-unit increase over 5 months, even though the absolute change is the same.
+**Trap to watch.** Rate vs. absolute change. "Biggest rate of change" is slope — change per unit time. "Biggest absolute change" is just the difference between two points, regardless of time. A 10-unit increase over 2 months is a bigger rate than the same 10-unit increase over 5 months, even though the absolute change is identical. The test plants the absolute answer when it asks for the rate, and vice versa.
 
 > **Self-explanation prompt.** Why does "rate of change" equal slope on a line graph? If you can say "because slope is defined as change in y per unit change in x — which is exactly the rate at which the variable is changing per unit time," you've internalized why visual steepness corresponds directly to the quantity the question asks about.
 
@@ -253,7 +253,7 @@ But consider a different dataset: A goes from 1000 to 1100 (absolute +100, relat
 
 Always divide by the *starting* value. Dividing by the new value (or by their sum) gives wrong answers that are often present in trap options.
 
-**Bar chart trap: comparing bars from different groups.** Grouped bar charts show multiple bars per category (e.g., "2020 population" and "2024 population" for each country). Students sometimes compare apples and oranges — reading the 2020 value of Country A as if it were the 2024 value of Country C. Always verify which bar you're reading.
+**Trap to watch.** Comparing bars from different groups. Grouped bar charts show multiple bars per category (e.g., "2020" and "2024" for each country). It's easy to compare the wrong pair — reading Country A's 2020 bar as if it were Country C's 2024 bar. Confirm both the category label and the series label of every bar before you read its value.
 
 **Horizontal vs. vertical bars.** Some bar charts are horizontal (categories on y-axis, values on x-axis). Same math; just rotated. Don't let the orientation trick you.
 
@@ -262,6 +262,8 @@ Always divide by the *starting* value. Dividing by the new value (or by their su
 **The "median category" pattern.** If a bar chart has 5 categories and you're asked for the median category, sort by height and pick the 3rd. Count carefully — don't just guess based on visual appearance if the values are close.
 
 **The "above the average" pattern.** Compute the average of all bars. Then count how many bars are above that average. Often the answer is a count (2 out of 5, 3 out of 7) rather than a percentage.
+
+**Takeaway.** "Biggest" and "fastest-growing" are different questions. Absolute change measures size; percentage change measures speed, and a large base can post a huge number while barely moving its percentage. Read which one the stem wants before you compare — the wrong comparison is always sitting in the answer choices.
 
 > **Recall check.** Without looking, state the percentage-change formula. Now apply it: if value goes from 80 to 120, what's the percentage change? (Answer: (120-80)/80 = 50%.) Now apply it the wrong way: would dividing by 120 give 33.3%? Yes — but that's the answer to "120 is 33% more than 80" framed wrong. Knowing to always divide by the *starting* value prevents 20% of bar-chart errors.
 
@@ -308,7 +310,7 @@ A stacked bar shows a total value as a **stack of segments**, where each segment
 - Operations: 300 (30% of total)
 - Marketing: 100 (10% of total)
 
-**The "reading segment height" trap.** Students read a segment's *top position* instead of its *height*. Operations in the example is NOT 900 — it's 300 (the segment from 600 to 900). Always compute segment height as (segment top) - (segment bottom).
+**Trap to watch.** Reading segment height. Students read a segment's *top position* instead of its *height*. Operations in the example is NOT 900 — it's 300 (the segment runs from 600 to 900). Always compute a segment's value as (segment top) − (segment bottom), never the top position alone.
 
 **Comparing proportions across bars.** On a stacked bar with multiple bars (e.g., departments over multiple years), the *proportion* of any segment within its bar is independent of the total bar size. Comparing segment proportions requires computing each one as a fraction of its own bar's total.
 
@@ -336,19 +338,21 @@ Scatter plots show individual data points as dots in a 2D grid. Each dot is a ca
 - **Strong correlation:** points hug the trend line tightly.
 - **Weak correlation:** points loosely follow a trend but have lots of spread.
 
-**The "imaginary line" technique.** Squint at the scatter plot. Does an imaginary line rise, fall, or neither? That's your correlation direction. How tightly do the points hug the line? That's your correlation strength.
+**Pro tip.** Squint at the scatter plot and picture a single line through the cloud. Does it rise, fall, or neither? That's your correlation direction. How tightly do the points hug it? That's your correlation strength. Two glances answer most scatter-plot questions without reading a single coordinate.
 
 **Correlation ≠ causation.** A scatter plot showing that cities with more coffee shops have higher GDP doesn't prove that coffee shops cause GDP (or vice versa). Both could be driven by a third factor (population density). On GMAT, if the question asks about a causal relationship, scatter-plot correlation is *consistent with* but doesn't *prove* causation.
 
 **Outlier identification.** Outliers are points that deviate substantially from the trend. Specifically, points that are very far from the imaginary trend line. Scan the scatter plot for isolated points that don't fit the cluster.
 
-**Example.** Most points follow a clear positive trend: (2, 3), (3, 5), (4, 7), (5, 8), (6, 10). But one point is (10, 2) — far to the right, very low. That's the outlier.
+**Worked example.** Most points follow a clear positive trend: (2, 3), (3, 5), (4, 7), (5, 8), (6, 10). But one point is (10, 2) — far to the right, very low. That's the outlier.
 
 **The "number of data points in a region" pattern.** Questions often ask: "How many data points have x > 5 AND y > 10?" Count the points in the specified region of the scatter plot. No computation — just careful counting.
 
 **Trend-line questions.** Some scatter plots include a drawn trend line (or best-fit line). Questions may ask the slope of this line, or which data point lies farthest *above* vs *below* the line. Read carefully.
 
 **The "clusters" reading.** Sometimes a scatter plot has two or more clusters — groups of points that hang together. This usually indicates two subpopulations (maybe male vs female, treatment vs control). Questions may ask about each cluster's behavior.
+
+**Takeaway.** Scatter plots show association, never proof of cause — the GMAT-correct answer to a causal claim is "consistent with, but does not establish." Lock that frame in first; the reading (direction, strength, outliers) is then just careful looking.
 
 **Micro-drill.** Classify the correlation direction and strength from each description — 30 seconds total:
 
@@ -402,11 +406,9 @@ If the total is 4500 and one category is 18%, that category is 4500 × 0.18 = 45
 
 When the chart gives percentages but no absolute values, pick a convenient total (100 or 1000) and compute. Then if the question asks for a ratio or a percent, your answer is independent of the total you picked.
 
-**Example.** Pie chart: Urban 45%, Suburban 30%, Rural 25%. Question: "What percent of non-rural population is urban?"
+**Worked example.** Pie chart: Urban 45%, Suburban 30%, Rural 25%. Question: "What percent of the non-rural population is urban?" Pick a total of 100: Urban = 45, Rural = 25, so non-rural = 75. Urban as a share of non-rural = 45 / 75 = **60%** — and because it's a ratio, the answer is the same whatever total you'd picked.
 
-Pick total = 100. Urban = 45, Suburban = 30, Rural = 25. Non-rural = 75. Urban as % of non-rural = 45/75 = **60%**.
-
-**The "don't compute what you don't need" principle.** If the question asks for a ratio, you don't need the absolute values. If it asks for a rank ("which country has the most growth?"), you don't need exact growth amounts — just relative magnitudes. Always look at the question first and figure out the minimum arithmetic required.
+**Pro tip.** Don't compute what you don't need. A ratio question doesn't need the absolute values; a rank question ("which grew most?") doesn't need exact amounts, only relative magnitudes. Read the question first and do the minimum arithmetic it actually requires — most GI overspending happens right here.
 
 **Micro-drill.** Five mental-math computations — target 10 seconds each:
 
@@ -423,6 +425,8 @@ Answers: (1) **(120−75)/75 = 45/75 = 60%**. (2) **(170−200)/200 = −30/200 
 ## @summary
 
 Graphics Interpretation is two skills: reading values accurately and doing a tiny bit of arithmetic on those values. The six chart types and the five computation shortcuts cover every question.
+
+**Key takeaway.** On GI, the chart read is the score, not the arithmetic. Audit the axes, respect the absolute-vs-relative distinction, and read segment heights and bubble areas correctly — then the math is one short step. Nearly every miss in this topic traces to a misread, which is exactly why a ten-second axis audit is the highest-return habit you can build.
 
 **The three pre-computation checks (every chart, every time):**
 
