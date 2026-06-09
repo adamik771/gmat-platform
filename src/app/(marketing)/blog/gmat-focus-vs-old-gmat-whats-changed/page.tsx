@@ -146,10 +146,11 @@ export default function PostPage() {
 
           <H3>Quant</H3>
           <p>
-            The Quant section is the most stable. Same content topics
-            (algebra, arithmetic, number properties, geometry, etc.).
-            Same scoring scale per section (60-90 on Focus, formerly
-            6-51 on the old test). Same general difficulty distribution.
+            The Quant section is mostly stable on content. The core
+            topics (algebra, arithmetic, number properties, statistics,
+            word problems) carry over. Same scoring scale per section
+            (60-90 on Focus, formerly 6-51 on the old test). Same general
+            difficulty distribution.
           </p>
           <p>
             <Strong>What changed:</Strong>
@@ -163,6 +164,12 @@ export default function PostPage() {
             <li>
               <Strong>Data Sufficiency moved out.</Strong> DS is now in
               Data Insights, not Quant. Quant is Problem Solving only.
+            </li>
+            <li>
+              <Strong>Geometry was removed.</Strong> GMAT Focus Quant no
+              longer tests geometry or coordinate geometry. The content is
+              algebra, arithmetic, number properties, statistics, and word
+              problems.
             </li>
             <li>
               <Strong>The bookmark / review feature was added.</Strong>

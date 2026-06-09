@@ -51,7 +51,7 @@ problem_sets:
 
 ## @even-and-odd
 
-Even and odd feel like elementary-school ideas. They're not — on the GMAT, they're a source of 725+ difficulty because test writers combine them with absolute value, exponents, and Data Sufficiency conditions. What separates students who get these right is not "more memorization" but a fluent internal table they can run through in two seconds. The questions are never hard arithmetic; they are hard *bookkeeping*, and bookkeeping is a skill you can drill until it's automatic.
+Even and odd feel like elementary-school ideas. They're not — on the GMAT, they're a source of 725+ difficulty because test writers combine them with absolute value, exponents, and layered conditions. What separates students who get these right is not "more memorization" but a fluent internal table they can run through in two seconds. The questions are never hard arithmetic; they are hard *bookkeeping*, and bookkeeping is a skill you can drill until it's automatic.
 
 **Mental model.** Number properties are labels on integers — even, odd, prime, divisor, factor, multiple, remainder. Most questions reduce to "given these labels on these numbers, what's also true?" The work is keeping the labels straight; the arithmetic is rarely hard. Errors here are almost always definitional confusion (forgetting 0 is even, that 1 isn't prime, that GCF is smaller than its inputs), not computational. Treat every variable in the problem as a sticker: the moment you read "m is even," mentally stamp m with a 2 (write m = 2a if it helps), and the moment you read "n is odd," stamp n with "leaves remainder 1" (write n = 2b + 1). The whole topic is bookkeeping on those stamps. If you find yourself doing real multiplication on an even/odd question, stop — you've left the labels and started grinding numbers, which is slower and more error-prone than the labels were ever meant to let you be.
 
@@ -101,27 +101,21 @@ Same answer, zero parity theory. The catch with plugging in: a single test case 
 
 **The expression trick: consecutive integers.** k(k+1) is always even because one of two consecutive integers must be even, and even times anything is even. k(k+1)(k+2) is always divisible by 3! = 6 because at least one factor is even and exactly one is divisible by 3. This generalizes — **the product of n consecutive integers is divisible by n!**. This single fact is the backbone of a huge fraction of hard "must be divisible by" questions, so commit it to memory now.
 
-**Worked example (Data Sufficiency).** Is integer k odd?
+**Worked example (parity reasoning).** If k is an integer and 3k + 1 is even, which of the following must be odd? (A) k  (B) k + 1  (C) 2k  (D) k² + k  (E) 4k
 
-- Statement (1): k^2 + k is even. Expand: k(k+1), product of consecutive integers, always even. So this statement is true for *every* integer k — it can't distinguish odd from even. Insufficient.
-- Statement (2): 3k + 1 is even. Then 3k is odd (because subtracting 1 from an even gives an odd), so k must be odd (3 × even = even and 3 × odd = odd, so an odd product forces an odd k). Sufficient.
-
-Answer: B. The trap is trusting statement (1) because "even + even = even" feels informative — it isn't, because k^2 + k is even for every integer k. Whenever a Data Sufficiency statement turns out to be an *identity* (true no matter what), it tells you nothing and is automatically insufficient. Train yourself to ask, "Is this statement actually constraining k, or is it true for all k?"
+Since 3k + 1 is even, 3k is odd, which forces k to be odd (an odd product 3 × k requires an odd k). Now screen the choices: (A) k is odd ✓; (B) k + 1 = odd + 1 = even; (C) 2k is even; (D) k² + k = k(k + 1), a product of consecutive integers, is **always** even no matter what k is; (E) 4k is even. Only **(A)** is forced odd. The trap is choice (D): k² + k *looks* like it should depend on k, but it is an *identity* — even for every integer k — so it can never be the odd one. Whenever an expression turns out to be even (or odd) for *all* integers, it carries no information about the specific value; recognizing those identities on sight saves you from testing them. Train yourself to ask, "Is this expression actually pinned by k, or is it the same parity for every k?"
 
 > **Self-explanation prompt.** Why is the product of any two consecutive integers always even? If you can say "because one of them is even, and even times anything is even," you've internalized the pattern well enough to recognize k(k+1) — and its disguises like k^2 + k or n^2 − n — on the test.
 
-**Worked example (harder Data Sufficiency, two layers).** If a and b are integers, is a + b even?
+**Worked example (parity behind a disguise).** If a and b are integers and ab is odd, which of the following must be even? (A) a + b  (B) 2a + 1  (C) ab  (D) a + 2  (E) 3a
 
-- Statement (1): a^2 + b^2 is even. A square has the same parity as its base, so a^2 has the parity of a and b^2 has the parity of b; thus a^2 + b^2 is even exactly when a and b have the *same* parity (both even → even + even, both odd → odd + odd). Same parity means a + b is even + even or odd + odd, both of which are even. Sufficient.
-- Statement (2): ab is odd. A product is odd only when *every* factor is odd, so a and b are both odd. Both odd → a + b = odd + odd = even. Sufficient.
+A product ab is odd only when *every* factor is odd, so a and b are both odd. Now a + b = odd + odd = **even** (A). Check the rest: 2a + 1 is odd; ab is odd (given); a + 2 = odd + even = odd; 3a = odd × odd = odd. Only **(A)** is forced even. The recognition that matters: "ab is odd" is a *disguised* way of pinning both parities — once you translate it to "a and b are both odd," every choice's parity falls out mechanically. (The same goes for "a² + b² is even," another disguise for "a and b share a parity," which likewise forces a + b even.) The difficulty in these problems lives in the disguise, not the arithmetic.
 
-Answer: D — each statement alone nails it. The key recognition: "a^2 + b^2 even" and "ab odd" are both disguised ways of pinning down the parities of a and b, and once parities are pinned, the parity of a + b is forced. Difficulty here comes from the disguise, not the arithmetic.
-
-> **Recall check.** A Data Sufficiency statement reads "the product cd is even." Does that pin down both c and d, the way "cd is odd" pins both to odd? (No — "cd even" only forces *at least one* of c, d to be even; the other could be either. "cd odd" is the strong one, forcing *both* odd. Asymmetry to remember: odd product pins everything, even product pins almost nothing.)
+> **Recall check.** A problem tells you "the product cd is even." Does that pin down both c and d, the way "cd is odd" pins both to odd? (No — "cd even" only forces *at least one* of c, d to be even; the other could be either. "cd odd" is the strong one, forcing *both* odd. Asymmetry to remember: odd product pins everything, even product pins almost nothing.)
 
 **Worked example (parity with exponents — the hard tier).** If x and y are positive integers and x^y is odd, what must be true about x and y? Many students overthink the exponent. Use the product rule: x^y is just x multiplied by itself y times. A product is odd only if *every* factor is odd — so x must be odd. And y? It can be anything: 3^1 = 3 (odd), 3^2 = 9 (odd), 3^5 = 243 (odd). So the only forced conclusion is **x is odd; y is unrestricted**. Contrast with x^y *even*: that happens as soon as x is even, regardless of y, because one even factor poisons the whole product. The lesson: **an exponent never changes the parity of the base** — odd^anything is odd, even^(positive) is even.
 
-**Trap to watch.** Zero is even. Students forget this constantly on Data Sufficiency. "Is k even?" with k = 0 is YES. The integer 0 is also divisible by every integer except 0 itself. When a Data Sufficiency problem lets a variable equal 0, that is almost always the case the test writer is hoping you'll skip — actively test it. (And note the edge inside the exponent rule above: it said even^*positive* is even. 0 is not positive, and any nonzero base to the 0 power is 1, which is odd — so if an exponent could be 0, re-examine before you commit.)
+**Trap to watch.** Zero is even. Students forget this constantly. "Is k even?" with k = 0 is YES. The integer 0 is also divisible by every integer except 0 itself. When a problem lets a variable equal 0, that is almost always the case the test writer is hoping you'll skip — actively test it. (And note the edge inside the exponent rule above: it said even^*positive* is even. 0 is not positive, and any nonzero base to the 0 power is 1, which is odd — so if an exponent could be 0, re-examine before you commit.)
 
 **A second trap: negatives keep their parity.** −4 is even, −7 is odd. Parity is about divisibility by 2, which is sign-blind. When a problem allows negative integers, do not let the minus sign tempt you into a different parity bucket — −7 behaves exactly like 7 for every rule in this section.
 
@@ -132,19 +126,19 @@ Answer: D — each statement alone nails it. The key recognition: "a^2 + b^2 eve
 3. **Resolve products first:** any product with at least one even factor is even; an all-odd product is odd. Coefficients count — a literal 2, 4, 6… in front of a term makes that whole term even.
 4. **Then resolve the sum/difference:** cross out all even terms (they're invisible) and count the remaining odd terms. Odd count → odd; even count (including 0) → even.
 5. **For "must be" questions, demand it holds for every legal case;** for "could be," one case suffices. When a variable is "?", check both parities before committing.
-6. **Probe the edge cases — 0 and negatives — before finalizing,** especially on Data Sufficiency.
+6. **Probe the edge cases — 0 and negatives — before finalizing.**
 
 > **Recall check.** In step 4 of the procedure, what do you do with the even terms in a sum before counting? (Cross them out — they're invisible to parity; only the count of odd terms decides the result.)
 
 **Common mistakes.**
 
-- Forgetting 0 is even (the single most common Data Sufficiency miss in this topic).
+- Forgetting 0 is even (the single most common miss in this topic).
 - Treating subtraction differently from addition — it follows the exact same parity table.
 - Believing a coefficient changes nothing: 2n is *always* even no matter what n is, and that even term then drops out of a sum.
 - Thinking an exponent can flip parity — it can't; odd^k stays odd and even^k stays even (for positive k).
 - Assuming "product is even" pins both factors — it only forces at least one to be even; only "product is odd" pins both to odd.
 - Accepting a "must be" claim after one lucky example, or rejecting it without testing the easy counterexamples n = 0, 1, 2, −1.
-- Trusting a Data Sufficiency statement that is secretly an identity (true for every integer), like "k^2 + k is even."
+- Trusting an expression that is secretly an identity (true for every integer), like "k^2 + k is even," as if it pinned the value down.
 
 **Micro-drill.** m is even, n is odd. State whether each expression *must* be even, *must* be odd, or *could be either* — 60 seconds total:
 
@@ -156,7 +150,7 @@ Answer: D — each statement alone nails it. The key recognition: "a^2 + b^2 eve
 
 Answers: (1) **even** — even + odd + odd = even. (2) **even** — mn contains m's factor of 2, so mn is even; m is even; even + even = even. (3) **odd** — n^2 = odd × odd = odd; 2n = even; odd + even = odd. (4) **odd** — m + 1 is odd; odd^2 = odd (squaring preserves parity). (5) **odd** — n^5 is odd (odd base, exponent can't change it), but m is even so m·n^5 is even; even + 3 (odd) = odd. If you missed (3), the chain is: odd^2 stays odd, and odd + even = odd. If you missed (4), note that squaring preserves parity — only even numbers stay even when squared; odd numbers stay odd. If you missed (5), the exponent was a decoy: n^5 stays odd, but the even factor m makes the product even before you even reach the +3.
 
-**Recap.** Every integer is 2a or 2b + 1, and that fact alone generates the whole topic. For products, find one even factor and you're done (the product is even); for sums and differences, count the odd terms (odd count → odd, otherwise even) and ignore every even term. Exponents preserve parity, subtraction follows the addition table, coefficients of 2 force evenness, and the product of n consecutive integers is divisible by n!. Remember the asymmetry: an *odd* product pins every factor to odd, but an *even* product pins almost nothing. When answer choices split by parity, screen them with a 10-second parity check before doing arithmetic. The two reflexes that save the most points: test 0 (it's even) and the small negatives on Data Sufficiency, and distrust any statement that's secretly true for all integers. Stamp the givens, translate, resolve products then sums, and check the edge cases — that four-step loop turns 725-level parity questions into bookkeeping.
+**Recap.** Every integer is 2a or 2b + 1, and that fact alone generates the whole topic. For products, find one even factor and you're done (the product is even); for sums and differences, count the odd terms (odd count → odd, otherwise even) and ignore every even term. Exponents preserve parity, subtraction follows the addition table, coefficients of 2 force evenness, and the product of n consecutive integers is divisible by n!. Remember the asymmetry: an *odd* product pins every factor to odd, but an *even* product pins almost nothing. When answer choices split by parity, screen them with a 10-second parity check before doing arithmetic. The two reflexes that save the most points: test 0 (it's even) and the small negatives, and distrust any expression that's secretly true for all integers. Stamp the givens, translate, resolve products then sums, and check the edge cases — that four-step loop turns 725-level parity questions into bookkeeping.
 
 ## @integer-properties-of-expressions
 
@@ -218,15 +212,11 @@ Four consecutive integers → divisible by 4! = 24. Since 24 = 3 × 8, the produ
 
 **Trap to watch — the divisibility "must be."** "Must be divisible by X" collapses the instant any single integer breaks it. The GMAT plants the counter-example among the *easy* cases, so test n = 0, 1, 2 before you trust a "must" claim. Example bait: "Is `n(n+2)` always divisible by 8?" Sounds plausible next to the rule above — but n = 1 gives 1 × 3 = 3, not divisible by 8. One small case, claim dead. The lesson is that `n(n+2)` is *not* a consecutive-integer product (the factors skip a number), so the `n!` rule does not apply — recognizing when the structure is genuinely "consecutive" is half the battle.
 
-**Sign and parity of products.** A product is negative if and only if it contains an **odd** number of negative factors. So if `xyz < 0`, then exactly 1 or exactly 3 of {x, y, z} are negative. Zero is excluded here — if any factor were 0 the product would be 0, not negative. This rule is the entire engine behind a recurring Data Sufficiency pattern.
+**Sign and parity of products.** A product is negative if and only if it contains an **odd** number of negative factors. So if `xyz < 0`, then exactly 1 or exactly 3 of {x, y, z} are negative. Zero is excluded here — if any factor were 0 the product would be 0, not negative. This rule is the entire engine behind a recurring sign-and-parity pattern on the test.
 
-**Worked example (hard, Data Sufficiency).** If `xyz < 0`, is `xy` positive?
+**Worked example (hard — sign from the negative count).** If `xyz < 0` and `z < 0`, which of the following must be true? (A) `xy > 0`  (B) `xy < 0`  (C) `x > 0`  (D) `y < 0`  (E) `xyz = 0`
 
-Statement (1): `z < 0`. The product is negative, so the total number of negatives among x, y, z is odd. z already contributes one negative, so x and y together must contribute an **even** count of negatives (0 or 2) to keep the total odd. An even count of negatives among two numbers means **both positive or both negative** — either way `xy > 0`. Sufficient.
-
-Statement (2): `x > 0`. Now the odd-negative count must come from y and z. With x positive, x contributes zero negatives, so y and z together must supply an odd count — exactly one of them negative. If y < 0, z > 0 then xy < 0; if y > 0, z < 0 then xy > 0. Both are consistent with the premise, so xy could be positive or negative. Not sufficient.
-
-Answer: **A**. The decisive move both times was the odd-negative-count rule turning a sign condition into a parity-of-negatives count. Notice how cleanly the rule replaces casework: instead of testing sign combinations one by one, you ask a single question — "how many negatives are forced, and is that count even or odd?"
+Because `xyz < 0`, the number of negatives among x, y, z is **odd**. z already supplies one negative, so x and y together must supply an **even** count (0 or 2) — meaning x and y are both positive or both negative. Either way `xy > 0`, so **(A)** is forced. None of x, y, z is 0 (the product is nonzero), so (E) is out; and x, y individually aren't pinned — both could be negative — so (C) and (D) aren't forced either. Contrast: had you been told only `x > 0`, the negatives would have to come from y and z, exactly one of them, and `xy` could land either sign. The decisive move is the odd-negative-count rule, which replaces sign casework with a single question — "how many negatives are forced, and is that count even or odd?"
 
 > **Recall check.** `xyz < 0` and you learn exactly two of the three are negative — is that possible? (No. Two negatives is an *even* count, which makes the product *positive*. A negative product forces an *odd* number of negatives: one or three.)
 
@@ -263,7 +253,7 @@ The twist the GMAT counts on is that you might try to compute `2025 mod 4` and `
 3. **Try structure first.** Factor (look for consecutive integers → `n!` divisibility), apply the parity table, or use the units-digit cycle. Structure gives airtight answers.
 4. **If structure stalls, plug in numbers** — n = 0, 1, 2, −1. For "must," hunt for a counter-example; for "could," hunt for a confirming case.
 5. **For units digits,** reduce each base to its last digit, find `exponent mod period`, take that cycle entry (remainder 0 → last entry), and operate on the resulting digits only.
-6. **Re-check the question word** before selecting. Confirm you answered "odd vs even," "the value," or "sufficient vs not" — whatever was actually asked.
+6. **Re-check the question word** before selecting. Confirm you answered "odd vs even," "the value," or "which must be true" — whatever was actually asked.
 
 **Common mistakes.**
 - **Off-by-one in cycles:** treating `exponent mod 4 = 0` as "position 0" instead of the last entry. There is no zeroth position.

@@ -315,7 +315,7 @@ If you had naively done "9 hundreds × 8 tens × 5 units" you would get 360 — 
 
 **The C(n+1, k) − C(n, k) identity.**
 
-Hard DS problem: "If the group had 1 additional person, the number of 3-person committees would increase by 21. Find n."
+Hard problem: "If the group had 1 additional person, the number of 3-person committees would increase by 21. Find n."
 
 Use: C(n+1, 3) − C(n, 3) = C(n, 2). So C(n, 2) = 21 → n(n−1)/2 = 21 → n(n−1) = 42 → **n = 7**. Then C(7, 3) = 35.
 
