@@ -1422,6 +1422,14 @@ export default function SessionClient({
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
 
+    // Shared next-step accuracy bands. Below LOW signals a concept gap
+    // (revisit the chapter); at/above SOLID the topic is strong enough to
+    // move off. Both the recommendation text and the action buttons read
+    // from these so the prose and the CTA can never disagree about which
+    // band a session falls into.
+    const LOW_ACCURACY = 60
+    const SOLID_ACCURACY = 80
+
     // Per-question pairs for insight panels (submitted only)
     const answeredPairs = questions
       .map((q, i) => ({ q, state: states[i], correct: isQuestionCorrect(q, states[i]) }))
@@ -1484,13 +1492,13 @@ export default function SessionClient({
     // Next-step recommendation keyed to accuracy band. When the student
     // performed well and the server identified a weak topic, name it
     // directly — eliminates the "which area?" follow-up navigation.
-    // In the mid-accuracy band (60–78%), also surface the cross-topic weak
-    // area when it differs from the current topic: students building on one
-    // topic deserve to know which gap is costing them the most overall.
+    // In the mid-accuracy band (LOW–SOLID), also surface the cross-topic
+    // weak area when it differs from the current topic: students building on
+    // one topic deserve to know which gap is costing them the most overall.
     const nextStepNote =
-      accuracy < 60
+      accuracy < LOW_ACCURACY
         ? "Accuracy below 60% signals a concept gap. Revisiting the chapter before more practice compounds better."
-        : accuracy < 78
+        : accuracy < SOLID_ACCURACY
         ? weakestTopic && weakestTopic.topic !== topic
           ? `Accuracy is building — one more focused session here will sharpen this topic. Across your full history, ${weakestTopic.topic} sits at ${Math.round(weakestTopic.accuracy * 100)}% accuracy. That's the highest-leverage target once this topic is solid.`
           : "Accuracy is building. One more focused session on this topic before moving on."
@@ -2029,7 +2037,7 @@ export default function SessionClient({
           if (isMixedReview) {
             actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
             actions.push({ label: "Review queue", href: "/review", variant: "secondary" })
-          } else if (accuracy < 60) {
+          } else if (accuracy < LOW_ACCURACY) {
             actions.push({
               label: chapterSlug ? "Review the chapter" : "Go to chapters",
               href: chapterSlug ? `/chapters/${chapterSlug}` : "/chapters",
@@ -2038,7 +2046,7 @@ export default function SessionClient({
             if (isPractice) {
               actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
             }
-          } else if (accuracy < 80) {
+          } else if (accuracy < SOLID_ACCURACY) {
             if (isPractice) {
               actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "primary" })
             }
