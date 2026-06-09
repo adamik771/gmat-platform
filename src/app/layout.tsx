@@ -21,7 +21,7 @@ const fraunces = Fraunces({
 // paths resolve to absolute URLs in production. Set NEXT_PUBLIC_SITE_URL
 // in Vercel envs to your production domain.
 const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://zakariangmat.com"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.zakariangmat.com"
 ).replace(/\/$/, "")
 
 export const metadata: Metadata = {

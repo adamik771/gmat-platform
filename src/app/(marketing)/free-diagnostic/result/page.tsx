@@ -11,7 +11,7 @@ import {
 import type { Section } from "@/types"
 
 const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://zakariangmat.com"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.zakariangmat.com"
 ).replace(/\/$/, "")
 
 const SECTION_PALETTE: Record<Section, { color: string; bg: string }> = {
