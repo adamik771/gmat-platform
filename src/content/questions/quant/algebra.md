@@ -23,6 +23,13 @@ If 3x + 7 = 22, what is the value of 6x + 5?
 **explanation:** Because the quantity sought, 6x + 5, depends on the value of x, we first determine x from the given linear equation and then evaluate the requested expression. Let x denote the unknown quantity. The given condition is that 3x + 7 = 22. Subtracting 7 from both sides yields 3x = 15, and dividing both sides by 3 gives x = 5. We now substitute this value into the expression 6x + 5: 6(5) + 5 = 30 + 5 = 35.
 
 The correct answer is C.
+**fastest_path:** Don't solve for x. From 3x + 7 = 22 you get 3x = 15, and 6x + 5 = 2(3x) + 5 = 2(15) + 5 = 35. Treating 3x as a single block is faster than finding x and re-multiplying.
+**common_trap:** Answering a *related* quantity (6x, or 6x with the sign of the constant flipped) instead of the exact expression 6x + 5 that was requested.
+**mistake_a:** Computed 6x − 5 = 30 − 5 = 25, flipping the "+5" to "−5." Read the expression's sign carefully before evaluating.
+**mistake_b:** Stopped at 6x = 30 and forgot to add the constant 5. The question asks for 6x + 5, not 6x.
+**mistake_d:** Overshot to 40, typically by adding the 5 twice or evaluating 7x + 5 after a slip; the expression is exactly 6x + 5 = 35.
+**mistake_e:** Reached 45 by scaling the wrong thing — e.g. multiplying 3x = 15 by 3 to get 9x = 45 — rather than forming 2(3x) + 5.
+**takeaway:** When a question gives you 3x (or any linear block) and asks for a multiple of it, build the answer from the block. Re-read the exact expression so you add or subtract the right constant.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -48,6 +55,13 @@ Let the expression be (x^3)^4 / x^5. We simplify the numerator first. Applying t
 We now apply the quotient rule. Subtracting the exponent of the denominator from the exponent of the numerator gives x^(12-5) = x^7.
 
 The correct answer is B.
+**fastest_path:** Two moves: power of a power multiplies, so (x³)⁴ = x¹²; division of like bases subtracts, so x¹² / x⁵ = x⁷.
+**common_trap:** Confusing the exponent rules — adding when you should multiply, or multiplying when you should subtract.
+**mistake_a:** Added the outer exponents to get (x³)⁴ = x⁷ (3 + 4) and then x⁷ / x⁵ = x², instead of multiplying 3 × 4. A power of a power multiplies, it does not add.
+**mistake_c:** Simplified the numerator correctly to x¹² but then ignored the division by x⁵.
+**mistake_d:** A slip in combining the exponents; the numerator is x¹² and division subtracts 5, giving x⁷, not x¹⁵.
+**mistake_e:** Multiplied by x⁵ instead of dividing: x¹² · x⁵ = x¹⁷. The bar is a quotient, so subtract the exponent.
+**takeaway:** Keep the three exponent rules distinct: power-of-a-power multiplies, product of like bases adds, quotient of like bases subtracts.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -73,6 +87,13 @@ We begin with the inequality −3x + 9 > 0. Subtracting 9 from both sides yields
 Thus every value of x satisfying the original inequality satisfies x < 3.
 
 The correct answer is D.
+**fastest_path:** Move the variable term to the positive side: −3x + 9 > 0 becomes 9 > 3x, i.e. 3 > x, so x < 3. Keeping the coefficient positive sidesteps the sign-flip entirely.
+**common_trap:** Dividing both sides by −3 without reversing the inequality sign.
+**mistake_a:** Divided −3x > −9 by −3 but kept the sign, getting x > 3. Dividing by a negative reverses the inequality.
+**mistake_b:** A sign-handling slip that flipped the boundary's sign instead of the inequality direction, landing on x > −3.
+**mistake_c:** Flipped the inequality correctly but mis-signed the constant, producing x < −3 instead of x < 3.
+**mistake_e:** Solved the equation −3x + 9 = 0 (x = 3) and treated the strict inequality as an equality.
+**takeaway:** When you divide or multiply an inequality by a negative number, flip the sign — or avoid the issue by moving the variable term to the side where its coefficient is positive.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -92,6 +113,13 @@ If x + y = 12 and x - y = 4, what is the value of x?
 
 **answer:** C
 **explanation:** When a system of two linear equations contains a variable whose coefficients are equal in magnitude and opposite in sign, the equations can be combined by addition to eliminate that variable in a single step. Here we are given the system x + y = 12 and x - y = 4, and we are asked for the value of x. The term y appears with coefficient +1 in the first equation and coefficient -1 in the second equation, so adding the two equations together cancels y. Adding the left sides and the right sides separately gives (x + y) + (x - y) = 12 + 4, which simplifies to 2x = 16. Dividing both sides by 2 yields x = 8. The correct answer is C.
+**fastest_path:** The y-coefficients are +1 and −1, so just add the two equations: (x + y) + (x − y) = 12 + 4 gives 2x = 16, x = 8.
+**common_trap:** Solving for the wrong variable, or stopping at 2x = 16 and reporting 16 without dividing.
+**mistake_a:** Subtracted the equations instead of adding, found 2y = 8 → y = 4, and reported y rather than the requested x.
+**mistake_b:** Split the total 12 evenly under the assumption x = y; the equations actually give x = 8 and y = 4.
+**mistake_d:** An arithmetic slip while back-substituting; x is 8, found cleanly by adding the two equations.
+**mistake_e:** Stopped at 2x = 16 and reported 16, forgetting the final division by 2.
+**takeaway:** When the coefficients of one variable are equal and opposite, add to eliminate it; then divide and confirm you are reporting the variable the question asked for.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -119,6 +147,13 @@ Applying Vieta's product formula, the product of the two solutions is c/a = −1
 We may confirm this by factoring. We seek two numbers whose product is −14 and whose sum is −5; these numbers are −7 and 2. Thus x² − 5x − 14 = (x − 7)(x + 2) = 0, which gives the solutions x = 7 and x = −2. Their product is (7)(−2) = −14, in agreement with the result obtained from Vieta's formula.
 
 The correct answer is A.
+**fastest_path:** Product of the roots = c/a = −14/1 = −14. Read it straight off the coefficients; no factoring required.
+**common_trap:** Reporting the *sum* of the roots instead of the product, or dropping the sign of c.
+**mistake_b:** Mixed the signs of the two roots (which are 7 and −2), landing on −7 instead of multiplying them.
+**mistake_c:** Gave the sum of the roots, −b/a = 5, rather than the product the question asked for.
+**mistake_d:** Reported a single root (7) instead of the product of both roots.
+**mistake_e:** Used the magnitude of c and dropped the negative sign; the product is c/a = −14, and the sign is part of the answer.
+**takeaway:** For ax² + bx + c = 0, sum of roots = −b/a and product = c/a. When c is negative, the product is negative — track the sign.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -159,6 +194,13 @@ a^2 + 2a + 3 - a^2 + 2a - 3 = 4a.
 The a^2 terms cancel and the constant terms cancel, leaving 4a.
 
 The correct answer is C.
+**fastest_path:** Use difference of squares: f(a+1) − f(a−1) = (a+1)² − (a−1)² = [(a+1)+(a−1)][(a+1)−(a−1)] = (2a)(2) = 4a. The "+2" constant cancels immediately, so the answer depends on a.
+**common_trap:** Treating the difference as a constant (assuming the +2 or the inputs make it a fixed number) instead of carrying the variable through.
+**mistake_a:** Collapsed the result to the constant 2, usually by canceling the 2a terms through a sign error; the a-terms add rather than cancel.
+**mistake_b:** Used the difference of the *inputs*, (a+1) − (a−1) = 2, and doubled it, never squaring as the function requires.
+**mistake_d:** Mishandled the −(a−1)² sign, leaving a stray +4; distributing the minus across a² − 2a + 1 gives −a² + 2a − 1.
+**mistake_e:** Added the two function values instead of subtracting, producing 2a² + (constants).
+**takeaway:** For a quadratic f, f(a+1) − f(a−1) collapses via difference of squares and the constant term cancels — the answer is linear in a.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -186,6 +228,13 @@ Solving the second equation for s gives s = 17 - 4m. Substituting this expressio
 Substituting m = 3 back into s = 17 - 4m gives s = 17 - 4(3) = 17 - 12 = 5. Thus one scone costs $5. As a check, 2(3) + 3(5) = 6 + 15 = 21, which confirms the first condition.
 
 The correct answer is E.
+**fastest_path:** Eliminate s fast: multiply 4m + s = 17 by 3 to get 12m + 3s = 51, subtract 2m + 3s = 21 → 10m = 30, m = 3. Then s = 17 − 4(3) = 5.
+**common_trap:** Solving the system correctly but reporting the muffin price (m = 3) when the question asks for the scone.
+**mistake_a:** A sign or arithmetic slip during elimination; the clean solution is m = 3, s = 5.
+**mistake_b:** Mis-scaled one equation before subtracting, throwing off the value of s.
+**mistake_c:** Reported m = 3, the muffin price, instead of the scone price s = 5 that was requested.
+**mistake_d:** Averaged or partially solved; substituting back into both equations confirms s = 5, not 4.
+**takeaway:** In word-problem systems, label each variable explicitly and double-check which one the question wants before selecting an answer.
 **related_reading:** reading-quant-08-method-selection
 
 ---
@@ -215,6 +264,13 @@ Both conditions must hold at the same time, so we intersect the two solution set
 We now count the integers in each interval. The integers strictly between -4 and 1 are -3, -2, -1, and 0, which is 4 integers. The integers strictly between 5 and 10 are 6, 7, 8, and 9, which is another 4 integers. The two intervals do not overlap, so the total number of integer solutions is 4 + 4 = 8.
 
 The correct answer is C.
+**fastest_path:** Split into the two conditions: |x − 3| < 7 gives −4 < x < 10, and |x − 3| > 2 gives x < 1 or x > 5. The overlap is (−4, 1) ∪ (5, 10); count integers {−3,−2,−1,0} and {6,7,8,9} = 4 + 4 = 8.
+**common_trap:** Counting the boundary integers (−4, 1, 5, 10) even though every inequality is strict, or dropping the "> 2" lower condition.
+**mistake_a:** Miscounted one interval, dropping two values from the total of 8.
+**mistake_b:** Off by one — included a single excluded endpoint in one of the two pieces.
+**mistake_d:** Counted one boundary integer such as 1 or 5 as a solution, but strict inequalities exclude them.
+**mistake_e:** Ignored the lower bound |x − 3| > 2 (or treated the bounds as ≤), counting too wide a range.
+**takeaway:** a < |expr| < b is the intersection of two conditions; with strict inequalities, count only the integers strictly inside each resulting interval.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -244,12 +300,19 @@ We now apply Vieta's formulas to the original equation x² + bx + c = 0. The sum
 Finally, we compute b + c = (−2) + (−3) = −5.
 
 The correct answer is A.
+**fastest_path:** The shifted equation x² − 6x + 5 = 0 has roots 1 and 5, so the original roots are 1 − 2 = −1 and 5 − 2 = 3. Then b = −(−1 + 3) = −2 and c = (−1)(3) = −3, so b + c = −5.
+**common_trap:** Shifting the roots the wrong direction — adding 2 instead of subtracting — or a sign slip in Vieta's sum = −b.
+**mistake_b:** Computed c = −3 correctly but reported only the product, omitting b = −2.
+**mistake_c:** Shifted the roots the wrong way (treating the original roots as new + 2), producing a positive total near 1.
+**mistake_d:** Reversed the shift, getting roots 3 and 7 and therefore the wrong sign on b + c.
+**mistake_e:** Took the magnitude of the result, dropping the negative sign that the sums and products produce.
+**takeaway:** "Each root increased by 2" means the new roots equal old + 2, so old = new − 2. Recover the original roots first, then apply sum = −b, product = c with strict attention to sign.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
 
 ## Q10
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Exponents
 
@@ -279,6 +342,13 @@ Subtracting 2a from both sides yields 2 = a, so a = 2.
 As a check, substituting a = 2 gives 4^(2+1) = 4^3 = 64 and 8^2 = 64, confirming that the two sides agree.
 
 The correct answer is B.
+**fastest_path:** Put both sides over base 2: 4 = 2² and 8 = 2³, so 2^(2a+2) = 2^(3a). Equate exponents: 2a + 2 = 3a, hence a = 2.
+**common_trap:** Treating the bases as coefficients and writing 4(a+1) = 8a, or trying to "cancel" 4 against 8 directly.
+**mistake_a:** Tested a = 1 but stopped at the guess; 4² = 16 does not equal 8¹ = 8, so a = 1 fails.
+**mistake_c:** Set up the exponent equation but solved 2a + 2 = 3a incorrectly, overshooting to 3.
+**mistake_d:** Treated the bases as multipliers (4(a+1) = 8a) rather than rewriting them as powers of 2.
+**mistake_e:** Mis-multiplied the exponents when applying the power-of-a-power rule, inflating the value of a.
+**takeaway:** For an exponential equation with different bases, rewrite both sides over one common base, then set the exponents equal.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -308,6 +378,13 @@ We now apply f to this result, so that f(f(3)) = f(6). Substituting n = 6 gives 
 Therefore, f(f(3)) = 30.
 
 The correct answer is C.
+**fastest_path:** Work inside-out: f(3) = 9 − 3 = 6, then f(6) = 36 − 6 = 30.
+**common_trap:** Stopping after the inner evaluation and reporting f(3), or forgetting the "− n" on the outer application.
+**mistake_a:** Reported the inner value f(3) = 6 without applying f the second time.
+**mistake_b:** Doubled the inner value (2 · 6) instead of feeding it back through f.
+**mistake_d:** Computed 6² = 36 in the outer step but forgot to subtract 6.
+**mistake_e:** Flipped the minus to a plus in the outer step (36 + 6 = 42) instead of 36 − 6.
+**takeaway:** Composite functions evaluate from the inside out; carry every part of the rule (here the "− n") through the final layer.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -338,6 +415,13 @@ The problem states that x² + y² = 20 and that xy = 6. Substituting these value
 (x + y)² = 32
 
 The correct answer is D.
+**fastest_path:** (x + y)² = (x² + y²) + 2xy = 20 + 2(6) = 32. The identity gives the answer directly — no need to find x or y.
+**common_trap:** Forgetting the factor of 2 on xy, or subtracting it (that produces (x − y)², not (x + y)²).
+**mistake_a:** Added xy only once: 20 + 6 = 26, dropping the factor of 2 in the expansion.
+**mistake_b:** A slip on the 2xy term (e.g., 20 + 8) instead of 20 + 12.
+**mistake_c:** Mis-multiplied 2 × 6, landing on 20 + 10 = 30.
+**mistake_e:** Mistook xy = 6 for x + y = 6 and squared it directly, getting 36.
+**takeaway:** (x + y)² = x² + y² + 2xy. Recognize the identity and assemble the target from the given pieces rather than solving the system.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -369,6 +453,13 @@ This result can be confirmed by solving the equation explicitly. Factoring the l
 which agrees with the value obtained from the coefficients.
 
 The correct answer is B.
+**fastest_path:** Sum of the roots = −b/a = −4/1 = −4. Read it straight off the coefficients without factoring.
+**common_trap:** Reporting a single root instead of the sum, or using +b/a and dropping the sign.
+**mistake_a:** Reported one root, −7, rather than the sum of both roots.
+**mistake_c:** Mis-added the roots (−7 and 3) or confused the sum with another quantity; the sum is −4.
+**mistake_d:** Reported the other root, 3, instead of the sum the question asks for.
+**mistake_e:** Used +b/a = 4 and dropped the negative sign; the sum is −b/a = −4.
+**takeaway:** Sum of roots = −b/a; keep the leading negative sign and don't confuse the sum with an individual root.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -402,6 +493,13 @@ k = 25
 With k = 25, the equation becomes x² − 10x + 25 = 0, which factors as (x − 5)² = 0, confirming the single repeated root x = 5.
 
 The correct answer is D.
+**fastest_path:** One real solution means a perfect square: x² − 10x + k = (x − 5)² forces k = 5² = 25. (Equivalently, set the discriminant 100 − 4k = 0.)
+**common_trap:** Setting k equal to the repeated root (5) or to half the linear coefficient (10) instead of its square.
+**mistake_a:** Reported the repeated root x = 5 rather than the value of k.
+**mistake_b:** Took k as the linear coefficient's half (10) instead of squaring it to get 25.
+**mistake_c:** From 4k = 100, mis-divided or used 2 × 10, landing on 20.
+**mistake_e:** Wrote the discriminant as 100 − 2k = 0 (using 2 instead of 4ac), giving k = 50.
+**takeaway:** Exactly one real solution ⇔ discriminant = 0 ⇔ perfect-square trinomial; for x² − 10x + k that is k = (10/2)² = 25.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -423,6 +521,13 @@ If 3x + 2y = 16 and 5x - 2y = 16, what is the value of x + y?
 **explanation:** A system of two linear equations in two unknowns can be solved efficiently by the elimination method, in which the equations are combined so that one variable cancels. We are given the two equations 3x + 2y = 16 and 5x - 2y = 16. Because the coefficients of y are equal in magnitude and opposite in sign (+2 and -2), adding the two equations term by term eliminates y. Adding the left sides gives (3x + 2y) + (5x - 2y) = 8x, and adding the right sides gives 16 + 16 = 32, so 8x = 32. Dividing both sides by 8 yields x = 4. Substituting x = 4 into the first equation gives 3(4) + 2y = 16, that is, 12 + 2y = 16. Subtracting 12 from both sides gives 2y = 4, and dividing by 2 gives y = 2. The quantity requested is x + y, which equals 4 + 2 = 6.
 
 The correct answer is C.
+**fastest_path:** The y-coefficients are +2 and −2, so add the equations: 8x = 32, x = 4. Back-substitute for y = 2, giving x + y = 6.
+**common_trap:** Solving for x and reporting it alone instead of forming the requested sum x + y.
+**mistake_a:** Reported x = 4 rather than x + y.
+**mistake_b:** An averaging or arithmetic slip; the correct sum is 6.
+**mistake_d:** Used y = 3 from a back-substitution slip; the system gives y = 2, so x + y = 6.
+**mistake_e:** Reported 2x = 8 or otherwise answered a partial result instead of x + y.
+**takeaway:** Add to cancel the opposite-sign variable, solve fully, and combine the variables exactly as the question requests.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -457,6 +562,13 @@ Considering both statements together, we observe that 4x + 6y = 28 is exactly 2 
 Since neither statement alone, nor both together, determines a unique value of x, the information is not sufficient.
 
 The correct answer is E.
+**fastest_path:** Notice statement (2), 4x + 6y = 28, is exactly 2 × statement (1). They are the same line — one equation in two unknowns — so x is never fixed. Answer E.
+**common_trap:** Choosing C because "two statements look like two equations," when (2) is just a scalar multiple of (1) and adds no new information.
+**mistake_a:** A single linear equation in two unknowns (2x + 3y = 14) leaves x free, so (1) alone cannot determine x.
+**mistake_b:** Dividing 4x + 6y = 28 by 2 returns 2x + 3y = 14 — still one equation in two unknowns, so (2) alone is insufficient.
+**mistake_c:** The proportionality trap: the two statements are not independent, so together they are still a single constraint and x remains undetermined.
+**mistake_d:** Neither statement alone pins x, so "each alone is sufficient" cannot hold.
+**takeaway:** Before selecting C, test whether the two statements are independent. Proportional equations describe the same line and carry identical information.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -486,6 +598,13 @@ In the second case, x - 4 = -7. Adding 4 to both sides gives x = -3.
 The two possible values of x are 11 and -3. Their sum is 11 + (-3) = 8.
 
 The correct answer is D.
+**fastest_path:** The two solutions of |x − a| = b are symmetric about a, so their sum is 2a regardless of b: here 2(4) = 8.
+**common_trap:** Reporting just one solution, or solving only the positive case and forgetting x − 4 = −7.
+**mistake_a:** A sign error in the negative case (e.g., −7 − 4) produced −11 instead of summing the two genuine solutions.
+**mistake_b:** Reported only the negative solution, x = −3.
+**mistake_c:** Reported the center value a = 4, mistaking it for the sum of the solutions.
+**mistake_e:** Reported only the positive solution, x = 11.
+**takeaway:** |x − a| = b has two symmetric solutions whose sum is 2a; always solve both the +b and −b cases.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -521,6 +640,13 @@ Dividing each part by 2 gives
 Because both inequalities are strict, the endpoints −5 and 4 are excluded. The integers strictly between −5 and 4 are −4, −3, −2, −1, 0, 1, 2, and 3, which is a total of 8 integers.
 
 The correct answer is B.
+**fastest_path:** |2x + 1| < 9 → −9 < 2x + 1 < 9 → −10 < 2x < 8 → −5 < x < 4. Strict bounds, so the integers −4 through 3 give 8 values.
+**common_trap:** Counting the endpoints −5 and 4 as solutions even though the inequality is strict.
+**mistake_a:** Off by one — dropped a single integer inside the range of 8.
+**mistake_c:** Included one endpoint (−5 or 4); a strict inequality excludes both.
+**mistake_d:** Treated < as ≤ and counted both endpoints, inflating the total to 10.
+**mistake_e:** Over-counted, likely by mishandling the division by 2 and widening the interval.
+**takeaway:** |expr| < k ⇔ −k < expr < k; isolate x, and for strict inequalities count only the integers strictly between the bounds.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -553,6 +679,13 @@ Consider Statement (2) alone. The condition f(3) = 13 translates into a(3) + b =
 Consider both statements together. We have the system a + b = 7 and 3a + b = 13. Subtracting the first equation from the second eliminates b: (3a + b) - (a + b) = 13 - 7, which gives 2a = 6, so a = 3. Substituting a = 3 into a + b = 7 gives 3 + b = 7, so b = 4. The two equations are linearly independent, so they determine a and b uniquely. Hence f(5) = 5(3) + 4 = 15 + 4 = 19, a single determinate value. Both statements together are sufficient, but neither statement alone is sufficient.
 
 The correct answer is C.
+**fastest_path:** f(x) = ax + b has two unknowns, so f(5) needs both fixed. One point gives one equation (not enough); two distinct points determine the line, so together they suffice. Answer C.
+**common_trap:** Choosing E because f(5) is not stated directly, or A/B from believing a single point can pin a line.
+**mistake_a:** f(1) = 7 is one equation in a and b; infinitely many lines satisfy it, so f(5) is not determined.
+**mistake_b:** f(3) = 13 alone is likewise one equation in two unknowns and cannot fix f(5).
+**mistake_d:** A line is not determined by a single point, so neither statement alone is sufficient.
+**mistake_e:** Two distinct points DO determine a and b uniquely (a = 3, b = 4), giving f(5) = 19 — so the statements together are sufficient.
+**takeaway:** A linear function carries two unknowns (a, b); two independent conditions are exactly what's needed to determine any of its values.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -598,6 +731,13 @@ n = 12.
 The largest of the three integers is n + 4 = 12 + 4 = 16.
 
 The correct answer is D.
+**fastest_path:** Let the integers be n, n + 2, n + 4. Then 3n + 6 = 2n + 18 → n = 12, so the largest is n + 4 = 16.
+**common_trap:** Reporting the smallest integer instead of the largest, or modeling "consecutive even" as differing by 1 rather than 2.
+**mistake_a:** Modeled consecutive integers (differ by 1) instead of consecutive even integers, throwing off the values.
+**mistake_b:** Solved correctly to n = 12 but reported the smallest integer rather than the largest.
+**mistake_c:** Reported the middle integer, n + 2 = 14, instead of the largest.
+**mistake_e:** Echoed the constant 18 from the right side, or stepped one extra even number past the largest.
+**takeaway:** "Consecutive even integers" differ by 2 — set them as n, n + 2, n + 4 — and answer the specific one (smallest, middle, or largest) the question names.
 **related_reading:** reading-quant-05-word-problems
 
 
