@@ -6,6 +6,8 @@ estimated_minutes: 55
 prerequisites: []
 summary: |
   Algebra is the mechanical substrate of Quant — the moment a problem has an unknown, you're doing algebra. This chapter covers the nine algebraic moves that together solve roughly 40% of GMAT Focus Quant questions: isolating variables, handling systems, flipping inequality signs on negatives, the wavy-line method for polynomial and rational inequalities, casework on absolute value, factoring quadratics, substituting into functions and sequences, manipulating symbolic identities, and translating English into equations without losing the word "more" or "less" in the process.
+
+  By the end of this chapter you will: (1) isolate any variable — and know when not to, because the question only needs an expression you already have; (2) choose substitution or elimination on sight and screen a system for the linear-dependence trap; (3) never miss the negative-multiplier sign flip; (4) crack any polynomial or rational inequality with the wavy line in under 30 seconds; and (5) translate English into equations without falling for the "less than" reversal.
 sections:
   - id: pretest
     type: pretest
@@ -19,12 +21,16 @@ sections:
   - id: linear-equations-one-unknown
     type: reading
     title: "Linear equations in one unknown — isolate-the-variable discipline"
+    intro: |
+      This is the floor every other Quant skill stands on. Get the isolate-the-variable reflex clean here and the rest of the chapter is just recombination; leave it sloppy and the errors compound three steps later in problems that look nothing like this one. The hidden lesson is knowing when *not* to solve for x — the GMAT routinely asks for an expression you already have in hand.
     check_question_ids:
       - algebra-q1
 
   - id: systems-of-equations
     type: reading
     title: "Systems of equations — substitution vs. elimination"
+    intro: |
+      Two equations, two unknowns — the most common algebra setup on the test. By the end of this section you'll pick substitution or elimination on sight, and, just as important, you'll catch the trap the GMAT plants on Data Sufficiency: two equations that look like new information but are secretly the same line.
     check_question_ids:
       - algebra-q4
       - algebra-q15
@@ -32,17 +38,23 @@ sections:
   - id: inequalities
     type: reading
     title: "Inequalities — the sign flip you can't forget"
+    intro: |
+      Inequalities behave exactly like equations except for one rule that, missed, hands you the precise wrong answer the test-writers already wrote down for you. This section drills the sign flip until it's automatic and shows you how to count integer solutions without second-guessing the endpoints.
     check_question_ids:
       - algebra-q3
 
   - id: polynomial-inequalities-wavy-line
     type: reading
     title: "Polynomial and rational inequalities — the wavy-line method"
+    intro: |
+      This is the single highest-leverage 705+ trick in algebra: one method that cracks every polynomial and rational inequality in under 30 seconds. Most students brute-force these with test points and burn two minutes. You'll learn the sign chart instead — factor, mark the roots, sweep the line, read the answer off it.
     check_question_ids: []
 
   - id: absolute-value
     type: reading
     title: "Absolute value — the two-case approach"
+    intro: |
+      Absolute value is distance from zero — hold that one picture and every absolute-value equation or inequality splits cleanly into two cases. This section gives you the two-case recipe, the "less thAND, greater thOR" memory hook, and the edge cases that turn into instant Data Sufficiency answers.
     check_question_ids:
       - algebra-q17
       - algebra-q18
@@ -50,6 +62,8 @@ sections:
   - id: quadratics-and-factoring
     type: reading
     title: "Quadratics and factoring — FOIL, reverse FOIL, and Vieta's"
+    intro: |
+      Three tools handle every GMAT quadratic: factoring, Vieta's formulas, and the discriminant. The leap from 605 to 705 here is reaching for Vieta's — sum and product of the roots straight from the coefficients — instead of grinding out the full factorization every single time.
     check_question_ids:
       - algebra-q5
       - algebra-q13
@@ -57,6 +71,8 @@ sections:
   - id: functions-and-sequences
     type: reading
     title: "Functions, sequences, and custom characters"
+    intro: |
+      Function notation and made-up operators look intimidating and are actually the easiest points in the chapter: they're substitution wearing unfamiliar symbols. The one discipline that matters — work inside-out, substitute literally — carries you through nested functions, custom characters, and arithmetic and geometric sequences alike.
     check_question_ids:
       - algebra-q6
       - algebra-q11
@@ -64,6 +80,8 @@ sections:
   - id: algebraic-manipulation
     type: reading
     title: "Algebraic manipulation — identities and exponent rules"
+    intro: |
+      High-score Quant is mostly rewriting: turning the expression you were handed into the one the question actually wants. A short list of identities — the square-of-a-sum family and six exponent rules — covers nearly all of it. Memorize them cold and a whole class of "impossible-looking" problems collapses to a single line.
     check_question_ids:
       - algebra-q2
       - algebra-q12
@@ -71,6 +89,8 @@ sections:
   - id: word-problem-translation
     type: reading
     title: "Word-problem translation — English into equations"
+    intro: |
+      Most algebra questions arrive in English, and the equation — not the arithmetic — is where the points are won or lost. This section builds the translation reflexes that survive time pressure, starting with the phrase that traps more students than any other on the entire test: "less than."
     check_question_ids:
       - algebra-q7
       - algebra-q20
@@ -157,6 +177,14 @@ That's it. Every algebraic step reduces to one of these four. If you find yourse
 
 **Trap to watch.** When you multiply or divide both sides by an expression containing a variable, you may be multiplying by zero or flipping a sign. If `x − 2` could be negative, multiplying an inequality by `x − 2` flips the inequality sign. Keep track of what's in your multiplier.
 
+**Micro-drill.** No scratch paper — read what's asked, then answer:
+
+1. If `5x − 3 = 12`, what is `5x + 4`?
+2. If `2(y + 1) = 9`, what is `2y`?
+3. If `x/2 + x/3 = 10`, what is `x`?
+
+(Answers: (1) **19** — you already have `5x = 15`, so add 4 to the target form directly; don't bother solving for x. (2) **7** — distribute to `2y + 2 = 9`, so `2y = 7`; again, stop at the expression the question asked for. (3) **12** — clear the fractions by multiplying through by 6: `3x + 2x = 60`, so `5x = 60`. If you solved for x on the first two, you did correct work the slow way — the whole point of this drill is to stop the instant you have the expression the question wants.)
+
 > **Self-explanation prompt.** In one sentence, why is "isolate the variable" good discipline? If you can say "because once the variable is alone, every remaining step is arithmetic," you've internalized why this is the only reliable path through multi-step algebra.
 
 ## @systems-of-equations
@@ -184,6 +212,8 @@ Statement (2) is exactly twice statement (1) — same equation, no new informati
 **Takeaway.** Two equations in two unknowns *usually* pin down a unique answer — unless one is a linear multiple of the other. Always run the independence check (`ae − bd ≠ 0`) before claiming sufficiency on Data Sufficiency. The C-trap on this pattern catches a huge fraction of mid-band students.
 
 **Trap to watch.** Three unknowns generally need three independent equations. But the GMAT can give you three equations where two are redundant, or give you information in a form that's not obviously an equation (a constraint like `x > 0`). Count *independent* equations, not visible ones.
+
+> **Self-explanation prompt.** Before the check questions: why does "two equations, two unknowns" sometimes fail to give a unique answer? If you can say "because if one equation is a multiple of the other, they're the same line — you really only have one equation, so a whole line of solutions fits," you'll never fall for the Data Sufficiency C-trap where statement (2) is just statement (1) scaled up.
 
 ## @inequalities
 
@@ -223,6 +253,14 @@ Students who forget to flip write `x > 3` — exactly the wrong answer.
 - `|x − 3| < 7` means `−7 < x − 3 < 7`, i.e., `−4 < x < 10`.
 - Intersect: `−4 < x < 1` OR `5 < x < 10`.
 - Integer values in `−4 < x < 1`: −3, −2, −1, 0 (4 values). In `5 < x < 10`: 6, 7, 8, 9 (4 values). Total: 8.
+
+**Micro-drill.** Solve each and watch the sign:
+
+1. `−2x + 5 ≤ 11` — solve for x.
+2. How many integers satisfy `|x − 2| < 4`?
+3. If `−4 < 3 − x`, what is the range of x?
+
+(Answers: (1) **x ≥ −3** — subtract 5 for `−2x ≤ 6`, then divide by −2 and flip the sign. (2) **7** — `−4 < x − 2 < 4` gives `−2 < x < 6`; integers −1 through 5. (3) **x < 7** — subtract 3 for `−7 < −x`, then multiply by −1 and flip: `x < 7`. If any answer kept the original direction after dividing or multiplying by a negative, that's the exact slip the test-writers are pricing into the wrong answers.)
 
 **Trap to watch.** Reciprocals flip inequalities only when both sides have the same sign. `2 < 5` gives `1/2 > 1/5` (positive, flips). But `−2 < 5` does NOT give `−1/2 > 1/5`; when the signs differ, you can't take reciprocals cleanly. This trap is frequent on Data Sufficiency.
 
@@ -380,6 +418,14 @@ The difference-of-squares identity is the one you'll use most. `99 × 101 = (100
 
 New equation factors as `(x − 1)(x − 5) = 0`, roots 1 and 5. Original roots: 1 − 2 = −1 and 5 − 2 = 3. By Vieta's: sum = −b → `−1 + 3 = 2 = −b` → `b = −2`. Product = c → `−1 × 3 = −3 = c`. So `b + c = −5`.
 
+**Micro-drill.** Reach for Vieta's or a fast factor — never the quadratic formula:
+
+1. Roots of `x² − 9x + 20 = 0`?
+2. Sum and product of the roots of `2x² + 6x − 8 = 0`?
+3. For what `k` does `x² − 6x + k = 0` have exactly one real root?
+
+(Answers: (1) **4 and 5** — two numbers that multiply to 20 and add to 9. (2) **sum −3, product −4** — Vieta's with `a = 2`: `−b/a = −6/2 = −3` and `c/a = −8/2 = −4`; the `a` in the denominator is the whole game. (3) **k = 9** — set the discriminant to zero: `36 − 4k = 0`. If you answered sum `−6` in (2), you forgot to divide by `a` — the most common Vieta's slip.)
+
 **Trap to watch.** Vieta's gives sum `= −b/a`, not `+b/a`. The negative sign is a common slip. Also, when a ≠ 1 (e.g., `2x² + 5x − 3 = 0`), use `−b/a` and `c/a`, not just `−b` and `c`.
 
 ## @functions-and-sequences
@@ -484,19 +530,17 @@ The most common GMAT question using these: you're given `xy` and `x² + y²`, an
 
 **Changing bases to compare exponents.** If `4^(a+1) = 8^a`, rewrite both sides with base 2: `4 = 2²` and `8 = 2³`. So `2²⁽ᵃ⁺¹⁾ = 2³ᵃ` → `2(a+1) = 3a` → `2a + 2 = 3a` → `a = 2`. Whenever two expressions with different bases are set equal, try to rewrite them with a common base.
 
-**Function evaluation.** `f(x) = ax + b` is linear; `f(x) = ax² + bx + c` is quadratic. To evaluate `f(3)`, substitute 3 for x throughout.
+**The reciprocal-pair identity — a 705+ favorite.** When a problem hands you `x + 1/x` and asks for `x² + 1/x²`, don't solve for x — square the thing you were given:
 
-**Example.** `f(x) = 2x² − 3x + 1`. Find `f(3) − f(1)`.
+`(x + 1/x)² = x² + 2·x·(1/x) + 1/x² = x² + 2 + 1/x²`
 
-- `f(3) = 2(9) − 9 + 1 = 10`.
-- `f(1) = 2 − 3 + 1 = 0`.
-- Difference: 10.
+So `x² + 1/x² = (x + 1/x)² − 2`. The cross term is always `2` because `x · (1/x) = 1`. If `x + 1/x = 5`, then `x² + 1/x² = 25 − 2 = 23` — one line, no quadratic. The same move handles `x − 1/x`, where squaring gives a `−2` cross term instead.
 
-**Composition of functions.** `f(f(x))` means apply f, then apply f to the result.
-
-**Example.** `f(n) = n² − n`. Find `f(f(3))`. First `f(3) = 9 − 3 = 6`. Then `f(6) = 36 − 6 = 30`.
+**Example.** `x + 1/x = 4`. Find `x² + 1/x²`. Square: `16 = x² + 2 + 1/x²`, so `x² + 1/x² = 14`. This is just the square-of-a-sum identity pointed at a reciprocal pair — recognizing it is what turns a "where do I even start" problem into a five-second one.
 
 **Trap to watch.** `(x + y)² ≠ x² + y²`. Students drop the `2xy` cross term constantly. Whenever you square a sum, write all three terms: `x² + 2xy + y²`.
+
+> **Recall check.** Cover this section and write, from memory: the expansion of `(x + y)²`, `x² + y²` rewritten in terms of `(x + y)²` and `xy`, and the six exponent rules. The square-of-a-sum identity alone drives a large share of "given `xy` and `x² + y²`, find…" questions — if you can reproduce it without looking, you own the most reusable line in the chapter.
 
 ## @word-problem-translation
 
@@ -575,4 +619,6 @@ Algebra is mechanical. Every question reduces to one of nine moves. Students who
 | "X% more than Y" | Multiply by `(1 + X/100)` | Convert percents first |
 | "Fewer than" or "less than" | Subtract from the *other* term | `b = 2g − 5`, not `5 − 2g` |
 
-Drill these seven moves until they're automatic. The algebra chapter's problem sets are designed to hit each move at easy, medium, and hard difficulty — by the time you finish them, you shouldn't be thinking "which technique applies?" You should be executing the technique and already reading the next question.
+**What to do next.** Open this chapter's problem sets — Easy first, then Medium. After every miss, write two lines: which of the nine moves the question needed, and the single step where your setup went wrong (a dropped sign flip, an expression you should have stopped at, a "less than" reversed). That two-line annotation builds move-recognition faster than re-reading this chapter ever will. Once you're clearing 85% on Medium, go to Hard — and if the wavy-line or absolute-value questions are where you stall, re-read those two sections before you start.
+
+**Time-management note.** None of these moves should take more than 90 seconds once you've named the pattern. If you're a minute in and still rearranging symbols, you've probably misread what the question is asking for — stop, re-read the stem, and check whether you even need to solve for the variable or just an expression built from it. The fastest algebra on the test is the algebra you never have to do, because you saw the target expression sitting inside what you were already given.
