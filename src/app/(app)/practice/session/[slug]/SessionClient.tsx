@@ -19,6 +19,7 @@ import {
 } from "lucide-react"
 import { DI_METHOD_CARDS, hasMethodCard } from "@/lib/di-method-cards"
 import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
+import { MAX_RUNG, SPACING_LADDER_DAYS } from "@/lib/review-queue"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import PacingBadge from "@/components/shared/PacingBadge"
@@ -87,6 +88,17 @@ export interface WeakTopicHint {
   accuracy: number
 }
 
+export interface ReviewSessionMeta {
+  /** Spacing-ladder rung (0..4) per question id at session start —
+   *  lets the completion screen show how far each answer moved the
+   *  question up or down the ladder. */
+  rungs: Record<string, number>
+  /** Playable questions still due in this section beyond this session. */
+  remainingDue: number
+  /** URL key for the continue link, e.g. "quant" → /review/quant. */
+  sectionKey: string
+}
+
 interface SessionClientProps {
   slug: string
   topic: string
@@ -106,6 +118,11 @@ interface SessionClientProps {
   /** Optional context line shown above the session title, e.g.
    *  "Algebra: Linear Equations & Systems · Test 1" for a per-chapter test. */
   setLabel?: string
+  /** Present when this session is a spaced-review run. Switches the
+   *  completion screen from practice guidance (chapter / practice-again
+   *  CTAs) to review guidance: ladder-movement summary, continue-review
+   *  CTA, and exit links that return to /review instead of /practice. */
+  reviewMeta?: ReviewSessionMeta
 }
 
 function formatDuration(ms: number): string {
@@ -1107,6 +1124,7 @@ export default function SessionClient({
   skillAttempts,
   weakestTopic,
   setLabel,
+  reviewMeta,
 }: SessionClientProps) {
   const router = useRouter()
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -1523,14 +1541,33 @@ export default function SessionClient({
       }
     }
 
+    // Review sessions: a miss resets a question to the same-day rung, so
+    // it's due again immediately — the honest "still due" count is the
+    // unserved remainder plus this session's misses.
+    const reviewResetCount = reviewMeta
+      ? answeredPairs.filter((p) => !p.correct).length
+      : 0
+    const reviewDueNowAfter = reviewMeta
+      ? reviewMeta.remainingDue + reviewResetCount
+      : 0
+
     // Next-step recommendation keyed to accuracy band. When the student
     // performed well and the server identified a weak topic, name it
     // directly — eliminates the "which area?" follow-up navigation.
     // In the mid-accuracy band (60–78%), also surface the cross-topic weak
     // area when it differs from the current topic: students building on one
     // topic deserve to know which gap is costing them the most overall.
-    const nextStepNote =
-      accuracy < 60
+    // Review sessions get queue-state guidance instead — "this topic" is
+    // meaningless when the set is a mixed retrieval queue.
+    const nextStepNote = reviewMeta
+      ? reviewDueNowAfter > 0
+        ? `${reviewDueNowAfter} ${section} question${reviewDueNowAfter === 1 ? " is" : "s are"} still due today${
+            reviewResetCount > 0
+              ? ` — including the ${reviewResetCount === 1 ? "one" : reviewResetCount} that just reset`
+              : ""
+          }. A second short pass now, while the reasoning is fresh, is the cheapest retention you'll ever buy.`
+        : `That clears today's ${section} review queue. Every correct answer pushed its question further out on the ladder — tomorrow's queue is already lighter for it.`
+      : accuracy < 60
         ? "Accuracy below 60% signals a concept gap. Revisiting the chapter before more practice compounds better."
         : accuracy < 78
         ? weakestTopic && weakestTopic.topic !== topic
@@ -1544,11 +1581,11 @@ export default function SessionClient({
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
           <Link
-            href="/practice"
+            href={reviewMeta ? "/review" : "/practice"}
             className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors"
           >
             <ArrowLeft className="w-3 h-3" />
-            Back to Practice
+            {reviewMeta ? "Back to Review" : "Back to Practice"}
           </Link>
           <h1 className="text-2xl font-bold text-[#F0F0F0] mt-3">{headline}</h1>
           <p className="text-sm text-[#555555] mt-1">
@@ -1761,6 +1798,91 @@ export default function SessionClient({
             })()}
         </div>
 
+        {/* Spacing-ladder movement — review sessions only. The ladder is
+            the whole mechanism behind the queue, but it's invisible while
+            answering; this card converts the session into its concrete
+            consequence ("3 questions won't be back for 7 days") so the
+            student sees retrieval paying off, and sees misses as scheduled
+            returns rather than failures. */}
+        {reviewMeta && answeredCount > 0 && (() => {
+          const moves = answeredPairs.map(({ q, correct }) => {
+            const startRung = reviewMeta.rungs[q.id] ?? 0
+            const newRung = correct ? Math.min(startRung + 1, MAX_RUNG) : 0
+            return { correct, newRung, nextDueDays: SPACING_LADDER_DAYS[newRung] }
+          })
+          const climbed = moves.filter((m) => m.correct)
+          const reset = moves.filter((m) => !m.correct)
+          const stableCount = climbed.filter((m) => m.newRung === MAX_RUNG).length
+
+          // Group climbs by their new spacing gap so the card reads as a
+          // concrete promise, shortest gap first.
+          const gaps = new Map<number, number>()
+          for (const m of climbed) {
+            gaps.set(m.nextDueDays, (gaps.get(m.nextDueDays) ?? 0) + 1)
+          }
+          const gapEntries = [...gaps.entries()].sort((a, b) => a[0] - b[0])
+
+          return (
+            <div
+              className="p-5 rounded-xl border"
+              style={{
+                borderColor: "rgba(201,168,76,0.18)",
+                backgroundColor: "#0D0D0D",
+              }}
+            >
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+                Spacing ladder
+              </p>
+              <div className="flex flex-wrap items-baseline gap-x-7 gap-y-2">
+                <div className="flex items-baseline gap-2">
+                  <span
+                    className="font-display text-2xl font-semibold tabular-nums leading-none"
+                    style={{ color: climbed.length > 0 ? "#3ECF8E" : "#555555" }}
+                  >
+                    {climbed.length}
+                  </span>
+                  <span className="text-xs text-[#888888]">
+                    climbed a rung
+                  </span>
+                </div>
+                <div className="flex items-baseline gap-2">
+                  <span
+                    className="font-display text-2xl font-semibold tabular-nums leading-none"
+                    style={{ color: reset.length > 0 ? "#FF6B6B" : "#555555" }}
+                  >
+                    {reset.length}
+                  </span>
+                  <span className="text-xs text-[#888888]">
+                    reset to same-day
+                  </span>
+                </div>
+              </div>
+              {gapEntries.length > 0 && (
+                <p className="text-xs text-[#888888] leading-relaxed mt-3">
+                  Earned distance:{" "}
+                  {gapEntries
+                    .map(
+                      ([days, n]) =>
+                        `${n} question${n === 1 ? "" : "s"} won't return for ${days} day${days === 1 ? "" : "s"}`
+                    )
+                    .join(" · ")}
+                  .
+                  {stableCount > 0 &&
+                    ` ${stableCount === 1 ? "One is" : `${stableCount} are`} now at the top rung — the most stable a question gets.`}
+                </p>
+              )}
+              {reset.length > 0 && (
+                <p className="text-xs text-[#888888] leading-relaxed mt-1.5">
+                  {reset.length === 1 ? "The miss drops" : "The misses drop"}{" "}
+                  back to the bottom of the ladder and rejoin today&apos;s
+                  queue — that early return is the system working, not a
+                  setback.
+                </p>
+              )}
+            </div>
+          )
+        })()}
+
         {(() => {
           const insight = computeInsight(questions, states, section)
           if (!insight) return null
@@ -1949,61 +2071,6 @@ export default function SessionClient({
           </Link>
         )}
 
-        {/* What to do next — renders the nextStepNote guidance as direct CTA
-            buttons. The text was computed above but never surfaced in the UI;
-            without a button, students read the advice and then navigate away
-            manually with no clear path. Primary action depends on accuracy
-            band: review the chapter (low), practice again (mid), study plan
-            (high). Chapter link is only shown when the topic maps to one. */}
-        {(() => {
-          const chapterSlug = TOPIC_TO_CHAPTER[topic]
-          const low = accuracy < 60
-          const mid = accuracy >= 60 && accuracy < 78
-
-          const primaryAction = low && chapterSlug
-            ? { label: `Review ${topic} chapter`, href: `/chapters/${chapterSlug}` }
-            : mid
-            ? { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-            : { label: "View your study plan", href: "/study-plan" }
-
-          const secondaryAction =
-            low
-              ? { label: "Practice again", href: `/practice/session/${slug}` }
-              : mid && chapterSlug
-              ? { label: "Review the chapter", href: `/chapters/${chapterSlug}` }
-              : { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-
-          return (
-            <div
-              className="p-5 rounded-xl border border-white/[0.08]"
-              style={{ backgroundColor: "#0D0D0D" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
-                What to do next
-              </p>
-              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-4">
-                {nextStepNote}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Link
-                  href={primaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  {primaryAction.label}
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-                <Link
-                  href={secondaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-white/[0.1] text-[#888888] transition-colors hover:text-[#F0F0F0] hover:border-white/[0.2]"
-                >
-                  {secondaryAction.label}
-                </Link>
-              </div>
-            </div>
-          )
-        })()}
-
         {/* Review list — wrong answers only by default, toggle to show all */}
         {(() => {
           const wrongIndices = questions
@@ -2123,7 +2190,19 @@ export default function SessionClient({
           type NextAction = { label: string; href: string; variant: "primary" | "secondary" }
           const actions: NextAction[] = []
 
-          if (isMixedReview) {
+          if (reviewMeta) {
+            if (reviewDueNowAfter > 0) {
+              actions.push({
+                label: `Continue ${section} review`,
+                href: `/review/${reviewMeta.sectionKey}`,
+                variant: "primary",
+              })
+              actions.push({ label: "Review hub", href: "/review", variant: "secondary" })
+            } else {
+              actions.push({ label: "Back to Review", href: "/review", variant: "primary" })
+              actions.push({ label: "Go to practice", href: "/practice", variant: "secondary" })
+            }
+          } else if (isMixedReview) {
             actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
             actions.push({ label: "Review queue", href: "/review", variant: "secondary" })
           } else if (accuracy < 60) {
@@ -2237,7 +2316,7 @@ export default function SessionClient({
       {/* Header */}
       <div>
         <Link
-          href="/practice"
+          href={reviewMeta ? "/review" : "/practice"}
           className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors"
         >
           <ArrowLeft className="w-3 h-3" />

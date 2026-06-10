@@ -12,6 +12,10 @@ import SessionClient, {
 /** How many questions to serve in one review session. */
 const SESSION_SIZE = 10
 
+/** How deep to scan the section queue. Anything beyond the served
+ *  SESSION_SIZE feeds the "N still due" count on the completion screen. */
+const QUEUE_SCAN_LIMIT = 200
+
 type SectionParam = "quant" | "verbal" | "di"
 
 const SECTION_MAP: Record<SectionParam, ReviewCandidate["section"]> = {
@@ -52,7 +56,7 @@ export default async function ReviewSectionPage({
 
   const queue = await getReviewQueue(supabase, user.id, {
     section,
-    limit: SESSION_SIZE,
+    limit: QUEUE_SCAN_LIMIT,
     flaggedQuestionIds: gatherFlaggedQuestionIds(user.user_metadata),
   })
 
@@ -81,9 +85,17 @@ export default async function ReviewSectionPage({
   const byId = new Map<string, ParsedQuestion>()
   for (const q of getAllQuestions()) byId.set(q.id, q)
 
-  const playable: SessionQuestion[] = queue
+  // Filter to playable candidates before slicing the session so the
+  // remaining-due count only counts questions the runner could serve.
+  const playableCandidates = queue.filter((c) => {
+    const q = byId.get(c.questionId)
+    return !!q && q.options.length > 0
+  })
+  const sessionCandidates = playableCandidates.slice(0, SESSION_SIZE)
+
+  const playable: SessionQuestion[] = sessionCandidates
     .map((c) => byId.get(c.questionId))
-    .filter((q): q is ParsedQuestion => !!q && q.options.length > 0)
+    .filter((q): q is ParsedQuestion => !!q)
     .map((q, i) => ({
       id: q.id,
       number: i + 1,
@@ -132,6 +144,13 @@ export default async function ReviewSectionPage({
         topic="Daily Review"
         section={section}
         questions={playable}
+        reviewMeta={{
+          rungs: Object.fromEntries(
+            sessionCandidates.map((c) => [c.questionId, c.rung])
+          ),
+          remainingDue: playableCandidates.length - sessionCandidates.length,
+          sectionKey,
+        }}
       />
     </div>
   )
