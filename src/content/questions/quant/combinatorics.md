@@ -156,7 +156,7 @@ The correct answer is B.
 
 ## Q6
 
-**difficulty:** Medium
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Permutations
 
@@ -193,6 +193,9 @@ A committee of 4 is chosen from 10 people. How many possible committees are ther
 - E) 5040
 
 **answer:** B
+**hint_nudge:** A committee is unordered, so this is a combination, not a permutation — don't multiply 10 x 9 x 8 x 7 and stop there.
+**hint_strategy:** Compute C(10, 4) as the 4-term falling product over 4!, and cancel before multiplying to keep the arithmetic small.
+**hint_setup:** C(10, 4) = (10 x 9 x 8 x 7) / (4 x 3 x 2 x 1); cancel the 8 against 4 x 2 and the 9 against 3 first.
 **explanation:** Because a committee is an unordered selection of people, where the order in which members are chosen does not matter, the number of possible committees is given by the combinations formula. We must count the number of ways to choose 4 people from a group of 10 without regard to order, which is C(10, 4).
 
 Let n = 10 be the total number of people and let k = 4 be the size of the committee. The combinations formula gives
@@ -232,6 +235,9 @@ In how many arrangements of the letters in LESSON do the two S's appear next to 
 - E) 720
 
 **answer:** B
+**hint_nudge:** "Next to each other" is the classic signal to glue the two items together into one unit.
+**hint_strategy:** Treat the two S's as a single block, then arrange the resulting 5 units — but because the S's are identical, do NOT multiply by 2 for the block's internal order.
+**hint_setup:** The units to arrange are [SS], L, E, O, N — five distinct units, so count 5!.
 **explanation:** When two specified items must occupy adjacent positions, we may treat them as a single combined unit, arrange all of the resulting units, and then account for any distinct orderings within the combined unit. The word LESSON contains the six letters L, E, S, S, O, N, among which the two S's are identical.
 
 To force the two S's to be adjacent, we bind them together into one block, which we denote by [SS]. The objects to be arranged are then this block together with the four remaining letters L, E, O, and N, giving five distinct objects in total.
@@ -261,6 +267,9 @@ Six people sit in a row of 6 chairs. If Ana and Ben refuse to sit next to each o
 - E) 720
 
 **answer:** C
+**hint_nudge:** "Refuse to sit together" is easier to count by removing the bad cases than by building the good ones directly.
+**hint_strategy:** Use the complement: total arrangements minus the arrangements in which Ana and Ben ARE adjacent (glue them, then multiply).
+**hint_setup:** Total = 6! = 720; adjacent = (glue Ana-Ben as one block) 5! x 2. Subtract the second from the first.
 **explanation:** The most efficient approach to a counting problem involving a forbidden adjacency is the method of complementary counting: we count the total number of arrangements without restriction and then subtract those arrangements that violate the condition. The number of valid arrangements is therefore the total minus the number in which Ana and Ben sit next to each other.
 
 Let T denote the total number of ways to seat the six people in the row of six chairs with no restriction, and let A denote the number of those arrangements in which Ana and Ben are seated next to each other. The desired count is T - A.
@@ -298,6 +307,9 @@ From 5 men and 4 women, a committee of 3 must be formed with exactly 2 men and 1
 - E) 84
 
 **answer:** C
+**hint_nudge:** The men and the women are drawn from separate pools, so handle each pool on its own.
+**hint_strategy:** Multiply the two independent choices: ways to pick the 2 men times ways to pick the 1 woman.
+**hint_setup:** C(5, 2) x C(4, 1) = 10 x 4.
 **explanation:** This is a counting problem in which a committee must satisfy two simultaneous requirements, and the governing principle is the fundamental counting principle together with the combinations formula. When a selection is made by performing one independent choice and then another, the number of ways to make the combined selection equals the product of the number of ways to make each individual choice. Because the order in which the members are chosen does not matter, each individual choice is counted with combinations, where C(n, k) = n! / (k!(n - k)!).
 
 Let M denote the number of ways to choose the men and let W denote the number of ways to choose the women. The committee must contain exactly 2 men selected from the 5 available men, so M = C(5, 2). The committee must also contain exactly 1 woman selected from the 4 available women, so W = C(4, 1).
@@ -329,6 +341,9 @@ In how many ways can 5 people sit around a circular table?
 - E) 720
 
 **answer:** A
+**hint_nudge:** Around a circle there is no fixed "first seat," so two orders that differ only by a rotation are the same arrangement.
+**hint_strategy:** Fix one person to remove the rotational duplicates, then arrange everyone else relative to that person: (n - 1)!.
+**hint_setup:** (5 - 1)! = 4!.
 **explanation:** This is a circular permutation problem. The governing principle is that when distinct objects are arranged around a circle, arrangements that differ only by a rotation are regarded as identical, because there is no fixed reference seat. Consequently, the number of distinct circular arrangements of n distinct objects is (n - 1)!, rather than n!.
 
 Let n = 5 denote the number of people to be seated around the table. To eliminate the rotational duplication, we fix the position of one person; this person serves as the reference point. The remaining n - 1 = 4 people must then be arranged in the 4 remaining seats relative to this fixed person, and these 4 people can be ordered in any sequence.
@@ -364,6 +379,9 @@ A code consists of 4 digits chosen from {0–9}. How many codes are possible if 
 - E) 151200
 
 **answer:** B
+**hint_nudge:** Order matters (it is a code) and digits cannot repeat, so each position offers one fewer choice than the previous one.
+**hint_strategy:** Multiply the shrinking choice counts position by position rather than reaching for a formula.
+**hint_setup:** 10 x 9 x 8 x 7 (10 choices for the first digit, then 9, then 8, then 7).
 **explanation:** This problem is governed by the fundamental counting principle: when a selection is made in successive stages, the total number of outcomes equals the product of the number of choices available at each stage. Because the digits form a code, their order matters, and because no digit may repeat, each digit chosen reduces the pool available for the next position.
 
 Let the code occupy four ordered positions, and let the available digits be the ten elements of the set {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}. We fill the positions one at a time.
@@ -400,6 +418,9 @@ How many arrangements of the letters in MISSISSIPPI are possible?
 - E) 332640
 
 **answer:** A
+**hint_nudge:** Repeated identical letters make many "different" orderings actually look the same, so you must divide those out.
+**hint_strategy:** Take 11! and divide by the factorial of each repeated-letter count.
+**hint_setup:** 11! / (4! x 4! x 2!), since MISSISSIPPI has 4 I's, 4 S's, 2 P's, and 1 M.
 **explanation:** The number of distinct arrangements of a collection of objects in which some objects are identical is found by dividing the factorial of the total number of objects by the product of the factorials of the counts of each group of identical objects. This adjustment removes the arrangements that are indistinguishable because identical objects have merely been permuted among themselves.
 
 Let n denote the total number of letters in MISSISSIPPI. The word contains 11 letters, so n = 11. We next count each repeated letter: there are 4 occurrences of I, 4 occurrences of S, 2 occurrences of P, and 1 occurrence of M. The sum 4 + 4 + 2 + 1 = 11 confirms that every letter has been accounted for.
@@ -425,7 +446,7 @@ The correct answer is A.
 
 ## Q14
 
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -439,6 +460,9 @@ From 8 candidates, a committee of 3 is chosen AND one of the three is designated
 - E) 504
 
 **answer:** C
+**hint_nudge:** This is two jobs in one — choose the group AND single one member out — so a plain combination is not enough.
+**hint_strategy:** Fastest route: pick the chair first (8 ways), then choose the other 2 members from the remaining 7.
+**hint_setup:** 8 x C(7, 2) = 8 x 21. (Equivalently, C(8, 3) x 3.)
 **explanation:** This problem can be solved using the multiplication principle together with the combination formula, which counts the number of ways to choose an unordered subset of items. The task has two distinct stages, and the total number of outcomes is the product of the number of choices available at each stage.
 
 We count by first selecting the chair and then selecting the remaining two committee members. There are 8 candidates, so the chair can be chosen in 8 ways. Once the chair is fixed, 7 candidates remain, from which 2 ordinary members must be selected. Because these two members hold no rank relative to each other, they form an unordered pair, so the number of ways to choose them is the combination C(7, 2).
@@ -470,6 +494,9 @@ In how many ways can 4 men and 4 women be seated in a row if men and women must 
 - E) 40320
 
 **answer:** B
+**hint_nudge:** "Alternate" locks the row into just two gender templates, depending on who takes the first seat.
+**hint_strategy:** Count one template (4! ways to seat the men in their seats x 4! for the women), then double for the two possible starting genders.
+**hint_setup:** 2 x (4! x 4!) = 2 x 24 x 24.
 **explanation:** This is a counting problem that combines a structural constraint with the multiplication principle: when independent choices are made in sequence, the total number of arrangements is the product of the number of options at each stage.
 
 The requirement that men and women must alternate forces the row of eight seats into one of exactly two seating patterns. If a man occupies the first seat, the genders must follow as M W M W M W M W. If a woman occupies the first seat, the pattern must be W M W M W M W M. No other alternating arrangement is possible, so there are 2 patterns to consider.
@@ -485,7 +512,7 @@ The correct answer is B.
 
 ## Q16
 
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -499,6 +526,9 @@ A bag has 6 red marbles and 5 blue marbles. How many ways can 4 marbles be drawn
 - E) 462
 
 **answer:** B
+**hint_nudge:** "Exactly 2 red" among the 4 drawn forces the other 2 to be blue, so the draw splits into two independent picks.
+**hint_strategy:** Multiply the ways to choose 2 of the 6 reds by the ways to choose 2 of the 5 blues.
+**hint_setup:** C(6, 2) x C(5, 2) = 15 x 10.
 **explanation:** This problem is governed by the fundamental counting principle together with the formula for combinations. Because the marbles are merely drawn together rather than arranged in order, the number of ways to select k objects from a group of n distinct objects is the combination C(n, k) = n! / (k!(n - k)!).
 
 The bag contains 6 red marbles and 5 blue marbles, and 4 marbles are to be drawn. Let the selection consist of exactly 2 red marbles. Since the four marbles drawn are chosen only from red and blue marbles, requiring exactly 2 red marbles forces the remaining 2 marbles to be blue.
@@ -514,7 +544,7 @@ The correct answer is B.
 
 ## Q17
 
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Restrictions
 
@@ -528,6 +558,9 @@ Eight distinct books are arranged on a shelf. In how many arrangements are two s
 - E) 40320
 
 **answer:** B
+**hint_nudge:** "Not separated by any other book" simply means the two specified books are adjacent.
+**hint_strategy:** Glue the pair into one block (7 units in all, so 7!), then multiply by 2 for the block's two internal orders.
+**hint_setup:** 7! x 2! = 5040 x 2.
 **explanation:** The condition that the two specific books are not separated by any other book means that those two books must occupy adjacent positions on the shelf. Arrangements in which a designated set of items must remain together are counted with the block method: the items required to be adjacent are first treated as a single unit, the resulting units are arranged, and the count is then multiplied by the number of internal arrangements within the block.
 
 Let the two specific books be combined into a single block. This block, together with the remaining 6 books, gives a total of 7 distinct units to be arranged on the shelf. The number of ways to arrange 7 distinct units in a row is 7! = 5,040.
@@ -543,7 +576,7 @@ The correct answer is B.
 
 ## Q18
 
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Combinations
 
@@ -557,6 +590,9 @@ In a round-robin tournament with 10 teams, each team plays every other team exac
 - E) 180
 
 **answer:** B
+**hint_nudge:** A single game is just an unordered pair of teams: A vs. B is the same game as B vs. A.
+**hint_strategy:** Count the unordered pairs directly with C(10, 2) instead of tallying team by team.
+**hint_setup:** C(10, 2) = (10 x 9) / 2.
 **explanation:** This problem is governed by the principle of combinations, which counts the number of ways to choose a subset of items from a larger set when the order of selection is irrelevant. A single game is fully determined by the unordered pair of teams that play it; the game in which Team A plays Team B is the same game as the one in which Team B plays Team A. The total number of games is therefore the number of unordered pairs that can be formed from the 10 teams.
 
 Let n = 10 be the number of teams, and let each game correspond to a selection of 2 teams from these 10. The number of such selections is the combination C(n, 2), computed as C(n, 2) = n(n - 1) / 2.
@@ -585,6 +621,9 @@ A 5-person committee must be selected from a pool of 7 men and 5 women. If the c
 - E) 756
 
 **answer:** C
+**hint_nudge:** Two "at least" constraints apply at once, so split the count by the number of women rather than forcing a single formula.
+**hint_strategy:** Enumerate the legal women-counts (2, 3, or 4 — taking 5 women would leave no man), count each case with combinations, then add.
+**hint_setup:** C(5, 2)C(7, 3) + C(5, 3)C(7, 2) + C(5, 4)C(7, 1).
 **explanation:** Because the order in which committee members are chosen does not matter, each selection of a group of people is a combination, and the number of ways to choose r people from a group of n is given by C(n, r) = n! / [r!(n - r)!]. When a selection is subject to multiple simultaneous constraints, we partition the outcomes into mutually exclusive cases, count each case with the multiplication principle, and add the case totals.
 
 Let a committee be described by its composition (w, m), where w is the number of women chosen and m is the number of men chosen. The committee must satisfy three conditions: w + m = 5, w is at least 2, and m is at least 1. Since there are only 5 women available and w + m = 5, the women count w can range only from 2 to 4 (taking w = 5 would leave m = 0, violating the requirement of at least 1 man, and taking w less than 2 violates the requirement of at least 2 women). The admissible compositions are therefore (2, 3), (3, 2), and (4, 1).
@@ -661,6 +700,9 @@ A drawer contains 10 socks: 4 black, 4 blue, and 2 red. If 3 socks are drawn at 
 - E) 5/6
 
 **answer:** E
+**hint_nudge:** "At least one" almost always resolves faster through its opposite.
+**hint_strategy:** Compute P(no black sock) using combinations, then subtract from 1.
+**hint_setup:** 1 - C(6, 3)/C(10, 3) = 1 - 20/120.
 **explanation:** When a probability question asks for "at least one" of an outcome, the most efficient method is to compute the probability of the complementary event and subtract it from 1. Here the complementary event is that none of the three socks drawn is black.
 
 Let the drawer contain 10 socks, of which 4 are black and the remaining 6 (4 blue and 2 red) are not black. Three socks are drawn without replacement, and every group of 3 socks is equally likely.
@@ -693,6 +735,9 @@ Six people — A, B, C, D, E, and F — are to be seated in a row of 6 seats. In
 - E) 288
 
 **answer:** B
+**hint_nudge:** One condition forces togetherness and the other forbids it — build the "together" world first, then carve out the bad part.
+**hint_strategy:** Count (A and B adjacent), then subtract (A and B adjacent AND C and D adjacent), each with the glue-block method.
+**hint_setup:** [2 x 5!] - [2 x 2 x 4!] = 240 - 96.
 **explanation:** This problem is solved by the method of complementary counting within a constraint: the number of arrangements satisfying "A and B adjacent AND C and D not adjacent" equals the number of arrangements with A and B adjacent, minus the number of arrangements in which A and B are adjacent and C and D are also adjacent.
 
 Let N1 denote the number of arrangements in which A and B are seated next to each other. Treat the pair A and B as a single block. This block, together with the four remaining people C, D, E, and F, gives 5 items to arrange in a row, which can be done in 5! ways. Within the block, A and B can be ordered in 2 ways. Hence N1 = 5! times 2 = 120 times 2 = 240.
@@ -721,6 +766,9 @@ Five friends are to be seated around a circular table. Two of the friends — Al
 - E) 18
 
 **answer:** D
+**hint_nudge:** A circular table calls for (n - 1)!, and "not next to each other" calls for the complement.
+**hint_strategy:** Take the total circular arrangements and subtract the ones where the pair sits together (a block of 4 units around the circle).
+**hint_setup:** 4! - (3! x 2) = 24 - 12.
 **explanation:** This problem is most efficiently handled by the complement principle: the number of arrangements in which Alex and Beth are not adjacent equals the total number of arrangements minus the number in which they are adjacent. Two facts about circular permutations govern the computation. First, the number of distinct arrangements of n people around a circle, where rotations are regarded as identical, is (n - 1)!. Second, when two specified people must sit together, they are treated as a single block.
 
 Let n = 5 be the number of friends. The total number of distinct circular arrangements is therefore (n - 1)! = (5 - 1)! = 4! = 24.
@@ -736,7 +784,7 @@ The correct answer is D.
 ---
 
 ## Q24
-**difficulty:** Medium
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Probability — With Replacement
 
@@ -778,6 +826,9 @@ A department must form a committee of 4 from 8 candidates: 3 economists, 3 engin
 - E) 70
 
 **answer:** B
+**hint_nudge:** Four seats spread across three mandatory groups force a 2-1-1 split; only the group that supplies the "2" varies.
+**hint_strategy:** Take three cases by which group contributes 2 members, count each with combinations, and add.
+**hint_setup:** C(3,2)C(3,1)C(2,1) + C(3,1)C(3,2)C(2,1) + C(3,1)C(3,1)C(2,2).
 **explanation:** This problem is governed by the multiplication principle for independent selections together with case analysis based on the possible group composition of the committee. When a selection of items must be drawn from disjoint groups subject to a minimum from each group, we first determine every admissible distribution of the chosen positions among the groups, count the selections for each distribution using combinations, and then add the case counts.
 
 Let the committee consist of 4 members drawn from 3 economists, 3 engineers, and 2 lawyers, with the requirement that at least one member come from each of the three groups. Because each of the three groups must contribute at least 1 member, and the committee has exactly 4 members, the number of members taken from the three groups must be a set of three positive integers summing to 4. The only way to write 4 as a sum of three positive integers is 2 + 1 + 1. Thus exactly one group contributes 2 members and each of the other two groups contributes 1 member, and we must consider which group supplies the 2 members.
@@ -810,6 +861,9 @@ In how many ways can 10 identical candies be distributed among 4 distinct childr
 - E) 210
 
 **answer:** C
+**hint_nudge:** Identical items into distinct bins with a "one each" floor is the stars-and-bars setup.
+**hint_strategy:** Hand each child one candy first, then freely distribute the 6 that remain.
+**hint_setup:** After the floor, count the nonnegative solutions of y1 + y2 + y3 + y4 = 6, which is C(9, 3).
 **explanation:** This problem is solved by counting the positive-integer solutions of an equation, using the stars-and-bars method. The governing principle is that the number of ways to distribute n identical items among k distinct recipients so that each recipient receives at least one item equals the number of positive-integer solutions of x_1 + x_2 + ... + x_k = n, which is C(n - 1, k - 1).
 
 Let x_1, x_2, x_3, and x_4 denote the number of candies received by the first, second, third, and fourth child, respectively. Since the 10 candies are identical and must all be distributed, and since each child must receive at least one candy, the conditions translate into the equation
@@ -1284,6 +1338,9 @@ An ice cream shop offers 5 flavors. How many ways can you order a bowl of 3 scoo
 - E) 125
 
 **answer:** D
+**hint_nudge:** Repeats are allowed and order is ignored, so you are choosing a multiset, not a plain combination.
+**hint_strategy:** Use combinations with repetition: C(n + k - 1, k), with n flavors and k scoops.
+**hint_setup:** C(5 + 3 - 1, 3) = C(7, 3).
 **explanation:** This problem asks for the number of unordered selections of 3 scoops drawn from 5 flavors when a flavor may be chosen more than once. The governing principle is the formula for combinations with repetition, which counts the number of multisets of size k chosen from n distinct types. This formula is C(n + k - 1, k), and it is derived by the stars-and-bars method: each selection corresponds to placing k indistinguishable items into n categories, requiring n - 1 dividers, so the count is the number of arrangements of k items and n - 1 dividers.
 
 Let n = 5 be the number of available flavors and let k = 3 be the number of scoops to be selected. Because flavors may be repeated and the order of the scoops does not matter, the number of possible bowls equals the number of multisets of size 3 chosen from 5 types.
@@ -1317,6 +1374,9 @@ A biased coin lands heads with probability 1/3 and tails with probability 2/3. I
 - E) 1/3
 
 **answer:** C
+**hint_nudge:** "At least one head" is fastest as 1 minus "all tails."
+**hint_strategy:** Cube the tails probability for the three independent flips, then subtract from 1.
+**hint_setup:** 1 - (2/3)^3 = 1 - 8/27.
 **explanation:** For an event that can be described as "at least one" occurrence, it is generally most efficient to apply the complement principle: the probability of at least one occurrence equals 1 minus the probability of zero occurrences. The complement of "at least one head" is "no heads at all," which means every flip results in tails.
 
 Let p denote the probability that a single flip lands tails. We are given that the coin lands heads with probability 1/3 and tails with probability 2/3, so p = 2/3. Because the three flips are independent, the probability that all three flips land tails is the product of the individual probabilities.
@@ -1352,6 +1412,9 @@ A disease affects 2% of the population. A diagnostic test has a 90% true-positiv
 - E) 90%
 
 **answer:** C
+**hint_nudge:** Do not be fooled by the 90% — a rare disease combined with many healthy people produces a flood of false positives.
+**hint_strategy:** Skip the formula: run a concrete population of 1,000 people and count true positives versus false positives.
+**hint_setup:** Diseased 20 -> 18 test positive; healthy 980 -> 49 test positive. Answer = 18 / (18 + 49).
 **explanation:** This problem is solved by applying Bayes' theorem, which relates the conditional probability of having the disease given a positive test to the underlying disease prevalence and the test's performance rates. Rather than manipulate the formula symbolically, we may work with a concrete reference population, which yields the same result and makes each quantity explicit.
 
 Let the reference population consist of 1,000 people. Since the disease affects 2 percent of the population, the number of people who actually have the disease is 1,000 multiplied by 0.02, which equals 20. The remaining 980 people are healthy.
@@ -1381,6 +1444,9 @@ A traveler walks from (0, 0) to (4, 3) on a grid, moving only right or up. The i
 - E) 35
 
 **answer:** B
+**hint_nudge:** A blocked intersection is easiest to handle by subtracting the paths that pass through it.
+**hint_strategy:** Total unrestricted paths to (4, 3) minus the paths forced through (2, 2), which split into two independent legs.
+**hint_setup:** C(7, 3) - [C(4, 2) x C(3, 1)] = 35 - 6 x 3.
 **explanation:** This problem is solved by complementary counting on a lattice grid. The number of valid paths equals the total number of unrestricted paths minus the number of paths that pass through the forbidden intersection. On a grid where movement is restricted to single steps right or up, the number of paths from one point to another is a combination: if a journey requires r steps right and u steps up, the number of distinct paths is the number of ways to arrange those r + u steps, namely C(r + u, r).
 
 We first count the total number of paths from (0, 0) to (4, 3) with no restriction. Reaching (4, 3) requires 4 steps right and 3 steps up, for a total of 7 steps. The number of such paths is C(7, 3) = (7 x 6 x 5) / (3 x 2 x 1) = 35.
@@ -1414,6 +1480,9 @@ A 3-person committee is selected at random from 6 Democrats and 4 Republicans. W
 - E) 5/6
 
 **answer:** D
+**hint_nudge:** A "majority" on a 3-person committee means 2 or 3 Democrats — exactly two favorable cases.
+**hint_strategy:** Add the favorable counts (exactly 2 D, then exactly 3 D) and divide by the total C(10, 3).
+**hint_setup:** [C(6,2)C(4,1) + C(6,3)] / C(10,3) = (60 + 20) / 120.
 **explanation:** This is a probability problem in which the favorable outcomes are counted by combinations, since the order in which committee members are chosen does not matter. The required probability is the number of committees having a majority of Democrats divided by the total number of possible committees.
 
 Let the committee consist of 3 people chosen from 10 people total, namely 6 Democrats and 4 Republicans. The total number of distinct 3-person committees is the number of ways to choose 3 people from 10, without regard to order:
@@ -1457,6 +1526,9 @@ Twelve students are to be divided into three equal groups of 4 for a field trip.
 - E) 69,300
 
 **answer:** B
+**hint_nudge:** The groups carry no labels, so the same three groups in a different order must not be recounted.
+**hint_strategy:** Count as though the groups were ordered, then divide by 3! to strip out the relabeling overcount.
+**hint_setup:** [C(12,4) x C(8,4) x C(4,4)] / 3! = 34,650 / 6.
 **explanation:** This problem requires counting the number of ways to partition a set into unlabeled groups of equal size. The governing principle is that when a sequential selection process imposes an implicit order on groups that are in fact interchangeable, the resulting count must be divided by the number of ways those groups can be permuted, namely the factorial of the number of groups.
 
 Let the twelve students be partitioned into three groups of four. We first count the partitions as though the groups were ordered, and then correct for the overcounting.
@@ -1492,6 +1564,9 @@ A committee of 4 is to be selected from 10 candidates: 2 rivals (X and Y who ref
 - E) 175
 
 **answer:** D
+**hint_nudge:** Two separate bans apply (the rival pair, and "no senior"), so inclusion-exclusion keeps you from double-removing.
+**hint_strategy:** Total minus (both rivals present) minus (no senior present) plus (both rivals AND no senior).
+**hint_setup:** C(10,4) - C(8,2) - C(7,4) + C(5,2) = 210 - 28 - 35 + 10.
 **explanation:** This problem is solved using the inclusion-exclusion principle. When a set of objects must avoid two distinct restrictions, the number of acceptable arrangements equals the total number of unrestricted arrangements, minus the number that violate the first restriction, minus the number that violate the second restriction, plus the number that violate both restrictions simultaneously. The final term is added back because arrangements violating both restrictions have been subtracted twice and must be counted only once as invalid.
 
 Let the total be the number of ways to choose any 4 of the 10 candidates, with no conditions imposed. This is C(10,4) = (10 * 9 * 8 * 7) / (4 * 3 * 2 * 1) = 10 * 3 * 7 = 210 (8 cancels 4 * 2, and 9/3 = 3).
