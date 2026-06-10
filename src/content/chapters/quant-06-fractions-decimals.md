@@ -1,12 +1,12 @@
 ---
 slug: quant-06-fractions-decimals
-title: "Arithmetic: Fractions, Decimals & Percents Conversion"
+title: "Arithmetic: Fraction Fluency & Conversions"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 10
 prerequisites:
   - quant-05-order-and-signed-numbers
 summary: |
-  Fraction fluency is the single highest-leverage arithmetic skill, plus moving freely between fractions, decimals, and percents.
+  Fractions, decimals, and percents are one number wearing three costumes. This chapter builds the fluency to read any of them on sight and switch to whichever form makes the arithmetic disappear.
 sections:
   - id: pretest
     type: pretest
@@ -27,6 +27,9 @@ sections:
     check_question_ids:
       - arithmetic-q2
       - arithmetic-q4
+  - id: summary
+    type: summary
+    title: "One number, three costumes — lock it in"
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -50,17 +53,31 @@ problem_sets:
 
 ## @fractions-fluency
 
-If I could pick one skill that separates 685+ scorers from 605 scorers on Quant, it would be fraction fluency. Not "can you add fractions" — every student can eventually add fractions. Fluency means you see `3/8 + 5/12` and the answer `19/24` appears in your head within five seconds without scratch paper.
+If one skill separates a 685+ scorer from a 605 scorer on Quant, it is fraction fluency. Not "can you add fractions" — given a pencil and a minute, everyone can. Fluency means `3/8 + 5/12` resolves to `19/24` in your head in five seconds, no scratch paper, no hesitation. That speed is not a parlor trick; it is reclaimed time and avoided errors on the dozens of problems where a fraction shows up mid-solution and a slow, shaky hand turns a 90-second question into a three-minute ordeal.
 
-**The three operations, ranked by how often they trap people:**
+**By the end of this chapter you'll be able to:**
 
-1. **Adding and subtracting** requires a common denominator. `3/4 + 5/8 − 1/2` becomes `6/8 + 5/8 − 4/8 = 7/8`. Find the LCD first, convert every fraction, then combine numerators.
-2. **Multiplying** is the easy one: `(a/b) × (c/d) = ac/bd`. No common denominator needed. Before you multiply, cancel common factors diagonally — `(3/4) × (8/9) = (1/1) × (2/3) = 2/3`, done without ever multiplying 3 × 8 or 4 × 9.
-3. **Dividing** means multiplying by the reciprocal. `(a/b) / (c/d) = (a/b) × (d/c) = ad/bc`. The classic trap: `(1 + 1/2) / (1 − 1/3)`. Resolve the top and bottom independently first — `(3/2) / (2/3) = (3/2) × (3/2) = 9/4`.
+- Add, subtract, multiply, and divide fractions without losing the thread.
+- Cancel *before* you compute, so the numbers stay small.
+- Read any fraction, decimal, or percent as the same quantity in a different costume.
+- Pick the form that makes a given problem easiest — the move that actually saves time on test day.
 
-**The simplification habit.** The GMAT considers `42/98` and `3/7` to be different answer choices. `42/98` is not "wrong" arithmetically, but it is wrong on the GMAT because "simplified" means fully reduced. Always pull out common factors at the end. `42/98 = (42/14) / (98/14) = 3/7`.
+**Mental model.** A fraction is not "a division waiting to happen." It is a single number you are allowed to reshape. `3/4`, `6/8`, `0.75`, and `75%` are the same point on the number line — you choose the costume that makes the next step trivial. Fluency is the freedom to switch costumes without thinking. Everything in this chapter serves that one freedom.
 
-**Cancel early, cancel hard.** This is the single habit that saves the most time. Before you compute `(15 × 28) / (21 × 25)`, cancel: `15/25 = 3/5`, `28/21 = 4/3`, so the whole thing becomes `(3 × 4) / (5 × 3) = 12/15 = 4/5`. No multi-digit multiplication required.
+**The four operations, ranked by how often they trip people:**
+
+1. **Adding and subtracting** demand a common denominator. `3/4 + 5/8 − 1/2` becomes `6/8 + 5/8 − 4/8 = 7/8`. Find the LCD, convert every term, then combine numerators only — the denominator rides along untouched.
+2. **Multiplying** is the gentle one: `(a/b) × (c/d) = ac/bd`. No common denominator needed. Cancel diagonally first — `(3/4) × (8/9)` becomes `(1/1) × (2/3) = 2/3`, and you never multiply 3 × 8 or 4 × 9.
+3. **Dividing** is multiplication by the reciprocal: `(a/b) ÷ (c/d) = (a/b) × (d/c)`. Flip the *second* fraction, never the first.
+4. **Complex fractions** (a fraction inside a fraction) reduce to division. Resolve the top into one fraction, resolve the bottom into one fraction, then divide. `(1 + 1/2) ÷ (1 − 1/3) = (3/2) ÷ (2/3) = (3/2) × (3/2) = 9/4`.
+
+**Speed tip.** Cancel early, cancel hard — this single habit saves the most time on the section. Before computing `(15 × 28) / (21 × 25)`, cancel across the bar: `15/25 = 3/5` and `28/21 = 4/3`, so the whole thing collapses to `(3 × 4) / (5 × 3) = 4/5`. No multi-digit multiplication, no oversized numbers to simplify at the end. If you ever find yourself multiplying two-digit numbers inside a fraction, stop — you skipped a cancellation.
+
+**Worked example.** Compute `(3/4) × (8/9) × (3/2)`. Multiply left to right and you are wrestling 72 and 72. Instead, cancel everything in sight first: the 8 and the 4 leave a 2; that 2 and the 9 share nothing, but the 3 in `3/4` and the 9 leave a 3; the remaining 3 in `3/2` pairs with that. Cleanly: `(3/4)(8/9) = 2/3`, then `(2/3)(3/2) = 1`. The answer is **1**, and you never wrote a number larger than 9.
+
+**Worked example.** A recipe calls for `2/3` cup of sugar, but you are making `3/4` of the recipe. How much sugar? This is just `(3/4) × (2/3)`. Cancel the 3s, cancel 2 into 4, and you are left with `1/2` cup. **1/2.** The English ("of") is a multiplication sign in disguise — a pattern that returns constantly in percent and ratio problems.
+
+**The simplification habit.** The GMAT treats `42/98` and `3/7` as *different* answer choices. `42/98` is not arithmetically wrong, but it is wrong on this test, because the listed answer is fully reduced. Pull out common factors at the end every time: `42/98 = 3/7` (both divide by 14). Train yourself to glance at any fraction and ask "do these share a factor?" before you commit to it.
 
 **Fractions you should know by sight:**
 
@@ -76,46 +93,67 @@ If I could pick one skill that separates 685+ scorers from 605 scorers on Quant,
 | 1/9 | 0.111… | 11.1% |
 | 1/10 | 0.1 | 10% |
 
-Multiples follow: `3/8 = 0.375`, `5/8 = 0.625`, `7/8 = 0.875`. When you see `.375` in an answer choice, you should *see* `3/8` without thinking.
+The eighths follow from `1/8 = 0.125`: `3/8 = 0.375`, `5/8 = 0.625`, `7/8 = 0.875`. When `.375` appears in an answer choice, you should *see* `3/8` — not derive it.
 
-**Micro-drill.** Compute each without a calculator — 45 seconds total:
+**Trap to watch.** A complex fraction like `(a + b/c) ÷ d` equals `(ac + b)/(cd)`, **not** `(a + b)/(cd)`. Resolve the numerator into a single fraction first — `a + b/c = (ac + b)/c` — before you divide. The error comes from dividing piece by piece instead of resolving the top into one number, then dividing once.
+
+> **Recall check.** Cover the screen. Why do you cancel *before* multiplying instead of after? (Because canceling keeps every number small, so you never have to multiply or then re-simplify large products — the arithmetic load collapses up front.)
+
+> **Self-explanation prompt.** In your own words, why does adding fractions need a common denominator but multiplying does not? (Addition combines parts that must be the same size to count together; multiplication scales one quantity by another, which the numerators and denominators handle independently.)
+
+**Micro-drill.** No calculator — aim for 45 seconds total:
 
 1. `5/6 − 3/8` → ___
 2. `(15 × 28) / (21 × 20)` → ___
 3. `(1 + 3/4) / (1 − 1/4)` → ___
 
-Answers: (1) **11/24** (LCD 24: 20/24 − 9/24). (2) **1** (cancel before multiplying: 15/21 = 5/7 and 28/20 = 7/5; product is 1). (3) **7/3** (numerator = 7/4, denominator = 3/4; divide by flipping: 7/4 × 4/3 = 7/3). If (2) took more than 10 seconds, you computed instead of canceling — go back to the "cancel early" habit above. If (3) tripped you, the rule is: resolve the compound fractions in numerator and denominator first, then divide.
-
-**Trap to watch.** A complex fraction like `(a + b/c) / d` is `(ac + b) / (cd)`, not `(a + b) / (cd)`. Resolve the numerator fully — `a + b/c = (ac + b)/c` — before you divide.
+Answers: (1) **11/24** — LCD 24, so `20/24 − 9/24`. (2) **1** — cancel first: `15/21 = 5/7`, `28/20 = 7/5`, product `1`. (3) **7/3** — top is `7/4`, bottom is `3/4`, divide by flipping: `7/4 × 4/3 = 7/3`. If (2) took more than ten seconds you computed instead of canceling — reread the speed tip above. If (3) snagged you, the rule is: resolve numerator and denominator into single fractions first, then divide once.
 
 ## @decimals-and-percents-conversion
 
-Decimals, fractions, and percents are three notations for the same number. A student who fluently switches between them saves 20-30 seconds on every percent problem. A student who can't switch gets bogged down in `0.875 × 80` when they could have written `7/8 × 80 = 70`.
+Decimals, fractions, and percents are three notations for one number, and the entire skill here is refusing to get locked into the costume the problem happens to arrive in. A student who fluently switches saves 20–30 seconds on nearly every percent problem; a student who can't grinds through `0.875 × 80` by hand when `7/8 × 80 = 70` was sitting right there.
 
-**The conversion triangle:**
+**The conversion triangle — four moves, memorized cold:**
 
-- **Fraction → decimal:** divide the numerator by the denominator. `3/4 = 3 ÷ 4 = 0.75`.
-- **Decimal → percent:** multiply by 100 (shift the decimal point two places right). `0.75 = 75%`.
-- **Percent → decimal:** divide by 100 (shift two places left). `40% = 0.40`.
-- **Percent → fraction:** write over 100 and simplify. `40% = 40/100 = 2/5`.
+- **Fraction → decimal:** divide top by bottom. `3/4 = 3 ÷ 4 = 0.75`.
+- **Decimal → percent:** shift the point two places right. `0.75 = 75%`.
+- **Percent → decimal:** shift two places left. `40% = 0.40`.
+- **Percent → fraction:** write over 100 and reduce. `40% = 40/100 = 2/5`.
 
-**Example (percent discount).** A shirt priced at $80 is discounted by 15%. What's the sale price?
+"Percent" is not a third kind of thing — it literally means "per hundred," so `40%` *is* the fraction `40/100`. Internalize that and percents stop being a separate topic and become fractions with a fixed denominator.
 
-- Discount amount: `15% × 80 = 0.15 × 80 = 12`.
-- Sale price: `80 − 12 = 68`.
+**Speed tip.** Before you multiply or divide by a decimal, ask: "is this a fraction I know?" The recurring decimals from the sight table are the payoff. `0.125 × 0.4` looks like a decimal grind, but it is `(1/8) × (2/5) = 2/40 = 1/20 = 0.05` — three small steps instead of aligning decimal points. The fraction form is almost always the faster road when the numbers are "nice."
 
-Faster using the "complement" mental move: 15% off means you pay 85% of the original. `0.85 × 80 = 68`. One multiplication, no subtraction. Whenever you see "X% off," convert mentally to "you pay (100 − X)%" — it collapses two steps into one.
+**Worked example.** A shirt priced at $80 is discounted 15%. Sale price? The slow path computes the discount (`0.15 × 80 = 12`) then subtracts (`80 − 12 = 68`). The fluent path uses the **complement**: 15% off means you pay 85%, so `0.85 × 80 = 68` in one multiplication. Whenever you read "X% off," immediately rewrite it as "pay (100 − X)%." Two steps become one, and you skip the subtraction where sign slips happen.
 
-**Example (decimal multiplication).** `0.125 × 0.4`. Recognize `0.125 = 1/8` and `0.4 = 2/5`. Then `(1/8) × (2/5) = 2/40 = 1/20 = 0.05`. Trying to multiply `0.125 × 0.4` directly works but takes longer.
+**Worked example.** What is `0.6 × 35`? Don't reach for the decimal. `0.6 = 3/5`, so `(3/5) × 35 = 3 × 7 = 21`. **21.** Reading the decimal as a fraction turned a multiplication into a one-step cancellation — the same move that makes "60% of 35" instant.
 
-**Percent change and successive percent changes.** A $100 item goes up 20% to $120. Then a 20% discount brings it to `0.80 × 120 = 96`. The final price is 96% of the original — *not* 100%. Successive percentages don't cancel because the 20% discount applies to the *new* base ($120), not the original.
+**Trap to watch.** "What percent of 80 is 20?" and "20 is what percent of 80?" are the *same* question: `20/80 = 25%`. But "80 is what percent of 20?" is different: `80/20 = 400%`. The quantity after "of" is the base and goes in the **denominator**. When a percent problem feels ambiguous, find the "of" — it tells you what you are dividing by.
 
-**The percent-of-a-percent rule.** To combine a +X% change and a +Y% change: multiply `(1 + X/100) × (1 + Y/100)`. A 20% raise followed by a 20% cut is `1.20 × 0.80 = 0.96`, a 4% net decrease.
+**Where percents go next.** Percent *change*, successive changes, reverse-percent word problems, and compound interest each have their own moving parts, and they get the full treatment in **Chapter 19: Percents & Percent Change**. Your job in *this* chapter is the conversion fluency underneath all of them — once switching forms is automatic, that chapter becomes mechanical instead of mysterious.
 
-**Compound interest.** A = P(1 + r)^n. For $10,000 at 4% for 2 years: A = 10,000 × (1.04)² = 10,000 × 1.0816 = $10,816. Interest = $816, not $800 (simple interest). The difference ($16) is the second year's interest on the first year's interest. On the GMAT, compound questions always have "simple interest" as a trap answer.
+> **Recall check.** Cover the screen and write, from memory, the decimals for: `1/8, 3/8, 5/8, 7/8, 1/9, 2/9, 1/6, 5/6`. You want these on sight, not computed. Score yourself, restudy the misses, and retest in ten minutes — the short spacing gap is what turns a fragile memory into a durable one (Cepeda et al., 2006).
 
-**Trap to watch.** "What percent of 80 is 20?" and "20 is what percent of 80?" are the same question: `20/80 = 25%`. But "80 is what percent of 20?" is different: `80/20 = 400%`. Always ask: *what am I dividing by?* The "of" quantity goes in the denominator.
+> **Self-explanation prompt.** Why does rewriting "15% off" as "pay 85%" prevent errors, beyond just saving a step? (Because it removes the subtraction step entirely, and subtraction is where a misplaced sign or a wrong base quietly produces a confidently wrong number.)
 
-> **Self-explanation prompt.** In one sentence, why does a 20% raise followed by a 20% cut not return to the original price? If you can explain that the cut operates on a larger base than the raise did, you'll never fall for the "they cancel" trap again.
+## @summary
 
-> **Recall check.** Close the book (or cover this section). Now write down — from memory — the decimal equivalents of: 1/8, 3/8, 5/8, 7/8, 1/9, 2/9, 1/6, 5/6. You want these appearing in your head on sight, not computed. Score yourself; re-study the ones you missed; retest in 10 minutes. Spaced retrieval (Cepeda et al., 2006) beats mass practice on long-term retention — the short gap is what builds the durable memory.
+You came in able to do fraction arithmetic. You leave able to *avoid* most of it — by canceling before you compute and by switching to whichever form makes the next step disappear. That is the whole game: fractions, decimals, and percents are one number in three costumes, and fluency is the freedom to pick the costume that does the work for you.
+
+**Mental model.** One number, three notations. `3/4 = 0.75 = 75%` are the same point on the line. You are never stuck in the form the problem hands you; you translate to the easy form, solve, and translate back if the answer choices demand it.
+
+The one-screen cheat sheet, in order of leverage:
+
+| Situation | The fluent move |
+|---|---|
+| Multiplying fractions | **Cancel diagonally first** — keep every number small |
+| Adding/subtracting fractions | LCD, convert all terms, combine **numerators only** |
+| Dividing fractions | Multiply by the reciprocal — flip the **second** one |
+| "Nice" decimal in a product | Swap it for its fraction (`0.125 → 1/8`, `0.6 → 3/5`) |
+| "X% off" a price | Pay **(100 − X)%** — one multiplication, no subtraction |
+| "what percent of" wording | The "of" quantity is the **denominator** |
+| Any final fraction answer | **Fully reduce** before matching a choice |
+
+> **Recall check.** Without scrolling up: state the three things you do to multiply `(3/4) × (8/9)` fast, and the one extra thing the GMAT requires of your final fraction. (Cancel diagonally, multiply the survivors, keep numbers small; and fully reduce the result before choosing.)
+
+**What to do next.** Run the graded problem sets below — they are where canceling-before-computing and form-switching stop being ideas and become reflexes; if the easy set takes real effort, that is the signal to drill the sight table until it is automatic. Then continue to **Chapter 7: GCF/LCM, Units Digits & Estimation**, which leans directly on the factor-spotting you just practiced when canceling. When you want mixed reps under light time pressure, send a quant set to your practice queue from the buttons below.
