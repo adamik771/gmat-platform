@@ -2466,3 +2466,917 @@ The correct answer is C.
 **mistake_d:** This choice misrepresents the passage's conclusion. The author plainly states that by the late seventeenth century the integrated experimental-mathematical framework 'became the dominant model for scientific work throughout Europe,' which means one approach did prove more successful in practice. Choice D fabricates an equivalence between the two methodologies that the passage explicitly does not support.
 **mistake_e:** This choice is too narrow. The passage attributes the new methodology to multiple figures — Francis Bacon, Galileo Galilei, and Isaac Newton — spread across roughly a century of development. Reducing the emergence of the new methodology to the work of a single philosopher is contradicted by the passage's own narrative structure and therefore constitutes an unsupported oversimplification.
 **related_reading:** reading-verbal-06-rc-question-types
+
+
+---
+
+## Passage 21: Interpreting Octopus Problem-Solving
+
+When an octopus unscrews the lid of a sealed jar to reach the crab inside, the behavior seems to announce intelligence of a familiar kind. Yet octopuses challenge the assumptions that have long underwritten such judgments. Unlike vertebrates, in which cognition is concentrated in a central brain, the octopus distributes roughly two-thirds of its neurons across its eight arms, each capable of sensing and responding to its surroundings with considerable autonomy. A severed arm can still reach for and reject objects. This anatomical fact has forced researchers to ask whether the impressive feats octopuses perform are products of centralized deliberation at all, or whether the term "problem-solving" smuggles in a model of mind that the animal does not instantiate.
+
+Two interpretive camps have emerged. The first, which I will call the integrationist view, holds that the octopus's central brain coordinates the arms much as a vertebrate brain coordinates limbs, and that jar-opening therefore reflects unified, goal-directed cognition. Proponents point to laboratory work by Vesalius and colleagues, who reported that octopuses trained on one arm transferred the learned task to an untrained arm, an outcome they argued requires central representation. The second camp, the distributionist view, contends that much apparently intelligent behavior emerges from local rules executed by semi-independent arms, with the brain setting only broad objectives. On this account, the elegance we perceive is partly an artifact of our insistence on reading a single deciding agent into every coordinated act.
+
+The distributionists have the better of the specific quarrel over jar-opening, for the maneuver can be reproduced by arms acting on simple tactile contingencies without any plausible role for foresight. But it would be a mistake to let this local victory settle the larger question. The Vesalius transfer results, whatever their methodological limits, are not obviously explained by local rules, and no distributionist model has yet accounted for them. What the debate most usefully exposes is not which camp is correct but how readily observers project the architecture of their own minds onto creatures built on a wholly different plan. Until our experiments are designed to distinguish central from local control rather than presupposing one, confident verdicts about octopus "intelligence" remain premature.
+
+### Q74
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Passage Structure
+
+Which of the following best describes the organization of the passage?
+
+- A) A familiar interpretation of a behavior is introduced and complicated by an anatomical fact, two competing explanations are laid out, and the author then assesses their relative success while drawing a broader methodological lesson.
+- B) A scientific consensus is summarized, the evidence supporting it is reviewed in detail, and a single dissenting study is shown to overturn it.
+- C) Two experiments are described in turn, after which the author reconciles their apparently conflicting results by proposing a third mechanism.
+- D) A definition is proposed, a series of objections to that definition are catalogued, and the definition is ultimately abandoned as incoherent.
+- E) An anecdote opens the passage, a historical survey of octopus research follows, and the author concludes by calling for new funding priorities.
+
+**answer:** A
+**explanation:** The passage opens with the familiar reading of jar-opening as ordinary intelligence ('the behavior seems to announce intelligence of a familiar kind'), then complicates it with the anatomical fact that two-thirds of the octopus's neurons lie in its arms. The second paragraph lays out two competing explanations, explicitly named the integrationist and distributionist views. The third paragraph assesses their relative success ('The distributionists have the better of the specific quarrel') while cautioning that this 'local victory' does not 'settle the larger question,' and closes with a broader methodological lesson about projecting our own minds onto differently-built creatures and designing better experiments. Option A captures each of these movements in order. The correct answer is A.
+**mistake_b:** The passage describes no settled 'consensus' that a single study overturns; it presents two live, competing camps and explicitly declines to declare a winner of the larger question.
+**mistake_c:** Only one experiment (the Vesalius transfer study) is described, and the author proposes no reconciling 'third mechanism'; the closing call is for better experimental design, not a new biological mechanism.
+**mistake_d:** While the author does note that 'problem-solving' may smuggle in a misleading model, the passage neither catalogues a series of objections to a proposed definition nor abandons any definition as incoherent.
+**mistake_e:** The opening is an example rather than a personal anecdote, there is no historical survey of the field, and the conclusion concerns experimental design and interpretation, not 'funding priorities.'
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q75
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Passage Structure
+
+In the third paragraph, the author concedes that 'the distributionists have the better of the specific quarrel over jar-opening.' What is the primary function of this concession within the paragraph's overall argument?
+
+- A) It signals that the author has abandoned the integrationist view entirely in favor of the distributionist account.
+- B) It grants one camp a narrow point in order to set up the larger claim that neither camp's case is yet decisive and that the debate's chief value lies elsewhere.
+- C) It introduces new experimental evidence that the preceding paragraph had omitted.
+- D) It restates the passage's main conclusion, which the rest of the paragraph then merely illustrates.
+- E) It concedes a minor objection so that the author can defend the integrationist view as fundamentally correct.
+
+**answer:** B
+**explanation:** The concession is immediately qualified: 'But it would be a mistake to let this local victory settle the larger question.' The author grants the distributionists the jar-opening point precisely in order to argue that the Vesalius transfer results remain unexplained by any distributionist model, so neither camp has won the broader contest. The paragraph then pivots to what the debate 'most usefully exposes' — the human tendency to project our own mental architecture onto octopuses — which the author frames as more important than which camp is right. Thus the concession functions as a setup for the larger, even-handed claim and the methodological lesson, not as a surrender or a defense of either side. Option B states exactly this function. The correct answer is B.
+**mistake_a:** The author does not abandon integrationism; the very next sentences defend the unexplained integrationist-friendly transfer results, and the conclusion treats both camps as unresolved.
+**mistake_c:** The concession introduces no new evidence; the jar-opening behavior and the Vesalius study were both already on the table from earlier paragraphs.
+**mistake_d:** The concession is a narrow point about one behavior, not a restatement of the passage's main conclusion, which concerns projection and experimental design and comes later.
+**mistake_e:** The author does not go on to defend integrationism as 'fundamentally correct'; the paragraph's thrust is that no confident verdict for either side is yet warranted.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q76
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Answer Traps
+
+Which of the following best expresses the main point of the passage?
+
+- A) Octopuses are more intelligent than vertebrates of comparable size because their neurons are distributed across their arms.
+- B) The integrationist view has been decisively refuted by the discovery that severed octopus arms can still reach for and reject objects.
+- C) Because octopuses are built on a radically different neural plan, claims about their problem-solving remain uncertain, and the debate over how to interpret their behavior reveals as much about human assumptions as about octopuses.
+- D) Octopuses open jars by means of simple tactile contingencies executed independently by each of their eight arms.
+- E) Future experiments on octopus cognition will resolve the dispute between integrationists and distributionists once they are properly funded and standardized.
+
+**answer:** C
+**explanation:** The passage's main point spans both the substantive uncertainty about octopus cognition and the meta-level lesson the author foregrounds in the final paragraph: the debate 'most usefully exposes... how readily observers project the architecture of their own minds onto creatures built on a wholly different plan,' and 'confident verdicts about octopus intelligence remain premature.' Option C captures both halves — the radically different neural plan, the resulting uncertainty, and the revelation about human assumptions. Now consider the traps. Option A is an unsupported-comparison trap (and an overreach): the passage never ranks octopuses against vertebrates of comparable size or claims they are 'more intelligent,' so it asserts a comparison nowhere in the text. Option B is an extreme-language trap built by distorting a true detail: the severed-arm fact is said only to 'force researchers to ask' questions, never to 'decisively refute' integrationism, and the absolute 'decisively' overstates a claim the author explicitly withholds. Option D is a too-narrow trap: it lifts one supporting detail about jar-opening from the third paragraph and mistakes it for the whole point, ignoring the unresolved transfer results and the methodological lesson. Option E is an out-of-scope/unsupported-prediction trap: the author calls for better-designed experiments but never predicts the dispute will be 'resolved,' and 'properly funded' appears nowhere in the passage. Option C alone states the actual main point. The correct answer is C.
+**mistake_a:** Unsupported-comparison trap (and overreach): the passage never compares octopuses' overall intelligence to that of vertebrates or claims they are 'more intelligent,' so this asserts a ranking found nowhere in the text.
+**mistake_b:** Extreme-language trap distorting a true detail: the severed-arm fact is said to 'force researchers to ask' questions, not to 'decisively refute' integrationism; the absolute word 'decisively' overstates a claim the author explicitly declines to make.
+**mistake_d:** Too-narrow trap: this is one supporting detail about jar-opening from the third paragraph mistaken for the overall point, and it ignores the unresolved transfer results and the methodological lesson.
+**mistake_e:** Out-of-scope, unsupported-prediction trap: the author calls for experiments designed to distinguish central from local control but never predicts the dispute will be 'resolved,' and 'properly funded' appears nowhere in the passage.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q77
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Answer Traps
+
+It can be inferred from the passage that the author regards the experiments reported by Vesalius and colleagues as
+
+- A) conclusive proof that the octopus's central brain coordinates its arms in the manner of a vertebrate brain
+- B) fabricated or methodologically worthless, and therefore safely disregarded by both camps
+- C) results that the distributionist account has already fully explained by appeal to local tactile rules
+- D) results that, despite acknowledged limitations, the distributionist account has not yet managed to explain
+- E) irrelevant to the interpretive debate because they concern learning transfer rather than problem-solving
+
+**answer:** D
+**explanation:** In the third paragraph the author writes that the Vesalius transfer results, 'whatever their methodological limits, are not obviously explained by local rules, and no distributionist model has yet accounted for them.' This directly supports option D: the author concedes the study has limitations yet treats it as a genuine problem the distributionists have not solved, which is why the author refuses to let the distributionists' jar-opening win settle the larger question. Each wrong choice is a recognizable trap. Option A is an extreme-language trap: the author reports that the study's proponents 'argued' it requires central representation, but the author personally treats the results as merely unexplained-by-rivals, never as 'conclusive proof' of integrationism. Option B is an extreme trap that contradicts the text: the author grants the results only 'methodological limits' and says they are 'not obviously explained by local rules,' so calling them 'fabricated or methodologically worthless' and 'safely disregarded' inverts the author's actual treatment. Option C is a direct-contradiction trap: the author states that 'no distributionist model has yet accounted for them,' the opposite of having been 'already fully explained' by local rules. Option E is an out-of-scope/unsupported trap that again contradicts the text: far from calling the results irrelevant, the author makes them the centerpiece reason the larger debate stays open. Option D is the only inference the passage supports. The correct answer is D.
+**mistake_a:** Extreme-language trap: the author reports that the study's proponents 'argued' it requires central representation, but the author personally treats the results as unexplained-by-rivals, not as 'conclusive proof' of integrationism.
+**mistake_b:** Extreme trap contradicting the text: the author grants the results only 'methodological limits' and explicitly says they are 'not obviously explained by local rules,' so dismissing them as 'fabricated or methodologically worthless' and 'safely disregarded' inverts the author's treatment.
+**mistake_c:** Direct-contradiction trap: the author states that 'no distributionist model has yet accounted for them,' the opposite of having been 'already fully explained' by local tactile rules.
+**mistake_e:** Out-of-scope, unsupported trap contradicting the text: far from calling the results irrelevant, the author makes them the centerpiece reason the larger debate remains open, regardless of how one labels learning transfer.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q78
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Application
+
+Which of the following hypothetical findings, if confirmed, would most strongly support the distributionist view as it is described in the passage?
+
+- A) An octopus trained to open a jar with one arm performs the task on the first try with a previously untrained arm.
+- B) Octopuses solve novel mazes faster than fish of similar body size.
+- C) Removing an octopus's central brain abolishes all coordinated arm movement.
+- D) Octopuses display distinct individual personalities that persist across many months.
+- E) Each arm of an intact octopus, when presented in isolation with a baited container, completes the opening sequence using only local touch cues, with no signal from the central brain.
+
+**answer:** E
+**explanation:** The distributionist view holds that 'much apparently intelligent behavior emerges from local rules executed by semi-independent arms, with the brain setting only broad objectives,' and the author notes jar-opening 'can be reproduced by arms acting on simple tactile contingencies.' A finding that each arm, in isolation and without any central signal, completes the opening sequence using only local touch cues is exactly the kind of evidence that would strengthen this account, since it shows the behavior arising from local rules rather than central deliberation. Option E describes precisely such a finding. The correct answer is E.
+**mistake_a:** This is the integrationist transfer result; cross-arm transfer of learning is the evidence the passage says 'requires central representation,' so it supports the rival view, not the distributionist one.
+**mistake_b:** Cross-species speed comparisons bear on overall intelligence, not on whether behavior is centrally versus locally controlled, so they are out of scope for distributionism specifically.
+**mistake_c:** If removing the central brain abolishes all coordinated movement, that would suggest the brain is essential to coordination, cutting against the distributionists' emphasis on autonomous arms.
+**mistake_d:** Persistent individual personalities speak to temperament, not to the locus of control behind problem-solving, so this finding is irrelevant to the distributionist claim.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q79
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Author's Attitude
+
+The author's attitude toward declaring confident verdicts about octopus 'intelligence' is best described as
+
+- A) skeptical, holding that such verdicts are premature given current experimental designs
+- B) enthusiastic, regarding the evidence for octopus intelligence as already overwhelming
+- C) dismissive, treating the entire question of octopus cognition as unanswerable in principle
+- D) indifferent, viewing the dispute as a matter of mere terminology with no real stakes
+- E) alarmed, warning that research on octopus cognition is ethically indefensible
+
+**answer:** A
+**explanation:** The author's stance is signaled most directly by the closing sentence: 'Until our experiments are designed to distinguish central from local control rather than presupposing one, confident verdicts about octopus intelligence remain premature.' The scare quotes around 'intelligence,' the observation that observers 'readily project' their own minds onto octopuses, and the insistence that the question is not yet settled all establish a skeptical posture toward confident conclusions — but a constructive skepticism tied to a fixable problem (experimental design), not blanket dismissal. Option A captures this measured skepticism precisely. The correct answer is A.
+**mistake_b:** This reverses the author's stance; far from finding the evidence overwhelming, the author calls confident verdicts 'premature' and brackets 'intelligence' in cautionary quotation marks.
+**mistake_c:** Too extreme: the author does not deem the question unanswerable in principle but rather contingent on better experiments 'designed to distinguish central from local control,' implying it can be answered.
+**mistake_d:** Mischaracterizes the tone as indifferent; the author treats the interpretive stakes as real and important, noting what the debate 'most usefully exposes' about human assumptions.
+**mistake_e:** Out of scope: the passage raises no ethical objection to octopus research and says nothing about the morality of experimentation, so 'alarmed' over ethics is unsupported.
+**related_reading:** reading-verbal-06-rc-question-types
+
+
+---
+
+## Passage 22: Mitigating the Urban Heat Island
+
+As cities densify, they trap and re-radiate solar energy, producing localized warming—the urban heat-island effect—that can leave a metropolitan core several degrees hotter than its rural surroundings. Confronted with mounting heat-related illness and surging summer electricity demand, municipal planners have largely converged on two remedies: increasing the reflectivity of built surfaces and expanding the urban tree canopy. The first approach, often called the "cool roofs and pavements" strategy, replaces dark, heat-absorbing materials with light-colored ones that bounce sunlight back to the sky. Because it can be deployed building by building at modest cost, it has proven attractive to officials seeking measurable results within a single budget cycle.
+
+Yet the apparent simplicity of reflective surfaces obscures a more complicated accounting. A widely cited 2019 modeling study by Halvorsen and Pradhan found that while reflective pavements lowered surface temperatures during peak daylight, the light they redirected raised the radiant heat experienced by pedestrians at street level—a burden the cooler surface readings did not capture. Tree canopy, by contrast, cools through both shade and evapotranspiration, and confers ancillary benefits—stormwater absorption, air filtration, and, some researchers contend, measurable improvements in residents' reported well-being—that reflective surfaces cannot. The catch is that trees demand years to mature, require irrigation in arid climates, and compete with the very density that cities pursue for other reasons.
+
+It is precisely this last tension that a third, less-discussed lever addresses. Zoning reform—loosening setback rules, lot-coverage limits, and parking minimums—does not cool the air directly. Rather, by allowing development to cluster, it can free up land for canopy and permeable ground that rigid, sprawl-inducing codes would otherwise consume. Critics object that denser development concentrates the very heat-emitting activity that warms a district, and the objection is not frivolous. But it mistakes the mechanism: the heat island is driven less by the number of people in a place than by the materials and form of what surrounds them. A reform that trades surface parking for shaded courtyards may warm a district on paper while cooling it in fact.
+
+The lesson is not that one instrument should displace the others. Reflective surfaces buy immediate relief; canopy delivers durable, compounding returns; zoning shapes the terrain on which both operate. Treating them as rivals, rather than as a sequence calibrated to a city's climate and timeline, is the more consequential error.
+
+### Q80
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Passage Structure
+
+Which of the following best describes the organization of the passage?
+
+- A) A single mitigation strategy is introduced, defended against three objections, and then endorsed as superior to all alternatives.
+- B) Two widely adopted approaches are presented, each is complicated by a drawback, a third approach is introduced and defended against an objection, and the strategies are recast as complementary.
+- C) A scientific phenomenon is defined, its causes are disputed by two camps, and the dispute is left unresolved.
+- D) A historical account of municipal policy is given, followed by a forecast of how that policy will evolve.
+- E) An empirical study is summarized, its methodology is criticized, and a replacement methodology is proposed.
+
+**answer:** B
+**explanation:** The passage opens by defining the urban heat-island effect and presenting the two remedies planners have converged on—reflective surfaces and tree canopy (paragraph 1). The second paragraph complicates each: reflective surfaces raise pedestrian-level radiant heat (the Halvorsen and Pradhan finding), while canopy, though richer in benefits, takes years and competes with density. The third paragraph introduces a third lever, zoning reform, and explicitly defends it against the critics' objection that density concentrates heat. The final paragraph recasts all three not as rivals but as a calibrated sequence. Option B tracks exactly this movement: two approaches, each complicated, a third introduced and defended, and a closing synthesis. The correct answer is B.
+**mistake_a:** This describes a single strategy defended and crowned superior, but the passage presents three instruments and its closing point is explicitly that none should displace the others. It misrepresents both the number of approaches and the non-hierarchical conclusion.
+**mistake_c:** The causes of the heat island are not the subject of a two-camp dispute, and the passage does not end unresolved—it offers a clear synthesizing judgment. This option imports a structure the text never adopts.
+**mistake_d:** The passage is analytical, not chronological; it offers no historical narrative of policy and no dated forecast of policy evolution. The 'history-plus-forecast' frame does not fit.
+**mistake_e:** Although one study is cited, the passage neither criticizes its methodology nor proposes a replacement method; the study is used as evidence for a substantive point about radiant heat, not as a methodological target.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q81
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Passage Structure
+
+In the third paragraph, the author's treatment of the critics' objection to zoning reform functions primarily to
+
+- A) concede that denser development is, on balance, incompatible with reducing the heat-island effect
+- B) introduce a fourth mitigation strategy that the earlier paragraphs had omitted
+- C) acknowledge a plausible counterargument and then redirect it by reframing what actually drives the heat island
+- D) demonstrate that zoning reform is the only instrument capable of cooling the air directly
+- E) cast doubt on the empirical findings reported earlier in the passage
+
+**answer:** C
+**explanation:** The author writes that the critics' objection—denser development concentrates heat-emitting activity—'is not frivolous,' granting it real weight. The very next sentences then redirect it: the objection 'mistakes the mechanism,' because the heat island is driven 'less by the number of people in a place than by the materials and form of what surrounds them.' This is the classic concede-then-reframe move: the author validates the worry and then dissolves it by relocating the true causal driver. Option C captures both halves—acknowledgment and redirection through reframing. The correct answer is C.
+**mistake_a:** The author does the opposite of conceding incompatibility; the paragraph argues that reform 'may warm a district on paper while cooling it in fact.' This option reverses the author's actual position.
+**mistake_b:** Zoning reform is the third strategy, already announced at the paragraph's opening as 'a third, less-discussed lever,' not a newly introduced fourth one. The option miscounts the instruments.
+**mistake_d:** The passage states explicitly that zoning reform 'does not cool the air directly'—so claiming it is the only instrument that does directly contradicts the text. This inverts a stated fact.
+**mistake_e:** The objection concerns density and heat, not the earlier Halvorsen and Pradhan study; nothing in the third paragraph questions that study's findings. The option misattributes the target of the discussion.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q82
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Answer Traps
+
+According to the passage, which of the following helps explain why the 'cool roofs and pavements' strategy has appealed to municipal officials?
+
+- A) It eliminates heat-related illness more thoroughly than any competing approach.
+- B) It provides the same stormwater and air-filtration benefits that tree canopy provides.
+- C) It cools the air directly in a way that zoning reform cannot.
+- D) It can be implemented incrementally at modest cost and yields results within a single budget cycle.
+- E) It was validated by the 2019 modeling study of Halvorsen and Pradhan.
+
+**answer:** D
+**explanation:** The first paragraph states that reflective surfaces can be 'deployed building by building at modest cost,' which has made the strategy 'attractive to officials seeking measurable results within a single budget cycle.' Option D restates exactly this dual appeal—incremental, low-cost deployment plus quick, budget-cycle-visible results—and is therefore the credited detail answer. Each wrong option is a recognizable GMAT trap. Option A is an extreme/absolute-language trap ('eliminates,' 'more thoroughly than any competing approach') that overstates a passage which actually flags a hidden cost of reflective surfaces. Option B is a distortion/misattribution trap, assigning to reflective surfaces the stormwater and air-filtration benefits the passage expressly reserves for canopy and says reflective surfaces 'cannot' confer. Option C is an out-of-scope/distortion trap, inventing a 'cools the air directly' contrast that the text never draws for reflective surfaces. Option E is a reversal/distortion trap, recasting as validation a study the passage invokes only to expose a drawback. The correct answer is D.
+**mistake_a:** Extreme/absolute-language trap: 'eliminates' and 'more thoroughly than any competing approach' overstate the passage, which never claims reflective surfaces eliminate illness or rank first against all rivals on that measure. The text actually flags a hidden cost (pedestrian radiant heat), the opposite of an unqualified superiority claim.
+**mistake_b:** Distortion/misattribution trap: the stormwater-absorption and air-filtration benefits are attributed in paragraph 2 to tree canopy, with the passage adding that these are benefits 'reflective surfaces cannot' confer. The option assigns canopy's advantages to the wrong strategy.
+**mistake_c:** Out-of-scope/distortion trap: the passage says zoning reform 'does not cool the air directly,' but it never claims reflective surfaces cool the air directly, nor offers that as the reason for their appeal. This invents a contrast the text does not draw.
+**mistake_e:** Reversal/distortion trap: the Halvorsen and Pradhan study is invoked to complicate reflective surfaces—it found they raised pedestrian-level radiant heat—not to validate them or explain their appeal. The option flips the study's role from drawback to endorsement.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q83
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Answer Traps
+
+Which of the following can most reasonably be inferred from the passage about the relationship between a district's measured surface temperatures and the heat actually experienced by people in it?
+
+- A) Surface temperature readings always overstate the heat that pedestrians experience.
+- B) A district's experienced heat is determined chiefly by the number of people occupying it.
+- C) Tree canopy lowers surface temperatures but has no effect on pedestrian-level heat.
+- D) Reducing surface temperatures is sufficient to guarantee a cooler experience at street level.
+- E) A measure can lower the heat people actually experience even as a district appears, by some readings, to grow warmer.
+
+**answer:** E
+**explanation:** Two threads in the passage support this inference. First, the Halvorsen and Pradhan finding shows that lower surface readings can coexist with greater pedestrian-level radiant heat—so the two measures can diverge. Second, the third paragraph's closing image makes the reverse divergence explicit: a reform that trades surface parking for shaded courtyards 'may warm a district on paper while cooling it in fact.' Together these establish that paper or surface metrics and lived experience can move in opposite directions—precisely what option E states. Each wrong option is a classic trap. Option A is an extreme/absolute-language trap, since 'always overstate' overgeneralizes from a single directional finding that, in fact, shows surface readings understating pedestrian heat. Option B is a reversal trap, flipping the passage's claim that the heat island is driven 'less by the number of people' than by surrounding materials and form. Option C is an unsupported/out-of-scope trap, asserting canopy 'has no effect' at street level when the passage credits canopy with cooling through shade and evapotranspiration. Option D is a sufficiency/extreme trap, claiming a guarantee the reflective-surface example directly undercuts. The correct answer is E.
+**mistake_a:** Extreme/absolute-language trap: 'always overstate' overgeneralizes from a single directional finding. The Halvorsen and Pradhan case actually shows surface readings understating pedestrian heat in one instance, which contradicts the claim of invariable overstatement.
+**mistake_b:** Reversal trap: the passage says the heat island is driven 'less by the number of people' than by surrounding materials and form. This option elevates headcount to the chief determinant, reversing the author's explicit point.
+**mistake_c:** Unsupported/out-of-scope trap: the passage credits canopy with cooling through shade and evapotranspiration, which plainly affects street-level conditions; it never says canopy leaves pedestrian heat untouched. The 'no effect' claim is unsupported and runs against the text's logic.
+**mistake_d:** Sufficiency/extreme trap: the reflective-surface example shows that lowering surface temperature did not guarantee a cooler street-level experience, since radiant heat rose. 'Sufficient to guarantee' is exactly the assurance the passage undercuts.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q84
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Application
+
+Which of the following hypothetical municipal decisions best illustrates the author's view of how the three instruments should be related?
+
+- A) A city installs reflective pavements for immediate relief while planting canopy for long-term cooling and revising zoning to make room for that canopy.
+- B) A city bans all dark-colored roofing materials citywide and treats this as a complete solution to its heat problem.
+- C) A city rejects tree planting on the grounds that reflective surfaces are cheaper and faster to deploy.
+- D) A city tightens setback and lot-coverage rules to spread development out, expecting cooler temperatures to follow automatically.
+- E) A city defers all heat mitigation until a single study can identify which one instrument is most effective.
+
+**answer:** A
+**explanation:** The concluding paragraph argues that the three instruments should be treated not as rivals but as 'a sequence calibrated to a city's climate and timeline': reflective surfaces 'buy immediate relief,' canopy 'delivers durable, compounding returns,' and zoning 'shapes the terrain on which both operate.' Option A is the only scenario in which a city deploys all three in mutually reinforcing roles—reflective pavements for the short term, canopy for the long term, and zoning reform to free the land canopy needs—exactly mirroring the author's prescribed coordination. The correct answer is A.
+**mistake_b:** This treats a single reflective-surface measure as a complete solution, which contradicts the author's warning against letting one instrument displace the others and ignores the documented limits of reflective surfaces.
+**mistake_c:** Rejecting canopy because reflective surfaces are cheaper and faster is precisely the 'rivals' framing the author calls 'the more consequential error.' It abandons canopy's distinctive, durable benefits.
+**mistake_d:** The passage favors loosening setback and lot-coverage rules to cluster development and free land for canopy; tightening them to spread development out inverts the author's reasoning, and expecting cooling 'automatically' ignores that zoning does not cool air directly.
+**mistake_e:** Deferring action to await one 'most effective' instrument embraces the rival-instruments mindset the author rejects and forfeits the immediate relief reflective surfaces can provide.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q85
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Author's Attitude
+
+The author's attitude toward zoning reform as a heat-mitigation tool is best described as
+
+- A) unqualified enthusiasm, treating it as a guaranteed cure for urban heat
+- B) cautious endorsement, regarding it as a valuable but indirect contributor whose critics raise a serious yet answerable objection
+- C) open skepticism, doubting that it can play any constructive role
+- D) strict neutrality, declining to take any position on its merits
+- E) resigned dismissal, conceding its appeal while judging it impractical
+
+**answer:** B
+**explanation:** The author clearly values zoning reform, calling it a 'third, less-discussed lever' that can 'free up land for canopy and permeable ground' and arguing it 'may warm a district on paper while cooling it in fact.' That is endorsement. But the endorsement is qualified: the author concedes zoning 'does not cool the air directly,' grants that the critics' objection 'is not frivolous,' and only then redirects it. This combination—genuine support, an acknowledged limitation, and a serious but answerable objection—is cautious endorsement. Option B states exactly that posture. The correct answer is B.
+**mistake_a:** 'Unqualified enthusiasm' and 'guaranteed cure' overstate the stance. The author explicitly notes zoning does not cool air directly and takes the critics' objection seriously, so the endorsement is qualified, not unconditional.
+**mistake_c:** Open skepticism misreads the tone; the author affirmatively defends zoning reform against its critics and assigns it a real role in the closing synthesis, which is incompatible with doubting it can contribute at all.
+**mistake_d:** The author is not neutral—taking a side by reframing the critics' objection and praising what reform can accomplish is an evaluative stance, not abstention. 'Strict neutrality' is the cop-out answer the text rules out.
+**mistake_e:** Nothing in the passage judges zoning reform impractical or dismisses it; the author treats it as workable and beneficial. 'Resigned dismissal' contradicts the supportive language.
+**related_reading:** reading-verbal-06-rc-question-types
+
+
+---
+
+## Passage 23: Network Effects and the Inertia of Platform Incumbents
+
+In markets organized around two-sided platforms—exchanges that connect distinct groups of users, such as buyers and sellers or riders and drivers—the value any participant derives from a platform depends not on the platform's intrinsic features but on how many participants are already present on the other side. This dependence, known as a cross-side network effect, generates a self-reinforcing dynamic: a marketplace with many sellers attracts buyers, and the resulting influx of buyers attracts still more sellers. Economists once treated such dynamics as a straightforward extension of conventional scale economies, presuming that a sufficiently superior entrant would eventually overturn an established platform much as a better product displaces an inferior one in an ordinary goods market.
+
+That presumption, however, understates the peculiar resilience of platform incumbents. The difficulty a challenger confronts is not merely that the incumbent is large but that the incumbent's users are mutually anchored. A rider will not migrate to a rival ride-hailing service until enough drivers have done so, yet drivers have no reason to migrate until the riders precede them. Each side rationally waits for the other, and the challenger must somehow induce both to move at once. A technically superior product does not dissolve this coordination problem; it merely raises the prize available to whoever solves it. Thus an entrant may offer demonstrably better matching algorithms or lower fees and still fail, because no individual user's decision to switch is rewarded unless a critical mass switches simultaneously.
+
+This is not to say incumbents are invulnerable. The same logic that entrenches them can, under specific conditions, be turned against them. Where users routinely participate on more than one platform at once—a practice economists call multi-homing—the mutual anchoring weakens, since adopting a rival no longer requires abandoning the established option. A challenger that lowers the cost of maintaining a presence on two platforms simultaneously can therefore erode an incumbent's position without ever persuading anyone to defect outright. The history of payment networks and software marketplaces suggests that such gradual encroachment, rather than dramatic displacement, is the more common fate of dominant platforms. The lesson for would-be challengers is sobering but not despairing: superiority of product is neither sufficient nor, strictly, necessary; what matters is whether the entrant can engineer the conditions under which users are free to adopt it without first abandoning what they have.
+
+### Q86
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Passage Structure
+
+Which of the following best describes the organization of the passage?
+
+- A) A specific firm's failure is described, a general theory is derived from it, and the theory is then applied to predict future industry consolidation.
+- B) Two opposing schools of economic thought are presented, the weaker is refuted, and a synthesis reconciling them is proposed.
+- C) A common assumption is introduced, its inadequacy is explained through a coordination problem, and a condition under which incumbents can nonetheless be challenged is identified.
+- D) A definition is offered, a series of empirical studies confirming it is reviewed, and the definition is broadened to cover additional cases.
+- E) A puzzling phenomenon is described, several competing explanations are weighed, and the author declines to endorse any of them.
+
+**answer:** C
+**explanation:** The passage moves in three clear stages that the credited option tracks exactly. The first paragraph introduces a once-prevailing assumption—that a superior entrant would 'eventually overturn an established platform much as a better product displaces an inferior one.' The second paragraph explains why that assumption is inadequate, pivoting on the word 'however' and developing the coordination problem in which each side of the market 'rationally waits for the other.' The third paragraph then identifies a specific condition, multi-homing, under which 'the same logic that entrenches them can... be turned against them.' Option C names precisely this assumption-inadequacy-condition progression.
+
+The correct answer is C.
+**mistake_a:** This misreads the structure. The ride-hailing and payment-network references are illustrations, not a single firm whose failure anchors a derived theory, and the passage predicts gradual encroachment rather than 'future industry consolidation.' It imposes a case-study-to-theory arc the passage does not follow.
+**mistake_b:** No two named schools are set against each other, no school is 'refuted,' and the passage offers no reconciling synthesis. It describes one earlier presumption and corrects it, which is not the same as adjudicating between two rival camps.
+**mistake_d:** Although the passage does define terms (cross-side network effect, multi-homing), it does not 'review a series of empirical studies' confirming a definition, and its movement is corrective rather than a steady broadening of a definition to new cases.
+**mistake_e:** The author does not weigh several competing explanations and then decline to endorse any; the passage commits to a particular account of why incumbents are resilient and even draws an explicit 'lesson' from it.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q87
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Passage Structure
+
+The function of the second sentence of the third paragraph ("The same logic... turned against them") within the passage as a whole is to
+
+- A) concede that the coordination problem described earlier was overstated and should be discounted
+- B) introduce empirical evidence that contradicts the theory developed in the second paragraph
+- C) summarize the author's central claim before the supporting illustrations are presented
+- D) signal a turn from explaining why incumbents are protected to explaining how that protection can be overcome
+- E) restate the conventional assumption from the first paragraph in order to defend it
+
+**answer:** D
+**explanation:** The second paragraph establishes why incumbents are protected: mutual anchoring and the coordination problem mean a superior entrant can still fail. The sentence in question—'The same logic that entrenches them can, under specific conditions, be turned against them'—is a hinge. It explicitly preserves the earlier 'logic' (it does not retract it) while redirecting the discussion toward the mechanism, multi-homing, by which that very logic can undo an incumbent. The sentence immediately follows 'This is not to say incumbents are invulnerable,' confirming that its job is to pivot from protection to vulnerability. Option D captures this transitional, signposting function precisely.
+
+The correct answer is D.
+**mistake_a:** The sentence does not concede that the coordination problem was overstated; it says the same logic can be 'turned against' incumbents, which preserves rather than discounts that logic. Calling it a concession of overstatement reverses the sentence's actual import.
+**mistake_b:** The sentence introduces no empirical evidence and contradicts nothing in the second paragraph. The payment-network and software-marketplace references that come later are offered as consistent with the theory, not as counterevidence to it.
+**mistake_c:** While the passage does have a central claim, this particular sentence is a transition into the third paragraph's new point about multi-homing, not a summary of the whole argument preceding its illustrations. The author's overarching 'lesson' is stated only at the very end.
+**mistake_e:** The sentence neither restates the first paragraph's conventional assumption nor defends it; the passage has by this point already explained why that assumption 'understates' incumbent resilience.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q88
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Answer Traps
+
+Which of the following best expresses the main idea of the passage?
+
+- A) Technically superior entrants always defeat established platforms once consumers recognize the difference in quality.
+- B) Network effects are merely a form of conventional scale economies and require no separate analysis.
+- C) Multi-homing is the single decisive factor that determines the outcome of every contest between platforms.
+- D) Cross-side network effects are economically harmful and should be discouraged by regulators.
+- E) Because the users of a platform are mutually anchored, a superior product alone may not dislodge an incumbent, though specific conditions such as multi-homing can make incumbents vulnerable.
+
+**answer:** E
+**explanation:** The passage's main idea integrates both halves of its argument: incumbents are resilient because users are mutually anchored (so product superiority alone may not suffice), yet they are not invulnerable, because conditions like multi-homing can erode their position. Option E states exactly this two-part thesis, mirroring the passage's structure and its closing 'lesson' that superiority is 'neither sufficient nor, strictly, necessary.'
+
+Each wrong option fails as a specific, nameable trap. Option A is the extreme/absolute-language trap: its 'always' contradicts the passage's claim that a superior entrant 'may... still fail,' and it revives the very view the author rejects. Option B is the distortion-of-a-true-statement trap that revives a discredited view: the passage reports that economists 'once' equated network effects with conventional scale economies precisely to reject that equation as understating incumbent resilience, so presenting it as the main idea reverses the author's stance. Option C is the too-sweeping/overstated trap: it inflates multi-homing from one condition operative 'under specific conditions' into the 'single decisive factor' governing 'every' contest. Option D is the out-of-scope trap: it imports a normative, regulatory claim the analytical passage never makes.
+
+The correct answer is E.
+**mistake_a:** Extreme/absolute-language trap. The word 'always' contradicts the passage's core claim that a superior entrant 'may offer demonstrably better matching algorithms or lower fees and still fail,' and it revives the rejected view rather than stating the author's position.
+**mistake_b:** Distortion of a true statement that revives a discredited view. The passage reports that economists 'once' treated network effects as conventional scale economies in order to reject that view as understating incumbent resilience; presenting the discredited view as the main idea reverses the author's stance.
+**mistake_c:** Too sweeping / overstated trap. The passage presents multi-homing as one condition that weakens anchoring 'under specific conditions,' not as the 'single decisive factor' determining 'every' platform contest. The absolutism overshoots the text.
+**mistake_d:** Out-of-scope trap. The passage makes no normative claim that network effects are harmful or that regulators should discourage them; it analyzes a competitive dynamic, not policy desirability.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q89
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Answer Traps
+
+It can be most reasonably inferred from the passage that a challenger pursuing a multi-homing strategy succeeds, when it does, primarily because
+
+- A) users can adopt the challenger without having to give up the incumbent, so no simultaneous mass defection is required
+- B) the challenger's product is necessarily of higher technical quality than the incumbent's
+- C) regulators intervene to lower the barriers that protect the established platform
+- D) the incumbent's network effects disappear entirely once a rival appears
+- E) buyers and sellers can be persuaded to switch sides of the market to balance the new platform
+
+**answer:** A
+**explanation:** The passage explains that multi-homing weakens 'mutual anchoring' because 'adopting a rival no longer requires abandoning the established option,' so a challenger 'can therefore erode an incumbent's position without ever persuading anyone to defect outright.' The core mechanism is that adoption no longer demands the simultaneous, coordinated defection that the second paragraph identified as the central obstacle. Option A restates this mechanism faithfully.
+
+The four wrong options are each a distinct, nameable trap. Option B is the distortion-that-contradicts-the-text trap: it smuggles in higher technical quality as the cause, but the passage's explicit lesson is that product superiority is 'neither sufficient nor, strictly, necessary.' Option C is the out-of-scope trap: it attributes success to regulators, who are never mentioned, when the passage credits user behavior. Option D is the extreme/absolute-language trap: it claims network effects 'disappear entirely,' whereas the passage says multi-homing only 'weakens' the anchoring and permits 'gradual encroachment.' Option E is the misread-mechanism trap: it describes users switching to the opposite side of the market, but multi-homing means using two platforms at once on the same side.
+
+The correct answer is A.
+**mistake_b:** Distortion that contradicts the text. The passage's explicit lesson is that product superiority is 'neither sufficient nor, strictly, necessary,' so higher technical quality is not what makes the multi-homing strategy work. The option smuggles in a condition the passage denies.
+**mistake_c:** Out-of-scope trap. Regulators are never mentioned; the passage attributes the erosion of incumbency to user behavior (multi-homing), not to external intervention. This imports a cause the passage does not supply.
+**mistake_d:** Extreme/absolute-language trap. The passage says multi-homing 'weakens' the mutual anchoring and allows 'gradual encroachment,' not that network effects 'disappear entirely.' The totalizing claim overshoots a measured statement.
+**mistake_e:** Misread-mechanism trap. 'Switching sides of the market' (a buyer becoming a seller) is not what the passage describes; multi-homing means using two platforms at once on the same side, not reassigning users to the opposite side.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q90
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Application
+
+Which of the following hypothetical situations most closely illustrates the dynamic the passage identifies as enabling a challenger to erode an incumbent's position?
+
+- A) A new social network shuts down after failing to attract any users on either side of its intended market.
+- B) A food-delivery app lets restaurants list on it at almost no extra cost while they remain on the dominant app, and diners gradually begin ordering from both.
+- C) A dominant search engine improves its algorithm and thereby widens its lead over smaller rivals.
+- D) A government breaks up a large platform company into several independent firms by legal decree.
+- E) A messaging service requires every new user to convince all of their contacts to join before they can send a single message.
+
+**answer:** B
+**explanation:** The passage identifies multi-homing as the condition that erodes an incumbent: when users 'participate on more than one platform at once,' adopting a rival 'no longer requires abandoning the established option,' and a challenger that 'lowers the cost of maintaining a presence on two platforms simultaneously' can encroach gradually. Option B is a direct instance: restaurants stay on the dominant app while also listing on the new one at almost no extra cost, and diners come to use both—exactly the gradual encroachment through low-cost multi-homing the passage describes.
+
+The correct answer is B.
+**mistake_a:** This illustrates an entrant failing to reach critical mass on either side, the opposite of a challenger successfully eroding an incumbent. It exemplifies the coordination problem's downside, not the multi-homing remedy.
+**mistake_c:** This depicts an incumbent strengthening its lead through product improvement, with no multi-homing dynamic at all. It is the reverse of the scenario the question asks for.
+**mistake_d:** This is external legal intervention (a breakup), which the passage never discusses; the passage's mechanism is voluntary user multi-homing, not regulatory action.
+**mistake_e:** This dramatizes the mutual-anchoring coordination problem that protects incumbents, not the multi-homing condition that erodes them. It illustrates the obstacle, not the means of overcoming it.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q91
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Author's Attitude
+
+The author's attitude toward the earlier view that a superior entrant would 'eventually overturn an established platform' is best described as
+
+- A) wholehearted agreement, treating the view as the foundation of the passage's argument
+- B) open contempt, dismissing the view as obviously absurd
+- C) considered skepticism, regarding the view as understating an important difficulty
+- D) complete indifference, mentioning the view only in passing without evaluation
+- E) anxious alarm, warning that the view poses a danger to the economy
+
+**answer:** C
+**explanation:** The author signals a clear but measured judgment. The earlier presumption is said to 'understate the peculiar resilience of platform incumbents,' and the passage devotes its central paragraph to explaining the coordination problem that the presumption overlooks. This is a reasoned correction, not endorsement, ridicule, or indifference: the author takes the view seriously enough to diagnose precisely where it goes wrong. 'Considered skepticism, regarding the view as understating an important difficulty' captures both the disagreement and its measured tone.
+
+The correct answer is C.
+**mistake_a:** This reverses the author's stance. The passage explicitly says the view 'understates' incumbent resilience, so the author disagrees with it rather than treating it as the argument's foundation.
+**mistake_b:** Overstated tone. 'Open contempt' and 'obviously absurd' are too extreme; the author engages the view respectfully, explaining its error through careful analysis rather than dismissing it as ridiculous.
+**mistake_d:** Contradicted by the text. The author is not indifferent: the view is evaluated and corrected at length, which is the opposite of mentioning it 'only in passing without evaluation.'
+**mistake_e:** Out of scope and overstated. There is no 'alarm' or warning of danger to the economy; the author's concern is analytical accuracy about competitive dynamics, not economic peril.
+**related_reading:** reading-verbal-06-rc-question-types
+
+
+---
+
+## Passage 24: The Reassessment of Coastal Realism
+
+For decades, the cluster of writers associated with the so-called Coastal Realists of the 1910s was filed away in literary histories as a quaint provincial footnote. Centered in a handful of fishing towns along the northern Atlantic seaboard, these authors—chief among them the now-obscure Helena Marsh—wrote almost exclusively about local maritime communities, and critics took their narrow geography as proof of narrow ambition. The standard verdict, codified in Pridgen's influential 1948 survey, held that the movement's achievement was documentary rather than artistic: it had faithfully recorded a vanishing way of life but contributed nothing to the formal development of the modern novel. On this reading, the Coastal Realists were regionalists in the most limiting sense, valuable to the historian but negligible to the student of literary technique.
+
+This consensus deserves to be overturned. What earlier critics mistook for artlessness was in fact a deliberate and sophisticated experiment with narrative perspective. Consider Marsh's habit, evident throughout her 1916 novel cycle, of withholding any single governing viewpoint: events are relayed through a rotating succession of minor townspeople, no one of whom commands the full picture. Pridgen read this as mere fidelity to gossip, the natural idiom of a small community. But the technique anticipates, by nearly a decade, the fractured and distributed narration that metropolitan modernists would later be credited with inventing. The provinciality, in other words, was thematic, not formal; the form itself was quietly radical.
+
+To be sure, the Coastal Realists left no manifestos and founded no journals, and their innovations were never theorized by the authors themselves. This silence has made the movement easy to underrate, since literary reputation often tracks self-promotion as much as accomplishment. Yet the absence of a declared program is not the absence of a method. A careful reading of the surviving manuscripts reveals consistent, repeated strategies that cannot be attributed to accident. The most persuasive evidence is comparative: when Marsh's contemporaries in the cosmopolitan centers attempted similar effects, they frequently faltered into incoherence, whereas her distributed narration remains lucid. That such control was achieved without theoretical scaffolding makes it more impressive, not less. The regional label, far from explaining the movement's limits, has obscured its genuine and prior contribution to the form.
+
+### Q92
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Passage Structure
+
+Which of the following best describes the organization of the passage?
+
+- A) A long-accepted theory is presented, three pieces of new evidence are catalogued, and the theory is shown to be partly correct.
+- B) Two rival schools of criticism are compared, and the author declines to endorse either one.
+- C) A writer's biography is sketched, her major works are summarized, and her influence on later authors is traced chronologically.
+- D) A dismissive critical consensus is described, the author argues it should be reversed, and a likely objection is raised and then answered.
+- E) A definition is proposed, illustrated with an extended example, and then narrowed in response to counterexamples.
+
+**answer:** D
+**explanation:** The passage moves through three clear stages. The first paragraph lays out the long-standing dismissive verdict on the Coastal Realists—codified in Pridgen's 1948 survey—that the movement was documentary rather than artistic and negligible to the study of technique. The second paragraph pivots sharply ("This consensus deserves to be overturned") and argues for reversing that verdict, using Marsh's rotating narration to show the form was 'quietly radical.' The third paragraph anticipates an objection—that the movement left no manifestos and never theorized its own methods ("To be sure...")—and then answers it ("Yet the absence of a declared program is not the absence of a method"), turning the apparent weakness into further support. Option D captures exactly this arc: consensus described, reversal argued, objection raised and rebutted. The correct answer is D.
+**mistake_a:** This distorts the ending. The author does not conclude the old theory is 'partly correct'; the closing sentences insist the regional label 'obscured' a 'genuine and prior contribution,' a full reversal, not a partial vindication.
+**mistake_b:** There are not two coexisting rival schools the author weighs evenhandedly. There is one consensus (Pridgen's) that the author actively opposes and seeks to overturn, so 'declines to endorse either' misstates the structure.
+**mistake_c:** The passage is an argument about critical evaluation, not a chronological biography. Marsh's life is never sketched and her works are not summarized in sequence; her 1916 cycle is cited only as evidence for a technical claim.
+**mistake_e:** No definition is proposed and then narrowed by counterexamples. The contemporaries who 'faltered into incoherence' are offered as supporting contrast for Marsh's control, not as counterexamples that force the author to qualify a definition.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q93
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Passage Structure
+
+In the final paragraph, the author's reference to the contemporaries 'in the cosmopolitan centers' who 'frequently faltered into incoherence' functions primarily to
+
+- A) concede that Marsh's distributed narration was occasionally as confusing as that of her urban peers
+- B) establish the chronological sequence in which the technique of distributed narration spread from the provinces to the cities
+- C) identify the specific authors whose manifestos the Coastal Realists chose not to imitate
+- D) explain why the Coastal Realists were unable to gain recognition during their own lifetimes
+- E) provide a comparative benchmark that makes Marsh's success at a difficult technique more conspicuous
+
+**answer:** E
+**explanation:** The third paragraph is rebutting the objection that the Coastal Realists never theorized their methods. The author's move is to show that Marsh's achievement was real and controlled, not accidental. The contemporaries are introduced as 'the most persuasive evidence,' described as 'comparative': when cosmopolitan writers 'attempted similar effects, they frequently faltered into incoherence, whereas her distributed narration remains lucid.' The point of the contrast is that the same technique defeated other writers but not Marsh, so her lucidity stands out as a genuine accomplishment—'such control... makes it more impressive, not less.' The contemporaries thus serve as a benchmark against which Marsh's success looks more conspicuous. Option E states exactly this function. The correct answer is E.
+**mistake_a:** This reverses the passage. The author says Marsh's narration 'remains lucid' in explicit contrast to the others' incoherence; it is not a concession that she was occasionally just as confusing.
+**mistake_b:** The comparison is about relative skill, not a transmission timeline. The passage never claims the technique 'spread from the provinces to the cities'; the earlier paragraph only says Marsh 'anticipated' the metropolitans, which is a matter of priority, not documented influence.
+**mistake_c:** The contemporaries are not named, and the passage does not say the Coastal Realists declined to imitate their manifestos. This invents a relationship the text does not assert.
+**mistake_d:** The reason the author gives for the movement's neglect is its lack of self-promotion and manifestos, not any comparison with incoherent urban writers. This option attaches the contrast to the wrong claim in the paragraph.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q94
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Answer Traps
+
+Which of the following best expresses the main point of the passage?
+
+- A) The Coastal Realists' dismissal as mere regionalists is unjustified, because their narration was a genuine and early formal innovation that the regional label has obscured.
+- B) Helena Marsh was the greatest novelist of the early twentieth century, surpassing all of the metropolitan modernists who followed her.
+- C) Literary movements that fail to issue manifestos or found journals are almost always underrated by later critics.
+- D) Pridgen's 1948 survey contained several factual errors about the geography of the northern Atlantic fishing towns.
+- E) The rotating-viewpoint technique is the single most important development in the history of the modern novel.
+
+**answer:** A
+**explanation:** The passage's thesis is announced at the start of the second paragraph—'This consensus deserves to be overturned'—and restated in the final sentence: 'The regional label, far from explaining the movement's limits, has obscured its genuine and prior contribution to the form.' The whole argument is that the dismissal of the Coastal Realists as narrow regionalists was a mistake, because what looked like artlessness was actually an early, sophisticated experiment in distributed narration. Option A captures both halves: the dismissal is unjustified, and the reason is a real, early formal innovation that the 'regional' label hid. The correct answer is A.
+**mistake_b:** Extreme/absolute distortion. The author argues Marsh anticipated later modernists and showed more control on one technique, but never crowns her 'the greatest novelist' who 'surpassed all' others. This inflates a narrow comparative claim into a sweeping superlative.
+**mistake_c:** Too broad. The passage makes a claim about one movement; the generalization that movements without manifestos are 'almost always' underrated is a sweeping rule the author never asserts. The remark about self-promotion explains this case, not a universal law.
+**mistake_d:** Too narrow and out of scope. Whether Pridgen made geographic factual errors is never discussed; the author disputes his evaluative verdict, not his facts about town locations. This seizes on a detail that does not appear.
+**mistake_e:** Extreme/absolute. Calling the technique 'the single most important development in the history of the modern novel' overstates the passage, which claims only that Marsh's use of it was early and accomplished, not that it ranks above all other developments.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q95
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Answer Traps
+
+It can be most reasonably inferred from the passage that the author regards the Coastal Realists' failure to publish manifestos as
+
+- A) the decisive proof that their narrative techniques were arrived at by accident rather than design
+- B) a circumstance that helps account for their low reputation without diminishing their actual achievement
+- C) the primary reason their fishing-town subject matter struck later critics as provincial
+- D) an oversight that the metropolitan modernists deliberately avoided repeating
+- E) a sign that the movement never developed any consistent method at all
+
+**answer:** B
+**explanation:** In the final paragraph the author treats the missing manifestos as an explanation for the movement's neglect, not its quality: 'This silence has made the movement easy to underrate, since literary reputation often tracks self-promotion as much as accomplishment.' The author immediately separates reputation from merit—'the absence of a declared program is not the absence of a method'—and argues the surviving manuscripts show 'consistent, repeated strategies that cannot be attributed to accident,' even calling the lack of theoretical scaffolding evidence that the control is 'more impressive, not less.' So the failure to publish manifestos hurts reputation while leaving real achievement intact. Option B states precisely that distinction. The correct answer is B.
+**mistake_a:** Distortion of a true statement, reversed. The author explicitly says the strategies 'cannot be attributed to accident,' so the silence is not proof the techniques were accidental; this says the opposite of the text.
+**mistake_c:** Out of scope / wrong cause. The passage attributes the 'provincial' perception to the movement's narrow geography and subject matter, not to the lack of manifestos. This option wrongly links the silence to the regional label.
+**mistake_d:** Out of scope. The passage never says the metropolitan modernists noticed the Coastal Realists' silence or deliberately avoided the same omission; nothing connects the two groups in this way.
+**mistake_e:** Extreme and contradicted. The author insists the manuscripts reveal 'consistent, repeated strategies' amounting to a method; claiming no method ever developed flatly contradicts the paragraph's central point.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q96
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Application
+
+Which of the following hypothetical cases is most analogous to the reassessment of the Coastal Realists that the author advocates?
+
+- A) A composer celebrated in her lifetime is later downgraded when scholars discover she borrowed her best themes from folk songs.
+- B) A school of painters famous for issuing bold theoretical statements is found, on inspection, to have produced work that fails to live up to its declarations.
+- C) A group of craftspeople long praised only for preserving traditional designs is shown to have pioneered a structural method that more renowned studios adopted years afterward.
+- D) A novelist dismissed in his own era is rediscovered and found to be every bit as limited as his early critics had claimed.
+- E) A regional cuisine prized for its authenticity is revealed to depend on ingredients imported from distant cosmopolitan markets.
+
+**answer:** C
+**explanation:** The author's reassessment has a specific shape: a group valued only for a backward-looking, documentary function (preserving a vanishing way of life) is revealed to have actually originated a formal innovation that more celebrated figures were later credited with. The key elements are (1) prior recognition limited to preservation/fidelity, (2) an overlooked technical or structural innovation, and (3) priority—the innovation came before, and was taken up by, more renowned successors. Option C maps onto all three: craftspeople 'long praised only for preserving traditional designs' are shown to have 'pioneered a structural method that more renowned studios adopted years afterward.' That parallels the Coastal Realists being credited only as recorders while having anticipated, by nearly a decade, the metropolitan modernists. The correct answer is C.
+**mistake_a:** This inverts the structure: the reputation goes down, and the discovery undercuts originality (borrowing from folk songs). The author's case is a reputation that should go up because of unrecognized originality.
+**mistake_b:** This is the opposite of the Coastal Realists, who had no manifestos. Here the work fails to match loud declarations, whereas the author praises a group whose achievement exceeded its silence.
+**mistake_d:** This confirms the original dismissal rather than overturning it. The author argues the early critics were wrong; an analogy in which they turn out right does not match the reassessment.
+**mistake_e:** This is an authenticity-debunking case about hidden imports, not an innovation-recognizing one. It neither restores a reputation nor credits an overlooked formal advance, so it misses the analogy.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q97
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Author's Attitude
+
+The author's attitude toward the verdict 'codified in Pridgen's influential 1948 survey' is best described as
+
+- A) respectful agreement with its central conclusion
+- B) mild amusement at its eccentric phrasing
+- C) complete indifference to its claims
+- D) considered disagreement supported by specific textual evidence
+- E) outright contempt for its author's competence
+
+**answer:** D
+**explanation:** The author clearly rejects Pridgen's verdict but does so through argument rather than insult. The passage credits Pridgen's survey as 'influential' and engages its specific claims—e.g., 'Pridgen read this as mere fidelity to gossip'—before countering them with evidence from Marsh's 1916 cycle and the surviving manuscripts. The flat declaration 'This consensus deserves to be overturned,' followed by detailed textual support showing the technique 'anticipates, by nearly a decade,' later modernism, marks a reasoned, evidence-based disagreement. That is considered disagreement backed by specific textual evidence, which is option D. The correct answer is D.
+**mistake_a:** The author does the reverse of agreeing; the thesis is that Pridgen's consensus 'deserves to be overturned.' Respectful agreement contradicts the entire argument.
+**mistake_b:** There is no amusement or mockery of Pridgen's phrasing. The tone toward the survey is serious and argumentative, not lightly amused.
+**mistake_c:** Indifference is impossible here, since the author engages Pridgen's claims directly and at length in order to refute them. Sustained rebuttal is the opposite of indifference.
+**mistake_e:** This overstates the tone. The author calls the survey 'influential' and argues against its conclusions with evidence rather than attacking Pridgen's competence; there is no contempt for the man himself.
+**related_reading:** reading-verbal-06-rc-question-types
+
+
+---
+
+## Passage 25: Hydrothermal Vents and the Origins of Life
+
+Since the discovery of deep-sea hydrothermal vents in 1977, a vocal contingent of geochemists has argued that such settings furnished the cradle of terrestrial life. The appeal is intuitive. Vents expel mineral-rich fluids heated by subsurface magma, and the steep thermal and chemical gradients across vent walls could, in principle, drive the synthesis of organic molecules from simple precursors. Proponents note further that alkaline vents, in particular, host porous mineral chimneys whose microscopic compartments resemble the membrane-bound interiors of living cells. To advocates such as the geochemist Marisol Andreev, these compartments offer a ready-made scaffold: a place where reactive molecules might accumulate to concentrations otherwise unattainable in the open ocean, and where a natural proton gradient might have powered primitive metabolism long before cells learned to generate such gradients themselves.
+
+Yet the hypothesis confronts a stubborn complication. Many of the polymerization reactions thought essential to early biochemistry are condensation reactions, which release water as a byproduct and are therefore thermodynamically disfavored in the very aqueous environment a vent provides. Critics contend that submarine settings, far from assembling the long molecular chains that life requires, would tend to hydrolyze them back into fragments. Laboratory work by the chemist Renato Pell, who simulated vent conditions in pressurized reactors, reported that nascent polymers degraded almost as quickly as they formed—a finding that advocates of surface scenarios, in which intermittently drying ponds could concentrate reactants, were quick to cite.
+
+It would be premature, however, to treat Pell's results as decisive. His reactors reproduced the temperature and pressure of vent fluids but not the confined mineral surfaces that the vent hypothesis makes central; on such surfaces, adsorption can shield fragile bonds from the surrounding water. The disagreement, then, may turn less on whether vents are hospitable in some abstract sense than on which specific features of a vent one chooses to model. That distinction is easily lost in debates that pit "vents" against "ponds" as monolithic alternatives.
+
+None of this resolves the question, and the honest verdict is that the geochemical record cannot yet adjudicate between the competing scenarios. What the controversy does establish is more modest but not trivial: that the plausibility of any origin-of-life setting depends on details of mineralogy and reaction microenvironment that sweeping appeals to "vents" or "surfaces" routinely obscure.
+
+### Q98
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Passage Structure
+
+Which of the following best describes the organization of the passage?
+
+- A) A chronological history of hydrothermal vent research is presented, culminating in a consensus account of how life began.
+- B) A single hypothesis is introduced, defended against all objections, and then endorsed without reservation.
+- C) Two laboratory experiments are compared in detail, and the more rigorous of the two is declared correct.
+- D) A widely accepted theory is described, shown to be false, and replaced with the author's own alternative.
+- E) A hypothesis is introduced, a challenge to it is laid out, that challenge is qualified, and a guarded conclusion is drawn.
+
+**answer:** E
+**explanation:** The passage moves through four distinct stages that map onto its four paragraphs. The first paragraph introduces the hydrothermal-vent hypothesis and the case its proponents make for it. The second paragraph lays out a 'stubborn complication'—the thermodynamic objection from condensation reactions—and cites Pell's experiment as support for it. The third paragraph qualifies that challenge by noting that Pell's reactors omitted the confined mineral surfaces central to the vent hypothesis, so the objection may be less decisive than it appears. The final paragraph draws a guarded conclusion: the record 'cannot yet adjudicate' between scenarios, but the controversy shows that plausibility depends on overlooked mineralogical detail. Option E captures exactly this arc—introduction of a hypothesis, a challenge, a qualification of that challenge, and a measured conclusion. The correct answer is E.
+**mistake_a:** This distorts the passage's structure. Although the passage opens by dating the discovery of vents to 1977, it is not organized as a chronological history, and it explicitly denies that any consensus account exists, stating the record 'cannot yet adjudicate' between scenarios.
+**mistake_b:** This misrepresents the passage. The hypothesis is not defended against all objections—the author presents a serious challenge in paragraph two—and it is never endorsed 'without reservation'; the conclusion is deliberately guarded.
+**mistake_c:** This is too narrow and inaccurate. Only one experiment (Pell's) is described in any detail, no second experiment is compared against it, and the passage never declares any experiment 'correct'—it instead questions Pell's relevance.
+**mistake_d:** This overstates and reverses the argument. The vent hypothesis is not 'widely accepted,' it is not 'shown to be false,' and the author advances no personal alternative theory; the author's stance is that the question remains open.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q99
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Passage Structure
+
+The third paragraph functions in the passage primarily to
+
+- A) complicate an objection raised in the preceding paragraph by exposing a limitation in the evidence offered for it
+- B) introduce a wholly new hypothesis that neither the proponents nor the critics had previously considered
+- C) supply additional experimental data that confirm the conclusions reported by Pell
+- D) concede that the vent hypothesis has been definitively refuted by the laboratory findings
+- E) restate the proponents' original argument in stronger and more technical terms
+
+**answer:** A
+**explanation:** The second paragraph builds an objection to the vent hypothesis: condensation reactions are disfavored in water, and Pell's reactor experiment showed polymers degrading almost as fast as they formed. The third paragraph opens with the pivot 'It would be premature, however, to treat Pell's results as decisive,' and then explains why—Pell reproduced temperature and pressure 'but not the confined mineral surfaces that the vent hypothesis makes central,' surfaces on which 'adsorption can shield fragile bonds.' In other words, the paragraph identifies a gap in the evidence that the objection rested on, thereby weakening the force of the critique without dismissing it outright. That is precisely to 'complicate an objection... by exposing a limitation in the evidence offered for it.' The correct answer is A.
+**mistake_b:** The third paragraph introduces no new hypothesis. It revisits the existing vent hypothesis to argue that Pell's test failed to model a feature that hypothesis emphasizes; it adds an analytic observation, not a third competing theory.
+**mistake_c:** This is the opposite of the paragraph's function. Rather than confirming Pell's conclusions, the paragraph argues that those conclusions may not bear on the vent hypothesis at all because the experiment omitted the relevant mineral surfaces.
+**mistake_d:** This contradicts the paragraph and the passage. The author explicitly says it would be 'premature' to treat the results as decisive and later states the question is unresolved, so nothing is conceded as a definitive refutation.
+**mistake_e:** The paragraph does not restate the proponents' opening argument. It makes a new methodological point about Pell's experiment; it is directed at the critics' evidence, not a louder version of the original pro-vent case.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q100
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Answer Traps
+
+Which of the following best expresses the main point of the passage?
+
+- A) Alkaline hydrothermal vents are the most probable site for the origin of life because their mineral chimneys resemble living cells.
+- B) Whether hydrothermal vents could have hosted the origin of life remains unsettled, and the dispute hinges on specific mineralogical and microenvironmental details that broad comparisons tend to obscure.
+- C) Laboratory simulations of vent conditions are inherently unreliable and should be disregarded in origin-of-life research.
+- D) Condensation reactions cannot occur in any aqueous environment, ruling out the ocean as a setting for early biochemistry.
+- E) Surface ponds that periodically dry out are a superior setting for the origin of life than any submarine environment.
+
+**answer:** B
+**explanation:** The passage presents the vent hypothesis, a thermodynamic objection to it, and a qualification of that objection, then closes by stating that 'the geochemical record cannot yet adjudicate between the competing scenarios' and that the controversy establishes that 'the plausibility of any origin-of-life setting depends on details of mineralogy and reaction microenvironment that sweeping appeals to vents or surfaces routinely obscure.' Option B mirrors this two-part main idea: the question is unresolved, and the real disagreement is about fine-grained details that monolithic 'vents versus ponds' framing hides. It captures both the conclusion's caution and its substantive claim without overreaching. The correct answer is B.
+**mistake_a:** This is a distortion of a claim the proponents make, not the author's main point. The cell-like chimneys are presented as part of the advocates' case in paragraph one, and the passage explicitly declines to declare vents the most probable site.
+**mistake_c:** This is too sweeping (extreme language). The author questions only Pell's particular reactor setup for omitting mineral surfaces, not the reliability of all vent simulations, and never urges that such work be 'disregarded.'
+**mistake_d:** This is an absolute overstatement that the passage contradicts. The text says condensation reactions are 'thermodynamically disfavored' in water and that mineral surfaces can 'shield' bonds—not that such reactions 'cannot occur' in any aqueous setting.
+**mistake_e:** This is out of scope as a main point. The drying-pond scenario is mentioned only as something surface-scenario advocates 'cite'; the author never endorses ponds as superior and in fact criticizes treating ponds and vents as monolithic alternatives.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q101
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Answer Traps
+
+It can most reasonably be inferred from the passage that the author would regard a debate framed strictly as 'vents versus ponds' as
+
+- A) useful, because it isolates the two settings most consistent with the geochemical record.
+- B) premature, because no laboratory has yet simulated either setting with adequate fidelity.
+- C) misleading, because it treats as uniform alternatives what the author regards as collections of variable, detail-dependent conditions.
+- D) decisive, because the thermodynamic objection clearly favors one of the two settings over the other.
+- E) irrelevant, because the author believes life did not originate on Earth at all.
+
+**answer:** C
+**explanation:** In the third paragraph the author warns that the key distinction 'is easily lost in debates that pit vents against ponds as monolithic alternatives,' and the final paragraph faults 'sweeping appeals to vents or surfaces' for obscuring 'details of mineralogy and reaction microenvironment.' The author also stresses that the disagreement 'may turn less on whether vents are hospitable in some abstract sense than on which specific features of a vent one chooses to model.' Together these signal that the author sees 'vents' and 'ponds' not as single fixed conditions but as families of varying microenvironments whose plausibility depends on detail. Hence the author would view a strict 'vents versus ponds' framing as misleading for exactly that reason. The correct answer is C.
+**mistake_a:** This contradicts the author's stated view. The author criticizes the monolithic framing rather than praising it for isolating two settings, and the passage says the record cannot yet identify which settings are most consistent with it.
+**mistake_b:** This is a distortion that swaps in the wrong reason. The author's complaint about the framing is that it obscures internal variation, not that no setting has been simulated with fidelity; the fidelity point applies specifically to Pell's reactors, not to the framing itself.
+**mistake_d:** This is the opposite of the author's position and overstated. The author argues the thermodynamic objection is not 'decisive' because Pell omitted mineral surfaces, so the objection does not cleanly settle the matter in either direction.
+**mistake_e:** This is out of scope and unsupported. Nothing in the passage suggests the author doubts a terrestrial origin of life; the entire discussion assumes life arose on Earth and disputes only where.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q102
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Application
+
+Which of the following hypothetical findings would most directly support the author's view, expressed in the third paragraph, about why Pell's results should not be treated as decisive?
+
+- A) A survey showing that most geochemists now favor surface-pond scenarios over vent scenarios.
+- B) Evidence that hydrothermal vents are far more common on the early ocean floor than previously believed.
+- C) A demonstration that condensation reactions release water as a byproduct under all tested conditions.
+- D) An experiment in which polymers formed on porous mineral surfaces survived far longer than identical polymers in surface-free vent fluid.
+- E) A finding that the temperature of vent fluids fluctuates more widely than Pell's reactors assumed.
+
+**answer:** D
+**explanation:** The author's argument in paragraph three is that Pell's reactors 'reproduced the temperature and pressure of vent fluids but not the confined mineral surfaces that the vent hypothesis makes central,' and that on such surfaces 'adsorption can shield fragile bonds from the surrounding water.' The strongest support for that claim would be a direct demonstration that the presence of mineral surfaces actually makes the predicted difference—namely, polymers persisting much longer when formed on porous mineral surfaces than in surface-free fluid. Option D supplies exactly that contrast, confirming the author's contention that the omitted variable (mineral surfaces) is what matters. The correct answer is D.
+**mistake_a:** A popularity survey speaks to scientific opinion, not to whether mineral surfaces protect polymers. It does nothing to validate the author's specific mechanistic claim about why Pell's setup was incomplete.
+**mistake_b:** The abundance of vents on the early seafloor is irrelevant to the author's point. The author is questioning the chemistry Pell modeled, not how many vents existed, so this finding leaves the third paragraph's argument untouched.
+**mistake_c:** This reinforces the critics' objection rather than the author's qualification of it. Confirming that condensation releases water supports the thermodynamic worry; it says nothing about mineral surfaces shielding bonds.
+**mistake_e:** Temperature variability concerns a different parameter than the one the author emphasizes. The author's point is that Pell omitted mineral surfaces, not that he mismodeled temperature, so this finding does not directly support that point.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q103
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Author's Attitude
+
+The author's attitude toward the question of whether hydrothermal vents hosted the origin of life is best described as
+
+- A) firm conviction that vents were the cradle of life.
+- B) dismissive skepticism toward the entire vent hypothesis.
+- C) enthusiastic endorsement of Pell's experimental refutation.
+- D) indifference, since the author considers the question unimportant.
+- E) considered caution, holding the matter unresolved while insisting that finer distinctions be drawn.
+
+**answer:** E
+**explanation:** The author's stance is signaled by carefully hedged language throughout. The vent hypothesis is presented sympathetically ('The appeal is intuitive') but not adopted; the objection is taken seriously yet checked by 'It would be premature... to treat Pell's results as decisive'; and the closing paragraph states plainly that 'the honest verdict is that the geochemical record cannot yet adjudicate between the competing scenarios.' At the same time the author is not merely neutral—there is a clear judgment that the debate must attend to 'details of mineralogy and reaction microenvironment' rather than 'sweeping appeals.' This combination of withholding a verdict while pressing for finer distinctions is best captured as considered caution. The correct answer is E.
+**mistake_a:** The author expresses no firm conviction that vents were the cradle of life. While the hypothesis is described as intuitively appealing, the author explicitly declines to settle the question, calling it unresolved.
+**mistake_b:** The author is not dismissive of the vent hypothesis. In fact, the third paragraph defends the hypothesis against Pell's challenge by noting the experiment omitted a feature the hypothesis emphasizes, which is the opposite of dismissiveness.
+**mistake_c:** The author does not endorse Pell's experiment, let alone enthusiastically. The passage warns it would be 'premature' to treat Pell's results as decisive and faults the reactors for omitting mineral surfaces.
+**mistake_d:** Indifference is contradicted by the passage. The author engages the question closely and ends by arguing that the controversy establishes something 'not trivial,' indicating the matter is taken to be significant.
+**related_reading:** reading-verbal-06-rc-question-types
+
+
+---
+
+## Passage 26: The Printing Press and Historical Causation
+
+When the movable-type press spread across Europe after the 1450s, it transformed the physical economy of information. Manuscripts that had taken a scribe months to copy could be reproduced in editions of hundreds, and the marginal cost of an additional copy fell sharply once a forme had been set. For an earlier generation of historians, this shift carried an almost mechanical consequence: cheaper texts meant wider readership, wider readership meant a more informed public, and a more informed public meant the erosion of established authorities, religious and political alike. On this account, the press was less a tool than an agent, and the great upheavals of the sixteenth century followed from it as effect follows cause.
+
+That tidy chain has not survived close scrutiny. The historian Margit Vossen, examining printers' ledgers from four German towns, found that the most profitable early output was not reformist tracts but devotional images, calendars, and indulgence forms commissioned by the very institutions the press supposedly undermined. Print, in other words, served entrenched power at least as readily as it threatened it. Vossen's evidence does not show that the press was inert; rather, it suggests that the technology amplified whatever messages found patrons and markets, and in its first decades those messages were frequently orthodox.
+
+This is the crux of the revisionist position, and it is worth stating its limits as well as its force. To say that the press amplified existing currents rather than originating them is not to deny that amplification can itself reshape a society. A pamphlet that reaches ten thousand readers in a month does something a sermon to a parish cannot, even if both carry the same words. Critics of the revisionists sometimes overreach here, treating the press as a neutral conduit and thereby explaining away a change that demands explanation. The more defensible reading, and the one the evidence rewards, is narrower: the press was a powerful accelerant whose direction was set by forces it did not create. It made the spread of ideas faster and cheaper without determining which ideas would spread, and that distinction, though it sounds modest, marks the difference between a technology that causes a revolution and one that merely supplies its velocity.
+
+### Q104
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Passage Structure
+
+Which of the following best describes the organization of the passage?
+
+- A) An older causal explanation is presented, then challenged by specific evidence, and finally the challenge is itself qualified to reach a more precise position.
+- B) Two rival schools of thought are described in equal detail, and the author declines to choose between them.
+- C) A historical event is narrated chronologically, with competing interpretations introduced only in the closing paragraph.
+- D) A widely accepted thesis is defended against critics by means of newly discovered documentary evidence.
+- E) A technological development is described, its social effects are catalogued, and a prediction is offered about similar future technologies.
+
+**answer:** A
+**explanation:** The first paragraph lays out the older 'mechanical' view in which the press directly causes social upheaval ('the press was less a tool than an agent'). The second paragraph challenges that view with specific evidence (Vossen's ledger study showing orthodox output dominated early printing). The third paragraph then qualifies the challenge itself, warning that revisionists can be pushed too far and arriving at a 'more defensible reading' that is 'narrower' than either extreme: the press as accelerant whose direction is set elsewhere. That three-step movement, claim then evidentiary challenge then refinement, is exactly what option A describes.
+
+The correct answer is A.
+**mistake_b:** The author does choose: the closing paragraph explicitly endorses 'the more defensible reading.' The passage does not leave the two views in equal balance, so this misdescribes the structure.
+**mistake_c:** The passage is analytical, not a chronological narrative of an event, and competing interpretations appear from the first paragraph onward, not only at the close.
+**mistake_d:** This reverses the movement. The newly cited evidence (Vossen) attacks the older thesis rather than defending it, and the author ultimately qualifies that thesis, not vindicates it.
+**mistake_e:** No future prediction about similar technologies appears anywhere in the passage; this introduces a forecasting element that is absent from the text.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q105
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Passage Structure
+
+In the third paragraph, the sentence beginning 'Critics of the revisionists sometimes overreach here' functions primarily to
+
+- A) concede that the revisionist position, as stated, cannot be defended against its strongest opponents
+- B) mark a boundary on the revisionist claim by faulting an opposing camp for pushing it too far, thereby setting up the author's own intermediate conclusion
+- C) introduce a third body of evidence that neither the older nor the revisionist account had considered
+- D) retract the author's earlier endorsement of Vossen's ledger study
+- E) summarize the revisionist position before the author abandons it in favor of the older view
+
+**answer:** B
+**explanation:** The third paragraph announces its task at the outset: 'it is worth stating its limits as well as its force.' The 'overreach' sentence does the limiting work. It identifies a camp, critics of the revisionists, who treat the press as a 'neutral conduit' and thereby go too far, 'explaining away a change that demands explanation.' By faulting that overreach, the author carves out the space for the intermediate conclusion that immediately follows: the press as a 'powerful accelerant whose direction was set by forces it did not create.' So the sentence marks a boundary and sets up the author's own middle position, which is what option B captures.
+
+The correct answer is B.
+**mistake_a:** The author does not concede the revisionist view is indefensible; the paragraph defends a refined version of it and calls the resulting reading 'the more defensible.' This overstates the concession.
+**mistake_c:** No new evidence is introduced in this sentence; it makes an analytic point about how an opposing camp reasons, not a fresh empirical finding.
+**mistake_d:** Vossen's study is never retracted; the author continues to treat 'the evidence' as supporting the refined revisionist reading.
+**mistake_e:** The author does not abandon the revisionist position for the older view; the closing distinction sides against the older 'causes a revolution' framing.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q106
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Answer Traps
+
+Which of the following best expresses the main point of the passage?
+
+- A) The movable-type press was a neutral conduit that had no independent effect on the social upheavals of the sixteenth century.
+- B) Printers in early modern Germany earned more from devotional images and indulgence forms than from reformist tracts.
+- C) The press is best understood not as the cause of sixteenth-century upheaval but as an accelerant whose direction was determined by forces outside it.
+- D) Every technology that lowers the cost of copying information will tend to strengthen, rather than weaken, established authorities.
+- E) Historians have permanently abandoned the view that the printing press contributed to religious and political change.
+
+**answer:** C
+**explanation:** The passage moves from an older view (press as direct cause) through a challenge (Vossen's evidence) to a refined thesis stated in the final sentences: the press 'made the spread of ideas faster and cheaper without determining which ideas would spread,' marking 'the difference between a technology that causes a revolution and one that merely supplies its velocity.' Option C captures precisely this accelerant-with-externally-set-direction conclusion, which is the author's main point.
+
+The correct answer is C.
+**mistake_a:** Distortion of a true-sounding statement, taken to an extreme. The author explicitly rejects the 'neutral conduit' framing as overreach and insists the press 'does something a sermon cannot,' so 'no independent effect' contradicts the text.
+**mistake_b:** Too narrow. This is a single supporting detail from Vossen's study, not the overall point; the passage uses it as evidence, not as its thesis.
+**mistake_d:** Too broad and absolute ('every technology... will tend to'). The passage makes a claim about the printing press, not a sweeping law about all copying technologies, and the 'will tend to strengthen' generalization is unsupported.
+**mistake_e:** Extreme/absolute language ('permanently abandoned'). The passage describes a revisionist refinement, not a permanent and total abandonment of any role for the press; indeed the author affirms the press mattered.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q107
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Answer Traps
+
+It can be inferred from the passage that the author would most likely agree with which of the following statements?
+
+- A) Because early printing was dominated by orthodox material, the press cannot have contributed to any later challenge to authority.
+- B) The profitability of devotional printing proves that the demand for reformist ideas did not exist in the press's first decades.
+- C) The older generation of historians fabricated the evidence on which their causal account rested.
+- D) A message reaching a large audience quickly can have effects that the same message could not have at smaller scale, even if the technology did not generate the message.
+- E) The press would have produced identical social outcomes regardless of which patrons and markets it served.
+
+**answer:** D
+**explanation:** The third paragraph states that 'a pamphlet that reaches ten thousand readers in a month does something a sermon to a parish cannot, even if both carry the same words,' and that 'amplification can itself reshape a society.' This directly supports option D: scale of reach changes effect even when the technology does not originate the message. The author affirms this while still denying that the press determined which ideas spread, so D fits the refined position exactly.
+
+The correct answer is D.
+**mistake_a:** Extreme/absolute distortion. The author says early output was largely orthodox but explicitly denies the press was inert and affirms amplification can reshape society, so 'cannot have contributed to any later challenge' contradicts the text.
+**mistake_b:** Out of scope and an overreach. The passage notes devotional printing was most profitable, but it never claims demand for reformist ideas was absent; it says the press amplified 'whatever messages found patrons,' which presupposes such messages existed.
+**mistake_c:** Out of scope. The author challenges the older account's logic and confronts it with new evidence but never accuses those historians of fabricating data; nothing in the text supports a charge of fabrication.
+**mistake_e:** Direct contradiction. The author's central claim is that the press's direction 'was set by forces it did not create' and that it amplified 'whatever messages found patrons and markets,' which means outcomes would differ by patron and market, not be identical.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q108
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Application
+
+Which of the following hypothetical cases most closely parallels the author's view of the printing press's role in social change?
+
+- A) A new fertilizer is introduced that, by itself, causes crops to grow in soils where nothing had grown before.
+- B) A government bans a technology, and within a decade the social movement that relied on it disappears entirely.
+- C) A historian discovers that a famous invention was actually developed centuries earlier than previously believed.
+- D) A single inventor's device is shown to have had no measurable effect on the economy of its era.
+- E) A highway network is built that does not decide where people travel but lets existing travel flows move far faster and more cheaply, magnifying their effects.
+
+**answer:** E
+**explanation:** The author's refined thesis is that the press was 'a powerful accelerant whose direction was set by forces it did not create,' one that 'made the spread of ideas faster and cheaper without determining which ideas would spread.' The highway analogy in option E mirrors this precisely: the network does not choose destinations (direction set elsewhere) but speeds and cheapens existing flows and magnifies their effects (accelerant that still matters). That structural match makes E the closest parallel.
+
+The correct answer is E.
+**mistake_a:** This depicts the technology as an originating cause that produces an effect by itself, which is exactly the older 'press as agent' view the author rejects, not the author's accelerant view.
+**mistake_b:** This makes the technology indispensable, with the movement vanishing without it. The author's view is that the press supplied velocity to forces it did not create, not that those forces could not exist without it.
+**mistake_c:** This concerns the dating of an invention, an issue of chronology, and has no bearing on the causal role the author analyzes.
+**mistake_d:** This casts the technology as inert and without effect, which matches the 'neutral conduit' overreach the author explicitly criticizes, not the author's own position.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q109
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Author's Attitude
+
+The author's attitude toward the revisionist position can best be described as
+
+- A) broadly sympathetic but careful to mark where critics of the view push back too far in the opposite direction
+- B) wholly persuaded that it has settled the question beyond dispute
+- C) skeptical of its evidence and inclined to restore the older causal account
+- D) indifferent, presenting it only to give a balanced survey of opinions
+- E) dismissive, regarding it as a fashionable overcorrection with little merit
+
+**answer:** A
+**explanation:** The author clearly favors the revisionist refinement, calling it 'the more defensible reading, and the one the evidence rewards,' and treating Vossen's evidence as decisive against the older view. Yet the author is careful, noting that 'critics of the revisionists sometimes overreach' by treating the press as a 'neutral conduit,' and insisting on stating the position's 'limits as well as its force.' The overreachers here are the revisionists' critics, an opposing camp that pushes back in the other direction by denying the press any independent effect. This combination, endorsement plus careful boundary-setting against those critics who overcorrect, is broadly sympathetic but qualified, which option A captures.
+
+The correct answer is A.
+**mistake_b:** Overstated. The author endorses the refined reading but frames it as 'more defensible' and 'narrower,' not as settling the question 'beyond dispute'; the careful qualifications show measured, not absolute, confidence.
+**mistake_c:** Contradicts the text. The author relies on the revisionist evidence and sides against the older causal account, so 'skeptical of its evidence' and wanting to 'restore the older account' is the opposite of the author's stance.
+**mistake_d:** The author is not indifferent or merely surveying; the passage explicitly judges one reading 'the more defensible,' which is an endorsement, not balanced neutrality.
+**mistake_e:** Far too negative. The author largely accepts the revisionist refinement and only criticizes those who overextend it in the opposite direction, so 'dismissive' with 'little merit' misreads the tone entirely.
+**related_reading:** reading-verbal-06-rc-question-types
