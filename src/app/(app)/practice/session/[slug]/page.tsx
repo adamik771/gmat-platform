@@ -1,6 +1,12 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { getQuestionsBySetSlug } from "@/lib/content"
+import {
+  getQuestionsBySetSlug,
+  getQuestionsByIds,
+  getChapterTest,
+  parseChapterTestSlug,
+  getChapterBySlug,
+} from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import {
   DEFAULT_LEVEL,
@@ -18,7 +24,21 @@ export default async function PracticeSessionPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const questions = getQuestionsBySetSlug(slug)
+
+  // A chapter-test slug (`ch-<chapterSlug>-t<n>`) runs a specific curated subset
+  // of a chapter's questions; any other slug is a topic-set (all questions in a
+  // bank file). Try the chapter-test path first — its shape can't collide with a
+  // topic-set slug — then fall back.
+  const chapterTest = getChapterTest(slug)
+  let setLabel: string | undefined
+  if (chapterTest) {
+    const parsed = parseChapterTestSlug(slug)
+    const chapterTitle = parsed ? getChapterBySlug(parsed.chapterSlug)?.title : undefined
+    setLabel = chapterTitle ? `${chapterTitle} · ${chapterTest.label}` : chapterTest.label
+  }
+  const questions = chapterTest
+    ? getQuestionsByIds(chapterTest.questionIds)
+    : getQuestionsBySetSlug(slug)
   if (questions.length === 0) notFound()
 
   // Filter out questions that still have 0 parseable options after parsing
@@ -144,6 +164,7 @@ export default async function PracticeSessionPage({
       skillLevel={skill.level}
       skillAttempts={skill.attempts}
       weakestTopic={weakestTopic ?? undefined}
+      setLabel={setLabel}
     />
   )
 }

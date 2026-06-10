@@ -9,7 +9,6 @@ import {
   ClipboardList,
   Clock,
   Download,
-  FlaskConical,
   GraduationCap,
   Sparkles,
 } from "lucide-react"
@@ -20,7 +19,7 @@ import { POSTS as ALL_POSTS, type BlogPost } from "@/lib/blog-posts"
 export const metadata: Metadata = {
   title: "Free GMAT resources",
   description:
-    "Every free GMAT resource on Zakarian GMAT — diagnostic, score converter, sample chapters, error-log template, and seven long-form strategy guides. No signup required.",
+    "Every free GMAT resource on Zakarian GMAT — score converter, sample chapters, error-log template, and seven long-form strategy guides. No signup required.",
   alternates: { canonical: "/resources" },
 }
 
@@ -34,15 +33,6 @@ interface ResourceCard {
 }
 
 const TOOLS: ResourceCard[] = [
-  {
-    title: "Free 10-question diagnostic",
-    description:
-      "Three Quant, four Verbal, three Data Insights. Per-section signals + a shareable result. No signup required.",
-    href: "/free-diagnostic",
-    cta: "Take the diagnostic",
-    icon: FlaskConical,
-    meta: "~12 min · Interactive",
-  },
   {
     title: "GMAT score converter",
     description:
@@ -131,7 +121,7 @@ const FEATURED: Array<{ slug: string; description: string }> = [
   {
     slug: "first-30-days-of-gmat-prep",
     description:
-      "What to actually do in your first month of GMAT prep — week by week, with the diagnostic-first sequence that beats jumping straight into content.",
+      "What to actually do in your first month of GMAT prep — week by week, with the baseline-first sequence that beats jumping straight into content.",
   },
   {
     slug: "gmat-prep-for-non-native-english-speakers",
@@ -166,7 +156,7 @@ const FEATURED: Array<{ slug: string; description: string }> = [
   {
     slug: "how-to-build-a-gmat-study-plan-that-works",
     description:
-      "Why most GMAT study plans fail, the diagnostic-first approach, and a 16-week framework you can adapt to a real schedule.",
+      "Why most GMAT study plans fail, the baseline-first approach, and a 16-week framework you can adapt to a real schedule.",
   },
   {
     slug: "why-your-gmat-score-is-stuck",
@@ -289,7 +279,7 @@ export default function ResourcesPage() {
             , in one place.
           </h1>
           <p className="text-[16px] sm:text-[17px] text-[#C0C0C0] leading-relaxed max-w-2xl mx-auto">
-            Five interactive tools (including a glossary), a printable
+            Four interactive tools (including a glossary), a printable
             exam-day checklist, three sample chapters with real curriculum
             content, the error-log template I used to go from 565 to 735,
             and nine long-form strategy guides. No signup required for any
@@ -302,8 +292,8 @@ export default function ResourcesPage() {
       <section className="max-w-5xl mx-auto px-4 sm:px-6 mt-10 mb-16">
         <SectionHeader
           eyebrow="Tools + reference"
-          title="Five free interactive resources."
-          description="The diagnostic, score converter, school picker, study-schedule generator, and a GMAT glossary. All usable without an account."
+          title="Four free interactive resources."
+          description="The score converter, school picker, study-schedule generator, and a GMAT glossary. All usable without an account."
         />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {TOOLS.map((card) => (
@@ -455,8 +445,8 @@ export default function ResourcesPage() {
             </span>
           </h2>
           <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-7 max-w-xl mx-auto">
-            17 chapters. The full diagnostic. The adaptive study plan. The
-            error log built into the platform with the spaced-review queue.
+            17 chapters. The adaptive study plan. The error log built into
+            the platform with the spaced-review queue.
             Mock exams with debrief tools. Seven days of full access &mdash;
             no card required.
           </p>

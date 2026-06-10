@@ -571,7 +571,7 @@ A committee of 3 is to be chosen from a group of n people. How many different co
 
 Let n be the size of the original group. The number of possible committees is C(n, 3).
 
-Consider statement (1). If the group had 1 additional person, the count would be C(n + 1, 3), and the stated increase translates into the equation C(n + 1, 3) - C(n, 3) = 21. By Pascal's identity, C(n + 1, 3) - C(n, 3) = C(n, 2). Hence C(n, 2) = 21, which gives n(n - 1) / 2 = 21, so that n(n - 1) = 42. Since n must be a positive integer with n at least 3, we solve n(n - 1) = 42, and because 7 times 6 equals 42 we obtain n = 7. The committee count is therefore C(7, 3) = 7! / (3! 4!) = (7 times 6 times 5) / (3 times 2 times 1) = 210 / 6 = 35. This is a single determined value, so statement (1) is sufficient.
+Consider statement (1). If the group had 1 additional person, the count would be C(n + 1, 3), and the stated increase translates into the equation C(n + 1, 3) - C(n, 3) = 21. By Pascal's identity, C(n + 1, 3) - C(n, 3) = C(n, 2). Hence C(n, 2) = 21, which gives n(n - 1) / 2 = 21, so that n(n - 1) = 42. Since n must be a positive integer with n at least 3, we solve n(n - 1) = 42, and because 7 times 6 equals 42 we obtain n = 7. The committee count is therefore C(7, 3) = 7! / (3! 4!) = (7 times 6 times 5) / (3 times 2 times 1), where the 6 in the numerator cancels the 3 times 2 in the denominator, leaving 7 times 5 = 35. This is a single determined value, so statement (1) is sufficient.
 
 Consider statement (2). The condition n greater than 5 is consistent with n = 6, n = 7, n = 8, and infinitely many larger values, each producing a different count C(n, 3). Because the count is not uniquely determined, statement (2) is not sufficient.
 

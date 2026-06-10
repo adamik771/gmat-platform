@@ -83,17 +83,17 @@ export function computeNextBestAction(
   const candidates: NextBestAction[] = []
   const doneToday = new Set(options.doneTodayKinds ?? [])
 
-  // ---- Rule 1: Diagnostic not yet taken ----
+  // ---- Rule 1: No baseline score yet ----
   if (signals.diagnosticTotalScore === null) {
     candidates.push({
       kind: "take-diagnostic",
-      title: "Take the diagnostic",
+      title: "Set your baseline — Official Practice Exam 1",
       rationale:
-        "No diagnostic on record yet. Without it, every other recommendation is a guess. 30 questions across all three sections seeds the rest of the plan.",
-      href: "/diagnostic",
-      estimatedMinutes: 50,
+        "No baseline score on record yet. Take Official Practice Exam 1 on mba.com under full exam conditions and enter the score — without it, every other recommendation is a guess.",
+      href: "/mock",
+      estimatedMinutes: 135,
       score: 1000, // overrides everything else
-      evidence: ["No diagnostic"],
+      evidence: ["No baseline exam"],
     })
   }
 

@@ -9,7 +9,7 @@ import { faqPageLd } from "@/lib/structured-data"
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Frequently asked questions about Zakarian GMAT — the curriculum, scoring, the trial, the diagnostic, the score guarantee, billing, and the platform's specific approach for non-native speakers.",
+    "Frequently asked questions about Zakarian GMAT — the curriculum, scoring, the trial, baselining with official practice exams, the score guarantee, billing, and the platform's specific approach for non-native speakers.",
   alternates: { canonical: "/faq" },
 }
 
@@ -55,17 +55,17 @@ const categories: FAQCategory[] = [
       {
         question: "Is the platform built for the GMAT Focus Edition specifically?",
         answer:
-          "Yes. Every section, every chapter, the diagnostic, the scoring scale (205-805), and the section ordering all target the GMAT Focus Edition. The legacy GMAT was retired in early 2024; Focus is the only version offered now and the only one we prep for.",
+          "Yes. Every section, every chapter, the scoring scale (205-805), and the section ordering all target the GMAT Focus Edition. The legacy GMAT was retired in early 2024; Focus is the only version offered now and the only one we prep for.",
       },
     ],
   },
   {
-    title: "The free trial and the diagnostic",
+    title: "The free trial and your baseline",
     items: [
       {
         question: "What does the free trial include?",
         answer:
-          "Seven days of full access to everything: the 30-question diagnostic, all 17 chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
+          "Seven days of full access to everything: all 17 chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
       },
       {
         question: "Do I need a credit card to start the trial?",
@@ -78,14 +78,14 @@ const categories: FAQCategory[] = [
           "If you don't upgrade, your account simply becomes inactive — there's nothing to cancel and no charge. Your study data is retained for 30 days in case you want to come back. After 30 days of inactivity, the account is deleted per the privacy policy.",
       },
       {
-        question: "Is the public diagnostic the same as the full diagnostic?",
+        question: "How does the platform know where I'm starting from?",
         answer:
-          "No. The public sampler at /free-diagnostic is 10 questions and gives you a per-section signal (Strong / Mixed / Needs work). The full diagnostic on the trial is 30 questions and produces a real readiness band on the 205-805 scale, plus a per-topic and per-difficulty heatmap that drives the adaptive study plan.",
+          "You baseline with an official practice exam from mba.com — the same interface and scoring algorithm as the real test — and enter your section scores on the site. The platform turns that baseline into your adaptive study plan, and your mock-to-mock trend tracks progress from there.",
       },
       {
-        question: "Can I take the diagnostic without signing up?",
+        question: "Can I try the platform without signing up?",
         answer:
-          "Yes — the 10-question public sampler is at /free-diagnostic. You can also share the result. The full 30-question diagnostic with the per-topic breakdown requires the free trial signup.",
+          "Yes — the free sample chapter at /sample-chapter shows two full readings from the Verbal Foundations chapter, no signup required, with Quant and Data Insights samples one click away. Everything else, including the full chapters and question bank, requires the free trial signup.",
       },
     ],
   },
@@ -130,7 +130,7 @@ const categories: FAQCategory[] = [
       {
         question: "Can I skip chapters I already know?",
         answer:
-          "Yes — the chapter index is non-linear. The diagnostic identifies your weakest topics; the adaptive plan recommends those chapters first. You can read any chapter in any order.",
+          "Yes — the chapter index is non-linear. Your official practice-exam baseline identifies your weakest sections; the adaptive plan recommends those chapters first. You can read any chapter in any order.",
       },
       {
         question: "What is the adaptive study plan?",
@@ -286,7 +286,7 @@ export default function FAQPage() {
           </h1>
           <p className="text-[16px] sm:text-[17px] text-[#C0C0C0] leading-relaxed max-w-xl mx-auto">
             {allItems.length} of the questions we hear most often — about the
-            curriculum, the trial, the diagnostic, the score guarantee,
+            curriculum, the trial, your baseline, the score guarantee,
             non-native speakers, and the AI tutor. If you don&apos;t find it
             here, book a free 20-minute call.
           </p>

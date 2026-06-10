@@ -18,7 +18,7 @@
  */
 
 const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://zakariangmat.com"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.zakariangmat.com"
 ).replace(/\/$/, "")
 
 const ORG_NAME = "Zakarian GMAT"

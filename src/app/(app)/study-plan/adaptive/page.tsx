@@ -32,7 +32,7 @@ const EYEBROW = "text-[10px] font-semibold uppercase tracking-[0.22em]"
 /**
  * /study-plan/adaptive — adaptive multi-week plan.
  *
- * Pulls every signal source (diagnostic, latest mock, practice attempts,
+ * Pulls every signal source (official exams, latest mock, practice attempts,
  * timing, confidence log, mistake log, spaced-review queue) into a single
  * synthesised view, then renders the resulting weekly schedule.
  *
@@ -53,7 +53,7 @@ export default async function AdaptivePlanPage() {
         <EmptyState
           icon={Calendar}
           title="Sign in to see your adaptive plan"
-          description="The plan personalises to your diagnostic, mock, and practice history. Sign in to generate yours."
+          description="The plan personalises to your official exams, mocks, and practice history. Sign in to generate yours."
           ctaHref="/login"
           ctaLabel="Sign in"
           size="md"
@@ -161,7 +161,7 @@ function Header() {
         </span>
       </h1>
       <p className="text-[15px] text-[#C0C0C0] leading-relaxed max-w-3xl">
-        Synthesised from your diagnostic, latest mock, practice attempts, timing
+        Synthesised from your official exams, latest mock, practice attempts, timing
         patterns, confidence log, and mistake-log patterns. Re-runs every time
         you visit, so the schedule stays current without you regenerating it.
       </p>
@@ -254,9 +254,9 @@ function SignalsPanel({ plan }: { plan: AdaptivePlan }) {
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <SignalCell
-          label="Diagnostic score"
+          label="Baseline score"
           value={s.diagnosticTotalScore !== null ? `${s.diagnosticTotalScore}` : "—"}
-          sub={s.diagnosticPercentile !== null ? `${s.diagnosticPercentile}th pct` : "Not yet taken"}
+          sub={s.diagnosticPercentile !== null ? `${s.diagnosticPercentile}th pct` : "Not yet entered"}
         />
         <SignalCell
           label="Latest mock"

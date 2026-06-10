@@ -407,23 +407,24 @@ export default function PostPage() {
           <H2>The platform</H2>
           <p>
             Zakarian GMAT was built by a non-native English speaker
-            who scored 735. The diagnostic identifies which sub-skills
-            are bottlenecking your Verbal score in the first 30
-            questions. The chapters are written specifically to be
-            useful at non-native reading speed (no jargon, no padded
-            prose). The error log&apos;s six-tag taxonomy includes
+            who scored 735. You baseline with an official mba.com
+            practice exam, and the platform turns your section scores
+            into a plan built around your Verbal bottleneck. The
+            chapters are written specifically to be useful at
+            non-native reading speed (no jargon, no padded prose). The
+            error log&apos;s six-tag taxonomy includes
             &ldquo;Misread&rdquo; and &ldquo;Time pressure&rdquo; as first-class tags &mdash;
             the two patterns non-native speakers most need to surface.
-            Free diagnostic, no card required.
+            Free sample chapter, no card required.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
-              href="/free-diagnostic"
+              href="/sample-chapter"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Take the free diagnostic
+              Read the free sample chapter
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

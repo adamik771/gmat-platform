@@ -1479,3 +1479,137 @@ The sum of all real values of x is therefore 1 + 2 = 3. As a check, x = 1 gives 
 
 The correct answer is C.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+
+---
+
+## Q50
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Radical Simplification
+
+What is the value of √50 + √18 − √8 ?
+
+- A) 4√2
+- B) 6√2
+- C) 10√2
+- D) √60
+- E) 6√6
+
+**answer:** B
+**explanation:** We simplify each radical to lowest terms by extracting perfect-square factors: √50 = √(25·2) = 5√2, √18 = √(9·2) = 3√2, and √8 = √(4·2) = 2√2. Since all three terms share the common radical √2, we combine the coefficients: 5√2 + 3√2 − 2√2 = (5 + 3 − 2)√2 = 6√2. A common error is to add the radicands directly (50 + 18 − 8 = 60) to get √60, which is invalid because radicals do not add that way. The correct answer is B.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q51
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Comparing Radicals
+
+Which of the following has the greatest value?
+
+- A) 2√6
+- B) 5
+- C) 4√2
+- D) √23
+- E) 3√3
+
+**answer:** C
+**explanation:** To compare expressions of the form k√n, we square each so that all quantities can be ranked as ordinary integers (each is positive, so squaring preserves order). We obtain (2√6)² = 4·6 = 24, 5² = 25, (3√3)² = 9·3 = 27, (√23)² = 23, and (4√2)² = 16·2 = 32. The largest square is 32, which belongs to 4√2. A common mistake is to compare only the integer coefficients and pick 5 or 3√3 without accounting for the radical part. The correct answer is C.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q52
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Radical Simplification
+
+What is the value of (√72 + √32) / √2 ?
+
+- A) 52
+- B) 8
+- C) 10√2
+- D) 10
+- E) 6
+
+**answer:** D
+**explanation:** We first simplify the numerator: √72 = √(36·2) = 6√2 and √32 = √(16·2) = 4√2, so the numerator equals 6√2 + 4√2 = 10√2. Dividing by √2 gives (10√2)/√2 = 10. A common error is to keep a stray √2 and answer 10√2, or to add the radicands (72 + 32 = 104) before dividing. The correct answer is D.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q53
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of (√8 · √6) / √3 ?
+
+- A) 8
+- B) 2√6
+- C) 16
+- D) 4√3
+- E) 4
+
+**answer:** E
+**explanation:** Using the product and quotient rules for square roots, we combine all factors under a single radical: (√8 · √6)/√3 = √(8·6/3) = √(48/3) = √16 = 4. Equivalently, √8·√6 = √48 = 4√3, and dividing by √3 cancels the radical to leave 4. A common error is to compute 8·6/3 = 16 but forget to take the square root, giving 16. The correct answer is E.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q54
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of 1/(√7 + √5) + 1/(√7 − √5) ?
+
+- A) √7
+- B) √5
+- C) 2√7
+- D) √35
+- E) √7 + √5
+
+**answer:** A
+**explanation:** We add the two fractions over the common denominator (√7 + √5)(√7 − √5) = 7 − 5 = 2. The numerator becomes (√7 − √5) + (√7 + √5) = 2√7, since the √5 terms cancel. Thus the sum equals 2√7 / 2 = √7. A common error is to mishandle the difference of squares in the denominator or to forget that the √5 terms cancel in the numerator, leading to spurious answers such as √7 + √5. The correct answer is A.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q55
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+What is the value of (√6 + √2) / (√6 − √2) ?
+
+- A) 3
+- B) 2 + √3
+- C) √3
+- D) 2 − √3
+- E) 2 + 2√3
+
+**answer:** B
+**explanation:** We rationalize by multiplying numerator and denominator by the conjugate √6 + √2. The denominator becomes (√6 − √2)(√6 + √2) = 6 − 2 = 4. The numerator becomes (√6 + √2)² = 6 + 2√12 + 2 = 8 + 2·(2√3) = 8 + 4√3. Therefore the expression equals (8 + 4√3)/4 = 2 + √3. A common error is to compute the middle term 2√12 as 2√3 instead of 4√3, which yields the incorrect value 2 + (√3/2) and leads to distractor forms. The correct answer is B.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q56
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Comparing Radicals
+
+Which of the following has the greatest value?
+
+- A) 3√2
+- B) √19
+- C) 2√5
+- D) 4
+- E) ∛80
+
+**answer:** C
+**explanation:** To compare these expressions we square the square-root terms, ranking them as integers (all values are positive, so squaring preserves order): (3√2)² = 18, (2√5)² = 20, (√19)² = 19, and 4² = 16. Among these four, 2√5 is largest, with square 20. The remaining candidate ∛80 satisfies ∛80 ≈ 4.31, so (∛80)² ≈ 18.6, which is less than 20; thus ∛80 does not exceed 2√5. A common error is to assume the cube root is largest because 80 is the biggest radicand, or to stop after comparing only the square roots. The correct answer is C.
+**related_reading:** reading-quant-04-algebra-and-equations

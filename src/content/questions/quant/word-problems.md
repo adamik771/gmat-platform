@@ -1405,7 +1405,7 @@ The 60 employees who have neither degree therefore constitute 40% of the total, 
 
 Solving for T,
 
-T = 60 ÷ 0.40 = 150.
+Recognizing that 0.40 = 2/5, this is T = 60 ÷ (2/5) = 60 × (5/2) = (60 ÷ 2) × 5 = 30 × 5 = 150.
 
 The correct answer is B.
 **related_reading:** reading-quant-05-word-problems
@@ -1755,7 +1755,7 @@ P = 960 / (0.08 times 3).
 
 We first evaluate the denominator: 0.08 times 3 = 0.24. Then
 
-P = 960 / 0.24 = 4,000.
+P = 960 / 0.24. Clearing the decimal with 0.24 = 24/100 gives 960 / 0.24 = 96,000 / 24 = 4,000, since 24 times 4,000 = 96,000.
 
 Thus the original loan amount is 4,000 dollars. As a check, applying the simple interest relationship to this principal gives 4,000 times 0.08 times 3 = 960 dollars, which matches the interest stated in the problem.
 
@@ -1885,7 +1885,7 @@ Subtracting 27 from both sides yields:
 
 Dividing both sides by 0.45 gives:
 
-x = 9 / 0.45 = 20
+x = 9 / 0.45. Recognizing that 0.45 = 9/20, this is 9 / (9/20) = 9 times (20/9) = 20, cancelling the 9s.
 
 Thus 20 liters of water must be evaporated. As a check, removing 20 liters leaves a total volume of 60 minus 20 = 40 liters, and 18 / 40 = 0.45, confirming the 45 percent concentration.
 
@@ -2176,3 +2176,137 @@ Thus there are 8 gardeners, and the number of assistants is 8 + 4, which is 12. 
 The correct answer is E.
 **related_reading:** reading-quant-05-word-problems
 **takeaway:** Multi-constraint word problems: translate each constraint into an equation, solve the system for the variable, then complete the final calculation the question actually asks for (total workers = g + (g+4), not just g). Always re-read the final question before writing the answer.
+
+
+---
+
+## Q63
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Age Problems
+
+Maria is currently three times as old as her son. In 12 years, she will be only twice as old as her son will be then. How old is Maria now?
+
+- A) 24
+- B) 30
+- C) 36
+- D) 42
+- E) 48
+
+**answer:** C
+**explanation:** Let the son's current age be s, so Maria's current age is 3s. In 12 years their ages are s+12 and 3s+12, and the condition gives 3s+12 = 2(s+12). Expanding, 3s+12 = 2s+24, so s = 12. Maria's current age is 3s = 36. As a check, in 12 years Maria is 48 and the son is 24, and 48 = 2(24). The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q64
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Consecutive Integers
+
+The sum of five consecutive integers is 215. What is the largest of these integers?
+
+- A) 41
+- B) 42
+- C) 43
+- D) 44
+- E) 45
+
+**answer:** E
+**explanation:** For an odd count of consecutive integers, the sum equals the count times the middle term. Thus the middle integer is 215 / 5 = 43. The five integers are 41, 42, 43, 44, 45, so the largest is 45. (A solver who reports the middle term instead of the largest would choose 43.) The correct answer is E.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q65
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Profit/Loss
+
+A merchant sold a lamp for $96, which represented a profit of 20% over the cost. At what price should the merchant have sold the same lamp to earn a profit of 35% over the cost?
+
+- A) $104
+- B) $108
+- C) $112
+- D) $115.20
+- E) $129.60
+
+**answer:** B
+**explanation:** Let C be the cost. Since the selling price of 96 is 120% of cost, 1.20C = 96, so C = 96 / 1.20 = 80. A 35% profit requires a selling price of 1.35 x 80 = 108. (Applying the extra 15% to the 96 selling price instead of to cost gives 96 x 1.15 = 110.40, and applying 35% to 96 gives 129.60, both distractors.) The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q66
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Age Problems
+
+The sum of Anna's and Ben's current ages is 49. Five years ago, Anna was exactly twice as old as Ben was then. How old is Anna now?
+
+- A) 28
+- B) 30
+- C) 31
+- D) 33
+- E) 36
+
+**answer:** C
+**explanation:** Let Ben's current age be B, so Anna's current age is 49 - B. Five years ago their ages were (49 - B) - 5 and B - 5, and the condition gives 44 - B = 2(B - 5). Expanding, 44 - B = 2B - 10, so 54 = 3B and B = 18. Then Anna's age is 49 - 18 = 31. As a check, five years ago Anna was 26 and Ben was 13, and 26 = 2(13). The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q67
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Consecutive Integers
+
+The sum of three consecutive multiples of 7 is 168. What is the greatest of the three multiples?
+
+- A) 49
+- B) 56
+- C) 63
+- D) 70
+- E) 77
+
+**answer:** C
+**explanation:** Let the three consecutive multiples of 7 be 7n, 7(n+1), and 7(n+2). Their sum is 21n + 21 = 168, so 21n = 147 and n = 7. The multiples are 49, 56, and 63, so the greatest is 63. Equivalently, the middle term is 168 / 3 = 56, and the next multiple of 7 is 63. The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q68
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Profit/Loss
+
+A wholesaler purchases a shipment of identical units. She sells two-thirds of the units at a profit of 25% per unit and the remaining one-third at a loss of 10% per unit. If her total profit on the entire shipment is $480, what was the total cost of the shipment?
+
+- A) $2,400
+- B) $3,000
+- C) $3,200
+- D) $3,600
+- E) $4,800
+
+**answer:** D
+**explanation:** Let C be the total cost, so the two-thirds portion costs (2/3)C and the one-third portion costs (1/3)C. The profit on the first portion is 0.25 x (2/3)C = (1/6)C, and the loss on the second portion is 0.10 x (1/3)C = (1/30)C. The net profit is (1/6)C - (1/30)C = (5/30 - 1/30)C = (4/30)C = (2/15)C. Setting (2/15)C = 480 gives C = 480 x 15 / 2 = 3,600. The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q69
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Consecutive Integers
+
+When the sum of four consecutive positive integers is divided by the smallest of the four integers, the quotient is exactly 5. What is the largest of the four integers?
+
+- A) 6
+- B) 7
+- C) 8
+- D) 9
+- E) 10
+
+**answer:** D
+**explanation:** Let the four consecutive integers be n, n+1, n+2, and n+3, so their sum is 4n + 6. The condition states (4n + 6) / n = 5, which gives 4n + 6 = 5n, so n = 6. The integers are 6, 7, 8, 9, and the largest is 9. As a check, (6 + 7 + 8 + 9) / 6 = 30 / 6 = 5. (A solver who stops at the smallest integer n = 6 would choose that value instead.) The correct answer is D.
+**related_reading:** reading-quant-05-word-problems

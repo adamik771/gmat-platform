@@ -1430,13 +1430,13 @@ Let n denote the unknown integer. We are given that one integer is 36, that the 
 
 12 times 180 = 36 times n.
 
-Computing the left side, 12 times 180 = 2,160, so:
+Rather than forming the large product, cancel against the 36 first: since 180/36 = 5, the left side equals 12 times 5, so:
 
-2,160 = 36n.
+12 times 5 = 36n.
 
 Dividing both sides by 36 yields:
 
-n = 2,160 divided by 36 = 60.
+n = 12 times (180/36) = 12 times 5 = 60.
 
 We may confirm this result directly. Writing each number as a product of prime factors, 36 = 2^2 times 3^2 and 60 = 2^2 times 3 times 5. The GCF takes the lowest power of each shared prime, giving 2^2 times 3 = 12, and the LCM takes the highest power of each prime present, giving 2^2 times 3^2 times 5 = 180. Both conditions are satisfied.
 
@@ -1577,3 +1577,555 @@ Each ordered pair (m, n) yields one ordered pair (a, b) = (6m, 6n), namely (6, 6
 
 The correct answer is C.
 **related_reading:** reading-quant-03-number-properties
+
+
+---
+
+## Q50
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Order of Operations
+
+What is the value of 30 − 6 × 4 + 18 ÷ 3 ?
+
+- A) 102
+- B) 12
+- C) 30
+- D) −6
+- E) 18
+
+**answer:** B
+**explanation:** We apply the standard order of operations, performing multiplication and division before addition and subtraction. First, 6 × 4 = 24 and 18 ÷ 3 = 6. Substituting back gives 30 − 24 + 6. Working left to right, 30 − 24 = 6, and 6 + 6 = 12. The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q51
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Signed Numbers
+
+What is the value of −15 + 9 − (−4) + (−7) ?
+
+- A) −5
+- B) −17
+- C) −9
+- D) 9
+- E) −25
+
+**answer:** C
+**explanation:** We first rewrite each subtraction of a negative and addition of a negative as ordinary signed terms: −15 + 9 + 4 − 7. Grouping the negatives and positives separately, the negatives sum to −15 − 7 = −22 and the positives sum to 9 + 4 = 13. Therefore the total is −22 + 13 = −9. The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q52
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Absolute Value
+
+What is the value of |3 − 9| − |4 − 1| + |−2| ?
+
+- A) 1
+- B) −1
+- C) 11
+- D) 5
+- E) −5
+
+**answer:** D
+**explanation:** We evaluate each absolute value first. Since 3 − 9 = −6, we have |3 − 9| = 6. Since 4 − 1 = 3, we have |4 − 1| = 3. And |−2| = 2. Substituting gives 6 − 3 + 2. Working left to right, 6 − 3 = 3 and 3 + 2 = 5. The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q53
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Order of Operations
+
+What is the value of 16 − 2 × (3 − 7)² ?
+
+- A) 16
+- B) 224
+- C) 48
+- D) −112
+- E) −16
+
+**answer:** E
+**explanation:** We work from the innermost grouping outward. First, 3 − 7 = −4, and squaring gives (−4)² = 16. The expression becomes 16 − 2 × 16. The exponent has already been handled, so we next perform the multiplication: 2 × 16 = 32. Finally, 16 − 32 = −16. A common error is to compute 16 − 2 = 14 before squaring, or to square 14, but multiplication and exponentiation must precede the subtraction. The correct answer is E.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q54
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Signed Numbers
+
+What is the value of [(−3) × 4 × (−2)] ÷ (−8) ?
+
+- A) −3
+- B) 3
+- C) −24
+- D) 24
+- E) −1
+
+**answer:** A
+**explanation:** We first evaluate the bracket. The product (−3) × 4 = −12, and (−12) × (−2) = 24, since a negative times a negative is positive. The expression is now 24 ÷ (−8). A positive divided by a negative is negative, so 24 ÷ (−8) = −3. A frequent error is to lose track of the sign and report 3. The correct answer is A.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q55
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Absolute Value
+
+If |2x − 5| = 9, what is the sum of all possible values of x ?
+
+- A) 7
+- B) 5
+- C) −2
+- D) 9
+- E) −14
+
+**answer:** B
+**explanation:** An absolute-value equation |2x − 5| = 9 splits into two cases. In the first, 2x − 5 = 9, giving 2x = 14 and x = 7. In the second, 2x − 5 = −9, giving 2x = −4 and x = −2. The two solutions are 7 and −2, and their sum is 7 + (−2) = 5. A common error is to take only the positive case (7) or to multiply the roots (−14) instead of adding. The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q56
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Consecutive Integers
+
+The sum of five consecutive integers is 215. What is the greatest of these five integers?
+
+- A) 47
+- B) 43
+- C) 45
+- D) 41
+- E) 44
+
+**answer:** C
+**explanation:** Let the five consecutive integers be centered on the middle term m, so they are m − 2, m − 1, m, m + 1, m + 2. Their sum telescopes to 5m, since the offsets cancel in pairs. Setting 5m = 215 gives m = 43, the middle integer. The greatest integer is therefore m + 2 = 45. A common error is to report the middle value 43 or to miscount the offset and choose 47. The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q57
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Order of Operations
+
+What is the value of −2 − 3 × [4 − 2 × (5 − 8)] ?
+
+- A) 26
+- B) 4
+- C) −50
+- D) −32
+- E) −14
+
+**answer:** D
+**explanation:** We resolve the expression from the innermost grouping outward. First, 5 − 8 = −3, so 2 × (−3) = −6. Inside the brackets, 4 − (−6) = 4 + 6 = 10. The expression becomes −2 − 3 × 10. Multiplication precedes subtraction, so 3 × 10 = 30, giving −2 − 30 = −32. Common errors include treating −2 − 3 as a factor of −5 (yielding −50) or mishandling the double negative inside the bracket (yielding 4). The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q58
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Signed Numbers
+
+What is the value of (−1)¹ + (−1)² + (−1)³ + ... + (−1)⁹⁹ ?
+
+- A) 99
+- B) 0
+- C) 1
+- D) −99
+- E) −1
+
+**answer:** E
+**explanation:** Each term (−1)^k equals −1 when k is odd and +1 when k is even. From exponent 1 to 99 there are 99 terms: 50 odd exponents (1, 3, ..., 99) each contributing −1, and 49 even exponents (2, 4, ..., 98) each contributing +1. The sum is therefore 49 − 50 = −1. Equivalently, consecutive pairs (−1 + 1) cancel, leaving the single unpaired final term (−1)⁹⁹ = −1. A common error is to assume the terms fully cancel to 0, which would require an even count of terms. The correct answer is E.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q59
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Consecutive Integers
+
+The product of two consecutive integers is 156. If both integers are negative, what is the lesser of the two?
+
+- A) −13
+- B) −12
+- C) −14
+- D) 12
+- E) 13
+
+**answer:** A
+**explanation:** Let the two consecutive integers be n and n + 1, so n(n + 1) = 156. Expanding gives n² + n − 156 = 0, which factors as (n − 12)(n + 13) = 0, yielding n = 12 or n = −13. Since both integers must be negative, we take n = −13, making the pair −13 and −12. The lesser (more negative) integer is −13. A common error is to choose −12, the greater of the negative pair, or to take the positive root 12. The correct answer is A.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q60
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Fractions
+
+What is the value of 3/8 + 1/6 ?
+
+- A) 13/24
+- B) 4/14
+- C) 7/24
+- D) 1/2
+- E) 11/24
+
+**answer:** A
+**explanation:** We rewrite both fractions over the least common denominator of 8 and 6, which is 24. Then 3/8 = 9/24 and 1/6 = 4/24, so 3/8 + 1/6 = 9/24 + 4/24 = 13/24. The fraction 4/14 results from incorrectly adding numerators and denominators separately, and 7/24 results from converting only one fraction correctly. The correct answer is A.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q61
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Decimals
+
+What is the value of 0.045 × 200 ?
+
+- A) 0.9
+- B) 9
+- C) 90
+- D) 4.5
+- E) 0.45
+
+**answer:** B
+**explanation:** We compute 0.045 × 200 by noting that 0.045 × 2 = 0.09, and multiplying by 100 shifts the decimal point two places to the right: 0.09 × 100 = 9. Equivalently, 45/1000 × 200 = 9000/1000 = 9. The value 90 arises from misplacing the decimal point by one position, and 0.9 from shifting it the wrong way. The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q62
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fraction Operations
+
+What is the value of (2/3) ÷ (5/9) × (5/4) ?
+
+- A) 25/54
+- B) 24/25
+- C) 5/6
+- D) 3/2
+- E) 10/9
+
+**answer:** D
+**explanation:** Working left to right, we first compute (2/3) ÷ (5/9) = (2/3) × (9/5) = 18/15 = 6/5. Then (6/5) × (5/4) = (6 × 5)/(5 × 4); cancelling the 5 gives 6/4 = 3/2. The value 25/54 results from multiplying by 5/9 instead of dividing by it, and 24/25 results from inverting the final factor. The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q63
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Decimals
+
+If 0.6 of a number equals 0.84, what is 0.25 of that number?
+
+- A) 0.21
+- B) 0.35
+- C) 1.4
+- D) 0.504
+- E) 0.14
+
+**answer:** B
+**explanation:** Let x be the number. Then 0.6x = 0.84, so x = 0.84/0.6 = 1.4. We then take 0.25 of x: 0.25 × 1.4 = 0.35. The value 1.4 results from stopping after finding x, the value 0.21 results from taking 0.25 of 0.84 directly, and 0.504 results from multiplying 0.6 × 0.84. The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q64
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractions
+
+A water tank is 2/5 full. After 9 liters are added, the tank is 7/10 full. What is the full capacity of the tank, in liters?
+
+- A) 18
+- B) 30
+- C) 21
+- D) 45
+- E) 36
+
+**answer:** B
+**explanation:** Let C be the capacity. The 9 liters added correspond to the rise from 2/5 to 7/10 of the tank, so (7/10 − 2/5)C = 9. Since 2/5 = 4/10, the difference is 7/10 − 4/10 = 3/10, giving (3/10)C = 9, so C = 9 × (10/3) = 30. The value 18 results from treating the difference as 1/2 by subtracting numerators and denominators separately. The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q65
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fraction Operations
+
+Which of the following correctly expresses 7/40 as both a decimal and a percent?
+
+- A) 0.175 and 1.75%
+- B) 0.175 and 17.5%
+- C) 1.75 and 17.5%
+- D) 0.0175 and 17.5%
+- E) 0.175 and 175%
+
+**answer:** B
+**explanation:** We divide 7 by 40: since 7/40 = 17.5/100, the decimal form is 0.175. To convert a decimal to a percent we multiply by 100, so 0.175 = 17.5%. The pairing '0.175 and 1.75%' fails because it multiplies by 10 instead of 100, and '1.75 and 17.5%' misplaces the decimal point in the decimal form. The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q66
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Fraction Operations
+
+What is the value of 1 ÷ ( 1 + 1 ÷ ( 1 + 1/3 ) ) ?
+
+- A) 3/7
+- B) 4/7
+- C) 7/4
+- D) 7/3
+- E) 3/4
+
+**answer:** B
+**explanation:** We evaluate from the innermost expression outward. First, 1 + 1/3 = 4/3. Then 1 ÷ (4/3) = 3/4, so the bracket becomes 1 + 3/4 = 7/4. Finally, 1 ÷ (7/4) = 4/7. The value 3/7 results from failing to invert the innermost fraction, and 7/4 results from stopping one step early. The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q67
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Decimals
+
+Expressed as a single fraction in lowest terms, what is the value of 0.444… − 0.1666… (where the digits 4 and 6 repeat indefinitely)?
+
+- A) 5/18
+- B) 11/18
+- C) 6/25
+- D) 1/4
+- E) 7/18
+
+**answer:** A
+**explanation:** The repeating decimal 0.444… equals 4/9, and 0.1666… equals 1/6. Converting to a common denominator of 18, we have 4/9 = 8/18 and 1/6 = 3/18, so the difference is 8/18 − 3/18 = 5/18. The value 11/18 results from adding rather than subtracting, and 6/25 results from truncating the decimals to 0.4 − 0.16 = 0.24. The correct answer is A.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q68
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Fractions
+
+Which of the following fractions is the greatest?
+
+- A) 7/10
+- B) 12/17
+- C) 17/24
+- D) 22/31
+- E) 5/7
+
+**answer:** E
+**explanation:** We compare each fraction to a benchmark by noting how close it is to 1 relative to its size. Converting to decimals: 7/10 = 0.700, 12/17 ≈ 0.706, 17/24 ≈ 0.708, 22/31 ≈ 0.710, and 5/7 ≈ 0.714. Alternatively, each fraction is less than 1 by 3/10, 5/17, 7/24, 9/31, and 2/7 respectively, and 2/7 ≈ 0.286 is the smallest deficit, so 5/7 is closest to 1 and therefore the greatest. The correct answer is E.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q69
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** GCF and LCM
+
+What is the greatest common factor of 84 and 120?
+
+- A) 6
+- B) 12
+- C) 24
+- D) 42
+- E) 60
+
+**answer:** B
+**explanation:** We factor each number into primes. We have 84 = 2^2 · 3 · 7 and 120 = 2^3 · 3 · 5. The greatest common factor takes the lowest power of each shared prime, namely 2^2 and 3^1, so the GCF = 4 · 3 = 12. (A candidate who multiplies the highest powers would wrongly obtain 24; one who confuses GCF with a common multiple would land on 60.) The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q70
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Units Digit Patterns
+
+What is the units digit of 7^2026?
+
+- A) 1
+- B) 3
+- C) 7
+- D) 9
+- E) 6
+
+**answer:** D
+**explanation:** We track the units digit of powers of 7, which cycle in blocks of four: 7^1 ends in 7, 7^2 in 9, 7^3 in 3, 7^4 in 1, and then the pattern repeats. To find the position within the cycle we compute the remainder of the exponent upon division by 4. Since 2026 = 4 · 506 + 2, the remainder is 2, which corresponds to the second entry of the cycle, namely 9. (Mistaking the remainder for 0 would give 1; an off-by-one in the cycle would give 3.) The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q71
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** GCF and LCM
+
+For two positive integers, the greatest common factor is 12 and the least common multiple is 180. If one of the integers is 36, what is the other integer?
+
+- A) 48
+- B) 60
+- C) 72
+- D) 90
+- E) 144
+
+**answer:** B
+**explanation:** For any two positive integers, the product of the two numbers equals the product of their GCF and LCM. Thus (first)(second) = (GCF)(LCM) = 12 · 180. We solve for the unknown number: other = (12 · 180)/36. Cancelling, 180/36 = 5, so other = 12 · 5 = 60. We verify: GCF(36, 60) = 12 and LCM(36, 60) = 180, consistent with the given data. (Dividing the LCM directly by the GCF gives 15, a tempting but incorrect step; multiplying GCF by LCM and forgetting to divide leads to inflated values.) The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q72
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Units Digit Patterns
+
+What is the units digit of the sum 3^1 + 3^2 + 3^3 + ... + 3^50?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 6
+- E) 8
+
+**answer:** C
+**explanation:** The units digits of powers of 3 cycle with period 4: 3, 9, 7, 1, then repeat. Within each complete cycle of four consecutive terms the units digits sum to 3 + 9 + 7 + 1 = 20, contributing a units digit of 0. The 50 terms contain 12 full cycles (48 terms) plus 2 leftover terms, namely 3^49 and 3^50. Since 49 ≡ 1 (mod 4), 3^49 ends in 3; since 50 ≡ 2 (mod 4), 3^50 ends in 9. The 12 full cycles contribute units digit 0, so the overall units digit is that of 3 + 9 = 12, which is 2. The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q73
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Divisibility
+
+In the six-digit number 48D210, the symbol D represents a single digit. If 48D210 is divisible by 9, what is the value of D?
+
+- A) 0
+- B) 3
+- C) 6
+- D) 7
+- E) 9
+
+**answer:** B
+**explanation:** A number is divisible by 9 exactly when the sum of its digits is divisible by 9. The known digits sum to 4 + 8 + 2 + 1 + 0 = 15, so the full digit sum is 15 + D. We need 15 + D to be a multiple of 9. The next multiple of 9 at or above 15 is 18, requiring D = 3 (the following multiple, 27, would need D = 12, which is not a single digit). Hence D = 3. (Applying the divisibility-by-3 rule too loosely admits multiple answers; testing divisibility by 9 pins it down uniquely.) The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q74
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Estimation
+
+Which of the following is closest to (4.02 × 10^6) / (1.98 × 10^3)?
+
+- A) 20
+- B) 200
+- C) 2,000
+- D) 20,000
+- E) 200,000
+
+**answer:** C
+**explanation:** We estimate by rounding to convenient values. The numerator 4.02 × 10^6 is approximately 4 × 10^6, and the denominator 1.98 × 10^3 is approximately 2 × 10^3. Dividing, we get (4 × 10^6)/(2 × 10^3) = 2 × 10^(6−3) = 2 × 10^3 = 2,000. (A common error is mishandling the exponent subtraction and writing 10^9 or 10^(6+3), which inflates the magnitude; another is dividing 4 by 2 but losing track of the powers of ten.) The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q75
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Units Digit Patterns
+
+What is the units digit of 2^15 + 3^15 + 7^15?
+
+- A) 2
+- B) 4
+- C) 6
+- D) 8
+- E) 0
+
+**answer:** D
+**explanation:** We find each units digit using its four-step cycle and the exponent's remainder modulo 4, where 15 ≡ 3 (mod 4). Powers of 2 cycle 2, 4, 8, 6; the third entry is 8, so 2^15 ends in 8. Powers of 3 cycle 3, 9, 7, 1; the third entry is 7, so 3^15 ends in 7. Powers of 7 cycle 7, 9, 3, 1; the third entry is 3, so 7^15 ends in 3. Adding the units digits, 8 + 7 + 3 = 18, whose units digit is 8. (Using the fourth entry of each cycle, as if 15 were a multiple of 4, produces a different and incorrect total.) The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q76
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** GCF and LCM
+
+Two positive integers have a greatest common factor of 9, and their sum is 153. How many unordered pairs of such integers are possible?
+
+- A) 4
+- B) 6
+- C) 8
+- D) 12
+- E) 16
+
+**answer:** C
+**explanation:** If the GCF of the two integers is 9, we may write them as 9m and 9n, where m and n are positive integers with no common factor greater than 1 (that is, gcd(m, n) = 1). Their sum gives 9m + 9n = 153, so m + n = 17. Because 17 is prime, every pair of positive integers summing to 17 is automatically coprime (no factor other than 1 could divide both m and n without dividing 17). Counting unordered pairs with m < n and m + n = 17 gives m = 1, 2, 3, 4, 5, 6, 7, 8 (paired with 16, 15, 14, 13, 12, 11, 10, 9), which is 8 pairs. (Forgetting the coprimality requirement, or double-counting ordered pairs as 16, are the typical missteps.) The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q77
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Divisibility
+
+What is the largest integer that must be a divisor of n^5 − n for every positive integer n?
+
+- A) 6
+- B) 10
+- C) 15
+- D) 30
+- E) 60
+
+**answer:** D
+**explanation:** We factor the expression: n^5 − n = n(n^4 − 1) = n(n^2 − 1)(n^2 + 1) = (n − 1)n(n + 1)(n^2 + 1). The factor (n − 1)n(n + 1) is a product of three consecutive integers, so it is divisible by both 2 and 3, hence by 6. For divisibility by 5, we use Fermat's little theorem (or direct checking of residues): n^5 ≡ n (mod 5) for every integer n, so 5 always divides n^5 − n. Since 2, 3, and 5 are distinct primes each guaranteed to divide the expression, their product 30 must divide it for all n. Testing n = 2 gives 32 − 2 = 30, confirming that no larger fixed divisor is possible (60 fails here). The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q78
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractions
+
+A recipe uses 3/4 cup of sugar for every 12 cookies. At the same rate, how many cups of sugar are needed to make 30 cookies?
+
+- A) 9/8
+- B) 3/2
+- C) 15/8
+- D) 9/4
+- E) 5/2
+
+**answer:** C
+**explanation:** Making 30 cookies instead of 12 scales the recipe by a factor of 30/12 = 5/2. The sugar required is therefore (3/4) × (5/2) = 15/8 cups. A common error is to add the quantities rather than multiply, or to invert the scaling factor. The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations

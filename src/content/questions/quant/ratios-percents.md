@@ -231,9 +231,7 @@ The new total volume of the solution is 30 + x liters, and this new solution is 
 
 6 = 0.15(30 + x).
 
-Solving for x, we divide both sides by 0.15:
-
-30 + x = 6 / 0.15 = 40.
+Solving for x, we recognize 0.15 = 3/20, so 30 + x = 6 ÷ (3/20) = 6 × (20/3) = (6/3) × 20 = 2 × 20 = 40.
 
 Subtracting 30 from both sides gives x = 40 − 30 = 10.
 
@@ -610,9 +608,7 @@ We are told that the final sale price is $84 more than the cost, which means the
 
 0.20C = 84.
 
-Solving for C, we divide both sides by 0.20:
-
-C = 84 / 0.20 = 420.
+Solving for C, we recognize 0.20 = 1/5, so C = 84 ÷ (1/5) = 84 * 5 = 420.
 
 Thus the cost of the watch is $420.
 
@@ -880,10 +876,7 @@ Translating the relationship into an equation, we have:
 
 0.70 x P = 490
 
-Solving for P, we divide both sides by 0.70:
-
-P = 490 / 0.70
-P = 700
+Solving for P, we recognize 0.70 = 7/10, so P = 490 ÷ (7/10) = 490 x (10/7) = (490/7) x 10 = 70 x 10 = 700 (cancel 7).
 
 Therefore the original price was $700. As a check, taking 30% off $700 gives 0.30 x 700 = 210, and 700 - 210 = 490, which matches the stated sale price.
 
@@ -1009,7 +1002,7 @@ The three shares together equal the total bonus of 15,000:
 
 1.50C + 1.25C + 1.00C = 15,000.
 
-Combining the coefficients gives 3.75C = 15,000, so C = 15,000 ÷ 3.75 = 4,000.
+Combining the coefficients gives 3.75C = 15,000. Recognize 3.75 = 15/4, so C = 15,000 ÷ (15/4) = 15,000 × (4/15) = 1,000 × 4 = 4,000 (cancel 15).
 
 The quantity requested is A's share. Substituting, A = 1.50C = 1.50 × 4,000 = 6,000.
 
@@ -1563,7 +1556,7 @@ The total annual payroll is the sum of these three amounts:
 
 The fraction of the total payroll that goes to managers is therefore
 
-360,000 / 1,160,000 = 360 / 1,160 = 9 / 29.
+360,000 / 1,160,000 = 360 / 1,160 = (40 × 9) / (40 × 29) = 9 / 29 (cancel the common factor 40).
 
 Converting to a percent, 9 / 29 = 0.3103..., which is approximately 31 percent.
 

@@ -3,7 +3,7 @@ import { ArrowRight, Target, RotateCcw, Sparkles } from "lucide-react"
 
 interface Props {
   section: "Quant" | "Verbal" | "DI"
-  estimatedMinutes: number
+  estimatedPages: number
   totalSections: number
   completedSections: number
   hasProblemSets: boolean
@@ -27,7 +27,7 @@ interface Props {
  */
 export default function ChapterRightPanel({
   section,
-  estimatedMinutes,
+  estimatedPages,
   totalSections,
   completedSections,
   hasProblemSets,
@@ -41,7 +41,7 @@ export default function ChapterRightPanel({
   // Remaining time scales linearly with unread sections.
   const remainingFraction =
     totalSections > 0 ? (totalSections - completedSections) / totalSections : 1
-  const remainingMinutes = Math.max(0, Math.round(estimatedMinutes * remainingFraction))
+  const remainingPages = Math.max(0, Math.round(estimatedPages * remainingFraction))
 
   // Practice queue picks a topic-appropriate slug — chapter section drives it.
   const practiceSlug =
@@ -93,7 +93,7 @@ export default function ChapterRightPanel({
           className="text-[11px] mt-3"
           style={{ color: "var(--read-text-faint)" }}
         >
-          ~{remainingMinutes} min{remainingMinutes === 1 ? "" : "s"} left
+          ~{remainingPages} page{remainingPages === 1 ? "" : "s"} left
         </p>
       </div>
 
