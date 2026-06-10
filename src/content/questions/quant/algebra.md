@@ -1077,3 +1077,619 @@ Since statement (1) alone is sufficient and statement (2) alone is not, statemen
 
 The correct answer is A.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Linear Equations
+**skill:** solve-then-evaluate-target-expression
+**trap_type:** answering-the-intermediate-variable
+**est_time_seconds:** 45
+
+If 4(x − 3) = 20, what is the value of x + 2?
+
+- A) 5
+- B) 8
+- C) 10
+- D) 16
+- E) 25
+
+**answer:** C
+**fastest_path:** Divide both sides by 4 first to get x − 3 = 5, so x = 8. The question asks for x + 2, not x — read the target one more time before answering: 8 + 2 = 10.
+**explanation:** The equation is 4(x − 3) = 20. The fastest move is to divide both sides by 4 before expanding, which gives x − 3 = 5. Adding 3 to both sides yields x = 8.
+
+The question, however, does not ask for x; it asks for the value of x + 2. Substituting x = 8 gives x + 2 = 8 + 2 = 10.
+
+The correct answer is C.
+**mistake_a:** Choice A is the value of x − 3 (which equals 5 after dividing by 4). A student who divides correctly but stops one step early, reading "5" as the solution, lands here.
+**mistake_b:** Choice B is the value of x itself. This is the single most tempting wrong answer: the algebra is done correctly, but the student forgets that the question asks for x + 2, not x.
+**mistake_d:** Choice D is 2x = 16. A student who reads the target as "twice x" rather than "x plus 2" computes 2(8) and arrives here.
+**mistake_e:** Choice E comes from skipping the division: treating 4(x − 3) = 20 as x − 3 = 20, giving x = 23 and x + 2 = 25. This drops the factor of 4 entirely.
+**common_trap:** Solving for x correctly and then answering the value of x rather than the requested expression x + 2.
+**takeaway:** After you solve for the variable, re-read the final line of the question. GMAT problems frequently ask for a transformed quantity (x + 2, 2x, x², 1/x) precisely so that the value of x alone sits among the wrong answers.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Inequalities
+**skill:** solve-linear-inequality
+**trap_type:** arithmetic-slip-on-isolation
+**est_time_seconds:** 45
+
+If 2x − 5 < 7, which of the following describes all possible values of x?
+
+- A) x < 1
+- B) x < 6
+- C) x > 6
+- D) x < 12
+- E) x > 1
+
+**answer:** B
+**fastest_path:** Add 5, then divide by 2 — both are positive operations, so the inequality sign never flips. 2x < 12 gives x < 6.
+**explanation:** Begin with 2x − 5 < 7. Add 5 to both sides to isolate the variable term: 2x < 12. Because we are dividing by a positive number (2), the direction of the inequality is preserved, giving x < 6.
+
+Note that no sign reversal occurs here — reversal happens only when you multiply or divide both sides by a negative quantity, which never takes place in this problem.
+
+The correct answer is B.
+**mistake_a:** Choice A results from an arithmetic slip: subtracting 5 from 7 instead of adding it, which produces 2x < 2 and then x < 1. The error is treating "− 5" as something to remove from the right side rather than as a term to cancel by adding 5 to both sides.
+**mistake_c:** Choice C flips the inequality sign for no reason. Dividing by +2 does not reverse the direction; reversal applies only to division by a negative number.
+**mistake_d:** Choice D forgets the final division: a student reaches 2x < 12 and reports x < 12 without dividing by 2.
+**mistake_e:** Choice E combines two errors — the arithmetic slip from A and a sign flip — to land on x > 1.
+**common_trap:** Reversing the inequality sign when no negative multiplication or division has occurred.
+**takeaway:** The inequality sign reverses only when you multiply or divide both sides by a negative number. Adding, subtracting, and dividing by positive numbers all leave the direction unchanged.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponents
+**skill:** negative-and-fractional-exponents
+**trap_type:** dropping-the-reciprocal-sign
+**est_time_seconds:** 50
+
+If 2^x = 1/8, what is the value of x?
+
+- A) −3
+- B) −4
+- C) −1/3
+- D) 3
+- E) 1/8
+
+**answer:** A
+**fastest_path:** Rewrite the right side as a power of 2: 1/8 = 1/2³ = 2⁻³. Equal bases force equal exponents, so x = −3.
+**explanation:** The goal is to express both sides of 2^x = 1/8 as powers of the same base, 2. The number 8 is 2³, so 1/8 = 1/2³. A reciprocal of a power is the same base with a negated exponent: 1/2³ = 2⁻³.
+
+The equation becomes 2^x = 2⁻³. When two powers of the same base are equal, their exponents must be equal, so x = −3.
+
+The correct answer is A.
+**mistake_b:** Choice B miscounts the power of 2 in 8. Since 8 = 2³ (not 2⁴), the exponent is −3, not −4.
+**mistake_c:** Choice C confuses a reciprocal exponent with a fractional one. Taking the reciprocal of the value negates the exponent (giving −3); it does not turn the exponent into a fraction.
+**mistake_d:** Choice D recognizes that 8 = 2³ but forgets that the fraction 1/8 makes the exponent negative. It answers the equation 2^x = 8 instead of 2^x = 1/8.
+**mistake_e:** Choice E simply restates the right-hand side of the equation without solving for the exponent.
+**common_trap:** Reading 8 = 2³ correctly but ignoring that the reciprocal 1/8 forces the exponent to be negative.
+**takeaway:** A reciprocal flips the sign of the exponent: 1/b^n = b^(−n). Always rewrite both sides as powers of a common base, then set the exponents equal.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Systems of Equations
+**skill:** substitution-method
+**trap_type:** answering-the-wrong-variable
+**est_time_seconds:** 50
+
+If y = 2x + 1 and 3x + y = 16, what is the value of y?
+
+- A) 3
+- B) 5
+- C) 7
+- D) 9
+- E) 13
+
+**answer:** C
+**fastest_path:** The first equation already gives y in terms of x, so substitute it into the second: 3x + (2x + 1) = 16. Solve for x, then convert to y — don't stop at x.
+**explanation:** Because the first equation expresses y directly as 2x + 1, substitution is the most efficient method. Replace y in the second equation: 3x + (2x + 1) = 16. Combining like terms gives 5x + 1 = 16, so 5x = 15 and x = 3.
+
+The question asks for y, not x. Substitute x = 3 back into y = 2x + 1: y = 2(3) + 1 = 7.
+
+The correct answer is C.
+**mistake_a:** Choice A is the value of x. After correctly finding x = 3, a student who loses track of which variable was requested reports x instead of y.
+**mistake_b:** Choice B comes from a sign error in the first equation, computing y = 2x − 1 = 2(3) − 1 = 5 instead of 2x + 1.
+**mistake_d:** Choice D results from an arithmetic slip in the system, solving 5x = 20 (instead of 15) to get x = 4 and then a mismatched y.
+**mistake_e:** Choice E is 16 − 3, the residue of trying to "subtract x from the total" rather than substituting properly.
+**common_trap:** Solving the system correctly for x and then reporting x when the question asks for y.
+**takeaway:** When one equation is already solved for a variable, substitution beats elimination. Finish by converting back to the variable the question actually asks for.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Functions
+**skill:** solve-for-input-given-output
+**trap_type:** evaluating-instead-of-solving
+**est_time_seconds:** 50
+
+The function f is defined by f(x) = 3x − 4. If f(a) = 11, what is the value of a?
+
+- A) 5
+- B) 7
+- C) 9
+- D) 11
+- E) 29
+
+**answer:** A
+**fastest_path:** f(a) = 11 means 3a − 4 = 11. You are given the output and asked for the input, so solve the equation rather than plugging a number into f.
+**explanation:** The notation f(a) = 11 means that when the input a is fed into the rule f(x) = 3x − 4, the output equals 11. This gives the equation 3a − 4 = 11.
+
+Add 4 to both sides: 3a = 15. Divide by 3: a = 5.
+
+The correct answer is A.
+**mistake_b:** Choice B stops after adding 4 (11 + 4 = 15... ) but mishandles the division, or computes 11 − 4 = 7 and reports it directly without dividing by 3.
+**mistake_c:** Choice C is a partial-arithmetic distractor that splits the difference between the other wrong values; it does not correspond to a correct step.
+**mistake_d:** Choice D simply echoes the given output value 11, treating the equation as already solved.
+**mistake_e:** Choice E reverses the problem: instead of solving f(a) = 11 for a, the student computes f(11) = 3(11) − 4 = 29, plugging the output back in as if it were the input.
+**common_trap:** Plugging the given output value into the function rather than solving for the input that produces it.
+**takeaway:** "f(a) = 11" is a request to solve for the input a. When you are given the output, set the rule equal to that output and solve the resulting equation.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Quadratics — Sum and Product of Roots
+**skill:** reconstruct-quadratic-from-root-conditions
+**trap_type:** sign-of-the-sum-of-roots
+**est_time_seconds:** 105
+
+The equation x² + bx + 24 = 0 has two roots that are both positive integers and that differ by 5. What is the value of b?
+
+- A) −11
+- B) −10
+- C) −5
+- D) 5
+- E) 11
+
+**answer:** A
+**fastest_path:** List the positive-integer factor pairs of 24 (the product of the roots) and find the pair differing by 5: that is 3 and 8. Their sum is 11, and for x² + bx + 24 the sum of the roots equals −b, so b = −11.
+**explanation:** For a quadratic x² + bx + c = 0, the product of the roots equals c and the sum of the roots equals −b. Here the product of the roots is 24, and both roots are positive integers, so they form a factor pair of 24: (1, 24), (2, 12), (3, 8), or (4, 6).
+
+The roots must differ by 5. Checking the pairs, 8 − 3 = 5, so the roots are 3 and 8. Their sum is 3 + 8 = 11.
+
+Since the sum of the roots equals −b, we have −b = 11, so b = −11.
+
+The correct answer is A.
+**mistake_b:** Choice B comes from choosing the factor pair (4, 6), whose product is 24 but whose difference is 2, not 5. Their sum is 10, giving b = −10. This catches a student who grabs a valid factor pair of 24 without checking the "differ by 5" condition.
+**mistake_c:** Choice C is the negative of the difference of the roots (−5). A student who fixates on the "differ by 5" condition and attaches a sign to it lands here.
+**mistake_d:** Choice D is the difference of the roots itself, 5, reported directly as b.
+**mistake_e:** Choice E gives the sum of the roots, 11, but forgets that the sum equals −b, not b. This is the most tempting trap: every step is correct except the final sign.
+**common_trap:** Forgetting that for x² + bx + c the sum of the roots is −b (not +b), so the sign of the answer comes out reversed.
+**takeaway:** Sum of roots = −b/a and product of roots = c/a. When a = 1, the product is just c and the sum is −b. Use the product to find the candidate pairs, then the sum to pin down b — and watch the sign.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Systems of Equations — Word Problem
+**skill:** translate-and-solve-two-variable-word-problem
+**trap_type:** answering-the-wrong-quantity
+**est_time_seconds:** 105
+
+A theater sold a total of 200 tickets for a single performance, collecting $2,800 in revenue. Adult tickets cost $20 each and student tickets cost $10 each. How many student tickets were sold?
+
+- A) 80
+- B) 100
+- C) 120
+- D) 140
+- E) 160
+
+**answer:** C
+**fastest_path:** If every ticket were a $10 student ticket, revenue would be $2,000. The actual revenue is $800 higher, and each adult ticket adds $10 over a student ticket, so there are 80 adults — leaving 200 − 80 = 120 students.
+**explanation:** Let a be the number of adult tickets and s the number of student tickets. The two conditions give a system:
+
+a + s = 200 (total tickets)
+20a + 10s = 2800 (total revenue)
+
+From the first equation, a = 200 − s. Substitute into the second: 20(200 − s) + 10s = 2800, which expands to 4000 − 20s + 10s = 2800, or 4000 − 10s = 2800. Then 10s = 1200, so s = 120.
+
+The correct answer is C.
+**mistake_a:** Choice A is the number of adult tickets (a = 80). The system is solved correctly, but the student reports adults when the question asks for students.
+**mistake_b:** Choice B assumes the tickets split evenly, 100 and 100, which satisfies the count condition but gives revenue 20(100) + 10(100) = 3000, not 2800.
+**mistake_d:** Choice D comes from an arithmetic slip, solving 10s = 1400 instead of 1200.
+**mistake_e:** Choice E reflects setting up the revenue equation with the prices swapped (10a + 20s = 2800), which inverts the roles of the two ticket types.
+**common_trap:** Solving the system correctly but answering for the wrong group (adults instead of students).
+**takeaway:** Label your variables explicitly and underline the quantity the question asks for. In two-variable word problems, the unrequested variable's value is almost always one of the wrong answers.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Compound Inequalities
+**skill:** solve-compound-inequality-with-sign-flip
+**trap_type:** mishandling-strict-vs-inclusive-bounds
+**est_time_seconds:** 110
+
+If −2 < 3 − x ≤ 5, which of the following describes all values of x?
+
+- A) −2 ≤ x < 5
+- B) −2 < x ≤ 5
+- C) −5 < x ≤ 2
+- D) −2 ≤ x ≤ 5
+- E) −5 ≤ x < 2
+
+**answer:** A
+**fastest_path:** Subtract 3 from all three parts to get −5 < −x ≤ 2, then multiply through by −1, which flips both inequality signs and swaps which bound is strict: −2 ≤ x < 5.
+**explanation:** Work on all three parts of the compound inequality at once. Start with −2 < 3 − x ≤ 5 and subtract 3 from each part: −5 < −x ≤ 2.
+
+Now multiply every part by −1. Multiplying by a negative reverses both inequality directions, so −5 < −x becomes 5 > x (that is, x < 5), and −x ≤ 2 becomes x ≥ −2. Writing these together in increasing order gives −2 ≤ x < 5.
+
+Pay close attention to which bound is strict. The original "≤ 5" was attached to the 3 − x side and, after the flip, becomes the inclusive bound on the −2 side, so x ≥ −2 (inclusive). The original strict "−2 <" becomes the strict bound x < 5.
+
+The correct answer is A.
+**mistake_b:** Choice B carries the strictness markers from the original inequality without swapping them. When you multiply by −1, the strict and inclusive endpoints trade places, so "−2 < ... ≤ 5" must not stay as "−2 < x ≤ 5."
+**mistake_c:** Choice C isolates −x but forgets to multiply through by −1, leaving the bounds as −5 < x ≤ 2 (the values for −x rather than for x).
+**mistake_d:** Choice D gets the numeric endpoints right but makes both bounds inclusive, ignoring that one end of the original inequality is strict.
+**mistake_e:** Choice E forgets to flip the inequality directions when multiplying by −1, keeping the −x bounds and only relabeling them.
+**common_trap:** When multiplying a compound inequality by a negative, flipping the directions but forgetting that the strict and inclusive endpoints also swap sides.
+**takeaway:** Multiplying a compound inequality by −1 reverses every inequality sign. Track each endpoint's strictness as it moves: the "<" and "≤" travel with the directions they flip into.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponential Equations
+**skill:** common-base-exponential-equation
+**trap_type:** equating-exponents-without-matching-bases
+**est_time_seconds:** 105
+
+If 9^(x + 1) = 27^(x − 1), what is the value of x?
+
+- A) 1
+- B) 2
+- C) 4
+- D) 5
+- E) 7
+
+**answer:** D
+**fastest_path:** Rewrite both sides over base 3: 9 = 3² and 27 = 3³, giving 3^(2(x+1)) = 3^(3(x−1)). Set the exponents equal: 2(x + 1) = 3(x − 1).
+**explanation:** The bases 9 and 27 are both powers of 3, so rewrite the equation over a common base. Since 9 = 3² and 27 = 3³:
+
+9^(x + 1) = (3²)^(x + 1) = 3^(2x + 2)
+27^(x − 1) = (3³)^(x − 1) = 3^(3x − 3)
+
+The equation becomes 3^(2x + 2) = 3^(3x − 3). Equal powers of the same base require equal exponents: 2x + 2 = 3x − 3. Subtracting 2x from both sides gives 2 = x − 3, so x = 5.
+
+The correct answer is D.
+**mistake_a:** Choice A comes from equating the exponents directly without converting the bases — setting x + 1 = x − 1, which has no solution, then guessing the smallest value.
+**mistake_b:** Choice B results from a coefficient error in the conversion, for instance writing 27 as 3² instead of 3³, which yields 2x + 2 = 2x − 2 and a salvaged guess.
+**mistake_c:** Choice C reflects an arithmetic slip in solving 2x + 2 = 3x − 3, such as combining constants as 2 + 3 = 5 but then misassigning it.
+**mistake_e:** Choice E adds the exponent constants incorrectly (2 + 3 + 2 = 7 type error) after a setup mistake.
+**common_trap:** Setting the exponents equal before rewriting both sides with the same base, which discards the factors 2 and 3 from 9 = 3² and 27 = 3³.
+**takeaway:** To solve an exponential equation, force a common base first, then equate exponents. The conversion factors (here, the 2 and 3) are exactly what make the equation solvable.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Function Composition
+**skill:** evaluate-composed-functions-in-order
+**trap_type:** reversing-composition-order
+**est_time_seconds:** 90
+
+If f(x) = 2x − 3 and g(x) = x² + 1, what is the value of f(g(2))?
+
+- A) 7
+- B) 5
+- C) 2
+- D) 10
+- E) 6
+
+**answer:** A
+**fastest_path:** Work from the inside out. The inner function is g, so compute g(2) first, then feed that result into f. g(2) = 5, and f(5) = 2(5) − 3 = 7.
+**explanation:** Composition is evaluated from the inside out. In f(g(2)), the innermost operation is g(2):
+
+g(2) = 2² + 1 = 4 + 1 = 5.
+
+Now apply f to that result:
+
+f(5) = 2(5) − 3 = 10 − 3 = 7.
+
+The correct answer is A.
+**mistake_b:** Choice B multiplies the two function values, f(2)·g(2) = 1·5 = 5, instead of composing them. Composition feeds one output into the other; it is not multiplication.
+**mistake_c:** Choice C reverses the order, computing g(f(2)) = g(1) = 1² + 1 = 2. The notation f(g(2)) requires g first, then f.
+**mistake_d:** Choice D forgets the "− 3" step in f, computing 2(5) = 10 and stopping before subtracting.
+**mistake_e:** Choice E adds the two function values, f(2) + g(2) = 1 + 5 = 6, rather than composing them.
+**common_trap:** Reversing the order of composition — computing g(f(2)) instead of f(g(2)).
+**takeaway:** Read composed functions from the inside out: the function nearest the input acts first. f(g(2)) means "apply g to 2, then apply f to that." The reverse order is a different value and almost always appears as a wrong choice.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Rational Equations
+**skill:** solve-proportion-by-cross-multiplication
+**trap_type:** cross-multiplication-pairing-error
+**est_time_seconds:** 100
+
+If 3/(x − 2) = 12/(x + 4), where x ≠ 2 and x ≠ −4, what is the value of x?
+
+- A) −6
+- B) −4
+- C) 4
+- D) 6
+- E) 8
+
+**answer:** C
+**fastest_path:** Cross-multiply: 3(x + 4) = 12(x − 2). Expand and solve. (You can also notice 12 = 4·3, so x + 4 = 4(x − 2), giving 3x = 12 and x = 4 in one line.)
+**explanation:** With a single fraction equal to a single fraction, cross-multiplication is the cleanest route. Multiply the numerator of each side by the denominator of the other:
+
+3(x + 4) = 12(x − 2).
+
+Expanding both sides: 3x + 12 = 12x − 24. Subtract 3x from both sides: 12 = 9x − 24. Add 24: 36 = 9x. Divide by 9: x = 4.
+
+Since 4 is neither of the excluded values (2 or −4), it is a valid solution. Checking: 3/(4 − 2) = 3/2 and 12/(4 + 4) = 12/8 = 3/2. The two sides match.
+
+The correct answer is C.
+**mistake_a:** Choice A comes from pairing the cross-multiplication incorrectly: writing 3(x − 2) = 12(x + 4) instead. That gives 3x − 6 = 12x + 48, leading to x = −6.
+**mistake_b:** Choice B is an excluded value (x = −4 makes the right denominator zero). It is offered to tempt a student who solves carelessly and lands on a forbidden value without checking.
+**mistake_d:** Choice D results from an arithmetic slip in the final division, treating 9x = 54 instead of 36.
+**mistake_e:** Choice E doubles the correct answer, a residue of mishandling the factor 12 = 4·3 during the shortcut.
+**common_trap:** Pairing the cross-multiplication backwards — multiplying each numerator by its own denominator rather than the opposite side's denominator.
+**takeaway:** In a/b = c/d, cross-multiplication gives a·d = b·c (numerator of one side times denominator of the other). Always verify your solution is not one of the excluded values that make a denominator zero.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Absolute Value Equations
+**skill:** solve-absolute-value-equals-absolute-value
+**trap_type:** solving-only-one-case
+**est_time_seconds:** 110
+
+How many distinct values of x satisfy the equation |2x − 3| = |x + 5|?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) Infinitely many
+
+**answer:** C
+**fastest_path:** Two absolute values are equal when the inside expressions are equal or are negatives of each other. Set up both cases — 2x − 3 = x + 5 and 2x − 3 = −(x + 5) — and count the valid solutions.
+**explanation:** |A| = |B| holds exactly when A = B or A = −B, because two quantities have the same absolute value precisely when they are equal or opposite in sign. This gives two cases.
+
+Case 1: 2x − 3 = x + 5. Subtracting x and adding 3, x = 8.
+
+Case 2: 2x − 3 = −(x + 5) = −x − 5. Adding x to both sides: 3x − 3 = −5, so 3x = −2 and x = −2/3.
+
+Both solutions are valid (a quick check confirms each satisfies the original equation), and they are distinct, so there are 2 values of x.
+
+The correct answer is C.
+**mistake_a:** Choice A claims no solutions, which would require both cases to be contradictory. Here each case yields a clean solution, so the equation is far from unsolvable.
+**mistake_b:** Choice B counts only one case — typically the "obvious" Case 1 (x = 8) — and overlooks the opposite-sign case that produces the second solution.
+**mistake_d:** Choice D over-counts. Setting |A| = |B| produces at most two cases, not three; there is no third sign combination that yields a new equation.
+**mistake_e:** Choice E confuses this with an identity like |x| = |x|. Because the two expressions 2x − 3 and x + 5 are genuinely different, only specific x-values make their magnitudes equal.
+**common_trap:** Solving only the "same sign" case and forgetting the "opposite sign" case, thereby missing the second solution.
+**takeaway:** |A| = |B| splits into exactly two equations: A = B and A = −B. Solve both, then check each result in the original equation before counting.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Symmetric Expressions
+**skill:** cube-of-a-sum-identity
+**trap_type:** dropping-the-cross-term
+**est_time_seconds:** 135
+
+If x + 1/x = 4, what is the value of x³ + 1/x³?
+
+- A) 40
+- B) 52
+- C) 56
+- D) 60
+- E) 64
+
+**answer:** B
+**hint_nudge:** You do not need to find x. There is an algebraic identity connecting x + 1/x to x³ + 1/x³ directly.
+**hint_strategy:** Cube the quantity x + 1/x and watch what the middle terms simplify to. The cross-terms collapse into a multiple of x + 1/x itself.
+**hint_setup:** (x + 1/x)³ = x³ + 1/x³ + 3(x + 1/x). Rearrange to isolate x³ + 1/x³, then plug in the value 4.
+**fastest_path:** Use the identity (x + 1/x)³ = x³ + 1/x³ + 3(x + 1/x). So x³ + 1/x³ = (x + 1/x)³ − 3(x + 1/x) = 4³ − 3·4 = 64 − 12 = 52.
+**explanation:** Solving for x directly would require the quadratic x² − 4x + 1 = 0 and messy irrational arithmetic. The efficient path uses a symmetric-sum identity.
+
+Cube the given sum: (x + 1/x)³ = x³ + 3x²(1/x) + 3x(1/x)² + 1/x³. The two middle terms simplify: 3x²(1/x) = 3x and 3x(1/x)² = 3/x. So (x + 1/x)³ = x³ + 1/x³ + 3(x + 1/x).
+
+Rearranging, x³ + 1/x³ = (x + 1/x)³ − 3(x + 1/x). Substituting x + 1/x = 4:
+
+x³ + 1/x³ = 4³ − 3(4) = 64 − 12 = 52.
+
+The correct answer is B.
+**mistake_a:** Choice A subtracts too much, using a coefficient of 6 instead of 3 (64 − 24 = 40). The cross-terms contribute exactly 3(x + 1/x), not 6(x + 1/x).
+**mistake_c:** Choice C subtracts only 8, perhaps from mistakenly computing 3(x + 1/x) as 3 + 4 + 1 or some partial value, landing on 56.
+**mistake_d:** Choice D forgets that the coefficient on the cross-term is 3 and subtracts only the bare value 4 (64 − 4 = 60).
+**mistake_e:** Choice E cubes the 4 and stops, ignoring the cross-term correction entirely: it treats (x + 1/x)³ as equal to x³ + 1/x³.
+**common_trap:** Treating (x + 1/x)³ as x³ + 1/x³ and dropping the 3(x + 1/x) cross-term, or mis-coefficienting that term.
+**takeaway:** Memorize the identity (a + b)³ = a³ + b³ + 3ab(a + b). With b = 1/x, the product ab = 1, so x³ + 1/x³ = (x + 1/x)³ − 3(x + 1/x). These symmetric-sum identities let you avoid solving for x.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Linear Systems — No-Solution Condition
+**skill:** parallel-distinct-lines-condition
+**trap_type:** confusing-no-solution-with-infinite-solutions
+**est_time_seconds:** 130
+
+For what value of k does the system 2x + 3y = 7 and 4x + ky = 5 have no solution?
+
+- A) −6
+- B) 0
+- C) 6
+- D) 12
+- E) There is no such value of k.
+
+**answer:** C
+**hint_nudge:** A linear system has no solution when the two lines are parallel but not the same line.
+**hint_strategy:** Parallel lines have proportional coefficients on x and y. Find the k that makes 4x + ky a multiple of 2x + 3y, then confirm the constants are not in that same proportion.
+**hint_setup:** Compare the equations: 4x + ky should be 2 times 2x + 3y to be parallel. That requires k = 6. Then check whether the constant 5 equals 2·7 = 14.
+**fastest_path:** No solution means parallel but distinct lines, i.e. equal coefficient ratios but a different constant ratio. Matching x- and y-coefficients: 4/2 = k/3 gives k = 6. Check the constants: doubling the first equation gives 4x + 6y = 14 ≠ 5, so the lines are parallel and distinct — no solution.
+**explanation:** A system of two linear equations has no solution exactly when the lines are parallel but not identical. Two lines are parallel when the coefficients of x and y are proportional; they are identical (infinitely many solutions) when the constants are in that same proportion as well.
+
+For the coefficients to be proportional, the ratio on x must equal the ratio on y: 4/2 = k/3. Since 4/2 = 2, we need k/3 = 2, so k = 6.
+
+Now distinguish "no solution" from "infinitely many." With k = 6, the second equation is 4x + 6y = 5. Doubling the first equation gives 4x + 6y = 14. The left sides are identical but the right sides differ (14 ≠ 5), so the lines are parallel and distinct — the system has no solution.
+
+The correct answer is C.
+**mistake_a:** Choice A negates the correct value. The proportionality 4/2 = k/3 gives a positive k = 6; there is no sign reversal in matching coefficients of a consistent-form system.
+**mistake_b:** Choice B (k = 0) makes the second equation 4x = 5, a vertical line that intersects 2x + 3y = 7 at exactly one point — a unique solution, not no solution.
+**mistake_d:** Choice D doubles the correct value, perhaps from matching 4x to the wrong term or from scaling 3y by 4 instead of 2.
+**mistake_e:** Choice E is the trap for a student who reasons that k = 6 produces the same left-hand side and therefore concludes the lines coincide (infinitely many solutions), wrongly believing no single k can give an empty solution set.
+**common_trap:** Finding k = 6 but then mislabeling the result as "infinitely many solutions," or concluding no such k exists, because the constants (7 and 5) are not checked for proportionality.
+**takeaway:** For a₁x + b₁y = c₁ and a₂x + b₂y = c₂: one solution when a₁/a₂ ≠ b₁/b₂; no solution when a₁/a₂ = b₁/b₂ ≠ c₁/c₂; infinitely many when all three ratios match. Always check the constant ratio to separate the last two cases.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Inequalities — Sufficiency
+
+Is x > y?
+
+(1) x² > y²
+(2) x − y > 0
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**fastest_path:** Statement (1) only compares magnitudes (|x| > |y|), which says nothing about order once signs vary — test x = −3, y = 2. Statement (2) is x − y > 0, which is literally x > y. So (2) alone answers the question and (1) does not.
+**explanation:** The question asks for a definite Yes/No to "Is x > y?"
+
+Statement (1): x² > y² is equivalent to |x| > |y| — x is farther from zero than y. This does not fix the order. Take x = 3, y = 2: then x² = 9 > 4 = y² and x > y (Yes). Now take x = −3, y = 2: then x² = 9 > 4 = y² but x = −3 < 2 = y (No). The answer can be Yes or No, so statement (1) is not sufficient.
+
+Statement (2): x − y > 0 rearranges directly to x > y. This is exactly the question, and it forces a definite Yes. Statement (2) alone is sufficient.
+
+Since (2) alone suffices and (1) alone does not, the answer is B.
+
+The correct answer is B.
+**common_trap:** Reading x² > y² as if it implied x > y. Squaring destroys sign information, so it only compares distances from zero, not order.
+**takeaway:** x² > y² tells you |x| > |y|, never the order of x and y on the number line. To compare x and y directly, you need a statement about x − y or a sign-restricted setup.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponential Equations — Quadratic in Disguise
+**skill:** substitution-to-reveal-hidden-quadratic
+**trap_type:** summing-the-substitution-not-the-variable
+**est_time_seconds:** 140
+
+If 3^(2x) − 10·3^x + 9 = 0, what is the sum of all values of x that satisfy the equation?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) 10
+
+**answer:** C
+**hint_nudge:** Notice that 3^(2x) is the square of 3^x. A substitution turns this into a familiar shape.
+**hint_strategy:** Let u = 3^x, so 3^(2x) = u². The equation becomes a quadratic in u. Solve for u, then convert each u back to x.
+**hint_setup:** With u = 3^x, the equation is u² − 10u + 9 = 0, which factors as (u − 1)(u − 9) = 0. Translate u = 1 and u = 9 back into values of x before adding.
+**fastest_path:** Substitute u = 3^x to get u² − 10u + 9 = (u − 1)(u − 9) = 0, so 3^x = 1 or 3^x = 9. These give x = 0 and x = 2; the sum is 2. (The trap answer is summing the u-values, 1 + 9 = 10.)
+**explanation:** The exponent 2x signals that 3^(2x) = (3^x)². Let u = 3^x. Then the equation 3^(2x) − 10·3^x + 9 = 0 becomes u² − 10u + 9 = 0.
+
+Factor: u² − 10u + 9 = (u − 1)(u − 9) = 0, so u = 1 or u = 9.
+
+Now convert each value of u back to x. If 3^x = 1, then x = 0 (since 3⁰ = 1). If 3^x = 9 = 3², then x = 2. Both are valid.
+
+The sum of all values of x is 0 + 2 = 2.
+
+The correct answer is C.
+**mistake_a:** Choice A keeps only the root x = 0 (from 3^x = 1) and discards the other solution, perhaps assuming 3^x = 9 has no integer answer.
+**mistake_b:** Choice B reports only x = 2 minus 1, or stops at one root after a sign slip; it does not represent the full sum.
+**mistake_d:** Choice D adds the two x-values incorrectly (treating 3^x = 9 as x = 3 rather than x = 2), summing 0 + 3.
+**mistake_e:** Choice E sums the substituted values u = 1 and u = 9 instead of converting back to x first. This is the central trap: the question asks for the sum of the x-values, not the u-values.
+**common_trap:** Solving the hidden quadratic for u = 3^x and then forgetting to convert the u-solutions back into x-values before adding.
+**takeaway:** When you see a²ˣ and aˣ together, substitute u = aˣ to expose a quadratic. After solving for u, always translate each solution back to x — the original variable, not the substitution, is what the question is about.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Functional Equations
+**skill:** solve-functional-equation-via-substitution-system
+**trap_type:** assuming-a-simple-closed-form
+**est_time_seconds:** 165
+
+A function f is defined for all nonzero real numbers and satisfies f(x) + 2f(1/x) = 3x for every nonzero x. What is the value of f(2)?
+
+- A) −1
+- B) 1
+- C) 2
+- D) 3
+- E) 6
+
+**answer:** A
+**hint_nudge:** One equation in f(2) and f(1/2) is not enough. Generate a second equation by choosing a different input.
+**hint_strategy:** Plug in x = 2 to relate f(2) and f(1/2). Then plug in x = 1/2 to get a second relation between the same two unknowns. Solve the resulting two-equation system.
+**hint_setup:** x = 2 gives f(2) + 2f(1/2) = 6. x = 1/2 gives f(1/2) + 2f(2) = 3/2. Treat f(2) and f(1/2) as two unknowns and eliminate f(1/2).
+**fastest_path:** Substitute x = 2 and x = 1/2 to get two equations in f(2) and f(1/2): f(2) + 2f(1/2) = 6 and f(1/2) + 2f(2) = 3/2. Eliminate f(1/2) (multiply the second by 2 and subtract) to solve for f(2) = −1.
+**explanation:** The relation f(x) + 2f(1/x) = 3x links the value at x to the value at its reciprocal 1/x. A single substitution leaves two unknowns, so substitute twice using a reciprocal pair.
+
+Let x = 2: f(2) + 2f(1/2) = 3(2) = 6. Call this Equation I.
+
+Let x = 1/2 (whose reciprocal is 2): f(1/2) + 2f(2) = 3(1/2) = 3/2. Call this Equation II.
+
+Now solve the system in the unknowns f(2) and f(1/2). From Equation II, f(1/2) = 3/2 − 2f(2). Substitute into Equation I:
+
+f(2) + 2(3/2 − 2f(2)) = 6
+f(2) + 3 − 4f(2) = 6
+−3f(2) = 3
+f(2) = −1.
+
+As a check, f(1/2) = 3/2 − 2(−1) = 7/2, and Equation I gives −1 + 2(7/2) = −1 + 7 = 6. ✓
+
+The correct answer is A.
+**mistake_b:** Choice B is the sign error −3f(2) = 3 → f(2) = 1, forgetting the negative coefficient when dividing.
+**mistake_c:** Choice C assumes f has the simple form f(x) = x (so f(2) = 2), but that does not satisfy the relation: 2 + 2(1/2) = 3 ≠ 6.
+**mistake_d:** Choice D plugs x = 2 into the right side 3x and reports 3·... or treats f(2) as half of 6, ignoring the f(1/2) term entirely.
+**mistake_e:** Choice E reports the right-hand side value 6 from Equation I without solving the system.
+**common_trap:** Assuming f(x) must have an obvious closed form like f(x) = x, or trying to read f(2) off a single substitution instead of building the reciprocal-pair system.
+**takeaway:** When a functional equation relates f(x) to f(1/x) (or f(−x), or f(a − x)), substitute the input and its partner to get two equations, then solve the linear system. Never assume a convenient closed form.
+**related_reading:** reading-quant-04-algebra-and-equations
