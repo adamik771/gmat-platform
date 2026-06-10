@@ -1088,6 +1088,86 @@ function FullAnalysis({
   )
 }
 
+/**
+ * SubmitVerdict — the immediate, unconditional result line shown the moment
+ * a question is submitted. Before this, correctness could only be inferred
+ * from option coloring, and the wrong-answer summary ("You chose X /
+ * Correct Y") only surfaced when the question happened to carry explanation
+ * text. This states the outcome plainly in every case:
+ *
+ *   - Correct → a calm, affirmative acknowledgment. A right answer that
+ *     earns only silence trains nothing; naming the win — and pointing at
+ *     *why* it was right — is what makes the method repeatable.
+ *   - Wrong → a non-punitive reframe. A miss is the single most useful data
+ *     point in a session, so it reads as a lead to follow, not a failure to
+ *     absorb. Keeps mistakes feeling productive rather than discouraging.
+ */
+function SubmitVerdict({
+  correct,
+  wrongLetter,
+  correctLetter,
+  hasBreakdown,
+}: {
+  correct: boolean
+  wrongLetter: string | null
+  correctLetter: string | null
+  hasBreakdown: boolean
+}) {
+  if (correct) {
+    return (
+      <div
+        className="mt-5 flex items-start gap-2.5 px-4 py-3 rounded-lg border animate-in fade-in-0 slide-in-from-bottom-1 duration-200"
+        style={{
+          borderColor: "rgba(62,207,142,0.28)",
+          backgroundColor: "rgba(62,207,142,0.06)",
+        }}
+      >
+        <Check
+          className="w-4 h-4 flex-shrink-0 mt-0.5"
+          style={{ color: "#3ECF8E" }}
+          aria-hidden
+        />
+        <p className="text-[13px] leading-relaxed">
+          <span className="font-semibold" style={{ color: "#3ECF8E" }}>
+            Correct.
+          </span>{" "}
+          <span className="text-[#888888]">
+            {hasBreakdown
+              ? "Confirm your reasoning against the breakdown below — knowing why you were right is what makes it repeatable."
+              : "Hold onto the method that got you here; that consistency is what survives time pressure."}
+          </span>
+        </p>
+      </div>
+    )
+  }
+  return (
+    <div
+      className="mt-5 px-4 py-3 rounded-lg border animate-in fade-in-0 slide-in-from-bottom-1 duration-200"
+      style={{
+        borderColor: "rgba(255,107,107,0.26)",
+        backgroundColor: "rgba(255,107,107,0.05)",
+      }}
+    >
+      <p className="text-[13px] font-semibold" style={{ color: "#FF8A6B" }}>
+        Not quite.
+        {wrongLetter && correctLetter && (
+          <span className="ml-2 font-normal text-[#888888]">
+            You chose{" "}
+            <span style={{ color: "#FF8A6B" }}>{wrongLetter}</span>
+            {" · "}the answer is{" "}
+            <span style={{ color: "#3ECF8E" }}>{correctLetter}</span>
+          </span>
+        )}
+      </p>
+      <p className="text-[12px] text-[#888888] mt-1.5 leading-relaxed">
+        {hasBreakdown
+          ? "A miss you understand is worth more than a guess you got right — the breakdown below shows exactly where the reasoning diverged."
+          : "A miss you understand is worth more than a guess you got right. Replay your reasoning and find the exact step that broke."}
+      </p>
+    </div>
+  )
+}
+
 export default function SessionClient({
   slug,
   topic,
@@ -2356,6 +2436,30 @@ export default function SessionClient({
               </div>
             )}
 
+            {currentState.submitted && (() => {
+              const correct = isQuestionCorrect(current, currentState)
+              const wrongLetter =
+                !correct && currentState.selected !== null && !isTwoPart
+                  ? letterFor(currentState.selected)
+                  : null
+              const hasBreakdown = !!(
+                current.explanation ||
+                current.fastestPath ||
+                current.commonTrap ||
+                current.takeaway
+              )
+              return (
+                <SubmitVerdict
+                  correct={correct}
+                  wrongLetter={wrongLetter}
+                  correctLetter={
+                    !correct && !isTwoPart ? current.correctAnswerLetter : null
+                  }
+                  hasBreakdown={hasBreakdown}
+                />
+              )
+            })()}
+
             <ConfidencePanel
               value={currentState.confidence}
               submitted={currentState.submitted}
@@ -2384,26 +2488,6 @@ export default function SessionClient({
                   <p className="text-[10px] uppercase tracking-widest text-[#555555]">
                     Explanation
                   </p>
-                  {!isQuestionCorrect(current, currentState) &&
-                    currentState.selected !== null &&
-                    !isTwoPart && (
-                      <>
-                        <span className="text-[10px] text-[#333333]">&middot;</span>
-                        <span
-                          className="text-[10px]"
-                          style={{ color: "rgba(255,107,107,0.75)" }}
-                        >
-                          You chose {letterFor(currentState.selected)}
-                        </span>
-                        <span className="text-[10px] text-[#333333]">&middot;</span>
-                        <span
-                          className="text-[10px]"
-                          style={{ color: "rgba(62,207,142,0.75)" }}
-                        >
-                          Correct: {current.correctAnswerLetter}
-                        </span>
-                      </>
-                    )}
                 </div>
                 <PromptBlock text={current.explanation} />
                 {(() => {
