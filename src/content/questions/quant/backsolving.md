@@ -308,3 +308,612 @@ The correct answer is D.
 **related_reading:** quant-01-backsolving
 
 ---
+
+## Q12
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Backsolving
+
+If (2x + 6) / 4 = 7, what is the value of x?
+
+- A) 9
+- B) 11
+- C) 13
+- D) 15
+- E) 17
+
+**answer:** B
+**fastest_path:** Substitute the middle choice into (2x + 6) / 4; "too big" kills the top half of the list in one stroke.
+**explanation:** Test the median choice (C), x = 13: (2(13) + 6) / 4 = 32 / 4 = 8. That is bigger than 7, so x = 13 is too large — and because the left side only grows as x grows, D and E die with it. One test, three eliminations.
+
+Test B, x = 11: (2(11) + 6) / 4 = 28 / 4 = 7. Exact match.
+
+The correct answer is B.
+**mistake_a:** Substituting 9 gives 24 / 4 = 6, one short of 7. Students who race the directional logic sometimes overshoot past the answer to the smallest survivor without testing it.
+**mistake_c:** Gives 32 / 4 = 8 — close enough to 7 that a student in a hurry calls it a match instead of treating "off by anything" as a hard fail. An exact equation demands an exact hit.
+**mistake_d:** Substituting 15 gives 36 / 4 = 9. Tempting only for students who mis-set the algebra as 2x + 6 = 7 * 4 + 8 after a scratchpad slip; the substitution check rejects it instantly.
+**mistake_e:** This is the algebra-slip answer: moving the 6 to the wrong side gives 2x = 28 + 6, so x = 17. Backsolving never moves the 6 at all, which is exactly why it dodges this error.
+**common_trap:** Calling a near miss a hit. Substituting C gives 8, and "8 is basically 7" loses the point — in an exact equation, any miss is a full miss, and its direction is free information.
+**takeaway:** A failed test is not wasted work: too big means everything bigger is dead, so the worst case is two substitutions.
+**est_time_seconds:** 60
+**trap_type:** near-miss-accepted
+**hint_nudge:** Plug the middle choice into the left side. Is the result bigger or smaller than 7?
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q13
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Backsolving
+
+A movie ticket costs 3 dollars more than a tub of popcorn. Together, one ticket and one tub cost 19 dollars. How much does the ticket cost, in dollars?
+
+- A) 8
+- B) 9
+- C) 11
+- D) 13
+- E) 16
+
+**answer:** C
+**fastest_path:** Let each choice be the ticket price, subtract 3 to get the popcorn, and check that the pair sums to 19.
+**explanation:** Each choice is a candidate ticket price. The popcorn is 3 dollars cheaper, so the check is a single subtraction and a single addition.
+
+Test the median choice (C), ticket = 11: popcorn = 11 - 3 = 8, and 11 + 8 = 19. Both conditions hold on the first test.
+
+The correct answer is C.
+**mistake_a:** 8 is the popcorn price, not the ticket price. Solving the system correctly and then reporting the other item is the most common way to lose this point — the stem asks for the ticket.
+**mistake_b:** Comes from halving 19 to roughly 9.50 and rounding down — treating the two items as equal-priced and ignoring the 3-dollar gap entirely. Testing it gives popcorn = 6 and a total of 15, not 19.
+**mistake_d:** Substituting 13 gives popcorn = 10 and a total of 23, too big. Tempting for students who add the 3-dollar difference to half of 19 twice instead of once.
+**mistake_e:** A ticket of 16 forces popcorn = 13 and a total of 29 — picked mainly by students who set the ticket equal to 19 - 3 and never sanity-check the sum.
+**common_trap:** Answering with the popcorn price. When two related quantities are in play, the wrong one is almost always sitting in the choices, sorted right where you expect the answer to be.
+**takeaway:** Backsolving a two-quantity stem means deriving the second quantity from the candidate and checking the stated total — and then confirming which quantity the question actually asked for.
+**est_time_seconds:** 60
+**trap_type:** answered-wrong-quantity
+**hint_nudge:** Each choice is the ticket. The popcorn is 3 dollars less. What must the pair add to?
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q14
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Backsolving
+
+After a 25 percent discount, a jacket sells for 48 dollars. What was the original price of the jacket, in dollars?
+
+- A) 54
+- B) 58
+- C) 60
+- D) 64
+- E) 70
+
+**answer:** D
+**fastest_path:** Take 75 percent of each candidate original price and look for 48; start at the middle.
+**explanation:** Each choice is a candidate original price. A 25 percent discount means the sale price is 75 percent of the original, so the check is one multiplication.
+
+Test the median choice (C), original = 60: 75 percent of 60 is 45 — too small, so the original price must be higher. A, B, and C are all eliminated by this single test.
+
+Test D, original = 64: 75 percent of 64 is 48. Exact match.
+
+The correct answer is D.
+**mistake_a:** 75 percent of 54 is 40.50, far from 48. This choice catches students who subtract 25 percent of the sale price from some scratch number — pure noise once you test it.
+**mistake_b:** 75 percent of 58 is 43.50. Survives only if you skip testing and guess "a bit above 48."
+**mistake_c:** The classic percent trap: adding 25 percent of the sale price back, 48 * 1.25 = 60. But the 25 percent was taken off the original price, a bigger base — so undoing it requires dividing by 0.75, not multiplying by 1.25.
+**mistake_e:** 75 percent of 70 is 52.50, overshooting 48. Tempting as a "safe high" guess for students who know C is a trap but do not test D first.
+**common_trap:** Reversing a percent change by applying the same percent to the new base. A 25 percent decrease is not undone by a 25 percent increase, because the bases differ. Backsolving forward — original times 0.75 — makes the base unambiguous.
+**takeaway:** For reverse-percent stems, plug each choice in as the original and run the discount forward; testing in the stated direction sidesteps the wrong-base trap entirely.
+**est_time_seconds:** 70
+**trap_type:** percent-of-wrong-base
+**hint_nudge:** Run the discount forward: which original price gives 48 after losing a quarter of itself?
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q15
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Backsolving
+
+If 84 - 6x = 48, what is the value of x?
+
+- A) 12
+- B) 9
+- C) 7
+- D) 6
+- E) 4
+
+**answer:** D
+**fastest_path:** Test the middle choice — but note the list is descending, so "x too big" sends you toward the bottom of the page, not the top.
+**explanation:** The choices are sorted in descending order, which changes nothing about the method and everything about the direction of elimination.
+
+Test the median choice (C), x = 7: 84 - 42 = 42. That is smaller than 48, meaning we subtracted too much — x is too big. In an ascending list you would move up the page; here the smaller values sit below, so A and B die and the survivors are D and E.
+
+Test D, x = 6: 84 - 36 = 48. Exact match.
+
+The correct answer is D.
+**mistake_a:** Substituting 12 gives 84 - 72 = 12, nowhere near 48. It is the "saw 12, grabbed 12" answer — 12 appears when you compute 84 - 72, a coincidence the test-writer planted.
+**mistake_b:** Gives 84 - 54 = 30. Picked by students who correctly conclude "x must be smaller than 7" but then move toward the top of the page out of habit, forgetting the list descends.
+**mistake_c:** Gives 42, not 48. Choosing it means treating "too small by 6" as close enough — but a miss is a miss, and its direction points to the answer.
+**mistake_e:** Gives 84 - 24 = 60, overshooting 48 from the other side. The students who land here skipped D while jumping toward the small end of the list.
+**common_trap:** Moving the wrong way after a failed test. The elimination direction follows the numeric ordering of the choices, not their position on the page — and this list runs high to low.
+**takeaway:** Before backsolving, spend one second noting whether the choices ascend or descend; every "too big / too small" decision afterward depends on it.
+**est_time_seconds:** 60
+**trap_type:** direction-reversal
+**hint_nudge:** These choices run from largest to smallest. After testing the middle one, which physical direction holds the smaller values?
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q16
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Backsolving
+
+Dana has twice as many stamps as Eli. Together they have 36 stamps. How many stamps does Dana have?
+
+- A) 12
+- B) 18
+- C) 24
+- D) 30
+- E) 32
+
+**answer:** C
+**fastest_path:** Let each choice be Dana's count, halve it for Eli, and check that the pair sums to 36.
+**explanation:** Each choice is a candidate for Dana. Since Dana has twice Eli's count, Eli has half of Dana's — so the full check is one halving and one addition.
+
+Test the median choice (C), Dana = 24: Eli has 12, and 24 + 12 = 36. Exact match on the first test.
+
+The correct answer is C.
+**mistake_a:** 12 is Eli's count, not Dana's. The stem plants the partner quantity among the choices precisely for students who solve correctly and report the wrong person.
+**mistake_b:** 18 is half of 36 — the answer if the two had equal counts. Picking it means the "twice as many" condition never made it into the setup.
+**mistake_d:** Dana = 30 forces Eli = 15 and a total of 45, too big. A direction error: a student whose first test came out small sometimes leaps to the second-largest choice without testing it.
+**mistake_e:** Dana = 32 gives Eli = 16 and a total of 48. Also fails the halving sanity check loudly — yet it survives if no check is ever run.
+**common_trap:** Splitting the total in half (18) or reporting Eli's share (12). Both numbers fall out of the correct arithmetic, which is what makes them dangerous — they feel earned.
+**takeaway:** In "A has k times as many as B" stems, backsolve the person the question asks about and derive the partner; the partner's number is almost always lurking in the choices.
+**est_time_seconds:** 60
+**trap_type:** answered-wrong-quantity
+**hint_nudge:** If a choice is Dana's count, Eli's count is half of it. What must the two add up to?
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q17
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Backsolving
+
+Gym A charges a one-time enrollment fee of 40 dollars plus 15 dollars per month. Gym B charges no enrollment fee and 25 dollars per month. After how many months of membership is the total amount paid to Gym A equal to the total amount paid to Gym B?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 5
+- E) 6
+
+**answer:** C
+**fastest_path:** For each candidate month count m, compare 40 + 15m against 25m; the totals converge as m grows.
+**explanation:** Each choice is a candidate number of months. Gym A's total is the flat 40 plus 15 per month; Gym B's is just 25 per month. Compute both and compare.
+
+Test the median choice (C), m = 4: Gym A costs 40 + 60 = 100; Gym B costs 25(4) = 100. Equal on the first test.
+
+For intuition: at m = 3 Gym A still costs more (85 versus 75), and at m = 5 it costs less (115 versus 125). The gap closes by 10 dollars each month, which is why exactly one month count balances the two.
+
+The correct answer is C.
+**mistake_a:** At m = 2, Gym A has cost 70 and Gym B only 50. Picked by students who divide the 40-dollar fee by the 25-dollar rate and round — mixing the fee with the wrong gym's pricing.
+**mistake_b:** At m = 3 the totals are 85 and 75 — close, and "close" seduces students who eyeball instead of computing both sides.
+**mistake_d:** By m = 5, Gym B has overtaken: 115 versus 125. This is the off-by-one answer for students who ask when Gym A becomes cheaper rather than when the totals are equal.
+**mistake_e:** At m = 6 the gap has widened to 130 versus 150. It survives only a setup that doubles the enrollment fee or charges it monthly.
+**common_trap:** Forgetting the enrollment fee is paid once, not per month. Writing Gym A's cost as (40 + 15)m makes the totals never balance and forces a guess.
+**takeaway:** Break-even stems backsolve cleanly because each candidate yields two concrete totals to compare — and the changing gap between them tells you which direction to move.
+**est_time_seconds:** 90
+**trap_type:** fixed-cost-as-recurring
+**hint_nudge:** For each month count, compute both gym totals separately. The 40 dollars is paid only once.
+**hint_strategy:** Gym A's total is 40 + 15m; Gym B's is 25m. The gap shrinks by 10 dollars per month, so exactly one m balances them.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q18
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Backsolving
+
+When the positive integer n is divided by 5, the remainder is 3. When n is divided by 4, the remainder is 1. Which of the following could be the value of n?
+
+- A) 18
+- B) 23
+- C) 26
+- D) 28
+- E) 33
+
+**answer:** E
+**fastest_path:** Screen all five choices with the cheaper test first — remainder on division by 5 reads straight off the units digit — then apply the second condition to the survivors.
+**explanation:** This stem asks which choice satisfies two divisibility properties. Properties are not monotonic — there is no "too big" or "too small" — so median-first does not apply. Instead, scan all five with the cheaper condition first.
+
+Remainder 3 on division by 5 means the units digit is 3 or 8. That one glance eliminates C (26 ends in 6) and keeps A, B, D, E.
+
+Now the second condition, remainder 1 on division by 4: 18 = 16 + 2 leaves remainder 2; 23 = 20 + 3 leaves remainder 3; 28 = 28 + 0 leaves remainder 0; 33 = 32 + 1 leaves remainder 1. Only 33 passes both.
+
+The correct answer is E.
+**mistake_a:** 18 passes the mod-5 test (ends in 8) but leaves remainder 2 on division by 4. The single-condition checker stops here because it is the first choice that passes the screen they ran.
+**mistake_b:** 23 ends in 3, so it passes the first condition — but 23 = 5(4) + 3 against 4 leaves remainder 3, not 1. Tempting because both of its remainders are 3, which feels like a pattern.
+**mistake_c:** 26 fails immediately: it ends in 6, so dividing by 5 leaves remainder 1, not 3. Students who check the mod-4 condition first (26 leaves remainder 2 anyway) sometimes transpose the two conditions and accept it.
+**mistake_d:** 28 ends in 8 and passes the mod-5 screen, but 28 is a multiple of 4, leaving remainder 0. It catches students who read "remainder 1" as "remainder less than 2" or simply stop checking after condition one.
+**common_trap:** Verifying only one of the two conditions. Every wrong choice here passes at least one screen — the test-writer builds them that way — so a single-condition check feels conclusive while proving nothing.
+**takeaway:** When the stem says "could be," the choices are candidates against a property list, not points on a number line: scan all five, run the cheapest test first, and make every survivor pass every condition.
+**est_time_seconds:** 100
+**trap_type:** partial-condition-check
+**hint_nudge:** A remainder of 3 when dividing by 5 fixes the units digit. Which digits qualify?
+**hint_strategy:** Screen by units digit (must be 3 or 8), then test the survivors against the mod-4 condition. Both conditions must hold.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q19
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Backsolving
+
+A 30-liter solution is 20 percent acid. How many liters of pure acid must be added to the solution so that the resulting solution is 40 percent acid?
+
+- A) 4
+- B) 6
+- C) 8
+- D) 10
+- E) 12
+
+**answer:** D
+**fastest_path:** The solution starts with 6 liters of acid. For each candidate x, check whether (6 + x) is 40 percent of (30 + x) — remember the total volume grows too.
+**explanation:** The starting solution holds 20 percent of 30 = 6 liters of acid. Adding x liters of pure acid raises both the acid (6 + x) and the total volume (30 + x), so the check for each candidate is the fraction (6 + x) / (30 + x).
+
+Test the median choice (C), x = 8: 14 / 38 is roughly 36.8 percent — too weak, so more acid is needed. A, B, and C are gone.
+
+Test D, x = 10: 16 / 40 = 40 percent exactly.
+
+The correct answer is D.
+**mistake_a:** Adding 4 gives 10 / 34, about 29 percent. A filler that survives only when no fraction is ever computed.
+**mistake_b:** The seductive one: 6 more liters "doubles the acid," and 20 doubled is 40. But the volume grows to 36 liters too, so 12 / 36 is only 33.3 percent. Doubling the acid does not double the concentration.
+**mistake_c:** 14 / 38 is under 37 percent. Students who compute 14 / 35 — forgetting the added acid also adds volume, but only in the numerator they like — land near 40 and stop here.
+**mistake_e:** 12 is 40 percent of the original 30 liters. This answer treats the target as "acid equal to 40 percent of the old volume," freezing the denominator at 30; the true total is 42 liters by then, and 18 / 42 is about 42.9 percent.
+**common_trap:** Freezing the denominator. Every liter of acid you pour in lands in both the acid total and the volume total, and the wrong choices are engineered for students who update only the numerator.
+**takeaway:** Mixture backsolving means rebuilding the full fraction for each candidate — new amount over new total — and the directional logic (too weak means add more) still cuts the field in half.
+**est_time_seconds:** 110
+**trap_type:** frozen-denominator
+**hint_nudge:** Start by finding the liters of acid already in the solution. Then remember: added acid raises the total volume too.
+**hint_strategy:** With x liters added, the mixture is (6 + x) acid in (30 + x) total. Test the middle choice and use too-weak / too-strong to eliminate.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q20
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Backsolving
+
+Marco drives from home to work at an average speed of 30 miles per hour and drives home along the same route at an average speed of 45 miles per hour. If his total driving time for the round trip is 2.5 hours, how many miles is his one-way commute?
+
+- A) 36
+- B) 40
+- C) 45
+- D) 47
+- E) 54
+
+**answer:** C
+**fastest_path:** Each choice is a one-way distance d; check whether d/30 + d/45 lands on 2.5 hours.
+**explanation:** Each candidate distance fixes both leg times: d/30 going and d/45 returning. The check is whether they sum to 2.5 hours.
+
+Test the median choice (C), d = 45: going takes 45/30 = 1.5 hours, returning takes 45/45 = 1 hour, total 2.5 hours. Exact match on the first test.
+
+The choices were built for clean division by 30 and 45 — a strong signal that the test-writer expects you to plug, not derive.
+
+The correct answer is C.
+**mistake_a:** d = 36 gives 1.2 + 0.8 = 2.0 hours, half an hour short. Catches students who average the two speeds to 37.5, divide wrong, and round down.
+**mistake_b:** d = 40 gives 4/3 + 8/9 of an hour, about 2.22 — close enough to fool an eyeballer who never adds the fractions.
+**mistake_d:** The average-speed trap made concrete: averaging 30 and 45 to 37.5 mph and computing 37.5 times 2.5 divided by 2 gives about 46.9, which rounds to 47. But Marco spends more time at the slower speed, so the true average speed is below 37.5 — equal-weight averaging always overshoots.
+**mistake_e:** d = 54 gives 1.8 + 1.2 = 3.0 hours. The answer for students who assign 2.5 hours to just one leg somewhere in the arithmetic.
+**common_trap:** Averaging the two speeds. Average speed weights by time, not by leg, and the slow leg dominates — the trap answer 47 is planted one notch from the truth to punish exactly that shortcut.
+**takeaway:** Round-trip stems backsolve beautifully: a candidate distance turns instantly into two leg times, and their sum either hits the stated total or tells you which way to move.
+**est_time_seconds:** 110
+**trap_type:** average-of-rates
+**hint_nudge:** Pick a choice and compute the two leg times separately. Do they add to 2.5 hours?
+**hint_strategy:** Time going is d/30, returning is d/45. Notice the choices divide cleanly by both speeds — that is an invitation to test them.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q21
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Backsolving
+
+Three years ago, Pia was four times as old as Quinn was at that time. In five years, Pia will be twice as old as Quinn will be at that time. How old is Pia now?
+
+- A) 17
+- B) 19
+- C) 21
+- D) 23
+- E) 27
+
+**answer:** B
+**fastest_path:** Prune first: a candidate Pia minus 3 must split evenly into four parts. Only two choices survive that screen; test those.
+**explanation:** Each choice is Pia's current age. Three years ago her age was the choice minus 3, and that number must be four times Quinn's age then — so it must be divisible by 4. Run that screen before any real work: 17 - 3 = 14 fails, 19 - 3 = 16 passes, 21 - 3 = 18 fails, 23 - 3 = 20 passes, 27 - 3 = 24 passes. Three candidates die at a glance.
+
+Test B, Pia = 19: three years ago she was 16, so Quinn was 4 then, making Quinn 7 now. In five years: Pia 24, Quinn 12 — and 24 is exactly twice 12. Both conditions hold.
+
+For contrast, D fails the second condition: Pia 23 means Quinn was 5, is 8 now; in five years 28 versus 13, and twice 13 is 26, not 28.
+
+The correct answer is B.
+**mistake_a:** Pia = 17 means she was 14 three years ago, and 14 is not divisible by 4 — Quinn's age would not be a whole number. Picked when the divisibility screen is skipped and the arithmetic is rushed.
+**mistake_c:** 21 - 3 = 18 also fails the divisibility screen. Tempting because 21 is three times 7, and "three times" echoes the wrong multiplier from the stem.
+**mistake_d:** Survives the screen (20 is divisible by 4) but fails the future check: in five years Pia would be 28 while twice Quinn's age is 26. The single-condition checker stops before this test.
+**mistake_e:** Also survives the screen (24 divisible by 4), but in five years Pia would be 32 against twice-Quinn of 28. It punishes students who test only the first surviving candidate's first condition and then grab the largest choice "to be safe."
+**common_trap:** Translating "in five years, twice as old" as Pia + 5 = 2 times Quinn's current age, forgetting Quinn ages too. Backsolving dodges the translation entirely: you build both future ages from the candidate and read the sentence against them.
+**takeaway:** Hidden integer constraints — ages, people, coins must be whole — are free eliminations: screen the choices against divisibility before you test anything in full.
+**est_time_seconds:** 120
+**trap_type:** hidden-integer-constraint
+**hint_nudge:** Three years ago Pia's age must split into four equal whole parts. Which choices even allow that?
+**hint_strategy:** From each surviving candidate, build Quinn's current age via the first condition, then check the in-five-years condition — both people age five years.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q22
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Backsolving
+
+A street vendor sells cups of lemonade at 2.50 dollars each. If she reduced the price by 0.50 dollars per cup, she would need to sell 20 more cups than she currently sells to take in the same revenue. How many cups does she currently sell?
+
+- A) 40
+- B) 60
+- C) 80
+- D) 90
+- E) 100
+
+**answer:** C
+**fastest_path:** For each candidate n, compare current revenue 2.50n with discounted revenue 2.00(n + 20); the two move apart in opposite directions around the answer.
+**explanation:** Each choice is a candidate current sales count n. Current revenue is 2.50n; the hypothetical revenue is 2.00 times (n + 20). The stem says these are equal.
+
+Test the median choice (C), n = 80: current revenue is 2.50(80) = 200; discounted revenue is 2.00(100) = 200. Equal on the first test.
+
+Worth seeing why the equality is unique: each extra current cup adds 2.50 to the left side but only 2.00 to the right, so the gap between the two revenues moves strictly in one direction — below 80 the discounted scenario earns more, above 80 it earns less.
+
+The correct answer is C.
+**mistake_a:** n = 40 gives revenues of 100 versus 120 — the discount scenario wins. This is the unit-confusion answer: reading "20 more" as 20 more dollars of revenue leads to 2.50n = 2.00n + 20 and n = 40. The 20 counts cups, not dollars.
+**mistake_b:** n = 60 gives 150 versus 160, still unequal. A stopping point for students who test A, see "too low," and overcorrect to the next choice without retesting.
+**mistake_d:** n = 90 gives 225 versus 220 — now the current scenario wins. Picked when the two revenues are computed but compared in the wrong direction.
+**mistake_e:** n = 100 gives 250 versus 240. It tempts students who anchor on "100 cups at 2 dollars = 200 dollars" from the C test and then promote the 100 itself to the answer.
+**common_trap:** Attaching the 20 to the wrong unit. "Sell 20 more cups" changes the quantity in the discounted scenario; misreading it as 20 more dollars builds an equation that solves to choice A — which is exactly why A is there.
+**takeaway:** Revenue equalities backsolve as two quick products per candidate; if the first test does not balance, note which side won — that sign tells you which way along the choices to walk.
+**est_time_seconds:** 110
+**trap_type:** unit-confusion
+**hint_nudge:** For a candidate n, the two revenues are 2.50 times n and 2.00 times (n + 20). The "20 more" counts cups, not dollars.
+**hint_strategy:** Test the middle choice and check which scenario earns more. Each added cup widens the gap by 0.50, so the comparison only flips once.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q23
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Backsolving
+
+In a bag, the ratio of red marbles to blue marbles is 5 to 3. If 4 red marbles are removed, the ratio of red to blue becomes 4 to 3. How many blue marbles are in the bag?
+
+- A) 12
+- B) 15
+- C) 18
+- D) 21
+- E) 24
+
+**answer:** A
+**fastest_path:** Each candidate blue count fixes the red count at five-thirds of it; remove 4 reds and check whether the new ratio is 4 to 3.
+**explanation:** Each choice is a candidate blue count b. The original 5:3 ratio fixes red at 5b/3, and the check is whether (5b/3 - 4) to b reduces to 4 to 3.
+
+Test the median choice (C), b = 18: red = 30, and after removing 4 reds the ratio is 26 to 18, which is 13 to 9 — bigger than 4 to 3 (13/9 versus 12/9). The mixture is still too red, and here is the directional insight: removing a fixed 4 marbles dilutes a small bag more than a big one, so a too-red result means the bag is too big. C, D, and E die together.
+
+Test B, b = 15: red = 25, leaving 21 to 15 = 7 to 5 — still above 4 to 3 (1.40 versus 1.33). Eliminate B.
+
+Test A, b = 12: red = 20, leaving 16 to 12 = 4 to 3 exactly.
+
+The correct answer is A.
+**mistake_b:** 21 to 15 reduces to 7 to 5, and 7 - 5 = 2 while 4 - 3 = 1 — students comparing ratio gaps instead of ratio values talk themselves into it. The fraction test (1.40 against 1.33) rejects it cleanly.
+**mistake_c:** 26 to 18 is "close" to 24 to 18, and rounding the red count down by 2 makes C feel right. Exact ratios do not round.
+**mistake_d:** b = 21 means red = 35, leaving 31 to 21 — not even a whole-number ratio match. It catches students who add the removed marbles to blue instead of subtracting from red.
+**mistake_e:** b = 24 means red = 40, leaving 36 to 24 = 3 to 2. Tempting because 36 and 24 are such round numbers that the reduction "feels" like a clean answer — but 3 to 2 is not 4 to 3.
+**common_trap:** Treating ratio parts as marble counts — assuming 5 red and 3 blue, removing 4, and scaling up from nonsense. A ratio fixes proportions only; backsolving the actual blue count keeps every number concrete.
+**takeaway:** Ratio-shift problems backsolve through the unasked quantity: derive red from each candidate blue, apply the change, and compare fractions as decimals to keep the direction of elimination honest.
+**est_time_seconds:** 120
+**trap_type:** ratio-as-count
+**hint_nudge:** If a choice is the blue count, the red count is five-thirds of it. Remove 4 reds and re-form the ratio.
+**hint_strategy:** Compare each resulting ratio to 4/3 as decimals (1.33...). Removing a fixed number of marbles changes a small bag's ratio more than a large bag's.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q24
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Backsolving
+
+Aisha spent one-third of her money on a book, then spent 14 dollars on lunch, and then spent half of the money she had left on a gift. If she ended the day with 9 dollars, how much money, in dollars, did she start with?
+
+- A) 36
+- B) 42
+- C) 45
+- D) 48
+- E) 54
+
+**answer:** D
+**fastest_path:** Run each candidate forward through the three spends in story order — thirds first, then the 14, then the halving — and look for 9 at the end.
+**explanation:** The algebraic route means unwinding three operations in reverse. Backsolving runs the story forward instead: each choice is a starting amount, and the three spends are applied in order.
+
+Test the median choice (C), start = 45: the book takes a third (15), leaving 30; lunch takes 14, leaving 16; the gift takes half, leaving 8. That is 1 dollar short of 9 — too small, so the start must be bigger. A, B, and C are eliminated at once.
+
+Test D, start = 48: the book takes 16, leaving 32; lunch takes 14, leaving 18; the gift takes half, leaving 9. Exact match.
+
+The correct answer is D.
+**mistake_a:** Start = 36 ends at 5 dollars (36 to 24 to 10 to 5). It is the answer produced by unwinding the operations in the wrong order — doubling 9, then adding 14, then taking two-thirds instead of multiplying by three-halves.
+**mistake_b:** Start = 42 ends at 7 (42 to 28 to 14 to 7). Tempting after a reverse-solve slip of subtracting 14 instead of adding it on the way back.
+**mistake_c:** Ends at 8 — agonizingly close to 9, and the near-miss is the trap. Forward arithmetic this clean cannot be "off by rounding"; a 1-dollar miss means a wrong answer, full stop.
+**mistake_e:** Start = 54 ends at 11 (54 to 36 to 22 to 11), overshooting. Students who skip from C straight past D — "C was barely short, so jump two" — land here.
+**common_trap:** Reversing the operation chain to work backward and fumbling one inversion — the order and the operations must both flip, and under time pressure one of them usually doesn't. Running candidates forward uses only the story as written.
+**takeaway:** Multi-step spending chains are backsolving gold: the forward simulation is three trivial steps per candidate, and the leftover amount is monotonic in the start, so the directional cut still applies.
+**est_time_seconds:** 130
+**trap_type:** inverted-operation-order
+**hint_nudge:** Do not unwind the story backward. Push each candidate forward through the three spends as written.
+**hint_strategy:** Order matters: a third comes off first, then the flat 14, then the halving. More starting money always means more ending money, so eliminate directionally.
+**hint_setup:** Ending amount = (start times 2/3 - 14) / 2. Check the middle choice against 9 and cut the field.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q25
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Backsolving
+
+What is the greatest integer n for which n^2 + n < 500?
+
+- A) 20
+- B) 21
+- C) 22
+- D) 24
+- E) 26
+
+**answer:** B
+**fastest_path:** A candidate must do two things: satisfy the inequality itself, and have the next integer fail it. One check is never enough.
+**explanation:** "Greatest integer such that" stems hide a two-sided test. A candidate is correct only if it satisfies the inequality and the next integer up does not — otherwise something greater also works and the candidate is not the greatest.
+
+Test the median choice (C), n = 22: 484 + 22 = 506, which is not less than 500. The inequality fails, so 22 is too big — D and E die with it.
+
+Test B, n = 21: 441 + 21 = 462 < 500. The inequality holds. Now the second half of the test: the next integer, 22, was just shown to fail. So 21 both works and is maximal.
+
+The correct answer is B.
+**mistake_a:** n = 20 gives 420 < 500, so it works — but it is not the greatest such integer, because 21 also works. This catches students who scan upward from A and stop at the first success.
+**mistake_c:** 22 is the first integer that fails, and "the boundary" feels like the answer. But the question asks for the greatest n that satisfies the inequality, which sits one below the first failure.
+**mistake_d:** 24 gives 576 + 24 = 600, far over. Picked from estimating the square root of 500 as "about 24" and forgetting the + n term pushes the total higher.
+**mistake_e:** 26 gives 702. Survives only an arithmetic slip like reading n^2 + n as n^2 - n... and even 650 would fail. A pure estimation-gone-wrong answer.
+**common_trap:** The off-by-one at the boundary. Both neighbors of the true answer are planted: 20 satisfies the inequality (but is not maximal) and 22 is the first failure (but does not satisfy it). Only the two-sided check separates the three.
+**takeaway:** For "greatest n such that" or "least n such that," backsolving needs two verifications per candidate: the condition holds at n, and breaks one step further in the extreme direction.
+**est_time_seconds:** 120
+**trap_type:** boundary-off-by-one
+**hint_nudge:** Being the greatest such integer means two things must be true. What is the second one?
+**hint_strategy:** Test the middle choice in the inequality. If it fails, the answer is smaller; if it holds, check whether the next integer up also holds.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q26
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Backsolving
+
+A club consists of boys and girls. If 6 girls left the club, there would be twice as many boys as girls. If instead 4 boys left the club, there would be exactly as many boys as girls. How many girls are in the club?
+
+- A) 14
+- B) 16
+- C) 18
+- D) 20
+- E) 22
+
+**answer:** B
+**fastest_path:** Each candidate girl count fixes the boy count through the first condition; the second condition then becomes a one-line check.
+**explanation:** The stem ties two unknowns together with two scenarios. Backsolving uses the first scenario as a generator — a candidate girl count g forces the boy count to be twice (g - 6) — and the second scenario as the filter.
+
+Test the median choice (C), g = 18: boys = 2(18 - 6) = 24. Check the second scenario: 24 - 4 = 20 boys against 18 girls — boys still outnumber girls by 2, so this candidate overshoots. And the overshoot grows with g (boys rise twice as fast as girls), so D and E fail even harder. Eliminate C, D, E.
+
+Test B, g = 16: boys = 2(10) = 20. Second scenario: 20 - 4 = 16, exactly equal to the 16 girls. Both scenarios hold.
+
+The correct answer is B.
+**mistake_a:** g = 14 gives boys = 16, and 16 - 4 = 12 against 14 girls — now the girls outnumber the boys. The undershoot mirror of C, picked when the direction of the elimination is guessed instead of reasoned.
+**mistake_c:** Leaves boys ahead by 2 after the walkout. Tempting for students who check only the first scenario — every choice passes that one by construction, which is exactly why it proves nothing alone.
+**mistake_d:** 20 is the boy count, not the girl count. The system solves to 20 boys and 16 girls, and the test-writer parks the partner value one slot above the answer.
+**mistake_e:** g = 22 gives boys = 32, and 28 versus 22 fails loudly. It survives only the reading "twice as many girls as boys," which flips the multiplier in scenario one.
+**common_trap:** Using the first condition to build each candidate and then never testing the second — a generator is not a filter. The boy count (20) also sits among the choices for anyone who loses track of which quantity was asked.
+**takeaway:** Two-condition systems backsolve as generate-then-filter: derive the partner quantity from the candidate via one condition, test the other, and let the direction of the miss clear half the field.
+**est_time_seconds:** 140
+**trap_type:** answered-wrong-quantity
+**hint_nudge:** Use the departing-girls scenario to compute the boys for each candidate. Then make the departing-boys scenario the judge.
+**hint_strategy:** If g girls are in the club, boys = 2(g - 6). The second scenario demands boys - 4 = g. Notice the gap between those grows as g grows.
+**hint_setup:** At the median choice the boys finish 2 ahead after their walkout — decide which way that pushes g before testing again.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q27
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Backsolving
+
+Working alone, machine A completes an order in x hours, and machine B completes the same order in x + 6 hours. Working together at their constant individual rates, the two machines complete the order in 4 hours. What is the value of x?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 8
+- E) 10
+
+**answer:** C
+**fastest_path:** Kill choice A before computing anything — a machine working alone can never match the two-machine team time. Then test the median survivor in the rate sum.
+**explanation:** First, harvest the hidden constraint: together the machines take 4 hours, and adding a second machine always speeds things up, so A alone must take more than 4 hours. Choice A (x = 4) is impossible before any arithmetic — it would mean machine B contributes nothing.
+
+The check for the survivors is the rate equation: 1/x + 1/(x + 6) must equal the combined rate 1/4.
+
+Test C, x = 6: 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4. Exact match.
+
+For confidence in the directional logic: rates fall as x rises, so larger candidates (D, E) give combined rates below 1/4 and smaller ones give rates above it — the match is unique.
+
+The correct answer is C.
+**mistake_a:** x = 4 echoes the "4 hours" in the stem, and number-matching feels safe under pressure. But then A alone ties the team, which is impossible while B does any work at all — the hidden constraint kills it unexamined.
+**mistake_b:** x = 5 gives 1/5 + 1/11, about 0.29 against the needed 0.25. Lands on students who add times instead of rates somewhere and back into a smaller x.
+**mistake_d:** x = 8 gives 1/8 + 1/14, about 0.196 — the team would take over 5 hours. Picked when 4 + 6 = 10 is split "evenly" into 8 and something, a phantom pattern.
+**mistake_e:** x = 10 is the phantom sum of the two numbers in the stem, 4 + 6 — a setup that never modeled anything. Its combined rate, 1/10 + 1/16, is barely 0.16 against the required 0.25; testing exposes it in seconds.
+**common_trap:** Forgetting that a together-time bounds every alone-time from below. The test-writer plants the team time itself among the choices, betting you will pattern-match instead of asking whether the candidate is even possible.
+**takeaway:** Before any substitution, scan the choices against the problem's physical constraints — impossible candidates die free, and what remains is a two-test backsolve at most.
+**est_time_seconds:** 130
+**trap_type:** impossible-candidate
+**hint_nudge:** Can a machine working alone be as fast as both machines working together?
+**hint_strategy:** Rates add: 1/x + 1/(x + 6) must equal 1/4. Test a surviving middle candidate; rates shrink as x grows.
+**hint_setup:** With x = 6 the two times are 6 and 12 — fractions with a friendly common denominator. The test-writer chose the numbers to make the right candidate clean.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q28
+**difficulty:** Advanced
+**type:** Problem Solving
+**topic:** Backsolving
+
+A theater sells balcony tickets for 12 dollars each and floor tickets for 20 dollars each. One evening, the theater sold exactly 180 tickets, and its ticket revenue was greater than 2,800 dollars but less than 2,900 dollars. How many floor tickets were sold that evening?
+
+- A) 78
+- B) 80
+- C) 85
+- D) 95
+- E) 100
+
+**answer:** C
+**fastest_path:** Each candidate floor count f yields revenue 20f + 12(180 - f); check it against the open interval — strictly between 2,800 and 2,900, endpoints excluded.
+**explanation:** Each choice is a candidate floor-ticket count f, which fixes the balcony count at 180 - f and the revenue at 20f + 12(180 - f) = 2160 + 8f. Revenue rises with f, so the directional cut applies — but the target is an interval with strict ends, and that is where this problem bites.
+
+Test the median choice (C), f = 85: revenue = 2160 + 680 = 2,840. Is 2,840 strictly between 2,800 and 2,900? Yes on both sides.
+
+Before celebrating, confirm uniqueness the test demands: B gives 2160 + 640 = 2,800 exactly — and "greater than 2,800" excludes equality, so B fails by the width of a hair. D gives 2160 + 760 = 2,920, past the ceiling. The interval admits only C among the five.
+
+The correct answer is C.
+**mistake_a:** f = 78 yields 2,784, below the floor of the interval. It punishes students who set up the revenue expression with the prices swapped — 12f + 20(180 - f) = 3600 - 8f — for which 78 lands nicely inside the range.
+**mistake_b:** The boundary trap, and the heart of the question: f = 80 gives exactly 2,800, and "greater than 2,800" is strict. Students who write the condition as "at least 2,800" certify B and move on — one word in the stem separates them from the point.
+**mistake_d:** f = 95 gives 2,920, just past the 2,900 ceiling. The "close enough" reflex that survives easy questions gets billed here.
+**mistake_e:** f = 100 gives 2,960. It tempts the student who computes balcony revenue only — 12 times 80 is 960 — pattern-matches the 100 remaining, and never totals the two ticket types.
+**common_trap:** Treating a strict inequality as inclusive. The test-writer puts the exact-boundary candidate (revenue precisely 2,800) right next to the answer, so the only thing separating B from C is whether "greater than" includes equality. It does not.
+**takeaway:** When the target is a range rather than a value, backsolving still works — compute the quantity for each candidate and test membership — but the endpoints deserve a full sentence of attention: strict means the boundary itself is out.
+**est_time_seconds:** 170
+**trap_type:** boundary-exclusion
+**hint_nudge:** Write the revenue for a candidate floor count: 20 per floor ticket, 12 per balcony, 180 tickets total.
+**hint_strategy:** Revenue = 2160 + 8f, which rises with f. Find which candidates land inside the interval — then reread whether the ends are included.
+**hint_setup:** One candidate lands exactly on 2,800. Decide what "greater than 2,800" does to it before you answer.
+**related_reading:** quant-01-backsolving
+
+---
