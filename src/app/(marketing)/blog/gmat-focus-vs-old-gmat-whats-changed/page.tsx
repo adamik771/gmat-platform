@@ -449,12 +449,12 @@ export default function PostPage() {
           <H2>The platform</H2>
           <p>
             Zakarian GMAT was built for the Focus Edition specifically.
-            All content targets the current section structure, the
-            scoring scale is 205-805 throughout, and the diagnostic
-            uses the new 60-90 per-section ranges. If you&apos;re moving
-            from old prep to Focus prep, the diagnostic will tell you in
-            30 questions which of your old skills carried over and
-            which need re-targeting.
+            All content targets the current section structure and the
+            scoring scale is 205-805 throughout. If you&apos;re moving
+            from old prep to Focus prep, take an official practice exam
+            on mba.com as your baseline &mdash; it will tell you which
+            of your old skills carried over and which need re-targeting,
+            and the platform turns those section scores into a plan.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
@@ -468,14 +468,14 @@ export default function PostPage() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/free-diagnostic"
+              href="/sample-chapter"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold border transition-colors"
               style={{
                 borderColor: "rgba(255,255,255,0.10)",
                 color: "#C0C0C0",
               }}
             >
-              Take the Focus diagnostic
+              Read the free sample chapter
             </Link>
           </div>
         </div>

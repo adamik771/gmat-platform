@@ -387,7 +387,7 @@ function ProfileTab({
               </p>
               <p className="text-[13px] text-[#C0C0C0] leading-[1.7]">
                 Optional. Tailors your study plan emphasis on top of the
-                baseline persona derived from your diagnostic.
+                baseline persona derived from your official exam scores.
               </p>
             </div>
             <TriStateRow

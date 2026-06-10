@@ -44,10 +44,19 @@ const SECTION_ACCENT: Record<Section, string> = {
 export default function PracticeClient({
   chapterGroups,
   recommendations = [],
+  targetScore = null,
 }: {
   chapterGroups: PracticeChapterGroup[]
   recommendations?: PracticeRecommendation[]
+  targetScore?: number | null
 }) {
+  // Accuracy the score formula (205 + accuracy x 600) demands for the goal.
+  const requiredAccuracy =
+    targetScore !== null
+      ? Math.min(1, Math.max(0, (targetScore - 205) / 600))
+      : null
+  const requiredPercent =
+    requiredAccuracy !== null ? Math.ceil(requiredAccuracy * 100) : null
   const topRec = recommendations[0] ?? null
   // Hero CTA dynamically targets the highest-leverage action: top
   // recommendation when the engine has signal, otherwise the custom
@@ -298,6 +307,49 @@ export default function PracticeClient({
         </div>
       </section>
 
+      {/* === Goal accuracy strip — translates the student's score goal into
+          the per-test accuracy bar they should clear. */}
+      {requiredPercent !== null ? (
+        <div
+          className="rounded-xl border px-5 py-4 flex flex-wrap items-center gap-x-3 gap-y-2"
+          style={{
+            borderColor: "rgba(201,168,76,0.25)",
+            backgroundColor: "rgba(201,168,76,0.05)",
+          }}
+        >
+          <Target className="w-4 h-4 flex-shrink-0" style={{ color: "#C9A84C" }} />
+          <p className="text-[14px] text-[#E8E8E8] leading-snug">
+            <span className="font-semibold" style={{ color: "#C9A84C" }}>
+              Goal {targetScore}
+            </span>{" "}
+            means scoring{" "}
+            <span className="font-semibold tabular-nums" style={{ color: "#C9A84C" }}>
+              {requiredPercent}%+
+            </span>{" "}
+            on these tests — each row shows the correct count to beat.
+          </p>
+        </div>
+      ) : (
+        <div
+          className="rounded-xl border px-5 py-4 flex flex-wrap items-center gap-x-3 gap-y-2"
+          style={{
+            borderColor: "rgba(255,255,255,0.06)",
+            backgroundColor: "rgba(255,255,255,0.012)",
+          }}
+        >
+          <Target className="w-4 h-4 flex-shrink-0" style={{ color: "#888888" }} />
+          <p className="text-[13px] text-[#888888] leading-snug">
+            <Link
+              href="/dashboard"
+              className="underline underline-offset-2 hover:text-[#C9A84C] transition-colors"
+            >
+              Set a score goal
+            </Link>{" "}
+            to see the accuracy each test asks of you.
+          </p>
+        </div>
+      )}
+
       {/* === Chapter bank — section by section, chapter by chapter. Each
           chapter heading is followed by its short tests; the next chapter
           starts below. Tests are count-up timed with no auto-submit. */}
@@ -348,7 +400,11 @@ export default function PracticeClient({
 
             <div className="space-y-7">
               {groups.map((group) => (
-                <ChapterBlock key={group.chapterSlug} group={group} />
+                <ChapterBlock
+                  key={group.chapterSlug}
+                  group={group}
+                  requiredAccuracy={requiredAccuracy}
+                />
               ))}
             </div>
           </section>
@@ -371,15 +427,21 @@ export default function PracticeClient({
  * short test rows. Chapters with no question bank yet (RC, MSR) show a muted
  * "coming soon" row so the practice list reads as the full syllabus.
  */
-function ChapterBlock({ group }: { group: PracticeChapterGroup }) {
+function ChapterBlock({
+  group,
+  requiredAccuracy,
+}: {
+  group: PracticeChapterGroup
+  requiredAccuracy: number | null
+}) {
   const totalQ = group.tests.reduce((s, t) => s + t.count, 0)
   return (
     <div>
-      <div className="flex items-baseline justify-between gap-3 pb-2 border-b border-white/[0.08]">
-        <h3 className="font-display text-base sm:text-lg font-semibold text-[#F0F0F0] tracking-tight">
+      <div className="flex items-baseline justify-between gap-3 pb-2.5 border-b border-white/[0.08]">
+        <h3 className="font-display text-lg sm:text-xl font-semibold text-[#F0F0F0] tracking-tight">
           {group.chapterTitle}
         </h3>
-        <span className="text-[11px] text-[#555555] tabular-nums flex-shrink-0">
+        <span className="text-[12px] text-[#777777] tabular-nums flex-shrink-0">
           {group.comingSoon
             ? "Coming soon"
             : `${group.tests.length} test${group.tests.length === 1 ? "" : "s"} · ${totalQ} Q`}
@@ -387,16 +449,20 @@ function ChapterBlock({ group }: { group: PracticeChapterGroup }) {
       </div>
       {group.comingSoon ? (
         <div
-          className="mt-2.5 flex items-center gap-2 px-4 py-3 rounded-xl border border-dashed text-[12px]"
+          className="mt-3 flex items-center gap-2 px-4 py-3 rounded-xl border border-dashed text-[12px]"
           style={{ borderColor: "rgba(255,255,255,0.06)", color: "#555555" }}
         >
           <Clock className="w-3.5 h-3.5 flex-shrink-0" aria-hidden />
           Tests coming soon — read the chapter for now.
         </div>
       ) : (
-        <div className="mt-2.5 space-y-2">
+        <div className="mt-3 space-y-2.5">
           {group.tests.map((test) => (
-            <ChapterTestRow key={test.id} test={test} />
+            <ChapterTestRow
+              key={test.id}
+              test={test}
+              requiredAccuracy={requiredAccuracy}
+            />
           ))}
         </div>
       )}
@@ -405,36 +471,62 @@ function ChapterBlock({ group }: { group: PracticeChapterGroup }) {
 }
 
 /**
- * A single timed test row: label, question count, difficulty mix, estimated
- * runtime, and a Start CTA. Links to the count-up, no-auto-submit session.
+ * A single test row: numbered badge, label, question count, difficulty mix,
+ * the correct-count to beat for the student's goal, and a Start CTA. No time
+ * shown — tests are untimed count-up sessions and a clock invites rushing.
  */
-function ChapterTestRow({ test }: { test: PracticeTest }) {
+function ChapterTestRow({
+  test,
+  requiredAccuracy,
+}: {
+  test: PracticeTest
+  requiredAccuracy: number | null
+}) {
   const { easy, medium, hard } = test.difficultyMix
   const pills: Array<{ label: string; count: number; color: string }> = []
   if (easy > 0) pills.push({ label: "Easy", count: easy, color: "#3ECF8E" })
   if (medium > 0) pills.push({ label: "Med", count: medium, color: "#C9A84C" })
   if (hard > 0) pills.push({ label: "Hard", count: hard, color: "#FF8A65" })
+  const testNumber = test.label.replace(/\D+/g, "") || "1"
+  const aimCount =
+    requiredAccuracy !== null
+      ? Math.min(test.count, Math.ceil(requiredAccuracy * test.count))
+      : null
   return (
     <Link
       href={`/practice/session/${test.id}`}
       aria-label={`Start ${test.label} — ${test.count} questions`}
-      className="group flex items-center justify-between gap-4 px-4 py-3 rounded-xl border border-white/[0.06] bg-[#0D0D0D] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.14] hover:bg-[#111111]"
+      className="group flex items-center justify-between gap-4 px-4 sm:px-5 py-4 rounded-xl border border-white/[0.06] bg-[#0D0D0D] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.14] hover:bg-[#111111]"
     >
-      <div className="flex items-center gap-x-3 gap-y-1.5 min-w-0 flex-wrap">
-        <span className="text-[13px] font-semibold text-[#F0F0F0]">{test.label}</span>
-        <span className="text-[11px] text-[#555555] tabular-nums">{test.count} Q</span>
-        <span className="hidden sm:flex items-center gap-1.5">
+      <div className="flex items-center gap-x-3.5 gap-y-1.5 min-w-0 flex-wrap">
+        <span
+          className="hidden sm:inline-flex items-center justify-center w-10 h-10 rounded-lg font-display text-[16px] font-semibold flex-shrink-0"
+          style={{
+            backgroundColor: "rgba(201,168,76,0.10)",
+            color: "#C9A84C",
+          }}
+          aria-hidden
+        >
+          {testNumber}
+        </span>
+        <span className="text-[15px] font-semibold text-[#F0F0F0]">
+          {test.label}
+        </span>
+        <span className="text-[13px] text-[#888888] tabular-nums">
+          {test.count} questions
+        </span>
+        <span className="hidden md:flex items-center gap-1.5">
           {pills.map((p) => (
             <span
               key={p.label}
-              className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold tabular-nums"
+              className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[11px] font-semibold tabular-nums"
               style={{
                 backgroundColor: "rgba(255,255,255,0.04)",
-                color: "rgba(192,192,192,0.8)",
+                color: "rgba(192,192,192,0.85)",
               }}
             >
               <span
-                className="w-1 h-1 rounded-full"
+                className="w-1.5 h-1.5 rounded-full"
                 style={{ backgroundColor: p.color }}
                 aria-hidden
               />
@@ -442,13 +534,25 @@ function ChapterTestRow({ test }: { test: PracticeTest }) {
             </span>
           ))}
         </span>
-        <span className="text-[11px] text-[#666666] tabular-nums">
-          ~{test.estimatedMinutes} min
-        </span>
+        {aimCount !== null && (
+          <span
+            className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[12px] font-semibold tabular-nums"
+            style={{
+              backgroundColor: "rgba(201,168,76,0.10)",
+              color: "#C9A84C",
+            }}
+          >
+            <Target className="w-3 h-3" aria-hidden />
+            aim {aimCount}/{test.count}
+          </span>
+        )}
       </div>
-      <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.18em] font-semibold text-[#888888] flex-shrink-0 transition-colors group-hover:text-[#C9A84C]">
+      <span
+        className="inline-flex items-center gap-1.5 text-[12px] uppercase tracking-[0.18em] font-semibold flex-shrink-0 transition-colors"
+        style={{ color: "#C9A84C" }}
+      >
         Start
-        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
       </span>
     </Link>
   )

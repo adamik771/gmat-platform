@@ -47,12 +47,11 @@ import {
 const navItems = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Course", href: "/learn", icon: GraduationCap },
-  { label: "Diagnostic", href: "/diagnostic", icon: FlaskConical },
   { label: "Study Plan", href: "/study-plan", icon: Calendar },
   { label: "Chapters", href: "/chapters", icon: Sparkles },
   { label: "Practice", href: "/practice", icon: Target },
   { label: "Review", href: "/review", icon: RotateCcw },
-  { label: "Mock", href: "/mock", icon: Target },
+  { label: "Exams", href: "/mock", icon: FlaskConical },
   { label: "Test Builder", href: "/test-builder", icon: Wrench },
   { label: "Analytics", href: "/analytics", icon: BarChart3 },
   { label: "Error Log", href: "/error-log", icon: AlertCircle },

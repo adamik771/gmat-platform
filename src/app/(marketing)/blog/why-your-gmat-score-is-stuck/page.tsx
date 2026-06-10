@@ -308,25 +308,26 @@ export default function PostPage() {
             I built Zakarian GMAT because the spreadsheet I used to climb
             from 565 to 735 deserved to be a real product. The error log is
             built in. The patterns are aggregated for you. The spaced
-            retrieval is automatic. The diagnostic finds your top three
-            traps in 30 questions. The chapters teach the content but the
-            point is what the system does with your mistakes between chapters.
+            retrieval is automatic. You baseline with an official mba.com
+            practice exam and the platform turns your section scores into
+            a plan. The chapters teach the content but the point is what
+            the system does with your mistakes between chapters.
           </p>
           <p>
             The system isn&apos;t magic. It&apos;s the discipline of doing the
             review work, made easier by software so you actually do it. If
             you&apos;ve been stuck and you&apos;re ready to take your mistakes
-            seriously, the diagnostic is free and the rest is one click
+            seriously, the sample chapter is free and the rest is one click
             away.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
-              href="/free-diagnostic"
+              href="/sample-chapter"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Take the free diagnostic
+              Read the free sample chapter
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

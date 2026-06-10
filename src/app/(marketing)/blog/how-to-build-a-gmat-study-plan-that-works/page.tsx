@@ -427,24 +427,24 @@ export default function PostPage() {
 
           <H2>The platform</H2>
           <p>
-            Zakarian GMAT was built around exactly this loop. The
-            diagnostic generates a per-topic and per-difficulty weakness
-            map in 30 questions. The adaptive study plan re-prioritises
+            Zakarian GMAT was built around exactly this loop. You baseline
+            with an official practice exam on mba.com and enter your
+            section scores. The adaptive study plan re-prioritises
             your week based on your latest practice data, with explicit
             today / next / then framing. The spaced-review queue resurfaces
             past misses on a schedule that works. The error log keeps your
             mistakes sortable so the patterns surface. If you&apos;d rather
-            not run the loop in a spreadsheet for six months, the diagnostic
+            not run the loop in a spreadsheet for six months, the account
             is free and the plan builds itself.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
-              href="/free-diagnostic"
+              href="/signup"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Take the free diagnostic
+              Create a free account
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

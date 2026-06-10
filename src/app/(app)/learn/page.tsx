@@ -28,7 +28,7 @@ import type { Section } from "@/types"
  *   1. Learn      — curriculum chapters with sub-chapter TOCs (deep-link
  *                   into specific reading sections)
  *   2. Practice   — question bank, mini-examples, active recall, drills
- *   3. Measure    — diagnostic, full mock, custom test
+ *   3. Measure    — official exams, full mock, custom test
  *   4. Track      — mistake log, spaced review, progress analytics
  *
  * The page is read-mostly. It never mutates user state. Progress badges
@@ -132,8 +132,8 @@ export default async function CoursePage() {
 
   // Progress overlay (best-effort — anonymous viewers see no badges).
   let progress: Record<string, ProgressShape> = {}
-  let diagnosticDone = false
-  let diagSectionsDone = 0
+  let baselineEntered = false
+  let officialExamCount = 0
   let firstName: string | null = null
   let targetScore: number | null = null
   let examDate: string | null = null
@@ -162,13 +162,11 @@ export default async function CoursePage() {
       const examMeta = user.user_metadata?.exam_date
       examDate =
         typeof examMeta === "string" && examMeta.length > 0 ? examMeta : null
-      const { data: diagSessions } = await supabase
-        .from("practice_sessions")
-        .select("slug")
-        .eq("user_id", user.id)
-        .in("slug", ["diagnostic-quant", "diagnostic-verbal", "diagnostic-di"])
-      diagSectionsDone = diagSessions?.length ?? 0
-      diagnosticDone = diagSectionsDone >= 3
+      const metaOfficialScores = user.user_metadata?.official_exam_scores
+      officialExamCount = Array.isArray(metaOfficialScores)
+        ? metaOfficialScores.length
+        : 0
+      baselineEntered = officialExamCount > 0
     }
   } catch {
     // No-op — render in unauthenticated mode.
@@ -218,7 +216,7 @@ export default async function CoursePage() {
 
       <div className="relative max-w-6xl mx-auto space-y-14">
         {/* HERO — mission control: action-driven, not abstract.
-            When the diagnostic isn't done, the page is brutally focused
+            When the baseline isn't entered, the page is brutally focused
             on baselining. Otherwise it points at the Study Plan, which
             already orchestrates today's work. */}
         <section className="pt-2">
@@ -239,7 +237,7 @@ export default async function CoursePage() {
           <div className="grid lg:grid-cols-[minmax(0,1fr)_320px] gap-8 lg:gap-12">
             <div className="min-w-0">
               <h1 className="font-display text-4xl md:text-[54px] font-semibold tracking-[-0.02em] text-[#F0F0F0] leading-[1.04] mb-5">
-                {diagnosticDone ? (
+                {baselineEntered ? (
                   <>
                     Your course is{" "}
                     <span
@@ -251,23 +249,23 @@ export default async function CoursePage() {
                   </>
                 ) : (
                   <>
-                    Start with the{" "}
+                    Start with your{" "}
                     <span
                       className="font-display-italic"
                       style={{ color: "#C9A84C" }}
                     >
-                      diagnostic.
+                      baseline exam.
                     </span>
                   </>
                 )}
               </h1>
               <p className="text-[16px] leading-[1.7] text-[#C0C0C0] max-w-2xl">
-                {diagnosticDone
-                  ? "Diagnostic done. The rest of the loop runs from your study plan — today's focus, weak areas, weekly cadence."
-                  : "Without it, every recommendation in the system is a guess. 30 questions across Q / V / DI baselines your readiness, surfaces trap patterns, and seeds the study plan."}
+                {baselineEntered
+                  ? "Baseline entered. The rest of the loop runs from your study plan — today's focus, weak areas, weekly cadence."
+                  : "Take Official Practice Exam 1 on mba.com under full exam conditions and enter the score here. A real exam is the only baseline worth planning around — it seeds the study plan."}
               </p>
               <div className="mt-7 flex flex-wrap items-center gap-3">
-                {diagnosticDone ? (
+                {baselineEntered ? (
                   <>
                     <Link
                       href="/study-plan"
@@ -291,13 +289,11 @@ export default async function CoursePage() {
                 ) : (
                   <>
                     <Link
-                      href="/diagnostic"
+                      href="/mock"
                       className="group inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
                       style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
                     >
-                      {diagSectionsDone === 0
-                        ? "Start 30-question diagnostic"
-                        : `Continue diagnostic (${diagSectionsDone}/3)`}
+                      Open the official exam plan
                       <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                     </Link>
                     <Link
@@ -315,7 +311,7 @@ export default async function CoursePage() {
               </div>
             </div>
 
-            {/* Right column — setup status. Quiet visual; the diagnostic
+            {/* Right column — setup status. Quiet visual; the baseline
                 CTA stays dominant. Each row toggles between Set / Missing
                 so the user can see at a glance what's still off. */}
             <div className="flex flex-col gap-2.5 lg:max-w-[320px]">
@@ -326,7 +322,7 @@ export default async function CoursePage() {
                 Your setup
               </p>
               {[
-                { label: "Diagnostic", done: diagnosticDone, href: "/diagnostic" },
+                { label: "Baseline exam", done: baselineEntered, href: "/mock" },
                 { label: "Target score", done: targetScore !== null, href: "/dashboard#score-goal" },
                 { label: "Exam date", done: examDate !== null, href: "/settings" },
               ].map((row) => (
@@ -376,13 +372,13 @@ export default async function CoursePage() {
         </section>
 
         {/* COURSE LOOP — visualizes the "one spine" claim. Five steps,
-            connected. The first node mirrors the diagnostic state; the
+            connected. The first node mirrors the baseline state; the
             others stay neutral (per-chapter signal isn't available
             without backend changes). The Study Plan is the 5th node so
             it stops being a footer afterthought. */}
         <CourseLoop
-          diagnosticDone={diagnosticDone}
-          diagSectionsDone={diagSectionsDone}
+          baselineEntered={baselineEntered}
+          officialExamCount={officialExamCount}
         />
 
         {/* BY THE NUMBERS — moved out of the hero. Stats now carry an
@@ -489,22 +485,22 @@ export default async function CoursePage() {
           </div>
         </Stage>
 
-        {/* STAGE 3: MEASURE — diagnostic + mock */}
+        {/* STAGE 3: MEASURE — official exams + mock */}
         <Stage
           stage="03"
           eyebrow="Measure"
           title="Test against"
           titleAccent="reality."
-          description="A diagnostic to baseline. A full-length mock to forecast. A custom test when you want to drill a specific topic under timed pressure."
+          description="An official mba.com exam to baseline. A full-length site mock for extra reps. A custom test when you want to drill a specific topic under timed pressure."
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <MeasureCard
               icon={Compass}
-              title="Diagnostic"
-              status={diagnosticDone ? "Complete" : "Start here"}
-              description="30 questions across Q / V / DI. Identifies weak sub-skills, trap patterns, and pacing issues."
-              href="/diagnostic"
-              variant={diagnosticDone ? "muted" : "primary"}
+              title="Official Exam Plan"
+              status={baselineEntered ? "Baseline entered" : "Start here"}
+              description="The 6 official mba.com practice exams on a weekly cadence, scores tracked here. The calibrated signal."
+              href="/mock"
+              variant={baselineEntered ? "muted" : "primary"}
             />
             <MeasureCard
               icon={Timer}
@@ -594,17 +590,17 @@ function StatCell({
 
 /**
  * Course loop — five nodes connected by a soft accent line. Visualizes
- * the "one spine" claim. State on the first node mirrors the diagnostic
+ * the "one spine" claim. State on the first node mirrors the baseline
  * status; the others stay neutral because we have no per-chapter signal
  * to color them with on this page (the curriculum-guide slugs don't map
  * to interactive `chapter_progress` keys).
  */
 function CourseLoop({
-  diagnosticDone,
-  diagSectionsDone,
+  baselineEntered,
+  officialExamCount,
 }: {
-  diagnosticDone: boolean
-  diagSectionsDone: number
+  baselineEntered: boolean
+  officialExamCount: number
 }) {
   type LoopNode = {
     n: string
@@ -617,15 +613,11 @@ function CourseLoop({
   const nodes: LoopNode[] = [
     {
       n: "01",
-      title: "Diagnose",
-      body: "Find your baseline.",
-      href: "/diagnostic",
+      title: "Baseline",
+      body: "Official exam, real conditions.",
+      href: "/mock",
       Icon: Compass,
-      state: diagnosticDone
-        ? "done"
-        : diagSectionsDone > 0
-        ? "current"
-        : "current",
+      state: baselineEntered ? "done" : "current",
     },
     {
       n: "02",
@@ -633,7 +625,7 @@ function CourseLoop({
       body: "Read the highest-impact chapter.",
       href: "/chapters",
       Icon: BookOpen,
-      state: diagnosticDone ? "current" : "neutral",
+      state: baselineEntered ? "current" : "neutral",
     },
     {
       n: "03",
@@ -657,7 +649,7 @@ function CourseLoop({
       body: "Today's focus + weekly cadence.",
       href: "/study-plan",
       Icon: Target,
-      state: diagnosticDone ? "current" : "neutral",
+      state: baselineEntered ? "current" : "neutral",
     },
   ]
   return (

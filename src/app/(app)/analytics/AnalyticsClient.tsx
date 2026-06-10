@@ -1603,14 +1603,14 @@ function FirstRunState() {
           <ArrowRight className="w-4 h-4" />
         </Link>
         <Link
-          href="/diagnostic"
+          href="/mock"
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border transition-colors hover:border-white/[0.22]"
           style={{
             borderColor: "rgba(255,255,255,0.12)",
             color: "#F0F0F0",
           }}
         >
-          Run the diagnostic
+          Open the exam plan
         </Link>
       </div>
     </div>

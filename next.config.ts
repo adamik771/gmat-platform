@@ -7,6 +7,27 @@ const nextConfig: NextConfig = {
   // worker can pull in (defense in depth).
   async headers() {
     return [
+      // Global security headers (2026-06 security audit): HSTS keeps every
+      // request on TLS, nosniff stops MIME confusion, DENY blocks
+      // clickjacking iframes, and the referrer/permissions policies trim
+      // what leaks to third parties. CSP is intentionally NOT set globally
+      // yet — Next.js inline runtime scripts need nonce plumbing first.
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains",
+          },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
+        ],
+      },
       {
         source: "/sw.js",
         headers: [
@@ -34,6 +55,13 @@ const nextConfig: NextConfig = {
     // Verbal was later split again into one chapter per question type, so the
     // legacy slugs (and the original CR/RC names) all forward to their successor.
     return [
+      // The in-app diagnostic was retired in favour of official mba.com
+      // practice exams entered on the exam-plan page; the free marketing
+      // sampler forwards to signup.
+      { source: "/diagnostic", destination: "/mock", permanent: true },
+      { source: "/diagnostic/:path*", destination: "/mock", permanent: true },
+      { source: "/free-diagnostic", destination: "/signup", permanent: true },
+      { source: "/free-diagnostic/:path*", destination: "/signup", permanent: true },
       { source: "/chapters/critical-reasoning", destination: "/chapters/verbal-02-cr-argument-structure", permanent: true },
       { source: "/chapters/reading-comprehension", destination: "/chapters/verbal-13-rc-reading-process", permanent: true },
       { source: "/chapters/verbal-1-foundations", destination: "/chapters/verbal-01-foundations", permanent: true },
