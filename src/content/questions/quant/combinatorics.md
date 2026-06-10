@@ -118,7 +118,7 @@ Let n = 6 be the number of students in the group, and let k = 3 be the number of
 
 Substituting the values into the formula gives C(6, 3) = 6! / (3! (6 - 3)!) = 6! / (3! 3!).
 
-Expanding the factorials, we have 6! = 720, 3! = 6, and 3! = 6. Therefore C(6, 3) = 720 / (6 * 6) = 720 / 36 = 20.
+Rather than expand 6! = 720 and divide by 36, cancel one 3! against the numerator: C(6, 3) = (6 * 5 * 4) / (3 * 2 * 1). Now 6 / (3 * 2) = 1, so the denominator clears entirely, leaving 5 * 4 = 20.
 
 Thus there are 20 different teams of 3 that can be picked from the group of 6 students.
 
@@ -207,9 +207,9 @@ We write out the numerator down to the point where it cancels with 6!:
 
 C(10, 4) = (10 * 9 * 8 * 7) / (4 * 3 * 2 * 1).
 
-The numerator equals 10 * 9 * 8 * 7 = 5040, and the denominator equals 4 * 3 * 2 * 1 = 24. Therefore
+Now cancel the denominator against the numerator instead of multiplying out: 8 / (4 * 2) = 1 and 9 / 3 = 3, which clears 4 * 3 * 2 * 1 entirely and leaves
 
-C(10, 4) = 5040 / 24 = 210.
+C(10, 4) = 10 * 3 * 7 = 210.
 
 The correct answer is B.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -408,13 +408,15 @@ Applying the principle, the number of distinct arrangements is
 
 11! / (4! × 4! × 2! × 1!).
 
-We evaluate each factorial. The numerator is 11! = 39,916,800. In the denominator, 4! = 24, 4! = 24, 2! = 2, and 1! = 1. The product of these values is
+Rather than compute 11! in full and then divide a seven-figure number, cancel before multiplying. First cancel one 4! against the numerator: writing 11! = 11 × 10 × 9 × 8 × 7 × 6 × 5 × 4!, the trailing 4! cancels one 4! in the denominator, leaving
 
-24 × 24 × 2 × 1 = 1,152.
+(11 × 10 × 9 × 8 × 7 × 6 × 5) / (4! × 2! × 1!).
 
-Dividing gives
+The remaining denominator is 4! × 2! × 1! = 24 × 2 × 1 = 48. Instead of dividing by 48, cancel it against factors already in the numerator: 6 × 8 = 48, so the 6 and the 8 cancel the denominator exactly, leaving
 
-39,916,800 / 1,152 = 34,650.
+11 × 10 × 9 × 7 × 5.
+
+Multiplying the survivors in stages keeps every step small: 11 × 10 = 110, then × 9 = 990, then × 7 = 6,930, then × 5 = 34,650. No large multiplication or long division is ever required.
 
 The correct answer is A.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -445,7 +447,7 @@ Evaluating the combination gives C(7, 2) = 7! / (2! * 5!) = (7 * 6) / (2 * 1) = 
 
 Applying the multiplication principle, the total number of outcomes is 8 * 21 = 168.
 
-The same result can be obtained by reversing the order of the two stages. First choose the unordered committee of 3 from the 8 candidates: C(8, 3) = 8! / (3! * 5!) = (8 * 7 * 6) / (3 * 2 * 1) = 336 / 6 = 56. Then designate one of the 3 committee members as chair, which can be done in 3 ways. This yields 56 * 3 = 168, confirming the count.
+The same result can be obtained by reversing the order of the two stages. First choose the unordered committee of 3 from the 8 candidates: C(8, 3) = 8! / (3! * 5!) = (8 * 7 * 6) / (3 * 2 * 1) = 8 * 7 = 56 (the 6 cancels 3 * 2). Then designate one of the 3 committee members as chair, which can be done in 3 ways. This yields 56 * 3 = 168, confirming the count.
 
 The correct answer is C.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -663,9 +665,9 @@ A drawer contains 10 socks: 4 black, 4 blue, and 2 red. If 3 socks are drawn at 
 
 Let the drawer contain 10 socks, of which 4 are black and the remaining 6 (4 blue and 2 red) are not black. Three socks are drawn without replacement, and every group of 3 socks is equally likely.
 
-The total number of ways to choose 3 socks from the 10 is C(10, 3) = (10 * 9 * 8) / (3 * 2 * 1) = 720 / 6 = 120.
+The total number of ways to choose 3 socks from the 10 is C(10, 3) = (10 * 9 * 8) / (3 * 2 * 1) = 10 * 3 * 4 = 120 (cancelling 9/3 and 8/2).
 
-The number of ways to choose 3 socks that include no black sock is the number of ways to choose all 3 from the 6 non-black socks, which is C(6, 3) = (6 * 5 * 4) / (3 * 2 * 1) = 120 / 6 = 20.
+The number of ways to choose 3 socks that include no black sock is the number of ways to choose all 3 from the 6 non-black socks, which is C(6, 3) = (6 * 5 * 4) / (3 * 2 * 1) = 5 * 4 = 20 (the 6 cancels 3 * 2).
 
 Therefore the probability that no black sock is drawn is 20 / 120 = 1/6.
 
@@ -828,7 +830,7 @@ where each y_i is a nonnegative integer. The number of nonnegative-integer solut
 
 We now compute C(9, 3):
 
-C(9, 3) = (9 * 8 * 7) / (3 * 2 * 1) = 504 / 6 = 84.
+C(9, 3) = (9 * 8 * 7) / (3 * 2 * 1) = 3 * 4 * 7 = 84 (cancelling 9/3 and 8/2).
 
 The correct answer is C.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -857,11 +859,9 @@ Applying the formula, the number of distinct arrangements is
 
 6! / (2! * 2!).
 
-First, compute the factorials: 6! = 720, and 2! = 2, so 2! * 2! = 2 * 2 = 4.
+Cancel one 2! against 6! first: 6! / 2! = 6 * 5 * 4 * 3. The remaining 2! = 2 divides the 4, giving
 
-Dividing gives
-
-720 / 4 = 180.
+6 * 5 * 2 * 3 = 180.
 
 The correct answer is C.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -1294,7 +1294,7 @@ C(n + k - 1, k) = C(5 + 3 - 1, 3) = C(7, 3).
 
 Evaluating this combination yields:
 
-C(7, 3) = (7 * 6 * 5) / (3 * 2 * 1) = 210 / 6 = 35.
+C(7, 3) = (7 * 6 * 5) / (3 * 2 * 1) = 7 * 5 = 35 (the 6 cancels 3 * 2).
 
 Therefore, there are 35 distinct ways to order the bowl.
 
@@ -1418,7 +1418,7 @@ A 3-person committee is selected at random from 6 Democrats and 4 Republicans. W
 
 Let the committee consist of 3 people chosen from 10 people total, namely 6 Democrats and 4 Republicans. The total number of distinct 3-person committees is the number of ways to choose 3 people from 10, without regard to order:
 
-C(10,3) = (10 x 9 x 8) / (3 x 2 x 1) = 720 / 6 = 120.
+C(10,3) = (10 x 9 x 8) / (3 x 2 x 1) = 10 x 3 x 4 = 120 (cancelling 9/3 and 8/2).
 
 A majority of Democrats on a 3-person committee means at least 2 Democrats, which occurs in exactly two mutually exclusive cases: exactly 2 Democrats with 1 Republican, or exactly 3 Democrats with 0 Republicans.
 
@@ -1428,7 +1428,7 @@ C(6,2) x C(4,1) = [(6 x 5) / (2 x 1)] x 4 = 15 x 4 = 60.
 
 For exactly 3 Democrats and 0 Republicans, choose 3 of the 6 Democrats:
 
-C(6,3) = (6 x 5 x 4) / (3 x 2 x 1) = 120 / 6 = 20.
+C(6,3) = (6 x 5 x 4) / (3 x 2 x 1) = 5 x 4 = 20 (the 6 cancels 3 x 2).
 
 Because these two cases cannot occur simultaneously, the number of favorable committees is their sum:
 
@@ -1494,11 +1494,11 @@ A committee of 4 is to be selected from 10 candidates: 2 rivals (X and Y who ref
 **answer:** D
 **explanation:** This problem is solved using the inclusion-exclusion principle. When a set of objects must avoid two distinct restrictions, the number of acceptable arrangements equals the total number of unrestricted arrangements, minus the number that violate the first restriction, minus the number that violate the second restriction, plus the number that violate both restrictions simultaneously. The final term is added back because arrangements violating both restrictions have been subtracted twice and must be counted only once as invalid.
 
-Let the total be the number of ways to choose any 4 of the 10 candidates, with no conditions imposed. This is C(10,4) = (10 * 9 * 8 * 7) / (4 * 3 * 2 * 1) = 5,040 / 24 = 210.
+Let the total be the number of ways to choose any 4 of the 10 candidates, with no conditions imposed. This is C(10,4) = (10 * 9 * 8 * 7) / (4 * 3 * 2 * 1) = 10 * 3 * 7 = 210 (8 cancels 4 * 2, and 9/3 = 3).
 
 Next, let the first invalid group be the committees that contain both rivals X and Y. With X and Y already placed, the remaining 2 members are chosen from the other 8 candidates, giving C(8,2) = (8 * 7) / (2 * 1) = 56 / 2 = 28.
 
-Next, let the second invalid group be the committees that contain no senior member. The non-senior candidates number 7 (the 2 rivals and the 5 junior members), so all 4 members are chosen from these 7, giving C(7,4) = (7 * 6 * 5 * 4) / (4 * 3 * 2 * 1) = 840 / 24 = 35.
+Next, let the second invalid group be the committees that contain no senior member. The non-senior candidates number 7 (the 2 rivals and the 5 junior members), so all 4 members are chosen from these 7, giving C(7,4) = (7 * 6 * 5 * 4) / (4 * 3 * 2 * 1) = 7 * 5 = 35 (the 4 cancels 4, and 6 cancels 3 * 2).
 
 Now let the overlap be the committees that violate both restrictions at once, that is, committees containing both X and Y while including no senior member. With X and Y placed, the remaining 2 members must be drawn only from the 5 junior members, giving C(5,2) = (5 * 4) / (2 * 1) = 20 / 2 = 10.
 

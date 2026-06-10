@@ -181,7 +181,7 @@ Also written **(n choose k)**. Read it as "from n things, choose k, ignoring ord
 - Each team of 3 was counted 3! = 6 times (once for each ordering of those same three people).
 - Divide: 120 / 6 = **20**.
 
-Check: C(6, 3) = 6! / (3! × 3!) = 720 / 36 = 20. Correct.
+Check: C(6, 3) = 6! / (3! × 3!) = (6 × 5 × 4) / (3 × 2 × 1) = 5 × 4 = 20 (the 6 cancels 3 × 2). Correct.
 
 **Why C(n, k) = P(n, k) / k!.** Every combination corresponds to k! permutations of the same k objects. The permutation count over-counts each unordered group exactly k! times — once for every way you could shuffle those k objects among themselves. Dividing by k! strips the ordering and collapses all of those shuffles into a single selection. This is the single most important sentence in the whole chapter: a combination is just a permutation with the internal ordering quotiented out. If you ever forget the formula mid-test, you can rebuild it from this idea alone — list the ordered count, then divide by k!.
 
@@ -237,7 +237,7 @@ The shape generalizes cleanly: one C-factor per stated category, all multiplied.
 
 This is the classic "at least" trap. Adding up the cases (exactly 1 woman, exactly 2, exactly 3, exactly 4) works but is slow and error-prone. The strategic move is **complementary counting**: count everything, subtract the unwanted.
 
-1. Total committees of 4 from 10 people: C(10, 4) = (10 × 9 × 8 × 7) / 24 = 5040 / 24 = 210.
+1. Total committees of 4 from 10 people: C(10, 4) = (10 × 9 × 8 × 7) / (4 × 3 × 2 × 1) = 10 × 3 × 7 = 210 (8 cancels 4 × 2, and 9/3 = 3).
 2. Committees with **no** women (all 4 men, the only forbidden case): C(6, 4) = C(6, 2) = (6 × 5) / 2 = 15.
 3. At least one woman = total − none = 210 − 15 = **195**.
 
@@ -335,23 +335,31 @@ This is sometimes called the **multiset permutation** or the **multinomial coeff
 
 **Worked example — single concept, two repeat groups.** LETTER has 6 letters with 2 T's and 2 E's. Both T and E repeat, so there are two repeat groups. Distinct arrangements:
 
-    6! / (2! × 2!) = 720 / 4 = 180
+    6! / (2! × 2!) = (6 × 5 × 4 × 3) / 2 = 6 × 5 × 2 × 3 = 180
 
 Key step: identify *every* repeated group before computing. LETTER has two repeat groups (TT and EE), so divide by 2! twice. Miss either one and you report 360, exactly double the truth.
 
 **Worked example — multiple repeat groups.** COFFEE has 6 letters: C, O, F, F, E, E — two F's and two E's.
 
-    6! / (2! × 2!) = 720 / 4 = 180
+    6! / (2! × 2!) = (6 × 5 × 4 × 3) / 2 = 6 × 5 × 2 × 3 = 180
 
 Same arithmetic as LETTER, for the same reason. One repeated group = divide by one factorial. Two repeated groups = divide by two factorials. The lone letters C and O contribute 1! each and are invisible in the denominator.
 
 > **Recall check.** Without peeking: how many distinct arrangements of the letters in BANANA? (BANANA has 6 letters: 3 A's, 2 N's, 1 B → 6! / (3! × 2! × 1!) = 720 / (6 × 2) = **60**. The two repeat groups are the A's and the N's; forgetting either inflates the count.)
 
-**Worked example — many repeats.** MISSISSIPPI has 11 letters: 1 M, 4 I's, 4 S's, 2 P's.
+**Worked example — many repeats.** MISSISSIPPI has 11 letters: 1 M, 4 I's, 4 S's, 2 P's, so the count is
 
-    11! / (1! × 4! × 4! × 2!) = 39,916,800 / (1 × 24 × 24 × 2) = 34,650
+    11! / (4! × 4! × 2! × 1!)
 
-Do not panic at the number of groups. List the letters, count each group, write the denominator. The arithmetic is just one division. A clean way to organize it: 4! × 4! × 2! = 24 × 24 × 2 = 1,152, and 39,916,800 / 1,152 = 34,650. Note that the counts must add up: 1 + 4 + 4 + 2 = 11, the total number of letters. That sum-check catches miscounts before they cost you the question.
+Cancel before you multiply anything out. Writing 11! = 11 × 10 × 9 × 8 × 7 × 6 × 5 × 4!, one 4! in the denominator cancels the tail of 11!:
+
+    (11 × 10 × 9 × 8 × 7 × 6 × 5) / (4! × 2! × 1!)
+
+The leftover denominator is 4! × 2! × 1! = 48, and 6 × 8 = 48, so the 6 and the 8 in the numerator cancel it exactly:
+
+    11 × 10 × 9 × 7 × 5 = 34,650
+
+Do not panic at the number of groups: list the letters, count each group, write the denominator, then cancel a denominator factorial against the top and clear what's left with numerator factors — you never multiply 11! out or divide a seven-figure number. Note that the counts must add up: 1 + 4 + 4 + 2 = 11, the total number of letters. That sum-check catches miscounts before they cost you the question.
 
 **The sum-check, formalized.** The numbers under the factorials in the denominator must add to n (the number on top). If they don't, you've miscounted a group. For COFFEE: 1 + 1 + 2 + 2 = 6 = n. For MISSISSIPPI: 1 + 4 + 4 + 2 = 11 = n. This 5-second check is the cheapest insurance in the whole topic. On the real exam, under time pressure, the most common silent error is dropping a letter when tallying a long word — and the sum-check is the only thing standing between you and a wrong answer that "felt right."
 
@@ -392,7 +400,7 @@ Check against the broken shortcut: a naive "4/9 of 3,780 because 4 of the 9 lett
 
 - Glue the two E's into a single block [EE]. Because the E's are identical, the block has only one internal ordering (EE = EE), so there is no "× 2" here — that is the subtle twist versus distinct-letter glue problems.
 - Now arrange the block plus the remaining letters: [EE], P, P, P, R — that's 5 units, of which 3 are identical P's.
-- 5! / 3! = 120 / 6 = **20**
+- 5! / 3! = 5 × 4 = **20**
 
 The trap baked in: with *distinct* letters the glued block contributes a × 2 for its internal swap, but with *identical* letters in the block, the swap produces no new arrangement, so you multiply by 1, not 2. Always ask whether the things being glued are distinguishable.
 
