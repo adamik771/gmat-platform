@@ -1077,3 +1077,637 @@ Since statement (1) alone is sufficient and statement (2) alone is not, statemen
 
 The correct answer is A.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Linear Equations
+
+If 3(x − 1) = x + 7, what is the value of x?
+
+- A) 2
+- B) 4
+- C) 5
+- D) 6
+- E) 10
+
+**answer:** C
+**fastest_path:** Distribute the 3 across both terms, collect the x's on one side and the constants on the other, then divide once. The only places to slip are the distribution and the sign of the −3.
+**explanation:** We solve the linear equation for x by clearing the parentheses and isolating the variable.
+
+Begin with 3(x − 1) = x + 7. Distributing the 3 over *both* terms inside the parentheses gives 3x − 3 = x + 7. Note that the 3 multiplies the −1 as well as the x; this is the step students most often shortchange.
+
+Now gather the variable terms on the left and the constants on the right. Subtract x from both sides: 2x − 3 = 7. Add 3 to both sides: 2x = 10. Dividing both sides by 2 gives x = 5.
+
+A quick check confirms the result: 3(5 − 1) = 3(4) = 12, and x + 7 = 5 + 7 = 12. Both sides agree.
+
+The correct answer is C.
+**mistake_a:** x = 2 comes from moving the −3 to the right with the wrong sign: writing 2x = 7 − 3 = 4 instead of 7 + 3 = 10. Adding the +3 to both sides — not subtracting it — keeps the sign straight.
+**mistake_b:** x = 4 is the distribution error: writing 3(x − 1) as 3x − 1 (multiplying only the x, not the −1). That gives 3x − 1 = x + 7 → 2x = 8 → x = 4.
+**mistake_d:** x = 6 isn't the product of a clean misstep — it's the adjacent-integer guess. Plugging it back fails (3(5) = 15 ≠ 13), which is exactly why a two-second check kills it.
+**mistake_e:** x = 10 is the value of 2x, not x — the solver stopped at 2x = 10 and forgot the final division by 2.
+**common_trap:** Incomplete distribution. The factor outside the parentheses must hit every term inside; forgetting to multiply the constant (−1 here) is the single most common algebra-translation slip.
+**takeaway:** After distributing, glance back: did the outside factor reach both terms? Then isolate by reversing operations in order, and always end by verifying in the original equation. If you missed this, it almost always logs as Careless, not Conceptual.
+**hint_nudge:** Make sure the 3 multiplies everything inside the parentheses — both the x and the −1.
+**hint_strategy:** After distributing to get 3x − 3 = x + 7, move all x-terms to one side and all numbers to the other, then divide.
+**trap_type:** incomplete-distribution
+**est_time_seconds:** 75
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Systems of Equations
+
+If a + 2b = 11 and a − b = 2, what is the value of b?
+
+- A) 2
+- B) 3
+- C) 5
+- D) 8
+- E) 9
+
+**answer:** B
+**fastest_path:** The two equations share the same coefficient on a (+1). Subtract one from the other to eliminate a in a single line and read off b directly.
+**explanation:** We have the system a + 2b = 11 and a − b = 2. Because a appears with coefficient +1 in both equations, subtracting the second from the first eliminates a at once.
+
+Subtracting, (a + 2b) − (a − b) = 11 − 2. The left side simplifies to a − a + 2b + b = 3b, and the right side is 9, so 3b = 9, giving b = 3.
+
+If desired, substitute back: a = 2 + b = 2 + 3 = 5, and a + 2b = 5 + 6 = 11, confirming the solution.
+
+The correct answer is B.
+**mistake_a:** b = 2 simply echoes the right-hand side of the second equation — it's the number sitting in plain sight, not the result of solving.
+**mistake_c:** a = 5 is the value of the *other* variable. The system is fully solved, but the question asked for b, not a — a classic "solved the wrong unknown" slip.
+**mistake_d:** b = 8 comes from adding the equations instead of subtracting: (a + 2b) + (a − b) = 13 gives 2a + b = 13, which does not isolate b cleanly and leads to arithmetic that lands here by accident.
+**mistake_e:** b = 9 is 3b — the solver reached 3b = 9 and reported the 9 instead of dividing by 3.
+**common_trap:** Answering the variable you happened to solve for rather than the one asked. Elimination naturally produces one variable first; make sure it's the requested one.
+**takeaway:** When coefficients match, subtract to eliminate; when they're opposite, add. Then circle the variable the question actually wants before you write your answer.
+**hint_nudge:** The coefficient on a is the same in both equations. What operation removes a?
+**hint_strategy:** Subtract the second equation from the first to cancel a, leaving an equation in b alone.
+**trap_type:** answered-wrong-variable
+**est_time_seconds:** 70
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Inequalities
+
+If 4 − 2x ≥ 10, which of the following must be true?
+
+- A) x ≥ −3
+- B) x ≤ −3
+- C) x ≥ 3
+- D) x ≤ 3
+- E) x = −3
+
+**answer:** B
+**fastest_path:** Isolate the x-term, then divide by the negative coefficient — and the instant you divide by a negative, flip the inequality sign.
+**explanation:** We solve the inequality for x, remembering the one rule unique to inequalities: dividing (or multiplying) both sides by a negative number reverses the direction of the sign.
+
+Starting from 4 − 2x ≥ 10, subtract 4 from both sides: −2x ≥ 6. Now divide both sides by −2. Because −2 is negative, the ≥ becomes ≤, giving x ≤ −3.
+
+Every value of x that satisfies the original inequality therefore satisfies x ≤ −3. We can spot-check: x = −5 gives 4 − 2(−5) = 14 ≥ 10 (true and −5 ≤ −3), while x = 0 gives 4 ≥ 10 (false and 0 is not ≤ −3).
+
+The correct answer is B.
+**mistake_a:** x ≥ −3 keeps the original direction of the inequality — the solver divided by −2 but forgot to flip the sign.
+**mistake_c:** x ≥ 3 both fails to flip the sign and drops the negative on the 3 (treating −2x ≥ 6 as x ≥ 3).
+**mistake_d:** x ≤ 3 flips the sign correctly but loses the negative on the value, reading −2x ≥ 6 as x ≤ 3 instead of x ≤ −3.
+**mistake_e:** x = −3 mistakes the boundary point for the whole solution set. The boundary is included, but so is everything below it.
+**common_trap:** Forgetting to reverse the inequality when dividing by a negative number — the defining difference between solving an equation and solving an inequality.
+**takeaway:** Whenever the variable carries a negative coefficient, the sign flips on the final division. A fast sanity check is to test one value from your answer set in the original inequality. Missing the flip logs as Conceptual; missing the sign on the 3 logs as Careless.
+**hint_nudge:** Solving an inequality is like solving an equation, except for one move involving a negative number.
+**hint_strategy:** Get to −2x ≥ 6, then divide by −2 — and remember what dividing by a negative does to the ≥ sign.
+**trap_type:** inequality-sign-flip
+**est_time_seconds:** 70
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponents
+
+If 2^x = 8, what is the value of 2^(x + 2)?
+
+- A) 12
+- B) 16
+- C) 32
+- D) 40
+- E) 64
+
+**answer:** C
+**fastest_path:** Don't solve for x. Use 2^(x + 2) = 2^x · 2^2 = 8 · 4. Adding 2 to an exponent multiplies the value by 2^2 = 4.
+**explanation:** The key exponent rule is that adding to an exponent corresponds to multiplying by the base raised to that amount: 2^(x + 2) = 2^x · 2^2.
+
+We are told 2^x = 8, and 2^2 = 4, so 2^(x + 2) = 8 · 4 = 32. (Equivalently, 2^x = 8 means x = 3, so 2^(x + 2) = 2^5 = 32 — but the factoring approach avoids even solving for x.)
+
+The correct answer is C.
+**mistake_a:** 12 comes from *adding* instead of multiplying: treating 2^(x + 2) as 2^x + 2^2 = 8 + 4. Exponent addition becomes multiplication of powers, not addition of values.
+**mistake_b:** 16 multiplies 8 by only one factor of 2 (8 · 2) — adding 1 to the exponent rather than 2.
+**mistake_d:** 40 reads "+2" as a linear scale, computing 8 · 5 — a loose "a little bigger" guess with no exponent rule behind it.
+**mistake_e:** 64 squares the 8, misreading 2^(x + 2) as (2^x)^2 = 8^2. Adding 2 to an exponent is not the same as squaring.
+**common_trap:** Confusing 2^(x + 2) with (2^x)^2 or with 2^x + 2^2. The exponent rule "a^(m + n) = a^m · a^n" turns a sum in the exponent into a product, not a power and not a sum.
+**takeaway:** Treat a shifted exponent as a multiplier: 2^(x + 2) = 2^x · 4. You rarely need the value of x itself — manipulate the powers directly. A slip here is Conceptual: it's the exponent rule, not the arithmetic, that fails.
+**hint_nudge:** You don't need x. How does 2^(x + 2) relate to 2^x?
+**hint_strategy:** 2^(x + 2) = 2^x · 2^2. Substitute 2^x = 8 and multiply.
+**trap_type:** exponent-sum-vs-power
+**est_time_seconds:** 65
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Algebra Translation
+
+A positive number increased by 60 percent of itself equals 32. What is the number?
+
+- A) 12.8
+- B) 19.2
+- C) 20
+- D) 25
+- E) 51.2
+
+**answer:** C
+**fastest_path:** "A number increased by 60% of itself" is n + 0.6n = 1.6n. Set 1.6n = 32 and divide; don't take a percent of 32.
+**explanation:** Let n be the number. "Increased by 60 percent of itself" means we add 0.6n to n, giving n + 0.6n = 1.6n. The condition is therefore 1.6n = 32.
+
+Dividing both sides by 1.6 gives n = 32 / 1.6 = 20.
+
+A check confirms it: 60 percent of 20 is 12, and 20 + 12 = 32.
+
+The correct answer is C.
+**mistake_a:** 12.8 is 40 percent of 32 — the solver worked backward from 32 in the wrong direction, treating 32 as the original amount instead of the increased amount.
+**mistake_b:** 19.2 is 60 percent of 32, again taking the percentage of the final value rather than recognizing 32 as 160 percent of the unknown.
+**mistake_d:** 25 is a rounding-style guess (32 minus "about a quarter") rather than the result of the equation 1.6n = 32.
+**mistake_e:** 51.2 multiplies 32 by 1.6 instead of dividing — applying the growth factor in reverse.
+**common_trap:** Taking the percentage of the *known* total (32) instead of setting up the multiplier on the *unknown*. The phrase "increased by 60%" makes the final amount 160% of the start, so you divide by 1.6.
+**takeaway:** Convert "increased by p%" into a single multiplier (1 + p/100) acting on the unknown, then solve. When the final amount is given, you divide by the multiplier — you don't take a percentage of the final amount.
+**hint_nudge:** "Increased by 60% of itself" — what single number do you multiply n by?
+**hint_strategy:** n + 0.6n = 1.6n = 32. Solve for n by dividing by 1.6.
+**trap_type:** percent-of-wrong-base
+**est_time_seconds:** 75
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Quadratics — Vieta's Formulas
+
+The quadratic equation x² + bx + c = 0 has roots 3 and −7. What is the value of b + c?
+
+- A) −25
+- B) −21
+- C) −17
+- D) −4
+- E) 4
+
+**answer:** C
+**fastest_path:** For x² + bx + c = 0, the sum of the roots is −b and the product is c. Read both off the roots, watch the sign on b, then add.
+**explanation:** For a monic quadratic x² + bx + c = 0 (leading coefficient 1), Vieta's formulas give: sum of roots = −b and product of roots = c.
+
+The roots are 3 and −7. Their sum is 3 + (−7) = −4, so −b = −4, which means b = 4. Their product is (3)(−7) = −21, so c = −21.
+
+Therefore b + c = 4 + (−21) = −17.
+
+As a check, the equation is (x − 3)(x + 7) = x² + 4x − 21, confirming b = 4 and c = −21.
+
+The correct answer is C.
+**mistake_a:** −25 sets b = −4 by forgetting that the sum of the roots equals −b (not b). With the sign error b = −4, then b + c = −4 + (−21) = −25.
+**mistake_b:** −21 reports c alone — the product of the roots — without adding b.
+**mistake_d:** −4 reports the sum of the roots (which equals −b), stopping before computing c or the requested b + c.
+**mistake_e:** 4 reports b alone, having found b correctly but ignored c.
+**common_trap:** The sign relationship between the root-sum and b. Sum of roots = −b means a root-sum of −4 gives b = +4, not −4. Half of all Vieta errors live in that single minus sign.
+**takeaway:** Memorize the monic-quadratic shortcuts: sum = −b, product = c. Then read the *exact* quantity asked — here b + c, not b, not c, not the root-sum. Reconstructing (x − 3)(x + 7) is a reliable 5-second check.
+**hint_nudge:** You can get b and c straight from the roots without expanding fully — but mind the sign on the sum.
+**hint_strategy:** Sum of roots = −b and product of roots = c. Find b and c, then add.
+**trap_type:** vieta-sign-on-b
+**est_time_seconds:** 105
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Systems of Equations
+
+If 3x − y = 7 and x + 2y = 14, what is the value of x + y?
+
+- A) 7
+- B) 8
+- C) 9
+- D) 11
+- E) 14
+
+**answer:** C
+**fastest_path:** Solve the system once (substitution is clean here since the first equation gives y = 3x − 7), then add x and y. Don't be lured by the constants 7 and 14 in the problem.
+**explanation:** From the first equation, y = 3x − 7. Substitute into the second: x + 2(3x − 7) = 14, which becomes x + 6x − 14 = 14, so 7x = 28 and x = 4.
+
+Then y = 3(4) − 7 = 5. Therefore x + y = 4 + 5 = 9.
+
+Checking the original equations: 3(4) − 5 = 7 ✓ and 4 + 2(5) = 14 ✓.
+
+The correct answer is C.
+**mistake_a:** 7 is the constant on the right of the first equation — a "grab a number from the problem" answer, not the result of solving.
+**mistake_b:** 8 typically arises from a substitution slip such as x + 6x − 7 = 14 (forgetting the 2 also multiplies the −7), giving 7x = 21, x = 3, y = 2, x + y = 5 — and then mis-adding. It's the fingerprint of distributing 2 over only one term.
+**mistake_d:** 11 = x · y or a mis-combination of x = 4 with an incorrect y; it tends to appear when the second equation is mis-substituted.
+**mistake_e:** 14 is the other given constant, attractive to anyone who pattern-matches to the numbers on the page rather than solving.
+**common_trap:** Distributing the 2 in x + 2(3x − 7) over only the 3x and not the −7. The factor must reach both terms: 2(3x − 7) = 6x − 14.
+**takeaway:** Substitute the whole expression in parentheses and distribute completely. Then compute the *combination* asked (x + y), not either variable alone or a number lifted from the prompt. Substitution slips log as Careless.
+**hint_nudge:** The first equation solves instantly for y. Substitute that into the second.
+**hint_strategy:** y = 3x − 7; plug into x + 2y = 14 and distribute the 2 over both terms before solving.
+**trap_type:** number-from-the-prompt
+**est_time_seconds:** 110
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Inequalities — Compound Range
+
+If −2 < 3 − x < 5, how many integer values of x satisfy the inequality?
+
+- A) 5
+- B) 6
+- C) 7
+- D) 8
+- E) 9
+
+**answer:** B
+**fastest_path:** Break the compound inequality into its two halves, solve each for x, intersect to get an open interval, then count the integers strictly inside it.
+**explanation:** A compound inequality is solved by treating its two halves separately and intersecting the results.
+
+Left half: −2 < 3 − x. Subtract 3: −5 < −x. Multiply by −1 and flip the sign: x < 5.
+Right half: 3 − x < 5. Subtract 3: −x < 2. Multiply by −1 and flip the sign: x > −2.
+
+Combining, −2 < x < 5. Both ends are strict, so the integers strictly between −2 and 5 are −1, 0, 1, 2, 3, and 4 — six values.
+
+The correct answer is B.
+**mistake_a:** 5 drops one valid integer, usually from miscounting around 0 or treating one strict bound as if it excluded an extra value.
+**mistake_c:** 7 treats exactly one of the bounds as inclusive (≤), adding back either −2 or 5.
+**mistake_d:** 8 treats *both* bounds as inclusive, counting −2, −1, 0, 1, 2, 3, 4, 5 — the error of reading strict inequalities as ≤.
+**mistake_e:** 9 comes from a solving error that widens the interval (for example, forgetting to flip a sign and landing on −2 < x < 6 or similar).
+**common_trap:** Mishandling the strictness of the endpoints. Because both inequalities are strict (<), the boundary integers −2 and 5 are excluded; counting them is the most common slip.
+**takeaway:** Solve each half, flip signs carefully when multiplying by −1, then count integers with the endpoints' strictness in mind. Sketching the interval on a number line and marking open circles prevents the inclusive/exclusive miscount.
+**hint_nudge:** Split into −2 < 3 − x and 3 − x < 5, solve each, then see where they overlap.
+**hint_strategy:** You'll get −2 < x < 5. Both ends are strict — list the integers strictly between them.
+**trap_type:** endpoint-inclusion-miscount
+**est_time_seconds:** 110
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Function Composition
+
+The function f is defined by f(x) = 2x − 3. For what value of x does f(f(x)) = 9?
+
+- A) 4
+- B) 3.75
+- C) 4.5
+- D) 6
+- E) 9
+
+**answer:** C
+**fastest_path:** Apply f twice: f(f(x)) = 2(2x − 3) − 3 = 4x − 9. Set that equal to 9 and solve. The trap is solving f(x) = 9 — only one application.
+**explanation:** Composition means feeding f's output back into f. First, f(x) = 2x − 3. Then f(f(x)) substitutes this whole expression for the input:
+
+f(f(x)) = 2 · (2x − 3) − 3 = 4x − 6 − 3 = 4x − 9.
+
+Set 4x − 9 = 9. Then 4x = 18, so x = 4.5.
+
+Check: f(4.5) = 2(4.5) − 3 = 6, and f(6) = 2(6) − 3 = 9 ✓.
+
+The correct answer is C.
+**mistake_a:** 4 is the "GMAT answers aren't fractions" reflex — the solver reaches 4x = 18, distrusts the half, and rounds to 4. The algebra is right; trust it. 4.5 is a perfectly valid answer.
+**mistake_b:** 3.75 forgets the *outer* −3: computing f(f(x)) as 2(2x − 3) = 4x − 6 and setting 4x − 6 = 9 gives x = 3.75. The second application of f subtracts another 3.
+**mistake_d:** 6 solves only f(x) = 9 (one application): 2x − 3 = 9 gives x = 6. But 6 is the *intermediate* output, not the input that makes the double-composition equal 9. This is the headline trap.
+**mistake_e:** 9 just echoes the target value, treating x as if it equals the output.
+**common_trap:** Applying f once instead of twice. f(f(x)) requires substituting the entire inner expression back in, including its constant term, before setting equal to the target.
+**takeaway:** Build the composition fully — f(f(x)) = 4x − 9 here — and only then set it equal to the target. Verify by walking the value through f twice. A missed application is Conceptual; rounding away the 0.5 is Careless.
+**hint_nudge:** f(f(x)) means plug f(x) into f again — there are two subtractions of 3, not one.
+**hint_strategy:** f(f(x)) = 2(2x − 3) − 3 = 4x − 9. Set equal to 9 and solve.
+**trap_type:** single-vs-double-application
+**est_time_seconds:** 100
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Quadratics
+
+If x² = x + 12 and x > 0, what is the value of x³?
+
+- A) 16
+- B) 27
+- C) 48
+- D) 64
+- E) −27
+
+**answer:** D
+**fastest_path:** Move everything to one side, factor, then *use the x > 0 condition* to choose the root before cubing. The constraint is doing real work here.
+**explanation:** Rewrite x² = x + 12 as x² − x − 12 = 0. Factoring, we seek two numbers with product −12 and sum −1: those are −4 and +3. So (x − 4)(x + 3) = 0, giving x = 4 or x = −3.
+
+The condition x > 0 eliminates x = −3, leaving x = 4. Then x³ = 4³ = 64.
+
+The correct answer is D.
+**mistake_a:** 16 is x², the value the problem started from (x² = x + 12 = 16 when x = 4). The question asked for x³, not x².
+**mistake_b:** 27 = 3³ comes from a sign slip in factoring — reading the roots as x = 3 or x = −4 (which solves x² + x − 12 = 0, the wrong equation) and cubing 3.
+**mistake_c:** 48 = 16 · 3 crosses wires between the two roots, multiplying x² (from x = 4) by 3 (from the discarded root).
+**mistake_e:** −27 = (−3)³ ignores the x > 0 constraint entirely, taking the negative root. The constraint exists precisely to rule this out.
+**common_trap:** Discarding the hidden constraint. A quadratic gives two roots; "x > 0" is not decoration — it selects which root is valid, and the wrong choice produces the trap answer −27.
+**takeaway:** Solve the quadratic, then immediately apply every stated condition to pick the right root *before* doing the final operation. And answer the exact power requested — x³, not x². Ignoring the constraint logs as Conceptual.
+**hint_nudge:** Set the equation to zero and factor — but x > 0 tells you which root to keep.
+**hint_strategy:** x² − x − 12 = (x − 4)(x + 3) = 0. Use x > 0 to choose x = 4, then cube it.
+**trap_type:** ignored-constraint
+**est_time_seconds:** 110
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponential Equations
+
+If 3^(2x) = 27^(x − 1) · 9, what is the value of x?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) 4
+
+**answer:** B
+**fastest_path:** Rewrite every term as a power of 3, add the exponents on the right, then set the exponents equal. 27 = 3³ and 9 = 3².
+**explanation:** Express both sides with the common base 3. On the right, 27 = 3³ so 27^(x − 1) = 3^(3(x − 1)) = 3^(3x − 3), and 9 = 3². Multiplying powers of the same base adds exponents:
+
+27^(x − 1) · 9 = 3^(3x − 3) · 3^2 = 3^(3x − 3 + 2) = 3^(3x − 1).
+
+The equation becomes 3^(2x) = 3^(3x − 1). Equal bases force equal exponents: 2x = 3x − 1, so x = 1.
+
+Check: left side 3^2 = 9; right side 27^0 · 9 = 1 · 9 = 9 ✓.
+
+The correct answer is B.
+**mistake_a:** 0 results from misreading 9 as 3³ instead of 3². That makes the right exponent 3x − 3 + 3 = 3x, so 2x = 3x gives x = 0.
+**mistake_c:** 2 is a generic arithmetic-slip magnet — close to the answer and easy to land on after a single sign error when combining 3x − 3 + 2.
+**mistake_d:** 3 drops the "· 9" factor entirely, solving 3^(2x) = 3^(3x − 3): then 2x = 3x − 3 gives x = 3.
+**mistake_e:** 4 comes from compounding two small exponent-arithmetic errors; it has no clean derivation, which a quick plug-back exposes.
+**common_trap:** Rewriting 27 and 9 as the wrong powers of 3, or forgetting that the trailing "· 9" contributes +2 to the exponent. Every term must become a power of the same base before exponents are compared.
+**takeaway:** With exponential equations, convert to one common base first, combine exponents with the product rule, then equate exponents. Errors here are Conceptual — they come from the base conversions, so double-check 27 = 3³ and 9 = 3².
+**hint_nudge:** Everything in sight is a power of 3. Rewrite 27 and 9 that way.
+**hint_strategy:** 3^(2x) = 3^(3x − 3) · 3^2 = 3^(3x − 1). Set 2x = 3x − 1.
+**trap_type:** wrong-power-conversion
+**est_time_seconds:** 115
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Symmetric Sums
+
+If x + y = 6 and xy = 4, what is the value of x² + y²?
+
+- A) 20
+- B) 24
+- C) 28
+- D) 32
+- E) 36
+
+**answer:** C
+**fastest_path:** Use the identity x² + y² = (x + y)² − 2xy. Both pieces are given, so no need to solve for x and y individually.
+**explanation:** The squares x² + y² connect to the symmetric quantities x + y and xy through the identity (x + y)² = x² + 2xy + y², which rearranges to x² + y² = (x + y)² − 2xy.
+
+Substituting the given values, (x + y)² = 6² = 36 and 2xy = 2(4) = 8, so x² + y² = 36 − 8 = 28.
+
+The correct answer is C.
+**mistake_a:** 20 over-corrects, subtracting 4xy (= 16) instead of 2xy: 36 − 16 = 20. The identity removes *2xy*, not four times the product.
+**mistake_b:** 24 typically comes from a mixed arithmetic slip (for example, computing 36 − 12) while applying the right identity.
+**mistake_d:** 32 subtracts xy once instead of twice: 36 − 4 = 32. The cross-term 2xy carries a coefficient of 2.
+**mistake_e:** 36 is (x + y)² with no correction at all — forgetting the −2xy term entirely. This is the most common version of the error.
+**common_trap:** Misremembering the cross-term. Expanding (x + y)² produces +2xy, so recovering x² + y² requires subtracting exactly 2xy — not xy, not 4xy, and certainly not zero.
+**takeaway:** Keep the three symmetric identities at your fingertips: (x + y)² = x² + y² + 2xy, (x − y)² = x² + y² − 2xy, and x² + y² = (x + y)² − 2xy. They let you bypass solving for the individual variables. The coefficient-2 slip is Careless; dropping the term is Conceptual.
+**hint_nudge:** You don't need x and y separately — relate x² + y² to (x + y)² and xy.
+**hint_strategy:** x² + y² = (x + y)² − 2xy = 36 − 8.
+**trap_type:** dropped-cross-term
+**est_time_seconds:** 100
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Quadratics — Integer Roots
+
+For how many integer values of k does the equation x² + kx + 36 = 0 have two distinct integer roots?
+
+- A) 4
+- B) 6
+- C) 8
+- D) 9
+- E) 10
+
+**answer:** C
+**fastest_path:** Integer roots multiply to 36 and sum to −k. List the factor pairs of 36, drop the repeated pair (6, 6) because the roots must be distinct, and remember each pair works in both signs.
+**explanation:** If the roots are integers p and q, Vieta's formulas give pq = 36 and p + q = −k. So every valid k corresponds to a factor pair of 36 whose two factors are *distinct* (the roots must differ) and have the *same sign* (their product 36 is positive).
+
+The positive factor pairs of 36 are (1, 36), (2, 18), (3, 12), (4, 9), and (6, 6). Discard (6, 6) — the roots would be equal, not distinct. The four remaining pairs give p + q = 37, 20, 15, 13, hence k = −37, −20, −15, −13.
+
+By symmetry, both roots could be negative: (−1, −36), (−2, −18), (−3, −12), (−4, −9) give k = 37, 20, 15, 13. The pair (−6, −6) is again excluded.
+
+That is 4 + 4 = 8 distinct integer values of k.
+
+The correct answer is C.
+**mistake_a:** 4 counts only one sign — the negative roots (or only the positive) — forgetting that if (p, q) works, so does (−p, −q), which flips the sign of k and doubles the count.
+**mistake_b:** 6 misses a couple of factor pairs (commonly (2, 18) and (3, 12)) when listing the divisors of 36 — an incomplete factor inventory.
+**mistake_d:** 9 sneaks the repeated pair (6, 6) back in on one sign, adding one k value (k = −12) that gives a *double* root, not two distinct roots.
+**mistake_e:** 10 includes *both* repeated pairs (6, 6) and (−6, −6), adding k = −12 and k = 12 — counting equal roots as if they were distinct.
+**common_trap:** Two constraints hide in the wording. "Distinct" rules out the perfect-square pair (6, 6); and because the product is positive, the sign symmetry doubles the number of valid k. Missing either bends the count.
+**takeaway:** For "integer roots" problems, translate to factor pairs of the constant term, then audit the qualifiers: distinct (exclude equal roots), same-or-opposite sign (set by the product's sign), and whether the sign symmetry doubles your list. A careful factor inventory plus a constraints checklist beats guessing.
+**hint_nudge:** Integer roots multiply to 36 — start by listing every factor pair.
+**hint_strategy:** Each factor pair gives k = −(sum). The roots must be distinct (drop 6 and 6) and can be both positive or both negative (sign symmetry doubles the count).
+**hint_setup:** Positive pairs (1,36),(2,18),(3,12),(4,9) give k = −37,−20,−15,−13; their negatives give k = 37,20,15,13. Exclude (6,6). Count them.
+**trap_type:** missed-distinct-and-sign-symmetry
+**est_time_seconds:** 150
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Absolute Value Inequalities
+
+If |2x − 5| < 3, which of the following must be true?
+
+- A) x² − 5x + 4 < 0
+- B) x > 3
+- C) x² < 9
+- D) 2x − 5 > 0
+- E) x² > 4
+
+**answer:** A
+**fastest_path:** Unfold the absolute value into −3 < 2x − 5 < 3 to get the interval for x, then test which option holds across the *entire* interval — "must be true" means always, not sometimes.
+**explanation:** The inequality |2x − 5| < 3 means −3 < 2x − 5 < 3. Adding 5 throughout gives 2 < 2x < 8, and dividing by 2 gives 1 < x < 4.
+
+We need the statement that is true for *every* x in (1, 4).
+
+Option A: x² − 5x + 4 = (x − 1)(x − 4). This product is negative exactly when x lies strictly between its roots 1 and 4 — that is, precisely when 1 < x < 4. So x² − 5x + 4 < 0 holds for the entire interval and nowhere outside it. It must be true.
+
+The others fail somewhere in (1, 4): B (x > 3) fails near x = 2; C (x² < 9, i.e. x < 3) fails on [3, 4); D (2x − 5 > 0, i.e. x > 2.5) fails on (1, 2.5]; E (x² > 4, i.e. x > 2) fails on (1, 2].
+
+The correct answer is A.
+**mistake_b:** x > 3 is true only in the top sliver of the interval. For x = 1.5 — well within the solution set — it is false, so it need not be true.
+**mistake_c:** x² < 9 means x < 3, which covers most of (1, 4) but breaks on [3, 4); values like x = 3.5 satisfy the original inequality yet violate this.
+**mistake_d:** 2x − 5 > 0 keeps only the *positive* branch of the absolute value's interior, i.e. x > 2.5. But |2x − 5| < 3 allows 2x − 5 to be negative too, so this fails on (1, 2.5].
+**mistake_e:** x² > 4 means x > 2, true for the upper portion of the interval but false on (1, 2]. "Mostly true" is not "must be true."
+**common_trap:** Picking a statement that holds for *part* of the solution set. "Must be true" demands the statement be valid across the entire interval, so a single counterexample inside (1, 4) disqualifies it. The intended answer reproduces the interval exactly via a sign chart.
+**takeaway:** Convert the absolute-value inequality to a clean interval, then test each candidate over the *whole* interval — one interior counterexample is enough to reject. When an option is itself a quadratic inequality, factor it: the answer is the one whose sign chart matches the target interval boundary-for-boundary.
+**hint_nudge:** First turn |2x − 5| < 3 into a plain interval for x. Then ask which option is true for every value in it.
+**hint_strategy:** The interval is 1 < x < 4. Factor each quadratic option — which one is negative on exactly (1, 4)?
+**hint_setup:** x² − 5x + 4 = (x − 1)(x − 4), which is negative precisely when 1 < x < 4 — matching the solution set exactly.
+**trap_type:** must-be-true-partial-coverage
+**est_time_seconds:** 150
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Systems — Symmetric Manipulation
+
+If 5x + 7y = 29 and 7x + 5y = 31, what is the value of x² − y²?
+
+- A) 1
+- B) 5
+- C) 6
+- D) 13
+- E) 25
+
+**answer:** B
+**fastest_path:** The coefficients are swapped between the two equations. Add them to get x + y; subtract them to get x − y. Then x² − y² = (x + y)(x − y) — no need to solve for x and y separately.
+**explanation:** The system has a symmetric structure: the coefficients 5 and 7 trade places between the two equations. This makes adding and subtracting the natural moves.
+
+Add the equations: (5x + 7y) + (7x + 5y) = 29 + 31, so 12x + 12y = 60, giving x + y = 5.
+Subtract the first from the second: (7x + 5y) − (5x + 7y) = 31 − 29, so 2x − 2y = 2, giving x − y = 1.
+
+Now use the difference of squares: x² − y² = (x + y)(x − y) = (5)(1) = 5.
+
+(For confirmation, x + y = 5 and x − y = 1 give x = 3, y = 2; indeed 5·3 + 7·2 = 29 and 7·3 + 5·2 = 31, and 9 − 4 = 5.)
+
+The correct answer is B.
+**mistake_a:** 1 reports x − y and stops. That's one of the two factors of the difference of squares, not the product.
+**mistake_c:** 6 reports xy (= 3 · 2), confusing the difference of squares with the product of the variables.
+**mistake_d:** 13 computes x² + y² (= 9 + 4) instead of x² − y² — the plus/minus sign in the identity got flipped.
+**mistake_e:** 25 squares the sum, (x + y)² = 5², conflating x² − y² with (x + y)². They are equal only when x − y = 1 by coincidence of value, not by identity.
+**common_trap:** Grinding out x and y the long way — or, having found the symmetric combinations, applying the wrong identity. x² − y² factors as (x + y)(x − y), the exact two quantities the add/subtract steps hand you.
+**takeaway:** When a system's coefficients are symmetric, add and subtract the equations to get x + y and x − y directly. Then watch which identity the question wants: x² − y² = (sum)(difference), while x² + y² = (sum)² − 2(product). Recognizing the structure is the whole game; brute force wastes a minute.
+**hint_nudge:** Notice the coefficients are mirror images. What do you get if you add the equations? If you subtract them?
+**hint_strategy:** Adding gives x + y = 5; subtracting gives x − y = 1. Now x² − y² = (x + y)(x − y).
+**hint_setup:** x² − y² factors as (x + y)(x − y) = 5 · 1.
+**trap_type:** wrong-symmetric-identity
+**est_time_seconds:** 145
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Sequences — Functional Recurrence
+
+A function f satisfies f(x + 1) = f(x) + 2x + 1 for every integer x, and f(1) = 1. What is the value of f(5)?
+
+- A) 16
+- B) 21
+- C) 24
+- D) 25
+- E) 36
+
+**answer:** D
+**fastest_path:** Step up one integer at a time, adding 2x + 1 with x equal to the index you're stepping *from*. Recognize the pattern — each value is a perfect square — to avoid an off-by-one.
+**explanation:** The recurrence tells us how to get the next value from the current one. Starting at f(1) = 1 and stepping up, with x denoting the value we step from:
+
+f(2) = f(1) + 2(1) + 1 = 1 + 3 = 4
+f(3) = f(2) + 2(2) + 1 = 4 + 5 = 9
+f(4) = f(3) + 2(3) + 1 = 9 + 7 = 16
+f(5) = f(4) + 2(4) + 1 = 16 + 9 = 25
+
+So f(5) = 25. (The increments 3, 5, 7, 9 are consecutive odd numbers, and the running totals 1, 4, 9, 16, 25 are the perfect squares — in fact f(n) = n², which telescopes from the recurrence.)
+
+The correct answer is D.
+**mistake_a:** 16 is f(4) — the solver stopped one step early, an off-by-one in the iteration. You need to climb all the way to x = 5.
+**mistake_b:** 21 drops the "+1" in each increment, adding 2x only: 1 + 2 + 4 + 6 + 8 = 21. The recurrence adds 2x + 1, not 2x.
+**mistake_c:** 24 sums the increments 3 + 5 + 7 + 9 but forgets to add the starting value f(1) = 1 (24 instead of 25). The base case counts.
+**mistake_e:** 36 = f(6) — one step too far. It's the over-iteration mirror of the f(4) error.
+**common_trap:** Off-by-one errors in both directions: stopping at f(4) or overshooting to f(6), and mis-indexing x in the increment 2x + 1. The base value f(1) is also easy to omit.
+**takeaway:** With a recurrence, write each step out explicitly, label which index you're stepping from, and stop exactly at the target. Watching for a closed-form pattern (here f(n) = n²) both speeds the work and catches off-by-one slips. These errors log as Careless.
+**hint_nudge:** Build the values up one at a time from f(1); don't skip ahead.
+**hint_strategy:** f(2) = f(1) + 3, f(3) = f(2) + 5, and so on — the increments are 3, 5, 7, 9. Stop at f(5).
+**hint_setup:** The running totals are 1, 4, 9, 16, 25 — the perfect squares, so f(n) = n² and f(5) = 25.
+**trap_type:** recurrence-off-by-one
+**est_time_seconds:** 150
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Quadratics — Integer Roots (Challenge)
+
+The equation x² − (k + 1)x + (k + 6) = 0 has two roots that are both positive integers. What is the sum of all possible values of k?
+
+- A) 6
+- B) 8
+- C) 13
+- D) 14
+- E) 16
+
+**answer:** D
+**fastest_path:** Let the roots be p and q. Vieta gives p + q = k + 1 and pq = k + 6. Subtract to eliminate k: pq − (p + q) = 5, then factor via (p − 1)(q − 1) = 6 to pin down the root pairs.
+**explanation:** Let the two positive-integer roots be p and q. By Vieta's formulas, p + q = k + 1 and pq = k + 6.
+
+Subtracting the first from the second eliminates k: pq − (p + q) = (k + 6) − (k + 1) = 5. So pq − p − q = 5. Add 1 to both sides to factor: pq − p − q + 1 = 6, i.e. (p − 1)(q − 1) = 6.
+
+Since p and q are positive integers, p − 1 and q − 1 are non-negative integers whose product is 6, so both must be at least 1. The factor pairs of 6 are {1, 6} and {2, 3}, giving:
+- (p − 1, q − 1) = (1, 6) → {p, q} = {2, 7}, sum 9, so k = (p + q) − 1 = 8.
+- (p − 1, q − 1) = (2, 3) → {p, q} = {3, 4}, sum 7, so k = 6.
+
+Both check out: for k = 8, x² − 9x + 14 = (x − 2)(x − 7); for k = 6, x² − 7x + 12 = (x − 3)(x − 4). The possible values of k are 6 and 8, and their sum is 14.
+
+The correct answer is D.
+**mistake_a:** 6 finds the {3, 4} branch and reports that single k, stopping before discovering the second valid factor pair.
+**mistake_b:** 8 finds the {2, 7} branch and stops there — the other half of the symmetric pair of solutions is missed.
+**mistake_c:** 13 is a near-miss arithmetic slip (for example, 6 + 7 from a mislabeled root sum, or 14 − 1) for someone who found both branches but combined them wrong.
+**mistake_e:** 16 adds the *roots* (2 + 7 + 3 + 4) instead of the *k-values*. The question asks for the sum of the k's, not the roots.
+**common_trap:** Stopping at the first valid configuration. The Simon's-Favorite-Factoring step (p − 1)(q − 1) = 6 has two factor pairs, so there are two values of k — and the prompt asks you to sum *all* of them.
+**takeaway:** When Vieta's relations both involve the same parameter, subtract to eliminate it, then complete the rectangle: pq − p − q + 1 = (p − 1)(q − 1) exposes every integer solution at once. Always enumerate *all* factor pairs before answering "sum of all possible values." Stopping early logs as Strategy; the roots-vs-parameter mix-up is Misread.
+**hint_nudge:** Write Vieta's two equations, then subtract them to get rid of k.
+**hint_strategy:** You'll reach pq − p − q = 5. Add 1 to both sides so the left factors as (p − 1)(q − 1).
+**hint_setup:** (p − 1)(q − 1) = 6 has factor pairs {1, 6} and {2, 3}, giving root sets {2, 7} and {3, 4}. Find k for each and add.
+**trap_type:** stopped-at-first-solution
+**est_time_seconds:** 180
+**related_reading:** reading-quant-04-algebra-and-equations
