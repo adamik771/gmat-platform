@@ -2,6 +2,12 @@ import fs from "node:fs"
 import path from "node:path"
 import { parse as parseYaml } from "yaml"
 import type { Difficulty, QuestionType, Section } from "@/types"
+import {
+  TEST_CAPS,
+  COMING_SOON_CHAPTERS,
+  OMITTED_CHAPTERS,
+  resolveChapterAssignment,
+} from "./practice-tests-map.ts"
 
 // Base directory for all markdown content
 const CONTENT_ROOT = path.join(process.cwd(), "src", "content")
@@ -821,6 +827,178 @@ export function getAllChapters(): ParsedChapter[] {
 
 export function getChapterBySlug(slug: string): ParsedChapter | null {
   return getAllChapters().find((c) => c.slug === slug) ?? null
+}
+
+// ---------- Per-chapter practice tests ----------
+
+export interface PracticeTest {
+  /** Self-describing session slug, e.g. "ch-quant-08-even-odd-integer-properties-t1". */
+  id: string
+  /** Display label, e.g. "Test 1". */
+  label: string
+  questionIds: string[]
+  count: number
+  difficultyMix: { easy: number; medium: number; hard: number }
+  estimatedMinutes: number
+}
+
+export interface PracticeChapterGroup {
+  chapterSlug: string
+  chapterTitle: string
+  section: Section
+  /** Global chapter order (index in getAllChapters) for stable display order. */
+  order: number
+  tests: PracticeTest[]
+  /** True for in-scope content chapters with no question bank yet (RC, MSR). */
+  comingSoon: boolean
+}
+
+const DIFFICULTY_RANK: Record<Difficulty, number> = {
+  Beginner: 0,
+  Intermediate: 1,
+  Advanced: 2,
+}
+const CHAPTER_TEST_SLUG_RE = /^ch-(.+)-t(\d+)$/
+
+function estimatePracticeMinutes(questions: ParsedQuestion[]): number {
+  const seconds = questions.reduce((sum, q) => sum + (q.estTimeSeconds ?? 90), 0)
+  return Math.max(1, Math.ceil(seconds / 60))
+}
+
+let practiceChapterGroupsCache: PracticeChapterGroup[] | null = null
+
+/**
+ * Build the per-chapter practice tests for the Practice page.
+ *
+ * Each in-scope chapter's questions are gathered (problem_sets pins first, then
+ * keyword routing by subtopic via practice-tests-map), ordered easy->hard, and
+ * dealt round-robin into N tests sized by the section cap (Quant 18, Verbal/DI
+ * 10). N grows as the bank grows. Chapters with no bank yet but listed in
+ * COMING_SOON_CHAPTERS are emitted with `comingSoon: true` and no tests;
+ * method/foundations/timing chapters are omitted entirely.
+ */
+export function getPracticeChapterGroups(): PracticeChapterGroup[] {
+  if (practiceChapterGroupsCache) return practiceChapterGroupsCache
+
+  const chapters = getAllChapters()
+  const questions = getAllQuestions()
+  const chapterExists = new Set(chapters.map((c) => c.slug))
+
+  // 1. Pins from problem_sets win (curated seed). First chapter wins on conflict.
+  const pin = new Map<string, string>()
+  for (const ch of chapters) {
+    for (const ps of ch.problemSets) {
+      for (const qid of ps.questionIds) {
+        if (!pin.has(qid)) pin.set(qid, ch.slug)
+      }
+    }
+  }
+
+  // 2. Assign each question to exactly one chapter.
+  const isHidden = (slug: string) =>
+    OMITTED_CHAPTERS.has(slug) || COMING_SOON_CHAPTERS.has(slug)
+  const assigned = new Map<string, ParsedQuestion[]>()
+  for (const q of questions) {
+    let chapterSlug = pin.get(q.id) ?? null
+    // Ignore a pin to a hidden chapter so the sampler question routes to its
+    // real topic chapter instead of being stranded.
+    if (chapterSlug && isHidden(chapterSlug)) chapterSlug = null
+    if (!chapterSlug) chapterSlug = resolveChapterAssignment(q.setSlug, q.subtopic).chapter
+    if (!chapterSlug || !chapterExists.has(chapterSlug) || isHidden(chapterSlug)) continue
+    const list = assigned.get(chapterSlug)
+    if (list) list.push(q)
+    else assigned.set(chapterSlug, [q])
+  }
+
+  // 3. Build groups in chapter (file) order.
+  const groups: PracticeChapterGroup[] = []
+  chapters.forEach((ch, order) => {
+    if (OMITTED_CHAPTERS.has(ch.slug)) return
+    const pool = assigned.get(ch.slug) ?? []
+    if (pool.length === 0) {
+      if (COMING_SOON_CHAPTERS.has(ch.slug)) {
+        groups.push({
+          chapterSlug: ch.slug,
+          chapterTitle: ch.title,
+          section: ch.section,
+          order,
+          tests: [],
+          comingSoon: true,
+        })
+      }
+      return
+    }
+
+    // Order easy->hard; stable tiebreak by source file + question number.
+    const sorted = [...pool].sort((a, b) => {
+      const d = DIFFICULTY_RANK[a.difficulty] - DIFFICULTY_RANK[b.difficulty]
+      if (d !== 0) return d
+      if (a.setSlug !== b.setSlug) return a.setSlug.localeCompare(b.setSlug)
+      return a.number - b.number
+    })
+
+    // Choose N so no test exceeds the cap; prefer fewer, fuller tests.
+    const cap = TEST_CAPS[ch.section]
+    let n = Math.max(1, Math.round(sorted.length / cap))
+    while (Math.ceil(sorted.length / n) > cap) n++
+
+    // Deal round-robin from the difficulty-sorted pool so each test gets a mix.
+    const buckets: ParsedQuestion[][] = Array.from({ length: n }, () => [])
+    sorted.forEach((q, i) => buckets[i % n].push(q))
+
+    const tests: PracticeTest[] = buckets.map((bucket, i) => {
+      const test = [...bucket].sort(
+        (a, b) => DIFFICULTY_RANK[a.difficulty] - DIFFICULTY_RANK[b.difficulty]
+      )
+      const mix = { easy: 0, medium: 0, hard: 0 }
+      for (const q of test) {
+        if (q.difficulty === "Beginner") mix.easy++
+        else if (q.difficulty === "Advanced") mix.hard++
+        else mix.medium++
+      }
+      return {
+        id: `ch-${ch.slug}-t${i + 1}`,
+        label: `Test ${i + 1}`,
+        questionIds: test.map((q) => q.id),
+        count: test.length,
+        difficultyMix: mix,
+        estimatedMinutes: estimatePracticeMinutes(test),
+      }
+    })
+
+    groups.push({
+      chapterSlug: ch.slug,
+      chapterTitle: ch.title,
+      section: ch.section,
+      order,
+      tests,
+      comingSoon: false,
+    })
+  })
+
+  practiceChapterGroupsCache = groups
+  return groups
+}
+
+/** Parse a chapter-test slug `ch-<chapterSlug>-t<n>` -> { chapterSlug, testIndex (1-based) }, or null. */
+export function parseChapterTestSlug(
+  slug: string
+): { chapterSlug: string; testIndex: number } | null {
+  const m = slug.match(CHAPTER_TEST_SLUG_RE)
+  if (!m) return null
+  const testIndex = parseInt(m[2], 10)
+  if (!Number.isFinite(testIndex) || testIndex < 1) return null
+  return { chapterSlug: m[1], testIndex }
+}
+
+/** Resolve a chapter-test slug to its test (with questionIds), or null. */
+export function getChapterTest(slug: string): PracticeTest | null {
+  const parsed = parseChapterTestSlug(slug)
+  if (!parsed) return null
+  const group = getPracticeChapterGroups().find(
+    (g) => g.chapterSlug === parsed.chapterSlug
+  )
+  return group?.tests[parsed.testIndex - 1] ?? null
 }
 
 /**

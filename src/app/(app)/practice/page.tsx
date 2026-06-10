@@ -1,69 +1,20 @@
-import {
-  getAllQuestions,
-  getQuestionSets,
-  type ParsedQuestion,
-} from "@/lib/content"
+import { getPracticeChapterGroups, getQuestionSets } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { collectAdaptiveSignals } from "@/lib/adaptive-plan-engine"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
-import PracticeClient, {
-  type PracticeRecommendation,
-  type PracticeSetData,
-} from "./PracticeClient"
-
-/**
- * Estimate set runtime from per-question target seconds. Falls back to
- * section-typical 90s when an `estTimeSeconds` is unauthored — matches
- * the rough pacing of the GMAT Focus per-question target.
- */
-function estimateSetMinutes(questions: ParsedQuestion[]): number {
-  let totalSeconds = 0
-  for (const q of questions) {
-    totalSeconds += q.estTimeSeconds && q.estTimeSeconds > 0 ? q.estTimeSeconds : 90
-  }
-  return Math.max(2, Math.round(totalSeconds / 60))
-}
+import PracticeClient, { type PracticeRecommendation } from "./PracticeClient"
 
 export default async function PracticePage() {
-  // Group all questions by set slug so we can compute a difficulty mix
-  // per topic card. The shared `getQuestionSets()` helper only counts;
-  // we re-bucket here to expose the easy/medium/hard breakdown without
-  // touching the content loader.
-  const allQuestions = getAllQuestions()
-  const bySlug = new Map<string, ParsedQuestion[]>()
-  for (const q of allQuestions) {
-    const slug = q.id.replace(/-q\d+$/, "")
-    const arr = bySlug.get(slug) ?? []
-    arr.push(q)
-    bySlug.set(slug, arr)
-  }
+  // Per-chapter practice tests — derived from the question banks by subtopic
+  // routing (see lib/practice-tests-map.ts). Each chapter carries a couple of
+  // short, count-up-timed tests.
+  const chapterGroups = getPracticeChapterGroups()
 
-  const sets: PracticeSetData[] = getQuestionSets().map((set) => {
-    const questions = bySlug.get(set.slug) ?? []
-    let easy = 0
-    let medium = 0
-    let hard = 0
-    for (const q of questions) {
-      if (q.difficulty === "Beginner") easy++
-      else if (q.difficulty === "Intermediate") medium++
-      else if (q.difficulty === "Advanced") hard++
-    }
-    return {
-      slug: set.slug,
-      topic: set.topic,
-      section: set.section,
-      questions: set.count,
-      easy,
-      medium,
-      hard,
-      estimatedMinutes: estimateSetMinutes(questions),
-    }
-  })
-
-  // Recommended starting points — top 3 weak sub-skills the adaptive
-  // engine surfaces, mapped to the practice set the topicSlug points at.
+  // Recommended starting points — top 3 weak sub-skills the adaptive engine
+  // surfaces, mapped to the topic-set the topicSlug points at. These still link
+  // to the topic-based session route (resolved alongside chapter-test slugs).
   // Failure here is non-fatal: the page renders without recommendations.
-  const knownSlugs = new Set(sets.map((s) => s.slug))
+  const knownSlugs = new Set(getQuestionSets().map((s) => s.slug))
   let recommendations: PracticeRecommendation[] = []
   try {
     const supabase = await createSupabaseServer()
@@ -93,5 +44,7 @@ export default async function PracticePage() {
     // Signals unavailable — render without recommendations.
   }
 
-  return <PracticeClient sets={sets} recommendations={recommendations} />
+  return (
+    <PracticeClient chapterGroups={chapterGroups} recommendations={recommendations} />
+  )
 }

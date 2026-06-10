@@ -103,6 +103,9 @@ interface SessionClientProps {
    *  completion screen when accuracy is strong — directs students to
    *  their highest-leverage next session instead of a generic CTA. */
   weakestTopic?: WeakTopicHint
+  /** Optional context line shown above the session title, e.g.
+   *  "Algebra: Linear Equations & Systems · Test 1" for a per-chapter test. */
+  setLabel?: string
 }
 
 function formatDuration(ms: number): string {
@@ -1096,6 +1099,7 @@ export default function SessionClient({
   skillLevel,
   skillAttempts,
   weakestTopic,
+  setLabel,
 }: SessionClientProps) {
   const router = useRouter()
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -2203,6 +2207,11 @@ export default function SessionClient({
         </Link>
         <div className="flex items-center justify-between mt-3">
           <div>
+            {setLabel ? (
+              <p className="text-[10px] uppercase tracking-widest text-[#C9A84C] mb-1">
+                {setLabel}
+              </p>
+            ) : null}
             <h1 className="text-xl font-bold text-[#F0F0F0]">{topic}</h1>
             <p className="text-xs text-[#555555] mt-0.5">
               Question{" "}
