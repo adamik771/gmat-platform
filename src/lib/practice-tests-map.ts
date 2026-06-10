@@ -20,8 +20,10 @@ import type { Section } from "@/types"
  * bank appears, not when a question is uploaded.
  */
 
-/** Max questions per test, by section. The number of tests per chapter grows with the bank. */
-export const TEST_CAPS: Record<Section, number> = { Quant: 18, Verbal: 10, DI: 10 }
+/** Max questions per test, by section. The number of tests per chapter grows with the bank.
+ * Kept small deliberately: 6-9 question tests are one focused sitting and yield more
+ * tests per chapter. */
+export const TEST_CAPS: Record<Section, number> = { Quant: 9, Verbal: 8, DI: 8 }
 
 /** Banks that are 1:1 with a chapter — file slug equals chapter slug, subtopic ignored (DI). */
 export const DIRECT_BANK_CHAPTER: Record<string, string> = {

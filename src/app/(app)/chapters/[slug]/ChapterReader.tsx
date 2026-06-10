@@ -932,8 +932,8 @@ export default function ChapterReader({
           <div
             className={
               focusMode
-                ? "max-w-3xl mx-auto"
-                : "lg:grid lg:grid-cols-[220px_minmax(0,1fr)_240px] lg:gap-x-10 lg:items-start"
+                ? "max-w-4xl mx-auto"
+                : "lg:grid lg:grid-cols-[210px_minmax(0,1fr)_230px] lg:gap-x-8 lg:items-start"
             }
           >
             {!focusMode && (

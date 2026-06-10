@@ -16,12 +16,21 @@ export default async function PracticePage() {
   // Failure here is non-fatal: the page renders without recommendations.
   const knownSlugs = new Set(getQuestionSets().map((s) => s.slug))
   let recommendations: PracticeRecommendation[] = []
+  let targetScore: number | null = null
   try {
     const supabase = await createSupabaseServer()
     const {
       data: { user },
     } = await supabase.auth.getUser()
     if (user) {
+      const rawTarget = user.user_metadata?.target_score as number | null | undefined
+      targetScore =
+        typeof rawTarget === "number" &&
+        Number.isInteger(rawTarget) &&
+        rawTarget >= 205 &&
+        rawTarget <= 805
+          ? rawTarget
+          : null
       const flaggedQuestionIds = gatherFlaggedQuestionIds(user.user_metadata)
       const signals = await collectAdaptiveSignals(
         supabase,
@@ -45,6 +54,10 @@ export default async function PracticePage() {
   }
 
   return (
-    <PracticeClient chapterGroups={chapterGroups} recommendations={recommendations} />
+    <PracticeClient
+      chapterGroups={chapterGroups}
+      recommendations={recommendations}
+      targetScore={targetScore}
+    />
   )
 }
