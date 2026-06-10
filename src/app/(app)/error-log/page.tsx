@@ -27,6 +27,7 @@ import BreakdownCard, {
   type RootCauseBucket,
 } from "./BreakdownCard"
 import InsightsPanel from "./InsightsPanel"
+import RecoveredPanel, { type RecoveredTopic } from "./RecoveredPanel"
 
 export default async function ErrorLogPage({
   searchParams,
@@ -36,6 +37,11 @@ export default async function ErrorLogPage({
   const { session_id: sessionIdFilter } = await searchParams
   let mistakes: MistakeEntry[] = []
   let hasUser = false
+  // Recovered = questions once missed whose most recent attempt is now
+  // correct. Computed from a second (correct-attempts) query below and
+  // surfaced by RecoveredPanel above the deficit-framed insights.
+  let recoveredCount = 0
+  let recoveredTopics: RecoveredTopic[] = []
 
   try {
     const supabase = await createSupabaseServer()
@@ -160,6 +166,27 @@ export default async function ErrorLogPage({
             : null) as MistakeEntry["confidence"],
         }
       })
+
+      // Recovered-mistakes pass. Pull every CORRECT attempt on a question
+      // that also appears in the miss list, then compare timestamps: a
+      // question is "recovered" when its latest correct attempt postdates
+      // its latest miss (the most recent outcome is a clean solve). One
+      // extra query, bounded by the distinct missed-question ids.
+      const missedIds = [...new Set(mistakes.map((m) => m.questionId))]
+      if (missedIds.length > 0) {
+        const { data: correctRows } = await supabase
+          .from("practice_attempts")
+          .select("question_id, practice_sessions(created_at)")
+          .eq("user_id", user.id)
+          .eq("is_correct", true)
+          .in("question_id", missedIds)
+        const result = computeRecovered(
+          mistakes,
+          (correctRows as CorrectAttemptRow[] | null) ?? []
+        )
+        recoveredCount = result.count
+        recoveredTopics = result.topics
+      }
     }
   } catch {
     // Supabase unavailable — render empty state below.
@@ -436,6 +463,8 @@ export default async function ErrorLogPage({
         />
       ) : (
         <>
+          <RecoveredPanel count={recoveredCount} topics={recoveredTopics} />
+
           <InsightsPanel insights={insights} />
 
           <BreakdownCard
@@ -454,6 +483,66 @@ export default async function ErrorLogPage({
       )}
     </div>
   )
+}
+
+/** Shape of a correct-attempt row joined to its session's created_at. */
+type CorrectAttemptRow = {
+  question_id: string
+  practice_sessions: { created_at: string } | null
+}
+
+/**
+ * Derives the recovered-mistakes view-model: questions the student missed
+ * in the past but whose most recent attempt is now correct.
+ *
+ * For each missed question we take the latest miss timestamp and the latest
+ * correct timestamp; the question counts as recovered only when both exist
+ * and the correct one is strictly later — i.e. the most recent outcome is a
+ * clean solve. Recovered questions are grouped by topic (descending count)
+ * so the panel can show where the turnaround happened.
+ */
+function computeRecovered(
+  mistakes: MistakeEntry[],
+  correctRows: CorrectAttemptRow[]
+): { count: number; topics: RecoveredTopic[] } {
+  const latestMiss = new Map<string, number>()
+  const meta = new Map<string, { topic: string; section: Section }>()
+  for (const m of mistakes) {
+    if (!meta.has(m.questionId)) {
+      meta.set(m.questionId, { topic: m.topic, section: m.section })
+    }
+    const ts = m.createdAt ? new Date(m.createdAt).getTime() : NaN
+    if (!Number.isFinite(ts)) continue
+    const prev = latestMiss.get(m.questionId)
+    if (prev === undefined || ts > prev) latestMiss.set(m.questionId, ts)
+  }
+
+  const latestCorrect = new Map<string, number>()
+  for (const c of correctRows) {
+    const raw = c.practice_sessions?.created_at
+    const ts = raw ? new Date(raw).getTime() : NaN
+    if (!Number.isFinite(ts)) continue
+    const prev = latestCorrect.get(c.question_id)
+    if (prev === undefined || ts > prev) latestCorrect.set(c.question_id, ts)
+  }
+
+  const byTopic = new Map<string, RecoveredTopic>()
+  let count = 0
+  for (const [qid, missMs] of latestMiss) {
+    const correctMs = latestCorrect.get(qid)
+    if (correctMs === undefined || correctMs <= missMs) continue
+    const info = meta.get(qid)
+    if (!info) continue
+    count += 1
+    const entry =
+      byTopic.get(info.topic) ??
+      { topic: info.topic, section: info.section, count: 0 }
+    entry.count += 1
+    byTopic.set(info.topic, entry)
+  }
+
+  const topics = [...byTopic.values()].sort((a, b) => b.count - a.count)
+  return { count, topics }
 }
 
 /**
