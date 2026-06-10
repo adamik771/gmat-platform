@@ -167,9 +167,23 @@ export default async function DashboardPage() {
                   )
                 )
               : null
+          // Sessions logged today (local midnight onward) — feeds the
+          // rest rule so a finished day surfaces "stop now" instead of
+          // manufacturing more volume. Cheap count-only query; failure is
+          // non-fatal (defaults to 0, rest simply never fires).
+          const localMidnightIso = new Date(
+            new Date().toDateString()
+          ).toISOString()
+          const { count: sessionsTodayCount } = await supabase
+            .from("practice_sessions")
+            .select("id", { count: "exact", head: true })
+            .eq("user_id", user.id)
+            .gte("created_at", localMidnightIso)
+
           nbaResult = computeNextBestAction(signals, {
             daysUntilExam,
             targetScore,
+            sessionsCompletedToday: sessionsTodayCount ?? 0,
           })
 
           // Today's Mission — pull the top item from the study-plan

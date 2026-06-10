@@ -469,8 +469,6 @@ function chapterStatusLine(item: ListItem): string | null {
   if (!item.isStarted) return null
 
   const hasProblemSets = item.problemSetCount > 0
-  const allSectionsRead =
-    item.readSections === item.totalSections && item.totalSections > 0
 
   if (item.isComplete) {
     // "Complete" here means all reading sections done. Surface set-
