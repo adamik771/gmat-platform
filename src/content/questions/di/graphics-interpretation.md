@@ -33,7 +33,7 @@ The correct answer is C.
 
 ## Q2 (Set 1 — Monthly Revenue, continued)
 
-Same graph as Q1.
+Description: A line graph shows monthly revenue (in thousands USD) for a small business across 2024. The y-axis starts at 0 and extends to 200. Data points: Jan 85, Feb 92, Mar 110, Apr 125, May 140, Jun 155, Jul 170, Aug 165, Sep 150, Oct 135, Nov 120, Dec 180.
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -105,7 +105,7 @@ The correct answer is E.
 
 ## Q4 (Set 2 — Population Growth, continued)
 
-Same chart as Q3.
+Description: A bar chart shows population (in millions) for five countries in 2020 and 2024. Country A: 2020=45, 2024=50. Country B: 2020=80, 2024=82. Country C: 2020=30, 2024=38. Country D: 2020=120, 2024=115. Country E: 2020=25, 2024=35.
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -335,7 +335,7 @@ The correct answer is A.
 
 ## Q10 (Set 5 — Stacked Bar Chart, continued)
 
-Same chart as Q9.
+Description: A stacked bar chart shows household monthly expenses (in dollars) across three income groups. Low income (total $2,500): Housing 1,200, Food 600, Transport 300, Other 400. Middle income (total $5,000): Housing 1,800, Food 900, Transport 600, Other 1,700. High income (total $9,000): Housing 2,800, Food 1,200, Transport 900, Other 4,100.
 
 **difficulty:** Medium
 **type:** Graphics Interpretation

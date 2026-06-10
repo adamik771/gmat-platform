@@ -52,7 +52,15 @@ The correct answer is A.
 
 ## Q2 (Set 1 — Tech Company Revenue, continued)
 
-Same table as Q1.
+The following table shows quarterly revenue (in millions USD) for five tech companies in 2024.
+
+| Company | Q1 | Q2 | Q3 | Q4 |
+|---------|-----|-----|-----|-----|
+| Alpha   | 120 | 135 | 140 | 155 |
+| Beta    | 95  | 110 | 115 | 130 |
+| Gamma   | 180 | 175 | 185 | 200 |
+| Delta   | 60  | 75  | 80  | 95  |
+| Epsilon | 220 | 210 | 225 | 240 |
 
 **difficulty:** Medium
 **type:** Table Analysis
@@ -151,7 +159,18 @@ The correct answer is A.
 
 ## Q4 (Set 2 — Employee Demographics, continued)
 
-Same table as Q3.
+The following sortable table shows employee data at a consulting firm.
+
+| Employee | Department | Years | Salary (K) | Age |
+|----------|------------|-------|------------|-----|
+| A        | Strategy   | 5     | 120        | 32  |
+| B        | Finance    | 8     | 140        | 38  |
+| C        | Strategy   | 3     | 95         | 28  |
+| D        | Operations | 12    | 155        | 42  |
+| E        | Finance    | 2     | 85         | 26  |
+| F        | Operations | 7     | 125        | 35  |
+| G        | Strategy   | 10    | 150        | 40  |
+| H        | Finance    | 6     | 115        | 33  |
 
 **difficulty:** Hard
 **type:** Table Analysis
@@ -245,7 +264,16 @@ The correct answer is A.
 
 ## Q6 (Set 3 — University Rankings, continued)
 
-Same table as Q5.
+The following table shows data for six universities.
+
+| University | Acceptance Rate | Avg SAT | Tuition (K) | Endowment (B) |
+|------------|-----------------|---------|-------------|---------------|
+| Alpha U    | 8%              | 1510    | 58          | 42            |
+| Beta U     | 15%             | 1450    | 54          | 18            |
+| Gamma U    | 12%             | 1480    | 60          | 35            |
+| Delta U    | 25%             | 1380    | 48          | 8             |
+| Epsilon U  | 6%              | 1520    | 62          | 55            |
+| Zeta U     | 35%             | 1320    | 42          | 5             |
 
 **difficulty:** Hard
 **type:** Table Analysis
@@ -324,7 +352,15 @@ The correct answer is A.
 
 ## Q8 (Set 4 — Regional Sales Data, continued)
 
-Same table as Q7.
+The following table shows sales data for five sales representatives in Q3 2024.
+
+| Rep | Region | Calls | Deals Closed | Revenue (K) |
+|-----|--------|-------|--------------|-------------|
+| A   | North  | 150   | 18           | 450         |
+| B   | South  | 200   | 22           | 440         |
+| C   | East   | 120   | 15           | 525         |
+| D   | West   | 180   | 20           | 400         |
+| E   | North  | 160   | 16           | 480         |
 
 **difficulty:** Medium
 **type:** Table Analysis
@@ -392,7 +428,15 @@ The correct answer is A.
 
 ## Q10 (Set 5 — Real Estate Prices, continued)
 
-Same table as Q9.
+The following table shows median home prices (in thousands USD) across five neighborhoods over three years.
+
+| Neighborhood | 2022 | 2023 | 2024 |
+|--------------|------|------|------|
+| Oakwood      | 450  | 485  | 520  |
+| Maple Park   | 380  | 395  | 420  |
+| Riverside    | 620  | 600  | 650  |
+| Highland     | 290  | 310  | 345  |
+| Pinehurst    | 520  | 555  | 580  |
 
 **difficulty:** Hard
 **type:** Table Analysis
@@ -1679,7 +1723,15 @@ The correct answer is D.
 
 ## Q39 (Set — Five-City Statistics, continued)
 
-Same table as Q38.
+The following table summarizes five cities:
+
+| City | Population (M) | Median Income ($K) | Crime Rate (per 1K) | Growth Rate (%) |
+|------|----------------|--------------------|-----------------------|-----------------|
+| A    | 2.5            | 68                 | 12                    | 1.8             |
+| B    | 1.2            | 55                 | 8                     | 2.5             |
+| C    | 3.8            | 72                 | 18                    | 0.9             |
+| D    | 0.9            | 48                 | 6                     | 3.2             |
+| E    | 5.1            | 82                 | 22                    | 0.5             |
 
 **difficulty:** Medium
 **type:** Table Analysis
@@ -1772,7 +1824,16 @@ The candidates who satisfy all three conditions are Candidates 1, 4, and 5, givi
 
 ## Q41 (Set — Job Candidate Filter, continued)
 
-Same table as Q40.
+The following table lists six candidates for a role:
+
+| Candidate | Years of Experience | GPA | Test Score | Interview Score |
+|-----------|---------------------|-----|------------|-----------------|
+| 1         | 5                   | 3.6 | 85         | 8               |
+| 2         | 8                   | 3.2 | 78         | 9               |
+| 3         | 3                   | 3.9 | 92         | 7               |
+| 4         | 10                  | 3.5 | 88         | 9               |
+| 5         | 6                   | 3.8 | 82         | 8               |
+| 6         | 4                   | 3.4 | 90         | 6               |
 
 **difficulty:** Medium
 **type:** Table Analysis
@@ -1877,7 +1938,16 @@ The correct answer is A.
 
 ## Q43 (Set — Regional Statistics, continued)
 
-Same table as Q42.
+The following table summarizes six regions:
+
+| Region | Population (M) | Median Income ($K) | Unemployment (%) |
+|--------|----------------|--------------------|--------------------|
+| A      | 2.5            | 62                 | 4.2                |
+| B      | 1.8            | 58                 | 3.8                |
+| C      | 3.2            | 70                 | 3.2                |
+| D      | 0.9            | 45                 | 6.5                |
+| E      | 5.1            | 75                 | 2.9                |
+| F      | 1.5            | 55                 | 5.2                |
 
 **difficulty:** Medium
 **type:** Table Analysis
@@ -1979,7 +2049,15 @@ The correct answer is A.
 
 ## Q45 (Set — Five Products, continued)
 
-Same table as Q44.
+The following table summarizes five products:
+
+| Product | Monthly Revenue ($K) | Profit Margin (%) | Inventory Turnover |
+|---------|----------------------|-------------------|---------------------|
+| A       | 120                  | 25                | 8                   |
+| B       | 95                   | 32                | 12                  |
+| C       | 180                  | 18                | 5                   |
+| D       | 140                  | 28                | 10                  |
+| E       | 85                   | 35                | 15                  |
 
 **difficulty:** Medium
 **type:** Table Analysis
@@ -2062,7 +2140,15 @@ The correct answer is B.
 
 ## Q47 (Set — Five R&D-Intensive Companies, continued)
 
-Same table as Q46.
+The following table summarizes five companies in 2023:
+
+| Company | R&D Spending ($M) | Revenue Growth (%) | Patents Filed |
+|---------|-------------------|--------------------|---------------|
+| Alpha   | 500               | 12                 | 80            |
+| Beta    | 350               | 8                  | 60            |
+| Gamma   | 700               | 15                 | 120           |
+| Delta   | 200               | 5                  | 40            |
+| Epsilon | 450               | 10                 | 90            |
 
 **difficulty:** Medium
 **type:** Table Analysis
@@ -2154,7 +2240,15 @@ The correct answer is D.
 
 ## Q49 (Set — Five Companies Financial Snapshot, continued)
 
-Same table as Q48.
+The following table summarizes five companies:
+
+| Company | Revenue ($M) | Profit Margin (%) | Growth Rate (%) | Employees |
+|---------|--------------|-------------------|-----------------|-----------|
+| Alpha   | 500          | 18                | 12              | 1,200     |
+| Beta    | 380          | 22                | 8               | 850       |
+| Gamma   | 650          | 15                | 15              | 1,800     |
+| Delta   | 250          | 25                | 6               | 600       |
+| Epsilon | 420          | 20                | 10              | 950       |
 
 **difficulty:** Medium
 **type:** Table Analysis

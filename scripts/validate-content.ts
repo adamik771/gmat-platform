@@ -203,9 +203,11 @@ for (const [id, arr] of idMap) {
   }
 }
 
-// Duplicate prompts (normalize whitespace, lowercase, first 200 chars)
+// Duplicate prompts (normalize whitespace, lowercase, full text — a prefix
+// comparison false-positives on TA/GI set questions that share an inlined
+// table/graph block but ask different things after it)
 const normalize = (s: string): string =>
-  s.replace(/\s+/g, " ").trim().slice(0, 200).toLowerCase()
+  s.replace(/\s+/g, " ").trim().toLowerCase()
 const promptMap = new Map<string, ParsedQuestion[]>()
 for (const q of questions) {
   if (!q.prompt || q.prompt.trim().length < MIN_PROMPT_CHARS) continue
