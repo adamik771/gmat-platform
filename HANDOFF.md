@@ -24,19 +24,32 @@ The big feature + content work. Commits in order:
 - **Letter skew fixed before assembly.** 21 of 54 questions got a minimal two-letter option swap (correct option exchanged with the option at the target letter); final distribution **A12/B11/C12/D10/E9** (was A9/B26/C16/D3/E0). A Workflow with embedded question data (pure-function agents: rewrite → adversarial verify → repair; 42 agents, 21/21 verified on first pass) rewrote every choice-letter reference in the affected explanations. The other 33 questions are byte-identical to their generation-time verified form. `scripts/cr-batch-proposals.json` on disk now holds the REBALANCED version (still untracked, kept as provenance).
 - **Verified:** `validate:content` 0 errors (warnings 16→9 — all 7 thin-CR-chapter warnings cleared); parser-level gate 54/54 (5 options, answer key matches the final "The correct answer is X." sentence, type/topic present); all 8 chapters (verbal-03/04/05/06/07/09/11/12) now have **exactly 2 tests**; Verbal bank 197→251 questions, tests 26→34; `tsc` clean.
 
-### REMAINING ROADMAP (Adam approved all four areas)
-1. Finish CR batch — DONE (commit `c030e80`, see above).
-2. **DS/DI top-up** (optional, lowest priority — DI already 22 tests).
-3. RC for verbal-13/20 + MSR bank — only if Adam wants those chapters live.
-4. Two Quant chapters sit at exactly 18Q/1 full test (quant-06, quant-17 got +1 hand top-up each — DONE, they're at 2 tests now; ignore).
-5. Merge `claude/per-chapter-practice-tests` (Adam's call; compare URL pattern as usual).
+### REMAINING ROADMAP — all content items DONE; only the merge is left
+1. Finish CR batch — DONE (commit `c030e80`).
+2. **DS/DI top-up** — NOT NEEDED. DI is fully covered: 5 chapters, 26 tests, 243/243 questions, no thin chapter. The top-up was always optional and there is no gap to fill, so nothing was added.
+3. **RC for verbal-13/20 + MSR bank — DONE this session.**
+   - **MSR live** (commit `cb76e93`): the bank already held 10 sets / 36 questions with full tab context (parsed into `question.context`, which SessionClient renders); it only lacked `DIRECT_BANK_CHAPTER` wiring. Wired 1:1, removed from coming-soon → 4 tests.
+   - **RC verbal-13/17/19/20** (commits `0ee7f1d`, `84f5d27`): authored **6 original RC passages / 36 questions** (Q74–Q109, Passages 21–26) via a write→adversarial-verify→repair Workflow (all 6 verified; 4 took one repair round). Subtypes: 12 Passage Structure → `verbal-13-rc-reading-process`, 12 Answer Traps → `verbal-20-rc-answer-traps` (both were coming-soon at 0Q), 6 Application → verbal-17, 6 Author's Attitude → verbal-19. Answer letters were **pinned per slot at authoring time** (balanced A8/B7/C7/D7/E7) so no post-hoc letter surgery was needed. Routing: added `trap`→verbal-20 and `structure`/`organization`→verbal-13 rules. **0 coming-soon chapters remain.**
+   - **Regression caught + fixed** (`84f5d27`): activating verbal-20's 6 placeholder pins (q51–q56 = Function/Inference/MainIdea) stole q52/q55 from verbal-18 via pin-precedence, dropping verbal-18 to 1 test. Repointed verbal-20's graded set to its own Answer Traps questions; verbal-18 restored.
+   - **6 `practice-cross-pin` WARNINGS remain and are intentional/harmless:** verbal-13 (reading-process) teaches with passages 1–3 and pins those same Main-Idea/Inference/Detail questions (q1/q3/q5/q6/q11/q13) that verbal-14/15 also pin. Allocator keeps verbal-13 (first); verbal-14/15 stay at 2 tests, so NO test-count regression — do not "fix" by editing verbal-13's curated seeds (they're integrated teaching material).
+4. Quant quant-06/17 — DONE earlier (at 2 tests; ignore).
+5. **Merge `claude/per-chapter-practice-tests` (Adam's call).** Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/per-chapter-practice-tests?expand=1`
+
+### Final state after this session (branch `claude/per-chapter-practice-tests`)
+- **Every in-scope practice chapter across all 3 sections now has ≥ 2 tests; 0 coming-soon chapters.**
+- Practice tests: **Quant 25 ch / 50 tests · Verbal 19 ch / 39 tests · DI 5 ch / 26 tests.** Banks: Quant 579, Verbal 287 (CR 124→178, RC 73→109), DI 243.
+- `npm run validate:content`: **0 errors** (15 warnings: 9 pre-existing RC duplicate-prompt + 6 intentional verbal-13 cross-pin; 24 info). `npx tsc --noEmit` clean.
+- `scripts/cr-batch-proposals.json` (rebalanced) stays untracked as provenance.
 
 ### CRITICAL POLICY — question sourcing
 Adam supplied the **GMAT Official Guide 12th ed. PDF** (`~/Downloads/GMAT-OG-12.pdf`, 843 pp). Decision made: it is **calibration reference ONLY** (type/difficulty/coverage). **NEVER reproduce/translate/lightly-edit its questions into the banks** — copyright (GMAC/Wiley) + the platform's "original questions" positioning. All generated questions must be entirely original; generation prompts must say so explicitly (this session's did). Note OG-12 is the OLD test: skip Sentence Correction + geometry entirely.
 
 ### Gotchas learned this session
-- Workflow scripts cannot read files and `args` JSON can arrive mangled — pass data by having agents read files themselves, or embed in the script string.
-- Author agents tend to put the correct answer at position A and underuse E — instruct position variety up front, and check distribution before assembly. Quant explanations are value-based (shuffle-safe); CR explanations are letter-based (NOT shuffle-safe).
+- Workflow scripts cannot read files and `args` JSON can arrive mangled — pass data by having agents read files themselves, or embed it directly in the generated script string (the CR rebalance + RC batch both embedded their data and worked cleanly with pure-function agents).
+- Author agents tend to put the correct answer at position A and underuse E — instruct position variety up front, and check distribution before assembly. Quant explanations are value-based (shuffle-safe); CR/RC explanations are letter-based (NOT shuffle-safe). **Best fix: pin the credited answer letter per question slot in the generation prompt** (the RC batch did this → perfect balance, zero post-hoc letter surgery). For the CR batch (already generated B-heavy) the alternative was a two-letter option swap + an agent rewrite of every letter reference, adversarially verified.
+- The parsed question object exposes the credited letter as `correctAnswerLetter` (not `answer`); the markdown `**topic:**` field becomes `question.subtopic` (routing key), while `question.topic` is the file-level section topic. Grouped RC/MSR passage/tab context is on `question.context`.
+- **Pin precedence can silently demote a sibling chapter.** A chapter's `problem_sets` pins override routing AND win over another chapter's pins ("allocator keeps the first"). Taking a chapter off coming-soon activates its pins, which can pull questions out of the chapter they'd otherwise route to and drop it below 2 tests. After making any chapter live, re-run the per-chapter test-count check (`getPracticeChapterGroups`) for ALL chapters, not just the new one.
+- `node --experimental-strip-types` resolves a script's imports relative to the SCRIPT's dir — gate scripts in `/tmp` must import `src/lib/content.ts` by ABSOLUTE path.
 - `npm run validate:content` runs node `--experimental-strip-types`: relative imports inside `src/lib` need explicit `.ts` extensions (hence `allowImportingTsExtensions`).
 - The preview screenshot tool can render black; verify layout via DOM (`preview_eval`) instead. `/practice` is auth-gated — a temporary public route under `(marketing)` was used for visual verification then deleted.
 
