@@ -29,9 +29,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - reading-comprehension-q51
-      - reading-comprehension-q52
-      - reading-comprehension-q53
+      - reading-comprehension-q76
+      - reading-comprehension-q82
+      - reading-comprehension-q88
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,9 +39,9 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - reading-comprehension-q54
-      - reading-comprehension-q55
-      - reading-comprehension-q56
+      - reading-comprehension-q77
+      - reading-comprehension-q83
+      - reading-comprehension-q89
 ---
 
 ## @rc-answer-traps
