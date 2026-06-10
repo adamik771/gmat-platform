@@ -132,6 +132,7 @@ export default async function ReviewSectionPage({
         topic="Daily Review"
         section={section}
         questions={playable}
+        flow="review"
       />
     </div>
   )

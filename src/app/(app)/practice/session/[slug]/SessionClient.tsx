@@ -106,6 +106,13 @@ interface SessionClientProps {
   /** Optional context line shown above the session title, e.g.
    *  "Algebra: Linear Equations & Systems · Test 1" for a per-chapter test. */
   setLabel?: string
+  /** Which surface this session belongs to. Practice tests measure skill,
+   *  so they default to exam mode (feedback at the end). Review sessions
+   *  are retrieval practice on past misses, where the corrective feedback
+   *  must land right after each retrieval attempt to re-encode the memory —
+   *  they default to study mode and persist the toggle under a separate
+   *  key so neither surface's preference bleeds into the other. */
+  flow?: "practice" | "review"
 }
 
 function formatDuration(ms: number): string {
@@ -1107,6 +1114,7 @@ export default function SessionClient({
   skillAttempts,
   weakestTopic,
   setLabel,
+  flow = "practice",
 }: SessionClientProps) {
   const router = useRouter()
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -1171,15 +1179,18 @@ export default function SessionClient({
   const [questionStart, setQuestionStart] = useState(() => Date.now())
   const [now, setNow] = useState(() => Date.now())
   const [showResults, setShowResults] = useState(false)
-  // Exam vs study feedback mode. Exam (the default) defers correctness,
-  // explanations, and hints to the end-of-session review — like test day.
-  // Study reveals the explanation after each submit. The choice persists
-  // across sessions; switching mid-session is allowed.
+  // Exam vs study feedback mode. Exam defers correctness, explanations,
+  // and hints to the end-of-session review — like test day. Study reveals
+  // the explanation after each submit. The default and the persistence key
+  // depend on the flow: practice tests default to exam, review sessions to
+  // study. The choice persists per flow; switching mid-session is allowed.
+  const defaultMode = flow === "review" ? "study" : "exam"
+  const modeStorageKey =
+    flow === "review" ? "review-feedback-mode" : "session-feedback-mode"
   const [mode, setMode] = useState<"exam" | "study">(() => {
-    if (typeof window === "undefined") return "exam"
-    return window.localStorage.getItem("session-feedback-mode") === "study"
-      ? "study"
-      : "exam"
+    if (typeof window === "undefined") return defaultMode
+    const stored = window.localStorage.getItem(modeStorageKey)
+    return stored === "study" || stored === "exam" ? stored : defaultMode
   })
   // Once the results screen has been reached, per-question feedback is
   // visible regardless of mode so the review list can jump back into
@@ -1190,7 +1201,7 @@ export default function SessionClient({
   function switchMode(next: "exam" | "study") {
     setMode(next)
     try {
-      window.localStorage.setItem("session-feedback-mode", next)
+      window.localStorage.setItem(modeStorageKey, next)
     } catch {
       // Private browsing — preference just won't persist.
     }
@@ -2283,8 +2294,10 @@ export default function SessionClient({
             </p>
           </div>
           <div className="flex items-center gap-2 text-sm text-[#888888]">
-            {/* Exam/Study feedback-mode toggle. Exam is the default and the
-                recommended skill test; study reveals each explanation. */}
+            {/* Exam/Study feedback-mode toggle. For practice tests exam is
+                the default and the recommended skill test; for review
+                sessions study is the default — retrieval practice wants
+                the corrective feedback right after each attempt. */}
             <div
               className="inline-flex rounded-lg border overflow-hidden"
               style={{ borderColor: "rgba(255,255,255,0.10)" }}
@@ -2306,8 +2319,12 @@ export default function SessionClient({
                   }
                   title={
                     m === "exam"
-                      ? "Explanations at the end, like test day (recommended)"
-                      : "Explanation after each question"
+                      ? flow === "review"
+                        ? "Explanations at the end, like test day"
+                        : "Explanations at the end, like test day (recommended)"
+                      : flow === "review"
+                        ? "Explanation after each question (recommended for review)"
+                        : "Explanation after each question"
                   }
                   aria-pressed={mode === m}
                 >
@@ -2362,9 +2379,13 @@ export default function SessionClient({
         </div>
         {!finished && (
           <p className="text-[11px] mt-2" style={{ color: "#666666" }}>
-            {mode === "exam"
-              ? "Exam mode: answers and explanations come at the end, like test day."
-              : "Study mode: explanation after every question. Exam mode is the truer skill test — the chapters are where you learn."}
+            {flow === "review"
+              ? mode === "study"
+                ? "Study mode: the answer and explanation appear right after each attempt — seeing the correction at the moment of retrieval is what re-encodes the memory."
+                : "Exam mode: feedback comes at the end. For review, study mode usually works better — the correction lands while the retrieval attempt is still fresh."
+              : mode === "exam"
+                ? "Exam mode: answers and explanations come at the end, like test day."
+                : "Study mode: explanation after every question. Exam mode is the truer skill test — the chapters are where you learn."}
           </p>
         )}
       </div>
