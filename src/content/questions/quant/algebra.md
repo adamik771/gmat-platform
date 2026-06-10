@@ -1077,3 +1077,535 @@ Since statement (1) alone is sufficient and statement (2) alone is not, statemen
 
 The correct answer is A.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Linear Equations
+**est_time_seconds:** 45
+**trap_type:** unnecessary-full-solve
+
+If 4x − 3 = 21, what is the value of 8x − 3?
+
+- A) 42
+- B) 45
+- C) 48
+- D) 24
+- E) 51
+
+**answer:** B
+**hint_nudge:** You do not need x by itself — look at how 8x relates to the 4x already sitting in the equation.
+**hint_strategy:** Solve only for the chunk 4x, then double it. The constant −3 is not doubled, so handle it separately.
+**hint_setup:** From 4x − 3 = 21 you get 4x = 24. Then 8x = 2(4x) = 48, and 8x − 3 = 48 − 3.
+**explanation:** The efficient move is to find 4x as a single block rather than solving for x. Starting from 4x − 3 = 21, add 3 to both sides to get 4x = 24. Because 8x = 2(4x), we have 8x = 2(24) = 48. The requested expression is 8x − 3 = 48 − 3 = 45. Notice that the constant term −3 is the same in both expressions and is not affected by doubling; only the 8x portion scales. The correct answer is B.
+**fastest_path:** Get 4x = 24, double it to 8x = 48, subtract 3. No need to find x = 6 first.
+**mistake_a:** Choice A doubles the entire right-hand side: 2(4x − 3) = 2(21) = 42. This treats 8x − 3 as 2(4x − 3), but doubling 4x − 3 gives 8x − 6, not 8x − 3. The constant should not be doubled.
+**mistake_c:** Choice C is 8x itself, which is 48. The student found 8x correctly but forgot to subtract the 3 the question asks for.
+**mistake_d:** Choice D is 24, the value of 4x. This stops one step early, reporting the block that was solved for rather than the final expression.
+**mistake_e:** Choice E uses 8x + 3 = 51, flipping the sign of the constant.
+**common_trap:** Doubling the whole equation (4x − 3 → 2× → 42) instead of doubling only the 4x term.
+**takeaway:** When a target expression is a multiple of something inside the given equation, scale only the matching term — constants ride along unchanged. Reporting 24 or 48 here is a "Careless" error of stopping a step early or late.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponents
+**est_time_seconds:** 50
+**trap_type:** exponent-rule-confusion
+
+If 2^x = 8, what is the value of 2^(x+3)?
+
+- A) 11
+- B) 24
+- C) 64
+- D) 512
+- E) 32
+
+**answer:** C
+**hint_nudge:** Adding 3 to an exponent is not the same as adding 3 to the whole power.
+**hint_strategy:** Use 2^(x+3) = 2^x · 2^3. You already know 2^x, so you never need x.
+**hint_setup:** 2^(x+3) = 2^x · 2^3 = 8 · 8.
+**explanation:** The product rule for exponents says 2^(x+3) = 2^x · 2^3. We are told 2^x = 8, and 2^3 = 8, so 2^(x+3) = 8 · 8 = 64. (As a check, 2^x = 8 means x = 3, and 2^(3+3) = 2^6 = 64.) The key idea is that adding 3 to the exponent multiplies the value by 2^3 = 8; it does not add 3 to the value. The correct answer is C.
+**fastest_path:** 2^(x+3) = 2^x · 2^3 = 8 · 8 = 64. Don't bother finding x.
+**mistake_a:** Choice A, 11, comes from adding: 8 + 3. The +3 is in the exponent, so it multiplies by 2^3, it does not add 3 to the value.
+**mistake_b:** Choice B, 24, multiplies the value by the exponent itself: 8 · 3. The rule multiplies by 2^3 = 8, not by 3.
+**mistake_d:** Choice D, 512, computes (2^x)^3 = 8^3 = 512, reading x + 3 as if it were 3x or a power of a power.
+**mistake_e:** Choice E, 32 = 2^5, comes from miscounting the exponent as x + 2 instead of x + 3.
+**common_trap:** Treating an added exponent (x + 3) as either an added constant (8 + 3) or a power ((2^x)^3).
+**takeaway:** A change in the exponent always becomes a multiplication, never an addition, in the value. Mislabeling this is a "Conceptual" exponent-rule error.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Inequalities
+**est_time_seconds:** 45
+**trap_type:** forgetting-to-flip-inequality
+
+If −2x + 5 < 1, which of the following must be true?
+
+- A) x < 2
+- B) x > 2
+- C) x < −2
+- D) x > −2
+- E) x < 3
+
+**answer:** B
+**hint_nudge:** Watch what happens to the inequality sign at the moment you divide by a negative number.
+**hint_strategy:** Isolate the −2x term first, then divide by −2 and flip the direction of the inequality.
+**hint_setup:** −2x + 5 < 1 gives −2x < −4. Now divide by −2 and reverse the sign.
+**explanation:** Subtract 5 from both sides of −2x + 5 < 1 to get −2x < −4. To isolate x, divide both sides by −2. Dividing an inequality by a negative number reverses its direction, so the "<" becomes ">", giving x > 2. Every value satisfying the original inequality satisfies x > 2. The correct answer is B.
+**fastest_path:** −2x < −4, divide by −2 and flip: x > 2.
+**mistake_a:** Choice A, x < 2, is what you get if you divide by −2 but forget to reverse the inequality sign. This is the single most common error on this problem.
+**mistake_c:** Choice C, x < −2, keeps the wrong direction and also mishandles the −4 ÷ −2 to a negative result.
+**mistake_d:** Choice D, x > −2, flips the sign correctly but mis-divides −4 by −2 as −2 instead of 2.
+**mistake_e:** Choice E, x < 3, drops the coefficient entirely and just moves the 5, leaving a wrong constant and wrong direction.
+**common_trap:** Forgetting to flip the inequality when dividing by a negative coefficient.
+**takeaway:** Multiplying or dividing an inequality by a negative number reverses its direction — every time. Choosing x < 2 here is the textbook "Conceptual" inequality error.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Systems of Equations
+**est_time_seconds:** 45
+**trap_type:** answering-wrong-quantity
+
+If 2a + b = 11 and a + b = 7, what is the value of a?
+
+- A) 3
+- B) 4
+- C) 5
+- D) 7
+- E) 11
+
+**answer:** B
+**hint_nudge:** The two equations share the term b. What happens if you subtract one from the other?
+**hint_strategy:** Subtracting the second equation from the first eliminates b in one step, leaving a directly.
+**hint_setup:** (2a + b) − (a + b) = 11 − 7 collapses to a = 4.
+**explanation:** Both equations contain b with the same coefficient, so subtracting the second from the first eliminates b: (2a + b) − (a + b) = 11 − 7, which simplifies to a = 4. The correct answer is B. (Back-substituting, b = 7 − 4 = 3, and both original equations check.)
+**fastest_path:** Subtract the equations: a = 11 − 7 = 4. No substitution needed.
+**mistake_a:** Choice A, 3, is the value of b, not a. After eliminating, the student solved for the other variable — or back-substituted and reported b.
+**mistake_c:** Choice C, 5, is an arithmetic slip, often from adding the equations (3a + 2b = 18) and mis-handling the result.
+**mistake_d:** Choice D, 7, simply restates the right-hand side of the second equation without solving.
+**mistake_e:** Choice E, 11, restates the right-hand side of the first equation.
+**common_trap:** Solving the system correctly but reporting b (3) when the question asks for a.
+**takeaway:** Underline the exact quantity requested before you start; elimination here is one line, but answering b instead of a is a classic "Misread" slip.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Algebra Translation
+**est_time_seconds:** 45
+**trap_type:** misplaced-grouping
+
+A number n is 4 more than three times a number m. Which of the following equations represents this relationship?
+
+- A) n = 3(m + 4)
+- B) n = 3m + 4
+- C) n = 4m + 3
+- D) n = 4 + 3 + m
+- E) m = 3n + 4
+
+**answer:** B
+**hint_nudge:** Translate the phrase left to right in pieces: "three times m" and then "4 more."
+**hint_strategy:** "Three times a number m" is 3m. "4 more than" that adds 4 to the whole product, not to m before multiplying.
+**hint_setup:** n equals (three times m) plus 4: n = 3m + 4.
+**explanation:** Translate phrase by phrase. "Three times a number m" is 3m. "4 more than three times m" adds 4 to that product: 3m + 4. The number n equals this, so n = 3m + 4. The correct answer is B.
+**fastest_path:** "three times m" = 3m; "4 more" = +4; n is the result: n = 3m + 4.
+**mistake_a:** Choice A, n = 3(m + 4), adds the 4 to m before multiplying, which describes "three times (4 more than m)" — a different sentence.
+**mistake_c:** Choice C, n = 4m + 3, swaps the roles of 3 and 4, reading it as "3 more than four times m."
+**mistake_d:** Choice D adds everything together and never multiplies, ignoring "times."
+**mistake_e:** Choice E reverses the variables, solving for m in terms of n instead of n in terms of m.
+**common_trap:** Letting "4 more" slip inside the parentheses, turning 3m + 4 into 3(m + 4).
+**takeaway:** "More than" attaches to the whole quantity already built, so it stays outside any grouping. Misreading the grouping here is a "Misread"/"Conceptual" translation error.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Quadratics
+**est_time_seconds:** 90
+**trap_type:** vieta-sign-error
+
+The two solutions of x² + bx + 18 = 0 are both positive, and one solution is twice the other. What is the value of b?
+
+- A) −9
+- B) −6
+- C) 6
+- D) 9
+- E) 18
+
+**answer:** A
+**hint_nudge:** Name the roots in terms of a single variable using "one is twice the other," then use what the product of the roots must equal.
+**hint_strategy:** For x² + bx + c = 0, the product of the roots is c and the sum is −b. Find the roots from the product, then read off b.
+**hint_setup:** Let the roots be r and 2r. Their product 2r² = 18, so r = 3 and the roots are 3 and 6. Then b = −(sum).
+**explanation:** Let the two roots be r and 2r. For x² + bx + 18 = 0 the product of the roots equals the constant term: r · 2r = 18, so 2r² = 18 and r² = 9. Since both roots are positive, r = 3, giving roots 3 and 6. The coefficient b equals the negative of the sum of the roots: b = −(3 + 6) = −9. The correct answer is A. (Check: (x − 3)(x − 6) = x² − 9x + 18.) 
+**fastest_path:** Roots r and 2r with product 18 give r = 3, roots 3 and 6; b = −(sum) = −9.
+**mistake_b:** Choice B, −6, takes the negative of just one root rather than the sum of both.
+**mistake_c:** Choice C, 6, reports the larger root itself, not b.
+**mistake_d:** Choice D, 9, finds the correct roots and their sum but forgets that b = −(sum), keeping the sign positive.
+**mistake_e:** Choice E, 18, confuses the constant term c (the product, 18) with b.
+**common_trap:** Getting the right roots but writing b = +9 instead of −9 (the sum-versus-coefficient sign).
+**takeaway:** In x² + bx + c, the sum of the roots is −b and the product is c. Forgetting the minus sign on the sum is the "Conceptual" trap here, and reporting a root instead of b is a "Misread."
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponents
+**est_time_seconds:** 80
+**trap_type:** dropping-a-coefficient
+
+If 3^(2x − 1) = 27, what is the value of 3^x?
+
+- A) 3
+- B) 9
+- C) 27
+- D) 81
+- E) 6
+
+**answer:** B
+**hint_nudge:** Write 27 as a power of 3 so you can compare exponents directly.
+**hint_strategy:** Set the exponents equal: 2x − 1 = 3. Solve for x, then evaluate 3^x — don't stop at x.
+**hint_setup:** 27 = 3^3, so 2x − 1 = 3, giving x = 2, and 3^x = 3^2.
+**explanation:** Since 27 = 3^3, the equation 3^(2x − 1) = 3^3 forces the exponents to match: 2x − 1 = 3. Solving gives 2x = 4, so x = 2. The question asks for 3^x = 3^2 = 9. The correct answer is B.
+**fastest_path:** 27 = 3^3 → 2x − 1 = 3 → x = 2 → 3^x = 9.
+**mistake_a:** Choice A, 3, stops too early or reports 3^1, perhaps after isolating something other than x.
+**mistake_c:** Choice C, 27, simply restates the right-hand side instead of computing 3^x.
+**mistake_d:** Choice D, 81 = 3^4, comes from forgetting to divide by 2: reading 2x − 1 = 3 as x = 4 rather than 2x = 4.
+**mistake_e:** Choice E, 6, multiplies 3 · x = 3 · 2 instead of computing 3^x.
+**common_trap:** Solving 2x = 4 but recording x = 4 (skipping the division), which inflates 3^x to 81.
+**takeaway:** After equating exponents, finish solving the linear equation carefully, then plug into the requested power. Treating 2x = 4 as x = 4 is a "Careless" slip.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Inequalities
+**est_time_seconds:** 85
+**trap_type:** strict-vs-inclusive-boundary
+
+If 3(x − 2) ≤ 5x + 4, what is the least integer value of x?
+
+- A) −10
+- B) −5
+- C) −4
+- D) 4
+- E) 5
+
+**answer:** B
+**hint_nudge:** Solve for x first; then think carefully about whether the boundary value itself is allowed.
+**hint_strategy:** Collect x terms on one side. Because you divide by a positive number, the inequality direction stays the same — and "≤" includes the endpoint.
+**hint_setup:** 3x − 6 ≤ 5x + 4 leads to −10 ≤ 2x, so x ≥ −5. The least integer is the endpoint itself.
+**explanation:** Expand: 3x − 6 ≤ 5x + 4. Subtract 3x from both sides: −6 ≤ 2x + 4. Subtract 4: −10 ≤ 2x. Divide by 2 (positive, so no flip): −5 ≤ x, i.e., x ≥ −5. Because the inequality is "≤" (inclusive), x = −5 is allowed, so the least integer value is −5. The correct answer is B.
+**fastest_path:** Reduce to −10 ≤ 2x → x ≥ −5; the "≤" keeps −5 in, so least integer is −5.
+**mistake_a:** Choice A, −10, is the value of 2x at the boundary; the student forgot to divide by 2.
+**mistake_c:** Choice C, −4, treats the inequality as strict (x > −5), excluding the endpoint and jumping to the next integer. But "≤" makes −5 valid.
+**mistake_d:** Choice D, 4, comes from a sign error that yields x ≤ 5 and then mis-identifies the least value.
+**mistake_e:** Choice E, 5, drops the negative sign entirely while solving.
+**common_trap:** Reading "≤" as "<" and excluding x = −5, landing on −4.
+**takeaway:** An inclusive inequality (≤ or ≥) keeps its boundary value as a valid answer. Excluding it is a "Conceptual" boundary error; forgetting to divide by 2 is "Careless."
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Function Composition
+**est_time_seconds:** 85
+**trap_type:** reversed-composition-order
+
+The functions f and g are defined by f(x) = 2x − 3 and g(x) = x² + 1 for all numbers x. What is the value of f(g(2))?
+
+- A) 2
+- B) 5
+- C) 7
+- D) 10
+- E) 13
+
+**answer:** C
+**hint_nudge:** Work from the inside out — evaluate the function closest to the input first.
+**hint_strategy:** f(g(2)) means compute g(2) first, then feed that result into f. Order matters.
+**hint_setup:** g(2) = 2² + 1 = 5, then f(5) = 2(5) − 3.
+**explanation:** Composition is evaluated inside-out. First g(2) = 2² + 1 = 4 + 1 = 5. Then f(5) = 2(5) − 3 = 10 − 3 = 7. The correct answer is C.
+**fastest_path:** Inside first: g(2) = 5; then f(5) = 2·5 − 3 = 7.
+**mistake_a:** Choice A, 2, reverses the order and computes g(f(2)): f(2) = 1, then g(1) = 1² + 1 = 2. The notation f(g(2)) applies g first, not f.
+**mistake_b:** Choice B, 5, multiplies the two intermediate outputs f(2)·... or simply stops at g(2) = 5 without applying f.
+**mistake_d:** Choice D, 10, forgets the −3 in f: 2(5) = 10 instead of 2(5) − 3.
+**mistake_e:** Choice E, 13, flips the sign of the constant: 2(5) + 3 = 13.
+**common_trap:** Reversing the composition order, computing g(f(2)) instead of f(g(2)).
+**takeaway:** In f(g(x)), g acts first and f acts on its output — always work inside-out. Reversing the order is a "Misread"; dropping the −3 is "Careless."
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Rational Equations
+**est_time_seconds:** 80
+**trap_type:** excluded-value-confusion
+
+If (x + 6)/(x − 2) = 5, what is the value of x?
+
+- A) 2
+- B) 4
+- C) 5
+- D) 8
+- E) 16
+
+**answer:** B
+**hint_nudge:** Clear the fraction by multiplying both sides by the denominator, then solve the linear equation.
+**hint_strategy:** Cross-multiply: x + 6 = 5(x − 2). Distribute fully before collecting terms, and remember x cannot make the denominator zero.
+**hint_setup:** x + 6 = 5(x − 2) = 5x − 10, so 16 = 4x.
+**explanation:** Multiply both sides by (x − 2): x + 6 = 5(x − 2) = 5x − 10. Bring variables together: 6 + 10 = 5x − x, so 16 = 4x and x = 4. Since x = 4 does not make the denominator zero (4 − 2 = 2 ≠ 0), it is valid. The correct answer is B.
+**fastest_path:** Cross-multiply to x + 6 = 5x − 10, giving 16 = 4x, x = 4.
+**mistake_a:** Choice A, 2, is the excluded value that makes the denominator zero. It is the one value x can never equal, yet it tempts students who anchor on "x − 2."
+**mistake_c:** Choice C, 5, simply restates the right-hand side of the equation.
+**mistake_d:** Choice D, 8, comes from distributing only partially, e.g., x + 6 = 5x − 2, giving 8 = 4x.
+**mistake_e:** Choice E, 16, is the value of 4x; the student forgot the final division by 4.
+**common_trap:** Selecting x = 2, the denominator's forbidden value, instead of the actual solution.
+**takeaway:** Always distribute the full factor when cross-multiplying, and check the solution against the excluded value. Picking the excluded value is a "Conceptual" error; stopping at 4x = 16 is "Careless."
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Algebra Translation
+**est_time_seconds:** 95
+**trap_type:** answering-wrong-quantity
+
+A jar contains only nickels (5 cents) and dimes (10 cents) worth $2.40 in total. There are 3 more dimes than nickels. How many nickels are in the jar?
+
+- A) 12
+- B) 14
+- C) 16
+- D) 17
+- E) 20
+
+**answer:** B
+**hint_nudge:** Let one variable stand for the number of nickels and express the dimes in terms of it.
+**hint_strategy:** With n nickels and n + 3 dimes, write the total value in cents: 5n + 10(n + 3) = 240. Solve for n.
+**hint_setup:** 5n + 10(n + 3) = 240 expands to 15n + 30 = 240.
+**explanation:** Let n be the number of nickels; then there are n + 3 dimes. Converting to cents, 5n + 10(n + 3) = 240. Expand: 5n + 10n + 30 = 240, so 15n + 30 = 240, giving 15n = 210 and n = 14. The jar has 14 nickels (and 17 dimes). The correct answer is B.
+**fastest_path:** 5n + 10(n + 3) = 240 → 15n + 30 = 240 → 15n = 210 → n = 14.
+**mistake_a:** Choice A, 12, comes from a small arithmetic slip in solving 15n = 210.
+**mistake_c:** Choice C, 16, drops the +30 from the three extra dimes, solving 15n = 240 instead of 15n = 210.
+**mistake_d:** Choice D, 17, is the number of dimes (n + 3), not nickels — the right setup but the wrong quantity reported.
+**mistake_e:** Choice E, 20, ignores the value weighting and treats coins as if equal.
+**common_trap:** Solving correctly but reporting the number of dimes (17) when nickels are asked.
+**takeaway:** Track which variable the question wants, and never drop a constant when distributing. Reporting dimes here is a "Misread"; losing the +30 is "Careless."
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponents
+**est_time_seconds:** 85
+**trap_type:** missing-base-conversion
+
+If 4^x = 9, what is the value of 2^(2x + 1)?
+
+- A) 11
+- B) 18
+- C) 19
+- D) 36
+- E) 81
+
+**answer:** B
+**hint_nudge:** Rewrite 4 as a power of 2 so the given equation talks about base 2.
+**hint_strategy:** 4^x = (2²)^x = 2^(2x), so you already know 2^(2x). Then peel off the "+1" as a factor of 2^1.
+**hint_setup:** 4^x = 2^(2x) = 9, and 2^(2x + 1) = 2^(2x) · 2^1 = 9 · 2.
+**explanation:** Since 4 = 2², we have 4^x = (2²)^x = 2^(2x), so 2^(2x) = 9. Then 2^(2x + 1) = 2^(2x) · 2^1 = 9 · 2 = 18. The correct answer is B.
+**fastest_path:** 4^x = 2^(2x) = 9, so 2^(2x+1) = 2·9 = 18.
+**mistake_a:** Choice A, 11, adds instead of multiplying: 9 + 2.
+**mistake_c:** Choice C, 19, applies the "+1" as a separate added 1 after doubling: 9 · 2 + 1.
+**mistake_d:** Choice D, 36, doubles twice or treats 2^(2x+1) as 4 · 9, double-counting the base conversion.
+**mistake_e:** Choice E, 81, squares 9, as if 2^(2x) led to (2^(2x))² rather than a single factor of 2.
+**common_trap:** Failing to convert 4^x into 2^(2x), so the given equation never connects to the base-2 expression.
+**takeaway:** Put both sides on a common base before applying exponent rules; then "+1" in the exponent is just one more factor of the base. Adding instead of multiplying is the "Conceptual" trap.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Linear Systems — Parametric Consistency
+**est_time_seconds:** 120
+**trap_type:** proportion-direction-error
+
+For some constant k, the system of equations below has no solution.
+
+2x + 3y = 12
+4x + ky = 7
+
+What is the value of k?
+
+- A) −6
+- B) 3/2
+- C) 6
+- D) 8
+- E) There is no such value of k.
+
+**answer:** C
+**hint_nudge:** Two linear equations have no solution exactly when their lines are parallel but not the same line.
+**hint_strategy:** Parallel lines have equal ratios of x- and y-coefficients but a different constant ratio. Match the coefficient ratios to find k, then confirm the constants differ.
+**hint_setup:** Need 4/2 = k/3 (equal slopes) while the constant 7 does not match 2·12. So k/3 = 2.
+**explanation:** A two-equation linear system has no solution when the lines are parallel but distinct — the coefficients of x and y are proportional, but the constant breaks the proportion. The second equation's coefficients must be a common multiple of the first's: 4 = 2·2, so the multiplier is 2, requiring k = 2·3 = 6. We confirm the lines are distinct: scaling the first equation by 2 gives 4x + 6y = 24, whose constant 24 differs from 7, so the lines are parallel but not identical and the system truly has no solution. The correct answer is C.
+**fastest_path:** Match coefficients: 4 = 2(2) forces the scale factor 2, so k = 2(3) = 6; the constants (24 vs 7) differ, confirming no solution.
+**mistake_a:** Choice A, −6, attaches a stray negative sign to the otherwise-correct magnitude.
+**mistake_b:** Choice B, 3/2, inverts the proportion, setting 2/4 = k/3 and solving k = 3/2 instead of using 4/2 = k/3.
+**mistake_d:** Choice D, 8, mis-pairs the numbers, e.g., taking k = 4 + ... or scaling the 3 by the wrong factor.
+**mistake_e:** Choice E claims no such k exists, confusing "no solution" (which requires a specific k) with "impossible."
+**common_trap:** Inverting the coefficient ratio (writing 2/4 = k/3) and getting k = 3/2.
+**takeaway:** No solution = proportional coefficients, non-proportional constant. Set up the ratio in a consistent direction (new over old) to avoid the inversion. Flipping the ratio is a "Conceptual" setup error.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Symmetric Expressions
+**est_time_seconds:** 130
+**trap_type:** missing-cross-term
+
+If x is a positive number and x − 1/x = 3, what is the value of x² + 1/x²?
+
+- A) 7
+- B) 9
+- C) 10
+- D) 11
+- E) 13
+
+**answer:** D
+**hint_nudge:** You are given a difference; the target is a sum of squares. Squaring the difference is the bridge.
+**hint_strategy:** Square both sides of x − 1/x = 3. The cross term is −2·(x)·(1/x) = −2, a constant, because x and 1/x are reciprocals.
+**hint_setup:** (x − 1/x)² = x² − 2 + 1/x² = 9, so x² + 1/x² = 9 + 2.
+**explanation:** Square both sides of x − 1/x = 3: (x − 1/x)² = 3² = 9. Expanding the left side, (x − 1/x)² = x² − 2·x·(1/x) + 1/x² = x² − 2 + 1/x², since x·(1/x) = 1. Therefore x² − 2 + 1/x² = 9, and adding 2 to both sides gives x² + 1/x² = 11. The correct answer is D. (The "positive number" condition guarantees x is real but is not otherwise needed.)
+**fastest_path:** Square the given: x² + 1/x² = 3² + 2 = 11. The +2 comes from the −2 cross term moving across.
+**mistake_a:** Choice A, 7, computes 9 − 2, subtracting the cross term instead of moving it to the other side (it should be added back).
+**mistake_b:** Choice B, 9, forgets the cross term entirely, setting x² + 1/x² equal to the square 9 directly.
+**mistake_c:** Choice C, 10, mishandles the cross term as −1 (9 + 1) rather than −2.
+**mistake_e:** Choice E, 13, adds 4 instead of 2, as if the cross term were −4 (squaring the 2 instead of doubling).
+**common_trap:** Mishandling the middle term when squaring: it equals exactly −2 because x and 1/x multiply to 1, and it must be added back to recover x² + 1/x².
+**takeaway:** For reciprocal expressions, (x − 1/x)² = x² + 1/x² − 2, so the sum of squares is the square plus 2. Sign-flipping or forgetting the cross term is the "Conceptual" trap.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Absolute Value — Counting Solutions
+**est_time_seconds:** 135
+**trap_type:** dropping-a-case
+
+How many distinct real values of x satisfy |x² − 4| = 3?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) Infinitely many
+
+**answer:** D
+**hint_nudge:** An absolute value equal to a positive number splits into two separate equations.
+**hint_strategy:** Solve both x² − 4 = 3 and x² − 4 = −3, then count all real roots, remembering each positive x² gives two values (±).
+**hint_setup:** Case 1: x² − 4 = 3 → x² = 7. Case 2: x² − 4 = −3 → x² = 1. Count the real roots of both.
+**explanation:** Because |x² − 4| = 3 and 3 > 0, the inside equals +3 or −3. Case 1: x² − 4 = 3 gives x² = 7, so x = ±√7 (two real values). Case 2: x² − 4 = −3 gives x² = 1, so x = ±1 (two real values). All four values — √7, −√7, 1, −1 — are distinct, so there are 4 solutions. The correct answer is D.
+**fastest_path:** Two cases give x² = 7 and x² = 1; each positive value yields ±, so 2 + 2 = 4 solutions.
+**mistake_a:** Choice A, 1, solves only one case and keeps only one sign of the square root.
+**mistake_b:** Choice B, 2, solves only the case x² − 4 = 3 (ignoring the −3 case) and counts its ±√7, or solves both but keeps only positive roots.
+**mistake_c:** Choice C, 3, finds both cases but drops one sign somewhere, counting ±√7 and only +1.
+**mistake_e:** Choice E misreads the equation as an inequality, which would give a range of values.
+**common_trap:** Forgetting the negative branch — either omitting the x² − 4 = −3 case or omitting the negative square roots.
+**takeaway:** |A| = c (c > 0) means A = c or A = −c, and each x² = (positive) yields two real x. Dropping a branch is the "Conceptual" absolute-value error.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Difference of Squares — Hidden Constraint
+**est_time_seconds:** 150
+**trap_type:** ignoring-constraints
+
+If x and y are positive integers such that x² − y² = 45, what is the greatest possible value of x + y?
+
+- A) 9
+- B) 15
+- C) 23
+- D) 45
+- E) 44
+
+**answer:** D
+**hint_nudge:** Factor the left side. The two factors must be positive integers whose product is 45.
+**hint_strategy:** x² − y² = (x − y)(x + y). To maximize x + y, make the other factor (x − y) as small as possible while keeping both factors valid positive integers of the same parity.
+**hint_setup:** (x − y)(x + y) = 45. Try x − y = 1, so x + y = 45; check that x = 23, y = 22 are positive integers.
+**explanation:** Factor: x² − y² = (x − y)(x + y) = 45. Since x and y are positive integers with x > y, both factors are positive integers and x + y is the larger one. To maximize x + y, minimize x − y. The smallest possible value is x − y = 1, giving x + y = 45; solving, x = 23 and y = 22, both positive integers, and indeed 23² − 22² = (23 − 22)(23 + 22) = 45. The greatest possible value of x + y is 45. The correct answer is D.
+**fastest_path:** (x − y)(x + y) = 45; smallest factor x − y = 1 maximizes x + y = 45 (x = 23, y = 22).
+**mistake_a:** Choice A, 9, uses the factor pair 5 × 9 (x − y = 5, x + y = 9) — a valid pair, but it minimizes rather than maximizes x + y.
+**mistake_b:** Choice B, 15, uses the pair 3 × 15, again valid but not the maximum.
+**mistake_c:** Choice C, 23, is the value of x in the optimal case, not x + y — the right scenario but the wrong quantity.
+**mistake_e:** Choice E, 44, is x + y off by one, e.g., from miscomputing 23 + 21.
+**common_trap:** Picking any valid factor pair (like 5 × 9) without realizing the smallest first factor maximizes x + y, or reporting x (23) instead of x + y.
+**takeaway:** Difference of squares turns into a factor-pair search; the constraint "positive integers" plus an optimization target tells you which pair to pick. Settling for a non-maximal pair is a "Strategy" error; reporting x is a "Misread."
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q51
+**difficulty:** Challenge
+**type:** Problem Solving
+**topic:** Symmetric Sums — Cubic Identity
+**est_time_seconds:** 165
+**trap_type:** assuming-symmetry
+
+Let a and b be real numbers with a + b = 6 and a³ + b³ = 72. What is the value of ab?
+
+- A) 4
+- B) 6
+- C) 8
+- D) 9
+- E) 12
+
+**answer:** C
+**hint_nudge:** There is an identity linking a³ + b³ to a + b and ab — you do not need a and b individually.
+**hint_strategy:** Use a³ + b³ = (a + b)³ − 3ab(a + b). Substitute the known sum and solve the resulting linear equation in ab.
+**hint_setup:** 72 = 6³ − 3ab(6) = 216 − 18ab.
+**explanation:** Use the identity a³ + b³ = (a + b)³ − 3ab(a + b). Substituting a + b = 6: a³ + b³ = 6³ − 3ab(6) = 216 − 18ab. Setting this equal to 72: 216 − 18ab = 72, so 18ab = 144 and ab = 8. The correct answer is C. (Check: a + b = 6 and ab = 8 make a and b the roots of t² − 6t + 8 = 0, namely 2 and 4, and 2³ + 4³ = 8 + 64 = 72.)
+**fastest_path:** a³ + b³ = (a+b)³ − 3ab(a+b): 72 = 216 − 18ab → ab = 8.
+**mistake_a:** Choice A, 4, drops the (a + b)³ term, setting a³ + b³ = 3ab(a + b): 72 = 18ab, giving ab = 4.
+**mistake_b:** Choice B, 6, just restates a + b without using the cubic relationship.
+**mistake_d:** Choice D, 9, assumes a = b = 3 (so ab = 9), but then a³ + b³ would be 54, not 72 — symmetry is not forced here.
+**mistake_e:** Choice E, 12, divides 72 by 6, treating a³ + b³ as if it equaled (a + b)·ab.
+**common_trap:** Assuming a = b because the expressions are symmetric, which gives ab = 9 but contradicts a³ + b³ = 72.
+**takeaway:** Symmetric conditions are handled with the sum/product identities, not by assuming the variables are equal. Setting a = b is the "Conceptual" trap; dropping a term in the identity is "Careless."
+**related_reading:** reading-quant-04-algebra-and-equations
