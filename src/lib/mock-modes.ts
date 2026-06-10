@@ -21,7 +21,7 @@ import type { Difficulty, Section } from "@/types"
  * pacing rhythm a student trains on is consistent across modes.
  *
  * Failure modes that route to the static fallback:
- *   - Dynamic mode but no signals (no diagnostic / no recent practice)
+ *   - Dynamic mode but no signals (no recent practice attempts)
  *   - Dynamic mode with too few candidates to fill the mock
  * In both cases we top up with stratified picks from the section pool
  * so the mock is always playable.
@@ -154,7 +154,7 @@ export const MOCK_MODE_DEFS: Record<MockMode, MockModeDef> = {
     label: "Weak-area mock",
     shortDescription: "30 Q × 45 min — your weakest sub-skills",
     description:
-      "Pulls 30 questions from your three weakest sub-skills (synthesised from diagnostic + mocks + practice). Mixed difficulty. The mock that targets the score gap directly.",
+      "Pulls 30 questions from your three weakest sub-skills (synthesised from mocks + practice). Mixed difficulty. The mock that targets the score gap directly.",
     isStatic: false,
     totalMinutesHint: 45,
     totalQuestionsHint: 30,
