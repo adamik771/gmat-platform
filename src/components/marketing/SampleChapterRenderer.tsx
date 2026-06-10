@@ -279,10 +279,10 @@ export default function SampleChapterRenderer({
               like this one.
             </h2>
             <p className="text-[15px] text-[#C0C0C0] leading-relaxed max-w-xl mb-6">
-              Plus the diagnostic, the adaptive study plan, the error log
-              with six-tag taxonomy, the spaced review queue, and the full
-              question bank tagged by topic and difficulty. Seven days of
-              full access on the trial &mdash; no card required.
+              Plus the adaptive study plan, the error log with six-tag
+              taxonomy, the spaced review queue, and the full question bank
+              tagged by topic and difficulty. Seven days of full access on
+              the trial &mdash; no card required.
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <Link
@@ -308,10 +308,10 @@ export default function SampleChapterRenderer({
                 </Link>
               ))}
               <Link
-                href="/free-diagnostic"
+                href="/signup"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border border-white/[0.1] text-[#C0C0C0] hover:border-white/[0.18] hover:text-[#F0F0F0] transition-all duration-200"
               >
-                Take the free diagnostic
+                Create a free account
               </Link>
             </div>
             <div className="flex items-center gap-2 mt-5 text-[12px] text-[#888888]">

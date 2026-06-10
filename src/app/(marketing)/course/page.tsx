@@ -28,7 +28,7 @@ const topicsByModule: Record<number, string[]> = {
     "The error log framework",
   ],
   2: [
-    "Full diagnostic assessment",
+    "Official practice-exam baseline",
     "Section-by-section analysis",
     "Identifying your highest-leverage weaknesses",
     "Building your personalized study plan",
@@ -88,7 +88,7 @@ function sectionLabel(section: string): string {
 }
 
 const weeks = [
-  { week: "Week 1–2", focus: "Diagnostic + Mindset" },
+  { week: "Week 1–2", focus: "Baseline + Mindset" },
   { week: "Week 3–5", focus: "Quant deep dive" },
   { week: "Week 6–7", focus: "Verbal precision" },
   { week: "Week 8", focus: "Data Insights" },

@@ -23,7 +23,7 @@ import LeadCapture from "@/components/marketing/LeadCapture"
 
 const modules = [
   { num: "01", title: "Mindset Reset", desc: "Rewire how you approach standardized tests." },
-  { num: "02", title: "Diagnostic Deep Dive", desc: "Know exactly where you stand on day one." },
+  { num: "02", title: "Baseline Deep Dive", desc: "Official practice exam first — know exactly where you stand on day one." },
   { num: "03", title: "Quant Mastery", desc: "PS, DS, and number sense from the ground up." },
   { num: "04", title: "Verbal Precision", desc: "CR, RC, and SC — clarity over cramming." },
   { num: "05", title: "Data Insights", desc: "The newest section. Demystified." },
@@ -200,7 +200,7 @@ export default function HomePage() {
                   `purchases` + a `trial_started_at` field on
                   user_metadata when the paywall lands. */}
               <p className="text-xs text-[#888888] mb-2">
-                No credit card. 7 days of full access — diagnostic, every chapter, full question bank, mock and review.
+                No credit card. 7 days of full access — every chapter, full question bank, mock and review.
               </p>
               <p className="text-xs mb-10">
                 <Link

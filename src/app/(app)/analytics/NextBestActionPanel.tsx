@@ -27,7 +27,7 @@ const KIND_META: Record<ActionKind, { icon: typeof Sparkles; color: string; bg: 
     icon: Compass,
     color: "#C9A84C",
     bg: "rgba(201,168,76,0.12)",
-    label: "Diagnostic",
+    label: "Baseline",
   },
   "review-backlog": {
     icon: RotateCcw,

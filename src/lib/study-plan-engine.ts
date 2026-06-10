@@ -14,7 +14,7 @@ import type { Section } from "@/types"
  *   - weeklyCadence: a richer 7-day pattern that injects review days
  *     when the queue is large and weak-topic chapter days when they are.
  *
- * The engine leans on signals the platform already captures — diagnostic
+ * The engine leans on signals the platform already captures — official-exam baseline
  * completions, practice_attempts, the review queue, user_metadata target
  * + exam date — so adding it doesn't require new schema.
  */
@@ -27,7 +27,7 @@ import { TOPIC_TO_CHAPTER } from "./topic-chapter-map"
 import { ERROR_TAG_BY_ID, ROOT_CAUSE_BY_ID } from "@/app/(app)/error-log/constants"
 
 export type FocusActionType =
-  | "diagnostic"
+  | "baseline"
   | "review"
   | "weak-topic-chapter"
   | "practice"
@@ -73,7 +73,6 @@ export interface DailySuggestion {
 export interface StudyPlanOutput {
   todaysFocus: FocusAction[]
   weakAreas: WeakArea[]
-  diagnosticSectionsDone: number
   reviewDueCount: number
 }
 
@@ -149,8 +148,7 @@ function classifyErrorPattern(
 }
 
 /**
- * Fetches the inputs the engine needs. Small bounded queries: diagnostic
- * completions, all practice_attempts for the user (capped via 12-week
+ * Fetches the inputs the engine needs. Small bounded queries: all practice_attempts for the user (capped via 12-week
  * review-queue source), and target/exam metadata that the caller can
  * pass in rather than re-querying.
  */
@@ -161,17 +159,11 @@ export async function computeStudyPlan(
     targetScore: number | null
     examDate: string | null
     flaggedQuestionIds?: Set<string>
+    /** Entries in user_metadata.official_exam_scores — the official mba.com
+     *  practice-exam scores the student has entered. 0 means no baseline yet. */
+    officialExamCount?: number
   }
 ): Promise<StudyPlanOutput> {
-  // Diagnostic completion state
-  const { data: diagRows } = await supabase
-    .from("practice_sessions")
-    .select("slug")
-    .eq("user_id", userId)
-    .in("slug", ["diagnostic-quant", "diagnostic-verbal", "diagnostic-di"])
-  const diagnosticSectionsDone = new Set(
-    (diagRows ?? []).map((r) => r.slug as string)
-  ).size
 
   // Review queue — the spaced-retrieval queue's length drives one arm of
   // the "what to do today" decision.
@@ -275,26 +267,24 @@ export async function computeStudyPlan(
       )
     : null
 
-  // 1. Diagnostic if not complete — the highest-priority first action
-  // since it seeds every downstream signal.
-  if (diagnosticSectionsDone < 3) {
+  // 1. Official baseline if none entered — the highest-priority first action.
+  // The baseline is a real mba.com practice exam taken under exam conditions;
+  // the student enters the score on the Mock page.
+  if ((opts.officialExamCount ?? 0) === 0) {
     todaysFocus.push({
-      type: "diagnostic",
-      title:
-        diagnosticSectionsDone === 0
-          ? "Take your diagnostic"
-          : `Finish diagnostic (${diagnosticSectionsDone}/3 done)`,
+      type: "baseline",
+      title: "Set your baseline — Official Practice Exam 1",
       subtitle:
-        "Sets a baseline score and tells the rest of your plan where to focus.",
-      href: "/diagnostic",
-      cta: diagnosticSectionsDone === 0 ? "Start" : "Continue",
+        "Take it on mba.com under full exam conditions, then enter your score here. It anchors your plan and your trend.",
+      href: "/mock",
+      cta: "Open exam plan",
       priority: 100,
     })
   }
 
   // 2. Review queue — retrieval practice is the single highest-leverage
   // intervention in the learning-science literature. Big queues outrank
-  // everything except the diagnostic.
+  // everything except the missing-baseline nudge.
   if (reviewDueCount >= REVIEW_QUEUE_URGENT) {
     todaysFocus.push({
       type: "review",
@@ -365,7 +355,6 @@ export async function computeStudyPlan(
   return {
     todaysFocus: todaysFocus.slice(0, 3),
     weakAreas,
-    diagnosticSectionsDone,
     reviewDueCount,
   }
 }

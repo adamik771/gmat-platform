@@ -569,7 +569,28 @@ export async function collectAdaptiveSignals(
     .slice(0, 8)
 
   // ---- Score baselines ----
-  const diagnosticTotalScore = diagnosticReport?.totalScore ?? null
+  // Baseline total: the latest official mba.com practice-exam score the
+  // student entered wins; the legacy in-app diagnostic total remains as a
+  // fallback for accounts that predate the official-exam flow.
+  const metaOfficialScores = (userMetadata as
+    | { official_exam_scores?: unknown }
+    | null
+    | undefined)?.official_exam_scores
+  const officialTotals = Array.isArray(metaOfficialScores)
+    ? metaOfficialScores
+        .filter(
+          (e): e is { date: string; total: number } =>
+            typeof (e as { date?: unknown })?.date === "string" &&
+            typeof (e as { total?: unknown })?.total === "number",
+        )
+        .sort((a, b) => a.date.localeCompare(b.date))
+    : []
+  const latestOfficialTotal =
+    officialTotals.length > 0
+      ? officialTotals[officialTotals.length - 1].total
+      : null
+  const diagnosticTotalScore =
+    latestOfficialTotal ?? diagnosticReport?.totalScore ?? null
   const diagnosticPercentile = diagnosticTotalScore !== null
     ? totalPercentile(diagnosticTotalScore)
     : null

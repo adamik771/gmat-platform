@@ -319,19 +319,21 @@ export default function PostPage() {
           <p>
             Zakarian GMAT is built for the GMAT Focus Edition
             specifically. If you decide on the GMAT after reading this,
-            the diagnostic is free and produces a real readiness band
-            on the 205-805 scale. If you decide on the GRE, ETS&apos;s
+            start with an official practice exam on mba.com as your
+            baseline — the platform turns your section scores into a
+            study plan, and the sample chapter shows you the teaching
+            before you sign up. If you decide on the GRE, ETS&apos;s
             POWERPREP is the official starting point and there are
             dedicated GRE platforms with similar adaptive plans.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
-              href="/free-diagnostic"
+              href="/sample-chapter"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Take the GMAT diagnostic
+              Read the free sample chapter
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

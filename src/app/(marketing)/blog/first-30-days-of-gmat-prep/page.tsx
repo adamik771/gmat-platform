@@ -394,22 +394,22 @@ export default function PostPage() {
 
           <H2>The platform</H2>
           <p>
-            Zakarian GMAT was built for exactly this loop. The 30-question
-            diagnostic produces the per-topic + per-difficulty heatmap in
-            one sitting. The adaptive study plan re-prioritises your week
-            from your error log automatically. The spaced review queue
-            resurfaces past misses on the right schedule. If you&apos;d
-            rather not run the loop in a spreadsheet, the diagnostic is
-            free.
+            Zakarian GMAT was built for exactly this loop. You baseline
+            with an official practice exam on mba.com, enter your section
+            scores, and the platform turns them into a per-topic plan.
+            The adaptive study plan re-prioritises your week from your
+            error log automatically. The spaced review queue resurfaces
+            past misses on the right schedule. If you&apos;d rather not
+            run the loop in a spreadsheet, the account is free.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
-              href="/free-diagnostic"
+              href="/signup"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Take the free diagnostic
+              Create a free account
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

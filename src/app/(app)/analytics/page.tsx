@@ -92,7 +92,7 @@ export default async function AnalyticsPage() {
   // Baseline-mode signals — counted regardless of `hasData` so the
   // unlock checklist always reflects current state. Cheap derivations
   // computed alongside the existing analytics aggregations.
-  let diagnosticSectionsDone = 0
+  let officialExamCount = 0
   const sectionAttemptCount: Record<Section, number> = {
     Quant: 0,
     Verbal: 0,
@@ -108,16 +108,12 @@ export default async function AnalyticsPage() {
     } = await supabase.auth.getUser()
 
     if (user) {
-      // Diagnostic completion — unlocks several modules. Cheap query
-      // (3 possible slugs).
-      const { data: diagRows } = await supabase
-        .from("practice_sessions")
-        .select("slug")
-        .eq("user_id", user.id)
-        .in("slug", ["diagnostic-quant", "diagnostic-verbal", "diagnostic-di"])
-      diagnosticSectionsDone = new Set(
-        (diagRows ?? []).map((r) => r.slug as string)
-      ).size
+      // Official baseline — entering the first mba.com practice-exam score
+      // unlocks several modules. Read straight from user_metadata.
+      const metaOfficialScores = user.user_metadata?.official_exam_scores
+      officialExamCount = Array.isArray(metaOfficialScores)
+        ? metaOfficialScores.length
+        : 0
       // ---------- Calibration (chapter_progress + practice_attempts) ----------
       // chapter_progress is written cross-device via /api/chapter-progress;
       // practice_attempts.confidence is written by SessionClient on session
@@ -923,12 +919,12 @@ export default async function AnalyticsPage() {
   // unlock checklist + locked module previews). Avoids stacking six
   // empty cards that read as "the app isn't built yet." NBA is no
   // longer surfaced on /analytics — it's the dashboard's job, and on
-  // this page it produced "diagnostic required / continue plan"
+  // this page it produced "baseline required / continue plan"
   // contradictions.
   if (!hasData) {
     return (
       <BaselineView
-        diagnosticSectionsDone={diagnosticSectionsDone}
+        officialExamCount={officialExamCount}
         sectionAttemptCount={sectionAttemptCount}
         confidenceRatedCount={confidenceRatedCount}
         weeksOfPractice={weeksOfPractice}
@@ -968,17 +964,17 @@ const EYEBROW_BASE =
  * categories of analysis that *will* unlock are still visible.
  */
 function BaselineView({
-  diagnosticSectionsDone,
+  officialExamCount,
   sectionAttemptCount,
   confidenceRatedCount,
   weeksOfPractice,
 }: {
-  diagnosticSectionsDone: number
+  officialExamCount: number
   sectionAttemptCount: Record<Section, number>
   confidenceRatedCount: number
   weeksOfPractice: number
 }) {
-  const diagnosticDone = diagnosticSectionsDone === 3
+  const baselineDone = officialExamCount > 0
   const totalAttempts =
     sectionAttemptCount.Quant +
     sectionAttemptCount.Verbal +
@@ -994,10 +990,10 @@ function BaselineView({
     sublabel: string
   }> = [
     {
-      label: "Diagnostic baseline",
-      have: diagnosticSectionsDone,
-      need: 3,
-      sublabel: "Sections done",
+      label: "Official baseline exam",
+      have: Math.min(officialExamCount, 1),
+      need: 1,
+      sublabel: "Score entered",
     },
     {
       label: "Quant attempts",
@@ -1076,16 +1072,14 @@ function BaselineView({
   ]
 
   // Hero CTA dynamically targets the most impactful next action.
-  // Diagnostic first; then add practice volume; once attempts exist
+  // Baseline exam first; then add practice volume; once attempts exist
   // the analytics page itself flips to active mode (not this branch).
-  const primaryHref = diagnosticDone ? "/practice" : "/diagnostic"
-  const primaryLabel = diagnosticDone
+  const primaryHref = baselineDone ? "/practice" : "/mock"
+  const primaryLabel = baselineDone
     ? totalAttempts === 0
       ? "Run your first practice set"
       : "Continue practice"
-    : diagnosticSectionsDone === 0
-      ? "Take diagnostic"
-      : `Continue diagnostic (${diagnosticSectionsDone}/3)`
+    : "Enter your baseline official exam"
 
   return (
     <div className="max-w-6xl mx-auto space-y-10">
@@ -1124,7 +1118,7 @@ function BaselineView({
             Six analytics modules unlock as your data grows: readiness
             trajectory, topic accuracy, section pacing, strengths &amp;
             weaknesses, confidence calibration, and the score-report
-            mirror. Diagnostic first; the rest follow.
+            mirror. Baseline exam first; the rest follow.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <Link

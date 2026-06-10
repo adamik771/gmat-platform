@@ -25,7 +25,6 @@ export default function robots(): MetadataRoute.Robots {
           "/api/",
           "/chapters",
           "/dashboard",
-          "/diagnostic",
           "/error-log",
           "/learn",
           "/lessons",
