@@ -2,6 +2,28 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-10 evening (Practice UX overhaul + official-exam baseline pivot; branch `claude/practice-ux-official-exams`, pushed, NOT merged)
+
+Adam's feedback batch after merging PR #390. All five asks shipped on one branch (5 commits); compare URL pattern as usual. Scope confirmed via AskUserQuestion: mocks DEMOTED-but-kept, diagnostic FULL WIPE, payments AUDIT-and-harden.
+
+### Shipped (commits in order)
+1. **`c20d020` practice UX:** TEST_CAPS 18/10/10 → **9/8/8** → 155 tests of 6-9 Q (was 115); test rows show NO time (untimed count-up; clock invites rushing); bigger rows (numbered badge, 15px labels, gold Start); **goal-accuracy**: /practice reads `target_score`, shows required % strip + per-row `aim X/Y` chip (`(target-205)/600`); chapter reader canvas `max-w-7xl→max-w-[88rem]`, rails 220/240→210/230, gap 40→32 (column ~740→~900px), focus mode 3xl→4xl.
+2. **`2e3aead` exam mode:** SessionClient defaults to **exam mode** — no marks/explanations/hints/tutor until finished; submit auto-advances (last Q needs explicit Finish); post-finish review list jumps into fully-revealed questions; header Exam/Study toggle persists via localStorage `session-feedback-mode`; study = old behavior. TwoPartGrid + ConfidencePanel grew `reveal`/`revealOutcome` props. **Verified in preview via temp public route, then deleted** (gotcha: `_`-prefixed folders are PRIVATE in App Router — name temp routes without underscores).
+3. **`af0a9e7` Official Exam Plan:** /mock rebuilt — primary card schedules up to 6 weekly officials on the exam-date weekday (last slot 1 week out; >8 weeks → "take #1 now as baseline"), inline score entry → **`user_metadata.official_exam_scores`** via new `/api/official-exams` (upsert-by-date, total 205-805, Q/V/DI 60-90, cap 12), delta trend, exam-kit advice (laminated booklet + wet-erase pen from Amazon, full conditions checklist); internal simulator demoted to "Site mocks — unlimited extra reps" (all 7 modes kept; weak/mixed-review gate on practice attempts only).
+4. **`715bdcc` diagnostic RETIRED (breaking):** routes + /free-diagnostic deleted; every consumer repointed (dashboard checklist/hero/setup rows, study-plan stage gate + persona now keyed to latest official total, analytics unlock checklist, learn journey, nav — Diagnostic gone, Mock renamed **"Exams"**, onboarding nextHref → /mock, NBA rule 1, robots). `adaptive-plan-engine.diagnosticTotalScore` = latest official total ?? legacy diagnostic (old accounts keep working). **`lib/diagnostic.ts` kept deliberately** — mock report + scoring import from it. Marketing swept (21 files, sitemap, BlogInlineCTA default → /sample-chapter, 12 blog CTAs). Old diagnostic rows in practice_sessions are untouched/harmless.
+5. **`1ff07f5` config:** 308s `/diagnostic/:path*→/mock`, `/free-diagnostic/:path*→/signup` (curl-verified); **global security headers** (HSTS 2y+sub, nosniff, X-Frame-Options DENY, Referrer-Policy, Permissions-Policy). Global CSP deferred (needs nonce plumbing).
+
+### Security/payments audit (read-only, this session)
+Stripe flow is SOLID: webhook HMAC verification + raw body, idempotent upsert on stripe_session_id, plan-ID whitelist with env price IDs (503 on placeholders), service-role key server-only and used only in signed contexts, RLS on practice tables since the 2026-04-28 migration, all API routes auth via getUser() and write only the caller's rows, lead-capture honeypot, admin fail-closed. NO critical/medium findings. Remaining (not done): webhook-failure alerting (logs but returns 200 on missing user/plan), plan-based feature gating is aspirational (purchases recorded, nothing enforced), Stripe keys on Vercel are still `sk_test_placeholder` — payments are effectively NOT LIVE until Adam sets real Stripe env vars + webhook secret in Vercel and creates the 4 prices, /api/tutor has no rate limit (key spend risk if abused while enabled).
+
+### Verified
+`next build` passes (diagnostic routes gone from route list); tsc clean; exam-mode flow click-verified in preview (exam default, zero leakage pre-finish, auto-advance, explicit last-question finish, post-finish reveal, study toggle + persistence); redirects + all 5 security headers curl-verified.
+
+### Open / Adam's call
+- Merge `claude/practice-ux-official-exams`: `https://github.com/adamik771/gmat-platform/compare/main...claude/practice-ux-official-exams?expand=1`
+- Payments go-live checklist (when ready): real Stripe keys + 4 price IDs + webhook secret in Vercel, then test a checkout end-to-end.
+- Possible follow-ups: global CSP with nonces; webhook-failure alerting; plan gating; per-section accuracy targets (current aim-chip uses the total-score formula uniformly).
+
 ## CONTEXT SWITCH — 2026-06-10 (Per-chapter practice tests + original-question generation; CR batch DONE)
 
 Very long session. Everything below in this section happened today, after the DS-format cleanup section that follows it.
