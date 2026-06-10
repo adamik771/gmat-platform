@@ -43,6 +43,11 @@ problem_sets:
     question_ids:
       - backsolving-q6
       - backsolving-q7
+      - backsolving-q12
+      - backsolving-q13
+      - backsolving-q14
+      - backsolving-q15
+      - backsolving-q16
   medium:
     target_accuracy_by_score:
       "605": 55
@@ -52,6 +57,13 @@ problem_sets:
     question_ids:
       - backsolving-q8
       - backsolving-q9
+      - backsolving-q17
+      - backsolving-q18
+      - backsolving-q19
+      - backsolving-q20
+      - backsolving-q21
+      - backsolving-q22
+      - backsolving-q23
   hard:
     target_accuracy_by_score:
       "605": 40
@@ -61,6 +73,11 @@ problem_sets:
     question_ids:
       - backsolving-q10
       - backsolving-q11
+      - backsolving-q24
+      - backsolving-q25
+      - backsolving-q26
+      - backsolving-q27
+      - backsolving-q28
 ---
 
 ## @why-backsolving-wins
