@@ -25,8 +25,15 @@ The final price equals the original, so it is 100 percent of it.
 The reason it lands back at 100 is that the second percent is taken from a larger base, so a smaller percent off a bigger number exactly cancels the bigger percent on a smaller number.
 
 The correct answer is B.
+**mistake_a:** The sign-flipped hedge: knowing the naive +5 percent is wrong, this guesses the net must be a small loss instead. The direction of the correction is not something to intuit — start at 100 and run both steps.
+**mistake_c:** Adds and subtracts the percents directly: 25 up minus 20 down = up 5. The 20 percent decrease acts on 125, not on 100, so it removes 25, not 20.
+**mistake_d:** A hedge between the naive 105 and the feeling that the answer should be higher. No consistent pair of bases produces 110 — every percent in the problem has an exact base, so compute rather than split differences.
+**mistake_e:** Applies the 20 percent decrease only to the 25-point increase (removing 5) instead of to the entire new price of 125 (removing 25). "The new price is lowered" means all of it.
 **common_trap:** Adding and subtracting the percents directly (25 minus 20 = up 5 percent) and choosing 105 percent. Percent changes apply to different bases, so they never simply add.
 **takeaway:** For any percent-of-an-unknown problem, set the unknown to 100 and apply each change to the running total in order.
+**est_time_seconds:** 70
+**trap_type:** shifting-base
+**hint_nudge:** Start the price at 100 and apply the two changes one at a time, each to the current price.
 **related_reading:** quant-02-plugging-in-numbers
 
 ---
@@ -53,8 +60,15 @@ n^2 + n: at n = 2 that is 6, at n = 3 that is 12 — even both times. It survive
 Every other choice fails a test. 2n + 1 is always odd. n^2 + 1 is 5 at n = 2 (odd). 3n + 1 is 7 at n = 2 (odd). n^2 - n + 1 = n(n - 1) + 1 is even plus one, always odd.
 
 The correct answer is B.
+**mistake_a:** The visible 2 radiates evenness, but 2n + 1 is an even number plus 1 — always odd, for every integer n. The +1 outranks the 2.
+**mistake_c:** Even whenever n is odd (n = 3 gives 10), so it survives if you only test odd values. One even test — n = 2 gives 5 — kills it.
+**mistake_d:** Even at every odd n (n = 1 gives 4) and odd at every even n (n = 2 gives 7). The trap for testers who stop after a single value.
+**mistake_e:** Looks like the consecutive-integer trick, and n^2 - n = n(n - 1) is indeed always even — but the +1 then makes the whole expression permanently odd. The structure is right; the conclusion is reversed.
 **common_trap:** Testing only one value — say n = 2 — and accepting a choice that happens to be even there but turns odd at n = 3. One test is never enough for a "must be" claim.
 **takeaway:** For must-be-true number-property questions, plug at least one even and one odd value; a single counterexample kills a choice.
+**est_time_seconds:** 80
+**trap_type:** single-parity-test
+**hint_nudge:** Test one even and one odd value of n — say n = 2 and n = 3 — and keep only the choice that is even both times.
 **related_reading:** quant-02-plugging-in-numbers
 
 ---
@@ -79,8 +93,15 @@ At a conference, 40 percent of the attendees are students, and 30 percent of tho
 So 12 attendees out of 100 are poster-presenting students, which is 12 percent.
 
 The correct answer is C.
+**mistake_a:** A decimal slip away from choice E's error: adding the percents to 70 and then mis-shifting the decimal. Neither the addition nor the shift has any basis — with 100 attendees, the chain is 40 students, then 12 presenters.
+**mistake_b:** Subtracts the percents: 40 minus 30. Percentages of different groups never subtract; the 30 percent lives inside the 40 percent.
+**mistake_d:** Applies the 30 percent to the wrong group — the 60 non-students (30 percent of 60 = 18). "Of those students" pins the base to the 40 students.
+**mistake_e:** Adds the percents to 70. Adding only makes sense for disjoint groups measured against the same base; these percentages are nested, so they multiply.
 **common_trap:** Subtracting the percents (40 minus 30 = 10) or reusing 30 percent of the whole. The second percentage is taken of the students, not of everyone.
 **takeaway:** When percentages chain ("X percent of those"), pick 100 for the total and multiply down the chain one step at a time.
+**est_time_seconds:** 50
+**trap_type:** wrong-base
+**hint_nudge:** Give the conference 100 attendees. How many are students? How many of those students present?
 **related_reading:** quant-02-plugging-in-numbers
 
 ---
@@ -107,8 +128,14 @@ The printer makes 4 pages every 2 seconds, so 2 pages per second. Three minutes 
 Now plug p = 4, s = 2, m = 3 into each choice and keep the one equal to 360. Choice B gives 60(4)(3)/2 = 720/2 = 360. The others miss: A gives 6, C gives 0.4, D gives 160, E gives 1/10.
 
 The correct answer is B.
+**mistake_a:** The right shape with no unit conversion — pages per second times minutes. The rate is per second, the time is in minutes, and pm/s silently mixes them. With real numbers it predicts 6 pages in 3 minutes from a printer doing 2 per second.
+**mistake_c:** Multiplies by s instead of dividing — inverting the rate. More seconds per batch means a slower printer, so s belongs in the denominator.
+**mistake_d:** Puts m in the denominator, so more minutes would mean fewer pages printed. Time and output move together; the plugged-in numbers (160 pages instead of 360) expose the inversion.
+**mistake_e:** Converts the units backward, dividing by 60 instead of multiplying. Minutes are bigger than seconds, so the page count must grow by a factor of 60, not shrink.
 **common_trap:** Forgetting to convert minutes to seconds and choosing pm/s, which silently mixes the two time units.
 **takeaway:** On variables-in-the-choices problems, pick concrete numbers for every variable, compute the true target, then test all five choices against it.
+**est_time_seconds:** 90
+**trap_type:** unit-mismatch
 **hint_nudge:** Pick small numbers for p, s, and m and compute an actual page count.
 **hint_strategy:** Watch the units: the rate is per second but the time is in minutes, so a factor of 60 has to appear.
 **related_reading:** quant-02-plugging-in-numbers
@@ -137,8 +164,16 @@ Take x = 2, y = 3, so xy = 6 is even. Now x is even but y is not, killing B; y i
 Only D survives every legal case, because if both were odd the product would be odd.
 
 The correct answer is D.
+**mistake_a:** True in some legal cases (x = 2, y = 3) but the evenness can sit on the other factor: x = 3, y = 2 has xy even with x odd. The condition never says which factor carries the 2.
+**mistake_b:** The mirror of A — y can be the odd one just as easily (x = 2, y = 3). A symmetric condition cannot force an asymmetric conclusion.
+**mistake_c:** x + y is even only when x and y share a parity. One even and one odd factor satisfies "xy even" while making the sum odd: 2 + 3 = 5.
+**mistake_e:** Overclaims the divisibility: one even factor guarantees one factor of 2, not two. xy = 2 times 3 = 6 is even but not divisible by 4.
 **common_trap:** Concluding that a specific variable (x or y) must be the even one. The evenness can sit on either factor, so only the "at least one" statement is guaranteed.
 **takeaway:** "Product is even" guarantees one even factor but never tells you which — translate the structure before testing numbers.
+**est_time_seconds:** 90
+**trap_type:** overclaim
+**hint_nudge:** Find a pair where x is the even one, then a pair where y is — both satisfy the condition.
+**hint_strategy:** Test x = 2, y = 3 and then x = 3, y = 2 against every choice. Only one claim survives both.
 **related_reading:** quant-02-plugging-in-numbers
 
 ---
@@ -163,8 +198,15 @@ A sweater costs d dollars. During a sale it is marked 20 percent off. What is th
 Plug d = 100 into the choices: only 0.8d gives 80. Choice A (d minus 20) gives 80 here too — a coincidence — so plug a second value, d = 50: the true sale price is 40, and 0.8(50) = 40 while 50 minus 20 = 30. Only C still matches.
 
 The correct answer is C.
+**mistake_a:** Reads "20 percent off" as a flat 20 dollars off. It even matches the correct answer at d = 100 — the engineered tie — but a second value (d = 50: true price 40, this gives 30) breaks it. A percent discount scales with the price.
+**mistake_b:** Computes the discount itself, not the sale price. 0.2d is what you save; the question asks what you pay.
+**mistake_d:** Divides by the percent instead of multiplying by what remains. At d = 100 this prices the sweater at 5 dollars — the plugged-in number makes the error absurd on sight.
+**mistake_e:** Marks the price up 20 percent instead of down. A sale price above the original fails the cheapest sanity check there is.
 **common_trap:** Treating "20 percent off" as a flat 20 dollars off (choice A). A percent discount scales with the price; it is not a fixed amount.
 **takeaway:** When one number leaves two choices matching, that is the signal to plug a second value — never guess between the survivors.
+**est_time_seconds:** 50
+**trap_type:** choice-collision
+**hint_nudge:** Set d = 100 and find the sale price — then check whether more than one choice matches.
 **related_reading:** quant-02-plugging-in-numbers
 
 ---
@@ -189,8 +231,15 @@ If n is a positive integer, which of the following must be even?
 Each other choice flips parity: n + 1 is 2 then 3; n^2 is 1 then 4; 3n is 3 then 6; n + 2 is 3 then 4. None stays even across both tests.
 
 The correct answer is B.
+**mistake_a:** Even at n = 1, which is exactly why a single test misleads: at n = 2 it gives 3. Adding 1 always flips parity, so n + 1 is even only when n is odd.
+**mistake_c:** Squares "feel" even, but squaring preserves parity: an odd n gives an odd n^2 (n = 1 gives 1, n = 3 gives 9).
+**mistake_d:** Multiplying by an odd number preserves parity too — 3n is even exactly when n already is. Only an even multiplier guarantees evenness.
+**mistake_e:** Adding 2 never changes parity at all: n + 2 simply inherits whatever n was. At n = 1 it gives 3.
 **common_trap:** Picking n^2 because squares "feel" even, or n + 1 because it is even at n = 1. Always test both an odd and an even input.
 **takeaway:** Anything written as 2 times an integer is even no matter what; expressions whose parity depends on n are not guaranteed.
+**est_time_seconds:** 45
+**trap_type:** single-parity-test
+**hint_nudge:** Test n = 1 and n = 2 — only one choice is even both times.
 **related_reading:** quant-02-plugging-in-numbers
 
 ---
@@ -217,8 +266,14 @@ Now plug n = 15 into each choice and keep the one equal to 6. Choice B gives (15
 Algebraically this checks out — the three integers are k - 1, k, k + 1 with sum 3k = n, so the middle value is n/3 and the largest is n/3 + 1 = (n + 3)/3.
 
 The correct answer is B.
+**mistake_a:** The middle integer, not the largest. The sum of three consecutive integers is exactly 3 times the middle one — stopping at n/3 answers a question the stem did not ask.
+**mistake_c:** The smallest of the three: (n - 3)/3 = n/3 - 1. The right structure pointed in the wrong direction.
+**mistake_d:** Adds the 1 at the wrong layer — to n before dividing instead of to n/3 after. (n + 1)/3 is not even an integer when n = 15; the plugged-in trio catches it instantly.
+**mistake_e:** Adds 3 to the middle instead of 1, perhaps echoing the "three integers" in the stem. The largest sits exactly 1 above the middle, and (n + 3)/3 = n/3 + 1 is how that 1 appears after division.
 **common_trap:** Choosing n/3, which is the middle integer, not the largest. Picking real numbers makes the off-by-one error visible immediately.
 **takeaway:** A concrete trio turns "in terms of n" algebra into a single matching check and exposes near-miss expressions like n/3 versus (n + 3)/3.
+**est_time_seconds:** 75
+**trap_type:** off-by-one
 **hint_nudge:** Use actual consecutive integers such as 4, 5, 6 rather than manipulating k.
 **related_reading:** quant-02-plugging-in-numbers
 
@@ -246,8 +301,15 @@ So the final value is 90 percent of the original.
 The drop is large because the 40 percent decrease acts on 150, not on the original 100 — that is why the changes do not net to plus 10 percent.
 
 The correct answer is C.
+**mistake_a:** Multiplies the two percents and books the product as the loss: 50 times 40 over 100 = 20 percent down. The interaction term is real, but this formula invents its own arithmetic — walk the actual values instead.
+**mistake_b:** A hedge between 80 and 90 with no computation behind it. Both steps have exact bases (100, then 150) — run them and the answer is forced.
+**mistake_d:** Assumes the up-and-down roughly cancels, as in the famous 25-up-20-down case. Cancellation is a coincidence of specific numbers, not a rule — here the 40 percent cut acts on 150 and removes 60.
+**mistake_e:** Adds the percents: 50 up minus 40 down = up 10. Each percent applies to its own base, so successive changes never simply add.
 **common_trap:** Adding the percents to get plus 10 percent and choosing 110 percent. Each percent applies to its own base, so successive changes never simply add.
 **takeaway:** Successive percent changes compound on shifting bases; pick 100 and walk the changes one at a time instead of combining them.
+**est_time_seconds:** 60
+**trap_type:** shifting-base
+**hint_nudge:** Anchor the original at 100. What value does the 40 percent decrease actually act on?
 **related_reading:** quant-02-plugging-in-numbers
 
 ---
@@ -274,8 +336,14 @@ For C, x + 1/x equals 2.5, then exactly 2, then 2.5 — always at least 2, with 
 The rest break on the fraction x = 1/2: A fails (1/2 is not greater than 1), B fails (1/4 is not greater than 1/2), D fails (2.5 is not at most 2), and E fails (1.25 is not less than 1).
 
 The correct answer is C.
+**mistake_a:** Confuses "positive" with "greater than 1." The fractions between 0 and 1 are positive too, and every one of them breaks this claim.
+**mistake_b:** True for x > 1 and tempting if those are the only values you test — but squaring a proper fraction shrinks it: at x = 1/2, x^2 = 1/4 < 1/2. It also fails at exactly x = 1.
+**mistake_d:** The correct inequality remembered backward. x + 1/x bottoms out at 2 (when x = 1) and grows in both directions — at x = 2 it is already 2.5, breaking the "at most" claim.
+**mistake_e:** Rearranges to (x - 1)^2 < 0, which no real number satisfies. A claim that fails for every single x can still look plausible in its disguised form — another reason to plug a number rather than trust the shape.
 **common_trap:** Testing only x = 2 (or other values above 1), where several choices look true. The fraction 0 < x < 1 is where these statements separate.
 **takeaway:** For "must be true" over all positive x, always include a fraction between 0 and 1 and the boundary value 1 — that is where tidy-looking claims fail.
+**est_time_seconds:** 140
+**trap_type:** untested-region
 **hint_nudge:** Whole numbers above 1 are not enough; try x = 1/2 and x = 1.
 **hint_strategy:** For positive x, the expression x + 1/x is smallest at x = 1, where it equals exactly 2.
 **related_reading:** quant-02-plugging-in-numbers
@@ -304,8 +372,14 @@ From least to greatest that is 0.125, 0.25, 0.5 — which is x^3, x^2, x.
 Raising a number between 0 and 1 to higher powers makes it smaller, the opposite of what happens with numbers greater than 1, so the cube is the smallest and the first power is the largest.
 
 The correct answer is B.
+**mistake_a:** The reflex ordering from numbers greater than 1, where higher powers are larger. The constraint 0 < x < 1 reverses it — multiplying by a proper fraction shrinks a number.
+**mistake_c:** Half-applies the rule: accepts that squaring shrinks x but assumes cubing then grows it again. Each extra factor of x shrinks the value further, so the cube is the smallest of the three.
+**mistake_d:** Gets the smallest right (x^3) but then ranks x below x^2, sliding back into greater-than-1 instincts for the top of the list. Computing with x = 1/2 — 0.125, 0.5, 0.25 in this order — shows the scramble.
+**mistake_e:** Places x, the largest of the three, first in a least-to-greatest list. A ten-second computation at x = 1/2 prevents every ordering error on this page.
 **common_trap:** Assuming higher powers are larger (true only for x > 1) and picking x, x^2, x^3. For a proper fraction the order reverses.
 **takeaway:** Choose a number that actually satisfies the constraint, then let the arithmetic reveal behavior you might misremember — like powers shrinking when 0 < x < 1.
+**est_time_seconds:** 60
+**trap_type:** rule-reversal
 **hint_nudge:** Try x = 1/2 and compute x, x^2, and x^3.
 **related_reading:** quant-02-plugging-in-numbers
 
