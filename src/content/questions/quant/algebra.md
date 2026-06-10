@@ -20,7 +20,7 @@ If 3x + 7 = 22, what is the value of 6x + 5?
 **hint_nudge:** You don't actually need to know x — notice the expression 6x + 5 has a relationship to 3x + 7.
 **hint_strategy:** 6x = 2(3x), so if you can isolate 3x from the given equation you can multiply and add without solving for x.
 **hint_setup:** From 3x + 7 = 22 you get 3x = 15. Then 6x + 5 = 2(3x) + 5 = 2(15) + 5.
-**explanation:** Because the quantity sought, 6x + 5, depends on the value of x, we first determine x from the given linear equation and then evaluate the requested expression. Let x denote the unknown quantity. The given condition is that 3x + 7 = 22. Subtracting 7 from both sides yields 3x = 15, and dividing both sides by 3 gives x = 5. We now substitute this value into the expression 6x + 5: 6(5) + 5 = 30 + 5 = 35.
+**explanation:** Rather than solving for x, we exploit the structural relationship between the given equation and the requested expression. Let x denote the unknown quantity. The given condition is that 3x + 7 = 22. Subtracting 7 from both sides yields 3x = 15. Since 6x + 5 = 2(3x) + 5, we substitute the value of 3x directly: 2(15) + 5 = 30 + 5 = 35. The value of x is never needed individually.
 
 The correct answer is C.
 **related_reading:** reading-quant-04-algebra-and-equations

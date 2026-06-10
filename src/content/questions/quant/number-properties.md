@@ -577,7 +577,7 @@ Consider statement (1). We are told that gcd(m, n) = 6. This requires only that 
 
 Consider statement (2). We are told that lcm(m, 12) = 36 and that n = 12. Writing 36 = 2^2 times 3^2 and 12 = 2^2 times 3, the integer m must be a divisor of 36 whose least common multiple with 12 is 36. The values m = 9, m = 18, and m = 36 each satisfy lcm(m, 12) = 36, since lcm(9, 12) = 36, lcm(18, 12) = 36, and lcm(36, 12) = 36. Because more than one value of m is possible, statement (2) alone does not determine m and is not sufficient.
 
-Now consider the two statements together. We have gcd(m, n) = 6 from statement (1), and lcm(m, n) = 36 with n = 12 from statement (2). Applying the identity, gcd(m, n) times lcm(m, n) equals m times n. Let us substitute the known quantities. We obtain 6 times 36 = m times 12, which gives 216 = 12m. Dividing both sides by 12 yields m = 18. The two statements together determine a single value of m, so they are sufficient, while neither statement alone is sufficient.
+Now consider the two statements together. We have gcd(m, n) = 6 from statement (1), and lcm(m, n) = 36 with n = 12 from statement (2). Applying the identity, gcd(m, n) times lcm(m, n) equals m times n. Let us substitute the known quantities. We obtain 6 times 36 = m times 12, so m = (6 times 36) / 12 = (6 / 12) times 36 = 36 / 2 = 18. The two statements together determine a single value of m, so they are sufficient, while neither statement alone is sufficient.
 
 The correct answer is C.
 **related_reading:** reading-quant-03-number-properties
@@ -1090,11 +1090,11 @@ Which of the following numbers is divisible by 4?
 
 Let n denote the candidate integer, and let t be the two-digit number formed by the tens and units digits of n. We test each candidate by examining t and determining whether t is a multiple of 4.
 
-For 314, we have t = 14, and 14 / 4 = 3.5, which is not an integer.
-For 526, we have t = 26, and 26 / 4 = 6.5, which is not an integer.
-For 718, we have t = 18, and 18 / 4 = 4.5, which is not an integer.
-For 832, we have t = 32, and 32 / 4 = 8, which is an integer; thus 832 is divisible by 4.
-For 946, we have t = 46, and 46 / 4 = 11.5, which is not an integer.
+For 314, we have t = 14 = 12 + 2, which is not a multiple of 4.
+For 526, we have t = 26 = 24 + 2, which is not a multiple of 4.
+For 718, we have t = 18 = 16 + 2, which is not a multiple of 4.
+For 832, we have t = 32 = 4 × 8, which is a multiple of 4; thus 832 is divisible by 4.
+For 946, we have t = 46 = 44 + 2, which is not a multiple of 4.
 
 Only 832 yields a last-two-digit value that is a multiple of 4.
 
@@ -1425,7 +1425,7 @@ Let n be a positive integer, and consider the product n(n+1)(n+2) of three conse
 
 Consider statement (1): n is even. If n is even, then n + 2 is also even, so the product contains two distinct even factors, n and n + 2. Write n = 2a and n + 2 = 2b for positive integers a and b; then n(n+2) = 4ab, which is divisible by 4. The product n(n+1)(n+2) is therefore divisible by 4, and combined with the guaranteed factor of 3 it is divisible by 4 × 3 = 12. The answer to the question is always Yes, so statement (1) is sufficient.
 
-Consider statement (2): n is divisible by 3. This supplies an additional factor of 3, but the product already contained a factor of 3; it provides no information about the factor of 4 that is required. We test specific values. Let n = 9: then n(n+1)(n+2) = 9 × 10 × 11 = 990, and 990 ÷ 12 = 82.5, which is not an integer, so the product is not divisible by 12 (answer No). Let n = 6: then n(n+1)(n+2) = 6 × 7 × 8 = 336, and 336 ÷ 12 = 28, which is an integer, so the product is divisible by 12 (answer Yes). Because both Yes and No are possible, statement (2) is not sufficient.
+Consider statement (2): n is divisible by 3. This supplies an additional factor of 3, but the product already contained a factor of 3; it provides no information about the factor of 4 that is required. We test specific values, examining divisibility structure rather than computing each product, where 12 = 4 × 3. Let n = 9: then 9 × 10 × 11 has a factor of 3 (from 9), but among 9, 10, and 11 there is no factor of 4, since 10 contributes only a single 2; the product is therefore not divisible by 12 (answer No). Let n = 6: then 6 × 7 × 8 contains 6, a factor of 3, and 8, a factor of 4, so it is divisible by 12 (answer Yes). Because both Yes and No are possible, statement (2) is not sufficient.
 
 Statement (1) alone is sufficient and statement (2) alone is not sufficient.
 

@@ -1405,7 +1405,7 @@ The 60 employees who have neither degree therefore constitute 40% of the total, 
 
 Solving for T,
 
-T = 60 ÷ 0.40 = 150.
+Recognizing that 0.40 = 2/5, this is T = 60 ÷ (2/5) = 60 × (5/2) = (60 ÷ 2) × 5 = 30 × 5 = 150.
 
 The correct answer is B.
 **related_reading:** reading-quant-05-word-problems
@@ -1755,7 +1755,7 @@ P = 960 / (0.08 times 3).
 
 We first evaluate the denominator: 0.08 times 3 = 0.24. Then
 
-P = 960 / 0.24 = 4,000.
+P = 960 / 0.24. Clearing the decimal with 0.24 = 24/100 gives 960 / 0.24 = 96,000 / 24 = 4,000, since 24 times 4,000 = 96,000.
 
 Thus the original loan amount is 4,000 dollars. As a check, applying the simple interest relationship to this principal gives 4,000 times 0.08 times 3 = 960 dollars, which matches the interest stated in the problem.
 
@@ -1885,7 +1885,7 @@ Subtracting 27 from both sides yields:
 
 Dividing both sides by 0.45 gives:
 
-x = 9 / 0.45 = 20
+x = 9 / 0.45. Recognizing that 0.45 = 9/20, this is 9 / (9/20) = 9 times (20/9) = 20, cancelling the 9s.
 
 Thus 20 liters of water must be evaporated. As a check, removing 20 liters leaves a total volume of 60 minus 20 = 40 liters, and 18 / 40 = 0.45, confirming the 45 percent concentration.
 

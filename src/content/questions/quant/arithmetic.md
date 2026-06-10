@@ -1430,13 +1430,13 @@ Let n denote the unknown integer. We are given that one integer is 36, that the 
 
 12 times 180 = 36 times n.
 
-Computing the left side, 12 times 180 = 2,160, so:
+Rather than forming the large product, cancel against the 36 first: since 180/36 = 5, the left side equals 12 times 5, so:
 
-2,160 = 36n.
+12 times 5 = 36n.
 
 Dividing both sides by 36 yields:
 
-n = 2,160 divided by 36 = 60.
+n = 12 times (180/36) = 12 times 5 = 60.
 
 We may confirm this result directly. Writing each number as a product of prime factors, 36 = 2^2 times 3^2 and 60 = 2^2 times 3 times 5. The GCF takes the lowest power of each shared prime, giving 2^2 times 3 = 12, and the LCM takes the highest power of each prime present, giving 2^2 times 3^2 times 5 = 180. Both conditions are satisfied.
 
