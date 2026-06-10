@@ -17,6 +17,7 @@ What is the value of 2⁵ * 2³?
 - E) 2²
 
 **answer:** A
+**fastest_path:** Same base multiplied — add the exponents in your head: 5 + 3 = 8.
 **explanation:** This problem applies the product rule for powers that share a common base: for any nonzero base a and integers m and n, a^m times a^n equals a^(m+n). The base is preserved, and the exponents are added.
 
 Let the expression be 2^5 times 2^3. Both factors have the same base, 2, so we retain that base and add the exponents:
@@ -26,6 +27,12 @@ Let the expression be 2^5 times 2^3. Both factors have the same base, 2, so we r
 The base remains 2, and the exponents 5 and 3 combine through addition to give 8.
 
 The correct answer is A.
+**mistake_b:** 2¹⁵ comes from multiplying the exponents (5 × 3). Exponents multiply only when a power is raised to another power, not when two powers are multiplied.
+**mistake_c:** 4⁸ multiplies the bases (2 × 2). When combining like-base powers, the base never changes — only the exponents combine.
+**mistake_d:** 4¹⁵ makes both errors at once: bases multiplied and exponents multiplied.
+**mistake_e:** 2² subtracts the exponents (5 − 3), which is the rule for division, not multiplication.
+**common_trap:** Confusing the product rule (add exponents) with the power rule (multiply exponents).
+**takeaway:** Multiplying like bases adds exponents; raising a power to a power multiplies them. The base stays unchanged either way.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -44,6 +51,7 @@ Simplify √50.
 - E) 25*√2
 
 **answer:** B
+**fastest_path:** Pull the largest perfect square out of 50: 50 = 25 × 2, so √50 = 5√2.
 **explanation:** To simplify the square root of an integer, we factor the integer so that one factor is the largest possible perfect square, and then we apply the rule that the square root of a product equals the product of the square roots.
 
 Let n = 50. We seek a factorization of the form n = (perfect square) × (remaining factor). The perfect squares are 1, 4, 9, 16, 25, 36, 49, and so on. The largest perfect square that divides 50 is 25, since 50 = 25 × 2.
@@ -61,6 +69,12 @@ Since √25 = 5, this simplifies to:
 √50 = 5√2
 
 The correct answer is B.
+**mistake_a:** 5 drops the leftover √2 after extracting √25. Check by squaring: 5² = 25, not 50.
+**mistake_c:** 2√5 reverses the factor pair — it equals √20, not √50. The perfect square in 50 is 25, which exits the radical as 5, leaving 2 inside.
+**mistake_d:** 10√5 equals √500, ten times too large — it comes from splitting 50 as 10 × 5 and moving the 10 outside without square-rooting it.
+**mistake_e:** 25√2 moves the 25 outside without taking its square root. The factor that exits the radical is √25 = 5, not 25.
+**common_trap:** Moving a factor out of a square root without square-rooting it on the way out — 25 leaves the radical as 5, never as 25.
+**takeaway:** To simplify √n, factor out the largest perfect square; that factor exits as its square root, and everything else stays inside.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -79,6 +93,7 @@ Express 0.00045 in scientific notation.
 - E) 0.45 * 10⁻³
 
 **answer:** C
+**fastest_path:** Count the hops that put the decimal after the first nonzero digit: 4 hops right, so the exponent is −4.
 **explanation:** A number is written in scientific notation as the product of a coefficient and an integer power of 10, where the coefficient c satisfies 1 ≤ |c| < 10. The method is to reposition the decimal point so that exactly one nonzero digit stands to its left, and then to record the number of places the decimal point was moved as the exponent on 10.
 
 Let the given number be 0.00045. We seek a coefficient c with 1 ≤ c < 10 such that 0.00045 = c × 10^n for some integer n. Reading the digits, the first nonzero digit is 4, so the coefficient must be 4.5.
@@ -94,6 +109,12 @@ Moving the decimal point 4 places to the right multiplies the value by 10^4. To 
 As a check, 4.5 × 10^(-4) = 4.5 ÷ 10,000 = 0.00045, which matches the given number.
 
 The correct answer is C.
+**mistake_a:** 4.5 * 10³ has the right digit count but the wrong sign — a positive exponent would make the number large, while 0.00045 is less than 1.
+**mistake_b:** 4.5 * 10⁻³ counts only the three zeros after the decimal point instead of the four places the decimal actually moves.
+**mistake_d:** 45 * 10⁻⁵ equals 0.00045 numerically, but the coefficient 45 violates the format: scientific notation requires 1 ≤ coefficient < 10.
+**mistake_e:** 0.45 * 10⁻³ also equals 0.00045 numerically, but the coefficient 0.45 is below 1, so it is not scientific notation.
+**common_trap:** Two of the wrong choices equal 0.00045 in value — the question tests the format rule (exactly one nonzero digit left of the decimal), not just the arithmetic.
+**takeaway:** In scientific notation the coefficient sits in [1, 10); numbers below 1 take a negative exponent equal to the number of places moved.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -112,6 +133,7 @@ If 2^x = 32, what is x?
 - E) 16
 
 **answer:** C
+**fastest_path:** Walk the doublings: 2, 4, 8, 16, 32 — five steps, so x = 5.
 **explanation:** This problem is solved using the principle that if two powers with the same base are equal, then their exponents must be equal. To apply this principle, the given equation must be expressed with a common base on both sides.
 
 Let x be the unknown exponent in the equation 2^x = 32. The base on the left side is 2, so we rewrite the right side as a power of 2. Since 2^5 = 2 multiplied by itself five times, we have 2 times 2 times 2 times 2 times 2 = 4 times 2 times 2 times 2 = 8 times 2 times 2 = 16 times 2 = 32. Thus 32 = 2^5.
@@ -119,6 +141,12 @@ Let x be the unknown exponent in the equation 2^x = 32. The base on the left sid
 Substituting this expression into the original equation gives 2^x = 2^5. Because the two sides are powers of the same base 2, the exponents must be equal. Therefore x = 5.
 
 The correct answer is C.
+**mistake_a:** 3 stops the doubling count too early — 2³ is 8, not 32.
+**mistake_b:** 4 is one doubling short: 2⁴ = 16.
+**mistake_d:** 6 is one doubling too far: 2⁶ = 64.
+**mistake_e:** 16 treats 2^x as 2 times x and divides 32 by 2 — confusing exponentiation with multiplication.
+**common_trap:** Reading 2^x as "2 times x" and answering 16.
+**takeaway:** Know the powers of 2 up to 2¹⁰ = 1,024 cold — equations like 2^x = 32 should be recall, not computation.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -137,6 +165,7 @@ What is the value of 3⁻²?
 - E) 1/9
 
 **answer:** E
+**fastest_path:** Negative exponent means reciprocal: 3⁻² = 1/3² = 1/9. No sign change.
 **explanation:** This problem is governed by the negative-exponent rule, which states that for any nonzero base a and positive integer n, a raised to the power of negative n equals the reciprocal of a raised to the power of n. That is, a^(-n) = 1/(a^n).
 
 Let the expression to be evaluated be 3^(-2). Applying the negative-exponent rule, we move the base into the denominator and make the exponent positive:
@@ -154,6 +183,12 @@ Substituting this value gives:
 It should be noted that the negative sign in the exponent indicates a reciprocal, not a negative result; because the base is positive, the value of the expression is positive.
 
 The correct answer is E.
+**mistake_a:** −9 treats the negative exponent as negating the result: −(3²). The exponent's sign flips the base into a denominator; it never flips the sign of the value.
+**mistake_b:** −6 multiplies base by exponent (3 × 2) and attaches the minus sign — two errors stacked.
+**mistake_c:** −1/9 takes the reciprocal correctly but still attaches a negative sign. A positive base raised to any real power stays positive.
+**mistake_d:** 1/6 takes the reciprocal of 3 × 2 instead of 3².
+**common_trap:** Believing the minus sign in the exponent makes the answer negative — it only moves the power into the denominator.
+**takeaway:** a⁻ⁿ = 1/aⁿ. The sign of the result comes from the base, never from the exponent.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -172,6 +207,7 @@ Which of the following equals (x⁴ * y⁻²) / (x⁻¹ * y³)?
 - E) x⁵ * y
 
 **answer:** B
+**fastest_path:** Subtract exponents base by base: x gets 4 − (−1) = 5, y gets −2 − 3 = −5.
 **explanation:** When a power of one base is divided by a power of the same base, the quotient is found by subtracting the exponent in the denominator from the exponent in the numerator. This is the quotient rule for exponents: a^m / a^n = a^(m - n). The expression contains two distinct bases, x and y, so the rule is applied to each base separately.
 
 Let the expression be (x^4 * y^(-2)) / (x^(-1) * y^3). Group the factors by common base so that the x-terms form one quotient and the y-terms form another:
@@ -185,6 +221,12 @@ Apply the quotient rule to the y-terms. The exponent of y is (-2) - 3 = -5. Henc
 Combining the two results gives x^5 * y^(-5).
 
 The correct answer is B.
+**mistake_a:** x³ comes from computing 4 − 1 instead of 4 − (−1) — the negative exponent in the denominator was dropped. Dividing by x⁻¹ adds a power of x.
+**mistake_c:** The y-part is right only if (−2) − 3 were −1; it is −5. This choice botches the y subtraction while getting x right.
+**mistake_d:** x³ and y⁻¹ together — both subtractions done while ignoring the signs on the exponents.
+**mistake_e:** y¹ flips the y subtraction, effectively computing 3 − 2 with a lost sign; the correct exponent is (−2) − 3 = −5.
+**common_trap:** Subtracting a negative exponent: 4 − (−1) is 5, not 3. A negative power downstairs boosts the power upstairs.
+**takeaway:** Quotient rule is top exponent minus bottom exponent, signs included; handle each base separately and slow down at every double negative.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -203,6 +245,7 @@ Simplify √12 + √27.
 - E) 13*√3
 
 **answer:** C
+**fastest_path:** Reduce both radicals to multiples of √3 — 2√3 + 3√3 — then add the coefficients.
 **explanation:** Two radical terms may be combined by addition only when they have the same radicand; in that case we add the coefficients while keeping the common radical, exactly as we would combine like terms in algebra. The radicands themselves are never added under a single root, since in general √a + √b is not equal to √(a + b). The method, therefore, is to simplify each radical fully and then combine those that share a radicand.
 
 We begin by simplifying each term. For the first term, we factor 12 as a perfect square times a remaining factor: 12 = 4 × 3. Hence √12 = √(4 × 3) = √4 · √3 = 2√3. For the second term, we factor 27 in the same manner: 27 = 9 × 3. Hence √27 = √(9 × 3) = √9 · √3 = 3√3.
@@ -212,6 +255,12 @@ Both simplified terms now share the radicand 3, so they are like terms and may b
 2√3 + 3√3 = (2 + 3)√3 = 5√3.
 
 The correct answer is C.
+**mistake_a:** √39 adds the radicands: √12 + √27 is not √(12 + 27). Roots do not distribute over addition.
+**mistake_b:** 3√13 starts from the same invalid sum 39, then pulls the factor 3 out of √39 without square-rooting it.
+**mistake_d:** 6√3 multiplies the simplified coefficients (2 × 3) instead of adding them — that would answer √12 × √27 territory, not a sum.
+**mistake_e:** 13√3 also traces back to the invalid 12 + 27 = 39 move (39 = 13 × 3), rather than simplifying each radical first.
+**common_trap:** Adding under the radical — √a + √b ≠ √(a + b). Every distractor here grows out of that one move.
+**takeaway:** Radicals add like algebraic terms: simplify each until the radicands match, then add only the coefficients.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -230,6 +279,7 @@ What is the value of 27^(2/3)?
 - E) 81
 
 **answer:** C
+**fastest_path:** Root first, then power: cube root of 27 is 3, and 3² = 9.
 **explanation:** A fractional exponent denotes a combination of a root and a power, governed by the rule a^(m/n) = (a^(1/n))^m. The denominator n indicates the n-th root, and the numerator m indicates the power to which that root is raised. Because the order of these two operations does not affect the result, it is generally efficient to take the root first, since doing so keeps the intermediate numbers small.
 
 Let N = 27^(2/3). Applying the rule with a = 27, m = 2, and n = 3 gives N = (27^(1/3))^2.
@@ -241,6 +291,11 @@ Next we raise this result to the second power: 3^2 = 9.
 Therefore N = 9.
 
 The correct answer is C.
+**mistake_a:** 3 stops after the cube root — that evaluates 27^(1/3), ignoring the numerator 2 entirely.
+**mistake_b:** 6 multiplies the cube root by the numerator (3 × 2) instead of raising it to the 2nd power.
+**mistake_d:** 18 multiplies the base by the fraction: 27 × 2/3. A fractional exponent is never a multiplier.
+**common_trap:** Using only half of the fraction — the denominator takes the root AND the numerator applies a power.
+**takeaway:** For a^(m/n), take the n-th root first (keeps numbers small), then raise to the m-th power.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -259,6 +314,7 @@ If (3 * 10⁴) * (2 * 10⁻⁷) = k, what is k?
 - E) 6 * 10¹¹
 
 **answer:** C
+**fastest_path:** Coefficients multiply (3 × 2 = 6); exponents add (4 + (−7) = −3).
 **explanation:** When two numbers expressed in scientific notation are multiplied, the governing method is to separate each factor into its coefficient and its power of 10, then multiply the coefficients together and apply the product rule for exponents to the powers of 10. The product rule states that for a common base, the exponents are added: 10^a times 10^b equals 10^(a+b).
 
 Let k = (3 * 10^4) * (2 * 10^-7). We treat the coefficients and the powers of 10 separately.
@@ -270,6 +326,12 @@ The powers of 10, having the common base 10, are combined by adding their expone
 Combining the two results, we obtain k = 6 * 10^-3.
 
 The correct answer is C.
+**mistake_a:** 10⁻²⁸ multiplies the exponents (4 × −7) instead of adding them.
+**mistake_b:** 10⁻¹¹ adds the magnitudes as if both exponents were negative: −(4 + 7).
+**mistake_d:** The coefficient 5 adds 3 + 2 instead of multiplying — coefficients multiply just like any other factors.
+**mistake_e:** 10¹¹ drops the negative sign on the −7 before adding.
+**common_trap:** The sign slip in 4 + (−7) — the negative exponent has the larger magnitude, so the sum is −3, not +3 or −11.
+**takeaway:** Scientific-notation products split cleanly: multiply the coefficients, add the exponents, and mind every sign.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -288,6 +350,7 @@ Approximately what is the value of 2¹⁰ / 10³?
 - E) 10
 
 **answer:** D
+**fastest_path:** Recall 2¹⁰ = 1,024 and 10³ = 1,000 — the ratio is 1.024, a hair above 1.
 **explanation:** This problem is solved efficiently by recalling a standard benchmark: the power 2^10 equals 1,024, a value just over 1,000. Because 1,000 is exactly 10^3, the two quantities in the ratio are nearly equal, and the task reduces to determining which is larger.
 
 Let N denote the value of the expression. We translate the expression directly into N = 2^10 / 10^3. Substituting the known values gives N = 1,024 / 1,000.
@@ -295,6 +358,11 @@ Let N denote the value of the expression. We translate the expression directly i
 We now carry out the division. Dividing 1,024 by 1,000 yields N = 1.024. Since 1.024 exceeds 1 by a small margin of 0.024, the value is slightly greater than 1.
 
 The correct answer is D.
+**mistake_b:** 0.1 assumes the larger base must win — base 10 beats base 2 per step, but 2 takes ten steps to 10's three.
+**mistake_c:** Slightly less than 1 knows the benchmark but misremembers its direction: 2¹⁰ = 1,024 sits just ABOVE 1,000, not below.
+**mistake_e:** 10 overshoots the benchmark, treating 2¹⁰ as roughly 10⁴ instead of just over 10³.
+**common_trap:** Knowing 2¹⁰ ≈ 1,000 but forgetting which side of 1,000 it lands on — the question is built entirely on that direction.
+**takeaway:** Burn in 2¹⁰ = 1,024, slightly more than 10³ — it is the standard bridge between powers of 2 and powers of 10.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -313,6 +381,7 @@ If (2^a)³ = 2¹², what is a?
 - E) 9
 
 **answer:** C
+**fastest_path:** Power to a power multiplies: 3a = 12, so a = 4.
 **explanation:** This problem is governed by the power-of-a-power rule of exponents, which states that raising a power to another power multiplies the exponents: (b^m)^n = b^(m·n). Because both sides of the given equation can be written as powers of the same base, 2, the equation can be solved by setting the exponents equal.
 
 Let a be the unknown exponent. The left side, (2^a)³, raises the power 2^a to the third power. Applying the power-of-a-power rule gives (2^a)³ = 2^(3a). The equation therefore becomes 2^(3a) = 2¹².
@@ -320,6 +389,11 @@ Let a be the unknown exponent. The left side, (2^a)³, raises the power 2^a to t
 Since the two expressions are powers of the same base and are equal, their exponents must be equal. Thus 3a = 12. Dividing both sides by 3 yields a = 4.
 
 The correct answer is C.
+**mistake_a:** 2 folds the base into the arithmetic (2 × 3 × a = 12) — the base 2 is not a factor of the exponent equation.
+**mistake_d:** 6 divides 12 by the base 2 instead of by the outer exponent 3.
+**mistake_e:** 9 adds the exponents (a + 3 = 12), using the product rule where the power rule applies.
+**common_trap:** Adding instead of multiplying when a power is raised to a power — (2^a)³ is 2^(3a), not 2^(a+3).
+**takeaway:** Nested exponents multiply; multiplied like-base powers add. Keeping those two rules separate is most of exponent mastery.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -338,6 +412,7 @@ Rationalize the denominator: 6 / (√3 + 1).
 - E) √3 - 1
 
 **answer:** B
+**fastest_path:** Multiply by the conjugate (√3 − 1)/(√3 − 1); the denominator collapses to 3 − 1 = 2.
 **explanation:** To rationalize a denominator that consists of a sum or difference involving a radical, we multiply both the numerator and the denominator by the conjugate of the denominator, where the conjugate is formed by reversing the sign between the two terms. This works because the product of a binomial and its conjugate is a difference of squares, (a + b)(a - b) = a^2 - b^2, which eliminates the radical when one of the terms is a square root.
 
 Let the expression be 6 / (sqrt(3) + 1). The conjugate of the denominator sqrt(3) + 1 is sqrt(3) - 1. We multiply the expression by (sqrt(3) - 1) / (sqrt(3) - 1), which equals 1 and therefore does not change the value of the expression.
@@ -349,12 +424,18 @@ The new denominator is (sqrt(3) + 1)(sqrt(3) - 1) = (sqrt(3))^2 - (1)^2 = 3 - 1 
 The expression becomes (6*sqrt(3) - 6) / 2. Dividing each term in the numerator by 2 gives 3*sqrt(3) - 3.
 
 The correct answer is B.
+**mistake_a:** 6√3 − 6 is the new numerator only — the final division by the denominator 2 was skipped.
+**mistake_c:** 3√3 + 3 carries a sign error: the conjugate of √3 + 1 is √3 − 1, and the minus sign must survive into the numerator product.
+**mistake_d:** 2√3 + 2 divides by 3 (from squaring √3) instead of by the full conjugate product 3 − 1 = 2, alongside a sign slip.
+**mistake_e:** √3 − 1 is the conjugate itself, not the answer — the multiplication was never carried out.
+**common_trap:** Botching the conjugate product: (√3 + 1)(√3 − 1) = 3 − 1 = 2, not 4, and not 3 + 1.
+**takeaway:** Conjugate multiplication turns a √a ± b denominator into a − b²; finish by dividing every term of the numerator.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
 
 ## Q13
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Fractional Exponents
 
@@ -367,9 +448,16 @@ If x > 0 and x^(1/2) * x^(1/3) = x^k, what is k?
 - E) 1
 
 **answer:** D
+**fastest_path:** Product of like bases adds exponents: 1/2 + 1/3 = 5/6. One fraction addition, nothing else.
 **explanation:** The governing principle is the product rule for powers with the same base: for any positive base and any real exponents a and b, the product of two powers is found by adding the exponents, so that x^a multiplied by x^b equals x^(a + b). We are given that x > 0, which guarantees that the fractional powers are well defined, and we are told that x^(1/2) multiplied by x^(1/3) equals x^k. Applying the product rule to the left-hand side, we add the two exponents to obtain x^(1/2 + 1/3). To add the fractions 1/2 and 1/3, we use the common denominator 6: 1/2 equals 3/6 and 1/3 equals 2/6, so 1/2 + 1/3 equals 3/6 + 2/6, which equals 5/6. Therefore the left-hand side equals x^(5/6). Setting this equal to x^k gives x^(5/6) = x^k, and because the base x is the same and is positive, the exponents must be equal. Hence k = 5/6.
 
 The correct answer is D.
+**mistake_a:** 1/6 multiplies the exponents — that is the rule for a power of a power, not for a product.
+**mistake_b:** 2/6 puts the numerator sum over the common denominator without converting: 1/2 + 1/3 is 3/6 + 2/6, not (1 + 1)/6.
+**mistake_c:** 1/5 adds the denominators only: 1/(2 + 3) is not how fractions add.
+**mistake_e:** 1 assumes a half power times a third power restores the whole power — the exponents sum to 5/6, short of 1.
+**common_trap:** Multiplying the exponents (getting 1/6) instead of adding them; fractional exponents follow the same product rule as integers.
+**takeaway:** x^a · x^b = x^(a+b) regardless of whether a and b are whole — convert to a common denominator and add.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -451,6 +539,7 @@ If 2^x · 3^y = 648 with x and y positive integers, what is x + y?
 - E) 9
 
 **answer:** C
+**fastest_path:** Halve 648 three times (324, 162, 81); 81 is 3⁴ — so 3 + 4 = 7.
 **explanation:** Because the two prime bases 2 and 3 appear on the left side, the governing principle is the uniqueness of prime factorization: a positive integer can be written as a product of primes in exactly one way, so the exponents on the right must match those obtained by fully factoring 648.
 
 Let x be the exponent of 2 and let y be the exponent of 3, so that 2^x times 3^y = 648. The task is to find the prime factorization of 648 and read off these exponents.
@@ -464,6 +553,10 @@ Combining these results gives 648 equals 2^3 times 3^4. Matching exponents yield
 Therefore x plus y equals 3 plus 4, which equals 7.
 
 The correct answer is C.
+**mistake_b:** 6 usually comes from miscounting 81 as 3³ — but 3³ is 27, and 81 takes four factors of 3.
+**mistake_d:** 8 carries an off-by-one in one of the prime counts; rebuild the product to check: 2³ × 3⁴ = 8 × 81 = 648.
+**common_trap:** Losing count during repeated division — always reassemble the factorization (8 × 81 = 648) before answering.
+**takeaway:** Prime factorization is unique, so matching exponents prime by prime is airtight; verifying by multiplying back costs five seconds.
 **related_reading:** reading-quant-03-number-properties
 
 
@@ -483,6 +576,7 @@ What is the value of √(20 × 45)?
 - E) 90
 
 **answer:** C
+**fastest_path:** Combine under one radical: 20 × 45 = 900, and √900 = 30.
 **explanation:** The governing principle is the product rule for square roots: for nonnegative quantities a and b, the square root of a product equals the product of the square roots, so that the radical of a times b is identical to the radical of a times the radical of b. The most efficient method is therefore to combine the two factors under a single radical and evaluate, since the resulting product is a perfect square.
 
 Let N denote the quantity beneath the radical. Then N is the product of 20 and 45.
@@ -494,6 +588,8 @@ The expression therefore reduces to the square root of 900. Because 30 multiplie
 As a confirmation by the product rule, we may instead simplify each factor separately. The square root of 20 equals 2 times the square root of 5, and the square root of 45 equals 3 times the square root of 5. Their product is 2 times the square root of 5, multiplied by 3 times the square root of 5, which equals 6 times 5, or 30, in agreement with the direct computation.
 
 The correct answer is C.
+**common_trap:** Simplifying each factor separately and then mishandling (2√5)(3√5) — the radicals multiply to a whole 5, so the product is 6 × 5 = 30, not 6√5.
+**takeaway:** When radicals multiply, push everything under one root first — GMAT products like 20 × 45 are chosen to assemble into perfect squares.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -543,6 +639,7 @@ If x = 8^(2/3), what is the value of x²?
 - E) 128
 
 **answer:** B
+**fastest_path:** Squaring doubles the exponent: x² = 8^(4/3) = (∛8)⁴ = 2⁴ = 16.
 **explanation:** This problem is governed by the rule for fractional exponents, which states that for any nonnegative base a and positive integers m and n, a^(m/n) = (a^(1/n))^m. In words, the denominator of the exponent indicates the root to be taken, and the numerator indicates the power to which that root is raised.
 
 Let x = 8^(2/3). Applying the rule, we first take the cube root of 8 and then square the result:
@@ -560,6 +657,10 @@ x^2 = 4^2 = 16.
 As a check, we may compute x^2 directly by combining the exponents. Squaring 8^(2/3) doubles the exponent, giving x^2 = 8^(4/3) = (8^(1/3))^4 = 2^4 = 16, which agrees with the result above.
 
 The correct answer is B.
+**mistake_a:** 8 results from treating the exponent 2/3 as 1/2: then x would be 2√2 and x² would be 8.
+**mistake_d:** 64 cancels the 2/3 against the squaring and computes 8² — but (8^(2/3))² is 8^(4/3), not 8².
+**common_trap:** Computing x = 4 and then mishandling the final squaring step, or letting the fractional exponent "cancel" informally.
+**takeaway:** Powers chain by multiplying exponents: (a^(m/n))^k = a^(mk/n). Track the exponent arithmetic explicitly rather than canceling by feel.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -602,19 +703,22 @@ The correct answer is B.
 **type:** Problem Solving
 **topic:** Comparing Radicals
 
-Which of the following is the greatest?
+Consider the following three quantities:
 
 I. 3√7
 II. 2√17
 III. √63
 
-- A) I only
-- B) II only
-- C) III only
-- D) I and III are equal, and both are less than II
-- E) All three are equal
+Which of the following correctly describes the relationship among I, II, and III?
+
+- A) I < III < II
+- B) I = II = III
+- C) II < I = III
+- D) I = III < II
+- E) III < I < II
 
 **answer:** D
+**fastest_path:** Square all three: 9 × 7 = 63, 4 × 17 = 68, and 63 — two are tied, and 68 wins.
 **explanation:** Because each of the three quantities is positive, the order of their values is the same as the order of their squares; squaring therefore eliminates the radicals and allows a direct comparison.
 
 Let a = 3√7, b = 2√17, and c = √63. We square each quantity, using the rule that (k√n)^2 = k^2 × n.
@@ -625,9 +729,15 @@ For II: b^2 = (2√17)^2 = 2^2 × 17 = 4 × 17 = 68.
 
 For III: c^2 = (√63)^2 = 63.
 
-Comparing the squares, we have a^2 = 63, b^2 = 68, and c^2 = 63. Thus a^2 = c^2 < b^2. Since all three quantities are positive, this ordering of the squares carries over to the quantities themselves, giving a = c < b. In other words, I and III are equal, and both are less than II.
+Comparing the squares, we have a^2 = 63, b^2 = 68, and c^2 = 63. Thus a^2 = c^2 < b^2. Since all three quantities are positive, this ordering of the squares carries over to the quantities themselves, giving a = c < b. In other words, I = III < II.
 
 The correct answer is D.
+**mistake_a:** I and III cannot differ — pulling the coefficient inside shows 3√7 = √(9 × 7) = √63, identical to III.
+**mistake_b:** The three only look close; squaring puts them on one scale, and II's square (68) strictly exceeds the other two (63).
+**mistake_c:** This reverses the comparison — 68 is the largest square, so II is the largest quantity, not the smallest.
+**mistake_e:** Same flaw as A: III is exactly √63, and so is I, so neither can be strictly smaller than the other.
+**common_trap:** Judging k√n forms by coefficient or radicand alone — only squaring (valid because all quantities are positive) makes them comparable.
+**takeaway:** To compare positive radicals, square everything: k√n becomes the integer k²n, and the ordering of squares matches the ordering of the originals.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 
@@ -638,44 +748,50 @@ The correct answer is D.
 **type:** Problem Solving
 **topic:** Radical Equations — Extraneous Roots
 
-If √(3x + 1) = x − 1, what is the sum of all values of x that satisfy the equation?
+If √(x + 3) = x − 3, what is the sum of all values of x that satisfy the equation?
 
-- A) 0
+- A) 1
 - B) 5
 - C) 6
-- D) 10
-- E) 15
+- D) 7
+- E) 9
 
-**answer:** B
+**answer:** C
+**fastest_path:** Domain scan before substituting: the right side x − 3 must be at least 0, so any candidate below 3 dies on sight.
 **explanation:** The governing principle is that squaring both sides of a radical equation can introduce extraneous solutions, so every candidate value must be checked against the original equation, and a square root denotes the non-negative root.
 
 Let x be a value satisfying the equation. Beginning with the equation
 
-  √(3x + 1) = x − 1,
+  √(x + 3) = x − 3,
 
 we square both sides to eliminate the radical:
 
-  3x + 1 = (x − 1)².
+  x + 3 = (x − 3)².
 
 Expanding the right side gives
 
-  3x + 1 = x² − 2x + 1.
+  x + 3 = x² − 6x + 9.
 
-Subtracting 3x + 1 from both sides yields
+Moving every term to one side yields
 
-  0 = x² − 5x,
+  0 = x² − 7x + 6,
 
 which factors as
 
-  0 = x(x − 5).
+  0 = (x − 1)(x − 6).
 
-The candidate values are therefore x = 0 and x = 5.
+The candidate values are therefore x = 1 and x = 6.
 
-Because squaring may create solutions that do not satisfy the original equation, we test each candidate. For x = 0, the left side is √(3·0 + 1) = √1 = 1, while the right side is 0 − 1 = −1; since the radical is non-negative and the right side is negative, this value does not satisfy the equation. For x = 5, the left side is √(3·5 + 1) = √16 = 4, and the right side is 5 − 1 = 4; the two sides are equal, so this value is valid.
+Because squaring may create solutions that do not satisfy the original equation, we test each candidate. For x = 1, the left side is √(1 + 3) = √4 = 2, while the right side is 1 − 3 = −2; since the radical is non-negative and the right side is negative, this value does not satisfy the equation. For x = 6, the left side is √(6 + 3) = √9 = 3, and the right side is 6 − 3 = 3; the two sides are equal, so this value is valid.
 
-The only solution is x = 5, and the sum of all values of x that satisfy the equation is 5.
+The only solution is x = 6, and the sum of all values of x that satisfy the equation is 6.
 
-The correct answer is B.
+The correct answer is C.
+**mistake_a:** 1 keeps the extraneous root and discards the valid one — checking means substituting into the ORIGINAL equation, where x = 1 forces √4 = 2 to equal −2, which is impossible.
+**mistake_b:** 5 subtracts the extraneous root from the valid one (6 − 1) instead of simply discarding it.
+**mistake_d:** 7 sums both roots of the squared equation without checking either; squaring manufactured x = 1, which fails the original equation.
+**common_trap:** The squared equation is wider than the original — it admits x = 1. The choices reward the no-check solver at 7 and the backwards-check solver at 1, so the careless path always finds a listed answer.
+**takeaway:** After squaring a radical equation, filter every candidate: a fast domain scan (a square root can never equal a negative) kills most ghosts, and substitution into the original confirms the survivors.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 
@@ -695,13 +811,22 @@ If 2^x = 80, which of the following is closest to the value of x?
 - E) 7.0
 
 **answer:** C
-**explanation:** To estimate the value of an exponent, we locate the target between two consecutive integer powers of the base and then judge which power the target lies nearer to. Let x be the exponent satisfying 2^x = 80.
+**fastest_path:** Bracket with 2⁶ = 64, then refine: 80/64 = 1.25, and 1.25³ ≈ 2, so the extra factor is worth about a third of a doubling — x ≈ 6.3.
+**explanation:** To estimate an exponent, first trap the target between consecutive integer powers of the base, then refine using the leftover ratio. Let x be the exponent satisfying 2^x = 80.
 
-We first bracket 80 between successive powers of 2. We have 2^6 = 64 and 2^7 = 128. Since 64 < 80 < 128, it follows that 6 < x < 7.
+We first bracket 80 between successive powers of 2. We have 2^6 = 64 and 2^7 = 128. Since 64 < 80 < 128, it follows that 6 < x < 7. This eliminates 5.6 and 7.0 immediately.
 
-We next determine which endpoint x is nearer to by comparing the distances from 80 to each power. The distance from 80 down to 64 is 80 - 64 = 16, while the distance from 80 up to 128 is 128 - 80 = 48. Because 80 sits much closer to 64 than to 128, the exponent x lies closer to 6 than to 7. A precise computation gives x = log_2(80) = ln(80)/ln(2) which is approximately 6.32. Among the listed values, 6.3 is closest to this result.
+To choose among the remaining values, measure how much more than 2^6 the target is: 80 / 64 = 1.25. The exponent x is therefore 6 plus however many doublings a factor of 1.25 represents. Since 1.25 × 1.25 × 1.25 = 1.953, which is almost exactly 2, three steps of 1.25 make up about one full doubling — so one factor of 1.25 is worth roughly 1/3 of a doubling. Hence x ≈ 6 + 1/3 ≈ 6.33.
+
+Note that x is not 6.0: that would require 2^x to be exactly 64, and 80 is a full 25% larger. Nor can the gap be judged by linear distance — exponential growth means the "halfway exponent" 6.5 corresponds to 64√2 ≈ 90.5, so 80, sitting below 90.5, must have an exponent below 6.5. Among the listed values, 6.3 is the only one consistent with these bounds.
 
 The correct answer is C.
+**mistake_a:** 5.6 falls outside the bracket — 2^5.6 is less than 2⁶ = 64, but 80 exceeds 64.
+**mistake_b:** 6.0 would make 2^x exactly 64; the extra 25% is worth about a third of a doubling, not zero.
+**mistake_d:** 6.8 overshoots — 2^6.8 is near 111, far above 80; this usually comes from interpolating the wrong way.
+**mistake_e:** 7.0 would make 2^x exactly 128, which is 60% above the target.
+**common_trap:** Interpolating linearly between 64 and 128. Exponents grow multiplicatively: the midpoint exponent 6.5 sits at 64√2 ≈ 90.5, not at 96, and 80 lies below it.
+**takeaway:** Bracket with integer powers, then translate the leftover ratio with benchmarks: ×1.25 ≈ 2^(1/3) (because 1.25³ ≈ 2) and ×1.4 ≈ 2^(1/2).
 **related_reading:** reading-quant-04-algebra-and-equations
 
 
@@ -721,6 +846,7 @@ If 3^(x + 2) = 81, what is the value of x?
 - E) 4
 
 **answer:** C
+**fastest_path:** 81 is 3⁴, so x + 2 = 4 and x = 2.
 **explanation:** When an exponential equation can be written with the same base on both sides, the two exponents must be equal. The strategy is therefore to express both sides of the equation as powers of a common base and then equate the exponents.
 
 Let x be the unknown exponent satisfying 3^(x + 2) = 81. The right-hand side, 81, can be expressed as a power of 3, since 3^4 = 3 times 3 times 3 times 3 = 81. Substituting this form gives 3^(x + 2) = 3^4.
@@ -728,6 +854,11 @@ Let x be the unknown exponent satisfying 3^(x + 2) = 81. The right-hand side, 81
 Because both sides are now powers of the same base 3, the exponents must be equal: x + 2 = 4. Subtracting 2 from both sides yields x = 2.
 
 The correct answer is C.
+**mistake_a:** 0 comes from writing 81 as 9² and equating x + 2 with that exponent 2 — the bases must match (both base 3) before exponents can be compared.
+**mistake_b:** 1 miscounts 81 as 3³; but 3³ = 27, and 81 needs a fourth factor of 3.
+**mistake_e:** 4 solves for the whole exponent and stops — x + 2 = 4 still needs the final subtraction.
+**common_trap:** Reporting the exponent (4) instead of the variable x the question asked for.
+**takeaway:** Convert to a common base, equate exponents, then re-read the question — solving for the exponent is not always solving for x.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -746,6 +877,7 @@ What is the value of (−3)⁴?
 - E) 729
 
 **answer:** D
+**fastest_path:** Even exponent, parenthesized negative base — the sign cancels in pairs: 3⁴ = 81, positive.
 **explanation:** The governing principle is that an exponent indicates repeated multiplication of the base by itself, and that an even number of negative factors yields a positive product. The base here is the entire quantity inside the parentheses, namely negative three, because the parentheses enclose the negative sign together with the three.
 
 Let the expression be the product of four factors, each equal to negative three:
@@ -764,6 +896,12 @@ Multiplying these two results gives
 Because there are four factors of negative three, an even count, the negative signs cancel in pairs and the result is positive.
 
 The correct answer is D.
+**mistake_a:** −81 keeps a negative sign despite the even exponent — that is the value of −3⁴ (no parentheses), where the minus stays outside the power.
+**mistake_b:** −12 multiplies base by exponent (3 × 4) and keeps the sign — exponentiation is repeated multiplication, not multiplication by the exponent.
+**mistake_c:** 12 is the same base-times-exponent error without the sign.
+**mistake_e:** 729 is 3⁶ — a power miscount; only four factors of 3 appear here.
+**common_trap:** (−3)⁴ versus −3⁴: with parentheses the sign is part of the base and an even power erases it (+81); without them the minus survives (−81).
+**takeaway:** Even powers of a parenthesized negative base are positive; odd powers stay negative; a minus outside the parentheses is untouched by the exponent.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -836,6 +974,7 @@ What is the value of (4^(3/2) × 2⁴) / 2⁷?
 - E) 4
 
 **answer:** C
+**fastest_path:** 4^(3/2) = (√4)³ = 8 = 2³, so the whole fraction is 2^(3+4−7) = 2⁰ = 1.
 **explanation:** This expression can be evaluated by rewriting every term as a power of a single common base and then applying the rules for products and quotients of like bases. Because 4 is itself a power of 2, the entire expression can be expressed in base 2, after which the powers may be combined directly.
 
 We begin with the numerator. Since 4 = 2^2, we have 4^(3/2) = (2^2)^(3/2). The power-of-a-power rule states that (a^m)^n = a^(mn), so (2^2)^(3/2) = 2^(2 × 3/2) = 2^3. The numerator is therefore 2^3 × 2^4. The product rule for like bases states that a^m × a^n = a^(m+n), so 2^3 × 2^4 = 2^(3+4) = 2^7.
@@ -843,6 +982,10 @@ We begin with the numerator. Since 4 = 2^2, we have 4^(3/2) = (2^2)^(3/2). The p
 The expression now reads 2^7 / 2^7. The quotient rule for like bases states that a^m / a^n = a^(m−n), so 2^7 / 2^7 = 2^(7−7) = 2^0 = 1.
 
 The correct answer is C.
+**mistake_a:** 1/4 evaluates 4^(1/2) instead of 4^(3/2) — using the reciprocal of the fractional exponent gives 2^(1+4−7) = 2⁻².
+**mistake_b:** 1/2 ignores the fractional exponent altogether, treating 4^(3/2) as 4 = 2², which leaves 2^(2+4−7) = 2⁻¹.
+**common_trap:** Converting 4^(3/2): it is (√4)³ = 8. Halving (getting 2) or dropping the fraction (getting 4) are the two standard slips.
+**takeaway:** Push every factor to base 2 before combining; fractional powers of 4, 8, and 16 convert cleanly because those bases are themselves powers of 2.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -861,6 +1004,7 @@ For x > 0, which of the following is equivalent to √(75x⁴)?
 - E) 5x⁴√3
 
 **answer:** A
+**fastest_path:** Split into perfect squares: 75 = 25 × 3 gives 5√3, and √(x⁴) = x² — assemble 5x²√3.
 **explanation:** To simplify a square root, we apply the product property of radicals, which states that for nonnegative quantities a and b, the root of a product equals the product of the roots: the square root of (a times b) equals the square root of a times the square root of b. The strategy is to separate the numerical factor from the variable factor, then extract the largest perfect-square factor from each.
 
 Let the expression be the square root of (75 times x to the fourth), with x > 0. Separating the two factors gives the square root of 75 times the square root of (x to the fourth).
@@ -872,6 +1016,12 @@ We next simplify the variable factor. Because x > 0, the square root of (x to th
 Multiplying the simplified factors together, we obtain 5 times the square root of 3 times x squared, which we write as 5x squared times the square root of 3.
 
 The correct answer is A.
+**mistake_b:** 5x²√15 factors 75 as 5 × 15 and moves the 5 outside without square-rooting it — only perfect-square factors exit the radical.
+**mistake_c:** 15x² drops the radical entirely, multiplying 5 × 3 as if √3 were a whole 3.
+**mistake_d:** 25x²√3 moves 25 out of the radical without taking its square root; 25 exits as 5.
+**mistake_e:** 5x⁴√3 forgets that a square root halves even exponents — √(x⁴) is x², not x⁴.
+**common_trap:** Square roots halve even exponents and square-root perfect-square factors: x⁴ exits as x², and 25 exits as 5.
+**takeaway:** Split the radicand into its perfect-square parts (25 and x⁴ here) and root each on the way out; whatever remains stays under the radical.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -890,15 +1040,26 @@ If 2^a = 3^b > 1, which of the following must be true?
 - E) The relationship between a and b cannot be determined.
 
 **answer:** B
-**explanation:** When two exponential expressions with different bases are equal, the relationship between the exponents can be determined by taking the logarithm of both sides, which converts the equality of powers into a linear relationship among the exponents.
+**fastest_path:** Equal results from unequal bases: the smaller base (2) must work harder, so its exponent is larger — a > b.
+**explanation:** When two powers with different bases are equal, no logarithms are needed to compare the exponents — a one-line comparison with a shared exponent settles it.
 
-Let a and b be the exponents satisfying the given condition 2^a = 3^b > 1. Taking the natural logarithm of both sides of 2^a = 3^b gives a·ln 2 = b·ln 3.
+First establish the signs. Because 2^a > 1 and the base 2 exceeds 1, the exponent a must be positive; likewise 3^b > 1 forces b to be positive.
 
-We first establish the signs of a and b. Because 2^a > 1 and the base 2 exceeds 1, the exponent a must be positive. Likewise, because 3^b > 1 and the base 3 exceeds 1, the exponent b must be positive. Thus both a and b are positive.
+Now compare a and b directly. For the same positive exponent b, the larger base wins: 3^b > 2^b. But the given condition says 2^a equals 3^b, so
 
-Next we compare the exponents. Dividing both sides of a·ln 2 = b·ln 3 by b·ln 2, both of which are positive, yields a/b = ln 3 / ln 2. Since 3 > 2, we have ln 3 > ln 2, so the ratio ln 3 / ln 2 is greater than 1. Numerically, ln 3 / ln 2 ≈ 1.0986 / 0.6931 ≈ 1.585. Therefore a/b > 1, and because b is positive, multiplying through by b preserves the inequality, giving a > b.
+2^a = 3^b > 2^b.
+
+The outer comparison 2^a > 2^b uses a single base greater than 1, so the exponents follow the same order: a > b.
+
+Intuitively, each step of multiplying by 2 grows a number more slowly than a step of multiplying by 3, so reaching the same final value requires more steps of the slower growth — the smaller base carries the larger exponent.
 
 The correct answer is B.
+**mistake_a:** a = b is impossible here: with equal exponents the bigger base would pull ahead (3^b > 2^b), and the two powers could never be equal.
+**mistake_c:** a < b reverses the compensation — the smaller base must take MORE steps to reach the same value, not fewer.
+**mistake_d:** a = 2b assumes a fixed doubling. Test it: 3² = 9 needs 2^a = 9, and since 2³ = 8 < 9 < 16 = 2⁴, a is between 3 and 4 — not 4 exactly.
+**mistake_e:** The individual values of a and b are indeed undetermined, but the question asks which RELATIONSHIP must hold, and a > b holds for every valid pair.
+**common_trap:** Picking "cannot be determined" because a and b have no fixed values — must-be-true questions ask about the relation, not the numbers.
+**takeaway:** When powers of different bases are equal (and exceed 1), the smaller base carries the larger exponent. No logarithms required.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -1121,6 +1282,7 @@ Which values of x satisfy 2^(x−1) > 2^(3−x)?
 - E) All x > 4
 
 **answer:** C
+**fastest_path:** Base 2 exceeds 1, so compare exponents directly: x − 1 > 3 − x gives x > 2.
 **explanation:** The governing principle is the monotonicity of exponential functions. For a base a greater than 1, the function a^t is strictly increasing, so a^m > a^n holds if and only if m > n. The two expressions in this inequality share the base 2, and since 2 > 1, the inequality between the powers holds if and only if the same inequality holds between the exponents.
 
 Let the original inequality be 2^(x-1) > 2^(3-x). Because the common base 2 exceeds 1, we may compare the exponents directly while preserving the direction of the inequality:
@@ -1143,6 +1305,10 @@ x > 2.
 Thus the values of x that satisfy the original inequality are exactly those greater than 2.
 
 The correct answer is C.
+**mistake_a:** x > −2 drops a sign while collecting terms — solving as if 2x > −4 instead of 2x > 4.
+**mistake_e:** x > 4 ignores the −x on the right side, solving x − 1 > 3 alone.
+**common_trap:** The exponent comparison preserves direction only because the base 2 exceeds 1; a base between 0 and 1 would flip the inequality.
+**takeaway:** With a common base greater than 1, exponential inequalities reduce to the exponents — then it is just careful linear algebra.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -1161,6 +1327,7 @@ What is the value of 8^10 / 4^14?
 - E) 32
 
 **answer:** B
+**fastest_path:** Convert to base 2: 2³⁰ / 2²⁸ = 2² = 4.
 **explanation:** This problem is solved by expressing all quantities as powers of a single common base and then applying the rules of exponents. When two bases are different powers of the same prime, the most reliable approach is to rewrite each base in terms of that prime so that the quotient rule for exponents can be applied directly.
 
 We observe that both 8 and 4 are powers of 2. Specifically, 8 = 2^3 and 4 = 2^2. We therefore rewrite the numerator and the denominator in base 2.
@@ -1172,6 +1339,10 @@ For the denominator, applying the same rule, we have 4^14 = (2^2)^14 = 2^(2 time
 The expression now reads 2^30 divided by 2^28. Applying the quotient rule for exponents, by which a^m divided by a^n equals a^(m minus n), we obtain 2^(30 minus 28) = 2^2 = 4.
 
 The correct answer is B.
+**mistake_a:** 2 is an off-by-one in the final subtraction — 30 − 28 is 2, and 2² is 4, not 2.
+**mistake_d:** 16 subtracts the ORIGINAL exponents (14 − 10 = 4) and computes 2⁴ — but the bases 8 and 4 differ, so their exponents cannot interact until both are rewritten in base 2.
+**common_trap:** Operating on exponents while the bases still differ. Convert 8 to 2³ and 4 to 2² first.
+**takeaway:** Bases sharing a prime (4, 8, 16, 27, 81, ...) should be rewritten over that prime before any exponent rule is applied.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -1190,6 +1361,7 @@ What is the value of (9³ × 3⁴) / 27²?
 - E) 2187
 
 **answer:** B
+**fastest_path:** Spot the cancellation: 9³ and 27² are both 3⁶ — they cancel, leaving 3⁴ = 81.
 **explanation:** The governing principle is that powers of the same base may be combined directly through the laws of exponents, so the first task is to express every term using a single common base. Since 9, 27, and 3 are all powers of 3, we rewrite each factor as a power of 3.
 
 Let the base be 3. Because 9 = 3^2, the power rule (a^m)^n = a^(mn) gives 9^3 = (3^2)^3 = 3^6. Because 27 = 3^3, the same rule gives 27^2 = (3^3)^2 = 3^6. The factor 3^4 is already in base 3.
@@ -1203,6 +1375,12 @@ Applying the quotient rule a^m / a^n = a^(m-n) yields 3^(10-6) = 3^4.
 Evaluating, 3^4 = 81.
 
 The correct answer is B.
+**mistake_a:** 27 = 3³ — an exponent miscount of one; the surviving factor after cancellation is 3⁴.
+**mistake_c:** 243 = 3⁵ — the same off-by-one in the other direction, usually from converting 9³ to 3⁵ instead of 3⁶.
+**mistake_d:** 729 = 3⁶ keeps the wrong survivor — the 3⁶ pieces (9³ and 27²) cancel each other, and the 3⁴ is what remains.
+**mistake_e:** 2187 = 3⁷ treats 27² as 3⁵ — forgetting that (3³)² multiplies the exponents to 3⁶.
+**common_trap:** Exponent bookkeeping in conversions: (3²)³ = 3⁶ and (3³)² = 3⁶ — powers of powers multiply, never add.
+**takeaway:** Convert everything to the common prime base, then scan for exact cancellations before doing any arithmetic.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -1212,22 +1390,31 @@ The correct answer is B.
 **type:** Problem Solving
 **topic:** Exponent Comparison
 
-Which of the following is true?
+What is the value of 9¹¹ / 3²⁰?
 
-- A) 3^20 > 9^11
-- B) 3^20 = 9^11
-- C) 3^20 < 9^11
-- D) The relationship cannot be determined without knowing whether the exponents are integers
-- E) The relationship alternates depending on whether 20 and 11 are odd or even
+- A) 1/9
+- B) 1/3
+- C) 3
+- D) 9
+- E) 27
 
-**answer:** C
-**explanation:** To compare two exponential expressions, we express them in terms of a common base; once the bases are identical and exceed 1, the expression with the greater exponent has the greater value.
+**answer:** D
+**fastest_path:** Rewrite 9¹¹ as 3²², then subtract exponents: 3²²⁻²⁰ = 3² = 9.
+**explanation:** To divide two exponential expressions, we first express them in terms of a common base; only then can the quotient rule for exponents be applied.
 
-Let the two quantities be 3^20 and 9^11. We rewrite the second quantity with base 3 by noting that 9 = 3^2. Then 9^11 = (3^2)^11. Applying the power-of-a-power rule, which multiplies the exponents, gives 9^11 = 3^(2 × 11) = 3^22.
+We rewrite the numerator with base 3 by noting that 9 = 3^2. Then 9^11 = (3^2)^11. Applying the power-of-a-power rule, which multiplies the exponents, gives 9^11 = 3^(2 × 11) = 3^22.
 
-The comparison now reduces to 3^20 versus 3^22. Both expressions share the base 3, and 3 > 1, so the larger exponent yields the larger value. Since 22 > 20, we have 3^22 > 3^20, which means 9^11 > 3^20, or equivalently 3^20 < 9^11.
+The quotient is now 3^22 / 3^20. With a common base, the exponents subtract: 3^(22 − 20) = 3^2 = 9.
 
-The correct answer is C.
+As a sanity check on direction: 9^11 = 3^22 is larger than 3^20, so the ratio must exceed 1 — which immediately rules out the two fractional choices.
+
+The correct answer is D.
+**mistake_a:** 1/9 subtracts the exponents in the wrong order, computing 3^(20 − 22) = 3⁻². The larger power is on top, so the ratio exceeds 1.
+**mistake_b:** 1/3 compounds the order reversal with an off-by-one in the conversion.
+**mistake_c:** 3 converts 9¹¹ to 3²¹ — the doubling applies to the whole exponent, (3²)¹¹ = 3²², not 3²¹.
+**mistake_e:** 27 = 3³ converts 9¹¹ to 3²³, an off-by-one in the doubled exponent.
+**common_trap:** Letting the exponents interact while the bases still differ — 9¹¹ must become 3²² before anything can be subtracted.
+**takeaway:** The quotient rule a^m / a^n = a^(m−n) requires a COMMON base; convert composite bases to a shared prime first, then subtract.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -1246,6 +1433,7 @@ For any integer x ≥ 0, what is the value of |(-2)^(2x+1)| / 2^(2x)?
 - E) The value depends on whether x is odd or even
 
 **answer:** B
+**fastest_path:** Split off one factor: (−2)^(2x+1) = 4^x · (−2), so the absolute value is 2 · 4^x — and the denominator is also 4^x.
 **explanation:** The governing principle is that a power of a base can be separated by splitting the exponent into a sum, since a^(m+n) = a^m · a^n, and that a negative base raised to an even exponent is positive while a negative base raised to an odd exponent is negative. The method is to rewrite the numerator so that its sign and magnitude are explicit, apply the absolute value, express the denominator on the same base, and then cancel.
 
 Let x be any integer with x ≥ 0. We must evaluate |(-2)^(2x+1)| / 2^(2x).
@@ -1271,6 +1459,12 @@ The factor 4^x is positive and therefore nonzero, so it cancels:
 (2 · 4^x) / 4^x = 2.
 
 The result is the constant 2, independent of x. The correct answer is B.
+**mistake_a:** −2 forgets the absolute value bars — the numerator is negative before they apply, but the bars strip the sign.
+**mistake_c:** 4 squares the leftover factor — the exponents 2x + 1 and 2x differ by one, leaving a single factor of 2 in magnitude, not (−2)².
+**mistake_d:** 2x treats the exponent as a multiplier; exponents count factors, they never multiply the base directly.
+**mistake_e:** 2x + 1 is odd for EVERY integer x, so the parity of x is irrelevant — and the absolute value would erase any sign difference anyway.
+**common_trap:** The parity bait: an exponent of the form 2x + 1 is always odd, so the expression's sign never actually alternates.
+**takeaway:** Peel exponents apart with a^(m+n) = a^m · a^n to expose sign and magnitude separately; the absolute value then handles the sign cleanly.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -1289,6 +1483,7 @@ Which of the following equals 4^(3/4)?
 - E) 4√2
 
 **answer:** A
+**fastest_path:** Convert to base 2: 4^(3/4) = 2^(3/2) = 2 · √2.
 **explanation:** The governing principle is that an exponential expression is most easily simplified when its base is written as a power of a prime. The relevant rules are the power-of-a-power rule, which states that (a^m)^n = a^(mn), and the product rule for exponents, which states that a^(m+n) = a^m · a^n. We apply these rules after rewriting the base.
 
 Let the expression to be evaluated be 4^(3/4). Since 4 = 2², we substitute to obtain 4^(3/4) = (2²)^(3/4). Applying the power-of-a-power rule, we multiply the exponents: (2²)^(3/4) = 2^(2 · 3/4) = 2^(3/2).
@@ -1298,6 +1493,12 @@ We now simplify 2^(3/2) by writing the exponent as a sum: 3/2 = 1 + 1/2. By the 
 Thus 4^(3/4) = 2√2.
 
 The correct answer is A.
+**mistake_b:** 2∜2 = 2^(5/4) splits the exponent as 1 + 1/4 — but the base-2 exponent is 3/2, which splits as 1 + 1/2.
+**mistake_c:** ∜8 = 2^(3/4) applies the exponent 3/4 to base 2 directly, skipping the conversion 4 = 2² that doubles it to 3/2.
+**mistake_d:** √2 · ∛2 = 2^(5/6) mixes root indices — nothing in 4^(3/4) generates a cube root.
+**mistake_e:** 4√2 = 2^(5/2) keeps the base 4 alongside the radical, landing a full factor of 2 too high; the whole-number part is 2¹, not 2².
+**common_trap:** Working in base 4 — converting to base 2 makes the exponent arithmetic (2 × 3/4 = 3/2 = 1 + 1/2) transparent.
+**takeaway:** Convert composite bases to primes, then split the fractional exponent into whole + fractional parts to read off the radical form directly.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -1316,6 +1517,7 @@ If 5^a · 5^b = 5^12 and 5^a / 5^b = 5^4, what is 5^a?
 - E) 5¹⁶
 
 **answer:** C
+**fastest_path:** Translate to exponents: a + b = 12 and a − b = 4; adding gives a = 8.
 **explanation:** This problem is governed by the laws of exponents for a common base: when powers of the same base are multiplied, the exponents are added, and when they are divided, the exponents are subtracted. We may therefore translate each given equation into a linear equation in the exponents.
 
 Let a and b be the exponents in the two factors. The first equation gives 5^a multiplied by 5^b equal to 5^12, which by the product rule means 5^(a + b) = 5^12. Because the bases are equal, the exponents must be equal, so a + b = 12.
@@ -1327,12 +1529,18 @@ We now have the linear system a + b = 12 and a - b = 4. Adding the two equations
 The quantity requested is 5^a, which is therefore 5^8. As a check, substituting a = 8 into the first equation gives b = 4, and 5^8 multiplied by 5^4 equals 5^12, while 5^8 divided by 5^4 equals 5^4, confirming both conditions.
 
 The correct answer is C.
+**mistake_a:** 5⁴ is 5^b — the system was solved for the wrong variable (b = 4).
+**mistake_b:** 5⁶ splits 12 evenly between a and b, using only the first equation and ignoring the second.
+**mistake_d:** 5¹² is the given product, not 5^a.
+**mistake_e:** 5¹⁶ is 5^(2a) — the product of the two given equations. One more step (halving the exponent) finishes the job.
+**common_trap:** Multiplying the two equations gives 5^(2a) = 5¹⁶ and stopping there — the question asks for 5^a = 5⁸.
+**takeaway:** Equations between powers of one base are linear equations in the exponents; solve the system, then answer for the exact quantity requested.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
 
 ## Q45
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Fractional Exponents
 
