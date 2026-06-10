@@ -29,6 +29,7 @@ export const DIRECT_BANK_CHAPTER: Record<string, string> = {
   "table-analysis": "table-analysis",
   "graphics-interpretation": "graphics-interpretation",
   "two-part-analysis": "two-part-analysis",
+  "multi-source-reasoning": "multi-source-reasoning",
 }
 
 export interface SubtopicRule {
@@ -135,7 +136,6 @@ export const COMING_SOON_CHAPTERS: ReadonlySet<string> = new Set([
   // dedicated subtype questions yet, so they remain "coming soon".
   "verbal-13-rc-reading-process",
   "verbal-20-rc-answer-traps",
-  "multi-source-reasoning",
 ])
 
 /**
