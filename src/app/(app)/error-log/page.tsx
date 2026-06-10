@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { AlertCircle, X } from "lucide-react"
+import { AlertCircle, TrendingUp, X } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getAllQuestions, type ParsedQuestion } from "@/lib/content"
 import {
@@ -36,6 +36,10 @@ export default async function ErrorLogPage({
   const { session_id: sessionIdFilter } = await searchParams
   let mistakes: MistakeEntry[] = []
   let hasUser = false
+  // Comeback metric — of the distinct questions in this log, how many has
+  // the student since answered correctly? Reframes the log from a record of
+  // failures into evidence of growth. Populated inside the try below.
+  let comeback = { resolved: 0, distinctMissed: 0 }
 
   try {
     const supabase = await createSupabaseServer()
@@ -160,6 +164,51 @@ export default async function ErrorLogPage({
             : null) as MistakeEntry["confidence"],
         }
       })
+
+      // Comeback metric. A question counts as resolved only when a correct
+      // attempt POSTDATES its most recent miss in this log — so re-missing a
+      // question after fixing it correctly un-resolves it again. Session
+      // created_at is the timestamp source for both sides; a correct answer
+      // in the same session as the miss can't be ordered, so it doesn't
+      // count (conservative — we never overclaim a turnaround).
+      const latestMiss = new Map<string, number>()
+      for (const m of mistakes) {
+        const ts = m.createdAt ? new Date(m.createdAt).getTime() : NaN
+        if (!Number.isFinite(ts)) continue
+        latestMiss.set(
+          m.questionId,
+          Math.max(latestMiss.get(m.questionId) ?? 0, ts)
+        )
+      }
+      const missedIds = Array.from(latestMiss.keys())
+      if (missedIds.length > 0) {
+        const { data: correctRows } = await supabase
+          .from("practice_attempts")
+          .select("question_id, practice_sessions(created_at)")
+          .eq("user_id", user.id)
+          .eq("is_correct", true)
+          .in("question_id", missedIds)
+        const latestCorrect = new Map<string, number>()
+        for (const r of (correctRows as
+          | { question_id: string; practice_sessions: { created_at: string } | null }[]
+          | null) ?? []) {
+          const ts = r.practice_sessions?.created_at
+            ? new Date(r.practice_sessions.created_at).getTime()
+            : NaN
+          if (!Number.isFinite(ts)) continue
+          latestCorrect.set(
+            r.question_id,
+            Math.max(latestCorrect.get(r.question_id) ?? 0, ts)
+          )
+        }
+        let resolved = 0
+        for (const qid of missedIds) {
+          const c = latestCorrect.get(qid)
+          const miss = latestMiss.get(qid)
+          if (c != null && miss != null && c > miss) resolved += 1
+        }
+        comeback = { resolved, distinctMissed: missedIds.length }
+      }
     }
   } catch {
     // Supabase unavailable — render empty state below.
@@ -402,6 +451,36 @@ export default async function ErrorLogPage({
               "Sign in to see questions you've missed in practice sets, with explanations and quick links back to the sets."
             )}
           </p>
+          {!sessionIdFilter && comeback.resolved > 0 && (
+            <div
+              className="mt-5 inline-flex items-center gap-2.5 rounded-full border px-4 py-2"
+              style={{
+                borderColor: "rgba(62,207,142,0.22)",
+                backgroundColor: "rgba(62,207,142,0.05)",
+              }}
+            >
+              <TrendingUp
+                className="w-3.5 h-3.5 flex-shrink-0"
+                style={{ color: "#3ECF8E" }}
+                aria-hidden
+              />
+              <span className="text-[13px] leading-snug text-[#C0C0C0]">
+                <span
+                  className="font-semibold tabular-nums"
+                  style={{ color: "#3ECF8E" }}
+                >
+                  {comeback.resolved}
+                </span>{" "}
+                of {comeback.distinctMissed} missed question
+                {comeback.distinctMissed === 1 ? "" : "s"} since solved
+                correctly
+                <span className="text-[#888888]">
+                  {" "}
+                  — that&apos;s the log doing its job.
+                </span>
+              </span>
+            </div>
+          )}
           {sessionIdFilter && (
             <div className="mt-5 inline-flex items-center gap-2 text-[12px] text-[#C0C0C0] px-3 py-1.5 rounded-full border border-white/[0.08] bg-[#0A0A0A]">
               <span className="tabular-nums">
