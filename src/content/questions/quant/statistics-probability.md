@@ -17,6 +17,7 @@ The average (arithmetic mean) of 6 numbers is 15. After one of the numbers is re
 - E) 25
 
 **answer:** E
+**fastest_path:** The removed value is just the change in total: 6 × 15 − 5 × 13 = 90 − 65 = 25. Convert each average to a sum and subtract — never work with the averages directly.
 **explanation:** The arithmetic mean of a set of numbers equals the sum of the numbers divided by how many numbers there are; equivalently, the sum equals the mean multiplied by the count. Working with sums rather than with the averages themselves is the key to this problem.
 
 Let S be the sum of the original 6 numbers. Since the average of these 6 numbers is 15, we have
@@ -32,6 +33,14 @@ Removing r from the original collection reduces the total sum from S to T, so
 r = S − T = 90 − 65 = 25.
 
 The correct answer is E.
+**mistake_a:** 2 = 15 − 13, the difference of the two averages. A single removed number is the change in the *total*, not the change in the *average* — those are wildly different sizes.
+**mistake_b:** 10 = (15 − 13) × 5, scaling the change in average by the remaining count. Multiply count by mean to reach a sum first; never multiply a difference of means by a count.
+**mistake_c:** 13 is the new average, copied straight from the stem. The question asks for the value that was removed, not either average.
+**mistake_d:** 15 is the original average, another number lifted from the problem rather than computed.
+**common_trap:** Subtracting the two averages (15 − 13 = 2) and calling that the removed value. One element can swing an average by far more than the average's own change.
+**takeaway:** For any add/remove-an-element average problem, turn both averages into totals (sum = mean × count); the missing element is always sum_before − sum_after.
+**hint_nudge:** Don't compare the two averages to each other — turn each one into a total first.
+**hint_strategy:** Sum of the 6 numbers is 6 × 15; sum of the remaining 5 is 5 × 13. The removed number is the difference of those two totals.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -50,6 +59,7 @@ A bag contains 4 red balls, 3 blue balls, and 5 green balls. If one ball is draw
 - E) 3/4
 
 **answer:** B
+**fastest_path:** Count the "not green" balls directly: red + blue = 4 + 3 = 7 out of 12, so 7/12. (Equivalently, 1 − 5/12.)
 **explanation:** The probability of an event is the ratio of the number of favorable outcomes to the total number of equally likely outcomes. Because every ball is equally likely to be drawn, we can apply this principle directly, and because the question asks for the probability that the ball is NOT green, it is efficient to use the complement rule, which states that the probability that an event does not occur equals 1 minus the probability that it does occur.
 
 Let T denote the total number of balls. The bag contains 4 red balls, 3 blue balls, and 5 green balls, so
@@ -67,6 +77,13 @@ P(not green) = 1 - P(green) = 1 - 5/12 = 12/12 - 5/12 = 7/12.
 Equivalently, the number of balls that are not green is the number of red balls plus the number of blue balls, namely 4 + 3 = 7, so the probability is 7/12 directly.
 
 The correct answer is B.
+**mistake_a:** 5/12 is P(green) itself — you found the probability of the very event the question negates with NOT.
+**mistake_c:** 1/3 = 4/12 is P(blue), the one color the question never mentions; "not green" must include both red and blue.
+**mistake_d:** 2/3 = 8/12 is the complement of *red* (everything that isn't red), not the complement of green.
+**mistake_e:** 3/4 = 9/12 removes only the 3 blue balls from the total, leaving red and green; but green is exactly what should be excluded.
+**common_trap:** Sliding past the capitalized NOT and reporting P(green) = 5/12.
+**takeaway:** On "not" or "at least one" probability, use the complement (1 − P) or count the favorable outcomes directly; both protect you from forgetting to flip the event.
+**hint_nudge:** The word NOT is doing real work here. Start by finding P(green).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -85,6 +102,7 @@ What is the median of the set {14, 7, 21, 3, 10, 7, 18}?
 - E) 18
 
 **answer:** B
+**fastest_path:** Sort, then read the value at position (7 + 1)/2 = 4: from 3, 7, 7, 10, 14, 18, 21 the fourth value is 10.
 **explanation:** The median of a set of numbers is found by arranging the values in increasing order and selecting the middle value. When the set contains an odd number of values, the median is the single value in the middle position; when the set contains an even number of values, the median is the average of the two middle values. Any value that appears more than once must be listed every time it occurs.
 
 Let the set be {14, 7, 21, 3, 10, 7, 18}. Counting its elements gives seven values, and the value 7 appears twice, so both occurrences are retained when ordering.
@@ -94,6 +112,12 @@ Arranging the seven values in increasing order produces 3, 7, 7, 10, 14, 18, 21.
 Because the set contains an odd number of values, the median is the single middle value. For a set of n values arranged in order, the middle position is (n + 1)/2. Here n = 7, so the middle position is (7 + 1)/2 = 4. The value in the fourth position of 3, 7, 7, 10, 14, 18, 21 is 10.
 
 The correct answer is B.
+**mistake_a:** 7 is the mode (it appears twice), not the median. How often a value occurs has nothing to do with which value sits in the middle.
+**mistake_c:** 12 comes from discarding the duplicate 7 and taking the median of the six remaining distinct values, (10 + 14)/2 = 12. Duplicates must be kept — there are seven values, not six.
+**mistake_d:** 14 is an off-by-one on the middle position (the 5th value rather than the 4th), or the result of grabbing a middle-ish entry without first sorting.
+**mistake_e:** 18 drifts toward the larger end of the set; the median is a fixed position, not "a big central-looking number."
+**common_trap:** Confusing the median with the mode because 7 conspicuously repeats — or forgetting to keep both 7s when ordering.
+**takeaway:** Median = sort first, keep every repeated value, then read off the entry at position (n + 1)/2.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -112,6 +136,7 @@ A class of 25 students has a mean test score of 72. The mean score of the 10 boy
 - E) 84
 
 **answer:** D
+**fastest_path:** Balance the deviations: the 10 boys are 12 below the mean, a deficit of 12 × 10 = 120. The 15 girls must carry that 120 surplus, so they sit 120/15 = 8 above the mean: 72 + 8 = 80.
 **explanation:** The arithmetic mean of a set of values equals the sum of those values divided by the number of values. It follows that the sum of a group of values equals its mean multiplied by its count, and that the sum of the entire class equals the sum of its two subgroups, the boys and the girls.
 
 Let S denote the sum of all 25 test scores, let B denote the sum of the 10 boys' scores, and let G denote the sum of the 15 girls' scores. Because every student is either a boy or a girl, S = B + G.
@@ -121,6 +146,14 @@ The class of 25 students has a mean of 72, so the total sum is S = 25 × 72 = 1,
 The mean score of the 15 girls is the girls' sum divided by the number of girls: G ÷ 15 = 1,200 ÷ 15 = 80.
 
 The correct answer is D.
+**mistake_a:** 60 is the boys' mean, reused for the girls — but the two groups are explicitly different.
+**mistake_b:** 72 is the whole-class mean, chosen as if the girls happened to match the overall average.
+**mistake_c:** 76 is a partial-offset error: you nudged the mean up by some of the boys' deficit but didn't load all of it onto the smaller girls' group.
+**mistake_e:** 84 = 72 + 12 mirrors the boys' 12-point deficit one-for-one. That treats the two groups as equal in size; because the 15 girls outnumber the 10 boys, the girls move less than 12.
+**common_trap:** Ignoring the unequal group sizes and assuming the girls sit as far above the mean as the boys sit below it.
+**takeaway:** Weighted averages balance by total deviation, not by equal shares: (count × distance from the mean) for one group must exactly offset the other.
+**hint_nudge:** Work in total points — the whole class totals 25 × 72.
+**hint_strategy:** Girls' total = class total − boys' total; then divide that by 15.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -139,6 +172,7 @@ Two fair six-sided dice are rolled. What is the probability that the sum of the 
 - E) 1/4
 
 **answer:** B
+**fastest_path:** Over the 36 ordered rolls, count the ways to total 8: (2,6), (3,5), (4,4), (5,3), (6,2) = 5, so 5/36.
 **explanation:** The probability of an event is the number of favorable outcomes divided by the total number of equally likely outcomes. Because the two dice are distinguishable, each roll is recorded as an ordered pair, where the first entry is the result of the first die and the second entry is the result of the second die.
 
 Each die can show any of 6 values, and the result of one die is independent of the other, so the total number of equally likely ordered outcomes is 6 times 6, which is 36.
@@ -148,6 +182,13 @@ We now count the ordered pairs whose entries sum to 8. Letting the pair (a, b) d
 Therefore the probability is 5 divided by 36, or 5/36.
 
 The correct answer is B.
+**mistake_a:** 1/12 = 3/36 counts only the unordered pairs {2,6}, {3,5}, {4,4} and misses that (2,6) and (6,2) are two distinct rolls.
+**mistake_c:** 1/6 = 6/36 over-counts to a "clean" sixth — for example by including an impossible (1,7)/(7,1) or by counting the double (4,4) twice.
+**mistake_d:** 7/36 adds yet another phantom ordered pair beyond the five that legitimately total 8.
+**mistake_e:** 1/4 = 9/36 confuses the count for 8 with that of a more central sum (a sum of 6 or 7 has more ways); 8 has only five.
+**common_trap:** Treating (a, b) and (b, a) as the same outcome, which undercounts every mixed pair on two distinguishable dice.
+**takeaway:** With two distinguishable dice, always work over the 36 ordered outcomes; only the doubles (here 4,4) count once — every mixed pair counts twice.
+**hint_nudge:** There are 36 equally likely ordered outcomes, not 21 unordered ones.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -166,6 +207,7 @@ Set A = {10, 20, 30, 40, 50} and Set B = {20, 25, 30, 35, 40}. Which of the foll
 - E) Set B has a greater mean and a smaller standard deviation
 
 **answer:** B
+**fastest_path:** Both sets are symmetric with the same mean (30). Compare spreads by eye: A reaches 20 away from 30, B only 10 — so A is more spread and has the larger SD. No variance computation needed.
 **explanation:** The standard deviation of a set measures how far its values are spread from the mean; when two sets share the same mean, the set whose values lie farther from that mean has the greater standard deviation. Because both sets here contain the same number of equally spaced values, it suffices to compare their means and the size of their deviations from those means.
 
 Let the mean of a set be the sum of its values divided by the count of values. For Set A, the mean is (10 + 20 + 30 + 40 + 50) / 5 = 150 / 5 = 30. For Set B, the mean is (20 + 25 + 30 + 35 + 40) / 5 = 150 / 5 = 30. The two sets therefore have the same mean, namely 30.
@@ -177,6 +219,12 @@ This comparison alone establishes that Set A has the greater standard deviation.
 Thus the two sets share the same mean, but Set A has the greater standard deviation.
 
 The correct answer is B.
+**mistake_a:** Claims equal standard deviations — true only if the spreads matched, but A ranges 10–50 while B ranges only 20–40.
+**mistake_c:** Reverses the comparison; B is the tighter set, so B has the *smaller* standard deviation, not the greater.
+**mistake_d:** Asserts A has the greater mean, but both means equal 30 — no "greater mean" option can be correct.
+**mistake_e:** Again claims unequal means; both sets average 30.
+**common_trap:** Assuming the set with the larger individual values (A reaches 50) must also have the larger mean. Center and spread are independent here: equal means, different spreads.
+**takeaway:** Equal counts of symmetric, evenly spaced values give equal means; whichever set's values sit farther from that shared mean carries the larger standard deviation.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -195,6 +243,7 @@ How many 3-digit positive integers have all distinct digits and are divisible by
 - E) 152
 
 **answer:** C
+**fastest_path:** Split on the units digit. Units = 0: hundreds 9 × tens 8 = 72. Units = 5: hundreds 8 (no 0, no second 5) × tens 8 = 64. Total 72 + 64 = 136.
 **explanation:** A positive integer is divisible by 5 precisely when its units digit is 0 or 5, so the counting is organized into two mutually exclusive cases according to the units digit. Within each case the digits must be distinct, and the hundreds digit cannot be 0, since the number must be a 3-digit integer. The fundamental counting principle is applied to each case: the number of integers equals the product of the number of available choices for each position.
 
 Case 1: the units digit is 0. The hundreds digit may be any of 1 through 9, which gives 9 choices, because 0 has already been used. The tens digit may be any digit from 0 through 9 except the two digits already placed (the 0 in the units position and the chosen hundreds digit), which leaves 10 - 2 = 8 choices. The number of integers in this case is 9 * 8 = 72.
@@ -204,6 +253,14 @@ Case 2: the units digit is 5. The hundreds digit may be any of 1 through 9 excep
 The two cases have no overlap, so the total number of qualifying integers is 72 + 64 = 136.
 
 The correct answer is C.
+**mistake_a:** 112 undercounts — typically by using 7 instead of 8 for the tens place, or by losing the leading-digit choice in the units-0 case.
+**mistake_b:** 128 = 64 + 64, giving the units-0 case only 8 hundreds choices (treating it like the units-5 case) instead of the full 9.
+**mistake_d:** 144 = 72 + 72, failing to drop one hundreds choice in the units-5 case (where 5 is already used), so both cases are counted as if identical.
+**mistake_e:** 152 over-counts — for example by allowing a repeated digit, or by giving the tens place 9 choices instead of 8.
+**common_trap:** Letting 0 sit in the hundreds place, or not noticing that "units = 5" removes one hundreds option (no leading 0 *and* no second 5), so the two cases give different counts.
+**takeaway:** Divisible by 5 means units in {0, 5}; case it out, fill the restricted positions first, and remember the leading digit can never be 0 — the two cases yield 9 vs 8 hundreds choices.
+**hint_nudge:** A multiple of 5 ends in 0 or 5 — treat those as two separate cases.
+**hint_strategy:** Fill the units digit first, then the hundreds (no 0, no repeat), then the tens (any remaining digit).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -222,6 +279,7 @@ A box contains 5 red chips and 3 blue chips. Two chips are drawn at random witho
 - E) 27/28
 
 **answer:** B
+**fastest_path:** Complement: P(at least one red) = 1 − P(both blue) = 1 − (3/8)(2/7) = 1 − 3/28 = 25/28.
 **explanation:** The most efficient approach to an "at least one" probability question is the complement method: the probability that at least one of the drawn chips is red equals 1 minus the probability that none of the drawn chips is red, that is, the probability that both chips are blue.
 
 Let the box contain 5 red chips and 3 blue chips, for a total of 8 chips, and let two chips be drawn at random without replacement. We compute the probability that both chips are blue.
@@ -235,6 +293,14 @@ Applying the complement, the probability that at least one chip is red is:
 P(at least one red) = 1 - P(both blue) = 1 - 3/28 = 28/28 - 3/28 = 25/28.
 
 The correct answer is B.
+**mistake_a:** 5/8 is just P(the first chip is red) — the probability of one specific draw, not of "at least one red across two draws."
+**mistake_c:** 13/14 = 26/28 is 1 minus an undercounted both-blue probability (2/28 instead of 3/28) — an arithmetic slip on (3/8)(2/7).
+**mistake_d:** 15/28 is P(exactly one red) = 2 × (5/8)(3/7) = 30/56. "At least one" also includes the both-red case, which this drops.
+**mistake_e:** 27/28 = 1 − 1/28 uses a too-small both-blue probability (for instance (3/8)(1/7) mis-multiplied), shrinking the part you subtract.
+**common_trap:** Computing P(exactly one red) instead of P(at least one red), which silently omits the both-red outcome.
+**takeaway:** "At least one" means take the complement: 1 − P(none). It collapses several cases into one short subtraction.
+**hint_nudge:** "At least one red" is everything except a single outcome — which one?
+**hint_strategy:** P(no red) = P(both blue) = (3/8)(2/7). Subtract that from 1.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -242,7 +308,7 @@ The correct answer is B.
 ## Q9
 **difficulty:** Easy
 **type:** Problem Solving
-**topic:** Mean / Median
+**topic:** Mean
 
 The set {4, 7, 9, 12, x} has a mean of 9. What is the value of x?
 
@@ -253,6 +319,7 @@ The set {4, 7, 9, 12, x} has a mean of 9. What is the value of x?
 - E) 15
 
 **answer:** D
+**fastest_path:** The total must be 9 × 5 = 45; subtract the four knowns: 45 − (4 + 7 + 9 + 12) = 45 − 32 = 13.
 **explanation:** The arithmetic mean of a set of numbers equals the sum of those numbers divided by the count of numbers in the set. It follows that the sum of the numbers equals the mean multiplied by the count.
 
 Let x denote the unknown member of the set {4, 7, 9, 12, x}. The set contains 5 numbers, and the mean is given as 9. Therefore the sum of all 5 numbers must equal the mean times the count:
@@ -268,6 +335,12 @@ Since the total of all five numbers is 45, the value of x is the difference betw
 x = 45 − 32 = 13.
 
 The correct answer is D.
+**mistake_a:** 9 is the mean itself, mistaken for the missing value.
+**mistake_b:** 11 comes from 45 − 34 — an arithmetic slip in adding the four knowns (4 + 7 + 9 + 12 = 32, not 34).
+**mistake_c:** 12 is the largest given value, copied from the set rather than computed.
+**mistake_e:** 15 overshoots — for example from inflating the required total past 45 (miscounting the mean over four values, or padding the known sum).
+**common_trap:** Eyeballing a value "near the others" instead of forcing the total to equal mean × count.
+**takeaway:** A missing-value mean problem is one line: required total (mean × count) minus the sum of the known values.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -286,6 +359,7 @@ A jar contains 6 red marbles, 4 blue marbles, and 2 yellow marbles. If one marbl
 - E) 3/4
 
 **answer:** D
+**fastest_path:** Favorable = red + yellow = 6 + 2 = 8 out of 12 = 2/3.
 **explanation:** When an experiment has finitely many equally likely outcomes, the probability of an event equals the number of favorable outcomes divided by the total number of possible outcomes. Moreover, when two events cannot occur simultaneously, the probability that one or the other occurs is the sum of their individual probabilities.
 
 Let the total number of marbles be the number of equally likely outcomes for a single random draw. The jar holds 6 red, 4 blue, and 2 yellow marbles, so the total is
@@ -305,6 +379,12 @@ Reducing this fraction by dividing numerator and denominator by 4 gives
 8 / 12 = 2 / 3.
 
 The correct answer is D.
+**mistake_a:** 1/3 = 4/12 is P(blue), the one color the question leaves out; "red or yellow" excludes blue, not includes it.
+**mistake_b:** 1/2 = 6/12 counts only the red marbles and forgets to add the 2 yellow.
+**mistake_c:** 7/12 is an off-by-one in the count (7 favorable instead of 8), as if there were one fewer red or yellow marble.
+**mistake_e:** 3/4 = 9/12 over-counts the favorable marbles to 9, e.g., by also including a blue marble.
+**common_trap:** Counting only the first-named favorable color (red) and dropping the "or yellow" half of the event.
+**takeaway:** For "A or B" with disjoint outcomes, add the favorable counts once, then divide by the total a single time.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -323,6 +403,7 @@ A restaurant offers 4 appetizers, 6 entrees, and 3 desserts. How many different 
 - E) 72
 
 **answer:** E
+**fastest_path:** Multiply the independent choices: 4 × 6 × 3 = 72.
 **explanation:** This problem is governed by the multiplication principle of counting: when a selection is made by performing several independent stages in succession, the total number of possible outcomes equals the product of the number of choices available at each stage.
 
 A three-course meal consists of one appetizer, one entree, and one dessert, so the meal is assembled in three independent stages. Let A denote the number of appetizer choices, let B denote the number of entree choices, and let C denote the number of dessert choices. We are given A = 4, B = 6, and C = 3.
@@ -342,6 +423,12 @@ Each of these 24 pairs can then be combined with any one of the 3 desserts:
 Thus a customer can order 72 different three-course meals.
 
 The correct answer is E.
+**mistake_a:** 13 = 4 + 6 + 3 adds the options instead of multiplying — the "how many items total" reflex.
+**mistake_b:** 24 = 4 × 6 multiplies only the first two courses and forgets the dessert stage.
+**mistake_c:** 36 drops or distorts a factor (for example 6 × 6, or only two of the three courses with a wrong count).
+**mistake_d:** 54 = 6 × 3 × 3 miscounts one course, using 3 where 4 belongs.
+**common_trap:** Adding the counts (13). You add only when choosing among mutually exclusive single options; here three independent stages combine, so they multiply.
+**takeaway:** Independent successive choices multiply (fundamental counting principle); reserve addition for "either this single thing or that single thing."
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -360,6 +447,7 @@ The mean of five distinct positive integers is 20 and their median is 18. If the
 - E) 17
 
 **answer:** C
+**fastest_path:** The sum is 100; with the median c = 18 and the largest e = 40 fixed, a + b + d = 42. To maximize a, shrink b and d: distinctness forces d ≥ 19 and b = a + 1, so a + (a + 1) + 19 = 42, giving a = 11.
 **explanation:** The arithmetic mean of a set of numbers equals the sum of the numbers divided by how many there are, and the median of an odd number of distinct values is the middle value when the values are listed in increasing order. Since the five integers are distinct, every inequality among them is strict.
 
 Let the five distinct positive integers, listed in increasing order, be a, b, c, d, and e. Because the mean is 20, the sum of the five integers is 5 times 20, which is 100. The median is the middle value, so c = 18, and the largest value is e = 40.
@@ -375,6 +463,14 @@ Using these smallest possible values, a + (a + 1) + 19 = 42. This simplifies to 
 This produces the set 11, 12, 18, 19, 40. The five values are distinct, their sum is 100 so the mean is 20, the middle value is 18, and the largest is 40, confirming that the greatest possible value of the smallest integer is 11.
 
 The correct answer is C.
+**mistake_a:** 1 is the *smallest* possible value of a (push a down, not up) — the opposite of what the question asks.
+**mistake_b:** 5 is a half-finished attempt that doesn't push b and d all the way to their minimum allowed values.
+**mistake_d:** 12 comes from letting d = 18 (equal to the median) instead of the required d ≥ 19; that off-by-one steals a unit and inflates a.
+**mistake_e:** 17 forces a just under the median (treating the only constraint as a < 18) while ignoring the fixed sum, which overshoots.
+**common_trap:** To maximize one quantity in a fixed sum you must minimize the others; test-takers instead maximize the wrong variable or quietly relax the distinctness/median constraints.
+**takeaway:** Fixed-sum optimization: pin the known terms, then drive every *other* term to its constraint-limited extreme in the direction that frees up the target.
+**hint_nudge:** The five values sum to 100. After fixing the median and the maximum, which three are still free?
+**hint_strategy:** To make the smallest value as large as possible, make the other two free values (b and d) as small as the distinct + median rules allow.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -393,6 +489,7 @@ The exam scores of 8 students, listed in increasing order, are: 52, 58, 64, 70, 
 - E) 42
 
 **answer:** C
+**fastest_path:** Q1 = median of {52, 58, 64, 70} = 61; Q3 = median of {76, 82, 88, 94} = 85; IQR = 85 − 61 = 24.
 **explanation:** The interquartile range (IQR) of a data set is defined as the difference between the third quartile and the first quartile, IQR = Q3 - Q1, where Q1 is the median of the lower half of the ordered data and Q3 is the median of the upper half. The IQR measures the spread of the middle 50 percent of the values.
 
 The data set already appears in increasing order and contains 8 values: 52, 58, 64, 70, 76, 82, 88, 94. Because there is an even number of values, we split the data into two equal halves of four values each.
@@ -404,6 +501,12 @@ Let the upper half be the four largest values, {76, 82, 88, 94}. Its median, Q3,
 We then compute the interquartile range: IQR = Q3 - Q1 = 85 - 61 = 24.
 
 The correct answer is C.
+**mistake_a:** 12 is a single inner gap (for instance 82 − 70), not the distance between the two quartiles.
+**mistake_b:** 21 comes from mis-locating the quartiles — averaging the wrong adjacent pair in one or both halves.
+**mistake_d:** 30 = 94 − 64 or 88 − 58, mixing a quartile with an extreme value instead of using both quartiles.
+**mistake_e:** 42 = 94 − 52 is the full range (max − min), not the interquartile range.
+**common_trap:** Reporting the range (max − min = 42) in place of Q3 − Q1.
+**takeaway:** IQR = Q3 − Q1, where each quartile is the median of its half; with 8 values, average the two middle values within each four-value half.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -422,6 +525,7 @@ A list of 10 numbers has a mean of 24. When an 11th number is added, the new mea
 - E) 36
 
 **answer:** D
+**fastest_path:** New total − old total = the added number: 11 × 25 − 10 × 24 = 275 − 240 = 35.
 **explanation:** The arithmetic mean of a list of numbers equals the sum of the numbers divided by how many numbers there are. Equivalently, the sum of the numbers equals the mean multiplied by the count. This relationship is the governing principle, and it allows the unknown value to be recovered by comparing the total sum before and after the 11th number is added.
 
 Let S be the sum of the original 10 numbers, and let x be the value of the 11th number. Because the original 10 numbers have a mean of 24, we have S = 10 × 24 = 240. After the 11th number is added, the list contains 11 numbers whose mean is 25, so the sum of all 11 numbers is 11 × 25 = 275.
@@ -429,6 +533,12 @@ Let S be the sum of the original 10 numbers, and let x be the value of the 11th 
 The sum of all 11 numbers is also equal to the original sum plus the 11th number, that is, S + x = 240 + x. Setting the two expressions for the new sum equal to each other gives 240 + x = 275. Solving for x yields x = 275 − 240 = 35.
 
 The correct answer is D.
+**mistake_a:** 25 is the new mean, mistaken for the new value.
+**mistake_b:** 26 nudges the mean up by a small amount (24 + 2 or 25 + 1) instead of working with totals.
+**mistake_c:** 30 is a midpoint-style guess between the mean and the true value, with no total actually computed.
+**mistake_e:** 36 is an off-by-one in one of the totals (for example 275 − 239).
+**common_trap:** Assuming the added value sits close to the new mean; a single new term can lie far from the mean while moving it only by 1.
+**takeaway:** Add-an-element mean problems: the new value = (new mean × new count) − (old mean × old count).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -447,6 +557,7 @@ A drawer contains 7 black socks and 5 white socks. If two socks are drawn at ran
 - E) 49/144
 
 **answer:** B
+**fastest_path:** Without replacement, multiply the conditional draws: (7/12)(6/11) = 42/132 = 7/22.
 **explanation:** The probability that two events both occur is the product of the probability of the first event and the conditional probability of the second event given that the first has occurred. Because the socks are drawn without replacement, the composition of the drawer changes after the first draw, so the second probability must be computed from the reduced contents.
 
 The drawer initially contains 7 black socks and 5 white socks, for a total of 12 socks. Let the first event be drawing a black sock and the second event be drawing a black sock on the next draw.
@@ -460,6 +571,13 @@ Multiplying the two probabilities gives the probability that both socks are blac
 (7/12)(6/11) = 42/132 = 7/22.
 
 The correct answer is B.
+**mistake_a:** 7/24 = (7/12)(6/12) keeps the denominator at 12 on the second draw — treating the bottom as if the sock were replaced.
+**mistake_c:** 1/2 is a rough "about half are black" guess that skips the multiplication entirely.
+**mistake_d:** 35/132 = (7/12)(5/11) uses 5 black socks left on the second draw (the white count) instead of 6.
+**mistake_e:** 49/144 = (7/12)(7/12) draws "with replacement," reusing 7/12 for both draws.
+**common_trap:** Applying with-replacement probabilities (7/12 twice, or 6/12) when the draw is explicitly without replacement.
+**takeaway:** Without replacement, both the favorable count and the total drop by one after each success — multiply the conditional probabilities, not the original ones.
+**hint_nudge:** After one black sock is removed and not replaced, how many black socks and how many socks remain?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -478,6 +596,7 @@ Set X = {8, 10, 12, 14, 16} and Set Y is formed by adding 5 to each element of S
 - E) The two sets have the same mean but different standard deviations
 
 **answer:** C
+**fastest_path:** Adding a constant shifts the mean by that constant and leaves the spread untouched — mean up 5, standard deviation unchanged. Pick C with no computation.
 **explanation:** When the same constant is added to every member of a set of numbers, the mean increases by that constant, while the standard deviation, which measures the spread of the values about their mean, remains unchanged. The reasoning is that adding a constant shifts every value, and therefore the mean, by the identical amount, so each value's distance from the mean is preserved.
 
 Let Set X = {8, 10, 12, 14, 16}. The mean of Set X is (8 + 10 + 12 + 14 + 16) / 5 = 60 / 5 = 12.
@@ -489,6 +608,12 @@ The standard deviation depends only on the deviations of the elements from their
 Set Y has a greater mean and the same standard deviation as Set X.
 
 The correct answer is C.
+**mistake_a:** Adding a constant does NOT raise the standard deviation; the spread is unchanged.
+**mistake_b:** A uniform shift can't shrink the spread either, so the standard deviation does not get smaller.
+**mistake_d:** The mean does change — it rises by 5. Only the standard deviation stays the same, so "same mean" is wrong.
+**mistake_e:** The standard deviation does not change under a shift, so "different standard deviations" is incorrect.
+**common_trap:** Believing that altering every value must alter the standard deviation. Adding a constant moves the whole set rigidly, so each value's distance from the (also-shifted) mean is identical.
+**takeaway:** y = x + b shifts the mean by b and leaves the standard deviation unchanged; only multiplying (y = ax) scales the standard deviation, by |a|.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -510,6 +635,7 @@ In a set of 5 positive integers, is the median equal to the mean?
 - E) Statements (1) and (2) TOGETHER are not sufficient.
 
 **answer:** A
+**fastest_path:** Any arithmetic sequence is symmetric, so its mean always equals its middle term = the median — (1) forces a definite YES. (2) only fixes the two extremes, which allows both equal and unequal cases, so it's insufficient. Answer A.
 **explanation:** The question asks whether the median of a set of 5 positive integers equals the mean. To resolve a yes/no question of this kind, a statement is sufficient only if it forces a single definite answer for every set it permits.
 
 Statement (1): The 5 integers form an arithmetic sequence. Let the first term be a and the common difference be d, so the five terms in increasing order are a, a + d, a + 2d, a + 3d, and a + 4d. Because the count is odd, the median is the middle term, which is a + 2d. The mean is the sum of the five terms divided by 5: [a + (a + d) + (a + 2d) + (a + 3d) + (a + 4d)] / 5 = (5a + 10d) / 5 = a + 2d. Thus the mean equals a + 2d, which is exactly the median. The answer to the question is therefore YES for every arithmetic sequence, regardless of the values of a and d. Statement (1) is sufficient.
@@ -519,6 +645,13 @@ Statement (2): The smallest integer is 4 and the largest is 20. Consider the set
 Statement (1) alone is sufficient and Statement (2) alone is not sufficient.
 
 The correct answer is A.
+**mistake_b:** (2) fixes only the smallest and largest values; the inner three can make the mean equal the median or not, so (2) alone decides nothing.
+**mistake_c:** (1) settles the question by itself, so combining the statements is unnecessary — C understates statement (1).
+**mistake_d:** (2) is not sufficient, so "each statement alone" is too strong.
+**mistake_e:** (1) alone is sufficient, so "together not sufficient" is wrong.
+**common_trap:** Underrating statement (1) — not seeing that an evenly spaced (arithmetic) set is symmetric, which forces the mean to equal the middle term for any odd-length run.
+**takeaway:** In any arithmetic sequence the mean equals the median (the symmetric middle term); a yes/no DS question is sufficient the instant one statement forces a single answer.
+**hint_nudge:** For an evenly spaced list, where does the average fall relative to the middle value?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -537,6 +670,7 @@ A fair coin is flipped 4 times. What is the probability that it lands on heads e
 - E) 3/8
 
 **answer:** C
+**fastest_path:** C(4,3)/2^4 = 4/16 = 1/4.
 **explanation:** For a sequence of independent trials with two equally likely outcomes, the probability of obtaining a specified number of one outcome is found by counting the favorable arrangements and dividing by the total number of equally likely arrangements. Each flip of a fair coin has two outcomes, so 4 flips produce 2^4 = 16 equally likely sequences.
 
 Let the favorable sequences be those containing exactly 3 heads and 1 tail. The number of such sequences equals the number of ways to choose which 3 of the 4 positions are heads, namely C(4,3) = 4. These sequences are HHHT, HHTH, HTHH, and THHH.
@@ -546,6 +680,13 @@ Each of the 16 sequences is equally likely, occurring with probability (1/2)^4 =
 4/16 = 1/4.
 
 The correct answer is C.
+**mistake_a:** 1/8 = 2/16 undercounts the arrangements of 3 heads, treating it as only 2 orders.
+**mistake_b:** 3/16 uses 3 favorable sequences, forgetting one of the four positions the single tail can occupy.
+**mistake_d:** 5/16 is P(3 or more heads) = C(4,3) + C(4,4) = 4 + 1 = 5 sequences; the question wants exactly 3.
+**mistake_e:** 3/8 = 6/16 = C(4,2)/16 counts exactly 2 heads (or 2 tails) instead of exactly 3 heads.
+**common_trap:** Forgetting that "exactly 3 heads" can occur in C(4,3) = 4 different orders, not just one.
+**takeaway:** For exactly k of n fair flips, favorable = C(n, k) and total = 2^n; here 4/16 = 1/4.
+**hint_nudge:** How many of the 16 equally likely H/T sequences contain exactly three H's?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -567,6 +708,7 @@ A committee of 3 is to be chosen from a group of n people. How many different co
 - E) Statements (1) and (2) TOGETHER are not sufficient.
 
 **answer:** A
+**fastest_path:** Growing the group by one adds C(n,2) committees (Pascal: C(n+1,3) − C(n,3) = C(n,2)), so (1) gives C(n,2) = 21 ⇒ n = 7 ⇒ C(7,3) = 35 — one value, sufficient. (2) only bounds n, so it's insufficient. Answer A.
 **explanation:** This is a counting problem governed by the combination formula: the number of ways to choose a committee of 3 from a group of m people is C(m, 3) = m! / (3!(m - 3)!). The question asks for the value of C(n, 3), so a statement is sufficient precisely when it pins down a single numerical value for that count.
 
 Let n be the size of the original group. The number of possible committees is C(n, 3).
@@ -578,6 +720,14 @@ Consider statement (2). The condition n greater than 5 is consistent with n = 6,
 Since statement (1) alone is sufficient and statement (2) alone is not, the answer is option A.
 
 The correct answer is A.
+**mistake_b:** n > 5 leaves infinitely many values of C(n,3), so statement (2) alone pins down nothing.
+**mistake_c:** Statement (1) already fixes n by itself (and rejects the negative root), so the two statements together aren't needed.
+**mistake_d:** Statement (2) is not sufficient, so "each statement alone" overstates the case.
+**mistake_e:** Statement (1) is sufficient, so "together not sufficient" is wrong.
+**common_trap:** Assuming the equation n(n − 1) = 42 leaves two candidate values of n and therefore needs statement (2) to choose; in fact only one positive integer, n = 7, qualifies.
+**takeaway:** The increase from C(n,3) to C(n+1,3) is exactly C(n,2); once a statement yields a single positive-integer solution, it is sufficient on its own.
+**hint_nudge:** By how much does the committee count change when the group gains one person?
+**hint_strategy:** C(n+1,3) − C(n,3) = C(n,2). Set that equal to 21 and solve for n.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -596,6 +746,7 @@ A student must answer 5 out of 7 questions on an exam, but must answer at least 
 - E) 28
 
 **answer:** A
+**fastest_path:** "At least 2 of the first 3" means exactly 2 or exactly 3 from that group: C(3,2)·C(4,3) + C(3,3)·C(4,2) = 12 + 6 = 18.
 **explanation:** Because the order in which the questions are selected does not matter, each selection is a combination, and the number of ways to choose r items from n is given by the combination C(n, r) = n! / [r!(n - r)!]. The requirement that the student answer at least 2 of the first 3 questions creates two mutually exclusive cases according to exactly how many of the first 3 questions are chosen, and the total count is the sum of the counts for these cases.
 
 Let the 7 questions be divided into a first group of 3 questions and a second group of 4 questions. The student must choose 5 questions in all, with at least 2 of them coming from the first group. Since the first group contains only 3 questions, the number chosen from it is either exactly 2 or exactly 3.
@@ -607,6 +758,14 @@ Case 2: all 3 questions are chosen from the first group and the remaining 2 are 
 The two cases cover every allowable selection without overlap, so the total number of different sets of 5 questions is 12 + 6 = 18.
 
 The correct answer is A.
+**mistake_b:** 20 is C(7,5) = 21 with an off-by-one — dropping one case or mis-subtracting in a complement.
+**mistake_c:** 21 = C(7,5) is the number of ways to choose 5 of 7 with the "at least 2 of the first 3" restriction ignored entirely.
+**mistake_d:** 24 adds an impossible "exactly 1 from the first three" case onto the count, or double-counts overlapping selections.
+**mistake_e:** 28 inflates a combination value (for example reading C(4,3) as larger), over-counting the cases.
+**common_trap:** Ignoring the restriction and answering C(7,5) = 21, or mishandling "at least" by adding overlapping cases.
+**takeaway:** "At least k from a group" means split into exact-count cases and add; never report C(total, r) and stop when a restriction is present.
+**hint_nudge:** "At least 2 of the first 3" — how many from that three-question group are even possible?
+**hint_strategy:** Count "exactly 2 from the first three" and "exactly 3 from the first three" separately, then add.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
