@@ -1506,3 +1506,498 @@ By inclusion-exclusion, the number of invalid committees is 28 + 35 - 10 = 53. T
 
 The correct answer is D.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+
+---
+
+## Q47
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Counting Principle
+
+A lunch special lets a customer choose exactly one appetizer from 4 options, one main course from 3 options, and one dessert from 5 options. How many different complete lunch specials can be assembled?
+
+- A) 12
+- B) 20
+- C) 35
+- D) 60
+- E) 120
+
+**answer:** D
+**explanation:** By the fundamental counting principle, when independent choices are made in sequence the total number of outcomes is the product of the number of options at each stage. Here there are 4 appetizers, 3 main courses, and 5 desserts, so the number of complete lunches is 4 x 3 x 5 = 60. Adding the options (4 + 3 + 5 = 12) is the common error that produces choice (A). The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q48
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Multiplication Principle
+
+A small club issues membership codes consisting of one letter (A through Z) followed by two digits (0 through 9), and repetition of digits is allowed. How many distinct membership codes are possible?
+
+- A) 46
+- B) 260
+- C) 520
+- D) 2,600
+- E) 67,600
+
+**answer:** D
+**explanation:** Three slots are filled independently. The first slot (a letter) has 26 choices, and each of the two digit slots has 10 choices, with repetition allowed. By the multiplication principle the total is 26 x 10 x 10 = 2,600. Treating both digit slots as a single 10-choice slot gives 26 x 10 = 260, the error in (B); using two letters and two digits gives 26 x 26 x 10 x 10 = 67,600, the over-counted value in (E). The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q49
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Fundamental Counting
+
+A traveler packs 5 shirts, 4 pairs of trousers, and 2 pairs of shoes, all distinct. If an outfit consists of exactly one shirt, one pair of trousers, and one pair of shoes, how many different outfits can be formed?
+
+- A) 11
+- B) 20
+- C) 30
+- D) 40
+- E) 120
+
+**answer:** D
+**explanation:** Each outfit results from one independent choice in each category, so by the fundamental counting principle the number of outfits is 5 x 4 x 2 = 40. Summing the items (5 + 4 + 2 = 11) gives the distractor (A), and choosing only shirts and trousers (5 x 4 = 20) gives (B). The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q50
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Multiplication Principle
+
+A 4-digit security PIN is formed using the digits 0 through 9, but no digit may be repeated within a PIN. How many such PINs are possible?
+
+- A) 720
+- B) 3,024
+- C) 5,040
+- D) 6,561
+- E) 10,000
+
+**answer:** C
+**explanation:** Four ordered slots are filled with distinct digits. The first slot has 10 choices, the second has 9 (one digit already used), the third has 8, and the fourth has 7. By the multiplication principle the count is 10 x 9 x 8 x 7 = 5,040. Allowing repetition gives 10^4 = 10,000, the error in (E); starting the count from 9 (as if the first digit were restricted) gives 9 x 8 x 7 x 6 = 3,024, the error in (B). The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q51
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fundamental Counting
+
+Five distinct friends are to be seated in a row of five distinct chairs. The tallest friend insists on sitting in one of the two chairs at the ends of the row. In how many different ways can all five be seated?
+
+- A) 24
+- B) 48
+- C) 60
+- D) 96
+- E) 120
+
+**answer:** B
+**explanation:** Seat the restricted person first. The tallest friend has 2 acceptable seats (the two ends). Once that seat is fixed, the remaining 4 friends fill the remaining 4 chairs in 4! = 24 ways. By the fundamental counting principle the total is 2 x 24 = 48. Ignoring the restriction gives 5! = 120 (choice E), and counting only the 4! arrangements of the others while forgetting the 2 end-seat choices gives 24 (choice A). The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q52
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Counting Principle
+
+A password consists of exactly 4 characters. The first character must be a lowercase letter (26 possibilities) and each of the remaining 3 characters must be a digit from 0 to 9, with digits allowed to repeat. How many such passwords are possible?
+
+- A) 260
+- B) 780
+- C) 2,600
+- D) 26,000
+- E) 260,000
+
+**answer:** D
+**explanation:** There are four ordered slots. The first slot (a letter) has 26 choices, and each of the three digit slots has 10 choices, with repetition permitted. By the counting principle the total is 26 x 10 x 10 x 10 = 26 x 1,000 = 26,000. Using only one digit slot (26 x 10 = 260) gives (A); using two digit slots (26 x 100 = 2,600) gives (C). The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q53
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Multiplication Principle
+
+Using the digits 1, 2, 3, 4, and 5 with no digit repeated, how many different 3-digit numbers can be formed that are even?
+
+- A) 12
+- B) 20
+- C) 24
+- D) 48
+- E) 60
+
+**answer:** C
+**explanation:** An even number must end in an even digit, and among the available digits the even ones are 2 and 4, giving 2 choices for the units slot. After fixing the units digit, the hundreds slot can be filled by any of the 4 remaining digits and the tens slot by any of the 3 remaining digits. By the multiplication principle the count is 2 x 4 x 3 = 24. Counting all 3-digit numbers without the even restriction gives 5 x 4 x 3 = 60 (choice E). The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q54
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fundamental Counting
+
+Three roads connect town A to town B, and four different roads connect town B to town C. A driver makes a round trip from A to C and back, A to B to C to B to A, and refuses to use any single road more than once during the whole trip. In how many distinct ways can the round trip be made?
+
+- A) 48
+- B) 60
+- C) 72
+- D) 84
+- E) 144
+
+**answer:** C
+**explanation:** Four legs are filled in order. The A-to-B leg has 3 road choices. The B-to-C leg has 4 choices. On the return, the C-to-B leg may use any of the 4 roads except the one just used, leaving 3 choices, and the B-to-A leg may use any of the 3 A-B roads except the one already used, leaving 2 choices. By the fundamental counting principle the total is 3 x 4 x 3 x 2 = 72. Ignoring the no-reuse rule gives 3 x 4 x 4 x 3 = 144 (choice E). The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q55
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Counting Principle
+
+From a group of 8 qualified employees, a company must select a president, a vice-president, and a treasurer, with no employee holding more than one of these three positions. In how many ways can the three positions be filled?
+
+- A) 24
+- B) 56
+- C) 168
+- D) 336
+- E) 512
+
+**answer:** D
+**explanation:** Because the three positions are distinct, the order of selection matters and the counting principle applies across three slots. The presidency can be filled in 8 ways, the vice-presidency in 7 ways (one person already chosen), and the treasury in 6 ways. The total is 8 x 7 x 6 = 336. Allowing one person to hold multiple posts gives 8^3 = 512 (choice E); selecting only two officers gives 8 x 7 = 56 (choice B). The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q56
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Counting Principle
+
+Codes of length 3 are formed from the six letters A, B, C, D, E, F, where letters may be repeated. Among these six letters, A and E are designated as vowels. How many such codes contain at least one vowel?
+
+- A) 64
+- B) 108
+- C) 128
+- D) 152
+- E) 216
+
+**answer:** D
+**explanation:** It is easier to count the complement. The total number of length-3 codes with repetition allowed is 6 x 6 x 6 = 216. The codes containing no vowel use only the 4 non-vowel letters, giving 4 x 4 x 4 = 64. By complementary counting, the number of codes with at least one vowel is 216 - 64 = 152. Reporting the no-vowel count itself yields 64 (choice A), and the grand total yields 216 (choice E). The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q57
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Multiplication Principle
+
+How many 4-digit numbers have all four digits distinct and are even? (A 4-digit number cannot begin with 0.)
+
+- A) 1,792
+- B) 2,240
+- C) 2,296
+- D) 2,520
+- E) 4,536
+
+**answer:** C
+**explanation:** Split into cases based on the units digit, which must be even. Case 1, units digit is 0: the thousands, hundreds, and tens slots are filled with distinct remaining digits in 9 x 8 x 7 = 504 ways. Case 2, units digit is one of 2, 4, 6, 8 (4 choices): the thousands digit must avoid 0 and the chosen units digit, giving 8 choices; the hundreds digit then has 8 remaining choices and the tens digit 7, yielding 4 x 8 x 8 x 7 = 1,792. Adding the cases gives 504 + 1,792 = 2,296. The count of all distinct-digit 4-digit numbers is 9 x 9 x 8 x 7 = 4,536 (choice E), and omitting Case 1 gives 1,792 (choice A). The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q58
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Fundamental Counting
+
+Six distinct books are to be arranged in a single row on a shelf. Two particular books, a dictionary and a thesaurus, must be placed next to each other. In how many distinct arrangements is this possible?
+
+- A) 120
+- B) 240
+- C) 360
+- D) 720
+- E) 1,440
+
+**answer:** B
+**explanation:** Treat the dictionary and thesaurus as a single combined block, so that effectively 5 objects (the block plus the other 4 books) are arranged in a row in 5! = 120 ways. Within the block, the two books can be ordered in 2! = 2 ways. By the fundamental counting principle the total is 120 x 2 = 240. The unrestricted count is 6! = 720 (choice D), and forgetting the internal 2! ordering gives 120 (choice A). The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q59
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Permutations
+
+A museum curator must place 6 distinct trophies in a single row on a display shelf. In how many different orders can the trophies be arranged?
+
+- A) 120
+- B) 360
+- C) 600
+- D) 720
+- E) 5,040
+
+**answer:** D
+**explanation:** We are arranging all 6 distinct objects in a row, so the number of orderings is 6! = 6 x 5 x 4 x 3 x 2 x 1 = 720. The value 120 corresponds to 5! (treating only 5 objects), and 5,040 corresponds to 7!. The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q60
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combinations
+
+A teacher must select 3 students from a group of 8 to form a debate panel. The order in which the students are chosen does not matter. In how many ways can the panel be formed?
+
+- A) 24
+- B) 56
+- C) 112
+- D) 336
+- E) 512
+
+**answer:** B
+**explanation:** Because order does not matter, we use combinations: C(8,3) = (8 x 7 x 6)/(3 x 2 x 1) = 336/6 = 56. The value 336 results from computing the ordered count P(8,3) = 8 x 7 x 6 and forgetting to divide by 3!. The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q61
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Permutations
+
+A security system requires a 4-character access code in which each character is one of 6 distinct symbols, and no symbol may be repeated within a code. How many different access codes are possible?
+
+- A) 24
+- B) 360
+- C) 720
+- D) 1,296
+- E) 4,096
+
+**answer:** B
+**explanation:** Since order matters and no repetition is allowed, the count is P(6,4) = 6 x 5 x 4 x 3 = 360. The value 720 corresponds to 6! (using all six positions instead of four), 1,296 corresponds to 6^4 (allowing repetition), and 24 corresponds to 4!. The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q62
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combinations
+
+From a pool of 7 employees, a manager must choose a committee of 4. Two particular employees, Rosa and Tim, have already been guaranteed seats on the committee. In how many ways can the remaining committee members be chosen?
+
+- A) 5
+- B) 10
+- C) 20
+- D) 21
+- E) 35
+
+**answer:** B
+**explanation:** With Rosa and Tim fixed in two of the four seats, only 2 more members must be selected from the remaining 7 - 2 = 5 employees. The count is C(5,2) = (5 x 4)/(2 x 1) = 10. The value 35 is C(7,4) (ignoring the guaranteed seats), 20 is C(6,3) (removing only one fixed member), and 5 is C(5,4). The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q63
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Permutations
+
+How many distinct arrangements can be formed using all of the letters of the word MISSION?
+
+- A) 840
+- B) 1,260
+- C) 2,520
+- D) 5,040
+- E) 10,080
+
+**answer:** B
+**explanation:** The word MISSION has 7 letters, with the letter I appearing twice and the letter S appearing twice, while M, O, and N each appear once. The number of distinct arrangements is 7!/(2! x 2!) = 5,040/4 = 1,260. The value 5,040 = 7! ignores the repeated letters, and 2,520 divides by only one of the two repeated pairs. The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q64
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combinations
+
+A coach must assemble a lineup by choosing 3 forwards from a roster of 5 forwards and 2 defenders from a roster of 4 defenders. In how many ways can the lineup be chosen?
+
+- A) 16
+- B) 20
+- C) 60
+- D) 120
+- E) 126
+
+**answer:** C
+**explanation:** The two selections are independent, so we multiply the combinations: C(5,3) x C(4,2) = 10 x 6 = 60. The value 16 comes from incorrectly adding the two combinations (10 + 6), and 126 = C(9,5) comes from ignoring the positional split and choosing 5 from all 9 players. The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q65
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Permutations
+
+In a race with 7 runners, medals are awarded for first, second, and third place, with no ties. In how many different ways can the three medals be awarded?
+
+- A) 21
+- B) 35
+- C) 120
+- D) 210
+- E) 343
+
+**answer:** D
+**explanation:** Because the three places are distinct (order matters), the count is P(7,3) = 7 x 6 x 5 = 210. The value 35 = C(7,3) treats the three medal positions as interchangeable, and 343 = 7^3 incorrectly allows a runner to occupy more than one place. The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q66
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Combinations
+
+A panel of 4 members is to be selected from a group consisting of 4 women and 5 men. How many different panels include at least 2 women?
+
+- A) 60
+- B) 75
+- C) 81
+- D) 105
+- E) 126
+
+**answer:** C
+**explanation:** We count by the number of women on the panel. With exactly 2 women: C(4,2) x C(5,2) = 6 x 10 = 60. With exactly 3 women: C(4,3) x C(5,1) = 4 x 5 = 20. With exactly 4 women: C(4,4) x C(5,0) = 1 x 1 = 1. The total is 60 + 20 + 1 = 81. Equivalently, the total panels C(9,4) = 126 minus those with 0 women (C(5,4) = 5) and 1 woman (C(4,1) x C(5,3) = 40) gives 126 - 45 = 81. The value 60 counts only the exactly-2-women case, and 126 is the unrestricted total. The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q67
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Permutations
+
+A license plate consists of 2 distinct letters chosen from the 26 letters of the alphabet followed by 3 distinct digits chosen from 0 through 9, where the order of the characters matters. How many such license plates are possible?
+
+- A) 390,000
+- B) 450,000
+- C) 468,000
+- D) 608,400
+- E) 676,000
+
+**answer:** C
+**explanation:** The letters form an ordered selection of 2 distinct letters from 26: P(26,2) = 26 x 25 = 650. The digits form an ordered selection of 3 distinct digits from 10: P(10,3) = 10 x 9 x 8 = 720. Since the two blocks are independent, we multiply: 650 x 720 = 468,000. The value 676,000 = 26^2 x 10^3 arises from allowing repetition in both blocks, and 390,000 = 650 x 600 mis-multiplies the digit count. The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q68
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Restrictions
+
+Six distinct hardcover books are to be placed in a single row on a shelf. Two of the books form a matched two-volume set and must be placed immediately next to each other (in either order). In how many different ways can the six books be arranged on the shelf?
+
+- A) 120
+- B) 144
+- C) 240
+- D) 480
+- E) 720
+
+**answer:** C
+**explanation:** We treat the two-volume set as a single block, so that we are arranging 5 objects (the block plus the other 4 books) in a row, which can be done in 5! = 120 ways. Within the block the two volumes can be ordered in 2! = 2 ways. By the multiplication principle the total is 120 x 2 = 240. The choice 720 = 6! ignores the adjacency requirement, and 120 forgets the internal ordering of the set. The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q69
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Committee Selection with Constraints
+
+A project team of 4 people is to be chosen from a pool of 9 employees consisting of 5 analysts and 4 designers. To ensure design input, the team must include at least 1 designer. In how many different ways can a team be formed?
+
+- A) 70
+- B) 115
+- C) 121
+- D) 125
+- E) 126
+
+**answer:** C
+**explanation:** We use the complementary counting method. The total number of unrestricted teams of 4 from 9 is C(9,4) = 126. The teams that violate the constraint are those with no designer, i.e. all 4 chosen from the 5 analysts, giving C(5,4) = 5. Subtracting, the number of valid teams is 126 - 5 = 121. The value 126 forgets to remove the all-analyst teams. The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q70
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Restrictions
+
+Five distinct runners line up in a single row for a team photograph. Two of them, Mara and Niko, had a recent disagreement and refuse to stand immediately next to each other. In how many different orders can the five runners line up?
+
+- A) 48
+- B) 72
+- C) 96
+- D) 108
+- E) 120
+
+**answer:** B
+**explanation:** We first count all arrangements of the 5 runners, which is 5! = 120. We then subtract the arrangements in which Mara and Niko stand next to each other. Treating that pair as one block gives 4! = 24 arrangements of the 4 objects, and the pair can be internally ordered in 2! = 2 ways, for 24 x 2 = 48 adjacent arrangements. Therefore the number of acceptable line-ups is 120 - 48 = 72. The choice 96 = 120 - 24 mistakenly omits the factor for ordering the pair, and 48 counts the forbidden arrangements instead. The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q71
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Committee Selection with Constraints
+
+A 5-member oversight committee is to be selected from a group of 6 men and 5 women. To keep the committee balanced, it must contain at least 2 men and at least 2 women. How many distinct committees satisfy these requirements?
+
+- A) 150
+- B) 200
+- C) 350
+- D) 431
+- E) 462
+
+**answer:** C
+**explanation:** Because the committee has 5 members with at least 2 men and at least 2 women, the only possible gender splits are 2 men with 3 women, or 3 men with 2 women. For 2 men and 3 women we have C(6,2) x C(5,3) = 15 x 10 = 150. For 3 men and 2 women we have C(6,3) x C(5,2) = 20 x 10 = 200. Adding the two mutually exclusive cases gives 150 + 200 = 350. The values 150 and 200 each arise from counting only one of the two valid splits, and 462 = C(11,5) ignores all constraints. The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q72
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Restrictions
+
+Six distinct speakers are to be arranged in a single row of six chairs for a panel. Speaker A must occupy one of the two end chairs (the leftmost or the rightmost). Additionally, speakers B and C must not be seated immediately next to each other. How many different seating arrangements are possible?
+
+- A) 96
+- B) 144
+- C) 216
+- D) 240
+- E) 288
+
+**answer:** B
+**explanation:** We first place A in one of the two end chairs, giving 2 choices. The remaining five speakers, including B and C, fill the five remaining chairs, which form a contiguous block of five seats. Arranging 5 distinct people in those seats gives 5! = 120 ways, of which the arrangements with B and C adjacent number 4! x 2! = 24 x 2 = 48. Hence the arrangements of the five with B and C not adjacent number 120 - 48 = 72. Multiplying by the 2 choices for A yields 2 x 72 = 144. The choice 240 forgets the non-adjacency condition, while 96 counts the cases where B and C are adjacent. The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics

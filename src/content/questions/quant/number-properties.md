@@ -1585,3 +1585,175 @@ We seek the integers k for which k^2 lies in the interval from 1 to 100. Since 1
 
 The correct answer is C.
 **related_reading:** reading-quant-03-number-properties
+
+
+---
+
+## Q52
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Even/Odd Properties
+
+If a is an odd integer and b is an even integer, which of the following must be an even integer?
+
+- A) a + b
+- B) 3a^2 + 2b - 5
+- C) ab + a
+- D) 2a - b + 7
+- E) a^2 - b - 2
+
+**answer:** B
+**explanation:** We evaluate the parity of each expression using a is odd and b is even. Since a is odd, a^2 is odd, so 3a^2 is odd. Since b is even, 2b is even, and 5 is odd; thus 3a^2 + 2b - 5 = (odd) + (even) - (odd) = even. A numerical check with a = 3 and b = 4 gives 27 + 8 - 5 = 30, which is even. Checking the others: a + b = odd + even = odd; ab + a = a(b + 1) = odd times odd = odd; 2a - b + 7 = even - even + odd = odd; a^2 - b - 2 = odd - even - even = odd. Only 3a^2 + 2b - 5 is guaranteed even. The correct answer is B.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q53
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Parity of a Product
+
+If x and y are integers such that x + y is odd, which of the following must be even?
+
+- A) x + 2y
+- B) x^2 + y^2
+- C) xy
+- D) xy + x + y
+- E) x - y
+
+**answer:** C
+**explanation:** Since x + y is odd, exactly one of x and y is even and the other is odd. The product of an even integer and any integer is even, so xy is even. Checking the others: x^2 + y^2 = (odd) + (even) = odd; x + 2y has the same parity as x, which is not fixed; xy + x + y = even + odd = odd; x - y has the same parity as x + y, which is odd. Only xy must be even. The correct answer is C.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q54
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Perfect Squares
+
+What is the smallest positive integer n such that 252n is a perfect square?
+
+- A) 28
+- B) 14
+- C) 21
+- D) 7
+- E) 63
+
+**answer:** D
+**explanation:** We factor 252 = 2^2 · 3^2 · 7. A perfect square requires every prime to appear to an even power. The factors 2 and 3 already have even exponents, but 7 appears to the first power. Multiplying by 7 makes the exponent of 7 even, giving 252 · 7 = 1764 = 42^2. No smaller positive integer accomplishes this, since the deficiency lies entirely in the single factor of 7. The correct answer is D.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q55
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Integer Properties
+
+How many even integers are there from 17 to 83, inclusive?
+
+- A) 35
+- B) 32
+- C) 34
+- D) 31
+- E) 33
+
+**answer:** E
+**explanation:** The even integers in this range run from 18 to 82. We count them with the formula (last - first)/(common difference) + 1 = (82 - 18)/2 + 1 = 64/2 + 1 = 32 + 1 = 33. The distractor 32 results from omitting the +1 (the off-by-one error), and 34 from incorrectly including an extra endpoint. The correct answer is E.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q56
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Even/Odd Properties
+
+If a, b, and c are three consecutive integers with a the smallest, for which values of a is a^2 + b^2 + c^2 odd?
+
+- A) When a is even
+- B) When a is odd
+- C) For all integers a
+- D) For no integer a
+- E) Only when a is a multiple of 3
+
+**answer:** A
+**explanation:** With consecutive integers a, b = a+1, c = a+2, the parities of a and c match each other while b has the opposite parity. If a is even, then a^2 and c^2 are even while b^2 is odd, so the sum is even + odd + even = odd. If a is odd, then a^2 and c^2 are odd while b^2 is even, giving odd + even + odd = even. Thus a^2 + b^2 + c^2 is odd precisely when a is even. A numerical check confirms this: for a = 2 the sum is 4 + 9 + 16 = 29 (odd), and for a = 3 the sum is 9 + 16 + 25 = 50 (even). The correct answer is A.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q57
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Parity of a Product
+
+The product of three consecutive even integers is always divisible by each value in some set. What is the greatest of the following values that always divides such a product?
+
+- A) 32
+- B) 48
+- C) 24
+- D) 16
+- E) 96
+
+**answer:** B
+**explanation:** Three consecutive even integers can be written 2k, 2k + 2, 2k + 4 = 2k · 2(k+1) · 2(k+2) = 8 · k(k+1)(k+2). The product k(k+1)(k+2) is a product of three consecutive integers, which is always divisible by 3! = 6. Therefore the full product is always divisible by 8 · 6 = 48. The values 24 and 16 also always divide the product, but 48 is larger, so among guaranteed divisors 48 is the greatest. The value 96 is not guaranteed (for example, 2 · 4 · 6 = 48, which is not divisible by 96), and 32 is not guaranteed either. Hence the greatest listed value that always divides the product is 48. The correct answer is B.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q58
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Perfect Squares
+
+Let K = 2^4 · 3^2 · 5^3 · 7. What is the smallest positive integer m such that Km is a perfect square?
+
+- A) 7
+- B) 5
+- C) 35
+- D) 105
+- E) 175
+
+**answer:** C
+**explanation:** For Km to be a perfect square, every prime in its factorization must occur to an even power. In K, the exponents of 2 (which is 4) and 3 (which is 2) are already even. The exponent of 5 is 3, which is odd, so we need one more factor of 5; the exponent of 7 is 1, which is odd, so we need one more factor of 7. The minimal m is therefore 5 · 7 = 35, giving Km = 2^4 · 3^2 · 5^4 · 7^2 = (2^2 · 3 · 5^2 · 7)^2. Choosing only 5 or only 7 leaves the other prime at an odd power, so neither alone suffices. The correct answer is C.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q59
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Integer Properties
+
+How many perfect squares lie between 50 and 500, inclusive?
+
+- A) 13
+- B) 14
+- C) 16
+- D) 15
+- E) 17
+
+**answer:** D
+**explanation:** A perfect square n^2 lies in the interval when 50 ≤ n^2 ≤ 500. Taking square roots, we need approximately 7.07 ≤ n ≤ 22.36, so the integer values are n = 8 through n = 22. The count is 22 - 8 + 1 = 15. The smallest qualifying square is 8^2 = 64 and the largest is 22^2 = 484, both within the bounds. The distractor 14 arises from dropping one endpoint of the n-range. The correct answer is D.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q60
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Integer Properties
+
+What is the greatest power of 2 that divides the product 2 · 4 · 6 · 8 · 10?
+
+- A) 2^9
+- B) 2^5
+- C) 2^7
+- D) 2^6
+- E) 2^8
+
+**answer:** E
+**explanation:** We factor out a 2 from each of the five even factors: 2 · 4 · 6 · 8 · 10 = 2^5 · (1 · 2 · 3 · 4 · 5) = 2^5 · 120. Now 120 = 2^3 · 15, contributing three more factors of 2. The total power of 2 is therefore 2^(5+3) = 2^8, since 15 is odd and contributes no additional factor of 2. The distractor 2^5 comes from counting only the explicit factor from each even number while forgetting the extra factors of 2 hidden inside 4, 8, and 10. The correct answer is E.
+**related_reading:** reading-quant-03-number-properties
