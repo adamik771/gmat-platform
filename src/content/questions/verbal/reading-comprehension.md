@@ -13,8 +13,8 @@ Some companies have responded by making cancellation processes deliberately cumb
 
 ### Q1
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The primary purpose of the passage is to:
 
@@ -42,8 +42,8 @@ The correct answer is B.
 
 ### Q2
 **difficulty:** Easy
-**type:** Specific Detail
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Specific Detail
 
 According to the passage, the "leaky bucket" problem refers to the fact that:
 
@@ -71,8 +71,8 @@ The correct answer is C.
 
 ### Q3
 **difficulty:** Hard
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 The passage implies that companies relying on dark patterns to retain subscribers are:
 
@@ -102,8 +102,8 @@ The correct answer is B.
 
 ### Q4
 **difficulty:** Medium
-**type:** Application
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Application
 
 Based on the passage, which of the following business strategies would the author most likely consider the most effective approach to reducing subscriber churn?
 
@@ -141,8 +141,8 @@ Perhaps most troubling is the potential for biomagnification. As microplastics a
 
 ### Q5
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 Which of the following best describes the main point of the passage?
 
@@ -172,8 +172,8 @@ The correct answer is C.
 
 ### Q6
 **difficulty:** Easy
-**type:** Specific Detail
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Specific Detail
 
 According to the passage, microplastics act as vectors for other pollutants because:
 
@@ -201,8 +201,8 @@ The correct answer is B.
 
 ### Q7
 **difficulty:** Hard
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 The passage suggests that the threat microplastics pose to apex marine predators is particularly concerning because:
 
@@ -232,8 +232,8 @@ The correct answer is B.
 
 ### Q8
 **difficulty:** Medium
-**type:** Application
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Application
 
 Based on the information in the passage, which of the following policy measures would most directly address the sources of microplastic contamination?
 
@@ -269,8 +269,8 @@ However, the relationship between urbanization and mental health is not uniforml
 
 ### Q9
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The passage is primarily concerned with:
 
@@ -302,8 +302,8 @@ The correct answer is B.
 
 ### Q10
 **difficulty:** Easy
-**type:** Specific Detail
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Specific Detail
 
 According to the passage, chronic activation of the amygdala in urban residents is associated with:
 
@@ -331,8 +331,8 @@ The correct answer is C.
 
 ### Q11
 **difficulty:** Hard
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 The passage implies that the mental health differences observed between urban and rural populations:
 
@@ -362,8 +362,8 @@ The correct answer is C.
 
 ### Q12
 **difficulty:** Medium
-**type:** Application
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Application
 
 Based on the passage, a city planner seeking to reduce the mental health impact of urbanization would most likely prioritize:
 
@@ -399,8 +399,8 @@ The Kenyan experiment, conducted by the nonprofit GiveDirectly, offered a differ
 
 ### Q13
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The primary purpose of the passage is to:
 
@@ -428,8 +428,8 @@ The correct answer is B.
 
 ### Q14
 **difficulty:** Easy
-**type:** Specific Detail
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Specific Detail
 
 According to the passage, recipients of the Kenyan basic income experiment:
 
@@ -457,8 +457,8 @@ The correct answer is C.
 
 ### Q15
 **difficulty:** Hard
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 The passage suggests that the modest employment gains in the Finnish experiment may have been influenced by:
 
@@ -486,8 +486,8 @@ The correct answer is C.
 
 ### Q16
 **difficulty:** Medium
-**type:** Application
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Application
 
 Based on the passage's analysis, in which of the following settings would a basic income program most likely stimulate entrepreneurial activity?
 
@@ -525,8 +525,8 @@ This pattern of adaptive transmission suggests that the Silk Road functioned les
 
 ### Q17
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The passage is primarily concerned with:
 
@@ -562,8 +562,8 @@ The correct answer is B.
 
 ### Q18
 **difficulty:** Easy
-**type:** Specific Detail
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Specific Detail
 
 According to the passage, papermaking is believed to have reached the Islamic world:
 
@@ -593,8 +593,8 @@ The correct answer is B.
 
 ### Q19
 **difficulty:** Hard
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 The passage implies that the common understanding of the Silk Road's historical importance is incomplete because it:
 
@@ -626,8 +626,8 @@ The correct answer is B.
 
 ### Q20
 **difficulty:** Medium
-**type:** Application
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Application
 
 The passage's characterization of the Silk Road as a "catalyst for creative recombination" would be most analogous to which of the following modern phenomena?
 
@@ -669,8 +669,8 @@ Critics of this research caution against overgeneralizing its conclusions. Choic
 
 ### Q21
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The primary purpose of the passage is to:
 
@@ -702,8 +702,8 @@ The correct answer is B.
 
 ### Q22
 **difficulty:** Easy
-**type:** Specific Detail
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Specific Detail
 
 According to the passage, consumers in the supermarket jam experiment who saw a large assortment of jams:
 
@@ -731,8 +731,8 @@ The correct answer is B.
 
 ### Q23
 **difficulty:** Medium
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 The passage suggests that the effect of increased choice on consumer welfare:
 
@@ -760,8 +760,8 @@ The correct answer is B.
 
 ### Q24
 **difficulty:** Hard
-**type:** Application
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Application
 
 Based on the passage's argument, a policymaker designing a new prescription drug benefit program would most likely be advised to:
 
@@ -801,8 +801,8 @@ What, then, should we make of the naturalists' repeated claims to scientific aut
 
 ### Q25
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The primary purpose of the passage is to:
 
@@ -832,8 +832,8 @@ The correct answer is B.
 
 ### Q26
 **difficulty:** Easy
-**type:** Specific Detail
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Specific Detail
 
 The passage cites the climactic flood scene in Zola's Germinal as evidence that:
 
@@ -861,8 +861,8 @@ The correct answer is B.
 
 ### Q27
 **difficulty:** Medium
-**type:** Author's Attitude
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Author's Attitude
 
 The author's attitude toward the naturalist novelists' claims to scientific authority is best characterized as:
 
@@ -890,8 +890,8 @@ The correct answer is C.
 
 ### Q28
 **difficulty:** Hard
-**type:** Function
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Function
 
 In the context of the passage, the author's discussion of subjects such as "poverty, alcoholism, and sexuality" serves primarily to:
 
@@ -927,8 +927,8 @@ These findings have prompted a reconsideration of long-standing assumptions abou
 
 ### Q29
 **difficulty:** Easy
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 Which of the following best summarizes the main point of the passage?
 
@@ -960,8 +960,8 @@ The correct answer is B.
 
 ### Q30
 **difficulty:** Medium
-**type:** Specific Detail
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Specific Detail
 
 According to the passage, isotope-labeling studies have demonstrated that:
 
@@ -991,8 +991,8 @@ The correct answer is B.
 
 ### Q31
 **difficulty:** Medium
-**type:** Function
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Function
 
 The author's observation that fungi "appear to regulate nutrient flows in ways that serve their own reproductive interests, sometimes at the expense of particular host trees" functions primarily to:
 
@@ -1020,8 +1020,8 @@ The correct answer is B.
 
 ### Q32
 **difficulty:** Hard
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 The passage implies that the twentieth-century view of forests as primarily sites of competition:
 
@@ -1065,8 +1065,8 @@ These findings complicate standard policy debates about whether to invest in peo
 
 ### Q33
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The primary purpose of the passage is to:
 
@@ -1096,8 +1096,8 @@ The correct answer is B.
 
 ### Q34
 **difficulty:** Easy
-**type:** Specific Detail
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Specific Detail
 
 According to the passage, high-mobility counties tend to share all of the following characteristics EXCEPT:
 
@@ -1129,8 +1129,8 @@ The correct answer is C.
 
 ### Q35
 **difficulty:** Hard
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 The passage suggests that a county containing both very wealthy and very poor residents who attend separate schools and live in separate neighborhoods would likely:
 
@@ -1160,8 +1160,8 @@ The correct answer is B.
 
 ### Q36
 **difficulty:** Medium
-**type:** Author's Attitude
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Author's Attitude
 
 The author's attitude toward the debate between investing in people versus investing in places is best described as:
 
@@ -1199,8 +1199,8 @@ This processual view does not render canon debates pointless, but it does refram
 
 ### Q37
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The passage is primarily concerned with:
 
@@ -1232,8 +1232,8 @@ The correct answer is C.
 
 ### Q38
 **difficulty:** Easy
-**type:** Specific Detail
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Specific Detail
 
 The passage cites Melville and Dickinson in order to illustrate:
 
@@ -1263,8 +1263,8 @@ The correct answer is B.
 
 ### Q39
 **difficulty:** Medium
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 The passage implies that Longfellow's declining canonical standing demonstrates that:
 
@@ -1304,8 +1304,8 @@ The correct answer is B.
 
 ### Q40
 **difficulty:** Hard
-**type:** Application
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Application
 
 A scholar who accepts the passage's processual view of the canon would most likely evaluate a proposal to add a previously neglected nineteenth-century novelist to university syllabi by asking:
 
@@ -1341,8 +1341,8 @@ The implications extend well beyond stellar physics. Many questions in Galactic 
 
 ### Q41
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 Which of the following best expresses the main point of the passage?
 
@@ -1372,8 +1372,8 @@ The correct answer is C.
 
 ### Q42
 **difficulty:** Easy
-**type:** Specific Detail
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Specific Detail
 
 According to the passage, traditional methods of dating stars perform poorly for isolated field stars primarily because:
 
@@ -1401,8 +1401,8 @@ The correct answer is B.
 
 ### Q43
 **difficulty:** Hard
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 The passage suggests that asteroseismology is most likely to contribute to progress on which of the following questions?
 
@@ -1434,8 +1434,8 @@ Choice B names that question verbatim and correctly supplies the bridging premis
 
 ### Q44
 **difficulty:** Medium
-**type:** Function
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Function
 
 The author's acknowledgment in the final paragraph that asteroseismic dating "works best for stars in a particular evolutionary phase" serves primarily to:
 
@@ -1471,8 +1471,8 @@ The resolution of this apparent paradox lies in recognizing that slack is not a 
 
 ### Q45
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The primary purpose of the passage is to:
 
@@ -1500,8 +1500,8 @@ The correct answer is C.
 
 ### Q46
 **difficulty:** Easy
-**type:** Specific Detail
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Specific Detail
 
 The passage cites studies of pharmaceutical research laboratories in order to illustrate that:
 
@@ -1529,8 +1529,8 @@ The correct answer is B.
 
 ### Q47
 **difficulty:** Hard
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 The passage implies that a firm pursuing a strategy that emphasizes rapid product innovation would most benefit from cultivating:
 
@@ -1566,8 +1566,8 @@ The correct answer is C.
 
 ### Q48
 **difficulty:** Medium
-**type:** Author's Attitude
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Author's Attitude
 
 The author's attitude toward the lean view of organizational management is best described as:
 
@@ -1605,8 +1605,8 @@ When these policy supports eroded, beginning in the late 1970s, the patterns tha
 
 ### Q49
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The passage primarily aims to:
 
@@ -1638,8 +1638,8 @@ The correct answer is B.
 
 ### Q50
 **difficulty:** Easy
-**type:** Specific Detail
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Specific Detail
 
 According to the passage, the midcentury compression of incomes in the United States was sustained by all of the following EXCEPT:
 
@@ -1685,8 +1685,8 @@ The correct answer is D.
 
 ### Q51
 **difficulty:** Hard
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 The passage implies that a policy agenda seeking to recreate the broad middle class of the postwar period would be mistaken if it:
 
@@ -1716,8 +1716,8 @@ The correct answer is A.
 
 ### Q52
 **difficulty:** Medium
-**type:** Function
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Function
 
 The author's discussion of redlining and unequal access to the GI Bill functions primarily to:
 
@@ -1758,8 +1758,8 @@ Most independent empirical studies, however, have struggled to quantify the effe
 
 ### Q53
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The primary purpose of the passage is to:
 
@@ -1789,8 +1789,8 @@ The correct answer is B.
 
 ### Q54
 **difficulty:** Medium
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 The passage most strongly suggests that the author would agree with which of the following statements?
 
@@ -1818,8 +1818,8 @@ The correct answer is C.
 
 ### Q55
 **difficulty:** Hard
-**type:** Function
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Function
 
 In the second paragraph, the reference to the "particular institutional combination" of the old corporate labs primarily serves to:
 
@@ -1858,8 +1858,8 @@ Automatic enrollment alone, however, does not resolve all savings shortfalls. De
 
 ### Q56
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The primary purpose of the passage is to:
 
@@ -1889,8 +1889,8 @@ The correct answer is B.
 
 ### Q57
 **difficulty:** Medium
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 Which of the following is most strongly supported by the passage?
 
@@ -1926,8 +1926,8 @@ The correct answer is D.
 
 ### Q58
 **difficulty:** Hard
-**type:** Function
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Function
 
 In the second paragraph, the author's mention of initial concerns that workers would "stop contributing once they realized their wages were being reduced" primarily serves to:
 
@@ -1966,8 +1966,8 @@ Other scholars are more skeptical. They note that each new medium in history has
 
 ### Q59
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The primary purpose of the passage is to:
 
@@ -2003,8 +2003,8 @@ The correct answer is B.
 
 ### Q60
 **difficulty:** Hard
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 Which of the following is most strongly supported by the passage?
 
@@ -2034,8 +2034,8 @@ The correct answer is C.
 
 ### Q61
 **difficulty:** Hard
-**type:** Function
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Function
 
 In the third paragraph, the author's observation that "each new medium in history has provoked concerns about cognitive decline — concerns that have generally not been borne out by subsequent evidence" primarily serves to:
 
@@ -2074,8 +2074,8 @@ Germline editing raises distinct ethical and technical concerns. Because germlin
 
 ### Q62
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The primary purpose of the passage is to:
 
@@ -2105,8 +2105,8 @@ The correct answer is B.
 
 ### Q63
 **difficulty:** Hard
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 The passage most strongly suggests that the author would agree with which of the following statements?
 
@@ -2134,8 +2134,8 @@ The correct answer is B.
 
 ### Q64
 **difficulty:** Hard
-**type:** Function
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Function
 
 In the second paragraph, the author's observation that "these findings have not diminished enthusiasm for somatic-cell therapies, in which edits are made to a patient's non-reproductive cells" primarily serves to:
 
@@ -2174,8 +2174,8 @@ Critics of the current enforcement regime argue that the penalties remain too sm
 
 ### Q65
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The primary purpose of the passage is to:
 
@@ -2207,8 +2207,8 @@ The correct answer is B.
 
 ### Q66
 **difficulty:** Medium
-**type:** Specific Detail
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Specific Detail
 
 According to the passage, the Digital Services Act in the European Union authorizes fines of up to:
 
@@ -2236,8 +2236,8 @@ The correct answer is C.
 
 ### Q67
 **difficulty:** Medium
-**type:** Specific Detail
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Specific Detail
 
 According to the passage, defenders of the current enforcement approach cite which of the following points in their defense?
 
@@ -2278,8 +2278,8 @@ These findings have spurred interest in complement-targeted therapies: drugs des
 
 ### Q68
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The primary purpose of the passage is to:
 
@@ -2307,8 +2307,8 @@ The correct answer is B.
 
 ### Q69
 **difficulty:** Hard
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 The passage most strongly suggests that the author would agree with which of the following statements?
 
@@ -2336,8 +2336,8 @@ The correct answer is B.
 
 ### Q70
 **difficulty:** Hard
-**type:** Function
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Function
 
 The author's discussion of eculizumab in the third paragraph primarily serves to:
 
@@ -2374,8 +2374,8 @@ The new approach did not displace the older methodology immediately or uniformly
 
 ### Q71
 **difficulty:** Medium
-**type:** Main Idea
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Main Idea
 
 The primary purpose of the passage is to:
 
@@ -2405,8 +2405,8 @@ The correct answer is B.
 
 ### Q72
 **difficulty:** Medium
-**type:** Specific Detail
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Specific Detail
 
 According to the passage, Francis Bacon's "inductive method" involved which of the following sequences?
 
@@ -2434,8 +2434,8 @@ The correct answer is A.
 
 ### Q73
 **difficulty:** Hard
-**type:** Inference
-**topic:** Reading Comprehension
+**type:** Reading Comprehension
+**topic:** Inference
 
 The passage most strongly suggests that the author views the relationship between deductive natural philosophy and the newer experimental-mathematical methodology as:
 

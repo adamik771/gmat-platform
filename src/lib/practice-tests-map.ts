@@ -99,6 +99,15 @@ export const BANK_RULES: Record<string, SubtopicRule[]> = {
     { match: ["interest", "profit", "loss"], chapter: "quant-19-percents" },
     { match: [], chapter: "quant-28-classic-word-problems" },
   ],
+  "reading-comprehension": [
+    { match: ["main idea"], chapter: "verbal-14-rc-main-idea" },
+    { match: ["detail"], chapter: "verbal-15-rc-detail" },
+    { match: ["inference"], chapter: "verbal-16-rc-inference" },
+    { match: ["application"], chapter: "verbal-17-rc-application" },
+    { match: ["function"], chapter: "verbal-18-rc-function" },
+    { match: ["attitude"], chapter: "verbal-19-rc-attitude" },
+    { match: [], chapter: "verbal-13-rc-reading-process" },
+  ],
   "critical-reasoning": [
     { match: ["weaken"], chapter: "verbal-05-cr-weaken" },
     { match: ["strengthen"], chapter: "verbal-04-cr-strengthen" },
@@ -121,13 +130,10 @@ export const BANK_RULES: Record<string, SubtopicRule[]> = {
  * omitted entirely (not practice-test material).
  */
 export const COMING_SOON_CHAPTERS: ReadonlySet<string> = new Set([
+  // RC main-idea/detail/inference/application/function/attitude are now live from
+  // the reading-comprehension bank. reading-process and answer-traps have no
+  // dedicated subtype questions yet, so they remain "coming soon".
   "verbal-13-rc-reading-process",
-  "verbal-14-rc-main-idea",
-  "verbal-15-rc-detail",
-  "verbal-16-rc-inference",
-  "verbal-17-rc-application",
-  "verbal-18-rc-function",
-  "verbal-19-rc-attitude",
   "verbal-20-rc-answer-traps",
   "multi-source-reasoning",
 ])
