@@ -19,6 +19,10 @@ Stripe flow is SOLID: webhook HMAC verification + raw body, idempotent upsert on
 ### Verified
 `next build` passes (diagnostic routes gone from route list); tsc clean; exam-mode flow click-verified in preview (exam default, zero leakage pre-finish, auto-advance, explicit last-question finish, post-finish reveal, study toggle + persistence); redirects + all 5 security headers curl-verified.
 
+### PR backlog triage — 2026-06-10 late evening
+Adam asked which open PRs to merge. Reviewed 30 newest (16 auto-closed on conflicts: stale algebra expansions colliding with the merged +63 batch, geometry-bank re-adds, superseded chapter rebuilds; 14 content-reviewed by agents). **Merged: #354 (TA micro-drills + accuracy boundary; needed a manual main-merge push to the PR branch after Adam merged out of order), #355 (algebra OG enrichment + panel dedup), #373 (combinatorics enrichment), #379 (algebra hints), #387 (statistics enrichment).** Then cut **`claude/enrichment-fixes`** (`cf452b7`, pushed, NOT merged): 3 factual fixes the reviews caught (stats Q2 P(red)/P(blue), algebra Q5 root claim, MISSISSIPPI brute-force fastest_path) + salvage of closed #369 (57 hint triplets into rates-work/combinatorics via signature-matched injection, 5 difficulty relabels, and the difficultyFromString fix mapping Challenge/Medium-Hard -> Advanced). validate 0 errors, tsc clean.
+**STILL OPEN: ~95 PRs.** Only #345-#387 were triaged. #262-#344 (~70 older cloud-agent runs, same generator families) are UNREVIEWED, and #393-#396 appeared new mid-session. Recommend: triage the rest with the same mechanical-conflict-then-agent-review pipeline; expect most to close. Adam should close the 23 already-verdicted ones (list in chat 2026-06-10): #345/346/347/348/349/350/351/353/364/365/366/367/368/369/370/371/372/374/378/380/381/382/383/385/386.
+
 ### Open / Adam's call
 - Merge `claude/practice-ux-official-exams`: `https://github.com/adamik771/gmat-platform/compare/main...claude/practice-ux-official-exams?expand=1`
 - Payments go-live checklist (when ready): real Stripe keys + 4 price IDs + webhook secret in Vercel, then test a checkout end-to-end.

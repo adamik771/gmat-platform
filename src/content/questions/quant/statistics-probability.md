@@ -78,7 +78,7 @@ Equivalently, the number of balls that are not green is the number of red balls 
 
 The correct answer is B.
 **mistake_a:** 5/12 is P(green) itself — you found the probability of the very event the question negates with NOT.
-**mistake_c:** 1/3 = 4/12 is P(blue), the one color the question never mentions; "not green" must include both red and blue.
+**mistake_c:** 1/3 = 4/12 is P(red) alone; "not green" must count both red and blue, not just one of the two colors.
 **mistake_d:** 2/3 = 8/12 is the complement of *red* (everything that isn't red), not the complement of green.
 **mistake_e:** 3/4 = 9/12 removes only the 3 blue balls from the total, leaving red and green; but green is exactly what should be excluded.
 **common_trap:** Sliding past the capitalized NOT and reporting P(green) = 5/12.

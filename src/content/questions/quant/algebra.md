@@ -161,9 +161,9 @@ We may confirm this by factoring. We seek two numbers whose product is −14 and
 The correct answer is A.
 **fastest_path:** Product of roots = c/a = −14/1 = −14, straight from the coefficients — no factoring needed.
 **common_trap:** Reporting the sum of the roots (or a single root) instead of the product.
-**mistake_b:** −7 is one of the two roots, not their product.
+**mistake_b:** −7 is not a root at all — it is one of the two factoring numbers (−7 and 2 multiply to −14); the actual roots are 7 and −2.
 **mistake_c:** 5 misreads the −5 coefficient as a root rather than computing c/a.
-**mistake_d:** 7 is the other root (a single root), not the product of both.
+**mistake_d:** 7 is one of the two roots (a single root), not the product of both.
 **mistake_e:** 14 drops the sign of c; the product is c/a = −14, which is negative.
 **takeaway:** For x² + bx + c, the product of the roots is c and the sum is −b — read which one the question wants.
 **related_reading:** reading-quant-04-algebra-and-equations
