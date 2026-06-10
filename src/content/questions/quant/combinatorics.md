@@ -30,6 +30,13 @@ Applying the fundamental counting principle, the total number of distinct orders
 Equivalently, the number of arrangements of 3 distinct items is 3! = 3 x 2 x 1 = 6.
 
 The correct answer is C.
+**fastest_path:** Read this as ordering 3 distinct items: 3! = 3 x 2 x 1 = 6. Count the positions down — no formula needed.
+**common_trap:** Counting the objects themselves instead of the number of ways to order them.
+**mistake_a:** Reported the 3 friends rather than the number of orders they can stand in.
+**mistake_b:** No counting route yields 4; an under-count of the arrangements.
+**mistake_d:** Used 2^3 = 8, treating each position as an independent yes/no choice instead of a placement drawn from a shrinking pool.
+**mistake_e:** Used 3 x 3 = 9, reusing all three friends for every position (repetition) rather than placing each person once.
+**takeaway:** Arranging n distinct items in a line is n!. Because each person is placed once, the pool shrinks 3 to 2 to 1.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -61,6 +68,13 @@ Computing the value, we have 3! = 3 × 2 × 1 = 6.
 Therefore the total number of arrangements in which the specified book is first is 6.
 
 The correct answer is A.
+**fastest_path:** Locking one book in seat 1 removes it from the count; just arrange the other 3: 3! = 6.
+**common_trap:** Ignoring the "must be first" constraint and arranging all four books freely.
+**mistake_b:** Used 2^3 = 8, treating each remaining seat as an independent binary choice.
+**mistake_c:** Computed 4 x 3 = 12, arranging only two seats (P(4,2)) or double-counting the fixed book.
+**mistake_d:** No valid counting route gives 18; a distractor placed near the larger values.
+**mistake_e:** Used 4! = 24, ignoring that the first book is locked in place.
+**takeaway:** A fixed-position constraint simply removes that item and its slot; arrange whatever remains. Locking one of n items in a line leaves (n-1)!.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -92,6 +106,13 @@ Applying the fundamental counting principle, the total number of ways to fill bo
 Equivalently, P(7, 2) = 7! / (7 − 2)! = 7! / 5! = 7 × 6 = 42.
 
 The correct answer is C.
+**fastest_path:** Two distinct roles, so order matters: fill the higher office first, then the next from the survivors — 7 x 6 = 42.
+**common_trap:** Using a combination (C(7,2) = 21) when the two roles are distinct, so president-then-VP differs from VP-then-president.
+**mistake_a:** Computed 7 x 2 = 14, multiplying candidates by the number of offices instead of by the shrinking pool.
+**mistake_b:** Used C(7,2) = 21, treating the two offices as interchangeable; because the roles are distinct, AB and BA are different outcomes.
+**mistake_d:** Used 7 x 7 = 49, allowing the same person to hold both offices (repetition).
+**mistake_e:** Used 7! = 5040, arranging all seven candidates instead of selecting just two for office.
+**takeaway:** Distinct roles mean order matters, so use a permutation: P(n,2) = n(n-1). Only halve it to a combination when the chosen items are interchangeable.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -123,6 +144,13 @@ Rather than expand 6! = 720 and divide by 36, cancel one 3! against the numerato
 Thus there are 20 different teams of 3 that can be picked from the group of 6 students.
 
 The correct answer is C.
+**fastest_path:** A team is unordered: C(6,3) = (6 x 5 x 4) / (3 x 2 x 1) = 20. Cancel the denominator before multiplying.
+**common_trap:** Counting order (a permutation, 120) when team membership has no internal order.
+**mistake_a:** Computed C(6,2) = 15, choosing the wrong subset size.
+**mistake_b:** No standard count gives 18; an arithmetic-slip distractor.
+**mistake_d:** Took P(6,3)/2 = 60, dividing by 2! instead of 3! — correcting for order among only two of the three chosen.
+**mistake_e:** Used P(6,3) = 6 x 5 x 4 = 120, counting the three slots as ordered when a team has no internal order.
+**takeaway:** A "team" or "group" is unordered: divide the permutation by k!. Here divide 120 by 3! = 6 to get 20.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -150,6 +178,13 @@ Let n = 8 be the number of available toppings and let k = 2 be the number of top
 Applying the formula, we have C(8, 2) = (8 * 7) / (2 * 1) = 56 / 2 = 28.
 
 The correct answer is B.
+**fastest_path:** An unordered pair of toppings: C(8,2) = (8 x 7) / 2 = 28.
+**common_trap:** Counting ordered pairs (8 x 7 = 56) when the order of the two toppings is irrelevant.
+**mistake_a:** Computed 8 x 2 = 16, multiplying toppings by pizza size instead of choosing a pair.
+**mistake_c:** No standard count gives 40; a mid-range distractor.
+**mistake_d:** Used 8 x 7 = 56 = P(8,2), counting pepperoni-then-mushroom as different from mushroom-then-pepperoni.
+**mistake_e:** Used 8^2 = 64, allowing a topping to repeat and treating order as meaningful.
+**takeaway:** Choosing an unordered pair from n is C(n,2) = n(n-1)/2. Halving the ordered count removes the duplicate orderings.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -173,6 +208,13 @@ The letters of the word GAMES are rearranged. How many distinct arrangements are
 **explanation:** The number of distinct arrangements of a collection of distinct objects is given by the factorial of the number of objects: n objects can be ordered in n! ways. Let n denote the number of letters in the word GAMES. The word consists of the letters G, A, M, E, and S, all of which are distinct, so n = 5. Because no letter repeats, no adjustment for indistinguishable items is required, and the number of distinct arrangements is therefore 5!. Computing this value gives 5! = 5 * 4 * 3 * 2 * 1 = 120.
 
 The correct answer is C.
+**fastest_path:** Five distinct letters with no repeats: 5! = 120.
+**common_trap:** Dividing by a repeat-factor when no letter in GAMES actually repeats.
+**mistake_a:** Used 4! = 24, dropping a letter — all five letters of GAMES are distinct and must be placed.
+**mistake_b:** Computed 5!/2 = 60, dividing by 2! as if a letter repeated; GAMES has none.
+**mistake_d:** Computed 2 x 5! = 240, doubling for an imagined internal arrangement.
+**mistake_e:** Used 6! = 720, counting six letters instead of five.
+**takeaway:** Distinct letters give n!. Divide by k! only for each letter that repeats; GAMES has no repeats, so the answer is a clean 5!.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -212,6 +254,13 @@ Now cancel the denominator against the numerator instead of multiplying out: 8 /
 C(10, 4) = 10 * 3 * 7 = 210.
 
 The correct answer is B.
+**fastest_path:** An unordered committee: C(10,4) = (10 x 9 x 8 x 7) / (4 x 3 x 2 x 1) = 210. Cancel 8 and 9 against the denominator first.
+**common_trap:** Counting order (P(10,4) = 5040) when a committee has no internal order.
+**mistake_a:** Computed 10 x 4 = 40, multiplying people by committee size instead of choosing a subset.
+**mistake_c:** An arithmetic slip in the cancellation; no clean route gives 240.
+**mistake_d:** Took P(10,4)/2 = 2520, dividing by 2! instead of 4!.
+**mistake_e:** Used P(10,4) = 10 x 9 x 8 x 7 = 5040, counting the four members as ordered.
+**takeaway:** A committee is unordered, so divide the permutation by k!. Here divide 5040 by 4! = 24 to reach 210.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -241,6 +290,13 @@ The number of arrangements of five distinct objects is 5! = 5 × 4 × 3 × 2 × 
 Because the two letters inside the block are identical S's, interchanging them produces no new arrangement, so the block contributes no additional internal orderings. Therefore the total number of arrangements in which the two S's appear next to each other is 120.
 
 The correct answer is B.
+**fastest_path:** Glue the two S's into one block and arrange the 5 resulting units: 5! = 120. The S's are identical, so there is no internal x2.
+**common_trap:** Multiplying by 2! for the block's internal order when the two glued letters are identical.
+**mistake_a:** Computed 5!/2 = 60, dividing by 2! as though the two S's were distinguishable; identical S's require no such division.
+**mistake_c:** Used 5! x 2 = 240, multiplying by 2! for the block's internal order; identical S's have only one internal arrangement.
+**mistake_d:** A distractor with no valid derivation.
+**mistake_e:** Used 6! = 720, the arrangements of six distinct letters — ignoring both the adjacency requirement and the identical S's (the true unrestricted count is 6!/2! = 360).
+**takeaway:** Block method: glue forced-adjacent items, then arrange the units. Multiply by the block's internal orderings only when those items are distinct.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -278,6 +334,13 @@ Subtracting the forbidden arrangements from the total gives
 T - A = 720 - 240 = 480.
 
 The correct answer is C.
+**fastest_path:** Complement: total 6! minus the "Ana-Ben adjacent" block count (5! x 2). 720 - 240 = 480.
+**common_trap:** Reporting the adjacent count instead of its complement, or forgetting the x2 for the block's internal order.
+**mistake_a:** This is the number of seatings with Ana and Ben TOGETHER (5! x 2 = 240) — the quantity to subtract, not the answer.
+**mistake_b:** Computed 6!/2 = 360, halving the total as if exactly half the seatings were adjacent; the adjacent fraction is 2/6, not 1/2.
+**mistake_d:** Subtracted 5! = 120 (forgetting the x2 internal order of the block) from 720, over-counting valid seatings.
+**mistake_e:** Used 6! = 720, the unrestricted total, ignoring the "refuse to sit together" condition entirely.
+**takeaway:** For a forbidden adjacency, count the complement: total minus (block arrangements x internal orderings). Never drop the block's internal 2!.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -309,6 +372,13 @@ We next compute W. We have C(4, 1) = 4! / (1! * 3!) = 4.
 Because the choice of the men and the choice of the women are independent, and the committee requires the 2 men and the 1 woman together, the total number of committees is the product of these two results: M * W = 10 * 4 = 40.
 
 The correct answer is C.
+**fastest_path:** Independent choices: C(5,2) x C(4,1) = 10 x 4 = 40. Multiply the two group counts.
+**common_trap:** Adding the group counts (10 + 4) instead of multiplying, or matching the wrong count to a group.
+**mistake_a:** Used P(5,2) = 20 for the men (counting order) and dropped the women; committee members are unordered and the woman must still be chosen.
+**mistake_b:** Computed C(5,1) x C(4,2) = 5 x 6 = 30, taking 1 man and 2 women — the reverse of the required split.
+**mistake_d:** Computed C(5,2) x C(4,2) = 10 x 6 = 60, taking 2 men and 2 women (4 people), not the required 2-and-1 mix.
+**mistake_e:** Used C(9,3) = 84, choosing any 3 of the 9 people while ignoring the requirement of exactly 2 men and 1 woman.
+**takeaway:** "Exactly a from one group and b from another" means multiply the per-group combinations. Match each count to its group, and multiply (independent choices) — never add.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -344,6 +414,13 @@ Evaluating the factorial:
 Thus there are 24 distinct ways for the 5 people to sit around the circular table.
 
 The correct answer is A.
+**fastest_path:** Circular: fix one person to kill rotations, then order the rest: (5-1)! = 4! = 24.
+**common_trap:** Using n! (the linear count) instead of (n-1)! for a circular arrangement.
+**mistake_b:** Computed 5!/2 = 60, dividing by 2 as if reflections were also identified; only rotations are, giving (n-1)!.
+**mistake_c:** Used 5! = 120, the count for a straight row; around a circle, rotations of one seating are the same, so divide by 5.
+**mistake_d:** Used 2 x 5! = 240, an over-count with no basis in the rotation rule.
+**mistake_e:** Used 6! = 720, both treating the table as a line and miscounting the people.
+**takeaway:** Circular arrangements of n people = (n-1)!, because there is no fixed "first seat." Fix one person as reference and order the remaining n-1.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -380,6 +457,13 @@ Applying the counting principle, the total number of codes is the product of the
 Equivalently, this is the number of permutations of 10 objects taken 4 at a time, P(10, 4) = 10! / (10 - 4)! = 10! / 6! = 5,040.
 
 The correct answer is B.
+**fastest_path:** Order matters and no digit repeats, so shrink the pool each position: 10 x 9 x 8 x 7 = 5040.
+**common_trap:** Allowing repeated digits (10^4) instead of reducing the pool after each placement.
+**mistake_a:** A round-number distractor with no valid counting route.
+**mistake_c:** This is 9000, the count of 4-digit numbers 1000-9999 (first digit 1-9, rest 0-9) — a different problem that bars a leading zero, not repeats.
+**mistake_d:** Used 10^4 = 10,000, letting every position reuse all ten digits; the code may not repeat a digit.
+**mistake_e:** Used 10 x 9 x 8 x 7 x 6 x 5 = 151,200 = P(10,6), extending the code beyond its 4 positions.
+**takeaway:** Ordered selection without repetition is a permutation: P(10,4) = 10 x 9 x 8 x 7. If repetition were allowed it would be 10^4.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -419,6 +503,13 @@ The remaining denominator is 4! × 2! × 1! = 24 × 2 × 1 = 48. Instead of divi
 Multiplying the survivors in stages keeps every step small: 11 × 10 = 110, then × 9 = 990, then × 7 = 6,930, then × 5 = 34,650. No large multiplication or long division is ever required.
 
 The correct answer is A.
+**fastest_path:** 11 letters with I four times, S four times, P twice: 11! / (4! x 4! x 2!) = 34,650. Cancel before multiplying.
+**common_trap:** Forgetting one of the repeated-letter factorials in the denominator.
+**mistake_b:** An intermediate over-count from dropping one of the 4! factors in the denominator.
+**mistake_c:** Computed 11! / (4! x 4!) = 69,300, dividing for the four I's and four S's but forgetting the two identical P's (the 2!).
+**mistake_d:** Divided by too few repeat-factors — accounting for only one group of identical letters — leaving a large over-count.
+**mistake_e:** Equals 11!/5! = P(11,6) = 332,640, an arrangement of only part of the word, not all 11 letters with repeats removed.
+**takeaway:** Arrangements with repeats = n! divided by the factorial of each repeated letter's count. Account for every repeat: I (4!), S (4!), P (2!).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -450,6 +541,13 @@ Applying the multiplication principle, the total number of outcomes is 8 * 21 = 
 The same result can be obtained by reversing the order of the two stages. First choose the unordered committee of 3 from the 8 candidates: C(8, 3) = 8! / (3! * 5!) = (8 * 7 * 6) / (3 * 2 * 1) = 8 * 7 = 56 (the 6 cancels 3 * 2). Then designate one of the 3 committee members as chair, which can be done in 3 ways. This yields 56 * 3 = 168, confirming the count.
 
 The correct answer is C.
+**fastest_path:** Pick the chair (8 ways), then 2 more from the remaining 7: 8 x C(7,2) = 8 x 21 = 168. Equivalently C(8,3) x 3 = 56 x 3.
+**common_trap:** Stopping at C(8,3) = 56 without designating the chair.
+**mistake_a:** This is C(8,3) = 56, the committees alone, with no chair singled out — the question also assigns a chair (x3).
+**mistake_b:** Computed C(8,3) x 2 = 112, multiplying by 2 instead of by the 3 members eligible to chair.
+**mistake_d:** Computed C(8,3) x 6 = 336, treating the chair choice as 3! (or doubling 168), over-ranking the roles.
+**mistake_e:** An over-count (e.g., C(8,3) x 9), treating more than one position as ranked; only the single chair is ranked.
+**takeaway:** "Choose a group, then assign a role" = (combination for the group) x (ways to assign the role). Pick first, then rank — or rank first, then pick the rest.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -479,6 +577,13 @@ Within a single pattern, the four seats reserved for men are fixed, and the four
 Because the two patterns are mutually exclusive ways of satisfying the constraint, we add the counts, which is equivalent to multiplying the per-pattern total by 2: 2 x 576 = 1,152.
 
 The correct answer is B.
+**fastest_path:** Two gender patterns (man-first or woman-first); within each, 4! x 4!. Total = 2 x 24 x 24 = 1152.
+**common_trap:** Counting only one starting pattern (4! x 4! = 576) and forgetting the second.
+**mistake_a:** Computed 4! x 4! = 576 for a single pattern (say men in the odd seats), forgetting the equally valid woman-first pattern (x2).
+**mistake_c:** Computed 4 x 576 = 2304, using 4 patterns instead of 2.
+**mistake_d:** Computed 8 x 576 = 4608, over-multiplying the number of alternating patterns; there are exactly two.
+**mistake_e:** Used 8! = 40,320, the unrestricted seatings, ignoring the alternation constraint entirely.
+**takeaway:** Alternation fixes the gender skeleton to two patterns; fill each gender into its own slots (4! x 4!) and multiply by the 2 starting choices.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -508,6 +613,13 @@ We count the two choices separately. The number of ways to choose 2 red marbles 
 Because both selections must occur together, the fundamental counting principle requires multiplying the two counts: 15 * 10 = 150.
 
 The correct answer is B.
+**fastest_path:** Exactly 2 red forces the other 2 to be blue: C(6,2) x C(5,2) = 15 x 10 = 150.
+**common_trap:** Forgetting that "exactly 2 red" fixes the remaining 2 as blue, or just counting C(11,4).
+**mistake_a:** A near-miss product such as 10 x 10; recheck C(6,2) = 15, not 10.
+**mistake_c:** Used 20 x 10 = 200; recheck C(6,2) = 15.
+**mistake_d:** Used C(11,4) = 330, the ways to draw any 4 of the 11 marbles, ignoring the "exactly 2 red" condition.
+**mistake_e:** Used C(11,5) = 462, a full-set count that disregards both the draw size and the color split.
+**takeaway:** "Exactly k of one type" splits the draw by color: multiply C(reds, k) by C(others, rest). The remaining count is forced by the total drawn.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -537,6 +649,13 @@ Within the block, the two specific books are distinct and can themselves be orde
 7! × 2! = 5,040 × 2 = 10,080.
 
 The correct answer is B.
+**fastest_path:** Glue the two specific books into one block, giving 7 units: 7! x 2! = 5040 x 2 = 10,080.
+**common_trap:** Forgetting the x2! internal order of the glued pair.
+**mistake_a:** Computed 7! = 5040, the unit arrangements, but forgot the 2 internal orders of the glued pair.
+**mistake_c:** Computed 7! x 4 = 20,160, over-multiplying the block's internal arrangements (there are 2, not 4).
+**mistake_d:** An over-count (e.g., 6 x 5040) with no valid route under the adjacency rule.
+**mistake_e:** Used 8! = 40,320, all unrestricted arrangements, ignoring the adjacency requirement.
+**takeaway:** A forced-adjacent pair becomes one block: arrange the (n-1) units as (n-1)!, then multiply by 2! for the pair's internal order.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -566,6 +685,13 @@ Substituting n = 10 gives C(10, 2) = (10 x 9) / 2 = 90 / 2 = 45.
 Thus a total of 45 games are played.
 
 The correct answer is B.
+**fastest_path:** Each game is one unordered pair of teams: C(10,2) = (10 x 9)/2 = 45.
+**common_trap:** Counting ordered pairs (10 x 9 = 90), double-counting "A plays B" and "B plays A."
+**mistake_a:** Computed 2 x 10 = 20; no valid route, and it under-counts the pairings.
+**mistake_c:** Used 10 x 9 = 90, counting each game twice (once in each order); halve it to 45.
+**mistake_d:** Used 10^2 = 100, also letting a team play itself and counting order.
+**mistake_e:** Used 2 x 10 x 9 = 180, doubling the already-ordered count.
+**takeaway:** "Each pair does X once" = C(n,2) = n(n-1)/2. The /2 removes the duplicate where the same pair is counted in both orders.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 
@@ -602,6 +728,13 @@ Because these three cases are mutually exclusive and exhaust all valid committee
 350 + 210 + 35 = 595.
 
 The correct answer is C.
+**fastest_path:** Split by women count w in {2,3,4}: C(5,2)C(7,3) + C(5,3)C(7,2) + C(5,4)C(7,1) = 350 + 210 + 35 = 595.
+**common_trap:** Missing a case (often w = 4) or mis-bounding how high w can go.
+**mistake_a:** Dropped a case or mis-multiplied, leaving an incomplete sum.
+**mistake_b:** Omitted the (4 women, 1 man) case: 350 + 210 = 560, forgetting that w can reach 4.
+**mistake_d:** Over-counted by including an inadmissible split such as 5 women and 0 men, which violates "at least 1 man."
+**mistake_e:** A distractor near the unrestricted total C(12,5) = 792; the constraints remove 197 committees, not fewer.
+**takeaway:** Multi-constraint committees: enumerate the admissible group-splits, count each with combinations, and add. Always check the boundary cases.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -642,6 +775,13 @@ Expanding the right side gives 40 - x = 90 - 3x. Adding 3x to both sides gives 4
 Since each statement alone determines the value of x, and hence the total, each statement alone is sufficient.
 
 The correct answer is D.
+**fastest_path:** Total = R + B - both = 70 - x. Anything that pins x is sufficient — and each statement pins x, so each alone suffices.
+**common_trap:** The two statements imply different totals (58 vs 45), tempting you to pick C or E as if they conflicted; DS asks only whether each determines a unique value, which each does.
+**mistake_a:** Statement (1) does give x = 12, but (2) alone also fixes x = 25 via 40 - x = 3(30 - x); (1) is not uniquely sufficient.
+**mistake_b:** Statement (2) alone suffices (x = 25), but (1) alone also fixes x = 12; (2) is not uniquely sufficient.
+**mistake_c:** You do not need both: each statement independently determines x, so the answer is D, not C.
+**mistake_e:** Both statements are sufficient individually, so "together not sufficient" is wrong.
+**takeaway:** In DS, "sufficient" means a single determined value, even when the two statements imply different values. Test each statement on its own before combining.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 
@@ -674,6 +814,13 @@ Therefore the probability that no black sock is drawn is 20 / 120 = 1/6.
 The probability that at least one black sock is drawn is the complement of this value: 1 - 1/6 = 5/6.
 
 The correct answer is E.
+**fastest_path:** "At least one" means 1 - P(none): 1 - C(6,3)/C(10,3) = 1 - 20/120 = 5/6.
+**common_trap:** Reporting P(no black) = 1/6 instead of its complement.
+**mistake_a:** This is P(no black) = 20/120 = 1/6, the complement — subtract it from 1 to get "at least one."
+**mistake_b:** A miscount of the non-black combinations; recheck C(6,3) = 20 and C(10,3) = 120.
+**mistake_c:** Guessed an even split; the actual value is 5/6, not 1/2.
+**mistake_d:** Used a wrong complement (e.g., 1 - 1/3); the correct P(none) is 1/6, so the answer is 5/6.
+**takeaway:** "At least one" almost always means complement: 1 - P(none). Computing P(none) is far faster than summing the 1-, 2-, and 3-black cases.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 
@@ -702,6 +849,13 @@ Let N2 denote the number of arrangements in which A and B are adjacent and C and
 The required number of arrangements is therefore N1 minus N2 = 240 minus 96 = 144.
 
 The correct answer is B.
+**fastest_path:** (A,B adjacent) minus (A,B adjacent AND C,D adjacent) = 5! x 2 - 4! x 2 x 2 = 240 - 96 = 144.
+**common_trap:** Reporting the A,B-adjacent total (240) or the both-adjacent count (96) instead of their difference.
+**mistake_a:** This is the count with A,B adjacent AND C,D adjacent (4! x 2 x 2 = 96), the quantity to subtract — not the final answer.
+**mistake_c:** Subtracted 4! x 2 = 48 (forgetting one block's internal 2) from 240, leaving 192.
+**mistake_d:** This is the A,B-adjacent total (5! x 2 = 240), before removing the C,D-adjacent cases.
+**mistake_e:** Added rather than subtracted, or mishandled a block factor; the C,D-adjacent cases must be removed, lowering the count.
+**takeaway:** "A AND not-B" = (count with A) minus (count with A and B). Build each with the block method, keeping every block's internal 2!.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 
@@ -730,6 +884,13 @@ Next we count the arrangements in which Alex and Beth do sit next to each other.
 Finally, we subtract the adjacent arrangements from the total to obtain the arrangements in which Alex and Beth are not adjacent: 24 - 12 = 12.
 
 The correct answer is D.
+**fastest_path:** Circular complement: total (5-1)! = 24 minus the adjacent count (3! x 2 = 12), giving 24 - 12 = 12.
+**common_trap:** Using 5! for the circle, or forgetting the block's internal x2.
+**mistake_a:** A severe under-count; the circular formula was misapplied to the block.
+**mistake_b:** Computed 3! = 6 for the block arrangements without the x2 internal order, or used the wrong total.
+**mistake_c:** A miscount of either the total (should be 24) or the adjacent cases (should be 12).
+**mistake_e:** Subtracted only 6 (the block units 3!, without the x2) from 24, leaving 18; the block's two internal orders were dropped.
+**takeaway:** Circular complement: total (n-1)! minus the adjacent count, where the adjacent count is (n-2)! x 2 for the glued pair around the circle.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 
@@ -760,6 +921,13 @@ Since the marble is replaced, this probability is the same on the second draw. A
 P(both red) = P(R) × P(R) = (3/5) × (3/5) = 9/25.
 
 The correct answer is A.
+**fastest_path:** Replacement makes the draws independent: (6/10)^2 = (3/5)^2 = 9/25.
+**common_trap:** Treating the draws as without replacement (6/10 x 5/9) even though the marble is put back.
+**mistake_b:** This is 6/10 x 5/9 = 1/3, the without-replacement probability; here the marble IS replaced, so use 3/5 twice.
+**mistake_c:** Used a single-draw or 4/10 figure; this is not the probability of two reds.
+**mistake_d:** Guessed an even split, ignoring that red is only 3/5 of the jar.
+**mistake_e:** This is P(red) for one draw (6/10 = 3/5); the question asks for two reds, so square it.
+**takeaway:** With replacement means independent, so multiply identical probabilities (square them). Without replacement, the second fraction shrinks.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -791,6 +959,13 @@ Case 3: 1 economist, 1 engineer, 2 lawyers. The number of ways is C(3, 1) times 
 These three cases are mutually exclusive and together exhaust all admissible committees, so we add the counts: 18 + 18 + 9 = 45.
 
 The correct answer is B.
+**fastest_path:** The only split of 4 across three nonempty groups is 2+1+1: C(3,2)(3)(2) + (3)C(3,2)(2) + (3)(3)C(2,2) = 18 + 18 + 9 = 45.
+**common_trap:** Missing one of the three 2+1+1 cases, or forgetting that only C(2,2) = 1 way exists for two lawyers.
+**mistake_a:** Dropped a case or used a wrong combination, undercounting the committees.
+**mistake_c:** Double-counted a case, or used C(2,1) where C(2,2) belongs in the lawyers-heavy split.
+**mistake_d:** Over-counted a split (e.g., allowing more than C(2,2) = 1 for the two lawyers) or an arithmetic slip.
+**mistake_e:** Used C(8,4) = 70, every committee of 4 from the 8, ignoring "at least one from each group."
+**takeaway:** "At least one from each group" with a small committee: list the integer splits (here only 2+1+1), multiply group combinations per case, and add. Subtracting from C(8,4) also works.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 
