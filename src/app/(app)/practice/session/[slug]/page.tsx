@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { getQuestionsBySetSlug } from "@/lib/content"
+import { getQuestionsBySetSlug, getQuestionSets } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import {
   DEFAULT_LEVEL,
@@ -9,7 +9,6 @@ import {
   pickAdaptiveOrder,
   type TopicSkillLevel,
 } from "@/lib/topic-skill"
-import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import SessionClient, { type SessionQuestion, type WeakTopicHint } from "./SessionClient"
 
 export default async function PracticeSessionPage({
@@ -123,7 +122,20 @@ export default async function PracticeSessionPage({
         // Only surface a specific recommendation when there's a real gap.
         // Topics at ≥75% don't need a redirect — the student is fine there.
         if (worst && worst.accuracy < 0.75) {
-          const practiceSlug = TOPIC_TO_CHAPTER[worst.topic] ?? null
+          // Resolve the weak topic's *question-set* slug — the completion
+          // screen routes "Practice {topic}" to /practice/session/{slug},
+          // which 404s on anything that isn't a real set. practice_attempts
+          // .topic and QuestionSetSummary.topic are both the question
+          // frontmatter topic, so they join exactly. Prefer the largest set
+          // for that topic so the redirect lands on the richest drill.
+          let practiceSlug: string | null = null
+          let bestCount = -1
+          for (const set of getQuestionSets()) {
+            if (set.topic === worst.topic && set.count > bestCount) {
+              bestCount = set.count
+              practiceSlug = set.slug
+            }
+          }
           if (practiceSlug) {
             weakestTopic = { topic: worst.topic, practiceSlug, accuracy: worst.accuracy }
           }
