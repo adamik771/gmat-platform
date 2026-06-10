@@ -800,7 +800,7 @@ Two trains leave stations that are 450 miles apart, traveling toward each other 
 
 Let t = the number of hours each train travels before they meet. Because the trains depart simultaneously and move toward each other, they close the 450-mile gap at the combined rate of 60 + 75 = 135 miles per hour. The total distance covered by both trains together must equal the initial separation, so 135t = 450.
 
-Solving for t gives t = 450/135 = 10/3 hours.
+Solving for t, cancel the common factor 45 from numerator and denominator: 450 ÷ 45 = 10 and 135 ÷ 45 = 3, so t = 450/135 = 10/3 hours.
 
 The question asks for the distance from Train A's station to the meeting point, which is the distance Train A travels. Since Train A moves at 60 miles per hour for 10/3 hours, its distance is 60 × (10/3) = 600/3 = 200 miles.
 
@@ -1364,8 +1364,7 @@ The total distance traveled is the sum of the three leg distances:
 The total time elapsed is the sum of the three leg times:
 2 + 2 + 0.5 = 4.5 hours.
 
-Applying the governing relationship, the average speed for the entire trip is
-180/4.5 = 40 mph.
+Applying the governing relationship, the average speed for the entire trip is found by clearing the decimal: 4.5 = 9/2, so 180 ÷ (9/2) = 180 × (2/9) = (180/9) × 2 = 20 × 2 = 40 mph.
 
 The correct answer is C.
 **related_reading:** reading-quant-05-word-problems
@@ -1395,7 +1394,7 @@ Let m denote the rate of machine M and n denote the rate of machine N, each meas
 
 Statement (1) establishes that m = 40 components per hour. It provides no information about n. Without the value of n, the combined rate m + n cannot be determined, and so the time cannot be found. Statement (1) alone is not sufficient.
 
-Statement (2) establishes that machine N produces 12 components in 1 hour and 12 minutes. We convert the time to hours: 12 minutes is 12 divided by 60, which equals 0.2 hour, so the elapsed time is 1.2 hours. The rate is then n = 12 divided by 1.2, which equals 10 components per hour. This determines n but provides no information about m. Without the value of m, the combined rate m + n cannot be determined, and so the time cannot be found. Statement (2) alone is not sufficient.
+Statement (2) establishes that machine N produces 12 components in 1 hour and 12 minutes. We convert the time to hours: 12 minutes is 12 divided by 60, which equals 0.2 hour, so the elapsed time is 1.2 hours. The rate is then n = 12 divided by 1.2; clearing the decimal, 1.2 = 6/5, so 12 ÷ (6/5) = 12 × (5/6) = (12/6) × 5 = 2 × 5 = 10 components per hour. This determines n but provides no information about m. Without the value of m, the combined rate m + n cannot be determined, and so the time cannot be found. Statement (2) alone is not sufficient.
 
 Taking the two statements together, we have m = 40 and n = 10. The combined rate is m + n = 40 + 10 = 50 components per hour. The required time is 60 divided by 50, which equals 1.2 hours. This is a single determined value, so both statements together are sufficient.
 
