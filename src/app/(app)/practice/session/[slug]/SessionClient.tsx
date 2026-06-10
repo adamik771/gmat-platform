@@ -2041,6 +2041,18 @@ export default function SessionClient({
                               style={{ color: isWrong ? "rgba(255,107,107,0.75)" : "#555555" }}
                             >
                               Q{i + 1} · {q.subtopic} · {q.difficulty}
+                              {isWrong && state.confidence && state.confidence !== "low" && (
+                                <span
+                                  className="ml-1.5 inline-flex items-center px-1 py-px rounded text-[9px] font-semibold uppercase tracking-wide"
+                                  style={
+                                    state.confidence === "high"
+                                      ? { backgroundColor: "rgba(255,153,102,0.15)", color: "#FF9966" }
+                                      : { backgroundColor: "rgba(255,255,255,0.05)", color: "#555555" }
+                                  }
+                                >
+                                  {state.confidence === "high" ? "Confident" : "Unsure"}
+                                </span>
+                              )}
                             </p>
                             <p className="text-sm text-[#F0F0F0] truncate">
                               {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
