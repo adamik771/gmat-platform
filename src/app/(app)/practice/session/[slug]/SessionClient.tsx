@@ -25,6 +25,7 @@ import PacingBadge from "@/components/shared/PacingBadge"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
 import { applySessionAttempts, levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
+import { MAX_RUNG, SPACING_LADDER_DAYS } from "@/lib/review-queue"
 import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
@@ -106,6 +107,11 @@ interface SessionClientProps {
   /** Optional context line shown above the session title, e.g.
    *  "Algebra: Linear Equations & Systems · Test 1" for a per-chapter test. */
   setLabel?: string
+  /** Review sessions only: each question's spacing-ladder rung (0..4)
+   *  *before* this session, keyed by question id. When present, the
+   *  completion screen shows how this session moved each question on
+   *  the ladder — see lib/review-queue.ts for the rung semantics. */
+  reviewRungs?: Record<string, number>
 }
 
 function formatDuration(ms: number): string {
@@ -1107,6 +1113,7 @@ export default function SessionClient({
   skillAttempts,
   weakestTopic,
   setLabel,
+  reviewRungs,
 }: SessionClientProps) {
   const router = useRouter()
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -1768,6 +1775,131 @@ export default function SessionClient({
               )
             })()}
         </div>
+
+        {/* Spacing-ladder outcome — review sessions only. The payoff of
+            spaced retrieval is invisible at the moment it happens: a correct
+            answer silently pushes the question days into the future. Showing
+            that movement turns "10 more questions done" into a concrete,
+            earned outcome, and reframes a miss as the system catching an
+            unstable skill today rather than on test day. */}
+        {reviewRungs && (() => {
+          const moves = questions
+            .map((q, i) => ({ q, state: states[i] }))
+            .filter(({ q, state }) => state.submitted && q.id in reviewRungs)
+            .map(({ q, state }) => {
+              const before = Math.min(Math.max(reviewRungs[q.id] ?? 0, 0), MAX_RUNG)
+              const correct = isQuestionCorrect(q, state)
+              return { before, after: correct ? Math.min(before + 1, MAX_RUNG) : 0, correct }
+            })
+          if (moves.length === 0) return null
+
+          const advanced = moves.filter((m) => m.correct)
+          const resetCount = moves.length - advanced.length
+          const retiredCount = advanced.filter((m) => m.after === MAX_RUNG).length
+          const longestGap =
+            advanced.length > 0
+              ? Math.max(...advanced.map((m) => SPACING_LADDER_DAYS[m.after]))
+              : 0
+
+          // Where each reviewed question now sits on the ladder.
+          const afterCounts = SPACING_LADDER_DAYS.map(() => 0)
+          for (const m of moves) afterCounts[m.after] += 1
+          const rungLabels = ["today", "2 days", "7 days", "21 days", "42 days"]
+
+          return (
+            <div
+              className="p-5 sm:p-6 rounded-xl border"
+              style={{
+                borderColor: "rgba(201,168,76,0.18)",
+                backgroundColor: "#0D0D0D",
+              }}
+            >
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1">
+                Spacing ladder
+              </p>
+              <p className="text-sm font-semibold text-[#F0F0F0]">
+                {advanced.length > 0
+                  ? `${advanced.length} question${advanced.length === 1 ? "" : "s"} moved up the ladder.`
+                  : "Every question reset to same-day."}
+              </p>
+              <p className="text-xs text-[#888888] leading-relaxed mt-1.5">
+                {advanced.length > 0 && (
+                  <>
+                    Each correct answer pushed that question further out — the
+                    furthest won&apos;t resurface for {longestGap} days.{" "}
+                    {retiredCount > 0 && (
+                      <>
+                        {retiredCount === 1 ? "One" : retiredCount} reached the
+                        top rung: stable until a final pre-exam pass.{" "}
+                      </>
+                    )}
+                  </>
+                )}
+                {resetCount > 0 && (
+                  <>
+                    {resetCount} reset to same-day — that&apos;s the ladder
+                    working, not a setback. An unstable skill got caught today
+                    instead of on test day, and {resetCount === 1 ? "it" : "they"}{" "}
+                    will be back in your queue while the correction is fresh.
+                  </>
+                )}
+              </p>
+
+              {/* Where the reviewed questions now sit, rung by rung */}
+              <div className="flex items-center mt-4">
+                {SPACING_LADDER_DAYS.map((_, rung) => {
+                  const count = afterCounts[rung]
+                  const occupied = count > 0
+                  const isReset = rung === 0
+                  return (
+                    <div key={rung} className="flex items-center flex-1 min-w-0">
+                      {rung > 0 && (
+                        <div
+                          className="flex-none h-px w-2"
+                          style={{ backgroundColor: "rgba(255,255,255,0.06)" }}
+                        />
+                      )}
+                      <div
+                        className="flex-1 text-center py-2 rounded-lg min-w-0"
+                        style={{
+                          backgroundColor: occupied
+                            ? isReset
+                              ? "rgba(255,68,68,0.06)"
+                              : "rgba(201,168,76,0.08)"
+                            : "transparent",
+                          border: occupied
+                            ? isReset
+                              ? "1px solid rgba(255,68,68,0.16)"
+                              : "1px solid rgba(201,168,76,0.2)"
+                            : "1px solid rgba(255,255,255,0.04)",
+                        }}
+                      >
+                        <p
+                          className="text-base font-bold tabular-nums leading-none"
+                          style={{
+                            color: occupied
+                              ? isReset
+                                ? "#FF6B6B"
+                                : "#C9A84C"
+                              : "#383838",
+                          }}
+                        >
+                          {count}
+                        </p>
+                        <p
+                          className="text-[9px] uppercase tracking-wide truncate mt-1"
+                          style={{ color: occupied ? "#888888" : "#383838" }}
+                        >
+                          {rungLabels[rung]}
+                        </p>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )
+        })()}
 
         {(() => {
           const insight = computeInsight(questions, states, section)
