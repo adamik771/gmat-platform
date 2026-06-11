@@ -25,7 +25,7 @@ Let's go.
 
 ## What Quant actually measures
 
-The surface of GMAT Quant is familiar. Algebra, arithmetic, number properties, a thin slice of geometry and coordinate geometry, statistics, probability, a few word problems. No trigonometry. No calculus. No matrices. The raw mathematical content is what a strong high school student knows, plus a few recognition patterns. Any adult who took algebra II and remembers it reasonably well has the content floor.
+The surface of GMAT Quant is familiar. Algebra, arithmetic, number properties, statistics, probability, a few word problems. No trigonometry. No calculus. No matrices. No geometry — GMAT Focus dropped it. The raw mathematical content is what a strong high school student knows, plus a few recognition patterns. Any adult who took algebra II and remembers it reasonably well has the content floor.
 
 What Quant *actually* measures is layered on top of that floor and has almost nothing to do with more math. It measures three things, in this order of importance above the 70th percentile.
 
@@ -49,7 +49,7 @@ Before you compute anything, spend thirty seconds reading the problem, the answe
 
 The scan has four questions. Run them in order, every time, on every problem, until they are automatic.
 
-*What is the shape of the problem?* Word problem with a story, algebra manipulation with variables, number property with integer constraints, geometry with a figure, probability with a scenario, statistics with a list, rates with movement, mixture with concentrations. Name the shape in three words. This narrows method candidates immediately. A number property problem with "positive integers" in the stem rarely wants algebra — it wants test cases or divisibility logic. A geometry problem with a figure wants you to label the figure before anything else. Naming the shape lets your brain reach for the right drawer.
+*What is the shape of the problem?* Word problem with a story, algebra manipulation with variables, number property with integer constraints, probability with a scenario, statistics with a list, rates with movement, mixture with concentrations. Name the shape in three words. This narrows method candidates immediately. A number property problem with "positive integers" in the stem rarely wants algebra — it wants test cases or divisibility logic. Naming the shape lets your brain reach for the right drawer.
 
 *What is the variable landscape?* How many unknowns, how constrained are they, and what are the answer choices telling you? One unknown with numeric answer choices is usually a backsolve candidate. One unknown with algebraic answer choices (x+3, 2x−1, etc.) is usually a test-cases candidate. Two unknowns with a clean relationship is usually straight algebra. Three or more unknowns with nothing obviously linking them is usually a signal you are reading the problem wrong and there is a shortcut you are missing. Count the unknowns explicitly.
 
@@ -463,36 +463,6 @@ Use the complement. P(at least one blue) = 1 − P(none blue) = 1 − P(both red
 
 *Recognition cue:* "at least one" should reflex immediately to "1 − P(none)."
 
-### Coordinate geometry
-
-Coordinate geometry is the xy-plane. Points, lines, slopes, distances, and the occasional parabola or circle. The GMAT rarely goes beyond linear equations, quadratic curves, or circles.
-
-*Line equations.* Slope-intercept: y = mx + b, where m is slope and b is y-intercept. Point-slope: y − y1 = m(x − x1). Standard: Ax + By = C. Slope between two points: m = (y2 − y1) / (x2 − x1).
-
-*Parallel and perpendicular.* Parallel lines have equal slopes. Perpendicular lines have slopes that multiply to −1 (negative reciprocals). A horizontal line (m = 0) is perpendicular to a vertical line (undefined slope).
-
-*Distance formula.* Distance between (x1, y1) and (x2, y2) is √[(x2 − x1)² + (y2 − y1)²]. This is just the Pythagorean theorem.
-
-*Midpoint.* Midpoint of (x1, y1) and (x2, y2) is ((x1 + x2)/2, (y1 + y2)/2) — component-wise average.
-
-*Circle equation.* (x − h)² + (y − k)² = r² for a circle of radius r centered at (h, k).
-
-*Trap: slope sign.* A line from lower-left to upper-right has positive slope. A line from upper-left to lower-right has negative slope. Students flip these in their heads under pressure.
-
-*Trap: undefined slope.* A vertical line has undefined slope, not zero slope. A horizontal line has zero slope, not undefined.
-
-*Trap: assuming the origin is (0, 0) in a translated figure.* If the problem gives a figure where the intersection of two lines is labeled (3, 4), that is the origin of the figure-relative coordinates, not the coordinate-plane origin. Read carefully.
-
-**Worked mini-example.**
-
-Line L passes through points (2, 1) and (6, 9). What is the equation of the line?
-
-(A) y = 2x − 3  (B) y = 2x + 3  (C) y = x/2 + 3  (D) y = 2x  (E) y = 2x + 1
-
-Slope: (9 − 1) / (6 − 2) = 8 / 4 = 2. Use point (2, 1): y − 1 = 2(x − 2), so y = 2x − 3. Answer (A).
-
-*Recognition cue:* two points, find equation — compute slope first, then use point-slope.
-
 ### Sequences and patterns
 
 Sequences on the GMAT are almost always arithmetic or geometric, with occasional custom-defined ones. The content is narrow; the traps are in the reading.
@@ -783,29 +753,17 @@ The GMAT reuses a finite library of traps. If you know the library, you stop fal
 
 *40. Missing the implicit "between" in "how many integers between."* "How many integers between 1 and 10" usually means exclusive (not including 1 or 10), but sometimes inclusive. Reread.
 
-### Geometry and coordinate traps
-
-*41. Assuming a figure is drawn to scale.* GMAT figures often aren't. Don't measure — use the given values.
-
-*42. Misidentifying the slope of a perpendicular.* Perpendicular to slope 2/3 is slope −3/2, the negative reciprocal.
-
-*43. Forgetting the ± in distance-squared equations.* Solving d² = 25 gives d = 5 (distances are non-negative by convention), not d = ±5.
-
-*44. Confusing circumference and area of a circle.* Circumference is 2πr. Area is πr². They're different.
-
-*45. Assuming a triangle is right when no right angle is given.* Triangles can have all kinds of angles. Don't apply Pythagoras unless you're sure it's a right triangle.
-
 ### Statistics and probability traps
 
-*46. Computing standard deviation when the problem asks for qualitative comparison.* You don't need to compute — just compare how spread the sets are.
+*41. Computing standard deviation when the problem asks for qualitative comparison.* You don't need to compute — just compare how spread the sets are.
 
-*47. Treating "at least one" without using the complement.* P(at least one) = 1 − P(none) is almost always faster.
+*42. Treating "at least one" without using the complement.* P(at least one) = 1 − P(none) is almost always faster.
 
-*48. Forgetting replacement vs without-replacement.* Drawing two cards — with replacement, independent. Without replacement, dependent.
+*43. Forgetting replacement vs without-replacement.* Drawing two cards — with replacement, independent. Without replacement, dependent.
 
-*49. Double-counting in union probability.* P(A or B) = P(A) + P(B) − P(A and B). The subtraction corrects for double-counting when A and B can overlap.
+*44. Double-counting in union probability.* P(A or B) = P(A) + P(B) − P(A and B). The subtraction corrects for double-counting when A and B can overlap.
 
-*50. Assuming uniformly random when the problem doesn't state it.* Check whether the problem says "random," "uniformly random," or specifies a distribution.
+*45. Assuming uniformly random when the problem doesn't state it.* Check whether the problem says "random," "uniformly random," or specifies a distribution.
 
 ### Answer-choice traps
 
@@ -1092,16 +1050,6 @@ The GMAT recycles a finite library of high-difficulty problem shapes. Here are t
 *Inclusion-exclusion for union.* P(A or B) with A and B not mutually exclusive. *Recognition*: "probability of A or B" where A and B can both happen. *Method*: P(A) + P(B) − P(A and B).
 
 *Dependent event.* Events where one changes the setup for the next. *Recognition*: the problem describes the first event's outcome affecting the second. *Method*: conditional probability — compute the probability of the second given each possible outcome of the first.
-
-### Coordinate geometry shapes
-
-*Slope and distance between two points.* Two points given, find line equation or distance. *Recognition*: two coordinates. *Method*: slope formula or distance formula.
-
-*Perpendicular bisector.* The midpoint of a segment and the slope perpendicular to it. *Recognition*: "the perpendicular bisector of the segment from A to B." *Method*: find midpoint, find slope, take negative reciprocal.
-
-*Line through origin.* A line that passes through (0, 0). *Recognition*: constant term is zero. *Method*: y = mx; slope alone determines the line.
-
-*Intersection of two lines.* Two line equations, find their intersection. *Recognition*: two equations in x and y. *Method*: substitute or eliminate.
 
 ### Word-problem tricky shapes
 

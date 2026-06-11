@@ -338,10 +338,10 @@ export default function ExamDayChecklistPage() {
               Print or save as PDF
             </a>
             <Link
-              href="/free-diagnostic"
+              href="/sample-chapter"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border border-white/[0.1] text-[#C0C0C0] hover:border-white/[0.18] hover:text-[#F0F0F0] transition-all duration-200"
             >
-              Take the diagnostic
+              Read a free sample chapter
             </Link>
           </div>
         </div>
@@ -417,8 +417,8 @@ export default function ExamDayChecklistPage() {
           <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-6 max-w-xl">
             The checklist above is the easy part. The hard part &mdash; the
             structured prep that gets you to a score you&apos;d be happy to
-            sit for &mdash; is what the platform was built for. Free
-            diagnostic, full curriculum on the trial, no card required.
+            sit for &mdash; is what the platform was built for. Free sample
+            chapter, full curriculum on the trial, no card required.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
@@ -430,7 +430,7 @@ export default function ExamDayChecklistPage() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/free-diagnostic"
+              href="/sample-chapter"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border transition-all duration-200"
               style={{
                 borderColor: "rgba(201,168,76,0.32)",
@@ -438,7 +438,7 @@ export default function ExamDayChecklistPage() {
                 backgroundColor: "rgba(201,168,76,0.04)",
               }}
             >
-              Take the free diagnostic
+              Read the free sample chapter
             </Link>
             <Link
               href="/resources"

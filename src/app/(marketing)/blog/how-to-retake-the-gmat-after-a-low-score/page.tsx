@@ -275,8 +275,8 @@ export default function PostPage() {
           <H3>Weeks 1-2: Reset</H3>
           <ul>
             <li>
-              Retake the diagnostic (or take it for the first time
-              if you didn&apos;t before).
+              Take an official practice exam on mba.com as your new
+              baseline (or your first one, if you skipped it before).
             </li>
             <li>
               Set up the error log if you didn&apos;t have one.
@@ -414,19 +414,20 @@ export default function PostPage() {
             Zakarian GMAT was built for the second attempt &mdash; the
             error log + adaptive plan combination is most valuable when
             you have specific patterns from the first attempt to
-            address. The diagnostic re-establishes a baseline; the
-            adaptive plan re-prioritises around what surfaced; the
-            spaced review queue resurfaces the misses that have to
-            stay fixed. Free diagnostic, no card required.
+            address. An official mba.com practice exam re-establishes
+            your baseline; you enter the scores and the adaptive plan
+            re-prioritises around what surfaced; the spaced review queue
+            resurfaces the misses that have to stay fixed. Free account,
+            no card required.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
-              href="/free-diagnostic"
+              href="/signup"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Re-baseline with the diagnostic
+              Create a free account
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

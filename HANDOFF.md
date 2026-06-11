@@ -2,6 +2,259 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-10 evening (Practice UX overhaul + official-exam baseline pivot; branch `claude/practice-ux-official-exams`, pushed, NOT merged)
+
+Adam's feedback batch after merging PR #390. All five asks shipped on one branch (5 commits); compare URL pattern as usual. Scope confirmed via AskUserQuestion: mocks DEMOTED-but-kept, diagnostic FULL WIPE, payments AUDIT-and-harden.
+
+### Shipped (commits in order)
+1. **`c20d020` practice UX:** TEST_CAPS 18/10/10 → **9/8/8** → 155 tests of 6-9 Q (was 115); test rows show NO time (untimed count-up; clock invites rushing); bigger rows (numbered badge, 15px labels, gold Start); **goal-accuracy**: /practice reads `target_score`, shows required % strip + per-row `aim X/Y` chip (`(target-205)/600`); chapter reader canvas `max-w-7xl→max-w-[88rem]`, rails 220/240→210/230, gap 40→32 (column ~740→~900px), focus mode 3xl→4xl.
+2. **`2e3aead` exam mode:** SessionClient defaults to **exam mode** — no marks/explanations/hints/tutor until finished; submit auto-advances (last Q needs explicit Finish); post-finish review list jumps into fully-revealed questions; header Exam/Study toggle persists via localStorage `session-feedback-mode`; study = old behavior. TwoPartGrid + ConfidencePanel grew `reveal`/`revealOutcome` props. **Verified in preview via temp public route, then deleted** (gotcha: `_`-prefixed folders are PRIVATE in App Router — name temp routes without underscores).
+3. **`af0a9e7` Official Exam Plan:** /mock rebuilt — primary card schedules up to 6 weekly officials on the exam-date weekday (last slot 1 week out; >8 weeks → "take #1 now as baseline"), inline score entry → **`user_metadata.official_exam_scores`** via new `/api/official-exams` (upsert-by-date, total 205-805, Q/V/DI 60-90, cap 12), delta trend, exam-kit advice (laminated booklet + wet-erase pen from Amazon, full conditions checklist); internal simulator demoted to "Site mocks — unlimited extra reps" (all 7 modes kept; weak/mixed-review gate on practice attempts only).
+4. **`715bdcc` diagnostic RETIRED (breaking):** routes + /free-diagnostic deleted; every consumer repointed (dashboard checklist/hero/setup rows, study-plan stage gate + persona now keyed to latest official total, analytics unlock checklist, learn journey, nav — Diagnostic gone, Mock renamed **"Exams"**, onboarding nextHref → /mock, NBA rule 1, robots). `adaptive-plan-engine.diagnosticTotalScore` = latest official total ?? legacy diagnostic (old accounts keep working). **`lib/diagnostic.ts` kept deliberately** — mock report + scoring import from it. Marketing swept (21 files, sitemap, BlogInlineCTA default → /sample-chapter, 12 blog CTAs). Old diagnostic rows in practice_sessions are untouched/harmless.
+5. **`1ff07f5` config:** 308s `/diagnostic/:path*→/mock`, `/free-diagnostic/:path*→/signup` (curl-verified); **global security headers** (HSTS 2y+sub, nosniff, X-Frame-Options DENY, Referrer-Policy, Permissions-Policy). Global CSP deferred (needs nonce plumbing).
+
+### Security/payments audit (read-only, this session)
+Stripe flow is SOLID: webhook HMAC verification + raw body, idempotent upsert on stripe_session_id, plan-ID whitelist with env price IDs (503 on placeholders), service-role key server-only and used only in signed contexts, RLS on practice tables since the 2026-04-28 migration, all API routes auth via getUser() and write only the caller's rows, lead-capture honeypot, admin fail-closed. NO critical/medium findings. Remaining (not done): webhook-failure alerting (logs but returns 200 on missing user/plan), plan-based feature gating is aspirational (purchases recorded, nothing enforced), Stripe keys on Vercel are still `sk_test_placeholder` — payments are effectively NOT LIVE until Adam sets real Stripe env vars + webhook secret in Vercel and creates the 4 prices, /api/tutor has no rate limit (key spend risk if abused while enabled).
+
+### Verified
+`next build` passes (diagnostic routes gone from route list); tsc clean; exam-mode flow click-verified in preview (exam default, zero leakage pre-finish, auto-advance, explicit last-question finish, post-finish reveal, study toggle + persistence); redirects + all 5 security headers curl-verified.
+
+### PR backlog triage — 2026-06-10 late evening
+Adam asked which open PRs to merge. Reviewed 30 newest (16 auto-closed on conflicts: stale algebra expansions colliding with the merged +63 batch, geometry-bank re-adds, superseded chapter rebuilds; 14 content-reviewed by agents). **Merged: #354 (TA micro-drills + accuracy boundary; needed a manual main-merge push to the PR branch after Adam merged out of order), #355 (algebra OG enrichment + panel dedup), #373 (combinatorics enrichment), #379 (algebra hints), #387 (statistics enrichment).** Then cut **`claude/enrichment-fixes`** (`cf452b7`, pushed, NOT merged): 3 factual fixes the reviews caught (stats Q2 P(red)/P(blue), algebra Q5 root claim, MISSISSIPPI brute-force fastest_path) + salvage of closed #369 (57 hint triplets into rates-work/combinatorics via signature-matched injection, 5 difficulty relabels, and the difficultyFromString fix mapping Challenge/Medium-Hard -> Advanced). validate 0 errors, tsc clean.
+**STILL OPEN: ~95 PRs.** Only #345-#387 were triaged. #262-#344 (~70 older cloud-agent runs, same generator families) are UNREVIEWED, and #393-#396 appeared new mid-session. Recommend: triage the rest with the same mechanical-conflict-then-agent-review pipeline; expect most to close. Adam should close the 23 already-verdicted ones (list in chat 2026-06-10): #345/346/347/348/349/350/351/353/364/365/366/367/368/369/370/371/372/374/378/380/381/382/383/385/386.
+
+### Open / Adam's call
+- Merge `claude/practice-ux-official-exams`: `https://github.com/adamik771/gmat-platform/compare/main...claude/practice-ux-official-exams?expand=1`
+- Payments go-live checklist (when ready): real Stripe keys + 4 price IDs + webhook secret in Vercel, then test a checkout end-to-end.
+- Possible follow-ups: global CSP with nonces; webhook-failure alerting; plan gating; per-section accuracy targets (current aim-chip uses the total-score formula uniformly).
+
+## CONTEXT SWITCH — 2026-06-10 (Per-chapter practice tests + original-question generation; CR batch DONE)
+
+Very long session. Everything below in this section happened today, after the DS-format cleanup section that follows it.
+
+### MERGED to main today (all live)
+- **PR #362** (`claude/quant-ds-to-ps-cleanup`, 2 commits): converted off-syllabus DS-format examples to Problem-Solving across 15 Quant chapters, then **fully removed geometry** (chapter, 34-Q bank, both coordinate guides; 308 redirect `/chapters/geometry → /chapters/quant-01-backsolving`; diagnostic swap `geometry-q16 → number-properties-q8`; topic-map/UI/marketing scrubbed). DI-section geometry questions intentionally kept (geometry still tested in DI).
+- **PR #363** (`claude/www-canonical-seo`): sitemap/robots/metadataBase/JSON-LD now fall back to `https://www.zakariangmat.com` (was apex). Post-merge: re-submit `/sitemap.xml` in Search Console (Adam's click).
+- **`claude/mississippi-cancel-explanation`** (MERGED): factorial-division-by-cancellation rewrite of the MISSISSIPPI explanation + ~16 nCr spots + chapter quant-25 examples.
+- **`claude/quant-explanation-speedups`** (MERGED): 17 audited "show the fast arithmetic" step rewrites across 7 Quant banks (decimal→fraction+cancel, cancel-before-multiply, divisibility-not-division, `algebra-q1` structural shortcut). Answer keys untouched.
+- ALSO: the once-exposed `ANTHROPIC_API_KEY` was **already rotated by Adam** — drop that recurring follow-up.
+
+### OPEN BRANCH — `claude/per-chapter-practice-tests` (pushed, NOT merged; currently checked out)
+The big feature + content work. Commits in order:
+1. **Per-chapter practice tests feature.** `/practice` redesigned: section → chapter heading → short test rows → divider. Tests are count-up timed, NO auto-submit (practice already worked that way; mock untouched). Data layer: `src/lib/practice-tests-map.ts` (keyword rules route each question to a chapter by its `**topic:**` subtopic; `DIRECT_BANK_CHAPTER` for DI 1:1; `COMING_SOON_CHAPTERS`; `OMITTED_CHAPTERS` for method/foundations/timing; `TEST_CAPS` = Quant 18 / Verbal 10 / DI 10). `content.ts: getPracticeChapterGroups()` (pins from chapter `problem_sets` win → keyword routing → dedup → order easy→hard → round-robin chunk into N tests; N grows as banks grow), `parseChapterTestSlug()`/`getChapterTest()` for session slugs `ch-<chapterSlug>-t<n>` resolved in `session/[slug]/page.tsx` (topic slugs still fall through). SessionClient got optional `setLabel` eyebrow only. validate-content extended (dangling-pin ERROR, cross-pin WARN, thin-chapter WARN, allocation summary). tsconfig gained `allowImportingTsExtensions` (content.ts imports `./practice-tests-map.ts` with extension so the node --experimental-strip-types validator works).
+2. **Quant question batch (commit 43096de):** 141 ORIGINAL PS questions authored via write→verify workflow, appended to the 6 bank files, routed by subtopic. **All 25 Quant chapters now have 2 tests.** Bank 878 → 1019 questions. Answer positions were redistributed (3 chapters had come back all-A); 430 answer/explanation consistency checks pass.
+3. **RC unblock (commit 15609b6):** the RC bank ALREADY had 20 passages / 73 questions — the subtype (Main Idea etc.) sat in `**type:**` with generic `**topic:**`. Swapped: subtype now in `**topic:**`, type = "Reading Comprehension". Added RC routing rules; verbal-14..19 now LIVE (Main Idea 2t/Detail 2t/Inference 2t/Function 2t/Application 1t/Attitude 1t). Still coming-soon: verbal-13 (reading-process), verbal-20 (rc-answer-traps), multi-source-reasoning.
+
+### DONE — CR question batch (commit `c030e80` on this branch)
+- The 54 verified ORIGINAL CR questions are in the bank as **Q125–Q178** of `src/content/questions/verbal/critical-reasoning.md`, in the quant-batch block format (**type:** Critical Reasoning, **topic:** <subtopic>, **related_reading:** reading-verbal-04-cr-question-types).
+- **Letter skew fixed before assembly.** 21 of 54 questions got a minimal two-letter option swap (correct option exchanged with the option at the target letter); final distribution **A12/B11/C12/D10/E9** (was A9/B26/C16/D3/E0). A Workflow with embedded question data (pure-function agents: rewrite → adversarial verify → repair; 42 agents, 21/21 verified on first pass) rewrote every choice-letter reference in the affected explanations. The other 33 questions are byte-identical to their generation-time verified form. `scripts/cr-batch-proposals.json` on disk now holds the REBALANCED version (still untracked, kept as provenance).
+- **Verified:** `validate:content` 0 errors (warnings 16→9 — all 7 thin-CR-chapter warnings cleared); parser-level gate 54/54 (5 options, answer key matches the final "The correct answer is X." sentence, type/topic present); all 8 chapters (verbal-03/04/05/06/07/09/11/12) now have **exactly 2 tests**; Verbal bank 197→251 questions, tests 26→34; `tsc` clean.
+
+### REMAINING ROADMAP — all content items DONE; only the merge is left
+1. Finish CR batch — DONE (commit `c030e80`).
+2. **DS/DI top-up** — NOT NEEDED. DI is fully covered: 5 chapters, 26 tests, 243/243 questions, no thin chapter. The top-up was always optional and there is no gap to fill, so nothing was added.
+3. **RC for verbal-13/20 + MSR bank — DONE this session.**
+   - **MSR live** (commit `cb76e93`): the bank already held 10 sets / 36 questions with full tab context (parsed into `question.context`, which SessionClient renders); it only lacked `DIRECT_BANK_CHAPTER` wiring. Wired 1:1, removed from coming-soon → 4 tests.
+   - **RC verbal-13/17/19/20** (commits `0ee7f1d`, `84f5d27`): authored **6 original RC passages / 36 questions** (Q74–Q109, Passages 21–26) via a write→adversarial-verify→repair Workflow (all 6 verified; 4 took one repair round). Subtypes: 12 Passage Structure → `verbal-13-rc-reading-process`, 12 Answer Traps → `verbal-20-rc-answer-traps` (both were coming-soon at 0Q), 6 Application → verbal-17, 6 Author's Attitude → verbal-19. Answer letters were **pinned per slot at authoring time** (balanced A8/B7/C7/D7/E7) so no post-hoc letter surgery was needed. Routing: added `trap`→verbal-20 and `structure`/`organization`→verbal-13 rules. **0 coming-soon chapters remain.**
+   - **Regression caught + fixed** (`84f5d27`): activating verbal-20's 6 placeholder pins (q51–q56 = Function/Inference/MainIdea) stole q52/q55 from verbal-18 via pin-precedence, dropping verbal-18 to 1 test. Repointed verbal-20's graded set to its own Answer Traps questions; verbal-18 restored.
+   - **6 `practice-cross-pin` WARNINGS remain and are intentional/harmless:** verbal-13 (reading-process) teaches with passages 1–3 and pins those same Main-Idea/Inference/Detail questions (q1/q3/q5/q6/q11/q13) that verbal-14/15 also pin. Allocator keeps verbal-13 (first); verbal-14/15 stay at 2 tests, so NO test-count regression — do not "fix" by editing verbal-13's curated seeds (they're integrated teaching material).
+4. Quant quant-06/17 — DONE earlier (at 2 tests; ignore).
+5. **Merge `claude/per-chapter-practice-tests` (Adam's call).** Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/per-chapter-practice-tests?expand=1`
+
+### Final state after this session (branch `claude/per-chapter-practice-tests`)
+- **Every in-scope practice chapter across all 3 sections now has ≥ 2 tests; 0 coming-soon chapters.**
+- Practice tests: **Quant 25 ch / 50 tests · Verbal 19 ch / 39 tests · DI 5 ch / 26 tests.** Banks: Quant 579, Verbal 287 (CR 124→178, RC 73→109), DI 243.
+- `npm run validate:content`: **0 errors** (15 warnings: 9 pre-existing RC duplicate-prompt + 6 intentional verbal-13 cross-pin; 24 info). `npx tsc --noEmit` clean.
+- `scripts/cr-batch-proposals.json` (rebalanced) stays untracked as provenance.
+
+### CRITICAL POLICY — question sourcing
+Adam supplied the **GMAT Official Guide 12th ed. PDF** (`~/Downloads/GMAT-OG-12.pdf`, 843 pp). Decision made: it is **calibration reference ONLY** (type/difficulty/coverage). **NEVER reproduce/translate/lightly-edit its questions into the banks** — copyright (GMAC/Wiley) + the platform's "original questions" positioning. All generated questions must be entirely original; generation prompts must say so explicitly (this session's did). Note OG-12 is the OLD test: skip Sentence Correction + geometry entirely.
+
+### Gotchas learned this session
+- Workflow scripts cannot read files and `args` JSON can arrive mangled — pass data by having agents read files themselves, or embed it directly in the generated script string (the CR rebalance + RC batch both embedded their data and worked cleanly with pure-function agents).
+- Author agents tend to put the correct answer at position A and underuse E — instruct position variety up front, and check distribution before assembly. Quant explanations are value-based (shuffle-safe); CR/RC explanations are letter-based (NOT shuffle-safe). **Best fix: pin the credited answer letter per question slot in the generation prompt** (the RC batch did this → perfect balance, zero post-hoc letter surgery). For the CR batch (already generated B-heavy) the alternative was a two-letter option swap + an agent rewrite of every letter reference, adversarially verified.
+- The parsed question object exposes the credited letter as `correctAnswerLetter` (not `answer`); the markdown `**topic:**` field becomes `question.subtopic` (routing key), while `question.topic` is the file-level section topic. Grouped RC/MSR passage/tab context is on `question.context`.
+- **Pin precedence can silently demote a sibling chapter.** A chapter's `problem_sets` pins override routing AND win over another chapter's pins ("allocator keeps the first"). Taking a chapter off coming-soon activates its pins, which can pull questions out of the chapter they'd otherwise route to and drop it below 2 tests. After making any chapter live, re-run the per-chapter test-count check (`getPracticeChapterGroups`) for ALL chapters, not just the new one.
+- `node --experimental-strip-types` resolves a script's imports relative to the SCRIPT's dir — gate scripts in `/tmp` must import `src/lib/content.ts` by ABSOLUTE path.
+- `npm run validate:content` runs node `--experimental-strip-types`: relative imports inside `src/lib` need explicit `.ts` extensions (hence `allowImportingTsExtensions`).
+- The preview screenshot tool can render black; verify layout via DOM (`preview_eval`) instead. `/practice` is auth-gated — a temporary public route under `(marketing)` was used for visual verification then deleted.
+
+---
+
+## CONTEXT SWITCH — 2026-06-10 (DS-format cleanup: Quant chapters made Problem-Solving-only)
+
+Picked up from the 2026-06-08→10 handoff below. Two of its three OPEN items are now resolved:
+- **OPEN #1 (merge `claude/quant-chapters-deeper`) → DONE.** It was merged as **PR #361** (`origin/main` = `1cda399`). The deepened Quant topic chapters are live.
+- **OPEN #2 (DS-format leak in Quant chapters) → DONE this session.** GMAT Focus Quant is Problem-Solving-only (DS lives in Data Insights), but the chapters presented Data Sufficiency as a live Quant question type — not just isolated "Is k odd? Statement (1)/(2)…" examples but whole DS-strategy passages (exponent sign-DS, the linear-dependence "C-trap" section, the percent dollar-anchor "DS pattern," the statistics mean/median/range DS examples, etc.).
+
+### What was done — branch `claude/quant-ds-to-ps-cleanup` (off main; pushed, NOT merged)
+- Converted **every DS-format worked example → an equivalent Problem-Solving question** with a single numeric/answer-choice answer that teaches the same concept, and **scrubbed all "Statement (1)/(2)" / "on Data Sufficiency" framing** so nothing tells a Focus-Quant student to expect DS. Underlying concepts were preserved (parity identities, even-power sign ambiguity, linear dependence / `ae−bd≠0`, dollar-anchor = rate+anchor, range needs both extremes, zero-SD, etc.).
+- **16 chapter files changed:** examples converted in quant-05, 08, 09, 10, 11, 13, 14, 16, 19, 23; phrase-level DS scrubs in quant-07, 15, 26, 27, 29; plus quant-31-geometry (cleaned at Adam's request even though geometry is off-syllabus and still pending a hide/delete decision).
+- **Kept** the one legit cross-reference: quant-30-timing's "no Data Sufficiency on this screen — that work lives in Data Insights now."
+- **Verified:** `npx tsc --noEmit` clean; `npm run validate:content` → **0 errors** (4 warnings + 18 info, all pre-existing — the warnings are RC `duplicate-prompt`, unrelated to chapters); worked-example marker counts identical before/after in all converted files (converted in place, dropped nothing); 0 HTML entities; no stray `---` HR lines; full-repo DS sweep shows only the quant-30 cross-ref remaining.
+- Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/quant-ds-to-ps-cleanup?expand=1`
+
+### Geometry fully REMOVED (second commit on the same branch)
+Adam chose **delete** (over hide), including coordinate geometry. Done as a second commit on `claude/quant-ds-to-ps-cleanup` (so the PR now has two commits: DS→PS conversion, then geometry removal).
+- **Deleted 4 files:** `chapters/quant-31-geometry.md`, `questions/quant/geometry.md` (all 34 Qs), `guides/reading-quant-07-geometry-and-coordinate-reasoning.md`, `guides/quant-coordinate-geometry.md`.
+- **Routing/diagnostic:** added a 308 redirect `/chapters/geometry → /chapters/quant-01-backsolving` (`next.config.ts`); removed the `Geometry` entry from `topic-chapter-map.ts`; swapped the diagnostic's hard geometry question (`diagnostic-curation.ts`: `geometry-q16` → `number-properties-q8`, Hard PS, primes/factors).
+- **UI/marketing copy:** removed Geometry from onboarding weak-area options, the practice blurb, the glossary Quant def (now says "geometry is no longer tested"), the marketing course outline, and a study-plan blog example; updated the "Focus vs old GMAT" blog to add a "Geometry was removed" bullet.
+- **Reference guides:** removed the off-syllabus `## Geometry` formula-sheet section and the three geometry sections in `quant-master-chapter.md` (renumbered its trap list); reworded the dangling "Geometry (Chapter 1.7)" cross-refs in `reading-quant-02/04/08` and `reading-di-04`.
+- **Kept (correct):** DI-section geometry questions (8 in `data-sufficiency.md`, 1 in `two-part-analysis.md`) — geometry is still tested in Data Insights via DS; the DS-strategy blog's "Geometry value questions" (DI); old-GMAT/GRE comparison mentions.
+- **Verified:** `next build` passes; `tsc` clean; `validate:content` 0 errors (878 questions, −34); no dangling `geometry-q*` refs; all 18 `TOPIC_TO_CHAPTER` consumers guard the now-absent `Geometry` key (a DI-geometry miss shows no chapter link rather than a dead one).
+
+### STILL OPEN
+- Optional (unchanged): www-canonical sitemap; rotate the once-exposed `ANTHROPIC_API_KEY` (prod tutor is off — no key on Vercel); per-sub-topic question tagging.
+- Stale internal docs still name geometry question files (`AUDIT.md`, `QUESTION_TAXONOMY.md`) — harmless, left untouched per the no-docs rule.
+
+---
+
+## CONTEXT SWITCH — 2026-06-08→10 (Ship deep-explanations to prod + full chapter-architecture rebuild across all 3 sections)
+
+Long multi-day session continuing from the deep-explanations work below. Everything is shipped to prod except the one open PR noted at the end. `gh` is NOT installed — PRs are opened from `https://github.com/adamik771/gmat-platform/compare/main...<branch>?expand=1` and merged in the browser.
+
+### Shipped to production (all merged to main)
+- **Deep explanations live.** The 912/912 OG-format bank (the branch below) was merged (PRs #338/#339) and deployed. The two TPA parser fixes and the diagnostic-save fix rode along.
+- **Domain consolidation + SEO.** Adam owns two domains: `zakariangmat.com` (the real Vercel app) and `adamzakarian-gmat.com` (an old Netlify "565 to 735" landing page). Pointed the old domain's nameservers (at **Name.com**, the registrar) to Vercel's `ns1/ns2.vercel-dns.com`, added it to the Vercel project as a **308 redirect to www.zakariangmat.com** — so the old domain now forwards to the real site (verified live). Old Netlify site is orphaned (Adam can delete). Added a **Google Search Console** verification meta tag (`verification.google` in `app/layout.tsx`, PR #352) — Adam verified `www.zakariangmat.com` and submitted `/sitemap.xml`. **Sitemap still emits non-www `zakariangmat.com` URLs** (NEXT_PUBLIC_SITE_URL unset → apex fallback); a www-canonical pass (set the env or change the fallback) is a nice-to-have.
+- **Chapter architecture, fully rebuilt to be granular + deep (per Adam):**
+  - **Verbal 2 → 21 chapters.** First split into 6 spec modules (PR #356), then re-split to **one chapter per question type** (PR #358): `verbal-01-foundations`, `verbal-02..12` (CR: argument structure, assumption, strengthen, weaken, inference, evaluate, flaw, paradox, boldface, complete, traps), `verbal-13-rc-reading-process`, `verbal-14..20` (RC: main idea, detail, inference, application, function, attitude, traps), `verbal-21-mixed-timing`. Then **expanded the 18 short per-type chapters ~3x for retention** (PR #360): each now ~2000-2900 words with a memorizable procedure, 4-6 worked examples, 2-3 *spaced* recall checks, common-mistakes + recap.
+  - **DI 5 → 7 chapters** (PR #357): added `di-1-foundations` + `di-7-timing-mixed`; the 5 existing (DS/TA/GI/TPA/MSR) were file-renamed `di-2..6` for order but **kept their slugs** (no URL breakage).
+  - **Quant 10 → 31 chapters** (PR #359, **merged**): 4 Strategic Methods chapters (`quant-01` backsolving, `02` plugging-in-numbers, `03` estimation, `04` answer-choice-tactics) + 25 per-sub-topic chapters (`quant-05..29`, promoted/grouped from the old chapters' sections) + `quant-30-timing`. Geometry is off-syllabus → kept but renamed to sort **last** (`quant-31-geometry.md`, slug `geometry`); hide/delete is still Adam's call.
+- **Time → page count.** Chapters now show "~N pages" instead of "~N min" everywhere they render (`content.ts` derives `estimatedPages` at ~400 words/page; updated chapters journey, ChapterReader, ChapterRightPanel, SampleChapterRenderer). Adam felt the time estimate made students rush. Practice-set/study-plan/dashboard times were left as time (genuine planning aids).
+- **Wiring pattern for every chapter rename:** `src/lib/topic-chapter-map.ts` (topic → first sub-chapter), `next.config.ts` `redirects()` (308 from every retired slug), `study-plan/page.tsx` fundamentals-rebuild links, and the `sample-chapter` marketing pages. All chapter renames used zero-padded slugs so the filename sort = journey order. **Gotcha:** YAML chapter `title:` containing a colon (e.g. "CR: Strengthen") MUST be quoted or `parseChapterFile` silently drops the chapter. **Gotcha:** the dev server's Turbopack cache goes stale across branch switches — `rm -rf .next` + restart before trusting a 404/render.
+
+### How the chapters were built (reuse the recipe)
+Free **Workflow** subagent pipeline (write→polish, `general-purpose`, structured `{body}` schema). Existing hand-authored chapter sections were *extracted* (`## @id` blocks), regrouped, and reused; only genuinely-new content (methods, timing, the split mirror-pairs, the retention expansions) was generated. Assembly via throwaway `/tmp/*.py` scripts (entity-sanitize `&lt;`→`<` etc., strip standalone `---` HR lines, emit frontmatter + `## @id` bodies). After every batch: `npx tsc --noEmit`, `npm run validate:content` (0 errors required), entity grep, then commit + push a branch.
+
+### Current chapter counts: **Quant 31 · Verbal 21 · DI 7** (59 total). All validate 0 errors.
+
+### OPEN — needs Adam
+1. **PR `claude/quant-chapters-deeper` is pushed but NOT merged** — it deepens the 22 Quant topic chapters (54 sections) for retention exactly like Verbal (hard topics deepest: e.g. permutations-combinations 27p/31 examples, probability 25p). tsc + validate clean. Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/quant-chapters-deeper?expand=1`
+2. **DS-format examples leaked into ~12 Quant chapters** (`"Is k odd? Statement (1)/(2)…"`). GMAT Focus Quant is Problem-Solving-only (DS is in Data Insights), so the *format* is mismatched though the reasoning is valid. Adam was offered a quick targeted PS-only cleanup pass and was deciding. Do this BEFORE/AFTER merging #1 per his call.
+3. Optional: www-canonical sitemap; rotate the once-exposed `ANTHROPIC_API_KEY` (prod tutor is currently off — no key on Vercel); per-sub-topic question tagging (chapter problem sets are allocated by family-bank chunks, not sub-topic-matched).
+
+### Per-section quality note
+Validator emits INFO "thin-examples"/callout-count notes on the most focused chapters — expected and non-blocking; each still carries its Mental model + worked examples + traps.
+
+---
+
+## CONTEXT SWITCH — 2026-06-08 (Deep explanations COMPLETE: all 268 grouped/multi-part done — bank is 912/912 OG)
+
+All work on branch `claude/deep-explanations-pilot-2026-06-07` (**still NOT merged to main**). The deep-explanations project is **finished**: every question in the bank (912/912) now carries an Official-Guide "Rationale"-style explanation. The remaining 268 grouped/multi-part questions from the prior session were generated, gated, and committed this session.
+
+### DONE this session (9 commits, `f4a03e9` … `1958f3d`)
+- **Write-back surgery extended** (`f4a03e9`): `applyToFile` now matches both flat `## Qn` and grouped `### Qn`; `fileForSlug` probes `questions/{quant,verbal,di,curriculum}`; `applySupported` is permissive (every type handled, `rewriteBlock` self-guards). TPA per-RO content lives inside the single `**explanation:**`; curriculum taxonomy fields (`subchapter`/`skill`/`trap_type`/`est_time_seconds`/`prerequisite`) are preserved because they sit ahead of the rewritten region.
+- **Content batches** (OG-format, write+verify pipeline, `validate:content` 0 errors + answer-consistency gate 100% on each): curriculum 8 (`cf29cf8`), graphics-interpretation 50 (`673a45d`), table-analysis 49 (`86b503d`), multi-source-reasoning 36 (`b288b4f`), reading-comprehension 73 (`90a0809`), two-part-analysis 52 (`1958f3d`).
+- **Two real parser/content bugs fixed** (each was making a question render the WRONG correct answer in the live app):
+  - `0e83b7c` — TPA answer split: a second key starting with a digit (q19 `"30% solution = 4, 70% solution = 4"`) never split, so q19 rendered as a 5-option MC. Split on `,\s*(?=[^,]*=)`.
+  - `6c5c6a2` — TPA value→row resolution used prefix matching, so `"55"` collapsed onto row `"5"` and `"4,000"` onto `"4"` (q31, q34). Now exact-match first, prefix only as fallback. q31 (T=55) and q34 (V=4,000) were regenerated after the fix.
+- **Final state:** `npx tsc --noEmit` clean; `npm run validate:content` → 912 questions, **0 errors** (4 warnings + 2 info, all pre-existing); full answer-consistency gate **912/912 pass**; 0 HTML entities and 0 orphaned segments across all six rewritten files.
+
+### How it was generated — the embedded-content pure-function pipeline (improves on the old recipe)
+Instead of subagents `sed`-ing blocks out of files (which risked them editing `src/`), each question's full content (prompt, options, passage/set context, credited answer) was **extracted via the parser and embedded into a generated Workflow script** (`/tmp/gen-wf.py` writes `/tmp/wf-<slug>.js` from `/tmp/data-<slug>.json` produced by `/tmp/extract.ts`). Agents are then pure functions — prompt in, structured `{explanation, mistakes}` out — and never touch the filesystem. Pipeline per batch: a **write** subagent then an **adversarial verify** subagent (both `general-purpose`, `claude-sonnet-4-6`, structured-output schema, phases Write/Verify). The workflow returns the array; `/tmp/assemble.py` sanitizes + writes `scripts/explanation-proposals.json` (gitignored); then `npm run generate:explanations -- --from … --apply` → `validate:content` → the gate → commit. Sonnet-4-6 quality was strong throughout; the verify stage caught real issues (entity escaping, fabricated tables — see gotchas).
+
+### Gotchas discovered (read before any similar batch run)
+1. **TA/GI "continued" questions lose their table.** TA/GI are flat `## Qn (Set N — …)` blocks; the parser does NOT carry context across them, so a per-question extract of "Same table as Q1" has NO data and the agent **fabricates values** (GI q2 invented April/June; TA q39 pulled "OG Q38" from training data). The verify stage flagged these. Fix: `/tmp/fix-continued.py` keys each continued question to its set's lead (by "Set N" number, else title) and injects the lead's table/description prose as context, then regenerate just those (11 TA + 5 GI were redone and are grounded). **NOTE — pre-existing app bug, FIXED 2026-06-10** (commit `979b624` on `claude/per-chapter-practice-tests`): those continued questions didn't render their referenced table in the live app. Fixed by inlining each lead's table/description block verbatim into the 14 continued prompts (11 TA + 3 GI) — no parser/renderer changes, works in every surface, and survives the per-chapter tests dealing a continued question into a different test from its lead. The validator's duplicate-prompt check was widened to full-prompt comparison so the now-shared opening blocks don't false-positive.
+2. **A standalone `---`/`***`/`___` line inside an explanation splits the question block** on re-parse (`/\n---+\n/`), truncating the explanation and orphaning everything after it (hit TPA q8/12/20/21). `/tmp/assemble.py` now strips horizontal-rule lines. RC/MSR/curriculum were clean.
+3. **Agents sometimes emit HTML entities** (`&lt;`, `&gt;`, `&amp;`) in math; the verify stage usually fixes them and `assemble.py` sanitizes as a backstop. Final files have 0 entities.
+4. **The answer-consistency gate is type-aware** (`/tmp/gate.ts`, ephemeral — re-create if needed; imports `getAllQuestions`, run from repo root). Letter types: last "The correct answer is X." must equal `correctAnswerLetter`; Verbal also requires `mistakeAnalysis` to cover exactly the wrong letters. TPA has no single letter — it checks the credited row VALUES appear in the explanation. RC/MSR carry context natively so they were not affected by gotcha #1.
+
+### Question-design ties to revisit (NOT bugs in the explanations — the credited answer is valid and justified)
+The verify stage flagged questions where the credited statistic is **tied** by more than one option/row, so the question lacks a unique answer even though the credited choice is correct: **GI q13** (max QoQ change tied C/E) and **TA q17/q18/q19/q23/q27**. Adam may want to tweak these questions for uniqueness; left as-is for now (each explanation justifies the credited answer).
+
+### NEXT
+- **Merge the branch.** Everything is green. The only non-explanation changes are the three logically-independent fixes already noted (two TPA parser fixes + the diagnostic-save orphan fix from 2026-06-07). Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/deep-explanations-pilot-2026-06-07?expand=1`
+- Rotate the exposed `ANTHROPIC_API_KEY` (it was pasted in chat last session). Generation used the free session-subagent pipeline, so the key is only needed for the in-app tutor.
+- Optional: fix the TA/GI continued-question table rendering in-app (gotcha #1), and the 6 tie questions above.
+
+---
+
+## CONTEXT SWITCH — 2026-06-07 (Deep explanations: OG format locked, multi-line parser, generation script)
+
+All work is on branch `claude/deep-explanations-pilot-2026-06-07` (**NOT merged to main**). Commits `9a376e6` … `dcebaeb` (pilot → multi-line parser → generation script → orphan fix → the full OG rollout below). Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/deep-explanations-pilot-2026-06-07?expand=1`
+
+### PROGRESS — standard single-question bank COMPLETE (644/912), end of 2026-06-07 session
+The free pipeline ran end to end: parallel **session subagents** (no metered-API cost) each write `{id}.json` to `/tmp/og` → assemble → `npm run generate:explanations -- --from <json> --apply` (OG-pure surgery) → `validate:content` (0 errors) → an **answer-consistency gate** (the explanation's stated "The correct answer is X." must equal the key; CR also checks per-choice coverage). Every batch passed. Committed in batches (`5ac50b6` … `dcebaeb`).
+- **Quant fully OG (520):** Data Sufficiency 56 · word-problems 62 · 9 PS files 402 (arithmetic 49, algebra 34, number-properties 51, exponents-roots 49, ratios-percents 50, combinatorics 46, geometry 34, rates-work 44, statistics-probability 45).
+- **Critical Reasoning fully OG (124).**
+- **Bug fixed:** `word-problems.md` was missing `---` separators between q45–q62, so the parser had silently dropped q46–q62 (not loading in the app). Inserted them — total question count **895 → 912**. An audit (header count vs parsed count) confirmed **no other file is affected**.
+- **Validator:** removed the now-obsolete `fastest_path`/`common_trap`/`takeaway` "missing field" WARN rules (OG-pure).
+- **API key:** Adam pasted it into `.env.local`, but generation uses free session subagents (not the metered API), so the key is only needed for the in-app tutor. **Rotate the exposed key** (it was pasted in chat).
+
+### REMAINING (268) — grouped/multi-part, needs write-back code first
+RC (73) + MSR (36) are grouped passages (`## Passage` + `### Qn`); TA (49) + GI (50) + TPA (52) are multi-part (per-RO blocks); `curriculum/q-quant-01-mindset` (8) carries special taxonomy fields. `--apply` currently **skips** all of these (it only rewrites standard `## Qn` blocks). To finish them: (1) extend `rewriteBlock`/`applyToFile` in `scripts/generate-explanations.ts` to handle grouped `### Qn` blocks, TPA/per-RO structure, and preserve curriculum fields; (2) per-type OG formats (RC/MSR = prose anchored to the passage/exhibits + per-choice; TA/GI/TPA = one self-contained "The correct answer is X." block per response RO1/RO2…); (3) run the same subagent-workflow pattern.
+
+### How to continue — the free pipeline recipe + gotchas (reproduce this; no paid API)
+Generation runs on **session subagents via the Workflow tool**, applied centrally. Per file/section:
+1. Numbers: `grep -oE '^## Q[0-9]+' <file> | grep -oE '[0-9]+'` (RC/MSR use `### Qn` under `## Passage`).
+2. Launch a Workflow: per question, a **write** subagent then a **verify** subagent (`agentType: 'general-purpose'`, phases Write/Verify, `opts.phase`). Each is told to `sed` its question block out of the file, write the OG explanation, and **save ONLY to `/tmp/og/<id>.json`** as `{"id","after":{"explanation","mistakes":[...]}}`, and to **NEVER edit any file under `src/`** (subagents WILL edit files if not explicitly forbidden — it happened this session; we reverted). For Verbal, `mistakes` = one `{letter,text}` per wrong choice; otherwise `[]`.
+3. Apply: assemble all `/tmp/og/*.json` into `scripts/explanation-proposals.json` (JSON.parse each, keep `{id, after}`), then `npm run generate:explanations -- --from scripts/explanation-proposals.json --apply` (the verified OG-pure write-back), then `npm run validate:content` (must be 0 errors). `rm -rf /tmp/og` between batches; commit the changed file(s).
+4. **Answer-consistency gate (always run):** via `getAllQuestions()`, each applied explanation's "The correct answer is X." letter must equal `q.correctAnswerLetter`; for Verbal, `mistakeAnalysis` must cover the wrong letters and exclude the correct one.
+GOTCHAS: (a) **HARDCODE the question-number list in the workflow script** — the Workflow `args` param did NOT arrive as an array; use a literal `const nums = [...]`. (b) Keep total agents < 1000 (write+verify = 2× questions). (c) **Run the header-vs-parsed audit first** (count `^#{2,3} Q\d+` per file vs `getAllQuestions` count per setSlug) to catch missing `---` separators. (d) `usesPerChoice(q) = q.section === 'Verbal'`.
+
+### Decision — explanations now follow the GMAT Official Guide "Rationale" format, OG-pure
+Adam supplied ~15 official-guide rationale screenshots as the gold standard; adopted wholesale, replacing the earlier coaching voice. **OG-pure**: dropped `fastest_path` / `common_trap` / `takeaway`; per-choice `mistake_*` kept ONLY for Verbal (CR/RC). Per-type templates:
+- **PS (Quant):** principle → variable setup → worked steps → answer line. No per-choice.
+- **DS (DI):** rephrase the target quantity → test Statement (1) then (2) separately (prove insufficiency with two outcomes) → combine → answer. No per-choice; flag distractor data.
+- **CR (Verbal):** `**Situation.**` (paraphrase) + `**Reasoning.**` (task + logic; negation test for Assumption) + answer; PLUS per-choice `mistake_*` for wrong choices in OG voice.
+- **RC/MSR (Verbal):** prose anchored to the passage/exhibits, ruling options in/out; per-choice optional.
+- **TA/GI/TPA (DI multi-part):** one self-contained block per response (RO1/RO2…), each ending "The correct answer is X."
+- Voice: formal third-person ("we", "Let x"), no second-person, no shorthand/arrows, show all work, every answer ends "The correct answer is X." Area/skill tag lives in `subtopic`.
+
+### Multi-line parser (`src/lib/content.ts`) — shipped, backward-compatible
+`parseQuestionBlock` parses the rich fields (`explanation`/`fastest_path`/`common_trap`/`takeaway`/`mistake_[a-z]`) **across multiple lines** (until the next `**field:**` marker or block end); structural keys (`difficulty`/`type`/`topic`/`answer`/scalars) stay single-line — required because table-analysis is "prompt-first" (`**topic:**` would otherwise swallow the prompt + options). Identical output for genuinely single-line content. **Side benefit: recovered 34 explanations the old single-line parser was silently truncating to their first line** (e.g. combinatorics-q14 showed only "Two equivalent paths."). `npm run validate:content` → 0 errors (warnings dropped 9→4).
+
+### Pilot status
+12 CR/DS rewritten. First pass used the OLD coaching voice (DS q1/q10/q14/q20/q40/q47; CR q18/q55/q91/q98/q100/q103). Then **DS q40 + CR q103 were recast to OG format** as the format proof (multi-line). The other 10 pilot questions are still coaching-voice and will be regenerated by the script.
+
+### Generation script — built + verified, but NOT yet run (needs API key)
+`scripts/generate-explanations.ts` + `npm run generate:explanations`. Anthropic batch generator: model `claude-opus-4-8` (override `--model`/`ANTHROPIC_MODEL`), adaptive thinking + `effort:high`, OG spec cached as the system prompt (~90% input-cost cut), structured JSON output (`{explanation, mistakes[]}`), OG-pure write-back. Modes: dry-run → `scripts/explanation-proposals.json`; `--apply` (surgery into the .md); `--from <json> --apply` (apply reviewed/edited proposals; `GEN_CONTENT_ROOT` env applies against copies for safe testing). Filters: `--type <Quant|Verbal|DI | file-slug>`, `--ids a,b`, `--limit N`, `--print-prompt`. tsc clean; write-back surgery verified on copies (replaces explanation, drops coaching fields, keeps `answer` + `related_reading`, per-choice only for Verbal). **Not supported yet:** RC/MSR (grouped) + TPA write-back — proposals are generated but `--apply` skips and logs them.
+**WARNING: `ANTHROPIC_API_KEY` is NOT in `.env.local`** (only in Vercel) — add it to run. Full ~900 run ≈ $40–70 live (≈half via the Batches API, noted in-script); `--model claude-sonnet-4-6` ≈40% cheaper.
+
+### NEXT (Adam)
+1. Add `ANTHROPIC_API_KEY` to `.env.local`.
+2. `npm run generate:explanations -- --type data-sufficiency --limit 5` → review `scripts/explanation-proposals.json` → tune `SYSTEM_SPEC` in the script if the voice needs adjusting.
+3. Scale (Batches/Sonnet for cost) → `--apply` → `npm run validate:content` → merge the branch.
+
+### Also fixed this session — diagnostic-save orphan bug (closes the long-standing TODO)
+`src/app/api/practice-sessions/route.ts`: if the `practice_attempts` insert fails after the `practice_sessions` row was created, the route now deletes that session row (owner-scoped compensating cleanup; logs if blocked) so a partial save never orphans again. (No PostgREST transaction available here; an RPC transaction remains a nice-to-have.) This change is logically independent of the deep-explanations work — fine to split into its own PR.
+
+### Earlier 2026-05-24 immediate-todos — status as of 2026-06-07
+- `fix-tpa-answer-keys` → **MERGED** (PR #298, on main).
+- `gi-chart-renderer` → **STILL UNMERGED** (6 commits; merges clean into current main). Compare: `https://github.com/adamik771/gmat-platform/compare/main...claude/gi-chart-renderer-2026-05-24?expand=1`
+- `zakariangmat.com` → **LIVE** (returns 200, served by Vercel, apex→www). Hobby deploy cap long since reset.
+
+---
+
+## CONTEXT SWITCH — 2026-05-24 (Dogfooding sprint: GI charts, scoring fix, diagnostic save, agent-PR triage)
+
+Big session. Adam dogfooded the live app and we fixed a string of real bugs, shipped a Graphics-Interpretation chart system, and triaged the agent-PR backlog. `gh` is NOT installed — all PR work is browser-side via `https://github.com/adamik771/gmat-platform/compare/main...<branch>?expand=1`. PR numbers map via `git ls-remote origin 'refs/pull/*/head'`.
+
+### OPEN branches to merge (pushed, NOT yet merged)
+1. `claude/gi-chart-renderer-2026-05-24` — **Graphics Interpretation now renders real charts** (49/50; Q38 is a numeric dashboard, left as prose). Engine: `src/lib/chart-spec.ts` (ChartSpec, 8 types) + `src/components/shared/QuestionChart.tsx` (Recharts renderer, incl. dual-axis `composed`) + `content.ts` parses a fenced ```chart JSON block into `ParsedQuestion.chartSpec` (type-only import so node scripts still run) + plumbed `chartSpec` through `SessionQuestion` + the 4 session mappers, rendered above the prompt. Adds the **recharts** dependency. Verified: tsc/eslint/validate:content/build all clean.
+2. `claude/fix-tpa-answer-keys-2026-05-24` — fixes 3 broken TPA questions (q45/q46/q49) that shipped via agent PR #223 (out-of-bounds answer keys; q46 had an escaped `\|` in its table header; q45/q49 quoted rows with ellipses). `validate:content` back to 0 errors. **Merge this to clear main's errors.**
+
+### Merged this session (landed on main)
+errorPattern (study-plan conceptual-vs-execution from error_tags) · chapter "Continue to next section" CTA · `mistake_f` parser leak fix · session subtopic digest · **session explanation panel** (surfaces fastestPath/commonTrap/per-choice mistake/takeaway in-session; plumbed those 4 fields through SessionQuestion + mappers) · **scoring grid fix** (`scoring.ts`/`diagnostic.ts`: GMAT Focus scores end in **5**, cap **805** — fixed the 810/750 bug) · `vercel-ignore` script · Today's Mission hero · agent `cool-fermi-8YDhk`. Plus Adam merged agent question PRs #286 (remove Sentence Correction from course page), #170/#222/#276/#259 (quant question adds), #223 (broken — fixed by branch above).
+
+### CRITICAL bug fixed live — diagnostic save
+Diagnostic sections appeared "done" on the hub but the report said "take the diagnostic first." Root cause: the save POSTs `practice_sessions` + `practice_attempts` with **no transaction**; prod `practice_attempts` was **missing newer columns**, so the attempt-insert 500'd while the session row persisted → orphaned sessions. Adam ran in Supabase: `alter table public.practice_attempts add column if not exists confidence text, add column if not exists hints_revealed integer not null default 0, add column if not exists first_interaction_ms integer, add column if not exists device_type text;` — confirmed working (report populates). **TODO (not done):** wrap the two inserts in a transaction / delete the session if attempts fail, so a partial save never orphans again (`src/app/api/practice-sessions/route.ts`).
+
+### Vercel
+4 duplicate projects (`-61zf`/`-gz1e`/`-lcwy`) were accidental re-imports → Adam disconnected them, kept `gmat-platform`. Ignored Build Step wired to `bash ./scripts/vercel-ignore.sh` (only `main` deploys; agent `claude/*` branches skip). Hobby daily deploy cap was hit — **nothing is live until the cap resets (~24h) and `main` redeploys.** ⚠️ **Custom domain `zakariangmat.com` was returning 404** (was attached to a removed project) — needs re-attaching: gmat-platform → Settings → Domains → Add Existing → `zakariangmat.com`. CONFIRM whether Adam did this.
+
+### NEXT BIG THING (approved, not started) — deep explanations
+Adam wants **very detailed** explanations: per-choice "why the correct one is correct and why each wrong one is wrong," in a student-teaching voice. The in-session panel now *surfaces* the authored fields, but the core `explanation` field is terse (median ~184 chars) and quality is uneven (the DS inclusion-exclusion example he flagged was thin/redundant). Plan agreed: define a **per-type explanation spec** (DS = test each statement with the actual algebra; CR = argument map + per-choice debunk + trap; PS = worked steps) and **AI-generate** them (the platform already uses the Claude API for the tutor) → Adam reviews → bake into content. Start with a CR/DS pilot batch for sign-off before scaling.
+
+### Agent-PR backlog (267 open, unreviewed)
+These are Adam's **routine agents'** output (`cool-fermi-*`, `wonderful-johnson-*`, `practical-ride-*`, `youthful-bohr-*`), NOT this session's work. Triage: 71 already merged, **209 conflict** with main (close/skip), 58 merge clean — but the clean ones are **heavily redundant** (e.g. 11 branches all edit `SessionClient.tsx`, 7 all edit `exponents-roots.md`) and some ship **broken content** (#223 did). **Rule: never bulk-merge; run `npm run validate:content` after merging any agent content PR.** Worth-it distinct ones flagged: #285 (remove geometry from onboarding — also addresses the off-syllabus geometry issue) still open for review. Realistically only a handful of the 267 deserve to land; the rest should be closed.
+
+### Other deferred
+- **Geometry is off-syllabus** (GMAT Focus removed it) but a chapter + question bank + diagnostic/practice refs still exist; #285 handles onboarding, the rest is a pending hide/delete decision.
+- This HANDOFF.md is ~535 KB and bloated — worth trimming to recent sessions.
+
+---
+
 ## CONTEXT SWITCH — 2026-05-01/02/03 (Critique-driven premium pass + AI tutor + offline PWA + SEO + marketing copy)
 
 **Multi-day continuation across three dates.** Adam ran a deep critique cycle — eight pages got 5–7/10 reviews from an external evaluator, and we worked through them one at a time, redesign + verification per page. After that landed, work expanded into the broader "what's missing for top-tier" gap list: AI tutor, social-proof scaffolding, real adaptive question rotation on mocks, lint baseline cleanup, full PWA + offline drill loop, marketing SEO + OG cards + a founder-story blog post. Trial copy under the hero CTA is now confirmed (7-day full access). Sprint built on top of the 2026-04-29/30 UI/UX work and the 2026-04-28 launch-readiness pass — those entries below remain valid context.

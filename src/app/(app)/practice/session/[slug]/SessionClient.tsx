@@ -103,6 +103,9 @@ interface SessionClientProps {
    *  completion screen when accuracy is strong — directs students to
    *  their highest-leverage next session instead of a generic CTA. */
   weakestTopic?: WeakTopicHint
+  /** Optional context line shown above the session title, e.g.
+   *  "Algebra: Linear Equations & Systems · Test 1" for a per-chapter test. */
+  setLabel?: string
 }
 
 function formatDuration(ms: number): string {
@@ -320,11 +323,15 @@ function ConfidencePanel({
   value,
   submitted,
   wasCorrect,
+  revealOutcome = true,
   onSelect,
 }: {
   value: Confidence | null
   submitted: boolean
   wasCorrect: boolean
+  /** Exam mode defers correctness to the end — suppress the calibration
+   *  copy (it leaks whether the answer was right) until then. */
+  revealOutcome?: boolean
   onSelect: (level: Confidence) => void
 }) {
   const levels: { id: Confidence; label: string; color: string; bg: string }[] = [
@@ -353,7 +360,7 @@ function ConfidencePanel({
   // how sure you felt and whether you were right. Highlight those.
   let calibrationHint: { tone: "warn" | "ok" | "good"; text: string } | null =
     null
-  if (submitted && value) {
+  if (submitted && value && revealOutcome) {
     if (value === "high" && !wasCorrect) {
       calibrationHint = {
         tone: "warn",
@@ -837,10 +844,13 @@ function canSubmit(q: SessionQuestion, state: QuestionState): boolean {
 function TwoPartGrid({
   question,
   state,
+  reveal = true,
   onSelect,
 }: {
   question: SessionQuestion
   state: QuestionState
+  /** Exam mode defers correctness highlighting to the end-of-session review. */
+  reveal?: boolean
   onSelect: (colIdx: number, rowIdx: number) => void
 }) {
   const cols = question.twoPartColumns!
@@ -876,7 +886,7 @@ function TwoPartGrid({
               </td>
               {cols.map((_, ci) => {
                 const isSelected = selections[ci] === ri
-                const showResult = state.submitted
+                const showResult = state.submitted && reveal
                 const isCorrectCell = correctAnswers?.[ci] === ri
 
                 let circleStyle: React.CSSProperties = {
@@ -1096,6 +1106,7 @@ export default function SessionClient({
   skillLevel,
   skillAttempts,
   weakestTopic,
+  setLabel,
 }: SessionClientProps) {
   const router = useRouter()
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -1160,6 +1171,30 @@ export default function SessionClient({
   const [questionStart, setQuestionStart] = useState(() => Date.now())
   const [now, setNow] = useState(() => Date.now())
   const [showResults, setShowResults] = useState(false)
+  // Exam vs study feedback mode. Exam (the default) defers correctness,
+  // explanations, and hints to the end-of-session review — like test day.
+  // Study reveals the explanation after each submit. The choice persists
+  // across sessions; switching mid-session is allowed.
+  const [mode, setMode] = useState<"exam" | "study">(() => {
+    if (typeof window === "undefined") return "exam"
+    return window.localStorage.getItem("session-feedback-mode") === "study"
+      ? "study"
+      : "exam"
+  })
+  // Once the results screen has been reached, per-question feedback is
+  // visible regardless of mode so the review list can jump back into
+  // fully-explained questions.
+  const [finished, setFinished] = useState(false)
+  const reveal = mode === "study" || finished
+
+  function switchMode(next: "exam" | "study") {
+    setMode(next)
+    try {
+      window.localStorage.setItem("session-feedback-mode", next)
+    } catch {
+      // Private browsing — preference just won't persist.
+    }
+  }
   const [saveStatus, setSaveStatus] = useState<
     "idle" | "saving" | "saved" | "error" | "unauthorized"
   >("idle")
@@ -1297,6 +1332,12 @@ export default function SessionClient({
       next[currentIdx] = { ...next[currentIdx], submitted: true, elapsedMs: elapsed }
       return next
     })
+    // Exam mode has no per-question reveal, so move straight on. The last
+    // question still requires an explicit "Finish Session" click — finishing
+    // is irreversible feedback-wise, so it shouldn't happen by surprise.
+    if (mode === "exam" && !finished && currentIdx < total - 1) {
+      goTo(currentIdx + 1)
+    }
   }
 
   function handleConfidence(level: Confidence) {
@@ -1331,6 +1372,7 @@ export default function SessionClient({
     if (currentIdx < total - 1) {
       goTo(currentIdx + 1)
     } else {
+      setFinished(true)
       setShowResults(true)
     }
   }
@@ -1422,6 +1464,14 @@ export default function SessionClient({
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
 
+    // Shared next-step accuracy bands. Below LOW signals a concept gap
+    // (revisit the chapter); at/above SOLID the topic is strong enough to
+    // move off. Both the recommendation text and the action buttons read
+    // from these so the prose and the CTA can never disagree about which
+    // band a session falls into.
+    const LOW_ACCURACY = 60
+    const SOLID_ACCURACY = 80
+
     // Per-question pairs for insight panels (submitted only)
     const answeredPairs = questions
       .map((q, i) => ({ q, state: states[i], correct: isQuestionCorrect(q, states[i]) }))
@@ -1484,13 +1534,13 @@ export default function SessionClient({
     // Next-step recommendation keyed to accuracy band. When the student
     // performed well and the server identified a weak topic, name it
     // directly — eliminates the "which area?" follow-up navigation.
-    // In the mid-accuracy band (60–78%), also surface the cross-topic weak
-    // area when it differs from the current topic: students building on one
-    // topic deserve to know which gap is costing them the most overall.
+    // In the mid-accuracy band (LOW–SOLID), also surface the cross-topic
+    // weak area when it differs from the current topic: students building on
+    // one topic deserve to know which gap is costing them the most overall.
     const nextStepNote =
-      accuracy < 60
+      accuracy < LOW_ACCURACY
         ? "Accuracy below 60% signals a concept gap. Revisiting the chapter before more practice compounds better."
-        : accuracy < 78
+        : accuracy < SOLID_ACCURACY
         ? weakestTopic && weakestTopic.topic !== topic
           ? `Accuracy is building — one more focused session here will sharpen this topic. Across your full history, ${weakestTopic.topic} sits at ${Math.round(weakestTopic.accuracy * 100)}% accuracy. That's the highest-leverage target once this topic is solid.`
           : "Accuracy is building. One more focused session on this topic before moving on."
@@ -1907,61 +1957,6 @@ export default function SessionClient({
           </Link>
         )}
 
-        {/* What to do next — renders the nextStepNote guidance as direct CTA
-            buttons. The text was computed above but never surfaced in the UI;
-            without a button, students read the advice and then navigate away
-            manually with no clear path. Primary action depends on accuracy
-            band: review the chapter (low), practice again (mid), study plan
-            (high). Chapter link is only shown when the topic maps to one. */}
-        {(() => {
-          const chapterSlug = TOPIC_TO_CHAPTER[topic]
-          const low = accuracy < 60
-          const mid = accuracy >= 60 && accuracy < 78
-
-          const primaryAction = low && chapterSlug
-            ? { label: `Review ${topic} chapter`, href: `/chapters/${chapterSlug}` }
-            : mid
-            ? { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-            : { label: "View your study plan", href: "/study-plan" }
-
-          const secondaryAction =
-            low
-              ? { label: "Practice again", href: `/practice/session/${slug}` }
-              : mid && chapterSlug
-              ? { label: "Review the chapter", href: `/chapters/${chapterSlug}` }
-              : { label: `Practice ${topic} again`, href: `/practice/session/${slug}` }
-
-          return (
-            <div
-              className="p-5 rounded-xl border border-white/[0.08]"
-              style={{ backgroundColor: "#0D0D0D" }}
-            >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
-                What to do next
-              </p>
-              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-4">
-                {nextStepNote}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Link
-                  href={primaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  {primaryAction.label}
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-                <Link
-                  href={secondaryAction.href}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-white/[0.1] text-[#888888] transition-colors hover:text-[#F0F0F0] hover:border-white/[0.2]"
-                >
-                  {secondaryAction.label}
-                </Link>
-              </div>
-            </div>
-          )
-        })()}
-
         {/* Review list — wrong answers only by default, toggle to show all */}
         {(() => {
           const wrongIndices = questions
@@ -2046,6 +2041,18 @@ export default function SessionClient({
                               style={{ color: isWrong ? "rgba(255,107,107,0.75)" : "#555555" }}
                             >
                               Q{i + 1} · {q.subtopic} · {q.difficulty}
+                              {isWrong && state.confidence && state.confidence !== "low" && (
+                                <span
+                                  className="ml-1.5 inline-flex items-center px-1 py-px rounded text-[9px] font-semibold uppercase tracking-wide"
+                                  style={
+                                    state.confidence === "high"
+                                      ? { backgroundColor: "rgba(255,153,102,0.15)", color: "#FF9966" }
+                                      : { backgroundColor: "rgba(255,255,255,0.05)", color: "#555555" }
+                                  }
+                                >
+                                  {state.confidence === "high" ? "Confident" : "Unsure"}
+                                </span>
+                              )}
                             </p>
                             <p className="text-sm text-[#F0F0F0] truncate">
                               {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
@@ -2084,7 +2091,7 @@ export default function SessionClient({
           if (isMixedReview) {
             actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
             actions.push({ label: "Review queue", href: "/review", variant: "secondary" })
-          } else if (accuracy < 60) {
+          } else if (accuracy < LOW_ACCURACY) {
             actions.push({
               label: chapterSlug ? "Review the chapter" : "Go to chapters",
               href: chapterSlug ? `/chapters/${chapterSlug}` : "/chapters",
@@ -2093,7 +2100,7 @@ export default function SessionClient({
             if (isPractice) {
               actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
             }
-          } else if (accuracy < 80) {
+          } else if (accuracy < SOLID_ACCURACY) {
             if (isPractice) {
               actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "primary" })
             }
@@ -2126,7 +2133,11 @@ export default function SessionClient({
               variant: "secondary",
             })
           } else {
-            actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
+            // Strong session, no known weak topic: the highest-leverage move
+            // is no longer this topic — point at the macro plan first, then
+            // offer chapters / a repeat as escape hatches.
+            actions.push({ label: "View your study plan", href: "/study-plan", variant: "primary" })
+            actions.push({ label: "Go to chapters", href: "/chapters", variant: "secondary" })
             if (isPractice) {
               actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
             }
@@ -2203,6 +2214,11 @@ export default function SessionClient({
         </Link>
         <div className="flex items-center justify-between mt-3">
           <div>
+            {setLabel ? (
+              <p className="text-[10px] uppercase tracking-widest text-[#C9A84C] mb-1">
+                {setLabel}
+              </p>
+            ) : null}
             <h1 className="text-xl font-bold text-[#F0F0F0]">{topic}</h1>
             <p className="text-xs text-[#555555] mt-0.5">
               Question{" "}
@@ -2236,6 +2252,38 @@ export default function SessionClient({
             </p>
           </div>
           <div className="flex items-center gap-2 text-sm text-[#888888]">
+            {/* Exam/Study feedback-mode toggle. Exam is the default and the
+                recommended skill test; study reveals each explanation. */}
+            <div
+              className="inline-flex rounded-lg border overflow-hidden"
+              style={{ borderColor: "rgba(255,255,255,0.10)" }}
+              role="group"
+              aria-label="Feedback mode"
+            >
+              {(["exam", "study"] as const).map((m) => (
+                <button
+                  key={m}
+                  onClick={() => switchMode(m)}
+                  className="px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors"
+                  style={
+                    mode === m
+                      ? {
+                          backgroundColor: "rgba(201,168,76,0.14)",
+                          color: "#C9A84C",
+                        }
+                      : { color: "#666666" }
+                  }
+                  title={
+                    m === "exam"
+                      ? "Explanations at the end, like test day (recommended)"
+                      : "Explanation after each question"
+                  }
+                  aria-pressed={mode === m}
+                >
+                  {m === "exam" ? "Exam" : "Study"}
+                </button>
+              ))}
+            </div>
             <PacingBadge
               section={section}
               elapsedMs={
@@ -2248,9 +2296,11 @@ export default function SessionClient({
               <Clock className="w-4 h-4" />
               <span className="font-mono">{formatDuration(sessionElapsed)}</span>
             </div>
-            {/* AI tutor — always visible. The button is small + gold-
-                accented; the drawer slides in from the right and
-                preserves the question's full context server-side. */}
+            {/* AI tutor — hidden in exam mode until the session is finished
+                (a tutor mid-exam would reveal the answer); always visible in
+                study mode. The drawer slides in from the right and preserves
+                the question's full context server-side. */}
+            {reveal && (
             <button
               onClick={() => setTutorOpen(true)}
               className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-semibold uppercase tracking-[0.18em] border transition-colors hover:bg-white/[0.04]"
@@ -2265,6 +2315,7 @@ export default function SessionClient({
               <Sparkles className="w-3 h-3" aria-hidden />
               Tutor
             </button>
+            )}
           </div>
         </div>
 
@@ -2278,6 +2329,13 @@ export default function SessionClient({
             }}
           />
         </div>
+        {!finished && (
+          <p className="text-[11px] mt-2" style={{ color: "#666666" }}>
+            {mode === "exam"
+              ? "Exam mode: answers and explanations come at the end, like test day."
+              : "Study mode: explanation after every question. Exam mode is the truer skill test — the chapters are where you learn."}
+          </p>
+        )}
       </div>
 
       {/* Body: passage (if grouped) + question. Mobile: stack
@@ -2296,6 +2354,7 @@ export default function SessionClient({
               <TwoPartGrid
                 question={current}
                 state={currentState}
+                reveal={reveal}
                 onSelect={handleTwoPartSelect}
               />
             ) : (
@@ -2303,7 +2362,7 @@ export default function SessionClient({
                 {current.options.map((option, i) => {
                   const isSelected = currentState.selected === i
                   const isCorrect = i === current.correctAnswer
-                  const showResult = currentState.submitted
+                  const showResult = currentState.submitted && reveal
                   const showCorrect = showResult && isCorrect
                   const showIncorrect = showResult && isSelected && !isCorrect
 
@@ -2360,10 +2419,11 @@ export default function SessionClient({
               value={currentState.confidence}
               submitted={currentState.submitted}
               wasCorrect={isQuestionCorrect(current, currentState)}
+              revealOutcome={reveal}
               onSelect={handleConfidence}
             />
 
-            {current.hints && current.hints.length > 0 && (
+            {mode === "study" && current.hints && current.hints.length > 0 && (
               <HintPanel
                 hints={current.hints}
                 revealed={currentState.hintsRevealed}
@@ -2372,7 +2432,7 @@ export default function SessionClient({
               />
             )}
 
-            {currentState.submitted && current.explanation && (
+            {currentState.submitted && reveal && current.explanation && (
               <div
                 className="mt-5 p-4 rounded-lg border transition-all duration-150 animate-in fade-in-0 zoom-in-95"
                 style={{
@@ -2442,21 +2502,21 @@ export default function SessionClient({
               </div>
             )}
 
+            {currentState.submitted && reveal && (
+              <PostSubmitUnderstandingRow
+                key={`understanding-${current.id}`}
+                questionId={current.id}
+              />
+            )}
             {currentState.submitted && (
-              <>
-                <PostSubmitUnderstandingRow
-                  key={`understanding-${current.id}`}
+              <div className="mt-3 flex items-center justify-end">
+                <SaveForReviewButton
+                  key={`save-${current.id}`}
                   questionId={current.id}
+                  initialSaved={false}
+                  variant="ghost"
                 />
-                <div className="mt-3 flex items-center justify-end">
-                  <SaveForReviewButton
-                    key={`save-${current.id}`}
-                    questionId={current.id}
-                    initialSaved={false}
-                    variant="ghost"
-                  />
-                </div>
-              </>
+              </div>
             )}
           </div>
 
@@ -2490,7 +2550,10 @@ export default function SessionClient({
             )}
 
             <button
-              onClick={() => setShowResults(true)}
+              onClick={() => {
+                setFinished(true)
+                setShowResults(true)
+              }}
               className="px-4 py-2 rounded-lg text-sm font-medium border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.16] transition-colors"
             >
               End

@@ -6,17 +6,13 @@ import { ArrowRight, Check, Download, Loader2 } from "lucide-react"
 type Source =
   | "footer"
   | "homepage"
-  | "free-diagnostic"
   | "blog-post"
   | "resources"
   | "score-converter"
   | "study-schedule"
   | "score-by-school"
   | "other"
-type LeadMagnet =
-  | "error-log-template"
-  | "newsletter"
-  | "diagnostic-deeper-view"
+type LeadMagnet = "error-log-template" | "newsletter"
 
 interface LeadCaptureProps {
   source: Source

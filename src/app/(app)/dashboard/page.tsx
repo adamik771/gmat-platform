@@ -18,6 +18,7 @@ import SectionProgress from "@/components/dashboard/SectionProgress"
 import ActivityFeed from "@/components/dashboard/ActivityFeed"
 import ScoreChart, { type ScoreDataPoint } from "@/components/dashboard/ScoreChart"
 import QuickActions from "@/components/dashboard/QuickActions"
+import StudyHoursChart from "./StudyHoursChart"
 import EmptyState from "@/components/shared/EmptyState"
 import { getAllChapters, getAllLessons, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
@@ -167,9 +168,23 @@ export default async function DashboardPage() {
                   )
                 )
               : null
+          // Sessions logged today (local midnight onward) — feeds the
+          // rest rule so a finished day surfaces "stop now" instead of
+          // manufacturing more volume. Cheap count-only query; failure is
+          // non-fatal (defaults to 0, rest simply never fires).
+          const localMidnightIso = new Date(
+            new Date().toDateString()
+          ).toISOString()
+          const { count: sessionsTodayCount } = await supabase
+            .from("practice_sessions")
+            .select("id", { count: "exact", head: true })
+            .eq("user_id", user.id)
+            .gte("created_at", localMidnightIso)
+
           nbaResult = computeNextBestAction(signals, {
             daysUntilExam,
             targetScore,
+            sessionsCompletedToday: sessionsTodayCount ?? 0,
           })
 
           // Today's Mission — pull the top item from the study-plan
@@ -180,10 +195,14 @@ export default async function DashboardPage() {
           // and `flaggedQuestionIds` inputs. Failures are non-fatal:
           // the hero card just doesn't render.
           try {
+            const metaOfficialEarly = user.user_metadata?.official_exam_scores
             const plan = await computeStudyPlan(supabase, user.id, {
               targetScore,
               examDate,
               flaggedQuestionIds,
+              officialExamCount: Array.isArray(metaOfficialEarly)
+                ? metaOfficialEarly.length
+                : 0,
             })
             if (plan.todaysFocus.length > 0) {
               topFocus = plan.todaysFocus[0]
@@ -211,8 +230,8 @@ export default async function DashboardPage() {
                 )
               } else if (topFocus.type === "mock") {
                 topFocusMinutes = 135
-              } else if (topFocus.type === "diagnostic") {
-                topFocusMinutes = 30
+              } else if (topFocus.type === "baseline") {
+                topFocusMinutes = 135
               }
             }
           } catch {
@@ -358,10 +377,13 @@ export default async function DashboardPage() {
   let currentPlan: string | null = null
   let currentStreak = 0
   let longestStreak = 0
+  /** Every session's timestamp + duration — the study-hours chart buckets
+   *  these into local-time days client-side and supports week-back nav. */
+  let studySessions: Array<{ t: string; ms: number }> = []
   let badges: Badge[] = []
   let reviewDueCount = 0
   let reviewTopTopic: string | null = null
-  let diagnosticSectionsDone = 0
+  let officialExamCount = 0
   let onboardingTargetSet = false
   let onboardingExamDateSet = false
   let onboardingIntakeDone = false
@@ -532,7 +554,7 @@ export default async function DashboardPage() {
       // union query and keeps the streak logic in plain JS.
       const { data: allSessions } = await supabase
         .from("practice_sessions")
-        .select("created_at, total_questions")
+        .select("created_at, total_questions, total_time_ms")
         .eq("user_id", userId)
       const { data: allCompletions } = await supabase
         .from("lesson_completions")
@@ -548,6 +570,8 @@ export default async function DashboardPage() {
         const qCount = (s.total_questions as number) ?? 0
         totalQuestions += qCount
         if (qCount > largestSessionQuestions) largestSessionQuestions = qCount
+        const ms = (s.total_time_ms as number) ?? 0
+        if (ms > 0) studySessions.push({ t: s.created_at as string, ms })
       }
       for (const c of allCompletions ?? []) {
         activeDays.add((c.completed_at as string).slice(0, 10))
@@ -639,20 +663,13 @@ export default async function DashboardPage() {
         reviewTopTopic = topTopic?.[0] ?? null
       }
 
-      // Diagnostic — count which of the 3 diagnostic sections have been
-      // completed. Used to surface the "Start your diagnostic" CTA only
-      // when the user hasn't finished it yet.
-      const { data: diagRows } = await supabase
-        .from("practice_sessions")
-        .select("slug")
-        .eq("user_id", userId)
-        .in("slug", [
-          "diagnostic-quant",
-          "diagnostic-verbal",
-          "diagnostic-di",
-        ])
-      const diagSlugs = new Set((diagRows ?? []).map((r) => r.slug as string))
-      diagnosticSectionsDone = diagSlugs.size
+      // Official baseline — how many mba.com practice-exam scores the
+      // student has entered. Drives the "set your baseline" CTA until the
+      // first official score exists.
+      const metaOfficialScores = user.user_metadata?.official_exam_scores
+      officialExamCount = Array.isArray(metaOfficialScores)
+        ? metaOfficialScores.length
+        : 0
 
       // Onboarding state — target + exam are in user_metadata. Read
       // once for the Getting Started checklist up top. The intake-survey
@@ -852,22 +869,24 @@ export default async function DashboardPage() {
       cta: "Set date",
     },
     {
-      key: "diagnostic",
-      label: "Take the diagnostic",
-      description: "3 sections, 10 questions each. Baselines everything.",
-      href: "/diagnostic",
-      done: diagnosticSectionsDone === 3,
-      cta: diagnosticSectionsDone === 0 ? "Start" : "Continue",
+      key: "baseline",
+      label: "Enter your baseline official exam",
+      description:
+        "Take Official Practice Exam 1 on mba.com under exam conditions, then enter the score.",
+      href: "/mock",
+      done: officialExamCount > 0,
+      cta: "Enter score",
     },
   ] as const
   const onboardingComplete = onboardingSteps.every((s) => s.done)
   const onboardingDoneCount = onboardingSteps.filter((s) => s.done).length
 
   // === Dashboard stage gate ===
-  // Pre-data ("baseline" stage): the student has no practice or diagnostic
-  // sessions yet, so most analytics widgets would render as 12 dead cards
-  // ("—" everywhere). Instead, drop them entirely and focus the page on the
-  // single decisive action: take the diagnostic. Setup checklist + a locked
+  // Pre-data ("baseline" stage): the student has no practice sessions yet,
+  // so most analytics widgets would render as 12 dead cards ("—"
+  // everywhere). Instead, drop them entirely and focus the page on the
+  // single decisive action: take the baseline official exam. Setup
+  // checklist + a locked
   // preview of what unlocks afterward are the only other things on screen.
   if (!hasData) {
     return (
@@ -920,13 +939,13 @@ export default async function DashboardPage() {
               )}
             </h1>
             <p className="text-[14px] text-[#888888] leading-[1.65] mt-3 max-w-xl">
-              Your dashboard activates after the diagnostic. Until then,
-              everything you see here is setup.
+              Your dashboard activates once you practice and enter your
+              baseline official exam. Until then, everything here is setup.
             </p>
           </div>
         </section>
 
-        {/* Diagnostic-dominant hero — the single page-level primary
+        {/* Baseline-dominant hero — the single page-level primary
             action. Everything else is secondary. */}
         <section
           className="relative overflow-hidden rounded-2xl border"
@@ -957,37 +976,34 @@ export default async function DashboardPage() {
                 </p>
               </div>
               <h2 className="font-display text-3xl sm:text-[40px] font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">
-                Take your diagnostic{" "}
+                Set your baseline{" "}
                 <span className="font-display-italic" style={{ color: "#C9A84C" }}>
                   first.
                 </span>
               </h2>
               <p className="mt-4 text-[15px] text-[#C0C0C0] leading-[1.7] max-w-2xl">
-                Without it, every recommendation on this site is a guess.
-                The diagnostic baselines your readiness across Quant,
-                Verbal, and Data Insights — and turns the rest of the
-                dashboard on.
+                Take Official Practice Exam 1 on mba.com under full exam
+                conditions — same start time as your real slot, one sitting,
+                official breaks — then enter the score here. A real exam is
+                the only baseline worth planning around.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px]" style={{ color: "rgba(255,255,255,0.5)" }}>
                 <span className="inline-flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#C9A84C" }} aria-hidden />
-                  30 questions · 3 sections
+                  Official GMAT Focus practice exam · mba.com
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <Clock className="w-3 h-3" />
-                  ~50 min
+                  ~2 h 15 min, one sitting
                 </span>
-                <span>{diagnosticSectionsDone}/3 sections done</span>
               </div>
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <Link
-                  href="/diagnostic"
+                  href="/mock"
                   className="group inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
                   style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
                 >
-                  {diagnosticSectionsDone === 0
-                    ? "Start 30-question diagnostic"
-                    : `Continue diagnostic (${diagnosticSectionsDone}/3)`}
+                  Open the official exam plan
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                 </Link>
                 {!onboardingTargetSet && (
@@ -1005,13 +1021,13 @@ export default async function DashboardPage() {
               </div>
             </div>
             {/* Right column — three thin status rows showing setup
-                state. Quiet visual; the diagnostic CTA stays dominant. */}
+                state. Quiet visual; the baseline CTA stays dominant. */}
             <div className="flex flex-col gap-2.5 lg:max-w-[320px]">
               <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C9A84C] mb-1">
                 Setup status
               </p>
               {[
-                { label: "Diagnostic", done: diagnosticSectionsDone === 3 },
+                { label: "Baseline exam", done: officialExamCount > 0 },
                 { label: "Target score", done: onboardingTargetSet },
                 { label: "Exam date", done: onboardingExamDateSet },
                 { label: "Intake survey", done: onboardingIntakeDone },
@@ -1094,8 +1110,8 @@ export default async function DashboardPage() {
                       "Sets the accuracy thresholds and pacing goals for every drill.",
                     exam:
                       "Converts your timeline into a week-by-week study cadence.",
-                    diagnostic:
-                      "Identifies the first weaknesses to attack, in priority order.",
+                    baseline:
+                      "Anchors your score trend and what the gap to target really is.",
                   }
                   return (
                     <Link
@@ -1157,7 +1173,7 @@ export default async function DashboardPage() {
           </section>
         )}
 
-        {/* === What unlocks after the diagnostic ===
+        {/* === What unlocks after your first data ===
             Locked tiles to set the expectation — the dashboard isn't
             empty by accident, it's gated. Each tile is a one-line
             promise of what that widget will surface once data exists. */}
@@ -1239,6 +1255,7 @@ export default async function DashboardPage() {
   if (!onboardingComplete) renderedNumberedSections.push("getting-started")
   renderedNumberedSections.push("score-goal")
   renderedNumberedSections.push("this-week")
+  renderedNumberedSections.push("study-hours")
   renderedNumberedSections.push("section-progress")
   renderedNumberedSections.push("accuracy-trend")
   if (!nbaResult) renderedNumberedSections.push("quick-actions")
@@ -1765,11 +1782,11 @@ export default async function DashboardPage() {
             </div>
             {estimatedTotal === null && (
               <Link
-                href="/test-builder"
+                href="/practice"
                 className="px-4 py-2 rounded-xl text-xs font-semibold tracking-tight transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] hover:opacity-90"
                 style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
               >
-                Take diagnostic
+                Start practicing
               </Link>
             )}
           </div>
@@ -1865,6 +1882,37 @@ export default async function DashboardPage() {
             pulseOnMount={currentStreak > 0}
           />
         </div>
+      </section>
+
+      {/* Study hours — per-day time invested, week-by-week comparison */}
+      <section>
+        <div className="flex items-center gap-3 mb-5">
+          <span
+            className="font-display text-[11px] font-semibold tabular-nums"
+            style={{ color: "rgba(201,168,76,0.55)" }}
+            aria-hidden
+          >
+            {sectionNum("study-hours")}
+          </span>
+          <p
+            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+            style={{ color: "#C9A84C" }}
+          >
+            Study Hours
+          </p>
+          <div
+            className="h-px flex-1"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+            }}
+            aria-hidden
+          />
+          <span className="text-[11px]" style={{ color: "#555555" }}>
+            Time in sessions, per day
+          </span>
+        </div>
+        <StudyHoursChart sessions={studySessions} />
       </section>
 
       {/* Section Progress + Chart */}

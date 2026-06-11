@@ -21,13 +21,44 @@ Select the value of T (row 1) and the value of S (row 2).
 | 6.0   |          |            |
 
 **answer:** T = 2.4, S = 6.0
-**fastest_path:** Combined rate 1/6 + 1/4 = 5/12 → T = 12/5 = 2.4. S = 6 is given directly.
-**explanation:** Combined rate: 1/6 + 1/4 = 2/12 + 3/12 = 5/12 of a load per hour. Time = 1 / (5/12) = 12/5 = 2.4 hours. For Truck A alone, the problem states directly it takes 6 hours. So T = 2.4, S = 6.0.
-**mistake_a:** 1.6 — inverting the combined-rate fraction (treating 5/12 as the time directly).
-**mistake_c:** 3.6 — partial sum of times then halved; not a rate-additive setup.
-**mistake_d:** 4.0 — Truck B's solo time, swapped into either column.
-**common_trap:** Adding times directly (e.g., averaging 6 and 4) instead of adding rates. Rates add for parallel work; times don't.
-**takeaway:** Combined-work problems: convert each worker to a rate (1/time), sum rates, then invert for combined time.
+**explanation:** **The Combined-Work Principle.** When two agents work simultaneously on the same task, their rates — expressed in units of work per unit of time — are additive. That is, if Agent A completes 1/a of the job per hour and Agent B completes 1/b of the job per hour, together they complete 1/a + 1/b of the job per hour, and the total time to finish one complete job equals 1 divided by that combined rate.
+
+**Setting up the variables and rates.**
+
+Let the full load represent 1 unit of work. The problem states:
+
+- Truck A completes the load in 6 hours, so Truck A's rate = 1/6 load per hour.
+- Truck B completes the load in 4 hours, so Truck B's rate = 1/4 load per hour.
+
+**Solving for T (both trucks working together).**
+
+Applying the additive-rate principle, the combined rate when both trucks work simultaneously is:
+
+1/6 + 1/4
+
+To add these fractions, the least common denominator of 12 is used:
+
+1/6 + 1/4 = 2/12 + 3/12 = 5/12 load per hour
+
+Since time = work / rate, and the total work is 1 load:
+
+T = 1 / (5/12) = 12/5 = 2.4 hours
+
+The value 2.4 is therefore selected for the column "T (both)."
+
+**Solving for S (Truck A working alone).**
+
+When only Truck A works, its rate remains 1/6 load per hour. The time required to deliver exactly 1 full load is:
+
+S = 1 / (1/6) = 6 hours
+
+This result is consistent with the prompt's direct statement that Truck A alone requires 6 hours; no further manipulation is necessary. The value 6.0 is therefore selected for the column "S (A only)."
+
+**Confirming against the candidate values.**
+
+The five candidate values are 1.6, 2.4, 3.6, 4.0, and 6.0. The computed value T = 12/5 = 2.4 matches the candidate 2.4 exactly, and S = 6 matches the candidate 6.0 exactly. No other candidates are consistent with the rates derived above.
+
+The correct answers are T (both) = 2.4 and S (A only) = 6.0.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -49,15 +80,39 @@ A chemist is mixing Solution X (30% salt) with Solution Y (60% salt) to create 1
 | 7 L   |            |            |
 
 **answer:** X = 5 L, Y = 5 L
-**fastest_path:** Target 45% is the midpoint of 30% and 60%, so equal volumes: 5 L each.
-**explanation:** Let x be liters of X and y be liters of Y. Equations: x + y = 10 and 0.30x + 0.60y = 0.45(10) = 4.5. From the first equation, x = 10 - y. Substituting: 0.30(10 - y) + 0.60y = 4.5 → 3 - 0.30y + 0.60y = 4.5 → 0.30y = 1.5 → y = 5. Then x = 5. Both are 5 liters.
-**mistake_a:** 2 L — lopsided guess weighted toward the higher-concentration solution.
-**mistake_b:** 3 L — partial-substitution slip in either direction.
-**mistake_c:** 4 L — off-by-one from picking adjacent value to the symmetric answer.
-**mistake_e:** 6 L — mirror error of 4 L; same arithmetic slip going the other way.
-**mistake_f:** 7 L — extreme lopsided guess weighted toward one solution.
-**common_trap:** Eyeballing the percentages without anchoring 45% as the midpoint of 30% and 60%.
-**takeaway:** Mixture midpoint shortcut: when the target concentration equals the average of the two source concentrations, equal volumes are required.
+**explanation:** **Governing principle.** A mixture problem requires two simultaneous equations: one for total volume and one for the conserved quantity — in this case, the mass of dissolved salt. The salt contributed by each component equals its volume multiplied by its concentration, and the sum must equal the salt content of the final mixture.
+
+**Defining variables.** Let x = the volume (in liters) of Solution X, and let y = the volume (in liters) of Solution Y.
+
+**Translating the prompt into equations.**
+
+- Total volume: x + y = 10
+- Salt balance: 0.30x + 0.60y = 0.45 * 10
+
+Evaluating the right side of the salt-balance equation: 0.45 * 10 = 4.5. The system is therefore:
+
+(1) x + y = 10
+(2) 0.30x + 0.60y = 4.5
+
+**Solving by substitution.** From equation (1): y = 10 - x. Substituting into equation (2):
+
+0.30x + 0.60(10 - x) = 4.5
+
+Distributing: 0.30x + 6 - 0.60x = 4.5
+
+Combining like terms: -0.30x + 6 = 4.5
+
+Subtracting 6 from both sides: -0.30x = -1.5
+
+Dividing both sides by -0.30: x = -1.5 / -0.30 = 5
+
+**Finding y.** Substituting x = 5 back into equation (1): 5 + y = 10, therefore y = 5.
+
+**Verification.** The salt contributed by Solution X is 0.30 * 5 = 1.5 liters of salt. The salt contributed by Solution Y is 0.60 * 5 = 3.0 liters of salt. Total salt = 1.5 + 3.0 = 4.5 liters, which equals 45% of 10 liters. Both conditions are satisfied.
+
+**Selecting from the candidate values.** The candidate list includes 2 L, 3 L, 4 L, 5 L, 6 L, and 7 L. The solution x = 5 and y = 5 are each present in that list, confirming that 5 L is the correct selection for both columns.
+
+The correct answers are Solution X = 5 L and Solution Y = 5 L.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -79,14 +134,42 @@ An investor splits $100,000 between two funds. Fund Alpha yields 8% annually, Fu
 | $80,000 |            |           |
 
 **answer:** Alpha = $60,000, Beta = $40,000
-**fastest_path:** Target rate 6.8% sits between 5% and 8%, closer to 8%, so Alpha gets more weight. Solve: 0.03a = 1,800 → a = 60k, b = 40k.
-**explanation:** Let a be the amount in Alpha and b in Beta. Equations: a + b = 100,000 and 0.08a + 0.05b = 6,800. From the first, b = 100,000 - a. Substituting: 0.08a + 0.05(100,000 - a) = 6,800 → 0.08a + 5,000 - 0.05a = 6,800 → 0.03a = 1,800 → a = 60,000. So Alpha = $60,000 and Beta = $40,000.
-**mistake_a:** $20,000 — reverse split, would imply far too low a return ($2,600).
-**mistake_c:** $50,000 — even split yields 6.5% blended rate, below the $6,800 target.
-**mistake_e:** $70,000 — over-weight Alpha; revenue would be $7,100.
-**mistake_f:** $80,000 — extreme over-weight; revenue would be $7,400.
-**common_trap:** Picking 50/50 because it averages the rates — but the target return forces more weight on the higher-yield fund.
-**takeaway:** Weighted-rate split: target rate's distance from each yield determines the weight. Closer to one yield = more weight on that fund.
+**explanation:** **Setup.** A Two-Part Analysis question of this type requires the solver to partition a fixed total investment between two instruments and reconcile both the capital constraint and the return constraint simultaneously. Let x represent the dollar amount invested in Fund Alpha, and let (100,000 - x) represent the dollar amount invested in Fund Beta.
+
+**Governing equations.** Two conditions must hold simultaneously:
+
+- Capital constraint: x + (100,000 - x) = 100,000 (satisfied by construction)
+- Return constraint: 0.08x + 0.05(100,000 - x) = 6,800
+
+**Solving the return constraint.** Expanding the left side:
+
+0.08x + 5,000 - 0.05x = 6,800
+
+Combining like terms:
+
+0.03x + 5,000 = 6,800
+
+Subtracting 5,000 from both sides:
+
+0.03x = 1,800
+
+Dividing both sides by 0.03:
+
+x = 1,800 / 0.03 = 60,000
+
+**Determining Fund Beta.** Because the two allocations must sum to $100,000:
+
+100,000 - 60,000 = 40,000
+
+**Verification.** Substituting both values back into the return constraint confirms the result:
+
+0.08 * 60,000 + 0.05 * 40,000 = 4,800 + 2,000 = 6,800
+
+This equals the stated total annual return of $6,800, confirming that the solution is consistent with both constraints.
+
+**Eliminating distractors.** Each incorrect candidate value from the list can be ruled out by checking the return constraint. For example, if Fund Alpha = $50,000, the return would be 0.08 * 50,000 + 0.05 * 50,000 = 4,000 + 2,500 = 6,500, which is less than 6,800. If Fund Alpha = $70,000, the return would be 0.08 * 70,000 + 0.05 * 30,000 = 5,600 + 1,500 = 7,100, which exceeds 6,800. Only x = 60,000 satisfies the equation exactly.
+
+The correct answers are Fund Alpha = $60,000 and Fund Beta = $40,000.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -109,13 +192,26 @@ From the statements below, identify the conclusion of the argument (row 1) and t
 | Reduced competition always leads to increased sales                                 |            |            |
 
 **answer:** Conclusion = "The campaign's effectiveness may be overstated"; Assumption challenged = "The marketing campaign caused the 25% sales increase"
-**fastest_path:** "Therefore" signals the conclusion (effectiveness overstated). The challenged assumption is the unstated causal link the counter-evidence undermines (campaign caused the rise).
-**explanation:** The conclusion is the claim being made: "the campaign's effectiveness may be overstated." The argument questions the assumption that the marketing campaign alone caused the 25% sales increase by introducing an alternative explanation (the competitor's bankruptcy). The assumption challenged is that the campaign caused the increase.
-**mistake_b:** A premise (a documented fact about the competitor) — not the conclusion or the unstated assumption.
-**mistake_d:** Another premise (the 25% increase fact); explicit data in the argument, not what's being challenged.
-**mistake_e:** Universal-strength claim ("always"); the argument only needs the local causal link, not a universal rule.
-**common_trap:** Picking a stated premise as the assumption. Assumptions are unstated — explicit facts are premises, not assumptions.
-**takeaway:** Conclusion follows "therefore"; the challenged assumption is the unstated link the counter-evidence undermines.
+**explanation:** **Governing principles.** In GMAT argument structure, the conclusion is the claim the author is ultimately trying to establish — typically signaled by indicator words such as "therefore," "thus," or "hence." A premise, by contrast, is a stated fact or observation offered as support. An assumption is an unstated premise that the argument relies on; when an argument says an original claim "may be overstated," it is implicitly targeting the reasoning behind that original claim.
+
+**Identifying the conclusion.** The passage contains the explicit conclusion indicator "Therefore" introducing the final sentence: "the campaign's effectiveness may be overstated." That sentence is not offered as evidence for anything else; every other statement in the passage either reports an observed fact (sales rose 25%; a competitor went bankrupt) or sets up the contrast that leads to this final judgment. We therefore assign the Conclusion column to "The campaign's effectiveness may be overstated."
+
+**Identifying the challenged assumption.** The argument works as follows: a claim was implicitly made — that the marketing campaign deserves credit for the 25% sales increase. The argument then introduces a rival explanation (reduced competition from a bankrupt competitor) to cast doubt on that credit attribution. The assumption being challenged is the unstated premise underlying the original attribution, namely "The marketing campaign caused the 25% sales increase." Without that assumed causal link, there would be no credit to overstate and no argument to make.
+
+Consider the other candidates:
+
+- "A major competitor went bankrupt during the quarter" — this is a stated premise, not an assumption.
+- "Sales increased 25% in the first quarter" — also a stated premise; the argument does not dispute that the increase occurred.
+- "Reduced competition always leads to increased sales" — this is too sweeping, and the argument does not need to challenge an "always" claim; it only needs to raise the possibility that reduced competition contributed here. The assumption being challenged is specifically the causal attribution to the campaign, not a universal law about competition.
+
+**Summary of assignments.**
+
+| Column | Credited value |
+|---|---|
+| Conclusion | The campaign's effectiveness may be overstated |
+| Assumption | The marketing campaign caused the 25% sales increase |
+
+The correct answers are Conclusion = The campaign's effectiveness may be overstated and Assumption = The marketing campaign caused the 25% sales increase.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -137,14 +233,31 @@ Two trains leave cities 540 km apart, traveling toward each other. Train A trave
 | 5 hours |                  |              |
 
 **answer:** Train A distance = 240 km, Time = 3 hours
-**fastest_path:** Closing speed 80+100 = 180 → t = 540/180 = 3 hr. Train A distance = 80 × 3 = 240 km.
-**explanation:** Combined closing speed = 80 + 100 = 180 km/h. Time to meet = 540 / 180 = 3 hours. Train A's distance = 80 × 3 = 240 km. Verify: Train B travels 100 × 3 = 300 km. 240 + 300 = 540. Checks out.
-**mistake_a:** 180 km — that's the closing speed (km/h), not Train A's distance. Unit-confusion.
-**mistake_c:** 300 km — that's Train B's distance (100 × 3); column asks for Train A.
-**mistake_e:** 4 hours — using Train A's solo speed against the full 540 (320/80 ≈ 4); ignores the closing-rate logic.
-**mistake_f:** 5 hours — arithmetic slip on 540/something.
-**common_trap:** Swapping Train A's distance (240) with Train B's (300). Read which train the column asks for.
-**takeaway:** Opposite-direction motion: closing speed = sum of speeds. Then each train's distance = its own speed × shared time.
+**explanation:** **Governing principle.** When two objects move toward each other, their speeds combine: the rate at which the gap between them closes equals the sum of their individual speeds. Therefore, the time to meet is the total distance divided by the combined speed.
+
+**Variable definitions.** Let t be the time (in hours) elapsed when the two trains meet. Let d_A be the distance (in kilometers) traveled by Train A at the moment of meeting.
+
+**Setting up the equation.** Train A travels at 80 km/h and Train B travels at 100 km/h. Their combined closing speed is 80 + 100 = 180 km/h. The total distance separating the two cities is 540 km. The trains meet when the sum of the distances they have individually covered equals 540 km, which occurs at time t such that:
+
+180 * t = 540
+
+**Solving for t.**
+
+t = 540 / 180 = 3
+
+The time elapsed when the trains meet is 3 hours.
+
+**Solving for d_A.** Using the definition distance = rate * time:
+
+d_A = 80 * 3 = 240
+
+Train A has traveled 240 km when the trains meet.
+
+**Verification.** In the same 3 hours, Train B covers 100 * 3 = 300 km. The sum of the two distances is 240 + 300 = 540 km, which equals the total separation. The solution is consistent.
+
+**Evaluating the candidate values.** The column "Train A Distance" contains values 180 km, 240 km, and 300 km. Only 240 km matches d_A = 80 * 3. The value 300 km corresponds to Train B's distance, and 180 km corresponds to neither train. The column "Time to Meet" contains values 3 hours, 4 hours, and 5 hours. Only 3 hours matches t = 540 / 180. At t = 4, the combined distance would be 180 * 4 = 720 km, exceeding 540 km; at t = 5, it would be 900 km — both inconsistent with the given separation.
+
+The correct answers are Train A Distance = 240 km and Time to Meet = 3 hours.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -167,13 +280,31 @@ From the statements below, identify one that would most strengthen the council's
 | Most accidents on Main Street occur during daylight hours                              |             |         |
 
 **answer:** Strengthens = "A nearby city with similar traffic volume saw 35% fewer accidents after installing lights"; Weakens = "Most accidents on Main Street occur during daylight hours"
-**fastest_path:** Strongest strengthen = direct parallel case (35% in similar city). Strongest weaken = premise-nullifier (lights help nighttime; daylight accidents unaffected).
-**explanation:** A comparable case study showing a 35% reduction directly supports the claim that streetlights will reduce accidents by at least 30%. "Most accidents occur during daylight" weakens the argument because streetlights would have no impact on daylight accidents — making a 30% overall reduction implausible. The other options are either irrelevant (LED bulbs, traffic volume) or only weakly related (speeding vs visibility addresses cause but doesn't directly contradict the claim).
-**mistake_b:** Speeding-not-visibility addresses cause but doesn't directly contradict the 30% reduction claim — only weakly weakens.
-**mistake_c:** Higher traffic volume is irrelevant to whether lights reduce night accidents.
-**mistake_d:** Energy efficiency of bulbs is irrelevant to the accident-reduction mechanism.
-**common_trap:** Picking the speeding option as the strongest weaken — it weakens indirectly. The daylight option directly nullifies the lights' mechanism (lights have no daylight role).
-**takeaway:** Strengthen/weaken: prefer evidence that directly tests the claim's mechanism over evidence that adds peripheral context.
+**explanation:** **Governing principle.** An argument is strengthened by a statement that increases the likelihood the conclusion is true, typically by providing supporting evidence, an analogous case, or validating a key assumption. An argument is weakened by a statement that decreases the likelihood the conclusion is true, typically by attacking a key assumption, undermining the causal mechanism, or revealing that the scope of the intervention is too narrow to achieve the claimed effect.
+
+**The argument.** The city council concludes: installing new streetlights on Main Street will reduce nighttime accidents by at least 30%. Two unstated assumptions underlie this conclusion: (1) that poor visibility — specifically inadequate lighting — is a meaningful cause of accidents on Main Street, and (2) that improving lighting will address this cause to a degree sufficient to produce a reduction of >= 30%.
+
+**Evaluating the candidates for Strengthens.**
+
+"A nearby city with similar traffic volume saw 35% fewer accidents after installing lights." Let the claimed reduction threshold = 30% and the analogous city's observed reduction = 35%. Because 35% > 30%, this analogical case directly supports the plausibility of the council's projection. The comparability condition (similar traffic volume) controls for a key confounding variable. This validates both assumptions: lighting was the intervention, and it produced a result meeting the stated threshold under comparable conditions.
+
+"Main Street has a higher-than-average traffic volume." This is a background fact about traffic density. It neither confirms that lighting causes accidents nor provides evidence that the 30% target is achievable. At best, higher volume might suggest more potential for improvement, but the reasoning is speculative and indirect. This does not qualify as a clear strengthener.
+
+"The new streetlights use energy-efficient LED bulbs." LED technology speaks to energy cost and operational efficiency, not to accident-reduction efficacy. This is irrelevant to the council's claim.
+
+The only candidate that strengthens the argument is the one providing direct analogical empirical evidence: a comparable city achieved a reduction of 35%, which is >= 30%.
+
+**Evaluating the candidates for Weakens.**
+
+"Main Street accidents are primarily caused by speeding, not visibility." If the dominant cause is speeding, lighting — which addresses visibility — would not substantially reduce accidents caused by speed. This attacks assumption (1) directly and is a legitimate weakener.
+
+"Most accidents on Main Street occur during daylight hours." Let T = total accidents, D = daytime accidents, and N = nighttime accidents, where T = D + N. If most accidents are daytime accidents, then D > N, which means N/T < 0.5. Streetlights affect only nighttime visibility, so they can at most eliminate N accidents. The maximum achievable reduction = N/T, and since N/T < 0.5, this is only an upper bound. For the council's claim to hold, the necessary condition is N/T >= 0.30. The statement tells us only that D > N; if, say, 75% of accidents are daytime accidents, then N/T = 0.25 < 0.30, and the 30% threshold is mathematically unachievable through lighting alone. This attacks assumption (2) at the level of scope: the intervention cannot reach the claimed magnitude of effect because most of the accident problem lies outside the domain that lighting can address.
+
+**Comparing the two weakening candidates.** Both attack the argument, but "Most accidents on Main Street occur during daylight hours" delivers a more fundamental challenge. "Speeding, not visibility" narrows the causal mechanism for nighttime accidents but leaves open the possibility that some nighttime accidents are visibility-related. By contrast, "Most accidents occur during daylight" constrains the maximum impact of any lighting improvement to below the council's stated threshold of 30% — regardless of how effective the lights are at night. This makes it the stronger, more direct weakener, and it matches the credited answer.
+
+**Confirming the credited answers.** For Strengthens, the analogous-city statement provides direct evidence at 35% >= 30% under controlled comparable conditions — the strongest available support for the council's conclusion. For Weakens, the daylight-accidents statement bounds the maximum achievable reduction below the 30% threshold if N/T < 0.30, directly undermining the council's projection.
+
+The correct answers are Strengthens = A nearby city with similar traffic volume saw 35% fewer accidents after installing lights and Weakens = Most accidents on Main Street occur during daylight hours.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -194,13 +325,38 @@ A manufacturing company produces Product X and Product Y. Each unit of X require
 | 80  |                |                |
 
 **answer:** Max X = 60, Max Y = 40
-**fastest_path:** X-only: min(120/2, 600/10) = min(60, 60) = 60. Y-only: min(120/3, 600/15) = min(40, 40) = 40.
-**explanation:** For X only: Labor constraint: 2x ≤ 120 → x ≤ 60. Materials constraint: 10x ≤ 600 → x ≤ 60. Both binding — max X = 60. For Y only: Labor constraint: 3y ≤ 120 → y ≤ 40. Materials constraint: 15y ≤ 600 → y ≤ 40. Both binding — max Y = 40.
-**mistake_a:** 30 — halving labor or material budget; misreading the cap.
-**mistake_c:** 50 — picking middle option without computing the constraint floors.
-**mistake_e:** 80 — ignoring one of the two constraints; would violate either labor or budget.
-**common_trap:** Computing only one constraint (labor or budget) and forgetting that production is bounded by the *binding* (smaller) constraint.
-**takeaway:** Single-product capacity = min(time-budget / time-per-unit, dollar-budget / cost-per-unit). Always check both constraints.
+**explanation:** **Resource-constraint maximization.** When a firm produces only one product, total output is bounded by every applicable resource limit simultaneously; the maximum feasible quantity is the smallest upper bound imposed across all constraints.
+
+**Setting up the constraints.**
+
+Let x = the number of units of Product X produced and y = the number of units of Product Y produced. The two binding constraints are:
+
+- Labor (hours available = 120): 2x hours per unit of X, 3y hours per unit of Y
+- Materials (budget = $600): $10 per unit of X, $15 per unit of Y
+
+**Row 1 — Maximum X when only Product X is produced.**
+
+Setting y = 0, both constraints simplify to single-variable inequalities:
+
+Labor: 2x <= 120, which gives x <= 120/2 = 60.
+
+Materials: 10x <= 600, which gives x <= 600/10 = 60.
+
+Both constraints yield the same upper bound of 60. Therefore the maximum number of units of Product X is 60.
+
+**Row 2 — Maximum Y when only Product Y is produced.**
+
+Setting x = 0, both constraints simplify analogously:
+
+Labor: 3y <= 120, which gives y <= 120/3 = 40.
+
+Materials: 15y <= 600, which gives y <= 600/15 = 40.
+
+Again both constraints converge on the same ceiling of 40. Therefore the maximum number of units of Product Y is 40.
+
+**Verification against the candidate values.** The answer choices include 30, 40, 50, 60, and 80. The derived maximum for X is 60 (not 80, because neither constraint permits x = 80: 2(80) = 160 > 120 and 10(80) = 800 > 600). The derived maximum for Y is 40 (not 50, because 3(50) = 150 > 120 and 15(50) = 750 > 600). Both 60 and 40 appear among the candidates and satisfy all constraints with equality, confirming they are the correct selections.
+
+The correct answers are Max X (only X) = 60 and Max Y (only Y) = 40.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -223,13 +379,45 @@ From the options below, identify a statement that, if true, would provide an alt
 | Students who eat breakfast tend to arrive at school earlier                             |                 |         |
 
 **answer:** Alternative Explanation = "Students from higher-income families are more likely to eat breakfast"; Support = "A school that introduced free breakfast saw test scores rise by 12 points the next year"
-**fastest_path:** Alt explanation = confounder (income drives both). Support = causal-intervention study (school intervention → score rise).
-**explanation:** The alternative explanation is that income (not breakfast itself) drives the correlation — wealthier students eat breakfast AND have advantages that lead to higher test scores. The direct support is a causal study showing that providing free breakfast actually led to higher scores, which parallels the recommended action in the conclusion.
-**mistake_c:** Mechanism plausibility (nutrients aid the brain) — doesn't supply an alt cause or causal evidence.
-**mistake_d:** Lunch-program existence is irrelevant to the breakfast claim.
-**mistake_e:** Earlier arrival is a possible mediator, not an independent confounder or intervention study.
-**common_trap:** Confusing mechanism plausibility with causal evidence. Mechanism doesn't isolate cause; intervention does.
-**takeaway:** Causal-claim support: prefer experiments / interventions over mechanism plausibility. Alt explanations cite confounders, not mediators.
+**explanation:** **Governing principles.** A Two-Part Analysis question of the cause-and-effect type requires distinguishing between (1) an alternative explanation — a statement that, if true, accounts for the observed correlation through a mechanism other than the one the author assumes — and (2) a support statement — a statement that, if true, directly strengthens the author's causal conclusion. Each candidate is examined against those definitions.
+
+**The argument.** The researcher observes a correlation: let S_b denote the mean standardized-test score for breakfast-eaters and S_s denote the mean score for breakfast-skippers. The premise states S_b - S_s = 10 points. The researcher infers a causal relationship — eating breakfast raises scores — and draws a policy conclusion: schools should provide free breakfast.
+
+The logical vulnerability is the leap from correlation to causation. If a third variable X is positively associated with both breakfast consumption and test scores, then the 10-point gap may reflect X rather than breakfast itself.
+
+**Column 1 — Alternative Explanation**
+
+The task is to identify a statement that, if true, introduces a confounding variable capable of explaining S_b - S_s = 10 without requiring breakfast to cause higher scores.
+
+- Students from higher-income families are more likely to eat breakfast. Let I represent family income. Higher-income students tend both to eat breakfast (explaining the breakfast-eating group) and to score higher on standardized tests (reflecting greater access to tutoring, stable home environments, and academic resources). If this statement is true, income I is a common cause of both breakfast consumption and test performance. The observed 10-point gap is therefore attributable to income disparities rather than to breakfast per se. This is a classical confound and constitutes a direct alternative explanation.
+
+- Students who eat breakfast tend to arrive at school earlier. This is a behavioral correlate of breakfast-eating; it does not independently explain the score gap unless one further assumes that earlier arrival causes higher scores — an additional inferential step that weakens its force as a standalone alternative explanation.
+
+- Breakfast foods contain essential nutrients for brain function. This supports rather than undermines the causal claim.
+
+- Schools already provide lunch programs. This is irrelevant to the causal mechanism linking breakfast to scores.
+
+- A school that introduced free breakfast saw test scores rise by 12 points the next year. This supports the conclusion rather than offering an alternative explanation.
+
+The credited alternative explanation is Students from higher-income families are more likely to eat breakfast. It introduces income as a confounding variable that fully accounts for the correlation without invoking a causal role for breakfast.
+
+**Column 2 — Support**
+
+The task is to identify the statement that, if true, most directly strengthens the conclusion that providing free breakfast will improve test scores.
+
+- A school that introduced free breakfast saw test scores rise by 12 points the next year. This is a natural experiment: an intervention was implemented (free breakfast provided) and the outcome — a 12-point increase, numerically consistent with the researcher's cited 10-point gap — was directly observed. This moves the evidence from correlation to a before-and-after comparison at the institutional level, providing the strongest available empirical support for the causal policy claim.
+
+- Breakfast foods contain essential nutrients for brain function. This offers a plausible biological mechanism, which is a legitimate form of support. However, a mechanism alone does not confirm that the intervention produces the effect; it merely explains how it could. The observed outcome evidence above is therefore more direct.
+
+- Students from higher-income families are more likely to eat breakfast. This undermines rather than supports the conclusion.
+
+- Schools already provide lunch programs. Institutional precedent is irrelevant to the causal claim.
+
+- Students who eat breakfast tend to arrive at school earlier. This is a correlate of the exposure variable and does not address whether providing breakfast raises scores.
+
+The credited support statement is A school that introduced free breakfast saw test scores rise by 12 points the next year. It provides direct outcome evidence that the proposed intervention produces an effect of the predicted magnitude.
+
+The correct answers are Alt Explanation = Students from higher-income families are more likely to eat breakfast and Support = A school that introduced free breakfast saw test scores rise by 12 points the next year.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -252,13 +440,29 @@ Select the value of T (row 1) and the value of S (row 2).
 | 15 hrs |          |                      |
 
 **answer:** T = 6 hrs, S = 10 hrs
-**fastest_path:** Combined rate 12+8 = 20 → T = 120/20 = 6. Solo: S = 120/12 = 10.
-**explanation:** Combined rate = 12 + 8 = 20 pages per hour. T = 120 / 20 = 6 hours. Copy editor alone: S = 120 / 12 = 10 hours. Sanity check: the "both" time must be shorter than either individual time, so T = 6 and S = 10 fits. If a student picks T = 4, they are likely averaging or double-counting; the rates add, the times do not.
-**mistake_a:** 4 hrs — over-aggressive rate addition or arithmetic slip; below the faster solo rate.
-**mistake_c:** 8 hrs — partial rate sum or misreading the manuscript size.
-**mistake_e:** 15 hrs — junior editor's solo time (120/8). Confused which editor the column asks for.
-**common_trap:** Picking 15 for S because the junior editor's time is 15 — but column S asks for the copy editor (12 pages/hr → 10 hrs).
-**takeaway:** Combined-rate problems: rates add, then divide work by combined rate. Solo time = work / solo rate.
+**explanation:** The work-rate principle states that when two workers operate simultaneously, their individual rates add. The time to complete a fixed task equals the total work divided by the combined rate.
+
+Let T = the number of hours required when both editors work together, and let S = the number of hours required when only the copy editor works.
+
+**Setting up the rates.**
+
+The copy editor's rate is 12 pages per hour. The junior editor's rate is 8 pages per hour. When they work together, the combined rate is 12 + 8 = 20 pages per hour.
+
+**Solving for T.**
+
+Applying the formula Time = Work / Rate:
+
+T = 120 / 20 = 6 hours
+
+**Solving for S.**
+
+When only the copy editor works, the applicable rate is 12 pages per hour:
+
+S = 120 / 12 = 10 hours
+
+**Checking both results against the candidate values.** The value 6 hrs appears in the list and equals T; the value 10 hrs appears in the list and equals S. No other candidate value satisfies either equation.
+
+The correct answers are T (both) = 6 hrs and S (copy editor only) = 10 hrs.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -279,13 +483,53 @@ A coffee roaster blends Bean A (which costs $8 per pound) with Bean B (which cos
 | 25 lb  |        |        |
 
 **answer:** Bean A = 20 lb, Bean B = 10 lb
-**fastest_path:** Target $10 is closer to $8 than to $14, so more A. Lever-arm: distance ratio = 4:2 → A:B = 2:1 → 20:10.
-**explanation:** Let a be pounds of Bean A and b of Bean B. Two equations: a + b = 30 and 8a + 14b = 10(30) = 300. From the first, a = 30 - b. Substituting: 8(30 - b) + 14b = 300 → 240 + 6b = 300 → b = 10. So a = 20. Quick gut-check: $10 is closer to $8 than to $14, so the blend should weight more heavily toward Bean A, which matches 20 lb vs 10 lb.
-**mistake_a:** 5 lb — lopsided guess in the wrong direction.
-**mistake_c:** 15 lb — equal split; would yield $11/lb blend, not $10.
-**mistake_e:** 25 lb — picked the larger row for the smaller-weight bean (B), reversing the answer.
-**common_trap:** 15/15 split — but $10 is closer to $8, so the cheaper bean must weigh more.
-**takeaway:** Mixture pricing lever-arm: target closer to component A → A weighs more. Distance ratio inverts to weight ratio.
+**explanation:** **Governing principle.** In any mixture problem, the total cost of the blend equals the sum of the costs contributed by each component. If the blend contains x pounds of Bean A at $8 per pound and y pounds of Bean B at $14 per pound, then total cost = 8x + 14y.
+
+**Variable definitions.**
+
+Let x = pounds of Bean A in the blend.
+Let y = pounds of Bean B in the blend.
+
+**Translating the problem into equations.**
+
+The blend weighs 30 pounds in total, giving the weight equation:
+
+x + y = 30
+
+The blend costs $10 per pound and contains 30 pounds, so its total cost is 10 * 30 = $300. The cost equation is therefore:
+
+8x + 14y = 300
+
+**Solving the system.**
+
+From the weight equation, we express y in terms of x:
+
+y = 30 - x
+
+Substituting into the cost equation:
+
+8x + 14(30 - x) = 300
+
+8x + 420 - 14x = 300
+
+-6x = 300 - 420
+
+-6x = -120
+
+x = -120 / -6 = 20
+
+We then find y:
+
+y = 30 - 20 = 10
+
+**Verification.**
+
+Weight check: 20 + 10 = 30. Correct.
+Cost check: 8(20) + 14(10) = 160 + 140 = 300, and 300 / 30 = $10 per pound. Correct.
+
+**Selecting from the candidate values.** The candidate row values are 5 lb, 10 lb, 15 lb, 20 lb, and 25 lb. The solution yields x = 20 and y = 10, both of which appear among the candidates. Any other pairing from the candidate list fails at least one of the two equations above.
+
+The correct answers are Bean A = 20 lb and Bean B = 10 lb.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -307,14 +551,53 @@ At a concert, adult tickets cost $45 and student tickets cost $20. The venue sol
 | 280 |               |                 |
 
 **answer:** Adult Tickets = 230, Student Tickets = 170
-**fastest_path:** If all 400 were students: revenue 8,000. Surplus 5,750 over student floor. Per-adult premium 25. Adults = 5,750/25 = 230. Students = 170.
-**explanation:** Let a = adult tickets and s = student tickets. Set up two equations: a + s = 400 and 45a + 20s = 13,750. Substitute s = 400 - a into the revenue equation: 45a + 20(400 - a) = 13,750 → 25a + 8,000 = 13,750 → 25a = 5,750 → a = 230. Then s = 400 - 230 = 170. Both values appear in the row labels, so select Adult = 230 in row 1 and Student = 170 in row 2.
-**mistake_a:** 150 — mis-substitution direction; would imply revenue around $11,750.
-**mistake_c:** 200 — even split; revenue $13,000, missing the $750 to reach target.
-**mistake_e:** 250 — over-corrected; revenue $14,250.
-**mistake_f:** 280 — far overshoot; revenue $15,000.
-**common_trap:** Eyeballing 200/200 because it's the average, but the higher-priced ticket needs disproportionately more sold to lift the per-ticket average above $20.
-**takeaway:** Two-priced sum problems: subtract the lower-price floor from total revenue, then divide the surplus by the price gap.
+**explanation:** **Governing principle.** A system of two linear equations in two unknowns is solved by expressing one variable in terms of the other through substitution (or elimination), then back-substituting to find both values.
+
+**Define variables.** Let x be the number of adult tickets sold and y be the number of student tickets sold.
+
+**Translate the problem into equations.**
+
+The total number of tickets sold is 400:
+
+x + y = 400   ... (1)
+
+The total revenue collected is $13,750, with adult tickets priced at $45 each and student tickets at $20 each:
+
+45x + 20y = 13,750   ... (2)
+
+**Solve by substitution.**
+
+From equation (1), express y in terms of x:
+
+y = 400 - x   ... (3)
+
+Substitute (3) into equation (2):
+
+45x + 20(400 - x) = 13,750
+
+45x + 8,000 - 20x = 13,750
+
+25x = 13,750 - 8,000
+
+25x = 5,750
+
+x = 5,750 / 25 = 230
+
+**Back-substitute to find y.**
+
+y = 400 - 230 = 170
+
+**Verify both equations.**
+
+Ticket count: 230 + 170 = 400 ✓
+
+Revenue: 45(230) + 20(170) = 10,350 + 3,400 = 13,750 ✓
+
+**Evaluate the candidate values.**
+
+The candidate list includes 150, 170, 200, 230, 250, and 280. x = 230 satisfies equation (1) when paired with y = 170, and both values together satisfy equation (2) exactly. No other pairing from the candidate list produces a revenue sum of $13,750: x = 250 gives y = 150, and 45(250) + 20(150) = 11,250 + 3,000 = 14,250, which exceeds the target; x = 200 gives y = 200, and 45(200) + 20(200) = 9,000 + 4,000 = 13,000, which falls short.
+
+The correct answers are Adult Tickets = 230 and Student Tickets = 170.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -335,13 +618,37 @@ A set of five distinct positive integers has a mean of 14 and a median of 12. Le
 | 42  |                          |                           |
 
 **answer:** L = 42, S = 19
-**fastest_path:** Sum = 70. To maximize e: shrink a, b, d → 1, 2, 13 → e = 42. To minimize e: maximize a, b ≤ 11 (10, 11), then split 37 between d, e with d < e: d = 18, e = 19.
-**explanation:** Let the ordered integers be a < b < 12 < d < e. Their sum is 5 × 14 = 70, so a + b + d + e = 58. For L (maximize e): minimize a, b, and d. The smallest distinct positive integers below 12 are a = 1 and b = 2. The smallest d greater than 12 is 13. Then e = 58 - 1 - 2 - 13 = 42. So L = 42. For S (minimize e): push a, b, and d as high as possible subject to a < b < 12 and 12 < d < e. Maximize a + b with a < b < 12: take a = 10, b = 11 (sum 21). Then d + e = 58 - 21 = 37 with 12 < d < e. To minimize e, make d as close to e as possible: d = 18, e = 19 works (distinct, both > 12, sum 37). Any larger d (e.g., d = 19) would force e = 18 < d, violating order. So S = 19.
-**mistake_a:** 14 — confusing the mean with the max; mean is 14 but max is unbounded by it.
-**mistake_c:** 20 — close-but-wrong on min-e; missed that 19 is achievable with d = 18.
-**mistake_d:** 36 — arithmetic slip on max-e setup, e.g., taking a = 1, b = 3 instead of 1, 2.
-**common_trap:** Allowing d ≥ e or b ≥ 12 — the strict ordering and median-fix-at-12 constrain the boundary cases.
-**takeaway:** Min/max with median fixed: minimize others to maximize one, maximize others to minimize one. Distinct + ordering decide the boundary.
+**explanation:** **Setup and definitions.**
+
+Let the five distinct positive integers, arranged in ascending order, be a1 < a2 < a3 < a4 < a5. Because the set has five elements, the median is the third element, so a3 = 12. Because the mean is 14, the total sum is 5 * 14 = 70. Subtracting the known median gives a fixed constraint on the remaining four elements:
+
+a1 + a2 + a4 + a5 = 70 - 12 = 58
+
+Two additional constraints follow from the ordering and the distinctness requirement: a1 and a2 must be distinct positive integers strictly less than 12, and a4 must be a distinct positive integer strictly greater than 12 and strictly less than a5.
+
+**Finding L (the largest possible value of the greatest integer).**
+
+To make a5 as large as possible, the sum a1 + a2 + a4 must be minimized. The two values a1 and a2 are distinct positive integers less than 12; their minimum possible sum is 1 + 2 = 3. With those values fixed, a4 must exceed 12 and be less than a5; the smallest allowable value of a4 is 13. Therefore:
+
+a5 = 58 - a1 - a2 - a4 = 58 - 1 - 2 - 13 = 42
+
+The resulting set {1, 2, 12, 13, 42} satisfies all conditions: five distinct positive integers, sum = 1 + 2 + 12 + 13 + 42 = 70 (mean = 14), and median = 12. No smaller choice of a1, a2, or a4 is available while respecting distinctness and ordering, so 42 is the maximum. Therefore L = 42.
+
+**Finding S (the smallest possible value of the greatest integer).**
+
+To make a5 as small as possible, the sum a1 + a2 + a4 must be maximized. For a1 and a2, the largest two distinct positive integers strictly below 12 are 10 and 11, giving a1 + a2 = 21. This forces:
+
+a4 + a5 = 58 - 21 = 37
+
+Because a4 and a5 must be distinct integers with 12 < a4 < a5, the value of a5 is minimized when a4 is as large as possible, that is, a4 = a5 - 1. Substituting:
+
+(a5 - 1) + a5 = 37
+2 * a5 = 38
+a5 = 19,   a4 = 18
+
+No smaller a5 is achievable: if a5 were 18, then a4 = 37 - 18 = 19, which contradicts a4 < a5; if a5 were 17 or less, a4 would exceed a5, which also contradicts the ordering. The resulting set {10, 11, 12, 18, 19} satisfies all conditions: five distinct positive integers, sum = 10 + 11 + 12 + 18 + 19 = 70 (mean = 14), and median = 12. Therefore S = 19.
+
+The correct answers are L (largest possible max) = 42 and S (smallest possible max) = 19.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -364,13 +671,30 @@ From the statements below, identify the conclusion of the argument (row 1) and t
 | Bike-share programs always reduce congestion wherever they are implemented                   |            |            |
 
 **answer:** Conclusion = "The bike-share program reduced congestion on Main Avenue"; Assumption = "No other factor materially contributed to the observed congestion decrease"
-**fastest_path:** "Therefore" → causal claim is the conclusion. Causal-from-correlation requires "no other factor caused the drop" as the unstated link.
-**explanation:** The conclusion is signaled by "Therefore" and is the causal claim being drawn. The central assumption is that the timing correlation reflects causation — i.e., that nothing else (road construction, gas prices, remote work shifts) drove the drop. The other options are either premises (2nd and 4th) or too strong (5th overstates the assumption; the argument only needs it in this case, not universally).
-**mistake_c:** A premise (the documented 15% drop) — explicit data, not the conclusion or unstated link.
-**mistake_d:** A premise (the launch date) — explicit context, not the conclusion.
-**mistake_e:** Too strong — universal "always" claim isn't required; the argument needs only "no confounder *here*."
-**common_trap:** Picking the universal claim as the assumption — the argument only needs the local causal link, not a universal rule.
-**takeaway:** Causal arguments rest on "no alt cause active *in this instance*"; universal claims overshoot what the argument requires.
+**explanation:** In a Two-Part Analysis question of this type, the two tasks are to isolate the conclusion of the argument and to identify the central unstated assumption — the suppressed premise without which the inferential link between evidence and conclusion breaks down.
+
+**Identifying the conclusion.**
+
+The conclusion of an argument is the claim the argument is designed to establish. It is supported by the premises; it does not itself serve as direct support for another claim within the same argument. A reliable test is to ask: which statement are the other statements offered in order to prove?
+
+The argument presents two explicit evidence statements:
+
+- Premise 1: The bike-share program launched in March.
+- Premise 2: Six months later, traffic congestion on Main Avenue decreased by 15%.
+
+Both of these are offered in support of a single inferential claim introduced by the word "therefore": the bike-share program reduced congestion on Main Avenue. That final statement is what the arguer is trying to establish. The 15% decrease is an observed datum (a premise), not a claim the arguer is arguing for. Therefore, the conclusion is "The bike-share program reduced congestion on Main Avenue."
+
+**Identifying the central unstated assumption.**
+
+The argument's inferential core is a causal claim built on temporal succession: A (program launch) preceded B (congestion decrease), therefore A caused B. This pattern is a post hoc, ergo propter hoc structure. For such a causal conclusion to hold, one must assume that the observed effect was not produced by some independent cause. If another factor — for example, a new transit line opening, road construction completing, fuel prices rising, or seasonal commuter patterns — could equally account for the 15% drop, then the mere fact that the bike-share program preceded the decrease is insufficient to establish causation. The argument is therefore silently relying on the premise that no other factor materially contributed to the observed congestion decrease.
+
+This is confirmed by negation: if one negates the assumption — suppose some other factor did materially contribute to the decrease — the argument's conclusion is immediately undermined, because the decrease could then be explained without reference to the bike-share program at all. This confirms the statement is load-bearing and therefore qualifies as the central unstated assumption.
+
+**Evaluating the remaining candidates.**
+
+"Traffic congestion on Main Avenue decreased by 15%" is an explicit premise, not an unstated assumption and not the conclusion. "The bike-share program launched in March" is also an explicit premise. "Bike-share programs always reduce congestion wherever they are implemented" is a universal generalization. The argument does not require so strong a principle — it makes only a local causal claim about one program in one city. Assuming this universal would be sufficient to support the conclusion but is far stronger than necessary; it is not the minimal unstated assumption actually doing the inferential work.
+
+The correct answers are Conclusion = The bike-share program reduced congestion on Main Avenue and Assumption = No other factor materially contributed to the observed congestion decrease.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -393,13 +717,56 @@ From the statements below, identify one that would most strengthen the argument 
 | The CRM costs $50 per seat per month                                                              |             |                     |
 
 **answer:** Strengthens = "A controlled experiment randomly assigned the CRM to half of a company's regions and saw retention rise 7 points only in those regions"; Weakens = "Companies that adopted the CRM also simultaneously raised their customer service headcount by 20%"
-**fastest_path:** Random-assignment experiment isolates causation (strongest strengthen). Confounder (parallel headcount boost) supplies alt cause (strongest weaken).
-**explanation:** The strengthen option isolates the CRM's causal effect by using random assignment within companies — ruling out self-selection and most confounders. The weaken option provides an alternative cause for the retention rise: if adopters also boosted service staff, the headcount (not the CRM) could explain the lift. The category rating and price are irrelevant to effectiveness; the industry-wide 1-point rise is too small to explain an 8-point average gap and doesn't offer an alternative mechanism for adopters specifically.
-**mistake_c:** Reputation/category rating doesn't isolate the CRM's causal effect on retention.
-**mistake_d:** Industry-wide 1-pp rise is too small to explain an 8-pp adopter gap and isn't adopter-specific.
-**mistake_e:** Cost is irrelevant to effectiveness on retention.
-**common_trap:** Picking the industry-trend option as weaken — it doesn't supply an alt cause for adopters specifically.
-**takeaway:** Strengthen via random-assignment evidence; weaken via a parallel confounder that could explain the same effect.
+**explanation:** **The Logical Task.**
+
+A Two-Part Analysis question in the Strengthen/Weaken category asks us to do two distinct things simultaneously: find the statement that best supports the causal claim, and find the statement that best undermines it by offering an alternative explanation for the observed effect. Each column is treated as an independent sub-question with its own evaluation criterion.
+
+**The Argument.**
+
+The analyst's claim has the following structure. Let R = the observed change in customer retention rate, and let C = adoption of the CRM platform. The argument asserts:
+
+- Observed: companies that adopted C showed R = +8 percentage points in the following year.
+- Conclusion: therefore, C caused the improvement in R.
+
+This is a causal conclusion drawn from observational (correlational) data. The central logical gap is the possibility of confounding variables — other factors that changed simultaneously with CRM adoption and that could themselves explain the rise in R. A strengthener must close that gap; a weakener (alternative cause) must open or exploit it.
+
+**Evaluating the Candidates for Strengthens.**
+
+The governing principle: the best strengthener of a causal argument eliminates competing explanations and provides evidence of a genuine causal link, not merely correlation.
+
+- Candidate A: "A controlled experiment randomly assigned the CRM to half of a company's regions and saw retention rise 7 points only in those regions." Random assignment is the gold standard for establishing causation. Because regions were randomly assigned, pre-existing differences between regions are neutralized in expectation. The fact that R rose approximately +7 points only in the CRM-assigned regions — and not in the control regions — rules out confounders such as broader market trends, management quality, or simultaneous policy changes, since those forces would have affected both sets of regions equally. This directly addresses the argument's logical gap. Strong strengthener.
+
+- Candidate B: "Companies that adopted the CRM also simultaneously raised their customer service headcount by 20%." This introduces a plausible alternative cause and therefore weakens the argument rather than strengthening it.
+
+- Candidate C: "The CRM platform is the highest-rated software in its category." A software rating reflects user satisfaction or feature quality but provides no evidence that the platform caused retention rates to rise. This is irrelevant to the causal conclusion.
+
+- Candidate D: "Retention rates across the industry rose 1 percentage point on average last year." An industry-wide trend of +1 point suggests ambient forces independent of CRM adoption. Although this trend is small relative to the observed +8 points, it indicates that some portion of the observed change may reflect external conditions, which weakens rather than strengthens the argument.
+
+- Candidate E: "The CRM costs $50 per seat per month." Cost information is irrelevant to whether the CRM caused retention to improve.
+
+Candidate A is therefore selected as the best strengthener.
+
+**Evaluating the Candidates for Weakens (Alternative Cause).**
+
+The governing principle: the best alternative-cause weakener identifies a distinct variable — one that (i) plausibly changed at the same time as CRM adoption, and (ii) could independently explain the observed rise in R, thereby breaking the inferred causal link between C and R.
+
+- Candidate A: Already selected for Strengthens; furthermore, a controlled experiment supports rather than weakens the causal claim.
+
+- Candidate B: "Companies that adopted the CRM also simultaneously raised their customer service headcount by 20%." Let H = the increase in customer service headcount. If companies that adopted the CRM also increased H by 20% at the same time, then the observed R = +8 points could be attributable to H rather than to the CRM itself. The argument cannot distinguish between these two explanations because both C and H varied together in the observational data. This is a textbook alternative cause: it does not deny that R rose, but it denies that C is the cause. Strong weakener.
+
+- Candidate C: A software rating provides no alternative causal mechanism. Irrelevant.
+
+- Candidate D: An industry-wide rise of +1 point is a partial alternative explanation (ambient trend), but it accounts for at most +1 of the +8 points observed. The analyst's claim survives largely intact; the remaining +7 points still require explanation. Candidate D is a mild weakener but far less decisive than Candidate B.
+
+- Candidate E: Cost is irrelevant to causation. Irrelevant.
+
+Candidate B is therefore selected as the best weakener by alternative cause.
+
+**Summary of the Selections.**
+
+For the Strengthens column, Candidate A is superior because random assignment in a controlled experiment eliminates confounding variables and provides the strongest available evidence that the CRM itself — not accompanying changes — drove the retention improvement. For the Weakens (alt cause) column, Candidate B is superior because it identifies a specific, simultaneous, and causally plausible alternative variable (headcount) that could fully explain the observed +8-point rise, leaving the argument's causal attribution to the CRM unsupported.
+
+The correct answers are Strengthens = A controlled experiment randomly assigned the CRM to half of a company's regions and saw retention rise 7 points only in those regions and Weakens (alt cause) = Companies that adopted the CRM also simultaneously raised their customer service headcount by 20%.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -422,13 +789,49 @@ Select the value of T (row 1) and the value of U (row 2).
 | 8.0 hrs      |               |               |
 
 **answer:** T = 3.43 hrs, U = 8.0 hrs
-**fastest_path:** Net rate (all three): 1/4+1/6−1/8 = 7/24 → T = 24/7 ≈ 3.43. Net rate (A+drain): 1/4−1/8 = 1/8 → U = 8.
-**explanation:** Work in tank-fractions per hour. Pipe A fills at +1/4, Pipe B at +1/6, and the drain removes at -1/8. For T (all three open): net rate = 1/4 + 1/6 - 1/8. Using a common denominator of 24: 6/24 + 4/24 - 3/24 = 7/24 tank per hour. So T = 1 / (7/24) = 24/7 ≈ 3.43 hours. For U (Pipe A and drain only): net rate = 1/4 - 1/8 = 2/8 - 1/8 = 1/8 tank per hour, so U = 8 hours. The key trick is to add/subtract rates, never times.
-**mistake_a:** 2.4 hrs — using 5/12 (sum of fill rates without drain); ignores the drain.
-**mistake_b:** 2.75 hrs — partial-rate setup or arithmetic slip on the common denominator.
-**mistake_d:** 4 hrs — Pipe A's solo fill time; ignores both Pipe B and drain.
-**common_trap:** Ignoring the drain or treating its time (8 hrs) as additive instead of as a negative-rate.
-**takeaway:** Net-rate problems: each pipe contributes +1/time (fill) or −1/time (drain). Sum signed rates, then invert.
+**explanation:** The work-rate method treats each pipe's contribution as a fraction of the tank filled (or emptied) per unit time. If a pipe fills a full tank in n hours, its rate is 1/n tank per hour; a drain that empties a full tank in n hours contributes −1/n tank per hour. When multiple pipes operate simultaneously, the net rate is the algebraic sum of the individual rates, and the time to fill one full tank equals 1 divided by that net rate.
+
+Setting up rates. Let the capacity of the tank equal 1 (one full tank). The individual rates are:
+
+- Pipe A fills the tank in 4 hours, so its rate is 1/4 tank per hour.
+- Pipe B fills the tank in 6 hours, so its rate is 1/6 tank per hour.
+- The drain empties the tank in 8 hours, so its rate is −1/8 tank per hour (negative because it removes volume).
+
+Finding T (all three open). The net combined rate when all three operate simultaneously is:
+
+1/4 + 1/6 − 1/8
+
+To add these fractions, use the least common denominator of 4, 6, and 8, which is 24:
+
+1/4 = 6/24, 1/6 = 4/24, 1/8 = 3/24
+
+Net rate = 6/24 + 4/24 − 3/24 = 7/24 tank per hour
+
+The time T to fill one full tank is therefore:
+
+T = 1 / (7/24) = 24/7 hours
+
+Evaluating: 24/7 = 3.4285..., which rounds to 3.43 hours. Among the candidate values, 3.43 hrs is the match.
+
+Finding U (Pipe A and the drain only). With Pipe B closed, the net rate is:
+
+1/4 − 1/8
+
+Using a common denominator of 8:
+
+1/4 = 2/8
+
+Net rate = 2/8 − 1/8 = 1/8 tank per hour
+
+The time U to fill one full tank is therefore:
+
+U = 1 / (1/8) = 8 hours
+
+Among the candidate values, 8.0 hrs is the match. Notably, this result has an intuitive interpretation: Pipe A fills at twice the rate the drain empties (1/4 vs. 1/8), so the effective filling rate equals exactly the drain's rate, yielding a fill time equal to the drain's standalone emptying time.
+
+Checking the other candidates. The value 2.4 hrs corresponds to a net rate of 1/2.4 = 5/12, which would require a combined filling rate of 5/12 — far above 7/24. The value 2.75 hrs corresponds to 4/11, also inconsistent with the arithmetic above. The value 4.0 hrs would require a net rate of 1/4, which is Pipe A alone with no drain effect. None of these match either scenario.
+
+The correct answers are T (all three) = 3.43 hrs and U (A + drain) = 8.0 hrs.
 **related_reading:** reading-di-06-two-part-analysis
 
 
@@ -450,13 +853,53 @@ A firm produces two products. Product A sells for $20 per unit and requires 0.4 
 | 400   |            |            |
 
 **answer:** A = 300, B = 400
-**fastest_path:** 4a+7b=4,000 and 8a+15b=8,400. Subtract 2×(first) from second: b=400. Back-sub: a=300.
-**explanation:** Let a = units of A, b = units of B. Revenue: 20a + 35b = 20,000 → 4a + 7b = 4,000. Machine-hours: 0.4a + 0.75b = 420 → 8a + 15b = 8,400. Multiply the first by 2 (8a + 14b = 8,000), subtract from the second: b = 400. Then 4a = 4,000 − 7(400) = 1,200 → a = 300. Always set up two linear constraints explicitly rather than guess-and-check.
-**mistake_a:** 200 — partial elimination or guess-and-check landing one row off.
-**mistake_b:** 250 — averaging or splitting the row labels by intuition.
-**mistake_d:** 350 — over-reach in the elimination step; off-by-50.
-**common_trap:** Solving only one constraint (revenue OR hours) and stopping — both must hold simultaneously.
-**takeaway:** Two-constraint linear systems: standardize, eliminate one variable cleanly, back-substitute.
+**explanation:** **Setup.** This problem presents a system of two simultaneous linear equations in two unknowns. Let x denote the daily units of Product A and y denote the daily units of Product B.
+
+**Translating the constraints into equations.**
+
+The machine-hours constraint states that total machine time consumed equals exactly 420 hours per day:
+
+0.4x + 0.75y = 420  ... (1)
+
+The revenue constraint states that total daily revenue equals exactly $20,000:
+
+20x + 35y = 20000  ... (2)
+
+**Solving the system.**
+
+To eliminate x, scale the equations so that the coefficients on x match. Multiply equation (1) by 10 to clear decimals:
+
+4x + 7.5y = 4200  ... (1')
+
+Divide equation (2) by 5:
+
+4x + 7y = 4000  ... (2')
+
+Subtract (2') from (1'):
+
+(4x + 7.5y) - (4x + 7y) = 4200 - 4000
+
+0.5y = 200
+
+y = 200 / 0.5 = 400
+
+Substitute y = 400 back into (2'):
+
+4x + 7(400) = 4000
+
+4x + 2800 = 4000
+
+4x = 1200
+
+x = 1200 / 4 = 300
+
+**Verification.**
+
+Machine-hours: 0.4(300) + 0.75(400) = 120 + 300 = 420. This equals the stated capacity of 420 machine-hours, so the constraint is satisfied.
+
+Revenue: 20(300) + 35(400) = 6000 + 14000 = 20000. This equals the stated daily revenue of $20,000, so the revenue constraint is satisfied.
+
+Both equations are satisfied simultaneously by x = 300 and y = 400, and no other combination of the listed candidate values produces a consistent solution to the system. The correct answers are Units of A = 300 and Units of B = 400.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -477,14 +920,34 @@ A consultancy charges each client a flat base fee B plus a variable hourly rate 
 | $600   |            |               |
 
 **answer:** B = $600, R = $120
-**fastest_path:** Subtract bills: 30R = 3,600 → R = 120. Back-sub: B = 600.
-**explanation:** From the two bills: B + 20R = 3,000 and B + 50R = 6,600. Subtract to eliminate B: 30R = 3,600 → R = 120. Back-substitute: B = 3,000 − 2,400 = 600. The trap is swapping which column takes which value; base fees are typically a single flat amount, hourly rates are per-unit.
-**mistake_a:** $40 — partial subtraction or off-by-multiplier slip.
-**mistake_b:** $80 — close-but-wrong arithmetic on the back-substitution.
-**mistake_c:** $120 — that's R; column 1 asks for B.
-**mistake_d:** $200 — guess from rounding 3,000/15 or similar.
-**common_trap:** Swapping B and R between columns — base fee is a fixed amount, hourly rate is per-unit.
-**takeaway:** Linear-pricing two-equation systems: subtract to eliminate the constant, solve the slope, back-substitute the intercept.
+**explanation:** **Setup.** The billing structure states that every client is charged a flat base fee B plus a per-hour rate R multiplied by the number of hours worked. Translating the two billing records into equations:
+
+- Client X: B + 20R = 3000
+- Client Y: B + 50R = 6600
+
+This is a system of two linear equations in two unknowns, solved by elimination.
+
+**Solving for R.** Subtracting the first equation from the second eliminates B:
+
+(B + 50R) - (B + 20R) = 6600 - 3000
+
+30R = 3600
+
+R = 3600/30 = 120
+
+**Solving for B.** Substituting R = 120 back into the first equation:
+
+B + 20(120) = 3000
+
+B + 2400 = 3000
+
+B = 3000 - 2400 = 600
+
+**Verification.** Substituting both values into the second equation confirms consistency: 600 + 50(120) = 600 + 6000 = 6600. Both billing records are satisfied.
+
+**Matching to the candidate values.** The candidate list includes $600 and $120. B = 600 corresponds to the $600 candidate for row 1, and R = 120 corresponds to the $120 candidate for row 2. No other pair from the candidate list satisfies both equations simultaneously.
+
+The correct answers are Base fee B = $600 and Hourly rate R = $120.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -505,13 +968,58 @@ A regional bus company operates two routes. Total weekly ridership across both r
 | 100,000 |                      |                      |
 
 **answer:** Ridership on Route 1 = 8,000, Revenue from Route 2 = 60,000
-**fastest_path:** r₁+r₂=28k, 5r₁+3r₂=100k → 2r₁=16k → r₁=8k. r₂=20k → Route 2 revenue = 3 × 20k = 60k.
-**explanation:** Let r₁ and r₂ be the ridership on the two routes. r₁ + r₂ = 28,000 and 5r₁ + 3r₂ = 100,000. Substitute r₂ = 28,000 − r₁: 5r₁ + 3(28,000 − r₁) = 100,000 → 2r₁ = 16,000 → r₁ = 8,000. Then r₂ = 20,000, and Route 2 revenue = 3 × 20,000 = $60,000. Trap: confusing "ridership" (people) with "revenue" (dollars) on column 2.
-**mistake_b:** 20,000 — that's r₂ (Route 2 ridership), not r₁ or Route 2 revenue.
-**mistake_d:** 80,000 — over-stretching ridership floors; would imply impossible total revenue.
-**mistake_e:** 100,000 — that's the total revenue, not Route 1 ridership or Route 2 revenue.
-**common_trap:** Mixing units — "ridership" (people) vs "revenue" (dollars). Column 2 explicitly asks for revenue, requiring an extra multiplication by $3.
-**takeaway:** Always re-read column labels for unit (people/dollars). Last step often multiplies count by per-unit price.
+**explanation:** **Setup.** Two unknowns govern this problem: let x represent the weekly ridership on Route 1, and let y represent the weekly ridership on Route 2. The prompt supplies two independent constraints, which together form a determinate linear system.
+
+**Translating the constraints into equations.**
+
+The total ridership constraint states that the sum of passengers on both routes equals 28,000:
+
+x + y = 28,000   ... (1)
+
+The total revenue constraint states that per-passenger revenue of $5.00 on Route 1 and $3.00 on Route 2 combine to produce $100,000:
+
+5x + 3y = 100,000   ... (2)
+
+**Solving the system.**
+
+From equation (1), express y in terms of x:
+
+y = 28,000 - x   ... (3)
+
+Substitute (3) into equation (2):
+
+5x + 3(28,000 - x) = 100,000
+
+5x + 84,000 - 3x = 100,000
+
+2x = 100,000 - 84,000
+
+2x = 16,000
+
+x = 8,000
+
+**Route 1 ridership** is therefore 8,000 passengers per week. Among the candidate values — 8,000; 20,000; 60,000; 80,000; 100,000 — the value 8,000 is the unique solution consistent with both constraints.
+
+**Solving for Route 2 ridership and revenue.**
+
+Substituting x = 8,000 back into equation (3):
+
+y = 28,000 - 8,000 = 20,000
+
+Route 2 carries 20,000 passengers per week. Weekly revenue from Route 2 is:
+
+3 * 20,000 = 60,000
+
+**Route 2 weekly revenue** is therefore $60,000. Among the candidate values, 60,000 is the unique figure consistent with the system.
+
+**Verification.** Both constraints are satisfied simultaneously:
+
+- Total ridership: 8,000 + 20,000 = 28,000. Correct.
+- Total revenue: 5 * 8,000 + 3 * 20,000 = 40,000 + 60,000 = 100,000. Correct.
+
+No other pairing of candidate values satisfies both equations. For instance, selecting 20,000 for Route 1 ridership would yield Route 1 revenue of 5 * 20,000 = 100,000, which already exhausts the total budget and leaves nothing for Route 2 — a contradiction. Similarly, any candidate value for Route 1 ridership other than 8,000 produces a value for y that does not generate a Route 2 revenue figure appearing among the candidates.
+
+The correct answers are Ridership on Route 1 = 8,000 and Revenue from Route 2 = 60,000.
 **related_reading:** reading-di-06-two-part-analysis
 
 
@@ -533,14 +1041,65 @@ A chemist mixes a 30% acid solution with a 70% acid solution to produce 8 liters
 | 6   |              |              |
 
 **answer:** 30% solution = 4, 70% solution = 4
-**fastest_path:** Target 50% is the midpoint of 30% and 70% → equal parts → 4 L each.
-**explanation:** Let x = liters of 30% solution, y = liters of 70% solution. Then x + y = 8 (total volume) and 0.30x + 0.70y = 0.50(8) = 4 (acid balance). Substitute y = 8 − x: 0.30x + 0.70(8 − x) = 4 → 0.30x + 5.6 − 0.70x = 4 → −0.40x = −1.6 → x = 4. So y = 4. Cleanly symmetric because 50% is the midpoint of 30% and 70%, so equal parts is the intuition check.
-**mistake_a:** 2 L — lopsided guess weighted toward the higher-concentration solution.
-**mistake_b:** 3 L — off-by-one slip from partial substitution.
-**mistake_d:** 5 L — mirror of 3 L slip.
-**mistake_e:** 6 L — extreme lopsided guess weighted toward the lower-concentration side.
-**common_trap:** Skipping the midpoint shortcut and miscomputing the algebra. 50% sits exactly between 30% and 70%, so equal volumes are required.
-**takeaway:** Mixture midpoint shortcut: target = average of two source concentrations → equal volumes.
+**explanation:** **Governing principle.** A mixture problem is governed by two simultaneous constraints: the volumes of the component solutions must sum to the total volume of the mixture, and the quantities of the active substance (acid) contributed by each component must sum to the total quantity of acid in the mixture.
+
+**Variable definitions.**
+
+Let x = volume (in liters) of the 30% acid solution.
+Let y = volume (in liters) of the 70% acid solution.
+
+**Setting up the equations.**
+
+The total volume constraint gives:
+
+x + y = 8
+
+The acid-content constraint requires that the acid contributed by each solution equals the acid in the final 8-liter, 50% mixture:
+
+0.30x + 0.70y = 0.50 * 8
+
+Evaluating the right side: 0.50 * 8 = 4.0, so the acid equation is:
+
+0.30x + 0.70y = 4.0
+
+**Solving the system.**
+
+From the volume equation, express x in terms of y:
+
+x = 8 - y
+
+Substitute into the acid equation:
+
+0.30(8 - y) + 0.70y = 4.0
+
+Distribute:
+
+2.4 - 0.30y + 0.70y = 4.0
+
+Combine like terms:
+
+2.4 + 0.40y = 4.0
+
+Subtract 2.4 from both sides:
+
+0.40y = 1.6
+
+Divide both sides by 0.40:
+
+y = 1.6 / 0.40 = 4
+
+Substitute y = 4 back into the volume equation:
+
+x = 8 - 4 = 4
+
+**Verification.**
+
+- Volume check: 4 + 4 = 8. Confirmed.
+- Acid check: 0.30 * 4 + 0.70 * 4 = 1.2 + 2.8 = 4.0, and 0.50 * 8 = 4.0. Confirmed.
+
+Because the 30% and 70% concentrations are equidistant from the target concentration of 50% (each differs by exactly 20 percentage points), the mixing rule requires equal volumes of each component — a result the algebra confirms directly.
+
+The correct answers are 30% solution = 4 and 70% solution = 4.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -561,13 +1120,33 @@ A bag contains 8 white balls and 4 black balls. Two balls are drawn at random wi
 | 21/33  |            |            |
 
 **answer:** Both white = 14/33, Same color = 17/33
-**fastest_path:** P(WW) = (8/12)(7/11) = 14/33. P(BB) = 3/33. Same color = 14/33 + 3/33 = 17/33.
-**explanation:** P(WW) = (8/12)(7/11) = 56/132 = 14/33. P(BB) = (4/12)(3/11) = 12/132 = 3/33 = 1/11. P(same color) = P(WW) + P(BB) = 14/33 + 3/33 = 17/33. Trap: treating "same color" as just P(WW) (forgets BB) or computing with replacement (introduces 1/11 but against the right denominator).
-**mistake_a:** 1/11 — that's P(BB) alone; forgets the same-color OR with WW.
-**mistake_b:** 3/11 — likely arithmetic slip in the WW or BB step, or with-replacement (8·7)/(12·12)-style miscalc.
-**mistake_e:** 21/33 — over-counts; possibly added a same-color term that doesn't apply.
-**common_trap:** Defining "same color" as just both-white. Same-color combines WW + BB.
-**takeaway:** "Same color" = P(WW) + P(BB) (mutually exclusive). Without replacement: numerator drops by 1, denominator by 1.
+**explanation:** **Governing principle.** When drawing objects without replacement, each successive draw reduces the total. The probability of a multi-step outcome is the product of the conditional probabilities at each step, or equivalently, the ratio of favorable combinations to total combinations using C(n, k) = n! / (k! * (n-k)!).
+
+**Setup.** The bag holds 8 white balls and 4 black balls, for a total of 12 balls. Two balls are drawn without replacement. The task is to find (1) the probability that both balls are white, and (2) the probability that both balls are the same color.
+
+The total number of ways to choose any 2 balls from 12 is C(12, 2) = (12 * 11) / 2 = 66. This is the denominator for all probability calculations here.
+
+**Column 1 — Probability that both balls drawn are white.**
+
+The number of ways to choose 2 white balls from the 8 available white balls is C(8, 2) = (8 * 7) / 2 = 28.
+
+Therefore, P(both white) = 28 / 66 = 14 / 33.
+
+This can also be computed as a product of sequential conditional probabilities: the probability the first ball is white is 8/12, and given that, the probability the second ball is also white is 7/11. Thus P(both white) = (8/12) * (7/11) = 56/132 = 14/33. Both methods agree.
+
+**Column 2 — Probability that both balls drawn are the same color.**
+
+"Same color" means either both white or both black; these two events are mutually exclusive, so their probabilities are added.
+
+P(both white) = 14/33, as derived above.
+
+For both black: the number of ways to choose 2 black balls from the 4 available is C(4, 2) = (4 * 3) / 2 = 6. Therefore, P(both black) = 6/66 = 1/11 = 3/33.
+
+P(same color) = P(both white) + P(both black) = 14/33 + 3/33 = 17/33.
+
+**Verification against the candidate values.** The five candidate values are 1/11, 3/11, 14/33, 17/33, and 21/33. The value 14/33 emerges directly as P(both white) and 17/33 emerges directly as P(same color); neither value is used for both columns. The value 1/11 = 3/33 equals P(both black) alone, a plausible distractor. The value 21/33 does not arise from any correct grouping of these outcomes.
+
+The correct answers are Both white = 14/33 and Same color = 17/33.
 **related_reading:** reading-di-06-two-part-analysis
 
 
@@ -589,13 +1168,30 @@ A box contains 5 cards labeled 1 through 5. Two cards are drawn simultaneously a
 | 3/5   |          |          |
 
 **answer:** Both odd = 3/10, Sum even = 2/5
-**fastest_path:** C(5,2)=10. Odd-pairs: C(3,2)=3 → 3/10. Sum-even = both-odd OR both-even = (3+1)/10 = 2/5.
-**explanation:** Total ways to draw 2 cards from 5 = C(5, 2) = 10. Odd-labeled cards: {1, 3, 5} (3 cards); even-labeled: {2, 4} (2 cards). P(both odd) = C(3, 2) / 10 = 3/10. For the sum to be even, both cards must be odd OR both must be even. P(both even) = C(2, 2) / 10 = 1/10. P(sum even) = 3/10 + 1/10 = 4/10 = 2/5. Trap: forgetting that "both even" also produces an even sum.
-**mistake_a:** 1/10 — that's P(both even) alone; forgets the OR with both-odd.
-**mistake_d:** 1/2 — fraction of cards that are odd (3/5 ≈ 1/2) misapplied as a probability.
-**mistake_e:** 3/5 — proportion of odd cards confused with the joint probability.
-**common_trap:** Defining "sum even" as only both-odd. Even sums also come from both-even pairs.
-**takeaway:** Sum-even = both-odd ∪ both-even (disjoint). Combinatorial probability uses C(n,k) for unordered pair counts.
+**explanation:** **Governing principle.** The probability of an event is the number of favorable outcomes divided by the total number of equally likely outcomes. When selecting objects simultaneously (i.e., without replacement and without regard to order), the total number of ways to choose r objects from n is the combination C(n, r) = n! / (r! * (n-r)!).
+
+**Setup.** The box contains five cards labeled 1, 2, 3, 4, and 5. Two cards are drawn simultaneously. The total number of ways to choose 2 cards from 5 is C(5, 2) = 5! / (2! * 3!) = (5 * 4) / (2 * 1) = 10. Every pair is equally likely, so each pair has probability 1/10.
+
+**Column 1 — Probability that both drawn cards are odd.**
+
+Among the five cards, the odd-labeled cards are 1, 3, and 5 — a total of 3 odd cards. The number of ways to choose 2 odd cards from those 3 is C(3, 2) = 3! / (2! * 1!) = 3. The three favorable pairs are {1, 3}, {1, 5}, and {3, 5}.
+
+P(both odd) = 3 / 10.
+
+**Column 2 — Probability that the sum of the two drawn cards is even.**
+
+**Reasoning.** The parity of a sum of two integers is determined entirely by the parities of the addends. Specifically, odd + odd = even, and even + even = even, while odd + even = odd. Therefore a sum of two drawn cards is even if and only if the two cards share the same parity — both odd or both even.
+
+Among the five cards, the even-labeled cards are 2 and 4 — a total of 2 even cards.
+
+- Ways to choose 2 odd cards from 3: C(3, 2) = 3 (pairs {1, 3}, {1, 5}, {3, 5}).
+- Ways to choose 2 even cards from 2: C(2, 2) = 1 (pair {2, 4}).
+
+Total favorable pairs: 3 + 1 = 4.
+
+P(sum even) = 4 / 10 = 2/5.
+
+The correct answers are Both odd = 3/10 and Sum even = 2/5.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -616,13 +1212,17 @@ In a three-round game, a player has an independent 60% chance of winning each ro
 | 0.936  |        |            |
 
 **answer:** All 3 = 0.216, At least 1 = 0.936
-**fastest_path:** All-3: 0.6³ = 0.216. At-least-1: 1 − 0.4³ = 1 − 0.064 = 0.936.
-**explanation:** Trials are independent. P(all 3 wins) = 0.6 × 0.6 × 0.6 = 0.216. P(at least 1 win) = 1 − P(no wins) = 1 − 0.4³ = 1 − 0.064 = 0.936. Trap: computing P(at least 1) as 3 × 0.6 = 1.8 (nonsensical) or as 0.6 + 0.6 × 0.4 + 0.6 × 0.4² (over-counts overlapping events). The complement method is the clean route for "at least one" in independent trials.
-**mistake_a:** 0.064 — that's P(no wins) = 0.4³, the complement target. Subtract from 1 first.
-**mistake_c:** 0.648 — close to all-3 result but missed the third multiplier (likely 0.6²·0.6 mis-rounded).
-**mistake_d:** 0.784 — incorrect inclusion-exclusion or 1 − 0.6·0.6·0.6 trace.
-**common_trap:** Computing P(at least 1) by direct addition (overcounts overlapping events). Use the complement: 1 − P(none).
-**takeaway:** "At least one" with independent trials: complement method. P(≥1) = 1 − (1−p)ⁿ.
+**explanation:** For independent events, the probability that all events occur equals the product of their individual probabilities. Formally, if events A, B, and C are mutually independent, then P(A and B and C) = P(A) * P(B) * P(C).
+
+Let p = 0.6 be the probability of winning a single round, and let q = 1 - p = 0.4 be the probability of losing a single round. Because each round is independent, the outcome of one round does not affect any other.
+
+The multiplication rule for independent events applies directly to Column 1. P(win all 3) = p * p * p = p^3 = (0.6)^3. Computing step by step: 0.6 * 0.6 = 0.36, then 0.36 * 0.6 = 0.216. Therefore P(win all 3) = 0.216, which corresponds to the row value 0.216.
+
+For Column 2, "at least 1 win" is the complement of "zero wins," meaning the player loses every round. The complement rule gives P(at least 1 win) = 1 - P(lose all 3). P(lose all 3) = q^3 = (0.4)^3 = 0.4 * 0.4 * 0.4 = 0.064. Therefore P(at least 1 win) = 1 - 0.064 = 0.936, which corresponds to the row value 0.936.
+
+Verifying against the candidate values: the five candidates are 0.064, 0.216, 0.648, 0.784, and 0.936. The value 0.064 equals P(lose all 3), a plausible distractor for the complement step. The value 0.648 equals P(win at least 2 rounds), computed as the binomial sum P(X = 2) + P(X = 3) = 3(0.6)^2(0.4) + (0.6)^3 = 0.432 + 0.216 = 0.648, and represents a confusion between "at least 1 win" and "at least 2 wins." The value 0.784 equals 1 - 0.216, a distractor produced by subtracting P(win all 3) from 1 rather than subtracting P(lose all 3). Neither 0.648 nor 0.784 emerges from correct application of the governing principles for either column.
+
+The correct answers are All 3 = 0.216 and At least 1 = 0.936.
 **related_reading:** reading-di-06-two-part-analysis
 
 
@@ -644,14 +1244,39 @@ A jar of marbles contains red and blue marbles in the ratio 3 to 5. After removi
 | 42  |              |               |
 
 **answer:** Original red = 21, Original blue = 35
-**fastest_path:** r=3k, b=5k. After change: (3k−6)/(5k+10)=1/3 → 9k−18=5k+10 → 4k=28 → k=7. So r=21, b=35.
-**explanation:** Let r and b be the original counts. Then r/b = 3/5 → r = 3b/5. After the change: (r − 6)/(b + 10) = 1/3 → 3(r − 6) = b + 10 → 3r − 18 = b + 10 → b = 3r − 28. Substitute r = 3b/5 into the second equation: b = 3(3b/5) − 28 = 9b/5 − 28 → b − 9b/5 = −28 → −4b/5 = −28 → b = 35. Then r = 3(35)/5 = 21. Verify both ratios: 21/35 = 3/5 ✓; (21 − 6)/(35 + 10) = 15/45 = 1/3 ✓.
-**mistake_a:** 14 — k=2 trial-and-error setup that doesn't satisfy the post-change ratio.
-**mistake_c:** 28 — k=4 wrong scaling factor; would give 28/40, post-change 22/50 ≠ 1/3.
-**mistake_d:** 35 — that's the blue count, not the red count.
-**mistake_e:** 42 — k=14 over-scaled; doesn't satisfy ratios after the swap.
-**common_trap:** Substituting r=3b/5 (or k-multiple) but flipping the post-change subtraction/addition direction.
-**takeaway:** Ratio-shift problems: parameterize as r=3k, b=5k, then plug into the post-change ratio equation. Solve for k, scale.
+**explanation:** **Governing principle.** A ratio a to b means the two quantities are equal to a*k and b*k for some positive integer k. Any constraint imposed after the initial ratio yields an equation in k that determines the unique solution.
+
+**Define variables.** Let k be the positive integer multiplier for the original ratio. Then the original number of red marbles is r = 3k and the original number of blue marbles is b = 5k, because the problem states the original ratio of red to blue is 3 to 5.
+
+**Translate the second condition.** After 6 red marbles are removed and 10 blue marbles are added, the new counts are (r - 6) red and (b + 10) blue, and their ratio equals 1 to 3. Writing this as an equation:
+
+(r - 6) / (b + 10) = 1/3
+
+**Substitute and solve.** Replace r with 3k and b with 5k:
+
+(3k - 6) / (5k + 10) = 1/3
+
+Cross-multiply:
+
+3(3k - 6) = 1(5k + 10)
+
+9k - 18 = 5k + 10
+
+4k = 28
+
+k = 7
+
+**Compute the original counts.**
+
+r = 3k = 3 * 7 = 21
+
+b = 5k = 5 * 7 = 35
+
+**Verify against the second condition.** After the removal and addition: (21 - 6) / (35 + 10) = 15 / 45 = 1/3. This confirms the ratio is satisfied.
+
+**Locate each value among the candidates.** The candidate values are 14, 21, 28, 35, and 42. The original number of red marbles, 21, appears in the candidate list, as does the original number of blue marbles, 35. No other pair from the candidate list satisfies both the 3-to-5 original ratio and the 1-to-3 ratio after the marble exchange.
+
+The correct answers are Original red = 21 and Original blue = 35.
 **related_reading:** reading-di-06-two-part-analysis
 
 
@@ -673,13 +1298,38 @@ Two cars, X and Y, leave from the same point at the same time and travel in oppo
 | 110 |                  |                        |
 
 **answer:** Speed of Y = 60, Time elapsed = 3
-**fastest_path:** Y = 1.2 × 50 = 60. Combined separation rate (opposite dirs) = 110 mph. Time = 330/110 = 3.
-**explanation:** Car Y's speed = 1.20 × 50 = 60 mph. Because the cars travel in *opposite* directions, their separation rate is the sum: 50 + 60 = 110 mph. Time to reach 330 miles apart = 330 / 110 = 3 hours. Trap: using the *difference* of speeds (10 mph) — that would be the separation rate only if the cars traveled in the *same* direction.
-**mistake_a:** 2 — using sum-of-speeds (110) directly as time; unit slip.
-**mistake_c:** 50 — Car X's speed, slotted into the Y column.
-**mistake_e:** 110 — the combined separation rate (mph), not Y's speed; unit confusion.
-**common_trap:** Using difference of speeds (10 mph) for the separation rate — that applies only when cars travel in the *same* direction.
-**takeaway:** Opposite-direction separation: rates *add*. Same-direction (chase): rates *subtract*. Read the geometry carefully.
+**explanation:** **Governing principle.** When two objects depart from the same point at the same time and move in opposite directions, the rate at which the distance between them grows equals the sum of their individual speeds. Using the relationship distance = rate × time, we can find both unknowns.
+
+**Defining variables and translating the prompt.**
+
+Let v_X = speed of Car X = 50 mph (given).
+
+Let v_Y = speed of Car Y. The prompt states Car Y travels at a speed that is 20 percent higher than Car X's speed, so:
+
+v_Y = v_X × (1 + 0.20) = 50 × 1.20 = 60 mph.
+
+This resolves Column 1 immediately: the speed of Car Y is 60 mph. Scanning the candidate values, 60 appears in the list and is the only value consistent with the 20-percent relationship.
+
+**Setting up the distance equation.**
+
+Because the cars travel in opposite directions, the separation distance at time t (in hours) is:
+
+d = (v_X + v_Y) × t
+
+Substituting the known quantities:
+
+330 = (50 + 60) × t
+330 = 110 × t
+t = 330 / 110
+t = 3 hours.
+
+This resolves Column 2: the elapsed time is 3 hours. Among the candidate values, 3 is the only value satisfying this equation.
+
+**Verification.**
+
+In 3 hours, Car X covers 50 × 3 = 150 miles. Car Y covers 60 × 3 = 180 miles. Total separation = 150 + 180 = 330 miles, which matches the given distance. The candidate value 110 represents the combined rate (in mph), not a valid answer for either column; 2 and 50 satisfy neither equation. Therefore both selected values are uniquely correct.
+
+The correct answers are Speed of Y (mph) = 60 and Time elapsed (hours) = 3.
 **related_reading:** reading-di-06-two-part-analysis
 
 
@@ -701,14 +1351,42 @@ A retailer sells umbrellas. Fixed daily costs total $120. Each umbrella costs $4
 | 72  |               |                      |
 
 **answer:** Optimal price = 12, Maximum daily profit = 72
-**fastest_path:** Profit(p) = (p−4)(60−3p) − 120 = −3p² + 72p − 360. Vertex p = 72/(2·3) = 12. Profit(12) = $72.
-**explanation:** Profit(p) = (revenue) − (variable cost) − (fixed cost) = p × (60 − 3p) − 4 × (60 − 3p) − 120. Factor the first two terms: (p − 4)(60 − 3p) − 120. Expand: 60p − 3p² − 240 + 12p − 120 = −3p² + 72p − 360. This is a downward parabola in p; vertex at p = 72 / (2 × 3) = 12. Profit(12) = −3(144) + 72(12) − 360 = −432 + 864 − 360 = $72. Verify demand at p = 12: 60 − 36 = 24 umbrellas; profit = 24 × (12 − 4) − 120 = 192 − 120 = $72 ✓.
-**mistake_a:** 4 — that's the unit cost, not the optimal price; profit at p=4 is loss (zero margin minus fixed cost).
-**mistake_b:** 8 — halfway between cost and a guess; not the parabola vertex.
-**mistake_d:** 18 — over-shoots the vertex; demand drops fast (60 − 54 = 6 units).
-**mistake_e:** 72 — that's the maximum *profit*, not the price; column confusion.
-**common_trap:** Maximizing revenue (p × demand) rather than profit (revenue minus variable cost minus fixed). Revenue-max p = 10, but profit-max p = 12.
-**takeaway:** Profit-optimization parabola: factor (p−c)(demand) for variable margin, then vertex of −ap² + bp + k is at p = b/(2a).
+**explanation:** Let p denote the price (in dollars) the retailer charges per umbrella, and let q denote the daily quantity demanded. The demand function is q = 60 - 3p, valid for 0 <= p <= 20. Fixed daily cost is $120 and variable (acquisition) cost per umbrella is $4.
+
+Daily revenue equals p * q = p * (60 - 3p). Daily variable cost equals 4 * q = 4 * (60 - 3p). The daily profit function Pi(p) is therefore:
+
+Pi(p) = p*(60 - 3p) - 4*(60 - 3p) - 120
+
+Factoring the first two terms:
+
+Pi(p) = (p - 4)*(60 - 3p) - 120
+
+Expanding:
+
+Pi(p) = 60p - 3p^2 - 240 + 12p - 120
+
+Pi(p) = -3p^2 + 72p - 360
+
+Because Pi(p) is a downward-opening quadratic in p (leading coefficient -3 is negative), it has a unique global maximum at its vertex. The vertex occurs at:
+
+p = -72 / (2 * (-3)) = -72 / (-6) = 12
+
+Since p = 12 lies within the feasible domain 0 <= p <= 20, this is the valid optimal price.
+
+At p = 12: q = 60 - 3*(12) = 24 umbrellas; revenue = 12 * 24 = 288; variable cost = 4 * 24 = 96; fixed cost = 120; Pi(12) = 288 - 96 - 120 = 72.
+
+Evaluating Pi(p) at each remaining candidate price confirms no alternative achieves a higher profit:
+
+- p = 4: q = 48; Pi = 4*48 - 4*48 - 120 = 0 - 120 = -120
+- p = 8: q = 36; Pi = 8*36 - 4*36 - 120 = 288 - 144 - 120 = 24
+- p = 12: Pi = 72 (computed above)
+- p = 18: q = 6; Pi = 18*6 - 4*6 - 120 = 108 - 24 - 120 = -36
+
+The profit function rises from p = 4 through p = 12 and then falls, confirming p = 12 as the unique maximum within the candidate set and the feasible domain.
+
+Among the other candidates: p = 4 sets price equal to unit acquisition cost, so every unit sold contributes $0 toward fixed costs, producing a loss of exactly $120. At p = 8 there is a positive contribution margin but the quadratic has not reached its peak, yielding only $24 in profit. At p = 18 demand falls to 6 units, insufficient to cover fixed costs, producing a loss of $36. The value 72 is the maximum profit itself (the column 2 answer) and is not a valid price.
+
+The correct answers are Optimal price = 12 and Maximum daily profit = 72.
 **related_reading:** reading-di-06-two-part-analysis
 
 
@@ -730,13 +1408,51 @@ A chemist combines Solution X (80% water, 20% solute by volume) with Solution Y 
 | 25  |            |            |
 
 **answer:** Solution X = 10, Solution Y = 20
-**fastest_path:** Lever-arm: target 60% water; X is 80%, Y is 50%. Distances: |60−80|=20, |60−50|=10 → ratio Y:X = 2:1 (more from the closer). Of 30 L: X=10, Y=20.
-**explanation:** Let x = liters of Solution X, y = liters of Solution Y. Total volume: x + y = 30. Water balance: 0.80x + 0.50y = 0.60(30) = 18. Substitute y = 30 − x: 0.80x + 0.50(30 − x) = 18 → 0.80x + 15 − 0.50x = 18 → 0.30x = 3 → x = 10, y = 20. Verify: water = 0.80(10) + 0.50(20) = 8 + 10 = 18 ✓. Trap: averaging the concentrations without weighting by volume.
-**mistake_a:** 5 — under-shoots the equation; would imply a 56.7% water mixture.
-**mistake_c:** 15 — half-and-half split; would yield 65% water, not 60%.
-**mistake_e:** 25 — reverses the lever-arm; weights X heavier than warranted.
-**common_trap:** Equal volumes (15/15) — but 60% is closer to Y (50%) than to X (80%), so Y must weigh more.
-**takeaway:** Mixture lever-arm: target closer to component with concentration C means MORE of that component (since it's the "anchor" pulling the mix toward target).
+**explanation:** **Setup.** In a mixture problem of this type, two conservation constraints govern the system simultaneously: the volumes of the component solutions must sum to the total mixture volume, and the volume of any one component (here, water) contributed by each solution must sum to the total volume of that component in the final mixture.
+
+Let x be the volume of Solution X in liters and y be the volume of Solution Y in liters.
+
+**Equation 1 — total volume constraint.**
+
+x + y = 30
+
+**Equation 2 — water-volume constraint.**
+
+Solution X is 80% water by volume, so it contributes 0.80x liters of water. Solution Y is 50% water by volume, so it contributes 0.50y liters of water. The final 30-liter mixture is 60% water, so it contains 0.60 * 30 = 18 liters of water. Therefore:
+
+0.80x + 0.50y = 18
+
+**Solving the system.**
+
+From Equation 1, y is expressed in terms of x:
+
+y = 30 - x
+
+Substituting into Equation 2:
+
+0.80x + 0.50(30 - x) = 18
+
+0.80x + 15 - 0.50x = 18
+
+0.30x = 3
+
+x = 3 / 0.30 = 10
+
+Returning to Equation 1:
+
+y = 30 - 10 = 20
+
+**Verification.**
+
+- Total volume: 10 + 20 = 30 liters. Confirmed.
+- Water contributed by Solution X: 0.80 * 10 = 8 liters.
+- Water contributed by Solution Y: 0.50 * 20 = 10 liters.
+- Total water: 8 + 10 = 18 liters.
+- Water percentage of mixture: 18 / 30 = 0.60, or 60%. Confirmed.
+
+Both constraints are satisfied exactly. From the candidate values {5, 10, 15, 20, 25}, the value 10 is selected for Solution X and the value 20 is selected for Solution Y.
+
+The correct answers are Solution X = 10 and Solution Y = 20.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -757,13 +1473,19 @@ A box contains 8 marbles: 3 red, 3 blue, and 2 green. Two marbles are drawn at r
 | 7/8  |            |                  |
 
 **answer:** Same color = 1/4, Different colors = 3/4
-**fastest_path:** C(8,2)=28. Same: (3+3+1)/28 = 7/28 = 1/4. Different = 1 − 1/4 = 3/4.
-**explanation:** Total ways to draw 2 marbles: C(8, 2) = 28. P(same color) = [C(3,2) + C(3,2) + C(2,2)] / 28 = (3 + 3 + 1) / 28 = 7/28 = 1/4. P(different colors) = 1 − 1/4 = 3/4. Trap: forgetting the green-green pair or assuming "different" is 2/3 based on the number of color categories.
-**mistake_a:** 1/7 — possibly a slip on the 8 marbles (using 8 directly in the denominator) or omitting greens.
-**mistake_c:** 1/2 — guessing same/different are equally likely without computing.
-**mistake_e:** 7/8 — using 7/8 (raw 7 same-color outcomes / 8 marbles) — wrong denominator.
-**common_trap:** Forgetting the green-green pair or treating "different colors" as 2/3 based on category count.
-**takeaway:** "Same color" with multiple groups: sum C(group_i, 2) over all groups. Different = complement.
+**explanation:** When two items are drawn without replacement from a finite set, the total number of equally likely outcomes is the combination C(n, 2) = n(n-1)/2, where n is the total number of items. The probability of any event is the number of outcomes favorable to that event divided by the total number of outcomes.
+
+The box contains 8 marbles: 3 red, 3 blue, and 2 green. The total number of ways to select 2 marbles from 8, without regard to order, is
+
+C(8, 2) = 8! / (2! * 6!) = (8 * 7) / 2 = 28.
+
+Every pair of marbles is equally likely, so the sample space has 28 outcomes.
+
+Two marbles are the same color only if both are red, both are blue, or both are green. The number of favorable outcomes for each group is C(3, 2) = 3 for red, C(3, 2) = 3 for blue, and C(2, 2) = 1 for green, giving a total of 3 + 3 + 1 = 7 same-color pairs. The probability for Column 1 is therefore P(same color) = 7/28 = 1/4.
+
+Because every pair is either same-color or different-color, the two events are complementary and their probabilities must sum to 1. The number of different-color pairs is 28 - 7 = 21, so P(different colors) = 21/28 = 3/4. As a check, 1/4 + 3/4 = 1, confirming the two complementary probabilities are consistent.
+
+The correct answers are Same color = 1/4 and Different colors = 3/4.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -784,14 +1506,37 @@ A retailer purchases a laptop at a wholesale cost of $800. The retailer applies 
 | $1,080 |            |               |
 
 **answer:** List Price = $1,000, Loyalty Price = $900
-**fastest_path:** List = 800 × 1.25 = 1,000. Loyalty = 1,000 × 0.90 = 900.
-**explanation:** List price = $800 × 1.25 = $1,000. The 25% markup applies to the wholesale cost. Loyalty price = $1,000 × (1 − 0.10) = $900. The 10% discount applies to the list price, not the original $800. Applying the discount to the wrong base produces every wrong row.
-**mistake_a:** $720 — discounting the original cost directly ($800 × 0.90 = 720) and skipping the markup entirely.
-**mistake_b:** $880 — applying a 10% markup instead of a 25% markup: $800 × 1.10 = 880.
-**mistake_c:** $900 — correct for the loyalty price; selecting this for column 1 swaps the two answers.
-**mistake_e:** $1,080 — adding 10% back to $1,000 instead of subtracting it (misreading "discount" as an additional charge).
-**common_trap:** Applying the 10% discount to the original $800 rather than to the $1,000 list price. Each percentage change applies to the base at that step, not to the starting value.
-**takeaway:** Sequential percent changes always use the updated base. Identify the base for each step before computing.
+**explanation:** A percentage markup applied to a cost price yields the selling (list) price, and a percentage discount applied to that list price yields the final price paid. Let C denote the wholesale cost, L denote the list price, and P denote the loyalty price.
+
+Define the variables and translate the prompt into equations.
+
+- C = 800 (given wholesale cost in dollars)
+- A 25% markup means the list price equals the cost plus 25% of the cost: L = C + 0.25 * C = C * (1 + 0.25) = 1.25 * C
+- A 10% loyalty discount means the customer pays 90% of the list price: P = L * (1 - 0.10) = 0.90 * L
+
+Solve for the list price (Column 1).
+
+Substituting C = 800 into the markup equation:
+
+L = 1.25 * 800 = 1,000
+
+The list price is $1,000.
+
+Solve for the loyalty price (Column 2).
+
+Substituting L = 1,000 into the discount equation:
+
+P = 0.90 * 1,000 = 900
+
+The loyalty price is $900.
+
+Verify against the candidate values.
+
+The candidate set is {$720, $880, $900, $1,000, $1,080}. The computed list price $1,000 appears in the set, and the computed loyalty price $900 also appears in the set. Both values are therefore valid selections.
+
+Common errors to rule out. One might mistakenly apply the 25% markup to the loyalty price rather than to the wholesale cost, or compute the discount as 10% of the cost ($80) rather than 10% of the list price ($100). Either error yields values not consistent with the problem statement and not supported by the candidate values $1,000 and $900. Another error is to treat the 10% discount as reducing the price by $10 rather than by 10% of $1,000 = $100, which would produce $990 — a value absent from the candidate set, confirming that interpretation is incorrect.
+
+The correct answers are List Price = $1,000 and Loyalty Price = $900.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -814,13 +1559,36 @@ Select the value of F (column 1) and the value of S (column 2).
 | 95  |               |                    |
 
 **answer:** F = 61, S = 95
-**fastest_path:** d = 6. F = 7 + 9 × 6 = 61. 5th term = 31. S = (5/2)(7 + 31) = 95.
-**explanation:** Common difference d = 13 − 7 = 6. nth term = a₁ + (n − 1)d = 7 + (n − 1) × 6. For n = 10: F = 7 + 9 × 6 = 61. The 5th term = 7 + 4 × 6 = 31. Sum of first 5 = (5/2)(first + last) = (5/2)(7 + 31) = (5/2)(38) = 95.
-**mistake_a:** 55 — using n = 8 instead of n − 1 = 9 gaps (off-by-one in the step count).
-**mistake_c:** 65 — using n = 10 directly in the formula instead of (n − 1): 7 + 10 × 6 = 67, or a nearby arithmetic slip.
-**mistake_d:** 85 — computing S as 5 × 17 (using 17 instead of the true middle term 19 = 3rd term; 5 × 19 = 95 is correct).
-**common_trap:** Off-by-one in the nth-term formula: the 10th term has 9 gaps from the 1st term, not 10.
-**takeaway:** nth term = a₁ + (n − 1) × d. Sum of n consecutive arithmetic terms = (n/2)(first + last).
+**explanation:** An arithmetic sequence is a sequence in which each term after the first is obtained by adding a fixed constant, called the common difference, to the preceding term. If the first term is a_1 and the common difference is d, then the nth term is given by the formula a_n = a_1 + (n - 1)d. The sum of the first n terms is given by S_n = (n/2)(a_1 + a_n), or equivalently S_n = (n/2)(2*a_1 + (n - 1)d).
+
+The first three terms of the sequence are 7, 13, and 19. From these:
+
+- a_1 = 7
+- d = 13 - 7 = 6 (confirmed: 19 - 13 = 6)
+
+**Finding F, the 10th term.**
+
+Applying the nth-term formula with n = 10:
+
+F = a_10 = a_1 + (10 - 1)d = 7 + 9 * 6 = 7 + 54 = 61
+
+Therefore F = 61.
+
+**Finding S, the sum of the first five terms.**
+
+The fifth term is computed first: a_5 = 7 + (5 - 1) * 6 = 7 + 24 = 31.
+
+Applying the sum formula with n = 5, a_1 = 7, and a_5 = 31:
+
+S = (5/2)(a_1 + a_5) = (5/2)(7 + 31) = (5/2)(38) = 5 * 19 = 95
+
+As a check, the five terms listed explicitly — 7, 13, 19, 25, 31 — sum as follows: 7 + 13 = 20, 20 + 19 = 39, 39 + 25 = 64, 64 + 31 = 95. Both approaches confirm S = 95.
+
+**Evaluating the candidate values.**
+
+Among the five candidates (55, 61, 65, 85, 95), the value 61 matches F and the value 95 matches S. The remaining candidates — 55, 65, and 85 — do not equal any term or partial sum derived from this sequence under the constraints given.
+
+The correct answers are 10th term (F) = 61 and Sum of first 5 (S) = 95.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -842,14 +1610,35 @@ A rectangle has a perimeter of 40 cm. The length is 6 cm more than the width. De
 | 130  |             |            |
 
 **answer:** Length = 13, Area = 91
-**fastest_path:** l + w = 20 and l = w + 6 → w = 7, l = 13. Area = 13 × 7 = 91.
-**explanation:** Perimeter = 2(l + w) = 40, so l + w = 20. Since l = w + 6: (w + 6) + w = 20 → 2w = 14 → w = 7 cm. Length = 7 + 6 = 13 cm. Area = 13 × 7 = 91 cm².
-**mistake_a:** 7 — the width, not the length; selecting this for column 1 reverses the two dimensions.
-**mistake_c:** 17 — computing (20 + 6)/2 = 13 correctly but then confusing the equation and obtaining 17 = 40/2 − 3.
-**mistake_d:** 49 — computing area as 7 × 7, squaring the width instead of multiplying by the length.
-**mistake_f:** 130 — computing area as 13 × 10, using 10 for the width instead of 7.
-**common_trap:** Forgetting to halve the perimeter: using l + w = 40 instead of l + w = 20.
-**takeaway:** Perimeter = 2(l + w), so l + w = P/2. Apply the second constraint to get both dimensions, then multiply for area.
+**explanation:** **Governing principle.** The perimeter of a rectangle equals twice the sum of its length and width: P = 2(l + w). The area of a rectangle equals the product of its length and width: A = l * w.
+
+**Define variables.** Let w represent the width of the rectangle in centimeters. The problem states that the length is 6 cm more than the width, so the length is expressed as w + 6.
+
+**Set up the perimeter equation.** Substituting into the perimeter formula:
+
+2((w + 6) + w) = 40
+
+2(2w + 6) = 40
+
+4w + 12 = 40
+
+4w = 28
+
+w = 7
+
+The width is 7 cm.
+
+**Find the length.** The length equals w + 6 = 7 + 6 = 13 cm. Among the candidate values, 13 is the only value consistent with this result, confirming the selection for column 1.
+
+**Find the area.** Using A = l * w:
+
+A = 13 * 7 = 91 cm²
+
+Among the candidate values, 91 is the only value consistent with this result, confirming the selection for column 2.
+
+**Verify.** As a check, the perimeter equals 2(13 + 7) = 2(20) = 40 cm, which matches the given condition.
+
+The correct answers are Length (cm) = 13 and Area (cm²) = 91.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -872,13 +1661,40 @@ Select the value of N (column 1) and the value of T (column 2).
 | 65  |                   |                 |
 
 **answer:** N = 15, T = 55
-**fastest_path:** At-least-one = 45 + 30 − 10 = 65. N = 80 − 65 = 15. Exactly-one = 65 − 10 = 55.
-**explanation:** By inclusion-exclusion, the number who drink at least one beverage = 45 + 30 − 10 = 65 (the overlap is subtracted to avoid double-counting). N = 80 − 65 = 15. Exactly-one = at-least-one minus both = 65 − 10 = 55. Equivalently: coffee-only = 35, tea-only = 20, T = 35 + 20 = 55.
-**mistake_a:** 5 — omitting the add-back of the overlap: 80 − 45 − 30 = 5 (the "both" group is subtracted twice).
-**mistake_c:** 25 — adding the overlap twice in the correction: 80 − 45 − 30 + 10 + 10 = 25.
-**mistake_e:** 65 — the total "at-least-one" count used for T, which still includes the "both" group.
-**common_trap:** Reporting "at-least-one" as "exactly-one." The "both" group must be subtracted from the at-least-one total to get exactly-one.
-**takeaway:** Exactly-one = (A only) + (B only) = A + B − 2 × (both). Neither = Total − (A + B − both).
+**explanation:** **Governing principle.** For any two overlapping sets A and B drawn from a total population, the Inclusion-Exclusion principle states:
+
+|A union B| = |A| + |B| - |A and B|
+
+The "neither" count is then: Neither = Total - |A union B|. The "exactly one" count is obtained by subtracting the overlap from each individual group and summing the remainders: Exactly one = (|A| - |A and B|) + (|B| - |A and B|) = |A| + |B| - 2|A and B|.
+
+**Variable definitions.** Let the total survey population equal 80. Let C = 45 denote the number of coffee drinkers, Te = 30 denote the number of tea drinkers, and B = 10 denote the number who drink both beverages. Let N denote the number who drink neither beverage and T denote the number who drink exactly one beverage.
+
+**Step 1: Find N.**
+
+We first compute the number who drink at least one beverage by applying Inclusion-Exclusion:
+
+At least one = C + Te - B = 45 + 30 - 10 = 65
+
+The remaining employees drink neither beverage:
+
+N = Total - At least one = 80 - 65 = 15
+
+**Step 2: Find T.**
+
+We isolate the employees who drink only one beverage by subtracting the overlap from each group:
+
+- Coffee only = C - B = 45 - 10 = 35
+- Tea only = Te - B = 30 - 10 = 20
+
+Therefore T = 35 + 20 = 55.
+
+**Verification.** The four mutually exclusive and exhaustive groups must partition the total population:
+
+Coffee only + Tea only + Both + Neither = 35 + 20 + 10 + 15 = 80
+
+This confirms that no employees have been double-counted or omitted, and that both values are consistent with all given information.
+
+The correct answers are N (drink neither) = 15 and T (exactly one) = 55.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -901,14 +1717,25 @@ Select the value of M′ (column 1) and the value of D′ (column 2).
 | 14  |               |                 |
 
 **answer:** M′ = 11, D′ = 12
-**fastest_path:** New mean = (50 + 16)/6 = 66/6 = 11. New sorted set {2,6,10,14,16,18}: median = (10 + 14)/2 = 12.
-**explanation:** Original sum = 2 + 6 + 10 + 14 + 18 = 50. Adding 16: new sum = 66, new count = 6. M′ = 66/6 = 11. Re-sorted set: {2, 6, 10, 14, 16, 18}. With 6 values (even count), the median is the average of the 3rd and 4th values: (10 + 14)/2 = 12. The new value 16 inserts above 14 without shifting the middle pair.
-**mistake_a:** 10 — assuming neither measure changes when a new value is added.
-**mistake_c:** 12 — correct for D′; selecting this for M′ swaps the two answers.
-**mistake_d:** 13 — arithmetic slip in computing the new mean (e.g., treating the new sum as 78 instead of 66).
-**mistake_e:** 14 — picking the added value itself as the new median instead of finding the middle of the re-sorted set.
-**common_trap:** Forgetting to re-sort the set before locating the median, or using the added value (16) as the new median anchor.
-**takeaway:** After adding a value: recompute mean = new sum / new count; re-sort and find the middle (average the two middle values if n is even).
+**explanation:** **Computing the New Mean (M′).**
+
+The mean of a data set is defined as the sum of all values divided by the count of values. For the original five-element set {2, 6, 10, 14, 18}, the sum is 2 + 6 + 10 + 14 + 18 = 50, and the mean is 50/5 = 10, confirming M = 10.
+
+When the sixth value 16 is added, the new sum becomes 50 + 16 = 66, and the new count is 6. Therefore the new mean is M′ = 66/6 = 11.
+
+**Computing the New Median (D′).**
+
+The median of a data set is the middle value when all values are arranged in ascending order. For an odd number of values the median is the single central element; for an even number of values the median is the arithmetic mean of the two central elements.
+
+The original five-element set in ascending order is {2, 6, 10, 14, 18}. The middle (third) element is 10, confirming D = 10.
+
+Inserting 16 into the ordered set yields the six-element set {2, 6, 10, 14, 16, 18}. With n = 6 elements, the two central positions are the 3rd and 4th elements. Counting from the left, the 3rd element is 10 and the 4th element is 14. The median is therefore the mean of those two values: D′ = (10 + 14)/2 = 24/2 = 12.
+
+**Summary of results.**
+
+New sum: 50 + 16 = 66; new count: 6; M′ = 66/6 = 11. Ordered set after insertion: {2, 6, 10, 14, 16, 18}; central pair: 10 and 14; D′ = (10 + 14)/2 = 12.
+
+The correct answers are New Mean (M′) = 11 and New Median (D′) = 12.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -931,13 +1758,46 @@ From the statements below, select the one that can be properly inferred from the
 | WFH employees benefit from fewer interruptions, which explains their performance advantage       |                 |                |
 
 **answer:** Can be Inferred = "WFH employees have higher average productivity ratings than full-time in-office employees"; Why Not Causal = "The highest-performing employees self-select into WFH arrangements"
-**fastest_path:** Inference = direct reading of the numbers (82 > 74). Causal flaw = self-selection confound: high performers choose WFH, so WFH may mark high performance rather than create it.
-**explanation:** The study reports averages of 82 vs. 74 — so "WFH employees have higher ratings" is a direct inference from the data. All other row-1 candidates go beyond the data: prescribing policy (row 2) requires causation, while individual preferences (row 3) and measurement bias (row 4) are not stated. The causal claim fails primarily because of self-selection: high-performing employees may systematically choose WFH, making WFH a characteristic of high performers rather than its cause. Rows 4 and 5 offer alternative critiques but are speculative (not established by the data) or support causation (mechanisms).
-**mistake_b:** "Requiring all to WFH would raise ratings" — prescribes a policy that assumes causation; not inferrable from descriptive data.
-**mistake_d:** Measurement bias is speculative; the study does not confirm any rating-scale flaw.
-**mistake_e:** Fewer interruptions is a plausible mechanism but is not stated in the data and does not itself block causation — it would support it.
-**common_trap:** Confusing correlation with causation. Descriptive statistics license descriptive conclusions; policy conclusions require causal evidence.
-**takeaway:** Inferences must stay within the data. Causal claims fail when self-selection can explain the correlation: the high-performer → WFH link could run in the opposite direction.
+**explanation:** **Governing Principle.** A claim "can be inferred" from a data set if and only if it follows necessarily from the stated data, with no additional assumptions required. A causal claim, by contrast, asserts that one variable produces changes in another. Observational data cannot establish causation when a confounding explanation — such as selection bias — accounts equally well for the observed difference.
+
+**Setup.** Let P_WFH denote the average productivity rating of employees who work from home at least 3 days per week, and let P_OFC denote the average productivity rating of employees who work in the office full time. The study reports:
+
+P_WFH = 82 out of 100
+P_OFC = 74 out of 100
+
+Therefore P_WFH > P_OFC, specifically 82 > 74, a difference of 82 - 74 = 8 rating points.
+
+**Column 1 — Can be Inferred.**
+
+Each candidate is evaluated against the standard: does it follow necessarily from P_WFH = 82 and P_OFC = 74?
+
+- "WFH employees have higher average productivity ratings than full-time in-office employees." Since 82 > 74, this is a direct restatement of the reported figures. No assumption beyond the data is required. This statement is supported.
+
+- "Requiring all employees to WFH at least 3 days per week would raise the company's average rating." This is a policy prediction. It assumes that mandating WFH would replicate the observed difference, which depends on causal assumptions the data do not establish. Not inferable.
+
+- "The highest-performing employees self-select into WFH arrangements." This is a proposed mechanism — a hypothesis about why the gap exists. The data report a gap; they say nothing about how employees came to be in each group. Not inferable.
+
+- "The productivity rating scale penalizes visible in-office behaviors such as collaboration time." This is a claim about measurement methodology. The data provide no information about how the rating scale is constructed. Not inferable.
+
+- "WFH employees benefit from fewer interruptions, which explains their performance advantage." This asserts a causal mechanism (fewer interruptions leading to higher performance). The data contain no information about interruption rates. Not inferable.
+
+The only statement that follows necessarily from P_WFH = 82 and P_OFC = 74 is the first: WFH employees have higher average productivity ratings than full-time in-office employees.
+
+**Column 2 — Why Not Causal.**
+
+Each statement is now evaluated for whether it best identifies a reason the observed difference in average ratings does not establish that WFH causes higher productivity. The logical requirement is a plausible alternative explanation — one that accounts for the gap without invoking a causal link from WFH to productivity.
+
+- "Requiring all employees to WFH at least 3 days per week would raise the company's average rating." This is itself a causal claim and offers no explanation for why causation is absent. It does not serve as a challenge to the causal interpretation.
+
+- "The highest-performing employees self-select into WFH arrangements." This identifies a classic confound: if employees who already have high productivity ratings are the ones who choose (or are permitted) to work from home, then the group difference reflects pre-existing ability differences rather than any effect of WFH. The direction of causation would run from high performance to WFH eligibility, not from WFH to high performance. This is the correct alternative explanation.
+
+- "The productivity rating scale penalizes visible in-office behaviors such as collaboration time." This could explain a measurement artifact, but it does not address the underlying causal question — it raises a different methodological concern (rating validity) rather than explaining whether WFH itself produces the gap. It is a weaker and less direct challenger to the causal inference than selection bias.
+
+- "WFH employees benefit from fewer interruptions, which explains their performance advantage." This actually supports the causal claim — it proposes a mechanism by which WFH causes higher productivity. It therefore cannot be the answer to why the data fail to establish causation.
+
+The statement that best explains why the data do not establish a causal relationship is that the highest-performing employees self-select into WFH arrangements, because it provides a specific alternative (selection bias) that fully accounts for the observed gap without requiring WFH to have any causal effect.
+
+The correct answers are Can be Inferred = WFH employees have higher average productivity ratings than full-time in-office employees and Why Not Causal = The highest-performing employees self-select into WFH arrangements.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -961,14 +1821,65 @@ Select the value of t* (column 1) and the value of V (column 2).
 | 8,000 |              |                      |
 
 **answer:** t* = 3, V = 4,000
-**fastest_path:** Set equal: 500 × (2^t)² = 32,000 → (2^t)² = 64 = 2^6 → 2^t = 8 → t = 3. P(3) = 500 × 8 = 4,000.
-**explanation:** Set P(t) = Q(t): 500 × 2^t = 32,000 / 2^t. Multiply both sides by 2^t: 500 × (2^t)² = 32,000. So (2^t)² = 64 = 2^6, meaning 2^t = 8 = 2^3, giving t* = 3. Then P(3) = 500 × 2^3 = 500 × 8 = 4,000. Verify: Q(3) = 32,000 / 8 = 4,000. Both agree.
-**mistake_a:** 2 — solving 2^t = 64 directly (forgetting to square 2^t when multiplying both sides) yields t = 6; or solving a simpler version gives t = 2.
-**mistake_c:** 4 — over-counting by one extra decade from an arithmetic slip in the exponent equation.
-**mistake_d:** 2,000 — evaluating P at t = 2 instead of t = 3: P(2) = 500 × 4 = 2,000.
-**mistake_f:** 8,000 — evaluating P at t = 4: P(4) = 500 × 16 = 8,000, one decade too late.
-**common_trap:** Treating 500 × 2^t = 32,000 / 2^t as if only one factor of 2^t appears, rather than moving 2^t from the denominator to multiply both sides (yielding (2^t)²).
-**takeaway:** When the same base appears growing on one side and decaying on the other, multiply both sides by the decaying term to collect the squared exponent, then solve.
+**explanation:** **Governing principle.** Two functions intersect when they produce equal output for the same input. We set P(t) = Q(t) and solve for the value of t at which that equality holds, then substitute back to find the shared population value.
+
+**Defining variables.** Let t represent the number of decades elapsed (t >= 0). The two population models are:
+
+- P(t) = 500 x 2^t (Town A, exponential growth)
+- Q(t) = 32,000 / 2^t (Town B, exponential decay)
+
+We seek t*, the decade at which P(t*) = Q(t*), and V = P(t*) = Q(t*), the shared population at that point.
+
+**Setting up and solving for t*.**
+
+Setting the two expressions equal:
+
+500 x 2^t = 32,000 / 2^t
+
+Multiplying both sides by 2^t eliminates the denominator on the right:
+
+500 x 2^t x 2^t = 32,000
+
+Applying the exponent rule 2^t x 2^t = 2^(2t):
+
+500 x 2^(2t) = 32,000
+
+Dividing both sides by 500:
+
+2^(2t) = 32,000 / 500 = 64
+
+Expressing 64 as a power of 2 — since 2^1 = 2, 2^2 = 4, 2^3 = 8, 2^4 = 16, 2^5 = 32, 2^6 = 64 — we obtain:
+
+2^(2t) = 2^6
+
+Because the bases are identical and positive (and not equal to 1), the exponents must be equal:
+
+2t = 6, therefore t = 3
+
+Thus t* = 3 decades.
+
+**Solving for V.**
+
+Substituting t* = 3 into P(t):
+
+P(3) = 500 x 2^3 = 500 x 8 = 4,000
+
+Verification via Q(t):
+
+Q(3) = 32,000 / 2^3 = 32,000 / 8 = 4,000
+
+Both models yield the same output at t = 3, confirming V = 4,000.
+
+**Eliminating the remaining candidates.**
+
+The candidate list for column 1 includes t = 2 and t = 4, and the candidate list for column 2 includes 2,000 and 8,000 as plausible distractors. We verify these are incorrect:
+
+- t = 2: P(2) = 500 x 4 = 2,000 and Q(2) = 32,000 / 4 = 8,000. The outputs differ, so t = 2 is not an intersection.
+- t = 4: P(4) = 500 x 16 = 8,000 and Q(4) = 32,000 / 16 = 2,000. The outputs again differ, so t = 4 is not an intersection.
+
+The distractor values 2,000 and 8,000 each appear as one model's output at t = 2 or t = 4, not as a shared value. Only at t = 3 do the two models agree, and the shared value there is 4,000, not any other candidate in the list.
+
+The correct answers are t* (decades) = 3 and V (shared population) = 4,000.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -991,13 +1902,49 @@ From the statements below, identify the one that most strengthens the economist'
 | Some consumers increase their saving when interest rates rise, which further reduces their discretionary spending  |             |              |
 
 **answer:** Strengthens = "Durable goods account for approximately 60% of total consumer spending"; Gap in Chain = "When mortgage borrowing becomes costlier, many consumers shift to credit card spending instead"
-**fastest_path:** Strengthen = closes the unstated final link (durable goods fall → overall spending falls). Gap = disrupts a stated link (borrowing falls → spending falls) via consumer substitution.
-**explanation:** The explicit chain ends at "durable goods spending declines," but the conclusion is about "overall consumer spending." The 60% statistic bridges this implicit final step: if durable goods are the majority of all spending, a decline there materially lowers the total. The most significant gap is the link from "consumer borrowing decreases" to "durable goods spending declines": if consumers simply shift to credit cards instead, total borrowing may not fall and spending continues. Row 3 (cross-country study) supports an already-stated link and does not bridge the conclusion's final gap. Row 4 (rate-hike history) is context, not logic. Row 5 (increased saving) adds a parallel mechanism not in the stated chain.
-**mistake_c:** The cross-country study confirms a premise of the chain (rate hike → reduced durable purchases) but does not bridge the final implicit gap from durable goods to overall spending.
-**mistake_d:** The frequency of past rate hikes is historical context and does not evaluate the logic of the causal chain.
-**mistake_e:** Increased saving introduces a different causal path; it supports the conclusion but is not part of the stated chain and does not address its gap.
-**common_trap:** Picking the cross-country study as the strongest strengthener because it provides empirical evidence — but it confirms a stated step. The 60% statistic closes the critical unstated gap.
-**takeaway:** In multi-step causal chains, the strongest strengthener closes an implicit gap; the most critical flaw disrupts a stated link (often via substitution or confounding).
+**explanation:** **Governing principle.** In a Two-Part Analysis causal-chain question, two distinct questions are posed of the candidate statements. For the "Strengthens" column, the task is to find the statement that makes the argument's conclusion more likely to be true — typically by supplying evidence for an implicit assumption the argument requires. For the "Gap in Chain" column, the task is to find the statement that identifies a place in the stated causal sequence where the chain could break without the argument acknowledging the possibility.
+
+**The economist's stated causal chain.** Each step may be labeled explicitly:
+
+- Step A: A central bank rate hike causes consumer borrowing to decrease.
+- Step B: A decrease in consumer borrowing causes spending on durable goods to decline.
+- Step C (conclusion): Raising interest rates reduces overall consumer spending.
+
+The inferential move from Step B to Step C is the critical one. The argument implicitly requires that durable-goods spending is a large enough fraction of total consumer spending that a decline in durable-goods spending produces a material decline in overall consumer spending. If durable goods represent, say, 3% of total consumer spending, then Step C does not follow from Step B even if Steps A and B are both valid.
+
+**Analysis of each candidate for Column 1 (Strengthens).**
+
+Let S_d denote spending on durable goods and S_total denote total consumer spending.
+
+- "Durable goods account for approximately 60% of total consumer spending": this states S_d / S_total is approximately 0.60. If durable-goods spending declines significantly, then because durable goods constitute roughly 60% of the total, overall spending must also decline materially. This directly closes the implicit assumption gap between Step B and Step C. It is the strongest strengthener of the conclusion.
+
+- "A cross-country study found that central bank rate hikes correlate with reduced durable goods purchases": this provides correlational evidence consistent with the overall chain from Step A through Step B, which the argument already asserts as given premises. Supporting already-stated premises does not strengthen the conclusion as directly as supplying a missing logical bridge.
+
+- "Some consumers increase their saving when interest rates rise, which further reduces their discretionary spending": this introduces an additional causal mechanism outside the stated chain. It is consistent with the conclusion but does not directly address whether the durable-goods channel alone is sufficient to move overall spending.
+
+- "The central bank has raised interest rates four times in the past two years": this is historical background about past policy actions. It does not address whether future rate hikes will reduce overall spending and therefore does not logically strengthen the prospective conclusion.
+
+- "When mortgage borrowing becomes costlier, many consumers shift to credit card spending instead": this suggests that one borrowing channel closing prompts consumers to open another, which would tend to weaken rather than strengthen the argument.
+
+The credited answer for Column 1 is therefore "Durable goods account for approximately 60% of total consumer spending," because it supplies the quantitative bridge that makes the step from "durable-goods spending falls" to "overall consumer spending falls" logically valid.
+
+**Analysis of each candidate for Column 2 (Gap in Chain).**
+
+The question now is which statement reveals a place where the stated causal chain could fail.
+
+- "When mortgage borrowing becomes costlier, many consumers shift to credit card spending instead": this directly targets Step A. The argument assumes that higher interest rates reduce consumer borrowing in the aggregate. If consumers who can no longer afford mortgage-rate borrowing simply migrate to credit-card borrowing, then aggregate borrowing may not fall, durable-goods purchases may continue at roughly the same level, and the chain breaks at its first link. This is the most significant gap because it challenges the foundational premise on which every subsequent step depends. If consumers substitute one credit channel for another, the causal mechanism the economist describes never gains traction.
+
+- "Durable goods account for approximately 60% of total consumer spending": as established above, this fills a gap; it does not reveal one.
+
+- "A cross-country study found that rate hikes correlate with reduced durable goods purchases": this supports the overall chain and does not reveal a gap.
+
+- "The central bank has raised interest rates four times in the past two years": this is extraneous historical data that neither supports nor attacks any link in the chain.
+
+- "Some consumers increase their saving when interest rates rise": this is directionally consistent with the economist's conclusion and therefore does not reveal a gap.
+
+The credited answer for Column 2 is therefore "When mortgage borrowing becomes costlier, many consumers shift to credit card spending instead," because it identifies that the first causal link — higher rates reduce borrowing — need not hold if consumers substitute across borrowing instruments.
+
+The correct answers are Strengthens = Durable goods account for approximately 60% of total consumer spending and Gap in Chain = When mortgage borrowing becomes costlier, many consumers shift to credit card spending instead.
 **related_reading:** reading-di-06-two-part-analysis
 
 **related_reading:** reading-di-06-two-part-analysis
@@ -1023,15 +1970,29 @@ Select the value of S (column 1) and the value of D (column 2).
 | 135 |                |                    |
 
 **answer:** S = 45, D = 9
-**fastest_path:** LCM(9, 15) = 45. Digit sum: 4 + 5 = 9.
-**explanation:** The smallest positive integer divisible by both 9 and 15 is their least common multiple. Factor each: 9 = 3² and 15 = 3 × 5, so LCM = 3² × 5 = 45. Sum of digits of 45 = 4 + 5 = 9. Notice that D = 9 happens to match the first row — students who compute only the GCD (9) would incorrectly select it for S as well.
-**mistake_a:** 9 — that is the GCD of 9 and 15, not the LCM. Divisibility requires LCM.
-**mistake_b:** 15 — one of the original divisors; 15 is not divisible by 9.
-**mistake_c:** 27 — a multiple of 9 but not of 15 (27/15 is not an integer).
-**mistake_d:** 36 — divisible by 9 (36/9 = 4) but not by 15 (36/15 = 2.4). Fails the 15 requirement.
-**mistake_f:** 135 — a valid common multiple (9 × 15 = 135) but not the smallest; students who multiply instead of computing LCM land here.
-**common_trap:** Multiplying 9 × 15 = 135 instead of computing LCM. GCD(9,15) = 3, so LCM = 9 × 15 / 3 = 45, not 135.
-**takeaway:** Smallest positive integer divisible by A and B = LCM(A, B) = A × B / GCD(A, B).
+**explanation:** **Governing principle.** When a positive integer must be divisible by two given integers, the smallest such positive integer is their least common multiple (LCM). To find the LCM of two integers, express each as a product of prime factors and take the highest power of every prime that appears.
+
+**Setting up the problem.** Let N be a positive integer divisible by both 9 and 15. S is the smallest positive value of N, and D is the sum of the digits of S.
+
+**Finding the prime factorizations.**
+
+- 9 = 3^2
+- 15 = 3 × 5
+
+**Computing the LCM.** The LCM is formed by taking the highest power of each prime that appears in either factorization. The primes involved are 3 and 5.
+
+- Highest power of 3: 3^2 = 9
+- Highest power of 5: 5^1 = 5
+
+Therefore LCM(9, 15) = 3^2 × 5 = 9 × 5 = 45.
+
+**Verifying divisibility.** The value 45 satisfies both conditions: 45 / 9 = 5 (an integer), and 45 / 15 = 3 (an integer). No positive integer smaller than 45 is divisible by both 9 and 15, because any such integer would have to be a multiple of the LCM. Therefore S = 45.
+
+**Finding the digit sum.** The digit sum D is defined as the sum of all digits of S. The digits of 45 are 4 and 5, so D = 4 + 5 = 9.
+
+**Checking the candidate values.** Among the six candidates — 9, 15, 27, 36, 45, 135 — the value 45 is the smallest positive multiple of both 9 and 15, confirming S = 45. For the digit sum, D = 9 also appears in the candidate list, confirming both selections are valid.
+
+The correct answers are S (smallest N) = 45 and D (digit sum of S) = 9.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1055,15 +2016,35 @@ Select the value of A (column 1) and the value of B (column 2).
 | 32  |          |         |
 
 **answer:** A = 28, B = 20
-**fastest_path:** Half-sum plus/minus half-difference: A = (48+8)/2 = 28, B = (48−8)/2 = 20.
-**explanation:** Two equations: A + B = 48 and A − B = 8. Adding them: 2A = 56 → A = 28. Substituting: B = 48 − 28 = 20. Verify: 28 + 20 = 48 ✓ and 28 − 20 = 8 ✓.
-**mistake_a:** 12 — result of an unrelated arithmetic slip; no natural path here.
-**mistake_b:** 16 — computing B as 48/3 = 16 (using a 2:1 ratio rather than the stated 8-book gap).
-**mistake_c:** 20 — the correct value for B; selecting this for column 1 reverses the answer pair.
-**mistake_d:** 24 — the 50/50 split (48/2), ignoring the 8-book difference.
-**mistake_f:** 32 — computing A as 48 − 16 = 32, using the wrong value of B.
-**common_trap:** Treating 48/2 = 24 as both values — but equal split satisfies the total while ignoring the difference constraint.
-**takeaway:** Sum-and-difference pair: A = (total + difference)/2; B = (total − difference)/2.
+**explanation:** **Setup.** Two conditions govern the relationship between Anna's book count and Ben's book count. Let A = the number of books Anna owns and B = the number of books Ben owns.
+
+The first condition states that the two together own 48 books:
+
+A + B = 48
+
+The second condition states that Anna has 8 more books than Ben:
+
+A = B + 8
+
+**Solving the system.** Substituting the expression for A from the second equation into the first:
+
+(B + 8) + B = 48
+
+2B + 8 = 48
+
+2B = 40
+
+B = 20
+
+Substituting B = 20 back into A = B + 8 gives:
+
+A = 20 + 8 = 28
+
+**Verification.** Checking both conditions: A + B = 28 + 20 = 48 (correct), and A - B = 28 - 20 = 8 (correct). Both equations are satisfied.
+
+**Selecting from the candidate values.** The candidate row values are 12, 16, 20, 24, 28, and 32. The derived value A = 28 appears in the list and is assigned to column 1 (Anna). The derived value B = 20 appears in the list and is assigned to column 2 (Ben).
+
+The correct answers are A (Anna) = 28 and B (Ben) = 20.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1087,14 +2068,33 @@ Select the value of J (column 1) and the value of F (column 2).
 | 68  |                   |                    |
 
 **answer:** J = 60, F = 66
-**fastest_path:** J = 80 × 0.75 = 60. F = 60 × 1.10 = 66.
-**explanation:** January discount of 25%: J = 80 × (1 − 0.25) = 80 × 0.75 = 60. February increase of 10% on the new price: F = 60 × 1.10 = 66. The 10% applies to the January price ($60), not the original price ($80). Many students accidentally apply the February increase to $80 instead of $60.
-**mistake_a:** 48 — computing 80 × 0.60 (a 40% discount instead of 25%).
-**mistake_b:** 56 — computing 80 × 0.70 (a 30% discount instead of 25%).
-**mistake_d:** 64 — computing 80 × 0.80 (a 20% discount instead of 25%).
-**mistake_f:** 68 — applying the 10% increase to the original price instead of the discounted price: 60 + 80 × 0.10 = 60 + 8 = 68.
-**common_trap:** Applying the February 10% increase to the original $80 rather than the $60 January price, giving 60 + 8 = 68 instead of 60 × 1.10 = 66.
-**takeaway:** Sequential percentage changes apply each step to the result of the previous step, not to the original value.
+**explanation:** **Governing principle.** A percentage discount reduces a quantity by a given fraction of its current value, and a percentage increase raises a quantity by a given fraction of its current value. Successive percentage changes are applied sequentially, each to the result of the prior step — not to the original amount.
+
+**Variable definitions.**
+
+Let P = the original price = 80.
+Let J = the price after the January 25% discount.
+Let F = the price after the February 10% increase applied to J.
+
+**Step 1: January discount.**
+
+A discount of 25% means the item retains 100% - 25% = 75% of its prior price. Therefore:
+
+J = P * (1 - 0.25) = 80 * 0.75 = 60
+
+Among the candidate values, J = 60.
+
+**Step 2: February increase.**
+
+A price increase of 10% means the item becomes 100% + 10% = 110% of its prior price. The base for this calculation is J, not the original P. Therefore:
+
+F = J * (1 + 0.10) = 60 * 1.10 = 66
+
+Among the candidate values, F = 66.
+
+**Why common errors arise.** A frequent mistake is to apply the February percentage to the original price (80 * 1.10 = 88, which does not appear among the candidates) or to subtract and add the raw percentage points as dollar amounts rather than fractions of the current base. Another error is computing a net change of -25% + 10% = -15% applied to the original (80 * 0.85 = 68), which conflates sequential multiplicative steps with a single additive adjustment and yields an incorrect result for F even though 68 appears as a distractor.
+
+The correct answers are J (January price) = 60 and F (February price) = 66.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1117,13 +2117,33 @@ From the statements below, select the conclusion of the argument (column 1) and 
 | The restaurant reduced its prices by 10% to promote the new menu | | |
 
 **answer:** Conclusion = "The new menu is a clear success"; Alt Explanation = "The restaurant's closest competitor closed permanently the prior month"
-**fastest_path:** The conclusion is the claim being made (introduced by "The new menu is a clear success"). The alt explanation for the visit increase is an external factor — a competitor's closure — not the menu itself.
-**explanation:** The argument concludes that the new menu drove the 15% visit increase and high ratings. Row B states this conclusion explicitly. The strongest alternative explanation for the visit surge is that a nearby competitor closed, displacing customers who now have no alternative — that explanation has nothing to do with the quality of the new menu. Row E (reduced prices) is plausible but is described as promoting the menu, not as a primary alternative cause.
-**mistake_a:** Row A (15% visit increase) is a stated premise, not the conclusion.
-**mistake_c:** Row C (4.5 rating) is a second stated premise.
-**mistake_e:** Row E (price reduction) could be an alternative explanation but is described as secondary to the menu promotion; the competitor closing is a stronger and fully independent cause.
-**common_trap:** Picking a stated premise as the conclusion. The conclusion is what the evidence is meant to prove, not the evidence itself.
-**takeaway:** Conclusion = claim that the premises support. Alternative explanation = external factor that could produce the same observed outcome without the hypothesized cause.
+**explanation:** **Identifying the Conclusion.**
+
+In argument analysis, the conclusion is the claim that the author intends to establish and that the remaining statements are offered to support. The premises are the evidence; the conclusion is what that evidence is meant to prove.
+
+The manager's argument contains the following statements:
+
+- "Our restaurant introduced a new menu last month." (background fact)
+- "Customer visits increased by 15% compared to the same month last year." (evidence)
+- "Customers rated the new dishes an average of 4.5 out of 5." (evidence)
+- "The new menu is a clear success." (the claim the preceding evidence is meant to establish)
+
+"Customer visits increased by 15% last month" and "Customers rated the new dishes an average of 4.5 out of 5" both function as premises — they are presented as factual observations. "The new menu is a clear success" is the claim those observations are marshaled to support. It is therefore the conclusion of the argument.
+
+**Identifying the Strongest Alternative Explanation.**
+
+An alternative explanation, in the context of causal reasoning, is a statement that, if true, could independently account for the observed phenomenon — here, the 15% increase in customer visits — without crediting the cause the author proposes (the new menu).
+
+The remaining candidates are evaluated as follows:
+
+- "Customer visits increased by 15% last month" — this is the explanandum, the phenomenon requiring explanation. It cannot serve as its own explanation.
+- "Customers rated the new dishes an average of 4.5 out of 5" — this is a second premise within the original argument. It describes satisfaction with the menu itself, making it consistent with the author's conclusion rather than an alternative to it.
+- "The restaurant reduced its prices by 10% to promote the new menu" — a price reduction could attract additional customers, but the phrasing ties the reduction directly to promoting the new menu. This makes it at least partially connected to the new menu as a cause, weakening its force as a purely independent alternative explanation.
+- "The restaurant's closest competitor closed permanently the prior month" — this event is entirely independent of the new menu. If the nearest competitor shut down, its former customers would plausibly redirect their visits to this restaurant. This alone would be sufficient to produce a measurable increase in customer visits, with no causal role for the new menu whatsoever.
+
+The competitor's permanent closure provides the strongest alternative explanation because it is causally independent of the new menu, it is temporally proximate (occurring the prior month, just before the measured increase), and it directly predicts a redirection of consumer traffic to the restaurant in question.
+
+The correct answers are Conclusion = The new menu is a clear success and Alt Explanation = The restaurant's closest competitor closed permanently the prior month.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1147,14 +2167,47 @@ Select the value of S (column 1) and the value of B (column 2).
 | 128 |              |               |
 
 **answer:** S = 80, B = 128
-**fastest_path:** S = 240/3 = 80. Combined = 320. B = 0.40 × 320 = 128.
-**explanation:** The flour-to-sugar ratio is 3:1, so sugar = flour / 3 = 240 / 3 = 80 g. Total flour + sugar = 240 + 80 = 320 g. Butter = 40% of 320 = 0.40 × 320 = 128 g.
-**mistake_a:** 40 — computing sugar as 240/6 (treating the ratio as 6:1 or halving again after finding 80).
-**mistake_b:** 60 — computing sugar as 240/4 (treating the ratio as 4:1).
-**mistake_d:** 96 — computing butter as 40% of flour only (0.40 × 240 = 96), ignoring the sugar component of the combined weight.
-**mistake_e:** 120 — computing butter as 40% of an incorrect combined weight, e.g., 240 + 60 = 300 → 0.40 × 300 = 120.
-**common_trap:** Applying the 40% butter calculation to the flour weight alone ($240) instead of the flour-plus-sugar weight ($320).
-**takeaway:** When a derived quantity is based on a "combined" or "total" weight, compute the total first, then apply the percentage.
+**explanation:** **Governing principles.** A ratio by weight of 3:1 (flour to sugar) means that for every 3 grams of flour, 1 gram of sugar is required. A percentage applied to a combined weight means that percentage of the total is taken as the derived quantity.
+
+**Step 1 — Define variables and translate the problem into equations.**
+
+Let F = grams of flour = 240 (given), S = grams of sugar, and B = grams of butter.
+
+The flour-to-sugar ratio is:
+
+F / S = 3 / 1
+
+Therefore S = F / 3.
+
+The butter quantity satisfies:
+
+B = 0.40 * (F + S)
+
+**Step 2 — Solve for S.**
+
+Substituting F = 240:
+
+S = 240 / 3 = 80
+
+Therefore S = 80 grams.
+
+**Step 3 — Solve for B.**
+
+First, compute the combined weight of flour and sugar:
+
+F + S = 240 + 80 = 320 grams
+
+Then apply the 40% factor:
+
+B = 0.40 * 320 = 128
+
+Therefore B = 128 grams.
+
+**Step 4 — Verify against the candidate values.**
+
+The candidate list includes 80 and 128, confirming that both derived values are present among the options.
+
+The correct answers are S (sugar, g) = 80 and B (butter, g) = 128.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1178,13 +2231,40 @@ Select the value of G (column 1) and the value of D (column 2).
 | 40  |       |       |
 
 **answer:** G = 25, D = 8
-**fastest_path:** Q1 end price = 200 × 0.80 = 160. To recover: 160 × (1 + G/100) = 200 → G = 25. Dividend = 160 × 0.05 = 8.
-**explanation:** After a 20% loss, the Q1 end price = 200 × 0.80 = $160. To regain $200: growth factor = 200/160 = 1.25 → G = 25%. The dividend is 5% of the Q1 end price, not the original: D = 160 × 0.05 = $8. If you mistakenly apply 5% to the original $200 you get $10, not $8.
-**mistake_b:** 10 — computing dividend as 5% of the original price (0.05 × 200 = 10) instead of the Q1 end-of-quarter price.
-**mistake_c:** 20 — assuming the required gain equals the loss percentage. A 20% gain on $160 = $32, bringing the stock to only $192, not $200.
-**mistake_e:** 30 — overestimating the recovery, possibly via 20% × 1.5 mental math.
-**common_trap:** Assuming a 20% loss requires a 20% gain to recover. The gain must be calculated on the lower (post-loss) base, making it larger: 25% on $160 = $40, restoring to $200.
-**takeaway:** To recover from an x% loss, you need a gain of x/(100−x) × 100%, always greater than x%. A 20% loss requires a 25% gain to recover.
+**explanation:** **Setup.** Let P denote the original price per share, P = 200. Two quantities are required: G, the percentage gain needed in Q2 to restore the price exactly to P, and D, the cash dividend paid per share during Q1.
+
+**Finding G.**
+
+The governing principle is that a percentage change applies to the base value in effect at the time of the change. After Q1 the stock has lost 20% of its original price, so the end-of-Q1 price P_1 is
+
+P_1 = P x (1 - 20/100) = 200 x 0.80 = 160.
+
+For the stock to return exactly to P = 200 in Q2, the required dollar gain is
+
+200 - 160 = 40.
+
+That gain is measured as a percentage of the Q2 starting price, which is P_1 = 160. Therefore
+
+G = (40 / 160) x 100 = 2500 / 100 = 25.
+
+The common error is selecting G = 20 (the mirror of the Q1 loss). A 20% gain on 160 yields 160 x 1.20 = 192, which falls short of 200 by 8 dollars. Because the base from which Q2 growth is measured is smaller than the original base, the required recovery percentage must exceed the loss percentage; therefore G = 25, not 20.
+
+**Finding D.**
+
+The problem states that the dividend equals 5% of the Q1 end-of-quarter price, which has already been established to be P_1 = 160. Therefore
+
+D = 0.05 x 160 = 8.00.
+
+The dividend is denominated in dollars per share, so D = 8.
+
+**Summary of results.**
+
+| Column | Expression | Value |
+|---|---|---|
+| G (%) | (P - P_1) / P_1 x 100 | 25 |
+| D ($) | 0.05 x P_1 | 8 |
+
+The correct answers are G (%) = 25 and D ($) = 8.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1209,15 +2289,41 @@ Select the value of X (column 1) and the value of F (column 2).
 | 8     |                     |                           |
 
 **answer:** X = 6, F = 2/3
-**fastest_path:** 1/X = 1/4 − 1/12 = 3/12 − 1/12 = 2/12 = 1/6 → X = 6. F = 4 × (1/6) = 2/3.
-**explanation:** Combined rate = 1/4 job per minute. Printer A's rate = 1/12 job per minute. Printer B's rate = 1/4 − 1/12 = 3/12 − 1/12 = 2/12 = 1/6 job per minute, so X = 6 minutes solo. In the 4-minute combined run, B's contribution = 4 × (1/6) = 4/6 = 2/3. Cross-check: A's contribution = 4 × (1/12) = 1/3. B's 2/3 + A's 1/3 = 1 whole job ✓.
-**mistake_a:** 1/3 — Printer A's fraction (4 × 1/12), not B's. Students who compute A's contribution and place it in column 2 swap the two printers.
-**mistake_b:** 1/2 — eyeballing the split rather than computing rates.
-**mistake_d:** 3 — computing X = 12/4 = 3, treating the combined time as if it were B's solo rate (a harmonic-mean confusion).
-**mistake_e:** 4 — equating B's solo time with the combined time; there is no reason A and B take the same amount of time alone.
-**mistake_g:** 8 — computing X = 12 − 4 = 8, subtracting times instead of subtracting rates.
-**common_trap:** Subtracting times (12 − 4 = 8) instead of subtracting rates (1/4 − 1/12 = 1/6).
-**takeaway:** Work/rate: rates add (1/A + 1/B = 1/T); do not subtract times. Solve for the unknown rate first, then invert for time.
+**explanation:** **The combined-work principle** states that when two workers operate simultaneously, their individual rates add: if Worker A completes 1/a of a job per unit time and Worker B completes 1/b of a job per unit time, together they complete 1/a + 1/b of the job per unit time, and the time to finish the whole job is the reciprocal of that sum.
+
+**Setting up the rate equation.**
+
+Let x be the number of minutes Printer B requires to complete the job alone. Printer A completes the job alone in 12 minutes, so A's rate is 1/12 of the job per minute. Printer B's rate is 1/x of the job per minute. Working together, the two printers finish the job in 4 minutes, so their combined rate is 1/4 of the job per minute. The governing equation is therefore:
+
+1/12 + 1/x = 1/4
+
+**Solving for X.**
+
+Subtract 1/12 from both sides:
+
+1/x = 1/4 - 1/12
+
+To subtract these fractions, convert to a common denominator of 12:
+
+1/4 = 3/12
+
+1/x = 3/12 - 1/12 = 2/12 = 1/6
+
+Taking the reciprocal of both sides:
+
+x = 6
+
+Printer B requires 6 minutes to complete the job alone, so the correct value for column 1 is **6**.
+
+**Solving for F.**
+
+Let F be the fraction of the job that Printer B completes during the 4-minute combined run. Since B's rate is 1/6 of the job per minute, the fraction B contributes over 4 minutes is:
+
+F = rate of B * time = (1/6) * 4 = 4/6 = 2/3
+
+This result is consistent: A's contribution over the same 4 minutes is (1/12) * 4 = 4/12 = 1/3. The two fractions sum to 1/3 + 2/3 = 1, confirming the entire job is completed. The correct value for column 2 is **2/3**.
+
+The correct answers are X (min for B alone) = 6 and F (B's fraction in 4 min) = 2/3.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1241,14 +2347,41 @@ Select the value of T (column 1) and the value of U (column 2).
 | 8 |                |                 |
 
 **answer:** T = 8, U = 4
-**fastest_path:** T = 2U. Reversal difference: 9(T − U) = 36 → T − U = 4. With T = 2U: U = 4, T = 8.
-**explanation:** The difference between a two-digit number and its reverse = 9(T − U). Setting this equal to 36: T − U = 4. Combining with T = 2U: 2U − U = 4 → U = 4, T = 8. The original number is 84; reversed is 48; 84 − 48 = 36 ✓. Also, T = 2U: 8 = 2 × 4 ✓.
-**mistake_a:** 2 — half of the correct U value; result of applying the 2× relationship in the wrong direction (U = T/2 instead of T = 2U).
-**mistake_b:** 3 — U solved from T − U = 4 alone without applying T = 2U constraint (e.g., U = 7 − 4 = 3 with T = 7, which is not in ratio 2:1).
-**mistake_d:** 6 — T solved from T − U = 4 alone with U assumed to be 2: T = 6, U = 2. Reversal check: 62 − 26 = 36 ✓. But T = 6 ≠ 2 × 2 = 4, violating the 2× constraint. Students who stop after checking only one condition land here.
-**mistake_e:** 7 — off-by-one from T − U = 4 arithmetic.
-**common_trap:** Using only the reversal constraint (T − U = 4) and finding T = 6, U = 2 as a solution without checking that T = 2U also holds.
-**takeaway:** Two constraints, two unknowns: always verify both equations are satisfied by your answer pair.
+**explanation:** **Governing principle.** A two-digit integer with tens digit T and units digit U has the value 10T + U. Reversing the digits produces the integer 10U + T. The difference between the two is therefore (10T + U) - (10U + T) = 9T - 9U = 9(T - U).
+
+**Defining variables and translating the conditions.**
+
+Let T represent the tens digit and U represent the units digit, where T and U are each integers from 1 to 9 (T >= 1 since the original number is a two-digit integer, and U >= 1 since reversing it must also yield a two-digit integer).
+
+- Condition 1 (tens digit is twice the units digit): T = 2U
+- Condition 2 (original number exceeds reversed number by exactly 36): (10T + U) - (10U + T) = 36
+
+**Simplifying Condition 2.**
+
+(10T + U) - (10U + T) = 9T - 9U = 9(T - U) = 36
+
+Dividing both sides by 9: T - U = 4
+
+**Solving the system.**
+
+Two equations now govern T and U:
+
+1. T = 2U
+2. T - U = 4
+
+Substituting equation 1 into equation 2:
+
+2U - U = 4, therefore U = 4.
+
+Substituting U = 4 back into equation 1: T = 2(4) = 8.
+
+**Verification.**
+
+The original number is 10(8) + 4 = 84. The reversed number is 10(4) + 8 = 48. The difference is 84 - 48 = 36, which satisfies Condition 2 exactly. Condition 1 is also satisfied since 8 = 2(4).
+
+Both values appear among the candidate row values (2, 3, 4, 6, 7, 8): T = 8 and U = 4 are both present.
+
+The correct answers are T (tens digit) = 8 and U (units digit) = 4.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1272,14 +2405,64 @@ Select the value of S (column 1) and the value of P (column 2).
 | 170 |              |             |
 
 **answer:** S = 150, P = 100
-**fastest_path:** If all 250 were standard: revenue = $4,500. Surplus = $1,200. Each premium swap adds $12. Premiums = 1,200/12 = 100. Standards = 150.
-**explanation:** Let S + P = 250 and 18S + 30P = 5,700. Substitute S = 250 − P: 18(250 − P) + 30P = 5,700 → 4,500 + 12P = 5,700 → 12P = 1,200 → P = 100. S = 150. Verify: 150 + 100 = 250 ✓; 18 × 150 + 30 × 100 = 2,700 + 3,000 = 5,700 ✓.
-**mistake_a:** 80 — premiums over-estimated (P = 170), pushing standards too low.
-**mistake_c:** 120 — standards from an arithmetic slip in the substitution (12P = 1,560 → P = 130, S = 120); verify: 18×120 + 30×130 = 2,160 + 3,900 = 6,060 ≠ 5,700.
-**mistake_d:** 130 — premiums over-estimated by the same slip above.
-**mistake_f:** 170 — standards if P is under-counted (P = 80): 18×170 + 30×80 = 3,060 + 2,400 = 5,460 ≠ 5,700.
-**common_trap:** Setting S = P = 125 (equal split): revenue = 18×125 + 30×125 = 2,250 + 3,750 = 6,000 ≠ 5,700. The lower target revenue forces more standard tickets.
-**takeaway:** Two-price sum: set up the "all-low-price" floor, compute the surplus, then divide by the per-unit price gap to find how many high-price units are needed.
+**explanation:** **Setting up the system of equations.**
+
+The problem provides two independent constraints on the same two unknowns, which is the hallmark of a linear system solvable by substitution or elimination. Let S = the number of standard tickets sold and P = the number of premium tickets sold.
+
+**Constraint 1 — total tickets sold.**
+
+The theater sold 250 tickets in total, so:
+
+S + P = 250
+
+**Constraint 2 — total revenue.**
+
+Standard tickets sell for $18 each and premium tickets for $30 each, producing total revenue of $5,700:
+
+18S + 30P = 5700
+
+**Solving by substitution.**
+
+From Constraint 1, we isolate S:
+
+S = 250 - P
+
+Substituting into Constraint 2:
+
+18(250 - P) + 30P = 5700
+
+Expanding the left side:
+
+4500 - 18P + 30P = 5700
+
+Combining like terms:
+
+4500 + 12P = 5700
+
+Subtracting 4500 from both sides:
+
+12P = 1200
+
+Dividing both sides by 12:
+
+P = 100
+
+Returning to Constraint 1 to find S:
+
+S = 250 - 100 = 150
+
+**Verification.**
+
+Both constraints are checked against S = 150 and P = 100.
+
+- Total tickets: 150 + 100 = 250. Confirmed.
+- Total revenue: 18(150) + 30(100) = 2700 + 3000 = 5700. Confirmed.
+
+**Eliminating the remaining candidate values.**
+
+The candidate values for each column are 80, 100, 120, 130, 150, and 170. Because the system has a unique solution, any assignment other than S = 150 and P = 100 fails at least one constraint. For example, if S = 170 then P = 80, and revenue would be 18(170) + 30(80) = 3060 + 2400 = 5460, not 5700. Similarly, if S = 130 then P = 120, and revenue would be 18(130) + 30(120) = 2340 + 3600 = 5940, not 5700. Only S = 150 and P = 100 satisfies both equations simultaneously.
+
+The correct answers are S (standard) = 150 and P (premium) = 100.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1301,14 +2484,30 @@ From the statements below, select the statement that most seriously weakens the 
 | The program required a significant time commitment that temporarily reduced measured output | | |
 | Post-program surveys show that mentees cite career-growth opportunities as their primary reason for staying | | |
 
-**answer:** Weakens = "Turnover at peer companies...dropped by 10 points...with no mentorship programs"; Supports = "Employees who participated...left at half the rate of those who did not"
-**fastest_path:** Strongest weaken = industry-wide trend (external factor explains the drop without the program). Strongest support = within-company A/B comparison showing program participants had lower turnover than non-participants.
-**explanation:** Row A establishes that a similar turnover drop occurred industry-wide without any mentorship program, meaning the drop at this company is likely caused by an external factor (e.g., labor market conditions), not the program. This directly undermines the causal attribution. Row B is the most direct support: a controlled within-company comparison showing that participants left at half the rate of non-participants provides the most proximate evidence that the program itself drove the retention improvement. Row C (prior salary increase) also weakens, but an industry-wide trend with no mentorship is stronger evidence against the specific causal claim.
-**mistake_c:** The salary increase is an alternative cause and does weaken the conclusion — but the industry trend (Row A) eliminates the program's role entirely, making it stronger.
-**mistake_d:** Productivity impact is irrelevant to whether turnover was reduced.
-**mistake_e:** Mentees reporting career growth as a retention reason is a mechanism supporting the conclusion but is weaker than the A/B comparison in Row B, because survey self-reports can be biased.
-**common_trap:** Selecting Row C (salary increase) as the weakener because it is an obvious competing cause — but the industry trend (Row A) is stronger, as it implies the entire drop would have happened without the program.
-**takeaway:** Strongest weakener = evidence that the observed effect would have occurred without the intervention. Strongest support = controlled comparison (participants vs. non-participants) within the same environment.
+**answer:** Weakens = Turnover at peer companies in the same sector dropped; Supports = Employees who participated in the mentorship program left the company
+**explanation:** A causal conclusion of the form "intervention X caused outcome Y" can be weakened by identifying an alternative explanation that accounts for Y without X, and can be supported by evidence that more directly isolates X as the operative cause of Y.
+
+The company's annual turnover fell from 22% to 13% — a drop of 22 - 13 = 9 percentage points — over the 18 months following the launch of the mentorship program. The conclusion is that the mentorship program caused this decline.
+
+A weakener must undermine the link between the mentorship program and the observed turnover reduction. The most effective weakener introduces an alternative explanation powerful enough to account for the 9-point decline on its own.
+
+"Turnover at peer companies in the same sector dropped by an average of 10 points over the same period, with no mentorship programs." If companies in the same sector experienced a 10-point decline without any mentorship program, the 9-point decline at this company falls entirely within what sector-wide forces alone would predict. The causal role of the program is therefore rendered unnecessary to explain the data. This is a classic alternative-cause weakener: it provides an independent mechanism — sector-wide conditions — that fully accounts for the magnitude of the effect, severing the claimed causal link.
+
+"A company-wide salary increase of 15% was implemented three months before the mentorship program launched." This introduces a confounding variable internal to the company. However, it does not supply an external benchmark showing that the entire 9-point drop is accounted for by a non-program factor; it merely identifies one possible confound. The sector-wide benchmark is a more serious weakener because it demonstrates that an equivalent or larger decline occurred in the absence of any mentorship program, making the program causally superfluous.
+
+The remaining candidates do not introduce alternative causal explanations for the turnover reduction and therefore do not weaken the conclusion.
+
+A supporter must make the causal link between the mentorship program and reduced turnover more credible. The strongest support comes from evidence that isolates the program as the operative variable.
+
+"Employees who participated in the mentorship program left the company at half the rate of employees who did not participate." This is an internal, within-company controlled comparison. Defining r_p as the turnover rate for program participants and r_n as the turnover rate for non-participants, the statement establishes r_p = (1/2) * r_n. Because both groups exist within the same company during the same period, they are exposed to the same salary increases, industry conditions, and macroeconomic factors. The only systematic difference between the groups is participation in the mentorship program. The finding therefore isolates the program's effect and directly supports a causal attribution.
+
+"Post-program surveys show that mentees cite career-growth opportunities as their primary reason for staying." This is consistent with the mentorship program helping retention, but it is limited by self-report bias and does not control for other variables. It is weaker support than the direct rate comparison above.
+
+"The program required a significant time commitment that temporarily reduced measured output." This observation concerns productivity, not turnover, and neither strengthens nor weakens the causal conclusion about retention.
+
+The weakener works by showing that a 10-point sector-wide decline — larger than the company's own 9-point decline — occurred simultaneously in companies with no mentorship program, making external conditions a fully sufficient explanation. The supporter works by holding all other factors constant within the same company and showing a 2:1 turnover-rate differential that aligns precisely with program participation status.
+
+The correct answers are Weakens = Turnover at peer companies in the same sector dropped by an average of 10 points over the same period, with no mentorship programs and Supports = Employees who participated in the mentorship program left the company at half the rate of employees who did not participate.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1322,7 +2521,7 @@ A bag contains 5 red marbles and 7 blue marbles. Two marbles are drawn sequentia
 
 Select the value of P1 (column 1) and the value of P2 (column 2).
 
-|       | P1 (first red) | P2 (second red \| first red) |
+|       | P1 (first red) | P2 (second red, given first red) |
 |-------|----------------|------------------------------|
 | 1/12  |                |                              |
 | 4/11  |                |                              |
@@ -1332,14 +2531,44 @@ Select the value of P1 (column 1) and the value of P2 (column 2).
 | 7/12  |                |                              |
 
 **answer:** P1 = 5/12, P2 = 4/11
-**fastest_path:** P1 = 5/12 (5 red out of 12 total). After one red is drawn: 4 red remain out of 11 total → P2 = 4/11.
-**explanation:** Initially 5 red + 7 blue = 12 total marbles. P1 = 5/12. Given the first draw was red, the bag now has 4 red and 7 blue marbles (11 total). P2 = 4/11. Key: both the numerator and denominator decrease by 1 when the first red marble is removed.
-**mistake_a:** 1/12 — a minor arithmetic slip with no natural path; included as a near-zero distractor.
-**mistake_c:** 4/12 — computing P2 with the original denominator (12) instead of the updated count after removal (11).
-**mistake_d:** 5/11 — reducing the denominator by 1 (correct) but forgetting to reduce the numerator — treating it as if the first red marble was returned.
-**mistake_f:** 7/12 — the probability that the first marble is blue; students who swap color may select this for P1.
-**common_trap:** Reducing only the denominator (from 12 to 11) while keeping the red count at 5, giving 5/11 instead of 4/11.
-**takeaway:** Without-replacement conditional probability: after a specific color is drawn, subtract 1 from both the count of that color and the total count before computing the next probability.
+**explanation:** **Conditional Probability — Sequential Draws Without Replacement**
+
+We apply the classical definition of probability and the formal definition of conditional probability. For any event A, P(A) = (number of favorable outcomes) / (total number of equally likely outcomes). For conditional probability, P(B | A) = P(A and B) / P(A), which in the case of sequential draws without replacement reduces to a direct count on the reduced sample space after the first draw has occurred.
+
+**Setting up the problem.**
+
+Let the bag contain 5 red marbles and 7 blue marbles, for a total of 5 + 7 = 12 marbles. Define:
+
+- P1 = P(first marble is red)
+- P2 = P(second marble is red | first marble was red)
+
+**Computing P1.**
+
+On the first draw, all 12 marbles are present and each is equally likely to be selected. There are 5 favorable outcomes (any of the 5 red marbles). Therefore:
+
+P1 = 5/12
+
+Among the candidate values, 5/12 is listed and is the unique correct match.
+
+**Computing P2.**
+
+We now condition on the event that the first marble drawn was red. Because the draw is without replacement, that red marble is removed from the bag before the second draw. The bag therefore contains:
+
+- Red marbles remaining: 5 - 1 = 4
+- Blue marbles remaining: 7 (unchanged)
+- Total marbles remaining: 4 + 7 = 11
+
+On the second draw, the reduced sample space has 11 equally likely outcomes, of which 4 are favorable (red). Therefore:
+
+P2 = 4/11
+
+Among the candidate values, 4/11 is listed and is the unique correct match.
+
+**Checking the distractors.**
+
+The value 5/11 would correspond to the probability the second marble is red given the first marble drawn was blue (leaving all 5 red marbles in an 11-marble pool) — a different conditional event. The value 4/12 incorrectly applies the reduced numerator to the original denominator, conflating two different sample spaces. The value 1/12 has no direct interpretation here, and 7/12 is the probability the first marble drawn is blue, not red. None of these match the events defined in the prompt.
+
+The correct answers are P1 (first red) = 5/12 and P2 (second red, given first red) = 4/11.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1363,13 +2592,38 @@ Select the value of N1 (column 1) and the value of N2 (column 2).
 | 20  |             |             |
 
 **answer:** N1 = 18, N2 = 12
-**fastest_path:** 70N1 + 90N2 = 78 × 30 = 2,340. With N1 = 30 − N2: 2,100 + 20N2 = 2,340 → N2 = 12, N1 = 18.
-**explanation:** System: N1 + N2 = 30 and 70N1 + 90N2 = 2,340. Substitute N1 = 30 − N2: 70(30 − N2) + 90N2 = 2,340 → 2,100 + 20N2 = 2,340 → 20N2 = 240 → N2 = 12. N1 = 18. Verify: 70 × 18 + 90 × 12 = 1,260 + 1,080 = 2,340 ✓.
-**mistake_c:** 12 — the correct value for N2; selecting this for column 1 swaps the pair.
-**mistake_d:** 15 — the naive equal split (30/2 = 15). This corresponds to an overall average of 80, not 78. Since 78 is closer to 70 than to 90, Group 1 (Test A, lower average) must be larger.
-**mistake_f:** 20 — over-correcting in the direction of Test A (lower-scoring group).
-**common_trap:** Concluding N1 = N2 = 15 because 78 "looks like" the midpoint of 70 and 90. But the midpoint of 70 and 90 is 80, not 78. The below-midpoint overall average means Group 1 is the larger group.
-**takeaway:** Weighted average: the group with the average closer to the overall average is the larger group. Always verify with 70N1 + 90N2 = overall average × total.
+**explanation:** **Governing principle.** The weighted average of two groups equals the sum of each group's total score divided by the total number of students. Formally, if Group 1 has N1 students with mean score A and Group 2 has N2 students with mean score B, then the overall mean M satisfies:
+
+(N1 * A + N2 * B) / (N1 + N2) = M
+
+**Setting up the system.** Given A = 70, B = 90, M = 78, and N1 + N2 = 30, substituting into the weighted-average formula and multiplying both sides by 30 yields:
+
+N1 * 70 + N2 * 90 = 78 * 30 = 2340
+
+This produces a two-equation system:
+
+- N1 + N2 = 30
+- 70 * N1 + 90 * N2 = 2340
+
+**Solving by substitution.** From the first equation, N2 = 30 - N1. Substituting into the second:
+
+70 * N1 + 90 * (30 - N1) = 2340
+
+70 * N1 + 2700 - 90 * N1 = 2340
+
+-20 * N1 = 2340 - 2700 = -360
+
+N1 = -360 / -20 = 18
+
+Therefore N2 = 30 - 18 = 12.
+
+**Verification.** Confirming that the weighted average recovers M = 78:
+
+(18 * 70 + 12 * 90) / 30 = (1260 + 1080) / 30 = 2340 / 30 = 78. Correct.
+
+**Intuition via mixture reasoning.** The overall average of 78 lies between 70 and 90. Its distance from each group mean is: 78 - 70 = 8 points above Test A's mean, and 90 - 78 = 12 points below Test B's mean. By the lever principle for weighted averages, the group sizes must be inversely proportional to these distances: N1 / N2 = 12 / 8 = 3 / 2. With N1 + N2 = 30, this gives N1 = 18 and N2 = 12, confirming the algebraic result.
+
+The correct answers are N1 (Test A) = 18 and N2 (Test B) = 12.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1393,14 +2647,59 @@ Select the value of C (column 1) and the value of W (column 2).
 | 200 |                |                 |
 
 **answer:** C = 100, W = 100
-**fastest_path:** Profit = 400C + 600W = 400(200−W) + 600W = 80,000 + 200W — maximize W. Labor cap: 3(200−W) + 5W ≤ 800 → 2W ≤ 200 → W ≤ 100. So W = 100, C = 100.
-**explanation:** With C + W = 200 and C = 200 − W, profit simplifies to 80,000 + 200W — every additional acre of wheat adds $200 net profit over corn. The binding constraint is labor: 3C + 5W ≤ 800. Substituting C = 200 − W: 600 − 3W + 5W ≤ 800 → 2W ≤ 200 → W ≤ 100. The profit-maximizing solution is W = 100, C = 100. At W = 150 the labor requirement would be 3×50 + 5×150 = 900 > 800 — infeasible.
-**mistake_a:** C = 0, W = 200 — ignores the labor constraint; 5×200 = 1,000 > 800 labor-days.
-**mistake_b:** C = 50, W = 150 — labor check: 3×50 + 5×150 = 150 + 750 = 900 > 800. Infeasible.
-**mistake_c:** C = 80, W = 120 — labor: 3×80 + 5×120 = 240 + 600 = 840 > 800. Still infeasible.
-**mistake_e:** C = 150, W = 50 — feasible (3×150 + 5×50 = 450+250 = 700 ≤ 800) but not optimal; profit = 60,000+30,000 = $90,000 < $100,000.
-**common_trap:** Allocating all acres to wheat (highest per-acre profit) without checking the labor constraint. Wheat is profitable per acre but expensive in labor-days; the cap binds before you can go beyond W = 100.
-**takeaway:** In constrained optimization, first identify the direction of improvement (maximize the higher-return resource), then find the tightest constraint and set it as an equality to maximize.
+**explanation:** Let C = the number of acres planted with corn and W = the number of acres planted with wheat. The problem imposes two constraints and one objective.
+
+**Constraint 1 — land:** The farmer plants all 200 acres, so
+
+C + W = 200
+
+**Constraint 2 — labor:** Each corn acre requires 3 labor-days and each wheat acre requires 5 labor-days, with at most 800 labor-days available:
+
+3C + 5W <= 800
+
+**Objective:** Maximize total profit P = 400C + 600W.
+
+**Reducing to one variable.**
+
+From Constraint 1, C is expressed in terms of W:
+
+C = 200 - W
+
+Substituting into the labor constraint:
+
+3(200 - W) + 5W <= 800
+600 - 3W + 5W <= 800
+600 + 2W <= 800
+2W <= 200
+W <= 100
+
+The non-negativity conditions W >= 0 and C = 200 - W >= 0 give W <= 200. The binding upper bound is therefore W <= 100.
+
+**Expressing profit in terms of W.**
+
+Substituting C = 200 - W into the profit function:
+
+P = 400(200 - W) + 600W
+P = 80000 - 400W + 600W
+P = 80000 + 200W
+
+Because the coefficient of W is positive (200 > 0), profit is strictly increasing in W. Profit is therefore maximized by setting W as large as the constraints permit. The feasible maximum is W = 100.
+
+**Solving for C.**
+
+With W = 100:
+
+C = 200 - 100 = 100
+
+**Verification.**
+
+Land: C + W = 100 + 100 = 200. The acreage constraint is satisfied exactly.
+Labor: 3(100) + 5(100) = 300 + 500 = 800. The labor constraint is satisfied exactly (the bound is tight).
+Profit: 400(100) + 600(100) = 40000 + 60000 = 100000.
+
+For comparison, at W = 50, C = 150: profit = 400(150) + 600(50) = 60000 + 30000 = 90000, which is less than 100000. At W = 0, C = 200: profit = 400(200) = 80000, still less. Any W > 100 paired with C = 200 - W violates the labor constraint (labor = 800 + 2(W - 100) > 800). Therefore the profit-maximizing feasible solution is uniquely C = 100, W = 100.
+
+The correct answers are C (corn acres) = 100 and W (wheat acres) = 100.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1422,14 +2721,67 @@ From the statements below, select the one that most seriously weakens the conclu
 | Mandating vacation will create scheduling complexity that increases management overhead costs | | |
 | The $1.5 million recovery target represents only 75% of the stated $2 million loss, leaving a residual gap | | |
 
-**answer:** Weakens = "Most TechCorp employees will continue performing work tasks during mandated vacation time..."; Unstated Assumption = "The 30% productivity difference...reflects that high performers self-select into taking longer vacations..."
-**fastest_path:** Weakener = mechanism failure (mandated vacation ≠ rest → productivity gain mechanism is disabled). Unstated assumption = the survey correlation is treated as causal (high performers self-select into vacation-taking; mandating it won't replicate the effect).
-**explanation:** The argument's mechanism is: mandate vacation → employees rest → productivity rises by ~30% → $1.5M+ recovery. Row A attacks this mechanism at its root: if employees work during their "vacation," the rest-to-productivity chain never activates. Row C identifies the core unstated assumption: the argument treats a correlation between vacation and productivity as a causal relationship. But if high performers self-select into taking vacations (they have the political capital and confidence to unplug), mandating vacation for all employees would not produce the same productivity boost. Row B weakens the data reliability but does not attack the core mechanism. Row D adds cost but does not negate productivity recovery. Row E is a mathematical restatement, not a logical flaw.
-**mistake_b:** Weakens the data source but does not destroy the mechanism; a partial weakener.
-**mistake_d:** Adds a cost concern but does not weaken the claim that productivity would recover.
-**mistake_e:** Reframes the 75% figure but does not challenge the argument's logic — it restates what 75% means.
-**common_trap:** Selecting Row B as the weakener because "different industry" sounds like a strong methodological flaw. But Row A directly disables the mechanism through which the conclusion is supposed to work, making it the stronger attack.
-**takeaway:** The strongest weakener targets the mechanism, not just the data. The most critical unstated assumption is the one without which the entire conclusion collapses — here, that the correlation is causal.
+**answer:** Weakens = Most TechCorp employees will continue performing work tasks; Unstated Assumption = The 30% productivity difference between high-vacation and low-vacation employees
+**explanation:** Governing framework. A Two-Part Analysis question requires identifying, for one column, the statement that most seriously undermines the conclusion, and for the other column, the statement that names a critical unstated assumption the argument takes for granted. These are distinct logical roles: a weakener supplies evidence that breaks a causal or inferential link the argument relies on; an unstated assumption is a premise the argument needs to be true but never explicitly states.
+
+Reconstructing the argument.
+
+Let V = the average number of vacation days taken by "high-vacation" employees (>= 15 days per year).
+Let L = the average number of vacation days taken by "low-vacation" employees (< 15 days per year).
+Let P_H = productivity of high-vacation employees, P_L = productivity of low-vacation employees.
+
+The survey establishes: P_H = 1.30 * P_L, i.e., a 30% productivity premium associated with taking at least 15 vacation days.
+
+Let D = the annual productivity loss TechCorp incurs from overworked employees = $2,000,000.
+Let R = the projected recovery if TechCorp mandates 15 minimum vacation days.
+
+The consulting firm concludes: R >= $1,500,000 (i.e., R >= 0.75 * D).
+
+Identifying the inferential chain. The argument moves through three links:
+
+1. The 30% productivity difference is caused by vacation, not merely correlated with it.
+2. Mandating vacation will function as genuine rest and thereby deliver that productivity benefit.
+3. The survey's findings generalize to TechCorp's specific workforce and industry context.
+
+Evaluating each candidate for Column 1 (Weakens).
+
+"Most TechCorp employees will continue performing work tasks during mandated vacation time, meaning the time off will not function as genuine rest." This directly attacks Link 2. If employees work during vacation, mandated time off produces no genuine rest, the causal mechanism that was supposed to generate the productivity gain is broken entirely, and the recovery projection collapses. This is a direct mechanism failure.
+
+"The $2 million productivity loss estimate was derived from a study of a different industry with significantly lower workloads." This undermines the reliability of the $2 million baseline figure. However, the conclusion is about recovering $1,500,000 of whatever the true loss is. If the baseline is unreliable, the conclusion is weakened, but the weakening is indirect — it attacks the measurement of D rather than the causal mechanism behind R.
+
+"The 30% productivity difference between high-vacation and low-vacation employees reflects that high performers self-select into taking longer vacations, not that vacation itself causes productivity gains." This attacks Link 1 (causation vs. correlation). It weakens the argument substantially by showing the 30% figure cannot be imported as a causal effect of mandating vacation. However, this statement also fits precisely as the critical unstated assumption (see below), making it the stronger candidate for Column 2.
+
+"Mandating vacation will create scheduling complexity that increases management overhead costs." This raises a countervailing cost, which is relevant to net benefit but does not strike at the core conclusion that R >= $1,500,000 in productivity recovery. It weakens net ROI, not the core productivity-recovery claim.
+
+"The $1.5 million recovery target represents only 75% of the stated $2 million loss, leaving a residual gap." This is a restatement of arithmetic already explicit in the argument (1,500,000 / 2,000,000 = 0.75). It does not introduce any new information and therefore does not weaken anything.
+
+The strongest weakener is the first option: it identifies a concrete mechanism failure — employees continuing to work during vacation — that directly prevents the causal chain from operating, regardless of whether vacation causes productivity gains in principle.
+
+Evaluating each candidate for Column 2 (Unstated Assumption).
+
+An unstated assumption is a premise that must be true for the conclusion to follow, but that the argument never articulates.
+
+"Most TechCorp employees will continue performing work tasks during mandated vacation time..." This is the negation of an assumption the argument makes, not the assumption itself. Framed as an assumption, the argument assumes employees will not work during vacation. But as stated, this option is a factual claim about TechCorp's employees that weakens the mechanism — it is better deployed as a weakener.
+
+"The $2 million productivity loss estimate was derived from a study of a different industry..." This is a factual statement about the provenance of a data point, not an assumption embedded in the argument's inferential chain.
+
+"The 30% productivity difference reflects that high performers self-select into taking longer vacations, not that vacation itself causes productivity gains." Precisely stated, this option describes what is true if the argument's critical unstated assumption is false. The argument's conclusion requires that the 30% productivity premium is caused by vacation itself, not merely a selection effect. The argument never states this; it assumes it. This option makes that hidden assumption visible by articulating the rival explanation — it is the classic correlation-vs.-causation assumption that must hold for the survey evidence to support the conclusion. This is the most critical unstated assumption.
+
+"Mandating vacation will create scheduling complexity..." This is a potential side effect, not an assumption embedded in the argument's inferential chain.
+
+"The $1.5 million recovery target represents only 75%..." This is pure arithmetic and names no assumption.
+
+Therefore, the unstated assumption is the third option: the argument silently assumes that vacation causes the productivity gain rather than that productivity differences explain vacation-taking behavior.
+
+Verification by negation test. Negating the unstated assumption — that is, positing that high performers merely self-select into taking more vacation — means the 30% figure carries no causal weight. Mandating vacation for lower performers would not replicate that premium, and R >= $1,500,000 would not follow. The argument collapses entirely, confirming this is a necessary and unstated assumption.
+
+Summary of derivation.
+
+For Weakens: the mechanism-failure option is preferred over the correlation/causation option because (a) it introduces new empirical content about TechCorp specifically, (b) it severs the causal link at the point of implementation rather than at the statistical inference stage, and (c) the correlation/causation option is more precisely the unstated assumption.
+
+For Unstated Assumption: the self-selection option is the only candidate that names a premise the argument must silently rely on — that the survey's 30% gap reflects a causal effect of vacation, not a selection artifact.
+
+The correct answers are Weakens = Most TechCorp employees will continue performing work tasks during mandated vacation time, meaning the time off will not function as genuine rest and Unstated Assumption = The 30% productivity difference between high-vacation and low-vacation employees reflects that high performers self-select into taking longer vacations, not that vacation itself causes productivity gains.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1453,15 +2805,49 @@ Select the value of B (column 1) and the value of C (column 2).
 | 24  |                       |                   |
 
 **answer:** B = 18, C = 6
-**fastest_path:** Downstream = 2 × upstream → B+C = 2(B−C) → B = 3C. Time difference: 72/(B−C) − 72/(B+C) = 3. With B = 3C: 72/(2C) − 72/(4C) = 3 → 18/C = 3 → C = 6, B = 18.
-**explanation:** Let upstream speed = B − C and downstream = B + C. The speed ratio condition B + C = 2(B − C) simplifies to 3C = B. Substituting into the time equation: 72/(2C) − 72/(4C) = 3 → 36/C − 18/C = 3 → 18/C = 3 → C = 6. Therefore B = 3 × 6 = 18. Verification: upstream = 12 km/h → 72/12 = 6 hours; downstream = 24 km/h → 72/24 = 3 hours; difference = 3 hours ✓; downstream = 2 × upstream ✓.
-**mistake_a:** 6 — the correct value for C; selecting this for column 1 reverses the answer pair.
-**mistake_b:** 9 — result of an arithmetic slip in the final step, e.g., solving 18/C = 2 instead of 3.
-**mistake_c:** 12 — the upstream speed (B − C = 18 − 6 = 12); mistaking the upstream speed for B.
-**mistake_d:** 15 — halfway between two meaningful values; no natural derivation.
-**mistake_f:** 24 — the downstream speed (B + C = 18 + 6 = 24); mistaking the downstream speed for B.
-**common_trap:** Confusing the boat's still-water speed B with the upstream speed (B − C = 12) or downstream speed (B + C = 24). B is neither — it's the average of those two: (12 + 24)/2 = 18.
-**takeaway:** Still-water speed = average of upstream and downstream speeds: B = [(B+C) + (B−C)] / 2. Always label what each speed represents before plugging in numbers.
+**explanation:** **Setup and variable definitions.**
+
+Let B = the boat's speed in still water (km/h) and C = the current's speed (km/h). When a boat travels upstream, the current opposes its motion, so the effective upstream speed is B - C. When the boat travels downstream, the current aids its motion, so the effective downstream speed is B + C. Time equals distance divided by speed; here the distance for each leg is 72 km.
+
+**Translating the two constraints into equations.**
+
+Constraint 1 — the downstream speed is exactly twice the upstream speed:
+
+B + C = 2(B - C)
+
+Expanding the right side: B + C = 2B - 2C. Subtracting B from both sides and adding 2C to both sides gives 3C = B, or equivalently B = 3C.
+
+Constraint 2 — the upstream trip takes 3 hours more than the downstream trip:
+
+72/(B - C) - 72/(B + C) = 3
+
+**Substituting B = 3C to reduce to one unknown.**
+
+With B = 3C:
+
+- Upstream speed: B - C = 3C - C = 2C
+- Downstream speed: B + C = 3C + C = 4C
+
+Substituting into the time equation:
+
+72/(2C) - 72/(4C) = 3
+
+Simplifying each term: 36/C - 18/C = 3, which gives 18/C = 3, therefore C = 18/3 = 6.
+
+**Solving for B.**
+
+Because B = 3C, it follows that B = 3 * 6 = 18.
+
+**Verification.**
+
+- Upstream speed: 18 - 6 = 12 km/h; time upstream: 72/12 = 6 hours.
+- Downstream speed: 18 + 6 = 24 km/h; time downstream: 72/24 = 3 hours.
+- Time difference: 6 - 3 = 3 hours. This matches the stated condition.
+- Speed ratio: 24/12 = 2. This matches the stated condition.
+
+Both constraints are satisfied. The column-1 value is B = 18 and the column-2 value is C = 6. Each of these values appears among the six candidates (6, 9, 12, 15, 18, 24).
+
+The correct answers are B (still water, km/h) = 18 and C (current, km/h) = 6.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1485,15 +2871,47 @@ Select the value of S (column 1) and the value of R (column 2).
 | 31  |                |              |
 
 **answer:** S = 17, R = 17
-**fastest_path:** List N mod 7 = 3: {3, 10, 17, ...}. Check mod 4 = 1: 3 mod 4 = 3 ✗; 10 mod 4 = 2 ✗; 17 mod 4 = 1 ✓. S = 17. Since 17 < 28, R = 17.
-**explanation:** The set of integers with remainder 3 when divided by 7: {3, 10, 17, 24, 31, …}. Test each for remainder 1 when divided by 4: 3 mod 4 = 3 (no); 10 mod 4 = 2 (no); 17 mod 4 = 1 (yes). So S = 17. The period of the joint-remainder system = LCM(7, 4) = 28. Because S = 17 < 28, the remainder when 17 is divided by 28 is simply 17 itself. Both column answers are 17 — they can point to the same row.
-**mistake_a:** 3 — satisfies N mod 7 = 3 but fails N mod 4 = 1 (3 mod 4 = 3). Students who check only the first condition stop here.
-**mistake_b:** 10 — satisfies N mod 7 = 3 but 10 mod 4 = 2 ≠ 1.
-**mistake_d:** 21 — 21 mod 7 = 0 ≠ 3; does not satisfy the first condition.
-**mistake_e:** 24 — 24 mod 7 = 3 ✓ but 24 mod 4 = 0 ≠ 1. Looks plausible but fails the second condition.
-**mistake_f:** 31 — the next valid solution after 17 in the periodic sequence (17 + 28 = 45... wait, 31 mod 7 = 3 ✓ and 31 mod 4 = 3 ✗). Students looking for a two-digit answer may land here.
-**common_trap:** Stopping at the first number that satisfies one condition (N = 3 for the mod-7 rule) without verifying the second condition. Always check both constraints before recording an answer.
-**takeaway:** Simultaneous remainder problems: list candidates for the first condition in order, then test each against the second condition. The period of the solution set = LCM of the two divisors.
+**explanation:** **The Chinese Remainder Theorem and modular arithmetic** govern this problem. A positive integer N satisfies two simultaneous congruence conditions; the task is to find the smallest such N (call it S) and then compute S mod 28.
+
+**Setting up the congruences.**
+
+Let N be a positive integer. The two conditions translate directly into congruence notation:
+
+- N = 7q + 3 for some non-negative integer q (remainder 3 when divided by 7)
+- N = 4p + 1 for some non-negative integer p (remainder 1 when divided by 4)
+
+We seek the smallest positive integer N satisfying both simultaneously.
+
+**Solving by substitution.**
+
+From the first condition, N takes the values 3, 10, 17, 24, 31, 38, ... (adding 7 each time). We test each against the second condition (N mod 4 = 1):
+
+- N = 3: 3 / 4 gives remainder 3. Fails.
+- N = 10: 10 / 4 gives remainder 2. Fails.
+- N = 17: 17 / 4 = 4 remainder 1. Satisfies both conditions.
+
+Therefore S = 17 is the smallest positive integer satisfying N mod 7 = 3 and N mod 4 = 1.
+
+**Verification of S = 17.**
+
+- 17 = 7(2) + 3, so 17 mod 7 = 3. Confirmed.
+- 17 = 4(4) + 1, so 17 mod 4 = 1. Confirmed.
+
+**Why the period is 28.**
+
+By the Chinese Remainder Theorem, since gcd(7, 4) = 1, the two moduli are coprime, and the combined solution repeats with period 7 x 4 = 28. The next values satisfying both conditions are 17 + 28 = 45, 17 + 56 = 73, and so on. This confirms that any solution has the form N = 17 + 28k for non-negative integer k.
+
+**Computing R = S mod 28.**
+
+We compute 17 / 28. Since 17 < 28, the quotient is 0 and the remainder is 17 itself:
+
+17 = 28(0) + 17, therefore R = 17.
+
+**Matching against the candidate values.**
+
+The candidate row values are 3, 10, 17, 21, 24, and 31. For Column 1, S = 17 appears in the list. For Column 2, R = 17 also appears in the list. No other candidate satisfies both conditions simultaneously: for instance, N = 24 satisfies N mod 7 = 3 but 24 mod 4 = 0, not 1; N = 21 satisfies N mod 4 = 1 but 21 mod 7 = 0, not 3.
+
+The correct answers are S (smallest N) = 17 and R (S mod 28) = 17.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1518,13 +2936,64 @@ Select the value of H (column 1) and the value of T (column 2).
 | 1,000 |                 |                 |
 
 **answer:** H = 6, T = 900
-**fastest_path:** Efficiency ≥ 50%: hours 1–6 (100%, 90%, …, 50%). H = 6. Output = 200 × (1.0+0.9+…+0.5) = 200 × 4.5 = 900.
-**explanation:** Efficiency by hour: H1=100%, H2=90%, H3=80%, H4=70%, H5=60%, H6=50%, H7=40%. The condition "at least 50%" includes the hour of exactly 50%, so H = 6. Production per hour = efficiency × 200: H1=200, H2=180, H3=160, H4=140, H5=120, H6=100. Sum: 200+180+160+140+120+100 = 900. Alternatively, sum the arithmetic sequence of efficiencies: (1.0+0.9+0.8+0.7+0.6+0.5) = 6 terms with first=1.0 and last=0.5 → sum = 6/2 × (1.0+0.5) = 3 × 1.5 = 4.5. Total = 200 × 4.5 = 900 units.
-**mistake_a:** H = 5 — stopping one hour early, treating 50% as "below" rather than "at least" 50%. This also leads to T = 800 (missing the 100 units produced in hour 6).
-**mistake_c:** H = 7 — including hour 7 (40% efficiency), which violates the ≥ 50% requirement.
-**mistake_d:** T = 700 — summing only hours 1–4 or making an arithmetic error in the sequence sum.
-**mistake_e:** T = 800 — summing hours 1–5 only (H = 5 error): 200+180+160+140+120 = 800.
-**mistake_g:** T = 1,000 — computing 200 × (sum of 5 terms: 1.0+0.9+0.8+0.7+0.6 = 4.0) × some incorrect factor, or 200 × 5 = 1,000 (flat-rate mistake).
-**common_trap:** The off-by-one on H is the primary trap: "drops below 50%" in hour 7, so the last qualifying hour is hour 6, not hour 5. Students reading "below 50%" as the cutoff exclude hour 6 (exactly 50%) and get H = 5, T = 800.
-**takeaway:** "At least 50%" includes exactly 50%. Use the arithmetic series sum formula for evenly-spaced sequences: sum = (n/2)(first + last), then multiply by the per-unit rate.
+**explanation:** **Setup and variable definitions.**
+
+Let E(n) denote the efficiency during the n-th hour of the shift, expressed as a decimal. The problem states that E(1) = 1.00 and that each subsequent hour reduces efficiency by 0.10, giving the arithmetic sequence:
+
+E(n) = 1.00 - 0.10(n - 1)
+
+At full efficiency the factory produces 200 units per hour, so the output during hour n is:
+
+Output(n) = 200 * E(n) = 200 * [1.00 - 0.10(n - 1)]
+
+**Finding H — the count of complete hours during which efficiency is at least 50%.**
+
+The condition E(n) >= 0.50 requires:
+
+1.00 - 0.10(n - 1) >= 0.50
+
+Subtracting 1.00 from both sides:
+
+-0.10(n - 1) >= -0.50
+
+Dividing both sides by -0.10 and reversing the inequality:
+
+n - 1 <= 5, therefore n <= 6
+
+The largest integer satisfying this condition is n = 6. The table below lists each hour:
+
+| Hour n | E(n) | E(n) >= 50%? |
+|--------|------|--------------|
+| 1 | 100% | Yes |
+| 2 | 90% | Yes |
+| 3 | 80% | Yes |
+| 4 | 70% | Yes |
+| 5 | 60% | Yes |
+| 6 | 50% | Yes |
+| 7 | 40% | No |
+
+Hour 7 yields E(7) = 1.00 - 0.10(6) = 0.40, which falls below 0.50 and is therefore excluded. The number of qualifying complete hours is H = 6.
+
+**Finding T — total units produced during those H hours.**
+
+Summing Output(n) for n = 1 through 6:
+
+- Hour 1: 200 * 1.00 = 200
+- Hour 2: 200 * 0.90 = 180
+- Hour 3: 200 * 0.80 = 160
+- Hour 4: 200 * 0.70 = 140
+- Hour 5: 200 * 0.60 = 120
+- Hour 6: 200 * 0.50 = 100
+
+T = 200 + 180 + 160 + 140 + 120 + 100
+
+Adding in pairs: (200 + 100) + (180 + 120) + (160 + 140) = 300 + 300 + 300 = 900.
+
+Alternatively, because the six output values form an arithmetic sequence with first term 200, last term 100, and six terms, the sum equals (6/2) * (200 + 100) = 3 * 300 = 900.
+
+**Matching to the candidate values.**
+
+From the list {5, 6, 7, 700, 800, 900, 1,000}, the value 6 corresponds to H and the value 900 corresponds to T. No other pairing is consistent with the constraints.
+
+The correct answers are H (hours >= 50%) = 6 and T (total units) = 900.
 **related_reading:** reading-di-06-two-part-analysis

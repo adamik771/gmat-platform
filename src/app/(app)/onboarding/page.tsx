@@ -20,7 +20,7 @@ export const metadata = {
  * On submit, posts to `/api/onboarding`, which writes
  * `user_metadata.onboarding` plus mirrors `target_score` and
  * `exam_date` into the legacy keys. The response carries the next
- * destination — diagnostic for new students, adaptive plan for retakers.
+ * destination — the official exam plan for new students, adaptive plan for retakers.
  *
  * Server component pre-fills the form with any prior values so a
  * student who started the wizard, navigated away, and came back

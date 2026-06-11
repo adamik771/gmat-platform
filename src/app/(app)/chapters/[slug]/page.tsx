@@ -173,7 +173,7 @@ export default async function ChapterDetailPage({
   }
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
+    <div className="max-w-[88rem] mx-auto space-y-6">
       <Link
         href="/chapters"
         className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.22em] font-semibold text-[#888888] hover:text-[#C9A84C] transition-colors"
@@ -186,7 +186,7 @@ export default async function ChapterDetailPage({
         slug={chapter.slug}
         title={chapter.title}
         section={chapter.section}
-        estimatedMinutes={chapter.estimatedMinutes}
+        estimatedPages={chapter.estimatedPages}
         summary={chapter.summary ?? null}
         sections={sections}
         problemSets={problemSets}

@@ -361,17 +361,17 @@ export default function PostPage() {
             pressure&rdquo; tag surfaces pacing problems automatically.
             Section mocks are scored on the new 60-90 Focus per-section
             scale and include a per-question time audit in the debrief.
-            Free diagnostic if you want to see where your timing
-            currently sits.
+            The sample chapter is free if you want to see the teaching
+            first.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
-              href="/free-diagnostic"
+              href="/sample-chapter/quant"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Take the free diagnostic
+              Read the free Quant sample chapter
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

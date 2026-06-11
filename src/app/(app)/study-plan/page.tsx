@@ -78,10 +78,10 @@ export default async function StudyPlanPage() {
   let estimatedTotal: number | null = null
   let pendingMistakeCount = 0
   let plan: StudyPlanOutput | null = null
-  let diagnosticTakenAt: string | null = null
-  let diagnosticSectionsCount = 0
+  let baselineExamDate: string | null = null
+  let officialExamCount = 0
   let masteries: TopicMastery[] = []
-  let diagnosticBaseline: number | null = null
+  let officialBaseline: number | null = null
   let persona: PersonaProfile | null = null
   let officialReady: OfficialReadySummary | null = null
   const completedTags = new Set<string>()
@@ -203,6 +203,7 @@ export default async function StudyPlanPage() {
         targetScore,
         examDate,
         flaggedQuestionIds: gatherFlaggedQuestionIds(user.user_metadata),
+        officialExamCount,
       })
 
       // Mastery progress — per-topic gates (Concept / Timed / Mixed) that
@@ -243,39 +244,29 @@ export default async function StudyPlanPage() {
         questionIndex,
       )
 
-      // Diagnostic baseline — if the user has taken the diagnostic,
-      // the Study Plan's weak areas are rooted in that data; surface
-      // when it was taken so the attribution is visible. Also computes
-      // the diagnostic total score, which drives persona assignment.
-      const { data: diagRows } = await supabase
-        .from("practice_sessions")
-        .select("slug, accuracy, created_at")
-        .eq("user_id", user.id)
-        .in("slug", ["diagnostic-quant", "diagnostic-verbal", "diagnostic-di"])
-        .order("created_at", { ascending: false })
-      const diagBySlug = new Map<string, { accuracy: number; created_at: string }>()
-      for (const r of diagRows ?? []) {
-        const slug = r.slug as string
-        if (diagBySlug.has(slug)) continue // keep most-recent only
-        diagBySlug.set(slug, {
-          accuracy: Number(r.accuracy),
-          created_at: r.created_at as string,
-        })
-      }
-      diagnosticSectionsCount = diagBySlug.size
-      if (diagRows && diagRows.length > 0) {
-        diagnosticTakenAt = diagRows[0].created_at as string
-      }
-      if (diagnosticSectionsCount === 3) {
-        const perSectionScores = [...diagBySlug.values()].map((r) =>
-          accuracyToScore(r.accuracy / 100),
+      // Official baseline — the latest mba.com practice-exam score the
+      // student has entered (user_metadata.official_exam_scores). It
+      // anchors persona assignment and the plan's attribution line.
+      const metaOfficial = user.user_metadata?.official_exam_scores
+      const officialScores: Array<{ date?: unknown; total?: unknown }> =
+        Array.isArray(metaOfficial) ? metaOfficial : []
+      const validOfficial = officialScores
+        .filter(
+          (e) =>
+            typeof e?.date === "string" &&
+            typeof e?.total === "number" &&
+            e.total >= 205 &&
+            e.total <= 805,
         )
-        const avg =
-          perSectionScores.reduce((a, b) => a + b, 0) / perSectionScores.length
-        diagnosticBaseline = Math.round(avg / 10) * 10
+        .sort((a, b) => String(a.date).localeCompare(String(b.date)))
+      officialExamCount = validOfficial.length
+      if (validOfficial.length > 0) {
+        const latest = validOfficial[validOfficial.length - 1]
+        officialBaseline = latest.total as number
+        baselineExamDate = latest.date as string
       }
 
-      persona = computePersona(diagnosticBaseline, targetScore, {
+      persona = computePersona(officialBaseline, targetScore, {
         englishNative:
           (user.user_metadata?.english_native as boolean | null | undefined) ??
           null,
@@ -403,7 +394,6 @@ export default async function StudyPlanPage() {
     ({
       todaysFocus: [],
       weakAreas: [],
-      diagnosticSectionsDone: 0,
       reviewDueCount: pendingMistakeCount,
     } as StudyPlanOutput)
   const weeklyCadence = buildWeeklyCadence(
@@ -485,15 +475,15 @@ export default async function StudyPlanPage() {
 
   // === Stage gate ===
   // The page promises an "adaptive plan" but the engine has no real
-  // signal until the diagnostic is in. Showing locked widgets next to
+  // signal until a baseline exists. Showing locked widgets next to
   // unlocked ones (the multi-week link, weekly calendar, "up next"
   // modules) made the adaptive system feel fake. Pre-baseline → render
-  // a focused unlock view; only after all 3 diagnostic sections are
-  // done does the full plan come online.
-  if (diagnosticSectionsCount < 3) {
+  // a focused unlock view; the full plan comes online once the first
+  // official mba.com practice-exam score is entered.
+  if (officialExamCount === 0) {
     return (
       <div className="max-w-5xl mx-auto space-y-10">
-        {/* Hero — diagnostic-dominant; the page's only primary CTA */}
+        {/* Hero — baseline-dominant; the page's only primary CTA */}
         <section
           className="relative overflow-hidden rounded-2xl border"
           style={{
@@ -538,24 +528,23 @@ export default async function StudyPlanPage() {
                   className="font-display-italic"
                   style={{ color: "#C9A84C" }}
                 >
-                  after the diagnostic.
+                  after your baseline exam.
                 </span>
               </h1>
               <p className="text-[15px] leading-[1.7] text-[#C0C0C0] max-w-2xl mt-4">
-                30 questions across Q / V / DI baselines your readiness,
-                assigns your study persona, and seeds the weekly cadence,
-                section priorities, and mastery gates. Without it, every
-                recommendation is a guess.
+                Take Official Practice Exam 1 on mba.com under full exam
+                conditions and enter the score on the Mock page. A real
+                exam score assigns your study persona and seeds the weekly
+                cadence, section priorities, and mastery gates. Without
+                it, every recommendation is a guess.
               </p>
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <Link
-                  href="/diagnostic"
+                  href="/mock"
                   className="group inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
                   style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
                 >
-                  {diagnosticSectionsCount === 0
-                    ? "Take the diagnostic"
-                    : `Continue diagnostic (${diagnosticSectionsCount}/3)`}
+                  Open the official exam plan
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                 </Link>
                 {!examDate && (
@@ -574,7 +563,7 @@ export default async function StudyPlanPage() {
             </div>
 
             {/* Right column — plan-status snapshot. Quiet visual; the
-                diagnostic CTA stays dominant. */}
+                baseline CTA stays dominant. */}
             <div className="flex flex-col gap-2.5 lg:max-w-[320px]">
               <p
                 className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-1"
@@ -584,10 +573,9 @@ export default async function StudyPlanPage() {
               </p>
               {[
                 {
-                  label: "Diagnostic",
-                  done: diagnosticSectionsCount === 3,
-                  partial: diagnosticSectionsCount,
-                  href: "/diagnostic",
+                  label: "Baseline exam",
+                  done: officialExamCount > 0,
+                  href: "/mock",
                 },
                 {
                   label: "Target score",
@@ -639,11 +627,7 @@ export default async function StudyPlanPage() {
                         : "rgba(255,255,255,0.4)",
                     }}
                   >
-                    {row.done
-                      ? "Set"
-                      : "partial" in row && row.partial && row.partial > 0
-                        ? `${row.partial}/3`
-                        : "Missing"}
+                    {row.done ? "Set" : "Missing"}
                   </span>
                 </Link>
               ))}
@@ -675,17 +659,17 @@ export default async function StudyPlanPage() {
             {[
               {
                 kicker: "Today",
-                title: "Take the diagnostic",
-                body: "30 questions, ~50 minutes. The whole plan keys off this.",
+                title: "Take Official Practice Exam 1",
+                body: "On mba.com, full exam conditions, one sitting. The whole plan keys off this.",
                 state: "current" as const,
-                href: "/diagnostic",
+                href: "/mock",
               },
               {
                 kicker: "Next",
-                title: "Review your baseline",
-                body: "See your section scores, weakest topics, and the recommended persona path.",
+                title: "Enter your baseline score",
+                body: "Type the total and section scores into the exam plan so the system can anchor to them.",
                 state: "next" as const,
-                href: "/diagnostic/report",
+                href: "/mock",
               },
               {
                 kicker: "Then",
@@ -767,7 +751,7 @@ export default async function StudyPlanPage() {
         </section>
 
         {/* Unlocks after baseline — preview tiles. Each tile is a
-            one-line promise of what the diagnostic activates. Replaces
+            one-line promise of what the baseline activates. Replaces
             the live empty Mastery / Weak-areas / Calendar / Adaptive
             multi-week panels that otherwise rendered as filler. */}
         <section>
@@ -916,7 +900,7 @@ export default async function StudyPlanPage() {
 
       {/* Persona card — research-report segmentation by (baseline, target).
           Drives copy, emphasis, and downstream mastery thresholds. Shows
-          "Not yet assigned" with a diagnostic CTA when baseline is null. */}
+          "Not yet assigned" with a baseline CTA when baseline is null. */}
       {persona && <PersonaCard persona={persona} />}
 
       {/* Persona path — each baseline-derived persona gets a short,
@@ -933,24 +917,25 @@ export default async function StudyPlanPage() {
         />
       )}
 
-      {/* Diagnostic attribution — only when the student has finished at
-          least one diagnostic section, so the plan is rooted in real data.
-          Tiny line; clicks through to the full report. */}
-      {diagnosticSectionsCount > 0 && diagnosticTakenAt && (
+      {/* Baseline attribution — only when an official score exists, so the
+          plan is visibly rooted in real data. Tiny line; clicks through to
+          the exam plan. */}
+      {officialExamCount > 0 && baselineExamDate && (
         <Link
-          href="/diagnostic/report"
+          href="/mock"
           className="flex items-center justify-between gap-3 p-4 rounded-2xl border border-white/[0.06] bg-[#0D0D0D] hover:border-white/[0.12] transition-all duration-300 hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
         >
           <p className="text-[13px] text-[#C0C0C0]">
-            <span className="text-[#888888]">Plan rooted in your diagnostic</span>
+            <span className="text-[#888888]">
+              Plan anchored to your latest official exam
+              {officialBaseline !== null ? ` (${officialBaseline})` : ""}
+            </span>
             <span className="mx-2 text-[#333333]">·</span>
-            {diagnosticSectionsCount < 3
-              ? `${diagnosticSectionsCount} of 3 sections taken`
-              : new Date(diagnosticTakenAt).toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                  year: "numeric",
-                })}
+            {new Date(baselineExamDate).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}
           </p>
           <span
             className="text-[11px] font-semibold uppercase tracking-[0.18em]"
@@ -962,7 +947,7 @@ export default async function StudyPlanPage() {
       )}
 
       {/* Adaptive multi-week plan link — synthesises every signal source
-          (diagnostic, mock, practice, timing, confidence, mistakes,
+          (official exams, mocks, practice, timing, confidence, mistakes,
           spaced queue) into a 2-4 week schedule. Sits above today's
           focus so students can choose between zoomed-in (today) and
           zoomed-out (week) views. */}
@@ -986,7 +971,7 @@ export default async function StudyPlanPage() {
               Open your adaptive multi-week plan
             </p>
             <p className="text-[13px] text-[#C0C0C0] leading-[1.65] mt-1">
-              Synthesised from your diagnostic, latest mock, practice attempts,
+              Synthesised from your official exams, mocks, practice attempts,
               timing patterns, confidence log, and mistake-log patterns.
               Re-runs every visit so the schedule stays current.
             </p>
@@ -1518,7 +1503,7 @@ function FocusCard({
 }) {
   const Icon = (() => {
     switch (action.type) {
-      case "diagnostic":
+      case "baseline":
         return FlaskConical
       case "review":
         return RotateCcw
@@ -1716,25 +1701,25 @@ const PERSONA_PATHS: Record<PersonaPathKey, PersonaPathDef> = {
       "Four chapters cover the fundamentals that every other topic leans on. Work them in order — each one unlocks comfort for the next. Don't skip to mixed sets until you've finished these.",
     steps: [
       {
-        href: "/chapters/arithmetic",
+        href: "/chapters/quant-05-order-and-signed-numbers",
         section: "Quant",
-        label: "Arithmetic",
+        label: "Arithmetic Foundations",
         why: "Basic Quant fluency — every other Quant topic leans on this.",
-        completionTag: "chapter-started:arithmetic",
+        completionTag: "chapter-started:quant-05-order-and-signed-numbers",
       },
       {
-        href: "/chapters/critical-reasoning",
+        href: "/chapters/verbal-01-foundations",
         section: "Verbal",
-        label: "Critical Reasoning",
-        why: "Argument mechanics — the shape that CR + half of RC share.",
-        completionTag: "chapter-started:critical-reasoning",
+        label: "Verbal Foundations",
+        why: "Active reading + argument anatomy — the shared base under CR and RC.",
+        completionTag: "chapter-started:verbal-01-foundations",
       },
       {
-        href: "/chapters/reading-comprehension",
+        href: "/chapters/verbal-02-cr-argument-structure",
         section: "Verbal",
-        label: "Reading Comprehension",
-        why: "Reading discipline — structure over detail, paragraph roles.",
-        completionTag: "chapter-started:reading-comprehension",
+        label: "CR: Argument Structure",
+        why: "Conclusion, evidence, gap — the engine every CR question type runs on.",
+        completionTag: "chapter-started:verbal-02-cr-argument-structure",
       },
       {
         href: "/chapters/data-sufficiency",
@@ -2142,8 +2127,8 @@ function OfficialReadyCard({ summary }: { summary: OfficialReadySummary }) {
 }
 
 /**
- * Persona chip + blurb. When the student has no diagnostic yet, shows
- * the "Not yet assigned" variant with a CTA to finish the diagnostic —
+ * Persona chip + blurb. When the student has no baseline exam yet, shows
+ * the "Not yet assigned" variant with a CTA to enter it —
  * persona is the driver for downstream threshold tuning so we can't
  * meaningfully personalise anything until it's set.
  */
@@ -2216,11 +2201,11 @@ function PersonaCard({ persona }: { persona: PersonaProfile }) {
       )}
       {unknown && (
         <Link
-          href="/diagnostic"
+          href="/mock"
           className="inline-flex items-center gap-1.5 text-xs px-4 py-2 rounded-xl font-semibold tracking-tight mt-4 transition-all duration-200 hover:scale-[1.02]"
           style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
         >
-          Take the diagnostic
+          Enter your baseline exam
           <ArrowRight className="w-3 h-3" />
         </Link>
       )}

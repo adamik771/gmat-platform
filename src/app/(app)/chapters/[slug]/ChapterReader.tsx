@@ -599,7 +599,7 @@ export default function ChapterReader({
   slug,
   title,
   section,
-  estimatedMinutes,
+  estimatedPages,
   summary,
   sections,
   problemSets,
@@ -610,7 +610,7 @@ export default function ChapterReader({
   slug: string
   title: string
   section: Section
-  estimatedMinutes: number
+  estimatedPages: number
   summary: string | null
   sections: ReaderSection[]
   problemSets: ReaderProblemSet[]
@@ -795,8 +795,8 @@ export default function ChapterReader({
               className="flex items-center gap-1.5 text-[11px] tracking-wide"
               style={{ color: "var(--read-text-faint)" }}
             >
-              <Clock className="w-3 h-3" />
-              {estimatedMinutes} min
+              <BookOpen className="w-3 h-3" />
+              {estimatedPages} pages
               {totalSections > 0 && (
                 <span style={{ color: "var(--read-text-faint)" }}>
                   {" "}· {totalSections} sections
@@ -932,8 +932,8 @@ export default function ChapterReader({
           <div
             className={
               focusMode
-                ? "max-w-3xl mx-auto"
-                : "lg:grid lg:grid-cols-[220px_minmax(0,1fr)_240px] lg:gap-x-10 lg:items-start"
+                ? "max-w-4xl mx-auto"
+                : "lg:grid lg:grid-cols-[210px_minmax(0,1fr)_230px] lg:gap-x-8 lg:items-start"
             }
           >
             {!focusMode && (
@@ -1003,7 +1003,7 @@ export default function ChapterReader({
               <aside className="hidden lg:block sticky top-6 self-start">
                 <ChapterRightPanel
                   section={section}
-                  estimatedMinutes={estimatedMinutes}
+                  estimatedPages={estimatedPages}
                   totalSections={totalSections}
                   completedSections={completedSections}
                   hasProblemSets={problemSets.length > 0}

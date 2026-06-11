@@ -14,8 +14,16 @@ import {
   getAllQuestions,
   getAllGuides,
   getAllChapters,
+  getPracticeChapterGroups,
   type ParsedQuestion,
 } from "../src/lib/content.ts"
+import {
+  BANK_RULES,
+  TEST_CAPS,
+  OMITTED_CHAPTERS,
+  COMING_SOON_CHAPTERS,
+  resolveChapterAssignment,
+} from "../src/lib/practice-tests-map.ts"
 
 interface Finding {
   severity: "ERROR" | "WARN" | "INFO"
@@ -133,16 +141,11 @@ for (const q of questions) {
     })
   }
 
-  // Optional but recommended: 6-section taxonomy
-  if (!q.commonTrap && !q.trapType) {
-    push({ ...ctx, severity: "WARN", rule: "missing-trap-type", detail: "No commonTrap or trapType field" })
-  }
-  if (!q.takeaway) {
-    push({ ...ctx, severity: "WARN", rule: "missing-takeaway", detail: "No takeaway field" })
-  }
-  if (!q.fastestPath) {
-    push({ ...ctx, severity: "WARN", rule: "missing-fastest-path", detail: "No fastestPath field" })
-  }
+  // Note: the legacy "recommended field missing" warnings for fastestPath /
+  // commonTrap / takeaway were removed when explanations moved to the GMAT
+  // Official Guide ("OG-pure") format, which intentionally drops those fields.
+  // trapType / commonTrap remain valid on curriculum-aligned items but are no
+  // longer flagged when absent.
 
   // Related-reading FK check
   if (q.relatedReading && !knownReadingSlugs.has(q.relatedReading)) {
@@ -200,9 +203,11 @@ for (const [id, arr] of idMap) {
   }
 }
 
-// Duplicate prompts (normalize whitespace, lowercase, first 200 chars)
+// Duplicate prompts (normalize whitespace, lowercase, full text — a prefix
+// comparison false-positives on TA/GI set questions that share an inlined
+// table/graph block but ask different things after it)
 const normalize = (s: string): string =>
-  s.replace(/\s+/g, " ").trim().slice(0, 200).toLowerCase()
+  s.replace(/\s+/g, " ").trim().toLowerCase()
 const promptMap = new Map<string, ParsedQuestion[]>()
 for (const q of questions) {
   if (!q.prompt || q.prompt.trim().length < MIN_PROMPT_CHARS) continue
@@ -315,6 +320,90 @@ for (const c of chapters) {
 }
 
 // ============================================================================
+// Practice tests — per-chapter allocation health
+// ============================================================================
+const questionIdSet = new Set(questions.map((q) => q.id))
+
+// Pins from chapter problem_sets: question_id -> chapters that list it.
+// Hidden chapters (omitted/coming-soon) intentionally reuse type-bank questions
+// as samplers and their pins are ignored by the allocator, so they don't count
+// toward cross-pin conflicts.
+const hiddenChapter = new Set<string>([
+  ...OMITTED_CHAPTERS,
+  ...COMING_SOON_CHAPTERS,
+])
+const pinnedIn = new Map<string, string[]>()
+for (const c of chapters) {
+  for (const ps of c.problemSets) {
+    for (const qid of ps.questionIds) {
+      if (!questionIdSet.has(qid)) {
+        push({
+          severity: "ERROR",
+          setSlug: c.slug,
+          questionId: qid,
+          rule: "practice-dangling-pin",
+          detail: `Chapter problem_set references a question id that does not exist: ${qid}`,
+        })
+      }
+      if (hiddenChapter.has(c.slug)) continue
+      const arr = pinnedIn.get(qid) ?? []
+      arr.push(c.slug)
+      pinnedIn.set(qid, arr)
+    }
+  }
+}
+for (const [qid, chs] of pinnedIn) {
+  const uniq = [...new Set(chs)]
+  if (uniq.length > 1) {
+    push({
+      severity: "WARN",
+      questionId: qid,
+      rule: "practice-cross-pin",
+      detail: `Pinned in multiple in-scope chapters (allocator keeps the first): ${uniq.join(", ")}`,
+    })
+  }
+}
+
+// WARN: share of a shared bank's questions that fall to the bank default
+// (no subtopic keyword matched) — a spike means uploads use unrecognized tags.
+const bankTotals = new Map<string, { total: number; viaDefault: number }>()
+for (const q of questions) {
+  if (!(q.setSlug in BANK_RULES)) continue
+  const { viaDefault } = resolveChapterAssignment(q.setSlug, q.subtopic)
+  const t = bankTotals.get(q.setSlug) ?? { total: 0, viaDefault: 0 }
+  t.total++
+  if (viaDefault) t.viaDefault++
+  bankTotals.set(q.setSlug, t)
+}
+for (const [bank, t] of bankTotals) {
+  const share = t.total > 0 ? t.viaDefault / t.total : 0
+  if (share > 0.25) {
+    push({
+      severity: "INFO",
+      setSlug: bank,
+      rule: "practice-default-routed",
+      detail: `${t.viaDefault}/${t.total} (${Math.round(share * 100)}%) used no chapter-specific keyword and routed to the bank's default chapter (fine when the default is the dominant chapter; add keywords in practice-tests-map.ts to split further)`,
+    })
+  }
+}
+
+// WARN: thin chapter (a single sub-cap test) so authors know where to add questions.
+const practiceGroups = getPracticeChapterGroups()
+for (const g of practiceGroups) {
+  if (g.comingSoon) continue
+  const total = g.tests.reduce((s, t) => s + t.count, 0)
+  const cap = TEST_CAPS[g.section]
+  if (total < cap) {
+    push({
+      severity: "WARN",
+      setSlug: g.chapterSlug,
+      rule: "practice-thin-chapter",
+      detail: `${total} question${total === 1 ? "" : "s"} (< cap ${cap}) — only one short test; add more to fill it out`,
+    })
+  }
+}
+
+// ============================================================================
 // Coverage rollups (informational)
 // ============================================================================
 
@@ -374,6 +463,30 @@ console.log(`  Quant   : ${counts.Quant.toString().padStart(3)} questions   ${ch
 console.log(`  Verbal  : ${counts.Verbal.toString().padStart(3)} questions   ${chapterCounts.Verbal.toString().padStart(2)} chapters`)
 console.log(`  DI      : ${counts.DI.toString().padStart(3)} questions   ${chapterCounts.DI.toString().padStart(2)} chapters`)
 console.log(`  General : ${"".padStart(3)}   ${chapterCounts.General.toString().padStart(2)} chapters`)
+
+const ptRoll = {
+  Quant: { ch: 0, t: 0, q: 0 },
+  Verbal: { ch: 0, t: 0, q: 0 },
+  DI: { ch: 0, t: 0, q: 0 },
+}
+let ptComingSoon = 0
+for (const g of practiceGroups) {
+  if (g.comingSoon) {
+    ptComingSoon++
+    continue
+  }
+  const s = ptRoll[g.section as keyof typeof ptRoll]
+  s.ch++
+  s.t += g.tests.length
+  s.q += g.tests.reduce((a, t) => a + t.count, 0)
+}
+console.log(`\nPractice tests:`)
+for (const sec of ["Quant", "Verbal", "DI"] as const) {
+  console.log(
+    `  ${sec.padEnd(7)}: ${ptRoll[sec].ch.toString().padStart(2)} chapters   ${ptRoll[sec].t.toString().padStart(3)} tests   ${ptRoll[sec].q.toString().padStart(3)} questions`
+  )
+}
+console.log(`  Coming soon: ${ptComingSoon} chapters`)
 
 console.log(`\nTotals:`)
 console.log(`  ${errors.length} errors, ${warns.length} warnings, ${infos.length} info`)

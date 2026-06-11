@@ -35,7 +35,6 @@ const WEAK_AREA_OPTIONS = [
   { id: "Algebra", section: "Quant" },
   { id: "Number Properties", section: "Quant" },
   { id: "Word Problems", section: "Quant" },
-  { id: "Geometry", section: "Quant" },
   { id: "Combinatorics", section: "Quant" },
   { id: "Statistics", section: "Quant" },
   { id: "Rates and Work", section: "Quant" },
@@ -58,13 +57,13 @@ const PREP_HISTORY_OPTIONS = [
     id: "first-time",
     label: "First time prepping",
     description:
-      "Brand new to GMAT prep. The diagnostic seeds your baseline, then we'll build a plan around it.",
+      "Brand new to GMAT prep. Your first official practice exam seeds the baseline, then we'll build a plan around it.",
   },
   {
     id: "in-progress",
     label: "Already in prep",
     description:
-      "Some prep under your belt but no test yet. The diagnostic finds the gaps that prior prep didn't close.",
+      "Some prep under your belt but no test yet. A fresh official practice exam shows the gaps prior prep didn't close.",
   },
   {
     id: "retake",
@@ -118,7 +117,7 @@ export default function OnboardingClient({
         setError(data.error ?? "Something went wrong saving your answers.")
         return
       }
-      router.push(data.nextHref ?? "/diagnostic")
+      router.push(data.nextHref ?? "/mock")
     })
   }
 
@@ -299,9 +298,9 @@ function stepDescription(step: StepId): string {
     case "weekly-hours":
       return "Honest answer here. The plan only works if it fits your real schedule, not your aspirational one."
     case "weak-areas":
-      return "What you say here only seeds the first week. The diagnostic + ongoing data refine it from there."
+      return "What you say here only seeds the first week. Your baseline exam + ongoing data refine it from there."
     case "prep-history":
-      return "Different starting points need different first weeks. The diagnostic still runs either way."
+      return "Different starting points need different first weeks. The baseline exam anchors it either way."
     case "review":
       return "Confirm your answers — you can change them anytime in Settings."
   }
@@ -561,7 +560,7 @@ function WeakAreasStep({
         )
       })}
       <p className="text-[11px] text-[#555555] italic">
-        Pick anywhere from 0 to 8. Empty is fine — the diagnostic surfaces the real weak spots.
+        Pick anywhere from 0 to 8. Empty is fine — practice data surfaces the real weak spots.
       </p>
     </div>
   )
@@ -650,7 +649,7 @@ function ReviewStep({ state }: { state: OnboardingState }) {
         state.weakAreas.length > 0
           ? state.weakAreas.slice(0, 4).join(", ") +
             (state.weakAreas.length > 4 ? `, +${state.weakAreas.length - 4} more` : "")
-          : "Will discover via diagnostic",
+          : "Will discover via baseline exam",
     },
     {
       icon: Repeat,
