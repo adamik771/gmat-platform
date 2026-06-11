@@ -44,6 +44,11 @@ problem_sets:
     question_ids:
       - estimation-q6
       - estimation-q7
+      - estimation-q12
+      - estimation-q13
+      - estimation-q14
+      - estimation-q15
+      - estimation-q16
   medium:
     target_accuracy_by_score:
       "605": 55
@@ -53,6 +58,13 @@ problem_sets:
     question_ids:
       - estimation-q8
       - estimation-q9
+      - estimation-q17
+      - estimation-q18
+      - estimation-q19
+      - estimation-q20
+      - estimation-q21
+      - estimation-q22
+      - estimation-q23
   hard:
     target_accuracy_by_score:
       "605": 40
@@ -62,6 +74,11 @@ problem_sets:
     question_ids:
       - estimation-q10
       - estimation-q11
+      - estimation-q24
+      - estimation-q25
+      - estimation-q26
+      - estimation-q27
+      - estimation-q28
 ---
 
 ## @when-estimation-wins

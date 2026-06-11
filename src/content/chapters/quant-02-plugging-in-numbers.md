@@ -44,6 +44,11 @@ problem_sets:
     question_ids:
       - plugging-in-q6
       - plugging-in-q7
+      - plugging-in-q12
+      - plugging-in-q13
+      - plugging-in-q14
+      - plugging-in-q15
+      - plugging-in-q16
   medium:
     target_accuracy_by_score:
       "605": 55
@@ -53,6 +58,13 @@ problem_sets:
     question_ids:
       - plugging-in-q8
       - plugging-in-q9
+      - plugging-in-q17
+      - plugging-in-q18
+      - plugging-in-q19
+      - plugging-in-q20
+      - plugging-in-q21
+      - plugging-in-q22
+      - plugging-in-q23
   hard:
     target_accuracy_by_score:
       "605": 40
@@ -62,6 +74,11 @@ problem_sets:
     question_ids:
       - plugging-in-q10
       - plugging-in-q11
+      - plugging-in-q24
+      - plugging-in-q25
+      - plugging-in-q26
+      - plugging-in-q27
+      - plugging-in-q28
 ---
 
 ## @two-modes
