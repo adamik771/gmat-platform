@@ -1868,7 +1868,7 @@ If the Midtown property increased its RevPAR to match the portfolio average of $
 **explanation:** RevPAR is defined as total room revenue divided by (available rooms × nights). Therefore, total quarterly revenue = RevPAR × available rooms × days. Current quarterly revenue = $91 × 130 × 90 = $1,064,700. New revenue = $94 × 130 × 90 = $1,099,800. Increase = $1,099,800 − $1,064,700 = $35,100. Equivalently: $3 increase × 130 rooms × 90 nights = $35,100. Answer C.
 **mistake_a:** $11,700 = $3 × 130 × 30 — used a 30-day month rather than a 90-day quarter.
 **mistake_b:** $22,815 = $3 × (130 × 65%) × 90 = $3 × 84.5 × 90 — applied the RevPAR increment to *occupied* rooms (130 × 65%) rather than *available* rooms. RevPAR is defined over all available rooms, so the full 130 is the correct denominator.
-**mistake_d:** $46,800 = $3 × 200 × 90 — used Downtown's room count (200) instead of Midtown's (130), likely from scanning the wrong row.
+**mistake_d:** $46,800 = $4 × 130 × 90 — used a $4 RevPAR increase instead of $3, e.g. by reading Midtown's current RevPAR as $90 rather than $91 (so $94 − $90 = $4). The increment is $94 − $91 = $3.
 **common_trap:** Confusing RevPAR (revenue per *available* room) with ADR (average daily rate, which uses *occupied* rooms in the denominator). Choice B is designed for this mistake. The computation must use total available rooms, not occupied rooms.
 **takeaway:** RevPAR questions: Revenue = RevPAR × Available Rooms × Days. "Available" is the full inventory, not the occupied subset. Verify the room count from the correct property row before computing.
 **related_reading:** reading-di-05-multi-source-reasoning
@@ -1935,7 +1935,7 @@ Based on Tab 2, which of the following statements is accurate?
 **fastest_path:** C: scan the "Enrolled (%)" column — BN-505 = 22%, the minimum. Confirm no other drug is lower.
 **explanation:** Check each statement. A: Phase I count = 1 (BN-412), Phase III count = 2 (BN-101, BN-618) — false, Phase III has more. B: Phase III enrollment percentages are BN-101 (80%) and BN-618 (60%); Phase II includes BN-317 at 65%. Since BN-618 (60%) < BN-317 (65%), not every Phase III exceeds every Phase II — false. C: BN-505 = 22%; all others are 33%, 40%, 60%, 65%, 80% — BN-505 is the minimum. True. D: Cardiovascular (BN-412) = 22 months; both neurology programs (BN-204 and BN-505) = 18 months. 22 > 18, so BN-412 is longer, not shorter — false. Answer C.
 **mistake_a:** There are 2 Phase III drugs (BN-101 and BN-618) versus only 1 Phase I drug (BN-412).
-**mistake_b:** BN-318 (Phase II CNS) is 65% enrolled, higher than BN-618 (Phase III, 60%). The "every Phase III > every Phase II" claim fails on this pair.
+**mistake_b:** BN-317 (Phase II CNS) is 65% enrolled, higher than BN-618 (Phase III, 60%). The "every Phase III > every Phase II" claim fails on this pair.
 **mistake_d:** BN-412 (Cardiovascular) has a 22-month timeline while both neurology Phase II programs have 18-month timelines — cardiovascular is longer, not shorter.
 **common_trap:** For statement B, students who only compare BN-101 (80%) against Phase II drugs find it true for BN-101, then stop. The full criterion requires every Phase III drug to exceed every Phase II drug — checking BN-618 (60%) against BN-317 (65%) breaks the claim.
 **takeaway:** "Every X has higher Y than every Z" requires checking the worst-case X against the best-case Z. A single counterexample disproves the universal claim.
