@@ -14,9 +14,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import MetricCard from "@/components/dashboard/MetricCard"
-import SectionProgress from "@/components/dashboard/SectionProgress"
 import ActivityFeed from "@/components/dashboard/ActivityFeed"
-import ScoreChart, { type ScoreDataPoint } from "@/components/dashboard/ScoreChart"
 import QuickActions from "@/components/dashboard/QuickActions"
 import StudyHoursChart from "./StudyHoursChart"
 import EmptyState from "@/components/shared/EmptyState"
@@ -24,13 +22,10 @@ import { getAllChapters, getAllLessons, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getReviewQueue } from "@/lib/review-queue"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
-import { collectAdaptiveSignals } from "@/lib/adaptive-plan-engine"
-import { computeNextBestAction } from "@/lib/next-best-action"
 import {
   computeStudyPlan,
   type FocusAction,
 } from "@/lib/study-plan-engine"
-import NextBestActionPanel from "../analytics/NextBestActionPanel"
 import {
   computeBadges,
   computeStreaks,
@@ -107,12 +102,6 @@ export default async function DashboardPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let user: any = null
 
-  // Next-best-action result, computed once we have a logged-in user. Same
-  // signals the adaptive plan + analytics page consume — keeps the
-  // recommendation consistent across surfaces. Failure here is non-fatal:
-  // the dashboard renders without the panel.
-  let nbaResult: ReturnType<typeof computeNextBestAction> | null = null
-
   // "Resume" card target — the chapter the student most recently touched
   // (highest lastSeenAt across all chapter_progress entries) plus the
   // anchor to the first unread section so a click drops them right where
@@ -147,51 +136,15 @@ export default async function DashboardPage() {
       if (user) {
         try {
           const flaggedQuestionIds = gatherFlaggedQuestionIds(user.user_metadata)
-          const signals = await collectAdaptiveSignals(
-            supabase,
-            user.id,
-            user.user_metadata,
-            { flaggedQuestionIds }
-          )
           const examDate =
             (user.user_metadata?.exam_date as string | null | undefined) ?? null
           const targetScore =
             (user.user_metadata?.target_score as number | null | undefined) ?? null
-          const daysUntilExam =
-            examDate !== null
-              ? Math.max(
-                  0,
-                  Math.ceil(
-                    (Date.parse(examDate) -
-                      new Date(new Date().toDateString()).getTime()) /
-                      86_400_000
-                  )
-                )
-              : null
-          // Sessions logged today (local midnight onward) — feeds the
-          // rest rule so a finished day surfaces "stop now" instead of
-          // manufacturing more volume. Cheap count-only query; failure is
-          // non-fatal (defaults to 0, rest simply never fires).
-          const localMidnightIso = new Date(
-            new Date().toDateString()
-          ).toISOString()
-          const { count: sessionsTodayCount } = await supabase
-            .from("practice_sessions")
-            .select("id", { count: "exact", head: true })
-            .eq("user_id", user.id)
-            .gte("created_at", localMidnightIso)
-
-          nbaResult = computeNextBestAction(signals, {
-            daysUntilExam,
-            targetScore,
-            sessionsCompletedToday: sessionsTodayCount ?? 0,
-          })
 
           // Today's Mission — pull the top item from the study-plan
           // engine and compute an estimated time so the hero card can
           // render "~15 min" without the engine knowing about chapter
-          // lengths. Runs inside the same try as NBA so it shares
-          // scope with the already-derived `targetScore`, `examDate`,
+          // lengths. Uses the already-derived `targetScore`, `examDate`,
           // and `flaggedQuestionIds` inputs. Failures are non-fatal:
           // the hero card just doesn't render.
           try {
@@ -239,7 +192,7 @@ export default async function DashboardPage() {
             // hero card stays hidden.
           }
         } catch {
-          // Signals or NBA computation failed — leave the panel hidden.
+          // Study-plan inputs failed to resolve — leave the hero hidden.
         }
 
         // Resume target — find the most recently touched chapter from
@@ -339,7 +292,6 @@ export default async function DashboardPage() {
   // ---------- Query progress data from Supabase ----------
   let questionsThisWeek = 0
   let questionsToday = 0
-  let studyHours: number | null = null
   let weekAccuracy: number | null = null
   let totalSessionCount: number | null = null
   // Per-section stats split into overall / thisWeek / priorWeek so we can
@@ -366,7 +318,6 @@ export default async function DashboardPage() {
     },
   }
   let activityItems: ActivityItem[] = []
-  let scoreChartData: ScoreDataPoint[] = []
   let recentMistakes: {
     id: string
     section: Section
@@ -421,12 +372,6 @@ export default async function DashboardPage() {
       questionsToday =
         todaySessions?.reduce((s, r) => s + r.total_questions, 0) ?? 0
 
-      const studyMsThisWeek =
-        weekSessions?.reduce((s, r) => s + r.total_time_ms, 0) ?? 0
-      studyHours =
-        studyMsThisWeek > 0
-          ? Number((studyMsThisWeek / 3600000).toFixed(1))
-          : null
       weekAccuracy =
         weekSessions && weekSessions.length > 0
           ? Math.round(
@@ -499,15 +444,6 @@ export default async function DashboardPage() {
         timestamp: s.created_at,
         score: Math.round(Number(s.accuracy)),
       }))
-
-      // Weekly accuracy trend for score chart (last 8 weeks)
-      const eightWeeksAgo = new Date(Date.now() - 56 * 86400000).toISOString()
-      const { data: trendSessions } = await supabase
-        .from("practice_sessions")
-        .select("accuracy, created_at")
-        .eq("user_id", userId)
-        .gte("created_at", eightWeeksAgo)
-        .order("created_at", { ascending: true })
 
       // Recent mistakes — 3 most recent wrong attempts, enriched with prompt.
       const { data: recentWrong } = await supabase
@@ -631,23 +567,6 @@ export default async function DashboardPage() {
         hasTarget,
         largestSessionQuestions,
       })
-
-      if (trendSessions && trendSessions.length > 0) {
-        const weeks = new Map<string, number[]>()
-        for (const s of trendSessions) {
-          const d = new Date(s.created_at)
-          const weekStart = new Date(d)
-          weekStart.setDate(d.getDate() - d.getDay())
-          const key = weekStart.toISOString().slice(0, 10)
-          const arr = weeks.get(key) ?? []
-          arr.push(Number(s.accuracy))
-          weeks.set(key, arr)
-        }
-        scoreChartData = [...weeks.entries()].map(([, accs], i) => ({
-          week: `Wk ${i + 1}`,
-          score: Math.round(accs.reduce((a, b) => a + b, 0) / accs.length),
-        }))
-      }
 
       // Daily review queue — surface the count + top weak topic on the
       // dashboard so retrieval practice becomes a visible daily prompt.
@@ -1256,9 +1175,7 @@ export default async function DashboardPage() {
   renderedNumberedSections.push("score-goal")
   renderedNumberedSections.push("this-week")
   renderedNumberedSections.push("study-hours")
-  renderedNumberedSections.push("section-progress")
-  renderedNumberedSections.push("accuracy-trend")
-  if (!nbaResult) renderedNumberedSections.push("quick-actions")
+  if (!topFocus) renderedNumberedSections.push("quick-actions")
   renderedNumberedSections.push("achievements")
   renderedNumberedSections.push("recent-activity")
   const sectionNum = (key: string) =>
@@ -1573,14 +1490,6 @@ export default async function DashboardPage() {
         </div>
       )}
 
-      {/* Today's focus — single decisive recommendation surfaced from the
-          adaptive engine. Sits right under the greeting so a returning
-          student sees "do this next" before any metric. Hidden until the
-          engine has enough signal to recommend something. */}
-      {nbaResult && (
-        <NextBestActionPanel result={nbaResult} className="" />
-      )}
-
       {/* Getting Started — disappears once all three steps are done */}
       {!onboardingComplete && (
         <section>
@@ -1846,13 +1755,7 @@ export default async function DashboardPage() {
             aria-hidden
           />
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <MetricCard
-            label="Study hours this week"
-            value={studyHours}
-            unit={studyHours !== null ? "hrs" : undefined}
-            icon={Clock}
-          />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <MetricCard
             label="Questions this week"
             value={questionsThisWeek > 0 ? questionsThisWeek : null}
@@ -1915,85 +1818,30 @@ export default async function DashboardPage() {
         <StudyHoursChart sessions={studySessions} />
       </section>
 
-      {/* Section Progress + Chart */}
-      <section className="grid lg:grid-cols-5 gap-8">
-        <div className="lg:col-span-3 space-y-5">
-          <div className="flex items-center gap-3">
-            <span
-              className="font-display text-[11px] font-semibold tabular-nums"
-              style={{ color: "rgba(201,168,76,0.55)" }}
-              aria-hidden
-            >
-              {sectionNum("section-progress")}
-            </span>
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-              style={{ color: "#C9A84C" }}
-            >
-              Section Progress
-            </p>
-            <div
-              className="h-px flex-1"
-              style={{
-                background:
-                  "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-              }}
-              aria-hidden
-            />
-          </div>
-          <div className="grid sm:grid-cols-3 gap-4">
-            {(["Quant", "Verbal", "DI"] as const).map((sec) => {
-              const d = sectionDerived[sec]
-              return (
-                <SectionProgress
-                  key={sec}
-                  section={sec}
-                  score={d.score}
-                  accuracy={d.accuracy}
-                  trend={d.trend}
-                  trendLabel={d.trendLabel}
-                  empty={d.score === null}
-                />
-              )
-            })}
-          </div>
-        </div>
+      {/* Section scores + accuracy trend moved to /analytics. A single
+          slim row points there instead of duplicating both cards here. */}
+      <Link
+        href="/analytics"
+        className="group flex items-center justify-between gap-4 px-5 py-4 rounded-2xl border border-white/[0.06] transition-all duration-300 hover:border-white/[0.12]"
+        style={{ backgroundColor: "#0D0D0D" }}
+      >
+        <p className="text-[13px] text-[#C0C0C0] leading-[1.5]">
+          Section scores and your accuracy trend now live in Analytics
+        </p>
+        <span
+          className="inline-flex items-center gap-1.5 text-[12px] font-semibold tracking-tight flex-shrink-0 transition-transform duration-200 group-hover:translate-x-0.5"
+          style={{ color: "#C9A84C" }}
+        >
+          View analytics
+          <ArrowRight className="w-3.5 h-3.5" aria-hidden />
+        </span>
+      </Link>
 
-        <div className="lg:col-span-2 space-y-5">
-          <div className="flex items-center gap-3">
-            <span
-              className="font-display text-[11px] font-semibold tabular-nums"
-              style={{ color: "rgba(201,168,76,0.55)" }}
-              aria-hidden
-            >
-              {sectionNum("accuracy-trend")}
-            </span>
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-              style={{ color: "#C9A84C" }}
-            >
-              Accuracy Trend
-            </p>
-            <div
-              className="h-px flex-1"
-              style={{
-                background:
-                  "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-              }}
-              aria-hidden
-            />
-          </div>
-          <div className="p-5 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_20px_40px_-20px_rgba(201,168,76,0.15)]">
-            <ScoreChart height={150} data={scoreChartData} />
-          </div>
-        </div>
-      </section>
-
-      {/* Quick Actions — hidden when the NBA panel is showing, since
-          NBA's primary + alternates already cover the "what to do next"
-          intent. Falls back to the full Quick Actions strip for users
-          without enough signal for an NBA recommendation. */}
-      {!nbaResult && (
+      {/* Quick Actions — hidden when Today's Mission is showing, since
+          the mission card already covers the "what to do next" intent.
+          Falls back to the full Quick Actions strip for users without a
+          study-plan recommendation yet. */}
+      {!topFocus && (
         <section>
           <div className="flex items-center gap-3 mb-5">
             <span
