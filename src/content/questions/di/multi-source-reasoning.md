@@ -1745,3 +1745,512 @@ Choice B ($310M) would correspond to a growth rate of roughly (310 minus 280) di
 
 The correct answer is C.
 **related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+## Set 13: Meridian Hotels — Q4 Operations Review
+
+### Tab 1: Internal Memo
+
+**From:** Marcus Rivera, VP Operations
+**To:** Property General Managers
+**Re:** Q4 Performance Summary
+
+The portfolio closed Q4 with an average occupancy rate of 68%, falling short of our board-approved target of 72%. Average RevPAR (revenue per available room per night) across all five properties was $94 for the quarter.
+
+The Lakeside property led the portfolio in RevPAR, driven by the premium-suite rate initiative that took effect in October. The Downtown property achieved the highest occupancy in the portfolio, though its RevPAR ranked second — a gap that signals meaningful rate optimization opportunity. The Suburbs property continues to underperform, posting both the lowest occupancy and the lowest RevPAR in the portfolio.
+
+Two properties — Midtown and Downtown — showed year-over-year RevPAR declines, which the board will scrutinize at the upcoming presentation.
+
+### Tab 2: Property Performance (Q4)
+
+| Property | Occupancy (%) | RevPAR ($) | Available Rooms | Prior Q4 RevPAR ($) |
+|----------|---------------|------------|-----------------|---------------------|
+| Lakeside | 64% | 118 | 120 | 108 |
+| Downtown | 82% | 97 | 200 | 100 |
+| Airport | 72% | 88 | 150 | 85 |
+| Midtown | 65% | 91 | 130 | 95 |
+| Suburbs | 55% | 76 | 110 | 72 |
+
+### Tab 3: Board Targets for Q4
+
+1. Portfolio average occupancy must be at least 72%.
+2. Every property must show positive RevPAR growth year-over-year.
+3. No property's RevPAR should fall below $80.
+4. At least three properties must exceed 70% occupancy.
+
+### Q37
+**difficulty:** Easy
+**type:** Multi-Source Reasoning
+**topic:** Business Analysis
+
+Based on Tab 2, which property had the lowest RevPAR in the portfolio during Q4?
+
+- A) Lakeside
+- B) Airport
+- C) Midtown
+- D) Suburbs
+
+**answer:** D
+**fastest_path:** Scan the RevPAR column: Suburbs = $76, the minimum.
+**explanation:** RevPAR values from Tab 2: Lakeside $118, Downtown $97, Airport $88, Midtown $91, Suburbs $76. The minimum is Suburbs at $76. Answer D.
+**mistake_a:** Lakeside has the highest RevPAR, not the lowest. A common anchor error when the memo prominently mentions Lakeside's performance.
+**mistake_b:** Airport ($88) is second-lowest.
+**mistake_c:** Midtown ($91) is third from the bottom.
+**common_trap:** Associating "lowest RevPAR" with lowest *occupancy* (also Suburbs, by coincidence here). The question asks about RevPAR specifically — always re-read which column the question targets.
+**takeaway:** For "lowest X" questions: scan only the X column and find the minimum. Ignore all other columns until you have the answer.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q38
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Business Analysis
+
+Based on Tab 2, which property (or properties) showed a year-over-year RevPAR decline?
+
+- A) Lakeside only
+- B) Midtown only
+- C) Downtown only
+- D) Midtown and Downtown
+
+**answer:** D
+**fastest_path:** Compare Current vs Prior RevPAR for each row. Lakeside: 118 > 108 (up). Downtown: 97 < 100 (down). Airport: 88 > 85 (up). Midtown: 91 < 95 (down). Suburbs: 76 > 72 (up). Two declined: Midtown and Downtown.
+**explanation:** Row-by-row check: Lakeside grew ($108 → $118). Downtown declined ($100 → $97). Airport grew ($85 → $88). Midtown declined ($95 → $91). Suburbs grew ($72 → $76). Exactly two properties declined — Midtown and Downtown — confirming the memo's statement. Answer D.
+**mistake_a:** Lakeside had the strongest RevPAR growth; it did not decline.
+**mistake_b:** Midtown did decline, but so did Downtown — "only" makes this wrong.
+**mistake_c:** Downtown did decline, but so did Midtown — "only" makes this wrong.
+**common_trap:** Stopping after finding one declining property. The question asks "which property (or properties)" — always finish checking every row before selecting an answer.
+**takeaway:** When verifying a condition across multiple rows, complete every row check before answering. Partial checks produce partial (wrong) answers.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q39
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Business Analysis
+
+According to the board targets in Tab 3, how many of the four targets did the portfolio fail to meet in Q4?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+
+**answer:** D
+**fastest_path:** Check all four targets: (1) Avg occupancy (64+82+72+65+55)/5 = 67.6% < 72% — fail. (2) All positive RevPAR growth — Midtown and Downtown declined — fail. (3) No RevPAR below $80 — Suburbs $76 — fail. (4) At least 3 properties exceed 70% occupancy — Downtown (82%) and Airport (72%) only, 2 not 3 — fail. All four failed.
+**explanation:** Target 1: average occupancy = (64+82+72+65+55)/5 = 338/5 = 67.6%, below the 72% target — fail. Target 2: Midtown and Downtown both declined year-over-year — fail. Target 3: Suburbs RevPAR = $76, below the $80 floor — fail. Target 4: properties exceeding 70% occupancy are Downtown (82%) and Airport (72%) — only two, not the required three — fail. All four targets were missed. Answer D.
+**mistake_a:** Student checked only the most visible target (occupancy average) and stopped.
+**mistake_b:** Student found the two RevPAR-decline properties and stopped, missing targets 3 and 4.
+**mistake_c:** Student found three failures but overlooked target 4 (the three-property threshold).
+**common_trap:** Target 4 requires careful counting: only Downtown (82%) and Airport (72%) exceed 70% — exactly two properties, one short of the required three. Many students count Airport as "close enough" or forget to apply the strict ">" threshold.
+**takeaway:** Multi-criterion compliance: evaluate each criterion explicitly against the data. "At least N" thresholds require an exact count, not a rough visual scan.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q40
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Business Analysis
+
+If the Midtown property increased its RevPAR to match the portfolio average of $94 while keeping its current 130 available rooms, by how much would its quarterly revenue increase? Assume a 90-day quarter.
+
+- A) $11,700
+- B) $22,815
+- C) $35,100
+- D) $46,800
+
+**answer:** C
+**fastest_path:** RevPAR increase = $94 − $91 = $3. Quarterly revenue gain = $3 × 130 rooms × 90 days = $35,100.
+**explanation:** RevPAR is defined as total room revenue divided by (available rooms × nights). Therefore, total quarterly revenue = RevPAR × available rooms × days. Current quarterly revenue = $91 × 130 × 90 = $1,064,700. New revenue = $94 × 130 × 90 = $1,099,800. Increase = $1,099,800 − $1,064,700 = $35,100. Equivalently: $3 increase × 130 rooms × 90 nights = $35,100. Answer C.
+**mistake_a:** $11,700 = $3 × 130 × 30 — used a 30-day month rather than a 90-day quarter.
+**mistake_b:** $22,815 = $3 × (130 × 65%) × 90 = $3 × 84.5 × 90 — applied the RevPAR increment to *occupied* rooms (130 × 65%) rather than *available* rooms. RevPAR is defined over all available rooms, so the full 130 is the correct denominator.
+**mistake_d:** $46,800 = $3 × 200 × 90 — used Downtown's room count (200) instead of Midtown's (130), likely from scanning the wrong row.
+**common_trap:** Confusing RevPAR (revenue per *available* room) with ADR (average daily rate, which uses *occupied* rooms in the denominator). Choice B is designed for this mistake. The computation must use total available rooms, not occupied rooms.
+**takeaway:** RevPAR questions: Revenue = RevPAR × Available Rooms × Days. "Available" is the full inventory, not the occupied subset. Verify the room count from the correct property row before computing.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+## Set 14: BioNova Research — Drug Development Pipeline
+
+### Tab 1: Strategic Memo
+
+**From:** Dr. Lena Park, Chief Medical Officer
+**To:** Portfolio Review Committee
+**Re:** Q3 Pipeline Status
+
+Three observations from this quarter's data. First, the oncology Phase III program (BN-101) is progressing faster than planned and is positioned for a regulatory filing within the year. Second, both Phase II neurology programs are at risk of enrollment shortfalls: one is 40% enrolled and the other is only 22% enrolled against identical 18-month timelines. Third, our CNS drugs collectively represent our largest strategic commitment, but also carry the longest development horizons — no CNS drug in the portfolio is projected to complete within two years from now.
+
+### Tab 2: Drug Development Pipeline
+
+| Drug | Therapeutic Area | Phase | Target Enrollment | Enrolled (%) | Projected Completion (months) |
+|------|-----------------|-------|-------------------|--------------|-------------------------------|
+| BN-101 | Oncology | III | 500 | 80% | 14 |
+| BN-204 | Neurology | II | 300 | 40% | 18 |
+| BN-317 | CNS | II | 250 | 65% | 28 |
+| BN-412 | Cardiovascular | I | 120 | 33% | 22 |
+| BN-505 | Neurology | II | 350 | 22% | 18 |
+| BN-618 | CNS | III | 400 | 60% | 31 |
+
+### Q41
+**difficulty:** Easy
+**type:** Multi-Source Reasoning
+**topic:** Clinical Research
+
+According to Tab 2, which drug has the earliest projected completion date?
+
+- A) BN-101
+- B) BN-204
+- C) BN-317
+- D) BN-618
+
+**answer:** A
+**fastest_path:** Scan the "Projected Completion" column for the minimum: BN-101 = 14 months, the lowest.
+**explanation:** Projected completion months from Tab 2: BN-101 (14), BN-204 (18), BN-317 (28), BN-412 (22), BN-505 (18), BN-618 (31). The minimum is BN-101 at 14 months. Answer A.
+**mistake_b:** BN-204 is tied for second-earliest at 18 months, not the earliest.
+**mistake_d:** BN-618 has the latest projected completion at 31 months — opposite end of the range.
+**common_trap:** The memo prominently discusses BN-101 as "progressing faster than planned," which may anchor students on that drug — but the correct anchor is the completion timeline column, not the enrollment narrative.
+**takeaway:** "Earliest" = minimum value in the relevant column. Anchor on the column the question asks about, not on which drug receives the most narrative attention.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q42
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Clinical Research
+
+Based on Tab 2, which of the following statements is accurate?
+
+- A) There are more Phase I drugs in the pipeline than Phase III drugs.
+- B) Every Phase III drug has a higher enrollment percentage than every Phase II drug.
+- C) BN-505 has the lowest enrollment percentage of any drug in the pipeline.
+- D) The cardiovascular program has a shorter projected timeline than both neurology programs.
+
+**answer:** C
+**fastest_path:** C: scan the "Enrolled (%)" column — BN-505 = 22%, the minimum. Confirm no other drug is lower.
+**explanation:** Check each statement. A: Phase I count = 1 (BN-412), Phase III count = 2 (BN-101, BN-618) — false, Phase III has more. B: Phase III enrollment percentages are BN-101 (80%) and BN-618 (60%); Phase II includes BN-317 at 65%. Since BN-618 (60%) < BN-317 (65%), not every Phase III exceeds every Phase II — false. C: BN-505 = 22%; all others are 33%, 40%, 60%, 65%, 80% — BN-505 is the minimum. True. D: Cardiovascular (BN-412) = 22 months; both neurology programs (BN-204 and BN-505) = 18 months. 22 > 18, so BN-412 is longer, not shorter — false. Answer C.
+**mistake_a:** There are 2 Phase III drugs (BN-101 and BN-618) versus only 1 Phase I drug (BN-412).
+**mistake_b:** BN-318 (Phase II CNS) is 65% enrolled, higher than BN-618 (Phase III, 60%). The "every Phase III > every Phase II" claim fails on this pair.
+**mistake_d:** BN-412 (Cardiovascular) has a 22-month timeline while both neurology Phase II programs have 18-month timelines — cardiovascular is longer, not shorter.
+**common_trap:** For statement B, students who only compare BN-101 (80%) against Phase II drugs find it true for BN-101, then stop. The full criterion requires every Phase III drug to exceed every Phase II drug — checking BN-618 (60%) against BN-317 (65%) breaks the claim.
+**takeaway:** "Every X has higher Y than every Z" requires checking the worst-case X against the best-case Z. A single counterexample disproves the universal claim.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q43
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Clinical Research
+
+Based on Tab 2, how many additional participants still need to be enrolled across all Phase III drugs to reach their respective target enrollments? Assume current enrollment percentages are exact.
+
+- A) 100
+- B) 160
+- C) 260
+- D) 400
+
+**answer:** C
+**fastest_path:** Phase III drugs: BN-101 and BN-618. BN-101 remaining = 500 × (1−0.80) = 100. BN-618 remaining = 400 × (1−0.60) = 160. Total = 260.
+**explanation:** Identify Phase III drugs from Tab 2: BN-101 (Oncology) and BN-618 (CNS). BN-101: target = 500, enrolled = 80% → currently enrolled = 400, remaining = 100. BN-618: target = 400, enrolled = 60% → currently enrolled = 240, remaining = 160. Combined remaining = 100 + 160 = 260. Answer C.
+**mistake_a:** 100 — computed only BN-101's remaining participants, omitting BN-618.
+**mistake_b:** 160 — computed only BN-618's remaining participants, omitting BN-101.
+**mistake_d:** 400 — summed current enrolled counts (400 + 240 = 640) minus BN-618's remaining (160), or confused "currently enrolled" with "still needed" for one drug.
+**common_trap:** Applying the Phase III filter correctly but then computing *currently enrolled* (400 + 240 = 640) instead of *remaining to enroll* (100 + 160 = 260). The question asks what is still needed, not what has been achieved.
+**takeaway:** "Still needed" = Target × (1 − Enrolled%). Verify the filter criterion (Phase III only) before computing, then compute remaining for each qualifying drug separately before summing.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+## Set 15: Clearwater Municipal Transit Authority — Annual Service Review
+
+### Tab 1: Director Memo
+
+**From:** Patricia Osei, Director of Transit Services
+**To:** City Council Transportation Committee
+**Re:** Annual Route Performance Summary
+
+Overall systemwide ridership grew 3.2% year-over-year. Route 3 posted the strongest individual ridership growth at 8.2%, driven by the extension to the new employment corridor in Q2. Two routes experienced ridership declines — both are designated residential routes, which triggers a formal service review under our charter.
+
+Three routes are currently running at a daily operating subsidy, where fare revenue does not cover operating costs. The authority is evaluating whether to restructure or discontinue the weakest-performing routes before the next budget cycle.
+
+### Tab 2: Route Performance Summary
+
+| Route | Avg Daily Riders | Daily Oper. Cost ($) | Daily Fare Revenue ($) | YoY Rider Growth |
+|-------|-----------------|----------------------|------------------------|------------------|
+| 1 | 2,400 | 7,200 | 8,400 | +2.5% |
+| 2 | 1,800 | 6,000 | 4,800 | −3.5% |
+| 3 | 3,100 | 9,600 | 9,300 | +8.2% |
+| 4 | 1,200 | 3,000 | 3,600 | +1.0% |
+| 5 | 800 | 4,000 | 2,000 | −1.2% |
+
+### Tab 3: Service Standards
+
+- All routes must maintain a minimum daily fare revenue-to-cost ratio of 0.85.
+- No route may operate with fewer than 700 average daily riders.
+- Routes serving primarily residential areas (Routes 2 and 5 are designated residential) must achieve positive year-over-year ridership growth.
+
+### Q44
+**difficulty:** Easy
+**type:** Multi-Source Reasoning
+**topic:** Public Policy Analysis
+
+According to Tab 2, which route has the highest average daily ridership?
+
+- A) Route 1
+- B) Route 2
+- C) Route 3
+- D) Route 4
+
+**answer:** C
+**fastest_path:** Scan the "Avg Daily Riders" column: Route 3 = 3,100, the maximum.
+**explanation:** Average daily ridership from Tab 2: Route 1 (2,400), Route 2 (1,800), Route 3 (3,100), Route 4 (1,200), Route 5 (800). The maximum is Route 3 at 3,100. Answer C.
+**mistake_a:** Route 1 has the second-highest ridership at 2,400.
+**mistake_d:** Route 4 has one of the lower ridership counts at 1,200.
+**common_trap:** The memo prominently discusses Route 3's *growth* (+8.2%), which helps confirm the answer, but the question asks about *absolute ridership*, not growth rate. Both metrics point to Route 3 here, but they measure different things.
+**takeaway:** Distinguish absolute values (how many riders today) from rate-of-change values (how fast ridership is growing). Both appear in the same table; always read which one the question asks for.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q45
+**difficulty:** Easy
+**type:** Multi-Source Reasoning
+**topic:** Public Policy Analysis
+
+Based on the YoY Rider Growth column in Tab 2, which route experienced the most negative year-over-year ridership change?
+
+- A) Route 1
+- B) Route 2
+- C) Route 4
+- D) Route 5
+
+**answer:** B
+**fastest_path:** Scan the YoY growth column for the most negative value: Route 2 = −3.5%, which is more negative than Route 5's −1.2%.
+**explanation:** YoY Rider Growth: Route 1 (+2.5%), Route 2 (−3.5%), Route 3 (+8.2%), Route 4 (+1.0%), Route 5 (−1.2%). Two routes declined; among them, −3.5% (Route 2) is more negative than −1.2% (Route 5). Answer B.
+**mistake_a:** Route 1 had positive growth of +2.5%.
+**mistake_c:** Route 4 had positive growth of +1.0%.
+**mistake_d:** Route 5 did decline (−1.2%), but −1.2% is a smaller decline than Route 2's −3.5%.
+**common_trap:** Stopping at the first negative value encountered when reading the table top to bottom — Route 5 appears after Route 2 in the table but has a smaller decline. Always compare all negative values before selecting.
+**takeaway:** "Most negative" requires comparing the magnitudes of all negative values. A −3.5% decline is worse (more negative) than a −1.2% decline, even though both are declines.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q46
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Public Policy Analysis
+
+According to the service standard in Tab 3 requiring a minimum daily fare revenue-to-cost ratio of 0.85, how many routes currently fail to meet this threshold?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+
+**answer:** B
+**fastest_path:** Compute revenue/cost for each route. Route 1: 8,400/7,200 = 1.17 ✓. Route 2: 4,800/6,000 = 0.80 ✗. Route 3: 9,300/9,600 = 0.97 ✓. Route 4: 3,600/3,000 = 1.20 ✓. Route 5: 2,000/4,000 = 0.50 ✗. Two routes fail.
+**explanation:** Revenue-to-cost ratios: Route 1 = 8,400/7,200 = 1.167 (passes). Route 2 = 4,800/6,000 = 0.800, below 0.85 (fails). Route 3 = 9,300/9,600 = 0.969 (passes). Route 4 = 3,600/3,000 = 1.200 (passes). Route 5 = 2,000/4,000 = 0.500, below 0.85 (fails). Two routes fail: Route 2 and Route 5. Answer B.
+**mistake_a:** Student only identified Route 5 (the most obvious failure at 0.50) and stopped.
+**mistake_c:** Student included Route 3 as a failure because it runs at a small absolute subsidy ($9,300 < $9,600), but its ratio is 0.969 — above the 0.85 threshold. The standard is a ratio, not a requirement for profit.
+**mistake_d:** Student counted all routes operating at any subsidy (Routes 2, 3, and 5 all have revenue < cost) rather than applying the specific 0.85 ratio threshold.
+**common_trap:** Confusing "operating at a subsidy" (revenue < cost) with "failing the 0.85 ratio." A route can run at a loss while still meeting the 0.85 standard — Route 3 does exactly this ($9,300/$9,600 = 0.969). The specific threshold, not mere profitability, is what determines compliance.
+**takeaway:** Compliance questions require applying the exact stated criterion. Read the threshold carefully; then compute the relevant metric for each entity before comparing.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q47
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Public Policy Analysis
+
+The authority is evaluating whether to discontinue Route 2 or Route 5. Both routes fail the revenue-to-cost standard and have negative ridership growth. The decision rule: discontinue the route that saves more daily operating cost per daily rider discontinued. Based on Tab 2, which route should be discontinued, and what is the daily cost savings per rider?
+
+- A) Route 2; approximately $3.33 per daily rider
+- B) Route 2; approximately $5.00 per daily rider
+- C) Route 5; approximately $3.33 per daily rider
+- D) Route 5; approximately $5.00 per daily rider
+
+**answer:** D
+**fastest_path:** Route 5: $4,000 / 800 = $5.00/rider. Route 2: $6,000 / 1,800 = $3.33/rider. $5.00 > $3.33, so discontinue Route 5.
+**explanation:** The rule requires maximizing cost savings per rider discontinued. Route 5: daily cost = $4,000, daily riders = 800 → $4,000 / 800 = $5.00 per rider. Route 2: daily cost = $6,000, daily riders = 1,800 → $6,000 / 1,800 = $3.33 per rider. Route 5 generates $5.00 of daily cost savings per rider lost, exceeding Route 2's $3.33. Per the decision rule, Route 5 should be discontinued. Answer D.
+**mistake_a:** Picks Route 2 because it saves more in *absolute* daily cost ($6,000 vs. $4,000), but the rule specifies *per rider*, not total — Route 5 wins on that metric.
+**mistake_b:** Picks Route 2 but attributes Route 5's per-rider figure ($5.00) to it — swapped the ratios between routes.
+**mistake_c:** Picks the correct route (Route 5) but attributes Route 2's per-rider figure ($3.33) — computed the right route from the decision rule but pulled the wrong dollar figure.
+**common_trap:** Route 2 appears more expensive to run ($6,000 vs. $4,000), making it the intuitive cut candidate. But the rule normalizes by ridership, and Route 5's 800 daily riders generate a higher cost-per-rider ratio than Route 2's 1,800 riders do at $6,000. Per-rider analysis often inverts the ranking from absolute analysis.
+**takeaway:** "Per unit" decision rules require dividing, not comparing absolute totals. Compute the ratio for each option independently, then compare. Larger absolute cost does not imply larger cost per unit.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+## Set 16: Arcturus Manufacturing — Component C Supplier Analysis
+
+### Tab 1: Operations Memo
+
+**From:** Elena Vasquez, VP Supply Chain
+**To:** Procurement Committee
+**Re:** Supplier Performance Review and Proposed Vendor Switch
+
+We are evaluating switching primary sourcing for Component C from Helios to Meridian. Meridian's per-unit cost is 5% higher than Helios, but its defect rate and lead time are significantly better. Our annual requirement for Component C is 12,000 units. A switch would require a one-time transition cost of $15,000.
+
+Separately, Orion's lead time increased from 18 days to 25 days in Q2. This moves Orion outside our preferred-vendor tier, which requires a lead time of 21 days or fewer. We will reassess Orion's tier status in Q3.
+
+I want the committee to evaluate the full cost picture — purchase price, rework costs, and the payback on the transition — before deciding.
+
+### Tab 2: Supplier Performance Summary
+
+| Supplier | Component | Per-Unit Cost ($) | Lead Time (days) | Defect Rate (%) | Annual Volume | Rework Cost per Defect ($) |
+|----------|-----------|-------------------|------------------|-----------------|---------------|----------------------------|
+| Sigma    | A         | 42                | 14               | 1.8%            | 8,000         | 120                        |
+| Helios   | C         | 60                | 19               | 4.0%            | 12,000        | 150                        |
+| Meridian | C         | 63                | 12               | 1.0%            | N/A           | 150                        |
+| Apex     | B         | 28                | 10               | 0.5%            | 15,000        | 80                         |
+| Orion    | D         | 35                | 25               | 1.1%            | 9,000         | 90                         |
+
+### Q48
+**difficulty:** Easy
+**type:** Multi-Source Reasoning
+**topic:** Supply Chain Analysis
+
+Based on Tab 2, which active supplier has the lowest defect rate?
+
+- A) Sigma
+- B) Helios
+- C) Meridian
+- D) Apex
+
+**answer:** D
+**fastest_path:** Scan the "Defect Rate (%)" column: Apex = 0.5%, the minimum.
+**explanation:** Defect rates from Tab 2: Sigma 1.8%, Helios 4.0%, Meridian 1.0%, Apex 0.5%, Orion 1.1%. The minimum is Apex at 0.5%. Answer D.
+**mistake_a:** Sigma (1.8%) is mid-range, not the lowest.
+**mistake_b:** Helios (4.0%) is the highest defect rate, not the lowest.
+**mistake_c:** Meridian (1.0%) is lower than most but above Apex's 0.5%.
+**common_trap:** Meridian is prominently discussed in the memo as having a better defect rate than Helios, which can anchor attention on Meridian. But the question asks for the overall minimum across all suppliers — Apex, which isn't part of the memo's discussion, is lower.
+**takeaway:** Scan the entire relevant column before answering. The subject of the memo's analysis is not necessarily the answer to a "which is lowest" question.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q49
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Supply Chain Analysis
+
+The memo defines preferred-vendor status as a lead time of 21 days or fewer. Among the four currently active suppliers (excluding Meridian, which has no active volume), how many qualify as preferred vendors?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+
+**answer:** C
+**fastest_path:** Active suppliers: Sigma (14 days ✓), Helios (19 days ✓), Apex (10 days ✓), Orion (25 days ✗). Three qualify.
+**explanation:** Active suppliers and their lead times from Tab 2: Sigma (14 days), Helios (19 days), Apex (10 days), Orion (25 days). The threshold is ≤21 days. Sigma (14) passes, Helios (19) passes, Apex (10) passes, Orion (25) fails. Three of the four active suppliers meet the preferred-vendor criterion. Answer C.
+**mistake_b:** Student may have excluded Helios because it is being evaluated for replacement, but the question asks about current preferred-vendor status by lead time — Helios at 19 days still qualifies.
+**mistake_d:** Student counted Orion as meeting the standard — but 25 > 21. The memo explicitly flags that Orion moved *out* of the preferred-vendor tier.
+**common_trap:** Using the memo's narrative to exclude Helios (since it is under review) from the count. The question asks about the technical threshold (lead time ≤21), not strategic status. Helios still meets the numeric criterion.
+**takeaway:** When a question asks about a defined numeric threshold, apply the threshold mechanically. Narrative context (e.g., a supplier being evaluated for replacement) does not change whether it meets the numeric standard.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q50
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Supply Chain Analysis
+
+Based on Tab 2, what is the total annual rework cost currently incurred for Component C (sourced entirely from Helios)?
+
+- A) $18,000
+- B) $43,200
+- C) $57,600
+- D) $72,000
+
+**answer:** D
+**fastest_path:** Annual rework = 12,000 units × 4.0% defect rate × $150 per defect = 480 defects × $150 = $72,000.
+**explanation:** From Tab 2: Helios supplies 12,000 units annually at a 4.0% defect rate, with a rework cost of $150 per defective unit. Annual defective units = 12,000 × 0.040 = 480. Annual rework cost = 480 × $150 = $72,000. Answer D.
+**mistake_a:** $18,000 = 12,000 × 1.0% × $150 — used Meridian's defect rate (the candidate supplier) instead of Helios's current rate.
+**mistake_b:** $43,200 = 12,000 × 4.0% × $90 — used Orion's rework cost per defect ($90) instead of Helios's ($150).
+**mistake_c:** $57,600 = 12,000 × 3.2% × $150 — misread Helios's defect rate as 3.2% (close to the actual 4.0% but pulling from the wrong row or an estimation).
+**common_trap:** When computing rework costs in a multi-supplier table, it is tempting to use a value from the "featured" comparison row (Meridian) rather than the current supplier (Helios). Always confirm which row's data the question asks you to use.
+**takeaway:** Multi-row tables require row discipline: identify the subject row first, then extract all needed fields from that single row before computing. Cross-row contamination produces every common wrong answer here.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q51
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Supply Chain Analysis
+
+If Arcturus switches all Component C sourcing to Meridian, how much more will it spend annually on Component C purchases (unit cost only, excluding rework)?
+
+- A) $3,000
+- B) $12,000
+- C) $36,000
+- D) $108,000
+
+**answer:** C
+**fastest_path:** Price increase = $63 − $60 = $3 per unit × 12,000 units = $36,000/year.
+**explanation:** Meridian's per-unit cost is $63 versus Helios's $60, a difference of $3 per unit. Annual volume is 12,000 units. Additional annual purchase cost = $3 × 12,000 = $36,000. Answer C. (Cross-check: memo states Meridian is 5% more expensive. $60 × 1.05 = $63 ✓.)
+**mistake_a:** $3,000 = $3 × 1,000 — miscounted the annual volume as 1,000 instead of 12,000.
+**mistake_b:** $12,000 = $3 × 4,000 — used one quarter's worth of volume (12,000 / 3 ≈ 4,000) instead of the full annual volume.
+**mistake_d:** $108,000 = 12,000 × $9 — computed a 15% premium ($60 × 0.15 = $9) instead of the stated 5% premium ($60 × 0.05 = $3). The memo clearly states 5%, and Tab 2 confirms: $63 / $60 = 1.05.
+**common_trap:** Misreading "5% higher" as "15% higher" — especially if a student confuses this with a similar problem or skims the memo without verifying against the table. Always cross-check the memo's percentage claim against the raw numbers in the table.
+**takeaway:** When the memo states a percentage and the table gives raw numbers, verify consistency: $63 / $60 = 1.05 = 5% premium. Use the exact dollar difference for the calculation, not the percentage alone.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q52
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Supply Chain Analysis
+
+Using the data in Tab 2 and the transition cost from the memo, what is the payback period in months for switching all Component C sourcing from Helios to Meridian? (Assume annual savings accrue evenly across months and the transition cost is paid upfront.)
+
+- A) 3 months
+- B) 10 months
+- C) 18 months
+- D) 25 months
+
+**answer:** B
+**fastest_path:** Annual rework savings: 12,000 × (4%−1%) × $150 = 360 × $150 = $54,000. Annual purchase cost increase: 12,000 × $3 = $36,000. Net annual savings: $54,000 − $36,000 = $18,000 = $1,500/month. Payback: $15,000 / $1,500 = 10 months.
+**explanation:** Step 1 — Annual rework cost with Helios: 12,000 × 4.0% × $150 = $72,000. With Meridian: 12,000 × 1.0% × $150 = $18,000. Rework savings = $54,000/year. Step 2 — Annual purchase cost increase: 12,000 × ($63 − $60) = $36,000 more per year. Step 3 — Net annual savings: $54,000 − $36,000 = $18,000/year = $1,500/month. Step 4 — Payback: $15,000 transition cost / $1,500 per month = 10 months. Answer B.
+**mistake_a:** 3 months = $15,000 / ($54,000 / 12) = $15,000 / $4,500 — used gross rework savings ($54,000) without netting out the $36,000 annual purchase cost increase. This ignores that Meridian costs more per unit.
+**mistake_c:** 18 months — arises from computing net monthly savings incorrectly, for example by using only the purchase premium as the denominator ($36,000/12 = $3,000/month; $15,000/$3,000 = 5 months) or from a multi-step arithmetic error that yields a lower net benefit figure.
+**mistake_d:** 25 months — likely from a major arithmetic error in the rework or purchase cost step, such as misreading the defect rate or rework cost per unit from another supplier's row.
+**common_trap:** Computing only one of the two cost effects. The switch both saves money (lower rework) and costs money (higher unit price). Using only the rework savings overstates the benefit and understates the payback period. The net figure is what goes in the denominator.
+**takeaway:** Payback = One-time cost / Net annual savings. Net = benefits minus costs. Never use gross savings as the denominator; always subtract the ongoing cost premium before dividing.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q53
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Supply Chain Analysis
+
+The procurement committee proposes a hybrid approach: purchase 60% of the annual Component C requirement from Helios and 40% from Meridian. Assuming the same per-unit costs, defect rates, and rework costs from Tab 2, how would the hybrid arrangement change total annual Component C costs (purchases plus rework) compared with the current all-Helios arrangement?
+
+- A) Increases by $7,200
+- B) Decreases by $7,200
+- C) Increases by $14,400
+- D) Decreases by $18,000
+
+**answer:** B
+**fastest_path:** Hybrid split: 7,200 units from Helios, 4,800 from Meridian. Helios portion: (7,200×$60)+(7,200×4%×$150) = $432,000+$43,200 = $475,200. Meridian portion: (4,800×$63)+(4,800×1%×$150) = $302,400+$7,200 = $309,600. Hybrid total = $784,800. Current all-Helios: (12,000×$60)+(12,000×4%×$150) = $720,000+$72,000 = $792,000. Change = $784,800 − $792,000 = −$7,200 (saves $7,200).
+**explanation:** Current all-Helios annual cost: purchases = 12,000 × $60 = $720,000; rework = 12,000 × 4.0% × $150 = 480 × $150 = $72,000; total = $792,000. Hybrid arrangement: Helios volume = 60% × 12,000 = 7,200 units; Meridian volume = 40% × 12,000 = 4,800 units. Helios portion cost: (7,200 × $60) + (7,200 × 4.0% × $150) = $432,000 + $43,200 = $475,200. Meridian portion cost: (4,800 × $63) + (4,800 × 1.0% × $150) = $302,400 + $7,200 = $309,600. Hybrid total = $475,200 + $309,600 = $784,800. Change vs. current: $784,800 − $792,000 = −$7,200. The hybrid arrangement saves $7,200/year. Answer B.
+**mistake_a:** Increases by $7,200 — correct magnitude but wrong direction. This arises from subtracting in the wrong order (hybrid − current computed as $792,000 − $784,800 instead of $784,800 − $792,000).
+**mistake_c:** Increases by $14,400 — computed only the purchase cost premium for the Meridian portion (4,800 × $3 = $14,400) without accounting for the rework savings from switching 40% of volume to the lower-defect supplier. Net rework savings on the Meridian portion = (4,800 × 4% × $150) − (4,800 × 1% × $150) = $28,800 − $7,200 = $21,600. Net change = $21,600 savings − $14,400 premium = $7,200 savings (not an increase).
+**mistake_d:** Decreases by $18,000 — the net annual savings if ALL 12,000 units switched to Meridian (the full-switch figure from Q52). This error applies the full-switch savings to a 60/40 hybrid. Only 40% of volume moves to Meridian, so only 40% of the potential rework savings are realized.
+**common_trap:** Two traps in one question. First, students who only calculate the Meridian purchase premium ($14,400) and ignore rework savings choose C. Second, students who compute the correct full-switch savings ($18,000 from Q52) and apply them to the hybrid proposal choose D. The hybrid problem requires computing each supplier's portion costs separately — there is no shortcut that uses the full-switch numbers directly.
+**takeaway:** Hybrid-split problems: always compute each portion's full cost (purchase + rework) separately, then sum. You cannot apply a full-population rate to a partial volume — doing so is the definition of the misleading distractor.
+**related_reading:** reading-di-05-multi-source-reasoning
