@@ -118,6 +118,12 @@ export default async function ReviewSectionPage({
 
   const slug = `review-${sectionKey}-${new Date().toISOString().slice(0, 10)}`
 
+  // Each question's current rung on the spacing ladder. SessionClient uses
+  // this to show, on the completion screen, where every question moved —
+  // climbed a rung (hidden for the next gap) or reset to same-day.
+  const reviewRungs: Record<string, number> = {}
+  for (const c of queue) reviewRungs[c.questionId] = c.rung
+
   return (
     <div className="space-y-5">
       <Link
@@ -132,6 +138,7 @@ export default async function ReviewSectionPage({
         topic="Daily Review"
         section={section}
         questions={playable}
+        reviewRungs={reviewRungs}
       />
     </div>
   )

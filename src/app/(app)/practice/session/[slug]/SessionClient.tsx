@@ -12,6 +12,7 @@ import {
   ChevronDown,
   Clock,
   Lightbulb,
+  RotateCcw,
   Sparkles,
   Star,
   Tags,
@@ -23,6 +24,7 @@ import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import PacingBadge from "@/components/shared/PacingBadge"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
+import { MAX_RUNG, SPACING_LADDER_DAYS } from "@/lib/review-queue"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
 import { applySessionAttempts, levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
 import {
@@ -106,6 +108,14 @@ interface SessionClientProps {
   /** Optional context line shown above the session title, e.g.
    *  "Algebra: Linear Equations & Systems · Test 1" for a per-chapter test. */
   setLabel?: string
+  /** Spaced-review sessions only: each question's rung on the spacing
+   *  ladder at session start (questionId → 0..MAX_RUNG, from the
+   *  ReviewCandidate queue). When present, the completion screen shows
+   *  how this session moved each question — climbed a rung (hidden for
+   *  the next gap) or reset to same-day. The projection uses the same
+   *  fold as lib/review-queue.ts::computeRung, so it matches what the
+   *  queue will actually show tomorrow. */
+  reviewRungs?: Record<string, number>
 }
 
 function formatDuration(ms: number): string {
@@ -1107,6 +1117,7 @@ export default function SessionClient({
   skillAttempts,
   weakestTopic,
   setLabel,
+  reviewRungs,
 }: SessionClientProps) {
   const router = useRouter()
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -1463,6 +1474,7 @@ export default function SessionClient({
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
+    const isReviewSession = slug.startsWith("review-")
 
     // Shared next-step accuracy bands. Below LOW signals a concept gap
     // (revisit the chapter); at/above SOLID the topic is strong enough to
@@ -1552,11 +1564,11 @@ export default function SessionClient({
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
           <Link
-            href="/practice"
+            href={isReviewSession ? "/review" : "/practice"}
             className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors"
           >
             <ArrowLeft className="w-3 h-3" />
-            Back to Practice
+            {isReviewSession ? "Back to Review" : "Back to Practice"}
           </Link>
           <h1 className="text-2xl font-bold text-[#F0F0F0] mt-3">{headline}</h1>
           <p className="text-sm text-[#555555] mt-1">
@@ -1768,6 +1780,122 @@ export default function SessionClient({
               )
             })()}
         </div>
+
+        {/* Memory ladder — spaced-review sessions only. The emotional payoff
+            of review is invisible unless we show it: each correct answer
+            pushed that question a rung up the spacing ladder (hidden until a
+            longer gap elapses), each miss pulled it back to same-day. The
+            projection mirrors computeRung exactly: correct → min(rung+1, MAX),
+            miss → 0, so this matches what the queue shows tomorrow. */}
+        {reviewRungs && (() => {
+          const moves = answeredPairs
+            .filter((p) => p.q.id in reviewRungs)
+            .map((p) => {
+              const before = reviewRungs[p.q.id]
+              const after = p.correct ? Math.min(before + 1, MAX_RUNG) : 0
+              return { q: p.q, correct: p.correct, before, after }
+            })
+          if (moves.length === 0) return null
+
+          const advanced = moves.filter((m) => m.correct)
+          const resets = moves.filter((m) => !m.correct)
+
+          // Group climbed questions by the gap their new rung earns so the
+          // panel reads as "when will I see these again", not raw rungs.
+          const gapCounts = new Map<number, number>()
+          for (const m of advanced) {
+            const gap = SPACING_LADDER_DAYS[m.after]
+            gapCounts.set(gap, (gapCounts.get(gap) ?? 0) + 1)
+          }
+          const orderedGaps = [...gapCounts.entries()].sort((a, b) => a[0] - b[0])
+          const maxCount = Math.max(
+            resets.length,
+            ...orderedGaps.map(([, n]) => n)
+          )
+
+          const resetSubtopics = [
+            ...new Set(resets.map((m) => m.q.subtopic).filter(Boolean)),
+          ].slice(0, 3)
+
+          const lead =
+            resets.length === 0
+              ? `All ${moves.length} question${moves.length === 1 ? "" : "s"} climbed a rung. Each stays out of your queue until its longer gap elapses — retrieving it right when memory starts to fade is what makes it stick.`
+              : advanced.length === 0
+              ? `All ${moves.length} reset to the same-day rung. That is the ladder working as designed — they return today while the correction is fresh, and start the climb again.`
+              : `${advanced.length} climbed a rung and ${advanced.length === 1 ? "leaves" : "leave"} your queue for now; ${resets.length} reset and return${resets.length === 1 ? "s" : ""} today.`
+
+          return (
+            <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+                Memory ladder
+              </p>
+              <p className="text-sm text-[#C0C0C0] leading-relaxed">{lead}</p>
+
+              <div className="mt-4 space-y-2.5">
+                {orderedGaps.map(([gap, count]) => {
+                  const isTopRung = gap === SPACING_LADDER_DAYS[MAX_RUNG]
+                  return (
+                    <div key={gap} className="flex items-center gap-3">
+                      <span
+                        className="text-xs w-36 flex-shrink-0"
+                        style={{ color: isTopRung ? "#C9A84C" : "#888888" }}
+                      >
+                        {isTopRung ? "42 days · top rung" : `Hidden for ${gap} days`}
+                      </span>
+                      <div className="flex-1 h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
+                        <div
+                          className="h-full rounded-full transition-all duration-500"
+                          style={{
+                            width: `${Math.round((count / maxCount) * 100)}%`,
+                            backgroundColor: isTopRung ? "#C9A84C" : "#3ECF8E",
+                          }}
+                        />
+                      </div>
+                      <span className="text-[11px] tabular-nums w-16 text-right flex-shrink-0 text-[#888888]">
+                        {count} question{count === 1 ? "" : "s"}
+                      </span>
+                    </div>
+                  )
+                })}
+                {resets.length > 0 && (
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs w-36 flex-shrink-0" style={{ color: "#FF6B6B" }}>
+                      Back today
+                    </span>
+                    <div className="flex-1 h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-500"
+                        style={{
+                          width: `${Math.round((resets.length / maxCount) * 100)}%`,
+                          backgroundColor: "#FF6B6B",
+                        }}
+                      />
+                    </div>
+                    <span className="text-[11px] tabular-nums w-16 text-right flex-shrink-0 text-[#888888]">
+                      {resets.length} question{resets.length === 1 ? "" : "s"}
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {resets.length > 0 && (
+                <div className="mt-4 pt-3 border-t border-white/[0.05] flex items-start gap-2">
+                  <RotateCcw className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-[#555555]" />
+                  <p className="text-xs text-[#888888] leading-relaxed">
+                    {resetSubtopics.length > 0 && (
+                      <>
+                        Returning today: {resetSubtopics.join(", ")}
+                        {resets.length > resetSubtopics.length ? " and more" : ""}.{" "}
+                      </>
+                    )}
+                    A same-day second pass is when relearning sticks — walk the
+                    explanations in the list below before you leave.
+                  </p>
+                </div>
+              )}
+            </div>
+          )
+        })()}
 
         {(() => {
           const insight = computeInsight(questions, states, section)
@@ -2141,6 +2269,10 @@ export default function SessionClient({
             if (isPractice) {
               actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
             }
+          }
+
+          if (isReviewSession) {
+            actions.push({ label: "Back to review queue", href: "/review", variant: "secondary" })
           }
 
           return (
