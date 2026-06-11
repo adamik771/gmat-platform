@@ -18,6 +18,7 @@ import SectionProgress from "@/components/dashboard/SectionProgress"
 import ActivityFeed from "@/components/dashboard/ActivityFeed"
 import ScoreChart, { type ScoreDataPoint } from "@/components/dashboard/ScoreChart"
 import QuickActions from "@/components/dashboard/QuickActions"
+import StudyHoursChart from "./StudyHoursChart"
 import EmptyState from "@/components/shared/EmptyState"
 import { getAllChapters, getAllLessons, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
@@ -376,6 +377,9 @@ export default async function DashboardPage() {
   let currentPlan: string | null = null
   let currentStreak = 0
   let longestStreak = 0
+  /** Every session's timestamp + duration — the study-hours chart buckets
+   *  these into local-time days client-side and supports week-back nav. */
+  let studySessions: Array<{ t: string; ms: number }> = []
   let badges: Badge[] = []
   let reviewDueCount = 0
   let reviewTopTopic: string | null = null
@@ -550,7 +554,7 @@ export default async function DashboardPage() {
       // union query and keeps the streak logic in plain JS.
       const { data: allSessions } = await supabase
         .from("practice_sessions")
-        .select("created_at, total_questions")
+        .select("created_at, total_questions, total_time_ms")
         .eq("user_id", userId)
       const { data: allCompletions } = await supabase
         .from("lesson_completions")
@@ -566,6 +570,8 @@ export default async function DashboardPage() {
         const qCount = (s.total_questions as number) ?? 0
         totalQuestions += qCount
         if (qCount > largestSessionQuestions) largestSessionQuestions = qCount
+        const ms = (s.total_time_ms as number) ?? 0
+        if (ms > 0) studySessions.push({ t: s.created_at as string, ms })
       }
       for (const c of allCompletions ?? []) {
         activeDays.add((c.completed_at as string).slice(0, 10))
@@ -1249,6 +1255,7 @@ export default async function DashboardPage() {
   if (!onboardingComplete) renderedNumberedSections.push("getting-started")
   renderedNumberedSections.push("score-goal")
   renderedNumberedSections.push("this-week")
+  renderedNumberedSections.push("study-hours")
   renderedNumberedSections.push("section-progress")
   renderedNumberedSections.push("accuracy-trend")
   if (!nbaResult) renderedNumberedSections.push("quick-actions")
@@ -1875,6 +1882,37 @@ export default async function DashboardPage() {
             pulseOnMount={currentStreak > 0}
           />
         </div>
+      </section>
+
+      {/* Study hours — per-day time invested, week-by-week comparison */}
+      <section>
+        <div className="flex items-center gap-3 mb-5">
+          <span
+            className="font-display text-[11px] font-semibold tabular-nums"
+            style={{ color: "rgba(201,168,76,0.55)" }}
+            aria-hidden
+          >
+            {sectionNum("study-hours")}
+          </span>
+          <p
+            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+            style={{ color: "#C9A84C" }}
+          >
+            Study Hours
+          </p>
+          <div
+            className="h-px flex-1"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+            }}
+            aria-hidden
+          />
+          <span className="text-[11px]" style={{ color: "#555555" }}>
+            Time in sessions, per day
+          </span>
+        </div>
+        <StudyHoursChart sessions={studySessions} />
       </section>
 
       {/* Section Progress + Chart */}
