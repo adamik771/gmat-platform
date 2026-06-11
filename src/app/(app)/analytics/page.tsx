@@ -30,15 +30,8 @@ import AnalyticsClient, {
   type ErrorPatternSummary,
   type PacingRow,
   type PredictionMAE,
-  type PredictionMAETrendPoint,
-  type RepeatMissRow,
-  type ReportMirror,
-  type ReportMirrorRow,
-  type ReviewEditSummary,
   type ScoreTrendPoint,
-  type TimeSinkRow,
   type TopicRow,
-  type TopicTimingRow,
 } from "./AnalyticsClient"
 import { accuracyToScore } from "@/lib/diagnostic"
 
@@ -46,7 +39,6 @@ import { accuracyToScore } from "@/lib/diagnostic"
 // and a couple of lucky / unlucky answers dominate the number.
 const TOPIC_MIN_ATTEMPTS = 5
 const PACING_MIN_ATTEMPTS = 5
-const TOPIC_TIMING_MIN_ATTEMPTS = 5
 const DIFFICULTY_TIMING_MIN_ATTEMPTS = 3
 
 /** A time-spent value below this almost always means the user submitted
@@ -84,15 +76,10 @@ export default async function AnalyticsPage() {
   let scoreTrend: ScoreTrendPoint[] = []
   let topicRows: TopicRow[] = []
   let pacingRows: PacingRow[] = []
-  let topicTimingRows: TopicTimingRow[] = []
   let difficultyTimingRows: DifficultyTimingRow[] = []
   let errorPatterns: ErrorPatternSummary | null = null
   let calibration: CalibrationReport | null = null
-  let reportMirror: ReportMirror | null = null
-  let repeatMissRows: RepeatMissRow[] = []
-  let timeSinkRows: TimeSinkRow[] = []
   let predictionMAE: PredictionMAE | null = null
-  let predictionMAETrend: PredictionMAETrendPoint[] = []
   let hasData = false
 
   // Baseline-mode signals — counted regardless of `hasData` so the
@@ -348,59 +335,6 @@ export default async function AnalyticsPage() {
           }
         }
 
-        // ---------- Per-topic timing ----------
-        // For each (section, topic) with enough attempts, compute the
-        // average time-per-question and compare to the user's overall
-        // section average. Flags topics where the student burns
-        // significantly more (or less) time than their own baseline —
-        // far more actionable than "your Quant average is 2.1 min/q".
-        type TopicTimeAgg = {
-          section: Section
-          totalMs: number
-          count: number
-        }
-        const topicTime = new Map<string, TopicTimeAgg>()
-        for (const a of attempts) {
-          const sec = a.section as Section
-          if (sec !== "Quant" && sec !== "Verbal" && sec !== "DI") continue
-          const ms = (a.time_spent_ms as number) ?? 0
-          if (ms <= MIN_ATTEMPT_MS) continue
-          const topic = (a.topic as string) || "Other"
-          const key = `${sec}|${topic}`
-          const agg = topicTime.get(key) ?? {
-            section: sec,
-            totalMs: 0,
-            count: 0,
-          }
-          agg.totalMs += ms
-          agg.count += 1
-          topicTime.set(key, agg)
-        }
-
-        topicTimingRows = [...topicTime.entries()]
-          .filter(([, v]) => v.count >= TOPIC_TIMING_MIN_ATTEMPTS)
-          .map(([key, v]) => {
-            const topic = key.split("|").slice(1).join("|")
-            const avgMs = v.totalMs / v.count
-            const avgMin = avgMs / 60000
-            const baseMs = sectionAvgMs[v.section]
-            const ratio = baseMs ? avgMs / baseMs : 1
-            const flag: TopicTimingRow["flag"] =
-              ratio >= SLOW_RATIO ? "slow" : ratio <= FAST_RATIO ? "fast" : "even"
-            return {
-              topic,
-              section: v.section,
-              attempts: v.count,
-              avgMin: Math.round(avgMin * 10) / 10,
-              ratio: Math.round(ratio * 100) / 100,
-              flag,
-            }
-          })
-          // Slowest (biggest drags on pace) first — those are the high-leverage
-          // ones to attack.
-          .sort((a, b) => b.ratio - a.ratio)
-          .slice(0, 10)
-
         // ---------- Per-difficulty timing ----------
         // Shows how long the student spends on Beginner / Intermediate /
         // Advanced within each section. Surfaces "I spend 3 min on easy
@@ -510,241 +444,6 @@ export default async function AnalyticsPage() {
             totalLabelled: labelledRight + labelledWrong,
           }
         }
-
-        // ---------- Report Mirror ----------
-        // Groups attempts by (a) content domain = section, (b) question
-        // type = the question's official type label (PS / CR / RC / DS
-        // / TA / GI / TPA / MSR), and (c) review/edit outcomes across
-        // every mock the student has taken. Framed as the shape their
-        // GMAC Enhanced Score Report will take so what they practice
-        // against matches what they read post-exam.
-        const contentDomainAgg: Record<
-          Section,
-          { attempts: number; correct: number }
-        > = {
-          Quant: { attempts: 0, correct: 0 },
-          Verbal: { attempts: 0, correct: 0 },
-          DI: { attempts: 0, correct: 0 },
-        }
-        const typeAgg = new Map<
-          string,
-          { attempts: number; correct: number; section: Section }
-        >()
-        for (const a of attempts) {
-          const sec = a.section as Section
-          if (sec !== "Quant" && sec !== "Verbal" && sec !== "DI") continue
-          contentDomainAgg[sec].attempts += 1
-          if (a.is_correct) contentDomainAgg[sec].correct += 1
-          const qtype =
-            (a as { question_type?: string | null }).question_type || "Unknown"
-          const cur = typeAgg.get(qtype) ?? {
-            attempts: 0,
-            correct: 0,
-            section: sec,
-          }
-          cur.attempts += 1
-          if (a.is_correct) cur.correct += 1
-          typeAgg.set(qtype, cur)
-        }
-
-        const contentDomainRows: ReportMirrorRow[] = (
-          ["Quant", "Verbal", "DI"] as const
-        )
-          .filter((sec) => contentDomainAgg[sec].attempts > 0)
-          .map((sec) => ({
-            label: sec,
-            section: sec,
-            attempts: contentDomainAgg[sec].attempts,
-            accuracy: Math.round(
-              (contentDomainAgg[sec].correct /
-                contentDomainAgg[sec].attempts) *
-                100
-            ),
-          }))
-
-        const questionTypeRows: ReportMirrorRow[] = [...typeAgg.entries()]
-          .filter(([, v]) => v.attempts >= 3)
-          .map(([label, v]) => ({
-            label,
-            section: v.section,
-            attempts: v.attempts,
-            accuracy: Math.round((v.correct / v.attempts) * 100),
-          }))
-          .sort((a, b) => b.attempts - a.attempts)
-
-        // Cumulative review/edit outcomes across every mock the student
-        // has attempted. Per-mock counts live on the mock report page;
-        // this rolls them up so the student sees a long-horizon edit
-        // signal ("you help more than you hurt") on /analytics.
-        let editsHelped = 0
-        let editsHurt = 0
-        let editsNeutral = 0
-        const reviewEditsBlob = (user.user_metadata?.mock_review_edits ??
-          {}) as Record<
-          string,
-          Partial<
-            Record<
-              Section,
-              Array<{
-                questionId: string
-                preEditAnswer: number | null
-                postEditAnswer: number | null
-              }>
-            >
-          >
-        >
-        const qIndex = new Map(
-          getAllQuestions().map((q) => [q.id, q])
-        )
-        for (const forDate of Object.values(reviewEditsBlob)) {
-          for (const section of ["Quant", "Verbal", "DI"] as const) {
-            for (const edit of forDate?.[section] ?? []) {
-              const q = qIndex.get(edit.questionId)
-              if (!q) continue
-              if (q.correctAnswer < 0) {
-                // TPA — can't classify helped/hurt cleanly with the
-                // current correctAnswer shape, so count as neutral.
-                editsNeutral += 1
-                continue
-              }
-              const pre = edit.preEditAnswer === q.correctAnswer
-              const post = edit.postEditAnswer === q.correctAnswer
-              if (!pre && post) editsHelped += 1
-              else if (pre && !post) editsHurt += 1
-              else editsNeutral += 1
-            }
-          }
-        }
-        const editsTotal = editsHelped + editsHurt + editsNeutral
-        const reviewEdits: ReviewEditSummary | null =
-          editsTotal > 0
-            ? {
-                total: editsTotal,
-                helped: editsHelped,
-                hurt: editsHurt,
-                neutral: editsNeutral,
-              }
-            : null
-
-        if (contentDomainRows.length > 0 || questionTypeRows.length > 0 || reviewEdits) {
-          reportMirror = {
-            contentDomainRows,
-            questionTypeRows,
-            reviewEdits,
-          }
-        }
-
-        // ---------- Repeat-miss hotspots (PDF v2 KPI: repeat-error rate) ----------
-        // For each question with ≥2 attempts, did the student still miss
-        // it on the MOST recent attempt? Bucketed by topic. This catches
-        // topics where retrieval practice isn't sticking — spotting a
-        // pattern is the whole point of an error log, but percentages
-        // per topic drive prioritisation better than the raw list.
-        type QuestionHistory = {
-          topic: string
-          section: Section
-          lastIncorrect: boolean
-          attemptCount: number
-          lastCreatedAt: string
-        }
-        const byQuestion = new Map<string, QuestionHistory>()
-        for (const a of attempts) {
-          const sec = a.section as Section
-          if (sec !== "Quant" && sec !== "Verbal" && sec !== "DI") continue
-          const qid = a.question_id as string | null
-          if (!qid) continue
-          const createdAt =
-            (a as { practice_sessions?: { created_at?: string } | null })
-              .practice_sessions?.created_at ?? ""
-          const existing = byQuestion.get(qid)
-          if (!existing) {
-            byQuestion.set(qid, {
-              topic: (a.topic as string) || "Other",
-              section: sec,
-              lastIncorrect: !a.is_correct,
-              attemptCount: 1,
-              lastCreatedAt: createdAt,
-            })
-          } else {
-            existing.attemptCount += 1
-            // If this row is newer, overwrite "last" info.
-            if (createdAt > existing.lastCreatedAt) {
-              existing.lastIncorrect = !a.is_correct
-              existing.lastCreatedAt = createdAt
-            }
-          }
-        }
-        type RepeatAgg = { topic: string; section: Section; repeated: number; stillMissing: number }
-        const repeatByTopic = new Map<string, RepeatAgg>()
-        for (const q of byQuestion.values()) {
-          if (q.attemptCount < 2) continue
-          const key = `${q.section}|${q.topic}`
-          const r = repeatByTopic.get(key) ?? {
-            topic: q.topic,
-            section: q.section,
-            repeated: 0,
-            stillMissing: 0,
-          }
-          r.repeated += 1
-          if (q.lastIncorrect) r.stillMissing += 1
-          repeatByTopic.set(key, r)
-        }
-        // Require ≥3 repeat-attempted questions in a topic for the rate
-        // to mean something. Surface highest miss rate first; tiebreak
-        // by volume.
-        const REPEAT_MIN = 3
-        repeatMissRows = [...repeatByTopic.values()]
-          .filter((r) => r.repeated >= REPEAT_MIN)
-          .map((r) => ({
-            topic: r.topic,
-            section: r.section,
-            repeatedCount: r.repeated,
-            stillMissing: r.stillMissing,
-            rate: Math.round((r.stillMissing / r.repeated) * 100),
-          }))
-          .sort((a, b) => {
-            if (b.rate !== a.rate) return b.rate - a.rate
-            return b.repeatedCount - a.repeatedCount
-          })
-          .slice(0, 8)
-
-        // ---------- Time-sink topics (PDF v2 KPI: time-sink rate) ----------
-        // Topics that burn time AND fail to convert that time to
-        // accuracy. Uses the existing per-topic timing + topic-row
-        // accuracy sources already computed above. A topic is a
-        // time-sink when ratio ≥ SLOW_RATIO (1.3×) AND accuracy < 55%.
-        const accuracyByKey = new Map<string, { accuracy: number; attempts: number }>()
-        for (const row of topicRows) {
-          accuracyByKey.set(
-            `${row.section}|${row.topic}`,
-            { accuracy: row.accuracy, attempts: row.attempts }
-          )
-        }
-        timeSinkRows = topicTimingRows
-          .filter((t) => t.ratio >= SLOW_RATIO)
-          .map((t) => {
-            const acc = accuracyByKey.get(`${t.section}|${t.topic}`)
-            return {
-              topic: t.topic,
-              section: t.section,
-              ratio: t.ratio,
-              avgMin: t.avgMin,
-              accuracy: acc?.accuracy ?? null,
-              attempts: acc?.attempts ?? t.attempts,
-            }
-          })
-          // Only surface topics where low accuracy + slow pace BOTH fire.
-          // A slow-but-accurate topic is "labored" (already covered by the
-          // Behaviour Patterns panel). The distinct time-sink signal is
-          // the "burning time on things you're still missing" case.
-          .filter((t) => t.accuracy !== null && t.accuracy < 55)
-          .sort((a, b) => {
-            // Worst signal (high ratio, low accuracy) first.
-            const scoreA = a.ratio * (100 - (a.accuracy ?? 0))
-            const scoreB = b.ratio * (100 - (b.accuracy ?? 0))
-            return scoreB - scoreA
-          })
-          .slice(0, 8)
 
         // ---------- Prediction MAE (PDF v2 KPI) ----------
         // PDF v2 p.7: "A good internal target is a mean absolute
@@ -869,74 +568,6 @@ export default async function AnalyticsPage() {
                   : "miscalibrated",
           }
         }
-
-        // ---------- Prediction MAE trend ----------
-        // For each complete mock, reconstruct the best-effort "readiness
-        // estimate at the time of that mock" from a 14-day rolling
-        // accuracy over the attempts preceding the mock date. We don't
-        // store historical readiness per mock, so this proxy lets the
-        // trend show convergence/divergence without a schema change.
-        //
-        // attempts_at_mock = attempts with practice_sessions.created_at
-        // in [mockDate - 14d, mockDate). Require ≥10 attempts across the
-        // 3 sections combined for the proxy to mean anything; otherwise
-        // we skip that mock from the series (rare — complete-mock
-        // cadence implies regular practice).
-        if (completeMocks.length > 0) {
-          type AttemptTime = {
-            section: Section
-            is_correct: boolean
-            ts: number
-          }
-          const attemptsForRolling: AttemptTime[] = []
-          for (const a of attempts) {
-            const sec = a.section as Section
-            if (sec !== "Quant" && sec !== "Verbal" && sec !== "DI") continue
-            const createdAt =
-              (a as { practice_sessions?: { created_at?: string } | null })
-                .practice_sessions?.created_at
-            if (!createdAt) continue
-            attemptsForRolling.push({
-              section: sec,
-              is_correct: !!a.is_correct,
-              ts: Date.parse(createdAt),
-            })
-          }
-          // Sorted so we can early-exit each window walk once out of
-          // range. Newest first matches the mock ordering.
-          attemptsForRolling.sort((x, y) => y.ts - x.ts)
-          const ROLLING_WINDOW_MS = 14 * 86400000
-          const ROLLING_MIN_SAMPLE = 10
-
-          // Build oldest→newest so the chart reads left-to-right.
-          const pointsOldestFirst: PredictionMAETrendPoint[] = []
-          for (let i = completeMocks.length - 1; i >= 0; i--) {
-            const [date, group] = completeMocks[i]
-            const mockEndTs = Date.parse(group.created_at)
-            const windowStartTs = mockEndTs - ROLLING_WINDOW_MS
-            let total = 0
-            let correct = 0
-            for (const at of attemptsForRolling) {
-              if (at.ts >= mockEndTs) continue
-              if (at.ts < windowStartTs) break
-              total += 1
-              if (at.is_correct) correct += 1
-            }
-            if (total < ROLLING_MIN_SAMPLE) continue
-            const rollingAccuracy = correct / total
-            const readinessTotalAtMock = accuracyToFocusTotal(
-              rollingAccuracy * 100
-            )
-            const mockTotal = mockTotalFor(group)
-            pointsOldestFirst.push({
-              date,
-              readinessTotal: readinessTotalAtMock,
-              mockTotal,
-              signedDelta: readinessTotalAtMock - mockTotal,
-            })
-          }
-          predictionMAETrend = pointsOldestFirst
-        }
       }
     }
   } catch {
@@ -967,15 +598,10 @@ export default async function AnalyticsPage() {
         scoreTrend={scoreTrend}
         topicRows={topicRows}
         pacingRows={pacingRows}
-        topicTimingRows={topicTimingRows}
         difficultyTimingRows={difficultyTimingRows}
         errorPatterns={errorPatterns}
         calibration={calibration}
-        reportMirror={reportMirror}
-        repeatMissRows={repeatMissRows}
-        timeSinkRows={timeSinkRows}
         predictionMAE={predictionMAE}
-        predictionMAETrend={predictionMAETrend}
         hasData={hasData}
       />
     </>

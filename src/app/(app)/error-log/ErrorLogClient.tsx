@@ -170,12 +170,6 @@ const mdComponents: Components = {
   ),
 }
 
-export interface SectionBreakdown {
-  section: Section
-  count: number
-  pct: number
-}
-
 export interface MistakeEntry {
   id: string
   questionId: string

@@ -2,9 +2,7 @@
 
 import { useState } from "react"
 import { cn } from "@/lib/utils"
-import type { Section } from "@/types"
 import type { ErrorFamily, RootCauseFamily } from "./constants"
-import type { SectionBreakdown } from "./ErrorLogClient"
 
 export type FamilyBucket = ErrorFamily | "Legacy" | "Untagged"
 
@@ -20,12 +18,6 @@ export interface RootCauseBreakdown {
   family: RootCauseBucket
   count: number
   pct: number
-}
-
-const SECTION_PALETTE: Record<Section, { color: string; bg: string }> = {
-  Quant: { color: "#C9A84C", bg: "rgba(201,168,76,0.12)" },
-  Verbal: { color: "#3ECF8E", bg: "rgba(62,207,142,0.12)" },
-  DI: { color: "#FF4444", bg: "rgba(255,68,68,0.12)" },
 }
 
 const FAMILY_PALETTE: Record<FamilyBucket, { color: string; bg: string }> = {
@@ -57,44 +49,41 @@ const ROOT_CAUSE_PALETTE: Record<RootCauseBucket, { color: string; bg: string }>
   Uncoded: { color: "#555555", bg: "rgba(85,85,85,0.12)" },
 }
 
-type View = "section" | "family" | "root-cause" | "contributing"
+type View = "family" | "root-cause" | "contributing"
 
 /**
  * Top-of-page breakdown card for /error-log. Toggles between three cuts:
- *   - by section (Quant / Verbal / DI) — always available
  *   - by question-type family (Knowledge / Reasoning / ...) — WHAT kind
  *     of question failed; 14-tag roll-up from ERROR_TAG_DEFS
  *   - by root-cause family (Knowledge / Representation / Strategy / ...)
  *     — WHERE the process broke; K1/…/F1 roll-up from ROOT_CAUSE_DEFS.
  *     Only useful once the student has started assigning root causes.
+ *   - by contributing cause — secondary failure modes alongside the
+ *     primary root cause.
  *
  * Each row is a compact card with a count, a percent-of-total progress
  * bar, and a colored label chip.
  */
 export default function BreakdownCard({
-  sectionBreakdown,
   familyBreakdown,
   rootCauseBreakdown,
   contributingBreakdown,
 }: {
-  sectionBreakdown: SectionBreakdown[]
   familyBreakdown: FamilyBreakdown[]
   rootCauseBreakdown: RootCauseBreakdown[]
   contributingBreakdown: RootCauseBreakdown[]
 }) {
-  const [view, setView] = useState<View>("section")
+  const [view, setView] = useState<View>("family")
   const hasRootCauseData =
     rootCauseBreakdown.some((r) => r.family !== "Uncoded" && r.count > 0)
   const hasContributingData = contributingBreakdown.length > 0
 
   const headerLabel =
-    view === "section"
-      ? "Section"
-      : view === "family"
-        ? "Error family"
-        : view === "root-cause"
-          ? "Root cause"
-          : "Contributing cause"
+    view === "family"
+      ? "Error family"
+      : view === "root-cause"
+        ? "Root cause"
+        : "Contributing cause"
 
   return (
     <div className="p-6 sm:p-7 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_14px_36px_-20px_rgba(201,168,76,0.15)]">
@@ -118,11 +107,6 @@ export default function BreakdownCard({
         <div className="flex flex-wrap gap-1.5">
           {(
             [
-              {
-                value: "section" as const,
-                label: "Section",
-                hint: "Quant / Verbal / DI — which section your mistakes cluster in.",
-              },
               {
                 value: "family" as const,
                 label: "Family",
@@ -159,24 +143,6 @@ export default function BreakdownCard({
           ))}
         </div>
       </div>
-
-      {view === "section" && (
-        <div className="grid sm:grid-cols-3 gap-4">
-          {sectionBreakdown.map((row) => {
-            const palette = SECTION_PALETTE[row.section]
-            return (
-              <Cell
-                key={row.section}
-                label={row.section}
-                count={row.count}
-                pct={row.pct}
-                color={palette.color}
-                bg={palette.bg}
-              />
-            )
-          })}
-        </div>
-      )}
 
       {view === "family" && (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -264,13 +230,11 @@ export default function BreakdownCard({
       )}
 
       <p className="text-[12px] text-[#888888] mt-5 italic leading-[1.65]">
-        {view === "section"
-          ? "Open a row below to tag each mistake with the specific failure mode, add a note, and mark it reviewed."
-          : view === "family"
-            ? "Families group the 14 error tags into the categories the framework uses to prescribe fixes. \"Untagged\" = still waiting for your review. \"Legacy\" = tagged with the old 6-category system — re-tag to unlock the suggested fix."
-            : view === "root-cause"
-              ? "Root-cause families (Knowledge / Representation / Strategy / Execution / Pacing / Judgement / Fatigue) describe where the solve process broke. Complementary to the error-family cut above — a single mistake can show up in both."
-              : "Contributing causes are secondary failure modes — the 0-2 codes you pick alongside the primary root cause. Counts here are code-instances (a mistake with two contributing codes shows up twice), so the denominator is total contributing assignments, not mistakes."}
+        {view === "family"
+          ? "Families group the 14 error tags into the categories the framework uses to prescribe fixes. \"Untagged\" = still waiting for your review. \"Legacy\" = tagged with the old 6-category system — re-tag to unlock the suggested fix."
+          : view === "root-cause"
+            ? "Root-cause families (Knowledge / Representation / Strategy / Execution / Pacing / Judgement / Fatigue) describe where the solve process broke. Complementary to the error-family cut above — a single mistake can show up in both."
+            : "Contributing causes are secondary failure modes — the 0-2 codes you pick alongside the primary root cause. Counts here are code-instances (a mistake with two contributing codes shows up twice), so the denominator is total contributing assignments, not mistakes."}
       </p>
     </div>
   )
