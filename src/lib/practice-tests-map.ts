@@ -84,7 +84,7 @@ export const BANK_RULES: Record<string, SubtopicRule[]> = {
   ],
   "statistics-probability": [
     { match: ["probability", "expected value", "independent", "dependent", "mutually exclusive", "binomial", "geometric prob", "conditional"], chapter: "quant-27-probability" },
-    { match: ["inclusion-exclusion", "union", "neither", "three sets"], chapter: "quant-29-sets-venn" },
+    { match: ["inclusion-exclusion", "overlapping set", "union", "neither", "three sets"], chapter: "quant-29-sets-venn" },
     { match: [], chapter: "quant-23-statistics" },
   ],
   combinatorics: [
