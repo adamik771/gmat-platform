@@ -33,6 +33,15 @@ export interface BlogPost {
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "gmat-focus-official-practice-exams",
+    title: "How to Use the Official GMAT Focus Practice Exams",
+    description:
+      "Why the six official mba.com practice exams are the only score worth trusting, how to ration them, the six-week exam-conditions cadence, and what to do with each result so your number actually climbs.",
+    date: "2026-06-11",
+    readMinutes: 10,
+    tags: ["scoring", "strategy", "study-plan"],
+  },
+  {
     slug: "how-to-retake-the-gmat-after-a-low-score",
     title: "How to Retake the GMAT After a Low Score",
     description:
