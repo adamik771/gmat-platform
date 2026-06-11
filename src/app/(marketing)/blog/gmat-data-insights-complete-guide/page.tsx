@@ -469,19 +469,19 @@ export default function PostPage() {
             cover each question type in detail with format-realistic practice,
             the error log uses the six-tag taxonomy this guide describes, and
             mocks are scored against the same 60&ndash;90 scale as the real
-            exam. The diagnostic identifies your weakest DI sub-type in 30
-            questions, and the adaptive plan focuses your week on it. If
-            you&apos;re working on DI and want a system that holds the loop
-            for you, the diagnostic is free.
+            exam. You baseline with an official mba.com practice exam, and
+            the adaptive plan focuses your week on your weakest DI sub-type.
+            If you&apos;re working on DI and want a system that holds the
+            loop for you, the DI sample chapter is free.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
-              href="/free-diagnostic"
+              href="/sample-chapter/data-insights"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Take the free diagnostic
+              Read the free DI sample chapter
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

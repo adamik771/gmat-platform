@@ -17,7 +17,7 @@ import { createSupabaseServer } from "@/lib/supabase/server"
  *   }
  *
  * On success, the API returns `ok: true` and the next route the
- * wizard should send the student to (`/diagnostic` for first-time
+ * wizard should send the student to (`/mock` — the official exam plan — for first-time
  * students, `/study-plan/adaptive` for retakers).
  */
 
@@ -168,9 +168,9 @@ export async function POST(request: Request) {
 
   // Decide the next destination. Retakers go straight to the adaptive
   // plan (their current score + weak-areas form a viable signal set);
-  // everyone else goes to the diagnostic, which seeds the rest of the
+  // everyone else goes to the official exam plan, which seeds the rest of the
   // engine.
-  const nextHref = prepHistory === "retake" ? "/study-plan/adaptive" : "/diagnostic"
+  const nextHref = prepHistory === "retake" ? "/study-plan/adaptive" : "/mock"
 
   return Response.json({ ok: true, nextHref, onboarding })
 }

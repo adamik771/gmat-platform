@@ -225,4 +225,4 @@ If you missed any, re-read the relevant section and test yourself in three days.
 
 Graphics Interpretation connects to several other chapters. *Arithmetic Foundations* (Chapter 1.2) provides the percent and proportion fluency for converting chart values to ratios. *Statistics, Probability, and Combinatorics* (Chapter 1.6) provides the conceptual framework for descriptive statistics shown in charts.
 
-Cross-section connection: the *visual structuring* discipline in Graphics is similar to the *paragraph-role mapping* in RC (Chapter 2.5) and to the *figure-drawing* habit in Geometry (Chapter 1.7). The skill of structuring a visual representation before reasoning from it is one skill across multiple sections.
+Cross-section connection: the *visual structuring* discipline in Graphics is similar to the *paragraph-role mapping* in RC (Chapter 2.5). The skill of structuring a visual representation before reasoning from it is one skill across multiple sections.

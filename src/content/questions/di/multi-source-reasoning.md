@@ -55,13 +55,18 @@ Based on the information provided, which region had the highest proportion of it
 - D) Southern
 
 **answer:** B
-**fastest_path:** Compute S&S share for each region from Tab 2: West 45%, East 55%, Central 35%, South 36%. East wins.
-**explanation:** S&S/total per region: Western 4.49/9.98=45%, Eastern 3.83/6.96=55%, Central 1.53/4.37=35%, Southern 1.08/2.99=36%. Eastern highest. Answer B.
-**mistake_a:** Western 45%, second.
-**mistake_c:** Central lowest at 35%.
-**mistake_d:** Southern 36%.
-**common_trap:** Picking Western because it has the largest *absolute* S&S revenue ($4.49M). The question asks for *proportion*, not amount.
-**takeaway:** Multi-source ratio questions: read the absolute values from the table, then divide. Largest absolute ≠ largest proportion.
+**explanation:** This question asks which region had the highest proportion of its revenue coming from Software & Services. The relevant figures are in Tab 2 of the Regional Revenue Table; Tab 1 and Tab 3 are not needed.
+
+For each region, the proportion equals Software & Services revenue divided by FY Current total revenue.
+
+Western: 4.49 / 9.98 = approximately 45.0%
+Eastern: 3.83 / 6.96 = approximately 55.0%
+Central: 1.53 / 4.37 = approximately 35.0%
+Southern: 1.08 / 2.99 = approximately 36.1%
+
+The Western region carries the largest absolute Software & Services figure (4.49) and might appear to be a strong candidate, but its large revenue base (9.98) brings its proportion down to roughly 45%, materially below Eastern's. Central and Southern both fall in the 35–36% range and are easily eliminated. Eastern's relatively modest total revenue base of 6.96, combined with a Software & Services figure of 3.83 that actually exceeds its Hardware revenue of 3.13, produces the highest proportion among all four regions at approximately 55%, a margin of roughly 10 percentage points over the next-closest region, Western.
+
+The correct answer is B.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -79,13 +84,27 @@ How many of the four board-approved targets (from Tab 3) did the company meet or
 - D) 4
 
 **answer:** A
-**fastest_path:** Run all 4 targets against the data: Hardware 55% (fail), S&S grew 28% (pass), Western 41% (fail), Central declined (fail). Only 1 target met.
-**explanation:** Target check: (1) Hardware ≤50%: 13.37/24.3=55% — fail. (2) S&S grew ≥15%: prior S&S=22.5·0.38=8.55M, current 10.93M, growth 28% — pass. (3) No region >40%: Western 9.98/24.3=41.1% — fail. (4) All regions positive: Central −5% — fail. Net: 1 met. Answer A.
-**mistake_b:** 2 — overcounting (e.g., counting Western as ≤40%).
-**mistake_c:** 3 — over-generous on Central or Hardware.
-**mistake_d:** 4 — accepting all without checking.
-**common_trap:** Failing to compute S&S baseline from "62% of last year's revenue." Multi-source questions often require *cross-tab inference* (memo + table) to reconstruct prior values.
-**takeaway:** Constraint-checking on multi-source data: list each criterion, then verify each one against the table. Don't trust visual narrative; compute.
+**explanation:** The question requires evaluating each of the four board-approved targets from Tab 3 against the current fiscal year actuals reported in Tab 2 and corroborated by the memo in Tab 1.
+
+Target 1. Hardware should account for no more than 50% of total revenue.
+
+Total current revenue = $24.30M (Tab 2). Total hardware revenue = $13.37M (Tab 2). Hardware share = 13.37 / 24.30 = 0.5502, or approximately 55.0%. The memo confirms this figure explicitly: "Hardware sales accounted for 55% of total revenue this year." Because 55.0% > 50%, this target is not met.
+
+Target 2. Software & Services revenue should grow by at least 15% year-over-year.
+
+From Tab 2, total Software & Services current = $10.93M. The prior-year Software & Services total is not given directly in the table, but it can be derived using the memo's disclosure that hardware was 62% of last year's revenue: 0.62 x $22.50M = $13.95M in prior-year hardware, leaving $22.50M - $13.95M = $8.55M in prior-year Software & Services. Growth = (10.93 - 8.55) / 8.55 = 2.38 / 8.55 = 0.2784, or approximately 27.8%. Because 27.8% > 15%, this target is met.
+
+Target 3. No single region should account for more than 40% of total revenue.
+
+The 40% threshold on $24.30M total is 0.40 x 24.30 = $9.72M. The largest region is Western at $9.98M. Because 9.98 > 9.72, Western's share = 9.98 / 24.30 = 0.4107, or approximately 41.1%, which exceeds 40%. This target is not met.
+
+Target 4. Every region must achieve positive year-over-year revenue growth.
+
+Tab 2 shows the Central region at $4.37M current versus $4.60M prior, a change of -5.0%. Because Central's revenue declined, not every region achieved positive growth. This target is not met.
+
+Of the four targets, only Target 2 (Software & Services growth >= 15%) was met. Targets 1, 3, and 4 were each missed. Therefore exactly one target was achieved.
+
+The correct answer is A.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -103,13 +122,25 @@ If the Eastern region's enterprise client contracts (referenced in the memo) con
 - D) 14.8%
 
 **answer:** A
-**fastest_path:** Without enterprise contracts: 6.96 − 0.90 = 6.06M. Growth vs 5.80M = 0.26/5.80 ≈ 4.5%.
-**explanation:** Strip the enterprise contribution: 6.06M. Compare to prior 5.80M: 0.26/5.80 ≈ 4.5%. Answer A.
-**mistake_b:** 7.2% — slip on subtraction or division.
-**mistake_c:** 10.4% — half the original 20%, applied incorrectly.
-**mistake_d:** 14.8% — kept too much of the contracts.
-**common_trap:** Subtracting from the *previous year's* revenue instead of the *current year's*. Strip the contribution from the year that received it.
-**takeaway:** Counterfactual growth: subtract the named contribution from the *current* period's value, then recompute (new/old − 1).
+**explanation:** **Source identification.** The relevant data lives in Tab 2 (Regional Revenue Table), which supplies the Eastern region's FY Previous revenue of $5.80 million and FY Current revenue of $6.96 million. The memo (Tab 1) identifies enterprise client contracts as the driver of Eastern growth but supplies no dollar figure; the $0.90 million figure is given in the question stem.
+
+**Governing principle.** Year-over-year growth rate is defined as (Current Revenue - Previous Revenue) / Previous Revenue. To isolate organic growth — that is, growth excluding the enterprise contracts — the contract revenue is subtracted from the current-year figure before applying the formula.
+
+**Setup.** Let R_adj be the Eastern region's adjusted current-year revenue:
+
+R_adj = 6.96 - 0.90 = 6.06 (millions)
+
+The FY Previous baseline remains unchanged at 5.80 million, because the enterprise contracts were signed in Q3 of the current year and therefore contributed nothing to the prior-year figure.
+
+**Computation.**
+
+Growth rate = (R_adj - R_prev) / R_prev = (6.06 - 5.80) / 5.80 = 0.26 / 5.80
+
+Performing the division: 0.26 / 5.80 = 0.04482..., which rounds to approximately 4.5%.
+
+**Ruling out alternatives.** Choice B (7.2%) would require an incremental gain of roughly 5.80 * 0.072 = 0.418 million above the prior-year base, not 0.26 million. Choice C (10.4%) would require a gain of approximately 0.603 million. Choice D (14.8%) would require a gain of approximately 0.858 million — notably close to the unadjusted gain of 1.16 million, suggesting it might tempt a solver who subtracts the $0.90 million from the wrong figure or uses it as the new baseline rather than as a deduction from current revenue. None of B, C, or D is consistent with the arithmetic derived above.
+
+The correct answer is A.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -171,13 +202,22 @@ Based on the study results, for which combination of dose level and endpoint did
 - D) Both doses for both SOL and TST
 
 **answer:** B
-**fastest_path:** Sig threshold p<0.05. Low SOL p=0.03 (sig), Low TST p=0.08 (not sig), High SOL p<0.001 (sig), High TST p=0.002 (sig). High hits both.
-**explanation:** Significance requires p<0.05. Low dose: SOL 0.03 sig, TST 0.08 not sig. High dose: SOL <0.001 sig, TST 0.002 sig. High dose achieves significance on *both* endpoints. Answer B.
-**mistake_a:** Low dose TST p=0.08 fails.
-**mistake_c:** Both doses sig on SOL is true, but the question asks for the *combination* including TST — high dose hits both.
-**mistake_d:** Low dose TST p=0.08 fails.
-**common_trap:** Picking C ("both doses for SOL only") because both doses *did* achieve SOL significance. But the question asks which *combination* of dose and endpoint was significant — (B) names the more complete combination (high dose, both endpoints).
-**takeaway:** Multi-source significance reading: build a 2×2 (dose × endpoint) significance matrix. Match the answer to the most complete cell pattern.
+**explanation:** The study protocol (Tab 1) establishes the significance threshold: a result is statistically significant if its p-value is less than 0.05. With that criterion fixed, Tab 2 supplies the p-values for each dose group and each endpoint.
+
+**Applying the Threshold — Primary Endpoint (SOL).** For Group A (10 mg), the SOL p-value versus placebo is 0.03. Because 0.03 < 0.05, the low-dose result for SOL is statistically significant. For Group B (25 mg), the SOL p-value is reported as < 0.001, which is also less than 0.05, so the high-dose result for SOL is likewise statistically significant. Both doses therefore clear the bar on the primary endpoint.
+
+**Applying the Threshold — Secondary Endpoint (TST).** For Group A (10 mg), the TST p-value versus placebo is 0.08. Because 0.08 > 0.05, the low-dose result for TST does not meet the significance criterion. For Group B (25 mg), the TST p-value is 0.002. Because 0.002 < 0.05, the high-dose result for TST is statistically significant.
+
+**Summary of Findings.**
+
+| Group | SOL p-value | Significant? | TST p-value | Significant? |
+|-------|-------------|--------------|-------------|--------------|
+| A (10 mg) | 0.03 | Yes (0.03 < 0.05) | 0.08 | No (0.08 > 0.05) |
+| B (25 mg) | < 0.001 | Yes | 0.002 | Yes (0.002 < 0.05) |
+
+**Ruling Out the Alternatives.** Choice A requires low dose to be significant for both endpoints; however, the TST p-value for Group A is 0.08, which fails the threshold, so A is incorrect. Choice C requires both doses to achieve significance on SOL only, but Group B also achieves significance on TST, making "SOL only" an incomplete characterization for the high dose. Choice D requires both doses to be significant on both endpoints; again, Group A fails on TST, eliminating D. Only choice B — high dose for both SOL and TST — is fully supported: both p-values for Group B (< 0.001 and 0.002) satisfy the p < 0.05 criterion, while Group A's TST result does not.
+
+The correct answer is B.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -195,13 +235,45 @@ A regulatory reviewer is assessing VT-400. She will recommend advancing to Phase
 - D) No, neither dose group satisfies all three criteria
 
 **answer:** B
-**fastest_path:** Check each criterion per group. Low: TST +0.9 (fails ≥1.0). High: SOL p<0.001, TST +1.7, dropout 14.6% < 2·7.9%=15.8%. All three met for high dose only.
-**explanation:** Three criteria: (i) SOL p<0.05; (ii) TST ≥+1.0h; (iii) dropout ≤ 2× placebo (15.8%). Low: SOL passes, TST fails (0.9<1.0). High: all three pass (p<0.001, +1.7h, 14.6%<15.8%). Answer B.
-**mistake_a:** Low fails TST criterion.
-**mistake_c:** Only high satisfies; low fails (ii).
-**mistake_d:** High *does* satisfy all three.
-**common_trap:** Forgetting to compute "twice placebo dropout" (15.8%, not 7.9%). Many students set the threshold at the placebo rate itself.
-**takeaway:** Multi-criteria recommendation problems: compute each threshold from the source, check each criterion. Don't shortcut.
+**explanation:** **Governing framework.** The reviewer applies a three-part conjunctive gate: all three criteria must be satisfied by the same dose. Each dose is tested against each criterion in order.
+
+**Criterion (i): Statistical significance on the primary endpoint (SOL, p < 0.05).**
+
+Tab 2 supplies the SOL p-values versus placebo. The study protocol (Tab 1) defines statistical significance as p < 0.05.
+
+- Group A (10 mg): p = 0.03. Because 0.03 < 0.05, criterion (i) is satisfied for Group A.
+- Group B (25 mg): p < 0.001. Because 0.001 < 0.05, criterion (i) is satisfied for Group B.
+
+Both doses clear the first gate.
+
+**Criterion (ii): Clinically meaningful improvement in TST, defined as at least 1.0 hour increase from baseline to Week 12.**
+
+Tab 2 provides the change in TST for each active group.
+
+- Group A (10 mg): Change in TST = +0.9 hrs. The threshold is 1.0 hr. Because 0.9 < 1.0, Group A does not satisfy criterion (ii).
+- Group B (25 mg): Change in TST = +1.7 hrs. Because 1.7 > 1.0, Group B satisfies criterion (ii).
+
+Group A is eliminated here. Only Group B remains a candidate.
+
+**Criterion (iii): Dropout rate does not exceed twice the placebo dropout rate.**
+
+Tab 2 provides dropout rates. The placebo dropout rate is 7.9%. The threshold is 2 * 7.9 = 15.8%. A dose group passes only if its dropout rate is at or below 15.8%.
+
+- Group B (25 mg): Dropout rate = 14.6%. Because 14.6 < 15.8, Group B satisfies criterion (iii).
+
+Group B clears the third gate.
+
+**Summary.**
+
+| Criterion | Group A (10 mg) | Group B (25 mg) |
+|-----------|----------------|----------------|
+| (i) SOL p < 0.05 | Pass (p = 0.03) | Pass (p < 0.001) |
+| (ii) TST change >= 1.0 hr | Fail (+0.9 hrs) | Pass (+1.7 hrs) |
+| (iii) Dropout <= 2 * 7.9% = 15.8% | Not needed (already failed) | Pass (14.6%) |
+
+Group A fails on criterion (ii) and therefore cannot support a Phase III recommendation. Group B satisfies all three criteria. Choice A is wrong because Group A fails the TST threshold. Choice C is wrong for the same reason — not both doses qualify, only the high dose. Choice D is wrong because Group B does in fact satisfy all three criteria.
+
+The correct answer is B.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -219,13 +291,18 @@ Which of the following adverse events showed the greatest absolute percentage-po
 - D) Dizziness
 
 **answer:** A
-**fastest_path:** High − placebo for each AE: drowsiness 18.7, headache 1.9, nausea 2.8, dizziness 8.8. Drowsiness wins.
-**explanation:** AE differences (high − placebo): drowsiness 24.4−5.7=18.7; headache 9.8−7.9=1.9; nausea 7.3−4.5=2.8; dizziness 12.2−3.4=8.8. Drowsiness biggest. Answer A.
-**mistake_b:** Headache 1.9 — too small.
-**mistake_c:** Nausea 2.8.
-**mistake_d:** Dizziness 8.8 — second.
-**common_trap:** Picking the AE with the largest *absolute* high-dose rate (drowsiness 24.4%) without comparing to placebo. The question asks for the *gap*.
-**takeaway:** Drug-vs-placebo comparison: subtract placebo from treatment for each event. Largest gap, not largest treatment rate, is the answer.
+**explanation:** The relevant data reside entirely in Tab 3 (Adverse Events Report). The question asks for the greatest absolute percentage-point difference between Group B (25 mg, high dose) and Group C (Placebo). For each adverse event, the difference D is defined as D = (Group B rate) - (Group C rate), expressed in percentage points.
+
+Applying this definition to each event listed:
+
+- Morning drowsiness: D = 24.4 - 5.7 = **18.7 pp**
+- Headache: D = 9.8 - 7.9 = **1.9 pp**
+- Nausea: D = 7.3 - 4.5 = **2.8 pp**
+- Dizziness: D = 12.2 - 3.4 = **8.8 pp**
+
+Ranking the four values in descending order: 18.7 > 8.8 > 2.8 > 1.9. Morning drowsiness produces the largest absolute difference by a wide margin. One might consider dizziness a tempting alternative because its Group B rate of 12.2% appears prominently elevated relative to placebo's 3.4%; however, the resulting gap of 8.8 pp is less than half of the 18.7 pp gap observed for morning drowsiness. Headache and nausea are ruled out immediately, as their differences (1.9 pp and 2.8 pp, respectively) are the two smallest values in the set.
+
+The correct answer is A.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -279,13 +356,15 @@ Does the proposed budget satisfy both Councilmember Torres's request regarding P
 - D) It satisfies neither request.
 
 **answer:** B
-**fastest_path:** Torres: PS ≥ 32% of total. Proposed PS=33% ✓. Park: Infra ≥ $8M. Proposed Infra=$7.68M ✗.
-**explanation:** Torres: PS ≥ 32%. Proposed: 15.84/48 = 33% — pass. Park: Infra ≥ $8M. Proposed: $7.68M — fail. Torres yes, Park no. Answer B.
-**mistake_a:** Park's request fails ($7.68M < $8M).
-**mistake_c:** Torres's request passes (33% ≥ 32%).
-**mistake_d:** Torres's request *does* pass.
-**common_trap:** Reading "approximately $7.68M ≈ $8M" as "yes, met." Park's request is *at least* $8M; $7.68M strictly fails.
-**takeaway:** Constraint-checking on numerical thresholds: literal comparison, not approximate. Even small misses fail.
+**explanation:** Two separate threshold conditions must both be satisfied for answer choice A to hold. Let P denote the proposed Public Safety allocation and I denote the proposed Infrastructure allocation. Torres's request requires P >= 32% of the total proposed budget. Park's request requires I >= $8 million. Each condition is evaluated independently using data from Tab 2.
+
+From Tab 2, the total proposed budget is $48.00 million and the proposed Public Safety allocation is $15.84 million. The percentage represented by Public Safety is 15.84 / 48.00 = 0.33 = 33.0%, a figure Tab 2 confirms directly in the "% of Proposed Budget" column. Since 33.0% > 32%, the proposed budget satisfies Torres's minimum threshold. The current-year figure of $14.20 million is irrelevant because the question concerns the proposed budget, not the current one.
+
+From Tab 2, the proposed Infrastructure allocation is $7.68 million. Park's stated minimum is $8 million. Since 7.68 < 8.00, the proposed allocation falls short by $0.32 million, and the condition I >= $8.00 million is not met. Tab 3 shows that Infrastructure budgets have been declining for four consecutive years (from $8.10 million in FY-4 to $6.34 million currently), which is precisely the context motivating Park's concern, but those historical figures do not alter the proposed allocation of $7.68 million stated in Tab 2. The City Manager's note in Tab 1 that grants cover $3.2 million of Education spending is irrelevant to either threshold test because that figure applies to Education, not Infrastructure or Public Safety.
+
+Torres's request is satisfied (33.0% >= 32%); Park's request is not satisfied ($7.68 million < $8.00 million). The proposed budget therefore satisfies Torres's request but not Park's.
+
+The correct answer is B.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -303,13 +382,31 @@ According to the meeting minutes, the current year's total operating budget was 
 - D) State and federal grants of $3.2 million were included in the minutes figure.
 
 **answer:** A
-**fastest_path:** Minutes total $45.28M; table sums to $44.36M. Δ = $0.92M. Table omits a category.
-**explanation:** Minutes: $45.28M. Table sum: $44.36M. Difference = $0.92M. Most likely: the table omits a budget category (admin, contingency, etc.) accounting for that gap. Answer A.
-**mistake_b:** 45.28 × 1.06 ≈ 48.0; the 6% is consistent, not erroneous.
-**mistake_c:** Debt service appears once in the table — no double count.
-**mistake_d:** Grants are *not* in operating budget per the City Manager.
-**common_trap:** Picking (D) because grants are mentioned. But the City Manager *explicitly* says grants aren't in the operating budget — they can't be the discrepancy source.
-**takeaway:** Discrepancy reconciliation: read each tab for the *exclusion clauses*. They eliminate distractor explanations.
+**explanation:** **Governing principle.** In a multi-source reasoning set, a numerical discrepancy between two sources must be reconciled by locating the specific item each source includes or excludes. The analysis begins by quantifying the gap precisely, then tests each candidate explanation against the arithmetic.
+
+**Quantifying the discrepancy.** Tab 1 states the current year's total operating budget is $45.28 million. Tab 2 lists departmental line items that sum to $44.36 million for the current year. The difference is:
+
+45.28 - 44.36 = 0.92 million dollars
+
+The question is what accounts for $0.92 million that appears in the minutes figure but not in the table.
+
+**Verifying the 6% growth claim.** Before testing the answer choices, the Council Chair's arithmetic is confirmed against the data. If the current-year figure of $45.28 million is accepted as stated, the proposed budget would be:
+
+45.28 x 1.06 = 47.9968 million
+
+Rounded to the nearest $10,000, this equals $48.00 million — matching the proposed total stated in the minutes and shown in Tab 2. The rounding difference of roughly $32,000 is negligible at this scale. The 6% calculation is therefore not the source of the discrepancy, and the minutes figure of $45.28 million appears reliable.
+
+**Testing the answer choices.** Choice B asserts the 6% increase was calculated incorrectly. The verification above shows that 45.28 x 1.06 rounds to 48.00, which is precisely the proposed total. There is no meaningful arithmetic error in the Chair's statement. Choice B is inconsistent with the data.
+
+Choice C asserts that the $4.80 million debt service payment was double-counted in the minutes. Were that true, the inflated figure would exceed the table total by $4.80 million, not $0.92 million. Choice C does not explain a gap of $0.92 million and is ruled out.
+
+Choice D asserts that $3.2 million in state and federal grants was included in the minutes figure. Tab 1 explicitly states that the City Manager noted those grants "are not included in the operating budget figures." Moreover, $3.2 million does not equal $0.92 million. Choice D is ruled out on both grounds.
+
+Choice A asserts that the table omits a department or budget category carrying $0.92 million. This is the only explanation that accounts for the exact size of the discrepancy. The table lists six line items. If one additional category — such as an administrative reserve, a contingency fund, or a small department not separately enumerated — holds $0.92 million in the current year, the table's departmental sum would be $44.36 million while the aggregate operating budget reported in the minutes would be $44.36 + 0.92 = $45.28 million. This reconciliation is internally consistent and consistent with the verified 6% growth calculation.
+
+**Conclusion.** The $0.92 million gap cannot be attributed to a calculation error, double-counting of a $4.80 million item, or a $3.2 million grant exclusion. The only explanation that is both arithmetically exact and logically coherent is that the proposed budget table does not enumerate every spending category, leaving a residual of $0.92 million unrepresented.
+
+The correct answer is A.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -327,13 +424,41 @@ Over the five-year historical period shown in Tab 3, what is the total cumulativ
 - D) Deferred projects total $0.60M, which is less than the proposed Infrastructure increase of $1.34M.
 
 **answer:** A
-**fastest_path:** Sum deferred from Tab 3: 0.15+0.60+0.60+0.46+0.00 = $1.81M. Proposed increase: 7.68−6.34 = $1.34M. 1.81 > 1.34.
-**explanation:** Cumulative deferred: $1.81M (sum of 5 years). Proposed increase: $1.34M. Deferred exceeds the increase. Answer A.
-**mistake_b:** *Reverses* the comparison.
-**mistake_c:** $1.21M — undercount (4 years).
-**mistake_d:** $0.60M — single year.
-**common_trap:** Summing only the most recent few years' deferrals, missing the cumulative totaling.
-**takeaway:** Cumulative-vs-proposed comparison: literal sum across all listed periods, then subtract endpoints from current/proposed for the comparison value.
+**explanation:** **Governing principle.** A cumulative sum aggregates individual period values over the full span shown; a budget change is the difference between a proposed allocation and the current allocation. The question asks us to compute both figures and compare them.
+
+**Identifying the relevant sources.** Tab 3 supplies the five-year deferred-project figures; Tab 2 supplies the current-year and proposed Infrastructure allocations. No computation from Tab 1 is needed here, though Tab 1 confirms Councilmember Park's concern about deferred spending, which provides interpretive context.
+
+**Computing cumulative deferred infrastructure spending.**
+
+Let D denote the cumulative deferred amount over the five fiscal years shown in Tab 3. Reading each row:
+
+- FY-4: $0.15M
+- FY-3: $0.60M
+- FY-2: $0.60M
+- FY-1: $0.46M
+- Current: $0.00M (estimated)
+
+Therefore D = 0.15 + 0.60 + 0.60 + 0.46 + 0.00 = $1.81M.
+
+A tempting misreading is to sum only the three years with the largest deferrals (FY-3, FY-2, and FY-1), yielding 0.60 + 0.60 + 0.46 = $1.66M, or to omit FY-4 on the assumption that it falls outside a "recent" window. The question specifies "over the five-year historical period shown," so all five rows must be included, and D = $1.81M.
+
+**Computing the proposed Infrastructure spending increase.**
+
+Let I denote the year-over-year change in Infrastructure allocation. From Tab 2:
+
+- Current Year allocation: $6.34M
+- Proposed allocation: $7.68M
+- I = 7.68 - 6.34 = $1.34M
+
+The Change column in Tab 2 confirms +$1.34M directly, providing a useful cross-check.
+
+**Comparison.**
+
+Comparing D and I: 1.81 > 1.34. The cumulative deferred amount ($1.81M) exceeds the proposed increase ($1.34M) by 1.81 - 1.34 = $0.47M. The proposed increase therefore does not fully offset the backlog of deferred projects even before accounting for the 12% projected rise in road maintenance costs noted in Tab 1.
+
+**Ruling out incorrect choices.** Choice B states the correct deferred total of $1.81M but reverses the comparison, asserting $1.81M < $1.34M, which is false. Choice C uses a deferred total of $1.21M, a figure not obtainable from the table under any standard summing method. Choice D uses only $0.60M, which corresponds to a single year's deferral (FY-3 or FY-2) rather than the cumulative five-year figure.
+
+The correct answer is A.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -392,13 +517,13 @@ According to the market research, which of the following was identified as the W
 - D) Status/image
 
 **answer:** D
-**fastest_path:** Tab 1 directly states "the weakest driver was 'status/image.'" Direct lookup.
-**explanation:** Tab 1 lists strongest drivers (clean ingredients, afternoon energy, taste) and explicitly names "status/image" as weakest. Answer D.
-**mistake_a:** "Clean ingredients" is the *strongest* driver.
-**mistake_b:** Strongest driver category.
-**mistake_c:** Strongest driver category.
-**common_trap:** Picking the listed drivers (A, B, C) by skimming for them as familiar terms — but the question asks for the *weakest*. Read the verb in the stem.
-**takeaway:** Direct fact-lookup MSR: locate the exact phrase in the source. Read the stem's qualifier (strongest vs weakest) carefully.
+**explanation:** This question draws entirely on Tab 1 (Market Research Summary), which reports the results of a concept test conducted among 1,200 target consumers across four metro markets.
+
+Tab 1 presents the appeal drivers in explicit ranked order: "The strongest appeal drivers were (in order): 'clean ingredients,' 'afternoon energy without jitters,' and 'taste.'" Immediately following, the tab states: "The weakest driver was 'status/image.'"
+
+No arithmetic is required. The passage enumerates three strongest drivers — clean ingredients (rank 1), afternoon energy without jitters (rank 2), and taste (rank 3) — and names a single weakest driver: status/image. Answer choices A, B, and C correspond precisely to those three strongest drivers and are therefore ruled out. Answer choice D, status/image, matches the passage's explicit identification of the weakest driver.
+
+The correct answer is D.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -416,13 +541,24 @@ Based on the financial projections, what is North Star's projected gross margin 
 - D) 55.0%
 
 **answer:** C
-**fastest_path:** Gross margin = (Rev − COGS) / Rev. Y3: (32 − 16)/32 = 50%.
-**explanation:** Tab 2 Y3: revenue $32M, COGS $16M. Gross margin = 16/32 = 50%. Answer C.
-**mistake_a:** 32.5% — slip arithmetic.
-**mistake_b:** 45% — slip.
-**mistake_d:** 55% — overshoot.
-**common_trap:** Computing *operating margin* (Rev − all expenses) instead of *gross margin* (Rev − COGS only). Definitions differ.
-**takeaway:** Margin definitions: gross = (Rev − COGS) / Rev; operating includes other costs. Use the *exact* definition the question names.
+**explanation:** Gross margin is defined as revenue minus cost of goods sold, expressed as a percentage of revenue. Formally, gross margin = (R - C) / R × 100%, where R denotes revenue and C denotes cost of goods sold.
+
+The relevant data reside entirely in Tab 2 (Budget and Financial Projections). For Year 3, the table reports:
+
+- Projected Revenue: $32.0M
+- Cost of Goods Sold: $16.0M
+
+Applying the definition:
+
+Gross profit = R - C = 32.0 - 16.0 = 16.0 ($M)
+
+Gross margin = 16.0 / 32.0 = 0.50 = 50.0%
+
+It is worth ruling out the adjacent answer choices. Answer choice B (45.0%) would require COGS of 32.0 × 0.55 = $17.6M, which does not match the table. Answer choice D (55.0%) would require COGS of 32.0 × 0.45 = $14.4M, also inconsistent with the stated figure. Answer choice A (32.5%) would require gross profit of approximately $10.4M, implying COGS of roughly $21.6M — a figure that appears nowhere in the Year 3 row or any other row of the table.
+
+None of the other tabs contribute figures needed for this computation. Tab 1 (Market Research) and Tab 3 (Competitive Landscape) contain pricing and market-share data, but gross margin is a function of internal cost structure, which Tab 2 alone supplies.
+
+The correct answer is C.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -440,13 +576,21 @@ A board member argues that North Star is mispriced given its positioning. Consid
 - D) Category growth for functional beverages is decelerating to 7% YoY.
 
 **answer:** B
-**fastest_path:** Board member: $3.49 is too low. Need evidence supporting *higher* price. (B): closest competitor (Ember & Root) at $3.99 in same positioning → North Star underprices its segment.
-**explanation:** Argument: $3.49 is too low. Evidence supporting higher price needs same-segment comparison. (B) gives it: Ember & Root at $3.99, "premium adaptogen" — same segment as North Star. Underpricing leaves margin on the table.
-**mistake_a:** *Argues against* raising — intent drops above $3.99.
-**mistake_c:** Mass-market competitor — different segment, doesn't support premium pricing.
-**mistake_d:** Category growth pace, not pricing.
-**common_trap:** Picking (A) because it's about price thresholds. But $3.99 ceiling supports a price *between* $3.49 and $3.99, not necessarily that $3.49 is too low.
-**takeaway:** "Mispriced relative to positioning" arguments require *same-segment* comparison data. Synthesize positioning (Tab 1) + competitor pricing (Tab 3).
+**explanation:** **Governing principle.** In price-positioning analysis, a product's retail price should be consistent with the segment it occupies. When a brand claims a premium or specialist niche, pricing it materially below the established benchmark for that niche undercuts the positioning signal and may leave margin unrealized — this is the "mispricing" a board member would flag.
+
+**Identifying the relevant sources.** Tab 3 (Competitive Landscape) is the primary source for this question: it lists competitor prices, distribution breadth, and explicit positioning descriptions. Tab 1 supplies North Star's intended positioning and the price-sensitivity findings. Tab 2 concerns financial projections and is not directly relevant to a pricing-versus-positioning argument.
+
+**Applying the principle to choice B.** Tab 3 notes that Ember & Root is "considered the closest direct competitor." Ember & Root is priced at $3.99 and is positioned as "premium adaptogen" — the identical niche North Star targets ("sparkling adaptogen wellness"). North Star's proposed price is $3.49, which is $3.99 - $3.49 = $0.50 per can below its nearest direct comparable. A product occupying the same premium-adaptogen segment but priced $0.50 below the established benchmark is, by standard positioning logic, underpriced: it sacrifices margin and may send a quality signal inconsistent with a premium claim. This is the most direct evidentiary support for the board member's argument.
+
+**Ruling out choice A.** Tab 1 states that above $3.99 purchase intent falls below 25%. This finding argues for a ceiling near $3.99, not for raising the price above $3.49. It actually suggests $3.49 is safely within the viable range, which cuts against the board member's claim rather than supporting it.
+
+**Ruling out choice C.** BrightKick is priced at $2.79 and occupies the "mass-market energy" segment — a categorically different positioning from premium adaptogen. Its 14% category share reflects mass-market volume economics, not a benchmark relevant to North Star's premium segment. Citing BrightKick's share provides no support for the claim that $3.49 is too low for a wellness-premium product.
+
+**Ruling out choice D.** The deceleration of overall functional-beverage category growth from 14% to a forecast 7% YoY is a macro market headwind. It speaks to the size of the opportunity, not to whether $3.49 is the correct price for the product's intended segment. Tab 1 separately notes that adaptogen-specific SKUs are still growing at 22% YoY, further weakening any inference from overall category deceleration to a pricing conclusion.
+
+**Conclusion.** Only choice B draws directly on the competitive-positioning benchmark most relevant to North Star's stated segment. The $0.50 gap between North Star's proposed price and Ember & Root's established price, combined with their shared premium-adaptogen positioning, provides the most direct support for the board member's argument that $3.49 is too low.
+
+The correct answer is B.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -502,13 +646,20 @@ According to Tab 2, which warehouse has the LOWEST current utilization?
 - D) Milwaukee
 
 **answer:** C
-**fastest_path:** Tab 2 utilization: Columbus 68%, Indianapolis 64%, St. Louis 55%, Milwaukee 57%. St. Louis lowest.
-**explanation:** Direct read from Tab 2. St. Louis at 55%. Answer C.
-**mistake_a:** Columbus 68%, highest.
-**mistake_b:** Indianapolis 64%.
-**mistake_d:** Milwaukee 57%, second lowest.
-**common_trap:** Picking Milwaukee because it has the smallest capacity (34,000) and "small = low utilization" feels intuitive. Utilization is a ratio (used/capacity), not absolute size.
-**takeaway:** Utilization is a *ratio*. Smallest capacity ≠ lowest utilization. Read the percentage column directly.
+**explanation:** Utilization is defined in the Executive Briefing (Tab 1) as used pallet positions divided by total pallet capacity, expressed as a percentage. The question asks which single warehouse, as reported in Tab 2, carries the lowest value of that ratio.
+
+Tab 2 lists the current utilization for each of the four warehouses:
+
+- Columbus: 68%
+- Indianapolis: 64%
+- St. Louis: 55%
+- Milwaukee: 57%
+
+Ranking these four figures in ascending order gives 55% < 57% < 64% < 68%. St. Louis, at 55%, is strictly lower than every other site. Milwaukee at 57% is the second-lowest and may attract attention because it also falls below 60%, but 57% > 55%, so it does not hold the minimum.
+
+Indianapolis at 64% and Columbus at 68% are both above 60% and are therefore not candidates for the lowest position.
+
+The correct answer is C.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -526,13 +677,19 @@ Based on the simulation in Tab 3, what would be the net annual operating cost sa
 - D) $15.2 million
 
 **answer:** A
-**fastest_path:** Current cost $28.4M − Scenario 2 cost $16.5M = $11.9M.
-**explanation:** Current $28.4M (Tab 2). Scenario 2 projected $16.5M (Tab 3). Annual savings = $11.9M. Note: question asks *before* one-time $6.8M transition cost. Answer A.
-**mistake_b:** $12.4M — slip.
-**mistake_c:** $13.0M — overshoot.
-**mistake_d:** $15.2M — using wrong scenario.
-**common_trap:** Subtracting the $6.8M transition cost from annual savings. The question explicitly asks "before the one-time transition cost."
-**takeaway:** Read the question's exclusion clauses. "Before the one-time cost" means raw annual operating savings, not net first-year savings.
+**explanation:** The relevant source is Tab 3, which provides projected annual operating costs for each two-warehouse scenario, combined with the baseline total cost stated in Tab 1 and confirmed by the column total in Tab 2.
+
+Net annual operating cost savings is defined as the difference between the current total annual operating cost and the projected annual operating cost under the proposed scenario, before any one-time transition costs. Letting the current total cost be C_current and the projected cost under a given scenario be C_scenario, the formula is: Net annual savings = C_current minus C_scenario.
+
+From Tab 1, confirmed by the column total in Tab 2, the current combined annual operating cost across all four warehouses is $28.4 million. From Tab 3, Scenario 2 retains Columbus and St. Louis and carries a projected annual operating cost of $16.5 million. Tab 3 explicitly states that all projected costs include incremental freight and staffing needed to serve reassigned customers, so no further adjustment is required for rerouting expenses.
+
+Computing the savings: 28.4 minus 16.5 equals 11.9 million dollars.
+
+The remaining choices do not arise from applying the correct formula to Scenario 2. Choice B ($12.4M) does not correspond to any scenario's arithmetic; Scenario 1 yields 28.4 minus 16.1 = 12.3, which is neither $12.4M nor the result for Scenario 2. Choice C ($13.0M) matches Scenario 3 (Columbus + Milwaukee), where 28.4 minus 15.4 = 13.0, but Scenario 3 is not the scenario the question asks about. Choice D ($15.2M) is not derivable from any row in Tab 3 under the stated formula and appears to conflate projected cost with savings.
+
+The question asks for net annual operating cost savings before the one-time transition cost. The $6.8 million transition cost noted in Tab 1 is therefore excluded from this calculation, consistent with the question's framing.
+
+The correct answer is A.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -550,13 +707,51 @@ Applying the three constraints from the Executive Briefing (Tab 1) to the scenar
 - D) 3
 
 **answer:** C
-**fastest_path:** Three constraints: delivery ≤ 0.5d, util ≤ 90%, savings > $4M (cost < $24.4M). S1 ✓, S2 ✓, S3 fails delivery, S4 fails delivery. 2 pass.
-**explanation:** Constraints: (1) delivery ≤ 0.5d; (2) util ≤ 90%; (3) cost < $24.4M (= 28.4 − 4.0). S1: 0.3 / 88% / $16.1M ✓. S2: 0.4 / 85% / $16.5M ✓. S3: 0.6 fails (1). S4: 0.7 fails (1). 2 pass. Answer C.
-**mistake_a:** 0 — undercount.
-**mistake_b:** 1 — undercount.
-**mistake_d:** 3 — overcount; only 2 pass all constraints.
-**common_trap:** Forgetting to translate "savings > $4M" into a *cost* threshold ($24.4M). All four scenarios satisfy the cost constraint; the binding constraint here is delivery.
-**takeaway:** Multi-constraint scenario problems: translate each constraint into a directly-comparable metric, then check each scenario.
+**explanation:** The governing framework. Tab 1 establishes three binding constraints that any retained-pair scenario must satisfy simultaneously:
+
+- Constraint A (delivery): the maximum increase in average delivery time to any customer group must be no greater than 0.5 days.
+- Constraint B (utilization): the combined utilization of the two retained warehouses must not exceed 90%.
+- Constraint C (savings): net annual savings must exceed $4.0 million.
+
+Net annual savings is defined as current total operating cost minus projected annual operating cost. From Tab 2, current total annual operating cost is $28.4 million. The savings condition therefore translates to: 28.4 minus (projected cost) > 4.0, which simplifies to projected cost < 24.4 million.
+
+Applying the constraints to each scenario (Tab 3).
+
+Let D = max customer delivery increase, U = combined utilization, and S = 28.4 minus projected cost.
+
+Scenario 1 — Columbus + Indianapolis.
+- D = 0.3 days. Since 0.3 <= 0.5, Constraint A is satisfied.
+- U = 88%. Since 88% <= 90%, Constraint B is satisfied.
+- S = 28.4 - 16.1 = 12.3 million. Since 12.3 > 4.0, Constraint C is satisfied.
+- Result: all three constraints satisfied.
+
+Scenario 2 — Columbus + St. Louis.
+- D = 0.4 days. Since 0.4 <= 0.5, Constraint A is satisfied.
+- U = 85%. Since 85% <= 90%, Constraint B is satisfied.
+- S = 28.4 - 16.5 = 11.9 million. Since 11.9 > 4.0, Constraint C is satisfied.
+- Result: all three constraints satisfied.
+
+Scenario 3 — Columbus + Milwaukee.
+- D = 0.6 days. Since 0.6 > 0.5, Constraint A is violated.
+- U = 92%. Since 92% > 90%, Constraint B is also violated.
+- Result: fails two constraints.
+
+Scenario 4 — Indianapolis + St. Louis.
+- D = 0.7 days. Since 0.7 > 0.5, Constraint A is violated. No further evaluation is required.
+- Result: fails at least one constraint.
+
+Summary table.
+
+| Scenario | Constraint A (D <= 0.5) | Constraint B (U <= 90%) | Constraint C (S > 4.0M) | Pass all three? |
+|----------|-------------------------|-------------------------|--------------------------|-----------------|
+| 1        | 0.3 pass                | 88% pass                | 12.3M pass               | Yes             |
+| 2        | 0.4 pass                | 85% pass                | 11.9M pass               | Yes             |
+| 3        | 0.6 fail                | 92% fail                | 13.0M pass               | No              |
+| 4        | 0.7 fail                | 84% pass                | 12.7M pass               | No              |
+
+Exactly two scenarios — Scenario 1 and Scenario 2 — satisfy all three constraints. Scenarios 3 and 4 both achieve savings well above the $4.0 million threshold; they are disqualified by the utilization cap and the delivery-time cap, respectively, not by financial performance. The temptation to count either of those as passing because the savings figure is strong must therefore be resisted.
+
+The correct answer is C.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 
@@ -601,14 +796,35 @@ Based on the information provided across all three tabs, which of the following 
 - E) Standard shipping is slower than express shipping for Central-region orders.
 
 **answer:** A
-**fastest_path:** Tab 3 shows express > standard for every size (S 20>12, M 26>18, L 36>28). A must be true.
-**explanation:** Tab 3 verifies (A) directly: express is strictly more expensive than standard for all three sizes. Other claims fail: North 40% > Central 25% (B); Med-Exp $26 < Lg-Std $28 (C); D unsupported; E vacuous since express isn't available for Central.
-**mistake_b:** North=40% > Central=25%, so North is *not* less.
-**mistake_c:** Med-Exp $26 < Lg-Std $28.
-**mistake_d:** No service-mix data given.
-**mistake_e:** Express isn't available for Central — comparison doesn't apply.
-**common_trap:** Picking (B) by computing North as the *remainder* but forgetting to compare to Central (25%). Always finish the comparison.
-**takeaway:** "Must be true" MSR: verify each candidate against each tab. Eliminate vacuous claims (premise doesn't apply) and partial claims that miss data.
+**explanation:** **Governing Principle.** In a Multi-Source Reasoning question, a statement "must be true" only if it follows necessarily from the data provided across all relevant tabs, with no additional assumptions required. Statements that are merely possible, or that rely on information not given, do not qualify.
+
+**Tab 3 establishes the pricing structure.** For each order size, express shipping costs exactly $8 more than standard shipping:
+
+- Small: express $20, standard $12; difference = 20 - 12 = 8
+- Medium: express $26, standard $18; difference = 26 - 18 = 8
+- Large: express $36, standard $28; difference = 36 - 28 = 8
+
+Tab 2 confirms this pattern explicitly: "Express shipping... costs $8 more per order than standard." Since $8 > 0, express shipping is strictly more expensive than standard shipping for every order size listed. This holds universally across all three size categories, therefore choice A must be true.
+
+**Evaluating the remaining choices to confirm none of them must be true.**
+
+Choice B states that the North region accounts for less order volume than either the Central or the South region. Tab 1 gives the following regional shares of 12,000 total orders:
+
+- South: 35% = 0.35 x 12,000 = 4,200 orders
+- Central: 25% = 0.25 x 12,000 = 3,000 orders
+- North: remainder = 100% - 35% - 25% = 40% = 0.40 x 12,000 = 4,800 orders
+
+The North region accounts for 40% of total volume, which is greater than both Central (25%) and South (35%). Choice B is false, not true.
+
+Choice C compares the price of a medium express order to the price of a large standard order. From Tab 3, medium express = $26 and large standard = $28. Since 26 < 28, a medium express order costs less than a large standard order. Choice C is false.
+
+Choice D claims that most orders are shipped via express. Tab 2 specifies that express shipping is available only for orders from the South region, which accounts for 35% of total orders. Even if every South-region order were shipped express, that would represent at most 35% of all orders — a minority, not a majority. Choice D cannot be true given the data.
+
+Choice E states that standard shipping is slower than express shipping for Central-region orders. Tab 2 specifies that express shipping is available only for orders from the South region. Central-region orders are therefore ineligible for express shipping, making any comparison between the two shipping methods for Central-region orders meaningless within the scope of the given information. Choice E does not must be true.
+
+**Conclusion.** Only choice A follows necessarily from the data in all three tabs. The Tab 3 pricing table, corroborated by the explicit $8 differential stated in Tab 2, confirms that express shipping exceeds standard shipping in cost for every order size without exception.
+
+The correct answer is A.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -627,14 +843,23 @@ How many orders did the warehouse process from the North region last week?
 - E) 5,000
 
 **answer:** D
-**fastest_path:** North = 100% − 35% − 25% = 40%. 0.40 × 12000 = 4800.
-**explanation:** Tab 1 gives South 35%, Central 25%, total 12,000. North share = 40%. Orders = 4,800. Answer D.
-**mistake_a:** 3000 — slip on subtraction.
-**mistake_b:** 3500 — undershoot.
-**mistake_c:** 4200 — slip.
-**mistake_e:** 5000 — round up.
-**common_trap:** Forgetting the "remainder" deduction; computing only South or Central directly without realizing North is implicit.
-**takeaway:** Volume-share MSR with implicit residuals: subtract named shares from 100%, then apply to total.
+**explanation:** **Reasoning.** The key principle here is that the three regions together account for 100% of total weekly order volume. Tab 1 (Internal Memo) supplies all figures required; Tabs 2 and 3 govern shipping methods and pricing, which are not relevant to a pure volume count.
+
+Let T = 12,000, the total orders processed last week.
+
+Tab 1 states that the South region accounts for 35% of T and the Central region accounts for 25% of T. Because the three regions are exhaustive and mutually exclusive, the North region's share equals the remainder:
+
+North percentage = 100% - 35% - 25% = 40%
+
+Applying that percentage to the total:
+
+North orders = 40/100 x 12,000 = 0.40 x 12,000 = 4,800
+
+This result can be verified: South = 0.35 x 12,000 = 4,200; Central = 0.25 x 12,000 = 3,000; North = 4,800. Summing: 4,200 + 3,000 + 4,800 = 12,000, which matches T exactly.
+
+Among the answer choices, 3,000 equals the Central region's volume, not the North's; 3,500 corresponds to no defined region; 4,200 is the South region's volume; and 5,000 exceeds the computed figure. None of those alternatives follow from the 40% remainder.
+
+The correct answer is D.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -653,14 +878,23 @@ Suppose all South-region orders last week were medium-sized, with 40% shipped vi
 - E) $26.00
 
 **answer:** C
-**fastest_path:** Weighted: 0.4·26 + 0.6·18 = 10.4 + 10.8 = $21.20.
-**explanation:** Tab 3: med-std $18, med-exp $26. Weighted avg = 0.4·26 + 0.6·18 = $21.20. Answer C.
-**mistake_a:** $18.00 — pure standard pricing.
-**mistake_b:** $20.80 — slip on weights or surcharge.
-**mistake_d:** $23.60 — using 60/40 split inverted.
-**mistake_e:** $26.00 — pure express.
-**common_trap:** Applying weights inversely (60/40 → 40/60). Always read which mix-fraction goes with which price tier.
-**takeaway:** Weighted-avg MSR: weight × value, summed. Verify the weight matches the price tier.
+**explanation:** The governing principle is the weighted average: when a population is split into subgroups, the overall average equals the sum of each subgroup's share multiplied by its unit value.
+
+Tab 1 states that the South region accounts for 35% of 12,000 total orders, giving 0.35 × 12,000 = 4,200 South-region orders. The absolute count is not required for the average calculation, but it confirms the South region is the only one eligible for express shipping (Tab 2) and that the scenario is internally consistent.
+
+From Tab 3, the per-order shipping cost for medium-sized orders is $18 for standard and $26 for express. The $8 premium stated in Tab 2 is consistent: 26 − 18 = 8. No data beyond the South-region percentage from Tab 1, and no data from the North or Central rows, are needed here.
+
+With 60% of South-region orders shipped via standard and 40% via express, the weighted average cost per order is:
+
+Average = 0.60 × 18 + 0.40 × 26
+
+Computing each term: 0.60 × 18 = 10.80 and 0.40 × 26 = 10.40, so the average = 10.80 + 10.40 = 21.20.
+
+Choice A ($18.00) applies the standard price to all orders, ignoring the 40% shipped express. Choice E ($26.00) does the opposite, applying the express price to all orders. Choice B ($20.80) results from an arithmetic slip in which 0.40 × 26 is miscalculated as 10.00 rather than 10.40, yielding 10.80 + 10.00 = 20.80. Choice D ($23.60) follows from reversing the weights and mixing sizes: 0.60 × 26 + 0.40 × 20 = 15.60 + 8.00 = 23.60, which uses the correct express-medium price but substitutes the small-standard price ($20) for the medium-standard price ($18), while also flipping the proportions.
+
+The weighted average of the two medium-size prices at shares 60/40 is $21.20.
+
+The correct answer is C.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 
@@ -711,14 +945,21 @@ Based on the information provided across all three tabs, which of the following 
 - E) The FX headwind is reducing MorningShade's Q1 revenue by more than $20 million.
 
 **answer:** D
-**fastest_path:** Walk each claim. NC growth +2% is lowest of the three (+8, +17, +2). D is true.
-**explanation:** Growth rates: Lyton +8%, MS +17%, NC +2%. NC lowest. Answer D.
-**mistake_a:** MS $71.4M < Lyton $74.8M.
-**mistake_b:** Total $174.1M < $180M.
-**mistake_c:** Lyton's 11% < trailing 12.5% — not every company exceeded its trailing.
-**mistake_e:** FX impact ≈ $11M (computed: 420 × (1.20−1.17)/1.17 ≈ $11M), not > $20M.
-**common_trap:** Picking (E) without computing the FX dollar impact. Use prior-year base × the rate differential.
-**takeaway:** "Must be true" with multi-tab data: verify each numeric claim. Especially watch out for "exceeds X" claims that require explicit calculation.
+**explanation:** For a "must be true" question, the credited answer must follow necessarily from the data as given, while every other choice either contradicts the data or cannot be confirmed from the information provided.
+
+Tab 1 (Analyst Memo) supplies the year-over-year revenue growth rates: Lyton Apparel +8%, MorningShade Cosmetics +17%, NorthCrest Outdoors +2%. Tab 2 (Financial Model Summary) supplies Q1 operating profit figures: Lyton $74.8M, MorningShade $71.4M, NorthCrest $27.9M, total $174.1M. Tab 3 (Historical Reference) supplies trailing four-quarter operating margins: Lyton 12.5%, MorningShade 18.0%, NorthCrest 10.0%.
+
+Tab 2 shows MorningShade Q1 operating profit = $71.4M and Lyton Q1 operating profit = $74.8M. Because 71.4 < 74.8, MorningShade's projected profit is lower, not higher. Choice A is false.
+
+Tab 2 states total projected Q1 operating profit = $174.1M. Because 174.1 < 180, the total does not exceed $180M. Choice B is false.
+
+Comparing each company's projected Q1 margin (Tab 2) against its trailing four-quarter average (Tab 3): Lyton projects 11.0% against a trailing 12.5%, so its margin is lower; MorningShade projects 17.0% against a trailing 18.0%, so its margin is lower; NorthCrest projects 9.0% against a trailing 10.0%, so its margin is lower. Every company shows a projected margin below its trailing average, making the claim that every margin is higher false. Choice C is false.
+
+The three year-over-year revenue growth rates from Tab 1 are Lyton +8%, MorningShade +17%, and NorthCrest +2%. Ranking them in ascending order: NorthCrest 2% < Lyton 8% < MorningShade 17%. NorthCrest's growth rate of 2% is strictly less than both 8% and 17%, so NorthCrest has the lowest projected Q1 revenue growth rate of the three companies. This follows directly and necessarily from the data. Choice D must be true.
+
+Tab 1 states that the FX headwind trims MorningShade's revenue growth rate by 3 percentage points, not that it reduces revenue by a stated dollar amount. To quantify the dollar impact, the prior-year Q1 revenue base is needed. The current estimate of $420M reflects +17% growth, so the prior-year base is approximately $420 / 1.17, or roughly $359M. Applying the 3-percentage-point headwind to that base yields approximately 0.03 x $359M, or roughly $10.8M — well below $20M. Choice E is not supported.
+
+The correct answer is D.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -737,14 +978,23 @@ Which company is projected to have the largest year-over-year increase in Q1 rev
 - E) Cannot be determined from the information provided
 
 **answer:** B
-**fastest_path:** Absolute increase = current − prior. Lyton 680 − 629.6 ≈ $50.4M. MS 420 − 359 ≈ $61M. NC 310 − 304 ≈ $6M. MS biggest.
-**explanation:** Δ revenue = Q1 − prior Q1 = Q1 − Q1/(1+growth). Lyton: $50.4M. MS: $61M. NC: $6M. MS largest. Answer B.
-**mistake_a:** Lyton has highest *level* but smaller absolute increase.
-**mistake_c:** NC has lowest growth and smallest base.
-**mistake_d:** Lyton ($50M) and MS ($61M) differ.
-**mistake_e:** All three values are computable.
-**common_trap:** Anchoring on Lyton because it has the highest revenue *level*. Absolute increase requires multiplying growth rate by prior base.
-**takeaway:** Absolute Δ vs growth rate: highest growth rate doesn't always give highest absolute Δ. Multiply rate × prior base.
+**explanation:** The year-over-year absolute dollar increase in revenue equals current-period revenue minus prior-period revenue. Let r denote the Q1 revenue estimate and g denote the stated year-over-year growth rate for a given company. Because r represents the result after applying g to the prior-year base, the prior-year revenue equals r / (1 + g), and the absolute dollar increase equals r - r / (1 + g), which simplifies to r * g / (1 + g).
+
+Tab 1 (Analyst Memo) supplies the growth rates; Tab 2 (Financial Model Summary) supplies the current Q1 revenue estimates. Tab 3 is not required for this calculation.
+
+Lyton Apparel: r = 680, g = 0.08. Prior-year revenue = 680 / 1.08 = 629.63. Absolute increase = 680 - 629.63 = approximately $50.4M.
+
+MorningShade Cosmetics: r = 420, g = 0.17. Prior-year revenue = 420 / 1.17 = 358.97. Absolute increase = 420 - 358.97 = approximately $61.0M.
+
+NorthCrest Outdoors: r = 310, g = 0.02. Prior-year revenue = 310 / 1.02 = 303.92. Absolute increase = 310 - 303.92 = approximately $6.1M.
+
+Ranking the three absolute increases: MorningShade $61.0M > Lyton $50.4M > NorthCrest $6.1M.
+
+Choice A (Lyton Apparel) is tempting because Lyton carries the largest revenue base and a solid 8% growth rate, but the narrower percentage gain applied to $680M yields only approximately $50.4M, which falls short of MorningShade's approximately $61.0M. Choice D (a tie between Lyton and MorningShade) can be ruled out because the two figures differ by roughly $10.6M. Choice E is incorrect because both the current estimates and the growth rates are explicitly provided, making the calculation fully determinable.
+
+The absolute increase for MorningShade Cosmetics, at approximately $61.0M, exceeds that of every other company in the coverage set.
+
+The correct answer is B.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -763,14 +1013,41 @@ Suppose the FX headwind disappears entirely during Q1, so MorningShade grows at 
 - E) $180M
 
 **answer:** C
-**fastest_path:** MS at 20% growth: prior ≈$359M → Q1 ≈$431M. Op profit at 17% margin = $73.3M. Total = 74.8 + 73.3 + 27.9 ≈ $176M.
-**explanation:** MS scenario: prior $359M × 1.20 = $431M. New MS op profit = $431M × 0.17 ≈ $73.3M (+$1.9M). Lyton and NC unchanged. Total ≈ $176M. Answer C.
-**mistake_a:** $172M — too low.
-**mistake_b:** $174.1M — original total (no FX adjustment).
-**mistake_d:** $178M — overshoot.
-**mistake_e:** $180M — adding revenue bump *directly* without margin multiplier.
-**common_trap:** Adding the revenue bump (~$11M) to the total profit. Op profit needs the margin (17%) applied: ~$2M, not $11M.
-**takeaway:** Forecast Δ profit: Δ profit = Δ revenue × margin. Don't add raw revenue to profit.
+**explanation:** **Governing principle.** Operating profit equals revenue multiplied by operating margin. To forecast a revised total, recompute only the line item affected by the changed assumption, hold all other line items fixed, and sum.
+
+**Identifying the relevant source.** The question modifies the revenue growth assumption for MorningShade only. Tab 1 (Analyst Memo) establishes that the reported 17% year-over-year growth already embeds a 3-percentage-point FX drag, implying an underlying constant-currency growth rate of 20%. Tab 2 (Financial Model Summary) supplies the base Q1 revenue of $420M and the projected operating margin of 17.0% for MorningShade, as well as the unchanged figures for Lyton Apparel ($74.8M operating profit) and NorthCrest Outdoors ($27.9M operating profit).
+
+**Step 1: Recover MorningShade's prior-year Q1 revenue base.**
+
+The Tab 2 projected revenue of $420M reflects 17% year-over-year growth, so the prior-year base is:
+
+R_prior = 420 / 1.17 ≈ 358.97M
+
+**Step 2: Compute MorningShade's revised Q1 revenue at 20% growth.**
+
+R_revised = 358.97 × 1.20 ≈ 430.77M
+
+An equivalent, arithmetically transparent route: the incremental revenue from removing the FX drag equals the prior-year base multiplied by the 3-percentage-point difference between the constant-currency rate and the reported rate:
+
+Incremental revenue = (420 / 1.17) × 0.03 ≈ 10.77M
+
+Therefore R_revised = 420 + 10.77 ≈ 430.77M
+
+**Step 3: Apply MorningShade's projected operating margin to the revised revenue.**
+
+The question instructs that every company's operating margin be held constant at the Tab 2 projected level. MorningShade's margin is 17.0%, so:
+
+MorningShade revised operating profit = 430.77 × 0.17 ≈ 73.23M
+
+**Step 4: Assemble the three-company total.**
+
+The operating profits for Lyton Apparel ($74.8M) and NorthCrest Outdoors ($27.9M) are unaffected by the scenario change. The revised total is:
+
+Total = 74.8 + 73.23 + 27.9 = 175.93M ≈ 176M
+
+A tempting trap is to use MorningShade's original $420M revenue, which produces $174M (choice B) and ignores the instruction to substitute the constant-currency growth rate. Another near-miss would be to apply a higher margin alongside the higher revenue; however, the question explicitly holds margins constant, so no margin adjustment is warranted.
+
+The correct answer is C.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 
@@ -817,14 +1094,25 @@ Based on the data presented in the three tabs, which of the following must be tr
 - E) The control group had a higher rate of prior opioid use than the PalliMed-X group.
 
 **answer:** C
-**fastest_path:** Tab 1: 182 PalliMed-X vs 141 control achieved endpoint. 182 > 141 — C must be true.
-**explanation:** 182 > 141, directly verifiable. A: no subgroup breakdown. B: no p-value reported. D: 16% nausea ≠ majority. E: reversed (PMX 26% > control 23%). Answer C.
-**mistake_a:** No subgroup data — can't claim "every subgroup."
-**mistake_b:** Statistical significance requires p-value; not reported.
-**mistake_d:** Nausea 16% is not a majority.
-**mistake_e:** Reversed — PMX 26% > control 23%.
-**common_trap:** Picking (B) because a 14-pp gap *seems* clinically meaningful. But statistical significance is a specific claim requiring a p-value, not a magnitude.
-**takeaway:** Trial-data MSR: distinguish *magnitude* from *significance*. Magnitude is the gap; significance requires explicit p-value.
+**explanation:** **Governing principle.** A "must be true" question in Multi-Source Reasoning requires that the credited statement be directly verifiable — and necessarily accurate — from the data as presented, without any inference beyond what the exhibits explicitly supply. Statements that require subgroup data not shown, statistical computations not reported, or a causal claim not established by the trial design cannot "must be true."
+
+**Locating the relevant data.** The primary quantitative result lives in Tab 1 (Trial Summary). Tab 2 (Baseline Characteristics) and Tab 3 (Adverse Events) supply ancillary figures needed to evaluate the distractors.
+
+**Evaluating the credited answer (C).** Tab 1 states: 182 of 300 patients in the PalliMed-X arm met the primary endpoint, versus 141 of 300 patients in the control arm. Comparing the raw counts directly: 182 > 141. Therefore, more patients in the PalliMed-X group achieved the primary endpoint than in the control group. This is a direct reading of reported numerators; no calculation beyond a simple integer comparison is required, and no assumption is needed. Statement C must be true.
+
+**Ruling out the distractors.**
+
+Choice A claims superiority in every subgroup. Tab 1 presents only aggregate trial-level results; no subgroup breakdowns appear in any of the three tabs. Because the data do not address subgroup-level performance, this claim is unsupported and cannot be established as necessarily true.
+
+Choice B asserts statistical significance of the 14-percentage-point difference. None of the three tabs reports a p-value, confidence interval, or any hypothesis-test result. Statistical significance requires inferential analysis beyond raw counts, and that analysis is simply absent from the exhibit set. The claim may or may not be true, but it cannot be read directly from the data.
+
+Choice D asserts that PalliMed-X causes nausea in the majority (> 50%) of patients who receive it. Tab 3 shows: nausea events in the PalliMed-X group = 48 out of 300 patients. Computing the rate: 48/300 = 0.16, or 16%. Because 16% < 50%, fewer than a majority experienced nausea, so this statement is false on the data as given — quite apart from the separate problem that correlation in an adverse-event table does not establish causation.
+
+Choice E claims the control group had a higher rate of prior opioid use. Tab 2 shows: prior opioid use in the PalliMed-X group = 26%; prior opioid use in the control group = 23%. Because 26% > 23%, it is the PalliMed-X group, not the control group, that had the higher rate. Statement E is directly contradicted by Tab 2.
+
+**Conclusion.** Only statement C is directly and necessarily supported by the reported data: 182 (PalliMed-X) > 141 (control) is an arithmetic fact read straight from Tab 1.
+
+The correct answer is C.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -843,14 +1131,26 @@ Approximately what was the percentage-point difference between the two groups in
 - E) 12
 
 **answer:** B
-**fastest_path:** 12% (PMX) − 8% (control) = 4 pp.
-**explanation:** Tab 3: discontinuation 12% vs 8%. Δ = 4 pp. Answer B.
-**mistake_a:** 2 — slip.
-**mistake_c:** 6 — slip.
-**mistake_d:** 8 — using control rate alone.
-**mistake_e:** 12 — using PMX rate alone.
-**common_trap:** Confusing pp difference (4) with relative increase (50%). Question asks pp.
-**takeaway:** Pp vs % change: pp = absolute difference; % change = relative.
+**explanation:** **Identifying the relevant source.** The question asks for the discontinuation rate due to adverse events in each group. This figure is reported in Tab 3 (Adverse Events), not Tab 1 or Tab 2, so Tab 3 is the governing source.
+
+**Reading the raw counts.** From Tab 3:
+
+- PalliMed-X: 36 of 300 patients discontinued due to an adverse event.
+- Control: 24 of 300 patients discontinued due to an adverse event.
+
+**Computing the rates.** Let r_P denote the discontinuation rate for PalliMed-X and r_C denote the rate for the control group.
+
+r_P = 36/300 = 0.12, or 12%.
+
+r_C = 24/300 = 0.08, or 8%.
+
+**Computing the percentage-point difference.** The percentage-point difference is defined as the absolute difference between two percentage rates expressed in the same units, not as a ratio.
+
+Difference = r_P - r_C = 12% - 8% = 4 percentage points.
+
+**Ruling out the tempting alternatives.** Choice E (12) corresponds to the PalliMed-X discontinuation rate in isolation, which the question does not ask for. Choice C (6) and Choice D (8) would arise from arithmetic errors such as subtracting counts rather than rates or misreading one row of the table. Choice A (2) would result from using the headache row (13% - 11% = 2), which is the wrong row. Only the discontinuation row yields a difference of 4 percentage points.
+
+The correct answer is B.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -869,14 +1169,15 @@ Assume that the differences in primary-endpoint achievement and discontinuation 
 - E) 20 additional successes, 10 additional discontinuations
 
 **answer:** B
-**fastest_path:** Δ success rate: 61−47 = 14 pp → 14 per 100. Δ discontinuation: 12−8 = 4 pp → 4 per 100.
-**explanation:** Per 100 patients: additional successes = 14 (rate diff), additional discontinuations = 4. Answer B.
-**mistake_a:** Δ success is 14 (not 10).
-**mistake_c:** Δ disc is 4 (not 7).
-**mistake_d:** Δ success is 14 (not 7).
-**mistake_e:** Δ values are 14 and 4, not 20 and 10.
-**common_trap:** Computing the *ratio* of rates (61/47 ≈ 30%) instead of the difference. "Additional patients" needs absolute pp difference applied to 100.
-**takeaway:** "Additional patients per N" = pp difference × N/100. Don't confuse with relative lift (%).
+**explanation:** The relevant data come from two tabs. Tab 1 supplies the primary-endpoint rates; Tab 3 supplies the discontinuation-due-to-adverse-event rates.
+
+For the primary endpoint, the PalliMed-X group had 182 of 300 patients achieve the endpoint, giving a rate of approximately 61%. The control group had 141 of 300, giving a rate of exactly 47%. The absolute difference is 61% minus 47%, which equals 14 percentage points. Applied to a population of 100 patients, this translates to 14 additional patients expected to achieve the primary endpoint under PalliMed-X relative to the control. This rules out choices A (10 additional successes), D (7 additional successes), and E (20 additional successes), leaving only B and C as candidates.
+
+For discontinuations due to adverse events, Tab 3 shows that 36 of 300 patients in the PalliMed-X group discontinued due to an adverse event, a rate of 12%. In the control group, 24 of 300 discontinued, a rate of 8%. The absolute difference is 12% minus 8%, which equals 4 percentage points. Applied to 100 patients, this yields 4 additional patients expected to discontinue. This rules out choice C, which overstates the discontinuation difference as 7 percentage points. The value 7% appears in Tab 3 as the serious adverse event rate for PalliMed-X alone, not as an incremental discontinuation difference, making C a plausible but incorrect distractor. Choice E overstates both figures and was already eliminated.
+
+The conclusion is that for every 100 patients treated with PalliMed-X instead of the control, approximately 14 additional patients are expected to achieve meaningful pain relief and approximately 4 additional patients are expected to discontinue due to adverse events.
+
+The correct answer is B.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 
@@ -919,14 +1220,26 @@ Based on the three tabs, which of Stellar's aircraft models, if newly sold in th
 - E) SA-300, SA-400, and SA-500
 
 **answer:** D
-**fastest_path:** Threshold: 2.6 × 0.88 = 2.288 L/100km. SA-200 (3.0) fails, SA-300 (2.6) fails, SA-400 (2.2) ✓, SA-500 (1.9) ✓.
-**explanation:** Standard requires ≤ 2.288 L. SA-400 (2.2) and SA-500 (1.9) qualify. SA-200 (3.0) and SA-300 (2.6) fail. Answer D.
-**mistake_a:** SA-200 fails.
-**mistake_b:** SA-300 fails (at industry average, not below threshold).
-**mistake_c:** SA-300 fails — only SA-400 passes among the rest.
-**mistake_e:** SA-300 fails the 12%-below threshold.
-**common_trap:** Picking (E) because SA-300 *equals* the industry average. The threshold is 12% *below* (2.288), not at (2.6).
-**takeaway:** Regulatory thresholds: compute the literal threshold (X% below average), then compare. "Below average" ≠ "12% below average."
+**explanation:** The FAA rule, stated in Tab 1, requires that any aircraft newly sold in the US market starting in 2027 must achieve a fuel burn per passenger-mile at least 12% below the current industry average. The current industry average is 2.6 L per 100 passenger-kilometers. The maximum permissible fuel burn under the proposed standard is therefore:
+
+2.6 × (1 - 0.12) = 2.6 × 0.88 = 2.288 L/100 passenger-km.
+
+Any model whose fuel burn exceeds 2.288 L/100 passenger-km does not comply; any model at or below that figure does comply.
+
+**Applying the threshold to each model (Tab 2).** Each aircraft's listed fuel burn is compared against the computed ceiling of 2.288:
+
+- SA-200: 3.0 L/100 passenger-km. Since 3.0 > 2.288, the SA-200 fails the standard.
+- SA-300: 2.6 L/100 passenger-km. Since 2.6 > 2.288, the SA-300 also fails; it merely matches the current average rather than beating it by 12%.
+- SA-400: 2.2 L/100 passenger-km. Since 2.2 < 2.288, the SA-400 meets the standard.
+- SA-500: 1.9 L/100 passenger-km. Since 1.9 < 2.288, the SA-500 also meets the standard.
+
+**Addressing the SA-500's status.** Tab 3 notes that the SA-500 is not yet available for commercial sale as of the date of the analysis, and Tab 2 gives its planned introduction year as 2026. The question asks which models would meet the standard if newly sold in the US in 2027. Because the SA-500's planned introduction precedes 2027, it is not categorically excluded from the 2027 market, and the question's conditional framing ("if newly sold in 2027") does not disqualify it on availability grounds. Its fuel burn of 1.9 L/100 passenger-km satisfies the regulatory threshold, so it is properly included.
+
+**Ruling out tempting alternatives.** Choice E includes the SA-300, which does not qualify: 2.6 L/100 passenger-km equals the industry average and therefore falls short of the required 12% reduction. Choice C likewise includes the SA-300 and excludes the SA-500 without justification. Choices A and B each name a single model that does not meet the threshold.
+
+The two models that satisfy the 2.288 L/100 passenger-km ceiling are the SA-400 (2.2) and the SA-500 (1.9).
+
+The correct answer is D.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -945,14 +1258,25 @@ Based on current US fleet-sales mix in Tab 3, approximately what percentage of S
 - E) 75%
 
 **answer:** E
-**fastest_path:** Failing models: SA-200 (30%) + SA-300 (45%) = 75%.
-**explanation:** From Q1, SA-200 and SA-300 fail. Combined US sales share: 30% + 45% = 75%. Answer E.
-**mistake_a:** 25% — SA-400 share (passes standard).
-**mistake_b:** 30% — SA-200 alone.
-**mistake_c:** 45% — SA-300 alone.
-**mistake_d:** 55% — slip on summing.
-**common_trap:** Forgetting SA-300 also fails (it's *at* 2.6, not below the 12% threshold). Easy to count only SA-200 (30%) as failing.
-**takeaway:** Volume-share follow-up: chain answers from prior question. Failing-model set determines failing-share sum.
+**explanation:** The FAA proposed standard requires that any newly sold aircraft achieve a fuel burn at least 12% below the current industry average. The compliance ceiling must first be computed from Tab 1, then each commercially available model in Tab 2 must be tested against that ceiling, and finally the failing shares from Tab 3 must be summed.
+
+Tab 1 states the current industry average fuel burn is 2.6 L per 100 passenger-kilometers. A reduction of 12% yields the maximum permissible fuel burn:
+
+2.6 × (1 − 0.12) = 2.6 × 0.88 = 2.288 L/100 passenger-km.
+
+Any model burning more than 2.288 L/100 passenger-km fails the proposed standard.
+
+Tab 3 lists three models as contributing to current US fleet sales; the SA-500 is explicitly noted as not yet available for commercial sale and therefore contributes 0% to the current sales mix. Testing the three available models against the 2.288 ceiling:
+
+SA-200: 3.0 L/100 km. Because 3.0 > 2.288, this model fails.
+SA-300: 2.6 L/100 km. Because 2.6 > 2.288, this model also fails.
+SA-400: 2.2 L/100 km. Because 2.2 < 2.288, this model passes.
+
+Summing the failing shares from Tab 3: 30% (SA-200) + 45% (SA-300) = 75%.
+
+A tempting error is to count only the SA-200 (30%, choice B) or only the SA-300 (45%, choice C), overlooking that both models exceed the 2.288 L/100 passenger-km ceiling. Another temptation is to answer with the passing share (25%, choice A) rather than the failing share. Choice D (55%) has no arithmetic basis in the data. Because both the SA-200 and the SA-300 fall above the compliance threshold, 75% of current US sales — the combined share of those two models — would fail the proposed standard without retrofit or redesign.
+
+The correct answer is E.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -971,14 +1295,21 @@ Suppose Stellar decides to retrofit all existing SA-200 aircraft in the US fleet
 - E) $300M
 
 **answer:** C
-**fastest_path:** 150 × $1.2M = $180M.
-**explanation:** Retrofit per aircraft = $1.2M (Tab 3). 150 SA-200 × $1.2M = $180M. Answer C.
-**mistake_a:** $120M — using $0.8M per aircraft.
-**mistake_b:** $150M — using $1.0M per aircraft.
-**mistake_d:** $240M — overshoot.
-**mistake_e:** $300M — using $2M per aircraft.
-**common_trap:** Slipping the per-aircraft figure to a round $1.0M or $1.5M. Read the literal $1.2M from Tab 3.
-**takeaway:** Cost projection: literal per-unit × count. No rounding.
+**explanation:** **Governing principle.** A total-cost calculation takes the form Total Cost = (Cost per Unit) x (Number of Units). The relevant figures are drawn from two sources: Tab 3 supplies the per-aircraft retrofit cost, and the question stem supplies the fleet count.
+
+**Identifying the data.** Tab 3 states that retrofitting one SA-200 to meet the proposed FAA standard costs approximately $1.2 million per aircraft. The question stem specifies that 150 SA-200 aircraft are currently in the US fleet. No data from Tab 1 or Tab 2 is required for this arithmetic step; those tabs establish the regulatory threshold and fleet fuel-burn figures, which are background context here.
+
+**Computation.** Let n = 150 (number of SA-200 aircraft) and c = 1,200,000 (retrofit cost per aircraft, in dollars). The total program cost T is
+
+T = n x c = 150 x 1,200,000
+
+Breaking this down: 150 x 1,200,000 = 150 x 1.2 x 10^6 = 180 x 10^6 = 180,000,000.
+
+Therefore T = $180,000,000, or approximately $180 million.
+
+**Ruling out tempting alternatives.** A result of $120M would require only 100 aircraft (100 x 1,200,000 = 120,000,000), not 150. A result of $150M would require a per-aircraft cost of exactly $1.0 million (150 x 1,000,000), not $1.2 million. A result of $240M would require 200 aircraft, and $300M would require 250 aircraft — neither matches the 150-aircraft figure given in the stem. Only 150 x 1,200,000 = 180,000,000 is consistent with both data points simultaneously.
+
+The correct answer is C.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 
@@ -1020,14 +1351,15 @@ Based on the three tabs, which of the following must be true?
 - E) Orion weighted its three asset classes approximately equally.
 
 **answer:** B
-**fastest_path:** Equities contribution = 0.60 × (16−13) = +1.8 pp. Positive → B must be true.
-**explanation:** Equities: 0.60·(16−13) = +1.8 pp — positive contribution. A: Fixed Income underperformed (7<8). C: FI contribution = −0.3 pp (negative). D: total was 12.9%, not 11%. E: weights 60/30/10 not equal. Answer B.
-**mistake_a:** FI underperformed; not "every asset class."
-**mistake_c:** FI contribution is negative.
-**mistake_d:** 12.9% ≠ 11%.
-**mistake_e:** 60/30/10 not equal.
-**common_trap:** Picking (A) because Equities and Alternatives outperformed. Always check *every* asset class.
-**takeaway:** Attribution MSR: contribution = weight × (portfolio − benchmark) for each class. Sign depends on whether portfolio beats benchmark in that class.
+**explanation:** Tab 3 defines each asset class's contribution to excess return as (weight) × (Orion's return in that class minus the benchmark's return in that class). Applying this formula to the figures in Tab 2 gives the following results.
+
+For Equities: 0.60 × (16% − 13%) = 0.60 × 3 = +1.8 percentage points. For Fixed Income: 0.30 × (7% − 8%) = 0.30 × (−1) = −0.3 percentage points. For Alternatives: 0.10 × (12% − 10%) = 0.10 × 2 = +0.2 percentage points. Total excess return = 1.8 + (−0.3) + 0.2 = +1.7 percentage points.
+
+Tab 3 also states that the total portfolio return equals the weighted sum of asset-class returns: 0.60 × 16 + 0.30 × 7 + 0.10 × 12 = 9.6 + 2.1 + 1.2 = 12.9%. The same formula applied to benchmark figures gives 0.60 × 13 + 0.30 × 8 + 0.10 × 10 = 7.8 + 2.4 + 1.0 = 11.2%. Both values match Tab 1 exactly, confirming that the data across all three tabs are internally consistent.
+
+Turning to the choices: Choice A is false because Tab 2 shows Fixed Income returned 7% for Orion against 8% for the benchmark, meaning Orion underperformed in that class. Choice C is false because the Fixed Income contribution is −0.3 percentage points, a negative value. Choice D is false because Tab 1 explicitly states Orion's total return was 12.9%, confirmed by the weighted computation above, not 11%. Choice E is false because Tab 1 and Tab 2 both state weights of 60%, 30%, and 10%, which are materially unequal. Choice B must be true: the Equities contribution equals +1.8 percentage points, which is strictly positive, following directly and necessarily from the Tab 2 figures and the Tab 3 formula.
+
+The correct answer is B.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -1046,14 +1378,29 @@ What was Alternatives' approximate contribution to Orion's excess return in 2024
 - E) 2.0 percentage points
 
 **answer:** B
-**fastest_path:** 0.10 × (12 − 10) = 0.20 pp.
-**explanation:** Alternatives contribution = weight × Δ = 0.10 × 2 = 0.20 pp. Answer B.
-**mistake_a:** 0.1 — half the answer.
-**mistake_c:** 0.5 — overshoot.
-**mistake_d:** 1.0 — using wrong weight.
-**mistake_e:** 2.0 — return *differential* without weight applied.
-**common_trap:** Picking (E) because the *return differential* is 2 pp. But contribution requires weight × differential, not differential alone.
-**takeaway:** Contribution = weight × (portfolio − benchmark). Always apply the weight.
+**explanation:** **Relevant source.** Tab 3 defines the attribution framework, and Tab 2 supplies the required figures. Tab 1 is not needed for this calculation, though its reported total returns serve as a useful consistency check.
+
+**Governing definition.** Under the framework in Tab 3, each asset class's contribution to excess return equals
+
+(weight) x (Orion's return in that class - Benchmark's return in that class).
+
+Let w_A = 0.10 (the portfolio weight of Alternatives), r_A = 12% (Orion's Alternatives return), and b_A = 10% (the benchmark's Alternatives return). Substituting:
+
+Contribution_Alternatives = w_A x (r_A - b_A) = 0.10 x (12 - 10) = 0.10 x 2 = 0.20 percentage points.
+
+The result is 0.2 percentage points, which corresponds to choice B.
+
+**Ruling out the other choices.** Choice A (0.1 pp) would require either a weight of 5% or a return differential of only 1 percentage point; neither matches the data. Choice C (0.5 pp) would require a differential of 5 percentage points or a weight of 25%, both inconsistent with Tab 2. Choice D (1.0 pp) and choice E (2.0 pp) are far too large for a 10%-weighted asset class outperforming by 2 percentage points.
+
+**Cross-check via total returns.** One can verify the full attribution. Let contributions from Equities, Fixed Income, and Alternatives be computed as:
+
+- Equities: 0.60 x (16 - 13) = 0.60 x 3 = 1.80 pp
+- Fixed Income: 0.30 x (7 - 8) = 0.30 x (-1) = -0.30 pp
+- Alternatives: 0.10 x (12 - 10) = 0.10 x 2 = 0.20 pp
+
+Summing: 1.80 + (-0.30) + 0.20 = 1.70 pp total excess return. Tab 1 reports Orion's total return as 12.9% and the benchmark as 11.2%, a difference of 12.9 - 11.2 = 1.7 percentage points. The attribution sum matches exactly, confirming the arithmetic is correct and that Alternatives' isolated contribution is 0.20 pp.
+
+The correct answer is B.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -1072,14 +1419,39 @@ Using the attribution framework, what was Orion's approximate total excess retur
 - E) 2.5 percentage points
 
 **answer:** C
-**fastest_path:** Sum contributions: 1.8 + (−0.3) + 0.2 = 1.7 pp. Cross-check: 12.9 − 11.2 = 1.7. ✓
-**explanation:** Equities +1.8, FI −0.3, Alt +0.2. Total = 1.7 pp. Cross-check via Tab 1: 12.9% − 11.2% = 1.7 pp. Answer C.
-**mistake_a:** 1.0 — undercount.
-**mistake_b:** 1.5 — undercount.
-**mistake_d:** 2.0 — ignoring negative FI contribution.
-**mistake_e:** 2.5 — way over.
-**common_trap:** Ignoring the FI underperformance (−0.3 pp). Total excess includes negative contributions.
-**takeaway:** Total excess return: sum *all* contributions, including negatives. Cross-check via direct (portfolio − benchmark) calculation.
+**explanation:** **Governing principle.** Under the attribution framework defined in Tab 3, a portfolio's total return equals the weighted sum of asset-class returns: total return = sum of (weight × asset-class return). Excess return then equals Orion's total return minus the benchmark's total return. These two definitions are sufficient to answer the question.
+
+**Computing Orion's total return.** Using the weights and Orion returns from Tab 2:
+
+Orion total = (0.60 × 16) + (0.30 × 7) + (0.10 × 12)
+            = 9.6 + 2.1 + 1.2
+            = 12.9%
+
+This figure matches the 12.9% stated in Tab 1, confirming internal consistency.
+
+**Computing the benchmark total return.** Applying the same formula to the benchmark returns in Tab 2:
+
+Benchmark total = (0.60 × 13) + (0.30 × 8) + (0.10 × 10)
+                = 7.8 + 2.4 + 1.0
+                = 11.2%
+
+Again, this matches the 11.2% benchmark return stated in Tab 1.
+
+**Excess return.** By the framework's definition:
+
+Excess return = 12.9 - 11.2 = 1.7 percentage points
+
+**Verification via per-class contribution.** Tab 3 also defines each asset class's contribution to excess return as (weight) × (Orion return − Benchmark return). Summing across classes provides an independent check:
+
+- Equities: 0.60 × (16 - 13) = 0.60 × 3 = 1.8 percentage points
+- Fixed Income: 0.30 × (7 - 8) = 0.30 × (-1) = -0.3 percentage points
+- Alternatives: 0.10 × (12 - 10) = 0.10 × 2 = 0.2 percentage points
+
+Total attributed excess = 1.8 + (-0.3) + 0.2 = 1.7 percentage points
+
+Both methods yield the same figure. Choice A (1.0) and choice B (1.5) are too small; a test-taker might arrive at 1.5 by incorrectly omitting the Alternatives class or by applying weights inconsistently. Choice D (2.0) could result from rounding 12.9 up to 13.0 before subtracting, and choice E (2.5) likely reflects an error in which the Fixed Income underperformance is ignored and only the two outperforming classes are summed. None of those paths follows the framework correctly.
+
+The correct answer is C.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 
@@ -1123,14 +1495,9 @@ Which variant has the highest Average Revenue per converted Customer?
 - E) Cannot be determined
 
 **answer:** C
-**fastest_path:** Tab 2 direct: A $400, B $250, C $500. C wins.
-**explanation:** Tab 2 gives per-customer revenue by variant: A = $400, B = $250, C = $500. C wins outright — no arithmetic needed, just read the right row off the right tab.
-**mistake_a:** $400 — second-highest.
-**mistake_b:** $250 — lowest.
-**mistake_d:** A and C aren't tied (400 vs 500).
-**mistake_e:** Data is provided directly.
-**common_trap:** Confusing avg revenue per customer with total revenue or efficiency.
-**takeaway:** Direct fact-lookup MSR: read the relevant column. Don't compute when not asked.
+**explanation:** Tab 2 (Pilot Campaign Results) is the operative source; it presents the "Avg Revenue per Customer ($)" column directly. The recorded values are $400 for Variant A, $250 for Variant B, and $500 for Variant C. No computation is required. Ranking the three figures in descending order gives 500 > 400 > 250, which corresponds to C > A > B. Choice D (A and C are tied) would require 400 to equal 500, which is false, so D is eliminated. Choice E (Cannot be determined) would apply only if the necessary data were absent or ambiguous; the column is fully populated with unambiguous figures, so E is eliminated. Choice B is the weakest of the three at $250 and is eliminated on inspection. Because 500 > 400 > 250, Variant C carries the highest Average Revenue per converted Customer among the three variants tested.
+
+The correct answer is C.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -1149,14 +1516,19 @@ Which variant has the highest conversion rate?
 - E) Cannot be determined
 
 **answer:** B
-**fastest_path:** Same impressions (5000), so highest conversions = highest rate. A 100, B 150, C 75 → B.
-**explanation:** Conversion rate = conversions / impressions. With equal impressions, B's 150 conversions wins. Rates: 2.0%, 3.0%, 1.5%. Answer B.
-**mistake_a:** A 2% < B 3%.
-**mistake_c:** C 1.5%, lowest.
-**mistake_d:** Rates clearly differ.
-**mistake_e:** Computable directly.
-**common_trap:** Confusing volume (conversions) with rate. With equal impressions, they coincide; otherwise compute the ratio.
-**takeaway:** Rate metric: conversions / impressions. With equal denominators, the numerator alone ranks them.
+**explanation:** Tab 3 (Attribution Framework) specifies that conversion rate = Conversions / Impressions. Because all three variants were each served exactly 5,000 impressions (Tab 2: Pilot Campaign Results), the denominator is identical across variants, and the ranking of conversion rates reduces to a direct comparison of raw conversion counts.
+
+Let I = 5,000 (impressions, common to all variants).
+
+Variant A: conversion rate = 100 / 5,000 = 0.02, or 2.0%.
+Variant B: conversion rate = 150 / 5,000 = 0.03, or 3.0%.
+Variant C: conversion rate = 75 / 5,000 = 0.015, or 1.5%.
+
+Comparing the three results, 0.03 > 0.02 > 0.015, so Variant B has the highest conversion rate. The margin over Variant A is 0.03 - 0.02 = 0.01, a full percentage point, so the result is not close; answer choice D (approximately equal) is not supportable.
+
+Variant A's rate of 2.0% is second highest, not first, so choice A is incorrect. Variant C, with only 75 conversions, produces the lowest rate at 1.5%, eliminating choice C. All necessary data — impressions and conversions for each variant — appear explicitly in Tab 2, so choice E (cannot be determined) does not apply.
+
+The correct answer is B.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -1175,14 +1547,43 @@ Based on the Efficiency metric defined in Tab 3, which variant delivered the hig
 - E) Cannot be determined
 
 **answer:** A
-**fastest_path:** Efficiency = revenue/spend. A: $40K/$8K = 5.0. B: $37.5K/$15K = 2.5. C: $37.5K/$12.5K = 3.0. A wins.
-**explanation:** Efficiency = total revenue / ad spend. A: 100·400/8000 = 5.0. B: 150·250/15000 = 2.5. C: 75·500/12500 = 3.0. A highest. Answer A.
-**mistake_b:** B has highest conversions but lowest efficiency.
-**mistake_c:** C has highest avg revenue but middle efficiency.
-**mistake_d:** Values differ.
-**mistake_e:** All computable.
-**common_trap:** Ranking by intermediate metrics (conversions or avg revenue) instead of the final efficiency. Efficiency joins revenue and cost.
-**takeaway:** Composite-metric MSR: compute the named final metric. Intermediate-metric leaders rarely lead on composite metrics.
+**explanation:** **Governing definition.** Tab 3 defines efficiency as total revenue divided by ad spend, where total revenue equals conversions multiplied by average revenue per customer. The task is to compute this ratio for each variant and identify the maximum.
+
+Let R denote total revenue and S denote ad spend (in dollars, not thousands) for a given variant. Then:
+
+Efficiency = R / S = (Conversions x Avg Revenue per Customer) / (Ad Spend)
+
+All figures are drawn from Tab 2.
+
+**Variant A.**
+
+R_A = 100 x 400 = 40,000
+
+S_A = 8.0 x 1,000 = 8,000
+
+Efficiency_A = 40,000 / 8,000 = 5.00 (dollars of revenue per dollar of ad spend)
+
+**Variant B.**
+
+R_B = 150 x 250 = 37,500
+
+S_B = 15.0 x 1,000 = 15,000
+
+Efficiency_B = 37,500 / 15,000 = 2.50
+
+**Variant C.**
+
+R_C = 75 x 500 = 37,500
+
+S_C = 12.5 x 1,000 = 12,500
+
+Efficiency_C = 37,500 / 12,500 = 3.00
+
+**Comparison.** Efficiency_A (5.00) > Efficiency_C (3.00) > Efficiency_B (2.50)
+
+Variant A therefore yields the highest revenue per advertising dollar. Note that Variant B attracted the most conversions (150) and Variant C the highest average revenue per customer ($500), but neither advantage overcomes the disproportionate ad spend associated with each. Variant B spent nearly twice as much as Variant A ($15,000 vs. $8,000) while generating less total revenue ($37,500 vs. $40,000), collapsing its efficiency to exactly half of Variant A's. Variant C's high per-customer value ($500) is offset by a low conversion count (75) and substantial spend ($12,500), yielding an intermediate efficiency of 3.00. Because the three values are 5.00, 2.50, and 3.00 respectively, they are not approximately equal, and sufficient data exist to determine the answer, eliminating choices D and E.
+
+The correct answer is A.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 
@@ -1238,14 +1639,32 @@ Based on the Strategic Priorities Framework in Tab 5 and the data in Tabs 2 and 
 - E) All three product lines
 
 **answer:** D
-**fastest_path:** Two conditions: growth > market AND margin ≥ 20%. Cloud (12>9, 22%) ✓, Security (18>14, 28%) ✓, AI (65>55, 15%) ✗ on margin.
-**explanation:** Check both conditions per line. Cloud: 12>9 ✓, 22 ≥20 ✓ → high. Security: 18>14 ✓, 28 ≥20 ✓ → high. AI: 65>55 ✓ but 15 <20 ✗ → review. Two qualify. Answer D.
-**mistake_a:** Security also qualifies.
-**mistake_b:** Cloud also qualifies.
-**mistake_c:** AI fails on margin.
-**mistake_e:** AI fails on margin.
-**common_trap:** Picking (E) because AI Platform has dramatic growth (65%). Margin threshold (≥20%) eliminates it.
-**takeaway:** Multi-criteria classification: BOTH conditions must hold. Strong growth alone doesn't override the margin gate.
+**explanation:** Tab 5 establishes a two-part conjunctive test: a product line is "High priority" only when (i) its own growth rate strictly exceeds the addressable market's growth rate, and (ii) its operating margin is at least 20 percent. Failure on either condition alone is sufficient to place the line in "Review." The test is applied to each of the three product lines using the figures in Tab 2 (company growth and margin) and Tab 4 (market growth rates).
+
+Cloud Infrastructure. Tab 2 reports a company growth rate of 12 percent and an operating margin of 22 percent. Tab 4 places the addressable market growth rate at approximately 9 percent.
+
+- Condition (i): 12 > 9. Satisfied.
+- Condition (ii): 22 >= 20. Satisfied.
+
+Both conditions hold; Cloud Infrastructure qualifies as "High priority."
+
+Security Services. Tab 2 reports a company growth rate of 18 percent and an operating margin of 28 percent. Tab 4 places the addressable market growth rate at approximately 14 percent.
+
+- Condition (i): 18 > 14. Satisfied.
+- Condition (ii): 28 >= 20. Satisfied.
+
+Both conditions hold; Security Services qualifies as "High priority."
+
+AI Platform. Tab 2 reports a company growth rate of 65 percent and an operating margin of 15 percent. Tab 4 places the addressable market growth rate at approximately 55 percent.
+
+- Condition (i): 65 > 55. Satisfied.
+- Condition (ii): 15 >= 20. Not satisfied; 15 < 20.
+
+Because Condition (ii) fails, the conjunctive test is not met. AI Platform is classified as "Review" regardless of its strong relative growth.
+
+Ruling out the alternatives. Choice A (Cloud Infrastructure only) and Choice B (Security Services only) each omit one of the two qualifying lines. Choice C (AI Platform only) selects the one line whose margin disqualifies it. Choice E (all three) incorrectly includes AI Platform, which fails the margin threshold.
+
+Exactly two product lines — Cloud Infrastructure and Security Services — satisfy both prongs of the Tab 5 framework. The correct answer is D.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -1264,14 +1683,38 @@ Approximately what percentage of Lumen Tech's 2024 total revenue came from North
 - E) 68%
 
 **answer:** D
-**fastest_path:** NA total = 280+160+75 = $515M. Company total = 450+280+120 = $850M. 515/850 ≈ 61%.
-**explanation:** Tab 3 NA: 280+160+75 = $515M. Tab 2 total: $850M. NA share = 515/850 ≈ 60.6% → 61%. Answer D.
-**mistake_a:** 45% — undershoot.
-**mistake_b:** 52% — slip.
-**mistake_c:** 55% — slip.
-**mistake_e:** 68% — overshoot.
-**common_trap:** Using only one product line's NA share (e.g., Cloud 280/450 ≈ 62%) instead of the company-wide share.
-**takeaway:** Cross-tab share: sum the relevant rows in one tab; divide by the total from another tab.
+**explanation:** **Governing principle.** A regional share is computed by dividing the region's aggregate revenue across all product lines by the company-wide total revenue, then expressing the result as a percentage.
+
+**Locating the data.** The necessary figures appear in Tab 3 (Regional Revenue Breakdown). Tab 2 provides a useful cross-check because its product-line totals must equal Tab 3's grand total.
+
+**Step 1 — North America aggregate.**
+
+Let R_NA be total North America revenue. Summing across all three product lines:
+
+R_NA = 280 + 160 + 75 = 515 ($M)
+
+**Step 2 — Company-wide total revenue.**
+
+Let R_total be the sum of all regions and all product lines. Adding by region:
+
+- EMEA: 120 + 85 + 30 = 235
+- APAC: 50 + 35 + 15 = 100
+
+R_total = 515 + 235 + 100 = 850 ($M)
+
+Cross-check using Tab 2: 450 + 280 + 120 = 850. The totals are consistent.
+
+**Step 3 — North America share.**
+
+North America share = R_NA / R_total = 515 / 850
+
+To compute: 515 / 850 = 51.5 / 85 = 103 / 170. Dividing, 170 x 0.60 = 102, so 103 / 170 approximately equals 0.6059, or approximately 60.6 percent.
+
+Rounding to the nearest whole percent yields 61 percent, which corresponds to answer choice D.
+
+**Ruling out nearby alternatives.** Choice C (55%) would require R_NA approximately equal to 467.5, well below the computed 515. Choice E (68%) would require R_NA approximately equal to 578, which exceeds the actual figure. Neither is consistent with the Tab 3 data.
+
+The correct answer is D.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -1290,14 +1733,17 @@ Suppose Lumen Tech increases 2025 investment only in "High priority" lines (per 
 - E) $370M
 
 **answer:** C
-**fastest_path:** Security 2024 = $280M. ×1.18 = $330.4M ≈ $330M.
-**explanation:** Tab 2: Security 2024 = $280M. ×1.18 = $330.4M. Answer C.
-**mistake_a:** $290M — under-applying growth.
-**mistake_b:** $310M — slip.
-**mistake_d:** $350M — overshoot.
-**mistake_e:** $370M — applying growth twice.
-**common_trap:** Applying growth to the *company total* ($850M × 1.18) instead of the Security Services line. Read which entity grows.
-**takeaway:** Forecast MSR: identify which subgroup the growth rate applies to. Apply only to that subgroup's base.
+**explanation:** Tab 5 establishes that a product line is classified "High priority" — and therefore receives 2025 investment increases — only when both of the following conditions hold simultaneously: its own growth rate exceeds the addressable market's growth rate, and its operating margin is at least 20 percent. A product line failing either condition is classified "Review." The question asks for 2025 revenue under the assumption that Security Services maintains its 18 percent year-over-year growth rate.
+
+The relevant data come from Tab 2 and Tab 4. From Tab 2, Security Services posted 2024 revenue of $280M, a growth rate of 18 percent versus 2023, and an operating margin of 28 percent. From Tab 4, the Security Services addressable market grows at approximately 14 percent annually.
+
+Checking the first condition: the product line's growth rate of 18 percent exceeds the market growth rate of 14 percent, so the first condition is satisfied. Checking the second condition: the operating margin of 28 percent is at least 20 percent, so the second condition is also satisfied. Both conditions hold; Security Services is therefore classified "High priority" and eligible for 2025 investment increases. The premise of the question is consistent with this classification, and the 18 percent growth assumption is applied without adjustment.
+
+Applying 18 percent year-over-year growth to the 2024 base of $280M gives 280 times 1.18. Breaking this out: 280 times 1 equals 280, and 280 times 0.18 equals 50.4, yielding a total of $330.4M, which rounds to approximately $330M.
+
+Choice B ($310M) would correspond to a growth rate of roughly (310 minus 280) divided by 280, or approximately 10.7 percent — well below the stated 18 percent. Choice D ($350M) would require growth of (350 minus 280) divided by 280, equal to exactly 25 percent. Neither figure matches the assumption given in the question, so both are incorrect.
+
+The correct answer is C.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---

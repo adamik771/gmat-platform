@@ -8,11 +8,12 @@ import type { MetadataRoute } from "next"
  * are blocked in robots.ts so we don't waste crawl budget on them.
  *
  * Set NEXT_PUBLIC_SITE_URL in Vercel envs to your production domain
- * (e.g. https://zakariangmat.com). Falls back to a placeholder so
- * dev / preview builds still emit a syntactically valid sitemap.
+ * (e.g. https://www.zakariangmat.com). Falls back to the www-canonical
+ * host so dev / preview builds and an unset env still emit canonical URLs
+ * (the apex 308-redirects to www, and Search Console is verified on www).
  */
 const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://zakariangmat.com"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.zakariangmat.com"
 ).replace(/\/$/, "")
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -30,7 +31,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/about", changeFrequency: "monthly", priority: 0.9 },
     { path: "/course", changeFrequency: "monthly", priority: 0.8 },
     { path: "/students", changeFrequency: "weekly", priority: 0.8 },
-    { path: "/free-diagnostic", changeFrequency: "monthly", priority: 0.9 },
     { path: "/exam-day-checklist", changeFrequency: "yearly", priority: 0.8 },
     { path: "/score-by-school", changeFrequency: "monthly", priority: 0.9 },
     { path: "/study-schedule", changeFrequency: "monthly", priority: 0.9 },

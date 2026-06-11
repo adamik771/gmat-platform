@@ -83,6 +83,9 @@ type ListItem = {
   section: SectionKey
   href: string
   estimatedMinutes: number
+  /** Approximate reading length in pages — shown to students instead of a time
+   *  estimate so the page doesn't imply a clock to race. */
+  estimatedPages: number
   /** First unread section anchor for interactive chapters; null for guides. */
   resumeAnchor: string | null
   totalSections: number
@@ -173,11 +176,11 @@ function MissionHero({
           resumeItem!.readSections + 1,
           resumeItem!.totalSections
         )} of ${resumeItem!.totalSections}${
-          resumeItem!.estimatedMinutes
-            ? ` · ~${resumeItem!.estimatedMinutes} min total`
+          resumeItem!.estimatedPages
+            ? ` · ~${resumeItem!.estimatedPages} pages total`
             : ""
         }`
-      : `~${resumeItem!.estimatedMinutes} min`
+      : `~${resumeItem!.estimatedPages} pages`
     : `${totalCore} interactive chapters across Quant, Verbal, and Data Insights`
 
   // Promise sentence: chapter summary first sentence (truncated). Falls
@@ -466,8 +469,6 @@ function chapterStatusLine(item: ListItem): string | null {
   if (!item.isStarted) return null
 
   const hasProblemSets = item.problemSetCount > 0
-  const allSectionsRead =
-    item.readSections === item.totalSections && item.totalSections > 0
 
   if (item.isComplete) {
     // "Complete" here means all reading sections done. Surface set-
@@ -725,7 +726,7 @@ function JourneyNode({
             >
               <span className="inline-flex items-center gap-1.5">
                 <Clock className="w-3 h-3" />
-                {item.estimatedMinutes} min · {difficultyBucket(
+                {item.estimatedPages} pages · {difficultyBucket(
                   item.estimatedMinutes,
                 )}
               </span>
@@ -927,7 +928,7 @@ function SectionHero({
   totalChapters,
   completed,
   inProgress,
-  totalMinutes,
+  totalPages,
   currentItem,
   nextItem,
 }: {
@@ -935,7 +936,7 @@ function SectionHero({
   totalChapters: number
   completed: number
   inProgress: number
-  totalMinutes: number
+  totalPages: number
   currentItem: ListItem | null
   nextItem: ListItem | null
 }) {
@@ -1006,8 +1007,7 @@ function SectionHero({
             style={{ color: "rgba(255,255,255,0.55)" }}
           >
             <span className="inline-flex items-center gap-1.5">
-              <Clock className="w-3 h-3" />~{Math.round(totalMinutes / 60)} hr
-              {Math.round(totalMinutes / 60) === 1 ? "" : "s"} of reading
+              <BookOpen className="w-3 h-3" />~{totalPages} pages of reading
             </span>
             {currentItem && (
               <span>
@@ -1126,7 +1126,7 @@ function ReadingRow({ item, accent }: { item: ListItem; accent: string }) {
         className="text-[11px] tabular-nums flex-shrink-0"
         style={{ color: "rgba(255,255,255,0.4)" }}
       >
-        {item.estimatedMinutes} min
+        {item.estimatedPages} pages
       </span>
       <ArrowRight
         className="w-3.5 h-3.5 flex-shrink-0 transition-transform group-hover:translate-x-0.5"
@@ -1180,7 +1180,7 @@ function ReferenceTile({ item }: { item: ListItem }) {
         className="mt-3 text-[11px] tabular-nums"
         style={{ color: "rgba(255,255,255,0.4)" }}
       >
-        {item.estimatedMinutes} min read
+        {item.estimatedPages} pages
       </span>
     </Link>
   )
@@ -1190,6 +1190,11 @@ const WORDS_PER_MINUTE = 200
 function estimateGuideMinutes(content: string): number {
   const words = content.trim().split(/\s+/).filter(Boolean).length
   return Math.max(3, Math.ceil(words / WORDS_PER_MINUTE))
+}
+const WORDS_PER_PAGE = 400
+function estimateGuidePages(content: string): number {
+  const words = content.trim().split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.round(words / WORDS_PER_PAGE))
 }
 
 /**
@@ -1291,6 +1296,7 @@ export default async function ChaptersPage() {
       section: c.section,
       href: `/chapters/${c.slug}`,
       estimatedMinutes: c.estimatedMinutes,
+      estimatedPages: c.estimatedPages,
       resumeAnchor: firstUnread?.id ?? null,
       totalSections,
       readSections: readCount,
@@ -1314,6 +1320,7 @@ export default async function ChaptersPage() {
       section: g.section,
       href: `/guides/${g.slug}`,
       estimatedMinutes: estimateGuideMinutes(g.content),
+      estimatedPages: estimateGuidePages(g.content),
       resumeAnchor: null,
       totalSections: 0,
       readSections: 0,
@@ -1427,8 +1434,8 @@ export default async function ChaptersPage() {
               const inProgress = interactiveInSection.filter(
                 (i) => i.isStarted && !i.isComplete
               ).length
-              const totalMinutes = interactiveInSection.reduce(
-                (sum, i) => sum + i.estimatedMinutes,
+              const totalPages = interactiveInSection.reduce(
+                (sum, i) => sum + i.estimatedPages,
                 0
               )
               const currentItem =
@@ -1451,7 +1458,7 @@ export default async function ChaptersPage() {
                     totalChapters={interactiveInSection.length}
                     completed={completed}
                     inProgress={inProgress}
-                    totalMinutes={totalMinutes}
+                    totalPages={totalPages}
                     currentItem={currentItem}
                     nextItem={nextItem}
                   />

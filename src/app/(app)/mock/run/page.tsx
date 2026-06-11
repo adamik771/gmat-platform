@@ -111,7 +111,7 @@ export default async function MockRunPage({
         title="Mock unavailable"
         body={
           mode === "weak" || mode === "mixed-review"
-            ? "Not enough signal yet for this mock variant — take the diagnostic and a few practice sets first, then try again."
+            ? "Not enough signal yet for this mock variant — log a few practice sets first, then try again."
             : "Not enough playable questions to fill this mock right now. Try a different mode."
         }
       />

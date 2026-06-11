@@ -2,24 +2,24 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 interface BlogInlineCTAProps {
-  /** Optional override for the headline. Defaults to the diagnostic pitch. */
+  /** Optional override for the headline. Defaults to the sample-chapter pitch. */
   headline?: string
   /** Optional override for the CTA label. */
   ctaLabel?: string
-  /** Optional override for the CTA destination. Defaults to /free-diagnostic. */
+  /** Optional override for the CTA destination. Defaults to /sample-chapter. */
   href?: string
 }
 
 /**
  * Mid-post CTA inserted into long-form blog articles. Sits in the
  * reading flow between H2 sections and points engaged readers at the
- * platform's strongest top-of-funnel asset (the free diagnostic) so
+ * platform's strongest top-of-funnel asset (the free sample chapter) so
  * dropoff before the end-of-article CTA still has a path to convert.
  */
 export default function BlogInlineCTA({
-  headline = "Want to know where you actually stand?",
-  ctaLabel = "Take the free diagnostic",
-  href = "/free-diagnostic",
+  headline = "Want to see how this course actually teaches?",
+  ctaLabel = "Read the free sample chapter",
+  href = "/sample-chapter",
 }: BlogInlineCTAProps) {
   return (
     <aside
@@ -36,8 +36,9 @@ export default function BlogInlineCTA({
         {headline}
       </p>
       <p className="text-[13px] text-[#888888] leading-relaxed mb-5 max-w-md">
-        Ten questions across Quant, Verbal, and Data Insights. Per-section
-        signals plus a rough estimated score in about twelve minutes.
+        Two full readings from the Verbal Foundations chapter — the same
+        material paying students get, with Quant and Data Insights samples
+        one click away.
       </p>
       <Link
         href={href}

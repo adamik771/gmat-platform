@@ -21,7 +21,7 @@ const fraunces = Fraunces({
 // paths resolve to absolute URLs in production. Set NEXT_PUBLIC_SITE_URL
 // in Vercel envs to your production domain.
 const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://zakariangmat.com"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.zakariangmat.com"
 ).replace(/\/$/, "")
 
 export const metadata: Metadata = {
@@ -76,6 +76,11 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  // Google Search Console ownership verification (HTML-tag method). Emits
+  // <meta name="google-site-verification" content="..."> into <head>.
+  verification: {
+    google: "IkL___StkwO8aX58q2m4QSPUbniMlfqHk5s12e3EKnM",
   },
 }
 
