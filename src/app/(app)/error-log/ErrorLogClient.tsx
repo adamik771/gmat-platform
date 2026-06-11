@@ -197,6 +197,16 @@ export interface MistakeEntry {
   explanation: string | null
   context: string | null
   twoPartColumns: string[] | null
+  /** Authored coaching metadata from the question markdown — the same
+   *  fields the practice session shows post-submit. All null on
+   *  questions that haven't been enriched yet. */
+  fastestPath: string | null
+  commonTrap: string | null
+  takeaway: string | null
+  /** The `mistake_<letter>` analysis matching the answer the student
+   *  picked — resolved server-side in page.tsx so the payload carries
+   *  one string, not the whole A-F record. */
+  selectedAnswerAnalysis: string | null
   tag: ErrorTag | null
   /** Process-failure root cause (K1/…/F1). Layers on top of `tag` —
    *  `tag` describes WHAT kind of question, `rootCause` describes WHERE
@@ -878,6 +888,31 @@ function ExpandedMistake({
         </div>
       )}
 
+      {/* Why-your-pick analysis — the authored rationale for the exact
+          wrong choice this student made. Leads the feedback stack because
+          it answers the question the student opened this row to ask:
+          "why did I fall for that one?" Same field the practice session
+          renders post-submit ("Why you picked X"). */}
+      {entry.selectedAnswerAnalysis && entry.selectedAnswer !== null && (
+        <div
+          className="p-4 rounded-lg border"
+          style={{
+            borderColor: "rgba(255,107,107,0.25)",
+            backgroundColor: "rgba(255,68,68,0.04)",
+          }}
+        >
+          <p
+            className="text-[10px] uppercase tracking-[0.22em] font-semibold mb-2"
+            style={{ color: "#FF6B6B" }}
+          >
+            Why you picked {String.fromCharCode(65 + entry.selectedAnswer)}
+          </p>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+            {entry.selectedAnswerAnalysis}
+          </ReactMarkdown>
+        </div>
+      )}
+
       {entry.explanation && (
         <div>
           <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#C9A84C] mb-2">
@@ -889,7 +924,66 @@ function ExpandedMistake({
         </div>
       )}
 
+      {/* Strategy coaching — fastest path, the named trap, and the
+          generalizable takeaway. Mirrors the practice session's
+          post-submit analysis block so the error log teaches the lesson
+          again at review time instead of only restating the solution. */}
+      {(entry.fastestPath || entry.commonTrap || entry.takeaway) && (
+        <div className="pt-4 border-t border-white/[0.06] space-y-4">
+          {entry.fastestPath && (
+            <CoachingRow
+              label="Fastest path"
+              color="#C9A84C"
+              text={entry.fastestPath}
+            />
+          )}
+          {entry.commonTrap && (
+            <CoachingRow
+              label="Common trap"
+              color="#FF6B6B"
+              text={entry.commonTrap}
+            />
+          )}
+          {entry.takeaway && (
+            <CoachingRow
+              label="Takeaway"
+              color="#3ECF8E"
+              text={entry.takeaway}
+            />
+          )}
+        </div>
+      )}
+
       <TagEditor entry={entry} onUpdate={onUpdate} />
+    </div>
+  )
+}
+
+/**
+ * Single labelled coaching row inside the expanded mistake view —
+ * coloured eyebrow label over markdown body. Visual twin of the
+ * practice session's AnalysisRow so the two surfaces read the same.
+ */
+function CoachingRow({
+  label,
+  color,
+  text,
+}: {
+  label: string
+  color: string
+  text: string
+}) {
+  return (
+    <div>
+      <p
+        className="text-[10px] uppercase tracking-[0.22em] font-semibold mb-1"
+        style={{ color }}
+      >
+        {label}
+      </p>
+      <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+        {text}
+      </ReactMarkdown>
     </div>
   )
 }

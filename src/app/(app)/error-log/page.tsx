@@ -148,6 +148,14 @@ export default async function ErrorLogPage({
           explanation: q?.explanation ?? null,
           context: q?.context ?? null,
           twoPartColumns: q?.twoPartColumns ?? null,
+          // Mistake-targeted coaching — the same authored metadata the
+          // practice session shows post-submit. The per-choice analysis is
+          // resolved to the student's own pick here so the client payload
+          // carries one string instead of the whole A-F record.
+          fastestPath: q?.fastestPath ?? null,
+          commonTrap: q?.commonTrap ?? null,
+          takeaway: q?.takeaway ?? null,
+          selectedAnswerAnalysis: selectedLetterAnalysis(q, a.selected_answer),
           tag: (t?.tag ?? null) as MistakeEntry["tag"],
           rootCause: t?.root_cause ?? null,
           contributingCauses: t?.contributing_causes ?? [],
@@ -454,6 +462,27 @@ export default async function ErrorLogPage({
       )}
     </div>
   )
+}
+
+/**
+ * Resolves the authored `mistake_<letter>` analysis matching the answer the
+ * student actually picked. Null when the question carries no per-choice
+ * analysis or the pick falls outside the A-F range (e.g. Two-Part rows).
+ */
+function selectedLetterAnalysis(
+  q: ParsedQuestion | undefined,
+  selectedAnswer: number | null
+): string | null {
+  if (!q?.mistakeAnalysis || selectedAnswer === null) return null
+  if (selectedAnswer < 0 || selectedAnswer > 5) return null
+  const letter = String.fromCharCode(65 + selectedAnswer) as
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+  return q.mistakeAnalysis[letter] ?? null
 }
 
 /**
