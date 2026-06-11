@@ -2129,3 +2129,117 @@ A recipe uses 3/4 cup of sugar for every 12 cookies. At the same rate, how many 
 **answer:** C
 **explanation:** Making 30 cookies instead of 12 scales the recipe by a factor of 30/12 = 5/2. The sugar required is therefore (3/4) × (5/2) = 15/8 cups. A common error is to add the quantities rather than multiply, or to invert the scaling factor. The correct answer is C.
 **related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q79
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Units Digit Patterns
+
+What is the units digit of 4^33?
+
+- A) 0
+- B) 2
+- C) 4
+- D) 6
+- E) 8
+
+**answer:** C
+**explanation:** The units digits of powers of 4 alternate in a two-step cycle: 4^1 ends in 4, 4^2 ends in 6, 4^3 ends in 4 again, and so on. An odd exponent therefore gives a units digit of 4 and an even exponent gives 6. Since 33 is odd, 4^33 ends in 4. (Flipping the parity rule gives 6, the most common wrong answer; there is no need for a four-step cycle here, since bases ending in 4 or 9 settle the question with a single odd/even check.) The correct answer is C.
+**related_reading:** quant-07-gcf-lcm-units-digits
+
+---
+
+## Q80
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** GCF and LCM
+
+A florist has 36 roses and 60 tulips. She wants to assemble identical bouquets, each containing the same number of roses and the same number of tulips, using every flower. What is the greatest number of bouquets she can assemble?
+
+- A) 4
+- B) 6
+- C) 9
+- D) 12
+- E) 24
+
+**answer:** D
+**explanation:** For every flower to be used and every bouquet to be identical, the number of bouquets must divide both 36 and 60 exactly. The greatest such number is the greatest common factor. Factoring, 36 = 2^2 · 3^2 and 60 = 2^2 · 3 · 5, so the GCF takes the lowest power of each shared prime: 2^2 · 3 = 12. Twelve bouquets use 3 roses and 5 tulips each. (4 and 6 are common factors but not the greatest; 9 divides 36 but not 60; 24 divides neither.) The correct answer is D.
+**related_reading:** quant-07-gcf-lcm-units-digits
+
+---
+
+## Q81
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** GCF and LCM
+
+Two ferries leave a dock at the same time. One returns to the dock every 8 minutes and the other returns every 12 minutes. After how many minutes will the two ferries next be at the dock together?
+
+- A) 4
+- B) 16
+- C) 20
+- D) 24
+- E) 96
+
+**answer:** D
+**explanation:** Two events recurring at fixed intervals next coincide after the least common multiple of those intervals. Factoring, 8 = 2^3 and 12 = 2^2 · 3, so the LCM takes the highest power of each prime: 2^3 · 3 = 24. The ferries are next at the dock together after 24 minutes, when the first has made three round trips and the second has made two. (4 is the GCF, not the LCM; 20 adds the intervals; 96 is the product 8 × 12, inflated because it double-counts the shared factor of 4.) The correct answer is D.
+**related_reading:** quant-07-gcf-lcm-units-digits
+
+---
+
+## Q82
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Estimation
+
+Which of the following is closest to (4.02 × 19.8) / 0.99?
+
+- A) 8
+- B) 40
+- C) 80
+- D) 400
+- E) 800
+
+**answer:** C
+**explanation:** The answer choices are spread by factors of 5 to 10, so rounding to clean values is safe. Round 4.02 to 4, 19.8 to 20, and 0.99 to 1: the expression becomes (4 × 20) / 1 = 80. Each rounding changed its number by 1% or less, so the true value, approximately 80.4, cannot be anywhere near a neighboring choice. (Decimal-place slips produce 8 or 800; computing 4 × 20 but mishandling the division by a number slightly less than 1 tempts no shift at all, which is correct here since dividing by 0.99 only nudges the result up.) The correct answer is C.
+**related_reading:** quant-07-gcf-lcm-units-digits
+
+---
+
+## Q83
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Estimation
+
+Which of the following is closest to (61.2 × 0.48) / 7.9?
+
+- A) 0.4
+- B) 4
+- C) 8
+- D) 16
+- E) 40
+
+**answer:** B
+**explanation:** The choices are spread by factors of 2 or more, so we estimate with clean values and track the direction of each rounding. Round 61.2 down to 60, 0.48 up to 0.5, and 7.9 up to 8: the estimate is (60 × 0.5) / 8 = 30 / 8 = 3.75. The roundings pushed in opposing directions (the numerator's two roundings roughly cancel, and the slightly enlarged divisor pulls the estimate just below the true value), so the exact result, approximately 3.72, sits beside the estimate and closest to 4. (Misplacing the decimal in 0.48 leads to 0.4 or 40; halving 61.2 but forgetting the division by 7.9 leads toward 16 or beyond.) The correct answer is B.
+**related_reading:** quant-07-gcf-lcm-units-digits
+
+---
+
+## Q84
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Units Digit Patterns
+
+What is the units digit of 17^49 × 23^23?
+
+- A) 0
+- B) 1
+- C) 3
+- D) 7
+- E) 9
+
+**answer:** E
+**explanation:** The units digit of a power depends only on the units digit of its base, so 17^49 ends in the same digit as 7^49, and 23^23 ends in the same digit as 3^23. Powers of 7 cycle 7, 9, 3, 1 with period 4; since 49 = 4 · 12 + 1, the remainder is 1 and 7^49 ends in 7. Powers of 3 cycle 3, 9, 7, 1; since 23 = 4 · 5 + 3, the remainder is 3 and 3^23 ends in 7. The units digit of the product is the units digit of 7 × 7 = 49, namely 9. (Adding the digits instead of multiplying gives 4, not offered but a real slip; mapping a remainder of 0 or confusing the two cycles produces 1 or 3.) The correct answer is E.
+**related_reading:** quant-07-gcf-lcm-units-digits
