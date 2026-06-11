@@ -8,6 +8,7 @@ import {
   ChevronRight,
   Compass,
   Flag,
+  FlaskConical,
   Lock,
   RotateCcw,
   Sparkles,
@@ -20,6 +21,11 @@ import { getAllChapters, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getReviewQueue } from "@/lib/review-queue"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
+import {
+  officialExamReminder,
+  parseIsoDate,
+  type OfficialExamReminder,
+} from "@/lib/official-exams"
 import {
   computeStudyPlan,
   type FocusAction,
@@ -284,6 +290,7 @@ export default async function DashboardPage() {
   let reviewDueCount = 0
   let reviewTopTopic: string | null = null
   let officialExamCount = 0
+  let examReminder: OfficialExamReminder | null = null
   let onboardingTargetSet = false
   let onboardingExamDateSet = false
   let onboardingIntakeDone = false
@@ -538,6 +545,15 @@ export default async function DashboardPage() {
         metaOnboarding !== null &&
         typeof (metaOnboarding as { completedAt?: unknown }).completedAt === "string"
 
+      // Official-exam reminder — surfaces only when the next weekly official
+      // practice exam is due within a week (or overdue), derived from the
+      // exam date + how many officials have been entered.
+      examReminder = officialExamReminder(
+        typeof metaExamDate === "string" ? metaExamDate : null,
+        new Date().toISOString().slice(0, 10),
+        officialExamCount,
+      )
+
       // Last-mock flag nudge — take the most recent date with any
       // flags across its three sections. The flags live in
       // user_metadata.mock_flags, so no extra DB round-trip needed.
@@ -713,15 +729,9 @@ export default async function DashboardPage() {
       done: onboardingExamDateSet,
       cta: "Set date",
     },
-    {
-      key: "baseline",
-      label: "Enter your baseline official exam",
-      description:
-        "Take Official Practice Exam 1 on mba.com under exam conditions, then enter the score.",
-      href: "/mock",
-      done: officialExamCount > 0,
-      cta: "Enter score",
-    },
+    // NB: entering the baseline official exam is NOT a setup step — it's a
+    // timed action for the final ~6 weeks. It's surfaced by Today's Mission
+    // and the weekly official-exam reminder, not this checklist.
   ] as const
   const onboardingComplete = onboardingSteps.every((s) => s.done)
   const onboardingDoneCount = onboardingSteps.filter((s) => s.done).length
@@ -1493,6 +1503,60 @@ export default async function DashboardPage() {
           </span>
         </div>
         <div className="divide-y divide-white/[0.04]">
+          {/* Official exam due — highest priority, time-sensitive. Only shows
+              within a week of a scheduled official practice exam (or when
+              overdue). */}
+          {examReminder &&
+            (() => {
+              const due = parseIsoDate(examReminder.dueDate)
+              const dueLabel = due
+                ? due.toLocaleDateString("en-US", {
+                    weekday: "short",
+                    month: "short",
+                    day: "numeric",
+                    timeZone: "UTC",
+                  })
+                : examReminder.dueDate
+              const detail = examReminder.overdue
+                ? `Was due ${dueLabel} — take it under exam conditions`
+                : examReminder.daysUntil === 0
+                  ? `Due today (${dueLabel}) — full exam conditions`
+                  : `Due ${dueLabel} · ${examReminder.daysUntil} day${
+                      examReminder.daysUntil === 1 ? "" : "s"
+                    } · ${examReminder.enteredCount}/${examReminder.totalSlots} done`
+              return (
+                <Link
+                  href="/mock"
+                  className="group flex items-center gap-3 px-5 py-3 min-h-[44px] transition-colors hover:bg-white/[0.02]"
+                >
+                  <span
+                    className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{
+                      backgroundColor: examReminder.overdue
+                        ? "rgba(255,68,68,0.12)"
+                        : "rgba(201,168,76,0.1)",
+                    }}
+                  >
+                    <FlaskConical
+                      className="w-3.5 h-3.5"
+                      style={{ color: examReminder.overdue ? "#FF6B6B" : "#C9A84C" }}
+                    />
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[13px] font-semibold text-[#F0F0F0] truncate">
+                      {examReminder.overdue
+                        ? "Official practice exam overdue"
+                        : "Next official practice exam"}
+                    </p>
+                    <p className="text-[12px] text-[#888888] truncate">{detail}</p>
+                  </div>
+                  <ChevronRight
+                    className="w-4 h-4 flex-shrink-0 text-[#555555] transition-transform group-hover:translate-x-0.5"
+                    aria-hidden
+                  />
+                </Link>
+              )
+            })()}
           {/* Resume reading / Chapter complete */}
           {resumeTarget && !resumeTarget.isComplete && (
             <Link
