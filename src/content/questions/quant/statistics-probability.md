@@ -620,38 +620,41 @@ The correct answer is C.
 
 ## Q17
 **difficulty:** Medium
-**type:** Data Sufficiency
+**type:** Problem Solving
 **topic:** Mean / Median
 
-In a set of 5 positive integers, is the median equal to the mean?
+The five terms of list L are distinct positive integers that form an arithmetic sequence with common difference d, where d > 0. Which of the following must be true?
 
-(1) The 5 integers form an arithmetic sequence.
-(2) The smallest integer is 4 and the largest is 20.
+I. The average (arithmetic mean) of the terms in L equals the median of L.
+II. The average (arithmetic mean) of the terms in L is a term in L.
+III. The range of L equals 4d.
 
-- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
-- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
-- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
-- D) EACH statement ALONE is sufficient.
-- E) Statements (1) and (2) TOGETHER are not sufficient.
+- A) I only
+- B) I and II only
+- C) I and III only
+- D) II and III only
+- E) I, II, and III
 
-**answer:** A
-**fastest_path:** Any arithmetic sequence is symmetric, so its mean always equals its middle term = the median — (1) forces a definite YES. (2) only fixes the two extremes, which allows both equal and unequal cases, so it's insufficient. Answer A.
-**explanation:** The question asks whether the median of a set of 5 positive integers equals the mean. To resolve a yes/no question of this kind, a statement is sufficient only if it forces a single definite answer for every set it permits.
+**answer:** E
+**fastest_path:** An evenly spaced list is symmetric about its middle term, so mean = median = the third term — that settles I and II at once — and the terms run from a to a + 4d, so the range is 4d. All three must be true.
+**explanation:** Write the five terms in increasing order as a, a + d, a + 2d, a + 3d, and a + 4d, where a is the first term and d > 0 is the common difference.
 
-Statement (1): The 5 integers form an arithmetic sequence. Let the first term be a and the common difference be d, so the five terms in increasing order are a, a + d, a + 2d, a + 3d, and a + 4d. Because the count is odd, the median is the middle term, which is a + 2d. The mean is the sum of the five terms divided by 5: [a + (a + d) + (a + 2d) + (a + 3d) + (a + 4d)] / 5 = (5a + 10d) / 5 = a + 2d. Thus the mean equals a + 2d, which is exactly the median. The answer to the question is therefore YES for every arithmetic sequence, regardless of the values of a and d. Statement (1) is sufficient.
+Statement I: The sum of the five terms is 5a + 10d, so the mean is (5a + 10d)/5 = a + 2d. The median of five ordered values is the middle (third) value, which is also a + 2d. The mean equals the median, so I must be true.
 
-Statement (2): The smallest integer is 4 and the largest is 20. Consider the set {4, 5, 6, 7, 20}. Its median is 6, and its mean is (4 + 5 + 6 + 7 + 20) / 5 = 42 / 5 = 8.4, so the median does not equal the mean, giving the answer NO. Now consider the set {4, 8, 12, 16, 20}. Its median is 12, and its mean is (4 + 8 + 12 + 16 + 20) / 5 = 60 / 5 = 12, so the median equals the mean, giving the answer YES. Because the permitted sets yield both NO and YES, Statement (2) is not sufficient.
+Statement II: The mean a + 2d is exactly the third term of the sequence, so the mean is itself a term in L. II must be true.
 
-Statement (1) alone is sufficient and Statement (2) alone is not sufficient.
+Statement III: The range of a list is its largest value minus its smallest value: (a + 4d) − a = 4d. III must be true.
 
-The correct answer is A.
-**mistake_b:** (2) fixes only the smallest and largest values; the inner three can make the mean equal the median or not, so (2) alone decides nothing.
-**mistake_c:** (1) settles the question by itself, so combining the statements is unnecessary — C understates statement (1).
-**mistake_d:** (2) is not sufficient, so "each statement alone" is too strong.
-**mistake_e:** (1) alone is sufficient, so "together not sufficient" is wrong.
-**common_trap:** Underrating statement (1) — not seeing that an evenly spaced (arithmetic) set is symmetric, which forces the mean to equal the middle term for any odd-length run.
-**takeaway:** In any arithmetic sequence the mean equals the median (the symmetric middle term); a yes/no DS question is sufficient the instant one statement forces a single answer.
-**hint_nudge:** For an evenly spaced list, where does the average fall relative to the middle value?
+Each statement holds for every arithmetic sequence of five terms, so all three must be true.
+
+The correct answer is E.
+**mistake_a:** I is true, but stopping there overlooks that the shared value a + 2d is itself the third term of the list (II) and that the range telescopes to (a + 4d) − a = 4d (III).
+**mistake_b:** III is dismissed too quickly — five evenly spaced terms span exactly 4 common differences, so the range is always 4d.
+**mistake_c:** II is dismissed — for an odd number of evenly spaced terms, the mean does not merely equal the median in value; it lands on an actual member of the list.
+**mistake_d:** Dropping I concedes the core symmetry fact: in every arithmetic sequence the mean equals the median, regardless of a and d.
+**common_trap:** Doubting that all three Roman numerals can hold simultaneously and hunting for a counterexample that does not exist — the symmetry of evenly spaced lists makes each claim automatic.
+**takeaway:** In any arithmetic sequence the mean equals the median (the middle term when the count is odd), and the range is (number of gaps) × (common difference).
+**hint_nudge:** Write the terms as a, a + d, a + 2d, a + 3d, a + 4d and test each Roman numeral against that form.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -693,41 +696,38 @@ The correct answer is C.
 
 ## Q19
 **difficulty:** Hard
-**type:** Data Sufficiency
+**type:** Problem Solving
 **topic:** Conditional Counting
 
-A committee of 3 is to be chosen from a group of n people. How many different committees are possible?
+A committee of 3 people is to be chosen from a group of n people. If the group instead had n + 1 people, the number of different possible committees would increase by 21. How many different committees of 3 can be chosen from the original group of n people?
 
-(1) If the group had 1 additional person, the number of possible committees would increase by 21.
-(2) n is greater than 5.
+- A) 21
+- B) 35
+- C) 42
+- D) 56
+- E) 70
 
-- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
-- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
-- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
-- D) EACH statement ALONE is sufficient.
-- E) Statements (1) and (2) TOGETHER are not sufficient.
+**answer:** B
+**fastest_path:** Adding one person creates exactly C(n, 2) new committees — the newcomer paired with any 2 of the original n — so C(n, 2) = 21, n(n − 1) = 42, n = 7, and C(7, 3) = 35.
+**explanation:** The number of committees of 3 chosen from m people is C(m, 3) = m!/[3!(m − 3)!]. The increase produced by one additional person is C(n + 1, 3) − C(n, 3).
 
-**answer:** A
-**fastest_path:** Growing the group by one adds C(n,2) committees (Pascal: C(n+1,3) − C(n,3) = C(n,2)), so (1) gives C(n,2) = 21 ⇒ n = 7 ⇒ C(7,3) = 35 — one value, sufficient. (2) only bounds n, so it's insufficient. Answer A.
-**explanation:** This is a counting problem governed by the combination formula: the number of ways to choose a committee of 3 from a group of m people is C(m, 3) = m! / (3!(m - 3)!). The question asks for the value of C(n, 3), so a statement is sufficient precisely when it pins down a single numerical value for that count.
+Every new committee must include the additional person together with 2 of the original n people, so the increase equals C(n, 2). (This is Pascal's identity: C(n + 1, 3) = C(n, 3) + C(n, 2).)
 
-Let n be the size of the original group. The number of possible committees is C(n, 3).
+Setting the increase equal to 21 gives C(n, 2) = n(n − 1)/2 = 21, so n(n − 1) = 42. Since 7 × 6 = 42 and n must be a positive integer, n = 7.
 
-Consider statement (1). If the group had 1 additional person, the count would be C(n + 1, 3), and the stated increase translates into the equation C(n + 1, 3) - C(n, 3) = 21. By Pascal's identity, C(n + 1, 3) - C(n, 3) = C(n, 2). Hence C(n, 2) = 21, which gives n(n - 1) / 2 = 21, so that n(n - 1) = 42. Since n must be a positive integer with n at least 3, we solve n(n - 1) = 42, and because 7 times 6 equals 42 we obtain n = 7. The committee count is therefore C(7, 3) = 7! / (3! 4!) = (7 times 6 times 5) / (3 times 2 times 1), where the 6 in the numerator cancels the 3 times 2 in the denominator, leaving 7 times 5 = 35. This is a single determined value, so statement (1) is sufficient.
+The number of committees from the original group is therefore C(7, 3) = (7 × 6 × 5)/(3 × 2 × 1) = 35.
 
-Consider statement (2). The condition n greater than 5 is consistent with n = 6, n = 7, n = 8, and infinitely many larger values, each producing a different count C(n, 3). Because the count is not uniquely determined, statement (2) is not sufficient.
+As a check, the enlarged group would allow C(8, 3) = 56 committees, and 56 − 35 = 21, matching the given increase.
 
-Since statement (1) alone is sufficient and statement (2) alone is not, the answer is option A.
-
-The correct answer is A.
-**mistake_b:** n > 5 leaves infinitely many values of C(n,3), so statement (2) alone pins down nothing.
-**mistake_c:** Statement (1) already fixes n by itself (and rejects the negative root), so the two statements together aren't needed.
-**mistake_d:** Statement (2) is not sufficient, so "each statement alone" overstates the case.
-**mistake_e:** Statement (1) is sufficient, so "together not sufficient" is wrong.
-**common_trap:** Assuming the equation n(n − 1) = 42 leaves two candidate values of n and therefore needs statement (2) to choose; in fact only one positive integer, n = 7, qualifies.
-**takeaway:** The increase from C(n,3) to C(n+1,3) is exactly C(n,2); once a statement yields a single positive-integer solution, it is sufficient on its own.
-**hint_nudge:** By how much does the committee count change when the group gains one person?
-**hint_strategy:** C(n+1,3) − C(n,3) = C(n,2). Set that equal to 21 and solve for n.
+The correct answer is B.
+**mistake_a:** 21 is the stated increase itself, not the number of committees in the original group.
+**mistake_c:** 42 = n(n − 1) is the intermediate product from solving C(n, 2) = 21; it still has to be resolved to n = 7 and fed into C(7, 3).
+**mistake_d:** 56 = C(8, 3) counts the committees in the enlarged group of 8, but the question asks about the original group of 7.
+**mistake_e:** 70 doubles the correct count — for instance by treating part of the selection as ordered.
+**common_trap:** Computing the enlarged group's count C(8, 3) = 56 and stopping, because that is the last number the algebra produces — the question asks about the original group.
+**takeaway:** Adding one person to a group adds exactly C(n, k − 1) new k-person committees: the ones that contain the newcomer.
+**hint_nudge:** How many of the new committees contain the added person? All of them.
+**hint_strategy:** The increase is C(n, 2). Set n(n − 1)/2 = 21 and solve for the positive integer n.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -784,6 +784,7 @@ Five distinct positive integers have an average of 20, a median of 22, and a lar
 - E) 26
 
 **answer:** B
+**fastest_path:** Sum = 5 × 20 = 100; median 22 and max 35 leave a + b + d = 43. Distinctness forces d ≥ 23, and d = 23 works because a + b = 20 fits below the median (e.g. 1 and 19). Answer: 23.
 **explanation:** This problem is solved by translating the conditions on the average, median, and maximum into a single sum constraint and then optimizing under the requirement that the integers be distinct.
 
 Let the five distinct positive integers, listed in increasing order, be a, b, c, d, and e, so that a < b < c < d < e. The median of five ordered values is the middle value, so c = 22. The largest value is e = 35. Because the average of the five integers is 20, their sum is 5 × 20 = 100.
@@ -795,12 +796,20 @@ The quantity to be minimized is the second-largest integer, d. From a + b + d = 
 We test the smallest permissible value, d = 23. Then a + b = 43 − 23 = 20, and we must choose distinct positive integers a < b with both less than c = 22. For example, a = 1 and b = 19 satisfy a < b < 22 and a + b = 20. The resulting set is {1, 19, 22, 23, 35}, whose sum is 1 + 19 + 22 + 23 + 35 = 100, confirming an average of 20, a median of 22, and a maximum of 35. Thus d = 23 is attainable.
 
 The correct answer is B.
+**mistake_a:** 22 ignores distinctness — the second-largest integer must be strictly greater than the median 22, or it would duplicate the middle value.
+**mistake_c:** 24 assumes d must clear the median by 2, but consecutive integers 22 and 23 are already distinct.
+**mistake_d:** 25 over-restricts a and b — they only need to be distinct positive integers below 22 that sum to 20, which 1 and 19 satisfy easily.
+**mistake_e:** 26 is the same over-restriction pushed one further from the true boundary.
+**common_trap:** Applying "distinct" loosely at exactly the wrong spot: d only has to beat the median by 1, but it does have to beat it.
+**takeaway:** To minimize one element of a constrained set, push the free elements to their extremes — then check the order and distinctness constraints right at the boundary.
+**hint_nudge:** Convert the average to a sum (100) and subtract the two values you already know.
+**hint_strategy:** a + b + d = 43 with a < b < 22 < d. Minimizing d means maximizing a + b — but d > 22 binds first.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
 
 ## Q22
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Standard Deviation under Linear Transformation
 
@@ -813,6 +822,7 @@ A data set of 5 numbers has mean 10 and standard deviation 2. If each number in 
 - E) 22
 
 **answer:** C
+**fastest_path:** Only the multiplier touches the spread: SD = |3| × 2 = 6. The +4 shifts every value equally and changes nothing.
 **explanation:** When every value in a data set undergoes a linear transformation of the form y = ax + b, the spread of the data is affected only by the multiplicative constant. The governing principle is that the standard deviation satisfies SD(y) = |a| · SD(x); the additive constant b shifts each value by the same amount and therefore leaves the spread unchanged.
 
 Let x denote a value in the original data set, which has mean 10 and standard deviation 2. Each value is multiplied by 3 and then increased by 4, so the transformed value is y = 3x + 4. Here the multiplicative constant is a = 3 and the additive constant is b = 4.
@@ -820,6 +830,13 @@ Let x denote a value in the original data set, which has mean 10 and standard de
 Applying the rule, the standard deviation of the new data set is SD(y) = |3| · SD(x) = 3 · 2 = 6. The addition of 4 does not enter this computation, because translating every value by the same constant moves the entire distribution without altering the distances between values.
 
 The correct answer is C.
+**mistake_a:** 2 keeps the original SD as if neither operation affected the spread — but multiplying by 3 stretches every gap threefold.
+**mistake_b:** 3 confuses the scaling factor itself with the new standard deviation.
+**mistake_d:** 10 = 3 × 2 + 4 applies the +4 shift to the SD as well; a uniform shift moves the whole set without widening it.
+**mistake_e:** 22 entangles the shift twice (for example 3 × (2 + 4) + 4); the additive constant never enters a spread calculation.
+**common_trap:** Adding the 4: y = 3x + 4 sends the mean to 3(mean) + 4, but the standard deviation only to 3(SD).
+**takeaway:** Under y = ax + b, the mean becomes a·mean + b but the SD becomes |a|·SD — additive shifts are invisible to every measure of spread.
+**hint_nudge:** Which of the two operations changes the distances between values?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -838,6 +855,7 @@ A card is drawn at random from a standard 52-card deck. What is the probability 
 - E) 1/2
 
 **answer:** C
+**fastest_path:** 13 hearts + 12 face cards − 3 heart face cards = 22 of 52 = 11/26.
 **explanation:** This problem is governed by the addition rule of probability, which for two events that may overlap states that P(A or B) = P(A) + P(B) - P(A and B). The intersection is subtracted once because outcomes belonging to both events are otherwise counted twice.
 
 Let A be the event that the card drawn is a heart, and let B be the event that the card drawn is a face card (jack, queen, or king). The sample space consists of the 52 equally likely cards in a standard deck.
@@ -853,34 +871,46 @@ P(A or B) = 22/52.
 Reducing the fraction by dividing numerator and denominator by 2 gives 22/52 = 11/26.
 
 The correct answer is C.
+**mistake_a:** 1/4 = 13/52 counts only the hearts and ignores the face cards entirely.
+**mistake_b:** 3/13 = 12/52 counts only the face cards.
+**mistake_d:** 25/52 = (13 + 12)/52 adds the two groups without subtracting the 3 cards that are both, double-counting the jack, queen, and king of hearts.
+**mistake_e:** 1/2 = 26/52 is the probability of a red card — a different event that merely feels similar in size.
+**common_trap:** Forgetting that "heart" and "face card" overlap in exactly 3 cards, so a straight sum counts those cards twice.
+**takeaway:** For P(A or B) with overlapping events, subtract P(A and B) exactly once — count, don't double-count.
+**hint_nudge:** Are "heart" and "face card" mutually exclusive?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
 
 ## Q24
-**difficulty:** Medium
-**type:** Data Sufficiency
+**difficulty:** Easy
+**type:** Problem Solving
 **topic:** Median of an Odd-Sized Set
 
-A data set consists of 7 numbers. What is the median of the data set?
+A data set consists of 7 numbers whose sum is 84. When the numbers are arranged in increasing order, the fourth number is 15. What is the median of the data set?
 
-(1) The sum of the numbers in the data set is 84.
-(2) When the numbers are arranged in increasing order, the fourth number is 15.
+- A) 12
+- B) 14
+- C) 15
+- D) 16
+- E) 21
 
-- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
-- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
-- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
-- D) EACH statement ALONE is sufficient.
-- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+**answer:** C
+**fastest_path:** Seven values put the median at position (7 + 1)/2 = 4, and the fourth ordered value is given directly: 15. The sum is a decoy.
+**explanation:** The median of a data set with an odd number of values is the middle value once the data are arranged in increasing order. For 7 values, the middle position is (7 + 1)/2 = 4, so the median is the fourth number in the ordered list.
 
-**answer:** B
-**explanation:** The median of a data set is a positional measure: when the values are arranged in increasing order, the median is the middle value. For a set of n numbers with n odd, the median occupies position (n + 1)/2. Here n = 7, so the median is the value in position (7 + 1)/2 = 4, that is, the fourth number in the ordered list. The question is therefore answerable precisely when the fourth ordered value can be determined.
+That fourth number is given to be 15, so the median is 15.
 
-Consider Statement (1). Let the seven numbers have sum 84. This fixes the mean at 84/7 = 12, but the mean is an arithmetic measure that places no constraint on the fourth ordered value. For instance, the set {12, 12, 12, 12, 12, 12, 12} sums to 84 and has median 12, whereas the set {0, 0, 0, 1, 20, 21, 42} also sums to 84 yet has median 1. Two admissible data sets with the same sum produce different medians, so the median is not determined. Statement (1) alone is not sufficient.
+The sum of 84 plays no role. It determines the mean, 84/7 = 12, which is a different measure of center. Many different sets of 7 numbers have sum 84 and fourth ordered value 15 — for example, {1, 2, 3, 15, 16, 23, 24} — and every one of them has median 15.
 
-Consider Statement (2). Let the numbers be written in increasing order. The fourth number in that ordering is given to be 15. Because the median of seven ordered numbers is exactly the fourth value, the median equals 15. This single fact determines the median uniquely, regardless of the other six values. Statement (2) alone is sufficient.
-
-The correct answer is B.
+The correct answer is C.
+**mistake_a:** 12 = 84/7 is the mean; the sum is supplied precisely to bait this swap. The median is positional and ignores the sum entirely.
+**mistake_b:** 14 drifts one slot below the given fourth value — for example, by trying to average two "middle" values as though the set had an even count.
+**mistake_d:** 16 is the same off-by-one in the other direction, taking a neighbor of the true middle position.
+**mistake_e:** 21 = 84/4 divides the sum by the position number, combining the two given numbers without a governing principle.
+**common_trap:** Computing the mean (12) because the sum is the most prominent number in the stem — the median never needs it.
+**takeaway:** For an odd count n, the median is the value at position (n + 1)/2 of the ordered list; sums and means are irrelevant to locating it.
+**hint_nudge:** With 7 ordered values, which position is the middle one?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -899,6 +929,7 @@ A company has two factories. Factory P produces 60% of the company's products; F
 - E) 12/19
 
 **answer:** C
+**fastest_path:** Per 1,000 products: 600 × 3% = 18 defectives from P, 400 × 5% = 20 from Q. P's share of defectives = 18/38 = 9/19.
 **explanation:** This problem is governed by the rule for conditional probability, often applied through Bayes' reasoning: for events A and B, P(A | B) = P(A and B) / P(B). The required probability is the proportion of all defective products that originate at Factory P, so the task is to compute the probability that a product is both from Factory P and defective, and then divide by the total probability that a product is defective.
 
 Let the company's total output be the sample space. The given information establishes the prior probabilities and conditional defect rates. The probability that a randomly selected product comes from Factory P is P(P) = 0.60, and the probability that it comes from Factory Q is P(Q) = 0.40. The conditional probability that a product is defective given that it came from Factory P is P(D | P) = 0.03, and the conditional probability that a product is defective given that it came from Factory Q is P(D | Q) = 0.05.
@@ -910,12 +941,20 @@ Since a defective product must come from exactly one of the two factories, the t
 Applying the conditional probability rule yields P(P | D) = P(P and D) / P(D) = 0.018 / 0.038. Multiplying numerator and denominator by 1,000 gives 18 / 38, and dividing both by 2 gives 9 / 19.
 
 The correct answer is C.
+**mistake_a:** 3/19 uses the raw 3% defect rate over the 19-part total without weighting by Factory P's 60% production share.
+**mistake_b:** 6/19 = 12/38 swaps the defect rates between the factories, putting 0.40 × 0.03 in the numerator.
+**mistake_d:** 10/19 = 20/38 is the complement — the probability the defective product came from Factory Q.
+**mistake_e:** 12/19 drifts toward P's 60% production share; conditioning on "defective" must re-weight by the defect rates, which favor Q.
+**common_trap:** Answering with Factory P's production share (60%) or its defect rate (3%) instead of its share of the defectives — conditioning on "defective" changes the sample space.
+**takeaway:** "Given that X happened, where did it come from?" = (branch's contribution to X)/(total X). Weight every branch by both its prior share and its rate — concrete counts per 1,000 make this mechanical.
+**hint_nudge:** Imagine 1,000 products. How many defectives does each factory contribute?
+**hint_strategy:** Defectives from P: 600 × 3% = 18; from Q: 400 × 5% = 20. The answer is 18/(18 + 20).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
 
 ## Q26
-**difficulty:** Medium
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Range of a Data Set
 
@@ -928,6 +967,7 @@ The scores of 9 students on a test, arranged in ascending order, are: 42, 55, 61
 - E) 94
 
 **answer:** B
+**fastest_path:** Last minus first in the sorted list: 94 − 42 = 52.
 **explanation:** The range of a data set is a measure of spread, defined as the difference between the largest and smallest values in the set: Range = maximum value minus minimum value. This quantity describes the total width of the data, in contrast to the mean or median, which describe its center.
 
 Let the data set be the 9 test scores listed in ascending order: 42, 55, 61, 68, 73, 78, 82, 86, 94. Because the values are already sorted, the minimum is the first entry and the maximum is the last entry. Thus the minimum value is 42 and the maximum value is 94.
@@ -937,36 +977,51 @@ Applying the definition of range, we subtract the minimum from the maximum:
 Range = 94 minus 42 = 52.
 
 The correct answer is B.
+**mistake_a:** 42 copies the minimum instead of subtracting it from the maximum.
+**mistake_c:** 68 is the fourth list entry — a middling value, not a measure of spread.
+**mistake_d:** 73 is the median: the center of the data, not its width.
+**mistake_e:** 94 copies the maximum without subtracting the minimum.
+**common_trap:** Reporting a position (an endpoint or the median) when the question asks for a difference — the range is maximum minus minimum.
+**takeaway:** Range = maximum − minimum; with sorted data it is a single subtraction of the first value from the last.
+**hint_nudge:** The list is already sorted — which two values define the range?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
 
 ## Q27
 **difficulty:** Hard
-**type:** Data Sufficiency
-**topic:** Comparing Standard Deviations — Range and Mean Are Not Enough
+**type:** Problem Solving
+**topic:** Standard Deviation vs. Range
 
-Is the standard deviation of data set S greater than the standard deviation of data set T?
+Data set S consists of the ten values 0, 5, 5, 5, 5, 5, 5, 5, 5, 10, and data set T consists of the eight values 1, 1, 1, 1, 9, 9, 9, 9. Which of the following statements is true?
 
-(1) The range of S is greater than the range of T.
-(2) The mean of S is greater than the mean of T.
+- A) S has the greater range and the greater standard deviation
+- B) S has the greater range, and T has the greater standard deviation
+- C) T has the greater range, and S has the greater standard deviation
+- D) S and T have equal ranges, and T has the greater standard deviation
+- E) S has the greater range, and the two sets have equal standard deviations
 
-- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
-- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
-- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
-- D) EACH statement ALONE is sufficient.
-- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+**answer:** B
+**fastest_path:** Ranges by inspection: 10 − 0 = 10 beats 9 − 1 = 8. Spread by inspection: 8 of S's 10 values sit exactly on its mean of 5, while every value of T sits 4 away from its mean of 5 — so T's standard deviation is far larger. No formula needed.
+**explanation:** The range and the standard deviation measure spread in different ways: the range uses only the two extreme values, while the standard deviation measures the typical distance of all the values from the mean. This question is built on the gap between the two.
 
-**answer:** E
-**explanation:** This is a data sufficiency question, so the task is to determine whether each statement, alone or in combination, fixes the answer to the question "Is the standard deviation of data set S greater than the standard deviation of data set T?" The governing principle is that the standard deviation of a data set measures the typical distance of the values from their mean, and it is not determined by either the range or the mean. The range reflects only the gap between the largest and smallest values, and the mean reflects only the center of the data. Two data sets can therefore agree on range or on mean while differing in standard deviation, and they can also disagree on range or on mean while sharing the same standard deviation. A statement is sufficient only if every data configuration consistent with it yields the same yes-or-no answer; if some consistent configurations answer "yes" and others answer "no," the statement is insufficient.
+Range: For S, the maximum is 10 and the minimum is 0, so the range is 10 − 0 = 10. For T, the maximum is 9 and the minimum is 1, so the range is 9 − 1 = 8. S has the greater range.
 
-Consider statement (1), which asserts that the range of S exceeds the range of T. To test sufficiency, we seek two configurations consistent with this statement that give opposite answers. Let S = {0, 5, 5, 5, 5, 5, 5, 5, 5, 10} and let T = {1, 1, 1, 1, 9, 9, 9, 9}. The range of S is 10 minus 0, which equals 10, and the range of T is 9 minus 1, which equals 8, so the range of S exceeds the range of T, consistent with statement (1). The mean of S is (0 + 5 times 8 + 10) divided by 10, which is 50 divided by 10, equal to 5; the deviations from the mean are 5 for the value 0, 5 for the value 10, and 0 for each of the eight values equal to 5, so the variance is (5 squared + 5 squared) divided by 10, which is 50 divided by 10, equal to 5, and the standard deviation of S is the square root of 5, approximately 2.24. The mean of T is (1 times 4 + 9 times 4) divided by 8, which is 40 divided by 8, equal to 5; each value deviates from the mean by exactly 4, so the variance is 4 squared, equal to 16, and the standard deviation of T is 4. Here S has the larger range yet the smaller standard deviation, giving the answer "no." Because the range can be enlarged by a single extreme value without spreading the bulk of the data, other configurations consistent with statement (1) can instead give the answer "yes." Statement (1) is therefore not sufficient.
+Standard deviation: The mean of S is (0 + 5 × 8 + 10)/10 = 50/10 = 5. Eight of the ten values equal 5 exactly, deviating by 0; only the values 0 and 10 deviate, each by 5. The variance is (5² + 5²)/10 = 50/10 = 5, so the standard deviation of S is √5, approximately 2.2.
 
-Consider statement (2), which asserts that the mean of S exceeds the mean of T. The mean locates the center of a data set and conveys nothing about how widely the values are dispersed about that center. A data set with a large mean can be tightly clustered, and a data set with a small mean can be widely spread, so the comparison of means is consistent with the standard deviation of S being greater, equal to, or less than that of T. Statement (2) is therefore not sufficient.
+The mean of T is (1 × 4 + 9 × 4)/8 = 40/8 = 5. Every one of the eight values deviates from the mean by exactly 4, so the variance is 4² = 16 and the standard deviation of T is 4.
 
-Now consider both statements together, which require that the range of S exceed the range of T and that the mean of S exceed the mean of T. Adding the same constant to every element of a data set shifts its mean by that constant while leaving its range and its standard deviation unchanged. Starting from any pair of data sets that satisfies statement (1), we can add a sufficiently large constant to every element of S so that the mean of S also exceeds the mean of T, thereby satisfying statement (2) as well, all while preserving the ranges and standard deviations. The configuration above in which S has the smaller standard deviation can thus be adjusted to satisfy both statements and still answer "no," while a configuration in which S has the larger standard deviation can likewise be adjusted to satisfy both statements and answer "yes." The two statements together still permit opposite answers and are therefore not sufficient.
+Thus S has the greater range, while T has the much greater standard deviation.
 
-The correct answer is E.
+The correct answer is B.
+**mistake_a:** Assumes the wider range implies the wider spread. The range sees only the two extremes; S's other eight values are glued to the mean, so its typical deviation is tiny.
+**mistake_c:** Flips the range comparison: S spans 10 − 0 = 10 while T spans only 9 − 1 = 8.
+**mistake_d:** The ranges are not equal (10 versus 8), even though this choice gets the standard deviation comparison right.
+**mistake_e:** The standard deviations are far from equal: √5 ≈ 2.2 for S versus exactly 4 for T.
+**common_trap:** Equating "bigger range" with "bigger standard deviation" — a single pair of outliers stretches the range without moving the bulk of the data.
+**takeaway:** Range uses two values; standard deviation uses all of them. A tightly clustered set with two outliers can out-range, yet under-spread, a set whose every value sits far from the mean.
+**hint_nudge:** How far is a typical value of each set from that set's mean?
+**hint_strategy:** Both means are 5. In S, eight of ten values deviate by 0; in T, all eight values deviate by 4. Compare the ranges separately.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -985,6 +1040,7 @@ In a group of 80 people, 45 own a car and 35 own a bicycle. If 20 people own bot
 - E) 80
 
 **answer:** C
+**fastest_path:** 45 + 35 − 20 = 60; the 20 dual owners sit inside both counts, so subtract them once.
 **explanation:** This problem is governed by the inclusion-exclusion principle for the union of two sets. When two groups overlap, the number of members in at least one of the groups equals the size of the first group plus the size of the second group minus the number of members counted in both, since those members would otherwise be counted twice.
 
 Let C denote the set of people who own a car and B denote the set of people who own a bicycle. We are given that the number who own a car is |C| = 45, the number who own a bicycle is |B| = 35, and the number who own both is |C ∩ B| = 20. We seek the number who own at least one of the two things, which is the size of the union, |C ∪ B|.
@@ -1008,6 +1064,13 @@ Then subtract the overlap once, so that the 20 people who own both are no longer
 Thus, 60 people own at least one of the two things.
 
 The correct answer is C.
+**mistake_a:** 45 counts only the car owners.
+**mistake_b:** 55 = 80 − 45 + 20 garbles the computation by starting from the total; the union needs the two group sizes minus their overlap.
+**mistake_d:** 65 = 45 + 20 adds the dual owners to one group instead of subtracting them from the sum of both.
+**mistake_e:** 80 = 45 + 35 skips the subtraction — and the fact that it lands exactly on the group size should itself raise suspicion.
+**common_trap:** Adding 45 + 35 and stopping; the 20 people who own both are inside both numbers and get counted twice.
+**takeaway:** |A ∪ B| = |A| + |B| − |A ∩ B|: whenever two given counts overlap, subtract the overlap exactly once.
+**hint_nudge:** The 20 dual owners appear in both the 45 and the 35.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1026,6 +1089,7 @@ A raffle sells 100 tickets at $5 each. One winning ticket is drawn at random and
 - E) $2.00
 
 **answer:** B
+**fastest_path:** Expected payout is 200/100 = $2 per ticket; the ticket costs $5, so the expected net is 2 − 5 = −$3.
 **explanation:** The expected net gain is found by summing, over every possible outcome, the product of that outcome's probability and its net value. We must account for both the case in which the ticket wins and the case in which it loses.
 
 Let the cost of the ticket be $5. Because one winning ticket is drawn at random from 100 tickets, the probability that the chosen ticket wins is 1/100, and the probability that it loses is 99/100.
@@ -1043,6 +1107,13 @@ Evaluating each term gives (1/100)(195) = 1.95 and (99/100)(-5) = -4.95. Adding 
 Thus the expected net gain for a person who buys one ticket is -$3.00.
 
 The correct answer is B.
+**mistake_a:** −$5.00 treats losing as certain, ignoring the 1/100 chance at the $200 prize.
+**mistake_c:** $0.00 assumes a fair raffle; the organizer collects 100 × $5 − $200 = $300, so ticket buyers must lose on average.
+**mistake_d:** $1.95 is the winning branch alone, (1/100)(195), with the 99 losing branches dropped.
+**mistake_e:** $2.00 is the expected gross payout (200/100) with the $5 ticket price never charged.
+**common_trap:** Forgetting the price of the ticket — the prize is $200, but every path starts $5 in the hole.
+**takeaway:** Expected net gain = expected payout − cost; the quick version is (total prizes ÷ total tickets) minus the ticket price.
+**hint_nudge:** What does the average ticket collect, and what did it cost?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1061,6 +1132,7 @@ A point is chosen uniformly at random on a line segment from 0 to 30. What is th
 - E) 7/10
 
 **answer:** B
+**fastest_path:** Favorable length over total length: (18 − 6)/30 = 12/30 = 2/5.
 **explanation:** When a point is selected uniformly at random along a line segment, the probability that it lands within a particular subinterval equals the ratio of the length of that subinterval to the length of the entire segment. The governing principle is therefore P = (length of the favorable interval) / (length of the total segment).
 
 Let the entire segment extend from 0 to 30, so its total length is 30 - 0 = 30. The favorable region is the subinterval from 6 to 18, whose length is 18 - 6 = 12. Note that the relevant quantity is the length of this interval, obtained by subtracting its endpoints, not either endpoint value by itself.
@@ -1070,6 +1142,13 @@ Applying the principle gives
 P = 12 / 30 = 2/5.
 
 The correct answer is B.
+**mistake_a:** 1/5 = 6/30 uses the left endpoint 6 as if it were the interval's length.
+**mistake_c:** 1/2 = 12/24 divides by 30 − 6 = 24, shrinking the total segment so it starts at 6.
+**mistake_d:** 3/5 = 18/30 uses the right endpoint 18 as the favorable length, forgetting to subtract 6.
+**mistake_e:** 7/10 inflates the favorable region; only the 12 units between 6 and 18 qualify.
+**common_trap:** Plugging an endpoint (6 or 18) into the ratio instead of the interval's length, 18 − 6 = 12.
+**takeaway:** Uniform-on-a-segment probability = (favorable length)/(total length); subtract endpoints before dividing.
+**hint_nudge:** How long is the favorable interval, and how long is the whole segment?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1088,6 +1167,7 @@ The scores of 8 students on a quiz, arranged in ascending order, are: 52, 61, 67
 - E) 42
 
 **answer:** C
+**fastest_path:** Halves of 8 values: Q1 = (61 + 67)/2 = 64, Q3 = (85 + 89)/2 = 87, IQR = 87 − 64 = 23.
 **explanation:** The interquartile range of a data set is the difference between the third quartile and the first quartile, Q3 - Q1, where Q1 is the median of the lower half of the ordered data and Q3 is the median of the upper half. This statistic measures the spread of the middle 50 percent of the values.
 
 The eight scores, already in ascending order, are 52, 61, 67, 72, 78, 85, 89, 94. Because there are eight values, an even number, the data divide into a lower half of four values and an upper half of four values.
@@ -1099,6 +1179,13 @@ The upper half is {78, 85, 89, 94}. The median of these four values is the avera
 Therefore the interquartile range is Q3 - Q1 = 87 - 64 = 23.
 
 The correct answer is C.
+**mistake_a:** 17 = 89 − 72 subtracts a wrong pair of raw entries rather than the two quartiles.
+**mistake_b:** 22 = 94 − 72 measures from the fourth value to the maximum — neither one is a quartile.
+**mistake_d:** 27 = 94 − 67 again mixes raw list entries into what should be a difference of quartiles.
+**mistake_e:** 42 = 94 − 52 is the full range; the IQR deliberately discards the outer quarter on each side.
+**common_trap:** Grabbing single list entries as Q1 and Q3 — with 8 values, each quartile is the average of two values (positions 2–3 and 6–7).
+**takeaway:** Split the ordered data into halves, take each half's median, and subtract: IQR = Q3 − Q1, the spread of the middle 50%.
+**hint_nudge:** With eight values, each half has four — what is the median of four values?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1117,6 +1204,7 @@ Events X and Y are mutually exclusive. P(X) = 0.3 and P(Y) = 0.4. What is the pr
 - E) 1.00
 
 **answer:** D
+**fastest_path:** Mutually exclusive means zero overlap: 0.3 + 0.4 = 0.7.
 **explanation:** The probability that at least one of two events occurs is governed by the addition rule, which states that for any two events X and Y, P(X or Y) = P(X) + P(Y) - P(X and Y). The term P(X and Y) is subtracted to avoid counting the overlap of the two events twice.
 
 The events X and Y are described as mutually exclusive, meaning they cannot both occur. The probability that both occur is therefore zero, so P(X and Y) = 0.
@@ -1128,6 +1216,13 @@ P(X or Y) = 0.3 + 0.4 - 0
 P(X or Y) = 0.70
 
 The correct answer is D.
+**mistake_a:** 0.12 = 0.3 × 0.4 multiplies as though computing "both occur" for independent events — but mutually exclusive events can never both occur.
+**mistake_b:** 0.58 = 0.3 + 0.4 − 0.12 subtracts a phantom overlap of 0.12; mutual exclusivity makes P(X and Y) = 0, not P(X)P(Y).
+**mistake_c:** 0.60 = 2 × 0.3 doubles one probability instead of adding the two given ones.
+**mistake_e:** 1.00 assumes X and Y exhaust all possibilities; mutually exclusive does not mean one of them must happen — here P(neither) = 0.3.
+**common_trap:** Confusing "mutually exclusive" with "independent" — exclusive events are maximally dependent: if one happens, the other cannot.
+**takeaway:** Mutually exclusive means P(X or Y) = P(X) + P(Y) exactly; independence is a different condition and would put a nonzero overlap back in.
+**hint_nudge:** Can X and Y both occur? What does that make P(X and Y)?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1146,6 +1241,7 @@ Events A and B are independent. P(A) = 0.6 and P(B) = 0.3. What is the probabili
 - E) 0.90
 
 **answer:** A
+**fastest_path:** Independent means multiply: 0.6 × 0.3 = 0.18.
 **explanation:** When two events are independent, the occurrence of one has no effect on the probability of the other, so the probability that both occur equals the product of their individual probabilities. This is the multiplication rule for independent events: for independent events A and B, P(A and B) = P(A) × P(B).
 
 Let P(A) = 0.6 and P(B) = 0.3 denote the given individual probabilities, and note that A and B are stated to be independent. The quantity sought is the joint probability that both A and B occur, namely P(A and B).
@@ -1157,6 +1253,13 @@ P(A and B) = 0.6 × 0.3
 P(A and B) = 0.18
 
 The correct answer is A.
+**mistake_b:** 0.30 is P(B) alone — "both occur" can never be more likely than the rarer single event, and here it is strictly less.
+**mistake_c:** 0.60 is P(A) alone.
+**mistake_d:** 0.72 = 1 − (0.4)(0.7) is the probability that AT LEAST ONE of the events occurs — the union, not the intersection.
+**mistake_e:** 0.90 = 0.6 + 0.3 adds the probabilities, which answers an "or" question (for non-overlapping events), not "and."
+**common_trap:** Adding when the question says "both" — addition belongs to "or"; multiplication belongs to "and" for independent events.
+**takeaway:** For independent events, P(A and B) = P(A) × P(B); sanity-check that "both" never exceeds either single probability.
+**hint_nudge:** Should "both occur" be more or less likely than each event on its own?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1175,6 +1278,7 @@ One card is drawn at random from a standard deck of 52 cards. You win $5 if the 
 - E) $2.25
 
 **answer:** D
+**fastest_path:** (1/4)(5) + (1/2)(2) + (1/4)(−3) = 1.25 + 1 − 0.75 = $1.50.
 **explanation:** The expected value of a single trial is the sum, over all possible outcomes, of each outcome's payoff multiplied by its probability. For this sum to be valid, the outcomes must partition the sample space, so their probabilities must total 1.
 
 A standard deck contains 52 cards, divided equally among four suits of 13 cards each. Let the three outcomes be drawing a heart, drawing a black card (a spade or a club), and drawing a diamond. The hearts number 13, so the probability of a heart is 13/52 = 1/4. The black cards comprise the 13 spades and the 13 clubs, a total of 26 cards, so the probability of a black card is 26/52 = 1/2. The diamonds number 13, so the probability of a diamond is 13/52 = 1/4. These probabilities sum to 1/4 + 1/2 + 1/4 = 1, confirming that the three outcomes form a complete partition of the deck.
@@ -1190,6 +1294,13 @@ EV = 5/4 + 1 - 3/4 = (5/4 - 3/4) + 1 = 2/4 + 1 = 1/2 + 1 = 1.50.
 Thus the expected value of one draw is $1.50.
 
 The correct answer is D.
+**mistake_a:** $0.50 drops the black-card branch, keeping only (1/4)(5) + (1/4)(−3).
+**mistake_b:** $1.00 is the black-card term (1/2)(2) by itself.
+**mistake_c:** $1.33 = (5 + 2 − 3)/3 averages the three payoffs unweighted, ignoring that a black card is twice as likely as either red suit.
+**mistake_e:** $2.25 = (1/4)(5) + (1/2)(2) forgets the diamond loss entirely.
+**common_trap:** Weighting the three payoffs equally — the deck makes "black" a 1/2 event but each red suit only a 1/4 event.
+**takeaway:** Expected value = sum of (probability × payoff) over a complete set of outcomes; confirm the probabilities total 1 before multiplying anything.
+**hint_nudge:** What fraction of the deck is hearts, black cards, and diamonds? Do your three probabilities sum to 1?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1208,6 +1319,7 @@ A company has 200 employees: 120 in the analytics division and 80 in the operati
 - E) 5/6
 
 **answer:** C
+**fastest_path:** MBA counts: 120 × 25% = 30 in analytics, 80 × 15% = 12 in operations. Given an MBA holder, P(analytics) = 30/42 = 5/7.
 **explanation:** This problem is governed by the definition of conditional probability: for events A and B with P(B) greater than 0, the probability of A given B equals the number of outcomes satisfying both A and B divided by the number of outcomes satisfying B. Equivalently, conditioning on B restricts the sample space to only those outcomes in which B occurs.
 
 Here the conditioning event is that the selected employee holds an MBA, so the relevant sample space is the set of all MBA holders, not the full set of 200 employees. We let A denote the event that the employee works in the analytics division and B denote the event that the employee holds an MBA.
@@ -1219,6 +1331,14 @@ The total number of employees who hold an MBA is therefore 30 plus 12 equals 42.
 Of these 42 MBA holders, the number who also work in analytics, satisfying both A and B, is 30. The conditional probability is then the number satisfying both conditions divided by the number satisfying the given condition: 30 divided by 42, which reduces to 5/7.
 
 The correct answer is C.
+**mistake_a:** 2/7 = 12/42 is the complement — the probability the MBA holder works in operations.
+**mistake_b:** 3/5 = 120/200 is the analytics share of ALL employees, ignoring the condition that the selected person holds an MBA.
+**mistake_d:** 5/8 = 25/(25 + 15) weighs the two percentages against each other without multiplying by the very different division sizes.
+**mistake_e:** 5/6 = 30/36 miscounts the operations MBAs (80 × 15% = 12, not 6) before forming the ratio.
+**common_trap:** Conditioning shrinks the sample space to the 42 MBA holders; any answer built on all 200 employees or on the raw percentages misses that step.
+**takeaway:** For "given X, what is P(Y)?", first count the X population — weighting each subgroup by its size — then take Y's share of that count.
+**hint_nudge:** Start by counting the MBA holders in each division.
+**hint_strategy:** 30 of the 30 + 12 = 42 MBA holders are in analytics.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1237,6 +1357,7 @@ A medical treatment has an independent 70% success rate for each patient. If 3 p
 - E) 0.490
 
 **answer:** D
+**fastest_path:** C(3,2) × (0.7)² × (0.3) = 3 × 0.49 × 0.3 = 0.441.
 **explanation:** The event in question is governed by the binomial probability model, which applies whenever a fixed number of independent trials each yield one of two outcomes (success or failure) with a constant probability of success. The probability of obtaining exactly k successes in n such trials is given by
 
 P(exactly k successes) = C(n, k) * p^k * (1 - p)^(n - k),
@@ -1252,6 +1373,13 @@ The combinatorial factor is C(3, 2) = 3, since there are three ways to choose wh
 P = 3 * 0.49 * 0.30 = 3 * 0.147 = 0.441.
 
 The correct answer is D.
+**mistake_a:** 0.147 = (0.7)²(0.3) counts only ONE ordering of the two successes; the failure can fall on any of the 3 patients.
+**mistake_b:** 0.189 = 3 × (0.3)²(0.7) swaps the success and failure probabilities.
+**mistake_c:** 0.343 = (0.7)³ is the probability that all three respond, not exactly two.
+**mistake_e:** 0.490 = (0.7)² drops the failure factor — "exactly 2 of 3" requires the third patient NOT to respond.
+**common_trap:** Forgetting the C(3,2) = 3 orderings — "exactly k successes" is a set of sequences, not a single sequence.
+**takeaway:** Exactly k successes in n independent trials = C(n,k) p^k (1−p)^(n−k); the binomial coefficient and the failure factor are both mandatory.
+**hint_nudge:** In how many ways can you choose WHICH two of the three patients respond?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1270,6 +1398,7 @@ In a survey of 120 customers, 72 bought Product A, 54 bought Product B, and 30 b
 - E) 30
 
 **answer:** D
+**fastest_path:** Union = 72 + 54 − 30 = 96, so neither = 120 − 96 = 24.
 **explanation:** This problem is governed by the inclusion-exclusion principle, which states that for two overlapping groups the number of customers in at least one group equals the size of the first group plus the size of the second group minus the size of the overlap, so that the customers counted in both groups are not counted twice. The number who bought neither product is then the total number of customers minus the number who bought at least one product.
 
 Let T = 120 be the total number of customers surveyed. Let A be the number who bought Product A, so A = 72, and let B be the number who bought Product B, so B = 54. Let the number who bought both products be the intersection, so |A ∩ B| = 30.
@@ -1283,12 +1412,19 @@ The number who bought neither product is the total minus those who bought at lea
 Neither = T − |A ∪ B| = 120 − 96 = 24.
 
 The correct answer is D.
+**mistake_a:** 0 assumes that 72 + 54 = 126 exceeding 120 means everyone bought something; that comparison ignores the 30 dual buyers.
+**mistake_b:** 6 = 126 − 120 is the double-counted excess — an intermediate quantity with no direct meaning here.
+**mistake_c:** 18 = 120 − 72 − 30 subtracts the Product A buyers and the dual buyers from the total, removing the overlap from the wrong side.
+**mistake_e:** 30 copies the overlap straight from the stem.
+**common_trap:** Stopping at the union (96) or at the excess (6) instead of finishing with total − union.
+**takeaway:** "Neither" = total − |A ∪ B| = total − (|A| + |B| − |A ∩ B|): two steps, both required.
+**hint_nudge:** First find how many customers bought at least one product.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
 
 ## Q38
-**difficulty:** Medium
+**difficulty:** Easy
 **type:** Problem Solving
 **topic:** Mean — Missing Data
 
@@ -1301,6 +1437,7 @@ The average (arithmetic mean) of 5 numbers is 84. Four of the five numbers are 7
 - E) 99
 
 **answer:** D
+**fastest_path:** The total must be 5 × 84 = 420; the four knowns sum to 325, so the fifth number is 420 − 325 = 95.
 **explanation:** The arithmetic mean of a collection of numbers equals their sum divided by the count of numbers. It follows that the sum of the numbers equals the mean multiplied by the count. We apply this relationship to recover the missing value.
 
 Let x denote the fifth number. The five numbers have a mean of 84, so their total sum must be
@@ -1320,6 +1457,13 @@ so
 x = 420 − 325 = 95.
 
 The correct answer is D.
+**mistake_a:** 84 repeats the mean; the missing number must sit above it, because the four known values average only 325/4 = 81.25.
+**mistake_b:** 87 comes from a slip in summing the four known values before subtracting from 420.
+**mistake_c:** 91 copies the largest of the four given numbers.
+**mistake_e:** 99 follows from an addition slip the other way (a four-number sum of 321 instead of 325).
+**common_trap:** Reasoning from the averages directly instead of converting to totals — sums add, averages don't.
+**takeaway:** Mean problems are sum problems: missing value = (mean × count) − (sum of the known values).
+**hint_nudge:** What must all five numbers add up to?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1338,6 +1482,7 @@ On a standardized exam, a score of 680 falls at the 72nd percentile. If 350 stud
 - E) 280
 
 **answer:** D
+**fastest_path:** 72% of 350 = 0.72 × 350 = 252.
 **explanation:** The governing principle is the definition of a percentile: the nth percentile of a data set is the value below which n percent of the observations fall. To convert a percentile into a count of observations, we multiply the percentile, expressed as a decimal fraction, by the total number of observations.
 
 Let N denote the total number of students who took the exam, so that N = 350. A score of 680 falls at the 72nd percentile, which means that 72 percent of the test takers scored strictly below 680. Let B denote the number of students who scored strictly below 680.
@@ -1357,6 +1502,13 @@ Computing the product,
 Therefore, approximately 252 students scored strictly below 680.
 
 The correct answer is D.
+**mistake_a:** 98 = 0.28 × 350 counts the students at or above 680 — the complement of what was asked.
+**mistake_b:** 126 = 0.36 × 350 halves the percentile somewhere along the way.
+**mistake_c:** 175 = 350/2 treats any named percentile as if it were the median.
+**mistake_e:** 280 = 0.80 × 350 rounds the 72nd percentile up to the 80th.
+**common_trap:** Flipping to the complement (28%) or anchoring on "half" — the percentile already states the below-fraction directly.
+**takeaway:** The nth percentile means n% of observations fall below that value; the count below = (n/100) × total.
+**hint_nudge:** What fraction of the 350 test takers does "72nd percentile" place below 680?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1380,6 +1532,7 @@ Which of the following correctly compares the standard deviations of P and Q?
 - E) The comparison cannot be determined without computing exact standard deviations
 
 **answer:** C
+**fastest_path:** Same mean, same count — compare deviations directly: P's are 5, 2, 2, 0, 2, 2, 5 versus Q's 2, 2, 1, 0, 1, 2, 2. Every P deviation is at least the matching Q deviation and several are larger, so SD(P) > SD(Q) with no computation.
 **explanation:** The standard deviation of a data set measures the typical distance of its values from the mean: the larger the deviations of the values from the mean, the larger the standard deviation. Because both sets are stated to have the same mean of 6 and the same number of values (7), the comparison reduces entirely to how far each set's values lie from 6.
 
 Let the mean of each set be m = 6, and consider the deviation of each value from the mean. The standard deviation is determined by the sum of the squared deviations, since for n values the standard deviation equals the square root of (the sum of the squared deviations divided by n), and here n is the same for both sets.
@@ -1393,12 +1546,19 @@ For set Q = {4, 4, 5, 6, 7, 8, 8}, the deviations from 6 are -2, -2, -1, 0, 1, 2
 Since the sum of squared deviations for P (66) exceeds that for Q (18), and both sets are divided by the same n = 7 before taking the square root, the standard deviation of P is greater than the standard deviation of Q. This larger spread arises because P's values lie further from the mean than Q's values do: P's extremes, 1 and 11, are each 5 units from 6, whereas Q's extremes, 4 and 8, are each only 2 units from 6.
 
 The correct answer is C.
+**mistake_a:** The number of DISTINCT values is irrelevant to spread; a set can have many distinct values all hugging the mean.
+**mistake_b:** Equal means and equal counts say nothing about spread — standard deviation measures distance from the mean, which the two sets distribute very differently.
+**mistake_d:** Misreads the sets: Q is the tightly clustered one (no value further than 2 from the mean), and values "clustered at the endpoints" would describe a LARGER standard deviation anyway.
+**mistake_e:** Exact values are not needed: comparing the two deviation lists term by term settles the inequality outright.
+**common_trap:** Believing SD comparisons always require computing both standard deviations — when means and counts match, comparing the deviation lists is enough.
+**takeaway:** SD comparisons are deviation comparisons: if one set's distances from the mean dominate the other's value-for-value, its SD is larger — no formula needed.
+**hint_nudge:** Both means are 6. List how far each value sits from 6 in each set.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
 
 ## Q41
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Conditional Probability — Bayes via Frequency Table
 
@@ -1411,6 +1571,7 @@ In a clinical study, 300 patients received one of two drugs. Two hundred patient
 - E) 3/5
 
 **answer:** B
+**fastest_path:** Relief counts: 200 × 15% = 30 on Drug A, 100 × 45% = 45 on Drug B. P(Drug A | relief) = 30/75 = 2/5.
 **explanation:** This is a conditional probability problem. When a member is chosen at random from a subgroup defined by a condition, the probability of belonging to a given category equals the number of members satisfying both the condition and that category, divided by the total number of members satisfying the condition. Here the condition is "experienced relief," and the category of interest is "received Drug A."
 
 First, find how many patients in each drug group experienced relief. The number of Drug A patients who experienced relief is 200 × 0.15 = 30. The number of Drug B patients who experienced relief is 100 × 0.45 = 45.
@@ -1420,12 +1581,19 @@ The total number of patients who experienced relief is therefore 30 + 45 = 75. S
 30 / 75 = 2/5.
 
 The correct answer is B.
+**mistake_a:** 1/4 = 15/(15 + 45) compares the raw percentages without weighting by the very different group sizes (200 versus 100).
+**mistake_c:** 1/2 splits the two drugs evenly, using neither the group sizes nor the relief rates.
+**mistake_d:** 2/3 = 200/300 is Drug A's share of ALL patients, ignoring the condition that the selected patient experienced relief.
+**mistake_e:** 3/5 = 45/75 is the complement — the probability the relieved patient received Drug B.
+**common_trap:** Conditioning on "experienced relief" shrinks the population to 75 patients; the 200/100 split and the 15%/45% rates matter only through the counts 30 and 45.
+**takeaway:** Convert percentages of different-sized groups into counts before forming any conditional probability.
+**hint_nudge:** How many patients in each group actually experienced relief?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
 
 ## Q42
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Expected Value — Comparing Two Strategies
 
@@ -1438,6 +1606,7 @@ A project manager must choose between two investment strategies. Strategy P has 
 - E) Strategy Q by $80,000
 
 **answer:** E
+**fastest_path:** EV(P) = 0.4(800K) − 0.6(200K) = 320K − 120K = 200K; EV(Q) = 0.7(400K) = 280K. Q wins by $80,000.
 **explanation:** The expected value of a strategy is the sum, over all possible outcomes, of each outcome's monetary value weighted by its probability. To determine which strategy is preferable, we compute the expected value of each and compare them.
 
 Let EV(P) denote the expected value of Strategy P. Strategy P yields a profit of $800,000 with probability 0.40 and a loss of $200,000 (a value of -$200,000) with probability 0.60. Translating this into the expected-value formula gives
@@ -1463,6 +1632,13 @@ $280,000 - $200,000 = $80,000.
 Thus Strategy Q has the higher expected value, by $80,000.
 
 The correct answer is E.
+**mistake_a:** "Strategy P by $80,000" reverses the comparison — the gap is right but the winner is wrong, exactly what a sign slip on P's loss branch produces.
+**mistake_b:** "Strategy P by $40,000" comes from dropping P's loss branch entirely: $320,000 versus $280,000.
+**mistake_c:** "Strategy P by $20,000" keeps P on top only through a branch slip; a clean branch-by-branch computation caps P at $200,000.
+**mistake_d:** "Strategy Q by $40,000" halves the true gap, for example by weighting P's loss with 0.40 instead of 0.60 (320K − 80K = 240K).
+**common_trap:** Mishandling the loss branch — a 60% chance of losing $200,000 enters the expected value as −$120,000, with full weight and a negative sign.
+**takeaway:** Expected-value comparisons are won or lost in the loss branches: write each outcome as a signed value × its probability before summing.
+**hint_nudge:** Strategy P's 60% branch is a LOSS. What does that branch contribute to P's expected value?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1481,6 +1657,7 @@ At a tech company, 180 employees were surveyed about three skills. The results s
 - E) 55
 
 **answer:** B
+**fastest_path:** Union = 225 − 75 + 10 = 160, so none = 180 − 160 = 20.
 **explanation:** This problem is solved using the inclusion-exclusion principle for three sets, which counts the number of elements belonging to at least one set without double-counting any overlaps. For three sets, the size of the union equals the sum of the individual set sizes, minus the sizes of the three pairwise intersections, plus the size of the intersection of all three sets.
 
 Let P, S, and M denote the sets of employees with Python, SQL, and machine learning skills, respectively. From the survey, |P| = 90, |S| = 75, and |M| = 60. The pairwise overlaps are |P ∩ S| = 30, |P ∩ M| = 25, and |S ∩ M| = 20, and the triple overlap is |P ∩ S ∩ M| = 10.
@@ -1502,6 +1679,14 @@ Thus 160 of the 180 surveyed employees have at least one skill. The employees wi
 180 − 160 = 20.
 
 The correct answer is B.
+**mistake_a:** 10 copies the triple overlap straight from the stem.
+**mistake_c:** 30 forgets to add the triple overlap back (225 − 75 = 150, then 180 − 150 = 30) — the all-three group has been subtracted once too often.
+**mistake_d:** 40 SUBTRACTS the triple overlap instead of adding it (225 − 75 − 10 = 140, then 180 − 140 = 40).
+**mistake_e:** 55 mishandles the pairwise overlaps — subtracting some of them twice — before taking the complement.
+**common_trap:** The sign of the final term: pairwise intersections come off, but the triple intersection goes back ON (it was added three times and subtracted three times, so it needs one more addition).
+**takeaway:** |A ∪ B ∪ C| = (sum of singles) − (sum of pairs) + (triple); then "none" = total − union. Knowing WHY the triple term is positive kills the sign error.
+**hint_nudge:** After subtracting the three pairwise overlaps, how many times has the all-three group been counted?
+**hint_strategy:** Singles (225) − pairs (75) + triple (10) = union; the answer is 180 − union.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1520,6 +1705,7 @@ Set M = {4, 8, 14, 18, 22} has mean μ and standard deviation σ. Set N is forme
 - E) Mean of N = 3μ and SD of N = 3σ
 
 **answer:** C
+**fastest_path:** Linear transform n = 3m − 6: the mean follows the full recipe (3μ − 6); the SD feels only the multiplier (3σ). No arithmetic on the actual set required.
 **explanation:** This problem applies the two rules governing how the mean and standard deviation of a data set respond to a linear transformation. For any transformation of the form n = a*m + b applied to every element of a set: the mean is transformed in the same way, becoming a*(mean) + b, while the standard deviation is multiplied by the absolute value of the scaling factor, becoming |a|*(standard deviation). The additive constant b shifts every value by the same amount and therefore leaves all deviations from the mean unchanged, so it does not affect the standard deviation.
 
 Let m denote a typical element of set M, with mean equal to the Greek letter mu and standard deviation equal to the Greek letter sigma. Set N is formed by multiplying every element of M by 3 and then subtracting 6, so each element of N is n = 3m - 6. Here the scaling factor is a = 3 and the additive constant is b = -6.
@@ -1533,6 +1719,13 @@ These results can be confirmed numerically. The mean of M is (4 + 8 + 14 + 18 + 
 Thus Mean of N = 3*mu - 6 and SD of N = 3*sigma.
 
 The correct answer is C.
+**mistake_a:** 2μ has no source in the transformation — the mean obeys exactly the operation applied to the data: multiply by 3, then subtract 6.
+**mistake_b:** Leaving the SD at σ ignores the tripling; only the SHIFT (−6) leaves spread alone, not the scaling.
+**mistake_d:** 3σ − 6 pushes the shift into the standard deviation; subtracting 6 from every value moves the whole set without widening it.
+**mistake_e:** 3μ drops the −6 from the mean, which tracks every part of a linear transformation.
+**common_trap:** Treating mean and SD symmetrically — the mean inherits BOTH operations, while the SD inherits only the absolute scaling factor.
+**takeaway:** For y = ax + b: mean → a·(mean) + b, but SD → |a|·(SD). Shifts move the center; only scaling changes the spread.
+**hint_nudge:** Which of "×3" and "−6" changes the gaps between values?
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1551,6 +1744,7 @@ A bag contains 2 red balls and 1 white ball. A player draws one ball at random. 
 - E) $6.00
 
 **answer:** D
+**fastest_path:** The $6 win is certain eventually; only the fees are in question. Expected white draws before the first red = (1/3)/(2/3) = 1/2, costing (1/2)($2) = $1. Net: 6 − 1 = $5.
 **explanation:** This problem concerns the expected value of a game whose structure repeats itself: whenever a white ball is drawn, the player pays a fee and faces a situation identical to the original one. Because the game resets to its starting state after each white draw, the expected net gain can be expressed in terms of itself and solved algebraically.
 
 Let V denote the player's expected net gain from the game beginning at any draw. On a single draw there are exactly two outcomes. With probability 2/3 the ball is red, in which case the player wins $6 and the game ends; this contributes (2/3)(6). With probability 1/3 the ball is white, in which case the player pays $2 and the bag is restored to its original composition, so the player again faces a game whose expected net gain is V; this branch contributes (1/3)(-2 + V).
@@ -1579,4 +1773,12 @@ Thus the player's expected net gain per game is $5.00.
 The result can be confirmed independently. Because every draw produces a red ball with probability 2/3, a red ball is eventually drawn with certainty, so the player always collects the $6 prize exactly once; the expected winnings are therefore $6. The number of white draws preceding the first red follows a geometric distribution, giving an expected number of white draws equal to (1/3)/(2/3) = 1/2, and hence an expected redraw cost of (1/2)($2) = $1. The expected net gain is $6 - $1 = $5, in agreement with the value found above.
 
 The correct answer is D.
+**mistake_a:** $3.00 charges the $2 fee on every draw including the final winning one (1.5 expected draws × $2 = $3 of fees) — but only white draws cost money.
+**mistake_b:** $4.00 is the first draw's red branch alone, (2/3)($6), with the value of continuing after a white draw thrown away.
+**mistake_c:** $4.50 comes from truncating the recursion partway; the self-consistent equation gives exactly $5.
+**mistake_e:** $6.00 forgets the fees entirely — the player does always collect $6 eventually, but pays $2 per white draw along the way.
+**common_trap:** Treating a game that resets as a one-draw game; the clean approaches are the self-referential equation V = (2/3)(6) + (1/3)(−2 + V), or "certain prize minus expected fees."
+**takeaway:** When a game returns to its starting state, set V = (immediate branches) + (reset probability)(cost + V) and solve — or split the certain prize from the expected costs.
+**hint_nudge:** After a white draw, the game looks exactly as it did at the start — except you are $2 poorer.
+**hint_strategy:** Let V be the expected net gain. Then V = (2/3)(6) + (1/3)(−2 + V).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
