@@ -9,6 +9,7 @@ import SettingsClient, {
 // previous visual defaults so returning users see the same thing they
 // would have pre-persistence.
 const DEFAULT_PREFS: NotificationPrefs = {
+  exams: true,
   streak: true,
   weekly: true,
   tips: false,
