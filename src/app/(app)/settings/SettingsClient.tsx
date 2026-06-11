@@ -27,6 +27,7 @@ export interface PurchaseRow {
 }
 
 export interface NotificationPrefs {
+  exams: boolean
   streak: boolean
   weekly: boolean
   tips: boolean
@@ -655,6 +656,11 @@ const NOTIFICATION_DEFS: {
   label: string
   description: string
 }[] = [
+  {
+    id: "exams",
+    label: "Official exam reminders",
+    description: "Email me a week before each scheduled official practice exam, and if one is overdue",
+  },
   {
     id: "streak",
     label: "Streak reminders",

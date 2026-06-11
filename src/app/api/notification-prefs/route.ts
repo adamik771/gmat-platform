@@ -1,7 +1,7 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 
 /** Canonical keys — keep in sync with the Notifications tab in SettingsClient. */
-const VALID_KEYS = ["streak", "weekly", "tips", "coaching"] as const
+const VALID_KEYS = ["exams", "streak", "weekly", "tips", "coaching"] as const
 type PrefKey = (typeof VALID_KEYS)[number]
 
 /**
