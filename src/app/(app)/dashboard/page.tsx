@@ -2,9 +2,10 @@ import {
   Clock,
   Target,
   CheckCircle,
-  Flame,
   AlertCircle,
   ArrowRight,
+  Award,
+  ChevronRight,
   Compass,
   Flag,
   Lock,
@@ -13,12 +14,9 @@ import {
   TrendingUp,
 } from "lucide-react"
 import Link from "next/link"
-import MetricCard from "@/components/dashboard/MetricCard"
-import ActivityFeed from "@/components/dashboard/ActivityFeed"
 import QuickActions from "@/components/dashboard/QuickActions"
 import StudyHoursChart from "./StudyHoursChart"
-import EmptyState from "@/components/shared/EmptyState"
-import { getAllChapters, getAllLessons, getAllQuestions } from "@/lib/content"
+import { getAllChapters, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getReviewQueue } from "@/lib/review-queue"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
@@ -31,7 +29,7 @@ import {
   computeStreaks,
   type Badge,
 } from "@/lib/gamification"
-import type { ActivityItem, Section } from "@/types"
+import type { Section } from "@/types"
 import TargetScoreControl from "./TargetScoreControl"
 
 const PLAN_LABELS: Record<string, string> = {
@@ -50,52 +48,6 @@ function timeOfDayGreeting(): string {
   if (hour < 12) return "Good morning"
   if (hour < 18) return "Good afternoon"
   return "Good evening"
-}
-
-/**
- * Today's question-goal pill. Shows the count vs the target with a
- * compact gold progress arc. Stays subdued until the goal is met,
- * then pulses green to mark the daily completion.
- */
-function DailyGoalWidget({
-  questionsToday,
-  goal,
-}: {
-  questionsToday: number
-  goal: number
-}) {
-  const pct = goal > 0 ? Math.min(100, Math.round((questionsToday / goal) * 100)) : 0
-  const met = questionsToday >= goal && goal > 0
-  return (
-    <div className="flex flex-col items-end gap-2 min-w-[180px]">
-      <div className="flex items-baseline gap-2">
-        <span
-          className="font-display text-xl font-semibold tabular-nums leading-none"
-          style={{ color: met ? "#3ECF8E" : "#F0F0F0" }}
-        >
-          {questionsToday}
-        </span>
-        <span className="text-[12px] tabular-nums" style={{ color: "#888888" }}>
-          / {goal}
-        </span>
-        <span
-          className="text-[10px] uppercase tracking-[0.18em] font-semibold ml-1"
-          style={{ color: met ? "#3ECF8E" : "#888888" }}
-        >
-          {met ? "Goal hit" : "Today"}
-        </span>
-      </div>
-      <div className="w-full h-1 rounded-full bg-white/[0.06] overflow-hidden">
-        <div
-          className="h-full rounded-full transition-all duration-500"
-          style={{
-            width: `${pct}%`,
-            backgroundColor: met ? "#3ECF8E" : "#C9A84C",
-          }}
-        />
-      </div>
-    </div>
-  )
 }
 
 export default async function DashboardPage() {
@@ -287,8 +239,6 @@ export default async function DashboardPage() {
 
   const greeting = timeOfDayGreeting()
 
-  const lessons = getAllLessons()
-
   // ---------- Query progress data from Supabase ----------
   let questionsThisWeek = 0
   let questionsToday = 0
@@ -317,7 +267,6 @@ export default async function DashboardPage() {
       priorWeek: { total: 0, correct: 0 },
     },
   }
-  let activityItems: ActivityItem[] = []
   let recentMistakes: {
     id: string
     section: Section
@@ -427,23 +376,6 @@ export default async function DashboardPage() {
         .select("user_id", { count: "exact", head: true })
         .eq("user_id", userId)
       lessonsCompletedCount = completedCount ?? 0
-
-      // Recent sessions for activity feed
-      const { data: recentSessions } = await supabase
-        .from("practice_sessions")
-        .select("id, slug, topic, section, accuracy, total_questions, correct_count, created_at")
-        .eq("user_id", userId)
-        .order("created_at", { ascending: false })
-        .limit(10)
-
-      activityItems = (recentSessions ?? []).map((s) => ({
-        id: s.id,
-        type: "practice_set" as const,
-        title: `${s.topic} Practice`,
-        description: `${s.correct_count}/${s.total_questions} correct · ${Math.round(Number(s.accuracy))}%`,
-        timestamp: s.created_at,
-        score: Math.round(Number(s.accuracy)),
-      }))
 
       // Recent mistakes — 3 most recent wrong attempts, enriched with prompt.
       const { data: recentWrong } = await supabase
@@ -719,12 +651,6 @@ export default async function DashboardPage() {
         sectionDerived.DI.score!
       )
     : null
-
-  const totalLessons = lessons.length
-  const lessonPct =
-    totalLessons > 0
-      ? Math.round((lessonsCompletedCount / totalLessons) * 100)
-      : 0
 
   // User's persisted target score lives in user_metadata.target_score.
   // Round to a GMAT-valid value defensively in case a future client writes
@@ -1165,133 +1091,39 @@ export default async function DashboardPage() {
     )
   }
 
-  // === Active-mode section numbering ===
-  // Numbers were hard-coded ternaries (`onboardingComplete ? "01" : "02"`),
-  // which left a gap at "06" whenever Quick Actions was hidden. Build the
-  // ordered list of sections that will actually render, then look up each
-  // section's index by key.
-  const renderedNumberedSections: string[] = []
-  if (!onboardingComplete) renderedNumberedSections.push("getting-started")
-  renderedNumberedSections.push("score-goal")
-  renderedNumberedSections.push("this-week")
-  renderedNumberedSections.push("study-hours")
-  if (!topFocus) renderedNumberedSections.push("quick-actions")
-  renderedNumberedSections.push("achievements")
-  renderedNumberedSections.push("recent-activity")
-  const sectionNum = (key: string) =>
-    String(renderedNumberedSections.indexOf(key) + 1).padStart(2, "0")
+  // === Active-mode derived bits ===
+  // Unlocked-badge count + the label of the most recently relevant unlocked
+  // badge, surfaced in the one-line Achievements chip. computeBadges returns
+  // a stable order with earlier-earned milestones first; the *last* unlocked
+  // entry is therefore the most advanced (most-recently-relevant) one.
+  const unlockedBadges = badges.filter((b) => b.unlocked)
+  const latestBadgeLabel =
+    unlockedBadges.length > 0 ? unlockedBadges[unlockedBadges.length - 1].label : null
 
   return (
-    <div className="max-w-7xl mx-auto space-y-10">
-      {/* Today's Mission — one decisive next step at the top of the
-          dashboard. Sourced from the study-plan engine's top focus
-          item. Renders only when the engine has a recommendation;
-          cold-start users see the greeting first instead. */}
-      {topFocus && (
-        <section
-          className="relative overflow-hidden rounded-2xl border"
-          style={{
-            backgroundColor: "#111111",
-            borderColor: "rgba(255,255,255,0.06)",
-          }}
-        >
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(ellipse 70% 55% at 100% 0%, rgba(201,168,76,0.12) 0%, transparent 60%)",
-            }}
-            aria-hidden
-          />
-          <div
-            className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
-            aria-hidden
-          />
-          <div className="relative flex flex-wrap items-center justify-between gap-6 p-6 sm:p-8">
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-3">
-                <Target
-                  className="w-3.5 h-3.5"
-                  style={{ color: "#C9A84C" }}
-                  aria-hidden
-                />
-                <p
-                  className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-                  style={{ color: "#C9A84C" }}
-                >
-                  Today&apos;s mission
-                </p>
-                <div
-                  className="h-px w-12"
-                  style={{
-                    background:
-                      "linear-gradient(to right, rgba(201,168,76,0.4), transparent)",
-                  }}
-                  aria-hidden
-                />
-              </div>
-              <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-tight leading-[1.15]">
-                {topFocus.title}
-              </h2>
-              <p className="text-[13px] sm:text-[14px] text-[#C0C0C0] mt-2 leading-relaxed max-w-2xl">
-                {topFocus.subtitle}
-              </p>
-              {topFocusMinutes !== null && (
-                <div className="mt-4 inline-flex items-center gap-1.5 text-[11px] text-[#888888]">
-                  <Clock className="w-3 h-3" aria-hidden />
-                  ~{topFocusMinutes} min
-                </div>
-              )}
-            </div>
-            <Link
-              href={topFocus.href}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98] flex-shrink-0"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-            >
-              {topFocus.cta}
-              <ArrowRight className="w-4 h-4" aria-hidden />
-            </Link>
-          </div>
-        </section>
-      )}
-
-      {/* Greeting — atmospheric editorial hero */}
-      <section className="relative overflow-hidden rounded-2xl border border-white/[0.06] px-6 py-10 sm:px-10 sm:py-14" style={{ backgroundColor: "#0D0D0D" }}>
+    <div className="max-w-7xl mx-auto space-y-6">
+      {/* Compact greeting bar — one slim row replacing the old ~200px
+          editorial hero. Greeting + date on the left; plan chip + a
+          compact daily-goal indicator on the right. Restrained gold. */}
+      <section
+        className="relative overflow-hidden rounded-2xl border border-white/[0.06] px-5 sm:px-6 py-4"
+        style={{ backgroundColor: "#0D0D0D" }}
+      >
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 80% 60% at 20% -10%, rgba(201,168,76,0.14) 0%, transparent 60%), radial-gradient(ellipse 70% 60% at 110% 110%, rgba(201,168,76,0.08) 0%, transparent 60%)",
+              "radial-gradient(ellipse 60% 120% at 0% 0%, rgba(201,168,76,0.08) 0%, transparent 60%)",
           }}
           aria-hidden
         />
-        <div
-          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.035] mix-blend-overlay"
-          aria-hidden
-        />
-        <div className="relative flex flex-wrap items-start justify-between gap-6">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.22em]" style={{ color: "#C9A84C" }}>
-                {today}
-              </p>
-              <div
-                className="h-px w-12"
-                style={{
-                  background:
-                    "linear-gradient(to right, rgba(201,168,76,0.4), transparent)",
-                }}
-                aria-hidden
-              />
-            </div>
-            <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">
+        <div className="relative flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+          <div className="min-w-0">
+            <h1 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-tight">
               {firstName ? (
                 <>
                   {greeting},{" "}
-                  <span
-                    className="font-display-italic"
-                    style={{ color: "#C9A84C" }}
-                  >
+                  <span className="font-display-italic" style={{ color: "#C9A84C" }}>
                     {firstName}.
                   </span>
                 </>
@@ -1302,223 +1134,61 @@ export default async function DashboardPage() {
                 </>
               )}
             </h1>
-            <p className="text-[15px] text-[#C0C0C0] leading-[1.75] mt-4 max-w-xl">
-              {hasData
-                ? "Pick up where you left off — your streak, review queue, and next lesson are waiting."
-                : "A few quick steps below and your GMAT plan goes adaptive."}
+            <p className="text-[12px] mt-1" style={{ color: "#888888" }}>
+              {today}
             </p>
           </div>
-          <div className="flex flex-col items-end gap-3 flex-shrink-0">
+          <div className="flex items-center gap-3 flex-shrink-0">
             {currentPlan && (
               <span
-                className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-semibold uppercase tracking-[0.22em] border"
+                className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-[0.18em] border"
                 style={{
                   backgroundColor: "rgba(201,168,76,0.08)",
                   borderColor: "rgba(201,168,76,0.25)",
                   color: "#C9A84C",
                 }}
               >
-                {planLabel(currentPlan)} Plan
+                {planLabel(currentPlan)}
               </span>
             )}
-            {/* Daily question goal — small progress widget. The goal is
-                stored per-user in user_metadata.daily_question_goal and
-                defaults to 25 when unset. Counts questions answered since
-                local midnight so a returning student knows what's left in
-                the day at a glance. */}
-            <DailyGoalWidget
-              questionsToday={questionsToday}
-              goal={dailyQuestionGoal}
-            />
+            {/* Daily question goal — count vs target since local midnight.
+                Subdued gold until the goal is hit, then green. */}
+            <div className="flex items-center gap-2">
+              <span
+                className="font-display text-base font-semibold tabular-nums leading-none"
+                style={{
+                  color:
+                    questionsToday >= dailyQuestionGoal && dailyQuestionGoal > 0
+                      ? "#3ECF8E"
+                      : "#F0F0F0",
+                }}
+              >
+                {questionsToday}
+              </span>
+              <span className="text-[12px] tabular-nums" style={{ color: "#888888" }}>
+                / {dailyQuestionGoal}
+              </span>
+              <span
+                className="text-[10px] uppercase tracking-[0.18em] font-semibold"
+                style={{
+                  color:
+                    questionsToday >= dailyQuestionGoal && dailyQuestionGoal > 0
+                      ? "#3ECF8E"
+                      : "#888888",
+                }}
+              >
+                {questionsToday >= dailyQuestionGoal && dailyQuestionGoal > 0
+                  ? "Goal hit"
+                  : "today"}
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Resume — pinpoints the chapter + section the student last
-          touched. Sits right under the greeting so returning users see
-          "continue where you left off" before any other suggestion.
-          Hidden when nothing has been touched yet, or when the chapter
-          is fully complete (NBA covers what to do next in that case). */}
-      {resumeTarget && !resumeTarget.isComplete && (
-        <Link
-          href={resumeTarget.href}
-          className="group relative block overflow-hidden rounded-2xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-20px_rgba(201,168,76,0.25)]"
-          style={{
-            borderColor: "rgba(201,168,76,0.22)",
-            backgroundColor: "#0D0D0D",
-            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
-          }}
-        >
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(ellipse 60% 50% at 0% 50%, rgba(201,168,76,0.08) 0%, transparent 60%)",
-            }}
-            aria-hidden
-          />
-          <div className="relative flex flex-wrap items-center gap-6 p-6">
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-3 mb-2">
-                <RotateCcw
-                  className="w-3.5 h-3.5"
-                  style={{ color: "#C9A84C" }}
-                />
-                <p
-                  className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-                  style={{ color: "#C9A84C" }}
-                >
-                  Resume reading
-                </p>
-                <span
-                  className="px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-[0.18em]"
-                  style={{
-                    backgroundColor: "rgba(201,168,76,0.08)",
-                    color: "#C9A84C",
-                  }}
-                >
-                  {resumeTarget.section}
-                </span>
-              </div>
-              <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-tight leading-[1.2]">
-                {resumeTarget.title}
-              </h2>
-              {resumeTarget.nextSectionTitle && (
-                <p className="text-[13px] text-[#888888] mt-1.5">
-                  Up next: {resumeTarget.nextSectionTitle}
-                </p>
-              )}
-              <div className="mt-4 flex items-center gap-3 max-w-xs">
-                <div className="h-1 flex-1 rounded-full bg-white/[0.06] overflow-hidden">
-                  <div
-                    className="h-full rounded-full transition-all duration-500"
-                    style={{
-                      width: `${resumeTarget.pct}%`,
-                      backgroundColor: "#C9A84C",
-                    }}
-                  />
-                </div>
-                <span className="text-[11px] text-[#555555] tabular-nums tracking-wide">
-                  {resumeTarget.pct}%
-                </span>
-              </div>
-            </div>
-            <div
-              className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-[13px] font-semibold transition-transform duration-200 group-hover:translate-x-0.5"
-              style={{
-                backgroundColor: "#C9A84C",
-                color: "#0A0A0A",
-              }}
-            >
-              Continue
-              <ArrowRight className="w-3.5 h-3.5" />
-            </div>
-          </div>
-        </Link>
-      )}
-
-      {/* Chapter complete — shown when the most-recently-touched chapter
-          is fully read. Acknowledges the completion and surfaces the next
-          chapter so there is no dead zone between chapters. */}
-      {resumeTarget && resumeTarget.isComplete && (
-        <div
-          className="relative overflow-hidden rounded-2xl border"
-          style={{
-            borderColor: "rgba(62,207,142,0.18)",
-            backgroundColor: "#0D0D0D",
-            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
-          }}
-        >
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(ellipse 50% 70% at 0% 50%, rgba(62,207,142,0.06) 0%, transparent 60%)",
-            }}
-            aria-hidden
-          />
-          <div className="relative flex flex-wrap items-center gap-6 p-6">
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-3 mb-2">
-                <CheckCircle className="w-3.5 h-3.5 text-[#3ECF8E]" />
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#3ECF8E]">
-                  Chapter complete
-                </p>
-                <span
-                  className="px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-[0.18em]"
-                  style={{
-                    backgroundColor: "rgba(62,207,142,0.08)",
-                    color: "#3ECF8E",
-                  }}
-                >
-                  {resumeTarget.section}
-                </span>
-              </div>
-              <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-tight leading-[1.2]">
-                {resumeTarget.title}
-              </h2>
-              <p className="text-[13px] text-[#555555] mt-1.5">
-                All sections read — problem sets available in the chapter.
-              </p>
-            </div>
-            {resumeTarget.nextChapter ? (
-              <Link
-                href={`/chapters/${resumeTarget.nextChapter.slug}`}
-                className="group flex items-center gap-2 px-4 py-2.5 rounded-lg text-[13px] font-semibold transition-all duration-200 hover:brightness-110 hover:translate-x-0.5"
-                style={{
-                  backgroundColor: "#C9A84C",
-                  color: "#0A0A0A",
-                }}
-              >
-                Next: {resumeTarget.nextChapter.title}
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            ) : (
-              <Link
-                href="/chapters"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-[13px] font-semibold"
-                style={{
-                  backgroundColor: "rgba(62,207,142,0.12)",
-                  color: "#3ECF8E",
-                }}
-              >
-                All chapters
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* Getting Started — disappears once all three steps are done */}
+      {/* Getting Started — disappears once all setup steps are done */}
       {!onboardingComplete && (
         <section>
-          <div className="flex items-center gap-3 mb-5">
-            <span
-              className="font-display text-[11px] font-semibold tabular-nums"
-              style={{ color: "rgba(201,168,76,0.55)" }}
-              aria-hidden
-            >
-              {sectionNum("getting-started")}
-            </span>
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-              style={{ color: "#C9A84C" }}
-            >
-              Build your GMAT baseline
-            </p>
-            <div
-              className="h-px flex-1"
-              style={{
-                background:
-                  "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-              }}
-              aria-hidden
-            />
-            <span className="text-[11px] text-[#888888] tabular-nums">
-              {onboardingDoneCount}/{onboardingSteps.length} done
-            </span>
-          </div>
           <div
             className="p-6 sm:p-7 rounded-2xl border"
             style={{
@@ -1527,7 +1197,7 @@ export default async function DashboardPage() {
             }}
           >
             <div className="flex items-center justify-between gap-3 mb-6">
-              <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1]">
+              <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-[1.1]">
                 {onboardingDoneCount === 0 ? (
                   <>
                     A few quick steps before you{" "}
@@ -1615,188 +1285,175 @@ export default async function DashboardPage() {
         </section>
       )}
 
-      {/* Score Goal Card — populated from derived section scores */}
-      <section id="score-goal" className="scroll-mt-20">
-        <div className="flex items-center gap-3 mb-5">
-          <span
-            className="font-display text-[11px] font-semibold tabular-nums"
-            style={{ color: "rgba(201,168,76,0.55)" }}
-            aria-hidden
-          >
-            {sectionNum("score-goal")}
-          </span>
-          <p
-            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-            style={{ color: "#C9A84C" }}
-          >
-            Score Goal
-          </p>
+      {/* Today's Mission — one decisive next step. Sourced from the
+          study-plan engine's top focus item. Renders only when the
+          engine has a recommendation. */}
+      {topFocus && (
+        <section
+          className="relative overflow-hidden rounded-2xl border"
+          style={{
+            backgroundColor: "#111111",
+            borderColor: "rgba(255,255,255,0.06)",
+          }}
+        >
           <div
-            className="h-px flex-1"
+            className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+                "radial-gradient(ellipse 70% 55% at 100% 0%, rgba(201,168,76,0.12) 0%, transparent 60%)",
             }}
             aria-hidden
           />
-        </div>
-        <div
-          className="p-6 sm:p-7 rounded-2xl border bg-[#0F0F0F]"
-          style={{ borderColor: "rgba(201,168,76,0.18)" }}
-        >
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-5">
-            <div className="flex items-center gap-4">
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
-              >
-                <Target className="w-5 h-5" style={{ color: "#C9A84C" }} />
-              </div>
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888]">
-                  Readiness → Target
+          <div
+            className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
+            aria-hidden
+          />
+          <div className="relative flex flex-wrap items-center justify-between gap-6 p-6 sm:p-8">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-3">
+                <Target
+                  className="w-3.5 h-3.5"
+                  style={{ color: "#C9A84C" }}
+                  aria-hidden
+                />
+                <p
+                  className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+                  style={{ color: "#C9A84C" }}
+                >
+                  Today&apos;s mission
                 </p>
-                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mt-1.5">
-                  <span
-                    className={
-                      estimatedTotal !== null
-                        ? "font-display text-4xl sm:text-[2.75rem] font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-none tabular-nums"
-                        : "font-display text-4xl sm:text-[2.75rem] font-semibold text-[#555555] tracking-[-0.02em] leading-none tabular-nums"
-                    }
-                  >
-                    {estimatedTotal !== null ? estimatedTotal : "—"}
-                  </span>
-                  <span className="text-xs uppercase tracking-[0.18em] text-[#555555] font-semibold">
-                    readiness
-                  </span>
-                  <span className="text-lg text-[#555555]">→</span>
-                  <TargetScoreControl
-                    initialTarget={targetScore}
-                    estimate={estimatedTotal}
-                  />
-                  {goalGapLabel && (
-                    <span
-                      className="ml-1 px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-[0.18em] border"
-                      style={{
-                        backgroundColor: "rgba(201,168,76,0.08)",
-                        borderColor: "rgba(201,168,76,0.25)",
-                        color: "#C9A84C",
-                      }}
-                    >
-                      {goalGapLabel}
-                    </span>
-                  )}
-                </div>
+                <div
+                  className="h-px w-12"
+                  style={{
+                    background:
+                      "linear-gradient(to right, rgba(201,168,76,0.4), transparent)",
+                  }}
+                  aria-hidden
+                />
               </div>
+              <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-tight leading-[1.15]">
+                {topFocus.title}
+              </h2>
+              <p className="text-[13px] sm:text-[14px] text-[#C0C0C0] mt-2 leading-relaxed max-w-2xl">
+                {topFocus.subtitle}
+              </p>
+              {topFocusMinutes !== null && (
+                <div className="mt-4 inline-flex items-center gap-1.5 text-[11px] text-[#888888]">
+                  <Clock className="w-3 h-3" aria-hidden />
+                  ~{topFocusMinutes} min
+                </div>
+              )}
             </div>
-            {estimatedTotal === null && (
-              <Link
-                href="/practice"
-                className="px-4 py-2 rounded-xl text-xs font-semibold tracking-tight transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] hover:opacity-90"
-                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            <Link
+              href={topFocus.href}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98] flex-shrink-0"
+              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            >
+              {topFocus.cta}
+              <ArrowRight className="w-4 h-4" aria-hidden />
+            </Link>
+          </div>
+        </section>
+      )}
+
+      {/* Quick Actions — fallback when Today's Mission isn't showing, so
+          users without a study-plan recommendation still get a clear
+          "what to do next" strip. */}
+      {!topFocus && <QuickActions />}
+
+      {/* Status strip — merges the old Score Goal + This Week cards into one
+          compact row of stat cells: readiness→target (with the inline,
+          editable TargetScoreControl), streak, week volume, week accuracy. */}
+      <section
+        className="rounded-2xl border bg-[#0F0F0F] p-4 sm:p-5"
+        style={{ borderColor: "rgba(255,255,255,0.06)" }}
+      >
+        <div className="grid grid-cols-2 sm:grid-cols-4 divide-y divide-white/[0.05] sm:divide-y-0 sm:divide-x">
+          {/* Readiness → Target */}
+          <div className="px-1 py-3 sm:px-4 sm:py-1">
+            <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888]">
+              Readiness → Target
+            </p>
+            <div className="flex items-baseline gap-2 mt-2">
+              <span
+                className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums"
+                style={{ color: estimatedTotal !== null ? "#F0F0F0" : "#555555" }}
               >
-                Start practicing
-              </Link>
+                {estimatedTotal !== null ? estimatedTotal : "—"}
+              </span>
+              <span className="text-base text-[#555555]">→</span>
+              <TargetScoreControl
+                initialTarget={targetScore}
+                estimate={estimatedTotal}
+              />
+            </div>
+            {goalGapLabel && (
+              <p className="text-[11px] mt-1.5" style={{ color: "#C9A84C" }}>
+                {goalGapLabel}
+              </p>
             )}
           </div>
 
-          {/* Lessons-completed progress bar */}
-          <div className="h-2 rounded-full bg-white/[0.06] overflow-hidden">
-            <div
-              className="h-full rounded-full transition-all duration-700"
-              style={{
-                width: `${lessonPct}%`,
-                backgroundColor: "#C9A84C",
-              }}
-            />
-          </div>
-          <div className="mt-3 flex items-start justify-between gap-4 text-[13px]">
-            <p className="text-[#C0C0C0] leading-[1.65] flex-1">
-              {estimatedTotal !== null
-                ? `Readiness band derived from ${Math.round(
-                    (sectionDerived.Quant.accuracy! +
-                      sectionDerived.Verbal.accuracy! +
-                      sectionDerived.DI.accuracy!) /
-                      3
-                  )}% average practice accuracy — a current-state signal, not a test-day forecast.`
-                : lessonsCompletedCount === 0
-                ? "Complete lessons and build up practice data — a readiness band appears after ~10 questions in each section."
-                : `${lessonsCompletedCount} of ${totalLessons} lessons complete. Practice all three sections to unlock your readiness band.`}
+          {/* Streak */}
+          <div className="px-1 py-3 sm:px-4 sm:py-1">
+            <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888]">
+              Streak
             </p>
-            <p className="text-[#888888] font-medium tabular-nums flex-shrink-0">
-              {lessonsCompletedCount}/{totalLessons} lessons
+            <p
+              className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums mt-2"
+              style={{ color: currentStreak > 0 ? "#F0F0F0" : "#555555" }}
+            >
+              {currentStreak > 0 ? currentStreak : "—"}
+              {currentStreak > 0 && (
+                <span className="text-[12px] font-medium text-[#888888] ml-1.5">
+                  {currentStreak === 1 ? "day" : "days"}
+                </span>
+              )}
             </p>
+            {longestStreak > currentStreak && (
+              <p className="text-[11px] mt-1.5" style={{ color: "#555555" }}>
+                best {longestStreak}d
+              </p>
+            )}
           </div>
-        </div>
-      </section>
 
-      {/* Weekly Stats */}
-      <section>
-        <div className="flex items-center gap-3 mb-5">
-          <span
-            className="font-display text-[11px] font-semibold tabular-nums"
-            style={{ color: "rgba(201,168,76,0.55)" }}
-            aria-hidden
-          >
-            {sectionNum("this-week")}
-          </span>
-          <p
-            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-            style={{ color: "#C9A84C" }}
-          >
-            This week
-          </p>
-          <div
-            className="h-px flex-1"
-            style={{
-              background:
-                "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-            }}
-            aria-hidden
-          />
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <MetricCard
-            label="Questions this week"
-            value={questionsThisWeek > 0 ? questionsThisWeek : null}
-            icon={CheckCircle}
-          />
-          <MetricCard
-            label="Weekly accuracy"
-            value={weekAccuracy}
-            unit={weekAccuracy !== null ? "%" : undefined}
-            icon={TrendingUp}
-          />
-          <MetricCard
-            label="Current streak"
-            value={currentStreak > 0 ? currentStreak : null}
-            unit={currentStreak > 0 ? (currentStreak === 1 ? "day" : "days") : undefined}
-            icon={Flame}
-            trend={
-              longestStreak > 0
-                ? longestStreak === currentStreak
-                  ? "stable"
-                  : "up"
-                : undefined
-            }
-            trendValue={
-              longestStreak > 0 ? `best ${longestStreak}d` : undefined
-            }
-            pulseOnMount={currentStreak > 0}
-          />
+          {/* This week — questions */}
+          <div className="px-1 py-3 sm:px-4 sm:py-1">
+            <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888]">
+              This week
+            </p>
+            <p
+              className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums mt-2"
+              style={{ color: questionsThisWeek > 0 ? "#F0F0F0" : "#555555" }}
+            >
+              {questionsThisWeek > 0 ? questionsThisWeek : "—"}
+              <span className="text-[12px] font-medium text-[#888888] ml-1.5">
+                questions
+              </span>
+            </p>
+          </div>
+
+          {/* Accuracy */}
+          <div className="px-1 py-3 sm:px-4 sm:py-1">
+            <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888]">
+              Accuracy
+            </p>
+            <p
+              className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums mt-2"
+              style={{ color: weekAccuracy !== null ? "#F0F0F0" : "#555555" }}
+            >
+              {weekAccuracy !== null ? weekAccuracy : "—"}
+              {weekAccuracy !== null && (
+                <span className="text-[12px] font-medium text-[#888888] ml-0.5">%</span>
+              )}
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Study hours — per-day time invested, week-by-week comparison */}
       <section>
         <div className="flex items-center gap-3 mb-5">
-          <span
-            className="font-display text-[11px] font-semibold tabular-nums"
-            style={{ color: "rgba(201,168,76,0.55)" }}
-            aria-hidden
-          >
-            {sectionNum("study-hours")}
-          </span>
           <p
             className="text-[10px] font-semibold uppercase tracking-[0.22em]"
             style={{ color: "#C9A84C" }}
@@ -1837,54 +1494,19 @@ export default async function DashboardPage() {
         </span>
       </Link>
 
-      {/* Quick Actions — hidden when Today's Mission is showing, since
-          the mission card already covers the "what to do next" intent.
-          Falls back to the full Quick Actions strip for users without a
-          study-plan recommendation yet. */}
-      {!topFocus && (
-        <section>
-          <div className="flex items-center gap-3 mb-5">
-            <span
-              className="font-display text-[11px] font-semibold tabular-nums"
-              style={{ color: "rgba(201,168,76,0.55)" }}
-              aria-hidden
-            >
-              {sectionNum("quick-actions")}
-            </span>
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-              style={{ color: "#C9A84C" }}
-            >
-              Quick Actions
-            </p>
-            <div
-              className="h-px flex-1"
-              style={{
-                background:
-                  "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-              }}
-              aria-hidden
-            />
-          </div>
-          <QuickActions />
-        </section>
-      )}
-
-      {/* Achievements */}
-      <section>
-        <div className="flex items-center gap-3 mb-5">
-          <span
-            className="font-display text-[11px] font-semibold tabular-nums"
-            style={{ color: "rgba(201,168,76,0.55)" }}
-            aria-hidden
-          >
-            {sectionNum("achievements")}
-          </span>
+      {/* Up next — consolidates Resume reading, Daily Review, Flagged,
+          and Recent Mistakes into one tight list of compact link rows.
+          Replaces the four separate lower cards + the resume cards. */}
+      <section
+        className="rounded-2xl border bg-[#0F0F0F] overflow-hidden"
+        style={{ borderColor: "rgba(255,255,255,0.06)" }}
+      >
+        <div className="flex items-center gap-3 px-5 pt-4 pb-2">
           <p
             className="text-[10px] font-semibold uppercase tracking-[0.22em]"
             style={{ color: "#C9A84C" }}
           >
-            Achievements
+            Up next
           </p>
           <div
             className="h-px flex-1"
@@ -1894,283 +1516,207 @@ export default async function DashboardPage() {
             }}
             aria-hidden
           />
-          <span className="text-[11px] text-[#888888] tabular-nums">
-            {badges.filter((b) => b.unlocked).length} / {badges.length} unlocked
+          <span className="text-[11px]" style={{ color: "#555555" }}>
+            Pick up where you left off
           </span>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-          {badges.map((badge) => {
-            const Icon = badge.unlocked ? badge.icon : Lock
-            return (
-              <div
-                key={badge.id}
-                className="group p-4 rounded-2xl border flex flex-col items-start gap-2 transition-all duration-300 hover:-translate-y-0.5"
-                style={{
-                  borderColor: badge.unlocked
-                    ? "rgba(201,168,76,0.25)"
-                    : "rgba(255,255,255,0.06)",
-                  backgroundColor: badge.unlocked
-                    ? "rgba(201,168,76,0.04)"
-                    : "#0F0F0F",
-                }}
-              >
-                <div
-                  className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{
-                    backgroundColor: badge.unlocked
-                      ? "rgba(201,168,76,0.12)"
-                      : "rgba(255,255,255,0.04)",
-                  }}
-                >
-                  <Icon
-                    className="w-4 h-4"
-                    style={{ color: badge.unlocked ? "#C9A84C" : "#555555" }}
-                  />
-                </div>
-                <div className="min-w-0">
-                  <p
-                    className={
-                      badge.unlocked
-                        ? "text-[13px] font-semibold text-[#F0F0F0] tracking-tight"
-                        : "text-[13px] font-semibold text-[#888888] tracking-tight"
-                    }
-                  >
-                    {badge.label}
-                  </p>
-                  <p className="text-[11px] text-[#555555] leading-snug mt-0.5">
-                    {badge.description}
-                  </p>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </section>
-
-      {/* Activity + Mistakes */}
-      <section className="grid lg:grid-cols-2 gap-8">
-        {/* Recent Activity */}
-        <div>
-          <div className="flex items-center gap-3 mb-5">
-            <span
-              className="font-display text-[11px] font-semibold tabular-nums"
-              style={{ color: "rgba(201,168,76,0.55)" }}
-              aria-hidden
+        <div className="divide-y divide-white/[0.04]">
+          {/* Resume reading / Chapter complete */}
+          {resumeTarget && !resumeTarget.isComplete && (
+            <Link
+              href={resumeTarget.href}
+              className="group flex items-center gap-3 px-5 py-3 min-h-[44px] transition-colors hover:bg-white/[0.02]"
             >
-              {sectionNum("recent-activity")}
-            </span>
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-              style={{ color: "#C9A84C" }}
-            >
-              Recent Activity
-            </p>
-            <div
-              className="h-px flex-1"
-              style={{
-                background:
-                  "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-              }}
-              aria-hidden
-            />
-          </div>
-          <div className="rounded-2xl border border-white/[0.06] bg-[#0F0F0F] p-2 transition-all duration-300 hover:border-white/[0.12]">
-            <ActivityFeed items={activityItems} />
-          </div>
-        </div>
-
-        {/* Recent Mistakes + Next Lesson */}
-        <div className="space-y-8">
-          {/* Daily Review — spaced-retrieval queue surfaced at the top
-              of the action column so retrieval practice is visible every
-              time the student opens the dashboard. */}
-          {reviewDueCount > 0 && (
-            <div>
-              <div className="flex items-center gap-3 mb-5">
-                <p
-                  className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-                  style={{ color: "#C9A84C" }}
-                >
-                  Daily Review
+              <span
+                className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
+              >
+                <RotateCcw className="w-3.5 h-3.5" style={{ color: "#C9A84C" }} />
+              </span>
+              <div className="flex-1 min-w-0">
+                <p className="text-[13px] font-semibold text-[#F0F0F0] truncate">
+                  Resume {resumeTarget.title}
                 </p>
-                <div
-                  className="h-px flex-1"
-                  style={{
-                    background:
-                      "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-                  }}
-                  aria-hidden
-                />
-              </div>
-              <Link
-                href="/review"
-                className="group p-5 rounded-2xl border flex items-start gap-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-20px_rgba(201,168,76,0.2)]"
-                style={{
-                  borderColor: "rgba(201,168,76,0.2)",
-                  backgroundColor: "rgba(201,168,76,0.04)",
-                }}
-              >
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: "rgba(201,168,76,0.12)" }}
-                >
-                  <RotateCcw className="w-5 h-5" style={{ color: "#C9A84C" }} />
-                </div>
-                <div className="flex-1">
-                  <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888] mb-1.5">
-                    Spaced retrieval
-                  </p>
-                  <p className="font-display text-lg font-semibold text-[#F0F0F0] tracking-tight leading-snug mb-1">
-                    {reviewDueCount} question{reviewDueCount === 1 ? "" : "s"} due for review
-                  </p>
-                  <p className="text-[13px] text-[#C0C0C0] leading-[1.6]">
-                    {reviewTopTopic
-                      ? `Weakest area right now: ${reviewTopTopic}`
-                      : "Ranked by recent misses and time since last seen"}
-                  </p>
-                </div>
-                <span
-                  className="flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-semibold tracking-tight transition-all duration-200 group-hover:scale-[1.02] group-active:scale-[0.98]"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  Start
-                </span>
-              </Link>
-            </div>
-          )}
-
-          {/* Flagged from last mock — nudges the student back into the
-              report to reconcile whatever they weren't sure about on
-              test day. Skipped when there are no flags on the most
-              recent mock. */}
-          {lastMockFlagCount > 0 && lastMockDate && (
-            <div>
-              <div className="flex items-center gap-3 mb-5">
-                <p
-                  className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-                  style={{ color: "#C9A84C" }}
-                >
-                  Flagged on your last mock
+                <p className="text-[12px] text-[#888888] truncate">
+                  {resumeTarget.nextSectionTitle
+                    ? `Up next: ${resumeTarget.nextSectionTitle}`
+                    : `${resumeTarget.section} · ${resumeTarget.pct}% read`}
                 </p>
-                <div
-                  className="h-px flex-1"
-                  style={{
-                    background:
-                      "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-                  }}
-                  aria-hidden
-                />
               </div>
-              <Link
-                href="/mock/report"
-                className="group p-5 rounded-2xl border flex items-start gap-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-20px_rgba(201,168,76,0.2)]"
-                style={{
-                  borderColor: "rgba(201,168,76,0.2)",
-                  backgroundColor: "rgba(201,168,76,0.04)",
-                }}
-              >
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: "rgba(201,168,76,0.12)" }}
-                >
-                  <Flag className="w-5 h-5" style={{ color: "#C9A84C" }} />
-                </div>
-                <div className="flex-1">
-                  <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888] mb-1.5">
-                    Mock {lastMockDate}
-                  </p>
-                  <p className="font-display text-lg font-semibold text-[#F0F0F0] tracking-tight leading-snug mb-1">
-                    {lastMockFlagCount} flagged question
-                    {lastMockFlagCount === 1 ? "" : "s"} to revisit
-                  </p>
-                  <p className="text-[13px] text-[#C0C0C0] leading-[1.6]">
-                    Reconcile these while the uncertainty is fresh — they already get a priority boost in your review queue.
-                  </p>
-                </div>
-                <span
-                  className="flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-semibold tracking-tight transition-all duration-200 group-hover:scale-[1.02] group-active:scale-[0.98]"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  Review
-                </span>
-              </Link>
-            </div>
-          )}
-
-          {/* Recent Mistakes */}
-          <div>
-            <div className="flex items-center gap-3 mb-5">
-              <p
-                className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-                style={{ color: "#C9A84C" }}
-              >
-                Recent Mistakes
-              </p>
-              <div
-                className="h-px flex-1"
-                style={{
-                  background:
-                    "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-                }}
+              <ChevronRight
+                className="w-4 h-4 flex-shrink-0 text-[#555555] transition-transform group-hover:translate-x-0.5"
                 aria-hidden
               />
-              {untaggedMistakeCount > 0 && (
-                <Link
-                  href="/error-log"
-                  className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] font-semibold px-2.5 py-1 rounded-full transition-colors hover:opacity-90"
-                  style={{
-                    backgroundColor: "rgba(255,68,68,0.1)",
-                    color: "#FF4444",
-                  }}
-                  title="Classifying a miss takes 5 seconds and makes your error analysis much sharper."
-                >
-                  {untaggedMistakeCount} untagged
-                </Link>
-              )}
-            </div>
-            {recentMistakes.length === 0 ? (
-              <EmptyState
-                icon={AlertCircle}
-                title="No mistakes logged yet"
-                description="Your error log will collect questions you got wrong so you can review patterns over time."
-                ctaHref="/error-log"
-                ctaLabel="Open error log"
-                size="sm"
-              />
-            ) : (
-              <Link
-                href="/error-log"
-                className="block rounded-2xl border border-white/[0.06] bg-[#0F0F0F] divide-y divide-white/[0.04] transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_20px_40px_-20px_rgba(201,168,76,0.15)]"
+            </Link>
+          )}
+          {resumeTarget && resumeTarget.isComplete && (
+            <Link
+              href={
+                resumeTarget.nextChapter
+                  ? `/chapters/${resumeTarget.nextChapter.slug}`
+                  : "/chapters"
+              }
+              className="group flex items-center gap-3 px-5 py-3 min-h-[44px] transition-colors hover:bg-white/[0.02]"
+            >
+              <span
+                className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                style={{ backgroundColor: "rgba(62,207,142,0.12)" }}
               >
-                {recentMistakes.map((m) => (
-                  <div key={m.id} className="p-4">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span
-                        className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em] font-semibold"
-                        style={{
-                          backgroundColor: "rgba(255,68,68,0.1)",
-                          color: "#FF4444",
-                        }}
-                      >
-                        {m.section}
-                      </span>
-                      <span className="text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888]">
-                        {m.topic}
-                      </span>
-                    </div>
-                    <p className="text-[13px] text-[#C0C0C0] line-clamp-2 leading-[1.65]">
-                      {m.preview || "Question source not found"}
-                    </p>
-                  </div>
-                ))}
-                <div className="p-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-[#888888] text-center hover:text-[#C9A84C] transition-colors">
-                  View full error log →
+                <CheckCircle className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
+              </span>
+              <div className="flex-1 min-w-0">
+                <p className="text-[13px] font-semibold text-[#F0F0F0] truncate">
+                  Chapter complete — {resumeTarget.title}
+                </p>
+                <p className="text-[12px] text-[#888888] truncate">
+                  {resumeTarget.nextChapter
+                    ? `Next: ${resumeTarget.nextChapter.title}`
+                    : "Browse all chapters"}
+                </p>
+              </div>
+              <ChevronRight
+                className="w-4 h-4 flex-shrink-0 text-[#555555] transition-transform group-hover:translate-x-0.5"
+                aria-hidden
+              />
+            </Link>
+          )}
+
+          {/* Review due */}
+          {reviewDueCount > 0 && (
+            <Link
+              href="/review"
+              className="group flex items-center gap-3 px-5 py-3 min-h-[44px] transition-colors hover:bg-white/[0.02]"
+            >
+              <span
+                className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
+              >
+                <RotateCcw className="w-3.5 h-3.5" style={{ color: "#C9A84C" }} />
+              </span>
+              <div className="flex-1 min-w-0">
+                <p className="text-[13px] font-semibold text-[#F0F0F0] truncate">
+                  {reviewDueCount} due for review
+                </p>
+                <p className="text-[12px] text-[#888888] truncate">
+                  {reviewTopTopic
+                    ? `Weakest: ${reviewTopTopic}`
+                    : "Spaced-retrieval queue"}
+                </p>
+              </div>
+              <ChevronRight
+                className="w-4 h-4 flex-shrink-0 text-[#555555] transition-transform group-hover:translate-x-0.5"
+                aria-hidden
+              />
+            </Link>
+          )}
+
+          {/* Flagged on last mock */}
+          {lastMockFlagCount > 0 && (
+            <Link
+              href="/mock/report"
+              className="group flex items-center gap-3 px-5 py-3 min-h-[44px] transition-colors hover:bg-white/[0.02]"
+            >
+              <span
+                className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
+              >
+                <Flag className="w-3.5 h-3.5" style={{ color: "#C9A84C" }} />
+              </span>
+              <div className="flex-1 min-w-0">
+                <p className="text-[13px] font-semibold text-[#F0F0F0] truncate">
+                  {lastMockFlagCount} flagged on your last mock
+                </p>
+                <p className="text-[12px] text-[#888888] truncate">
+                  {lastMockDate ? `Mock ${lastMockDate} — revisit` : "Revisit in the report"}
+                </p>
+              </div>
+              <ChevronRight
+                className="w-4 h-4 flex-shrink-0 text-[#555555] transition-transform group-hover:translate-x-0.5"
+                aria-hidden
+              />
+            </Link>
+          )}
+
+          {/* Recent mistakes — up to 3 rows */}
+          {recentMistakes.length === 0 ? (
+            <div className="flex items-center gap-3 px-5 py-3 min-h-[44px]">
+              <span
+                className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
+              >
+                <AlertCircle className="w-3.5 h-3.5" style={{ color: "#555555" }} />
+              </span>
+              <p className="text-[13px] text-[#888888]">No mistakes logged yet</p>
+            </div>
+          ) : (
+            recentMistakes.map((m) => (
+              <Link
+                key={m.id}
+                href="/error-log"
+                className="group flex items-center gap-3 px-5 py-3 min-h-[44px] transition-colors hover:bg-white/[0.02]"
+              >
+                <span
+                  className="px-1.5 py-0.5 rounded text-[10px] uppercase tracking-[0.14em] font-semibold flex-shrink-0"
+                  style={{ backgroundColor: "rgba(255,68,68,0.1)", color: "#FF4444" }}
+                >
+                  {m.section}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[13px] font-semibold text-[#F0F0F0] truncate">
+                    {m.topic}
+                  </p>
+                  <p className="text-[12px] text-[#888888] truncate">
+                    {m.preview || "Question source not found"}
+                  </p>
                 </div>
+                <ChevronRight
+                  className="w-4 h-4 flex-shrink-0 text-[#555555] transition-transform group-hover:translate-x-0.5"
+                  aria-hidden
+                />
               </Link>
-            )}
-          </div>
+            ))
+          )}
         </div>
+        {/* Footer — open error log, with an untagged hint when relevant */}
+        <Link
+          href="/error-log"
+          className="group flex items-center justify-between gap-3 px-5 py-3 border-t border-white/[0.04] transition-colors hover:bg-white/[0.02]"
+        >
+          <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] font-semibold text-[#888888] group-hover:text-[#C9A84C] transition-colors">
+            Open error log
+            <ArrowRight className="w-3.5 h-3.5" aria-hidden />
+          </span>
+          {untaggedMistakeCount > 0 && (
+            <span
+              className="text-[10px] uppercase tracking-[0.18em] font-semibold px-2 py-0.5 rounded-full"
+              style={{ backgroundColor: "rgba(255,68,68,0.1)", color: "#FF4444" }}
+            >
+              {untaggedMistakeCount} untagged
+            </span>
+          )}
+        </Link>
       </section>
+
+      {/* Achievements — collapsed from the 10-badge grid to a one-line chip */}
+      <div
+        className="flex items-center justify-between gap-3 px-5 py-3 rounded-2xl border border-white/[0.06]"
+        style={{ backgroundColor: "#0D0D0D" }}
+      >
+        <span className="inline-flex items-center gap-2.5 min-w-0">
+          <Award className="w-4 h-4 flex-shrink-0" style={{ color: "#C9A84C" }} aria-hidden />
+          <span className="text-[12px] font-semibold tabular-nums" style={{ color: "#F0F0F0" }}>
+            {unlockedBadges.length}/{badges.length} badges
+          </span>
+          {latestBadgeLabel && (
+            <span className="text-[12px] truncate" style={{ color: "#888888" }}>
+              · {latestBadgeLabel}
+            </span>
+          )}
+        </span>
+        <span className="text-[10px] uppercase tracking-[0.22em] font-semibold flex-shrink-0" style={{ color: "#555555" }}>
+          Achievements
+        </span>
+      </div>
     </div>
   )
 }
