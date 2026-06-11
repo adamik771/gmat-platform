@@ -19,6 +19,12 @@ import {
 } from "@/lib/calibration"
 import { getAllQuestions } from "@/lib/content"
 import type { Section } from "@/types"
+import {
+  PAYWALL_ENABLED,
+  canAccess,
+  getPlanTierForUser,
+} from "@/lib/entitlements"
+import UpgradeGate from "@/components/shared/UpgradeGate"
 import AnalyticsClient, {
   type DifficultyTimingRow,
   type ErrorPatternSummary,
@@ -108,6 +114,29 @@ export default async function AnalyticsPage() {
     } = await supabase.auth.getUser()
 
     if (user) {
+      // Paywall gate (reference implementation). Fully skipped while
+      // PAYWALL_ENABLED is off — no extra query, no behavior change, the page
+      // renders exactly as before. Flip PAYWALL_ENABLED=true to make the full
+      // analytics dashboard a paid feature. Copy this guard to gate any other
+      // surface (mock simulator, review queue, test builder).
+      if (PAYWALL_ENABLED) {
+        const tier = await getPlanTierForUser(supabase, user.id)
+        if (!canAccess(tier, "analytics")) {
+          return (
+            <UpgradeGate
+              feature="Analytics"
+              blurb="Per-topic accuracy, pacing breakdowns, behaviour patterns, calibration, and your score trajectory — the full diagnostic picture of where your points are going."
+              perks={[
+                "Per-topic accuracy and timing across Quant, Verbal, and Data Insights",
+                "Behaviour patterns: efficient, labored, rushed, or stuck",
+                "Confidence calibration and score-prediction accuracy",
+                "Full mock and practice score trajectory",
+              ]}
+            />
+          )
+        }
+      }
+
       // Official baseline — entering the first mba.com practice-exam score
       // unlocks several modules. Read straight from user_metadata.
       const metaOfficialScores = user.user_metadata?.official_exam_scores
