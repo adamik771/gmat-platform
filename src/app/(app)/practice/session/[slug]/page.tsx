@@ -9,6 +9,12 @@ import {
 } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import {
+  PAYWALL_ENABLED,
+  getPlanTierForUser,
+  practiceTestsAllowed,
+} from "@/lib/entitlements"
+import UpgradeGate from "@/components/shared/UpgradeGate"
+import {
   DEFAULT_LEVEL,
   getLevelForSlug,
   getTopicSkillLevels,
@@ -36,6 +42,35 @@ export default async function PracticeSessionPage({
     const chapterTitle = parsed ? getChapterBySlug(parsed.chapterSlug)?.title : undefined
     setLabel = chapterTitle ? `${chapterTitle} · ${chapterTest.label}` : chapterTest.label
   }
+
+  // Paywall gate: free accounts get the first test of each chapter; the rest
+  // are paid. Fully skipped while PAYWALL_ENABLED is off (no extra query).
+  // Only applies to chapter-test slugs — topic-set / custom / review slugs
+  // are gated elsewhere or not at all.
+  if (PAYWALL_ENABLED && chapterTest) {
+    const parsedForGate = parseChapterTestSlug(slug)
+    if (parsedForGate) {
+      const supabase = await createSupabaseServer()
+      const {
+        data: { user },
+      } = await supabase.auth.getUser()
+      const tier = user ? await getPlanTierForUser(supabase, user.id) : "free"
+      if (parsedForGate.testIndex > practiceTestsAllowed(tier)) {
+        return (
+          <UpgradeGate
+            feature="More practice tests"
+            blurb="Free accounts get the first test in every chapter. Unlock every test in all chapters across Quant, Verbal, and Data Insights — hundreds of original, timing-targeted questions."
+            perks={[
+              "Every practice test in all 49 chapters",
+              "Hundreds of additional original questions",
+              "Full per-chapter coverage, easy to hard",
+            ]}
+          />
+        )
+      }
+    }
+  }
+
   const questions = chapterTest
     ? getQuestionsByIds(chapterTest.questionIds)
     : getQuestionsBySetSlug(slug)

@@ -1,11 +1,40 @@
 import { getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
+import {
+  PAYWALL_ENABLED,
+  canAccess,
+  getPlanTierForUser,
+} from "@/lib/entitlements"
+import UpgradeGate from "@/components/shared/UpgradeGate"
 import TestBuilderClient, {
   type QuestionPoolEntry,
   type RecentCustomTest,
 } from "./TestBuilderClient"
 
 export default async function TestBuilderPage() {
+  // Paywall gate (fully skipped while PAYWALL_ENABLED is off — no extra query).
+  if (PAYWALL_ENABLED) {
+    const supabase = await createSupabaseServer()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+    if (user) {
+      const tier = await getPlanTierForUser(supabase, user.id)
+      if (!canAccess(tier, "test-builder")) {
+        return (
+          <UpgradeGate
+            feature="The custom test builder"
+            blurb="Build your own timed tests filtered by topic, difficulty, and count — targeted reps on exactly the sub-skills you choose, drawn from the full question bank."
+            perks={[
+              "Filter by section, topic, and difficulty",
+              "Choose your own question count and timing",
+              "Draws from the full question bank, not a sample",
+            ]}
+          />
+        )
+      }
+    }
+  }
   // The client samples from this pool on Generate. Shipping the full 443-row
   // question list is a few KB — cheaper than POSTing to the server on every
   // click, and keeps the action instant.

@@ -18,7 +18,6 @@ import {
 } from "./constants"
 import ErrorLogClient, {
   type MistakeEntry,
-  type SectionBreakdown,
 } from "./ErrorLogClient"
 import BreakdownCard, {
   type FamilyBreakdown,
@@ -164,21 +163,6 @@ export default async function ErrorLogPage({
   } catch {
     // Supabase unavailable — render empty state below.
   }
-
-  // Per-section breakdown across all mistakes (not filtered) — top-of-page.
-  const sectionBreakdown: SectionBreakdown[] = (
-    ["Quant", "Verbal", "DI"] as const
-  ).map((section) => {
-    const count = mistakes.filter((m) => m.section === section).length
-    return {
-      section,
-      count,
-      pct:
-        mistakes.length > 0
-          ? Math.round((count / mistakes.length) * 100)
-          : 0,
-    }
-  })
 
   // Per-family breakdown. Groups tagged mistakes by their error family
   // (9 families in the framework taxonomy), lumps legacy-tagged rows
@@ -439,7 +423,6 @@ export default async function ErrorLogPage({
           <InsightsPanel insights={insights} />
 
           <BreakdownCard
-            sectionBreakdown={sectionBreakdown}
             familyBreakdown={familyBreakdown}
             rootCauseBreakdown={rootCauseBreakdown}
             contributingBreakdown={contributingBreakdown}

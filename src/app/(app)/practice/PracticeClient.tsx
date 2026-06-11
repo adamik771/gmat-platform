@@ -6,6 +6,7 @@ import {
   Clock,
   Compass,
   Flag,
+  Lock,
   RotateCcw,
   Sparkles,
   Target,
@@ -45,10 +46,14 @@ export default function PracticeClient({
   chapterGroups,
   recommendations = [],
   targetScore = null,
+  lockTestsBeyond = null,
 }: {
   chapterGroups: PracticeChapterGroup[]
   recommendations?: PracticeRecommendation[]
   targetScore?: number | null
+  /** Lock per-chapter tests whose 1-based index exceeds this number (free
+   *  accounts when the paywall is on). null = no locking. */
+  lockTestsBeyond?: number | null
 }) {
   // Accuracy the score formula (205 + accuracy x 600) demands for the goal.
   const requiredAccuracy =
@@ -404,6 +409,7 @@ export default function PracticeClient({
                   key={group.chapterSlug}
                   group={group}
                   requiredAccuracy={requiredAccuracy}
+                  lockTestsBeyond={lockTestsBeyond}
                 />
               ))}
             </div>
@@ -430,9 +436,11 @@ export default function PracticeClient({
 function ChapterBlock({
   group,
   requiredAccuracy,
+  lockTestsBeyond,
 }: {
   group: PracticeChapterGroup
   requiredAccuracy: number | null
+  lockTestsBeyond: number | null
 }) {
   const totalQ = group.tests.reduce((s, t) => s + t.count, 0)
   return (
@@ -457,11 +465,12 @@ function ChapterBlock({
         </div>
       ) : (
         <div className="mt-3 space-y-2.5">
-          {group.tests.map((test) => (
+          {group.tests.map((test, i) => (
             <ChapterTestRow
               key={test.id}
               test={test}
               requiredAccuracy={requiredAccuracy}
+              locked={lockTestsBeyond !== null && i + 1 > lockTestsBeyond}
             />
           ))}
         </div>
@@ -478,9 +487,12 @@ function ChapterBlock({
 function ChapterTestRow({
   test,
   requiredAccuracy,
+  locked = false,
 }: {
   test: PracticeTest
   requiredAccuracy: number | null
+  /** Paid test the free account can't run yet — links to /pricing. */
+  locked?: boolean
 }) {
   const { easy, medium, hard } = test.difficultyMix
   const pills: Array<{ label: string; count: number; color: string }> = []
@@ -494,20 +506,29 @@ function ChapterTestRow({
       : null
   return (
     <Link
-      href={`/practice/session/${test.id}`}
-      aria-label={`Start ${test.label} — ${test.count} questions`}
-      className="group flex items-center justify-between gap-4 px-4 sm:px-5 py-4 rounded-xl border border-white/[0.06] bg-[#0D0D0D] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.14] hover:bg-[#111111]"
+      href={locked ? "/pricing" : `/practice/session/${test.id}`}
+      aria-label={
+        locked
+          ? `${test.label} — locked, see plans to unlock`
+          : `Start ${test.label} — ${test.count} questions`
+      }
+      className={
+        "group flex items-center justify-between gap-4 px-4 sm:px-5 py-4 rounded-xl border border-white/[0.06] bg-[#0D0D0D] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.14] hover:bg-[#111111]" +
+        (locked ? " opacity-70 hover:opacity-100" : "")
+      }
     >
       <div className="flex items-center gap-x-3.5 gap-y-1.5 min-w-0 flex-wrap">
         <span
           className="hidden sm:inline-flex items-center justify-center w-10 h-10 rounded-lg font-display text-[16px] font-semibold flex-shrink-0"
           style={{
-            backgroundColor: "rgba(201,168,76,0.10)",
-            color: "#C9A84C",
+            backgroundColor: locked
+              ? "rgba(255,255,255,0.04)"
+              : "rgba(201,168,76,0.10)",
+            color: locked ? "#888888" : "#C9A84C",
           }}
           aria-hidden
         >
-          {testNumber}
+          {locked ? <Lock className="w-4 h-4" /> : testNumber}
         </span>
         <span className="text-[15px] font-semibold text-[#F0F0F0]">
           {test.label}
@@ -534,7 +555,7 @@ function ChapterTestRow({
             </span>
           ))}
         </span>
-        {aimCount !== null && (
+        {aimCount !== null && !locked && (
           <span
             className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[12px] font-semibold tabular-nums"
             style={{
@@ -549,10 +570,19 @@ function ChapterTestRow({
       </div>
       <span
         className="inline-flex items-center gap-1.5 text-[12px] uppercase tracking-[0.18em] font-semibold flex-shrink-0 transition-colors"
-        style={{ color: "#C9A84C" }}
+        style={{ color: locked ? "#888888" : "#C9A84C" }}
       >
-        Start
-        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+        {locked ? (
+          <>
+            Unlock
+            <Lock className="w-3.5 h-3.5" />
+          </>
+        ) : (
+          <>
+            Start
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+          </>
+        )}
       </span>
     </Link>
   )
