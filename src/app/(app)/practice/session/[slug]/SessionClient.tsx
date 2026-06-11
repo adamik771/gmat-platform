@@ -25,6 +25,7 @@ import PacingBadge from "@/components/shared/PacingBadge"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
 import { applySessionAttempts, levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
+import { MAX_RUNG, SPACING_LADDER_DAYS } from "@/lib/review-queue"
 import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
@@ -87,6 +88,18 @@ export interface WeakTopicHint {
   accuracy: number
 }
 
+/** Spaced-review context, present only when the session was launched from
+ *  /review/[section]. `rungs` maps question id → the spacing-ladder rung the
+ *  question held BEFORE this session, so the completion screen can show each
+ *  question's movement (correct = one rung up, miss = reset to same-day).
+ *  `remainingDue` is how many more due questions the section's queue holds
+ *  beyond this session; `sectionPath` re-runs the section with a fresh queue. */
+export interface ReviewSessionContext {
+  rungs: Record<string, number>
+  remainingDue: number
+  sectionPath: string
+}
+
 interface SessionClientProps {
   slug: string
   topic: string
@@ -106,6 +119,7 @@ interface SessionClientProps {
   /** Optional context line shown above the session title, e.g.
    *  "Algebra: Linear Equations & Systems · Test 1" for a per-chapter test. */
   setLabel?: string
+  review?: ReviewSessionContext
 }
 
 function formatDuration(ms: number): string {
@@ -117,6 +131,12 @@ function formatDuration(ms: number): string {
 
 function letterFor(index: number): string {
   return String.fromCharCode(65 + index)
+}
+
+/** Human label for a spacing-ladder rung's interval: "today", "2d", … "42d". */
+function rungIntervalLabel(rung: number): string {
+  const days = SPACING_LADDER_DAYS[rung] ?? 0
+  return days === 0 ? "today" : `${days}d`
 }
 
 /** Coarse device-class detection for telemetry. Uses viewport width
@@ -1107,6 +1127,7 @@ export default function SessionClient({
   skillAttempts,
   weakestTopic,
   setLabel,
+  review,
 }: SessionClientProps) {
   const router = useRouter()
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -1477,6 +1498,20 @@ export default function SessionClient({
       .map((q, i) => ({ q, state: states[i], correct: isQuestionCorrect(q, states[i]) }))
       .filter((p) => p.state.submitted)
 
+    // Spacing-ladder outcome — review sessions only. Maps each answered
+    // question to its rung movement so the student sees what this session
+    // earned: a correct answer advances the question one rung (a longer gap
+    // before it resurfaces), a miss resets it to the same-day rung.
+    const ladderOutcome = review
+      ? answeredPairs.map(({ q, correct }) => {
+          const priorRung = review.rungs[q.id] ?? 0
+          const nextRung = correct ? Math.min(priorRung + 1, MAX_RUNG) : 0
+          return { q, correct, priorRung, nextRung }
+        })
+      : null
+    const ladderAdvanced = ladderOutcome?.filter((o) => o.correct) ?? []
+    const ladderReset = ladderOutcome?.filter((o) => !o.correct) ?? []
+
     // Accuracy broken down by difficulty level
     const diffLevels = ["Beginner", "Intermediate", "Advanced"] as const
     const difficultyBreakdown = diffLevels
@@ -1537,8 +1572,30 @@ export default function SessionClient({
     // In the mid-accuracy band (LOW–SOLID), also surface the cross-topic
     // weak area when it differs from the current topic: students building on
     // one topic deserve to know which gap is costing them the most overall.
-    const nextStepNote =
-      accuracy < LOW_ACCURACY
+    // Review sessions get their own note keyed to ladder movement instead of
+    // the practice accuracy bands — the meaningful outcome of retrieval
+    // practice is spacing, not topic mastery.
+    let reviewNote: string | null = null
+    if (review && ladderOutcome) {
+      const up = ladderAdvanced.length
+      const down = ladderReset.length
+      const ladderSentence =
+        down === 0
+          ? "Every question here climbed the spacing ladder — each one is parked until its longer interval elapses."
+          : up === 0
+          ? "Every question reset to same-day — they'll keep returning to today's queue until the recall sticks."
+          : `${up} question${up === 1 ? "" : "s"} climbed the spacing ladder; ${down} reset to same-day and will return until ${down === 1 ? "it sticks" : "they stick"}.`
+      const tail =
+        review.remainingDue > 0
+          ? ` ${review.remainingDue} more ${review.remainingDue === 1 ? "question is" : "questions are"} still due in this section today.`
+          : down > 0
+          ? " Retrying the resets now, while the explanations are fresh, is the fastest way to send them back up."
+          : " That clears this section's due pile — fresh practice seeds tomorrow's queue."
+      reviewNote = ladderSentence + tail
+    }
+
+    const nextStepNote = reviewNote ??
+      (accuracy < LOW_ACCURACY
         ? "Accuracy below 60% signals a concept gap. Revisiting the chapter before more practice compounds better."
         : accuracy < SOLID_ACCURACY
         ? weakestTopic && weakestTopic.topic !== topic
@@ -1546,17 +1603,17 @@ export default function SessionClient({
           : "Accuracy is building. One more focused session on this topic before moving on."
         : weakestTopic
         ? `This topic is solid. Based on your practice history, ${weakestTopic.topic} is your weakest area right now — ${Math.round(weakestTopic.accuracy * 100)}% accuracy. That's where the points are.`
-        : "This topic is solid. Investing time in a weaker area is the highest-leverage move now."
+        : "This topic is solid. Investing time in a weaker area is the highest-leverage move now.")
 
     return (
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
           <Link
-            href="/practice"
+            href={review ? "/review" : "/practice"}
             className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors"
           >
             <ArrowLeft className="w-3 h-3" />
-            Back to Practice
+            {review ? "Back to Review" : "Back to Practice"}
           </Link>
           <h1 className="text-2xl font-bold text-[#F0F0F0] mt-3">{headline}</h1>
           <p className="text-sm text-[#555555] mt-1">
@@ -1768,6 +1825,87 @@ export default function SessionClient({
               )
             })()}
         </div>
+
+        {/* Spacing-ladder outcome — review sessions only. Shows where each
+            answered question now sits on the ladder, so the retrieval work
+            has a visible payoff: longer intervals earned, resets named. */}
+        {ladderOutcome && ladderOutcome.length > 0 && (
+          <div
+            className="p-5 rounded-xl border"
+            style={{
+              borderColor: "rgba(255,255,255,0.06)",
+              backgroundColor: "#0D0D0D",
+            }}
+          >
+            <div className="flex items-center justify-between mb-1">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                Spacing ladder
+              </p>
+              <p className="text-[11px] tabular-nums" style={{ color: "#888888" }}>
+                {ladderAdvanced.length > 0 && (
+                  <span style={{ color: "#3ECF8E" }}>
+                    {ladderAdvanced.length} moved up
+                  </span>
+                )}
+                {ladderAdvanced.length > 0 && ladderReset.length > 0 && (
+                  <span className="mx-1.5 text-[#333333]">·</span>
+                )}
+                {ladderReset.length > 0 && (
+                  <span style={{ color: "rgba(255,107,107,0.85)" }}>
+                    {ladderReset.length} reset
+                  </span>
+                )}
+              </p>
+            </div>
+            <p className="text-xs leading-relaxed mb-4" style={{ color: "#888888" }}>
+              Each correct answer moves a question one rung up the ladder — a
+              longer gap before it returns. A miss sends it back to today&apos;s
+              queue.
+            </p>
+            <div className="space-y-1.5">
+              {[...ladderAdvanced, ...ladderReset].map((o) => {
+                const i = questions.findIndex((q) => q.id === o.q.id)
+                const stable = o.correct && o.priorRung === MAX_RUNG
+                return (
+                  <div
+                    key={o.q.id}
+                    className="flex items-center justify-between gap-3 py-1.5 px-3 rounded-lg"
+                    style={{
+                      backgroundColor: o.correct
+                        ? "rgba(62,207,142,0.04)"
+                        : "rgba(255,68,68,0.04)",
+                    }}
+                  >
+                    <p className="text-xs text-[#C0C0C0] truncate min-w-0">
+                      <span className="text-[#555555]">Q{i + 1}</span>
+                      <span className="mx-1.5 text-[#333333]">·</span>
+                      {o.q.subtopic}
+                    </p>
+                    <p
+                      className="text-[11px] font-semibold tabular-nums flex-shrink-0"
+                      style={{
+                        color: o.correct ? "#3ECF8E" : "rgba(255,107,107,0.85)",
+                      }}
+                    >
+                      {stable ? (
+                        <>42d &middot; stable</>
+                      ) : o.correct ? (
+                        <>
+                          <span style={{ color: "#555555" }}>
+                            {rungIntervalLabel(o.priorRung)}
+                          </span>{" "}
+                          &rarr; {rungIntervalLabel(o.nextRung)}
+                        </>
+                      ) : (
+                        <>back today</>
+                      )}
+                    </p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
 
         {(() => {
           const insight = computeInsight(questions, states, section)
@@ -2088,7 +2226,29 @@ export default function SessionClient({
           type NextAction = { label: string; href: string; variant: "primary" | "secondary" }
           const actions: NextAction[] = []
 
-          if (isMixedReview) {
+          if (review) {
+            // Review sessions: the next action is always about the queue,
+            // not topic drilling. Priority: clear what's still due, then
+            // re-run same-day resets while the explanations are fresh.
+            if (review.remainingDue > 0) {
+              actions.push({
+                label: `Review ${review.remainingDue} more due`,
+                href: review.sectionPath,
+                variant: "primary",
+              })
+              actions.push({ label: "Back to review queue", href: "/review", variant: "secondary" })
+            } else if (ladderReset.length > 0) {
+              actions.push({
+                label: "Retry today's resets",
+                href: review.sectionPath,
+                variant: "primary",
+              })
+              actions.push({ label: "Back to review queue", href: "/review", variant: "secondary" })
+            } else {
+              actions.push({ label: "Back to review queue", href: "/review", variant: "primary" })
+              actions.push({ label: "View your study plan", href: "/study-plan", variant: "secondary" })
+            }
+          } else if (isMixedReview) {
             actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
             actions.push({ label: "Review queue", href: "/review", variant: "secondary" })
           } else if (accuracy < LOW_ACCURACY) {
@@ -2206,7 +2366,7 @@ export default function SessionClient({
       {/* Header */}
       <div>
         <Link
-          href="/practice"
+          href={review ? "/review" : "/practice"}
           className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors"
         >
           <ArrowLeft className="w-3 h-3" />

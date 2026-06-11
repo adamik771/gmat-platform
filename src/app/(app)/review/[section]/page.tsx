@@ -12,6 +12,12 @@ import SessionClient, {
 /** How many questions to serve in one review session. */
 const SESSION_SIZE = 10
 
+/** How deep to scan the queue beyond the session itself — lets the
+ *  completion screen tell the student how many due questions remain
+ *  in this section after the set they just ran. Mirrors the limit the
+ *  /review landing page uses. */
+const QUEUE_SCAN_LIMIT = 60
+
 type SectionParam = "quant" | "verbal" | "di"
 
 const SECTION_MAP: Record<SectionParam, ReviewCandidate["section"]> = {
@@ -52,7 +58,7 @@ export default async function ReviewSectionPage({
 
   const queue = await getReviewQueue(supabase, user.id, {
     section,
-    limit: SESSION_SIZE,
+    limit: QUEUE_SCAN_LIMIT,
     flaggedQuestionIds: gatherFlaggedQuestionIds(user.user_metadata),
   })
 
@@ -81,9 +87,15 @@ export default async function ReviewSectionPage({
   const byId = new Map<string, ParsedQuestion>()
   for (const q of getAllQuestions()) byId.set(q.id, q)
 
-  const playable: SessionQuestion[] = queue
+  // The full playable pool (priority order), then the top N for this
+  // session. The difference is what's still due after the student
+  // finishes — surfaced on the completion screen.
+  const playablePool: ParsedQuestion[] = queue
     .map((c) => byId.get(c.questionId))
     .filter((q): q is ParsedQuestion => !!q && q.options.length > 0)
+
+  const playable: SessionQuestion[] = playablePool
+    .slice(0, SESSION_SIZE)
     .map((q, i) => ({
       id: q.id,
       number: i + 1,
@@ -118,6 +130,15 @@ export default async function ReviewSectionPage({
 
   const slug = `review-${sectionKey}-${new Date().toISOString().slice(0, 10)}`
 
+  // Prior rung per session question — the completion screen replays the
+  // ladder rules (correct = +1 rung, miss = reset) against these to show
+  // each question's movement.
+  const rungByQuestionId = new Map(queue.map((c) => [c.questionId, c.rung]))
+  const rungs: Record<string, number> = {}
+  for (const q of playable) {
+    rungs[q.id] = rungByQuestionId.get(q.id) ?? 0
+  }
+
   return (
     <div className="space-y-5">
       <Link
@@ -132,6 +153,11 @@ export default async function ReviewSectionPage({
         topic="Daily Review"
         section={section}
         questions={playable}
+        review={{
+          rungs,
+          remainingDue: playablePool.length - playable.length,
+          sectionPath: `/review/${sectionKey}`,
+        }}
       />
     </div>
   )
