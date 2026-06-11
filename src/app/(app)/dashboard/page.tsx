@@ -1187,100 +1187,72 @@ export default async function DashboardPage() {
       </section>
 
       {/* Getting Started — disappears once all setup steps are done */}
+      {/* Finish-setup strip — compact. Shows only the steps still left (no
+          re-listing completed ones) + a thin progress bar. Disappears once
+          onboarding is complete. */}
       {!onboardingComplete && (
-        <section>
-          <div
-            className="p-6 sm:p-7 rounded-2xl border"
-            style={{
-              borderColor: "rgba(201,168,76,0.2)",
-              backgroundColor: "rgba(201,168,76,0.04)",
-            }}
-          >
-            <div className="flex items-center justify-between gap-3 mb-6">
-              <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-[1.1]">
-                {onboardingDoneCount === 0 ? (
-                  <>
-                    A few quick steps before you{" "}
-                    <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-                      begin.
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    {onboardingDoneCount} of {onboardingSteps.length} done —{" "}
-                    <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-                      keep going.
-                    </span>
-                  </>
-                )}
-              </h2>
+        <section
+          className="rounded-2xl border overflow-hidden"
+          style={{
+            borderColor: "rgba(201,168,76,0.2)",
+            backgroundColor: "rgba(201,168,76,0.04)",
+          }}
+        >
+          <div className="flex items-center gap-3 px-5 pt-3.5 pb-2.5">
+            <p
+              className="text-[10px] font-semibold uppercase tracking-[0.22em] flex-shrink-0"
+              style={{ color: "#C9A84C" }}
+            >
+              Finish setup
+            </p>
+            <span
+              className="text-[11px] tabular-nums flex-shrink-0"
+              style={{ color: "#888888" }}
+            >
+              {onboardingDoneCount}/{onboardingSteps.length}
+            </span>
+            <div
+              className="h-1 flex-1 rounded-full bg-white/[0.06] overflow-hidden"
+              aria-hidden
+            >
               <div
-                className="h-1.5 w-28 rounded-full bg-white/[0.06] overflow-hidden flex-shrink-0"
-                aria-hidden
-              >
-                <div
-                  className="h-full rounded-full transition-all"
-                  style={{
-                    width: `${(onboardingDoneCount / onboardingSteps.length) * 100}%`,
-                    backgroundColor: "#C9A84C",
-                  }}
-                />
-              </div>
+                className="h-full rounded-full transition-all"
+                style={{
+                  width: `${(onboardingDoneCount / onboardingSteps.length) * 100}%`,
+                  backgroundColor: "#C9A84C",
+                }}
+              />
             </div>
-            <div className="space-y-3">
-              {onboardingSteps.map((step, i) => (
+          </div>
+          <div className="divide-y divide-white/[0.04]">
+            {onboardingSteps
+              .filter((step) => !step.done)
+              .map((step) => (
                 <Link
                   key={step.key}
                   href={step.href}
-                  className="group flex items-center gap-5 p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
-                  style={{
-                    borderColor: step.done
-                      ? "rgba(62,207,142,0.2)"
-                      : "rgba(255,255,255,0.08)",
-                    backgroundColor: step.done ? "rgba(62,207,142,0.04)" : "#0D0D0D",
-                  }}
+                  className="group flex items-center gap-3 px-5 py-3 min-h-[44px] transition-colors hover:bg-white/[0.02]"
                 >
                   <span
-                    className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{
-                      backgroundColor: step.done
-                        ? "rgba(62,207,142,0.15)"
-                        : "rgba(201,168,76,0.08)",
-                    }}
+                    className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                    style={{ backgroundColor: "#C9A84C" }}
+                    aria-hidden
+                  />
+                  <p className="flex-1 min-w-0 text-[13px] font-semibold text-[#F0F0F0] truncate">
+                    {step.label}
+                  </p>
+                  <span
+                    className="flex-shrink-0 inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.18em] font-semibold"
+                    style={{ color: "#C9A84C" }}
                   >
-                    {step.done ? (
-                      <CheckCircle className="w-4 h-4" style={{ color: "#3ECF8E" }} />
-                    ) : (
-                      <span
-                        className="font-display text-base font-semibold tabular-nums"
-                        style={{ color: "#C9A84C" }}
-                      >
-                        0{i + 1}
-                      </span>
-                    )}
+                    {step.cta}
+                    <ChevronRight
+                      className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+                      aria-hidden
+                    />
                   </span>
-                  <div className="flex-1 min-w-0">
-                    <p
-                      className="text-[15px] font-semibold tracking-tight"
-                      style={{ color: step.done ? "#888888" : "#F0F0F0" }}
-                    >
-                      {step.label}
-                    </p>
-                    <p className="text-[13px] text-[#888888] mt-0.5 leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                  {!step.done && (
-                    <span
-                      className="flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-semibold tracking-tight hidden sm:inline-flex transition-all duration-200 group-hover:scale-[1.02] group-active:scale-[0.98]"
-                      style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                    >
-                      {step.cta}
-                    </span>
-                  )}
                 </Link>
               ))}
-            </div>
           </div>
         </section>
       )}
