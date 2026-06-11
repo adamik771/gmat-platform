@@ -2029,6 +2029,20 @@ function ProblemSetsBlock({
     () => sets.filter((s) => s.questions.length > 0),
     [sets]
   )
+  // One runner for the whole block, keyed by difficulty, so the results
+  // screen can hand off directly into the next set without a close-and-
+  // hunt round trip through the card grid.
+  const [runningDifficulty, setRunningDifficulty] = useState<
+    "easy" | "medium" | "hard" | null
+  >(null)
+  const runningIdx = readySets.findIndex(
+    (s) => s.difficulty === runningDifficulty
+  )
+  const runningSet = runningIdx >= 0 ? readySets[runningIdx] : null
+  const nextSet =
+    runningIdx >= 0 && runningIdx + 1 < readySets.length
+      ? readySets[runningIdx + 1]
+      : null
   if (readySets.length === 0) return null
 
   return (
@@ -2071,14 +2085,38 @@ function ProblemSetsBlock({
         {readySets.map((set) => (
           <ProblemSetCard
             key={set.difficulty}
-            slug={slug}
             set={set}
             targetScore={targetScore}
             progress={progress}
-            update={update}
+            onStart={() => setRunningDifficulty(set.difficulty)}
           />
         ))}
       </div>
+
+      {runningSet && (
+        <ProblemSetRunner
+          key={runningSet.difficulty}
+          set={runningSet}
+          targetPct={resolveAccuracyTarget(
+            runningSet.targetAccuracyByScore,
+            targetScore
+          )}
+          nextSetDifficulty={nextSet?.difficulty ?? null}
+          onAdvance={
+            nextSet ? () => setRunningDifficulty(nextSet.difficulty) : undefined
+          }
+          onClose={() => setRunningDifficulty(null)}
+          onFinish={(correct, total) =>
+            update((prev) => ({
+              ...prev,
+              problemSetResults: {
+                ...prev.problemSetResults,
+                [runningSet.difficulty]: { correct, total },
+              },
+            }))
+          }
+        />
+      )}
 
       {/* Interleaved mixed review — the next-step drill once the student
           has run at least one problem set. Pulls from current chapter +
@@ -2116,19 +2154,16 @@ function countAttemptedProblemSets(progress: ChapterProgress): number {
 }
 
 function ProblemSetCard({
-  slug,
   set,
   targetScore,
   progress,
-  update,
+  onStart,
 }: {
-  slug: string
   set: ReaderProblemSet
   targetScore: number | null
   progress: ChapterProgress
-  update: (u: (prev: ChapterProgress) => ChapterProgress) => void
+  onStart: () => void
 }) {
-  const [running, setRunning] = useState(false)
   const result = progress.problemSetResults[set.difficulty]
   const targetPct = resolveAccuracyTarget(set.targetAccuracyByScore, targetScore)
   const achievedPct =
@@ -2145,97 +2180,82 @@ function ProblemSetCard({
       : "var(--read-gold)"
 
   return (
-    <>
-      <button
-        type="button"
-        onClick={() => setRunning(true)}
-        className="group p-5 rounded-2xl border text-left transition-all duration-300 hover:-translate-y-0.5"
-        style={{
-          borderColor: "var(--read-border-strong)",
-          backgroundColor: "var(--read-bg-inset)",
-        }}
-      >
-        <div className="flex items-center justify-between mb-3">
-          <p
-            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-            style={{ color: colorVar }}
-          >
-            {set.difficulty}
-          </p>
-          {achievedPct !== null && (
-            <span
-              className="text-[10px] px-2 py-0.5 rounded font-semibold uppercase tracking-[0.18em]"
-              style={{
-                backgroundColor: passedTarget
-                  ? "var(--read-success-soft)"
-                  : "var(--read-error-soft)",
-                color: passedTarget ? "var(--read-success)" : "var(--read-error)",
-              }}
-            >
-              {passedTarget ? "Passed" : "Retake"}
-            </span>
-          )}
-        </div>
+    <button
+      type="button"
+      onClick={onStart}
+      className="group p-5 rounded-2xl border text-left transition-all duration-300 hover:-translate-y-0.5"
+      style={{
+        borderColor: "var(--read-border-strong)",
+        backgroundColor: "var(--read-bg-inset)",
+      }}
+    >
+      <div className="flex items-center justify-between mb-3">
         <p
-          className="font-display text-base font-semibold tracking-tight"
-          style={{ color: "var(--read-text)" }}
+          className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+          style={{ color: colorVar }}
         >
-          {set.questions.length} question{set.questions.length === 1 ? "" : "s"}
+          {set.difficulty}
         </p>
-        <div
-          className="mt-4 h-1.5 rounded-full overflow-hidden"
-          style={{ backgroundColor: "var(--read-border)" }}
-        >
-          <div
-            className="h-full rounded-full transition-all duration-500"
+        {achievedPct !== null && (
+          <span
+            className="text-[10px] px-2 py-0.5 rounded font-semibold uppercase tracking-[0.18em]"
             style={{
-              width: `${achievedPct ?? 0}%`,
-              backgroundColor: colorVar,
+              backgroundColor: passedTarget
+                ? "var(--read-success-soft)"
+                : "var(--read-error-soft)",
+              color: passedTarget ? "var(--read-success)" : "var(--read-error)",
             }}
-          />
-        </div>
-        <div
-          className="mt-2.5 flex items-center justify-between text-[11px] tabular-nums"
-          style={{ color: "var(--read-text-faint)" }}
-        >
-          <span>
-            {achievedPct === null
-              ? `Goal: ${targetPct}%`
-              : `You: ${achievedPct}% · Goal: ${targetPct}%`}
+          >
+            {passedTarget ? "Passed" : "Retake"}
           </span>
-        </div>
-      </button>
-
-      {running && (
-        <ProblemSetRunner
-          slug={slug}
-          set={set}
-          targetPct={targetPct}
-          onClose={() => setRunning(false)}
-          onFinish={(correct, total) =>
-            update((prev) => ({
-              ...prev,
-              problemSetResults: {
-                ...prev.problemSetResults,
-                [set.difficulty]: { correct, total },
-              },
-            }))
-          }
+        )}
+      </div>
+      <p
+        className="font-display text-base font-semibold tracking-tight"
+        style={{ color: "var(--read-text)" }}
+      >
+        {set.questions.length} question{set.questions.length === 1 ? "" : "s"}
+      </p>
+      <div
+        className="mt-4 h-1.5 rounded-full overflow-hidden"
+        style={{ backgroundColor: "var(--read-border)" }}
+      >
+        <div
+          className="h-full rounded-full transition-all duration-500"
+          style={{
+            width: `${achievedPct ?? 0}%`,
+            backgroundColor: colorVar,
+          }}
         />
-      )}
-    </>
+      </div>
+      <div
+        className="mt-2.5 flex items-center justify-between text-[11px] tabular-nums"
+        style={{ color: "var(--read-text-faint)" }}
+      >
+        <span>
+          {achievedPct === null
+            ? `Goal: ${targetPct}%`
+            : `You: ${achievedPct}% · Goal: ${targetPct}%`}
+        </span>
+      </div>
+    </button>
   )
 }
 
 function ProblemSetRunner({
   set,
   targetPct,
+  nextSetDifficulty,
+  onAdvance,
   onClose,
   onFinish,
 }: {
-  slug: string
   set: ReaderProblemSet
   targetPct: number
+  /** Difficulty of the set after this one in the block, if any. Lets the
+   *  results screen chain straight into it instead of dead-ending. */
+  nextSetDifficulty: "easy" | "medium" | "hard" | null
+  onAdvance?: () => void
   onClose: () => void
   onFinish: (correct: number, total: number) => void
 }) {
@@ -2263,6 +2283,13 @@ function ProblemSetRunner({
     setIdx(idx + 1)
     setSelected(null)
     setSubmitted(false)
+  }
+  function restart() {
+    setIdx(0)
+    setSelected(null)
+    setSubmitted(false)
+    setAnswers([])
+    setDone(false)
   }
 
   // Modal-ish overlay. No portal — just a fixed position card.
@@ -2313,8 +2340,11 @@ function ProblemSetRunner({
         {done ? (
           <RunnerResults
             answers={answers}
-            total={set.questions.length}
+            questions={set.questions}
             targetPct={targetPct}
+            nextSetDifficulty={nextSetDifficulty}
+            onAdvance={onAdvance}
+            onRetake={restart}
             onClose={onClose}
           />
         ) : (
@@ -2436,61 +2466,174 @@ function ProblemSetRunner({
 
 function RunnerResults({
   answers,
-  total,
+  questions,
   targetPct,
+  nextSetDifficulty,
+  onAdvance,
+  onRetake,
   onClose,
 }: {
   answers: boolean[]
-  total: number
+  questions: ReaderQuestion[]
   targetPct: number
+  nextSetDifficulty: "easy" | "medium" | "hard" | null
+  onAdvance?: () => void
+  onRetake: () => void
   onClose: () => void
 }) {
+  const total = questions.length
   const correct = answers.filter(Boolean).length
   const pct = Math.round((correct / total) * 100)
   const passed = pct >= targetPct
+  const misses = questions
+    .map((q, i) => ({ q, i }))
+    .filter(({ i }) => answers[i] === false)
+  const MAX_MISSES_SHOWN = 5
+  const canAdvance = passed && nextSetDifficulty !== null && !!onAdvance
+
   return (
-    <div className="px-6 py-10 text-center space-y-6">
-      <div
-        className="mx-auto w-16 h-16 rounded-full flex items-center justify-center"
-        style={{
-          backgroundColor: passed ? "var(--read-success-soft)" : "var(--read-error-soft)",
-        }}
-      >
-        {passed ? (
-          <Award className="w-8 h-8" style={{ color: "var(--read-success)" }} />
-        ) : (
-          <BrainCircuit className="w-8 h-8" style={{ color: "var(--read-error)" }} />
+    <div className="px-6 py-10 space-y-6">
+      <div className="text-center space-y-6">
+        <div
+          className="mx-auto w-16 h-16 rounded-full flex items-center justify-center"
+          style={{
+            backgroundColor: passed ? "var(--read-success-soft)" : "var(--read-error-soft)",
+          }}
+        >
+          {passed ? (
+            <Award className="w-8 h-8" style={{ color: "var(--read-success)" }} />
+          ) : (
+            <BrainCircuit className="w-8 h-8" style={{ color: "var(--read-error)" }} />
+          )}
+        </div>
+        <div>
+          <p
+            className="font-display text-5xl font-semibold tabular-nums tracking-tight"
+            style={{ color: "var(--read-text)" }}
+          >
+            {pct}%
+          </p>
+          <p
+            className="text-[13px] mt-2 tabular-nums"
+            style={{ color: "var(--read-text-muted)" }}
+          >
+            {correct} / {total} correct
+          </p>
+        </div>
+        <p
+          className="text-[14px] leading-relaxed max-w-sm mx-auto"
+          style={{ color: passed ? "var(--read-success)" : "var(--read-error)" }}
+        >
+          {passed
+            ? nextSetDifficulty
+              ? `You beat your target of ${targetPct}%. The ${nextSetDifficulty} set is where this gets locked in.`
+              : `You beat your target of ${targetPct}% — and that was the final set for this chapter.`
+            : `Target was ${targetPct}%. Look at where the misses fell, reread that part of the chapter, and retake.`}
+        </p>
+      </div>
+
+      {/* Miss recap — names the specific questions that broke down so
+          "review the chapter" has a concrete starting point instead of
+          asking the student to reread everything. */}
+      {misses.length > 0 && (
+        <div
+          className="rounded-xl border text-left"
+          style={{
+            borderColor: "var(--read-border)",
+            backgroundColor: "var(--read-bg-inset)",
+          }}
+        >
+          <p
+            className="px-4 pt-3.5 pb-2.5 text-[10px] font-semibold uppercase tracking-[0.22em]"
+            style={{ color: "var(--read-text-faint)" }}
+          >
+            Where the misses fell
+          </p>
+          <div>
+            {misses.slice(0, MAX_MISSES_SHOWN).map(({ q, i }) => (
+              <div
+                key={q.id}
+                className="flex items-baseline gap-3 px-4 py-2.5 border-t"
+                style={{ borderColor: "var(--read-border)" }}
+              >
+                <span
+                  className="text-[11px] font-semibold tabular-nums flex-shrink-0"
+                  style={{ color: "var(--read-error)" }}
+                >
+                  Q{i + 1}
+                </span>
+                <div className="min-w-0">
+                  <p
+                    className="text-[11px] uppercase tracking-[0.14em] font-semibold"
+                    style={{ color: "var(--read-text-faint)" }}
+                  >
+                    {q.subtopic}
+                  </p>
+                  <p
+                    className="text-[13px] truncate mt-0.5"
+                    style={{ color: "var(--read-text-body)" }}
+                  >
+                    {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
+                  </p>
+                </div>
+              </div>
+            ))}
+            {misses.length > MAX_MISSES_SHOWN && (
+              <p
+                className="px-4 py-2.5 border-t text-[11px]"
+                style={{
+                  borderColor: "var(--read-border)",
+                  color: "var(--read-text-faint)",
+                }}
+              >
+                + {misses.length - MAX_MISSES_SHOWN} more — you&apos;ll see them
+                all again on a retake
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
+      <div className="flex flex-wrap items-center justify-center gap-3">
+        {!passed && (
+          <button
+            onClick={onRetake}
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
+            style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
+          >
+            Retake set
+          </button>
         )}
-      </div>
-      <div>
-        <p
-          className="font-display text-5xl font-semibold tabular-nums tracking-tight"
-          style={{ color: "var(--read-text)" }}
+        {canAdvance && (
+          <button
+            onClick={onAdvance}
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
+            style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
+          >
+            Start the {nextSetDifficulty} set
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        )}
+        <button
+          onClick={onClose}
+          className="px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight border transition-colors hover:opacity-90"
+          style={
+            passed && !canAdvance
+              ? {
+                  backgroundColor: "var(--read-gold)",
+                  color: "var(--read-bg-inset)",
+                  borderColor: "transparent",
+                }
+              : {
+                  borderColor: "var(--read-border-strong)",
+                  color: "var(--read-text-muted)",
+                  backgroundColor: "transparent",
+                }
+          }
         >
-          {pct}%
-        </p>
-        <p
-          className="text-[13px] mt-2 tabular-nums"
-          style={{ color: "var(--read-text-muted)" }}
-        >
-          {correct} / {total} correct
-        </p>
+          {passed ? "Back to chapter" : "Back to the reading"}
+        </button>
       </div>
-      <p
-        className="text-[14px] leading-relaxed max-w-sm mx-auto"
-        style={{ color: passed ? "var(--read-success)" : "var(--read-error)" }}
-      >
-        {passed
-          ? `Nice — you beat your target of ${targetPct}%.`
-          : `Target was ${targetPct}%. Review the chapter and retake when you're ready.`}
-      </p>
-      <button
-        onClick={onClose}
-        className="px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
-        style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
-      >
-        Close
-      </button>
     </div>
   )
 }
