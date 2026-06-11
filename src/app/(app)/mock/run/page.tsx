@@ -1,6 +1,12 @@
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
+import {
+  PAYWALL_ENABLED,
+  canAccess,
+  getPlanTierForUser,
+} from "@/lib/entitlements"
+import UpgradeGate from "@/components/shared/UpgradeGate"
 import { pickMockQuestions, getDifficultyMixForTarget } from "@/lib/mock"
 import {
   getMockSectionsForMode,
@@ -36,6 +42,25 @@ export default async function MockRunPage({
         body="The mock is timed and your results are saved — you need an authenticated account to take it."
       />
     )
+  }
+
+  // Paywall gate (no-op while PAYWALL_ENABLED is off). The Official Exam Plan
+  // on /mock stays free; the site's internal mock simulator is paid "extra reps".
+  if (PAYWALL_ENABLED) {
+    const tier = await getPlanTierForUser(supabase, user.id)
+    if (!canAccess(tier, "mock-simulator")) {
+      return (
+        <UpgradeGate
+          feature="The mock simulator"
+          blurb="Unlimited full-length, three-section timed simulations with mock-to-mock score trends — extra reps beyond your six official practice exams."
+          perks={[
+            "Unlimited full-length and section-only timed mocks",
+            "Hard mode, weak-area, and mixed-review mock variants",
+            "Mock-to-mock score trend and per-section forecast",
+          ]}
+        />
+      )
+    }
   }
 
   const params = await searchParams

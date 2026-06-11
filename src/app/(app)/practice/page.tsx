@@ -2,6 +2,11 @@ import { getPracticeChapterGroups, getQuestionSets } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { collectAdaptiveSignals } from "@/lib/adaptive-plan-engine"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
+import {
+  PAYWALL_ENABLED,
+  getPlanTierForUser,
+  practiceTestsAllowed,
+} from "@/lib/entitlements"
 import PracticeClient, { type PracticeRecommendation } from "./PracticeClient"
 
 export default async function PracticePage() {
@@ -17,6 +22,10 @@ export default async function PracticePage() {
   const knownSlugs = new Set(getQuestionSets().map((s) => s.slug))
   let recommendations: PracticeRecommendation[] = []
   let targetScore: number | null = null
+  // How many tests per chapter are unlocked. null = no locking (paywall off):
+  // the list renders every test as before. A number means lock tests beyond
+  // that index (free accounts when the paywall is on).
+  let lockTestsBeyond: number | null = null
   try {
     const supabase = await createSupabaseServer()
     const {
@@ -31,6 +40,11 @@ export default async function PracticePage() {
         rawTarget <= 805
           ? rawTarget
           : null
+      if (PAYWALL_ENABLED) {
+        const tier = await getPlanTierForUser(supabase, user.id)
+        const allowed = practiceTestsAllowed(tier)
+        lockTestsBeyond = Number.isFinite(allowed) ? allowed : null
+      }
       const flaggedQuestionIds = gatherFlaggedQuestionIds(user.user_metadata)
       const signals = await collectAdaptiveSignals(
         supabase,
@@ -58,6 +72,7 @@ export default async function PracticePage() {
       chapterGroups={chapterGroups}
       recommendations={recommendations}
       targetScore={targetScore}
+      lockTestsBeyond={lockTestsBeyond}
     />
   )
 }
