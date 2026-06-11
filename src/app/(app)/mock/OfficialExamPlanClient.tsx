@@ -12,6 +12,11 @@ import {
   Plus,
   Trash2,
 } from "lucide-react"
+import {
+  MS_PER_DAY,
+  parseIsoDate,
+  deriveScheduleSlots,
+} from "@/lib/official-exams"
 
 /**
  * OfficialExamPlanClient — the primary card on /mock.
@@ -62,19 +67,6 @@ const WEEKDAY_NAMES = [
   "Saturday",
 ] as const
 
-const MS_PER_DAY = 86_400_000
-
-/** Parse YYYY-MM-DD as a UTC date so weekday math is timezone-stable. */
-function parseIsoDate(iso: string): Date | null {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return null
-  const d = new Date(`${iso}T00:00:00Z`)
-  return Number.isNaN(d.getTime()) ? null : d
-}
-
-function toIso(d: Date): string {
-  return d.toISOString().slice(0, 10)
-}
-
 function formatDisplayDate(iso: string): string {
   const d = parseIsoDate(iso)
   if (!d) return iso
@@ -84,25 +76,6 @@ function formatDisplayDate(iso: string): string {
     day: "numeric",
     timeZone: "UTC",
   })
-}
-
-/**
- * Schedule derivation: candidate slots are examDate - 7k for k = 6..1
- * (ascending) — same weekday as the exam, strictly before it, last slot
- * exactly one week out. Past slots without an entry are shown as
- * "Missed" only once the student has logged at least one official
- * (i.e. the plan is in use); for a student arriving with fewer than 6
- * weeks left, stale pre-plan weeks are hidden and only the slots that
- * still fit are listed.
- */
-function deriveScheduleSlots(examIso: string): string[] {
-  const exam = parseIsoDate(examIso)
-  if (!exam) return []
-  const slots: string[] = []
-  for (let k = 6; k >= 1; k--) {
-    slots.push(toIso(new Date(exam.getTime() - k * 7 * MS_PER_DAY)))
-  }
-  return slots
 }
 
 export default function OfficialExamPlanClient({
