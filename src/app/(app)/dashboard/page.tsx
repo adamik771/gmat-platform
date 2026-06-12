@@ -306,26 +306,100 @@ export default async function DashboardPage() {
       const supabase = await createSupabaseServer()
       const userId = user.id
 
-      // Weekly sessions (last 7 days)
+      // Time windows for the per-user reads below (computed once).
       const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString()
-      const { data: weekSessions } = await supabase
-        .from("practice_sessions")
-        .select("total_questions, correct_count, total_time_ms, accuracy")
-        .eq("user_id", userId)
-        .gte("created_at", weekAgo)
+      const localMidnightIso = new Date(
+        new Date(new Date().toDateString()).getTime()
+      ).toISOString()
+
+      // Fire every independent per-user read in ONE parallel batch instead of
+      // ~13 sequential round-trips. Each query depends only on userId/time —
+      // never on another query's result — so running them concurrently is
+      // behaviour-preserving and just collapses the latency.
+      const [
+        weekSessionsRes,
+        todaySessionsRes,
+        totalSessionRes,
+        sectionAttemptsRes,
+        completedCountRes,
+        recentWrongRes,
+        latestPurchaseRes,
+        allSessionsRes,
+        allCompletionsRes,
+        customProbeRes,
+        tagRowsRes,
+        totalWrongRes,
+        reviewQueueRes,
+      ] = await Promise.all([
+        supabase
+          .from("practice_sessions")
+          .select("total_questions, correct_count, total_time_ms, accuracy")
+          .eq("user_id", userId)
+          .gte("created_at", weekAgo),
+        supabase
+          .from("practice_sessions")
+          .select("total_questions, created_at")
+          .eq("user_id", userId)
+          .gte("created_at", localMidnightIso),
+        supabase
+          .from("practice_sessions")
+          .select("id", { count: "exact", head: true })
+          .eq("user_id", userId),
+        supabase
+          .from("practice_attempts")
+          .select("section, is_correct, practice_sessions(created_at)")
+          .eq("user_id", userId),
+        supabase
+          .from("lesson_completions")
+          .select("user_id", { count: "exact", head: true })
+          .eq("user_id", userId),
+        supabase
+          .from("practice_attempts")
+          .select("id, question_id, section, topic")
+          .eq("user_id", userId)
+          .eq("is_correct", false)
+          .order("session_id", { ascending: false })
+          .limit(3),
+        supabase
+          .from("purchases")
+          .select("plan_id")
+          .eq("user_id", userId)
+          .order("paid_at", { ascending: false })
+          .limit(1)
+          .maybeSingle(),
+        supabase
+          .from("practice_sessions")
+          .select("created_at, total_questions, total_time_ms")
+          .eq("user_id", userId),
+        supabase
+          .from("lesson_completions")
+          .select("completed_at")
+          .eq("user_id", userId),
+        supabase
+          .from("practice_sessions")
+          .select("id")
+          .eq("user_id", userId)
+          .eq("slug", "custom")
+          .limit(1)
+          .maybeSingle(),
+        supabase.from("error_tags").select("reviewed").eq("user_id", userId),
+        supabase
+          .from("practice_attempts")
+          .select("id", { count: "exact", head: true })
+          .eq("user_id", userId)
+          .eq("is_correct", false),
+        getReviewQueue(supabase, userId, {
+          limit: 60,
+          flaggedQuestionIds: gatherFlaggedQuestionIds(user.user_metadata),
+        }),
+      ])
+
+      const { data: weekSessions } = weekSessionsRes
 
       questionsThisWeek =
         weekSessions?.reduce((s, r) => s + r.total_questions, 0) ?? 0
 
-      // Today's questions — same data, narrowed to sessions started after
-      // local midnight. The session's created_at is UTC; comparing against
-      // a local-midnight Date works because Supabase returns ISO timestamps.
-      const localMidnightMs = new Date(new Date().toDateString()).getTime()
-      const { data: todaySessions } = await supabase
-        .from("practice_sessions")
-        .select("total_questions, created_at")
-        .eq("user_id", userId)
-        .gte("created_at", new Date(localMidnightMs).toISOString())
+      const { data: todaySessions } = todaySessionsRes
       questionsToday =
         todaySessions?.reduce((s, r) => s + r.total_questions, 0) ?? 0
 
@@ -338,19 +412,13 @@ export default async function DashboardPage() {
           : null
 
       // Total sessions ever
-      const { count } = await supabase
-        .from("practice_sessions")
-        .select("id", { count: "exact", head: true })
-        .eq("user_id", userId)
+      const { count } = totalSessionRes
       totalSessionCount = count
 
       // Per-section accuracy from all attempts — join the parent session's
       // created_at so we can split into overall / this-week / prior-week
       // buckets for trend calculations.
-      const { data: sectionAttempts } = await supabase
-        .from("practice_attempts")
-        .select("section, is_correct, practice_sessions(created_at)")
-        .eq("user_id", userId)
+      const { data: sectionAttempts } = sectionAttemptsRes
 
       const weekAgoMs = Date.now() - 7 * 86400000
       const twoWeeksAgoMs = Date.now() - 14 * 86400000
@@ -379,20 +447,11 @@ export default async function DashboardPage() {
       }
 
       // Lessons completed count
-      const { count: completedCount } = await supabase
-        .from("lesson_completions")
-        .select("user_id", { count: "exact", head: true })
-        .eq("user_id", userId)
+      const { count: completedCount } = completedCountRes
       lessonsCompletedCount = completedCount ?? 0
 
       // Recent mistakes — 3 most recent wrong attempts, enriched with prompt.
-      const { data: recentWrong } = await supabase
-        .from("practice_attempts")
-        .select("id, question_id, section, topic")
-        .eq("user_id", userId)
-        .eq("is_correct", false)
-        .order("session_id", { ascending: false })
-        .limit(3)
+      const { data: recentWrong } = recentWrongRes
 
       if (recentWrong && recentWrong.length > 0) {
         const byId = new Map(getAllQuestions().map((q) => [q.id, q]))
@@ -415,27 +474,15 @@ export default async function DashboardPage() {
 
       // Most-recent purchase → current plan chip. Users may upgrade later
       // so we take the latest row.
-      const { data: latestPurchase } = await supabase
-        .from("purchases")
-        .select("plan_id")
-        .eq("user_id", userId)
-        .order("paid_at", { ascending: false })
-        .limit(1)
-        .maybeSingle()
+      const { data: latestPurchase } = latestPurchaseRes
       currentPlan = (latestPurchase?.plan_id as string | null) ?? null
 
       // ---------- Streaks + badges ----------
       // Every date the user had ANY activity — practice sessions or lesson
       // completions. Two small queries plus a Set dedupe beats one big
       // union query and keeps the streak logic in plain JS.
-      const { data: allSessions } = await supabase
-        .from("practice_sessions")
-        .select("created_at, total_questions, total_time_ms")
-        .eq("user_id", userId)
-      const { data: allCompletions } = await supabase
-        .from("lesson_completions")
-        .select("completed_at")
-        .eq("user_id", userId)
+      const { data: allSessions } = allSessionsRes
+      const { data: allCompletions } = allCompletionsRes
 
       const activeDays = new Set<string>()
       let totalQuestions = 0
@@ -458,20 +505,11 @@ export default async function DashboardPage() {
       longestStreak = streak.longest
 
       // Did the user ever build a custom test? Single-row probe.
-      const { data: customProbe } = await supabase
-        .from("practice_sessions")
-        .select("id")
-        .eq("user_id", userId)
-        .eq("slug", "custom")
-        .limit(1)
-        .maybeSingle()
+      const { data: customProbe } = customProbeRes
       const hasCustomTest = !!customProbe
 
       // Reviewed vs tagged mistakes — badge progress.
-      const { data: tagRows } = await supabase
-        .from("error_tags")
-        .select("reviewed")
-        .eq("user_id", userId)
+      const { data: tagRows } = tagRowsRes
       let taggedMistakeCount = 0
       let reviewedMistakeCount = 0
       for (const t of tagRows ?? []) {
@@ -481,11 +519,7 @@ export default async function DashboardPage() {
 
       // Untagged mistakes = total wrong attempts − tagged attempts.
       // Head-only count keeps the payload tiny; we never pull the rows.
-      const { count: totalWrongCount } = await supabase
-        .from("practice_attempts")
-        .select("id", { count: "exact", head: true })
-        .eq("user_id", userId)
-        .eq("is_correct", false)
+      const { count: totalWrongCount } = totalWrongRes
       untaggedMistakeCount = Math.max(
         0,
         (totalWrongCount ?? 0) - taggedMistakeCount
@@ -510,10 +544,7 @@ export default async function DashboardPage() {
 
       // Daily review queue — surface the count + top weak topic on the
       // dashboard so retrieval practice becomes a visible daily prompt.
-      const queue = await getReviewQueue(supabase, userId, {
-        limit: 60,
-        flaggedQuestionIds: gatherFlaggedQuestionIds(user.user_metadata),
-      })
+      const queue = reviewQueueRes
       reviewDueCount = queue.length
       if (queue.length > 0) {
         const counts = new Map<string, number>()
