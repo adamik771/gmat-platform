@@ -7,6 +7,7 @@ import {
   ChevronRight,
   ClipboardList,
   Compass,
+  ExternalLink,
   GraduationCap,
   LineChart,
   ListChecks,
@@ -296,6 +297,19 @@ export default async function CoursePage() {
                       Open the official exam plan
                       <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                     </Link>
+                    <a
+                      href="https://www.mba.com/exam-prep/gmat-official-practice-exams"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors hover:border-white/20"
+                      style={{
+                        borderColor: "rgba(255,255,255,0.10)",
+                        color: "#C0C0C0",
+                      }}
+                    >
+                      Get the exam on mba.com
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
                     <Link
                       href="/study-plan"
                       className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors"
