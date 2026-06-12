@@ -21,15 +21,14 @@ import HeroDashboardCard from "@/components/marketing/HeroDashboardCard"
 import ScoreCalloutNumbers from "@/components/marketing/ScoreCalloutNumbers"
 import LeadCapture from "@/components/marketing/LeadCapture"
 
+// The guided path's five phases — mirrors the /course curriculum section
+// and the real chapter order (CHAPTER_PATH_ORDER).
 const modules = [
-  { num: "01", title: "Mindset Reset", desc: "Rewire how you approach standardized tests." },
-  { num: "02", title: "Baseline Deep Dive", desc: "Official practice exam first — know exactly where you stand on day one." },
-  { num: "03", title: "Quant Mastery", desc: "PS, DS, and number sense from the ground up." },
-  { num: "04", title: "Verbal Precision", desc: "CR, RC, and SC — clarity over cramming." },
-  { num: "05", title: "Data Insights", desc: "The newest section. Demystified." },
-  { num: "06", title: "Mock Strategy", desc: "Simulate real exam conditions, then debrief." },
-  { num: "07", title: "Final Week Protocol", desc: "The last 7 days before your exam." },
-  { num: "08", title: "Bonus Resources", desc: "Templates, flashcards, formula sheets." },
+  { num: "01", title: "Foundations First", desc: "Arithmetic and section fundamentals — eased in, even with a weak math background." },
+  { num: "02", title: "The Strategy Toolkit", desc: "Backsolving, plugging in, estimation — turn algebra into arithmetic." },
+  { num: "03", title: "Core Topics in Rotation", desc: "Quant, Verbal, and Data Insights built in parallel — not months apart." },
+  { num: "04", title: "Advanced Ground & Traps", desc: "Counting, probability, boldface, answer traps — the 645-to-705 layer." },
+  { num: "05", title: "Timing & Mixed Pressure", desc: "Pacing frameworks and mixed sets under real exam conditions." },
 ]
 
 const pillars = [
@@ -286,7 +285,7 @@ export default function HomePage() {
           <FeatureCard
             icon={BookOpen}
             title="Structured Curriculum"
-            description="8 progressive modules built around how the GMAT actually tests you — not how you think it does."
+            description="One guided path through 50+ chapters, built around how the GMAT actually tests you — not how you think it does."
           />
           <FeatureCard
             icon={BarChart3}
@@ -337,10 +336,10 @@ export default function HomePage() {
               Curriculum
             </p>
             <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] mb-4 tracking-[-0.02em] leading-[1.05]">
-              8 modules. One coherent system.
+              One guided path. Five phases.
             </h2>
             <p className="text-[#888888]">
-              Each module builds on the last. No random video library — a real progression.
+              Each chapter builds on the last. No random video library — a real progression.
             </p>
           </div>
 

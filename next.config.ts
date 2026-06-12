@@ -83,6 +83,16 @@ const nextConfig: NextConfig = {
       { source: "/chapters/statistics-probability", destination: "/chapters/quant-23-statistics", permanent: true },
       { source: "/chapters/combinatorics", destination: "/chapters/quant-24-counting-basics", permanent: true },
       { source: "/chapters/word-problems", destination: "/chapters/quant-17-translating-word-problems", permanent: true },
+      // Lessons library retired (2026-06-12) — the guided-path chapters
+      // superseded it. Section lessons map to their section's entry chapter;
+      // exam-prep lessons map to the official-exam plan.
+      { source: "/lessons/03-quant-mastery", destination: "/chapters/quant-05-order-and-signed-numbers", permanent: true },
+      { source: "/lessons/04-verbal-precision", destination: "/chapters/verbal-01-foundations", permanent: true },
+      { source: "/lessons/05-data-insights", destination: "/chapters/di-foundations", permanent: true },
+      { source: "/lessons/02-diagnostic-deep-dive", destination: "/mock", permanent: true },
+      { source: "/lessons/06-mock-strategy", destination: "/mock", permanent: true },
+      { source: "/lessons/:path*", destination: "/chapters", permanent: true },
+      { source: "/lessons", destination: "/chapters", permanent: true },
     ]
   },
 };

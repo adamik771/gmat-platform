@@ -14,7 +14,6 @@ const APP_ROUTES = [
   "/error-log",
   "/guides",
   "/learn",
-  "/lessons",
   "/mock",
   "/onboarding",
   "/practice",

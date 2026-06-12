@@ -10,83 +10,91 @@ import {
   Users,
 } from "lucide-react"
 import SectionWrapper from "@/components/shared/SectionWrapper"
-import { getAllLessons, getContentStats } from "@/lib/content"
+import { getAllChapters, getContentStats } from "@/lib/content"
 import CurriculumTopics from "./CurriculumTopics"
 
 export const metadata: Metadata = {
   title: "Course",
-  description: "A complete GMAT prep system. 8 modules, structured curriculum.",
+  description:
+    "A complete GMAT prep system. One guided path through 50+ chapters.",
 }
 
-// Marketing bullet lists per module. The lesson markdown files describe
-// content, not marketing beats, so these stay hand-authored. Keyed by
-// `module` number from the lesson frontmatter.
-const topicsByModule: Record<number, string[]> = {
-  1: [
-    "How the GMAT actually scores you",
-    "Why content-heavy prep fails",
-    "Building your study identity",
-    "The error log framework",
-  ],
-  2: [
-    "Official practice-exam baseline",
-    "Section-by-section analysis",
-    "Identifying your highest-leverage weaknesses",
-    "Building your personalized study plan",
-  ],
-  3: [
-    "Number properties & arithmetic",
-    "Algebra & word problems",
-    "Statistics & probability",
-    "Data Sufficiency strategy",
-    "Quant timing framework",
-  ],
-  4: [
-    "Critical Reasoning argument mapping",
-    "RC passage strategy for dense texts",
-    "Inference and assumption techniques",
-    "Non-native speaker shortcuts",
-    "Verbal timing framework",
-  ],
-  5: [
-    "Multi-Source Reasoning strategy",
-    "Table Analysis approach",
-    "Graphics Interpretation",
-    "Two-Part Analysis",
-    "DI timing and pacing",
-  ],
-  6: [
-    "Mock exam protocol",
-    "Post-mock debrief framework",
-    "Score analysis by section",
-    "Adjusting your plan based on results",
-  ],
-  7: [
-    "Final week study schedule",
-    "What NOT to do the week before",
-    "Sleep, nutrition, and logistics",
-    "Day-of mindset protocol",
-  ],
-  8: [
-    "Vocabulary and reading speed drills",
-    "Verbal pacing for non-native speakers",
-    "Language-agnostic CR & RC techniques",
-    "Mindset advantages of discipline",
-  ],
-}
-
-function formatDuration(minutes: number): string {
-  if (minutes >= 60) {
-    const hours = minutes / 60
-    const rounded = Math.round(hours * 10) / 10
-    return `${rounded} hour${rounded === 1 ? "" : "s"}`
-  }
-  return `${minutes} min`
-}
-
-function sectionLabel(section: string): string {
-  return section === "General" ? "Foundation" : section
-}
+// The guided path, phase by phase. Each phase lists the slugs of a few
+// representative chapters; their display titles are derived from the real
+// curriculum at render time so this section can never drift from the
+// product (CHAPTER_PATH_ORDER in src/lib/content.ts is the actual order).
+const PHASES: Array<{
+  num: string
+  title: string
+  sections: string
+  description: string
+  exampleSlugs: string[]
+}> = [
+  {
+    num: "01",
+    title: "Foundations first",
+    sections: "Quant · Verbal · DI",
+    description:
+      "The arithmetic and section fundamentals everything else builds on — designed to ease you in even with a weaker math background.",
+    exampleSlugs: [
+      "quant-05-order-and-signed-numbers",
+      "quant-06-fractions-decimals",
+      "quant-07-gcf-lcm-units-digits",
+      "verbal-01-foundations",
+      "di-foundations",
+    ],
+  },
+  {
+    num: "02",
+    title: "The strategy toolkit",
+    sections: "Quant",
+    description:
+      "Backsolving, plugging in numbers, estimation, answer-choice tactics — the quick-win methods that turn algebra into arithmetic.",
+    exampleSlugs: [
+      "quant-01-backsolving",
+      "quant-02-plugging-in-numbers",
+      "quant-03-estimation",
+      "quant-04-answer-choice-tactics",
+    ],
+  },
+  {
+    num: "03",
+    title: "Core topics, three sections in rotation",
+    sections: "Quant · Verbal · DI",
+    description:
+      "A couple of Quant chapters, then Verbal, then Data Insights — every section builds in parallel instead of months apart.",
+    exampleSlugs: [
+      "quant-13-linear-equations-systems",
+      "quant-19-percents",
+      "verbal-03-cr-assumption",
+      "data-sufficiency",
+      "table-analysis",
+      "quant-21-rate-time-distance",
+    ],
+  },
+  {
+    num: "04",
+    title: "Advanced ground and trap immunity",
+    sections: "Quant · Verbal · DI",
+    description:
+      "Counting, probability, boldface, the answer-trap chapters — the second-tier patterns that separate a 645 from a 705.",
+    exampleSlugs: [
+      "quant-25-permutations-combinations",
+      "quant-27-probability",
+      "verbal-10-cr-boldface",
+      "verbal-20-rc-answer-traps",
+      "multi-source-reasoning",
+    ],
+  },
+  {
+    num: "05",
+    title: "Timing and mixed pressure",
+    sections: "Quant · Verbal · DI",
+    description:
+      "Once the content is in, train the clock: per-section pacing frameworks and mixed sets under real exam pressure.",
+    exampleSlugs: ["quant-30-timing", "verbal-21-mixed-timing", "di-timing-mixed"],
+  },
+]
 
 const weeks = [
   { week: "Week 1–2", focus: "Baseline + Mindset" },
@@ -100,16 +108,20 @@ const weeks = [
 ]
 
 export default function CoursePage() {
-  const lessons = getAllLessons()
   const stats = getContentStats()
 
-  const modules = lessons.map((lesson) => ({
-    num: String(lesson.module).padStart(2, "0"),
-    title: lesson.title,
-    section: sectionLabel(lesson.section),
-    duration: formatDuration(lesson.duration),
-    description: lesson.description,
-    topics: topicsByModule[lesson.module] ?? [],
+  // Resolve each phase's example slugs to live chapter titles so the
+  // curriculum section always reflects the real guided path.
+  const titleBySlug = new Map(getAllChapters().map((c) => [c.slug, c.title]))
+  const modules = PHASES.map((phase) => ({
+    num: phase.num,
+    title: phase.title,
+    section: phase.sections,
+    duration: `${phase.exampleSlugs.length}+ chapters`,
+    description: phase.description,
+    topics: phase.exampleSlugs
+      .map((slug) => titleBySlug.get(slug))
+      .filter((t): t is string => !!t),
   }))
 
   const included = [
@@ -187,8 +199,9 @@ export default function CoursePage() {
               <span className="text-[#888888]">Not a collection of videos.</span>
             </h1>
             <p className="text-[17px] sm:text-[18px] text-[#C0C0C0] leading-relaxed max-w-2xl">
-              8 progressive modules, built around how the GMAT actually tests you. Each
-              lesson connects to the next. Every mistake feeds into the system.
+              One guided path through 50+ chapters, built around how the GMAT
+              actually tests you. Each chapter connects to the next. Every
+              mistake feeds into the system.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
@@ -222,14 +235,15 @@ export default function CoursePage() {
             Curriculum
           </p>
           <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-4">
-            Eight modules. One coherent{" "}
+            One guided path. Five{" "}
             <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              progression.
+              phases.
             </span>
           </h2>
           <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
-            Each module earns its place. No random video library — a real sequence, built
-            to compound.
+            Foundations first, strategy early, the three sections built in
+            rotation — easier chapters in, advanced and timing work last. A
+            real sequence, built to compound.
           </p>
         </div>
 
