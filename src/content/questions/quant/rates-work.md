@@ -987,7 +987,9 @@ Let u represent the boat's upstream speed in miles per hour. The downstream spee
 
 24 / u + 24 / (u + 4) = 5.
 
-Multiplying both sides of the equation by u(u + 4) to clear the denominators gives
+With concrete answer choices available, the fastest route is to test them in this equation. The value u = 8 makes both fractions clean: 24 / 8 = 3 and 24 / 12 = 2, so the total time is 3 + 2 = 5 hours, exactly as required. The upstream speed is therefore 8 miles per hour.
+
+To solve algebraically instead, multiply both sides of the equation by u(u + 4) to clear the denominators, which gives
 
 24(u + 4) + 24u = 5u(u + 4).
 
@@ -1003,13 +1005,13 @@ Moving all terms to one side produces the quadratic equation
 
 5u^2 - 28u - 96 = 0.
 
-Applying the quadratic formula, the discriminant is (-28)^2 - 4(5)(-96) = 784 + 1920 = 2704, and the square root of 2704 is 52. Thus
+There is no need for the quadratic formula here. Since the test above showed that u = 8 satisfies the original equation, (u - 8) must be a factor, and the quadratic factors as
 
-u = (28 + 52) / 10 = 80 / 10 = 8,
+5u^2 - 28u - 96 = (u - 8)(5u + 12) = 0.
 
-where the negative root is discarded because speed must be positive.
+The factorization checks quickly: the outer and inner products are 12u and -40u, which combine to -28u, and the constants give (-8)(12) = -96. The two roots are u = 8 and u = -12/5, and the negative root is discarded because a speed must be positive, leaving u = 8 as the only solution.
 
-We verify this result: with u = 8, the upstream time is 24 / 8 = 3 hours and the downstream time is 24 / 12 = 2 hours, for a total of 5 hours, as required.
+Both routes agree: the boat's upstream speed is 8 miles per hour, giving an upstream leg of 24 / 8 = 3 hours and a downstream leg of 24 / 12 = 2 hours, for the required total of 5 hours.
 
 The correct answer is D.
 **related_reading:** reading-quant-05-word-problems

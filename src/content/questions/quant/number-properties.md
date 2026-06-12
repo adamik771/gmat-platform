@@ -1641,7 +1641,7 @@ What is the smallest positive integer n such that 252n is a perfect square?
 - E) 63
 
 **answer:** D
-**explanation:** We factor 252 = 2^2 · 3^2 · 7. A perfect square requires every prime to appear to an even power. The factors 2 and 3 already have even exponents, but 7 appears to the first power. Multiplying by 7 makes the exponent of 7 even, giving 252 · 7 = 1764 = 42^2. No smaller positive integer accomplishes this, since the deficiency lies entirely in the single factor of 7. The correct answer is D.
+**explanation:** We factor 252 = 2^2 · 3^2 · 7. A perfect square requires every prime to appear to an even power. The factors 2 and 3 already have even exponents, but 7 appears to the first power. Multiplying by 7 makes the exponent of 7 even: 252 · 7 = 2^2 · 3^2 · 7^2 = (2 · 3 · 7)^2 = 42^2, a perfect square by its very structure. No smaller positive integer accomplishes this, since the deficiency lies entirely in the single factor of 7. The correct answer is D.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -1736,7 +1736,7 @@ How many perfect squares lie between 50 and 500, inclusive?
 - E) 17
 
 **answer:** D
-**explanation:** A perfect square n^2 lies in the interval when 50 ≤ n^2 ≤ 500. Taking square roots, we need approximately 7.07 ≤ n ≤ 22.36, so the integer values are n = 8 through n = 22. The count is 22 - 8 + 1 = 15. The smallest qualifying square is 8^2 = 64 and the largest is 22^2 = 484, both within the bounds. The distractor 14 arises from dropping one endpoint of the n-range. The correct answer is D.
+**explanation:** A perfect square n^2 lies in the interval when 50 ≤ n^2 ≤ 500. We bracket each end with known squares. At the low end, 7^2 = 49 falls short of 50 while 8^2 = 64 qualifies, so the smallest value is n = 8. At the high end, 22^2 = 484 fits within 500 while 23^2 = 529 overshoots, so the largest value is n = 22. The integer values are therefore n = 8 through n = 22, and the count is 22 - 8 + 1 = 15. The distractor 14 arises from dropping one endpoint of the n-range. The correct answer is D.
 **related_reading:** reading-quant-03-number-properties
 
 ---

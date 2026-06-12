@@ -1421,11 +1421,11 @@ A jar contains only red and blue balls. What percent of the balls in the jar are
 **answer:** C
 **explanation:** We must determine the percent of the balls in the jar that are red. Let r represent the number of red balls and let b represent the number of blue balls, where both r and b are positive integers. The percent of balls that are red is r/(r + b), expressed as a percent. To answer the question, the value of this ratio must be uniquely determined; it is not necessary to know r and b individually, but the proportion they form must be fixed.
 
-Statement (1) states that the number of red balls is exactly 3 more than the number of blue balls, which translates to r = b + 3. This equation fixes only the difference between the two counts, not their proportion. For instance, (r, b) = (4, 1) gives 4/5 = 80 percent red, while (r, b) = (5, 2) gives 5/7, approximately 71.4 percent red. Because different valid pairs produce different percents, the value of r/(r + b) is not determined. Statement (1) alone is not sufficient.
+Statement (1) states that the number of red balls is exactly 3 more than the number of blue balls, which translates to r = b + 3. This equation fixes only the difference between the two counts, not their proportion. For instance, (r, b) = (4, 1) gives 4/5 red, while (r, b) = (5, 2) gives 5/7 red. These two fractions are not equal, as cross-multiplication shows: 4 × 7 = 28 and 5 × 5 = 25, and 28 is not 25, so 4/5 and 5/7 are different proportions. Because different valid pairs produce different percents, the value of r/(r + b) is not determined. Statement (1) alone is not sufficient.
 
-Statement (2) states that if one red ball were removed, the ratio of red to blue balls would be 2 to 1, which translates to (r - 1)/b = 2/1, or equivalently r = 2b + 1. This equation fixes a relationship but leaves b free to vary. For instance, (r, b) = (3, 1) gives 3/4 = 75 percent red, while (r, b) = (5, 2) gives 5/7, approximately 71.4 percent red. Because different valid pairs again produce different percents, the value of r/(r + b) is not determined. Statement (2) alone is not sufficient.
+Statement (2) states that if one red ball were removed, the ratio of red to blue balls would be 2 to 1, which translates to (r - 1)/b = 2/1, or equivalently r = 2b + 1. This equation fixes a relationship but leaves b free to vary. For instance, (r, b) = (3, 1) gives 3/4 red, while (r, b) = (5, 2) gives 5/7 red. Cross-multiplication again shows these fractions differ: 3 × 7 = 21 and 4 × 5 = 20, and 21 is not 20, so 3/4 and 5/7 are different proportions. Because different valid pairs again produce different percents, the value of r/(r + b) is not determined. Statement (2) alone is not sufficient.
 
-Taking the two statements together yields two independent linear equations in the two unknowns r and b: r = b + 3 and r = 2b + 1. Setting the two expressions for r equal gives b + 3 = 2b + 1. Subtracting b from both sides gives 3 = b + 1, so b = 2. Substituting b = 2 into r = b + 3 gives r = 5. The total number of balls is r + b = 5 + 2 = 7, and the percent of balls that are red is 5/7, approximately 71.4 percent. This value is unique, so both statements together are sufficient, while neither statement alone is sufficient.
+Taking the two statements together yields two independent linear equations in the two unknowns r and b: r = b + 3 and r = 2b + 1. Setting the two expressions for r equal gives b + 3 = 2b + 1. Subtracting b from both sides gives 3 = b + 1, so b = 2. Substituting b = 2 into r = b + 3 gives r = 5. The total number of balls is r + b = 5 + 2 = 7, and the proportion of balls that are red is 5/7. Because (r, b) = (5, 2) is the only pair satisfying both equations, this proportion is uniquely determined — and data sufficiency requires only a unique value, not a decimal conversion. Both statements together are therefore sufficient, while neither statement alone is sufficient.
 
 The correct answer is C.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -1452,7 +1452,9 @@ Let the retention fraction r denote the proportion of the mixture that remains a
 
 The solution begins at 60% acid. After n cycles, the acid concentration equals the initial concentration multiplied by r raised to the power n. After two complete cycles:
 
-acid % = 60% × (3/4)^2 = 60% × 9/16 = 540/16 % = 33.75%.
+acid % = 60% × (3/4)^2 = 60% × 9/16.
+
+Cancel before multiplying rather than computing 60 × 9 first: 60 and 16 share a factor of 4, so 60 × 9/16 = 15 × 9/4. Then 15 × 9 = 135, and 135/4 = 33 + 3/4 = 33.75. The concentration after two cycles is therefore 33.75%.
 
 We verify this by tracking the actual quantity of acid. Initially the tank contains 60% of 100 = 60 liters of acid. In the first cycle the drain removes 25% of this acid, namely 0.25 × 60 = 15 liters, leaving 45 liters, which is 45% of the 100-liter tank. In the second cycle the drain removes 25% of the now-present acid, namely 0.25 × 45 = 11.25 liters, leaving 45 - 11.25 = 33.75 liters, which is 33.75% of the tank. This confirms the computation.
 
@@ -1558,7 +1560,7 @@ The fraction of the total payroll that goes to managers is therefore
 
 360,000 / 1,160,000 = 360 / 1,160 = (40 × 9) / (40 × 29) = 9 / 29 (cancel the common factor 40).
 
-Converting to a percent, 9 / 29 = 0.3103..., which is approximately 31 percent.
+To convert to a percent, bound the fraction with a nearby benchmark: 9/30 = 3/10 = 30 percent exactly, and shrinking the denominator from 30 to 29 makes the fraction slightly larger. So 9/29 is slightly more than 30 percent — approximately 31 percent, comfortably between the neighboring choices of 25 percent and 36 percent.
 
 The correct answer is C.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -1583,9 +1585,9 @@ A 100-liter drum contains 70 liters of water and 30 liters of juice (30% juice s
 
 Let the drum hold 100 liters throughout, since 20 liters are drained and 20 liters are added on every cycle, leaving the total unchanged. Each cycle drains 20 of the 100 liters of the current mixture, so it removes 20 percent of whatever water is present and retains the remaining 80 percent. The 20 liters of pure juice added afterward contribute no water. Hence the amount of water is multiplied by 80/100 = 4/5 on each cycle.
 
-The drum begins with 70 liters of water, so after n complete cycles the water remaining is 70 times (4/5) raised to the power n. We require the water to make up less than half of the 100 liters, that is, 70 times (4/5) to the power n is less than 50, which simplifies to (4/5) to the power n less than 5/7, where 5/7 is approximately 0.714.
+The drum begins with 70 liters of water, so after n complete cycles the water remaining is 70 times (4/5) raised to the power n. We require the water to make up less than half of the 100 liters, that is, 70 times (4/5) to the power n is less than 50, which simplifies to (4/5) to the power n less than 5/7.
 
-We test successive values of n. For n = 1, (4/5) to the first power is 0.800, which is greater than 0.714, so the condition is not yet met. For n = 2, (4/5) squared is 0.640, which is less than 0.714, so the condition is met.
+We test successive values of n, comparing each power to 5/7 by cross-multiplication. For n = 1, compare 4/5 with 5/7: cross-multiplying gives 4 × 7 = 28 against 5 × 5 = 25, and 28 is greater than 25, so 4/5 is greater than 5/7 and the condition is not yet met. For n = 2, (4/5) squared is 16/25; compare 16/25 with 5/7: cross-multiplying gives 16 × 7 = 112 against 25 × 5 = 125, and 112 is less than 125, so 16/25 is less than 5/7 and the condition is met.
 
 A direct check confirms this. After cycle 1, draining 20 liters removes 14 liters of water, leaving 56 liters of water and 44 liters of juice, so the juice concentration is 44 percent, which does not exceed 50 percent. After cycle 2, draining 20 liters removes 11.2 liters of water from the 56 liters present, leaving 44.8 liters of water and 55.2 liters of juice, so the juice concentration is 55.2 percent, which does exceed 50 percent.
 

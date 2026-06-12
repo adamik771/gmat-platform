@@ -628,21 +628,27 @@ Setting the zinc contributed by the two alloys equal to the zinc in the final mi
 
 0.40(15) + 0.70x = 0.55(15 + x)
 
-We now expand each side:
+Before expanding, multiply both sides by 100 to clear every decimal — the equation now counts zinc in percentage points, and every coefficient is a whole number:
 
-6 + 0.70x = 8.25 + 0.55x
+40(15) + 70x = 55(15 + x)
+
+We now expand each side. On the left, 40 × 15 = 600. On the right, 55 × 15 = 550 + 275 = 825. So:
+
+600 + 70x = 825 + 55x
 
 We collect the x terms on one side and the constants on the other:
 
-0.70x - 0.55x = 8.25 - 6
+70x - 55x = 825 - 600
 
-0.15x = 2.25
+15x = 225
 
-We divide both sides by 0.15:
+We divide both sides by 15. Since 15 × 15 = 225:
 
-x = 2.25 / 0.15 = 15
+x = 15
 
 Therefore, 15 kilograms of the second alloy must be added.
+
+There is also a structural shortcut worth noticing: the target concentration, 55%, sits exactly midway between 40% and 70%. A mixture lands at the midpoint only when the two ingredients are present in equal weights, so the added alloy must match the original 15 kilograms — x = 15 by inspection.
 
 The correct answer is C.
 **related_reading:** reading-quant-05-word-problems
