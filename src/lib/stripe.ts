@@ -21,7 +21,6 @@ export function getStripe(): Stripe {
 
 export const STRIPE_PRICES = {
   selfStudy: process.env.STRIPE_PRICE_SELF_STUDY ?? "price_self_study",
-  selfStudyPlus: process.env.STRIPE_PRICE_SELF_STUDY_PLUS ?? "price_self_study_plus",
   coaching: process.env.STRIPE_PRICE_COACHING ?? "price_coaching",
   intensive: process.env.STRIPE_PRICE_INTENSIVE ?? "price_intensive",
 }

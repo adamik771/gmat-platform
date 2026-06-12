@@ -23,7 +23,7 @@ export default function RefundPage() {
       <LegalSection title="Summary">
         <ul>
           <li>
-            <strong>Self-Study and Self-Study Plus.</strong> 14-day money-back
+            <strong>Self-Study.</strong> 14-day money-back
             guarantee, no questions asked.
           </li>
           <li>
@@ -47,7 +47,7 @@ export default function RefundPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="Self-Study and Self-Study Plus">
+      <LegalSection title="Self-Study">
         <p>
           You can request a full refund within 14 days of your purchase, for
           any reason. Email{" "}

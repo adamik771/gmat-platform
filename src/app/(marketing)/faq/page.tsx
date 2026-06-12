@@ -145,7 +145,7 @@ const categories: FAQCategory[] = [
       {
         question: "Are mock exams included?",
         answer:
-          "Yes. Self-Study includes 3 mocks; Self-Study Plus includes 3; Coaching includes 5; Intensive includes unlimited. Each mock is a full-length 3-section simulation with a structured debrief tool.",
+          "Yes — every plan includes the full-length, three-section mock simulator with unlimited attempts and a structured debrief, plus a study plan built around the six official mba.com practice exams (which we recommend as your real score check). Coaching and Intensive add 1:1 review of your results.",
       },
     ],
   },
@@ -210,7 +210,7 @@ const categories: FAQCategory[] = [
       {
         question: "What happens to my account if I cancel a paid plan?",
         answer:
-          "Self-Study and Self-Study Plus are lifetime access — there's nothing to cancel. Coaching packages run for the program duration; you retain platform access during and after the program. If you cancel before completing the program, refund terms apply per the refund policy.",
+          "Self-Study is lifetime access — there's nothing to cancel. Coaching packages run for the program duration; you retain platform access during and after the program. If you cancel before completing the program, refund terms apply per the refund policy.",
       },
     ],
   },
@@ -230,7 +230,7 @@ const categories: FAQCategory[] = [
       {
         question: "What is your refund policy?",
         answer:
-          "Self-Study and Self-Study Plus include a 14-day money-back guarantee, no questions asked. Coaching is refundable in full before the first session and non-refundable after. Intensive is backed by the score guarantee — see /refund for the full conditions.",
+          "Self-Study includes a 14-day money-back guarantee, no questions asked. Coaching is refundable in full before the first session and non-refundable after. Intensive is backed by the score guarantee — see /refund for the full conditions.",
       },
       {
         question: "Are prices in USD?",
