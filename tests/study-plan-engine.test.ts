@@ -20,6 +20,7 @@ function weakArea(
     accuracy: opts.accuracy ?? 0.5,
     attempts: opts.attempts ?? 10,
     chapterSlug,
+    setSlug: opts.setSlug ?? null,
     errorPattern: opts.errorPattern ?? "mixed",
   }
 }
@@ -32,11 +33,9 @@ function plan(opts: Partial<StudyPlanOutput> = {}): StudyPlanOutput {
   }
 }
 
-const lesson = (slug: string, title: string, module = 1) => ({
-  slug,
-  title,
-  module,
-})
+// Guided-path reading queue entries (the deprecated lessons library is gone
+// from the cadence — readings are chapter reads).
+const reading = (slug: string, title: string) => ({ slug, title })
 
 const types = (days: DailySuggestion[]) => days.map((d) => d.type)
 
@@ -46,7 +45,7 @@ describe("buildWeeklyCadence — shape & length", () => {
     expect(
       buildWeeklyCadence(
         plan({ reviewDueCount: 12, weakAreas: [weakArea("Algebra", "algebra")] }),
-        [lesson("a", "A"), lesson("b", "B")],
+        [reading("a", "A"), reading("b", "B")],
       ).length,
     ).toBe(7)
   })
@@ -54,15 +53,9 @@ describe("buildWeeklyCadence — shape & length", () => {
   it("every day is a well-formed DailySuggestion (valid type, label, href)", () => {
     const days = buildWeeklyCadence(
       plan({ reviewDueCount: 5, weakAreas: [weakArea("Geometry", "geometry")] }),
-      [lesson("frac", "Fractions")],
+      [reading("frac", "Fractions")],
     )
-    const validTypes = new Set([
-      "lesson",
-      "practice",
-      "review",
-      "chapter",
-      "mock",
-    ])
+    const validTypes = new Set(["practice", "review", "chapter", "mock"])
     for (const d of days) {
       expect(validTypes.has(d.type)).toBe(true)
       expect(typeof d.label).toBe("string")
@@ -70,12 +63,21 @@ describe("buildWeeklyCadence — shape & length", () => {
       expect(d.href.startsWith("/")).toBe(true)
     }
   })
+
+  it("never emits a /lessons/ link (the lessons library is deprecated)", () => {
+    const days = buildWeeklyCadence(
+      plan({ reviewDueCount: 3, weakAreas: [weakArea("Algebra", "algebra")] }),
+      [reading("quant-05-order-and-signed-numbers", "Order of Operations")],
+    )
+    for (const d of days) {
+      expect(d.href.startsWith("/lessons")).toBe(false)
+    }
+  })
 })
 
 describe("buildWeeklyCadence — pool composition reacts to inputs", () => {
-  it("empty plan with no lessons => pool is [lesson, practice]; with no lessons all 7 are practice", () => {
+  it("empty plan with no readings => all 7 days fall through to practice", () => {
     const days = buildWeeklyCadence(plan(), [])
-    // pool = ["lesson","practice"]; lesson has no queue -> falls through to practice
     expect(types(days)).toEqual(Array(7).fill("practice"))
     expect(days.every((d) => d.href === "/practice")).toBe(true)
   })
@@ -115,87 +117,95 @@ describe("buildWeeklyCadence — pool composition reacts to inputs", () => {
     expect(days.some((d) => d.type === "chapter")).toBe(false)
   })
 
-  it("lessons in the queue surface as lesson days with /lessons/<slug> hrefs", () => {
-    const days = buildWeeklyCadence(plan(), [lesson("ratios", "Ratios & Proportions")])
-    const l = days.find((d) => d.type === "lesson")!
-    expect(l).toBeDefined()
-    expect(l.label).toBe("Ratios & Proportions")
-    expect(l.href).toBe("/lessons/ratios")
+  it("readings in the queue surface as chapter days with /chapters/<slug> hrefs", () => {
+    const days = buildWeeklyCadence(plan(), [
+      reading("quant-18-ratios-proportions", "Ratios & Proportions"),
+    ])
+    const r = days.find((d) => d.type === "chapter")!
+    expect(r).toBeDefined()
+    expect(r.label).toBe("Ratios & Proportions")
+    expect(r.href).toBe("/chapters/quant-18-ratios-proportions")
   })
 })
 
 describe("buildWeeklyCadence — cycling order & queue consumption", () => {
-  it("orders the pool review -> chapter -> lesson -> practice, then cycles", () => {
-    // pool = ["review","chapter","lesson","practice"]; 7 days => indices 0..6
-    // map to pool[i % 4]: review,chapter,lesson,practice,review,chapter,lesson
+  it("orders the pool review -> weak-chapter -> reading -> practice, then cycles", () => {
+    // pool = ["review","chapter","reading","practice"]; 7 days => pool[i % 4]:
+    // review, weak, reading, practice, review, weak, reading.
+    // Weak-chapter days and reading days both render as type "chapter" —
+    // distinguish them by href.
     const days = buildWeeklyCadence(
       plan({
         reviewDueCount: 4,
-        weakAreas: [
-          weakArea("W1", "w1-slug"),
-          weakArea("W2", "w2-slug"),
-        ],
+        weakAreas: [weakArea("W1", "w1-slug"), weakArea("W2", "w2-slug")],
       }),
-      [lesson("l1", "L1"), lesson("l2", "L2")],
+      [reading("r1", "R1"), reading("r2", "R2")],
     )
     expect(types(days)).toEqual([
       "review",
       "chapter",
-      "lesson",
+      "chapter",
       "practice",
       "review",
       "chapter",
-      "lesson",
+      "chapter",
+    ])
+    expect(days.map((d) => d.href)).toEqual([
+      "/review",
+      "/chapters/w1-slug",
+      "/chapters/r1",
+      "/practice",
+      "/review",
+      "/chapters/w2-slug",
+      "/chapters/r2",
     ])
   })
 
-  it("a single weak chapter is consumed once; later chapter slots fall back to practice", () => {
-    // pool = ["chapter","lesson","practice"] (no review). i%3:
-    // chapter,lesson,practice,chapter,lesson,practice,chapter
-    // only ONE weak chapter -> 1st chapter slot uses it, the 4th & 7th fall through.
+  it("a single weak chapter is consumed once; later weak slots fall back to practice", () => {
+    // pool = ["chapter","reading","practice"] (no review). pool[i % 3]:
+    // weak, reading, practice, weak, reading, practice, weak.
+    // One weak area + one reading -> later weak/reading slots degrade.
     const days = buildWeeklyCadence(
       plan({ weakAreas: [weakArea("Algebra", "algebra")] }),
-      [lesson("l1", "L1")],
+      [reading("r1", "R1")],
     )
     expect(types(days)).toEqual([
-      "chapter",
-      "lesson",
+      "chapter", // weak: Algebra
+      "chapter", // reading: R1
       "practice",
-      "practice", // chapter queue empty -> fallback
-      "practice", // lesson queue empty -> fallback
+      "practice", // weak queue empty -> fallback
+      "practice", // reading queue empty -> fallback
       "practice",
-      "practice", // chapter queue empty -> fallback
+      "practice", // weak queue empty -> fallback
     ])
-    // exactly one real chapter day, using the single weak area
     const chapters = days.filter((d) => d.type === "chapter")
-    expect(chapters).toHaveLength(1)
-    expect(chapters[0].href).toBe("/chapters/algebra")
+    expect(chapters.map((d) => d.href)).toEqual([
+      "/chapters/algebra",
+      "/chapters/r1",
+    ])
   })
 
   it("distinct weak chapters are consumed in order (FIFO via shift)", () => {
     const days = buildWeeklyCadence(
       plan({
-        weakAreas: [
-          weakArea("First", "first"),
-          weakArea("Second", "second"),
-        ],
+        weakAreas: [weakArea("First", "first"), weakArea("Second", "second")],
       }),
       [],
     )
-    // pool = ["chapter","lesson","practice"]; chapter slots at i=0 and i=3.
     const chapterDays = days.filter((d) => d.type === "chapter")
     expect(chapterDays.map((d) => d.label)).toEqual(["First", "Second"])
   })
 
-  it("lessons are consumed FIFO and a depleted lesson queue degrades to practice", () => {
-    // pool = ["lesson","practice"]; lesson slots at i=0,2,4,6 -> 4 slots, 2 lessons.
-    const days = buildWeeklyCadence(
-      plan(),
-      [lesson("a", "Alpha"), lesson("b", "Beta")],
-    )
-    const lessonDays = days.filter((d) => d.type === "lesson")
-    expect(lessonDays.map((d) => d.label)).toEqual(["Alpha", "Beta"])
-    // 4 lesson slots, only 2 lessons -> remaining 2 lesson-slots become practice.
+  it("readings are consumed FIFO and a depleted reading queue degrades to practice", () => {
+    // pool = ["reading","practice"]; reading slots at i=0,2,4,6 -> 4 slots, 2 readings.
+    const days = buildWeeklyCadence(plan(), [
+      reading("a", "Alpha"),
+      reading("b", "Beta"),
+    ])
+    const readingDays = days.filter((d) => d.type === "chapter")
+    expect(readingDays.map((d) => d.label)).toEqual(["Alpha", "Beta"])
+    expect(readingDays.map((d) => d.href)).toEqual(["/chapters/a", "/chapters/b"])
+    // 4 reading slots, only 2 readings -> remaining 2 slots become practice.
     // total practice = 3 (i=1,3,5) + 2 degraded = 5
     expect(days.filter((d) => d.type === "practice")).toHaveLength(5)
   })
@@ -205,7 +215,7 @@ describe("buildWeeklyCadence — output varies with inputs (not a fixed rotation
   it("differs between a review-heavy plan and an empty plan", () => {
     const heavy = buildWeeklyCadence(
       plan({ reviewDueCount: 20, weakAreas: [weakArea("X", "x")] }),
-      [lesson("l", "Lesson")],
+      [reading("r", "Reading")],
     )
     const empty = buildWeeklyCadence(plan(), [])
     expect(types(heavy)).not.toEqual(types(empty))
@@ -214,9 +224,7 @@ describe("buildWeeklyCadence — output varies with inputs (not a fixed rotation
   it("review count changes only labels, not the type pattern, for same structure", () => {
     const a = buildWeeklyCadence(plan({ reviewDueCount: 5 }), [])
     const b = buildWeeklyCadence(plan({ reviewDueCount: 25 }), [])
-    // same pool shape -> same type sequence
     expect(types(a)).toEqual(types(b))
-    // but the review labels differ with the count (proves count flows through)
     const la = a.find((d) => d.type === "review")!.label
     const lb = b.find((d) => d.type === "review")!.label
     expect(la).toBe("Review 5 due")
@@ -224,18 +232,21 @@ describe("buildWeeklyCadence — output varies with inputs (not a fixed rotation
     expect(la).not.toBe(lb)
   })
 
-  it("full pool (review+chapter+lesson+practice) yields all four types within the week", () => {
+  it("full pool (review + weak chapter + reading + practice) yields review, chapter, and practice days", () => {
     const days = buildWeeklyCadence(
       plan({
         reviewDueCount: 9,
         weakAreas: [weakArea("W", "w"), weakArea("W2", "w2")],
       }),
-      [lesson("l1", "L1"), lesson("l2", "L2")],
+      [reading("r1", "R1"), reading("r2", "R2")],
     )
     const present = new Set(types(days))
     expect(present.has("review")).toBe(true)
     expect(present.has("chapter")).toBe(true)
-    expect(present.has("lesson")).toBe(true)
     expect(present.has("practice")).toBe(true)
+    // Both flavors of chapter day appear: weak-area chapters AND readings.
+    const hrefs = days.map((d) => d.href)
+    expect(hrefs).toContain("/chapters/w")
+    expect(hrefs).toContain("/chapters/r1")
   })
 })

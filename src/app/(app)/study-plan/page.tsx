@@ -15,7 +15,7 @@ import {
   Flame,
   Wrench,
 } from "lucide-react"
-import { getAllLessons, getAllQuestions } from "@/lib/content"
+import { getAllChapters, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import EmptyState from "@/components/shared/EmptyState"
 import {
@@ -66,11 +66,8 @@ function scaledSectionScore(correct: number, total: number): number {
 }
 
 export default async function StudyPlanPage() {
-  const lessons = getAllLessons()
-
   // ---------- Data we'll display ----------
   // Default to zero / null so an unauth or Supabase-down render shows empty.
-  let completedSlugs = new Set<string>()
   let examDate: string | null = null
   let targetScore: number | null = null
   const activityDays = new Set<string>() // YYYY-MM-DD for past 7 days with activity
@@ -86,6 +83,9 @@ export default async function StudyPlanPage() {
   let persona: PersonaProfile | null = null
   let officialReady: OfficialReadySummary | null = null
   const completedTags = new Set<string>()
+  // Per-chapter reading progress (sectionsRead), for the guided-path
+  // "Upcoming chapters" panel + the weekly cadence's reading queue.
+  let readProgress: Record<string, { sectionsRead?: Record<string, boolean> }> = {}
 
   try {
     const supabase = await createSupabaseServer()
@@ -101,13 +101,12 @@ export default async function StudyPlanPage() {
           ? rawTarget
           : null
 
-      // Lesson completions (all-time)
-      const { data: completions } = await supabase
-        .from("lesson_completions")
-        .select("lesson_slug")
-        .eq("user_id", user.id)
-      if (completions) {
-        completedSlugs = new Set(completions.map((c) => c.lesson_slug as string))
+      const rawReadProgress = user.user_metadata?.chapter_progress
+      if (rawReadProgress && typeof rawReadProgress === "object") {
+        readProgress = rawReadProgress as Record<
+          string,
+          { sectionsRead?: Record<string, boolean> }
+        >
       }
 
       // Past-7-day session activity — calendar dots + study hours
@@ -380,16 +379,27 @@ export default async function StudyPlanPage() {
     // Supabase unavailable — render with empty defaults.
   }
 
-  // ---------- Derived: next 3 incomplete lessons, for "Upcoming" panel ----------
-  const incompleteLessons = lessons.filter((l) => !completedSlugs.has(l.slug))
-  const upcomingLessons = incompleteLessons.slice(0, 3)
-  const nextLesson = incompleteLessons[0] ?? null
+  // ---------- Derived: next chapters on the guided path ----------
+  // getAllChapters() returns the guided-path order; a chapter is read when
+  // every section is marked read. The first three incomplete chapters feed
+  // the "Up next" panel; the full queue feeds the weekly cadence. (The old
+  // /lessons library is deprecated — chapters are the curriculum.)
+  const pathChapters = getAllChapters()
+  const isChapterRead = (ch: (typeof pathChapters)[number]) => {
+    const entry = readProgress[ch.slug]
+    if (!entry || ch.sections.length === 0) return false
+    return ch.sections.every((s) => entry.sectionsRead?.[s.id])
+  }
+  const incompleteChapters = pathChapters.filter((ch) => !isChapterRead(ch))
+  const upcomingChapters = incompleteChapters.slice(0, 3)
+  const nextChapterUp = incompleteChapters[0] ?? null
+  const chaptersDoneCount = pathChapters.length - incompleteChapters.length
+  const totalChapters = pathChapters.length
 
   // ---------- Adaptive weekly cadence ----------
-  // Replaces the prior fixed lesson→practice rotation with a pattern that
-  // adapts to the student's state: injects review days when the queue is
+  // Adapts to the student's state: injects review days when the queue is
   // hot, and weak-topic chapter days when weak areas exist. Falls back
-  // to lesson/practice if nothing else signals.
+  // to guided-path chapter reads / practice if nothing else signals.
   const adaptivePlan =
     plan ??
     ({
@@ -399,11 +409,7 @@ export default async function StudyPlanPage() {
     } as StudyPlanOutput)
   const weeklyCadence = buildWeeklyCadence(
     adaptivePlan,
-    incompleteLessons.map((l) => ({
-      slug: l.slug,
-      title: l.title,
-      module: l.module,
-    }))
+    incompleteChapters.map((ch) => ({ slug: ch.slug, title: ch.title }))
   )
   const suggestionByKey = new Map<string, DailySuggestion>()
 
@@ -450,9 +456,6 @@ export default async function StudyPlanPage() {
           86400000
       )
     : null
-
-  const lessonsDoneCount = completedSlugs.size
-  const totalLessons = lessons.length
 
   // === Stage gate ===
   // The page promises an "adaptive plan" but the engine has no real
@@ -1088,8 +1091,8 @@ export default async function StudyPlanPage() {
                         style={{ backgroundColor: "#C9A84C" }}
                       />
                       <p className="text-xs text-[#C0C0C0] leading-snug">
-                        {nextLesson
-                          ? `Next: ${nextLesson.title}`
+                        {nextChapterUp
+                          ? `Next: ${nextChapterUp.title}`
                           : "Run a practice set"}
                       </p>
                     </>
@@ -1111,8 +1114,8 @@ export default async function StudyPlanPage() {
         <StatCard
           icon={BookOpen}
           color="#C9A84C"
-          label="Lessons completed"
-          value={`${lessonsDoneCount} / ${totalLessons}`}
+          label="Chapters read"
+          value={`${chaptersDoneCount} / ${totalChapters}`}
         />
         <StatCard
           icon={Clock}
@@ -1205,10 +1208,10 @@ export default async function StudyPlanPage() {
         <h2 className="font-display text-3xl md:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-5">
           Upcoming{" "}
           <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-            lessons.
+            chapters.
           </span>
         </h2>
-        {upcomingLessons.length === 0 ? (
+        {upcomingChapters.length === 0 ? (
           <div className="p-6 rounded-2xl border border-white/[0.08] bg-[#0F0F0F]">
             <div className="flex items-start gap-3">
               <CheckCircle
@@ -1220,7 +1223,7 @@ export default async function StudyPlanPage() {
                   Curriculum complete
                 </p>
                 <p className="text-[13px] text-[#C0C0C0] mt-1 leading-relaxed">
-                  All {totalLessons} lessons done. Keep drilling practice
+                  All {totalChapters} chapters read. Keep drilling practice
                   sets and mock exams until test day.
                 </p>
               </div>
@@ -1228,12 +1231,13 @@ export default async function StudyPlanPage() {
           </div>
         ) : (
           <div className="space-y-3">
-            {upcomingLessons.map((lesson, i) => {
-              const moduleLabel = `Module ${String(lesson.module).padStart(2, "0")}`
+            {upcomingChapters.map((chapter, i) => {
+              const pathPosition = pathChapters.findIndex((c) => c.slug === chapter.slug)
+              const chapterLabel = `Chapter ${String(pathPosition + 1).padStart(2, "0")}`
               return (
                 <Link
-                  key={lesson.slug}
-                  href={`/lessons/${lesson.slug}`}
+                  key={chapter.slug}
+                  href={`/chapters/${chapter.slug}`}
                   className="flex items-start gap-4 p-5 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] hover:border-white/[0.14] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
                 >
                   <div
@@ -1253,7 +1257,7 @@ export default async function StudyPlanPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
                       <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#555555]">
-                        {moduleLabel}
+                        {chapterLabel}
                       </span>
                       <span
                         className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em]"
@@ -1262,7 +1266,7 @@ export default async function StudyPlanPage() {
                           color: "#C9A84C",
                         }}
                       >
-                        {lesson.section}
+                        {chapter.section === "DI" ? "Data Insights" : chapter.section}
                       </span>
                       {i === 0 && (
                         <span
@@ -1278,15 +1282,17 @@ export default async function StudyPlanPage() {
                       )}
                     </div>
                     <p className="text-[15px] font-semibold text-[#F0F0F0] tracking-tight">
-                      {lesson.title}
+                      {chapter.title}
                     </p>
-                    <p className="text-[13px] text-[#C0C0C0] mt-1 line-clamp-1 leading-relaxed">
-                      {lesson.description}
-                    </p>
+                    {chapter.summary && (
+                      <p className="text-[13px] text-[#C0C0C0] mt-1 line-clamp-1 leading-relaxed">
+                        {chapter.summary}
+                      </p>
+                    )}
                     <div className="flex items-center gap-1.5 mt-2">
                       <Clock className="w-3 h-3 text-[#444444]" />
                       <span className="text-[11px] text-[#888888] tabular-nums">
-                        {lesson.duration} min
+                        {chapter.estimatedPages} pages
                       </span>
                     </div>
                   </div>
@@ -1316,21 +1322,18 @@ function SuggestionCell({
   }
 
   const iconMap: Record<DailySuggestion["type"], typeof BookOpen> = {
-    lesson: BookOpen,
     practice: Wrench,
     review: RotateCcw,
     chapter: Sparkles,
     mock: Target,
   }
   const colorMap: Record<DailySuggestion["type"], string> = {
-    lesson: "#888888",
     practice: "#888888",
     review: "#C9A84C",
     chapter: "#C9A84C",
     mock: "#C9A84C",
   }
   const typeLabel: Record<DailySuggestion["type"], string> = {
-    lesson: "Lesson",
     practice: "Practice",
     review: "Review",
     chapter: "Chapter",

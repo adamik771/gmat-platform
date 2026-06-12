@@ -88,8 +88,11 @@ export const ENTRIES: GlossaryEntry[] = [
   {
     term: "Diagnostic",
     definition:
-      "A short stratified test taken at the start of prep to identify your starting per-section score and per-topic weakness profile. The Zakarian platform uses 30 questions (10 per section, stratified by difficulty); the public sampler uses 10. The diagnostic is the input to a real study plan — without one, every plan is guesswork.",
-    link: { href: "/free-diagnostic", label: "Take the free diagnostic" },
+      "A test taken at the start of prep to identify your starting score and per-topic weakness profile. On Zakarian GMAT the baseline is Official Practice Exam 1 on mba.com, taken under full exam conditions and entered on the platform — a real exam is the only baseline worth planning around. The baseline is the input to a real study plan; without one, every plan is guesswork.",
+    link: {
+      href: "/blog/gmat-focus-official-practice-exams",
+      label: "How to use the official practice exams",
+    },
   },
   {
     term: "Error log",

@@ -1402,8 +1402,10 @@ export default async function DashboardPage() {
         style={{ borderColor: "rgba(255,255,255,0.06)" }}
       >
         <div className="grid grid-cols-2 sm:grid-cols-4 divide-y divide-white/[0.05] sm:divide-y-0 sm:divide-x">
-          {/* Course progress */}
-          <div className="px-1 py-3 sm:px-4 sm:py-1">
+          {/* Course progress — carries the #score-goal anchor because the
+              inline target-score editor lives in this cell; three setup rows
+              (dashboard checklist, /learn, study-plan) deep-link to it. */}
+          <div id="score-goal" className="px-1 py-3 sm:px-4 sm:py-1 scroll-mt-24">
             <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888]">
               Course progress
             </p>

@@ -20,38 +20,35 @@ export default async function PsychometricsPage() {
   const {
     data: { user },
   } = await supabase.auth.getUser().catch(() => ({ data: { user: null } }))
-  if (user) {
-    if (!isAdmin(user)) {
-      notFound()
-    }
+  // Fail closed: the proxy normally redirects anonymous users, but this page
+  // must not depend on that — no user OR non-admin both 404, matching the
+  // admin fail-closed pattern used everywhere else.
+  if (!user || !isAdmin(user)) {
+    notFound()
   }
 
   let items: ItemStat[] = []
   let error: string | null = null
-  if (!user) {
-    error = "Sign in to view content QA"
-  } else {
-    try {
-      const { data } = await supabase
-        .from("practice_attempts")
-        .select("user_id, question_id, section, topic, is_correct")
-        .limit(50_000)
-      const rows = (data ?? [])
-        .filter((a) => {
-          const sec = a.section as Section
-          return sec === "Quant" || sec === "Verbal" || sec === "DI"
-        })
-        .map((a) => ({
-          user_id: a.user_id as string,
-          question_id: a.question_id as string,
-          section: a.section as Section,
-          topic: (a.topic as string) || "Unknown",
-          is_correct: !!a.is_correct,
-        }))
-      items = computeItemStats(rows)
-    } catch {
-      error = "Couldn't load attempts — Supabase may be unreachable."
-    }
+  try {
+    const { data } = await supabase
+      .from("practice_attempts")
+      .select("user_id, question_id, section, topic, is_correct")
+      .limit(50_000)
+    const rows = (data ?? [])
+      .filter((a) => {
+        const sec = a.section as Section
+        return sec === "Quant" || sec === "Verbal" || sec === "DI"
+      })
+      .map((a) => ({
+        user_id: a.user_id as string,
+        question_id: a.question_id as string,
+        section: a.section as Section,
+        topic: (a.topic as string) || "Unknown",
+        is_correct: !!a.is_correct,
+      }))
+    items = computeItemStats(rows)
+  } catch {
+    error = "Couldn't load attempts — Supabase may be unreachable."
   }
 
   const flagOrder: Record<ItemStatFlag, number> = {
