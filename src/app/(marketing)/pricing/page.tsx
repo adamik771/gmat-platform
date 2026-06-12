@@ -18,9 +18,9 @@ const tiers: PricingTier[] = [
     name: "Self-Study",
     price: 429,
     priceLabel: "one-time",
-    description: "The full platform, lifetime access. Everything you need to prep on your own.",
-    highlighted: true,
-    badge: "Most popular",
+    description: "The full platform, lifetime access — everything you need to prep on your own.",
+    highlighted: false,
+    badge: null,
     stripePriceId: STRIPE_PRICES.selfStudy,
     cta: "Get Self-Study",
     features: [
@@ -31,9 +31,32 @@ const tiers: PricingTier[] = [
       { text: "Full analytics — accuracy, pacing, calibration", included: true },
       { text: "Error log + spaced review queue", included: true },
       { text: "Lifetime access", included: true },
-      { text: "1:1 coaching sessions", included: false },
-      { text: "WhatsApp support", included: false },
+      { text: "Priority async support (Q&A)", included: false },
       { text: "Score guarantee", included: false },
+      { text: "1:1 coaching sessions", included: false },
+    ],
+  },
+  {
+    id: "self_study_guaranteed",
+    name: "Self-Study Guaranteed",
+    price: 599,
+    priceLabel: "one-time",
+    description: "Everything in Self-Study, plus a score guarantee and priority support — no coaching calls required.",
+    highlighted: true,
+    badge: "Recommended",
+    stripePriceId: STRIPE_PRICES.selfStudyGuaranteed,
+    cta: "Get Guaranteed",
+    features: [
+      { text: "59 chapters — Quant, Verbal & Data Insights", included: true },
+      { text: "1,150+ original practice questions", included: true },
+      { text: "Per-chapter practice tests + custom test builder", included: true },
+      { text: "Official-exam study plan & score tracking", included: true },
+      { text: "Full analytics — accuracy, pacing, calibration", included: true },
+      { text: "Error log + spaced review queue", included: true },
+      { text: "Lifetime access", included: true },
+      { text: "Priority async support (Q&A)", included: true },
+      { text: "Score guarantee", included: true },
+      { text: "1:1 coaching sessions", included: false },
     ],
   },
   {
@@ -41,7 +64,7 @@ const tiers: PricingTier[] = [
     name: "Coaching",
     price: 2500,
     priceLabel: "package",
-    description: "The full platform plus eight 1:1 sessions with me.",
+    description: "The full platform, the guarantee, plus eight 1:1 sessions with me.",
     highlighted: false,
     badge: null,
     stripePriceId: STRIPE_PRICES.coaching,
@@ -54,9 +77,9 @@ const tiers: PricingTier[] = [
       { text: "Full analytics — accuracy, pacing, calibration", included: true },
       { text: "Error log + spaced review queue", included: true },
       { text: "Lifetime access", included: true },
+      { text: "Priority async support (Q&A)", included: true },
+      { text: "Score guarantee", included: true },
       { text: "8 weekly 1:1 coaching sessions", included: true },
-      { text: "WhatsApp support", included: true },
-      { text: "Score guarantee", included: false },
     ],
   },
   {
@@ -77,9 +100,9 @@ const tiers: PricingTier[] = [
       { text: "Full analytics — accuracy, pacing, calibration", included: true },
       { text: "Error log + spaced review queue", included: true },
       { text: "Lifetime access", included: true },
-      { text: "16 weekly 1:1 coaching sessions", included: true },
-      { text: "WhatsApp support", included: true },
+      { text: "Priority async support (Q&A)", included: true },
       { text: "Score guarantee", included: true },
+      { text: "16 weekly 1:1 coaching sessions", included: true },
     ],
   },
 ]
@@ -120,15 +143,16 @@ const comparisonFeatures = [
   "Full analytics",
   "Error log + spaced review",
   "Lifetime access",
-  "1:1 coaching sessions",
-  "WhatsApp support",
+  "Priority async support",
   "Score guarantee",
+  "1:1 coaching sessions",
 ]
 
 const comparisonData: Record<string, (boolean | string)[]> = {
   "Self-Study": [true, true, true, true, true, true, true, false, false, false],
-  Coaching: [true, true, true, true, true, true, true, "8 sessions", true, false],
-  Intensive: [true, true, true, true, true, true, true, "16 sessions", true, true],
+  Guaranteed: [true, true, true, true, true, true, true, true, true, false],
+  Coaching: [true, true, true, true, true, true, true, true, true, "8 sessions"],
+  Intensive: [true, true, true, true, true, true, true, true, true, "16 sessions"],
 }
 
 export default function PricingPage() {
@@ -169,7 +193,7 @@ export default function PricingPage() {
           </div>
 
           {/* Pricing cards */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
             {tiers.map((tier) => (
               <PricingCard key={tier.id} tier={tier} />
             ))}

@@ -52,6 +52,7 @@ export const FREE_PRACTICE_TESTS_PER_CHAPTER = 1
  *  intensive add human coaching on top of the same paid software. */
 const PAID_PLAN_IDS: ReadonlySet<string> = new Set([
   "self_study",
+  "self_study_guaranteed",
   "coaching",
   "intensive",
 ])
