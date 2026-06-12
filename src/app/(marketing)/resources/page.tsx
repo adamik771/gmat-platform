@@ -445,7 +445,7 @@ export default function ResourcesPage() {
             </span>
           </h2>
           <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-7 max-w-xl mx-auto">
-            17 chapters. The adaptive study plan. The error log built into
+            50+ chapters. The adaptive study plan. The error log built into
             the platform with the spaced-review queue.
             Mock exams with debrief tools. Seven days of full access &mdash;
             no card required.

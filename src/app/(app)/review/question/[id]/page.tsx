@@ -2,6 +2,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import {
   AlertTriangle,
   ArrowLeft,
@@ -273,7 +274,7 @@ function Hero({
           className="p-5 rounded-2xl border border-white/[0.06] bg-[#0A0A0A] mb-5 prose prose-invert max-w-none"
           style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.02)" }}
         >
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
             {question.context}
           </ReactMarkdown>
         </div>
@@ -284,7 +285,7 @@ function Hero({
         style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)" }}
       >
         <div className="prose prose-invert max-w-none mb-5">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
             {question.prompt}
           </ReactMarkdown>
         </div>
@@ -431,7 +432,7 @@ function ExplanationCard({ question }: { question: ParsedQuestion }) {
   return (
     <Card eyebrow="Full explanation" icon={Sparkles} accent="#C9A84C">
       <div className="prose prose-invert max-w-none">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
           {question.explanation || "_No written explanation on file._"}
         </ReactMarkdown>
       </div>

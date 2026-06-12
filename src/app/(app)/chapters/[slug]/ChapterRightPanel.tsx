@@ -13,6 +13,10 @@ interface Props {
   /** The chapter's anchor concept (Mental model / summary), pinned at the
    *  top of the rail as a reference while reading. */
   bigIdea?: string | null
+  /** Session slug of this chapter's first practice test (`ch-<slug>-t1`), or
+   *  null when the chapter has no bank yet. The practice CTA falls back to the
+   *  /practice hub when null so the link never 404s. */
+  firstPracticeTestSlug?: string | null
 }
 
 /**
@@ -37,6 +41,7 @@ export default function ChapterRightPanel({
   nextUnreadTitle,
   nextUnreadAnchorId,
   bigIdea,
+  firstPracticeTestSlug,
 }: Props) {
   const pct =
     totalSections > 0
@@ -47,9 +52,11 @@ export default function ChapterRightPanel({
     totalSections > 0 ? (totalSections - completedSections) / totalSections : 1
   const remainingPages = Math.max(0, Math.round(estimatedPages * remainingFraction))
 
-  // Practice queue picks a topic-appropriate slug — chapter section drives it.
-  const practiceSlug =
-    section === "Quant" ? "quant" : section === "Verbal" ? "verbal" : "di"
+  // Deep-link to this chapter's first practice test; fall back to the Practice
+  // hub when the chapter has no bank yet (so the CTA never 404s).
+  const practiceHref = firstPracticeTestSlug
+    ? `/practice/session/${firstPracticeTestSlug}`
+    : "/practice"
 
   return (
     <div className="space-y-4 text-[13px]">
@@ -232,7 +239,7 @@ export default function ChapterRightPanel({
           When you&apos;re ready
         </p>
         <Link
-          href={`/practice/session/${practiceSlug}`}
+          href={practiceHref}
           className="group flex items-center gap-3 px-5 py-3 transition-colors"
           style={{ color: "var(--read-text-body)" }}
         >

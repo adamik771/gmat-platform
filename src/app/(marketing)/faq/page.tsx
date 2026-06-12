@@ -9,7 +9,7 @@ import { faqPageLd } from "@/lib/structured-data"
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Frequently asked questions about Zakarian GMAT — the curriculum, scoring, the trial, baselining with official practice exams, the score guarantee, billing, and the platform's specific approach for non-native speakers.",
+    "Frequently asked questions about Zakarian GMAT — the curriculum, scoring, the trial, baselining with official practice exams, billing, and the platform's specific approach for non-native speakers.",
   alternates: { canonical: "/faq" },
 }
 
@@ -65,7 +65,7 @@ const categories: FAQCategory[] = [
       {
         question: "What does the free trial include?",
         answer:
-          "Seven days of full access to everything: all 17 chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
+          "Seven days of full access to everything: all 50+ chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
       },
       {
         question: "Do I need a credit card to start the trial?",
@@ -103,16 +103,6 @@ const categories: FAQCategory[] = [
           "Most students see measurable improvement on mocks within 3-4 weeks of consistent daily practice. The biggest gains usually come between weeks 4 and 10, after the error log has enough data for patterns to surface.",
       },
       {
-        question: "What is the score guarantee?",
-        answer:
-          "The Self-Study Guaranteed, Coaching, and Intensive plans all include a score guarantee. The platform tracks your progress, so qualifying just means doing the work: read your weak-area chapters, log enough practice, and take several official mba.com practice exams. If your verified official score is still below your target, you get a full refund (Intensive also lets you choose continued coaching at no cost). Full conditions are on the refund policy page.",
-      },
-      {
-        question: "Do you guarantee a specific score?",
-        answer:
-          "We guarantee you'll hit your target score IF you complete the Intensive program as designed. We can't guarantee outcomes for students who skip sessions, don't follow the study plan, or change their target score mid-program. The guarantee is conditional and the conditions are clearly spelled out.",
-      },
-      {
         question: "How does the GMAT Focus 205-805 scale compare to my old GMAT score?",
         answer:
           "The two scales are not directly comparable — GMAC deliberately offset them. Roughly: Focus 705 ≈ Old 730, Focus 695 ≈ Old 720, Focus 645 ≈ Old 680. Use the score converter at /score-converter for any specific score.",
@@ -125,7 +115,7 @@ const categories: FAQCategory[] = [
       {
         question: "How is the curriculum structured?",
         answer:
-          "Seventeen chapters covering every GMAT Focus topic across Quant, Verbal, and Data Insights. Each chapter has a pre-test (~2 questions), 6-9 reading sections with in-chapter recall checks, and a graded problem set across easy / medium / hard tiers.",
+          "50+ chapters covering every GMAT Focus topic across Quant, Verbal, and Data Insights. Each chapter has a pre-test (~2 questions), 6-9 reading sections with in-chapter recall checks, and a graded problem set across easy / medium / hard tiers.",
       },
       {
         question: "Can I skip chapters I already know?",
@@ -210,7 +200,7 @@ const categories: FAQCategory[] = [
       {
         question: "What happens to my account if I cancel a paid plan?",
         answer:
-          "Self-Study is lifetime access — there's nothing to cancel. Coaching packages run for the program duration; you retain platform access during and after the program. If you cancel before completing the program, refund terms apply per the refund policy.",
+          "Self-Study and Self-Study + Mentorship are one-time purchases with a fixed access window (4 and 6 months) — there's nothing to cancel. Coaching packages run for the program duration. If you cancel before completing a coaching program, refund terms apply per the refund policy.",
       },
     ],
   },
@@ -230,7 +220,7 @@ const categories: FAQCategory[] = [
       {
         question: "What is your refund policy?",
         answer:
-          "Self-Study includes a 14-day money-back guarantee, no questions asked. Self-Study Guaranteed, Coaching, and Intensive add a score guarantee on top of their refund terms. See /refund for the full conditions of each.",
+          "Every plan includes a 14-day money-back guarantee, no questions asked. Coaching and Intensive packages have additional terms once the program starts. See /refund for the full conditions of each.",
       },
       {
         question: "Are prices in USD?",
@@ -286,7 +276,7 @@ export default function FAQPage() {
           </h1>
           <p className="text-[16px] sm:text-[17px] text-[#C0C0C0] leading-relaxed max-w-xl mx-auto">
             {allItems.length} of the questions we hear most often — about the
-            curriculum, the trial, your baseline, the score guarantee,
+            curriculum, the trial, your baseline, billing,
             non-native speakers, and the AI tutor. If you don&apos;t find it
             here, book a free 20-minute call.
           </p>

@@ -828,6 +828,78 @@ function parseChapterFile(filepath: string): ParsedChapter | null {
   }
 }
 
+// Recommended cross-section learning path. Eases students in from the
+// simplest foundations (signed numbers, fractions, the strategy methods),
+// then rotates Quant -> Verbal -> DI so every section is built in parallel,
+// progressing easy -> hard within each section, with the advanced and
+// timing chapters last. This is the single source of truth for global
+// chapter order: it drives the guided-path chapters page, per-chapter
+// practice grouping, and chapter prev/next navigation. Any chapter not
+// listed here falls to the end (alphabetical) so new files never disappear.
+const CHAPTER_PATH_ORDER: string[] = [
+  "quant-05-order-and-signed-numbers",
+  "quant-06-fractions-decimals",
+  "quant-07-gcf-lcm-units-digits",
+  "verbal-01-foundations",
+  "quant-01-backsolving",
+  "quant-02-plugging-in-numbers",
+  "quant-03-estimation",
+  "di-foundations",
+  "quant-04-answer-choice-tactics",
+  "quant-08-even-odd-integer-properties",
+  "verbal-02-cr-argument-structure",
+  "quant-09-divisibility-factors",
+  "quant-10-primes-remainders",
+  "data-sufficiency",
+  "quant-11-exponent-rules",
+  "quant-12-roots-radicals",
+  "verbal-03-cr-assumption",
+  "quant-13-linear-equations-systems",
+  "quant-14-quadratics-factoring",
+  "table-analysis",
+  "quant-15-inequalities-absolute-value",
+  "quant-16-functions-sequences",
+  "verbal-04-cr-strengthen",
+  "quant-17-translating-word-problems",
+  "quant-18-ratios-proportions",
+  "graphics-interpretation",
+  "quant-19-percents",
+  "quant-20-mixtures-weighted-averages",
+  "verbal-05-cr-weaken",
+  "quant-21-rate-time-distance",
+  "quant-22-work-rate",
+  "two-part-analysis",
+  "quant-23-statistics",
+  "quant-28-classic-word-problems",
+  "verbal-06-cr-inference",
+  "quant-29-sets-venn",
+  "quant-24-counting-basics",
+  "multi-source-reasoning",
+  "quant-25-permutations-combinations",
+  "verbal-07-cr-evaluate",
+  "quant-26-restrictions-advanced-counting",
+  "quant-27-probability",
+  "verbal-08-cr-flaw",
+  "verbal-13-rc-reading-process",
+  "verbal-09-cr-paradox",
+  "verbal-14-rc-main-idea",
+  "verbal-10-cr-boldface",
+  "verbal-15-rc-detail",
+  "verbal-11-cr-complete",
+  "verbal-16-rc-inference",
+  "verbal-12-cr-answer-traps",
+  "verbal-17-rc-application",
+  "verbal-18-rc-function",
+  "verbal-19-rc-attitude",
+  "verbal-20-rc-answer-traps",
+  "quant-30-timing",
+  "verbal-21-mixed-timing",
+  "di-timing-mixed",
+]
+const CHAPTER_PATH_RANK = new Map(
+  CHAPTER_PATH_ORDER.map((slug, i) => [slug, i])
+)
+
 export function getAllChapters(): ParsedChapter[] {
   const chaptersDir = path.join(CONTENT_ROOT, "chapters")
   if (!fs.existsSync(chaptersDir)) return []
@@ -837,7 +909,11 @@ export function getAllChapters(): ParsedChapter[] {
     const chapter = parseChapterFile(path.join(chaptersDir, file))
     if (chapter) out.push(chapter)
   }
-  return out
+  return out.sort((a, b) => {
+    const ra = CHAPTER_PATH_RANK.get(a.slug) ?? Number.MAX_SAFE_INTEGER
+    const rb = CHAPTER_PATH_RANK.get(b.slug) ?? Number.MAX_SAFE_INTEGER
+    return ra !== rb ? ra - rb : a.slug.localeCompare(b.slug)
+  })
 }
 
 export function getChapterBySlug(slug: string): ParsedChapter | null {

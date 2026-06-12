@@ -134,14 +134,12 @@ export default function TermsPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="Score guarantee">
+      <LegalSection title="No guarantee of results">
         <p>
-          The score guarantee, where included with the Intensive plan, is
-          described on the <Link href="/pricing">pricing page</Link> and the{" "}
-          <Link href="/refund">Refund Policy</Link>. The guarantee is
-          conditional on your completion of the program as designed
-          (attendance, study plan adherence, and assignment completion). We do
-          not guarantee any specific score for any other plan.
+          We do not guarantee any specific score, score improvement, or
+          admissions outcome. Your results depend on your own preparation,
+          effort, and individual circumstances. Refund terms for each plan are
+          described in our <Link href="/refund">Refund Policy</Link>.
         </p>
       </LegalSection>
 

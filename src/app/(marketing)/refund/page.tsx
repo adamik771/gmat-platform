@@ -5,11 +5,11 @@ import LegalPage, { LegalSection } from "@/components/marketing/LegalPage"
 export const metadata: Metadata = {
   title: "Refund Policy",
   description:
-    "How refunds work for each Zakarian GMAT plan, including the Intensive score guarantee.",
+    "How refunds work for each Zakarian GMAT plan — a 14-day money-back guarantee on every plan, plus package terms for Coaching and Intensive.",
   alternates: { canonical: "/refund" },
 }
 
-const LAST_UPDATED = "May 3, 2026"
+const LAST_UPDATED = "June 12, 2026"
 const CONTACT_EMAIL = "adamzakaryan17@gmail.com"
 
 export default function RefundPage() {
@@ -17,33 +17,30 @@ export default function RefundPage() {
     <LegalPage
       eyebrow="Legal"
       title="Refund Policy"
-      intro="Clear, plan-by-plan refund terms — including the conditions for the Intensive score guarantee."
+      intro="Clear, plan-by-plan refund terms — a 14-day money-back guarantee on every plan, plus the package terms for Coaching and Intensive."
       lastUpdated={LAST_UPDATED}
     >
       <LegalSection title="Summary">
         <ul>
           <li>
-            <strong>Self-Study.</strong> 14-day money-back
-            guarantee, no questions asked.
+            <strong>Self-Study.</strong> 14-day money-back guarantee, no
+            questions asked. One-time payment for four months of platform
+            access.
           </li>
           <li>
-            <strong>Self-Study Guaranteed.</strong> 14-day money-back
-            guarantee, plus a score guarantee: complete the program as defined
-            below and, if your verified official score is below your target,
-            you get a full refund.
+            <strong>Self-Study + Mentorship.</strong> 14-day money-back
+            guarantee, no questions asked. One-time payment for six months of
+            platform access plus WhatsApp Q&amp;A access to Adam.
           </li>
           <li>
             <strong>Coaching.</strong> Refundable in full before the first
             coaching session. After that it is non-refundable for a change of
-            mind, but it is backed by the same score guarantee.
+            mind, since the package is priced as a program.
           </li>
           <li>
-            <strong>Intensive.</strong>
-            {" "}
-            Backed by a score guarantee. If you complete the program as
-            designed and don&apos;t hit your target, you choose between a full
-            refund of the program fee or continued coaching at no additional
-            cost.
+            <strong>Intensive.</strong> Refundable in full before the first
+            coaching session, then non-refundable for a change of mind, with a
+            genuine-hardship exception. Priced as a full-service program.
           </li>
         </ul>
         <p>
@@ -53,7 +50,7 @@ export default function RefundPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="Self-Study">
+      <LegalSection title="Self-Study and Self-Study + Mentorship">
         <p>
           You can request a full refund within 14 days of your purchase, for
           any reason. Email{" "}
@@ -62,61 +59,18 @@ export default function RefundPage() {
           request,&rdquo; and we&apos;ll process it within five business days.
         </p>
         <p>
-          After 14 days, the purchase is final. If a billing error or technical
+          After 14 days, the purchase is final. Self-Study includes four months
+          of platform access and Self-Study + Mentorship includes six months;
+          when that window ends, access ends. If a billing error or technical
           issue prevented you from accessing what you paid for, contact us — we
           will make it right.
-        </p>
-      </LegalSection>
-
-      <LegalSection title="Self-Study Guaranteed — Score Guarantee">
-        <p>
-          The Self-Study Guaranteed plan adds a score guarantee to the
-          self-serve platform. The conditions are tracked automatically on the
-          Platform, so qualifying is straightforward as long as you do the work.
-        </p>
-        <p>
-          <strong>What we promise.</strong> If your verified official GMAT Focus
-          score is below the target score saved on your account at the start,
-          and you have completed the program as defined below, you receive a
-          full refund of the plan fee.
-        </p>
-        <p>
-          <strong>What &ldquo;completing the program&rdquo; means.</strong> All
-          of the following, within six months of purchase and before you sit the
-          official exam:
-        </p>
-        <ul>
-          <li>
-            Read every chapter the Platform flags as one of your weak areas
-            (and all chapters in your weakest section), to 100% on the chapter
-            progress tracker.
-          </li>
-          <li>Log at least 800 practice questions on the Platform.</li>
-          <li>
-            Take at least four official mba.com practice exams under exam
-            conditions and enter each score on the Platform.
-          </li>
-          <li>
-            Set a realistic target score at the start and keep it unchanged
-            (raising your target mid-program voids the guarantee for the higher
-            target).
-          </li>
-        </ul>
-        <p>
-          <strong>How to claim.</strong> Within 14 days of receiving your
-          official score report, email{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> with the
-          subject &ldquo;Guarantee claim&rdquo; and your official score report.
-          We verify your Platform activity against the conditions above and, if
-          they are met, refund the full plan fee within ten business days. The
-          14-day no-questions money-back guarantee also applies independently.
         </p>
       </LegalSection>
 
       <LegalSection title="Coaching (8-week package)">
         <p>
           The Coaching plan is structured as a fixed-scope package: eight weekly
-          1:1 sessions plus full Platform access. Refund terms:
+          1:1 sessions plus platform access. Refund terms:
         </p>
         <ul>
           <li>
@@ -141,72 +95,40 @@ export default function RefundPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="Intensive — Score Guarantee">
+      <LegalSection title="Intensive (16-week package)">
         <p>
-          The Intensive plan is the 16-week, full-service program. It includes
-          a score guarantee on the following terms:
-        </p>
-        <p>
-          <strong>What we promise.</strong> If you complete the Intensive
-          program as designed and your verified official GMAT score is below
-          the target score we set with you at the start of the program, you may
-          choose either:
-        </p>
-        <ol>
-          <li>A full refund of the Intensive program fee, or</li>
-          <li>
-            Continued 1:1 coaching at no additional charge until your next
-            official attempt.
-          </li>
-        </ol>
-        <p>
-          <strong>What &ldquo;completing the program as designed&rdquo;
-          means.</strong> All of the following:
+          The Intensive plan is the 16-week, full-service program: sixteen
+          weekly 1:1 sessions plus platform access. Refund terms:
         </p>
         <ul>
-          <li>Attendance at all 16 scheduled coaching sessions.</li>
           <li>
-            Adherence to the personalised study plan we build for you within
-            the first two weeks, with at least the agreed weekly study hours
-            logged on the Platform.
+            <strong>Before your first session.</strong> Full refund, less any
+            payment-processing fees that we cannot recover from Stripe.
           </li>
           <li>
-            Completion of all assigned mock exams and a written debrief for
-            each, submitted within seven days of the mock.
+            <strong>After your first session.</strong> Non-refundable for a
+            change of mind. The package is priced as a full program.
           </li>
           <li>
-            Use of the error-log on the Platform, with at least one tagged
-            entry per missed practice question across the program.
-          </li>
-          <li>
-            Sitting your official GMAT exam within 30 days of your final
-            coaching session, on a date agreed in advance.
+            <strong>Genuine hardship.</strong> If a serious health issue,
+            bereavement, or similar event stops you continuing, contact us. We
+            will pause the program or offer a partial credit at our reasonable
+            discretion.
           </li>
         </ul>
         <p>
-          <strong>How to claim the guarantee.</strong> Within 14 days of
-          receiving your official score report, email{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> with:
+          Sessions can be rescheduled with at least 24 hours&apos; notice.
+          Sessions cancelled with less notice or missed without notice count
+          toward the sixteen-session total.
         </p>
-        <ul>
-          <li>Your official score report (PDF or screenshot).</li>
-          <li>The target score we agreed at the start of the program.</li>
-          <li>
-            A short note confirming which option you would like — refund or
-            extended coaching.
-          </li>
-        </ul>
+      </LegalSection>
+
+      <LegalSection title="No guarantee of results">
         <p>
-          We will verify program completion against your activity on the
-          Platform and, if eligible, process the refund within ten business
-          days or schedule the additional coaching at a mutually convenient
-          time.
-        </p>
-        <p>
-          <strong>What is not covered.</strong> The guarantee does not apply
-          if any of the conditions above are not met, if the target score is
-          changed unilaterally after the program begins, or if the official
-          score is invalidated by the testing organisation.
+          No plan guarantees a specific score, score improvement, or admissions
+          outcome. Your results depend on your own preparation, effort, and
+          individual circumstances. The refund terms above are the full extent
+          of our money-back commitment.
         </p>
       </LegalSection>
 

@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react"
 import {
   getAllQuestions,
   getChapterBySlug,
+  getPracticeChapterGroups,
   type ChapterProblemSet,
   type ChapterSection,
   type ParsedQuestion,
@@ -43,6 +44,13 @@ export default async function ChapterDetailPage({
   const { slug } = await params
   const chapter = getChapterBySlug(slug)
   if (!chapter) notFound()
+
+  // The chapter's first practice test (`ch-<slug>-t1`), for the "Practice this
+  // chapter" CTA. Null for chapters with no bank yet (method/foundations/timing,
+  // or coming-soon) — the reader falls back to the /practice hub so it never 404s.
+  const firstPracticeTestSlug =
+    getPracticeChapterGroups().find((g) => g.chapterSlug === chapter.slug)
+      ?.tests[0]?.id ?? null
 
   // Build a single id → ParsedQuestion map once so section lookups are O(1).
   const byId = new Map<string, ParsedQuestion>()
@@ -193,6 +201,7 @@ export default async function ChapterDetailPage({
         targetScore={targetScore}
         initialProgress={initialProgress}
         weakestSection={weakestSection}
+        firstPracticeTestSlug={firstPracticeTestSlug}
       />
     </div>
   )

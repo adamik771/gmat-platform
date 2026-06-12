@@ -1,6 +1,7 @@
 import Link from "next/link"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import {
   ArrowRight,
   BookOpen,
@@ -173,13 +174,13 @@ export default function SampleChapterRenderer({
                 </h2>
                 {section.intro && (
                   <div className="text-[#888888] italic mb-5">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
                       {section.intro}
                     </ReactMarkdown>
                   </div>
                 )}
                 <div>
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
                     {section.body}
                   </ReactMarkdown>
                 </div>
@@ -266,7 +267,7 @@ export default function SampleChapterRenderer({
           />
           <div className="relative">
             <p className="text-[10px] uppercase tracking-[0.22em] text-[#C9A84C] font-semibold mb-2">
-              What you just read is one chapter of seventeen
+              What you just read is one of more than fifty chapters
             </p>
             <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-4">
               The full curriculum is{" "}
@@ -274,7 +275,7 @@ export default function SampleChapterRenderer({
                 className="font-display-italic"
                 style={{ color: "#C9A84C" }}
               >
-                17 chapters
+                50+ chapters
               </span>{" "}
               like this one.
             </h2>

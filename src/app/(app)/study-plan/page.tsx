@@ -6,6 +6,7 @@ import {
   Check,
   CheckCircle,
   Clock,
+  ExternalLink,
   FlaskConical,
   RotateCcw,
   Sparkles,
@@ -450,26 +451,6 @@ export default async function StudyPlanPage() {
       )
     : null
 
-  // Readiness as percent toward target. If no target, fall back to pure
-  // estimate / 805. If no estimate either, null → empty state.
-  let readinessPct: number | null = null
-  if (estimatedTotal !== null) {
-    if (targetScore !== null) {
-      const floor = 205
-      readinessPct = Math.max(
-        0,
-        Math.min(
-          100,
-          Math.round(
-            ((estimatedTotal - floor) / (targetScore - floor)) * 100
-          )
-        )
-      )
-    } else {
-      readinessPct = Math.round((estimatedTotal / 805) * 100)
-    }
-  }
-
   const lessonsDoneCount = completedSlugs.size
   const totalLessons = lessons.length
 
@@ -547,6 +528,19 @@ export default async function StudyPlanPage() {
                   Open the official exam plan
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                 </Link>
+                <a
+                  href="https://www.mba.com/exam-prep/gmat-official-practice-exams"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors hover:border-white/20"
+                  style={{
+                    borderColor: "rgba(255,255,255,0.10)",
+                    color: "#C0C0C0",
+                  }}
+                >
+                  Get the exam on mba.com
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
                 {!examDate && (
                   <Link
                     href="/settings"
@@ -839,8 +833,6 @@ export default async function StudyPlanPage() {
   if (plan && plan.todaysFocus.length > 0)
     renderedNumberedSections.push("todays-focus")
   renderedNumberedSections.push("this-week")
-  if (masteries.length > 0)
-    renderedNumberedSections.push("mastery-progress")
   if (plan && plan.weakAreas.length > 0)
     renderedNumberedSections.push("weak-areas")
   renderedNumberedSections.push("up-next")
@@ -1139,64 +1131,9 @@ export default async function StudyPlanPage() {
         />
       </div>
 
-      {/* Mastery progress — per-topic readiness gates (Concept / Timed
-          / Mixed) derived from the research-report prescription. Replaces
-          "completed the chapter = done" with an explicit progression
-          checklist so students can see exactly what they still need to
-          clear before a topic is stable. */}
+      {/* Official-ready status — surfaces when the user has cleared the
+          official-exam readiness bar. */}
       {officialReady && <OfficialReadyCard summary={officialReady} />}
-
-      {masteries.length > 0 && (
-        <section>
-          <div className="flex items-center gap-3 mb-5">
-            <span
-              className="font-display text-[11px] font-semibold tabular-nums"
-              style={{ color: "rgba(201,168,76,0.55)" }}
-              aria-hidden
-            >
-              {sectionNum("mastery-progress")}
-            </span>
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-              style={{ color: "#C9A84C" }}
-            >
-              Mastery progress
-            </p>
-            <div
-              className="h-px flex-1"
-              style={{
-                background:
-                  "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-              }}
-              aria-hidden
-            />
-          </div>
-          <h2 className="font-display text-3xl md:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-3">
-            Gates before{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              stability.
-            </span>
-          </h2>
-          <p className="text-[15px] leading-[1.75] text-[#C0C0C0] mb-6 max-w-2xl">
-            Each topic walks through four gates: Concept-ready (80%+ untimed),
-            Timed-ready (70%+ with median time ≤130% of target), Mixed-ready
-            (75%+ on two mixed sets on different days), and Section-ready
-            (holds up under mock stress). Lowest gates surface first — that&apos;s
-            where work pays best.
-          </p>
-          <div className="space-y-3">
-            {masteries.slice(0, 8).map((m) => (
-              <MasteryCard key={m.topic} mastery={m} />
-            ))}
-          </div>
-          {masteries.length > 8 && (
-            <p className="text-[12px] text-[#555555] mt-3 italic">
-              Showing the 8 topics most in need of work. {masteries.length - 8}{" "}
-              more already further along.
-            </p>
-          )}
-        </section>
-      )}
 
       {/* Weak areas — topic-level accuracy deficit driven from real attempts.
           Each row links to the relevant chapter so the student can read
@@ -1360,77 +1297,6 @@ export default async function StudyPlanPage() {
         )}
       </section>
 
-      {/* Exam readiness — real derivation */}
-      {readinessPct !== null ? (
-        <div
-          className="p-6 sm:p-7 rounded-2xl border transition-all duration-300 hover:shadow-[0_20px_40px_-20px_rgba(201,168,76,0.2)]"
-          style={{
-            borderColor: "rgba(201,168,76,0.2)",
-            backgroundColor: "rgba(201,168,76,0.04)",
-          }}
-        >
-          <div className="flex items-center justify-between gap-3 flex-wrap">
-            <div className="flex items-center gap-4">
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
-              >
-                <Target className="w-5 h-5" style={{ color: "#C9A84C" }} />
-              </div>
-              <div>
-                <p
-                  className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-                  style={{ color: "#C9A84C" }}
-                >
-                  Exam readiness
-                </p>
-                <p className="text-[13px] text-[#C0C0C0] mt-1 leading-relaxed">
-                  {targetScore !== null
-                    ? `Toward your target of ${targetScore}`
-                    : "Based on your current readiness band"}
-                </p>
-              </div>
-            </div>
-            <div className="text-right">
-              <p
-                className="font-display text-4xl font-semibold tracking-[-0.02em] tabular-nums leading-none"
-                style={{ color: "#C9A84C" }}
-              >
-                {readinessPct}
-                <span className="text-2xl">%</span>
-              </p>
-              <p className="text-[10px] uppercase tracking-[0.18em] text-[#555555] mt-2">
-                ready
-              </p>
-            </div>
-          </div>
-          <div className="mt-5 h-2 rounded-full bg-white/[0.06] overflow-hidden">
-            <div
-              className="h-full rounded-full transition-all duration-700"
-              style={{
-                width: `${readinessPct}%`,
-                backgroundColor: "#C9A84C",
-              }}
-            />
-          </div>
-          <p className="text-[12px] text-[#888888] mt-3 tabular-nums">
-            Readiness band: {estimatedTotal}
-            {targetScore !== null && ` · Target: ${targetScore}`}
-            {daysUntilExam !== null && daysUntilExam > 0 && (
-              <> · {daysUntilExam} day{daysUntilExam === 1 ? "" : "s"} until exam</>
-            )}
-          </p>
-        </div>
-      ) : (
-        <EmptyState
-          icon={CalendarDays}
-          title="Readiness band needs more data"
-          description="Complete at least 10 attempts in each of Quant, Verbal, and DI to unlock a readiness band. The band reflects your current practice accuracy — it's a signal, not a forecast. Set a target score on the dashboard and an exam date in settings to refine it further."
-          ctaHref="/test-builder"
-          ctaLabel="Build a test"
-          size="md"
-        />
-      )}
     </div>
   )
 }
@@ -2209,133 +2075,6 @@ function PersonaCard({ persona }: { persona: PersonaProfile }) {
           <ArrowRight className="w-3 h-3" />
         </Link>
       )}
-    </div>
-  )
-}
-
-/**
- * Shows a topic's mastery tier + the three gates (Concept / Timed /
- * Mixed) with pass/fail indicators and a one-line evidence string per
- * gate. The next gate — the lowest unsatisfied one — gets the CTA,
- * because that's what the student should work on next.
- */
-function MasteryCard({ mastery }: { mastery: TopicMastery }) {
-  const nextGate = mastery.gates.find((g) => !g.satisfied) ?? null
-  // "Not started" used to render alongside evidence like "1/5 untimed
-  // correct," which read as a contradiction. "Insufficient data" is
-  // honest when the topic has *some* attempts but not enough to evaluate
-  // the first gate yet.
-  const tierLabel =
-    mastery.tier === "section-ready"
-      ? "Section-ready"
-      : mastery.tier === "mixed-ready"
-        ? "Mixed-ready"
-        : mastery.tier === "timed-ready"
-          ? "Timed-ready"
-          : mastery.tier === "concept-ready"
-            ? "Concept-ready"
-            : "Insufficient data"
-  const tierColor =
-    mastery.tier === "section-ready"
-      ? "#6FB5F6"
-      : mastery.tier === "mixed-ready"
-        ? "#3ECF8E"
-        : mastery.tier === "timed-ready"
-          ? "#C9A84C"
-          : mastery.tier === "concept-ready"
-            ? "#E8C97A"
-            : "#888888"
-
-  // CTA routing: concept → chapter, timed/mixed → practice drill,
-  // section → mock builder. Falls back to /practice if no chapter mapping.
-  const ctaHref =
-    nextGate?.id === "section"
-      ? "/test-builder"
-      : nextGate?.id === "concept" && mastery.chapterSlug
-        ? `/chapters/${mastery.chapterSlug}`
-        : mastery.chapterSlug
-          ? `/practice/session/${mastery.chapterSlug}`
-          : "/practice"
-  const ctaLabel =
-    nextGate?.id === "concept"
-      ? "Open chapter"
-      : nextGate?.id === "timed"
-        ? "Timed drill"
-        : nextGate?.id === "mixed"
-          ? "Mixed set"
-          : nextGate?.id === "section"
-            ? "Build mock"
-            : "Review"
-
-  return (
-    <div className="p-5 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]">
-      <div className="flex items-start justify-between gap-4 flex-col sm:flex-row">
-        <div className="flex items-start gap-3 min-w-0">
-          <span
-            className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em] flex-shrink-0 mt-1"
-            style={{
-              backgroundColor: "rgba(201,168,76,0.08)",
-              color: "#C9A84C",
-            }}
-          >
-            {mastery.section}
-          </span>
-          <div className="min-w-0">
-            <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0] truncate">
-              {mastery.topic}
-            </p>
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em] mt-1"
-              style={{ color: tierColor }}
-            >
-              {tierLabel}
-            </p>
-          </div>
-        </div>
-        {nextGate && (
-          <Link
-            href={ctaHref}
-            className="text-xs px-3.5 py-1.5 rounded-xl font-semibold tracking-tight transition-all duration-200 hover:scale-[1.02] inline-flex items-center gap-1 flex-shrink-0 self-end sm:self-auto"
-            style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-          >
-            {ctaLabel}
-            <ArrowRight className="w-3 h-3" />
-          </Link>
-        )}
-      </div>
-      <div className="mt-4 space-y-2">
-        {mastery.gates.map((g) => (
-          <div key={g.id} className="flex items-start gap-2.5 text-[12px]">
-            <span
-              className="inline-flex items-center justify-center w-4 h-4 rounded-full mt-0.5 flex-shrink-0"
-              style={{
-                backgroundColor: g.satisfied
-                  ? "rgba(62,207,142,0.15)"
-                  : "rgba(255,255,255,0.04)",
-                border: `1px solid ${
-                  g.satisfied
-                    ? "rgba(62,207,142,0.35)"
-                    : "rgba(255,255,255,0.08)"
-                }`,
-              }}
-              aria-hidden="true"
-            >
-              {g.satisfied ? (
-                <Check className="w-2.5 h-2.5" style={{ color: "#3ECF8E" }} />
-              ) : null}
-            </span>
-            <div className="flex-1 min-w-0">
-              <span
-                className="font-semibold tracking-tight"
-                style={{ color: g.satisfied ? "#3ECF8E" : "#F0F0F0" }}
-              >
-                {g.label}
-              </span>
-              <span className="text-[#C0C0C0]"> — {g.evidence}</span>
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   )
 }
