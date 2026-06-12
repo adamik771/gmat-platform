@@ -65,7 +65,7 @@ export interface WeakArea {
   errorPattern: ErrorPattern
 }
 
-export type DailySuggestionType = "lesson" | "practice" | "review" | "chapter" | "mock"
+export type DailySuggestionType = "practice" | "review" | "chapter" | "mock"
 
 export interface DailySuggestion {
   type: DailySuggestionType
@@ -373,21 +373,23 @@ export async function computeStudyPlan(
  */
 export function buildWeeklyCadence(
   plan: StudyPlanOutput,
-  nextLessons: Array<{ slug: string; title: string; module: number }>
+  nextReadings: Array<{ slug: string; title: string }>
 ): DailySuggestion[] {
   const days: DailySuggestion[] = []
-  const lessonQueue = [...nextLessons]
+  // Next chapters on the guided path (the lessons library is deprecated —
+  // chapter reads are the reading unit of the curriculum).
+  const readingQueue = [...nextReadings]
   const weakQueue = plan.weakAreas.filter((w) => w.chapterSlug !== null)
 
-  // Pattern: review first (if any), then weak-topic chapter, then lesson,
-  // then fresh practice, cycling.
+  // Pattern: review first (if any), then weak-topic chapter, then the next
+  // guided-path chapter read, then fresh practice, cycling.
   const hasReview = plan.reviewDueCount > 0
   const hasWeakTopic = weakQueue.length > 0
 
-  const pool: DailySuggestionType[] = []
+  const pool: Array<DailySuggestionType | "reading"> = []
   if (hasReview) pool.push("review")
   if (hasWeakTopic) pool.push("chapter")
-  pool.push("lesson", "practice")
+  pool.push("reading", "practice")
 
   for (let i = 0; i < 7; i++) {
     const choice = pool[i % pool.length]
@@ -404,12 +406,12 @@ export function buildWeeklyCadence(
         label: w.topic,
         href: `/chapters/${w.chapterSlug}`,
       })
-    } else if (choice === "lesson" && lessonQueue.length > 0) {
-      const l = lessonQueue.shift()!
+    } else if (choice === "reading" && readingQueue.length > 0) {
+      const r = readingQueue.shift()!
       days.push({
-        type: "lesson",
-        label: l.title,
-        href: `/lessons/${l.slug}`,
+        type: "chapter",
+        label: r.title,
+        href: `/chapters/${r.slug}`,
       })
     } else {
       days.push({
