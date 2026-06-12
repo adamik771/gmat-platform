@@ -611,7 +611,7 @@ export default function ChapterReader({
 }: {
   slug: string
   title: string
-  section: Section
+  section: Section | "General"
   estimatedPages: number
   summary: string | null
   sections: ReaderSection[]
@@ -1134,7 +1134,7 @@ function ChapterCompletionCard({
   targetScore,
   firstPracticeTestSlug,
 }: {
-  section: Section
+  section: Section | "General"
   title: string
   totalSections: number
   problemSetCount: number
@@ -1360,7 +1360,7 @@ function ChapterCompletionCard({
                 color: "var(--read-bg-inset)",
               }}
             >
-              Practice {section}
+              {section === "General" ? "Start practicing" : `Practice ${section}`}
               <ArrowRight className="w-3.5 h-3.5" aria-hidden />
             </Link>
           )}

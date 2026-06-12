@@ -147,15 +147,20 @@ describe("TEST_CAPS / COMING_SOON / OMITTED sets", () => {
     expect(COMING_SOON_CHAPTERS.has("verbal-13-rc-reading-process")).toBe(false)
   })
 
-  it("OMITTED_CHAPTERS contains method/foundations/timing chapters and excludes real topic chapters", () => {
+  it("OMITTED_CHAPTERS contains method/foundations/timing/intro chapters and excludes real topic chapters", () => {
     expect(OMITTED_CHAPTERS.has("quant-01-backsolving")).toBe(true)
     expect(OMITTED_CHAPTERS.has("verbal-01-foundations")).toBe(true)
     expect(OMITTED_CHAPTERS.has("di-foundations")).toBe(true)
     expect(OMITTED_CHAPTERS.has("quant-30-timing")).toBe(true)
+    // the welcome + section-intro chapters have no banks either
+    expect(OMITTED_CHAPTERS.has("gmat-welcome")).toBe(true)
+    expect(OMITTED_CHAPTERS.has("quant-section-intro")).toBe(true)
+    expect(OMITTED_CHAPTERS.has("verbal-section-intro")).toBe(true)
+    expect(OMITTED_CHAPTERS.has("di-section-intro")).toBe(true)
     // a real, practiceable topic chapter must NOT be omitted
     expect(OMITTED_CHAPTERS.has("quant-08-even-odd-integer-properties")).toBe(false)
     expect(OMITTED_CHAPTERS.has("data-sufficiency")).toBe(false)
-    expect(OMITTED_CHAPTERS.size).toBe(9)
+    expect(OMITTED_CHAPTERS.size).toBe(13)
   })
 
   it("COMING_SOON and OMITTED sets are disjoint (no chapter is both)", () => {
