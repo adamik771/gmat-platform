@@ -22,6 +22,7 @@ export type PlanTier = "free" | "paid"
 
 /** Gateable surfaces. Add a key here, then guard the surface with canAccess. */
 export type PaidFeature =
+  | "ai-tutor"
   | "analytics"
   | "mock-simulator"
   | "review-queue"

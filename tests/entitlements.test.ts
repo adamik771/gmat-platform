@@ -24,6 +24,7 @@ async function loadWithPaywall(
 // Every gateable surface. Kept in lockstep with the PaidFeature union so the
 // per-feature loops below cover the whole type.
 const ALL_FEATURES: PaidFeature[] = [
+  "ai-tutor",
   "analytics",
   "mock-simulator",
   "review-queue",

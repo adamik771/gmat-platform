@@ -2,6 +2,8 @@ import { NextResponse } from "next/server"
 import Anthropic from "@anthropic-ai/sdk"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getQuestionsByIds } from "@/lib/content"
+import { canAccess, getPlanTierForUser } from "@/lib/entitlements"
+import { checkTutorRateLimit, recordTutorUse } from "@/lib/tutor-rate-limit"
 
 /**
  * AI tutor endpoint. Given a question ID and a conversation history,
@@ -177,6 +179,34 @@ export async function POST(request: Request) {
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
+
+    // Plan gate — a no-op while PAYWALL_ENABLED is off; once the paywall is
+    // on, the tutor is a paid feature.
+    const tier = await getPlanTierForUser(supabase, user.id)
+    if (!canAccess(tier, "ai-tutor")) {
+      return NextResponse.json(
+        { error: "The AI tutor is part of the paid plans." },
+        { status: 403 }
+      )
+    }
+
+    // Per-user rate limit (tutor_usage table; fail-open until the migration
+    // is applied). Counted BEFORE the model call so abuse is capped even when
+    // upstream requests fail mid-flight.
+    const decision = await checkTutorRateLimit(supabase, user.id)
+    if (!decision.allowed) {
+      return NextResponse.json(
+        {
+          error:
+            "You've hit the tutor's usage limit for now — take a short break and try again.",
+        },
+        {
+          status: 429,
+          headers: { "Retry-After": String(decision.retryAfterSeconds ?? 60) },
+        }
+      )
+    }
+    await recordTutorUse(supabase, user.id)
   } catch {
     return NextResponse.json({ error: "Auth unavailable" }, { status: 503 })
   }
