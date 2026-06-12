@@ -167,8 +167,11 @@ export default function OfficialExamPlanClient({
     return out
   }, [slots, entries, entryByDate, todayIso])
 
-  const nextUnscoredSlot =
-    rows.find((r) => r.status === "next-up")?.date ?? todayIso
+  // An official exam is logged on the day it was actually taken, so the entry
+  // form defaults to today. (It previously defaulted to the next scheduled slot,
+  // which can be weeks out — a score entered today then landed ~6 weeks before
+  // the exam.) Off-schedule dates still merge into the timeline at the right spot.
+  const defaultEntryDate = todayIso
 
   const sortedEntries = entries // kept sorted ascending on every update
   const latestEntry =
@@ -439,7 +442,7 @@ export default function OfficialExamPlanClient({
           </button>
           {formOpen && (
             <EntryForm
-              defaultDate={nextUnscoredSlot}
+              defaultDate={defaultEntryDate}
               saving={saving}
               onSubmit={submitEntry}
             />

@@ -7,6 +7,7 @@ import {
   Award,
   ChevronRight,
   Compass,
+  ExternalLink,
   Flag,
   FlaskConical,
   Lock,
@@ -40,7 +41,7 @@ import TargetScoreControl from "./TargetScoreControl"
 
 const PLAN_LABELS: Record<string, string> = {
   self_study: "Self-Study",
-  self_study_guaranteed: "Self-Study Guaranteed",
+  self_study_guaranteed: "Self-Study + Mentorship",
   coaching: "Coaching",
   intensive: "Intensive",
 }
@@ -688,15 +689,21 @@ export default async function DashboardPage() {
       ? rawDailyGoal
       : 25
 
-  // Gap copy when both estimate + target are known — "+50 to hit target"
-  // or "— already at target" if the user has exceeded it.
-  let goalGapLabel: string | null = null
-  if (estimatedTotal !== null && targetScore !== null) {
-    const gap = targetScore - estimatedTotal
-    if (gap > 0) goalGapLabel = `+${gap} to hit target`
-    else if (gap === 0) goalGapLabel = "On target — keep practicing"
-    else goalGapLabel = `+${-gap} above target`
-  }
+  // Course progress — share of chapters the student has fully read (every
+  // section marked read). Drives the dashboard "Course progress" stat, which
+  // replaced the old readiness projection.
+  const chapterProgressForPct = (user?.user_metadata?.chapter_progress ?? null) as
+    | Record<string, { sectionsRead?: Record<string, boolean> }>
+    | null
+  const allChaptersForPct = getAllChapters()
+  const totalChapters = allChaptersForPct.length
+  const completedChapters = allChaptersForPct.filter((ch) => {
+    const entry = chapterProgressForPct?.[ch.slug]
+    if (!entry || ch.sections.length === 0) return false
+    return ch.sections.every((s) => entry.sectionsRead?.[s.id])
+  }).length
+  const courseCompletionPct =
+    totalChapters > 0 ? Math.round((completedChapters / totalChapters) * 100) : 0
 
   // Onboarding checklist — only rendered while any of the four setup
   // steps are still outstanding. Disappears permanently once complete.
@@ -861,6 +868,19 @@ export default async function DashboardPage() {
                   Open the official exam plan
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                 </Link>
+                <a
+                  href="https://www.mba.com/exam-prep/gmat-official-practice-exams"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors hover:border-white/20"
+                  style={{
+                    borderColor: "rgba(255,255,255,0.10)",
+                    color: "#C0C0C0",
+                  }}
+                >
+                  Get the exam on mba.com
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
                 {!onboardingTargetSet && (
                   <Link
                     href="/onboarding"
@@ -1351,29 +1371,29 @@ export default async function DashboardPage() {
         style={{ borderColor: "rgba(255,255,255,0.06)" }}
       >
         <div className="grid grid-cols-2 sm:grid-cols-4 divide-y divide-white/[0.05] sm:divide-y-0 sm:divide-x">
-          {/* Readiness → Target */}
+          {/* Course progress */}
           <div className="px-1 py-3 sm:px-4 sm:py-1">
             <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888]">
-              Readiness → Target
+              Course progress
             </p>
-            <div className="flex items-baseline gap-2 mt-2">
-              <span
-                className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums"
-                style={{ color: estimatedTotal !== null ? "#F0F0F0" : "#555555" }}
-              >
-                {estimatedTotal !== null ? estimatedTotal : "—"}
+            <p
+              className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums mt-2"
+              style={{ color: completedChapters > 0 ? "#F0F0F0" : "#555555" }}
+            >
+              {courseCompletionPct}%
+            </p>
+            <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mt-2">
+              <span className="text-[11px] text-[#888888]">
+                {completedChapters}/{totalChapters} chapters
               </span>
-              <span className="text-base text-[#555555]">→</span>
+              <span className="text-[11px] text-[#555555]" aria-hidden>
+                ·
+              </span>
               <TargetScoreControl
                 initialTarget={targetScore}
                 estimate={estimatedTotal}
               />
             </div>
-            {goalGapLabel && (
-              <p className="text-[11px] mt-1.5" style={{ color: "#C9A84C" }}>
-                {goalGapLabel}
-              </p>
-            )}
           </div>
 
           {/* Streak */}

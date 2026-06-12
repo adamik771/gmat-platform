@@ -21,6 +21,7 @@ import {
 } from "lucide-react"
 import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
+import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import { cn } from "@/lib/utils"
 import MixedReviewCard from "@/components/shared/MixedReviewCard"
 import ReaderThemeToggle, { useReadingTheme } from "@/components/shared/ReaderThemeToggle"
@@ -606,6 +607,7 @@ export default function ChapterReader({
   targetScore,
   initialProgress,
   weakestSection,
+  firstPracticeTestSlug,
 }: {
   slug: string
   title: string
@@ -616,6 +618,10 @@ export default function ChapterReader({
   problemSets: ReaderProblemSet[]
   targetScore: number | null
   initialProgress?: unknown
+  /** Session slug of this chapter's first practice test (`ch-<slug>-t1`), or
+   *  null when the chapter has no bank yet. Drives the "Practice" CTA; null
+   *  falls back to the /practice hub so the link never 404s. */
+  firstPracticeTestSlug?: string | null
   /** Server-derived hint for returning students with practice history:
    *  the section in this chapter where their accuracy is meaningfully
    *  below the chapter's section-average. Null when the data is too
@@ -1016,6 +1022,7 @@ export default function ChapterReader({
                     problemSetResults={progress.problemSetResults}
                     sets={problemSets}
                     targetScore={targetScore}
+                    firstPracticeTestSlug={firstPracticeTestSlug ?? null}
                   />
                 )}
             </div>
@@ -1031,6 +1038,7 @@ export default function ChapterReader({
                   nextUnreadTitle={nextUnread?.title ?? null}
                   nextUnreadAnchorId={nextUnread?.id ?? null}
                   bigIdea={bigIdea}
+                  firstPracticeTestSlug={firstPracticeTestSlug ?? null}
                 />
               </aside>
             )}
@@ -1124,6 +1132,7 @@ function ChapterCompletionCard({
   problemSetResults,
   sets,
   targetScore,
+  firstPracticeTestSlug,
 }: {
   section: Section
   title: string
@@ -1133,9 +1142,13 @@ function ChapterCompletionCard({
   problemSetResults: ChapterProgress["problemSetResults"]
   sets: ReaderProblemSet[]
   targetScore: number | null
+  firstPracticeTestSlug: string | null
 }) {
-  const practiceSlug =
-    section === "Quant" ? "quant" : section === "Verbal" ? "verbal" : "di"
+  // Deep-link to this chapter's first practice test; fall back to the
+  // Practice hub when the chapter has no bank yet (so the CTA never 404s).
+  const practiceHref = firstPracticeTestSlug
+    ? `/practice/session/${firstPracticeTestSlug}`
+    : "/practice"
   const hasProblemSets = problemSetCount > 0
   const allSetsDone = hasProblemSets && attemptedProblemSetCount >= problemSetCount
   const noneAttempted = hasProblemSets && attemptedProblemSetCount === 0
@@ -1340,7 +1353,7 @@ function ChapterCompletionCard({
             </a>
           ) : (
             <Link
-              href={`/practice/session/${practiceSlug}`}
+              href={practiceHref}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold transition-all duration-200 hover:-translate-y-0.5"
               style={{
                 backgroundColor: "var(--read-gold)",
@@ -1570,7 +1583,7 @@ function SectionCard({
                 className="w-4 h-4 flex-shrink-0 mt-1"
                 style={{ color: "var(--read-gold)" }}
               />
-              <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
                 {s.intro}
               </ReactMarkdown>
             </div>
@@ -1589,7 +1602,7 @@ function SectionCard({
 
         {s.body && (
           <div className="prose-chapter prose-chapter-dropcap">
-            <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
               {s.body}
             </ReactMarkdown>
           </div>
@@ -1755,7 +1768,7 @@ function InlineQuestion({
 
       <div className="px-5 py-5 space-y-4">
         <div>
-          <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
             {q.prompt}
           </ReactMarkdown>
         </div>
@@ -1817,7 +1830,7 @@ function InlineQuestion({
                 </span>
                 <div className="flex-1 text-[14px]" style={{ color: "var(--read-text-body)" }}>
                   <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
+                    remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}
                     components={mdComponents}
                   >
                     {opt}
@@ -2004,7 +2017,7 @@ function PostSubmitReveal({
               </span>
             </div>
           )}
-          <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
             {question.explanation}
           </ReactMarkdown>
           {state.selfExplanation.trim() && (
@@ -2342,7 +2355,7 @@ function ProblemSetRunner({
         ) : (
           <div className="px-6 py-6 space-y-4">
             <div>
-              <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
                 {current.prompt}
               </ReactMarkdown>
             </div>
@@ -2400,7 +2413,7 @@ function ProblemSetRunner({
                     </span>
                     <div className="flex-1 text-[14px]" style={{ color: "var(--read-text-body)" }}>
                       <ReactMarkdown
-                        remarkPlugins={[remarkGfm]}
+                        remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}
                         components={mdComponents}
                       >
                         {opt}
@@ -2420,7 +2433,7 @@ function ProblemSetRunner({
                 }}
               >
                 <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
+                  remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}
                   components={mdComponents}
                 >
                   {current.explanation}

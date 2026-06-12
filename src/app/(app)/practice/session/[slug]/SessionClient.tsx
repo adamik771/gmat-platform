@@ -21,6 +21,7 @@ import { DI_METHOD_CARDS, hasMethodCard } from "@/lib/di-method-cards"
 import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import PacingBadge from "@/components/shared/PacingBadge"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
@@ -143,7 +144,7 @@ function PromptBlock({ text, className = "" }: { text: string; className?: strin
   return (
     <div className={`text-sm leading-relaxed text-[#F0F0F0] ${className}`}>
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
+        remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}
         components={{
           p: (props) => (
             <p {...props} className="my-2 first:mt-0 last:mb-0" />

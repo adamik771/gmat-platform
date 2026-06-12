@@ -11,6 +11,7 @@ import {
 } from "lucide-react"
 import SectionWrapper from "@/components/shared/SectionWrapper"
 import { getAllLessons, getContentStats } from "@/lib/content"
+import CurriculumTopics from "./CurriculumTopics"
 
 export const metadata: Metadata = {
   title: "Course",
@@ -114,7 +115,7 @@ export default function CoursePage() {
   const included = [
     {
       icon: BookOpen,
-      title: "17 research-backed chapters",
+      title: "50+ research-backed chapters",
       description:
         "Reading-first curriculum with in-chapter checks and graded problem sets. No video filler — built to be worked through, not watched.",
     },
@@ -268,16 +269,7 @@ export default function CoursePage() {
                     <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-4">
                       {mod.description}
                     </p>
-                    <ul className="flex flex-wrap gap-2">
-                      {mod.topics.map((topic) => (
-                        <li
-                          key={topic}
-                          className="text-[11px] px-2.5 py-1 rounded-md border border-white/[0.06] text-[#888888] tracking-wide"
-                        >
-                          {topic}
-                        </li>
-                      ))}
-                    </ul>
+                    <CurriculumTopics topics={mod.topics} />
                   </div>
                 </div>
               </div>

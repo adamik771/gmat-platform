@@ -512,44 +512,57 @@ export default function HomePage() {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {[
             {
               name: "Self-Study",
-              price: "$297",
+              price: "$429",
               note: "one-time",
-              desc: "Full curriculum + analytics",
+              desc: "Full platform, 4-month access",
               features: [
-                "8-module progressive curriculum",
-                "Full error-log analytics",
-                "Unlimited practice + 6 mocks",
-                "Spacing + review queue",
+                "50+ chapters — Q, V & Data Insights",
+                "1,150+ original practice questions",
+                "Full analytics + error log",
+                "4-month platform access",
               ],
               highlighted: false,
+            },
+            {
+              name: "Self-Study + Mentorship",
+              price: "$599",
+              note: "one-time",
+              desc: "Everything + WhatsApp Q&A access",
+              features: [
+                "Everything in Self-Study",
+                "WhatsApp Q&A access with Adam",
+                "6-month platform access",
+                "No scheduled calls required",
+              ],
+              highlighted: true,
+              badge: "Recommended",
             },
             {
               name: "Coaching",
               price: "$2,500",
               note: "package",
-              desc: "8 weekly 1:1 sessions + WhatsApp",
+              desc: "Mentorship + 8 weekly 1:1 sessions",
               features: [
-                "Everything in Self-Study",
+                "Everything in Mentorship",
                 "8 × 60-min 1:1 calls with Adam",
-                "Direct WhatsApp between sessions",
+                "Direct support between sessions",
                 "Custom per-week plan + ESR debrief",
               ],
-              highlighted: true,
-              badge: "Most Popular",
+              highlighted: false,
             },
             {
               name: "Intensive",
               price: "$4,200",
               note: "package",
-              desc: "16 weeks + score guarantee",
+              desc: "Full-service — 16 sessions",
               features: [
                 "Everything in Coaching",
-                "16 weeks of weekly sessions",
-                "Score guarantee or refund",
+                "16 weekly 1:1 sessions",
+                "12-month platform access",
                 "Mock-by-mock tuning loop",
               ],
               highlighted: false,

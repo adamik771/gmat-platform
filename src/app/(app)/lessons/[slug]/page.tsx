@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import { getAllLessons, getLessonBySlug } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import CompleteToggle, { LessonReaderShell } from "./CompleteToggle"
@@ -42,7 +43,7 @@ export default async function LessonDetailPage({
 
   const article = (
     <ReactMarkdown
-      remarkPlugins={[remarkGfm]}
+      remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}
       components={{
         h1: (props) => (
           <h1

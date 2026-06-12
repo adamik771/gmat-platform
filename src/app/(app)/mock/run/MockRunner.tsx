@@ -15,6 +15,7 @@ import {
 } from "lucide-react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import PacingBadge from "@/components/shared/PacingBadge"
 import {
   digitKeyToOptionIndex,
@@ -839,7 +840,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
               Passage
             </p>
             <div className="text-sm text-[#C0C0C0] leading-relaxed max-h-64 overflow-y-auto">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
                 {question.context}
               </ReactMarkdown>
             </div>
@@ -859,7 +860,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
         </div>
 
         <div className="text-[15px] text-[#F0F0F0] leading-relaxed">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{question.prompt}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>{question.prompt}</ReactMarkdown>
         </div>
 
         {question.twoPartColumns ? (

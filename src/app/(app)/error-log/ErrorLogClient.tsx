@@ -39,6 +39,7 @@ import {
 } from "lucide-react"
 import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
+import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import { cn } from "@/lib/utils"
 import type { Section } from "@/types"
 import {
@@ -792,7 +793,7 @@ function ExpandedMistake({
           <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#C9A84C] mb-2">
             Reference
           </p>
-          <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
             {entry.context}
           </ReactMarkdown>
         </div>
@@ -802,7 +803,7 @@ function ExpandedMistake({
         <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-2">
           Question
         </p>
-        <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
           {entry.prompt}
         </ReactMarkdown>
       </div>
@@ -845,7 +846,7 @@ function ExpandedMistake({
                   {letter}
                 </span>
                 <div className="flex-1">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
                     {opt}
                   </ReactMarkdown>
                 </div>
@@ -877,7 +878,7 @@ function ExpandedMistake({
           <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#C9A84C] mb-2">
             Explanation
           </p>
-          <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
             {entry.explanation}
           </ReactMarkdown>
         </div>

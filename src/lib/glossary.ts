@@ -187,12 +187,6 @@ export const ENTRIES: GlossaryEntry[] = [
     link: { href: "/sample-chapter", label: "Read a sample chapter" },
   },
   {
-    term: "Score guarantee",
-    definition:
-      "On the Zakarian GMAT Intensive plan, a structured commitment that if you complete the 16-session program as designed and don't hit your target score, you receive either a full refund or extended coaching at no charge. Conditions are spelled out on the refund policy page.",
-    link: { href: "/refund", label: "Refund policy" },
-  },
-  {
     term: "Section order",
     definition:
       "On the GMAT Focus Edition, you choose the order in which to take the three sections (Quant, Verbal, DI). The choice affects pacing strategy and energy allocation. Most students benefit from doing their most demanding section first.",
