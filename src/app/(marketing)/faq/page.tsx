@@ -105,7 +105,7 @@ const categories: FAQCategory[] = [
       {
         question: "What is the score guarantee?",
         answer:
-          "The Intensive package includes a score guarantee. If you complete all 16 scheduled coaching sessions, follow the study plan consistently, complete all assigned mocks with debriefs, and don't hit your target score, you choose between a full refund or extended coaching at no cost. Full conditions are on the refund policy page.",
+          "The Self-Study Guaranteed, Coaching, and Intensive plans all include a score guarantee. The platform tracks your progress, so qualifying just means doing the work: read your weak-area chapters, log enough practice, and take several official mba.com practice exams. If your verified official score is still below your target, you get a full refund (Intensive also lets you choose continued coaching at no cost). Full conditions are on the refund policy page.",
       },
       {
         question: "Do you guarantee a specific score?",
@@ -230,7 +230,7 @@ const categories: FAQCategory[] = [
       {
         question: "What is your refund policy?",
         answer:
-          "Self-Study includes a 14-day money-back guarantee, no questions asked. Coaching is refundable in full before the first session and non-refundable after. Intensive is backed by the score guarantee — see /refund for the full conditions.",
+          "Self-Study includes a 14-day money-back guarantee, no questions asked. Self-Study Guaranteed, Coaching, and Intensive add a score guarantee on top of their refund terms. See /refund for the full conditions of each.",
       },
       {
         question: "Are prices in USD?",

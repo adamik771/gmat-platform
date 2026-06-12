@@ -1,11 +1,12 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getStripe, STRIPE_PRICES } from "@/lib/stripe"
 
-const PLAN_IDS = ["self_study", "coaching", "intensive"] as const
+const PLAN_IDS = ["self_study", "self_study_guaranteed", "coaching", "intensive"] as const
 type PlanId = (typeof PLAN_IDS)[number]
 
 const PLAN_TO_PRICE: Record<PlanId, string> = {
   self_study: STRIPE_PRICES.selfStudy,
+  self_study_guaranteed: STRIPE_PRICES.selfStudyGuaranteed,
   coaching: STRIPE_PRICES.coaching,
   intensive: STRIPE_PRICES.intensive,
 }
@@ -14,7 +15,7 @@ const PLAN_TO_PRICE: Record<PlanId, string> = {
  * POST /api/checkout — creates a Stripe Checkout Session for the
  * requested plan and returns the hosted-checkout URL.
  *
- * Body: `{ planId: "self_study" | "coaching" | "intensive" }`.
+ * Body: `{ planId: "self_study" | "self_study_guaranteed" | "coaching" | "intensive" }`.
  * We accept a plan id rather than a raw priceId so a malicious client can't
  * create sessions for arbitrary prices.
  *

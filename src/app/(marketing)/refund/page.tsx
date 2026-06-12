@@ -27,9 +27,15 @@ export default function RefundPage() {
             guarantee, no questions asked.
           </li>
           <li>
+            <strong>Self-Study Guaranteed.</strong> 14-day money-back
+            guarantee, plus a score guarantee: complete the program as defined
+            below and, if your verified official score is below your target,
+            you get a full refund.
+          </li>
+          <li>
             <strong>Coaching.</strong> Refundable in full before the first
-            coaching session. Non-refundable after that, prorated only at our
-            discretion in genuine hardship cases.
+            coaching session. After that it is non-refundable for a change of
+            mind, but it is backed by the same score guarantee.
           </li>
           <li>
             <strong>Intensive.</strong>
@@ -59,6 +65,51 @@ export default function RefundPage() {
           After 14 days, the purchase is final. If a billing error or technical
           issue prevented you from accessing what you paid for, contact us — we
           will make it right.
+        </p>
+      </LegalSection>
+
+      <LegalSection title="Self-Study Guaranteed — Score Guarantee">
+        <p>
+          The Self-Study Guaranteed plan adds a score guarantee to the
+          self-serve platform. The conditions are tracked automatically on the
+          Platform, so qualifying is straightforward as long as you do the work.
+        </p>
+        <p>
+          <strong>What we promise.</strong> If your verified official GMAT Focus
+          score is below the target score saved on your account at the start,
+          and you have completed the program as defined below, you receive a
+          full refund of the plan fee.
+        </p>
+        <p>
+          <strong>What &ldquo;completing the program&rdquo; means.</strong> All
+          of the following, within six months of purchase and before you sit the
+          official exam:
+        </p>
+        <ul>
+          <li>
+            Read every chapter the Platform flags as one of your weak areas
+            (and all chapters in your weakest section), to 100% on the chapter
+            progress tracker.
+          </li>
+          <li>Log at least 800 practice questions on the Platform.</li>
+          <li>
+            Take at least four official mba.com practice exams under exam
+            conditions and enter each score on the Platform.
+          </li>
+          <li>
+            Set a realistic target score at the start and keep it unchanged
+            (raising your target mid-program voids the guarantee for the higher
+            target).
+          </li>
+        </ul>
+        <p>
+          <strong>How to claim.</strong> Within 14 days of receiving your
+          official score report, email{" "}
+          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> with the
+          subject &ldquo;Guarantee claim&rdquo; and your official score report.
+          We verify your Platform activity against the conditions above and, if
+          they are met, refund the full plan fee within ten business days. The
+          14-day no-questions money-back guarantee also applies independently.
         </p>
       </LegalSection>
 
