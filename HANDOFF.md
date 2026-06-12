@@ -2,6 +2,32 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-12 END OF DAY (everything below is now MERGED to main; state snapshot + open items)
+
+A very long session. **All of the work described in the sections below is MERGED to main** (PRs through #441) — main is green: `npm run check` (validate:content 0 errors + tsc + 195 vitest tests) passes, `next build` clean. No open `claude/*` branches except the orphan noted below. Verify gate = **`npm run check`** before any commit.
+
+**Shipped & merged this session** (details in the dated sections that follow): pricing rework #2 (Self-Study $429/4mo · **Self-Study + Mentorship** $599/6mo+WhatsApp · Coaching $2,500 · Intensive $4,200; score guarantee removed everywhere) · "50+ chapters" marketing accuracy · **single guided-path /chapters** (CHAPTER_PATH_ORDER, easier-first, interleaved) — fixed a page-level re-sort that hid it · **welcome chapter + 3 per-section intro chapters** opening the path (path is now 62 chapters; `ParsedChapter.section` widened to `Section | "General"`) · study-plan lighter declutter + repointed to chapters · dashboard course-% + parallelized queries · collapsible course curriculum + real "five phases" narrative (killed "8 modules") · **caret→superscript math** rendering everywhere (rehype-caret-sup) · **two whole 404 bug classes eradicated** (chapter→practice CTA, then `/practice/session/<chapter-or-session-slug>` across 7 surfaces) with `TOPIC_TO_SET` + regression tests · **AI-tutor rate limit + paid gate** (tutor_usage migration, fail-open until applied) · **lessons library retired** (routes deleted, 308 redirects, narrative repointed) · **16 decimal-reliant quant explanations rewritten** + math-verified · **Vitest from 0 → 195 tests** + `npm run check` gate.
+
+### Go-to-market reality (established via Q&A this session — IMPORTANT for any "invite/trial/paywall" work)
+- **`/signup` is fully public, no invite/allowlist gate, and `PAYWALL_ENABLED` is OFF** → anyone who has the URL can register (email-confirm via Supabase) and get the ENTIRE product free. The "invite-only" framing in Adam's outreach is positioning, NOT enforced — it holds only while he controls who gets the link.
+- **Friend onboarding** = Supabase dashboard → Authentication → Users → Add user (set email+password, check Auto Confirm). Instant, pre-confirmed. No "change password" UI in Settings — users reset via the login page's forgot-password flow.
+- **No trial-expiry mechanism exists.** A manually-created "free week" account has full access forever until Adam **bans/disables** (reversible, keeps progress — preferred for trial-enders) or **deletes** it. Auth re-verifies every request (getUser()), so ban/delete takes effect on their next page load.
+- Early-access **discount** for friends/warm-leads is handled 1:1 via a Stripe promo code (not posted publicly). Adam is sending warm-lead/friend outreach (free-week trial + early-access discount + "you get me directly for advice if you buy" = the Mentorship angle).
+
+### Open OPTIONAL builds I offered but did NOT build (await Adam's go-ahead)
+1. **Invite/access-code gate on signup** (~30 min, no Stripe) — makes "invite-only" literally true even if the URL leaks.
+2. **Real auto-expiring 1-week trial** — stamp `access_expires` at account creation, app locks out after; so "I'll give you a week" enforces itself.
+3. **Batch `scripts/create-user.ts`** — `node ... create-user.ts email password` via SUPABASE_SERVICE_ROLE_KEY, to provision several testers at once.
+
+### Pending / loose ends right now
+- **Uncommitted on main:** `src/content/chapters/verbal-21-mixed-timing.md` — a CORRECT content fix (a stray intro-chapters agent replaced a "modifier question" worked-example, which is a Sentence-Correction concept absent from Focus, with a Reading-Comprehension function question). Reviewed, it's right. Decide commit vs discard.
+- **Orphan branch `claude/gi-chart-renderer-2026-05-24`** (only remaining local/unmerged): real GI-chart renderer + 49/50 GI questions migrated, but 3 weeks stale and main's GI bank diverged ~900 lines — needs deliberate rebase + visual QA, NOT a blind merge. Revive or delete.
+
+### Standing Adam-only blockers (unchanged — the real go-live gates)
+1. Apply `supabase/migrations/20260612000000_tutor_usage.sql` (arms the tutor rate limit). 2. Stripe go-live: 4 prices + `STRIPE_*` keys + webhook secret in Vercel. 3. Resend: verify domain DNS + set `RESEND_API_KEY`/`EMAIL_FROM`/`CRON_SECRET`. 4. Kill the claude.ai/code scheduled routines (still generating PR backlog). 5. Flip `PAYWALL_ENABLED=true` LAST (after Stripe works). 6. Review the `/refund` legal copy + the Coaching/Intensive 6mo/12mo access assumption.
+
+---
+
 ## CONTEXT SWITCH — 2026-06-12 LATER (feedback batch: pricing rework #2, single guided-path chapters, study-plan declutter, dashboard course%, course collapsible + chapter→practice 404 fix + caret→superscript math; branch `claude/feedback-batch`, pushed, NOT merged)
 
 Adam's feedback batch after the session below. Everything on branch **`claude/feedback-batch`** (NOT merged). Decisions captured via AskUserQuestion: chapter count → approximate **"50+"**; homepage pricing → **mirror all 4 tiers**; $599 tier name → **"Self-Study + Mentorship"**; chapters → **single guided path**; study-plan → **lighter declutter**.
