@@ -18,7 +18,6 @@ const DEFAULT_PREFS: NotificationPrefs = {
 
 const PLAN_LABELS: Record<string, string> = {
   self_study: "Self-Study",
-  self_study_plus: "Self-Study Plus",
   coaching: "Coaching",
   intensive: "Intensive",
 }
