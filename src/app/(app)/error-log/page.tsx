@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { AlertCircle, X } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
-import { getAllQuestions, type ParsedQuestion } from "@/lib/content"
+import { getAllQuestions, getChapterTest, type ParsedQuestion } from "@/lib/content"
 import {
   classifyMistakes,
   persistAutoClassifications,
@@ -109,6 +109,19 @@ export default async function ErrorLogPage({
       const byId = new Map<string, ParsedQuestion>()
       for (const q of getAllQuestions()) byId.set(q.id, q)
 
+      // /practice/session only resolves question-bank set slugs and
+      // ch-<chapter>-t<n> test slugs. Mock/review/diagnostic session slugs
+      // (mock-2026-…, review-Quant-…) 404 there, so the client's "retake"
+      // button must never receive one — fall back to the bank the question
+      // itself lives in (its id prefix), or null to hide the button.
+      const knownSetSlugs = new Set<string>()
+      for (const q of byId.values()) knownSetSlugs.add(q.setSlug)
+      const retakeSlugFor = (raw: string | null, questionId: string): string | null => {
+        if (raw && (knownSetSlugs.has(raw) || getChapterTest(raw) !== null)) return raw
+        const bankSlug = questionId.replace(/-q\d+$/, "")
+        return knownSetSlugs.has(bankSlug) ? bankSlug : null
+      }
+
       type AttemptRow = {
         id: string
         question_id: string
@@ -136,7 +149,7 @@ export default async function ErrorLogPage({
           questionType: a.question_type ?? "",
           selectedAnswer: a.selected_answer,
           timeSpentMs: a.time_spent_ms,
-          sessionSlug: a.practice_sessions?.slug ?? null,
+          sessionSlug: retakeSlugFor(a.practice_sessions?.slug ?? null, a.question_id),
           createdAt: a.practice_sessions?.created_at ?? null,
           // Enriched from markdown content — may be null if a question was
           // renamed/removed between the attempt being saved and this render.

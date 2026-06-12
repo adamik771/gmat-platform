@@ -1,6 +1,6 @@
 import type { MistakeClassification } from "./mistake-classifier"
 import type { ParsedQuestion } from "./content"
-import { TOPIC_TO_CHAPTER } from "./topic-chapter-map"
+import { TOPIC_TO_CHAPTER, TOPIC_TO_SET } from "./topic-chapter-map"
 import type { Section } from "@/types"
 
 /**
@@ -245,12 +245,13 @@ export function buildMistakeInsights(
     .slice(0, 6)
 
   // ---------- 4. Drill recommendations ----------
-  // Drills go through /practice/session/{slug} where slug = topic file
-  // slug. We map each top weakness to its topic file via TOPIC_TO_CHAPTER
-  // (since chapter slugs and topic file slugs share the same names).
+  // Drills go through /practice/session/{slug} where slug must be a
+  // question-bank set slug (the file basename getQuestionsBySetSlug
+  // matches). TOPIC_TO_SET maps topic labels to those; chapter slugs do
+  // NOT resolve there for Quant/Verbal topics.
   const drillMap = new Map<string, RecommendedDrill>()
   for (const s of recurringWeaknesses) {
-    const slug = TOPIC_TO_CHAPTER[s.topic]
+    const slug = TOPIC_TO_SET[s.topic]
     if (!slug) continue
     const hardMisses = s.byDifficulty.Advanced
     const targetCount = hardMisses >= 2 ? 15 : s.misses >= 4 ? 12 : 8
@@ -301,7 +302,9 @@ export function buildMistakeInsights(
           : ""
       }. Read the chapter, then drill at the difficulty that's failing.`,
       chapterSlug,
-      drillSlug: chapterSlug,
+      // Drill links resolve via set slugs, not chapter slugs (see
+      // TOPIC_TO_SET) — a chapter slug here 404s on /practice/session.
+      drillSlug: TOPIC_TO_SET[s.topic],
       section: s.section,
       misses: s.misses,
       priority,
