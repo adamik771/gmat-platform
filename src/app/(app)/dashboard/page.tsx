@@ -194,15 +194,15 @@ export default async function DashboardPage() {
                 const isComplete = total > 0 && read === total
                 let nextChapter: { slug: string; title: string; section: "Quant" | "Verbal" | "DI" } | null = null
                 if (isComplete) {
-                  const SECTION_ORDER: Record<string, number> = { Quant: 0, Verbal: 1, DI: 2 }
-                  const sortedAll = allChapters
-                    .filter((c) => c.section === "Quant" || c.section === "Verbal" || c.section === "DI")
-                    .sort((a, b) => {
-                      const sd = (SECTION_ORDER[a.section] ?? 9) - (SECTION_ORDER[b.section] ?? 9)
-                      return sd !== 0 ? sd : a.title.localeCompare(b.title)
-                    })
-                  const idx = sortedAll.findIndex((c) => c.slug === chapter.slug)
-                  const nc = idx !== -1 ? (sortedAll[idx + 1] ?? null) : null
+                  // "Next chapter" follows the guided-path sequence —
+                  // getAllChapters() is already in CHAPTER_PATH_ORDER, so the
+                  // suggestion matches the /chapters journey, not a
+                  // section-grouped alphabetical order.
+                  const pathAll = allChapters.filter(
+                    (c) => c.section === "Quant" || c.section === "Verbal" || c.section === "DI"
+                  )
+                  const idx = pathAll.findIndex((c) => c.slug === chapter.slug)
+                  const nc = idx !== -1 ? (pathAll[idx + 1] ?? null) : null
                   if (nc && (nc.section === "Quant" || nc.section === "Verbal" || nc.section === "DI")) {
                     nextChapter = { slug: nc.slug, title: nc.title, section: nc.section }
                   }
