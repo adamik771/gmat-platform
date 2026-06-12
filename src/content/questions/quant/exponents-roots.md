@@ -811,22 +811,22 @@ If 2^x = 80, which of the following is closest to the value of x?
 - E) 7.0
 
 **answer:** C
-**fastest_path:** Bracket with 2⁶ = 64, then refine: 80/64 = 1.25, and 1.25³ ≈ 2, so the extra factor is worth about a third of a doubling — x ≈ 6.3.
+**fastest_path:** Bracket with 2⁶ = 64, then refine: 80/64 = 5/4, and (5/4)³ = 125/64 — just under 2 — so the extra factor is worth about a third of a doubling — x ≈ 6.3.
 **explanation:** To estimate an exponent, first trap the target between consecutive integer powers of the base, then refine using the leftover ratio. Let x be the exponent satisfying 2^x = 80.
 
 We first bracket 80 between successive powers of 2. We have 2^6 = 64 and 2^7 = 128. Since 64 < 80 < 128, it follows that 6 < x < 7. This eliminates 5.6 and 7.0 immediately.
 
-To choose among the remaining values, measure how much more than 2^6 the target is: 80 / 64 = 1.25. The exponent x is therefore 6 plus however many doublings a factor of 1.25 represents. Since 1.25 × 1.25 × 1.25 = 1.953, which is almost exactly 2, three steps of 1.25 make up about one full doubling — so one factor of 1.25 is worth roughly 1/3 of a doubling. Hence x ≈ 6 + 1/3 ≈ 6.33.
+To choose among the remaining values, measure how much more than 2^6 the target is: 80 / 64 = 5/4 (cancel the common factor of 16). The exponent x is therefore 6 plus however many doublings a factor of 5/4 represents. Keep it as a fraction and cube it: (5/4)³ = 5³/4³ = 125/64. Since 125/64 sits just below 128/64 = 2, three steps of 5/4 make up almost exactly one full doubling — so one factor of 5/4 is worth roughly 1/3 of a doubling. Hence x ≈ 6 + 1/3 ≈ 6.33 (in fact a touch less, since 125 falls slightly short of 128).
 
 Note that x is not 6.0: that would require 2^x to be exactly 64, and 80 is a full 25% larger. Nor can the gap be judged by linear distance — exponential growth means the "halfway exponent" 6.5 corresponds to 64√2 ≈ 90.5, so 80, sitting below 90.5, must have an exponent below 6.5. Among the listed values, 6.3 is the only one consistent with these bounds.
 
 The correct answer is C.
 **mistake_a:** 5.6 falls outside the bracket — 2^5.6 is less than 2⁶ = 64, but 80 exceeds 64.
-**mistake_b:** 6.0 would make 2^x exactly 64; the extra 25% is worth about a third of a doubling, not zero.
-**mistake_d:** 6.8 overshoots — 2^6.8 is near 111, far above 80; this usually comes from interpolating the wrong way.
+**mistake_b:** 6.0 would make 2^x exactly 64; the extra factor of 5/4 is worth about a third of a doubling, not zero.
+**mistake_d:** 6.8 overshoots — since 6.8 > 6.5 and 2^6.5 = 64√2 ≈ 90.5 already exceeds 80, 2^6.8 is even further above 80; this usually comes from interpolating the wrong way.
 **mistake_e:** 7.0 would make 2^x exactly 128, which is 60% above the target.
 **common_trap:** Interpolating linearly between 64 and 128. Exponents grow multiplicatively: the midpoint exponent 6.5 sits at 64√2 ≈ 90.5, not at 96, and 80 lies below it.
-**takeaway:** Bracket with integer powers, then translate the leftover ratio with benchmarks: ×1.25 ≈ 2^(1/3) (because 1.25³ ≈ 2) and ×1.4 ≈ 2^(1/2).
+**takeaway:** Bracket with integer powers, then translate the leftover ratio with benchmarks: ×5/4 ≈ 2^(1/3) (because (5/4)³ = 125/64, just under 2) and ×1.4 ≈ 2^(1/2) (because √2 ≈ 1.4).
 **related_reading:** reading-quant-04-algebra-and-equations
 
 
@@ -1819,5 +1819,5 @@ Which of the following has the greatest value?
 - E) ∛80
 
 **answer:** C
-**explanation:** To compare these expressions we square the square-root terms, ranking them as integers (all values are positive, so squaring preserves order): (3√2)² = 18, (2√5)² = 20, (√19)² = 19, and 4² = 16. Among these four, 2√5 is largest, with square 20. The remaining candidate ∛80 satisfies ∛80 ≈ 4.31, so (∛80)² ≈ 18.6, which is less than 20; thus ∛80 does not exceed 2√5. A common error is to assume the cube root is largest because 80 is the biggest radicand, or to stop after comparing only the square roots. The correct answer is C.
+**explanation:** To compare these expressions we square the square-root terms, ranking them as integers (all values are positive, so squaring preserves order): (3√2)² = 18, (2√5)² = 20, (√19)² = 19, and 4² = 16. Among these four, 2√5 is largest, with square 20. The remaining candidate ∛80 cannot be cleared by squaring, so compare it with the leader 2√5 by raising both to the 6th power, which eliminates every radical at once (again, both are positive, so order is preserved): (∛80)⁶ = 80² = 6,400, while (2√5)⁶ = 2⁶ × (√5)⁶ = 64 × 5³ = 64 × 125 = 8 × 8 × 125 = 8 × 1,000 = 8,000. Because 6,400 < 8,000, ∛80 does not exceed 2√5. A common error is to assume the cube root is largest because 80 is the biggest radicand, or to stop after comparing only the square roots. The correct answer is C.
 **related_reading:** reading-quant-04-algebra-and-equations

@@ -1564,13 +1564,13 @@ A disease affects 2% of the population. A diagnostic test has a 90% true-positiv
 **hint_setup:** Diseased 20 -> 18 test positive; healthy 980 -> 49 test positive. Answer = 18 / (18 + 49).
 **explanation:** This problem is solved by applying Bayes' theorem, which relates the conditional probability of having the disease given a positive test to the underlying disease prevalence and the test's performance rates. Rather than manipulate the formula symbolically, we may work with a concrete reference population, which yields the same result and makes each quantity explicit.
 
-Let the reference population consist of 1,000 people. Since the disease affects 2 percent of the population, the number of people who actually have the disease is 1,000 multiplied by 0.02, which equals 20. The remaining 980 people are healthy.
+Let the reference population consist of 1,000 people. Since the disease affects 2 percent of the population, the number of people who actually have the disease is 2 percent of 1,000, which equals 20. The remaining 980 people are healthy.
 
-We now determine how many people in each group test positive. The test has a 90 percent true-positive rate, so among the 20 diseased people the number who test positive is 20 multiplied by 0.90, which equals 18. The test has a 5 percent false-positive rate, so among the 980 healthy people the number who test positive is 980 multiplied by 0.05, which equals 49.
+We now determine how many people in each group test positive. The test has a 90 percent true-positive rate, so among the 20 diseased people the number who test positive is 90 percent of 20, which equals 18. The test has a 5 percent false-positive rate, so among the 980 healthy people the number who test positive is 5 percent of 980; since 10 percent of 980 is 98, taking half gives 49.
 
 The total number of people who test positive is therefore 18 plus 49, which equals 67. Of these 67 positive results, only the 18 true positives correspond to people who actually have the disease.
 
-The probability that a person who tests positive actually has the disease is the ratio of true positives to all positives, which is 18 divided by 67. This quotient equals approximately 0.269, which rounds to 27 percent.
+The probability that a person who tests positive actually has the disease is the ratio of true positives to all positives, which is 18 divided by 67. No long division is needed to convert this fraction to a percent: bound it between two benchmark fractions with friendlier denominators. If the denominator were 72, the value would be 18/72 = 1/4 = 25 percent; if the denominator were 60, the value would be 18/60 = 3/10 = 30 percent. Since 67 lies between 60 and 72, the ratio 18/67 must lie between 25 percent and 30 percent, and the only answer choice in that range is 27 percent.
 
 The correct answer is C.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -1680,17 +1680,17 @@ Twelve students are to be divided into three equal groups of 4 for a field trip.
 
 Let the twelve students be partitioned into three groups of four. We first count the partitions as though the groups were ordered, and then correct for the overcounting.
 
-Step 1: Choose the first group of four from the twelve students. The number of such choices is C(12, 4) = 495.
+Step 1: Choose the first group of four from the twelve students. The number of such choices is C(12, 4) = (12 × 11 × 10 × 9) / (4 × 3 × 2 × 1). Cancel before multiplying: 4 × 3 = 12 cancels the 12 in the numerator, leaving (11 × 10 × 9) / 2 = 11 × 5 × 9. In stages, 11 × 9 = 99 and 99 × 5 = 495.
 
 Step 2: Choose the second group of four from the remaining eight students. The number of such choices is C(8, 4) = 70.
 
 Step 3: The last four students necessarily form the third group, so there is C(4, 4) = 1 way to complete the division.
 
-Multiplying these together gives the number of ordered selections: 495 × 70 × 1 = 34,650.
+Multiplying these together gives the number of ordered selections: 495 × 70 × 1.
 
-Because the three groups carry no labels, each genuine partition has been counted once for every possible ordering of its three groups. Three groups can be ordered in 3! = 6 ways, so every distinct partition appears 6 times in the count of 34,650. We therefore divide to remove this overcounting:
+Because the three groups carry no labels, each genuine partition has been counted once for every possible ordering of its three groups. Three groups can be ordered in 3! = 6 ways, so every distinct partition appears 6 times in the ordered count. We therefore divide by 6 to remove this overcounting. Rather than multiply 495 × 70 out to a five-digit number and then long-divide, cancel the 6 into the factors first: writing 6 = 3 × 2, we take 495 / 3 = 165 and 70 / 2 = 35, so the answer is 165 × 35. Computing in stages keeps every step small: 165 × 35 = 165 × 7 × 5, and 165 × 7 = 1,155, then 1,155 × 5 = 5,775.
 
-34,650 / 6 = 5,775.
+(For reference, the ordered count itself is 495 × 70 = 5,775 × 6 = 34,650 — trap answer D, the result of forgetting that the groups are unlabeled.)
 
 The correct answer is B.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -2126,7 +2126,7 @@ A license plate consists of 2 distinct letters chosen from the 26 letters of the
 - E) 676,000
 
 **answer:** C
-**explanation:** The letters form an ordered selection of 2 distinct letters from 26: P(26,2) = 26 x 25 = 650. The digits form an ordered selection of 3 distinct digits from 10: P(10,3) = 10 x 9 x 8 = 720. Since the two blocks are independent, we multiply: 650 x 720 = 468,000. The value 676,000 = 26^2 x 10^3 arises from allowing repetition in both blocks, and 390,000 = 650 x 600 mis-multiplies the digit count. The correct answer is C.
+**explanation:** The letters form an ordered selection of 2 distinct letters from 26: P(26,2) = 26 x 25 = 650. The digits form an ordered selection of 3 distinct digits from 10: P(10,3) = 10 x 9 x 8 = 720. Since the two blocks are independent, we multiply: 650 x 720. Set one zero aside from each factor and compute 65 x 72 by partial products: 65 x 70 = 4,550 and 65 x 2 = 130, so 65 x 72 = 4,550 + 130 = 4,680. Restoring the two zeros gives 650 x 720 = 468,000. The first partial product alone settles the close call with choice B: 65 x 70 = 4,550 already exceeds 4,500, so the total must exceed 455,000, ruling out 450,000. The value 676,000 = 26^2 x 10^3 arises from allowing repetition in both blocks, and 390,000 = 650 x 600 mis-multiplies the digit count. The correct answer is C.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---

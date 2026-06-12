@@ -365,10 +365,10 @@ Which of the following fractions is greatest?
 51/101: half of 101 is 50.5, and 51 > 50.5 — above half. Four fractions sit below the benchmark and one sits above it, so no decimal arithmetic is ever needed.
 
 The correct answer is E.
-**mistake_a:** 13/27 falls short of half by 0.5/27 (about 0.019). It is close to 1/2, but "close to half from below" can never beat a fraction that is above half.
-**mistake_b:** 25/52 has the largest numerator and denominator on the page, which makes it look substantial — but size of the numbers says nothing about size of the fraction. It misses half by 1/52.
-**mistake_c:** 5/11 misses half by 0.5/11 (about 0.045) — the smallest fraction listed, despite its compact look.
-**mistake_d:** 7/15 misses half by 0.5/15 (about 0.033). Like A and B it is "almost a half," and almost is exactly what the benchmark test filters out.
+**mistake_a:** 13/27 falls short of half by 0.5/27, which is 1/54 once you double top and bottom to clear the 0.5. With every gap rewritten so its numerator is 1 — 1/54, 1/52, 1/30, 1/22 — the four shortfalls are instantly comparable, and 1/54 is the slimmest miss of the four. It is close to 1/2, but "close to half from below" can never beat a fraction that is above half.
+**mistake_b:** 25/52 has the largest numerator and denominator of the four below-half fractions, which makes it look substantial — but size of the numbers says nothing about size of the fraction. Half of 52 is 26, so it misses half by 1/52.
+**mistake_c:** 5/11 misses half by 0.5/11, which is 1/22. Among the four gaps — 1/54, 1/52, 1/30, 1/22 — the numerators are all 1, so the smallest denominator marks the widest miss: 5/11 is the smallest fraction listed, despite its compact look.
+**mistake_d:** 7/15 misses half by 0.5/15, which is 1/30 — a wider gap than A's 1/54 or B's 1/52, since equal numerators put the smaller denominator further from half. Like A and B it is "almost a half," and almost is exactly what the benchmark test filters out.
 **common_trap:** Reaching for a calculator-style decimal conversion of all five fractions, or judging fractions by how big their numerators look. The benchmark comparison settles each fraction in two seconds flat.
 **takeaway:** To rank fractions near 1/2, compare each numerator to half its denominator. Above half beats below half — and when several sit on the same side, the one with the smallest shortfall relative to its denominator wins.
 **hint_nudge:** Every choice is close to one particular benchmark fraction. Which one?

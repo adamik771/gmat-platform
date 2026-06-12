@@ -567,15 +567,15 @@ A 30-liter solution is 20 percent acid. How many liters of pure acid must be add
 **fastest_path:** The solution starts with 6 liters of acid. For each candidate x, check whether (6 + x) is 40 percent of (30 + x) — remember the total volume grows too.
 **explanation:** The starting solution holds 20 percent of 30 = 6 liters of acid. Adding x liters of pure acid raises both the acid (6 + x) and the total volume (30 + x), so the check for each candidate is the fraction (6 + x) / (30 + x).
 
-Test the median choice (C), x = 8: 14 / 38 is roughly 36.8 percent — too weak, so more acid is needed. A, B, and C are gone.
+Test the median choice (C), x = 8: is 14 / 38 at the 40 percent target, which is 2/5? Cross-multiply: 14 × 5 = 70 against 38 × 2 = 76. Since 70 < 76, the mixture is still under 40 percent — too weak, so more acid is needed. A, B, and C are gone.
 
 Test D, x = 10: 16 / 40 = 40 percent exactly.
 
 The correct answer is D.
-**mistake_a:** Adding 4 gives 10 / 34, about 29 percent. A filler that survives only when no fraction is ever computed.
+**mistake_a:** Adding 4 gives 10 / 34 — cross-multiplying against 2/5, 10 × 5 = 50 versus 34 × 2 = 68, far below the 40 percent target. A filler that survives only when no fraction is ever computed.
 **mistake_b:** The seductive one: 6 more liters "doubles the acid," and 20 doubled is 40. But the volume grows to 36 liters too, so 12 / 36 is only 33.3 percent. Doubling the acid does not double the concentration.
-**mistake_c:** 14 / 38 is under 37 percent. Students who compute 14 / 35 — forgetting the added acid also adds volume, but only in the numerator they like — land near 40 and stop here.
-**mistake_e:** 12 is 40 percent of the original 30 liters. This answer treats the target as "acid equal to 40 percent of the old volume," freezing the denominator at 30; the true total is 42 liters by then, and 18 / 42 is about 42.9 percent.
+**mistake_c:** 14 / 38 misses the 40 percent target from below — cross-multiplying against 2/5 gives 14 × 5 = 70 versus 38 × 2 = 76. What lands students here is eyeballing: 14 liters of acid in almost-40 liters of mixture reads as "about 40 percent," and the real check never gets run.
+**mistake_e:** 12 is 40 percent of the original 30 liters. This answer treats the target as "acid equal to 40 percent of the old volume," freezing the denominator at 30; the true total is 42 liters by then, and 18 / 42 overshoots the target — cross-multiplying against 2/5, 18 × 5 = 90 beats 42 × 2 = 84.
 **common_trap:** Freezing the denominator. Every liter of acid you pour in lands in both the acid total and the volume total, and the wrong choices are engineered for students who update only the numerator.
 **takeaway:** Mixture backsolving means rebuilding the full fraction for each candidate — new amount over new total — and the directional logic (too weak means add more) still cuts the field in half.
 **est_time_seconds:** 110
@@ -867,8 +867,8 @@ For confidence in the directional logic: rates fall as x rises, so larger candid
 
 The correct answer is C.
 **mistake_a:** x = 4 echoes the "4 hours" in the stem, and number-matching feels safe under pressure. But then A alone ties the team, which is impossible while B does any work at all — the hidden constraint kills it unexamined.
-**mistake_b:** x = 5 gives 1/5 + 1/11, about 0.29 against the needed 0.25. Lands on students who add times instead of rates somewhere and back into a smaller x.
-**mistake_d:** x = 8 gives 1/8 + 1/14, about 0.196 — the team would take over 5 hours. Picked when 4 + 6 = 10 is split "evenly" into 8 and something, a phantom pattern.
+**mistake_b:** x = 5 gives 1/5 + 1/11 — too fast, no decimals needed: 1/11 is bigger than 1/20, and 1/5 + 1/20 = 4/20 + 1/20 = 1/4 already, so the combined rate beats the required 1/4. Lands on students who add times instead of rates somewhere and back into a smaller x.
+**mistake_d:** x = 8 gives 1/8 + 1/14 — too slow, since 1/14 is smaller than 1/8, so the sum stays under 1/8 + 1/8 = 2/8 = 1/4. Picked when 4 + 6 = 10 is split "evenly" into 8 and something, a phantom pattern.
 **mistake_e:** x = 10 is the phantom sum of the two numbers in the stem, 4 + 6 — a setup that never modeled anything. Its combined rate, 1/10 + 1/16, is barely 0.16 against the required 0.25; testing exposes it in seconds.
 **common_trap:** Forgetting that a together-time bounds every alone-time from below. The test-writer plants the team time itself among the choices, betting you will pattern-match instead of asking whether the candidate is even possible.
 **takeaway:** Before any substitution, scan the choices against the problem's physical constraints — impossible candidates die free, and what remains is a two-test backsolve at most.
