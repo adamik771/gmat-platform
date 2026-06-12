@@ -10,7 +10,8 @@
     "validate:content": "node --experimental-strip-types --no-warnings scripts/validate-content.ts",
     "generate:explanations": "node --experimental-strip-types --no-warnings --env-file=.env.local scripts/generate-explanations.ts",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "check": "npm run validate:content && tsc --noEmit && vitest run"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.92.0",
