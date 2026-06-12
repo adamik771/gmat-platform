@@ -146,6 +146,10 @@ export const COMING_SOON_CHAPTERS: ReadonlySet<string> = new Set([
  * are ignored so their sampler questions route to their real topic chapters.
  */
 export const OMITTED_CHAPTERS: ReadonlySet<string> = new Set([
+  "gmat-welcome",
+  "quant-section-intro",
+  "verbal-section-intro",
+  "di-section-intro",
   "quant-01-backsolving",
   "quant-02-plugging-in-numbers",
   "quant-03-estimation",

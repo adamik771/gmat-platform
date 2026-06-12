@@ -6,19 +6,29 @@ const slugs = chapters.map((c) => c.slug)
 const idx = (slug: string) => slugs.indexOf(slug)
 
 describe("chapter guided-path order (CHAPTER_PATH_ORDER)", () => {
-  it("returns exactly the 58 chapters, all unique", () => {
-    expect(chapters.length).toBe(58)
-    expect(new Set(slugs).size).toBe(58)
+  it("returns exactly the 62 chapters, all unique", () => {
+    expect(chapters.length).toBe(62)
+    expect(new Set(slugs).size).toBe(62)
   })
 
-  it("every chapter is in a known section", () => {
+  it("every chapter is in a known section; only the welcome chapter is General", () => {
     for (const c of chapters) {
-      expect(["Quant", "Verbal", "DI"]).toContain(c.section)
+      expect(["Quant", "Verbal", "DI", "General"]).toContain(c.section)
     }
+    const general = chapters.filter((c) => c.section === "General")
+    expect(general.map((c) => c.slug)).toEqual(["gmat-welcome"])
   })
 
-  it("opens on the gentlest math foundation, not a strategy/advanced chapter", () => {
-    expect(slugs[0]).toBe("quant-05-order-and-signed-numbers")
+  it("opens with the welcome chapter, then the Quant section intro", () => {
+    expect(slugs[0]).toBe("gmat-welcome")
+    expect(slugs[1]).toBe("quant-section-intro")
+    expect(slugs[2]).toBe("quant-05-order-and-signed-numbers")
+  })
+
+  it("places each section intro immediately before that section's first chapter", () => {
+    expect(idx("quant-section-intro")).toBe(idx("quant-05-order-and-signed-numbers") - 1)
+    expect(idx("verbal-section-intro")).toBe(idx("verbal-01-foundations") - 1)
+    expect(idx("di-section-intro")).toBe(idx("di-foundations") - 1)
   })
 
   it("puts the three timing chapters last", () => {

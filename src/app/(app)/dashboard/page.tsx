@@ -68,7 +68,7 @@ export default async function DashboardPage() {
   let resumeTarget: {
     slug: string
     title: string
-    section: "Quant" | "Verbal" | "DI"
+    section: "Quant" | "Verbal" | "DI" | "General"
     href: string
     pct: number
     nextSectionTitle: string | null
@@ -195,14 +195,12 @@ export default async function DashboardPage() {
                 let nextChapter: { slug: string; title: string; section: "Quant" | "Verbal" | "DI" } | null = null
                 if (isComplete) {
                   // "Next chapter" follows the guided-path sequence —
-                  // getAllChapters() is already in CHAPTER_PATH_ORDER, so the
-                  // suggestion matches the /chapters journey, not a
-                  // section-grouped alphabetical order.
-                  const pathAll = allChapters.filter(
-                    (c) => c.section === "Quant" || c.section === "Verbal" || c.section === "DI"
-                  )
-                  const idx = pathAll.findIndex((c) => c.slug === chapter.slug)
-                  const nc = idx !== -1 ? (pathAll[idx + 1] ?? null) : null
+                  // getAllChapters() is already in CHAPTER_PATH_ORDER. The
+                  // welcome chapter (General) stays in the index so finishing
+                  // it suggests the next real stop; the guard below only
+                  // surfaces Q/V/DI successors.
+                  const idx = allChapters.findIndex((c) => c.slug === chapter.slug)
+                  const nc = idx !== -1 ? (allChapters[idx + 1] ?? null) : null
                   if (nc && (nc.section === "Quant" || nc.section === "Verbal" || nc.section === "DI")) {
                     nextChapter = { slug: nc.slug, title: nc.title, section: nc.section }
                   }

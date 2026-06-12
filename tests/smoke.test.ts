@@ -11,7 +11,9 @@ describe("vitest harness", () => {
   })
 
   it("loads content.ts (fs + .ts-extension import)", () => {
+    // Exact chapter-count ownership lives in chapter-order.test.ts; the smoke
+    // test only proves the loader works through the harness.
     const chapters = getAllChapters()
-    expect(chapters.length).toBe(58)
+    expect(chapters.length).toBeGreaterThan(50)
   })
 })

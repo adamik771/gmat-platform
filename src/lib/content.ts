@@ -705,7 +705,9 @@ export interface ChapterProblemSet {
 export interface ParsedChapter {
   slug: string
   title: string
-  section: Section
+  /** "General" is reserved for the cross-section welcome chapter at the top
+   *  of the guided path; everything else is a real exam section. */
+  section: Section | "General"
   estimatedMinutes: number
   /** Approximate reading length in pages, derived from the section word count
    *  (~400 words/page). Shown in the UI instead of a time estimate so students
@@ -720,7 +722,7 @@ export interface ParsedChapter {
 interface ChapterFrontmatter {
   slug: string
   title: string
-  section: Section
+  section: Section | "General"
   estimated_minutes: number
   prerequisites?: string[]
   summary?: string
@@ -837,13 +839,17 @@ function parseChapterFile(filepath: string): ParsedChapter | null {
 // practice grouping, and chapter prev/next navigation. Any chapter not
 // listed here falls to the end (alphabetical) so new files never disappear.
 const CHAPTER_PATH_ORDER: string[] = [
+  "gmat-welcome",
+  "quant-section-intro",
   "quant-05-order-and-signed-numbers",
   "quant-06-fractions-decimals",
   "quant-07-gcf-lcm-units-digits",
+  "verbal-section-intro",
   "verbal-01-foundations",
   "quant-01-backsolving",
   "quant-02-plugging-in-numbers",
   "quant-03-estimation",
+  "di-section-intro",
   "di-foundations",
   "quant-04-answer-choice-tactics",
   "quant-08-even-odd-integer-properties",
@@ -1003,8 +1009,12 @@ export function getPracticeChapterGroups(): PracticeChapterGroup[] {
 
   // 3. Build groups in chapter (file) order.
   const groups: PracticeChapterGroup[] = []
-  chapters.forEach((ch, order) => {
-    if (OMITTED_CHAPTERS.has(ch.slug)) return
+  chapters.forEach((chRaw, order) => {
+    if (OMITTED_CHAPTERS.has(chRaw.slug)) return
+    // The welcome chapter ("General") is always omitted above; everything that
+    // reaches the allocator is a real exam-section chapter.
+    if (chRaw.section === "General") return
+    const ch = chRaw as ParsedChapter & { section: Section }
     const pool = assigned.get(ch.slug) ?? []
     if (pool.length === 0) {
       if (COMING_SOON_CHAPTERS.has(ch.slug)) {

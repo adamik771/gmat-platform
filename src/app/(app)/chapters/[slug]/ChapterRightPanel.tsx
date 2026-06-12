@@ -2,7 +2,7 @@ import Link from "next/link"
 import { ArrowRight, Lightbulb, Target, RotateCcw, Sparkles } from "lucide-react"
 
 interface Props {
-  section: "Quant" | "Verbal" | "DI"
+  section: "Quant" | "Verbal" | "DI" | "General"
   estimatedPages: number
   totalSections: number
   completedSections: number
@@ -247,7 +247,9 @@ export default function ChapterRightPanel({
             className="w-4 h-4 flex-shrink-0"
             style={{ color: "var(--read-text-faint)" }}
           />
-          <span className="flex-1">Practice {section}</span>
+          <span className="flex-1">
+            {section === "General" ? "Start practicing" : `Practice ${section}`}
+          </span>
           <ArrowRight
             className="w-3 h-3 opacity-50 transition-all group-hover:opacity-100 group-hover:translate-x-0.5"
             style={{ color: "var(--read-gold)" }}
