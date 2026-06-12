@@ -903,7 +903,7 @@ Test the median choice (C), f = 85: revenue = 2160 + 680 = 2,840. Is 2,840 stric
 Before celebrating, confirm uniqueness the test demands: B gives 2160 + 640 = 2,800 exactly — and "greater than 2,800" excludes equality, so B fails by the width of a hair. D gives 2160 + 760 = 2,920, past the ceiling. The interval admits only C among the five.
 
 The correct answer is C.
-**mistake_a:** f = 78 yields 2,784, below the floor of the interval. It punishes students who set up the revenue expression with the prices swapped — 12f + 20(180 - f) = 3600 - 8f — for which 78 lands nicely inside the range.
+**mistake_a:** f = 78 yields 2160 + 624 = 2,784 — sixteen dollars short of the interval's floor. A range hands you two conditions, and 2,784 passes one of them: it is comfortably under 2,900. The student who starts at A, confirms the ceiling, and never tests "greater than 2,800" certifies a near miss.
 **mistake_b:** The boundary trap, and the heart of the question: f = 80 gives exactly 2,800, and "greater than 2,800" is strict. Students who write the condition as "at least 2,800" certify B and move on — one word in the stem separates them from the point.
 **mistake_d:** f = 95 gives 2,920, just past the 2,900 ceiling. The "close enough" reflex that survives easy questions gets billed here.
 **mistake_e:** f = 100 gives 2,960. It tempts the student who computes balcony revenue only — 12 times 80 is 960 — pattern-matches the 100 remaining, and never totals the two ticket types.
