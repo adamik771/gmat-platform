@@ -1065,18 +1065,23 @@ export default async function ChaptersPage() {
     })
   }
 
-  const sorted = items.sort((a, b) => {
+  // Interactive chapters keep their insertion order — getAllChapters()
+  // already returns the guided-path sequence (CHAPTER_PATH_ORDER), and
+  // re-sorting by section here would regroup Quant -> Verbal -> DI and
+  // destroy the interleaving. Only the guide lists get a section/title sort.
+  const bySectionThenTitle = (a: ListItem, b: ListItem) => {
     if (a.section !== b.section) {
       return sectionOrder[a.section] - sectionOrder[b.section]
     }
-    const kindOrder = { interactive: 0, reading: 1, reference: 2 }
-    if (a.kind !== b.kind) return kindOrder[a.kind] - kindOrder[b.kind]
     return a.title.localeCompare(b.title)
-  })
-
-  const interactiveAll = sorted.filter((i) => i.kind === "interactive")
-  const readingsAll = sorted.filter((i) => i.kind === "reading")
-  const referencesAll = sorted.filter((i) => i.kind === "reference")
+  }
+  const interactiveAll = items.filter((i) => i.kind === "interactive")
+  const readingsAll = items
+    .filter((i) => i.kind === "reading")
+    .sort(bySectionThenTitle)
+  const referencesAll = items
+    .filter((i) => i.kind === "reference")
+    .sort(bySectionThenTitle)
   const totalCore = interactiveAll.length
   const completedCore = interactiveAll.filter((i) => i.isComplete).length
   const startedCore = interactiveAll.filter((i) => i.isStarted).length
@@ -1145,7 +1150,7 @@ export default async function ChaptersPage() {
         })}
       </section>
 
-      {sorted.length === 0 ? (
+      {items.length === 0 ? (
         <div className="p-6 sm:p-10 rounded-2xl border border-white/[0.06] bg-[#0D0D0D] text-center">
           <p className="text-[15px] text-[#888888]">No chapters published yet.</p>
         </div>
