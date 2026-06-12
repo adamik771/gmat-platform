@@ -104,7 +104,7 @@ function labelForTag(tagId: string): string {
 }
 
 // Shared markdown styling for the expanded mistake detail. Tuned compact —
-// smaller than the /lessons/[slug] prose, denser than a blog post.
+// smaller than the /chapters reader prose, denser than a blog post.
 const mdComponents: Components = {
   p: (props) => (
     <p

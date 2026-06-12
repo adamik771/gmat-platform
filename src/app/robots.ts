@@ -27,7 +27,6 @@ export default function robots(): MetadataRoute.Robots {
           "/dashboard",
           "/error-log",
           "/learn",
-          "/lessons",
           "/mock",
           "/offline",
           "/onboarding",
