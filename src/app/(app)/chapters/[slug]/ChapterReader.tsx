@@ -627,6 +627,27 @@ export default function ChapterReader({
     attempts: number
   } | null
 }) {
+  // The chapter's anchor concept for the reference rail: its authored
+  // "Mental model." callout, else a trimmed summary. No per-chapter work.
+  const bigIdea = useMemo(() => {
+    const body = sections.map((s) => s.body || "").join("\n")
+    const mm = body.match(/\*\*Mental model\.?\*\*\s*([^\n]+)/i)
+    let raw = (mm ? mm[1] : summary) || ""
+    raw = raw.replace(/\*\*/g, "").replace(/\*/g, "").replace(/`/g, "").trim()
+    if (!raw) return null
+    if (raw.length > 240) {
+      const cut = raw.slice(0, 240)
+      const stop = Math.max(
+        cut.lastIndexOf(". "),
+        cut.lastIndexOf("— "),
+        cut.lastIndexOf("? "),
+      )
+      raw = (stop > 120 ? cut.slice(0, stop + 1) : cut).trim()
+      if (!/[.!?…]$/.test(raw)) raw += "…"
+    }
+    return raw
+  }, [sections, summary])
+
   // Hydrate progress from localStorage after mount. SSR renders an empty
   // state (every question pristine, no sections marked read), then the
   // client useEffect fills it in with whichever source is more complete.
@@ -933,7 +954,7 @@ export default function ChapterReader({
             className={
               focusMode
                 ? "max-w-4xl mx-auto"
-                : "lg:grid lg:grid-cols-[210px_minmax(0,1fr)_230px] lg:gap-x-8 lg:items-start"
+                : "lg:grid lg:grid-cols-[210px_minmax(0,1fr)_290px] lg:gap-x-8 lg:items-start"
             }
           >
             {!focusMode && (
@@ -1009,6 +1030,7 @@ export default function ChapterReader({
                   hasProblemSets={problemSets.length > 0}
                   nextUnreadTitle={nextUnread?.title ?? null}
                   nextUnreadAnchorId={nextUnread?.id ?? null}
+                  bigIdea={bigIdea}
                 />
               </aside>
             )}

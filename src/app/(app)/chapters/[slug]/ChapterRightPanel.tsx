@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, Target, RotateCcw, Sparkles } from "lucide-react"
+import { ArrowRight, Lightbulb, Target, RotateCcw, Sparkles } from "lucide-react"
 
 interface Props {
   section: "Quant" | "Verbal" | "DI"
@@ -10,6 +10,9 @@ interface Props {
   /** When set, the call-to-action surfaces the next-unread section. */
   nextUnreadTitle: string | null
   nextUnreadAnchorId: string | null
+  /** The chapter's anchor concept (Mental model / summary), pinned at the
+   *  top of the rail as a reference while reading. */
+  bigIdea?: string | null
 }
 
 /**
@@ -33,6 +36,7 @@ export default function ChapterRightPanel({
   hasProblemSets,
   nextUnreadTitle,
   nextUnreadAnchorId,
+  bigIdea,
 }: Props) {
   const pct =
     totalSections > 0
@@ -49,6 +53,36 @@ export default function ChapterRightPanel({
 
   return (
     <div className="space-y-4 text-[13px]">
+      {/* The big idea — chapter's anchor concept, pinned for reference */}
+      {bigIdea && (
+        <div
+          className="rounded-xl border p-5"
+          style={{
+            backgroundColor: "var(--read-gold-soft)",
+            borderColor: "var(--read-gold-strong)",
+          }}
+        >
+          <div className="flex items-center gap-2 mb-2.5">
+            <Lightbulb
+              className="w-3.5 h-3.5 flex-shrink-0"
+              style={{ color: "var(--read-gold)" }}
+            />
+            <p
+              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+              style={{ color: "var(--read-gold)" }}
+            >
+              The big idea
+            </p>
+          </div>
+          <p
+            className="text-[13px] leading-[1.6]"
+            style={{ color: "var(--read-text)" }}
+          >
+            {bigIdea}
+          </p>
+        </div>
+      )}
+
       {/* Progress dial card */}
       <div
         className="rounded-xl border p-5"
