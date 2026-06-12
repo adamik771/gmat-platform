@@ -82,6 +82,9 @@ export default function Footer() {
               A premium GMAT preparation system. 565 → 735, built by someone who
               solved the hard version.
             </p>
+            {/* Social icons removed until real profile URLs exist — a dead
+                href="#" button reads worse than no button. Re-add with the
+                actual profile links when they're live. */}
             <div className="flex items-center gap-2">
               <a
                 href="mailto:adamzakaryan17@gmail.com"
@@ -89,20 +92,6 @@ export default function Footer() {
                 aria-label="Email"
               >
                 <Mail className="w-4 h-4 text-[#555555] hover:text-[#C9A84C] transition-colors" />
-              </a>
-              <a
-                href="#"
-                className="w-8 h-8 flex items-center justify-center rounded-full border border-white/[0.08] hover:border-[#C9A84C]/30 text-[#555555] hover:text-[#C9A84C] text-xs font-bold transition-colors duration-200"
-                aria-label="Twitter"
-              >
-                𝕏
-              </a>
-              <a
-                href="#"
-                className="w-8 h-8 flex items-center justify-center rounded-full border border-white/[0.08] hover:border-[#C9A84C]/30 text-[#555555] hover:text-[#C9A84C] text-xs font-bold transition-colors duration-200"
-                aria-label="LinkedIn"
-              >
-                in
               </a>
             </div>
           </div>

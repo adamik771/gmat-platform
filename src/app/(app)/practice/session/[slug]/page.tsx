@@ -21,7 +21,7 @@ import {
   pickAdaptiveOrder,
   type TopicSkillLevel,
 } from "@/lib/topic-skill"
-import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
+import { TOPIC_TO_SET } from "@/lib/topic-chapter-map"
 import SessionClient, { type SessionQuestion, type WeakTopicHint } from "./SessionClient"
 
 export default async function PracticeSessionPage({
@@ -178,7 +178,9 @@ export default async function PracticeSessionPage({
         // Only surface a specific recommendation when there's a real gap.
         // Topics at ≥75% don't need a redirect — the student is fine there.
         if (worst && worst.accuracy < 0.75) {
-          const practiceSlug = TOPIC_TO_CHAPTER[worst.topic] ?? null
+          // Set slug, not chapter slug — this href feeds /practice/session,
+          // which only resolves question-bank set slugs (see TOPIC_TO_SET).
+          const practiceSlug = TOPIC_TO_SET[worst.topic] ?? null
           if (practiceSlug) {
             weakestTopic = { topic: worst.topic, practiceSlug, accuracy: worst.accuracy }
           }

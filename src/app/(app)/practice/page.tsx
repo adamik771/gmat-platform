@@ -53,10 +53,10 @@ export default async function PracticePage() {
         { flaggedQuestionIds }
       )
       recommendations = signals.topWeakSubskills
-        .filter((w) => !!w.topicSlug && knownSlugs.has(w.topicSlug))
+        .filter((w) => !!w.setSlug && knownSlugs.has(w.setSlug))
         .slice(0, 3)
         .map((w) => ({
-          slug: w.topicSlug!,
+          slug: w.setSlug!,
           topic: w.topic,
           subskill: w.subskill,
           section: w.section,

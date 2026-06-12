@@ -1434,10 +1434,10 @@ function FocusCard({
  * the same area.
  */
 function WeakAreaCard({ weak }: { weak: WeakArea }) {
-  // The chapter slug doubles as the practice-set slug because question
-  // files live at the same slug (algebra.md both ways). If we ever
-  // diverge those, this is the one line that'd need to change.
-  const practiceSlug = weak.chapterSlug
+  // Drill links use the question-bank set slug (the only family
+  // /practice/session resolves); chapter slugs diverged from set slugs
+  // when the chapters split, so weak.chapterSlug 404s there.
+  const practiceSlug = weak.setSlug
 
   // Tailor the recommended action to the error pattern: a conceptual gap
   // wants chapter review first, an execution pattern wants timed drilling

@@ -23,7 +23,7 @@ const MIN_ATTEMPTS_FOR_WEAKNESS = 3
 const WEAK_TOPIC_THRESHOLD = 0.7 // accuracy below this = flag as weak
 const REVIEW_QUEUE_URGENT = 10 // if ≥ this many due, review-first
 
-import { TOPIC_TO_CHAPTER } from "./topic-chapter-map"
+import { TOPIC_TO_CHAPTER, TOPIC_TO_SET } from "./topic-chapter-map"
 import { ERROR_TAG_BY_ID, ROOT_CAUSE_BY_ID } from "@/app/(app)/error-log/constants"
 
 export type FocusActionType =
@@ -58,6 +58,9 @@ export interface WeakArea {
   accuracy: number
   attempts: number
   chapterSlug: string | null
+  /** Question-bank set slug for the Drill CTA — the only slug family
+   *  /practice/session resolves (chapter slugs 404 there). */
+  setSlug: string | null
   /** Derived from the student's `error_tags` for this topic. */
   errorPattern: ErrorPattern
 }
@@ -205,6 +208,7 @@ export async function computeStudyPlan(
       accuracy: v.correct / v.total,
       attempts: v.total,
       chapterSlug: TOPIC_TO_CHAPTER[topic] ?? null,
+      setSlug: TOPIC_TO_SET[topic] ?? null,
       errorPattern: "mixed" as ErrorPattern, // refined below from error_tags
     }))
     .filter((w) => w.accuracy < WEAK_TOPIC_THRESHOLD)
