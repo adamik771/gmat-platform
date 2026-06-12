@@ -1343,21 +1343,25 @@ Which of the following fractions is the greatest?
 - E) 5/6
 
 **answer:** E
-**explanation:** The task is to determine which of five fractions is the greatest. A reliable principle is to express each fraction as a decimal (or, equivalently, to compare each fraction's distance below 1), since every one of these fractions is a positive value less than 1. Whichever fraction has the largest decimal value, or equivalently the smallest gap below 1, is the greatest.
+**fastest_path:** Every fraction sits just below 1, so the greatest is the one missing the least. The shortfalls (denominator minus numerator, over the denominator) are 2/9, 3/11, 3/14, 4/17, and 1/6 — only 5/6 is short by a single part, so it sits closest to 1: E.
+**explanation:** All five fractions are positive and just below 1, so the greatest is simply the one closest to 1 — and you can find it without computing a single decimal (which would mean dividing by 9, 11, 14, 17, and 6 by hand). Instead, measure how far each falls short of 1. That shortfall, or gap, equals (denominator minus numerator) divided by the denominator, and the fraction with the smallest gap is the largest.
 
-Let the gap of a fraction be defined as 1 minus the fraction, which equals (denominator minus numerator) divided by the denominator. The fraction closest to 1 has the smallest gap and is therefore the greatest.
+Read the gaps straight off the numbers:
 
-For 7/9, the gap is (9 minus 7)/9 = 2/9, which is approximately 0.222, so 7/9 is approximately 0.778.
+- 7/9 is short by 2/9
+- 8/11 is short by 3/11
+- 11/14 is short by 3/14
+- 13/17 is short by 4/17
+- 5/6 is short by 1/6
 
-For 8/11, the gap is (11 minus 8)/11 = 3/11, which is approximately 0.273, so 8/11 is approximately 0.727.
+5/6 is the only fraction missing a single part, while every other is missing two, three, or four parts over a denominator no larger than 17 — so its gap of 1/6 is the obvious candidate for the smallest. Confirm it with cross-multiplication, which compares two fractions using only whole-number products: for a/b versus c/d, form the cross-products a times d and c times b, and the larger product belongs to the larger fraction. No division and no decimals are needed.
 
-For 11/14, the gap is (14 minus 11)/14 = 3/14, which is approximately 0.214, so 11/14 is approximately 0.786.
+- 1/6 vs 3/14: 1 x 14 = 14 and 3 x 6 = 18; since 14 < 18, 1/6 < 3/14.
+- 1/6 vs 2/9: 1 x 9 = 9 and 2 x 6 = 12; since 9 < 12, 1/6 < 2/9.
+- 1/6 vs 4/17: 1 x 17 = 17 and 4 x 6 = 24; since 17 < 24, 1/6 < 4/17.
+- 1/6 vs 3/11: 1 x 11 = 11 and 3 x 6 = 18; since 11 < 18, 1/6 < 3/11.
 
-For 13/17, the gap is (17 minus 13)/17 = 4/17, which is approximately 0.235, so 13/17 is approximately 0.765.
-
-For 5/6, the gap is (6 minus 5)/6 = 1/6, which is approximately 0.167, so 5/6 is approximately 0.833.
-
-Comparing the gaps, 1/6 (approximately 0.167) is the smallest of the five, so 5/6 is the fraction closest to 1 and thus the greatest. This agrees with the decimal values, where 5/6 (approximately 0.833) exceeds the next largest, 11/14 (approximately 0.786).
+Every comparison gives the same verdict with nothing but integer multiplication: 1/6 is the smallest gap. The smallest gap belongs to 5/6, so it is the fraction closest to 1 and therefore the greatest.
 
 The correct answer is E.
 **related_reading:** reading-quant-02-arithmetic-foundations
@@ -1928,7 +1932,7 @@ Expressed as a single fraction in lowest terms, what is the value of 0.444… �
 **type:** Problem Solving
 **topic:** Fractions
 
-Which of the following fractions is the greatest?
+Which of these five fractions has the greatest value?
 
 - A) 7/10
 - B) 12/17
@@ -1937,7 +1941,27 @@ Which of the following fractions is the greatest?
 - E) 5/7
 
 **answer:** E
-**explanation:** We compare each fraction to a benchmark by noting how close it is to 1 relative to its size. Converting to decimals: 7/10 = 0.700, 12/17 ≈ 0.706, 17/24 ≈ 0.708, 22/31 ≈ 0.710, and 5/7 ≈ 0.714. Alternatively, each fraction is less than 1 by 3/10, 5/17, 7/24, 9/31, and 2/7 respectively, and 2/7 ≈ 0.286 is the smallest deficit, so 5/7 is closest to 1 and therefore the greatest. The correct answer is E.
+**fastest_path:** Each fraction sits just below 1, so the greatest is the one missing the least — but the decimals are all near 0.29 and can't be read apart by hand. The gaps are 3/10, 5/17, 7/24, 9/31, 2/7; cross-multiplying shows 2/7 (from 5/7) is the smallest, so 5/7 is closest to 1: E.
+**explanation:** All five fractions are positive and just below 1, so the greatest is the one closest to 1. Their decimal values are far too close to separate by hand — they all sit near 0.29 — so converting to decimals is the wrong tool here. Instead, measure how far each falls short of 1. That gap equals (denominator minus numerator) divided by the denominator, and the smallest gap marks the greatest fraction.
+
+The gaps:
+
+- 7/10 is short by 3/10
+- 12/17 is short by 5/17
+- 17/24 is short by 7/24
+- 22/31 is short by 9/31
+- 5/7 is short by 2/7
+
+These gaps are still close, so compare them with cross-multiplication, which ranks two fractions using only whole-number products: for a/b versus c/d, form the cross-products a times d and c times b, and the larger product belongs to the larger fraction — no decimals required. Testing 5/7's gap, 2/7, against each rival:
+
+- 2/7 vs 9/31: 2 x 31 = 62 and 9 x 7 = 63; since 62 < 63, 2/7 < 9/31.
+- 2/7 vs 7/24: 2 x 24 = 48 and 7 x 7 = 49; since 48 < 49, 2/7 < 7/24.
+- 2/7 vs 5/17: 2 x 17 = 34 and 5 x 7 = 35; since 34 < 35, 2/7 < 5/17.
+- 2/7 vs 3/10: 2 x 10 = 20 and 3 x 7 = 21; since 20 < 21, 2/7 < 3/10.
+
+Each rival loses to 2/7 by the narrowest possible margin — a single unit — but loses all the same, so 2/7 is the smallest gap, established with nothing but integer multiplication. The smallest gap belongs to 5/7, which is therefore closest to 1 and the greatest.
+
+The correct answer is E.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
