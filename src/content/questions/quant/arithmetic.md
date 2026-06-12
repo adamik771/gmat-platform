@@ -1947,8 +1947,8 @@ Which of these five fractions has the greatest value?
 - E) 5/7
 
 **answer:** E
-**fastest_path:** Each fraction sits just below 1, so the greatest is the one missing the least — but the decimals are all near 0.29 and can't be read apart by hand. The gaps are 3/10, 5/17, 7/24, 9/31, 2/7; cross-multiplying shows 2/7 (from 5/7) is the smallest, so 5/7 is closest to 1: E.
-**explanation:** All five fractions are positive and just below 1, so the greatest is the one closest to 1. Their decimal values are far too close to separate by hand — they all sit near 0.29 — so converting to decimals is the wrong tool here. Instead, measure how far each falls short of 1. That gap equals (denominator minus numerator) divided by the denominator, and the smallest gap marks the greatest fraction.
+**fastest_path:** Each fraction sits below 1, so the greatest is the one missing the least — but the decimals are all near 0.71 and can't be read apart by hand. The gaps are 3/10, 5/17, 7/24, 9/31, 2/7; cross-multiplying shows 2/7 (from 5/7) is the smallest, so 5/7 is closest to 1: E.
+**explanation:** All five fractions are positive and less than 1, so the greatest is the one closest to 1. Their decimal values are far too close to separate by hand — they all sit near 0.71, between 0.700 and 0.714 — so converting to decimals is the wrong tool here. Instead, measure how far each falls short of 1. That gap equals (denominator minus numerator) divided by the denominator, and the smallest gap marks the greatest fraction.
 
 The gaps:
 
