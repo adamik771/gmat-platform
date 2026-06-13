@@ -2,6 +2,47 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-13 (go-live readiness audit + all code fixes — EVERYTHING MERGED to main; what's left is Adam-only config)
+
+Session goal: "what are we missing to fully go live." Ran an exhaustive 15-dimension go-live audit (123 findings), then wrote + adversarially-reviewed + shipped every CODE fix. **All of it is MERGED to main** (PRs #442–#448). Main is green: `npm run check` (validate:content 0 errors + tsc + **204** vitest tests) + `next build` clean (138 routes). **The entire code backlog from the audit is done — what remains to go live is purely Adam's config/dashboard work (below).**
+
+### Shipped & merged this session (PRs #442–#448)
+- **#442 verbal-21 fix** — off-Focus "modifier question" → RC function question (merged before this session).
+- **#443 GI charts** — 49/50 Graphics Interpretation questions render real charts (Recharts). Engine: `src/lib/chart-spec.ts` + `src/components/shared/QuestionChart.tsx`; `content.ts` parses a fenced ` ```chart ` JSON block into `ParsedQuestion.chartSpec` and strips it from the prompt. Threaded through EVERY runner that shows a GI question (else the chart-stripped prompt is dataless): SessionClient, MockRunner, ErrorLogClient, offline drill (added `chartSpec` to `CachedQuestion`). Q38 stays prose (numeric dashboard). Answers/options/explanations byte-identical to pre-migration.
+- **#444 launch-fixes** — the audit's code-side P0/P1: `purchases` table promoted to a real migration (was DDL-in-HANDOFF only) + `stripe_payment_intent` + `revoked_at`; webhook handles **refund/chargeback → revokes access** by payment_intent; `entitlements.getPlanTierForUser` ignores revoked rows + logs (fails closed to free); Stripe **$599 price env-name fix** (accepts `STRIPE_PRICE_SELF_STUDY_GUARANTEED` canonical OR legacy `_PLUS`); checkout 503 guard covers all 4 tiers; `lead_captures` source CHECK widened to the route's 9 sources; **error boundaries** (`app/error.tsx`, `global-error.tsx`, `not-found.tsx`); `auth/callback` open-redirect fix (origin-resolution, defeats `//evil`/`/\evil`/control-char) + exchange-error handling; **fabricated testimonials removed** + "Trusted by…" → "Built for MBA candidates targeting"; **false "7-day trial" copy → accurate "free / free while in beta"** sitewide (homepage, signup, navbar, terms, faq, about, course, etc.); broken `/founder.jpg` (400) dropped → AZ-initials avatar; signup password `minLength=8` enforced.
+- **#445 invite-gate** — server-enforced access-code signup. OFF by default. `src/lib/signup-gate.ts` (constant-time check) + `POST /api/signup` (validates code vs `SIGNUP_ACCESS_CODE`, creates user via service role, **auto-confirmed**); UI behind `NEXT_PUBLIC_SIGNUP_GATED`.
+- **#446 account deletion + export** — GDPR. `/settings` profile tab "Your data": Export (JSON download via `GET /api/account/export`, RLS-scoped own-rows) + type-DELETE account deletion (`POST /api/account/delete` — user_id from verified session only; deletes **auth user FIRST** so a failure can't leave a hollowed-out live account, then best-effort clears all user tables + `lead_captures` by email).
+- **#447 Sentry monitoring** — env-gated error monitoring. `@sentry/nextjs ^10` + `instrumentation.ts`/`instrumentation-client.ts`/`sentry.{server,edge}.config.ts` (each `Sentry.init` gated on DSN) + `captureException` in the error boundaries. **No `withSentryConfig`** (Turbopack-risk; runtime capture works without it — no source-map upload yet). No-op until DSN set.
+- **#448 Stripe VAT + invoice** — checkout now sends `billing_address_collection:"required"` + `tax_id_collection` + `invoice_creation` (all safe, no dashboard prereq) + `automatic_tax` **gated behind `STRIPE_AUTOMATIC_TAX`** (needs Stripe Tax enabled first or it errors).
+
+### REMAINING TO GO LIVE — all Adam-only config (no code left). Order:
+**Phase A — stop the bleeding (NOW):** kill the **claude.ai/code scheduled routines + 4 local scheduled tasks** — they're still pushing `claude/beautiful-allen-*` / `claude/brave-fermi-*` branches to origin AND edited the working tree mid-session.
+
+**Phase C — DB + monitoring (before any public traffic):**
+1. Apply 3 migrations in the Supabase SQL editor: `20260613000000_purchases.sql`, `20260613000100_lead_captures_sources.sql`, `20260612000000_tutor_usage.sql`. Then verify `purchases.plan_id` CHECK admits `self_study_guaranteed` (`select conname, pg_get_constraintdef(oid) from pg_constraint where conrelid='public.purchases'::regclass and contype='c';`).
+2. Create a Sentry project → set `SENTRY_DSN` + `NEXT_PUBLIC_SENTRY_DSN` in Vercel (monitoring is a no-op until then).
+3. Supabase Auth → set minimum password length = **8** (server backstop for the client check).
+4. Confirm `NEXT_PUBLIC_SUPABASE_URL`/`ANON_KEY` are present + untruncated in Vercel (else the proxy fails open = no auth on the whole app).
+
+**Phase D — free launch:**
+5. Pick access model. Invite-only ⇒ set `SIGNUP_ACCESS_CODE` + `NEXT_PUBLIC_SIGNUP_GATED=true` in Vercel **and disable public sign-ups in Supabase** (the airtight half). Note the gated path **auto-confirms** (drops email verification).
+6. EU-legal: add legal-entity identity + postal address to `/terms` + `/privacy`; disclose the Formspree (US) sub-processor in `/privacy`; brief cookie note.
+7. Resend: verify domain DNS (SPF/DKIM/DMARC) + set `RESEND_API_KEY` / `EMAIL_FROM` / `CRON_SECRET`.
+
+**Phase E — charge money:**
+8. Stripe: create 4 products/prices → set `STRIPE_SECRET_KEY` + `STRIPE_PRICE_SELF_STUDY` / `_SELF_STUDY_GUARANTEED` / `_COACHING` / `_INTENSIVE`.
+9. Stripe webhook endpoint → `/api/stripe/webhook`, set `STRIPE_WEBHOOK_SECRET`; subscribe to `checkout.session.completed`, `charge.refunded`, `charge.dispute.created`.
+10. Enable **Stripe Tax** in the dashboard, then set `STRIPE_AUTOMATIC_TAX=true`. Test purchase→access, refund→revoke, invoice/receipt end-to-end.
+11. Flip `PAYWALL_ENABLED=true` **LAST**, redeploy, watch Sentry + Stripe.
+
+### Gotchas / notes for the next chat
+- **`.env.local` (gitignored, local only) has `NEXT_PUBLIC_SIGNUP_GATED=true` + `SIGNUP_ACCESS_CODE=climb-2026`** — added for local gate testing. So local `/signup` shows the access-code field. Remove those two lines to see the open flow locally. (Production env is whatever's in Vercel.)
+- Audit "blockers" that were **false positives** (verified, do not re-chase): the `purchases.plan_id` CHECK using `self_study_plus` (that constraint only ever existed in stale HANDOFF text, not real schema) and an "Intensive score-guarantee" claim (not on main).
+- Still-deferred (lower priority, not built): ToS-consent at checkout (needs a ToS URL in Stripe branding), `import "server-only"` on the service client (`server-only` pkg not installed), Sentry `withSentryConfig` source-map upload, webhook unit tests, conversion analytics.
+- Verify gate unchanged = **`npm run check`** before any commit.
+
+---
+
 ## CONTEXT SWITCH — 2026-06-12 END OF DAY (everything below is now MERGED to main; state snapshot + open items)
 
 A very long session. **All of the work described in the sections below is MERGED to main** (PRs through #441) — main is green: `npm run check` (validate:content 0 errors + tsc + 195 vitest tests) passes, `next build` clean. No open `claude/*` branches except the orphan noted below. Verify gate = **`npm run check`** before any commit.
