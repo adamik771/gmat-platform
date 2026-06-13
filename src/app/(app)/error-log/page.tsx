@@ -160,6 +160,7 @@ export default async function ErrorLogPage({
           explanation: q?.explanation ?? null,
           context: q?.context ?? null,
           twoPartColumns: q?.twoPartColumns ?? null,
+          chartSpec: q?.chartSpec ?? null,
           tag: (t?.tag ?? null) as MistakeEntry["tag"],
           rootCause: t?.root_cause ?? null,
           contributingCauses: t?.contributing_causes ?? [],

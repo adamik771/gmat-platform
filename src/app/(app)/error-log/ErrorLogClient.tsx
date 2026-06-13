@@ -40,6 +40,8 @@ import {
 import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
+import QuestionChart from "@/components/shared/QuestionChart"
+import type { ChartSpec } from "@/lib/chart-spec"
 import { cn } from "@/lib/utils"
 import type { Section } from "@/types"
 import {
@@ -192,6 +194,7 @@ export interface MistakeEntry {
   explanation: string | null
   context: string | null
   twoPartColumns: string[] | null
+  chartSpec: ChartSpec | null
   tag: ErrorTag | null
   /** Process-failure root cause (K1/…/F1). Layers on top of `tag` —
    *  `tag` describes WHAT kind of question, `rootCause` describes WHERE
@@ -803,6 +806,7 @@ function ExpandedMistake({
         <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-2">
           Question
         </p>
+        {entry.chartSpec && <QuestionChart spec={entry.chartSpec} />}
         <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
           {entry.prompt}
         </ReactMarkdown>

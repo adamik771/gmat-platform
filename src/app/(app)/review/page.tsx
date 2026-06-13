@@ -126,6 +126,7 @@ export default async function ReviewPage() {
       correctAnswer: q.correctAnswer,
       correctAnswerLetter: q.correctAnswerLetter,
       explanation: q.explanation,
+      chartSpec: q.chartSpec,
     }))
 
   return (

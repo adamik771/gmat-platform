@@ -2,6 +2,7 @@ import fs from "node:fs"
 import path from "node:path"
 import { parse as parseYaml } from "yaml"
 import type { Difficulty, QuestionType, Section } from "@/types"
+import type { ChartSpec } from "./chart-spec"
 import {
   TEST_CAPS,
   COMING_SOON_CHAPTERS,
@@ -51,6 +52,10 @@ export interface ParsedQuestion {
   twoPartColumns?: string[]
   /** Two-Part Analysis: the correct row index for each column. Same length as twoPartColumns. */
   twoPartCorrectAnswers?: number[]
+  /** Graphics Interpretation: structured chart spec parsed from a fenced
+   *  chart JSON block. Present only for migrated GI questions; rendered by
+   *  QuestionChart instead of a prose description. */
+  chartSpec?: ChartSpec
   // ---------- Standardized 6-section explanation fields ----------
   // Present in bulk-rewritten questions (QUESTION_TAXONOMY format). Optional
   // because legacy questions and grouped passages may not carry them yet.
@@ -319,6 +324,30 @@ function parseQuestionBlock(
       .trim()
   }
 
+  // ---------- Graphics Interpretation chart block ----------
+  // GI questions carry their chart as a fenced ```chart JSON block. Parse it
+  // into a ChartSpec and strip it from the prompt so QuestionChart renders
+  // the graphic instead of leaving raw JSON in the question text.
+  let chartSpec: ChartSpec | undefined
+  const chartMatch = prompt.match(/```chart\s*\n([\s\S]*?)\n```/)
+  if (chartMatch) {
+    try {
+      const parsed = JSON.parse(chartMatch[1]) as Partial<ChartSpec>
+      if (
+        parsed &&
+        typeof parsed.type === "string" &&
+        Array.isArray(parsed.data) &&
+        parsed.data.length > 0
+      ) {
+        chartSpec = parsed as ChartSpec
+      }
+    } catch {
+      // Malformed chart JSON — leave chartSpec undefined; the rest of the
+      // prompt still renders so the question isn't lost.
+    }
+    prompt = prompt.replace(chartMatch[0], "").replace(/\n{3,}/g, "\n\n").trim()
+  }
+
   // ---------- Two-Part Analysis table detection ----------
   // TPA questions have a pipe table in the prompt instead of - A) through - E)
   // options. When detected, we parse the table into structured data, strip it
@@ -410,6 +439,7 @@ function parseQuestionBlock(
     rawBody: block.trim(),
     twoPartColumns,
     twoPartCorrectAnswers,
+    chartSpec,
     fastestPath: meta.fastest_path || undefined,
     mistakeAnalysis: hasMistakeAnalysis ? mistakeAnalysis : undefined,
     commonTrap: meta.common_trap || undefined,

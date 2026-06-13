@@ -14,6 +14,7 @@ import {
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
+import QuestionChart from "@/components/shared/QuestionChart"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
 import {
   loadReviewQueue,
@@ -354,6 +355,8 @@ export default function OfflineDrillClient() {
           </ReactMarkdown>
         </div>
       )}
+
+      {current.chartSpec && <QuestionChart spec={current.chartSpec} />}
 
       <div className="mb-5 text-[15px] leading-[1.7] text-[#F0F0F0]">
         <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
