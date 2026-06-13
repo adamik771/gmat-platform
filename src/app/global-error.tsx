@@ -1,12 +1,13 @@
 "use client"
 
 import { useEffect } from "react"
+import * as Sentry from "@sentry/nextjs"
 
 /**
  * Root error boundary — catches errors thrown in the root layout itself,
  * where the normal error.tsx can't help. It REPLACES the root layout, so it
  * must render its own <html>/<body> and cannot rely on the app's global CSS
- * (hence inline styles). Keep it dependency-free.
+ * (hence inline styles).
  */
 export default function GlobalError({
   error,
@@ -16,7 +17,13 @@ export default function GlobalError({
   reset: () => void
 }) {
   useEffect(() => {
-    // TODO(monitoring): forward to Sentry/error tracker once configured.
+    // No-op unless NEXT_PUBLIC_SENTRY_DSN initialized the client SDK. Wrapped
+    // so this last-resort boundary still renders even if reporting throws.
+    try {
+      Sentry.captureException(error)
+    } catch {
+      // ignore — never let monitoring break the fallback UI
+    }
     console.error("[global error]", error)
   }, [error])
 
@@ -53,7 +60,7 @@ export default function GlobalError({
             The app failed to load.
           </h1>
           <p style={{ fontSize: 15, color: "#C0C0C0", lineHeight: 1.6, marginBottom: 24 }}>
-            This has been logged. Please try again.
+            Please try again.
             {error?.digest ? (
               <span style={{ display: "block", marginTop: 8, fontSize: 12, color: "#555555" }}>
                 Reference: {error.digest}

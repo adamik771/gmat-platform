@@ -2,11 +2,11 @@
 
 import { useEffect } from "react"
 import Link from "next/link"
+import * as Sentry from "@sentry/nextjs"
 
 /**
  * Route-segment error boundary. Catches uncaught errors in any page/layout
- * below the root layout and renders a recoverable UI instead of a blank
- * crash. Wire a monitoring service (Sentry, etc.) at the console.error line.
+ * below the root layout and renders a recoverable UI instead of a blank crash.
  */
 export default function Error({
   error,
@@ -16,7 +16,8 @@ export default function Error({
   reset: () => void
 }) {
   useEffect(() => {
-    // TODO(monitoring): forward to Sentry/error tracker once configured.
+    // No-op unless NEXT_PUBLIC_SENTRY_DSN initialized the client SDK.
+    Sentry.captureException(error)
     console.error("[app error]", error)
   }, [error])
 
@@ -55,7 +56,7 @@ export default function Error({
           We hit an unexpected error.
         </h1>
         <p style={{ fontSize: 15, color: "#C0C0C0", lineHeight: 1.6, marginBottom: 24 }}>
-          The issue has been logged. Try again, or head back to your dashboard.
+          Try again, or head back to your dashboard.
           {error?.digest ? (
             <span style={{ display: "block", marginTop: 8, fontSize: 12, color: "#555555" }}>
               Reference: {error.digest}
