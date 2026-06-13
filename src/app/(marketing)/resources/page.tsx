@@ -447,7 +447,7 @@ export default function ResourcesPage() {
           <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-7 max-w-xl mx-auto">
             50+ chapters. The adaptive study plan. The error log built into
             the platform with the spaced-review queue.
-            Mock exams with debrief tools. Seven days of full access &mdash;
+            Mock exams with debrief tools. Full access, free while in beta &mdash;
             no card required.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
@@ -456,7 +456,7 @@ export default function ResourcesPage() {
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Start free trial
+              Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

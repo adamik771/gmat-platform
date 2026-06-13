@@ -37,7 +37,7 @@ interface SampleChapterRendererProps {
  * via `getChapterBySlug`, renders `publicSectionIds` in full as
  * markdown, and shows the rest as locked. Cross-links to sibling
  * samples are surfaced in two places: the top banner (compact text
- * link) and the bottom CTA (button alongside the trial signup).
+ * link) and the bottom CTA (button alongside the signup CTA).
  *
  * Pages using this should be a thin wrapper that supplies the chapter
  * slug + public section IDs + the sibling list. Keeping the renderer
@@ -282,8 +282,8 @@ export default function SampleChapterRenderer({
             <p className="text-[15px] text-[#C0C0C0] leading-relaxed max-w-xl mb-6">
               Plus the adaptive study plan, the error log with six-tag
               taxonomy, the spaced review queue, and the full question bank
-              tagged by topic and difficulty. Seven days of full access on
-              the trial &mdash; no card required.
+              tagged by topic and difficulty. Full access, free while in beta
+              &mdash; no card required.
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <Link
@@ -291,7 +291,7 @@ export default function SampleChapterRenderer({
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
                 style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
               >
-                Start free trial
+                Start Free
                 <ArrowRight className="w-4 h-4" />
               </Link>
               {siblings.map((s) => (

@@ -81,7 +81,7 @@ export default function Navbar() {
                 color: "#0A0A0A",
               }}
             >
-              Start Free Trial
+              Start Free
             </Link>
           </div>
 
@@ -139,7 +139,7 @@ export default function Navbar() {
                     className="text-center px-4 py-2.5 rounded-xl text-[13px] font-semibold tracking-tight hover:opacity-90 transition-opacity"
                     style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
                   >
-                    Start Free Trial
+                    Start Free
                   </Link>
                 </div>
               </div>

@@ -338,7 +338,7 @@ export default function AboutPage() {
             approach?
           </h2>
           <p className="text-[15px] sm:text-[17px] text-[#888888] leading-relaxed mb-10">
-            Start with a free trial. No credit card required.
+            Free to start. No credit card required.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
@@ -346,7 +346,7 @@ export default function AboutPage() {
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Start Free Trial
+              Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
