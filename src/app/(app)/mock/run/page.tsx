@@ -127,6 +127,7 @@ export default async function MockRunPage({
       explanation: q.explanation,
       twoPartColumns: q.twoPartColumns,
       twoPartCorrectAnswers: q.twoPartCorrectAnswers,
+      chartSpec: q.chartSpec,
     })),
   }))
 

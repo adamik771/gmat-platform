@@ -5,7 +5,9 @@ topic: Graphics Interpretation
 
 ## Q1 (Set 1 — Monthly Revenue Line Graph)
 
-Description: A line graph shows monthly revenue (in thousands USD) for a small business across 2024. The y-axis starts at 0 and extends to 200. Data points: Jan 85, Feb 92, Mar 110, Apr 125, May 140, Jun 155, Jul 170, Aug 165, Sep 150, Oct 135, Nov 120, Dec 180.
+```chart
+{"type":"line","title":"Monthly revenue, 2024 (thousands USD)","x":{"label":"Month"},"y":{"label":"Revenue ($K)","min":0,"max":200},"series":[{"key":"revenue","name":"Revenue"}],"data":[{"x":"Jan","revenue":85},{"x":"Feb","revenue":92},{"x":"Mar","revenue":110},{"x":"Apr","revenue":125},{"x":"May","revenue":140},{"x":"Jun","revenue":155},{"x":"Jul","revenue":170},{"x":"Aug","revenue":165},{"x":"Sep","revenue":150},{"x":"Oct","revenue":135},{"x":"Nov","revenue":120},{"x":"Dec","revenue":180}]}
+```
 
 **difficulty:** Easy
 **type:** Graphics Interpretation
@@ -33,7 +35,9 @@ The correct answer is C.
 
 ## Q2 (Set 1 — Monthly Revenue, continued)
 
-Description: A line graph shows monthly revenue (in thousands USD) for a small business across 2024. The y-axis starts at 0 and extends to 200. Data points: Jan 85, Feb 92, Mar 110, Apr 125, May 140, Jun 155, Jul 170, Aug 165, Sep 150, Oct 135, Nov 120, Dec 180.
+```chart
+{"type":"line","title":"Monthly revenue, 2024 (thousands USD)","x":{"label":"Month"},"y":{"label":"Revenue ($K)","min":0,"max":200},"series":[{"key":"revenue","name":"Revenue"}],"data":[{"x":"Jan","revenue":85},{"x":"Feb","revenue":92},{"x":"Mar","revenue":110},{"x":"Apr","revenue":125},{"x":"May","revenue":140},{"x":"Jun","revenue":155},{"x":"Jul","revenue":170},{"x":"Aug","revenue":165},{"x":"Sep","revenue":150},{"x":"Oct","revenue":135},{"x":"Nov","revenue":120},{"x":"Dec","revenue":180}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -73,7 +77,9 @@ The correct answer is C.
 
 ## Q3 (Set 2 — Population Growth Bar Chart)
 
-Description: A bar chart shows population (in millions) for five countries in 2020 and 2024. Country A: 2020=45, 2024=50. Country B: 2020=80, 2024=82. Country C: 2020=30, 2024=38. Country D: 2020=120, 2024=115. Country E: 2020=25, 2024=35.
+```chart
+{"type":"bar","title":"Population by country (millions), 2020 vs 2024","x":{"label":"Country"},"y":{"label":"Population (M)"},"series":[{"key":"y2020","name":"2020"},{"key":"y2024","name":"2024"}],"data":[{"x":"Country A","y2020":45,"y2024":50},{"x":"Country B","y2020":80,"y2024":82},{"x":"Country C","y2020":30,"y2024":38},{"x":"Country D","y2020":120,"y2024":115},{"x":"Country E","y2020":25,"y2024":35}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -105,7 +111,9 @@ The correct answer is E.
 
 ## Q4 (Set 2 — Population Growth, continued)
 
-Description: A bar chart shows population (in millions) for five countries in 2020 and 2024. Country A: 2020=45, 2024=50. Country B: 2020=80, 2024=82. Country C: 2020=30, 2024=38. Country D: 2020=120, 2024=115. Country E: 2020=25, 2024=35.
+```chart
+{"type":"bar","title":"Population by country (millions), 2020 vs 2024","x":{"label":"Country"},"y":{"label":"Population (M)"},"series":[{"key":"y2020","name":"2020"},{"key":"y2024","name":"2024"}],"data":[{"x":"Country A","y2020":45,"y2024":50},{"x":"Country B","y2020":80,"y2024":82},{"x":"Country C","y2020":30,"y2024":38},{"x":"Country D","y2020":120,"y2024":115},{"x":"Country E","y2020":25,"y2024":35}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -139,7 +147,9 @@ The correct answer is E.
 
 ## Q5 (Set 3 — Scatter Plot)
 
-Description: A scatter plot shows the relationship between hours studied (x-axis, 0-20) and test score (y-axis, 0-100) for 15 students. Most points cluster around a positive linear trend from roughly (2, 50) to (18, 95), with a few outliers: (5, 85) high performer, (15, 60) low performer, (10, 75) on trend.
+```chart
+{"type":"scatter","title":"Hours studied vs. test score (15 students)","x":{"label":"Hours studied","min":0,"max":20},"y":{"label":"Test score","min":0,"max":100},"data":[{"x":2,"y":50},{"x":4,"y":56},{"x":5,"y":85},{"x":6,"y":61},{"x":8,"y":67},{"x":9,"y":70},{"x":10,"y":75},{"x":11,"y":76},{"x":13,"y":81},{"x":14,"y":84},{"x":15,"y":60},{"x":16,"y":90},{"x":18,"y":95}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -171,7 +181,9 @@ Because the predominant trend is clearly upward and the points cluster tightly a
 
 ## Q6 (Set 3 — Scatter Plot, continued)
 
-Same scatter plot as Q5.
+```chart
+{"type":"scatter","title":"Hours studied vs. test score (15 students)","x":{"label":"Hours studied","min":0,"max":20},"y":{"label":"Test score","min":0,"max":100},"data":[{"x":2,"y":50},{"x":4,"y":56},{"x":5,"y":85},{"x":6,"y":61},{"x":8,"y":67},{"x":9,"y":70},{"x":10,"y":75},{"x":11,"y":76},{"x":13,"y":81},{"x":14,"y":84},{"x":15,"y":60},{"x":16,"y":90},{"x":18,"y":95}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -221,7 +233,9 @@ The correct answer is A.
 
 ## Q7 (Set 4 — Pie Chart)
 
-Description: A pie chart shows the market share of five smartphone manufacturers in 2024. Manufacturer A: 38%, B: 24%, C: 18%, D: 12%, E: 8%.
+```chart
+{"type":"pie","title":"Smartphone market share, 2024 (%)","data":[{"name":"A","value":38},{"name":"B","value":24},{"name":"C","value":18},{"name":"D","value":12},{"name":"E","value":8}]}
+```
 
 **difficulty:** Easy
 **type:** Graphics Interpretation
@@ -257,7 +271,9 @@ The correct answer is C.
 
 ## Q8 (Set 4 — Pie Chart, continued)
 
-Same pie chart as Q7.
+```chart
+{"type":"pie","title":"Smartphone market share, 2024 (%)","data":[{"name":"A","value":38},{"name":"B","value":24},{"name":"C","value":18},{"name":"D","value":12},{"name":"E","value":8}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -287,7 +303,9 @@ The correct answer is C.
 
 ## Q9 (Set 5 — Stacked Bar Chart)
 
-Description: A stacked bar chart shows household monthly expenses (in dollars) across three income groups. Low income (total $2,500): Housing 1,200, Food 600, Transport 300, Other 400. Middle income (total $5,000): Housing 1,800, Food 900, Transport 600, Other 1,700. High income (total $9,000): Housing 2,800, Food 1,200, Transport 900, Other 4,100.
+```chart
+{"type":"stackedBar","title":"Monthly household expenses by income group ($)","x":{"label":"Income group"},"y":{"label":"Expenses ($)"},"series":[{"key":"Housing","name":"Housing"},{"key":"Food","name":"Food"},{"key":"Transport","name":"Transport"},{"key":"Other","name":"Other"}],"data":[{"x":"Low","Housing":1200,"Food":600,"Transport":300,"Other":400},{"x":"Middle","Housing":1800,"Food":900,"Transport":600,"Other":1700},{"x":"High","Housing":2800,"Food":1200,"Transport":900,"Other":4100}]}
+```
 
 **difficulty:** Hard
 **type:** Graphics Interpretation
@@ -335,7 +353,9 @@ The correct answer is A.
 
 ## Q10 (Set 5 — Stacked Bar Chart, continued)
 
-Description: A stacked bar chart shows household monthly expenses (in dollars) across three income groups. Low income (total $2,500): Housing 1,200, Food 600, Transport 300, Other 400. Middle income (total $5,000): Housing 1,800, Food 900, Transport 600, Other 1,700. High income (total $9,000): Housing 2,800, Food 1,200, Transport 900, Other 4,100.
+```chart
+{"type":"stackedBar","title":"Monthly household expenses by income group ($)","x":{"label":"Income group"},"y":{"label":"Expenses ($)"},"series":[{"key":"Housing","name":"Housing"},{"key":"Food","name":"Food"},{"key":"Transport","name":"Transport"},{"key":"Other","name":"Other"}],"data":[{"x":"Low","Housing":1200,"Food":600,"Transport":300,"Other":400},{"x":"Middle","Housing":1800,"Food":900,"Transport":600,"Other":1700},{"x":"High","Housing":2800,"Food":1200,"Transport":900,"Other":4100}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -373,12 +393,9 @@ The correct answer is D.
 **type:** Graphics Interpretation
 **topic:** Bar Chart
 
-A bar chart displays the number of electric vehicles (in thousands) sold by five dealerships in 2025:
-- Dealership P: 42
-- Dealership Q: 58
-- Dealership R: 31
-- Dealership S: 67
-- Dealership T: 49
+```chart
+{"type":"bar","title":"EV sales by dealership (2025, thousands)","x":{"label":"Dealership"},"y":{"label":"EVs sold (K)"},"series":[{"key":"sold","name":"EVs sold"}],"data":[{"x":"P","sold":42},{"x":"Q","sold":58},{"x":"R","sold":31},{"x":"S","sold":67},{"x":"T","sold":49}]}
+```
 
 Based on the chart, the combined sales of the two lowest-selling dealerships were closest to what fraction of the highest-selling dealership's sales?
 
@@ -415,13 +432,9 @@ The correct answer is C.
 **type:** Graphics Interpretation
 **topic:** Bar Chart
 
-A bar chart shows average daily water consumption (in liters per person) in six cities:
-- City 1: 180
-- City 2: 225
-- City 3: 140
-- City 4: 310
-- City 5: 95
-- City 6: 260
+```chart
+{"type":"bar","title":"Average daily water consumption (L/person)","x":{"label":"City"},"y":{"label":"Liters/person"},"series":[{"key":"liters","name":"Liters"}],"data":[{"x":"City 1","liters":180},{"x":"City 2","liters":225},{"x":"City 3","liters":140},{"x":"City 4","liters":310},{"x":"City 5","liters":95},{"x":"City 6","liters":260}]}
+```
 
 Based on the chart, the number of cities whose consumption exceeds the six-city average is:
 
@@ -450,15 +463,9 @@ The correct answer is B.
 **type:** Graphics Interpretation
 **topic:** Line Graph
 
-A line graph tracks a company's quarterly active users (in millions) from Q1 2023 through Q4 2024:
-- Q1 2023: 4.2
-- Q2 2023: 4.8
-- Q3 2023: 5.1
-- Q4 2023: 5.6
-- Q1 2024: 6.0
-- Q2 2024: 6.9
-- Q3 2024: 7.5
-- Q4 2024: 8.4
+```chart
+{"type":"line","title":"Quarterly active users (millions)","x":{"label":"Quarter"},"y":{"label":"Users (M)"},"series":[{"key":"users","name":"Active users"}],"data":[{"x":"Q1'23","users":4.2},{"x":"Q2'23","users":4.8},{"x":"Q3'23","users":5.1},{"x":"Q4'23","users":5.6},{"x":"Q1'24","users":6.0},{"x":"Q2'24","users":6.9},{"x":"Q3'24","users":7.5},{"x":"Q4'24","users":8.4}]}
+```
 
 The quarter-over-quarter growth in active users was largest between:
 
@@ -506,12 +513,9 @@ The correct answer is E.
 **type:** Graphics Interpretation
 **topic:** Line Graph
 
-A line graph shows the price of commodity X (in dollars per barrel) over five years:
-- 2020: $40
-- 2021: $48
-- 2022: $66
-- 2023: $59
-- 2024: $72
+```chart
+{"type":"line","title":"Commodity X price ($/barrel)","x":{"label":"Year"},"y":{"label":"$/barrel"},"series":[{"key":"price","name":"Price"}],"data":[{"x":"2020","price":40},{"x":"2021","price":48},{"x":"2022","price":66},{"x":"2023","price":59},{"x":"2024","price":72}]}
+```
 
 Based on the graph, the compound annual growth rate (CAGR) of the price from 2020 to 2024 was closest to:
 
@@ -550,7 +554,9 @@ The correct answer is C.
 **type:** Graphics Interpretation
 **topic:** Scatter Plot
 
-A scatter plot shows advertising spend (x-axis, in $thousands, range 0-100) vs. monthly sales (y-axis, in $thousands, range 0-500) across 12 retail stores. Points: (10, 80), (15, 110), (20, 140), (25, 160), (30, 200), (35, 230), (40, 260), (50, 310), (60, 360), (75, 420), (85, 460), and one outlier at (55, 150).
+```chart
+{"type":"scatter","title":"Advertising spend vs. monthly sales ($K)","x":{"label":"Ad spend ($K)","min":0,"max":100},"y":{"label":"Sales ($K)","min":0,"max":500},"data":[{"x":10,"y":80},{"x":15,"y":110},{"x":20,"y":140},{"x":25,"y":160},{"x":30,"y":200},{"x":35,"y":230},{"x":40,"y":260},{"x":50,"y":310},{"x":60,"y":360},{"x":75,"y":420},{"x":85,"y":460},{"x":55,"y":150}]}
+```
 
 Based on the scatter plot, the outlier store at (55, 150) generated approximately how much less in sales than would be predicted by the overall trend?
 
@@ -577,7 +583,9 @@ The correct answer is D.
 **type:** Graphics Interpretation
 **topic:** Scatter Plot
 
-A scatter plot maps 10 employees' years of experience (x-axis, 0-20) against annual salary (y-axis, $thousands, 40-160). Points form a loose upward cloud: (2, 52), (3, 60), (5, 70), (7, 85), (8, 78), (10, 100), (12, 115), (14, 125), (17, 145), (19, 155).
+```chart
+{"type":"scatter","title":"Years of experience vs. annual salary ($K)","x":{"label":"Experience (years)","min":0,"max":20},"y":{"label":"Salary ($K)","min":40,"max":160},"data":[{"x":2,"y":52},{"x":3,"y":60},{"x":5,"y":70},{"x":7,"y":85},{"x":8,"y":78},{"x":10,"y":100},{"x":12,"y":115},{"x":14,"y":125},{"x":17,"y":145},{"x":19,"y":155}]}
+```
 
 Based on the scatter plot, the correlation between experience and salary is best described as:
 
@@ -613,13 +621,9 @@ The data therefore show that experience and salary exhibit a strong positive lin
 **type:** Graphics Interpretation
 **topic:** Pie Chart
 
-A pie chart shows a university's 2025 budget allocation ($120 million total):
-- Instruction: 42%
-- Research: 22%
-- Facilities: 15%
-- Administration: 11%
-- Student Services: 7%
-- Other: 3%
+```chart
+{"type":"pie","title":"University budget allocation 2025 ($120M, %)","data":[{"name":"Instruction","value":42},{"name":"Research","value":22},{"name":"Facilities","value":15},{"name":"Administration","value":11},{"name":"Student Services","value":7},{"name":"Other","value":3}]}
+```
 
 If the university plans to reallocate half of the Administration budget equally to Research and Student Services next year, the new Research allocation (in dollars) will be closest to:
 
@@ -648,13 +652,9 @@ The correct answer is B.
 **type:** Graphics Interpretation
 **topic:** Stacked Bar Chart
 
-A segmented bar chart shows the number of employees (in thousands) at a firm across three divisions over three years. Each bar is split into Engineering, Sales, and Support:
-
-| Year | Engineering | Sales | Support | Total |
-|------|-------------|-------|---------|-------|
-| 2022 | 3.0         | 2.5   | 1.5     | 7.0   |
-| 2023 | 4.0         | 2.8   | 1.7     | 8.5   |
-| 2024 | 5.6         | 3.0   | 1.4     | 10.0  |
+```chart
+{"type":"stackedBar","title":"Employees by division (thousands)","x":{"label":"Year"},"y":{"label":"Employees (K)"},"series":[{"key":"Engineering","name":"Engineering"},{"key":"Sales","name":"Sales"},{"key":"Support","name":"Support"}],"data":[{"x":"2022","Engineering":3.0,"Sales":2.5,"Support":1.5},{"x":"2023","Engineering":4.0,"Sales":2.8,"Support":1.7},{"x":"2024","Engineering":5.6,"Sales":3.0,"Support":1.4}]}
+```
 
 Based on the chart, Engineering's share of total headcount from 2022 to 2024 changed by approximately how many percentage points?
 
@@ -679,13 +679,9 @@ The correct answer is B.
 **type:** Graphics Interpretation
 **topic:** Bubble Chart
 
-A bubble chart plots 6 SaaS companies with x = average contract value ($thousands, 5-60), y = annual churn rate (%, 0-20), and bubble size = annual recurring revenue (ARR, $millions):
-- Alpha: x=10, y=18, size=$30M
-- Beta: x=25, y=12, size=$85M
-- Gamma: x=45, y=6, size=$140M
-- Delta: x=55, y=4, size=$220M
-- Epsilon: x=15, y=15, size=$45M
-- Zeta: x=35, y=9, size=$110M
+```chart
+{"type":"bubble","title":"SaaS companies: contract value vs. churn (bubble = ARR)","x":{"label":"Avg contract value ($K)","min":0,"max":60},"y":{"label":"Annual churn (%)","min":0,"max":20},"data":[{"x":10,"y":18,"z":30},{"x":25,"y":12,"z":85},{"x":45,"y":6,"z":140},{"x":55,"y":4,"z":220},{"x":15,"y":15,"z":45},{"x":35,"y":9,"z":110}]}
+```
 
 Which statement is best supported by the chart?
 
@@ -727,14 +723,9 @@ The correct answer is C.
 **type:** Graphics Interpretation
 **topic:** Combination Bar + Line
 
-A combination chart overlays bars (left axis: quarterly units sold, in thousands) with a line (right axis: average selling price, in dollars) for a consumer electronics product across 2024:
-
-| Quarter | Units Sold (000s) | Avg Price ($) |
-|---------|-------------------|---------------|
-| Q1      | 120               | 450           |
-| Q2      | 140               | 430           |
-| Q3      | 180               | 400           |
-| Q4      | 150               | 470           |
+```chart
+{"type":"composed","title":"Units sold vs. average selling price (2024)","x":{"label":"Quarter"},"y":{"label":"Units (000s)"},"y2":{"label":"Avg price ($)"},"composed":{"bars":["units"],"lines":["price"]},"data":[{"x":"Q1","units":120,"price":450},{"x":"Q2","units":140,"price":430},{"x":"Q3","units":180,"price":400},{"x":"Q4","units":150,"price":470}]}
+```
 
 Based on the chart, the quarter with the highest total revenue was:
 
@@ -764,12 +755,9 @@ The correct answer is C.
 **type:** Graphics Interpretation
 **topic:** Bar Chart
 
-A bar chart shows the number of books (in thousands) published by a press across five genres in 2025:
-- Mystery: 24
-- Romance: 38
-- Sci-Fi: 17
-- Biography: 12
-- Self-Help: 29
+```chart
+{"type":"bar","title":"Books published by genre (2025, thousands)","x":{"label":"Genre"},"y":{"label":"Books (K)"},"series":[{"key":"books","name":"Books"}],"data":[{"x":"Mystery","books":24},{"x":"Romance","books":38},{"x":"Sci-Fi","books":17},{"x":"Biography","books":12},{"x":"Self-Help","books":29}]}
+```
 
 Based on the chart, the total number of books published across all five genres was closest to:
 
@@ -802,13 +790,9 @@ The correct answer is C.
 **type:** Graphics Interpretation
 **topic:** Bar Chart
 
-A bar chart shows the average commute time (in minutes) across six metropolitan areas:
-- Metro A: 28
-- Metro B: 44
-- Metro C: 19
-- Metro D: 52
-- Metro E: 33
-- Metro F: 40
+```chart
+{"type":"bar","title":"Average commute time (minutes)","x":{"label":"Metro"},"y":{"label":"Minutes"},"series":[{"key":"minutes","name":"Commute (min)"}],"data":[{"x":"Metro A","minutes":28},{"x":"Metro B","minutes":44},{"x":"Metro C","minutes":19},{"x":"Metro D","minutes":52},{"x":"Metro E","minutes":33},{"x":"Metro F","minutes":40}]}
+```
 
 Based on the chart, the median commute time across the six metros is closest to:
 
@@ -839,9 +823,9 @@ The correct answer is C.
 **type:** Graphics Interpretation
 **topic:** Bar Chart
 
-A grouped bar chart shows quarterly revenue (in millions of dollars) for two subsidiaries:
-- Subsidiary North — Q1: 18, Q2: 22, Q3: 25, Q4: 31
-- Subsidiary South — Q1: 14, Q2: 20, Q3: 28, Q4: 30
+```chart
+{"type":"bar","title":"Quarterly revenue by subsidiary ($M)","x":{"label":"Quarter"},"y":{"label":"Revenue ($M)"},"series":[{"key":"North","name":"North"},{"key":"South","name":"South"}],"data":[{"x":"Q1","North":18,"South":14},{"x":"Q2","North":22,"South":20},{"x":"Q3","North":25,"South":28},{"x":"Q4","North":31,"South":30}]}
+```
 
 Based on the chart, the percentage-point change in Subsidiary South's share of combined revenue from Q1 to Q4 is closest to:
 
@@ -872,13 +856,9 @@ The correct answer is B.
 **type:** Graphics Interpretation
 **topic:** Line Graph
 
-A line graph plots a city's monthly rainfall (in millimeters) for the first six months of 2025:
-- Jan: 60
-- Feb: 55
-- Mar: 80
-- Apr: 120
-- May: 150
-- Jun: 90
+```chart
+{"type":"line","title":"Monthly rainfall (mm), 2025","x":{"label":"Month"},"y":{"label":"Rainfall (mm)"},"series":[{"key":"rainfall","name":"Rainfall"}],"data":[{"x":"Jan","rainfall":60},{"x":"Feb","rainfall":55},{"x":"Mar","rainfall":80},{"x":"Apr","rainfall":120},{"x":"May","rainfall":150},{"x":"Jun","rainfall":90}]}
+```
 
 Based on the graph, the month with the largest month-over-month increase in rainfall is:
 
@@ -911,13 +891,9 @@ The correct answer is C.
 **type:** Graphics Interpretation
 **topic:** Line Graph
 
-A line graph shows a startup's headcount at year-end across six years:
-- 2019: 20
-- 2020: 32
-- 2021: 48
-- 2022: 75
-- 2023: 115
-- 2024: 180
+```chart
+{"type":"line","title":"Year-end headcount","x":{"label":"Year"},"y":{"label":"Headcount"},"series":[{"key":"headcount","name":"Headcount"}],"data":[{"x":"2019","headcount":20},{"x":"2020","headcount":32},{"x":"2021","headcount":48},{"x":"2022","headcount":75},{"x":"2023","headcount":115},{"x":"2024","headcount":180}]}
+```
 
 Based on the graph, the year with the highest year-over-year percentage growth in headcount is:
 
@@ -959,12 +935,9 @@ The correct answer is A.
 **type:** Graphics Interpretation
 **topic:** Line Graph
 
-A line graph shows a country's GDP (in billions of dollars) at five-year intervals:
-- 2005: 180
-- 2010: 240
-- 2015: 310
-- 2020: 360
-- 2025: 470
+```chart
+{"type":"line","title":"GDP at five-year intervals ($B)","x":{"label":"Year"},"y":{"label":"GDP ($B)"},"series":[{"key":"gdp","name":"GDP"}],"data":[{"x":"2005","gdp":180},{"x":"2010","gdp":240},{"x":"2015","gdp":310},{"x":"2020","gdp":360},{"x":"2025","gdp":470}]}
+```
 
 Based on the graph, the compound annual growth rate (CAGR) of GDP from 2005 to 2025 was closest to:
 
@@ -1009,7 +982,9 @@ The correct answer is B.
 **type:** Graphics Interpretation
 **topic:** Scatter Plot
 
-A scatter plot shows 12 neighborhoods with x = median household income ($thousands, range 30-150) and y = average home price ($thousands, range 200-900). Points: (35, 220), (45, 280), (55, 340), (65, 380), (75, 450), (80, 500), (90, 560), (100, 620), (110, 680), (125, 780), (140, 860), and an outlier at (70, 820).
+```chart
+{"type":"scatter","title":"Median household income vs. home price ($K)","x":{"label":"Income ($K)","min":30,"max":150},"y":{"label":"Home price ($K)","min":200,"max":900},"data":[{"x":35,"y":220},{"x":45,"y":280},{"x":55,"y":340},{"x":65,"y":380},{"x":75,"y":450},{"x":80,"y":500},{"x":90,"y":560},{"x":100,"y":620},{"x":110,"y":680},{"x":125,"y":780},{"x":140,"y":860},{"x":70,"y":820}]}
+```
 
 Based on the scatter plot, the correlation between household income and home price is best described as:
 
@@ -1040,7 +1015,9 @@ The correct answer is E.
 **type:** Graphics Interpretation
 **topic:** Scatter Plot
 
-A scatter plot shows 10 delivery routes with x = route distance (miles, 5-50) and y = delivery time (minutes, 15-120). Most points fall along a clear upward line: (5, 18), (10, 28), (15, 40), (20, 52), (25, 62), (30, 75), (35, 88), (45, 115). Two points sit well off the line: (12, 95) and (40, 45).
+```chart
+{"type":"scatter","title":"Route distance vs. delivery time","x":{"label":"Distance (miles)","min":5,"max":50},"y":{"label":"Time (min)","min":15,"max":120},"data":[{"x":5,"y":18},{"x":10,"y":28},{"x":15,"y":40},{"x":20,"y":52},{"x":25,"y":62},{"x":30,"y":75},{"x":35,"y":88},{"x":45,"y":115},{"x":12,"y":95},{"x":40,"y":45}]}
+```
 
 Based on the scatter plot, which of the following is best supported by the data?
 
@@ -1082,13 +1059,9 @@ The correct answer is B.
 **type:** Graphics Interpretation
 **topic:** Pie Chart
 
-A pie chart shows how a household allocated its $6,000 monthly budget:
-- Housing: 35%
-- Food: 18%
-- Transportation: 14%
-- Healthcare: 9%
-- Savings: 15%
-- Discretionary: 9%
+```chart
+{"type":"pie","title":"Monthly household budget ($6,000, %)","data":[{"name":"Housing","value":35},{"name":"Food","value":18},{"name":"Transportation","value":14},{"name":"Healthcare","value":9},{"name":"Savings","value":15},{"name":"Discretionary","value":9}]}
+```
 
 Based on the chart, the combined dollar amount spent on Housing and Food was closest to:
 
@@ -1119,13 +1092,9 @@ The correct answer is D.
 **type:** Graphics Interpretation
 **topic:** Stacked Bar
 
-A stacked bar chart shows monthly sales (in units) of three product lines at a boutique over three months:
-
-| Month | Apparel | Accessories | Footwear | Total |
-|-------|---------|-------------|----------|-------|
-| Jan   | 400     | 250         | 150      | 800   |
-| Feb   | 380     | 320         | 200      | 900   |
-| Mar   | 450     | 300         | 250      | 1,000 |
+```chart
+{"type":"stackedBar","title":"Monthly sales by product line (units)","x":{"label":"Month"},"y":{"label":"Units"},"series":[{"key":"Apparel","name":"Apparel"},{"key":"Accessories","name":"Accessories"},{"key":"Footwear","name":"Footwear"}],"data":[{"x":"Jan","Apparel":400,"Accessories":250,"Footwear":150},{"x":"Feb","Apparel":380,"Accessories":320,"Footwear":200},{"x":"Mar","Apparel":450,"Accessories":300,"Footwear":250}]}
+```
 
 Based on the chart, which statement is best supported?
 
@@ -1166,12 +1135,9 @@ The correct answer is B.
 **type:** Graphics Interpretation
 **topic:** Bubble Chart
 
-A bubble chart plots 5 regional warehouses with x = order volume (thousands/month, 5-40), y = on-time delivery rate (%, 70-100), and bubble size = workforce headcount:
-- Warehouse W1: x=8, y=95, size=40
-- Warehouse W2: x=15, y=88, size=90
-- Warehouse W3: x=22, y=82, size=150
-- Warehouse W4: x=30, y=76, size=220
-- Warehouse W5: x=38, y=72, size=310
+```chart
+{"type":"bubble","title":"Warehouses: order volume vs. on-time rate (bubble = headcount)","x":{"label":"Order volume (K/mo)","min":0,"max":40},"y":{"label":"On-time delivery (%)","min":70,"max":100},"data":[{"x":8,"y":95,"z":40},{"x":15,"y":88,"z":90},{"x":22,"y":82,"z":150},{"x":30,"y":76,"z":220},{"x":38,"y":72,"z":310}]}
+```
 
 Based on the chart, which statement is best supported?
 
@@ -1206,14 +1172,9 @@ The correct answer is B.
 **type:** Graphics Interpretation
 **topic:** Combination Bar + Line
 
-A combination chart overlays bars (left axis: number of units produced, in thousands) with a line (right axis: defect rate, in %) for a factory across four quarters of 2025:
-
-| Quarter | Units (000s) | Defect Rate (%) |
-|---------|--------------|-----------------|
-| Q1      | 50           | 4.0             |
-| Q2      | 60           | 3.5             |
-| Q3      | 75           | 2.8             |
-| Q4      | 80           | 3.2             |
+```chart
+{"type":"composed","title":"Units produced vs. defect rate (2025)","x":{"label":"Quarter"},"y":{"label":"Units (000s)"},"y2":{"label":"Defect rate (%)"},"composed":{"bars":["units"],"lines":["defectRate"]},"data":[{"x":"Q1","units":50,"defectRate":4.0},{"x":"Q2","units":60,"defectRate":3.5},{"x":"Q3","units":75,"defectRate":2.8},{"x":"Q4","units":80,"defectRate":3.2}]}
+```
 
 Based on the chart, the quarter with the highest absolute number of defective units was:
 
@@ -1257,15 +1218,9 @@ The correct answer is D.
 **type:** Graphics Interpretation
 **topic:** Combination Bar + Line
 
-A combination chart overlays bars (left axis: number of subscribers, in millions) with a line (right axis: average revenue per user, ARPU, in dollars) for a streaming service across five years:
-
-| Year | Subscribers (M) | ARPU ($) |
-|------|-----------------|----------|
-| 2021 | 40              | 9.00     |
-| 2022 | 55              | 10.00    |
-| 2023 | 70              | 11.50    |
-| 2024 | 85              | 12.00    |
-| 2025 | 95              | 13.50    |
+```chart
+{"type":"composed","title":"Subscribers vs. ARPU","x":{"label":"Year"},"y":{"label":"Subscribers (M)"},"y2":{"label":"ARPU ($)"},"composed":{"bars":["subscribers"],"lines":["arpu"]},"data":[{"x":"2021","subscribers":40,"arpu":9.00},{"x":"2022","subscribers":55,"arpu":10.00},{"x":"2023","subscribers":70,"arpu":11.50},{"x":"2024","subscribers":85,"arpu":12.00},{"x":"2025","subscribers":95,"arpu":13.50}]}
+```
 
 Based on the chart, total revenue in 2025 exceeded total revenue in 2021 by approximately:
 
@@ -1309,14 +1264,9 @@ The correct answer is C.
 **type:** Graphics Interpretation
 **topic:** Histogram
 
-A histogram shows the distribution of 200 customer order values at an online retailer, grouped into $20-wide bins:
-- $0–$20: 18 orders
-- $20–$40: 42 orders
-- $40–$60: 56 orders
-- $60–$80: 38 orders
-- $80–$100: 26 orders
-- $100–$120: 14 orders
-- $120–$140: 6 orders
+```chart
+{"type":"bar","title":"Customer order value distribution (200 orders)","x":{"label":"Order value ($)"},"y":{"label":"Orders"},"series":[{"key":"orders","name":"Orders"}],"data":[{"x":"0–20","orders":18},{"x":"20–40","orders":42},{"x":"40–60","orders":56},{"x":"60–80","orders":38},{"x":"80–100","orders":26},{"x":"100–120","orders":14},{"x":"120–140","orders":6}]}
+```
 
 Based on the histogram, the median order value falls in which bin?
 
@@ -1351,16 +1301,9 @@ The correct answer is B.
 **type:** Graphics Interpretation
 **topic:** Dual-axis Line
 
-A dual-axis line chart tracks two series for a coffee chain across six years. Left axis (solid line): number of stores, scale 0–2,000. Right axis (dashed line): same-store sales growth, scale −5% to +15%:
-
-| Year | Stores | Same-Store Sales Growth (%) |
-|------|--------|------------------------------|
-| 2020 | 800    | −2                           |
-| 2021 | 1,000  | +3                           |
-| 2022 | 1,250  | +8                           |
-| 2023 | 1,450  | +6                           |
-| 2024 | 1,700  | +2                           |
-| 2025 | 1,900  | −1                           |
+```chart
+{"type":"composed","title":"Store count vs. same-store sales growth","x":{"label":"Year"},"y":{"label":"Stores"},"y2":{"label":"Same-store growth (%)"},"composed":{"bars":["stores"],"lines":["growth"]},"data":[{"x":"2020","stores":800,"growth":-2},{"x":"2021","stores":1000,"growth":3},{"x":"2022","stores":1250,"growth":8},{"x":"2023","stores":1450,"growth":6},{"x":"2024","stores":1700,"growth":2},{"x":"2025","stores":1900,"growth":-1}]}
+```
 
 Based on the chart, which statement is best supported?
 
@@ -1391,7 +1334,9 @@ The correct answer is C.
 
 ## Q36 (Set 13 — FlowStream Monthly Subscription Revenue)
 
-Description: A bar chart shows monthly online subscription revenue for FlowStream (in thousand dollars), Jan through Dec: Jan 120, Feb 115, Mar 130, Apr 145, May 160, Jun 155, Jul 170, Aug 185, Sep 170, Oct 160, Nov 150, Dec 165.
+```chart
+{"type":"bar","title":"FlowStream monthly subscription revenue ($K)","x":{"label":"Month"},"y":{"label":"Revenue ($K)"},"series":[{"key":"revenue","name":"Revenue"}],"data":[{"x":"Jan","revenue":120},{"x":"Feb","revenue":115},{"x":"Mar","revenue":130},{"x":"Apr","revenue":145},{"x":"May","revenue":160},{"x":"Jun","revenue":155},{"x":"Jul","revenue":170},{"x":"Aug","revenue":185},{"x":"Sep","revenue":170},{"x":"Oct","revenue":160},{"x":"Nov","revenue":150},{"x":"Dec","revenue":165}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -1441,7 +1386,9 @@ The correct answer is B.
 
 ## Q37 (Set 14 — Quarterly Website Traffic)
 
-Description: A line graph plots quarterly website traffic (millions of visits) for three years (12 quarters in order): Q1Y1 8, Q2Y1 10, Q3Y1 9, Q4Y1 12; Q1Y2 11, Q2Y2 14, Q3Y2 12, Q4Y2 16; Q1Y3 14, Q2Y3 17, Q3Y3 15, Q4Y3 20.
+```chart
+{"type":"line","title":"Quarterly website traffic (millions of visits)","x":{"label":"Quarter"},"y":{"label":"Visits (M)"},"series":[{"key":"visits","name":"Visits"}],"data":[{"x":"Q1Y1","visits":8},{"x":"Q2Y1","visits":10},{"x":"Q3Y1","visits":9},{"x":"Q4Y1","visits":12},{"x":"Q1Y2","visits":11},{"x":"Q2Y2","visits":14},{"x":"Q3Y2","visits":12},{"x":"Q4Y2","visits":16},{"x":"Q1Y3","visits":14},{"x":"Q2Y3","visits":17},{"x":"Q3Y3","visits":15},{"x":"Q4Y3","visits":20}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -1528,7 +1475,9 @@ The correct answer is C.
 
 ## Q39 (Set 16 — Stacked Quarterly Revenue)
 
-Description: A stacked bar chart shows quarterly revenue (in millions of dollars) for four business units A, B, C, and D over Q1 through Q4. Quarterly values — A: 20, 25, 30, 35; B: 25, 20, 15, 10; C: 15, 20, 25, 30; D: 10, 15, 20, 25.
+```chart
+{"type":"stackedBar","title":"Quarterly revenue by business unit ($M)","x":{"label":"Quarter"},"y":{"label":"Revenue ($M)"},"series":[{"key":"A","name":"Unit A"},{"key":"B","name":"Unit B"},{"key":"C","name":"Unit C"},{"key":"D","name":"Unit D"}],"data":[{"x":"Q1","A":20,"B":25,"C":15,"D":10},{"x":"Q2","A":25,"B":20,"C":20,"D":15},{"x":"Q3","A":30,"B":15,"C":25,"D":20},{"x":"Q4","A":35,"B":10,"C":30,"D":25}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -1571,7 +1520,9 @@ The correct answer is B.
 
 ## Q40 (Set 17 — Budget Pie Chart)
 
-Description: A pie chart shows how a company allocates its $600 million annual budget: R&D 25%, Marketing 20%, Salaries 35%, Operations 15%, Other 5%.
+```chart
+{"type":"pie","title":"Annual budget allocation ($600M total, %)","data":[{"name":"R&D","value":25},{"name":"Marketing","value":20},{"name":"Salaries","value":35},{"name":"Operations","value":15},{"name":"Other","value":5}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -1608,7 +1559,9 @@ The correct answer is C.
 
 ## Q41 (Set 18 — Advertising vs. Sales Scatter Plot)
 
-Description: A scatter plot shows the relationship between monthly advertising spending (x-axis, in thousands of dollars) and monthly sales (y-axis, in thousands of dollars) for 10 products at a company. Data points (x, y): (20, 150), (25, 160), (30, 170), (30, 180), (35, 210), (40, 200), (45, 240), (50, 250), (55, 260), (60, 290).
+```chart
+{"type":"scatter","title":"Advertising spend vs. monthly sales ($K)","x":{"label":"Ad spend ($K)"},"y":{"label":"Sales ($K)"},"data":[{"x":20,"y":150},{"x":25,"y":160},{"x":30,"y":170},{"x":30,"y":180},{"x":35,"y":210},{"x":40,"y":200},{"x":45,"y":240},{"x":50,"y":250},{"x":55,"y":260},{"x":60,"y":290}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -1650,7 +1603,9 @@ The correct answer is A.
 
 ## Q42 (Set 19 — Salary Distribution Histogram)
 
-Description: A histogram shows the distribution of employee annual salaries (in thousands of dollars) at a company across six bins: [30–40): 8 employees; [40–50): 12; [50–60): 18; [60–70): 15; [70–80): 9; [80–90): 3.
+```chart
+{"type":"bar","title":"Employee salary distribution","x":{"label":"Salary ($K)"},"y":{"label":"Employees"},"series":[{"key":"employees","name":"Employees"}],"data":[{"x":"30–40","employees":8},{"x":"40–50","employees":12},{"x":"50–60","employees":18},{"x":"60–70","employees":15},{"x":"70–80","employees":9},{"x":"80–90","employees":3}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -1700,7 +1655,9 @@ The correct answer is C.
 
 ## Q43 (Set 20 — Operating Expense Pie)
 
-Description: A pie chart shows how a company's annual $800 million operating expenses are distributed: Labor 45%, Materials 25%, Facilities 15%, Marketing 10%, Other 5%.
+```chart
+{"type":"pie","title":"Annual operating expenses ($800M total, %)","data":[{"name":"Labor","value":45},{"name":"Materials","value":25},{"name":"Facilities","value":15},{"name":"Marketing","value":10},{"name":"Other","value":5}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -1754,7 +1711,9 @@ The correct answer is B.
 
 ## Q44 (Set 21 — Dual-Axis Quarterly Trend)
 
-Description: A dual-axis chart shows a company's quarterly revenue (left axis, $ millions) and quarterly operating margin (right axis, %) from Q1 2022 through Q4 2023 (eight quarters). Revenue in order: 45, 48, 52, 55, 58, 60, 62, 65. Operating margin in order: 10, 11, 12, 14, 13, 13, 12, 11.
+```chart
+{"type":"composed","title":"Quarterly revenue vs. operating margin","x":{"label":"Quarter"},"y":{"label":"Revenue ($M)"},"y2":{"label":"Operating margin (%)"},"composed":{"bars":["revenue"],"lines":["margin"]},"data":[{"x":"Q1'22","revenue":45,"margin":10},{"x":"Q2'22","revenue":48,"margin":11},{"x":"Q3'22","revenue":52,"margin":12},{"x":"Q4'22","revenue":55,"margin":14},{"x":"Q1'23","revenue":58,"margin":13},{"x":"Q2'23","revenue":60,"margin":13},{"x":"Q3'23","revenue":62,"margin":12},{"x":"Q4'23","revenue":65,"margin":11}]}
+```
 
 **difficulty:** Hard
 **type:** Graphics Interpretation
@@ -1803,7 +1762,9 @@ The correct answer is C.
 
 ## Q45 (Set 22 — Cumulative Market Share)
 
-Description: A stacked area chart shows a company's market share across four segments A, B, C, and D over five years, 2019 through 2023. The company's segment shares (in percentage points of the overall market): 2019 — A 15%, B 10%, C 8%, D 5% (total 38%). 2023 — A 22%, B 18%, C 12%, D 10% (total 62%).
+```chart
+{"type":"stackedBar","title":"Company market share by segment (pp of market)","x":{"label":"Year"},"y":{"label":"Share (pp)"},"series":[{"key":"A","name":"Segment A"},{"key":"B","name":"Segment B"},{"key":"C","name":"Segment C"},{"key":"D","name":"Segment D"}],"data":[{"x":"2019","A":15,"B":10,"C":8,"D":5},{"x":"2023","A":22,"B":18,"C":12,"D":10}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -1829,7 +1790,9 @@ The correct answer is B.
 
 ## Q46 (Set 23 — Experience vs. Salary Scatter)
 
-Description: A scatter plot shows 12 data points relating years of experience (x-axis) to annual salary in thousands of dollars (y-axis), with points at approximately (2, 52), (3, 58), (3, 65), (5, 68), (7, 75), (8, 85), (9, 90), (10, 95), (12, 105), (14, 120), (15, 110), and (18, 140).
+```chart
+{"type":"scatter","title":"Years of experience vs. annual salary ($K)","x":{"label":"Experience (years)"},"y":{"label":"Salary ($K)"},"data":[{"x":2,"y":52},{"x":3,"y":58},{"x":3,"y":65},{"x":5,"y":68},{"x":7,"y":75},{"x":8,"y":85},{"x":9,"y":90},{"x":10,"y":95},{"x":12,"y":105},{"x":14,"y":120},{"x":15,"y":110},{"x":18,"y":140}]}
+```
 
 **difficulty:** Hard
 **type:** Graphics Interpretation
@@ -1886,7 +1849,9 @@ The correct answer is D.
 
 ## Q47 (Set 24 — Product Bubble Chart)
 
-Description: A bubble chart shows six consumer products positioned on three axes: x = monthly sales volume in thousands of units, y = profit margin (%), and bubble size = total monthly profit in thousands of dollars. Product coordinates (x, y, bubble size): A (50, 20%, 10), B (80, 15%, 12), C (30, 35%, 10.5), D (120, 10%, 12), E (40, 25%, 10), F (100, 18%, 18).
+```chart
+{"type":"bubble","title":"Products: sales volume vs. margin (bubble = total profit)","x":{"label":"Sales volume (K units)"},"y":{"label":"Profit margin (%)"},"data":[{"x":50,"y":20,"z":10},{"x":80,"y":15,"z":12},{"x":30,"y":35,"z":10.5},{"x":120,"y":10,"z":12},{"x":40,"y":25,"z":10},{"x":100,"y":18,"z":18}]}
+```
 
 **difficulty:** Hard
 **type:** Graphics Interpretation
@@ -1923,7 +1888,9 @@ The correct answer is E.
 
 ## Q48 (Set 25 — Revenue vs. Costs Crossover)
 
-Description: A line graph shows a company's quarterly revenue and quarterly operating costs (both in millions of dollars) from Q1 2022 through Q4 2023 (eight quarters). Revenue: 40, 45, 50, 55, 60, 65, 68, 70. Operating costs: 50, 52, 53, 54, 55, 58, 62, 68.
+```chart
+{"type":"line","title":"Quarterly revenue vs. operating costs ($M)","x":{"label":"Quarter"},"y":{"label":"$M"},"series":[{"key":"revenue","name":"Revenue"},{"key":"costs","name":"Operating costs"}],"data":[{"x":"Q1'22","revenue":40,"costs":50},{"x":"Q2'22","revenue":45,"costs":52},{"x":"Q3'22","revenue":50,"costs":53},{"x":"Q4'22","revenue":55,"costs":54},{"x":"Q1'23","revenue":60,"costs":55},{"x":"Q2'23","revenue":65,"costs":58},{"x":"Q3'23","revenue":68,"costs":62},{"x":"Q4'23","revenue":70,"costs":68}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation
@@ -1963,7 +1930,9 @@ The correct answer is C.
 
 ## Q49 (Set 26 — Sales Team Radar Chart)
 
-Description: A radar (spider) chart shows three sales team members' performance scores across five categories on a 0-to-10 scale. The five categories are placed at 72° intervals around the center: Sales Volume, New Clients, Upsells, Customer Retention, and Training Completion. Scores — Team member A: 9, 7, 8, 6, 5 (total 35). Team member B: 5, 9, 7, 8, 9 (total 38). Team member C: 7, 6, 9, 7, 8 (total 37).
+```chart
+{"type":"radar","title":"Sales team performance (0–10)","series":[{"key":"A","name":"Member A"},{"key":"B","name":"Member B"},{"key":"C","name":"Member C"}],"data":[{"x":"Sales Volume","A":9,"B":5,"C":7},{"x":"New Clients","A":7,"B":9,"C":6},{"x":"Upsells","A":8,"B":7,"C":9},{"x":"Customer Retention","A":6,"B":8,"C":7},{"x":"Training Completion","A":5,"B":9,"C":8}]}
+```
 
 **difficulty:** Hard
 **type:** Graphics Interpretation
@@ -2003,7 +1972,9 @@ The correct answer is B.
 
 ## Q50 (Set 27 — Linear Sign-Up Trend)
 
-Description: A line graph shows a company's monthly customer sign-ups over the first 10 months of a year. Values: Jan 120, Feb 135, Mar 150, Apr 165, May 180, Jun 195, Jul 210, Aug 225, Sep 240, Oct 255.
+```chart
+{"type":"line","title":"Monthly customer sign-ups","x":{"label":"Month"},"y":{"label":"Sign-ups"},"series":[{"key":"signups","name":"Sign-ups"}],"data":[{"x":"Jan","signups":120},{"x":"Feb","signups":135},{"x":"Mar","signups":150},{"x":"Apr","signups":165},{"x":"May","signups":180},{"x":"Jun","signups":195},{"x":"Jul","signups":210},{"x":"Aug","signups":225},{"x":"Sep","signups":240},{"x":"Oct","signups":255}]}
+```
 
 **difficulty:** Medium
 **type:** Graphics Interpretation

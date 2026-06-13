@@ -105,6 +105,7 @@ export default async function ReviewSectionPage({
       takeaway: q.takeaway,
       twoPartColumns: q.twoPartColumns,
       twoPartCorrectAnswers: q.twoPartCorrectAnswers,
+      chartSpec: q.chartSpec,
     }))
 
   if (playable.length === 0) {

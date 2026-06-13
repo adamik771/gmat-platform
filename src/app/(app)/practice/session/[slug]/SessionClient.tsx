@@ -23,6 +23,8 @@ import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import PacingBadge from "@/components/shared/PacingBadge"
+import QuestionChart from "@/components/shared/QuestionChart"
+import type { ChartSpec } from "@/lib/chart-spec"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
 import { applySessionAttempts, levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
@@ -59,6 +61,8 @@ export interface SessionQuestion {
   twoPartColumns?: string[]
   /** Two-Part Analysis: the correct row index for each column. */
   twoPartCorrectAnswers?: number[]
+  /** Graphics Interpretation: structured chart rendered by QuestionChart. */
+  chartSpec?: ChartSpec
 }
 
 type Confidence = "low" | "medium" | "high"
@@ -2349,6 +2353,7 @@ export default function SessionClient({
             {hasMethodCard(current.type) && (
               <DIMethodCardBanner questionType={current.type} />
             )}
+            {current.chartSpec && <QuestionChart spec={current.chartSpec} />}
             <PromptBlock text={current.prompt} className="mb-5" />
 
             {isTwoPart ? (
