@@ -90,15 +90,26 @@ export async function getPlanTierForUser(
   userId: string
 ): Promise<PlanTier> {
   try {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("purchases")
       .select("plan_id")
       .eq("user_id", userId)
+      // Refunded / charged-back purchases are revoked — they must not grant
+      // access. The webhook stamps revoked_at on refund/dispute.
+      .is("revoked_at", null)
       .order("paid_at", { ascending: false })
       .limit(1)
       .maybeSingle()
+    if (error) {
+      // Fail closed (free), but don't swallow silently: the most likely cause
+      // is the purchases / revoked_at migration not being applied, which would
+      // otherwise downgrade every paid user with no diagnostic trail.
+      console.error("[entitlements] purchases read failed — defaulting to free", error)
+      return "free"
+    }
     return getPlanTier((data?.plan_id as string | null) ?? null)
-  } catch {
+  } catch (err) {
+    console.error("[entitlements] getPlanTierForUser threw — defaulting to free", err)
     return "free"
   }
 }

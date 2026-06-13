@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -15,7 +14,6 @@ import {
 } from "lucide-react"
 import SectionWrapper from "@/components/shared/SectionWrapper"
 import FeatureCard from "@/components/marketing/FeatureCard"
-import TestimonialCard from "@/components/marketing/TestimonialCard"
 import FAQAccordion from "@/components/marketing/FAQAccordion"
 import HeroDashboardCard from "@/components/marketing/HeroDashboardCard"
 import ScoreCalloutNumbers from "@/components/marketing/ScoreCalloutNumbers"
@@ -55,30 +53,6 @@ const pillars = [
     title: "Proven Score Jumps",
     description:
       "Average improvement of +95 points. Not a promise — a pattern backed by a real 170-point jump.",
-  },
-]
-
-const testimonials = [
-  {
-    quote:
-      "I'd been stuck around 585 for months. Adam's error log approach completely changed how I reviewed. Went from 585 to 665 in 6 weeks.",
-    author: "Priya M.",
-    detail: "Applying to Wharton",
-    scoreJump: "585 → 665",
-  },
-  {
-    quote:
-      "As a non-native speaker, I was terrified of Verbal. This system broke it down in a way no other course did. My CR accuracy went from 55% to 81%.",
-    author: "Hamid K.",
-    detail: "Harvard GSB applicant",
-    scoreJump: "+78 points",
-  },
-  {
-    quote:
-      "The mock exam debriefing framework alone was worth the investment. I stopped guessing and started understanding.",
-    author: "Sophie R.",
-    detail: "Booth applicant",
-    scoreJump: "645 → 675",
   },
 ]
 
@@ -181,7 +155,7 @@ export default function HomePage() {
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
                   style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
                 >
-                  Start Free Trial
+                  Start Free
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
@@ -192,14 +166,14 @@ export default function HomePage() {
                   <ChevronDown className="w-4 h-4" />
                 </Link>
               </div>
-              {/* Trial scope — 7 days of full access, no card required.
-                  The codebase doesn't enforce a paywall today
-                  (`purchases.plan_id` is a display chip only); this
-                  copy describes intent. Wire actual gating to
-                  `purchases` + a `trial_started_at` field on
-                  user_metadata when the paywall lands. */}
+              {/* No paywall is enforced today (PAYWALL_ENABLED off), so the
+                  product is genuinely free to use right now — but there is NO
+                  time-boxed "trial" mechanism, so the copy must not promise a
+                  "7-day trial" that would falsely imply expiry/conversion.
+                  When the paywall lands, revisit this copy alongside the
+                  real access model. */}
               <p className="text-xs text-[#888888] mb-2">
-                No credit card. 7 days of full access — every chapter, full question bank, mock and review.
+                No credit card required. Full access — every chapter, the full question bank, mock exams and review.
               </p>
               <p className="text-xs mb-10">
                 <Link
@@ -251,13 +225,13 @@ export default function HomePage() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-[#555555]">
-            <span>Trusted by MBA candidates at</span>
+            <span>Built for MBA candidates targeting</span>
             {[
-              "Harvard GSB applicant",
-              "Wharton applicant",
-              "Booth applicant",
-              "Columbia applicant",
-              "Kellogg applicant",
+              "Harvard GSB",
+              "Wharton",
+              "Booth",
+              "Columbia",
+              "Kellogg",
             ].map((name) => (
               <span
                 key={name}
@@ -389,20 +363,12 @@ export default function HomePage() {
             The numbers speak for themselves.
           </h2>
 
-          {/* Score display */}
+          {/* Score display — the founder's own verified result. Student
+              testimonials were removed: the product has no real students yet,
+              so invented named testimonials were a false-advertising risk.
+              Re-add a TestimonialCard grid here once real, attributable
+              results exist. */}
           <ScoreCalloutNumbers start={565} delta={170} end={735} />
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((t) => (
-            <TestimonialCard
-              key={t.author}
-              quote={t.quote}
-              author={t.author}
-              detail={t.detail}
-              scoreJump={t.scoreJump}
-            />
-          ))}
         </div>
       </SectionWrapper>
 
@@ -448,14 +414,12 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Founder photo. Save a square crop (head + shoulders,
-              ~512×512 or larger) at `public/founder.jpg`. Layered
-              fallback: the "AZ" initials sit underneath; the
-              next/image overlays them. When the file exists, the
-              image covers the initials. When it doesn't (404), the
-              <img> renders transparent and the initials show through
-              — so the page never looks broken even before Adam drops
-              the photo in. */}
+          {/* Founder avatar. The styled "AZ" initials are the shipped avatar.
+              The previous next/image of /founder.jpg returned a 400 (the file
+              doesn't exist), painting a broken-image glyph over the initials —
+              and a server component can't onError-fallback. To restore a real
+              photo: drop a square crop (~512x512) at public/founder.jpg and
+              re-add a next/image overlay here. */}
           <div className="flex justify-center">
             <div className="relative">
               <div
@@ -468,19 +432,11 @@ export default function HomePage() {
               >
                 <span
                   aria-hidden
-                  className="absolute inset-0 flex items-center justify-center text-6xl font-bold"
+                  className="flex items-center justify-center text-6xl font-bold"
                   style={{ color: "#C9A84C" }}
                 >
                   AZ
                 </span>
-                <Image
-                  src="/founder.jpg"
-                  alt="Adam Zakarian"
-                  width={512}
-                  height={512}
-                  priority
-                  className="relative w-full h-full object-cover"
-                />
               </div>
               <div
                 className="absolute -bottom-2 -right-2 px-3 py-1.5 rounded-xl text-xs font-bold border"
@@ -707,7 +663,7 @@ export default function HomePage() {
               className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-sm font-semibold transition-all hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Start Free Trial
+              Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
