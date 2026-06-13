@@ -8,14 +8,18 @@ import {
   Bell,
   CheckCircle2,
   CreditCard,
+  Download,
   Loader2,
   Mail,
   Pencil,
   Save,
+  ShieldAlert,
+  Trash2,
   User,
   X,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { createSupabaseBrowser } from "@/lib/supabase/browser"
 
 export interface PurchaseRow {
   id: string
@@ -148,14 +152,17 @@ export default function SettingsClient({
         </div>
 
         {tab === "profile" && (
-          <ProfileTab
-            initialName={initialName}
-            initialEmail={initialEmail}
-            initialExamDate={initialExamDate}
-            targetScore={initialTargetScore}
-            initialEnglishNative={initialEnglishNative}
-            initialPriorGmatAttempt={initialPriorGmatAttempt}
-          />
+          <>
+            <ProfileTab
+              initialName={initialName}
+              initialEmail={initialEmail}
+              initialExamDate={initialExamDate}
+              targetScore={initialTargetScore}
+              initialEnglishNative={initialEnglishNative}
+              initialPriorGmatAttempt={initialPriorGmatAttempt}
+            />
+            <DangerZone />
+          </>
         )}
 
         {tab === "billing" && <BillingTab purchases={purchases} />}
@@ -235,6 +242,149 @@ const INPUT_CLASS =
 const INPUT_STYLE: React.CSSProperties = {
   backgroundColor: "#0A0A0A",
   border: "1px solid rgba(255,255,255,0.08)",
+}
+
+function DangerZone() {
+  const router = useRouter()
+  const [confirming, setConfirming] = useState(false)
+  const [confirmText, setConfirmText] = useState("")
+  const [deleting, setDeleting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  async function handleDelete() {
+    if (confirmText !== "DELETE") return
+    setDeleting(true)
+    setError(null)
+    try {
+      const res = await fetch("/api/account/delete", { method: "POST" })
+      const data = (await res.json().catch(() => ({}))) as { error?: string }
+      if (!res.ok) {
+        setError(data.error ?? "Could not delete your account.")
+        setDeleting(false)
+        return
+      }
+      // Account is gone server-side — clear the local session and leave.
+      try {
+        await createSupabaseBrowser().auth.signOut()
+      } catch {
+        // Session already invalid; ignore.
+      }
+      router.push("/")
+      router.refresh()
+    } catch {
+      setError("Network error. Please try again.")
+      setDeleting(false)
+    }
+  }
+
+  return (
+    <div className="mt-12">
+      <SectionShell
+        eyebrow="Your data"
+        title="Export or"
+        italic="delete."
+        description="Download everything we hold about you, or permanently delete your account. Deletion removes your profile, progress, practice history, error log, and purchase records — and cannot be undone."
+      >
+        <div className="space-y-4">
+          <div
+            className="flex items-center justify-between gap-4 p-4 rounded-xl"
+            style={{ backgroundColor: "#0A0A0A", border: "1px solid rgba(255,255,255,0.08)" }}
+          >
+            <div>
+              <p className="text-[14px] font-semibold text-[#F0F0F0]">Export my data</p>
+              <p className="text-[13px] text-[#888888] mt-0.5">
+                A JSON file with your profile, progress, and practice history.
+              </p>
+            </div>
+            <a
+              href="/api/account/export"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold whitespace-nowrap border border-white/[0.12] text-[#F0F0F0] transition-all hover:opacity-90"
+            >
+              <Download className="w-4 h-4" />
+              Export
+            </a>
+          </div>
+
+          <div
+            className="p-4 rounded-xl"
+            style={{ backgroundColor: "rgba(255,68,68,0.05)", border: "1px solid rgba(255,68,68,0.2)" }}
+          >
+            <div className="flex items-start gap-2.5 mb-3">
+              <ShieldAlert className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#FF4444" }} />
+              <div>
+                <p className="text-[14px] font-semibold" style={{ color: "#FF6B6B" }}>
+                  Delete account
+                </p>
+                <p className="text-[13px] text-[#C0C0C0] mt-0.5">
+                  Permanent and irreversible. All of your data is erased.
+                </p>
+              </div>
+            </div>
+
+            {!confirming ? (
+              <button
+                onClick={() => setConfirming(true)}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold transition-all hover:opacity-90"
+                style={{
+                  backgroundColor: "rgba(255,68,68,0.12)",
+                  color: "#FF6B6B",
+                  border: "1px solid rgba(255,68,68,0.3)",
+                }}
+              >
+                <Trash2 className="w-4 h-4" />
+                Delete account
+              </button>
+            ) : (
+              <div className="space-y-3">
+                <p className="text-[13px] text-[#C0C0C0]">
+                  Type <span className="font-mono font-semibold text-[#F0F0F0]">DELETE</span> to confirm.
+                </p>
+                <input
+                  type="text"
+                  value={confirmText}
+                  onChange={(e) => setConfirmText(e.target.value)}
+                  autoComplete="off"
+                  spellCheck={false}
+                  placeholder="DELETE"
+                  className="w-full max-w-xs px-4 py-2.5 rounded-xl text-[14px] text-[#F0F0F0] placeholder-[#555555] outline-none transition-all focus:ring-2 focus:ring-[#FF4444]/30"
+                  style={{ backgroundColor: "#0A0A0A", border: "1px solid rgba(255,68,68,0.3)" }}
+                />
+                {error && (
+                  <div className="flex items-start gap-2 text-[13px]" style={{ color: "#FF4444" }}>
+                    <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                    <span>{error}</span>
+                  </div>
+                )}
+                <div className="flex gap-2">
+                  <button
+                    onClick={handleDelete}
+                    disabled={confirmText !== "DELETE" || deleting}
+                    aria-busy={deleting}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold transition-all hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed"
+                    style={{ backgroundColor: "#FF4444", color: "#0A0A0A" }}
+                  >
+                    {deleting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Trash2 className="w-4 h-4" />}
+                    Permanently delete
+                  </button>
+                  <button
+                    onClick={() => {
+                      setConfirming(false)
+                      setConfirmText("")
+                      setError(null)
+                    }}
+                    disabled={deleting}
+                    className="px-4 py-2.5 rounded-xl text-[13px] font-semibold text-[#888888] transition-colors hover:text-[#C0C0C0]"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </SectionShell>
+    </div>
+  )
 }
 
 function ProfileTab({
