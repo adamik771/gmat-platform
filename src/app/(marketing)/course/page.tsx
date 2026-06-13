@@ -427,7 +427,7 @@ export default function CoursePage() {
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Start Free Trial
+              Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

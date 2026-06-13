@@ -418,7 +418,7 @@ export default function ExamDayChecklistPage() {
             The checklist above is the easy part. The hard part &mdash; the
             structured prep that gets you to a score you&apos;d be happy to
             sit for &mdash; is what the platform was built for. Free sample
-            chapter, full curriculum on the trial, no card required.
+            chapter, the full curriculum free, no card required.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
@@ -426,7 +426,7 @@ export default function ExamDayChecklistPage() {
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Start free trial
+              Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

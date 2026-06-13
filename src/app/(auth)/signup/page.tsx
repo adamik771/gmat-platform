@@ -32,7 +32,7 @@ function SignupFallback() {
           className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
           style={{ color: "#C9A84C" }}
         >
-          7-Day Free Trial
+          Free Access
         </p>
         <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
           Begin the{" "}
@@ -41,7 +41,7 @@ function SignupFallback() {
           </span>
         </h1>
         <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
-          Full access for 7 days. No credit card needed.
+          Full access. No credit card needed.
         </p>
       </div>
     </div>
@@ -64,8 +64,16 @@ function SignupForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setLoading(true)
     setError("")
+
+    // Enforce the 8-char minimum the helper text promises (the reset-password
+    // flow already does; signup was relying on Supabase's weaker 6-char default).
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters.")
+      return
+    }
+
+    setLoading(true)
 
     const supabase = createSupabaseBrowser()
     const { error: authError } = await supabase.auth.signUp({
@@ -94,7 +102,7 @@ function SignupForm() {
           className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
           style={{ color: "#C9A84C" }}
         >
-          7-Day Free Trial
+          Free Access
         </p>
         <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
           Begin the{" "}
@@ -103,7 +111,7 @@ function SignupForm() {
           </span>
         </h1>
         <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
-          Full access for 7 days. No credit card needed.
+          Full access. No credit card needed.
         </p>
       </div>
 
@@ -169,6 +177,7 @@ function SignupForm() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                minLength={8}
                 placeholder="••••••••"
                 className="w-full px-4 py-3 pr-11 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
               />
@@ -204,7 +213,7 @@ function SignupForm() {
               </>
             ) : (
               <>
-                Start free trial
+                Start Free
                 <ArrowRight className="w-4 h-4" />
               </>
             )}

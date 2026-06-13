@@ -11,6 +11,16 @@ const PLAN_TO_PRICE: Record<PlanId, string> = {
   intensive: STRIPE_PRICES.intensive,
 }
 
+// The fallback ids STRIPE_PRICES uses when a STRIPE_PRICE_* env is unset. If a
+// real checkout resolves to any of these, the tier isn't configured — 503
+// rather than letting Stripe reject a fake id with a 500.
+const PLACEHOLDER_PRICE_IDS = new Set<string>([
+  "price_self_study",
+  "price_self_study_guaranteed",
+  "price_coaching",
+  "price_intensive",
+])
+
 /**
  * POST /api/checkout — creates a Stripe Checkout Session for the
  * requested plan and returns the hosted-checkout URL.
@@ -43,13 +53,13 @@ export async function POST(request: Request) {
   }
 
   const priceId = PLAN_TO_PRICE[planId as PlanId]
-  // Guard against the placeholder prices being live — better to return a
-  // clear 503 than to let Stripe reject with a cryptic message.
-  if (!priceId || priceId.startsWith("price_placeholder") || priceId === "price_self_study") {
+  // Guard against an unconfigured tier (any tier still on its placeholder id) —
+  // a clear 503 beats letting Stripe reject a fake id with a cryptic 500.
+  if (!priceId || PLACEHOLDER_PRICE_IDS.has(priceId)) {
     return Response.json(
       {
         error:
-          "Stripe prices are not configured. Set STRIPE_PRICE_SELF_STUDY / STRIPE_PRICE_SELF_STUDY_PLUS / STRIPE_PRICE_COACHING / STRIPE_PRICE_INTENSIVE to real Stripe price IDs.",
+          "Stripe prices are not configured. Set STRIPE_PRICE_SELF_STUDY / STRIPE_PRICE_SELF_STUDY_GUARANTEED / STRIPE_PRICE_COACHING / STRIPE_PRICE_INTENSIVE to real Stripe price IDs.",
       },
       { status: 503 }
     )

@@ -182,7 +182,7 @@ export default function GlossaryPage() {
           </h2>
           <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-7 max-w-xl mx-auto">
             Apply them in a structured 12-week plan with the platform.
-            50+ chapters + adaptive plan + error log, all on the trial.
+            50+ chapters + adaptive plan + error log, all free.
             No card required.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
@@ -191,7 +191,7 @@ export default function GlossaryPage() {
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Start free trial
+              Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

@@ -48,7 +48,7 @@ export default function TermsPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="Plans, payment, and trials">
+      <LegalSection title="Plans and payment">
         <p>
           Plans, prices, and inclusions are described on the{" "}
           <Link href="/pricing">pricing page</Link>. By purchasing a plan you
@@ -56,9 +56,10 @@ export default function TermsPage() {
           method for the listed amount.
         </p>
         <p>
-          Where the Platform offers a free trial, the trial period and what is
-          included are described at signup. We do not require a credit card to
-          start a trial unless explicitly stated.
+          The Platform is currently free to use, and creating an account does
+          not require a credit card. If a paid plan or a time-limited trial is
+          introduced, its terms and duration will be described before you are
+          charged.
         </p>
         <p>
           All prices are listed in U.S. dollars unless otherwise stated. You

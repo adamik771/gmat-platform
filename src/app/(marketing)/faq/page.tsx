@@ -9,7 +9,7 @@ import { faqPageLd } from "@/lib/structured-data"
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Frequently asked questions about Zakarian GMAT — the curriculum, scoring, the trial, baselining with official practice exams, billing, and the platform's specific approach for non-native speakers.",
+    "Frequently asked questions about Zakarian GMAT — the curriculum, scoring, getting started, baselining with official practice exams, billing, and the platform's specific approach for non-native speakers.",
   alternates: { canonical: "/faq" },
 }
 
@@ -60,22 +60,22 @@ const categories: FAQCategory[] = [
     ],
   },
   {
-    title: "The free trial and your baseline",
+    title: "Getting started and your baseline",
     items: [
       {
-        question: "What does the free trial include?",
+        question: "What do I get with a free account?",
         answer:
-          "Seven days of full access to everything: all 50+ chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
+          "Full access to everything: all 50+ chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
       },
       {
-        question: "Do I need a credit card to start the trial?",
+        question: "Do I need a credit card to sign up?",
         answer:
-          "No. The signup form asks for your name, email, and a password. No payment details are collected until you decide to upgrade.",
+          "No. The signup form asks for your name, email, and a password — no payment details required.",
       },
       {
-        question: "What happens after the 7-day trial?",
+        question: "Will my free access expire after a set number of days?",
         answer:
-          "If you don't upgrade, your account simply becomes inactive — there's nothing to cancel and no charge. Your study data is retained for 30 days in case you want to come back. After 30 days of inactivity, the account is deleted per the privacy policy.",
+          "No. There's no time-boxed trial — the platform is free to use while it's in beta, with no countdown and nothing to cancel. If paid plans are introduced later, any change to what's free will be made clear in advance.",
       },
       {
         question: "How does the platform know where I'm starting from?",
@@ -85,7 +85,7 @@ const categories: FAQCategory[] = [
       {
         question: "Can I try the platform without signing up?",
         answer:
-          "Yes — the free sample chapter at /sample-chapter shows two full readings from the Verbal Foundations chapter, no signup required, with Quant and Data Insights samples one click away. Everything else, including the full chapters and question bank, requires the free trial signup.",
+          "Yes — the free sample chapter at /sample-chapter shows two full readings from the Verbal Foundations chapter, no signup required, with Quant and Data Insights samples one click away. Everything else, including the full chapters and question bank, requires a free account.",
       },
     ],
   },
@@ -276,7 +276,7 @@ export default function FAQPage() {
           </h1>
           <p className="text-[16px] sm:text-[17px] text-[#C0C0C0] leading-relaxed max-w-xl mx-auto">
             {allItems.length} of the questions we hear most often — about the
-            curriculum, the trial, your baseline, billing,
+            curriculum, getting started, your baseline, billing,
             non-native speakers, and the AI tutor. If you don&apos;t find it
             here, book a free 20-minute call.
           </p>

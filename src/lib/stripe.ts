@@ -21,7 +21,15 @@ export function getStripe(): Stripe {
 
 export const STRIPE_PRICES = {
   selfStudy: process.env.STRIPE_PRICE_SELF_STUDY ?? "price_self_study",
-  selfStudyGuaranteed: process.env.STRIPE_PRICE_SELF_STUDY_GUARANTEED ?? "price_self_study_guaranteed",
+  // Self-Study + Mentorship (internal id self_study_guaranteed). Canonical env
+  // name is STRIPE_PRICE_SELF_STUDY_GUARANTEED; we also accept the legacy
+  // STRIPE_PRICE_SELF_STUDY_PLUS so an env still using the older name doesn't
+  // silently fall back to the placeholder id and 503 every checkout for this
+  // tier. Set STRIPE_PRICE_SELF_STUDY_GUARANTEED in Vercel going forward.
+  selfStudyGuaranteed:
+    process.env.STRIPE_PRICE_SELF_STUDY_GUARANTEED ??
+    process.env.STRIPE_PRICE_SELF_STUDY_PLUS ??
+    "price_self_study_guaranteed",
   coaching: process.env.STRIPE_PRICE_COACHING ?? "price_coaching",
   intensive: process.env.STRIPE_PRICE_INTENSIVE ?? "price_intensive",
 }
