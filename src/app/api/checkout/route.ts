@@ -84,6 +84,12 @@ export async function POST(request: Request) {
     )
   }
 
+  // Stripe Tax (automatic VAT calculation) requires Stripe Tax to be enabled
+  // in the dashboard first — enabling it here without that returns an error on
+  // session creation. Gate it behind STRIPE_AUTOMATIC_TAX so this code is safe
+  // to deploy beforehand; flip the env once Stripe Tax is live.
+  const automaticTax = process.env.STRIPE_AUTOMATIC_TAX === "true"
+
   try {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
@@ -96,6 +102,15 @@ export async function POST(request: Request) {
         user_id: user.id,
         plan_id: planId,
       },
+      // EU / consumer compliance. These three have no dashboard prerequisite:
+      // collect a billing address (needed for VAT location and a valid
+      // invoice), offer a VAT / business tax-id field, and generate a proper
+      // Stripe invoice + receipt for the one-time payment.
+      billing_address_collection: "required",
+      tax_id_collection: { enabled: true },
+      invoice_creation: { enabled: true },
+      // VAT calculation — only when Stripe Tax is configured (see above).
+      ...(automaticTax ? { automatic_tax: { enabled: true } } : {}),
       success_url: `${origin}/dashboard?purchase=success&plan=${planId}`,
       cancel_url: `${origin}/pricing?purchase=cancelled`,
     })
