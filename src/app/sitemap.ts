@@ -50,6 +50,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/faq", changeFrequency: "monthly", priority: 0.6 },
     { path: "/contact", changeFrequency: "yearly", priority: 0.5 },
     {
+      path: "/blog/gmat-two-part-analysis-strategy",
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
       path: "/blog/gmat-focus-official-practice-exams",
       changeFrequency: "yearly",
       priority: 0.7,

@@ -33,6 +33,15 @@ export interface BlogPost {
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "gmat-two-part-analysis-strategy",
+    title: "GMAT Two-Part Analysis: A Complete Strategy Guide",
+    description:
+      "How Two-Part Analysis really works on GMAT Focus Data Insights — the table format, the two families of prompts, a repeatable solve sequence, two worked examples, the traps that cost points, and the timing discipline that keeps one question from eating your section.",
+    date: "2026-06-13",
+    readMinutes: 11,
+    tags: ["data-insights", "section-guide", "strategy"],
+  },
+  {
     slug: "gmat-focus-official-practice-exams",
     title: "How to Use the Official GMAT Focus Practice Exams",
     description:
