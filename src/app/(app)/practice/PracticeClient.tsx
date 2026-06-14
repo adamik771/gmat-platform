@@ -464,6 +464,7 @@ function ChapterBlock({
               key={test.id}
               test={test}
               requiredAccuracy={requiredAccuracy}
+              accent={SECTION_ACCENT[group.section]}
               locked={lockTestsBeyond !== null && i + 1 > lockTestsBeyond}
             />
           ))}
@@ -481,10 +482,13 @@ function ChapterBlock({
 function ChapterTestRow({
   test,
   requiredAccuracy,
+  accent,
   locked = false,
 }: {
   test: PracticeTest
   requiredAccuracy: number | null
+  /** The chapter's section accent colour (Quant blue / Verbal purple / DI green). */
+  accent: string
   /** Paid test the free account can't run yet — links to /pricing. */
   locked?: boolean
 }) {
@@ -517,8 +521,8 @@ function ChapterTestRow({
           style={{
             backgroundColor: locked
               ? "rgba(255,255,255,0.04)"
-              : "rgba(201,168,76,0.10)",
-            color: locked ? "#888888" : "#C9A84C",
+              : accent + "1A",
+            color: locked ? "#888888" : accent,
           }}
           aria-hidden
         >
@@ -553,8 +557,8 @@ function ChapterTestRow({
           <span
             className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[12px] font-semibold tabular-nums"
             style={{
-              backgroundColor: "rgba(201,168,76,0.10)",
-              color: "#C9A84C",
+              backgroundColor: accent + "1A",
+              color: accent,
             }}
           >
             <Target className="w-3 h-3" aria-hidden />
@@ -564,7 +568,7 @@ function ChapterTestRow({
       </div>
       <span
         className="inline-flex items-center gap-1.5 text-[12px] uppercase tracking-[0.18em] font-semibold flex-shrink-0 transition-colors"
-        style={{ color: locked ? "#888888" : "#C9A84C" }}
+        style={{ color: locked ? "#888888" : accent }}
       >
         {locked ? (
           <>

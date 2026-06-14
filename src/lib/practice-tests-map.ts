@@ -27,13 +27,16 @@ import type { Section } from "@/types"
  * the dealing logic in content.ts `getPracticeChapterGroups`. */
 export const TEST_CAPS: Record<Section, number> = { Quant: 15, Verbal: 8, DI: 8 }
 
-/** Banks that are 1:1 with a chapter — file slug equals chapter slug, subtopic ignored (DI). */
+/** Banks that are 1:1 with a chapter (subtopic ignored). The DI banks' file slug
+ * equals their chapter slug; `verbal-foundations` maps a dedicated bank file onto
+ * the Verbal Foundations chapter, whose slug (verbal-01-foundations) differs. */
 export const DIRECT_BANK_CHAPTER: Record<string, string> = {
   "data-sufficiency": "data-sufficiency",
   "table-analysis": "table-analysis",
   "graphics-interpretation": "graphics-interpretation",
   "two-part-analysis": "two-part-analysis",
   "multi-source-reasoning": "multi-source-reasoning",
+  "verbal-foundations": "verbal-01-foundations",
 }
 
 export interface SubtopicRule {
@@ -157,7 +160,6 @@ export const OMITTED_CHAPTERS: ReadonlySet<string> = new Set([
   "quant-03-estimation",
   "quant-04-answer-choice-tactics",
   "quant-30-timing",
-  "verbal-01-foundations",
   "verbal-21-mixed-timing",
   "di-foundations",
   "di-timing-mixed",
