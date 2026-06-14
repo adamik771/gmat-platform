@@ -35,6 +35,10 @@ sections:
     title: "Structure and contrast markers — predict the passage before you finish it"
     check_question_ids:
       - reading-comprehension-q13
+  - id: points-of-view
+    type: reading
+    title: "Whose voice is it? — tracking points of view"
+    check_question_ids: []
   - id: summary
     type: summary
     title: "The reading process in one screen"
@@ -215,16 +219,38 @@ By the end of a passage you should be able to draw its skeleton from the markers
 
 **Worked example.** Watch one marker reorganize a passage. "The factory's output doubled after automation. *Yet* defect rates climbed in parallel, and customer returns followed." The "yet" signals the author is building toward a cost, not a triumph — so a question about the author's attitude toward automation should expect *qualified or critical*, never *celebratory*. The marker predicted the stance before you finished the paragraph.
 
+## @points-of-view
+
+The single most expensive misread in Reading Comprehension is assuming that every claim on the page is the author's own. Most GMAT passages are crowded with voices — a long-held consensus, a named scholar, "critics," "proponents," a historical figure — and the author is often just the host introducing them, frequently in order to take one apart. Collapse all of that into "the author thinks…" and you will miss a whole family of questions, because those questions test exactly whose view is whose.
+
+**Mental model.** Read a passage as a conversation among several speakers, not a monologue. Every claim has an owner. Your job on the first read is to tag the owner — *author? Smith? "some historians"? the old consensus?* — and, for every view that is not the author's, to ask the second question: **why did the author bring this voice in?** To endorse it, to build on it, or to knock it down? A reported view is almost never on the page by accident.
+
+Two cues tell you whose voice you are hearing:
+
+- **Attribution tags** hand you the owner directly: *Smith argues, critics contend, it has long been held that, proponents claim, traditionally scholars attributed.* The moment you hit one, the next claim belongs to *that* speaker — not the author.
+- **The author's own evaluative language** marks where the author finally steps in: *flawed, compelling, overlooks, mistakes, persuasive, decisive.* Those words are the author planting a flag; everything attributed to someone else is testimony the author is weighing.
+
+**Worked example.** A three-paragraph passage on a city's growth. P1: "Historians once attributed the rapid growth of 19th-century Manchester to its textile mills alone." Owner: **the old consensus** (note *historians once attributed*). P2: "Patterson, however, argues that the mills could not have drawn workers without the canal network that lowered shipping costs — a claim he supports with freight records." Owner: **Patterson** (note *argues*). P3: "Other scholars counter that canals were common to many towns that never grew, and credit Manchester's rise instead to its unusually permissive housing policy." Owner: **other scholars** (note *counter, credit*). And the author? The author reports all three and endorses none — there is no evaluative language crowning a winner. So the author's purpose is to **survey competing explanations**, not to argue for one.
+
+A question that asks "the passage suggests Manchester grew primarily because of —" is now a trap with three baited answers (mills, canals, housing). The author holds none of those positions; only the named voices do, so the credited answer is about the *debate itself*, not a side of it. By contrast, "Patterson would most likely agree that —" sends you to P2 alone. Same passage, different speaker, different answer — and you can only tell them apart if you tagged the voices while reading.
+
+**Trap to watch.** Treating the view that gets the most lines as the author's view. Authors routinely spend two or three paragraphs carefully building a position precisely so they can dismantle it in the last one — word count is not endorsement. Anchor the author's stance to the author's *evaluative* language, never to whichever view occupies the most space or happens to be stated last.
+
+> **Recall check.** From memory: in the Manchester example, which view did the *author* hold? (None — the author surveyed three competing explanations and endorsed no winner; the mills / canals / housing claims belong to the old consensus, Patterson, and other scholars respectively.) If you instinctively wanted to assign the author one of those positions, that reflex is exactly what this section exists to break.
+
+> **Self-explanation prompt.** Why can "the author would agree" and "Scholar X would agree" have different correct answers on the same passage? (Because the author is often a neutral host or an outright critic of the views they report; a position the author merely presents — or actively rejects — can still be one Scholar X holds, so the credited answer depends entirely on whose viewpoint the stem names.)
+
 ## @summary
 
 You read RC passages to build a map, not to memorize a paragraph. By the time you reach the questions, you should be able to say what each paragraph *does*, where the author stands, and how the pieces connect — and you should know almost none of the details by heart. Details live in the passage; you go back for them. Structure lives in your head; you build it once, on the way through.
 
-**Mental model.** A passage is an argument with a shape, not a pile of facts. You run three habits at once: read for **function** (what job is this paragraph doing), track the **thesis and the author's stance** as they evolve, and use **transition markers to predict structure** before you read the next sentence. The output is a skeleton — one line per paragraph. That skeleton, not your recall of details, is what answers most questions.
+**Mental model.** A passage is an argument with a shape, not a pile of facts. You run four habits at once: read for **function** (what job is this paragraph doing), track **whose voice** each claim belongs to (the author, or a source they're reporting), track the **thesis and the author's stance** as they evolve, and use **transition markers to predict structure** before you read the next sentence. The output is a skeleton — one line per paragraph. That skeleton, not your recall of details, is what answers most questions.
 
 The whole method compresses to four moves.
 
 - **Map function, not detail.** For each paragraph ask "why is this here?" — Introduces a problem? Presents a theory? Raises an objection? Backs an earlier claim with evidence? You want the verb, not the nouns. "P3 = objects to the cost argument in P2" beats memorizing the three statistics inside P3.
 - **Track the thesis and the author's stance.** Find the main claim early, then watch whether the author **endorses, qualifies, or undercuts** it. Stance is where points are won. An author who spends three paragraphs on a popular theory and then writes "yet this account overlooks—" is not neutral, and not a fan.
+- **Track whose voice each claim is.** Before recording a claim, ask whether it's the author's or a view they're reporting (a scholar, "critics," the old consensus). Authors often build up a position over several paragraphs just to reject it — so "the author would agree" and "Scholar X would agree" can have different answers.
 - **Use transition markers to predict structure.** Signal words tell you what's coming before the content does. Train yourself to flinch at them.
 - **Build a 1-line-per-paragraph skeleton.** Tag each paragraph in a few words, mentally or on the noteboard. Four paragraphs, four tags, and you have the passage's architecture.
 
