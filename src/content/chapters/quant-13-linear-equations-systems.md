@@ -27,6 +27,10 @@ sections:
     check_question_ids:
       - algebra-q4
       - algebra-q15
+  - id: the-algebra-blueprint
+    type: reading
+    title: "The algebra blueprint (and solving for the combo)"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -249,3 +253,26 @@ Here's a quick reference for choosing your technique:
 - **Counting visible equations instead of independent ones.** Three equations can encode only two facts; an inequality can encode a real constraint. Audit for redundancy and hidden information.
 
 **Recap.** Two clean techniques — substitution when a variable isolates cheaply, elimination when coefficients align (scale them if they don't) — handle every routine system. Read the target first so you solve for exactly what's asked, lean on the symmetric-system shortcut when coefficients are swapped, and reach for backsolving from the middle choice when the choices are concrete numbers. The one indispensable safeguard is the independence check: two equations in two unknowns usually pin down a unique answer *unless* one is a multiple of the other, so verify `ae − bd ≠ 0` before trusting that a system pins down a unique answer — and remember the flip side, where a single equation can still fix a requested combination outright. With three unknowns, count independent equations, not visible ones. Run those habits every time and the systems on this test become mechanical.
+
+## @the-algebra-blueprint
+
+The two sections above taught the *mechanics* — the four equality-preserving moves, substitution, elimination, the dependence check. This section is the *overlay*: a fixed order you run the mechanics in so the same messy equation never costs you a different mistake each time. The point of a blueprint is not new math; it's removing the small decisions ("do I clear fractions now or distribute first?") that drain attention and let a sign slip through. Run the steps in one direction every time and the manipulation becomes automatic, freeing your working memory for the one thing the test actually varies: what the question asks for.
+
+**Mental model.** Think of every equation as something to be *pressed flat into one clean line* before you solve. Messy input arrives layered — fractions on top, parentheses inside, the same variable scattered on both sides. The blueprint flattens those layers in a set order so nothing fights you: **(1) clear fractions** by multiplying through by the LCD (covered in the first section — scale every term); **(2) distribute** to kill parentheses; **(3) combine like terms** on each side; **(4) move the variable terms to one side, constants to the other**; **(5) factor out the common coefficient** when the variable terms share one; **(6) divide to finish.** Same order, every equation. The flattening metaphor matters because each step removes one *kind* of clutter, and removing them out of order (distributing before you've cleared fractions, say) just creates more clutter to clean up later.
+
+Two of those steps deserve a flag because they hide the most errors. **Factoring out a common term** is the one the first section barely touches: when your variable terms are something like `6x + 9x` or `4(x) + 4(3)`, pull the shared factor out *before* you divide — `6x + 9 = 0` is cleaner read as `3(2x + 3) = 0`, and `8x + 12 = 4y` collapses to `4(2x + 3) = 4y`, then `2x + 3 = y` in one stroke. Factoring is just division done early and visibly, and it routinely turns ugly coefficients into small integers. **Distributing** is its mirror — when a group is multiplied by something, expand it across *every* term inside, signs included, before you try to gather anything.
+
+**GMAT move 1 — solve for the combo.** The first section's "keep what you need" was about one equation; extend it to *systems*. When the question asks for an expression like `4x + 4y` or `m − n` rather than the variables one at a time, you can often add or subtract the *whole equations* and read the answer straight off — no need to solve for either variable. This is the single highest-leverage habit on systems problems, so before you pick substitution or elimination, ask: *is the target itself a combination I can build by stacking the equations?*
+
+**GMAT move 2 — pick the cleaner tool, and check for a twin.** Elimination and substitution both work on any solvable system (the second section covered when each is natural); the strategic add is to let *the numbers* choose for you rather than defaulting to a favorite. Glance first: is a variable already isolated or sitting on a coefficient of 1? Substitute. Do coefficients match or oppose, or scale to a match in one multiply? Eliminate. And run the twin check — if one equation is just a multiple of the other, they are secretly the *same* equation and no technique will produce a unique pair (the dependence trap from the previous section). Spotting the twin *before* you grind saves you from solving a system that has no single answer.
+
+**Worked example.** A workshop sells small kits for `p` dollars and large kits for `q` dollars. The records read `(2p + q)/3 = 12` and `2p + 5q = 60`. What is `p + q`?
+
+- Flatten the first equation with the blueprint. Clear the fraction (multiply through by 3): `2p + q = 36`. It's already one clean line, nothing to distribute or combine.
+- Now read the target before choosing a tool: I want `p + q`, a *combination* — GMAT move 1. Stack the two equations and look for the combo directly. Subtract the flattened first equation from the second: `(2p + 5q) − (2p + q) = 60 − 36`, which gives `4q = 24`, so `q = 6`.
+- Back-substitute into `2p + q = 36`: `2p = 30`, so `p = 15`. Then `p + q = 21`.
+- Notice the factoring habit would have shortened the middle step too: `4q = 24` is `4(q) = 4(6)`, so `q = 6` at a glance. Check against the *original* fraction equation: `(2·15 + 6)/3 = 36/3 = 12`. Correct, **`p + q = 21`**.
+
+**Trap to watch.** The blueprint's danger zone is doing two steps as one. The most common version: clearing fractions *and* distributing in a single mental jump, so the LCD multiplies the fractioned terms but skips a bare constant, or a minus sign in front of a group fails to flip every term inside (`−(2p + q)` must become `−2p − q`, not `−2p + q`). Slow the hand at exactly the clear-fractions and distribute steps — write the multiplier in front of every term, and write the expanded group out fully — because those are where a flattened line silently goes wrong. The second trap is reaching for substitution or elimination on a pair of twins: if the coefficients of one equation are a constant multiple of the other's, stop and check what's being asked, because the system itself fixes no unique pair.
+
+> **Self-explanation prompt.** In one sentence, why does running the manipulation steps in a *fixed* order make you more accurate, not just faster? If you can say "because a fixed routine removes the in-the-moment decisions where errors creep in, leaving attention for reading what the question actually wants," you've understood why the blueprint is a strategy and not just a checklist.

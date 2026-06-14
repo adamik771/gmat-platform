@@ -17,6 +17,10 @@ sections:
     type: reading
     title: "Method: Answer-Choice Tactics"
     check_question_ids: []
+  - id: let-the-answers-work
+    type: reading
+    title: "Let the answer choices do the work"
+    check_question_ids: []
 problem_sets:
 ---
 
@@ -56,3 +60,19 @@ Now use the **spread of the choices** to decide your method. This is the move th
 **Trap to watch.** The deadliest error is treating tightly-clustered choices as if they were spread out. If the options are 0.24, 0.25, 0.27, 0.30, you **cannot** round to "about a quarter" and pick — you've thrown away the precision the spread is demanding. Read the gaps: tight gaps are the test telling you it will punish estimation. Conversely, grinding out exact arithmetic when the choices sit an order of magnitude apart is wasted time and a fresh chance for a sign slip.
 
 The discipline is one beat of overhead and it compounds. Before you compute, ask: **what sign, what size, what form must the answer have — and which choice is the bait?** Most hard problems shrink to a two-way decision, and the two you keep are the only two worth your arithmetic.
+
+## @let-the-answers-work
+
+The filters above tell you *which* choices to drop. This section is about a quieter signal: the **wording of the stem** often tells you the test is not asking for an exact value at all. When you see "closest to," "approximately," or "which is greatest / least," read it as an invitation. You are being asked to **compare and bound**, not to compute. Honoring that invitation can turn a two-minute grind into a fifteen-second decision.
+
+**Mental model.** A question that asks for the *largest* of five expressions is a ranking problem, not an arithmetic problem. You do not need any of the five actual values — you only need to know how they stack against each other. So your job shrinks from *compute, compute, compute, compare* to just *compare*. Strip every shared piece, judge what is left by sign and size, and the winner falls out. The exact number was never the question; it was a tax the trap wanted you to pay.
+
+The three signal words map to three moves. **"Approximately" / "closest to"** means estimate — round hard, land in the right neighborhood, and let the spread of the choices catch you (see *Estimation: Compute the Neighborhood, Not the Number*). **"Which is greatest / least"** means rank — compare the candidates against each other, not against a target. **A clean numeric stem with messy algebra** means the answer is already sitting in the choices, so plug them back in (see *Backsolving: Test the Answers, Skip the Algebra*). In all three, the choices are the tool, not the finish line.
+
+**Worked example.** Which of the following is greatest? (A) 3/7 (B) 4/9 (C) 5/11 (D) 6/13 (E) 7/15. The trap is to convert all five to a common denominator — a long, slip-prone slog. Instead, **notice the structure**: every fraction is just under 1/2, since each numerator is a hair under half its denominator. Compare each to 1/2 by cross-judging numerator-doubled against denominator: (A) 6 vs 7, gap 1; (B) 8 vs 9, gap 1; (C) 10 vs 11, gap 1; (D) 12 vs 13, gap 1; (E) 14 vs 15, gap 1. Every gap is the *same size*, but it sits over a *different* denominator — and a fixed shortfall divided by a bigger denominator is a smaller shortfall. So the fraction with the largest denominator falls closest to 1/2 from below, i.e. is **greatest**: (E) 7/15. No common denominator, no decimals — just one structural comparison.
+
+**Worked example.** Approximately what percent of 1,470 is 218? (A) 7% (B) 12% (C) 15% (D) 22% (E) 30%. The word "approximately" plus a wide spread of choices says **bound, don't divide**. Round: 218 is a bit under 220, and 1,470 is near 1,500. Now anchor with easy fractions of 1,500 — 10% is 150, 15% is 225. Our numerator sits just below 225, so the answer is a touch under 15%, which lands squarely on (C). Choices (A), (B), (D), (E) are not even close, so the rounding error never threatens the pick. The exact long division would have given the same letter for ten times the effort.
+
+**Trap to watch.** Comparing-and-bounding works only when the choices are spread far enough to absorb your rounding — the same warning the spread table makes. If a "closest to" stem hands you tightly clustered options (12.4, 12.6, 12.8), the wording is a feint: it *invited* estimation, but the gaps *forbid* it, and you must compute. The signal word sets your expectation; the spacing of the choices vetoes or confirms it. Always let the choices have the final word.
+
+> **Self-explanation prompt.** When a stem asks "which is greatest," why is comparing the five choices to *each other* faster than computing each one? (Because ranking only needs relative order, so any quantity shared across all five — a common factor, a common form, a common distance from a landmark like 1/2 — cancels out of the decision and never has to be evaluated.)

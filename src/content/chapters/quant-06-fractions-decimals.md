@@ -33,6 +33,10 @@ sections:
     check_question_ids:
       - arithmetic-q61
       - arithmetic-q63
+  - id: avoid-ugly-arithmetic
+    type: reading
+    title: "Make the arithmetic nicer"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -202,3 +206,27 @@ Percent *problems* — percent change, successive changes, reverse percents, int
 > **Self-explanation prompt.** In one sentence, why is shifting both decimals in `0.84 / 0.6` legal? If your sentence mentions multiplying numerator and denominator by the same number, you've connected decimal division back to fraction equivalence — which means you'll never wonder "which way do I shift?" again.
 
 **Recap.** Fractions are single numbers you operate on without dividing: LCD for addition, diagonal canceling for multiplication, flip-the-divisor for division, inside-out for complex fractions. Comparisons never need long division — benchmarks sort the field, cross-multiplication settles any pair, and the gap to 1 handles the photo finishes. Decimals are fractions wearing place-value notation: shift to multiply or divide by tens, count places in products, send repeating decimals to ninths, and keep the sight table burned in. Run the problem sets below to pressure-test all three skills, then move to the next chapter — GCF and LCM are the machinery that makes every common denominator and every cancellation in this one automatic.
+
+## @avoid-ugly-arithmetic
+
+The previous sections taught you *how* the operations work. This one is about a different skill: choosing the path through a calculation that the test-writer hoped you wouldn't take. Two answers can be equally correct on paper, but one route runs through a four-digit multiplication and the other runs through a single-digit one. The fluent route isn't just faster — it's far harder to get wrong, and that second part matters more than speed.
+
+**Mental model.** Before you compute anything, ask: "Is there a shape I can rearrange first?" Three rearrangements pay off constantly. *Factor out a shared term* before you multiply. *Split a numerator* across a sum or difference (never the denominator). *Scale to whole numbers* by clearing decimals. Each one trades a frightening computation for two friendly ones, and a friendly computation is one you almost never botch under time pressure.
+
+**Factor out the common term.** When you see a sum of products that share a factor, pull it out before multiplying. `47 × 18 + 47 × 82` is not two multiplications and an addition — it's `47 × (18 + 82) = 47 × 100 = 4700`. The shared `47` was the whole gift. The same move rescues fraction sums: `(3/8) × 11 + (3/8) × 13 = (3/8) × 24 = 9`. Train your eye to spot the repeated factor *before* your pencil starts the first product.
+
+**Split the numerator, never the denominator.** A single fraction bar over a sum can be broken across the pieces *on top*: `(6k + 9)/3 = 6k/3 + 9/3 = 2k + 3`. That is legal because dividing a sum by `c` distributes. The bottom does not get the same freedom: `12/(3 + 1)` is `12/4 = 3`, and emphatically not `12/3 + 12/1 = 16`. Splitting the denominator is one of the most common self-inflicted wrongs on the section, precisely because splitting the numerator is so safe that the hand wants to keep going.
+
+**Scale to whole numbers.** Decimals invite slips — a misplaced point turns 0.6 into 6. So clear them. Multiply the top and bottom of a fraction by the same power of ten, which never changes its value, and work in integers. `0.36 / 0.15` becomes `36 / 15` (both times 100) `= 12/5 = 2.4`. The integer division is one you can check on sight; the decimal division is one you cross your fingers through.
+
+**Prefer two clean steps over one nasty one.** This is the meta-rule the other three serve. A longer path made of simple operations beats a short path made of one ugly operation, because each careless mistake you can avoid is worth more than the seconds you'd save. Reaching for `0.85 × 80` as one stroke is fine; reaching for `0.875 × 64` is the moment to convert to `(7/8) × 64 = 56` instead — two trivial steps, zero decimal arithmetic.
+
+**Worked example.** A budget allots `0.16` of a `$2,500` fund to one line and `0.16` of an `$1,500` fund to another. What is the combined allotment? The slow route multiplies twice — `0.16 × 2500` and `0.16 × 1500` — then adds. The clean route factors the shared `0.16` first: `0.16 × (2500 + 1500) = 0.16 × 4000`. Now scale the decimal away: `0.16 = 16/100`, so `(16/100) × 4000 = 16 × 40 = 640`. One factor-out and one scale-to-whole turned two scary products into the single-digit fact `16 × 4`.
+
+**Trap to watch.** The denominator split is the headline trap, but its quieter cousin is factoring out a term that *isn't actually shared*. In `47 × 18 + 53 × 82` there is no common factor, and forcing one produces nonsense. The rearrangements above are tools, not reflexes — confirm the shared factor is genuinely shared, and confirm the bar you're splitting across is over a sum in the *numerator*, before you rewrite anything.
+
+This section is about getting an *exact* answer through a gentler route. When you don't need the exact answer — when bounding the result or rounding to eliminate choices will do — that's a separate discipline covered in the Estimation chapter; reach for it when the question only asks "which of these five is closest."
+
+> **Recall check.** Which of these is legal: splitting `(8 + 12)/4` into `8/4 + 12/4`, or splitting `20/(8 + 12)` into `20/8 + 20/12`? (Only the first — you may distribute a *numerator* across a sum, never the *denominator*. The second equals `20/20 = 1`, while the illegal split gives `2.5 + 1.67`, nowhere close.)
+
+> **Self-explanation prompt.** In one sentence, why does scaling a fraction's top and bottom by 100 leave its value unchanged but make the arithmetic safer? If you can say "I'm multiplying by `100/100 = 1`, so the number is identical — I've only swapped error-prone decimals for integers I can verify," you'll clear decimals automatically instead of gambling on point placement.
