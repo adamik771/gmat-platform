@@ -9,8 +9,12 @@ import {
   ClipboardList,
   Clock,
   Download,
+  ExternalLink,
+  FileText,
+  Globe,
   GraduationCap,
   Sparkles,
+  Video,
 } from "lucide-react"
 import LeadCapture from "@/components/marketing/LeadCapture"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
@@ -19,7 +23,7 @@ import { POSTS as ALL_POSTS, type BlogPost } from "@/lib/blog-posts"
 export const metadata: Metadata = {
   title: "Free GMAT resources",
   description:
-    "Every free GMAT resource on Zakarian GMAT — score converter, sample chapters, error-log template, and seven long-form strategy guides. No signup required.",
+    "Every free GMAT resource on Zakarian GMAT — score converter, sample chapters, error-log template, and long-form strategy guides — plus a curated directory of the best free GMAT resources across the web. No signup required.",
   alternates: { canonical: "/resources" },
 }
 
@@ -173,6 +177,159 @@ const POSTS: BlogPost[] = FEATURED.map((f) => {
   return { ...post, description: f.description }
 })
 
+interface ExternalResource {
+  title: string
+  publisher: string
+  description: string
+  href: string
+  badge: string
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>
+}
+
+// Curated outbound directory: the best *free* GMAT resources beyond this
+// site. Deliberately weighted to official (GMAC) and openly-licensed (OER)
+// sources, plus a couple of standout free courses — not an exhaustive dump,
+// and not a promotion of paid competitor courses. Every link verified free.
+const EXTERNAL: ExternalResource[] = [
+  {
+    title: "Official GMAT Starter Kit",
+    publisher: "GMAC / mba.com",
+    badge: "Official",
+    icon: GraduationCap,
+    href: "https://www.mba.com/exam-prep/gmat-official-starter-kit",
+    description:
+      "Two real, adaptive full-length practice exams plus retired official questions. The only practice scores worth fully trusting. Free mba.com account.",
+  },
+  {
+    title: "Official sample questions",
+    publisher: "GMAC / mba.com",
+    badge: "Official",
+    icon: FileText,
+    href: "https://www.mba.com/exams/gmat-exam/about/sample-questions",
+    description:
+      "Real retired Quant, Verbal, and Data Insights questions with official explanations.",
+  },
+  {
+    title: "GMAT Official Handbook",
+    publisher: "GMAC",
+    badge: "Official",
+    icon: FileText,
+    href: "https://www.mba.com/-/media/files/mba2/assessments/2018/gmat/gmat-handbook-2020-07-10.pdf",
+    description:
+      "Scoring, rules, and your test-taker rights, straight from the test maker (PDF).",
+  },
+  {
+    title: "Official GMAT on YouTube",
+    publisher: "GMAC",
+    badge: "Official",
+    icon: Video,
+    href: "https://www.youtube.com/user/OfficialGMAT",
+    description:
+      "Format, scoring, and registration walkthroughs from the people who write the exam.",
+  },
+  {
+    title: "Khan Academy",
+    publisher: "Khan Academy",
+    badge: "Free / OER",
+    icon: Video,
+    href: "https://www.khanacademy.org/math",
+    description:
+      "Free video lessons and practice covering every Quant fundamental. Pick topics deliberately.",
+  },
+  {
+    title: "GMAT Ninja free video course",
+    publisher: "GMAT Ninja",
+    badge: "Free",
+    icon: Video,
+    href: "https://www.gmatninja.com/videos/gmat/",
+    description:
+      "Roughly 45 hours of the most-recommended free GMAT video instruction, organized by section.",
+  },
+  {
+    title: "GMAT Club forums",
+    publisher: "GMAT Club",
+    badge: "Free / Community",
+    icon: Globe,
+    href: "https://gmatclub.com/forum/",
+    description:
+      "The largest free archive of GMAT practice questions, with community and expert solutions.",
+  },
+  {
+    title: "forall x: Calgary",
+    publisher: "Open Logic Project",
+    badge: "Open (CC BY)",
+    icon: BookOpen,
+    href: "https://forallx.openlogicproject.org/",
+    description:
+      "A free, openly licensed intro-to-logic textbook — the cleanest grounding for the argument structure behind Critical Reasoning.",
+  },
+  {
+    title: "Critical Thinking, Logic, and Argument",
+    publisher: "Athabasca University Press",
+    badge: "Open",
+    icon: BookOpen,
+    href: "https://www.aupress.ca/app/uploads/OER-202403_Dayton_Rodier_2024-Critical-Thinking-Logic-and-Argument.pdf",
+    description:
+      "Argument forms, fallacies, and validity, free and openly licensed. Directly useful for Critical Reasoning (PDF).",
+  },
+  {
+    title: "Purdue OWL — Grammar",
+    publisher: "Purdue University",
+    badge: "Free",
+    icon: BookA,
+    href: "https://owl.purdue.edu/owl/general_writing/grammar/index.html",
+    description:
+      "The authoritative free grammar and mechanics reference for tightening your reading and writing.",
+  },
+]
+
+function ExternalResourceItem({ card }: { card: ExternalResource }) {
+  const Icon = card.icon
+  return (
+    <a
+      href={card.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.18]"
+      style={{
+        borderColor: "rgba(255,255,255,0.06)",
+        backgroundColor: "#0D0D0D",
+      }}
+    >
+      <div className="flex items-center justify-between mb-4">
+        <div
+          className="w-10 h-10 rounded-xl flex items-center justify-center"
+          style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
+        >
+          <Icon className="w-4 h-4" style={{ color: "#C9A84C" }} />
+        </div>
+        <span
+          className="text-[10px] uppercase tracking-[0.16em] font-semibold px-2 py-1 rounded"
+          style={{ color: "#C9A84C", backgroundColor: "rgba(201,168,76,0.1)" }}
+        >
+          {card.badge}
+        </span>
+      </div>
+      <h3 className="font-display text-lg font-semibold text-[#F0F0F0] tracking-tight mb-1 leading-tight">
+        {card.title}
+      </h3>
+      <p className="text-[11px] uppercase tracking-[0.16em] text-[#666666] font-semibold mb-2">
+        {card.publisher}
+      </p>
+      <p className="text-[14px] text-[#888888] leading-relaxed mb-5">
+        {card.description}
+      </p>
+      <span
+        className="inline-flex items-center gap-1.5 text-[12px] uppercase tracking-[0.18em] font-semibold transition-transform group-hover:translate-x-0.5"
+        style={{ color: "#C9A84C" }}
+      >
+        Visit
+        <ExternalLink className="w-3.5 h-3.5" />
+      </span>
+    </a>
+  )
+}
+
 function ResourceCardItem({ card }: { card: ResourceCard }) {
   const Icon = card.icon
   return (
@@ -283,7 +440,8 @@ export default function ResourcesPage() {
             exam-day checklist, three sample chapters with real curriculum
             content, the error-log template I used to go from 565 to 735,
             and nine long-form strategy guides. No signup required for any
-            of it.
+            of it &mdash; plus a curated shortlist of the best free GMAT
+            resources beyond this site.
           </p>
         </div>
       </section>
@@ -421,6 +579,20 @@ export default function ResourcesPage() {
             See the full blog
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
+        </div>
+      </section>
+
+      {/* External / curated off-site directory */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 mb-20">
+        <SectionHeader
+          eyebrow="Beyond this site"
+          title="The best free GMAT resources on the web."
+          description="An honest, curated shortlist — weighted to official GMAC material and openly licensed textbooks, plus a few standout free courses. Start with the official practice exams; every link here is genuinely free."
+        />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {EXTERNAL.map((card) => (
+            <ExternalResourceItem key={card.href} card={card} />
+          ))}
         </div>
       </section>
 
