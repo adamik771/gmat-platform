@@ -21,6 +21,10 @@ sections:
     title: "RC: Inference"
     check_question_ids:
       - reading-comprehension-q19
+  - id: inference-stays-supported
+    type: reading
+    title: "Inference = one small step the text forces"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -142,3 +146,19 @@ Choice (B) is correct because it respects the boundary the author drew and refus
 - **Extreme language** ("all," "always," "never," "only") is a near-automatic red flag because one counterexample defeats it.
 - Watch **quantifiers and scope** — most/all, may/will, "in laboratory conditions" — that's where right and wrong answers diverge.
 - Grade against the **passage**, never against your **prior knowledge** or an exact restatement of a single sentence.
+
+## @inference-stays-supported
+
+Everything you built in the Reading Process chapter still runs here — read for **function**, keep the **one-line-per-paragraph skeleton**, track **whose voice** each claim belongs to, don't **obsess over details**, aim for **efficiency over speed**, and answer by **elimination**. Inference doesn't replace that method; it leans on the one part of it students most often skip: the skeleton already tells you what the passage *commits* to, and an inference is just the next forced step from that commitment.
+
+**Mental model.** A correct inference is one small step the text *forces* — never a leap, never a fact you walked in with. If the passage is true, the answer cannot be false; that is the entire bar. Your skeleton is the launch pad: you don't search the whole passage for an inference, you find the line whose function matches the stem and ask what *must* follow from it. The further a choice travels from the text — the more real-world reasoning it asks you to supply — the more likely it is wrong, even when it sounds sensible.
+
+Here the **point-of-view** habit earns its keep. "What can be inferred from the passage" keys on the author; "Scholar X would most likely agree" keys on whatever the passage attributes to Scholar X. Same words on the screen, different launch pad. If you tagged the voices on the first read, you already know which line to step from; if you collapsed every claim into "the author thinks," you'll step from the wrong sentence and infer something the author never owned.
+
+**Worked example.** Passage: "Curators long catalogued the tapestry as Flemish work of the 1490s. Vance contends the dye chemistry points instead to a Florentine workshop, though she concedes the weave pattern is consistent with either origin." The stem "Vance would most likely agree that" sends you to her line alone, and the forced step is modest: that *dye evidence* can favor one origin even when *weave evidence* does not settle it. What it does *not* force is "the tapestry is definitely Florentine" — her own concession about the weave leaves that open. An inference about the *author* here would be different still: the author reports both views and crowns neither, so the only thing forced about the author is that the attribution is contested.
+
+**Trap to watch.** Two distractors will pull at you. The first is the **real-world-reasonable** answer — true enough about how things usually go, but never established on the page; the more you happen to know about the topic, the louder it whispers, so the more you must grade against the text alone. The second is the **too-strong / absolute** answer — "proves," "always," "definitely Florentine" — which a single uncovered scenario defeats. In the example, "definitely Florentine" loses precisely because Vance's weave concession leaves a scenario where the passage holds and that answer is false.
+
+> **Self-explanation prompt.** Take the choice you're tempted by and ask: "Is this forced by a line in my skeleton, or am I supplying it from what I already know?" If you can picture even one world where the passage stays true but the choice goes false, it isn't forced — eliminate it. Say the world out loud; naming the counterexample is what converts a hunch into a clean cut.
+
+So run the same close at the answers as everywhere else: don't fall in love with the choice that *sounds* like the passage — find the four that take an extra step the text never licensed, and keep the one small step that's left.

@@ -21,6 +21,10 @@ sections:
     title: "RC: Function"
     check_question_ids:
       - reading-comprehension-q35
+  - id: function-is-your-purpose-tag
+    type: reading
+    title: "Function = your paragraph-purpose tag, as a question"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -122,3 +126,17 @@ Content alone could not separate A from B — only the *role* could.
 - Signal words do most of the work: *however/in contrast* = contrast, *for example/consider* = illustration, *admittedly/to be sure* = concession, *therefore* = conclusion, "a different approach" = transition.
 - Beware the three decoys: accurate-paraphrase, wrong-paragraph, and viewpoint-misattribution.
 - Confirm every finalist by citing the exact sentence whose role it names; if you can't point to it, drop it.
+
+## @function-is-your-purpose-tag
+
+Step back and notice what a Function question really is: it hands you back, as a multiple-choice problem, the exact thing the reading process already had you do. While reading you tag each paragraph with its **function** and keep a one-line-per-paragraph **skeleton** — "P1 sets up the puzzle, P2 gives the old view, P3 knocks it down." A Function stem just points at one piece of that skeleton and asks, "What's the tag?" If you built the map, the answer is already written; you're not solving, you're *reading off* your own notes.
+
+**Mental model.** Function = your purpose tag, phrased as a question. The reading method asks "why is this paragraph here?" The Function question asks "why is this sentence here?" — the same move at a finer grain. So answer the way you tagged: with the *role* it plays for the author's larger point (supports, objects, qualifies, illustrates, concludes), never with the topic it happens to be about. The reflex from the reading chapter applies unchanged: if your answer doesn't contain a verb, it's a topic label, not a function — and topic labels are decoys here.
+
+**Worked example.** Three-line skeleton on a passage about open-plan offices. P1: "Designers championed open floors as engines of spontaneous collaboration." Tag: *introduces the standard rationale.* P2 opens "However, a 2021 badge-tracking study found face-to-face contact actually *fell* by a third after walls came down." Tag: *author's pivot — evidence against the rationale.* P3: "To be sure, the same firms reported modest gains in scheduled cross-team meetings." Tag: *concession, bounded.* Now the stem: "The author mentions the badge-tracking study in order to —." You don't re-read; you glance at your P2 tag, which already says *evidence against the rationale*. The credited answer is "present evidence undercutting the case for open floors," and you can cite the *however* that owns it. The tag was the answer the whole time.
+
+**Trap to watch.** The choice that describes what the line **says** instead of what it **does**. Here that's "report findings from a 2021 study of workplace contact" — accurate, on-topic, and dead wrong, because it restates content rather than naming the job. It's seductive precisely because its nouns echo the passage. Don't track point of view loosely either: if the cited line belongs to a reported voice ("designers championed"), don't hand its content to the author. And don't obsess over the study's details — you needed its *role*, not its numbers. This is efficiency over speed: the map you built on the first read is what spares you a frantic re-read now.
+
+> **Self-explanation prompt.** Why is a Function question "already answered" the moment your skeleton is built? (Because the skeleton's per-line tag *is* the function — the stem only re-asks "what's the tag for this piece?", so a complete map turns the question from a search into a lookup.)
+
+Then close it the way you close every RC question: by **elimination**. Predict the role from your tag, then hunt the four wrongs — the content-paraphrase, the wrong-paragraph tag, the misattributed voice — and take the survivor. Don't fall in love with the choice that sounds most like the passage; that's usually the bait. Find four that name a job the text never gave the line, and the verb that's left is your answer.

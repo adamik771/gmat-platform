@@ -21,6 +21,10 @@ sections:
     title: "RC: Author's Attitude"
     check_question_ids:
       - reading-comprehension-q43
+  - id: attitude-from-evaluative-words
+    type: reading
+    title: "Attitude = the author's evaluative words, not airtime"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -142,3 +146,17 @@ One orienting note: this type is the close cousin of Function questions, which a
 - The author's real position usually surfaces in the **clause after a pivot word** and in the **passage's final beat**.
 - **Pin the target** the stem names and score the author on *that*, never the general mood or a quoted source.
 - When two choices share the right direction, **take the milder one** unless strong, unhedged language is quotable.
+
+## @attitude-from-evaluative-words
+
+Attitude is the one question type where the core reading method pays off most directly, because the answer is decided by something you already tracked on the first read: the author's **stance**. If you ran the house routine — read for **function**, kept a one-line **skeleton**, and tagged **whose voice** owns each claim — you don't go hunting for the author's feeling when the question appears. You read it off the map you already built. This section is not a new technique; it is the reading process pointed at one target.
+
+**Mental model.** Attitude lives in **evaluative language**, not in airtime. The right answer attaches to the author's own charged words — *flawed, compelling, overlooks, persuasive, decisive* — and never to whichever view got the most lines or happened to come last. Authors routinely spend two paragraphs building a position so they can take it apart in the third; word count is not endorsement, and final position is not endorsement. So when you reach an attitude stem, ignore how much space each view occupied and ask only: which words did the *author* spend on the target, and what charge do they carry? That is the same **point-of-view** discipline from the reading-process chapter — separate the author's voice from the reported voices — applied to the one question that punishes you hardest for blurring them.
+
+**Worked example.** Read this short passage and tag the voices as you go. "Curators have long credited the museum's 1920s expansion to the vision of a single director. Hale's recent study argues, persuasively, that the expansion was driven instead by a tax change that made donations of art unusually attractive — a reading the surviving ledgers plainly support. Earlier accounts, by overlooking those ledgers, mistook a fiscal accident for a personal triumph." Skeleton: P-line one = old curatorial consensus; line two = Hale's tax explanation; line three = the author's verdict. Now find the author's *evaluative* words. "Persuasively" and "plainly support" sit on Hale's reading; "by overlooking... mistook" lands on the old consensus. The author isn't neutral and isn't merely reporting — the charged words show approval of Hale and a measured rejection of the consensus. Attitude toward Hale's study: **positive, moderate, persuaded.** Notice you never counted lines; you read the charge.
+
+**Trap to watch.** Two traps share one root — scoring the wrong voice or the wrong amount. First, **attributing a reported view's tone to the author**: the enthusiasm in "Hale argues, persuasively" is half the reported scholar's energy and half the author's endorsement — but in a passage where the author *rejects* the scholar, that same enthusiasm belongs to the scholar alone, and lifting it onto the author reverses the real stance. Always re-ask: is this charged word the author's verdict, or a feeling the author is merely reporting? Second, **over-strong tone**. GMAT authors write in a measured academic register; they qualify, concede, and hedge. Labels like "contemptuous," "effusive," "wholly convinced," or "outright dismissal" almost never survive, because the text won't hand you the unhedged language they require. When two choices share the correct direction, the milder one is nearly always right — you can quote it from the page; the extreme one you'd have to import.
+
+Then close the way you close every RC question: by **elimination**, not attraction. Don't fall in love with the choice that *sounds* most like the passage's mood. Set the author's stance from the evaluative words first, then cross off each choice that fails on direction or strength or owner — wrong sign, too hot, or scored to a reported voice. The survivor is your answer. Don't obsess over re-deriving the perfect adjective; find the four that are wrong and take the one left standing.
+
+> **Recall check.** Without scrolling up: what should you anchor the author's attitude to, and what two things must you refuse to let decide it? (Anchor to the author's own evaluative words — *flawed, compelling, overlooks, persuasive*; refuse to let airtime, or final position, decide it, and refuse to borrow a reported voice's tone.) Pulling this from memory is what makes you reach for the evaluative words under time pressure instead of for the paragraph that simply felt longest.

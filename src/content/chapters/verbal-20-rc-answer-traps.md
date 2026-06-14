@@ -21,6 +21,10 @@ sections:
     title: "RC: Answer-Choice Traps"
     check_question_ids:
       - reading-comprehension-q51
+  - id: the-elimination-discipline
+    type: reading
+    title: "The elimination discipline"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -158,3 +162,17 @@ This is also why the discipline scales to the hardest questions. On a 705-level 
 - **Read the stem first, re-read the referenced span, pre-answer, then eliminate** — the procedure above is the muscle memory.
 - Extreme language is a **flag, not a verdict**: kill it only when the passage doesn't earn the strength.
 - RC's standard is **"supported by the passage," not "true in the world"** — your expertise helps you read faster, never decide.
+
+## @the-elimination-discipline
+
+Everything above names the five baits. This section is about the *posture* you bring to the answer choices so the baits never get a clean shot. The reading chapter ended on one instruction — choose by **elimination**, not attraction — and this is where that instruction earns its keep. The traps are the offense; elimination is your defense, and the two are the same skill viewed from opposite sides.
+
+**Mental model.** Don't hunt for the right answer; hunt for the four wrong ones. The right answer is whatever is still standing after you've crossed off four — you don't have to *love* it, you just have to fail to kill it. This flips the psychology the test is counting on. The GMAT engineers the most attractive choice to be wrong on exactly the hard questions where attraction would decide your answer, so a posture of *attraction* hands the test the lever. A posture of *elimination* takes it away: you spend your attention proving choices guilty, not falling for one. The discipline is built on the same reading you already did — your one-line-per-paragraph **skeleton**, the **point of view** behind each claim, and the rule to read for **function** and **not obsess** over details. Each trap family maps to one of those habits.
+
+Run the map out loud so the connection sticks. **Too narrow / too broad** is a *skeleton* failure: an answer that covers one paragraph when the question asks about the whole passage, or vice versa, only looks wrong once you hold the five-tag map against it. **Reported-view-stated-as-the-author's** is a *point of view* failure: the answer attributes to the author a claim that belonged to "critics" or the old consensus, and only your voice-tagging catches the swap. **True-but-irrelevant / out-of-scope** is a *don't-obsess* failure: the answer is a real fact you happen to know, dragged in from outside the passage, and the cure is the same line-citation reflex from the previous section. The remaining two are wording tells — **extreme / absolute language** and the **one-word distortion** — and both are killed by returning to the cited sentence to check whether the strength and the meaning are *earned*.
+
+**Worked example.** A two-paragraph passage: "Early naturalists credited the dodo's extinction to human hunting alone. Recent excavations, however, suggest that the pigs and rats brought by settlers — by destroying eggs and nests — were the decisive agents, with direct hunting a comparatively minor factor." Question: "The author's primary purpose is to —" Choice A: "argue that human hunting drove the dodo to extinction." Choice B: "establish that introduced animals proved more destructive than once believed." Choice C: "demonstrate that the dodo could not have survived European contact under any circumstances." Walk it by elimination. A is the *old view* the author reports and then overturns — a reported-view-as-author's trap; your point-of-view tag flags it, cross it off. C smuggles in "under any circumstances," an extreme claim the passage never makes — wording tell, cross it off. C is also too broad against the skeleton, which only contrasts two causes. B is left standing: modest, matches the "however" pivot, supported by the cited sentence. You never had to be *sure* B was beautiful; you only had to convict A and C.
+
+**Trap to watch.** Stopping the moment a choice "sounds like the passage." On hard questions the most tempting wrong answer is precisely the one that echoes the passage's vocabulary most loudly — it is engineered to reward the reader who matches words instead of meaning. So treat *familiarity* as a reason to slow down, not to commit: a choice that feels instantly right on a 705-level item is a prompt to find the sentence it distorts, not a green light. Read all five choices before you cross anything off, and never fall in love with the first plausible one — love is how you stop eliminating early and walk into the bait.
+
+> **Self-explanation prompt.** Why does hunting for four wrong answers beat hunting for one right answer, even though both end at the same choice? (Because attraction commits you to a single choice before you've tested it, and the test engineers its most attractive choice to be wrong on the hard items; elimination forces you to run the trap filter against every option, so the credited answer survives on the evidence rather than on how good it sounded.)
