@@ -76,7 +76,7 @@ describe("chapter -> practice routing (regression guard for the bare-section 404
 
 describe("quant practice tests: size cap + difficulty ladder", () => {
   // Lowest/highest difficulty bucket present in a test (easy=0, medium=1, hard=2),
-  // derived from difficultyMix. For Quant's contiguous slices of the easy->hard
+  // derived from difficultyMix. For Quant/DI contiguous slices of the easy->hard
   // sorted pool, test i's max bucket must be <= test i+1's min bucket.
   function bucketRange(mix: { easy: number; medium: number; hard: number }): [number, number] {
     const ranks: number[] = []
@@ -86,19 +86,21 @@ describe("quant practice tests: size cap + difficulty ladder", () => {
     return [Math.min(...ranks), Math.max(...ranks)]
   }
 
-  it("no quant test exceeds the cap of 15; verbal/DI stay <= 8", () => {
+  it("no quant/DI test exceeds the cap of 15; verbal stays <= 8", () => {
     for (const g of groups) {
-      const cap = g.section === "Quant" ? 15 : 8
+      const cap = g.section === "Verbal" ? 8 : 15
       for (const t of g.tests) {
         expect(t.count, `${t.id} count ${t.count} > cap ${cap}`).toBeLessThanOrEqual(cap)
       }
     }
   })
 
-  it("multi-test quant chapters form a non-decreasing difficulty ladder", () => {
-    const quant = groups.filter((g) => g.section === "Quant" && g.tests.length > 1)
-    expect(quant.length).toBeGreaterThan(0) // sanity: multi-test quant chapters exist
-    for (const g of quant) {
+  it("multi-test quant & DI chapters form a non-decreasing difficulty ladder", () => {
+    const laddered = groups.filter(
+      (g) => g.section !== "Verbal" && g.tests.length > 1
+    )
+    expect(laddered.length).toBeGreaterThan(0) // sanity: multi-test laddered chapters exist
+    for (const g of laddered) {
       for (let i = 0; i < g.tests.length - 1; i++) {
         const [, maxA] = bucketRange(g.tests[i].difficultyMix)
         const [minB] = bucketRange(g.tests[i + 1].difficultyMix)

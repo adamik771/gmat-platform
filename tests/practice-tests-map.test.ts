@@ -139,7 +139,7 @@ describe("resolveChapterAssignment — unknown banks / edge cases", () => {
 
 describe("TEST_CAPS / COMING_SOON / OMITTED sets", () => {
   it("TEST_CAPS holds the exact per-section caps for all three sections", () => {
-    expect(TEST_CAPS).toEqual({ Quant: 15, Verbal: 8, DI: 8 })
+    expect(TEST_CAPS).toEqual({ Quant: 15, Verbal: 8, DI: 15 })
   })
 
   it("COMING_SOON_CHAPTERS is currently empty (all RC subtypes are live)", () => {
