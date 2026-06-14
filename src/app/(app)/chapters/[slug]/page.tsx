@@ -33,6 +33,7 @@ function toReaderQuestion(q: ParsedQuestion): ReaderQuestion {
     correctAnswer: q.correctAnswer,
     correctAnswerLetter: q.correctAnswerLetter,
     explanation: q.explanation,
+    context: q.context,
   }
 }
 

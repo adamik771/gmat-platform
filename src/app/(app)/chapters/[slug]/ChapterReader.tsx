@@ -63,6 +63,9 @@ export interface ReaderQuestion {
   correctAnswer: number
   correctAnswerLetter: string
   explanation: string
+  /** Shared passage / set / source text (RC passages, MSR sets). Rendered above
+   *  the prompt so a question about "the passage" actually shows the passage. */
+  context?: string
 }
 
 export interface ReaderSection {
@@ -1709,6 +1712,42 @@ function SectionCard({
 
 // ---------- Inline question (pretest or check-your-understanding) ----------
 
+/**
+ * Renders a question's shared passage / set / source text above its prompt.
+ * RC questions (and MSR sets) ask about "the passage" — without this block the
+ * question is unanswerable. Styled as a distinct inset panel.
+ */
+function PassageContext({ text }: { text: string }) {
+  return (
+    <div
+      className="rounded-xl border px-4 py-3.5"
+      style={{
+        borderColor: "var(--read-border)",
+        backgroundColor: "var(--read-bg-inset)",
+      }}
+    >
+      <p
+        className="text-[10px] font-semibold uppercase tracking-[0.18em] mb-2"
+        style={{ color: "var(--read-text-faint)" }}
+      >
+        Passage
+      </p>
+      <div
+        className="text-[14px] leading-relaxed space-y-3"
+        style={{ color: "var(--read-text-body)" }}
+      >
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeCaretSup]}
+          components={mdComponents}
+        >
+          {text}
+        </ReactMarkdown>
+      </div>
+    </div>
+  )
+}
+
 function InlineQuestion({
   question: q,
   label,
@@ -1784,6 +1823,7 @@ function InlineQuestion({
       </div>
 
       <div className="px-5 py-5 space-y-4">
+        {q.context && <PassageContext text={q.context} />}
         <div>
           <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
             {q.prompt}
@@ -2371,6 +2411,7 @@ function ProblemSetRunner({
           />
         ) : (
           <div className="px-6 py-6 space-y-4">
+            {current.context && <PassageContext text={current.context} />}
             <div>
               <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
                 {current.prompt}
