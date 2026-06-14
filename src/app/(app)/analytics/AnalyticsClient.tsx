@@ -5,7 +5,6 @@ import {
   CartesianGrid,
   Line,
   LineChart,
-  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -51,16 +50,6 @@ export interface PacingRow {
   over: boolean
 }
 
-export interface TopicTimingRow {
-  topic: string
-  section: Section
-  attempts: number
-  avgMin: number
-  /** Average time / section baseline. 1.3+ = slow, 0.7- = fast. */
-  ratio: number
-  flag: "fast" | "even" | "slow"
-}
-
 export interface DifficultyTimingRow {
   section: Section
   difficulty: string
@@ -79,36 +68,6 @@ export interface ErrorPatternSummary {
   /** Wrong + slow: stuck — conceptual gap even with extra time. */
   stuck: number
   totalLabelled: number
-}
-
-/** PDF v2 KPI: repeat-error rate. Of the questions in this topic that
- *  the student has attempted ≥2 times, how many were still missed on
- *  the MOST recent attempt? High rate = retrieval isn't sticking on
- *  this topic — the review-queue work isn't landing. */
-export interface RepeatMissRow {
-  topic: string
-  section: Section
-  /** How many distinct questions in this topic have ≥2 attempts. */
-  repeatedCount: number
-  /** Of those, how many are still wrong on the latest attempt. */
-  stillMissing: number
-  /** stillMissing / repeatedCount, 0..100. */
-  rate: number
-}
-
-/** PDF v2 KPI: time-sink rate. Topics where the student burns
- *  significant extra time (≥1.3× section baseline) AND accuracy stays
- *  below 55%. This is the distinct "burning time on things you're
- *  still missing" case, not the broader "slow but accurate" / "labored"
- *  pattern that the Behaviour Patterns panel surfaces. */
-export interface TimeSinkRow {
-  topic: string
-  section: Section
-  /** Avg time per attempt / section baseline — higher = slower. */
-  ratio: number
-  avgMin: number
-  accuracy: number | null
-  attempts: number
 }
 
 /** PDF v2 KPI: prediction MAE (≤35 points vs a recent mock). Checks
@@ -130,58 +89,6 @@ export interface PredictionMAE {
   verdict: "calibrated" | "drifting" | "miscalibrated"
 }
 
-/** One point per completed mock — the time-series form of the
- *  prediction-MAE signal. `readinessTotal` here is a best-effort proxy
- *  from the 14-day rolling accuracy preceding the mock date (we don't
- *  store historical readiness). `signedDelta = readinessTotal -
- *  mockTotal`: positive = readiness ran high vs the mock on that day. */
-export interface PredictionMAETrendPoint {
-  /** YYYY-MM-DD of the mock. */
-  date: string
-  readinessTotal: number
-  mockTotal: number
-  signedDelta: number
-}
-
-export interface ReportMirrorRow {
-  /** Display label — "Quant", "Critical Reasoning", etc. */
-  label: string
-  section: Section
-  attempts: number
-  accuracy: number
-}
-
-export interface ReviewEditSummary {
-  total: number
-  helped: number
-  hurt: number
-  neutral: number
-}
-
-/** Data powering the "Score Report Mirror" panel — the three breakdowns
- *  the GMAC Enhanced Score Report exposes that aren't already covered
- *  above: content domain (section-level), question type, and cumulative
- *  review/edit outcomes across all mocks. Time-management + skills are
- *  intentionally skipped here because the existing Section Pacing, Time
- *  per Topic, and Per-topic Accuracy panels already cover them. */
-export interface ReportMirror {
-  contentDomainRows: ReportMirrorRow[]
-  questionTypeRows: ReportMirrorRow[]
-  reviewEdits: ReviewEditSummary | null
-}
-
-// Top + bottom 3 by accuracy, with a small-sample tiebreaker favoring
-// topics with more attempts (more trustworthy).
-function splitStrengthsWeaknesses(topics: TopicRow[]) {
-  const sorted = [...topics].sort((a, b) => {
-    if (b.accuracy !== a.accuracy) return b.accuracy - a.accuracy
-    return b.attempts - a.attempts
-  })
-  const strengths = sorted.slice(0, 3)
-  const weaknesses = sorted.slice(-3).reverse()
-  return { strengths, weaknesses }
-}
-
 // Shared class snippets for the editorial card shell. Non-chart cards
 // lift and gain a gold-tinted shadow on hover; charts stay still because
 // the crosshair + tooltip interaction is its own response.
@@ -196,29 +103,19 @@ export default function AnalyticsClient({
   scoreTrend,
   topicRows,
   pacingRows,
-  topicTimingRows,
   difficultyTimingRows,
   errorPatterns,
   calibration,
-  reportMirror,
-  repeatMissRows,
-  timeSinkRows,
   predictionMAE,
-  predictionMAETrend,
   hasData,
 }: {
   scoreTrend: ScoreTrendPoint[]
   topicRows: TopicRow[]
   pacingRows: PacingRow[]
-  topicTimingRows: TopicTimingRow[]
   difficultyTimingRows: DifficultyTimingRow[]
   errorPatterns: ErrorPatternSummary | null
   calibration: CalibrationReport | null
-  reportMirror: ReportMirror | null
-  repeatMissRows: RepeatMissRow[]
-  timeSinkRows: TimeSinkRow[]
   predictionMAE: PredictionMAE | null
-  predictionMAETrend: PredictionMAETrendPoint[]
   hasData: boolean
 }) {
   const trendWithData = scoreTrend.filter((p) => p.total !== null)
@@ -243,9 +140,6 @@ export default function AnalyticsClient({
   // Display up to 10 topics (by attempt count) — matches what the old mock
   // showed, keeps the page scannable without a dedicated topic drill-down.
   const displayedTopics = topicRows.slice(0, 10)
-
-  const { strengths, weaknesses } = splitStrengthsWeaknesses(topicRows)
-  const showStrengthsWeaknesses = topicRows.length >= 2
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
@@ -443,10 +337,8 @@ export default function AnalyticsClient({
         </div>
       </div>
 
-      {/* Pacing + Strengths/Weaknesses */}
-      <div className="grid lg:grid-cols-2 gap-6">
-        {/* Pacing */}
-        <div className={CARD_BASE + " " + CARD_HOVER}>
+      {/* Pacing */}
+      <div className={CARD_BASE + " " + CARD_HOVER}>
           <p className={EYEBROW + " mb-2"}>Section Pacing</p>
           <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-[1.15]">
             Time per question
@@ -519,81 +411,6 @@ export default function AnalyticsClient({
               />
             )}
           </div>
-        </div>
-
-        {/* Strengths / Weaknesses */}
-        <div className={CARD_BASE + " " + CARD_HOVER}>
-          <p className={EYEBROW + " mb-2"}>Strengths &amp; Weaknesses</p>
-          <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-[1.15]">
-            Best vs.{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              worst.
-            </span>
-          </h2>
-          <div className="mt-6">
-            {showStrengthsWeaknesses ? (
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <p
-                    className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
-                    style={{ color: "#3ECF8E" }}
-                  >
-                    Strengths
-                  </p>
-                  {strengths.map((s) => (
-                    <div
-                      key={`${s.section}|${s.topic}`}
-                      className="flex items-center justify-between mb-2.5 gap-2"
-                    >
-                      <span className="text-[13px] text-[#C0C0C0] truncate">
-                        {s.topic}
-                      </span>
-                      <span
-                        className="font-display text-base font-semibold tabular-nums flex-shrink-0"
-                        style={{ color: "#3ECF8E" }}
-                      >
-                        {s.accuracy}%
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <div>
-                  <p
-                    className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
-                    style={{ color: "#FF4444" }}
-                  >
-                    Weaknesses
-                  </p>
-                  {weaknesses.map((w) => (
-                    <div
-                      key={`${w.section}|${w.topic}`}
-                      className="flex items-center justify-between mb-2.5 gap-2"
-                    >
-                      <span className="text-[13px] text-[#C0C0C0] truncate">
-                        {w.topic}
-                      </span>
-                      <span
-                        className="font-display text-base font-semibold tabular-nums flex-shrink-0"
-                        style={{ color: "#FF4444" }}
-                      >
-                        {w.accuracy}%
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <EmptyState
-                icon={BarChart3}
-                title="Needs more topic data"
-                description="Once you've attempted at least 5 questions in 2 or more topics, your strongest and weakest will surface here."
-                ctaHref="/practice"
-                ctaLabel="Practice"
-                size="sm"
-              />
-            )}
-          </div>
-        </div>
       </div>
 
       {/* Calibration — confidence rating vs actual accuracy, pulled from
@@ -748,40 +565,10 @@ export default function AnalyticsClient({
         </div>
       )}
 
-      {/* Score Report Mirror — the three breakdowns the GMAC ESR exposes
-          that we don't already cover above (content domain, question
-          type, cumulative review/edit). Framed as "this is what your
-          post-exam ESR will look like" so training signal matches what
-          the student will later read. */}
-      {reportMirror && (
-        <ReportMirrorPanel data={reportMirror} />
-      )}
-
       {/* Prediction MAE — how well the readiness band tracks actual
           mock scores. PDF v2 target ≤35 points. Only renders when both
           sides (readiness + a complete mock) are available. */}
       {predictionMAE && <PredictionMAECard mae={predictionMAE} />}
-
-      {/* Prediction-MAE trend — signed delta (readiness − mock) across
-          every complete mock. Answers "is the miscalibration converging
-          or widening?" Skipped entirely when there are zero mocks. */}
-      {predictionMAETrend.length > 0 && (
-        <PredictionMAETrendCard points={predictionMAETrend} />
-      )}
-
-      {/* Repeat-miss hotspots — retrieval is not landing on these topics.
-          Surfaces the PDF v2 KPI "repeat-error rate" per topic. */}
-      {repeatMissRows.length > 0 && (
-        <RepeatMissPanel rows={repeatMissRows} />
-      )}
-
-      {/* Time-sink topics — high time burn + low accuracy. PDF v2 KPI
-          "time-sink rate". Distinct from the Behaviour Patterns panel
-          below because it only surfaces the time-wasted + still-wrong
-          overlap, not the broader labored/stuck split. */}
-      {timeSinkRows.length > 0 && (
-        <TimeSinkPanel rows={timeSinkRows} />
-      )}
 
       {/* Error pattern breakdown — efficient / labored / rushed / stuck */}
       {errorPatterns && errorPatterns.totalLabelled > 0 && (
@@ -827,75 +614,6 @@ export default function AnalyticsClient({
               total={errorPatterns.totalLabelled}
               tone="bad"
             />
-          </div>
-        </div>
-      )}
-
-      {/* Per-topic timing — slowest topics relative to your section baseline */}
-      {topicTimingRows.length > 0 && (
-        <div className={CARD_BASE + " " + CARD_HOVER}>
-          <p className={EYEBROW + " mb-2"}>Time per Topic</p>
-          <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-[1.15]">
-            Where time{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              goes.
-            </span>
-          </h2>
-          <p className="mt-2 text-[13px] text-[#888888] leading-relaxed">
-            Your slowest topics, ranked against your own section average. A
-            1.3× or higher ratio means you&apos;re burning 30%+ more time on
-            that topic than your baseline — a place where drilling fluency
-            pays real timing dividends.
-          </p>
-          <div className="mt-6 space-y-2">
-            {topicTimingRows.map((t) => (
-              <div
-                key={`${t.section}|${t.topic}`}
-                className="flex items-center justify-between gap-4 px-3 py-2 rounded-xl bg-[#0A0A0A] border border-white/[0.04]"
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  <span
-                    className="px-2 py-0.5 rounded-md text-[10px] uppercase tracking-[0.18em] font-semibold flex-shrink-0"
-                    style={{
-                      backgroundColor: "rgba(201,168,76,0.1)",
-                      color: "#C9A84C",
-                    }}
-                  >
-                    {t.section}
-                  </span>
-                  <span className="text-[13px] text-[#F0F0F0] truncate">
-                    {t.topic}
-                  </span>
-                  <span className="text-[10px] text-[#555555] flex-shrink-0 tabular-nums">
-                    {t.attempts}q
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 flex-shrink-0">
-                  <span className="text-[13px] text-[#C0C0C0] tabular-nums">
-                    {t.avgMin.toFixed(1)}m
-                  </span>
-                  <span
-                    className="font-display text-[12px] font-semibold px-2 py-0.5 rounded-md tabular-nums"
-                    style={{
-                      backgroundColor:
-                        t.flag === "slow"
-                          ? "rgba(255,68,68,0.12)"
-                          : t.flag === "fast"
-                            ? "rgba(62,207,142,0.12)"
-                            : "rgba(255,255,255,0.04)",
-                      color:
-                        t.flag === "slow"
-                          ? "#FF4444"
-                          : t.flag === "fast"
-                            ? "#3ECF8E"
-                            : "#C0C0C0",
-                    }}
-                  >
-                    {t.ratio.toFixed(2)}×
-                  </span>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       )}
@@ -973,214 +691,6 @@ export default function AnalyticsClient({
       )}
 
       {!hasData && <FirstRunState />}
-    </div>
-  )
-}
-
-function ReportMirrorPanel({ data }: { data: ReportMirror }) {
-  const hasDomain = data.contentDomainRows.length > 0
-  const hasType = data.questionTypeRows.length > 0
-  const hasEdits = data.reviewEdits !== null && data.reviewEdits.total > 0
-
-  if (!hasDomain && !hasType && !hasEdits) return null
-
-  const sections: Array<{ key: string; label: string; render: () => React.ReactNode }> = []
-  if (hasDomain)
-    sections.push({
-      key: "domain",
-      label: "Content domain",
-      render: () => (
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {data.contentDomainRows.map((row) => (
-            <ReportMirrorRowCard key={row.label} row={row} />
-          ))}
-        </div>
-      ),
-    })
-  if (hasType)
-    sections.push({
-      key: "type",
-      label: "Question type",
-      render: () => (
-        <>
-          <div className="space-y-2">
-            {data.questionTypeRows.map((row) => (
-              <div
-                key={row.label}
-                className="flex items-center justify-between gap-4 py-2 px-3 rounded-xl bg-[#0A0A0A] border border-white/[0.04]"
-              >
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <span
-                    className="px-1.5 py-0.5 rounded-md text-[9px] uppercase tracking-[0.18em] font-semibold flex-shrink-0"
-                    style={{
-                      backgroundColor: "rgba(201,168,76,0.1)",
-                      color: "#C9A84C",
-                    }}
-                  >
-                    {row.section}
-                  </span>
-                  <span className="text-[13px] text-[#F0F0F0] truncate">
-                    {row.label}
-                  </span>
-                </div>
-                <div className="flex items-baseline gap-3 flex-shrink-0">
-                  <span className="text-[11px] text-[#555555] tabular-nums">
-                    {row.attempts} attempt{row.attempts === 1 ? "" : "s"}
-                  </span>
-                  <span
-                    className="font-display text-base font-semibold tabular-nums"
-                    style={{ color: accuracyColor(row.accuracy) }}
-                  >
-                    {row.accuracy}%
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="text-[11px] text-[#555555] mt-3 leading-snug italic">
-            Types with fewer than 3 attempts are hidden — too few to read.
-          </p>
-        </>
-      ),
-    })
-  if (hasEdits && data.reviewEdits)
-    sections.push({
-      key: "edits",
-      label: "Review / edit across all mocks",
-      render: () => <ReviewEditBlock summary={data.reviewEdits!} />,
-    })
-
-  return (
-    <div className={CARD_BASE + " " + CARD_HOVER}>
-      <p className={EYEBROW + " mb-2"}>Score Report Mirror</p>
-      <div className="flex items-start gap-3">
-        <BarChart3
-          className="w-5 h-5 mt-1 flex-shrink-0"
-          style={{ color: "#C9A84C" }}
-        />
-        <div>
-          <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-[1.15]">
-            Your ESR, in{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              preview.
-            </span>
-          </h2>
-          <p className="mt-2 text-[13px] text-[#888888] leading-relaxed">
-            The same breakdowns the GMAC Enhanced Score Report exposes after
-            your real exam — content domain, question type, and review/edit
-            outcomes — computed from your practice history so training data
-            matches what you&apos;ll later read.
-          </p>
-        </div>
-      </div>
-      <div className="mt-8 space-y-8">
-        {sections.map((section, i) => (
-          <div key={section.key}>
-            <div className="flex items-center gap-3 mb-4">
-              <span
-                className="font-display-italic text-[13px] font-semibold tabular-nums"
-                style={{ color: "rgba(201,168,76,0.55)" }}
-                aria-hidden
-              >
-                0{i + 1}
-              </span>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C0C0C0]">
-                {section.label}
-              </p>
-              <div
-                className="h-px flex-1"
-                style={{
-                  background:
-                    "linear-gradient(to right, rgba(201,168,76,0.25), transparent)",
-                }}
-                aria-hidden
-              />
-            </div>
-            {section.render()}
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-function accuracyColor(pct: number): string {
-  if (pct >= 75) return "#3ECF8E"
-  if (pct >= 55) return "#C9A84C"
-  return "#FF4444"
-}
-
-function ReportMirrorRowCard({ row }: { row: ReportMirrorRow }) {
-  return (
-    <div className="p-4 rounded-xl bg-[#0A0A0A] border border-white/[0.06]">
-      <div className="flex items-center justify-between mb-1">
-        <span className="text-[10px] uppercase tracking-[0.22em] text-[#888888] font-semibold">
-          {row.label}
-        </span>
-      </div>
-      <p
-        className="font-display text-3xl font-semibold tabular-nums leading-none"
-        style={{ color: accuracyColor(row.accuracy) }}
-      >
-        {row.accuracy}
-        <span className="text-lg font-normal text-[#555555]">%</span>
-      </p>
-      <p className="text-[11px] text-[#555555] mt-2 tabular-nums">
-        {row.attempts} attempt{row.attempts === 1 ? "" : "s"}
-      </p>
-    </div>
-  )
-}
-
-function ReviewEditBlock({ summary }: { summary: ReviewEditSummary }) {
-  const helpedPct = Math.round((summary.helped / summary.total) * 100)
-  const hurtPct = Math.round((summary.hurt / summary.total) * 100)
-  const net = summary.helped - summary.hurt
-  const netLabel =
-    net > 0
-      ? `+${net} net helped — keep editing when you can name the flaw in your first answer.`
-      : net < 0
-        ? `${net} net — your edits hurt more than they help. Default to "don't change unless you can justify it."`
-        : summary.total > 0
-          ? `Even split — edits are break-even. Change only when you have a concrete reason, not a hunch.`
-          : ""
-  return (
-    <div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
-        <div className="p-4 rounded-xl bg-[#0A0A0A] border border-white/[0.06]">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-[#3ECF8E] font-semibold mb-2">
-            Helped
-          </p>
-          <p className="font-display text-3xl font-semibold text-[#F0F0F0] tabular-nums leading-none">
-            {summary.helped}
-            <span className="text-sm font-normal text-[#555555]">
-              {" · "}
-              {helpedPct}%
-            </span>
-          </p>
-        </div>
-        <div className="p-4 rounded-xl bg-[#0A0A0A] border border-white/[0.06]">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-[#FF4444] font-semibold mb-2">
-            Hurt
-          </p>
-          <p className="font-display text-3xl font-semibold text-[#F0F0F0] tabular-nums leading-none">
-            {summary.hurt}
-            <span className="text-sm font-normal text-[#555555]">
-              {" · "}
-              {hurtPct}%
-            </span>
-          </p>
-        </div>
-        <div className="p-4 rounded-xl bg-[#0A0A0A] border border-white/[0.06]">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-[#888888] font-semibold mb-2">
-            Neutral
-          </p>
-          <p className="font-display text-3xl font-semibold text-[#F0F0F0] tabular-nums leading-none">
-            {summary.neutral}
-          </p>
-        </div>
-      </div>
-      <p className="text-[12px] text-[#C0C0C0] leading-snug">{netLabel}</p>
     </div>
   )
 }
@@ -1279,293 +789,6 @@ function PredictionMAECard({ mae }: { mae: PredictionMAE }) {
   )
 }
 
-function PredictionMAETrendCard({
-  points,
-}: {
-  points: PredictionMAETrendPoint[]
-}) {
-  const count = points.length
-  const first = points[0]
-  const last = points[count - 1]
-
-  // Trend verdict (≥2 mocks): compare magnitude of first vs last signed
-  // delta. Converging = magnitude shrank; drifting = magnitude grew;
-  // stable = both deltas within 10 pts of each other (noise floor).
-  let calloutCopy: string | null = null
-  let calloutColour = "#C0C0C0"
-  if (count >= 2 && first && last) {
-    const firstAbs = Math.abs(first.signedDelta)
-    const lastAbs = Math.abs(last.signedDelta)
-    const fmt = (n: number) => (n >= 0 ? `+${n}` : `${n}`)
-    const mockWord = count === 1 ? "mock" : "mocks"
-    if (Math.abs(firstAbs - lastAbs) <= 10) {
-      calloutCopy = `Your readiness estimate has held ${fmt(first.signedDelta)} → ${fmt(
-        last.signedDelta
-      )} pts over ${count} ${mockWord} — stable.`
-      calloutColour = "#C0C0C0"
-    } else if (lastAbs < firstAbs) {
-      calloutCopy = `Your readiness estimate has converged from ${fmt(
-        first.signedDelta
-      )} to ${fmt(last.signedDelta)} pts over ${count} ${mockWord} — calibrating.`
-      calloutColour = "#3ECF8E"
-    } else {
-      calloutCopy = `Your readiness estimate has moved from ${fmt(
-        first.signedDelta
-      )} to ${fmt(last.signedDelta)} pts over ${count} ${mockWord} — drifting.`
-      calloutColour = "#FF4444"
-    }
-  }
-
-  // Y-domain: pad around the widest swing so the zero line always reads
-  // clearly. Min 40 total span (±20) so a tight cluster doesn't stretch.
-  const maxAbs = Math.max(
-    20,
-    ...points.map((p) => Math.abs(p.signedDelta) + 10)
-  )
-  const yMin = -Math.ceil(maxAbs / 10) * 10
-  const yMax = Math.ceil(maxAbs / 10) * 10
-
-  return (
-    <div className={CARD_BASE}>
-      <p className={EYEBROW + " mb-2"}>Prediction Accuracy Trend</p>
-      <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-[1.15]">
-        Calibrating,{" "}
-        <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-          over time.
-        </span>
-      </h2>
-      <p className="mt-2 text-[13px] text-[#888888] leading-relaxed">
-        Signed delta (readiness − mock total) across every complete mock
-        you&apos;ve run. Positive = readiness ran high; negative = ran low.
-        The dashed zero line is perfect calibration.
-      </p>
-      <div className="mt-6">
-        {count === 1 ? (
-          <>
-            <div className="p-5 rounded-xl bg-[#0A0A0A] border border-white/[0.06]">
-              <div className="flex items-baseline justify-between gap-3">
-                <div>
-                  <p className="text-[10px] uppercase tracking-[0.22em] text-[#888888] font-semibold mb-2 tabular-nums">
-                    {last!.date}
-                  </p>
-                  <p className="font-display text-4xl font-semibold text-[#F0F0F0] tabular-nums leading-none">
-                    {last!.signedDelta > 0 ? "+" : ""}
-                    {last!.signedDelta}
-                    <span className="text-base font-normal text-[#555555]">
-                      {" "}
-                      pts
-                    </span>
-                  </p>
-                </div>
-                <div className="text-right space-y-1">
-                  <p className="text-[11px] text-[#C0C0C0] tabular-nums">
-                    readiness{" "}
-                    <span className="font-display font-semibold text-[#F0F0F0]">
-                      {last!.readinessTotal}
-                    </span>
-                  </p>
-                  <p className="text-[11px] text-[#C0C0C0] tabular-nums">
-                    mock{" "}
-                    <span className="font-display font-semibold text-[#F0F0F0]">
-                      {last!.mockTotal}
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <p className="text-[11px] text-[#555555] mt-4 italic">
-              Trend surfaces after your second mock.
-            </p>
-          </>
-        ) : (
-          <>
-            <ResponsiveContainer width="100%" height={240}>
-              <LineChart
-                data={points}
-                margin={{ top: 5, right: 5, bottom: 0, left: -10 }}
-              >
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                  stroke="rgba(255,255,255,0.04)"
-                />
-                <XAxis
-                  dataKey="date"
-                  tick={{ fill: "#555555", fontSize: 11 }}
-                  axisLine={false}
-                  tickLine={false}
-                />
-                <YAxis
-                  domain={[yMin, yMax]}
-                  tick={{ fill: "#555555", fontSize: 11 }}
-                  axisLine={false}
-                  tickLine={false}
-                />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "#0A0A0A",
-                    border: "1px solid rgba(201,168,76,0.2)",
-                    borderRadius: 12,
-                    fontSize: 12,
-                  }}
-                  labelStyle={{ color: "#C0C0C0" }}
-                  formatter={(value, name) => {
-                    const label = String(name)
-                    if (value === null || value === undefined) return ["—", label]
-                    if (label === "Signed delta") {
-                      const n = Number(value)
-                      return [`${n > 0 ? "+" : ""}${n} pts`, label]
-                    }
-                    return [String(value), label]
-                  }}
-                />
-                <ReferenceLine
-                  y={0}
-                  strokeDasharray="4 4"
-                  stroke="#555555"
-                />
-                <Line
-                  type="monotone"
-                  dataKey="signedDelta"
-                  stroke="#C9A84C"
-                  strokeWidth={2.5}
-                  dot={{ fill: "#C9A84C", r: 3 }}
-                  name="Signed delta"
-                  connectNulls
-                />
-              </LineChart>
-            </ResponsiveContainer>
-            {calloutCopy && (
-              <p
-                className="text-[13px] leading-relaxed mt-4"
-                style={{ color: calloutColour }}
-              >
-                {calloutCopy}
-              </p>
-            )}
-          </>
-        )}
-      </div>
-    </div>
-  )
-}
-
-function RepeatMissPanel({ rows }: { rows: RepeatMissRow[] }) {
-  return (
-    <div className={CARD_BASE + " " + CARD_HOVER}>
-      <p className={EYEBROW + " mb-2"}>Repeat-miss Hotspots</p>
-      <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-[1.15]">
-        What isn&apos;t{" "}
-        <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-          sticking.
-        </span>
-      </h2>
-      <p className="mt-2 text-[13px] text-[#888888] leading-relaxed">
-        Of the questions in each topic you&apos;ve attempted twice or more,
-        how many you still miss on the latest attempt. A high rate means
-        retrieval isn&apos;t landing — the review queue is returning you to
-        these items, but the method isn&apos;t sticking.
-      </p>
-      <div className="mt-6 space-y-2">
-        {rows.map((r) => (
-          <div
-            key={`${r.section}|${r.topic}`}
-            className="flex items-center justify-between gap-4 py-2 px-3 rounded-xl bg-[#0A0A0A] border border-white/[0.04]"
-          >
-            <div className="flex items-center gap-2.5 min-w-0">
-              <span
-                className="px-1.5 py-0.5 rounded-md text-[9px] uppercase tracking-[0.18em] font-semibold flex-shrink-0"
-                style={{
-                  backgroundColor: "rgba(201,168,76,0.1)",
-                  color: "#C9A84C",
-                }}
-              >
-                {r.section}
-              </span>
-              <span className="text-[13px] text-[#F0F0F0] truncate">
-                {r.topic}
-              </span>
-            </div>
-            <div className="flex items-baseline gap-3 flex-shrink-0">
-              <span className="text-[11px] text-[#555555] tabular-nums">
-                {r.stillMissing}/{r.repeatedCount} still missing
-              </span>
-              <span
-                className="font-display text-base font-semibold tabular-nums"
-                style={{ color: rateColor(r.rate) }}
-              >
-                {r.rate}%
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-      <p className="text-[11px] text-[#555555] mt-4 leading-snug italic">
-        Topics with under 3 repeat-attempted questions are hidden — too few
-        to read a pattern.
-      </p>
-    </div>
-  )
-}
-
-function rateColor(rate: number): string {
-  if (rate >= 50) return "#FF4444"
-  if (rate >= 30) return "#E8C97A"
-  return "#3ECF8E"
-}
-
-function TimeSinkPanel({ rows }: { rows: TimeSinkRow[] }) {
-  return (
-    <div className={CARD_BASE + " " + CARD_HOVER}>
-      <p className={EYEBROW + " mb-2"}>Time-sink Topics</p>
-      <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-[1.15]">
-        Minutes{" "}
-        <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-          bleeding.
-        </span>
-      </h2>
-      <p className="mt-2 text-[13px] text-[#888888] leading-relaxed">
-        Topics where you burn 30%+ extra time <em>and</em> still land below
-        55% accuracy. These are the sharpest fixes for pacing — the time you
-        spend on them isn&apos;t paying off. Start with the top row.
-      </p>
-      <div className="mt-6 space-y-2">
-        {rows.map((t) => (
-          <div
-            key={`${t.section}|${t.topic}`}
-            className="flex items-center justify-between gap-4 py-2 px-3 rounded-xl bg-[#0A0A0A] border border-white/[0.04]"
-          >
-            <div className="flex items-center gap-2.5 min-w-0">
-              <span
-                className="px-1.5 py-0.5 rounded-md text-[9px] uppercase tracking-[0.18em] font-semibold flex-shrink-0"
-                style={{
-                  backgroundColor: "rgba(201,168,76,0.1)",
-                  color: "#C9A84C",
-                }}
-              >
-                {t.section}
-              </span>
-              <span className="text-[13px] text-[#F0F0F0] truncate">
-                {t.topic}
-              </span>
-            </div>
-            <div className="flex items-baseline gap-4 flex-shrink-0">
-              <span className="text-[11px] text-[#C0C0C0] tabular-nums">
-                {t.avgMin}m · {Math.round(t.ratio * 100)}%
-              </span>
-              <span
-                className="font-display text-base font-semibold tabular-nums"
-                style={{ color: "#FF4444" }}
-              >
-                {t.accuracy}%
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 function FirstRunState() {
   return (
     <div
@@ -1603,14 +826,14 @@ function FirstRunState() {
           <ArrowRight className="w-4 h-4" />
         </Link>
         <Link
-          href="/diagnostic"
+          href="/mock"
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border transition-colors hover:border-white/[0.22]"
           style={{
             borderColor: "rgba(255,255,255,0.12)",
             color: "#F0F0F0",
           }}
         >
-          Run the diagnostic
+          Open the exam plan
         </Link>
       </div>
     </div>

@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -15,21 +14,19 @@ import {
 } from "lucide-react"
 import SectionWrapper from "@/components/shared/SectionWrapper"
 import FeatureCard from "@/components/marketing/FeatureCard"
-import TestimonialCard from "@/components/marketing/TestimonialCard"
 import FAQAccordion from "@/components/marketing/FAQAccordion"
 import HeroDashboardCard from "@/components/marketing/HeroDashboardCard"
 import ScoreCalloutNumbers from "@/components/marketing/ScoreCalloutNumbers"
 import LeadCapture from "@/components/marketing/LeadCapture"
 
+// The guided path's five phases — mirrors the /course curriculum section
+// and the real chapter order (CHAPTER_PATH_ORDER).
 const modules = [
-  { num: "01", title: "Mindset Reset", desc: "Rewire how you approach standardized tests." },
-  { num: "02", title: "Diagnostic Deep Dive", desc: "Know exactly where you stand on day one." },
-  { num: "03", title: "Quant Mastery", desc: "PS, DS, and number sense from the ground up." },
-  { num: "04", title: "Verbal Precision", desc: "CR, RC, and SC — clarity over cramming." },
-  { num: "05", title: "Data Insights", desc: "The newest section. Demystified." },
-  { num: "06", title: "Mock Strategy", desc: "Simulate real exam conditions, then debrief." },
-  { num: "07", title: "Final Week Protocol", desc: "The last 7 days before your exam." },
-  { num: "08", title: "Bonus Resources", desc: "Templates, flashcards, formula sheets." },
+  { num: "01", title: "Foundations First", desc: "Arithmetic and section fundamentals — eased in, even with a weak math background." },
+  { num: "02", title: "The Strategy Toolkit", desc: "Backsolving, plugging in, estimation — turn algebra into arithmetic." },
+  { num: "03", title: "Core Topics in Rotation", desc: "Quant, Verbal, and Data Insights built in parallel — not months apart." },
+  { num: "04", title: "Advanced Ground & Traps", desc: "Counting, probability, boldface, answer traps — the 645-to-705 layer." },
+  { num: "05", title: "Timing & Mixed Pressure", desc: "Pacing frameworks and mixed sets under real exam conditions." },
 ]
 
 const pillars = [
@@ -56,30 +53,6 @@ const pillars = [
     title: "Proven Score Jumps",
     description:
       "Average improvement of +95 points. Not a promise — a pattern backed by a real 170-point jump.",
-  },
-]
-
-const testimonials = [
-  {
-    quote:
-      "I'd been stuck around 585 for months. Adam's error log approach completely changed how I reviewed. Went from 585 to 665 in 6 weeks.",
-    author: "Priya M.",
-    detail: "Applying to Wharton",
-    scoreJump: "585 → 665",
-  },
-  {
-    quote:
-      "As a non-native speaker, I was terrified of Verbal. This system broke it down in a way no other course did. My CR accuracy went from 55% to 81%.",
-    author: "Hamid K.",
-    detail: "Harvard GSB applicant",
-    scoreJump: "+78 points",
-  },
-  {
-    quote:
-      "The mock exam debriefing framework alone was worth the investment. I stopped guessing and started understanding.",
-    author: "Sophie R.",
-    detail: "Booth applicant",
-    scoreJump: "645 → 675",
   },
 ]
 
@@ -182,7 +155,7 @@ export default function HomePage() {
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
                   style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
                 >
-                  Start Free Trial
+                  Start Free
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
@@ -193,14 +166,14 @@ export default function HomePage() {
                   <ChevronDown className="w-4 h-4" />
                 </Link>
               </div>
-              {/* Trial scope — 7 days of full access, no card required.
-                  The codebase doesn't enforce a paywall today
-                  (`purchases.plan_id` is a display chip only); this
-                  copy describes intent. Wire actual gating to
-                  `purchases` + a `trial_started_at` field on
-                  user_metadata when the paywall lands. */}
+              {/* No paywall is enforced today (PAYWALL_ENABLED off), so the
+                  product is genuinely free to use right now — but there is NO
+                  time-boxed "trial" mechanism, so the copy must not promise a
+                  "7-day trial" that would falsely imply expiry/conversion.
+                  When the paywall lands, revisit this copy alongside the
+                  real access model. */}
               <p className="text-xs text-[#888888] mb-2">
-                No credit card. 7 days of full access — diagnostic, every chapter, full question bank, mock and review.
+                No credit card required. Full access — every chapter, the full question bank, mock exams and review.
               </p>
               <p className="text-xs mb-10">
                 <Link
@@ -252,13 +225,13 @@ export default function HomePage() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-[#555555]">
-            <span>Trusted by MBA candidates at</span>
+            <span>Built for MBA candidates targeting</span>
             {[
-              "Harvard GSB applicant",
-              "Wharton applicant",
-              "Booth applicant",
-              "Columbia applicant",
-              "Kellogg applicant",
+              "Harvard GSB",
+              "Wharton",
+              "Booth",
+              "Columbia",
+              "Kellogg",
             ].map((name) => (
               <span
                 key={name}
@@ -286,7 +259,7 @@ export default function HomePage() {
           <FeatureCard
             icon={BookOpen}
             title="Structured Curriculum"
-            description="8 progressive modules built around how the GMAT actually tests you — not how you think it does."
+            description="One guided path through 50+ chapters, built around how the GMAT actually tests you — not how you think it does."
           />
           <FeatureCard
             icon={BarChart3}
@@ -337,10 +310,10 @@ export default function HomePage() {
               Curriculum
             </p>
             <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] mb-4 tracking-[-0.02em] leading-[1.05]">
-              8 modules. One coherent system.
+              One guided path. Five phases.
             </h2>
             <p className="text-[#888888]">
-              Each module builds on the last. No random video library — a real progression.
+              Each chapter builds on the last. No random video library — a real progression.
             </p>
           </div>
 
@@ -390,20 +363,12 @@ export default function HomePage() {
             The numbers speak for themselves.
           </h2>
 
-          {/* Score display */}
+          {/* Score display — the founder's own verified result. Student
+              testimonials were removed: the product has no real students yet,
+              so invented named testimonials were a false-advertising risk.
+              Re-add a TestimonialCard grid here once real, attributable
+              results exist. */}
           <ScoreCalloutNumbers start={565} delta={170} end={735} />
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((t) => (
-            <TestimonialCard
-              key={t.author}
-              quote={t.quote}
-              author={t.author}
-              detail={t.detail}
-              scoreJump={t.scoreJump}
-            />
-          ))}
         </div>
       </SectionWrapper>
 
@@ -449,14 +414,12 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Founder photo. Save a square crop (head + shoulders,
-              ~512×512 or larger) at `public/founder.jpg`. Layered
-              fallback: the "AZ" initials sit underneath; the
-              next/image overlays them. When the file exists, the
-              image covers the initials. When it doesn't (404), the
-              <img> renders transparent and the initials show through
-              — so the page never looks broken even before Adam drops
-              the photo in. */}
+          {/* Founder avatar. The styled "AZ" initials are the shipped avatar.
+              The previous next/image of /founder.jpg returned a 400 (the file
+              doesn't exist), painting a broken-image glyph over the initials —
+              and a server component can't onError-fallback. To restore a real
+              photo: drop a square crop (~512x512) at public/founder.jpg and
+              re-add a next/image overlay here. */}
           <div className="flex justify-center">
             <div className="relative">
               <div
@@ -469,19 +432,11 @@ export default function HomePage() {
               >
                 <span
                   aria-hidden
-                  className="absolute inset-0 flex items-center justify-center text-6xl font-bold"
+                  className="flex items-center justify-center text-6xl font-bold"
                   style={{ color: "#C9A84C" }}
                 >
                   AZ
                 </span>
-                <Image
-                  src="/founder.jpg"
-                  alt="Adam Zakarian"
-                  width={512}
-                  height={512}
-                  priority
-                  className="relative w-full h-full object-cover"
-                />
               </div>
               <div
                 className="absolute -bottom-2 -right-2 px-3 py-1.5 rounded-xl text-xs font-bold border"
@@ -512,44 +467,57 @@ export default function HomePage() {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {[
             {
               name: "Self-Study",
-              price: "$297",
+              price: "$429",
               note: "one-time",
-              desc: "Full curriculum + analytics",
+              desc: "Full platform, 4-month access",
               features: [
-                "8-module progressive curriculum",
-                "Full error-log analytics",
-                "Unlimited practice + 6 mocks",
-                "Spacing + review queue",
+                "50+ chapters — Q, V & Data Insights",
+                "1,150+ original practice questions",
+                "Full analytics + error log",
+                "4-month platform access",
               ],
               highlighted: false,
+            },
+            {
+              name: "Self-Study + Mentorship",
+              price: "$599",
+              note: "one-time",
+              desc: "Everything + WhatsApp Q&A access",
+              features: [
+                "Everything in Self-Study",
+                "WhatsApp Q&A access with Adam",
+                "6-month platform access",
+                "No scheduled calls required",
+              ],
+              highlighted: true,
+              badge: "Recommended",
             },
             {
               name: "Coaching",
               price: "$2,500",
               note: "package",
-              desc: "8 weekly 1:1 sessions + WhatsApp",
+              desc: "Mentorship + 8 weekly 1:1 sessions",
               features: [
-                "Everything in Self-Study",
+                "Everything in Mentorship",
                 "8 × 60-min 1:1 calls with Adam",
-                "Direct WhatsApp between sessions",
+                "Direct support between sessions",
                 "Custom per-week plan + ESR debrief",
               ],
-              highlighted: true,
-              badge: "Most Popular",
+              highlighted: false,
             },
             {
               name: "Intensive",
               price: "$4,200",
               note: "package",
-              desc: "16 weeks + score guarantee",
+              desc: "Full-service — 16 sessions",
               features: [
                 "Everything in Coaching",
-                "16 weeks of weekly sessions",
-                "Score guarantee or refund",
+                "16 weekly 1:1 sessions",
+                "12-month platform access",
                 "Mock-by-mock tuning loop",
               ],
               highlighted: false,
@@ -695,7 +663,7 @@ export default function HomePage() {
               className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-sm font-semibold transition-all hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Start Free Trial
+              Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

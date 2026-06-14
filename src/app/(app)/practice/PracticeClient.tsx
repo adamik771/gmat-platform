@@ -3,70 +3,65 @@
 import Link from "next/link"
 import {
   ArrowRight,
+  Clock,
   Compass,
   Flag,
+  Lock,
   RotateCcw,
   Sparkles,
   Target,
   Wrench,
 } from "lucide-react"
+import type { PracticeChapterGroup, PracticeTest } from "@/lib/content"
 
-export interface PracticeSetData {
-  slug: string
-  topic: string
-  section: "Quant" | "Verbal" | "DI"
-  questions: number
-  easy: number
-  medium: number
-  hard: number
-  estimatedMinutes: number
-}
+type Section = "Quant" | "Verbal" | "DI"
 
 export interface PracticeRecommendation {
   slug: string
   topic: string
   subskill: string
-  section: "Quant" | "Verbal" | "DI"
+  section: Section
   misses: number
 }
 
 const EYEBROW = "text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C9A84C]"
 
-const SECTION_ORDER: Array<PracticeSetData["section"]> = ["Quant", "Verbal", "DI"]
+const SECTION_ORDER: Section[] = ["Quant", "Verbal", "DI"]
 
-const SECTION_BLURB: Record<PracticeSetData["section"], string> = {
+const SECTION_BLURB: Record<Section, string> = {
   Quant:
-    "Algebra, arithmetic, number properties, geometry, rates, ratios, probability, word translation.",
+    "Algebra, arithmetic, number properties, rates, ratios, probability, word translation — chapter by chapter.",
   Verbal:
-    "Critical Reasoning and Reading Comprehension. Tight logic, dense text, steady pacing.",
-  DI: "Multi-source, table analysis, graphics, two-part, data sufficiency. One strategy per format.",
+    "Critical Reasoning, one chapter per question type. Tight logic, steady pacing.",
+  DI: "Data sufficiency, table analysis, graphics interpretation, two-part analysis. One strategy per format.",
 }
 
-const SECTION_ACCENT: Record<PracticeSetData["section"], string> = {
+const SECTION_ACCENT: Record<Section, string> = {
   Quant: "#5FA8FF",
   Verbal: "#B088FF",
   DI: "#3ECF8E",
 }
 
 export default function PracticeClient({
-  sets,
+  chapterGroups,
   recommendations = [],
+  targetScore = null,
+  lockTestsBeyond = null,
 }: {
-  sets: PracticeSetData[]
+  chapterGroups: PracticeChapterGroup[]
   recommendations?: PracticeRecommendation[]
+  targetScore?: number | null
+  /** Lock per-chapter tests whose 1-based index exceeds this number (free
+   *  accounts when the paywall is on). null = no locking. */
+  lockTestsBeyond?: number | null
 }) {
-  const grouped: Record<PracticeSetData["section"], PracticeSetData[]> = {
-    Quant: [],
-    Verbal: [],
-    DI: [],
-  }
-  for (const set of sets) {
-    grouped[set.section].push(set)
-  }
-  for (const section of SECTION_ORDER) {
-    grouped[section].sort((a, b) => a.topic.localeCompare(b.topic))
-  }
-
+  // Accuracy the score formula (205 + accuracy x 600) demands for the goal.
+  const requiredAccuracy =
+    targetScore !== null
+      ? Math.min(1, Math.max(0, (targetScore - 205) / 600))
+      : null
+  const requiredPercent =
+    requiredAccuracy !== null ? Math.ceil(requiredAccuracy * 100) : null
   const topRec = recommendations[0] ?? null
   // Hero CTA dynamically targets the highest-leverage action: top
   // recommendation when the engine has signal, otherwise the custom
@@ -317,83 +312,115 @@ export default function PracticeClient({
         </div>
       </section>
 
-      {/* === Topic bank — section by section. Section heroes carry a
-          mini description + "Start baseline" CTA pointing at the first
-          topic. Topic cards now show difficulty mix + estimated time so
-          they help the student decide. */}
+      {/* === Goal accuracy strip — translates the student's score goal into
+          the per-test accuracy bar they should clear. */}
+      {requiredPercent !== null ? (
+        <div
+          className="rounded-xl border px-5 py-4 flex flex-wrap items-center gap-x-3 gap-y-2"
+          style={{
+            borderColor: "rgba(201,168,76,0.25)",
+            backgroundColor: "rgba(201,168,76,0.05)",
+          }}
+        >
+          <Target className="w-4 h-4 flex-shrink-0" style={{ color: "#C9A84C" }} />
+          <p className="text-[14px] text-[#E8E8E8] leading-snug">
+            <span className="font-semibold" style={{ color: "#C9A84C" }}>
+              Goal {targetScore}
+            </span>{" "}
+            means scoring{" "}
+            <span className="font-semibold tabular-nums" style={{ color: "#C9A84C" }}>
+              {requiredPercent}%+
+            </span>{" "}
+            on these tests — each row shows the correct count to beat.
+          </p>
+        </div>
+      ) : (
+        <div
+          className="rounded-xl border px-5 py-4 flex flex-wrap items-center gap-x-3 gap-y-2"
+          style={{
+            borderColor: "rgba(255,255,255,0.06)",
+            backgroundColor: "rgba(255,255,255,0.012)",
+          }}
+        >
+          <Target className="w-4 h-4 flex-shrink-0" style={{ color: "#888888" }} />
+          <p className="text-[13px] text-[#888888] leading-snug">
+            <Link
+              href="/dashboard"
+              className="underline underline-offset-2 hover:text-[#C9A84C] transition-colors"
+            >
+              Set a score goal
+            </Link>{" "}
+            to see the accuracy each test asks of you.
+          </p>
+        </div>
+      )}
+
+      {/* === Chapter bank — section by section, chapter by chapter. Each
+          chapter heading is followed by its short tests; the next chapter
+          starts below. Tests are count-up timed with no auto-submit. */}
       {SECTION_ORDER.map((section) => {
-        const items = grouped[section]
-        if (items.length === 0) return null
+        const groups = chapterGroups.filter((g) => g.section === section)
+        if (groups.length === 0) return null
         const accent = SECTION_ACCENT[section]
-        const totalQuestions = items.reduce((sum, s) => sum + s.questions, 0)
-        // First-by-alphabetical-order topic in section is the baseline
-        // entry point. Not personalized, but it's a sensible default
-        // when the user doesn't yet have a recommendation.
-        const baselineTarget = items[0]
+        const withTests = groups.filter((g) => !g.comingSoon)
+        const sectionTests = withTests.reduce((s, g) => s + g.tests.length, 0)
+        const sectionQs = withTests.reduce(
+          (s, g) => s + g.tests.reduce((t, x) => t + x.count, 0),
+          0
+        )
         return (
-          <section key={section} className="space-y-5">
+          <section key={section} className="space-y-6">
             <div
-              className="rounded-xl border p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-5"
+              className="rounded-xl border p-5 sm:p-6 flex items-start gap-3"
               style={{
                 borderColor: "rgba(255,255,255,0.06)",
                 backgroundColor: "#0D0D0D",
               }}
             >
-              <div className="flex items-start gap-3 min-w-0">
-                <span
-                  className="w-1 h-9 rounded-full flex-shrink-0 mt-1"
-                  style={{ backgroundColor: accent }}
-                  aria-hidden
-                />
-                <div className="min-w-0">
-                  <p
-                    className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-1"
-                    style={{ color: accent }}
-                  >
-                    {section === "DI" ? "Data Insights" : section} Practice
-                  </p>
-                  <p className="text-[13px] text-[#C0C0C0] leading-snug max-w-xl">
-                    {SECTION_BLURB[section]}
-                  </p>
-                  <p
-                    className="text-[11px] mt-2 tabular-nums"
-                    style={{ color: "rgba(255,255,255,0.45)" }}
-                  >
-                    {items.length} topic{items.length === 1 ? "" : "s"} ·{" "}
-                    {totalQuestions} question
-                    {totalQuestions === 1 ? "" : "s"}
-                  </p>
-                </div>
-              </div>
-              {baselineTarget && (
-                <Link
-                  href={`/practice/session/${baselineTarget.slug}`}
-                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-[12px] font-semibold border flex-shrink-0 self-start sm:self-center transition-colors"
-                  style={{
-                    borderColor: `${accent}55`,
-                    color: accent,
-                    backgroundColor: `${accent}0D`,
-                  }}
+              <span
+                className="w-1 h-9 rounded-full flex-shrink-0 mt-1"
+                style={{ backgroundColor: accent }}
+                aria-hidden
+              />
+              <div className="min-w-0">
+                <p
+                  className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-1"
+                  style={{ color: accent }}
                 >
-                  Start {section === "DI" ? "DI" : section} baseline
-                  <ArrowRight className="w-3.5 h-3.5" aria-hidden />
-                </Link>
-              )}
+                  {section === "DI" ? "Data Insights" : section} Practice
+                </p>
+                <p className="text-[13px] text-[#C0C0C0] leading-snug max-w-xl">
+                  {SECTION_BLURB[section]}
+                </p>
+                <p
+                  className="text-[11px] mt-2 tabular-nums"
+                  style={{ color: "rgba(255,255,255,0.45)" }}
+                >
+                  {withTests.length} chapter{withTests.length === 1 ? "" : "s"} ·{" "}
+                  {sectionTests} test{sectionTests === 1 ? "" : "s"} · {sectionQs}{" "}
+                  question{sectionQs === 1 ? "" : "s"}
+                </p>
+              </div>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {items.map((set) => (
-                <TopicCard key={set.slug} set={set} accent={accent} />
+            <div className="space-y-7">
+              {groups.map((group) => (
+                <ChapterBlock
+                  key={group.chapterSlug}
+                  group={group}
+                  requiredAccuracy={requiredAccuracy}
+                  lockTestsBeyond={lockTestsBeyond}
+                />
               ))}
             </div>
           </section>
         )
       })}
 
-      {sets.length === 0 && (
+      {chapterGroups.length === 0 && (
         <div className="p-10 rounded-2xl border border-white/[0.06] bg-[#0D0D0D] text-center">
           <p className="text-[15px] text-[#888888]">
-            No practice sets published yet.
+            No practice tests published yet.
           </p>
         </div>
       )}
@@ -402,86 +429,161 @@ export default function PracticeClient({
 }
 
 /**
- * Topic-card with difficulty pills + estimated runtime. Replaces the
- * flat "topic + count + Start set" card so the student can decide what
- * mix of work each set buys before clicking through.
+ * One chapter: a heading line (title + test/question counts) followed by its
+ * short test rows. Chapters with no question bank yet (RC, MSR) show a muted
+ * "coming soon" row so the practice list reads as the full syllabus.
  */
-function TopicCard({
-  set,
-  accent,
+function ChapterBlock({
+  group,
+  requiredAccuracy,
+  lockTestsBeyond,
 }: {
-  set: PracticeSetData
-  accent: string
+  group: PracticeChapterGroup
+  requiredAccuracy: number | null
+  lockTestsBeyond: number | null
 }) {
-  const { easy, medium, hard, questions, estimatedMinutes } = set
-  // Only render pills for non-zero buckets — keeps the row tidy when a
-  // small set only carries one or two difficulty levels.
-  const pills: Array<{ label: string; count: number }> = []
-  if (easy > 0) pills.push({ label: "Easy", count: easy })
-  if (medium > 0) pills.push({ label: "Med", count: medium })
-  if (hard > 0) pills.push({ label: "Hard", count: hard })
+  const totalQ = group.tests.reduce((s, t) => s + t.count, 0)
   return (
-    <Link
-      href={`/practice/session/${set.slug}`}
-      className="group relative p-5 rounded-2xl border border-white/[0.08] bg-[#111111] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.16] hover:bg-[#141414] hover:shadow-[0_10px_40px_-12px_rgba(201,168,76,0.18)]"
-    >
-      <div className="flex items-center justify-between mb-3">
-        <span
-          className="px-2 py-0.5 rounded text-[10px] font-semibold tracking-[0.18em] uppercase"
-          style={{
-            backgroundColor: `${accent}1A`,
-            color: accent,
-          }}
-        >
-          {set.section === "DI" ? "Data Insights" : set.section}
-        </span>
-        <span className="font-display text-[12px] text-[#555555] tabular-nums">
-          {questions} Q
+    <div>
+      <div className="flex items-baseline justify-between gap-3 pb-2.5 border-b border-white/[0.08]">
+        <h3 className="font-display text-lg sm:text-xl font-semibold text-[#F0F0F0] tracking-tight">
+          {group.chapterTitle}
+        </h3>
+        <span className="text-[12px] text-[#777777] tabular-nums flex-shrink-0">
+          {group.comingSoon
+            ? "Coming soon"
+            : `${group.tests.length} test${group.tests.length === 1 ? "" : "s"} · ${totalQ} Q`}
         </span>
       </div>
-      <h3 className="font-display text-lg sm:text-xl font-semibold text-[#F0F0F0] tracking-tight leading-[1.2]">
-        {set.topic}
-      </h3>
-      {pills.length > 0 && (
-        <div className="mt-3 flex flex-wrap gap-1.5">
+      {group.comingSoon ? (
+        <div
+          className="mt-3 flex items-center gap-2 px-4 py-3 rounded-xl border border-dashed text-[12px]"
+          style={{ borderColor: "rgba(255,255,255,0.06)", color: "#555555" }}
+        >
+          <Clock className="w-3.5 h-3.5 flex-shrink-0" aria-hidden />
+          Tests coming soon — read the chapter for now.
+        </div>
+      ) : (
+        <div className="mt-3 space-y-2.5">
+          {group.tests.map((test, i) => (
+            <ChapterTestRow
+              key={test.id}
+              test={test}
+              requiredAccuracy={requiredAccuracy}
+              locked={lockTestsBeyond !== null && i + 1 > lockTestsBeyond}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+/**
+ * A single test row: numbered badge, label, question count, difficulty mix,
+ * the correct-count to beat for the student's goal, and a Start CTA. No time
+ * shown — tests are untimed count-up sessions and a clock invites rushing.
+ */
+function ChapterTestRow({
+  test,
+  requiredAccuracy,
+  locked = false,
+}: {
+  test: PracticeTest
+  requiredAccuracy: number | null
+  /** Paid test the free account can't run yet — links to /pricing. */
+  locked?: boolean
+}) {
+  const { easy, medium, hard } = test.difficultyMix
+  const pills: Array<{ label: string; count: number; color: string }> = []
+  if (easy > 0) pills.push({ label: "Easy", count: easy, color: "#3ECF8E" })
+  if (medium > 0) pills.push({ label: "Med", count: medium, color: "#C9A84C" })
+  if (hard > 0) pills.push({ label: "Hard", count: hard, color: "#FF8A65" })
+  const testNumber = test.label.replace(/\D+/g, "") || "1"
+  const aimCount =
+    requiredAccuracy !== null
+      ? Math.min(test.count, Math.ceil(requiredAccuracy * test.count))
+      : null
+  return (
+    <Link
+      href={locked ? "/pricing" : `/practice/session/${test.id}`}
+      aria-label={
+        locked
+          ? `${test.label} — locked, see plans to unlock`
+          : `Start ${test.label} — ${test.count} questions`
+      }
+      className={
+        "group flex items-center justify-between gap-4 px-4 sm:px-5 py-4 rounded-xl border border-white/[0.06] bg-[#0D0D0D] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.14] hover:bg-[#111111]" +
+        (locked ? " opacity-70 hover:opacity-100" : "")
+      }
+    >
+      <div className="flex items-center gap-x-3.5 gap-y-1.5 min-w-0 flex-wrap">
+        <span
+          className="hidden sm:inline-flex items-center justify-center w-10 h-10 rounded-lg font-display text-[16px] font-semibold flex-shrink-0"
+          style={{
+            backgroundColor: locked
+              ? "rgba(255,255,255,0.04)"
+              : "rgba(201,168,76,0.10)",
+            color: locked ? "#888888" : "#C9A84C",
+          }}
+          aria-hidden
+        >
+          {locked ? <Lock className="w-4 h-4" /> : testNumber}
+        </span>
+        <span className="text-[15px] font-semibold text-[#F0F0F0]">
+          {test.label}
+        </span>
+        <span className="text-[13px] text-[#888888] tabular-nums">
+          {test.count} questions
+        </span>
+        <span className="hidden md:flex items-center gap-1.5">
           {pills.map((p) => (
             <span
               key={p.label}
-              className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold tabular-nums"
+              className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[11px] font-semibold tabular-nums"
               style={{
                 backgroundColor: "rgba(255,255,255,0.04)",
-                color: "rgba(192,192,192,0.8)",
+                color: "rgba(192,192,192,0.85)",
               }}
             >
               <span
-                className="w-1 h-1 rounded-full"
-                style={{
-                  backgroundColor:
-                    p.label === "Easy"
-                      ? "#3ECF8E"
-                      : p.label === "Med"
-                        ? "#C9A84C"
-                        : "#FF8A65",
-                }}
+                className="w-1.5 h-1.5 rounded-full"
+                style={{ backgroundColor: p.color }}
                 aria-hidden
               />
               {p.count} {p.label}
             </span>
           ))}
-        </div>
-      )}
-      <div
-        className="mt-4 flex items-center justify-between text-[11px] uppercase tracking-[0.18em] font-semibold transition-colors"
-        style={{ color: "#888888" }}
-      >
-        <span className="text-[11px] tracking-normal normal-case text-[#666666] tabular-nums">
-          ~{estimatedMinutes} min
         </span>
-        <span className="inline-flex items-center gap-1.5 group-hover:text-[#C9A84C] transition-colors">
-          Start set
-          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-        </span>
+        {aimCount !== null && !locked && (
+          <span
+            className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[12px] font-semibold tabular-nums"
+            style={{
+              backgroundColor: "rgba(201,168,76,0.10)",
+              color: "#C9A84C",
+            }}
+          >
+            <Target className="w-3 h-3" aria-hidden />
+            aim {aimCount}/{test.count}
+          </span>
+        )}
       </div>
+      <span
+        className="inline-flex items-center gap-1.5 text-[12px] uppercase tracking-[0.18em] font-semibold flex-shrink-0 transition-colors"
+        style={{ color: locked ? "#888888" : "#C9A84C" }}
+      >
+        {locked ? (
+          <>
+            Unlock
+            <Lock className="w-3.5 h-3.5" />
+          </>
+        ) : (
+          <>
+            Start
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+          </>
+        )}
+      </span>
     </Link>
   )
 }

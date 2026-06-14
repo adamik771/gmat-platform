@@ -27,7 +27,7 @@ const KIND_META: Record<ActionKind, { icon: typeof Sparkles; color: string; bg: 
     icon: Compass,
     color: "#C9A84C",
     bg: "rgba(201,168,76,0.12)",
-    label: "Diagnostic",
+    label: "Baseline",
   },
   "review-backlog": {
     icon: RotateCcw,
@@ -132,6 +132,8 @@ export default function NextBestActionPanel({
 function PrimaryCard({ action }: { action: NextBestAction }) {
   const meta = KIND_META[action.kind]
   const Icon = meta.icon
+  // "Rest" is the one action with no task to start — the CTA reflects that.
+  const ctaLabel = action.kind === "rest" ? "Review your progress" : "Start now"
 
   return (
     <Link
@@ -169,10 +171,12 @@ function PrimaryCard({ action }: { action: NextBestAction }) {
             >
               {meta.label}
             </span>
-            <span className="inline-flex items-center gap-1 text-[11px] text-[#888888]">
-              <Clock className="w-3 h-3" />
-              ~{action.estimatedMinutes} min
-            </span>
+            {action.estimatedMinutes > 0 && (
+              <span className="inline-flex items-center gap-1 text-[11px] text-[#888888]">
+                <Clock className="w-3 h-3" />
+                ~{action.estimatedMinutes} min
+              </span>
+            )}
           </div>
           <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-[-0.02em] text-[#F0F0F0] leading-[1.1] mb-3">
             {action.title}
@@ -185,7 +189,7 @@ function PrimaryCard({ action }: { action: NextBestAction }) {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[13px] font-semibold tracking-tight transition-all group-hover:scale-[1.03]"
               style={{ backgroundColor: meta.color, color: "#0A0A0A" }}
             >
-              Start now
+              {ctaLabel}
               <ArrowRight className="w-3.5 h-3.5" />
             </span>
             {action.evidence.length > 0 && (
@@ -237,7 +241,9 @@ function AlternateCard({ action }: { action: NextBestAction }) {
           {action.title}
         </p>
         <p className="text-[11px] text-[#888888] mt-1 truncate">
-          ~{action.estimatedMinutes} min
+          {action.estimatedMinutes > 0
+            ? `~${action.estimatedMinutes} min`
+            : "No time needed"}
         </p>
       </div>
       <ArrowRight

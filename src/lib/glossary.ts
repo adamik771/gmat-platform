@@ -88,8 +88,11 @@ export const ENTRIES: GlossaryEntry[] = [
   {
     term: "Diagnostic",
     definition:
-      "A short stratified test taken at the start of prep to identify your starting per-section score and per-topic weakness profile. The Zakarian platform uses 30 questions (10 per section, stratified by difficulty); the public sampler uses 10. The diagnostic is the input to a real study plan — without one, every plan is guesswork.",
-    link: { href: "/free-diagnostic", label: "Take the free diagnostic" },
+      "A test taken at the start of prep to identify your starting score and per-topic weakness profile. On Zakarian GMAT the baseline is Official Practice Exam 1 on mba.com, taken under full exam conditions and entered on the platform — a real exam is the only baseline worth planning around. The baseline is the input to a real study plan; without one, every plan is guesswork.",
+    link: {
+      href: "/blog/gmat-focus-official-practice-exams",
+      label: "How to use the official practice exams",
+    },
   },
   {
     term: "Error log",
@@ -169,7 +172,7 @@ export const ENTRIES: GlossaryEntry[] = [
   {
     term: "Quant",
     definition:
-      "The first section of the GMAT Focus (45 minutes, 21 questions). Tests algebra, arithmetic, number properties, geometry, statistics, and word problems. Scoring scale 60-90 per section. On Focus, Quant is Problem Solving only — Data Sufficiency lives in DI.",
+      "The first section of the GMAT Focus (45 minutes, 21 questions). Tests algebra, arithmetic, number properties, statistics, and word problems. Scoring scale 60-90 per section. On Focus, Quant is Problem Solving only — Data Sufficiency lives in DI, and geometry is no longer tested.",
   },
   {
     term: "Reading Comprehension (RC)",
@@ -185,12 +188,6 @@ export const ENTRIES: GlossaryEntry[] = [
     definition:
       "On Zakarian GMAT, a publicly accessible reading from the production curriculum, free and without signup. Three samples cover the three Focus sections: Critical Reasoning (Verbal), Algebra (Quant), and Data Sufficiency (DI).",
     link: { href: "/sample-chapter", label: "Read a sample chapter" },
-  },
-  {
-    term: "Score guarantee",
-    definition:
-      "On the Zakarian GMAT Intensive plan, a structured commitment that if you complete the 16-session program as designed and don't hit your target score, you receive either a full refund or extended coaching at no charge. Conditions are spelled out on the refund policy page.",
-    link: { href: "/refund", label: "Refund policy" },
   },
   {
     term: "Section order",

@@ -21,7 +21,10 @@ import { DI_METHOD_CARDS, hasMethodCard } from "@/lib/di-method-cards"
 import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import PacingBadge from "@/components/shared/PacingBadge"
+import QuestionChart from "@/components/shared/QuestionChart"
+import type { ChartSpec } from "@/lib/chart-spec"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
 import { applySessionAttempts, levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
@@ -47,10 +50,19 @@ export interface SessionQuestion {
   /** Progressive hints in order (nudge → strategy → setup). Empty when
    *  no hints authored — the "Need a hint?" button hides in that case. */
   hints?: { level: "nudge" | "strategy" | "setup"; text: string }[]
+  /** Rich-explanation fields surfaced in the post-submit analysis panel.
+   *  Additive + optional — populated by the session-page mappers from the
+   *  same fields on ParsedQuestion. */
+  fastestPath?: string
+  commonTrap?: string
+  mistakeAnalysis?: Partial<Record<"A" | "B" | "C" | "D" | "E" | "F", string>>
+  takeaway?: string
   /** Two-Part Analysis: column headers (the two "roles"). */
   twoPartColumns?: string[]
   /** Two-Part Analysis: the correct row index for each column. */
   twoPartCorrectAnswers?: number[]
+  /** Graphics Interpretation: structured chart rendered by QuestionChart. */
+  chartSpec?: ChartSpec
 }
 
 type Confidence = "low" | "medium" | "high"
@@ -74,6 +86,12 @@ interface QuestionState {
   firstInteractionMs: number | null
 }
 
+export interface WeakTopicHint {
+  topic: string
+  practiceSlug: string
+  accuracy: number
+}
+
 interface SessionClientProps {
   slug: string
   topic: string
@@ -86,6 +104,13 @@ interface SessionClientProps {
    *  questions array is already adaptively ordered by the server. */
   skillLevel?: number
   skillAttempts?: number
+  /** Server-computed weakest topic from practice history. Shown on the
+   *  completion screen when accuracy is strong — directs students to
+   *  their highest-leverage next session instead of a generic CTA. */
+  weakestTopic?: WeakTopicHint
+  /** Optional context line shown above the session title, e.g.
+   *  "Algebra: Linear Equations & Systems · Test 1" for a per-chapter test. */
+  setLabel?: string
 }
 
 function formatDuration(ms: number): string {
@@ -123,7 +148,7 @@ function PromptBlock({ text, className = "" }: { text: string; className?: strin
   return (
     <div className={`text-sm leading-relaxed text-[#F0F0F0] ${className}`}>
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
+        remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}
         components={{
           p: (props) => (
             <p {...props} className="my-2 first:mt-0 last:mb-0" />
@@ -303,11 +328,15 @@ function ConfidencePanel({
   value,
   submitted,
   wasCorrect,
+  revealOutcome = true,
   onSelect,
 }: {
   value: Confidence | null
   submitted: boolean
   wasCorrect: boolean
+  /** Exam mode defers correctness to the end — suppress the calibration
+   *  copy (it leaks whether the answer was right) until then. */
+  revealOutcome?: boolean
   onSelect: (level: Confidence) => void
 }) {
   const levels: { id: Confidence; label: string; color: string; bg: string }[] = [
@@ -336,7 +365,7 @@ function ConfidencePanel({
   // how sure you felt and whether you were right. Highlight those.
   let calibrationHint: { tone: "warn" | "ok" | "good"; text: string } | null =
     null
-  if (submitted && value) {
+  if (submitted && value && revealOutcome) {
     if (value === "high" && !wasCorrect) {
       calibrationHint = {
         tone: "warn",
@@ -820,10 +849,13 @@ function canSubmit(q: SessionQuestion, state: QuestionState): boolean {
 function TwoPartGrid({
   question,
   state,
+  reveal = true,
   onSelect,
 }: {
   question: SessionQuestion
   state: QuestionState
+  /** Exam mode defers correctness highlighting to the end-of-session review. */
+  reveal?: boolean
   onSelect: (colIdx: number, rowIdx: number) => void
 }) {
   const cols = question.twoPartColumns!
@@ -859,7 +891,7 @@ function TwoPartGrid({
               </td>
               {cols.map((_, ci) => {
                 const isSelected = selections[ci] === ri
-                const showResult = state.submitted
+                const showResult = state.submitted && reveal
                 const isCorrectCell = correctAnswers?.[ci] === ri
 
                 let circleStyle: React.CSSProperties = {
@@ -985,6 +1017,92 @@ function SaveStatusBanner({
   )
 }
 
+function AnalysisRow({
+  label,
+  color,
+  text,
+}: {
+  label: string
+  color: string
+  text: string
+}) {
+  return (
+    <div>
+      <p
+        className="text-[10px] uppercase tracking-widest mb-1.5"
+        style={{ color }}
+      >
+        {label}
+      </p>
+      <PromptBlock text={text} />
+    </div>
+  )
+}
+
+/**
+ * Post-submit deep-analysis block. Surfaces the question's authored
+ * fastest-path, common-trap, the rationale for the student's wrong pick,
+ * and the takeaway — content that already exists but was previously only
+ * shown on the standalone /review/question page. Always expanded on sm+;
+ * collapsed behind a "Show full analysis" toggle on mobile so the result
+ * screen stays scannable on small screens.
+ */
+function FullAnalysis({
+  fastestPath,
+  commonTrap,
+  wrongLetter,
+  wrongMistake,
+  takeaway,
+}: {
+  fastestPath?: string
+  commonTrap?: string
+  wrongLetter: string | null
+  wrongMistake: string | null
+  takeaway?: string
+}) {
+  const [showAll, setShowAll] = useState(false)
+  return (
+    <div className="mt-4 pt-4 border-t border-white/[0.06]">
+      <button
+        type="button"
+        onClick={() => setShowAll((v) => !v)}
+        className="sm:hidden inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em]"
+        style={{ color: "#C9A84C" }}
+        aria-expanded={showAll}
+      >
+        {showAll ? "Hide analysis" : "Show full analysis"}
+        <ChevronDown
+          className={`w-3.5 h-3.5 transition-transform ${
+            showAll ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+      <div
+        className={`${
+          showAll ? "block" : "hidden sm:block"
+        } space-y-4 mt-3 sm:mt-0`}
+      >
+        {fastestPath && (
+          <AnalysisRow label="Fastest path" color="#C9A84C" text={fastestPath} />
+        )}
+        {commonTrap && (
+          <AnalysisRow label="Common trap" color="#FF6B6B" text={commonTrap} />
+        )}
+        {wrongLetter && wrongMistake && (
+          <AnalysisRow
+            label={`Why you picked ${wrongLetter}`}
+            color="#FF6B6B"
+            text={wrongMistake}
+          />
+        )}
+        {takeaway && (
+          <AnalysisRow label="Takeaway" color="#3ECF8E" text={takeaway} />
+        )}
+      </div>
+    </div>
+  )
+}
+
 export default function SessionClient({
   slug,
   topic,
@@ -992,6 +1110,8 @@ export default function SessionClient({
   questions,
   skillLevel,
   skillAttempts,
+  weakestTopic,
+  setLabel,
 }: SessionClientProps) {
   const router = useRouter()
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -1056,6 +1176,30 @@ export default function SessionClient({
   const [questionStart, setQuestionStart] = useState(() => Date.now())
   const [now, setNow] = useState(() => Date.now())
   const [showResults, setShowResults] = useState(false)
+  // Exam vs study feedback mode. Exam (the default) defers correctness,
+  // explanations, and hints to the end-of-session review — like test day.
+  // Study reveals the explanation after each submit. The choice persists
+  // across sessions; switching mid-session is allowed.
+  const [mode, setMode] = useState<"exam" | "study">(() => {
+    if (typeof window === "undefined") return "exam"
+    return window.localStorage.getItem("session-feedback-mode") === "study"
+      ? "study"
+      : "exam"
+  })
+  // Once the results screen has been reached, per-question feedback is
+  // visible regardless of mode so the review list can jump back into
+  // fully-explained questions.
+  const [finished, setFinished] = useState(false)
+  const reveal = mode === "study" || finished
+
+  function switchMode(next: "exam" | "study") {
+    setMode(next)
+    try {
+      window.localStorage.setItem("session-feedback-mode", next)
+    } catch {
+      // Private browsing — preference just won't persist.
+    }
+  }
   const [saveStatus, setSaveStatus] = useState<
     "idle" | "saving" | "saved" | "error" | "unauthorized"
   >("idle")
@@ -1193,6 +1337,12 @@ export default function SessionClient({
       next[currentIdx] = { ...next[currentIdx], submitted: true, elapsedMs: elapsed }
       return next
     })
+    // Exam mode has no per-question reveal, so move straight on. The last
+    // question still requires an explicit "Finish Session" click — finishing
+    // is irreversible feedback-wise, so it shouldn't happen by surprise.
+    if (mode === "exam" && !finished && currentIdx < total - 1) {
+      goTo(currentIdx + 1)
+    }
   }
 
   function handleConfidence(level: Confidence) {
@@ -1227,6 +1377,7 @@ export default function SessionClient({
     if (currentIdx < total - 1) {
       goTo(currentIdx + 1)
     } else {
+      setFinished(true)
       setShowResults(true)
     }
   }
@@ -1318,6 +1469,14 @@ export default function SessionClient({
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
     const totalTime = now - sessionStart
 
+    // Shared next-step accuracy bands. Below LOW signals a concept gap
+    // (revisit the chapter); at/above SOLID the topic is strong enough to
+    // move off. Both the recommendation text and the action buttons read
+    // from these so the prose and the CTA can never disagree about which
+    // band a session falls into.
+    const LOW_ACCURACY = 60
+    const SOLID_ACCURACY = 80
+
     // Per-question pairs for insight panels (submitted only)
     const answeredPairs = questions
       .map((q, i) => ({ q, state: states[i], correct: isQuestionCorrect(q, states[i]) }))
@@ -1377,12 +1536,21 @@ export default function SessionClient({
       }
     }
 
-    // Next-step recommendation keyed to accuracy band
+    // Next-step recommendation keyed to accuracy band. When the student
+    // performed well and the server identified a weak topic, name it
+    // directly — eliminates the "which area?" follow-up navigation.
+    // In the mid-accuracy band (LOW–SOLID), also surface the cross-topic
+    // weak area when it differs from the current topic: students building on
+    // one topic deserve to know which gap is costing them the most overall.
     const nextStepNote =
-      accuracy < 60
+      accuracy < LOW_ACCURACY
         ? "Accuracy below 60% signals a concept gap. Revisiting the chapter before more practice compounds better."
-        : accuracy < 78
-        ? "Accuracy is building. One more focused session on this topic before moving on."
+        : accuracy < SOLID_ACCURACY
+        ? weakestTopic && weakestTopic.topic !== topic
+          ? `Accuracy is building — one more focused session here will sharpen this topic. Across your full history, ${weakestTopic.topic} sits at ${Math.round(weakestTopic.accuracy * 100)}% accuracy. That's the highest-leverage target once this topic is solid.`
+          : "Accuracy is building. One more focused session on this topic before moving on."
+        : weakestTopic
+        ? `This topic is solid. Based on your practice history, ${weakestTopic.topic} is your weakest area right now — ${Math.round(weakestTopic.accuracy * 100)}% accuracy. That's where the points are.`
         : "This topic is solid. Investing time in a weaker area is the highest-leverage move now."
 
     return (
@@ -1708,6 +1876,58 @@ export default function SessionClient({
           )
         })()}
 
+        {(() => {
+          // Subtopic-level breakdown of wrong answers — surfaces the
+          // specific skill clusters that broke down in this session, not
+          // just the difficulty buckets covered above. Hidden when no
+          // wrong answer carries a usable subtopic label.
+          const wrong = questions.filter(
+            (q, i) =>
+              states[i].submitted && !isQuestionCorrect(q, states[i])
+          )
+          const counts = new Map<string, number>()
+          for (const q of wrong) {
+            const sub = (q.subtopic ?? "").trim()
+            if (!sub) continue
+            counts.set(sub, (counts.get(sub) ?? 0) + 1)
+          }
+          const top = [...counts.entries()]
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 3)
+          if (top.length === 0) return null
+          return (
+            <div className="p-5 rounded-xl border border-white/[0.06] bg-[#0D0D0D]">
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+                Where the mistakes fell
+              </p>
+              <div className="space-y-2.5">
+                {top.map(([sub, n]) => (
+                  <div
+                    key={sub}
+                    className="flex items-center justify-between gap-3"
+                  >
+                    <p className="text-sm text-[#C0C0C0] truncate">{sub}</p>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <div className="flex gap-1">
+                        {Array.from({ length: Math.min(n, 5) }).map((_, i) => (
+                          <div
+                            key={i}
+                            className="w-2 h-2 rounded-full"
+                            style={{ backgroundColor: "rgba(255,68,68,0.5)" }}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-xs text-[#555555] w-4 text-right tabular-nums">
+                        {n}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        })()}
+
         {savedSessionId && answeredCount - correctCount > 0 && (
           <Link
             href={`/error-log?session_id=${savedSessionId}`}
@@ -1826,6 +2046,18 @@ export default function SessionClient({
                               style={{ color: isWrong ? "rgba(255,107,107,0.75)" : "#555555" }}
                             >
                               Q{i + 1} · {q.subtopic} · {q.difficulty}
+                              {isWrong && state.confidence && state.confidence !== "low" && (
+                                <span
+                                  className="ml-1.5 inline-flex items-center px-1 py-px rounded text-[9px] font-semibold uppercase tracking-wide"
+                                  style={
+                                    state.confidence === "high"
+                                      ? { backgroundColor: "rgba(255,153,102,0.15)", color: "#FF9966" }
+                                      : { backgroundColor: "rgba(255,255,255,0.05)", color: "#555555" }
+                                  }
+                                >
+                                  {state.confidence === "high" ? "Confident" : "Unsure"}
+                                </span>
+                              )}
                             </p>
                             <p className="text-sm text-[#F0F0F0] truncate">
                               {q.prompt.replace(/\s+/g, " ").slice(0, 90)}
@@ -1843,6 +2075,120 @@ export default function SessionClient({
                   })}
                 </div>
               )}
+            </div>
+          )
+        })()}
+
+        {/* What to do next — surfaces the pre-computed guidance and closes
+            the "session finished, now what?" dead end with 1-2 decisive CTAs
+            keyed to the accuracy band. */}
+        {answeredCount > 0 && (() => {
+          const isPractice =
+            !slug.startsWith("diagnostic") &&
+            !slug.startsWith("mock") &&
+            !slug.startsWith("review") &&
+            slug !== "custom"
+          const chapterSlug = TOPIC_TO_CHAPTER[topic]
+
+          type NextAction = { label: string; href: string; variant: "primary" | "secondary" }
+          const actions: NextAction[] = []
+
+          if (isMixedReview) {
+            actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
+            actions.push({ label: "Review queue", href: "/review", variant: "secondary" })
+          } else if (accuracy < LOW_ACCURACY) {
+            actions.push({
+              label: chapterSlug ? "Review the chapter" : "Go to chapters",
+              href: chapterSlug ? `/chapters/${chapterSlug}` : "/chapters",
+              variant: "primary",
+            })
+            if (isPractice) {
+              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
+            }
+          } else if (accuracy < SOLID_ACCURACY) {
+            if (isPractice) {
+              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "primary" })
+            }
+            actions.push({
+              label: chapterSlug ? "Review the chapter" : "Browse chapters",
+              href: chapterSlug ? `/chapters/${chapterSlug}` : "/chapters",
+              variant: "secondary",
+            })
+            // When a weaker topic is known and distinct from the current one,
+            // surface it as a direct escape hatch — students who plateau here
+            // can jump straight to the gap without navigating back to practice.
+            if (weakestTopic && weakestTopic.topic !== topic) {
+              actions.push({
+                label: `Practice ${weakestTopic.topic}`,
+                href: `/practice/session/${weakestTopic.practiceSlug}`,
+                variant: "secondary",
+              })
+            }
+          } else if (weakestTopic) {
+            // Strong session + known weak topic: point directly to the gap
+            actions.push({
+              label: `Practice ${weakestTopic.topic}`,
+              href: `/practice/session/${weakestTopic.practiceSlug}`,
+              variant: "primary",
+            })
+            const wtChapter = TOPIC_TO_CHAPTER[weakestTopic.topic]
+            actions.push({
+              label: wtChapter ? "Review the chapter" : "Go to chapters",
+              href: wtChapter ? `/chapters/${wtChapter}` : "/chapters",
+              variant: "secondary",
+            })
+          } else {
+            // Strong session, no known weak topic: the highest-leverage move
+            // is no longer this topic — point at the macro plan first, then
+            // offer chapters / a repeat as escape hatches.
+            actions.push({ label: "View your study plan", href: "/study-plan", variant: "primary" })
+            actions.push({ label: "Go to chapters", href: "/chapters", variant: "secondary" })
+            if (isPractice) {
+              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
+            }
+          }
+
+          return (
+            <div
+              className="p-5 rounded-xl border"
+              style={{
+                borderColor: "rgba(255,255,255,0.06)",
+                backgroundColor: "#0D0D0D",
+              }}
+            >
+              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+                What to do next
+              </p>
+              <p className="text-sm text-[#C0C0C0] leading-relaxed mb-5">
+                {nextStepNote}
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {actions.map((action) =>
+                  action.variant === "primary" ? (
+                    <Link
+                      key={action.href}
+                      href={action.href}
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all hover:opacity-90"
+                      style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                    >
+                      {action.label}
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  ) : (
+                    <Link
+                      key={action.href}
+                      href={action.href}
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium border transition-colors hover:border-white/[0.16] hover:text-[#F0F0F0]"
+                      style={{
+                        borderColor: "rgba(255,255,255,0.08)",
+                        color: "#888888",
+                      }}
+                    >
+                      {action.label}
+                    </Link>
+                  )
+                )}
+              </div>
             </div>
           )
         })()}
@@ -1873,6 +2219,11 @@ export default function SessionClient({
         </Link>
         <div className="flex items-center justify-between mt-3">
           <div>
+            {setLabel ? (
+              <p className="text-[10px] uppercase tracking-widest text-[#C9A84C] mb-1">
+                {setLabel}
+              </p>
+            ) : null}
             <h1 className="text-xl font-bold text-[#F0F0F0]">{topic}</h1>
             <p className="text-xs text-[#555555] mt-0.5">
               Question{" "}
@@ -1906,6 +2257,38 @@ export default function SessionClient({
             </p>
           </div>
           <div className="flex items-center gap-2 text-sm text-[#888888]">
+            {/* Exam/Study feedback-mode toggle. Exam is the default and the
+                recommended skill test; study reveals each explanation. */}
+            <div
+              className="inline-flex rounded-lg border overflow-hidden"
+              style={{ borderColor: "rgba(255,255,255,0.10)" }}
+              role="group"
+              aria-label="Feedback mode"
+            >
+              {(["exam", "study"] as const).map((m) => (
+                <button
+                  key={m}
+                  onClick={() => switchMode(m)}
+                  className="px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors"
+                  style={
+                    mode === m
+                      ? {
+                          backgroundColor: "rgba(201,168,76,0.14)",
+                          color: "#C9A84C",
+                        }
+                      : { color: "#666666" }
+                  }
+                  title={
+                    m === "exam"
+                      ? "Explanations at the end, like test day (recommended)"
+                      : "Explanation after each question"
+                  }
+                  aria-pressed={mode === m}
+                >
+                  {m === "exam" ? "Exam" : "Study"}
+                </button>
+              ))}
+            </div>
             <PacingBadge
               section={section}
               elapsedMs={
@@ -1918,9 +2301,11 @@ export default function SessionClient({
               <Clock className="w-4 h-4" />
               <span className="font-mono">{formatDuration(sessionElapsed)}</span>
             </div>
-            {/* AI tutor — always visible. The button is small + gold-
-                accented; the drawer slides in from the right and
-                preserves the question's full context server-side. */}
+            {/* AI tutor — hidden in exam mode until the session is finished
+                (a tutor mid-exam would reveal the answer); always visible in
+                study mode. The drawer slides in from the right and preserves
+                the question's full context server-side. */}
+            {reveal && (
             <button
               onClick={() => setTutorOpen(true)}
               className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-semibold uppercase tracking-[0.18em] border transition-colors hover:bg-white/[0.04]"
@@ -1935,6 +2320,7 @@ export default function SessionClient({
               <Sparkles className="w-3 h-3" aria-hidden />
               Tutor
             </button>
+            )}
           </div>
         </div>
 
@@ -1948,6 +2334,13 @@ export default function SessionClient({
             }}
           />
         </div>
+        {!finished && (
+          <p className="text-[11px] mt-2" style={{ color: "#666666" }}>
+            {mode === "exam"
+              ? "Exam mode: answers and explanations come at the end, like test day."
+              : "Study mode: explanation after every question. Exam mode is the truer skill test — the chapters are where you learn."}
+          </p>
+        )}
       </div>
 
       {/* Body: passage (if grouped) + question. Mobile: stack
@@ -1960,12 +2353,14 @@ export default function SessionClient({
             {hasMethodCard(current.type) && (
               <DIMethodCardBanner questionType={current.type} />
             )}
+            {current.chartSpec && <QuestionChart spec={current.chartSpec} />}
             <PromptBlock text={current.prompt} className="mb-5" />
 
             {isTwoPart ? (
               <TwoPartGrid
                 question={current}
                 state={currentState}
+                reveal={reveal}
                 onSelect={handleTwoPartSelect}
               />
             ) : (
@@ -1973,7 +2368,7 @@ export default function SessionClient({
                 {current.options.map((option, i) => {
                   const isSelected = currentState.selected === i
                   const isCorrect = i === current.correctAnswer
-                  const showResult = currentState.submitted
+                  const showResult = currentState.submitted && reveal
                   const showCorrect = showResult && isCorrect
                   const showIncorrect = showResult && isSelected && !isCorrect
 
@@ -2030,10 +2425,11 @@ export default function SessionClient({
               value={currentState.confidence}
               submitted={currentState.submitted}
               wasCorrect={isQuestionCorrect(current, currentState)}
+              revealOutcome={reveal}
               onSelect={handleConfidence}
             />
 
-            {current.hints && current.hints.length > 0 && (
+            {mode === "study" && current.hints && current.hints.length > 0 && (
               <HintPanel
                 hints={current.hints}
                 revealed={currentState.hintsRevealed}
@@ -2042,7 +2438,7 @@ export default function SessionClient({
               />
             )}
 
-            {currentState.submitted && current.explanation && (
+            {currentState.submitted && reveal && current.explanation && (
               <div
                 className="mt-5 p-4 rounded-lg border transition-all duration-150 animate-in fade-in-0 zoom-in-95"
                 style={{
@@ -2050,28 +2446,83 @@ export default function SessionClient({
                   backgroundColor: "rgba(201,168,76,0.03)",
                 }}
               >
-                <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
-                  Explanation
-                </p>
+                <div className="flex items-center gap-2.5 mb-3">
+                  <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                    Explanation
+                  </p>
+                  {!isQuestionCorrect(current, currentState) &&
+                    currentState.selected !== null &&
+                    !isTwoPart && (
+                      <>
+                        <span className="text-[10px] text-[#333333]">&middot;</span>
+                        <span
+                          className="text-[10px]"
+                          style={{ color: "rgba(255,107,107,0.75)" }}
+                        >
+                          You chose {letterFor(currentState.selected)}
+                        </span>
+                        <span className="text-[10px] text-[#333333]">&middot;</span>
+                        <span
+                          className="text-[10px]"
+                          style={{ color: "rgba(62,207,142,0.75)" }}
+                        >
+                          Correct: {current.correctAnswerLetter}
+                        </span>
+                      </>
+                    )}
+                </div>
                 <PromptBlock text={current.explanation} />
+                {(() => {
+                  const wrongLetter =
+                    !isQuestionCorrect(current, currentState) &&
+                    currentState.selected !== null &&
+                    !isTwoPart
+                      ? (String.fromCharCode(65 + currentState.selected) as
+                          | "A"
+                          | "B"
+                          | "C"
+                          | "D"
+                          | "E"
+                          | "F")
+                      : null
+                  const wrongMistake = wrongLetter
+                    ? current.mistakeAnalysis?.[wrongLetter] ?? null
+                    : null
+                  if (
+                    !current.fastestPath &&
+                    !current.commonTrap &&
+                    !current.takeaway &&
+                    !wrongMistake
+                  )
+                    return null
+                  return (
+                    <FullAnalysis
+                      fastestPath={current.fastestPath}
+                      commonTrap={current.commonTrap}
+                      wrongLetter={wrongLetter}
+                      wrongMistake={wrongMistake}
+                      takeaway={current.takeaway}
+                    />
+                  )
+                })()}
               </div>
             )}
 
+            {currentState.submitted && reveal && (
+              <PostSubmitUnderstandingRow
+                key={`understanding-${current.id}`}
+                questionId={current.id}
+              />
+            )}
             {currentState.submitted && (
-              <>
-                <PostSubmitUnderstandingRow
-                  key={`understanding-${current.id}`}
+              <div className="mt-3 flex items-center justify-end">
+                <SaveForReviewButton
+                  key={`save-${current.id}`}
                   questionId={current.id}
+                  initialSaved={false}
+                  variant="ghost"
                 />
-                <div className="mt-3 flex items-center justify-end">
-                  <SaveForReviewButton
-                    key={`save-${current.id}`}
-                    questionId={current.id}
-                    initialSaved={false}
-                    variant="ghost"
-                  />
-                </div>
-              </>
+              </div>
             )}
           </div>
 
@@ -2105,7 +2556,10 @@ export default function SessionClient({
             )}
 
             <button
-              onClick={() => setShowResults(true)}
+              onClick={() => {
+                setFinished(true)
+                setShowResults(true)
+              }}
               className="px-4 py-2 rounded-lg text-sm font-medium border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.16] transition-colors"
             >
               End

@@ -7,11 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "validate:content": "node --experimental-strip-types --no-warnings scripts/validate-content.ts"
+    "validate:content": "node --experimental-strip-types --no-warnings scripts/validate-content.ts",
+    "generate:explanations": "node --experimental-strip-types --no-warnings --env-file=.env.local scripts/generate-explanations.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "npm run validate:content && tsc --noEmit && vitest run"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.92.0",
     "@base-ui/react": "^1.4.0",
+    "@sentry/nextjs": "^10.57.0",
     "@stripe/stripe-js": "^9.2.0",
     "@supabase/ssr": "^0.10.2",
     "@supabase/supabase-js": "^2.103.0",
@@ -39,6 +44,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.3",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.8"
   }
 }

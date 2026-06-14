@@ -2,6 +2,13 @@ import fs from "node:fs"
 import path from "node:path"
 import { parse as parseYaml } from "yaml"
 import type { Difficulty, QuestionType, Section } from "@/types"
+import type { ChartSpec } from "./chart-spec"
+import {
+  TEST_CAPS,
+  COMING_SOON_CHAPTERS,
+  OMITTED_CHAPTERS,
+  resolveChapterAssignment,
+} from "./practice-tests-map.ts"
 
 // Base directory for all markdown content
 const CONTENT_ROOT = path.join(process.cwd(), "src", "content")
@@ -45,13 +52,17 @@ export interface ParsedQuestion {
   twoPartColumns?: string[]
   /** Two-Part Analysis: the correct row index for each column. Same length as twoPartColumns. */
   twoPartCorrectAnswers?: number[]
+  /** Graphics Interpretation: structured chart spec parsed from a fenced
+   *  chart JSON block. Present only for migrated GI questions; rendered by
+   *  QuestionChart instead of a prose description. */
+  chartSpec?: ChartSpec
   // ---------- Standardized 6-section explanation fields ----------
   // Present in bulk-rewritten questions (QUESTION_TAXONOMY format). Optional
   // because legacy questions and grouped passages may not carry them yet.
   /** One-line strategic move — the fastest GMAT-strategic approach. */
   fastestPath?: string
-  /** Per-choice trap analysis. Keys are A-E; correct slot is omitted. */
-  mistakeAnalysis?: Partial<Record<"A" | "B" | "C" | "D" | "E", string>>
+  /** Per-choice trap analysis. Keys are A-F (TPA has a 6th row); correct slot is omitted. */
+  mistakeAnalysis?: Partial<Record<"A" | "B" | "C" | "D" | "E" | "F", string>>
   /** Named primary trap pattern this question deploys. */
   commonTrap?: string
   /** Generalizable lesson — what the student should take away. */
@@ -128,9 +139,24 @@ function sectionFromString(value: string | undefined): Section {
 }
 
 function difficultyFromString(value: string | undefined): Difficulty {
-  const normalized = (value ?? "").toLowerCase()
+  const normalized = (value ?? "").trim().toLowerCase()
   if (normalized === "easy" || normalized === "beginner") return "Beginner"
-  if (normalized === "hard" || normalized === "advanced") return "Advanced"
+  // Canonical content vocabulary is Easy / Medium / Hard, but a few questions
+  // were authored with top-tier aliases ("Challenge") or a between-tier label
+  // ("Medium-Hard"). Without these cases they fall through to the Intermediate
+  // default below, silently downgrading the bank's hardest items — which
+  // mis-stratifies the per-chapter practice-test difficulty mixes, the mock
+  // target-tier pools, and per-difficulty timing analytics. Map any
+  // harder-than-medium label up to Advanced.
+  if (
+    normalized === "hard" ||
+    normalized === "advanced" ||
+    normalized === "challenge" ||
+    normalized === "medium-hard" ||
+    normalized === "medium hard"
+  ) {
+    return "Advanced"
+  }
   return "Intermediate"
 }
 
@@ -140,7 +166,6 @@ function questionTypeFromString(value: string | undefined): QuestionType {
     "Data Sufficiency",
     "Critical Reasoning",
     "Reading Comprehension",
-    "Sentence Correction",
     "Data Insights",
     "Multi-Source Reasoning",
     "Table Analysis",
@@ -188,13 +213,37 @@ function parseQuestionBlock(
   if (!headerMatch) return null
   const questionNumber = parseInt(headerMatch[1], 10)
 
-  const metaRegex = /\*\*(difficulty|type|topic|answer|explanation|hint_nudge|hint_strategy|hint_setup|fastest_path|common_trap|takeaway|related_reading|mistake_a|mistake_b|mistake_c|mistake_d|mistake_e|subchapter|skill|trap_type|est_time_seconds|prerequisite):\*\*\s*([^\n]*)/gi
+  // Field keys come in two flavors. SINGLE-LINE keys are structural fields
+  // that can appear *before* the prompt — table-analysis is "prompt-first",
+  // with difficulty/type/topic ahead of the prompt — so capturing them across
+  // lines would let `**topic:**` swallow the prompt and options. MULTI-LINE
+  // keys are the rich explanation fields, always authored at the tail after
+  // the options; they may span paragraphs, lists, and tables so an explanation
+  // can render as real markdown. For all-single-line content the two passes
+  // produce exactly the same result as the previous single-line parser.
+  const SINGLE_LINE_KEYS =
+    "difficulty|type|topic|answer|hint_nudge|hint_strategy|hint_setup|related_reading|subchapter|skill|trap_type|est_time_seconds|prerequisite"
+  const MULTI_LINE_KEYS = "explanation|fastest_path|common_trap|takeaway|mistake_[a-z]"
+  const ALL_KEYS = `${SINGLE_LINE_KEYS}|${MULTI_LINE_KEYS}`
   const meta: Record<string, string> = {}
-  for (const match of block.matchAll(metaRegex)) {
+  // Single-line fields: value is the remainder of the line (original behavior).
+  const singleLineRegex = new RegExp(
+    `\\*\\*(${SINGLE_LINE_KEYS}):\\*\\*\\s*([^\\n]*)`,
+    "gi"
+  )
+  for (const match of block.matchAll(singleLineRegex)) {
     const key = match[1].toLowerCase()
-    if (!meta[key]) {
-      meta[key] = match[2].trim()
-    }
+    if (!meta[key]) meta[key] = match[2].trim()
+  }
+  // Multi-line fields: capture lazily up to the next `**field:**` marker at the
+  // start of a line, or the end of the block. First occurrence wins.
+  const multiLineRegex = new RegExp(
+    `\\*\\*(${MULTI_LINE_KEYS}):\\*\\*[ \\t]*([\\s\\S]*?)\\s*(?=\\n\\*\\*(?:${ALL_KEYS}):\\*\\*|$)`,
+    "gi"
+  )
+  for (const match of block.matchAll(multiLineRegex)) {
+    const key = match[1].toLowerCase()
+    if (!meta[key]) meta[key] = match[2].trim()
   }
   // Progressive hints — optional. Authors can add any subset of
   // `**hint_nudge:**`, `**hint_strategy:**`, `**hint_setup:**` to a
@@ -210,11 +259,11 @@ function parseQuestionBlock(
   // per-question basis; surfaced through ParsedQuestion so analytics
   // (diagnostic report, error-log) can render structured feedback
   // without re-parsing the markdown.
-  const mistakeAnalysis: Partial<Record<"A" | "B" | "C" | "D" | "E", string>> = {}
-  for (const letter of ["a", "b", "c", "d", "e"] as const) {
+  const mistakeAnalysis: Partial<Record<"A" | "B" | "C" | "D" | "E" | "F", string>> = {}
+  for (const letter of ["a", "b", "c", "d", "e", "f"] as const) {
     const text = meta[`mistake_${letter}`]
     if (text && text.length > 0) {
-      mistakeAnalysis[letter.toUpperCase() as "A" | "B" | "C" | "D" | "E"] = text
+      mistakeAnalysis[letter.toUpperCase() as "A" | "B" | "C" | "D" | "E" | "F"] = text
     }
   }
   const hasMistakeAnalysis = Object.keys(mistakeAnalysis).length > 0
@@ -255,11 +304,49 @@ function parseQuestionBlock(
     .split("\n")
     .filter(
       (line) =>
-        !/^\*\*(difficulty|type|topic|answer|explanation|hint_nudge|hint_strategy|hint_setup|fastest_path|common_trap|takeaway|related_reading|mistake_[abcde]|subchapter|skill|trap_type|est_time_seconds|prerequisite)/i.test(
+        !/^\*\*(difficulty|type|topic|answer|explanation|hint_nudge|hint_strategy|hint_setup|fastest_path|common_trap|takeaway|related_reading|mistake_[a-z]|subchapter|skill|trap_type|est_time_seconds|prerequisite)/i.test(
           line.trim()
         )
     )
   let prompt = promptLines.join("\n").replace(/^\n+/, "").replace(/\n+$/, "").trim()
+
+  // Continued questions in flat Table-Analysis / Graphics-Interpretation sets
+  // open with a pointer line such as "Same table as Q1." / "Same graph as Q3."
+  // / "Same scatter plot as Q5." Those questions inherit the shared table or
+  // chart through `context` (assembled in parseQuestionFile), so the pointer is
+  // redundant on screen — strip it so only the question-specific text remains.
+  // Guarded by `context` so it never touches a standalone or lead question; the
+  // "Same … as Q<n>" shape doesn't occur in RC/MSR prompts that also carry
+  // context.
+  if (context) {
+    prompt = prompt
+      .replace(/^\s*Same\s+[^\n]*?\bas\s+Q\d+\b[^\n]*(?:\n+|$)/i, "")
+      .trim()
+  }
+
+  // ---------- Graphics Interpretation chart block ----------
+  // GI questions carry their chart as a fenced ```chart JSON block. Parse it
+  // into a ChartSpec and strip it from the prompt so QuestionChart renders
+  // the graphic instead of leaving raw JSON in the question text.
+  let chartSpec: ChartSpec | undefined
+  const chartMatch = prompt.match(/```chart\s*\n([\s\S]*?)\n```/)
+  if (chartMatch) {
+    try {
+      const parsed = JSON.parse(chartMatch[1]) as Partial<ChartSpec>
+      if (
+        parsed &&
+        typeof parsed.type === "string" &&
+        Array.isArray(parsed.data) &&
+        parsed.data.length > 0
+      ) {
+        chartSpec = parsed as ChartSpec
+      }
+    } catch {
+      // Malformed chart JSON — leave chartSpec undefined; the rest of the
+      // prompt still renders so the question isn't lost.
+    }
+    prompt = prompt.replace(chartMatch[0], "").replace(/\n{3,}/g, "\n\n").trim()
+  }
 
   // ---------- Two-Part Analysis table detection ----------
   // TPA questions have a pipe table in the prompt instead of - A) through - E)
@@ -297,23 +384,32 @@ function parseQuestionBlock(
         options.push(...rows)
 
         // Parse the answer string to find the correct row index for each column.
-        // Answer format: "Key1 = Value1, Key2 = Value2" or "Key1 = Value1; Key2 = Value2"
+        // Answer format: "Key1 = Value1, Key2 = Value2" or "Key1 = Value1; Key2 = Value2".
+        // Split on ";" or on a "," that begins a new "key = value" pair. The
+        // lookahead `[^,]*=` matches when the next comma-delimited segment
+        // contains "=", which (a) splits even when the key starts with a digit
+        // (e.g. "70% solution = 4") and (b) does NOT split inside values that
+        // carry their own commas (e.g. "$60,000", whose inner segment "000" has
+        // no "=" before the next comma).
         const answerRaw = meta.answer ?? ""
-        const answerParts = answerRaw.split(/;\s*|,\s*(?=[A-Za-z].*=)/)
+        const answerParts = answerRaw.split(/;\s*|,\s*(?=[^,]*=)/)
         const correctIndices: number[] = []
         for (const part of answerParts) {
           const eqIdx = part.indexOf("=")
           if (eqIdx === -1) continue
           const value = part.slice(eqIdx + 1).trim().replace(/^["']|["']$/g, "")
           const normalizedValue = value.toLowerCase()
-          const rowIdx = rows.findIndex((row) => {
-            const normalizedRow = row.toLowerCase()
-            return (
-              normalizedRow === normalizedValue ||
-              normalizedRow.startsWith(normalizedValue) ||
-              normalizedValue.startsWith(normalizedRow)
-            )
-          })
+          // Prefer an exact (normalized) row match. Only fall back to prefix
+          // matching when no row equals the value, so that a value like "55"
+          // resolves to the row "55" rather than the row "5" (whose prefix it
+          // shares); likewise "4,000" must not collapse onto "4".
+          let rowIdx = rows.findIndex((row) => row.toLowerCase() === normalizedValue)
+          if (rowIdx === -1) {
+            rowIdx = rows.findIndex((row) => {
+              const normalizedRow = row.toLowerCase()
+              return normalizedRow.startsWith(normalizedValue) || normalizedValue.startsWith(normalizedRow)
+            })
+          }
           if (rowIdx !== -1) correctIndices.push(rowIdx)
         }
         twoPartCorrectAnswers =
@@ -343,6 +439,7 @@ function parseQuestionBlock(
     rawBody: block.trim(),
     twoPartColumns,
     twoPartCorrectAnswers,
+    chartSpec,
     fastestPath: meta.fastest_path || undefined,
     mistakeAnalysis: hasMistakeAnalysis ? mistakeAnalysis : undefined,
     commonTrap: meta.common_trap || undefined,
@@ -354,6 +451,31 @@ function parseQuestionBlock(
     estTimeSeconds,
     prerequisite,
   }
+}
+
+/**
+ * Extract the shared reference material from the *lead* question of a flat
+ * `## Qn (Set N — Title)` set (Table Analysis, Graphics Interpretation). In
+ * these files the lead question carries the table or chart description inline,
+ * sitting between the `## Qn` header line and the first `**field:**` metadata
+ * marker. The "continued" questions in the same set only say "Same table as
+ * Q1." and have no data of their own, so they inherit this block as `context`.
+ *
+ * Returns the trimmed reference (description + any pipe table), or undefined
+ * when nothing precedes the metadata.
+ */
+function extractFlatSetReference(block: string): string | undefined {
+  const headerMatch = block.match(/^##\s+Q\d+[^\n]*/m)
+  if (!headerMatch) return undefined
+  const afterHeader = block.slice(headerMatch.index! + headerMatch[0].length)
+  // The reference ends at the first metadata field. `difficulty`/`type`/`topic`
+  // always lead the metadata block in these files; matching any structural key
+  // keeps this robust if the order ever changes.
+  const metaMatch = afterHeader.match(
+    /^\*\*(?:difficulty|type|topic|answer):\*\*/im
+  )
+  const ref = (metaMatch ? afterHeader.slice(0, metaMatch.index) : afterHeader).trim()
+  return ref.length > 0 ? ref : undefined
 }
 
 function parseQuestionFile(filePath: string): ParsedQuestion[] {
@@ -370,6 +492,11 @@ function parseQuestionFile(filePath: string): ParsedQuestion[] {
   // time we hit a new `## Passage N:` or `## Set N:` header; carried forward
   // to every `### Qn` block until the next header.
   let currentContext: string | undefined = undefined
+  // Running shared reference for flat `## Qn (Set N — Title)` sets (TA, GI).
+  // Set when a lead question is seen; consumed by the set's "continued"
+  // questions. Kept separate from `currentContext` (grouped RC/MSR) because the
+  // two formats never co-occur in one file but the parser is shared.
+  let flatSetReference: string | undefined = undefined
   for (const block of blocks) {
     // If this block opens a new group, capture the context prose (everything
     // before the first `### Qn` in the block) and reset the running context.
@@ -381,6 +508,26 @@ function parseQuestionFile(filePath: string): ParsedQuestion[] {
 
     if (!/^#{2,3}\s+Q\d+/m.test(block)) continue
 
+    // Flat "## Qn (Set N — Title[, continued])" sets used by Table Analysis and
+    // Graphics Interpretation. Accepts both numbered ("Set 1 — …") and
+    // unnumbered ("Set — …") headers. The lead question holds the table/chart
+    // inline (it renders everywhere, including the tutor, which only sees the
+    // prompt); each continued question inherits that reference as `context`.
+    let contextForBlock = currentContext
+    const flatSetMatch = block.match(/^##\s+Q\d+\s*\(Set\b([^)]*)\)/m)
+    if (flatSetMatch) {
+      if (/continued/i.test(flatSetMatch[1])) {
+        contextForBlock = flatSetReference
+      } else {
+        flatSetReference = extractFlatSetReference(block)
+        contextForBlock = undefined
+      }
+    } else if (!groupHeaderMatch) {
+      // A standalone `## Qn` (no Set marker) ends any running flat-set
+      // reference so it can't leak into later unrelated standalone questions.
+      flatSetReference = undefined
+    }
+
     // For grouped formats, strip the context prefix so parseQuestionBlock sees
     // only the question. For simple `## Qn` blocks, the block is unchanged.
     const questionOnly = (() => {
@@ -389,7 +536,7 @@ function parseQuestionFile(filePath: string): ParsedQuestion[] {
       return firstQuestionIdx === -1 ? block : block.slice(firstQuestionIdx)
     })()
 
-    const question = parseQuestionBlock(questionOnly, section, topic, fileSlug, currentContext)
+    const question = parseQuestionBlock(questionOnly, section, topic, fileSlug, contextForBlock)
     if (question) parsed.push(question)
   }
   return parsed
@@ -588,8 +735,14 @@ export interface ChapterProblemSet {
 export interface ParsedChapter {
   slug: string
   title: string
-  section: Section
+  /** "General" is reserved for the cross-section welcome chapter at the top
+   *  of the guided path; everything else is a real exam section. */
+  section: Section | "General"
   estimatedMinutes: number
+  /** Approximate reading length in pages, derived from the section word count
+   *  (~400 words/page). Shown in the UI instead of a time estimate so students
+   *  read at their own pace rather than racing an implied clock. */
+  estimatedPages: number
   prerequisites: string[]
   summary?: string
   sections: ChapterSection[]
@@ -599,7 +752,7 @@ export interface ParsedChapter {
 interface ChapterFrontmatter {
   slug: string
   title: string
-  section: Section
+  section: Section | "General"
   estimated_minutes: number
   prerequisites?: string[]
   summary?: string
@@ -686,17 +839,102 @@ function parseChapterFile(filepath: string): ParsedChapter | null {
       questionIds: fm.problem_sets![d]!.question_ids,
     }))
 
+  // Reading length in pages from the section prose (~400 words/page), so the UI
+  // can show "~N pages" rather than a time estimate that pressures students.
+  const wordCount = sections.reduce(
+    (sum, s) => sum + (s.body ? s.body.trim().split(/\s+/).filter(Boolean).length : 0),
+    0
+  )
+  const estimatedPages = Math.max(1, Math.round(wordCount / 400))
+
   return {
     slug: fm.slug,
     title: fm.title,
     section: fm.section,
     estimatedMinutes: fm.estimated_minutes,
+    estimatedPages,
     prerequisites: fm.prerequisites ?? [],
     summary: fm.summary,
     sections,
     problemSets,
   }
 }
+
+// Recommended cross-section learning path. Eases students in from the
+// simplest foundations (signed numbers, fractions, the strategy methods),
+// then rotates Quant -> Verbal -> DI so every section is built in parallel,
+// progressing easy -> hard within each section, with the advanced and
+// timing chapters last. This is the single source of truth for global
+// chapter order: it drives the guided-path chapters page, per-chapter
+// practice grouping, and chapter prev/next navigation. Any chapter not
+// listed here falls to the end (alphabetical) so new files never disappear.
+const CHAPTER_PATH_ORDER: string[] = [
+  "gmat-welcome",
+  "quant-section-intro",
+  "quant-05-order-and-signed-numbers",
+  "quant-06-fractions-decimals",
+  "quant-07-gcf-lcm-units-digits",
+  "verbal-section-intro",
+  "verbal-01-foundations",
+  "quant-01-backsolving",
+  "quant-02-plugging-in-numbers",
+  "quant-03-estimation",
+  "di-section-intro",
+  "di-foundations",
+  "quant-04-answer-choice-tactics",
+  "quant-08-even-odd-integer-properties",
+  "verbal-02-cr-argument-structure",
+  "quant-09-divisibility-factors",
+  "quant-10-primes-remainders",
+  "data-sufficiency",
+  "quant-11-exponent-rules",
+  "quant-12-roots-radicals",
+  "verbal-03-cr-assumption",
+  "quant-13-linear-equations-systems",
+  "quant-14-quadratics-factoring",
+  "table-analysis",
+  "quant-15-inequalities-absolute-value",
+  "quant-16-functions-sequences",
+  "verbal-04-cr-strengthen",
+  "quant-17-translating-word-problems",
+  "quant-18-ratios-proportions",
+  "graphics-interpretation",
+  "quant-19-percents",
+  "quant-20-mixtures-weighted-averages",
+  "verbal-05-cr-weaken",
+  "quant-21-rate-time-distance",
+  "quant-22-work-rate",
+  "two-part-analysis",
+  "quant-23-statistics",
+  "quant-28-classic-word-problems",
+  "verbal-06-cr-inference",
+  "quant-29-sets-venn",
+  "quant-24-counting-basics",
+  "multi-source-reasoning",
+  "quant-25-permutations-combinations",
+  "verbal-07-cr-evaluate",
+  "quant-26-restrictions-advanced-counting",
+  "quant-27-probability",
+  "verbal-08-cr-flaw",
+  "verbal-13-rc-reading-process",
+  "verbal-09-cr-paradox",
+  "verbal-14-rc-main-idea",
+  "verbal-10-cr-boldface",
+  "verbal-15-rc-detail",
+  "verbal-11-cr-complete",
+  "verbal-16-rc-inference",
+  "verbal-12-cr-answer-traps",
+  "verbal-17-rc-application",
+  "verbal-18-rc-function",
+  "verbal-19-rc-attitude",
+  "verbal-20-rc-answer-traps",
+  "quant-30-timing",
+  "verbal-21-mixed-timing",
+  "di-timing-mixed",
+]
+const CHAPTER_PATH_RANK = new Map(
+  CHAPTER_PATH_ORDER.map((slug, i) => [slug, i])
+)
 
 export function getAllChapters(): ParsedChapter[] {
   const chaptersDir = path.join(CONTENT_ROOT, "chapters")
@@ -707,11 +945,191 @@ export function getAllChapters(): ParsedChapter[] {
     const chapter = parseChapterFile(path.join(chaptersDir, file))
     if (chapter) out.push(chapter)
   }
-  return out
+  return out.sort((a, b) => {
+    const ra = CHAPTER_PATH_RANK.get(a.slug) ?? Number.MAX_SAFE_INTEGER
+    const rb = CHAPTER_PATH_RANK.get(b.slug) ?? Number.MAX_SAFE_INTEGER
+    return ra !== rb ? ra - rb : a.slug.localeCompare(b.slug)
+  })
 }
 
 export function getChapterBySlug(slug: string): ParsedChapter | null {
   return getAllChapters().find((c) => c.slug === slug) ?? null
+}
+
+// ---------- Per-chapter practice tests ----------
+
+export interface PracticeTest {
+  /** Self-describing session slug, e.g. "ch-quant-08-even-odd-integer-properties-t1". */
+  id: string
+  /** Display label, e.g. "Test 1". */
+  label: string
+  questionIds: string[]
+  count: number
+  difficultyMix: { easy: number; medium: number; hard: number }
+  estimatedMinutes: number
+}
+
+export interface PracticeChapterGroup {
+  chapterSlug: string
+  chapterTitle: string
+  section: Section
+  /** Global chapter order (index in getAllChapters) for stable display order. */
+  order: number
+  tests: PracticeTest[]
+  /** True for in-scope content chapters with no question bank yet (RC, MSR). */
+  comingSoon: boolean
+}
+
+const DIFFICULTY_RANK: Record<Difficulty, number> = {
+  Beginner: 0,
+  Intermediate: 1,
+  Advanced: 2,
+}
+const CHAPTER_TEST_SLUG_RE = /^ch-(.+)-t(\d+)$/
+
+function estimatePracticeMinutes(questions: ParsedQuestion[]): number {
+  const seconds = questions.reduce((sum, q) => sum + (q.estTimeSeconds ?? 90), 0)
+  return Math.max(1, Math.ceil(seconds / 60))
+}
+
+let practiceChapterGroupsCache: PracticeChapterGroup[] | null = null
+
+/**
+ * Build the per-chapter practice tests for the Practice page.
+ *
+ * Each in-scope chapter's questions are gathered (problem_sets pins first, then
+ * keyword routing by subtopic via practice-tests-map), ordered easy->hard, and
+ * dealt round-robin into N tests sized by the section cap (Quant 18, Verbal/DI
+ * 10). N grows as the bank grows. Chapters with no bank yet but listed in
+ * COMING_SOON_CHAPTERS are emitted with `comingSoon: true` and no tests;
+ * method/foundations/timing chapters are omitted entirely.
+ */
+export function getPracticeChapterGroups(): PracticeChapterGroup[] {
+  if (practiceChapterGroupsCache) return practiceChapterGroupsCache
+
+  const chapters = getAllChapters()
+  const questions = getAllQuestions()
+  const chapterExists = new Set(chapters.map((c) => c.slug))
+
+  // 1. Pins from problem_sets win (curated seed). First chapter wins on conflict.
+  const pin = new Map<string, string>()
+  for (const ch of chapters) {
+    for (const ps of ch.problemSets) {
+      for (const qid of ps.questionIds) {
+        if (!pin.has(qid)) pin.set(qid, ch.slug)
+      }
+    }
+  }
+
+  // 2. Assign each question to exactly one chapter.
+  const isHidden = (slug: string) =>
+    OMITTED_CHAPTERS.has(slug) || COMING_SOON_CHAPTERS.has(slug)
+  const assigned = new Map<string, ParsedQuestion[]>()
+  for (const q of questions) {
+    let chapterSlug = pin.get(q.id) ?? null
+    // Ignore a pin to a hidden chapter so the sampler question routes to its
+    // real topic chapter instead of being stranded.
+    if (chapterSlug && isHidden(chapterSlug)) chapterSlug = null
+    if (!chapterSlug) chapterSlug = resolveChapterAssignment(q.setSlug, q.subtopic).chapter
+    if (!chapterSlug || !chapterExists.has(chapterSlug) || isHidden(chapterSlug)) continue
+    const list = assigned.get(chapterSlug)
+    if (list) list.push(q)
+    else assigned.set(chapterSlug, [q])
+  }
+
+  // 3. Build groups in chapter (file) order.
+  const groups: PracticeChapterGroup[] = []
+  chapters.forEach((chRaw, order) => {
+    if (OMITTED_CHAPTERS.has(chRaw.slug)) return
+    // The welcome chapter ("General") is always omitted above; everything that
+    // reaches the allocator is a real exam-section chapter.
+    if (chRaw.section === "General") return
+    const ch = chRaw as ParsedChapter & { section: Section }
+    const pool = assigned.get(ch.slug) ?? []
+    if (pool.length === 0) {
+      if (COMING_SOON_CHAPTERS.has(ch.slug)) {
+        groups.push({
+          chapterSlug: ch.slug,
+          chapterTitle: ch.title,
+          section: ch.section,
+          order,
+          tests: [],
+          comingSoon: true,
+        })
+      }
+      return
+    }
+
+    // Order easy->hard; stable tiebreak by source file + question number.
+    const sorted = [...pool].sort((a, b) => {
+      const d = DIFFICULTY_RANK[a.difficulty] - DIFFICULTY_RANK[b.difficulty]
+      if (d !== 0) return d
+      if (a.setSlug !== b.setSlug) return a.setSlug.localeCompare(b.setSlug)
+      return a.number - b.number
+    })
+
+    // Choose N so no test exceeds the cap; prefer fewer, fuller tests.
+    const cap = TEST_CAPS[ch.section]
+    let n = Math.max(1, Math.round(sorted.length / cap))
+    while (Math.ceil(sorted.length / n) > cap) n++
+
+    // Deal round-robin from the difficulty-sorted pool so each test gets a mix.
+    const buckets: ParsedQuestion[][] = Array.from({ length: n }, () => [])
+    sorted.forEach((q, i) => buckets[i % n].push(q))
+
+    const tests: PracticeTest[] = buckets.map((bucket, i) => {
+      const test = [...bucket].sort(
+        (a, b) => DIFFICULTY_RANK[a.difficulty] - DIFFICULTY_RANK[b.difficulty]
+      )
+      const mix = { easy: 0, medium: 0, hard: 0 }
+      for (const q of test) {
+        if (q.difficulty === "Beginner") mix.easy++
+        else if (q.difficulty === "Advanced") mix.hard++
+        else mix.medium++
+      }
+      return {
+        id: `ch-${ch.slug}-t${i + 1}`,
+        label: `Test ${i + 1}`,
+        questionIds: test.map((q) => q.id),
+        count: test.length,
+        difficultyMix: mix,
+        estimatedMinutes: estimatePracticeMinutes(test),
+      }
+    })
+
+    groups.push({
+      chapterSlug: ch.slug,
+      chapterTitle: ch.title,
+      section: ch.section,
+      order,
+      tests,
+      comingSoon: false,
+    })
+  })
+
+  practiceChapterGroupsCache = groups
+  return groups
+}
+
+/** Parse a chapter-test slug `ch-<chapterSlug>-t<n>` -> { chapterSlug, testIndex (1-based) }, or null. */
+export function parseChapterTestSlug(
+  slug: string
+): { chapterSlug: string; testIndex: number } | null {
+  const m = slug.match(CHAPTER_TEST_SLUG_RE)
+  if (!m) return null
+  const testIndex = parseInt(m[2], 10)
+  if (!Number.isFinite(testIndex) || testIndex < 1) return null
+  return { chapterSlug: m[1], testIndex }
+}
+
+/** Resolve a chapter-test slug to its test (with questionIds), or null. */
+export function getChapterTest(slug: string): PracticeTest | null {
+  const parsed = parseChapterTestSlug(slug)
+  if (!parsed) return null
+  const group = getPracticeChapterGroups().find(
+    (g) => g.chapterSlug === parsed.chapterSlug
+  )
+  return group?.tests[parsed.testIndex - 1] ?? null
 }
 
 /**

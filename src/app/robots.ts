@@ -7,7 +7,7 @@ import type { MetadataRoute } from "next"
  * preserve crawl budget for the marketing pages that actually rank.
  */
 const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://zakariangmat.com"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.zakariangmat.com"
 ).replace(/\/$/, "")
 
 export default function robots(): MetadataRoute.Robots {
@@ -25,10 +25,8 @@ export default function robots(): MetadataRoute.Robots {
           "/api/",
           "/chapters",
           "/dashboard",
-          "/diagnostic",
           "/error-log",
           "/learn",
-          "/lessons",
           "/mock",
           "/offline",
           "/onboarding",

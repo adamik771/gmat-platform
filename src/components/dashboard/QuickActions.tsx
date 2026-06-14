@@ -6,7 +6,7 @@ const actions = [
   {
     label: "Continue Studying",
     description: "Pick up where you left off",
-    href: "/lessons",
+    href: "/chapters",
     icon: BookOpen,
     primary: true,
   },
@@ -27,7 +27,7 @@ const actions = [
   {
     label: "Take Mock Exam",
     description: "Full timed practice",
-    href: "/test-builder",
+    href: "/mock",
     icon: ClipboardList,
     primary: false,
   },

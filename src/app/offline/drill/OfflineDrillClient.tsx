@@ -13,6 +13,8 @@ import {
 } from "lucide-react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import rehypeCaretSup from "@/lib/rehype-caret-sup"
+import QuestionChart from "@/components/shared/QuestionChart"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
 import {
   loadReviewQueue,
@@ -348,14 +350,16 @@ export default function OfflineDrillClient() {
             color: "#C0C0C0",
           }}
         >
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
             {current.context}
           </ReactMarkdown>
         </div>
       )}
 
+      {current.chartSpec && <QuestionChart spec={current.chartSpec} />}
+
       <div className="mb-5 text-[15px] leading-[1.7] text-[#F0F0F0]">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
           {current.prompt}
         </ReactMarkdown>
       </div>
@@ -431,7 +435,7 @@ export default function OfflineDrillClient() {
           >
             Explanation
           </p>
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
             {current.explanation}
           </ReactMarkdown>
         </div>

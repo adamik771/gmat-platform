@@ -20,7 +20,7 @@ export interface Profile {
 }
 
 export type SubscriptionStatus = "active" | "canceled" | "past_due" | "trialing" | "inactive"
-export type SubscriptionTier = "self_study" | "self_study_plus" | "coaching" | "intensive"
+export type SubscriptionTier = "self_study" | "self_study_guaranteed" | "coaching" | "intensive"
 
 export interface Subscription {
   id: string
@@ -73,7 +73,6 @@ export type QuestionType =
   | "Data Sufficiency"
   | "Critical Reasoning"
   | "Reading Comprehension"
-  | "Sentence Correction"
   | "Data Insights"
   | "Multi-Source Reasoning"
   | "Table Analysis"

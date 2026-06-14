@@ -3,7 +3,7 @@
 import { Suspense, useState } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
-import { Eye, EyeOff, ArrowRight, Loader2, AlertCircle, ShieldCheck } from "lucide-react"
+import { Eye, EyeOff, ArrowRight, Loader2, AlertCircle, ShieldCheck, KeyRound } from "lucide-react"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
 
 /**
@@ -13,6 +13,16 @@ import { createSupabaseBrowser } from "@/lib/supabase/browser"
  * redirect.
  */
 const ALLOWED_REDIRECTS = new Set(["/pricing", "/dashboard"])
+
+/**
+ * Invite-only gate. When NEXT_PUBLIC_SIGNUP_GATED=true the form requires an
+ * access code and routes signup through the server (/api/signup), which
+ * validates the code against the server-only SIGNUP_ACCESS_CODE and creates
+ * the account via the service role. Off by default — the normal anon
+ * `supabase.auth.signUp` path below is unchanged. Build-time inlined, so a
+ * deploy/rebuild is needed after flipping it.
+ */
+const SIGNUP_GATED = process.env.NEXT_PUBLIC_SIGNUP_GATED === "true"
 
 export default function SignupPage() {
   // useSearchParams triggers a client-side bailout, so static prerender
@@ -32,7 +42,7 @@ function SignupFallback() {
           className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
           style={{ color: "#C9A84C" }}
         >
-          7-Day Free Trial
+          Free Access
         </p>
         <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
           Begin the{" "}
@@ -41,7 +51,7 @@ function SignupFallback() {
           </span>
         </h1>
         <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
-          Full access for 7 days. No credit card needed.
+          Full access. No credit card needed.
         </p>
       </div>
     </div>
@@ -54,6 +64,7 @@ function SignupForm() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [accessCode, setAccessCode] = useState("")
 
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -64,8 +75,57 @@ function SignupForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setLoading(true)
     setError("")
+
+    // Enforce the 8-char minimum the helper text promises (the reset-password
+    // flow already does; signup was relying on Supabase's weaker 6-char default).
+    // Runs before both the gated and normal paths below.
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters.")
+      return
+    }
+
+    setLoading(true)
+
+    // Invite-only path: the server validates the access code and creates the
+    // account (service role, email auto-confirmed); we then sign in to get a
+    // session. Keeps the secret code server-side and stays enforceable even
+    // if the /signup URL is shared.
+    if (SIGNUP_GATED) {
+      let data: { ok?: boolean; error?: string } = {}
+      try {
+        const res = await fetch("/api/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, password, accessCode }),
+        })
+        data = await res.json().catch(() => ({}))
+        if (!res.ok) {
+          setError(data.error ?? "Could not create your account.")
+          setLoading(false)
+          return
+        }
+      } catch {
+        setError("Network error. Please try again.")
+        setLoading(false)
+        return
+      }
+
+      const supabase = createSupabaseBrowser()
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
+      if (signInError) {
+        setError(signInError.message)
+        setLoading(false)
+        return
+      }
+
+      router.push(redirectTarget)
+      router.refresh()
+      return
+    }
 
     const supabase = createSupabaseBrowser()
     const { error: authError } = await supabase.auth.signUp({
@@ -94,7 +154,7 @@ function SignupForm() {
           className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
           style={{ color: "#C9A84C" }}
         >
-          7-Day Free Trial
+          Free Access
         </p>
         <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
           Begin the{" "}
@@ -103,7 +163,7 @@ function SignupForm() {
           </span>
         </h1>
         <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
-          Full access for 7 days. No credit card needed.
+          Full access. No credit card needed.
         </p>
       </div>
 
@@ -125,6 +185,31 @@ function SignupForm() {
             >
               <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
               <span className="flex-1 leading-relaxed">{error}</span>
+            </div>
+          )}
+
+          {SIGNUP_GATED && (
+            <div>
+              <label htmlFor="signup-access-code" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-2">
+                Access Code
+              </label>
+              <div className="relative">
+                <KeyRound className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#555555]" />
+                <input
+                  id="signup-access-code"
+                  type="text"
+                  value={accessCode}
+                  onChange={(e) => setAccessCode(e.target.value)}
+                  required
+                  autoComplete="off"
+                  spellCheck={false}
+                  placeholder="Your invite code"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
+                />
+              </div>
+              <p className="text-[11px] text-[#555555] mt-1">
+                Zakarian GMAT is invite-only. Enter the code from your invite.
+              </p>
             </div>
           )}
 
@@ -169,6 +254,7 @@ function SignupForm() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                minLength={8}
                 placeholder="••••••••"
                 className="w-full px-4 py-3 pr-11 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
               />
@@ -204,7 +290,7 @@ function SignupForm() {
               </>
             ) : (
               <>
-                Start free trial
+                Start Free
                 <ArrowRight className="w-4 h-4" />
               </>
             )}

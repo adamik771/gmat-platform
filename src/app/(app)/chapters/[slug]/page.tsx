@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react"
 import {
   getAllQuestions,
   getChapterBySlug,
+  getPracticeChapterGroups,
   type ChapterProblemSet,
   type ChapterSection,
   type ParsedQuestion,
@@ -43,6 +44,13 @@ export default async function ChapterDetailPage({
   const { slug } = await params
   const chapter = getChapterBySlug(slug)
   if (!chapter) notFound()
+
+  // The chapter's first practice test (`ch-<slug>-t1`), for the "Practice this
+  // chapter" CTA. Null for chapters with no bank yet (method/foundations/timing,
+  // or coming-soon) — the reader falls back to the /practice hub so it never 404s.
+  const firstPracticeTestSlug =
+    getPracticeChapterGroups().find((g) => g.chapterSlug === chapter.slug)
+      ?.tests[0]?.id ?? null
 
   // Build a single id → ParsedQuestion map once so section lookups are O(1).
   const byId = new Map<string, ParsedQuestion>()
@@ -173,7 +181,7 @@ export default async function ChapterDetailPage({
   }
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
+    <div className="max-w-[92rem] mx-auto space-y-6">
       <Link
         href="/chapters"
         className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.22em] font-semibold text-[#888888] hover:text-[#C9A84C] transition-colors"
@@ -186,13 +194,14 @@ export default async function ChapterDetailPage({
         slug={chapter.slug}
         title={chapter.title}
         section={chapter.section}
-        estimatedMinutes={chapter.estimatedMinutes}
+        estimatedPages={chapter.estimatedPages}
         summary={chapter.summary ?? null}
         sections={sections}
         problemSets={problemSets}
         targetScore={targetScore}
         initialProgress={initialProgress}
         weakestSection={weakestSection}
+        firstPracticeTestSlug={firstPracticeTestSlug}
       />
     </div>
   )

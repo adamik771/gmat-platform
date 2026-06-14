@@ -2,6 +2,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import {
   AlertTriangle,
   ArrowLeft,
@@ -19,6 +20,8 @@ import {
 import { createSupabaseServer } from "@/lib/supabase/server"
 import {
   getAllQuestions,
+  getChapterTest,
+  getQuestionsBySetSlug,
   type ParsedQuestion,
 } from "@/lib/content"
 import { getCurriculumOutline } from "@/lib/curriculum-outline"
@@ -133,7 +136,7 @@ export default async function QuestionReviewPage({
         aria-hidden
       />
       <div className="relative max-w-4xl mx-auto space-y-12">
-        <BackBar lastSession={lastAttempt?.sessionSlug ?? null} />
+        <BackBar backHref={sessionBackHref(lastAttempt?.sessionSlug ?? null)} />
 
         <Hero question={question} attempt={lastAttempt} />
 
@@ -186,7 +189,28 @@ export default async function QuestionReviewPage({
 // Subcomponents
 // ============================================================
 
-function BackBar({ lastSession }: { lastSession: string | null }) {
+/**
+ * Route a stored practice_sessions.slug to the surface that can actually
+ * serve it. Only set slugs / chapter-test slugs / "custom" resolve on
+ * /practice/session — mock/review/diagnostic slugs 404 there, so they go
+ * back to their own hubs instead. Unknown slugs return null (link hidden).
+ */
+function sessionBackHref(rawSlug: string | null): string | null {
+  if (!rawSlug) return null
+  const slug = rawSlug.replace(/^session-/, "")
+  if (slug === "custom") return "/practice/session/custom"
+  if (/^mock-/.test(slug)) return "/mock/report"
+  if (/^diagnostic/.test(slug)) return "/mock"
+  const review = slug.match(/^review-(quant|verbal|di)\b/i)
+  if (review) return `/review/${review[1].toLowerCase()}`
+  if (/^review-/.test(slug)) return "/review"
+  if (getChapterTest(slug) !== null || getQuestionsBySetSlug(slug).length > 0) {
+    return `/practice/session/${slug}`
+  }
+  return null
+}
+
+function BackBar({ backHref }: { backHref: string | null }) {
   return (
     <div className="flex items-center justify-between gap-4">
       <Link
@@ -196,9 +220,9 @@ function BackBar({ lastSession }: { lastSession: string | null }) {
         <ArrowLeft className="w-3 h-3" />
         Back to spaced review
       </Link>
-      {lastSession && (
+      {backHref && (
         <Link
-          href={`/practice/session/${lastSession.replace(/^session-/, "")}`}
+          href={backHref}
           className="text-[12px] tracking-tight text-[#888888] hover:text-[#F0F0F0] transition-colors"
         >
           ← Back to session
@@ -273,7 +297,7 @@ function Hero({
           className="p-5 rounded-2xl border border-white/[0.06] bg-[#0A0A0A] mb-5 prose prose-invert max-w-none"
           style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.02)" }}
         >
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
             {question.context}
           </ReactMarkdown>
         </div>
@@ -284,7 +308,7 @@ function Hero({
         style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)" }}
       >
         <div className="prose prose-invert max-w-none mb-5">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
             {question.prompt}
           </ReactMarkdown>
         </div>
@@ -431,7 +455,7 @@ function ExplanationCard({ question }: { question: ParsedQuestion }) {
   return (
     <Card eyebrow="Full explanation" icon={Sparkles} accent="#C9A84C">
       <div className="prose prose-invert max-w-none">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
           {question.explanation || "_No written explanation on file._"}
         </ReactMarkdown>
       </div>

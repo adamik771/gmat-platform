@@ -179,7 +179,7 @@ export async function POST(request: Request) {
   const finalIds = shuffle(resolved)
 
   const section: Section =
-    current?.section ??
+    (current && current.section !== "General" ? current.section : null) ??
     deriveSection(finalIds.map((id) => qIndex.get(id)!).filter(Boolean))
 
   const label = current ? `Mixed Review: ${current.title}` : "Mixed Review"

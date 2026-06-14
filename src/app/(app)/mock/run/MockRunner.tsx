@@ -15,7 +15,10 @@ import {
 } from "lucide-react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import PacingBadge from "@/components/shared/PacingBadge"
+import QuestionChart from "@/components/shared/QuestionChart"
+import type { ChartSpec } from "@/lib/chart-spec"
 import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
@@ -42,6 +45,8 @@ export interface MockQuestion {
   explanation: string
   twoPartColumns?: string[]
   twoPartCorrectAnswers?: number[]
+  /** Graphics Interpretation: structured chart rendered by QuestionChart. */
+  chartSpec?: ChartSpec
 }
 
 export interface MockSectionQuestions {
@@ -839,7 +844,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
               Passage
             </p>
             <div className="text-sm text-[#C0C0C0] leading-relaxed max-h-64 overflow-y-auto">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
                 {question.context}
               </ReactMarkdown>
             </div>
@@ -858,8 +863,10 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
           </span>
         </div>
 
+        {question.chartSpec && <QuestionChart spec={question.chartSpec} />}
+
         <div className="text-[15px] text-[#F0F0F0] leading-relaxed">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{question.prompt}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>{question.prompt}</ReactMarkdown>
         </div>
 
         {question.twoPartColumns ? (

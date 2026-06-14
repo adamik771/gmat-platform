@@ -8,7 +8,7 @@ import {
   getCurriculumOutline,
   type OutlineEntry,
 } from "./curriculum-outline"
-import { TOPIC_TO_CHAPTER } from "./topic-chapter-map"
+import { TOPIC_TO_SET } from "./topic-chapter-map"
 import type { Section } from "@/types"
 
 /**
@@ -276,7 +276,9 @@ function liftQuestions(
       reason: isSaved
         ? `You saved this for review.`
         : buildQuestionReason(c, conf, mistakeType),
-      href: `/practice/session/${TOPIC_TO_CHAPTER[c.topic] ?? c.topic.toLowerCase()}`,
+      // Question ids are `${fileSlug}-q${n}` — stripping the -qN suffix
+      // recovers the exact bank set slug /practice/session resolves.
+      href: `/practice/session/${c.questionId.replace(/-q\d+$/, "")}`,
     }
   })
 }
@@ -421,7 +423,8 @@ async function buildConceptItems(
       daysUntilDue: Math.round(daysUntilDue * 10) / 10,
       priority: Math.round(priority * 10) / 10,
       reason: buildConceptReason(accuracy, b.total, dominantMistakeType),
-      href: `/practice/session/${TOPIC_TO_CHAPTER[b.topic] ?? b.topic.toLowerCase()}`,
+      // Set slug, not chapter slug — chapter slugs 404 on /practice/session.
+      href: `/practice/session/${TOPIC_TO_SET[b.topic] ?? b.topic.toLowerCase()}`,
     })
   }
   return items
@@ -725,7 +728,8 @@ export async function buildSpacedReviewQueue(
         savedForReview: true,
         priority: SAVED_FOR_REVIEW_BONUS,
         reason: `You saved this for review.`,
-        href: `/practice/session/${TOPIC_TO_CHAPTER[q.topic] ?? q.topic.toLowerCase()}`,
+        // q.id is `${fileSlug}-q${n}` — the prefix IS the resolvable set slug.
+        href: `/practice/session/${q.id.replace(/-q\d+$/, "")}`,
       })
     }
   }

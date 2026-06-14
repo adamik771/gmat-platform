@@ -68,6 +68,9 @@ interface ContextOptions {
   /** Has the student already done a session today? Avoids over-recommending
    *  the same action when they've just finished it. */
   doneTodayKinds?: ActionKind[]
+  /** Number of practice sessions logged today. Drives the rest rule:
+   *  after a heavy day with the queue clear, stopping is the optimal move. */
+  sessionsCompletedToday?: number
 }
 
 const DONE_TODAY_PENALTY = 25 // shrink a kind's score if it was just done
@@ -83,17 +86,17 @@ export function computeNextBestAction(
   const candidates: NextBestAction[] = []
   const doneToday = new Set(options.doneTodayKinds ?? [])
 
-  // ---- Rule 1: Diagnostic not yet taken ----
+  // ---- Rule 1: No baseline score yet ----
   if (signals.diagnosticTotalScore === null) {
     candidates.push({
       kind: "take-diagnostic",
-      title: "Take the diagnostic",
+      title: "Set your baseline — Official Practice Exam 1",
       rationale:
-        "No diagnostic on record yet. Without it, every other recommendation is a guess. 30 questions across all three sections seeds the rest of the plan.",
-      href: "/diagnostic",
-      estimatedMinutes: 50,
+        "No baseline score on record yet. Take Official Practice Exam 1 on mba.com under full exam conditions and enter the score — without it, every other recommendation is a guess.",
+      href: "/mock",
+      estimatedMinutes: 135,
       score: 1000, // overrides everything else
-      evidence: ["No diagnostic"],
+      evidence: ["No baseline exam"],
     })
   }
 
@@ -216,6 +219,42 @@ export function computeNextBestAction(
       estimatedMinutes: 165,
       score: 480,
       evidence: ["No mock yet"],
+    })
+  }
+
+  // ---- Rule 8: Rest — the day's work is done ----
+  // The only rule that recommends doing nothing. Memory consolidates in
+  // the gaps between study, not by piling on volume: distributed practice
+  // reliably beats massing the same hours (Cepeda et al. 2006), and the
+  // spacing engine needs the overnight gap to do its job. Ambitious
+  // students over-study; naming "stop now" as the optimal move is a
+  // serious recommendation, not a soft one.
+  //
+  // Fires only when the day is genuinely finished: 3+ sessions logged,
+  // diagnostic on record, the spaced queue is essentially clear (<5 due),
+  // and the exam is not imminent. Gating on a clear queue means we never
+  // tell a student to rest while retrieval windows are closing. The score
+  // scales gently with volume so a heavier day rests with more conviction;
+  // it sits below the time-sensitive actions (overdue backlog, imminent
+  // mock) but above evergreen content suggestions — those keep until
+  // tomorrow, when the student is sharper.
+  const sessionsToday = options.sessionsCompletedToday ?? 0
+  const examImminent =
+    daysUntilExam !== null && daysUntilExam !== undefined && daysUntilExam <= 7
+  if (
+    sessionsToday >= 3 &&
+    signals.diagnosticTotalScore !== null &&
+    signals.pendingReviewTotal < 5 &&
+    !examImminent
+  ) {
+    candidates.push({
+      kind: "rest",
+      title: "Rest — the work is done for today",
+      rationale: `${sessionsToday} sessions logged today and your review queue is clear. Memory consolidates in the gaps between study — distributed practice beats massing the same hours into one sitting. Stopping now lets the spacing work in your favour; come back tomorrow sharper.`,
+      href: "/analytics",
+      estimatedMinutes: 0,
+      score: Math.min(790, 700 + sessionsToday * 10),
+      evidence: [`${sessionsToday} sessions today`, "queue clear"],
     })
   }
 

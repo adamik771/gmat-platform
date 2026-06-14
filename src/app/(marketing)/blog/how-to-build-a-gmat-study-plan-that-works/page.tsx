@@ -111,7 +111,7 @@ export default function PostPage() {
           <H3>Failure 1 — Topic-by-topic, in textbook order</H3>
           <p>
             The default plan most students build looks like: week 1, Algebra;
-            week 2, Geometry; week 3, Word Problems; and so on through every
+            week 2, Number Properties; week 3, Word Problems; and so on through every
             topic in every section. It&apos;s neat, it&apos;s comforting, and
             it has nothing to do with where your score will move fastest.
           </p>
@@ -144,7 +144,7 @@ export default function PostPage() {
             Most plans are written once and never revised. You set a
             16-week schedule in week one, and by week six the schedule and
             your actual weaknesses have nothing in common. The plan keeps
-            telling you to do Geometry while your real bottleneck is the
+            telling you to do Number Properties while your real bottleneck is the
             CR question type you keep missing in mocks.
           </p>
           <p>
@@ -427,24 +427,24 @@ export default function PostPage() {
 
           <H2>The platform</H2>
           <p>
-            Zakarian GMAT was built around exactly this loop. The
-            diagnostic generates a per-topic and per-difficulty weakness
-            map in 30 questions. The adaptive study plan re-prioritises
+            Zakarian GMAT was built around exactly this loop. You baseline
+            with an official practice exam on mba.com and enter your
+            section scores. The adaptive study plan re-prioritises
             your week based on your latest practice data, with explicit
             today / next / then framing. The spaced-review queue resurfaces
             past misses on a schedule that works. The error log keeps your
             mistakes sortable so the patterns surface. If you&apos;d rather
-            not run the loop in a spreadsheet for six months, the diagnostic
+            not run the loop in a spreadsheet for six months, the account
             is free and the plan builds itself.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
-              href="/free-diagnostic"
+              href="/signup"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Take the free diagnostic
+              Create a free account
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

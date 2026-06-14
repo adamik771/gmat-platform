@@ -396,18 +396,18 @@ export default function ScoreConverterClient() {
           </h2>
           <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-6 max-w-xl">
             Once you know what Focus score you&apos;re aiming at, the next
-            move is finding out where you actually sit. The 30-question
-            diagnostic produces a real readiness band on the Focus scale,
-            plus a per-topic weakness map you can build a study plan
-            around.
+            move is finding out where you actually sit. Take an official
+            practice exam on mba.com as your baseline, enter your section
+            scores on the platform, and it builds a per-topic study plan
+            around the gap.
           </p>
           <div className="flex flex-wrap gap-3 mb-7">
             <Link
-              href="/free-diagnostic"
+              href="/signup"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Take the Focus diagnostic
+              Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

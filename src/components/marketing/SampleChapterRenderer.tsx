@@ -1,6 +1,7 @@
 import Link from "next/link"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import {
   ArrowRight,
   BookOpen,
@@ -36,7 +37,7 @@ interface SampleChapterRendererProps {
  * via `getChapterBySlug`, renders `publicSectionIds` in full as
  * markdown, and shows the rest as locked. Cross-links to sibling
  * samples are surfaced in two places: the top banner (compact text
- * link) and the bottom CTA (button alongside the trial signup).
+ * link) and the bottom CTA (button alongside the signup CTA).
  *
  * Pages using this should be a thin wrapper that supplies the chapter
  * slug + public section IDs + the sibling list. Keeping the renderer
@@ -133,7 +134,7 @@ export default function SampleChapterRenderer({
             <span className="text-[#444444]">·</span>
             <span>Chapter</span>
             <span className="text-[#444444]">·</span>
-            <span>{chapter.estimatedMinutes} min full read</span>
+            <span>{chapter.estimatedPages} pages</span>
           </div>
           <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-5">
             {chapter.title}
@@ -173,13 +174,13 @@ export default function SampleChapterRenderer({
                 </h2>
                 {section.intro && (
                   <div className="text-[#888888] italic mb-5">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
                       {section.intro}
                     </ReactMarkdown>
                   </div>
                 )}
                 <div>
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
                     {section.body}
                   </ReactMarkdown>
                 </div>
@@ -266,7 +267,7 @@ export default function SampleChapterRenderer({
           />
           <div className="relative">
             <p className="text-[10px] uppercase tracking-[0.22em] text-[#C9A84C] font-semibold mb-2">
-              What you just read is one chapter of seventeen
+              What you just read is one of more than fifty chapters
             </p>
             <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-4">
               The full curriculum is{" "}
@@ -274,15 +275,15 @@ export default function SampleChapterRenderer({
                 className="font-display-italic"
                 style={{ color: "#C9A84C" }}
               >
-                17 chapters
+                50+ chapters
               </span>{" "}
               like this one.
             </h2>
             <p className="text-[15px] text-[#C0C0C0] leading-relaxed max-w-xl mb-6">
-              Plus the diagnostic, the adaptive study plan, the error log
-              with six-tag taxonomy, the spaced review queue, and the full
-              question bank tagged by topic and difficulty. Seven days of
-              full access on the trial &mdash; no card required.
+              Plus the adaptive study plan, the error log with six-tag
+              taxonomy, the spaced review queue, and the full question bank
+              tagged by topic and difficulty. Full access, free while in beta
+              &mdash; no card required.
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <Link
@@ -290,7 +291,7 @@ export default function SampleChapterRenderer({
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
                 style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
               >
-                Start free trial
+                Start Free
                 <ArrowRight className="w-4 h-4" />
               </Link>
               {siblings.map((s) => (
@@ -308,10 +309,10 @@ export default function SampleChapterRenderer({
                 </Link>
               ))}
               <Link
-                href="/free-diagnostic"
+                href="/signup"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border border-white/[0.1] text-[#C0C0C0] hover:border-white/[0.18] hover:text-[#F0F0F0] transition-all duration-200"
               >
-                Take the free diagnostic
+                Create a free account
               </Link>
             </div>
             <div className="flex items-center gap-2 mt-5 text-[12px] text-[#888888]">

@@ -9,6 +9,7 @@ import SettingsClient, {
 // previous visual defaults so returning users see the same thing they
 // would have pre-persistence.
 const DEFAULT_PREFS: NotificationPrefs = {
+  exams: true,
   streak: true,
   weekly: true,
   tips: false,
@@ -17,7 +18,7 @@ const DEFAULT_PREFS: NotificationPrefs = {
 
 const PLAN_LABELS: Record<string, string> = {
   self_study: "Self-Study",
-  self_study_plus: "Self-Study Plus",
+  self_study_guaranteed: "Self-Study + Mentorship",
   coaching: "Coaching",
   intensive: "Intensive",
 }

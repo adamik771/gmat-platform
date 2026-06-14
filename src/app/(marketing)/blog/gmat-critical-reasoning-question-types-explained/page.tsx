@@ -453,17 +453,17 @@ export default function PostPage() {
             tagging vocabulary the guide recommends &mdash; type
             recognition, prediction skip, premise dispute, comparison
             error &mdash; so the patterns surface fast. If you want to
-            run the loop without building it from scratch, the
-            diagnostic is free.
+            run the loop without building it from scratch, the sample
+            chapter is free.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
-              href="/free-diagnostic"
+              href="/sample-chapter"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Take the free diagnostic
+              Read the free sample chapter
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

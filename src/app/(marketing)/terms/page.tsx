@@ -48,7 +48,7 @@ export default function TermsPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="Plans, payment, and trials">
+      <LegalSection title="Plans and payment">
         <p>
           Plans, prices, and inclusions are described on the{" "}
           <Link href="/pricing">pricing page</Link>. By purchasing a plan you
@@ -56,9 +56,10 @@ export default function TermsPage() {
           method for the listed amount.
         </p>
         <p>
-          Where the Platform offers a free trial, the trial period and what is
-          included are described at signup. We do not require a credit card to
-          start a trial unless explicitly stated.
+          The Platform is currently free to use, and creating an account does
+          not require a credit card. If a paid plan or a time-limited trial is
+          introduced, its terms and duration will be described before you are
+          charged.
         </p>
         <p>
           All prices are listed in U.S. dollars unless otherwise stated. You
@@ -134,14 +135,12 @@ export default function TermsPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="Score guarantee">
+      <LegalSection title="No guarantee of results">
         <p>
-          The score guarantee, where included with the Intensive plan, is
-          described on the <Link href="/pricing">pricing page</Link> and the{" "}
-          <Link href="/refund">Refund Policy</Link>. The guarantee is
-          conditional on your completion of the program as designed
-          (attendance, study plan adherence, and assignment completion). We do
-          not guarantee any specific score for any other plan.
+          We do not guarantee any specific score, score improvement, or
+          admissions outcome. Your results depend on your own preparation,
+          effort, and individual circumstances. Refund terms for each plan are
+          described in our <Link href="/refund">Refund Policy</Link>.
         </p>
       </LegalSection>
 

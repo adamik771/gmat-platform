@@ -26,7 +26,7 @@ import {
 } from "./curriculum-outline"
 import { getQuestionsByIds, type ParsedQuestion } from "./content"
 import { totalPercentile } from "./score-percentiles"
-import { TOPIC_TO_CHAPTER } from "./topic-chapter-map"
+import { TOPIC_TO_CHAPTER, TOPIC_TO_SET } from "./topic-chapter-map"
 import type { Difficulty, QuestionType, Section } from "@/types"
 
 /**
@@ -111,8 +111,11 @@ export interface WeakSubskillSignal {
   misses: number
   /** Most recent miss timestamp (ms epoch). */
   lastSeenMs: number | null
-  /** Topic-chapter slug for drilling, when known. */
+  /** Chapter slug for "read the chapter" links, when known. */
   topicSlug: string | null
+  /** Question-bank set slug for drill links — the only slug family
+   *  /practice/session resolves (chapter slugs 404 there). */
+  setSlug: string | null
 }
 
 export interface TrapSignal {
@@ -156,6 +159,7 @@ export interface MicroDrillActivity {
 
 export interface QuestionSetActivity {
   kind: "question-set"
+  /** Question-bank set slug — rendered as /practice/session/{topicSlug}. */
   topicSlug: string
   topic: string
   section: Section
@@ -393,6 +397,7 @@ export async function collectAdaptiveSignals(
         misses: 0,
         lastSeenMs: null,
         topicSlug: TOPIC_TO_CHAPTER[topic] ?? null,
+        setSlug: TOPIC_TO_SET[topic] ?? null,
       } as WeakSubskillSignal)
     ex.severity += severityDelta
     if (!ex.sources.includes(source)) ex.sources.push(source)
@@ -569,7 +574,28 @@ export async function collectAdaptiveSignals(
     .slice(0, 8)
 
   // ---- Score baselines ----
-  const diagnosticTotalScore = diagnosticReport?.totalScore ?? null
+  // Baseline total: the latest official mba.com practice-exam score the
+  // student entered wins; the legacy in-app diagnostic total remains as a
+  // fallback for accounts that predate the official-exam flow.
+  const metaOfficialScores = (userMetadata as
+    | { official_exam_scores?: unknown }
+    | null
+    | undefined)?.official_exam_scores
+  const officialTotals = Array.isArray(metaOfficialScores)
+    ? metaOfficialScores
+        .filter(
+          (e): e is { date: string; total: number } =>
+            typeof (e as { date?: unknown })?.date === "string" &&
+            typeof (e as { total?: unknown })?.total === "number",
+        )
+        .sort((a, b) => a.date.localeCompare(b.date))
+    : []
+  const latestOfficialTotal =
+    officialTotals.length > 0
+      ? officialTotals[officialTotals.length - 1].total
+      : null
+  const diagnosticTotalScore =
+    latestOfficialTotal ?? diagnosticReport?.totalScore ?? null
   const diagnosticPercentile = diagnosticTotalScore !== null
     ? totalPercentile(diagnosticTotalScore)
     : null
@@ -1180,16 +1206,16 @@ function activitiesForDay(ctx: DayCtx): AdaptiveActivity[] {
   if (wantPractice) {
     // For DI-weak profile, prefer the top DI weakness when one exists.
     const diWeakness = isDIWeak
-      ? signals.topWeakSubskills.find((s) => s.section === "DI" && s.topicSlug)
+      ? signals.topWeakSubskills.find((s) => s.section === "DI" && s.setSlug)
       : null
     const w =
       diWeakness ??
       signals.topWeakSubskills[(weekIndex + day) % Math.max(1, signals.topWeakSubskills.length)]
-    if (w && w.topicSlug) {
+    if (w && w.setSlug) {
       const hardLeaning = isAdvanced || w.misses >= 5
       activities.push({
         kind: "question-set",
-        topicSlug: w.topicSlug,
+        topicSlug: w.setSlug,
         topic: w.topic,
         section: w.section,
         difficultyMix: hardLeaning ? "hard" : "mixed",

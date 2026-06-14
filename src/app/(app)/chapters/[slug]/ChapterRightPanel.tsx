@@ -1,15 +1,22 @@
 import Link from "next/link"
-import { ArrowRight, Target, RotateCcw, Sparkles } from "lucide-react"
+import { ArrowRight, Lightbulb, Target, RotateCcw, Sparkles } from "lucide-react"
 
 interface Props {
-  section: "Quant" | "Verbal" | "DI"
-  estimatedMinutes: number
+  section: "Quant" | "Verbal" | "DI" | "General"
+  estimatedPages: number
   totalSections: number
   completedSections: number
   hasProblemSets: boolean
   /** When set, the call-to-action surfaces the next-unread section. */
   nextUnreadTitle: string | null
   nextUnreadAnchorId: string | null
+  /** The chapter's anchor concept (Mental model / summary), pinned at the
+   *  top of the rail as a reference while reading. */
+  bigIdea?: string | null
+  /** Session slug of this chapter's first practice test (`ch-<slug>-t1`), or
+   *  null when the chapter has no bank yet. The practice CTA falls back to the
+   *  /practice hub when null so the link never 404s. */
+  firstPracticeTestSlug?: string | null
 }
 
 /**
@@ -27,12 +34,14 @@ interface Props {
  */
 export default function ChapterRightPanel({
   section,
-  estimatedMinutes,
+  estimatedPages,
   totalSections,
   completedSections,
   hasProblemSets,
   nextUnreadTitle,
   nextUnreadAnchorId,
+  bigIdea,
+  firstPracticeTestSlug,
 }: Props) {
   const pct =
     totalSections > 0
@@ -41,14 +50,46 @@ export default function ChapterRightPanel({
   // Remaining time scales linearly with unread sections.
   const remainingFraction =
     totalSections > 0 ? (totalSections - completedSections) / totalSections : 1
-  const remainingMinutes = Math.max(0, Math.round(estimatedMinutes * remainingFraction))
+  const remainingPages = Math.max(0, Math.round(estimatedPages * remainingFraction))
 
-  // Practice queue picks a topic-appropriate slug — chapter section drives it.
-  const practiceSlug =
-    section === "Quant" ? "quant" : section === "Verbal" ? "verbal" : "di"
+  // Deep-link to this chapter's first practice test; fall back to the Practice
+  // hub when the chapter has no bank yet (so the CTA never 404s).
+  const practiceHref = firstPracticeTestSlug
+    ? `/practice/session/${firstPracticeTestSlug}`
+    : "/practice"
 
   return (
     <div className="space-y-4 text-[13px]">
+      {/* The big idea — chapter's anchor concept, pinned for reference */}
+      {bigIdea && (
+        <div
+          className="rounded-xl border p-5"
+          style={{
+            backgroundColor: "var(--read-gold-soft)",
+            borderColor: "var(--read-gold-strong)",
+          }}
+        >
+          <div className="flex items-center gap-2 mb-2.5">
+            <Lightbulb
+              className="w-3.5 h-3.5 flex-shrink-0"
+              style={{ color: "var(--read-gold)" }}
+            />
+            <p
+              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+              style={{ color: "var(--read-gold)" }}
+            >
+              The big idea
+            </p>
+          </div>
+          <p
+            className="text-[13px] leading-[1.6]"
+            style={{ color: "var(--read-text)" }}
+          >
+            {bigIdea}
+          </p>
+        </div>
+      )}
+
       {/* Progress dial card */}
       <div
         className="rounded-xl border p-5"
@@ -93,7 +134,7 @@ export default function ChapterRightPanel({
           className="text-[11px] mt-3"
           style={{ color: "var(--read-text-faint)" }}
         >
-          ~{remainingMinutes} min{remainingMinutes === 1 ? "" : "s"} left
+          ~{remainingPages} page{remainingPages === 1 ? "" : "s"} left
         </p>
       </div>
 
@@ -198,7 +239,7 @@ export default function ChapterRightPanel({
           When you&apos;re ready
         </p>
         <Link
-          href={`/practice/session/${practiceSlug}`}
+          href={practiceHref}
           className="group flex items-center gap-3 px-5 py-3 transition-colors"
           style={{ color: "var(--read-text-body)" }}
         >
@@ -206,7 +247,9 @@ export default function ChapterRightPanel({
             className="w-4 h-4 flex-shrink-0"
             style={{ color: "var(--read-text-faint)" }}
           />
-          <span className="flex-1">Practice {section}</span>
+          <span className="flex-1">
+            {section === "General" ? "Start practicing" : `Practice ${section}`}
+          </span>
           <ArrowRight
             className="w-3 h-3 opacity-50 transition-all group-hover:opacity-100 group-hover:translate-x-0.5"
             style={{ color: "var(--read-gold)" }}

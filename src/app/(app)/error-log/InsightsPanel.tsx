@@ -15,7 +15,7 @@ import type {
   RecurringWeakness,
   TrapFrequency,
 } from "@/lib/mistake-insights"
-import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
+import { TOPIC_TO_CHAPTER, TOPIC_TO_SET } from "@/lib/topic-chapter-map"
 
 /**
  * InsightsPanel — the auto-classification dashboard for the error log.
@@ -111,6 +111,7 @@ export default function InsightsPanel({
                   key={`${w.section}-${w.subskill}`}
                   weakness={w}
                   chapterSlug={chapterSlug}
+                  drillSlug={TOPIC_TO_SET[w.topic]}
                 />
               )
             })}
@@ -302,9 +303,12 @@ function PriorityFixRow({ fix, ordinal }: { fix: PriorityFix; ordinal: number })
 function WeaknessCard({
   weakness: w,
   chapterSlug,
+  drillSlug,
 }: {
   weakness: RecurringWeakness
   chapterSlug?: string
+  /** Question-bank set slug — the only slug family /practice/session resolves. */
+  drillSlug?: string
 }) {
   const sectionColors: Record<string, { bg: string; text: string }> = {
     Quant: { bg: "rgba(201,168,76,0.10)", text: "#C9A84C" },
@@ -350,30 +354,34 @@ function WeaknessCard({
           </span>
         )}
       </div>
-      {chapterSlug && (
+      {(chapterSlug || drillSlug) && (
         <div className="flex items-center gap-2 mt-auto pt-2 border-t border-white/[0.05]">
-          <Link
-            href={`/chapters/${chapterSlug}`}
-            className="inline-flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-lg font-semibold tracking-tight transition-colors"
-            style={{
-              backgroundColor: "rgba(201,168,76,0.12)",
-              color: "#C9A84C",
-            }}
-          >
-            <BookOpen className="w-3 h-3" />
-            Read
-          </Link>
-          <Link
-            href={`/practice/session/${chapterSlug}`}
-            className="inline-flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-lg font-semibold tracking-tight transition-colors"
-            style={{
-              backgroundColor: "#C9A84C",
-              color: "#0A0A0A",
-            }}
-          >
-            <Target className="w-3 h-3" />
-            Drill
-          </Link>
+          {chapterSlug && (
+            <Link
+              href={`/chapters/${chapterSlug}`}
+              className="inline-flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-lg font-semibold tracking-tight transition-colors"
+              style={{
+                backgroundColor: "rgba(201,168,76,0.12)",
+                color: "#C9A84C",
+              }}
+            >
+              <BookOpen className="w-3 h-3" />
+              Read
+            </Link>
+          )}
+          {drillSlug && (
+            <Link
+              href={`/practice/session/${drillSlug}`}
+              className="inline-flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-lg font-semibold tracking-tight transition-colors"
+              style={{
+                backgroundColor: "#C9A84C",
+                color: "#0A0A0A",
+              }}
+            >
+              <Target className="w-3 h-3" />
+              Drill
+            </Link>
+          )}
         </div>
       )}
     </div>

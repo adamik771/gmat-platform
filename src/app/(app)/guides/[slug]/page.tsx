@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import { getAllGuides, getGuideBySlug } from "@/lib/content"
 import GuideReaderShell from "./GuideReaderShell"
 
@@ -51,7 +52,7 @@ export default async function GuideDetailPage({
 
   const article = (
     <ReactMarkdown
-      remarkPlugins={[remarkGfm]}
+      remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}
       components={{
         h1: ({ children, ...props }) => (
           <h1

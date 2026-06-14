@@ -32,7 +32,7 @@ export const DIAGNOSTIC_QUESTION_IDS: Record<Section, string[]> = {
   // -------- Quant (10): spans 9 topic files + 3 difficulty levels --------
   // Easy (3) — anchor topics: arithmetic, algebra, number properties
   // Medium (4) — exponents/roots, ratios/percents, rates/work, statistics
-  // Hard (3) — geometry, word problems, combinatorics
+  // Hard (3) — number properties, word problems, combinatorics
   Quant: [
     "arithmetic-q1", // Easy — fraction-decimal-percent baseline
     "algebra-q1", // Easy — linear equations recognition
@@ -41,7 +41,7 @@ export const DIAGNOSTIC_QUESTION_IDS: Record<Section, string[]> = {
     "ratios-percents-q11", // Medium — reverse percent (50% increase reverse)
     "rates-work-q12", // Medium — combined work, rate-vs-time trap
     "statistics-probability-q14", // Medium — mean shift via added value
-    "geometry-q16", // Hard — square inscribed in circle
+    "number-properties-q8", // Hard — smallest n with n² divisible by 72 (prime factorization)
     "word-problems-q22", // Hard — piecewise revenue optimization
     "combinatorics-q20", // Hard — restricted combinations
   ],

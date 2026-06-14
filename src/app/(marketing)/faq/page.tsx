@@ -9,7 +9,7 @@ import { faqPageLd } from "@/lib/structured-data"
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Frequently asked questions about Zakarian GMAT — the curriculum, scoring, the trial, the diagnostic, the score guarantee, billing, and the platform's specific approach for non-native speakers.",
+    "Frequently asked questions about Zakarian GMAT — the curriculum, scoring, getting started, baselining with official practice exams, billing, and the platform's specific approach for non-native speakers.",
   alternates: { canonical: "/faq" },
 }
 
@@ -55,37 +55,37 @@ const categories: FAQCategory[] = [
       {
         question: "Is the platform built for the GMAT Focus Edition specifically?",
         answer:
-          "Yes. Every section, every chapter, the diagnostic, the scoring scale (205-805), and the section ordering all target the GMAT Focus Edition. The legacy GMAT was retired in early 2024; Focus is the only version offered now and the only one we prep for.",
+          "Yes. Every section, every chapter, the scoring scale (205-805), and the section ordering all target the GMAT Focus Edition. The legacy GMAT was retired in early 2024; Focus is the only version offered now and the only one we prep for.",
       },
     ],
   },
   {
-    title: "The free trial and the diagnostic",
+    title: "Getting started and your baseline",
     items: [
       {
-        question: "What does the free trial include?",
+        question: "What do I get with a free account?",
         answer:
-          "Seven days of full access to everything: the 30-question diagnostic, all 17 chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
+          "Full access to everything: all 50+ chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
       },
       {
-        question: "Do I need a credit card to start the trial?",
+        question: "Do I need a credit card to sign up?",
         answer:
-          "No. The signup form asks for your name, email, and a password. No payment details are collected until you decide to upgrade.",
+          "No. The signup form asks for your name, email, and a password — no payment details required.",
       },
       {
-        question: "What happens after the 7-day trial?",
+        question: "Will my free access expire after a set number of days?",
         answer:
-          "If you don't upgrade, your account simply becomes inactive — there's nothing to cancel and no charge. Your study data is retained for 30 days in case you want to come back. After 30 days of inactivity, the account is deleted per the privacy policy.",
+          "No. There's no time-boxed trial — the platform is free to use while it's in beta, with no countdown and nothing to cancel. If paid plans are introduced later, any change to what's free will be made clear in advance.",
       },
       {
-        question: "Is the public diagnostic the same as the full diagnostic?",
+        question: "How does the platform know where I'm starting from?",
         answer:
-          "No. The public sampler at /free-diagnostic is 10 questions and gives you a per-section signal (Strong / Mixed / Needs work). The full diagnostic on the trial is 30 questions and produces a real readiness band on the 205-805 scale, plus a per-topic and per-difficulty heatmap that drives the adaptive study plan.",
+          "You baseline with an official practice exam from mba.com — the same interface and scoring algorithm as the real test — and enter your section scores on the site. The platform turns that baseline into your adaptive study plan, and your mock-to-mock trend tracks progress from there.",
       },
       {
-        question: "Can I take the diagnostic without signing up?",
+        question: "Can I try the platform without signing up?",
         answer:
-          "Yes — the 10-question public sampler is at /free-diagnostic. You can also share the result. The full 30-question diagnostic with the per-topic breakdown requires the free trial signup.",
+          "Yes — the free sample chapter at /sample-chapter shows two full readings from the Verbal Foundations chapter, no signup required, with Quant and Data Insights samples one click away. Everything else, including the full chapters and question bank, requires a free account.",
       },
     ],
   },
@@ -103,16 +103,6 @@ const categories: FAQCategory[] = [
           "Most students see measurable improvement on mocks within 3-4 weeks of consistent daily practice. The biggest gains usually come between weeks 4 and 10, after the error log has enough data for patterns to surface.",
       },
       {
-        question: "What is the score guarantee?",
-        answer:
-          "The Intensive package includes a score guarantee. If you complete all 16 scheduled coaching sessions, follow the study plan consistently, complete all assigned mocks with debriefs, and don't hit your target score, you choose between a full refund or extended coaching at no cost. Full conditions are on the refund policy page.",
-      },
-      {
-        question: "Do you guarantee a specific score?",
-        answer:
-          "We guarantee you'll hit your target score IF you complete the Intensive program as designed. We can't guarantee outcomes for students who skip sessions, don't follow the study plan, or change their target score mid-program. The guarantee is conditional and the conditions are clearly spelled out.",
-      },
-      {
         question: "How does the GMAT Focus 205-805 scale compare to my old GMAT score?",
         answer:
           "The two scales are not directly comparable — GMAC deliberately offset them. Roughly: Focus 705 ≈ Old 730, Focus 695 ≈ Old 720, Focus 645 ≈ Old 680. Use the score converter at /score-converter for any specific score.",
@@ -125,12 +115,12 @@ const categories: FAQCategory[] = [
       {
         question: "How is the curriculum structured?",
         answer:
-          "Seventeen chapters covering every GMAT Focus topic across Quant, Verbal, and Data Insights. Each chapter has a pre-test (~2 questions), 6-9 reading sections with in-chapter recall checks, and a graded problem set across easy / medium / hard tiers.",
+          "50+ chapters covering every GMAT Focus topic across Quant, Verbal, and Data Insights. Each chapter has a pre-test (~2 questions), 6-9 reading sections with in-chapter recall checks, and a graded problem set across easy / medium / hard tiers.",
       },
       {
         question: "Can I skip chapters I already know?",
         answer:
-          "Yes — the chapter index is non-linear. The diagnostic identifies your weakest topics; the adaptive plan recommends those chapters first. You can read any chapter in any order.",
+          "Yes — the chapter index is non-linear. Your official practice-exam baseline identifies your weakest sections; the adaptive plan recommends those chapters first. You can read any chapter in any order.",
       },
       {
         question: "What is the adaptive study plan?",
@@ -145,7 +135,7 @@ const categories: FAQCategory[] = [
       {
         question: "Are mock exams included?",
         answer:
-          "Yes. Self-Study includes 3 mocks; Self-Study Plus includes 3; Coaching includes 5; Intensive includes unlimited. Each mock is a full-length 3-section simulation with a structured debrief tool.",
+          "Yes — every plan includes the full-length, three-section mock simulator with unlimited attempts and a structured debrief, plus a study plan built around the six official mba.com practice exams (which we recommend as your real score check). Coaching and Intensive add 1:1 review of your results.",
       },
     ],
   },
@@ -210,7 +200,7 @@ const categories: FAQCategory[] = [
       {
         question: "What happens to my account if I cancel a paid plan?",
         answer:
-          "Self-Study and Self-Study Plus are lifetime access — there's nothing to cancel. Coaching packages run for the program duration; you retain platform access during and after the program. If you cancel before completing the program, refund terms apply per the refund policy.",
+          "Self-Study and Self-Study + Mentorship are one-time purchases with a fixed access window (4 and 6 months) — there's nothing to cancel. Coaching packages run for the program duration. If you cancel before completing a coaching program, refund terms apply per the refund policy.",
       },
     ],
   },
@@ -230,7 +220,7 @@ const categories: FAQCategory[] = [
       {
         question: "What is your refund policy?",
         answer:
-          "Self-Study and Self-Study Plus include a 14-day money-back guarantee, no questions asked. Coaching is refundable in full before the first session and non-refundable after. Intensive is backed by the score guarantee — see /refund for the full conditions.",
+          "Every plan includes a 14-day money-back guarantee, no questions asked. Coaching and Intensive packages have additional terms once the program starts. See /refund for the full conditions of each.",
       },
       {
         question: "Are prices in USD?",
@@ -286,7 +276,7 @@ export default function FAQPage() {
           </h1>
           <p className="text-[16px] sm:text-[17px] text-[#C0C0C0] leading-relaxed max-w-xl mx-auto">
             {allItems.length} of the questions we hear most often — about the
-            curriculum, the trial, the diagnostic, the score guarantee,
+            curriculum, getting started, your baseline, billing,
             non-native speakers, and the AI tutor. If you don&apos;t find it
             here, book a free 20-minute call.
           </p>

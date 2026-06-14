@@ -1,4 +1,5 @@
 import type { ReviewCandidate } from "@/lib/review-queue"
+import type { ChartSpec } from "@/lib/chart-spec"
 import { idbGet, idbSet, idbClear } from "./indexed-db"
 
 /**
@@ -49,6 +50,9 @@ export interface CachedQuestion {
   correctAnswer: number
   correctAnswerLetter: string
   explanation: string
+  /** Graphics Interpretation chart, if any — so offline GI questions still
+   *  show their data (the chart is stripped out of `prompt` at parse time). */
+  chartSpec?: ChartSpec
 }
 
 export async function saveReviewQueue(

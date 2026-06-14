@@ -46,8 +46,13 @@ export default async function CustomSessionPage({
       correctAnswerLetter: q.correctAnswerLetter,
       explanation: q.explanation,
       hints: q.hints,
+      fastestPath: q.fastestPath,
+      commonTrap: q.commonTrap,
+      mistakeAnalysis: q.mistakeAnalysis,
+      takeaway: q.takeaway,
       twoPartColumns: q.twoPartColumns,
       twoPartCorrectAnswers: q.twoPartCorrectAnswers,
+      chartSpec: q.chartSpec,
     }))
 
   if (playable.length === 0) {

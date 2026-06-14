@@ -2,6 +2,12 @@ import Link from "next/link"
 import { AlertCircle, ArrowRight, CheckCircle2, Clock, RotateCcw } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import {
+  PAYWALL_ENABLED,
+  canAccess,
+  getPlanTierForUser,
+} from "@/lib/entitlements"
+import UpgradeGate from "@/components/shared/UpgradeGate"
+import {
   bucketBySection,
   getReviewQueue,
   SPACING_LADDER_DAYS,
@@ -43,6 +49,24 @@ export default async function ReviewPage() {
         />
       </div>
     )
+  }
+
+  // Paywall gate (no-op while PAYWALL_ENABLED is off).
+  if (PAYWALL_ENABLED) {
+    const tier = await getPlanTierForUser(supabase, user.id)
+    if (!canAccess(tier, "review-queue")) {
+      return (
+        <UpgradeGate
+          feature="The spaced-review queue"
+          blurb="A daily, spacing-aware queue that resurfaces your past misses at the right interval so the corrections actually stick — the retrieval engine behind durable score gains."
+          perks={[
+            "Daily spaced-retrieval queue built from your real misses",
+            "Priority by recency, repeat misses, and optimal spacing",
+            "Section-bucketed review sessions",
+          ]}
+        />
+      )
+    }
   }
 
   const flaggedQuestionIds = gatherFlaggedQuestionIds(user.user_metadata)
@@ -102,6 +126,7 @@ export default async function ReviewPage() {
       correctAnswer: q.correctAnswer,
       correctAnswerLetter: q.correctAnswerLetter,
       explanation: q.explanation,
+      chartSpec: q.chartSpec,
     }))
 
   return (

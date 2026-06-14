@@ -21,6 +21,7 @@ import {
 } from "lucide-react"
 import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
+import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import { cn } from "@/lib/utils"
 import MixedReviewCard from "@/components/shared/MixedReviewCard"
 import ReaderThemeToggle, { useReadingTheme } from "@/components/shared/ReaderThemeToggle"
@@ -599,23 +600,28 @@ export default function ChapterReader({
   slug,
   title,
   section,
-  estimatedMinutes,
+  estimatedPages,
   summary,
   sections,
   problemSets,
   targetScore,
   initialProgress,
   weakestSection,
+  firstPracticeTestSlug,
 }: {
   slug: string
   title: string
-  section: Section
-  estimatedMinutes: number
+  section: Section | "General"
+  estimatedPages: number
   summary: string | null
   sections: ReaderSection[]
   problemSets: ReaderProblemSet[]
   targetScore: number | null
   initialProgress?: unknown
+  /** Session slug of this chapter's first practice test (`ch-<slug>-t1`), or
+   *  null when the chapter has no bank yet. Drives the "Practice" CTA; null
+   *  falls back to the /practice hub so the link never 404s. */
+  firstPracticeTestSlug?: string | null
   /** Server-derived hint for returning students with practice history:
    *  the section in this chapter where their accuracy is meaningfully
    *  below the chapter's section-average. Null when the data is too
@@ -627,6 +633,27 @@ export default function ChapterReader({
     attempts: number
   } | null
 }) {
+  // The chapter's anchor concept for the reference rail: its authored
+  // "Mental model." callout, else a trimmed summary. No per-chapter work.
+  const bigIdea = useMemo(() => {
+    const body = sections.map((s) => s.body || "").join("\n")
+    const mm = body.match(/\*\*Mental model\.?\*\*\s*([^\n]+)/i)
+    let raw = (mm ? mm[1] : summary) || ""
+    raw = raw.replace(/\*\*/g, "").replace(/\*/g, "").replace(/`/g, "").trim()
+    if (!raw) return null
+    if (raw.length > 240) {
+      const cut = raw.slice(0, 240)
+      const stop = Math.max(
+        cut.lastIndexOf(". "),
+        cut.lastIndexOf("— "),
+        cut.lastIndexOf("? "),
+      )
+      raw = (stop > 120 ? cut.slice(0, stop + 1) : cut).trim()
+      if (!/[.!?…]$/.test(raw)) raw += "…"
+    }
+    return raw
+  }, [sections, summary])
+
   // Hydrate progress from localStorage after mount. SSR renders an empty
   // state (every question pristine, no sections marked read), then the
   // client useEffect fills it in with whichever source is more complete.
@@ -795,8 +822,8 @@ export default function ChapterReader({
               className="flex items-center gap-1.5 text-[11px] tracking-wide"
               style={{ color: "var(--read-text-faint)" }}
             >
-              <Clock className="w-3 h-3" />
-              {estimatedMinutes} min
+              <BookOpen className="w-3 h-3" />
+              {estimatedPages} pages
               {totalSections > 0 && (
                 <span style={{ color: "var(--read-text-faint)" }}>
                   {" "}· {totalSections} sections
@@ -932,8 +959,8 @@ export default function ChapterReader({
           <div
             className={
               focusMode
-                ? "max-w-3xl mx-auto"
-                : "lg:grid lg:grid-cols-[220px_minmax(0,1fr)_240px] lg:gap-x-10 lg:items-start"
+                ? "max-w-4xl mx-auto"
+                : "lg:grid lg:grid-cols-[210px_minmax(0,1fr)_290px] lg:gap-x-8 lg:items-start"
             }
           >
             {!focusMode && (
@@ -955,15 +982,21 @@ export default function ChapterReader({
             )}
 
             <div className="space-y-10 min-w-0">
-              {sections.map((s) => (
-                <SectionCard
-                  key={s.id}
-                  section={s}
-                  hydrated={hydrated}
-                  progress={progress}
-                  update={update}
-                />
-              ))}
+              {sections.map((s, i) => {
+                const next = sections[i + 1] ?? null
+                return (
+                  <SectionCard
+                    key={s.id}
+                    section={s}
+                    hydrated={hydrated}
+                    progress={progress}
+                    update={update}
+                    nextSectionId={next?.id ?? null}
+                    nextSectionTitle={next?.title ?? null}
+                    hasProblemSets={problemSets.length > 0}
+                  />
+                )
+              })}
 
               {problemSets.length > 0 && (
                 <div id="chapter-problem-sets" className="scroll-mt-6">
@@ -986,6 +1019,10 @@ export default function ChapterReader({
                     totalSections={totalSections}
                     problemSetCount={problemSets.length}
                     attemptedProblemSetCount={countAttemptedProblemSets(progress)}
+                    problemSetResults={progress.problemSetResults}
+                    sets={problemSets}
+                    targetScore={targetScore}
+                    firstPracticeTestSlug={firstPracticeTestSlug ?? null}
                   />
                 )}
             </div>
@@ -994,12 +1031,14 @@ export default function ChapterReader({
               <aside className="hidden lg:block sticky top-6 self-start">
                 <ChapterRightPanel
                   section={section}
-                  estimatedMinutes={estimatedMinutes}
+                  estimatedPages={estimatedPages}
                   totalSections={totalSections}
                   completedSections={completedSections}
                   hasProblemSets={problemSets.length > 0}
                   nextUnreadTitle={nextUnread?.title ?? null}
                   nextUnreadAnchorId={nextUnread?.id ?? null}
+                  bigIdea={bigIdea}
+                  firstPracticeTestSlug={firstPracticeTestSlug ?? null}
                 />
               </aside>
             )}
@@ -1080,11 +1119,9 @@ function HeroCta({
 }
 
 /**
- * Satisfying completion block surfaced at the bottom of the chapter
- * once the student has read every section AND attempted the end-of-
- * chapter problem sets (when present). Suggests two next moves —
- * topic-specific practice and the global review queue — plus a path
- * back to the chapter index.
+ * Completion block surfaced at the bottom of the chapter once every
+ * section has been read. Shows per-difficulty problem-set scores against
+ * the student's accuracy target, plus adaptive coaching copy and CTAs.
  */
 function ChapterCompletionCard({
   section,
@@ -1092,18 +1129,91 @@ function ChapterCompletionCard({
   totalSections,
   problemSetCount,
   attemptedProblemSetCount,
+  problemSetResults,
+  sets,
+  targetScore,
+  firstPracticeTestSlug,
 }: {
-  section: Section
+  section: Section | "General"
   title: string
   totalSections: number
   problemSetCount: number
   attemptedProblemSetCount: number
+  problemSetResults: ChapterProgress["problemSetResults"]
+  sets: ReaderProblemSet[]
+  targetScore: number | null
+  firstPracticeTestSlug: string | null
 }) {
-  const practiceSlug =
-    section === "Quant" ? "quant" : section === "Verbal" ? "verbal" : "di"
+  // Deep-link to this chapter's first practice test; fall back to the
+  // Practice hub when the chapter has no bank yet (so the CTA never 404s).
+  const practiceHref = firstPracticeTestSlug
+    ? `/practice/session/${firstPracticeTestSlug}`
+    : "/practice"
   const hasProblemSets = problemSetCount > 0
   const allSetsDone = hasProblemSets && attemptedProblemSetCount >= problemSetCount
   const noneAttempted = hasProblemSets && attemptedProblemSetCount === 0
+
+  // Build a score row per difficulty that exists in this chapter.
+  const setMap = new Map(sets.map((s) => [s.difficulty, s]))
+  type ScoreRow = {
+    difficulty: "easy" | "medium" | "hard"
+    accuracy: number | null
+    target: number
+    metTarget: boolean | null
+  }
+  const scoreRows: ScoreRow[] = (["easy", "medium", "hard"] as const)
+    .filter((d) => setMap.has(d))
+    .map((d) => {
+      const result = problemSetResults[d]
+      const ps = setMap.get(d)!
+      const target = resolveAccuracyTarget(ps.targetAccuracyByScore, targetScore)
+      const accuracy =
+        result && result.total > 0
+          ? Math.round((result.correct / result.total) * 100)
+          : null
+      return {
+        difficulty: d,
+        accuracy,
+        target,
+        metTarget: accuracy !== null ? accuracy >= target : null,
+      }
+    })
+
+  const attemptedRows = scoreRows.filter((r) => r.accuracy !== null)
+  const belowTargetRows = attemptedRows.filter((r) => r.metTarget === false)
+  const allAboveTarget = attemptedRows.length > 0 && belowTargetRows.length === 0
+
+  // Coaching copy keyed to problem-set performance.
+  let coachingCopy: React.ReactNode
+  if (noneAttempted) {
+    coachingCopy = (
+      <>
+        The reading is the easy part — retrieval is what locks it in.
+        Try a graded problem set next.
+      </>
+    )
+  } else if (allAboveTarget) {
+    coachingCopy = (
+      <>
+        Problem set performance is on target. Independent timed practice
+        is the highest-leverage next step — the patterns need to hold under
+        time pressure, not just in deliberate study.
+      </>
+    )
+  } else {
+    const weakest = belowTargetRows.reduce((min, r) =>
+      (r.accuracy ?? 100) < (min.accuracy ?? 100) ? r : min
+    )
+    const gap = weakest.target - (weakest.accuracy ?? 0)
+    coachingCopy = (
+      <>
+        The {weakest.difficulty} set is {gap}% below target. One more
+        focused session before moving on will compound better than advancing
+        with gaps at that difficulty.
+      </>
+    )
+  }
+
   return (
     <div
       className="relative overflow-hidden rounded-2xl border px-7 sm:px-10 py-9 sm:py-11"
@@ -1140,8 +1250,8 @@ function ChapterCompletionCard({
           {title}
         </h2>
         <p
-          className="text-[14px] mt-3 leading-[1.6] max-w-xl"
-          style={{ color: "var(--read-text-body)" }}
+          className="text-[13px] mt-3 leading-[1.6]"
+          style={{ color: "var(--read-text-muted)" }}
         >
           {totalSections} section{totalSections === 1 ? "" : "s"} read
           {hasProblemSets
@@ -1155,19 +1265,73 @@ function ChapterCompletionCard({
                 } attempted`
               : ` · ${attemptedProblemSetCount} of ${problemSetCount} graded problem sets attempted`
             : ""}
-          .{" "}
-          {noneAttempted ? (
-            <>
-              The reading is the easy part — retrieval is what locks it in.
-              Try a graded problem set next.
-            </>
-          ) : (
-            <>
-              The skill won&apos;t stick without retrieval — try a timed
-              drill or the spaced-review queue next.
-            </>
-          )}
         </p>
+
+        {/* Per-difficulty score grid — only visible when at least one set has been attempted */}
+        {hasProblemSets && attemptedRows.length > 0 && (
+          <div className="mt-5 flex flex-wrap gap-3">
+            {scoreRows.map(({ difficulty, accuracy, target, metTarget }) => (
+              <div
+                key={difficulty}
+                className="flex flex-col gap-1.5 px-4 py-3 rounded-xl border min-w-[88px]"
+                style={{
+                  backgroundColor: "var(--read-bg-inset)",
+                  borderColor:
+                    metTarget === true
+                      ? "rgba(62,207,142,0.22)"
+                      : metTarget === false
+                      ? "rgba(255,68,68,0.18)"
+                      : "var(--read-border)",
+                }}
+              >
+                <span
+                  className="text-[10px] uppercase tracking-[0.18em] font-semibold"
+                  style={{ color: "var(--read-text-faint)" }}
+                >
+                  {difficulty}
+                </span>
+                {accuracy !== null ? (
+                  <>
+                    <span
+                      className="text-[22px] font-semibold leading-none tracking-tight tabular-nums"
+                      style={{
+                        color:
+                          metTarget === true
+                            ? "var(--read-success)"
+                            : metTarget === false
+                            ? "#E07070"
+                            : "var(--read-text)",
+                      }}
+                    >
+                      {accuracy}%
+                    </span>
+                    <span
+                      className="text-[11px] leading-none"
+                      style={{ color: "var(--read-text-faint)" }}
+                    >
+                      target {target}%{metTarget === true ? " ✓" : ""}
+                    </span>
+                  </>
+                ) : (
+                  <span
+                    className="text-[20px] font-semibold leading-none"
+                    style={{ color: "var(--read-text-faint)" }}
+                  >
+                    —
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+
+        <p
+          className="text-[14px] mt-5 leading-[1.6] max-w-xl"
+          style={{ color: "var(--read-text-body)" }}
+        >
+          {coachingCopy}
+        </p>
+
         <div className="flex flex-wrap gap-3 mt-6">
           {noneAttempted ? (
             <a
@@ -1189,14 +1353,14 @@ function ChapterCompletionCard({
             </a>
           ) : (
             <Link
-              href={`/practice/session/${practiceSlug}`}
+              href={practiceHref}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold transition-all duration-200 hover:-translate-y-0.5"
               style={{
                 backgroundColor: "var(--read-gold)",
                 color: "var(--read-bg-inset)",
               }}
             >
-              Practice {section}
+              {section === "General" ? "Start practicing" : `Practice ${section}`}
               <ArrowRight className="w-3.5 h-3.5" aria-hidden />
             </Link>
           )}
@@ -1312,13 +1476,40 @@ function SectionCard({
   hydrated,
   progress,
   update,
+  nextSectionId,
+  nextSectionTitle,
+  hasProblemSets,
 }: {
   section: ReaderSection
   hydrated: boolean
   progress: ChapterProgress
   update: (u: (prev: ChapterProgress) => ChapterProgress) => void
+  nextSectionId: string | null
+  nextSectionTitle: string | null
+  hasProblemSets: boolean
 }) {
   const read = !!progress.sectionsRead[s.id]
+
+  // Where the "Continue" CTA sends the student once this section is read:
+  // the next section if there is one, otherwise the problem sets (the
+  // natural next step after the last reading section). Null only on the
+  // final section of a chapter with no problem sets — nothing follows.
+  const continueTarget = nextSectionId
+    ? { id: nextSectionId, label: nextSectionTitle ?? "the next section" }
+    : hasProblemSets
+      ? { id: "chapter-problem-sets", label: "the problem sets" }
+      : null
+
+  function handleContinue(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault()
+    if (!continueTarget) return
+    const el = document.getElementById(continueTarget.id)
+    if (!el) return
+    el.scrollIntoView({ behavior: "smooth", block: "start" })
+    if (typeof window !== "undefined") {
+      window.history.replaceState(null, "", `#${continueTarget.id}`)
+    }
+  }
 
   const icon =
     s.type === "pretest" ? (
@@ -1392,7 +1583,7 @@ function SectionCard({
                 className="w-4 h-4 flex-shrink-0 mt-1"
                 style={{ color: "var(--read-gold)" }}
               />
-              <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
                 {s.intro}
               </ReactMarkdown>
             </div>
@@ -1411,7 +1602,7 @@ function SectionCard({
 
         {s.body && (
           <div className="prose-chapter prose-chapter-dropcap">
-            <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
               {s.body}
             </ReactMarkdown>
           </div>
@@ -1469,6 +1660,30 @@ function SectionCard({
             <Check className="w-3.5 h-3.5" />
             Mark section complete
           </button>
+        )}
+
+        {/* Once read, replace the dead-end button with a forward CTA so the
+            student keeps moving through the chapter instead of navigating
+            back to the table of contents by hand. */}
+        {read && hydrated && continueTarget && (
+          <div className="flex items-center gap-3 flex-wrap">
+            <span
+              className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em]"
+              style={{ color: "var(--read-success)" }}
+            >
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              Section complete
+            </span>
+            <a
+              href={`#${continueTarget.id}`}
+              onClick={handleContinue}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
+              style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
+            >
+              Continue to {continueTarget.label}
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
         )}
       </div>
     </article>
@@ -1553,7 +1768,7 @@ function InlineQuestion({
 
       <div className="px-5 py-5 space-y-4">
         <div>
-          <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
             {q.prompt}
           </ReactMarkdown>
         </div>
@@ -1615,7 +1830,7 @@ function InlineQuestion({
                 </span>
                 <div className="flex-1 text-[14px]" style={{ color: "var(--read-text-body)" }}>
                   <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
+                    remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}
                     components={mdComponents}
                   >
                     {opt}
@@ -1721,7 +1936,7 @@ function PostSubmitReveal({
   state: QuestionProgress
 }) {
   const isCorrect = state.selected === question.correctAnswer
-  const [showExplanation, setShowExplanation] = useState(false)
+  const [showExplanation, setShowExplanation] = useState(!isCorrect)
 
   // Calibration hint — compare confidence vs correctness.
   const calibrationLabel =
@@ -1788,7 +2003,21 @@ function PostSubmitReveal({
             borderColor: "var(--read-border)",
           }}
         >
-          <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+          {!isCorrect && state.selected !== null && (
+            <div
+              className="flex items-center gap-2.5 text-[11px] mb-4 pb-3 border-b"
+              style={{ borderColor: "var(--read-border)" }}
+            >
+              <span style={{ color: "var(--read-error)" }}>
+                You chose {String.fromCharCode(65 + state.selected)}
+              </span>
+              <span style={{ color: "var(--read-text-faint)" }}>&middot;</span>
+              <span style={{ color: "var(--read-success)" }}>
+                Correct: {question.correctAnswerLetter}
+              </span>
+            </div>
+          )}
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
             {question.explanation}
           </ReactMarkdown>
           {state.selfExplanation.trim() && (
@@ -2126,7 +2355,7 @@ function ProblemSetRunner({
         ) : (
           <div className="px-6 py-6 space-y-4">
             <div>
-              <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
                 {current.prompt}
               </ReactMarkdown>
             </div>
@@ -2184,7 +2413,7 @@ function ProblemSetRunner({
                     </span>
                     <div className="flex-1 text-[14px]" style={{ color: "var(--read-text-body)" }}>
                       <ReactMarkdown
-                        remarkPlugins={[remarkGfm]}
+                        remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}
                         components={mdComponents}
                       >
                         {opt}
@@ -2204,7 +2433,7 @@ function ProblemSetRunner({
                 }}
               >
                 <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
+                  remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}
                   components={mdComponents}
                 >
                   {current.explanation}

@@ -6,7 +6,7 @@ import { Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface Props {
-  planId: "self_study" | "self_study_plus" | "coaching" | "intensive"
+  planId: "self_study" | "self_study_guaranteed" | "coaching" | "intensive"
   label: string
   highlighted: boolean
   className?: string

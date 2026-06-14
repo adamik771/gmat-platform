@@ -28,7 +28,7 @@ interface StudentLift {
   name?: string
   /** Background context — non-native English, non-engineer, etc. */
   context?: string
-  /** Diagnostic / first-mock score (e.g. "565"). */
+  /** Baseline / first-mock score (e.g. "565"). */
   start?: number
   /** Most recent verified mock or official score. */
   after?: number
@@ -97,8 +97,8 @@ export default function StudentsPage() {
           </h1>
           <p className="text-[17px] sm:text-[18px] text-[#C0C0C0] leading-relaxed max-w-2xl mx-auto">
             Verified before-and-after results from beta students. Every
-            lift below is a real diagnostic-to-mock or
-            diagnostic-to-official delta — no synthetic numbers.
+            lift below is a real baseline-to-mock or
+            baseline-to-official delta — no synthetic numbers.
           </p>
         </div>
       </section>
@@ -144,7 +144,7 @@ export default function StudentsPage() {
             <p className="text-[14px] text-[#888888] max-w-xl mx-auto leading-relaxed">
               We&apos;re holding space for verified score lifts as the
               first beta cohort completes. We&apos;ll only publish numbers
-              we&apos;ve seen on a real diagnostic-to-mock or official
+              we&apos;ve seen on a real baseline-to-mock or official
               delta.
             </p>
           </div>
@@ -170,11 +170,13 @@ export default function StudentsPage() {
           </h2>
           <div className="space-y-4 text-[14px] text-[#C0C0C0] leading-[1.75]">
             <p>
-              Each &quot;start&quot; score is the student&apos;s diagnostic on the
-              platform — 30 stratified questions across Quant, Verbal, and
-              Data Insights. We compute a section-scaled estimate (60–90)
-              and a Focus-scale total (205–805) from the same formula
-              shown on the dashboard.
+              Each &quot;start&quot; score is the student&apos;s baseline when
+              they joined — for the beta cohort, a 30-question stratified
+              set across Quant, Verbal, and Data Insights with a
+              section-scaled estimate (60–90) and a Focus-scale total
+              (205–805) from the same formula shown on the dashboard.
+              New students baseline with an official mba.com practice
+              exam instead.
             </p>
             <p>
               Each &quot;after&quot; score is either a verified full-length
@@ -211,15 +213,15 @@ export default function StudentsPage() {
             </span>
           </h2>
           <p className="text-[15px] sm:text-[17px] text-[#888888] leading-relaxed mb-10">
-            Start with a free diagnostic. No credit card required.
+            Start with a free account. No credit card required.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/free-diagnostic"
+              href="/signup"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Take the free diagnostic
+              Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

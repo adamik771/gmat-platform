@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import { ArrowUp, MessageCircle, Sparkles, X } from "lucide-react"
 
 /**
@@ -382,7 +383,7 @@ function MessageBubble({ message }: { message: Message }) {
           <p className="whitespace-pre-wrap">{message.content}</p>
         ) : (
           <div className="tutor-md">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
               {message.content}
             </ReactMarkdown>
           </div>

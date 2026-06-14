@@ -1,4 +1,3 @@
-import { Fragment } from "react"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -83,6 +82,9 @@ type ListItem = {
   section: SectionKey
   href: string
   estimatedMinutes: number
+  /** Approximate reading length in pages — shown to students instead of a time
+   *  estimate so the page doesn't imply a clock to race. */
+  estimatedPages: number
   /** First unread section anchor for interactive chapters; null for guides. */
   resumeAnchor: string | null
   totalSections: number
@@ -173,11 +175,11 @@ function MissionHero({
           resumeItem!.readSections + 1,
           resumeItem!.totalSections
         )} of ${resumeItem!.totalSections}${
-          resumeItem!.estimatedMinutes
-            ? ` · ~${resumeItem!.estimatedMinutes} min total`
+          resumeItem!.estimatedPages
+            ? ` · ~${resumeItem!.estimatedPages} pages total`
             : ""
         }`
-      : `~${resumeItem!.estimatedMinutes} min`
+      : `~${resumeItem!.estimatedPages} pages`
     : `${totalCore} interactive chapters across Quant, Verbal, and Data Insights`
 
   // Promise sentence: chapter summary first sentence (truncated). Falls
@@ -466,8 +468,6 @@ function chapterStatusLine(item: ListItem): string | null {
   if (!item.isStarted) return null
 
   const hasProblemSets = item.problemSetCount > 0
-  const allSectionsRead =
-    item.readSections === item.totalSections && item.totalSections > 0
 
   if (item.isComplete) {
     // "Complete" here means all reading sections done. Surface set-
@@ -519,20 +519,39 @@ function JourneyNode({
   isLast,
 }: JourneyNodeProps) {
   const num = String(index + 1).padStart(2, "0")
-  const cta =
-    status === "complete" ? "Review" : status === "current" ? "Continue" : "Start"
-  const cardBorder =
-    status === "current"
-      ? accent
-      : status === "complete"
-      ? "rgba(255,255,255,0.06)"
-      : "rgba(255,255,255,0.05)"
-  const cardBg =
-    status === "current"
-      ? accentSoft
-      : status === "complete"
-      ? "rgba(255,255,255,0.012)"
-      : "#0D0D0D"
+
+  // Reading is done but problem sets haven't been attempted yet. This is a
+  // common dropout point — the student feels "done" because reading is complete
+  // and misses that the graded sets are the actual learning consolidation step.
+  const readingDoneProblemsPending =
+    status === "complete" &&
+    item.problemSetCount > 0 &&
+    item.accuracyPct === null
+
+  const cta = readingDoneProblemsPending
+    ? "Start problems"
+    : status === "complete"
+    ? "Review"
+    : status === "current"
+    ? "Continue"
+    : "Start"
+
+  const cardBorder = readingDoneProblemsPending
+    ? "rgba(201,168,76,0.35)"
+    : status === "current"
+    ? accent
+    : status === "complete"
+    ? "rgba(255,255,255,0.06)"
+    : "rgba(255,255,255,0.05)"
+
+  const cardBg = readingDoneProblemsPending
+    ? "rgba(201,168,76,0.04)"
+    : status === "current"
+    ? accentSoft
+    : status === "complete"
+    ? "rgba(255,255,255,0.012)"
+    : "#0D0D0D"
+
   const href =
     status === "current" && item.resumeAnchor
       ? `${item.href}#${item.resumeAnchor}`
@@ -545,10 +564,15 @@ function JourneyNode({
         <span
           className="relative z-10 flex items-center justify-center w-9 h-9 rounded-full transition-transform"
           style={{
-            backgroundColor:
-              status === "complete" ? accent : "var(--read-bg-elevated, #0F0F0F)",
+            backgroundColor: readingDoneProblemsPending
+              ? "rgba(201,168,76,0.15)"
+              : status === "complete"
+              ? accent
+              : "var(--read-bg-elevated, #0F0F0F)",
             border: `1.5px solid ${
-              status === "complete"
+              readingDoneProblemsPending
+                ? "#C9A84C"
+                : status === "complete"
                 ? accent
                 : status === "current"
                 ? accent
@@ -560,7 +584,13 @@ function JourneyNode({
                 : "none",
           }}
         >
-          {status === "complete" ? (
+          {readingDoneProblemsPending ? (
+            <Target
+              className="w-4 h-4"
+              style={{ color: "#C9A84C" }}
+              aria-label="Problem sets ready"
+            />
+          ) : status === "complete" ? (
             <CheckCircle2
               className="w-4 h-4"
               style={{ color: "#0A0A0A" }}
@@ -582,7 +612,11 @@ function JourneyNode({
             className="absolute top-14 bottom-[-1.25rem] left-1/2 -translate-x-px w-px"
             style={{
               background: `linear-gradient(to bottom, ${
-                status === "complete" ? accent : "rgba(255,255,255,0.08)"
+                readingDoneProblemsPending
+                  ? "#C9A84C"
+                  : status === "complete"
+                  ? accent
+                  : "rgba(255,255,255,0.08)"
               } 0%, rgba(255,255,255,0.06) 70%, transparent 100%)`,
             }}
             aria-hidden
@@ -603,10 +637,13 @@ function JourneyNode({
               : "inset 0 1px 0 rgba(255,255,255,0.02)",
         }}
       >
-        {status === "current" && (
+        {(status === "current" || readingDoneProblemsPending) && (
           <div
             className="absolute inset-x-0 top-0 h-px"
-            style={{ backgroundColor: accent, opacity: 0.7 }}
+            style={{
+              backgroundColor: readingDoneProblemsPending ? "#C9A84C" : accent,
+              opacity: 0.7,
+            }}
             aria-hidden
           />
         )}
@@ -619,6 +656,12 @@ function JourneyNode({
               >
                 Chapter {num}
               </span>
+              <span
+                className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em] font-semibold"
+                style={{ backgroundColor: accentSoft, color: accent }}
+              >
+                {item.section === "DI" ? "Data Insights" : item.section}
+              </span>
               {status === "current" && (
                 <span
                   className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em] font-semibold"
@@ -627,7 +670,19 @@ function JourneyNode({
                   Current
                 </span>
               )}
-              {status === "complete" && (
+              {readingDoneProblemsPending && (
+                <span
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em] font-semibold"
+                  style={{
+                    backgroundColor: "rgba(201,168,76,0.12)",
+                    color: "#C9A84C",
+                  }}
+                >
+                  <Target className="w-3 h-3" />
+                  Test yourself
+                </span>
+              )}
+              {status === "complete" && !readingDoneProblemsPending && (
                 <span
                   className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em] font-semibold"
                   style={{
@@ -644,7 +699,9 @@ function JourneyNode({
               className="font-display text-lg sm:text-xl font-semibold tracking-tight leading-[1.2]"
               style={{
                 color:
-                  status === "complete" ? "rgba(240,240,240,0.7)" : "#F0F0F0",
+                  status === "complete" && !readingDoneProblemsPending
+                    ? "rgba(240,240,240,0.7)"
+                    : "#F0F0F0",
               }}
             >
               {item.title}
@@ -674,7 +731,7 @@ function JourneyNode({
             >
               <span className="inline-flex items-center gap-1.5">
                 <Clock className="w-3 h-3" />
-                {item.estimatedMinutes} min · {difficultyBucket(
+                {item.estimatedPages} pages · {difficultyBucket(
                   item.estimatedMinutes,
                 )}
               </span>
@@ -690,7 +747,9 @@ function JourneyNode({
             {(() => {
               const statusText = chapterStatusLine(item)
               if (!statusText) return null
-              const tone = item.isComplete
+              const tone = readingDoneProblemsPending
+                ? "rgba(201,168,76,0.80)"
+                : item.isComplete
                 ? "rgba(62,207,142,0.85)"
                 : accent
               return (
@@ -702,6 +761,17 @@ function JourneyNode({
                 </p>
               )
             })()}
+            {/* Nudge strip when all reading is done but no problem-set attempt
+                exists yet. Gives the student a clear, specific next action
+                instead of letting them think "Complete" means they're done. */}
+            {readingDoneProblemsPending && (
+              <p
+                className="mt-3 text-[11px] leading-snug"
+                style={{ color: "rgba(201,168,76,0.65)" }}
+              >
+                Reading complete. Now test your understanding — problem sets turn passive knowledge into active recall.
+              </p>
+            )}
             {/* Progress bar lives on the current card only — once you've
                 moved on it just becomes visual noise. Completed cards
                 speak for themselves; available cards have nothing to
@@ -731,12 +801,13 @@ function JourneyNode({
           <div
             className="flex items-center gap-1.5 text-[11px] uppercase tracking-[0.18em] font-semibold flex-shrink-0 mt-1 transition-transform group-hover:translate-x-0.5"
             style={{
-              color:
-                status === "current"
-                  ? accent
-                  : status === "complete"
-                  ? "#888888"
-                  : "rgba(255,255,255,0.6)",
+              color: readingDoneProblemsPending
+                ? "#C9A84C"
+                : status === "current"
+                ? accent
+                : status === "complete"
+                ? "#888888"
+                : "rgba(255,255,255,0.6)",
             }}
           >
             {cta}
@@ -748,282 +819,6 @@ function JourneyNode({
   )
 }
 
-type MilestoneState = "achieved" | "next" | "future"
-
-function SectionMilestone({
-  title,
-  body,
-  accent,
-  accentSoft,
-  state,
-}: {
-  title: string
-  body: string
-  accent: string
-  accentSoft: string
-  state: MilestoneState
-}) {
-  const stateStyles = {
-    achieved: {
-      iconBg: accent,
-      iconColor: "#0A0A0A",
-      borderColor: accent,
-      Icon: CheckCircle2,
-      label: "Reached",
-      titleColor: "#F0F0F0",
-      bodyColor: "rgba(192,192,192,0.7)",
-    },
-    next: {
-      iconBg: accentSoft,
-      iconColor: accent,
-      borderColor: accent,
-      Icon: Award,
-      label: "Next milestone",
-      titleColor: "#F0F0F0",
-      bodyColor: "rgba(192,192,192,0.7)",
-    },
-    future: {
-      iconBg: "rgba(255,255,255,0.04)",
-      iconColor: "rgba(255,255,255,0.35)",
-      borderColor: "rgba(255,255,255,0.10)",
-      Icon: Award,
-      label: "Milestone",
-      titleColor: "rgba(240,240,240,0.55)",
-      bodyColor: "rgba(192,192,192,0.4)",
-    },
-  } as const
-  const s = stateStyles[state]
-  const Icon = s.Icon
-
-  return (
-    <li className="relative flex gap-5 sm:gap-6">
-      <div className="relative w-9 flex-shrink-0 flex justify-center pt-5">
-        <span
-          className="relative z-10 flex items-center justify-center w-7 h-7 rounded-full"
-          style={{
-            backgroundColor: s.iconBg,
-            border:
-              state === "achieved"
-                ? `1px solid ${s.borderColor}`
-                : `1px dashed ${s.borderColor}`,
-          }}
-          aria-hidden
-        >
-          <Icon className="w-3.5 h-3.5" style={{ color: s.iconColor }} />
-        </span>
-        <span
-          className="absolute top-12 bottom-[-1.25rem] left-1/2 -translate-x-px w-px"
-          style={{
-            background: `linear-gradient(to bottom, ${
-              state === "future" ? "rgba(255,255,255,0.08)" : accent
-            } 0%, rgba(255,255,255,0.06) 70%, transparent 100%)`,
-            opacity: state === "future" ? 0.3 : 0.4,
-          }}
-          aria-hidden
-        />
-      </div>
-      <div
-        className="flex-1 rounded-xl border-l-2 pl-5 py-2 my-1"
-        style={{ borderColor: s.borderColor }}
-      >
-        <p
-          className="text-[10px] uppercase tracking-[0.22em] font-semibold mb-1"
-          style={{
-            color:
-              state === "future" ? "rgba(255,255,255,0.35)" : accent,
-          }}
-        >
-          {s.label}
-        </p>
-        <p
-          className="font-display text-base font-semibold leading-snug"
-          style={{ color: s.titleColor }}
-        >
-          {title}
-        </p>
-        <p
-          className="text-[12px] mt-1 leading-relaxed max-w-xl"
-          style={{ color: s.bodyColor }}
-        >
-          {body}
-        </p>
-      </div>
-    </li>
-  )
-}
-
-/**
- * Section dashboard panel. Replaces the old "marketing block + progress
- * dial" with a tighter five-line state report: section name, outcome,
- * current chapter, recommended next, lighter CTA.
- */
-function SectionHero({
-  section,
-  totalChapters,
-  completed,
-  inProgress,
-  totalMinutes,
-  currentItem,
-  nextItem,
-}: {
-  section: SectionKey
-  totalChapters: number
-  completed: number
-  inProgress: number
-  totalMinutes: number
-  currentItem: ListItem | null
-  nextItem: ListItem | null
-}) {
-  const theme = SECTION_THEME[section]
-  const pct =
-    totalChapters > 0 ? Math.round((completed / totalChapters) * 100) : 0
-  // Section CTAs are intentionally lighter than the page-level mission
-  // CTA — outline style, contextual labels.
-  const ctaLabel =
-    completed === 0
-      ? `Start ${section === "DI" ? "Data Insights" : section}`
-      : completed === totalChapters
-      ? `Review ${section === "DI" ? "Data Insights" : section}`
-      : `Continue ${currentItem?.title ?? section}`
-  const ctaHref = currentItem
-    ? currentItem.resumeAnchor
-      ? `${currentItem.href}#${currentItem.resumeAnchor}`
-      : currentItem.href
-    : `#${section.toLowerCase()}-section`
-  const Icon =
-    section === "Quant"
-      ? Compass
-      : section === "Verbal"
-      ? BookOpen
-      : section === "DI"
-      ? Sparkles
-      : Award
-
-  return (
-    <div
-      className="relative overflow-hidden rounded-xl border p-6 sm:p-7"
-      style={{
-        borderColor: "rgba(255,255,255,0.06)",
-        backgroundColor: "#0D0D0D",
-      }}
-    >
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(ellipse 60% 55% at 0% 0%, ${theme.accentSoft} 0%, transparent 60%)`,
-        }}
-        aria-hidden
-      />
-      <div className="relative flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-10">
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2.5 mb-3">
-            <span
-              className="inline-flex items-center justify-center w-7 h-7 rounded-lg"
-              style={{ backgroundColor: theme.accentSoft }}
-            >
-              <Icon className="w-3.5 h-3.5" style={{ color: theme.accent }} />
-            </span>
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-              style={{ color: theme.accent }}
-            >
-              {theme.label}
-            </p>
-          </div>
-          <p
-            className="text-[14px] leading-relaxed max-w-2xl"
-            style={{ color: "#C0C0C0" }}
-          >
-            {theme.blurb}
-          </p>
-          <div
-            className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[12px]"
-            style={{ color: "rgba(255,255,255,0.55)" }}
-          >
-            <span className="inline-flex items-center gap-1.5">
-              <Clock className="w-3 h-3" />~{Math.round(totalMinutes / 60)} hr
-              {Math.round(totalMinutes / 60) === 1 ? "" : "s"} of reading
-            </span>
-            {currentItem && (
-              <span>
-                <span className="text-[#666666]">Current:</span>{" "}
-                <span className="text-[#C0C0C0]">{currentItem.title}</span>
-              </span>
-            )}
-            {nextItem && (
-              <span>
-                <span className="text-[#666666]">Up next:</span>{" "}
-                <span className="text-[#C0C0C0]">{nextItem.title}</span>
-              </span>
-            )}
-          </div>
-        </div>
-
-        <div className="flex flex-col items-stretch lg:items-end gap-3 flex-shrink-0 lg:min-w-[240px]">
-          <div className="flex items-baseline gap-2 lg:justify-end">
-            <span
-              className="font-display text-3xl font-semibold tabular-nums leading-none"
-              style={{ color: pct === 100 ? "#3ECF8E" : "#F0F0F0" }}
-            >
-              {completed}
-              <span className="text-base font-normal text-[#555555]">
-                {" "}
-                / {totalChapters}
-              </span>
-            </span>
-            <span
-              className="text-[11px] uppercase tracking-[0.18em] font-semibold"
-              style={{
-                color: pct === 100 ? "#3ECF8E" : "rgba(255,255,255,0.4)",
-              }}
-            >
-              {pct === 100 ? "Mastered" : "Done"}
-            </span>
-          </div>
-          <div className="h-1 rounded-full bg-white/[0.06] overflow-hidden lg:w-full">
-            <div
-              className="h-full rounded-full transition-all duration-500"
-              style={{
-                width: `${pct}%`,
-                backgroundColor: pct === 100 ? "#3ECF8E" : theme.accent,
-              }}
-            />
-          </div>
-          {inProgress > 0 && (
-            <p
-              className="text-[11px] tabular-nums lg:text-right"
-              style={{ color: "rgba(255,255,255,0.4)" }}
-            >
-              {inProgress} in progress
-            </p>
-          )}
-          {currentItem && (
-            <Link
-              href={ctaHref}
-              className="inline-flex items-center justify-between gap-2 mt-1 px-3 py-2 rounded-lg text-[12px] font-semibold transition-colors border"
-              style={{
-                borderColor: theme.accentStrong,
-                color: theme.accent,
-                backgroundColor: theme.accentSofter,
-              }}
-            >
-              <span className="truncate text-left max-w-[200px]">
-                {ctaLabel}
-              </span>
-              <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" aria-hidden />
-            </Link>
-          )}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/**
- * Compact single-line reading row. Less dominant than a chapter card —
- * intentionally so. Readings are an optional parallel curriculum, not
- * the spine.
- */
 function ReadingRow({ item, accent }: { item: ListItem; accent: string }) {
   return (
     <Link
@@ -1061,7 +856,7 @@ function ReadingRow({ item, accent }: { item: ListItem; accent: string }) {
         className="text-[11px] tabular-nums flex-shrink-0"
         style={{ color: "rgba(255,255,255,0.4)" }}
       >
-        {item.estimatedMinutes} min
+        {item.estimatedPages} pages
       </span>
       <ArrowRight
         className="w-3.5 h-3.5 flex-shrink-0 transition-transform group-hover:translate-x-0.5"
@@ -1115,7 +910,7 @@ function ReferenceTile({ item }: { item: ListItem }) {
         className="mt-3 text-[11px] tabular-nums"
         style={{ color: "rgba(255,255,255,0.4)" }}
       >
-        {item.estimatedMinutes} min read
+        {item.estimatedPages} pages
       </span>
     </Link>
   )
@@ -1125,6 +920,11 @@ const WORDS_PER_MINUTE = 200
 function estimateGuideMinutes(content: string): number {
   const words = content.trim().split(/\s+/).filter(Boolean).length
   return Math.max(3, Math.ceil(words / WORDS_PER_MINUTE))
+}
+const WORDS_PER_PAGE = 400
+function estimateGuidePages(content: string): number {
+  const words = content.trim().split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.round(words / WORDS_PER_PAGE))
 }
 
 /**
@@ -1226,6 +1026,7 @@ export default async function ChaptersPage() {
       section: c.section,
       href: `/chapters/${c.slug}`,
       estimatedMinutes: c.estimatedMinutes,
+      estimatedPages: c.estimatedPages,
       resumeAnchor: firstUnread?.id ?? null,
       totalSections,
       readSections: readCount,
@@ -1249,6 +1050,7 @@ export default async function ChaptersPage() {
       section: g.section,
       href: `/guides/${g.slug}`,
       estimatedMinutes: estimateGuideMinutes(g.content),
+      estimatedPages: estimateGuidePages(g.content),
       resumeAnchor: null,
       totalSections: 0,
       readSections: 0,
@@ -1263,18 +1065,23 @@ export default async function ChaptersPage() {
     })
   }
 
-  const sorted = items.sort((a, b) => {
+  // Interactive chapters keep their insertion order — getAllChapters()
+  // already returns the guided-path sequence (CHAPTER_PATH_ORDER), and
+  // re-sorting by section here would regroup Quant -> Verbal -> DI and
+  // destroy the interleaving. Only the guide lists get a section/title sort.
+  const bySectionThenTitle = (a: ListItem, b: ListItem) => {
     if (a.section !== b.section) {
       return sectionOrder[a.section] - sectionOrder[b.section]
     }
-    const kindOrder = { interactive: 0, reading: 1, reference: 2 }
-    if (a.kind !== b.kind) return kindOrder[a.kind] - kindOrder[b.kind]
     return a.title.localeCompare(b.title)
-  })
-
-  const interactiveAll = sorted.filter((i) => i.kind === "interactive")
-  const readingsAll = sorted.filter((i) => i.kind === "reading")
-  const referencesAll = sorted.filter((i) => i.kind === "reference")
+  }
+  const interactiveAll = items.filter((i) => i.kind === "interactive")
+  const readingsAll = items
+    .filter((i) => i.kind === "reading")
+    .sort(bySectionThenTitle)
+  const referencesAll = items
+    .filter((i) => i.kind === "reference")
+    .sort(bySectionThenTitle)
   const totalCore = interactiveAll.length
   const completedCore = interactiveAll.filter((i) => i.isComplete).length
   const startedCore = interactiveAll.filter((i) => i.isStarted).length
@@ -1297,6 +1104,10 @@ export default async function ChaptersPage() {
     const completed = items.filter((i) => i.isComplete).length
     return { total: items.length, completed }
   }
+
+  // The "current" stop on the guided path — first chapter not yet complete.
+  const currentPathSlug =
+    interactiveAll.find((i) => !i.isComplete)?.slug ?? null
 
   return (
     <div className="max-w-6xl mx-auto space-y-12">
@@ -1339,189 +1150,102 @@ export default async function ChaptersPage() {
         })}
       </section>
 
-      {sorted.length === 0 ? (
+      {items.length === 0 ? (
         <div className="p-6 sm:p-10 rounded-2xl border border-white/[0.06] bg-[#0D0D0D] text-center">
           <p className="text-[15px] text-[#888888]">No chapters published yet.</p>
         </div>
       ) : (
         <>
-          {/* === Sectional journeys (interactive chapters only) === */}
-          <div className="space-y-16">
-            {(["Quant", "Verbal", "DI"] as const).map((sec) => {
-              const interactiveInSection = interactiveAll.filter(
-                (i) => i.section === sec
-              )
-              const readingsInSection = readingsAll.filter(
-                (i) => i.section === sec
-              )
-              if (interactiveInSection.length === 0) return null
-              const theme = SECTION_THEME[sec]
-              const completed = interactiveInSection.filter(
-                (i) => i.isComplete
-              ).length
-              const inProgress = interactiveInSection.filter(
-                (i) => i.isStarted && !i.isComplete
-              ).length
-              const totalMinutes = interactiveInSection.reduce(
-                (sum, i) => sum + i.estimatedMinutes,
-                0
-              )
-              const currentItem =
-                interactiveInSection.find((i) => !i.isComplete) ?? null
-              const currentIndex = currentItem
-                ? interactiveInSection.findIndex((i) => i.slug === currentItem.slug)
-                : -1
-              const nextItem =
-                currentIndex >= 0 && currentIndex + 1 < interactiveInSection.length
-                  ? interactiveInSection[currentIndex + 1]
-                  : null
-              return (
-                <section
-                  key={sec}
-                  id={`${sec.toLowerCase()}-section`}
-                  className="space-y-6 scroll-mt-6"
-                >
-                  <SectionHero
-                    section={sec}
-                    totalChapters={interactiveInSection.length}
-                    completed={completed}
-                    inProgress={inProgress}
-                    totalMinutes={totalMinutes}
-                    currentItem={currentItem}
-                    nextItem={nextItem}
+          {/* === Guided path — one interleaved, easier-first sequence across
+              Quant, Verbal, and Data Insights (order from CHAPTER_PATH_ORDER). === */}
+          <section id="path" className="space-y-6 scroll-mt-6">
+            <div className="px-1">
+              <p className={EYEBROW + " mb-2"}>Your guided path</p>
+              <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-tight">
+                {completedCore} of {totalCore} chapters complete
+              </h2>
+              <p className="text-[13px] text-[#888888] mt-2 max-w-2xl">
+                One recommended order — eased in from the simplest foundations,
+                then rotating across Quant, Verbal, and Data Insights so you
+                build every section in parallel. Follow it top to bottom, or
+                jump to any chapter.
+              </p>
+            </div>
+
+            <ol className="space-y-4">
+              {interactiveAll.map((item, i) => {
+                const theme = SECTION_THEME[item.section]
+                const status: NodeStatus = item.isComplete
+                  ? "complete"
+                  : currentPathSlug && item.slug === currentPathSlug
+                  ? "current"
+                  : "available"
+                return (
+                  <JourneyNode
+                    key={`${item.kind}-${item.slug}`}
+                    item={item}
+                    index={i}
+                    status={status}
+                    accent={theme.accent}
+                    accentSoft={theme.accentSoft}
+                    isLast={i === interactiveAll.length - 1}
                   />
+                )
+              })}
+            </ol>
 
-                  <ol className="space-y-4">
-                    {interactiveInSection.map((item, i) => {
-                      const status: NodeStatus = item.isComplete
-                        ? "complete"
-                        : currentItem && item.slug === currentItem.slug
-                        ? "current"
-                        : "available"
-                      const isLastNode = i === interactiveInSection.length - 1
-
-                      // Milestone scheduling (per-section pedagogical
-                      // checkpoints). State mirrors the journey's progress.
-                      const total = interactiveInSection.length
-                      const half = Math.floor(total / 2)
-                      let ms: {
-                        title: string
-                        body: string
-                        state: MilestoneState
-                      } | null = null
-                      const positionAfter = i + 1
-                      if (positionAfter === 3 && total > 5) {
-                        const completedSoFar = interactiveInSection
-                          .slice(0, 3)
-                          .filter((x) => x.isComplete).length
-                        const stateMs: MilestoneState =
-                          completedSoFar === 3
-                            ? "achieved"
-                            : positionAfter <= currentIndex + 1
-                            ? "next"
-                            : "future"
-                        ms = {
-                          title: "Foundation laid",
-                          body: "The mechanical moves are in. From here every chapter compounds — recognition speed, trap immunity, pacing under pressure.",
-                          state: stateMs,
-                        }
-                      } else if (total >= 8 && positionAfter === half) {
-                        const completedSoFar = interactiveInSection
-                          .slice(0, half)
-                          .filter((x) => x.isComplete).length
-                        const stateMs: MilestoneState =
-                          completedSoFar === half
-                            ? "achieved"
-                            : positionAfter <= currentIndex + 1
-                            ? "next"
-                            : "future"
-                        ms = {
-                          title: "Halfway through",
-                          body: "You've covered the high-frequency formats. The remaining chapters cover the second-tier traps that separate a 700 from a 720+.",
-                          state: stateMs,
-                        }
-                      }
-                      return (
-                        <Fragment key={`${item.kind}-${item.slug}`}>
-                          <JourneyNode
-                            item={item}
-                            index={i}
-                            status={status}
-                            accent={theme.accent}
-                            accentSoft={theme.accentSoft}
-                            isLast={isLastNode && !ms}
-                          />
-                          {ms && (
-                            <SectionMilestone
-                              title={ms.title}
-                              body={ms.body}
-                              accent={theme.accent}
-                              accentSoft={theme.accentSoft}
-                              state={ms.state}
-                            />
-                          )}
-                        </Fragment>
-                      )
-                    })}
-                  </ol>
-
-                  {/* In-depth reading — the parallel curriculum track.
-                      Visible flat list rather than a collapsed details
-                      disclosure: these are research-report-aligned
-                      chapters, not optional extras. Visually lighter
-                      than interactive journey nodes but not hidden. */}
-                  {readingsInSection.length > 0 && (
-                    <div className="pt-2">
-                      <div className="flex items-center gap-2.5 mb-3 px-1">
-                        <BookOpen
-                          className="w-3.5 h-3.5"
-                          style={{ color: theme.accent }}
-                          aria-hidden
-                        />
-                        <p
-                          className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-                          style={{ color: theme.accent }}
-                        >
-                          In-depth reading
-                        </p>
-                        <span
-                          className="text-[11px] tabular-nums"
-                          style={{ color: "rgba(255,255,255,0.4)" }}
-                        >
-                          {readingsInSection.length} chapter
-                          {readingsInSection.length === 1 ? "" : "s"}
-                        </span>
-                        <div
-                          className="h-px flex-1"
-                          style={{
-                            background: `linear-gradient(to right, ${theme.accentSoft}, transparent)`,
-                          }}
-                          aria-hidden
-                        />
-                      </div>
-                      <p
-                        className="text-[12px] mb-3 px-1 leading-relaxed"
-                        style={{ color: "rgba(192,192,192,0.6)" }}
-                      >
-                        Companion curriculum — research-report aligned,
-                        deeper coverage than the interactive chapters
-                        above. Read on demand or in sequence.
-                      </p>
-                      <div className="space-y-2">
-                        {readingsInSection.map((r) => (
-                          <ReadingRow
-                            key={r.slug}
-                            item={r}
-                            accent={theme.accent}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </section>
-              )
-            })}
-          </div>
+            {/* In-depth reading — companion curriculum across every section,
+                research-report aligned. Read on demand or in sequence. */}
+            {readingsAll.length > 0 && (
+              <div className="pt-2">
+                <div className="flex items-center gap-2.5 mb-3 px-1">
+                  <BookOpen
+                    className="w-3.5 h-3.5"
+                    style={{ color: "#C9A84C" }}
+                    aria-hidden
+                  />
+                  <p
+                    className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+                    style={{ color: "#C9A84C" }}
+                  >
+                    In-depth reading
+                  </p>
+                  <span
+                    className="text-[11px] tabular-nums"
+                    style={{ color: "rgba(255,255,255,0.4)" }}
+                  >
+                    {readingsAll.length} chapter
+                    {readingsAll.length === 1 ? "" : "s"}
+                  </span>
+                  <div
+                    className="h-px flex-1"
+                    style={{
+                      background:
+                        "linear-gradient(to right, rgba(201,168,76,0.18), transparent)",
+                    }}
+                    aria-hidden
+                  />
+                </div>
+                <p
+                  className="text-[12px] mb-3 px-1 leading-relaxed"
+                  style={{ color: "rgba(192,192,192,0.6)" }}
+                >
+                  Companion curriculum — research-report aligned, deeper
+                  coverage than the interactive chapters. Read on demand or in
+                  sequence.
+                </p>
+                <div className="space-y-2">
+                  {readingsAll.map((r) => (
+                    <ReadingRow
+                      key={r.slug}
+                      item={r}
+                      accent={SECTION_THEME[r.section].accent}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
 
           {/* === Reference library === */}
           {referencesAll.length > 0 && (

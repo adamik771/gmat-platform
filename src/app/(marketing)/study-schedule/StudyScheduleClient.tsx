@@ -71,8 +71,9 @@ export default function StudyScheduleClient() {
           <p className="text-[16px] text-[#C0C0C0] leading-relaxed max-w-2xl">
             Enter your exam date + weekly study hours and get a
             week-by-week plan. Optional: paste in rough section
-            accuracies (from a mock or the free diagnostic) and the
-            schedule re-prioritises around your weakest section.
+            accuracies (from a mock or an official mba.com practice
+            exam) and the schedule re-prioritises around your weakest
+            section.
           </p>
         </header>
 
@@ -141,8 +142,9 @@ export default function StudyScheduleClient() {
                   I have a rough section accuracy snapshot
                 </p>
                 <p className="text-[12px] text-[#888888] mt-0.5">
-                  From the free diagnostic, a mock, or a gut estimate.
-                  Optional &mdash; leave unchecked for the generic plan.
+                  From an official mba.com practice exam, a mock, or a
+                  gut estimate. Optional &mdash; leave unchecked for the
+                  generic plan.
                 </p>
               </div>
             </label>
@@ -213,7 +215,7 @@ export default function StudyScheduleClient() {
             }
             sub={
               schedule.unprimed
-                ? "Take the diagnostic"
+                ? "Take a practice exam"
                 : "Schedule is built around it"
             }
           />
@@ -263,16 +265,9 @@ export default function StudyScheduleClient() {
                 Generic schedule (no accuracy data)
               </p>
               <p className="text-[12px] text-[#888888] leading-relaxed mt-1">
-                Take the{" "}
-                <Link
-                  href="/free-diagnostic"
-                  className="hover:underline"
-                  style={{ color: "#C9A84C" }}
-                >
-                  free 10-question diagnostic
-                </Link>{" "}
-                to identify your weakest section, then re-generate this
-                schedule with the section accuracies for a real plan.
+                Take an official practice exam on mba.com as your
+                baseline, then re-generate this schedule with the
+                section accuracies for a real plan.
               </p>
             </div>
           </div>
@@ -355,11 +350,11 @@ export default function StudyScheduleClient() {
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Start free trial
+              Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/free-diagnostic"
+              href="/sample-chapter"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border transition-all duration-200"
               style={{
                 borderColor: "rgba(201,168,76,0.32)",
@@ -367,7 +362,7 @@ export default function StudyScheduleClient() {
                 backgroundColor: "rgba(201,168,76,0.04)",
               }}
             >
-              Take the diagnostic first
+              Read a free sample chapter
             </Link>
             <Link
               href="/blog/how-to-build-a-gmat-study-plan-that-works"
