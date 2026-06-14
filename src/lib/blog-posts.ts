@@ -33,6 +33,51 @@ export interface BlogPost {
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "gmat-math-formulas-cheat-sheet",
+    title: "GMAT Math Formulas: The Cheat Sheet You Actually Need (2026)",
+    description:
+      "Every formula tested on GMAT Focus Quant, organized by topic with a one-line when-to-use note for each — arithmetic, number properties, algebra, word problems, stats, counting, and geometry. No calculator, no formula sheet on test day, so memorize the high-frequency ones.",
+    date: "2026-06-15",
+    readMinutes: 12,
+    tags: ["quant", "section-guide", "beginner"],
+  },
+  {
+    slug: "gmat-number-properties-guide",
+    title: "GMAT Number Properties: The High-Frequency Concepts",
+    description:
+      "The number-properties concepts that show up most on GMAT Focus Quant — factors vs multiples, prime factorization, divisibility rules, LCM/GCF, even/odd behavior, units-digit cycles, remainders, and evenly-spaced sets — each with a one-line worked illustration.",
+    date: "2026-06-15",
+    readMinutes: 13,
+    tags: ["quant", "section-guide"],
+  },
+  {
+    slug: "gmat-critical-reasoning-finding-the-assumption",
+    title: "GMAT Critical Reasoning: How to Find the Assumption",
+    description:
+      "The single most important Critical Reasoning skill: spotting the unstated assumption that bridges premises to conclusion. The Negation Test, necessary vs sufficient assumptions, the common assumption families, and why this one skill unlocks Strengthen, Weaken, Flaw, and Evaluate too.",
+    date: "2026-06-15",
+    readMinutes: 13,
+    tags: ["verbal", "strategy", "section-guide"],
+  },
+  {
+    slug: "gmat-logical-fallacies",
+    title: "The Logical Fallacies the GMAT Loves to Test",
+    description:
+      "A field guide to the reasoning flaws the GMAT recycles in Critical Reasoning and Data Insights — correlation vs causation, unrepresentative samples, the percent-vs-number trap, part-whole errors, and more. You will not name them on test day, but recognizing the shape predicts the answer.",
+    date: "2026-06-15",
+    readMinutes: 12,
+    tags: ["verbal", "strategy"],
+  },
+  {
+    slug: "gmat-3-month-study-schedule",
+    title: "A Realistic 3-Month GMAT Study Schedule, Week by Week",
+    description:
+      "A ready-to-use 12-week GMAT Focus study calendar for a working professional at about 10-12 hours a week — diagnostic first, fundamentals, deliberate topic practice, then official mocks and weak-area repair. With notes for compressing to one month or stretching to six.",
+    date: "2026-06-15",
+    readMinutes: 14,
+    tags: ["study-plan", "beginner", "strategy"],
+  },
+  {
     slug: "gmat-focus-official-practice-exams",
     title: "How to Use the Official GMAT Focus Practice Exams",
     description:

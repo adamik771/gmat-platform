@@ -114,6 +114,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.7,
     },
+    {
+      path: "/blog/gmat-math-formulas-cheat-sheet",
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
+      path: "/blog/gmat-number-properties-guide",
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
+      path: "/blog/gmat-critical-reasoning-finding-the-assumption",
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
+      path: "/blog/gmat-logical-fallacies",
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
+      path: "/blog/gmat-3-month-study-schedule",
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
     { path: "/score-converter", changeFrequency: "monthly", priority: 0.8 },
     { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
     { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
